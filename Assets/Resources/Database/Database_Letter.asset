@@ -26,14 +26,14 @@ MonoBehaviour:
       Sound: aa
       SoundZone: D
       Isolated: "\u0627"
-      Initial: "\u0627"
-      Medial: "\uFE8E"
+      Initial: 
+      Medial: 
       Final: "\uFE8E"
       Isolated_Unicode: 0627
-      Initial_Unicode: FE8D
-      Medial_Unicode: FE8E
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FE8E
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: beh
       Number: 2
       Title: "b\u0101\u2019"
@@ -46,15 +46,15 @@ MonoBehaviour:
       SunMoon: 1
       Sound: b
       SoundZone: A
-      Isolated: "\u0628\u200E"
-      Initial: "\u0628\u0640\u200E"
-      Medial: "\u0640\u0628\u0640\u200E"
-      Final: "\u0640\u0628\u200E"
+      Isolated: "\u0628"
+      Initial: "\uFE91"
+      Medial: "\uFE92"
+      Final: "\uFE90"
       Isolated_Unicode: 0628
       Initial_Unicode: FE91
       Medial_Unicode: FE92
       Final_Unicode: FE90
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: teh
       Number: 3
       Title: "t\u0101\u2019"
@@ -67,15 +67,15 @@ MonoBehaviour:
       SunMoon: 2
       Sound: t
       SoundZone: B
-      Isolated: "\u062A\u200E"
-      Initial: "\u062A\u0640\u200E"
-      Medial: "\u0640\u062A\u0640\u200E"
-      Final: "\u0640\u062A\u200E"
+      Isolated: "\u062A"
+      Initial: "\uFE97"
+      Medial: "\uFE98"
+      Final: "\uFE96"
       Isolated_Unicode: 062A
       Initial_Unicode: FE97
       Medial_Unicode: FE98
       Final_Unicode: FE96
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: theh
       Number: 4
       Title: "th\u0101\u2019"
@@ -88,15 +88,15 @@ MonoBehaviour:
       SunMoon: 2
       Sound: th
       SoundZone: A
-      Isolated: "\u062B\u200E"
-      Initial: "\u062B\u0640\u200E"
-      Medial: "\u0640\u062B\u0640\u200E"
-      Final: "\u0640\u062B\u200E"
+      Isolated: "\u062B"
+      Initial: "\uFE9B"
+      Medial: "\uFE9C"
+      Final: "\uFE9A"
       Isolated_Unicode: 062B
       Initial_Unicode: FE9B
       Medial_Unicode: FE9C
       Final_Unicode: FE9A
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: jeem
       Number: 5
       Title: "j\u012Bm"
@@ -109,15 +109,15 @@ MonoBehaviour:
       SunMoon: 1
       Sound: j
       SoundZone: C
-      Isolated: "\u062C\u200E"
-      Initial: "\u062C\u0640\u200E"
-      Medial: "\u0640\u062C\u0640\u200E"
-      Final: "\u0640\u062C\u200E"
+      Isolated: "\u062C"
+      Initial: "\uFE9F"
+      Medial: "\uFEA0"
+      Final: "\uFE9E"
       Isolated_Unicode: 062C
       Initial_Unicode: FE9F
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: hah
       Number: 6
       Title: "\u1E25\u0101\u2019"
@@ -130,15 +130,15 @@ MonoBehaviour:
       SunMoon: 1
       Sound: H
       SoundZone: D
-      Isolated: "\u062D\u200E"
-      Initial: "\u062D\u0640\u200E"
-      Medial: "\u0640\u062D\u0640\u200E"
-      Final: "\u0640\u062D\u200E"
+      Isolated: "\u062D"
+      Initial: "\uFEA3"
+      Medial: "\uFEA4"
+      Final: "\uFEA2"
       Isolated_Unicode: 062D
       Initial_Unicode: FEA3
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: khah
       Number: 7
       Title: "kh\u0101\u2019"
@@ -151,15 +151,15 @@ MonoBehaviour:
       SunMoon: 1
       Sound: kh
       SoundZone: D
-      Isolated: "\u062E\u200E"
-      Initial: "\u062E\u0640\u200E"
-      Medial: "\u0640\u062E\u0640\u200E"
-      Final: "\u0640\u062E\u200E"
+      Isolated: "\u062E"
+      Initial: "\uFEA7"
+      Medial: "\uFEA8"
+      Final: "\uFEA6"
       Isolated_Unicode: 062E
       Initial_Unicode: FEA7
       Medial_Unicode: FEA8
       Final_Unicode: FEA6
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: dal
       Number: 8
       Title: "d\u0101l"
@@ -172,15 +172,15 @@ MonoBehaviour:
       SunMoon: 2
       Sound: d
       SoundZone: B
-      Isolated: "\u062F\u200E"
-      Initial: "\u062F\u200E"
-      Medial: "\u0640\u062F\u200E"
-      Final: "\u0640\u062F\u200E"
+      Isolated: "\u062F"
+      Initial: 
+      Medial: 
+      Final: "\uFEAA"
       Isolated_Unicode: 062F
-      Initial_Unicode: FEA9
-      Medial_Unicode: FEAA
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEAA
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: thal
       Number: 9
       Title: "dh\u0101l"
@@ -193,15 +193,15 @@ MonoBehaviour:
       SunMoon: 2
       Sound: dh
       SoundZone: A
-      Isolated: "\u0630\u200E"
-      Initial: "\u0630\u200E"
-      Medial: "\u0640\u0630\u200E"
-      Final: "\u0640\u0630\u200E"
+      Isolated: "\u0630"
+      Initial: 
+      Medial: 
+      Final: "\uFEAC"
       Isolated_Unicode: 0630
-      Initial_Unicode: FEAB
-      Medial_Unicode: FEAC
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEAC
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: reh
       Number: 10
       Title: "r\u0101\u2019"
@@ -214,15 +214,15 @@ MonoBehaviour:
       SunMoon: 2
       Sound: r
       SoundZone: B
-      Isolated: "\u0631\u200E"
-      Initial: "\u0631\u200E"
-      Medial: "\u0640\u0631\u200E"
-      Final: "\u0640\u0631\u200E"
+      Isolated: "\u0631"
+      Initial: 
+      Medial: 
+      Final: "\uFEAE"
       Isolated_Unicode: 0631
-      Initial_Unicode: FEAD
-      Medial_Unicode: FEAE
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEAE
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: zain
       Number: 11
       Title: "zayn / z\u0101y / z\u0101\u2019"
@@ -235,15 +235,15 @@ MonoBehaviour:
       SunMoon: 2
       Sound: z
       SoundZone: A
-      Isolated: "\u0632\u200E"
-      Initial: "\u0632\u200E"
-      Medial: "\u0640\u0632\u200E"
-      Final: "\u0640\u0632\u200E"
+      Isolated: "\u0632"
+      Initial: 
+      Medial: 
+      Final: "\uFEB0"
       Isolated_Unicode: 0632
-      Initial_Unicode: FEAF
-      Medial_Unicode: FEB0
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEB0
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: seen
       Number: 12
       Title: "s\u012Bn"
@@ -256,15 +256,15 @@ MonoBehaviour:
       SunMoon: 2
       Sound: s
       SoundZone: A
-      Isolated: "\u0633\u200E"
-      Initial: "\u0633\u0640\u200E"
-      Medial: "\u0640\u0633\u0640\u200E"
-      Final: "\u0640\u0633\u200E"
+      Isolated: "\u0633"
+      Initial: "\uFEB3"
+      Medial: "\uFEB4"
+      Final: "\uFEB2"
       Isolated_Unicode: 0633
       Initial_Unicode: FEB3
       Medial_Unicode: FEB4
       Final_Unicode: FEB2
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: sheen
       Number: 13
       Title: "sh\u012Bn"
@@ -277,15 +277,15 @@ MonoBehaviour:
       SunMoon: 2
       Sound: sh
       SoundZone: C
-      Isolated: "\u0634\u200E"
-      Initial: "\u0634\u0640\u200E"
-      Medial: "\u0640\u0634\u0640\u200E"
-      Final: "\u0640\u0634\u200E"
+      Isolated: "\u0634"
+      Initial: "\uFEB7"
+      Medial: "\uFEB8"
+      Final: "\uFEB6"
       Isolated_Unicode: 0634
       Initial_Unicode: FEB7
       Medial_Unicode: FEB8
       Final_Unicode: FEB6
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: sad
       Number: 14
       Title: "\u1E63\u0101d"
@@ -298,15 +298,15 @@ MonoBehaviour:
       SunMoon: 2
       Sound: S
       SoundZone: A
-      Isolated: "\u0635\u200E"
-      Initial: "\u0635\u0640\u200E"
-      Medial: "\u0640\u0635\u0640\u200E"
-      Final: "\u0640\u0635\u200E"
+      Isolated: "\u0635"
+      Initial: "\uFEBB"
+      Medial: "\uFEBC"
+      Final: "\uFEBA"
       Isolated_Unicode: 0635
       Initial_Unicode: FEBB
       Medial_Unicode: FEBC
       Final_Unicode: FEBA
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: dad
       Number: 15
       Title: "\u1E0D\u0101d"
@@ -319,15 +319,15 @@ MonoBehaviour:
       SunMoon: 2
       Sound: D
       SoundZone: C
-      Isolated: "\u0636\u200E"
-      Initial: "\u0636\u0640\u200E"
-      Medial: "\u0640\u0636\u0640\u200E"
-      Final: "\u0640\u0636\u200E"
+      Isolated: "\u0636"
+      Initial: "\uFEBF"
+      Medial: "\uFEC0"
+      Final: "\uFEBE"
       Isolated_Unicode: 0636
       Initial_Unicode: FEBF
       Medial_Unicode: FEC0
       Final_Unicode: FEBE
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: tah
       Number: 16
       Title: "\u1E6D\u0101\u2019"
@@ -340,15 +340,15 @@ MonoBehaviour:
       SunMoon: 2
       Sound: T
       SoundZone: B
-      Isolated: "\u0637\u200E"
-      Initial: "\u0637\u0640\u200E"
-      Medial: "\u0640\u0637\u0640\u200E"
-      Final: "\u0640\u0637\u200E"
+      Isolated: "\u0637"
+      Initial: "\uFEC3"
+      Medial: "\uFEC4"
+      Final: "\uFEC2"
       Isolated_Unicode: 0637
       Initial_Unicode: FEC3
       Medial_Unicode: FEC4
       Final_Unicode: FEC2
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: zah
       Number: 17
       Title: "\u1E0Dh\u0101\u2019"
@@ -361,15 +361,15 @@ MonoBehaviour:
       SunMoon: 2
       Sound: DH
       SoundZone: A
-      Isolated: "\u0638\u200E"
-      Initial: "\u0638\u0640\u200E"
-      Medial: "\u0640\u0638\u0640\u200E"
-      Final: "\u0640\u0638\u200E"
+      Isolated: "\u0638"
+      Initial: "\uFEC7"
+      Medial: "\uFEC8"
+      Final: "\uFEC6"
       Isolated_Unicode: 0638
       Initial_Unicode: FEC7
       Medial_Unicode: FEC8
       Final_Unicode: FEC6
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: ain
       Number: 18
       Title: "\u2018ayn"
@@ -382,15 +382,15 @@ MonoBehaviour:
       SunMoon: 1
       Sound: x
       SoundZone: D
-      Isolated: "\u0639\u200E"
-      Initial: "\u0639\u0640\u200E"
-      Medial: "\u0640\u0639\u0640\u200E"
-      Final: "\u0640\u0639\u200E"
+      Isolated: "\u0639"
+      Initial: "\uFECB"
+      Medial: "\uFECC"
+      Final: "\uFECA"
       Isolated_Unicode: 0639
       Initial_Unicode: FECB
       Medial_Unicode: FECC
       Final_Unicode: FECA
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: ghain
       Number: 19
       Title: ghayn
@@ -403,15 +403,15 @@ MonoBehaviour:
       SunMoon: 1
       Sound: gh
       SoundZone: D
-      Isolated: "\u063A\u200E"
-      Initial: "\u063A\u0640\u200E"
-      Medial: "\u0640\u063A\u0640\u200E"
-      Final: "\u0640\u063A\u200E"
+      Isolated: "\u063A"
+      Initial: "\uFECF"
+      Medial: "\uFED0"
+      Final: "\uFECE"
       Isolated_Unicode: 063A
       Initial_Unicode: FECF
       Medial_Unicode: FED0
       Final_Unicode: FECE
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: feh
       Number: 20
       Title: "f\u0101\u2019"
@@ -424,15 +424,15 @@ MonoBehaviour:
       SunMoon: 1
       Sound: f
       SoundZone: A
-      Isolated: "\u0641\u200E"
-      Initial: "\u0641\u0640\u200E"
-      Medial: "\u0640\u0641\u0640\u200E"
-      Final: "\u0640\u0641\u200E"
+      Isolated: "\u0641"
+      Initial: "\uFED3"
+      Medial: "\uFED4"
+      Final: "\uFED2"
       Isolated_Unicode: 0641
       Initial_Unicode: FED3
       Medial_Unicode: FED4
       Final_Unicode: FED2
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: qaf
       Number: 21
       Title: "q\u0101f"
@@ -445,15 +445,15 @@ MonoBehaviour:
       SunMoon: 1
       Sound: q
       SoundZone: D
-      Isolated: "\u0642\u200E"
-      Initial: "\u0642\u0640\u200E"
-      Medial: "\u0640\u0642\u0640\u200E"
-      Final: "\u0640\u0642\u200E"
+      Isolated: "\u0642"
+      Initial: "\uFED7"
+      Medial: "\uFED8"
+      Final: "\uFED6"
       Isolated_Unicode: 0642
       Initial_Unicode: FED7
       Medial_Unicode: FED8
       Final_Unicode: FED6
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: kaf
       Number: 22
       Title: "k\u0101f"
@@ -466,15 +466,15 @@ MonoBehaviour:
       SunMoon: 1
       Sound: k
       SoundZone: D
-      Isolated: "\u0643\u200E"
-      Initial: "\u0643\u0640\u200E"
-      Medial: "\u0640\u0643\u0640\u200E"
-      Final: "\u0640\u0643\u200E"
+      Isolated: "\u0643"
+      Initial: "\uFEDB"
+      Medial: "\uFEDC"
+      Final: "\uFEDA"
       Isolated_Unicode: 0643
       Initial_Unicode: FEDB
       Medial_Unicode: FEDC
       Final_Unicode: FEDA
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: lam
       Number: 23
       Title: "l\u0101m"
@@ -487,15 +487,15 @@ MonoBehaviour:
       SunMoon: 2
       Sound: l
       SoundZone: B
-      Isolated: "\u0644\u200E"
-      Initial: "\u0644\u0640\u200E"
-      Medial: "\u0640\u0644\u0640\u200E"
-      Final: "\u0640\u0644\u200E"
+      Isolated: "\u0644"
+      Initial: "\uFEDF"
+      Medial: "\uFEE0"
+      Final: "\uFEDE"
       Isolated_Unicode: 0644
       Initial_Unicode: FEDF
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: meem
       Number: 24
       Title: "m\u012Bm"
@@ -508,15 +508,15 @@ MonoBehaviour:
       SunMoon: 1
       Sound: m
       SoundZone: A
-      Isolated: "\u0645\u200E"
-      Initial: "\u0645\u0640\u200E"
-      Medial: "\u0640\u0645\u0640\u200E"
-      Final: "\u0640\u0645\u200E"
+      Isolated: "\u0645"
+      Initial: "\uFEE3"
+      Medial: "\uFEE4"
+      Final: "\uFEE2"
       Isolated_Unicode: 0645
       Initial_Unicode: FEE3
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: noon
       Number: 25
       Title: "n\u016Bn"
@@ -529,15 +529,15 @@ MonoBehaviour:
       SunMoon: 2
       Sound: n
       SoundZone: B
-      Isolated: "\u0646\u200E"
-      Initial: "\u0646\u0640\u200E"
-      Medial: "\u0640\u0646\u0640\u200E"
-      Final: "\u0640\u0646\u200E"
+      Isolated: "\u0646"
+      Initial: "\uFEE7"
+      Medial: "\uFEE8"
+      Final: "\uFEE6"
       Isolated_Unicode: 0646
       Initial_Unicode: FEE7
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: heh
       Number: 26
       Title: "h\u0101\u2019"
@@ -550,15 +550,15 @@ MonoBehaviour:
       SunMoon: 1
       Sound: h
       SoundZone: D
-      Isolated: "\u0647\u200E"
-      Initial: "\u0647\u0640\u200E"
-      Medial: "\u0640\u0647\u0640\u200E"
-      Final: "\u0640\u0647\u200E"
+      Isolated: "\u0647"
+      Initial: "\uFEEB"
+      Medial: "\uFEEC"
+      Final: "\uFEEA"
       Isolated_Unicode: 0647
       Initial_Unicode: FEEB
       Medial_Unicode: FEEC
       Final_Unicode: FEEA
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: waw
       Number: 27
       Title: "w\u0101w"
@@ -571,15 +571,15 @@ MonoBehaviour:
       SunMoon: 0
       Sound: w, uu
       SoundZone: A
-      Isolated: "\u0648\u200E"
-      Initial: "\u0648\u200E"
-      Medial: "\u0640\u0648\u200E"
-      Final: "\u0640\u0648\u200E"
+      Isolated: "\u0648"
+      Initial: 
+      Medial: 
+      Final: "\uFEEE"
       Isolated_Unicode: 0648
-      Initial_Unicode: FEED
-      Medial_Unicode: FEEE
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEEE
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: yeh
       Number: 28
       Title: "y\u0101\u2019"
@@ -592,15 +592,15 @@ MonoBehaviour:
       SunMoon: 0
       Sound: y, ii
       SoundZone: C
-      Isolated: "\u064A\u200E"
-      Initial: "\u064A\u0640\u200E"
-      Medial: "\u0640\u064A\u0640\u200E"
-      Final: "\u0640\u064A"
+      Isolated: "\u064A"
+      Initial: "\uFEF3"
+      Medial: "\uFEF4"
+      Final: "\uFEF2"
       Isolated_Unicode: 064A
       Initial_Unicode: FEF3
       Medial_Unicode: FEF4
       Final_Unicode: FEF2
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: hamza
       Number: 0
       Title: hamza
@@ -621,7 +621,7 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: dammah
       Number: 0
       Title: "\u1E0Dammah"
@@ -634,7 +634,7 @@ MonoBehaviour:
       SunMoon: 0
       Sound: u
       SoundZone: 
-      Isolated: "\u0640\u064F"
+      Isolated: "\u064F"
       Initial: 
       Medial: 
       Final: 
@@ -642,7 +642,7 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: dammah_tanwin
       Number: 0
       Title: dammah tanwin
@@ -655,7 +655,7 @@ MonoBehaviour:
       SunMoon: 0
       Sound: 
       SoundZone: 
-      Isolated: "-\u064C"
+      Isolated: "\u064C"
       Initial: 
       Medial: 
       Final: 
@@ -663,7 +663,7 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: fathah
       Number: 0
       Title: "fat\u1E25ah"
@@ -676,7 +676,7 @@ MonoBehaviour:
       SunMoon: 0
       Sound: a
       SoundZone: 
-      Isolated: "\u0640\u064E"
+      Isolated: "\u064E"
       Initial: 
       Medial: 
       Final: 
@@ -684,7 +684,7 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: fathah_tanwin
       Number: 0
       Title: "fat\u1E25ah tanwin"
@@ -697,7 +697,7 @@ MonoBehaviour:
       SunMoon: 0
       Sound: 
       SoundZone: 
-      Isolated: "-\u064B"
+      Isolated: "\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -705,7 +705,7 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: kasrah
       Number: 0
       Title: kasrah
@@ -718,7 +718,7 @@ MonoBehaviour:
       SunMoon: 0
       Sound: i
       SoundZone: 
-      Isolated: "\u0640\u0650"
+      Isolated: "\u0650"
       Initial: 
       Medial: 
       Final: 
@@ -726,7 +726,7 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: kasrah_tanwin
       Number: 0
       Title: kasrah tanwin
@@ -739,7 +739,7 @@ MonoBehaviour:
       SunMoon: 0
       Sound: 
       SoundZone: 
-      Isolated: "-\u064D"
+      Isolated: "\u064D"
       Initial: 
       Medial: 
       Final: 
@@ -747,7 +747,7 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: maddah
       Number: 0
       Title: maddah
@@ -760,7 +760,7 @@ MonoBehaviour:
       SunMoon: 0
       Sound: aa
       SoundZone: 
-      Isolated: "\u0640\u0653"
+      Isolated: "\u0653"
       Initial: 
       Medial: 
       Final: 
@@ -768,7 +768,7 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: shaddah
       Number: 0
       Title: shaddah
@@ -781,7 +781,7 @@ MonoBehaviour:
       SunMoon: 0
       Sound: 
       SoundZone: 
-      Isolated: "-\u0651"
+      Isolated: "\u0651"
       Initial: 
       Medial: 
       Final: 
@@ -789,7 +789,7 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: sukun
       Number: 0
       Title: sukun
@@ -802,15 +802,15 @@ MonoBehaviour:
       SunMoon: 0
       Sound: mute
       SoundZone: 
-      Isolated: "-\u0652"
+      Isolated: "\u0652"
       Initial: 
       Medial: 
       Final: 
-      Isolated_Unicode: 652
+      Isolated_Unicode: 0652
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: alef_hamza_hi
       Number: 0
       Title: alef hamza (hi)
@@ -824,14 +824,14 @@ MonoBehaviour:
       Sound: Aa
       SoundZone: 
       Isolated: "\u0623"
-      Initial: "\u0623"
+      Initial: 
       Medial: 
       Final: 
       Isolated_Unicode: 0623
-      Initial_Unicode: 0623
-      Medial_Unicode: 0623
-      Final_Unicode: 0623
-      Combined_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
     - Id: alef_hamza_low
       Number: 0
       Title: alef hamza (low)
@@ -845,14 +845,14 @@ MonoBehaviour:
       Sound: Aa
       SoundZone: 
       Isolated: "\u0625"
-      Initial: "\u0625"
+      Initial: 
       Medial: 
       Final: 
       Isolated_Unicode: 0625
-      Initial_Unicode: 0625
-      Medial_Unicode: 0625
-      Final_Unicode: 0625
-      Combined_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
     - Id: alef_maqsura
       Number: 0
       Title: alef maqsura
@@ -868,12 +868,12 @@ MonoBehaviour:
       Isolated: "\u0649"
       Initial: 
       Medial: 
-      Final: "\u0640\u0649"
+      Final: "\uFEF0"
       Isolated_Unicode: 0649
-      Initial_Unicode: 0649
-      Medial_Unicode: 0649
-      Final_Unicode: 0649
-      Combined_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEF0
+      Symbol_Unicode: 
     - Id: alef_maqsura_hamza
       Number: 0
       Title: alef_maqsura_hamza
@@ -886,15 +886,15 @@ MonoBehaviour:
       SunMoon: 0
       Sound: 
       SoundZone: 
-      Isolated: "\u0626"
-      Initial: "\uFE8B"
+      Isolated: "\uFE89"
+      Initial: 
       Medial: 
       Final: 
       Isolated_Unicode: FE89
-      Initial_Unicode: FE8B
-      Medial_Unicode: FE8C
-      Final_Unicode: FE8A
-      Combined_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
     - Id: yeh_hamza
       Number: 0
       Title: yeh_hamza
@@ -907,15 +907,15 @@ MonoBehaviour:
       SunMoon: 0
       Sound: 
       SoundZone: 
-      Isolated: "\u064A\u0621"
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
-      Combined_Unicode: 
+      Isolated: "\u0626"
+      Initial: "\uFE8B"
+      Medial: "\uFE8C"
+      Final: "\uFE8A"
+      Isolated_Unicode: 0626
+      Initial_Unicode: FE8B
+      Medial_Unicode: FE8C
+      Final_Unicode: FE8A
+      Symbol_Unicode: 
     - Id: teh_marbuta
       Number: 0
       Title: teh marbuta
@@ -928,15 +928,15 @@ MonoBehaviour:
       SunMoon: 0
       Sound: a
       SoundZone: 
-      Isolated: "\uFFFD\u0629"
+      Isolated: "\u0629"
       Initial: 
       Medial: 
-      Final: "\u0640\u0629"
+      Final: "\uFE94"
       Isolated_Unicode: 0629
-      Initial_Unicode: 0629
-      Medial_Unicode: 0629
-      Final_Unicode: 0629
-      Combined_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FE94
+      Symbol_Unicode: 
     - Id: lam_alef
       Number: 0
       Title: lam alef
@@ -949,15 +949,36 @@ MonoBehaviour:
       SunMoon: 0
       Sound: laa
       SoundZone: 
-      Isolated: "\u0644\u0627"
+      Isolated: "\uFEFB"
       Initial: 
       Medial: 
       Final: "\uFEFC"
       Isolated_Unicode: FEFB
-      Initial_Unicode: FEFC
-      Medial_Unicode: FEFC
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEFC
-      Combined_Unicode: 
+      Symbol_Unicode: 
+    - Id: waw_hamza
+      Number: 0
+      Title: waw_hamza
+      Kind: 4
+      BaseLetter: waw
+      Symbol: hamza
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0624"
+      Initial: 
+      Medial: 
+      Final: "\uFE86"
+      Isolated_Unicode: 0624
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FE86
+      Symbol_Unicode: 
     - Id: alef_fathah
       Number: 0
       Title: alef_fathah
@@ -975,10 +996,10 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 0627
-      Initial_Unicode: FE8D
-      Medial_Unicode: FE8E
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FE8E
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: alef_fathah_tanwin
       Number: 0
       Title: alef_fathah_tanwin
@@ -996,10 +1017,10 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 0627
-      Initial_Unicode: FE8D
-      Medial_Unicode: FE8E
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FE8E
-      Combined_Unicode: 
+      Symbol_Unicode: 064B
     - Id: alef_maddah
       Number: 0
       Title: alef_maddah
@@ -1012,15 +1033,15 @@ MonoBehaviour:
       SunMoon: 0
       Sound: 
       SoundZone: 
-      Isolated: "\u0627\u0653"
+      Isolated: "\u0622"
       Initial: 
       Medial: 
       Final: 
-      Isolated_Unicode: 622
+      Isolated_Unicode: 0622
       Initial_Unicode: 
-      Medial_Unicode: FE82
+      Medial_Unicode: 
       Final_Unicode: 
-      Combined_Unicode: 
+      Symbol_Unicode: 
     - Id: ain_fathah
       Number: 0
       Title: ain_fathah
@@ -1041,7 +1062,7 @@ MonoBehaviour:
       Initial_Unicode: FECB
       Medial_Unicode: FECC
       Final_Unicode: FECA
-      Combined_Unicode: 064E
+      Symbol_Unicode: 064E
     - Id: ain_kasrah
       Number: 0
       Title: ain_kasrah
@@ -1062,7 +1083,7 @@ MonoBehaviour:
       Initial_Unicode: FECB
       Medial_Unicode: FECC
       Final_Unicode: FECA
-      Combined_Unicode: 
+      Symbol_Unicode: 0650
     - Id: beh_dammah
       Number: 0
       Title: beh_dammah
@@ -1083,7 +1104,7 @@ MonoBehaviour:
       Initial_Unicode: FE91
       Medial_Unicode: FE92
       Final_Unicode: FE90
-      Combined_Unicode: 
+      Symbol_Unicode: 064F
     - Id: beh_fathah
       Number: 0
       Title: beh_fathah
@@ -1104,7 +1125,7 @@ MonoBehaviour:
       Initial_Unicode: FE91
       Medial_Unicode: FE92
       Final_Unicode: FE90
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: beh_kasrah
       Number: 0
       Title: beh_kasrah
@@ -1125,7 +1146,7 @@ MonoBehaviour:
       Initial_Unicode: FE91
       Medial_Unicode: FE92
       Final_Unicode: FE90
-      Combined_Unicode: 
+      Symbol_Unicode: 0650
     - Id: dad_fathah
       Number: 0
       Title: dad_fathah
@@ -1146,7 +1167,7 @@ MonoBehaviour:
       Initial_Unicode: FEBF
       Medial_Unicode: FEC0
       Final_Unicode: FEBE
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: dal_dammah_tanwin
       Number: 0
       Title: dal_dammah_tanwin
@@ -1164,10 +1185,10 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 062F
-      Initial_Unicode: FEA9
-      Medial_Unicode: FEAA
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEAA
-      Combined_Unicode: 
+      Symbol_Unicode: 064C
     - Id: dal_fathah
       Number: 0
       Title: dal_fathah
@@ -1185,10 +1206,10 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 062F
-      Initial_Unicode: FEA9
-      Medial_Unicode: FEAA
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEAA
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: thal_fathah
       Number: 0
       Title: thal_fathah
@@ -1206,10 +1227,10 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 0630
-      Initial_Unicode: FEAB
-      Medial_Unicode: FEAC
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEAC
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: feh_fathah
       Number: 0
       Title: feh_fathah
@@ -1230,7 +1251,7 @@ MonoBehaviour:
       Initial_Unicode: FED3
       Medial_Unicode: FED4
       Final_Unicode: FED2
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: feh_sukun
       Number: 0
       Title: feh_sukun
@@ -1251,7 +1272,7 @@ MonoBehaviour:
       Initial_Unicode: FED3
       Medial_Unicode: FED4
       Final_Unicode: FED2
-      Combined_Unicode: 
+      Symbol_Unicode: 0652
     - Id: heh_fathah
       Number: 0
       Title: heh_fathah
@@ -1272,7 +1293,7 @@ MonoBehaviour:
       Initial_Unicode: FEEB
       Medial_Unicode: FEEC
       Final_Unicode: FEEA
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: heh_kasrah
       Number: 0
       Title: heh_kasrah
@@ -1293,7 +1314,7 @@ MonoBehaviour:
       Initial_Unicode: FEEB
       Medial_Unicode: FEEC
       Final_Unicode: FEEA
-      Combined_Unicode: 
+      Symbol_Unicode: 0650
     - Id: hah_fathah
       Number: 0
       Title: hah_fathah
@@ -1314,7 +1335,7 @@ MonoBehaviour:
       Initial_Unicode: FEA3
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: hah_kasrah
       Number: 0
       Title: hah_kasrah
@@ -1335,7 +1356,7 @@ MonoBehaviour:
       Initial_Unicode: FEA3
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
-      Combined_Unicode: 
+      Symbol_Unicode: 0650
     - Id: hah_shaddah
       Number: 0
       Title: hah_shaddah
@@ -1356,7 +1377,7 @@ MonoBehaviour:
       Initial_Unicode: FEA3
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
-      Combined_Unicode: 
+      Symbol_Unicode: 0651
     - Id: jeem_dammah
       Number: 0
       Title: jeem_dammah
@@ -1377,7 +1398,7 @@ MonoBehaviour:
       Initial_Unicode: FE9F
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
-      Combined_Unicode: 
+      Symbol_Unicode: 064F
     - Id: jeem_fathah
       Number: 0
       Title: jeem_fathah
@@ -1398,7 +1419,7 @@ MonoBehaviour:
       Initial_Unicode: FE9F
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: jeem_shaddah
       Number: 0
       Title: jeem_shaddah
@@ -1419,7 +1440,7 @@ MonoBehaviour:
       Initial_Unicode: FE9F
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
-      Combined_Unicode: 
+      Symbol_Unicode: 0651
     - Id: kaf_dammah
       Number: 0
       Title: kaf_dammah
@@ -1440,7 +1461,7 @@ MonoBehaviour:
       Initial_Unicode: FEDB
       Medial_Unicode: FEDC
       Final_Unicode: FEDA
-      Combined_Unicode: 
+      Symbol_Unicode: 064F
     - Id: kaf_fathah
       Number: 0
       Title: kaf_fathah
@@ -1461,7 +1482,7 @@ MonoBehaviour:
       Initial_Unicode: FEDB
       Medial_Unicode: FEDC
       Final_Unicode: FEDA
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: lam_fathah
       Number: 0
       Title: lam_fathah
@@ -1482,7 +1503,7 @@ MonoBehaviour:
       Initial_Unicode: FEDF
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: lam_kasrah
       Number: 0
       Title: lam_kasrah
@@ -1503,7 +1524,7 @@ MonoBehaviour:
       Initial_Unicode: FEDF
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
-      Combined_Unicode: 
+      Symbol_Unicode: 0650
     - Id: lam_kasrah_tanwin
       Number: 0
       Title: lam_kasrah_tanwin
@@ -1524,7 +1545,7 @@ MonoBehaviour:
       Initial_Unicode: FEDF
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
-      Combined_Unicode: 
+      Symbol_Unicode: 064D
     - Id: lam_sukun
       Number: 0
       Title: lam_sukun
@@ -1545,7 +1566,7 @@ MonoBehaviour:
       Initial_Unicode: FEDF
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
-      Combined_Unicode: 
+      Symbol_Unicode: 0652
     - Id: meem_dammah
       Number: 0
       Title: meem_dammah
@@ -1566,7 +1587,7 @@ MonoBehaviour:
       Initial_Unicode: FEE3
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
-      Combined_Unicode: 
+      Symbol_Unicode: 064F
     - Id: meem_fathah
       Number: 0
       Title: meem_fathah
@@ -1587,7 +1608,7 @@ MonoBehaviour:
       Initial_Unicode: FEE3
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: meem_kasrah
       Number: 0
       Title: meem_kasrah
@@ -1608,7 +1629,7 @@ MonoBehaviour:
       Initial_Unicode: FEE3
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
-      Combined_Unicode: 
+      Symbol_Unicode: 0650
     - Id: noon_fathah
       Number: 0
       Title: noon_fathah
@@ -1629,7 +1650,7 @@ MonoBehaviour:
       Initial_Unicode: FEE7
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: noon_kasrah_tanwin
       Number: 0
       Title: noon_kasrah_tanwin
@@ -1650,7 +1671,7 @@ MonoBehaviour:
       Initial_Unicode: FEE7
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
-      Combined_Unicode: 
+      Symbol_Unicode: 064D
     - Id: noon_sukun
       Number: 0
       Title: noon_sukun
@@ -1671,7 +1692,7 @@ MonoBehaviour:
       Initial_Unicode: FEE7
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
-      Combined_Unicode: 
+      Symbol_Unicode: 0652
     - Id: qaf_fathah
       Number: 0
       Title: qaf_fathah
@@ -1692,7 +1713,7 @@ MonoBehaviour:
       Initial_Unicode: FED7
       Medial_Unicode: FED8
       Final_Unicode: FED6
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: reh_fathah
       Number: 0
       Title: reh_fathah
@@ -1710,10 +1731,10 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 0631
-      Initial_Unicode: FEAD
-      Medial_Unicode: FEAE
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEAE
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: reh_kasrah
       Number: 0
       Title: reh_kasrah
@@ -1731,10 +1752,10 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 0631
-      Initial_Unicode: FEAD
-      Medial_Unicode: FEAE
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEAE
-      Combined_Unicode: 
+      Symbol_Unicode: 0650
     - Id: sad_fathah
       Number: 0
       Title: sad_fathah
@@ -1755,7 +1776,7 @@ MonoBehaviour:
       Initial_Unicode: FEBB
       Medial_Unicode: FEBC
       Final_Unicode: FEBA
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: seen_fathah
       Number: 0
       Title: seen_fathah
@@ -1776,7 +1797,7 @@ MonoBehaviour:
       Initial_Unicode: FEB3
       Medial_Unicode: FEB4
       Final_Unicode: FEB2
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: sheen_fathah
       Number: 0
       Title: sheen_fathah
@@ -1797,7 +1818,7 @@ MonoBehaviour:
       Initial_Unicode: FEB7
       Medial_Unicode: FEB8
       Final_Unicode: FEB6
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: tah_fathah
       Number: 0
       Title: tah_fathah
@@ -1818,7 +1839,7 @@ MonoBehaviour:
       Initial_Unicode: FEC3
       Medial_Unicode: FEC4
       Final_Unicode: FEC2
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: teh_dammah
       Number: 0
       Title: teh_dammah
@@ -1839,7 +1860,7 @@ MonoBehaviour:
       Initial_Unicode: FE97
       Medial_Unicode: FE98
       Final_Unicode: FE96
-      Combined_Unicode: 
+      Symbol_Unicode: 064F
     - Id: teh_fathah
       Number: 0
       Title: teh_fathah
@@ -1860,7 +1881,7 @@ MonoBehaviour:
       Initial_Unicode: FE97
       Medial_Unicode: FE98
       Final_Unicode: FE96
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: teh_marbuta_dammah_tanwin
       Number: 0
       Title: teh_marbuta_dammah_tanwin
@@ -1881,28 +1902,7 @@ MonoBehaviour:
       Initial_Unicode: FE97
       Medial_Unicode: FE98
       Final_Unicode: FE96
-      Combined_Unicode: 
-    - Id: waw_hamza
-      Number: 0
-      Title: waw_hamza
-      Kind: 4
-      BaseLetter: waw
-      Symbol: hamza
-      Type: 0
-      Tag: 
-      Notes: 
-      SunMoon: 0
-      Sound: 
-      SoundZone: 
-      Isolated: "\u0624"
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 0676
-      Initial_Unicode: FEED
-      Medial_Unicode: FEEE
-      Final_Unicode: FEEE
-      Combined_Unicode: 
+      Symbol_Unicode: 064C
     - Id: zain_fathah
       Number: 0
       Title: zain_fathah
@@ -1920,10 +1920,10 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 0632
-      Initial_Unicode: FEAF
-      Medial_Unicode: FEB0
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEB0
-      Combined_Unicode: 
+      Symbol_Unicode: 064E
     - Id: zain_dammah
       Number: 0
       Title: zain_dammah
@@ -1941,7 +1941,7 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 0632
-      Initial_Unicode: FEAF
-      Medial_Unicode: FEB0
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEB0
-      Combined_Unicode: 
+      Symbol_Unicode: 064F

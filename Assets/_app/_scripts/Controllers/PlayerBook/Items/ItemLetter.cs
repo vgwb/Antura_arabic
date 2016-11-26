@@ -18,7 +18,7 @@ namespace EA4S
             data = _data;
             manager = _manager;
 
-            Title.text = ArabicAlphabetHelper.GetLetterToDisplay(data);
+            Title.text = data.GetChar();
             SubTitle.text = data.Id;
         }
 

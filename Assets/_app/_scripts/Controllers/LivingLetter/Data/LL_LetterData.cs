@@ -37,7 +37,8 @@ namespace EA4S
         /// </summary>
         public string TextForLivingLetter {
             get {
-                return ArabicAlphabetHelper.GetLetterToDisplay(Data, ShowAs);
+                //return ArabicAlphabetHelper.GetLetterToDisplay(Data, ShowAs);
+                return Data.GetChar(ShowAs);
             }
         }
 
@@ -49,7 +50,7 @@ namespace EA4S
         public Sprite DrawForLivingLetter {
             get { return null; }
         }
-        
+
         public bool Equals(ILivingLetterData data)
         {
             LL_LetterData other = data as LL_LetterData;
