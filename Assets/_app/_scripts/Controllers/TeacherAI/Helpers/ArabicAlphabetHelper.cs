@@ -8,7 +8,6 @@ namespace EA4S
 {
     public static class ArabicAlphabetHelper
     {
-        static readonly List<string> LetterExceptions = new List<string>() { "0627", "062F", "0630", "0631", "0632", "0648", "0623" };
 
         /// <summary>
         /// Prepares the string for display (say from Arabic into TMPro Text
@@ -66,8 +65,7 @@ namespace EA4S
 
         public static char GetCharFromUnicode(string hexCode)
         {
-            if (hexCode == "")
-            {
+            if (hexCode == "") {
                 Debug.LogError("Letter requested with an empty hexacode (data is probably missing from the DataBase). Returning - for now.");
                 hexCode = "002D";
             }
@@ -106,10 +104,8 @@ namespace EA4S
                 string unicodeString = GetHexUnicodeFromChar(_char);
 
                 Db.LetterData letterData = allLetterData.Find(l => l.Isolated_Unicode == unicodeString);
-                if (letterData != null)
-                {
-                    if (!separateDiacritics && letterData.Kind == Db.LetterDataKind.Symbol && letterData.Type == Db.LetterDataType.DiacriticSymbol)
-                    {
+                if (letterData != null) {
+                    if (!separateDiacritics && letterData.Kind == Db.LetterDataKind.Symbol && letterData.Type == Db.LetterDataType.DiacriticSymbol) {
                         var symbolId = letterData.Id;
                         var lastLetterData = allLetterData.Find(l => l.Id == returnList[returnList.Count - 1]);
                         var baseLetterId = lastLetterData.Id;
@@ -118,18 +114,13 @@ namespace EA4S
                         returnList.RemoveAt(returnList.Count - 1);
                         //Debug.Log(baseLetterId);
                         //Debug.Log(diacriticLetterData);
-                        if (diacriticLetterData == null)
-                        {
+                        if (diacriticLetterData == null) {
                             Debug.LogError("NULL " + baseLetterId + " + " + symbolId + ": we remove the diacritic for now.");
                             returnList.Add(diacriticLetterData.Id);
-                        }
-                        else
-                        {
+                        } else {
                             returnList.Add(diacriticLetterData.Id);
                         }
-                    }
-                    else
-                    {
+                    } else {
                         returnList.Add(letterData.Id);
                     }
                 }
@@ -146,59 +137,12 @@ namespace EA4S
             var db = AppManager.Instance.DB.StaticDatabase;
             var lettersIds = ExtractLettersFromArabicWord(arabicWord, db);
             var returnList = new List<LL_LetterData>();
-            foreach(var id in lettersIds)
-            {
+            foreach (var id in lettersIds) {
                 var llLetterData = new LL_LetterData((Db.LetterData)db.GetLetterTable().GetValue(id));
                 returnList.Add(llLetterData);
             }
             return returnList;
         }
 
-        /// <summary>
-        /// Return last field.
-        /// </summary>
-        /// <param name="word"></param>
-        /// <param name="_vocabulary"></param>
-        /// <returns></returns>
-        public static string ParseWord(string word, List<LL_LetterData> _vocabulary)
-        {
-            string returnString = string.Empty;
-            bool exceptionActive = false;
-            List<LL_LetterData> letters = ExtractLetterDataFromArabicWord(word);
-            if (letters.Count == 1)
-                return returnString = GetLetterFromUnicode(letters[0].Data.Isolated_Unicode);
-            for (int i = 0; i < letters.Count; i++) {
-                LL_LetterData let = letters[i];
-
-                /// Exceptions
-                if (exceptionActive) {
-                    if (i == letters.Count - 1)
-                        returnString += GetLetterFromUnicode(let.Data.Isolated_Unicode);
-                    else
-                        returnString += GetLetterFromUnicode(let.Data.Initial_Unicode);
-                    exceptionActive = false;
-                    continue;
-                }
-                if (LetterExceptions.Contains(let.Data.Isolated_Unicode))
-                    exceptionActive = true;
-                /// end Exceptions
-
-                if (let != null) {
-                    if (i == 0) {
-                        returnString += GetLetterFromUnicode(let.Data.Initial_Unicode);
-                        continue;
-                    } else if (i == letters.Count - 1) {
-                        returnString += GetLetterFromUnicode(let.Data.Final_Unicode);
-                        continue;
-                    } else {
-                        returnString += GetLetterFromUnicode(let.Data.Medial_Unicode);
-                        continue;
-                    }
-                } else {
-                    returnString += string.Format("{0}{2}{1}", "<color=red>", "</color>", GetLetterFromUnicode(let.Data.Isolated_Unicode));
-                }
-            }
-            return returnString;
-        }
     }
 }
