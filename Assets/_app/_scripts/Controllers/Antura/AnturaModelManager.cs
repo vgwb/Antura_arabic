@@ -49,7 +49,7 @@ namespace EA4S {
         /// Charges the category list.
         /// </summary>
         void chargeCategoryList() {
-            foreach (var reward in RewardSystemManager.GetConfig().Antura_rewards) {
+            foreach (var reward in RewardSystemManager.GetConfig().Rewards) {
                 if (!categoryList.Contains(reward.Category))
                     categoryList.Add(reward.Category);
             } 
@@ -82,7 +82,7 @@ namespace EA4S {
         /// <param name="_id">The identifier.</param>
         /// <returns></returns>
         public GameObject LoadRewardOnAntura(string _id) {
-            Reward reward = RewardSystemManager.GetConfig().Antura_rewards.Find(r => r.ID == _id);
+            Reward reward = RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == _id);
             if (reward == null) {
                 Debug.LogFormat("Reward {0} not found!", _id);
                 return null;
@@ -139,26 +139,5 @@ namespace EA4S {
         #endregion
     }
 
-    #region reward structures
 
-    [Serializable]
-    public class RewardConfig {
-        public List<Reward> Antura_rewards;
-    }
-
-    [Serializable]
-    public class Reward {
-        //public string Type;
-        public string ID;
-        public string RewardName;
-        //public string Priority;
-        //public string Done;
-        public string BoneAttach;
-        public string Material1;
-        public string Material2;
-        public string Category;
-        public string RemTongue;
-    }
-
-    #endregion
 }

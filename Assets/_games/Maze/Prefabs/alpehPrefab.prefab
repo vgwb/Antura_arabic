@@ -5423,6 +5423,7 @@ MonoBehaviour:
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   isFleeing: 0
   isAppearing: 0
+  rocket: {fileID: 0}
 --- !u!114 &114000012392245848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5611,6 +5612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 114000012244043794}
+  isInside: 0
   idleSeconds: 0
   anturaSeconds: 0
 --- !u!114 &114000012725448266

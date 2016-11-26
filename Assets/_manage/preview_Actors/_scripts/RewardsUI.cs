@@ -60,9 +60,9 @@ namespace EA4S {
             ClearList();
             List<Reward> rewards;
             if (_position != "")
-                rewards = RewardSystemManager.GetConfig().Antura_rewards.FindAll(r => r.BoneAttach == _position);
+                rewards = RewardSystemManager.GetConfig().Rewards.FindAll(r => r.BoneAttach == _position);
             else
-                rewards = RewardSystemManager.GetConfig().Antura_rewards;
+                rewards = RewardSystemManager.GetConfig().Rewards;
 
             foreach (Reward reward in rewards) {
                 Button b = Instantiate<Button>(ElementPrefab.GetComponent<Button>());
@@ -85,7 +85,7 @@ namespace EA4S {
         /// </summary>
         /// <param name="_name">The name.</param>
         void LoadRewardOnDog(string _name) {
-            actualReward = RewardSystemManager.GetConfig().Antura_rewards.Find(r => r.RewardName == _name);
+            actualReward = RewardSystemManager.GetConfig().Rewards.Find(r => r.RewardName == _name);
             actualRewardGO = AnturaModelManager.Instance.LoadRewardOnAntura(actualReward.ID);
             foreach (var color in actualRewardGO.GetComponentsInChildren<MeshRenderer>()) {
                 if (color.name == "color_1") {
