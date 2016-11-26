@@ -217,10 +217,10 @@ namespace EA4S
             foreach (var letterData in this.wordHelper.GetAllLetters(filters))
                 list.Add(BuildLetterData_LL(letterData));
 
-            if (ConfigAI.verboseTeacher)
+            /*if (ConfigAI.verboseTeacher)
             {
                 Debug.Log("All test letter data requested to teacher.");
-            }
+            }*/
 
             return list;
         }
@@ -236,10 +236,10 @@ namespace EA4S
 
             var data = this.wordHelper.GetAllLetters(filters).RandomSelectOne();
 
-            if (ConfigAI.verboseTeacher)
+            /*if (ConfigAI.verboseTeacher)
             {
                 Debug.Log("Random test Letter requested to teacher: " + data.ToString());
-            }
+            }*/
 
             return BuildLetterData_LL(data);
         }
@@ -255,10 +255,10 @@ namespace EA4S
 
             var data = this.wordHelper.GetWordsByCategory(WordDataCategory.Animal, filters).RandomSelectOne();
 
-            if (ConfigAI.verboseTeacher)
+            /*if (ConfigAI.verboseTeacher)
             {
                 Debug.Log("Random test Word requested to teacher: " + data.ToString());
-            }
+            }*/
 
             return BuildWordData_LL(data);
         }

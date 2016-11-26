@@ -50,6 +50,8 @@
             IQuestionBuilder builder = null;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.letterFilters.excludeDiacritics = true;
+            builderParams.wordFilters.excludeDiacritics = true;
             builder = new RandomLettersQuestionBuilder(7,1, parameters: builderParams);
 
             return builder;
