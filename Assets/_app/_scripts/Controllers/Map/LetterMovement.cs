@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using EA4S;
 using EA4S.TestE;
 using System.Collections.Generic;
+using DG.Tweening;
 
 namespace EA4S
 {
@@ -27,11 +28,20 @@ namespace EA4S
         Rope ropeSelected;
         Collider colliderRaycast;
 
+        void Start()
+        {
+            Floating();
+        }
+        void Floating()
+        {
+            transform.DOBlendableMoveBy(new Vector3(0, 1, 0), 1).SetLoops(-1, LoopType.Yoyo);
+        }
+
         void Update()
         {
-            /*Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.Stage);
+            Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.Stage);
             Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock);
-            Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);*/
+            Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
 
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(posDot.x, transform.position.y, posDot.z), speed * Time.deltaTime);
            /* if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
@@ -158,6 +168,7 @@ namespace EA4S
             Vector3 pinPos = miniMapScript.pinRight;
            // transform.LookAt(new Vector3(pinPos.x, pinPos.y + 3, pinPos.z));
             UpdateCurrenJourneyPosition();
+            LookAtRightPin();
         }
        public void MoveToTheLeftDot()
        {
@@ -197,6 +208,7 @@ namespace EA4S
             Vector3 pinPos = miniMapScript.pinLeft;
            // transform.LookAt(new Vector3(pinPos.x, pinPos.y + 3, pinPos.z));
             UpdateCurrenJourneyPosition();
+            LookAtLeftPin();
         }
 
         public void ResetPosLetter()
@@ -217,6 +229,7 @@ namespace EA4S
                     [AppManager.Instance.Player.CurrentJourneyPosition.PlaySession - 1].GetComponent<Dot>().pos;
                 miniMapScript.posDots[pos].GetComponent<Renderer>().material = red;
             }
+            LookAtRightPin();
         }
         public void ResetPosLetterAfterChangeStage()
         {
@@ -245,6 +258,14 @@ namespace EA4S
         public void ChangeMaterialPinToBlack(GameObject pin)
         {
             pin.GetComponent<Renderer>().material = blackPin;
+        }
+        void LookAtRightPin()
+        {
+            transform.LookAt(miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock]);
+        }
+        void LookAtLeftPin()
+        {
+            transform.LookAt(miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock-1]);
         }
     }
 }

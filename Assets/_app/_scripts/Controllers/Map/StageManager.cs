@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using EA4S;
+using DG.Tweening;
 namespace EA4S
 {
     public class StageManager : MonoBehaviour
@@ -44,6 +45,7 @@ namespace EA4S
                 AppManager.Instance.Player.CurrentJourneyPosition.Stage++;
                 letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage+1].GetComponent<MiniMap>();
                 letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
+                
             }
         }
         public void StageRight()
