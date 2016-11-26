@@ -222,10 +222,10 @@ namespace EA4S
             AudioManager.I.PlayLetter(letter.Id);
 
             ArabicText.text = ArabicAlphabetHelper.GetLetterToDisplay(letter);
-            ArabicText.text += "\niso: " + letter.GetCharAlternative(LetterPosition.Isolated);
-            ArabicText.text += "\nfin: " + letter.GetCharAlternative(LetterPosition.Final);
-            ArabicText.text += "\nmed: " + letter.GetCharAlternative(LetterPosition.Medial);
-            ArabicText.text += "\nini: " + letter.GetCharAlternative(LetterPosition.Initial);
+            ArabicText.text += "\niso: " + letter.GetChar(LetterPosition.Isolated);
+            ArabicText.text += "\nfin: " + letter.GetChar(LetterPosition.Final);
+            ArabicText.text += "\nmed: " + letter.GetChar(LetterPosition.Medial);
+            ArabicText.text += "\nini: " + letter.GetChar(LetterPosition.Initial);
 
             LLText.Init(new LL_LetterData(letter));
         }
