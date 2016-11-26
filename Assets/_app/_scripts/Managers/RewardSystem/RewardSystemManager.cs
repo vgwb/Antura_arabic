@@ -69,8 +69,9 @@ namespace EA4S {
         /// </summary>
         /// <param name="_rewardItemId">The reward item identifier.</param>
         /// <returns></returns>
-        public static List<RewardColor> SelectRewardItem(string _rewardItemId, RewardTypes _rewardType) {
-            List<RewardColor> returnList = new List<RewardColor>();
+        public static List<RewardColorItem> SelectRewardItem(string _rewardItemId, RewardTypes _rewardType) {
+            List<RewardColorItem> returnList = new List<RewardColorItem>();
+            GetRewardColorsById(_rewardItemId, _rewardType);
             /// TODO: logic
             return returnList;
         }
