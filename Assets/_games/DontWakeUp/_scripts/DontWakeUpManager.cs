@@ -200,7 +200,7 @@ namespace EA4S.DontWakeUp
             UpdateLivesContainer();
             SetupLevel();
 
-            WidgetPopupWindow.I.ShowStringAndWord(ClickedNext, currentRound.ToString(), currentWord);
+            //WidgetPopupWindow.I.ShowStringAndWord(ClickedNext, currentRound.ToString(), currentWord);
             SpeakCurrentLetter();
         }
 

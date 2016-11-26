@@ -24,7 +24,7 @@ namespace EA4S {
                 DrawText.text = Data.DrawingCharForLivingLetter;
             } else
             {
-                LetterLable.text = Data.TextForLivingLetter;
+                LetterLable.GetComponent<TextRender>().SetLetterData(Data);
                 DrawText.gameObject.SetActive(false);
             }
 

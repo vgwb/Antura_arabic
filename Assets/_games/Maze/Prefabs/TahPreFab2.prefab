@@ -6808,6 +6808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterIndex: 15
+  letterId: 
 --- !u!114 &114000011538843022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7024,9 +7025,6 @@ MonoBehaviour:
   linesToShow:
   - {fileID: 1000012710891950}
   - {fileID: 1000010161976896}
-  numbersToShow:
-  - {fileID: 1000011346463328}
-  - {fileID: 1000014181936582}
   isStopped: 0
   isShownOnce: 0
 --- !u!114 &114000011995823774
@@ -7107,6 +7105,7 @@ MonoBehaviour:
   nextPosition: {fileID: 4000011024848392}
   initialPosition: {x: 0, y: 0, z: 0}
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  isFleeing: 0
   isAppearing: 0
 --- !u!137 &137000010185147744
 SkinnedMeshRenderer:

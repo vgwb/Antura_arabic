@@ -40,7 +40,8 @@
             int nCorrect = 1;
             int nWrong = 5;
 
-            builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong);
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
 
             return builder;
         }

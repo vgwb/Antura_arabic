@@ -14,7 +14,7 @@ namespace EA4S.DancingDots
 			question = correctAnswers = LLData;
 		}
 
-		public LL_LetterData getAnswer()
+		public LL_LetterData GetAnswer()
 		{
 			return correctAnswers;
 		}

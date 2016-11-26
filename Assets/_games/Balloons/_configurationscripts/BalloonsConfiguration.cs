@@ -78,10 +78,12 @@
             {
                 case BalloonsVariation.Spelling:
                     builderParams.wordFilters.excludeColorWords = true;
+                    builderParams.wordFilters.requireDrawings = true;
                     builder = new LettersInWordQuestionBuilder(nPacks, useAllCorrectLetters:true, nWrong:nWrong, parameters: builderParams);
                     break;
                 case BalloonsVariation.Words:
                     builderParams.wordFilters.excludeColorWords = true;
+                    builderParams.wordFilters.requireDrawings = true;
                     builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);
                     break;
                 case BalloonsVariation.Letter:

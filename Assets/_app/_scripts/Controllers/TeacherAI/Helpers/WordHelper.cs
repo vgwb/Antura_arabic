@@ -9,13 +9,16 @@ namespace EA4S
     {
         public bool excludeDiacritics;
         public bool excludeLetterVariations;
+        public bool requireDiacritics;
 
         public LetterFilters(
-            bool excludeDiacritics = true, 
-            bool excludeLetterVariations = true)
+            bool excludeDiacritics = false, 
+            bool excludeLetterVariations = false,
+            bool requireDiacritics = false)
         {
             this.excludeDiacritics = excludeDiacritics;
             this.excludeLetterVariations = excludeLetterVariations;
+            this.requireDiacritics = requireDiacritics;
         }
     }
 
@@ -24,24 +27,27 @@ namespace EA4S
     {
         public bool excludeDiacritics;
         public bool excludeLetterVariations;
+        public bool requireDiacritics;
         public bool excludeArticles;
         public bool excludePluralDual;
-        public bool excludeNoDrawing;
+        public bool requireDrawings;
         public bool excludeColorWords;
 
         public WordFilters(
-            bool excludeDiacritics = true,
-            bool excludeLetterVariations = true,
-            bool excludeArticles = true, 
-            bool excludePluralDual = true, 
-            bool excludeNoDrawing = true,
+            bool excludeDiacritics = false,
+            bool excludeLetterVariations = false,
+            bool requireDiacritics = false,
+            bool excludeArticles = false, 
+            bool excludePluralDual = false, 
+            bool requireDrawings = false,
             bool excludeColorWords = false)
         {
             this.excludeDiacritics = excludeDiacritics;
             this.excludeLetterVariations = excludeLetterVariations;
+            this.requireDiacritics = requireDiacritics;
             this.excludeArticles = excludeArticles;
             this.excludePluralDual = excludePluralDual;
-            this.excludeNoDrawing = excludeNoDrawing;
+            this.requireDrawings = requireDrawings;
             this.excludeColorWords = excludeColorWords;
         }
     }
@@ -66,8 +72,9 @@ namespace EA4S.Db
 
         private bool CheckFilters(LetterFilters filters, LetterData data)
         {
-            if (filters.excludeDiacritics && data.IsOfKindCategory(LetterKindCategory.Combo)) return false;
-            if (filters.excludeLetterVariations && data.IsOfKindCategory(LetterKindCategory.Variation)) return false;
+            if (filters.requireDiacritics && !data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) return false;
+            if (filters.excludeDiacritics && data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) return false;
+            if (filters.excludeLetterVariations && data.IsOfKindCategory(LetterKindCategory.LetterVariation)) return false;
             if (data.IsOfKindCategory(LetterKindCategory.Symbol)) return false; // always skip symbols
             return true;
         }
@@ -216,18 +223,19 @@ namespace EA4S.Db
         private bool CheckFilters(WordFilters filters, WordData data)
         {
             if (filters.excludeArticles && data.Article != WordDataArticle.None) return false;
-            if (filters.excludeNoDrawing && !data.HasDrawing()) return false;
+            if (filters.requireDrawings && !data.HasDrawing()) return false;
             if (filters.excludeColorWords && data.Category == WordDataCategory.Color) return false;
             if (filters.excludePluralDual && data.Form != WordDataForm.Singular) return false;
-            if (filters.excludeDiacritics && this.WordHasLetterVariations(data)) return false;
+            if (filters.excludeDiacritics && this.WordHasDiacriticCombo(data)) return false;
             if (filters.excludeLetterVariations && this.WordHasLetterVariations(data)) return false;
+            if (filters.requireDiacritics && !this.WordHasDiacriticCombo(data)) return false;
             return true;
         }
 
-        private bool WordHasCombo(WordData data)
+        private bool WordHasDiacriticCombo(WordData data)
         {
             foreach (var letter in GetLettersInWord(data))
-                if (letter.IsOfKindCategory(LetterKindCategory.Combo))
+                if (letter.IsOfKindCategory(LetterKindCategory.DiacriticCombo))
                     return true;
             return false;
         }
@@ -235,7 +243,7 @@ namespace EA4S.Db
         private bool WordHasLetterVariations(WordData data)
         {
             foreach (var letter in GetLettersInWord(data))
-                if (letter.IsOfKindCategory(LetterKindCategory.Variation))
+                if (letter.IsOfKindCategory(LetterKindCategory.LetterVariation))
                     return true;
             return false;
         }
@@ -395,6 +403,29 @@ namespace EA4S.Db
 
         #endregion
 
+        #region Phrase filters
+
+        private bool CheckFilters(WordFilters wordFilters, PhraseData data)
+        {
+            bool allWordsAreOk = true;
+            foreach (var word in GetWordsInPhrase(data))
+            {
+                if (!CheckFilters(wordFilters, word))
+                    allWordsAreOk = false;
+                if (!allWordsAreOk) return false;
+            }
+            allWordsAreOk = true;
+            foreach (var word in GetAnswersToPhrase(data))
+            {
+                if (!CheckFilters(wordFilters, word))
+                    allWordsAreOk = false;
+                if (!allWordsAreOk) return false;
+            }
+            return true;
+        }
+
+        #endregion
+
         #region Phrase -> Phrase
 
         public List<PhraseData> GetAllPhrases()
@@ -407,9 +438,9 @@ namespace EA4S.Db
             return dbManager.FindPhraseData(x => x.Answers.Length > 0);
         }
 
-        public List<PhraseData> GetPhrasesByCategory(PhraseDataCategory choice)
+        public List<PhraseData> GetPhrasesByCategory(PhraseDataCategory choice, WordFilters wordFilters)
         {
-            return dbManager.FindPhraseData(x => x.Category == choice);
+            return dbManager.FindPhraseData(x => x.Category == choice && CheckFilters(wordFilters, x));
         }
 
         public PhraseData GetLinkedPhraseOf(string startPhraseId)
