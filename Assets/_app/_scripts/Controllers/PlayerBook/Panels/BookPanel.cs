@@ -221,8 +221,7 @@ namespace EA4S
             Debug.Log("Detail Letter :" + letter.Id);
             AudioManager.I.PlayLetter(letter.Id);
 
-            ArabicText.text = ArabicAlphabetHelper.GetLetterToDisplay(letter);
-            ArabicText.text += "\niso: " + letter.GetChar(LetterPosition.Isolated);
+            ArabicText.text = "iso: " + letter.GetChar(LetterPosition.Isolated);
             ArabicText.text += "\nfin: " + letter.GetChar(LetterPosition.Final);
             ArabicText.text += "\nmed: " + letter.GetChar(LetterPosition.Medial);
             ArabicText.text += "\nini: " + letter.GetChar(LetterPosition.Initial);

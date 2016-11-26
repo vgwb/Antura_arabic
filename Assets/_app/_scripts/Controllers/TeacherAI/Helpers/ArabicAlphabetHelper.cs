@@ -23,19 +23,6 @@ namespace EA4S
             return ArabicFixer.Fix(str, true, true);
         }
 
-        /// <summary>
-        /// Return single letter string
-        /// </summary>
-        public static string GetLetterToDisplay(Db.LetterData letterData, Db.LetterPosition letterPosition = Db.LetterPosition.Isolated)
-        {
-            //DebugLetter(letterData);
-            if (letterData.Kind == Db.LetterDataKind.Letter) {
-                return GetLetterFromUnicode(letterData.GetUnicode(letterPosition));
-            } else {
-                return letterData.GetChar(letterPosition);
-            }
-        }
-
         public static void DebugLetter(Db.LetterData letterData)
         {
             byte[] bytesUtf16 = Encoding.Unicode.GetBytes(letterData.Isolated);
@@ -61,17 +48,6 @@ namespace EA4S
             int unicode = int.Parse(hexCode, System.Globalization.NumberStyles.HexNumber);
             var character = (char)unicode;
             return character.ToString();
-        }
-
-        public static char GetCharFromUnicode(string hexCode)
-        {
-            if (hexCode == "") {
-                Debug.LogError("Letter requested with an empty hexacode (data is probably missing from the DataBase). Returning - for now.");
-                hexCode = "002D";
-            }
-
-            int unicode = int.Parse(hexCode, System.Globalization.NumberStyles.HexNumber);
-            return (char)unicode;
         }
 
         /// <summary>
@@ -116,7 +92,7 @@ namespace EA4S
                         //Debug.Log(diacriticLetterData);
                         if (diacriticLetterData == null) {
                             Debug.LogError("NULL " + baseLetterId + " + " + symbolId + ": we remove the diacritic for now.");
-                            returnList.Add(diacriticLetterData.Id);
+                            // returnList.Add(diacriticLetterData.Id);
                         } else {
                             returnList.Add(diacriticLetterData.Id);
                         }

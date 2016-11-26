@@ -282,6 +282,7 @@ MonoBehaviour:
       Arabic: "\u0622\u0645\u064E\u0646\u064E"
       Value: 
       Letters:
+      - alef_maddah
       - meem_fathah
       - noon_fathah
       Difficulty: 0
@@ -1518,7 +1519,7 @@ MonoBehaviour:
       Value: 
       Letters:
       - reh_fathah
-      - feh
+      - feh_sukun
       - reh_fathah
       - feh_fathah
       Difficulty: 0
@@ -2057,7 +2058,7 @@ MonoBehaviour:
       Value: 
       Letters:
       - ain_kasrah
-      - lam
+      - lam_sukun
       - meem
       Difficulty: 0
       Drawing: 5C
@@ -2261,6 +2262,7 @@ MonoBehaviour:
       Value: 
       Letters:
       - kaf
+      - alef_maddah
       - beh
       - teh_marbuta
       Difficulty: 0
@@ -2304,6 +2306,7 @@ MonoBehaviour:
       Arabic: "\u0622\u0628"
       Value: 
       Letters:
+      - alef_maddah
       - beh
       Difficulty: 0
       Drawing: B1
@@ -2406,6 +2409,7 @@ MonoBehaviour:
       Arabic: "\u0622\u0630\u0627\u0631"
       Value: 
       Letters:
+      - alef_maddah
       - thal
       - alef
       - reh
@@ -2700,6 +2704,7 @@ MonoBehaviour:
       Letters:
       - alef
       - lam
+      - alef_maddah
       - noon
       Difficulty: 0
       Drawing: 
@@ -3443,7 +3448,9 @@ MonoBehaviour:
       Value: 
       Letters:
       - lam
+      - waw_hamza
       - lam
+      - waw_hamza
       Difficulty: 0
       Drawing: E0
     - Id: pencil
@@ -3719,8 +3726,9 @@ MonoBehaviour:
       Arabic: "\u0622\u0645\u0650\u0646\u0652"
       Value: 
       Letters:
+      - alef_maddah
       - meem_kasrah
-      - noon
+      - noon_sukun
       Difficulty: 0
       Drawing: 
     - Id: salt
@@ -3733,7 +3741,7 @@ MonoBehaviour:
       Value: 
       Letters:
       - meem_kasrah
-      - lam
+      - lam_sukun
       - hah
       Difficulty: 0
       Drawing: EB
@@ -4811,6 +4819,7 @@ MonoBehaviour:
       - alef
       - lam
       - thal
+      - yeh_hamza
       - beh
       Difficulty: 0
       Drawing: FF
@@ -4827,6 +4836,7 @@ MonoBehaviour:
       - lam
       - reh
       - alef
+      - yeh_hamza
       - ain
       Difficulty: 0
       Drawing: 24
@@ -5318,6 +5328,7 @@ MonoBehaviour:
       Value: 
       Letters:
       - thal
+      - yeh_hamza
       - beh
       Difficulty: 0
       Drawing: FF
@@ -5361,6 +5372,7 @@ MonoBehaviour:
       Letters:
       - reh
       - alef
+      - yeh_hamza
       - ain
       Difficulty: 0
       Drawing: 24
