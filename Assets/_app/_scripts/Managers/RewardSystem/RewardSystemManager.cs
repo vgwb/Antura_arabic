@@ -87,6 +87,10 @@ namespace EA4S {
             return returnList;
         }
 
+        public static void SelectRewardColorItem(string _rewardColorItemId, RewardTypes _rewardType) {
+
+        }
+
         #endregion
 
         #region General
