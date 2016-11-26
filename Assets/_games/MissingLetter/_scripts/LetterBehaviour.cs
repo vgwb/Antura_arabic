@@ -25,6 +25,7 @@ namespace EA4S.MissingLetter
             gameObject.transform.rotation = Quaternion.identity;
             endTransformToCallback = null;
             onLetterClick = null;
+            mbIsSpeaking = false;
             LightOff();
         }
 
@@ -162,7 +163,7 @@ namespace EA4S.MissingLetter
                 {
                     AudioManager.I.PlayWord(mLetterData.Id);
                 }
-                StartCoroutine(Utils.LaunchDelay(0.5f, SetIsSpeaking, false));
+                StartCoroutine(Utils.LaunchDelay(0.8f, SetIsSpeaking, false));
             }
         }
         
