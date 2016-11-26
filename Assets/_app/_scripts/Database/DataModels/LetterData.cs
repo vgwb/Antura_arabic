@@ -43,7 +43,7 @@ namespace EA4S.Db
         public string Initial_Unicode;
         public string Medial_Unicode;
         public string Final_Unicode;
-        public string Combined_Unicode;
+        public string Symbol_Unicode;
 
         public override string ToString()
         {
@@ -158,8 +158,8 @@ namespace EA4S.Db
             int unicode = int.Parse(hexunicode, System.Globalization.NumberStyles.HexNumber);
             output = ((char)unicode).ToString();
 
-            if (Combined_Unicode != "") {
-                int unicode_added = int.Parse(Combined_Unicode, System.Globalization.NumberStyles.HexNumber);
+            if (Symbol_Unicode != "") {
+                int unicode_added = int.Parse(Symbol_Unicode, System.Globalization.NumberStyles.HexNumber);
                 output += ((char)unicode_added).ToString();
             }
 
