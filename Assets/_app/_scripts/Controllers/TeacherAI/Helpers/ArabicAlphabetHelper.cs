@@ -90,29 +90,57 @@ namespace EA4S
         /// <summary>
         /// Returns the list of letters found in a word string
         /// </summary>
-        /// <param name="word"></param>
+        /// <param name="arabicWord"></param>
         /// <param name="alphabet"></param>
         /// <param name="reverseOrder">Return in list position 0 most right letter in input string and last the most left.</param>
         /// <returns></returns>
-        public static List<string> LetterDataList(string word, List<Db.LetterData> alphabet, bool reverseOrder = false)
+        public static List<string> ExtractLettersFromArabicWord(string arabicWord, Db.Database db, bool separateDiacritics = false)
         {
+            List<Db.LetterData> allLetterData = new List<Db.LetterData>(db.GetLetterTable().GetValuesTyped());
+
             var returnList = new List<string>();
 
-            char[] chars = word.ToCharArray();
-            if (reverseOrder) {
-                Array.Reverse(chars);
-            }
+            char[] chars = arabicWord.ToCharArray();
 
+            //Debug.Log(arabicWord);
             for (int i = 0; i < chars.Length; i++) {
                 char _char = chars[i];
                 string unicodeString = GetHexUnicodeFromChar(_char);
-                Db.LetterData letterData = alphabet.Find(l => l.Isolated_Unicode == unicodeString);
+
+                Db.LetterData letterData = allLetterData.Find(l => l.Isolated_Unicode == unicodeString);
                 if (letterData != null)
-                    returnList.Add(letterData.Id);
+                {
+                    if (!separateDiacritics && letterData.Kind == Db.LetterDataKind.Symbol && letterData.Type == Db.LetterDataType.DiacriticSymbol)
+                    {
+                        var symbolId = letterData.Id;
+                        var lastLetterData = allLetterData.Find(l => l.Id == returnList[returnList.Count - 1]);
+                        var baseLetterId = lastLetterData.Id;
+                        //Debug.Log(symbolId);
+                        var diacriticLetterData = allLetterData.Find(l => l.Symbol == symbolId && l.BaseLetter == baseLetterId);
+                        returnList.RemoveAt(returnList.Count - 1);
+                        //Debug.Log(baseLetterId);
+                        //Debug.Log(diacriticLetterData);
+                        if (diacriticLetterData == null)
+                        {
+                            Debug.LogError("NULL " + baseLetterId + " + " + symbolId + ": we remove the diacritic for now.");
+                            returnList.Add(diacriticLetterData.Id);
+                        }
+                        else
+                        {
+                            returnList.Add(diacriticLetterData.Id);
+                        }
+                    }
+                    else
+                    {
+                        returnList.Add(letterData.Id);
+                    }
+                }
             }
 
             return returnList;
         }
+
+
 
 
         /// <summary>
