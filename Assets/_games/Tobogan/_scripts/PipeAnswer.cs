@@ -10,6 +10,7 @@ namespace EA4S.Tobogan
     public class PipeAnswer : MonoBehaviour
     {
         public TMP_Text answerText;
+        public TextRender answerRender;
         public TextMeshPro answerWordDrawings;
 
         public GameObject aspirationParticle;
@@ -138,18 +139,10 @@ namespace EA4S.Tobogan
             }
             else
             {
-                answerText.gameObject.SetActive(true);
+                answerRender.gameObject.SetActive(true);
                 answerWordDrawings.gameObject.SetActive(false);
-
-                //answerText.text = livingLetterData.TextForLivingLetter;
-                if (livingLetterData.DataType == LivingLetterDataType.Letter)
-                {
-                    answerText.text = ArabicAlphabetHelper.GetLetterFromUnicode(((LL_LetterData)livingLetterData).Data.Isolated_Unicode);
-                }
-                else if (livingLetterData.DataType == LivingLetterDataType.Word)
-                {
-                    answerText.text = ArabicFixer.Fix(((LL_WordData)livingLetterData).Data.Arabic, false, false);
-                }
+                
+                answerRender.SetLetterData(livingLetterData);
             }
 
             IsCorrectAnswer = correct;

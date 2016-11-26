@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 namespace EA4S
 {
@@ -82,5 +83,30 @@ namespace EA4S
             }
         }
 
+        public void SetLetterData(ILivingLetterData livingLetterData)
+        {
+            isArabic = false;
+
+            if (isUI)
+                gameObject.GetComponent<TextMeshProUGUI>().isRightToLeftText = true;
+            else
+                gameObject.GetComponent<TextMeshPro>().isRightToLeftText = true;
+
+            if (livingLetterData.DataType == LivingLetterDataType.Letter)
+            {
+                text = livingLetterData.TextForLivingLetter;
+            }
+            else if (livingLetterData.DataType == LivingLetterDataType.Word)
+            {
+                text = livingLetterData.TextForLivingLetter;
+            }
+        }
+
+        public void SetSentence(Db.LocalizationDataId sentenceId)
+        {
+            Db.LocalizationData row = LocalizationManager.GetLocalizationData(sentenceId);
+            isArabic = true;
+            text = row.Arabic;
+        }
     }
 }
