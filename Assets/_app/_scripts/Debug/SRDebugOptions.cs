@@ -431,9 +431,17 @@ public partial class SROptions
 
     [Category("Max Journey Position")]
     [Sort(7)]
+    public void UnlockAll() {
+        AppManager.Instance.Player.SetMaxJourneyPosition(new JourneyPosition(6,14,1), true);
+        SRDebug.Instance.HideDebugPanel();
+        SRDebug.Instance.ShowDebugPanel();
+    }
+
+    [Category("Max Journey Position")]
+    [Sort(8)]
     public void ResetMaxPosition()
     {
-        AppManager.Instance.Player.SetMaxJourneyPosition(new JourneyPosition(1, 1, 1), true);
+        AppManager.Instance.Player.ResetMaxJourneyPosition();
         SRDebug.Instance.HideDebugPanel();
         SRDebug.Instance.ShowDebugPanel();
     }
