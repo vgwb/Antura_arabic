@@ -3,8 +3,10 @@
     public class ScannerConfiguration : IGameConfiguration 
 	{
         // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
+		public IGameContext Context { get; set; }
+		public IQuestionProvider Questions { get; set; }
+		public bool gameActive = true;
+		public float beltSpeed = 1f;
 
         #region Game configurations
         public float Difficulty { get; set; }
@@ -47,9 +49,9 @@
 
             IQuestionBuilder builder = null;
 
-            int nPacks = 6;
-            int nCorrect = 1;
-            int nWrong = 4;
+			int nPacks = 7; // One Extra for tutorial
+			int nCorrect = 1;
+			int nWrong = 4;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.wordFilters.excludeColorWords = true;

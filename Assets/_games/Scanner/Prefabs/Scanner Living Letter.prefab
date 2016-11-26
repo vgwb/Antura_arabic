@@ -448,10 +448,9 @@ GameObject:
   - 114: {fileID: 114000013948691468}
   - 135: {fileID: 135000010917429916}
   - 54: {fileID: 54000011287122812}
-  - 65: {fileID: 65000012331186522}
   m_Layer: 0
   m_Name: Scanner Living Letter
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -498,6 +497,22 @@ GameObject:
   m_Layer: 0
   m_Name: Bone003
   m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000012191660664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010444704896}
+  - 65: {fileID: 65000011591538456}
+  m_Layer: 0
+  m_Name: BodyCollider
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1062,6 +1077,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000013806594414}
   m_RootOrder: 0
+--- !u!4 &4000010444704896
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012191660664}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013676476686}
+  m_RootOrder: 6
 --- !u!4 &4000010448574378
 Transform:
   m_ObjectHideFlags: 1
@@ -1711,6 +1739,7 @@ Transform:
   - {fileID: 4000010346749206}
   - {fileID: 4000010598106144}
   - {fileID: 4000013416897826}
+  - {fileID: 4000010444704896}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000013752285762
@@ -1984,18 +2013,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65000012331186522
+--- !u!65 &65000011591538456
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012082208024}
+  m_GameObject: {fileID: 1000012191660664}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 2.5, z: 5}
-  m_Center: {x: 3.3, y: 4, z: -1}
+  m_Size: {x: 3.5, y: 2.5, z: 5}
+  m_Center: {x: 3.5, y: 4.28, z: -2}
 --- !u!65 &65000012575751000
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2357,6 +2386,7 @@ MonoBehaviour:
   midPoint: {fileID: 4000010346749206}
   letterObjectView: {fileID: 114000010402415976}
   rainbowJet: {fileID: 1000012696403056}
+  bodyCollider: {fileID: 65000011591538456}
 --- !u!114 &114000014181777866
 MonoBehaviour:
   m_ObjectHideFlags: 1
