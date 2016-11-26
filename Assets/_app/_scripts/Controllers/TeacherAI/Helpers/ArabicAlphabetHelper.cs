@@ -90,17 +90,15 @@ namespace EA4S
         /// <summary>
         /// Returns the list of letters found in a word string
         /// </summary>
-        /// <param name="arabicWord"></param>
-        /// <param name="alphabet"></param>
-        /// <param name="reverseOrder">Return in list position 0 most right letter in input string and last the most left.</param>
-        /// <returns></returns>
-        public static List<string> ExtractLettersFromArabicWord(string arabicWord, Db.Database db, bool separateDiacritics = false)
+        public static List<string> ExtractLettersFromArabicWord(string arabicWord, Db.Database db, bool reverseOrder = false, bool separateDiacritics = false)
         {
             List<Db.LetterData> allLetterData = new List<Db.LetterData>(db.GetLetterTable().GetValuesTyped());
 
             var returnList = new List<string>();
 
             char[] chars = arabicWord.ToCharArray();
+            if (reverseOrder)
+                Array.Reverse(chars);
 
             //Debug.Log(arabicWord);
             for (int i = 0; i < chars.Length; i++) {
@@ -140,29 +138,18 @@ namespace EA4S
             return returnList;
         }
 
-
-
-
         /// <summary>
         /// Return list of letter data for any letter of param word.
         /// </summary>
-        /// <param name="word"></param>
-        /// <param name="alphabet"></param>
-        /// <param name="reverseOrder">Return in list position 0 most right letter in input string and last the most left.</param>
-        /// <returns></returns>
-        public static List<LL_LetterData> LetterDataListFromWord(string word, List<LL_LetterData> alphabet, bool reverseOrder = false)
+        public static List<LL_LetterData> ExtractLetterDataFromArabicWord(string arabicWord)
         {
+            var db = AppManager.Instance.DB.StaticDatabase;
+            var lettersIds = ExtractLettersFromArabicWord(arabicWord, db);
             var returnList = new List<LL_LetterData>();
-
-            char[] chars = word.ToCharArray();
-            if (reverseOrder)
-                Array.Reverse(chars);
-            for (int i = 0; i < chars.Length; i++) {
-                char _char = chars[i];
-                string unicodeString = GetHexUnicodeFromChar(_char);
-                LL_LetterData letterData = alphabet.Find(l => l.Data.Isolated_Unicode == unicodeString);
-                if (letterData != null)
-                    returnList.Add(letterData);
+            foreach(var id in lettersIds)
+            {
+                var llLetterData = new LL_LetterData((Db.LetterData)db.GetLetterTable().GetValue(id));
+                returnList.Add(llLetterData);
             }
             return returnList;
         }
@@ -177,7 +164,7 @@ namespace EA4S
         {
             string returnString = string.Empty;
             bool exceptionActive = false;
-            List<LL_LetterData> letters = LetterDataListFromWord(word, _vocabulary);
+            List<LL_LetterData> letters = ExtractLetterDataFromArabicWord(word);
             if (letters.Count == 1)
                 return returnString = GetLetterFromUnicode(letters[0].Data.Isolated_Unicode);
             for (int i = 0; i < letters.Count; i++) {
