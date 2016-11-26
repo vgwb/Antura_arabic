@@ -162,7 +162,13 @@ namespace EA4S
             showSwatchesTween.PlayForward();
 
             // Select eventual color
-            // TODO API
+            if (selectedSwatchData != null) SelectSwatch(selectedSwatchData);
+        }
+
+        void SelectSwatch(RewardColorItem _colorData)
+        {
+            foreach (AnturaSpaceSwatchButton item in btsSwatches) item.Toggle(item.Data == _colorData);
+            RewardSystemManager.SelectRewardColorItem(_colorData.ID, currRewardType);
         }
 
         #endregion
@@ -209,6 +215,8 @@ namespace EA4S
         void OnClickSwatch(AnturaSpaceSwatchButton _bt)
         {
             _bt.AnimateClick();
+
+            SelectSwatch(_bt.Data);
         }
 
         #endregion
