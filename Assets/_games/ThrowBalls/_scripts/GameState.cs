@@ -109,7 +109,17 @@ namespace EA4S.ThrowBalls
 
             question = newQuestionPack.GetQuestion();
             ILivingLetterData correctDatum = newQuestionPack.GetCorrectAnswers().ToList()[0];
-            List<ILivingLetterData> wrondDatum = newQuestionPack.GetWrongAnswers().ToList();
+            List<ILivingLetterData> wrongData = newQuestionPack.GetWrongAnswers().ToList();
+
+            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.words)
+            {
+                correctDatum = new LL_ImageData(correctDatum.Id);
+
+                for (int i = 0; i < wrongData.Count; i++)
+                {
+                    wrongData[i] = new LL_ImageData(wrongData[i].Id);
+                }
+            }
 
             SayQuestion();
 
@@ -135,9 +145,9 @@ namespace EA4S.ThrowBalls
                 {
                     letterObj.tag = Constants.TAG_WRONG_LETTER;
 
-                    letterControllers[i].SetLetter(wrondDatum[0]);
+                    letterControllers[i].SetLetter(wrongData[0]);
 
-                    wrondDatum.RemoveAt(0);
+                    wrongData.RemoveAt(0);
                 }
             }
 
@@ -413,7 +423,12 @@ namespace EA4S.ThrowBalls
             correctLetterCntrl.SetPropVariation(LetterController.PropVariation.Nothing);
             correctLetterCntrl.MoveTo(0, 13.5f, -33f);
             correctLetterCntrl.transform.rotation = Quaternion.Euler(-Camera.main.transform.rotation.eulerAngles.x, 180, 0);
-            correctLetterCntrl.SetLetter(question);
+
+            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
+            {
+                correctLetterCntrl.SetLetter(question);
+            }
+
             correctLetterCntrl.Show();
             correctLetterCntrl.letterObjectView.DoHorray();
             correctLetterCntrl.ShowVictoryRays();
