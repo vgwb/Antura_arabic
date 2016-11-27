@@ -52,5 +52,15 @@ namespace EA4S.ThrowBalls
             currentScale.x = scale;
             transform.localScale = currentScale;
         }
+
+        public void Enable()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Disable()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

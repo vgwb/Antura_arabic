@@ -34,5 +34,15 @@ namespace EA4S.ThrowBalls
 
             transform.position = ArrowBodyController.instance.transform.position + rotatedVector;
         }
+
+        public void Enable()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Disable()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
