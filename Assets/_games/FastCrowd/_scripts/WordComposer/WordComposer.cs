@@ -28,10 +28,9 @@ namespace EA4S.FastCrowd
 
             for (int i = 0; i < CompletedLetters.Count; ++i) {
                 LL_LetterData letter = CompletedLetters[i];
-                word += ArabicAlphabetHelper.GetLetterFromUnicode(letter.Data.Isolated_Unicode);
+                word += letter.Data.GetChar();
             }
-
-            //word = ArabicAlphabetHelper.PrepareArabicStringForDisplay(word, false);
+            
             WordLabel.SetText(word);
         }
 
