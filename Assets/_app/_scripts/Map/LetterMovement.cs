@@ -242,7 +242,7 @@ namespace EA4S
         }
         void UpdateCurrenJourneyPosition()
         {
-            AppManager.I.Player.SetActualJourneyPosition(new JourneyPosition(AppManager.I.Player.CurrentJourneyPosition.Stage,
+            AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(AppManager.I.Player.CurrentJourneyPosition.Stage,
              AppManager.I.Player.CurrentJourneyPosition.LearningBlock,
               AppManager.I.Player.CurrentJourneyPosition.PlaySession), true);
         }

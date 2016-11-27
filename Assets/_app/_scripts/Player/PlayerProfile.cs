@@ -124,9 +124,9 @@ namespace EA4S
         /// <param name="_lb">The lb.</param>
         /// <param name="_ps">The ps.</param>
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
-        public void SetActualJourneyPosition(int _stage, int _lb, int _ps, bool _save = true)
+        public void SetCurrentJourneyPosition(int _stage, int _lb, int _ps, bool _save = true)
         {
-            SetActualJourneyPosition(new JourneyPosition(_stage, _lb, _ps));
+            SetCurrentJourneyPosition(new JourneyPosition(_stage, _lb, _ps));
             if (_save)
                 Save();
         }
@@ -137,7 +137,7 @@ namespace EA4S
         /// </summary>
         /// <param name="_journeyPosition">The journey position.</param>
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
-        public void SetActualJourneyPosition(JourneyPosition _journeyPosition, bool _save = true)
+        public void SetCurrentJourneyPosition(JourneyPosition _journeyPosition, bool _save = true)
         {
             AppManager.I.Player.CurrentJourneyPosition = _journeyPosition;
             if (_save)
@@ -180,8 +180,9 @@ namespace EA4S
         /// <summary>
         /// Resets the maximum journey position to 1,1,1.
         /// </summary>
-        public void ResetMaxJourneyPosition(bool _save = true) {
-            AppManager.I.Player.MaxJourneyPosition = new JourneyPosition(1,1,1);
+        public void ResetMaxJourneyPosition(bool _save = true)
+        {
+            AppManager.I.Player.MaxJourneyPosition = new JourneyPosition(1, 1, 1);
             AppManager.I.Player.CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
             if (_save) {
                 Save();
