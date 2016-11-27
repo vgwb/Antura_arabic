@@ -98,7 +98,7 @@ namespace EA4S.PianoWoof
             stageTiles[1].SetLetter(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement());
             stageTiles[2].SetLetter(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement());
             stageTiles[3].SetLetter(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement());
-            //stageTiles[4].SetLetter(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement());
+            //stageTiles[4].SetLetter(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement());
             stageTiles[5].SetLetter(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement());
             stageTiles[6].SetLetter(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement());
             stageTiles[7].SetLetter(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement());

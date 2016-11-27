@@ -9,7 +9,7 @@ public partial class SROptions
 {
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
-        //if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
+        //if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
         //{
         WidgetPopupWindow.I.Close();
         DebugManager.I.LaunchMinigGame(minigameCode);
@@ -39,11 +39,11 @@ public partial class SROptions
     //    for (int s = 1; s <= Stages; s++) {
     //        for (int lb = 1; lb <= LearningBlocks; lb++) {
     //            for (int ps = 1; ps <= PlaySessions; ps++) {
-    //                if(AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + ps, minigameCode))
+    //                if(AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + ps, minigameCode))
     //                    return new JourneyPosition(s, lb, ps);
     //            }
     //            int assessmentCode = 100;
-    //            if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + assessmentCode, minigameCode))
+    //            if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + assessmentCode, minigameCode))
     //                return new JourneyPosition(s, lb, assessmentCode);
     //        }
     //    }

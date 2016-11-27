@@ -105,7 +105,7 @@ namespace EA4S {
             }
             AppManager.I.PlayerProfileManager.ActualPlayer = returnProfile as PlayerProfile;
             AppManager.I.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.I.PlayerProfileManager.ActualPlayer);
-            //AppManager.Instance.GameSettings.AvailablePlayers.Add(AppManager.Instance.PlayerProfileManager.ActualPlayer.Id.ToString());
+            //AppManager.I.GameSettings.AvailablePlayers.Add(AppManager.I.PlayerProfileManager.ActualPlayer.Id.ToString());
             SaveGameSettings();
             return AppManager.I.PlayerProfileManager.ActualPlayer;
         }

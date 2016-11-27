@@ -27,12 +27,12 @@ namespace EA4S.SickLetters
 
 		public void Hide()
 		{
-			//diacriticText.color = AppManager.Instance.SetAlpha(diacriticText.color,0);
+			//diacriticText.color = AppManager.I.SetAlpha(diacriticText.color,0);
 		}
 
 		public void Show()
 		{
-			//diacriticText.color = AppManager.Instance.SetAlpha(diacriticText.color,DancingDotsGameManager.instance.dotHintAlpha);
+			//diacriticText.color = AppManager.I.SetAlpha(diacriticText.color,DancingDotsGameManager.instance.dotHintAlpha);
 		}
 
 		public void CheckPosition()
