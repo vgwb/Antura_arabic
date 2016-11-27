@@ -35,53 +35,53 @@ namespace EA4S
             //KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro);
         }
 
-        public void ShowTutor()
-        {
-            switch (tutorialIndex) {
-                case 10:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("map_A1", 2, true, ShowTutor);
-                    break;
-                case 11:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("map_A2", 2, true, ShowTutor);
-                    break;
-                case 12:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("map_A3", 3, true, ShowTutor);
-                    break;
-                case 13:
-                    WidgetSubtitles.I.DisplaySentence("map_A4", 2, true);
-                    //Zoom();
-                    break;
-                case 20:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("map1_A1", 2, true, ShowTutor);
-                    break;
-                case 21:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("map1_A2", 2, true);
-                    //Zoom();
-                    break;
-                case 30:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("assessment_intro_A1", 2, true, ShowTutor);
-                    break;
-                case 31:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("assessment_intro_A2", 2, true, ShowTutor);
-                    break;
-                case 32:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("assessment_intro_A3", 2, true, ShowTutor);
-                    break;
-                case 33:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("assessment_intro_A4", 2, true);
-                    //Zoom();
-                    break;
-            }
-        }
+        //public void ShowTutor()
+        //{
+        //    switch (tutorialIndex) {
+        //        case 10:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("map_A1", 2, true, ShowTutor);
+        //            break;
+        //        case 11:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("map_A2", 2, true, ShowTutor);
+        //            break;
+        //        case 12:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("map_A3", 3, true, ShowTutor);
+        //            break;
+        //        case 13:
+        //            WidgetSubtitles.I.DisplaySentence("map_A4", 2, true);
+        //            //Zoom();
+        //            break;
+        //        case 20:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("map1_A1", 2, true, ShowTutor);
+        //            break;
+        //        case 21:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("map1_A2", 2, true);
+        //            //Zoom();
+        //            break;
+        //        case 30:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("assessment_intro_A1", 2, true, ShowTutor);
+        //            break;
+        //        case 31:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("assessment_intro_A2", 2, true, ShowTutor);
+        //            break;
+        //        case 32:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("assessment_intro_A3", 2, true, ShowTutor);
+        //            break;
+        //        case 33:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("assessment_intro_A4", 2, true);
+        //            //Zoom();
+        //            break;
+        //    }
+        //}
 
         //public void Zoom()
         //{

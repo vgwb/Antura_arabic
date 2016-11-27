@@ -30,58 +30,58 @@ namespace EA4S
             } else if (CurrentGameCode == MiniGameCode.Balloons_spelling) {
                 tutorialIndex = 30;
             }
-            ShowTutor();
+            //ShowTutor();
         }
 
-        public void ShowTutor()
-        {
-            switch (tutorialIndex) {
-                case 10:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro1", 2, true, ShowTutor);
-                    break;
-                case 11:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro2", 2, true, ShowTutor);
-                    break;
-                case 12:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro3", 3, true, DialogsComplete);
-                    break;
-                case 15:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_fastcrowd_A_intro1", 2, true, ShowTutor);
-                    break;
-                case 16:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_fastcrowd_A_intro2", 2, true, DialogsComplete);
-                    break;
-                case 20:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1", 2, true, ShowTutor);
-                    break;
-                case 21:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro2", 2, true, ShowTutor);
-                    break;
-                case 22:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro3", 2, true, DialogsComplete);
-                    break;
-                case 30:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_balloons_intro1", 2, true, ShowTutor);
-                    break;
-                case 31:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_balloons_intro2", 2, true, ShowTutor);
-                    break;
-                case 32:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_balloons_intro3", 2, true, DialogsComplete);
-                    break;
-            }
-        }
+        //public void ShowTutor()
+        //{
+        //    switch (tutorialIndex) {
+        //        case 10:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro1", 2, true, ShowTutor);
+        //            break;
+        //        case 11:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro2", 2, true, ShowTutor);
+        //            break;
+        //        case 12:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro3", 3, true, DialogsComplete);
+        //            break;
+        //        case 15:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("game_fastcrowd_A_intro1", 2, true, ShowTutor);
+        //            break;
+        //        case 16:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("game_fastcrowd_A_intro2", 2, true, DialogsComplete);
+        //            break;
+        //        case 20:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1", 2, true, ShowTutor);
+        //            break;
+        //        case 21:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("game_dontwake_intro2", 2, true, ShowTutor);
+        //            break;
+        //        case 22:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("game_dontwake_intro3", 2, true, DialogsComplete);
+        //            break;
+        //        case 30:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("game_balloons_intro1", 2, true, ShowTutor);
+        //            break;
+        //        case 31:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("game_balloons_intro2", 2, true, ShowTutor);
+        //            break;
+        //        case 32:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("game_balloons_intro3", 2, true, DialogsComplete);
+        //            break;
+        //    }
+        //}
 
         public void DialogsComplete()
         {
