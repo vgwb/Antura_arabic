@@ -159,8 +159,14 @@ namespace EA4S.Db
             string output = "";
             var hexunicode = GetUnicode(position);
             if (hexunicode != "") {
+
+                // add the "-" to diacritic symbols to indentify better if it's over or below hte mid line
+                if (Type == LetterDataType.DiacriticSymbol) {
+                    output = "\u0640";
+                }
+
                 int unicode = int.Parse(hexunicode, System.Globalization.NumberStyles.HexNumber);
-                output = ((char)unicode).ToString();
+                output += ((char)unicode).ToString();
 
                 if (Symbol_Unicode != "") {
                     int unicode_added = int.Parse(Symbol_Unicode, System.Globalization.NumberStyles.HexNumber);
