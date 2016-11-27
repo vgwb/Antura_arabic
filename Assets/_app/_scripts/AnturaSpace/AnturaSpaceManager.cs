@@ -64,7 +64,7 @@ namespace EA4S {
 #else
             //assign new total bones used to the profile
 #endif
-            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Map");
+            AppManager.I.Modules.SceneModule.LoadSceneWithTransition("app_Map");
         }
 
         /// <summary>

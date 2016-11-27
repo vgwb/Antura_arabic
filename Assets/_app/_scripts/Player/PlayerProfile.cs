@@ -102,7 +102,7 @@ namespace EA4S
         /// </summary>
         public void Save()
         {
-            AppManager.Instance.PlayerProfileManager.SavePlayerSettings(this);
+            AppManager.I.PlayerProfileManager.SavePlayerSettings(this);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace EA4S
         /// </summary>
         public void SaveGameSettings()
         {
-            AppManager.Instance.PlayerProfileManager.SaveGameSettings();
+            AppManager.I.PlayerProfileManager.SaveGameSettings();
         }
         #endregion
 
@@ -139,7 +139,7 @@ namespace EA4S
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
         public void SetActualJourneyPosition(JourneyPosition _journeyPosition, bool _save = true)
         {
-            AppManager.Instance.Player.CurrentJourneyPosition = _journeyPosition;
+            AppManager.I.Player.CurrentJourneyPosition = _journeyPosition;
             if (_save)
                 Save();
 
@@ -168,9 +168,9 @@ namespace EA4S
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
         public void SetMaxJourneyPosition(JourneyPosition newJourneyPosition, bool _save = true)
         {
-            if (AppManager.Instance.Player.MaxJourneyPosition.isMinor(newJourneyPosition)) {
-                AppManager.Instance.Player.MaxJourneyPosition = newJourneyPosition;
-                AppManager.Instance.Player.CurrentJourneyPosition = newJourneyPosition;
+            if (AppManager.I.Player.MaxJourneyPosition.isMinor(newJourneyPosition)) {
+                AppManager.I.Player.MaxJourneyPosition = newJourneyPosition;
+                AppManager.I.Player.CurrentJourneyPosition = newJourneyPosition;
                 if (_save) {
                     Save();
                 }
@@ -181,8 +181,8 @@ namespace EA4S
         /// Resets the maximum journey position to 1,1,1.
         /// </summary>
         public void ResetMaxJourneyPosition(bool _save = true) {
-            AppManager.Instance.Player.MaxJourneyPosition = new JourneyPosition(1,1,1);
-            AppManager.Instance.Player.CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
+            AppManager.I.Player.MaxJourneyPosition = new JourneyPosition(1,1,1);
+            AppManager.I.Player.CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
             if (_save) {
                 Save();
             }

@@ -41,7 +41,7 @@ namespace EA4S
         public void GoToGameScene(MiniGameData _miniGame)
         {
             //GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(GetSceneName(AppScene.MiniGame, _miniGame));
-            AppManager.Instance.GameLauncher.LaunchGame(_miniGame.Code);
+            AppManager.I.GameLauncher.LaunchGame(_miniGame.Code);
         }
 
         //public string GetNextScene()
@@ -57,7 +57,7 @@ namespace EA4S
                 case AppScene.Mood:
                     break;
                 case AppScene.Map:
-                    if (AppManager.Instance.IsAssessmentTime)
+                    if (AppManager.I.IsAssessmentTime)
                         GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     else
                         GoToScene(AppScene.GameSelector);
@@ -67,24 +67,24 @@ namespace EA4S
                 case AppScene.Intro:
                     break;
                 case AppScene.GameSelector:
-                    AppManager.Instance.Player.ResetPlaySessionMinigame();
+                    AppManager.I.Player.ResetPlaySessionMinigame();
                     GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     break;
                 case AppScene.MiniGame:
-                    if (AppManager.Instance.IsAssessmentTime) {
+                    if (AppManager.I.IsAssessmentTime) {
                         // TODO: never called
                         // assessment ended!
-                        AppManager.Instance.Player.ResetPlaySessionMinigame();
+                        AppManager.I.Player.ResetPlaySessionMinigame();
                         GoToScene(AppScene.Rewards);
                     } else {
-                        AppManager.Instance.Player.NextPlaySessionMinigame();
-                        if (AppManager.Instance.Player.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count) {
+                        AppManager.I.Player.NextPlaySessionMinigame();
+                        if (AppManager.I.Player.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count) {
                             /// - Update Journey
                             /// - Reset CurrentMiniGameInPlaySession
                             /// - Reward screen
                             /// *-- check first contact : 
-                            AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
-                            AppManager.Instance.Player.ResetPlaySessionMinigame();
+                            AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
+                            AppManager.I.Player.ResetPlaySessionMinigame();
                             GoToScene(AppScene.PlaySessionResult);
                         } else {
                             // Next game
@@ -102,7 +102,7 @@ namespace EA4S
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.DebugPanel:
-                    GoToGameScene(AppManager.Instance.CurrentMinigame);
+                    GoToGameScene(AppManager.I.CurrentMinigame);
                     break;
                 default:
                     break;

@@ -15,10 +15,10 @@ namespace EA4S
 
         public string Id {
             get { return Data.Id; }
-            set { Data = AppManager.Instance.DB.GetLetterDataById(value); }
+            set { Data = AppManager.I.DB.GetLetterDataById(value); }
         }
 
-        public LL_LetterData(string _id) : this(AppManager.Instance.DB.GetLetterDataById(_id))
+        public LL_LetterData(string _id) : this(AppManager.I.DB.GetLetterDataById(_id))
         {
         }
 

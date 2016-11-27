@@ -23,7 +23,7 @@ namespace EA4S
 
             emptyListContainers();
 
-            foreach (LearningBlockData item in AppManager.Instance.DB.GetAllLearningBlockData()) {
+            foreach (LearningBlockData item in AppManager.I.DB.GetAllLearningBlockData()) {
                 btnGO = Instantiate(LearningBlockItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
                 btnGO.GetComponent<ItemLearningBlock>().Init(this, item);

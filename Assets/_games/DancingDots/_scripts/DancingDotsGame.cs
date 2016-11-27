@@ -144,8 +144,8 @@ namespace EA4S.DancingDots
             base.Start();
             tutorial = GetComponent<DancingDotsTutorial>();
 
-            AppManager.Instance.InitDataAI();
-            AppManager.Instance.CurrentGameManagerGO = gameObject;
+            AppManager.I.InitDataAI();
+            AppManager.I.CurrentGameManagerGO = gameObject;
             SceneTransitioner.Close();
 
             AudioManager.I.PlayMusic(Music.MainTheme);

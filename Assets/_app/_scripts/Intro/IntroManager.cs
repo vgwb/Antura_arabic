@@ -40,7 +40,7 @@ namespace EA4S
         }
 
         private void CountDown_onTimesUp() {
-            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Map");
+            AppManager.I.Modules.SceneModule.LoadSceneWithTransition("app_Map");
         }
 
         void OnDisable()

@@ -18,27 +18,27 @@ namespace EA4S
             NavigationManager.I.CurrentScene = AppScene.Rewards;
 
             AudioManager.I.PlayMusic(Music.Theme4);
-            Debug.Log("RewardsManager playsession: " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
+            Debug.Log("RewardsManager playsession: " + AppManager.I.Player.CurrentJourneyPosition.PlaySession);
 
             // here we set the Rewards base on current progression level (playsession -1 because Rewards appear when playsession is already incremented)
-            if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession - 1) == 1) {
-                AppManager.Instance.Player.AnturaCurrentPreset = 1;
+            if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession - 1) == 1) {
+                AppManager.I.Player.AnturaCurrentPreset = 1;
 
                 tutorialIndex = 10;
                 //LoggerEA4S.Log("app", "Reward", "get_reward", "1");
                 LogManager.I.LogInfo(InfoEvent.Reward, "reward:1");
-            } else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession - 1) == 2) {
-                AppManager.Instance.Player.AnturaCurrentPreset = 2;
+            } else if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession - 1) == 2) {
+                AppManager.I.Player.AnturaCurrentPreset = 2;
                 tutorialIndex = 20;
                 //LoggerEA4S.Log("app", "Reward", "get_reward", "2");
                 LogManager.I.LogInfo(InfoEvent.Reward, "reward:2");
-            } else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession - 1) > 2) {
-                AppManager.Instance.Player.AnturaCurrentPreset = 3;
+            } else if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession - 1) > 2) {
+                AppManager.I.Player.AnturaCurrentPreset = 3;
                 tutorialIndex = 30;
                 //LoggerEA4S.Log("app", "Reward", "get_reward", "3");
                 LogManager.I.LogInfo(InfoEvent.Reward, "reward:3");
             }
-            AnturaController.SetPreset(AppManager.Instance.Player.AnturaCurrentPreset);
+            AnturaController.SetPreset(AppManager.I.Player.AnturaCurrentPreset);
             SceneTransitioner.Close();
             ShowReward();
             //ShowTutor();
@@ -88,8 +88,8 @@ namespace EA4S
             yield return new WaitForSeconds(3.5f);
 
             /* FIRST CONTACT FEATURE */
-            if (AppManager.Instance.Player.IsFirstContact()) {
-                AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_AnturaSpace");
+            if (AppManager.I.Player.IsFirstContact()) {
+                AppManager.I.Modules.SceneModule.LoadSceneWithTransition("app_AnturaSpace");
             }
             /* --------------------- */
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
@@ -99,8 +99,8 @@ namespace EA4S
 
         public void Continue()
         {
-            AppManager.Instance.Player.ResetPlaySessionMinigame();
-            AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
+            AppManager.I.Player.ResetPlaySessionMinigame();
+            AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
             NavigationManager.I.GoToNextScene();
         }
 

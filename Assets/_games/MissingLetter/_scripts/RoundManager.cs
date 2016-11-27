@@ -196,7 +196,7 @@ namespace EA4S.MissingLetter
             List<LL_WordData> phrase = new List<LL_WordData>();
             for(int i=0; i < m_oGame.m_iMaxSentenceSize; ++i)
             {
-                phrase.Add(AppManager.Instance.Teacher.GetRandomTestWordDataLL());
+                phrase.Add(AppManager.I.Teacher.GetRandomTestWordDataLL());
             }
 
             return phrase;
@@ -218,7 +218,7 @@ namespace EA4S.MissingLetter
             var _wrongAnswers = new List<LL_WordData>();
             for (int i = 0; i < m_oGame.m_iMaxSentenceSize; ++i)
             {
-                _wrongAnswers.Add(AppManager.Instance.Teacher.GetRandomTestWordDataLL());
+                _wrongAnswers.Add(AppManager.I.Teacher.GetRandomTestWordDataLL());
             }
             _wrongAnswers.Distinct();
 

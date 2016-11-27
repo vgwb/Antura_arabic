@@ -15,10 +15,10 @@ namespace EA4S
 
         public string Id {
             get { return Data.Id; }
-            set { Data = AppManager.Instance.DB.GetWordDataById(value); }
+            set { Data = AppManager.I.DB.GetWordDataById(value); }
         }
 
-        public LL_WordData(string _id) : this(AppManager.Instance.DB.GetWordDataById(_id))
+        public LL_WordData(string _id) : this(AppManager.I.DB.GetWordDataById(_id))
         {
         }
 
@@ -41,7 +41,7 @@ namespace EA4S
         }
 
         public string DrawingCharForLivingLetter {
-            get { return AppManager.Instance.Teacher.wordHelper.GetWordDrawing(Data); }
+            get { return AppManager.I.Teacher.wordHelper.GetWordDrawing(Data); }
         }
 
         /// <summary>

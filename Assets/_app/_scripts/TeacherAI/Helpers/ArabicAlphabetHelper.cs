@@ -110,7 +110,7 @@ namespace EA4S
         /// </summary>
         public static List<LL_LetterData> ExtractLetterDataFromArabicWord(string arabicWord)
         {
-            var db = AppManager.Instance.DB.StaticDatabase;
+            var db = AppManager.I.DB.StaticDatabase;
             var lettersIds = ExtractLettersFromArabicWord(arabicWord, db);
             var returnList = new List<LL_LetterData>();
             foreach (var id in lettersIds) {

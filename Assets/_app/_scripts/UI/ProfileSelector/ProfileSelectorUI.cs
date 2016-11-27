@@ -24,7 +24,7 @@ namespace EA4S
 
         public static ProfileSelectorUI I;
         public const string AvatarsResourcesDir = "Images/Avatars/";
-        public PlayerProfileManager ProfileManager { get { return AppManager.Instance.PlayerProfileManager; } }
+        public PlayerProfileManager ProfileManager { get { return AppManager.I.PlayerProfileManager; } }
         int maxProfiles;
         ProfileSelectorAvatarButton[] avatarButtons;
         Tween btAddTween, btPlayTween;
@@ -61,10 +61,10 @@ namespace EA4S
             BtPlay.Bt.onClick.AddListener(() => {
                 BtPlay.AnimateClick();
                 AudioManager.I.PlaySfx(Sfx.UIButtonClick);
-                if(AppManager.Instance.Player.IsFirstContact())
-                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Intro");
+                if(AppManager.I.Player.IsFirstContact())
+                    AppManager.I.Modules.SceneModule.LoadSceneWithTransition("app_Intro");
                 else
-                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Mood");
+                    AppManager.I.Modules.SceneModule.LoadSceneWithTransition("app_Mood");
             });
             foreach (ProfileSelectorAvatarButton bt in avatarButtons) {
                 ProfileSelectorAvatarButton b = bt;

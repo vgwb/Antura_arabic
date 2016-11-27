@@ -15,10 +15,10 @@ namespace EA4S
 
         public string Id {
             get { return Data.Id; }
-            set { Data = AppManager.Instance.DB.GetPhraseDataById(value); }
+            set { Data = AppManager.I.DB.GetPhraseDataById(value); }
         }
 
-        public LL_PhraseData(string _id) : this(_id, AppManager.Instance.DB.GetPhraseDataById(_id))
+        public LL_PhraseData(string _id) : this(_id, AppManager.I.DB.GetPhraseDataById(_id))
         {
         }
 

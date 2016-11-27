@@ -68,14 +68,14 @@ namespace EA4S.Test
 
         public void Popup_ShowSentence()
         {
-            var answerData = AppManager.Instance.DB.GetWordDataByRandom();
+            var answerData = AppManager.I.DB.GetWordDataByRandom();
             LL_WordData randomWord = new LL_WordData(answerData.Id, answerData);
             GlobalUI.WidgetPopupWindow.ShowSentence(()=> GlobalUI.WidgetPopupWindow.Close(), Db.LocalizationDataId.Assessment_Start_2);
         }
 
         public void Popup_ShowImage()
         {
-            var answerData = AppManager.Instance.DB.GetWordDataByRandom();
+            var answerData = AppManager.I.DB.GetWordDataByRandom();
             LL_WordData randomWord = new LL_WordData(answerData.Id, answerData);
             //GlobalUI.WidgetPopupWindow.ShowStringAndWord(()=> GlobalUI.WidgetPopupWindow.Close(), "Title", randomWord);
         }

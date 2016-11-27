@@ -36,7 +36,7 @@ namespace EA4S
             Bbackground.raycastTarget = false;
 
             //if(_stars > 0)
-            nextSceneName = AppManager.Instance.MiniGameDone();
+            nextSceneName = AppManager.I.MiniGameDone();
 
             this.gameObject.SetActive(true);
             // Reset zone

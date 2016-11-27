@@ -41,12 +41,12 @@ namespace EA4S.HideAndSeek
 				{
 					if (j == 0) 
 					{
-						listOfLetters.Add (AppManager.Instance.Teacher.GetRandomTestLetterLL());
+						listOfLetters.Add (AppManager.I.Teacher.GetRandomTestLetterLL());
 						j++;
 					} 
 					else 
 					{
-						var lett = AppManager.Instance.Teacher.GetRandomTestLetterLL();
+						var lett = AppManager.I.Teacher.GetRandomTestLetterLL();
 						if (!CheckIfContains (listOfLetters, lett)) 
 						{
 							listOfLetters.Add (lett);

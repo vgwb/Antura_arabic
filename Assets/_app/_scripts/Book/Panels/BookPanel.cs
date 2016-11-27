@@ -91,13 +91,13 @@ namespace EA4S
             List<LetterData> list;
             switch (currentCategory) {
                 case "combo":
-                    list = AppManager.Instance.DB.FindLetterData((x) => (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation));
+                    list = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation));
                     break;
                 case "symbol":
-                    list = AppManager.Instance.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
+                    list = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
                     break;
                 default:
-                    list = AppManager.Instance.DB.GetAllLetterData();
+                    list = AppManager.I.DB.GetAllLetterData();
                     break;
             }
 
@@ -137,7 +137,7 @@ namespace EA4S
                     list = new List<WordData>();
                     break;
                 default:
-                    list = AppManager.Instance.DB.FindWordDataByCategory(currentWordCategory);
+                    list = AppManager.I.DB.FindWordDataByCategory(currentWordCategory);
                     break;
             }
             emptyListContainers();
@@ -165,7 +165,7 @@ namespace EA4S
         {
             emptyListContainers();
 
-            foreach (PhraseData item in AppManager.Instance.DB.GetAllPhraseData()) {
+            foreach (PhraseData item in AppManager.I.DB.GetAllPhraseData()) {
                 btnGO = Instantiate(PhraseItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
                 btnGO.GetComponent<ItemPhrase>().Init(this, item);
@@ -176,7 +176,7 @@ namespace EA4S
         {
             emptyListContainers();
 
-            foreach (MiniGameData item in AppManager.Instance.DB.GetActiveMinigames()) {
+            foreach (MiniGameData item in AppManager.I.DB.GetActiveMinigames()) {
                 btnGO = Instantiate(MinigameItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
                 btnGO.GetComponent<ItemMiniGame>().Init(this, item);
@@ -206,7 +206,7 @@ namespace EA4S
             LLText.Init(new LL_WordData(word));
 
             if (word.Drawing != "") {
-                var drawingChar = AppManager.Instance.Teacher.wordHelper.GetWordDrawing(word);
+                var drawingChar = AppManager.I.Teacher.wordHelper.GetWordDrawing(word);
                 Drawing.text = drawingChar;
                 LLDrawing.Init(new LL_ImageData(word));
                 Debug.Log("Drawing: " + word.Drawing);

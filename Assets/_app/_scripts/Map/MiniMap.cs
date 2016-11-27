@@ -33,7 +33,7 @@ namespace EA4S
         void Start()
         {
             /* FIRST CONTACT FEATURE */
-            if (AppManager.Instance.Player.IsFirstContact()) {
+            if (AppManager.I.Player.IsFirstContact()) {
                 FirstContactBehaviour();
             }
             /* --------------------- */
@@ -53,19 +53,19 @@ namespace EA4S
         void FirstContactBehaviour()
         {
 
-            if (AppManager.Instance.Player.IsFirstContact(1)) {
+            if (AppManager.I.Player.IsFirstContact(1)) {
                 // First contact step 1:
                 #region Temp Behaviour (to be deleted)
                 countDown.Start();
                 #endregion
                 // ..and set first contact done.
-                AppManager.Instance.Player.FirstContactPassed();
+                AppManager.I.Player.FirstContactPassed();
                 Debug.Log("First Contact Step1 finished! Go to Antura Space!");
-            } else if (AppManager.Instance.Player.IsFirstContact(2)) {
+            } else if (AppManager.I.Player.IsFirstContact(2)) {
                 // First contact step 2:
 
                 // ..and set first contact done.
-                AppManager.Instance.Player.FirstContactPassed(2);
+                AppManager.I.Player.FirstContactPassed(2);
                 Debug.Log("First Contact Step2 finished! Good Luck!");
             }
 
@@ -74,7 +74,7 @@ namespace EA4S
         CountdownTimer countDown = new CountdownTimer(1f);
         void OnEnable() { countDown.onTimesUp += CountDown_onTimesUp; }
         void OnDisable() { countDown.onTimesUp -= CountDown_onTimesUp; }
-        private void CountDown_onTimesUp() { AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Rewards"); }
+        private void CountDown_onTimesUp() { AppManager.I.Modules.SceneModule.LoadSceneWithTransition("app_Rewards"); }
         private void UpdateTimer() { countDown.Update(Time.deltaTime); }
         #endregion
 
@@ -135,8 +135,8 @@ namespace EA4S
         }
         void CalculatePlaySessionAvailables()
         {
-            int l = AppManager.Instance.Player.MaxJourneyPosition.LearningBlock;
-            int p = AppManager.Instance.Player.MaxJourneyPosition.PlaySession;
+            int l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
+            int p = AppManager.I.Player.MaxJourneyPosition.PlaySession;
             int m;
             if (p == 1) m = (l * 2) - 1;
             else m = l * 2;
@@ -154,8 +154,8 @@ namespace EA4S
                     ropes[i].transform.GetChild(0).tag = "Rope";
                 }
             } else {
-                int l = AppManager.Instance.Player.MaxJourneyPosition.LearningBlock;
-                int p = AppManager.Instance.Player.MaxJourneyPosition.PlaySession;
+                int l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
+                int p = AppManager.I.Player.MaxJourneyPosition.PlaySession;
                 int m;
                 if (p == 100) m = l;
                 else m = l - 1;
@@ -186,12 +186,12 @@ namespace EA4S
         private List<PlaySessionState> GetAllPlaySessionStateForStage(int _stage)
         {
             // Get all available scores for this stage
-            List<Db.ScoreData> scoreData_list = AppManager.Instance.Teacher.scoreHelper.GetCurrentScoreForPlaySessionsOfStage(_stage);
+            List<Db.ScoreData> scoreData_list = AppManager.I.Teacher.scoreHelper.GetCurrentScoreForPlaySessionsOfStage(_stage);
 
             // For each score entry, get its play session data and build a structure containing both
             List<PlaySessionState> playSessionState_list = new List<PlaySessionState>();
             for (int i = 0; i < scoreData_list.Count; i++) {
-                var data = AppManager.Instance.DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
+                var data = AppManager.I.DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
                 playSessionState_list.Add(new PlaySessionState(data, scoreData_list[i].Score));
             }
 
@@ -205,13 +205,13 @@ namespace EA4S
         /// <returns></returns>
         private List<Db.PlaySessionData> GetAllPlaySessionDataForStage(int _stage)
         {
-            return AppManager.Instance.DB.FindPlaySessionData(x => x.Stage == _stage);
+            return AppManager.I.DB.FindPlaySessionData(x => x.Stage == _stage);
         }
         public void Play()
         {
-            AppManager.Instance.Teacher.InitialiseCurrentPlaySession();   // This must becalled before the games selector is loaded
+            AppManager.I.Teacher.InitialiseCurrentPlaySession();   // This must becalled before the games selector is loaded
 
-            if (AppManager.Instance.IsAssessmentTime)
+            if (AppManager.I.IsAssessmentTime)
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Assessment");
             else
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_GamesSelector");

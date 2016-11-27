@@ -73,7 +73,7 @@ namespace EA4S
 
         void RandomLetter()
         {
-            letterData = AppManager.Instance.Teacher.GetRandomTestLetterLL();
+            letterData = AppManager.I.Teacher.GetRandomTestLetterLL();
             //Debug.Log(letterData.Key);
             SetText(letterData.TextForLivingLetter);
         }

@@ -101,8 +101,8 @@ namespace EA4S.DontWakeUp
             currentRound = StartingLevel;
             currentLevel = currentRound;
             LivesLeft = 4;
-            AppManager.Instance.InitDataAI();
-            AppManager.Instance.CurrentGameManagerGO = gameObject;
+            AppManager.I.InitDataAI();
+            AppManager.I.CurrentGameManagerGO = gameObject;
 
             //LoggerEA4S.Log("minigame", "dontwakeup", "start", "");
             //LoggerEA4S.Save();
@@ -212,7 +212,7 @@ namespace EA4S.DontWakeUp
         void SetupLevel()
         {
             currentLevelController = Levels[currentLevel - 1].GetComponent<LevelController>();
-            currentWord = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
+            currentWord = AppManager.I.Teacher.GetRandomTestWordDataLL();
 
             myLetter.SetActive(true);
             myLetter.GetComponent<MyLetter>().Init(currentWord.Id);
