@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace EA4S {
+namespace EA4S
+{
     /// <summary>
     /// Player profile manager.
     /// </summary>
-    public class PlayerProfileManager {
+    public class PlayerProfileManager
+    {
 
         #region Properties
 
@@ -25,10 +27,10 @@ namespace EA4S {
                     AppManager.I.Player = value;
                     AppManager.I.GameSettings.LastActivePlayerId = value.Id;
                     SaveGameSettings();
-                    AppManager.I.InitDataAI();
+                    AppManager.I.InitTeacherForPlayer();
                 }
                 actualPlayer = value;
-                
+
             }
         }
 
@@ -39,14 +41,16 @@ namespace EA4S {
         public List<PlayerProfile> AvailablePlayerProfiles {
             get {
                 reloadAvailablePlayerProfilesList();
-                return availablePlayerProfiles; }
+                return availablePlayerProfiles;
+            }
             set { availablePlayerProfiles = value; }
         }
 
         #endregion
 
         #region internal functions
-        void reloadGameSettings() {
+        void reloadGameSettings()
+        {
             AppManager.I.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
             AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
             if (AppManager.I.GameSettings.LastActivePlayerId > 0)
@@ -54,7 +58,8 @@ namespace EA4S {
             reloadAvailablePlayerProfilesList();
         }
 
-        void reloadAvailablePlayerProfilesList() {
+        void reloadAvailablePlayerProfilesList()
+        {
             List<PlayerProfile> returnList = new List<PlayerProfile>();
             foreach (string pId in AppManager.I.GameSettings.AvailablePlayers) {
                 PlayerProfile pp = AppManager.I.Modules.PlayerProfile.LoadPlayerSettings<PlayerProfile>(pId) as PlayerProfile;
@@ -69,7 +74,8 @@ namespace EA4S {
         /// <summary>
         /// Initializes a new instance of the <see cref="PlayerProfileManager"/> class.
         /// </summary>
-        public PlayerProfileManager() {
+        public PlayerProfileManager()
+        {
             reloadGameSettings();
         }
 
@@ -77,7 +83,8 @@ namespace EA4S {
         /// Return list of id available for create new player (relate do avatar availble).
         /// </summary>
         /// <returns></returns>
-        public List<int> GetListOfUnusedId() {
+        public List<int> GetListOfUnusedId()
+        {
             List<int> returnList = new List<int>();
             for (int i = 1; i < MaxNumberOfPlayerProfiles + 1; i++) {
                 if (availablePlayerProfiles.Find(p => p.Id == i) == null)
@@ -92,7 +99,8 @@ namespace EA4S {
         /// </summary>
         /// <param name="_avatarId"></param>
         /// <returns></returns>
-        public PlayerProfile CreateOrLoadPlayerProfile(int _avatarId) {
+        public PlayerProfile CreateOrLoadPlayerProfile(int _avatarId)
+        {
 
             PlayerProfile returnProfile = LoadPlayerProfileByAvatarId(_avatarId);
             if (returnProfile == null) {
@@ -114,7 +122,8 @@ namespace EA4S {
         /// Saves the player settings.
         /// </summary>
         /// <param name="_playerProfile">The player profile.</param>
-        public void SavePlayerSettings(PlayerProfile _playerProfile) {
+        public void SavePlayerSettings(PlayerProfile _playerProfile)
+        {
             AppManager.I.Modules.PlayerProfile.SavePlayerSettings(_playerProfile);
         }
 
@@ -123,7 +132,8 @@ namespace EA4S {
         /// </summary>
         /// <param name="_avatarId">The avatar identifier.</param>
         /// <returns></returns>
-        public PlayerProfile LoadPlayerProfileByAvatarId(int _avatarId) {
+        public PlayerProfile LoadPlayerProfileByAvatarId(int _avatarId)
+        {
             return LoadPlayerProfileById(GetPlayerIdFromAvatarId(_avatarId));
         }
 
@@ -132,14 +142,16 @@ namespace EA4S {
         /// </summary>
         /// <param name="_Id">The identifier.</param>
         /// <returns></returns>
-        public PlayerProfile LoadPlayerProfileById(int _Id) {
+        public PlayerProfile LoadPlayerProfileById(int _Id)
+        {
             return AppManager.I.PlayerProfile.LoadPlayerSettings<PlayerProfile>(_Id.ToString()) as PlayerProfile;
         }
 
         /// <summary>
         /// Saves the game settings.
         /// </summary>
-        public void SaveGameSettings() {
+        public void SaveGameSettings()
+        {
             AppManager.I.Modules.PlayerProfile.Options = AppManager.I.GameSettings;
             AppManager.I.Modules.PlayerProfile.SaveAllOptions();
             reloadAvailablePlayerProfilesList();
@@ -148,7 +160,8 @@ namespace EA4S {
         /// <summary>
         /// WARNING! Deletes all profiles.
         /// </summary>
-        public void DeleteAllProfiles() {
+        public void DeleteAllProfiles()
+        {
             AppManager.I.Modules.PlayerProfile.DeleteAllPlayerProfiles();
         }
 
@@ -157,7 +170,8 @@ namespace EA4S {
         /// </summary>
         /// <param name="_avatarId">The avatar identifier.</param>
         /// <returns></returns>
-        public int GetPlayerIdFromAvatarId(int _avatarId) {
+        public int GetPlayerIdFromAvatarId(int _avatarId)
+        {
             PlayerProfile pp = availablePlayerProfiles.Find(p => p.AvatarId == _avatarId);
             if (pp != null)
                 return pp.Id;

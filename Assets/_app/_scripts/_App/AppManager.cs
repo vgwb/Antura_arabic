@@ -21,12 +21,12 @@ namespace EA4S
         public MiniGameLauncher GameLauncher;
         public GameObject CurrentGameManagerGO;
         public LogManager LogManager;
-        #region Init
+        public PlayerProfileManager PlayerProfileManager;
 
-        public string IExist()
-        {
-            return "AppManager Exists";
-        }
+        [HideInInspector]
+        public Db.MiniGameData CurrentMinigame;
+
+        #region Init
 
         protected override void GameSetup()
         {
@@ -36,17 +36,6 @@ namespace EA4S
                 SRDebug.Init();
             }
 
-            AdditionalSetup();
-            InitDataAI();
-            GameSettings.HighQualityGfx = false;
-
-            LogManager.I.LogInfo(InfoEvent.AppStarted);
-        }
-
-        public PlayerProfileManager PlayerProfileManager;
-
-        void AdditionalSetup()
-        {
             // GameplayModule
             if (GetComponentInChildren<ModuleInstaller<IGameplayModule>>()) {
                 IGameplayModule moduleInstance = GetComponentInChildren<ModuleInstaller<IGameplayModule>>().InstallModule();
@@ -63,105 +52,42 @@ namespace EA4S
             gameObject.AddComponent<KeeperManager>();
 
             RewardSystemManager.Init();
+
+            InitTeacherForPlayer();
+            GameSettings.HighQualityGfx = false;
+
+            LogManager.I.LogInfo(InfoEvent.AppStarted);
         }
 
-        public void InitDataAI()
+        public void InitTeacherForPlayer()
         {
-
             if (Player == null)
                 Player = new PlayerProfile();
             if (DB == null)
                 DB = new DatabaseManager(GameSettings.UseTestDatabase, Player);
-            // ToCheck @michele ref: https://trello.com/c/r40yCfw1
+            // TODO @michele ToCheck ref: https://trello.com/c/r40yCfw1
             //if (Teacher == null)
             Teacher = new TeacherAI(DB, Player);
             if (GameLauncher == null)
                 GameLauncher = new MiniGameLauncher(Teacher);
-
         }
-
-
-        /*void CachingLetterData()
-        {
-            foreach (var letterData in DB.GetAllLetterData()) {
-                Letters.Add(new LL_LetterData(letterData.GetId()));
-            }
-        }*/
-
         #endregion
 
         #region Game Progression
 
-
         [HideInInspector]
+        [Obsolete("incorrect and shoudl be moved to Teacher or Navigation manager")]
         public bool IsAssessmentTime {
             get {
                 return Player.CurrentJourneyPosition.PlaySession == 5;
             }
         }
 
-        /// <summary>
-        /// The current minigame.
-        /// </summary>
-        [HideInInspector]
-        public Db.MiniGameData CurrentMinigame;
-
 
         public void ResetProgressionData()
         {
             Player.Reset();
         }
-
-        /// <summary>
-        /// Set result and return next scene name.
-        /// </summary>
-        /// <returns>return next scene name.</returns>
-        [System.Obsolete("Use", true)]
-        public string MiniGameDone(string actualSceneName = "")
-        {
-            var returnString = "_Start";
-            if (actualSceneName == "") {
-                // from MiniGame
-
-                if (Player.CurrentMiniGameInPlaySession >= (Teacher.CurrentPlaySessionMiniGames.Count - 1)) {
-                    // end playsession
-                    //Player.CurrentJourneyPosition.PlaySession = 0;
-                    //Player.CurrentMiniGameInPlaySession = 0;
-                    returnString = "app_Rewards";
-                } else {
-                    // next game in this playsession
-                    Player.CurrentMiniGameInPlaySession++;
-                    //Debug.Log("MiniGameDone PlaySessionGameDone = " + PlaySessionGameDone);
-                    var myGameCode = TeacherAI.I.CurrentMiniGame.Code;
-                    AppManager.I.GameLauncher.LaunchGame(myGameCode);
-                }
-            } else {
-                // special cases
-                if (actualSceneName == "assessment") {
-                    Player.CurrentJourneyPosition.LearningBlock++;
-                    Player.CurrentJourneyPosition.PlaySession = 1;
-                    Player.CurrentMiniGameInPlaySession = 0;
-                    returnString = "app_Map";
-                }
-                if (actualSceneName == "rewards") {
-                    Player.CurrentJourneyPosition.PlaySession++;
-                    Player.CurrentMiniGameInPlaySession = 0;
-                    Debug.Log("New PlaySession = " + Player.CurrentJourneyPosition.PlaySession);
-                    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Map");
-                }
-
-            }
-            return returnString;
-        }
-
-        ///// <summary>
-        ///// Called when playSession value changes.
-        ///// </summary>
-        //        void OnPlaySessionValueChange()
-        //        {
-        //            LoggerEA4S.Log("app", "PlaySession", "changed", PlaySession.ToString());
-        //            LoggerEA4S.Save();
-        //        }
 
         #endregion
 
