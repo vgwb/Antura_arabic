@@ -20,10 +20,7 @@ namespace EA4S.ColorTickle
         [SerializeField]
         private int m_Rounds = 3;
         [SerializeField]
-        private int m_MaxLives = 3;
-        [SerializeField]
-        [Range(0f,1f)]
-        private float m_fDifficulty = 0;
+        private int m_MaxLives = 3;        
         [SerializeField]
         private GameObject m_oWinParticle;
         [SerializeField]
@@ -39,7 +36,7 @@ namespace EA4S.ColorTickle
         #endregion
 
         #region PRIVATE MEMBERS
-
+        private float m_fDifficulty = 0;
         private int m_Stars = 0;
         GameObject[] m_MyLetters;
         GameObject m_TutorialLetter;
@@ -136,12 +133,7 @@ namespace EA4S.ColorTickle
             ResultState = new ResultGameState(this);
 
             //Difficulty is decided like this: 0 <= easy <= 0.333 < medium <= 0.666 < hard <=1
-            #if UNITY_EDITOR
-                //while running from editor use the difficult setted from the inspector
-            #else
-                m_fDifficulty = GetConfiguration().Difficulty;
-            #endif
-
+            m_fDifficulty = GetConfiguration().Difficulty;
 
             //Adjust parameters accordingly:
             //- max lives: 1 on hard, full lives on easy, mean of the two on medium
