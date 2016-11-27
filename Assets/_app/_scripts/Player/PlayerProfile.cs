@@ -115,6 +115,15 @@ namespace EA4S
         }
         #endregion
 
+        #region properties
+
+        public Sprite GetAvatar()
+        {
+            return Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + AvatarId);
+        }
+
+        #endregion
+
         #region journey position        
         /// <summary>
         /// Sets the actual journey position and save to profile.
