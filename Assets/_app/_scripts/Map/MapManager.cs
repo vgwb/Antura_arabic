@@ -20,12 +20,12 @@ namespace EA4S
             AudioManager.I.PlayMusic(SceneMusic);
 
             //ShowProgression();
-            //Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
-            //if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) == 1) {
+            //Debug.Log("MapManager PlaySession " + AppManager.I.Player.CurrentJourneyPosition.PlaySession);
+            //if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession) == 1) {
             //    tutorialIndex = 10;
-            //} else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) == 2) {
+            //} else if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession) == 2) {
             //    tutorialIndex = 20;
-            //} else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) > 2) {
+            //} else if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession) > 2) {
             //    tutorialIndex = 30;
             //}
 
@@ -101,9 +101,9 @@ namespace EA4S
 
         //public void Play()
         //{
-        //    AppManager.Instance.Teacher.InitialiseCurrentPlaySession();   // This must becalled before the games selector is loaded
+        //    AppManager.I.Teacher.InitialiseCurrentPlaySession();   // This must becalled before the games selector is loaded
 
-        //    if (AppManager.Instance.IsAssessmentTime)
+        //    if (AppManager.I.IsAssessmentTime)
         //        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Assessment");
         //    else
         //        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_GamesSelector");
@@ -111,13 +111,13 @@ namespace EA4S
 
         //void ShowProgression()
         //{
-        //    CurrentSteps[0].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 0);
-        //    CurrentSteps[1].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 1);
-        //    CurrentSteps[2].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 2);
-        //    CurrentSteps[3].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 3);
-        //    CurrentSteps[4].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 4);
+        //    CurrentSteps[0].SetActive(AppManager.I.Player.CurrentJourneyPosition.PlaySession > 0);
+        //    CurrentSteps[1].SetActive(AppManager.I.Player.CurrentJourneyPosition.PlaySession > 1);
+        //    CurrentSteps[2].SetActive(AppManager.I.Player.CurrentJourneyPosition.PlaySession > 2);
+        //    CurrentSteps[3].SetActive(AppManager.I.Player.CurrentJourneyPosition.PlaySession > 3);
+        //    CurrentSteps[4].SetActive(AppManager.I.Player.CurrentJourneyPosition.PlaySession > 4);
 
-        //    Vector3 currentDotPosition = CurrentSteps[AppManager.Instance.Player.CurrentJourneyPosition.PlaySession].transform.position;
+        //    Vector3 currentDotPosition = CurrentSteps[AppManager.I.Player.CurrentJourneyPosition.PlaySession].transform.position;
 
         //    Player.transform.position = new Vector3(currentDotPosition.x, currentDotPosition.y + 4.6f, currentDotPosition.z);
 
@@ -135,7 +135,7 @@ namespace EA4S
         //private void TestGetJourneyInfo()
         //{
         //    int stage = 1;
-        //    List<Teacher.LearningBlockInfo> learningBlockInfo_list = AppManager.Instance.Teacher.journeyHelper.GetLearningBlockInfosForStage(stage);
+        //    List<Teacher.LearningBlockInfo> learningBlockInfo_list = AppManager.I.Teacher.journeyHelper.GetLearningBlockInfosForStage(stage);
         //    foreach(var info in learningBlockInfo_list)
         //    {
         //        Debug.Log(info.data + ": " + info.score);

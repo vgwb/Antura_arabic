@@ -454,7 +454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012147429376
 GameObject:
   m_ObjectHideFlags: 1
@@ -2346,6 +2346,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 0
   isArabic: 0
+  LocalizationId: 0
 --- !u!114 &114000012447242656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2379,7 +2380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livingLetter: {fileID: 1000011623591802}
   slideSpeed: 5
-  flightSpeed: 5
+  flightSpeed: 15
   facingCamera: 1
   status: 0
   fallOffPoint: {fileID: 4000012762341688}
@@ -2402,6 +2403,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 0
   isArabic: 1
+  LocalizationId: 0
 --- !u!135 &135000010917429916
 SphereCollider:
   m_ObjectHideFlags: 1

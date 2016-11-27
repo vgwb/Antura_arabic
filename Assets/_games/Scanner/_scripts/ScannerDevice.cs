@@ -15,16 +15,58 @@ namespace EA4S.Scanner
 		public GameObject goLight;
 
 		public Vector3 fingerOffset;
-		public float depth;
+
+		public float backDepth = -5f;
+
+		public float depthMovementSpeed = 10f;
 
 		public ScannerGame game;
 
 		private float timeDelta;
 
+		private float frontDepth;
+
+		private bool moveBack = false;
+
+		private bool letterEventsNotSet = true;
+
 		void Start()
 		{
 			goLight.SetActive(false);
+
 			timeDelta = 0;
+			frontDepth = transform.position.z;
+
+		}
+
+		void OnLetterFlying()
+		{
+			moveBack = true;
+		}
+
+		void OnLetterReset()
+		{
+			moveBack = false;
+		}
+
+		void Update()
+		{
+			if (game.scannerLL != null && letterEventsNotSet)
+			{
+				letterEventsNotSet = false;
+				game.scannerLL.onFlying += OnLetterFlying;
+				game.scannerLL.onReset += OnLetterReset;
+			}
+
+			if (moveBack && transform.position.z < backDepth)
+			{
+				transform.Translate(Vector3.forward * depthMovementSpeed * Time.deltaTime); 
+			}
+			else if (!moveBack && transform.position.z > frontDepth)
+			{
+				transform.Translate(Vector3.back * depthMovementSpeed * Time.deltaTime); 
+			}
+
 		}
 
 		public void Reset()

@@ -129,8 +129,8 @@ namespace EA4S.MakeFriends
         {
             base.Start();
 
-            //AppManager.Instance.InitDataAI();
-            //AppManager.Instance.CurrentGameManagerGO = gameObject;
+            //AppManager.I.InitDataAI();
+            //AppManager.I.CurrentGameManagerGO = gameObject;
             //SceneTransitioner.Close();
             //Random.seed = System.DateTime.Now.GetHashCode();
             //LoggerEA4S.Log("minigame", "template", "start", "");
