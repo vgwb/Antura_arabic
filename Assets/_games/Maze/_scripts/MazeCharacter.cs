@@ -67,7 +67,7 @@ namespace EA4S.Maze
 
 
 			currentWayPoint = 0;
-			GetComponent<BoxCollider> ().enabled = false;
+			GetComponent<Collider> ().enabled = false;
 
 			//collider.GetComponent<MeshRenderer> ().enabled = false;
 			//collider.SetActive(false);
@@ -344,7 +344,7 @@ namespace EA4S.Maze
 		{
 			
 			characterIsMoving = true;
-			GetComponent<BoxCollider> ().enabled = true;
+			GetComponent<Collider> ().enabled = true;
            // if (particles) particles.SetActive(true);
             foreach (GameObject particle in particles) particle.SetActive(true);
             foreach (GameObject fruit in _fruits) {
@@ -375,13 +375,11 @@ namespace EA4S.Maze
 
 			if(previousPosition != targetPos)
 			{
-				//targetPos.z = (_fruits[_fruits.Count - 1].transform.position;
 				characterWayPoints.Add(targetPos);
 
 			}
 
-			//print ((_fruits [_fruits.Count - 1].transform.position - targetPos).sqrMagnitude);
-			if ((_fruits [_fruits.Count - 1].transform.position - targetPos).sqrMagnitude < 0.5f) {
+			if ((_fruits [_fruits.Count - 1].transform.position - targetPos).sqrMagnitude < 0.1f) {
 
 				toggleVisibility (true);
 				initMovement ();
@@ -489,7 +487,7 @@ namespace EA4S.Maze
                             print ("Won");
                            // if (particles) particles.SetActive(false);
                             foreach (GameObject particle in particles) particle.SetActive(false);
-                            GetComponent<BoxCollider> ().enabled = false;
+                            GetComponent<Collider> ().enabled = false;
 							characterIsMoving = false;
 							MazeGameManager.instance.moveToNext (true);
 

@@ -6236,7 +6236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterIndex: 23
-  letterId: 
 --- !u!114 &114000013108186926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6507,7 +6506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterWayPoints: []
   LL: {fileID: 114000013308219922}
-  collider: {fileID: 1000010679925104}
+  myCollider: {fileID: 0}
   particles:
   - {fileID: 1000013373586442}
   - {fileID: 1000013487880228}

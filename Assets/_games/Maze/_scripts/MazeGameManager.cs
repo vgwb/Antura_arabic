@@ -17,8 +17,7 @@ namespace EA4S.Maze
 		public static MazeGameManager instance;
 
         public GameObject characterPrefab;
-
-		/*public MazeGameplayInfo GameplayInfo;*/
+        
 
 		public MazeCharacter currentCharacter;
 		public HandTutorial currentTutorial;
@@ -65,7 +64,6 @@ namespace EA4S.Maze
             List<LL_LetterData> list = AppManager.I.Teacher.GetAllTestLetterDataLL();
             foreach (LL_LetterData ld in list)
             {
-               // Debug.Log(ld.Id);
                 allLetters.Add(ld.Id);
             }
         }
@@ -214,7 +212,7 @@ namespace EA4S.Maze
 
                 StartCoroutine(waitAndPerformCallback(2, () =>
                 {
-                    TutorialUI.MarkYes(currentCharacter.transform.position + new Vector3(0,10,0), TutorialUI.MarkSize.Big);
+                    TutorialUI.MarkYes(currentCharacter.transform.position + new Vector3(0,2,0), TutorialUI.MarkSize.Big);
                 },
                 () => {
                     if (currentLetterIndex == 6)
@@ -256,18 +254,18 @@ namespace EA4S.Maze
 
 		public void restartCurrentLetter(bool won = false)
 		{
-            
+
             //Destroy (currentPrefab);
             int numberOfStars = 0;
-            if (correctLetters == prefabs.Count)
+            if (correctLetters == 6)
             {
                 numberOfStars = 3;
             }
-            else if (correctLetters > prefabs.Count / 2)
+            else if (correctLetters >= 3)
             {
                 numberOfStars = 2;
             }
-            else if (correctLetters > prefabs.Count / 4)
+            else if (correctLetters >= 2)
             {
                 numberOfStars = 1;
             }
@@ -275,7 +273,7 @@ namespace EA4S.Maze
                 numberOfStars = 0;
             }
 
-            if(numberOfStars > 0)
+            if (numberOfStars > 0)
             {
                 MinigamesUI.Starbar.GotoStar(numberOfStars-1);
             }
@@ -351,13 +349,12 @@ namespace EA4S.Maze
             }
             if (found == -1)
             {
-                Debug.Log("Letter got from Teacher is: " + ld.Id + " - does not match 11 models we have");
+                Debug.Log("Letter got from Teacher is: " + ld.Id + " - does not match 11 models we have, we will play sound of the returned data");
                 found = UnityEngine.Random.Range(0, prefabs.Count);
             }
-            //prefabs[found].GetComponent<MazeLetterBuilder>().letterId = ld.Id;
-
+           
             currentPrefab = (GameObject)Instantiate(prefabs[found]);
-
+            currentPrefab.GetComponent<MazeLetterBuilder>().letterData = ld;
             currentPrefab.GetComponent<MazeLetterBuilder>().build(() => {
                 foreach (Transform child in currentPrefab.transform)
                 {
@@ -464,15 +461,15 @@ namespace EA4S.Maze
             TutorialUI.Clear(false);
 
             int numberOfStars = 0;
-            if (correctLetters == prefabs.Count)
+            if (correctLetters == 6)
             {
                 numberOfStars = 3;
             }
-            else if (correctLetters > prefabs.Count / 2)
+            else if (correctLetters >= 3)
             {
                 numberOfStars = 2;
             }
-            else if (correctLetters > prefabs.Count / 4)
+            else if (correctLetters >= 2)
             {
                 numberOfStars = 1;
             }
@@ -495,15 +492,15 @@ namespace EA4S.Maze
 		{
 			yield return new WaitForSeconds(1f);
             int numberOfStars = 0;
-            if (correctLetters == prefabs.Count)
+            if (correctLetters == 6)
             {
                 numberOfStars = 3;
             }
-            else if (correctLetters > prefabs.Count / 2)
+            else if (correctLetters >= 3)
             {
                 numberOfStars = 2;
             }
-            else if (correctLetters > prefabs.Count / 4)
+            else if (correctLetters >= 2)
             {
                 numberOfStars = 1;
             }

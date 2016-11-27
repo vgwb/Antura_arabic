@@ -9,7 +9,7 @@ namespace EA4S.Maze
 
 
 		public int letterIndex = 0;
-        public string letterId;
+        public ILivingLetterData letterId;
         
 
 		// Use this for initialization
@@ -18,7 +18,7 @@ namespace EA4S.Maze
 			transform.position = new Vector3 (40, 0, 0);
 
             transform.DOMove(Vector3.zero, 1.0f).OnComplete(()=> {
-                AudioManager.I.PlayLetter(letterId);
+                MazeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterId);
                 MazeGameManager.instance.showCharacterMovingIn();
 
             });
