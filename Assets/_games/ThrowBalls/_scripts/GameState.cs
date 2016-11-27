@@ -107,12 +107,11 @@ namespace EA4S.ThrowBalls
 
             IQuestionPack newQuestionPack = ThrowBallsConfiguration.Instance.Questions.GetNextQuestion();
 
-            LL_LetterData correctLetter = (LL_LetterData)newQuestionPack.GetCorrectAnswers().ToList()[0];
-            List<ILivingLetterData> wrongLetters = newQuestionPack.GetWrongAnswers().ToList();
+            question = newQuestionPack.GetQuestion();
+            ILivingLetterData correctDatum = newQuestionPack.GetCorrectAnswers().ToList()[0];
+            List<ILivingLetterData> wrondDatum = newQuestionPack.GetWrongAnswers().ToList();
 
-            question = correctLetter;
-
-            AudioManager.I.PlayLetter(correctLetter.Id);
+            SayQuestion();
 
             yield return new WaitForSeconds(1f);
 
@@ -129,16 +128,16 @@ namespace EA4S.ThrowBalls
                 if (i == 0)
                 {
                     letterObj.tag = Constants.TAG_CORRECT_LETTER;
-                    letterControllers[i].SetLetter(correctLetter);
+                    letterControllers[i].SetLetter(correctDatum);
                 }
 
                 else
                 {
                     letterObj.tag = Constants.TAG_WRONG_LETTER;
 
-                    letterControllers[i].SetLetter((LL_LetterData)wrongLetters[0]);
+                    letterControllers[i].SetLetter(wrondDatum[0]);
 
-                    wrongLetters.RemoveAt(0);
+                    wrondDatum.RemoveAt(0);
                 }
             }
 
@@ -147,7 +146,7 @@ namespace EA4S.ThrowBalls
             BallController.instance.Enable();
 
             UIController.instance.Enable();
-            UIController.instance.SetLetterHint(correctLetter);
+            UIController.instance.SetLetterHint(correctDatum);
 
             if (roundNumber == 0)
             {
@@ -181,7 +180,7 @@ namespace EA4S.ThrowBalls
             question = newQuestionPack.GetQuestion();
             UIController.instance.SetLetterHint(question);
 
-            AudioManager.I.PlayWord(newQuestionPack.GetQuestion().Id);
+            SayQuestion();
 
             yield return new WaitForSeconds(1f);
 
@@ -228,6 +227,19 @@ namespace EA4S.ThrowBalls
             if (roundNumber == 0)
             {
                 ShowTutorialUI();
+            }
+        }
+
+        private void SayQuestion()
+        {
+            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.letters)
+            {
+                AudioManager.I.PlayLetter(question.Id);
+            }
+
+            else
+            {
+                AudioManager.I.PlayWord(question.Id);
             }
         }
 
@@ -395,15 +407,7 @@ namespace EA4S.ThrowBalls
 
             yield return new WaitForSeconds(0.7f);
 
-            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.letters)
-            {
-                AudioManager.I.PlayLetter(question.Id);
-            }
-
-            else
-            {
-                AudioManager.I.PlayWord(question.Id);
-            }
+            SayQuestion();
 
             correctLetterCntrl.SetMotionVariation(LetterController.MotionVariation.Idle);
             correctLetterCntrl.SetPropVariation(LetterController.PropVariation.Nothing);
