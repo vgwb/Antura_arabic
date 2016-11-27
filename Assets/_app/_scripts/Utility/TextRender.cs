@@ -18,10 +18,17 @@ namespace EA4S
         public bool isUI;
         public bool isArabic;
 
+        public Db.LocalizationDataId LocalizationId;
+
         void Awake()
         {
             checkConfiguration();
+
+            if (LocalizationId != Db.LocalizationDataId.None) {
+                SetSentence(LocalizationId);
+            }
             updateText();
+
         }
 
         public void setText(string _text, bool arabic = false)
@@ -92,18 +99,16 @@ namespace EA4S
             else
                 gameObject.GetComponent<TextMeshPro>().isRightToLeftText = true;
 
-            if (livingLetterData.DataType == LivingLetterDataType.Letter)
-            {
+            if (livingLetterData.DataType == LivingLetterDataType.Letter) {
                 text = livingLetterData.TextForLivingLetter;
-            }
-            else if (livingLetterData.DataType == LivingLetterDataType.Word)
-            {
+            } else if (livingLetterData.DataType == LivingLetterDataType.Word) {
                 text = livingLetterData.TextForLivingLetter;
             }
         }
 
         public void SetSentence(Db.LocalizationDataId sentenceId)
         {
+            // Debug.Log("SetSentence " + sentenceId);
             Db.LocalizationData row = LocalizationManager.GetLocalizationData(sentenceId);
             isArabic = true;
             text = row.Arabic;

@@ -14,7 +14,7 @@ namespace EA4S.Tobogan
         {
             this.provider = provider;
 
-            var db = AppManager.Instance.DB;
+            var db = AppManager.I.DB;
             var sunWord = db.GetWordDataById("the_sun");
             var sunData = new LL_ImageData(sunWord.Id, sunWord);
             var moonWord = db.GetWordDataById("the_moon");

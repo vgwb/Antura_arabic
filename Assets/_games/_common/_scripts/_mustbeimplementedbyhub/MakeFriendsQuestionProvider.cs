@@ -46,7 +46,7 @@ namespace EA4S
                     commonLetters.Clear();
                     uncommonLetters.Clear();
 
-                    newWordData1 = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
+                    newWordData1 = AppManager.I.Teacher.GetRandomTestWordDataLL();
                     foreach (var letterData in ArabicAlphabetHelper.ExtractLetterDataFromArabicWord(newWordData1.Data.Arabic))
                     {
                         wordLetters1.Add(letterData);
@@ -55,7 +55,7 @@ namespace EA4S
                     int innerLoopAttempts = 50;
                     do
                     {
-                        newWordData2 = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
+                        newWordData2 = AppManager.I.Teacher.GetRandomTestWordDataLL();
                         innerLoopAttempts--;
                     } while(newWordData2.Id == newWordData1.Id && innerLoopAttempts > 0);
                     if (innerLoopAttempts <= 0)

@@ -12,7 +12,7 @@ namespace EA4S
 
         IQuestionPack IQuestionProvider.GetNextQuestion()
         {
-            var answerData = AppManager.Instance.DB.GetWordDataByRandom();
+            var answerData = AppManager.I.DB.GetWordDataByRandom();
             LL_WordData randomWord = new LL_WordData(answerData.Id, answerData);
 
             StringTestData fakeData = new StringTestData(
@@ -24,7 +24,7 @@ namespace EA4S
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
             while (wrongAnswers.Count < 6)
             {
-                var randomData = AppManager.Instance.DB.GetWordDataByRandom();
+                var randomData = AppManager.I.DB.GetWordDataByRandom();
 
                 if (randomData.Id != answerData.Id && !wrongAnswers.Any((a) => { return a.Id == randomData.Id; }))
                 {

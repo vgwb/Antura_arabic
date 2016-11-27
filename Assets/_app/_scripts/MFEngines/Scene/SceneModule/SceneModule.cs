@@ -24,7 +24,7 @@ namespace EA4S
         public override void SceneLoadedBehaviour()
         {
             if (SceneTransitioner.IsShown) {
-                AppManager.Instance.StartCoroutine(CloseSceneTransitioner(0.15f));
+                AppManager.I.StartCoroutine(CloseSceneTransitioner(0.15f));
             }
         }
 
