@@ -31,6 +31,11 @@ namespace EA4S
         protected override void GameSetup()
         {
             base.GameSetup();
+
+            if (AppConstants.DebugPanelEnabled) {
+                SRDebug.Init();
+            }
+
             AdditionalSetup();
             InitDataAI();
             GameSettings.HighQualityGfx = false;
