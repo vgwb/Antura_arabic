@@ -76,6 +76,9 @@ namespace EA4S.Scanner
 
 		void OnMouseDown()
 		{
+            if (ScannerGame.disableInput)
+                return;
+
 			isDragging = true;
 			goLight.SetActive(true);
 			screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
@@ -87,7 +90,7 @@ namespace EA4S.Scanner
 
 		void OnMouseDrag()
 		{
-			if (isDragging)
+            if (isDragging)
 			{
 				Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 				Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
@@ -122,6 +125,7 @@ namespace EA4S.Scanner
 					timeDelta = Time.time - timeDelta;
 					game.PlayWord(timeDelta);
 					timeDelta = 0;
+                    game.tut.setupTutorial(2);
 				}
 			}
 //			else if (other.tag == ScannerGame.TAG_SCAN_END)

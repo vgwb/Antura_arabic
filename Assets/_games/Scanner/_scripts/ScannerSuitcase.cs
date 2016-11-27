@@ -9,7 +9,7 @@ namespace EA4S.Scanner
 
 	public class ScannerSuitcase : MonoBehaviour {
 
-		bool isDragging = false;
+		public bool isDragging = false;
 		private Vector3 screenPoint;
 		private Vector3 offset;
 		private float startX;
@@ -68,7 +68,10 @@ namespace EA4S.Scanner
 
 		void OnMouseDown()
 		{
-			shadow.SetActive(false);
+            if (ScannerGame.disableInput)
+                return;
+
+            shadow.SetActive(false);
 			isDragging = true;
 			screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
@@ -120,8 +123,10 @@ namespace EA4S.Scanner
 
 		void OnMouseUp()
 		{
+            if (ScannerGame.disableInput)
+                return;
 
-			if (overPlayermarker)
+            if (overPlayermarker)
 			{
 				if (isCorrectAnswer)
 				{
