@@ -8,6 +8,9 @@ namespace EA4S
         public const string AppVersion = "0.11.28b";
         public const bool DebugPanelEnabled = true;
 
+        // Resource Paths
+        public const string AvatarsResourcesDir = "Images/Avatars/";
+
 #if UNITY_EDITOR
         public const string UrlGithubRepository = "https://github.com/vgwb/EA4S_Antura_U3D";
         public const string UrlTrello = "https://trello.com/b/ltLndaQI/ea4s-beta";
