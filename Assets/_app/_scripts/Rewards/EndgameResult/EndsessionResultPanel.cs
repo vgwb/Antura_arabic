@@ -143,7 +143,7 @@ namespace EA4S
 
         void Continue()
         {
-            //GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(AppManager.Instance.MiniGameDone());
+            //GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.MiniGameDone());
             NavigationManager.I.GoToNextScene();
         }
 

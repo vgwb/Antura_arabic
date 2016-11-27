@@ -85,8 +85,8 @@ namespace EA4S.Maze
             setupIndices();
             //base.Start();
 
-            /*	AppManager.Instance.InitDataAI();
-                AppManager.Instance.CurrentGameManagerGO = gameObject;
+            /*	AppManager.I.InitDataAI();
+                AppManager.I.CurrentGameManagerGO = gameObject;
                 SceneTransitioner.Close();*/
 
             fleePositions = new List<Vector3>();

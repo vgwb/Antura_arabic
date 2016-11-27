@@ -133,7 +133,7 @@ namespace EA4S
             switch (currentWordCategory) {
 
                 case WordDataCategory.None:
-                    //list = AppManager.Instance.DB.GetAllWordData();
+                    //list = AppManager.I.DB.GetAllWordData();
                     list = new List<WordData>();
                     break;
                 default:
