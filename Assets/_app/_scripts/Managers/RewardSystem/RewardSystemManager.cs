@@ -102,7 +102,8 @@ namespace EA4S {
                     /// - Charge texture
                     for (int i = 0; i < returnList.Count; i++) {
                         if (returnList[i] != null) {
-                            Texture2D inputTexture = Resources.Load<Texture2D>(returnList[i].ID);
+                            string texturePath = "AnturaStuff/Textures_and_Materials/";
+                            Texture2D inputTexture = Resources.Load<Texture2D>(texturePath + returnList[i].ID);
                             _parentsTransForModels[i].GetComponent<RawImage>().texture = inputTexture;
                         }
                     }
@@ -120,6 +121,14 @@ namespace EA4S {
                             returnList.Add(null);
                         else
                             returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = false });
+                    }
+                    /// - Charge texture
+                    for (int i = 0; i < returnList.Count; i++) {
+                        if (returnList[i] != null) {
+                            string texturePath = "AnturaStuff/Textures_and_Materials/";
+                            Texture2D inputTexture = Resources.Load<Texture2D>(texturePath + returnList[i].ID);
+                            _parentsTransForModels[i].GetComponent<RawImage>().texture = inputTexture;
+                        }
                     }
                     break;
                 default:
