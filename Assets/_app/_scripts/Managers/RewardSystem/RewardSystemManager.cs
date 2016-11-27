@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 using System.Collections.Generic;
@@ -77,21 +78,55 @@ namespace EA4S {
                         else
                             returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = false });
                     }
+                    /// - Charge models
+                    for (int i = 0; i < returnList.Count; i++) {
+                        if (returnList[i] != null) {
+                            ModelsManager.MountModel(returnList[i].ID, _parentsTransForModels[i]);
+                        }
+                    }
                     break;
                 case RewardTypes.texture:
+                    List<RewardTile> rewardsTiles = config.RewardsTile;
+                    int countT = 0;
+                    foreach (RewardTile reward in rewardsTiles) {
+                        countT++;
+                        if (countT == 1)
+                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = true });
+                        else if (countT == 2)
+                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = true, IsSelected = false });
+                        else if (countT == rewardsTiles.Count)
+                            returnList.Add(null);
+                        else
+                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = false });
+                    }
+                    /// - Charge texture
+                    for (int i = 0; i < returnList.Count; i++) {
+                        if (returnList[i] != null) {
+                            Texture2D inputTexture = Resources.Load<Texture2D>(returnList[i].ID);
+                            _parentsTransForModels[i].GetComponent<RawImage>().texture = inputTexture;
+                        }
+                    }
                     break;
                 case RewardTypes.decal:
+                    List<RewardDecal> RewardsDecal = config.RewardsDecal;
+                    int countD = 0;
+                    foreach (RewardDecal reward in RewardsDecal) {
+                        countD++;
+                        if (countD == 1)
+                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = true });
+                        else if (countD == 2)
+                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = true, IsSelected = false });
+                        else if (countD == RewardsDecal.Count)
+                            returnList.Add(null);
+                        else
+                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = false });
+                    }
                     break;
                 default:
                     Debug.LogWarningFormat("Reward typology {0} not found", _rewardType);
                     break;
             }
-            /// - Charge models
-            for (int i = 0; i < returnList.Count; i++) {
-                if (returnList[i] != null) {
-                    ModelsManager.MountModel(returnList[i].ID, _parentsTransForModels[i]);
-                }
-            }
+
             //// add empty results
             //int emptyItemsCount = _parentsTransForModels.Count - returnList.Count;
             //for (int i = 0; i < emptyItemsCount; i++) {
@@ -169,11 +204,15 @@ namespace EA4S {
     #region rewards data structures
 
     #region static DB
+
     [Serializable]
     public class RewardConfig {
         public List<Reward> Rewards;
         public List<RewardColor> RewardsColorPairs;
         public List<RewardDecal> RewardsDecal;
+        public List<RewardColor> RewardsDecalColor;
+        public List<RewardTile> RewardsTile;
+        public List<RewardColor> RewardsTileColor;
     }
 
     [Serializable]
@@ -200,9 +239,15 @@ namespace EA4S {
     public class RewardDecal {
         public string ID;
     }
+
+    [Serializable]
+    public class RewardTile {
+        public string ID;
+    }
     #endregion
 
-    #region reward UI data structures    
+    #region reward UI data structures
+
     /// <summary>
     /// Structure focused to comunicate about items from e to UI.
     /// </summary>
