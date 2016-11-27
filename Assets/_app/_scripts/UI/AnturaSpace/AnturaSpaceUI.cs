@@ -12,6 +12,7 @@ namespace EA4S
     {
         public int MaxItems = 10;
         public LayerMask RewardsLayer;
+        public bool FlipRewards = true;
         [Header("References")]
         public UIButton BtOpenModsPanel;
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
@@ -22,6 +23,7 @@ namespace EA4S
         AnturaSpaceItemButton[] btsItems;
         AnturaSpaceSwatchButton[] btsSwatches;
         List<Transform> rewardsContainers;
+        List<Transform> rewardsImagesContainers; // Passed with texture and decal reward types
         RewardTypes currRewardType;
         List<RewardItem> currRewardDatas;
         List<RewardColorItem> currSwatchesDatas;
@@ -36,15 +38,18 @@ namespace EA4S
             SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
             // Create items
             rewardsContainers = new List<Transform>();
+            rewardsImagesContainers = new List<Transform>();
             btsItems = new AnturaSpaceItemButton[MaxItems];
             btsItems[0] = BtItemMain;
             rewardsContainers.Add(BtItemMain.RewardContainer);
+            rewardsImagesContainers.Add(BtItemMain.RewardImage.transform);
             for (int i = 1; i < MaxItems; ++i) {
                 AnturaSpaceItemButton item = Instantiate(BtItemMain);
                 item.transform.SetParent(BtItemMain.transform.parent, false);
                 item.Setup();
                 btsItems[i] = item;
                 rewardsContainers.Add(item.RewardContainer);
+                rewardsImagesContainers.Add(item.RewardImage.transform);
             }
             BtItemMain.Setup();
 
@@ -129,10 +134,16 @@ namespace EA4S
         {
             // Get rewards list
             currRewardType = CategoryToRewardType(_category);
+            bool useImages = _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture || _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
+            foreach (AnturaSpaceItemButton item in btsItems) item.SetImage(!useImages);
             if (_category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears) {
                 currRewardDatas = RewardSystemManager.GetRewardItemsByRewardType(currRewardType, rewardsContainers, "EAR_L");
-                currRewardDatas.AddRange(RewardSystemManager.GetRewardItemsByRewardType(currRewardType, rewardsContainers, "EAR_R"));
-            } else currRewardDatas = RewardSystemManager.GetRewardItemsByRewardType(currRewardType, rewardsContainers, _category.ToString());
+                List<Transform> altRewardContainers = new List<Transform>(rewardsContainers);
+                altRewardContainers.RemoveRange(0, currRewardDatas.Count);
+                currRewardDatas.AddRange(RewardSystemManager.GetRewardItemsByRewardType(currRewardType, altRewardContainers, "EAR_R"));
+            } else {
+                currRewardDatas = RewardSystemManager.GetRewardItemsByRewardType(currRewardType, useImages ? rewardsImagesContainers : rewardsContainers, _category.ToString());
+            }
             yield return null;
 
             // Hide non-existent items
@@ -143,9 +154,12 @@ namespace EA4S
                 RewardItem rewardData = currRewardDatas[i];
                 AnturaSpaceItemButton item = btsItems[i];
                 item.Data = rewardData;
-                item.RewardContainer.gameObject.SetLayerRecursive(GenericUtilities.LayerMaskToIndex(RewardsLayer));
                 item.Lock(rewardData == null);
                 if (rewardData != null) {
+                    if (!useImages) {
+                        item.RewardContainer.gameObject.SetLayerRecursive(GenericUtilities.LayerMaskToIndex(RewardsLayer));
+                        CameraHelper.FitRewardToUICamera(item.RewardContainer.GetChild(0), item.RewardCamera, FlipRewards);
+                    }
                     item.SetAsNew(rewardData.IsNew);
                     item.Toggle(rewardData.IsSelected);
                     if (rewardData.IsSelected) selectedRewardData = rewardData;
@@ -165,6 +179,11 @@ namespace EA4S
 
             foreach (AnturaSpaceItemButton item in btsItems) item.Toggle(item.Data == _rewardData);
             currSwatchesDatas = RewardSystemManager.SelectRewardItem(_rewardData.ID, currRewardType);
+            if (currSwatchesDatas.Count == 0) {
+                Debug.Log("No color swatches for the selected reward!");
+                return;
+            }
+
             // Hide non-existent swatches
             for (int i = currSwatchesDatas.Count - 1; i < btsSwatches.Length; ++i) btsSwatches[i].gameObject.SetActive(false);
             // Setup and show swatches

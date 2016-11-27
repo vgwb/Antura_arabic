@@ -8,8 +8,11 @@ namespace EA4S
 {
     public class AnturaSpaceItemButton : UIButton
     {
+        public Color LockedColor = Color.red;
+        public RawImage RewardImage;
         public GameObject IcoLock;
         public GameObject IcoNew;
+        public Camera RewardCamera;
         public Transform RewardContainer;
 
         [System.NonSerialized] public RewardItem Data;
@@ -43,12 +46,18 @@ namespace EA4S
         public void Lock(bool _doLock)
         {
             IcoLock.SetActive(_doLock);
+            BtImg.color = _doLock ? LockedColor : DefColor;
             Bt.interactable = !_doLock;
         }
 
         public void SetAsNew(bool _isNew)
         {
             IcoNew.SetActive(_isNew);
+        }
+
+        public void SetImage(bool _isRenderTexture)
+        {
+            RewardImage.texture = _isRenderTexture ? renderTexture : null;
         }
 
         #endregion
