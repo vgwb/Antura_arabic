@@ -43,7 +43,7 @@ namespace EA4S.Maze
 
 
                     //MazeGameManager.Instance.showCurrentTutorial ();
-                    MazeGameManager.Instance.showCharacterMovingIn();
+                    MazeGameManager.instance.showCharacterMovingIn();
                     // MazeGameManager.Instance.currentCharacter.transform.position = MazeGameManager.Instance.getRandFleePosition();
 
                 }

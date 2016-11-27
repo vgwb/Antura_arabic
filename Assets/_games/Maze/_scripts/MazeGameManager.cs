@@ -14,7 +14,7 @@ namespace EA4S.Maze
 	public class MazeGameManager : MiniGame
     {
 		
-		public static MazeGameManager Instance;
+		public static MazeGameManager instance;
 
         public GameObject characterPrefab;
 
@@ -27,9 +27,7 @@ namespace EA4S.Maze
 
 		public Canvas endGameCanvas;
 
-		public StarFlowers starFlowers;
-
-
+		
 
 		 
 		public float idleTime = 7;
@@ -75,7 +73,7 @@ namespace EA4S.Maze
         protected override void Awake()
 		{
 			base.Awake();
-			Instance = this;
+			instance = this;
 
 
 		}
@@ -83,11 +81,8 @@ namespace EA4S.Maze
 		public void startGame()
 		{
             setupIndices();
-            //base.Start();
 
-            /*	AppManager.I.InitDataAI();
-                AppManager.I.CurrentGameManagerGO = gameObject;
-                SceneTransitioner.Close();*/
+            Context.GetAudioManager().PlayMusic(Music.Theme3);
 
             fleePositions = new List<Vector3>();
             foreach (Transform child in fleePositionObject.transform)
@@ -516,31 +511,7 @@ namespace EA4S.Maze
                 numberOfStars = 0;
             }
             EndGame(numberOfStars, correctLetters);
-            /*endGameCanvas.gameObject.SetActive(true);
-
-			int numberOfStars = 0;
-
-			if (correctLetters == prefabs.Count) {
-				numberOfStars = 3;
-				WidgetSubtitles.I.DisplaySentence ("game_result_great");
-			} else if (correctLetters > prefabs.Count / 2) {
-				numberOfStars = 2;
-				WidgetSubtitles.I.DisplaySentence ("game_result_good");
-			} else if (correctLetters > prefabs.Count / 4) {
-				numberOfStars = 1;
-				WidgetSubtitles.I.DisplaySentence ("game_result_fair");
-			} else {
-				numberOfStars = 0;
-				WidgetSubtitles.I.DisplaySentence("game_result_retry");
-			}
-
-           
-
-			LoggerEA4S.Log("minigame", "Maze", "correctLetters", ""+correctLetters);
-			LoggerEA4S.Log("minigame", "Maze", "wrongLetters", ""+wrongLetters);
-			LoggerEA4S.Save();
-
-			starFlowers.Show(numberOfStars);*/
+            
         }
 
 
