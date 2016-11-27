@@ -12717,8 +12717,8 @@ Camera:
   m_GameObject: {fileID: 1846478875}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 3
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.3803922, g: 0.34117648, b: 0.9215687, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -13169,10 +13169,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dce42d0f3408a14eb567a32ec7051de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxItems: 9
+  MaxItems: 10
   RewardsLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
   BtOpenModsPanel: {fileID: 373120506}
   CategoriesContainer: {fileID: 9288148}
   ItemsContainer: {fileID: 1665412479}
