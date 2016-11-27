@@ -46,7 +46,7 @@ namespace EA4S {
         /// </summary>
         /// <param name="_ppKey">The pp key.</param>
         public void SelectPlayerProfile(string _ppKey) {
-            //AppManager.Instance.Player.CreateOrLoadPlayerProfile(_ppKey);
+            //AppManager.I.Player.CreateOrLoadPlayerProfile(_ppKey);
 
             // Visual containers reorder
             refreshActivePlayerList();

@@ -40,8 +40,8 @@ namespace EA4S.Test {
         //        List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
         //        List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-        //        WordData newWordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
-        //        foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData.Word, AppManager.Instance.Letters)) {
+        //        WordData newWordData = AppManager.I.Teacher.GimmeAGoodWordData();
+        //        foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData.Word, AppManager.I.Letters)) {
         //            correctAnswers.Add(letterData);
         //        }
 
@@ -49,7 +49,7 @@ namespace EA4S.Test {
 
         //        // At least 4 wrong letters
         //        while (wrongAnswers.Count < 4) {
-        //            var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
+        //            var letter = AppManager.I.Teacher.GimmeARandomLetter();
 
         //            if (!correctAnswers.Contains(letter) && !wrongAnswers.Contains(letter)) {
         //                wrongAnswers.Add(letter);

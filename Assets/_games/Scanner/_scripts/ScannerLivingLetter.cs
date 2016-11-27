@@ -11,7 +11,7 @@ namespace EA4S.Scanner
         public enum LLStatus { None, Sliding, StandingOnBelt, RunningFromAntura, Lost, Won, Happy, Sad, Flying, Poofing, Falling };
         public GameObject livingLetter;
         public float slideSpeed = 2f;
-        public float flightSpeed = 2f;
+        public float flightSpeed = 10f;
         public bool facingCamera;
         public LLStatus status = LLStatus.None;
         private float turnAngle;
@@ -28,6 +28,7 @@ namespace EA4S.Scanner
         public event Action onStartFallOff;
         public event Action onFallOff;
         public event Action onPassedMidPoint;
+		public event Action onFlying;
 
 		public BoxCollider bodyCollider;
 
@@ -111,13 +112,26 @@ namespace EA4S.Scanner
 
         IEnumerator co_FlyAway()
         {
-//			transform.parent = originalParent;
-            letterObjectView.DoSmallJump();
-            yield return new WaitForSeconds(1f);
+//            letterObjectView.DoSmallJump();
+			onFlying();
+			status = LLStatus.None;
+
+			letterObjectView.DoSmallJump();            
+			StartCoroutine(RotateGO(livingLetter, new Vector3(0, 180, 0), 1f));
+			yield return new WaitForSeconds(1f);
+
+//			// building anticipation
+//			letterObjectView.Crouching = true;
+//			yield return new WaitForSeconds(1f);
+//			letterObjectView.Crouching = false;
+
+			// Starting flight
+			letterObjectView.DoHorray();            
+            yield return new WaitForSeconds(0.75f);
+			status = LLStatus.Flying;
             rainbowJet.SetActive(true);
-            letterObjectView.DoHorray();
-            status = LLStatus.Flying;
-            yield return new WaitForSeconds(4f);
+			letterObjectView.SetState(LLAnimationStates.LL_still);
+            yield return new WaitForSeconds(2f);
             Reset();
         }
 
