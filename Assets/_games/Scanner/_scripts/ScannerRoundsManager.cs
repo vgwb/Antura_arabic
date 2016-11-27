@@ -45,6 +45,8 @@ namespace EA4S.Scanner
 					ss.onWrongDrop += WrongMove;
 				}
 				game.scannerLL = GameObject.Instantiate(game.LLPrefab).GetComponent<ScannerLivingLetter>();
+				game.scannerLL.facingCamera = false;
+				game.scannerLL.gameObject.SetActive(true);
 				game.scannerLL.onReset += OnLetterReset;
 				game.scannerLL.onFallOff += OnLetterFallOff;
 				game.scannerLL.onStartFallOff += OnLetterStartFallOff;
