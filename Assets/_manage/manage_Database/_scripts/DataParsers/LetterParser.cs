@@ -28,6 +28,12 @@ namespace EA4S.Db.Management
             data.Initial_Unicode = ToString(dict["Initial_Unicode"]);
             data.Medial_Unicode = ToString(dict["Medial_Unicode"]);
             data.Final_Unicode = ToString(dict["Final_Unicode"]);
+            data.Symbol_Unicode = ToString(dict["Symbol_Unicode"]);
+
+            data.Old_Isolated = ToString(dict["Old_Isolated"]);
+            data.Old_Initial = ToString(dict["Old_Initial"]);
+            data.Old_Medial = ToString(dict["Old_Medial"]);
+            data.Old_Final = ToString(dict["Old_Final"]);
 
             return data;
         }

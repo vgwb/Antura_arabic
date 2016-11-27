@@ -4,14 +4,17 @@ using DG.Tweening;
 using System.Collections;
 using System;
 
-namespace EA4S.FastCrowd {
+namespace EA4S.FastCrowd
+{
 
-    public class WordComposer : MonoBehaviour {
+    public class WordComposer : MonoBehaviour
+    {
 
         WordFlexibleContainer WordLabel;
         List<LL_LetterData> CompletedLetters = new List<LL_LetterData>();
 
-        void Start() {
+        void Start()
+        {
             WordLabel = GetComponent<WordFlexibleContainer>();
             UpdateWord();
         }
@@ -23,10 +26,9 @@ namespace EA4S.FastCrowd {
 
             string word = string.Empty;
 
-            for (int i = 0; i < CompletedLetters.Count; ++i)
-            {
+            for (int i = 0; i < CompletedLetters.Count; ++i) {
                 LL_LetterData letter = CompletedLetters[i];
-                word += ArabicAlphabetHelper.GetCharFromUnicode(letter.Data.Isolated_Unicode);
+                word += ArabicAlphabetHelper.GetLetterFromUnicode(letter.Data.Isolated_Unicode);
             }
 
             //word = ArabicAlphabetHelper.PrepareArabicStringForDisplay(word, false);
@@ -40,7 +42,7 @@ namespace EA4S.FastCrowd {
 
             StartCoroutine(AddLetter(data, 1.3f));
         }
-        
+
         public void Clean()
         {
             CompletedLetters = new List<LL_LetterData>();
@@ -58,7 +60,8 @@ namespace EA4S.FastCrowd {
             UpdateWord();
         }
 
-        private void DropContainer_OnObjectiveBlockCompleted() {
+        private void DropContainer_OnObjectiveBlockCompleted()
+        {
             Clean();
         }
     }

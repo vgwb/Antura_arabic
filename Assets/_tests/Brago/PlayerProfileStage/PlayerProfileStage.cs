@@ -34,14 +34,14 @@ namespace EA4S.Test {
             //Debug.LogFormat("{1}{0}{2}{0}{3}{0}{4}{0}", Environment.NewLine, player.Id, player.Name, player.Age);
             //AppManager.Instance.PlayerProfile.DeleteAllPlayerProfiles();
              
-            Debug.LogFormat("P: {0} -> {1}", AppManager.Instance.Player.Id, AppManager.Instance.Player.CurrentJourneyPosition.ToString());
+            Debug.LogFormat("P: {0} -> {1}", AppManager.I.Player.Id, AppManager.I.Player.CurrentJourneyPosition.ToString());
 
         }
 
         public void SetActualProfileJourney(int _ps) {
-            AppManager.Instance.Player.CurrentJourneyPosition = new JourneyPosition(_ps, 1, 1);
-            AppManager.Instance.Player.Save();
-            Debug.LogFormat("P: {0} -> {1}", AppManager.Instance.Player.Id, AppManager.Instance.Player.CurrentJourneyPosition.ToString());
+            AppManager.I.Player.CurrentJourneyPosition = new JourneyPosition(_ps, 1, 1);
+            AppManager.I.Player.Save();
+            Debug.LogFormat("P: {0} -> {1}", AppManager.I.Player.Id, AppManager.I.Player.CurrentJourneyPosition.ToString());
         }
     }
 

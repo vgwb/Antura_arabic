@@ -94,19 +94,28 @@ namespace EA4S.Scanner
 			
 		void OnTriggerEnter(Collider other)
 		{
-			if (other.tag == "Player") overPlayermarker = true;
-			player = other;
+			if (other.tag == "Player") 
+			{ 
+				overPlayermarker = true;
+				player = other;
+			}
 		}
 
 		void OnTriggerStay(Collider other)
 		{
-			if (other.tag == "Player") overPlayermarker = true;
-			player = other;
+			if (other.tag == "Player") 
+			{
+				overPlayermarker = true;
+				player = other;
+			}
 		}
 
 		void OnTriggerExit(Collider other)
 		{
-			if (other.tag == "Player") overPlayermarker = false;
+			if (other.tag == "Player") 
+			{
+				overPlayermarker = false;
+			}
 		}
 
 		void OnMouseUp()
@@ -117,6 +126,7 @@ namespace EA4S.Scanner
 				if (isCorrectAnswer)
 				{
 					transform.parent = player.transform;
+					transform.localPosition = new Vector3(2,1,-2);
 					onCorrectDrop(gameObject);
 				}
 				else

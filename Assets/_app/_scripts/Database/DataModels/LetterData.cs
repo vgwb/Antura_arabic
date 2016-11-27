@@ -43,6 +43,11 @@ namespace EA4S.Db
         public string Initial_Unicode;
         public string Medial_Unicode;
         public string Final_Unicode;
+        public string Symbol_Unicode;
+        public string Old_Isolated;
+        public string Old_Initial;
+        public string Old_Medial;
+        public string Old_Final;
 
         public override string ToString()
         {
@@ -116,32 +121,59 @@ namespace EA4S.Db
             return new LL_LetterData(GetId(), this);
         }
 
-        public string GetChar(LetterPosition position = LetterPosition.Isolated)
-        {
-            switch (position) {
-                case LetterPosition.Initial:
-                    return Initial;
-                case LetterPosition.Medial:
-                    return Medial;
-                case LetterPosition.Final:
-                    return Final;
-                default:
-                    return Isolated;
-            }
-        }
+        //public string GetChar(LetterPosition position = LetterPosition.Isolated)
+        //{
+        //    switch (position) {
+        //        case LetterPosition.Initial:
+        //            return Initial;
+        //        case LetterPosition.Medial:
+        //            return Medial;
+        //        case LetterPosition.Final:
+        //            return Final;
+        //        default:
+        //            return Isolated;
+        //    }
+        //}
 
         public string GetUnicode(LetterPosition position = LetterPosition.Isolated)
         {
-            switch (position) {
-                case LetterPosition.Initial:
-                    return Initial_Unicode;
-                case LetterPosition.Medial:
-                    return Medial_Unicode;
-                case LetterPosition.Final:
-                    return Final_Unicode;
-                default:
+            switch (Kind) {
+                case LetterDataKind.Symbol:
                     return Isolated_Unicode;
+                default:
+                    switch (position) {
+                        case LetterPosition.Initial:
+                            return Initial_Unicode != "" ? Initial_Unicode : Isolated_Unicode;
+                        case LetterPosition.Medial:
+                            return Medial_Unicode != "" ? Medial_Unicode : Isolated_Unicode;
+                        case LetterPosition.Final:
+                            return Final_Unicode != "" ? Final_Unicode : Isolated_Unicode;
+                        default:
+                            return Isolated_Unicode;
+                    }
             }
+        }
+
+        public string GetChar(LetterPosition position = LetterPosition.Isolated)
+        {
+            string output = "";
+            var hexunicode = GetUnicode(position);
+            if (hexunicode != "") {
+
+                // add the "-" to diacritic symbols to indentify better if it's over or below hte mid line
+                if (Type == LetterDataType.DiacriticSymbol) {
+                    output = "\u0640";
+                }
+
+                int unicode = int.Parse(hexunicode, System.Globalization.NumberStyles.HexNumber);
+                output += ((char)unicode).ToString();
+
+                if (Symbol_Unicode != "") {
+                    int unicode_added = int.Parse(Symbol_Unicode, System.Globalization.NumberStyles.HexNumber);
+                    output += ((char)unicode_added).ToString();
+                }
+            }
+            return output;
         }
     }
 }

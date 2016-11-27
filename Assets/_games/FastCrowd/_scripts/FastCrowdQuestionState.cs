@@ -30,7 +30,7 @@
 
             if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter) {
                 LL_LetterData isolated = new LL_LetterData(question.GetQuestion().Id);
-                isolated.ShowAs = Db.LetterPosition.Isolated;
+                isolated.Position = Db.LetterPosition.Isolated;
                 game.CurrentChallenge.Add(isolated);
 
                 for (int i = 0; i < 3; ++i) {
@@ -40,20 +40,20 @@
                         if (data.Data.Initial_Unicode == data.Data.Isolated_Unicode)
                             continue;
 
-                        data.ShowAs = Db.LetterPosition.Initial;
+                        data.Position = Db.LetterPosition.Initial;
                     } else if (i == 1) {
                         if (data.Data.Medial_Unicode == data.Data.Initial_Unicode ||
                             data.Data.Medial_Unicode == data.Data.Isolated_Unicode)
                             continue;
 
-                        data.ShowAs = Db.LetterPosition.Medial;
+                        data.Position = Db.LetterPosition.Medial;
                     } else if (i == 2) {
                         if (data.Data.Final_Unicode == data.Data.Initial_Unicode ||
                             data.Data.Final_Unicode == data.Data.Medial_Unicode ||
                             data.Data.Final_Unicode == data.Data.Isolated_Unicode)
                             continue;
 
-                        data.ShowAs = Db.LetterPosition.Final;
+                        data.Position = Db.LetterPosition.Final;
                     }
 
                     game.CurrentChallenge.Add(data);

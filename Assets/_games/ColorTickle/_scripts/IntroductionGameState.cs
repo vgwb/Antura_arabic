@@ -72,7 +72,7 @@ namespace EA4S.ColorTickle
 
                 //we don't want diacritic letters for our game 
                 //game.myLetters[i].GetComponent<LetterObjectView>().Init(AppManager.Instance.Teacher.GetRandomTestLetterLL(new LetterFilters(excludeDiacritics:true))); //use this for testing
-                game.myLetters[i].GetComponent<LetterObjectView>().Init(AppManager.Instance.Teacher.GetRandomTestLetterLL()); //use this for final game once the provider is setted with filters
+                game.myLetters[i].GetComponent<LetterObjectView>().Init(AppManager.I.Teacher.GetRandomTestLetterLL()); //use this for final game once the provider is setted with filters
 
                game.myLetters[i].GetComponent<ColorTickle_LLController>().movingToDestination = false;
             }
