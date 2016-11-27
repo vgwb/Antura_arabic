@@ -7,7 +7,7 @@ namespace EA4S
     public class LL_LetterData : ILivingLetterData
     {
         public Db.LetterData Data;
-        public Db.LetterPosition ShowAs = Db.LetterPosition.Isolated;
+        public Db.LetterPosition Position = Db.LetterPosition.Isolated;
 
         public LivingLetterDataType DataType {
             get { return LivingLetterDataType.Letter; }
@@ -38,7 +38,7 @@ namespace EA4S
         public string TextForLivingLetter {
             get {
                 //return ArabicAlphabetHelper.GetLetterToDisplay(Data, ShowAs);
-                return Data.GetChar(ShowAs);
+                return Data.GetChar(Position);
             }
         }
 
@@ -57,7 +57,7 @@ namespace EA4S
             if (other == null)
                 return false;
 
-            return other.Data.Id == Data.Id && other.ShowAs == ShowAs;
+            return other.Data.Id == Data.Id && other.Position == Position;
         }
         #endregion
     }
