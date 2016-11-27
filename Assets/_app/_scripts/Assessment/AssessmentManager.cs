@@ -35,7 +35,7 @@ namespace EA4S
 
             PanelTestGO.SetActive(false);
             // ToCheck @michele ref: https://trello.com/c/r40yCfw1
-            //AppManager.Instance.InitDataAI();
+            //AppManager.I.InitDataAI();
 
             SceneTransitioner.Close();
             WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Assessment_Start_1, 2, true, NextSentence);
@@ -133,7 +133,7 @@ namespace EA4S
 
             //LoggerEA4S.Log("app", "assessment", "result", rightCounter.ToString());
             // MiniGameDone refactoring
-            // AppManager.Instance.MiniGameDone("assessment");
+            // AppManager.I.MiniGameDone("assessment");
 
             WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Assessment_Classify_Letters, 3, true, ShowResults);
             //Debug.LogFormat("Result : {0}/{1}", rightCounter, Draws.Count);
