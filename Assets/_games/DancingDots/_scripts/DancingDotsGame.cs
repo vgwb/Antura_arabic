@@ -144,7 +144,7 @@ namespace EA4S.DancingDots
             base.Start();
             tutorial = GetComponent<DancingDotsTutorial>();
 
-            AppManager.I.InitDataAI();
+            AppManager.I.InitTeacherForPlayer();
             AppManager.I.CurrentGameManagerGO = gameObject;
             SceneTransitioner.Close();
 

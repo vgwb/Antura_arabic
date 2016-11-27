@@ -6,6 +6,7 @@ namespace EA4S
     public static class AppConstants
     {
         public const string AppVersion = "0.11.28b";
+        public const bool DebugPanelEnabled = true;
 
 #if UNITY_EDITOR
         public const string UrlGithubRepository = "https://github.com/vgwb/EA4S_Antura_U3D";

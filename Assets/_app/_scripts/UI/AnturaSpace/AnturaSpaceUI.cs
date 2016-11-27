@@ -1,6 +1,7 @@
 ﻿// Author: Daniele Giardini - http://www.demigiant.com
 // Created: 2016/11/24
 
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace EA4S
 {
     public class AnturaSpaceUI : MonoBehaviour
     {
-        public int MaxItems = 9;
+        public int MaxItems = 10;
         public LayerMask RewardsLayer;
         [Header("References")]
         public UIButton BtOpenModsPanel;
@@ -37,6 +38,7 @@ namespace EA4S
             rewardsContainers = new List<Transform>();
             btsItems = new AnturaSpaceItemButton[MaxItems];
             btsItems[0] = BtItemMain;
+            rewardsContainers.Add(BtItemMain.RewardContainer);
             for (int i = 1; i < MaxItems; ++i) {
                 AnturaSpaceItemButton item = Instantiate(BtItemMain);
                 item.transform.SetParent(BtItemMain.transform.parent, false);
@@ -50,7 +52,13 @@ namespace EA4S
             showCategoriesTween = CategoriesContainer.DOAnchorPosY(150, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
                 .OnRewind(()=> CategoriesContainer.gameObject.SetActive(false));
             showItemsTween = ItemsContainer.DOAnchorPosX(-350, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
-                .OnRewind(()=> ItemsContainer.gameObject.SetActive(false));
+                .OnRewind(() => {
+                    ItemsContainer.gameObject.SetActive(false);
+                    // Clear items containers children
+                    foreach (Transform container in rewardsContainers) {
+                        foreach (Transform child in container) Destroy(child.gameObject);
+                    }
+                });
             showSwatchesTween = SwatchesContainer.DOAnchorPosY(-100, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
                 .OnRewind(()=> SwatchesContainer.gameObject.SetActive(false));
 
@@ -76,6 +84,7 @@ namespace EA4S
 
         void OnDestroy()
         {
+            this.StopAllCoroutines();
             showCategoriesTween.Kill();
             showItemsTween.Kill();
             showSwatchesTween.Kill();
@@ -105,6 +114,7 @@ namespace EA4S
 
         void SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
         {
+            this.StopAllCoroutines();
             // Toggle buttons
             foreach (AnturaSpaceCategoryButton bt in btsCategories) {
                 if (bt.Category == _category) bt.Toggle(true, true);
@@ -112,12 +122,19 @@ namespace EA4S
             }
             if (_category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset) return;
 
+            showItemsTween.Rewind();
+            this.StartCoroutine(CO_SelectCategory(_category));
+        }
+        IEnumerator CO_SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
+        {
             // Get rewards list
             currRewardType = CategoryToRewardType(_category);
             if (_category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears) {
                 currRewardDatas = RewardSystemManager.GetRewardItemsByRewardType(currRewardType, rewardsContainers, "EAR_L");
                 currRewardDatas.AddRange(RewardSystemManager.GetRewardItemsByRewardType(currRewardType, rewardsContainers, "EAR_R"));
             } else currRewardDatas = RewardSystemManager.GetRewardItemsByRewardType(currRewardType, rewardsContainers, _category.ToString());
+            yield return null;
+
             // Hide non-existent items
             for (int i = currRewardDatas.Count - 1; i < btsItems.Length; ++i) btsItems[i].gameObject.SetActive(false);
             // Setup and show items
@@ -134,6 +151,8 @@ namespace EA4S
                     if (rewardData.IsSelected) selectedRewardData = rewardData;
                 }
             }
+
+            ItemsContainer.gameObject.SetActive(true);
             showItemsTween.PlayForward();
 
             // Select eventual reward
@@ -142,6 +161,8 @@ namespace EA4S
 
         void SelectReward(RewardItem _rewardData)
         {
+            showSwatchesTween.Rewind();
+
             foreach (AnturaSpaceItemButton item in btsItems) item.Toggle(item.Data == _rewardData);
             currSwatchesDatas = RewardSystemManager.SelectRewardItem(_rewardData.ID, currRewardType);
             // Hide non-existent swatches
@@ -159,6 +180,8 @@ namespace EA4S
                     if (swatchData.IsSelected) selectedSwatchData = swatchData;
                 }
             }
+
+            SwatchesContainer.gameObject.SetActive(true);
             showSwatchesTween.PlayForward();
 
             // Select eventual color
