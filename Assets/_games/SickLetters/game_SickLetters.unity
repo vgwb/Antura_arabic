@@ -525,6 +525,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 108000013014623442, guid: 25204511df7ed9b4897034df9466e2f4,
+        type: 2}
+      propertyPath: m_Intensity
+      value: 0.95
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25204511df7ed9b4897034df9466e2f4, type: 2}
   m_IsPrefabParent: 0
@@ -1817,7 +1822,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 294755816}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 9.01, z: -9.97}
+  m_LocalPosition: {x: -5, y: 9.01, z: -10.61}
   m_LocalScale: {x: 4.301943, y: 4.3019404, z: 4.301943}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2465,7 +2470,6 @@ GameObject:
   - 223: {fileID: 472228762}
   - 114: {fileID: 472228761}
   - 114: {fileID: 472228760}
-  - 114: {fileID: 472228764}
   m_Layer: 5
   m_Name: UI Canvas
   m_TagString: Untagged
@@ -2550,19 +2554,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &472228764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 472228759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e44a3ff2552966341b7a71afb4debe95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toAwake:
-  - {fileID: 648855549}
 --- !u!1 &473695615
 GameObject:
   m_ObjectHideFlags: 0
@@ -3595,10 +3586,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 644170558}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &648855549 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 136152, guid: dc3018e706b1144119bdcbe94ffafb40, type: 2}
-  m_PrefabInternal: {fileID: 1316470831}
 --- !u!224 &648855554 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22478574, guid: dc3018e706b1144119bdcbe94ffafb40,
@@ -6493,7 +6480,7 @@ MonoBehaviour:
   deattached: 0
   dots: 0
   diacritic: 0
-  fingerOffset: {x: 0, y: 1, z: 0}
+  fingerOffset: {x: 0, y: 1, z: 0.5}
   draggableText: {fileID: 273503204}
   isCorrect: 1
   isNeeded: 0
@@ -6529,7 +6516,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.21}
+  m_Size: {x: 1, y: 1, z: 0.75}
   m_Center: {x: 0, y: 0, z: 0.24}
 --- !u!1 &828018457
 GameObject:
@@ -7628,6 +7615,26 @@ Prefab:
         type: 2}
       propertyPath: m_fontSizeBase
       value: 9.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012155740970, guid: 8efa21770d4d5b740a4f1c76c7211e49,
+        type: 2}
+      propertyPath: fingerOffset.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013967772002, guid: 8efa21770d4d5b740a4f1c76c7211e49,
+        type: 2}
+      propertyPath: fingerOffset.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011046123554, guid: 8efa21770d4d5b740a4f1c76c7211e49,
+        type: 2}
+      propertyPath: fingerOffset.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012786647306, guid: 8efa21770d4d5b740a4f1c76c7211e49,
+        type: 2}
+      propertyPath: fingerOffset.z
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8efa21770d4d5b740a4f1c76c7211e49, type: 2}
@@ -9813,7 +9820,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1366263162}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 2.9, z: -9.97}
+  m_LocalPosition: {x: -5, y: 2.9, z: -10.61}
   m_LocalScale: {x: 3.6187773, y: 4.9452276, z: 3.7606568}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -11011,7 +11018,7 @@ MonoBehaviour:
   deattached: 0
   dots: 0
   diacritic: 0
-  fingerOffset: {x: 0, y: 1, z: 0}
+  fingerOffset: {x: 0, y: 1, z: 0.5}
   draggableText: {fileID: 911840189}
   isCorrect: 1
   isNeeded: 0
@@ -11047,7 +11054,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.21}
+  m_Size: {x: 1, y: 1, z: 0.75}
   m_Center: {x: 0, y: 0, z: 0.24}
 --- !u!1 &1543016908
 GameObject:
