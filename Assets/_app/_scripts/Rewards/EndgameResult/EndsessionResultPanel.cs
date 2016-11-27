@@ -21,6 +21,7 @@ namespace EA4S
         public CanvasGroup GodraysCanvas;
         public RectTransform Godray0, Godray1;
         public GameObject[] RewardsGos;
+        public Camera[] RewardsCams;
         [Header("Audio")]
         public Sfx SfxMinigamePopup = Sfx.UIPopup;
         public Sfx SfxIncreaseBar = Sfx.UIPopup;
@@ -149,8 +150,11 @@ namespace EA4S
 
         void SetRewardsGos()
         {
-            foreach (GameObject go in RewardsGos) go.SetLayerRecursive(GenericUtilities.LayerMaskToIndex(RewardsGosLayer));
-            // TODO center
+            for (int i = 0; i < RewardsGos.Length; ++i) {
+                GameObject go = RewardsGos[i];
+                go.SetLayerRecursive(GenericUtilities.LayerMaskToIndex(RewardsGosLayer));
+                CameraHelper.FitRewardToUICamera(go.transform.GetChild(0), RewardsCams[i], true);
+            }
         }
 
         #endregion
