@@ -20,8 +20,8 @@ namespace EA4S.Maze
 		void OnMouseDown()
 		{
 			isClicked = true;
-			MazeGameManager.Instance.timer.StopTimer ();
-			MazeGameManager.Instance.currentTutorial.stopCurrentTutorial ();
+			MazeGameManager.instance.timer.StopTimer ();
+			MazeGameManager.instance.currentTutorial.stopCurrentTutorial ();
 			character.setClickedDot ();
 		}
 	}

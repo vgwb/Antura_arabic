@@ -17,7 +17,7 @@ namespace EA4S.Maze
 
         public LetterObjectView LL;
 
-		public GameObject collider;
+		public GameObject myCollider;
         public List<GameObject> particles;
 
 		public List<GameObject> Fruits;
@@ -187,7 +187,7 @@ namespace EA4S.Maze
 		{
             
 			print ("trigger exit " + other.gameObject.name);
-			print ("Current letter " + MazeGameManager.Instance.currentPrefab.name);
+			print ("Current letter " + MazeGameManager.instance.currentPrefab.name);
 
 			if (other.gameObject.name == "MazeLetter") {
 				//if the character completely exits the maze letter:
@@ -201,12 +201,12 @@ namespace EA4S.Maze
 		{
 			
 
-			MazeGameManager.Instance.wasHit ();
+			MazeGameManager.instance.wasHit ();
 
 
 
 
-			if (MazeGameManager.Instance.health == 0) {
+			if (MazeGameManager.instance.health == 0) {
 
 				waitAndRestartScene ();
 
@@ -241,7 +241,7 @@ namespace EA4S.Maze
             foreach (GameObject particle in particles) particle.SetActive(false);
             //stop for a second and restart the level:
             StartCoroutine(waitAndPerformCallback(3,()=>{
-				MazeGameManager.Instance.showAllCracks();
+				MazeGameManager.instance.showAllCracks();
 				donotHandleBorderCollision = true;
 				characterIsMoving = false;
                 //launchRocket = true;
@@ -252,7 +252,7 @@ namespace EA4S.Maze
                 rocket.transform.DOMove(Camera.main.transform.position + new Vector3(10,10,0), 3);
             },
 				()=>{
-					MazeGameManager.Instance.lostCurrentLetter();//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+					MazeGameManager.instance.lostCurrentLetter();//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 				}));
 
 
@@ -282,7 +282,7 @@ namespace EA4S.Maze
 
 		public void setClickedDot()
 		{
-			MazeGameManager.Instance.moveToNext (true);
+			MazeGameManager.instance.moveToNext (true);
 		}
 
 		public void nextPath()
@@ -321,7 +321,7 @@ namespace EA4S.Maze
 
 		public bool canMouseBeDown()
 		{
-            if (_fruits == null || MazeGameManager.Instance.isShowingAntura) return false;
+            if (_fruits == null || MazeGameManager.instance.isShowingAntura) return false;
 
 			if (_fruits.Count == 0)
 				return false;
@@ -334,8 +334,7 @@ namespace EA4S.Maze
 			//pos.z = _fruits[0].transform.position.z;
 
             float mag = (pos - _fruits[0].transform.position).sqrMagnitude;
-            bool b = mag <= 0;
-            b = mag <= float.Epsilon;
+           
             return ((pos - _fruits [0].transform.position).sqrMagnitude) <= 1;
 
 
@@ -364,7 +363,7 @@ namespace EA4S.Maze
 
 			if (previousPosition != initialPosition && previousPosition != targetPos) {
 				//MazeGameManager.Instance.DrawLine (previousPosition, targetPos, Color.red);
-				MazeGameManager.Instance.appendToLine(targetPos);
+				MazeGameManager.instance.appendToLine(targetPos);
 			}
 
 
@@ -372,9 +371,7 @@ namespace EA4S.Maze
 
 
 			var dir = transform.position - characterWayPoints[currentCharacterWayPoint];
-			var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-			//targetRotation =  Quaternion.AngleAxis(angle, Vector3.forward) * initialRotation;
-
+			
 
 			if(previousPosition != targetPos)
 			{
@@ -388,7 +385,7 @@ namespace EA4S.Maze
 
 				toggleVisibility (true);
 				initMovement ();
-				MazeGameManager.Instance.timer.StopTimer ();
+				MazeGameManager.instance.timer.StopTimer ();
 			}
 
 		}
@@ -443,7 +440,7 @@ namespace EA4S.Maze
                     toggleVisibility(false);
                     isAppearing = false;
                     //transform.rotation = initialRotation;
-                    MazeGameManager.Instance.showCurrentTutorial();
+                    MazeGameManager.instance.showCurrentTutorial();
                 }
                 return;
             }
@@ -454,8 +451,8 @@ namespace EA4S.Maze
 
                 if (transform.position == fleePosition)
                 {
-                    MazeGameManager.Instance.showAllCracks();
-                    MazeGameManager.Instance.lostCurrentLetter();
+                    MazeGameManager.instance.showAllCracks();
+                    MazeGameManager.instance.lostCurrentLetter();
 
                    
                 }
@@ -494,7 +491,7 @@ namespace EA4S.Maze
                             foreach (GameObject particle in particles) particle.SetActive(false);
                             GetComponent<BoxCollider> ().enabled = false;
 							characterIsMoving = false;
-							MazeGameManager.Instance.moveToNext (true);
+							MazeGameManager.instance.moveToNext (true);
 
 							if (currentFruitList == Fruits.Count - 1) {
 								if (dot != null)
@@ -506,7 +503,7 @@ namespace EA4S.Maze
 
 					//enable collider when we reach the second waypoint
 					if (currentCharacterWayPoint == 1)
-						collider.SetActive (true);
+						myCollider.SetActive (true);
 				}
 			}
 		}

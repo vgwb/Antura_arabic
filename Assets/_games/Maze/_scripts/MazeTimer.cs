@@ -22,7 +22,7 @@ namespace EA4S.Maze
 			DisplayTime ();*/
 
            // this.StopAllCoroutines();
-            MinigamesUI.Timer.Setup( MazeGameManager.Instance.gameTime);
+            MinigamesUI.Timer.Setup( MazeGameManager.instance.gameTime);
 
 
         }
@@ -32,7 +32,7 @@ namespace EA4S.Maze
             if(MinigamesUI.Timer.Duration == MinigamesUI.Timer.Elapsed)
             {
                 StopTimer();
-                MazeGameManager.Instance.onTimeUp();
+                MazeGameManager.instance.onTimeUp();
             }
 
 			/*if (isRunning) {

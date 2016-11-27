@@ -48,33 +48,7 @@ namespace EA4S.Maze
 		
 		// Update is called once per frame
 		void Update () {
-            return;
-			//no way points to follow:
-			if (wayPoints.Count == 0)
-				return;
-
-
-			//otherwise move to next way point:
-			transform.position = Vector3.MoveTowards (transform.position, wayPoints[currentWayPoint], Time.deltaTime*handSpeed);
-           
-           
-            if (transform.position == wayPoints[currentWayPoint])
-            {//(transform.position - wayPoints [currentWayPoint]).magnitude <= float.Epsilon) {
-				currentWayPoint++;
-
-				//arrived:
-				if (currentWayPoint == wayPoints.Count) {
-					currentWayPoint = wayPoints.Count - 1;
-					gameObject.SetActive (false);
-
-					//set tutorial done:
-					isMovingOnPath = false;
-
-					//MazeGameManager.Instance.timer.StartTimer ();
-
-				}
-			}
-
+            
 
 		}
 
@@ -121,7 +95,7 @@ namespace EA4S.Maze
 
             currentWayPoint = 0;
             isShownOnce = true;
-            MazeGameManager.Instance.timer.StartTimer();
+            MazeGameManager.instance.timer.StartTimer();
             if (wayPoints.Count == 1)
                 TutorialUI.ClickRepeat(wayPoints[0]);
             else

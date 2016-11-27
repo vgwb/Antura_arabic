@@ -8,10 +8,10 @@ namespace EA4S.Maze
 		public bool tweenToColor = false;
 		public bool pingPong = false;
 
-		Renderer renderer;
+		Renderer _renderer;
 		// Use this for initialization
 		void Start () {
-			renderer = GetComponent<Renderer> ();
+			_renderer = GetComponent<Renderer> ();
 		}
 
 		// Update is called once per frame
@@ -20,9 +20,9 @@ namespace EA4S.Maze
 				return;
 
 			if(tweenToColor)
-				renderer.material.color = Color.Lerp (renderer.material.color, Color.green, Time.deltaTime * 2);
+				_renderer.material.color = Color.Lerp (_renderer.material.color, Color.green, Time.deltaTime * 2);
 			else if(pingPong)
-				renderer.material.color = Color.Lerp (Color.red, Color.green, Mathf.PingPong(Time.time,1));
+				_renderer.material.color = Color.Lerp (Color.red, Color.green, Mathf.PingPong(Time.time,1));
 		}
 	}
 }
