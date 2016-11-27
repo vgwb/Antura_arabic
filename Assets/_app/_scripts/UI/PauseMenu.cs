@@ -54,7 +54,7 @@ namespace EA4S
                     logoBobTween.Rewind();
                 });
             openMenuTween.Append(MenuBg.DOFade(0, 0.5f).From())
-                .Join(Logo.DOAnchorPosY(750f, 0.4f).From().SetEase(Ease.OutQuad).OnComplete(()=> logoBobTween.Play()))
+                .Join(Logo.DOAnchorPosY(750f, 0.4f).From().SetEase(Ease.OutQuad).OnComplete(() => logoBobTween.Play()))
                 .Join(SubButtonsContainer.DORotate(new Vector3(0, 0, 180), 0.4f).From());
             const float btDuration = 0.3f;
             for (int i = 0; i < menuBts.Length; ++i) {
@@ -138,7 +138,7 @@ namespace EA4S
                 switch (_bt.Type) {
                     case MenuButtonType.Back: // Exit
                         OpenMenu(false);
-                        AppManager.I.Modules.SceneModule.LoadSceneWithTransition("_Start");
+                        NavigationManager.I.ExitAndGoHome();
                         break;
                     case MenuButtonType.MusicToggle: // Music on/off
                         AudioManager.I.ToggleMusic();
