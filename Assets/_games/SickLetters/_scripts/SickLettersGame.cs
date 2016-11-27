@@ -103,7 +103,7 @@ namespace EA4S.SickLetters
             ParticleSystem[] PSs = puffGo.GetComponentsInChildren<ParticleSystem>();
             foreach(ParticleSystem ps in PSs)
                 ps.scalingMode = ParticleSystemScalingMode.Hierarchy;
-            Debug.Log(t.localScale);
+
             puffGo.transform.localScale *= t.lossyScale.y * 1.2f/3f;//0.75f;
 
             return puffGo.transform;

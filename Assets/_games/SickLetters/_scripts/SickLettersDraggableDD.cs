@@ -42,6 +42,27 @@ namespace EA4S.SickLetters
         float startY;
         float startZ;
 
+        bool _checkDDCollision;
+        public bool checkDDCollision
+        {
+            set
+            {
+                _checkDDCollision = value;
+                StartCoroutine(resetCheckDDCollision());
+            }
+            get
+            {
+                return _checkDDCollision;
+            }
+               
+        }
+
+        IEnumerator resetCheckDDCollision()
+        {
+            yield return new WaitForSeconds(1);
+            _checkDDCollision = false;
+        }
+
         void Start()
         {
             thisRigidBody = GetComponent<Rigidbody>();
@@ -238,7 +259,7 @@ namespace EA4S.SickLetters
             draggableText.transform.localEulerAngles = new Vector3(90, 0.0f, 90);
             draggableText.transform.localScale = Vector3.one;
 
-            boxCollider.size = new Vector3(1,1,1.21f);
+            boxCollider.size = new Vector3(1, 1, 0.75f); //(1,1,1.21f);
             boxCollider.isTrigger = true;
 
             isTouchingVase = false;
@@ -248,7 +269,7 @@ namespace EA4S.SickLetters
         void OnTriggerEnter(Collider other)
 		{
 			Setmarker(other, true);
-            if (isCorrect)
+            if (isCorrect && !isDragging)
                 checkDDsOverlapping(other);
         }
 
@@ -281,13 +302,14 @@ namespace EA4S.SickLetters
 
         void checkDDsOverlapping(Collider coll)
         {
+            
             SickLettersDraggableDD dd = coll.gameObject.GetComponent<SickLettersDraggableDD>();
-            if (dd && !dd.isDragging && dd.transform.parent)
+            if (dd && dd.checkDDCollision && !dd.isCorrect && !dd.isDragging && dd.transform.parent)
                 foreach (Transform t in game.safeDropZones)
                     if (t.childCount == 0)
                     {
-                        coll.transform.parent = t;
-                        coll.transform.localPosition = Vector3.zero;
+                        dd.transform.parent = t;
+                        dd.transform.localPosition = Vector3.zero;
                         break;
                     }
         }
