@@ -133,7 +133,8 @@ namespace EA4S.Scanner
 					transform.parent = player.transform;
 					transform.localPosition = new Vector3(2,1,-2);
 					onCorrectDrop(gameObject);
-				}
+                    TutorialUI.Clear(true);
+                }
 				else
 				{
 					onWrongDrop(gameObject);
