@@ -75,6 +75,7 @@ namespace EA4S.Scanner
 
         void onTutorialStart()
         {
+            AudioManager.I.PlayDialog(Db.LocalizationDataId.Scanner_Tuto);
             ScannerConfiguration.Instance.beltSpeed = UpperBelt.scrollSpeed = lowerBelt.scrollSpeed = 0;
             ScannerGame.disableInput = false;
             StartCoroutine(sayTut(repeatDelay));

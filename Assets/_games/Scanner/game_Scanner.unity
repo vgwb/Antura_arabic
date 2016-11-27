@@ -1230,7 +1230,7 @@ MonoBehaviour:
   originalBeltSpeed: 0
   originalLLOnBeltSpeed: 0
   startDelay: 8
-  repeatDelay: 3
+  repeatDelay: 2
 --- !u!4 &315913121 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013653253802, guid: 0f95fe55fb3038a45b8e01cbe421e68f,
