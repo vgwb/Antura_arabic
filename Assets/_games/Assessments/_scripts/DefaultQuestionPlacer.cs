@@ -208,7 +208,7 @@ namespace EA4S.Assessment
 
         IEnumerator FadeOutPlaceholder( GameObject go)
         {
-            audioManager.PlaySound( Sfx.BaloonPop);
+            audioManager.PlaySound( Sfx.BalloonPop);
 
             go.transform.DOScale(0, 0.23f).OnComplete(() => GameObject.Destroy( go));
             yield return TimeEngine.Wait(0.06f);
