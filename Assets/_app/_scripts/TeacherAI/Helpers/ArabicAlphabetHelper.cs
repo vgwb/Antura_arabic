@@ -64,6 +64,50 @@ namespace EA4S
         /// <summary>
         /// Returns the list of letters found in a word string
         /// </summary>
+        public static List<Db.LetterData> SplitWordIntoLetters(string arabicWord, bool reverseOrder = false, bool separateDiacritics = false)
+        {
+            List<Db.LetterData> allLetterData = new List<Db.LetterData>(AppManager.I.DB.StaticDatabase.GetLetterTable().GetValuesTyped());
+
+            var returnList = new List<Db.LetterData>();
+
+            char[] chars = arabicWord.ToCharArray();
+            if (reverseOrder)
+                Array.Reverse(chars);
+
+            //Debug.Log(arabicWord);
+            for (int i = 0; i < chars.Length; i++) {
+                char _char = chars[i];
+                string unicodeString = GetHexUnicodeFromChar(_char);
+
+                Db.LetterData letterData = allLetterData.Find(l => l.Isolated_Unicode == unicodeString);
+                if (letterData != null) {
+                    if (!separateDiacritics && letterData.Kind == Db.LetterDataKind.Symbol && letterData.Type == Db.LetterDataType.DiacriticSymbol) {
+                        var symbolId = letterData.Id;
+                        var lastLetterData = allLetterData.Find(l => l.Id == returnList[returnList.Count - 1].Id);
+                        var baseLetterId = lastLetterData.Id;
+                        //Debug.Log(symbolId);
+                        var diacriticLetterData = allLetterData.Find(l => l.Symbol == symbolId && l.BaseLetter == baseLetterId);
+                        returnList.RemoveAt(returnList.Count - 1);
+                        //Debug.Log(baseLetterId);
+                        //Debug.Log(diacriticLetterData);
+                        if (diacriticLetterData == null) {
+                            Debug.LogError("NULL " + baseLetterId + " + " + symbolId + ": we remove the diacritic for now.");
+                            // returnList.Add(diacriticLetterData.Id);
+                        } else {
+                            returnList.Add(diacriticLetterData);
+                        }
+                    } else {
+                        returnList.Add(letterData);
+                    }
+                }
+            }
+
+            return returnList;
+        }
+
+        /// <summary>
+        /// Returns the list of letters found in a word string
+        /// </summary>
         public static List<string> ExtractLettersFromArabicWord(string arabicWord, Db.Database db, bool reverseOrder = false, bool separateDiacritics = false)
         {
             List<Db.LetterData> allLetterData = new List<Db.LetterData>(db.GetLetterTable().GetValuesTyped());

@@ -199,9 +199,16 @@ namespace EA4S
         {
             Debug.Log("Detail Word :" + word.Id);
             AudioManager.I.PlayWord(word.Id);
-            ArabicText.text = word.Arabic;
 
+            var output = "";
 
+            var splittedLetters = ArabicAlphabetHelper.SplitWordIntoLetters(word.Arabic);
+            foreach (var letter in splittedLetters) {
+                output += letter.GetChar() + " ";
+            }
+            output += "\n";
+            output += word.Arabic;
+            ArabicText.text = output;
 
             LLText.Init(new LL_WordData(word));
 
