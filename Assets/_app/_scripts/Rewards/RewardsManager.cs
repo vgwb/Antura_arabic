@@ -44,35 +44,35 @@ namespace EA4S
             //ShowTutor();
         }
 
-        public void ShowTutor()
-        {
-            switch (tutorialIndex) {
-                case 10:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("Reward_Intro", 2, true, ShowTutor);
-                    break;
-                case 11:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_rewards_intro2", 2, true, ShowReward);
-                    break;
-                case 20:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_reward_A1", 2, true, ShowTutor);
-                    break;
-                case 21:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_reward_A2", 2, true, ShowReward);
-                    break;
-                case 30:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("end_learningblock_A1", 2, true, ShowTutor);
-                    break;
-                case 31:
-                    tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("end_learningblock_A2", 2, true, ShowReward);
-                    break;
-            }
-        }
+        //public void ShowTutor()
+        //{
+        //    switch (tutorialIndex) {
+        //        case 10:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("Reward_Intro", 2, true, ShowTutor);
+        //            break;
+        //        case 11:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("game_rewards_intro2", 2, true, ShowReward);
+        //            break;
+        //        case 20:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("game_reward_A1", 2, true, ShowTutor);
+        //            break;
+        //        case 21:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("game_reward_A2", 2, true, ShowReward);
+        //            break;
+        //        case 30:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("end_learningblock_A1", 2, true, ShowTutor);
+        //            break;
+        //        case 31:
+        //            tutorialIndex++;
+        //            WidgetSubtitles.I.DisplaySentence("end_learningblock_A2", 2, true, ShowReward);
+        //            break;
+        //    }
+        //}
 
         public void ShowReward()
         {

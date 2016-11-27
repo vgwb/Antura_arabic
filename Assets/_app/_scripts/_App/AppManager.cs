@@ -11,7 +11,7 @@ namespace EA4S
     {
         public new AppSettings GameSettings = new AppSettings();
 
-        public new static AppManager I {
+        public static AppManager I {
             get { return GameManager.Instance as AppManager; }
         }
 
