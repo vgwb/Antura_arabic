@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace EA4S {
+namespace EA4S
+{
 
     public class AnturaSpaceManager : MonoBehaviour
     {
@@ -32,7 +33,7 @@ namespace EA4S {
 #if UNITY_EDITOR
 
 #else
-            m_iTotalBones_Test = AppManager.Instance.Player.GetTotalNumberOfBones();
+            m_iTotalBones_Test = AppManager.I.Player.GetTotalNumberOfBones();
 #endif
 
             m_oTextBonesNumber.text = "" + m_iTotalBones_Test;
@@ -41,8 +42,7 @@ namespace EA4S {
             m_aoPool = new GameObject[m_iMaxSpawnableBones];
             m_aiUsedList = new int[m_iMaxSpawnableBones];
 
-            for (int _iIdx = 0; _iIdx < m_iMaxSpawnableBones; ++_iIdx)
-            {
+            for (int _iIdx = 0; _iIdx < m_iMaxSpawnableBones; ++_iIdx) {
                 m_aoPool[_iIdx] = Instantiate(m_oBonePrefab);
 
                 m_aoPool[_iIdx].SetActive(false);
@@ -74,8 +74,7 @@ namespace EA4S {
         {
             GameObject _oBone = get();
 
-            if(_oBone==null || m_iTotalBones_Test<=0)
-            {
+            if (_oBone == null || m_iTotalBones_Test <= 0) {
                 Debug.Log("Can't throw bones");
                 return;
             }
@@ -91,8 +90,7 @@ namespace EA4S {
         public void ReleaseAll()
         {
 
-            for (int _iIdx = 0; _iIdx < m_iMaxSpawnableBones; ++_iIdx)
-            {
+            for (int _iIdx = 0; _iIdx < m_iMaxSpawnableBones; ++_iIdx) {
                 m_aiUsedList[_iIdx] = _iIdx;
                 ResetInstanceState(m_aoPool[_iIdx]);
 
@@ -100,9 +98,9 @@ namespace EA4S {
 
             m_iNextToBeUsed = 0;
         }
-#endregion
+        #endregion
 
-#region PRIVATE FUNCTIONS
+        #region PRIVATE FUNCTIONS
 
         /// <summary>
         /// Get an object from the pool if available
@@ -113,9 +111,7 @@ namespace EA4S {
             if (m_iNextToBeUsed >= m_iMaxSpawnableBones) //if all objects are in use
             {
                 return null;
-            }
-            else
-            {
+            } else {
                 ++m_iNextToBeUsed;
                 return m_aoPool[m_aiUsedList[m_iNextToBeUsed - 1]];
             }
@@ -128,8 +124,7 @@ namespace EA4S {
         /// <param name="goElement">The object to give back</param>
         private void release(GameObject goElement)
         {
-            if (goElement != null)
-            {
+            if (goElement != null) {
                 int _iElementID = goElement.GetInstanceID();
 
                 if (_iElementID <= m_aoPool[0].GetInstanceID() && _iElementID >= m_aoPool[m_iMaxSpawnableBones - 1].GetInstanceID()) //if the pool posses the argument passed
@@ -137,8 +132,7 @@ namespace EA4S {
                     //find actual position in the pool
                     int _iPosInPool = (m_aoPool[0].GetInstanceID() - _iElementID) / (m_aoPool[0].GetInstanceID() - m_aoPool[1].GetInstanceID());
 
-                    for (int _iIdx = m_iNextToBeUsed; _iIdx <= m_iMaxSpawnableBones; ++_iIdx)
-                    {
+                    for (int _iIdx = m_iNextToBeUsed; _iIdx <= m_iMaxSpawnableBones; ++_iIdx) {
 
                         if (_iIdx == m_iMaxSpawnableBones)//if this is the last cicle (all other have already passed) we can release
                         {
@@ -148,10 +142,8 @@ namespace EA4S {
 
                             ResetInstanceState(goElement);
 
-                        }
-
-                        else if (m_aiUsedList[_iIdx] == _iPosInPool)//else if is true that the object has already been released
-                        {
+                        } else if (m_aiUsedList[_iIdx] == _iPosInPool)//else if is true that the object has already been released
+                          {
                             Debug.LogWarning("This object is already released in his pool.");
                             break;
                         }
@@ -177,7 +169,7 @@ namespace EA4S {
 
             //others...
         }
-#endregion
+        #endregion
 
     }
 }
