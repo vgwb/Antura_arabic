@@ -14,9 +14,9 @@
 
         public void EnterState()
         {
-            //UnityEngine.Debug.Log("Play Tuto");
+            
             //create a random LL and make it move:
-            AudioManager.I.PlayDialog("TakeMeHome_Tuto", ()=> {
+            TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.TakeMeHome_Tuto, ()=> {
                 game.currentLetter.sayLetter();
             });
 
