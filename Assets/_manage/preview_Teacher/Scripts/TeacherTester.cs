@@ -29,7 +29,7 @@ namespace EA4S.Teacher.Test
 
             journey_stage_in.onValueChanged.AddListener(x => { currentJourneyStage = int.Parse(x); });
             journey_learningblock_in.onValueChanged.AddListener(x => { currentJourneyLB = int.Parse(x); });
-            journey_playsession_in.onValueChanged.AddListener(x => { currentJourneyPS = int.Parse(x);  });
+            journey_playsession_in.onValueChanged.AddListener(x => { currentJourneyPS = int.Parse(x); });
 
             npacks_in.onValueChanged.AddListener(x => { nPacks = int.Parse(x); });
             ncorrect_in.onValueChanged.AddListener(x => { nCorrect = int.Parse(x); });
@@ -62,10 +62,10 @@ namespace EA4S.Teacher.Test
 
         QuestionBuilderParameters SetupFakeGame()
         {
-            AppManager.Instance.Player.CurrentJourneyPosition.Stage = currentJourneyStage;
-            AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = currentJourneyLB;
-            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = currentJourneyPS;
-            AppManager.Instance.Teacher.InitialiseCurrentPlaySession();
+            AppManager.I.Player.CurrentJourneyPosition.Stage = currentJourneyStage;
+            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = currentJourneyLB;
+            AppManager.I.Player.CurrentJourneyPosition.PlaySession = currentJourneyPS;
+            AppManager.I.Teacher.InitialiseCurrentPlaySession();
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = correctHistory;
@@ -80,7 +80,7 @@ namespace EA4S.Teacher.Test
         public void SimulateMiniGame(MiniGameCode code)
         {
             var config = API.MiniGameAPI.Instance.GetGameConfigurationForMiniGameCode(code);
-            var builderParams = SetupFakeGame();
+            //var builderParams = SetupFakeGame();
             var builder = config.SetupBuilder();
             Debug.Log("Simulating minigame: " + code + " with builder " + builder.GetType().Name);
             builder.CreateAllQuestionPacks();
@@ -92,15 +92,15 @@ namespace EA4S.Teacher.Test
         public void RandomLettersTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new RandomLettersQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, 
-                firstCorrectIsQuestion: true, parameters:builderParams);
+            var builder = new RandomLettersQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong,
+                firstCorrectIsQuestion: true, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 
         public void AlphabetTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new AlphabetQuestionBuilder(parameters:builderParams);
+            var builder = new AlphabetQuestionBuilder(parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 
@@ -121,14 +121,14 @@ namespace EA4S.Teacher.Test
         public void LettersInWordTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect:nCorrect, nWrong:nWrong, useAllCorrectLetters:true, parameters: builderParams);
+            var builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 
         public void CommonLettersInWordTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new CommonLettersInWordQuestionBuilder(nPacks: nPacks, nMaxCommonLetters: 3, nWords:2, parameters:builderParams);
+            var builder = new CommonLettersInWordQuestionBuilder(nPacks: nPacks, nMaxCommonLetters: 3, nWords: 2, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 
@@ -142,14 +142,14 @@ namespace EA4S.Teacher.Test
         public void OrderedWordsTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.NumberOrdinal, parameters:builderParams);
+            var builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.NumberOrdinal, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
-        
+
         public void WordsWithLetterTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new WordsWithLetterQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, parameters:builderParams);
+            var builder = new WordsWithLetterQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 

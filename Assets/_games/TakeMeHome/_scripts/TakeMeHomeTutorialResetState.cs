@@ -30,11 +30,11 @@
             {
                 AudioManager.I.PlaySfx(Sfx.Win);
                 win = true;
-                TutorialUI.MarkYes(game.currentLetter.transform.position + new UnityEngine.Vector3(0, 0, -5));
+                TutorialUI.MarkYes(game.currentLetter.transform.position + new UnityEngine.Vector3(0, 0, -5), TutorialUI.MarkSize.Big);
             }
             else {
                 AudioManager.I.PlaySfx(Sfx.Lose);
-                TutorialUI.MarkNo(game.currentLetter.transform.position + new UnityEngine.Vector3(0, 0, -5));
+                TutorialUI.MarkNo(game.currentLetter.transform.position + new UnityEngine.Vector3(0, 0, -5), TutorialUI.MarkSize.Big);
             }
 
             game.currentLetter.followTube(win);

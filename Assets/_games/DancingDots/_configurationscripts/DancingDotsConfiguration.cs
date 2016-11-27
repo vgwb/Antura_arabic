@@ -8,8 +8,6 @@
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
-		public DancingDotsQuestionProvider DancingDotsQuestions { get; set; }
-
 
         #region Game configurations
         public float Difficulty { get; set; }
@@ -38,8 +36,6 @@
 
             Variation = DancingDotsVariation.V_1;
 			Questions = new DancingDotsQuestionProvider();
-			DancingDotsQuestions = new DancingDotsQuestionProvider();
-//            Difficulty = 0.5f;
         }
 
         #region external configuration call
@@ -57,7 +53,7 @@
         {
             IQuestionBuilder builder = null;
 
-            int nPacks = 6;
+            int nPacks = 7; // extra one for the tutorial
             int nCorrect = 1;
             int nWrong = 0;
 

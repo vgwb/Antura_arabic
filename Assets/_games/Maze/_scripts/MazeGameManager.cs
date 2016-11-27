@@ -64,9 +64,10 @@ namespace EA4S.Maze
         void setupIndices()
         {
             allLetters = new List<string>();
-            List<LL_LetterData> list = AppManager.Instance.Teacher.GetAllTestLetterDataLL();
+            List<LL_LetterData> list = AppManager.I.Teacher.GetAllTestLetterDataLL();
             foreach (LL_LetterData ld in list)
             {
+               // Debug.Log(ld.Id);
                 allLetters.Add(ld.Id);
             }
         }
@@ -192,23 +193,48 @@ namespace EA4S.Maze
 
 		}
 
-		public void moveToNext(bool won = false)
+        IEnumerator waitAndPerformCallback(float seconds, VoidDelegate init, VoidDelegate callback)
+        {
+            init();
+
+            yield return new WaitForSeconds(seconds);
+
+            callback();
+        }
+
+
+        public void moveToNext(bool won = false)
 		{
             if (!currentCharacter || currentCharacter.isAppearing || !currentCharacter.gameObject.activeSelf) return;
 
             isShowingAntura = false;
             //check if current letter is complete:
             if (currentCharacter.isComplete ()) {
-				correctLetters++;
+
+                
+
+
+                correctLetters++;
 				currentLetterIndex++;
-				//print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);
-				if (currentLetterIndex == 6) { //round is 6
-                    endGame();
-					return;
-				} else {
-					roundNumber.text = "#" + (currentLetterIndex + 1);
-					restartCurrentLetter (won);
-				}
+
+                StartCoroutine(waitAndPerformCallback(2, () =>
+                {
+                    TutorialUI.MarkYes(currentCharacter.transform.position + new Vector3(0,10,0), TutorialUI.MarkSize.Big);
+                },
+                () => {
+                    if (currentLetterIndex == 6)
+                    { //round is 6
+                        endGame();
+                        return;
+                    }
+                    else {
+                        roundNumber.text = "#" + (currentLetterIndex + 1);
+                        restartCurrentLetter(won);
+                    }
+                }));
+
+                //print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);
+                
 			} else {
 				addLine ();
 				currentCharacter.nextPath ();
@@ -313,7 +339,9 @@ namespace EA4S.Maze
 
 
             //get a new letter:
-            LL_LetterData ld = (LL_LetterData)MazeConfiguration.Instance.Letters.GetNextData();
+            IQuestionPack newQuestionPack = MazeConfiguration.Instance.Questions.GetNextQuestion();
+            List<ILivingLetterData> ldList =  (List < ILivingLetterData > )newQuestionPack.GetCorrectAnswers();
+            LL_LetterData ld = (LL_LetterData)ldList[0];
             int index = allLetters.IndexOf(ld.Id);
 
             int found = -1;
@@ -328,10 +356,10 @@ namespace EA4S.Maze
             }
             if (found == -1)
             {
-                Debug.LogError("Letter got from Teacher is: " + ld.Id + " - does not match 11 models we have");
+                Debug.Log("Letter got from Teacher is: " + ld.Id + " - does not match 11 models we have");
                 found = UnityEngine.Random.Range(0, prefabs.Count);
             }
-                
+            //prefabs[found].GetComponent<MazeLetterBuilder>().letterId = ld.Id;
 
             currentPrefab = (GameObject)Instantiate(prefabs[found]);
 

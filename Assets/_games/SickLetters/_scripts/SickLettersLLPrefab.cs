@@ -24,7 +24,7 @@ namespace EA4S.SickLetters
         private SkinnedMeshRenderer[] LLMesh;
         Vector3 statPos, shadowStartSize;
 
-        // Use this for initialization
+
         void Start()
         {
             shadowStartSize = shadow.localScale;
@@ -36,14 +36,6 @@ namespace EA4S.SickLetters
             
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            //if(LLStatus == letterStatus.idle)
-            //  letterAnimator.SetFloat("random", -1);
-            //letterView.SetState(LLAnimationStates.LL_dancing);
-            
-        }
 
         public void jumpIn()
         {
@@ -69,8 +61,6 @@ namespace EA4S.SickLetters
 
             letterView.OnJumpEnded();
             letterAnimator.SetBool("dancing", game.LLCanDance);
-            //letterView.SetState(LLAnimationStates.LL_idle);
-            //letterAnimator.SetBool("idle", true);
 
             yield return new WaitForSeconds(1f);
 
@@ -81,9 +71,6 @@ namespace EA4S.SickLetters
             }
             else
                 SickLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterView.Data, true);
-
-            //if (game.roundsCount <1)
-                //game.tut.doTutorial(thisLLWrongDDs[Random.Range(0, thisLLWrongDDs.Count-1)].transform);
             
         }
 
@@ -92,9 +79,7 @@ namespace EA4S.SickLetters
 
             letterAnimator.SetBool("dancing", false);
             yield return new WaitForSeconds(delay );
-            //GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
             letterAnimator.Play("LL_idle_1", -1);
-            //letterView.SetState(LLAnimationStates.LL_still);
             game.manager.holeON();
             yield return new WaitForSeconds(0.25f);
 
@@ -115,48 +100,36 @@ namespace EA4S.SickLetters
 
         public void getNewLetterData()
         {
-            //Temp Hack
-            /*SickLettersQuestionProvider newQuestionProvider = SickLettersConfiguration.Instance.SickLettersQuestions;
-            SickLettersQuestionsPack nextQuestionPack = newQuestionProvider.SickLettersGetNextQuestion();
-            ILivingLetterData newLetter = (nextQuestionPack).GetQuestion();
-            */
-
-            /*IQuestionProvider newQuestionProvider = SickLettersConfiguration.Instance.Questions;
-            IQuestionPack nextQuestionPack = newQuestionProvider.GetNextQuestion();
-            ILivingLetterData newLetter = ((SickLettersQuestionsPack)nextQuestionPack).GetQuestion();*/
-
             ILivingLetterData newLetter = game.questionManager.getNewLetter();
 
             game.LLPrefab.GetComponent<LetterObjectView>().Init(newLetter);
             game.LLPrefab.dotlessLetter.text = newLetter.TextForLivingLetter;
 
-            if (game.dotlessLetters.Contains(newLetter.TextForLivingLetter) || newLetter.TextForLivingLetter.Equals("إ"))
+            if (!game.LettersWithDots.Contains(newLetter.TextForLivingLetter))
             {
                 correctDot.text = "";
                 correctDotCollider.GetComponent<BoxCollider>().enabled = false;
-                //UnityEngine.Debug.Log("dotless");
             }
             else
             {
                 correctDot.text = newLetter.TextForLivingLetter;
                 correctDotCollider.GetComponent<BoxCollider>().enabled = true;
-                //UnityEngine.Debug.Log("with Dots "+ newLetter.TextForLivingLetter);
             }
-
-
-            //correctDotPos = LLPrefab.correctDot.transform.TransformPoint(Vector3.Lerp(LLPrefab.correctDot.mesh.vertices[0], game.LLPrefab.correctDot.mesh.vertices[2], 0.5f));
 
         }
 
         int i = 0;
-        public void scatterDDs()
+        public void scatterDDs(bool isSimpleLetter = true)
         {
             i = 0;
-            //thisLLWrongDDs.Clear();
+            string letter = "x";
+
+            if (isSimpleLetter)
+               letter = game.LLPrefab.dotlessLetter.text;
 
             foreach (SickLettersDropZone dz in game.DropZones)
             {
-                if (dz.letters.Contains(game.LLPrefab.dotlessLetter.text))
+                if (dz.letters.Contains(letter))
                 {
                     if (i < game.Draggables.Length)
                     {
@@ -177,8 +150,11 @@ namespace EA4S.SickLetters
 
                         i++;
                     }
-                }
+                }                
             }
+
+            if (i == 0)
+                scatterDDs(false);
         }
 
         void showLLMesh(bool show)
@@ -187,14 +163,12 @@ namespace EA4S.SickLetters
                 sm.enabled = show;
             correctDot.gameObject.SetActive(show);
             dotlessLetter.gameObject.SetActive(show);
-            //shadow.gameObject.SetActive(show);
             if (!show)
                 shadow.localScale = Vector3.zero;
         }
 
         IEnumerator fadShadow()
         {
-            //shadow.gameObject.SetActive(true);
             while(shadow.localScale.x < shadowStartSize.x - 0.01f)
             {
                 shadow.localScale = Vector3.Lerp(shadow.localScale, shadowStartSize, Time.deltaTime*3.5f);

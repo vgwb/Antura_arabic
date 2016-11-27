@@ -86,7 +86,6 @@ namespace EA4S.MissingLetter
 
         public void OnAnswerClicked(string _key)
         {
-            Debug.Log("Answer: " + _key);
             m_oGame.SetInIdle(false);
 
             //refresh the data (for graphics)
@@ -173,11 +172,11 @@ namespace EA4S.MissingLetter
             m_aoCurrentAnswerScene.Add(_correctAnswerObject);
             m_oCorrectAnswer = _correctAnswerObject;
 
-            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count(); ++i) {
+            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count()+1; ++i) {
                 GameObject _wrongAnswerObject = m_oAnswerPool.GetElement();
                 LetterBehaviour wrongAnsBheaviour = _wrongAnswerObject.GetComponent<LetterBehaviour>();
                 wrongAnsBheaviour.Reset();
-                wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i);
+                wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i-1);
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
 
                 if(!m_bTutorialEnabled)
@@ -197,7 +196,7 @@ namespace EA4S.MissingLetter
             List<LL_WordData> phrase = new List<LL_WordData>();
             for(int i=0; i < m_oGame.m_iMaxSentenceSize; ++i)
             {
-                phrase.Add(AppManager.Instance.Teacher.GetRandomTestWordDataLL());
+                phrase.Add(AppManager.I.Teacher.GetRandomTestWordDataLL());
             }
 
             return phrase;
@@ -219,7 +218,7 @@ namespace EA4S.MissingLetter
             var _wrongAnswers = new List<LL_WordData>();
             for (int i = 0; i < m_oGame.m_iMaxSentenceSize; ++i)
             {
-                _wrongAnswers.Add(AppManager.Instance.Teacher.GetRandomTestWordDataLL());
+                _wrongAnswers.Add(AppManager.I.Teacher.GetRandomTestWordDataLL());
             }
             _wrongAnswers.Distinct();
 
@@ -254,7 +253,7 @@ namespace EA4S.MissingLetter
             m_aoCurrentAnswerScene.Add(_correctAnswerObject);
             m_oCorrectAnswer = _correctAnswerObject;
 
-            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count(); ++i)
+            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count() + 1; ++i)
             {
                 GameObject _wrongAnswerObject = m_oAnswerPool.GetElement();
                 LetterBehaviour wrongAnsBheaviour = _wrongAnswerObject.GetComponent<LetterBehaviour>();
@@ -280,7 +279,7 @@ namespace EA4S.MissingLetter
         void RemoveLetterfromQuestion()
         {
             LL_WordData word = (LL_WordData)m_oCurrQuestionPack.GetQuestion();
-            var Letters = ArabicAlphabetHelper.LetterDataListFromWord(word.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL());
+            var Letters = ArabicAlphabetHelper.ExtractLetterDataFromArabicWord(word.Data.Arabic);
 
             LL_LetterData letter = (LL_LetterData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
             int index = 0;

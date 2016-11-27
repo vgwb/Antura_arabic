@@ -23,7 +23,7 @@ namespace EA4S.ThrowBalls
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-                LL_LetterData newLetterData = AppManager.Instance.Teacher.GetRandomTestLetterLL();
+                LL_LetterData newLetterData = AppManager.I.Teacher.GetRandomTestLetterLL();
 
                 if (newLetterData == null)
                     return;
@@ -33,7 +33,7 @@ namespace EA4S.ThrowBalls
                 // At least 4 wrong letters
                 while (wrongAnswers.Count < 4)
                 {
-                    var letter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
+                    var letter = AppManager.I.Teacher.GetRandomTestLetterLL();
 
                     if (!CheckIfContains(correctAnswers, letter) && !CheckIfContains(wrongAnswers, letter))
                     {

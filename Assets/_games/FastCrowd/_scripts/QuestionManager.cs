@@ -28,9 +28,6 @@ namespace EA4S.FastCrowd
 
         void OnLetterDropped(ILivingLetterData data, bool result)
         {
-            if (OnDropped != null)
-                OnDropped(result);
-
             if (result)
             {
                 dropContainer.AdvanceArea();
@@ -38,6 +35,9 @@ namespace EA4S.FastCrowd
                 if (data is LL_LetterData)
                     wordComposer.AddLetter(data);
             }
+
+            if (OnDropped != null)
+                OnDropped(result);
         }
 
         public void StartQuestion(List<ILivingLetterData> nextChallenge, List<ILivingLetterData> wrongAnswers)

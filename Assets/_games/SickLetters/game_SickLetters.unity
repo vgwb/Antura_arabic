@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u0636 \u062B \u062C"
+  letters: "\u0636 \u062B \u062C \u062D \u0635"
 --- !u!65 &14782285
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -685,7 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u0628"
+  letters: "\u0628 \u0647 \u0645 \u0644"
 --- !u!65 &106734908
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -803,6 +803,65 @@ Transform:
   - {fileID: 1178930266}
   m_Father: {fileID: 945372955}
   m_RootOrder: 5
+--- !u!1 &188070929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000013785107276, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 188070930}
+  - 65: {fileID: 188070932}
+  - 114: {fileID: 188070931}
+  m_Layer: 0
+  m_Name: DZ 1 (28)
+  m_TagString: DancingDots_DotZone
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &188070930
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000013291510174, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 188070929}
+  m_LocalRotation: {x: 0.000000074557676, y: -0.000000029672302, z: -0.00000002980233,
+    w: 1}
+  m_LocalPosition: {x: 1.21, y: 0, z: -0.002}
+  m_LocalScale: {x: 1.0000019, y: 1.0000023, z: 1.0000024}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1587757749}
+  m_RootOrder: 27
+--- !u!114 &188070931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000012755766874, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 188070929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  letters: "\u063A \u0639 "
+--- !u!65 &188070932
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 65000012832759170, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 188070929}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &192559809
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,7 +1308,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "\u0627"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66167fa22696343d0b455a5490af853a, type: 2}
   m_sharedMaterial: {fileID: 21000011497968706, guid: 66167fa22696343d0b455a5490af853a,
@@ -1308,13 +1367,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 273503204}
-    characterCount: 1
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -1513,6 +1572,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1917c106954e1d5449220f36bc3d05da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &278784348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000010151262530, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 278784349}
+  - 65: {fileID: 278784351}
+  - 114: {fileID: 278784350}
+  m_Layer: 0
+  m_Name: DZ 1 (26)
+  m_TagString: DancingDots_DotZone
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &278784349
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000012409464274, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 278784348}
+  m_LocalRotation: {x: 0.00000010441194, y: -0.000000059422597, z: -0.00000005960465,
+    w: 1}
+  m_LocalPosition: {x: -0.684, y: 0, z: 0.013}
+  m_LocalScale: {x: 1.0000068, y: 1.0000072, z: 1.000007}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1587757749}
+  m_RootOrder: 25
+--- !u!114 &278784350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000013713473752, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 278784348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  letters: "\u0643 \u0644 x"
+--- !u!65 &278784351
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 65000010916195738, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 278784348}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &285781450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,7 +1644,7 @@ GameObject:
   - 33: {fileID: 285781453}
   - 114: {fileID: 285781452}
   m_Layer: 0
-  m_Name: TMP SubMesh [Antura Dots Only Solid SDF Material + ARIAL SDF Atlas]
+  m_Name: TMP SubMesh [EA4S_Arabic_Dots_Only SDF Material + ARIAL SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1851,6 +1969,65 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 43a977ee2a4a8d948b2b486f2fc22776, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &309524209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000011793201402, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 309524210}
+  - 65: {fileID: 309524212}
+  - 114: {fileID: 309524211}
+  m_Layer: 0
+  m_Name: DZ 1 (25)
+  m_TagString: DancingDots_DotZone
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &309524210
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000014010068326, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 309524209}
+  m_LocalRotation: {x: 0.000000074557676, y: -0.000000029672302, z: -0.00000002980233,
+    w: 1}
+  m_LocalPosition: {x: -0.352, y: -0, z: 0.257}
+  m_LocalScale: {x: 1.0000057, y: 1.000006, z: 1.0000058}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1587757749}
+  m_RootOrder: 24
+--- !u!114 &309524211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000012036868384, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 309524209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  letters: "\u0637 \u0633 \u0648 \u0631"
+--- !u!65 &309524212
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 65000011435071106, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 309524209}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &354711968
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,7 +2347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u0634 \u0642 \u0641 \u062C \u064A "
+  letters: "\u0634 \u0642 \u0641 \u062C \u064A \u062D \u0633 \u0649"
 --- !u!65 &425582784
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2931,7 +3108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u0636 \u0630 \u0629"
+  letters: "\u0636 \u0630 \u0629 \u062F \u0647 \u0635"
 --- !u!65 &559952833
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3273,7 +3450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letters: "\u062A \u062B \u0641 \u063A \u062E \u062C \u0634 \u064A \u0628 \u0646
-    \u0632 \u0638 \u0630"
+    \u0632 \u0638 \u0630 \u0639 \u0637 \u0643 \u0645 \u0644 \u0633 \u0648 \u0631 x"
 --- !u!65 &625996319
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3671,7 +3848,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "\u0627"
+  m_text: "\u063A"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: daa15f18fe1d7462ba61f8505a11cea6, type: 2}
   m_sharedMaterial: {fileID: 21000013468211058, guid: daa15f18fe1d7462ba61f8505a11cea6,
@@ -4048,7 +4225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u062B \u0641 \u063A \u062E \u062A \u0638 \u0630 \u0629"
+  letters: "\u062B \u0641 \u063A \u062E \u062A \u0638 \u0630 \u0629  \u062D \u062F
+    \u0647 \u0639 \u0637 \u0643"
 --- !u!65 &726746549
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6397,7 +6575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u0642 \u0646"
+  letters: "\u0642 \u0646 \u0644 \u0649"
 --- !u!65 &829760937
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6687,7 +6865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u064A \u063A"
+  letters: "\u064A \u0649"
 --- !u!65 &926152313
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7168,6 +7346,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabSet: {fileID: 11400000, guid: 0833fd282a7a0ab4bbc9d66e6b70e8ce, type: 2}
   testWorld: 0
+--- !u!1 &1074134637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000010151262530, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1074134638}
+  - 65: {fileID: 1074134640}
+  - 114: {fileID: 1074134639}
+  m_Layer: 0
+  m_Name: DZ 1 (23)
+  m_TagString: DancingDots_DotZone
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1074134638
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000012409464274, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1074134637}
+  m_LocalRotation: {x: 0.000000074557676, y: -0.000000029672302, z: -0.00000002980233,
+    w: 1}
+  m_LocalPosition: {x: -0.499, y: -0, z: 0.051}
+  m_LocalScale: {x: 1.0000067, y: 1.0000069, z: 1.0000068}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1587757749}
+  m_RootOrder: 22
+--- !u!114 &1074134639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000013713473752, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1074134637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  letters: "\u062F"
+--- !u!65 &1074134640
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 65000010916195738, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1074134637}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1082744439
 GameObject:
   m_ObjectHideFlags: 0
@@ -7438,7 +7675,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letters: "\u062A \u062B \u0642 \u0641 \u063A \u062E \u062C \u0634 \u064A \u0638
-    \u0630 \u0632 \u0629 \u0627 \u0623 \u0625"
+    \u0630 \u0632 \u0629 \u0627 \u0623 \u0625 \u062D \u062F \u0647 \u0639 \u0637 \u0643
+    \u0645 \u0644 \u0633 \u0648 \u0631 \u0649"
 --- !u!65 &1124853657
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7446,6 +7684,65 @@ BoxCollider:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1124853654}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!1 &1147296097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000013218835058, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1147296098}
+  - 65: {fileID: 1147296100}
+  - 114: {fileID: 1147296099}
+  m_Layer: 0
+  m_Name: DZ 1 (24)
+  m_TagString: DancingDots_DotZone
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1147296098
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000013349388670, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1147296097}
+  m_LocalRotation: {x: 0.000000074557676, y: -0.000000029672302, z: -0.00000002980233,
+    w: 1}
+  m_LocalPosition: {x: -0.417, y: 0, z: -0.217}
+  m_LocalScale: {x: 1.000005, y: 1.0000051, z: 1.000005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1587757749}
+  m_RootOrder: 23
+--- !u!114 &1147296099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000012678776124, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1147296097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  letters: "\u0639"
+--- !u!65 &1147296100
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 65000011884177222, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1147296097}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 0
@@ -7685,7 +7982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u063A \u062E \u062C \u0634"
+  letters: "\u063A \u062E \u062C \u0634 \u0639 x"
 --- !u!65 &1176688964
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7813,7 +8110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u0636 \u0642 \u0641 \u0634 \u064A \u0628 \u0646 \u0632 \u0638"
+  letters: "\u0636 \u0642 \u0641 \u0634 \u064A \u0628 \u0646 \u0632 \u0638 \u0635
+    \u0637 \u0633 \u0648 \u0631"
 --- !u!65 &1180303076
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8497,7 +8795,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u0634 \u062B \u0641 \u0628 \u0632 \u0638 \u062A"
+  letters: "\u0634 \u062B \u0641 \u0628 \u0632 \u0638 \u062A \u0637 \u0645 \u0648
+    \u0631 x"
 --- !u!65 &1288843839
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8956,7 +9255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u0632"
+  letters: "\u0632 \u0648 \u0631"
 --- !u!65 &1350129909
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9627,6 +9926,8 @@ MonoBehaviour:
   numerOfWringDDs: 3
   dotlessLetters: "\u0623 \u0627 \u0649 \u0631 \u0633 \u0644 \u0635 \u0639 \u0647
     \u062D \u062F \u0645 \u0643 \u0637 \u0626 \u0621 \u0624 \u0648"
+  LettersWithDots: "\u0636 \u062B \u0642 \u0641 \u063A \u062E \u062C \u0634 \u064A
+    \u0628 \u062A \u0646 \u0629 \u0638 \u0632 \u0630"
   Draggables:
   - {fileID: 1268812343}
   - {fileID: 1233889605}
@@ -10408,6 +10709,12 @@ Transform:
   - {fileID: 2078481829}
   - {fileID: 758530040}
   - {fileID: 2125282976}
+  - {fileID: 1074134638}
+  - {fileID: 1147296098}
+  - {fileID: 309524210}
+  - {fileID: 278784349}
+  - {fileID: 1994478780}
+  - {fileID: 188070930}
   m_Father: {fileID: 427374876}
   m_RootOrder: 0
 --- !u!1 &1625007142
@@ -10540,7 +10847,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u062A \u062B \u0642 \u0641 \u0628 \u0646 \u0632 \u0638 \u0630 \u0629"
+  letters: "\u062A \u062B \u0642 \u0641 \u0628 \u0646 \u0632 \u0638 \u0630 \u0629
+    \u062F \u0647 \u0637 \u0643 \u0645 \u0644 \u0648 \u0631"
 --- !u!65 &1666630029
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10986,7 +11294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letters: "\u0636 \u062B \u0642 \u063A \u062E \u062C \u0634 \u064A \u0646 \u0630
-    \ \u0627 \u0623 \u0625"
+    \ \u0627 \u0623 \u0625  \u062D \u062F \u0639 \u0635 \u0644 \u0633 \u0649 x"
 --- !u!65 &1901593608
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11044,8 +11352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u062A \u062B \u063A \u062E \u062C \u064A \u0628 \u0632 \u0630 \u0629
-    \u0646 \u0627 \u0623 \u0625"
+  letters: "\u062A \u062B \u062E \u062C \u064A \u0628 \u0632 \u0630 \u0629 \u0646
+    \u0627 \u0623 \u0625 \u062D \u062F \u0647 \u063A \u0639 \u0635 \u0648 \u0631 \u0649"
 --- !u!65 &1925365226
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11288,7 +11596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u0636 \u0634 \u062B \u0642 \u0628 \u0646  \u0629 \u0627 \u0623 \u0625"
+  letters: "\u0636 \u0634 \u062B \u0642 \u0628 \u0646  \u0629 \u0627 \u0623 \u0625
+    \u0647 \u0635 \u0643 \u0645 \u0633"
 --- !u!65 &1984942393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11307,6 +11616,65 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 212000010347254602, guid: d5826ab7f51b7c549919cf0b6fe83693,
     type: 2}
   m_PrefabInternal: {fileID: 1370656067}
+--- !u!1 &1994478779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000013914945358, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1994478780}
+  - 65: {fileID: 1994478782}
+  - 114: {fileID: 1994478781}
+  m_Layer: 0
+  m_Name: DZ 1 (27)
+  m_TagString: DancingDots_DotZone
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1994478780
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000013058033602, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1994478779}
+  m_LocalRotation: {x: 0.000000074557676, y: -0.000000029672302, z: -0.00000002980233,
+    w: 1}
+  m_LocalPosition: {x: -0.055, y: 0, z: 1.054}
+  m_LocalScale: {x: 1.0000067, y: 1.0000069, z: 1.0000068}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1587757749}
+  m_RootOrder: 26
+--- !u!114 &1994478781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000012410286248, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1994478779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  letters: x
+--- !u!65 &1994478782
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 65000011059417536, guid: f26c38d3185a0404aad2243081999d09,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1994478779}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1998642004
 GameObject:
   m_ObjectHideFlags: 0
@@ -13562,7 +13930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letters: "\u062A \u062B \u0642 \u0641 \u062E \u062C \u0634 \u064A \u0628 \u0646
-    \u0636 \u0627 \u0623 \u0625"
+    \u0636 \u0627 \u0623 \u0625 \u062D \u0635  \u0643 \u0649 x"
 --- !u!65 &2070276767
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13724,7 +14092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u0629 \u0627 \u0623 \u0625"
+  letters: "\u0629 \u0627 \u0623 \u0625 \u0645"
 --- !u!65 &2125282978
 BoxCollider:
   m_ObjectHideFlags: 0

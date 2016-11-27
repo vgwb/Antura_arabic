@@ -8,6 +8,9 @@ namespace EA4S.FastCrowd
         FastCrowdGame game;
 
         float tutorialStartTimer;
+        int answerCounter;
+
+        bool tutorialStarted;
 
         public FastCrowdTutorialState(FastCrowdGame game)
         {
@@ -16,6 +19,7 @@ namespace EA4S.FastCrowd
 
         public void EnterState()
         {
+            answerCounter = 2;
             game.QuestionManager.OnCompleted += OnQuestionCompleted;
             game.QuestionManager.OnDropped += OnAnswerDropped;
 
@@ -24,9 +28,32 @@ namespace EA4S.FastCrowd
             else
                 game.QuestionManager.Clean();
 
-            StartTutorial();
+            tutorialStarted = false;
 
-            tutorialStartTimer = 3f;
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet)
+            {
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_alphabet_Tuto, () => { StartTutorial(); });
+            }
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting)
+            {
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_counting_Tuto, () => { StartTutorial(); });
+            }
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
+            {
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_letter_Tuto, () => { StartTutorial(); });
+            }
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling)
+            {
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_spelling_Tuto, () => { StartTutorial(); });
+            }
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
+            {
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_words_Tuto, () => { StartTutorial(); });
+            }
+            else
+            {
+                StartTutorial();
+            }
         }
 
         public void ExitState()
@@ -38,13 +65,37 @@ namespace EA4S.FastCrowd
             game.showTutorial = false;
         }
 
+        void StartTutorial()
+        {
+            DrawTutorial();
+
+            tutorialStartTimer = 3f;
+
+            tutorialStarted = true;
+        }
+
         void OnQuestionCompleted()
         {
-            game.SetCurrentState(game.ResultState);
+            game.SetCurrentState(game.QuestionState);
         }
 
         void OnAnswerDropped(bool result)
         {
+            if (result)
+            {
+                --answerCounter;
+
+                if (answerCounter <= 0 &&
+                    (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet ||
+                    FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting ||
+                    FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
+                    )
+                {
+                    game.SetCurrentState(game.QuestionState);
+                    return;
+                }
+            }
+
             tutorialStartTimer = 3f;
             game.Context.GetCheckmarkWidget().Show(result);
             game.Context.GetAudioManager().PlaySound(result ? Sfx.OK : Sfx.KO);
@@ -52,17 +103,20 @@ namespace EA4S.FastCrowd
 
         public void Update(float delta)
         {
-            tutorialStartTimer += -delta;
-
-            if (tutorialStartTimer <= 0f)
+            if(tutorialStarted)
             {
-                tutorialStartTimer = 3f;
+                tutorialStartTimer += -delta;
 
-                StartTutorial();
+                if (tutorialStartTimer <= 0f)
+                {
+                    tutorialStartTimer = 3f;
+
+                    DrawTutorial();
+                }
             }
         }
 
-        void StartTutorial()
+        void DrawTutorial()
         {
             if (game.QuestionManager.crowd.GetLetter(game.QuestionManager.dropContainer.GetActiveData()) == null)
                 return;
@@ -76,9 +130,9 @@ namespace EA4S.FastCrowd
 
             game.QuestionManager.crowd.GetNearLetters(nearLetters, startLine, 10f);
 
-            for(int i=0; i< nearLetters.Count; i++)
+            for (int i = 0; i < nearLetters.Count; i++)
             {
-                if(nearLetters[i] != tutorialLetter)
+                if (nearLetters[i] != tutorialLetter)
                 {
                     nearLetters[i].Scare(startLine, 3f);
                 }

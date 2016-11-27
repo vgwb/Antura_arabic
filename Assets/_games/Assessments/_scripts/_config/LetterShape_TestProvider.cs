@@ -24,7 +24,7 @@ namespace EA4S.Assessment
             for (int round = 0; round < rounds; round++)
             {
                 // Get All base letters
-                var AllLetters = AppManager.Instance.Teacher.wordHelper.GetAllBaseLetters();
+                var AllLetters = AppManager.I.Teacher.wordHelper.GetAllBaseLetters();
                 var roundContent = RandomHelper.RouletteSelectNonRepeating( AllLetters, (wrongNumber+1) * simultaneosQuestions);
 
                 for(int q = 0; q<simultaneosQuestions; q++)

@@ -256,13 +256,13 @@ namespace EA4S.MakeFriends
                         //Debug.Log("Considering as choice: " + letter.TextForLivingLetter);
                         if (choiceLetters.Exists(x => x.Id == letter.Id))
                         {
-                            letter = AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement();
+                            letter = AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement();
                             //Debug.Log("Using random choice instead: " + letter);
                         }
                     }
                     else
                     {
-                        letter = AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement();
+                        letter = AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement();
                         //Debug.Log("No more word letters, using random: " + letter.TextForLivingLetter);
                     }
                 } while (choiceLetters.Exists(x => x.Id == letter.Id));

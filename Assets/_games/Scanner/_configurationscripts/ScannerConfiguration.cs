@@ -3,8 +3,10 @@
     public class ScannerConfiguration : IGameConfiguration 
 	{
         // Game configuration
-        public IGameContext Context { get; set; }
-        public IQuestionProvider Questions { get; set; }
+		public IGameContext Context { get; set; }
+		public IQuestionProvider Questions { get; set; }
+		public bool gameActive = true;
+		public float beltSpeed = 1f;
 
         #region Game configurations
         public float Difficulty { get; set; }
@@ -44,13 +46,17 @@
         #endregion
 
         public IQuestionBuilder SetupBuilder() {
+
             IQuestionBuilder builder = null;
 
-            int nPacks = 10;
-            int nCorrect = 4;
-            int nWrong = 4;
+			int nPacks = 7; // One Extra for tutorial
+			int nCorrect = 1;
+			int nWrong = 4;
 
-            builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong);
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.wordFilters.excludeColorWords = true;
+            builderParams.wordFilters.requireDrawings = true;
+            builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters:builderParams);
 
             return builder;
         }

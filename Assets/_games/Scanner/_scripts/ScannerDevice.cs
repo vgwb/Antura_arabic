@@ -59,6 +59,7 @@ namespace EA4S.Scanner
 
 		void OnMouseUp()
 		{
+			isDragging = false;
 			goLight.SetActive(false);
 			Reset();
 		}
@@ -67,8 +68,7 @@ namespace EA4S.Scanner
 
 		void OnTriggerEnter(Collider other) 
 		{
-			Debug.Log("[Scanner] collider enter");
-			if (other.tag == ScannerGame.TAG_SCAN_START || other.tag == ScannerGame.TAG_SCAN_END)
+			if ((other.tag == ScannerGame.TAG_SCAN_START || other.tag == ScannerGame.TAG_SCAN_END) && isDragging)
 			{
 				if (timeDelta == 0 || lastTag == other.tag)
 				{

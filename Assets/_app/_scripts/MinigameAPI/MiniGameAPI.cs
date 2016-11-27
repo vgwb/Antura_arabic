@@ -26,7 +26,7 @@ namespace EA4S.API
         public void StartGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration)
         {
             Debug.Log("StartGame " + _gameCode.ToString());
-            MiniGameData miniGameData = AppManager.Instance.DB.GetMiniGameDataByCode(_gameCode);
+            MiniGameData miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
             IQuestionBuilder rules = null;
             IGameConfiguration actualConfig = null;
 
@@ -37,10 +37,10 @@ namespace EA4S.API
             // rule setted in config and used by AI to create correct game data
             rules = actualConfig.SetupBuilder();
             // question packs (game data)
-            actualConfig.Questions = new FindRightLetterQuestionProvider(AppManager.Instance.GameLauncher.RetrieveQuestionPacks(rules), miniGameData.Description);
+            actualConfig.Questions = new FindRightLetterQuestionProvider(AppManager.I.GameLauncher.RetrieveQuestionPacks(rules), miniGameData.Description);
 
             // Save current game code to appmanager currentminigame
-            AppManager.Instance.CurrentMinigame = miniGameData;
+            AppManager.I.CurrentMinigame = miniGameData;
             // Comunicate to LogManager that start new single minigame play session.
             actualConfig.Context.GetLogManager().InitGameplayLogSession(_gameCode);
 

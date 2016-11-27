@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using TMPro;
-using ArabicSupport;
+using System;
 
 namespace EA4S
 {
@@ -19,10 +18,17 @@ namespace EA4S
         public bool isUI;
         public bool isArabic;
 
-        void Start()
+        public Db.LocalizationDataId LocalizationId;
+
+        void Awake()
         {
             checkConfiguration();
-            if (text != "") updateText();
+
+            if (LocalizationId != Db.LocalizationDataId.None) {
+                SetSentence(LocalizationId);
+            }
+            updateText();
+
         }
 
         public void setText(string _text, bool arabic = false)
@@ -59,7 +65,7 @@ namespace EA4S
             } else {
                 if (isArabic) {
                     if (isUI) {
-                        gameObject.GetComponent<Text>().text = ArabicFixer.Fix(m_text);
+                        gameObject.GetComponent<Text>().text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(m_text);
                     } else {
                         gameObject.GetComponent<TextMesh>().text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(m_text);
                     }
@@ -84,5 +90,28 @@ namespace EA4S
             }
         }
 
+        public void SetLetterData(ILivingLetterData livingLetterData)
+        {
+            isArabic = false;
+
+            if (isUI)
+                gameObject.GetComponent<TextMeshProUGUI>().isRightToLeftText = true;
+            else
+                gameObject.GetComponent<TextMeshPro>().isRightToLeftText = true;
+
+            if (livingLetterData.DataType == LivingLetterDataType.Letter) {
+                text = livingLetterData.TextForLivingLetter;
+            } else if (livingLetterData.DataType == LivingLetterDataType.Word) {
+                text = livingLetterData.TextForLivingLetter;
+            }
+        }
+
+        public void SetSentence(Db.LocalizationDataId sentenceId)
+        {
+            // Debug.Log("SetSentence " + sentenceId);
+            Db.LocalizationData row = LocalizationManager.GetLocalizationData(sentenceId);
+            isArabic = true;
+            text = row.Arabic;
+        }
     }
 }

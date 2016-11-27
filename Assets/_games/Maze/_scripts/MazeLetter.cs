@@ -11,7 +11,7 @@ namespace EA4S.Maze
 		public MazeCharacter character;
 
 
-		bool isInside;
+		public bool isInside;
 
 		public float idleSeconds = 0;
 
@@ -27,6 +27,7 @@ namespace EA4S.Maze
 
 		// Update is called once per frame
 		void Update () {
+           
 			if (character.characterIsMoving)
             {
                 anturaSeconds = 0;
@@ -86,6 +87,8 @@ namespace EA4S.Maze
 
 			//check if input is within range
 			if(!character.canMouseBeDown()) return;
+
+            Debug.Log("started Drawing!");
 
 			idleSeconds = 0;
 			MazeGameManager.Instance.currentTutorial.stopCurrentTutorial();
