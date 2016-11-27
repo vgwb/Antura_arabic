@@ -20,13 +20,10 @@ namespace EA4S.SickLetters
 
         public void EnterState()
         {
-
-            //game.Context.GetOverlayWidget().Initialize(true, true, false);
             
             game.peocessDifiiculties(SickLettersConfiguration.Instance.Difficulty);
 
             timer = game.gameDuration;
-            //game.Context.GetOverlayWidget().SetClockDuration(game.gameDuration);
 
             SickLettersConfiguration.Instance.Context.GetAudioManager().MusicEnabled = true;
             if (game.roundsCount == 0)
@@ -57,17 +54,16 @@ namespace EA4S.SickLetters
                 timer -= delta;
                 game.Context.GetOverlayWidget().SetClockTime(timer);
             }
-            if (timer < 0 /*|| game.roundsCount == 6*/)
+            if (timer < 0)
             {
                 AudioManager.I.StopSfx(Sfx.DangerClockLong);
                 game.SetCurrentState(game.ResultState);
                 AudioManager.I.PlayDialog("Keeper_TimeUp");
             }
 
-            if (alarmIsTriggered == 0 && timer < 20 /*|| game.roundsCount == 6*/)
+            if (alarmIsTriggered == 0 && timer < 2)
             {
                 alarmIsTriggered = 1;
-                //AudioManager.I.PlaySfx(Sfx.AlarmClock);
                 AudioManager.I.PlayDialog("Keeper_Time_"+UnityEngine.Random.Range(1,4));
             }
             if (alarmIsTriggered == 1 && timer < 4)
@@ -80,18 +76,20 @@ namespace EA4S.SickLetters
              {
                  t = 1;
                  game.LLPrefab.jumpOut();
-                 //game.LLPrefab.jumpIn();
             }
 
             correctDotPos = game.LLPrefab.correctDot.transform.TransformPoint(Vector3.Lerp(game.LLPrefab.correctDot.mesh.vertices[0], game.LLPrefab.correctDot.mesh.vertices[2], 0.5f));
-            //scatterDDs();
+
 
             if(game.LLPrefab.correctDotCollider.transform.childCount == 0)
                 game.LLPrefab.correctDotCollider.transform.position = correctDotPos;
 
+            if(game.LLPrefab.letterView.Label.color.a > 0)
+                game.LLPrefab.letterView.Label.color = new Color32(0, 0, 0, 0);
+
             Debug.DrawRay(correctDotPos, -Vector3.forward * 10, Color.red);
             Debug.DrawRay(correctDotPos, -Vector3.right * 10, Color.yellow);
-            //Debug.Log(v);
+
         }
 
         

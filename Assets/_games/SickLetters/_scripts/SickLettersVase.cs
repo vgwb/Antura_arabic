@@ -88,7 +88,7 @@ namespace EA4S.SickLetters
             if (dd.isCorrect)
             {
                 
-                game.Poof(dd.transform.position);
+                game.Poof(dd.transform);
                 dd.resetCorrectDD();
                 game.onWrongMove();
                 StartCoroutine(onDroppingCorrectDD());
@@ -175,7 +175,7 @@ namespace EA4S.SickLetters
 
             yield return new WaitForSeconds(3);
 
-            game.Poof(transform.position);
+            game.Poof(transform);
             vaseRB.isKinematic = true;
             transform.position = vaseStartPose + Vector3.up * 20;
             transform.eulerAngles = vaseStartRot;
