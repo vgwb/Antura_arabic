@@ -3435,13 +3435,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
-  letterPool: []
   ball: {fileID: 1034360347}
   ballController: {fileID: 1034360350}
   letterWithPropsPrefab: {fileID: 940559677}
   poofPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
   environment: {fileID: 737431392}
-  isRoundOngoing: 0
 --- !u!4 &436118478
 Transform:
   m_ObjectHideFlags: 0
@@ -5590,6 +5588,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1034360348}
+--- !u!96 &1034360351
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1034360347}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 4d6a056e77a2db74993eff5f245f2605, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 0.8
+  m_StartWidth: 3
+  m_EndWidth: 0
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
 --- !u!1001 &1074333021
 Prefab:
   m_ObjectHideFlags: 0
@@ -6597,19 +6645,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.68850946
+      value: -0.6885094
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.040607117
+      value: 0.040607113
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7181946
+      value: 0.71819454
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09220875
+      value: 0.09220874
       objectReference: {fileID: 0}
     - target: {fileID: 1000013166069758, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_IsActive
