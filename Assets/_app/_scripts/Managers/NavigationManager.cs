@@ -131,6 +131,15 @@ namespace EA4S
             GoToScene(AppScene.Book);
         }
 
+        public void ExitAndGoHome()
+        {
+            if (CurrentScene == AppScene.Map) {
+                GoToScene(AppScene.Home);
+            } else {
+                GoToScene(AppScene.Map);
+            }
+        }
+
         public string GetSceneName(AppScene scene, Db.MiniGameData minigameData = null)
         {
             switch (scene) {
