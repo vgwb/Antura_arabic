@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
-using EA4S;
-using ModularFramework.Core;
+using UnityEngine.EventSystems;
 
 namespace EA4S
 {
-    public class OpenPlayerBookScene : MonoBehaviour
+    public class OpenPlayerBookScene : MonoBehaviour, IPointerClickHandler
     {
-        public void OpenPlayerBook()
+
+        public void OnPointerClick(PointerEventData eventData)
         {
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_PlayerBook");
+            NavigationManager.I.OpenPlayerBook();
         }
+
     }
 }

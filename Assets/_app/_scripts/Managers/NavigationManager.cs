@@ -49,7 +49,8 @@ namespace EA4S
         //    return "";
         //}
 
-        public void GoToNextScene() { 
+        public void GoToNextScene()
+        {
             //var nextScene = GetNextScene();
             switch (CurrentScene) {
                 case AppScene.Home:
@@ -125,6 +126,11 @@ namespace EA4S
 
         public void ExitCurrentGame() { }
 
+        public void OpenPlayerBook()
+        {
+            GoToScene(AppScene.Book);
+        }
+
         public string GetSceneName(AppScene scene, Db.MiniGameData minigameData = null)
         {
             switch (scene) {
@@ -184,7 +190,8 @@ namespace EA4S
         /// Calculates the unlock item count.
         /// </summary>
         /// <returns></returns>
-        public int CalculateUnlockItemCount() {
+        public int CalculateUnlockItemCount()
+        {
             // TODO: logic to calculate
             return 2;
         }
