@@ -60,7 +60,34 @@ namespace EA4S {
         public static List<RewardItem> GetRewardItemsByRewardType(RewardTypes _rewardType, List<Transform> _parentsTransForModels, string _categoryRewardId = "") {
             List<RewardItem> returnList = new List<RewardItem>();
             /// TODO: logic
-            /// Charge models
+            /// - Load returnList by type and category checking unlocked and if exist active one
+            switch (_rewardType) {
+                case RewardTypes.reward:
+                    // TODO: get reward from db of unlocked rewards
+                    List<Reward> rewards = config.Rewards.FindAll(r => r.Category == _categoryRewardId);
+                    foreach (Reward reward in rewards) {
+                        returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = false });
+                    }
+                    break;
+                case RewardTypes.texture:
+                    break;
+                case RewardTypes.decal:
+                    break;
+                default:
+                    Debug.LogWarningFormat("Reward typology {0} not found", _rewardType);
+                    break;
+            }
+            /// - Charge models
+            for (int i = 0; i < returnList.Count; i++) {
+                if (returnList[i] != null) {
+                    ModelsManager.MountModel(returnList[i].ID, _parentsTransForModels[i]);
+                }
+            }
+            // add empty results
+            int emptyItemsCount = _parentsTransForModels.Count - returnList.Count;
+            for (int i = 0; i < emptyItemsCount; i++) {
+                returnList.Add(null);
+            }
             return returnList;
         }
 
@@ -73,22 +100,29 @@ namespace EA4S {
             List<RewardColorItem> returnList = new List<RewardColorItem>();
             GetRewardColorsById(_rewardItemId, _rewardType);
             /// TODO: logic
+            /// - Load returnList of color for reward checking unlocked and if exist active one
             return returnList;
         }
 
         /// <summary>
+        /// Selects the reward color item.
+        /// </summary>
+        /// <param name="_rewardColorItemId">The reward color item identifier.</param>
+        /// <param name="_rewardType">Type of the reward.</param>
+        public static void SelectRewardColorItem(string _rewardColorItemId, RewardTypes _rewardType) {
+            // TODO: logic
+        }
+
+        /// <summary>
+        /// TODO: public or private?
         /// Gets the reward colors by identifier.
         /// </summary>
         /// <param name="_rewardItemId">The reward item identifier.</param>
         /// <returns></returns>
-        public static List<RewardColorItem> GetRewardColorsById(string _rewardItemId, RewardTypes _rewardType) {
+        static List<RewardColorItem> GetRewardColorsById(string _rewardItemId, RewardTypes _rewardType) {
             List<RewardColorItem> returnList = new List<RewardColorItem>();
             // TODO: logic
             return returnList;
-        }
-
-        public static void SelectRewardColorItem(string _rewardColorItemId, RewardTypes _rewardType) {
-
         }
 
         #endregion
@@ -130,6 +164,7 @@ namespace EA4S {
     public class RewardConfig {
         public List<Reward> Rewards;
         public List<RewardColor> RewardsColorPairs;
+        public List<RewardDecal> RewardsDecal;
     }
 
     [Serializable]
@@ -150,6 +185,11 @@ namespace EA4S {
         public string Color2Name;
         public string Color1RGB; // "rrggbbaa"
         public string Color2RGB; // "rrggbbaa"
+    }
+
+    [Serializable]
+    public class RewardDecal {
+        public string ID;
     }
     #endregion
 

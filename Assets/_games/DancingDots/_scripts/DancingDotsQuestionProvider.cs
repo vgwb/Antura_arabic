@@ -24,7 +24,7 @@ namespace EA4S.DancingDots
 //		{
 //			LL_LetterData newLetter;
 //
-//			newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
+//			newLetter = AppManager.I.Teacher.GetRandomTestLetterLL();
 //
 //			DancingDotsQuestionsPack dataPack = new DancingDotsQuestionsPack(newLetter);
 //			return dataPack;
@@ -34,7 +34,7 @@ namespace EA4S.DancingDots
 //		{
 //			LL_LetterData newLetter;
 //
-//			newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
+//			newLetter = AppManager.I.Teacher.GetRandomTestLetterLL();
 //
 //			return newLetter;
 //		}

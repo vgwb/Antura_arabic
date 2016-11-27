@@ -57,7 +57,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "specular_saturated_2side",
       "Material2" : "transparent_saturated_2side",
-      "Category" : "FACE",
+      "Category" : "NOSE",
       "RemTongue" : ""
     },
     {
@@ -69,7 +69,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "specular_saturated_2side",
       "Material2" : "diffuse_saturated",
-      "Category" : "FACE",
+      "Category" : "NOSE",
       "RemTongue" : ""
     },
     {
@@ -81,7 +81,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "specular_saturated_2side",
       "Material2" : "specular_saturated_2side",
-      "Category" : "FACE",
+      "Category" : "NOSE",
       "RemTongue" : ""
     },
     {
@@ -93,7 +93,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "specular_saturated_2side",
       "Material2" : "trasparent_saturated",
-      "Category" : "FACE",
+      "Category" : "NOSE",
       "RemTongue" : ""
     },
     {
@@ -479,6 +479,35 @@
       "Color1RGB" : "42723EFF",
       "Color2Name" : "yellow_light",
       "Color2RGB" : "FFFF92FF"
+    }
+  ],
+  "RewardsDecal" : [
+    {
+      "ID" : "Antura_decalmap_01_color_1"
+    },
+    {
+      "ID" : "Antura_decalmap_01_color_2"
+    },
+    {
+      "ID" : "Antura_decalmap_01_color_3"
+    },
+    {
+      "ID" : "Antura_decalmap_02_color_1"
+    },
+    {
+      "ID" : "Antura_decalmap_02_color_2"
+    },
+    {
+      "ID" : "Antura_decalmap_02_color_3"
+    },
+    {
+      "ID" : "Antura_decalmap_03_color_1"
+    },
+    {
+      "ID" : "Antura_decalmap_03_color_2"
+    },
+    {
+      "ID" : "Antura_decalmap_03_color_3"
     }
   ]
 }
