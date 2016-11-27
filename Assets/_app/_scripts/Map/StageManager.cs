@@ -13,9 +13,9 @@ namespace EA4S
         public int s,i;
         void Awake()
         {
-            /*AppManager.Instance.Player.MaxJourneyPosition.Stage = 2;
-            AppManager.Instance.Player.MaxJourneyPosition.LearningBlock = 3;
-            AppManager.Instance.Player.MaxJourneyPosition.PlaySession = 1;*/
+            /*AppManager.I.Player.MaxJourneyPosition.Stage = 2;
+            AppManager.I.Player.MaxJourneyPosition.LearningBlock = 3;
+            AppManager.I.Player.MaxJourneyPosition.PlaySession = 1;*/
 
             s = AppManager.I.Player.MaxJourneyPosition.Stage;
             for (i=1;i<= (s-1);i++)
@@ -26,7 +26,7 @@ namespace EA4S
             miniMaps[i].GetComponent<MiniMap>().CalculateSettingsStageMap();
 
             
-            //ChangeCamera(cameras[AppManager.Instance.Player.CurrentJourneyPosition.Stage]);
+            //ChangeCamera(cameras[AppManager.I.Player.CurrentJourneyPosition.Stage]);
             stages[AppManager.I.Player.CurrentJourneyPosition.Stage].SetActive(true);
             letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[AppManager.I.Player.CurrentJourneyPosition.Stage].GetComponent<MiniMap>();
 

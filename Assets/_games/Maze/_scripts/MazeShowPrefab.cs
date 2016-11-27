@@ -68,7 +68,7 @@ namespace EA4S.Maze
 			movingOut = true;
 
 			/*if(win)
-				AudioManager.I.PlayLetter(AppManager.Instance.Letters[letterIndex].Key);*/
+				AudioManager.I.PlayLetter(AppManager.I.Letters[letterIndex].Key);*/
 			
 		}
 	}
