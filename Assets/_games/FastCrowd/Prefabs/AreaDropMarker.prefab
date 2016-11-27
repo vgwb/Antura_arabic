@@ -93,6 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f383fac0dfd4f3d468daa437db06fa18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalFont: {fileID: 11400000, guid: ec76213212ac2438986d3d12b10f0625, type: 2}
+  numbersFont: {fileID: 11400000, guid: 0d827034b014b4640927c615454b5955, type: 2}
   LetterLable: {fileID: 114000012286514502}
   DrawText: {fileID: 114000013013612814}
   DropContain: {fileID: 0}
