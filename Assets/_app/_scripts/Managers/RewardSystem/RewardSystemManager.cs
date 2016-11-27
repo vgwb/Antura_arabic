@@ -65,8 +65,17 @@ namespace EA4S {
                 case RewardTypes.reward:
                     // TODO: get reward from db of unlocked rewards
                     List<Reward> rewards = config.Rewards.FindAll(r => r.Category == _categoryRewardId);
+                    int count = 0;
                     foreach (Reward reward in rewards) {
-                        returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = false });
+                        count++;
+                        if (count == 1)
+                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = true });
+                        else if (count == 2)
+                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = true, IsSelected = false });
+                        else if (count == rewards.Count)
+                            returnList.Add(null);
+                        else
+                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = false });
                     }
                     break;
                 case RewardTypes.texture:
@@ -83,11 +92,11 @@ namespace EA4S {
                     ModelsManager.MountModel(returnList[i].ID, _parentsTransForModels[i]);
                 }
             }
-            // add empty results
-            int emptyItemsCount = _parentsTransForModels.Count - returnList.Count;
-            for (int i = 0; i < emptyItemsCount; i++) {
-                returnList.Add(null);
-            }
+            //// add empty results
+            //int emptyItemsCount = _parentsTransForModels.Count - returnList.Count;
+            //for (int i = 0; i < emptyItemsCount; i++) {
+            //    returnList.Add(null);
+            //}
             return returnList;
         }
 
