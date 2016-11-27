@@ -55,7 +55,7 @@ namespace EA4S.SickLetters
                     return;
 
                 if (dd.isDragging)
-                    dd.isTouchingVase = false;
+                    dd.touchedVase = false;
             }
          }
         /*void OnTriggerStay(Collider coll)
@@ -71,7 +71,7 @@ namespace EA4S.SickLetters
                 dd = coll.gameObject.GetComponent<SickLettersDraggableDD>();
 
                 if (dd.isDragging)
-                    dd.isTouchingVase = true;
+                    dd.touchedVase = true;
                 if (!dd || dd.isDragging || dd.isInVase)
                     return;
 
@@ -115,7 +115,7 @@ namespace EA4S.SickLetters
                     game.lastMoveIsCorrect = true;
                     
 
-                    if (!dd.isTouchingVase)
+                    if (!dd.touchedVase)
                         dd.boxCollider.isTrigger = false;
 
                     TutorialUI.MarkYes(transform.position - Vector3.forward*2 + Vector3.up, TutorialUI.MarkSize.Big);
