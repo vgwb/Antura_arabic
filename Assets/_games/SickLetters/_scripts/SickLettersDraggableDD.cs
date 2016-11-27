@@ -21,7 +21,7 @@ namespace EA4S.SickLetters
 		public TextMeshPro draggableText;
 
         public bool isCorrect;
-        public bool isNeeded = false, isInVase = false, isTouchingVase = false;
+        public bool isNeeded = false, isInVase = false, touchedVase = false;
 
         public bool isDragging = false;
 
@@ -136,8 +136,8 @@ namespace EA4S.SickLetters
             releaseDD();
         }
 
-       
 
+        bool destroy;
         public void releaseDD()
         {
             release = true;
@@ -179,8 +179,16 @@ namespace EA4S.SickLetters
 
             overPlayermarker = false;
             overDestinationMarker = false;
+
+            StartCoroutine(destroyIfStuck());
         }
 
+        IEnumerator destroyIfStuck()
+        {
+            yield return new WaitForSeconds(2);
+            if (!isInVase && touchedVase)
+                poofDD();
+        }
 		public void Reset()
 		{
             transform.parent = origParent;
@@ -207,7 +215,7 @@ namespace EA4S.SickLetters
             transform.parent = origParent;
             transform.localPosition = Vector3.zero;
             transform.localEulerAngles = origLocalRotation;
-            isTouchingVase = false;
+            touchedVase = false;
             thisRigidBody.isKinematic = true;
             boxCollider.isTrigger = true;
             boxCollider.size = new Vector3(0.6f, 3.89f, 0.6f);
@@ -261,8 +269,9 @@ namespace EA4S.SickLetters
 
             boxCollider.size = new Vector3(1, 1, 0.75f); //(1,1,1.21f);
             boxCollider.isTrigger = true;
+            transform.localEulerAngles = origLocalRotation;
 
-            isTouchingVase = false;
+            touchedVase = false;
         }
 
 
@@ -285,8 +294,16 @@ namespace EA4S.SickLetters
 
         void OnCollisionEnter(Collision coll)
         {
+            //Debug.LogError(coll.gameObject.name);
+            if (coll.gameObject.tag == "Marker")
+            {
+                touchedVase = true;
+            }
             if (coll.gameObject.tag == "Obstacle")
+            {
+                
                 poofOnCollision(coll);
+            }
             /*else if (!isDragging &&!isInVase && coll.gameObject.tag == "Finish")
             {
                 game.scale.addNewDDToVas(this);
@@ -318,40 +335,45 @@ namespace EA4S.SickLetters
         {
             if (coll.gameObject.tag == "Obstacle")
             {
-                game.Poof(transform);
+                poofDD();
+            }
+        }
 
-                if (game.roundsCount == 0 && !isInVase)
-                {
-                    if(isCorrect)
-                        resetCorrectDD();
-                    else
-                        resetWrongDD();
+        void poofDD()
+        {
+            game.Poof(transform);
 
-                    game.onWrongMove();
-                    game.tut.doTutorial();
-                    return;
-                }
-
-                if (!isInVase)
-                {
-                    game.onWrongMove();
-                }
-
+            if (game.roundsCount == 0 && !isInVase)
+            {
                 if (isCorrect)
-                {
-                    StartCoroutine(game.scale.onDroppingCorrectDD());
                     resetCorrectDD();
-                }
                 else
-                {
-                    if (!deattached)
-                    {
-                        deattached = true;
-                        game.checkForNextRound();
-                    }
+                    resetWrongDD();
 
-                    Destroy(gameObject, 0.0f);
+                game.onWrongMove();
+                game.tut.doTutorial();
+                return;
+            }
+
+            if (!isInVase)
+            {
+                game.onWrongMove();
+            }
+
+            if (isCorrect)
+            {
+                StartCoroutine(game.scale.onDroppingCorrectDD());
+                resetCorrectDD();
+            }
+            else
+            {
+                if (!deattached)
+                {
+                    deattached = true;
+                    game.checkForNextRound();
                 }
+
+                Destroy(gameObject, 0.0f);
             }
         }
 
