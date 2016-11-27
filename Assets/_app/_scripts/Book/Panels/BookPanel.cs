@@ -208,6 +208,13 @@ namespace EA4S
             }
             output += "\n";
             output += word.Arabic;
+
+            output += "\n";
+
+            foreach (var letter in splittedLetters) {
+                output += letter.GetChar();
+            }
+
             ArabicText.text = output;
 
             LLText.Init(new LL_WordData(word));
