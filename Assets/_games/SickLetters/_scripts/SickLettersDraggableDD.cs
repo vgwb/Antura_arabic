@@ -248,6 +248,8 @@ namespace EA4S.SickLetters
         void OnTriggerEnter(Collider other)
 		{
 			Setmarker(other, true);
+            if (isCorrect)
+                checkDDsOverlapping(other);
         }
 
 		void OnTriggerStay(Collider other)
@@ -277,11 +279,24 @@ namespace EA4S.SickLetters
                 poofOnCollision(coll);
         }
 
+        void checkDDsOverlapping(Collider coll)
+        {
+            SickLettersDraggableDD dd = coll.gameObject.GetComponent<SickLettersDraggableDD>();
+            if (dd && !dd.isDragging && dd.transform.parent)
+                foreach (Transform t in game.safeDropZones)
+                    if (t.childCount == 0)
+                    {
+                        coll.transform.parent = t;
+                        coll.transform.localPosition = Vector3.zero;
+                        break;
+                    }
+        }
+
         void poofOnCollision(Collision coll)
         {
             if (coll.gameObject.tag == "Obstacle")
             {
-                game.Poof(transform.position);
+                game.Poof(transform);
 
                 if (game.roundsCount == 0 && !isInVase)
                 {
@@ -320,6 +335,7 @@ namespace EA4S.SickLetters
 
         void checkDDtoVaseCollision(Collision coll)
         {
+            
             Debug.Log(coll.gameObject.name.ToLower());
             if (coll.gameObject.name.ToLower().Contains("vase"))
                 releaseDD();
