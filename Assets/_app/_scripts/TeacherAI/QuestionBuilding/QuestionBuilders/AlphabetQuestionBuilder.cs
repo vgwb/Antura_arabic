@@ -32,7 +32,7 @@ namespace EA4S
 
         public QuestionPackData CreateAlphabetQuestionPackData()
         {
-            var teacher = AppManager.Instance.Teacher;
+            var teacher = AppManager.I.Teacher;
 
             // Fully ordered alphabet, only 1 pack
             var alphabetLetters = teacher.wordAI.SelectData(

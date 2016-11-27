@@ -74,7 +74,7 @@ namespace EA4S
             string serializedWordsForLog = string.Empty;
             List<ILivingLetterData> newDatas = new List<ILivingLetterData>(); // list to be shuffled
             for (int i = 0; i < Draws.Count; i++) {
-                ILivingLetterData newData = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
+                ILivingLetterData newData = AppManager.I.Teacher.GetRandomTestWordDataLL();
                 if (newDatas.Contains(newData)) {
                     i--;
                     continue;

@@ -48,7 +48,7 @@ namespace EA4S
 
         private QuestionPackData CreateSingleQuestionPackData()
         {
-            var teacher = AppManager.Instance.Teacher;
+            var teacher = AppManager.I.Teacher;
 
             var correctWords = teacher.wordAI.SelectData(
                 () => teacher.wordHelper.GetWordsByCategory(category, parameters.wordFilters), 

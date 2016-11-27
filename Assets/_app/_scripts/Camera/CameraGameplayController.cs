@@ -19,7 +19,7 @@ namespace EA4S
 
         void Start()
         {
-            EnableFX(AppManager.Instance.GameSettings.HighQualityGfx);
+            EnableFX(AppManager.I.GameSettings.HighQualityGfx);
         }
 
         public void EnableFX(bool status)

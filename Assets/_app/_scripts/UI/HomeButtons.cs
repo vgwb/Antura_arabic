@@ -23,7 +23,7 @@ namespace EA4S
             }
 
             BtMusic.Toggle(AudioManager.I.MusicEnabled);
-            BtFx.Toggle(AppManager.Instance.GameSettings.HighQualityGfx);
+            BtFx.Toggle(AppManager.I.GameSettings.HighQualityGfx);
         }
 
         void OnDestroy()
@@ -40,8 +40,8 @@ namespace EA4S
                     BtMusic.Toggle(AudioManager.I.MusicEnabled);
                     break;
                 case MenuButtonType.FxToggle: // FX on/off
-                    AppManager.Instance.ToggleQualitygfx();
-                    BtFx.Toggle(AppManager.Instance.GameSettings.HighQualityGfx);
+                    AppManager.I.ToggleQualitygfx();
+                    BtFx.Toggle(AppManager.I.GameSettings.HighQualityGfx);
                     break;
                 case MenuButtonType.Continue:
                     HomeMngr.Play();

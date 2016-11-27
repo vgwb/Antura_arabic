@@ -64,7 +64,7 @@ namespace EA4S.Maze
         void setupIndices()
         {
             allLetters = new List<string>();
-            List<LL_LetterData> list = AppManager.Instance.Teacher.GetAllTestLetterDataLL();
+            List<LL_LetterData> list = AppManager.I.Teacher.GetAllTestLetterDataLL();
             foreach (LL_LetterData ld in list)
             {
                // Debug.Log(ld.Id);

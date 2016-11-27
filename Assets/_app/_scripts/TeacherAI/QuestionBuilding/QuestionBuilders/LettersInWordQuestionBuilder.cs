@@ -44,7 +44,7 @@ namespace EA4S
 
         private QuestionPackData CreateSingleQuestionPackData()
         {
-            var teacher = AppManager.Instance.Teacher;
+            var teacher = AppManager.I.Teacher;
 
             // Get a word
             var usableWords = teacher.wordAI.SelectData(

@@ -21,7 +21,7 @@ namespace EA4S
 
         void Start()
         {
-            LL.Init(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement()); 
+            LL.Init(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement()); 
             LL.SetState(LLAnimationStates.LL_rocketing);
         }
 

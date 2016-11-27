@@ -11,7 +11,7 @@ namespace EA4S
     {
         public new AppSettings GameSettings = new AppSettings();
 
-        public new static AppManager Instance {
+        public new static AppManager I {
             get { return GameManager.Instance as AppManager; }
         }
 
@@ -128,7 +128,7 @@ namespace EA4S
                     Player.CurrentMiniGameInPlaySession++;
                     //Debug.Log("MiniGameDone PlaySessionGameDone = " + PlaySessionGameDone);
                     var myGameCode = TeacherAI.I.CurrentMiniGame.Code;
-                    AppManager.Instance.GameLauncher.LaunchGame(myGameCode);
+                    AppManager.I.GameLauncher.LaunchGame(myGameCode);
                 }
             } else {
                 // special cases

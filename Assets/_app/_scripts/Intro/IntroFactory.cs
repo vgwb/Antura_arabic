@@ -67,7 +67,7 @@ namespace EA4S
             letterObjectView.transform.position = newPosition;
             letterObjectView.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.value * 360, 0);
             //letterObjectView.Init(toAdd.Dequeue());
-            letterObjectView.Init(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement());
+            letterObjectView.Init(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement());
 
             letterObjectView.gameObject.AddComponent<Rigidbody>().isKinematic = true;
 

@@ -40,7 +40,7 @@ namespace EA4S
 
         private QuestionPackData CreateSingleQuestionPackData()
         {
-            var teacher = AppManager.Instance.Teacher;
+            var teacher = AppManager.I.Teacher;
 
             // Get a question phrase at random
             int nToUse = 1;

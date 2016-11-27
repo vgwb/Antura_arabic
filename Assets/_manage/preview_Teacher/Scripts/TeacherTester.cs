@@ -62,10 +62,10 @@ namespace EA4S.Teacher.Test
 
         QuestionBuilderParameters SetupFakeGame()
         {
-            AppManager.Instance.Player.CurrentJourneyPosition.Stage = currentJourneyStage;
-            AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = currentJourneyLB;
-            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = currentJourneyPS;
-            AppManager.Instance.Teacher.InitialiseCurrentPlaySession();
+            AppManager.I.Player.CurrentJourneyPosition.Stage = currentJourneyStage;
+            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = currentJourneyLB;
+            AppManager.I.Player.CurrentJourneyPosition.PlaySession = currentJourneyPS;
+            AppManager.I.Teacher.InitialiseCurrentPlaySession();
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = correctHistory;

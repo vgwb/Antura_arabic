@@ -16,7 +16,7 @@ namespace EA4S
             AudioManager.I.PlayMusic(SceneMusic);
             GlobalUI.ShowPauseMenu(false);
 
-            if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) < 2) {
+            if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession) < 2) {
                 KeeperManager.I.PlayDialog(Db.LocalizationDataId.Mood_Question_2);
             } else {
                 int rnd = Random.Range(1, 3);
@@ -40,7 +40,7 @@ namespace EA4S
         /// <param name="_mood"></param>
         public void MoodSelected(int _mood)
         {
-            AppManager.Instance.Teacher.logAI.LogMood(_mood);
+            AppManager.I.Teacher.logAI.LogMood(_mood);
             AudioManager.I.PlaySfx(Sfx.UIButtonClick);
             Invoke("exitScene", 0.5f);
         }

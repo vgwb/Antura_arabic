@@ -14,18 +14,18 @@ namespace EA4S
         {
             var str = "";
 
-            str = "hello player (ID: " + AppManager.Instance.Player.Id + ")\n";
-            str += "you're now in LB " + AppManager.Instance.Player.CurrentJourneyPosition + "\n";
-            str += "your max LB is " + AppManager.Instance.Player.MaxJourneyPosition + "\n";
-            str += "Mood " + AppManager.Instance.Player.MainMood + "\n";
+            str = "hello player (ID: " + AppManager.I.Player.Id + ")\n";
+            str += "you're now in LB " + AppManager.I.Player.CurrentJourneyPosition + "\n";
+            str += "your max LB is " + AppManager.I.Player.MaxJourneyPosition + "\n";
+            str += "Mood " + AppManager.I.Player.MainMood + "\n";
 
-            if (AppManager.Instance.Player.Precision != 0f) { str += "Precision " + AppManager.Instance.Player.Precision + "\n"; }
-            if (AppManager.Instance.Player.Reaction != 0f) { str += "Reaction " + AppManager.Instance.Player.Reaction + "\n"; }
-            if (AppManager.Instance.Player.Memory != 0f) { str += "Memory " + AppManager.Instance.Player.Memory + "\n"; }
-            if (AppManager.Instance.Player.Logic != 0f) { str += "Logic " + AppManager.Instance.Player.Logic + "\n"; }
-            if (AppManager.Instance.Player.Rhythm != 0f) { str += "Rhythm " + AppManager.Instance.Player.Rhythm + "\n"; }
-            if (AppManager.Instance.Player.Musicality != 0f) { str += "Musicality " + AppManager.Instance.Player.Musicality + "\n"; }
-            if (AppManager.Instance.Player.Sight != 0f) { str += "Sight " + AppManager.Instance.Player.Sight + "\n"; }
+            if (AppManager.I.Player.Precision != 0f) { str += "Precision " + AppManager.I.Player.Precision + "\n"; }
+            if (AppManager.I.Player.Reaction != 0f) { str += "Reaction " + AppManager.I.Player.Reaction + "\n"; }
+            if (AppManager.I.Player.Memory != 0f) { str += "Memory " + AppManager.I.Player.Memory + "\n"; }
+            if (AppManager.I.Player.Logic != 0f) { str += "Logic " + AppManager.I.Player.Logic + "\n"; }
+            if (AppManager.I.Player.Rhythm != 0f) { str += "Rhythm " + AppManager.I.Player.Rhythm + "\n"; }
+            if (AppManager.I.Player.Musicality != 0f) { str += "Musicality " + AppManager.I.Player.Musicality + "\n"; }
+            if (AppManager.I.Player.Sight != 0f) { str += "Sight " + AppManager.I.Player.Sight + "\n"; }
 
             output.text = str;
             //AppManager.Instance.DB.GetLocalizationDataById("Game_Title").Arabic;

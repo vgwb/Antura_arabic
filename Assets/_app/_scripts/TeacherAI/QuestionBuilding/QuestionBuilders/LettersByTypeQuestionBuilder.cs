@@ -23,9 +23,9 @@ namespace EA4S
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
             List<QuestionPackData> packs = new List<QuestionPackData>();
-            var teacher = AppManager.Instance.Teacher;
+            var teacher = AppManager.I.Teacher;
 
-            var db = AppManager.Instance.DB;
+            var db = AppManager.I.DB;
             var choice1 = db.GetWordDataById("consonant");
             var choice2 = db.GetWordDataById("vowel");
 

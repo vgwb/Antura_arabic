@@ -43,7 +43,7 @@ namespace EA4S
 
         private QuestionPackData CreateSingleQuestionPackData()
         {
-            var teacher = AppManager.Instance.Teacher;
+            var teacher = AppManager.I.Teacher;
 
             var correctLetters = teacher.wordAI.SelectData(
                 () => teacher.wordHelper.GetAllLetters(parameters.letterFilters),

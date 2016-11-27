@@ -23,7 +23,7 @@ namespace EA4S
             SubTitle.text = data.Id;
 
             if (data.Drawing != "") {
-                Drawing.text = AppManager.Instance.Teacher.wordHelper.GetWordDrawing(data);
+                Drawing.text = AppManager.I.Teacher.wordHelper.GetWordDrawing(data);
                 if (data.Category == Db.WordDataCategory.Color) {
                     Drawing.SetColor(GenericUtilities.GetColorFromString(data.Value));
                 }

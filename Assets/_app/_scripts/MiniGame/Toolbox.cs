@@ -18,9 +18,9 @@ namespace EA4S
             if (_stars > 0)
                 positiveResult = true;
 
-            AnturaGameplayInfo gameInfo = AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
+            AnturaGameplayInfo gameInfo = AppManager.I.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
 
-            AppManager.Instance.Modules.GameplayModule.GameplayResult(
+            AppManager.I.Modules.GameplayModule.GameplayResult(
                 new AnturaGameplayResult() {
 
                     GameplayInfo = new AnturaGameplayInfo() { GameId = gameInfo.GameId },

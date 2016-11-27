@@ -95,13 +95,13 @@ namespace EA4S
 
             // Set toggles
             BtMusic.Toggle(AudioManager.I.MusicEnabled);
-            BtFx.Toggle(AppManager.Instance.GameSettings.HighQualityGfx);
+            BtFx.Toggle(AppManager.I.GameSettings.HighQualityGfx);
 
             if (_open) {
                 timeScaleAtMenuOpen = Time.timeScale;
                 Time.timeScale = 0;
-                if (AppManager.Instance.CurrentGameManagerGO != null)
-                    AppManager.Instance.CurrentGameManagerGO.SendMessage("DoPause", true, SendMessageOptions.DontRequireReceiver);
+                if (AppManager.I.CurrentGameManagerGO != null)
+                    AppManager.I.CurrentGameManagerGO.SendMessage("DoPause", true, SendMessageOptions.DontRequireReceiver);
                 openMenuTween.timeScale = 1;
                 openMenuTween.PlayForward();
                 AudioManager.I.PlaySfx(Sfx.UIPauseIn);
@@ -109,8 +109,8 @@ namespace EA4S
                 Time.timeScale = timeScaleAtMenuOpen;
                 logoBobTween.Pause();
                 openMenuTween.timeScale = 2; // Speed up tween when going backwards
-                if (AppManager.Instance.CurrentGameManagerGO != null)
-                    AppManager.Instance.CurrentGameManagerGO.SendMessage("DoPause", false, SendMessageOptions.DontRequireReceiver);
+                if (AppManager.I.CurrentGameManagerGO != null)
+                    AppManager.I.CurrentGameManagerGO.SendMessage("DoPause", false, SendMessageOptions.DontRequireReceiver);
                 openMenuTween.PlayBackwards();
                 AudioManager.I.PlaySfx(Sfx.UIPauseOut);
             }
@@ -138,15 +138,15 @@ namespace EA4S
                 switch (_bt.Type) {
                     case MenuButtonType.Back: // Exit
                         OpenMenu(false);
-                        AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("_Start");
+                        AppManager.I.Modules.SceneModule.LoadSceneWithTransition("_Start");
                         break;
                     case MenuButtonType.MusicToggle: // Music on/off
                         AudioManager.I.ToggleMusic();
                         BtMusic.Toggle(AudioManager.I.MusicEnabled);
                         break;
                     case MenuButtonType.FxToggle: // FX on/off
-                        AppManager.Instance.ToggleQualitygfx();
-                        BtFx.Toggle(AppManager.Instance.GameSettings.HighQualityGfx);
+                        AppManager.I.ToggleQualitygfx();
+                        BtFx.Toggle(AppManager.I.GameSettings.HighQualityGfx);
                         break;
                     case MenuButtonType.Credits:
                         // TODO

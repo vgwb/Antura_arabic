@@ -94,7 +94,7 @@ public partial class SROptions
     [Sort(80)]
     public void ToggleQuality()
     {
-        AppManager.Instance.ToggleQualitygfx();
+        AppManager.I.ToggleQualitygfx();
         SRDebug.Instance.HideDebugPanel();
     }
 
@@ -414,16 +414,16 @@ public partial class SROptions
     [Category("Max Journey Position")]
     [Sort(5)]
     public string CurrentMaxJouneryPosition {
-        get { return AppManager.Instance.Player.MaxJourneyPosition.ToString(); }
+        get { return AppManager.I.Player.MaxJourneyPosition.ToString(); }
     }
 
     [Category("Max Journey Position")]
     [Sort(6)]
     public void ForwardMaxPosition()
     {
-        JourneyPosition newPos = TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.MaxJourneyPosition);
+        JourneyPosition newPos = TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.MaxJourneyPosition);
         if (newPos != null) {
-            AppManager.Instance.Player.SetMaxJourneyPosition(newPos, true);
+            AppManager.I.Player.SetMaxJourneyPosition(newPos, true);
         }
         SRDebug.Instance.HideDebugPanel();
         SRDebug.Instance.ShowDebugPanel();
@@ -432,7 +432,7 @@ public partial class SROptions
     [Category("Max Journey Position")]
     [Sort(7)]
     public void UnlockAll() {
-        AppManager.Instance.Player.SetMaxJourneyPosition(new JourneyPosition(6,14,1), true);
+        AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(6,14,1), true);
         SRDebug.Instance.HideDebugPanel();
         SRDebug.Instance.ShowDebugPanel();
     }
@@ -441,7 +441,7 @@ public partial class SROptions
     [Sort(8)]
     public void ResetMaxPosition()
     {
-        AppManager.Instance.Player.ResetMaxJourneyPosition();
+        AppManager.I.Player.ResetMaxJourneyPosition();
         SRDebug.Instance.HideDebugPanel();
         SRDebug.Instance.ShowDebugPanel();
     }
