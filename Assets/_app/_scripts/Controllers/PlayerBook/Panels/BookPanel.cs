@@ -201,13 +201,13 @@ namespace EA4S
             AudioManager.I.PlayWord(word.Id);
             ArabicText.text = word.Arabic;
 
+
+
             LLText.Init(new LL_WordData(word));
-            //LLText.Label.text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(word.Arabic);
 
             if (word.Drawing != "") {
                 var drawingChar = AppManager.Instance.Teacher.wordHelper.GetWordDrawing(word);
                 Drawing.text = drawingChar;
-                //LLDrawing.Lable.text = drawingChar;
                 LLDrawing.Init(new LL_ImageData(word));
                 Debug.Log("Drawing: " + word.Drawing);
             } else {
