@@ -223,15 +223,20 @@ namespace EA4S
             }
         }
 
+        void ResetLL()
+        {
+
+        }
+
         public void DetailLetter(LetterData letter)
         {
             Debug.Log("Detail Letter :" + letter.Id);
             AudioManager.I.PlayLetter(letter.Id);
 
-            ArabicText.text = "iso: " + letter.GetChar(LetterPosition.Isolated);
-            ArabicText.text += "\nfin: " + letter.GetChar(LetterPosition.Final);
-            ArabicText.text += "\nmed: " + letter.GetChar(LetterPosition.Medial);
-            ArabicText.text += "\nini: " + letter.GetChar(LetterPosition.Initial);
+            ArabicText.text = letter.GetChar(LetterPosition.Isolated);
+            ArabicText.text += " " + letter.GetChar(LetterPosition.Final);
+            ArabicText.text += " " + letter.GetChar(LetterPosition.Medial);
+            ArabicText.text += " " + letter.GetChar(LetterPosition.Initial);
 
             LLText.Init(new LL_LetterData(letter));
         }

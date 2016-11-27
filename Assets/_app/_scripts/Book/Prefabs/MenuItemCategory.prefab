@@ -64,6 +64,7 @@ MonoBehaviour:
   isTMPro: 0
   isUI: 1
   isArabic: 0
+  LocalizationId: 0
 --- !u!114 &114000011453616060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,8 +188,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 25c62a17a37a5cd46b1facc2610baa17, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
