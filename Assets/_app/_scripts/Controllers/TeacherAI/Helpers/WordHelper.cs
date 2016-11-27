@@ -2,58 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace EA4S
-{
-    // Filter parameters for letters
-    public class LetterFilters
-    {
-        public bool excludeDiacritics;
-        public bool excludeLetterVariations;
-        public bool requireDiacritics;
-
-        public LetterFilters(
-            bool excludeDiacritics = false, 
-            bool excludeLetterVariations = false,
-            bool requireDiacritics = false)
-        {
-            this.excludeDiacritics = excludeDiacritics;
-            this.excludeLetterVariations = excludeLetterVariations;
-            this.requireDiacritics = requireDiacritics;
-        }
-    }
-
-    // Filter parameters for words
-    public class WordFilters
-    {
-        public bool excludeDiacritics;
-        public bool excludeLetterVariations;
-        public bool requireDiacritics;
-        public bool excludeArticles;
-        public bool excludePluralDual;
-        public bool requireDrawings;
-        public bool excludeColorWords;
-
-        public WordFilters(
-            bool excludeDiacritics = false,
-            bool excludeLetterVariations = false,
-            bool requireDiacritics = false,
-            bool excludeArticles = false, 
-            bool excludePluralDual = false, 
-            bool requireDrawings = false,
-            bool excludeColorWords = false)
-        {
-            this.excludeDiacritics = excludeDiacritics;
-            this.excludeLetterVariations = excludeLetterVariations;
-            this.requireDiacritics = requireDiacritics;
-            this.excludeArticles = excludeArticles;
-            this.excludePluralDual = excludePluralDual;
-            this.requireDrawings = requireDrawings;
-            this.excludeColorWords = excludeColorWords;
-        }
-    }
-
-}
-
 namespace EA4S.Db
 {
     /// <summary>
@@ -85,7 +33,7 @@ namespace EA4S.Db
 
         public List<LetterData> GetAllBaseLetters()
         {
-            var p = new LetterFilters(excludeDiacritics: true, excludeLetterVariations:true);
+            var p = new LetterFilters(excludeDiacritics: true, excludeLetterVariations: true);
             return GetAllLetters(p);
         }
 
@@ -408,15 +356,13 @@ namespace EA4S.Db
         private bool CheckFilters(WordFilters wordFilters, PhraseData data)
         {
             bool allWordsAreOk = true;
-            foreach (var word in GetWordsInPhrase(data))
-            {
+            foreach (var word in GetWordsInPhrase(data)) {
                 if (!CheckFilters(wordFilters, word))
                     allWordsAreOk = false;
                 if (!allWordsAreOk) return false;
             }
             allWordsAreOk = true;
-            foreach (var word in GetAnswersToPhrase(data))
-            {
+            foreach (var word in GetAnswersToPhrase(data)) {
                 if (!CheckFilters(wordFilters, word))
                     allWordsAreOk = false;
                 if (!allWordsAreOk) return false;
