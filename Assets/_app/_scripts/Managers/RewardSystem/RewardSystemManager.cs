@@ -83,7 +83,11 @@ namespace EA4S {
                     ModelsManager.MountModel(returnList[i].ID, _parentsTransForModels[i]);
                 }
             }
-                
+            // add empty results
+            int emptyItemsCount = _parentsTransForModels.Count - returnList.Count;
+            for (int i = 0; i < emptyItemsCount; i++) {
+                returnList.Add(null);
+            }
             return returnList;
         }
 
@@ -160,6 +164,7 @@ namespace EA4S {
     public class RewardConfig {
         public List<Reward> Rewards;
         public List<RewardColor> RewardsColorPairs;
+        public List<RewardDecal> RewardsDecal;
     }
 
     [Serializable]
@@ -180,6 +185,11 @@ namespace EA4S {
         public string Color2Name;
         public string Color1RGB; // "rrggbbaa"
         public string Color2RGB; // "rrggbbaa"
+    }
+
+    [Serializable]
+    public class RewardDecal {
+        public string ID;
     }
     #endregion
 
