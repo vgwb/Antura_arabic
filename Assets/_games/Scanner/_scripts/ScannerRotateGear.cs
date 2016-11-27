@@ -9,6 +9,7 @@ namespace EA4S.Scanner
 
 		public float speed;
 		// Use this for initialization
+
 		void Start () {
 
 		}

@@ -46,8 +46,8 @@ namespace EA4S
                     commonLetters.Clear();
                     uncommonLetters.Clear();
 
-                    newWordData1 = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
-                    foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData1.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()))
+                    newWordData1 = AppManager.I.Teacher.GetRandomTestWordDataLL();
+                    foreach (var letterData in ArabicAlphabetHelper.ExtractLetterDataFromArabicWord(newWordData1.Data.Arabic))
                     {
                         wordLetters1.Add(letterData);
                     }
@@ -55,7 +55,7 @@ namespace EA4S
                     int innerLoopAttempts = 50;
                     do
                     {
-                        newWordData2 = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
+                        newWordData2 = AppManager.I.Teacher.GetRandomTestWordDataLL();
                         innerLoopAttempts--;
                     } while(newWordData2.Id == newWordData1.Id && innerLoopAttempts > 0);
                     if (innerLoopAttempts <= 0)
@@ -63,7 +63,7 @@ namespace EA4S
                         UnityEngine.Debug.LogError("MakeFriends QuestionProvider Could not find 2 different words!");
                     }
 
-                    foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData2.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()))
+                    foreach (var letterData in ArabicAlphabetHelper.ExtractLetterDataFromArabicWord(newWordData2.Data.Arabic))
                     {
                         wordLetters2.Add(letterData);
                     }

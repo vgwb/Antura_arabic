@@ -30,7 +30,7 @@ namespace EA4S.Assessment
         {
             if (exited == false)
             {
-                AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Rewards");
+                AppManager.I.Modules.SceneModule.LoadSceneWithTransition("app_Rewards");
                 exited = true;
             }
         }

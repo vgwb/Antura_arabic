@@ -52,6 +52,21 @@ namespace EA4S
 
         #endregion
 
+        #region Layers
+
+        public static int LayerMaskToIndex(LayerMask _mask)
+        {
+            int layerIndex = 0;
+            int layer = _mask.value;
+            while(layer > 1) {
+                layer = layer >> 1;
+                layerIndex++;
+            }
+            return layerIndex;
+        }
+
+        #endregion
+
         #region Math
         public static float GetAverage(List<float> floatsList)
         {
@@ -69,6 +84,20 @@ namespace EA4S
         #endregion
 
         #region Colors
+
+        // Taken from here: http://answers.unity3d.com/questions/812240/convert-hex-int-to-colorcolor32.html
+        public static Color HexToColor(string _hex)
+        {
+            _hex = _hex.Replace ("0x", "");
+            _hex = _hex.Replace ("#", "");
+            byte a = 255;
+            byte r = byte.Parse(_hex.Substring(0,2), System.Globalization.NumberStyles.HexNumber);
+            byte g = byte.Parse(_hex.Substring(2,2), System.Globalization.NumberStyles.HexNumber);
+            byte b = byte.Parse(_hex.Substring(4,2), System.Globalization.NumberStyles.HexNumber);
+            // Only use alpha if the string has enough characters
+            if(_hex.Length == 8) a = byte.Parse(_hex.Substring(4,2), System.Globalization.NumberStyles.HexNumber);
+            return new Color32(r,g,b,a);
+        }
 
         public static Color GetColorFromString(string color)
         {

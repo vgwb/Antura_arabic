@@ -49,7 +49,10 @@
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
 
-            builder = new RandomLettersQuestionBuilder(7,7);
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.letterFilters.excludeDiacritics = true;
+            builderParams.wordFilters.excludeDiacritics = true;
+            builder = new RandomLettersQuestionBuilder(7,1, parameters: builderParams);
 
             return builder;
         }

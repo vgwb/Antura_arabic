@@ -10,14 +10,21 @@ namespace EA4S.Db.Management
         private Database database;
         public bool verbose;
 
+        public void RecreateDatabase()
+        {
+            CreateDatabaseAsset.CreateAssets("Assets/Resources/" + DatabaseManager.STATIC_DATABASE_NAME+"/", DatabaseManager.STATIC_DATABASE_NAME);
+            this.database = Database.LoadDB(DatabaseManager.STATIC_DATABASE_NAME);
+        }
+
         public void CopyCurrentDatabaseForTesting()
         {
-            this.database = Resources.Load<Database>(DatabaseManager.STATIC_DATABASE_NAME);
+            this.database = Database.LoadDB(DatabaseManager.STATIC_DATABASE_NAME);
 
-            var test_db = Resources.Load<Database>(DatabaseManager.STATIC_DATABASE_NAME_TEST);
-            if (test_db == null)
+            var test_db = Database.LoadDB(DatabaseManager.STATIC_DATABASE_NAME_TEST);
+            if (!test_db.HasTables())
             {
-                test_db = CustomAssetUtility.CreateAsset<Database>("Assets/Resources", DatabaseManager.STATIC_DATABASE_NAME_TEST);
+                CreateDatabaseAsset.CreateAssets("Assets/Resources/" + DatabaseManager.STATIC_DATABASE_NAME_TEST+"/", DatabaseManager.STATIC_DATABASE_NAME_TEST);
+                test_db = Database.LoadDB(DatabaseManager.STATIC_DATABASE_NAME_TEST);
             }
 
             {
@@ -75,6 +82,7 @@ namespace EA4S.Db.Management
             }
 
             Debug.Log("Database copied");
+            AssetDatabase.SaveAssets();
         }
 
         public void RegenerateEnums()
@@ -145,14 +153,14 @@ namespace EA4S.Db.Management
 
         #region Loading
 
-            /// <summary>
-            /// Load all database values from scriptable objects
-            /// </summary>
+        /// <summary>
+        /// Load all database values from scriptable objects
+        /// </summary>
         public void LoadDatabase()
         {
             if (verbose) Debug.Log("Loading data from JSON files...");
 
-            this.database = Resources.Load<Database>(DatabaseManager.STATIC_DATABASE_NAME);
+            this.database = Database.LoadDB(DatabaseManager.STATIC_DATABASE_NAME);
             LoadDataFrom(inputData);
 
             if (verbose) Debug.Log("Finished loading!");
@@ -222,9 +230,16 @@ namespace EA4S.Db.Management
                 parser.Parse(DBInputData.rewardDataAsset.text, database, database.GetRewardTable());
             }
 
-
             // Save database modifications
-            EditorUtility.SetDirty(database);
+            EditorUtility.SetDirty(database.stageDb);
+            EditorUtility.SetDirty(database.minigameDb);
+            EditorUtility.SetDirty(database.rewardDb);
+            EditorUtility.SetDirty(database.letterDb);
+            EditorUtility.SetDirty(database.wordDb);
+            EditorUtility.SetDirty(database.phraseDb);
+            EditorUtility.SetDirty(database.localizationDb);
+            EditorUtility.SetDirty(database.learningblockDb);
+            EditorUtility.SetDirty(database.minigameDb);
             AssetDatabase.SaveAssets();
         }
         #endregion

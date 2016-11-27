@@ -136,7 +136,6 @@ namespace EA4S.Assessment
             builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
 
-            
             return new WordsWithLetterQuestionBuilder( 
 
                 SimultaneosQuestions*Rounds,    // Total Answers

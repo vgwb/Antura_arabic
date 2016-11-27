@@ -29,7 +29,9 @@ namespace EA4S.Scanner
         public event Action onFallOff;
         public event Action onPassedMidPoint;
 
-        private Transform originalParent;
+		public BoxCollider bodyCollider;
+
+//        private Transform originalParent;
         private float fallOffX;
         private float midPointX;
         private bool passedMidPoint = false;
@@ -37,7 +39,7 @@ namespace EA4S.Scanner
         void Start()
         {
             status = LLStatus.None;
-            originalParent = transform.parent;
+//            originalParent = transform.parent;
             letterObjectView = livingLetter.GetComponent<LetterObjectView>();
             startingPosition = transform.position;
             startingRotation = letterObjectView.transform.rotation;
@@ -48,45 +50,59 @@ namespace EA4S.Scanner
         public void Reset()
         {
             StopAllCoroutines();
-
             rainbowJet.SetActive(false);
 
-            letterObjectView.transform.rotation = startingRotation;
-            transform.position = startingPosition;
+			if (ScannerConfiguration.Instance.gameActive)
+			{
+	            letterObjectView.transform.rotation = startingRotation;
+	            transform.position = startingPosition;
 
-            fallOffX = fallOffPoint.position.x;
-            midPointX = midPoint.position.x;
-            passedMidPoint = false;
+	            fallOffX = fallOffPoint.position.x;
+	            midPointX = midPoint.position.x;
+	            passedMidPoint = false;
 
-            turnAngle = facingCamera ? 180 : 0;
-            letterObjectView.SetState(LLAnimationStates.LL_still);
-            letterObjectView.Falling = true;
-            status = LLStatus.Sliding;
-            gameObject.GetComponent<SphereCollider>().enabled = true; // enable feet collider
-            gameObject.GetComponent<BoxCollider>().enabled = false; // disable body collider
-            onReset();
+	            turnAngle = facingCamera ? 180 : 0;
+	            letterObjectView.SetState(LLAnimationStates.LL_still);
+	            letterObjectView.Falling = true;
+	            status = LLStatus.Sliding;
+	            gameObject.GetComponent<SphereCollider>().enabled = true; // enable feet collider
+				bodyCollider.enabled = false; // disable body collider
+	            onReset();
+			}
 
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (status == LLStatus.Sliding) {
+            if (status == LLStatus.Sliding) 
+			{
                 transform.Translate(slideSpeed * Time.deltaTime, -slideSpeed * Time.deltaTime / 2, 0);
-            } else if (status == LLStatus.Lost) {
+			}
+			else if (status == LLStatus.StandingOnBelt)
+			{
+				transform.Translate(ScannerConfiguration.Instance.beltSpeed * Time.deltaTime,0,0);
+            }
+			else if (status == LLStatus.Lost) 
+			{
                 status = LLStatus.Poofing;
                 StartCoroutine(co_Lost());
-            } else if (status == LLStatus.Flying) {
+            } 
+			else if (status == LLStatus.Flying) 
+			{
                 transform.Translate(Vector2.up * flightSpeed * Time.deltaTime);
-            } else if (status == LLStatus.Falling) {
+            } 
+			else if (status == LLStatus.Falling) 
+			{
                 transform.Translate(Vector2.down * flightSpeed * Time.deltaTime);
             }
-
-            // Debug.Log("Letter: " + transform.position.x + " Fall Off X: " + fallOffX);
-
-            if (livingLetter.transform.position.x > fallOffX) {
+				
+            if (livingLetter.transform.position.x > fallOffX) 
+			{
                 StartCoroutine(co_FallOff());
-            } else if (livingLetter.transform.position.x > midPointX && !passedMidPoint) {
+            }
+			else if (livingLetter.transform.position.x > midPointX && !passedMidPoint) 
+			{
                 passedMidPoint = true;
                 onPassedMidPoint();
             }
@@ -95,6 +111,7 @@ namespace EA4S.Scanner
 
         IEnumerator co_FlyAway()
         {
+//			transform.parent = originalParent;
             letterObjectView.DoSmallJump();
             yield return new WaitForSeconds(1f);
             rainbowJet.SetActive(true);
@@ -117,15 +134,17 @@ namespace EA4S.Scanner
         IEnumerator co_FallOff()
         {
             onStartFallOff();
-            transform.parent = originalParent;
+//            transform.parent = originalParent;
             letterObjectView.SetState(LLAnimationStates.LL_idle);
             StartCoroutine(RotateGO(livingLetter, new Vector3(90, 90, 0), 1f));
             yield return new WaitForSeconds(0.5f);
             letterObjectView.Falling = true;
             status = LLStatus.Falling;
             yield return new WaitForSeconds(3f);
+
+			onFallOff();
+
             Reset();
-            onFallOff();
         }
 
         void OnMouseUp()
@@ -197,10 +216,10 @@ namespace EA4S.Scanner
         {
             if (status == LLStatus.Sliding) {
                 if (other.tag == ScannerGame.TAG_BELT) {
-                    transform.parent = other.transform;
+//                    transform.parent = other.transform;
                     status = LLStatus.StandingOnBelt;
                     gameObject.GetComponent<SphereCollider>().enabled = false; // disable feet collider
-                    gameObject.GetComponent<BoxCollider>().enabled = true; // enable body collider
+					bodyCollider.enabled = true; // enable body collider
                     letterObjectView.Falling = false;
                     StartCoroutine(RotateGO(livingLetter, new Vector3(0, turnAngle, 0), 1f));
                     StartCoroutine(AnimateLL());

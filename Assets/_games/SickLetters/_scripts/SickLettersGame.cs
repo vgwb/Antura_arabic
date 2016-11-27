@@ -37,6 +37,7 @@ namespace EA4S.SickLetters
         public bool LLCanDance = false, with7arakat;
         public int numerOfWringDDs = 3;
         public string dotlessLetters = " إ إ أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و إ";
+        public string LettersWithDots = "ض ث ق ف غ خ ج ش ي ب ت ن ة ظ ز ذ";
 
         public SickLettersDraggableDD[] Draggables;
 
