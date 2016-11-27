@@ -40,7 +40,7 @@ namespace EA4S.Maze
 		int currentWayPoint;
 
 
-		List<GameObject> _fruits;
+		public List<GameObject> _fruits;
 		int currentFruitList = 0;
 
 	
@@ -100,13 +100,13 @@ namespace EA4S.Maze
 
 			characterWayPoints.Add(initialPosition);
 			setFruitsList ();
-           // if (particles) particles.SetActive(false);
-          /*  var dir = transform.position - _fruits[0].transform.position;
-			var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-			transform.rotation =  Quaternion.AngleAxis(angle, Vector3.forward);*/
+            // if (particles) particles.SetActive(false);
+            /*  var dir = transform.position - _fruits[0].transform.position;
+              var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+              transform.rotation =  Quaternion.AngleAxis(angle, Vector3.forward);*/
 
-
-		}
+            transform.DOLookAt(_fruits[0].transform.position, 0.5f, AxisConstraint.None, Vector3.up);
+        }
 
 
 		void setFruitsList()
@@ -246,10 +246,16 @@ namespace EA4S.Maze
 				characterIsMoving = false;
                 //launchRocket = true;
                 toggleVisibility(true);
-                LL.transform.SetParent(transform, true);
-                LL.SetState(LLAnimationStates.LL_idle);
-                rocket.transform.DOLookAt(Camera.main.transform.position, 0.5f, AxisConstraint.None, Vector3.forward);
-                rocket.transform.DOMove(Camera.main.transform.position + new Vector3(10,10,0), 3);
+
+                if(!MazeGameManager.instance.isTutorialMode)
+                {
+                    LL.transform.SetParent(transform, true);
+                    LL.SetState(LLAnimationStates.LL_idle);
+                    rocket.transform.DOLookAt(Camera.main.transform.position, 0.5f, AxisConstraint.None, Vector3.forward);
+                    rocket.transform.DOMove(Camera.main.transform.position + new Vector3(10, 10, 0), 3);
+
+                }
+                
             },
 				()=>{
 					MazeGameManager.instance.lostCurrentLetter();//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -318,6 +324,31 @@ namespace EA4S.Maze
 			toggleVisibility (false);
             
 		}
+
+
+        public void resetToCurrent()
+        {
+            donotHandleBorderCollision = false;
+            transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isInside = false;
+            transform.position = _fruits[0].transform.position + new Vector3(0, 0, 1.5f);
+
+
+            initialPosition = transform.position;
+            targetPos = initialPosition;
+
+            initialRotation = transform.rotation;
+            targetRotation = initialRotation;
+
+            currentCharacterWayPoint = 0;
+            characterWayPoints = new List<Vector3>();
+            characterWayPoints.Add(initialPosition);
+
+
+            setFruitsList();
+            toggleVisibility(false);
+
+            transform.DOLookAt(_fruits[0].transform.position, 0.5f, AxisConstraint.None, Vector3.forward);
+        }
 
 		public bool canMouseBeDown()
 		{
@@ -437,6 +468,7 @@ namespace EA4S.Maze
                 {
                     toggleVisibility(false);
                     isAppearing = false;
+                    
                     //transform.rotation = initialRotation;
                     MazeGameManager.instance.showCurrentTutorial();
                 }

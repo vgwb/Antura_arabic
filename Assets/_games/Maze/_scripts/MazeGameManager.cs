@@ -55,7 +55,7 @@ namespace EA4S.Maze
 
         private List<Vector3> fleePositions;
 
-
+        public bool isTutorialMode;
         //for letters:
         public List<string> allLetters;
         void setupIndices()
@@ -78,9 +78,13 @@ namespace EA4S.Maze
 
 		public void startGame()
 		{
+            isTutorialMode = true;
             setupIndices();
 
             Context.GetAudioManager().PlayMusic(Music.Theme3);
+
+            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Maze_Title);
+
 
             fleePositions = new List<Vector3>();
             foreach (Transform child in fleePositionObject.transform)
@@ -108,17 +112,22 @@ namespace EA4S.Maze
 
 			gameTime = maxGameTime / (1 + MazeConfiguration.Instance.Difficulty);
 
-            //ui:
-            MinigamesUI.Init(MinigamesUIElement.Starbar | MinigamesUIElement.Timer);
-
-            timer.initTimer ();
+            
 
 			//init first letter
 			initCurrentLetter();
 
 		}
 
-		public void addLine()
+        public void initUI()
+        {
+            //ui:
+            MinigamesUI.Init(MinigamesUIElement.Starbar | MinigamesUIElement.Timer);
+
+            timer.initTimer ();
+        }
+
+        public void addLine()
 		{
 			
 			pointsList = new List<Vector3> ();
@@ -206,9 +215,12 @@ namespace EA4S.Maze
 
                 
 
-
-                correctLetters++;
-				currentLetterIndex++;
+                if(!isTutorialMode)
+                {
+                    correctLetters++;
+                    currentLetterIndex++;
+                }
+                
 
                 StartCoroutine(waitAndPerformCallback(2, () =>
                 {
@@ -221,6 +233,13 @@ namespace EA4S.Maze
                         return;
                     }
                     else {
+                        if(isTutorialMode)
+                        {
+                            isTutorialMode = false;
+                            initUI();
+                        }
+                        
+
                         roundNumber.text = "#" + (currentLetterIndex + 1);
                         restartCurrentLetter(won);
                     }
@@ -238,6 +257,19 @@ namespace EA4S.Maze
 		public void lostCurrentLetter()
 		{
             if (!currentCharacter || currentCharacter.isAppearing || !currentCharacter.gameObject.activeSelf) return;
+
+            if (isTutorialMode)
+            {
+                hideCracks();
+                removeLines();
+
+                TutorialUI.Clear(false);
+                addLine();
+
+                currentCharacter.resetToCurrent();
+                showCurrentTutorial();
+                return;
+            }
 
             wrongLetters++;
 			currentLetterIndex++;
@@ -280,11 +312,11 @@ namespace EA4S.Maze
 
             //show message:
             if (won)
-				AudioManager.I.PlaySfx (Sfx.Win);
-			else
+                MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
+            else
             {
-                AudioManager.I.PlaySfx(Sfx.Lose);
-                
+                MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
+
             }
 				
 
@@ -307,10 +339,7 @@ namespace EA4S.Maze
 				line.SetVertexCount (0);
 			lines = new List<LineRenderer> ();
 			pointsList.RemoveRange (0, pointsList.Count);
-
-			/*foreach (GameObject line in lines)
-				Destroy (line);
-			lines = new List<GameObject>();*/
+            
 		}
 
 		void hideCracks()
@@ -321,7 +350,7 @@ namespace EA4S.Maze
 				child.gameObject.SetActive (false);
 			}
 		}
-
+        private LL_LetterData currentLL = null;
 		void initCurrentLetter()
 		{
             currentCharacter = null;
@@ -352,10 +381,16 @@ namespace EA4S.Maze
                 Debug.Log("Letter got from Teacher is: " + ld.Id + " - does not match 11 models we have, we will play sound of the returned data");
                 found = UnityEngine.Random.Range(0, prefabs.Count);
             }
-           
+            currentLL = ld;
             currentPrefab = (GameObject)Instantiate(prefabs[found]);
-            currentPrefab.GetComponent<MazeLetterBuilder>().letterData = ld;
+            //currentPrefab.GetComponent<MazeLetterBuilder>().letterData = ld;
             currentPrefab.GetComponent<MazeLetterBuilder>().build(() => {
+
+                if(!isTutorialMode)
+                    MazeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(ld);
+                
+
+
                 foreach (Transform child in currentPrefab.transform)
                 {
                     if (child.name == "Mazecharacter")
@@ -371,6 +406,22 @@ namespace EA4S.Maze
 
         public void showCharacterMovingIn()
         {
+            if(isTutorialMode)
+            {
+                MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Maze_Intro,
+                        () => {
+                            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Maze_Tuto, ()=> {
+                                MazeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(currentLL);
+                            });
+                            currentCharacter.initialPosition = currentCharacter.transform.position;
+                            currentCharacter.initialRotation = currentCharacter.transform.rotation;
+                            currentCharacter.transform.position = getRandFleePosition();
+                            currentCharacter.gameObject.SetActive(true);
+                            currentCharacter.appear();
+                        }
+                        );
+                return;
+            }
             currentCharacter.initialPosition = currentCharacter.transform.position;
             currentCharacter.initialRotation = currentCharacter.transform.rotation;
             currentCharacter.transform.position = getRandFleePosition();

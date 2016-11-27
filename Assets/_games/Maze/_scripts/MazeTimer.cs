@@ -21,15 +21,17 @@ namespace EA4S.Maze
 			timeRemaining = time;
 			DisplayTime ();*/
 
-           // this.StopAllCoroutines();
-            MinigamesUI.Timer.Setup( MazeGameManager.instance.gameTime);
+            // this.StopAllCoroutines();
+            if (!MazeGameManager.instance.isTutorialMode)
+                MinigamesUI.Timer.Setup( MazeGameManager.instance.gameTime);
 
 
         }
 
 		public void Update()
 		{
-            if(MinigamesUI.Timer.Duration == MinigamesUI.Timer.Elapsed)
+
+            if(!MazeGameManager.instance.isTutorialMode &&  MinigamesUI.Timer.Duration == MinigamesUI.Timer.Elapsed)
             {
                 StopTimer();
                 MazeGameManager.instance.onTimeUp();
@@ -55,15 +57,17 @@ namespace EA4S.Maze
 		public void StartTimer()
 		{
             //isRunning = true;
-         //   this.StopAllCoroutines();
-            MinigamesUI.Timer.Play();
+            //   this.StopAllCoroutines();
+            if (!MazeGameManager.instance.isTutorialMode)
+                MinigamesUI.Timer.Play();
 
         }
 
 		public void StopTimer()
 		{
-           // this.StopAllCoroutines();
-            MinigamesUI.Timer.Pause();
+            // this.StopAllCoroutines();
+            if (!MazeGameManager.instance.isTutorialMode)
+                MinigamesUI.Timer.Pause();
             /*isRunning = false;
 			playedSfx = false;
 			AudioManager.I.StopSfx(Sfx.DangerClockLong);*/
