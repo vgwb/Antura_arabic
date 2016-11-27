@@ -231,7 +231,7 @@ namespace EA4S
         void AutoLoadMinigames()
         {
             // ToCheck @michele ref: https://trello.com/c/r40yCfw1
-            //AppManager.Instance.InitDataAI();
+            //AppManager.I.InitDataAI();
             OnComplete += GoToMinigame;
             if (TeacherAI.I.CurrentPlaySessionMiniGames.Count > 0) Show(TeacherAI.I.CurrentPlaySessionMiniGames);
         }
@@ -240,7 +240,7 @@ namespace EA4S
         {
             MiniGameCode myGameCode = TeacherAI.I.CurrentMiniGame.Code;
             //myGameCode = MiniGameCode.Egg;  // SET THIS TO TET SPECIFIC MINIGAMES IN THE MAIN PROGRESSION FLOW
-            // AppManager.Instance.GameLauncher.LaunchGame(myGameCode);
+            // AppManager.I.GameLauncher.LaunchGame(myGameCode);
             NavigationManager.I.GoToNextScene();
         }
 

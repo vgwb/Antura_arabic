@@ -28,8 +28,8 @@ namespace EA4S
             if (AppManager.I.Player.Sight != 0f) { str += "Sight " + AppManager.I.Player.Sight + "\n"; }
 
             output.text = str;
-            //AppManager.Instance.DB.GetLocalizationDataById("Game_Title").Arabic;
-            //output.text += "\n" + AppManager.Instance.DB.GetLocalizationDataById("Game_Title2").Arabic;
+            //AppManager.I.DB.GetLocalizationDataById("Game_Title").Arabic;
+            //output.text += "\n" + AppManager.I.DB.GetLocalizationDataById("Game_Title2").Arabic;
 
         }
 
