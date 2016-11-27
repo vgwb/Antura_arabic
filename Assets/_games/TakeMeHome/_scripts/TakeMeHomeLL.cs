@@ -41,11 +41,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 		public event Action onMouseUpLetter;
 
 		Action endTransformToCallback;
-
-		//public TakeMeHomeTube lastTube;
-
-		Transform[] letterPositions;
-		int currentPosition;
+        
 
         public List<TakeMeHomeTube> collidedTubes;
 
@@ -156,40 +152,11 @@ public class TakeMeHomeLL : MonoBehaviour {
 			endTransformToCallback = callback;
 		}
 
-		public void GoToFirstPostion()
-		{
-			GoToPosition(0);
-		}
+		
 
-		public void GoToPosition(int positionNumber)
-		{
-			dropLetter = false;
+		
 
-			if (moveTweener != null) { moveTweener.Kill(); }
-			if (rotationTweener != null) { rotationTweener.Kill(); }
-
-			currentPosition = positionNumber;
-
-			transform.localPosition = letterPositions[currentPosition].localPosition;
-			transform.rotation = letterPositions[currentPosition].rotation;
-		}
-
-		public void MoveToNextPosition(float duration, Action callback)
-		{
-			dropLetter = false;
-
-			if (moveTweener != null) { moveTweener.Kill(); }
-			if (rotationTweener != null) { rotationTweener.Kill(); }
-
-			currentPosition++;
-
-			if (currentPosition >= letterPositions.Length)
-			{
-				currentPosition = 0;
-			}
-
-			TransformTo(letterPositions[currentPosition], duration, callback);
-		}
+		
 
 		public void OnPointerDown(Vector2 pointerPosition)
 		{

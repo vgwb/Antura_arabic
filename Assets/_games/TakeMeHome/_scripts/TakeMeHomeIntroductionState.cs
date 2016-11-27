@@ -3,11 +3,7 @@
 	public class TakeMeHomeIntroductionState : IGameState
 	{
 		TakeMeHomeGame game;
-
-		int currentShownTubes = 2;
-
-
-
+        
 		public TakeMeHomeIntroductionState(TakeMeHomeGame game)
 		{
 			this.game = game;
