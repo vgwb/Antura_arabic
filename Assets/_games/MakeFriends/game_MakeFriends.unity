@@ -775,7 +775,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 189435110}
   m_LocalRotation: {x: 0, y: 1, z: -0, w: -0.0000001872535}
-  m_LocalPosition: {x: -11.4, y: -5.7, z: -46}
+  m_LocalPosition: {x: -9, y: -5.7, z: -46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
   m_Children: []
@@ -1013,7 +1013,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 250824498}
   m_LocalRotation: {x: 0, y: 1, z: -0, w: -0.0000001872535}
-  m_LocalPosition: {x: 12, y: -5.7, z: -46}
+  m_LocalPosition: {x: 9, y: -5.7, z: -44.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
   m_Children: []
@@ -1352,6 +1352,11 @@ Prefab:
     - target: {fileID: 126296, guid: 25204511df7ed9b4897034df9466e2f4, type: 2}
       propertyPath: m_Name
       value: Environment Lighting
+      objectReference: {fileID: 0}
+    - target: {fileID: 108000013014623442, guid: 25204511df7ed9b4897034df9466e2f4,
+        type: 2}
+      propertyPath: m_Intensity
+      value: 0.95
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25204511df7ed9b4897034df9466e2f4, type: 2}

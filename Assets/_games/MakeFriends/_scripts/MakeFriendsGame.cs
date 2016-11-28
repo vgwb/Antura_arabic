@@ -214,6 +214,8 @@ namespace EA4S.MakeFriends
 
         private IEnumerator ShowTutorialUI_Coroutine()
         {
+            yield return new WaitForSeconds(uiDelay);
+
             while (isTutorialRound)
             {
                 yield return new WaitForSeconds(uiDelay);
@@ -396,7 +398,7 @@ namespace EA4S.MakeFriends
 
         private IEnumerator EndRound_Coroutine(bool win)
         {
-            var winDelay1 = 2f;
+            var winDelay1 = 3f;
             var winDelay2 = 1.5f;
             var friendlyExitDelay = leftArea.friendlyExitDuration;
             var loseDelay = 1.5f;
