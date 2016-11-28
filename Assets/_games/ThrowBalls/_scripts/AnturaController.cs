@@ -143,7 +143,7 @@ namespace EA4S.ThrowBalls
 
         public void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.tag == Constants.TAG_POKEBALL && !ballGrabbed)
+            if (collision.gameObject.tag == Constants.TAG_POKEBALL && BallController.instance.IsIdle() && !ballGrabbed)
             {
                 //animator.OnJumpGrab();
                 BallController.instance.OnIntercepted();
