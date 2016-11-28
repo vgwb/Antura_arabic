@@ -89,7 +89,6 @@ namespace EA4S
         {
             if (showTween.IsPlaying()) return;
 
-            _bt.AnimateClick();
             ProfileSelectorUI.I.AddProfile(Array.IndexOf(avatarButtons, _bt) + 1);
         }
 
