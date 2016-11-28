@@ -45,7 +45,7 @@ namespace EA4S.MissingLetter
             m_oGame.m_oLetterPrefab.GetComponent<LetterBehaviour>().SetPositions(m_v3AnsPos + Vector3.right * m_oGame.m_sAnswerOffset.fINOffset, m_v3AnsPos, m_v3AnsPos + Vector3.right * m_oGame.m_sAnswerOffset.fOUTOffset);
             m_oAnswerPool = new GameObjectPool(m_oGame.m_oLetterPrefab, ansPoolSize, false);
 
-            m_oEmoticonsController = new MissingLetterEmoticonsController(m_oGame.m_oEmoticonsController);
+            m_oEmoticonsController = new MissingLetterEmoticonsController(m_oGame.m_oEmoticonsController, m_oGame.m_oEmoticonsMaterials);
         }
 
         public void SetTutorial(bool _enabled) {
@@ -102,7 +102,6 @@ namespace EA4S.MissingLetter
             {
                 clicked.PlayAnimation(LLAnimationStates.LL_still);
                 clicked.mLetter.DoHorray();
-                clicked.LightOn();
 
                 PlayPartcileSystem(m_aoCurrentQuestionScene[0].transform.position + Vector3.up * 2);
 
@@ -453,7 +452,6 @@ namespace EA4S.MissingLetter
             for (int i = 0; i < m_aoCurrentQuestionScene.Count; ++i)
             {
                 m_aoCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoHighFive();
-                m_aoCurrentQuestionScene[i].GetComponent<LetterBehaviour>().LightOn();
             }
         }
 
@@ -477,7 +475,6 @@ namespace EA4S.MissingLetter
             for (int i = 0; i < m_aoCurrentQuestionScene.Count; ++i)
             {
                 m_aoCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
-                m_aoCurrentQuestionScene[i].GetComponent<LetterBehaviour>().LightOn();
             }
 
             for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i)
@@ -485,7 +482,6 @@ namespace EA4S.MissingLetter
                 if (m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Id == m_oCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Id)
                 {
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
-                    m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LightOn();
                 }
                 else
                 {
