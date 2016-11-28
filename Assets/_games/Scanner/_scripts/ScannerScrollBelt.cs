@@ -5,7 +5,7 @@ namespace EA4S.Scanner
 {
 	public class ScannerScrollBelt : MonoBehaviour {
 
-		public float scrollSpeed = 0.5F;
+		const float BELT_FACTOR = -0.4f;
 
 		private Renderer rend;
 
@@ -14,7 +14,7 @@ namespace EA4S.Scanner
 		}
 
 		void Update() {
-			float offset = Time.time * scrollSpeed;
+			float offset = Time.time * BELT_FACTOR * ScannerConfiguration.Instance.beltSpeed;
 			rend.material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
 		}
 

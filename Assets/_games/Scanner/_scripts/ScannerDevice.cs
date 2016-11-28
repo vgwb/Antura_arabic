@@ -42,14 +42,10 @@ namespace EA4S.Scanner
 		void OnLetterFlying(ScannerLivingLetter sender)
 		{
 			moveBack = true;
-			Invoke("Reset",2.5f);
+			StopAllCoroutines();
+			StartCoroutine(co_Reset());
 		}
-
-		void OnLetterReset(ScannerLivingLetter Sender)
-		{
-			moveBack = false;
-		}
-
+			
 		void Update()
 		{
 			if (game.scannerLL.Count != 0 && letterEventsNotSet)
@@ -74,6 +70,12 @@ namespace EA4S.Scanner
 
 		public void Reset()
 		{
+			moveBack = false;
+		}
+
+		IEnumerator co_Reset()
+		{
+			yield return new WaitForSeconds(2.5f);
 			moveBack = false;
 		}
 

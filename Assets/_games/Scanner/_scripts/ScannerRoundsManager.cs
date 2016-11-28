@@ -36,6 +36,11 @@ namespace EA4S.Scanner
 		{
 			if (!initialized)
 			{
+				if (ScannerConfiguration.Instance.Variation == ScannerVariation.MultipleWords)
+				{
+					numberOfRoundsPlayed = 0;
+				}
+
 				initialized = true;
 
 				foreach (ScannerSuitcase ss in game.suitcases)

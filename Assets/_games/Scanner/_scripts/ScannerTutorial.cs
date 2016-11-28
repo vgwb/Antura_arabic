@@ -38,7 +38,6 @@ namespace EA4S.Scanner
         void Start()
         {            
             StartCoroutine(coDoTutorial());
-            originalBeltSpeed = UpperBelt.scrollSpeed;
             originalLLOnBeltSpeed = ScannerConfiguration.Instance.beltSpeed;
             ScannerGame.disableInput = true;
             //warm up
@@ -76,7 +75,7 @@ namespace EA4S.Scanner
         void onTutorialStart()
         {
             AudioManager.I.PlayDialog(Db.LocalizationDataId.Scanner_Tuto);
-            ScannerConfiguration.Instance.beltSpeed = UpperBelt.scrollSpeed = lowerBelt.scrollSpeed = 0;
+            ScannerConfiguration.Instance.beltSpeed  = 0;
             ScannerGame.disableInput = false;
             StartCoroutine(sayTut(repeatDelay));
         }
@@ -85,7 +84,6 @@ namespace EA4S.Scanner
         {
             TutorialUI.Clear(true);
             ScannerConfiguration.Instance.beltSpeed = originalLLOnBeltSpeed;
-            UpperBelt.scrollSpeed = lowerBelt.scrollSpeed = originalBeltSpeed;
             gameManager.Context.GetOverlayWidget().Initialize(true, false, false);
             gameManager.Context.GetOverlayWidget().SetStarsThresholds(gameManager.STARS_1_THRESHOLD, gameManager.STARS_2_THRESHOLD, gameManager.STARS_3_THRESHOLD);
 
