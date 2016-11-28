@@ -76,7 +76,7 @@ namespace EA4S
         #region Game Progression
 
         [HideInInspector]
-        [Obsolete("incorrect and shoudl be moved to Teacher or Navigation manager")]
+        [Obsolete("incorrect and shoudl be moved to Teacher or Navigation manager", true)]
         public bool IsAssessmentTime {
             get {
                 return Player.CurrentJourneyPosition.PlaySession == 5;
