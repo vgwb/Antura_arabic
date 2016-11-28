@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using EA4S.Db;
+using System.Collections.Generic;
 
 namespace EA4S
 {
@@ -23,16 +24,17 @@ namespace EA4S
 
             emptyListContainers();
 
-            foreach (LearningBlockData item in AppManager.I.DB.GetAllLearningBlockData()) {
+            List<LearningBlockInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllLearningBlockInfo();
+            foreach (var item_info in info_list) {
                 btnGO = Instantiate(LearningBlockItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponent<ItemLearningBlock>().Init(this, item);
+                btnGO.GetComponent<ItemLearningBlock>().Init(this, item_info);
             }
         }
 
-        public void DetailLearningBlock(LearningBlockData data)
+        public void DetailLearningBlock(LearningBlockInfo info)
         {
-            AudioManager.I.PlayDialog(data.GetTitleSoundFilename());
+            AudioManager.I.PlayDialog(info.data.GetTitleSoundFilename());
         }
 
         void emptyListContainers()
