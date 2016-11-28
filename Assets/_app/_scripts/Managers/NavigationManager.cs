@@ -15,6 +15,7 @@ namespace EA4S
         Intro,
         GameSelector,
         MiniGame,
+        Assessment,
         AnturaSpace,
         Rewards,
         PlaySessionResult,
@@ -156,6 +157,8 @@ namespace EA4S
                     return "app_GamesSelector";
                 case AppScene.MiniGame:
                     return minigameData.Scene;
+                case AppScene.Assessment:
+                    return "app_Assessment";
                 case AppScene.AnturaSpace:
                     return "app_AnturaSpace";
                 case AppScene.Rewards:
