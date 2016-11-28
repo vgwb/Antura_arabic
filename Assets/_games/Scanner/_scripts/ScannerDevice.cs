@@ -131,8 +131,8 @@ namespace EA4S.Scanner
 					timeDelta = Time.time - timeDelta;
 					game.PlayWord(timeDelta, LL);
 					timeDelta = 0;
-                    game.tut.setupTutorial(2);
-				}
+                    game.tut.setupTutorial(2, LL);
+                }
 			}
 //			else if (other.tag == ScannerGame.TAG_SCAN_END)
 //			{

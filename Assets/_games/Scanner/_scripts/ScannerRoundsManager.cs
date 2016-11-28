@@ -36,10 +36,10 @@ namespace EA4S.Scanner
 		{
 			if (!initialized)
 			{
-				if (ScannerConfiguration.Instance.Variation == ScannerVariation.MultipleWords)
+				/*if (ScannerConfiguration.Instance.Variation == ScannerVariation.MultipleWords)
 				{
 					numberOfRoundsPlayed = 0;
-				}
+				}*/
 
 				initialized = true;
 
@@ -231,7 +231,7 @@ namespace EA4S.Scanner
 
 				foreach (ScannerLivingLetter LL in game.scannerLL)
 				{
-					LL.gotSuitcase = false;
+                    LL.gotSuitcase = false;
 				}
 				game.StartCoroutine(RoundWon());
 			}
