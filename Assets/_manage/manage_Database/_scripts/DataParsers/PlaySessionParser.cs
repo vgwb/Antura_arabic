@@ -18,6 +18,8 @@ namespace EA4S.Db.Management
             data.Id = data.Stage + "." + data.LearningBlock + "." + data.PlaySession;
 
             data.Letters = ParseIDArray<LetterData, LetterTable>(data, (string)dict["Letters"], db.GetLetterTable());
+            CustomAddDiacritics(data, db);
+
             data.Words = ParseIDArray<WordData, WordTable>(data, (string)dict["Words"], db.GetWordTable());
             data.Words_previous = ParseIDArray<WordData, WordTable>(data, (string)dict["Words_previous"], db.GetWordTable());
             data.Phrases = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases"], db.GetPhraseTable());
@@ -27,6 +29,26 @@ namespace EA4S.Db.Management
             data.Minigames = CustomParseMinigames(data, dict, db.GetMiniGameTable());
 
             return data;
+        }
+
+        private void CustomAddDiacritics(PlaySessionData psData, Database db)
+        {
+            // Make sure to also add all combos, if a symbol is found
+            HashSet<string> newLetters = new HashSet<string>();
+            newLetters.UnionWith(psData.Letters);
+            foreach (var letterId in psData.Letters)
+            {
+                var letterData = db.GetById(db.GetLetterTable(), letterId);
+                if (letterData.Kind == LetterDataKind.Symbol)
+                {
+                    // this is a symbol
+                    var symbolId = letterId;
+                    var allDiacriticCombos = db.FindAll(db.GetLetterTable(), x => x.Symbol == symbolId);
+                    newLetters.UnionWith(allDiacriticCombos.ConvertAll(x => x.Id));
+                }
+            }
+            psData.Letters = new string[newLetters.Count];
+            newLetters.CopyTo(psData.Letters);
         }
 
         public List<MiniGameInPlaySession> CustomParseMinigames(PlaySessionData data, Dictionary<string, object> dict, MiniGameTable table)
