@@ -161,6 +161,20 @@ namespace EA4S.MixedLetters
                 int remainder = allLettersInAlphabet.Count % 6;
                 lettersInOrder = allLettersInAlphabet.GetRange(roundNumber * numLettersPerRound, roundNumber == 4 ? remainder : numLettersPerRound);
                 VictimLLController.instance.letterObjectView.Init(null);
+
+                string victimLLWord = "";
+
+                for (int i = 0; i < lettersInOrder.Count; i++)
+                {
+                    victimLLWord += ((LL_LetterData)lettersInOrder[i]).Data.GetChar();
+
+                    if (i != lettersInOrder.Count - 1)
+                    {
+                        victimLLWord += " ";
+                    }
+                }
+
+                VictimLLController.instance.SetCustomText(victimLLWord);
             }
         }
 

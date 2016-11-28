@@ -7,25 +7,25 @@ namespace EA4S
 {
     public class ItemPhrase : MonoBehaviour, IPointerClickHandler
     {
-        PhraseData data;
+        PhraseInfo info;
         public TextRender Title;
         public TextRender SubTitle;
 
         BookPanel manager;
 
-        public void Init(BookPanel _manager, PhraseData _data)
+        public void Init(BookPanel _manager, PhraseInfo _info)
         {
-            data = _data;
+            info = _info;
             manager = _manager;
 
-            Title.text = data.Arabic;
-            SubTitle.text = data.Id;
+            Title.text = info.data.Arabic;
+            SubTitle.text = info.data.Id;
 
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailPhrase(data);
+            manager.DetailPhrase(info);
         }
     }
 }

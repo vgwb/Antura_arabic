@@ -180,6 +180,11 @@ namespace EA4S.ThrowBalls
             return !(state == State.Anchored || state == State.Dragging || state == State.Idle);
         }
 
+        public bool IsIdle()
+        {
+            return state == State.Idle;
+        }
+
         public void OnIntercepted()
         {
             if (state != State.Intercepted)

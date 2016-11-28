@@ -106,12 +106,12 @@ namespace EA4S
         }
         void ChangeCameraFogColor(int c)
         {
-            Camera.main.DOColor(colorMaps[c], 3);
+            Camera.main.DOColor(colorMaps[c], 1);
             Camera.main.GetComponent<CameraFog>().color = colorMaps[c];
         }
         IEnumerator DesactivateMap()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.8f);
             stages[previousStage].SetActive(false);
             inTransition = false;
         }
