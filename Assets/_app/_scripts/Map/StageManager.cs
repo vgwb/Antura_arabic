@@ -6,6 +6,7 @@ namespace EA4S
 {
     public class StageManager : MonoBehaviour
     {
+        public Color[] colorMaps;
         public GameObject[] stages;
         public GameObject[] cameras;
         public GameObject[] miniMaps;
@@ -28,9 +29,11 @@ namespace EA4S
 
             //ChangeCamera(cameras[AppManager.I.Player.CurrentJourneyPosition.Stage]);
             stages[AppManager.I.Player.CurrentJourneyPosition.Stage].SetActive(true);
+            Camera.main.backgroundColor = colorMaps[AppManager.I.Player.CurrentJourneyPosition.Stage];
+            Camera.main.GetComponent<CameraFog>().color = colorMaps[AppManager.I.Player.CurrentJourneyPosition.Stage];
             letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[AppManager.I.Player.CurrentJourneyPosition.Stage].GetComponent<MiniMap>();
 
-            StartCoroutine("ResetPosLetter");
+            StartCoroutine("ResetPosLetter");  
         }
         public void StageLeft()
         {
@@ -43,9 +46,9 @@ namespace EA4S
 
                 ChangePinDotToBlack();
                 AppManager.I.Player.CurrentJourneyPosition.Stage++;
+                ChangeCameraFogColor(AppManager.I.Player.CurrentJourneyPosition.Stage);
                 letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage + 1].GetComponent<MiniMap>();
                 letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
-
             }
         }
         public void StageRight()
@@ -59,6 +62,7 @@ namespace EA4S
 
                 ChangePinDotToBlack();
                 AppManager.I.Player.CurrentJourneyPosition.Stage--;
+                ChangeCameraFogColor(AppManager.I.Player.CurrentJourneyPosition.Stage);
                 letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage - 1].GetComponent<MiniMap>();
                 letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
             }
@@ -85,6 +89,11 @@ namespace EA4S
             }
             else
                 letter.GetComponent<LetterMovement>().ChangeMaterialDotToBlack(letter.GetComponent<LetterMovement>().miniMapScript.posDots[letter.GetComponent<LetterMovement>().pos]);
+        }
+        void ChangeCameraFogColor(int c)
+        {
+            Camera.main.DOColor(colorMaps[c], 4);
+            Camera.main.GetComponent<CameraFog>().color = colorMaps[c];
         }
     }
 }
