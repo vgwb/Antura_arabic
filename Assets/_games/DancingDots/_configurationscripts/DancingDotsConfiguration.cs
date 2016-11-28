@@ -58,7 +58,7 @@
             int nWrong = 0;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.letterFilters.excludeDiacritics = false;
+            builderParams.letterFilters.excludeDiacritics_keepMain = true;
             builderParams.letterFilters.excludeLetterVariations = false;
             builderParams.wordFilters.excludeDiacritics = false;
             builderParams.wordFilters.excludeLetterVariations = false;

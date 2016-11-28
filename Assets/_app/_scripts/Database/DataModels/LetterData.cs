@@ -74,7 +74,7 @@ namespace EA4S.Db
                     isIt = IsSymbolLetter();
                     break;
                 case LetterKindCategory.DiacriticCombo:
-                    isIt = IsComboLetter();
+                    isIt = IsDiacriticComboLetter();
                     break;
                 case LetterKindCategory.Real:
                     isIt = IsRealLetter();
@@ -88,7 +88,7 @@ namespace EA4S.Db
 
         private bool IsRealLetter()
         {
-            return this.IsBaseLetter() || this.IsComboLetter();
+            return this.IsBaseLetter() || this.IsDiacriticComboLetter();
         }
 
         private bool IsBaseLetter()
@@ -106,9 +106,9 @@ namespace EA4S.Db
             return this.Kind == LetterDataKind.Symbol;
         }
 
-        private bool IsComboLetter()
+        private bool IsDiacriticComboLetter()
         {
-            return this.Kind == LetterDataKind.DiacriticCombo || this.Kind == LetterDataKind.LetterVariation;
+            return this.Kind == LetterDataKind.DiacriticCombo;
         }
 
         private bool IsBaseOrVariationLetter()

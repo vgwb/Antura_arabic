@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Fabric;
 using UnityEngine.Audio;
+using System;
 
 namespace EA4S
 {
@@ -104,6 +105,17 @@ namespace EA4S
             }
         }
 
+        public void StopDialogue(bool clearPreviousCallback)
+        {
+            if (!clearPreviousCallback && OnNotifyEndAudio != null)
+                OnNotifyEndAudio();
+
+            OnNotifyEndAudio = null;
+
+            if (Fabric.EventManager.Instance != null)
+                Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.StopAll);
+        }
+
         public void StopMusic()
         {
             if (Fabric.EventManager.Instance != null)
@@ -189,8 +201,13 @@ namespace EA4S
             PlayDialog(LocalizationManager.GetLocalizationData(id));
         }
 
-        public void PlayDialog(Db.LocalizationData data)
+        public void PlayDialog(Db.LocalizationData data, bool clearPreviousCallback = false)
         {
+            if (!clearPreviousCallback && OnNotifyEndAudio != null)
+                OnNotifyEndAudio();
+
+            OnNotifyEndAudio = null;
+
             if (data.AudioFile != "") {
                 //Debug.Log("PlayDialog: " + data.id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
                 Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + data.AudioFile);
@@ -208,9 +225,9 @@ namespace EA4S
             PlayDialog(LocalizationManager.GetLocalizationData(id), callback);
         }
 
-        public void PlayDialog(Db.LocalizationData data, System.Action callback)
+        public void PlayDialog(Db.LocalizationData data, System.Action callback, bool clearPreviousCallback = false)
         {
-            if (OnNotifyEndAudio != null)
+            if (!clearPreviousCallback && OnNotifyEndAudio != null)
                 OnNotifyEndAudio();
 
             OnNotifyEndAudio = null;

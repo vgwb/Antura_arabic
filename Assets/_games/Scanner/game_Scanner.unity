@@ -604,7 +604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e7b1deacd6a482984f7a5b98ee73eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: -0.4
 --- !u!1001 &126746974
 Prefab:
   m_ObjectHideFlags: 0
@@ -1193,6 +1192,7 @@ MonoBehaviour:
   anturaMinScreenTime: 1
   anturaMaxScreenTime: 2
   poofPrefab: {fileID: 158920, guid: d8e2525451f614f69a9a513785dbd676, type: 2}
+  scannerDevice: {fileID: 362456015}
   currentWord: 
   pedagogicalLevel: 0
   numberOfRounds: 6
@@ -1200,13 +1200,14 @@ MonoBehaviour:
   maxPlaySpeed: 2
   minPlaySpeed: 0.5
   LLPrefab: {fileID: 1000012082208024, guid: 968db9f4005364e82be9b254cd7ce716, type: 2}
-  scannerLL: {fileID: 0}
+  scannerLL: []
   suitcases:
   - {fileID: 1144751092}
   - {fileID: 2126644160}
   - {fileID: 2039748573}
   - {fileID: 421139984}
   - {fileID: 1457277600}
+  LLCount: 0
   CurrentScoreRecord: 0
   trapDoor: {fileID: 1671368174}
   tut: {fileID: 0}
@@ -1280,7 +1281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -1
+  direction: -1
 --- !u!1 &335785520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,7 +1595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -1
+  direction: -1
 --- !u!1 &382782240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,7 +1923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  direction: 1
 --- !u!1 &512295470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1967,7 +1968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -1
+  direction: -1
 --- !u!4 &520526099 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010135022026, guid: f398875ac274343a3be86d4138fa6de7,
@@ -5045,7 +5046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  direction: 1
 --- !u!1001 &877097590
 Prefab:
   m_ObjectHideFlags: 0
@@ -10136,7 +10137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  direction: 1
 --- !u!1 &1315319158
 GameObject:
   m_ObjectHideFlags: 0
@@ -10181,7 +10182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -1
+  direction: -1
 --- !u!1001 &1320561908
 Prefab:
   m_ObjectHideFlags: 0
@@ -10643,7 +10644,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e7b1deacd6a482984f7a5b98ee73eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: -0.4
 --- !u!65 &1431994185
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12134,9 +12134,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013948691468, guid: 968db9f4005364e82be9b254cd7ce716,
+    - target: {fileID: 33000012962957950, guid: 968db9f4005364e82be9b254cd7ce716,
         type: 2}
-      propertyPath: facingCamera
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 33000010539157610, guid: 968db9f4005364e82be9b254cd7ce716,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012082208024, guid: 968db9f4005364e82be9b254cd7ce716, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -12688,7 +12697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  direction: 1
 --- !u!4 &1924717215
 Transform:
   m_ObjectHideFlags: 0
@@ -12913,7 +12922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -1
+  direction: -1
 --- !u!1001 &1994111436
 Prefab:
   m_ObjectHideFlags: 0

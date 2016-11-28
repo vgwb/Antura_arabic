@@ -40,12 +40,15 @@ namespace EA4S
             clickTween = this.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.35f).SetAutoKill(false).SetUpdate(true).Pause();
             pulseTween = this.transform.DOScale(this.transform.localScale * 1.1f, 0.3f).SetAutoKill(false).SetUpdate(true).Pause()
                 .SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuad);
+
+            Bt.onClick.AddListener(OnInternalClick);
         }
 
         protected virtual void OnDestroy()
         {
             clickTween.Kill();
             pulseTween.Kill();
+            Bt.onClick.RemoveAllListeners();
         }
 
         #endregion
@@ -80,6 +83,15 @@ namespace EA4S
         {
             pulseTween.Rewind();
             clickTween.Restart();
+        }
+
+        #endregion
+
+        #region Callbacks
+
+        void OnInternalClick()
+        {
+            AnimateClick();
         }
 
         #endregion

@@ -43,14 +43,8 @@ namespace EA4S.FastCrowd
                 {
                     case FastCrowdVariation.Words:
                         return 8;
-                    case FastCrowdVariation.Counting:
-                        return 5;
-                    case FastCrowdVariation.Alphabet:
-                        return 5;
-                    case FastCrowdVariation.Letter:
-                        return 2;
                     default:
-                        return 3;
+                        return 5;
                 }
             }
         }
@@ -59,19 +53,7 @@ namespace EA4S.FastCrowd
         {
             get
             {
-                switch (FastCrowdConfiguration.Instance.Variation)
-                {
-                    case FastCrowdVariation.Words:
-                        return 12;
-                    case FastCrowdVariation.Counting:
-                        return 10;
-                    case FastCrowdVariation.Alphabet:
-                        return 10;
-                    case FastCrowdVariation.Letter:
-                        return 3;
-                    default:
-                        return 4;
-                }
+                return 10;
             }
         }
 
@@ -79,19 +61,7 @@ namespace EA4S.FastCrowd
         {
             get
             {
-                switch (FastCrowdConfiguration.Instance.Variation)
-                {
-                    case FastCrowdVariation.Words:
-                        return 16;
-                    case FastCrowdVariation.Counting:
-                        return 15;
-                    case FastCrowdVariation.Alphabet:
-                        return 15;
-                    case FastCrowdVariation.Letter:
-                        return 4;
-                    default:
-                        return 5;
-                }
+                return 15;
             }
         }
 
@@ -109,7 +79,7 @@ namespace EA4S.FastCrowd
                 return 3;
             }
         }
-        
+
         public bool showTutorial { get; set; }
 
         public FastCrowdIntroductionState IntroductionState { get; private set; }
@@ -142,9 +112,9 @@ namespace EA4S.FastCrowd
         protected override void OnInitialize(IGameContext context)
         {
             //float difficulty = FastCrowdConfiguration.Instance.Difficulty;
-            
+
             showTutorial = true;
-            
+
             IntroductionState = new FastCrowdIntroductionState(this);
             QuestionState = new FastCrowdQuestionState(this);
             PlayState = new FastCrowdPlayState(this);

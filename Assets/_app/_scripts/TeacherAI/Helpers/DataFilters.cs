@@ -4,15 +4,18 @@
     public class LetterFilters
     {
         public bool excludeDiacritics;
+        public bool excludeDiacritics_keepMain; // HACK filter
         public bool excludeLetterVariations;
         public bool requireDiacritics;
 
         public LetterFilters(
             bool excludeDiacritics = false,
+            bool excludeDiacritics_keepMain = false,
             bool excludeLetterVariations = false,
             bool requireDiacritics = false)
         {
             this.excludeDiacritics = excludeDiacritics;
+            this.excludeDiacritics_keepMain = excludeDiacritics_keepMain;
             this.excludeLetterVariations = excludeLetterVariations;
             this.requireDiacritics = requireDiacritics;
         }

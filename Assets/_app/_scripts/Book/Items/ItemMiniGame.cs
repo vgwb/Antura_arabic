@@ -7,7 +7,7 @@ namespace EA4S
 {
     public class ItemMiniGame : MonoBehaviour, IPointerClickHandler
     {
-        MiniGameData data;
+        MiniGameInfo info;
 
         public TextRender Title;
         public Image Icon;
@@ -15,17 +15,29 @@ namespace EA4S
 
         GamesPanel manager;
 
-        public void Init(GamesPanel _manager, MiniGameData _data)
+        public void Init(GamesPanel _manager, MiniGameInfo _info)
         {
-            data = _data;
+            info = _info;
             manager = _manager;
+
+            if (!info.unlocked)
+            {
+                GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                GetComponent<Button>().interactable = true;
+            }
 
             //Title.text = data.Title_Ar;
 
-            var icoPath = data.GetIconResourcePath();
-            var badgePath = data.GetBadgeIconResourcePath();
+            var icoPath = info.data.GetIconResourcePath();
+            var badgePath = info.data.GetBadgeIconResourcePath();
 
-            var score = GenericUtilities.GetAverage(TeacherAI.I.scoreHelper.GetLatestScoresForMiniGame(data.Code, -1));
+            // @note: we get the minigame saved score, which should be the maximum score achieved
+            // @note: I'm leaving the average-based method commented if we want to return to that logic
+            var score = info.score;
+            //var score = GenericUtilities.GetAverage(TeacherAI.I.scoreHelper.GetLatestScoresForMiniGame(info.data.Code, -1));
 
             if (score < 0.1f) {
                 // disabled
@@ -42,7 +54,10 @@ namespace EA4S
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailMiniGame(data);
+            if (info.unlocked)
+            {
+                manager.DetailMiniGame(info);
+            }
         }
     }
 }

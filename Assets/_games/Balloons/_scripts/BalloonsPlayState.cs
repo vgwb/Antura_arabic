@@ -12,6 +12,7 @@
         public void EnterState()
         {
             MinigamesUI.Init(MinigamesUIElement.Starbar | MinigamesUIElement.Timer);
+            game.PlayIntroVoiceOver();
             game.Play();
         }
 

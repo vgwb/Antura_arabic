@@ -239,7 +239,7 @@ namespace EA4S.Db.Management
             EditorUtility.SetDirty(database.phraseDb);
             EditorUtility.SetDirty(database.localizationDb);
             EditorUtility.SetDirty(database.learningblockDb);
-            EditorUtility.SetDirty(database.minigameDb);
+            EditorUtility.SetDirty(database.playsessionDb);
             AssetDatabase.SaveAssets();
         }
         #endregion

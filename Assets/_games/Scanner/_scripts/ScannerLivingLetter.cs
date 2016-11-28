@@ -24,28 +24,27 @@ namespace EA4S.Scanner
         public LetterObjectView letterObjectView;
         public GameObject rainbowJet;
 
-        public event Action onReset;
-        public event Action onStartFallOff;
-        public event Action onFallOff;
-        public event Action onPassedMidPoint;
-		public event Action onFlying;
+//		public event Action <ScannerLivingLetter> onReset;
+		public event Action <ScannerLivingLetter> onStartFallOff;
+		public event Action <ScannerLivingLetter> onFallOff;
+		public event Action <ScannerLivingLetter> onPassedMidPoint;
+		public event Action <ScannerLivingLetter> onFlying;
 
 		public BoxCollider bodyCollider;
 
+		[HideInInspector]
+		public bool gotSuitcase;
 //        private Transform originalParent;
         private float fallOffX;
         private float midPointX;
         private bool passedMidPoint = false;
 
-        void Start()
+        void Awake()
         {
             status = LLStatus.None;
-//            originalParent = transform.parent;
             letterObjectView = livingLetter.GetComponent<LetterObjectView>();
             startingPosition = transform.position;
             startingRotation = letterObjectView.transform.rotation;
-
-            Reset();
         }
 
         public void Reset()
@@ -55,6 +54,7 @@ namespace EA4S.Scanner
 
 			if (ScannerConfiguration.Instance.gameActive)
 			{
+				gotSuitcase = false;
 	            letterObjectView.transform.rotation = startingRotation;
 	            transform.position = startingPosition;
 
@@ -68,7 +68,10 @@ namespace EA4S.Scanner
 	            status = LLStatus.Sliding;
 	            gameObject.GetComponent<SphereCollider>().enabled = true; // enable feet collider
 				bodyCollider.enabled = false; // disable body collider
-	            onReset();
+
+				gameObject.SetActive(true);
+
+//	            onReset(this);
 			}
 
         }
@@ -84,11 +87,6 @@ namespace EA4S.Scanner
 			{
 				transform.Translate(ScannerConfiguration.Instance.beltSpeed * Time.deltaTime,0,0);
             }
-			else if (status == LLStatus.Lost) 
-			{
-                status = LLStatus.Poofing;
-                StartCoroutine(co_Lost());
-            } 
 			else if (status == LLStatus.Flying) 
 			{
                 transform.Translate(Vector2.up * flightSpeed * Time.deltaTime);
@@ -98,14 +96,14 @@ namespace EA4S.Scanner
                 transform.Translate(Vector2.down * flightSpeed * Time.deltaTime);
             }
 				
-            if (livingLetter.transform.position.x > fallOffX) 
+			if (livingLetter.transform.position.x > fallOffX && status == LLStatus.StandingOnBelt) 
 			{
                 StartCoroutine(co_FallOff());
             }
 			else if (livingLetter.transform.position.x > midPointX && !passedMidPoint) 
 			{
                 passedMidPoint = true;
-                onPassedMidPoint();
+                onPassedMidPoint(this);
             }
         }
 
@@ -113,7 +111,7 @@ namespace EA4S.Scanner
         IEnumerator co_FlyAway()
         {
 //            letterObjectView.DoSmallJump();
-			onFlying();
+			onFlying(this);
 			status = LLStatus.None;
 
 			letterObjectView.DoSmallJump();            
@@ -132,33 +130,48 @@ namespace EA4S.Scanner
             rainbowJet.SetActive(true);
 			letterObjectView.SetState(LLAnimationStates.LL_still);
             yield return new WaitForSeconds(2f);
-            Reset();
+//            Reset();
         }
 
         IEnumerator co_Lost()
         {
-            letterObjectView.DoAngry();
-            yield return new WaitForSeconds(2f);
-            //			letterObjectView.DoAngry();
-            //			yield return new WaitForSeconds(1f);
-            letterObjectView.Poof();
-            Reset();
+			if (status == LLStatus.StandingOnBelt)
+			{
+				status = LLStatus.None;
+				letterObjectView.DoAngry();
+            	yield return new WaitForSeconds(2f);
+			}
+			if (status != LLStatus.Flying || status != LLStatus.Falling)
+			{
+				letterObjectView.Poof();
+				yield return new WaitForSeconds(0.2f);
+			}
+			else
+			{
+				yield return new WaitForSeconds(2f);
+			}
+			transform.position = new Vector3(-100,-100,-100); // Move offscreen
+
+
         }
 
         IEnumerator co_FallOff()
         {
-            onStartFallOff();
-//            transform.parent = originalParent;
+			gotSuitcase = false;
+			status = LLStatus.None;
+            onStartFallOff(this);
             letterObjectView.SetState(LLAnimationStates.LL_idle);
+			letterObjectView.DoSmallJump();
             StartCoroutine(RotateGO(livingLetter, new Vector3(90, 90, 0), 1f));
             yield return new WaitForSeconds(0.5f);
             letterObjectView.Falling = true;
             status = LLStatus.Falling;
-            yield return new WaitForSeconds(3f);
 
-			onFallOff();
+            yield return new WaitForSeconds(1f);
 
-            Reset();
+			onFallOff(this);
+
+//            Reset();
         }
 
         void OnMouseUp()
@@ -168,9 +181,10 @@ namespace EA4S.Scanner
 
         public void RoundLost()
         {
+			gotSuitcase = false;
             StopAllCoroutines();
-            letterObjectView.SetState(LLAnimationStates.LL_idle);
-            status = LLStatus.Lost;
+//            letterObjectView.SetState(LLAnimationStates.LL_idle);
+			StartCoroutine(co_Lost());
         }
 
         public void RoundWon()

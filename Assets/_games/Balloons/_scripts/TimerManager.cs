@@ -58,7 +58,10 @@ namespace EA4S.Balloons
         {
             isRunning = false;
             playedSfx = false;
-            MinigamesUI.Timer.Pause();
+            if (MinigamesUI.Timer != null)
+            {
+                MinigamesUI.Timer.Pause();
+            }
             //AudioManager.I.StopSfx(Sfx.DangerClockLong);
         }
 

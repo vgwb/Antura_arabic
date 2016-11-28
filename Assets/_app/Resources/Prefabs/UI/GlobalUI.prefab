@@ -1676,7 +1676,6 @@ GameObject:
   m_Component:
   - 224: {fileID: 224000011244374096}
   - 222: {fileID: 222000013105997580}
-  - 114: {fileID: 114000010792291946}
   - 114: {fileID: 114000013778831334}
   m_Layer: 5
   m_Name: Image txtImg
@@ -2091,7 +2090,7 @@ MonoBehaviour:
   m_fontSizeMin: 60
   m_fontSizeMax: 112
   m_fontStyle: 0
-  m_textAlignment: 4
+  m_textAlignment: 5
   m_characterSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2210,6 +2209,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  LocalizationId: 0
 --- !u!114 &114000010258784262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2438,21 +2438,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   ToggleIconAlpha: 1
---- !u!114 &114000010792291946
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012760576658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce6e49fa5c3fe4d65ba8553977228fcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_text: 
-  isTMPro: 1
-  isUI: 1
-  isArabic: 0
 --- !u!114 &114000010813081642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2496,6 +2481,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  LocalizationId: 0
 --- !u!114 &114000010979797290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3171,6 +3157,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  LocalizationId: 0
 --- !u!114 &114000012750641832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3400,6 +3387,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  LocalizationId: 0
 --- !u!114 &114000013473030810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3715,6 +3703,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  LocalizationId: 0
 --- !u!114 &114000013778831334
 MonoBehaviour:
   m_ObjectHideFlags: 1
