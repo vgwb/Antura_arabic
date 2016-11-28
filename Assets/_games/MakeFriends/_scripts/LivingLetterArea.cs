@@ -104,6 +104,16 @@ namespace EA4S.MakeFriends
             livingLetter.Celebrate(celebrationPosition, entranceRotation, celebrationDuration);
         }
 
+        public void HighFive()
+        {
+            if (left)
+            {
+                livingLetter.transform.localRotation = Quaternion.Euler(exitRotation_unreadable * -1f);
+            }
+
+            livingLetter.HighFive(celebrationDuration);
+        }
+
         public void Reset()
         {
             livingLetter = null;
