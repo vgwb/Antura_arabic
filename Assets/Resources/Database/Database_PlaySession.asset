@@ -3798,6 +3798,28 @@ MonoBehaviour:
         Weight: 80
       Letters:
       - fathah
+      - alef_fathah
+      - ain_fathah
+      - beh_fathah
+      - dad_fathah
+      - dal_fathah
+      - thal_fathah
+      - feh_fathah
+      - heh_fathah
+      - hah_fathah
+      - jeem_fathah
+      - kaf_fathah
+      - lam_fathah
+      - meem_fathah
+      - noon_fathah
+      - qaf_fathah
+      - reh_fathah
+      - sad_fathah
+      - seen_fathah
+      - sheen_fathah
+      - tah_fathah
+      - teh_fathah
+      - zain_fathah
       Words:
       - doctor
       Words_previous:
@@ -3903,6 +3925,12 @@ MonoBehaviour:
         Weight: 1
       Letters:
       - dammah
+      - beh_dammah
+      - jeem_dammah
+      - kaf_dammah
+      - meem_dammah
+      - teh_dammah
+      - zain_dammah
       Words:
       - garden
       Words_previous:
@@ -4008,6 +4036,13 @@ MonoBehaviour:
         Weight: 1
       Letters:
       - kasrah
+      - ain_kasrah
+      - beh_kasrah
+      - heh_kasrah
+      - hah_kasrah
+      - lam_kasrah
+      - meem_kasrah
+      - reh_kasrah
       Words:
       - number_06
       Words_previous:
@@ -4116,6 +4151,44 @@ MonoBehaviour:
       - dammah
       - kasrah
       - sukun
+      - alef_fathah
+      - ain_fathah
+      - beh_fathah
+      - dad_fathah
+      - dal_fathah
+      - thal_fathah
+      - feh_fathah
+      - heh_fathah
+      - hah_fathah
+      - jeem_fathah
+      - kaf_fathah
+      - lam_fathah
+      - meem_fathah
+      - noon_fathah
+      - qaf_fathah
+      - reh_fathah
+      - sad_fathah
+      - seen_fathah
+      - sheen_fathah
+      - tah_fathah
+      - teh_fathah
+      - zain_fathah
+      - beh_dammah
+      - jeem_dammah
+      - kaf_dammah
+      - meem_dammah
+      - teh_dammah
+      - zain_dammah
+      - ain_kasrah
+      - beh_kasrah
+      - heh_kasrah
+      - hah_kasrah
+      - lam_kasrah
+      - meem_kasrah
+      - reh_kasrah
+      - feh_sukun
+      - lam_sukun
+      - noon_sukun
       Words:
       - restaurant
       Words_previous:
@@ -4221,6 +4294,7 @@ MonoBehaviour:
         Weight: 1
       Letters:
       - fathah_tanwin
+      - alef_fathah_tanwin
       Words:
       - of_course
       Words_previous:
@@ -4324,6 +4398,8 @@ MonoBehaviour:
         Weight: 1
       Letters:
       - dammah_tanwin
+      - dal_dammah_tanwin
+      - teh_marbuta_dammah_tanwin
       Words:
       - forest
       Words_previous:
@@ -4427,6 +4503,8 @@ MonoBehaviour:
         Weight: 1
       Letters:
       - kasrah_tanwin
+      - lam_kasrah_tanwin
+      - noon_kasrah_tanwin
       Words:
       - shop
       Words_previous:
@@ -4535,6 +4613,46 @@ MonoBehaviour:
       - fathah_tanwin
       - dammah_tanwin
       - kasrah_tanwin
+      - alef_fathah
+      - ain_fathah
+      - beh_fathah
+      - dad_fathah
+      - dal_fathah
+      - thal_fathah
+      - feh_fathah
+      - heh_fathah
+      - hah_fathah
+      - jeem_fathah
+      - kaf_fathah
+      - lam_fathah
+      - meem_fathah
+      - noon_fathah
+      - qaf_fathah
+      - reh_fathah
+      - sad_fathah
+      - seen_fathah
+      - sheen_fathah
+      - tah_fathah
+      - teh_fathah
+      - zain_fathah
+      - beh_dammah
+      - jeem_dammah
+      - kaf_dammah
+      - meem_dammah
+      - teh_dammah
+      - zain_dammah
+      - ain_kasrah
+      - beh_kasrah
+      - heh_kasrah
+      - hah_kasrah
+      - lam_kasrah
+      - meem_kasrah
+      - reh_kasrah
+      - alef_fathah_tanwin
+      - dal_dammah_tanwin
+      - teh_marbuta_dammah_tanwin
+      - lam_kasrah_tanwin
+      - noon_kasrah_tanwin
       Words:
       - wrote
       - books
@@ -5667,6 +5785,41 @@ MonoBehaviour:
       - fathah
       - kasrah
       - dammah
+      - alef_fathah
+      - ain_fathah
+      - beh_fathah
+      - dad_fathah
+      - dal_fathah
+      - thal_fathah
+      - feh_fathah
+      - heh_fathah
+      - hah_fathah
+      - jeem_fathah
+      - kaf_fathah
+      - lam_fathah
+      - meem_fathah
+      - noon_fathah
+      - qaf_fathah
+      - reh_fathah
+      - sad_fathah
+      - seen_fathah
+      - sheen_fathah
+      - tah_fathah
+      - teh_fathah
+      - zain_fathah
+      - ain_kasrah
+      - beh_kasrah
+      - heh_kasrah
+      - hah_kasrah
+      - lam_kasrah
+      - meem_kasrah
+      - reh_kasrah
+      - beh_dammah
+      - jeem_dammah
+      - kaf_dammah
+      - meem_dammah
+      - teh_dammah
+      - zain_dammah
       Words:
       - carrot
       - islands
@@ -5724,6 +5877,11 @@ MonoBehaviour:
       - fathah_tanwin
       - dammah_tanwin
       - kasrah_tanwin
+      - alef_fathah_tanwin
+      - dal_dammah_tanwin
+      - teh_marbuta_dammah_tanwin
+      - lam_kasrah_tanwin
+      - noon_kasrah_tanwin
       Words:
       - wore
       - costume
@@ -5777,6 +5935,8 @@ MonoBehaviour:
         Weight: 1
       Letters:
       - shaddah
+      - hah_shaddah
+      - jeem_shaddah
       Words:
       - uncle_father
       Words_previous:
