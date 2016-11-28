@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Db;
 
 namespace EA4S.Teacher
 {
@@ -68,6 +69,7 @@ namespace EA4S.Teacher
         public List<LearningBlockInfo> GetLearningBlockInfosForStage(int targetStage)
         {            
             // @todo: this could use the new ScoreHelper methods
+            // @todo: probably move this to ScoreHelper
             List<LearningBlockInfo> learningBlockInfo_list = new List<LearningBlockInfo>();
 
             List<Db.LearningBlockData> learningBlockData_list = FindLearningBlockDataOfStage(targetStage);
@@ -97,6 +99,7 @@ namespace EA4S.Teacher
         public List<PlaySessionInfo> GetPlaySessionInfosForLearningBlock(int targetStage, int targetLearningBlock)
         {
             // @todo: this could use the new ScoreHelper methods
+            // @todo: probably move this to ScoreHelper
             List<PlaySessionInfo> playSessionInfo_list = new List<PlaySessionInfo>();
 
             List<Db.PlaySessionData> playSessionData_list = FindPlaySessionDataOfStageAndLearningBlock(targetStage, targetLearningBlock);
