@@ -983,7 +983,7 @@ Prefab:
     - target: {fileID: 114000010076114956, guid: 28622836b635c457fa94a71ea205ba03,
         type: 2}
       propertyPath: LocalizationId
-      value: 226
+      value: 326
       objectReference: {fileID: 0}
     - target: {fileID: 114000013022751828, guid: 28622836b635c457fa94a71ea205ba03,
         type: 2}
@@ -4841,6 +4841,11 @@ Prefab:
       propertyPath: m_Name
       value: MenuItemBookArea Letters
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010076114956, guid: 28622836b635c457fa94a71ea205ba03,
+        type: 2}
+      propertyPath: LocalizationId
+      value: 321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28622836b635c457fa94a71ea205ba03, type: 2}
   m_IsPrefabParent: 0
@@ -7446,7 +7451,7 @@ Prefab:
     - target: {fileID: 114000010076114956, guid: 28622836b635c457fa94a71ea205ba03,
         type: 2}
       propertyPath: LocalizationId
-      value: 225
+      value: 337
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28622836b635c457fa94a71ea205ba03, type: 2}
