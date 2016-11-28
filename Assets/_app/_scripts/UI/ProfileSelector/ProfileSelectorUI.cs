@@ -58,7 +58,6 @@ namespace EA4S
             // Listeners
             BtAdd.Bt.onClick.AddListener(() => OnClick(BtAdd));
             BtPlay.Bt.onClick.AddListener(() => {
-                BtPlay.AnimateClick();
                 AudioManager.I.PlaySfx(Sfx.UIButtonClick);
                 if (AppManager.I.Player.IsFirstContact())
                     AppManager.I.Modules.SceneModule.LoadSceneWithTransition("app_Intro");
