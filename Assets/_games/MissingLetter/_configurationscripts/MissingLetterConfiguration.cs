@@ -5,7 +5,6 @@
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
-        public IQuestionProvider PipeQuestions { get; set; }
 
         public float Difficulty { get; set; }
 
@@ -27,7 +26,7 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            PipeQuestions = new SampleQuestionProvider();
+            Questions = new SampleQuestionProvider();
 
             Context = new SampleGameContext();
             Difficulty = 0.5f;
