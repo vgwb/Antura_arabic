@@ -18,6 +18,15 @@ namespace EA4S
             info = _info;
             manager = _manager;
 
+            if (!info.unlocked)
+            {
+                GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                GetComponent<Button>().interactable = true;
+            }
+
             Title.text = info.data.Arabic;
             SubTitle.text = info.data.Id;
 
@@ -25,7 +34,10 @@ namespace EA4S
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailPhrase(info);
+            if (info.unlocked)
+            {
+                manager.DetailPhrase(info);
+            }
         }
     }
 }
