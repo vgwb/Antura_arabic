@@ -88,12 +88,17 @@ namespace EA4S
                     list = AppManager.I.DB.GetAllLetterData();
                     break;
             }
-
             emptyListContainers();
-            foreach (LetterData item in list) {
-                btnGO = Instantiate(LetterItemPrefab);
-                btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponent<ItemLetter>().Init(this, item);
+
+            List<LetterInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllLetterInfo();
+            foreach (var info_item in info_list)
+            {
+                if (list.Contains(info_item.data))
+                {
+                    btnGO = Instantiate(LetterItemPrefab);
+                    btnGO.transform.SetParent(ElementsContainer.transform, false);
+                    btnGO.GetComponent<ItemLetter>().Init(this, info_item);
+                }
             }
 
             //btnGO = Instantiate(CategoryItemPrefab);
@@ -134,7 +139,6 @@ namespace EA4S
             List<WordInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllWordInfo();
             foreach (var info_item in info_list)
             {
-                // Filter by the above constraints
                 if (list.Contains(info_item.data))
                 {
                     btnGO = Instantiate(WordItemPrefab);
@@ -160,10 +164,10 @@ namespace EA4S
         {
             emptyListContainers();
 
-            foreach (PhraseData item in AppManager.I.DB.GetAllPhraseData()) {
+            foreach (var info_item in AppManager.I.Teacher.scoreHelper.GetAllPhraseInfo()) {
                 btnGO = Instantiate(PhraseItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponent<ItemPhrase>().Init(this, item);
+                btnGO.GetComponent<ItemPhrase>().Init(this, info_item);
             }
         }
 
@@ -220,23 +224,23 @@ namespace EA4S
 
         }
 
-        public void DetailLetter(LetterData letter)
+        public void DetailLetter(LetterInfo letterInfo)
         {
-            Debug.Log("Detail Letter :" + letter.Id);
-            AudioManager.I.PlayLetter(letter.Id);
+            Debug.Log("Detail Letter :" + letterInfo.data.Id);
+            AudioManager.I.PlayLetter(letterInfo.data.Id);
 
-            ArabicText.text = letter.GetChar(LetterPosition.Isolated);
-            ArabicText.text += " " + letter.GetChar(LetterPosition.Final);
-            ArabicText.text += " " + letter.GetChar(LetterPosition.Medial);
-            ArabicText.text += " " + letter.GetChar(LetterPosition.Initial);
+            ArabicText.text = letterInfo.data.GetChar(LetterPosition.Isolated);
+            ArabicText.text += " " + letterInfo.data.GetChar(LetterPosition.Final);
+            ArabicText.text += " " + letterInfo.data.GetChar(LetterPosition.Medial);
+            ArabicText.text += " " + letterInfo.data.GetChar(LetterPosition.Initial);
 
-            LLText.Init(new LL_LetterData(letter));
+            LLText.Init(new LL_LetterData(letterInfo.data));
         }
 
-        public void DetailPhrase(PhraseData phrase)
+        public void DetailPhrase(PhraseInfo phraseInfo)
         {
-            Debug.Log("Detail Phrase :" + phrase.Id);
-            AudioManager.I.PlayPhrase(phrase.Id);
+            Debug.Log("Detail Phrase :" + phraseInfo.data.Id);
+            AudioManager.I.PlayPhrase(phraseInfo.data.Id);
         }
 
 
