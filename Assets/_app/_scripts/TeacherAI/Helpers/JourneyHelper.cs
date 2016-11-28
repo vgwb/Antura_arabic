@@ -30,6 +30,15 @@ namespace EA4S.Teacher
             this.teacher = _teacher;
         }
 
+        #region Utilities
+
+        public bool IsAssessmentTime(JourneyPosition journeyPosition)
+        {
+            return journeyPosition.PlaySession == 100;
+        }
+
+        #endregion
+
         #region JourneyPosition
 
         public string JourneyPositionToPlaySessionId(JourneyPosition journeyPosition)
@@ -127,7 +136,6 @@ namespace EA4S.Teacher
         }
 
         #endregion
-
 
         #region Stage -> LearningBlock -> PlaySession
 
