@@ -11,7 +11,10 @@ namespace EA4S
         public GameObject[] cameras;
         public GameObject[] miniMaps;
         public GameObject letter;
+        public GameObject leftStageButton;
+        public GameObject rightStageButton;
         int s, i,previousStage;
+        bool inTransition;
         void Awake()
         {
             /*AppManager.I.Player.MaxJourneyPosition.Stage = 2;
@@ -27,8 +30,8 @@ namespace EA4S
             }
             miniMaps[i].GetComponent<MiniMap>().CalculateSettingsStageMap();
 
+            FirstOrLastMap();
 
-            //ChangeCamera(cameras[AppManager.I.Player.CurrentJourneyPosition.Stage]);
             stages[AppManager.I.Player.CurrentJourneyPosition.Stage].SetActive(true);
             Camera.main.backgroundColor = colorMaps[AppManager.I.Player.CurrentJourneyPosition.Stage];
             Camera.main.GetComponent<CameraFog>().color = colorMaps[AppManager.I.Player.CurrentJourneyPosition.Stage];
@@ -39,9 +42,10 @@ namespace EA4S
         public void StageLeft()
         {
             int numberStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
-            previousStage = numberStage;
-            if (numberStage < s)
+            if ((numberStage < s) && (!inTransition))
             {
+                previousStage = numberStage;
+                inTransition = true;
                 stages[numberStage + 1].SetActive(true);
                 ChangeCamera(cameras[numberStage + 1]);
 
@@ -50,16 +54,19 @@ namespace EA4S
                 ChangeCameraFogColor(AppManager.I.Player.CurrentJourneyPosition.Stage);
                 letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage + 1].GetComponent<MiniMap>();
                 letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
-                StopCoroutine("DesactivateMap");
+
+                FirstOrLastMap();
+
                 StartCoroutine("DesactivateMap");
             }
         }
         public void StageRight()
         {
             int numberStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
-            previousStage = numberStage;
-            if (numberStage > 1)
+            if ((numberStage > 1)&& (!inTransition))
             {
+                previousStage = numberStage;
+                inTransition = true;
                 stages[numberStage - 1].SetActive(true);
                 ChangeCamera(cameras[numberStage - 1]);
 
@@ -68,7 +75,9 @@ namespace EA4S
                 ChangeCameraFogColor(AppManager.I.Player.CurrentJourneyPosition.Stage);
                 letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage - 1].GetComponent<MiniMap>();
                 letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
-                StopCoroutine("DesactivateMap");
+
+                FirstOrLastMap();
+
                 StartCoroutine("DesactivateMap");
             }
         }
@@ -104,6 +113,26 @@ namespace EA4S
         {
             yield return new WaitForSeconds(1.5f);
             stages[previousStage].SetActive(false);
+            inTransition = false;
         }
+        void FirstOrLastMap()
+        {
+            if (AppManager.I.Player.CurrentJourneyPosition.Stage == 1)
+                rightStageButton.SetActive(false);
+            else if (AppManager.I.Player.CurrentJourneyPosition.Stage == 6)
+                leftStageButton.SetActive(false);
+            else
+            {
+                rightStageButton.SetActive(true);
+                leftStageButton.SetActive(true);
+            }
+
+        }
+
+        /*void DesactivateMap()
+        {
+            stages[previousStage].SetActive(false);
+            inTransition = false;
+        }*/
     }
 }

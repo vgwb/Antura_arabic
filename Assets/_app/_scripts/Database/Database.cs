@@ -100,6 +100,12 @@ namespace EA4S.Db
             return filtered;
         }
 
+        public List<T> GetAll<T>(SerializableDataTable<T> table) where T : IData
+        {
+            var allValues = new List<T>(table.GetValuesTyped());
+            return allValues;
+        }
+
         public T GetById<T>(SerializableDataTable<T> table, string id) where T : IData
         {
             T value = (T)table.GetValue(id);
