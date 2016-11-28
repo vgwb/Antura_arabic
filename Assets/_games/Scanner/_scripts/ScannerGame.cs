@@ -13,9 +13,10 @@ namespace EA4S.Scanner
 	public class ScannerGame : MiniGame 
 	{
 
-//		public static ScannerGame instance;
+        //		public static ScannerGame instance;
 
-		public const string TAG_BELT = "Scanner_Belt";
+        public static bool disableInput;
+        public const string TAG_BELT = "Scanner_Belt";
 		public const string TAG_SCAN_START = "Scanner_ScanStart";
 		public const string TAG_SCAN_END = "Scanner_ScanEnd";
 
@@ -55,7 +56,9 @@ namespace EA4S.Scanner
 
 		public Animator trapDoor;
 
-		int STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD;
+        public ScannerTutorial tut;
+
+        public int STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD;
 
 		public int CurrentStars
 		{
@@ -104,7 +107,9 @@ namespace EA4S.Scanner
 
 			roundsManager = new ScannerRoundsManager(this);
 
-			Context.GetOverlayWidget().Initialize(true, false, false);
+            tut = GetComponent<ScannerTutorial>();
+
+			//Context.GetOverlayWidget().Initialize(true, false, false);
 			Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
 		}
 
@@ -117,7 +122,7 @@ namespace EA4S.Scanner
 
 		public void CreatePoof(Vector3 position, float duration, bool withSound)
 		{
-			if (withSound) AudioManager.I.PlaySfx(Sfx.BaloonPop);
+			if (withSound) AudioManager.I.PlaySfx(Sfx.BalloonPop);
 			GameObject poof = Instantiate(poofPrefab, position, Quaternion.identity) as GameObject;
 			poof.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
 			Destroy(poof, duration);

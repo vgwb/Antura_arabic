@@ -3,7 +3,10 @@ using System.Collections;
 using TMPro;
 
 namespace EA4S {
-    public class DropSingleArea : MonoBehaviour {
+    public class DropSingleArea : MonoBehaviour
+    {
+        public TMP_FontAsset normalFont;
+        public TMP_FontAsset numbersFont;
 
         public TMP_Text LetterLable;
         public TextMeshPro DrawText;
@@ -24,9 +27,22 @@ namespace EA4S {
                 DrawText.text = Data.DrawingCharForLivingLetter;
             } else
             {
+                LetterLable.font = normalFont;
                 LetterLable.GetComponent<TextRender>().SetLetterData(Data);
                 DrawText.gameObject.SetActive(false);
             }
+
+            AreaState = State.disabled;
+        }
+
+        public void Init(ILivingLetterData _data, int text, DropContainer _dropContainer)
+        {
+            DropContain = _dropContainer;
+            Data = _data;
+
+            LetterLable.font = numbersFont;
+            LetterLable.text = GenericUtilities.ReverseText(text.ToString());
+            DrawText.gameObject.SetActive(false);
 
             AreaState = State.disabled;
         }
@@ -36,6 +52,7 @@ namespace EA4S {
             DropContain = _dropContainer;
             Data = _data;
 
+            LetterLable.font = normalFont;
             LetterLable.text = GenericUtilities.ReverseText(text);
             DrawText.gameObject.SetActive(false);
 

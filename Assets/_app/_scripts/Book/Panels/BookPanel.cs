@@ -5,18 +5,10 @@ using EA4S.Db;
 
 namespace EA4S
 {
-    public enum BookPanelArea
-    {
-        None,
-        Letters,
-        Words,
-        Phrases,
-        Minigames
-    }
 
     public struct GenericCategoryData
     {
-        public BookPanelArea area;
+        public PlayerBookPanel area;
         public string Id;
         public string Title;
         public WordDataCategory wordCategory;
@@ -41,7 +33,7 @@ namespace EA4S
         public LetterObjectView LLText;
         public LetterObjectView LLDrawing;
 
-        BookPanelArea currentArea = BookPanelArea.None;
+        PlayerBookPanel currentArea = PlayerBookPanel.None;
         GameObject btnGO;
         string currentCategory;
         WordDataCategory currentWordCategory;
@@ -52,10 +44,10 @@ namespace EA4S
 
         void OnEnable()
         {
-            OpenArea(BookPanelArea.Letters);
+            OpenArea(PlayerBookPanel.BookLetters);
         }
 
-        void OpenArea(BookPanelArea newArea)
+        void OpenArea(PlayerBookPanel newArea)
         {
             if (newArea != currentArea) {
                 currentArea = newArea;
@@ -63,24 +55,20 @@ namespace EA4S
             }
         }
 
-        void activatePanel(BookPanelArea panel, bool status)
+        void activatePanel(PlayerBookPanel panel, bool status)
         {
             switch (panel) {
-                case BookPanelArea.Letters:
+                case PlayerBookPanel.BookLetters:
                     AudioManager.I.PlayDialog("Book_Letters");
                     LettersPanel();
                     break;
-                case BookPanelArea.Words:
+                case PlayerBookPanel.BookWords:
                     AudioManager.I.PlayDialog("Book_Words");
                     WordsPanel();
                     break;
-                case BookPanelArea.Phrases:
+                case PlayerBookPanel.BookPhrases:
                     AudioManager.I.PlayDialog("Book_Phrases");
                     PhrasesPanel();
-                    break;
-                case BookPanelArea.Minigames:
-                    AudioManager.I.PlayDialog("Book_Games");
-                    MinigamesPanel();
                     break;
             }
         }
@@ -114,15 +102,15 @@ namespace EA4S
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = BookPanelArea.Letters, Id = "letter", Title = "Letters" });
+            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = PlayerBookPanel.BookLetters, Id = "letter", Title = "Letters" });
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = BookPanelArea.Letters, Id = "symbol", Title = "Symbols" });
+            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = PlayerBookPanel.BookLetters, Id = "symbol", Title = "Symbols" });
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = BookPanelArea.Letters, Id = "combo", Title = "Combinations" });
+            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = PlayerBookPanel.BookLetters, Id = "combo", Title = "Combinations" });
 
         }
 
@@ -156,7 +144,7 @@ namespace EA4S
             foreach (WordDataCategory cat in GenericUtilities.SortEnums<WordDataCategory>()) {
                 btnGO = Instantiate(CategoryItemPrefab);
                 btnGO.transform.SetParent(SubmenuContainer.transform, false);
-                btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = BookPanelArea.Words, wordCategory = cat, Title = cat.ToString() });
+                btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = PlayerBookPanel.BookWords, wordCategory = cat, Title = cat.ToString() });
             }
 
         }
@@ -172,24 +160,14 @@ namespace EA4S
             }
         }
 
-        void MinigamesPanel()
-        {
-            emptyListContainers();
-
-            foreach (MiniGameData item in AppManager.I.DB.GetActiveMinigames()) {
-                btnGO = Instantiate(MinigameItemPrefab);
-                btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponent<ItemMiniGame>().Init(this, item);
-            }
-        }
 
         public void SelectSubCategory(GenericCategoryData _category)
         {
             switch (_category.area) {
-                case BookPanelArea.Letters:
+                case PlayerBookPanel.BookLetters:
                     LettersPanel(_category.Id);
                     break;
-                case BookPanelArea.Words:
+                case PlayerBookPanel.BookWords:
                     WordsPanel(_category.wordCategory);
                     break;
             }
@@ -223,7 +201,7 @@ namespace EA4S
                 var drawingChar = AppManager.I.Teacher.wordHelper.GetWordDrawing(word);
                 Drawing.text = drawingChar;
                 LLDrawing.Init(new LL_ImageData(word));
-                Debug.Log("Drawing: " + word.Drawing);
+                Debug.Log("Drawing: " + word.Drawing + " / " + ArabicAlphabetHelper.GetLetterFromUnicode(word.Drawing));
             } else {
                 Drawing.text = "";
                 LLDrawing.Init(new LL_ImageData(word));
@@ -254,10 +232,6 @@ namespace EA4S
             AudioManager.I.PlayPhrase(phrase.Id);
         }
 
-        public void DetailMiniGame(MiniGameData data)
-        {
-            AudioManager.I.PlayDialog(data.GetTitleSoundFilename());
-        }
 
         void emptyListContainers()
         {
@@ -271,22 +245,18 @@ namespace EA4S
 
         public void BtnOpenLetters()
         {
-            OpenArea(BookPanelArea.Letters);
+            OpenArea(PlayerBookPanel.BookLetters);
         }
 
         public void BtnOpenWords()
         {
-            OpenArea(BookPanelArea.Words);
+            OpenArea(PlayerBookPanel.BookWords);
         }
 
         public void BtnOpenPhrases()
         {
-            OpenArea(BookPanelArea.Phrases);
+            OpenArea(PlayerBookPanel.BookPhrases);
         }
 
-        public void BtnOpenMinigames()
-        {
-            OpenArea(BookPanelArea.Minigames);
-        }
     }
 }

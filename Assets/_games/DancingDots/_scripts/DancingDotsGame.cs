@@ -144,7 +144,7 @@ namespace EA4S.DancingDots
             base.Start();
             tutorial = GetComponent<DancingDotsTutorial>();
 
-            AppManager.I.InitDataAI();
+            AppManager.I.InitTeacherForPlayer();
             AppManager.I.CurrentGameManagerGO = gameObject;
             SceneTransitioner.Close();
 
@@ -321,7 +321,7 @@ namespace EA4S.DancingDots
 			
         private void CreatePoof(Vector3 position, float duration, bool withSound)
         {
-            if (withSound) AudioManager.I.PlaySfx(Sfx.BaloonPop);
+            if (withSound) AudioManager.I.PlaySfx(Sfx.BalloonPop);
             GameObject poof = Instantiate(poofPrefab, position, Quaternion.identity) as GameObject;
             Destroy(poof, duration);
         }

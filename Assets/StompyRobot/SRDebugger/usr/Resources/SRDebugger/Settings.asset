@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d00b7005a47ef47802a8421dc6baf6, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  _isEnabled: 1
-  _autoLoad: 1
+  _isEnabled: 0
+  _autoLoad: 0
   _defaultTab: 1
   _triggerEnableMode: 0
   _triggerBehaviour: 0

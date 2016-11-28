@@ -57,7 +57,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "specular_saturated_2side",
       "Material2" : "transparent_saturated_2side",
-      "Category" : "FACE",
+      "Category" : "NOSE",
       "RemTongue" : ""
     },
     {
@@ -69,7 +69,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "specular_saturated_2side",
       "Material2" : "diffuse_saturated",
-      "Category" : "FACE",
+      "Category" : "NOSE",
       "RemTongue" : ""
     },
     {
@@ -81,7 +81,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "specular_saturated_2side",
       "Material2" : "specular_saturated_2side",
-      "Category" : "FACE",
+      "Category" : "NOSE",
       "RemTongue" : ""
     },
     {
@@ -93,7 +93,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "specular_saturated_2side",
       "Material2" : "trasparent_saturated",
-      "Category" : "FACE",
+      "Category" : "NOSE",
       "RemTongue" : ""
     },
     {
@@ -479,6 +479,112 @@
       "Color1RGB" : "42723EFF",
       "Color2Name" : "yellow_light",
       "Color2RGB" : "FFFF92FF"
+    }
+  ],
+  "RewardsDecal" : [
+    {
+      "ID" : "Antura_decalmap01",
+      "ColorVariations" : 3
+    },
+    {
+      "ID" : "Antura_decalmap02",
+      "ColorVariations" : 3
+    },
+    {
+      "ID" : "Antura_decalmap03",
+      "ColorVariations" : 3
+    }
+  ],
+  "RewardsDecalColor" : [
+    {
+      "ID" : "color1",
+      "Color1Name" : "",
+      "Color1RGB" : "E6FBFBFF"
+    },
+    {
+      "ID" : "color2",
+      "Color1Name" : "",
+      "Color1RGB" : "635C55FF"
+    },
+    {
+      "ID" : "color3",
+      "Color1Name" : "",
+      "Color1RGB" : "384D67FF"
+    }
+  ],
+  "RewardsTile" : [
+    {
+      "ID" : "Antura_flower_tilemat",
+      "ColorVariations" : 7
+    },
+    {
+      "ID" : "Antura_fur2_tilemat",
+      "ColorVariations" : 6
+    },
+    {
+      "ID" : "Antura_fur_tilemat",
+      "ColorVariations" : 6
+    },
+    {
+      "ID" : "Antura_heart_pois_tilemat",
+      "ColorVariations" : 6
+    },
+    {
+      "ID" : "Antura_pois_tilemat",
+      "ColorVariations" : 6
+    },
+    {
+      "ID" : "Antura_scales_tilemat",
+      "ColorVariations" : 6
+    },
+    {
+      "ID" : "Antura_scottish_tilemat",
+      "ColorVariations" : 6
+    },
+    {
+      "ID" : "Antura_wool_tilemat",
+      "ColorVariations" : 6
+    },
+    {
+      "ID" : "Saturated",
+      "ColorVariations" : 6
+    }
+  ],
+  "RewardsTileColor" : [
+    {
+      "ID" : "color1",
+      "Color1Name" : "",
+      "Color1RGB" : "E6FBFBFF"
+    },
+    {
+      "ID" : "color2",
+      "Color1Name" : "",
+      "Color1RGB" : "635C55FF"
+    },
+    {
+      "ID" : "color3",
+      "Color1Name" : "",
+      "Color1RGB" : "384D67FF"
+    },
+    {
+      "ID" : "color4",
+      "Color1Name" : "",
+      "Color1RGB" : "00FBFBFF"
+    },
+    {
+      "ID" : "color5",
+      "Color1Name" : "",
+      "Color1RGB" : "EE5C55FF"
+    },
+    {
+      "ID" : "color6",
+      "Color1Name" : "",
+      "Color1RGB" : "FF4D67FF"
+    },
+    {
+      "ID" : "color7",
+      "Color1Name" : "",
+      "Color1RGB" : "FFFFFFFF"
     }
   ]
 }

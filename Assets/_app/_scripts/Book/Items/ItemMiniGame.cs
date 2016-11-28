@@ -13,9 +13,9 @@ namespace EA4S
         public Image Icon;
         public Image BadgeIcon;
 
-        BookPanel manager;
+        GamesPanel manager;
 
-        public void Init(BookPanel _manager, MiniGameData _data)
+        public void Init(GamesPanel _manager, MiniGameData _data)
         {
             data = _data;
             manager = _manager;

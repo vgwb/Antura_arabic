@@ -23,7 +23,6 @@ namespace EA4S
         public Sfx SfxSelectProfile;
 
         public static ProfileSelectorUI I;
-        public const string AvatarsResourcesDir = "Images/Avatars/";
         public PlayerProfileManager ProfileManager { get { return AppManager.I.PlayerProfileManager; } }
         int maxProfiles;
         ProfileSelectorAvatarButton[] avatarButtons;
@@ -50,25 +49,25 @@ namespace EA4S
                 });
             btPlayTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(BtPlay.RectT.DOAnchorPosY(-210, 0.2f).From(true))
-                .OnPlay(()=> BtPlay.gameObject.SetActive(true))
-                .OnRewind(()=> BtPlay.gameObject.SetActive(false))
-                .OnComplete(()=> BtPlay.Pulse());
+                .OnPlay(() => BtPlay.gameObject.SetActive(true))
+                .OnRewind(() => BtPlay.gameObject.SetActive(false))
+                .OnComplete(() => BtPlay.Pulse());
 
             BtPlay.gameObject.SetActive(false);
 
             // Listeners
-            BtAdd.Bt.onClick.AddListener(()=> OnClick(BtAdd));
+            BtAdd.Bt.onClick.AddListener(() => OnClick(BtAdd));
             BtPlay.Bt.onClick.AddListener(() => {
                 BtPlay.AnimateClick();
                 AudioManager.I.PlaySfx(Sfx.UIButtonClick);
-                if(AppManager.I.Player.IsFirstContact())
+                if (AppManager.I.Player.IsFirstContact())
                     AppManager.I.Modules.SceneModule.LoadSceneWithTransition("app_Intro");
                 else
                     AppManager.I.Modules.SceneModule.LoadSceneWithTransition("app_Mood");
             });
             foreach (ProfileSelectorAvatarButton bt in avatarButtons) {
                 ProfileSelectorAvatarButton b = bt;
-                b.Bt.onClick.AddListener(()=> OnClick(b));
+                b.Bt.onClick.AddListener(() => OnClick(b));
             }
         }
 
