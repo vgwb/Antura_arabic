@@ -604,7 +604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e7b1deacd6a482984f7a5b98ee73eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: -0.4
 --- !u!1001 &126746974
 Prefab:
   m_ObjectHideFlags: 0
@@ -1282,7 +1281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -1
+  direction: -1
 --- !u!1 &335785520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,7 +1595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -1
+  direction: -1
 --- !u!1 &382782240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,7 +1923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  direction: 1
 --- !u!1 &512295470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,7 +1968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -1
+  direction: -1
 --- !u!4 &520526099 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010135022026, guid: f398875ac274343a3be86d4138fa6de7,
@@ -5047,7 +5046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  direction: 1
 --- !u!1001 &877097590
 Prefab:
   m_ObjectHideFlags: 0
@@ -10138,7 +10137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  direction: 1
 --- !u!1 &1315319158
 GameObject:
   m_ObjectHideFlags: 0
@@ -10183,7 +10182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -1
+  direction: -1
 --- !u!1001 &1320561908
 Prefab:
   m_ObjectHideFlags: 0
@@ -10645,7 +10644,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e7b1deacd6a482984f7a5b98ee73eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: -0.4
 --- !u!65 &1431994185
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12685,7 +12683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  direction: 1
 --- !u!4 &1924717215
 Transform:
   m_ObjectHideFlags: 0
@@ -12910,7 +12908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047016c6afc744959f13a2f20d2a64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -1
+  direction: -1
 --- !u!1001 &1994111436
 Prefab:
   m_ObjectHideFlags: 0
