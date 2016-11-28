@@ -121,6 +121,7 @@ namespace EA4S
                 wordsLettersGroup.Stop();
 
             AudioManager.I.ClearCache();
+            AudioManager.I.StopDialogue(true);
             playingAudio.Clear();
         }
 
