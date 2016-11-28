@@ -2,12 +2,11 @@
 using System.Linq;
 using EA4S.Db;
 
-namespace EA4S.Teacher
+namespace EA4S.Db
 {
-
     #region Info Wrappers
 
-    public class DataInfo<T> where T :IData
+    public class DataInfo<T> where T : IData
     {
         public T data = default(T);
         public float score = 0f;
@@ -19,13 +18,17 @@ namespace EA4S.Teacher
         public List<PlaySessionInfo> playSessions = new List<PlaySessionInfo>();
     }
 
-    public class PlaySessionInfo : DataInfo<PlaySessionData>{}
+    public class PlaySessionInfo : DataInfo<PlaySessionData> { }
     public class MiniGameInfo : DataInfo<MiniGameData> { }
     public class WordInfo : DataInfo<WordData> { }
     public class LetterInfo : DataInfo<LetterData> { }
     public class PhraseInfo : DataInfo<PhraseData> { }
 
     #endregion
+}
+
+namespace EA4S.Teacher
+{
 
     public class ScoreHelper
     {
@@ -85,8 +88,6 @@ namespace EA4S.Teacher
             {
                 var info = new I();
                 info.data = data;
-                info.score = 0; // 0 if not found otherwise in the next step
-                info.unlocked = false;
                 info_list.Add(info);
             }
 
@@ -97,8 +98,15 @@ namespace EA4S.Teacher
             {
                 var info = info_list[i];
                 var scoredata = scoredata_list.Find(x => x.ElementId == info.data.GetId());
-                info.score = scoredata.Score;
-                info.unlocked = true;
+                if (scoredata != null)
+                {
+                    info.score = scoredata.Score;
+                    info.unlocked = true;
+                } else
+                {
+                    info.score = 0; // 0 until unlocked
+                    info.unlocked = false;
+                }
             }
 
             return info_list;

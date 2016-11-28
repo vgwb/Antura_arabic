@@ -41,7 +41,7 @@ namespace EA4S
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailWord(info.data);
+            manager.DetailWord(info);
         }
     }
 }
