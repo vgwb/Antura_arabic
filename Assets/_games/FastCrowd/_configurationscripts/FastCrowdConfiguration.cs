@@ -88,7 +88,7 @@
                 case FastCrowdVariation.Spelling:
                     builderParams.wordFilters.excludeColorWords = true;
                     builderParams.wordFilters.requireDrawings = true;
-                    builder = new LettersInWordQuestionBuilder(nPacks, nWrong:nWrong, useAllCorrectLetters:true);
+                    builder = new LettersInWordQuestionBuilder(nPacks, nWrong:nWrong, useAllCorrectLetters:true, parameters: builderParams);
                     break;
                 case FastCrowdVariation.Words:
                     builderParams.wordFilters.excludeColorWords = true;
