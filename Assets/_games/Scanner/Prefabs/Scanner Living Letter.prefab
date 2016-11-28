@@ -645,7 +645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012701659880
 GameObject:
   m_ObjectHideFlags: 1
@@ -2388,6 +2388,7 @@ MonoBehaviour:
   letterObjectView: {fileID: 114000010402415976}
   rainbowJet: {fileID: 1000012696403056}
   bodyCollider: {fileID: 65000011591538456}
+  gotSuitcase: 0
 --- !u!114 &114000014181777866
 MonoBehaviour:
   m_ObjectHideFlags: 1

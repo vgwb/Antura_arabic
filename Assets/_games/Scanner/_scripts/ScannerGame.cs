@@ -1,8 +1,9 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
-
+using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 
 
 using EA4S;
@@ -27,6 +28,7 @@ namespace EA4S.Scanner
 
 		public GameObject poofPrefab;
 
+		public ScannerDevice scannerDevice;
 
 		public string currentWord = "";
 
@@ -41,15 +43,19 @@ namespace EA4S.Scanner
 
 		public GameObject LLPrefab;
 
-		public ScannerLivingLetter scannerLL;
+		[HideInInspector]
+		public List<ScannerLivingLetter> scannerLL;
 
-		public ScannerSuitcase[] suitcases;
+		public List<ScannerSuitcase> suitcases;
 
 		[HideInInspector]
-		public ILivingLetterData wordData;
+		public List <ILivingLetterData> wordData;
 
 		[HideInInspector]
 		public ScannerRoundsManager roundsManager;
+
+		[HideInInspector]
+		public int LLCount;
 
 		public int CurrentScoreRecord;
 
@@ -77,7 +83,6 @@ namespace EA4S.Scanner
 
 		public void ResetScore()
 		{
-			
 			CurrentScoreRecord = 0;
 		}
 
@@ -98,6 +103,25 @@ namespace EA4S.Scanner
 			STARS_2_THRESHOLD = numberOfRounds/2;
 			STARS_3_THRESHOLD = numberOfRounds;
 
+			LLCount = ScannerConfiguration.Instance.nCorrect;
+
+			if (LLCount == 3)
+			{
+				suitcases.First().gameObject.SetActive(false);
+				suitcases.Last().gameObject.SetActive(false);
+
+				suitcases.Remove(suitcases.First());
+				suitcases.Remove(suitcases.Last());
+
+				var leftSS = suitcases.First().transform.localPosition;
+				suitcases.First().transform.localPosition = new Vector3(-7, leftSS.y, leftSS.z);
+
+				var rightSS = suitcases.Last().transform.localPosition;
+				suitcases.Last().transform.localPosition = new Vector3(7, rightSS.y, rightSS.z);
+
+			}
+
+
 			IntroductionState = new ScannerIntroductionState(this);
 			PlayState = new ScannerPlayState(this);
 			ResultState = new ScannerResultState(this);
@@ -108,10 +132,10 @@ namespace EA4S.Scanner
 			Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
 		}
 
-		public void PlayWord(float deltaTime)
+		public void PlayWord(float deltaTime, ScannerLivingLetter LL)
 		{
 			Debug.Log("Play word: " + deltaTime);
-			IAudioSource wordSound = Context.GetAudioManager().PlayLetterData(wordData, true);
+			IAudioSource wordSound = Context.GetAudioManager().PlayLetterData(LL.letterObjectView.Data, true);
 			wordSound.Pitch = Mathf.Abs(maxPlaySpeed - Mathf.Clamp(deltaTime,minPlaySpeed,maxPlaySpeed + minPlaySpeed));
 		}
 

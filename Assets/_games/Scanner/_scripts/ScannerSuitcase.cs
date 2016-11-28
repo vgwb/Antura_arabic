@@ -24,11 +24,14 @@ namespace EA4S.Scanner
 		public TextMeshPro drawing;
 		public GameObject shadow;
 
+		[HideInInspector]
+		public string wordId;
+
 
 		bool overPlayermarker = false;
 
 
-		public event Action <GameObject> onCorrectDrop;
+		public event Action <GameObject, ScannerLivingLetter> onCorrectDrop;
 		public event Action <GameObject> onWrongDrop;
 
 		IEnumerator Coroutine_ScaleOverTime(float time)
@@ -123,11 +126,13 @@ namespace EA4S.Scanner
 
 			if (overPlayermarker)
 			{
-				if (isCorrectAnswer)
+				ScannerLivingLetter LL = player.transform.parent.GetComponent<ScannerLivingLetter>();
+				if (isCorrectAnswer && LL.letterObjectView.Data.Id == wordId)
 				{
+					LL.gotSuitcase = true;
 					transform.parent = player.transform;
 					transform.localPosition = new Vector3(2,1,-2);
-					onCorrectDrop(gameObject);
+					onCorrectDrop(gameObject, LL);
 				}
 				else
 				{

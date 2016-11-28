@@ -20,7 +20,7 @@ namespace EA4S.Scanner
 		bool initialized = false;
 
 		List <ILivingLetterData> wrongAnswers;
-		ILivingLetterData correctAnswer;
+		List <ILivingLetterData> correctAnswers;
 
 		enum Level { Level1, Level2, Level3, Level4, Level5, Level6 };
 
@@ -37,24 +37,66 @@ namespace EA4S.Scanner
 			{
 				initialized = true;
 
-				StartRound();
-
 				foreach (ScannerSuitcase ss in game.suitcases)
 				{
 					ss.onCorrectDrop += CorrectMove;
 					ss.onWrongDrop += WrongMove;
 				}
-				game.scannerLL = GameObject.Instantiate(game.LLPrefab).GetComponent<ScannerLivingLetter>();
-				game.scannerLL.facingCamera = false;
-				game.scannerLL.gameObject.SetActive(true);
-				game.scannerLL.onReset += OnLetterReset;
-				game.scannerLL.onFallOff += OnLetterFallOff;
-				game.scannerLL.onStartFallOff += OnLetterStartFallOff;
-				game.scannerLL.onPassedMidPoint += OnLetterPassedMidPoint;
+
+				Debug.Log("[Scanner] Diffculty: " + ScannerConfiguration.Instance.Difficulty);
+
+				int LLs = 0;
+
+				if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
+				{
+					LLs = 1;
+				}
+				else if (ScannerConfiguration.Instance.Variation == ScannerVariation.MultipleWords)
+				{
+					LLs = game.LLCount;
+				}
+
+				Debug.Log("[Scanner] LLs: " + LLs);
+
+
+				for (int i = 0; i < LLs; i++)
+				{
+					ScannerLivingLetter LL = GameObject.Instantiate(game.LLPrefab).GetComponent<ScannerLivingLetter>();
+					LL.facingCamera = true;
+					LL.gameObject.SetActive(true);
+					LL.onStartFallOff += OnLetterStartFallOff;
+					LL.onFallOff += OnLetterFallOff;
+					LL.onPassedMidPoint += OnLetterPassedMidPoint;
+					game.scannerLL.Add(LL);
+				}
+
+				StartRound();
+
 			}
 		}
 
-		private void OnLetterPassedMidPoint()
+		IEnumerator ResetLetters()
+		{
+
+			Debug.Log("LL Count: " + game.scannerLL.Count);
+			Debug.Log("Ans Count: " + correctAnswers.Count);
+
+			for (int i = 0; i < game.scannerLL.Count; i++)
+			{
+				game.scannerLL[i].Reset();
+				game.scannerLL[i].letterObjectView.Init(correctAnswers[i]);
+				if (game.scannerLL.Count == 3)
+				{
+					yield return new WaitForSeconds(8f);
+				}
+				else
+				{
+					yield return new WaitForSeconds(5f);
+				}
+			}
+		}
+
+		private void OnLetterPassedMidPoint(ScannerLivingLetter sender)
 		{
 			if (!game.trapDoor.GetBool("TrapDown"))
 			{
@@ -66,57 +108,66 @@ namespace EA4S.Scanner
 			// Trapdoor drops
 		}
 
-		private void OnLetterReset()
+		private void AddDataToSuitcase (ScannerSuitcase ss, List <ILivingLetterData> fromList, bool isCorrect)
 		{
-			if (!game.trapDoor.GetBool("TrapUp"))
-			{
-				game.trapDoor.SetBool("TrapDown", false);
-				game.trapDoor.SetBool("TrapUp",true);
-			}
-			game.scannerLL.letterObjectView.Init(correctAnswer);
-			SetupSuitCases();
+			var ans = fromList.RandomSelectOne();
+			ss.drawing.text = ans.DrawingCharForLivingLetter;
+			ss.wordId = ans.Id;
+			ss.isCorrectAnswer = isCorrect;
+			fromList.Remove(ans);
 		}
-
 
 		private void SetupSuitCases()
 		{
-			int correctOne = UnityEngine.Random.Range(0,game.suitcases.Length);
 
-			Debug.Log("Number of suitcases: " + game.suitcases.Length);
+			Debug.Log("Number of suitcases: " + game.suitcases.Count);
 
-			for (int i = 0; i < game.suitcases.Length; i++)
+			List <ILivingLetterData> tempCorrect = correctAnswers.ToList();
+
+			for (int i = 0; i < game.suitcases.Count; i++)
 			{
 				ScannerSuitcase ss = game.suitcases[i];
 				ss.Reset();
 
-				if (i == correctOne)
+				if (tempCorrect.Count > 0 && wrongAnswers.Count > 0)
 				{
-					Debug.Log((i+1) + " Correct word: " + correctAnswer.Id);
-					ss.drawing.text = correctAnswer.DrawingCharForLivingLetter;
+					int coinFlip = UnityEngine.Random.Range(1,5);
+					if (coinFlip == 1)
+					{
+						AddDataToSuitcase(ss,tempCorrect,true);
+					}
+					else
+					{
+						AddDataToSuitcase(ss,wrongAnswers,false);
+					}
+
+				} 
+				else if (tempCorrect.Count > 0)
+				{
+					AddDataToSuitcase(ss,tempCorrect,true);
 					ss.isCorrectAnswer = true;
 				}
-				else
+				else if (wrongAnswers.Count > 0)
 				{
-					var wrongAnswer = wrongAnswers.First();
-					wrongAnswers.Remove(wrongAnswer);
-
-					Debug.Log((i+1) + " Wrong word: " + wrongAnswer.Id);
-
-					ss.drawing.text = wrongAnswer.DrawingCharForLivingLetter;
-					ss.isCorrectAnswer = false;
+					AddDataToSuitcase(ss,wrongAnswers,false);
 				}
+					
 			}
 		}
 
 		private void StartRound()
 		{
-
+			game.StopAllCoroutines();
 			var provider = ScannerConfiguration.Instance.Questions;
 			var question = provider.GetNextQuestion();
 		    wrongAnswers = question.GetWrongAnswers().ToList();
-			correctAnswer = question.GetCorrectAnswers().First();
+			correctAnswers = question.GetCorrectAnswers().ToList();
 
-			game.wordData = correctAnswer;
+			Debug.Log("Correct Answers: " + correctAnswers.Count);
+			Debug.Log("Wrong   Answers: " + wrongAnswers.Count);
+
+
+			game.wordData = correctAnswers;
 
 			numberOfRoundsPlayed++;
 			numberOfFailedMoves = 0;
@@ -147,14 +198,36 @@ namespace EA4S.Scanner
 			}
 				
 			SetLevel(currentLevel);
+
+			if (!game.trapDoor.GetBool("TrapUp"))
+			{
+				game.trapDoor.SetBool("TrapDown", false);
+				game.trapDoor.SetBool("TrapUp",true);
+			}
+
+			game.StartCoroutine(ResetLetters());
+			game.scannerDevice.Reset();
+			SetupSuitCases();
+
 		}
 
-		public void CorrectMove(GameObject GO)
+		public void CorrectMove(GameObject GO, ScannerLivingLetter livingLetter)
 		{
-			AudioManager.I.PlayDialog("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
-			// TODO Drop suitcase next to LL
-			game.StartCoroutine(PoofOthers(game.suitcases));
-			game.StartCoroutine(RoundWon());
+			AudioManager.I.PlayDialog("Keeper_Good_" + UnityEngine.Random.Range(1, 12));
+			livingLetter.RoundWon();
+			if (game.scannerLL.All(ll => ll.gotSuitcase))
+			{
+				if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
+				{
+					game.StartCoroutine(PoofOthers(game.suitcases));
+				}
+
+				foreach (ScannerLivingLetter LL in game.scannerLL)
+				{
+					LL.gotSuitcase = false;
+				}
+				game.StartCoroutine(RoundWon());
+			}
 
 		}
 
@@ -165,44 +238,58 @@ namespace EA4S.Scanner
 			game.CreatePoof(GO.transform.position,2f,true);
 			GO.SetActive(false);
 
-			if (numberOfFailedMoves >= game.allowedFailedMoves)
+			if (numberOfFailedMoves >= game.allowedFailedMoves || 
+				ScannerConfiguration.Instance.Variation == ScannerVariation.MultipleWords)
 			{
+				game.StopAllCoroutines();
+
 				game.StartCoroutine(RoundLost());
 			}
 
 		}
 
-		private void CheckNewRound()
+		IEnumerator co_CheckNewRound()
 		{
+			yield return new WaitForSeconds(2f);
+
 			if (numberOfRoundsPlayed >= game.numberOfRounds)
 			{
 				onRoundsFinished(numberOfRoundsWon);
 			}
 			else
 			{
+				yield return new WaitForSeconds(2f);
 				StartRound();
 			}
 		}
 
-		private void OnLetterStartFallOff()
+		private void OnLetterStartFallOff(ScannerLivingLetter sender)
 		{
-			AudioManager.I.PlaySfx(Sfx.Lose);
-			game.StartCoroutine(PoofOthers(game.suitcases));
+//			AudioManager.I.PlaySfx(Sfx.Lose);
+//			game.StartCoroutine(PoofOthers(game.suitcases));
+//			game.StartCoroutine(RoundLost());
+
 		}
 
 
-		private void OnLetterFallOff()
+		private void OnLetterFallOff(ScannerLivingLetter sender)
 		{
-			CheckNewRound();
+//			game.StartCoroutine(co_CheckNewRound());
+			game.StartCoroutine(RoundLost());
 		}
 
 		IEnumerator RoundLost()
 		{
 			yield return new WaitForSeconds(0.5f);
 			AudioManager.I.PlaySfx(Sfx.Lose);
-			game.scannerLL.RoundLost();
+			foreach (ScannerLivingLetter LL in game.scannerLL)
+			{
+				LL.RoundLost();
+			}
 			game.StartCoroutine(PoofOthers(game.suitcases));
-			CheckNewRound();
+
+			game.StartCoroutine(co_CheckNewRound());
+
 		}
 
 		IEnumerator RoundWon()
@@ -213,15 +300,21 @@ namespace EA4S.Scanner
 
 			yield return new WaitForSeconds(0.25f);
 			AudioManager.I.PlaySfx(Sfx.Win);
-			game.scannerLL.RoundWon();
-			CheckNewRound();
+//			foreach (ScannerLivingLetter LL in game.scannerLL)
+//			{
+//				LL.RoundWon();
+//			}
+
+			game.StartCoroutine(co_CheckNewRound());
+
 		}
 
-		IEnumerator PoofOthers(ScannerSuitcase[] draggables)
+		IEnumerator PoofOthers(List <ScannerSuitcase> draggables)
 		{
 			foreach (ScannerSuitcase ss in draggables)
 			{
-				if (ss.gameObject.activeSelf && !ss.isCorrectAnswer)
+				if (ss.gameObject.activeSelf && 
+					(!ss.isCorrectAnswer || ScannerConfiguration.Instance.Variation == ScannerVariation.MultipleWords))
 				{
 					yield return new WaitForSeconds(0.25f);
 					ss.gameObject.SetActive(false);

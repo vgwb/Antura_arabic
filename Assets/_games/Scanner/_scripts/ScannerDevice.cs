@@ -39,23 +39,26 @@ namespace EA4S.Scanner
 
 		}
 
-		void OnLetterFlying()
+		void OnLetterFlying(ScannerLivingLetter sender)
 		{
 			moveBack = true;
+			Invoke("Reset",2.5f);
 		}
 
-		void OnLetterReset()
+		void OnLetterReset(ScannerLivingLetter Sender)
 		{
 			moveBack = false;
 		}
 
 		void Update()
 		{
-			if (game.scannerLL != null && letterEventsNotSet)
+			if (game.scannerLL.Count != 0 && letterEventsNotSet)
 			{
 				letterEventsNotSet = false;
-				game.scannerLL.onFlying += OnLetterFlying;
-				game.scannerLL.onReset += OnLetterReset;
+				foreach (ScannerLivingLetter LL in game.scannerLL)
+				{
+					LL.onFlying += OnLetterFlying;
+				}
 			}
 
 			if (moveBack && transform.position.z < backDepth)
@@ -71,7 +74,7 @@ namespace EA4S.Scanner
 
 		public void Reset()
 		{
-
+			moveBack = false;
 		}
 
 		void OnMouseDown()
@@ -119,8 +122,9 @@ namespace EA4S.Scanner
 				}
 				else
 				{
+					ScannerLivingLetter LL = other.transform.parent.GetComponent<ScannerLivingLetter>();
 					timeDelta = Time.time - timeDelta;
-					game.PlayWord(timeDelta);
+					game.PlayWord(timeDelta, LL);
 					timeDelta = 0;
 				}
 			}
