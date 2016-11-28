@@ -7,25 +7,31 @@ namespace EA4S
 {
     public class ItemWord : MonoBehaviour, IPointerClickHandler
     {
-        WordData data;
+        WordInfo info;
         public TextRender Title;
         public TextRender SubTitle;
         public TextRender Drawing;
 
         BookPanel manager;
 
-        public void Init(BookPanel _manager, WordData _data)
+        public void Init(BookPanel _manager, WordInfo _info)
         {
-            data = _data;
+            info = _info;
             manager = _manager;
 
-            Title.text = data.Arabic;
-            SubTitle.text = data.Id;
+            // @todo: show score
+            //info.score
 
-            if (data.Drawing != "") {
-                Drawing.text = AppManager.I.Teacher.wordHelper.GetWordDrawing(data);
-                if (data.Category == Db.WordDataCategory.Color) {
-                    Drawing.SetColor(GenericUtilities.GetColorFromString(data.Value));
+            // @todo: unlock/lock
+            //if (info.unlocked)
+
+            Title.text = info.data.Arabic;
+            SubTitle.text = info.data.Id;
+
+            if (info.data.Drawing != "") {
+                Drawing.text = AppManager.I.Teacher.wordHelper.GetWordDrawing(info.data);
+                if (info.data.Category == Db.WordDataCategory.Color) {
+                    Drawing.SetColor(GenericUtilities.GetColorFromString(info.data.Value));
                 }
                 //GetComponent<Image>().color = Color.green;
             } else {
@@ -35,7 +41,7 @@ namespace EA4S
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailWord(data);
+            manager.DetailWord(info.data);
         }
     }
 }

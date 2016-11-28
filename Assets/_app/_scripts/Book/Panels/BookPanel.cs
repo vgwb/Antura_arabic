@@ -117,6 +117,7 @@ namespace EA4S
         void WordsPanel(WordDataCategory _category = WordDataCategory.None)
         {
             currentWordCategory = _category;
+
             List<WordData> list;
             switch (currentWordCategory) {
 
@@ -130,10 +131,16 @@ namespace EA4S
             }
             emptyListContainers();
 
-            foreach (WordData item in list) {
-                btnGO = Instantiate(WordItemPrefab);
-                btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponent<ItemWord>().Init(this, item);
+            List<WordInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllWordInfo();
+            foreach (var info_item in info_list)
+            {
+                // Filter by the above constraints
+                if (list.Contains(info_item.data))
+                {
+                    btnGO = Instantiate(WordItemPrefab);
+                    btnGO.transform.SetParent(ElementsContainer.transform, false);
+                    btnGO.GetComponent<ItemWord>().Init(this, info_item);
+                }
             }
             Drawing.text = "";
 

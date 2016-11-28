@@ -188,6 +188,13 @@ namespace EA4S
         {
             return new List<LearningBlockData>(staticDb.GetLearningBlockTable().GetValuesTyped());
         }
+
+        // @note: new generic-only data getter, should be used instead of all the above ones
+        public List<T> GetAllData<T>(DbTables table) where T : IData
+        {
+            return staticDb.GetAll<T>((SerializableDataTable<T>)staticDb.GetTable(table));
+        }
+
         #endregion
 
         #region PlaySession
