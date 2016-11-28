@@ -27,6 +27,7 @@ namespace EA4S.MakeFriends
         public GameObject FxParticlesPoof;
         public DropZoneController dropZone;
         public WinCelebrationController winCelebration;
+        public MakeFriendsAnturaController antura;
         [Header("Difficulty Override")]
         public bool overrideDifficulty;
         public MakeFriendsVariation difficultySetting;
@@ -365,6 +366,7 @@ namespace EA4S.MakeFriends
                 {
                     dropZone.ResetLetter(2f);
                 }
+                antura.ReactPositively();
             }
             else
             {
@@ -374,6 +376,7 @@ namespace EA4S.MakeFriends
                 dropZone.AnimateWrong();
                 dropZone.ResetLetter(2f);
                 incorrectChoices.Add(letterChoice.letterData);
+                antura.ReactNegatively();
                 if (!isTutorialRound)
                 {
                     leftArea.MoveAwayAngrily();
@@ -504,6 +507,10 @@ namespace EA4S.MakeFriends
 
             PlayIdleMusic();
             Reset();
+
+            // Everybody dance!
+            FriendsZonesManager.instance.EverybodyDance();
+            antura.ReactToEndGame();
 
             // Zoom out camera
             var fromPosition = sceneCamera.transform.localPosition;
