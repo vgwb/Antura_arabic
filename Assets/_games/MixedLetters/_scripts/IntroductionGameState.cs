@@ -8,6 +8,7 @@ namespace EA4S.MixedLetters
 
         private float anturaEnterTimer;
         private bool anturaEntered = false;
+        private bool anturaBarked = false;
         private float anturaExitTimer;
         private bool anturaExited = false;
 
@@ -42,13 +43,15 @@ namespace EA4S.MixedLetters
 
         public void EnterState()
         {
-            anturaEnterTimer = Random.Range(1f, 2f);
+            anturaEnterTimer = Random.Range(2.5f, 3.5f);
             anturaEntered = false;
+            anturaBarked = false;
             anturaExitTimer = Random.Range(0.75f, 1.5f);
             anturaExited = false;
             game.GenerateNewWord();
 
             VictimLLController.instance.HideVictoryRays();
+            VictimLLController.instance.Reset();
             VictimLLController.instance.Enable();
 
             Vector3 victimLLPosition = VictimLLController.instance.transform.position;
@@ -73,6 +76,14 @@ namespace EA4S.MixedLetters
         public void Update(float delta)
         {
             anturaEnterTimer -= delta;
+
+            if (anturaEnterTimer < 0.25f && !anturaBarked)
+            {
+                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking);
+                VictimLLController.instance.LookTowardsAntura();
+                anturaBarked = true;
+            }
+
             if (anturaEnterTimer < 0 && !anturaEntered)
             {
                 AnturaController.instance.Enable();
