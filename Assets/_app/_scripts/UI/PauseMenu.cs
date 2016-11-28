@@ -131,7 +131,6 @@ namespace EA4S
         {
             if (SceneTransitioner.IsPlaying) return;
 
-            _bt.AnimateClick();
             if (_bt == BtPause) {
                 OpenMenu(!IsMenuOpen);
             } else if (!openMenuTween.IsPlaying()) { // Ignores pause menu clicks when opening/closing menu

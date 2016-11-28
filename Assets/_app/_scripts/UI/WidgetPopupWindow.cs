@@ -304,7 +304,6 @@ namespace EA4S
                 return;
 
             clicked = true;
-            ButtonGO.AnimateClick();
             AudioManager.I.PlaySfx(Sfx.UIButtonClick);
 
             if (currentCallback != null)

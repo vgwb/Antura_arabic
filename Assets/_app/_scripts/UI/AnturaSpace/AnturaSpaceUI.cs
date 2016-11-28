@@ -235,29 +235,21 @@ namespace EA4S
 
         void OnClick(UIButton _bt)
         {
-            _bt.AnimateClick();
-
             if (_bt == BtOpenModsPanel) ToggleModsPanel();
         }
 
         void OnClickCategory(AnturaSpaceCategoryButton _bt)
         {
-            _bt.AnimateClick();
-
             SelectCategory(_bt.Category);
         }
 
         void OnClickItem(AnturaSpaceItemButton _bt)
         {
-            _bt.AnimateClick();
-
             SelectReward(_bt.Data);
         }
 
         void OnClickSwatch(AnturaSpaceSwatchButton _bt)
         {
-            _bt.AnimateClick();
-
             SelectSwatch(_bt.Data);
         }
 
