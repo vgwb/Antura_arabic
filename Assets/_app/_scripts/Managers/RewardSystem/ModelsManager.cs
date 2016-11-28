@@ -8,6 +8,7 @@ namespace EA4S {
         #region API
         public static GameObject MountModel(string _id, Transform _parent, ModelType _type = ModelType.AnturaForniture) {
             GameObject rewardModel = GetObject(_type, _id);
+            CleanTranformChildren(_parent);
             rewardModel.transform.SetParent(_parent, false);
             return rewardModel;
         }
@@ -28,6 +29,13 @@ namespace EA4S {
                 }
             }
             return _gameObject;
+        }
+
+        public static void CleanTranformChildren(Transform _parent) {
+            for (int i = _parent.childCount - 1; i >= 0; --i) {
+                var child = _parent.GetChild(i).gameObject;
+                GameObject.Destroy(child);
+            }
         }
 
         #region Rewards

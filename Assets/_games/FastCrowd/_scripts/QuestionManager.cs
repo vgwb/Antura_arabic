@@ -50,7 +50,7 @@ namespace EA4S.FastCrowd
 
                 // Add drop areas
                 if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting)
-                    dropContainer.AddDropText(correctAnswer, (i+1).ToString());
+                    dropContainer.AddDropNumber(correctAnswer, i+1);
                 else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
                     dropContainer.AddDropData(correctAnswer, true);
                 else

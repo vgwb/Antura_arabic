@@ -3336,7 +3336,9 @@ MonoBehaviour:
   shadow: {fileID: 0}
   dotlessLetter: {fileID: 114000014015666130}
   correctDot: {fileID: 114000013984627258}
+  correctDiac: {fileID: 0}
   correctDotCollider: {fileID: 114000012577066656}
+  correctDiacCollider: {fileID: 0}
   game: {fileID: 0}
   letterView: {fileID: 114000014187645992}
   LLStatus: 0

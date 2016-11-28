@@ -23,8 +23,7 @@ namespace EA4S.TakeMeHome
 
 		[HideInInspector]
 		public int currentTube = 0;
-
-		private int _activeTubes = 0;
+        
 
 		public int CurrentScore { get; private set; }
 
@@ -112,23 +111,7 @@ namespace EA4S.TakeMeHome
 			}
 
 		}
-
-
-		/*public void activateTubes(int count = 2)
-		{
-            if (count < 2) count = 2;
-
-			_activeTubes = count;
-			for (int i = 0; i < count; ++i)
-            {
-                int index = UnityEngine.Random.Range(0, allTubes.Count);
-                activeTubes.Add(allTubes[index]);
-                allTubes[index].SetActive(true);
-
-                allTubes.RemoveAt(index);
-            }
-				
-		}*/
+        
 
 
 		public void ResetScore()
@@ -156,13 +139,6 @@ namespace EA4S.TakeMeHome
 				
 				return;
 			}
-
-			/*if (currentRound <= 2)
-				activateTubes (2);
-			else if (currentRound <= 4)
-				activateTubes (3);
-			else
-				activateTubes (4);*/
 			
 
 			roundText.text = "#"+currentRound.ToString ();
@@ -225,11 +201,7 @@ namespace EA4S.TakeMeHome
             antura.AddComponent<TakeMeHomeAntura>();
 
             
-
-            /*gameTime = new CountdownTimer(UnityEngine.Mathf.Lerp(90.0f, 60.0f, TakeMeHomeConfiguration.Instance.Difficulty));
-			gameTime.onTimesUp += OnTimesUp;
-
-			gameTime.Reset();*/
+            
             isTimesUp = false;
 
 
@@ -247,20 +219,6 @@ namespace EA4S.TakeMeHome
                     //allTubes.RemoveAt(index);
                 }
             }
-            _activeTubes = activeTubes.Count;
-            /*
-            _activeTubes = c;
-			for (int i = 0; i < count; ++i)
-            {
-                int index = UnityEngine.Random.Range(0, allTubes.Count);
-                activeTubes.Add(allTubes[index]);
-                allTubes[index].SetActive(true);
-
-                allTubes.RemoveAt(index);
-            }
-            */
-
-            // activateTubes(UnityEngine.Mathf.RoundToInt(TakeMeHomeConfiguration.Instance.Difficulty * 4));
         }
 
         public void initUI()

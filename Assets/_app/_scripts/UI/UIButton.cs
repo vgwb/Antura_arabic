@@ -16,12 +16,21 @@ namespace EA4S
 
         public bool IsToggled { get; private set; }
         public Button Bt { get { if (fooBt == null) fooBt = this.GetComponent<Button>(); return fooBt; } }
+        public Image BtImg { get {
+            if (fooBtImg == null) {
+                fooBtImg = this.GetComponent<Image>();
+                DefColor = fooBtImg.color;
+            }
+            return fooBtImg;
+        }}
+        public Image Ico { get { if (fooIco == null) fooIco = this.GetComponent<Image>(); return fooIco; } }
         public RectTransform RectT { get { if (fooRectT == null) fooRectT = this.GetComponent<RectTransform>(); return fooRectT; } }
 
+        protected Color DefColor;
         Button fooBt;
+        Image fooBtImg;
+        Image fooIco;
         RectTransform fooRectT;
-        Image btImg, ico;
-        Color defColor;
         Tween clickTween, pulseTween;
 
         #region Unity
@@ -48,14 +57,8 @@ namespace EA4S
             IsToggled = _activate;
 
             pulseTween.Rewind();
-            if (btImg == null) {
-                btImg = this.GetComponent<Image>();
-                defColor = btImg.color;
-            }
-            if (ico == null) ico = this.GetOnlyComponentsInChildren<Image>(true)[0];
-
-            btImg.color = _activate ? defColor : BtToggleOffColor;
-            if (ToggleIconAlpha && ico != null) ico.SetAlpha(_activate ? 1 : 0.4f);
+            BtImg.color = _activate ? DefColor : BtToggleOffColor;
+            if (ToggleIconAlpha && Ico != null) Ico.SetAlpha(_activate ? 1 : 0.4f);
 
             if (_animateClick) AnimateClick();
         }

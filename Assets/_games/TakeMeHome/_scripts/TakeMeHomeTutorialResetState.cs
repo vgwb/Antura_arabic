@@ -28,12 +28,12 @@
             win = false;
             if (tubeIndex == game.currentTube)
             {
-                AudioManager.I.PlaySfx(Sfx.Win);
+                TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
                 win = true;
                 TutorialUI.MarkYes(game.currentLetter.transform.position + new UnityEngine.Vector3(0, 0, -5), TutorialUI.MarkSize.Big);
             }
             else {
-                AudioManager.I.PlaySfx(Sfx.Lose);
+                TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
                 TutorialUI.MarkNo(game.currentLetter.transform.position + new UnityEngine.Vector3(0, 0, -5), TutorialUI.MarkSize.Big);
             }
 

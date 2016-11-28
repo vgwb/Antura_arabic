@@ -101,7 +101,7 @@ namespace EA4S.DontWakeUp
             currentRound = StartingLevel;
             currentLevel = currentRound;
             LivesLeft = 4;
-            AppManager.I.InitDataAI();
+            //AppManager.I.InitDataAI();
             AppManager.I.CurrentGameManagerGO = gameObject;
 
             //LoggerEA4S.Log("minigame", "dontwakeup", "start", "");

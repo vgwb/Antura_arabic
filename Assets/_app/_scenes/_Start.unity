@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   AvatarImg: {fileID: 1866781908}
 --- !u!1 &144117716
 GameObject:
@@ -387,6 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   Type: 7
 --- !u!114 &144117721
 MonoBehaviour:
@@ -545,6 +547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   AvatarImg: {fileID: 553720889}
 --- !u!1 &181648054
 GameObject:
@@ -883,6 +886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   AvatarImg: {fileID: 867928762}
 --- !u!1 &261068399
 GameObject:
@@ -1239,6 +1243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
 --- !u!1 &395537752
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,6 +1368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   AvatarImg: {fileID: 1069694082}
 --- !u!1 &419845565
 GameObject:
@@ -1603,6 +1609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   AvatarImg: {fileID: 1813618470}
 --- !u!1 &449103621
 GameObject:
@@ -1821,6 +1828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   AvatarImg: {fileID: 1941110068}
 --- !u!1 &542358602
 GameObject:
@@ -1946,6 +1954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   AvatarImg: {fileID: 27122087}
 --- !u!1 &553720887
 GameObject:
@@ -2139,6 +2148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   AvatarImg: {fileID: 774072121}
 --- !u!1 &635170390
 GameObject:
@@ -3292,6 +3302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   Type: 4
 --- !u!114 &1192329513
 MonoBehaviour:
@@ -3452,6 +3463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   AvatarImg: {fileID: 1145595436}
 --- !u!1 &1295494855
 GameObject:
@@ -5657,6 +5669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
 --- !u!1 &1573337705
 GameObject:
   m_ObjectHideFlags: 0
@@ -6154,6 +6167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   Type: 2
 --- !u!114 &1778413141
 MonoBehaviour:
@@ -6314,6 +6328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   AvatarImg: {fileID: 1007909292}
 --- !u!1 &1813618468
 GameObject:
@@ -6548,6 +6563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
 --- !u!114 &1864890499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6940,6 +6956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   Type: 5
 --- !u!114 &2059727709
 MonoBehaviour:
@@ -7187,19 +7204,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.68850946
+      value: -0.6885094
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.040607117
+      value: 0.040607113
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7181946
+      value: 0.71819454
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09220875
+      value: 0.09220874
       objectReference: {fileID: 0}
     - target: {fileID: 471690, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalScale.x
@@ -7221,6 +7238,21 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2375964, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21000011752393256, guid: ec76213212ac2438986d3d12b10f0625,
+        type: 2}
+    - target: {fileID: 11496696, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ec76213212ac2438986d3d12b10f0625,
+        type: 2}
+    - target: {fileID: 11496696, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 21000011752393256, guid: ec76213212ac2438986d3d12b10f0625,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
   m_IsPrefabParent: 0

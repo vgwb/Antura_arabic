@@ -1,14 +1,21 @@
 ﻿using UnityEngine;
-using EA4S;
-using ModularFramework.Core;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace EA4S
 {
-    public class OpenPlayerBookScene : MonoBehaviour
+    public class OpenPlayerBookScene : MonoBehaviour, IPointerClickHandler
     {
-        public void OpenPlayerBook()
+        void Start()
         {
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_PlayerBook");
+            Debug.Log("current player avatar is: " + AppManager.I.Player.AvatarId);
+            GetComponent<Image>().sprite = AppManager.I.Player.GetAvatar();
         }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            NavigationManager.I.OpenPlayerBook();
+        }
+
     }
 }

@@ -1,23 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using EA4S;
-using EA4S.Db;
-using EA4S.Teacher;
 using ModularFramework.Core;
 using System;
 using System.Text;
 
+public enum PlayerBookPanel
+{
+    None,
+    Book,
+    BookLetters,
+    BookWords,
+    BookPhrases,
+    Player,
+    Parents,
+    MiniGames
+}
 
 public class PlayerBookManager : MonoBehaviour
 {
-
-    enum PlayerBookPanel
-    {
-        None,
-        Book,
-        Player,
-        Parents
-    }
 
     [Header("Scene Setup")]
     public Music SceneMusic;
@@ -26,6 +27,7 @@ public class PlayerBookManager : MonoBehaviour
     public GameObject BookPanel;
     public GameObject PlayerPanel;
     public GameObject ParentsPanel;
+    public GameObject GamesPanel;
 
     PlayerBookPanel currentPanel = PlayerBookPanel.None;
 
@@ -61,6 +63,9 @@ public class PlayerBookManager : MonoBehaviour
             case PlayerBookPanel.Player:
                 PlayerPanel.SetActive(status);
                 break;
+            case PlayerBookPanel.MiniGames:
+                GamesPanel.SetActive(status);
+                break;
         }
     }
 
@@ -77,6 +82,11 @@ public class PlayerBookManager : MonoBehaviour
     public void BtnOpenParents()
     {
         OpenPanel(PlayerBookPanel.Parents);
+    }
+
+    public void BtnOpenGames()
+    {
+        OpenPanel(PlayerBookPanel.MiniGames);
     }
 
     public void BtnOpenMap()

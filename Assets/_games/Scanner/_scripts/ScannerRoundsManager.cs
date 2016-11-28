@@ -11,9 +11,10 @@ namespace EA4S.Scanner
 		public event Action <int> onRoundsFinished;
 
 		IAudioSource wordAudioSource;
+        
 
 		private int numberOfRoundsWon = 0;
-		private int numberOfRoundsPlayed = 0;
+		public int numberOfRoundsPlayed = -1;
 		private int numberOfFailedMoves = 0;
 
 		ScannerGame game;
@@ -147,6 +148,7 @@ namespace EA4S.Scanner
 			}
 				
 			SetLevel(currentLevel);
+            game.tut.setupTutorial();
 		}
 
 		public void CorrectMove(GameObject GO)
@@ -163,7 +165,14 @@ namespace EA4S.Scanner
 			numberOfFailedMoves++;
 			AudioManager.I.PlayDialog("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
 			game.CreatePoof(GO.transform.position,2f,true);
-			GO.SetActive(false);
+
+            if (game.tut.isTutRound)
+            {
+                GO.GetComponent<ScannerSuitcase>().Reset();
+                return;
+            }
+
+            GO.SetActive(false);
 
 			if (numberOfFailedMoves >= game.allowedFailedMoves)
 			{
@@ -207,7 +216,8 @@ namespace EA4S.Scanner
 
 		IEnumerator RoundWon()
 		{
-			numberOfRoundsWon++;
+            if(!game.tut.isTutRound)
+			    numberOfRoundsWon++;
 
 			game.Context.GetOverlayWidget().SetStarsScore(numberOfRoundsWon);
 
