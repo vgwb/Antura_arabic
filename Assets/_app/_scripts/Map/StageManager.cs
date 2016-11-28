@@ -11,7 +11,7 @@ namespace EA4S
         public GameObject[] cameras;
         public GameObject[] miniMaps;
         public GameObject letter;
-        public int s, i;
+        int s, i,previousStage;
         void Awake()
         {
             /*AppManager.I.Player.MaxJourneyPosition.Stage = 2;
@@ -38,9 +38,9 @@ namespace EA4S
         public void StageLeft()
         {
             int numberStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
+            previousStage = numberStage;
             if (numberStage < s)
             {
-                stages[numberStage].SetActive(false);
                 stages[numberStage + 1].SetActive(true);
                 ChangeCamera(cameras[numberStage + 1]);
 
@@ -54,9 +54,9 @@ namespace EA4S
         public void StageRight()
         {
             int numberStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
+            previousStage = numberStage;
             if (numberStage > 1)
             {
-                stages[numberStage].SetActive(false);
                 stages[numberStage - 1].SetActive(true);
                 ChangeCamera(cameras[numberStage - 1]);
 
@@ -92,8 +92,12 @@ namespace EA4S
         }
         void ChangeCameraFogColor(int c)
         {
-            Camera.main.DOColor(colorMaps[c], 4);
+            Camera.main.DOColor(colorMaps[c], 3).OnComplete(DesactivateMap);
             Camera.main.GetComponent<CameraFog>().color = colorMaps[c];
+        }
+        void DesactivateMap()
+        {
+            stages[previousStage].SetActive(false);
         }
     }
 }
