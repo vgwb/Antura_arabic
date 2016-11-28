@@ -16,6 +16,7 @@ namespace EA4S
         [Header("References")]
         public GameObject ElementsContainer;
         public TextRender ArabicText;
+        public TextRender ScoreText;
 
         GameObject btnGO;
         PlayerBookPanel currentArea = PlayerBookPanel.None;
@@ -69,6 +70,8 @@ namespace EA4S
         public void DetailMiniGame(MiniGameInfo info)
         {
             AudioManager.I.PlayDialog(info.data.GetTitleSoundFilename());
+
+            ScoreText.text = "Score: " + info.score;
         }
 
         void emptyListContainers()

@@ -56,7 +56,6 @@ namespace EA4S
             InitTeacherForPlayer();
             GameSettings.HighQualityGfx = false;
 
-            LogManager.I.LogInfo(InfoEvent.AppStarted);
         }
 
         public void InitTeacherForPlayer()
@@ -67,6 +66,7 @@ namespace EA4S
             Teacher = new TeacherAI(DB, Player);
             if (GameLauncher == null)
                 GameLauncher = new MiniGameLauncher(Teacher);
+
         }
         #endregion
 

@@ -24,10 +24,18 @@ namespace EA4S
             get { return actualPlayer; }
             set {
                 if (actualPlayer != value) {
+
+                    if (AppManager.I.DB != null)
+                    {
+                        LogManager.I.LogInfo(InfoEvent.AppClosed);
+                    }
+
                     AppManager.I.Player = value;
                     AppManager.I.GameSettings.LastActivePlayerId = value.Id;
                     SaveGameSettings();
                     AppManager.I.InitTeacherForPlayer();
+
+                    LogManager.I.LogInfo(InfoEvent.AppStarted);
                 }
                 actualPlayer = value;
 
