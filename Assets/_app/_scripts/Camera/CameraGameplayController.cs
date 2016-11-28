@@ -44,8 +44,8 @@ namespace EA4S
             AudioManager.I.PlaySfx(Sfx.CameraMovement);
 
             DOTween.Sequence()
-                .Append(transform.DOLocalMove(newPosition, 2.0f))
-                .Insert(0, transform.DOLocalRotate(newRotation.eulerAngles, 2.0f))
+                .Append(transform.DOLocalMove(newPosition, 1.0f))
+                .Insert(0, transform.DOLocalRotate(newRotation.eulerAngles, 1.0f))
                 .OnComplete(MovementCompleted);
         }
 
