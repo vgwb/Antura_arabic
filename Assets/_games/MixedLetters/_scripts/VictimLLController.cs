@@ -25,6 +25,16 @@ namespace EA4S.MixedLetters
 
         }
 
+        public void SetCustomText(string text)
+        {
+            if (letterObjectView.Label.enabled == false)
+            {
+                letterObjectView.Label.enabled = true;
+            }
+
+            letterObjectView.Label.SetText(text);
+        }
+
         public void SetPosition(Vector3 position)
         {
             transform.position = position;
