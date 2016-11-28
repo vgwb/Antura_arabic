@@ -9,13 +9,19 @@ namespace EA4S
 {
     public class TutorialUIMark : TutorialUIProp
     {
+        bool awakeDone;
+        Vector3 setImgSize = Vector3.one;
+
         #region Unity
 
         protected override void Awake()
         {
             base.Awake();
 
+            awakeDone = true;
+
             ShowTween.Kill();
+            Img.transform.localScale = setImgSize;
             Img.SetAlpha(0);
             ShowTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(Img.DOFade(1, 0.2f))
@@ -37,13 +43,16 @@ namespace EA4S
         {
             switch (_size) {
             case TutorialUI.MarkSize.Normal:
-                Img.transform.localScale = Vector3.one;
+                setImgSize = Vector3.one;
+                if (awakeDone) Img.transform.localScale = setImgSize;
                 break;
             case TutorialUI.MarkSize.Big:
-                Img.transform.localScale = Vector3.one * 1.5f;
+                setImgSize = Vector3.one * 1.5f;
+                if (awakeDone) Img.transform.localScale = setImgSize;
                 break;
             case TutorialUI.MarkSize.Huge:
-                Img.transform.localScale = Vector3.one * 2;
+                setImgSize = Vector3.one * 2;
+                if (awakeDone) Img.transform.localScale = setImgSize;
                 break;
             }
         }

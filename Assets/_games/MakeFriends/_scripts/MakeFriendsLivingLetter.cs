@@ -85,6 +85,12 @@ namespace EA4S.MakeFriends
 
         #region Public Methods
 
+        public void Dance()
+        {
+            LLPrefab.ToggleDance();
+            LLPrefab.SetDancingSpeed(LLPrefab.DancingSpeed * Random.Range(0.75f, 1.25f));
+        }
+
         public void MakeEntrance(Vector3 offscreenPosition, Vector3 startingPosition, Vector3 entranceRotation, float entranceDuration, float speakDelay, Vector3 afterWalkRotation)
         {
             Walk(offscreenPosition, startingPosition, entranceRotation, entranceDuration, speak: true, speakDelay: speakDelay, rotateAfterWalk: true, afterWalkRotation: afterWalkRotation);
