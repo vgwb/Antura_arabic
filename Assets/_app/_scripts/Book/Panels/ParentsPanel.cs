@@ -12,6 +12,7 @@ namespace EA4S
 
         [Header("References")]
         public GameObject ElementsContainer;
+        public TextRender ScoreText;
 
         void OnEnable()
         {
@@ -35,6 +36,7 @@ namespace EA4S
         public void DetailLearningBlock(LearningBlockInfo info)
         {
             AudioManager.I.PlayDialog(info.data.GetTitleSoundFilename());
+            ScoreText.text = "Score: " + info.score;
         }
 
         void emptyListContainers()
