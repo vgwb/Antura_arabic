@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
-    public class SampleWordsWithCommonLettersPack : IQuestionPack
+    public class MakeFriendsQuestionPack : IQuestionPack
     {
         IEnumerable<ILivingLetterData> questions;
         ILivingLetterData questionWord1;
@@ -11,7 +11,7 @@ namespace EA4S
         IEnumerable<ILivingLetterData> wrongAnswers;
         IEnumerable<ILivingLetterData> correctAnswers;
 
-        public SampleWordsWithCommonLettersPack(ILivingLetterData questionWord1, ILivingLetterData questionWord2, IEnumerable<ILivingLetterData> wrongAnswers, IEnumerable<ILivingLetterData> correctAnswers)
+        public MakeFriendsQuestionPack(ILivingLetterData questionWord1, ILivingLetterData questionWord2, IEnumerable<ILivingLetterData> wrongAnswers, IEnumerable<ILivingLetterData> correctAnswers)
         {
             this.questionWord1 = questionWord1;
             this.questionWord2 = questionWord2;

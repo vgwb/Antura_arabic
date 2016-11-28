@@ -4,8 +4,9 @@
     {
         MakeFriendsGame game;
 
-        float timer = 1;
+        float timer = 1.5f;
         bool playTutorial = true;
+        bool takenAction = false;
 
         public MakeFriendsIntroductionState(MakeFriendsGame game)
         {
@@ -14,14 +15,7 @@
 
         public void EnterState()
         {
-            if (playTutorial)
-            {
-                this.game.PlayTutorial();
-            }
-            else
-            {
-                game.SetCurrentState(game.QuestionState);
-            }
+            AudioManager.I.PlayDialog(Db.LocalizationDataId.MakeFriends_Title);
         }
 
         public void OnFinishedTutorial()
@@ -35,11 +29,26 @@
 
         public void Update(float delta)
         {
-//            timer -= delta;
-//            if (timer < 0)
-//            {
-//                game.SetCurrentState(game.QuestionState);
-//            }
+            if (takenAction)
+            {
+                return;
+            }
+
+            timer -= delta;
+
+            if (timer < 0)
+            {
+                takenAction = true;
+
+                if (playTutorial)
+                {
+                    this.game.PlayTutorial();
+                }
+                else
+                {
+                    game.SetCurrentState(game.QuestionState);
+                }
+            }
         }
 
         public void UpdatePhysics(float delta)
