@@ -34,37 +34,42 @@
         }
         /////////////////
 
-        private ScannerConfiguration() {
+        private ScannerConfiguration() 
+		{
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
 
-            Questions = new SampleQuestionProvider();
+			Difficulty = 0.13f;
 			Variation = ScannerVariation.OneWord;
 
+            Questions = new SampleQuestionProvider();
             Context = new SampleGameContext();
-            Difficulty = 0.5f;
         }
 
         #region external configuration call
         public static void SetConfiguration(float _difficulty, int _variation) {
             instance = new ScannerConfiguration() {
                 Difficulty = _difficulty,
+				Variation = (ScannerVariation) _variation
             };
         }
         #endregion
+
+		public int nCorrect = 1;
 
         public IQuestionBuilder SetupBuilder() {
 
             IQuestionBuilder builder = null;
 
 			int nPacks = 7; // One Extra for tutorial
-			int nCorrect = 1;
+			nCorrect = 1;
 			int nWrong = 4;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.wordFilters.excludeColorWords = true;
             builderParams.wordFilters.requireDrawings = true;
 
+			Difficulty = Difficulty < 0.13f ? 0.13f : Difficulty;
 
 			switch (Variation)
 			{
@@ -73,7 +78,14 @@
 				nWrong = 4;
 				break;
 			case ScannerVariation.MultipleWords:
-				nCorrect = UnityEngine.Mathf.RoundToInt(Difficulty * 5);
+				if (Difficulty < 0.5f)
+				{
+					nCorrect = 3;
+				}
+				else
+				{
+					nCorrect = 5;
+				}
 				nWrong = 0;
 				break;
 			}
