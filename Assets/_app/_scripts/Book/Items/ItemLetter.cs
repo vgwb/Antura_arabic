@@ -18,13 +18,25 @@ namespace EA4S
             info = _info;
             manager = _manager;
 
+            if (!info.unlocked)
+            {
+                GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                GetComponent<Button>().interactable = true;
+            }
+
             Title.text = info.data.GetChar();
             SubTitle.text = info.data.Id;
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailLetter(info);
+            if (info.unlocked)
+            {
+                manager.DetailLetter(info);
+            }
         }
     }
 }
