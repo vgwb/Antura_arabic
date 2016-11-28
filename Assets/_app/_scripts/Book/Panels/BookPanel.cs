@@ -164,7 +164,8 @@ namespace EA4S
         {
             emptyListContainers();
 
-            foreach (var info_item in AppManager.I.Teacher.scoreHelper.GetAllPhraseInfo()) {
+            List<PhraseInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllPhraseInfo();
+            foreach (var info_item in info_list) {
                 btnGO = Instantiate(PhraseItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
                 btnGO.GetComponent<ItemPhrase>().Init(this, info_item);
