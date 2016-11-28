@@ -9,6 +9,7 @@ namespace EA4S
         public const string DbSchemeVersion = "1";
         public const bool DebugPanelEnabled = true;
         public const bool UseUnityAnalytics = true;
+        public const bool CheatBookUnlockEverything = true;
 
         // Resource Paths
         public const string AvatarsResourcesDir = "Images/Avatars/";
