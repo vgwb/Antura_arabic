@@ -21,6 +21,7 @@ namespace EA4S
             s = AppManager.I.Player.MaxJourneyPosition.Stage;
             for (i = 1; i <= (s - 1); i++)
             {
+                stages[i].SetActive(false);
                 miniMaps[i].GetComponent<MiniMap>().isAvailableTheWholeMap = true;
                 miniMaps[i].GetComponent<MiniMap>().CalculateSettingsStageMap();
             }
@@ -49,6 +50,8 @@ namespace EA4S
                 ChangeCameraFogColor(AppManager.I.Player.CurrentJourneyPosition.Stage);
                 letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage + 1].GetComponent<MiniMap>();
                 letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
+                StopCoroutine("DesactivateMap");
+                StartCoroutine("DesactivateMap");
             }
         }
         public void StageRight()
@@ -65,6 +68,8 @@ namespace EA4S
                 ChangeCameraFogColor(AppManager.I.Player.CurrentJourneyPosition.Stage);
                 letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage - 1].GetComponent<MiniMap>();
                 letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
+                StopCoroutine("DesactivateMap");
+                StartCoroutine("DesactivateMap");
             }
         }
         public void ChangeCamera(GameObject ZoomCameraGO)
@@ -92,11 +97,12 @@ namespace EA4S
         }
         void ChangeCameraFogColor(int c)
         {
-            Camera.main.DOColor(colorMaps[c], 3).OnComplete(DesactivateMap);
+            Camera.main.DOColor(colorMaps[c], 3);
             Camera.main.GetComponent<CameraFog>().color = colorMaps[c];
         }
-        void DesactivateMap()
+        IEnumerator DesactivateMap()
         {
+            yield return new WaitForSeconds(1.5f);
             stages[previousStage].SetActive(false);
         }
     }
