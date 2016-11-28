@@ -5,7 +5,7 @@ namespace EA4S
 
     public static class AppConstants
     {
-        public const string AppVersion = "0.11.28b";
+        public const string AppVersion = "0.11.28a";
         public const bool DebugPanelEnabled = true;
 
         // Resource Paths
