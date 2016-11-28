@@ -79,7 +79,8 @@ namespace EA4S.FastCrowd
                   FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
             {
                 // In spelling and letter, increment score only when the full question is completed
-                game.IncrementScore();
+                for (int i=0; i<game.CurrentChallenge.Count; ++i)
+                    game.IncrementScore();
             }
 
             game.SetCurrentState(game.ResultState);
@@ -116,7 +117,7 @@ namespace EA4S.FastCrowd
             isAnturaRunning = true;
             game.antura.SetAnturaTime(true);
             // Schedule next duration
-            anturaTimer = UnityEngine.Mathf.Lerp(20, 10, FastCrowdConfiguration.Instance.Difficulty);
+            anturaTimer = UnityEngine.Mathf.Lerp(5, 15, FastCrowdConfiguration.Instance.Difficulty);
             
             game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
         }

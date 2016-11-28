@@ -448,31 +448,34 @@ namespace EA4S.Balloons
             {
                 case BalloonsVariation.Spelling:
                     AudioManager.PlayLetterData(question);
-                    Popup.Show();
-                    Popup.SetButtonCallback(OnRoundStartPressed);
-                    if (question.DataType == LivingLetterDataType.Word)
-                    {
-                        Popup.SetLetterData(question as LL_WordData);
-                    }
+                    //Popup.Show();
+                    //Popup.SetButtonCallback(OnRoundStartPressed);
+                    //if (question.DataType == LivingLetterDataType.Word)
+                    //{
+                    //    Popup.SetLetterData(question as LL_WordData);
+                    //}
+                    OnRoundStartPressed();
                     uiCanvas.gameObject.SetActive(true);
                     break;
 
                 case BalloonsVariation.Words:
                     AudioManager.PlayLetterData(question);
-                    Popup.Show();
-                    Popup.SetButtonCallback(OnRoundStartPressed);
-                    if (question.DataType == LivingLetterDataType.Word)
-                    {
-                        Popup.SetLetterData(question as LL_WordData);
-                    }
+                    //Popup.Show();
+                    //Popup.SetButtonCallback(OnRoundStartPressed);
+                    //if (question.DataType == LivingLetterDataType.Word)
+                    //{
+                    //    Popup.SetLetterData(question as LL_WordData);
+                    //}
+                    OnRoundStartPressed();
                     uiCanvas.gameObject.SetActive(true);
                     break;
 
                 case BalloonsVariation.Letter:
                     AudioManager.PlayLetterData(question);
-                    Popup.Show();
-                    Popup.SetButtonCallback(OnRoundStartPressed);
-                    Popup.SetLetterData(question);
+                    //Popup.Show();
+                    //Popup.SetButtonCallback(OnRoundStartPressed);
+                    //Popup.SetLetterData(question);
+                    OnRoundStartPressed();
                     uiCanvas.gameObject.SetActive(true);
                     break;
 

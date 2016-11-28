@@ -18,7 +18,6 @@ namespace EA4S.MissingLetter {
 
         public void ExitState() {
             TutorialUI.Clear(true);
-            m_oGame.m_oRoundManager.GetCorrectLLObject().GetComponent<LetterBehaviour>().StopSuggest();
             m_oGame.m_oRoundManager.SetTutorial(false);
             m_oGame.m_oRoundManager.onAnswered -= OnRoundResult;
         }

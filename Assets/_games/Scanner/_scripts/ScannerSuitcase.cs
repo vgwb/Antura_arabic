@@ -139,6 +139,7 @@ namespace EA4S.Scanner
 					transform.localPosition = new Vector3(2,1,-2);
 					onCorrectDrop(gameObject, LL);
                     TutorialUI.Clear(true);
+                    ScannerTutorial.TUT_STEP = 1;
                 }
 				else
 				{
