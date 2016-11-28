@@ -8,6 +8,7 @@ namespace EA4S
         public const string AppVersion = "0.11.28c";
         public const string DbSchemeVersion = "1";
         public const bool DebugPanelEnabled = true;
+        public const bool UseUnityAnalytics = true;
 
         // Resource Paths
         public const string AvatarsResourcesDir = "Images/Avatars/";

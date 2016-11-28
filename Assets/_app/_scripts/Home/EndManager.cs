@@ -46,7 +46,7 @@ namespace EA4S
 
         public void RestartGame()
         {
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("_Start");
+            NavigationManager.I.GoToScene(AppScene.Home);
         }
     }
 }
