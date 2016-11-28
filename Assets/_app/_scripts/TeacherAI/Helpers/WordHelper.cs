@@ -18,10 +18,14 @@ namespace EA4S.Db
 
         #region Letter Utilities
 
+
+        List<string> mainDiacriticsIds = new List<string>() {"fathah","dammah","kasrah","sukun"}; // HACK: this is just for dancing dots, to be removed later on
         private bool CheckFilters(LetterFilters filters, LetterData data)
         {
             if (filters.requireDiacritics && !data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) return false;
             if (filters.excludeDiacritics && data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) return false;
+            if (filters.excludeDiacritics_keepMain && data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)
+                && !mainDiacriticsIds.Contains(data.Symbol)) return false;
             if (filters.excludeLetterVariations && data.IsOfKindCategory(LetterKindCategory.LetterVariation)) return false;
             if (data.IsOfKindCategory(LetterKindCategory.Symbol)) return false; // always skip symbols
             return true;
