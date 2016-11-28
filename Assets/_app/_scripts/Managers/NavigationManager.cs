@@ -58,7 +58,7 @@ namespace EA4S
                 case AppScene.Mood:
                     break;
                 case AppScene.Map:
-                    if (AppManager.I.IsAssessmentTime)
+                    if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(AppManager.I.Player.CurrentJourneyPosition))
                         GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     else
                         GoToScene(AppScene.GameSelector);
@@ -72,8 +72,7 @@ namespace EA4S
                     GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     break;
                 case AppScene.MiniGame:
-                    if (AppManager.I.IsAssessmentTime) {
-                        // TODO: never called
+                    if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(AppManager.I.Player.CurrentJourneyPosition)) {
                         // assessment ended!
                         AppManager.I.Player.ResetPlaySessionMinigame();
                         GoToScene(AppScene.Rewards);
