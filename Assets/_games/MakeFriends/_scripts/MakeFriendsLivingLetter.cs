@@ -137,8 +137,12 @@ namespace EA4S.MakeFriends
             var to = celebrationPosition;
             var duration = celebrationDuration;
 
-            StartCoroutine(HighFive_Coroutine(duration));
             Walk(from, to, rotation, duration, walkAnimation: LLAnimationStates.LL_walking, walkSpeed: 1f, afterWalkAnimation: LLAnimationStates.LL_dancing);
+        }
+
+        public void HighFive(float delay)
+        {
+            StartCoroutine(HighFive_Coroutine(delay));
         }
 
         public void SpeakWord()
