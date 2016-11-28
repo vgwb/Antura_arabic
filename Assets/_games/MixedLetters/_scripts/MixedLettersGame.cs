@@ -72,7 +72,7 @@ namespace EA4S.MixedLetters
         {
             int numLetters = lettersInOrder.Count;
             bool isEven = numLetters % 2 == 0;
-            float dropZoneWidthWithSpace = Constants.DROP_ZONE_WIDTH + 0.6f;
+            float dropZoneWidthWithSpace = Constants.DROP_ZONE_WIDTH + 1f;
             float dropZoneXStart = isEven ? numLetters / 2 - 0.5f : Mathf.Floor(numLetters / 2);
             dropZoneXStart *= dropZoneWidthWithSpace;
 

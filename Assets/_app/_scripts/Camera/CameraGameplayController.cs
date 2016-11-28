@@ -38,14 +38,14 @@ namespace EA4S
             transform.rotation = newRotation;
         }
 
-        public void MoveToPosition(Vector3 newPosition, Quaternion newRotation)
+        public void MoveToPosition(Vector3 newPosition, Quaternion newRotation, float duration = 1)
         {
             // Debug.Log("MoveToPosition");
             AudioManager.I.PlaySfx(Sfx.CameraMovement);
 
             DOTween.Sequence()
-                .Append(transform.DOLocalMove(newPosition, 1.0f))
-                .Insert(0, transform.DOLocalRotate(newRotation.eulerAngles, 1.0f))
+                .Append(transform.DOLocalMove(newPosition, duration))
+                .Insert(0, transform.DOLocalRotate(newRotation.eulerAngles, duration))
                 .OnComplete(MovementCompleted);
         }
 
