@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using EA4S;
 using ModularFramework.Core;
-using EA4S.TestE;
 
 namespace EA4S
 {

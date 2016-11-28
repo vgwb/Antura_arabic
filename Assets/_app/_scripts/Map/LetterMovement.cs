@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using EA4S;
-using EA4S.TestE;
 using System.Collections.Generic;
 using DG.Tweening;
 

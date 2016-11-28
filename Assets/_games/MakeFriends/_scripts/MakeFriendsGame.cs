@@ -327,6 +327,7 @@ namespace EA4S.MakeFriends
 
         private void HideLetterPicker()
         {
+            letterPicker.StopAllCoroutines();
             letterPicker.Block();
             letterPicker.Hide();
         }
@@ -340,7 +341,9 @@ namespace EA4S.MakeFriends
 
         public void OnLetterChoiceSelected(LetterChoiceController letterChoice)
         {
-            letterPicker.BlockForSeconds(2f);
+            letterPicker.Block();
+            letterPicker.Hide();
+            letterPicker.ShowAndUnblockDelayed(2f);
 
             if (commonLetters.Exists(x => x.Id == letterChoice.letterData.Id))
             {
@@ -360,7 +363,7 @@ namespace EA4S.MakeFriends
                 }
                 else
                 {
-                    dropZone.ResetLetter(3f);
+                    dropZone.ResetLetter(2f);
                 }
             }
             else
@@ -369,6 +372,7 @@ namespace EA4S.MakeFriends
                 //letterChoice.SpawnBalloon(false);
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterSad);
                 dropZone.AnimateWrong();
+                dropZone.ResetLetter(2f);
                 incorrectChoices.Add(letterChoice.letterData);
                 if (!isTutorialRound)
                 {
