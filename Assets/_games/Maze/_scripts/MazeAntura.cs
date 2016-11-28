@@ -34,6 +34,7 @@ namespace EA4S.Maze
                 if (nextAnturaBarkTimer <= 0)
                 {
                     PrepareNextAnturaBark();
+
                     AudioManager.I.PlaySfx(Sfx.DogBarking);
                 }
                 else

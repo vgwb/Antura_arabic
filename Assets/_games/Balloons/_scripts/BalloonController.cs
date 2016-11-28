@@ -65,7 +65,7 @@ namespace EA4S.Balloons
         {
             balloonCollider.enabled = false;
             parentFloatingLetter.Pop();
-            BalloonsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.BaloonPop);
+            BalloonsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.BalloonPop);
             animator.SetBool("Pop", true);
             GameObject poof = Instantiate(BalloonsGame.instance.FxParticlesPoof, transform.position, Quaternion.identity) as GameObject;
             Destroy(poof, 10);

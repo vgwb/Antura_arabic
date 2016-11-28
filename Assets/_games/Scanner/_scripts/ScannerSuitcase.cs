@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
 using TMPro;
@@ -9,7 +9,7 @@ namespace EA4S.Scanner
 
 	public class ScannerSuitcase : MonoBehaviour {
 
-		bool isDragging = false;
+		public bool isDragging = false;
 		private Vector3 screenPoint;
 		private Vector3 offset;
 		private float startX;
@@ -71,7 +71,10 @@ namespace EA4S.Scanner
 
 		void OnMouseDown()
 		{
-			shadow.SetActive(false);
+            if (ScannerGame.disableInput)
+                return;
+
+            shadow.SetActive(false);
 			isDragging = true;
 			screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
@@ -123,8 +126,10 @@ namespace EA4S.Scanner
 
 		void OnMouseUp()
 		{
+            if (ScannerGame.disableInput)
+                return;
 
-			if (overPlayermarker)
+            if (overPlayermarker)
 			{
 				ScannerLivingLetter LL = player.transform.parent.GetComponent<ScannerLivingLetter>();
 				if (isCorrectAnswer && LL.letterObjectView.Data.Id == wordId)
@@ -133,7 +138,8 @@ namespace EA4S.Scanner
 					transform.parent = player.transform;
 					transform.localPosition = new Vector3(2,1,-2);
 					onCorrectDrop(gameObject, LL);
-				}
+                    TutorialUI.Clear(true);
+                }
 				else
 				{
 					onWrongDrop(gameObject);

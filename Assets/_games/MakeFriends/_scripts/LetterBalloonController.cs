@@ -87,7 +87,7 @@ namespace EA4S.MakeFriends
             
         private void Pop()
         {
-            MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.BaloonPop);
+            MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.BalloonPop);
             animator.SetBool("Pop", true);
             var poof = Instantiate(MakeFriendsGame.Instance.FxParticlesPoof, 3f * Vector3.up, Quaternion.identity) as GameObject;
             Destroy(poof, 10);

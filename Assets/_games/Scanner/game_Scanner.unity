@@ -1154,6 +1154,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 309455390}
   - 114: {fileID: 309455391}
+  - 114: {fileID: 309455392}
   m_Layer: 0
   m_Name: Scanner Game
   m_TagString: Untagged
@@ -1210,6 +1211,28 @@ MonoBehaviour:
   LLCount: 0
   CurrentScoreRecord: 0
   trapDoor: {fileID: 1671368174}
+  tut: {fileID: 0}
+  STARS_1_THRESHOLD: 0
+  STARS_2_THRESHOLD: 0
+  STARS_3_THRESHOLD: 0
+--- !u!114 &309455392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 309455389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc11d57e371c7a4398d58bc3f1ae0e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scannerDevice: {fileID: 362456010}
+  UpperBelt: {fileID: 1431994184}
+  lowerBelt: {fileID: 112728225}
+  originalBeltSpeed: 0
+  originalLLOnBeltSpeed: 0
+  startDelay: 8
+  repeatDelay: 2
 --- !u!4 &315913121 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013653253802, guid: 0f95fe55fb3038a45b8e01cbe421e68f,

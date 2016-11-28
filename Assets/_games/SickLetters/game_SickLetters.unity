@@ -1894,7 +1894,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.95, y: 1.13, z: 2}
+  m_Size: {x: 0.95, y: 1.13, z: 1.07}
   m_Center: {x: 0, y: 0.16, z: 0}
 --- !u!33 &294755821
 MeshFilter:
@@ -2193,7 +2193,7 @@ GameObject:
   - 23: {fileID: 393852056}
   m_Layer: 0
   m_Name: Vase
-  m_TagString: Untagged
+  m_TagString: Destination
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2206,7 +2206,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 393852054}
   m_LocalRotation: {x: -0, y: 0.24898243, z: -0, w: 0.968508}
-  m_LocalPosition: {x: -0.423, y: 0.151, z: 0.226}
+  m_LocalPosition: {x: -0.471, y: 0.151, z: 0.252}
   m_LocalScale: {x: 0.028624514, y: 1.251478, z: 0.6461545}
   m_LocalEulerAnglesHint: {x: 0, y: 28.803001, z: 0}
   m_Children: []
@@ -2987,7 +2987,7 @@ GameObject:
   - 23: {fileID: 558167366}
   m_Layer: 0
   m_Name: Vase (3)
-  m_TagString: Untagged
+  m_TagString: Destination
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3000,7 +3000,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 558167364}
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.006, y: 0.151, z: 0.476}
+  m_LocalPosition: {x: 0.006, y: 0.151, z: 0.524}
   m_LocalScale: {x: 0.0386546, y: 1.251478, z: 0.7000003}
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
   m_Children: []
@@ -3047,7 +3047,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.26, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &558167368
 MeshFilter:
@@ -3129,7 +3129,7 @@ GameObject:
   - 23: {fileID: 567520382}
   m_Layer: 0
   m_Name: Vase (2)
-  m_TagString: Untagged
+  m_TagString: Destination
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3142,7 +3142,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 567520380}
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.006, y: 0.151, z: -0.504}
+  m_LocalPosition: {x: 0.006, y: 0.151, z: -0.558}
   m_LocalScale: {x: 0.0386546, y: 1.251478, z: 0.7000003}
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
   m_Children: []
@@ -3189,7 +3189,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.26, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &567520384
 MeshFilter:
@@ -6360,7 +6360,7 @@ GameObject:
   - 23: {fileID: 785319048}
   m_Layer: 0
   m_Name: Vase (4)
-  m_TagString: Untagged
+  m_TagString: Destination
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6420,7 +6420,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.26, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &785319050
 MeshFilter:
@@ -6485,7 +6485,7 @@ MonoBehaviour:
   isCorrect: 1
   isNeeded: 0
   isInVase: 0
-  isTouchingVase: 0
+  touchedVase: 0
   isDragging: 0
   thisRigidBody: {fileID: 0}
   boxCollider: {fileID: 0}
@@ -7985,7 +7985,7 @@ GameObject:
   - 23: {fileID: 1103393566}
   m_Layer: 0
   m_Name: Vase (1)
-  m_TagString: Untagged
+  m_TagString: Destination
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7998,7 +7998,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1103393564}
   m_LocalRotation: {x: -0, y: 0.258997, z: -0, w: 0.9658781}
-  m_LocalPosition: {x: 0.419, y: 0.151, z: -0.237}
+  m_LocalPosition: {x: 0.474, y: 0.151, z: -0.269}
   m_LocalScale: {x: 0.028624516, y: 1.251478, z: 0.59977585}
   m_LocalEulerAnglesHint: {x: 0, y: 30.038002, z: 0}
   m_Children: []
@@ -8045,7 +8045,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.26, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1103393568
 MeshFilter:
@@ -8983,7 +8983,7 @@ GameObject:
   - 23: {fileID: 1245640505}
   m_Layer: 0
   m_Name: Vase (6)
-  m_TagString: Untagged
+  m_TagString: Destination
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8996,7 +8996,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1245640503}
   m_LocalRotation: {x: -0, y: 0.9660722, z: -0, w: 0.25827223}
-  m_LocalPosition: {x: 0.423, y: 0.15100008, z: 0.219}
+  m_LocalPosition: {x: 0.464, y: 0.15100008, z: 0.242}
   m_LocalScale: {x: 0.03865461, y: 1.251478, z: 0.6306955}
   m_LocalEulerAnglesHint: {x: 0, y: 150.05101, z: 0}
   m_Children: []
@@ -9043,7 +9043,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.26, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1245640507
 MeshFilter:
@@ -11023,7 +11023,7 @@ MonoBehaviour:
   isCorrect: 1
   isNeeded: 0
   isInVase: 0
-  isTouchingVase: 0
+  touchedVase: 0
   isDragging: 0
   thisRigidBody: {fileID: 0}
   boxCollider: {fileID: 0}
@@ -11993,7 +11993,7 @@ GameObject:
   - 23: {fileID: 1874030160}
   m_Layer: 0
   m_Name: Vase (5)
-  m_TagString: Untagged
+  m_TagString: Destination
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12006,7 +12006,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1874030158}
   m_LocalRotation: {x: -0, y: 0.9660722, z: -0, w: 0.25827223}
-  m_LocalPosition: {x: -0.423, y: 0.15100008, z: -0.269}
+  m_LocalPosition: {x: -0.467, y: 0.15100008, z: -0.294}
   m_LocalScale: {x: 0.0386546, y: 1.251478, z: 0.6306952}
   m_LocalEulerAnglesHint: {x: 0, y: 150.05101, z: 0}
   m_Children: []
@@ -12053,7 +12053,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.26, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1874030162
 MeshFilter:

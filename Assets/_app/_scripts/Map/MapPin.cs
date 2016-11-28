@@ -9,16 +9,33 @@ namespace EA4S
         public int Number;
         public Transform RopeNode;
         public GameObject Dot;
+        public Material blackPin;
+        public Material redPin;
         public int posBefore;
 
-        void Start()
+        void OnTriggerEnter(Collider other)
         {
-
+            if (other.gameObject.tag == "Player")
+            {
+                transform.GetChild(0).gameObject.SetActive(false);
+                ChangeMaterialPinToRed();
+            }
         }
-
-        void OnMouseDown()
+        void OnTriggerExit(Collider other)
         {
-            Debug.Log("Clicked Pin " + Number);
+            if (other.gameObject.tag == "Player")
+            {
+                transform.GetChild(0).gameObject.SetActive(true);
+                ChangeMaterialPinToBlack();
+            }
+        }
+        public void ChangeMaterialPinToBlack()
+        {
+            Dot.GetComponent<Renderer>().material = blackPin;
+        }
+        public void ChangeMaterialPinToRed()
+        {
+            Dot.GetComponent<Renderer>().material = redPin;
         }
     }
 }

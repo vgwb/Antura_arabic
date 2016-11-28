@@ -17,7 +17,7 @@
     {
         AlarmClock = 13,
         BallHit = 31,
-        BaloonPop = 2,
+        BalloonPop = 2,
         BushRustlingIn = 32,
         BushRustlingOut = 33,
         CameraMovement = 12,
@@ -101,9 +101,6 @@
         {
             var eventName = "";
             switch (sfx) {
-                case Sfx.BaloonPop:
-                    eventName = "Sfx/BalloonPop";
-                    break;
                 case Sfx.UIPopup:
                     eventName = "Sfx/UI/Popup";
                     break;
@@ -115,12 +112,6 @@
                     break;
                 case Sfx.UIPauseOut:
                     eventName = "Sfx/UI/PauseOut";
-                    break;
-                case Sfx.CameraMovement:
-                    eventName = "Sfx/CameraMovement";
-                    break;
-                case Sfx.AlarmClock:
-                    eventName = "Sfx/AlarmClock";
                     break;
                 case Sfx.LetterAngry:
                     eventName = "LivingLetter/Angry";

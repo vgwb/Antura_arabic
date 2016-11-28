@@ -27,7 +27,7 @@ namespace EA4S
 
         public void SetAvatar(int _avatarIndex)
         {
-            AvatarImg.sprite = Resources.Load<Sprite>(ProfileSelectorUI.AvatarsResourcesDir + _avatarIndex);
+            AvatarImg.sprite = Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + _avatarIndex);
         }
 
         public void SetInteractivity(bool _interactive)
