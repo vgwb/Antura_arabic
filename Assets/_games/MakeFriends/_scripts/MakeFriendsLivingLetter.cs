@@ -137,6 +137,7 @@ namespace EA4S.MakeFriends
             var to = celebrationPosition;
             var duration = celebrationDuration;
 
+            StartCoroutine(HighFive_Coroutine(duration));
             Walk(from, to, rotation, duration, walkAnimation: LLAnimationStates.LL_walking, walkSpeed: 1f, afterWalkAnimation: LLAnimationStates.LL_dancing);
         }
 
@@ -196,6 +197,12 @@ namespace EA4S.MakeFriends
                 yield return new WaitForFixedUpdate();
             }
             isFocusing = false;
+        }
+
+        private IEnumerator HighFive_Coroutine(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            LLPrefab.DoHighFive();
         }
 
         private void Walk(Vector3 from, Vector3 to, Vector3 rotation, float duration, float delay = 0f, LLAnimationStates walkAnimation = LLAnimationStates.LL_walking, float walkSpeed = 0f, LLAnimationStates afterWalkAnimation = LLAnimationStates.LL_idle, float afterWalkSpeed = 0f, bool speak = false, float speakDelay = 0f, bool rotateAfterWalk = false, Vector3 afterWalkRotation = default(Vector3))
