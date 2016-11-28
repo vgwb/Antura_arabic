@@ -12,15 +12,15 @@
        
         public void EnterState()
         {
-            //create a random LL and make it move:
-            AudioManager.I.PlayDialog(Db.LocalizationDataId.TakeMeHome_Title, playedTitleSFX);
+            TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.TakeMeHome_Title, playedTitleSFX);
+            
             
         }
 
         private void playedTitleSFX()
         {
             UnityEngine.Debug.Log("Played Title");
-            AudioManager.I.PlayDialog(Db.LocalizationDataId.TakeMeHome_Intro, playedIntroSFX);
+            TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.TakeMeHome_Intro, playedIntroSFX);
         }
        
 

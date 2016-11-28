@@ -9,7 +9,7 @@ namespace EA4S.TakeMeHome
 		public GameObject plane;
 		public LetterObjectView LLPrefab;
 		public event System.Action<ILivingLetterData, bool> onDropped;
-		float destroyTimer = 0;
+		
 
 		TakeMeHomeLL dragging;
 
