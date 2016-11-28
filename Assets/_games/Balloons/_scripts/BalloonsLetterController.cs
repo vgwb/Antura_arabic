@@ -189,5 +189,10 @@ namespace EA4S.Balloons
         {
             letterCollider.enabled = false;
         }
+
+        public void EnableCollider()
+        {
+            letterCollider.enabled = true;
+        }
     }
 }

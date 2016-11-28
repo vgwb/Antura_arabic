@@ -15,7 +15,7 @@
 
         public void EnterState()
         {
-            AudioManager.I.PlayDialog(Db.LocalizationDataId.MakeFriends_Title);
+            game.PlayTitleVoiceOver();
         }
 
         public void OnFinishedTutorial()
