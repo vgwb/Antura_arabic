@@ -285,7 +285,11 @@ namespace EA4S.SickLetters
 		void OnTriggerStay(Collider other)
 		{
 			Setmarker(other, true);
-		}
+            if (isCorrect && !isDragging)
+            {
+                checkDDsOverlapping(other);
+            }
+        }
 
 		void OnTriggerExit(Collider other)
 		{

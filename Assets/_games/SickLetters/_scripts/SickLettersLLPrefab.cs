@@ -245,6 +245,7 @@ namespace EA4S.SickLetters
                         newDragable.transform.localPosition = Vector3.zero;
                         newDragable.transform.localEulerAngles = new Vector3(0, -90, 0);
                         newDragable.setInitPos(newDragable.transform.localPosition);
+                        newDragable.checkDDCollision = true;
                         //newDragable.isAttached = true;
 
                         thisLLWrongDDs.Add(newDragable);
