@@ -189,8 +189,13 @@ namespace EA4S
             PlayDialog(LocalizationManager.GetLocalizationData(id));
         }
 
-        public void PlayDialog(Db.LocalizationData data)
+        public void PlayDialog(Db.LocalizationData data, bool clearPreviousCallback = false)
         {
+            if (!clearPreviousCallback && OnNotifyEndAudio != null)
+                OnNotifyEndAudio();
+
+            OnNotifyEndAudio = null;
+
             if (data.AudioFile != "") {
                 //Debug.Log("PlayDialog: " + data.id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
                 Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + data.AudioFile);
@@ -208,9 +213,9 @@ namespace EA4S
             PlayDialog(LocalizationManager.GetLocalizationData(id), callback);
         }
 
-        public void PlayDialog(Db.LocalizationData data, System.Action callback)
+        public void PlayDialog(Db.LocalizationData data, System.Action callback, bool clearPreviousCallback = false)
         {
-            if (OnNotifyEndAudio != null)
+            if (!clearPreviousCallback && OnNotifyEndAudio != null)
                 OnNotifyEndAudio();
 
             OnNotifyEndAudio = null;
