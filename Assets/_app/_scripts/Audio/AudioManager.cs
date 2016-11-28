@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Fabric;
 using UnityEngine.Audio;
+using System;
 
 namespace EA4S
 {
@@ -102,6 +103,17 @@ namespace EA4S
                     //Fabric.EventManager.Instance.PostEvent("Music/" + eventName);
                 }
             }
+        }
+
+        public void StopDialogue(bool clearPreviousCallback)
+        {
+            if (!clearPreviousCallback && OnNotifyEndAudio != null)
+                OnNotifyEndAudio();
+
+            OnNotifyEndAudio = null;
+
+            if (Fabric.EventManager.Instance != null)
+                Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.StopAll);
         }
 
         public void StopMusic()
