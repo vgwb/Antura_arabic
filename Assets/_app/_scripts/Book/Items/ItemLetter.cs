@@ -7,24 +7,36 @@ namespace EA4S
 {
     public class ItemLetter : MonoBehaviour, IPointerClickHandler
     {
-        LetterData data;
+        LetterInfo info;
         public TextRender Title;
         public TextRender SubTitle;
 
         BookPanel manager;
 
-        public void Init(BookPanel _manager, LetterData _data)
+        public void Init(BookPanel _manager, LetterInfo _info)
         {
-            data = _data;
+            info = _info;
             manager = _manager;
 
-            Title.text = data.GetChar();
-            SubTitle.text = data.Id;
+            if (!info.unlocked)
+            {
+                GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                GetComponent<Button>().interactable = true;
+            }
+
+            Title.text = info.data.GetChar();
+            SubTitle.text = info.data.Id;
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailLetter(data);
+            if (info.unlocked)
+            {
+                manager.DetailLetter(info);
+            }
         }
     }
 }

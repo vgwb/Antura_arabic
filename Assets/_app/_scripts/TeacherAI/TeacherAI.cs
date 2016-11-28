@@ -144,7 +144,7 @@ namespace EA4S
 
         public float GetLearningBlockScore(LearningBlockData lb)
         {
-            var allScores = scoreHelper.GetLearningBlockScores(lb.Stage, lb.LearningBlock);
+            var allScores = scoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(lb.Stage, lb.LearningBlock);
             return scoreHelper.GetAverageScore(allScores);
         }
 

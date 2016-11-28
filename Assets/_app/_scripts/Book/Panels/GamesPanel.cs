@@ -16,6 +16,7 @@ namespace EA4S
         [Header("References")]
         public GameObject ElementsContainer;
         public TextRender ArabicText;
+        public TextRender ScoreText;
 
         GameObject btnGO;
         PlayerBookPanel currentArea = PlayerBookPanel.None;
@@ -52,17 +53,25 @@ namespace EA4S
         {
             emptyListContainers();
 
-            foreach (MiniGameData item in AppManager.I.DB.GetActiveMinigames()) {
-                btnGO = Instantiate(MinigameItemPrefab);
-                btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponent<ItemMiniGame>().Init(this, item);
+            var minigame_list = AppManager.I.DB.GetActiveMinigames();
+
+            List<MiniGameInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
+            foreach (var item_info in info_list) {
+                if (minigame_list.Contains(item_info.data))
+                {
+                    btnGO = Instantiate(MinigameItemPrefab);
+                    btnGO.transform.SetParent(ElementsContainer.transform, false);
+                    btnGO.GetComponent<ItemMiniGame>().Init(this, item_info);
+                }
             }
         }
 
 
-        public void DetailMiniGame(MiniGameData data)
+        public void DetailMiniGame(MiniGameInfo info)
         {
-            AudioManager.I.PlayDialog(data.GetTitleSoundFilename());
+            AudioManager.I.PlayDialog(info.data.GetTitleSoundFilename());
+
+            ScoreText.text = "Score: " + info.score;
         }
 
         void emptyListContainers()

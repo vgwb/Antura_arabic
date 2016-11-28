@@ -60,12 +60,17 @@ namespace EA4S.Teacher.Test
         bool journeyEnabledForBase = true;
         bool journeyEnabledForWrong = true;
 
-        QuestionBuilderParameters SetupFakeGame()
+        private void InitialisePlaySession()
         {
             AppManager.I.Player.CurrentJourneyPosition.Stage = currentJourneyStage;
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = currentJourneyLB;
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = currentJourneyPS;
             AppManager.I.Teacher.InitialiseCurrentPlaySession();
+        }
+
+        QuestionBuilderParameters SetupFakeGame()
+        {
+            InitialisePlaySession();
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = correctHistory;
@@ -80,7 +85,7 @@ namespace EA4S.Teacher.Test
         public void SimulateMiniGame(MiniGameCode code)
         {
             var config = API.MiniGameAPI.Instance.GetGameConfigurationForMiniGameCode(code);
-            //var builderParams = SetupFakeGame();
+            InitialisePlaySession();
             var builder = config.SetupBuilder();
             Debug.Log("Simulating minigame: " + code + " with builder " + builder.GetType().Name);
             builder.CreateAllQuestionPacks();

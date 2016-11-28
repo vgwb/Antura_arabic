@@ -6,11 +6,15 @@ namespace EA4S
 {
     public class StageManager : MonoBehaviour
     {
+        public Color[] colorMaps;
         public GameObject[] stages;
         public GameObject[] cameras;
         public GameObject[] miniMaps;
         public GameObject letter;
-        public int s, i;
+        public GameObject leftStageButton;
+        public GameObject rightStageButton;
+        int s, i,previousStage;
+        bool inTransition;
         void Awake()
         {
             /*AppManager.I.Player.MaxJourneyPosition.Stage = 2;
@@ -20,53 +24,67 @@ namespace EA4S
             s = AppManager.I.Player.MaxJourneyPosition.Stage;
             for (i = 1; i <= (s - 1); i++)
             {
+                stages[i].SetActive(false);
                 miniMaps[i].GetComponent<MiniMap>().isAvailableTheWholeMap = true;
                 miniMaps[i].GetComponent<MiniMap>().CalculateSettingsStageMap();
             }
             miniMaps[i].GetComponent<MiniMap>().CalculateSettingsStageMap();
 
+            FirstOrLastMap();
 
-            //ChangeCamera(cameras[AppManager.I.Player.CurrentJourneyPosition.Stage]);
             stages[AppManager.I.Player.CurrentJourneyPosition.Stage].SetActive(true);
+            Camera.main.backgroundColor = colorMaps[AppManager.I.Player.CurrentJourneyPosition.Stage];
+            Camera.main.GetComponent<CameraFog>().color = colorMaps[AppManager.I.Player.CurrentJourneyPosition.Stage];
             letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[AppManager.I.Player.CurrentJourneyPosition.Stage].GetComponent<MiniMap>();
 
-            StartCoroutine("ResetPosLetter");
+            StartCoroutine("ResetPosLetter");  
         }
         public void StageLeft()
         {
             int numberStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
-            if (numberStage < s)
+            if ((numberStage < s) && (!inTransition))
             {
-                stages[numberStage].SetActive(false);
+                previousStage = numberStage;
+                inTransition = true;
                 stages[numberStage + 1].SetActive(true);
                 ChangeCamera(cameras[numberStage + 1]);
 
                 ChangePinDotToBlack();
                 AppManager.I.Player.CurrentJourneyPosition.Stage++;
+                ChangeCameraFogColor(AppManager.I.Player.CurrentJourneyPosition.Stage);
                 letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage + 1].GetComponent<MiniMap>();
                 letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
 
+                FirstOrLastMap();
+
+                StartCoroutine("DesactivateMap");
             }
         }
         public void StageRight()
         {
             int numberStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
-            if (numberStage > 1)
+            if ((numberStage > 1)&& (!inTransition))
             {
-                stages[numberStage].SetActive(false);
+                previousStage = numberStage;
+                inTransition = true;
                 stages[numberStage - 1].SetActive(true);
                 ChangeCamera(cameras[numberStage - 1]);
 
                 ChangePinDotToBlack();
                 AppManager.I.Player.CurrentJourneyPosition.Stage--;
+                ChangeCameraFogColor(AppManager.I.Player.CurrentJourneyPosition.Stage);
                 letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage - 1].GetComponent<MiniMap>();
                 letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
+
+                FirstOrLastMap();
+
+                StartCoroutine("DesactivateMap");
             }
         }
         public void ChangeCamera(GameObject ZoomCameraGO)
         {
 
-            CameraGameplayController.I.MoveToPosition(ZoomCameraGO.transform.position, ZoomCameraGO.transform.rotation);
+            CameraGameplayController.I.MoveToPosition(ZoomCameraGO.transform.position, ZoomCameraGO.transform.rotation, 0.6f);
 
         }
         IEnumerator ResetPosLetter()
@@ -86,5 +104,35 @@ namespace EA4S
             else
                 letter.GetComponent<LetterMovement>().ChangeMaterialDotToBlack(letter.GetComponent<LetterMovement>().miniMapScript.posDots[letter.GetComponent<LetterMovement>().pos]);
         }
+        void ChangeCameraFogColor(int c)
+        {
+            Camera.main.DOColor(colorMaps[c], 1);
+            Camera.main.GetComponent<CameraFog>().color = colorMaps[c];
+        }
+        IEnumerator DesactivateMap()
+        {
+            yield return new WaitForSeconds(0.8f);
+            stages[previousStage].SetActive(false);
+            inTransition = false;
+        }
+        void FirstOrLastMap()
+        {
+            if (AppManager.I.Player.CurrentJourneyPosition.Stage == 1)
+                rightStageButton.SetActive(false);
+            else if (AppManager.I.Player.CurrentJourneyPosition.Stage == 6)
+                leftStageButton.SetActive(false);
+            else
+            {
+                rightStageButton.SetActive(true);
+                leftStageButton.SetActive(true);
+            }
+
+        }
+
+        /*void DesactivateMap()
+        {
+            stages[previousStage].SetActive(false);
+            inTransition = false;
+        }*/
     }
 }

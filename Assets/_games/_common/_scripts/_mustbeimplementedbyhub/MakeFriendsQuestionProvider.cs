@@ -12,7 +12,7 @@ namespace EA4S
     /// </summary>
     public class MakeFriendsQuestionProvider : IQuestionProvider
     {
-        List<SampleWordsWithCommonLettersPack> questions = new List<SampleWordsWithCommonLettersPack>();
+        List<MakeFriendsQuestionPack> questions = new List<MakeFriendsQuestionPack>();
         string description;
 
         int currentQuestion;
@@ -128,7 +128,7 @@ namespace EA4S
                 correctAnswers = new List<ILivingLetterData>(commonLetters);
                 wrongAnswers = new List<ILivingLetterData>(uncommonLetters);
 
-                var currentPack = new SampleWordsWithCommonLettersPack(newWordData1, newWordData2, wrongAnswers, correctAnswers);
+                var currentPack = new MakeFriendsQuestionPack(newWordData1, newWordData2, wrongAnswers, correctAnswers);
                 questions.Add(currentPack);
             }
         }

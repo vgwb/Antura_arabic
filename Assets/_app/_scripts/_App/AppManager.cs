@@ -56,27 +56,24 @@ namespace EA4S
             InitTeacherForPlayer();
             GameSettings.HighQualityGfx = false;
 
-            LogManager.I.LogInfo(InfoEvent.AppStarted);
         }
 
         public void InitTeacherForPlayer()
         {
             if (Player == null)
                 Player = new PlayerProfile();
-            if (DB == null)
-                DB = new DatabaseManager(GameSettings.UseTestDatabase, Player);
-            // TODO @michele ToCheck ref: https://trello.com/c/r40yCfw1
-            //if (Teacher == null)
+            DB = new DatabaseManager(GameSettings.UseTestDatabase, Player);
             Teacher = new TeacherAI(DB, Player);
             if (GameLauncher == null)
                 GameLauncher = new MiniGameLauncher(Teacher);
+
         }
         #endregion
 
         #region Game Progression
 
         [HideInInspector]
-        [Obsolete("incorrect and shoudl be moved to Teacher or Navigation manager")]
+        [Obsolete("incorrect and shoudl be moved to Teacher or Navigation manager", true)]
         public bool IsAssessmentTime {
             get {
                 return Player.CurrentJourneyPosition.PlaySession == 5;

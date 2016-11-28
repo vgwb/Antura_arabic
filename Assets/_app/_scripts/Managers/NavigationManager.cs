@@ -15,6 +15,7 @@ namespace EA4S
         Intro,
         GameSelector,
         MiniGame,
+        Assessment,
         AnturaSpace,
         Rewards,
         PlaySessionResult,
@@ -58,7 +59,7 @@ namespace EA4S
                 case AppScene.Mood:
                     break;
                 case AppScene.Map:
-                    if (AppManager.I.IsAssessmentTime)
+                    if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(AppManager.I.Player.CurrentJourneyPosition))
                         GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     else
                         GoToScene(AppScene.GameSelector);
@@ -72,8 +73,7 @@ namespace EA4S
                     GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     break;
                 case AppScene.MiniGame:
-                    if (AppManager.I.IsAssessmentTime) {
-                        // TODO: never called
+                    if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(AppManager.I.Player.CurrentJourneyPosition)) {
                         // assessment ended!
                         AppManager.I.Player.ResetPlaySessionMinigame();
                         GoToScene(AppScene.Rewards);
@@ -157,6 +157,8 @@ namespace EA4S
                     return "app_GamesSelector";
                 case AppScene.MiniGame:
                     return minigameData.Scene;
+                case AppScene.Assessment:
+                    return "app_Assessment";
                 case AppScene.AnturaSpace:
                     return "app_AnturaSpace";
                 case AppScene.Rewards:

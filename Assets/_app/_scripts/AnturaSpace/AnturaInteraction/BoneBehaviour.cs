@@ -7,6 +7,9 @@ namespace EA4S
     {
 
         #region EXPOSED MEMBERS
+        [SerializeField]
+        private Rigidbody m_oBoneRigidbody;
+
         [Header("Throw")]
 
         [SerializeField]
@@ -29,7 +32,7 @@ namespace EA4S
         #endregion
 
         #region PRIVATE MEMBERS
-        private Rigidbody m_oBoneRigidboy;
+        //private Rigidbody m_oBoneRigidboy;
         #endregion
 
         #region GETTER/SETTER
@@ -63,7 +66,6 @@ namespace EA4S
         #region INTERNALS
         void Start()
         {
-            m_oBoneRigidboy=GetComponent<Rigidbody>();
 
             CorrectMinMaxRotation();
 
@@ -78,9 +80,9 @@ namespace EA4S
         public void ApplyForces()
         {
             //Add rotation with random magnitude
-            m_oBoneRigidboy.AddTorque(m_v3BoneRotation_Direction.normalized * Random.Range(m_fBoneRotation_MinMagnitude, m_fBoneRotation_MaxMagnitude), m_eBoneRotation_ForceMode);
+            m_oBoneRigidbody.AddTorque(m_v3BoneRotation_Direction.normalized * Random.Range(m_fBoneRotation_MinMagnitude, m_fBoneRotation_MaxMagnitude), m_eBoneRotation_ForceMode);
             //Add translation
-            m_oBoneRigidboy.AddForce(m_v3BoneThrow_Direction.normalized * m_fBoneThrow_Magnitude, m_eBoneThrow_ForceMode);
+            m_oBoneRigidbody.AddForce(m_v3BoneThrow_Direction.normalized * m_fBoneThrow_Magnitude, m_eBoneThrow_ForceMode);
         }
         #endregion
 

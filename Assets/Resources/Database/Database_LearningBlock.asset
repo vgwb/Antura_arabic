@@ -432,7 +432,7 @@ MonoBehaviour:
     - Id: 4.1
       Stage: 4
       LearningBlock: 1
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The sound of Fathah (\u064E) as a short vowel, Fatha on letters,
         and vocabulary,"
       Title_En: The symbol Fathah
@@ -442,7 +442,7 @@ MonoBehaviour:
     - Id: 4.2
       Stage: 4
       LearningBlock: 2
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The sound of Dammah (\u064F) as a short vowel, Dammah on letters,
         and vocabulary"
       Title_En: The symbol Dammah
@@ -452,7 +452,7 @@ MonoBehaviour:
     - Id: 4.3
       Stage: 4
       LearningBlock: 3
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The sound of Kasrah (\u0650) as a short vowel,  Kasrah on letters,
         and vocabulary"
       Title_En: The symbol Kasrah
@@ -462,7 +462,7 @@ MonoBehaviour:
     - Id: 4.4
       Stage: 4
       LearningBlock: 4
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "Revision of the 3 previous + The the non sound of the mute Sukun
         (\u0652)"
       Title_En: Symbols and Sukun
@@ -472,7 +472,7 @@ MonoBehaviour:
     - Id: 4.5
       Stage: 4
       LearningBlock: 5
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "Same as 4.1 with Fathah tanwin (\u064B) (double Fathah)"
       Title_En: the double Fathah
       Title_Ar: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0641\u062A\u062D"
@@ -481,7 +481,7 @@ MonoBehaviour:
     - Id: 4.6
       Stage: 4
       LearningBlock: 6
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "Same as 4.2 The sound of Dammah tanwin (\u064C) (double Dammah)"
       Title_En: the double Dammah
       Title_Ar: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0636\u0645"
@@ -490,7 +490,7 @@ MonoBehaviour:
     - Id: 4.7
       Stage: 4
       LearningBlock: 7
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "Same than 3 The sound of Kasrah tanwin (\u064D) (double Kasrah)"
       Title_En: the double Kasrah
       Title_Ar: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0643\u0633\u0631"
@@ -499,7 +499,7 @@ MonoBehaviour:
     - Id: 4.8
       Stage: 4
       LearningBlock: 8
-      NumberOfPlaySessions: 1
+      NumberOfPlaySessions: 2
       Description: The 3 diacritic + double diacritic signs.
       Title_En: single and double symbols
       Title_Ar: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0648\u062D\u0631\u0643\u0627\u062A
@@ -509,7 +509,7 @@ MonoBehaviour:
     - Id: 4.9
       Stage: 4
       LearningBlock: 9
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The different sound variations of hamza (\u0621) on a vowel (different
         with/without), separate. waw hamza (\u0624) and yeh hamza (\u0626)"
       Title_En: Hamza variations
@@ -519,7 +519,7 @@ MonoBehaviour:
     - Id: 4.10
       Stage: 4
       LearningBlock: 10
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The diphthong \u201Cwaw\u201D (\u0648): different sound than short
         and long vowel"
       Title_En: The diphthong waaw
@@ -529,7 +529,7 @@ MonoBehaviour:
     - Id: 4.11
       Stage: 4
       LearningBlock: 11
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The diphthong \u201Cyeh\u201D (\u064A): different sound than short
         and long vowel"
       Title_En: The diphthong yaa
@@ -539,7 +539,7 @@ MonoBehaviour:
     - Id: 4.12
       Stage: 4
       LearningBlock: 12
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: Verbs
       Title_En: 'Words: Verbs'
       Title_Ar: "\u0627\u0644\u0623\u0641\u0639\u0627\u0644"
@@ -548,7 +548,7 @@ MonoBehaviour:
     - Id: 4.13
       Stage: 4
       LearningBlock: 13
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: Places
       Title_En: 'Words: Places'
       Title_Ar: "\u0627\u0644\u0623\u0645\u0627\u0643\u0646"
@@ -557,7 +557,7 @@ MonoBehaviour:
     - Id: 4.14
       Stage: 4
       LearningBlock: 14
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: Grains (food)
       Title_En: 'Words: grains food'
       Title_Ar: "\u0627\u0644\u0623\u0637\u0639\u0645\u0629 (\u0627\u0644\u062D\u0628\u0648\u0628)"
@@ -566,7 +566,7 @@ MonoBehaviour:
     - Id: 4.15
       Stage: 4
       LearningBlock: 15
-      NumberOfPlaySessions: 3
+      NumberOfPlaySessions: 4
       Description: Furniture
       Title_En: 'Words: Furniture'
       Title_Ar: "\u0627\u0644\u0645\u0641\u0631\u0648\u0634\u0627\u062A"
@@ -575,7 +575,7 @@ MonoBehaviour:
     - Id: 5.1
       Stage: 5
       LearningBlock: 1
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The \u201Calef maqSura\u201D"
       Title_En: the alif maqSura
       Title_Ar: "\u0627\u0644\u0623\u0644\u0641 \u0627\u0644\u0645\u0642\u0635\u0648\u0631\u0629"
@@ -584,7 +584,7 @@ MonoBehaviour:
     - Id: 5.2
       Stage: 5
       LearningBlock: 2
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The special combination letter \u201Clam-alef\u201D (\u0644\u0627)"
       Title_En: lam-alif combination
       Title_Ar: "\u0644\u0627"
@@ -593,7 +593,7 @@ MonoBehaviour:
     - Id: 5.3
       Stage: 5
       LearningBlock: 3
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: The maddah (~)
       Title_En: the madd symbol
       Title_Ar: "\u0627\u0644\u0645\u062F"
@@ -602,7 +602,7 @@ MonoBehaviour:
     - Id: 5.4
       Stage: 5
       LearningBlock: 4
-      NumberOfPlaySessions: 1
+      NumberOfPlaySessions: 2
       Description: The 3 diacritic signs
       Title_En: The 3 diacritic signs
       Title_Ar: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A"
@@ -611,7 +611,7 @@ MonoBehaviour:
     - Id: 5.5
       Stage: 5
       LearningBlock: 5
-      NumberOfPlaySessions: 1
+      NumberOfPlaySessions: 2
       Description: The 3 double diacritic signs (Tanwin)
       Title_En: The 3 double diacritic signs
       Title_Ar: "\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062A\u0646\u0648\u064A\u0646"
@@ -620,7 +620,7 @@ MonoBehaviour:
     - Id: 5.6
       Stage: 5
       LearningBlock: 6
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The diacritic sign \u201Cshadda\u201D (\u0651) as a double consonant"
       Title_En: the shadda symbol
       Title_Ar: "\u0627\u0644\u0634\u062F\u0629"
@@ -629,7 +629,7 @@ MonoBehaviour:
     - Id: 5.7
       Stage: 5
       LearningBlock: 7
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: Singular, dual, and plural forms of nouns
       Title_En: 'Words: plurals'
       Title_Ar: "\u0627\u0644\u0645\u0641\u0631\u062F \u0648\u0627\u0644\u0645\u062B\u0646\u0649
@@ -639,7 +639,7 @@ MonoBehaviour:
     - Id: 5.8
       Stage: 5
       LearningBlock: 8
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: Professions (emphasis singular, dual, plural)
       Title_En: 'words: professions'
       Title_Ar: "\u0627\u0644\u0645\u0647\u0646"
@@ -648,7 +648,7 @@ MonoBehaviour:
     - Id: 5.9
       Stage: 5
       LearningBlock: 9
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: Nature (emphasis singular, dual, plural)
       Title_En: 'words: nature'
       Title_Ar: "\u0627\u0644\u0637\u0628\u064A\u0639\u0629"
@@ -657,7 +657,7 @@ MonoBehaviour:
     - Id: 5.10
       Stage: 5
       LearningBlock: 10
-      NumberOfPlaySessions: 1
+      NumberOfPlaySessions: 2
       Description: "The definite article \u201Cal\u201D (\u0627\u0644\u0640)"
       Title_En: the article "al"
       Title_Ar: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
@@ -666,7 +666,7 @@ MonoBehaviour:
     - Id: 5.11
       Stage: 5
       LearningBlock: 11
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "Principle (the different pronounciation of the consonant following
         the definite article \"al\" (\u0627\u0644\u0640) \n\nmoon consonants: \u0628
         - \u062C - \u062D - \u062E - \u0639 - \u063A - \u0641 - \u0642 - \u0643 -
@@ -681,7 +681,7 @@ MonoBehaviour:
     - Id: 5.12
       Stage: 5
       LearningBlock: 12
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: Sports (emphasis moon & sun consonant) the red color of the sun&moon
         letter means it is not pronounced which means it proceeds a sun consonant
       Title_En: Sports
@@ -691,7 +691,7 @@ MonoBehaviour:
     - Id: 5.13
       Stage: 5
       LearningBlock: 13
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: Adjectives of feelings
       Title_En: 'Adjectives: feelings'
       Title_Ar: "\u0635\u0641\u0627\u062A \u0627\u0644\u0645\u0634\u0627\u0639\u0631"
@@ -700,7 +700,7 @@ MonoBehaviour:
     - Id: 6.1
       Stage: 6
       LearningBlock: 1
-      NumberOfPlaySessions: 1
+      NumberOfPlaySessions: 2
       Description: Greeting phrase
       Title_En: Greetings
       Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u062D\u064A\u0629"
@@ -709,7 +709,7 @@ MonoBehaviour:
     - Id: 6.2
       Stage: 6
       LearningBlock: 2
-      NumberOfPlaySessions: 1
+      NumberOfPlaySessions: 2
       Description: '"Hello" and "Hi" phrases'
       Title_En: Hello phrases
       Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u0631\u062D\u064A\u0628"
@@ -718,7 +718,7 @@ MonoBehaviour:
     - Id: 6.3
       Stage: 6
       LearningBlock: 3
-      NumberOfPlaySessions: 1
+      NumberOfPlaySessions: 2
       Description: '"How are you" and "Goodbye" phrases'
       Title_En: How are you phrases
       Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u0633\u0624\u0627\u0644
@@ -728,7 +728,7 @@ MonoBehaviour:
     - Id: 6.4
       Stage: 6
       LearningBlock: 4
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: 'Adjectives: colors'
       Title_En: 'Adjectives: colors'
       Title_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
@@ -737,7 +737,7 @@ MonoBehaviour:
     - Id: 6.5
       Stage: 6
       LearningBlock: 5
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: 'Adjectives: describing nature'
       Title_En: nature adjectives
       Title_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0628\u064A\u0639\u0629"
@@ -746,7 +746,7 @@ MonoBehaviour:
     - Id: 6.6
       Stage: 6
       LearningBlock: 6
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: 'Adjectives: describing weather'
       Title_En: weather adjectives
       Title_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0642\u0633"
@@ -764,7 +764,7 @@ MonoBehaviour:
     - Id: 6.8
       Stage: 6
       LearningBlock: 8
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: Ordinal numbers 1 to 10 (with the definite article "al")
       Title_En: ordinal numbers
       Title_Ar: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u064A\u0629"
@@ -773,7 +773,7 @@ MonoBehaviour:
     - Id: 6.9
       Stage: 6
       LearningBlock: 9
-      NumberOfPlaySessions: 1
+      NumberOfPlaySessions: 2
       Description: Time expressions such as "today" "yesterday"
       Title_En: Time adverbs
       Title_Ar: "\u0638\u0631\u0648\u0641 \u0627\u0644\u0632\u0645\u0627\u0646"
@@ -782,7 +782,7 @@ MonoBehaviour:
     - Id: 6.10
       Stage: 6
       LearningBlock: 10
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: Days of the week
       Title_En: Days of the week
       Title_Ar: "\u0623\u064A\u0627\u0645 \u0627\u0644\u0627\u0633\u0628\u0648\u0639"
@@ -791,7 +791,7 @@ MonoBehaviour:
     - Id: 6.11
       Stage: 6
       LearningBlock: 11
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: The months
       Title_En: The months
       Title_Ar: "\u0627\u0644\u0623\u0634\u0647\u0631"
@@ -800,7 +800,7 @@ MonoBehaviour:
     - Id: 6.12
       Stage: 6
       LearningBlock: 12
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: The years (in numbers)
       Title_En: the years in numbers
       Title_Ar: "\u0627\u0644\u0633\u0646\u0629 \u0628\u0627\u0644\u0623\u0631\u0642\u0627\u0645"
@@ -809,7 +809,7 @@ MonoBehaviour:
     - Id: 6.13
       Stage: 6
       LearningBlock: 13
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: 'Nature: Feminine and masculine: adding teh marbuta to any noun
         makes it feminine'
       Title_En: faminine and masculine nouns
@@ -820,7 +820,7 @@ MonoBehaviour:
     - Id: 6.14
       Stage: 6
       LearningBlock: 14
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: Clothes with the definite article "al"
       Title_En: the article "al"
       Title_Ar: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
@@ -829,7 +829,7 @@ MonoBehaviour:
     - Id: 6.15
       Stage: 6
       LearningBlock: 15
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: Simple phrases
       Title_En: Some phrases
       Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0628\u0633\u064A\u0637\u0629"

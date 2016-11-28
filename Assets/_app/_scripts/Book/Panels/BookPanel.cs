@@ -28,6 +28,7 @@ namespace EA4S
         public GameObject SubmenuContainer;
         public GameObject ElementsContainer;
         public TextRender ArabicText;
+        public TextRender ScoreText;
         public TMPro.TextMeshProUGUI Drawing;
 
         public LetterObjectView LLText;
@@ -88,12 +89,17 @@ namespace EA4S
                     list = AppManager.I.DB.GetAllLetterData();
                     break;
             }
-
             emptyListContainers();
-            foreach (LetterData item in list) {
-                btnGO = Instantiate(LetterItemPrefab);
-                btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponent<ItemLetter>().Init(this, item);
+
+            List<LetterInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllLetterInfo();
+            foreach (var info_item in info_list)
+            {
+                if (list.Contains(info_item.data))
+                {
+                    btnGO = Instantiate(LetterItemPrefab);
+                    btnGO.transform.SetParent(ElementsContainer.transform, false);
+                    btnGO.GetComponent<ItemLetter>().Init(this, info_item);
+                }
             }
 
             //btnGO = Instantiate(CategoryItemPrefab);
@@ -117,6 +123,7 @@ namespace EA4S
         void WordsPanel(WordDataCategory _category = WordDataCategory.None)
         {
             currentWordCategory = _category;
+
             List<WordData> list;
             switch (currentWordCategory) {
 
@@ -130,10 +137,15 @@ namespace EA4S
             }
             emptyListContainers();
 
-            foreach (WordData item in list) {
-                btnGO = Instantiate(WordItemPrefab);
-                btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponent<ItemWord>().Init(this, item);
+            List<WordInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllWordInfo();
+            foreach (var info_item in info_list)
+            {
+                if (list.Contains(info_item.data))
+                {
+                    btnGO = Instantiate(WordItemPrefab);
+                    btnGO.transform.SetParent(ElementsContainer.transform, false);
+                    btnGO.GetComponent<ItemWord>().Init(this, info_item);
+                }
             }
             Drawing.text = "";
 
@@ -153,10 +165,11 @@ namespace EA4S
         {
             emptyListContainers();
 
-            foreach (PhraseData item in AppManager.I.DB.GetAllPhraseData()) {
+            List<PhraseInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllPhraseInfo();
+            foreach (var info_item in info_list) {
                 btnGO = Instantiate(PhraseItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponent<ItemPhrase>().Init(this, item);
+                btnGO.GetComponent<ItemPhrase>().Init(this, info_item);
             }
         }
 
@@ -173,19 +186,21 @@ namespace EA4S
             }
         }
 
-        public void DetailWord(WordData word)
+        public void DetailWord(WordInfo info)
         {
-            Debug.Log("Detail Word :" + word.Id);
-            AudioManager.I.PlayWord(word.Id);
+            Debug.Log("Detail Word :" + info.data.Id);
+            AudioManager.I.PlayWord(info.data.Id);
+
+            ScoreText.text = "Score: " + info.score;
 
             var output = "";
 
-            var splittedLetters = ArabicAlphabetHelper.SplitWordIntoLetters(word.Arabic);
+            var splittedLetters = ArabicAlphabetHelper.SplitWordIntoLetters(info.data.Arabic);
             foreach (var letter in splittedLetters) {
                 output += letter.GetChar() + " ";
             }
             output += "\n";
-            output += word.Arabic;
+            output += info.data.Arabic;
 
             output += "\n";
 
@@ -195,16 +210,16 @@ namespace EA4S
 
             ArabicText.text = output;
 
-            LLText.Init(new LL_WordData(word));
+            LLText.Init(new LL_WordData(info.data));
 
-            if (word.Drawing != "") {
-                var drawingChar = AppManager.I.Teacher.wordHelper.GetWordDrawing(word);
+            if (info.data.Drawing != "") {
+                var drawingChar = AppManager.I.Teacher.wordHelper.GetWordDrawing(info.data);
                 Drawing.text = drawingChar;
-                LLDrawing.Init(new LL_ImageData(word));
-                Debug.Log("Drawing: " + word.Drawing + " / " + ArabicAlphabetHelper.GetLetterFromUnicode(word.Drawing));
+                LLDrawing.Init(new LL_ImageData(info.data));
+                Debug.Log("Drawing: " + info.data.Drawing + " / " + ArabicAlphabetHelper.GetLetterFromUnicode(info.data.Drawing));
             } else {
                 Drawing.text = "";
-                LLDrawing.Init(new LL_ImageData(word));
+                LLDrawing.Init(new LL_ImageData(info.data));
             }
         }
 
@@ -213,23 +228,27 @@ namespace EA4S
 
         }
 
-        public void DetailLetter(LetterData letter)
+        public void DetailLetter(LetterInfo info)
         {
-            Debug.Log("Detail Letter :" + letter.Id);
-            AudioManager.I.PlayLetter(letter.Id);
+            Debug.Log("Detail Letter :" + info.data.Id);
+            AudioManager.I.PlayLetter(info.data.Id);
 
-            ArabicText.text = letter.GetChar(LetterPosition.Isolated);
-            ArabicText.text += " " + letter.GetChar(LetterPosition.Final);
-            ArabicText.text += " " + letter.GetChar(LetterPosition.Medial);
-            ArabicText.text += " " + letter.GetChar(LetterPosition.Initial);
+            ScoreText.text = "Score: " + info.score;
 
-            LLText.Init(new LL_LetterData(letter));
+            ArabicText.text = info.data.GetChar(LetterPosition.Isolated);
+            ArabicText.text += " " + info.data.GetChar(LetterPosition.Final);
+            ArabicText.text += " " + info.data.GetChar(LetterPosition.Medial);
+            ArabicText.text += " " + info.data.GetChar(LetterPosition.Initial);
+
+            LLText.Init(new LL_LetterData(info.data));
         }
 
-        public void DetailPhrase(PhraseData phrase)
+        public void DetailPhrase(PhraseInfo info)
         {
-            Debug.Log("Detail Phrase :" + phrase.Id);
-            AudioManager.I.PlayPhrase(phrase.Id);
+            Debug.Log("Detail Phrase :" + info.data.Id);
+            AudioManager.I.PlayPhrase(info.data.Id);
+
+            ScoreText.text = "Score: " + info.score;
         }
 
 
@@ -257,6 +276,7 @@ namespace EA4S
         {
             OpenArea(PlayerBookPanel.BookPhrases);
         }
+        
 
     }
 }

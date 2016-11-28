@@ -27,6 +27,7 @@ namespace EA4S.MakeFriends
         public GameObject FxParticlesPoof;
         public DropZoneController dropZone;
         public WinCelebrationController winCelebration;
+        public MakeFriendsAnturaController antura;
         [Header("Difficulty Override")]
         public bool overrideDifficulty;
         public MakeFriendsVariation difficultySetting;
@@ -141,12 +142,33 @@ namespace EA4S.MakeFriends
 
         public void PlayActiveMusic()
         {
-            MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Theme6);
+            AudioManager.PlayMusic(Music.Theme6);
         }
 
         public void PlayIdleMusic()
         {
-            MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Relax);
+            AudioManager.PlayMusic(Music.Relax);
+        }
+
+        public void PlayTitleVoiceOver()
+        {
+            StartCoroutine(PlayDialog_Coroutine(EA4S.Db.LocalizationDataId.MakeFriends_Title, 0f));
+        }
+
+        public void PlayTutorialVoiceOver(float delay = 3.75f)
+        {
+            StartCoroutine(PlayDialog_Coroutine(EA4S.Db.LocalizationDataId.MakeFriends_Tuto, delay));
+        }
+
+        public void PlayIntroVoiceOver(float delay = 3.75f)
+        {
+            StartCoroutine(PlayDialog_Coroutine(EA4S.Db.LocalizationDataId.MakeFriends_Intro, delay));
+        }
+
+        private IEnumerator PlayDialog_Coroutine(EA4S.Db.LocalizationDataId dialog, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            AudioManager.PlayDialogue(dialog);
         }
 
         public void Play()
@@ -178,7 +200,6 @@ namespace EA4S.MakeFriends
 
             isTutorialRound = true;
             PlayIdleMusic();
-
             Reset();
             SetNewWords();
             SetLetterChoices();
@@ -186,11 +207,15 @@ namespace EA4S.MakeFriends
             ShowLetterPicker();
             ShowDropZone();
 
+            PlayTutorialVoiceOver();
+
             StartCoroutine("ShowTutorialUI_Coroutine");
         }
 
         private IEnumerator ShowTutorialUI_Coroutine()
         {
+            yield return new WaitForSeconds(uiDelay);
+
             while (isTutorialRound)
             {
                 yield return new WaitForSeconds(uiDelay);
@@ -305,6 +330,7 @@ namespace EA4S.MakeFriends
 
         private void HideLetterPicker()
         {
+            letterPicker.StopAllCoroutines();
             letterPicker.Block();
             letterPicker.Hide();
         }
@@ -318,7 +344,9 @@ namespace EA4S.MakeFriends
 
         public void OnLetterChoiceSelected(LetterChoiceController letterChoice)
         {
-            letterPicker.BlockForSeconds(2f);
+            letterPicker.Block();
+            letterPicker.Hide();
+            letterPicker.ShowAndUnblockDelayed(2f);
 
             if (commonLetters.Exists(x => x.Id == letterChoice.letterData.Id))
             {
@@ -338,8 +366,9 @@ namespace EA4S.MakeFriends
                 }
                 else
                 {
-                    dropZone.ResetLetter(3f);
+                    dropZone.ResetLetter(2f);
                 }
+                antura.ReactPositively();
             }
             else
             {
@@ -347,7 +376,9 @@ namespace EA4S.MakeFriends
                 //letterChoice.SpawnBalloon(false);
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterSad);
                 dropZone.AnimateWrong();
+                dropZone.ResetLetter(2f);
                 incorrectChoices.Add(letterChoice.letterData);
+                antura.ReactNegatively();
                 if (!isTutorialRound)
                 {
                     leftArea.MoveAwayAngrily();
@@ -367,7 +398,7 @@ namespace EA4S.MakeFriends
 
         private IEnumerator EndRound_Coroutine(bool win)
         {
-            var winDelay1 = 2f;
+            var winDelay1 = 4f;
             var winDelay2 = 1.5f;
             var friendlyExitDelay = leftArea.friendlyExitDuration;
             var loseDelay = 1.5f;
@@ -386,6 +417,8 @@ namespace EA4S.MakeFriends
                     GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
                     leftArea.Celebrate();
                     rightArea.Celebrate();
+                    leftArea.HighFive();
+                    rightArea.HighFive();
                     winCelebration.Show();
 
                     yield return new WaitForSeconds(winDelay1);
@@ -410,6 +443,8 @@ namespace EA4S.MakeFriends
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
                 leftArea.Celebrate();
                 rightArea.Celebrate();
+                leftArea.HighFive();
+                rightArea.HighFive();
                 winCelebration.Show();
                 CurrentScore++;
 
@@ -478,6 +513,10 @@ namespace EA4S.MakeFriends
 
             PlayIdleMusic();
             Reset();
+
+            // Everybody dance!
+            FriendsZonesManager.instance.EverybodyDance();
+            antura.ReactToEndGame();
 
             // Zoom out camera
             var fromPosition = sceneCamera.transform.localPosition;

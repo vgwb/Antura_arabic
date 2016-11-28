@@ -39,23 +39,22 @@ namespace EA4S.Scanner
 
 		}
 
-		void OnLetterFlying()
+		void OnLetterFlying(ScannerLivingLetter sender)
 		{
 			moveBack = true;
+			StopAllCoroutines();
+			StartCoroutine(co_Reset());
 		}
-
-		void OnLetterReset()
-		{
-			moveBack = false;
-		}
-
+			
 		void Update()
 		{
-			if (game.scannerLL != null && letterEventsNotSet)
+			if (game.scannerLL.Count != 0 && letterEventsNotSet)
 			{
 				letterEventsNotSet = false;
-				game.scannerLL.onFlying += OnLetterFlying;
-				game.scannerLL.onReset += OnLetterReset;
+				foreach (ScannerLivingLetter LL in game.scannerLL)
+				{
+					LL.onFlying += OnLetterFlying;
+				}
 			}
 
 			if (moveBack && transform.position.z < backDepth)
@@ -71,7 +70,13 @@ namespace EA4S.Scanner
 
 		public void Reset()
 		{
+			moveBack = false;
+		}
 
+		IEnumerator co_Reset()
+		{
+			yield return new WaitForSeconds(2.5f);
+			moveBack = false;
 		}
 
 		void OnMouseDown()
@@ -122,11 +127,12 @@ namespace EA4S.Scanner
 				}
 				else
 				{
+					ScannerLivingLetter LL = other.transform.parent.GetComponent<ScannerLivingLetter>();
 					timeDelta = Time.time - timeDelta;
-					game.PlayWord(timeDelta);
+					game.PlayWord(timeDelta, LL);
 					timeDelta = 0;
-                    game.tut.setupTutorial(2);
-				}
+                    game.tut.setupTutorial(2, LL);
+                }
 			}
 //			else if (other.tag == ScannerGame.TAG_SCAN_END)
 //			{

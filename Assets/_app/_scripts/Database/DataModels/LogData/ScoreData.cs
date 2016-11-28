@@ -44,7 +44,7 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("T{0},E{1},S{2},T{4}",
+            return string.Format("T{0},E{1},S{2},T{3}",
                 TableName,
                 ElementId,
                 Score,

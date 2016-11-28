@@ -13,6 +13,7 @@
         {
             MakeFriendsConfiguration.Instance.Context.GetOverlayWidget().Initialize(showStarsBar: true, showClock: false, showLives: false);
 
+            game.PlayIntroVoiceOver();
             game.PlayActiveMusic();
             game.Play();
         }

@@ -7,26 +7,43 @@ namespace EA4S
 {
     public class ItemLearningBlock : MonoBehaviour, IPointerClickHandler
     {
-        LearningBlockData data;
+        LearningBlockInfo info;
         public TextRender Title;
         public TextRender Info;
         public TextRender SubTitle;
 
         ParentsPanel manager;
 
-        public void Init(ParentsPanel _manager, LearningBlockData _data)
+        public void Init(ParentsPanel _manager, LearningBlockInfo _info)
         {
-            data = _data;
+            info = _info;
             manager = _manager;
 
-            Title.text = data.Title_Ar;
-            SubTitle.text = data.Title_En + " " + data.Id;
-            Info.text = "Score: " + TeacherAI.I.GetLearningBlockScore(data);
+            Title.text = info.data.Title_Ar;
+            SubTitle.text = info.data.Title_En + " " + info.data.Id;
+
+            if (!info.unlocked)
+            {
+                GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                GetComponent<Button>().interactable = true;
+            }
+
+            var score = info.score;
+            // @note: we should already save the score when a block is finished, and not compute it when showing it
+            //var score = TeacherAI.I.GetLearningBlockScore(info.data);
+
+            Info.text = "Score: " + score; 
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailLearningBlock(data);
+            if (info.unlocked)
+            {
+                manager.DetailLearningBlock(info);
+            }
         }
     }
 }
