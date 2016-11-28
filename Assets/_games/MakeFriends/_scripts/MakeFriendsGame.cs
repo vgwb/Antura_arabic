@@ -398,7 +398,7 @@ namespace EA4S.MakeFriends
 
         private IEnumerator EndRound_Coroutine(bool win)
         {
-            var winDelay1 = 3f;
+            var winDelay1 = 4f;
             var winDelay2 = 1.5f;
             var friendlyExitDelay = leftArea.friendlyExitDuration;
             var loseDelay = 1.5f;
@@ -417,6 +417,8 @@ namespace EA4S.MakeFriends
                     GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
                     leftArea.Celebrate();
                     rightArea.Celebrate();
+                    leftArea.HighFive();
+                    rightArea.HighFive();
                     winCelebration.Show();
 
                     yield return new WaitForSeconds(winDelay1);
@@ -441,6 +443,8 @@ namespace EA4S.MakeFriends
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
                 leftArea.Celebrate();
                 rightArea.Celebrate();
+                leftArea.HighFive();
+                rightArea.HighFive();
                 winCelebration.Show();
                 CurrentScore++;
 

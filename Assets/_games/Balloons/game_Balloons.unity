@@ -12899,8 +12899,8 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.031565998, y: 0.057143033, z: -1.6576415}
   serializedVersion: 2
-  m_Spring: 1000
-  m_Damper: 10
+  m_Spring: 500
+  m_Damper: 0
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.025
@@ -16664,8 +16664,8 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.08847612, y: 0.05714323, z: -1.6181754}
   serializedVersion: 2
-  m_Spring: 1000
-  m_Damper: 10
+  m_Spring: 500
+  m_Damper: 0
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.025
@@ -16944,8 +16944,8 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0.04286129, y: 0.028571725, z: -1.7142859}
   serializedVersion: 2
-  m_Spring: 1000
-  m_Damper: 10
+  m_Spring: 500
+  m_Damper: 0
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.025

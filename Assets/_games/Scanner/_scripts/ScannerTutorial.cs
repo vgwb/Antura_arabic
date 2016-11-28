@@ -10,7 +10,7 @@ namespace EA4S.Scanner
         public Transform scannerDevice;
         public ScannerScrollBelt UpperBelt, lowerBelt;
         [HideInInspector]
-        public float originalBeltSpeed, originalLLOnBeltSpeed;
+        public float originalLLOnBeltSpeed;
         public float startDelay = 8, repeatDelay = 3;
 
         public static int TUT_STEP = 1;
@@ -64,6 +64,11 @@ namespace EA4S.Scanner
 
             StartCoroutine(coDoTutorial());
             originalLLOnBeltSpeed = ScannerConfiguration.Instance.beltSpeed;
+            if (ScannerConfiguration.Instance.Difficulty > 0.5f)
+            {
+                ScannerConfiguration.Instance.beltSpeed = 1;
+            }
+
             ScannerGame.disableInput = true;
             //warm up
             TutorialUI.DrawLine(-100 * Vector3.up, -100 * Vector3.up, TutorialUI.DrawLineMode.Arrow);
@@ -106,11 +111,13 @@ namespace EA4S.Scanner
             ScannerConfiguration.Instance.beltSpeed = 0;
             ScannerGame.disableInput = false;
             StartCoroutine(sayTut(repeatDelay));
+            
         }
 
         void onTutorialEnd()
         {
             TutorialUI.Clear(true);
+            print(originalLLOnBeltSpeed);
             ScannerConfiguration.Instance.beltSpeed = originalLLOnBeltSpeed;
             game.Context.GetOverlayWidget().Initialize(true, false, false);
             game.Context.GetOverlayWidget().SetStarsThresholds(game.STARS_1_THRESHOLD, game.STARS_2_THRESHOLD, game.STARS_3_THRESHOLD);
