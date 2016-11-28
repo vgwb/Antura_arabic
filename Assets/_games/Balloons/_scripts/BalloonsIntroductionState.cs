@@ -4,7 +4,7 @@
     {
         BalloonsGame game;
 
-        float timer = 1;
+        float timer = 1.5f;
         public BalloonsIntroductionState(BalloonsGame game)
         {
             this.game = game;
@@ -12,6 +12,7 @@
 
         public void EnterState()
         {
+            game.PlayTitleVoiceOver();
         }
 
         public void ExitState()

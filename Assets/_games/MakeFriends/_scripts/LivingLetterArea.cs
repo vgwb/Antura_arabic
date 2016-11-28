@@ -27,13 +27,25 @@ namespace EA4S.MakeFriends
         [SerializeField]
         private Vector3 exitRotation;
 
-        private Vector3 nextMovingAwayPosition;
-
-
-        void Start()
+        private int movingAwayCounter = 1;
+        private Vector3 NextMovingAwayPosition
         {
-            nextMovingAwayPosition = startingPosition + (offscreenPosition - startingPosition) / 3f;
+            get
+            {
+                switch (movingAwayCounter)
+                {
+                    case 1:
+                        return startingPosition + (offscreenPosition - startingPosition).normalized * 4f;
+                    case 2:
+                        return startingPosition + (offscreenPosition - startingPosition).normalized * 8f;
+                    case 3: 
+                        return offscreenPosition;
+                    default:
+                        return startingPosition;
+                }
+            }    
         }
+
 
         private void AdjustForDifficulty()
         {
@@ -83,8 +95,8 @@ namespace EA4S.MakeFriends
 
         public void MoveAwayAngrily()
         {
-            livingLetter.MoveAwayAngrily(nextMovingAwayPosition, exitRotation, movingAwayDuration, 1f);
-            nextMovingAwayPosition += (offscreenPosition - startingPosition) / 3f;
+            livingLetter.MoveAwayAngrily(NextMovingAwayPosition, exitRotation, movingAwayDuration, 1f);
+            movingAwayCounter++;
         }
 
         public void Celebrate()
@@ -100,7 +112,7 @@ namespace EA4S.MakeFriends
             {
                 Destroy(lingeringLetter.gameObject);
             }
-            nextMovingAwayPosition = startingPosition + (offscreenPosition - startingPosition) / 3f;
+            movingAwayCounter = 1;
         }
 
 
