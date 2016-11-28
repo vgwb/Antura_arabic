@@ -35,5 +35,17 @@ namespace EA4S.MakeFriends
             currentZoneIndex++;
             currentZone = zones[currentZoneIndex];
         }
+
+        public void EverybodyDance()
+        {
+            for (int i = 0; i < zones.Length; i++)
+            {
+                var leftLivingLetter = zones[i].left.GetComponentInChildren<MakeFriendsLivingLetter>();
+                var rightLivingLetter = zones[i].right.GetComponentInChildren<MakeFriendsLivingLetter>();
+
+                leftLivingLetter.Dance();
+                rightLivingLetter.Dance();
+            }
+        }
     }
 }
