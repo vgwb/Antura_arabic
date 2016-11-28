@@ -84,7 +84,7 @@ namespace EA4S
         public void ChangeCamera(GameObject ZoomCameraGO)
         {
 
-            CameraGameplayController.I.MoveToPosition(ZoomCameraGO.transform.position, ZoomCameraGO.transform.rotation);
+            CameraGameplayController.I.MoveToPosition(ZoomCameraGO.transform.position, ZoomCameraGO.transform.rotation, 0.6f);
 
         }
         IEnumerator ResetPosLetter()
