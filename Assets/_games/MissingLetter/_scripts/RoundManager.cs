@@ -139,7 +139,7 @@ namespace EA4S.MissingLetter
 
             m_iRemovedLLDataIndex = 0;
 
-            m_oCurrQuestionPack = MissingLetterConfiguration.Instance.PipeQuestions.GetNextQuestion();
+            m_oCurrQuestionPack = MissingLetterConfiguration.Instance.Questions.GetNextQuestion();
             ILivingLetterData questionData = m_oCurrQuestionPack.GetQuestion();
 
             var _wrongAnswers = m_oCurrQuestionPack.GetWrongAnswers().ToList();
@@ -204,7 +204,7 @@ namespace EA4S.MissingLetter
 
         void NextSentenceQuestion()
         {
-            m_oCurrQuestionPack = MissingLetterConfiguration.Instance.PipeQuestions.GetNextQuestion();
+            m_oCurrQuestionPack = MissingLetterConfiguration.Instance.Questions.GetNextQuestion();
             
             //tmp for test
             //LL_PhraseData questionData = m_oCurrQuestionPack.GetQuestion();
