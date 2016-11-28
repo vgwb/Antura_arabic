@@ -33,7 +33,6 @@ namespace EA4S.Db
         if (!File.Exists(filepath))
         {
             Debug.Log("Database not in Persistent path");
-            // if it doesn't ->
             // open StreamingAssets directory and load the db ->
 
 #if UNITY_ANDROID
@@ -42,13 +41,13 @@ namespace EA4S.Db
             // then save to Application.persistentDataPath
             File.WriteAllBytes(filepath, loadDb.bytes);
 #elif UNITY_IOS
-            var loadDb = Application.dataPath + "/Raw/" + DatabaseName;  // this is the path to your StreamingAssets in iOS
+            //var loadDb = Application.dataPath + "/Raw/" + DatabaseName;  // this is the path to your StreamingAssets in iOS
              
-            Debug.Log("Load DB path: " + loadDb);
-            Debug.Log("Filepath: " + filepath);
-            // then save to Application.persistentDataPath
-            File.Copy(loadDb, filepath);
-            Debug.Log("FILE LOAD DB COPIED.");
+            //Debug.Log("Load DB path: " + loadDb);
+            //Debug.Log("Filepath: " + filepath);
+            //// then save to Application.persistentDataPath
+            //File.Copy(loadDb, filepath);
+            //Debug.Log("FILE LOAD DB COPIED.");
 #else
 	var loadDb = Application.dataPath + "/StreamingAssets/" + DatabaseName;  // this is the path to your StreamingAssets in iOS
 	// then save to Application.persistentDataPath
@@ -60,12 +59,9 @@ namespace EA4S.Db
         var dbPath = filepath;
 #endif
             // Try to open an existing DB connection, or create a new DB if it does not exist already
-            try
-            {
+            try {
                 _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
-            }
-            catch
-            {
+            } catch {
                 _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
                 RegenerateDatabase(profileId);
             }
@@ -73,8 +69,7 @@ namespace EA4S.Db
             // Check that the DB version is correct, otherwise recreate the tables
             GenerateTable<DatabaseInfoData>(true, false); // Makes sure that the database info data table exists
             var info = _connection.Find<DatabaseInfoData>(1);
-            if (info == null || info.Version != AppConstants.AppVersion)
-            {
+            if (info == null || info.Version != AppConstants.AppVersion) {
                 Debug.LogWarning("SQL database is outdated. Recreating it (version " + AppConstants.AppVersion + " )");
                 RegenerateDatabase(profileId);
             }
