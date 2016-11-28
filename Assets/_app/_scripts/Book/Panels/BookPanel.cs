@@ -180,19 +180,19 @@ namespace EA4S
             }
         }
 
-        public void DetailWord(WordData word)
+        public void DetailWord(WordInfo wordInfo)
         {
-            Debug.Log("Detail Word :" + word.Id);
-            AudioManager.I.PlayWord(word.Id);
+            Debug.Log("Detail Word :" + wordInfo.data.Id);
+            AudioManager.I.PlayWord(wordInfo.data.Id);
 
             var output = "";
 
-            var splittedLetters = ArabicAlphabetHelper.SplitWordIntoLetters(word.Arabic);
+            var splittedLetters = ArabicAlphabetHelper.SplitWordIntoLetters(wordInfo.data.Arabic);
             foreach (var letter in splittedLetters) {
                 output += letter.GetChar() + " ";
             }
             output += "\n";
-            output += word.Arabic;
+            output += wordInfo.data.Arabic;
 
             output += "\n";
 
@@ -202,16 +202,16 @@ namespace EA4S
 
             ArabicText.text = output;
 
-            LLText.Init(new LL_WordData(word));
+            LLText.Init(new LL_WordData(wordInfo.data));
 
-            if (word.Drawing != "") {
-                var drawingChar = AppManager.I.Teacher.wordHelper.GetWordDrawing(word);
+            if (wordInfo.data.Drawing != "") {
+                var drawingChar = AppManager.I.Teacher.wordHelper.GetWordDrawing(wordInfo.data);
                 Drawing.text = drawingChar;
-                LLDrawing.Init(new LL_ImageData(word));
-                Debug.Log("Drawing: " + word.Drawing + " / " + ArabicAlphabetHelper.GetLetterFromUnicode(word.Drawing));
+                LLDrawing.Init(new LL_ImageData(wordInfo.data));
+                Debug.Log("Drawing: " + wordInfo.data.Drawing + " / " + ArabicAlphabetHelper.GetLetterFromUnicode(wordInfo.data.Drawing));
             } else {
                 Drawing.text = "";
-                LLDrawing.Init(new LL_ImageData(word));
+                LLDrawing.Init(new LL_ImageData(wordInfo.data));
             }
         }
 
