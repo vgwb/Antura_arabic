@@ -56,6 +56,8 @@ namespace EA4S.Balloons
 
         public static BalloonsGame instance;
 
+        public bool isTutorialRound;
+
         private IQuestionPack questionPack;
         private ILivingLetterData question;
         private IEnumerable<ILivingLetterData> correctAnswers;
@@ -300,6 +302,64 @@ namespace EA4S.Balloons
             }
         }
 
+        public void PlayTutorial()
+        {
+            Debug.Log("Playing Tutorial");
+
+            isTutorialRound = true;
+            PlayIdleMusic();
+
+            StartNewRound();
+
+            PlayTutorialVoiceOver();
+            StartCoroutine("ShowTutorialUI_Coroutine");
+        }
+
+        private IEnumerator ShowTutorialUI_Coroutine()
+        {
+            while (isTutorialRound)
+            {
+                yield return new WaitForSeconds(2);
+
+                if (ActiveGameVariation == BalloonsVariation.Counting)
+                {
+                    break;
+//                    foreach (var floatingLetter in floatingLetters)
+//                    {
+//                        if (!floatingLetter.Letter.isRequired)
+//                        {
+//                            Vector3 position = floatingLetter.transform.position + 5.5f * Vector3.up + 5.5f * Vector3.back;
+//                            TutorialUI.Click(floatingLetter.transform.position + 5.5f * Vector3.up + 5.5f * Vector3.back);
+//                        }
+                }
+                else
+                {
+                    foreach (var floatingLetter in floatingLetters)
+                    {
+                        if (!floatingLetter.Letter.isRequired)
+                        {
+                            Vector3 position = floatingLetter.transform.position + 5.5f * Vector3.up + 5.5f * Vector3.back;
+//                        for (int i = 0; i < floatingLetter.Balloons.Length; i++)
+//                        {
+//                            if (!floatingLetter.Balloons[i].isPopped)
+//                            {
+//                                Debug.Log("YES: " +);
+//                                position = floatingLetter.Balloons[i].transform.position + 5.5f * Vector3.back;
+//                            }
+//                        }
+                            TutorialUI.Click(floatingLetter.transform.position + 5.5f * Vector3.up + 5.5f * Vector3.back);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void HideTutorialUI()
+        {
+            StopCoroutine("ShowTutorialUI_Coroutine");
+            TutorialUI.Clear(true);
+        }
+
         public void StartNewRound()
         {
             ResetScene();
@@ -418,16 +478,16 @@ namespace EA4S.Balloons
 
                 case BalloonsVariation.Counting:
                     //AudioManager.PlayLetterData(correctAnswers.Last());
-                    Popup.Show();
-                    Popup.SetButtonCallback(OnRoundStartPressed);
-                    Popup.SetLetterData(question);
+                    //Popup.Show();
+                    //Popup.SetButtonCallback(OnRoundStartPressed);
+                    //Popup.SetLetterData(question);
+                    OnRoundStartPressed();
                     uiCanvas.gameObject.SetActive(true);
                     break;
 
                 default:
                     Debug.LogError("Invalid Balloons Game Variation!");
                     break;
-                    
             }
         }
 
@@ -464,10 +524,11 @@ namespace EA4S.Balloons
             wordFlexibleContainer.Reset();
             wordFlexibleContainer.gameObject.SetActive(false);
             uiCanvas.gameObject.SetActive(false);
-            DestroyAllBalloons();
+            DestroyAllFloatingLetters();
             howDied = How2Die.Null;
             questionPack = null;
             winCelebration.Hide();
+            countingIndex = 0;
         }
 
         private void BeginGameplay()
@@ -477,33 +538,65 @@ namespace EA4S.Balloons
                 case BalloonsVariation.Spelling:
                     timer.DisplayTime();
                     CreateFloatingLetters_Spelling(currentRound);
-                    runningAntura.SetActive(true);
-                    timer.StartTimer();
-                    PlayActiveMusic();
+                    if (isTutorialRound)
+                    {
+                        FreezeFloatingLetters();
+                        DisableRequiredFloatingLetters();
+                    }
+                    else
+                    {
+                        runningAntura.SetActive(true);
+                        timer.StartTimer();
+                        PlayActiveMusic();
+                    }
                     break;
                 
                 case BalloonsVariation.Words:
                     timer.DisplayTime();
                     CreateFloatingLetters_Words(currentRound);
-                    runningAntura.SetActive(true);
-                    timer.StartTimer();
-                    PlayActiveMusic();
+                    if (isTutorialRound)
+                    {
+                        FreezeFloatingLetters();
+                        DisableRequiredFloatingLetters();
+                    }
+                    else
+                    {
+                        runningAntura.SetActive(true);
+                        timer.StartTimer();
+                        PlayActiveMusic();
+                    }
                     break;
 
                 case BalloonsVariation.Letter:
                     timer.DisplayTime();
                     CreateFloatingLetters_Letter(currentRound);
-                    runningAntura.SetActive(true);
-                    timer.StartTimer();
-                    PlayActiveMusic();
+                    if (isTutorialRound)
+                    {
+                        FreezeFloatingLetters();
+                        DisableRequiredFloatingLetters();
+                    }
+                    else
+                    {
+                        runningAntura.SetActive(true);
+                        timer.StartTimer();
+                        PlayActiveMusic();
+                    }
                     break;
 
                 case BalloonsVariation.Counting:
                     timer.DisplayTime();
                     CreateFloatingLetters_Counting(currentRound);
-                    runningAntura.SetActive(true);
-                    timer.StartTimer();
-                    PlayActiveMusic();
+                    if (isTutorialRound)
+                    {
+                        FreezeFloatingLetters();
+                        DisableRequiredFloatingLetters();
+                    }
+                    else
+                    {
+                        runningAntura.SetActive(true);
+                        timer.StartTimer();
+                        PlayActiveMusic();
+                    }
                     break;
 
                 default:
@@ -524,6 +617,7 @@ namespace EA4S.Balloons
             var wordLetters = correctAnswers.Cast<LL_LetterData>().ToList();
             var randomLetters = wrongAnswers.Cast<LL_LetterData>().GetEnumerator();
 
+            numberOfExtraLetters = numberOfExtraLetters > 0 ? numberOfExtraLetters : 1;
             var numberOfLetters = Mathf.Clamp(wordLetters.Count + numberOfExtraLetters, 0, floatingLetterLocations.Length);
 
             // Determine indices of required letters
@@ -620,13 +714,14 @@ namespace EA4S.Balloons
                         Debug.Log("Create random balloon with: " + randomLetter.TextForLivingLetter);
                     }
                 }
-                    
+                 
                 floatingLetters.Add(floatingLetter);
             }
         }
 
         private void CreateFloatingLetters_Words(int numberOfExtraWords)
         {
+            numberOfExtraWords = numberOfExtraWords > 0 ? numberOfExtraWords : 1;
             var numberOfWords = Mathf.Clamp(correctAnswers.Count() + numberOfExtraWords, 0, floatingLetterLocations.Length);
             var correctWord = correctAnswers.Cast<LL_WordData>().ToList()[0];
             var wrongWords = wrongAnswers.Cast<LL_WordData>().GetEnumerator();
@@ -722,6 +817,7 @@ namespace EA4S.Balloons
 
         private void CreateFloatingLetters_Letter(int numberOfExtraWords)
         {
+            numberOfExtraWords = numberOfExtraWords > 0 ? numberOfExtraWords : 1;
             var numberOfWords = Mathf.Clamp(correctAnswers.Count() + numberOfExtraWords, 0, floatingLetterLocations.Length);
             var correctWords = correctAnswers.Cast<LL_WordData>().GetEnumerator();
             var wrongWords = wrongAnswers.Cast<LL_WordData>().GetEnumerator();
@@ -836,25 +932,33 @@ namespace EA4S.Balloons
 
         private void CreateFloatingLetters_Counting(int numberOfExtraWords)
         {
+            numberOfExtraWords = numberOfExtraWords > 0 ? numberOfExtraWords : 1;
             var numberOfWords = Mathf.Clamp(3 + numberOfExtraWords, 0, (floatingLetterLocations.Length <= correctAnswers.Count() ? floatingLetterLocations.Length : correctAnswers.Count()));
             var correctWords = correctAnswers.Cast<LL_WordData>().GetEnumerator();
 
             // Determine indices of locations to use
-            List<int> locationIndices = new List<int>();
-            for (int i = 0; i < numberOfWords; i++)
+            List<int> countingLocationIndices = new List<int>();
+            if (isTutorialRound)
             {
-                int index;
-                int attempts = 100;
-                do
+                countingLocationIndices = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+            }
+            else
+            {
+                for (int i = 0; i < numberOfWords; i++)
                 {
-                    index = Random.Range(0, numberOfWords);
-                    attempts--;
-                    if (attempts <= 0)
+                    int index;
+                    int attempts = 100;
+                    do
                     {
-                        Debug.Log("Something wrong happened when choosing locations...");
-                    }
-                } while (locationIndices.Contains(index) && attempts > 0);
-                locationIndices.Add(index);
+                        index = Random.Range(0, numberOfWords);
+                        attempts--;
+                        if (attempts <= 0)
+                        {
+                            Debug.Log("Something wrong happened when choosing locations...");
+                        }
+                    } while (countingLocationIndices.Contains(index) && attempts > 0);
+                    countingLocationIndices.Add(index);
+                }
             }
 
             // Create floating letters
@@ -862,7 +966,7 @@ namespace EA4S.Balloons
             {
                 var instance = Instantiate(floatingLetterPrefab);
                 instance.SetActive(true);
-                instance.transform.SetParent(floatingLetterLocations[locationIndices[i]]);
+                instance.transform.SetParent(floatingLetterLocations[countingLocationIndices[i]]);
                 instance.transform.localPosition = Vector3.zero;
 
                 var floatingLetter = instance.GetComponent<FloatingLetterController>();
@@ -910,8 +1014,11 @@ namespace EA4S.Balloons
                 letter.Init(word);
                 Debug.Log("Create word balloon with: " + letter.LLPrefab.Data.TextForLivingLetter);
 
+                //floatingLetter.Disable();
                 floatingLetters.Add(floatingLetter);
             }
+
+            //floatingLetters[0].Enable();
         }
 
         public void OnDroppedLetter(BalloonsLetterController letter = null)
@@ -948,6 +1055,10 @@ namespace EA4S.Balloons
                 else
                 {
                     countingIndex++;
+//                    if (isTutorialRound)
+//                    {
+//                        floatingLetters[countingIndex].Enable();
+//                    }
                 }
             }
 
@@ -1036,6 +1147,25 @@ namespace EA4S.Balloons
             }
         }
 
+        public void FreezeFloatingLetters()
+        {
+            for (int i = 0; i < floatingLetters.Count; i++)
+            {
+                floatingLetters[i].Freeze();
+            }
+        }
+
+        public void DisableRequiredFloatingLetters()
+        {
+            for (int i = 0; i < floatingLetters.Count; i++)
+            {
+                if (floatingLetters[i].Letter.isRequired)
+                {
+                    floatingLetters[i].Disable();
+                }
+            }
+        }
+
         private void DisableFloatingLetters()
         {
             for (int i = 0; i < floatingLetters.Count; i++)
@@ -1045,15 +1175,7 @@ namespace EA4S.Balloons
             }
         }
 
-        private void MakeWordPromptGreen()
-        {
-            for (int i = 0; i < wordPrompt.letterPrompts.Length; i++)
-            {
-                wordPrompt.letterPrompts[i].State = LetterPromptController.PromptState.CORRECT;
-            }
-        }
-
-        private void DestroyAllBalloons()
+        private void DestroyAllFloatingLetters()
         {
             for (int i = 0; i < floatingLetters.Count; i++)
             {
@@ -1062,7 +1184,7 @@ namespace EA4S.Balloons
             floatingLetters.Clear();
         }
 
-        private void DestroyRandomBalloons()
+        private void DestroyRandomFloatingLetters()
         {
             for (int i = 0; i < floatingLetters.Count; i++)
             {
@@ -1070,6 +1192,14 @@ namespace EA4S.Balloons
                 {
                     Destroy(floatingLetters[i]);
                 }
+            }
+        }
+
+        private void MakeWordPromptGreen()
+        {
+            for (int i = 0; i < wordPrompt.letterPrompts.Length; i++)
+            {
+                wordPrompt.letterPrompts[i].State = LetterPromptController.PromptState.CORRECT;
             }
         }
 
@@ -1097,7 +1227,10 @@ namespace EA4S.Balloons
                 case Result.PERFECT:
                 case Result.GOOD:
                 case Result.CLEAR:
-                    CurrentScore++;
+                    if (!isTutorialRound)
+                    {
+                        CurrentScore++;
+                    }
                     win = true;
                     AudioManager.PlaySound(Sfx.Win);
                     break;
@@ -1120,6 +1253,11 @@ namespace EA4S.Balloons
             if (win)
             {
                 MakeWordPromptGreen();
+
+                if (isTutorialRound)
+                {
+                    HideTutorialUI();
+                }
 
                 var winInitialDelay = 1f;
                 yield return new WaitForSeconds(winInitialDelay);
@@ -1145,7 +1283,15 @@ namespace EA4S.Balloons
 
                 var resumePlayingDelay = 1.5f;
                 yield return new WaitForSeconds(resumePlayingDelay);
-                Play();
+                if (isTutorialRound)
+                {
+                    isTutorialRound = false;
+                    IntroductionState.OnFinishedTutorial();      
+                }
+                else
+                {
+                    Play();
+                }
             }
             else
             {
