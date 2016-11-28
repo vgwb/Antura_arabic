@@ -226,11 +226,7 @@ namespace EA4S
         public void Play()
         {
             AppManager.I.Teacher.InitialiseCurrentPlaySession();   // This must becalled before the games selector is loaded
-
-            if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(AppManager.I.Player.CurrentJourneyPosition))
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(NavigationManager.I.GetSceneName(AppScene.Assessment));
-            else
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(NavigationManager.I.GetSceneName(AppScene.GameSelector));
+            NavigationManager.I.GoToNextScene();
         }
     }
 }
