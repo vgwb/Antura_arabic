@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections.Generic;
 using ModularFramework.Core;
 using ModularFramework.Modules;
 using EA4S.API;
@@ -55,37 +53,20 @@ namespace EA4S
 
             InitTeacherForPlayer();
             GameSettings.HighQualityGfx = false;
-
         }
 
         public void InitTeacherForPlayer()
         {
             if (Player == null)
                 Player = new PlayerProfile();
+
             DB = new DatabaseManager(GameSettings.UseTestDatabase, Player);
             Teacher = new TeacherAI(DB, Player);
+
             if (GameLauncher == null)
                 GameLauncher = new MiniGameLauncher(Teacher);
 
         }
-        #endregion
-
-        #region Game Progression
-
-        [HideInInspector]
-        [Obsolete("incorrect and shoudl be moved to Teacher or Navigation manager", true)]
-        public bool IsAssessmentTime {
-            get {
-                return Player.CurrentJourneyPosition.PlaySession == 5;
-            }
-        }
-
-
-        public void ResetProgressionData()
-        {
-            Player.Reset();
-        }
-
         #endregion
 
         #region settings behaviours
