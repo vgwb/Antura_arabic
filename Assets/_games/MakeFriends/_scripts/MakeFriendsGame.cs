@@ -141,12 +141,33 @@ namespace EA4S.MakeFriends
 
         public void PlayActiveMusic()
         {
-            MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Theme6);
+            AudioManager.PlayMusic(Music.Theme6);
         }
 
         public void PlayIdleMusic()
         {
-            MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Relax);
+            AudioManager.PlayMusic(Music.Relax);
+        }
+
+        public void PlayTitleVoiceOver()
+        {
+            StartCoroutine(PlayDialog_Coroutine(EA4S.Db.LocalizationDataId.MakeFriends_Title, 0f));
+        }
+
+        public void PlayTutorialVoiceOver(float delay = 3.75f)
+        {
+            StartCoroutine(PlayDialog_Coroutine(EA4S.Db.LocalizationDataId.MakeFriends_Tuto, delay));
+        }
+
+        public void PlayIntroVoiceOver(float delay = 3.75f)
+        {
+            StartCoroutine(PlayDialog_Coroutine(EA4S.Db.LocalizationDataId.MakeFriends_Intro, delay));
+        }
+
+        private IEnumerator PlayDialog_Coroutine(EA4S.Db.LocalizationDataId dialog, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            AudioManager.PlayDialogue(dialog);
         }
 
         public void Play()
@@ -178,13 +199,14 @@ namespace EA4S.MakeFriends
 
             isTutorialRound = true;
             PlayIdleMusic();
-
             Reset();
             SetNewWords();
             SetLetterChoices();
             SpawnLivingLetters();
             ShowLetterPicker();
             ShowDropZone();
+
+            PlayTutorialVoiceOver();
 
             StartCoroutine("ShowTutorialUI_Coroutine");
         }
