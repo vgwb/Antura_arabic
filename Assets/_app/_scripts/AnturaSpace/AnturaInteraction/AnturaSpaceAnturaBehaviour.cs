@@ -34,6 +34,11 @@ public class AnturaSpaceAnturaBehaviour : MonoBehaviour
         {
             int iRnd = UnityEngine.Random.Range(0, m_iAnims);
             m_oAnturaCtrl.State = (AnturaAnimationStates)iRnd;
+
+            if (onAnimationByClick != null)
+            {
+                onAnimationByClick();
+            }
         }
     }
 
@@ -173,5 +178,6 @@ public class AnturaSpaceAnturaBehaviour : MonoBehaviour
 
     [HideInInspector]
     public Action<GameObject> onBoneReached;
+    public Action onAnimationByClick;
     #endregion
 }

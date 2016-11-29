@@ -13,16 +13,18 @@ namespace EA4S
         [Header("Simple Throw")]
 
         [SerializeField]
-        private Vector3 m_v3ThrowDirection;
+        private Vector3 m_v3DirectionMinValues;
         [SerializeField]
-        private float m_fThrowMagnitude=10f;
+        private Vector3 m_v3DirectionMaxValues;
+        [SerializeField]
+        private float m_fThrowMinMagnitude = 0f;
+        [SerializeField]
+        private float m_fThrowMaxMagnitude = 10f;
         [SerializeField]
         private ForceMode m_eThrowForceMode;
 
         [Header("Rotation")]
 
-        [SerializeField]
-        private Vector3 m_v3RotationDirection;
         [SerializeField]
         private float m_fRotationMinMagnitude = 0f;
         [SerializeField]
@@ -136,6 +138,8 @@ namespace EA4S
 
             m_oBoneRigidbody.isKinematic = true; //resets actives forces
 
+            gameObject.GetComponentInChildren<Collider>().isTrigger = true; //this way Antura won't eat it since collision won't happen
+
             m_bIsDragged = true;
 
             m_fTimeProgression = 0;
@@ -149,6 +153,8 @@ namespace EA4S
             Debug.Log("Let Go");
 
             m_oBoneRigidbody.isKinematic = false;
+
+            gameObject.GetComponentInChildren<Collider>().isTrigger = false;
 
             m_bIsDragged = false;
 
@@ -164,10 +170,16 @@ namespace EA4S
         /// </summary>
         private void ApplyDefaultForces()
         {
+            Vector3 _v3ThrowDirection = new Vector3(
+                Random.Range(m_v3DirectionMinValues.x, m_v3DirectionMaxValues.x),
+                Random.Range(m_v3DirectionMinValues.y, m_v3DirectionMaxValues.y),
+                Random.Range(m_v3DirectionMinValues.z, m_v3DirectionMaxValues.z)
+                );
+
             //Add rotation with random magnitude
-            m_oBoneRigidbody.AddTorque(m_v3RotationDirection.normalized * Random.Range(m_fRotationMinMagnitude, m_fRotationMaxMagnitude), m_eRotationForceMode);
+            m_oBoneRigidbody.AddTorque(Random.insideUnitSphere.normalized * Random.Range(m_fRotationMinMagnitude, m_fRotationMaxMagnitude), m_eRotationForceMode);
             //Add translation
-            m_oBoneRigidbody.AddForce(m_v3ThrowDirection.normalized * m_fThrowMagnitude, m_eThrowForceMode);
+            m_oBoneRigidbody.AddForce(_v3ThrowDirection.normalized * Random.Range(m_fThrowMinMagnitude, m_fThrowMaxMagnitude), m_eThrowForceMode);
         }
 
         /// <summary>
@@ -176,7 +188,7 @@ namespace EA4S
         private void ApplyDragForces()
         {
             //Add rotation with random magnitude
-            m_oBoneRigidbody.AddTorque(m_v3RotationDirection.normalized * Random.Range(m_fRotationMinMagnitude, m_fRotationMaxMagnitude), m_eRotationForceMode);
+            m_oBoneRigidbody.AddTorque(Random.insideUnitSphere.normalized * Random.Range(m_fRotationMinMagnitude, m_fRotationMaxMagnitude), m_eRotationForceMode);
             //Add translation
             m_oBoneRigidbody.AddForce((transform.position-m_v3LastPosition) * m_fDragThrowMagnitudeScaling, m_eReleaseForceMode);
         }
