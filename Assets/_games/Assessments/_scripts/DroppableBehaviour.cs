@@ -13,6 +13,11 @@ namespace EA4S.Assessment
             this.dragManager = dragManager;
         }
 
+        public IAnswer GetAnswer()
+        {
+            return GetComponent< AnswerBehaviour>().GetAnswer();
+        }
+
         Vector3 origin; // Memorize starting position for going back
         void OnMouseDown()
         {
@@ -84,8 +89,13 @@ namespace EA4S.Assessment
             if(jumpBack)
                 transform.DOLocalMove( origin, 0.7f).SetEase( Ease.OutBounce);
 
-            if(linkedBehaviour != null)
+            if (linkedBehaviour != null)
+            {
+                var quest = linkedBehaviour.Placeholder.GetQuestion();
+                quest.GetAnswerSet().OnRemovedAnswer( GetAnswer());
                 linkedBehaviour.LinkedDroppable = null;
+            }
+
             linkedBehaviour = null;
         }
 
