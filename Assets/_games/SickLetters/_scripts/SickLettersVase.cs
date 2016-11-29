@@ -72,12 +72,12 @@ namespace EA4S.SickLetters
 
                 if (dd.isDragging)
                     dd.touchedVase = true;
-                if (!dd || dd.isDragging || dd.isInVase)
+                if (!dd || dd.isDragging || dd.isInVase || dd.collidedWithVase)
                     return;
 
                 //if (dd.isDragging)
                 //  cheatingDetected = true;
-                
+                dd.collidedWithVase = true;
                 addNewDDToVas(dd);
 
             }
@@ -85,9 +85,10 @@ namespace EA4S.SickLetters
 
         public void addNewDDToVas(SickLettersDraggableDD dd)
         {
+            
+
             if (dd.isCorrect)
             {
-                
                 game.Poof(dd.transform);
                 dd.resetCorrectDD();
                 game.onWrongMove();
@@ -96,49 +97,11 @@ namespace EA4S.SickLetters
             }
             else if (!dd.isInVase)
             {
-                dd.deattached = true;
+                //dd.deattached = true;
 
-                /*if (cheatingDetected)
-                {
-                    game.onWrongMove();
-                    game.Poof(dd.transform.position);
-                    Destroy(dd.gameObject);
-                    cheatingDetected = false;
-                }
-                else*/
-                {
-                    //if (Random.value >= 0.25f || !game.lastMoveIsCorrect)
-                        AudioManager.I.PlayDialog("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
+                game.onCorrectMove(dd);
 
-                    counter++;
-                    game.correctMoveSequence++;
-                    game.lastMoveIsCorrect = true;
-                    
-
-                    if (!dd.touchedVase)
-                        dd.boxCollider.isTrigger = false;
-
-                    TutorialUI.MarkYes(transform.position - Vector3.forward*2 + Vector3.up, TutorialUI.MarkSize.Big);
-                    //game.Context.GetCheckmarkWidget().Show(true);
-                    game.Context.GetAudioManager().PlaySound(Sfx.OK);
-
-
-                    //int prevStarNum = game.currentStars;
-                    if (counter > game.maxWieght)
-                    {
-                        game.Context.GetOverlayWidget().SetStarsThresholds((game.targetScale / 3), (game.targetScale * 2 / 3), game.targetScale);
-                        game.currentStars = (counter / 2) / (game.targetScale / 6);
-                        game.Context.GetOverlayWidget().SetStarsScore(counter/*game.currentStars*/);
-                    }
-
-                    
-
-                    dd.isInVase = true;
-                    dd.gameObject.tag = "Finish";
-
-                }
-
-                game.checkForNextRound();
+                //game.checkForNextRound();
             }
 
             
