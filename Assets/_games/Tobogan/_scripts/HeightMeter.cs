@@ -28,7 +28,7 @@ public class HeightMeter : MonoBehaviour
         {
             animationSpeed *= 3;
 
-            height += animationSpeed * Time.deltaTime * Mathf.Sign(targetHeight - height);
+            height += animationSpeed * Time.deltaTime * Mathf.Sign(targetHeight - height) * Mathf.Min(1, Mathf.Abs(height - targetHeight));
         }
 
         heightBar.transform.localPosition = Vector3.up * height;
