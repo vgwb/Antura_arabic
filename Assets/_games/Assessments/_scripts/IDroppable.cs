@@ -20,7 +20,7 @@ namespace EA4S.Assessment
         /// </summary>
         void SetDragManager( IDragManager dragManager);
 
-        void StartDrag( Action onDestroyed);
+        void StartDrag( Action<IDroppable> onDestroyed);
 
         void StopDrag();
 
