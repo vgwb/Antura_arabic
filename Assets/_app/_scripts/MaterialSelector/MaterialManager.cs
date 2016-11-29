@@ -5,11 +5,8 @@ namespace EA4S {
 
     public class MaterialManager {
 
-
-        public PaletteColors Color;
-        public PaletteTone Tone;
-
         public const string MATERIALS_REOURCES_PATH = "Materials/Palettes/";
+        public const string TEXTURES_MATERIALS = "AnturaStuff/Textures_and_Materials/";
         //public const string MATERIALS_FOLDER_DIFFUSE_DESATURATED = "diffuse_desaturated/";
         //public const string MATERIALS_FOLDER_DIFFUSE_SATURATED = "diffuse_saturated/";
         //public const string MATERIALS_FOLDER_SPECULAR_SATURATED = "specular_saturated/";
@@ -29,8 +26,16 @@ namespace EA4S {
         }
 
 
+        public static Material LoadTextureMaterial(string _materialID, string _variationId) {
+            Material m = Resources.Load<Material>(string.Format("{0}{1}_{2}", TEXTURES_MATERIALS, _materialID, _variationId));
+            return m;
+        }
+
     }
 
+    /// <summary>
+    /// Contains materials pair needed to set right color of Starndard Rewards.
+    /// </summary>
     public struct MaterialPair {
         public Material Material1;
         public Material Material2;

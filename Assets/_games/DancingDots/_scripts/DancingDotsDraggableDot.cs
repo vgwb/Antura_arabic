@@ -16,7 +16,7 @@ namespace EA4S.DancingDots
         public bool isDot;
 		[Range (0, 3)] public int dots;
 
-		public Diacritic diacritic;
+		public DiacriticEnum diacritic;
 
 		public Vector3 fingerOffset;
 		public TextMeshPro draggableText;
@@ -112,6 +112,10 @@ namespace EA4S.DancingDots
 
 		public void Reset()
 		{
+			if (!isDot)
+			{
+				Debug.Log("Diacritic Reset");
+			}
 			transform.position = new Vector3(startX, startY, startZ);
 			isDragging = false;
 			transform.localScale = Vector3.one;

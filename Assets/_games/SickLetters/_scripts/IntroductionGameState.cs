@@ -9,7 +9,7 @@ namespace EA4S.SickLetters
     {
         SickLettersGame game;
 
-        float timer = 2;
+        float timer = 2.5f;
         public IntroductionGameState(SickLettersGame game)
         {
             this.game = game;
@@ -19,6 +19,7 @@ namespace EA4S.SickLetters
         {
             Debug.Log("enter intro");
             AudioManager.I.PlayDialog(Db.LocalizationDataId.SickLetters_Title);
+            WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.SickLetters_Title, 1.75f, true);
             game.antura.sleep();
             game.disableInput = true;
         }
@@ -27,6 +28,7 @@ namespace EA4S.SickLetters
         {
             Debug.Log("exit intro");
             AudioManager.I.PlayDialog(Db.LocalizationDataId.SickLetters_Intro);
+            WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.SickLetters_Intro, 5.75f, true);
         }
 
         public void Update(float delta)

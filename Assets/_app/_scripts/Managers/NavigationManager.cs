@@ -78,6 +78,7 @@ namespace EA4S
                     break;
                 case AppScene.GameSelector:
                     AppManager.I.Player.ResetPlaySessionMinigame();
+                    WorldManager.I.CurrentWorld = (WorldID)(AppManager.I.Player.CurrentJourneyPosition.Stage-1);
                     GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     break;
                 case AppScene.MiniGame:
@@ -88,12 +89,11 @@ namespace EA4S
                     } else {
                         AppManager.I.Player.NextPlaySessionMinigame();
                         if (AppManager.I.Player.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count) {
-                            /// - Update Journey
-                            /// - Reset CurrentMiniGameInPlaySession
                             /// - Reward screen
                             /// *-- check first contact : 
-                            AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
-                            AppManager.I.Player.ResetPlaySessionMinigame();
+                            /// 
+
+                            // MaxJourneyPosistionProgress (with Reset CurrentMiniGameInPlaySession) is performed contestually to reward creation to avoid un-sync results.
                             GoToScene(AppScene.PlaySessionResult);
                         } else {
                             // Next game
@@ -104,7 +104,7 @@ namespace EA4S
                 case AppScene.AnturaSpace:
                     break;
                 case AppScene.Rewards:
-                    //AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
+                    MaxJourneyPosistionProgress();
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.PlaySessionResult:
@@ -116,6 +116,11 @@ namespace EA4S
                 default:
                     break;
             }
+        }
+
+        public void MaxJourneyPosistionProgress() {
+            AppManager.I.Player.ResetPlaySessionMinigame();
+            AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
         }
 
         public string GetCurrentScene()
@@ -206,13 +211,25 @@ namespace EA4S
         }
 
         /// <summary>
-        /// Calculates the unlock item count.
+        /// Calculates the unlock item count in accord to gameplay result information.
         /// </summary>
         /// <returns></returns>
-        public int CalculateUnlockItemCount()
-        {
-            // TODO: logic to calculate
-            return 2;
+        public int CalculateUnlockItemCount() {
+            int totalEarnedStars = 0;
+            for (int i = 0; i < EndSessionResults.Count; i++) {
+                totalEarnedStars += EndSessionResults[i].Stars;
+            }
+            int unlockItemsCount = 0;
+            if (EndSessionResults.Count > 0) {
+                float starRatio = totalEarnedStars / EndSessionResults.Count;
+                // Prevent aproximation errors (0.99f must be == 1 but 0.7f must be == 0) 
+                unlockItemsCount = starRatio - Mathf.CeilToInt(starRatio) < 0.0001f 
+                    ? Mathf.CeilToInt(starRatio) 
+                    : Mathf.RoundToInt(starRatio);
+            }
+            // decrement because the number of stars needed to unlock the first reward is 2. 
+            unlockItemsCount -= 1;
+            return unlockItemsCount;
         }
 
         /// <summary>
@@ -220,8 +237,7 @@ namespace EA4S
         /// </summary>
         /// <param name="_stars">The star.</param>
         /// <param name="_bones">The bones.</param>
-        public void EndPlaySession(int _stars, int _bones)
-        {
+        public void EndPlaySession(int _stars, int _bones) {
             // Logic
             // log
             // GoToScene ...

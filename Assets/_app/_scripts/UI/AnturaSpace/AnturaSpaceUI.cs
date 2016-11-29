@@ -34,7 +34,7 @@ namespace EA4S
         void Start()
         {
             btsCategories = CategoriesContainer.GetComponentsInChildren<AnturaSpaceCategoryButton>(true);
-            btsSwatches = ItemsContainer.GetComponentsInChildren<AnturaSpaceSwatchButton>(true);
+            btsSwatches = SwatchesContainer.GetComponentsInChildren<AnturaSpaceSwatchButton>(true);
             SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
             // Create items
             rewardsContainers = new List<Transform>();
@@ -185,6 +185,7 @@ namespace EA4S
             }
 
             // Hide non-existent swatches
+            Debug.Log(currSwatchesDatas.Count + " > " + btsSwatches.Length);
             for (int i = currSwatchesDatas.Count - 1; i < btsSwatches.Length; ++i) btsSwatches[i].gameObject.SetActive(false);
             // Setup and show swatches
             RewardColorItem selectedSwatchData = null;
@@ -196,6 +197,7 @@ namespace EA4S
                 if (swatchData != null) {
                     swatch.SetAsNew(swatchData.IsNew);
                     swatch.Toggle(swatchData.IsSelected);
+                    swatch.SetColors(GenericUtilities.HexToColor(swatchData.Color1RGB), GenericUtilities.HexToColor(swatchData.Color2RGB));
                     if (swatchData.IsSelected) selectedSwatchData = swatchData;
                 }
             }

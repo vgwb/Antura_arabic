@@ -9,7 +9,7 @@
 
         public void EnterState()
         {
-            if(m_oGame.m_eGameType == GameType.WORD)
+            if(MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
             {
                 AudioManager.I.PlayDialog(Db.LocalizationDataId.MissingLetter_Title);
             }

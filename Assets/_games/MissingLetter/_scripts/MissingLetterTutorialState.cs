@@ -40,7 +40,7 @@ namespace EA4S.MissingLetter {
             m_fDelayTime -= delta;
             if(m_fDelayTime < 0 && !m_bSuggested)
             {
-                if (m_oGame.m_eGameType == GameType.WORD)
+                if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
                 {
                     AudioManager.I.PlayDialog(Db.LocalizationDataId.MissingLetter_Tuto);
                 }

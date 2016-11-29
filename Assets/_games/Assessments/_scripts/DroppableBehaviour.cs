@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -11,6 +12,11 @@ namespace EA4S.Assessment
         public void SetDragManager( IDragManager dragManager)
         {
             this.dragManager = dragManager;
+        }
+
+        public IAnswer GetAnswer()
+        {
+            return GetComponent< AnswerBehaviour>().GetAnswer();
         }
 
         Vector3 origin; // Memorize starting position for going back
@@ -55,13 +61,23 @@ namespace EA4S.Assessment
             dragEnabled = true;
         }
 
-        public void StartDrag()
+        Action<IDroppable> OnGoDestroyed = null;
+        public void StartDrag( Action<IDroppable> onDestroyed)
         {
+            OnGoDestroyed = onDestroyed;
             SetScale( 1.3f);
+        }
+
+        void OnDestroy()
+        {
+            dragEnabled = false;
+            if (OnGoDestroyed != null)
+                OnGoDestroyed(this);
         }
 
         public void StopDrag()
         {
+            OnGoDestroyed = null;
             SetScale( 1f);
         }
 
@@ -84,8 +100,13 @@ namespace EA4S.Assessment
             if(jumpBack)
                 transform.DOLocalMove( origin, 0.7f).SetEase( Ease.OutBounce);
 
-            if(linkedBehaviour != null)
+            if (linkedBehaviour != null)
+            {
+                var quest = linkedBehaviour.Placeholder.GetQuestion();
+                quest.GetAnswerSet().OnRemovedAnswer( GetAnswer());
                 linkedBehaviour.LinkedDroppable = null;
+            }
+
             linkedBehaviour = null;
         }
 

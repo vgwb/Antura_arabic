@@ -411,6 +411,16 @@ public partial class SROptions
     [Sort(1)]
     public bool FirstContactPassed { get { return DebugManager.I.FirstContactPassed; } set { DebugManager.I.FirstContactPassed = value; } }
 
+    [Category("Player Profile")]
+    [Sort(2)]
+    public void DeleteAllProfiles() {
+        PlayerPrefs.DeleteAll();
+        AppManager.I.GameSettings.AvailablePlayers = new List<string>();
+        AppManager.I.PlayerProfileManager.SaveGameSettings();
+        SRDebug.Instance.HideDebugPanel();
+        AppManager.I.Modules.SceneModule.LoadSceneWithTransition(NavigationManager.I.GetSceneName(AppScene.Home));
+    }
+
     [Category("Max Journey Position")]
     [Sort(5)]
     public string CurrentMaxJouneryPosition {

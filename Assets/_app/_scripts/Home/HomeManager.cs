@@ -13,7 +13,7 @@ namespace EA4S
         {
             NavigationManager.I.CurrentScene = AppScene.Home;
 
-            GlobalUI.ShowPauseMenu(false);
+            GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
             AudioManager.I.PlayMusic(SceneMusic);
             AudioManager.I.PlaySfx(Sfx.GameTitle);
         }

@@ -1,5 +1,3 @@
-using System;
-
 namespace EA4S.Assessment
 {
     internal class PronunceQuestionDecorator : IQuestionDecorator

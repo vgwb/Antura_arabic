@@ -9,13 +9,6 @@ using UnityEngine;
 
 namespace EA4S.MissingLetter
 {
-    //enum game type
-    public enum GameType
-    {
-        WORD = 0,
-        SENTENCE = 1
-    }
-
     [System.Serializable]
     public struct LLOffset
     {
@@ -185,7 +178,6 @@ namespace EA4S.MissingLetter
         #endregion
 
         #region VARS
-        public GameType m_eGameType;
         public GameObject m_oLetterPrefab;
         public GameObject m_oAntura;
         public GameObject m_oEmoticonsController;

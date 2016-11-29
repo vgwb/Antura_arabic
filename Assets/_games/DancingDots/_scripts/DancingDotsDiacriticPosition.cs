@@ -9,7 +9,7 @@ namespace EA4S.DancingDots
 
 		public MeshRenderer letterMesh;
 		public MeshRenderer dotmesh;
-		public Diacritic diacritic;
+		public DiacriticEnum diacritic;
 		public float offSetX = 0.0f;
 		public float offSetY = 0.0f;
 
@@ -41,7 +41,7 @@ namespace EA4S.DancingDots
 			{
 				float newY = Mathf.Clamp(diacriticMesh.bounds.extents.y, 0.5f, 5f) + offSetY;
 
-				if (diacritic == Diacritic.Kasrah)
+				if (diacritic == DiacriticEnum.Kasrah)
 				{
 					float letterBottom = letterMesh.bounds.center.y - letterMesh.bounds.extents.y;
 					float dotBottom = dotmesh.bounds.center.y - dotmesh.bounds.extents.y;

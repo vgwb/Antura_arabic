@@ -13,22 +13,33 @@ namespace EA4S
         [SerializeField]
         private GameObject m_oBonePrefab;
         [SerializeField]
+        private GameObject m_oAntura;
+        [SerializeField]
         private UnityEngine.UI.Text m_oTextBonesNumber;
 
+
+
         [Header("Test")]
-        private int m_iTotalBones_Test = 10;
+        public int m_iTotalBones_Test = 10;
         #endregion
 
         #region PRIVATE MEMBERS
         private GameObject[] m_aoPool;
         private int[] m_aiUsedList;
         private int m_iNextToBeUsed = 0;
+
+        //private Rigidbody m_oBonePrefabRigidboy;
+        private BoneBehaviour m_oDraggedBone;
+        private AnturaSpaceAnturaBehaviour m_oAnturaBehaviour;
         #endregion
 
         #region INTERNALS
         void Start()
         {
             GlobalUI.ShowPauseMenu(false);
+            GlobalUI.ShowBackButton(true,Exit);
+            
+
 
 #if UNITY_EDITOR
 
@@ -37,6 +48,12 @@ namespace EA4S
 #endif
 
             m_oTextBonesNumber.text = "" + m_iTotalBones_Test;
+
+            //set the bone initial position behind the button
+            float _fCameraDistance = Mathf.Abs(Camera.main.transform.position.z - Camera.main.nearClipPlane);
+
+            m_oBonePrefab.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(m_oTextBonesNumber.rectTransform.position.x, m_oTextBonesNumber.rectTransform.position.y, _fCameraDistance));
+
 
             //Instantiate the pool of bones
             m_aoPool = new GameObject[m_iMaxSpawnableBones];
@@ -50,7 +67,14 @@ namespace EA4S
                 m_aiUsedList[_iIdx] = _iIdx;
             }
 
+            //link variables
+            //m_oBonePrefabRigidboy = m_oBonePrefab.GetComponent<Rigidbody>();
+        
+            m_oAnturaBehaviour = m_oAntura.GetComponent<AnturaSpaceAnturaBehaviour>();
+            m_oAnturaBehaviour.onBoneReached += release;
+
         }
+
         #endregion
 
         #region PUBLIC FUNCTIONS
@@ -62,19 +86,19 @@ namespace EA4S
 
 #if UNITY_EDITOR
 #else
-            //assign new total bones used to the profile
+            //AppManager.I.Player.SetTotalNumberOfBones(m_iTotalBones_Test);//assign new total bones used to the profile
 #endif
             NavigationManager.I.GoToScene(AppScene.Map);
         }
 
         /// <summary>
-        /// Activate a bone in the scene.
+        /// Make a simple throw by activating a bone in the scene.
         /// </summary>
         public void ThrowBone()
         {
             GameObject _oBone = get();
 
-            if (_oBone == null || m_iTotalBones_Test <= 0) {
+            if (m_oDraggedBone != null || _oBone == null || m_iTotalBones_Test <= 0) {
                 Debug.Log("Can't throw bones");
                 return;
             }
@@ -82,6 +106,47 @@ namespace EA4S
             Debug.Log("Throwing bone");
             m_oTextBonesNumber.text = "" + (--m_iTotalBones_Test);
             _oBone.SetActive(true);
+            _oBone.GetComponent<BoneBehaviour>().SimpleThrow();
+            m_oAnturaBehaviour.AddBone(_oBone);
+        }
+
+        /// <summary>
+        /// Drag a bone around.
+        /// </summary>
+        public void DragBone()
+        {
+            GameObject _oBone = get();
+
+            if (m_oDraggedBone!=null || _oBone == null || m_iTotalBones_Test <= 0)
+            {
+                Debug.Log("Can't drag bones");
+                return;
+            }
+
+            Debug.Log("Dragging bone");
+            m_oTextBonesNumber.text = "" + (--m_iTotalBones_Test);
+
+            _oBone.SetActive(true);
+            m_oDraggedBone = _oBone.GetComponent<BoneBehaviour>();
+            m_oDraggedBone.Drag();
+            m_oAnturaBehaviour.AddBone(_oBone);
+        }
+
+        /// <summary>
+        /// Let go the current bone being dragged.
+        /// </summary>
+        public void LetGoBone()
+        {
+            if(m_oDraggedBone==null)
+            {
+                Debug.Log("No bone to let go");
+                return;
+            }
+
+            Debug.Log("Let go bone");
+            m_oDraggedBone.LetGo();
+            m_oDraggedBone = null;
+
         }
 
         /// <summary>
@@ -155,19 +220,22 @@ namespace EA4S
         }
 
         /// <summary>
-        /// Reset all needed properties to the prefab values
+        /// Reset all needed properties to the prefab values.
+        /// This do not make a new instance from the prefab, so
+        /// any property that need to be reset must be put here.
         /// </summary>
         /// <param name="goElement"></param>
         private void ResetInstanceState(GameObject goElement)
         {
             goElement.SetActive(false);
 
-            //transform
+            //transform (it's a common case)
             goElement.transform.position = m_oBonePrefab.transform.position;
             goElement.transform.rotation = m_oBonePrefab.transform.rotation;
             goElement.transform.localScale = m_oBonePrefab.transform.localScale;
 
-            //others...
+            //others specific...
+            //goElement.GetComponent<Rigidbody>().isKinematic = m_oBonePrefabRigidboy.isKinematic;
         }
         #endregion
 

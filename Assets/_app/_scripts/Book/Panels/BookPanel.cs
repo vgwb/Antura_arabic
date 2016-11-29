@@ -28,6 +28,12 @@ namespace EA4S
         public GameObject SubmenuContainer;
         public GameObject ElementsContainer;
         public TextRender ArabicText;
+
+        public TextRender LetterTextIsolated;
+        public TextRender LetterTextInitial;
+        public TextRender LetterTextMedial;
+        public TextRender LetterTextFinal;
+
         public TextRender ScoreText;
         public TMPro.TextMeshProUGUI Drawing;
 
@@ -231,10 +237,17 @@ namespace EA4S
 
             ScoreText.text = "Score: " + info.score;
 
-            ArabicText.text = info.data.GetChar(LetterPosition.Isolated);
-            ArabicText.text += " " + info.data.GetChar(LetterPosition.Final);
-            ArabicText.text += " " + info.data.GetChar(LetterPosition.Medial);
-            ArabicText.text += " " + info.data.GetChar(LetterPosition.Initial);
+            //ArabicText.text = info.data.GetChar(LetterPosition.Isolated);
+            //ArabicText.text += " " + info.data.GetChar(LetterPosition.Final);
+            //ArabicText.text += " " + info.data.GetChar(LetterPosition.Medial);
+            //ArabicText.text += " " + info.data.GetChar(LetterPosition.Initial);
+
+            LetterTextIsolated.SetTextUnfiltered(info.data.GetCharFixedForDisplay(LetterPosition.Isolated));
+            LetterTextFinal.SetTextUnfiltered(info.data.GetCharFixedForDisplay(LetterPosition.Final));
+            LetterTextMedial.SetTextUnfiltered(info.data.GetCharFixedForDisplay(LetterPosition.Medial));
+            LetterTextInitial.SetTextUnfiltered(info.data.GetCharFixedForDisplay(LetterPosition.Initial));
+
+            // ArabicText.SetTextUnfiltered(lett);
 
             LLText.Init(new LL_LetterData(info.data));
         }

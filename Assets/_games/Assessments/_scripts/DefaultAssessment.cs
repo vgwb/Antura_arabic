@@ -19,7 +19,7 @@ namespace EA4S.Assessment
             QuestionGenerator = question_generator;
             QuestionPlacer = question_placer;
             LogicInjector = logic_injector;
-            AssessmentConfiguration = game_conf;
+            Configuration = game_conf;
             GameContext = game_context;
             Dialogues = dialogues;
             GameDescription = gameDescription;
@@ -31,14 +31,14 @@ namespace EA4S.Assessment
             return Dialogues.Dialogue(Localization.Random(
                                         Db.LocalizationDataId.Assessment_Start_1,
                                         Db.LocalizationDataId.Assessment_Start_2,
-                                        Db.LocalizationDataId.Assessment_Start_3));
+                                        Db.LocalizationDataId.Assessment_Start_3), true);
         }
 
         private YieldInstruction PlayAnturaIsComingSound()
         {
             return Dialogues.Dialogue( Localization.Random(
                                         Db.LocalizationDataId.Assessment_Upset_2,
-                                        Db.LocalizationDataId.Assessment_Upset_3));
+                                        Db.LocalizationDataId.Assessment_Upset_3), true);
         }
 
         private YieldInstruction PlayPushAnturaSound()
@@ -46,7 +46,7 @@ namespace EA4S.Assessment
             return Dialogues.Dialogue( Localization.Random(
                                         Db.LocalizationDataId.Assessment_Push_Dog_1,
                                         Db.LocalizationDataId.Assessment_Push_Dog_2,
-                                        Db.LocalizationDataId.Assessment_Push_Dog_3));
+                                        Db.LocalizationDataId.Assessment_Push_Dog_3), true);
         }
 
         private YieldInstruction PlayAnturaGoneSound()
@@ -54,7 +54,7 @@ namespace EA4S.Assessment
             return Dialogues.Dialogue( Localization.Random(
                                         Db.LocalizationDataId.Assessment_Dog_Gone_1,
                                         Db.LocalizationDataId.Assessment_Dog_Gone_2,
-                                        Db.LocalizationDataId.Assessment_Dog_Gone_3));
+                                        Db.LocalizationDataId.Assessment_Dog_Gone_3), true);
         }
 
         private YieldInstruction PlayAssessmentCompleteSound()
@@ -62,20 +62,12 @@ namespace EA4S.Assessment
             return Dialogues.Dialogue( Localization.Random(
                                         Db.LocalizationDataId.Assessment_Complete_1,
                                         Db.LocalizationDataId.Assessment_Complete_2,
-                                        Db.LocalizationDataId.Assessment_Complete_3));
-        }
-
-        private YieldInstruction PlayAssessmentWrongSound()
-        {
-            return Dialogues.Dialogue( Localization.Random(
-                                        Db.LocalizationDataId.Assessment_Wrong_1,
-                                        Db.LocalizationDataId.Assessment_Wrong_2,
-                                        Db.LocalizationDataId.Assessment_Wrong_3));
+                                        Db.LocalizationDataId.Assessment_Complete_3), true);
         }
 
         private YieldInstruction PlayGameDescription()
         {
-            return Dialogues.Dialogue( GameDescription);
+            return Dialogues.Speak( GameDescription);
         }
 
         #endregion
@@ -86,19 +78,24 @@ namespace EA4S.Assessment
 
             bool AnturaShowed = false;
 
-            for (int round = 0; round< AssessmentConfiguration.Rounds; round++)
+            for (int round = 0; round< Configuration.Rounds; round++)
             {
                 #region Init
                 QuestionGenerator.InitRound();
 
-                for(int question = 0; question<AssessmentConfiguration.SimultaneosQuestions; question++)
+                for(int question = 0; question<Configuration.SimultaneosQuestions; question++)
 
                     LogicInjector.Wire( 
                         QuestionGenerator.GetNextQuestion(),                 
                         QuestionGenerator.GetNextAnswers()      );
 
                 LogicInjector.CompleteWiring();
-                
+                LogicInjector.EnableDragOnly(); //as by new requirments
+
+                //mute feedback audio while speaker is speaking
+                bool answerConfigurationCache = AssessmentConfiguration.Instance.PronunceAnswerWhenClicked;
+                AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = false;
+
                 QuestionGenerator.CompleteRound();
                 #endregion
 
@@ -121,12 +118,11 @@ namespace EA4S.Assessment
                     PlayAnturaIsComingSound();
                     var anturaController = AnturaFactory.Instance.SleepingAntura();
 
-                    anturaController.StartAnimation( ()=> PlayPushAnturaSound());
+                    anturaController.StartAnimation( ()=> PlayPushAnturaSound(), ()=>PlayAnturaGoneSound());
 
                     while (anturaController.IsAnimating())
                         yield return null;
 
-                    yield return PlayAnturaGoneSound();
                     yield return TimeEngine.Wait( 0.3f);
                     yield return PlayGameDescription();
                     #endregion
@@ -142,6 +138,8 @@ namespace EA4S.Assessment
                 //////////////////////////////
                 //// GAME LOGIC (WIP)
                 ////----
+                // Restore audio when playing
+                AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = answerConfigurationCache;
                 LogicInjector.EnableGamePlay();
 
                 while (LogicInjector.AllAnswersCorrect() == false)
@@ -149,6 +147,8 @@ namespace EA4S.Assessment
                 ////___
                 //// GAME LOGIC END
                 //////////////////////////////
+
+                LogicInjector.RemoveDraggables();
 
                 QuestionPlacer.RemoveQuestions();
                 AnswerPlacer.RemoveAnswers();
@@ -171,7 +171,7 @@ namespace EA4S.Assessment
 
         public IQuestionPlacer QuestionPlacer { get; private set; }
 
-        public IAssessmentConfiguration AssessmentConfiguration { get; private set; }
+        public IAssessmentConfiguration Configuration { get; private set; }
 
         public IGameContext GameContext { get; private set; }
 

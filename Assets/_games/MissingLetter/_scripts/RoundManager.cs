@@ -16,14 +16,6 @@ namespace EA4S.MissingLetter
         public RoundManager(MissingLetterGame _game)
         {
             m_oGame = _game;
-
-            //if(m_oGame.m_eGameType == GameType.WORD)
-            //{
-            //    MissingLetterConfiguration.Instance.PipeQuestions = new SampleQuestionProvider();
-            //}
-            //else
-            //{
-            //}
         }
 
         public void Initialize()
@@ -37,7 +29,8 @@ namespace EA4S.MissingLetter
             m_oGame.m_oLetterPrefab.GetComponent<LetterBehaviour>().mfDistanceBetweenLetters = m_oGame.m_fDistanceBetweenLetters;
 
             int qstPoolSize = 3;
-            qstPoolSize *= (m_oGame.m_eGameType == GameType.WORD) ? 1 : m_oGame.m_iMaxSentenceSize;
+            qstPoolSize *= (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter) ? 1 : m_oGame.m_iMaxSentenceSize;
+
             m_oGame.m_oLetterPrefab.GetComponent<LetterBehaviour>().SetPositions(m_v3QstPos + Vector3.right * m_oGame.m_sQuestionOffset.fINOffset, m_v3QstPos, m_v3QstPos + Vector3.right * m_oGame.m_sQuestionOffset.fOUTOffset);
             m_oQuestionPool = new GameObjectPool(m_oGame.m_oLetterPrefab, qstPoolSize, false);
 
@@ -57,7 +50,7 @@ namespace EA4S.MissingLetter
             m_oGame.SetInIdle(false);
             ExitCurrentScene();
 
-            if (m_oGame.m_eGameType == GameType.WORD)
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
             {
                 NextWordQuestion();
             }
@@ -190,12 +183,13 @@ namespace EA4S.MissingLetter
             m_aoCurrentAnswerScene.Shuffle();
         }
 
-        List<LL_WordData> GetWordFromPhrases(LL_PhraseData _phrase)
+        private List<LL_WordData> GetWordFromPhrases(LL_PhraseData _phrase)
         {
             List<LL_WordData> phrase = new List<LL_WordData>();
-            for(int i=0; i < m_oGame.m_iMaxSentenceSize; ++i)
+            var dbWords = AppManager.I.Teacher.wordHelper.GetWordsInPhrase(_phrase.Id);
+            foreach(var dbWord in dbWords)
             {
-                phrase.Add(AppManager.I.Teacher.GetRandomTestWordDataLL());
+                phrase.Add((LL_WordData)dbWord.ConvertToLivingLetterData());
             }
 
             return phrase;
@@ -204,23 +198,11 @@ namespace EA4S.MissingLetter
         void NextSentenceQuestion()
         {
             m_oCurrQuestionPack = MissingLetterConfiguration.Instance.Questions.GetNextQuestion();
-            
-            //tmp for test
-            //LL_PhraseData questionData = m_oCurrQuestionPack.GetQuestion();
-            //var words = ArabicAlphabetHelper.WordDataListFromPhrase(questionData);
-            //var _wrongAnswers = m_oCurrQuestionPack.GetWrongAnswers();
-            //var _correctAnswers = m_oCurrQuestionPack.GetCorrectAnswers();
 
-            List<LL_WordData> questionData = GetWordFromPhrases(null);
-            var _correctAnswer = questionData[0];
+            List<LL_WordData> questionData = GetWordFromPhrases((LL_PhraseData)m_oCurrQuestionPack.GetQuestion());
+            var _correctAnswer = (LL_PhraseData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
 
-            var _wrongAnswers = new List<LL_WordData>();
-            for (int i = 0; i < m_oGame.m_iMaxSentenceSize; ++i)
-            {
-                _wrongAnswers.Add(AppManager.I.Teacher.GetRandomTestWordDataLL());
-            }
-            _wrongAnswers.Distinct();
-
+            var _wrongAnswers = m_oCurrQuestionPack.GetCorrectAnswers().ToList();
 
             foreach (LL_WordData _word in questionData)
             {
@@ -337,16 +319,18 @@ namespace EA4S.MissingLetter
             string color = result ? "#4CAF50" : "#DD2C00";
 
             string first;
-            if (m_oGame.m_eGameType == GameType.WORD)
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
             {
                 first = tmp.Label.text[index].ToString();
+                tmp.Label.text = tmp.Label.text.Remove(index,1);
+                tmp.Label.text = tmp.Label.text.Insert(index, "<color=" + color + ">" + first + "</color>");
             }
             else
             {
                 first = tmp.Label.text;
+                tmp.Label.text = tmp.Label.text.Replace(first, "<color="+ color + ">" + first + "</color>");
             }
 
-            tmp.Label.text = tmp.Label.text.Replace(first, "<color="+ color + ">" + first + "</color>");
         }
 
         void EnterCurrentScene() {

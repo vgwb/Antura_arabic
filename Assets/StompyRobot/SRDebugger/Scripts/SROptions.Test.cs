@@ -2,11 +2,12 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using SRDebugger;
 using SRDebugger.Services;
 using SRF;
 using SRF.Service;
-using UnityEngine;
+using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
 public partial class SROptions
@@ -243,6 +244,8 @@ public partial class SROptions
     [Category("Console Test")]
     public void ConsoleTest()
     {
+        var sw = new Stopwatch();
+        sw.Start();
         for (var i = 0; i < ConsoleTestQuantity; i++)
         {
             var sample = SampleLogs[Random.Range(0, SampleLogs.Length)];
@@ -262,6 +265,9 @@ public partial class SROptions
                     break;
             }
         }
+        sw.Stop();
+
+        Debug.Log("Posted {0} log messages in {1}s".Fmt(ConsoleTestQuantity, sw.Elapsed.TotalSeconds));
     }
 
     [Category("Console Test")]
