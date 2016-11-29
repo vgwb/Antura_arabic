@@ -2,6 +2,7 @@
 // Created: 2016/11/25
 
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace EA4S
 {
@@ -9,6 +10,7 @@ namespace EA4S
     {
         public GameObject IcoLock;
         public GameObject IcoNew;
+        public Image[] ColorImgs;
 
         [System.NonSerialized] public RewardColorItem Data;
 
@@ -23,6 +25,14 @@ namespace EA4S
         public void SetAsNew(bool _isNew)
         {
             IcoNew.SetActive(_isNew);
+        }
+
+        public void SetColors(Color _color0, Color _color1)
+        {
+            _color0.a = 1;
+            _color1.a = 1;
+            ColorImgs[0].color = _color0;
+            ColorImgs[1].color = _color1;
         }
 
         #endregion
