@@ -22,7 +22,7 @@ namespace EA4S
             // @todo: show score
             //info.score
 
-            if (info.unlocked || AppConstants.CheatBookUnlockEverything) {
+            if (info.unlocked || AppConstants.CheatSuperDogMode) {
                 GetComponent<Button>().interactable = true;
             } else {
                 GetComponent<Button>().interactable = false;
@@ -44,7 +44,7 @@ namespace EA4S
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (info.unlocked || AppConstants.CheatBookUnlockEverything) {
+            if (info.unlocked || AppConstants.CheatSuperDogMode) {
                 manager.DetailWord(info);
             }
         }
