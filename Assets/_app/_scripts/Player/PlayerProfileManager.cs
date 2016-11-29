@@ -36,8 +36,11 @@ namespace EA4S
                     AppManager.I.InitTeacherForPlayer();
 
                     LogManager.I.LogInfo(InfoEvent.AppStarted);
+
                 }
                 actualPlayer = value;
+                if (OnProfileChanged != null)
+                    OnProfileChanged();
 
             }
         }
@@ -188,5 +191,13 @@ namespace EA4S
         }
         #endregion
 
+        #region events
+        public delegate void ProfileEventHandler();
+
+        /// <summary>
+        /// Occurs when [on profile changed].
+        /// </summary>
+        public static event ProfileEventHandler OnProfileChanged;
+        #endregion
     }
 }

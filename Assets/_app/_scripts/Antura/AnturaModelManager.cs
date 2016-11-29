@@ -31,7 +31,8 @@ namespace EA4S {
         }
 
         void Start() {
-            AnturaModelManager.Instance.LoadAnturaCustomization(AppManager.I.Player.CurrentAnturaCustomizations);
+            if (AppManager.I.Player != null)
+                AnturaModelManager.Instance.LoadAnturaCustomization(AppManager.I.Player.CurrentAnturaCustomizations);
         }
 
         #endregion
@@ -193,6 +194,11 @@ namespace EA4S {
         #region subscriptions
         void OnEnable() {
             RewardSystemManager.OnRewardChanged += RewardSystemManager_OnRewardItemChanged;
+            PlayerProfileManager.OnProfileChanged += PlayerProfileManager_OnProfileChanged;
+        }
+
+        private void PlayerProfileManager_OnProfileChanged() {
+            LoadAnturaCustomization(AppManager.I.Player.CurrentAnturaCustomizations);
         }
 
         private void RewardSystemManager_OnRewardItemChanged(RewardPack _rewardPack) {
@@ -201,6 +207,7 @@ namespace EA4S {
 
         void OnDisable() {
             RewardSystemManager.OnRewardChanged -= RewardSystemManager_OnRewardItemChanged;
+            PlayerProfileManager.OnProfileChanged -= PlayerProfileManager_OnProfileChanged;
         }
         #endregion
 
