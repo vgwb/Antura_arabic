@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -60,13 +61,21 @@ namespace EA4S.Assessment
             dragEnabled = true;
         }
 
-        public void StartDrag()
+        Action OnGoDestroyed = null;
+        public void StartDrag( Action onDestroyed)
         {
+            OnGoDestroyed = onDestroyed;
             SetScale( 1.3f);
         }
 
+        void OnDestroy()
+        {
+            if (OnGoDestroyed != null)
+                OnGoDestroyed();
+        }
         public void StopDrag()
         {
+            OnGoDestroyed = null;
             SetScale( 1f);
         }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace EA4S.Assessment
@@ -88,6 +89,11 @@ namespace EA4S.Assessment
         public void EnableDragOnly()
         {
             dragManager.EnableDragOnly();
+        }
+
+        public void RemoveDraggables()
+        {
+            dragManager.RemoveDraggables();
         }
     }
 }

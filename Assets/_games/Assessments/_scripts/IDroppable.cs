@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -19,7 +20,7 @@ namespace EA4S.Assessment
         /// </summary>
         void SetDragManager( IDragManager dragManager);
 
-        void StartDrag();
+        void StartDrag( Action onDestroyed);
 
         void StopDrag();
 
