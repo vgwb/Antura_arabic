@@ -61,8 +61,8 @@ namespace EA4S.Assessment
             dragEnabled = true;
         }
 
-        Action OnGoDestroyed = null;
-        public void StartDrag( Action onDestroyed)
+        Action<IDroppable> OnGoDestroyed = null;
+        public void StartDrag( Action<IDroppable> onDestroyed)
         {
             OnGoDestroyed = onDestroyed;
             SetScale( 1.3f);
@@ -70,9 +70,11 @@ namespace EA4S.Assessment
 
         void OnDestroy()
         {
+            dragEnabled = false;
             if (OnGoDestroyed != null)
-                OnGoDestroyed();
+                OnGoDestroyed(this);
         }
+
         public void StopDrag()
         {
             OnGoDestroyed = null;
