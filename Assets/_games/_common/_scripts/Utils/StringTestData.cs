@@ -23,6 +23,12 @@ namespace EA4S
             }
         }
 
+        public string CharForLivingLetterDisplay {
+            get {
+                return null;
+            }
+        }
+
         public Sprite DrawForLivingLetter {
             get {
                 return null;
