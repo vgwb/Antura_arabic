@@ -24,6 +24,8 @@ public class AnturaSpaceAnturaBehaviour : MonoBehaviour
         m_iAnims = Enum.GetNames(typeof(AnturaAnimationStates)).Length;
         m_bMovingToDestination = false;
         m_v3StartPos = transform.position;
+        m_v3IdleRotation = transform.forward;
+        m_oAnturaCtrl.State = AnturaAnimationStates.sitting;
     }
 
     void OnMouseDown()
@@ -39,17 +41,14 @@ public class AnturaSpaceAnturaBehaviour : MonoBehaviour
     {
         if (m_aoBones.Count > 0)
         {
-            if (m_bMovingToDestination)
+            if(m_oTweener != null)
             {
-                if(m_oTweener != null)
-                {
-                    m_oTweener.Kill();
-                }
-                GameObject Bone = m_aoBones[0];
-                Vector3 target = Bone.transform.position;
-                target.y = transform.position.y;
-                MoveTo(target);
+                m_oTweener.Kill();
             }
+            GameObject Bone = m_aoBones[0];
+            Vector3 target = Bone.transform.position;
+            target.y = transform.position.y;
+            MoveTo(target);
         }
         else
         {
@@ -78,8 +77,11 @@ public class AnturaSpaceAnturaBehaviour : MonoBehaviour
         m_oAnturaCtrl.State = AnturaAnimationStates.idle;
         m_oAnturaCtrl.DoShout();
 
-        m_bMovingToDestination = false;
         m_aoBones.Remove(Bone);
+        if (m_aoBones.Count == 0)
+        {
+            m_bMovingToDestination = false;
+        }
 
         if (onBoneReached != null)
         {
@@ -101,7 +103,11 @@ public class AnturaSpaceAnturaBehaviour : MonoBehaviour
             float time = (m_v3StartPos - transform.position).magnitude / m_fMovementSpeed;
             m_oTweener = transform.DOMove(m_v3StartPos, time).OnComplete(() => {
                 m_bMovingToDestination = false;
-                m_oAnturaCtrl.State = AnturaAnimationStates.idle;
+                m_oAnturaCtrl.State = AnturaAnimationStates.sitting;
+
+                Vector3 _rot = new Vector3(0, Vector3.Angle(Vector3.forward, m_v3IdleRotation), 0);
+                _rot = (Vector3.Cross(Vector3.forward, Vector3.back).y < 0) ? -_rot : _rot;
+                transform.DORotate(_rot, 0.5f);
             });
 
             Vector3 rot = new Vector3(0, Vector3.Angle(Vector3.forward, Vector3.back), 0);
@@ -116,7 +122,7 @@ public class AnturaSpaceAnturaBehaviour : MonoBehaviour
         Vector3 _v3PartialMovement = _v3MaxMovement.normalized * m_fMovementSpeed * Time.deltaTime;
         if(_v3MaxMovement.sqrMagnitude < _v3PartialMovement.sqrMagnitude) //if we reached the destination
         {
-            m_oAnturaCtrl.State = AnturaAnimationStates.idle;
+            m_oAnturaCtrl.State = AnturaAnimationStates.sitting;
 
             //position on the destination
             gameObject.transform.position = v3Destination;
@@ -125,7 +131,6 @@ public class AnturaSpaceAnturaBehaviour : MonoBehaviour
         }
         else //make the progress for this frame
         {
-
             m_oAnturaCtrl.State = AnturaAnimationStates.sheeping;
 
             gameObject.transform.Translate(_v3PartialMovement, Space.World);
@@ -154,6 +159,7 @@ public class AnturaSpaceAnturaBehaviour : MonoBehaviour
 
     private Tweener m_oTweener;
     private Vector3 m_v3StartPos;
+    private Vector3 m_v3IdleRotation;
     private float m_fTimer = 2.0f;
 
     private bool m_bMovingToDestination;
