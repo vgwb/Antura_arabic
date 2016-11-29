@@ -212,8 +212,14 @@ namespace EA4S.MixedLetters
             yield return new WaitForSeconds(WIN_ANIMATION_BIG_LL_DELAY);
 
             VictimLLController.instance.Enable();
+            VictimLLController.instance.Reset();
             VictimLLController.instance.DoHooray();
             VictimLLController.instance.ShowVictoryRays();
+
+            if (MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Spelling)
+            {
+                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(VictimLLController.instance.letterObjectView.Data);
+            }
 
             yield return new WaitForSeconds(WIN_ANIMATION_END_DELAY);
 

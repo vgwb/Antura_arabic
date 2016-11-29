@@ -30,5 +30,7 @@ namespace EA4S.Assessment
         void Detach(bool jumpBack);
 
         Transform GetTransform();
+
+        IAnswer GetAnswer();
     }
 }

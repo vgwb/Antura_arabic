@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using System.Linq;
 
 namespace EA4S.HideAndSeek
 {
@@ -51,17 +52,17 @@ namespace EA4S.HideAndSeek
             return -1;
         }
 
-        /*void NewRoundSetup()
+        private LL_LetterData GetCorrectAnswer()
         {
-            StartNewRound = true;
-            SetTime();
-            WidgetPopupWindow.I.Close();
-        }*/
+            //correctAnswer is the first answer
+            return (LL_LetterData)currentQuestion.GetCorrectAnswers().ToList()[0];
+        }
 
         public void RepeatAudio()
         {
-            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Id);
+            AudioManager.I.PlayLetter(GetCorrectAnswer().Id);
         }
+
 
         private IEnumerator DelayAnimation()
         {
@@ -88,7 +89,7 @@ namespace EA4S.HideAndSeek
 		{
             letterInAnimation = GetIdFromPosition(id);
             HideAndSeekLetterController script = ArrayLetters[letterInAnimation].GetComponent<HideAndSeekLetterController>();
-            if (script.view.Data.Id == currentQuestion.GetAnswer().Id)
+            if (script.view.Data.Id == GetCorrectAnswer().Id)
             {
                 LockTrees();
                 StartCoroutine(DelayAnimation());
@@ -160,17 +161,22 @@ namespace EA4S.HideAndSeek
         {
             ClearRound();
 
-            currentQuestion = (HideAndSeekQuestionsPack)questionProvider.GetQuestion();
+            currentQuestion = HideAndSeekConfiguration.Instance.Questions.GetNextQuestion();
             StartNewRound = false;
             SetFullLife();
             FreePlaceholder = MAX_OBJECT;
-            ActiveLetters = currentQuestion.GetLetters().Count;
 
             ActiveTrees = new List<GameObject>();
 
-            List<ILivingLetterData> letterList = currentQuestion.GetLetters();
+            List<ILivingLetterData> letterList = new List<ILivingLetterData>();
+            foreach (LL_LetterData letter in currentQuestion.GetCorrectAnswers())
+            {
+                letterList.Add(letter);
+            }
 
-            for(int i = 0; i < ActiveLetters; ++i)
+            ActiveLetters = letterList.Count;
+
+            for (int i = 0; i < ActiveLetters; ++i)
             {
                 int index = getRandomPlaceholder();
                 if(index != -1)
@@ -214,7 +220,7 @@ namespace EA4S.HideAndSeek
             var winInitialDelay = 0.5f;
             yield return new WaitForSeconds(winInitialDelay);
 
-            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Id);
+            AudioManager.I.PlayLetter(GetCorrectAnswer().Id);
             game.PlayState.gameTime.Start();
 
             buttonRepeater.SetActive(true);
@@ -262,9 +268,8 @@ namespace EA4S.HideAndSeek
 		private HideAndSeekLetterController script;
 
         public HideAndSeekGame game;
-        
-        public HideAndSeekQuestionsProvider questionProvider;
-        public HideAndSeekQuestionsPack currentQuestion;
+
+        private IQuestionPack currentQuestion;
 
         public float timeToWait = 1.0f;
         private float time;

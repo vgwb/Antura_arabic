@@ -22,8 +22,11 @@ namespace EA4S
             // @todo: show score
             //info.score
 
-            // @todo: unlock/lock
-            //if (info.unlocked)
+            if (info.unlocked || AppConstants.CheatBookUnlockEverything) {
+                GetComponent<Button>().interactable = true;
+            } else {
+                GetComponent<Button>().interactable = false;
+            }
 
             Title.text = info.data.Arabic;
             SubTitle.text = info.data.Id;
@@ -41,7 +44,9 @@ namespace EA4S
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailWord(info);
+            if (info.unlocked || AppConstants.CheatBookUnlockEverything) {
+                manager.DetailWord(info);
+            }
         }
     }
 }

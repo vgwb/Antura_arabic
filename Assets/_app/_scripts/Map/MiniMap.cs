@@ -32,8 +32,7 @@ namespace EA4S
         void Start()
         {
             /* FIRST CONTACT FEATURE */
-            if (AppManager.I.Player.IsFirstContact())
-            {
+            if (AppManager.I.Player.IsFirstContact()) {
                 FirstContactBehaviour();
             }
             /* --------------------- */
@@ -53,8 +52,7 @@ namespace EA4S
         void FirstContactBehaviour()
         {
 
-            if (AppManager.I.Player.IsFirstContact(1))
-            {
+            if (AppManager.I.Player.IsFirstContact(1)) {
                 // First contact step 1:
                 #region Temp Behaviour (to be deleted)
                 countDown.Start();
@@ -62,9 +60,7 @@ namespace EA4S
                 // ..and set first contact done.
                 AppManager.I.Player.FirstContactPassed();
                 Debug.Log("First Contact Step1 finished! Go to Antura Space!");
-            }
-            else if (AppManager.I.Player.IsFirstContact(2))
-            {
+            } else if (AppManager.I.Player.IsFirstContact(2)) {
                 // First contact step 2:
 
                 // ..and set first contact done.
@@ -77,7 +73,7 @@ namespace EA4S
         CountdownTimer countDown = new CountdownTimer(1f);
         void OnEnable() { countDown.onTimesUp += CountDown_onTimesUp; }
         void OnDisable() { countDown.onTimesUp -= CountDown_onTimesUp; }
-        private void CountDown_onTimesUp() { AppManager.I.Modules.SceneModule.LoadSceneWithTransition("app_Rewards"); }
+        private void CountDown_onTimesUp() { NavigationManager.I.GoToScene(AppScene.Rewards); }
         private void UpdateTimer() { countDown.Update(Time.deltaTime); }
         #endregion
 
@@ -86,8 +82,7 @@ namespace EA4S
         public void CalculateSettingsStageMap()
         {
             //  posDots = new GameObject[28];
-            for (numLearningBlock = 0; numLearningBlock < (posPines.Length - 1); numLearningBlock++)
-            {
+            for (numLearningBlock = 0; numLearningBlock < (posPines.Length - 1); numLearningBlock++) {
                 pinLeft = posPines[numLearningBlock].transform.position;
                 pinRight = posPines[numLearningBlock + 1].transform.position;
                 CalculateStepsBetweenPines(pinLeft, pinRight);
@@ -108,13 +103,10 @@ namespace EA4S
             // Vector3 v = Vector3.Lerp(p1, p2, perc);
             float d = Vector3.Distance(p1, p2);
             float x = ((d - 5) - 2) / 3;
-            for (p = 1; p < 3; p++)
-            {
-                if (p == 1)
-                {
+            for (p = 1; p < 3; p++) {
+                if (p == 1) {
                     v = (x + 0.5f + 2.5f) * Vector3.Normalize(p2 - p1) + p1;
-                }
-                else v = (2 * x + 1.5f + 2.5f) * Vector3.Normalize(p2 - p1) + p1;
+                } else v = (2 * x + 1.5f + 2.5f) * Vector3.Normalize(p2 - p1) + p1;
 
 
                 rot.eulerAngles = new Vector3(90, 0, 0);
@@ -122,8 +114,7 @@ namespace EA4S
                 dotGo = Instantiate(dot, v, rot) as GameObject;
                 dotGo.GetComponent<Dot>().learningBlockActual = numLearningBlock + 1;
                 dotGo.GetComponent<Dot>().pos = numDot;
-                if (numLearningBlock < posPines.Length - 1)
-                {
+                if (numLearningBlock < posPines.Length - 1) {
                     ropes[numLearningBlock].GetComponent<Rope>().dots.Add(dotGo);
                     ropes[numLearningBlock].GetComponent<Rope>().learningBlockRope = numLearningBlock + 1;
                 }
@@ -146,32 +137,26 @@ namespace EA4S
             if (p == 1) m = (l * 2) - 1;
             else m = l * 2;
             posMax = m;
-            for (int i = 0; i < m; i++)
-            {
+            for (int i = 0; i < m; i++) {
                 posDots[i].SetActive(true);
             }
         }
         void CalculatePin_RopeAvailable()
         {
-            if (isAvailableTheWholeMap)
-            {
+            if (isAvailableTheWholeMap) {
                 posMax = posDots.Length;
-                for (int i = 1; i < (posPines.Length - 1); i++)
-                {
+                for (int i = 1; i < (posPines.Length - 1); i++) {
                     posPines[i].tag = "Pin";
                     ropes[i].transform.GetChild(0).tag = "Rope";
                 }
                 posPines[posPines.Length - 1].tag = "Pin";
-            }
-            else
-            {
+            } else {
                 int l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
                 int p = AppManager.I.Player.MaxJourneyPosition.PlaySession;
                 int m;
                 if (p == 100) m = l;
                 else m = l - 1;
-                for (int i = 1; i < (m + 1); i++)
-                {
+                for (int i = 1; i < (m + 1); i++) {
                     posPines[i].tag = "Pin";
                     if ((i == m) && (p == 100))
                         return;
@@ -205,8 +190,7 @@ namespace EA4S
 
             // For each score entry, get its play session data and build a structure containing both
             List<PlaySessionState> playSessionState_list = new List<PlaySessionState>();
-            for (int i = 0; i < scoreData_list.Count; i++)
-            {
+            for (int i = 0; i < scoreData_list.Count; i++) {
                 var data = AppManager.I.DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
                 playSessionState_list.Add(new PlaySessionState(data, scoreData_list[i].Score));
             }

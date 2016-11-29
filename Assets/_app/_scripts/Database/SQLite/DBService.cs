@@ -12,7 +12,6 @@ using System.IO;
 using System.Collections.Generic;
 using SQLite;
 using System.Linq.Expressions;
-using EA4S;
 using System;
 
 namespace EA4S.Db
@@ -23,44 +22,12 @@ namespace EA4S.Db
 
         public DBService(string DatabaseName, int profileId)
         {
-
-#if UNITY_EDITOR
             var dbPath = string.Format(@"{0}/{1}", Application.persistentDataPath, DatabaseName);
-#else
-        // check if file exists in Application.persistentDataPath
-        var filepath = string.Format("{0}/{1}", Application.persistentDataPath, DatabaseName);
 
-        if (!File.Exists(filepath))
-        {
-            Debug.Log("Database not in Persistent path");
-            // if it doesn't ->
-            // open StreamingAssets directory and load the db ->
-
-#if UNITY_ANDROID
-            var loadDb = new WWW("jar:file://" + Application.dataPath + "!/assets/" + DatabaseName);  // this is the path to your StreamingAssets in android
-            while (!loadDb.isDone) { }  // CAREFUL here, for safety reasons you shouldn't let this while loop unattended, place a timer and error check
-            // then save to Application.persistentDataPath
-            File.WriteAllBytes(filepath, loadDb.bytes);
-#elif UNITY_IOS
-                 var loadDb = Application.dataPath + "/Raw/" + DatabaseName;  // this is the path to your StreamingAssets in iOS
-                // then save to Application.persistentDataPath
-                File.Copy(loadDb, filepath);
-#else
-	var loadDb = Application.dataPath + "/StreamingAssets/" + DatabaseName;  // this is the path to your StreamingAssets in iOS
-	// then save to Application.persistentDataPath
-	File.Copy(loadDb, filepath);
-#endif
-        Debug.Log("Database written");
-        }
-
-        var dbPath = filepath;
-#endif
             // Try to open an existing DB connection, or create a new DB if it does not exist already
             try {
                 _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
-            }
-            catch
-            {
+            } catch {
                 _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
                 RegenerateDatabase(profileId);
             }
@@ -68,13 +35,11 @@ namespace EA4S.Db
             // Check that the DB version is correct, otherwise recreate the tables
             GenerateTable<DatabaseInfoData>(true, false); // Makes sure that the database info data table exists
             var info = _connection.Find<DatabaseInfoData>(1);
-            if (info == null || info.Version != AppConstants.AppVersion)
-            {
-                Debug.LogWarning("SQL database is outdated. Recreating it (version " + AppConstants.AppVersion + " )");
+            if (info == null || info.Version != AppConstants.DbSchemeVersion) {
+                Debug.LogWarning("SQL database is outdated. Recreating it (from " + info.Version + " to " + AppConstants.DbSchemeVersion + ")");
                 RegenerateDatabase(profileId);
             }
-            //Debug.Log("Database ready. Version " + info.Version);
-            //Debug.Log("Database final PATH: " + dbPath);
+            //Debug.Log("Database ready. Version " + dbPath + "v:" +info.Version);
         }
 
         #region Creation

@@ -19,7 +19,7 @@ namespace EA4S.Assessment
             QuestionGenerator = question_generator;
             QuestionPlacer = question_placer;
             LogicInjector = logic_injector;
-            AssessmentConfiguration = game_conf;
+            Configuration = game_conf;
             GameContext = game_context;
             Dialogues = dialogues;
             GameDescription = gameDescription;
@@ -86,19 +86,24 @@ namespace EA4S.Assessment
 
             bool AnturaShowed = false;
 
-            for (int round = 0; round< AssessmentConfiguration.Rounds; round++)
+            for (int round = 0; round< Configuration.Rounds; round++)
             {
                 #region Init
                 QuestionGenerator.InitRound();
 
-                for(int question = 0; question<AssessmentConfiguration.SimultaneosQuestions; question++)
+                for(int question = 0; question<Configuration.SimultaneosQuestions; question++)
 
                     LogicInjector.Wire( 
                         QuestionGenerator.GetNextQuestion(),                 
                         QuestionGenerator.GetNextAnswers()      );
 
                 LogicInjector.CompleteWiring();
-                
+                LogicInjector.EnableDragOnly(); //as by new requirments
+
+                //mute feedback audio while speaker is speaking
+                bool answerConfigurationCache = AssessmentConfiguration.Instance.PronunceAnswerWhenClicked;
+                AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = false;
+
                 QuestionGenerator.CompleteRound();
                 #endregion
 
@@ -142,6 +147,8 @@ namespace EA4S.Assessment
                 //////////////////////////////
                 //// GAME LOGIC (WIP)
                 ////----
+                // Restore audio when playing
+                AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = answerConfigurationCache;
                 LogicInjector.EnableGamePlay();
 
                 while (LogicInjector.AllAnswersCorrect() == false)
@@ -171,7 +178,7 @@ namespace EA4S.Assessment
 
         public IQuestionPlacer QuestionPlacer { get; private set; }
 
-        public IAssessmentConfiguration AssessmentConfiguration { get; private set; }
+        public IAssessmentConfiguration Configuration { get; private set; }
 
         public IGameContext GameContext { get; private set; }
 

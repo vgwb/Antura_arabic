@@ -8,14 +8,12 @@ namespace EA4S.Assessment
     {
         private LetterObjectView view;
         private int placeholdersCount;
-        private QuestionType questionType;
 
-        public DefaultQuestion( LetterObjectView letter, int placeholders, QuestionType type)
+        public DefaultQuestion( LetterObjectView letter, int placeholders)
         {
             view = letter;
             placeholdersCount = placeholders;
-            placeholdersSet = new List<GameObject>();
-            questionType = type;
+            placeholdersSet = new List< GameObject>();
             var question = letter.gameObject.AddComponent< QuestionBehaviour>();
             question.SetQuestion( this);
         }
@@ -43,12 +41,7 @@ namespace EA4S.Assessment
             return placeholdersCount;
         }
 
-        public QuestionType Type()
-        {
-            return questionType;
-        }
-
-        private List<GameObject> placeholdersSet;
+        private List< GameObject> placeholdersSet;
 
         public void TrackPlaceholder( GameObject gameObject)
         {
@@ -63,9 +56,15 @@ namespace EA4S.Assessment
             return placeholdersSet;
         }
 
-        public float LetterSize()
+        private AnswerSet answerSet;
+        public void SetAnswerSet( AnswerSet answerSet)
         {
-            return view.Scale;
+            this.answerSet = answerSet;
+        }
+
+        public AnswerSet GetAnswerSet()
+        {
+            return answerSet;
         }
     }
 }

@@ -22,11 +22,6 @@ namespace EA4S.Assessment
     public interface IQuestion
     {
         /// <summary>
-        /// Information about the displayed's question symbol
-        /// </summary>
-        QuestionType Type();
-
-        /// <summary>
         /// Returns LivingLetter data if QuestionType is LivingLetter, otherwise null
         /// </summary>
         ILivingLetterData LetterData();
@@ -45,15 +40,19 @@ namespace EA4S.Assessment
         int PlaceholdersCount();
 
         /// <summary>
-        /// Returns the letter size (which varies: 1, 1.5 or 2)
-        /// </summary>
-        /// <returns>Size in world units</returns>
-        float LetterSize();
-
-        /// <summary>
         /// Access the GameObject of this question
         /// </summary>
         GameObject gameObject { get; }
+
+        /// <summary>
+        /// Set of valid answers, each question has its own valid answers
+        /// </summary>
+        void SetAnswerSet( AnswerSet answerSet);
+
+        /// <summary>
+        /// Reference to the set of answers for this question
+        /// </summary>
+        AnswerSet GetAnswerSet();
 
         /// <summary>
         /// Add a placeholder to this question

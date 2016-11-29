@@ -25,7 +25,11 @@ namespace EA4S.Assessment
 
                 case AssessmentCode.WordsWithLetter:
                     return AssessmentFactory.CreateWordsWithLetterAssessment();
+
+                case AssessmentCode.SunMoonWord:
+                    return AssessmentFactory.CreateSunMoonWordAssessment();
             }
+
             return null;
         }
 

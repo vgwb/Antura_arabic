@@ -9,7 +9,7 @@ namespace EA4S.FastCrowd
 
     public class WordComposer : MonoBehaviour
     {
-
+        public Transform innerTransform;
         WordFlexibleContainer WordLabel;
         List<LL_LetterData> CompletedLetters = new List<LL_LetterData>();
 
@@ -55,7 +55,7 @@ namespace EA4S.FastCrowd
             yield return new WaitForSeconds(_delay);
             CompletedLetters.Add(data as LL_LetterData);
             AudioManager.I.PlaySfx(EA4S.Sfx.Hit);
-            transform.DOShakeScale(1.5f);
+            innerTransform.DOShakeScale(1.5f, 0.5f);
             UpdateWord();
         }
 

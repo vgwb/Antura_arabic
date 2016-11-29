@@ -25,22 +25,23 @@ namespace EA4S
         public IntroMazeCharacter[] m_MazeCharacters;
         public float m_MazeCharactesVelocity = 0.1f;
 
-        void Start() {
+        void Start()
+        {
             GlobalUI.ShowPauseMenu(false);
             countDown = new CountdownTimer(m_EndDelay);
             m_CameraStartPosition = Camera.main.transform.position;
             Camera.main.transform.position += Vector3.up * m_CameraHeightAtStart;
             m_CameraPath = m_CameraStartPosition - Camera.main.transform.position;
 
-            foreach (var mazeCharacter in m_MazeCharacters)
-            {
+            foreach (var mazeCharacter in m_MazeCharacters) {
                 mazeCharacter.transform.position += new Vector3(0, m_CameraHeightAtStart - 10f, 0);
                 mazeCharacter.m_Velocity = m_MazeCharactesVelocity;
-            }          
+            }
         }
 
-        private void CountDown_onTimesUp() {
-            AppManager.I.Modules.SceneModule.LoadSceneWithTransition("app_Map");
+        private void CountDown_onTimesUp()
+        {
+            NavigationManager.I.GoToScene(AppScene.Map);
         }
 
         void OnDisable()
@@ -51,26 +52,20 @@ namespace EA4S
 
         void Update()
         {
-            if (m_Start)
-            {
+            if (m_Start) {
                 m_Start = false;
                 Debug.Log("Start Introduction");
-                foreach (var mazeCharacter in m_MazeCharacters)
-                {
+                foreach (var mazeCharacter in m_MazeCharacters) {
                     mazeCharacter.SetDestination();
                 }
                 StartCoroutine(DoIntroduction());
-            }
-            else
-            {
-                if (m_End)
-                {
+            } else {
+                if (m_End) {
                     countDown.Update(Time.deltaTime);
                 }
             }
 
-            if (Camera.main.transform.position.y > m_CameraStartPosition.y)
-            {
+            if (Camera.main.transform.position.y > m_CameraStartPosition.y) {
                 Camera.main.transform.position += m_CameraPath * Time.deltaTime * m_CameraVelocity;
             }
         }
@@ -81,15 +76,13 @@ namespace EA4S
             countDown.Start();
             countDown.onTimesUp += CountDown_onTimesUp;
         }
-        
+
 
         IEnumerator DoIntroduction()
         {
             bool completed = false;
-            System.Func<bool> CheckIfCompleted = () => 
-            {
-                if (completed)
-                {
+            System.Func<bool> CheckIfCompleted = () => {
+                if (completed) {
                     // Reset it
                     completed = false;
                     return true;
@@ -101,40 +94,40 @@ namespace EA4S
 
             yield return new WaitForSeconds(m_StateDelay);
 
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_welcome, true, OnCompleted);
-            
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_welcome, true, true, OnCompleted);
+
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
 
             Debug.Log("Start Spawning");
             factory.StartSpawning = true;
-            
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Letters_1, true, OnCompleted);
+
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Letters_1, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
 
             Debug.Log("Second Intro Letter");
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Letters_2, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Letters_2, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
 
             factory.antura.SetAnturaTime(true);
             Debug.Log("Antura is enable");
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Dog, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Dog, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
 
             DisableAntura();
 
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Dog_Chase, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Dog_Chase, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
 
             m_End = true;
 
         }
-    }    
+    }
 }

@@ -28,6 +28,7 @@ namespace EA4S
         public GameObject SubmenuContainer;
         public GameObject ElementsContainer;
         public TextRender ArabicText;
+        public TextRender ScoreText;
         public TMPro.TextMeshProUGUI Drawing;
 
         public LetterObjectView LLText;
@@ -91,10 +92,8 @@ namespace EA4S
             emptyListContainers();
 
             List<LetterInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllLetterInfo();
-            foreach (var info_item in info_list)
-            {
-                if (list.Contains(info_item.data))
-                {
+            foreach (var info_item in info_list) {
+                if (list.Contains(info_item.data)) {
                     btnGO = Instantiate(LetterItemPrefab);
                     btnGO.transform.SetParent(ElementsContainer.transform, false);
                     btnGO.GetComponent<ItemLetter>().Init(this, info_item);
@@ -137,10 +136,8 @@ namespace EA4S
             emptyListContainers();
 
             List<WordInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllWordInfo();
-            foreach (var info_item in info_list)
-            {
-                if (list.Contains(info_item.data))
-                {
+            foreach (var info_item in info_list) {
+                if (list.Contains(info_item.data)) {
                     btnGO = Instantiate(WordItemPrefab);
                     btnGO.transform.SetParent(ElementsContainer.transform, false);
                     btnGO.GetComponent<ItemWord>().Init(this, info_item);
@@ -185,19 +182,21 @@ namespace EA4S
             }
         }
 
-        public void DetailWord(WordInfo wordInfo)
+        public void DetailWord(WordInfo info)
         {
-            Debug.Log("Detail Word :" + wordInfo.data.Id);
-            AudioManager.I.PlayWord(wordInfo.data.Id);
+            Debug.Log("Detail Word :" + info.data.Id);
+            AudioManager.I.PlayWord(info.data.Id);
+
+            ScoreText.text = "Score: " + info.score;
 
             var output = "";
 
-            var splittedLetters = ArabicAlphabetHelper.SplitWordIntoLetters(wordInfo.data.Arabic);
+            var splittedLetters = ArabicAlphabetHelper.SplitWordIntoLetters(info.data.Arabic);
             foreach (var letter in splittedLetters) {
                 output += letter.GetChar() + " ";
             }
             output += "\n";
-            output += wordInfo.data.Arabic;
+            output += info.data.Arabic;
 
             output += "\n";
 
@@ -207,16 +206,16 @@ namespace EA4S
 
             ArabicText.text = output;
 
-            LLText.Init(new LL_WordData(wordInfo.data));
+            LLText.Init(new LL_WordData(info.data));
 
-            if (wordInfo.data.Drawing != "") {
-                var drawingChar = AppManager.I.Teacher.wordHelper.GetWordDrawing(wordInfo.data);
+            if (info.data.Drawing != "") {
+                var drawingChar = AppManager.I.Teacher.wordHelper.GetWordDrawing(info.data);
                 Drawing.text = drawingChar;
-                LLDrawing.Init(new LL_ImageData(wordInfo.data));
-                Debug.Log("Drawing: " + wordInfo.data.Drawing + " / " + ArabicAlphabetHelper.GetLetterFromUnicode(wordInfo.data.Drawing));
+                LLDrawing.Init(new LL_ImageData(info.data));
+                Debug.Log("Drawing: " + info.data.Drawing + " / " + ArabicAlphabetHelper.GetLetterFromUnicode(info.data.Drawing));
             } else {
                 Drawing.text = "";
-                LLDrawing.Init(new LL_ImageData(wordInfo.data));
+                LLDrawing.Init(new LL_ImageData(info.data));
             }
         }
 
@@ -225,23 +224,27 @@ namespace EA4S
 
         }
 
-        public void DetailLetter(LetterInfo letterInfo)
+        public void DetailLetter(LetterInfo info)
         {
-            Debug.Log("Detail Letter :" + letterInfo.data.Id);
-            AudioManager.I.PlayLetter(letterInfo.data.Id);
+            Debug.Log("Detail Letter :" + info.data.Id + " [" + info.data.GetAvailablePositions() + "]");
+            AudioManager.I.PlayLetter(info.data.Id);
 
-            ArabicText.text = letterInfo.data.GetChar(LetterPosition.Isolated);
-            ArabicText.text += " " + letterInfo.data.GetChar(LetterPosition.Final);
-            ArabicText.text += " " + letterInfo.data.GetChar(LetterPosition.Medial);
-            ArabicText.text += " " + letterInfo.data.GetChar(LetterPosition.Initial);
+            ScoreText.text = "Score: " + info.score;
 
-            LLText.Init(new LL_LetterData(letterInfo.data));
+            ArabicText.text = info.data.GetChar(LetterPosition.Isolated);
+            ArabicText.text += " " + info.data.GetChar(LetterPosition.Final);
+            ArabicText.text += " " + info.data.GetChar(LetterPosition.Medial);
+            ArabicText.text += " " + info.data.GetChar(LetterPosition.Initial);
+
+            LLText.Init(new LL_LetterData(info.data));
         }
 
-        public void DetailPhrase(PhraseInfo phraseInfo)
+        public void DetailPhrase(PhraseInfo info)
         {
-            Debug.Log("Detail Phrase :" + phraseInfo.data.Id);
-            AudioManager.I.PlayPhrase(phraseInfo.data.Id);
+            Debug.Log("Detail Phrase :" + info.data.Id);
+            AudioManager.I.PlayPhrase(info.data.Id);
+
+            ScoreText.text = "Score: " + info.score;
         }
 
 
@@ -269,6 +272,7 @@ namespace EA4S
         {
             OpenArea(PlayerBookPanel.BookPhrases);
         }
+
 
     }
 }

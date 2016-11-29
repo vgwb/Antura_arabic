@@ -5,7 +5,11 @@ namespace EA4S.Assessment
     public interface IAnswerChecker
     {
         bool IsAnimating();
-        void Check( List< PlaceholderBehaviour> placeholders, IDragManager dragManager);
+        bool AreAllAnswered( List< PlaceholderBehaviour> placeholders);
+
+        void Check( List< PlaceholderBehaviour> placeholders, 
+                    List< IQuestion> questions,
+                    IDragManager dragManager);
         bool AllCorrect();
     }
 }
