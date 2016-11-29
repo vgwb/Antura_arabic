@@ -2465,6 +2465,8 @@ MonoBehaviour:
   UseTestGameplayInfo: 0
   characterPrefab: {fileID: 1000010318923098, guid: 91d78e7885f126e4b86d7bb40cf7740f,
     type: 2}
+  arrowTargetPrefab: {fileID: 1000011506755418, guid: 5ffa89f44f3df1044b582de40816e007,
+    type: 2}
   currentCharacter: {fileID: 0}
   currentTutorial: {fileID: 0}
   prefabs:
