@@ -33,17 +33,12 @@ namespace EA4S
 
         #region API
         public string TextForLivingLetter {
-            get {
-                return Data.GetChar(Position);
-            }
-        }
-
-        public string CharForLivingLetterDisplay {
-            get {
+            get
+            {
                 return Data.GetCharFixedForDisplay(Position);
             }
         }
-
+        
         public string DrawingCharForLivingLetter {
             get { return null; }
         }

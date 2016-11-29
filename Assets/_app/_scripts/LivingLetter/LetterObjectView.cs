@@ -157,7 +157,7 @@ namespace EA4S
                             Scale = 2f;
                             break;
                         case LivingLetterDataType.Letter:
-                            Label.text = Data.CharForLivingLetterDisplay;
+                            Label.text = Data.TextForLivingLetter;
                             Scale = 1f;
                             break;
                         default:
