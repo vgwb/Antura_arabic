@@ -51,4 +51,17 @@
         }
     }
 
+    // Filter parameters for phrases
+    public class PhraseFilters
+    {
+        public bool requireAnswersOrWords;
+
+        public PhraseFilters(
+            bool requireAnswersOrWords = false
+            )
+        {
+            this.requireAnswersOrWords = requireAnswersOrWords;
+        }
+    }
+
 }
