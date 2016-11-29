@@ -198,7 +198,7 @@ namespace EA4S.SickLetters
         }
 
         float prevDiff = -1;
-        public void peocessDifiiculties(float diff)
+        public void processDifiiculties(float diff)
         {
             if (prevDiff == diff)
                 return;
@@ -216,13 +216,59 @@ namespace EA4S.SickLetters
 
         public void onWrongMove()
         {
+            Debug.Log("XXXXX "+Time.deltaTime);
             lastMoveIsCorrect = false;
-            correctMoveSequence = 0;
+            goodCommentCounter = correctMoveSequence = 0;
             AudioManager.I.PlayDialog("Keeper_Bad_" + UnityEngine.Random.Range(1,6));
-            //Context.GetCheckmarkWidget().Show(false);
             TutorialUI.MarkNo(scale.transform.position - Vector3.forward * 2 + Vector3.up, TutorialUI.MarkSize.Big);
             Context.GetAudioManager().PlaySound(Sfx.Lose);
-            //Debug.Log("XXX");
         }
+
+
+        int goodCommentCounter;
+        public void onCorrectMove(SickLettersDraggableDD dd)
+        {
+            //AudioManager.I.PlayDialog("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
+
+            if (goodCommentCounter == 3 || !lastMoveIsCorrect)
+            {
+                AudioManager.I.PlayDialog("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
+                goodCommentCounter = 0;
+            }
+
+            scale.counter++;
+            correctMoveSequence++;
+            goodCommentCounter++;
+            lastMoveIsCorrect = true;
+            dd.deattached = true;
+
+            
+
+            if (!dd.touchedVase)
+                dd.boxCollider.isTrigger = false;
+
+            TutorialUI.MarkYes(scale.transform.position - Vector3.forward * 2 + Vector3.up, TutorialUI.MarkSize.Big);
+            //game.Context.GetCheckmarkWidget().Show(true);
+            Context.GetAudioManager().PlaySound(Sfx.OK);
+
+
+            //int prevStarNum = game.currentStars;
+            if (scale.counter > maxWieght)
+            {
+                Context.GetOverlayWidget().SetStarsThresholds((targetScale / 3), (targetScale * 2 / 3), targetScale);
+                currentStars = (scale.counter / 2) / (targetScale / 6);
+                Context.GetOverlayWidget().SetStarsScore(scale.counter/*game.currentStars*/);
+            }
+
+
+
+            dd.isInVase = true;
+            dd.gameObject.tag = "Finish";
+
+            checkForNextRound();
+        }
+    
     }
+
+    
 }

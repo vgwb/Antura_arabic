@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u0636 \u062B \u062C \u062D \u0635"
+  letters: "\u0636 \u062C \u062D \u0635"
 --- !u!65 &14782285
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1806,7 +1806,6 @@ GameObject:
   - 65: {fileID: 294755820}
   - 23: {fileID: 294755819}
   - 54: {fileID: 294755818}
-  - 65: {fileID: 294755822}
   m_Layer: 0
   m_Name: Vase
   m_TagString: Marker
@@ -1904,18 +1903,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 294755816}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &294755822
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 294755816}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.02, z: 1}
-  m_Center: {x: 0, y: -0.36, z: 0}
 --- !u!1001 &296510432
 Prefab:
   m_ObjectHideFlags: 0
@@ -6486,6 +6473,7 @@ MonoBehaviour:
   isNeeded: 0
   isInVase: 0
   touchedVase: 0
+  collidedWithVase: 0
   isDragging: 0
   thisRigidBody: {fileID: 0}
   boxCollider: {fileID: 0}
@@ -10571,7 +10559,7 @@ MonoBehaviour:
   - {x: -3, y: 17, z: -12}
   - {x: -6, y: 12.05, z: -12}
   draw: 0
-  tutorialStartDelay: 12.75
+  tutorialStartDelay: 9
   repeatMax: 3
   repeatConter: 0
 --- !u!1 &1479055851
@@ -10698,7 +10686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u063A \u0639 "
+  letters: "\u063A \u0639 \u062B"
 --- !u!65 &1484341843
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11024,6 +11012,7 @@ MonoBehaviour:
   isNeeded: 0
   isInVase: 0
   touchedVase: 0
+  collidedWithVase: 0
   isDragging: 0
   thisRigidBody: {fileID: 0}
   boxCollider: {fileID: 0}
