@@ -54,8 +54,24 @@ namespace EA4S
         }
         #endregion
 
-        #region Antura Customization        
+        #region Antura Customization                
+        /// <summary>
+        /// The rewards unlocked
+        /// </summary>
         public List<RewardPack> RewardsUnlocked = new List<RewardPack>();
+        /// <summary>
+        /// The current antura customizations
+        /// </summary>
+        public AnturaCustomization CurrentAnturaCustomizations = new AnturaCustomization();
+
+        /// <summary>
+        /// Saves the customization.
+        /// </summary>
+        /// <param name="_anturaCustomization">The antura customization.</param>
+        public void SaveCustomization(AnturaCustomization _anturaCustomization) {
+            CurrentAnturaCustomizations = _anturaCustomization;
+            Save();
+        }
         #endregion
 
         #region Oldies
