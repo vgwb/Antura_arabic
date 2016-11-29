@@ -36,9 +36,7 @@ namespace EA4S {
         }
 
         #endregion
-
-
-
+        
         #region Rewards
 
         /// <summary>
@@ -133,9 +131,24 @@ namespace EA4S {
             }
             return rewardModel;
         }
+        #endregion
 
+        #region events
 
-        
+        #region subscriptions
+        void OnEnable() {
+            RewardSystemManager.OnRewardItemChanged += RewardSystemManager_OnRewardItemChanged;
+        }
+
+        private void RewardSystemManager_OnRewardItemChanged(string Id, RewardTypes _rewardType) {
+            LoadRewardOnAntura(Id);
+        }
+
+        void OnDisable() {
+            RewardSystemManager.OnRewardItemChanged -= RewardSystemManager_OnRewardItemChanged;
+        }
+        #endregion
+
         #endregion
     }
 

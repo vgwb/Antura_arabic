@@ -9,12 +9,20 @@ namespace EA4S {
             // Navigation manager 
             NavigationManager.I.CurrentScene = AppScene.PlaySessionResult;
 
+            // Calculate items to unlock count
             int itemToUnlock = NavigationManager.I.CalculateUnlockItemCount();
+            // Show UI result and unlock transform parent where show unlocked items
             GameObject[] objs = GameResultUI.ShowEndsessionResult(NavigationManager.I.UseEndSessionResults(),itemToUnlock);
-            
-            foreach (GameObject obj in objs) {
-                ModelsManager.MountModel("reward_punk_hair", obj.transform, RewardSystemManager.GetMaterialPairFromRewardAndColor("reward_punk_hair", "red_dark", "yellow_dark"));
+            // retrive a random and mount model on 
+            for (int i = 0; i < itemToUnlock; i++) {
+                RewardPack rp = RewardSystemManager.GetNextRewardPack(RewardTypes.reward);
+                ModelsManager.MountModel(
+                    rp.ItemID,
+                    objs[i].transform,
+                    RewardSystemManager.GetMaterialPairFromRewardIdAndColorId(rp.ItemID, rp.ColorId)
+                    );
             }
+            
         }
 
     }
