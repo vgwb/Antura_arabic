@@ -100,12 +100,21 @@ namespace EA4S.Maze
 
 			characterWayPoints.Add(initialPosition);
 			setFruitsList ();
-            // if (particles) particles.SetActive(false);
-            /*  var dir = transform.position - _fruits[0].transform.position;
-              var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-              transform.rotation =  Quaternion.AngleAxis(angle, Vector3.forward);*/
+           
+            var dir = _fruits[1].transform.position - transform.position;
+            var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
 
-            transform.DOLookAt(_fruits[0].transform.position, 0.5f, AxisConstraint.None, Vector3.up);
+            angle = 360 + angle;
+
+            
+            
+            transform.DOLocalRotateQuaternion(Quaternion.AngleAxis(-angle, Vector3.up), 0.5f);
+
+            /*var dir = _fruits[0].transform.position - transform.position;*/
+            dir.Normalize();
+            dir.x = transform.position.x - dir.x;
+            dir.z = transform.position.z - dir.z;
+            transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
         }
 
 
@@ -303,10 +312,11 @@ namespace EA4S.Maze
 
 
 			setFruitsList ();
-			transform.position = _fruits[0].transform.position + new Vector3(0, 0, 1.5f); 
 
 
-			initialPosition = transform.position;
+            Vector3 initPos = _fruits[0].transform.position;// + new Vector3(0, 0, 1.5f);
+
+            initialPosition = initPos;
 			targetPos = initialPosition;
 
 			initialRotation = transform.rotation;
@@ -317,13 +327,27 @@ namespace EA4S.Maze
 			characterWayPoints.Add (initialPosition);
 
 
-			/*var dir = transform.position - _fruits[0].transform.position;
-			var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-			transform.rotation =  Quaternion.AngleAxis(angle, Vector3.forward);*/
+            var dir = (_fruits[0].transform.position) - transform.position;
+            var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+            transform.DOLocalRotateQuaternion(Quaternion.AngleAxis(-angle, Vector3.up), 0.25f);
 
-			toggleVisibility (false);
+
+            toggleVisibility(true);
+            transform.DOMove(_fruits[0].transform.position, 1).OnComplete(() => {
+                toggleVisibility(false);
+                dir = _fruits[1].transform.position - transform.position;
+                angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+                transform.DOLocalRotateQuaternion(Quaternion.AngleAxis(-angle, Vector3.up), 0.5f);
+
+                dir.Normalize();
+                dir.x = transform.position.x - dir.x;
+                dir.z = transform.position.z - dir.z;
+                transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+            });
             
-		}
+
+
+        }
 
 
         public void resetToCurrent()
@@ -373,8 +397,8 @@ namespace EA4S.Maze
 
 		public void initMovement()
 		{
-			
-			characterIsMoving = true;
+            transform.DOKill(false);
+            characterIsMoving = true;
 			GetComponent<Collider> ().enabled = true;
            // if (particles) particles.SetActive(true);
             foreach (GameObject particle in particles) particle.SetActive(true);
@@ -468,7 +492,9 @@ namespace EA4S.Maze
                 {
                     toggleVisibility(false);
                     isAppearing = false;
+
                     
+
                     //transform.rotation = initialRotation;
                     MazeGameManager.instance.showCurrentTutorial();
                 }

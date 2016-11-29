@@ -41,8 +41,6 @@ namespace EA4S.Egg
 
         Sequence particleCorrectSequence;
 
-        float particleCorrectTimer;
-
         Tween moveEggParentTween;
         Tween moveEggTeewn;
         Tween rotationEggTween;
@@ -107,7 +105,6 @@ namespace EA4S.Egg
 
             ParticleWinDisabled();
             ParticleCorrectDisabled();
-            particleCorrectTimer = 0f;
 
             audioSource = null;
 

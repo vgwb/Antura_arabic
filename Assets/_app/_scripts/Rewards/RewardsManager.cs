@@ -89,7 +89,7 @@ namespace EA4S
 
             /* FIRST CONTACT FEATURE */
             if (AppManager.I.Player.IsFirstContact()) {
-                AppManager.I.Modules.SceneModule.LoadSceneWithTransition("app_AnturaSpace");
+                NavigationManager.I.GoToScene(AppScene.AnturaSpace);
             }
             /* --------------------- */
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
