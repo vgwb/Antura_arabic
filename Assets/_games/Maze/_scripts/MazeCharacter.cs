@@ -681,10 +681,18 @@ namespace EA4S.Maze
 
                 if (transform.position == fleePosition)
                 {
-                    MazeGameManager.instance.showAllCracks();
-                    MazeGameManager.instance.lostCurrentLetter();
+                    //wait then show cracks:
+                    StartCoroutine(waitAndPerformCallback(3, () => {
+                        MazeGameManager.instance.showAllCracks();
+                        donotHandleBorderCollision = true;
+                        characterIsMoving = false;
+                        transform.DOKill(false);
+                    },
+                    () => {
+                        MazeGameManager.instance.lostCurrentLetter();
+                    }));
 
-                   
+
                 }
                 return;
             }
