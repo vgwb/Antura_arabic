@@ -40,12 +40,6 @@ namespace EA4S
             }
         }
 
-        public string CharForLivingLetterDisplay {
-            get {
-                return "";
-            }
-        }
-
         public string DrawingCharForLivingLetter {
             get { return AppManager.I.Teacher.wordHelper.GetWordDrawing(Data); }
         }
