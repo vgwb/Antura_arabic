@@ -190,6 +190,7 @@ namespace EA4S.MissingLetter
             m_aoCurrentAnswerScene.Shuffle();
         }
 
+        //TEST FUNCTION
         List<LL_WordData> GetWordFromPhrases(LL_PhraseData _phrase)
         {
             List<LL_WordData> phrase = new List<LL_WordData>();
@@ -204,13 +205,12 @@ namespace EA4S.MissingLetter
         void NextSentenceQuestion()
         {
             m_oCurrQuestionPack = MissingLetterConfiguration.Instance.Questions.GetNextQuestion();
-            
+
             //tmp for test
             //LL_PhraseData questionData = m_oCurrQuestionPack.GetQuestion();
             //var words = ArabicAlphabetHelper.WordDataListFromPhrase(questionData);
             //var _wrongAnswers = m_oCurrQuestionPack.GetWrongAnswers();
             //var _correctAnswers = m_oCurrQuestionPack.GetCorrectAnswers();
-
             List<LL_WordData> questionData = GetWordFromPhrases(null);
             var _correctAnswer = questionData[0];
 

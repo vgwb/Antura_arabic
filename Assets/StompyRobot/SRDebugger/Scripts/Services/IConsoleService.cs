@@ -1,6 +1,5 @@
 ﻿namespace SRDebugger.Services
 {
-    using System.Collections.Generic;
     using UnityEngine;
 
     public delegate void ConsoleUpdatedEventHandler(IConsoleService console);

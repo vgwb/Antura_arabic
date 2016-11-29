@@ -60,3 +60,4 @@ MonoBehaviour:
   _consoleAlignment: 0
   _triggerPosition: 2
   _maximumConsoleEntries: 1500
+  _enableEventSystemCreation: 0
