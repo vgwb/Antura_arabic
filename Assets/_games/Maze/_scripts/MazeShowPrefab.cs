@@ -17,7 +17,7 @@ namespace EA4S.Maze
 			
 			transform.position = new Vector3 (40, 0, -1);
 
-            transform.DOMove(Vector3.zero, 1.0f).OnComplete(()=> {
+            transform.DOMove(new Vector3(0, 0, -1), 1.0f).OnComplete(()=> {
                 //MazeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterId);
                 MazeGameManager.instance.showCharacterMovingIn();
 
@@ -36,7 +36,7 @@ namespace EA4S.Maze
 		public void moveOut(bool win = false)
 		{
             
-            transform.DOMove(new Vector3(-50, 0, 0), 2).OnComplete(() => {
+            transform.DOMove(new Vector3(-50, 0, -1), 2).OnComplete(() => {
                 Destroy(gameObject);
             });
 
