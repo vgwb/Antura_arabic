@@ -13,7 +13,7 @@ namespace EA4S.MissingLetter
     public enum GameType
     {
         WORD = 0,
-        SENTENCE = 1
+        PHRASE = 1
     }
 
     [System.Serializable]
@@ -181,6 +181,8 @@ namespace EA4S.MissingLetter
             STARS_1_THRESHOLD = (int)(m_iRoundsLimit * 0.25);
             STARS_2_THRESHOLD = (int)(m_iRoundsLimit * 0.55);
             STARS_3_THRESHOLD = (int)(m_iRoundsLimit * 0.95);
+
+            m_fGameTime = 5.0f;
         }
         #endregion
 

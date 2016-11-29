@@ -148,7 +148,7 @@ namespace EA4S.Assessment
                 //// GAME LOGIC END
                 //////////////////////////////
 
-                //LogicInjector.RemoveDraggables();
+                LogicInjector.RemoveDraggables();
 
                 QuestionPlacer.RemoveQuestions();
                 AnswerPlacer.RemoveAnswers();

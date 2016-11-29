@@ -7,11 +7,17 @@ namespace EA4S
     public class MapPin : MonoBehaviour
     {
         public int Number;
+        public bool unlocked;
         public Transform RopeNode;
         public GameObject Dot;
         public Material blackPin;
         public Material redPin;
         public int posBefore;
+
+        void Start()
+        {
+            if (unlocked) Dot.SetActive(true);
+        }
 
         void OnTriggerEnter(Collider other)
         {
