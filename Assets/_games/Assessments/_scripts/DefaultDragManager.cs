@@ -86,7 +86,14 @@ namespace EA4S.Assessment
 
             audioManager.PlaySound( Sfx.ThrowObj);
             this.droppable = droppable;
-            droppable.StartDrag( ()=>RemoveFromUpdate());
+            droppable.StartDrag( x=>RemoveFromUpdateAndPlaceholders(x));
+        }
+
+        void RemoveFromUpdateAndPlaceholders( IDroppable droppa)
+        {
+            RemoveFromUpdate();
+            if (placeholders.Remove(droppa.GetLinkedPlaceholder()) == false)
+                throw new InvalidOperationException("Cannote remove the droppale");
         }
 
         void RemoveFromUpdate()
@@ -97,7 +104,7 @@ namespace EA4S.Assessment
 
         public void StopDragging( IDroppable droppable)
         {
-            if (this.droppable == droppable)
+            if (this.droppable == droppable && droppable != null)
             {
                 audioManager.PlaySound( Sfx.ThrowObj);
                 if(dragOnly== false)
@@ -159,11 +166,9 @@ namespace EA4S.Assessment
 
         public void RemoveDraggables()
         {
+            dragOnly = true;
             if (this.droppable != null)
-            {
-                audioManager.PlaySound(Sfx.ThrowObj);
-                if (dragOnly == false)
-                    CheckCollidedWithPlaceholder(droppable);
+            {                
                 this.droppable.StopDrag();
                 this.droppable = null;
             }
