@@ -49,6 +49,14 @@ namespace EA4S.DancingDots
 			letterObjectView.SetState(LLAnimationStates.LL_dancing);
 		}
 
+		void OnMouseUp()
+		{
+			if (letterData != null) 
+			{
+				AudioManager.I.PlayLetter(letterData.Id);
+			}
+		}
+
 		void GetDiacritic()
 		{
 			Debug.Log("DD Get Diacritics");
