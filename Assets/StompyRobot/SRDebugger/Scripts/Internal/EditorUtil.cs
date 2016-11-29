@@ -10,7 +10,7 @@ namespace SRDebugger.Internal.Editor
     public static class SRDebugEditorUtil
     {
         // Path to this file from the root path
-        private const string TestPath = "SRDebugger/Scripts/Internal/EditorUtil.cs";
+        private const string TestPath = "SRDebugger/SRDebugger.Init.prefab";
         private static GUIStyle _bgStyle;
         private static Texture2D _logoTexture;
         private static Texture2D _welcomeLogoTexture;
@@ -20,7 +20,7 @@ namespace SRDebugger.Internal.Editor
         public static string GetRootPath()
         {
             // Find assets that match this file name
-            var potentialAssets = AssetDatabase.FindAssets("EditorUtil");
+            var potentialAssets = AssetDatabase.FindAssets("SRDebugger.Init");
 
             foreach (var potentialAsset in potentialAssets)
             {
@@ -28,8 +28,7 @@ namespace SRDebugger.Internal.Editor
 
                 if (path.Contains(TestPath))
                 {
-                    // Decend three levels in file tree
-                    var rootPath = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(path)));
+                    var rootPath = Path.GetDirectoryName(path);
                     return rootPath;
                 }
             }

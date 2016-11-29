@@ -29,56 +29,6 @@ namespace EA4S
         int numDot = 0;
         int numLearningBlock;
 
-        void Start()
-        {
-            /* FIRST CONTACT FEATURE */
-            if (AppManager.I.Player.IsFirstContact()) {
-                FirstContactBehaviour();
-            }
-            /* --------------------- */
-        }
-
-        void Update()
-        {
-            // Remove this with First Contact Temp Behaviour
-            UpdateTimer();
-        }
-
-        #region First Contact Session        
-        /// <summary>
-        /// Firsts the contact behaviour.
-        /// Put Here logic for first contact only situations.
-        /// </summary>
-        void FirstContactBehaviour()
-        {
-
-            if (AppManager.I.Player.IsFirstContact(1)) {
-                // First contact step 1:
-                #region Temp Behaviour (to be deleted)
-                countDown.Start();
-                #endregion
-                // ..and set first contact done.
-                AppManager.I.Player.FirstContactPassed();
-                Debug.Log("First Contact Step1 finished! Go to Antura Space!");
-            } else if (AppManager.I.Player.IsFirstContact(2)) {
-                // First contact step 2:
-
-                // ..and set first contact done.
-                AppManager.I.Player.FirstContactPassed(2);
-                Debug.Log("First Contact Step2 finished! Good Luck!");
-            }
-
-        }
-        #region Temp Behaviour (to be deleted)
-        CountdownTimer countDown = new CountdownTimer(1f);
-        void OnEnable() { countDown.onTimesUp += CountDown_onTimesUp; }
-        void OnDisable() { countDown.onTimesUp -= CountDown_onTimesUp; }
-        private void CountDown_onTimesUp() { NavigationManager.I.GoToScene(AppScene.Rewards); }
-        private void UpdateTimer() { countDown.Update(Time.deltaTime); }
-        #endregion
-
-        #endregion
-
         public void CalculateSettingsStageMap()
         {
             //  posDots = new GameObject[28];
@@ -147,9 +97,11 @@ namespace EA4S
                 posMax = posDots.Length;
                 for (int i = 1; i < (posPines.Length - 1); i++) {
                     posPines[i].tag = "Pin";
+                    posPines[i].GetComponent<MapPin>().unlocked = true;
                     ropes[i].transform.GetChild(0).tag = "Rope";
                 }
                 posPines[posPines.Length - 1].tag = "Pin";
+                posPines[posPines.Length - 1].GetComponent<MapPin>().unlocked = true;
             } else {
                 int l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
                 int p = AppManager.I.Player.MaxJourneyPosition.PlaySession;
@@ -158,6 +110,7 @@ namespace EA4S
                 else m = l - 1;
                 for (int i = 1; i < (m + 1); i++) {
                     posPines[i].tag = "Pin";
+                    posPines[i].GetComponent<MapPin>().unlocked = true;
                     if ((i == m) && (p == 100))
                         return;
                     else
