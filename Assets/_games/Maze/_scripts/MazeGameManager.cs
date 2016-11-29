@@ -489,6 +489,12 @@ namespace EA4S.Maze
 				lines[lines.Count-1].SetPosition (pointsList.Count - 1, (Vector3)pointsList [pointsList.Count - 1]);
 			}
 		}
+
+        public void fixLine()
+        {
+            lines[lines.Count - 1].material.color = new Color(1,0.54f,0);
+        }
+
 		public void DrawLine(Vector3 start, Vector3 end, Color color)
 		{
 			/*
