@@ -88,12 +88,11 @@ namespace EA4S
                     } else {
                         AppManager.I.Player.NextPlaySessionMinigame();
                         if (AppManager.I.Player.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count) {
-                            /// - Update Journey
-                            /// - Reset CurrentMiniGameInPlaySession
                             /// - Reward screen
                             /// *-- check first contact : 
-                            AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
-                            AppManager.I.Player.ResetPlaySessionMinigame();
+                            /// 
+
+                            // MaxJourneyPosistionProgress (with Reset CurrentMiniGameInPlaySession) is performed contestually to reward creation to avoid un-sync results.
                             GoToScene(AppScene.PlaySessionResult);
                         } else {
                             // Next game
@@ -104,7 +103,7 @@ namespace EA4S
                 case AppScene.AnturaSpace:
                     break;
                 case AppScene.Rewards:
-                    //AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
+                    MaxJourneyPosistionProgress();
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.PlaySessionResult:
@@ -116,6 +115,11 @@ namespace EA4S
                 default:
                     break;
             }
+        }
+
+        public void MaxJourneyPosistionProgress() {
+            AppManager.I.Player.ResetPlaySessionMinigame();
+            AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
         }
 
         public string GetCurrentScene()
@@ -206,7 +210,7 @@ namespace EA4S
         }
 
         /// <summary>
-        /// Calculates the unlock item count.
+        /// Calculates the unlock item count in accord to gameplay result information.
         /// </summary>
         /// <returns></returns>
         public int CalculateUnlockItemCount() {
@@ -222,6 +226,8 @@ namespace EA4S
                     ? Mathf.CeilToInt(starRatio) 
                     : Mathf.RoundToInt(starRatio);
             }
+            // decrement because the number of stars needed to unlock the first reward is 2. 
+            unlockItemsCount -= 1;
             return unlockItemsCount;
         }
 

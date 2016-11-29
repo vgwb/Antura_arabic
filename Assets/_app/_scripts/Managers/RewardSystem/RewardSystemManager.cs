@@ -11,6 +11,10 @@ namespace EA4S {
         public const string ANTURA_REWARDS_CONFIG_PATH = "Configs/" + "AnturaRewardsConfig";
         public const string COLOR_PAIRS_CONFIG_PATH = "Configs/" + "ColorPairs";
         public const string ANTURA_REWARDS_PREFABS_PATH = "Prefabs/Rewards/";
+        /// <summary>
+        /// The maximum rewards unlockable for playsession.
+        /// </summary>
+        public const int MaxRewardsUnlockableForPlaysession = 2;
         #endregion
 
         #region Configurations
@@ -241,10 +245,33 @@ namespace EA4S {
 
         #endregion
 
-        #region RewardAI
+        #region RewardAI                
+        /// <summary>
+        /// Gets the reward packs for play session ended, already created or create on fly now (and save on player profile).
+        /// </summary>
+        /// <param name="_playSession">The play session.</param>
+        /// <param name="_itemsToUnlock">The items to unlock. Needed to know if must be saved element as unlocked or not.</param>
+        /// <param name="_alreadyUnlocked">The already unlocked.</param>
+        /// <returns></returns>
+        public static List<RewardPack> GetRewardPacksForPlaySession(JourneyPosition _playSession, int _itemsToUnlock, out int _alreadyUnlocked) {
+            List<RewardPack> rpList = AppManager.I.Player.RewardsUnlocked.FindAll(r => r.playSessionId == _playSession.ToString());
+            _alreadyUnlocked = rpList.Count;
+            int count = _alreadyUnlocked;
+            while (rpList.Count < MaxRewardsUnlockableForPlaysession) {
+                RewardPack newRewardPack = GetNextRewardPack(RewardTypes.reward);
+                count++;
+                if (count <= _itemsToUnlock) {
+                    // Then this new reward is unlocked by gameplay result and after creation must be saved as unlocked to profile.
+                    AppManager.I.Player.RewardsUnlocked.Add(newRewardPack);
+                    AppManager.I.Player.Save();
+                }
+                rpList.Add(newRewardPack);
+            }
+            return rpList;
+        }
 
         /// <summary>
-        /// Gets the next reward pack.
+        /// Gets the next reward pack. Contains all logic to create new reward.
         /// </summary>
         /// <param name="_rewardType">Type of the reward.</param>
         /// <returns></returns>
@@ -258,6 +285,7 @@ namespace EA4S {
                 ItemID = config.Rewards.GetRandom().ID,
                 ColorId = config.RewardsColorPairs.GetRandom().ID,
                 Type = _rewardType,
+                playSessionId = AppManager.I.Player.CurrentJourneyPosition.ToString(),
                 IsNew = true,
             };
 
@@ -338,7 +366,18 @@ namespace EA4S {
         public string ItemID;
         public string ColorId;
         public RewardTypes Type;
-        public bool IsNew;
+        /// <summary>
+        /// The play session id where this reward is assigned.
+        /// </summary>
+        public string playSessionId;
+        /// <summary>
+        /// The order of playsession rewards in case of multi reward for same playsession.
+        /// </summary>
+        public int Order = 0;
+        /// <summary>
+        /// True if nevere used by player.
+        /// </summary>
+        public bool IsNew = true;
     }
 
     #endregion
