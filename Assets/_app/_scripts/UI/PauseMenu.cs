@@ -17,6 +17,7 @@ namespace EA4S
         public Sprite AltPauseIconSprite;
         public Image MenuBg;
         public RectTransform SubButtonsContainer;
+        public CreditsUI Credits;
         public RectTransform Logo;
 
         public bool IsMenuOpen { get; private set; }
@@ -31,6 +32,7 @@ namespace EA4S
         {
             I = this;
             defPauseIconSprite = BtPause.Bt.image.sprite;
+            if (!Credits.HasAwoken) Credits.gameObject.SetActive(true);
         }
 
         void Start()
@@ -148,7 +150,7 @@ namespace EA4S
                         BtFx.Toggle(AppManager.I.GameSettings.HighQualityGfx);
                         break;
                     case MenuButtonType.Credits:
-                        // TODO
+                        Credits.Show(true);
                         break;
                     case MenuButtonType.Continue: // Resume
                         OpenMenu(false);
