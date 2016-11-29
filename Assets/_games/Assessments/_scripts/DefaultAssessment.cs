@@ -31,14 +31,14 @@ namespace EA4S.Assessment
             return Dialogues.Dialogue(Localization.Random(
                                         Db.LocalizationDataId.Assessment_Start_1,
                                         Db.LocalizationDataId.Assessment_Start_2,
-                                        Db.LocalizationDataId.Assessment_Start_3));
+                                        Db.LocalizationDataId.Assessment_Start_3), true);
         }
 
         private YieldInstruction PlayAnturaIsComingSound()
         {
             return Dialogues.Dialogue( Localization.Random(
                                         Db.LocalizationDataId.Assessment_Upset_2,
-                                        Db.LocalizationDataId.Assessment_Upset_3));
+                                        Db.LocalizationDataId.Assessment_Upset_3), true);
         }
 
         private YieldInstruction PlayPushAnturaSound()
@@ -46,7 +46,7 @@ namespace EA4S.Assessment
             return Dialogues.Dialogue( Localization.Random(
                                         Db.LocalizationDataId.Assessment_Push_Dog_1,
                                         Db.LocalizationDataId.Assessment_Push_Dog_2,
-                                        Db.LocalizationDataId.Assessment_Push_Dog_3));
+                                        Db.LocalizationDataId.Assessment_Push_Dog_3), true);
         }
 
         private YieldInstruction PlayAnturaGoneSound()
@@ -54,7 +54,7 @@ namespace EA4S.Assessment
             return Dialogues.Dialogue( Localization.Random(
                                         Db.LocalizationDataId.Assessment_Dog_Gone_1,
                                         Db.LocalizationDataId.Assessment_Dog_Gone_2,
-                                        Db.LocalizationDataId.Assessment_Dog_Gone_3));
+                                        Db.LocalizationDataId.Assessment_Dog_Gone_3), true);
         }
 
         private YieldInstruction PlayAssessmentCompleteSound()
@@ -62,7 +62,7 @@ namespace EA4S.Assessment
             return Dialogues.Dialogue( Localization.Random(
                                         Db.LocalizationDataId.Assessment_Complete_1,
                                         Db.LocalizationDataId.Assessment_Complete_2,
-                                        Db.LocalizationDataId.Assessment_Complete_3));
+                                        Db.LocalizationDataId.Assessment_Complete_3), true);
         }
 
         private YieldInstruction PlayGameDescription()
