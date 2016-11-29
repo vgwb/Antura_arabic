@@ -4,6 +4,6 @@ namespace EA4S.Assessment
     {
         int GetCategories();
         string Category(int i);
-        UnityEngine.GameObject SpawnCustomObject(int currentCategory);
+        UnityEngine.GameObject SpawnCustomObject( int currentCategory, bool question);
     }
 }

@@ -44,13 +44,14 @@ namespace EA4S.Assessment
         }
 
         Action playPushAnturaSound;
-
+        Action playGoneSound;
         bool isAnimating = false;
 
-        public void StartAnimation( Action soundCallback)
+        public void StartAnimation( Action pushSound, Action goneSound)
         {
             isAnimating = true;
-            playPushAnturaSound = soundCallback;
+            playPushAnturaSound = pushSound;
+            playGoneSound = goneSound;
             Coroutine.Start( CheckStateAndSetAnimation());
         }
 
@@ -182,6 +183,7 @@ namespace EA4S.Assessment
 
         private void StartMoving()
         {
+            playGoneSound();
             transform.DOMove( anturaDestination.position, 3.0f)
                 .SetEase( Ease.InOutSine)
                 .OnComplete( ()=> isAnimating = false);
