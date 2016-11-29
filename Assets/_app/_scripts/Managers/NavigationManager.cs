@@ -201,10 +201,20 @@ namespace EA4S
         /// Calculates the unlock item count.
         /// </summary>
         /// <returns></returns>
-        public int CalculateUnlockItemCount()
-        {
-            // TODO: logic to calculate
-            return 2;
+        public int CalculateUnlockItemCount() {
+            int totalEarnedStars = 0;
+            for (int i = 0; i < EndSessionResults.Count; i++) {
+                totalEarnedStars += EndSessionResults[i].Stars;
+            }
+            int unlockItemsCount = 0;
+            if (EndSessionResults.Count > 0) {
+                float starRatio = totalEarnedStars / EndSessionResults.Count;
+                // Prevent aproximation errors (0.99f must be == 1 but 0.7f must be == 0) 
+                unlockItemsCount = starRatio - Mathf.CeilToInt(starRatio) < 0.0001f 
+                    ? Mathf.CeilToInt(starRatio) 
+                    : Mathf.RoundToInt(starRatio);
+            }
+            return unlockItemsCount;
         }
 
         /// <summary>
@@ -212,8 +222,7 @@ namespace EA4S
         /// </summary>
         /// <param name="_stars">The star.</param>
         /// <param name="_bones">The bones.</param>
-        public void EndPlaySession(int _stars, int _bones)
-        {
+        public void EndPlaySession(int _stars, int _bones) {
             // Logic
             // log
             // GoToScene ...
