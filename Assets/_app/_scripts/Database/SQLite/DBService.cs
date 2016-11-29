@@ -48,7 +48,7 @@ namespace EA4S.Db
         {
             RecreateAllTables();
 
-            _connection.Insert(new DatabaseInfoData(AppConstants.AppVersion, profileId));
+            _connection.Insert(new DatabaseInfoData(AppConstants.DbSchemeVersion, profileId));
         }
 
         public void GenerateTables(bool create, bool drop)
