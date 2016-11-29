@@ -15,15 +15,35 @@ namespace EA4S.Assessment
         CategoryType categoryType;
         ILivingLetterData sun;
         ILivingLetterData moon;
+        const string sunString = "the_sun";
+        const string moonString = "the_moon";
 
         public CategoryProvider( CategoryType type)
         {
             categoryType = type;
+            sun = GatherData( sunString);
+            moon = GatherData( moonString);
         }
 
-        public string Category( int i)
+        private ILivingLetterData GatherData( string id)
         {
-            return null;
+            var db = AppManager.I.DB;
+            return db.GetWordDataById( id).ConvertToLivingLetterData();
+        }
+
+        public string Category(int currentCategory)
+        {
+            switch (categoryType)
+            {
+                case CategoryType.SunMoon:
+                    if (currentCategory == 0)
+                        return sun.TextForLivingLetter;
+                    else
+                        return moon.TextForLivingLetter;
+
+                default:
+                    throw new NotImplementedException();
+            }
         }
 
         public int GetCategories()
@@ -37,9 +57,29 @@ namespace EA4S.Assessment
             }
         }
 
-        public GameObject SpawnCustomObject( int currentCategory)
+        private GameObject QuestionAnswer( ILivingLetterData data, bool question)
         {
-            throw new NotImplementedException();
+            if (question)
+                return LivingLetterFactory.Instance.SpawnQuestion( data).gameObject;
+            else
+                return LivingLetterFactory.Instance.SpawnAnswer( data).gameObject;
+        }
+
+        public GameObject SpawnCustomObject( int currentCategory, bool question)
+        {
+
+            switch (categoryType)
+            {
+                case CategoryType.SunMoon:
+                    if (currentCategory == 0)
+                        return QuestionAnswer( sun, question);
+                    else
+                        return QuestionAnswer( moon, question);
+
+                default:
+                    throw new NotImplementedException();
+            }
+
         }
     }
 }

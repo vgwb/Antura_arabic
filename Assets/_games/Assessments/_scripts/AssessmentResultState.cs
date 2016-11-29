@@ -18,7 +18,7 @@ namespace EA4S.Assessment
             dialogue.Dialogue(Localization.Random(
                                                     Db.LocalizationDataId.Assessment_Complete_1,
                                                     Db.LocalizationDataId.Assessment_Complete_2,
-                                                    Db.LocalizationDataId.Assessment_Complete_3));
+                                                    Db.LocalizationDataId.Assessment_Complete_3), true);
 
             AssessmentResultAntura.Instance.StartAnimation(
                 () => ExitState()

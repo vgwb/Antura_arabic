@@ -75,7 +75,7 @@ namespace EA4S
 
         #region Public Methods
 
-        public void Show(List<EndsessionResultData> _sessionData, bool _immediate)
+        public void Show(List<EndsessionResultData> _sessionData, int _alreadyUnlockedRewards, bool _immediate)
         {
             ContinueScreen.Close(true);
             Hide(true);
@@ -86,7 +86,7 @@ namespace EA4S
             else showTween.Restart();
             godraysTween.Restart();
             this.gameObject.SetActive(true);
-            this.StartCoroutine(CO_Show(_sessionData));
+            this.StartCoroutine(CO_Show(_sessionData, _alreadyUnlockedRewards));
         }
 
         public void Hide(bool _immediate)
@@ -110,7 +110,7 @@ namespace EA4S
 
         #region Methods
 
-        IEnumerator CO_Show(List<EndsessionResultData> _sessionData)
+        IEnumerator CO_Show(List<EndsessionResultData> _sessionData, int _alreadyUnlockedRewards)
         {
             yield return null;
 
@@ -122,6 +122,10 @@ namespace EA4S
             yield return new WaitForSeconds(1);
 
             // Show bar
+            while (_alreadyUnlockedRewards > -1) {
+                Bar.Achievements[_alreadyUnlockedRewards].AchieveReward(true, true);
+                _alreadyUnlockedRewards--;
+            }
             Bar.Show(_sessionData.Count * 3);
             while (!Bar.ShowTween.IsComplete()) yield return null;
 
@@ -152,6 +156,7 @@ namespace EA4S
         {
             for (int i = 0; i < RewardsGos.Length; ++i) {
                 GameObject go = RewardsGos[i];
+                if (go.transform.childCount == 0) continue;
                 go.SetLayerRecursive(GenericUtilities.LayerMaskToIndex(RewardsGosLayer));
                 CameraHelper.FitRewardToUICamera(go.transform.GetChild(0), RewardsCams[i], true);
             }

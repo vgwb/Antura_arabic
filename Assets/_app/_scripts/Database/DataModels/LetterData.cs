@@ -46,6 +46,8 @@ namespace EA4S.Db
         public string Medial_Unicode;
         public string Final_Unicode;
         public string Symbol_Unicode;
+        public string FinalFix;
+        public string MedialFix;
         public string Old_Isolated;
         public string Old_Initial;
         public string Old_Medial;
@@ -123,7 +125,7 @@ namespace EA4S.Db
             return new LL_LetterData(GetId(), this);
         }
 
-        public string GetUnicode(LetterPosition position = LetterPosition.Isolated)
+        public string GetUnicode(LetterPosition position = LetterPosition.Isolated, bool fallback = true)
         {
             switch (Kind) {
                 case LetterDataKind.Symbol:
@@ -131,11 +133,11 @@ namespace EA4S.Db
                 default:
                     switch (position) {
                         case LetterPosition.Initial:
-                            return Initial_Unicode != "" ? Initial_Unicode : Isolated_Unicode;
+                            return Initial_Unicode != "" ? Initial_Unicode : (fallback ? Isolated_Unicode : "");
                         case LetterPosition.Medial:
-                            return Medial_Unicode != "" ? Medial_Unicode : Isolated_Unicode;
+                            return Medial_Unicode != "" ? Medial_Unicode : (fallback ? Isolated_Unicode : "");
                         case LetterPosition.Final:
-                            return Final_Unicode != "" ? Final_Unicode : Isolated_Unicode;
+                            return Final_Unicode != "" ? Final_Unicode : (fallback ? Isolated_Unicode : "");
                         default:
                             return Isolated_Unicode;
                     }
@@ -161,6 +163,21 @@ namespace EA4S.Db
                     output += ((char)unicode_added).ToString();
                 }
             }
+            return output;
+        }
+
+        // this jsut adds a - before medial and final single letters! if needed
+        public string GetCharFixedForDisplay(LetterPosition position = LetterPosition.Isolated)
+        {
+            if (GetUnicode(position, false) == "")
+                return "";
+
+            string output = GetChar(position);
+
+            if ((position == LetterPosition.Final && FinalFix != "") || (position == LetterPosition.Medial && MedialFix != "")) {
+                output = "\u0640" + output;
+            }
+
             return output;
         }
 

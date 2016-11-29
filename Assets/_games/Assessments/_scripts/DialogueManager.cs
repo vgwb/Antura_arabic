@@ -31,9 +31,11 @@ namespace EA4S.Assessment
 
             yield return TimeEngine.Wait( 0.2f);
 
-            //TODO: speaker not implemented (does it overlaps switch sound to localized audio?)
-            if(showSubtitles)
-                widget.DisplaySentence( ID, 2.2f, false);
+            if (showSubtitles)
+                widget.DisplaySentence( ID, 2.2f, showWalkieTalkie);
+
+            if(showWalkieTalkie && showSubtitles) // give time for walkietalkie sound
+                yield return TimeEngine.Wait( 0.2f);
 
             audioManager.PlayDialogue( ID, () => OnStopPlaying());
 
@@ -42,6 +44,7 @@ namespace EA4S.Assessment
 
             if(showSubtitles)
                 widget.Clear();
+
             yield return TimeEngine.Wait( 0.2f);
         }
 

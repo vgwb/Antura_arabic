@@ -56,7 +56,10 @@ namespace EA4S
             barTween.Kill();
             shakeTween.Rewind();
             ShowTween.Rewind();
-            foreach (EndsessionAchievement ach in Achievements) ach.Achieve(false);
+            foreach (EndsessionAchievement ach in Achievements) {
+                ach.AchieveReward(false);
+                ach.AchieveStar(false);
+            }
         }
 
         internal void IncreaseBy(int _numMinigameStars)
@@ -68,7 +71,10 @@ namespace EA4S
             barTween = Bar.DOSizeDelta(to, 0.2f);
             shakeTween.Restart();
             for (int i = 0; i < Achievements.Length; ++i) {
-                Achievements[i].Achieve(i == 3 && Mathf.Approximately(toPerc, 1) || toPerc >= achievementsPercent[i]);
+                EndsessionAchievement ach = Achievements[i];
+                bool shouldAchieve = i == 3 && Mathf.Approximately(toPerc, 1) || toPerc >= achievementsPercent[i];
+                if (!ach.IsRewardAchieved && shouldAchieve) ach.AchieveReward(true);
+                ach.AchieveStar(shouldAchieve);
             }
             AudioManager.I.PlaySfx(EndsessionResultPanel.I.SfxIncreaseBar);
         }
