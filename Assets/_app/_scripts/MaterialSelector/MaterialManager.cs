@@ -31,6 +31,9 @@ namespace EA4S {
 
     }
 
+    /// <summary>
+    /// Contains materials pair needed to set right color of Starndard Rewards.
+    /// </summary>
     public struct MaterialPair {
         public Material Material1;
         public Material Material2;
