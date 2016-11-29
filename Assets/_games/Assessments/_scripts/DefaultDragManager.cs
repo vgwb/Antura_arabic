@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -85,7 +86,13 @@ namespace EA4S.Assessment
 
             audioManager.PlaySound( Sfx.ThrowObj);
             this.droppable = droppable;
-            droppable.StartDrag();
+            droppable.StartDrag( ()=>RemoveFromUpdate());
+        }
+
+        void RemoveFromUpdate()
+        {
+            this.droppable.StopDrag();
+            this.droppable = null;
         }
 
         public void StopDragging( IDroppable droppable)
@@ -95,8 +102,7 @@ namespace EA4S.Assessment
                 audioManager.PlaySound( Sfx.ThrowObj);
                 if(dragOnly== false)
                     CheckCollidedWithPlaceholder( droppable);
-                this.droppable.StopDrag();
-                this.droppable = null;
+                RemoveFromUpdate();
             }
         }
 
@@ -149,6 +155,18 @@ namespace EA4S.Assessment
         {
             foreach (var a in answers)
                 a.Enable();
+        }
+
+        public void RemoveDraggables()
+        {
+            if (this.droppable != null)
+            {
+                audioManager.PlaySound(Sfx.ThrowObj);
+                if (dragOnly == false)
+                    CheckCollidedWithPlaceholder(droppable);
+                this.droppable.StopDrag();
+                this.droppable = null;
+            }
         }
     }
 }

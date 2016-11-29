@@ -59,7 +59,7 @@ namespace EA4S.Assessment
             float spaceIncrement = blankSpace / (questionsNumber + 1);
 
             //Implement Line Break only if needed
-            if ( blankSpace <= bounds.HalfLetterSize() )
+            if ( blankSpace <= bounds.HalfLetterSize()/3f )
                 throw new InvalidOperationException( "Need a line break becase 1 line is not enough for all");
 
             var flow = AssessmentConfiguration.Instance.LocaleTextFlow;

@@ -12,7 +12,10 @@ namespace EA4S.Assessment
         public CategoryQuestion( GameObject q, int correctAnswers)
         {
             gameObj = q;
+            placeholdersSet = new List<GameObject>();
             this.correctCount = correctAnswers;
+            var question = gameObj.AddComponent< QuestionBehaviour>();
+            question.SetQuestion(this);
         }
 
         public GameObject gameObject
