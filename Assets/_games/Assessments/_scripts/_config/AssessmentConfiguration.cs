@@ -37,6 +37,7 @@ namespace EA4S.Assessment
 
         public float Difficulty { get; set; }
         public int SimultaneosQuestions { get; set; }
+        public int Answers { get; set; }
 
         private int _rounds = 0;
         public int Rounds { get { return _rounds; } set { _rounds = value; } }
@@ -79,12 +80,10 @@ namespace EA4S.Assessment
         /// This is called by MiniGameAPI to create QuestionProvider, that means that if I start game
         /// from debug scene, I need a custom test Provider.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Custom question data for the assessment</returns>
         public IQuestionBuilder SetupBuilder()
         {
             // Testing question builders
-            Teacher.ConfigAI.verboseDataSelection = true;
-            Teacher.ConfigAI.verboseTeacher = true;
             snag = new DifficultyRegulation( Difficulty);
 
             switch (assessmentType)
@@ -131,16 +130,15 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_SunMoonWords_Builder()
         {
             SimultaneosQuestions = 2;
-            snag.SetStartingFrom(0.5f);
             Rounds = 3;
+            Answers = snag.Increase(2, 3);
 
-            return new WordsBySunMoonQuestionBuilder( SimultaneosQuestions * Rounds);
+            return new WordsBySunMoonQuestionBuilder( SimultaneosQuestions * Rounds *2);
         }
 
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
             SimultaneosQuestions = 1;
-            snag.SetStartingFrom(0.5f); 
             Rounds = 3;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
@@ -161,7 +159,6 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_LetterShape_Builder()
         {
             SimultaneosQuestions = 1;
-            snag.SetStartingFrom(0.5f);
             Rounds = 3;
 
             var builderParams = new Teacher.QuestionBuilderParameters();

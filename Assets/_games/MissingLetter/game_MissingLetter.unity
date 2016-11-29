@@ -4185,8 +4185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44a3ff2552966341b7a71afb4debe95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toAwake:
-  - {fileID: 0}
+  toAwake: []
 --- !u!114 &232972646
 MonoBehaviour:
   m_ObjectHideFlags: 0

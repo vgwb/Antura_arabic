@@ -8,6 +8,11 @@ public class AutoActivate : MonoBehaviour
 	void Awake()
     {
         foreach (var g in toAwake)
-            g.SetActive(true);
+        {
+            if(g != null)
+            {
+                g.SetActive(true);
+            }
+        }
     }
 }
