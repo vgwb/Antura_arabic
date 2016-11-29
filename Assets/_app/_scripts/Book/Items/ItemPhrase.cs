@@ -18,6 +18,12 @@ namespace EA4S
             info = _info;
             manager = _manager;
 
+            if (info.unlocked || AppConstants.CheatBookUnlockEverything) {
+                GetComponent<Button>().interactable = true;
+            } else {
+                GetComponent<Button>().interactable = false;
+            }
+
             Title.text = info.data.Arabic;
             SubTitle.text = info.data.Id;
 
@@ -25,7 +31,9 @@ namespace EA4S
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailPhrase(info);
+            if (info.unlocked || AppConstants.CheatBookUnlockEverything) {
+                manager.DetailPhrase(info);
+            }
         }
     }
 }

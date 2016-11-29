@@ -27,6 +27,8 @@ namespace EA4S.Maze
                 name = name.Substring(0, cloneIndex);
             }
 
+            gameObject.name = name;
+
             GameObject character = (GameObject)Instantiate(MazeGameManager.instance.characterPrefab, transform);
             character.name = "Mazecharacter";
             character.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
@@ -50,7 +52,7 @@ namespace EA4S.Maze
                     child.gameObject.AddComponent<BoxCollider>();
                 }
 
-                if (child.name == name + "_coll")
+                if (child.name.IndexOf("_coll") != -1)
                 {
                     child.name = "BorderCollider";
                     BorderColldider = child.gameObject;
@@ -79,7 +81,7 @@ namespace EA4S.Maze
                 }
             }
 
-            character.transform.position = characterPosition + new Vector3(0,0,1);
+            character.transform.position = characterPosition;// + new Vector3(0,0,1);
 
             //fix mazecharacter:
             mazeCharacter.myCollider = BorderColldider;

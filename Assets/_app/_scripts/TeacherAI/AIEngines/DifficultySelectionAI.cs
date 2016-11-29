@@ -32,12 +32,12 @@ namespace EA4S.Teacher
             // Journey
             var currentJourneyPosition = playerProfile.CurrentJourneyPosition;
             var playerStage = currentJourneyPosition.Stage;
-            float journeyDifficulty = Mathf.Clamp01(Mathf.InverseLerp(ConfigAI.minimumStage, ConfigAI.maximumStage, playerStage));
+            float journeyDifficulty = Mathf.Clamp01(Mathf.InverseLerp(AppConstants.minimumStage, AppConstants.maximumStage, playerStage));
             float weightedJourneyDifficulty = journeyDifficulty * journeyWeight / totalWeight;
 
             // Age
             var playerAge = playerProfile.Age;
-            float ageDifficulty = Mathf.Clamp01(Mathf.InverseLerp(ConfigAI.minimumAge, ConfigAI.maximumAge, playerAge));
+            float ageDifficulty = Mathf.Clamp01(Mathf.InverseLerp(AppConstants.minimumAge, AppConstants.maximumAge, playerAge));
             float weightedAgeDifficulty = ageDifficulty * ageWeight / totalWeight;
 
             // Performance
@@ -51,7 +51,7 @@ namespace EA4S.Teacher
                 playerPerformance = minigameScore;
             }
 
-            float performanceDifficulty = Mathf.Clamp01(Mathf.InverseLerp(ConfigAI.minimumMiniGameScore, ConfigAI.maximumMiniGameScore, playerPerformance));
+            float performanceDifficulty = Mathf.Clamp01(Mathf.InverseLerp(AppConstants.minimumMiniGameScore, AppConstants.maximumMiniGameScore, playerPerformance));
             float weightedPerformanceDifficulty = performanceDifficulty * performanceWeight / totalWeight;
 
             // Total

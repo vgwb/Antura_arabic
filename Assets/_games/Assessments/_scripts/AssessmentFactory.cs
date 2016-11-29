@@ -1,3 +1,5 @@
+using System;
+
 namespace EA4S.Assessment
 {
     /// <summary>
@@ -23,7 +25,7 @@ namespace EA4S.Assessment
             IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
-            IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
+            IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions);
             ILogicInjector injector         = new DefaultLogicInjector( dragManager, questionDecorator);
             IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager, wordSize, letterSize);
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
@@ -31,6 +33,31 @@ namespace EA4S.Assessment
             gameDescription = Db.LocalizationDataId.Assessment_Match_Letters_Words;
 
             return new DefaultAssessment(answerPlacer, questionplacer, generator, injector,
+                                            configuration, context, dialogueManager,
+                                            gameDescription);
+        }
+
+        public static IAssessment CreateSunMoonWordAssessment()
+        {
+            Init();
+            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
+            int rounds = AssessmentConfiguration.Instance.Rounds;
+            int simult = AssessmentConfiguration.Instance.SimultaneosQuestions;
+            IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
+            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
+            IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
+            ICategoryProvider categoryProvider = new CategoryProvider( CategoryType.SunMoon);
+            IQuestionGenerator generator = new CategoryQuestionGenerator(   configuration.Questions, 
+                                                                            categoryProvider,
+                                                                            simult, rounds);
+            ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
+            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager, letterSize, wordSize);
+            IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
+
+            gameDescription = Db.LocalizationDataId.Assessment_Classify_Words_Article;
+
+            return new DefaultAssessment( answerPlacer, questionplacer, generator, injector,
                                             configuration, context, dialogueManager,
                                             gameDescription);
         }
@@ -43,7 +70,7 @@ namespace EA4S.Assessment
             IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceAndFlipDecorator();
-            IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
+            IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions);
             ILogicInjector injector         = new DefaultLogicInjector( dragManager, questionDecorator);
             IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager, letterSize, letterSize);
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
@@ -63,7 +90,7 @@ namespace EA4S.Assessment
             IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
-            IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
+            IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions);
             ILogicInjector injector         = new DefaultLogicInjector( dragManager, questionDecorator);
             IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager, letterSize, wordSize);
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);

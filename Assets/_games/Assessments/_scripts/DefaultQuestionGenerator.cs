@@ -20,13 +20,11 @@ namespace EA4S.Assessment
         private IQuestionProvider provider;
         private QuestionGeneratorState state;
         private IQuestionPack currentPack;
-        private QuestionType questionType;
 
-        public DefaultQuestionGenerator( IQuestionProvider provider, QuestionType type)
+        public DefaultQuestionGenerator( IQuestionProvider provider)
         {
             this.provider = provider;
             state = QuestionGeneratorState.Uninitialized;
-            questionType = type;
             ClearCache();
         }
 
@@ -134,7 +132,7 @@ namespace EA4S.Assessment
         private IQuestion GenerateQuestion( ILivingLetterData data, int correctCount)
         {            
             var q = LivingLetterFactory.Instance.SpawnQuestion( data);
-            return new DefaultQuestion( q, correctCount, questionType);
+            return new DefaultQuestion( q, correctCount);
         }
 
         private IAnswer GenerateWrongAnswer( ILivingLetterData wrongAnswer)

@@ -5,8 +5,24 @@ namespace EA4S
 
     public static class AppConstants
     {
-        public const string AppVersion = "0.11.28a";
+        public const string AppVersion = "0.11.29b";
+        public const string DbSchemeVersion = "1";
         public const bool DebugPanelEnabled = true;
+        public const bool UseUnityAnalytics = true;
+        public const bool CheatBookUnlockEverything = true;
+
+        // Application details (used by Teacher and maybe other)
+        public const float minimumAge = 7;
+        public const float maximumAge = 15;
+
+        public const float minimumStage = 1;
+        public const float maximumStage = 6;
+
+        public const float minimumMiniGameScore = -1;
+        public const float maximumMiniGameScore = 1;
+
+        public const int minimumMoodValue = 1;
+        public const int maximumMoodValue = 5;
 
         // Resource Paths
         public const string AvatarsResourcesDir = "Images/Avatars/";

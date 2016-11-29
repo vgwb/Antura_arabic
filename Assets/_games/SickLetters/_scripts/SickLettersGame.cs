@@ -222,6 +222,7 @@ namespace EA4S.SickLetters
             //Context.GetCheckmarkWidget().Show(false);
             TutorialUI.MarkNo(scale.transform.position - Vector3.forward * 2 + Vector3.up, TutorialUI.MarkSize.Big);
             Context.GetAudioManager().PlaySound(Sfx.Lose);
+            //Debug.Log("XXX");
         }
     }
 }

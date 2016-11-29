@@ -20,6 +20,12 @@ namespace EA4S
             info = _info;
             manager = _manager;
 
+            if (info.unlocked || AppConstants.CheatBookUnlockEverything) {
+                GetComponent<Button>().interactable = true;
+            } else {
+                GetComponent<Button>().interactable = false;
+            }
+
             //Title.text = data.Title_Ar;
 
             var icoPath = info.data.GetIconResourcePath();
@@ -45,7 +51,9 @@ namespace EA4S
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailMiniGame(info);
+            if (info.unlocked || AppConstants.CheatBookUnlockEverything) {
+                manager.DetailMiniGame(info);
+            }
         }
     }
 }

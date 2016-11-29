@@ -46,7 +46,9 @@ namespace EA4S.MixedLetters
 
             cameraDistance = Vector3.Distance(Camera.main.transform.position, transform.position);
 
+            letterObjectView.SetState(LLAnimationStates.LL_still);
             letterObjectView.SetState(LLAnimationStates.LL_limbless);
+            
         }
 
         private void OnPointerDown()

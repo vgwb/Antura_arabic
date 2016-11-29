@@ -119,7 +119,6 @@ namespace EA4S.Egg
                 if(smokeTimer <= 0f)
                 {
                     smoke = false;
-
                     OnSmokeEnd();
                 }
             }

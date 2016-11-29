@@ -107,7 +107,6 @@ namespace EA4S
 
         void OnBack()
         {
-            BackButton.AnimateClick();
             if (onGoBack != null) onGoBack();
         }
     }

@@ -192,6 +192,8 @@ namespace EA4S.MissingLetter
         public GameObject m_oParticleSystem;
         public Collider m_oFeedBackDisableLetters;
 
+        public MissingLetterEmoticonsMaterials m_oEmoticonsMaterials;
+
         public Transform m_oQuestionCamera;
         public Transform m_oAnswerCamera;
 

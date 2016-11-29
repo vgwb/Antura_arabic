@@ -33,15 +33,23 @@ namespace EA4S
             I = this;
         }
 
-        public void GoToScene(AppScene nextScene)
+        public void GoToScene(string sceneName)
         {
-            var nextSceneName = GetSceneName(nextScene);
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(nextSceneName);
+            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(sceneName);
+
+            if (AppConstants.UseUnityAnalytics) {
+                UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
+            }
+        }
+
+        public void GoToScene(AppScene newScene)
+        {
+            var nextSceneName = GetSceneName(newScene);
+            GoToScene(nextSceneName);
         }
 
         public void GoToGameScene(MiniGameData _miniGame)
         {
-            //GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(GetSceneName(AppScene.MiniGame, _miniGame));
             AppManager.I.GameLauncher.LaunchGame(_miniGame.Code);
         }
 

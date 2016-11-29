@@ -15,6 +15,12 @@ namespace EA4S.Assessment
             answer.SetAnswer(this);
         }
 
+        public override bool Equals(object obj)
+        {
+            var other = (DefaultAnswer)obj;
+            return other == this;
+        }
+
         public GameObject gameObject
         {
             get

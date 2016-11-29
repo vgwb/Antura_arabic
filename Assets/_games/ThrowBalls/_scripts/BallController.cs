@@ -111,6 +111,9 @@ namespace EA4S.ThrowBalls
             sphereCollider.enabled = true;
             SetState(State.Anchored);
 
+            ArrowBodyController.instance.Reset();
+            ArrowHeadController.instance.Reset();
+
             ArrowBodyController.instance.Enable();
             ArrowHeadController.instance.Enable();
         }
