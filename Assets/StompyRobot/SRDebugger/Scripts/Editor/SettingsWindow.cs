@@ -93,6 +93,7 @@ namespace SRDebugger.Editor
 
             if (EditorGUI.EndChangeCheck())
             {
+                _scrollPosition = Vector2.zero;
                 GUIUtility.keyboardControl = 0;
             }
 
@@ -617,6 +618,8 @@ namespace SRDebugger.Editor
 
         private void DrawTabAdvanced()
         {
+            _scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition, false, true);
+
             GUILayout.Label("Console", SRDebugEditorUtil.Styles.InspectorHeaderStyle);
 
             Settings.Instance.CollapseDuplicateLogEntries =
@@ -719,6 +722,13 @@ namespace SRDebugger.Editor
                 Settings.Instance.DisabledTabs = disabledTabs;
             }
 
+            GUILayout.Label("Other", SRDebugEditorUtil.Styles.InspectorHeaderStyle);
+
+            Settings.Instance.EnableEventSystemGeneration =
+            EditorGUILayout.Toggle(
+                new GUIContent("Automatic Event System", "Automatically create a UGUI EventSystem if none is found in the scene."),
+                Settings.Instance.EnableEventSystemGeneration);
+
             EditorGUILayout.Separator();
 
             if (GUILayout.Button("Run Migrations"))
@@ -726,8 +736,7 @@ namespace SRDebugger.Editor
                 Migrations.RunMigrations(true);
             }
 
-            // Expand content area to fit all available space
-            GUILayout.FlexibleSpace();
+            EditorGUILayout.EndScrollView();
         }
 
         #endregion

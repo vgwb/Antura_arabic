@@ -1,9 +1,4 @@
-﻿#if UNITY_EDITOR
-using UnityEditor;
-
-#endif
-
-namespace SRDebugger
+﻿namespace SRDebugger
 {
     using System;
     using System.Collections.Generic;
@@ -12,6 +7,11 @@ namespace SRDebugger
     using System.Linq;
     using SRF;
     using UnityEngine;
+#if UNITY_EDITOR
+    using UnityEditor;
+#endif
+
+#pragma warning disable 0649
 
     public enum DefaultTabs
     {
@@ -483,6 +483,12 @@ namespace SRDebugger
             set { _maximumConsoleEntries = value; }
         }
 
+        public bool EnableEventSystemGeneration
+        {
+            get { return _enableEventSystemCreation; }
+            set { _enableEventSystemCreation = value; }
+        }
+
         #endregion
 
         #region Serialization
@@ -546,6 +552,8 @@ namespace SRDebugger
         [SerializeField] private PinAlignment _triggerPosition = PinAlignment.TopLeft;
 
         [SerializeField] private int _maximumConsoleEntries = 1500;
+
+        [SerializeField] private bool _enableEventSystemCreation = true;
 
         #endregion
 

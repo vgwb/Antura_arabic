@@ -131,9 +131,9 @@ namespace EA4S.Assessment
         {
             SimultaneosQuestions = 2;
             Rounds = 3;
-            Answers = snag.Increase(2, 3);
+            Answers = 2;// limited br screen size on 3:4 screen
 
-            return new WordsBySunMoonQuestionBuilder( SimultaneosQuestions * Rounds *2);
+            return new WordsBySunMoonQuestionBuilder( SimultaneosQuestions * Rounds * 2);
         }
 
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
