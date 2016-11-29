@@ -70,12 +70,12 @@ namespace EA4S.DontWakeUp
         int RoundsTotal;
         int currentLevel;
         LevelController currentLevelController;
-        float dangeringSpeed = 1.0f;
-        bool inDanger;
+        //float dangeringSpeed = 1.0f;
+        //bool inDanger;
         float dangerIntensity;
-        How2Die dangerCause;
+        //How2Die dangerCause;
         int TutorialIndex;
-        bool dangerAlertShown;
+        // bool dangerAlertShown;
 
         [Header("Gameplay Info and Config section")]
         #region Overrides
@@ -101,8 +101,8 @@ namespace EA4S.DontWakeUp
             currentRound = StartingLevel;
             currentLevel = currentRound;
             LivesLeft = 4;
-            AppManager.Instance.InitDataAI();
-            AppManager.Instance.CurrentGameManagerGO = gameObject;
+            //AppManager.I.InitDataAI();
+            AppManager.I.CurrentGameManagerGO = gameObject;
 
             //LoggerEA4S.Log("minigame", "dontwakeup", "start", "");
             //LoggerEA4S.Save();
@@ -200,7 +200,7 @@ namespace EA4S.DontWakeUp
             UpdateLivesContainer();
             SetupLevel();
 
-            WidgetPopupWindow.I.ShowStringAndWord(ClickedNext, currentRound.ToString(), currentWord);
+            //WidgetPopupWindow.I.ShowStringAndWord(ClickedNext, currentRound.ToString(), currentWord);
             SpeakCurrentLetter();
         }
 
@@ -212,7 +212,7 @@ namespace EA4S.DontWakeUp
         void SetupLevel()
         {
             currentLevelController = Levels[currentLevel - 1].GetComponent<LevelController>();
-            currentWord = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
+            currentWord = AppManager.I.Teacher.GetRandomTestWordDataLL();
 
             myLetter.SetActive(true);
             myLetter.GetComponent<MyLetter>().Init(currentWord.Id);
@@ -301,15 +301,15 @@ namespace EA4S.DontWakeUp
 
         void RoundLostEnded()
         {
-            if (LivesLeft > 0) {
-                ResetAntura();
-                currentLevelController.DoAlarmOff();
-                WidgetSubtitles.I.DisplaySentence("");
-                InitRound();
+            //if (LivesLeft > 0) {
+            //    ResetAntura();
+            //    currentLevelController.DoAlarmOff();
+            //    WidgetSubtitles.I.DisplaySentence("");
+            //    InitRound();
 
-            } else {
-                GameLost();
-            }
+            //} else {
+            //    GameLost();
+            //}
         }
 
         public void RoundWon()
@@ -351,15 +351,15 @@ namespace EA4S.DontWakeUp
         {
             yield return new WaitForSeconds(1f);
 
-            if (score <= 0) {
-                WidgetSubtitles.I.DisplaySentence("game_result_retry");
-            } else if (score == 1) {
-                WidgetSubtitles.I.DisplaySentence("game_result_fair");
-            } else if (score == 2) {
-                WidgetSubtitles.I.DisplaySentence("game_result_good");
-            } else {
-                WidgetSubtitles.I.DisplaySentence("game_result_great");
-            }
+            //if (score <= 0) {
+            //    WidgetSubtitles.I.DisplaySentence("game_result_retry");
+            //} else if (score == 1) {
+            //    WidgetSubtitles.I.DisplaySentence("game_result_fair");
+            //} else if (score == 2) {
+            //    WidgetSubtitles.I.DisplaySentence("game_result_good");
+            //} else {
+            //    WidgetSubtitles.I.DisplaySentence("game_result_great");
+            //}
 
             if (score > 0) {
                 //LoggerEA4S.Log("minigame", "dontwakeup", "Won", score.ToString());
@@ -368,8 +368,8 @@ namespace EA4S.DontWakeUp
             }
             //LoggerEA4S.Save();
 
-            StarSystems.SetActive(true);
-            StarSystems.GetComponent<StarFlowers>().Show(score);
+            //StarSystems.SetActive(true);
+            //StarSystems.GetComponent<StarFlowers>().Show(score);
         }
 
         void StartCurrentRound()
@@ -416,43 +416,43 @@ namespace EA4S.DontWakeUp
         void Update()
         {
             if (DontWakeUpManager.Instance.currentState == DontWakeUpMinigameState.Playing) {
-                if (inDanger) {
-                    if (dangerCause == How2Die.TooFast) {
-                        // toofast danger speed in faster!
-                        dangerIntensity = dangerIntensity + dangeringSpeed * 1 * Time.deltaTime;
-                    } else {
-                        dangerIntensity = dangerIntensity + dangeringSpeed * Time.deltaTime;
-                    }
+                //if (inDanger) {
+                //if (dangerCause == How2Die.TooFast) {
+                //    // toofast danger speed in faster!
+                //    dangerIntensity = dangerIntensity + dangeringSpeed * 1 * Time.deltaTime;
+                //} else {
+                //    dangerIntensity = dangerIntensity + dangeringSpeed * Time.deltaTime;
+                //}
 
-                    if (dangerIntensity < 0.3f) {
-                        dangerAlertShown = false;
-                    }
+                //if (dangerIntensity < 0.3f) {
+                //    dangerAlertShown = false;
+                //}
 
-                    if (dangerIntensity > 0.4f && !dangerAlertShown) {
-                        dangerAlertShown = true;
-                        switch (dangerCause) {
-                            case How2Die.TooFast:
-                                WidgetSubtitles.I.DisplaySentence("game_dontwake_fail_toofast", 1, true, CloseDisplayAlert);
-                                break;
-                            case How2Die.TouchedAlarm:
-                                WidgetSubtitles.I.DisplaySentence("game_dontwake_fail_alarms", 1, true, CloseDisplayAlert);
-                                break;
-                            case How2Die.TouchedDog:
-                                WidgetSubtitles.I.DisplaySentence("game_dontwake_fail_antura", 1, true, CloseDisplayAlert);
-                                break;
-                        }
-                    }
+                //if (dangerIntensity > 0.4f && !dangerAlertShown) {
+                //    dangerAlertShown = true;
+                //    switch (dangerCause) {
+                //        case How2Die.TooFast:
+                //            WidgetSubtitles.I.DisplaySentence("game_dontwake_fail_toofast", 1, true, CloseDisplayAlert);
+                //            break;
+                //        case How2Die.TouchedAlarm:
+                //            WidgetSubtitles.I.DisplaySentence("game_dontwake_fail_alarms", 1, true, CloseDisplayAlert);
+                //            break;
+                //        case How2Die.TouchedDog:
+                //            WidgetSubtitles.I.DisplaySentence("game_dontwake_fail_antura", 1, true, CloseDisplayAlert);
+                //            break;
+                //    }
+                //}
 
-                    if (dangerIntensity > 1f) {
-                        dangerIntensity = 1f;
-                        RoundLost(dangerCause);
-                    }
+                //if (dangerIntensity > 1f) {
+                //    dangerIntensity = 1f;
+                //    RoundLost(dangerCause);
+                //}
 
-                } else {
-                    dangerIntensity = dangerIntensity - dangeringSpeed * Time.deltaTime;
-                    if (dangerIntensity < 0)
-                        dangerIntensity = 0;
-                }
+                //} else {
+                //    dangerIntensity = dangerIntensity - dangeringSpeed * Time.deltaTime;
+                //    if (dangerIntensity < 0)
+                //        dangerIntensity = 0;
+                //}
 
                 dangering.SetIntensity(dangerIntensity);
             }
@@ -465,13 +465,13 @@ namespace EA4S.DontWakeUp
 
         public void InDanger(bool status, How2Die cause)
         {
-            inDanger = status;
-            dangerCause = cause;
-            if (inDanger) {
-                AudioManager.I.PlaySfx(Sfx.DangerClock);
-            } else {
-                AudioManager.I.StopSfx(Sfx.DangerClock);
-            }
+            //inDanger = status;
+            //dangerCause = cause;
+            //if (inDanger) {
+            //    AudioManager.I.PlaySfx(Sfx.DangerClock);
+            //} else {
+            //    AudioManager.I.StopSfx(Sfx.DangerClock);
+            //}
         }
 
         void resetDanger()

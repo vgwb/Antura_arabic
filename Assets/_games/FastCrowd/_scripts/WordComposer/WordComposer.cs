@@ -4,29 +4,34 @@ using DG.Tweening;
 using System.Collections;
 using System;
 
-namespace EA4S.FastCrowd {
+namespace EA4S.FastCrowd
+{
 
-    public class WordComposer : MonoBehaviour {
-
+    public class WordComposer : MonoBehaviour
+    {
+        public Transform innerTransform;
         WordFlexibleContainer WordLabel;
         List<LL_LetterData> CompletedLetters = new List<LL_LetterData>();
 
-        void Start() {
+        void Start()
+        {
             WordLabel = GetComponent<WordFlexibleContainer>();
             UpdateWord();
         }
-        
+
         void UpdateWord()
         {
             if (!isActiveAndEnabled)
                 return;
 
             string word = string.Empty;
-            foreach (LL_LetterData letter in CompletedLetters) {
-                word += letter.Data.Isolated;
+
+            for (int i = 0; i < CompletedLetters.Count; ++i) {
+                LL_LetterData letter = CompletedLetters[i];
+                word += letter.Data.GetChar();
             }
-            word = ArabicAlphabetHelper.ParseWord(word, AppManager.Instance.Teacher.GetAllTestLetterDataLL());
-            WordLabel.SetText(word, false);
+            
+            WordLabel.SetText(word);
         }
 
         public void AddLetter(ILivingLetterData data)
@@ -36,7 +41,7 @@ namespace EA4S.FastCrowd {
 
             StartCoroutine(AddLetter(data, 1.3f));
         }
-        
+
         public void Clean()
         {
             CompletedLetters = new List<LL_LetterData>();
@@ -50,11 +55,12 @@ namespace EA4S.FastCrowd {
             yield return new WaitForSeconds(_delay);
             CompletedLetters.Add(data as LL_LetterData);
             AudioManager.I.PlaySfx(EA4S.Sfx.Hit);
-            transform.DOShakeScale(1.5f);
+            innerTransform.DOShakeScale(1.5f, 0.5f);
             UpdateWord();
         }
 
-        private void DropContainer_OnObjectiveBlockCompleted() {
+        private void DropContainer_OnObjectiveBlockCompleted()
+        {
             Clean();
         }
     }

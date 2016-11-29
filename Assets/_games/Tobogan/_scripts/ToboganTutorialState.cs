@@ -161,7 +161,7 @@ namespace EA4S.Tobogan
             Vector3 lineFrom = game.questionsManager.GetQuestionLivingLetter().letter.contentTransform.position;
             Vector3 lineTo = game.pipesAnswerController.GetCorrectPipeAnswer().tutorialPoint.position;
 
-            TutorialUI.DrawLine(lineFrom, lineTo, TutorialUI.DrawLineMode.Finger);
+            TutorialUI.DrawLine(lineFrom, lineTo, TutorialUI.DrawLineMode.FingerAndArrow);
         }
 
         void TutorialMarkNo()

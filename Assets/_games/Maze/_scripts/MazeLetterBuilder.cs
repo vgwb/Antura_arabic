@@ -7,6 +7,7 @@ namespace EA4S.Maze
     public class MazeLetterBuilder : MonoBehaviour
     {
         public int letterDataIndex = 0;
+        //public ILivingLetterData letterData;
 
         private bool isBuild = false;
         private System.Action _callback = null;
@@ -26,7 +27,9 @@ namespace EA4S.Maze
                 name = name.Substring(0, cloneIndex);
             }
 
-            GameObject character = (GameObject)Instantiate(MazeGameManager.Instance.characterPrefab, transform);
+            gameObject.name = name;
+
+            GameObject character = (GameObject)Instantiate(MazeGameManager.instance.characterPrefab, transform);
             character.name = "Mazecharacter";
             character.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             MazeCharacter mazeCharacter = character.GetComponent<MazeCharacter>();
@@ -49,7 +52,7 @@ namespace EA4S.Maze
                     child.gameObject.AddComponent<BoxCollider>();
                 }
 
-                if (child.name == name + "_coll")
+                if (child.name.IndexOf("_coll") != -1)
                 {
                     child.name = "BorderCollider";
                     BorderColldider = child.gameObject;
@@ -78,10 +81,10 @@ namespace EA4S.Maze
                 }
             }
 
-            character.transform.position = characterPosition + new Vector3(0,0,1);
+            character.transform.position = characterPosition;// + new Vector3(0,0,1);
 
             //fix mazecharacter:
-            mazeCharacter.collider = BorderColldider;
+            mazeCharacter.myCollider = BorderColldider;
             mazeCharacter.Fruits = arrows;
 
             letter.character = mazeCharacter;
@@ -96,6 +99,7 @@ namespace EA4S.Maze
             handTut.linesToShow = lines;
 
             gameObject.AddComponent<MazeShowPrefab>().letterIndex = letterDataIndex;
+            //gameObject.GetComponent<MazeShowPrefab>().letterId = letterData;
 
             if (_callback != null) _callback();
         }

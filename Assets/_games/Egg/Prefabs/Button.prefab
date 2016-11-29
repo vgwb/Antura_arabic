@@ -21,6 +21,7 @@ GameObject:
   - 224: {fileID: 224000012009308884}
   - 222: {fileID: 222000012672289456}
   - 114: {fileID: 114000011287834298}
+  - 114: {fileID: 114000010079297906}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -62,6 +63,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114000010079297906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010727628408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6e49fa5c3fe4d65ba8553977228fcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_text: 
+  isTMPro: 1
+  isUI: 1
+  isArabic: 1
+  LocalizationId: 0
 --- !u!114 &114000011287834298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 597fbb8756a9d104dafe39930168d454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonText: {fileID: 114000011287834298}
+  buttonText: {fileID: 114000010079297906}
   buttonImage: {fileID: 114000012085469096}
   button: {fileID: 114000013877734780}
   colorStandard: {r: 1, g: 1, b: 1, a: 1}

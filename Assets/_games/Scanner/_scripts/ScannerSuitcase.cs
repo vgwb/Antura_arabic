@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
 using TMPro;
@@ -9,24 +9,29 @@ namespace EA4S.Scanner
 
 	public class ScannerSuitcase : MonoBehaviour {
 
-		bool isDragging = false;
+		public bool isDragging = false;
 		private Vector3 screenPoint;
 		private Vector3 offset;
 		private float startX;
 		private float startY;
 		private float startZ;
+		private Collider player;
+		private Transform originalParent;
 
 		public Vector3 fingerOffset;
-		public float depth;
+		public float scale = 0.5f;
 		public bool isCorrectAnswer = false;
 		public TextMeshPro drawing;
 		public GameObject shadow;
+
+		[HideInInspector]
+		public string wordId;
 
 
 		bool overPlayermarker = false;
 
 
-		public event Action <GameObject> onCorrectDrop;
+		public event Action <GameObject, ScannerLivingLetter> onCorrectDrop;
 		public event Action <GameObject> onWrongDrop;
 
 		IEnumerator Coroutine_ScaleOverTime(float time)
@@ -45,7 +50,7 @@ namespace EA4S.Scanner
 
 		void Start()
 		{
-
+			originalParent = transform.parent;
 			startX = transform.position.x;
 			startY = transform.position.y;
 			startZ = transform.position.z;
@@ -54,6 +59,7 @@ namespace EA4S.Scanner
 
 		public void Reset()
 		{
+			transform.parent = originalParent;
 			transform.position = new Vector3(startX, startY, startZ);
 			isDragging = false;
 			transform.localScale = new Vector3(0.25f,0.25f,0.25f);
@@ -65,12 +71,18 @@ namespace EA4S.Scanner
 
 		void OnMouseDown()
 		{
-			shadow.SetActive(false);
+            if (ScannerGame.disableInput)
+                return;
+
+            shadow.SetActive(false);
 			isDragging = true;
 			screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
 			offset = gameObject.transform.position - 
 				Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+
+			transform.localScale = new Vector3(scale,scale,scale);
+
 
 		}
 
@@ -80,35 +92,55 @@ namespace EA4S.Scanner
 			{
 				Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 				Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-				transform.position = new Vector3 (curPosition.x + fingerOffset.x, curPosition.y + fingerOffset.y, depth);
+				transform.position = 
+					new Vector3 (curPosition.x + fingerOffset.x, curPosition.y + fingerOffset.y, transform.position.z);
 			}
 
 		}
-
+			
 		void OnTriggerEnter(Collider other)
 		{
-			if (other.tag == "Player") overPlayermarker = true;
+			if (other.tag == "Player") 
+			{ 
+				overPlayermarker = true;
+				player = other;
+			}
 		}
 
 		void OnTriggerStay(Collider other)
 		{
-			if (other.tag == "Player") overPlayermarker = true;
+			if (other.tag == "Player") 
+			{
+				overPlayermarker = true;
+				player = other;
+			}
 		}
 
 		void OnTriggerExit(Collider other)
 		{
-			if (other.tag == "Player") overPlayermarker = false;
+			if (other.tag == "Player") 
+			{
+				overPlayermarker = false;
+			}
 		}
 
 		void OnMouseUp()
 		{
+            if (ScannerGame.disableInput)
+                return;
 
-			if (overPlayermarker)
+            if (overPlayermarker)
 			{
-				if (isCorrectAnswer)
+				ScannerLivingLetter LL = player.transform.parent.GetComponent<ScannerLivingLetter>();
+				if (isCorrectAnswer && LL.letterObjectView.Data.Id == wordId)
 				{
-					onCorrectDrop(gameObject);
-				}
+					LL.gotSuitcase = true;
+					transform.parent = player.transform;
+					transform.localPosition = new Vector3(2,1,-2);
+					onCorrectDrop(gameObject, LL);
+                    TutorialUI.Clear(true);
+                    ScannerTutorial.TUT_STEP = 1;
+                }
 				else
 				{
 					onWrongDrop(gameObject);

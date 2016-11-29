@@ -72,7 +72,7 @@ namespace EA4S.MixedLetters
         {
             int numLetters = lettersInOrder.Count;
             bool isEven = numLetters % 2 == 0;
-            float dropZoneWidthWithSpace = Constants.DROP_ZONE_WIDTH + 0.6f;
+            float dropZoneWidthWithSpace = Constants.DROP_ZONE_WIDTH + 1f;
             float dropZoneXStart = isEven ? numLetters / 2 - 0.5f : Mathf.Floor(numLetters / 2);
             dropZoneXStart *= dropZoneWidthWithSpace;
 
@@ -161,6 +161,20 @@ namespace EA4S.MixedLetters
                 int remainder = allLettersInAlphabet.Count % 6;
                 lettersInOrder = allLettersInAlphabet.GetRange(roundNumber * numLettersPerRound, roundNumber == 4 ? remainder : numLettersPerRound);
                 VictimLLController.instance.letterObjectView.Init(null);
+
+                string victimLLWord = "";
+
+                for (int i = 0; i < lettersInOrder.Count; i++)
+                {
+                    victimLLWord += ((LL_LetterData)lettersInOrder[i]).Data.GetChar();
+
+                    if (i != lettersInOrder.Count - 1)
+                    {
+                        victimLLWord += " ";
+                    }
+                }
+
+                VictimLLController.instance.SetCustomText(victimLLWord);
             }
         }
 

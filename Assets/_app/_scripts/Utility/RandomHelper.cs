@@ -61,6 +61,7 @@ namespace EA4S
 
             if (numberToSelect == fromList.Count) {
                 chosenList.AddRange(fromList);
+                chosenList = new List<T>(chosenList.OrderBy(a => UnityEngine.Random.value));
                 return chosenList;
             }
 

@@ -299,6 +299,11 @@ namespace EA4S.Balloons
 
         private void CreateShockwave()
         {
+            if (BalloonsGame.instance.isTutorialRound)
+            {
+                return;
+            }
+
             Vector3 shockwavePosition = transform.position;
             var affectedObjects = BalloonsGame.instance.floatingLetters.FindAll(floatingLetter => floatingLetter.transform.position.x > transform.position.x - shockwaveRadius && floatingLetter.transform.position.x < transform.position.x + shockwaveRadius);
 
@@ -372,7 +377,26 @@ namespace EA4S.Balloons
                 Balloons[i].DisableCollider();
             }
             Letter.DisableCollider();
+        }
 
+        public void Enable()
+        {
+            for (int i = 0; i < Balloons.Length; i++)
+            {
+                Balloons[i].EnableCollider();
+            }
+            Letter.EnableCollider();
+        }
+
+        public void Freeze()
+        {
+            floatDistance = 0f;
+            floatSpeed = 0f;
+            floatRandomnessFactor = 0f;
+            waftSpeed = 0f;
+            waftRandomnessFactor = 0f;
+            Letter.keepFocusingLetter = true;
+            Letter.DisableCollider();
         }
     }
 }

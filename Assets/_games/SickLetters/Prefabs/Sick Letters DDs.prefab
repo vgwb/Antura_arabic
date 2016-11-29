@@ -1935,7 +1935,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0, guid: 3041f484588774aaab62df6db84469c9, type: 2}
+  - {fileID: 2132638, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -2022,7 +2022,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0, guid: 3041f484588774aaab62df6db84469c9, type: 2}
+  - {fileID: 2132638, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -2592,7 +2592,7 @@ MonoBehaviour:
   isCorrect: 0
   isNeeded: 0
   isInVase: 0
-  isTouchingVase: 0
+  touchedVase: 0
   isDragging: 0
   thisRigidBody: {fileID: 0}
   boxCollider: {fileID: 0}
@@ -2772,8 +2772,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: ' '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3041f484588774aaab62df6db84469c9, type: 2}
-  m_sharedMaterial: {fileID: 0, guid: 3041f484588774aaab62df6db84469c9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
+  m_sharedMaterial: {fileID: 2132638, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2886,7 +2886,7 @@ MonoBehaviour:
   isCorrect: 0
   isNeeded: 0
   isInVase: 0
-  isTouchingVase: 0
+  touchedVase: 0
   isDragging: 0
   thisRigidBody: {fileID: 0}
   boxCollider: {fileID: 0}
@@ -2951,7 +2951,7 @@ MonoBehaviour:
   isCorrect: 0
   isNeeded: 0
   isInVase: 0
-  isTouchingVase: 0
+  touchedVase: 0
   isDragging: 0
   thisRigidBody: {fileID: 0}
   boxCollider: {fileID: 0}
@@ -2976,7 +2976,7 @@ MonoBehaviour:
   isCorrect: 0
   isNeeded: 0
   isInVase: 0
-  isTouchingVase: 0
+  touchedVase: 0
   isDragging: 0
   thisRigidBody: {fileID: 0}
   boxCollider: {fileID: 0}
@@ -3021,7 +3021,7 @@ MonoBehaviour:
   isCorrect: 0
   isNeeded: 0
   isInVase: 0
-  isTouchingVase: 0
+  touchedVase: 0
   isDragging: 0
   thisRigidBody: {fileID: 0}
   boxCollider: {fileID: 0}
@@ -3491,7 +3491,7 @@ MonoBehaviour:
   isCorrect: 0
   isNeeded: 0
   isInVase: 0
-  isTouchingVase: 0
+  touchedVase: 0
   isDragging: 0
   thisRigidBody: {fileID: 0}
   boxCollider: {fileID: 0}
@@ -3651,7 +3651,7 @@ MonoBehaviour:
   isCorrect: 0
   isNeeded: 0
   isInVase: 0
-  isTouchingVase: 0
+  touchedVase: 0
   isDragging: 0
   thisRigidBody: {fileID: 0}
   boxCollider: {fileID: 0}
@@ -3676,8 +3676,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: ' '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3041f484588774aaab62df6db84469c9, type: 2}
-  m_sharedMaterial: {fileID: 0, guid: 3041f484588774aaab62df6db84469c9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
+  m_sharedMaterial: {fileID: 2132638, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3925,7 +3925,7 @@ MonoBehaviour:
   isCorrect: 0
   isNeeded: 0
   isInVase: 0
-  isTouchingVase: 0
+  touchedVase: 0
   isDragging: 0
   thisRigidBody: {fileID: 0}
   boxCollider: {fileID: 0}

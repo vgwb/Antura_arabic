@@ -1,8 +1,9 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
-
+using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 
 
 using EA4S;
@@ -13,9 +14,10 @@ namespace EA4S.Scanner
 	public class ScannerGame : MiniGame 
 	{
 
-//		public static ScannerGame instance;
+        //		public static ScannerGame instance;
 
-		public const string TAG_BELT = "Scanner_Belt";
+        public static bool disableInput;
+        public const string TAG_BELT = "Scanner_Belt";
 		public const string TAG_SCAN_START = "Scanner_ScanStart";
 		public const string TAG_SCAN_END = "Scanner_ScanEnd";
 
@@ -27,6 +29,7 @@ namespace EA4S.Scanner
 
 		public GameObject poofPrefab;
 
+		public ScannerDevice scannerDevice;
 
 		public string currentWord = "";
 
@@ -41,19 +44,27 @@ namespace EA4S.Scanner
 
 		public GameObject LLPrefab;
 
-		public ScannerLivingLetter scannerLL;
+		[HideInInspector]
+		public List<ScannerLivingLetter> scannerLL;
 
-		public ScannerSuitcase[] suitcases;
+		public List<ScannerSuitcase> suitcases;
 
 		[HideInInspector]
-		public ILivingLetterData wordData;
+		public List <ILivingLetterData> wordData;
 
 		[HideInInspector]
 		public ScannerRoundsManager roundsManager;
 
+		[HideInInspector]
+		public int LLCount;
+
 		public int CurrentScoreRecord;
 
-		int STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD;
+		public Animator trapDoor;
+
+        public ScannerTutorial tut;
+
+        public int STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD;
 
 		public int CurrentStars
 		{
@@ -95,26 +106,47 @@ namespace EA4S.Scanner
 			STARS_2_THRESHOLD = numberOfRounds/2;
 			STARS_3_THRESHOLD = numberOfRounds;
 
+			LLCount = ScannerConfiguration.Instance.nCorrect;
+
+			if (LLCount == 3)
+			{
+				suitcases.First().gameObject.SetActive(false);
+				suitcases.Last().gameObject.SetActive(false);
+
+				suitcases.Remove(suitcases.First());
+				suitcases.Remove(suitcases.Last());
+
+				var leftSS = suitcases.First().transform.localPosition;
+				suitcases.First().transform.localPosition = new Vector3(-7, leftSS.y, leftSS.z);
+
+				var rightSS = suitcases.Last().transform.localPosition;
+				suitcases.Last().transform.localPosition = new Vector3(7, rightSS.y, rightSS.z);
+
+			}
+
+
 			IntroductionState = new ScannerIntroductionState(this);
 			PlayState = new ScannerPlayState(this);
 			ResultState = new ScannerResultState(this);
 
 			roundsManager = new ScannerRoundsManager(this);
 
-			Context.GetOverlayWidget().Initialize(true, false, false);
+            tut = GetComponent<ScannerTutorial>();
+
+			//Context.GetOverlayWidget().Initialize(true, false, false);
 			Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
 		}
 
-		public void PlayWord(float deltaTime)
+		public void PlayWord(float deltaTime, ScannerLivingLetter LL)
 		{
 			Debug.Log("Play word: " + deltaTime);
-			IAudioSource wordSound = Context.GetAudioManager().PlayLetterData(wordData, true);
+			IAudioSource wordSound = Context.GetAudioManager().PlayLetterData(LL.letterObjectView.Data, true);
 			wordSound.Pitch = Mathf.Abs(maxPlaySpeed - Mathf.Clamp(deltaTime,minPlaySpeed,maxPlaySpeed + minPlaySpeed));
 		}
 
 		public void CreatePoof(Vector3 position, float duration, bool withSound)
 		{
-			if (withSound) AudioManager.I.PlaySfx(Sfx.BaloonPop);
+			if (withSound) AudioManager.I.PlaySfx(Sfx.BalloonPop);
 			GameObject poof = Instantiate(poofPrefab, position, Quaternion.identity) as GameObject;
 			poof.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
 			Destroy(poof, duration);

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EA4S.HideAndSeek
 {
@@ -29,12 +30,20 @@ namespace EA4S.HideAndSeek
                 ShowFinger();
         }
 
+        private LL_LetterData GetCorrectAnswer()
+        {
+            return (LL_LetterData)currentQuestion.GetCorrectAnswers().ToList()[0];
+        }
+
         void SetupTutorial()
         {
-            currentQuestion = (HideAndSeekQuestionsPack)questionProvider.GetQuestion();
-            List<ILivingLetterData> letterList = currentQuestion.GetLetters();
-            ILivingLetterData right = currentQuestion.GetAnswer();
-            ILivingLetterData wrong = (letterList[0] == right) ? letterList[1] : letterList[0];
+            currentQuestion = HideAndSeekConfiguration.Instance.Questions.GetNextQuestion();
+            List<ILivingLetterData> letterList = new List<ILivingLetterData>();
+
+            ILivingLetterData right = currentQuestion.GetCorrectAnswers().ToList()[0];
+            ILivingLetterData wrong = currentQuestion.GetCorrectAnswers().ToList()[1];
+            letterList.Add(right);
+            letterList.Add(wrong);
 
             // Set the wrong answer
             ArrayLetters[0].transform.position = ArrayPlaceholder[0].transform.position;
@@ -58,7 +67,7 @@ namespace EA4S.HideAndSeek
             var winInitialDelay = 1f;
             yield return new WaitForSeconds(winInitialDelay);
 
-            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Id);
+            AudioManager.I.PlayLetter(GetCorrectAnswer().Id);
 
             buttonRepeater.SetActive(true);
 
@@ -123,7 +132,7 @@ namespace EA4S.HideAndSeek
         {
             letterInAnimation = GetIdFromPosition(id);
             HideAndSeekLetterController script = ArrayLetters[letterInAnimation].GetComponent<HideAndSeekLetterController>();
-            if (script.view.Data.Id == currentQuestion.GetAnswer().Id)
+            if (script.view.Data.Id == GetCorrectAnswer().Id)
             {
                 script.resultAnimation(true);
                 AudioManager.I.PlaySfx(Sfx.Win);
@@ -176,7 +185,7 @@ namespace EA4S.HideAndSeek
 
         public void RepeatAudio()
         {
-            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Id);
+            AudioManager.I.PlayLetter(GetCorrectAnswer().Id);
         }
 
         public GameObject[] ArrayTrees;
@@ -187,8 +196,7 @@ namespace EA4S.HideAndSeek
 
         private int letterInAnimation = -1;
 
-        public HideAndSeekQuestionsProvider questionProvider;
-        public HideAndSeekQuestionsPack currentQuestion;
+        private IQuestionPack currentQuestion;
 
         public HideAndSeekGame game;
 

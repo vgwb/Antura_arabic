@@ -65,7 +65,7 @@ namespace EA4S.SickLetters
         {
             yield return new WaitForSeconds(tutorialStartDelay);
             game.disableInput = false;
-            AudioManager.I.PlayDialog("SickLetters_Tuto");
+            AudioManager.I.PlayDialog(Db.LocalizationDataId.SickLetters_Tuto);
 
             while (true)
             {

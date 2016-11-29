@@ -4,7 +4,7 @@
 	{
 		ScannerGame game;
 
-		float timer = 1;
+		float timer = 1.5f;
 		public ScannerIntroductionState(ScannerGame game)
 		{
 			this.game = game;
@@ -12,11 +12,13 @@
 
 		public void EnterState()
 		{
-		}
+            AudioManager.I.PlayDialog(Db.LocalizationDataId.Scanner_Title);
+        }
 
 		public void ExitState()
 		{
-		}
+            AudioManager.I.PlayDialog(Db.LocalizationDataId.Scanner_Intro);
+        }
 
 		public void Update(float delta)
 		{

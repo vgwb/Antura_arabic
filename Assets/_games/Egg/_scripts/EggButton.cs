@@ -9,7 +9,7 @@ namespace EA4S.Egg
 {
     public class EggButton : MonoBehaviour
     {
-        public TextMeshProUGUI buttonText;
+        public TextRender buttonText;
         public Image buttonImage;
         public Button button;
 
@@ -24,6 +24,7 @@ namespace EA4S.Egg
 
         public int positionIndex { get; set; }
 
+        Action startButtonAudioCallback;
         Action playButtonAudioCallback;
         IAudioManager audioManager;
         IAudioSource audioSource;
@@ -51,22 +52,14 @@ namespace EA4S.Egg
         {
             this.livingLetterData = livingLetterData;
 
-            if (livingLetterData.DataType == LivingLetterDataType.Letter)
-            {
-                buttonText.gameObject.SetActive(true);
+            buttonText.gameObject.SetActive(true);
 
-                buttonText.text = ArabicAlphabetHelper.GetLetterFromUnicode(((LL_LetterData)livingLetterData).Data.Isolated_Unicode);
-            }
-            else if (livingLetterData.DataType == LivingLetterDataType.Letter)
-            {
-                buttonText.gameObject.SetActive(true);
-
-                buttonText.text = ArabicFixer.Fix(((LL_WordData)livingLetterData).Data.Arabic, false, false);
-            }
+            buttonText.SetLetterData(livingLetterData);
         }
 
-        public float PlayButtonAudio(bool lightUp, float delay = 0f, Action callback = null)
+        public float PlayButtonAudio(bool lightUp, float delay = 0f, Action callback = null, Action startCallback = null)
         {
+            startButtonAudioCallback = startCallback;
             playButtonAudioCallback = callback;
 
             audioSource = audioManager.PlayLetterData(livingLetterData);
@@ -91,6 +84,12 @@ namespace EA4S.Egg
             }).OnStart(delegate ()
             {
                 audioSource = audioManager.PlayLetterData(livingLetterData);
+
+                if(startButtonAudioCallback != null)
+                {
+                    startButtonAudioCallback();
+                }
+
             }).SetDelay(delay);
 
             return duration;
@@ -147,9 +146,9 @@ namespace EA4S.Egg
             buttonImage.color = colorLightUp;
         }
 
-        public void SetOnStandardColor()
+        public void SetOnStandardColor(bool killTween = true)
         {
-            if (colorTweener != null)
+            if (colorTweener != null && killTween)
                 colorTweener.Kill();
 
             buttonImage.color = colorStandard;

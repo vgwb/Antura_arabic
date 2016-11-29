@@ -139,9 +139,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013506849580}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: -3, z: 0}
-  m_LocalScale: {x: 0.99072695, y: 0.99072695, z: 0.99072695}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10, y: -3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000011546068916}
@@ -288,7 +288,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c24b11789453cb14a820b49af9ef816b, type: 2}
+  - {fileID: 2100000, guid: 58ee8925bf21a04418f7897c0bb457fb, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -434,8 +434,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.9999998, y: 2.9999998, z: 2.9999995}
-  m_Center: {x: 0, y: 0, z: 1.4999998}
+  m_Size: {x: 2.9999998, y: 40, z: 2.9999995}
+  m_Center: {x: 0, y: -20, z: 1.4999998}
 --- !u!114 &114000010062289924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -447,11 +447,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ca63af45d5849a39a7cfd79031af4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDragging: 0
   fingerOffset: {x: 0, y: 3, z: 0}
-  depth: -12
+  scale: 0.5
   isCorrectAnswer: 0
   drawing: {fileID: 114000012707875320}
   shadow: {fileID: 1000010773587004}
+  wordId: 
 --- !u!114 &114000011481810792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -501,8 +503,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}

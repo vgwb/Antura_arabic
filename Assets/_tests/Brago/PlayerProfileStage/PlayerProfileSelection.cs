@@ -32,7 +32,7 @@ namespace EA4S {
         }
 
         public PlayerProfile CreatePlayer(int _id) {
-            PlayerProfile newPlayer = AppManager.Instance.PlayerProfile.CreateNewPlayer(
+            PlayerProfile newPlayer = AppManager.I.PlayerProfile.CreateNewPlayer(
                 new PlayerProfile() {
                     Key = _id.ToString(),
                     Id = _id,
@@ -46,7 +46,7 @@ namespace EA4S {
         /// </summary>
         /// <param name="_ppKey">The pp key.</param>
         public void SelectPlayerProfile(string _ppKey) {
-            //AppManager.Instance.Player.CreateOrLoadPlayerProfile(_ppKey);
+            //AppManager.I.Player.CreateOrLoadPlayerProfile(_ppKey);
 
             // Visual containers reorder
             refreshActivePlayerList();
@@ -60,7 +60,7 @@ namespace EA4S {
                 PlayerSelectables.content.GetChild(i).SetParent(AvailableAvatars.content, false);
             }
 
-            foreach (string playerKey in AppManager.Instance.GameSettings.AvailablePlayers) {
+            foreach (string playerKey in AppManager.I.GameSettings.AvailablePlayers) {
                 Transform t = AvailableAvatars.content.FindChild(playerKey);
                 if (t)
                     t.SetParent(PlayerSelectables.content, false);

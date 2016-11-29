@@ -25,7 +25,7 @@ namespace EA4S.MissingLetter
             gameObject.transform.rotation = Quaternion.identity;
             endTransformToCallback = null;
             onLetterClick = null;
-            LightOff();
+            mbIsSpeaking = false;
         }
 
         /// <summary>
@@ -81,8 +81,6 @@ namespace EA4S.MissingLetter
         /// </summary>
         public void ExitScene()
         {
-            LightOff();
-
             endTransformToCallback += OnEndLifeCycle;
             mCollider.enabled = false;
 
@@ -103,8 +101,6 @@ namespace EA4S.MissingLetter
         /// <param name="_duration"> duration of action </param>
         public void ChangePos(int _idxPos, int _length, float _duration)
         {
-            LightOff();
-
             mCollider.enabled = false;
             Vector3 newPos = CalculatePos(_idxPos, _length);
 
@@ -162,7 +158,7 @@ namespace EA4S.MissingLetter
                 {
                     AudioManager.I.PlayWord(mLetterData.Id);
                 }
-                StartCoroutine(Utils.LaunchDelay(0.5f, SetIsSpeaking, false));
+                StartCoroutine(Utils.LaunchDelay(0.8f, SetIsSpeaking, false));
             }
         }
         
@@ -178,42 +174,8 @@ namespace EA4S.MissingLetter
         public void SuggestLetter()
         {
             PlayAnimation(LLAnimationStates.LL_dancing);
-            LightOn();
-        }
-      
-        /// <summary>
-        /// create a spotlight target on the LL
-        /// </summary>
-        public void LightOn() {
-            if (spotLight == null) {
-                spotLight = new GameObject("SpotLight");
-
-                spotLight.transform.position = gameObject.transform.position + Vector3.up * 12 + Vector3.back * 5;
-                spotLight.transform.Rotate(Vector3.right, 65);
-                spotLight.transform.parent = gameObject.transform;
-                Light cSpotLight = spotLight.AddComponent<Light>();
-                cSpotLight.type = LightType.Spot;
-                cSpotLight.range = 40;
-                cSpotLight.intensity = 8;
-                cSpotLight.spotAngle = 50;
-                cSpotLight.renderMode = LightRenderMode.ForcePixel;
-            }
-        }
-        
-        /// <summary>
-        /// destroy the spotlight
-        /// </summary>
-        public void LightOff() {
-            if (spotLight != null) {
-                Destroy(spotLight);
-                spotLight = null;
-            }              
         }
 
-        public void StopSuggest()
-        {
-            LightOff();
-        }
 
         #endregion
 
@@ -329,7 +291,6 @@ namespace EA4S.MissingLetter
         private Tweener rotationTweener;
         private Collider mCollider;
 
-        private GameObject spotLight;
         private bool mbIsSpeaking;
 
         public ILivingLetterData LetterData

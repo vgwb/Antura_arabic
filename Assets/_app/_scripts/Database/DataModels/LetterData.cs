@@ -5,19 +5,21 @@ namespace EA4S.Db
     public enum LetterKindCategory
     {
         Real = 0,   // default: Base + Combo
-        Combo,
+        DiacriticCombo,
         Base,
-        Variation,
+        LetterVariation,
         Symbol,
         BaseAndVariations
     }
 
+    [Flags]
     public enum LetterPosition
     {
-        Isolated = 0,
-        Initial = 1,
-        Medial = 2,
-        Final = 3
+        None = 0,
+        Isolated = 1,
+        Initial = 2,
+        Medial = 4,
+        Final = 8
     }
 
     [Serializable]
@@ -43,6 +45,11 @@ namespace EA4S.Db
         public string Initial_Unicode;
         public string Medial_Unicode;
         public string Final_Unicode;
+        public string Symbol_Unicode;
+        public string Old_Isolated;
+        public string Old_Initial;
+        public string Old_Medial;
+        public string Old_Final;
 
         public override string ToString()
         {
@@ -62,14 +69,14 @@ namespace EA4S.Db
                 case LetterKindCategory.Base:
                     isIt = IsBaseLetter();
                     break;
-                case LetterKindCategory.Variation:
+                case LetterKindCategory.LetterVariation:
                     isIt = IsVariationLetter();
                     break;
                 case LetterKindCategory.Symbol:
                     isIt = IsSymbolLetter();
                     break;
-                case LetterKindCategory.Combo:
-                    isIt = IsComboLetter();
+                case LetterKindCategory.DiacriticCombo:
+                    isIt = IsDiacriticComboLetter();
                     break;
                 case LetterKindCategory.Real:
                     isIt = IsRealLetter();
@@ -83,7 +90,7 @@ namespace EA4S.Db
 
         private bool IsRealLetter()
         {
-            return this.IsBaseLetter() || this.IsComboLetter();
+            return this.IsBaseLetter() || this.IsDiacriticComboLetter();
         }
 
         private bool IsBaseLetter()
@@ -101,9 +108,9 @@ namespace EA4S.Db
             return this.Kind == LetterDataKind.Symbol;
         }
 
-        private bool IsComboLetter()
+        private bool IsDiacriticComboLetter()
         {
-            return this.Kind == LetterDataKind.Combination || this.Kind == LetterDataKind.LetterVariation;
+            return this.Kind == LetterDataKind.DiacriticCombo;
         }
 
         private bool IsBaseOrVariationLetter()
@@ -116,32 +123,64 @@ namespace EA4S.Db
             return new LL_LetterData(GetId(), this);
         }
 
-        public string GetChar(LetterPosition position = LetterPosition.Isolated)
+        public string GetUnicode(LetterPosition position = LetterPosition.Isolated)
         {
-            switch (position) {
-                case LetterPosition.Initial:
-                    return Initial;
-                case LetterPosition.Medial:
-                    return Medial;
-                case LetterPosition.Final:
-                    return Final;
+            switch (Kind) {
+                case LetterDataKind.Symbol:
+                    return Isolated_Unicode;
                 default:
-                    return Isolated;
+                    switch (position) {
+                        case LetterPosition.Initial:
+                            return Initial_Unicode != "" ? Initial_Unicode : Isolated_Unicode;
+                        case LetterPosition.Medial:
+                            return Medial_Unicode != "" ? Medial_Unicode : Isolated_Unicode;
+                        case LetterPosition.Final:
+                            return Final_Unicode != "" ? Final_Unicode : Isolated_Unicode;
+                        default:
+                            return Isolated_Unicode;
+                    }
             }
         }
 
-        public string GetUnicode(LetterPosition position = LetterPosition.Isolated)
+        public string GetChar(LetterPosition position = LetterPosition.Isolated)
         {
-            switch (position) {
-                case LetterPosition.Initial:
-                    return Initial_Unicode;
-                case LetterPosition.Medial:
-                    return Medial_Unicode;
-                case LetterPosition.Final:
-                    return Final_Unicode;
-                default:
-                    return Isolated_Unicode;
+            string output = "";
+            var hexunicode = GetUnicode(position);
+            if (hexunicode != "") {
+
+                // add the "-" to diacritic symbols to indentify better if it's over or below hte mid line
+                if (Type == LetterDataType.DiacriticSymbol) {
+                    output = "\u0640";
+                }
+
+                int unicode = int.Parse(hexunicode, System.Globalization.NumberStyles.HexNumber);
+                output += ((char)unicode).ToString();
+
+                if (Symbol_Unicode != "") {
+                    int unicode_added = int.Parse(Symbol_Unicode, System.Globalization.NumberStyles.HexNumber);
+                    output += ((char)unicode_added).ToString();
+                }
             }
+            return output;
         }
+
+        public LetterPosition GetAvailablePositions()
+        {
+            LetterPosition availablePositions = LetterPosition.None;
+            if (Isolated_Unicode != "")
+                availablePositions |= LetterPosition.Isolated;
+
+            if (Initial_Unicode != "")
+                availablePositions |= LetterPosition.Initial;
+
+            if (Medial_Unicode != "")
+                availablePositions |= LetterPosition.Medial;
+
+            if (Final_Unicode != "")
+                availablePositions |= LetterPosition.Final;
+
+            return availablePositions;
+        }
+
     }
 }

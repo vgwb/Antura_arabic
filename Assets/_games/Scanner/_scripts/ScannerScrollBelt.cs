@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ScannerScrollBelt : MonoBehaviour {
+namespace EA4S.Scanner
+{
+	public class ScannerScrollBelt : MonoBehaviour {
 
-	public float scrollSpeed = 0.5F;
+		const float BELT_FACTOR = -0.4f;
 
-	private Renderer rend;
+		private Renderer rend;
 
-	void Start() {
-		rend = GetComponent<Renderer>();
-	}
+		void Start() {
+			rend = GetComponent<Renderer>();
+		}
 
-	void Update() {
-		float offset = Time.time * scrollSpeed;
-		rend.material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+		void Update() {
+			float offset = Time.time * BELT_FACTOR * ScannerConfiguration.Instance.beltSpeed;
+			rend.material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+		}
+
 	}
 
 }

@@ -85,6 +85,12 @@ namespace EA4S.MakeFriends
 
         #region Public Methods
 
+        public void Dance()
+        {
+            LLPrefab.ToggleDance();
+            LLPrefab.SetDancingSpeed(LLPrefab.DancingSpeed * Random.Range(0.75f, 1.25f));
+        }
+
         public void MakeEntrance(Vector3 offscreenPosition, Vector3 startingPosition, Vector3 entranceRotation, float entranceDuration, float speakDelay, Vector3 afterWalkRotation)
         {
             Walk(offscreenPosition, startingPosition, entranceRotation, entranceDuration, speak: true, speakDelay: speakDelay, rotateAfterWalk: true, afterWalkRotation: afterWalkRotation);
@@ -132,6 +138,11 @@ namespace EA4S.MakeFriends
             var duration = celebrationDuration;
 
             Walk(from, to, rotation, duration, walkAnimation: LLAnimationStates.LL_walking, walkSpeed: 1f, afterWalkAnimation: LLAnimationStates.LL_dancing);
+        }
+
+        public void HighFive(float delay)
+        {
+            StartCoroutine(HighFive_Coroutine(delay));
         }
 
         public void SpeakWord()
@@ -190,6 +201,12 @@ namespace EA4S.MakeFriends
                 yield return new WaitForFixedUpdate();
             }
             isFocusing = false;
+        }
+
+        private IEnumerator HighFive_Coroutine(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            LLPrefab.DoHighFive();
         }
 
         private void Walk(Vector3 from, Vector3 to, Vector3 rotation, float duration, float delay = 0f, LLAnimationStates walkAnimation = LLAnimationStates.LL_walking, float walkSpeed = 0f, LLAnimationStates afterWalkAnimation = LLAnimationStates.LL_idle, float afterWalkSpeed = 0f, bool speak = false, float speakDelay = 0f, bool rotateAfterWalk = false, Vector3 afterWalkRotation = default(Vector3))

@@ -15,6 +15,7 @@ namespace EA4S.SickLetters
         public SickLettersAntura antura;
         public SickLettersVase scale;
         public GameObject DropZonesGO;
+        public Transform[] safeDropZones;
         public UnityEngine.Animation hole;
         public SickLettersTutorial tut;
         public bool lastMoveIsCorrect;
@@ -91,14 +92,21 @@ namespace EA4S.SickLetters
             return Instantiate(go).GetComponent<SickLettersDraggableDD>();
         }
 
-        public void Poof(Vector3 atPos)
+        public Transform Poof(Transform t)
         {
             SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Poof);
             var puffGo = GameObject.Instantiate(LLPrefab.GetComponent<LetterObjectView>().poofPrefab);
             puffGo.AddComponent<AutoDestroy>().duration = 2;
             puffGo.SetActive(true);
-            puffGo.transform.position = atPos - Vector3.forward * 2;
-            puffGo.transform.localScale *= 0.75f;
+            puffGo.transform.position = t.position - Vector3.forward * 2;
+
+            ParticleSystem[] PSs = puffGo.GetComponentsInChildren<ParticleSystem>();
+            foreach(ParticleSystem ps in PSs)
+                ps.scalingMode = ParticleSystemScalingMode.Hierarchy;
+
+            puffGo.transform.localScale *= t.lossyScale.y * 1.2f/3f;//0.75f;
+
+            return puffGo.transform;
         }
 
         public bool checkForNextRound()
@@ -214,6 +222,7 @@ namespace EA4S.SickLetters
             //Context.GetCheckmarkWidget().Show(false);
             TutorialUI.MarkNo(scale.transform.position - Vector3.forward * 2 + Vector3.up, TutorialUI.MarkSize.Big);
             Context.GetAudioManager().PlaySound(Sfx.Lose);
+            //Debug.Log("XXX");
         }
     }
 }

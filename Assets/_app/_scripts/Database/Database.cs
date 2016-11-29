@@ -20,27 +20,75 @@ namespace EA4S.Db
         Rewards = 40
     }
 
-    // @note: we use these serialized tables for faster access
-    public class Database : ScriptableObject
+    public class Database : UnityEngine.Object
     {
-        [SerializeField]
-        private MiniGameTable minigameTable;
-        [SerializeField]
-        private LetterTable letterTable;
-        [SerializeField]
-        private WordTable wordTable;
-        [SerializeField]
-        private PlaySessionTable playSessionTable;
-        [SerializeField]
-        private LearningBlockTable learningBlockTable;
-        [SerializeField]
-        private LocalizationTable localizationTable;
-        [SerializeField]
-        private PhraseTable phraseTable;
-        [SerializeField]
-        private StageTable stageTable;
-        [SerializeField]
-        private RewardTable rewardTable;
+        public StageDatabase stageDb;
+        public PlaySessionDatabase playsessionDb;
+        public LearningBlockDatabase learningblockDb;
+        public MiniGameDatabase minigameDb;
+        public LetterDatabase letterDb;
+        public WordDatabase wordDb;
+        public PhraseDatabase phraseDb;
+        public LocalizationDatabase localizationDb;
+        public RewardDatabase rewardDb;
+
+        #region Creation
+
+        public static Database LoadDB(string staticDbNameToLoad)
+        {
+            var db = new Database();
+            db.LoadTables(staticDbNameToLoad);
+            return db;
+        }
+
+        public bool HasTables()
+        {
+            if (stageDb == null) return false;
+            if (playsessionDb == null) return false;
+            if (learningblockDb == null) return false;
+            if (minigameDb == null) return false;
+            if (letterDb == null) return false;
+            if (wordDb == null) return false;
+            if (phraseDb == null) return false;
+            if (localizationDb == null) return false;
+            if (rewardDb == null) return false;
+            return true;
+        }
+
+        public void LoadTables(string dbName)
+        {
+            var path = dbName + "/" + dbName + "_";
+
+            stageDb = Resources.Load<StageDatabase>(path + "Stage");
+            if (!stageDb) Debug.LogError("Could not load StageDatabase db");
+
+            playsessionDb = Resources.Load<PlaySessionDatabase>(path + "PlaySession");
+            if (!playsessionDb) Debug.LogError("Could not load PlaySessionDatabase db");
+
+            learningblockDb = Resources.Load<LearningBlockDatabase>(path + "LearningBlock");
+            if (!learningblockDb) Debug.LogError("Could not load LearningBlockDatabase db");
+
+            minigameDb = Resources.Load<MiniGameDatabase>(path + "MiniGame");
+            if (!minigameDb) Debug.LogError("Could not load MiniGameDatabase db");
+
+            letterDb = Resources.Load<LetterDatabase>(path + "Letter");
+            if (!letterDb) Debug.LogError("Could not load LetterDatabase db");
+
+            wordDb = Resources.Load<WordDatabase>(path + "Word");
+            if (!wordDb) Debug.LogError("Could not load WordDatabase db");
+
+            phraseDb = Resources.Load<PhraseDatabase>(path + "Phrase");
+            if (!phraseDb) Debug.LogError("Could not load PhraseDatabase db");
+
+            localizationDb = Resources.Load<LocalizationDatabase>(path + "Localization");
+            if (!localizationDb) Debug.LogError("Could not load LocalizationDatabase db");
+
+            rewardDb = Resources.Load<RewardDatabase>(path + "Reward");
+            if (!rewardDb) Debug.LogError("Could not load RewardDatabase db");
+
+        }
+
+        #endregion
 
 
         #region Access
@@ -50,6 +98,12 @@ namespace EA4S.Db
             var allValues = new List<T>(table.GetValuesTyped());
             var filtered = allValues.FindAll(predicate);
             return filtered;
+        }
+
+        public List<T> GetAll<T>(SerializableDataTable<T> table) where T : IData
+        {
+            var allValues = new List<T>(table.GetValuesTyped());
+            return allValues;
         }
 
         public T GetById<T>(SerializableDataTable<T> table, string id) where T : IData
@@ -75,15 +129,15 @@ namespace EA4S.Db
                 yield return table.GetList();
         }
 
-        public LetterTable GetLetterTable() { return this.letterTable; }
-        public WordTable GetWordTable() { return this.wordTable; }
-        public PhraseTable GetPhraseTable() { return this.phraseTable; }
-        public MiniGameTable GetMiniGameTable() { return this.minigameTable; }
-        public StageTable GetStageTable() { return this.stageTable; }
-        public PlaySessionTable GetPlaySessionTable() { return this.playSessionTable; }
-        public LearningBlockTable GetLearningBlockTable() { return this.learningBlockTable; }
-        public RewardTable GetRewardTable() { return this.rewardTable; }
-        public LocalizationTable GetLocalizationTable() { return this.localizationTable; }
+        public LetterTable GetLetterTable() { return this.letterDb.table; }
+        public WordTable GetWordTable() { return this.wordDb.table; }
+        public PhraseTable GetPhraseTable() { return this.phraseDb.table; }
+        public MiniGameTable GetMiniGameTable() { return this.minigameDb.table; }
+        public StageTable GetStageTable() { return this.stageDb.table; }
+        public PlaySessionTable GetPlaySessionTable() { return this.playsessionDb.table; }
+        public LearningBlockTable GetLearningBlockTable() { return this.learningblockDb.table; }
+        public RewardTable GetRewardTable() { return this.rewardDb.table; }
+        public LocalizationTable GetLocalizationTable() { return this.localizationDb.table; }
 
         // @note: interface for common use using categories
         public IData GetData(DbTables tables, string id)
@@ -108,15 +162,15 @@ namespace EA4S.Db
         {
             IDataTable table = null;
             switch (tables) {
-                case DbTables.Letters: table = letterTable; break;
-                case DbTables.Words: table = wordTable; break;
-                case DbTables.Phrases: table = phraseTable; break;
-                case DbTables.MiniGames: table = minigameTable; break;
-                case DbTables.Stages: table = stageTable; break;
-                case DbTables.PlaySessions: table = playSessionTable; break;
-                case DbTables.LearningBlocks: table = learningBlockTable; break;
-                case DbTables.Rewards: table = rewardTable; break;
-                case DbTables.Localizations: table = localizationTable; break;
+                case DbTables.Letters: table = GetLetterTable(); break;
+                case DbTables.Words: table = GetWordTable(); break;
+                case DbTables.Phrases: table = GetPhraseTable(); break;
+                case DbTables.MiniGames: table = GetMiniGameTable(); break;
+                case DbTables.Stages: table = GetStageTable(); break;
+                case DbTables.PlaySessions: table = GetPlaySessionTable(); break;
+                case DbTables.LearningBlocks: table = GetLearningBlockTable(); break;
+                case DbTables.Rewards: table = GetRewardTable(); break;
+                case DbTables.Localizations: table = GetLocalizationTable(); break;
                 default:
                     throw new ArgumentOutOfRangeException("tables", tables, null);
             }

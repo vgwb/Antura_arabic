@@ -8,8 +8,6 @@
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
-		public DancingDotsQuestionProvider DancingDotsQuestions { get; set; }
-
 
         #region Game configurations
         public float Difficulty { get; set; }
@@ -38,8 +36,6 @@
 
             Variation = DancingDotsVariation.V_1;
 			Questions = new DancingDotsQuestionProvider();
-			DancingDotsQuestions = new DancingDotsQuestionProvider();
-//            Difficulty = 0.5f;
         }
 
         #region external configuration call
@@ -62,7 +58,7 @@
             int nWrong = 0;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.letterFilters.excludeDiacritics = false;
+            builderParams.letterFilters.excludeDiacritics_keepMain = true;
             builderParams.letterFilters.excludeLetterVariations = false;
             builderParams.wordFilters.excludeDiacritics = false;
             builderParams.wordFilters.excludeLetterVariations = false;

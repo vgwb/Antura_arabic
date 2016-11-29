@@ -1096,7 +1096,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 16206e314fc85b445902f3f9af3bf307, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -1125,7 +1125,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 16206e314fc85b445902f3f9af3bf307, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -1154,7 +1154,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 16206e314fc85b445902f3f9af3bf307, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -1183,7 +1183,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 16206e314fc85b445902f3f9af3bf307, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -1212,7 +1212,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2137854, guid: c32738695c9794997a5db13263a8dcde, type: 2}
+  - {fileID: 21000011752393256, guid: ec76213212ac2438986d3d12b10f0625, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -1600,8 +1600,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\u0631\u0627\u0633"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c32738695c9794997a5db13263a8dcde, type: 2}
-  m_sharedMaterial: {fileID: 2137854, guid: c32738695c9794997a5db13263a8dcde, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ec76213212ac2438986d3d12b10f0625, type: 2}
+  m_sharedMaterial: {fileID: 21000011752393256, guid: ec76213212ac2438986d3d12b10f0625,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

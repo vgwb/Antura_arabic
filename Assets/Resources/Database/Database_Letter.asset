@@ -1,0 +1,2315 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca41d8ae0ca60b949930fbc37c689ee9, type: 3}
+  m_Name: Database_Letter
+  m_EditorClassIdentifier: 
+  table:
+    innerList:
+    - Id: alef
+      Number: 1
+      Title: alif
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 1
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: aa
+      SoundZone: D
+      Isolated: "\u0627"
+      Initial: 
+      Medial: 
+      Final: "\uFE8E"
+      Isolated_Unicode: 0627
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FE8E
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: beh
+      Number: 2
+      Title: "b\u0101\u2019"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: b
+      SoundZone: A
+      Isolated: "\u0628"
+      Initial: "\uFE91"
+      Medial: "\uFE92"
+      Final: "\uFE90"
+      Isolated_Unicode: 0628
+      Initial_Unicode: FE91
+      Medial_Unicode: FE92
+      Final_Unicode: FE90
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0628\u0640\u200E"
+      Old_Medial: "\u0640\u0628\u0640\u200E"
+      Old_Final: "\u0640\u0628\u200E"
+    - Id: teh
+      Number: 3
+      Title: "t\u0101\u2019"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 2
+      Sound: t
+      SoundZone: B
+      Isolated: "\u062A"
+      Initial: "\uFE97"
+      Medial: "\uFE98"
+      Final: "\uFE96"
+      Isolated_Unicode: 062A
+      Initial_Unicode: FE97
+      Medial_Unicode: FE98
+      Final_Unicode: FE96
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u062A\u0640\u200E"
+      Old_Medial: "\u0640\u062A\u0640\u200E"
+      Old_Final: "\u0640\u062A\u200E"
+    - Id: theh
+      Number: 4
+      Title: "th\u0101\u2019"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 2
+      Sound: th
+      SoundZone: A
+      Isolated: "\u062B"
+      Initial: "\uFE9B"
+      Medial: "\uFE9C"
+      Final: "\uFE9A"
+      Isolated_Unicode: 062B
+      Initial_Unicode: FE9B
+      Medial_Unicode: FE9C
+      Final_Unicode: FE9A
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u062B\u0640\u200E"
+      Old_Medial: "\u0640\u062B\u0640\u200E"
+      Old_Final: "\u0640\u062B\u200E"
+    - Id: jeem
+      Number: 5
+      Title: "j\u012Bm"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: j
+      SoundZone: C
+      Isolated: "\u062C"
+      Initial: "\uFE9F"
+      Medial: "\uFEA0"
+      Final: "\uFE9E"
+      Isolated_Unicode: 062C
+      Initial_Unicode: FE9F
+      Medial_Unicode: FEA0
+      Final_Unicode: FE9E
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u062C\u0640\u200E"
+      Old_Medial: "\u0640\u062C\u0640\u200E"
+      Old_Final: "\u0640\u062C\u200E"
+    - Id: hah
+      Number: 6
+      Title: "\u1E25\u0101\u2019"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: H
+      SoundZone: D
+      Isolated: "\u062D"
+      Initial: "\uFEA3"
+      Medial: "\uFEA4"
+      Final: "\uFEA2"
+      Isolated_Unicode: 062D
+      Initial_Unicode: FEA3
+      Medial_Unicode: FEA4
+      Final_Unicode: FEA2
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u062D\u0640\u200E"
+      Old_Medial: "\u0640\u062D\u0640\u200E"
+      Old_Final: "\u0640\u062D\u200E"
+    - Id: khah
+      Number: 7
+      Title: "kh\u0101\u2019"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: kh
+      SoundZone: D
+      Isolated: "\u062E"
+      Initial: "\uFEA7"
+      Medial: "\uFEA8"
+      Final: "\uFEA6"
+      Isolated_Unicode: 062E
+      Initial_Unicode: FEA7
+      Medial_Unicode: FEA8
+      Final_Unicode: FEA6
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u062E\u0640\u200E"
+      Old_Medial: "\u0640\u062E\u0640\u200E"
+      Old_Final: "\u0640\u062E\u200E"
+    - Id: dal
+      Number: 8
+      Title: "d\u0101l"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 2
+      Sound: d
+      SoundZone: B
+      Isolated: "\u062F"
+      Initial: 
+      Medial: 
+      Final: "\uFEAA"
+      Isolated_Unicode: 062F
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEAA
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u062F\u200E"
+      Old_Medial: "\u0640\u062F\u200E"
+      Old_Final: "\u0640\u062F\u200E"
+    - Id: thal
+      Number: 9
+      Title: "dh\u0101l"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 2
+      Sound: dh
+      SoundZone: A
+      Isolated: "\u0630"
+      Initial: 
+      Medial: 
+      Final: "\uFEAC"
+      Isolated_Unicode: 0630
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEAC
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0630\u200E"
+      Old_Medial: "\u0640\u0630\u200E"
+      Old_Final: "\u0640\u0630\u200E"
+    - Id: reh
+      Number: 10
+      Title: "r\u0101\u2019"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 2
+      Sound: r
+      SoundZone: B
+      Isolated: "\u0631"
+      Initial: 
+      Medial: 
+      Final: "\uFEAE"
+      Isolated_Unicode: 0631
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEAE
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0631\u200E"
+      Old_Medial: "\u0640\u0631\u200E"
+      Old_Final: "\u0640\u0631\u200E"
+    - Id: zain
+      Number: 11
+      Title: "zayn / z\u0101y / z\u0101\u2019"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 2
+      Sound: z
+      SoundZone: A
+      Isolated: "\u0632"
+      Initial: 
+      Medial: 
+      Final: "\uFEB0"
+      Isolated_Unicode: 0632
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEB0
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0632\u200E"
+      Old_Medial: "\u0640\u0632\u200E"
+      Old_Final: "\u0640\u0632\u200E"
+    - Id: seen
+      Number: 12
+      Title: "s\u012Bn"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 2
+      Sound: s
+      SoundZone: A
+      Isolated: "\u0633"
+      Initial: "\uFEB3"
+      Medial: "\uFEB4"
+      Final: "\uFEB2"
+      Isolated_Unicode: 0633
+      Initial_Unicode: FEB3
+      Medial_Unicode: FEB4
+      Final_Unicode: FEB2
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0633\u0640\u200E"
+      Old_Medial: "\u0640\u0633\u0640\u200E"
+      Old_Final: "\u0640\u0633\u200E"
+    - Id: sheen
+      Number: 13
+      Title: "sh\u012Bn"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 2
+      Sound: sh
+      SoundZone: C
+      Isolated: "\u0634"
+      Initial: "\uFEB7"
+      Medial: "\uFEB8"
+      Final: "\uFEB6"
+      Isolated_Unicode: 0634
+      Initial_Unicode: FEB7
+      Medial_Unicode: FEB8
+      Final_Unicode: FEB6
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0634\u0640\u200E"
+      Old_Medial: "\u0640\u0634\u0640\u200E"
+      Old_Final: "\u0640\u0634\u200E"
+    - Id: sad
+      Number: 14
+      Title: "\u1E63\u0101d"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 3
+      Tag: Consonant
+      Notes: 
+      SunMoon: 2
+      Sound: S
+      SoundZone: A
+      Isolated: "\u0635"
+      Initial: "\uFEBB"
+      Medial: "\uFEBC"
+      Final: "\uFEBA"
+      Isolated_Unicode: 0635
+      Initial_Unicode: FEBB
+      Medial_Unicode: FEBC
+      Final_Unicode: FEBA
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0635\u0640\u200E"
+      Old_Medial: "\u0640\u0635\u0640\u200E"
+      Old_Final: "\u0640\u0635\u200E"
+    - Id: dad
+      Number: 15
+      Title: "\u1E0D\u0101d"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 3
+      Tag: Consonant
+      Notes: 
+      SunMoon: 2
+      Sound: D
+      SoundZone: C
+      Isolated: "\u0636"
+      Initial: "\uFEBF"
+      Medial: "\uFEC0"
+      Final: "\uFEBE"
+      Isolated_Unicode: 0636
+      Initial_Unicode: FEBF
+      Medial_Unicode: FEC0
+      Final_Unicode: FEBE
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0636\u0640\u200E"
+      Old_Medial: "\u0640\u0636\u0640\u200E"
+      Old_Final: "\u0640\u0636\u200E"
+    - Id: tah
+      Number: 16
+      Title: "\u1E6D\u0101\u2019"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 3
+      Tag: Consonant
+      Notes: 
+      SunMoon: 2
+      Sound: T
+      SoundZone: B
+      Isolated: "\u0637"
+      Initial: "\uFEC3"
+      Medial: "\uFEC4"
+      Final: "\uFEC2"
+      Isolated_Unicode: 0637
+      Initial_Unicode: FEC3
+      Medial_Unicode: FEC4
+      Final_Unicode: FEC2
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0637\u0640\u200E"
+      Old_Medial: "\u0640\u0637\u0640\u200E"
+      Old_Final: "\u0640\u0637\u200E"
+    - Id: zah
+      Number: 17
+      Title: "\u1E0Dh\u0101\u2019"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 3
+      Tag: Consonant
+      Notes: 
+      SunMoon: 2
+      Sound: DH
+      SoundZone: A
+      Isolated: "\u0638"
+      Initial: "\uFEC7"
+      Medial: "\uFEC8"
+      Final: "\uFEC6"
+      Isolated_Unicode: 0638
+      Initial_Unicode: FEC7
+      Medial_Unicode: FEC8
+      Final_Unicode: FEC6
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0638\u0640\u200E"
+      Old_Medial: "\u0640\u0638\u0640\u200E"
+      Old_Final: "\u0640\u0638\u200E"
+    - Id: ain
+      Number: 18
+      Title: "\u2018ayn"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: x
+      SoundZone: D
+      Isolated: "\u0639"
+      Initial: "\uFECB"
+      Medial: "\uFECC"
+      Final: "\uFECA"
+      Isolated_Unicode: 0639
+      Initial_Unicode: FECB
+      Medial_Unicode: FECC
+      Final_Unicode: FECA
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0639\u0640\u200E"
+      Old_Medial: "\u0640\u0639\u0640\u200E"
+      Old_Final: "\u0640\u0639\u200E"
+    - Id: ghain
+      Number: 19
+      Title: ghayn
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: gh
+      SoundZone: D
+      Isolated: "\u063A"
+      Initial: "\uFECF"
+      Medial: "\uFED0"
+      Final: "\uFECE"
+      Isolated_Unicode: 063A
+      Initial_Unicode: FECF
+      Medial_Unicode: FED0
+      Final_Unicode: FECE
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u063A\u0640\u200E"
+      Old_Medial: "\u0640\u063A\u0640\u200E"
+      Old_Final: "\u0640\u063A\u200E"
+    - Id: feh
+      Number: 20
+      Title: "f\u0101\u2019"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: f
+      SoundZone: A
+      Isolated: "\u0641"
+      Initial: "\uFED3"
+      Medial: "\uFED4"
+      Final: "\uFED2"
+      Isolated_Unicode: 0641
+      Initial_Unicode: FED3
+      Medial_Unicode: FED4
+      Final_Unicode: FED2
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0641\u0640\u200E"
+      Old_Medial: "\u0640\u0641\u0640\u200E"
+      Old_Final: "\u0640\u0641\u200E"
+    - Id: qaf
+      Number: 21
+      Title: "q\u0101f"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: q
+      SoundZone: D
+      Isolated: "\u0642"
+      Initial: "\uFED7"
+      Medial: "\uFED8"
+      Final: "\uFED6"
+      Isolated_Unicode: 0642
+      Initial_Unicode: FED7
+      Medial_Unicode: FED8
+      Final_Unicode: FED6
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0642\u0640\u200E"
+      Old_Medial: "\u0640\u0642\u0640\u200E"
+      Old_Final: "\u0640\u0642\u200E"
+    - Id: kaf
+      Number: 22
+      Title: "k\u0101f"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: k
+      SoundZone: D
+      Isolated: "\u0643"
+      Initial: "\uFEDB"
+      Medial: "\uFEDC"
+      Final: "\uFEDA"
+      Isolated_Unicode: 0643
+      Initial_Unicode: FEDB
+      Medial_Unicode: FEDC
+      Final_Unicode: FEDA
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0643\u0640\u200E"
+      Old_Medial: "\u0640\u0643\u0640\u200E"
+      Old_Final: "\u0640\u0643\u200E"
+    - Id: lam
+      Number: 23
+      Title: "l\u0101m"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 2
+      Sound: l
+      SoundZone: B
+      Isolated: "\u0644"
+      Initial: "\uFEDF"
+      Medial: "\uFEE0"
+      Final: "\uFEDE"
+      Isolated_Unicode: 0644
+      Initial_Unicode: FEDF
+      Medial_Unicode: FEE0
+      Final_Unicode: FEDE
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0644\u0640\u200E"
+      Old_Medial: "\u0640\u0644\u0640\u200E"
+      Old_Final: "\u0640\u0644\u200E"
+    - Id: meem
+      Number: 24
+      Title: "m\u012Bm"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: m
+      SoundZone: A
+      Isolated: "\u0645"
+      Initial: "\uFEE3"
+      Medial: "\uFEE4"
+      Final: "\uFEE2"
+      Isolated_Unicode: 0645
+      Initial_Unicode: FEE3
+      Medial_Unicode: FEE4
+      Final_Unicode: FEE2
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0645\u0640\u200E"
+      Old_Medial: "\u0640\u0645\u0640\u200E"
+      Old_Final: "\u0640\u0645\u200E"
+    - Id: noon
+      Number: 25
+      Title: "n\u016Bn"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 2
+      Sound: n
+      SoundZone: B
+      Isolated: "\u0646"
+      Initial: "\uFEE7"
+      Medial: "\uFEE8"
+      Final: "\uFEE6"
+      Isolated_Unicode: 0646
+      Initial_Unicode: FEE7
+      Medial_Unicode: FEE8
+      Final_Unicode: FEE6
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0646\u0640\u200E"
+      Old_Medial: "\u0640\u0646\u0640\u200E"
+      Old_Final: "\u0640\u0646\u200E"
+    - Id: heh
+      Number: 26
+      Title: "h\u0101\u2019"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: h
+      SoundZone: D
+      Isolated: "\u0647"
+      Initial: "\uFEEB"
+      Medial: "\uFEEC"
+      Final: "\uFEEA"
+      Isolated_Unicode: 0647
+      Initial_Unicode: FEEB
+      Medial_Unicode: FEEC
+      Final_Unicode: FEEA
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0647\u0640\u200E"
+      Old_Medial: "\u0640\u0647\u0640\u200E"
+      Old_Final: "\u0640\u0647\u200E"
+    - Id: waw
+      Number: 27
+      Title: "w\u0101w"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 1
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: w, uu
+      SoundZone: A
+      Isolated: "\u0648"
+      Initial: 
+      Medial: 
+      Final: "\uFEEE"
+      Isolated_Unicode: 0648
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEEE
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0648\u200E"
+      Old_Medial: "\u0640\u0648\u200E"
+      Old_Final: "\u0640\u0648\u200E"
+    - Id: yeh
+      Number: 28
+      Title: "y\u0101\u2019"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 1
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: y, ii
+      SoundZone: C
+      Isolated: "\u064A"
+      Initial: "\uFEF3"
+      Medial: "\uFEF4"
+      Final: "\uFEF2"
+      Isolated_Unicode: 064A
+      Initial_Unicode: FEF3
+      Medial_Unicode: FEF4
+      Final_Unicode: FEF2
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u064A\u0640\u200E"
+      Old_Medial: "\u0640\u064A\u0640\u200E"
+      Old_Final: "\u0640\u064A"
+    - Id: hamza
+      Number: 0
+      Title: hamza
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 0
+      Tag: 
+      Notes: applied just on the long vowels Alef, waw, and yeh
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0621"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0621
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
+      Old_Isolated: "\u0621"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: dammah
+      Number: 0
+      Title: "\u1E0Dammah"
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: short vowel
+      SunMoon: 0
+      Sound: u
+      SoundZone: 
+      Isolated: "\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 064F
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
+      Old_Isolated: "\u0640\u064F"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: dammah_tanwin
+      Number: 0
+      Title: dammah tanwin
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: double dammah
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u064C"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 064C
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
+      Old_Isolated: "-\u064C"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: fathah
+      Number: 0
+      Title: "fat\u1E25ah"
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: short vowel
+      SunMoon: 0
+      Sound: a
+      SoundZone: 
+      Isolated: "\u064E"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 064E
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
+      Old_Isolated: "\u0640\u064E"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: fathah_tanwin
+      Number: 0
+      Title: "fat\u1E25ah tanwin"
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: double fathah
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 064B
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
+      Old_Isolated: "-\u064B"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: kasrah
+      Number: 0
+      Title: kasrah
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: short vowel
+      SunMoon: 0
+      Sound: i
+      SoundZone: 
+      Isolated: "\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0650
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
+      Old_Isolated: "\u0640\u0650"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: kasrah_tanwin
+      Number: 0
+      Title: kasrah tanwin
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: double kasrah
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u064D"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 064D
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
+      Old_Isolated: "-\u064D"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: maddah
+      Number: 0
+      Title: maddah
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 0
+      Tag: 
+      Notes: applied just on the long vowel Alef
+      SunMoon: 0
+      Sound: aa
+      SoundZone: 
+      Isolated: "\u0653"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0653
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
+      Old_Isolated: "\u0640\u0653"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: shaddah
+      Number: 0
+      Title: shaddah
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: doubling the consonant sound
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0651"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0651
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
+      Old_Isolated: "-\u0651"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: sukun
+      Number: 0
+      Title: sukun
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: mute
+      SoundZone: 
+      Isolated: "\u0652"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0652
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
+      Old_Isolated: "-\u0652"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: alef_hamza_hi
+      Number: 0
+      Title: alef hamza (hi)
+      Kind: 3
+      BaseLetter: alef
+      Symbol: hamza
+      Type: 1
+      Tag: 
+      Notes: variation of Alef
+      SunMoon: 0
+      Sound: Aa
+      SoundZone: 
+      Isolated: "\u0623"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0623
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: alef_hamza_low
+      Number: 0
+      Title: alef hamza (low)
+      Kind: 3
+      BaseLetter: alef
+      Symbol: hamza
+      Type: 1
+      Tag: 
+      Notes: variation of Alef
+      SunMoon: 0
+      Sound: Aa
+      SoundZone: 
+      Isolated: "\u0625"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0625
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: alef_maqsura
+      Number: 0
+      Title: alef maqsura
+      Kind: 3
+      BaseLetter: alef
+      Symbol: 
+      Type: 0
+      Tag: 
+      Notes: dotless yeh
+      SunMoon: 0
+      Sound: a
+      SoundZone: 
+      Isolated: "\u0649"
+      Initial: 
+      Medial: 
+      Final: "\uFEF0"
+      Isolated_Unicode: 0649
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEF0
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: alef_maqsura_hamza
+      Number: 0
+      Title: alef_maqsura_hamza
+      Kind: 3
+      BaseLetter: alef_maqsura
+      Symbol: hamza
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\uFE89"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: FE89
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: yeh_hamza
+      Number: 0
+      Title: yeh_hamza
+      Kind: 3
+      BaseLetter: yeh
+      Symbol: hamza
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0626"
+      Initial: "\uFE8B"
+      Medial: "\uFE8C"
+      Final: "\uFE8A"
+      Isolated_Unicode: 0626
+      Initial_Unicode: FE8B
+      Medial_Unicode: FE8C
+      Final_Unicode: FE8A
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: teh_marbuta
+      Number: 0
+      Title: teh marbuta
+      Kind: 3
+      BaseLetter: teh
+      Symbol: 
+      Type: 0
+      Tag: 
+      Notes: variation of teh
+      SunMoon: 0
+      Sound: a
+      SoundZone: 
+      Isolated: "\u0629"
+      Initial: 
+      Medial: 
+      Final: "\uFE94"
+      Isolated_Unicode: 0629
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FE94
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: lam_alef
+      Number: 0
+      Title: lam alef
+      Kind: 3
+      BaseLetter: lam
+      Symbol: alef
+      Type: 0
+      Tag: 
+      Notes: combination of laam & alef together
+      SunMoon: 0
+      Sound: laa
+      SoundZone: 
+      Isolated: "\uFEFB"
+      Initial: 
+      Medial: 
+      Final: "\uFEFC"
+      Isolated_Unicode: FEFB
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEFC
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: waw_hamza
+      Number: 0
+      Title: waw_hamza
+      Kind: 3
+      BaseLetter: waw
+      Symbol: hamza
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0624"
+      Initial: 
+      Medial: 
+      Final: "\uFE86"
+      Isolated_Unicode: 0624
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FE86
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: alef_fathah
+      Number: 0
+      Title: alef_fathah
+      Kind: 4
+      BaseLetter: alef
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0627\u064E"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0627
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FE8E
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: alef_fathah_tanwin
+      Number: 0
+      Title: alef_fathah_tanwin
+      Kind: 4
+      BaseLetter: alef
+      Symbol: fathah_tanwin
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0627\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0627
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FE8E
+      Symbol_Unicode: 064B
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: alef_maddah
+      Number: 0
+      Title: alef_maddah
+      Kind: 4
+      BaseLetter: alef
+      Symbol: maddah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0622"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0622
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+      Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: ain_fathah
+      Number: 0
+      Title: ain_fathah
+      Kind: 4
+      BaseLetter: ain
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0639\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0639
+      Initial_Unicode: FECB
+      Medial_Unicode: FECC
+      Final_Unicode: FECA
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: ain_kasrah
+      Number: 0
+      Title: ain_kasrah
+      Kind: 4
+      BaseLetter: ain
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0639\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0639
+      Initial_Unicode: FECB
+      Medial_Unicode: FECC
+      Final_Unicode: FECA
+      Symbol_Unicode: 0650
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: beh_dammah
+      Number: 0
+      Title: beh_dammah
+      Kind: 4
+      BaseLetter: beh
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0628\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0628
+      Initial_Unicode: FE91
+      Medial_Unicode: FE92
+      Final_Unicode: FE90
+      Symbol_Unicode: 064F
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: beh_fathah
+      Number: 0
+      Title: beh_fathah
+      Kind: 4
+      BaseLetter: beh
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0628\u064E"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0628
+      Initial_Unicode: FE91
+      Medial_Unicode: FE92
+      Final_Unicode: FE90
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: beh_kasrah
+      Number: 0
+      Title: beh_kasrah
+      Kind: 4
+      BaseLetter: beh
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0628\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0628
+      Initial_Unicode: FE91
+      Medial_Unicode: FE92
+      Final_Unicode: FE90
+      Symbol_Unicode: 0650
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: dad_fathah
+      Number: 0
+      Title: dad_fathah
+      Kind: 4
+      BaseLetter: dad
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0636\u064E"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0636
+      Initial_Unicode: FEBF
+      Medial_Unicode: FEC0
+      Final_Unicode: FEBE
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: dal_dammah_tanwin
+      Number: 0
+      Title: dal_dammah_tanwin
+      Kind: 4
+      BaseLetter: dal
+      Symbol: dammah_tanwin
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062F\u064C"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062F
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEAA
+      Symbol_Unicode: 064C
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: dal_fathah
+      Number: 0
+      Title: dal_fathah
+      Kind: 4
+      BaseLetter: dal
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062F\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062F
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEAA
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: thal_fathah
+      Number: 0
+      Title: thal_fathah
+      Kind: 4
+      BaseLetter: thal
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0630\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0630
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEAC
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: feh_fathah
+      Number: 0
+      Title: feh_fathah
+      Kind: 4
+      BaseLetter: feh
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0641\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0641
+      Initial_Unicode: FED3
+      Medial_Unicode: FED4
+      Final_Unicode: FED2
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: feh_sukun
+      Number: 0
+      Title: feh_sukun
+      Kind: 4
+      BaseLetter: feh
+      Symbol: sukun
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0641\u0652"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0641
+      Initial_Unicode: FED3
+      Medial_Unicode: FED4
+      Final_Unicode: FED2
+      Symbol_Unicode: 0652
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: heh_fathah
+      Number: 0
+      Title: heh_fathah
+      Kind: 4
+      BaseLetter: heh
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0647\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0647
+      Initial_Unicode: FEEB
+      Medial_Unicode: FEEC
+      Final_Unicode: FEEA
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: heh_kasrah
+      Number: 0
+      Title: heh_kasrah
+      Kind: 4
+      BaseLetter: heh
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0647\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0647
+      Initial_Unicode: FEEB
+      Medial_Unicode: FEEC
+      Final_Unicode: FEEA
+      Symbol_Unicode: 0650
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: hah_fathah
+      Number: 0
+      Title: hah_fathah
+      Kind: 4
+      BaseLetter: hah
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062D\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062D
+      Initial_Unicode: FEA3
+      Medial_Unicode: FEA4
+      Final_Unicode: FEA2
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: hah_kasrah
+      Number: 0
+      Title: hah_kasrah
+      Kind: 4
+      BaseLetter: hah
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062D\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062D
+      Initial_Unicode: FEA3
+      Medial_Unicode: FEA4
+      Final_Unicode: FEA2
+      Symbol_Unicode: 0650
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: hah_shaddah
+      Number: 0
+      Title: hah_shaddah
+      Kind: 4
+      BaseLetter: hah
+      Symbol: shaddah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062D\u0651"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062D
+      Initial_Unicode: FEA3
+      Medial_Unicode: FEA4
+      Final_Unicode: FEA2
+      Symbol_Unicode: 0651
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: jeem_dammah
+      Number: 0
+      Title: jeem_dammah
+      Kind: 4
+      BaseLetter: jeem
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062C\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062C
+      Initial_Unicode: FE9F
+      Medial_Unicode: FEA0
+      Final_Unicode: FE9E
+      Symbol_Unicode: 064F
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: jeem_fathah
+      Number: 0
+      Title: jeem_fathah
+      Kind: 4
+      BaseLetter: jeem
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062C\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062C
+      Initial_Unicode: FE9F
+      Medial_Unicode: FEA0
+      Final_Unicode: FE9E
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: jeem_shaddah
+      Number: 0
+      Title: jeem_shaddah
+      Kind: 4
+      BaseLetter: jeem
+      Symbol: shaddah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062C\u0651"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062C
+      Initial_Unicode: FE9F
+      Medial_Unicode: FEA0
+      Final_Unicode: FE9E
+      Symbol_Unicode: 0651
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: kaf_dammah
+      Number: 0
+      Title: kaf_dammah
+      Kind: 4
+      BaseLetter: kaf
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0643\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0643
+      Initial_Unicode: FEDB
+      Medial_Unicode: FEDC
+      Final_Unicode: FEDA
+      Symbol_Unicode: 064F
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: kaf_fathah
+      Number: 0
+      Title: kaf_fathah
+      Kind: 4
+      BaseLetter: kaf
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0643\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0643
+      Initial_Unicode: FEDB
+      Medial_Unicode: FEDC
+      Final_Unicode: FEDA
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: lam_fathah
+      Number: 0
+      Title: lam_fathah
+      Kind: 4
+      BaseLetter: lam
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0644\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0644
+      Initial_Unicode: FEDF
+      Medial_Unicode: FEE0
+      Final_Unicode: FEDE
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: lam_kasrah
+      Number: 0
+      Title: lam_kasrah
+      Kind: 4
+      BaseLetter: lam
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0644\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0644
+      Initial_Unicode: FEDF
+      Medial_Unicode: FEE0
+      Final_Unicode: FEDE
+      Symbol_Unicode: 0650
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: lam_kasrah_tanwin
+      Number: 0
+      Title: lam_kasrah_tanwin
+      Kind: 4
+      BaseLetter: lam
+      Symbol: kasrah_tanwin
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0644\u064D"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0644
+      Initial_Unicode: FEDF
+      Medial_Unicode: FEE0
+      Final_Unicode: FEDE
+      Symbol_Unicode: 064D
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: lam_sukun
+      Number: 0
+      Title: lam_sukun
+      Kind: 4
+      BaseLetter: lam
+      Symbol: sukun
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0644\u0652"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0644
+      Initial_Unicode: FEDF
+      Medial_Unicode: FEE0
+      Final_Unicode: FEDE
+      Symbol_Unicode: 0652
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: meem_dammah
+      Number: 0
+      Title: meem_dammah
+      Kind: 4
+      BaseLetter: meem
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0645\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0645
+      Initial_Unicode: FEE3
+      Medial_Unicode: FEE4
+      Final_Unicode: FEE2
+      Symbol_Unicode: 064F
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: meem_fathah
+      Number: 0
+      Title: meem_fathah
+      Kind: 4
+      BaseLetter: meem
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0645\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0645
+      Initial_Unicode: FEE3
+      Medial_Unicode: FEE4
+      Final_Unicode: FEE2
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: meem_kasrah
+      Number: 0
+      Title: meem_kasrah
+      Kind: 4
+      BaseLetter: meem
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0645\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0645
+      Initial_Unicode: FEE3
+      Medial_Unicode: FEE4
+      Final_Unicode: FEE2
+      Symbol_Unicode: 0650
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: noon_fathah
+      Number: 0
+      Title: noon_fathah
+      Kind: 4
+      BaseLetter: noon
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0646\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0646
+      Initial_Unicode: FEE7
+      Medial_Unicode: FEE8
+      Final_Unicode: FEE6
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: noon_kasrah_tanwin
+      Number: 0
+      Title: noon_kasrah_tanwin
+      Kind: 4
+      BaseLetter: noon
+      Symbol: kasrah_tanwin
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0646\u064D"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0646
+      Initial_Unicode: FEE7
+      Medial_Unicode: FEE8
+      Final_Unicode: FEE6
+      Symbol_Unicode: 064D
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: noon_sukun
+      Number: 0
+      Title: noon_sukun
+      Kind: 4
+      BaseLetter: noon
+      Symbol: sukun
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0646\u0652"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0646
+      Initial_Unicode: FEE7
+      Medial_Unicode: FEE8
+      Final_Unicode: FEE6
+      Symbol_Unicode: 0652
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: qaf_fathah
+      Number: 0
+      Title: qaf_fathah
+      Kind: 4
+      BaseLetter: qaf
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0642\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0642
+      Initial_Unicode: FED7
+      Medial_Unicode: FED8
+      Final_Unicode: FED6
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: reh_fathah
+      Number: 0
+      Title: reh_fathah
+      Kind: 4
+      BaseLetter: reh
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0631\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0631
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEAE
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: reh_kasrah
+      Number: 0
+      Title: reh_kasrah
+      Kind: 4
+      BaseLetter: reh
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0631\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0631
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEAE
+      Symbol_Unicode: 0650
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: sad_fathah
+      Number: 0
+      Title: sad_fathah
+      Kind: 4
+      BaseLetter: sad
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0635\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0635
+      Initial_Unicode: FEBB
+      Medial_Unicode: FEBC
+      Final_Unicode: FEBA
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: seen_fathah
+      Number: 0
+      Title: seen_fathah
+      Kind: 4
+      BaseLetter: seen
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0633\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0633
+      Initial_Unicode: FEB3
+      Medial_Unicode: FEB4
+      Final_Unicode: FEB2
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: sheen_fathah
+      Number: 0
+      Title: sheen_fathah
+      Kind: 4
+      BaseLetter: sheen
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0634\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0634
+      Initial_Unicode: FEB7
+      Medial_Unicode: FEB8
+      Final_Unicode: FEB6
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: tah_fathah
+      Number: 0
+      Title: tah_fathah
+      Kind: 4
+      BaseLetter: tah
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0637\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0637
+      Initial_Unicode: FEC3
+      Medial_Unicode: FEC4
+      Final_Unicode: FEC2
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: teh_dammah
+      Number: 0
+      Title: teh_dammah
+      Kind: 4
+      BaseLetter: teh
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062A\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062A
+      Initial_Unicode: FE97
+      Medial_Unicode: FE98
+      Final_Unicode: FE96
+      Symbol_Unicode: 064F
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: teh_fathah
+      Number: 0
+      Title: teh_fathah
+      Kind: 4
+      BaseLetter: teh
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062A\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062A
+      Initial_Unicode: FE97
+      Medial_Unicode: FE98
+      Final_Unicode: FE96
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: teh_marbuta_dammah_tanwin
+      Number: 0
+      Title: teh_marbuta_dammah_tanwin
+      Kind: 4
+      BaseLetter: teh_marbuta
+      Symbol: dammah_tanwin
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0629\u064C"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062A
+      Initial_Unicode: FE97
+      Medial_Unicode: FE98
+      Final_Unicode: FE96
+      Symbol_Unicode: 064C
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: zain_fathah
+      Number: 0
+      Title: zain_fathah
+      Kind: 4
+      BaseLetter: zain
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0632\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0632
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEB0
+      Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+    - Id: zain_dammah
+      Number: 0
+      Title: zain_dammah
+      Kind: 4
+      BaseLetter: zain
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0632\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0632
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEB0
+      Symbol_Unicode: 064F
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 

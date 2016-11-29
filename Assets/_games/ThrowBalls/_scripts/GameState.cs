@@ -39,6 +39,10 @@ namespace EA4S.ThrowBalls
 
         public static GameState instance;
 
+        private bool isVoiceOverDone = false;
+        private IAudioManager audioManager;
+        private IInputManager inputManager;
+
         public GameState(ThrowBallsGame game)
         {
             this.game = game;
@@ -49,6 +53,11 @@ namespace EA4S.ThrowBalls
             }
 
             instance = this;
+
+            inputManager = ThrowBallsConfiguration.Instance.Context.GetInputManager();
+            audioManager = game.Context.GetAudioManager();
+
+            inputManager.Enabled = false;
         }
         public void EnterState()
         {
@@ -81,18 +90,49 @@ namespace EA4S.ThrowBalls
             ThrowBallsGame.instance.letterWithPropsPrefab.SetActive(false);
 
             ResetScene();
-
-            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
+            
+            switch (ThrowBallsConfiguration.Instance.Variation)
             {
-                game.StartCoroutine(StartNewRound_LettersInWord());
-            }
-
-            else
-            {
-                game.StartCoroutine(StartNewRound());
+                case ThrowBallsVariation.letters:
+                    audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_letters_Title, OnTitleVoiceOverDone);
+                    break;
+                case ThrowBallsVariation.words:
+                    audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_words_Title, OnTitleVoiceOverDone);
+                    break;
+                case ThrowBallsVariation.lettersinword:
+                    audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_letterinword_Title, OnTitleVoiceOverDone);
+                    break;
+                default:
+                    break;
             }
 
             AudioManager.I.PlayMusic(Music.MainTheme);
+        }
+
+        private void OnTitleVoiceOverDone()
+        {
+            
+
+            audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_letters_Intro, OnIntroVoiceOverDone);
+        }
+
+        private void OnIntroVoiceOverDone()
+        {
+            switch (ThrowBallsConfiguration.Instance.Variation)
+            {
+                case ThrowBallsVariation.letters:
+                    game.StartCoroutine(StartNewRound());
+                    break;
+                case ThrowBallsVariation.words:
+                    game.StartCoroutine(StartNewRound());
+                    break;
+                case ThrowBallsVariation.lettersinword:
+                    game.StartCoroutine(StartNewRound_LettersInWord());
+                    break;
+                default:
+                    break;
+            }
+            
         }
 
         public IEnumerator StartNewRound()
@@ -107,12 +147,21 @@ namespace EA4S.ThrowBalls
 
             IQuestionPack newQuestionPack = ThrowBallsConfiguration.Instance.Questions.GetNextQuestion();
 
-            LL_LetterData correctLetter = (LL_LetterData)newQuestionPack.GetCorrectAnswers().ToList()[0];
-            List<ILivingLetterData> wrongLetters = newQuestionPack.GetWrongAnswers().ToList();
+            question = newQuestionPack.GetQuestion();
+            ILivingLetterData correctDatum = newQuestionPack.GetCorrectAnswers().ToList()[0];
+            List<ILivingLetterData> wrongData = newQuestionPack.GetWrongAnswers().ToList();
 
-            question = correctLetter;
+            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.words)
+            {
+                correctDatum = new LL_ImageData(correctDatum.Id);
 
-            AudioManager.I.PlayLetter(correctLetter.Id);
+                for (int i = 0; i < wrongData.Count; i++)
+                {
+                    wrongData[i] = new LL_ImageData(wrongData[i].Id);
+                }
+            }
+
+            SayQuestion();
 
             yield return new WaitForSeconds(1f);
 
@@ -129,16 +178,16 @@ namespace EA4S.ThrowBalls
                 if (i == 0)
                 {
                     letterObj.tag = Constants.TAG_CORRECT_LETTER;
-                    letterControllers[i].SetLetter(correctLetter);
+                    letterControllers[i].SetLetter(correctDatum);
                 }
 
                 else
                 {
                     letterObj.tag = Constants.TAG_WRONG_LETTER;
 
-                    letterControllers[i].SetLetter((LL_LetterData)wrongLetters[0]);
+                    letterControllers[i].SetLetter(wrongData[0]);
 
-                    wrongLetters.RemoveAt(0);
+                    wrongData.RemoveAt(0);
                 }
             }
 
@@ -147,10 +196,27 @@ namespace EA4S.ThrowBalls
             BallController.instance.Enable();
 
             UIController.instance.Enable();
-            UIController.instance.SetLetterHint(correctLetter);
+            UIController.instance.SetLetterHint(correctDatum);
 
-            if (roundNumber == 0)
+            if (IsTutorialLevel())
             {
+                switch (ThrowBallsConfiguration.Instance.Variation)
+                {
+                    case ThrowBallsVariation.letters:
+                        audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_letters_Tuto);
+                        break;
+                    case ThrowBallsVariation.words:
+                        audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_words_Tuto);
+                        break;
+                    case ThrowBallsVariation.lettersinword:
+                        audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_letterinword_Tuto);
+                        break;
+                    default:
+                        break;
+                }
+
+                inputManager.Enabled = true;
+                isVoiceOverDone = true;
                 ShowTutorialUI();
             }
         }
@@ -181,7 +247,7 @@ namespace EA4S.ThrowBalls
             question = newQuestionPack.GetQuestion();
             UIController.instance.SetLetterHint(question);
 
-            AudioManager.I.PlayWord(newQuestionPack.GetQuestion().Id);
+            SayQuestion();
 
             yield return new WaitForSeconds(1f);
 
@@ -225,9 +291,39 @@ namespace EA4S.ThrowBalls
 
             BallController.instance.Enable();
 
-            if (roundNumber == 0)
+            if (IsTutorialLevel())
             {
+                switch (ThrowBallsConfiguration.Instance.Variation)
+                {
+                    case ThrowBallsVariation.letters:
+                        audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_letters_Tuto);
+                        break;
+                    case ThrowBallsVariation.words:
+                        audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_words_Tuto);
+                        break;
+                    case ThrowBallsVariation.lettersinword:
+                        audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_letterinword_Tuto);
+                        break;
+                    default:
+                        break;
+                }
+
+                inputManager.Enabled = true;
+                isVoiceOverDone = true;
                 ShowTutorialUI();
+            }
+        }
+
+        private void SayQuestion()
+        {
+            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.letters)
+            {
+                AudioManager.I.PlayLetter(question.Id);
+            }
+
+            else
+            {
+                AudioManager.I.PlayWord(question.Id);
             }
         }
 
@@ -395,21 +491,18 @@ namespace EA4S.ThrowBalls
 
             yield return new WaitForSeconds(0.7f);
 
-            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.letters)
-            {
-                AudioManager.I.PlayLetter(question.Id);
-            }
-
-            else
-            {
-                AudioManager.I.PlayWord(question.Id);
-            }
+            SayQuestion();
 
             correctLetterCntrl.SetMotionVariation(LetterController.MotionVariation.Idle);
             correctLetterCntrl.SetPropVariation(LetterController.PropVariation.Nothing);
             correctLetterCntrl.MoveTo(0, 13.5f, -33f);
             correctLetterCntrl.transform.rotation = Quaternion.Euler(-Camera.main.transform.rotation.eulerAngles.x, 180, 0);
-            correctLetterCntrl.SetLetter(question);
+
+            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
+            {
+                correctLetterCntrl.SetLetter(question);
+            }
+
             correctLetterCntrl.Show();
             correctLetterCntrl.letterObjectView.DoHorray();
             correctLetterCntrl.ShowVictoryRays();
@@ -610,7 +703,7 @@ namespace EA4S.ThrowBalls
 
         public void UpdatePhysics(float delta)
         {
-            if (roundNumber == 0 && isIdle && !BallController.instance.IsLaunched())
+            if (isVoiceOverDone && roundNumber == 0 && isIdle && !BallController.instance.IsLaunched())
             {
                 timeLeftToShowTutorialUI -= Time.fixedDeltaTime;
 

@@ -13,6 +13,9 @@ namespace EA4S.Balloons
 
         private int taps = 0;
 
+        [HideInInspector]
+        public bool isPopped;
+
         // Middle balloon adjustment for Triple Balloon Variation
         private bool adjustMiddleBalloon = false;
         private Vector3 adjustedLocalPosition = new Vector3(0f, 3.5f, 0f);
@@ -63,9 +66,10 @@ namespace EA4S.Balloons
 
         public void Pop()
         {
+            isPopped = true;
             balloonCollider.enabled = false;
             parentFloatingLetter.Pop();
-            BalloonsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.BaloonPop);
+            BalloonsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.BalloonPop);
             animator.SetBool("Pop", true);
             GameObject poof = Instantiate(BalloonsGame.instance.FxParticlesPoof, transform.position, Quaternion.identity) as GameObject;
             Destroy(poof, 10);
@@ -81,6 +85,11 @@ namespace EA4S.Balloons
         public void DisableCollider()
         {
             balloonCollider.enabled = false;
+        }
+
+        public void EnableCollider()
+        {
+            balloonCollider.enabled = true;
         }
 
         public void SetColor(Color color)

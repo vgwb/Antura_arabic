@@ -23,7 +23,7 @@ namespace EA4S.SickLetters
             prevLetter = newLetterString;
             do
             {
-                newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
+                newLetter = AppManager.I.Teacher.GetRandomTestLetterLL();
                 newLetterString = newLetter.TextForLivingLetter;
             }
             while (newLetterString == "" || dotlessLetters.Contains(newLetterString) || newLetterString == prevLetter);

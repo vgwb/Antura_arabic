@@ -17,7 +17,10 @@ namespace EA4S.Balloons
             this.transform.position = offscreenPosition;
             LLPrefab.gameObject.SetActive(true);
             vfx.gameObject.SetActive(true);
-            LLPrefab.Init(livingLetterData);
+            if (livingLetterData != null)
+            {
+                LLPrefab.Init(livingLetterData);
+            }
             LLPrefab.DoHorray();
             vfx.Play();
 
