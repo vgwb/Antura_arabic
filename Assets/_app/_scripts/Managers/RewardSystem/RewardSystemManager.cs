@@ -164,8 +164,10 @@ namespace EA4S {
             switch (_rewardType) {
                 case RewardTypes.reward:
                     // TODO: filter color selected from unlocked only
-                    foreach (var color in config.RewardsColorPairs) {
-                        returnList.Add(color as RewardColorItem);
+                    foreach (RewardColor color in config.RewardsColorPairs.GetRange(0,5)) {
+                        RewardColorItem rci = new RewardColorItem(color);
+                        ///...
+                        returnList.Add(rci);
                     }
                     return returnList;
                 case RewardTypes.texture:
@@ -400,6 +402,14 @@ namespace EA4S {
     public class RewardColorItem : RewardColor {
         public bool IsSelected;
         public bool IsNew;
+        public RewardColorItem() { }
+        public RewardColorItem(RewardColor _color) {
+            ID = _color.ID;
+            Color1Name = _color.Color1Name;
+            Color1RGB = _color.Color1RGB;
+            Color2Name = _color.Color2Name;
+            Color2RGB = _color.Color2RGB;
+        }
     }
 
     #endregion

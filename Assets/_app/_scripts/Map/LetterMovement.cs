@@ -9,12 +9,16 @@ namespace EA4S
 {
     public class LetterMovement : MonoBehaviour
     {
-
+        [Header("MiniMap")]
         public MiniMap miniMapScript;
 
         [Header("Materials")]
         public Material black;
         public Material red;
+
+        [Header("UIButtons")]
+        public GameObject moveRightButton;
+        public GameObject moveLeftButton;
 
         public int pos;
 
@@ -51,17 +55,17 @@ namespace EA4S
 
         void Update()
         {
-            /* Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.Stage);
-             Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock);
-             Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);*/
+            /* Debug.Log(AppManager.I.Player.CurrentJourneyPosition.Stage);
+             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.LearningBlock);
+             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.PlaySession);*/
 
             // transform.position = Vector3.MoveTowards(transform.position, new Vector3(posDot.x, transform.position.y, posDot.z), speed * Time.deltaTime);
             if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit))
+                int layerMask = 1 << 15;
+                if (Physics.Raycast(ray, out hit, layerMask))
                 {
                     if (hit.collider.tag == "Rope")
                     {
@@ -97,21 +101,22 @@ namespace EA4S
 
                         ropeSelected = hit.transform.parent.transform.gameObject.GetComponent<Rope>();
 
-//                        transform.position = miniMapScript.posDots[posDotMiniMapScript].transform.position;
+                        //                        transform.position = miniMapScript.posDots[posDotMiniMapScript].transform.position;
                         MoveTo(miniMapScript.posDots[posDotMiniMapScript].transform.position);
                         transform.LookAt(miniMapScript.posPines[hit.transform.parent.transform.gameObject.GetComponent<Rope>().learningBlockRope]);
 
                         colliderRaycast = hit.collider;
                     }
-                    if (hit.collider.tag == "Pin")
+                    else if (hit.collider.tag == "Pin")
                     {
                         ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
                         colliderRaycast = hit.collider;
                         if (hit.transform.gameObject.GetComponent<MapPin>().Number < miniMapScript.posPines.Length - 1)
                             transform.LookAt(miniMapScript.posPines[hit.transform.gameObject.GetComponent<MapPin>().Number + 1]);
-//                        transform.position = colliderRaycast.transform.position;
+                        //                        transform.position = colliderRaycast.transform.position;
                         MoveTo(colliderRaycast.transform.position);
                     }
+                    else colliderRaycast = null;
                 }
             }
 
@@ -126,6 +131,7 @@ namespace EA4S
                     AppManager.I.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].GetComponent<Dot>().learningBlockActual;
                     LookAtRightPin();
                     UpdateCurrenJourneyPosition();
+                    AmIFirstorLastPos();
 
                 }
                 if (colliderRaycast.tag == "Pin")
@@ -139,6 +145,7 @@ namespace EA4S
                     if (colliderRaycast.transform.gameObject.GetComponent<MapPin>().Number < miniMapScript.posPines.Length - 1)
                         transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1]);
                     UpdateCurrenJourneyPosition();
+                    AmIFirstorLastPos();
                 }
 
             }
@@ -183,6 +190,7 @@ namespace EA4S
                     LookAtRightPin();
                 }
             }
+            AmIFirstorLastPos();
         }
         public void MoveToTheLeftDot()
         {
@@ -227,6 +235,7 @@ namespace EA4S
                 AppManager.I.Player.CurrentJourneyPosition.LearningBlock = miniMapScript.posDots[pos].GetComponent<Dot>().learningBlockActual;
                 UpdateCurrenJourneyPosition();
             }
+            AmIFirstorLastPos();
         }
 
         public void ResetPosLetter()
@@ -236,6 +245,7 @@ namespace EA4S
 //                transform.position = miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform.position;
                 MoveTo(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform.position);
                 pos = miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>().posBefore;
+                transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock+1]);
             }
             else  //Letter is on a dot
             {
@@ -246,8 +256,9 @@ namespace EA4S
                 pos = miniMapScript.ropes[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
                     [AppManager.I.Player.CurrentJourneyPosition.PlaySession - 1].GetComponent<Dot>().pos;
                 miniMapScript.posDots[pos].GetComponent<Renderer>().material = red;
+                transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock]);
             }
-            LookAtRightPin();
+            AmIFirstorLastPos();
         }
         public void ResetPosLetterAfterChangeStage()
         {
@@ -259,6 +270,7 @@ namespace EA4S
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = 1;
             LookAtRightPin();
             UpdateCurrenJourneyPosition();
+            AmIFirstorLastPos();
         }
         void UpdateCurrenJourneyPosition()
         {
@@ -304,6 +316,35 @@ namespace EA4S
             if (moveTween != null) moveTween.Complete();
             if (animate) moveTween = this.transform.DOMove(position, 0.25f);
             else this.transform.position = position;
+        }
+
+        public void AmIFirstorLastPos()
+        {
+            CanNotMoveToRight();
+            CanNotMoveToLeft();
+        }
+        void CanNotMoveToLeft()
+        {
+            if(AppManager.I.Player.CurrentJourneyPosition.Stage < AppManager.I.Player.MaxJourneyPosition.Stage)
+            {
+                if ((AppManager.I.Player.CurrentJourneyPosition.LearningBlock == miniMapScript.posPines.Length-1)&&
+                    (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100)) moveLeftButton.SetActive(false);
+                else moveLeftButton.SetActive(true);
+            }
+            else
+            {
+                if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock == AppManager.I.Player.MaxJourneyPosition.LearningBlock)
+                {
+                    if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == AppManager.I.Player.MaxJourneyPosition.PlaySession) moveLeftButton.SetActive(false);
+                    else moveLeftButton.SetActive(true);
+                }
+                else moveLeftButton.SetActive(true);
+            }         
+        }
+        void CanNotMoveToRight()
+        {
+            if (pos == 0) moveRightButton.SetActive(false);
+            else moveRightButton.SetActive(true);
         }
     }
 }
