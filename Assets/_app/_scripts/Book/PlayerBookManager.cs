@@ -91,6 +91,6 @@ public class PlayerBookManager : MonoBehaviour
 
     public void BtnOpenMap()
     {
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Map");
+        NavigationManager.I.GoToScene(AppScene.Map);
     }
 }

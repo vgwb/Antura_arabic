@@ -92,10 +92,8 @@ namespace EA4S
             emptyListContainers();
 
             List<LetterInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllLetterInfo();
-            foreach (var info_item in info_list)
-            {
-                if (list.Contains(info_item.data))
-                {
+            foreach (var info_item in info_list) {
+                if (list.Contains(info_item.data)) {
                     btnGO = Instantiate(LetterItemPrefab);
                     btnGO.transform.SetParent(ElementsContainer.transform, false);
                     btnGO.GetComponent<ItemLetter>().Init(this, info_item);
@@ -138,10 +136,8 @@ namespace EA4S
             emptyListContainers();
 
             List<WordInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllWordInfo();
-            foreach (var info_item in info_list)
-            {
-                if (list.Contains(info_item.data))
-                {
+            foreach (var info_item in info_list) {
+                if (list.Contains(info_item.data)) {
                     btnGO = Instantiate(WordItemPrefab);
                     btnGO.transform.SetParent(ElementsContainer.transform, false);
                     btnGO.GetComponent<ItemWord>().Init(this, info_item);
@@ -230,7 +226,7 @@ namespace EA4S
 
         public void DetailLetter(LetterInfo info)
         {
-            Debug.Log("Detail Letter :" + info.data.Id);
+            Debug.Log("Detail Letter :" + info.data.Id + " [" + info.data.GetAvailablePositions() + "]");
             AudioManager.I.PlayLetter(info.data.Id);
 
             ScoreText.text = "Score: " + info.score;
@@ -276,7 +272,7 @@ namespace EA4S
         {
             OpenArea(PlayerBookPanel.BookPhrases);
         }
-        
+
 
     }
 }

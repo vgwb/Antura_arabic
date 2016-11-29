@@ -12,12 +12,14 @@ namespace EA4S.Db
         BaseAndVariations
     }
 
+    [Flags]
     public enum LetterPosition
     {
-        Isolated = 0,
-        Initial = 1,
-        Medial = 2,
-        Final = 3
+        None = 0,
+        Isolated = 1,
+        Initial = 2,
+        Medial = 4,
+        Final = 8
     }
 
     [Serializable]
@@ -121,20 +123,6 @@ namespace EA4S.Db
             return new LL_LetterData(GetId(), this);
         }
 
-        //public string GetChar(LetterPosition position = LetterPosition.Isolated)
-        //{
-        //    switch (position) {
-        //        case LetterPosition.Initial:
-        //            return Initial;
-        //        case LetterPosition.Medial:
-        //            return Medial;
-        //        case LetterPosition.Final:
-        //            return Final;
-        //        default:
-        //            return Isolated;
-        //    }
-        //}
-
         public string GetUnicode(LetterPosition position = LetterPosition.Isolated)
         {
             switch (Kind) {
@@ -175,5 +163,24 @@ namespace EA4S.Db
             }
             return output;
         }
+
+        public LetterPosition GetAvailablePositions()
+        {
+            LetterPosition availablePositions = LetterPosition.None;
+            if (Isolated_Unicode != "")
+                availablePositions |= LetterPosition.Isolated;
+
+            if (Initial_Unicode != "")
+                availablePositions |= LetterPosition.Initial;
+
+            if (Medial_Unicode != "")
+                availablePositions |= LetterPosition.Medial;
+
+            if (Final_Unicode != "")
+                availablePositions |= LetterPosition.Final;
+
+            return availablePositions;
+        }
+
     }
 }
