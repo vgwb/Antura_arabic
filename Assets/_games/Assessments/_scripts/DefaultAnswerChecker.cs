@@ -134,7 +134,7 @@ namespace EA4S.Assessment
 
         YieldInstruction PlayAnswerWrong()
         {
-            return dialogueManager.Dialogue( Localization.Random(
+            return dialogueManager.Speak( Localization.Random(
                                             Db.LocalizationDataId.Assessment_Wrong_1,
                                             Db.LocalizationDataId.Assessment_Wrong_2,
                                             Db.LocalizationDataId.Assessment_Wrong_3));
