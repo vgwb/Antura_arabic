@@ -15,25 +15,94 @@ namespace EA4S.Assessment
         private int numberOfCategories;
         private int numberOfMaxAnswers;
         private int numberOfRounds;
-        private List<ILivingLetterData>[] answersBuckets;
+        private List< ILivingLetterData>[] answersBuckets;
         private ICategoryProvider categoryProvider;
 
         public CategoryQuestionGenerator( IQuestionProvider provider, ICategoryProvider categoryProvider, int maxAnsw, int rounds)
         {
-            Debug.Log("CategoryQuestionGenerator CONSTRUCTOR");
             this.provider = provider;
             state = QuestionGeneratorState.Uninitialized;
             numberOfMaxAnswers = maxAnsw;
             numberOfCategories = categoryProvider.GetCategories();
-            Debug.Log("numberOfCategories" + numberOfCategories);
             numberOfRounds = rounds;
-            answersBuckets = new List<ILivingLetterData>[ numberOfCategories];
+            answersBuckets = new List< ILivingLetterData>[ 3];
             this.categoryProvider = categoryProvider;
-            for (int i = 0; i < numberOfCategories; i++)
-                answersBuckets[i] = new List<ILivingLetterData>();
+            for (int i = 0; i < 3; i++)
+                answersBuckets[i] = new List< ILivingLetterData>();
                         
             ClearCache();
             FillBuckets();
+        }
+
+        // Unluckily the question provider can be used only in the following mode
+        // because of how API was designed.
+        private void TakeAnswersFromBuckets()
+        {
+            category1ForThisRound = 0;
+            category2ForThisRound = 0;
+            category3ForThisRound = 0;
+
+            int picksThisRound = numberOfMaxAnswers;
+            Debug.Log("MAX ANSWERS (per round):" + picksThisRound);
+            int totalAnswers = answersBuckets[0].Count + answersBuckets[1].Count + answersBuckets[2].Count;
+            Debug.Log("ANSWERS (total):" + totalAnswers);
+            Debug.Log("Bucket1: " +answersBuckets[0].Count);
+            Debug.Log("Bucket2: " +answersBuckets[1].Count);
+            Debug.Log("Bucket3: " +answersBuckets[2].Count);
+
+            while ( picksThisRound > 0 && totalAnswers>0)
+            {
+                int pickFromBucketN = -1;
+
+                //ok as long as we have 10 or less buckets
+                // try to be fair (but never use infinite loop.)
+                for( int i=0; i<1000000; i++)
+                {
+                    int temp = UnityEngine.Random.Range( 0, 3);
+                    if ( answersBuckets[ temp].Count > 0)
+                    {
+                        pickFromBucketN = temp;
+                        Debug.Log("pickedFromBucket:"+temp);
+                        break;
+                    }
+
+                }
+
+                if (pickFromBucketN == -1)
+                {
+                    //and use a little bias if computation took to long.
+                    for(int i=0; i<3; i++)
+                    {
+                        if (answersBuckets[i].Count > 0)
+                        {
+                            pickFromBucketN = i;
+                            Debug.Log("pickedFromBucket:" + i);
+                            break;
+                        }
+                    }
+                }
+
+                if (pickFromBucketN == -1)
+                    throw new InvalidOperationException( "buckets empty");
+
+                picksThisRound--;
+                totalAnswers--;
+
+                switch (pickFromBucketN)
+                {
+                    case 0: category1ForThisRound++; break;
+                    case 1: category2ForThisRound++; break;
+                    default: category3ForThisRound++; break;
+                }
+
+            }
+
+            Debug.Log( "picked from category1: " + category1ForThisRound);
+            Debug.Log( "picked from category2: " + category2ForThisRound);
+            Debug.Log( "picked from category3: " + category3ForThisRound);
+
+            if ( picksThisRound == numberOfMaxAnswers)
+                throw new InvalidOperationException( "buckets empty");
         }
 
         private void FillBuckets()
@@ -43,30 +112,11 @@ namespace EA4S.Assessment
             for (int i = 0; i < max; i++)
             {
                 var pack = provider.GetNextQuestion();
-                foreach( var answ in pack.GetCorrectAnswers())
-                {
+                foreach (var answ in pack.GetCorrectAnswers())
                     for (int j = 0; j < numberOfCategories; j++)
-                        if (categoryProvider.Category(j) == answ.TextForLivingLetter)
-                        {
-                            Debug.Log("AddedQuestion: "+ pack.GetQuestion().TextForLivingLetter+
-                                      "  -- In Category:" + answ.TextForLivingLetter);
-                            answersBuckets[j].Add(pack.GetQuestion());
-                        }
-                }
+                        if (categoryProvider.Category(j).Equals( answ))
+                            answersBuckets[j].Add( pack.GetQuestion());
             }
-
-            if (numberOfCategories > 0)
-                category1 = answersBuckets[0].Count;
-
-            if (numberOfCategories > 1)
-                category2 = answersBuckets[1].Count;
-
-            if (numberOfCategories > 2)
-                category3 = answersBuckets[2].Count;
-
-            Debug.Log("category1" + category1);
-            Debug.Log("category2" + category2);
-            Debug.Log("category3" + category3);
         }
 
         private IAnswer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
@@ -85,6 +135,7 @@ namespace EA4S.Assessment
 
             state = QuestionGeneratorState.Initialized;
             ClearCache();
+            TakeAnswersFromBuckets();
         }
 
         private void ClearCache()
@@ -93,79 +144,6 @@ namespace EA4S.Assessment
             totalQuestions = new List< IQuestion>();
             partialAnswers = null;
             currentCategory = 0;
-            category1 = 0;
-            category2 = 0;
-            category3 = 0;
-
-            if (numberOfCategories == 2)
-                DistributeRandom2();
-            else
-                DistributeRandom3();
-
-            MakeDistributionConsistent();
-        }
-
-        private void DistributeRandom3()
-        {
-            for (int i = 0; i < numberOfMaxAnswers; i++)
-                switch (UnityEngine.Random.Range(1, 3))
-                {
-                    case 1: category1++; break;
-                    case 2: category2++; break;
-                    case 3: category3++; break;
-                }
-        }
-
-        private void DistributeRandom2()
-        {
-            for (int i = 0; i < numberOfMaxAnswers; i++)
-                if (UnityEngine.Random.Range( 1, 3)== 1)
-                    category1++;
-                else
-                    category2++;
-        }
-
-
-        // Use buckets only if they have enough elements
-        private void MakeDistributionConsistent()
-        {
-            Debug.Log("MakeDistributionConsistent");
-            if (category1 > answersBuckets[0].Count)
-            {
-                var diff = category1 - answersBuckets[0].Count;
-                category1 -= diff;
-                category2 += diff;
-            }
-
-            Debug.Log("AnswersBuckets: " + answersBuckets + " -- answersBuckets[1]: " + answersBuckets[1]);
-            if (numberOfCategories > 1 )
-            if (category2 > answersBuckets[1].Count)
-            {
-                var diff = category2 - answersBuckets[1].Count;
-                category2 -= diff;
-                category3 += diff;
-            }
-
-            if(numberOfCategories>2)
-            if (category3 > answersBuckets[2].Count)
-            {
-                var diff = category3 - answersBuckets[2].Count;
-                category3 -= diff;
-            }
-
-            const string errorMessage = "Cannot have all categories empty! Inconsistent with input parameters";
-
-            if (category1 + category2 + category3 > 0)
-                return;
-
-            if ( numberOfCategories == 3 && category3 <= 0)
-                throw new InvalidOperationException( errorMessage);
-
-            if ( numberOfCategories == 2 && category2 <= 0)
-                throw new InvalidOperationException( errorMessage);
-
-            if ( numberOfCategories == 1 && category1 <= 0)
-                throw new InvalidOperationException( errorMessage);
         }
 
         public void CompleteRound()
@@ -174,6 +152,7 @@ namespace EA4S.Assessment
                 throw new InvalidOperationException( "Not Initialized");
 
             state = QuestionGeneratorState.Completed;
+            currentCategory = 0;
         }
 
         public IAnswer[] GetAllAnswers()
@@ -206,9 +185,11 @@ namespace EA4S.Assessment
         IAnswer[] partialAnswers;
 
         private int currentCategory;
-        private int category1;
-        private int category2;
-        private int category3;
+
+        // Categories
+        private int category1ForThisRound;
+        private int category2ForThisRound;
+        private int category3ForThisRound;
 
         public IQuestion GetNextQuestion()
         {
@@ -224,17 +205,18 @@ namespace EA4S.Assessment
             // Assumption: Here each category have enough elements
             int amount = 0;
             if (currentCategory == 0)
-                amount = category1;
+                amount = category1ForThisRound;
             else
             if (currentCategory == 1)
-                amount = category2;
+                amount = category2ForThisRound;
             else
             if (currentCategory == 2)
-                amount = category3;
+                amount = category3ForThisRound;
 
             List< IAnswer> answers = new List< IAnswer>();
 
             int correctCount = 0;
+            Debug.Log( "CURRENT CATEGORY: " + currentCategory);
             for(int i=0; i<amount; i++)
             {
                 var answer = answersBuckets[currentCategory].Pull();

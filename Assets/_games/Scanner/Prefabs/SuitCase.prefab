@@ -448,6 +448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDragging: 0
+  isReady: 0
   fingerOffset: {x: 0, y: 3, z: 0}
   scale: 0.5
   isCorrectAnswer: 0

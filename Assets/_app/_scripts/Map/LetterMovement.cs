@@ -55,9 +55,9 @@ namespace EA4S
 
         void Update()
         {
-            /* Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.Stage);
-             Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock);
-             Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);*/
+            /* Debug.Log(AppManager.I.Player.CurrentJourneyPosition.Stage);
+             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.LearningBlock);
+             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.PlaySession);*/
 
             // transform.position = Vector3.MoveTowards(transform.position, new Vector3(posDot.x, transform.position.y, posDot.z), speed * Time.deltaTime);
             if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
@@ -67,7 +67,6 @@ namespace EA4S
                 int layerMask = 1 << 15;
                 if (Physics.Raycast(ray, out hit, layerMask))
                 {
-                    Debug.Log("AASDSDASDSDA");
                     if (hit.collider.tag == "Rope")
                     {
                         if (hit.transform.parent.gameObject.GetComponent<Rope>().dots[1].activeInHierarchy)//All dots available of all ropes
@@ -319,7 +318,7 @@ namespace EA4S
             else this.transform.position = position;
         }
 
-        void AmIFirstorLastPos()
+        public void AmIFirstorLastPos()
         {
             CanNotMoveToRight();
             CanNotMoveToLeft();

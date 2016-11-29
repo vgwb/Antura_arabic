@@ -49,7 +49,7 @@ namespace EA4S.Assessment
             var pos = Vector3.zero;
             List< Vector3> positions = new List< Vector3>();
             bool overlapping = false;
-            int attemps = 80;
+            int attemps = 10000;
             for (int i = 0; i < attemps; i++)
             {
                 pos = WorldBounds.Instance.RandomAnswerPosition();

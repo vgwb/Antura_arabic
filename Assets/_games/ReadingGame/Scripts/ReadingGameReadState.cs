@@ -194,6 +194,8 @@ namespace EA4S.ReadingGame
                 float distance;
                 if (game.barSet.GetFollowingDistance(out distance))
                 {
+                    distance = Math.Abs(distance);
+
                     if (distance > 100)
                     {
                         timeFarFromTarget += delta;

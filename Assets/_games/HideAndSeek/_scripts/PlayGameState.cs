@@ -44,6 +44,7 @@ namespace EA4S.HideAndSeek
 
             game.inGame = true;
             game.GameManager.SetTime();
+
         }
 
         public void ExitState()
@@ -53,11 +54,12 @@ namespace EA4S.HideAndSeek
 
             gameTime.Stop();
 
-            //game.Context.GetAudioManager().StopMusic();
             AudioManager.I.StopMusic();
 
             game.inGame = false;
             game.GameManager.enabled = false;
+            //disable UI
+            game.Context.GetOverlayWidget().Initialize(false, false, false);
         }
 
         public void Update(float delta)

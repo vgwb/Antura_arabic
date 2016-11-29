@@ -52,7 +52,7 @@ namespace EA4S.Assessment
                                                                             categoryProvider,
                                                                             simult, rounds);
             ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager, letterSize, wordSize);
+            IQuestionPlacer questionplacer = new CategoryQuestionPlacer( audioManager, letterSize, wordSize);
             IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
 
             gameDescription = Db.LocalizationDataId.Assessment_Classify_Words_Article;
