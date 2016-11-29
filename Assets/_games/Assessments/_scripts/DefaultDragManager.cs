@@ -118,6 +118,9 @@ namespace EA4S.Assessment
 
         bool NearEnoughToDrop( Transform zone)
         {
+            if (droppable == null)
+                return false;
+
             var p1 = zone.transform.position;
             var p2 = droppable.GetTransform().localPosition;
             p1.z = p2.z = 0;
