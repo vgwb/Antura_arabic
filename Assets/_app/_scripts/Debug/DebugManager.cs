@@ -65,12 +65,12 @@ namespace EA4S
         ///   <c>true</c> if [first contact passed]; otherwise, <c>false</c>.
         /// </value>
         public bool FirstContactPassed {
-            get { return !AppManager.Instance.Player.IsFirstContact(); }
+            get { return !AppManager.I.Player.IsFirstContact(); }
             set {
                 if (value) {
-                    AppManager.Instance.Player.FirstContactPassed(2);
+                    AppManager.I.Player.FirstContactPassed(2);
                 } else {
-                    AppManager.Instance.Player.ResetPlayerProfileCompletion();
+                    AppManager.I.Player.ResetPlayerProfileCompletion();
                 }
                 _firstContactPassed = value;
             }
@@ -112,12 +112,12 @@ namespace EA4S
         public void LaunchMinigGame(MiniGameCode miniGameCodeSelected)
         {
             Debug.Log("LaunchMinigGame " + miniGameCodeSelected.ToString());
-            AppManager.Instance.Player.CurrentJourneyPosition.Stage = Stage;
-            AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
-            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = PlaySession;
+            AppManager.I.Player.CurrentJourneyPosition.Stage = Stage;
+            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
+            AppManager.I.Player.CurrentJourneyPosition.PlaySession = PlaySession;
 
             // We must force this or the teacher won't use the correct data
-            AppManager.Instance.Teacher.InitialiseCurrentPlaySession();
+            AppManager.I.Teacher.InitialiseCurrentPlaySession();
 
             // Call start game with parameters
             NavigationManager.I.CurrentScene = AppScene.DebugPanel;

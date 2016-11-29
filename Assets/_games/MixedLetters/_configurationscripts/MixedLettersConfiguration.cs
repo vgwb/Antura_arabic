@@ -42,13 +42,14 @@
 
             int nPacks = 10;
 
+            var builderParams = new Teacher.QuestionBuilderParameters();
             switch (Variation)
             {
                 case MixedLettersVariation.Alphabet:
-                    builder = new AlphabetQuestionBuilder();
+                    builder = new AlphabetQuestionBuilder(parameters: builderParams);
                     break;
                 case MixedLettersVariation.Spelling:
-                    builder = new LettersInWordQuestionBuilder(nPacks, useAllCorrectLetters:true);
+                    builder = new LettersInWordQuestionBuilder(nPacks, useAllCorrectLetters:true, parameters: builderParams);
                     break;
             }
 

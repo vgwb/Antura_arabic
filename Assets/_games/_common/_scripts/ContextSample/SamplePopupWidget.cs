@@ -73,7 +73,7 @@ namespace EA4S
 
         public void SetTitle(string text)
         {
-            WidgetPopupWindow.I.SetTitle(text);
+            WidgetPopupWindow.I.SetTitle(text, false);
         }
 
         public void SetMessage(string text)
@@ -86,7 +86,7 @@ namespace EA4S
             if (!(data is LL_WordData))
                 return;
 
-            WidgetPopupWindow.I.SetWord(data.DrawingCharForLivingLetter, ((LL_WordData)data).Data.Arabic);
+            WidgetPopupWindow.I.SetWord(data.DrawingCharForLivingLetter, ((LL_WordData)data));
         }
     }
 }

@@ -4,7 +4,7 @@ namespace EA4S.Assessment
     {
         private AssessmentGame assessmentGame;
 
-        public AssessmentResultState( AssessmentGame assessmentGame)
+        public AssessmentResultState(AssessmentGame assessmentGame)
         {
             this.assessmentGame = assessmentGame;
         }
@@ -12,15 +12,15 @@ namespace EA4S.Assessment
         public void EnterState()
         {
             var audioManager = assessmentGame.Context.GetAudioManager();
-            IDialogueManager dialogue = new DialogueManager( audioManager, assessmentGame.Context.GetSubtitleWidget());
-            audioManager.PlayMusic( Music.Relax);
-            audioManager.PlaySound( Sfx.TickAndWin);
-            dialogue.Dialogue( Localization.Random(
+            IDialogueManager dialogue = new DialogueManager(audioManager, assessmentGame.Context.GetSubtitleWidget());
+            audioManager.PlayMusic(Music.Relax);
+            audioManager.PlaySound(Sfx.TickAndWin);
+            dialogue.Dialogue(Localization.Random(
                                                     Db.LocalizationDataId.Assessment_Complete_1,
                                                     Db.LocalizationDataId.Assessment_Complete_2,
-                                                    Db.LocalizationDataId.Assessment_Complete_3 ));
+                                                    Db.LocalizationDataId.Assessment_Complete_3));
 
-            AssessmentResultAntura.Instance .StartAnimation(
+            AssessmentResultAntura.Instance.StartAnimation(
                 () => ExitState()
                 );
         }
@@ -28,19 +28,18 @@ namespace EA4S.Assessment
         bool exited = false;
         public void ExitState()
         {
-            if (exited == false)
-            {
-                AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Rewards");
+            if (exited == false) {
+                NavigationManager.I.GoToScene(AppScene.Rewards);
                 exited = true;
             }
         }
 
-        public void Update( float delta)
+        public void Update(float delta)
         {
-            TimeEngine.Instance.Update( delta);
+            TimeEngine.Instance.Update(delta);
         }
 
-        public void UpdatePhysics( float delta)
+        public void UpdatePhysics(float delta)
         {
         }
     }

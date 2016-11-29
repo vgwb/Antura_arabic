@@ -47,7 +47,49 @@ namespace EA4S.ThrowBalls
             cameraDistance = 26;
             INITIAL_BALL_POSITION.y = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height / 3, cameraDistance)).y;
 
+            IInputManager inputManager = ThrowBallsConfiguration.Instance.Context.GetInputManager();
+            inputManager.onPointerDown += OnPointerDown;
+            inputManager.onPointerDrag += OnPointerDrag;
+            inputManager.onPointerUp += OnPointerUp;
+
             Reset();
+        }
+
+        private void OnPointerDown()
+        {
+            SetState(State.Dragging);
+        }
+
+        private void OnPointerDrag()
+        {
+            if (state == State.Dragging)
+            {
+                Vector2 lastTouch = ThrowBallsConfiguration.Instance.Context.GetInputManager().LastPointerPosition;
+
+                float clampedInputY = lastTouch.y > Screen.height / 3 ? Screen.height / 3 : lastTouch.y;
+
+                Vector3 touchPosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(lastTouch.x, clampedInputY, cameraDistance));
+
+                float yzFactor = 1 - (clampedInputY / Screen.height) * 3;
+                touchPosInWorldUnits.y = INITIAL_BALL_POSITION.y - yzFactor * yzStretchRange;
+                touchPosInWorldUnits.z = INITIAL_BALL_POSITION.z - yzFactor * yzStretchRange;
+
+                transform.position = touchPosInWorldUnits; 
+            }
+        }
+
+        private void OnPointerUp()
+        {
+            if (state == State.Dragging)
+            {
+                Vector3 forceToApply = SlingshotController.instance.GetLaunchForce();
+                rigidBody.isKinematic = false;
+                rigidBody.AddForce(forceToApply, ForceMode.VelocityChange);
+                SetState(State.Launched);
+
+                ArrowBodyController.instance.Disable();
+                ArrowHeadController.instance.Disable();
+            }
         }
 
         public void OnCollisionExit(Collision collision)
@@ -68,6 +110,12 @@ namespace EA4S.ThrowBalls
             rigidBody.isKinematic = false;
             sphereCollider.enabled = true;
             SetState(State.Anchored);
+
+            ArrowBodyController.instance.Reset();
+            ArrowHeadController.instance.Reset();
+
+            ArrowBodyController.instance.Enable();
+            ArrowHeadController.instance.Enable();
         }
 
         public void Enable()
@@ -133,6 +181,11 @@ namespace EA4S.ThrowBalls
         public bool IsLaunched()
         {
             return !(state == State.Anchored || state == State.Dragging || state == State.Idle);
+        }
+
+        public bool IsIdle()
+        {
+            return state == State.Idle;
         }
 
         public void OnIntercepted()
@@ -212,105 +265,7 @@ namespace EA4S.ThrowBalls
 
         void Update()
         {
-            if (Input.touchCount > 0)
-            {
-                Touch touch = Input.GetTouch(0);
-
-                switch (touch.phase)
-                {
-                    case TouchPhase.Began:
-                        Ray ray = Camera.main.ScreenPointToRay(touch.position);
-
-                        RaycastHit hit;
-
-                        if (Physics.Raycast(ray, out hit, Mathf.Infinity) && hit.collider.gameObject.tag == Constants.TAG_POKEBALL
-                            && (state == State.Anchored || state == State.Idle))
-                        {
-                            SetState(State.Dragging);
-                        }
-
-                        break;
-                    case TouchPhase.Moved:
-                        if (state == State.Dragging)
-                        {
-                            float clampedInputY = touch.position.y > Screen.height / 3 ? Screen.height / 3 : touch.position.y;
-
-                            Vector3 touchPosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, clampedInputY, cameraDistance));
-
-                            float yzFactor = 1 - (clampedInputY / Screen.height) * 3;
-                            touchPosInWorldUnits.y = INITIAL_BALL_POSITION.y - yzFactor * yzStretchRange;
-                            touchPosInWorldUnits.z = INITIAL_BALL_POSITION.z - yzFactor * yzStretchRange;
-
-                            transform.position = touchPosInWorldUnits;
-                        }
-
-                        break;
-                    case TouchPhase.Stationary:
-                        break;
-                    case TouchPhase.Ended:
-                        if (state == State.Dragging)
-                        {
-                            Vector3 forceToApply = SlingshotController.instance.GetLaunchForce();
-                            rigidBody.isKinematic = false;
-                            rigidBody.AddForce(forceToApply, ForceMode.VelocityChange);
-                            SetState(State.Launched);
-                        }
-
-                        break;
-                    case TouchPhase.Canceled:
-                        break;
-                    default:
-                        break;
-                }
-            }
-
             stateTime += Time.deltaTime;
         }
-
-        #region Mouse controls
-        void OnMouseDown()
-        {
-            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer || !(state == State.Idle || state == State.Anchored))
-            {
-                return;
-            }
-
-            Vector3 mousePosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraDistance));
-
-            SetState(State.Dragging);
-        }
-        void OnMouseDrag()
-        {
-            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
-            {
-                return;
-            }
-
-            float clampedInputY = Input.mousePosition.y > Screen.height / 3 ? Screen.height / 3 : Input.mousePosition.y;
-
-            Vector3 mousePosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, clampedInputY, cameraDistance));
-
-            float yzFactor = 1 - (clampedInputY / Screen.height) * 3;
-            mousePosInWorldUnits.y = INITIAL_BALL_POSITION.y - yzFactor * yzStretchRange;
-            mousePosInWorldUnits.z = INITIAL_BALL_POSITION.z - yzFactor * yzStretchRange;
-
-            transform.position = mousePosInWorldUnits;
-        }
-
-        void OnMouseUp()
-        {
-            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
-            {
-                return;
-            }
-
-            Vector3 forceToApply = SlingshotController.instance.GetLaunchForce();
-            rigidBody.isKinematic = false;
-            rigidBody.AddForce(forceToApply, ForceMode.VelocityChange);
-            SetState(State.Launched);
-        }
-
-        #endregion
-
     }
 }

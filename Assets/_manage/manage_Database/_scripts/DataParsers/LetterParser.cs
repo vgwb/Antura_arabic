@@ -28,6 +28,12 @@ namespace EA4S.Db.Management
             data.Initial_Unicode = ToString(dict["Initial_Unicode"]);
             data.Medial_Unicode = ToString(dict["Medial_Unicode"]);
             data.Final_Unicode = ToString(dict["Final_Unicode"]);
+            data.Symbol_Unicode = ToString(dict["Symbol_Unicode"]);
+
+            data.Old_Isolated = ToString(dict["Old_Isolated"]);
+            data.Old_Initial = ToString(dict["Old_Initial"]);
+            data.Old_Medial = ToString(dict["Old_Medial"]);
+            data.Old_Final = ToString(dict["Old_Final"]);
 
             return data;
         }
@@ -44,7 +50,7 @@ namespace EA4S.Db.Management
             // Fields 'BaseLetter' and 'Symbol' are validated with a final validation step, since they are based on this same table
             // Also, Combination letters are validated with their BaseLetter and Symbol.
             foreach (var data in table.GetValuesTyped()) {
-                if (data.Kind == LetterDataKind.Combination) {
+                if (data.Kind == LetterDataKind.DiacriticCombo) {
                     if (data.BaseLetter == "") {
                         LogValidation(data, "LetterData with id  " + data.Id + " is a Combination but does not have a BaseLetter.");
                     }

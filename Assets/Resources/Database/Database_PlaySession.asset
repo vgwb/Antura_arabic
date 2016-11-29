@@ -1,0 +1,8624 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf7a4ab2ce7fe8408f6bce3e7e8d786, type: 3}
+  m_Name: Database_PlaySession
+  m_EditorClassIdentifier: 
+  table:
+    innerList:
+    - Id: 1.1.1
+      Stage: 1
+      LearningBlock: 1
+      PlaySession: 1
+      Type: MiniGame
+      Order: 1
+      Minigames:
+      - MiniGameCode: 11
+        Weight: 100
+      - MiniGameCode: 27
+        Weight: 100
+      Letters:
+      - alef
+      - alef_hamza_hi
+      - alef_hamza_low
+      Words:
+      - father
+      - brother
+      Words_previous:
+      - mother
+      - nose
+      - deer
+      - sister
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.1.2
+      Stage: 1
+      LearningBlock: 1
+      PlaySession: 2
+      Type: MiniGame
+      Order: 1
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 100
+      - MiniGameCode: 18
+        Weight: 100
+      Letters: []
+      Words:
+      - pear
+      - needle
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.1.100
+      Stage: 1
+      LearningBlock: 1
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.2.1
+      Stage: 1
+      LearningBlock: 2
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 100
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      Letters:
+      - beh
+      - teh
+      - theh
+      Words:
+      - yogurt
+      - berry
+      - snow
+      Words_previous:
+      - dog
+      - girl
+      - garlic
+      - number_02
+      - fig
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.2.2
+      Stage: 1
+      LearningBlock: 2
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.2.100
+      Stage: 1
+      LearningBlock: 2
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.3.1
+      Stage: 1
+      LearningBlock: 3
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 100
+      - MiniGameCode: 27
+        Weight: 1
+      Letters:
+      - jeem
+      - hah
+      - khah
+      Words:
+      - leg
+      - delicious
+      - uncle_father
+      Words_previous:
+      - cheese
+      - whale
+      - sister
+      - color_red
+      - number_01
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.3.2
+      Stage: 1
+      LearningBlock: 3
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.3.100
+      Stage: 1
+      LearningBlock: 3
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.4.1
+      Stage: 1
+      LearningBlock: 4
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 100
+      Letters:
+      - dal
+      - thal
+      Words:
+      - bear
+      - ear
+      Words_previous:
+      - cold
+      - notebook
+      - delicious
+      - wolf
+      - flower
+      - window
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.4.2
+      Stage: 1
+      LearningBlock: 4
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.4.100
+      Stage: 1
+      LearningBlock: 4
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.5.1
+      Stage: 1
+      LearningBlock: 5
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 100
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters:
+      - reh
+      - zain
+      Words:
+      - cold
+      - banana
+      Words_previous:
+      - moon
+      - rain
+      - deer
+      - oil
+      - leg
+      - color_blue
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.5.2
+      Stage: 1
+      LearningBlock: 5
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.5.100
+      Stage: 1
+      LearningBlock: 5
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.6.1
+      Stage: 1
+      LearningBlock: 6
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 9
+        Weight: 100
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters:
+      - seen
+      - sheen
+      Words:
+      - tooth
+      - tea
+      Words_previous:
+      - sugar
+      - eagle
+      - hair
+      - apricot
+      - nest
+      - lentil
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.6.2
+      Stage: 1
+      LearningBlock: 6
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.6.100
+      Stage: 1
+      LearningBlock: 6
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.7.1
+      Stage: 1
+      LearningBlock: 7
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 100
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters:
+      - sad
+      - dad
+      Words:
+      - voice
+      - light
+      Words_previous:
+      - chest
+      - box
+      - color_green
+      - color_white
+      - bus
+      - toilet
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.7.2
+      Stage: 1
+      LearningBlock: 7
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.7.100
+      Stage: 1
+      LearningBlock: 7
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.8.1
+      Stage: 1
+      LearningBlock: 8
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 100
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters:
+      - tah
+      - zah
+      Words:
+      - rain
+      - back
+      Words_previous:
+      - potato
+      - ducks
+      - nail
+      - clean
+      - belly
+      - icecream
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.8.2
+      Stage: 1
+      LearningBlock: 8
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.8.100
+      Stage: 1
+      LearningBlock: 8
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.9.1
+      Stage: 1
+      LearningBlock: 9
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters:
+      - ain
+      - ghain
+      Words:
+      - aunt_father
+      - deer
+      Words_previous:
+      - eye
+      - grapes
+      - room
+      - parrot
+      - hair
+      - glue
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.9.2
+      Stage: 1
+      LearningBlock: 9
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.9.100
+      Stage: 1
+      LearningBlock: 9
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.10.1
+      Stage: 1
+      LearningBlock: 10
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters:
+      - feh
+      - qaf
+      Words:
+      - nose
+      - moon
+      Words_previous:
+      - notebook
+      - elephant
+      - paper
+      - box
+      - color_yellow
+      - field
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.10.2
+      Stage: 1
+      LearningBlock: 10
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.10.100
+      Stage: 1
+      LearningBlock: 10
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.11.1
+      Stage: 1
+      LearningBlock: 11
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 100
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters:
+      - kaf
+      - lam
+      Words:
+      - sugar
+      - dog
+      Words_previous:
+      - book
+      - pear
+      - elephant
+      - snow
+      - big
+      - yogurt
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.11.2
+      Stage: 1
+      LearningBlock: 11
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.11.100
+      Stage: 1
+      LearningBlock: 11
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.12.1
+      Stage: 1
+      LearningBlock: 12
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters:
+      - meem
+      - noon
+      Words:
+      - mother
+      - cheese
+      Words_previous:
+      - moon
+      - rain
+      - girl
+      - grandmother
+      - garlic
+      - ear
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.12.2
+      Stage: 1
+      LearningBlock: 12
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.12.100
+      Stage: 1
+      LearningBlock: 12
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.13.1
+      Stage: 1
+      LearningBlock: 13
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters:
+      - yeh
+      - waw
+      - heh
+      Words:
+      - cat
+      - flower
+      - eye
+      Words_previous:
+      - back
+      - paper
+      - tea
+      - river
+      - hand
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.13.2
+      Stage: 1
+      LearningBlock: 13
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.13.100
+      Stage: 1
+      LearningBlock: 13
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.14.1
+      Stage: 1
+      LearningBlock: 14
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters:
+      - alef
+      - waw
+      - yeh
+      Words:
+      - aunt_mother
+      - grandfather
+      - elephant
+      Words_previous:
+      - book
+      - whale
+      - fig
+      - berry
+      - grandson
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.14.2
+      Stage: 1
+      LearningBlock: 14
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.14.100
+      Stage: 1
+      LearningBlock: 14
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.1.1
+      Stage: 2
+      LearningBlock: 1
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 10
+      Letters:
+      - alef
+      Words:
+      - grandmother
+      - sister
+      Words_previous:
+      - furniture
+      - father
+      - cucumber
+      - bed
+      - number_04
+      - deer
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.1.2
+      Stage: 2
+      LearningBlock: 1
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.1.100
+      Stage: 2
+      LearningBlock: 1
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.2.1
+      Stage: 2
+      LearningBlock: 2
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 10
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - beh
+      Words:
+      - girl
+      - boy
+      - grapes
+      - book
+      Words_previous:
+      - cheese
+      - bus
+      - color_brown
+      - bear
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.2.2
+      Stage: 2
+      LearningBlock: 2
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.2.100
+      Stage: 2
+      LearningBlock: 2
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.3.1
+      Stage: 2
+      LearningBlock: 3
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - teh
+      - teh_marbuta
+      Words:
+      - fig
+      - notebook
+      - oil
+      - whale
+      - second
+      - woman
+      Words_previous:
+      - sister
+      - girl
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.3.2
+      Stage: 2
+      LearningBlock: 3
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.3.100
+      Stage: 2
+      LearningBlock: 3
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.4.1
+      Stage: 2
+      LearningBlock: 4
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 100
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - theh
+      Words:
+      - garlic
+      - pear_big
+      - triangle
+      - furniture
+      Words_previous:
+      - number_02
+      - snow
+      - fridge
+      - number_08
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.4.2
+      Stage: 2
+      LearningBlock: 4
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.4.100
+      Stage: 2
+      LearningBlock: 4
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.5.1
+      Stage: 2
+      LearningBlock: 5
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - jeem
+      Words:
+      - camel
+      - tree
+      - tower
+      Words_previous:
+      - snow
+      - grandfather
+      - carpenter
+      - carrot
+      - face
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.5.2
+      Stage: 2
+      LearningBlock: 5
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.5.100
+      Stage: 2
+      LearningBlock: 5
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.6.1
+      Stage: 2
+      LearningBlock: 6
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - hah
+      Words:
+      - grandson
+      - meat
+      - won
+      - apple
+      Words_previous:
+      - farmer
+      - field
+      - whale
+      - color_red
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.6.2
+      Stage: 2
+      LearningBlock: 6
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.6.100
+      Stage: 2
+      LearningBlock: 6
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.7.1
+      Stage: 2
+      LearningBlock: 7
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - khah
+      Words:
+      - cucumber
+      - hot_temperature
+      - watermelon
+      - plum
+      Words_previous:
+      - aunt_mother
+      - sister
+      - bread
+      - cupboard
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.7.2
+      Stage: 2
+      LearningBlock: 7
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.7.100
+      Stage: 2
+      LearningBlock: 7
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.8.1
+      Stage: 2
+      LearningBlock: 8
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - dal
+      Words:
+      - chest
+      - hand
+      Words_previous:
+      - bear
+      - box
+      - cold
+      - foot
+      - lentil
+      - flower
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.8.2
+      Stage: 2
+      LearningBlock: 8
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.8.100
+      Stage: 2
+      LearningBlock: 8
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.9.1
+      Stage: 2
+      LearningBlock: 9
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - thal
+      Words:
+      - delicious
+      - went
+      Words_previous:
+      - ear
+      - wolf
+      - window
+      - color_gold
+      - month_march
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.9.2
+      Stage: 2
+      LearningBlock: 9
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.9.100
+      Stage: 2
+      LearningBlock: 9
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.10.1
+      Stage: 2
+      LearningBlock: 10
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - reh
+      Words:
+      - tiger
+      - paper
+      Words_previous:
+      - rice
+      - cold
+      - chest
+      - notebook
+      - number_04
+      - color_yellow
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.10.2
+      Stage: 2
+      LearningBlock: 10
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.10.100
+      Stage: 2
+      LearningBlock: 10
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.11.1
+      Stage: 2
+      LearningBlock: 11
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - zain
+      Words:
+      - bread
+      - rice
+      Words_previous:
+      - oil
+      - deer
+      - color_blue
+      - cupboard
+      - carrot
+      - banana
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.11.2
+      Stage: 2
+      LearningBlock: 11
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.11.100
+      Stage: 2
+      LearningBlock: 11
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.12.1
+      Stage: 2
+      LearningBlock: 12
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - seen
+      Words:
+      - hour
+      - eagle
+      - sat
+      - studied
+      Words_previous:
+      - hot_temperature
+      - tongue
+      - number_05
+      - number_06
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.12.2
+      Stage: 2
+      LearningBlock: 12
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.12.100
+      Stage: 2
+      LearningBlock: 12
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.13.1
+      Stage: 2
+      LearningBlock: 13
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - sheen
+      Words:
+      - hair
+      - apricot
+      - nest
+      - bed
+      Words_previous:
+      - tea
+      - hospital
+      - number_20
+      - tree
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.13.2
+      Stage: 2
+      LearningBlock: 13
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.13.100
+      Stage: 2
+      LearningBlock: 13
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.14.1
+      Stage: 2
+      LearningBlock: 14
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - sad
+      Words:
+      - box
+      - onion
+      - scissors
+      - bus
+      Words_previous:
+      - chest
+      - juice
+      - finger
+      - boy
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.14.2
+      Stage: 2
+      LearningBlock: 14
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 2.14.100
+      Stage: 2
+      LearningBlock: 14
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.1.1
+      Stage: 3
+      LearningBlock: 1
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - dad
+      Words:
+      - laughed
+      - color_green
+      - color_white
+      - ground
+      Words_previous:
+      - light
+      - toilet
+      - color_silver
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.1.2
+      Stage: 3
+      LearningBlock: 1
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.1.100
+      Stage: 3
+      LearningBlock: 1
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.2.1
+      Stage: 3
+      LearningBlock: 2
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - tah
+      Words:
+      - flew
+      - potato
+      - ducks
+      - month_february
+      Words_previous:
+      - slow
+      - table
+      - station
+      - policeman
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.2.2
+      Stage: 3
+      LearningBlock: 2
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.2.100
+      Stage: 3
+      LearningBlock: 2
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.3.1
+      Stage: 3
+      LearningBlock: 3
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - zah
+      Words:
+      - nail
+      - clean
+      - anger
+      - OokaDH
+      - icecream
+      Words_previous:
+      - back
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.3.2
+      Stage: 3
+      LearningBlock: 3
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.3.100
+      Stage: 3
+      LearningBlock: 3
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.4.1
+      Stage: 3
+      LearningBlock: 4
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - ain
+      Words:
+      - juice
+      - played
+      - finger
+      - brave
+      Words_previous:
+      - hair
+      - lentil
+      - eye
+      - nest
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.4.2
+      Stage: 3
+      LearningBlock: 4
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.4.100
+      Stage: 3
+      LearningBlock: 4
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.5.1
+      Stage: 3
+      LearningBlock: 5
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - ghain
+      Words:
+      - room
+      - parrot
+      - glue
+      - brain
+      Words_previous:
+      - deer
+      - small
+      - bulgar
+      - forest
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.5.2
+      Stage: 3
+      LearningBlock: 5
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.5.100
+      Stage: 3
+      LearningBlock: 5
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.6.1
+      Stage: 3
+      LearningBlock: 6
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - feh
+      Words:
+      - farmer
+      - color_yellow
+      - classroom
+      - flapped
+      Words_previous:
+      - bed
+      - bank
+      - room
+      - elephant
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.6.2
+      Stage: 3
+      LearningBlock: 6
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.6.100
+      Stage: 3
+      LearningBlock: 6
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.7.1
+      Stage: 3
+      LearningBlock: 7
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - qaf
+      Words:
+      - foot
+      - field
+      - agreed
+      - color_blue
+      Words_previous:
+      - moon
+      - market
+      - color_orange
+      - paper
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.7.2
+      Stage: 3
+      LearningBlock: 7
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.7.100
+      Stage: 3
+      LearningBlock: 7
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.8.1
+      Stage: 3
+      LearningBlock: 8
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - kaf
+      Words:
+      - month_january
+      - cried
+      - caught
+      - released
+      Words_previous:
+      - big
+      - sugar
+      - dog
+      - book
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.8.2
+      Stage: 3
+      LearningBlock: 8
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.8.100
+      Stage: 3
+      LearningBlock: 8
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.9.1
+      Stage: 3
+      LearningBlock: 9
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - lam
+      Words:
+      - teacher
+      - carried
+      - month_september
+      Words_previous:
+      - played
+      - field
+      - delicious
+      - tongue
+      - mountain
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.9.2
+      Stage: 3
+      LearningBlock: 9
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.9.100
+      Stage: 3
+      LearningBlock: 9
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.10.1
+      Stage: 3
+      LearningBlock: 10
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - meem
+      Words:
+      - school
+      - color_red
+      - understood
+      - day
+      Words_previous:
+      - tiger
+      - rain
+      - glue
+      - meat
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.10.2
+      Stage: 3
+      LearningBlock: 10
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.10.100
+      Stage: 3
+      LearningBlock: 10
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.11.1
+      Stage: 3
+      LearningBlock: 11
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - noon
+      Words:
+      - carpenter
+      - number_02
+      - belly
+      - tongue
+      Words_previous:
+      - color_brown
+      - window
+      - shop
+      - river
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.11.2
+      Stage: 3
+      LearningBlock: 11
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.11.100
+      Stage: 3
+      LearningBlock: 11
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.12.1
+      Stage: 3
+      LearningBlock: 12
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - heh
+      Words:
+      - month
+      - virtuous
+      - lips
+      Words_previous:
+      - cat
+      - river
+      - engineer
+      - back
+      - face
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.12.2
+      Stage: 3
+      LearningBlock: 12
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.12.100
+      Stage: 3
+      LearningBlock: 12
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.13.1
+      Stage: 3
+      LearningBlock: 13
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - waw
+      Words:
+      - face
+      - bird
+      Words_previous:
+      - light
+      - broad_bean
+      - flower
+      - paper
+      - whale
+      - plum
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.13.2
+      Stage: 3
+      LearningBlock: 13
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.13.100
+      Stage: 3
+      LearningBlock: 13
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.14.1
+      Stage: 3
+      LearningBlock: 14
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters:
+      - yeh
+      Words:
+      - number_08
+      - color_brown
+      Words_previous:
+      - hand
+      - tea
+      - doctor
+      - chair
+      - eye
+      - fig
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.14.2
+      Stage: 3
+      LearningBlock: 14
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 3.14.100
+      Stage: 3
+      LearningBlock: 14
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.1.1
+      Stage: 4
+      LearningBlock: 1
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 100
+      - MiniGameCode: 3
+        Weight: 100
+      - MiniGameCode: 4
+        Weight: 100
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 100
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 100
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 100
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 100
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 100
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 80
+      Letters:
+      - fathah
+      - alef_fathah
+      - ain_fathah
+      - beh_fathah
+      - dad_fathah
+      - dal_fathah
+      - thal_fathah
+      - feh_fathah
+      - heh_fathah
+      - hah_fathah
+      - jeem_fathah
+      - kaf_fathah
+      - lam_fathah
+      - meem_fathah
+      - noon_fathah
+      - qaf_fathah
+      - reh_fathah
+      - sad_fathah
+      - seen_fathah
+      - sheen_fathah
+      - tah_fathah
+      - teh_fathah
+      - zain_fathah
+      Words:
+      - doctor
+      Words_previous:
+      - rain
+      - juice
+      - laughed
+      - glue
+      - notebook
+      - restaurant
+      - flag
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.1.2
+      Stage: 4
+      LearningBlock: 1
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.1.100
+      Stage: 4
+      LearningBlock: 1
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.2.1
+      Stage: 4
+      LearningBlock: 2
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - dammah
+      - beh_dammah
+      - jeem_dammah
+      - kaf_dammah
+      - meem_dammah
+      - teh_dammah
+      - zain_dammah
+      Words:
+      - garden
+      Words_previous:
+      - color_brown
+      - teacher
+      - ear
+      - room
+      - bulgar
+      - apricot
+      - chair
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.2.2
+      Stage: 4
+      LearningBlock: 2
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.2.100
+      Stage: 4
+      LearningBlock: 2
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.3.1
+      Stage: 4
+      LearningBlock: 3
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - kasrah
+      - ain_kasrah
+      - beh_kasrah
+      - heh_kasrah
+      - hah_kasrah
+      - lam_kasrah
+      - meem_kasrah
+      - reh_kasrah
+      Words:
+      - number_06
+      Words_previous:
+      - tooth
+      - brain
+      - girl
+      - wolf
+      - window
+      - lips
+      - table
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.3.2
+      Stage: 4
+      LearningBlock: 3
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.3.100
+      Stage: 4
+      LearningBlock: 3
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.4.1
+      Stage: 4
+      LearningBlock: 4
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - fathah
+      - dammah
+      - kasrah
+      - sukun
+      - alef_fathah
+      - ain_fathah
+      - beh_fathah
+      - dad_fathah
+      - dal_fathah
+      - thal_fathah
+      - feh_fathah
+      - heh_fathah
+      - hah_fathah
+      - jeem_fathah
+      - kaf_fathah
+      - lam_fathah
+      - meem_fathah
+      - noon_fathah
+      - qaf_fathah
+      - reh_fathah
+      - sad_fathah
+      - seen_fathah
+      - sheen_fathah
+      - tah_fathah
+      - teh_fathah
+      - zain_fathah
+      - beh_dammah
+      - jeem_dammah
+      - kaf_dammah
+      - meem_dammah
+      - teh_dammah
+      - zain_dammah
+      - ain_kasrah
+      - beh_kasrah
+      - heh_kasrah
+      - hah_kasrah
+      - lam_kasrah
+      - meem_kasrah
+      - reh_kasrah
+      - feh_sukun
+      - lam_sukun
+      - noon_sukun
+      Words:
+      - restaurant
+      Words_previous:
+      - ducks
+      - needle
+      - apricot
+      - number_05
+      - chair
+      - bank
+      - pear
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.4.2
+      Stage: 4
+      LearningBlock: 4
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.4.100
+      Stage: 4
+      LearningBlock: 4
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.5.1
+      Stage: 4
+      LearningBlock: 5
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - fathah_tanwin
+      - alef_fathah_tanwin
+      Words:
+      - of_course
+      Words_previous:
+      - tomorrow
+      - thankyou
+      - sure
+      - hi
+      - welcome
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.5.2
+      Stage: 4
+      LearningBlock: 5
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.5.100
+      Stage: 4
+      LearningBlock: 5
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.6.1
+      Stage: 4
+      LearningBlock: 6
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - dammah_tanwin
+      - dal_dammah_tanwin
+      - teh_marbuta_dammah_tanwin
+      Words:
+      - forest
+      Words_previous:
+      - number_07
+      - whale
+      - voice
+      - station
+      - table
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.6.2
+      Stage: 4
+      LearningBlock: 6
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.6.100
+      Stage: 4
+      LearningBlock: 6
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.7.1
+      Stage: 4
+      LearningBlock: 7
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - kasrah_tanwin
+      - lam_kasrah_tanwin
+      - noon_kasrah_tanwin
+      Words:
+      - shop
+      Words_previous:
+      - yogurt
+      - camel
+      - tiger
+      - bed
+      - chest
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.7.2
+      Stage: 4
+      LearningBlock: 7
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.7.100
+      Stage: 4
+      LearningBlock: 7
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 104
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.8.1
+      Stage: 4
+      LearningBlock: 8
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - fathah
+      - dammah
+      - kasrah
+      - fathah_tanwin
+      - dammah_tanwin
+      - kasrah_tanwin
+      - alef_fathah
+      - ain_fathah
+      - beh_fathah
+      - dad_fathah
+      - dal_fathah
+      - thal_fathah
+      - feh_fathah
+      - heh_fathah
+      - hah_fathah
+      - jeem_fathah
+      - kaf_fathah
+      - lam_fathah
+      - meem_fathah
+      - noon_fathah
+      - qaf_fathah
+      - reh_fathah
+      - sad_fathah
+      - seen_fathah
+      - sheen_fathah
+      - tah_fathah
+      - teh_fathah
+      - zain_fathah
+      - beh_dammah
+      - jeem_dammah
+      - kaf_dammah
+      - meem_dammah
+      - teh_dammah
+      - zain_dammah
+      - ain_kasrah
+      - beh_kasrah
+      - heh_kasrah
+      - hah_kasrah
+      - lam_kasrah
+      - meem_kasrah
+      - reh_kasrah
+      - alef_fathah_tanwin
+      - dal_dammah_tanwin
+      - teh_marbuta_dammah_tanwin
+      - lam_kasrah_tanwin
+      - noon_kasrah_tanwin
+      Words:
+      - wrote
+      - books
+      - flag
+      - knowledge
+      Words_previous:
+      - color_black
+      - lion_plural
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.8.100
+      Stage: 4
+      LearningBlock: 8
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 104
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.9.1
+      Stage: 4
+      LearningBlock: 9
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.9.2
+      Stage: 4
+      LearningBlock: 9
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - sky
+      - wolf
+      - pearl
+      - slow
+      Words_previous:
+      - parrot
+      - light
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.9.100
+      Stage: 4
+      LearningBlock: 9
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 103
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.10.1
+      Stage: 4
+      LearningBlock: 10
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - waw
+      Words: []
+      Words_previous:
+      - banana
+      - sound
+      - light
+      - flower
+      - paper
+      - plum
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.10.2
+      Stage: 4
+      LearningBlock: 10
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.10.100
+      Stage: 4
+      LearningBlock: 10
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 103
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.11.1
+      Stage: 4
+      LearningBlock: 11
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous:
+      - oil
+      - house
+      - eye
+      - hand
+      - anger
+      - color_white
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.11.2
+      Stage: 4
+      LearningBlock: 11
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.11.100
+      Stage: 4
+      LearningBlock: 11
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 107
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.12.1
+      Stage: 4
+      LearningBlock: 12
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - drank
+      - opened
+      - ate
+      Words_previous:
+      - drank
+      - sat
+      - studied
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.12.2
+      Stage: 4
+      LearningBlock: 12
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.12.100
+      Stage: 4
+      LearningBlock: 12
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 107
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.13.1
+      Stage: 4
+      LearningBlock: 13
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - station
+      - bank
+      - hospital
+      - market
+      Words_previous:
+      - school
+      - club
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.13.2
+      Stage: 4
+      LearningBlock: 13
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.13.100
+      Stage: 4
+      LearningBlock: 13
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 107
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.14.1
+      Stage: 4
+      LearningBlock: 14
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - lentil
+      - bulgar
+      - chickpea
+      - broad_bean
+      Words_previous:
+      - rice
+      - sugar
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.14.2
+      Stage: 4
+      LearningBlock: 14
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.14.100
+      Stage: 4
+      LearningBlock: 14
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 107
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.15.1
+      Stage: 4
+      LearningBlock: 15
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - table
+      - chair
+      - bed
+      - cupboard
+      - window
+      - door
+      - television
+      - fridge
+      - washing_machine
+      - oven
+      - toilet
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.15.2
+      Stage: 4
+      LearningBlock: 15
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.15.3
+      Stage: 4
+      LearningBlock: 15
+      PlaySession: 3
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 4.15.100
+      Stage: 4
+      LearningBlock: 15
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 103
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.1.1
+      Stage: 5
+      LearningBlock: 1
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - alef_maqsura
+      Words:
+      - walked
+      - saw
+      - club
+      Words_previous:
+      - cried
+      - pear
+      - hospital
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.1.2
+      Stage: 5
+      LearningBlock: 1
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.1.100
+      Stage: 5
+      LearningBlock: 1
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 103
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.2.1
+      Stage: 5
+      LearningBlock: 2
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - lam_alef
+      Words: []
+      Words_previous:
+      - mountain_dual
+      - worker_dual
+      - the_player
+      - number_03
+      Phrases:
+      - yourwelcome
+      Phrases_previous: []
+    - Id: 5.2.2
+      Stage: 5
+      LearningBlock: 2
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.2.100
+      Stage: 5
+      LearningBlock: 2
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 103
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.3.1
+      Stage: 5
+      LearningBlock: 3
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - maddah
+      - alef_maddah
+      Words:
+      - melancholy
+      - believed
+      - now
+      Words_previous:
+      - month_august
+      - month_march
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.3.2
+      Stage: 5
+      LearningBlock: 3
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.3.100
+      Stage: 5
+      LearningBlock: 3
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 103
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.4.1
+      Stage: 5
+      LearningBlock: 4
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - fathah
+      - kasrah
+      - dammah
+      - alef_fathah
+      - ain_fathah
+      - beh_fathah
+      - dad_fathah
+      - dal_fathah
+      - thal_fathah
+      - feh_fathah
+      - heh_fathah
+      - hah_fathah
+      - jeem_fathah
+      - kaf_fathah
+      - lam_fathah
+      - meem_fathah
+      - noon_fathah
+      - qaf_fathah
+      - reh_fathah
+      - sad_fathah
+      - seen_fathah
+      - sheen_fathah
+      - tah_fathah
+      - teh_fathah
+      - zain_fathah
+      - ain_kasrah
+      - beh_kasrah
+      - heh_kasrah
+      - hah_kasrah
+      - lam_kasrah
+      - meem_kasrah
+      - reh_kasrah
+      - beh_dammah
+      - jeem_dammah
+      - kaf_dammah
+      - meem_dammah
+      - teh_dammah
+      - zain_dammah
+      Words:
+      - carrot
+      - islands
+      - salt
+      - insistent
+      Words_previous:
+      - believed
+      - safe
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.4.100
+      Stage: 5
+      LearningBlock: 4
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 103
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.5.1
+      Stage: 5
+      LearningBlock: 5
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - fathah_tanwin
+      - dammah_tanwin
+      - kasrah_tanwin
+      - alef_fathah_tanwin
+      - dal_dammah_tanwin
+      - teh_marbuta_dammah_tanwin
+      - lam_kasrah_tanwin
+      - noon_kasrah_tanwin
+      Words:
+      - wore
+      - costume
+      - mouth
+      - man
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.5.100
+      Stage: 5
+      LearningBlock: 5
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 103
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.6.1
+      Stage: 5
+      LearningBlock: 6
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - shaddah
+      - hah_shaddah
+      - jeem_shaddah
+      Words:
+      - uncle_father
+      Words_previous:
+      - bear
+      - sugar
+      - rice
+      - grandfather
+      - station
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.6.2
+      Stage: 5
+      LearningBlock: 6
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.6.100
+      Stage: 5
+      LearningBlock: 6
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 103
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.7.1
+      Stage: 5
+      LearningBlock: 7
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - lion
+      - lion_dual
+      - lion_plural
+      Words_previous:
+      - mountain
+      - mountain_dual
+      - mountain_plural
+      - worker
+      - worker_dual
+      - worker_plural
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.7.2
+      Stage: 5
+      LearningBlock: 7
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.7.100
+      Stage: 5
+      LearningBlock: 7
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 109
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.8.1
+      Stage: 5
+      LearningBlock: 8
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - scientist
+      - scientist_dual
+      - scientist_plural
+      - worker
+      - worker_dual
+      - worker_plural
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.8.2
+      Stage: 5
+      LearningBlock: 8
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.8.100
+      Stage: 5
+      LearningBlock: 8
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 109
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.9.1
+      Stage: 5
+      LearningBlock: 9
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - river
+      - river_dual
+      - river_plural
+      - mountain
+      - mountain_dual
+      - mountain_plural
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.9.2
+      Stage: 5
+      LearningBlock: 9
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.9.100
+      Stage: 5
+      LearningBlock: 9
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 109
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.10.1
+      Stage: 5
+      LearningBlock: 10
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - engineer
+      - the_engineer
+      - policeman
+      - the_policeman
+      Words_previous:
+      - worker
+      - the_worker
+      - scientist
+      - the_scientist
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.10.100
+      Stage: 5
+      LearningBlock: 10
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 108
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.11.1
+      Stage: 5
+      LearningBlock: 11
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - beh
+      - jeem
+      - hah
+      - khah
+      - ain
+      - ghain
+      - feh
+      - qaf
+      - kaf
+      - meem
+      - heh
+      - tah
+      - theh
+      - dal
+      - thal
+      - reh
+      - zain
+      - seen
+      - sheen
+      - sad
+      - dad
+      - teh
+      - zah
+      - lam
+      - noon
+      Words:
+      - the_beautiful
+      - the_sad
+      - the_lazy
+      - the_happy
+      - the_active
+      - the_wonderful
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.11.2
+      Stage: 5
+      LearningBlock: 11
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.11.100
+      Stage: 5
+      LearningBlock: 11
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 110
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.12.1
+      Stage: 5
+      LearningBlock: 12
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters:
+      - beh
+      - jeem
+      - hah
+      - khah
+      - ain
+      - ghain
+      - feh
+      - qaf
+      - kaf
+      - meem
+      - heh
+      - tah
+      - theh
+      - dal
+      - thal
+      - reh
+      - zain
+      - seen
+      - sheen
+      - sad
+      - dad
+      - teh
+      - zah
+      - lam
+      - noon
+      Words:
+      - the_ball
+      - the_playground
+      - the_player
+      - football
+      - basketball
+      Words_previous:
+      - won
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.12.2
+      Stage: 5
+      LearningBlock: 12
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.12.100
+      Stage: 5
+      LearningBlock: 12
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 107
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.13.1
+      Stage: 5
+      LearningBlock: 13
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - happy
+      - sad
+      - active
+      - lazy
+      - wonderful
+      Words_previous:
+      - beautiful
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.13.2
+      Stage: 5
+      LearningBlock: 13
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.13.100
+      Stage: 5
+      LearningBlock: 13
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 107
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.1.1
+      Stage: 6
+      LearningBlock: 1
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 100
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 100
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases:
+      - goodmorning_Q
+      - goodmorning_R
+      - goodevening_Q
+      - goodevening_R
+      Phrases_previous: []
+    - Id: 6.1.100
+      Stage: 6
+      LearningBlock: 1
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 112
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.2.1
+      Stage: 6
+      LearningBlock: 2
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases:
+      - hi
+      - yourwelcome
+      - seeyou
+      - goodbye
+      Phrases_previous: []
+    - Id: 6.2.100
+      Stage: 6
+      LearningBlock: 2
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 112
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.3.1
+      Stage: 6
+      LearningBlock: 3
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases:
+      - howareyou
+      - goodbye
+      Phrases_previous: []
+    - Id: 6.3.100
+      Stage: 6
+      LearningBlock: 3
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 112
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.4.1
+      Stage: 6
+      LearningBlock: 4
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - color_black
+      - color_purple
+      - color_pink
+      - color_gold
+      - color_silver
+      - color_orange
+      Words_previous:
+      - color_green
+      - color_white
+      - color_yellow
+      - color_blue
+      - color_brown
+      - color_red
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.4.2
+      Stage: 6
+      LearningBlock: 4
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.4.100
+      Stage: 6
+      LearningBlock: 4
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 107
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.5.1
+      Stage: 6
+      LearningBlock: 5
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - beautiful
+      - clean
+      - big
+      - small
+      Words_previous:
+      - wonderful
+      - rainy
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.5.2
+      Stage: 6
+      LearningBlock: 5
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.5.100
+      Stage: 6
+      LearningBlock: 5
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 103
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.6.1
+      Stage: 6
+      LearningBlock: 6
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - cold
+      - hot_weather
+      - rainy
+      Words_previous:
+      - beautiful
+      - clean
+      - wonderful
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.6.2
+      Stage: 6
+      LearningBlock: 6
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.6.100
+      Stage: 6
+      LearningBlock: 6
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.7.1
+      Stage: 6
+      LearningBlock: 7
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 100
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 100
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - number_00
+      - number_01
+      - number_03
+      - number_04
+      - number_05
+      - number_06
+      - number_07
+      - number_08
+      - number_09
+      Words_previous:
+      - number_02
+      - number_06
+      - number_08
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.7.2
+      Stage: 6
+      LearningBlock: 7
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - number_10
+      - number_11
+      - number_12
+      - number_13
+      - number_14
+      - number_15
+      - number_16
+      - number_17
+      - number_18
+      - number_19
+      - number_02
+      - number_20
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.7.100
+      Stage: 6
+      LearningBlock: 7
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 103
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.8.1
+      Stage: 6
+      LearningBlock: 8
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - number_o01
+      - number_o02
+      - number_o03
+      - number_o04
+      - number_o05
+      - number_o06
+      - number_o07
+      - number_o08
+      - number_o09
+      - number_o10
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.8.2
+      Stage: 6
+      LearningBlock: 8
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.8.100
+      Stage: 6
+      LearningBlock: 8
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.9.1
+      Stage: 6
+      LearningBlock: 9
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - yesterday
+      - today
+      - tomorrow
+      Words_previous:
+      - now
+      Phrases: []
+      Phrases_previous:
+      - seeyou
+      - goodbye
+    - Id: 6.9.100
+      Stage: 6
+      LearningBlock: 9
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 103
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.10.1
+      Stage: 6
+      LearningBlock: 10
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - day_monday
+      - day_tuesday
+      - day_wednesday
+      - day_thursday
+      - day_friday
+      - day_saturday
+      - day_sunday
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.10.2
+      Stage: 6
+      LearningBlock: 10
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.10.100
+      Stage: 6
+      LearningBlock: 10
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.11.1
+      Stage: 6
+      LearningBlock: 11
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - month_march
+      - month_april
+      - month_may
+      - month_june
+      - month_july
+      - month_august
+      - month_october
+      - month_november
+      - month_december
+      Words_previous:
+      - month_january
+      - month_february
+      - month_september
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.11.2
+      Stage: 6
+      LearningBlock: 11
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.11.100
+      Stage: 6
+      LearningBlock: 11
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.12.1
+      Stage: 6
+      LearningBlock: 12
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous:
+      - number_15
+      - number_16
+      - number_17
+      - number_18
+      - number_19
+      - number_20
+      Phrases:
+      - the_year_2016
+      Phrases_previous: []
+    - Id: 6.12.2
+      Stage: 6
+      LearningBlock: 12
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.12.100
+      Stage: 6
+      LearningBlock: 12
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 103
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.13.1
+      Stage: 6
+      LearningBlock: 13
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - cloud
+      - spring
+      - summer
+      - fall
+      - winter
+      - breeze
+      Words_previous:
+      - forest
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.13.2
+      Stage: 6
+      LearningBlock: 13
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.13.100
+      Stage: 6
+      LearningBlock: 13
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 103
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.14.1
+      Stage: 6
+      LearningBlock: 14
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words:
+      - the_shirt
+      - the_hat
+      - the_shoe
+      - the_coat
+      - the_trousers
+      Words_previous:
+      - costume
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.14.2
+      Stage: 6
+      LearningBlock: 14
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.14.100
+      Stage: 6
+      LearningBlock: 14
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 108
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.15.1
+      Stage: 6
+      LearningBlock: 15
+      PlaySession: 1
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous:
+      - goodmorning_Q
+      - goodmorning_R
+      - goodevening_Q
+      - goodevening_R
+      - hi
+      - yourwelcome
+      - howareyou
+      - fine
+      - thankyou
+      - sure
+      - seeyou
+      - goodbye
+    - Id: 6.15.2
+      Stage: 6
+      LearningBlock: 15
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.15.100
+      Stage: 6
+      LearningBlock: 15
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames:
+      - MiniGameCode: 112
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []

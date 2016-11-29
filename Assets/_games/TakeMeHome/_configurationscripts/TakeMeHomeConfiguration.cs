@@ -45,8 +45,13 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            
-            builder = new RandomLettersQuestionBuilder(1,7);
+
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.letterFilters.excludeDiacritics = true;
+            builderParams.letterFilters.excludeLetterVariations = true;
+            builderParams.wordFilters.excludeDiacritics = true;
+            builderParams.wordFilters.excludeLetterVariations = true;
+            builder = new RandomLettersQuestionBuilder(1,7, parameters: builderParams);
 
             return builder;
         }

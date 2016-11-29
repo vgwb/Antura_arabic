@@ -15,6 +15,7 @@ namespace EA4S
         Intro,
         GameSelector,
         MiniGame,
+        Assessment,
         AnturaSpace,
         Rewards,
         PlaySessionResult,
@@ -32,16 +33,24 @@ namespace EA4S
             I = this;
         }
 
-        public void GoToScene(AppScene nextScene)
+        public void GoToScene(string sceneName)
         {
-            var nextSceneName = GetSceneName(nextScene);
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(nextSceneName);
+            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(sceneName);
+
+            if (AppConstants.UseUnityAnalytics) {
+                UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
+            }
+        }
+
+        public void GoToScene(AppScene newScene)
+        {
+            var nextSceneName = GetSceneName(newScene);
+            GoToScene(nextSceneName);
         }
 
         public void GoToGameScene(MiniGameData _miniGame)
         {
-            //GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(GetSceneName(AppScene.MiniGame, _miniGame));
-            AppManager.Instance.GameLauncher.LaunchGame(_miniGame.Code);
+            AppManager.I.GameLauncher.LaunchGame(_miniGame.Code);
         }
 
         //public string GetNextScene()
@@ -49,7 +58,8 @@ namespace EA4S
         //    return "";
         //}
 
-        public void GoToNextScene() { 
+        public void GoToNextScene()
+        {
             //var nextScene = GetNextScene();
             switch (CurrentScene) {
                 case AppScene.Home:
@@ -57,7 +67,7 @@ namespace EA4S
                 case AppScene.Mood:
                     break;
                 case AppScene.Map:
-                    if (AppManager.Instance.IsAssessmentTime)
+                    if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(AppManager.I.Player.CurrentJourneyPosition))
                         GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     else
                         GoToScene(AppScene.GameSelector);
@@ -67,24 +77,23 @@ namespace EA4S
                 case AppScene.Intro:
                     break;
                 case AppScene.GameSelector:
-                    AppManager.Instance.Player.ResetPlaySessionMinigame();
+                    AppManager.I.Player.ResetPlaySessionMinigame();
                     GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     break;
                 case AppScene.MiniGame:
-                    if (AppManager.Instance.IsAssessmentTime) {
-                        // TODO: never called
+                    if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(AppManager.I.Player.CurrentJourneyPosition)) {
                         // assessment ended!
-                        AppManager.Instance.Player.ResetPlaySessionMinigame();
+                        AppManager.I.Player.ResetPlaySessionMinigame();
                         GoToScene(AppScene.Rewards);
                     } else {
-                        AppManager.Instance.Player.NextPlaySessionMinigame();
-                        if (AppManager.Instance.Player.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count) {
+                        AppManager.I.Player.NextPlaySessionMinigame();
+                        if (AppManager.I.Player.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count) {
                             /// - Update Journey
                             /// - Reset CurrentMiniGameInPlaySession
                             /// - Reward screen
                             /// *-- check first contact : 
-                            AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
-                            AppManager.Instance.Player.ResetPlaySessionMinigame();
+                            AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
+                            AppManager.I.Player.ResetPlaySessionMinigame();
                             GoToScene(AppScene.PlaySessionResult);
                         } else {
                             // Next game
@@ -95,14 +104,14 @@ namespace EA4S
                 case AppScene.AnturaSpace:
                     break;
                 case AppScene.Rewards:
-                    //AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
+                    //AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.PlaySessionResult:
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.DebugPanel:
-                    GoToGameScene(AppManager.Instance.CurrentMinigame);
+                    GoToGameScene(AppManager.I.CurrentMinigame);
                     break;
                 default:
                     break;
@@ -125,6 +134,20 @@ namespace EA4S
 
         public void ExitCurrentGame() { }
 
+        public void OpenPlayerBook()
+        {
+            GoToScene(AppScene.Book);
+        }
+
+        public void ExitAndGoHome()
+        {
+            if (CurrentScene == AppScene.Map) {
+                GoToScene(AppScene.Home);
+            } else {
+                GoToScene(AppScene.Map);
+            }
+        }
+
         public string GetSceneName(AppScene scene, Db.MiniGameData minigameData = null)
         {
             switch (scene) {
@@ -142,6 +165,8 @@ namespace EA4S
                     return "app_GamesSelector";
                 case AppScene.MiniGame:
                     return minigameData.Scene;
+                case AppScene.Assessment:
+                    return "app_Assessment";
                 case AppScene.AnturaSpace:
                     return "app_AnturaSpace";
                 case AppScene.Rewards:
@@ -178,6 +203,16 @@ namespace EA4S
             List<EndsessionResultData> returnResult = EndSessionResults;
             EndSessionResults = new List<EndsessionResultData>();
             return returnResult;
+        }
+
+        /// <summary>
+        /// Calculates the unlock item count.
+        /// </summary>
+        /// <returns></returns>
+        public int CalculateUnlockItemCount()
+        {
+            // TODO: logic to calculate
+            return 2;
         }
 
         /// <summary>

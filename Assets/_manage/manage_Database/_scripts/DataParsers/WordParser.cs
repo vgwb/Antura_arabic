@@ -27,9 +27,8 @@ namespace EA4S.Db.Management
 
         private string[] CustomParseLetters(WordData wordData, Database db)
         {
-            // TODO: should instead be an array of ID, so should probably be validated inside the arabic helper?
-            var allLetters = new List<LetterData>(db.GetLetterTable().GetValuesTyped());
-            return ArabicAlphabetHelper.LetterDataList(wordData.Arabic, allLetters).ToArray();
+            //Debug.Log(wordData.ToString());
+            return ArabicAlphabetHelper.ExtractLettersFromArabicWord(wordData.Arabic, db).ToArray();
         }
 
         private WordDataForm CustomParseForm(WordData data, object enum_object)

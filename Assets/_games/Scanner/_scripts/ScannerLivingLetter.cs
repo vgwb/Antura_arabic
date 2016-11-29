@@ -11,7 +11,7 @@ namespace EA4S.Scanner
         public enum LLStatus { None, Sliding, StandingOnBelt, RunningFromAntura, Lost, Won, Happy, Sad, Flying, Poofing, Falling };
         public GameObject livingLetter;
         public float slideSpeed = 2f;
-        public float flightSpeed = 2f;
+        public float flightSpeed = 10f;
         public bool facingCamera;
         public LLStatus status = LLStatus.None;
         private float turnAngle;
@@ -24,109 +24,154 @@ namespace EA4S.Scanner
         public LetterObjectView letterObjectView;
         public GameObject rainbowJet;
 
-        public event Action onReset;
-        public event Action onStartFallOff;
-        public event Action onFallOff;
-        public event Action onPassedMidPoint;
+//		public event Action <ScannerLivingLetter> onReset;
+		public event Action <ScannerLivingLetter> onStartFallOff;
+		public event Action <ScannerLivingLetter> onFallOff;
+		public event Action <ScannerLivingLetter> onPassedMidPoint;
+		public event Action <ScannerLivingLetter> onFlying;
 
-        private Transform originalParent;
+		public BoxCollider bodyCollider;
+
+		[HideInInspector]
+		public bool gotSuitcase;
+//        private Transform originalParent;
         private float fallOffX;
         private float midPointX;
         private bool passedMidPoint = false;
 
-        void Start()
+        void Awake()
         {
             status = LLStatus.None;
-            originalParent = transform.parent;
             letterObjectView = livingLetter.GetComponent<LetterObjectView>();
             startingPosition = transform.position;
             startingRotation = letterObjectView.transform.rotation;
-
-            Reset();
         }
 
         public void Reset()
         {
             StopAllCoroutines();
-
             rainbowJet.SetActive(false);
 
-            letterObjectView.transform.rotation = startingRotation;
-            transform.position = startingPosition;
+			if (ScannerConfiguration.Instance.gameActive)
+			{
+				gotSuitcase = false;
+	            letterObjectView.transform.rotation = startingRotation;
+	            transform.position = startingPosition;
 
-            fallOffX = fallOffPoint.position.x;
-            midPointX = midPoint.position.x;
-            passedMidPoint = false;
+	            fallOffX = fallOffPoint.position.x;
+	            midPointX = midPoint.position.x;
+	            passedMidPoint = false;
 
-            turnAngle = facingCamera ? 180 : 0;
-            letterObjectView.SetState(LLAnimationStates.LL_still);
-            letterObjectView.Falling = true;
-            status = LLStatus.Sliding;
-            gameObject.GetComponent<SphereCollider>().enabled = true; // enable feet collider
-            gameObject.GetComponent<BoxCollider>().enabled = false; // disable body collider
-            onReset();
+	            turnAngle = facingCamera ? 180 : 0;
+	            letterObjectView.SetState(LLAnimationStates.LL_still);
+	            letterObjectView.Falling = true;
+	            status = LLStatus.Sliding;
+	            gameObject.GetComponent<SphereCollider>().enabled = true; // enable feet collider
+				bodyCollider.enabled = false; // disable body collider
+
+				gameObject.SetActive(true);
+
+//	            onReset(this);
+			}
 
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (status == LLStatus.Sliding) {
+            if (status == LLStatus.Sliding) 
+			{
                 transform.Translate(slideSpeed * Time.deltaTime, -slideSpeed * Time.deltaTime / 2, 0);
-            } else if (status == LLStatus.Lost) {
-                status = LLStatus.Poofing;
-                StartCoroutine(co_Lost());
-            } else if (status == LLStatus.Flying) {
+			}
+			else if (status == LLStatus.StandingOnBelt)
+			{
+				transform.Translate(ScannerConfiguration.Instance.beltSpeed * Time.deltaTime,0,0);
+            }
+			else if (status == LLStatus.Flying) 
+			{
                 transform.Translate(Vector2.up * flightSpeed * Time.deltaTime);
-            } else if (status == LLStatus.Falling) {
+            } 
+			else if (status == LLStatus.Falling) 
+			{
                 transform.Translate(Vector2.down * flightSpeed * Time.deltaTime);
             }
 				
-            if (livingLetter.transform.position.x > fallOffX) {
+			if (livingLetter.transform.position.x > fallOffX && status == LLStatus.StandingOnBelt) 
+			{
                 StartCoroutine(co_FallOff());
-            } else if (livingLetter.transform.position.x > midPointX && !passedMidPoint) {
+            }
+			else if (livingLetter.transform.position.x > midPointX && !passedMidPoint) 
+			{
                 passedMidPoint = true;
-                onPassedMidPoint();
+                onPassedMidPoint(this);
             }
         }
 
 
         IEnumerator co_FlyAway()
         {
-			transform.parent = originalParent;
-            letterObjectView.DoSmallJump();
-            yield return new WaitForSeconds(1f);
+//            letterObjectView.DoSmallJump();
+			onFlying(this);
+			status = LLStatus.None;
+
+			letterObjectView.DoSmallJump();            
+			StartCoroutine(RotateGO(livingLetter, new Vector3(0, 180, 0), 1f));
+			yield return new WaitForSeconds(1f);
+
+//			// building anticipation
+//			letterObjectView.Crouching = true;
+//			yield return new WaitForSeconds(1f);
+//			letterObjectView.Crouching = false;
+
+			// Starting flight
+			letterObjectView.DoHorray();            
+            yield return new WaitForSeconds(0.75f);
+			status = LLStatus.Flying;
             rainbowJet.SetActive(true);
-            letterObjectView.DoHorray();
-            status = LLStatus.Flying;
-            yield return new WaitForSeconds(4f);
-            Reset();
+			letterObjectView.SetState(LLAnimationStates.LL_still);
+            yield return new WaitForSeconds(2f);
+//            Reset();
         }
 
         IEnumerator co_Lost()
         {
-            letterObjectView.DoAngry();
-            yield return new WaitForSeconds(2f);
-            //			letterObjectView.DoAngry();
-            //			yield return new WaitForSeconds(1f);
-            letterObjectView.Poof();
-            Reset();
+			if (status == LLStatus.StandingOnBelt)
+			{
+				status = LLStatus.None;
+				letterObjectView.DoAngry();
+            	yield return new WaitForSeconds(2f);
+			}
+			if (status != LLStatus.Flying || status != LLStatus.Falling)
+			{
+				letterObjectView.Poof();
+				yield return new WaitForSeconds(0.2f);
+			}
+			else
+			{
+				yield return new WaitForSeconds(2f);
+			}
+			transform.position = new Vector3(-100,-100,-100); // Move offscreen
+
+
         }
 
         IEnumerator co_FallOff()
         {
-            onStartFallOff();
-            transform.parent = originalParent;
+			gotSuitcase = false;
+			status = LLStatus.None;
+            onStartFallOff(this);
             letterObjectView.SetState(LLAnimationStates.LL_idle);
+			letterObjectView.DoSmallJump();
             StartCoroutine(RotateGO(livingLetter, new Vector3(90, 90, 0), 1f));
             yield return new WaitForSeconds(0.5f);
             letterObjectView.Falling = true;
             status = LLStatus.Falling;
-            yield return new WaitForSeconds(3f);
 
-			onFallOff();
+            yield return new WaitForSeconds(1f);
 
-            Reset();
+			onFallOff(this);
+
+//            Reset();
         }
 
         void OnMouseUp()
@@ -136,9 +181,10 @@ namespace EA4S.Scanner
 
         public void RoundLost()
         {
+			gotSuitcase = false;
             StopAllCoroutines();
-            letterObjectView.SetState(LLAnimationStates.LL_idle);
-            status = LLStatus.Lost;
+//            letterObjectView.SetState(LLAnimationStates.LL_idle);
+			StartCoroutine(co_Lost());
         }
 
         public void RoundWon()
@@ -198,10 +244,10 @@ namespace EA4S.Scanner
         {
             if (status == LLStatus.Sliding) {
                 if (other.tag == ScannerGame.TAG_BELT) {
-                    transform.parent = other.transform;
+//                    transform.parent = other.transform;
                     status = LLStatus.StandingOnBelt;
                     gameObject.GetComponent<SphereCollider>().enabled = false; // disable feet collider
-                    gameObject.GetComponent<BoxCollider>().enabled = true; // enable body collider
+					bodyCollider.enabled = true; // enable body collider
                     letterObjectView.Falling = false;
                     StartCoroutine(RotateGO(livingLetter, new Vector3(0, turnAngle, 0), 1f));
                     StartCoroutine(AnimateLL());

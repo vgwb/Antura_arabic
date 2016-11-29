@@ -2,11 +2,9 @@
 {
 public class TakeMeHomeResultState : IGameState {
 
-		TakeMeHomeGame game;
-
+		
 		public TakeMeHomeResultState(TakeMeHomeGame game)
 		{
-			this.game = game;
 		}
 
 		public void EnterState()

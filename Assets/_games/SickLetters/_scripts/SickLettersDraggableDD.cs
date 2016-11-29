@@ -21,7 +21,7 @@ namespace EA4S.SickLetters
 		public TextMeshPro draggableText;
 
         public bool isCorrect;
-        public bool isNeeded = false, isInVase = false, isTouchingVase = false;
+        public bool isNeeded = false, isInVase = false, touchedVase = false;
 
         public bool isDragging = false;
 
@@ -41,6 +41,27 @@ namespace EA4S.SickLetters
         float startX;
         float startY;
         float startZ;
+
+        bool _checkDDCollision;
+        public bool checkDDCollision
+        {
+            set
+            {
+                _checkDDCollision = value;
+                StartCoroutine(resetCheckDDCollision());
+            }
+            get
+            {
+                return _checkDDCollision;
+            }
+               
+        }
+
+        IEnumerator resetCheckDDCollision()
+        {
+            yield return new WaitForSeconds(1);
+            _checkDDCollision = false;
+        }
 
         void Start()
         {
@@ -115,8 +136,8 @@ namespace EA4S.SickLetters
             releaseDD();
         }
 
-       
 
+        bool destroy;
         public void releaseDD()
         {
             release = true;
@@ -158,8 +179,16 @@ namespace EA4S.SickLetters
 
             overPlayermarker = false;
             overDestinationMarker = false;
+
+            StartCoroutine(destroyIfStuck());
         }
 
+        IEnumerator destroyIfStuck()
+        {
+            yield return new WaitForSeconds(2);
+            if (!isInVase && touchedVase)
+                poofDD();
+        }
 		public void Reset()
 		{
             transform.parent = origParent;
@@ -186,7 +215,7 @@ namespace EA4S.SickLetters
             transform.parent = origParent;
             transform.localPosition = Vector3.zero;
             transform.localEulerAngles = origLocalRotation;
-            isTouchingVase = false;
+            touchedVase = false;
             thisRigidBody.isKinematic = true;
             boxCollider.isTrigger = true;
             boxCollider.size = new Vector3(0.6f, 3.89f, 0.6f);
@@ -238,22 +267,29 @@ namespace EA4S.SickLetters
             draggableText.transform.localEulerAngles = new Vector3(90, 0.0f, 90);
             draggableText.transform.localScale = Vector3.one;
 
-            boxCollider.size = new Vector3(1,1,1.21f);
+            boxCollider.size = new Vector3(1, 1, 0.75f); //(1,1,1.21f);
             boxCollider.isTrigger = true;
+            transform.localEulerAngles = origLocalRotation;
 
-            isTouchingVase = false;
+            touchedVase = false;
         }
 
 
         void OnTriggerEnter(Collider other)
 		{
 			Setmarker(other, true);
+            if (isCorrect && !isDragging)
+                checkDDsOverlapping(other);
         }
 
 		void OnTriggerStay(Collider other)
 		{
 			Setmarker(other, true);
-		}
+            if (isCorrect && !isDragging)
+            {
+                checkDDsOverlapping(other);
+            }
+        }
 
 		void OnTriggerExit(Collider other)
 		{
@@ -262,8 +298,16 @@ namespace EA4S.SickLetters
 
         void OnCollisionEnter(Collision coll)
         {
+            //Debug.LogError(coll.gameObject.name);
+            if (coll.gameObject.tag == "Marker")
+            {
+                touchedVase = true;
+            }
             if (coll.gameObject.tag == "Obstacle")
+            {
+                
                 poofOnCollision(coll);
+            }
             /*else if (!isDragging &&!isInVase && coll.gameObject.tag == "Finish")
             {
                 game.scale.addNewDDToVas(this);
@@ -277,49 +321,69 @@ namespace EA4S.SickLetters
                 poofOnCollision(coll);
         }
 
+        void checkDDsOverlapping(Collider coll)
+        {
+            
+            SickLettersDraggableDD dd = coll.gameObject.GetComponent<SickLettersDraggableDD>();
+            if (dd && dd.checkDDCollision && !dd.isCorrect && !dd.isDragging && dd.transform.parent)
+                foreach (Transform t in game.safeDropZones)
+                    if (t.childCount == 0)
+                    {
+                        dd.transform.parent = t;
+                        dd.transform.localPosition = Vector3.zero;
+                        break;
+                    }
+        }
+
         void poofOnCollision(Collision coll)
         {
             if (coll.gameObject.tag == "Obstacle")
             {
-                game.Poof(transform.position);
+                poofDD();
+            }
+        }
 
-                if (game.roundsCount == 0 && !isInVase)
-                {
-                    if(isCorrect)
-                        resetCorrectDD();
-                    else
-                        resetWrongDD();
+        void poofDD()
+        {
+            game.Poof(transform);
 
-                    game.onWrongMove();
-                    game.tut.doTutorial();
-                    return;
-                }
-
-                if (!isInVase)
-                {
-                    game.onWrongMove();
-                }
-
+            if (game.roundsCount == 0 && !isInVase)
+            {
                 if (isCorrect)
-                {
-                    StartCoroutine(game.scale.onDroppingCorrectDD());
                     resetCorrectDD();
-                }
                 else
-                {
-                    if (!deattached)
-                    {
-                        deattached = true;
-                        game.checkForNextRound();
-                    }
+                    resetWrongDD();
 
-                    Destroy(gameObject, 0.0f);
+                game.onWrongMove();
+                game.tut.doTutorial();
+                return;
+            }
+
+            if (!isInVase)
+            {
+                game.onWrongMove();
+            }
+
+            if (isCorrect)
+            {
+                StartCoroutine(game.scale.onDroppingCorrectDD());
+                resetCorrectDD();
+            }
+            else
+            {
+                if (!deattached)
+                {
+                    deattached = true;
+                    game.checkForNextRound();
                 }
+
+                Destroy(gameObject, 0.0f);
             }
         }
 
         void checkDDtoVaseCollision(Collision coll)
         {
+            
             Debug.Log(coll.gameObject.name.ToLower());
             if (coll.gameObject.name.ToLower().Contains("vase"))
                 releaseDD();

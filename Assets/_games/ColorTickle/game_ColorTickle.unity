@@ -430,7 +430,7 @@ Prefab:
     - target: {fileID: 114000010673987186, guid: d5826ab7f51b7c549919cf0b6fe83693,
         type: 2}
       propertyPath: m_fontColor32.rgba
-      value: 4294967295
+      value: 4278190080
       objectReference: {fileID: 0}
     - target: {fileID: 114000013927319314, guid: d5826ab7f51b7c549919cf0b6fe83693,
         type: 2}
@@ -635,7 +635,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!1 &218098739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,11 +1240,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 513290838}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &540651867 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000012125525628, guid: 1109debcf5c2ace42bff3e4891bf51b6,
-    type: 2}
-  m_PrefabInternal: {fileID: 1149367140}
 --- !u!1001 &555114643
 Prefab:
   m_ObjectHideFlags: 0
@@ -2521,7 +2516,7 @@ Prefab:
         type: 2}
       propertyPath: m_oWinParticle
       value: 
-      objectReference: {fileID: 540651867}
+      objectReference: {fileID: 1541795830}
     - target: {fileID: 114000013493082588, guid: e63175941f7154444bf3608253b4de18,
         type: 2}
       propertyPath: m_Rounds
@@ -2531,6 +2526,11 @@ Prefab:
         type: 2}
       propertyPath: m_fDifficulty
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013493082588, guid: e63175941f7154444bf3608253b4de18,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e63175941f7154444bf3608253b4de18, type: 2}
@@ -2840,6 +2840,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabSet: {fileID: 11400000, guid: 0833fd282a7a0ab4bbc9d66e6b70e8ce, type: 2}
   testWorld: 0
+--- !u!1001 &1132069039
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000012630284620, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012630284620, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012630284620, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012630284620, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012630284620, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012630284620, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012630284620, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012630284620, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012842538242, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
+      propertyPath: m_Name
+      value: Particle_win2(Egg)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012842538242, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1132546485
 GameObject:
   m_ObjectHideFlags: 0
@@ -2929,7 +2979,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012125525628, guid: 1109debcf5c2ace42bff3e4891bf51b6, type: 2}
       propertyPath: m_Name
-      value: Particle_win
+      value: Particle_win(Egg)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1109debcf5c2ace42bff3e4891bf51b6, type: 2}
@@ -3432,6 +3482,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4000011712591740, guid: 91727f27dfee44f40aa713ea5e5ef1ce,
     type: 2}
   m_PrefabInternal: {fileID: 1481352015}
+--- !u!1 &1541795830 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012842538242, guid: edd9ece41b0bcf2499807e683de71753,
+    type: 2}
+  m_PrefabInternal: {fileID: 1132069039}
 --- !u!4 &1551488426 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013653253802, guid: 0f95fe55fb3038a45b8e01cbe421e68f,

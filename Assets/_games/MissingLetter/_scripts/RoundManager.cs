@@ -45,7 +45,7 @@ namespace EA4S.MissingLetter
             m_oGame.m_oLetterPrefab.GetComponent<LetterBehaviour>().SetPositions(m_v3AnsPos + Vector3.right * m_oGame.m_sAnswerOffset.fINOffset, m_v3AnsPos, m_v3AnsPos + Vector3.right * m_oGame.m_sAnswerOffset.fOUTOffset);
             m_oAnswerPool = new GameObjectPool(m_oGame.m_oLetterPrefab, ansPoolSize, false);
 
-            m_oEmoticonsController = new MissingLetterEmoticonsController(m_oGame.m_oEmoticonsController);
+            m_oEmoticonsController = new MissingLetterEmoticonsController(m_oGame.m_oEmoticonsController, m_oGame.m_oEmoticonsMaterials);
         }
 
         public void SetTutorial(bool _enabled) {
@@ -86,7 +86,6 @@ namespace EA4S.MissingLetter
 
         public void OnAnswerClicked(string _key)
         {
-            Debug.Log("Answer: " + _key);
             m_oGame.SetInIdle(false);
 
             //refresh the data (for graphics)
@@ -103,7 +102,6 @@ namespace EA4S.MissingLetter
             {
                 clicked.PlayAnimation(LLAnimationStates.LL_still);
                 clicked.mLetter.DoHorray();
-                clicked.LightOn();
 
                 PlayPartcileSystem(m_aoCurrentQuestionScene[0].transform.position + Vector3.up * 2);
 
@@ -140,7 +138,7 @@ namespace EA4S.MissingLetter
 
             m_iRemovedLLDataIndex = 0;
 
-            m_oCurrQuestionPack = MissingLetterConfiguration.Instance.PipeQuestions.GetNextQuestion();
+            m_oCurrQuestionPack = MissingLetterConfiguration.Instance.Questions.GetNextQuestion();
             ILivingLetterData questionData = m_oCurrQuestionPack.GetQuestion();
 
             var _wrongAnswers = m_oCurrQuestionPack.GetWrongAnswers().ToList();
@@ -173,11 +171,11 @@ namespace EA4S.MissingLetter
             m_aoCurrentAnswerScene.Add(_correctAnswerObject);
             m_oCorrectAnswer = _correctAnswerObject;
 
-            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count(); ++i) {
+            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count()+1; ++i) {
                 GameObject _wrongAnswerObject = m_oAnswerPool.GetElement();
                 LetterBehaviour wrongAnsBheaviour = _wrongAnswerObject.GetComponent<LetterBehaviour>();
                 wrongAnsBheaviour.Reset();
-                wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i);
+                wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i-1);
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
 
                 if(!m_bTutorialEnabled)
@@ -197,7 +195,7 @@ namespace EA4S.MissingLetter
             List<LL_WordData> phrase = new List<LL_WordData>();
             for(int i=0; i < m_oGame.m_iMaxSentenceSize; ++i)
             {
-                phrase.Add(AppManager.Instance.Teacher.GetRandomTestWordDataLL());
+                phrase.Add(AppManager.I.Teacher.GetRandomTestWordDataLL());
             }
 
             return phrase;
@@ -205,7 +203,7 @@ namespace EA4S.MissingLetter
 
         void NextSentenceQuestion()
         {
-            m_oCurrQuestionPack = MissingLetterConfiguration.Instance.PipeQuestions.GetNextQuestion();
+            m_oCurrQuestionPack = MissingLetterConfiguration.Instance.Questions.GetNextQuestion();
             
             //tmp for test
             //LL_PhraseData questionData = m_oCurrQuestionPack.GetQuestion();
@@ -219,7 +217,7 @@ namespace EA4S.MissingLetter
             var _wrongAnswers = new List<LL_WordData>();
             for (int i = 0; i < m_oGame.m_iMaxSentenceSize; ++i)
             {
-                _wrongAnswers.Add(AppManager.Instance.Teacher.GetRandomTestWordDataLL());
+                _wrongAnswers.Add(AppManager.I.Teacher.GetRandomTestWordDataLL());
             }
             _wrongAnswers.Distinct();
 
@@ -254,7 +252,7 @@ namespace EA4S.MissingLetter
             m_aoCurrentAnswerScene.Add(_correctAnswerObject);
             m_oCorrectAnswer = _correctAnswerObject;
 
-            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count(); ++i)
+            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count() + 1; ++i)
             {
                 GameObject _wrongAnswerObject = m_oAnswerPool.GetElement();
                 LetterBehaviour wrongAnsBheaviour = _wrongAnswerObject.GetComponent<LetterBehaviour>();
@@ -280,7 +278,7 @@ namespace EA4S.MissingLetter
         void RemoveLetterfromQuestion()
         {
             LL_WordData word = (LL_WordData)m_oCurrQuestionPack.GetQuestion();
-            var Letters = ArabicAlphabetHelper.LetterDataListFromWord(word.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL());
+            var Letters = ArabicAlphabetHelper.ExtractLetterDataFromArabicWord(word.Data.Arabic);
 
             LL_LetterData letter = (LL_LetterData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
             int index = 0;
@@ -454,7 +452,6 @@ namespace EA4S.MissingLetter
             for (int i = 0; i < m_aoCurrentQuestionScene.Count; ++i)
             {
                 m_aoCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoHighFive();
-                m_aoCurrentQuestionScene[i].GetComponent<LetterBehaviour>().LightOn();
             }
         }
 
@@ -478,7 +475,6 @@ namespace EA4S.MissingLetter
             for (int i = 0; i < m_aoCurrentQuestionScene.Count; ++i)
             {
                 m_aoCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
-                m_aoCurrentQuestionScene[i].GetComponent<LetterBehaviour>().LightOn();
             }
 
             for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i)
@@ -486,7 +482,6 @@ namespace EA4S.MissingLetter
                 if (m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Id == m_oCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Id)
                 {
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
-                    m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LightOn();
                 }
                 else
                 {

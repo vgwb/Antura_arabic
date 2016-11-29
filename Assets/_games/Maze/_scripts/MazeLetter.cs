@@ -11,7 +11,7 @@ namespace EA4S.Maze
 		public MazeCharacter character;
 
 
-		bool isInside;
+		public bool isInside;
 
 		public float idleSeconds = 0;
 
@@ -27,6 +27,7 @@ namespace EA4S.Maze
 
 		// Update is called once per frame
 		void Update () {
+           
 			if (character.characterIsMoving)
             {
                 anturaSeconds = 0;
@@ -36,31 +37,31 @@ namespace EA4S.Maze
 			//should we replay tutorial?
 			if (!isInside) {
 
-                if (!MazeGameManager.Instance.currentCharacter || MazeGameManager.Instance.currentCharacter.isFleeing || MazeGameManager.Instance.currentCharacter.isAppearing)
+                if (!MazeGameManager.instance.currentCharacter || MazeGameManager.instance.currentCharacter.isFleeing || MazeGameManager.instance.currentCharacter.isAppearing)
                     return;
 
-                if(MazeGameManager.Instance.currentTutorial && MazeGameManager.Instance.currentTutorial.isShownOnce && MazeGameManager.Instance.isShowingAntura == false)
+                if(!MazeGameManager.instance.isTutorialMode && MazeGameManager.instance.currentTutorial && MazeGameManager.instance.currentTutorial.isShownOnce && MazeGameManager.instance.isShowingAntura == false)
                 {
                     anturaSeconds += Time.deltaTime;
 
                     if (anturaSeconds >= 10)
                     {
                         anturaSeconds = 0;
-                        MazeGameManager.Instance.onIdleTime();
+                        MazeGameManager.instance.onIdleTime();
                     }
 
                 }
 
 
-                if (MazeGameManager.Instance.currentTutorial != null && 
-					MazeGameManager.Instance.currentTutorial.isStopped == false &&
-					MazeGameManager.Instance.currentTutorial.isShownOnce == true) {
+                if (MazeGameManager.instance.currentTutorial != null && 
+					MazeGameManager.instance.currentTutorial.isStopped == false &&
+					MazeGameManager.instance.currentTutorial.isShownOnce == true) {
 
 					idleSeconds += Time.deltaTime;
 
 					if (idleSeconds >= 5) {
 						idleSeconds = 0;
-						MazeGameManager.Instance.currentTutorial.showCurrentTutorial ();
+						MazeGameManager.instance.currentTutorial.showCurrentTutorial ();
 					}
 				}
 			}
@@ -87,8 +88,10 @@ namespace EA4S.Maze
 			//check if input is within range
 			if(!character.canMouseBeDown()) return;
 
+            Debug.Log("started Drawing!");
+
 			idleSeconds = 0;
-			MazeGameManager.Instance.currentTutorial.stopCurrentTutorial();
+			MazeGameManager.instance.currentTutorial.stopCurrentTutorial();
             anturaSeconds = 0;
 			//inform that we are inside the collision
 			isInside =  true;
@@ -99,14 +102,14 @@ namespace EA4S.Maze
 
 		void OnMouseUp()
 		{
-			if (!MazeGameManager.Instance.tutorialForLetterisComplete() || !isInside)
+			if (!MazeGameManager.instance.tutorialForLetterisComplete() || !isInside)
 				return;
 			isInside =  false;
 			character.toggleVisibility (true);
 			//character.gameObject.SetActive (true);
 			character.initMovement ();
 
-			MazeGameManager.Instance.timer.StopTimer ();
+			MazeGameManager.instance.timer.StopTimer ();
 		}
 
 	}

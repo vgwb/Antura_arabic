@@ -2,21 +2,22 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 namespace EA4S.Maze
 {
-	
-	public class MazeCharacter: MonoBehaviour {
+    public delegate void VoidDelegate();
+    public class MazeCharacter: MonoBehaviour {
 
 		//for internal use:
-		private delegate void VoidDelegate();
+		
 
 
 		public List<Vector3> characterWayPoints;
 
         public LetterObjectView LL;
 
-		public GameObject collider;
+		public GameObject myCollider;
         public List<GameObject> particles;
 
 		public List<GameObject> Fruits;
@@ -39,7 +40,7 @@ namespace EA4S.Maze
 		int currentWayPoint;
 
 
-		List<GameObject> _fruits;
+		public List<GameObject> _fruits;
 		int currentFruitList = 0;
 
 	
@@ -53,7 +54,7 @@ namespace EA4S.Maze
         private Vector3 fleePosition;
 
         public bool isAppearing = false;
-
+        public GameObject rocket;
 		void Start()
 		{
             LL.SetState(LLAnimationStates.LL_rocketing);
@@ -66,7 +67,7 @@ namespace EA4S.Maze
 
 
 			currentWayPoint = 0;
-			GetComponent<BoxCollider> ().enabled = false;
+			GetComponent<Collider> ().enabled = false;
 
 			//collider.GetComponent<MeshRenderer> ().enabled = false;
 			//collider.SetActive(false);
@@ -99,13 +100,23 @@ namespace EA4S.Maze
 
 			characterWayPoints.Add(initialPosition);
 			setFruitsList ();
-           // if (particles) particles.SetActive(false);
-          /*  var dir = transform.position - _fruits[0].transform.position;
-			var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-			transform.rotation =  Quaternion.AngleAxis(angle, Vector3.forward);*/
+           
+            var dir = _fruits[1].transform.position - transform.position;
+            var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
 
+            angle = 360 + angle;
 
-		}
+            
+            
+            transform.DOLocalRotateQuaternion(Quaternion.AngleAxis(-angle, Vector3.up), 0.5f);
+
+            transform.position += new Vector3(0, 0.0335f, 0);
+            dir.Normalize();
+            dir.x = transform.position.x - dir.x*2;
+            dir.z = transform.position.z - dir.z *2;
+            dir.y = 0.0335f;
+            transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        }
 
 
 		void setFruitsList()
@@ -186,7 +197,7 @@ namespace EA4S.Maze
 		{
             
 			print ("trigger exit " + other.gameObject.name);
-			print ("Current letter " + MazeGameManager.Instance.currentPrefab.name);
+			print ("Current letter " + MazeGameManager.instance.currentPrefab.name);
 
 			if (other.gameObject.name == "MazeLetter") {
 				//if the character completely exits the maze letter:
@@ -200,12 +211,12 @@ namespace EA4S.Maze
 		{
 			
 
-			MazeGameManager.Instance.wasHit ();
+			MazeGameManager.instance.wasHit ();
 
 
 
 
-			if (MazeGameManager.Instance.health == 0) {
+			if (MazeGameManager.instance.health == 0) {
 
 				waitAndRestartScene ();
 
@@ -224,10 +235,13 @@ namespace EA4S.Maze
 			//stop moving the character for a second
 			StartCoroutine(waitAndPerformCallback(1,()=>{
 				characterIsMoving = false;
+                transform.DOPause();
 			},
 				()=>{
 					characterIsMoving = true;
-				}));
+                    transform.DOPlay();
+
+                }));
 			
 
 		}
@@ -239,14 +253,26 @@ namespace EA4S.Maze
             //if (particles) particles.SetActive(false);
             foreach (GameObject particle in particles) particle.SetActive(false);
             //stop for a second and restart the level:
-            StartCoroutine(waitAndPerformCallback(1,()=>{
-				MazeGameManager.Instance.showAllCracks();
+            StartCoroutine(waitAndPerformCallback(3,()=>{
+				MazeGameManager.instance.showAllCracks();
 				donotHandleBorderCollision = true;
 				characterIsMoving = false;
-               
+                transform.DOKill(false);
+                //launchRocket = true;
+                toggleVisibility(true);
+
+                if(!MazeGameManager.instance.isTutorialMode)
+                {
+                    LL.transform.SetParent(transform, true);
+                    LL.SetState(LLAnimationStates.LL_idle);
+                    rocket.transform.DOLookAt(Camera.main.transform.position, 0.5f, AxisConstraint.None, Vector3.forward);
+                    rocket.transform.DOMove(Camera.main.transform.position + new Vector3(10, 10, 0), 3);
+
+                }
+                
             },
 				()=>{
-					MazeGameManager.Instance.lostCurrentLetter();//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+					MazeGameManager.instance.lostCurrentLetter();//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 				}));
 
 
@@ -276,7 +302,7 @@ namespace EA4S.Maze
 
 		public void setClickedDot()
 		{
-			MazeGameManager.Instance.moveToNext (true);
+			MazeGameManager.instance.moveToNext (true);
 		}
 
 		public void nextPath()
@@ -284,17 +310,18 @@ namespace EA4S.Maze
 			if (currentFruitList == Fruits.Count - 1)
 				return;
 
-
-			currentFruitList++;
+            transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isInside = false;
+            currentFruitList++;
 
 
 
 
 			setFruitsList ();
-			transform.position = _fruits[0].transform.position + new Vector3(0, 0, 1); ;
 
 
-			initialPosition = transform.position;
+            Vector3 initPos = _fruits[0].transform.position + new Vector3(0, 0.0335f,0);
+
+            initialPosition = initPos;
 			targetPos = initialPosition;
 
 			initialRotation = transform.rotation;
@@ -305,17 +332,74 @@ namespace EA4S.Maze
 			characterWayPoints.Add (initialPosition);
 
 
-			/*var dir = transform.position - _fruits[0].transform.position;
-			var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-			transform.rotation =  Quaternion.AngleAxis(angle, Vector3.forward);*/
+            var dir = (_fruits[0].transform.position) - transform.position;
+            var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+            transform.DOLocalRotateQuaternion(Quaternion.AngleAxis(-angle, Vector3.up), 0.25f);
 
-			toggleVisibility (false);
+
+            toggleVisibility(true);
+            transform.DOMove(_fruits[0].transform.position, 1).OnComplete(() => {
+                toggleVisibility(false);
+                dir = _fruits[1].transform.position - transform.position;
+                angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+                transform.DOLocalRotateQuaternion(Quaternion.AngleAxis(-angle, Vector3.up), 0.5f);
+
+                dir.Normalize();
+                dir.x = transform.position.x - dir.x*2;
+                dir.z = transform.position.z - dir.z * 2;
+                dir.y = 0.0335f;
+                transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+            });
             
-		}
+
+
+        }
+
+
+        public void resetToCurrent()
+        {
+            transform.DOKill(false);
+            donotHandleBorderCollision = false;
+            transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isInside = false;
+            transform.position = _fruits[0].transform.position + new Vector3(0, 0.0335f,0);
+
+
+            initialPosition = transform.position;
+            targetPos = initialPosition;
+
+            initialRotation = transform.rotation;
+            targetRotation = initialRotation;
+
+            currentCharacterWayPoint = 0;
+            characterWayPoints = new List<Vector3>();
+            characterWayPoints.Add(initialPosition);
+
+
+            setFruitsList();
+            toggleVisibility(false);
+
+            var dir = _fruits[1].transform.position - transform.position;
+            var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+
+            angle = 360 + angle;
+
+
+
+            transform.DOLocalRotateQuaternion(Quaternion.AngleAxis(-angle, Vector3.up), 0.5f);
+
+
+            dir.Normalize();
+            dir.x = transform.position.x - dir.x * 1.5f;
+            dir.z = transform.position.z - dir.z * 1.5f;
+            dir.y = 0.0335f;
+            transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+
+            GetComponent<Collider>().enabled = false;
+        }
 
 		public bool canMouseBeDown()
 		{
-            if (_fruits == null || MazeGameManager.Instance.isShowingAntura) return false;
+            if (_fruits == null || MazeGameManager.instance.isShowingAntura) return false;
 
 			if (_fruits.Count == 0)
 				return false;
@@ -328,23 +412,172 @@ namespace EA4S.Maze
 			//pos.z = _fruits[0].transform.position.z;
 
             float mag = (pos - _fruits[0].transform.position).sqrMagnitude;
-            bool b = mag <= 0;
-            b = mag <= float.Epsilon;
+           
             return ((pos - _fruits [0].transform.position).sqrMagnitude) <= 1;
 
 
 		}
 
+        private void moveTween()
+        {
+            /*if (currentCharacterWayPoint + 3 < characterWayPoints.Count)
+            {
+                var dir = transform.position - characterWayPoints[currentCharacterWayPoint + 3];
+                var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+
+                targetRotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
+                transform.DORotateQuaternion(targetRotation, 0.007f);
+            }
+
+            transform.DOMove(characterWayPoints[currentCharacterWayPoint], 0.007f).OnComplete(moveTweenComplete);*/
+
+            //average distance:
+            float distance = 0;
+            for (int i = 1; i < characterWayPoints.Count; ++i)
+                distance += (characterWayPoints[i] - characterWayPoints[i - 1]).sqrMagnitude;
+
+            float time = distance * 2;
+            if (time > 2) time = 2;
+            transform.DOPath(characterWayPoints.ToArray(), time, PathType.Linear, PathMode.Ignore).OnWaypointChange((int index) => {
+                if (index + 3 < characterWayPoints.Count)
+                {
+                    var dir = transform.position - characterWayPoints[index + 3];
+                    var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+
+                    transform.rotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
+                   // transform.DORotateQuaternion(targetRotation, 0.007f);
+                }
+            }).OnComplete(pathMoveComplete);
+        }
+
+        private void pathMoveComplete()
+        {
+            transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isInside = false;
+
+            //arrived!
+            //transform.rotation = initialRotation;
+            if (currentFruitIndex == _fruits.Count)
+            {
+
+                print("Won");
+                // if (particles) particles.SetActive(false);
+                foreach (GameObject particle in particles) particle.SetActive(false);
+                GetComponent<Collider>().enabled = false;
+                characterIsMoving = false;
+                transform.DOKill(false);
+                MazeGameManager.instance.moveToNext(true);
+
+                if (currentFruitList == Fruits.Count - 1)
+                {
+                    if (dot != null)
+                        dot.GetComponent<BoxCollider>().enabled = true;
+                }
+            }
+            else
+                waitAndRestartScene();
+        }
+
+        private void moveTweenComplete()
+        {
+            if (currentCharacterWayPoint < characterWayPoints.Count - 1)
+            {
+                currentCharacterWayPoint++;
+                //reached the end:
+                if (currentCharacterWayPoint == characterWayPoints.Count - 1)
+                {
+
+                    transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isInside = false;
+
+                    //arrived!
+                    //transform.rotation = initialRotation;
+                    if (currentFruitIndex == _fruits.Count)
+                    {
+
+                        print("Won");
+                        // if (particles) particles.SetActive(false);
+                        foreach (GameObject particle in particles) particle.SetActive(false);
+                        GetComponent<Collider>().enabled = false;
+                        characterIsMoving = false;
+                        transform.DOKill(false);
+                        MazeGameManager.instance.moveToNext(true);
+
+                        if (currentFruitList == Fruits.Count - 1)
+                        {
+                            if (dot != null)
+                                dot.GetComponent<BoxCollider>().enabled = true;
+                        }
+                    }
+                    else
+                        waitAndRestartScene();
+                }
+                else
+                    moveTween();
+
+                //enable collider when we reach the second waypoint
+                if (currentCharacterWayPoint == 1)
+                    myCollider.SetActive(true);
+            }
+        }
 		public void initMovement()
 		{
-			
-			characterIsMoving = true;
-			GetComponent<BoxCollider> ().enabled = true;
+            if (characterIsMoving) return;
+
+            transform.DOKill(false);
+            characterIsMoving = true;
+			GetComponent<Collider> ().enabled = true;
            // if (particles) particles.SetActive(true);
             foreach (GameObject particle in particles) particle.SetActive(true);
             foreach (GameObject fruit in _fruits) {
 				fruit.GetComponent<BoxCollider> ().enabled = true;
 			}
+
+            //test with tweens:
+            moveTween();
+            
+            /*
+            transform.position = Vector3.MoveTowards (transform.position, characterWayPoints[currentCharacterWayPoint], Time.deltaTime*10);
+
+				if (currentCharacterWayPoint + 3 < characterWayPoints.Count) {
+					var dir = transform.position - characterWayPoints [currentCharacterWayPoint + 3];
+					var angle = Mathf.Atan2 (dir.z, dir.x) * Mathf.Rad2Deg;
+
+                    targetRotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
+
+					transform.rotation = Quaternion.RotateTowards (transform.rotation, targetRotation, 5);
+				}
+				
+				if(transform.position == characterWayPoints[currentCharacterWayPoint] && currentCharacterWayPoint < characterWayPoints.Count-1){
+
+					currentCharacterWayPoint++;
+
+					//reached the end:
+					if (currentCharacterWayPoint == characterWayPoints.Count-1) {
+
+                        transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isInside = false;
+
+                        //arrived!
+                        //transform.rotation = initialRotation;
+                        if (currentFruitIndex == _fruits.Count) {
+                            
+                            print ("Won");
+                           // if (particles) particles.SetActive(false);
+                            foreach (GameObject particle in particles) particle.SetActive(false);
+                            GetComponent<Collider> ().enabled = false;
+							characterIsMoving = false;
+							MazeGameManager.instance.moveToNext (true);
+
+							if (currentFruitList == Fruits.Count - 1) {
+								if (dot != null)
+									dot.GetComponent<BoxCollider> ().enabled = true;
+							}
+						} else
+							waitAndRestartScene ();
+					}
+
+					//enable collider when we reach the second waypoint
+					if (currentCharacterWayPoint == 1)
+						myCollider.SetActive (true);
+				}*/
 		}
 
 		public void calculateMovementAndRotation()
@@ -358,7 +591,7 @@ namespace EA4S.Maze
 
 			if (previousPosition != initialPosition && previousPosition != targetPos) {
 				//MazeGameManager.Instance.DrawLine (previousPosition, targetPos, Color.red);
-				MazeGameManager.Instance.appendToLine(targetPos);
+				MazeGameManager.instance.appendToLine(targetPos);
 			}
 
 
@@ -366,23 +599,19 @@ namespace EA4S.Maze
 
 
 			var dir = transform.position - characterWayPoints[currentCharacterWayPoint];
-			var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-			//targetRotation =  Quaternion.AngleAxis(angle, Vector3.forward) * initialRotation;
-
+			
 
 			if(previousPosition != targetPos)
 			{
-				//targetPos.z = (_fruits[_fruits.Count - 1].transform.position;
 				characterWayPoints.Add(targetPos);
 
 			}
 
-			//print ((_fruits [_fruits.Count - 1].transform.position - targetPos).sqrMagnitude);
-			if ((_fruits [_fruits.Count - 1].transform.position - targetPos).sqrMagnitude < 0.5f) {
+			if ((_fruits [_fruits.Count - 1].transform.position - targetPos).sqrMagnitude < 0.1f) {
 
 				toggleVisibility (true);
 				initMovement ();
-				MazeGameManager.Instance.timer.StopTimer ();
+				MazeGameManager.instance.timer.StopTimer ();
 			}
 
 		}
@@ -399,6 +628,7 @@ namespace EA4S.Maze
                 
             },
                 () => {
+                    transform.DOKill(true);
                     toggleVisibility(true);
                     fleePosition = position;
                     isFleeing = true;
@@ -408,21 +638,27 @@ namespace EA4S.Maze
             
         }
 
-
-        void moveTowards(Vector3 position)
+        
+        void moveTowards(Vector3 position, float speed = 10, bool useUpVector = true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, position, Time.deltaTime * 10);
+            transform.position = Vector3.MoveTowards(transform.position, position, Time.deltaTime * speed);
 
             var dir = transform.position - position;
             var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
 
-            targetRotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
+            targetRotation = Quaternion.AngleAxis(-angle, useUpVector? Vector3.up: Vector3.forward);// * initialRotation;
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 5);
         }
 
 		void Update()
 		{
+            /*if(launchRocket)
+            {
+                //moveTowards(Camera.main.transform.position,20, false);
+               
+                return;
+            }*/
 			if(isAppearing)
             {
                 moveTowards(initialPosition);
@@ -430,8 +666,11 @@ namespace EA4S.Maze
                 {
                     toggleVisibility(false);
                     isAppearing = false;
+
+                    
+
                     //transform.rotation = initialRotation;
-                    MazeGameManager.Instance.showCurrentTutorial();
+                    MazeGameManager.instance.showCurrentTutorial();
                 }
                 return;
             }
@@ -442,8 +681,8 @@ namespace EA4S.Maze
 
                 if (transform.position == fleePosition)
                 {
-                    MazeGameManager.Instance.showAllCracks();
-                    MazeGameManager.Instance.lostCurrentLetter();
+                    MazeGameManager.instance.showAllCracks();
+                    MazeGameManager.instance.lostCurrentLetter();
 
                    
                 }
@@ -451,7 +690,7 @@ namespace EA4S.Maze
             }
 
 
-			if (characterIsMoving) {
+			/*if (characterIsMoving) {
 				transform.position = Vector3.MoveTowards (transform.position, characterWayPoints[currentCharacterWayPoint], Time.deltaTime*10);
 
 				if (currentCharacterWayPoint + 3 < characterWayPoints.Count) {
@@ -462,23 +701,26 @@ namespace EA4S.Maze
 
 					transform.rotation = Quaternion.RotateTowards (transform.rotation, targetRotation, 5);
 				}
-				//transform.LookAt(characterWayPoints[currentCharacterWayPoint+1]);
-
+				
 				if(transform.position == characterWayPoints[currentCharacterWayPoint] && currentCharacterWayPoint < characterWayPoints.Count-1){
 
 					currentCharacterWayPoint++;
 
 					//reached the end:
 					if (currentCharacterWayPoint == characterWayPoints.Count-1) {
-						//arrived!
-						//transform.rotation = initialRotation;
-						if (currentFruitIndex == _fruits.Count) {
-							print ("Won");
+
+                        transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isInside = false;
+
+                        //arrived!
+                        //transform.rotation = initialRotation;
+                        if (currentFruitIndex == _fruits.Count) {
+                            
+                            print ("Won");
                            // if (particles) particles.SetActive(false);
                             foreach (GameObject particle in particles) particle.SetActive(false);
-                            GetComponent<BoxCollider> ().enabled = false;
+                            GetComponent<Collider> ().enabled = false;
 							characterIsMoving = false;
-							MazeGameManager.Instance.moveToNext (true);
+							MazeGameManager.instance.moveToNext (true);
 
 							if (currentFruitList == Fruits.Count - 1) {
 								if (dot != null)
@@ -490,9 +732,9 @@ namespace EA4S.Maze
 
 					//enable collider when we reach the second waypoint
 					if (currentCharacterWayPoint == 1)
-						collider.SetActive (true);
+						myCollider.SetActive (true);
 				}
-			}
+			}*/
 		}
 	}
 }

@@ -33,14 +33,14 @@ namespace EA4S.Test
 
         LL_WordData GetWord()
         {
-            return AppManager.Instance.Teacher.GetRandomTestWordDataLL();
+            return AppManager.I.Teacher.GetRandomTestWordDataLL();
         }
 
         List<LL_WordData> GetWordsNotContained(List<LL_WordData> _WordsToAvoid, int _count)
         {
             List<LL_WordData> wordListToReturn = new List<LL_WordData>();
             for (int i = 0; i < _count; i++) {
-                var word = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
+                var word = AppManager.I.Teacher.GetRandomTestWordDataLL();
 
                 if (!CheckIfContains(_WordsToAvoid, word) && !CheckIfContains(wordListToReturn, word)) {
                     wordListToReturn.Add(word);
@@ -52,7 +52,7 @@ namespace EA4S.Test
         List<LL_LetterData> GetLettersFromWord(LL_WordData _word)
         {
             List<LL_LetterData> letters = new List<LL_LetterData>();
-            foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(_word.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL())) {
+            foreach (var letterData in ArabicAlphabetHelper.ExtractLetterDataFromArabicWord(_word.Data.Arabic)) {
                 letters.Add(letterData);
             }
             return letters;
@@ -62,7 +62,7 @@ namespace EA4S.Test
         {
             List<LL_LetterData> letterListToReturn = new List<LL_LetterData>();
             for (int i = 0; i < _count; i++) {
-                var letter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
+                var letter = AppManager.I.Teacher.GetRandomTestLetterLL();
 
                 if (!CheckIfContains(_lettersToAvoid, letter) && !CheckIfContains(letterListToReturn, letter)) {
                     letterListToReturn.Add(letter);

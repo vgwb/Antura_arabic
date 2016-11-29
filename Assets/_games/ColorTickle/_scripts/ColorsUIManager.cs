@@ -20,8 +20,8 @@ namespace EA4S.ColorTickle
         private Color m_OutlineColor = new Color(0, 0, 0, 255);
         [SerializeField]
         private Button m_SamplePercentageButton;
-        [SerializeField]
-        private bool m_EnablePercentageButton = false;
+        //[SerializeField]
+        //private bool m_EnablePercentageButton = false;
 
         [Header("Max Colors = Number of Buttons * Rounds")]
         public Color[] m_Colors;

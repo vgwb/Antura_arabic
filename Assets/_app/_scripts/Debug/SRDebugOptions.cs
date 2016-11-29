@@ -9,7 +9,7 @@ public partial class SROptions
 {
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
-        //if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
+        //if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
         //{
         WidgetPopupWindow.I.Close();
         DebugManager.I.LaunchMinigGame(minigameCode);
@@ -39,11 +39,11 @@ public partial class SROptions
     //    for (int s = 1; s <= Stages; s++) {
     //        for (int lb = 1; lb <= LearningBlocks; lb++) {
     //            for (int ps = 1; ps <= PlaySessions; ps++) {
-    //                if(AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + ps, minigameCode))
+    //                if(AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + ps, minigameCode))
     //                    return new JourneyPosition(s, lb, ps);
     //            }
     //            int assessmentCode = 100;
-    //            if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + assessmentCode, minigameCode))
+    //            if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + assessmentCode, minigameCode))
     //                return new JourneyPosition(s, lb, assessmentCode);
     //        }
     //    }
@@ -86,7 +86,7 @@ public partial class SROptions
     public void Home()
     {
         WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("_Start");
+        NavigationManager.I.GoToScene(AppScene.Home);
         SRDebug.Instance.HideDebugPanel();
     }
 
@@ -94,7 +94,7 @@ public partial class SROptions
     [Sort(80)]
     public void ToggleQuality()
     {
-        AppManager.Instance.ToggleQualitygfx();
+        AppManager.I.ToggleQualitygfx();
         SRDebug.Instance.HideDebugPanel();
     }
 
@@ -414,16 +414,16 @@ public partial class SROptions
     [Category("Max Journey Position")]
     [Sort(5)]
     public string CurrentMaxJouneryPosition {
-        get { return AppManager.Instance.Player.MaxJourneyPosition.ToString(); }
+        get { return AppManager.I.Player.MaxJourneyPosition.ToString(); }
     }
 
     [Category("Max Journey Position")]
     [Sort(6)]
     public void ForwardMaxPosition()
     {
-        JourneyPosition newPos = TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.MaxJourneyPosition);
+        JourneyPosition newPos = TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.MaxJourneyPosition);
         if (newPos != null) {
-            AppManager.Instance.Player.SetMaxJourneyPosition(newPos, true);
+            AppManager.I.Player.SetMaxJourneyPosition(newPos, true);
         }
         SRDebug.Instance.HideDebugPanel();
         SRDebug.Instance.ShowDebugPanel();
@@ -431,9 +431,18 @@ public partial class SROptions
 
     [Category("Max Journey Position")]
     [Sort(7)]
+    public void UnlockAll()
+    {
+        AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(6, 14, 1), true);
+        SRDebug.Instance.HideDebugPanel();
+        SRDebug.Instance.ShowDebugPanel();
+    }
+
+    [Category("Max Journey Position")]
+    [Sort(8)]
     public void ResetMaxPosition()
     {
-        AppManager.Instance.Player.SetMaxJourneyPosition(new JourneyPosition(1, 1, 1), true);
+        AppManager.I.Player.ResetMaxJourneyPosition();
         SRDebug.Instance.HideDebugPanel();
         SRDebug.Instance.ShowDebugPanel();
     }

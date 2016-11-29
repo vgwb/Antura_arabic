@@ -12,8 +12,8 @@ namespace EA4S.SickLetters
     public class SickLettersLLPrefab : MonoBehaviour
     {
         public Transform shadow;
-        public TextMeshPro dotlessLetter, correctDot;
-        public SickLettersDraggableDD correctDotCollider;
+        public TextMeshPro dotlessLetter, correctDot, correctDiac;
+        public SickLettersDraggableDD correctDotCollider, correctDiacCollider;
         public SickLettersGame game;
         public LetterObjectView letterView;
         public letterStatus LLStatus = letterStatus.idle;
@@ -66,7 +66,6 @@ namespace EA4S.SickLetters
 
             if (game.roundsCount == 0)
             {
-                AudioManager.I.PlayDialog("SickLetters_Intro");
                 game.tut.doTutorial(thisLLWrongDDs[Random.Range(0, thisLLWrongDDs.Count-1)].transform);
             }
             else
@@ -87,7 +86,7 @@ namespace EA4S.SickLetters
             GetComponent<CapsuleCollider>().isTrigger = true;
 
             yield return new WaitForSeconds(.25f);
-            game.Poof(transform.position + Vector3.up *8.5f - Vector3.forward);
+            game.Poof(transform).position += Vector3.up * 8.5f - Vector3.forward;
             showLLMesh(false);
             yield return new WaitForSeconds(.75f);
 
@@ -98,24 +97,127 @@ namespace EA4S.SickLetters
             }
         }
 
+        Vector3 correctDiacriticPos;
         public void getNewLetterData()
         {
             ILivingLetterData newLetter = game.questionManager.getNewLetter();
+            letterView.Init(newLetter);
+            letterView.Label.GetComponent<TextRender>().SetLetterData(newLetter);
 
-            game.LLPrefab.GetComponent<LetterObjectView>().Init(newLetter);
-            game.LLPrefab.dotlessLetter.text = newLetter.TextForLivingLetter;
+            
+            //game.LLPrefab.dotlessLetter.text = newLetter.TextForLivingLetter;
 
-            if (!game.LettersWithDots.Contains(newLetter.TextForLivingLetter))
+            string letterWithoutDiac = removeDiacritics(newLetter.TextForLivingLetter);
+
+            dotlessLetter.GetComponent<TextRender>().setText(letterWithoutDiac, true);
+
+            //Deal with dotless letters
+            if (!game.LettersWithDots.Contains(letterWithoutDiac))
             {
                 correctDot.text = "";
                 correctDotCollider.GetComponent<BoxCollider>().enabled = false;
             }
+
+            //Deal with letters with dots
             else
             {
-                correctDot.text = newLetter.TextForLivingLetter;
+                correctDot.text = letterWithoutDiac;
                 correctDotCollider.GetComponent<BoxCollider>().enabled = true;
             }
 
+            //Deal with Diacritics if any
+            if (letterWithoutDiac != newLetter.TextForLivingLetter)
+            {
+                Debug.Log(newLetter.TextForLivingLetter + " " + letterWithoutDiac +" " + letterView.Label.mesh.vertexCount);
+
+                StopCoroutine(processCorrectDiacPose());
+                StartCoroutine(processCorrectDiacPose());
+
+                //dotlessLetter.GetComponent<TextRender>().setText(letterWithoutDiac, true);
+
+                correctDiacCollider.GetComponent<BoxCollider>().enabled = true;
+            }
+            else
+                correctDiacCollider.GetComponent<BoxCollider>().enabled = false;
+
+        }
+
+        string removeDiacritics(string letter)
+        {
+            //nasb
+            if (letter.Contains("ً"))
+            {
+                correctDiac.text = "ً";
+                return letter.Replace("ً", string.Empty);      
+            }
+            //jarr
+            else if (letter.Contains("ٍ"))
+            {
+                correctDiac.text = "ٍ";
+                return letter.Replace("ٍ", string.Empty);
+            }
+            //damm
+            else if (letter.Contains("ٌ"))
+            {
+                correctDiac.text = "ٌ";
+                return letter.Replace("ٌ", string.Empty);
+            }
+            //kasra
+            else if (letter.Contains("ِ"))
+            {
+                correctDiac.text = "ِ";
+                return letter.Replace("ِ", string.Empty);
+            }
+            //fatha
+            else if (letter.Contains("َ"))
+            {
+                correctDiac.text = "َ";
+                return letter.Replace("َ", string.Empty);
+            }
+            //damma
+            else if (letter.Contains("ُ"))
+            {
+                correctDiac.text = "ُ";
+                return letter.Replace("ُ", string.Empty);
+            }
+            //shadda
+            else if (letter.Contains("ّ"))
+            {
+                correctDiac.text = "ّ";
+                return letter.Replace("ّ", string.Empty);
+
+            }
+            //sukon
+            else if (letter.Contains("ْ"))
+            {
+                correctDiac.text = "ْ";
+                return letter.Replace("ْ", string.Empty);
+            }
+            else
+            {
+                correctDiac.text = "";
+                return letter;
+            }
+        }
+
+        IEnumerator processCorrectDiacPose() {
+            while (true)
+            {
+                if (letterView.Label.mesh.vertexCount > 0)
+                {
+                    correctDiacriticPos = letterView.Label.transform.TransformPoint(Vector3.Lerp(letterView.Label.mesh.vertices[4], letterView.Label.mesh.vertices[6], 0.5f));
+
+                    if (correctDiacCollider.transform.childCount == 0)
+                    {
+                        correctDiacCollider.transform.position = correctDiacriticPos;
+                        correctDiac.transform.position = correctDiacriticPos;
+                    }
+
+                    Debug.DrawRay(correctDiacriticPos, -Vector3.forward * 10, Color.blue);
+                    yield return null;
+                }
+                yield return null;
+            }
         }
 
         int i = 0;
@@ -143,6 +245,7 @@ namespace EA4S.SickLetters
                         newDragable.transform.localPosition = Vector3.zero;
                         newDragable.transform.localEulerAngles = new Vector3(0, -90, 0);
                         newDragable.setInitPos(newDragable.transform.localPosition);
+                        newDragable.checkDDCollision = true;
                         //newDragable.isAttached = true;
 
                         thisLLWrongDDs.Add(newDragable);
@@ -162,6 +265,7 @@ namespace EA4S.SickLetters
             foreach (SkinnedMeshRenderer sm in LLMesh)
                 sm.enabled = show;
             correctDot.gameObject.SetActive(show);
+            correctDiac.gameObject.SetActive(show);
             dotlessLetter.gameObject.SetActive(show);
             if (!show)
                 shadow.localScale = Vector3.zero;

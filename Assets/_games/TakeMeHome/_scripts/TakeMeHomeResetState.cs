@@ -25,13 +25,14 @@
 
 			win = false;
 			if (tubeIndex == game.currentTube) {
-				AudioManager.I.PlaySfx (Sfx.Win);
+                TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
+				//AudioManager.I.PlaySfx (Sfx.Win);
 				win = true;
 				game.IncrementScore ();
-                TutorialUI.MarkYes(game.currentLetter.transform.position + new UnityEngine.Vector3(0,0,-5));
+                TutorialUI.MarkYes(game.currentLetter.transform.position + new UnityEngine.Vector3(0,0,-5), TutorialUI.MarkSize.Big);
 			} else {
-				AudioManager.I.PlaySfx (Sfx.Lose);
-                TutorialUI.MarkNo(game.currentLetter.transform.position + new UnityEngine.Vector3(0, 0, -5));
+                TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
+                TutorialUI.MarkNo(game.currentLetter.transform.position + new UnityEngine.Vector3(0, 0, -5), TutorialUI.MarkSize.Big);
             }
 
 			game.currentLetter.followTube (win);

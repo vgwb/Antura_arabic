@@ -7,20 +7,23 @@ namespace EA4S
 {
     public class DatabaseManager
     {
-        public const string STATIC_DATABASE_NAME = "EA4S.Database";
+        public const string STATIC_DATABASE_NAME = "Database";
         public const string STATIC_DATABASE_NAME_TEST = STATIC_DATABASE_NAME + "_Test";
 
         // DB references
-        private readonly Database staticDb;
+        private Database staticDb;
         private DBService dynamicDb;
+
+        public Database StaticDatabase {
+            get
+            {
+                return staticDb;
+            }
+        }
 
         public DatabaseManager(bool useTestDatabase, PlayerProfile playerProfile)
         {
-            var staticDbNameToLoad = STATIC_DATABASE_NAME;
-            if (useTestDatabase) {
-                staticDbNameToLoad = STATIC_DATABASE_NAME_TEST;
-            }
-            staticDb = Resources.Load<Database>(staticDbNameToLoad);
+            LoadStaticDB(useTestDatabase);
 
             // SAFE MODE: we need to make sure that the static db has some entires, otherwise there is something wrong
             if (staticDb.GetPlaySessionTable().GetDataCount() == 0) {
@@ -29,6 +32,17 @@ namespace EA4S
 
             // We load the selected player profile
             LoadDynamicDbForPlayerProfile(playerProfile.Id);
+        }
+
+        void LoadStaticDB(bool useTestDatabase)
+        {
+            var dbName = STATIC_DATABASE_NAME;
+            if (useTestDatabase)
+            {
+                dbName = STATIC_DATABASE_NAME_TEST;
+            }
+
+            this.staticDb = Database.LoadDB(dbName);
         }
 
         #region Profile
@@ -174,6 +188,13 @@ namespace EA4S
         {
             return new List<LearningBlockData>(staticDb.GetLearningBlockTable().GetValuesTyped());
         }
+
+        // @note: new generic-only data getter, should be used instead of all the above ones
+        public List<T> GetAllData<T>(DbTables table) where T : IData
+        {
+            return staticDb.GetAll<T>((SerializableDataTable<T>)staticDb.GetTable(table));
+        }
+
         #endregion
 
         #region PlaySession

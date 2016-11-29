@@ -79,7 +79,7 @@ namespace EA4S
         public void LogPlaySessionScore(float _score)
         {
             // TODO: Check if CurrentJourneyPosition is correct.
-            LogManager.I.LogPlaySessionScore(AppManager.Instance.Player.CurrentJourneyPosition.ToString(), _score);
+            LogManager.I.LogPlaySessionScore(AppManager.I.Player.CurrentJourneyPosition.ToString(), _score);
         }
 
         /// <summary>

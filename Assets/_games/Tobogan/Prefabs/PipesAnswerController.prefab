@@ -2073,7 +2073,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7f6e1496a2eaff4418db120f9229cac0, type: 2}
+  - {fileID: 2100000, guid: eeea526eac925c24d958c29b822e7d70, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -2102,7 +2102,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7f6e1496a2eaff4418db120f9229cac0, type: 2}
+  - {fileID: 2100000, guid: 3685cdfccaca81a44985a1e508ab4911, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -2189,7 +2189,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 13aca09d0ce1c044e8e3aeaca0b3afd5, type: 2}
+  - {fileID: 2100000, guid: c24b11789453cb14a820b49af9ef816b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -2218,7 +2218,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7f6e1496a2eaff4418db120f9229cac0, type: 2}
+  - {fileID: 2100000, guid: 3685cdfccaca81a44985a1e508ab4911, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -2334,7 +2334,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 13aca09d0ce1c044e8e3aeaca0b3afd5, type: 2}
+  - {fileID: 2100000, guid: c24b11789453cb14a820b49af9ef816b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -2363,7 +2363,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7f6e1496a2eaff4418db120f9229cac0, type: 2}
+  - {fileID: 2100000, guid: eeea526eac925c24d958c29b822e7d70, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -2479,7 +2479,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7db60a4a83084c6498171212ab474af3, type: 2}
+  - {fileID: 2100000, guid: 3685cdfccaca81a44985a1e508ab4911, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -2595,7 +2595,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7db60a4a83084c6498171212ab474af3, type: 2}
+  - {fileID: 2100000, guid: 3685cdfccaca81a44985a1e508ab4911, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -2867,10 +2867,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trembling: 1
-  playSound: 0
+  playSound: 1
   soundBasePitch: 1
-  soundBaseVolume: 1
-  soundTurnOnSpeed: 3
+  soundBaseVolume: 0.8
+  soundTurnOnSpeed: 4
   soundTurnOffSpeed: 3
   tremblingSpeedX: 80
   tremblingSpeedY: 60
@@ -3028,6 +3028,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 0
   isArabic: 1
+  LocalizationId: 0
 --- !u!114 &114000010579038758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3040,6 +3041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   answerText: {fileID: 114000013427227096}
+  answerRender: {fileID: 114000010458638768}
   answerWordDrawings: {fileID: 114000012597831054}
   aspirationParticle: {fileID: 1000012933642292}
   graphics: {fileID: 1000012898474260}
@@ -3100,6 +3102,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 0
   isArabic: 0
+  LocalizationId: 0
 --- !u!114 &114000011079727768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3247,10 +3250,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trembling: 1
-  playSound: 0
+  playSound: 1
   soundBasePitch: 1
-  soundBaseVolume: 1
-  soundTurnOnSpeed: 3
+  soundBaseVolume: 0.8
+  soundTurnOnSpeed: 4
   soundTurnOffSpeed: 3
   tremblingSpeedX: 80
   tremblingSpeedY: 60
@@ -3273,6 +3276,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 0
   isArabic: 0
+  LocalizationId: 0
 --- !u!114 &114000012476727038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3288,6 +3292,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 0
   isArabic: 1
+  LocalizationId: 0
 --- !u!114 &114000012525180868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3303,6 +3308,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 0
   isArabic: 1
+  LocalizationId: 0
 --- !u!114 &114000012597831054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3450,6 +3456,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 0
   isArabic: 0
+  LocalizationId: 0
 --- !u!114 &114000012671373174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3597,6 +3604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   answerText: {fileID: 114000013248157644}
+  answerRender: {fileID: 114000012476727038}
   answerWordDrawings: {fileID: 114000013868578082}
   aspirationParticle: {fileID: 1000010462342154}
   graphics: {fileID: 1000010763766046}
@@ -3694,6 +3702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   answerText: {fileID: 114000011441076952}
+  answerRender: {fileID: 114000012525180868}
   answerWordDrawings: {fileID: 114000010281402950}
   aspirationParticle: {fileID: 1000011345024634}
   graphics: {fileID: 1000010748851954}
@@ -3754,6 +3763,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 0
   isArabic: 0
+  LocalizationId: 0
 --- !u!114 &114000013248157644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3996,10 +4006,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trembling: 1
-  playSound: 0
+  playSound: 1
   soundBasePitch: 1
-  soundBaseVolume: 1
-  soundTurnOnSpeed: 3
+  soundBaseVolume: 0.8
+  soundTurnOnSpeed: 4
   soundTurnOffSpeed: 3
   tremblingSpeedX: 80
   tremblingSpeedY: 60
@@ -4019,10 +4029,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trembling: 1
-  playSound: 0
+  playSound: 1
   soundBasePitch: 1
-  soundBaseVolume: 1
-  soundTurnOnSpeed: 3
+  soundBaseVolume: 0.8
+  soundTurnOnSpeed: 4
   soundTurnOffSpeed: 3
   tremblingSpeedX: 80
   tremblingSpeedY: 60
@@ -4157,6 +4167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   answerText: {fileID: 114000013610025038}
+  answerRender: {fileID: 114000013728078238}
   answerWordDrawings: {fileID: 114000012709876376}
   aspirationParticle: {fileID: 1000011504682456}
   graphics: {fileID: 1000010498488116}
@@ -4217,6 +4228,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 0
   isArabic: 1
+  LocalizationId: 0
 --- !u!114 &114000013729881106
 MonoBehaviour:
   m_ObjectHideFlags: 1

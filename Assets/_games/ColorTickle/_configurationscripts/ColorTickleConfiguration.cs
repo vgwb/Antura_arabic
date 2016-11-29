@@ -24,7 +24,7 @@
         private ColorTickleConfiguration()
         {
             // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
+            Questions = new ColorTickleLetterProvider();
             Context = new SampleGameContext();
             Difficulty = 0.5f;
         }
@@ -35,7 +35,10 @@
             int nPacks = 10;
             int nCorrect = 1;
 
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect);
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.letterFilters.excludeDiacritics = true;
+            builderParams.wordFilters.excludeDiacritics = true;
+            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, parameters: builderParams);
 
             return builder;
         }

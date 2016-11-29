@@ -4834,7 +4834,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013227835436}
-  m_LocalRotation: {x: -0.68850946, y: 0.040607117, z: 0.7181946, w: 0.09220875}
+  m_LocalRotation: {x: -0.6885094, y: 0.040607113, z: 0.71819454, w: 0.09220874}
   m_LocalPosition: {x: 0.1043229, y: 0.103943594, z: 1.287589}
   m_LocalScale: {x: 0.99999964, y: 1, z: 1.0000005}
   m_LocalEulerAnglesHint: {x: 349.52292, y: 224.35536, z: 185.02641}
@@ -5401,7 +5401,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012074220986}
-  m_LocalRotation: {x: -0.6885094, y: 0.040607113, z: 0.71819454, w: 0.09220874}
+  m_LocalRotation: {x: -0.68850946, y: 0.040607117, z: 0.7181946, w: 0.09220875}
   m_LocalPosition: {x: 0.1043229, y: 0.103943594, z: 1.287589}
   m_LocalScale: {x: 0.99999964, y: 1, z: 1.0000005}
   m_LocalEulerAnglesHint: {x: 349.52292, y: 224.35536, z: 185.02641}
@@ -6672,7 +6672,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011570690818}
-  m_LocalRotation: {x: -0.68850946, y: 0.040607117, z: 0.7181946, w: 0.09220875}
+  m_LocalRotation: {x: -0.6885094, y: 0.040607113, z: 0.71819454, w: 0.09220874}
   m_LocalPosition: {x: 0.1043229, y: 0.103943594, z: 1.287589}
   m_LocalScale: {x: 0.99999964, y: 1, z: 1.0000005}
   m_LocalEulerAnglesHint: {x: 349.52292, y: 224.35536, z: 185.02641}
@@ -9966,6 +9966,7 @@ MonoBehaviour:
   balloonCollider: {fileID: 136000011528338450}
   balloonRenderer: {fileID: 23000013933183698}
   animator: {fileID: 95000010392180912}
+  isPopped: 0
 --- !u!114 &114000010949661956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10115,6 +10116,7 @@ MonoBehaviour:
   balloonCollider: {fileID: 136000012699091940}
   balloonRenderer: {fileID: 23000010662247282}
   animator: {fileID: 95000012952664946}
+  isPopped: 0
 --- !u!114 &114000011135690230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10244,6 +10246,7 @@ MonoBehaviour:
   balloonCollider: {fileID: 136000012945644448}
   balloonRenderer: {fileID: 23000013329693232}
   animator: {fileID: 95000012872180392}
+  isPopped: 0
 --- !u!114 &114000011827989702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10511,6 +10514,7 @@ MonoBehaviour:
   balloonCollider: {fileID: 136000013726382494}
   balloonRenderer: {fileID: 23000012922260892}
   animator: {fileID: 95000013010981340}
+  isPopped: 0
 --- !u!114 &114000012071962220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10598,6 +10602,7 @@ MonoBehaviour:
   balloonCollider: {fileID: 136000011749461898}
   balloonRenderer: {fileID: 23000012351235616}
   animator: {fileID: 95000013147033650}
+  isPopped: 0
 --- !u!114 &114000012504029598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10678,9 +10683,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   innerTransform: {fileID: 4000010869096514}
-  Lable: {fileID: 114000013645929986}
+  contentTransform: {fileID: 0}
+  textTransform: {fileID: 0}
+  boneToScaleTransform: {fileID: 0}
+  Label: {fileID: 0}
+  Drawing: {fileID: 0}
   ImageSprite: {fileID: 212000013756160868}
-  maxSize: 1.5
+  Scale: 1
   normalGraphics:
   - {fileID: 1000012649092610}
   - {fileID: 1000010082664386}
@@ -10688,6 +10697,7 @@ MonoBehaviour:
   - {fileID: 1000011332927476}
   limblessGraphics: []
   poofPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
+  DancingSpeed: 1
 --- !u!114 &114000012840275270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10724,9 +10734,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   innerTransform: {fileID: 4000011144592584}
-  Lable: {fileID: 114000011977699562}
+  contentTransform: {fileID: 0}
+  textTransform: {fileID: 0}
+  boneToScaleTransform: {fileID: 0}
+  Label: {fileID: 0}
+  Drawing: {fileID: 0}
   ImageSprite: {fileID: 212000011552776464}
-  maxSize: 1.5
+  Scale: 1
   normalGraphics:
   - {fileID: 1000010411123526}
   - {fileID: 1000012772809694}
@@ -10734,6 +10748,7 @@ MonoBehaviour:
   - {fileID: 1000012827229766}
   limblessGraphics: []
   poofPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
+  DancingSpeed: 1
 --- !u!114 &114000012909554766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10890,9 +10905,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   innerTransform: {fileID: 4000011771094332}
-  Lable: {fileID: 114000011135690230}
+  contentTransform: {fileID: 0}
+  textTransform: {fileID: 0}
+  boneToScaleTransform: {fileID: 0}
+  Label: {fileID: 0}
+  Drawing: {fileID: 0}
   ImageSprite: {fileID: 212000013935199490}
-  maxSize: 1.5
+  Scale: 1
   normalGraphics:
   - {fileID: 1000010863997334}
   - {fileID: 1000014014986482}
@@ -10900,6 +10919,7 @@ MonoBehaviour:
   - {fileID: 1000011769338368}
   limblessGraphics: []
   poofPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
+  DancingSpeed: 1
 --- !u!114 &114000013645929986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11093,6 +11113,7 @@ MonoBehaviour:
   balloonCollider: {fileID: 136000012224163040}
   balloonRenderer: {fileID: 23000010106558374}
   animator: {fileID: 95000013042086614}
+  isPopped: 0
 --- !u!136 &136000011528338450
 CapsuleCollider:
   m_ObjectHideFlags: 1
