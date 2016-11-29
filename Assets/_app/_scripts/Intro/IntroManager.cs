@@ -94,7 +94,7 @@ namespace EA4S
 
             yield return new WaitForSeconds(m_StateDelay);
 
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_welcome, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_welcome, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
@@ -102,27 +102,27 @@ namespace EA4S
             Debug.Log("Start Spawning");
             factory.StartSpawning = true;
 
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Letters_1, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Letters_1, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
 
             Debug.Log("Second Intro Letter");
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Letters_2, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Letters_2, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
 
             factory.antura.SetAnturaTime(true);
             Debug.Log("Antura is enable");
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Dog, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Dog, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
 
             DisableAntura();
 
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Dog_Chase, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Dog_Chase, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
 
