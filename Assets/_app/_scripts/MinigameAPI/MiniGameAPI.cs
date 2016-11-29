@@ -199,11 +199,14 @@ namespace EA4S.API
                     actualConfig = Maze.MazeConfiguration.Instance;
                     break;
                 case MiniGameCode.MissingLetter:
+                    MissingLetter.MissingLetterConfiguration.Instance.Variation = MissingLetter.MissingLetterVariation.MissingLetter;
                     MissingLetter.MissingLetterConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     actualConfig = MissingLetter.MissingLetterConfiguration.Instance;
                     break;
                 case MiniGameCode.MissingLetter_phrases:
-                    // Must be defined how use sentence data structure
+                    MissingLetter.MissingLetterConfiguration.Instance.Variation = MissingLetter.MissingLetterVariation.MissingWord;
+                    MissingLetter.MissingLetterConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = MissingLetter.MissingLetterConfiguration.Instance;
                     break;
                 case MiniGameCode.MixedLetters_alphabet:
                     // TODO: set variation
