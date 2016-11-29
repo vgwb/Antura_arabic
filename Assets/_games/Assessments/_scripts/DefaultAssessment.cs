@@ -67,7 +67,7 @@ namespace EA4S.Assessment
 
         private YieldInstruction PlayGameDescription()
         {
-            return Dialogues.Dialogue( GameDescription);
+            return Dialogues.Speak( GameDescription);
         }
 
         #endregion
@@ -118,12 +118,11 @@ namespace EA4S.Assessment
                     PlayAnturaIsComingSound();
                     var anturaController = AnturaFactory.Instance.SleepingAntura();
 
-                    anturaController.StartAnimation( ()=> PlayPushAnturaSound());
+                    anturaController.StartAnimation( ()=> PlayPushAnturaSound(), ()=>PlayAnturaGoneSound());
 
                     while (anturaController.IsAnimating())
                         yield return null;
 
-                    yield return PlayAnturaGoneSound();
                     yield return TimeEngine.Wait( 0.3f);
                     yield return PlayGameDescription();
                     #endregion
@@ -148,6 +147,8 @@ namespace EA4S.Assessment
                 ////___
                 //// GAME LOGIC END
                 //////////////////////////////
+
+                LogicInjector.RemoveDraggables();
 
                 QuestionPlacer.RemoveQuestions();
                 AnswerPlacer.RemoveAnswers();

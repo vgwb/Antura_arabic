@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -85,18 +86,30 @@ namespace EA4S.Assessment
 
             audioManager.PlaySound( Sfx.ThrowObj);
             this.droppable = droppable;
-            droppable.StartDrag();
+            droppable.StartDrag( x=>RemoveFromUpdateAndPlaceholders(x));
+        }
+
+        void RemoveFromUpdateAndPlaceholders( IDroppable droppa)
+        {
+            RemoveFromUpdate();
+            if (placeholders.Remove(droppa.GetLinkedPlaceholder()) == false)
+                throw new InvalidOperationException("Cannote remove the droppale");
+        }
+
+        void RemoveFromUpdate()
+        {
+            this.droppable.StopDrag();
+            this.droppable = null;
         }
 
         public void StopDragging( IDroppable droppable)
         {
-            if (this.droppable == droppable)
+            if (this.droppable == droppable && droppable != null)
             {
                 audioManager.PlaySound( Sfx.ThrowObj);
                 if(dragOnly== false)
                     CheckCollidedWithPlaceholder( droppable);
-                this.droppable.StopDrag();
-                this.droppable = null;
+                RemoveFromUpdate();
             }
         }
 
@@ -149,6 +162,16 @@ namespace EA4S.Assessment
         {
             foreach (var a in answers)
                 a.Enable();
+        }
+
+        public void RemoveDraggables()
+        {
+            dragOnly = true;
+            if (this.droppable != null)
+            {                
+                this.droppable.StopDrag();
+                this.droppable = null;
+            }
         }
     }
 }

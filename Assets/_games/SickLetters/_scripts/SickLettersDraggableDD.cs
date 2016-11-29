@@ -21,7 +21,7 @@ namespace EA4S.SickLetters
 		public TextMeshPro draggableText;
 
         public bool isCorrect;
-        public bool isNeeded = false, isInVase = false, touchedVase = false;
+        public bool isNeeded = false, isInVase = false, touchedVase = false, collidedWithVase;
 
         public bool isDragging = false;
 
@@ -185,24 +185,14 @@ namespace EA4S.SickLetters
 
         IEnumerator destroyIfStuck()
         {
+            
             yield return new WaitForSeconds(2);
             if (!isInVase && touchedVase)
+            {
+                touchedVase = false;
                 poofDD();
+            }
         }
-		public void Reset()
-		{
-            transform.parent = origParent;
-            draggableText.transform.localScale = Vector3.one;
-
-            if (transform.parent)
-                transform.localPosition = new Vector3(startX, startY, startZ);
-            else
-                transform.position = new Vector3(startX, startY, startZ);
-
-            isDragging = false;
-
-			gameObject.SetActive(true);
-		}
 
         public void setInitPos(Vector3 initPos)
         {
@@ -211,30 +201,7 @@ namespace EA4S.SickLetters
             startZ = initPos.z;
         }
 
-        public void resetWrongDD() {
-            transform.parent = origParent;
-            transform.localPosition = Vector3.zero;
-            transform.localEulerAngles = origLocalRotation;
-            touchedVase = false;
-            thisRigidBody.isKinematic = true;
-            boxCollider.isTrigger = true;
-            boxCollider.size = new Vector3(0.6f, 3.89f, 0.6f);
-            boxCollider.center = Vector3.zero + Vector3.up * -1.62f;
-        }
-
-        IEnumerator Coroutine_ScaleOverTime(float time)
-		{
-			Vector3 originalScale = transform.localScale;
-			Vector3 destinationScale = new Vector3(4.0f, 1.0f, 4.0f);
-
-			float currentTime = 0.0f;
-			do
-			{
-				transform.localScale = Vector3.Lerp(originalScale, destinationScale, currentTime / time);
-				currentTime += Time.deltaTime;
-				yield return null;
-			} while (currentTime <= time);
-		}
+        
 			
 		void Update() {
   
@@ -242,25 +209,31 @@ namespace EA4S.SickLetters
                 shakeTransform(game.scale.transform, 20, 10, game.scale.vaseStartPose);
         }
 
-        void Dance()
-		{
-			transform.position = new Vector3(
-				startX + Mathf.PerlinNoise(Time.time, startX) * 3 + 1, 
-				startY + Mathf.PerlinNoise(Time.time, startY) * 3 + 1, 
-				startZ + Mathf.PerlinNoise(Time.time, startZ) * 3 + 1);
-		}
 
         void Setmarker(Collider other, bool markerStatus)
         {
             if (other.tag == "Player")
                 overPlayermarker = markerStatus;
 		}
-
+        public void resetWrongDD()
+        {
+            transform.parent = origParent;
+            transform.localPosition = Vector3.zero;
+            transform.localEulerAngles = origLocalRotation;
+            collidedWithVase = touchedVase = false;
+            
+            thisRigidBody.isKinematic = true;
+            boxCollider.enabled = true;
+            boxCollider.isTrigger = true;
+            boxCollider.size = new Vector3(0.6f, 3.89f, 0.6f);
+            boxCollider.center = Vector3.zero + Vector3.up * -1.62f;
+        }
         public void resetCorrectDD()
         {
             transform.parent = origParent;
             thisRigidBody.isKinematic = true;
             thisRigidBody.useGravity = false;
+            boxCollider.enabled = true;
 
             draggableText.transform.parent = origParent;
             draggableText.transform.localPosition = new Vector3(-0.5f, 0.5f,0);
@@ -271,7 +244,8 @@ namespace EA4S.SickLetters
             boxCollider.isTrigger = true;
             transform.localEulerAngles = origLocalRotation;
 
-            touchedVase = false;
+            collidedWithVase = touchedVase = false;
+
         }
 
 
@@ -301,6 +275,7 @@ namespace EA4S.SickLetters
             //Debug.LogError(coll.gameObject.name);
             if (coll.gameObject.tag == "Marker")
             {
+
                 touchedVase = true;
             }
             if (coll.gameObject.tag == "Obstacle")
@@ -381,13 +356,6 @@ namespace EA4S.SickLetters
             }
         }
 
-        void checkDDtoVaseCollision(Collision coll)
-        {
-            
-            Debug.Log(coll.gameObject.name.ToLower());
-            if (coll.gameObject.name.ToLower().Contains("vase"))
-                releaseDD();
-        }
 
         void shakeTransform(Transform t, float speed, float amount, Vector2 startPose)
         {

@@ -20,17 +20,20 @@ namespace EA4S.Assessment
 
         public CategoryQuestionGenerator( IQuestionProvider provider, ICategoryProvider categoryProvider, int maxAnsw, int rounds)
         {
+            Debug.Log("CategoryQuestionGenerator CONSTRUCTOR");
             this.provider = provider;
             state = QuestionGeneratorState.Uninitialized;
             numberOfMaxAnswers = maxAnsw;
             numberOfCategories = categoryProvider.GetCategories();
+            Debug.Log("numberOfCategories" + numberOfCategories);
             numberOfRounds = rounds;
             answersBuckets = new List<ILivingLetterData>[ numberOfCategories];
             this.categoryProvider = categoryProvider;
             for (int i = 0; i < numberOfCategories; i++)
-                answersBuckets[0] = new List<ILivingLetterData>();
-
+                answersBuckets[i] = new List<ILivingLetterData>();
+                        
             ClearCache();
+            FillBuckets();
         }
 
         private void FillBuckets()
@@ -42,12 +45,28 @@ namespace EA4S.Assessment
                 var pack = provider.GetNextQuestion();
                 foreach( var answ in pack.GetCorrectAnswers())
                 {
-                    Debug.Log( "Text For Living Letter:" + answ.TextForLivingLetter);
-                    for(int j=0; j< numberOfCategories; j++)
-                        if(categoryProvider.Category( j) == answ.TextForLivingLetter)
-                            answersBuckets[j].Add( pack.GetQuestion());
+                    for (int j = 0; j < numberOfCategories; j++)
+                        if (categoryProvider.Category(j) == answ.TextForLivingLetter)
+                        {
+                            Debug.Log("AddedQuestion: "+ pack.GetQuestion().TextForLivingLetter+
+                                      "  -- In Category:" + answ.TextForLivingLetter);
+                            answersBuckets[j].Add(pack.GetQuestion());
+                        }
                 }
             }
+
+            if (numberOfCategories > 0)
+                category1 = answersBuckets[0].Count;
+
+            if (numberOfCategories > 1)
+                category2 = answersBuckets[1].Count;
+
+            if (numberOfCategories > 2)
+                category3 = answersBuckets[2].Count;
+
+            Debug.Log("category1" + category1);
+            Debug.Log("category2" + category2);
+            Debug.Log("category3" + category3);
         }
 
         private IAnswer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
@@ -66,7 +85,6 @@ namespace EA4S.Assessment
 
             state = QuestionGeneratorState.Initialized;
             ClearCache();
-
         }
 
         private void ClearCache()
@@ -111,6 +129,7 @@ namespace EA4S.Assessment
         // Use buckets only if they have enough elements
         private void MakeDistributionConsistent()
         {
+            Debug.Log("MakeDistributionConsistent");
             if (category1 > answersBuckets[0].Count)
             {
                 var diff = category1 - answersBuckets[0].Count;
@@ -118,6 +137,8 @@ namespace EA4S.Assessment
                 category2 += diff;
             }
 
+            Debug.Log("AnswersBuckets: " + answersBuckets + " -- answersBuckets[1]: " + answersBuckets[1]);
+            if (numberOfCategories > 1 )
             if (category2 > answersBuckets[1].Count)
             {
                 var diff = category2 - answersBuckets[1].Count;
@@ -125,14 +146,26 @@ namespace EA4S.Assessment
                 category3 += diff;
             }
 
+            if(numberOfCategories>2)
             if (category3 > answersBuckets[2].Count)
             {
                 var diff = category3 - answersBuckets[2].Count;
                 category3 -= diff;
             }
 
-            if (category3 <= 0)
-                throw new InvalidOperationException("Cannot have all categories empty! Inconsistent with input parameters");
+            const string errorMessage = "Cannot have all categories empty! Inconsistent with input parameters";
+
+            if (category1 + category2 + category3 > 0)
+                return;
+
+            if ( numberOfCategories == 3 && category3 <= 0)
+                throw new InvalidOperationException( errorMessage);
+
+            if ( numberOfCategories == 2 && category2 <= 0)
+                throw new InvalidOperationException( errorMessage);
+
+            if ( numberOfCategories == 1 && category1 <= 0)
+                throw new InvalidOperationException( errorMessage);
         }
 
         public void CompleteRound()
@@ -210,6 +243,7 @@ namespace EA4S.Assessment
                 correctCount++;
                 answers.Add( correctAnsw);
                 totalAnswers.Add( correctAnsw);
+                Debug.Log("Added answer");
             }
 
             partialAnswers = answers.ToArray();
@@ -228,7 +262,7 @@ namespace EA4S.Assessment
 
         private IQuestion GenerateQuestion( int correctCount)
         {
-            var q = categoryProvider.SpawnCustomObject( currentCategory);
+            var q = categoryProvider.SpawnCustomObject( currentCategory, true);
             return new CategoryQuestion( q, correctCount);
         }
 

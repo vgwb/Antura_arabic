@@ -21,7 +21,7 @@ namespace EA4S.SickLetters
         public void EnterState()
         {
             
-            game.peocessDifiiculties(SickLettersConfiguration.Instance.Difficulty);
+            game.processDifiiculties(SickLettersConfiguration.Instance.Difficulty);
 
             timer = game.gameDuration;
 
@@ -46,7 +46,7 @@ namespace EA4S.SickLetters
 
         public void Update(float delta)
         {
-            game.peocessDifiiculties(SickLettersConfiguration.Instance.Difficulty);
+            game.processDifiiculties(SickLettersConfiguration.Instance.Difficulty);
 
 
             if (game.roundsCount > 0)
