@@ -13,6 +13,373 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   table:
     innerList:
+    - Id: Action_ChooseAvatar
+      Character: Ibtissam
+      Area: home
+      When: Profile Icon Selection (always)
+      Context: You have to choose among several icons
+      English: Choose an animal to represent you
+      Arabic: "\u0627\u062E\u062A\u0631 \u062D\u064A\u0648\u0627\u0646\u0627\u064B
+        \u064A\u0639\u0628\u0631 \u0639\u0646\u0643"
+      AudioFile: Action_ChooseAvatar
+    - Id: Action_ConfirmNewProfile
+      Character: Ibtissam
+      Area: home
+      When: Profile Creation (after the first one)
+      Context: Player selects PLUS (add new profile)
+      English: Are you sure you want to create a new profile?
+      Arabic: "\u0647\u0644 \u0623\u0646\u062A \u0645\u062A\u0623\u0643\u062F\u064C
+        \u0623\u0646\u0643 \u062A\u0631\u064A\u062F\u064F \u0625\u0646\u0634\u0627\u0621\u064E
+        \u062D\u0633\u0627\u0628\u064D \u062C\u062F\u064A\u062F\u061F"
+      AudioFile: Action_ConfirmNewProfile
+    - Id: Action_Createprofile
+      Character: Ibtissam
+      Area: home
+      When: No action (only if no created profile)
+      Context: Animation on top of "New Profile" button
+      English: Press the PLUS button to create your profile
+      Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0625\u0634\u0627\u0631\u0629\u0650
+        \u0627\u0644\u0632\u0627\u0626\u062F \u0644\u062A\u0646\u0634\u064A\u0621\u064E
+        \u062D\u0633\u0627\u0628\u064E\u0643"
+      AudioFile: Action_Createprofile
+    - Id: Action_PressPlay
+      Character: Ibtissam
+      Area: home
+      When: Play the selected Profile (only after Profile creation)
+      Context: You have to press PLAY button (animated) to start
+      English: Press PLAY!
+      Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0628\u062F\u0621!"
+      AudioFile: Action_PressPlay
+    - Id: AlphabetSong_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: It's time to sing all the letters in order.
+      Arabic: "\u062D\u0627\u0646 \u0648\u0642\u062A \u063A\u0646\u0627\u0621 \u0627\u0644\u0627\u062D\u0631\u0641
+        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
+      AudioFile: AlphabetSong_Intro
+    - Id: AlphabetSong_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: 
+      English: Alphabet Song
+      Arabic: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629"
+      AudioFile: AlphabetSong_Title
+    - Id: AlphabetSong_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Follow the lyrics with your finger.
+      Arabic: "\u062A\u062A\u0628\u0651\u0639\u0650 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
+        \u0628\u0625\u0635\u0628\u0639\u0643"
+      AudioFile: AlphabetSong_Tuto
+    - Id: AnturaSpace_Custom_1
+      Character: Keeper
+      Area: space
+      When: Customization UI appears
+      Context: Keeper explains to customize Antura
+      English: You can customize Antura with all the Gifts I give you
+      Arabic: "\u0628\u0627\u0645\u0643\u0627\u0646\u0643 \u062A\u0639\u062F\u064A\u0644
+        \u0634\u0643\u0644 \u0639\u0646\u062A\u0648\u0631\u0629 \u0645\u0646 \u062E\u0644\u0627\u0644
+        \u0627\u0644\u0647\u062F\u0627\u064A\u0627 \u0627\u0644\u062A\u064A \u0627\u0639\u0637\u064A\u062A\u0643
+        \u0625\u064A\u0627\u0647\u0627"
+      AudioFile: AnturaSpace_Custom_1
+    - Id: AnturaSpace_Custom_2
+      Character: Ibtissam
+      Area: space
+      When: 
+      Context: Tutorial
+      English: Press the ANTURA button to customize him/her
+      Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0632\u0631 \u0639\u0646\u062A\u0648\u0631\u0629
+        \u0644\u062A\u063A\u064A\u0631 \u0645\u0638\u0647\u0631\u0647"
+      AudioFile: AnturaSpace_Custom_2
+    - Id: AnturaSpace_Intro
+      Character: Keeper
+      Area: space
+      When: No UI
+      Context: Keeper explains you can interact with Antura
+      English: Here you play with Antura, try to touch him/her
+      Arabic: "\u0647\u0646\u0627 \u062A\u0644\u0639\u0628 \u0645\u0639 \u0639\u0646\u062A\u0648\u0631\u0629,
+        \u062D\u0627\u0648\u0644 \u0644\u0645\u0633\u0647"
+      AudioFile: AnturaSpace_Intro
+    - Id: AnturaSpace_Intro_Cookie
+      Character: Keeper
+      Area: space
+      When: Cookie button/counter appears
+      Context: Keeper explains you can throw cookies at Antura
+      English: Antura loves cookies!
+      Arabic: "\u0639\u0646\u062A\u0648\u0631\u0629 \u064A\u062D\u0628 \u0627\u0644\u0628\u0633\u0643\u0648\u064A\u062A"
+      AudioFile: AnturaSpace_Intro_Cookie
+    - Id: AnturaSpace_Intro_Touch
+      Character: Keeper
+      Area: space
+      When: 
+      Context: After you touch Antura for the first time
+      English: You see? Antura is always willing to play with you
+      Arabic: "\u0623\u0631\u0623\u064A\u062A\u061F \u0639\u0646\u062A\u0648\u0631\u0629
+        \u062D\u0627\u0636\u0631 \u0644\u0644\u0639\u0628 \u062F\u0627\u0626\u0645\u0627\u064E\u064E"
+      AudioFile: AnturaSpace_Intro_Touch
+    - Id: AnturaSpace_Tuto_Cookie_1
+      Character: Ibtissam
+      Area: space
+      When: 
+      Context: Tutorial
+      English: Press the COOKIE button to throw a cookie for Antura
+      Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0632\u0631\u0651\u0650
+        \u0627\u0644\u0643\u0639\u0643\u0629\u0650 \u0644\u062A\u0644\u0642\u064A\u064E
+        \u0643\u0639\u0643\u0629\u064B \u0644\u0639\u0646\u062A\u0648\u0631\u0629"
+      AudioFile: AnturaSpace_Tuto_Cookie_1
+    - Id: AnturaSpace_Tuto_Cookie_2
+      Character: Ibtissam
+      Area: space
+      When: 
+      Context: Tutorial
+      English: You can also drag a cookie around before throwing it
+      Arabic: "\u064A\u0645\u0643\u0646\u0643 \u0643\u0630\u0644\u0643 \u0623\u0646\u0652
+        \u062A\u0642\u0648\u0645 \u0628\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0639\u0643\u0629\u0650
+        \u0639\u0628\u0631\u064E \u0627\u0644\u0634\u0627\u0634\u0629\u0650 \u0642\u0628\u0644
+        \u0631\u0645\u064A\u0647\u0627"
+      AudioFile: AnturaSpace_Tuto_Cookie_2
+    - Id: AnturaSpace_Tuto_Cookie_3
+      Character: Keeper
+      Area: space
+      When: 
+      Context: Tutorial
+      English: "Don\u2019t worry, the more you play the more cookies you will get!"
+      Arabic: "\u0644\u0627 \u062A\u0642\u0644\u0642. \u0643\u0644\u0645\u0627 \u0644\u0639\u0628\u062A\u064E
+        \u0623\u0643\u062B\u0631 \u0633\u062A\u062D\u0635\u0644\u064F \u0639\u0644\u0649
+        \u0643\u0639\u0643\u0627\u062A\u064D \u0623\u0643\u062B\u0631."
+      AudioFile: AnturaSpace_Tuto_Cookie_3
+    - Id: Assessment_Classify_Letters
+      Character: Ibtissam
+      Area: assessment
+      When: 
+      Context: Classify the letter as Vowel and Consonant
+      English: Letters can be Vowels or Consonants. Drag them to the correct group.
+      Arabic: "\u062A\u0648\u062C\u062F \u0623\u062D\u0631\u0641 \u0639\u0644\u0629
+        \u0648\u0623\u062E\u0631\u0649 \u0633\u0627\u0643\u0646\u0629. \u0627\u0633\u062D\u0628
+        \u0643\u0644 \u062D\u0631\u0641 \u0625\u0644\u0649 \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
+      AudioFile: Assessment_Classify_Letters
+    - Id: Assessment_Classify_Letters_Article
+      Character: Ibtissam
+      Area: assessment
+      When: 
+      Context: Classify the Letters as Moon and Sun
+      English: Letters can be Moon or Sun. Drag them to correct group.
+      Arabic: "\u0642\u062F \u064A\u0643\u0648\u0646 \u0627\u0644\u062D\u0631\u0641\u064F
+        \u0642\u0645\u0631\u064A\u0627\u064B \u0623\u0648 \u0634\u0645\u0633\u064A\u0627\u064B.
+        \u0627\u0633\u062D\u0628\u0652\u0647 \u0646\u062D\u0648 \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629\u0650
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
+      AudioFile: Assessment_Classify_Letters_Article
+    - Id: Assessment_Classify_Word_Article
+      Character: Ibtissam
+      Area: assessment
+      When: 
+      Context: Classify the Word as with or without Al article
+      English: Words can accept the "Al" article or not. Drag them to the correct
+        group.
+      Arabic: "\u0627\u0644\u0643\u0644\u0645\u0629\u064F \u0642\u062F \u062A\u0642\u0628\u0644\u064F
+        \u0648\u0642\u062F \u0644\u0627 \u062A\u0642\u0628\u0644\u064C \"\u0627\u0644\"
+        \u0627\u0644\u062A\u0639\u0631\u064A\u0641. \u0627\u0633\u062D\u0628\u0652\u0647\u0627
+        \u0646\u062D\u0648\u064E \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629\u0650
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
+      AudioFile: Assessment_Classify_Word_Article
+    - Id: Assessment_Classify_Word_Nouns
+      Character: Ibtissam
+      Area: assessment
+      When: 
+      Context: Classify the Word as Singular, Dual or Plural
+      English: Words can be Singular, Dual or Plural. Drag them to the correct group.
+      Arabic: "\u0642\u062F \u062A\u0643\u0648\u0646 \u0627\u0644\u0643\u0644\u0645\u0629
+        \u0645\u0641\u0631\u062F\u0627\u064B \u0623\u0648 \u0645\u062B\u0646\u0651\u0649\u064B
+        \u0623\u0648 \u062C\u0645\u0639\u0627\u064B. \u0627\u0633\u062D\u0628\u0652\u0647\u0627
+        \u0646\u062D\u0648\u064E \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629\u0650
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
+      AudioFile: Assessment_Classify_Word_Nouns
+    - Id: Assessment_Classify_Words_Article
+      Character: Ibtissam
+      Area: assessment
+      When: 
+      Context: Classify Words as Moon and Sun
+      English: Words can be pronunced like "The Moon" or like "The Sun". Drag them
+        to correct group.
+      Arabic: "\u064A\u0645\u0643\u0646 \u0644\u0644\u062D\u0631\u0641\u0650 \u0628\u0639\u062F
+        \"\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641\" \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629
+        \u0623\u0646\u0652 \u064A\u064F\u0646\u0652\u0637\u064E\u0642\u064E \u0645\u062B\u0644\u0645\u0627
+        \u064A\u064F\u0646\u0652\u0637\u064E\u0642\u064F \u0641\u064A \u0643\u0644\u0645\u062A\u064A
+        \"\u0627\u0644\u0642\u0645\u0631\" \u0623\u0648 \"\u0627\u0644\u0634\u0645\u0633\".
+        \u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0629 \u0646\u062D\u0648
+        \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629 \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
+      AudioFile: Assessment_Classify_Words_Article
+    - Id: Assessment_Complete_1
+      Character: Keeper
+      Area: assessment
+      When: Once you complete an assessment
+      Context: Assessment completed successfully
+      English: You did it!
+      Arabic: "\u0641\u0639\u0644\u062A\u0647\u0627!"
+      AudioFile: Assessment_Complete_1
+    - Id: Assessment_Complete_2
+      Character: Keeper
+      Area: assessment
+      When: 
+      Context: 
+      English: I know you could do it!
+      Arabic: "\u0643\u0646\u062A \u0648\u0627\u062B\u0642\u0627\u064E\u064E \u0645\u0646
+        \u0646\u062C\u0627\u062D\u0643!"
+      AudioFile: Assessment_Complete_2
+    - Id: Assessment_Complete_3
+      Character: Keeper
+      Area: assessment
+      When: 
+      Context: 
+      English: Yes! Well done!
+      Arabic: "\u0646\u0639\u0645! \u0645\u0645\u062A\u0627\u0632"
+      AudioFile: Assessment_Complete_3
+    - Id: Assessment_Dog_Gone_1
+      Character: Keeper
+      Area: assessment
+      When: 
+      Context: Antura leaves
+      English: Well done! Now you can start...
+      Arabic: "\u0645\u0645\u062A\u0627\u0632! \u0628\u0627\u0645\u0643\u0627\u0646\u0646\u0627
+        \u0627\u0644\u0645\u0628\u0627\u0634\u0631\u0629 \u0627\u0644\u0627\u0646"
+      AudioFile: Assessment_Dog_Gone_1
+    - Id: Assessment_Dog_Gone_2
+      Character: Keeper
+      Area: assessment
+      When: 
+      Context: 
+      English: Finally! It's time to start.
+      Arabic: "\u0627\u062E\u064A\u0631\u0627\u064E\u064E! \u062D\u0627\u0646 \u0648\u0642\u062A
+        \u0627\u0644\u0628\u062F\u0621"
+      AudioFile: Assessment_Dog_Gone_2
+    - Id: Assessment_Dog_Gone_3
+      Character: Keeper
+      Area: assessment
+      When: 
+      Context: 
+      English: Bye bye Antura! Let's go...
+      Arabic: "\u0627\u0644\u0649 \u0627\u0644\u0644\u0642\u0627\u0621 \u0639\u0646\u062A\u0648\u0631\u0629!
+        \u0647\u064A\u0627 \u0628\u0646\u0627"
+      AudioFile: Assessment_Dog_Gone_3
+    - Id: Assessment_Match_Letters_Words
+      Character: Ibtissam
+      Area: assessment
+      When: 
+      Context: Match the Letters to the Words containing them
+      English: These Letters belong to these Words. Drag each Letter to the correct
+        Word.
+      Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0623\u062D\u0631\u0641\u064F \u062A\u0646\u062A\u0645\u064A
+        \u0625\u0644\u0649 \u062A\u0644\u0643 \u0627\u0644\u0643\u0644\u0645\u0627\u062A.
+        \u0627\u0633\u062D\u0628 \u0643\u0644\u0651\u064E \u062D\u0631\u0641\u064D
+        \u0646\u062D\u0648\u064E \u0627\u0644\u0643\u0644\u0645\u0629\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
+      AudioFile: Assessment_Match_Letters_Words
+    - Id: Assessment_Match_Sentences
+      Character: Ibtissam
+      Area: assessment
+      When: 
+      Context: "Match questions and reply sentences (like \u201CGood morning question\u201D
+        with \u201CGood morning reply\u201D)"
+      English: Drag each Sentence to the corresponding one.
+      Arabic: "\u0627\u0633\u062D\u0628\u0652 \u0643\u0644\u0651\u064E \u062C\u0645\u0644\u0629\u064D
+        \u0646\u062D\u0648\u064E \u0627\u0644\u062C\u0645\u0644\u0629\u0650 \u0627\u0644\u0645\u0646\u0627\u0633\u0628\u0629\u0650
+        \u0644\u0647\u0627."
+      AudioFile: Assessment_Match_Sentences
+    - Id: Assessment_Match_Word_Image
+      Character: Ibtissam
+      Area: assessment
+      When: 
+      Context: Match the good Word to the good Image
+      English: Drag each Word to the correct Image.
+      Arabic: "\u0627\u0633\u062D\u0628 \u0643\u0644\u0651\u064E \u0643\u0644\u0645\u0629\u064D
+        \u0646\u062D\u0648 \u0627\u0644\u0635\u0648\u0631\u0629\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
+      AudioFile: Assessment_Match_Word_Image
+    - Id: Assessment_Order_Letters
+      Character: Ibtissam
+      Area: assessment
+      When: 
+      Context: Order the letters to compose the indicated Word
+      English: Put the Letters in the correct order to form this Word
+      Arabic: "\u0631\u062A\u0651\u0650\u0628 \u0627\u0644\u0623\u062D\u0631\u0641
+        \u0628\u0627\u0644\u0634\u0643\u0644 \u0627\u0644\u0635\u062D\u064A\u062D
+        \u0644\u062A\u064F\u0634\u064E\u0643\u0651\u0650\u0644\u064E \u0647\u0630\u0647
+        \u0627\u0644\u0643\u0644\u0645\u0629"
+      AudioFile: Assessment_Order_Letters
+    - Id: Assessment_Push_Dog_1
+      Character: Keeper
+      Area: assessment
+      When: 
+      Context: 'Keeper tells you to get rid of Antura
+
+        (maybe we can show an finger animation)'
+      English: Please get rid of Antura so we can start...
+      Arabic: "\u0627\u0631\u062C\u0648 \u0645\u0646 \u0627\u062D\u062F \u0628\u0639\u0627\u062F
+        \u0639\u0646\u062A\u0648\u0631\u0629, \u0639\u0644\u064A\u0646\u0627 \u0627\u0644\u0628\u062F\u0621!"
+      AudioFile: Assessment_Push_Dog_1
+    - Id: Assessment_Push_Dog_2
+      Character: Keeper
+      Area: assessment
+      When: 
+      Context: 
+      English: He/she cannot stay here, push him away...
+      Arabic: "\u0644\u064A\u0633 \u0628\u0627\u0645\u0643\u0627\u0646\u0647 \u0627\u0644\u0628\u0642\u0627\u0621
+        \u0647\u0646\u0627!\u0627\u062F\u0641\u0639 \u0628\u0647 \u0627\u0644\u0649
+        \u0627\u0644\u062E\u0627\u0631\u062C"
+      AudioFile: Assessment_Push_Dog_2
+    - Id: Assessment_Push_Dog_3
+      Character: Keeper
+      Area: assessment
+      When: 
+      Context: 
+      English: We will start as soon as Antura leaves
+      Arabic: "\u0633\u0648\u0641 \u0646\u0628\u062F\u0623 \u062D\u0627\u0644 \u062E\u0631\u0648\u062C
+        \u0639\u0646\u062A\u0648\u0631\u0629"
+      AudioFile: Assessment_Push_Dog_3
+    - Id: Assessment_Select_Letter_Image
+      Character: Ibtissam
+      Area: assessment
+      When: 
+      Context: Select the missing Letter to complete the Word + Image
+      English: This word is missing a Letter. Drag the correct one.
+      Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0629\u064F \u064A\u0646\u0642\u064F\u0635\u064F\u0647\u0627
+        \u062D\u0631\u0641. \u0627\u0633\u062D\u0628 \u0627\u0644\u062D\u0631\u0641\u064E
+        \u0627\u0644\u0635\u062D\u064A\u062D."
+      AudioFile: Assessment_Select_Letter_Image
+    - Id: Assessment_Select_Letter_Listen
+      Character: Ibtissam
+      Area: assessment
+      When: Tutorial for each "type" of assessment
+      Context: Select the Letter Shape of the pronounced Letter
+      English: Listen carefully, then drag the correct Letter
+      Arabic: "\u0623\u0646\u0635\u062A\u0652 \u0628\u0625\u0645\u0639\u0627\u0646\u064D
+        \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u062D\u0631\u0641\u064E
+        \u0627\u0644\u0635\u062D\u064A\u062D"
+      AudioFile: Assessment_Select_Letter_Listen
+    - Id: Assessment_Select_Word_Listen
+      Character: Ibtissam
+      Area: assessment
+      When: 
+      Context: Select the written Word of the pronounced word or the pronounced definition
+      English: Listen carefully, then drag the correct Word.
+      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646
+        \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0644\u0645\u0629
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
+      AudioFile: Assessment_Select_Word_Listen
+    - Id: Assessment_Select_Words
+      Character: Ibtissam
+      Area: assessment
+      When: 
+      Context: Select the Words containing the indicated Letter
+      English: This letter belongs to some of the words below. Drag all of them.
+      Arabic: "\u0647\u0630\u0627 \u0627\u0644\u062D\u0631\u0641\u064F \u064A\u0646\u062A\u0645\u064A
+        \u0625\u0644\u0649 \u0628\u0639\u0636\u0650 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
+        \u0623\u062F\u0646\u0627\u0647. \u0627\u0633\u062D\u0628\u0647\u0627 \u062C\u0645\u064A\u0639\u0627\u064B."
+      AudioFile: Assessment_Select_Words
     - Id: Assessment_Start_1
       Character: Keeper
       Area: assessment
@@ -70,88 +437,6 @@ MonoBehaviour:
         \u0627\u062F\u0631\u064A \u0645\u0627 \u0627\u0644\u0639\u0645\u0644 \u0645\u0639
         \u0647\u0630\u0627 \u0627\u0644\u0643\u0644\u0628!"
       AudioFile: Assessment_Upset_3
-    - Id: Assessment_Push_Dog_1
-      Character: Keeper
-      Area: assessment
-      When: 
-      Context: 'Keeper tells you to get rid of Antura
-
-        (maybe we can show an finger animation)'
-      English: Please get rid of Antura so we can start...
-      Arabic: "\u0627\u0631\u062C\u0648 \u0645\u0646 \u0627\u062D\u062F \u0628\u0639\u0627\u062F
-        \u0639\u0646\u062A\u0648\u0631\u0629, \u0639\u0644\u064A\u0646\u0627 \u0627\u0644\u0628\u062F\u0621!"
-      AudioFile: Assessment_Push_Dog_1
-    - Id: Assessment_Push_Dog_2
-      Character: Keeper
-      Area: assessment
-      When: 
-      Context: 
-      English: He/she cannot stay here, push him away...
-      Arabic: "\u0644\u064A\u0633 \u0628\u0627\u0645\u0643\u0627\u0646\u0647 \u0627\u0644\u0628\u0642\u0627\u0621
-        \u0647\u0646\u0627!\u0627\u062F\u0641\u0639 \u0628\u0647 \u0627\u0644\u0649
-        \u0627\u0644\u062E\u0627\u0631\u062C"
-      AudioFile: Assessment_Push_Dog_2
-    - Id: Assessment_Push_Dog_3
-      Character: Keeper
-      Area: assessment
-      When: 
-      Context: 
-      English: We will start as soon as Antura leaves
-      Arabic: "\u0633\u0648\u0641 \u0646\u0628\u062F\u0623 \u062D\u0627\u0644 \u062E\u0631\u0648\u062C
-        \u0639\u0646\u062A\u0648\u0631\u0629"
-      AudioFile: Assessment_Push_Dog_3
-    - Id: Assessment_Dog_Gone_1
-      Character: Keeper
-      Area: assessment
-      When: 
-      Context: Antura leaves
-      English: Well done! Now you can start...
-      Arabic: "\u0645\u0645\u062A\u0627\u0632! \u0628\u0627\u0645\u0643\u0627\u0646\u0646\u0627
-        \u0627\u0644\u0645\u0628\u0627\u0634\u0631\u0629 \u0627\u0644\u0627\u0646"
-      AudioFile: Assessment_Dog_Gone_1
-    - Id: Assessment_Dog_Gone_2
-      Character: Keeper
-      Area: assessment
-      When: 
-      Context: 
-      English: Finally! It's time to start.
-      Arabic: "\u0627\u062E\u064A\u0631\u0627\u064E\u064E! \u062D\u0627\u0646 \u0648\u0642\u062A
-        \u0627\u0644\u0628\u062F\u0621"
-      AudioFile: Assessment_Dog_Gone_2
-    - Id: Assessment_Dog_Gone_3
-      Character: Keeper
-      Area: assessment
-      When: 
-      Context: 
-      English: Bye bye Antura! Let's go...
-      Arabic: "\u0627\u0644\u0649 \u0627\u0644\u0644\u0642\u0627\u0621 \u0639\u0646\u062A\u0648\u0631\u0629!
-        \u0647\u064A\u0627 \u0628\u0646\u0627"
-      AudioFile: Assessment_Dog_Gone_3
-    - Id: Assessment_Complete_1
-      Character: Keeper
-      Area: assessment
-      When: Once you complete an assessment
-      Context: Assessment completed successfully
-      English: You did it!
-      Arabic: "\u0641\u0639\u0644\u062A\u0647\u0627!"
-      AudioFile: Assessment_Complete_1
-    - Id: Assessment_Complete_2
-      Character: Keeper
-      Area: assessment
-      When: 
-      Context: 
-      English: I know you could do it!
-      Arabic: "\u0643\u0646\u062A \u0648\u0627\u062B\u0642\u0627\u064E\u064E \u0645\u0646
-        \u0646\u062C\u0627\u062D\u0643!"
-      AudioFile: Assessment_Complete_2
-    - Id: Assessment_Complete_3
-      Character: Keeper
-      Area: assessment
-      When: 
-      Context: 
-      English: Yes! Well done!
-      Arabic: "\u0646\u0639\u0645! \u0645\u0645\u062A\u0627\u0632"
-      AudioFile: Assessment_Complete_3
     - Id: Assessment_Wrong_1
       Character: Keeper
       Area: assessment
@@ -179,151 +464,129 @@ MonoBehaviour:
       Arabic: "\u0644\u064A\u0633 \u0643\u0627\u0641\u064A\u0627\u064E\u064E, \u0644\u0646\u0639\u064A\u062F
         \u0645\u0631\u0629 \u0627\u062E\u0631\u0649"
       AudioFile: Assessment_Wrong_3
-    - Id: Assessment_Select_Letter_Listen
-      Character: Ibtissam
-      Area: assessment
-      When: Tutorial for each "type" of assessment
-      Context: Select the Letter Shape of the pronounced Letter
-      English: Listen carefully, then drag the correct Letter
-      Arabic: "\u0623\u0646\u0635\u062A\u0652 \u0628\u0625\u0645\u0639\u0627\u0646\u064D
-        \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u062D\u0631\u0641\u064E
-        \u0627\u0644\u0635\u062D\u064A\u062D"
-      AudioFile: Assessment_Select_Letter_Listen
-    - Id: Assessment_Select_Words
-      Character: Ibtissam
-      Area: assessment
+    - Id: Balloons_counting_Intro
+      Character: Keeper
+      Area: minigame
       When: 
-      Context: Select the Words containing the indicated Letter
-      English: This letter belongs to some of the words below. Drag all of them.
-      Arabic: "\u0647\u0630\u0627 \u0627\u0644\u062D\u0631\u0641\u064F \u064A\u0646\u062A\u0645\u064A
-        \u0625\u0644\u0649 \u0628\u0639\u0636\u0650 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
-        \u0623\u062F\u0646\u0627\u0647. \u0627\u0633\u062D\u0628\u0647\u0627 \u062C\u0645\u064A\u0639\u0627\u064B."
-      AudioFile: Assessment_Select_Words
-    - Id: Assessment_Select_Letter_Image
-      Character: Ibtissam
-      Area: assessment
+      Context: Introduction
+      English: Look! All these Words are numbers...
+      Arabic: "\u0627\u0646\u0638\u0631 \u0627\u0644\u0649 \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
+        \u0648 \u0627\u0644\u0627\u0631\u0642\u0627\u0645!"
+      AudioFile: Balloons_counting_Intro
+    - Id: Balloons_counting_Title
+      Character: Keeper
+      Area: minigame
       When: 
-      Context: Select the missing Letter to complete the Word + Image
-      English: This word is missing a Letter. Drag the correct one.
-      Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0629\u064F \u064A\u0646\u0642\u064F\u0635\u064F\u0647\u0627
-        \u062D\u0631\u0641. \u0627\u0633\u062D\u0628 \u0627\u0644\u062D\u0631\u0641\u064E
-        \u0627\u0644\u0635\u062D\u064A\u062D."
-      AudioFile: Assessment_Select_Letter_Image
-    - Id: Assessment_Match_Letters_Words
+      Context: 
+      English: Balloons & Numbers!
+      Arabic: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0623\u0631\u0642\u0627\u0645!"
+      AudioFile: 
+    - Id: Balloons_counting_Tuto
       Character: Ibtissam
-      Area: assessment
+      Area: minigame
       When: 
-      Context: Match the Letters to the Words containing them
-      English: These Letters belong to these Words. Drag each Letter to the correct
-        Word.
-      Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0623\u062D\u0631\u0641\u064F \u062A\u0646\u062A\u0645\u064A
-        \u0625\u0644\u0649 \u062A\u0644\u0643 \u0627\u0644\u0643\u0644\u0645\u0627\u062A.
-        \u0627\u0633\u062D\u0628 \u0643\u0644\u0651\u064E \u062D\u0631\u0641\u064D
-        \u0646\u062D\u0648\u064E \u0627\u0644\u0643\u0644\u0645\u0629\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: Assessment_Match_Letters_Words
-    - Id: Assessment_Order_Letters
+      Context: Tutorial
+      English: 'Pop the balloons in the right order: from the smallest number to the
+        biggest one'
+      Arabic: "\u0627\u0641\u0642\u0639 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A
+        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D:
+        \u0645\u0646 \u0623\u0635\u063A\u0631 \u0631\u0642\u0645 \u0625\u0644\u0649
+        \u0627\u0644\u0623\u0643\u0628\u0631"
+      AudioFile: Balloons_counting_Tuto
+    - Id: Balloons_letter_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: That Letter belongs to some of the Words above
+      Arabic: "\u0647\u0630\u0627 \u0627\u0644\u062D\u0631\u0641 \u064A\u0646\u062A\u0645\u064A
+        \u0627\u0644\u0649 \u0627\u062D\u062F\u0649 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
+        \u0627\u0644\u0645\u0639\u0644\u0642\u0629"
+      AudioFile: Balloons_letter_Intro
+    - Id: Balloons_letter_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: 
+      English: Balloons & the Shared Letter!
+      Arabic: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064F \u0648\u0627\u0644\u062D\u0631\u0641\u064F
+        \u0627\u0644\u0645\u0634\u062A\u0631\u0643!"
+      AudioFile: 
+    - Id: Balloons_letter_Tuto
       Character: Ibtissam
-      Area: assessment
+      Area: minigame
       When: 
-      Context: Order the letters to compose the indicated Word
-      English: Put the Letters in the correct order to form this Word
-      Arabic: "\u0631\u062A\u0651\u0650\u0628 \u0627\u0644\u0623\u062D\u0631\u0641
-        \u0628\u0627\u0644\u0634\u0643\u0644 \u0627\u0644\u0635\u062D\u064A\u062D
-        \u0644\u062A\u064F\u0634\u064E\u0643\u0651\u0650\u0644\u064E \u0647\u0630\u0647
-        \u0627\u0644\u0643\u0644\u0645\u0629"
-      AudioFile: Assessment_Order_Letters
-    - Id: Assessment_Classify_Letters
+      Context: Tutorial
+      English: Pop the balloons and LEAVE ONLY the right Words
+      Arabic: "\u0627\u0641\u0642\u0639 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A
+        \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
+      AudioFile: Balloons_letter_Tuto
+    - Id: Balloons_spelling_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: There are too many Letters to form this Word!
+      Arabic: "\u0647\u0646\u0627\u0643 \u062D\u0631\u0648\u0641 \u0627\u0643\u062B\u0631
+        \u0645\u0646 \u0627\u0644\u0644\u0627\u0632\u0645 \u0644\u062A\u0643\u0648\u064A\u0646
+        \u0627\u0644\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0639\u0631\u0648\u0636\u0629"
+      AudioFile: Balloons_spelling_Intro
+    - Id: Balloons_spelling_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Balloons & the Hidden Word!
+      Arabic: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064F \u0648\u0627\u0644\u0643\u0644\u0645\u0629\u064F
+        \u0627\u0644\u062E\u0641\u064A\u0629!"
+      AudioFile: Balloons_spelling_Title
+    - Id: Balloons_spelling_Tuto
       Character: Ibtissam
-      Area: assessment
+      Area: minigame
       When: 
-      Context: Classify the letter as Vowel and Consonant
-      English: Letters can be Vowels or Consonants. Drag them to the correct group.
-      Arabic: "\u062A\u0648\u062C\u062F \u0623\u062D\u0631\u0641 \u0639\u0644\u0629
-        \u0648\u0623\u062E\u0631\u0649 \u0633\u0627\u0643\u0646\u0629. \u0627\u0633\u062D\u0628
-        \u0643\u0644 \u062D\u0631\u0641 \u0625\u0644\u0649 \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: Assessment_Classify_Letters
-    - Id: Assessment_Select_Word_Listen
+      Context: Tutorial
+      English: Pop the balloons and LEAVE ONLY the right Letters
+      Arabic: "\u0627\u0641\u0642\u0639 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A
+        \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u062D\u0631\u0648\u0641
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
+      AudioFile: Balloons_spelling_Tuto
+    - Id: Balloons_words_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: There are too many Images for this single Word...
+      Arabic: "\u0647\u0646\u0627\u0643 \u0635\u0648\u0631\u064C \u0639\u062F\u0629!
+        \u0644\u0643\u0646 \u0641\u0642\u0637 \u062A\u0639\u0628\u0631\u0639\u0646
+        \u0627\u0644\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0639\u0631\u0648\u0636\u0629"
+      AudioFile: Balloons_words_Intro
+    - Id: Balloons_words_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Balloons & Images!
+      Arabic: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0635\u0648\u0631!"
+      AudioFile: Balloons_words_Title
+    - Id: Balloons_words_Tuto
       Character: Ibtissam
-      Area: assessment
+      Area: minigame
       When: 
-      Context: Select the written Word of the pronounced word or the pronounced definition
-      English: Listen carefully, then drag the correct Word.
-      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646
-        \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0644\u0645\u0629
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: Assessment_Select_Word_Listen
-    - Id: Assessment_Match_Word_Image
+      Context: Tutorial
+      English: Pop the balloons and LEAVE ONLY the right Image
+      Arabic: "\u0627\u0641\u0642\u0639 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A
+        \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u0635\u0648\u0631\u0629
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
+      AudioFile: Balloons_words_Tuto
+    - Id: Book_Games
       Character: Ibtissam
-      Area: assessment
+      Area: book
       When: 
-      Context: Match the good Word to the good Image
-      English: Drag each Word to the correct Image.
-      Arabic: "\u0627\u0633\u062D\u0628 \u0643\u0644\u0651\u064E \u0643\u0644\u0645\u0629\u064D
-        \u0646\u062D\u0648 \u0627\u0644\u0635\u0648\u0631\u0629\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
-      AudioFile: Assessment_Match_Word_Image
-    - Id: Assessment_Classify_Word_Article
-      Character: Ibtissam
-      Area: assessment
-      When: 
-      Context: Classify the Word as with or without Al article
-      English: Words can accept the "Al" article or not. Drag them to the correct
-        group.
-      Arabic: "\u0627\u0644\u0643\u0644\u0645\u0629\u064F \u0642\u062F \u062A\u0642\u0628\u0644\u064F
-        \u0648\u0642\u062F \u0644\u0627 \u062A\u0642\u0628\u0644\u064C \"\u0627\u0644\"
-        \u0627\u0644\u062A\u0639\u0631\u064A\u0641. \u0627\u0633\u062D\u0628\u0652\u0647\u0627
-        \u0646\u062D\u0648\u064E \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629\u0650
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: Assessment_Classify_Word_Article
-    - Id: Assessment_Classify_Word_Nouns
-      Character: Ibtissam
-      Area: assessment
-      When: 
-      Context: Classify the Word as Singular, Dual or Plural
-      English: Words can be Singular, Dual or Plural. Drag them to the correct group.
-      Arabic: "\u0642\u062F \u062A\u0643\u0648\u0646 \u0627\u0644\u0643\u0644\u0645\u0629
-        \u0645\u0641\u0631\u062F\u0627\u064B \u0623\u0648 \u0645\u062B\u0646\u0651\u0649\u064B
-        \u0623\u0648 \u062C\u0645\u0639\u0627\u064B. \u0627\u0633\u062D\u0628\u0652\u0647\u0627
-        \u0646\u062D\u0648\u064E \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629\u0650
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: Assessment_Classify_Word_Nouns
-    - Id: Assessment_Classify_Letters_Article
-      Character: Ibtissam
-      Area: assessment
-      When: 
-      Context: Classify the Letters as Moon and Sun
-      English: Letters can be Moon or Sun. Drag them to correct group.
-      Arabic: "\u0642\u062F \u064A\u0643\u0648\u0646 \u0627\u0644\u062D\u0631\u0641\u064F
-        \u0642\u0645\u0631\u064A\u0627\u064B \u0623\u0648 \u0634\u0645\u0633\u064A\u0627\u064B.
-        \u0627\u0633\u062D\u0628\u0652\u0647 \u0646\u062D\u0648 \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629\u0650
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: Assessment_Classify_Letters_Article
-    - Id: Assessment_Classify_Words_Article
-      Character: Ibtissam
-      Area: assessment
-      When: 
-      Context: Classify Words as Moon and Sun
-      English: Words can be pronunced like "The Moon" or like "The Sun". Drag them
-        to correct group.
-      Arabic: "\u064A\u0645\u0643\u0646 \u0644\u0644\u062D\u0631\u0641\u0650 \u0628\u0639\u062F
-        \"\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641\" \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629
-        \u0623\u0646\u0652 \u064A\u064F\u0646\u0652\u0637\u064E\u0642\u064E \u0645\u062B\u0644\u0645\u0627
-        \u064A\u064F\u0646\u0652\u0637\u064E\u0642\u064F \u0641\u064A \u0643\u0644\u0645\u062A\u064A
-        \"\u0627\u0644\u0642\u0645\u0631\" \u0623\u0648 \"\u0627\u0644\u0634\u0645\u0633\".
-        \u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0629 \u0646\u062D\u0648
-        \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629 \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: Assessment_Classify_Words_Article
-    - Id: Assessment_Match_Sentences
-      Character: Ibtissam
-      Area: assessment
-      When: 
-      Context: "Match questions and reply sentences (like \u201CGood morning question\u201D
-        with \u201CGood morning reply\u201D)"
-      English: Drag each Sentence to the corresponding one.
-      Arabic: "\u0627\u0633\u062D\u0628\u0652 \u0643\u0644\u0651\u064E \u062C\u0645\u0644\u0629\u064D
-        \u0646\u062D\u0648\u064E \u0627\u0644\u062C\u0645\u0644\u0629\u0650 \u0627\u0644\u0645\u0646\u0627\u0633\u0628\u0629\u0650
-        \u0644\u0647\u0627."
-      AudioFile: Assessment_Match_Sentences
+      Context: 
+      English: Games
+      Arabic: "\u0623\u0644\u0639\u0627\u0628"
+      AudioFile: Book_Games
     - Id: Book_Intro
       Character: Keeper
       Area: book
@@ -345,14 +608,6 @@ MonoBehaviour:
       English: Letters
       Arabic: "\u062D\u0631\u0648\u0641"
       AudioFile: Book_Letters
-    - Id: Book_Words
-      Character: Ibtissam
-      Area: book
-      When: 
-      Context: 
-      English: Words
-      Arabic: "\u0643\u0644\u0645\u0627\u062A"
-      AudioFile: Book_Words
     - Id: Book_Phrases
       Character: Ibtissam
       Area: book
@@ -361,14 +616,6 @@ MonoBehaviour:
       English: Phrases
       Arabic: "\u062C\u0645\u0644"
       AudioFile: Book_Phrases
-    - Id: Book_Games
-      Character: Ibtissam
-      Area: book
-      When: 
-      Context: 
-      English: Games
-      Arabic: "\u0623\u0644\u0639\u0627\u0628"
-      AudioFile: Book_Games
     - Id: Book_Rewards
       Character: Ibtissam
       Area: book
@@ -377,6 +624,269 @@ MonoBehaviour:
       English: Gifts
       Arabic: "\u0647\u062F\u0627\u064A\u0627"
       AudioFile: Book_Rewards
+    - Id: Book_Words
+      Character: Ibtissam
+      Area: book
+      When: 
+      Context: 
+      English: Words
+      Arabic: "\u0643\u0644\u0645\u0627\u062A"
+      AudioFile: Book_Words
+    - Id: ColorTickle_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: The LETTER have lost her color!
+      Arabic: "\u0627\u0647\u060C \u0627\u0644\u062D\u0631\u0648\u0641 \u0641\u0642\u062F\u062A
+        \u0627\u0644\u0648\u0627\u0646\u0647\u0627!"
+      AudioFile: ColorTickle_Intro
+    - Id: ColorTickle_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Color Tickle
+      Arabic: "\u062F\u063A\u062F\u063A\u0629\u064F \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
+      AudioFile: ColorTickle_Title
+    - Id: ColorTickle_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Color the LETTER without going out of the borders.
+      Arabic: "\u0642\u0645 \u0628\u062A\u0644\u0648\u064A\u0646 \u0627\u0644\u062D\u0631\u0641
+        \u062F\u0648\u0646 \u0627\u0644\u062E\u0631\u0648\u062C \u0639\u0646 \u062D\u062F\u0648\u062F\u0647."
+      AudioFile: ColorTickle_Tuto
+    - Id: DancingDots_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: The right signs give energy to the LETTER so she can dance! Help her!
+      Arabic: "\u0627\u0636\u0627\u0641\u0629 \u0627\u0644\u062D\u0631\u0643\u0627\u062A
+        \u0648 \u0627\u0644\u0646\u0642\u0627\u0637 \u0627\u0644\u0635\u062D\u064A\u062D\u0629
+        \u0633\u062A\u0645\u062F \u0627\u0644\u062D\u0631\u0648\u0641 \u0628\u0627\u0644\u0637\u0627\u0642\u0629
+        \u0644\u062A\u062A\u0645\u0643\u0646 \u0645\u0646 \u0627\u0644\u0631\u0642\u0635!
+        \u062D\u0627\u0648\u0644 \u0645\u0633\u0627\u0639\u062F\u062A\u0647\u0627"
+      AudioFile: DancingDots_Intro
+    - Id: DancingDots_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Dancing Star!
+      Arabic: "\u0646\u062C\u0648\u0645\u064F \u0627\u0644\u0631\u0642\u0635!"
+      AudioFile: DancingDots_Title
+    - Id: DancingDots_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Drag the right signs to the right place over the LETTER.
+      Arabic: "\u0627\u0633\u062D\u0628  \u0627\u0644\u0646\u0642\u0627\u0637 \u0623\u0648
+        \u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E
+        \u0646\u062D\u0648 \u0627\u0644\u0645\u0643\u0627\u0646 \u0627\u0644\u0635\u062D\u064A\u062D
+        \u0641\u0648\u0642 \u0627\u0644\u062D\u0631\u0641."
+      AudioFile: DancingDots_Tuto
+    - Id: Diacritic_Song_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: It's time to sing all the letters
+      Arabic: "\u062D\u0627\u0646 \u0648\u0642\u062A \u063A\u0646\u0627\u0621 \u0627\u0644\u062D\u0631\u0648\u0641"
+      AudioFile: Diacritic_Song_Intro
+    - Id: Diacritic_Song_Title
+      Character: Keeper
+      Area: minigame
+      When: At start
+      Context: Title
+      English: Diacritic Song
+      Arabic: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u062D\u0631\u0643\u0627\u062A"
+      AudioFile: Diacritic_Song_Title
+    - Id: Egg_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: The egg said something! Help it to hatch!
+      Arabic: "\u0627\u0647 \u064A\u0628\u062F\u0648 \u0627\u0646 \u0627\u0644\u0628\u064A\u0636\u0629
+        \u0642\u0627\u0644\u062A \u0634\u064A\u0626\u0627\u064B! \u0639\u0644\u064A\u0643
+        \u0645\u0633\u0627\u0639\u062F\u062A\u0647\u0627 \u0644\u062A\u0641\u0642\u0633!"
+      AudioFile: Egg_Intro
+    - Id: Egg_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: The Egg!
+      Arabic: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
+      AudioFile: Egg_Title
+    - Id: Egg_Tuto_Button
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Listen carefully, then bash the correct button.
+      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646
+        \u062B\u0645 \u0627\u0636\u063A\u0637 \u0627\u0644\u0632\u0631 \u0627\u0644\u0635\u062D\u064A\u062D
+        \u0628\u0634\u0643\u0644 \u0645\u062A\u0643\u0631\u0631."
+      AudioFile: Egg_Tuto_Button
+    - Id: Egg_Tuto_Sequence
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Listen carefully, then press the buttons in the right sequence to repeat
+        what you heard.
+      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646
+        \u062B\u0645 \u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0627\u0644\u0623\u0632\u0631\u0627\u0631
+        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D
+        \u0644\u0643\u064A \u062A\u0643\u0631\u0651\u0650\u0631 \u0645\u0627 \u0633\u0645\u0639\u062A\u064E\u0647."
+      AudioFile: Egg_Tuto_Sequence
+    - Id: FastCrowd_alphabet_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: What a mess! Let's put the Letters in the right order...
+      Arabic: "\u064A\u0627 \u0644\u0647\u0627 \u0645\u0646 \u0641\u0648\u0636\u0649!
+        \u0644\u0646\u0636\u0639 \u0647\u0630\u0647 \u0627\u0644\u062D\u0631\u0648\u0641
+        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
+      AudioFile: FastCrowd_alphabet_Intro
+    - Id: FastCrowd_alphabet_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Alphabet Crowd!
+      Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
+      AudioFile: FastCrowd_alphabet_Title
+    - Id: FastCrowd_alphabet_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Drag the Letters one by one, following the Alphabet order
+      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0623\u062D\u0631\u0641 \u0648\u0627\u062D\u062F\u0627\u064B
+        \u062A\u0644\u0648 \u0627\u0644\u0622\u062E\u0631 \u062D\u0633\u0628 \u062A\u0631\u062A\u064A\u0628
+        \u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0647\u062C\u0627\u0626\u064A\u0629"
+      AudioFile: FastCrowd_alphabet_Tuto
+    - Id: FastCrowd_counting_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: What a mess! Let's put these numbers in the right order...
+      Arabic: "\u064A\u0627 \u0644\u0647\u0627 \u0645\u0646 \u0641\u0648\u0636\u0649!
+        \u0644\u0646\u0636\u0639 \u0647\u0630\u0647 \u0627\u0644\u0627\u0631\u0642\u0627\u0645
+        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
+      AudioFile: FastCrowd_counting_Intro
+    - Id: FastCrowd_counting_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Number Crowd!
+      Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0631\u0642\u0627\u0645!"
+      AudioFile: FastCrowd_counting_Title
+    - Id: FastCrowd_counting_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Drag the Words one by one, from the smallest number to the biggest
+        one
+      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
+        \u0648\u0627\u062D\u062F\u0629 \u062A\u0644\u0648 \u0627\u0644\u0623\u062E\u0631\u0649
+        \u0645\u0646 \u0623\u0635\u063A\u0631 \u0631\u0642\u0645 \u0625\u0644\u0649
+        \u0627\u0644\u0623\u0643\u0628\u0631"
+      AudioFile: FastCrowd_counting_Tuto
+    - Id: FastCrowd_letter_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: What a mess! Let's put the Letters in the right order...
+      Arabic: "\u064A\u0627 \u0644\u0647\u0627 \u0645\u0646 \u0641\u0648\u0636\u0649!
+        \u0644\u0646\u0636\u0639 \u0647\u0630\u0647 \u0627\u0644\u062D\u0631\u0648\u0641
+        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
+      AudioFile: FastCrowd_letter_Intro
+    - Id: FastCrowd_letter_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Letter Crowd!
+      Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
+      AudioFile: FastCrowd_letter_Title
+    - Id: FastCrowd_letter_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Drag the correct Letters, one by one
+      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0623\u062D\u0631\u0641 \u0627\u0644\u0635\u062D\u064A\u062D\u0629
+        \u0648\u0627\u062D\u062F\u0627\u064B \u062A\u0644\u0648 \u0627\u0644\u0622\u062E\u0631"
+      AudioFile: FastCrowd_letter_Tuto
+    - Id: FastCrowd_spelling_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: What a mess! Let's put the Letters in the right order to form a Word
+      Arabic: "\u064A\u0627 \u0644\u0647\u0627 \u0645\u0646 \u0641\u0648\u0636\u0649!
+        \u0644\u0646\u0636\u0639 \u0647\u0630\u0647 \u0627\u0644\u062D\u0631\u0648\u0641
+        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D
+        \u0644\u062A\u0643\u0648\u064A\u0646 \u0643\u0644\u0645\u0629"
+      AudioFile: FastCrowd_spelling_Intro
+    - Id: FastCrowd_spelling_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: 'Letter Crowd: Form a Word!'
+      Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641:
+        \u062A\u0643\u0648\u064A\u0646\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      AudioFile: FastCrowd_spelling_Title
+    - Id: FastCrowd_spelling_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Drag the correct Letters, one by one
+      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0623\u062D\u0631\u0641 \u0627\u0644\u0635\u062D\u064A\u062D\u0629
+        \u0648\u0627\u062D\u062F\u0627\u064B \u062A\u0644\u0648 \u0627\u0644\u0622\u062E\u0631"
+      AudioFile: FastCrowd_spelling_Tuto
+    - Id: FastCrowd_words_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: What a mess! Let's put the Words in the right order...
+      Arabic: "\u064A\u0627 \u0644\u0647\u0627 \u0645\u0646 \u0641\u0648\u0636\u0649!
+        \u0644\u0646\u0636\u0639 \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
+        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
+      AudioFile: FastCrowd_words_Intro
+    - Id: FastCrowd_words_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Word Crowd!
+      Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      AudioFile: FastCrowd_words_Title
+    - Id: FastCrowd_words_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Drag the correct Words one by one
+      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629 \u0648\u0627\u062D\u062F\u0629
+        \u062A\u0644\u0648 \u0627\u0644\u0623\u062E\u0631\u0649"
+      AudioFile: FastCrowd_words_Tuto
     - Id: Game_Title
       Character: Kids
       Area: home
@@ -385,75 +895,64 @@ MonoBehaviour:
       English: ANTURA AND THE LETTERS
       Arabic: "\u0639\u0646\u062A\u0648\u0631\u0629 \u0648\u0627\u0644\u062D\u0631\u0648\u0641"
       AudioFile: Game_Title
-    - Id: Action_Createprofile
-      Character: Ibtissam
-      Area: home
-      When: No action (only if no created profile)
-      Context: Animation on top of "New Profile" button
-      English: Press the PLUS button to create your profile
-      Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0625\u0634\u0627\u0631\u0629\u0650
-        \u0627\u0644\u0632\u0627\u0626\u062F \u0644\u062A\u0646\u0634\u064A\u0621\u064E
-        \u062D\u0633\u0627\u0628\u064E\u0643"
-      AudioFile: Action_Createprofile
-    - Id: Action_ChooseAvatar
-      Character: Ibtissam
-      Area: home
-      When: Profile Icon Selection (always)
-      Context: You have to choose among several icons
-      English: Choose an animal to represent you
-      Arabic: "\u0627\u062E\u062A\u0631 \u062D\u064A\u0648\u0627\u0646\u0627\u064B
-        \u064A\u0639\u0628\u0631 \u0639\u0646\u0643"
-      AudioFile: Action_ChooseAvatar
-    - Id: Action_PressPlay
-      Character: Ibtissam
-      Area: home
-      When: Play the selected Profile (only after Profile creation)
-      Context: You have to press PLAY button (animated) to start
-      English: Press PLAY!
-      Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0628\u062F\u0621!"
-      AudioFile: Action_PressPlay
-    - Id: Action_ConfirmNewProfile
-      Character: Ibtissam
-      Area: home
-      When: Profile Creation (after the first one)
-      Context: Player selects PLUS (add new profile)
-      English: Are you sure you want to create a new profile?
-      Arabic: "\u0647\u0644 \u0623\u0646\u062A \u0645\u062A\u0623\u0643\u062F\u064C
-        \u0623\u0646\u0643 \u062A\u0631\u064A\u062F\u064F \u0625\u0646\u0634\u0627\u0621\u064E
-        \u062D\u0633\u0627\u0628\u064D \u062C\u062F\u064A\u062F\u061F"
-      AudioFile: Action_ConfirmNewProfile
-    - Id: Intro_welcome
+    - Id: HideSeek_Intro
       Character: Keeper
-      Area: intro
-      When: Empty scene
-      Context: Keeper welcomes you
-      English: Finally you have arrived! I was waiting for you... I need your help!
-      Arabic: "\u0644\u0642\u062F \u0623\u062A\u064A\u062A\u064E \u0623\u062E\u064A\u0631\u0627\u064B!
-        \u0643\u0646\u062A\u064F \u0628\u0627\u0646\u062A\u0638\u0627\u0631\u0650\u0643.
-        \u0623\u062D\u062A\u0627\u062C\u064F \u0645\u0633\u0627\u0639\u062F\u062A\u064E\u0643!"
-      AudioFile: Intro_welcome
-    - Id: Intro_Letters_1
-      Character: Keeper
-      Area: intro
-      When: The Letters enter
-      Context: Keeper introduces the Letters
-      English: All my Letters have come to life and they are now going everywhere...
-      Arabic: "\u0644\u0642\u062F \u062F\u0628\u0651\u064E\u062A \u0627\u0644\u062D\u064A\u0627\u0629\u064F
-        \u0641\u064A \u0643\u0644\u0651\u0650 \u062D\u0631\u0648\u0641\u064A\u060C
-        \u0648\u0627\u0644\u0622\u0646 \u0647\u064A \u0645\u0646\u062A\u0634\u0631\u0629\u064C
-        \u0641\u064A \u0643\u0644\u0651\u0650 \u0645\u0643\u0627\u0646."
-      AudioFile: Intro_Letters_1
-    - Id: Intro_Letters_2
-      Character: Keeper
-      Area: intro
+      Area: minigame
       When: 
-      Context: Keeper asks for your help
-      English: Would you help me getting back all the Letters at their place? Pleeeease?
-      Arabic: "\u0623\u064A\u0645\u0643\u0646\u064F\u0643 \u0623\u0646\u0652 \u062A\u0633\u0627\u0639\u062F\u064E\u0646\u064A
-        \u0639\u0644\u0649 \u0625\u0639\u0627\u062F\u0629\u0650 \u062C\u0645\u064A\u0639\u0650
-        \u0627\u0644\u0623\u062D\u0631\u0641 \u0625\u0644\u0649 \u0645\u0643\u0627\u0646\u0650\u0647\u0627\u061F
-        \u0623\u0631\u062C\u0648\u0648\u0648\u0648\u0643."
-      AudioFile: Intro_Letters_2
+      Context: Introduction
+      English: The LETTERS hide and you have to find them!
+      Arabic: "\u0627\u0644\u0627\u062D\u0631\u0641 \u0633\u062A\u062E\u062A\u0628\u0649\u0621
+        \u0648 \u0639\u0644\u064A\u0643 \u0645\u062D\u0627\u0648\u0644\u0629 \u0627\u064A\u062C\u0627\u062F\u0647\u0627"
+      AudioFile: HideSeek_Intro
+    - Id: HideSeek_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Hidden Letters!
+      Arabic: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u062E\u0641\u064A\u0629!"
+      AudioFile: HideSeek_Title
+    - Id: HideSeek_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Listen carefully, touch a bush to make a LETTER come out, then touch
+        the correct LETTER.
+      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646\u060C
+        \u062B\u0645 \u0627\u0644\u0645\u0633 \u0634\u062C\u064A\u0631\u0629 \u0644\u064A\u062E\u0631\u062C
+        \u0645\u0646\u0647\u0627 \u062D\u0631\u0641\u060C \u062B\u0645 \u0627\u0644\u0645\u0633
+        \u0627\u0644\u062D\u0631\u0641 \u0627\u0644\u0635\u062D\u064A\u062D"
+      AudioFile: HideSeek_Tuto
+    - Id: HideSeek_Words_Intro
+      Character: Keeper
+      Area: minigame
+      When: At start
+      Context: Introduction
+      English: The Words hide and you have to find them!
+      Arabic: "\u0639\u0644\u064A\u0643 \u0627\u064A\u062C\u0627\u062F \u0627\u0644\u0643\u0644\u0645\u0627\u062A
+        \u0627\u0644\u0645\u062E\u062A\u0628\u0626\u0629"
+      AudioFile: HideSeek_Words_Intro
+    - Id: HideSeek_Words_Title
+      Character: Keeper
+      Area: minigame
+      When: At start
+      Context: Title
+      English: Hidden Words!
+      Arabic: "\u0627\u0644\u0643\u0644\u0645\u0627\u062A\u064F \u0627\u0644\u062E\u0641\u064A\u0629!"
+      AudioFile: HideSeek_Words_Title
+    - Id: HideSeek_Words_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Listen carefully, touch a bush to make a Word come out, then touch
+        the correct Word.
+      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646\u060C
+        \u062B\u0645 \u0627\u0644\u0645\u0633 \u0634\u062C\u064A\u0631\u0629 \u0644\u062A\u062E\u0631\u062C\u064E
+        \u0645\u0646\u0647\u0627 \u0643\u0644\u0645\u0629\u060C \u062B\u0645 \u0627\u0644\u0645\u0633
+        \u0627\u0644\u0643\u0644\u0645\u0629\u064E \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
+      AudioFile: HideSeek_Words_Tuto
     - Id: Intro_Dog
       Character: Keeper
       Area: intro
@@ -477,6 +976,98 @@ MonoBehaviour:
         \u0633\u062A\u0633\u062A\u0645\u062A\u0639\u064F \u0643\u062B\u064A\u0631\u0627\u064B
         \u0645\u0639 \u0639\u0646\u062A\u0648\u0631\u0629."
       AudioFile: Intro_Dog_Chase
+    - Id: Intro_Letters_1
+      Character: Keeper
+      Area: intro
+      When: The Letters enter
+      Context: Keeper introduces the Letters
+      English: All my Letters have come to life and they are now going everywhere...
+      Arabic: "\u0644\u0642\u062F \u062F\u0628\u0651\u064E\u062A \u0627\u0644\u062D\u064A\u0627\u0629\u064F
+        \u0641\u064A \u0643\u0644\u0651\u0650 \u062D\u0631\u0648\u0641\u064A\u060C
+        \u0648\u0627\u0644\u0622\u0646 \u0647\u064A \u0645\u0646\u062A\u0634\u0631\u0629\u064C
+        \u0641\u064A \u0643\u0644\u0651\u0650 \u0645\u0643\u0627\u0646."
+      AudioFile: Intro_Letters_1
+    - Id: Intro_Letters_2
+      Character: Keeper
+      Area: intro
+      When: 
+      Context: Keeper asks for your help
+      English: Would you help me getting back all the Letters at their place? Pleeeease?
+      Arabic: "\u0623\u064A\u0645\u0643\u0646\u064F\u0643 \u0623\u0646\u0652 \u062A\u0633\u0627\u0639\u062F\u064E\u0646\u064A
+        \u0639\u0644\u0649 \u0625\u0639\u0627\u062F\u0629\u0650 \u062C\u0645\u064A\u0639\u0650
+        \u0627\u0644\u0623\u062D\u0631\u0641 \u0625\u0644\u0649 \u0645\u0643\u0627\u0646\u0650\u0647\u0627\u061F
+        \u0623\u0631\u062C\u0648\u0648\u0648\u0648\u0643."
+      AudioFile: Intro_Letters_2
+    - Id: Intro_welcome
+      Character: Keeper
+      Area: intro
+      When: Empty scene
+      Context: Keeper welcomes you
+      English: Finally you have arrived! I was waiting for you... I need your help!
+      Arabic: "\u0644\u0642\u062F \u0623\u062A\u064A\u062A\u064E \u0623\u062E\u064A\u0631\u0627\u064B!
+        \u0643\u0646\u062A\u064F \u0628\u0627\u0646\u062A\u0638\u0627\u0631\u0650\u0643.
+        \u0623\u062D\u062A\u0627\u062C\u064F \u0645\u0633\u0627\u0639\u062F\u062A\u064E\u0643!"
+      AudioFile: Intro_welcome
+    - Id: Keeper_AttempsOver
+      Character: Keeper
+      Area: keeper
+      When: 
+      Context: No more attemps
+      English: you have no more chances!
+      Arabic: "\u0644\u064A\u0633 \u0644\u062F\u064A\u0643 \u0641\u0631\u0635\u064C
+        \u0623\u062E\u0631\u0649\u061F"
+      AudioFile: Keeper_AttempsOver
+    - Id: Keeper_Bad_1
+      Character: Keeper
+      Area: keeper
+      When: 
+      Context: Keeper comments your mistakes
+      English: Too bad!
+      Arabic: "\u0644\u0644\u0627\u0633\u0641"
+      AudioFile: Keeper_Bad_1
+    - Id: Keeper_Bad_2
+      Character: Keeper
+      Area: keeper
+      When: 
+      Context: 
+      English: Next time will do better!
+      Arabic: "\u0633\u0648\u0641 \u0646\u062D\u0642\u0642 \u0646\u062A\u0627\u0626\u062C
+        \u0623\u0641\u0636\u0644 \u0641\u064A \u0627\u0644\u0645\u0631\u0629 \u0627\u0644\u0642\u0627\u062F\u0645\u0629
+        !"
+      AudioFile: Keeper_Bad_2
+    - Id: Keeper_Bad_3
+      Character: Keeper
+      Area: keeper
+      When: 
+      Context: 
+      English: Oh no!
+      Arabic: "\u0627\u0647 \u0643\u0644\u0627"
+      AudioFile: Keeper_Bad_3
+    - Id: Keeper_Bad_4
+      Character: Keeper
+      Area: keeper
+      When: 
+      Context: 
+      English: Come on!
+      Arabic: "\u0647\u064A\u0627!"
+      AudioFile: Keeper_Bad_4
+    - Id: Keeper_Bad_5
+      Character: Keeper
+      Area: keeper
+      When: 
+      Context: 
+      English: Keep trying!
+      Arabic: "\u0639\u0644\u064A\u0643 \u0627\u0644\u0627\u0633\u062A\u0645\u0631\u0627\u0631
+        \u0628\u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629"
+      AudioFile: Keeper_Bad_5
+    - Id: Keeper_GetReady
+      Character: Keeper
+      Area: keeper
+      When: 
+      Context: At the begining of a round
+      English: Get ready!
+      Arabic: "\u0643\u0646 \u062C\u0627\u0647\u0632\u0627\u064B!"
+      AudioFile: Keeper_GetReady
     - Id: Keeper_Good_1
       Character: Keeper
       Area: keeper
@@ -485,6 +1076,30 @@ MonoBehaviour:
       English: You are on fire!
       Arabic: "\u0627\u0646\u062A \u0648\u0644\u0639\u0627\u0646"
       AudioFile: Keeper_Good_1
+    - Id: Keeper_Good_10
+      Character: Keeper
+      Area: keeper
+      When: 
+      Context: 
+      English: Excellent!
+      Arabic: "\u0645\u0645\u062A\u0627\u0632"
+      AudioFile: Keeper_Good_10
+    - Id: Keeper_Good_11
+      Character: Keeper
+      Area: keeper
+      When: 
+      Context: 
+      English: Wonderful!
+      Arabic: "\u0631\u0627\u0626\u0639"
+      AudioFile: Keeper_Good_11
+    - Id: Keeper_Good_12
+      Character: Keeper
+      Area: keeper
+      When: 
+      Context: 
+      English: Amazing!
+      Arabic: "\u0645\u0630\u0647\u0644"
+      AudioFile: Keeper_Good_12
     - Id: Keeper_Good_2
       Character: Keeper
       Area: keeper
@@ -549,73 +1164,38 @@ MonoBehaviour:
       English: Yeah!
       Arabic: "\u0646\u0639\u0645\u0645\u0645\u0645"
       AudioFile: Keeper_Good_9
-    - Id: Keeper_Good_10
+    - Id: Keeper_Last_Attempt_1
+      Character: Keeper
+      Area: keeper
+      When: 
+      Context: Only one attempt/life left
+      English: This is your last chance...
+      Arabic: "\u0647\u0630\u0647 \u0641\u0631\u0635\u062A\u0643 \u0627\u0644\u0623\u062E\u064A\u0631\u0629"
+      AudioFile: Keeper_Last_Attempt_1
+    - Id: Keeper_Last_Attempt_2
       Character: Keeper
       Area: keeper
       When: 
       Context: 
-      English: Excellent!
-      Arabic: "\u0645\u0645\u062A\u0627\u0632"
-      AudioFile: Keeper_Good_10
-    - Id: Keeper_Good_11
+      English: You still have a chance
+      Arabic: "\u0645\u0627 \u0632\u0627\u0644 \u0644\u062F\u064A\u0643 \u0641\u0631\u0635\u0629"
+      AudioFile: Keeper_Last_Attempt_2
+    - Id: Keeper_Last_Attempt_3
       Character: Keeper
       Area: keeper
       When: 
       Context: 
-      English: Wonderful!
-      Arabic: "\u0631\u0627\u0626\u0639"
-      AudioFile: Keeper_Good_11
-    - Id: Keeper_Good_12
-      Character: Keeper
+      English: One last attempt...
+      Arabic: "\u0645\u062D\u0627\u0648\u0644\u0629 \u0627\u062E\u064A\u0631\u0629"
+      AudioFile: Keeper_Last_Attempt_3
+    - Id: Keeper_Remember
+      Character: Ibtissam
       Area: keeper
-      When: 
-      Context: 
-      English: Amazing!
-      Arabic: "\u0645\u0630\u0647\u0644"
-      AudioFile: Keeper_Good_12
-    - Id: Keeper_Bad_1
-      Character: Keeper
-      Area: keeper
-      When: 
-      Context: Keeper comments your mistakes
-      English: Too bad!
-      Arabic: "\u0644\u0644\u0627\u0633\u0641"
-      AudioFile: Keeper_Bad_1
-    - Id: Keeper_Bad_2
-      Character: Keeper
-      Area: keeper
-      When: 
-      Context: 
-      English: Next time will do better!
-      Arabic: "\u0633\u0648\u0641 \u0646\u062D\u0642\u0642 \u0646\u062A\u0627\u0626\u062C
-        \u0623\u0641\u0636\u0644 \u0641\u064A \u0627\u0644\u0645\u0631\u0629 \u0627\u0644\u0642\u0627\u062F\u0645\u0629
-        !"
-      AudioFile: Keeper_Bad_2
-    - Id: Keeper_Bad_3
-      Character: Keeper
-      Area: keeper
-      When: 
-      Context: 
-      English: Oh no!
-      Arabic: "\u0627\u0647 \u0643\u0644\u0627"
-      AudioFile: Keeper_Bad_3
-    - Id: Keeper_Bad_4
-      Character: Keeper
-      Area: keeper
-      When: 
-      Context: 
-      English: Come on!
-      Arabic: "\u0647\u064A\u0627!"
-      AudioFile: Keeper_Bad_4
-    - Id: Keeper_Bad_5
-      Character: Keeper
-      Area: keeper
-      When: 
-      Context: 
-      English: Keep trying!
-      Arabic: "\u0639\u0644\u064A\u0643 \u0627\u0644\u0627\u0633\u062A\u0645\u0631\u0627\u0631
-        \u0628\u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629"
-      AudioFile: Keeper_Bad_5
+      When: After a mistake, to help the player
+      Context: Tutorial (used to repeat the Tutorial sentence)
+      English: 'Remember: ...'
+      Arabic: "\u062A\u064E\u0630\u064E\u0643\u0651\u064E\u0631..."
+      AudioFile: Keeper_Remember
     - Id: Keeper_Time_1
       Character: Keeper
       Area: keeper
@@ -648,112 +1228,722 @@ MonoBehaviour:
       English: Time up!
       Arabic: "\u0627\u0647, \u0627\u0646\u062A\u0647\u0649 \u0627\u0644\u0648\u0642\u062A!"
       AudioFile: Keeper_TimeUp
-    - Id: Keeper_Last_Attempt_1
-      Character: Keeper
-      Area: keeper
-      When: 
-      Context: Only one attempt/life left
-      English: This is your last chance...
-      Arabic: "\u0647\u0630\u0647 \u0641\u0631\u0635\u062A\u0643 \u0627\u0644\u0623\u062E\u064A\u0631\u0629"
-      AudioFile: Keeper_Last_Attempt_1
-    - Id: Keeper_Last_Attempt_2
-      Character: Keeper
-      Area: keeper
+    - Id: LB_1_01
+      Character: keeper
+      Area: LB
       When: 
       Context: 
-      English: You still have a chance
-      Arabic: "\u0645\u0627 \u0632\u0627\u0644 \u0644\u062F\u064A\u0643 \u0641\u0631\u0635\u0629"
-      AudioFile: Keeper_Last_Attempt_2
-    - Id: Keeper_Last_Attempt_3
-      Character: Keeper
-      Area: keeper
+      English: The trio Alif
+      Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0625 - \u0623 - \u0627"
+      AudioFile: LB_1_01
+    - Id: LB_1_02
+      Character: keeper
+      Area: LB
       When: 
       Context: 
-      English: One last attempt...
-      Arabic: "\u0645\u062D\u0627\u0648\u0644\u0629 \u0627\u062E\u064A\u0631\u0629"
-      AudioFile: Keeper_Last_Attempt_3
-    - Id: Keeper_AttempsOver
-      Character: Keeper
-      Area: keeper
+      English: The trio baa, taa and thaa
+      Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0628 - \u062A - \u062B"
+      AudioFile: LB_1_02
+    - Id: LB_1_03
+      Character: keeper
+      Area: LB
       When: 
-      Context: No more attemps
-      English: you have no more chances!
-      Arabic: "\u0644\u064A\u0633 \u0644\u062F\u064A\u0643 \u0641\u0631\u0635\u064C
-        \u0623\u062E\u0631\u0649\u061F"
-      AudioFile: Keeper_AttempsOver
-    - Id: Keeper_GetReady
-      Character: Keeper
-      Area: keeper
+      Context: 
+      English: The trio jiim, haa and khaa
+      Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u062C - \u062D - \u062E"
+      AudioFile: LB_1_03
+    - Id: LB_1_04
+      Character: keeper
+      Area: LB
       When: 
-      Context: At the begining of a round
-      English: Get ready!
-      Arabic: "\u0643\u0646 \u062C\u0627\u0647\u0632\u0627\u064B!"
-      AudioFile: Keeper_GetReady
-    - Id: Keeper_Remember
+      Context: 
+      English: The duo daal and dhaal
+      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u062F - \u0630"
+      AudioFile: LB_1_04
+    - Id: LB_1_05
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The duo raa and zaay
+      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0631 - \u0632"
+      AudioFile: LB_1_05
+    - Id: LB_1_06
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The duo siin and shiin
+      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0633 - \u0634"
+      AudioFile: LB_1_06
+    - Id: LB_1_07
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The Saad and Daad
+      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0635 - \u0636"
+      AudioFile: LB_1_07
+    - Id: LB_1_08
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The Taa and DHaa
+      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0637 - \u0638"
+      AudioFile: LB_1_08
+    - Id: LB_1_09
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The duo ayn and ghayn
+      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0639 - \u063A"
+      AudioFile: LB_1_09
+    - Id: LB_1_10
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The duo faa and qaaf
+      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0641 - \u0642"
+      AudioFile: LB_1_10
+    - Id: LB_1_11
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The duo kaaf and laam
+      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0643 - \u0644"
+      AudioFile: LB_1_11
+    - Id: LB_1_12
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The duo miim and nuun
+      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0645 - \u0646"
+      AudioFile: LB_1_12
+    - Id: LB_1_13
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The trio haa, waaw and yaa
+      Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0647 - \u0648 - \u064A"
+      AudioFile: LB_1_13
+    - Id: LB_1_14
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The vowels alif, waaw and yaa
+      Arabic: "\u062D\u0631\u0648\u0641 \u0627\u0644\u0639\u0644\u0629 \u0623 - \u0648
+        - \u064A"
+      AudioFile: LB_1_14
+    - Id: LB_2_01
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of alif
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0623\u0644\u0641"
+      AudioFile: LB_2_01
+    - Id: LB_2_02
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of baa
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0628\u0627\u0621"
+      AudioFile: LB_2_02
+    - Id: LB_2_03
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of taa
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062A\u0627\u0621"
+      AudioFile: LB_2_03
+    - Id: LB_2_04
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of thaa
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062B\u0627\u0621"
+      AudioFile: LB_2_04
+    - Id: LB_2_05
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of jiim
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062C\u064A\u0645"
+      AudioFile: LB_2_05
+    - Id: LB_2_06
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of haa
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062D\u0627\u0621"
+      AudioFile: LB_2_06
+    - Id: LB_2_07
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of khaa
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062E\u0627\u0621"
+      AudioFile: LB_2_07
+    - Id: LB_2_08
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of daal
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062F\u0627\u0644"
+      AudioFile: LB_2_08
+    - Id: LB_2_09
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of dhaal
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0630\u0627\u0644"
+      AudioFile: LB_2_09
+    - Id: LB_2_10
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of raa
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0631\u0627\u0621"
+      AudioFile: LB_2_10
+    - Id: LB_2_11
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of zay
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0632\u0627\u064A"
+      AudioFile: LB_2_11
+    - Id: LB_2_12
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of siin
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0633\u064A\u0646"
+      AudioFile: LB_2_12
+    - Id: LB_2_13
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of shiin
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0634\u064A\u0646"
+      AudioFile: LB_2_13
+    - Id: LB_2_14
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of Saad
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0635\u0627\u062F"
+      AudioFile: LB_2_14
+    - Id: LB_3_01
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of Daad
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0636\u0627\u062F"
+      AudioFile: LB_3_01
+    - Id: LB_3_02
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of Taa
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0637\u0627\u0621"
+      AudioFile: LB_3_02
+    - Id: LB_3_03
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of DHaa
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0638\u0627\u0621"
+      AudioFile: LB_3_03
+    - Id: LB_3_04
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of ayn
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0639\u064A\u0646"
+      AudioFile: LB_3_04
+    - Id: LB_3_05
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of ghayn
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u063A\u064A\u0646"
+      AudioFile: LB_3_05
+    - Id: LB_3_06
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of faa
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0641\u0627\u0621"
+      AudioFile: LB_3_06
+    - Id: LB_3_07
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of qaaf
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0642\u0627\u0641"
+      AudioFile: LB_3_07
+    - Id: LB_3_08
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of kaaf
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0643\u0627\u0641"
+      AudioFile: LB_3_08
+    - Id: LB_3_09
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of laam
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0644\u0627\u0645"
+      AudioFile: LB_3_09
+    - Id: LB_3_10
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of miim
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0645\u064A\u0645"
+      AudioFile: LB_3_10
+    - Id: LB_3_11
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of nuun
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0646\u0648\u0646"
+      AudioFile: LB_3_11
+    - Id: LB_3_12
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of haa
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0647\u0627\u0621"
+      AudioFile: LB_3_12
+    - Id: LB_3_13
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of waaw
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0648\u0627\u0648"
+      AudioFile: LB_3_13
+    - Id: LB_3_14
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The shapes of yaa
+      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u064A\u0627\u0621"
+      AudioFile: LB_3_14
+    - Id: LB_4_01
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The symbol Fathah
+      Arabic: "\u0627\u0644\u0641\u062A\u062D\u0629"
+      AudioFile: LB_4_01
+    - Id: LB_4_02
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The symbol Dammah
+      Arabic: "\u0627\u0644\u0636\u0645\u0629"
+      AudioFile: LB_4_02
+    - Id: LB_4_03
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The symbol Kasrah
+      Arabic: "\u0627\u0644\u0643\u0633\u0631\u0629"
+      AudioFile: LB_4_03
+    - Id: LB_4_04
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: Symbols and Sukun
+      Arabic: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0648\u0627\u0644\u0633\u0643\u0648\u0646"
+      AudioFile: LB_4_04
+    - Id: LB_4_05
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: the double Fathah
+      Arabic: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0641\u062A\u062D"
+      AudioFile: LB_4_05
+    - Id: LB_4_06
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: the double Dammah
+      Arabic: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0636\u0645"
+      AudioFile: LB_4_06
+    - Id: LB_4_07
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: the double Kasrah
+      Arabic: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0643\u0633\u0631"
+      AudioFile: LB_4_07
+    - Id: LB_4_08
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: single and double symbols
+      Arabic: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0648\u062D\u0631\u0643\u0627\u062A
+        \u0627\u0644\u062A\u0646\u0648\u064A\u0646"
+      AudioFile: LB_4_08
+    - Id: LB_4_09
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: Hamza variations
+      Arabic: "\u0623\u0646\u0648\u0627\u0639 \u0627\u0644\u0647\u0645\u0632\u0629"
+      AudioFile: LB_4_09
+    - Id: LB_4_10
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The diphthong waaw
+      Arabic: "\u0648\u0627\u0648 \u0627\u0644\u0625\u062F\u063A\u0627\u0645"
+      AudioFile: LB_4_10
+    - Id: LB_4_11
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The diphthong yaa
+      Arabic: "\u064A\u0627\u0621 \u0627\u0644\u0625\u062F\u063A\u0627\u0645"
+      AudioFile: LB_4_11
+    - Id: LB_4_12
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: 'Words: Verbs'
+      Arabic: "\u0627\u0644\u0623\u0641\u0639\u0627\u0644"
+      AudioFile: LB_4_12
+    - Id: LB_4_13
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: 'Words: Places'
+      Arabic: "\u0627\u0644\u0623\u0645\u0627\u0643\u0646"
+      AudioFile: LB_4_13
+    - Id: LB_4_14
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: 'Words: grains food'
+      Arabic: "\u0627\u0644\u0623\u0637\u0639\u0645\u0629 (\u0627\u0644\u062D\u0628\u0648\u0628)"
+      AudioFile: LB_4_14
+    - Id: LB_4_15
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: 'Words: Furniture'
+      Arabic: "\u0627\u0644\u0645\u0641\u0631\u0648\u0634\u0627\u062A"
+      AudioFile: LB_4_15
+    - Id: LB_5_01
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: the alif maqSura
+      Arabic: "\u0627\u0644\u0623\u0644\u0641 \u0627\u0644\u0645\u0642\u0635\u0648\u0631\u0629"
+      AudioFile: LB_5_01
+    - Id: LB_5_02
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: lam-alif combination
+      Arabic: "\u0644\u0627"
+      AudioFile: LB_5_02
+    - Id: LB_5_03
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: the madd symbol
+      Arabic: "\u0627\u0644\u0645\u062F"
+      AudioFile: LB_5_03
+    - Id: LB_5_04
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The 3 diacritic signs
+      Arabic: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A"
+      AudioFile: LB_5_04
+    - Id: LB_5_05
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The 3 double diacritic signs
+      Arabic: "\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062A\u0646\u0648\u064A\u0646"
+      AudioFile: LB_5_05
+    - Id: LB_5_06
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: the shadda symbol
+      Arabic: "\u0627\u0644\u0634\u062F\u0629"
+      AudioFile: LB_5_06
+    - Id: LB_5_07
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: 'Words: plurals'
+      Arabic: "\u0627\u0644\u0645\u0641\u0631\u062F \u0648\u0627\u0644\u0645\u062B\u0646\u0649
+        \u0648\u0627\u0644\u062C\u0645\u0639"
+      AudioFile: LB_5_07
+    - Id: LB_5_08
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: 'words: professions'
+      Arabic: "\u0627\u0644\u0645\u0647\u0646"
+      AudioFile: LB_5_08
+    - Id: LB_5_09
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: 'words: nature'
+      Arabic: "\u0627\u0644\u0637\u0628\u064A\u0639\u0629"
+      AudioFile: LB_5_09
+    - Id: LB_5_10
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: the article "al"
+      Arabic: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
+      AudioFile: LB_5_10
+    - Id: LB_5_11
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: sun and moon consonants
+      Arabic: "\u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0634\u0645\u0633\u064A\u0629
+        \u0648\u0627\u0644\u0642\u0645\u0631\u064A\u0629"
+      AudioFile: LB_5_11
+    - Id: LB_5_12
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: Sports
+      Arabic: "\u0627\u0644\u0631\u064A\u0627\u0636\u0629"
+      AudioFile: LB_5_12
+    - Id: LB_5_13
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: 'Adjectives: feelings'
+      Arabic: "\u0635\u0641\u0627\u062A \u0627\u0644\u0645\u0634\u0627\u0639\u0631"
+      AudioFile: LB_5_13
+    - Id: LB_6_01
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: Greetings
+      Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u062D\u064A\u0629"
+      AudioFile: LB_6_01
+    - Id: LB_6_02
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: Hello phrases
+      Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u0631\u062D\u064A\u0628"
+      AudioFile: LB_6_02
+    - Id: LB_6_03
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: How are you phrases
+      Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u0633\u0624\u0627\u0644
+        \u0639\u0646 \u0627\u0644\u062D\u0627\u0644"
+      AudioFile: LB_6_03
+    - Id: LB_6_04
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: 'Adjectives: colors'
+      Arabic: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
+      AudioFile: LB_6_04
+    - Id: LB_6_05
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: nature adjectives
+      Arabic: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0628\u064A\u0639\u0629"
+      AudioFile: LB_6_05
+    - Id: LB_6_06
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: weather adjectives
+      Arabic: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0642\u0633"
+      AudioFile: LB_6_06
+    - Id: LB_6_07
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: cardinal numbers
+      Arabic: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u0631\u0626\u064A\u0633\u064A\u0629"
+      AudioFile: LB_6_07
+    - Id: LB_6_08
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: ordinal numbers
+      Arabic: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u064A\u0629"
+      AudioFile: LB_6_08
+    - Id: LB_6_09
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: Time adverbs
+      Arabic: "\u0638\u0631\u0648\u0641 \u0627\u0644\u0632\u0645\u0627\u0646"
+      AudioFile: LB_6_09
+    - Id: LB_6_10
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: Days of the week
+      Arabic: "\u0623\u064A\u0627\u0645 \u0627\u0644\u0623\u0633\u0628\u0648\u0639"
+      AudioFile: LB_6_10
+    - Id: LB_6_11
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: The months
+      Arabic: "\u0627\u0644\u0623\u0634\u0647\u0631"
+      AudioFile: LB_6_11
+    - Id: LB_6_12
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: the years in numbers
+      Arabic: "\u0627\u0644\u0633\u0646\u0629 \u0628\u0627\u0644\u0623\u0631\u0642\u0627\u0645"
+      AudioFile: LB_6_12
+    - Id: LB_6_13
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: faminine and masculine nouns
+      Arabic: "\u0627\u0644\u0623\u0633\u0645\u0627\u0621 \u0627\u0644\u0645\u0630\u0643\u0631\u0629
+        \u0648\u0627\u0644\u0645\u0624\u0646\u062B\u0629"
+      AudioFile: LB_6_13
+    - Id: LB_6_14
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: the article "al"
+      Arabic: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
+      AudioFile: LB_6_14
+    - Id: LB_6_15
+      Character: keeper
+      Area: LB
+      When: 
+      Context: 
+      English: Some phrases
+      Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u0628\u0633\u064A\u0637\u0629"
+      AudioFile: LB_6_15
+    - Id: MakeFriends_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: The WORDS are arguing! Show them they have something in common!
+      Arabic: "\u0647\u0646\u0627\u0643 \u062E\u0644\u0627\u0641 \u062D\u0627\u062F
+        \u0628\u064A\u0646 \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A!
+        \u062D\u0627\u0648\u0644 \u0627\u0644\u062A\u0648\u0641\u064A\u0642 \u0628\u064A\u0646\u0647\u0627
+        \u0645\u0646 \u062E\u0644\u0627\u0644 \u0627\u0638\u0647\u0627\u0631 \u0627\u0644\u0627\u0645\u0648\u0631
+        \u0627\u0644\u0645\u0634\u062A\u0631\u0643\u0629"
+      AudioFile: MakeFriends_Intro
+    - Id: MakeFriends_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Friendship Spark!
+      Arabic: "\u0634\u0631\u0627\u0631\u0629\u064F \u0627\u0644\u0635\u062F\u0627\u0642\u0629!"
+      AudioFile: MakeFriends_Title
+    - Id: MakeFriends_Tuto
       Character: Ibtissam
-      Area: keeper
-      When: After a mistake, to help the player
-      Context: Tutorial (used to repeat the Tutorial sentence)
-      English: 'Remember: ...'
-      Arabic: "\u062A\u064E\u0630\u064E\u0643\u0651\u064E\u0631..."
-      AudioFile: Keeper_Remember
-    - Id: Map_Intro
-      Character: Keeper
-      Area: map
-      When: No UI / no interaction
-      Context: Keeper introduces the journey
-      English: You will travel the world to find all the Letters.
-      Arabic: "\u0633\u062A\u062C\u0648\u0628\u064F \u0627\u0644\u0639\u0627\u0644\u0645\u064E
-        \u0628\u062D\u062B\u0627\u064B \u0639\u0646 \u0627\u0644\u0623\u062D\u0631\u0641."
-      AudioFile: Map_Intro
-    - Id: Map_Intro_AnturaSpace
-      Character: Keeper
-      Area: map
-      When: Antura Space button appears
-      Context: Keeper introduces the rewards (Finger/Click anim over the Antura Space
-        button)
-      English: Do your best and I will give you tons of Gifts to play with Antura
-      Arabic: "\u0627\u0628\u0630\u0644 \u0642\u0635\u0627\u0631\u0649 \u062C\u0647\u062F\u0643!
-        , \u0633\u0623\u0643\u0627\u0641\u0626\u0643 \u0628\u0647\u062F\u0627\u064A\u0627
-        \u0645\u0645\u064A\u0632\u0629 \u0644\u062A\u0644\u0639\u0628 \u0628\u0647\u0627
-        \u0645\u0639 \u0639\u0646\u062A\u0648\u0631\u0629"
-      AudioFile: Map_Intro_AnturaSpace
-    - Id: Map_First
-      Character: Keeper
-      Area: map
+      Area: minigame
       When: 
-      Context: 'First Session: special Keeper sentence'
-      English: It's time for you to start your journey. Good luck!
-      Arabic: "\u062D\u0627\u0646 \u0648\u0642\u062A \u0628\u062F\u0621 \u0627\u0644\u0631\u062D\u0644\u0629!
-        \u062D\u0638\u0627\u064B \u0633\u0639\u064A\u062F\u0627\u064B!"
-      AudioFile: Map_First
-    - Id: Map_Welcome_1
-      Character: Keeper
-      Area: map
-      When: 
-      Context: Keeper welcomes you back
-      English: You still have a long journey in front of you. Better you harry up!
-      Arabic: "\u0645\u0627 \u0632\u0627\u0644\u062A \u0627\u0644\u0631\u062D\u0644\u0629
-        \u0637\u0648\u064A\u0644\u0629\u060C \u0639\u0644\u064A\u0643 \u0627\u0644\u0627\u0633\u0631\u0627\u0639!"
-      AudioFile: Map_Welcome_1
-    - Id: Map_Welcome_2
-      Character: Keeper
-      Area: map
-      When: 
-      Context: 
-      English: Come on, your mission is not over yet!
-      Arabic: "\u0647\u064A\u0627 \u0628\u0646\u0627\u060C \u0645\u0647\u0645\u062A\u0643
-        \u0644\u0645 \u062A\u0646\u062A\u0647\u064A \u0628\u0639\u062F"
-      AudioFile: Map_Welcome_2
-    - Id: Map_Welcome_3
-      Character: Keeper
-      Area: map
-      When: 
-      Context: 
-      English: I trust you. You will complete your mission soon!
-      Arabic: "\u0627\u0646\u0627 \u0648\u0627\u062B\u0642 \u0645\u0646 \u0627\u0646\u0643
-        \u0633\u062A\u0646\u0647\u064A \u0627\u0644\u0645\u0647\u0645\u0629 \u0642\u0631\u064A\u0628\u0627\u064B"
-      AudioFile: Map_Welcome_3
+      Context: Tutorial
+      English: These WORDS share one letter. Drag it to the center of the screen.
+      Arabic: "\u062A\u062A\u0634\u0627\u0631\u0643\u064F \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u064F
+        \u0641\u064A \u062D\u0631\u0641\u064D \u0648\u0627\u062D\u062F. \u0627\u0633\u062D\u0628\u0652\u0647
+        \u0625\u0644\u0649 \u0645\u0646\u062A\u0635\u0641 \u0627\u0644\u0634\u0627\u0634\u0629."
+      AudioFile: MakeFriends_Tuto
     - Id: Map_Back_1
       Character: Keeper
       Area: map
@@ -812,15 +2002,15 @@ MonoBehaviour:
         \u062A\u062A\u0642\u0646 \u0643\u0644 \u0645\u0627 \u062A\u0639\u0644\u0645\u062A
         \u062D\u062A\u0649 \u0627\u0644\u0627\u0646"
       AudioFile: Map_End_LB_3
-    - Id: Map_NewMap
+    - Id: Map_EndGame
       Character: Keeper
       Area: map
       When: 
-      Context: New Map/Stage reached
-      English: Wow! You discovered a new Map!
-      Arabic: "\u0631\u0627\u0626\u0639! \u0627\u0643\u062A\u0634\u0641\u062A \u062E\u0631\u064A\u0637\u0629
-        \u062C\u062F\u064A\u062F\u0629!"
-      AudioFile: Map_NewMap
+      Context: Finished the game and Unlocked all Rewards
+      English: Yeaaaah! Excellent job! You completed your mission!
+      Arabic: "\u0631\u0627\u0626\u0639! \u0639\u0645\u0644 \u0645\u0628\u0647\u0631!
+        \u0627\u0646\u0647\u064A\u062A \u0645\u0647\u0645\u062A\u0643"
+      AudioFile: Map_EndGame
     - Id: Map_EndWorld
       Character: Keeper
       Area: map
@@ -834,15 +2024,36 @@ MonoBehaviour:
         \u0627\u0644\u0639\u062F\u064A\u062F \u0645\u0646 \u0627\u0644\u0647\u062F\u0627\u064A\u0629
         \u0644\u0644\u0641\u0648\u0632 \u0628\u0647\u0627"
       AudioFile: Map_EndWorld
-    - Id: Map_EndGame
+    - Id: Map_First
       Character: Keeper
       Area: map
       When: 
-      Context: Finished the game and Unlocked all Rewards
-      English: Yeaaaah! Excellent job! You completed your mission!
-      Arabic: "\u0631\u0627\u0626\u0639! \u0639\u0645\u0644 \u0645\u0628\u0647\u0631!
-        \u0627\u0646\u0647\u064A\u062A \u0645\u0647\u0645\u062A\u0643"
-      AudioFile: Map_EndGame
+      Context: 'First Session: special Keeper sentence'
+      English: It's time for you to start your journey. Good luck!
+      Arabic: "\u062D\u0627\u0646 \u0648\u0642\u062A \u0628\u062F\u0621 \u0627\u0644\u0631\u062D\u0644\u0629!
+        \u062D\u0638\u0627\u064B \u0633\u0639\u064A\u062F\u0627\u064B!"
+      AudioFile: Map_First
+    - Id: Map_Intro
+      Character: Keeper
+      Area: map
+      When: No UI / no interaction
+      Context: Keeper introduces the journey
+      English: You will travel the world to find all the Letters.
+      Arabic: "\u0633\u062A\u062C\u0648\u0628\u064F \u0627\u0644\u0639\u0627\u0644\u0645\u064E
+        \u0628\u062D\u062B\u0627\u064B \u0639\u0646 \u0627\u0644\u0623\u062D\u0631\u0641."
+      AudioFile: Map_Intro
+    - Id: Map_Intro_AnturaSpace
+      Character: Keeper
+      Area: map
+      When: Antura Space button appears
+      Context: Keeper introduces the rewards (Finger/Click anim over the Antura Space
+        button)
+      English: Do your best and I will give you tons of Gifts to play with Antura
+      Arabic: "\u0627\u0628\u0630\u0644 \u0642\u0635\u0627\u0631\u0649 \u062C\u0647\u062F\u0643!
+        , \u0633\u0623\u0643\u0627\u0641\u0626\u0643 \u0628\u0647\u062F\u0627\u064A\u0627
+        \u0645\u0645\u064A\u0632\u0629 \u0644\u062A\u0644\u0639\u0628 \u0628\u0647\u0627
+        \u0645\u0639 \u0639\u0646\u062A\u0648\u0631\u0629"
+      AudioFile: Map_Intro_AnturaSpace
     - Id: Map_Intro_Map1
       Character: Keeper
       Area: map
@@ -904,384 +2115,42 @@ MonoBehaviour:
         \u0628\u0646\u0627\u060C \u0639\u0644\u064A\u0646\u0627 \u0628\u0630\u0644
         \u0645\u062C\u0647\u0648\u062F \u0627\u062E\u064A\u0631"
       AudioFile: Map_Intro_Map6
-    - Id: AlphabetSong_Title
+    - Id: Map_NewMap
       Character: Keeper
-      Area: minigame
+      Area: map
+      When: 
+      Context: New Map/Stage reached
+      English: Wow! You discovered a new Map!
+      Arabic: "\u0631\u0627\u0626\u0639! \u0627\u0643\u062A\u0634\u0641\u062A \u062E\u0631\u064A\u0637\u0629
+        \u062C\u062F\u064A\u062F\u0629!"
+      AudioFile: Map_NewMap
+    - Id: Map_Welcome_1
+      Character: Keeper
+      Area: map
+      When: 
+      Context: Keeper welcomes you back
+      English: You still have a long journey in front of you. Better you harry up!
+      Arabic: "\u0645\u0627 \u0632\u0627\u0644\u062A \u0627\u0644\u0631\u062D\u0644\u0629
+        \u0637\u0648\u064A\u0644\u0629\u060C \u0639\u0644\u064A\u0643 \u0627\u0644\u0627\u0633\u0631\u0627\u0639!"
+      AudioFile: Map_Welcome_1
+    - Id: Map_Welcome_2
+      Character: Keeper
+      Area: map
       When: 
       Context: 
-      English: Alphabet Song
-      Arabic: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629"
-      AudioFile: AlphabetSong_Title
-    - Id: AlphabetSong_Intro
+      English: Come on, your mission is not over yet!
+      Arabic: "\u0647\u064A\u0627 \u0628\u0646\u0627\u060C \u0645\u0647\u0645\u062A\u0643
+        \u0644\u0645 \u062A\u0646\u062A\u0647\u064A \u0628\u0639\u062F"
+      AudioFile: Map_Welcome_2
+    - Id: Map_Welcome_3
       Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: It's time to sing all the letters in order.
-      Arabic: "\u062D\u0627\u0646 \u0648\u0642\u062A \u063A\u0646\u0627\u0621 \u0627\u0644\u0627\u062D\u0631\u0641
-        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
-      AudioFile: AlphabetSong_Intro
-    - Id: AlphabetSong_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Follow the lyrics with your finger.
-      Arabic: "\u062A\u062A\u0628\u0651\u0639\u0650 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
-        \u0628\u0625\u0635\u0628\u0639\u0643"
-      AudioFile: AlphabetSong_Tuto
-    - Id: Balloons_counting_Title
-      Character: Keeper
-      Area: minigame
+      Area: map
       When: 
       Context: 
-      English: Balloons & Numbers!
-      Arabic: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0623\u0631\u0642\u0627\u0645!"
-      AudioFile: 
-    - Id: Balloons_counting_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: Look! All these Words are numbers...
-      Arabic: "\u0627\u0646\u0638\u0631 \u0627\u0644\u0649 \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
-        \u0648 \u0627\u0644\u0627\u0631\u0642\u0627\u0645!"
-      AudioFile: Balloons_counting_Intro
-    - Id: Balloons_counting_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: 'Pop the balloons in the right order: from the smallest number to the
-        biggest one'
-      Arabic: "\u0627\u0641\u0642\u0639 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A
-        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D:
-        \u0645\u0646 \u0623\u0635\u063A\u0631 \u0631\u0642\u0645 \u0625\u0644\u0649
-        \u0627\u0644\u0623\u0643\u0628\u0631"
-      AudioFile: Balloons_counting_Tuto
-    - Id: Balloons_letter_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: 
-      English: Balloons & the Shared Letter!
-      Arabic: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064F \u0648\u0627\u0644\u062D\u0631\u0641\u064F
-        \u0627\u0644\u0645\u0634\u062A\u0631\u0643!"
-      AudioFile: 
-    - Id: Balloons_letter_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: That Letter belongs to some of the Words above
-      Arabic: "\u0647\u0630\u0627 \u0627\u0644\u062D\u0631\u0641 \u064A\u0646\u062A\u0645\u064A
-        \u0627\u0644\u0649 \u0627\u062D\u062F\u0649 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
-        \u0627\u0644\u0645\u0639\u0644\u0642\u0629"
-      AudioFile: Balloons_letter_Intro
-    - Id: Balloons_letter_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Pop the balloons and LEAVE ONLY the right Words
-      Arabic: "\u0627\u0641\u0642\u0639 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A
-        \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
-      AudioFile: Balloons_letter_Tuto
-    - Id: Balloons_spelling_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: There are too many Letters to form this Word!
-      Arabic: "\u0647\u0646\u0627\u0643 \u062D\u0631\u0648\u0641 \u0627\u0643\u062B\u0631
-        \u0645\u0646 \u0627\u0644\u0644\u0627\u0632\u0645 \u0644\u062A\u0643\u0648\u064A\u0646
-        \u0627\u0644\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0639\u0631\u0648\u0636\u0629"
-      AudioFile: Balloons_spelling_Intro
-    - Id: Balloons_spelling_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Pop the balloons and LEAVE ONLY the right Letters
-      Arabic: "\u0627\u0641\u0642\u0639 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A
-        \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u062D\u0631\u0648\u0641
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
-      AudioFile: Balloons_spelling_Tuto
-    - Id: Balloons_words_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: There are too many Images for this single Word...
-      Arabic: "\u0647\u0646\u0627\u0643 \u0635\u0648\u0631\u064C \u0639\u062F\u0629!
-        \u0644\u0643\u0646 \u0641\u0642\u0637 \u062A\u0639\u0628\u0631\u0639\u0646
-        \u0627\u0644\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0639\u0631\u0648\u0636\u0629"
-      AudioFile: Balloons_words_Intro
-    - Id: Balloons_words_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Pop the balloons and LEAVE ONLY the right Image
-      Arabic: "\u0627\u0641\u0642\u0639 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A
-        \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u0635\u0648\u0631\u0629
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
-      AudioFile: Balloons_words_Tuto
-    - Id: ColorTickle_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: The LETTER have lost her color!
-      Arabic: "\u0627\u0647\u060C \u0627\u0644\u062D\u0631\u0648\u0641 \u0641\u0642\u062F\u062A
-        \u0627\u0644\u0648\u0627\u0646\u0647\u0627!"
-      AudioFile: ColorTickle_Intro
-    - Id: ColorTickle_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Color the LETTER without going out of the borders.
-      Arabic: "\u0642\u0645 \u0628\u062A\u0644\u0648\u064A\u0646 \u0627\u0644\u062D\u0631\u0641
-        \u062F\u0648\u0646 \u0627\u0644\u062E\u0631\u0648\u062C \u0639\u0646 \u062D\u062F\u0648\u062F\u0647."
-      AudioFile: ColorTickle_Tuto
-    - Id: DancingDots_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: The right signs give energy to the LETTER so she can dance! Help her!
-      Arabic: "\u0627\u0636\u0627\u0641\u0629 \u0627\u0644\u062D\u0631\u0643\u0627\u062A
-        \u0648 \u0627\u0644\u0646\u0642\u0627\u0637 \u0627\u0644\u0635\u062D\u064A\u062D\u0629
-        \u0633\u062A\u0645\u062F \u0627\u0644\u062D\u0631\u0648\u0641 \u0628\u0627\u0644\u0637\u0627\u0642\u0629
-        \u0644\u062A\u062A\u0645\u0643\u0646 \u0645\u0646 \u0627\u0644\u0631\u0642\u0635!
-        \u062D\u0627\u0648\u0644 \u0645\u0633\u0627\u0639\u062F\u062A\u0647\u0627"
-      AudioFile: DancingDots_Intro
-    - Id: DancingDots_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Drag the right signs to the right place over the LETTER.
-      Arabic: "\u0627\u0633\u062D\u0628  \u0627\u0644\u0646\u0642\u0627\u0637 \u0623\u0648
-        \u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E
-        \u0646\u062D\u0648 \u0627\u0644\u0645\u0643\u0627\u0646 \u0627\u0644\u0635\u062D\u064A\u062D
-        \u0641\u0648\u0642 \u0627\u0644\u062D\u0631\u0641."
-      AudioFile: DancingDots_Tuto
-    - Id: Egg_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: The egg said something! Help it to hatch!
-      Arabic: "\u0627\u0647 \u064A\u0628\u062F\u0648 \u0627\u0646 \u0627\u0644\u0628\u064A\u0636\u0629
-        \u0642\u0627\u0644\u062A \u0634\u064A\u0626\u0627\u064B! \u0639\u0644\u064A\u0643
-        \u0645\u0633\u0627\u0639\u062F\u062A\u0647\u0627 \u0644\u062A\u0641\u0642\u0633!"
-      AudioFile: Egg_Intro
-    - Id: Egg_Tuto_Button
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Listen carefully, then bash the correct button.
-      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646
-        \u062B\u0645 \u0627\u0636\u063A\u0637 \u0627\u0644\u0632\u0631 \u0627\u0644\u0635\u062D\u064A\u062D
-        \u0628\u0634\u0643\u0644 \u0645\u062A\u0643\u0631\u0631."
-      AudioFile: Egg_Tuto_Button
-    - Id: Egg_Tuto_Sequence
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Listen carefully, then press the buttons in the right sequence to repeat
-        what you heard.
-      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646
-        \u062B\u0645 \u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0627\u0644\u0623\u0632\u0631\u0627\u0631
-        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D
-        \u0644\u0643\u064A \u062A\u0643\u0631\u0651\u0650\u0631 \u0645\u0627 \u0633\u0645\u0639\u062A\u064E\u0647."
-      AudioFile: Egg_Tuto_Sequence
-    - Id: FastCrowd_alphabet_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: What a mess! Let's put the Letters in the right order...
-      Arabic: "\u064A\u0627 \u0644\u0647\u0627 \u0645\u0646 \u0641\u0648\u0636\u0649!
-        \u0644\u0646\u0636\u0639 \u0647\u0630\u0647 \u0627\u0644\u062D\u0631\u0648\u0641
-        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
-      AudioFile: FastCrowd_alphabet_Intro
-    - Id: FastCrowd_alphabet_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Drag the Letters one by one, following the Alphabet order
-      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0623\u062D\u0631\u0641 \u0648\u0627\u062D\u062F\u0627\u064B
-        \u062A\u0644\u0648 \u0627\u0644\u0622\u062E\u0631 \u062D\u0633\u0628 \u062A\u0631\u062A\u064A\u0628
-        \u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0647\u062C\u0627\u0626\u064A\u0629"
-      AudioFile: FastCrowd_alphabet_Tuto
-    - Id: FastCrowd_counting_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: What a mess! Let's put these numbers in the right order...
-      Arabic: "\u064A\u0627 \u0644\u0647\u0627 \u0645\u0646 \u0641\u0648\u0636\u0649!
-        \u0644\u0646\u0636\u0639 \u0647\u0630\u0647 \u0627\u0644\u0627\u0631\u0642\u0627\u0645
-        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
-      AudioFile: FastCrowd_counting_Intro
-    - Id: FastCrowd_counting_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Drag the Words one by one, from the smallest number to the biggest
-        one
-      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
-        \u0648\u0627\u062D\u062F\u0629 \u062A\u0644\u0648 \u0627\u0644\u0623\u062E\u0631\u0649
-        \u0645\u0646 \u0623\u0635\u063A\u0631 \u0631\u0642\u0645 \u0625\u0644\u0649
-        \u0627\u0644\u0623\u0643\u0628\u0631"
-      AudioFile: FastCrowd_counting_Tuto
-    - Id: FastCrowd_letter_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: What a mess! Let's put the Letters in the right order...
-      Arabic: "\u064A\u0627 \u0644\u0647\u0627 \u0645\u0646 \u0641\u0648\u0636\u0649!
-        \u0644\u0646\u0636\u0639 \u0647\u0630\u0647 \u0627\u0644\u062D\u0631\u0648\u0641
-        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
-      AudioFile: FastCrowd_letter_Intro
-    - Id: FastCrowd_letter_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Drag the correct Letters, one by one
-      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0623\u062D\u0631\u0641 \u0627\u0644\u0635\u062D\u064A\u062D\u0629
-        \u0648\u0627\u062D\u062F\u0627\u064B \u062A\u0644\u0648 \u0627\u0644\u0622\u062E\u0631"
-      AudioFile: FastCrowd_letter_Tuto
-    - Id: FastCrowd_spelling_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: What a mess! Let's put the Letters in the right order to form a Word
-      Arabic: "\u064A\u0627 \u0644\u0647\u0627 \u0645\u0646 \u0641\u0648\u0636\u0649!
-        \u0644\u0646\u0636\u0639 \u0647\u0630\u0647 \u0627\u0644\u062D\u0631\u0648\u0641
-        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D
-        \u0644\u062A\u0643\u0648\u064A\u0646 \u0643\u0644\u0645\u0629"
-      AudioFile: FastCrowd_spelling_Intro
-    - Id: FastCrowd_spelling_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Drag the correct Letters, one by one
-      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0623\u062D\u0631\u0641 \u0627\u0644\u0635\u062D\u064A\u062D\u0629
-        \u0648\u0627\u062D\u062F\u0627\u064B \u062A\u0644\u0648 \u0627\u0644\u0622\u062E\u0631"
-      AudioFile: FastCrowd_spelling_Tuto
-    - Id: FastCrowd_words_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: What a mess! Let's put the Words in the right order...
-      Arabic: "\u064A\u0627 \u0644\u0647\u0627 \u0645\u0646 \u0641\u0648\u0636\u0649!
-        \u0644\u0646\u0636\u0639 \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
-        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
-      AudioFile: FastCrowd_words_Intro
-    - Id: FastCrowd_words_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Drag the correct Words one by one
-      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629 \u0648\u0627\u062D\u062F\u0629
-        \u062A\u0644\u0648 \u0627\u0644\u0623\u062E\u0631\u0649"
-      AudioFile: FastCrowd_words_Tuto
-    - Id: TakeMeHome_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: This LETTER comes from somewhere in your mouth! Bring it back home!
-      Arabic: "\u0643\u0644 \u062D\u0631\u0641 \u064A\u062E\u0631\u062C \u0645\u0646
-        \u0645\u0643\u0627\u0646 \u0645\u062D\u062F\u062F \u0641\u064A \u0641\u0645\u0643!
-        \u062D\u0627\u0648\u0644 \u0627\u064A\u062C\u0627\u062F \u0627\u0644\u0645\u062F\u062E\u0644
-        \u0627\u0644\u0645\u062D\u062F\u062F \u0644\u0627\u0631\u062C\u0627\u0639
-        \u0627\u0644\u062D\u0631\u0641 \u0627\u0644\u0649 \u0628\u064A\u062A\u0647"
-      AudioFile: TakeMeHome_Intro
-    - Id: TakeMeHome_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Say aloud the letter you heard, to understand what part of your mouth
-        is involved. Then drag the LETTER to the correct pipe.
-      Arabic: "\u0627\u0646\u0637\u064F\u0642\u0650 \u0627\u0644\u062D\u0631\u0641\u064E
-        \u0627\u0644\u0630\u064A \u062A\u0639\u0644\u0645\u062A\u064E\u0647 \u0628\u0635\u0648\u062A\u064D
-        \u0639\u0627\u0644\u064D \u0644\u062A\u0639\u0631\u0641\u064E \u0623\u064A\u0651\u064E
-        \u062C\u0632\u0621\u064D \u0645\u0646 \u0641\u0645\u0650\u0643 \u064A\u062A\u062D\u0631\u0643.
-        \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u062D\u0631\u0641
-        \u0646\u062D\u0648 \u0627\u0644\u0623\u0646\u0628\u0648\u0628\u0629 \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: TakeMeHome_Tuto
-    - Id: TakeMeHome_Tuto_Reminder
-      Character: "\u0630"
-      Area: minigame
-      When: 
-      Context: Tutorial Reminder
-      English: Try again saying the letter aloud and pay attention to your mouth movement
-      Arabic: "\u062C\u0631\u0651\u0650\u0628 \u0645\u0631\u0629\u064B \u0623\u062E\u0631\u0649
-        \u0646\u0637\u0642\u064E \u0627\u0644\u062D\u0631\u0641 \u0628\u0635\u0648\u062A
-        \u0639\u0627\u0644\u064D\u060C \u0648\u0627\u0646\u062A\u0628\u0647 \u0625\u0644\u0649
-        \u062D\u0631\u0643\u0629 \u0641\u0645\u0643"
-      AudioFile: TakeMeHome_Tuto_Reminder
-    - Id: HideSeek_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: The LETTERS hide and you have to find them!
-      Arabic: "\u0627\u0644\u0627\u062D\u0631\u0641 \u0633\u062A\u062E\u062A\u0628\u0649\u0621
-        \u0648 \u0639\u0644\u064A\u0643 \u0645\u062D\u0627\u0648\u0644\u0629 \u0627\u064A\u062C\u0627\u062F\u0647\u0627"
-      AudioFile: HideSeek_Intro
-    - Id: HideSeek_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Listen carefully, touch a bush to make a LETTER come out, then touch
-        the correct LETTER.
-      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646\u060C
-        \u062B\u0645 \u0627\u0644\u0645\u0633 \u0634\u062C\u064A\u0631\u0629 \u0644\u064A\u062E\u0631\u062C
-        \u0645\u0646\u0647\u0627 \u062D\u0631\u0641\u060C \u062B\u0645 \u0627\u0644\u0645\u0633
-        \u0627\u0644\u062D\u0631\u0641 \u0627\u0644\u0635\u062D\u064A\u062D"
-      AudioFile: HideSeek_Tuto
-    - Id: MakeFriends_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: The WORDS are arguing! Show them they have something in common!
-      Arabic: "\u0647\u0646\u0627\u0643 \u062E\u0644\u0627\u0641 \u062D\u0627\u062F
-        \u0628\u064A\u0646 \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A!
-        \u062D\u0627\u0648\u0644 \u0627\u0644\u062A\u0648\u0641\u064A\u0642 \u0628\u064A\u0646\u0647\u0627
-        \u0645\u0646 \u062E\u0644\u0627\u0644 \u0627\u0638\u0647\u0627\u0631 \u0627\u0644\u0627\u0645\u0648\u0631
-        \u0627\u0644\u0645\u0634\u062A\u0631\u0643\u0629"
-      AudioFile: MakeFriends_Intro
-    - Id: MakeFriends_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: These WORDS share one letter. Drag it to the center of the screen.
-      Arabic: "\u062A\u062A\u0634\u0627\u0631\u0643\u064F \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u064F
-        \u0641\u064A \u062D\u0631\u0641\u064D \u0648\u0627\u062D\u062F. \u0627\u0633\u062D\u0628\u0652\u0647
-        \u0625\u0644\u0649 \u0645\u0646\u062A\u0635\u0641 \u0627\u0644\u0634\u0627\u0634\u0629."
-      AudioFile: MakeFriends_Tuto
+      English: I trust you. You will complete your mission soon!
+      Arabic: "\u0627\u0646\u0627 \u0648\u0627\u062B\u0642 \u0645\u0646 \u0627\u0646\u0643
+        \u0633\u062A\u0646\u0647\u064A \u0627\u0644\u0645\u0647\u0645\u0629 \u0642\u0631\u064A\u0628\u0627\u064B"
+      AudioFile: Map_Welcome_3
     - Id: Maze_Intro
       Character: Keeper
       Area: minigame
@@ -1292,6 +2161,14 @@ MonoBehaviour:
         \u0627\u0644\u062D\u0631\u0641 \u0644\u0644\u0648\u0635\u0648\u0644 \u0627\u0644\u0649
         \u062E\u0637 \u0627\u0644\u0646\u0647\u0627\u064A\u0629"
       AudioFile: Maze_Intro
+    - Id: Maze_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Rocket Race!
+      Arabic: "\u0633\u0628\u0627\u0642\u064F \u0627\u0644\u0635\u0627\u0631\u0648\u062E!"
+      AudioFile: Maze_Title
     - Id: Maze_Tuto
       Character: Ibtissam
       Area: minigame
@@ -1315,15 +2192,6 @@ MonoBehaviour:
         \u0627\u0636\u0627\u0639\u0629 \u062D\u0631\u0641\u060C \u0633\u0627\u0639\u062F\u0647\u0627
         \u0644\u062A\u0633\u062A\u0631\u062F\u0647"
       AudioFile: MissingLetter_Intro
-    - Id: MissingLetter_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Spot the missing LETTER and touch it.
-      Arabic: "\u0627\u0639\u062B\u0631\u0652 \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641\u0650
-        \u0627\u0644\u0646\u0627\u0642\u0635\u0650 \u0648\u0627\u0644\u0645\u0633\u0652\u0647."
-      AudioFile: MissingLetter_Tuto
     - Id: MissingLetter_phrases_Intro
       Character: Keeper
       Area: minigame
@@ -1334,6 +2202,14 @@ MonoBehaviour:
         \u0627\u0636\u0627\u0639\u0629 \u0643\u0644\u0645\u0629\u060C \u0633\u0627\u0639\u062F\u0647\u0627
         \u0644\u062A\u0633\u062A\u0631\u062F\u0647\u0627"
       AudioFile: MissingLetter_phrases_Intro
+    - Id: MissingLetter_phrases_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Missing Word!
+      Arabic: "\u0627\u0644\u0643\u0644\u0645\u0629\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F\u0629!"
+      AudioFile: MissingLetter_phrases_Title
     - Id: MissingLetter_phrases_Tuto
       Character: Ibtissam
       Area: minigame
@@ -1343,6 +2219,23 @@ MonoBehaviour:
       Arabic: "\u0627\u0639\u062B\u0631\u0652 \u0639\u0644\u0649 \u0627\u0644\u0643\u0644\u0645\u0629
         \u0627\u0644\u0646\u0627\u0642\u0635\u0629 \u0648\u0627\u0644\u0645\u0633\u0652\u0647\u0627."
       AudioFile: MissingLetter_phrases_Tuto
+    - Id: MissingLetter_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Missing Letter!
+      Arabic: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
+      AudioFile: MissingLetter_Title
+    - Id: MissingLetter_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Spot the missing LETTER and touch it.
+      Arabic: "\u0627\u0639\u062B\u0631\u0652 \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641\u0650
+        \u0627\u0644\u0646\u0627\u0642\u0635\u0650 \u0648\u0627\u0644\u0645\u0633\u0652\u0647."
+      AudioFile: MissingLetter_Tuto
     - Id: MixedLetters_alphabet_Intro
       Character: Keeper
       Area: minigame
@@ -1353,6 +2246,14 @@ MonoBehaviour:
         \u0627\u0644\u0645\u0628\u0639\u062B\u0631\u0629\u060C \u0627\u062C\u0645\u0639\u0647\u0627
         \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
       AudioFile: MixedLetters_alphabet_Intro
+    - Id: MixedLetters_alphabet_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Letter Salad!
+      Arabic: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
+      AudioFile: MixedLetters_alphabet_Title
     - Id: MixedLetters_alphabet_Tuto
       Character: Ibtissam
       Area: minigame
@@ -1379,6 +2280,14 @@ MonoBehaviour:
         \u0644\u062A\u0635\u0628\u062D \u0643\u0644\u0645\u0629 \u0648\u0627\u062D\u062F\u0629
         \u0645\u0646 \u062C\u062F\u064A\u062F"
       AudioFile: MixedLetters_spelling_Intro
+    - Id: MixedLetters_spelling_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Word Salad!
+      Arabic: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      AudioFile: MixedLetters_spelling_Title
     - Id: MixedLetters_spelling_Tuto
       Character: Ibtissam
       Area: minigame
@@ -1393,464 +2302,6 @@ MonoBehaviour:
         \u0628\u0634\u0643\u0644\u064D \u0635\u062D\u064A\u062D \u0643\u064A \u062A\u0643\u062A\u0645\u0644\u064E
         \u0627\u0644\u0643\u0644\u0645\u0629."
       AudioFile: MixedLetters_spelling_Tuto
-    - Id: ReadingGame_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: This SENTENCE hides a mistery... solve it!
-      Arabic: "\u0644\u063A\u0632 \u064A\u062E\u062A\u0628\u0649\u0621 \u0641\u064A
-        \u0647\u0630\u0647 \u0627\u0644\u062C\u0645\u0644\u0629\u060C \u062D\u0627\u0648\u0644
-        \u0627\u0643\u062A\u0634\u0627\u0641\u0647!"
-      AudioFile: ReadingGame_Intro
-    - Id: ReadingGame_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Drag the lens with your finger, read the SENTENCE quickly and then
-        answer correctly
-      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0639\u062F\u0633\u0629 \u0628\u0625\u0635\u0628\u0639\u0643
-        \u0648\u0627\u0642\u0631\u0623 \u0627\u0644\u062C\u0645\u0644\u0629 \u0628\u0633\u0631\u0639\u0629\u060C
-        \u062B\u0645 \u0623\u062C\u0650\u0628 \u0628\u0634\u0643\u0644\u064D \u0635\u062D\u064A\u062D"
-      AudioFile: ReadingGame_Tuto
-    - Id: Scanner_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: The WORD is about to travel and she needs her suitcase.
-      Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0629 \u0641\u064A
-        \u0635\u062F\u062F \u0627\u0644\u0633\u0641\u0631 \u0648 \u0647\u064A \u0628\u062D\u0627\u062C\u0629
-        \u0627\u0644\u0649 \u062D\u0642\u0627\u0626\u0628\u0647\u0627"
-      AudioFile: Scanner_Intro
-    - Id: Scanner_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Drag the scanner over the WORD to make her speak. Then give her the
-        suitcase she told you about.
-      Arabic: "\u0627\u0633\u062D\u0628 \u062C\u0647\u0627\u0632\u064E \u0627\u0644\u0645\u0633\u062D\u0650
-        \u0641\u0648\u0642\u064E \u0627\u0644\u0643\u0644\u0645\u0629\u0650 \u0644\u062A\u062C\u0639\u0644\u064E\u0647\u0627
-        \u062A\u062A\u0643\u0644\u0645\u060C \u062B\u0645 \u0623\u0639\u0637\u0650\u0647\u0627
-        \u0627\u0644\u062D\u0642\u064A\u0628\u0629\u064E \u0627\u0644\u062A\u064A
-        \u0623\u062E\u0628\u0631\u062A\u0652\u0643 \u0639\u0646\u0647\u0627."
-      AudioFile: Scanner_Tuto
-    - Id: Scanner_phrase_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: These WORDS are about to travel and they need their suitcases.
-      Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A \u0641\u064A
-        \u0635\u062F\u062F \u0627\u0644\u0633\u0641\u0631 \u0648 \u0647\u064A \u0628\u062D\u0627\u062C\u0629
-        \u0627\u0644\u0649 \u062D\u0642\u0627\u0626\u0628\u0647\u0627"
-      AudioFile: Scanner_phrase_Intro
-    - Id: Scanner_phrase_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Drag the scanner over the WORDS to make them speak. Then give the correct
-        suitecase to each WORD.
-      Arabic: "\u0627\u0633\u062D\u0628 \u062C\u0647\u0627\u0632\u064E \u0627\u0644\u0645\u0633\u062D\u0650
-        \u0641\u0648\u0642\u064E \u0627\u0644\u0643\u0644\u0645\u0627\u062A \u0644\u062A\u062C\u0639\u0644\u064E\u0647\u0627
-        \u062A\u062A\u0643\u0644\u0645\u060C \u062B\u0645 \u0623\u0639\u0637\u0650
-        \u0627\u0644\u062D\u0642\u064A\u0628\u0629\u064E \u0627\u0644\u0635\u062D\u064A\u062D\u0629
-        \u0644\u0643\u0644 \u0643\u0644\u0645\u0629."
-      AudioFile: Scanner_phrase_Tuto
-    - Id: SickLetters_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: Too many signs! Collect the wrong ones to reach the maximum weight.
-      Arabic: "\u0647\u0646\u0627\u0643 \u062D\u0631\u0643\u0627\u062A\u064C \u0643\u062B\u064A\u0631\u0629\u064C
-        \u062E\u0627\u0637\u0626\u0629! \u0627\u062C\u0645\u0639\u0652 \u0623\u0643\u0628\u0631\u064E
-        \u0648\u0632\u0646\u064D \u0645\u0645\u0643\u0646\u064D \u0645\u0646 \u062A\u0644\u0643
-        \u0627\u0644\u062D\u0631\u0643\u0627\u062A\u0650 \u0627\u0644\u062E\u0627\u0637\u0626\u0629!"
-      AudioFile: SickLetters_Intro
-    - Id: SickLetters_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Drag the wrong signs out of the LETTER and drop them inside the vase.
-      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u062D\u0631\u0643\u0627\u062A
-        \u0648 \u0627\u0644\u0646\u0642\u0627\u0637 \u0627\u0644\u062E\u0637\u0623
-        \u062E\u0627\u0631\u062C \u0627\u0644\u062D\u0631\u0641 \u062B\u0645 \u0636\u0639\u0647\u0645
-        \u062F\u0627\u062E\u0644 \u0627\u0644\u0645\u0632\u0647\u0631\u064A\u0629."
-      AudioFile: SickLetters_Tuto
-    - Id: ThrowBalls_letters_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: Slingshot time! Hit the right targets!
-      Arabic: "\u0647\u064A\u0627 \u0627\u0644\u0649 \u0627\u0644\u0646\u0642\u064A\u0641\u0629!
-        \u0639\u0644\u064A\u0643 \u0627\u0635\u0627\u0628\u0629 \u0627\u0644\u0627\u0647\u062F\u0627\u0641
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
-      AudioFile: ThrowBalls_letters_Intro
-    - Id: ThrowBalls_letters_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Did you hear that? Drag the ball down to charge the slingshot, and
-        hit the right LETTER.
-      Arabic: "\u0647\u0644 \u0633\u0645\u0639\u062A \u0647\u0630\u0627 \u0627\u0644\u0635\u0648\u062A\u061F
-        \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0631\u0629 \u0625\u0644\u0649
-        \u0627\u0644\u0623\u0633\u0641\u0644 \u0644\u062A\u0634\u062F \u0627\u0644\u0645\u0642\u0644\u0627\u0639
-        \u062B\u0645 \u0635\u064E\u0648\u064E\u0650\u0628 \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641
-        \u0627\u0644\u0635\u062D\u064A\u062D."
-      AudioFile: ThrowBalls_letters_Tuto
-    - Id: ThrowBalls_letterinword_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Did you hear that? Drag the ball down to charge the slingshot, and
-        hit the LETTERS in the right sequence.
-      Arabic: "\u0647\u0644 \u0633\u0645\u0639\u062A \u0647\u0630\u0627 \u0627\u0644\u0635\u0648\u062A\u061F
-        \u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0631\u0629 \u0625\u0644\u0649
-        \u0627\u0644\u0623\u0633\u0641\u0644 \u0644\u062A\u0634\u062F \u0627\u0644\u0645\u0642\u0644\u0627\u0639
-        \u062B\u0645 \u0635\u064E\u0648\u0651\u0650\u0628 \u0639\u0644\u0649 \u0627\u0644\u0623\u062D\u0631\u0641
-        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D."
-      AudioFile: ThrowBalls_letterinword_Tuto
-    - Id: ThrowBalls_words_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Did you hear that? Drag the ball down to charge the slingshot, and
-        hit the right IMAGE.
-      Arabic: "\u0647\u0644 \u0633\u0645\u0639\u062A \u0647\u0630\u0627 \u0627\u0644\u0635\u0648\u062A\u061F
-        \u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0631\u0629 \u0625\u0644\u0649
-        \u0627\u0644\u0623\u0633\u0641\u0644 \u0644\u062A\u0634\u062F \u0627\u0644\u0645\u0642\u0644\u0627\u0639
-        \u062B\u0645 \u0635\u064E\u0648\u064E\u0650\u0628 \u0639\u0644\u0649 \u0627\u0644\u0635\u0648\u0631\u0629
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: ThrowBalls_words_Tuto
-    - Id: Tobogan_letters_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: Let's see how tall you can build the tower!
-      Arabic: "\u0644\u0646\u0631\u0649 \u0643\u0645 \u0633\u064A\u0628\u0644\u063A
-        \u0637\u0648\u0644 \u0628\u0631\u062C \u0627\u0644\u062D\u0631\u0648\u0641!"
-      AudioFile: Tobogan_letters_Intro
-    - Id: Tobogan_letters_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Drag the WORD to the pipe that shows one of its letters
-      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0629 \u0646\u062D\u0648
-        \u0627\u0644\u0623\u0646\u0628\u0648\u0628 \u0627\u0644\u0630\u064A \u064A\u062D\u062A\u0648\u064A
-        \u0639\u0644\u0649 \u0623\u062D\u062F\u0650 \u0623\u062D\u0631\u0641\u0650\u0647\u0627"
-      AudioFile: Tobogan_letters_Tuto
-    - Id: Tobogan_words_Tuto_Word
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial (Moon & Sun consonants/words)
-      English: Listen carefully, then drag the WORD to the correct pipe
-      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646
-        \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0644\u0645\u0629\u064E
-        \u0646\u062D\u0648 \u0627\u0644\u0623\u0646\u0628\u0648\u0628 \u0644\u0635\u062D\u064A\u062D"
-      AudioFile: Tobogan_words_Tuto_Word
-    - Id: Tobogan_words_Tuto_Article
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial (Moon & Sun consonants/words)
-      English: Listen carefully, then drag the WORD to the correct pipe depending
-        on the pronunciation of the article, like "The Moon" or like "The Sun"
-      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646\u060C
-        \u062B\u0645 \u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0629
-        \u0646\u062D\u0648 \u0627\u0644\u0623\u0646\u0628\u0648\u0628\u0650 \u0627\u0644\u0635\u062D\u064A\u062D
-        \u0628\u0646\u0627\u0621\u064B \u0639\u0644\u0649 \u0646\u0637\u0642 \"\u0627\u0644
-        \u0627\u0644\u062A\u0639\u0631\u064A\u0641\". \u0647\u0644 \u062A\u064F\u0646\u0652\u0637\u064E\u0642\u064F
-        \u0645\u062B\u0644\u0645\u0627 \u062A\u064F\u0646\u0652\u0637\u064E\u0642\u064F
-        \u0641\u064A \"\u0627\u0644\u0634\u0651\u0645\u0633\" \u0623\u0645 \"\u0627\u0644\u0642\u0645\u0631\"\u061F"
-      AudioFile: Tobogan_words_Tuto_Article
-    - Id: Tobogan_words_Tuto_Letter
-      Character: 
-      Area: minigame
-      When: 
-      Context: Tutorial (Moon & Sun consonants/words)
-      English: Listen carefully, then drag the LETTER to the correct pipe
-      Arabic: 
-      AudioFile: Tobogan_words_Tuto_Letter
-    - Id: HideSeek_Words_Title
-      Character: Keeper
-      Area: minigame
-      When: At start
-      Context: Title
-      English: Hidden Words!
-      Arabic: "\u0627\u0644\u0643\u0644\u0645\u0627\u062A\u064F \u0627\u0644\u062E\u0641\u064A\u0629!"
-      AudioFile: HideSeek_Words_Title
-    - Id: HideSeek_Words_Intro
-      Character: Keeper
-      Area: minigame
-      When: At start
-      Context: Introduction
-      English: The Words hide and you have to find them!
-      Arabic: "\u0639\u0644\u064A\u0643 \u0627\u064A\u062C\u0627\u062F \u0627\u0644\u0643\u0644\u0645\u0627\u062A
-        \u0627\u0644\u0645\u062E\u062A\u0628\u0626\u0629"
-      AudioFile: HideSeek_Words_Intro
-    - Id: HideSeek_Words_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Listen carefully, touch a bush to make a Word come out, then touch
-        the correct Word.
-      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646\u060C
-        \u062B\u0645 \u0627\u0644\u0645\u0633 \u0634\u062C\u064A\u0631\u0629 \u0644\u062A\u062E\u0631\u062C\u064E
-        \u0645\u0646\u0647\u0627 \u0643\u0644\u0645\u0629\u060C \u062B\u0645 \u0627\u0644\u0645\u0633
-        \u0627\u0644\u0643\u0644\u0645\u0629\u064E \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: HideSeek_Words_Tuto
-    - Id: Diacritic_Song_Title
-      Character: Keeper
-      Area: minigame
-      When: At start
-      Context: Title
-      English: Diacritic Song
-      Arabic: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u062D\u0631\u0643\u0627\u062A"
-      AudioFile: Diacritic_Song_Title
-    - Id: Diacritic_Song_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: It's time to sing all the letters
-      Arabic: "\u062D\u0627\u0646 \u0648\u0642\u062A \u063A\u0646\u0627\u0621 \u0627\u0644\u062D\u0631\u0648\u0641"
-      AudioFile: Diacritic_Song_Intro
-    - Id: Balloons_words_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Balloons & Images!
-      Arabic: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0635\u0648\u0631!"
-      AudioFile: Balloons_words_Title
-    - Id: Balloons_spelling_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Balloons & the Hidden Word!
-      Arabic: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064F \u0648\u0627\u0644\u0643\u0644\u0645\u0629\u064F
-        \u0627\u0644\u062E\u0641\u064A\u0629!"
-      AudioFile: Balloons_spelling_Title
-    - Id: ColorTickle_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Color Tickle
-      Arabic: "\u062F\u063A\u062F\u063A\u0629\u064F \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
-      AudioFile: ColorTickle_Title
-    - Id: DancingDots_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Dancing Star!
-      Arabic: "\u0646\u062C\u0648\u0645\u064F \u0627\u0644\u0631\u0642\u0635!"
-      AudioFile: DancingDots_Title
-    - Id: Egg_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: The Egg!
-      Arabic: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
-      AudioFile: Egg_Title
-    - Id: FastCrowd_alphabet_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Alphabet Crowd!
-      Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
-      AudioFile: FastCrowd_alphabet_Title
-    - Id: FastCrowd_counting_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Number Crowd!
-      Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0631\u0642\u0627\u0645!"
-      AudioFile: FastCrowd_counting_Title
-    - Id: FastCrowd_letter_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Letter Crowd!
-      Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
-      AudioFile: FastCrowd_letter_Title
-    - Id: FastCrowd_spelling_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: 'Letter Crowd: Form a Word!'
-      Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641:
-        \u062A\u0643\u0648\u064A\u0646\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
-      AudioFile: FastCrowd_spelling_Title
-    - Id: FastCrowd_words_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Word Crowd!
-      Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
-      AudioFile: FastCrowd_words_Title
-    - Id: TakeMeHome_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Take Me Home!
-      Arabic: "\u062E\u0630\u0646\u064A \u0625\u0644\u0649 \u0627\u0644\u0628\u064A\u062A!"
-      AudioFile: TakeMeHome_Title
-    - Id: HideSeek_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Hidden Letters!
-      Arabic: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u062E\u0641\u064A\u0629!"
-      AudioFile: HideSeek_Title
-    - Id: MakeFriends_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Friendship Spark!
-      Arabic: "\u0634\u0631\u0627\u0631\u0629\u064F \u0627\u0644\u0635\u062F\u0627\u0642\u0629!"
-      AudioFile: MakeFriends_Title
-    - Id: Maze_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Rocket Race!
-      Arabic: "\u0633\u0628\u0627\u0642\u064F \u0627\u0644\u0635\u0627\u0631\u0648\u062E!"
-      AudioFile: Maze_Title
-    - Id: MissingLetter_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Missing Letter!
-      Arabic: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
-      AudioFile: MissingLetter_Title
-    - Id: MissingLetter_phrases_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Missing Word!
-      Arabic: "\u0627\u0644\u0643\u0644\u0645\u0629\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F\u0629!"
-      AudioFile: MissingLetter_phrases_Title
-    - Id: MixedLetters_alphabet_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Letter Salad!
-      Arabic: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
-      AudioFile: MixedLetters_alphabet_Title
-    - Id: MixedLetters_spelling_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Word Salad!
-      Arabic: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
-      AudioFile: MixedLetters_spelling_Title
-    - Id: ReadingGame_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Reading Discovery!
-      Arabic: "\u0627\u0642\u0631\u0623 \u0648\u0627\u0633\u062A\u0643\u0634\u0641!"
-      AudioFile: ReadingGame_Title
-    - Id: Scanner_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Word Scanner!
-      Arabic: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
-      AudioFile: Scanner_Title
-    - Id: Scanner_phrase_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Phrase Scanner!
-      Arabic: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0639\u0650\u0628\u0627\u0631\u0627\u062A!"
-      AudioFile: Scanner_phrase_Title
-    - Id: SickLetters_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Sick Letters!
-      Arabic: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u0645\u0631\u064A\u0636\u0629!"
-      AudioFile: SickLetters_Title
-    - Id: ThrowBalls_letters_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: 'SlingShot: letters hunt'
-      Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
-        \u0627\u0644\u062D\u0631\u0648\u0641!"
-      AudioFile: ThrowBalls_letters_Title
-    - Id: ThrowBalls_letterinword_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: 'SlingShot: Form a Word!'
-      Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
-        \u0627\u0644\u062D\u0631\u0648\u0641\u0650 \u0644\u062A\u0643\u0648\u064A\u0646
-        \u0627\u0644\u0643\u0644\u0645\u0629!"
-      AudioFile: ThrowBalls_letterinword_Title
-    - Id: ThrowBalls_words_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: 'SlingShot: Words!'
-      Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
-        \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
-      AudioFile: ThrowBalls_words_Title
-    - Id: Tobogan_letters_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: The Tower!
-      Arabic: "\u0628\u0631\u062C\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
-      AudioFile: Tobogan_letters_Title
-    - Id: Tobogan_words_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Sun & Moon Tower!
-      Arabic: "\u0623\u0628\u0631\u0627\u062C\u064F \u0627\u0644\u0634\u0645\u0633\u0650
-        \u0648 \u0627\u0644\u0642\u0645\u0631!"
-      AudioFile: Tobogan_words_Title
     - Id: Mood_Question_1
       Character: Keeper
       Area: mood
@@ -1878,6 +2329,35 @@ MonoBehaviour:
       Arabic: "\u0627\u0647\u0644\u0627 \u0628\u0643 \u0645\u0646 \u062C\u062F\u064A\u062F\u060C
         \u0643\u064A\u0641 \u0627\u0644\u0627\u0645\u0648\u0631\u061F"
       AudioFile: Mood_Question_3
+    - Id: ReadingGame_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: This SENTENCE hides a mistery... solve it!
+      Arabic: "\u0644\u063A\u0632 \u064A\u062E\u062A\u0628\u0649\u0621 \u0641\u064A
+        \u0647\u0630\u0647 \u0627\u0644\u062C\u0645\u0644\u0629\u060C \u062D\u0627\u0648\u0644
+        \u0627\u0643\u062A\u0634\u0627\u0641\u0647!"
+      AudioFile: ReadingGame_Intro
+    - Id: ReadingGame_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Reading Discovery!
+      Arabic: "\u0627\u0642\u0631\u0623 \u0648\u0627\u0633\u062A\u0643\u0634\u0641!"
+      AudioFile: ReadingGame_Title
+    - Id: ReadingGame_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Drag the lens with your finger, read the SENTENCE quickly and then
+        answer correctly
+      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0639\u062F\u0633\u0629 \u0628\u0625\u0635\u0628\u0639\u0643
+        \u0648\u0627\u0642\u0631\u0623 \u0627\u0644\u062C\u0645\u0644\u0629 \u0628\u0633\u0631\u0639\u0629\u060C
+        \u062B\u0645 \u0623\u062C\u0650\u0628 \u0628\u0634\u0643\u0644\u064D \u0635\u062D\u064A\u062D"
+      AudioFile: ReadingGame_Tuto
     - Id: Reward_0Star
       Character: Keeper
       Area: reward
@@ -2012,32 +2492,68 @@ MonoBehaviour:
         \u0628\u0627\u0645\u0643\u0627\u0646\u0643 \u0644\u0627\u0627\u0646 \u0645\u0628\u0627\u0634\u0631\u0629
         \u0627\u0644\u0644\u0639\u0628 \u0645\u0639 \u0639\u0646\u062A\u0648\u0631\u0629"
       AudioFile: Reward_Intro
-    - Id: SelectGame_Tuto_1
-      Character: Ibtissam
-      Area: selector
-      When: Always
-      Context: Tutorial finger/arrow animation
-      English: Swipe to pop the bubbles
-      Arabic: "\u0627\u0633\u062D\u0628 \u0644\u062A\u0641\u0642\u0639 \u0627\u0644\u0641\u0642\u0627\u0639\u0627\u062A"
-      AudioFile: SelectGame_Tuto_1
-    - Id: SelectGame_Tuto_2
-      Character: Ibtissam
-      Area: selector
+    - Id: Scanner_Intro
+      Character: Keeper
+      Area: minigame
       When: 
-      Context: 
-      English: Swipe to discover the games you are going to play
-      Arabic: "\u0627\u0633\u062D\u0628 \u0644\u062A\u0643\u062A\u0634\u0641 \u0627\u0644\u0623\u0644\u0639\u0627\u0628
-        \u0627\u0644\u062A\u064A \u0633\u062A\u0644\u0639\u0628\u0647\u0627"
-      AudioFile: SelectGame_Tuto_2
-    - Id: SelectGame_Tuto_3
-      Character: Ibtissam
-      Area: selector
+      Context: Introduction
+      English: The WORD is about to travel and she needs her suitcase.
+      Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0629 \u0641\u064A
+        \u0635\u062F\u062F \u0627\u0644\u0633\u0641\u0631 \u0648 \u0647\u064A \u0628\u062D\u0627\u062C\u0629
+        \u0627\u0644\u0649 \u062D\u0642\u0627\u0626\u0628\u0647\u0627"
+      AudioFile: Scanner_Intro
+    - Id: Scanner_phrase_Intro
+      Character: Keeper
+      Area: minigame
       When: 
-      Context: 
-      English: Touch the bubbles to make them explode
-      Arabic: "\u0627\u0644\u0645\u0633 \u0627\u0644\u0641\u0642\u0627\u0639\u0627\u062A
-        \u0644\u062A\u0641\u0642\u0639\u064E\u0647\u0627"
-      AudioFile: SelectGame_Tuto_3
+      Context: Introduction
+      English: These WORDS are about to travel and they need their suitcases.
+      Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A \u0641\u064A
+        \u0635\u062F\u062F \u0627\u0644\u0633\u0641\u0631 \u0648 \u0647\u064A \u0628\u062D\u0627\u062C\u0629
+        \u0627\u0644\u0649 \u062D\u0642\u0627\u0626\u0628\u0647\u0627"
+      AudioFile: Scanner_phrase_Intro
+    - Id: Scanner_phrase_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Phrase Scanner!
+      Arabic: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0639\u0650\u0628\u0627\u0631\u0627\u062A!"
+      AudioFile: Scanner_phrase_Title
+    - Id: Scanner_phrase_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Drag the scanner over the WORDS to make them speak. Then give the correct
+        suitecase to each WORD.
+      Arabic: "\u0627\u0633\u062D\u0628 \u062C\u0647\u0627\u0632\u064E \u0627\u0644\u0645\u0633\u062D\u0650
+        \u0641\u0648\u0642\u064E \u0627\u0644\u0643\u0644\u0645\u0627\u062A \u0644\u062A\u062C\u0639\u0644\u064E\u0647\u0627
+        \u062A\u062A\u0643\u0644\u0645\u060C \u062B\u0645 \u0623\u0639\u0637\u0650
+        \u0627\u0644\u062D\u0642\u064A\u0628\u0629\u064E \u0627\u0644\u0635\u062D\u064A\u062D\u0629
+        \u0644\u0643\u0644 \u0643\u0644\u0645\u0629."
+      AudioFile: Scanner_phrase_Tuto
+    - Id: Scanner_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Word Scanner!
+      Arabic: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      AudioFile: Scanner_Title
+    - Id: Scanner_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Drag the scanner over the WORD to make her speak. Then give her the
+        suitcase she told you about.
+      Arabic: "\u0627\u0633\u062D\u0628 \u062C\u0647\u0627\u0632\u064E \u0627\u0644\u0645\u0633\u062D\u0650
+        \u0641\u0648\u0642\u064E \u0627\u0644\u0643\u0644\u0645\u0629\u0650 \u0644\u062A\u062C\u0639\u0644\u064E\u0647\u0627
+        \u062A\u062A\u0643\u0644\u0645\u060C \u062B\u0645 \u0623\u0639\u0637\u0650\u0647\u0627
+        \u0627\u0644\u062D\u0642\u064A\u0628\u0629\u064E \u0627\u0644\u062A\u064A
+        \u0623\u062E\u0628\u0631\u062A\u0652\u0643 \u0639\u0646\u0647\u0627."
+      AudioFile: Scanner_Tuto
     - Id: SelectGame_Begin_1
       Character: Keeper
       Area: selector
@@ -2064,83 +2580,253 @@ MonoBehaviour:
       Arabic: "\u0647\u0630\u0627 \u0633\u064A\u0643\u0648\u0646 \u062A\u062D\u062F\u064A\u0627
         ..."
       AudioFile: SelectGame_Begin_3
-    - Id: AnturaSpace_Intro
-      Character: Keeper
-      Area: space
-      When: No UI
-      Context: Keeper explains you can interact with Antura
-      English: Here you play with Antura, try to touch him/her
-      Arabic: "\u0647\u0646\u0627 \u062A\u0644\u0639\u0628 \u0645\u0639 \u0639\u0646\u062A\u0648\u0631\u0629,
-        \u062D\u0627\u0648\u0644 \u0644\u0645\u0633\u0647"
-      AudioFile: AnturaSpace_Intro
-    - Id: AnturaSpace_Intro_Touch
-      Character: Keeper
-      Area: space
-      When: 
-      Context: After you touch Antura for the first time
-      English: You see? Antura is always willing to play with you
-      Arabic: "\u0623\u0631\u0623\u064A\u062A\u061F \u0639\u0646\u062A\u0648\u0631\u0629
-        \u062D\u0627\u0636\u0631 \u0644\u0644\u0639\u0628 \u062F\u0627\u0626\u0645\u0627\u064E\u064E"
-      AudioFile: AnturaSpace_Intro_Touch
-    - Id: AnturaSpace_Intro_Cookie
-      Character: Keeper
-      Area: space
-      When: Cookie button/counter appears
-      Context: Keeper explains you can throw cookies at Antura
-      English: Antura loves cookies!
-      Arabic: "\u0639\u0646\u062A\u0648\u0631\u0629 \u064A\u062D\u0628 \u0627\u0644\u0628\u0633\u0643\u0648\u064A\u062A"
-      AudioFile: AnturaSpace_Intro_Cookie
-    - Id: AnturaSpace_Tuto_Cookie_1
+    - Id: SelectGame_Tuto_1
       Character: Ibtissam
-      Area: space
-      When: 
-      Context: Tutorial
-      English: Press the COOKIE button to throw a cookie for Antura
-      Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0632\u0631\u0651\u0650
-        \u0627\u0644\u0643\u0639\u0643\u0629\u0650 \u0644\u062A\u0644\u0642\u064A\u064E
-        \u0643\u0639\u0643\u0629\u064B \u0644\u0639\u0646\u062A\u0648\u0631\u0629"
-      AudioFile: AnturaSpace_Tuto_Cookie_1
-    - Id: AnturaSpace_Tuto_Cookie_2
+      Area: selector
+      When: Always
+      Context: Tutorial finger/arrow animation
+      English: Swipe to pop the bubbles
+      Arabic: "\u0627\u0633\u062D\u0628 \u0644\u062A\u0641\u0642\u0639 \u0627\u0644\u0641\u0642\u0627\u0639\u0627\u062A"
+      AudioFile: SelectGame_Tuto_1
+    - Id: SelectGame_Tuto_2
       Character: Ibtissam
-      Area: space
+      Area: selector
       When: 
-      Context: Tutorial
-      English: You can also drag a cookie around before throwing it
-      Arabic: "\u064A\u0645\u0643\u0646\u0643 \u0643\u0630\u0644\u0643 \u0623\u0646\u0652
-        \u062A\u0642\u0648\u0645 \u0628\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0639\u0643\u0629\u0650
-        \u0639\u0628\u0631\u064E \u0627\u0644\u0634\u0627\u0634\u0629\u0650 \u0642\u0628\u0644
-        \u0631\u0645\u064A\u0647\u0627"
-      AudioFile: AnturaSpace_Tuto_Cookie_2
-    - Id: AnturaSpace_Tuto_Cookie_3
-      Character: Keeper
-      Area: space
-      When: 
-      Context: Tutorial
-      English: "Don\u2019t worry, the more you play the more cookies you will get!"
-      Arabic: "\u0644\u0627 \u062A\u0642\u0644\u0642. \u0643\u0644\u0645\u0627 \u0644\u0639\u0628\u062A\u064E
-        \u0623\u0643\u062B\u0631 \u0633\u062A\u062D\u0635\u0644\u064F \u0639\u0644\u0649
-        \u0643\u0639\u0643\u0627\u062A\u064D \u0623\u0643\u062B\u0631."
-      AudioFile: AnturaSpace_Tuto_Cookie_3
-    - Id: AnturaSpace_Custom_1
-      Character: Keeper
-      Area: space
-      When: Customization UI appears
-      Context: Keeper explains to customize Antura
-      English: You can customize Antura with all the Gifts I give you
-      Arabic: "\u0628\u0627\u0645\u0643\u0627\u0646\u0643 \u062A\u0639\u062F\u064A\u0644
-        \u0634\u0643\u0644 \u0639\u0646\u062A\u0648\u0631\u0629 \u0645\u0646 \u062E\u0644\u0627\u0644
-        \u0627\u0644\u0647\u062F\u0627\u064A\u0627 \u0627\u0644\u062A\u064A \u0627\u0639\u0637\u064A\u062A\u0643
-        \u0625\u064A\u0627\u0647\u0627"
-      AudioFile: AnturaSpace_Custom_1
-    - Id: AnturaSpace_Custom_2
+      Context: 
+      English: Swipe to discover the games you are going to play
+      Arabic: "\u0627\u0633\u062D\u0628 \u0644\u062A\u0643\u062A\u0634\u0641 \u0627\u0644\u0623\u0644\u0639\u0627\u0628
+        \u0627\u0644\u062A\u064A \u0633\u062A\u0644\u0639\u0628\u0647\u0627"
+      AudioFile: SelectGame_Tuto_2
+    - Id: SelectGame_Tuto_3
       Character: Ibtissam
-      Area: space
+      Area: selector
+      When: 
+      Context: 
+      English: Touch the bubbles to make them explode
+      Arabic: "\u0627\u0644\u0645\u0633 \u0627\u0644\u0641\u0642\u0627\u0639\u0627\u062A
+        \u0644\u062A\u0641\u0642\u0639\u064E\u0647\u0627"
+      AudioFile: SelectGame_Tuto_3
+    - Id: SickLetters_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: Too many signs! Collect the wrong ones to reach the maximum weight.
+      Arabic: "\u0647\u0646\u0627\u0643 \u062D\u0631\u0643\u0627\u062A\u064C \u0643\u062B\u064A\u0631\u0629\u064C
+        \u062E\u0627\u0637\u0626\u0629! \u0627\u062C\u0645\u0639\u0652 \u0623\u0643\u0628\u0631\u064E
+        \u0648\u0632\u0646\u064D \u0645\u0645\u0643\u0646\u064D \u0645\u0646 \u062A\u0644\u0643
+        \u0627\u0644\u062D\u0631\u0643\u0627\u062A\u0650 \u0627\u0644\u062E\u0627\u0637\u0626\u0629!"
+      AudioFile: SickLetters_Intro
+    - Id: SickLetters_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Sick Letters!
+      Arabic: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u0645\u0631\u064A\u0636\u0629!"
+      AudioFile: SickLetters_Title
+    - Id: SickLetters_Tuto
+      Character: Ibtissam
+      Area: minigame
       When: 
       Context: Tutorial
-      English: Press the ANTURA button to customize him/her
-      Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0632\u0631 \u0639\u0646\u062A\u0648\u0631\u0629
-        \u0644\u062A\u063A\u064A\u0631 \u0645\u0638\u0647\u0631\u0647"
-      AudioFile: AnturaSpace_Custom_2
+      English: Drag the wrong signs out of the LETTER and drop them inside the vase.
+      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u062D\u0631\u0643\u0627\u062A
+        \u0648 \u0627\u0644\u0646\u0642\u0627\u0637 \u0627\u0644\u062E\u0637\u0623
+        \u062E\u0627\u0631\u062C \u0627\u0644\u062D\u0631\u0641 \u062B\u0645 \u0636\u0639\u0647\u0645
+        \u062F\u0627\u062E\u0644 \u0627\u0644\u0645\u0632\u0647\u0631\u064A\u0629."
+      AudioFile: SickLetters_Tuto
+    - Id: TakeMeHome_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: This LETTER comes from somewhere in your mouth! Bring it back home!
+      Arabic: "\u0643\u0644 \u062D\u0631\u0641 \u064A\u062E\u0631\u062C \u0645\u0646
+        \u0645\u0643\u0627\u0646 \u0645\u062D\u062F\u062F \u0641\u064A \u0641\u0645\u0643!
+        \u062D\u0627\u0648\u0644 \u0627\u064A\u062C\u0627\u062F \u0627\u0644\u0645\u062F\u062E\u0644
+        \u0627\u0644\u0645\u062D\u062F\u062F \u0644\u0627\u0631\u062C\u0627\u0639
+        \u0627\u0644\u062D\u0631\u0641 \u0627\u0644\u0649 \u0628\u064A\u062A\u0647"
+      AudioFile: TakeMeHome_Intro
+    - Id: TakeMeHome_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Take Me Home!
+      Arabic: "\u062E\u0630\u0646\u064A \u0625\u0644\u0649 \u0627\u0644\u0628\u064A\u062A!"
+      AudioFile: TakeMeHome_Title
+    - Id: TakeMeHome_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Say aloud the letter you heard, to understand what part of your mouth
+        is involved. Then drag the LETTER to the correct pipe.
+      Arabic: "\u0627\u0646\u0637\u064F\u0642\u0650 \u0627\u0644\u062D\u0631\u0641\u064E
+        \u0627\u0644\u0630\u064A \u062A\u0639\u0644\u0645\u062A\u064E\u0647 \u0628\u0635\u0648\u062A\u064D
+        \u0639\u0627\u0644\u064D \u0644\u062A\u0639\u0631\u0641\u064E \u0623\u064A\u0651\u064E
+        \u062C\u0632\u0621\u064D \u0645\u0646 \u0641\u0645\u0650\u0643 \u064A\u062A\u062D\u0631\u0643.
+        \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u062D\u0631\u0641
+        \u0646\u062D\u0648 \u0627\u0644\u0623\u0646\u0628\u0648\u0628\u0629 \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
+      AudioFile: TakeMeHome_Tuto
+    - Id: TakeMeHome_Tuto_Reminder
+      Character: "\u0630"
+      Area: minigame
+      When: 
+      Context: Tutorial Reminder
+      English: Try again saying the letter aloud and pay attention to your mouth movement
+      Arabic: "\u062C\u0631\u0651\u0650\u0628 \u0645\u0631\u0629\u064B \u0623\u062E\u0631\u0649
+        \u0646\u0637\u0642\u064E \u0627\u0644\u062D\u0631\u0641 \u0628\u0635\u0648\u062A
+        \u0639\u0627\u0644\u064D\u060C \u0648\u0627\u0646\u062A\u0628\u0647 \u0625\u0644\u0649
+        \u062D\u0631\u0643\u0629 \u0641\u0645\u0643"
+      AudioFile: TakeMeHome_Tuto_Reminder
+    - Id: ThrowBalls_letterinword_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: 'SlingShot: Form a Word!'
+      Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
+        \u0627\u0644\u062D\u0631\u0648\u0641\u0650 \u0644\u062A\u0643\u0648\u064A\u0646
+        \u0627\u0644\u0643\u0644\u0645\u0629!"
+      AudioFile: ThrowBalls_letterinword_Title
+    - Id: ThrowBalls_letterinword_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Did you hear that? Drag the ball down to charge the slingshot, and
+        hit the LETTERS in the right sequence.
+      Arabic: "\u0647\u0644 \u0633\u0645\u0639\u062A \u0647\u0630\u0627 \u0627\u0644\u0635\u0648\u062A\u061F
+        \u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0631\u0629 \u0625\u0644\u0649
+        \u0627\u0644\u0623\u0633\u0641\u0644 \u0644\u062A\u0634\u062F \u0627\u0644\u0645\u0642\u0644\u0627\u0639
+        \u062B\u0645 \u0635\u064E\u0648\u0651\u0650\u0628 \u0639\u0644\u0649 \u0627\u0644\u0623\u062D\u0631\u0641
+        \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D."
+      AudioFile: ThrowBalls_letterinword_Tuto
+    - Id: ThrowBalls_letters_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: Slingshot time! Hit the right targets!
+      Arabic: "\u0647\u064A\u0627 \u0627\u0644\u0649 \u0627\u0644\u0646\u0642\u064A\u0641\u0629!
+        \u0639\u0644\u064A\u0643 \u0627\u0635\u0627\u0628\u0629 \u0627\u0644\u0627\u0647\u062F\u0627\u0641
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
+      AudioFile: ThrowBalls_letters_Intro
+    - Id: ThrowBalls_letters_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: 'SlingShot: letters hunt'
+      Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
+        \u0627\u0644\u062D\u0631\u0648\u0641!"
+      AudioFile: ThrowBalls_letters_Title
+    - Id: ThrowBalls_letters_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Did you hear that? Drag the ball down to charge the slingshot, and
+        hit the right LETTER.
+      Arabic: "\u0647\u0644 \u0633\u0645\u0639\u062A \u0647\u0630\u0627 \u0627\u0644\u0635\u0648\u062A\u061F
+        \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0631\u0629 \u0625\u0644\u0649
+        \u0627\u0644\u0623\u0633\u0641\u0644 \u0644\u062A\u0634\u062F \u0627\u0644\u0645\u0642\u0644\u0627\u0639
+        \u062B\u0645 \u0635\u064E\u0648\u064E\u0650\u0628 \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641
+        \u0627\u0644\u0635\u062D\u064A\u062D."
+      AudioFile: ThrowBalls_letters_Tuto
+    - Id: ThrowBalls_words_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: 'SlingShot: Words!'
+      Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
+        \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      AudioFile: ThrowBalls_words_Title
+    - Id: ThrowBalls_words_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Did you hear that? Drag the ball down to charge the slingshot, and
+        hit the right IMAGE.
+      Arabic: "\u0647\u0644 \u0633\u0645\u0639\u062A \u0647\u0630\u0627 \u0627\u0644\u0635\u0648\u062A\u061F
+        \u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0631\u0629 \u0625\u0644\u0649
+        \u0627\u0644\u0623\u0633\u0641\u0644 \u0644\u062A\u0634\u062F \u0627\u0644\u0645\u0642\u0644\u0627\u0639
+        \u062B\u0645 \u0635\u064E\u0648\u064E\u0650\u0628 \u0639\u0644\u0649 \u0627\u0644\u0635\u0648\u0631\u0629
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
+      AudioFile: ThrowBalls_words_Tuto
+    - Id: Tobogan_letters_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: Let's see how tall you can build the tower!
+      Arabic: "\u0644\u0646\u0631\u0649 \u0643\u0645 \u0633\u064A\u0628\u0644\u063A
+        \u0637\u0648\u0644 \u0628\u0631\u062C \u0627\u0644\u062D\u0631\u0648\u0641!"
+      AudioFile: Tobogan_letters_Intro
+    - Id: Tobogan_letters_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: The Tower!
+      Arabic: "\u0628\u0631\u062C\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
+      AudioFile: Tobogan_letters_Title
+    - Id: Tobogan_letters_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Drag the WORD to the pipe that shows one of its letters
+      Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0629 \u0646\u062D\u0648
+        \u0627\u0644\u0623\u0646\u0628\u0648\u0628 \u0627\u0644\u0630\u064A \u064A\u062D\u062A\u0648\u064A
+        \u0639\u0644\u0649 \u0623\u062D\u062F\u0650 \u0623\u062D\u0631\u0641\u0650\u0647\u0627"
+      AudioFile: Tobogan_letters_Tuto
+    - Id: Tobogan_words_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Sun & Moon Tower!
+      Arabic: "\u0623\u0628\u0631\u0627\u062C\u064F \u0627\u0644\u0634\u0645\u0633\u0650
+        \u0648 \u0627\u0644\u0642\u0645\u0631!"
+      AudioFile: Tobogan_words_Title
+    - Id: Tobogan_words_Tuto_Article
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial (Moon & Sun consonants/words)
+      English: Listen carefully, then drag the WORD to the correct pipe depending
+        on the pronunciation of the article, like "The Moon" or like "The Sun"
+      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646\u060C
+        \u062B\u0645 \u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0629
+        \u0646\u062D\u0648 \u0627\u0644\u0623\u0646\u0628\u0648\u0628\u0650 \u0627\u0644\u0635\u062D\u064A\u062D
+        \u0628\u0646\u0627\u0621\u064B \u0639\u0644\u0649 \u0646\u0637\u0642 \"\u0627\u0644
+        \u0627\u0644\u062A\u0639\u0631\u064A\u0641\". \u0647\u0644 \u062A\u064F\u0646\u0652\u0637\u064E\u0642\u064F
+        \u0645\u062B\u0644\u0645\u0627 \u062A\u064F\u0646\u0652\u0637\u064E\u0642\u064F
+        \u0641\u064A \"\u0627\u0644\u0634\u0651\u0645\u0633\" \u0623\u0645 \"\u0627\u0644\u0642\u0645\u0631\"\u061F"
+      AudioFile: Tobogan_words_Tuto_Article
+    - Id: Tobogan_words_Tuto_Letter
+      Character: 
+      Area: minigame
+      When: 
+      Context: Tutorial (Moon & Sun consonants/words)
+      English: Listen carefully, then drag the LETTER to the correct pipe
+      Arabic: 
+      AudioFile: Tobogan_words_Tuto_Letter
+    - Id: Tobogan_words_Tuto_Word
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial (Moon & Sun consonants/words)
+      English: Listen carefully, then drag the WORD to the correct pipe
+      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646
+        \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0644\u0645\u0629\u064E
+        \u0646\u062D\u0648 \u0627\u0644\u0623\u0646\u0628\u0648\u0628 \u0644\u0635\u062D\u064A\u062D"
+      AudioFile: Tobogan_words_Tuto_Word
     - Id: UI_All
       Character: UI
       Area: ui
@@ -2149,86 +2835,6 @@ MonoBehaviour:
       English: 
       Arabic: "\u062C\u0645\u064A\u0639"
       AudioFile: UI_All
-    - Id: UI_Letters
-      Character: UI
-      Area: ui
-      When: 
-      Context: 
-      English: 
-      Arabic: "\u062D\u0631\u0648\u0641"
-      AudioFile: UI_Letters
-    - Id: UI_Words
-      Character: UI
-      Area: ui
-      When: 
-      Context: 
-      English: 
-      Arabic: "\u0643\u0644\u0645\u0627\u062A"
-      AudioFile: UI_Words
-    - Id: UI_Phrases
-      Character: UI
-      Area: ui
-      When: 
-      Context: 
-      English: 
-      Arabic: "\u0627\u0644\u0639\u0628\u0627\u0631\u0627\u062A"
-      AudioFile: UI_Phrases
-    - Id: UI_Games
-      Character: UI
-      Area: ui
-      When: 
-      Context: 
-      English: 
-      Arabic: "\u0623\u0644\u0639\u0627\u0628"
-      AudioFile: UI_Games
-    - Id: UI_Symbols
-      Character: UI
-      Area: ui
-      When: 
-      Context: 
-      English: 
-      Arabic: "\u062D\u0631\u0641"
-      AudioFile: UI_Symbols
-    - Id: UI_Combinations
-      Character: UI
-      Area: ui
-      When: 
-      Context: 
-      English: 
-      Arabic: "\u062A\u0631\u0643\u064A\u0628\u0627\u062A"
-      AudioFile: UI_Combinations
-    - Id: UI_Special
-      Character: UI
-      Area: ui
-      When: 
-      Context: 
-      English: 
-      Arabic: "\u062E\u0627\u0635"
-      AudioFile: UI_Special
-    - Id: UI_Noun
-      Character: UI
-      Area: ui
-      When: 
-      Context: 
-      English: 
-      Arabic: "\u0646\u0648\u0646"
-      AudioFile: UI_Noun
-    - Id: UI_Preposition
-      Character: UI
-      Area: ui
-      When: 
-      Context: 
-      English: 
-      Arabic: "\u062D\u0631\u0641 \u062C\u0631"
-      AudioFile: UI_Preposition
-    - Id: UI_Verb
-      Character: UI
-      Area: ui
-      When: 
-      Context: 
-      English: 
-      Arabic: "\u0627\u0644\u0641\u0639\u0644"
-      AudioFile: UI_Verb
     - Id: UI_Animals
       Character: UI
       Area: ui
@@ -2261,6 +2867,14 @@ MonoBehaviour:
       English: 
       Arabic: "\u0627\u0644\u0623\u0644\u0648\u0627\u0646"
       AudioFile: UI_Colors
+    - Id: UI_Combinations
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u062A\u0631\u0643\u064A\u0628\u0627\u062A"
+      AudioFile: UI_Combinations
     - Id: UI_Directions
       Character: UI
       Area: ui
@@ -2301,6 +2915,14 @@ MonoBehaviour:
       English: 
       Arabic: "\u0623\u062B\u0627\u062B"
       AudioFile: UI_Furniture
+    - Id: UI_Games
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u0623\u0644\u0639\u0627\u0628"
+      AudioFile: UI_Games
     - Id: UI_Jobs
       Character: UI
       Area: ui
@@ -2309,6 +2931,14 @@ MonoBehaviour:
       English: 
       Arabic: "\u0648\u0638\u0627\u0626\u0641"
       AudioFile: UI_Jobs
+    - Id: UI_Letters
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u062D\u0631\u0648\u0641"
+      AudioFile: UI_Letters
     - Id: UI_Nature
       Character: UI
       Area: ui
@@ -2317,6 +2947,14 @@ MonoBehaviour:
       English: 
       Arabic: "\u0637\u0628\u064A\u0639\u0629"
       AudioFile: UI_Nature
+    - Id: UI_Noun
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u0646\u0648\u0646"
+      AudioFile: UI_Noun
     - Id: UI_Numbers
       Character: UI
       Area: ui
@@ -2333,6 +2971,14 @@ MonoBehaviour:
       English: 
       Arabic: "\u0627\u0644\u0646\u0627\u0633"
       AudioFile: UI_People
+    - Id: UI_Phrases
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u0627\u0644\u0639\u0628\u0627\u0631\u0627\u062A"
+      AudioFile: UI_Phrases
     - Id: UI_Places
       Character: UI
       Area: ui
@@ -2349,6 +2995,22 @@ MonoBehaviour:
       English: 
       Arabic: "\u0645\u0648\u0627\u0642\u0641"
       AudioFile: UI_Positions
+    - Id: UI_Preposition
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u062D\u0631\u0641 \u062C\u0631"
+      AudioFile: UI_Preposition
+    - Id: UI_Special
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u062E\u0627\u0635"
+      AudioFile: UI_Special
     - Id: UI_Sports
       Character: UI
       Area: ui
@@ -2357,6 +3019,14 @@ MonoBehaviour:
       English: 
       Arabic: "\u0631\u064A\u0627\u0636\u0627\u062A"
       AudioFile: UI_Sports
+    - Id: UI_Symbols
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u062D\u0631\u0641"
+      AudioFile: UI_Symbols
     - Id: UI_Things
       Character: UI
       Area: ui
@@ -2381,689 +3051,37 @@ MonoBehaviour:
       English: 
       Arabic: "\u0627\u0644\u0645\u0631\u0643\u0628\u0627\u062A"
       AudioFile: UI_Vehicles
-    - Id: LB_1_01
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The trio Alif
-      Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0625 - \u0623 - \u0627"
-      AudioFile: 
-    - Id: LB_1_02
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The trio baa, taa and thaa
-      Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0628 - \u062A - \u062B"
-      AudioFile: 
-    - Id: LB_1_03
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The trio jiim, haa and khaa
-      Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u062C - \u062D - \u062E"
-      AudioFile: 
-    - Id: LB_1_04
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The duo daal and dhaal
-      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u062F - \u0630"
-      AudioFile: 
-    - Id: LB_1_05
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The duo raa and zaay
-      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0631 - \u0632"
-      AudioFile: 
-    - Id: LB_1_06
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The duo siin and shiin
-      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0633 - \u0634"
-      AudioFile: 
-    - Id: LB_1_07
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The Saad and Daad
-      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0635 - \u0636"
-      AudioFile: 
-    - Id: LB_1_08
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The Taa and DHaa
-      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0637 - \u0638"
-      AudioFile: 
-    - Id: LB_1_09
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The duo ayn and ghayn
-      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0639 - \u063A"
-      AudioFile: 
-    - Id: LB_1_10
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The duo faa and qaaf
-      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0641 - \u0642"
-      AudioFile: 
-    - Id: LB_1_11
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The duo kaaf and laam
-      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0643 - \u0644"
-      AudioFile: 
-    - Id: LB_1_12
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The duo miim and nuun
-      Arabic: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0645 - \u0646"
-      AudioFile: 
-    - Id: LB_1_13
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The trio haa, waaw and yaa
-      Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0647 - \u0648 - \u064A"
-      AudioFile: 
-    - Id: LB_1_14
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The vowels alif, waaw and yaa
-      Arabic: "\u062D\u0631\u0648\u0641 \u0627\u0644\u0639\u0644\u0629 \u0623 - \u0648
-        - \u064A"
-      AudioFile: 
-    - Id: LB_2_01
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of alif
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0623\u0644\u0641"
-      AudioFile: 
-    - Id: LB_2_02
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of baa
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0628\u0627\u0621"
-      AudioFile: 
-    - Id: LB_2_03
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of taa
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062A\u0627\u0621"
-      AudioFile: 
-    - Id: LB_2_04
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of thaa
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062B\u0627\u0621"
-      AudioFile: 
-    - Id: LB_2_05
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of jiim
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062C\u064A\u0645"
-      AudioFile: 
-    - Id: LB_2_06
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of haa
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062D\u0627\u0621"
-      AudioFile: 
-    - Id: LB_2_07
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of khaa
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062E\u0627\u0621"
-      AudioFile: 
-    - Id: LB_2_08
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of daal
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062F\u0627\u0644"
-      AudioFile: 
-    - Id: LB_2_09
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of dhaal
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0630\u0627\u0644"
-      AudioFile: 
-    - Id: LB_2_10
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of raa
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0631\u0627\u0621"
-      AudioFile: 
-    - Id: LB_2_11
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of zay
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0632\u0627\u064A"
-      AudioFile: 
-    - Id: LB_2_12
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of siin
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0633\u064A\u0646"
-      AudioFile: 
-    - Id: LB_2_13
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of shiin
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0634\u064A\u0646"
-      AudioFile: 
-    - Id: LB_2_14
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of Saad
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0635\u0627\u062F"
-      AudioFile: 
-    - Id: LB_3_01
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of Daad
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0636\u0627\u062F"
-      AudioFile: 
-    - Id: LB_3_02
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of Taa
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0637\u0627\u0621"
-      AudioFile: 
-    - Id: LB_3_03
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of DHaa
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0638\u0627\u0621"
-      AudioFile: 
-    - Id: LB_3_04
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of ayn
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0639\u064A\u0646"
-      AudioFile: 
-    - Id: LB_3_05
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of ghayn
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u063A\u064A\u0646"
-      AudioFile: 
-    - Id: LB_3_06
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of faa
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0641\u0627\u0621"
-      AudioFile: 
-    - Id: LB_3_07
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of qaaf
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0642\u0627\u0641"
-      AudioFile: 
-    - Id: LB_3_08
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of kaaf
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0643\u0627\u0641"
-      AudioFile: 
-    - Id: LB_3_09
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of laam
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0644\u0627\u0645"
-      AudioFile: 
-    - Id: LB_3_10
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of miim
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0645\u064A\u0645"
-      AudioFile: 
-    - Id: LB_3_11
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of nuun
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0646\u0648\u0646"
-      AudioFile: 
-    - Id: LB_3_12
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of haa
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0647\u0627\u0621"
-      AudioFile: 
-    - Id: LB_3_13
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of waaw
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0648\u0627\u0648"
-      AudioFile: 
-    - Id: LB_3_14
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The shapes of yaa
-      Arabic: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u064A\u0627\u0621"
-      AudioFile: 
-    - Id: LB_4_01
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The symbol Fathah
-      Arabic: "\u0627\u0644\u0641\u062A\u062D\u0629"
-      AudioFile: 
-    - Id: LB_4_02
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The symbol Dammah
-      Arabic: "\u0627\u0644\u0636\u0645\u0629"
-      AudioFile: 
-    - Id: LB_4_03
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The symbol Kasrah
-      Arabic: "\u0627\u0644\u0643\u0633\u0631\u0629"
-      AudioFile: 
-    - Id: LB_4_04
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: Symbols and Sukun
-      Arabic: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0648\u0627\u0644\u0633\u0643\u0648\u0646"
-      AudioFile: 
-    - Id: LB_4_05
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: the double Fathah
-      Arabic: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0641\u062A\u062D"
-      AudioFile: 
-    - Id: LB_4_06
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: the double Dammah
-      Arabic: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0636\u0645"
-      AudioFile: 
-    - Id: LB_4_07
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: the double Kasrah
-      Arabic: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0643\u0633\u0631"
-      AudioFile: 
-    - Id: LB_4_08
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: single and double symbols
-      Arabic: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0648\u062D\u0631\u0643\u0627\u062A
-        \u0627\u0644\u062A\u0646\u0648\u064A\u0646"
-      AudioFile: 
-    - Id: LB_4_09
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: Hamza variations
-      Arabic: "\u0623\u0646\u0648\u0627\u0639 \u0627\u0644\u0647\u0645\u0632\u0629"
-      AudioFile: 
-    - Id: LB_4_10
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The diphthong waaw
-      Arabic: "\u0648\u0627\u0648 \u0627\u0644\u0625\u062F\u063A\u0627\u0645"
-      AudioFile: 
-    - Id: LB_4_11
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The diphthong yaa
-      Arabic: "\u064A\u0627\u0621 \u0627\u0644\u0625\u062F\u063A\u0627\u0645"
-      AudioFile: 
-    - Id: LB_4_12
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: 'Words: Verbs'
-      Arabic: "\u0627\u0644\u0623\u0641\u0639\u0627\u0644"
-      AudioFile: 
-    - Id: LB_4_13
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: 'Words: Places'
-      Arabic: "\u0627\u0644\u0623\u0645\u0627\u0643\u0646"
-      AudioFile: 
-    - Id: LB_4_14
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: 'Words: grains food'
-      Arabic: "\u0627\u0644\u0623\u0637\u0639\u0645\u0629 (\u0627\u0644\u062D\u0628\u0648\u0628)"
-      AudioFile: 
-    - Id: LB_4_15
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: 'Words: Furniture'
-      Arabic: "\u0627\u0644\u0645\u0641\u0631\u0648\u0634\u0627\u062A"
-      AudioFile: 
-    - Id: LB_5_01
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: the alif maqSura
-      Arabic: "\u0627\u0644\u0623\u0644\u0641 \u0627\u0644\u0645\u0642\u0635\u0648\u0631\u0629"
-      AudioFile: 
-    - Id: LB_5_02
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: lam-alif combination
-      Arabic: "\u0644\u0627"
-      AudioFile: 
-    - Id: LB_5_03
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: the madd symbol
-      Arabic: "\u0627\u0644\u0645\u062F"
-      AudioFile: 
-    - Id: LB_5_04
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The 3 diacritic signs
-      Arabic: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A"
-      AudioFile: 
-    - Id: LB_5_05
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The 3 double diacritic signs
-      Arabic: "\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062A\u0646\u0648\u064A\u0646"
-      AudioFile: 
-    - Id: LB_5_06
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: the shadda symbol
-      Arabic: "\u0627\u0644\u0634\u062F\u0629"
-      AudioFile: 
-    - Id: LB_5_07
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: 'Words: plurals'
-      Arabic: "\u0627\u0644\u0645\u0641\u0631\u062F \u0648\u0627\u0644\u0645\u062B\u0646\u0649
-        \u0648\u0627\u0644\u062C\u0645\u0639"
-      AudioFile: 
-    - Id: LB_5_08
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: 'words: professions'
-      Arabic: "\u0627\u0644\u0645\u0647\u0646"
-      AudioFile: 
-    - Id: LB_5_09
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: 'words: nature'
-      Arabic: "\u0627\u0644\u0637\u0628\u064A\u0639\u0629"
-      AudioFile: 
-    - Id: LB_5_10
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: the article "al"
-      Arabic: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
-      AudioFile: 
-    - Id: LB_5_11
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: sun and moon consonants
-      Arabic: "\u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0634\u0645\u0633\u064A\u0629
-        \u0648\u0627\u0644\u0642\u0645\u0631\u064A\u0629"
-      AudioFile: 
-    - Id: LB_5_12
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: Sports
-      Arabic: "\u0627\u0644\u0631\u064A\u0627\u0636\u0629"
-      AudioFile: 
-    - Id: LB_5_13
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: 'Adjectives: feelings'
-      Arabic: "\u0635\u0641\u0627\u062A \u0627\u0644\u0645\u0634\u0627\u0639\u0631"
-      AudioFile: 
-    - Id: LB_6_01
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: Greetings
-      Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u062D\u064A\u0629"
-      AudioFile: 
-    - Id: LB_6_02
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: Hello phrases
-      Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u0631\u062D\u064A\u0628"
-      AudioFile: 
-    - Id: LB_6_03
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: How are you phrases
-      Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u0633\u0624\u0627\u0644
-        \u0639\u0646 \u0627\u0644\u062D\u0627\u0644"
-      AudioFile: 
-    - Id: LB_6_04
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: 'Adjectives: colors'
-      Arabic: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
-      AudioFile: 
-    - Id: LB_6_05
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: nature adjectives
-      Arabic: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0628\u064A\u0639\u0629"
-      AudioFile: 
-    - Id: LB_6_06
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: weather adjectives
-      Arabic: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0642\u0633"
-      AudioFile: 
-    - Id: LB_6_07
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: cardinal numbers
-      Arabic: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u0631\u0626\u064A\u0633\u064A\u0629"
-      AudioFile: 
-    - Id: LB_6_08
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: ordinal numbers
-      Arabic: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u064A\u0629"
-      AudioFile: 
-    - Id: LB_6_09
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: Time adverbs
-      Arabic: "\u0638\u0631\u0648\u0641 \u0627\u0644\u0632\u0645\u0627\u0646"
-      AudioFile: 
-    - Id: LB_6_10
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: Days of the week
-      Arabic: "\u0623\u064A\u0627\u0645 \u0627\u0644\u0623\u0633\u0628\u0648\u0639"
-      AudioFile: 
-    - Id: LB_6_11
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: The months
-      Arabic: "\u0627\u0644\u0623\u0634\u0647\u0631"
-      AudioFile: 
-    - Id: LB_6_12
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: the years in numbers
-      Arabic: "\u0627\u0644\u0633\u0646\u0629 \u0628\u0627\u0644\u0623\u0631\u0642\u0627\u0645"
-      AudioFile: 
-    - Id: LB_6_13
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: faminine and masculine nouns
-      Arabic: "\u0627\u0644\u0623\u0633\u0645\u0627\u0621 \u0627\u0644\u0645\u0630\u0643\u0631\u0629
-        \u0648\u0627\u0644\u0645\u0624\u0646\u062B\u0629"
-      AudioFile: 
-    - Id: LB_6_14
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: the article "al"
-      Arabic: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
-      AudioFile: 
-    - Id: LB_6_15
-      Character: keeper
-      Area: LB
-      When: 
-      Context: 
-      English: Some phrases
-      Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A \u0628\u0633\u064A\u0637\u0629"
-      AudioFile: 
+    - Id: UI_Verb
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u0627\u0644\u0641\u0639\u0644"
+      AudioFile: UI_Verb
+    - Id: UI_Words
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u0643\u0644\u0645\u0627\u062A"
+      AudioFile: UI_Words
+    - Id: ThrowBalls_Extra_Title
+      Character: Keeper
+      Area: 
+      When: 
+      Context: 'SlingShot: Letter in Word!'
+      English: 
+      Arabic: "\u0627\u0644\u0645\u0642\u0644\u0627\u0639: \u0627\u0644\u062D\u0631\u0641
+        \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629!"
+      AudioFile: ThrowBalls_Extra_Title
+    - Id: ThrowBalls_Extra_Intro
+      Character: Keeper
+      Area: 
+      When: Introduction
+      Context: One of the letters belongs to the Word.
+      English: 
+      Arabic: "\u062C\u062F \u0627\u0644\u062D\u0631\u0641 \u0627\u0644\u0645\u0648\u062C\u0648\u062F
+        \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629"
+      AudioFile: ThrowBalls_Extra_Intro

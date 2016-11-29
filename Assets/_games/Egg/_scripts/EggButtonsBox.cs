@@ -91,13 +91,13 @@ namespace EA4S.Egg
             }
         }
 
-        public void SetButtonsOnStandardColor(EggButton without = null)
+        public void SetButtonsOnStandardColor(EggButton without = null, bool killTween = true)
         {
             for (int i = 0; i < eggButtons.Count; i++)
             {
                 if (eggButtons[i] != without)
                 {
-                    eggButtons[i].SetOnStandardColor();
+                    eggButtons[i].SetOnStandardColor(killTween);
                 }
             }
         }
@@ -354,20 +354,26 @@ namespace EA4S.Egg
             }
         }
 
-        public void PlayButtonsAudio(bool lightUp, bool inPositionOrder, float delay, Action endCallback)
+        public void PlayButtonsAudio(bool lightUp, bool inPositionOrder, float delay, Action endCallback, Action startCallback = null)
         {
             List<EggButton> buttons = GetButtons(inPositionOrder);
 
-            Action callback = null;
+            Action sCallback = null;
+            Action eCallback = null;
 
             for (int i = 0; i < buttons.Count; i++)
             {
                 if (i == buttons.Count - 1)
                 {
-                    callback = endCallback;
+                    eCallback = endCallback;
                 }
 
-                delay += buttons[i].PlayButtonAudio(lightUp, delay, callback);
+                if (i == 0)
+                {
+                    sCallback = startCallback;
+                }
+
+                delay += buttons[i].PlayButtonAudio(lightUp, delay, eCallback, sCallback);
             }
         }
 

@@ -6518,6 +6518,7 @@ MonoBehaviour:
   nextPosition: {fileID: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  _fruits: []
   isFleeing: 0
   isAppearing: 0
   rocket: {fileID: 0}

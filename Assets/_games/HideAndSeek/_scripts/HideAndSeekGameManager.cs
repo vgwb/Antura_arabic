@@ -52,15 +52,9 @@ namespace EA4S.HideAndSeek
             return -1;
         }
 
-        /*void NewRoundSetup()
-        {
-            StartNewRound = true;
-            SetTime();
-            WidgetPopupWindow.I.Close();
-        }*/
-
         private LL_LetterData GetCorrectAnswer()
         {
+            //correctAnswer is the first answer
             return (LL_LetterData)currentQuestion.GetCorrectAnswers().ToList()[0];
         }
 
@@ -175,10 +169,6 @@ namespace EA4S.HideAndSeek
             ActiveTrees = new List<GameObject>();
 
             List<ILivingLetterData> letterList = new List<ILivingLetterData>();
-            foreach (LL_LetterData letter in currentQuestion.GetWrongAnswers())
-            {
-                letterList.Add(letter);
-            }
             foreach (LL_LetterData letter in currentQuestion.GetCorrectAnswers())
             {
                 letterList.Add(letter);

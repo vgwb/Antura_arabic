@@ -64,7 +64,7 @@ namespace EA4S
         {
             // Navigation manager 
             NavigationManager.I.CurrentScene = AppScene.GameSelector;
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.SelectGame_Tuto_2);
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.SelectGame_Tuto_2, false);
 
             if (mainBubble == null) {
                 mainBubble = this.GetComponentInChildren<GamesSelectorBubble>();

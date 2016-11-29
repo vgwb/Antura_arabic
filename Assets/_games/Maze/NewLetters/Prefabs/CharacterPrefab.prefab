@@ -2447,6 +2447,7 @@ MonoBehaviour:
   nextPosition: {fileID: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  _fruits: []
   isFleeing: 0
   isAppearing: 0
   rocket: {fileID: 1000010509039930}
@@ -3108,7 +3109,7 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  randomSeed: 1111302376
+  randomSeed: 1111302400
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -4831,7 +4832,7 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  randomSeed: 1111302376
+  randomSeed: 1111302400
   looping: 1
   prewarm: 1
   playOnAwake: 1
