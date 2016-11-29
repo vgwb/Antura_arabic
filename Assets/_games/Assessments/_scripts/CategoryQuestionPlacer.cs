@@ -54,7 +54,7 @@ namespace EA4S.Assessment
                 sign = 1;
             }
 
-            currentPos.y -= bounds.LetterSize();
+            currentPos.y -= bounds.LetterSize()*1.35f;
 
             int questionIndex = 0;
             for (int i = 0; i < questionsNumber; i++)
@@ -77,7 +77,7 @@ namespace EA4S.Assessment
                 }
 
                 var questionPos = currentPos;
-                questionPos.y += bounds.LetterSize();
+                questionPos.y += bounds.LetterSize()*1.35f;
                 questionPos.x = (max + min) /2f;
                 yield return PlaceQuestion( allQuestions[ questionIndex], questionPos);
 

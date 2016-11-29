@@ -84,6 +84,8 @@ namespace EA4S.Assessment
                 currentPos.x += answerSize / 2.0f;
                 sign = 1;
             }
+
+            currentPos.y -= 1.5f;
             
             int questionIndex = 0; //TODO: check if this redundant
 

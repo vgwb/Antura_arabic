@@ -216,6 +216,7 @@ namespace EA4S.Assessment
             List< IAnswer> answers = new List< IAnswer>();
 
             int correctCount = 0;
+            Debug.Log( "CURRENT CATEGORY: " + currentCategory);
             for(int i=0; i<amount; i++)
             {
                 var answer = answersBuckets[currentCategory].Pull();
