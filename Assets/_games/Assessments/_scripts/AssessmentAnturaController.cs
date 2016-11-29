@@ -174,6 +174,8 @@ namespace EA4S.Assessment
                 currentTreshold = currentMaxTreshold *0.99f;
                 stateDelta = 0;
             }
+
+            yield return TimeEngine.Wait( 1.0f);
         }
 
         internal bool IsAnimating()
