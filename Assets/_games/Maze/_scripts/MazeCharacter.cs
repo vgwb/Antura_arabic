@@ -110,11 +110,11 @@ namespace EA4S.Maze
             
             transform.DOLocalRotateQuaternion(Quaternion.AngleAxis(-angle, Vector3.up), 0.5f);
 
-            transform.position += new Vector3(0, 0.0335f, 0);
+            //transform.position += new Vector3(0, 0.05f, 0);
             dir.Normalize();
             dir.x = transform.position.x - dir.x*2;
             dir.z = transform.position.z - dir.z *2;
-            dir.y = 0.0335f;
+            dir.y = 1;
             transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
         }
 
@@ -319,7 +319,7 @@ namespace EA4S.Maze
 			setFruitsList ();
 
 
-            Vector3 initPos = _fruits[0].transform.position + new Vector3(0, 0.0335f,0);
+            Vector3 initPos = _fruits[0].transform.position + new Vector3(0, 1,0);
 
             initialPosition = initPos;
 			targetPos = initialPosition;
@@ -347,7 +347,7 @@ namespace EA4S.Maze
                 dir.Normalize();
                 dir.x = transform.position.x - dir.x*2;
                 dir.z = transform.position.z - dir.z * 2;
-                dir.y = 0.0335f;
+                dir.y = 1;
                 transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
             });
             
@@ -361,7 +361,7 @@ namespace EA4S.Maze
             transform.DOKill(false);
             donotHandleBorderCollision = false;
             transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isInside = false;
-            transform.position = _fruits[0].transform.position + new Vector3(0, 0.0335f,0);
+            transform.position = _fruits[0].transform.position + new Vector3(0, 1,0);
 
 
             initialPosition = transform.position;
@@ -391,7 +391,7 @@ namespace EA4S.Maze
             dir.Normalize();
             dir.x = transform.position.x - dir.x * 1.5f;
             dir.z = transform.position.z - dir.z * 1.5f;
-            dir.y = 0.0335f;
+            dir.y = 1;
             transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
             characterIsMoving = false;
             GetComponent<Collider>().enabled = false;
@@ -605,7 +605,9 @@ namespace EA4S.Maze
 
 			if(previousPosition != targetPos)
 			{
-				characterWayPoints.Add(targetPos);
+                
+
+                characterWayPoints.Add(targetPos + new Vector3(0,1,0));
 
 			}
 
