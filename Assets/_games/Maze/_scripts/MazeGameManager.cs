@@ -260,7 +260,17 @@ namespace EA4S.Maze
             if (isTutorialMode)
             {
                 hideCracks();
-                removeLines();
+
+                //remove last line
+                if(lines.Count > 0)
+                {
+                    lines[lines.Count - 1].SetVertexCount(0);
+                    lines.RemoveAt(lines.Count - 1);
+                }
+                
+                pointsList.RemoveRange(0, pointsList.Count);
+
+                //removeLines();
 
                 TutorialUI.Clear(false);
                 addLine();
