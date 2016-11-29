@@ -19,6 +19,8 @@ namespace EA4S.ThrowBalls
         public Rigidbody rigidBody;
         private SphereCollider sphereCollider;
 
+        private TrailRenderer trailRenderer;
+
         private enum State
         {
             Anchored, Dragging, Launched, Intercepted, Rebounding, Hanging, Dropping, Idle
@@ -38,6 +40,8 @@ namespace EA4S.ThrowBalls
             rigidBody.maxAngularVelocity = 100;
 
             sphereCollider = GetComponent<SphereCollider>();
+
+            trailRenderer = GetComponent<TrailRenderer>();
         }
 
         void Start()
@@ -116,6 +120,9 @@ namespace EA4S.ThrowBalls
 
             ArrowBodyController.instance.Enable();
             ArrowHeadController.instance.Enable();
+
+            trailRenderer.Clear();
+            trailRenderer.enabled = false;
         }
 
         public void Enable()
@@ -145,6 +152,7 @@ namespace EA4S.ThrowBalls
                     break;
                 case State.Launched:
                     rigidBody.isKinematic = false;
+                    trailRenderer.enabled = true;
                     break;
                 case State.Intercepted:
                     rigidBody.isKinematic = true;
