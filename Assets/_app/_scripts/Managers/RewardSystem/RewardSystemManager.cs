@@ -33,6 +33,8 @@ namespace EA4S {
             return config;
         }
 
+        public static RewardPack CurrentReward = new RewardPack();
+
         /// <summary>
         /// Init
         /// </summary>
@@ -158,17 +160,18 @@ namespace EA4S {
             /// logic
             /// - Trigger selected reward event.
             /// - Load returnList of color for reward checking unlocked and if exist active one
-            if (OnRewardItemChanged != null)
-                OnRewardItemChanged(_rewardItemId, _rewardType);
+
 
             switch (_rewardType) {
                 case RewardTypes.reward:
                     // TODO: filter color selected from unlocked only
-                    foreach (RewardColor color in config.RewardsColorPairs.GetRange(0,5)) {
+                    foreach (RewardColor color in config.RewardsColorPairs) {
                         RewardColorItem rci = new RewardColorItem(color);
                         ///...
                         returnList.Add(rci);
                     }
+                    // set current reward in modification
+                    CurrentReward = new RewardPack() { ItemID = _rewardItemId, Type = RewardTypes.reward };
                     return returnList;
                 case RewardTypes.texture:
                     break;
@@ -178,6 +181,7 @@ namespace EA4S {
                     Debug.LogWarningFormat("Reward typology requested {0} not found", _rewardType);
                     break;
             }
+            
             return returnList;
         }
 
@@ -187,7 +191,9 @@ namespace EA4S {
         /// <param name="_rewardColorItemId">The reward color item identifier.</param>
         /// <param name="_rewardType">Type of the reward.</param>
         public static void SelectRewardColorItem(string _rewardColorItemId, RewardTypes _rewardType) {
-
+            CurrentReward.ColorId = _rewardColorItemId;
+            if (OnRewardChanged != null)
+                OnRewardChanged(CurrentReward);
         }
 
         /// <summary>
@@ -256,7 +262,7 @@ namespace EA4S {
         /// <param name="_alreadyUnlocked">The already unlocked.</param>
         /// <returns></returns>
         public static List<RewardPack> GetRewardPacksForPlaySession(JourneyPosition _playSession, int _itemsToUnlock, out int _alreadyUnlocked) {
-            List<RewardPack> rpList = AppManager.I.Player.RewardsUnlocked.FindAll(r => r.playSessionId == _playSession.ToString());
+            List<RewardPack> rpList = AppManager.I.Player.RewardsUnlocked.FindAll(r => r.PlaySessionId == _playSession.ToString());
             _alreadyUnlocked = rpList.Count;
             int count = _alreadyUnlocked;
             while (rpList.Count < MaxRewardsUnlockableForPlaysession) {
@@ -287,7 +293,7 @@ namespace EA4S {
                 ItemID = config.Rewards.GetRandom().ID,
                 ColorId = config.RewardsColorPairs.GetRandom().ID,
                 Type = _rewardType,
-                playSessionId = AppManager.I.Player.CurrentJourneyPosition.ToString(),
+                PlaySessionId = AppManager.I.Player.CurrentJourneyPosition.ToString(),
                 IsNew = true,
             };
 
@@ -299,16 +305,13 @@ namespace EA4S {
 
         #region Events
 
-        public delegate void RewardSystemEventHandler(string Id, RewardTypes _rewardType);
+        public delegate void RewardSystemEventHandler(RewardPack _rewardPack);
 
         /// <summary>
-        /// Occurs when [on reward item changed]. Id is item selected id.
+        /// Occurs when [on reward item changed].
         /// </summary>
-        public static event RewardSystemEventHandler OnRewardItemChanged;
-        /// <summary>
-        /// Occurs when [on reward color changed]. Id is a color selected id.
-        /// </summary>
-        public static event RewardSystemEventHandler OnRewardColorChanged;
+        public static event RewardSystemEventHandler OnRewardChanged;
+        
 
         #endregion
     }
@@ -371,7 +374,7 @@ namespace EA4S {
         /// <summary>
         /// The play session id where this reward is assigned.
         /// </summary>
-        public string playSessionId;
+        public string PlaySessionId;
         /// <summary>
         /// The order of playsession rewards in case of multi reward for same playsession.
         /// </summary>
@@ -380,6 +383,25 @@ namespace EA4S {
         /// True if nevere used by player.
         /// </summary>
         public bool IsNew = true;
+
+        public MaterialPair GetMaterialPair() {
+            return RewardSystemManager.GetMaterialPairFromRewardIdAndColorId(ItemID, ColorId);
+        }
+
+        public Reward GetReward() {
+            if (Type != RewardTypes.reward)
+                return null;
+            return RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemID);
+        }
+
+        public string GetRewardCategory() {
+            if (Type != RewardTypes.reward)
+                return string.Empty;
+            Reward reward = RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemID);
+            if (reward != null)
+                return reward.Category;
+            return string.Empty;
+        }
     }
 
     #endregion
@@ -410,6 +432,7 @@ namespace EA4S {
             Color2Name = _color.Color2Name;
             Color2RGB = _color.Color2RGB;
         }
+
     }
 
     #endregion
