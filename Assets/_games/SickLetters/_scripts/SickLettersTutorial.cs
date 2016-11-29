@@ -26,15 +26,6 @@ namespace EA4S.SickLetters
                 StartCoroutine(coDoTutorial());
         }
 
-        // Update is called once per frame
-        void Update() {
-            /*if (draw)
-            {
-                doTutorial();
-                draw = false;
-            }*/
-        }
-
         public void doTutorial(Transform start = null)
         {
             
@@ -56,50 +47,44 @@ namespace EA4S.SickLetters
             }
 
             repeatConter = 0;
-            //StopCoroutine(coDoTutorial());
-            
 
+        }
+
+        void onTutStart()
+        {
+            game.disableInput = false;
+            AudioManager.I.PlayDialog(Db.LocalizationDataId.SickLetters_Tuto, () => { WidgetSubtitles.I.gameObject.SetActive(false); });
+            WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.SickLetters_Tuto, 5, false);
+        }
+
+        void onTutEnd()
+        {
+            TutorialUI.Clear(true);
         }
 
         IEnumerator coDoTutorial(Transform start = null)
         {
             yield return new WaitForSeconds(tutorialStartDelay);
-            game.disableInput = false;
-            AudioManager.I.PlayDialog(Db.LocalizationDataId.SickLetters_Tuto);
 
-            while (true)
+            onTutStart();
+
+            while (game.roundsCount <= 0)
             {
-                if (game.roundsCount > 0)
+                /*if (game.roundsCount > 0)
                 {
                     TutorialUI.Clear(true);
                     break;
-                }
-                /*if (start == null)
-                {
-                    yield return null;
-                    continue;
                 }*/
 
-                
-                //TutorialUI.DrawLine(path, TutorialUI.DrawLineMode.FingerAndArrow).OnComplete(() => { repeatConter++; StartCoroutine(coDoTutorial());});
                 repeatConter++;
                 TutorialUI.DrawLine(path, TutorialUI.DrawLineMode.FingerAndArrow);
                 yield return new WaitForSeconds(repeatDely);
 
             }
 
-            
-            /*else
-            {
-                //TutorialUI.Clear(true);
-                yield break;
-            }*/
+            onTutEnd();
         }
 
-        IEnumerator tutDialog(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            AudioManager.I.PlayDialog("SickLetters_Tuto"); 
-        }
+
     }
 }
