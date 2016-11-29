@@ -31,15 +31,15 @@ namespace EA4S.Assessment
             return db.GetWordDataById( id).ConvertToLivingLetterData();
         }
 
-        public string Category(int currentCategory)
+        public ILivingLetterData Category(int currentCategory)
         {
             switch (categoryType)
             {
                 case CategoryType.SunMoon:
                     if (currentCategory == 0)
-                        return sun.TextForLivingLetter;
+                        return sun;
                     else
-                        return moon.TextForLivingLetter;
+                        return moon;
 
                 default:
                     throw new NotImplementedException();
