@@ -256,7 +256,7 @@ namespace EA4S {
         /// <param name="_alreadyUnlocked">The already unlocked.</param>
         /// <returns></returns>
         public static List<RewardPack> GetRewardPacksForPlaySession(JourneyPosition _playSession, int _itemsToUnlock, out int _alreadyUnlocked) {
-            List<RewardPack> rpList = AppManager.I.Player.RewardsUnlocked.FindAll(r => r.playSessionId == _playSession.ToString());
+            List<RewardPack> rpList = AppManager.I.Player.RewardsUnlocked.FindAll(r => r.PlaySessionId == _playSession.ToString());
             _alreadyUnlocked = rpList.Count;
             int count = _alreadyUnlocked;
             while (rpList.Count < MaxRewardsUnlockableForPlaysession) {
@@ -287,7 +287,7 @@ namespace EA4S {
                 ItemID = config.Rewards.GetRandom().ID,
                 ColorId = config.RewardsColorPairs.GetRandom().ID,
                 Type = _rewardType,
-                playSessionId = AppManager.I.Player.CurrentJourneyPosition.ToString(),
+                PlaySessionId = AppManager.I.Player.CurrentJourneyPosition.ToString(),
                 IsNew = true,
             };
 
@@ -371,7 +371,7 @@ namespace EA4S {
         /// <summary>
         /// The play session id where this reward is assigned.
         /// </summary>
-        public string playSessionId;
+        public string PlaySessionId;
         /// <summary>
         /// The order of playsession rewards in case of multi reward for same playsession.
         /// </summary>
@@ -380,6 +380,25 @@ namespace EA4S {
         /// True if nevere used by player.
         /// </summary>
         public bool IsNew = true;
+
+        public MaterialPair GetMaterialPair() {
+            return RewardSystemManager.GetMaterialPairFromRewardIdAndColorId(ItemID, ColorId);
+        }
+
+        public Reward GetReward() {
+            if (Type != RewardTypes.reward)
+                return null;
+            return RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemID);
+        }
+
+        public string GetRewardCategory() {
+            if (Type != RewardTypes.reward)
+                return string.Empty;
+            Reward reward = RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemID);
+            if (reward != null)
+                return reward.Category;
+            return string.Empty;
+        }
     }
 
     #endregion
@@ -410,6 +429,7 @@ namespace EA4S {
             Color2Name = _color.Color2Name;
             Color2RGB = _color.Color2RGB;
         }
+
     }
 
     #endregion
