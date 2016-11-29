@@ -19,7 +19,7 @@ namespace EA4S.Teacher
         // Data selection weights
         public const float data_scoreWeight = 1f;
         public const float data_recentPlayWeight = 1f;
-        public const float data_currentPlaySessionWeight = 1f;
+        public const float data_currentPlaySessionWeight = 10f;
         public const float data_minimumTotalWeight = 0.1f;
 
         // Difficulty selection weights
