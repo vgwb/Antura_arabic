@@ -21,6 +21,8 @@ namespace EA4S.ThrowBalls
 
         private TrailRenderer trailRenderer;
 
+        private IAudioManager audioManager;
+
         private enum State
         {
             Anchored, Dragging, Launched, Intercepted, Rebounding, Hanging, Dropping, Idle
@@ -42,6 +44,8 @@ namespace EA4S.ThrowBalls
             sphereCollider = GetComponent<SphereCollider>();
 
             trailRenderer = GetComponent<TrailRenderer>();
+
+            audioManager = ThrowBallsConfiguration.Instance.Context.GetAudioManager();
         }
 
         void Start()
@@ -94,6 +98,11 @@ namespace EA4S.ThrowBalls
                 ArrowBodyController.instance.Disable();
                 ArrowHeadController.instance.Disable();
             }
+        }
+
+        public void OnCollisionEnter()
+        {
+            audioManager.PlaySound(Sfx.BallHit);
         }
 
         public void OnCollisionExit(Collision collision)
@@ -149,10 +158,16 @@ namespace EA4S.ThrowBalls
                     break;
                 case State.Dragging:
                     rigidBody.isKinematic = false;
+
+                    audioManager.PlaySound(Sfx.ThrowArm);
+
                     break;
                 case State.Launched:
                     rigidBody.isKinematic = false;
                     trailRenderer.enabled = true;
+
+                    audioManager.PlaySound(Sfx.ThrowObj);
+
                     break;
                 case State.Intercepted:
                     rigidBody.isKinematic = true;
