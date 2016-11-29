@@ -234,12 +234,13 @@ namespace EA4S.Maze
 			//stop moving the character for a second
 			StartCoroutine(waitAndPerformCallback(1,()=>{
 				characterIsMoving = false;
-                transform.DOKill(false);
+                transform.DOPause();
 			},
 				()=>{
 					characterIsMoving = true;
-                    moveTween();
-				}));
+                    transform.DOPlay();
+
+                }));
 			
 
 		}
@@ -416,7 +417,7 @@ namespace EA4S.Maze
 
         private void moveTween()
         {
-            if (currentCharacterWayPoint + 3 < characterWayPoints.Count)
+            /*if (currentCharacterWayPoint + 3 < characterWayPoints.Count)
             {
                 var dir = transform.position - characterWayPoints[currentCharacterWayPoint + 3];
                 var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
@@ -425,7 +426,47 @@ namespace EA4S.Maze
                 transform.DORotateQuaternion(targetRotation, 0.007f);
             }
 
-            transform.DOMove(characterWayPoints[currentCharacterWayPoint], 0.007f).OnComplete(moveTweenComplete);
+            transform.DOMove(characterWayPoints[currentCharacterWayPoint], 0.007f).OnComplete(moveTweenComplete);*/
+
+            float time = 1.0f + characterWayPoints.Count / 10;
+            if (time > 5) time = 5;
+            transform.DOPath(characterWayPoints.ToArray(), time, PathType.Linear, PathMode.Ignore).OnWaypointChange((int index) => {
+                if (index + 3 < characterWayPoints.Count)
+                {
+                    var dir = transform.position - characterWayPoints[index + 3];
+                    var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+
+                    transform.rotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
+                   // transform.DORotateQuaternion(targetRotation, 0.007f);
+                }
+            }).OnComplete(pathMoveComplete);
+        }
+
+        private void pathMoveComplete()
+        {
+            transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isInside = false;
+
+            //arrived!
+            //transform.rotation = initialRotation;
+            if (currentFruitIndex == _fruits.Count)
+            {
+
+                print("Won");
+                // if (particles) particles.SetActive(false);
+                foreach (GameObject particle in particles) particle.SetActive(false);
+                GetComponent<Collider>().enabled = false;
+                characterIsMoving = false;
+                transform.DOKill(false);
+                MazeGameManager.instance.moveToNext(true);
+
+                if (currentFruitList == Fruits.Count - 1)
+                {
+                    if (dot != null)
+                        dot.GetComponent<BoxCollider>().enabled = true;
+                }
+            }
+            else
+                waitAndRestartScene();
         }
 
         private void moveTweenComplete()
@@ -577,6 +618,7 @@ namespace EA4S.Maze
                 
             },
                 () => {
+                    transform.DOKill(true);
                     toggleVisibility(true);
                     fleePosition = position;
                     isFleeing = true;
