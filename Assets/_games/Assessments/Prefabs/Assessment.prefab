@@ -347,4 +347,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70585e09b49d9d4c93492f8790acc31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SubtitlesMargin: 2.8
+  SubtitlesMargin: 0

@@ -216,8 +216,19 @@ namespace EA4S.TakeMeHome
                 {
                     activeTubes.Add(allTubes[index]);
                     allTubes[index].SetActive(true);
-                    //allTubes.RemoveAt(index);
                 }
+            }
+
+            //check that we have at least 2 active tubes:
+            if(activeTubes.Count == 1)
+            {
+                //pink anything random
+                int index = UnityEngine.Random.Range(0, allTubes.Count);
+                while(allTubes[index].activeSelf == true) index = UnityEngine.Random.Range(0, allTubes.Count);
+
+                activeTubes.Add(allTubes[index]);
+                allTubes[index].SetActive(true);
+
             }
         }
 

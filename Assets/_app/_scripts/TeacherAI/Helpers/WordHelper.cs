@@ -357,20 +357,34 @@ namespace EA4S.Db
 
         #region Phrase filters
 
-        private bool CheckFilters(WordFilters wordFilters, PhraseData data)
+        private bool CheckFilters(WordFilters wordFilters, PhraseFilters phraseFilters, PhraseData data)
         {
+            var words = GetWordsInPhrase(data);
+
+            int nOkWords = 0;
             bool allWordsAreOk = true;
-            foreach (var word in GetWordsInPhrase(data)) {
+            foreach (var word in words) {
                 if (!CheckFilters(wordFilters, word))
                     allWordsAreOk = false;
+                else
+                    nOkWords++;
                 if (!allWordsAreOk) return false;
             }
-            allWordsAreOk = true;
-            foreach (var word in GetAnswersToPhrase(data)) {
+
+            int nOkAnswers = 0;
+            var answers = GetAnswersToPhrase(data);
+            bool allAnswersAreOk = true;
+            foreach (var word in answers) {
                 if (!CheckFilters(wordFilters, word))
-                    allWordsAreOk = false;
-                if (!allWordsAreOk) return false;
+                    allAnswersAreOk = false;
+                else
+                    nOkAnswers++;
+                if (!allAnswersAreOk) return false;
             }
+
+            if (phraseFilters.requireWords && (nOkWords == 0)) return false;
+            if (phraseFilters.requireAnswersOrWords && (nOkAnswers == 0 && nOkWords == 0)) return false;
+
             return true;
         }
 
@@ -378,19 +392,20 @@ namespace EA4S.Db
 
         #region Phrase -> Phrase
 
-        public List<PhraseData> GetAllPhrases()
+        public List<PhraseData> GetAllPhrases(WordFilters wordFilters, PhraseFilters phraseFilters)
         {
-            return dbManager.GetAllPhraseData();
+            return dbManager.FindPhraseData(x => CheckFilters(wordFilters, phraseFilters, x));
         }
 
-        public List<PhraseData> GetPhrasesWithAnswers()
+        public List<PhraseData> GetPhrasesByCategory(PhraseDataCategory choice, WordFilters wordFilters, PhraseFilters phraseFilters)
         {
-            return dbManager.FindPhraseData(x => x.Answers.Length > 0);
+            return dbManager.FindPhraseData(x => x.Category == choice && CheckFilters(wordFilters, phraseFilters, x));
         }
 
-        public List<PhraseData> GetPhrasesByCategory(PhraseDataCategory choice, WordFilters wordFilters)
+        public List<PhraseData> GetPhrasesNotIn(WordFilters wordFilters, PhraseFilters phraseFilters, params PhraseData[] tabooArray)
         {
-            return dbManager.FindPhraseData(x => x.Category == choice && CheckFilters(wordFilters, x));
+            var tabooList = new List<PhraseData>(tabooArray);
+            return dbManager.FindPhraseData(x => !tabooList.Contains(x) && CheckFilters(wordFilters, phraseFilters, x));
         }
 
         public PhraseData GetLinkedPhraseOf(string startPhraseId)
@@ -403,12 +418,6 @@ namespace EA4S.Db
         {
             if (data.Linked == "") return null;
             return dbManager.FindPhraseData(x => x.Id == data.Linked)[0];
-        }
-
-        public List<PhraseData> GetPhrasesNotIn(params PhraseData[] tabooArray)
-        {
-            var tabooList = new List<PhraseData>(tabooArray);
-            return dbManager.FindPhraseData(x => !tabooList.Contains(x));
         }
 
         #endregion

@@ -71,25 +71,25 @@
 
 			Difficulty = Difficulty < 0.13f ? 0.13f : Difficulty;
 
-			if (Difficulty > 0.4f && Difficulty < 0.6f)
+			if (Difficulty <= 0.4f)
 			{
 				beltSpeed = 1f;
 			}
-			else if (Difficulty < 0.4f)
+			else if (Difficulty > 0.4f && Difficulty <= 0.6f)
 			{
-				beltSpeed = 0.75f;
+				beltSpeed = 2f;
 			}
-			else if (Difficulty > 0.6f && Difficulty < 0.8f)
+			else if (Difficulty > 0.6f && Difficulty <= 0.8f)
 			{
-				beltSpeed = 1.25f;
+				beltSpeed = 3f;
 			}
 			else if (Difficulty > 0.8f && Difficulty < 1f)
 			{
-				beltSpeed = 1.5f;
+				beltSpeed = 4f;
 			}
 			else if (Difficulty == 1f)
 			{
-				beltSpeed = 2f;
+				beltSpeed = 5f;
 			}
 
 			switch (Variation)
