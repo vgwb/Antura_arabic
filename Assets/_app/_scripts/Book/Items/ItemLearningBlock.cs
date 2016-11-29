@@ -22,7 +22,7 @@ namespace EA4S
             Title.text = info.data.Title_Ar;
             SubTitle.text = info.data.Title_En + " " + info.data.Id;
 
-            if (info.unlocked || AppConstants.CheatSuperDogMode) {
+            if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode) {
                 GetComponent<Button>().interactable = true;
             } else {
                 GetComponent<Button>().interactable = false;
@@ -37,7 +37,7 @@ namespace EA4S
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (info.unlocked || AppConstants.CheatSuperDogMode) {
+            if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode) {
                 manager.DetailLearningBlock(info);
             }
         }
