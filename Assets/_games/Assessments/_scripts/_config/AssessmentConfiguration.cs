@@ -98,6 +98,9 @@ namespace EA4S.Assessment
                 case AssessmentCode.WordsWithLetter:
                     return Setup_WordsWithLetter_Builder();
 
+                case AssessmentCode.SunMoonWord:
+                    return Setup_SunMoonWords_Builder();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
@@ -125,7 +128,7 @@ namespace EA4S.Assessment
 
         }
 
-        private IQuestionBuilder Setup_SunMoonWords_LearnRules()
+        private IQuestionBuilder Setup_SunMoonWords_Builder()
         {
             SimultaneosQuestions = 2;
             snag.SetStartingFrom(0.5f);
@@ -198,7 +201,7 @@ namespace EA4S.Assessment
 
         private MiniGameLearnRules Setup_SunMoonWords_LearnRules()
         {
-            throw new NotImplementedException();
+            return new MiniGameLearnRules();
         }
 
         private MiniGameLearnRules Setup_WordsWithLetter_LearnRules()
