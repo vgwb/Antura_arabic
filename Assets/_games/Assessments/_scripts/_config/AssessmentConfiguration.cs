@@ -131,7 +131,6 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_SunMoonWords_Builder()
         {
             SimultaneosQuestions = 2;
-            snag.SetStartingFrom(0.5f);
             Rounds = 3;
 
             return new WordsBySunMoonQuestionBuilder( SimultaneosQuestions * Rounds);
@@ -140,7 +139,6 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
             SimultaneosQuestions = 1;
-            snag.SetStartingFrom(0.5f); 
             Rounds = 3;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
@@ -161,7 +159,6 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_LetterShape_Builder()
         {
             SimultaneosQuestions = 1;
-            snag.SetStartingFrom(0.5f);
             Rounds = 3;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
