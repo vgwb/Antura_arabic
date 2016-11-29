@@ -49,6 +49,7 @@ namespace EA4S.Teacher
         // data-based params
         public LetterFilters letterFilters;
         public WordFilters wordFilters;
+        public PhraseFilters phraseFilters;
 
         public QuestionBuilderParameters()
         {
@@ -60,6 +61,7 @@ namespace EA4S.Teacher
             this.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             this.letterFilters = new LetterFilters();
             this.wordFilters = new WordFilters();
+            this.phraseFilters = new PhraseFilters();
         }
     }
 

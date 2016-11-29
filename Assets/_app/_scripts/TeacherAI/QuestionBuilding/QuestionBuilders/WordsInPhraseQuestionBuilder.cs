@@ -50,10 +50,14 @@ namespace EA4S
             // Get a phrase
             int nToUse = 1;
             var usablePhrases = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetPhrasesByCategory(Db.PhraseDataCategory.Question, parameters.wordFilters),
+                () => teacher.wordHelper.GetAllPhrases(
+                    parameters.wordFilters,
+                    parameters.phraseFilters),
                     new SelectionParameters(parameters.correctSeverity, nToUse, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
             var question = usablePhrases[0];
+
+            UnityEngine.Debug.Log(question);
 
             // Get words related to the phrase
             var correctWords = new List<Db.WordData>();

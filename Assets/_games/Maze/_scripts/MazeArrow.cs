@@ -8,11 +8,22 @@ namespace EA4S.Maze
 		public bool tweenToColor = false;
 		public bool pingPong = false;
 
+        private Color color;
+
 		Renderer _renderer;
 		// Use this for initialization
 		void Start () {
 			_renderer = GetComponent<Renderer> ();
-		}
+            color = _renderer.material.color;
+
+        }
+
+        public void resetColor()
+        {
+            tweenToColor = false;
+            pingPong = false;
+            _renderer.material.color = color;
+        }
 
 		// Update is called once per frame
 		void Update () {

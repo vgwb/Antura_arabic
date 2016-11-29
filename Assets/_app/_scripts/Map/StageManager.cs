@@ -13,6 +13,9 @@ namespace EA4S
         public GameObject letter;
 
         [Header("UIButtons")]
+        public GameObject lockUI;
+
+        [Header("UIButtons")]
         public GameObject leftStageButton;
         public GameObject rightStageButton;
         public GameObject rightMovementButton;
@@ -21,14 +24,14 @@ namespace EA4S
         public GameObject bookButton;
         public GameObject anturaButton;
 
-        int s, i,previousStage;
+        int s, i,previousStage, numberStage;
         bool inTransition;
         void Awake()
         {
             /*AppManager.I.Player.MaxJourneyPosition.Stage = 2;
             AppManager.I.Player.MaxJourneyPosition.LearningBlock = 3;
             AppManager.I.Player.MaxJourneyPosition.PlaySession = 1;*/
-
+            numberStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
             s = AppManager.I.Player.MaxJourneyPosition.Stage;
             for (i = 1; i <= (s - 1); i++)
             {
@@ -38,13 +41,11 @@ namespace EA4S
             }
             miniMaps[i].GetComponent<MiniMap>().CalculateSettingsStageMap();
 
-            FirstOrLastMap();
-
             stages[AppManager.I.Player.CurrentJourneyPosition.Stage].SetActive(true);
             Camera.main.backgroundColor = colorMaps[AppManager.I.Player.CurrentJourneyPosition.Stage];
             Camera.main.GetComponent<CameraFog>().color = colorMaps[AppManager.I.Player.CurrentJourneyPosition.Stage];
             letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[AppManager.I.Player.CurrentJourneyPosition.Stage].GetComponent<MiniMap>();
-
+            
             StartCoroutine("ResetPosLetter");  
         }
         void Start()
@@ -52,11 +53,12 @@ namespace EA4S
             /* FIRST CONTACT FEATURE */
             if (AppManager.I.Player.IsFirstContact())
             {
-                DesactivateUI();
                 FirstContactBehaviour();
             }
             /* --------------------- */
             else ActivateUI();
+
+            FirstOrLastMap();
         }
 
         void Update()
@@ -76,6 +78,7 @@ namespace EA4S
             if (AppManager.I.Player.IsFirstContact(1))
             {
                 // First contact step 1:
+                DesactivateUI();
                 #region Temp Behaviour (to be deleted)
                 countDown.Start();
                 #endregion
@@ -106,43 +109,63 @@ namespace EA4S
 
 
         public void StageLeft()
-        {
-            int numberStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
-            if ((numberStage < s) && (!inTransition))
+        {         
+            if ((numberStage < 6) && (!inTransition))
             {
                 previousStage = numberStage;
+                numberStage++;
                 inTransition = true;
-                stages[numberStage + 1].SetActive(true);
-                ChangeCamera(cameras[numberStage + 1]);
-
-                ChangePinDotToBlack();
-                AppManager.I.Player.CurrentJourneyPosition.Stage++;
+                stages[numberStage].SetActive(true);
+                ChangeCamera(cameras[numberStage]);
                 ChangeCameraFogColor(AppManager.I.Player.CurrentJourneyPosition.Stage);
-                letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage + 1].GetComponent<MiniMap>();
-                letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
-
                 FirstOrLastMap();
+                lockUI.SetActive(true);
+                DesactivateMovementPlayButtons();
 
+                if ( (numberStage <= s) && (AppManager.I.Player.CurrentJourneyPosition.Stage != numberStage))
+                {
+                    ChangePinDotToBlack();
+                    AppManager.I.Player.CurrentJourneyPosition.Stage++;
+                    letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage].GetComponent<MiniMap>();
+                    letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
+                    lockUI.SetActive(false);
+                    ActivateMovementPlayButtons();
+                    letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
+                }            
                 StartCoroutine("DesactivateMap");
             }
         }
         public void StageRight()
         {
-            int numberStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
-            if ((numberStage > 1)&& (!inTransition))
+            if ((numberStage >= 1) && (!inTransition))
             {
                 previousStage = numberStage;
+                numberStage--;
                 inTransition = true;
-                stages[numberStage - 1].SetActive(true);
-                ChangeCamera(cameras[numberStage - 1]);
-
-                ChangePinDotToBlack();
-                AppManager.I.Player.CurrentJourneyPosition.Stage--;
+                stages[numberStage].SetActive(true);
+                ChangeCamera(cameras[numberStage]);
                 ChangeCameraFogColor(AppManager.I.Player.CurrentJourneyPosition.Stage);
-                letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage - 1].GetComponent<MiniMap>();
-                letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
-
                 FirstOrLastMap();
+                lockUI.SetActive(true);
+                DesactivateMovementPlayButtons();
+
+                if ((numberStage <= s) && (AppManager.I.Player.CurrentJourneyPosition.Stage!=numberStage))
+                {
+                    ChangePinDotToBlack();
+                    AppManager.I.Player.CurrentJourneyPosition.Stage--;
+                    letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage].GetComponent<MiniMap>();
+                    letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
+                    lockUI.SetActive(false);
+                    ActivateMovementPlayButtons();
+                    letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
+                }
+                else if (AppManager.I.Player.CurrentJourneyPosition.Stage == numberStage)
+                {
+                    lockUI.SetActive(false);
+                    ActivateMovementPlayButtons();
+                    letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
+                }
+
 
                 StartCoroutine("DesactivateMap");
             }
@@ -183,9 +206,9 @@ namespace EA4S
         }
         void FirstOrLastMap()
         {
-            if (AppManager.I.Player.CurrentJourneyPosition.Stage == 1)
+            if (numberStage == 1)
                 rightStageButton.SetActive(false);
-            else if (AppManager.I.Player.CurrentJourneyPosition.Stage == 6)
+            else if (numberStage == 6)
                 leftStageButton.SetActive(false);
             else
             {
@@ -214,7 +237,18 @@ namespace EA4S
             bookButton.SetActive(true);
             anturaButton.SetActive(true);
         }
-
+        void DesactivateMovementPlayButtons()
+        {
+            rightMovementButton.SetActive(false);
+            leftMovementButton.SetActive(false);
+            playButton.SetActive(false);
+        }
+        void ActivateMovementPlayButtons()
+        {
+            rightMovementButton.SetActive(true);
+            leftMovementButton.SetActive(true);
+            playButton.SetActive(true);
+        }
         /*void DesactivateMap()
         {
             stages[previousStage].SetActive(false);

@@ -1,23 +1,22 @@
 ﻿namespace EA4S.MissingLetter
 {
-    //enum game type
     public enum MissingLetterVariation : int
     {
-        WORD = 1,
-        PHRASE = 2
+        MissingLetter = 1,
+        MissingWord = 2
     }
 
     public class MissingLetterConfiguration : IGameConfiguration
     {
-
-
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
 
         public float Difficulty { get; set; }
-        public MissingLetterVariation Variation { get; set; }
 
+        #region Game configurations
+        public MissingLetterVariation Variation { get; set; }
+        #endregion
 
         /////////////////
         // Singleton Pattern
@@ -38,19 +37,9 @@
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new SampleQuestionProvider();
+
             Context = new SampleGameContext();
-
-            Variation = MissingLetterVariation.WORD;
             Difficulty = 0.5f;
-        }
-
-        public static void SetConfiguration(float _difficulty, int _variation)
-        {
-            instance = new MissingLetterConfiguration()
-            {
-                Difficulty = _difficulty,
-                Variation = (MissingLetterVariation)_variation,
-            };
         }
 
         public IQuestionBuilder SetupBuilder() {
@@ -61,16 +50,18 @@
             int nWrong = 5;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
+
             switch (Variation)
             {
-                case MissingLetterVariation.WORD:
+                case MissingLetterVariation.MissingLetter:
                     builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
-                case MissingLetterVariation.PHRASE:
+
+                case MissingLetterVariation.MissingWord:
+                    builderParams.phraseFilters.requireWords = true;
                     builder = new WordsInPhraseQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
             }
-
             return builder;
         }
 
