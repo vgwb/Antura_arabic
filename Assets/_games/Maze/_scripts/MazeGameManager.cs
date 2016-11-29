@@ -415,7 +415,7 @@ namespace EA4S.Maze
                             });
                             currentCharacter.initialPosition = currentCharacter.transform.position;
                             currentCharacter.initialRotation = currentCharacter.transform.rotation;
-                            currentCharacter.transform.position = getRandFleePosition();
+                            currentCharacter.transform.position = new Vector3(0,0,15);
                             currentCharacter.gameObject.SetActive(true);
                             currentCharacter.appear();
                         }
@@ -424,7 +424,7 @@ namespace EA4S.Maze
             }
             currentCharacter.initialPosition = currentCharacter.transform.position;
             currentCharacter.initialRotation = currentCharacter.transform.rotation;
-            currentCharacter.transform.position = getRandFleePosition();
+            currentCharacter.transform.position = new Vector3(0, 0, 15);
             currentCharacter.gameObject.SetActive(true);
             currentCharacter.appear();
         }
