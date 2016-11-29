@@ -333,6 +333,7 @@ namespace EA4S.Scanner
 				{
 					yield return new WaitForSeconds(0.25f);
 					ss.gameObject.SetActive(false);
+                    ss.shadow.SetActive(false);
 					game.CreatePoof(ss.transform.position, 2f, true);
 				}
 			}
