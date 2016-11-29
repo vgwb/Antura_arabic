@@ -175,11 +175,10 @@ namespace EA4S.ThrowBalls
         {
             if (collision.gameObject.tag == Constants.TAG_POKEBALL)
             {
-                AudioManager.I.PlaySfx(Sfx.BallHit);
-
                 if (tag == Constants.TAG_CORRECT_LETTER)
                 {
                     GameState.instance.OnCorrectLetterHit(this);
+                    ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Poof);
                 }
 
                 else
@@ -429,12 +428,24 @@ namespace EA4S.ThrowBalls
 
             bool isPoppingUp = true;
 
+            IAudioManager audioManager = ThrowBallsConfiguration.Instance.Context.GetAudioManager();
+
             for (;;)
             {
                 yEquilibrium = isPoppingUp ? transform.position.y + POPPING_OFFSET : transform.position.y - POPPING_OFFSET;
                 float yVelocity = isPoppingUp ? JUMP_VELOCITY_IMPULSE : -JUMP_VELOCITY_IMPULSE;
 
                 float yDelta = 0;
+
+                if (isPoppingUp)
+                {
+                    audioManager.PlaySound(Sfx.BushRustlingIn);
+                }
+
+                else
+                {
+                    audioManager.PlaySound(Sfx.BushRustlingOut);
+                }
 
                 while (!PassesEquilibriumOnNextFrame(yVelocity, yDelta, yEquilibrium))
                 {
