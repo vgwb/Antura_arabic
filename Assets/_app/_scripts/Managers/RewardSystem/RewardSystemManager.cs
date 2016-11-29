@@ -33,6 +33,8 @@ namespace EA4S {
             return config;
         }
 
+        public static RewardPack CurrentReward = new RewardPack();
+
         /// <summary>
         /// Init
         /// </summary>
@@ -158,17 +160,18 @@ namespace EA4S {
             /// logic
             /// - Trigger selected reward event.
             /// - Load returnList of color for reward checking unlocked and if exist active one
-            if (OnRewardItemChanged != null)
-                OnRewardItemChanged(_rewardItemId, _rewardType);
+
 
             switch (_rewardType) {
                 case RewardTypes.reward:
                     // TODO: filter color selected from unlocked only
-                    foreach (RewardColor color in config.RewardsColorPairs.GetRange(0,5)) {
+                    foreach (RewardColor color in config.RewardsColorPairs) {
                         RewardColorItem rci = new RewardColorItem(color);
                         ///...
                         returnList.Add(rci);
                     }
+                    // set current reward in modification
+                    CurrentReward = new RewardPack() { ItemID = _rewardItemId, Type = RewardTypes.reward };
                     return returnList;
                 case RewardTypes.texture:
                     break;
@@ -178,6 +181,7 @@ namespace EA4S {
                     Debug.LogWarningFormat("Reward typology requested {0} not found", _rewardType);
                     break;
             }
+            
             return returnList;
         }
 
@@ -187,7 +191,9 @@ namespace EA4S {
         /// <param name="_rewardColorItemId">The reward color item identifier.</param>
         /// <param name="_rewardType">Type of the reward.</param>
         public static void SelectRewardColorItem(string _rewardColorItemId, RewardTypes _rewardType) {
-
+            CurrentReward.ColorId = _rewardColorItemId;
+            if (OnRewardChanged != null)
+                OnRewardChanged(CurrentReward);
         }
 
         /// <summary>
@@ -299,16 +305,13 @@ namespace EA4S {
 
         #region Events
 
-        public delegate void RewardSystemEventHandler(string Id, RewardTypes _rewardType);
+        public delegate void RewardSystemEventHandler(RewardPack _rewardPack);
 
         /// <summary>
-        /// Occurs when [on reward item changed]. Id is item selected id.
+        /// Occurs when [on reward item changed].
         /// </summary>
-        public static event RewardSystemEventHandler OnRewardItemChanged;
-        /// <summary>
-        /// Occurs when [on reward color changed]. Id is a color selected id.
-        /// </summary>
-        public static event RewardSystemEventHandler OnRewardColorChanged;
+        public static event RewardSystemEventHandler OnRewardChanged;
+        
 
         #endregion
     }

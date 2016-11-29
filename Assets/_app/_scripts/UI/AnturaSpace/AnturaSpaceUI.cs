@@ -114,6 +114,7 @@ namespace EA4S
                 showCategoriesTween.PlayBackwards();
                 showItemsTween.PlayBackwards();
                 showSwatchesTween.PlayBackwards();
+                AnturaModelManager.Instance.SaveAnturaCustomization();
             }
         }
 
