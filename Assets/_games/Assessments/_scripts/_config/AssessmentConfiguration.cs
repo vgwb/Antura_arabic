@@ -77,12 +77,11 @@ namespace EA4S.Assessment
         /// This is called by MiniGameAPI to create QuestionProvider, that means that if I start game
         /// from debug scene, I need a custom test Provider.
         /// </summary>
-        /// <returns></returns>
         public IQuestionBuilder SetupBuilder()
         {
             // Testing question builders
-            Teacher.ConfigAI.verboseDataSelection = true;
-            Teacher.ConfigAI.verboseTeacher = true;
+            /*Teacher.ConfigAI.verboseDataSelection = true;
+            Teacher.ConfigAI.verboseTeacher = true;*/
             snag = new DifficultyRegulation( Difficulty);
 
             switch (assessmentType)
@@ -96,15 +95,30 @@ namespace EA4S.Assessment
                 case AssessmentCode.WordsWithLetter:
                     return Setup_WordsWithLetter_Builder();
 
+                case AssessmentCode.SunMoonWord:
+                    return Setup_SunMoonWord_Builder();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
         }
 
+        private IQuestionBuilder Setup_SunMoonWord_Builder()
+        {
+            SimultaneosQuestions = snag.Increase( 1, 3); // Twice that number
+            Rounds = snag.Increase( 1, 3);
+
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.useJourneyForWrong = false;
+
+            return new WordsBySunMoonQuestionBuilder( SimultaneosQuestions * Rounds);
+        }
+
         private IQuestionBuilder Setup_WordsWithLetter_Builder()
         {
             SimultaneosQuestions = 2;
-            snag.SetStartingFrom(0.5f);
+            snag.SetStartingFrom( 0.5f);
             Rounds = snag.Increase( 1, 2);
 
             var builderParams = new Teacher.QuestionBuilderParameters();
@@ -114,20 +128,19 @@ namespace EA4S.Assessment
             builderParams.useJourneyForWrong = false;
 
             
-            return new WordsWithLetterQuestionBuilder( 
+            return new WordsWithLetterQuestionBuilder(
 
                 SimultaneosQuestions*Rounds,    // Total Answers
                 1,                              // Correct Answers
                 snag.Increase( 1, 2),           // Wrong Answers
                 parameters: builderParams
-                );     
-
+                );
         }
 
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
             SimultaneosQuestions = 1;
-            snag.SetStartingFrom(0.5f); 
+            snag.SetStartingFrom( 0.5f); 
             Rounds = snag.Increase( 1, 3);
 
             var builderParams = new Teacher.QuestionBuilderParameters();
@@ -178,9 +191,17 @@ namespace EA4S.Assessment
                 case AssessmentCode.WordsWithLetter:
                     return Setup_WordsWithLetter_LearnRules();
 
+                case AssessmentCode.SunMoonWord:
+                    return Setup_SunMoonWord_LearnRules();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
+        }
+
+        private MiniGameLearnRules Setup_SunMoonWord_LearnRules()
+        {
+            return new MiniGameLearnRules();
         }
 
         private MiniGameLearnRules Setup_WordsWithLetter_LearnRules()

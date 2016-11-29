@@ -12,7 +12,8 @@ namespace EA4S.Assessment
         void EnableInput();
 
         void AddElements(   List< PlaceholderBehaviour> placeholders,
-                            List< AnswerBehaviour> answers);
+                            List< AnswerBehaviour> answers,
+                            List< IQuestion> questions);
 
         void StartDragging( IDroppable droppable);
         void StopDragging( IDroppable droppable);

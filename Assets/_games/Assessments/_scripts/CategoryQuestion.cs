@@ -4,25 +4,22 @@ using UnityEngine;
 
 namespace EA4S.Assessment
 {
-    public class DefaultQuestion : IQuestion
+    public class CategoryQuestion : IQuestion
     {
-        private LetterObjectView view;
-        private int placeholdersCount;
+        private int correctCount;
+        private GameObject gameObj;
 
-        public DefaultQuestion( LetterObjectView letter, int placeholders)
+        public CategoryQuestion( GameObject q, int correctAnswers)
         {
-            view = letter;
-            placeholdersCount = placeholders;
-            placeholdersSet = new List< GameObject>();
-            var question = letter.gameObject.AddComponent< QuestionBehaviour>();
-            question.SetQuestion( this);
+            gameObj = q;
+            this.correctCount = correctAnswers;
         }
 
         public GameObject gameObject
         {
             get
             {
-                return view.gameObject;
+                return gameObj;
             }
         }
 
@@ -33,12 +30,12 @@ namespace EA4S.Assessment
 
         public ILivingLetterData LetterData()
         {
-            return view.Data;
+            return null;
         }
 
         public int PlaceholdersCount()
         {
-            return placeholdersCount;
+            return placeholdersSet.Count;
         }
 
         private List< GameObject> placeholdersSet;
@@ -50,9 +47,6 @@ namespace EA4S.Assessment
 
         public IEnumerable< GameObject> GetPlaceholders()
         {
-            if (placeholdersSet.Count != placeholdersCount)
-                throw new InvalidOperationException( "Something wrong. Check Question placer");
-
             return placeholdersSet;
         }
 
