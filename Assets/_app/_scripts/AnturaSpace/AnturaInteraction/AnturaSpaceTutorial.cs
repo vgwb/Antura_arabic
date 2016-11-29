@@ -25,8 +25,6 @@ namespace EA4S
         private UnityEngine.UI.Text m_oCookieNumberText;
         [SerializeField]
         private UnityEngine.UI.Button m_oCustomizationButton;
-        [SerializeField]
-        private UnityEngine.UI.Button m_oExitButton;
         #endregion
 
         #region PRIVATE MEMBERS
@@ -42,6 +40,7 @@ namespace EA4S
         {
             if(AppManager.I.Player.IsFirstContact()==false) //if this isn't the first contact disable yourself and return
             {
+               
                 gameObject.SetActive(false);
                 return;
             }
@@ -49,21 +48,19 @@ namespace EA4S
             //setup first state, disable UI      
             m_eTutoState = eAnturaSpaceTutoState.ANTURA_ANIM;
 
+            GlobalUI.ShowBackButton(false);
             m_oCookieButton.gameObject.SetActive(false);
             m_oCustomizationButton.gameObject.SetActive(false);
-            m_oExitButton.gameObject.SetActive(false);
 
             m_oAnturaBehaviour.onAnimationByClick += AdvanceTutorial;
 
-            AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Intro);
+            AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Intro, delegate()
+            {
+                TutorialUI.ClickRepeat(m_oAnturaBehaviour.gameObject.transform.position+(Vector3.forward*-2), float.MaxValue, 1);
+            });
 
         }
 
-        
-        void Update()
-        {
-
-        }
         #endregion
 
         #region PUBLIC FUNCTIONS
@@ -83,6 +80,8 @@ namespace EA4S
 
                     m_eTutoState = eAnturaSpaceTutoState.COOKIE_BUTTON;
 
+                    TutorialUI.Clear(true);
+
                     m_oAnturaBehaviour.onAnimationByClick -= AdvanceTutorial;
 
                     AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Intro_Touch, delegate () //dialog touch Antura
@@ -93,7 +92,9 @@ namespace EA4S
                         AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate () //dialog cookies
                         {
                             AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_1); //dialog tap for cookies
-     
+                            RectTransform _oRectCookieB = m_oCookieButton.gameObject.GetComponent<RectTransform>();
+                            TutorialUI.ClickRepeat(Camera.main.ScreenToWorldPoint(new Vector3(_oRectCookieB.position.x,_oRectCookieB.position.y,Camera.main.nearClipPlane)), float.MaxValue,1);
+
                         });
                     });
 
@@ -103,7 +104,15 @@ namespace EA4S
 
                     m_eTutoState = eAnturaSpaceTutoState.USE_ALL_COOKIES;
 
+                    TutorialUI.Clear(true);
+
                     AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_2); //dialog drag cookies
+
+                    Vector3[] _av3Path = new Vector3[2];
+                    RectTransform _oRectCookieBDrag = m_oCookieButton.gameObject.GetComponent<RectTransform>();
+                    _av3Path[0] = Camera.main.ScreenToWorldPoint(new Vector3(_oRectCookieBDrag.position.x, _oRectCookieBDrag.position.y, Camera.main.nearClipPlane));
+                    _av3Path[1] = _av3Path[0] + Vector3.up * 2 + Vector3.left * 2;
+                    TutorialUI.DrawLine(_av3Path[0], _av3Path[1], TutorialUI.DrawLineMode.FingerAndArrow, true, false);
 
                     break;
 
@@ -111,6 +120,8 @@ namespace EA4S
                     if (m_oCookieNumberText.text.CompareTo("0") == 0)
                     {
                         m_eTutoState = eAnturaSpaceTutoState.CUSTOMIZE;
+
+                        TutorialUI.Clear(true);
 
                         m_oCookieButton.onClick.RemoveListener(AdvanceTutorial);
 
@@ -125,6 +136,10 @@ namespace EA4S
                             AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Custom_1, delegate () //dialog customize
                             {
                                 AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Custom_2); //dialog click customize
+
+                                RectTransform _oRectCustomB = m_oCustomizationButton.gameObject.GetComponent<RectTransform>();
+                                TutorialUI.ClickRepeat(Camera.main.ScreenToWorldPoint(new Vector3(_oRectCustomB.position.x, _oRectCustomB.position.y, Camera.main.nearClipPlane)), float.MaxValue, 1);
+
                             });
                         });
                     }
@@ -135,10 +150,16 @@ namespace EA4S
 
                     m_eTutoState = eAnturaSpaceTutoState.FINISH;
 
+                    TutorialUI.Clear(true);
+
                     //--TODO think how detect antura dressup
                     m_oCustomizationButton.onClick.RemoveListener(AdvanceTutorial);
-                    m_oExitButton.gameObject.SetActive(true);
-                    AudioManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro_AnturaSpace); //dialog go to map
+                    GlobalUI.ShowBackButton(true);
+
+                    AudioManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro_AnturaSpace, delegate () //dialog go to map
+                    {
+                        TutorialUI.ClickRepeat(Camera.main.ScreenToWorldPoint(new Vector3(GlobalUI.I.BackButton.RectT.position.x, GlobalUI.I.BackButton.RectT.position.y, Camera.main.nearClipPlane)), float.MaxValue, 1);
+                    });
                     //--
                     break;
 

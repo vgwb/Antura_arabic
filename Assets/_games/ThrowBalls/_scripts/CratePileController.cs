@@ -35,6 +35,8 @@ namespace EA4S.ThrowBalls
 
         public void OnCrateHit(CrateController crate)
         {
+            ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.CrateLandOnground);
+
             crate.Launch(new Vector3(0, 0, 1), 30);
 
             middleCrate.ApplyCustomGravity();

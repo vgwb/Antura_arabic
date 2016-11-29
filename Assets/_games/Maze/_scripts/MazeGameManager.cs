@@ -17,9 +17,9 @@ namespace EA4S.Maze
 		public static MazeGameManager instance;
 
         public GameObject characterPrefab;
-        
+        public GameObject arrowTargetPrefab;
 
-		public MazeCharacter currentCharacter;
+        public MazeCharacter currentCharacter;
 		public HandTutorial currentTutorial;
 
 		public List<GameObject> prefabs;
@@ -140,7 +140,7 @@ namespace EA4S.Maze
 			//line.SetColors (Color.green, Color.green);
 			//line.useWorldSpace = true;    
 
-			line.material = new Material(Shader.Find("Unlit/TransparentColor"));
+			line.material = new Material(Shader.Find("Antura/Transparent"));
 			line.material.color = new Color (0.5f, 0.5f, 0.5f, 0.5f);
 
 			lines.Add (line);
@@ -223,7 +223,7 @@ namespace EA4S.Maze
 
                 StartCoroutine(waitAndPerformCallback(2, () =>
                 {
-                    TutorialUI.MarkYes(currentCharacter.transform.position + new Vector3(0,2,0), TutorialUI.MarkSize.Big);
+                    TutorialUI.MarkYes(currentCharacter.transform.position + new Vector3(2,2,2), TutorialUI.MarkSize.Huge);
                 },
                 () => {
                     if (currentLetterIndex == 6)

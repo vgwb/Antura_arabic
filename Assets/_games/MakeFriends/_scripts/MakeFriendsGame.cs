@@ -16,7 +16,6 @@ namespace EA4S.MakeFriends
         public LivingLetterArea rightArea;
         public LetterPickerController letterPicker;
         public Canvas endGameCanvas;
-        public StarFlowers starFlowers;
         public GameObject sceneCamera;
         public static int numberOfRounds = 6;
         public float uiDelay;

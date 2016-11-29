@@ -5,6 +5,2387 @@ to generate git log:
 git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 =============
 
+2016-11-29 - [build] preparing 0.11.29n
+2016-11-29 - [clean] removed 4 compilation warnings :)
+2016-11-29 - [MissingLetter] fix variation name
+2016-11-30 - [Maze] change line shader to Antura Transparent
+2016-11-29 - [db] udpated PlaySessions list
+2016-11-29 - [cheat] preparing SuperDogMode
+2016-11-29 - [cheat] preparing SuperDogMode
+2016-11-29 - [MissingLetter] Update game Variation
+2016-11-30 - [Scanner] - Removed ground mesh [Dancing Dots] - LL Speaks letter on click
+2016-11-30 - [Maze] Smaller rocket [Maze] Blinking on first Arrow
+2016-11-29 - [ThrowBalls] Add SFX.
+2016-11-29 - [AnturaSpace][change]Added finger hint on tutorial (to finish), added common particle, adjusted simple throw, Antura barks on click while bones are in scene, minor changes
+2016-11-29 - Added verbose data selection. Set current PS data to have a really high weight.
+2016-11-29 - [Maze] Fix rocket position [Maze] Change rainbow to tail renderer
+2016-11-29 - [ThrowBalls] Fix TrailRenderer bug.
+2016-11-29 - [ThrowBalls] Fix box colors.
+2016-11-29 - Fixed bug with DB versioning.
+2016-11-29 - [Maze] Fix bug in tutorial replay [Maze] Line is now orange before rocket starts to follow
+2016-11-29 - [Maze] Fix timer for Antura appearance
+2016-11-29 - Added pack history for words of WordsWithLetter.
+2016-11-29 - [ThrowBalls] Use new Egg victory ray particle.
+2016-11-29 - Added Variation to MissingLetter.
+2016-11-29 - [Scanner] - Light intensity - Finger offset [Dancing Dots] - Light intensity
+2016-11-29 - [TakeMeHome] Fix tube order [TakeMeHome] Fix Mark position [TakeMeHome] Make sure there are at least 2 visible tubes
+2016-11-29 - [Dancing Dots] - Diacritic set from Teacher - Fixed bugs - Antura Dancing
+2016-11-29 - [AnturaSpaceUI] Implemented color swatches
+2016-11-29 - Added WordsInPhraseQuestionBuilder for MissingWord.
+2016-11-29 - [Maze] Make sure Alef is scaled correctly
+2016-11-29 - [Maze] Change material to Tano's
+2016-11-29 - Added PhraseFilters. Fixed ReadingGame to work with useful filters.
+2016-11-29 - - Fix wrong behaviour for first contact in StageManager.
+2016-11-29 - Fixed speaker dialog that sometimes was open while the Woman was speaking. 10000 attemps are not enough to place all answers in a "non-overlapping" way.
+2016-11-29 - Since there are no more subtitles during assessment adjusted Question layout as consequence
+2016-11-29 - Completato Assessment SunMoon Word
+2016-11-29 - [feature Map Scene] Lock maps
+2016-11-29 - [Scanner] Make suitcases drop form the top instead of scaling up.
+2016-11-29 - [AnturaSpace][feature]Added intro for first contact, changed simple throw to be random, Antura can't eat the cookie while dragging it
+2016-11-29 - Faster iPhone execution
+2016-11-29 - Smaller LL texture for fast rendering
+2016-11-29 - [AnturaSpace] Update scene
+2016-11-29 - [AlphabetSong] Bugfix for lens distance
+2016-11-29 - [Debug] updated SRDebug to 1.5.1
+2016-11-29 - - Fixed Antura mutilation loading reward...
+2016-11-29 - [MapScene] fixed some bugs + not showing buttons when max and initial possition
+2016-11-29 - - Antura space return list of swatches color for selected item (standard reward).
+2016-11-29 - [AnturaSpace][feature]Added bone dragging, removed leaves particle
+2016-11-29 - [Tobogan] Fixed bar flickering on slower devices
+2016-11-29 - Fixato droppable bug
+2016-11-29 - - Theme auto selection.
+2016-11-29 - [SickLetters] Added subtitles, some cleaning
+2016-11-29 - [Credits] Implemented Credits screen (still needs to be filled with correct data)
+2016-11-29 - - Removed test panel from PlaySessionResult.
+2016-11-29 - - Reward System standard for playsession lifecycle. Added unlocked rewards management for any player profile.
+2016-11-29 - [db] updated all PlaySession table
+2016-11-29 - On progress for SunMoon, maybe fixed the Droppable bug?
+2016-11-29 - [FastCrowd] Removed additional property in ILivingLetterData, used GetCharForDisplay
+2016-11-29 - [db & Letters] now showing correctly medial and final letters with the “-“ i ntheir form (even if not present in the atlas)
+2016-11-29 - [Home] Pause button is now shown (with HOME settings and credits - not working yet)
+2016-11-29 - [Balloons] LetterPrompt prefab updated
+2016-11-29 - [Balloons] Replaced old UI with new one
+2016-11-29 - [AutoActivate] add check on AutoActivate, fix scene AutoActivate in MissingLetter and HideAndSeek
+2016-11-29 - [HideAndSeek] Replaced "re-listen" placeholder button
+2016-11-29 - [Mood] Change to sad letter
+2016-11-29 - [Mood] Changed neutral/really-good emoticons + Scaled emoticons and made the more distant from each other
+2016-11-29 - [AlphabetSong/ReadingGame] Larger magnifying glass, song on SFX channel
+2016-11-29 - [EndsessionScreen] Implemented API to show tot previously unlocked rewards + miscellaneous changes
+2016-11-29 - Fixed droppable null reference bug
+2016-11-29 - Keeper has walkie talkie now
+2016-11-29 - Added speaking only when assessment has some mistakes
+2016-11-29 - [db] updated PlaySession table
+2016-11-29 - - Added Playsession unlock items count logic. - Added RewardPack structure.
+2016-11-29 - Fixed compilation
+2016-11-29 - [AnturaSpace] update Antura Interaction
+2016-11-29 - Who readded obsolete stuff? removing again
+2016-11-29 - Fixed antura animation in assessments, almost done SunMoonWords (but teacher do not find data)
+2016-11-29 - preparing 0.11.29b
+2016-11-29 - [book] start dynamic layout
+2016-11-29 - [database] removed obsolete pre-init methid causing hard times on devices
+2016-11-29 - [app] moved global constancts from ConfigAI to AppConstants
+2016-11-29 - [Maze] New 30 Letters added [Maze] Faster rocket and movement
+2016-11-29 - [Maze] Remove unused assets [Maze] Fix speed of rocket
+2016-11-29 - [Maze] Changed rocket movement to DoPAth
+2016-11-29 - [font] substituted old arabic font with new one
+2016-11-29 - [audio] added missing FastCrowd_counting_Tuto.wav
+2016-11-29 - [build] preparing 0.11.29a
+2016-11-29 - [font] substituted old arabic font with new one
+2016-11-29 - [audio] moved old Keepr voices to Trash
+2016-11-29 - [Maze] Made rocket hover more [Maze] Changed rocket movement to DoTween
+2016-11-29 - [drawings] corrected centering if some drawings and regenerated at 2x res
+2016-11-29 - [keepermanager] isKeepr option and use it in GameSleector to NOT show the WalkieTalkie
+2016-11-29 - [Maze] Changed rocket material [Maze] MAde rocket look in the direction of arrows [Maze] Rocket hovers while waiting
+2016-11-29 - [book] fix label names (really)
+2016-11-29 - [book] fix label names
+2016-11-29 - [letterData] added GetAvailablePositions() method
+2016-11-29 - [db] moved counting games later PS and TakeMeHome from 1.4.1
+2016-11-28 - [clean] removed unused AppManager methods
+2016-11-28 - [Navigation] alwasy use NavigationManager.I. load scenes methods (to also use optional Analytics custom events)
+2016-11-28 - [clean] old Tutorial scripts to Trash
+2016-11-28 - [HideAndSeek] fix not start problem from debugPanel
+2016-11-28 - [db] DbSchemeVersion has its own VersionNumber (to not regenerate it at every app version)
+2016-11-28 - [audio & db] updated all VO with new by Fares, updated LocalizationData and db
+2016-11-28 - Updated ThrowBalls_letters with correct question builder.
+2016-11-28 - [Egg] fast end
+2016-11-28 - [Antura] Fixed walking events
+2016-11-28 - [Balloons] No more popups!
+2016-11-28 - [build] preparing 0.11.28c
+2016-11-28 - [Balloons] Materials and rope physics
+2016-11-28 - [Scanner] Adjusted Tutorial
+2016-11-28 - [db] fix db init huge bus on iOS
+2016-11-28 - [SickLetters] Fixed DDs overlapping
+2016-11-28 - [HideAndSeek] add scene material
+2016-11-28 - [HideAndSeek] update game scene, fix question provider
+2016-11-28 - [Make Friends] High Five
+2016-11-28 - [ThrowBalls] Use new FlexibleContainer.
+2016-11-28 - Moved AppStart/AppClosed to PlayerProfileManager. Updated book with missing data.
+2016-11-28 - [FastCrowd] Better Score System
+2016-11-28 - [Balloons][MakeFriends] Animations
+2016-11-28 - [Mood] New emoticons art
+2016-11-28 - [Scanner] Added Phrase Tutorial
+2016-11-28 - Added DEBUG logs for testing iOS
+2016-11-28 - [MissingLetter] fix wrong emotiocons size, wrong materials on emoticons, don't use spotlight.
+2016-11-28 - [Maze] Change use of standard shader to Antura specular.
+2016-11-28 - [TutorialUI] Fixed mark size bug (requires testing from Armando)
+2016-11-28 - [Make Friends] Antura
+2016-11-28 - [MixedLetters] Fix remaining issues.
+2016-11-28 - [FastCrowd] Fixed Composer size
+2016-11-28 - [Maps] Antura's movement and rotatation is now animated between dots + Sped up map change
+2016-11-28 - [FastCrowd] Better Word Composer
+2016-11-28 - [AnturaSpace] update scene
+2016-11-28 - [AnturaSpace] add AnturaBehaviour
+2016-11-28 - [Map] Adapted Antura button and BtnOpenPlayerBook prefab to UI graphics
+2016-11-28 - [Map] Adapted to UI art + UI animations + Better UI layout
+2016-11-28 - [AudioManager] Reset dialogues on game exit
+2016-11-28 - Quality Settings
+2016-11-28 - [UI] All UIButtons now animate automatically
+2016-11-28 - [AnturaSpace][change] Added new bone prefab
+2016-11-28 - [ColorTickle][bug]Fixed texture format compression on iOS
+2016-11-28 - [Tobogan] tutorial FingerAndArrow
+2016-11-28 - [FastCrowd] Support for diacritics in Letters
+2016-11-28 - Forcing DB to be recreted when switching profiles.
+2016-11-28 - Better Popup
+2016-11-28 - [ThrowBalls] Fix infinite loop bug when ball disappears.
+2016-11-28 - [fixed mapScene] velocity transition
+2016-11-28 - [feature MapScene] Change light state
+2016-11-28 - [db] added all Assessemts to DB (not final, but so all LB work)
+2016-11-28 - Updated ParentsPanel to use LearningBlock score.
+2016-11-28 - Updated book to access minigame scores.
+2016-11-28 - Added LetterInfo and PhraseInfo to BookPanel.
+2016-11-28 - [MixedLetters] Show letters on big LL in alphabet variation.
+2016-11-28 - Fixed bug with JourneyHelper.
+2016-11-28 - Fixed bug with ScoreHelper. Set BookPanel to use WordInfo as input.
+2016-11-28 - Fix : error launching assessment from map.
+2016-11-28 - Set Words in the BookPanel to use the new WordInfo wrapper.
+2016-11-28 - Fixed ToString bug with ScoreData.
+2016-11-28 - [feature] desactive buttons when first and last map
+2016-11-28 - [MissingLetter] fix test QuestionProvider, AutoActivate have 1 null obj to Awake
+2016-11-28 - [fixed mapScene] transition first and last map
+2016-11-28 - Added new score helper functions to get all data with scores and unlock status.
+2016-11-28 - ...second parto of commit...
+2016-11-28 - Fix: updated references for new assessment scene name.
+2016-11-28 - - Fix: updated call to new assessment scene name.
+2016-11-28 - [fixed MapScene] desactivate maps between transitions
+2016-11-28 - [fixed] smooth transition between maps
+2016-11-28 - [MakeFriends] UI Improvement
+2016-11-28 - Fix in GlobalUI popup widget
+2016-11-28 - [Balloons][Make Friends] Tutorial improvements
+2016-11-28 - [feature MapScene] Fog Color & Camera Color: smooth transition between Maps + Remove unused Assets
+2016-11-28 - - Fix : https://trello.com/c/u4DKP9lC
+2016-11-28 - Fixed bug with FastCrowd_Spelling receiving non-drawings.
+2016-11-28 - Added IsAssessmentTime() to teacher journey
+2016-11-28 - Added automatic diacritic combo parsing. Now the journey has diacritic combos too.
+2016-11-28 - [ThrowBalls] Throw in VO.
+2016-11-28 - Added filter to DancingDots to consider only main diacritics
+2016-11-28 - Fixed bug with MissingLetter's use of the teacher data.
+2016-11-28 - Fixed bug with letter variation filtering.
+2016-11-28 - [Scanner] Tweak to make Scanner Phrase work through Tutorial - Unified belt speed - Fixed Scanner device back and forth bug
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-27 - [AnturaSpaceUI] Rewards now center and fit to RenderTexture camera independently of size and pivot + Implemented different :
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-27 - [AnturaSpaceUI] Rewards now center and fit to RenderTexture camera independently of size and pivot + Implemented different be:
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-27 - [AnturaSpaceUI] Rewards now center and fit to RenderTexture camera independently of size and pivot + Implemented different behaviour for textures and decals
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-27 - [AnturaSpaceUI] Rewards now center and fit to RenderTexture camera independently of size and pivot + Implemented different behaviour for textures and decals
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-27 - [AnturaSpaceUI] Rewards now center and fit to RenderTexture camera independently of size and pivot + Implemented different behaviour for textures and decals
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-27 - [AnturaSpaceUI] Rewards now center and fit to RenderTexture camera independently of size and pivot + Implemented different behaviour for textures and decals
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-27 - [AnturaSpaceUI] Rewards now center and fit to RenderTexture camera independently of size and pivot + Implemented different behaviour for textures and decals
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-27 - [AnturaSpaceUI] Rewards now center and fit to RenderTexture camera independently of size and pivot + Implemented different behaviour for textures and decals
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-27 - [AnturaSpaceUI] Rewards now center and fit to RenderTexture camera independently of size and pivot + Implemented different behaviour for textures and decals
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-27 - [AnturaSpaceUI] Rewards now center and fit to RenderTexture camera independently of size and pivot + Implemented different behaviour for textures and decals
+2016-11-27 - [Scanner] Removed StarFlowers reference in UI Canvas
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-27 - [AnturaSpaceUI] Rewards now center and fit to RenderTexture camera independently of size and pivot + Implemented different behaviour for textures and decals
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-27 - [AnturaSpaceUI] Rewards now center and fit to RenderTexture camera independently of size and pivot + Implemented different behaviour for textures and decals
+2016-11-27 - [Scanner] Removed StarFlowers reference in UI Canvas
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-27 - [AnturaSpaceUI] Rewards now center and fit to RenderTexture camera independently of size and pivot + Implemented different behaviour for textures and decals
+2016-11-27 - [Scanner] Removed StarFlowers reference in UI Canvas
+2016-11-27 - [Book] games section
+2016-11-28 - Re-added SetupFakeGame to TeacherTester (teacher testing was broken while cleaning up warnings in 18ba209)
+2016-11-28 - [MakeFriends][Balloons] Improvements
+2016-11-28 - [Scanner] Variation Implementation
+2016-11-28 - [build] preparing v0.11.28a
+2016-11-28 - [Map] Book icon has the Player Avatar image
+2016-11-28 - [Profile Selector] moved AvatarsResourcesDir to AppConstants.cs (since we need that in another module, too)
+2016-11-28 - [Maze] Add VO + Tutorial
+2016-11-28 - [PlayerProfile] Current, not Actual
+2016-11-28 - [Fonts] moved obsolete fonts to Trash, and removed old references to it
+2016-11-28 - [map] removed references to old obsolete arabic font
+2016-11-28 - [Navigation] when exiting by Pause menu, go to Map! and from Map -> Home
+2016-11-28 - [book] moved OpenBook scene logic to NavigtionManager
+2016-11-27 - [HideAndSeek] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-27 - [MissingLetter] removed breaking everything old obsolete StarSystem prefab from scene
+2016-11-28 - [TakeMeHome] Make sure Audio is using Context.GetAudioManager
+2016-11-27 - [Audio] optimized Sfx names
+2016-11-28 - [Maze] Fix collision on rocket to make sure it takes certain specific cases [Maze] Review how number of stars is calculated [Maze] Play LL Audio from LivingLetterData
+2016-11-27 - [Maze] Use DoMove for letter appearance and hiding
+2016-11-27 - [Maze] Code Clean-up [Maze] Music
+2016-11-27 - [TakeMeHome] Clean Up warnings
+2016-11-27 - [Scanner] Added VO
+2016-11-27 - [SickLetters] Added DDs self destruction
+2016-11-27 - [Scanner] Added Tutorial
+2016-11-27 - [features MapScene] Navigation system + ropes
+2016-11-27 - [Scanner] Phrase Variation working from debug
+2016-11-27 - [Dancing Dots] Adjusted Dotless and Dots only Fonts to take all Diacritics
+2016-11-27 - [PlaySessionResultUI] Rewards now scale correctly using same logic as Antura Sapce
+2016-11-27 - [Fast Crowd] Different font for numbers
+2016-11-27 - [MixedLetters] Remove StarFlowers, adjust scene lighting.
+2016-11-27 - [ThrowBalls] Use Antura specular shader, adjust lighting, and some clean-up.
+2016-11-27 - [SickLetters] Adjusted scene lighting value to match Tano's scene
+2016-11-27 - Fixed bug with randomization of lists if a number is requested that is larger than the available items.
+2016-11-27 - [ThrowBalls] Show image on the LL in ThrowBalls_Words instead of the actual word.
+2016-11-27 - [ThrowBalls] Add TrailRenderer for ball.
+2016-11-27 - [ThrowBalls] Input refactoring & hide arrow after ball is launched.
+2016-11-27 - [ColorTickle][bug]Fixed question data usage
+2016-11-27 - [Egg] Updated button to use TextRender
+2016-11-27 - [ThrowBalls] Fix ThrowBalls_Words bug.
+2016-11-27 - - RewardSystem auto load texture for tilematerial list and patchmaterial.
+2016-11-27 - [FastCrowd] Fixed WordComposer
+2016-11-27 - [SickLetters] Removed StarFlower and some polishing
+2016-11-27 - [Minigames] Removed StarFlower old prefab from scene
+2016-11-27 - - Change naming convention of rewards material and texture.
+2016-11-27 - [AnturaSpaceUI] Rewards now center and fit to RenderTexture camera independently of size and pivot + Implemented different behaviour for textures and decals
+2016-11-27 - [Scanner] Removed StarFlowers reference in UI Canvas
+2016-11-27 - [Book] games section
+2016-11-27 - - RewardSystem corrected return reward list by category for UI.
+2016-11-27 - - Deleted some old materials
+2016-11-27 - [AnturaSpaceUI] Correctly implemented category selection
+2016-11-27 - [book] layout RTL
+2016-11-27 - [appManager] removed unused methods and cleaned Initialization
+2016-11-27 - [assessment] we don’t need skybox
+2016-11-27 - [Debug] DebugPanel is Initialized by settign (not automatically) we’ll need this for production deploy
+2016-11-27 - [Debug] DebugPanel is Initialized by settign (not automatically) we’ll need this for production deploy
+2016-11-27 - [SickLetters] Added support for diacritics, Added Poof scaling
+2016-11-27 - - Reward system updated: charge model by category.
+2016-11-27 - [clean] rename Instance -> I also in comments
+2016-11-27 - [debug] fix compilation error
+2016-11-27 - - Reward system load models rewards in ui by category.
+2016-11-27 - [Scanner] Fixes - Scanner device moves back when letter wants to fly - smaller poofs - Drawings font color - Luggage placement adjusted - Letter jump and flight improved - Antura Prep - Other fixes
+2016-11-27 - [book] recreate word from splitted chars (just to test)
+2016-11-27 - [Book] some style, word plit, RTL layout, larter UI
+2016-11-27 - [book & arabic] split Word into its LetterData and show them
+2016-11-27 - [clean] some commenting on old unused code to remove about 40 compilation warnings
+2016-11-27 - LL_LetterData ShowAs -> Position (as used in LetterData)
+2016-11-27 - [clean] renamed AppManager.Instance. to AppManager.I. since we are using .I for every other mananger (and it’s so shorter!)
+2016-11-27 - [clean] simplified AppConstants.cs
+2016-11-27 - [clean] moved all _app/_scripts/Controllers/ into /_scripts since it wasn’t clear anymore what was in and out.. better a flat list
+2016-11-27 - [clean] moved DataFilters to own file
+2016-11-27 - [arabic] add the "-" to diacritic symbols to indentify better if it's over or below hte mid line
+2016-11-27 - [db] temporarly added debug unicode info
+2016-11-27 - update prefab
+2016-11-27 - [arabic Letters] now using new LetterData.GetChat method which relies on Unicodes only to render normal letters and DiacriticSymbols
+2016-11-27 - [map] removed Debug.Logs from Update()
+2016-11-27 - [db] updated localization and PlayerBOok with arabic menu labels
+2016-11-27 - added LocalizationDataId.None
+2016-11-27 - TextRender now accepts LocalizationDataId to show UI arabic labels automatically
+2016-11-27 - [editor] tools scenes now have the Tool tag
+2016-11-26 - [atrabicHelper] removed unused old method
+2016-11-26 - [db] LetterData: added Symbol_Unicode
+2016-11-26 - Revert "clean arabic Helper"
+2016-11-26 - clean arabic Helper
+2016-11-26 - - Added Reset MaxJourneyPosition in debug panel.
+2016-11-26 -  ExtractLetterDataFromArabicWord now is set everywhere a list of letters from a word is needed.
+2016-11-26 - [AnturaSpaceUI] Implemented RewardSystemManager.SelectRewardColorItem
+2016-11-26 - [feature Map Scene] Add floating movement + Look at pins
+2016-11-26 - [feature MapScene] Add final models in Map Scene
+2016-11-26 - - Added SelectRewardColorItem to reward API.
+2016-11-26 - [AnturaSpaceUI] Implemented RewardSystemManager API (still needs work)
+2016-11-26 - - https://trello.com/c/tGfiSdmz - Now at any set of MaxJourneyPosition same value is set to CurrentJourneyPosition.
+2016-11-26 - Diacritics are now merged to their base letters in the letters-to-words database entries.
+2016-11-26 - [AnturaSpaceUI] Implementing API + [GenericUtilties] Added LayerMaskToIndex and HexToColor methods
+2016-11-26 - - Rewards API update 2.
+2016-11-26 - Did I say off? I meant off.
+2016-11-26 - Fixed ArabicAlphabetHelper to merge diacritics with their base letters, if needed (off by default).
+2016-11-26 - Updated filters for some games.
+2016-11-26 - Added test data logging (disabled, for now) for the teacher.
+2016-11-26 -  - Rewards API skeleton updated.
+2016-11-26 - [GlobalUI] Added static ShowBackButton method
+2016-11-26 - - Rewards customization  API skeleton for UI interaction.
+2016-11-26 - [ColorTickle][change]Replace win particle with new one, cleaning Logs
+2016-11-26 - [arabic] fetch char from LetterData by using unicodes only (with DiacriticCombos)
+2016-11-26 - [MissingLetter] fix wrong position of the foreground elements in missing letter
+2016-11-26 - [MissingLetter] fix Touching the LL-Word on top I should be able to ear again the word
+2016-11-26 - Added 'SetDirty' to all database tables.
+2016-11-26 - [Scanner] Trap Door Activation - improvements [Dancing Dots] - improvements
+2016-11-26 - [TextRender] Added interface for directly assigning ILivingLetterData and Sentences
+2016-11-25 - [text render fix ad book letters do not show “all” (too slow on poor devices)
+2016-11-26 - [Maze] Add win and Lose animations
+2016-11-26 - [Maze] Match Letter Ids [Maze] Fix bug when user keeps drawing while lost or won current path
+2016-11-25 - [TakeMeHome] Add Camera Fog and Vignette [TakeMeHome] Use Larger Yes-No Marks
+2016-11-25 - Provider back to ArabicHelper
+2016-11-25 - Fixing diacritcs..
+2016-11-25 - Checking diacritics - fixed Popup
+2016-11-25 - [Tobogan] tube material
+2016-11-25 - [feature] Add new models MapScene + place dots in a beautiful way
+2016-11-25 - Antura animation controller updated
+2016-11-25 - Set all new db tables to dirty.
+2016-11-25 - [db] corrected LetterVariations vs DiacriticCombo letters
+2016-11-25 - Fixed issue with some letter variation combos being considered diacritics.
+2016-11-25 - [scoreData] removed Unlocked boolean
+2016-11-25 - - Reward System (WIP).
+2016-11-25 - Added drawing & color filters to FastCrowd_Spelling
+2016-11-25 - Added requireDiacritics filter to WordData too. Fixed bug with excludeDiacritics.
+2016-11-25 - Added requireDiacritics filter.
+2016-11-25 - Disabled all default filters. WARNING - MAKE SURE GAMES WORK!
+2016-11-25 - Added builder parameters to all minigames.
+2016-11-25 - Missing wordhelper updates.
+2016-11-25 - [Antura] New animations added
+2016-11-25 - Added word filters to WordsInPhraseQuestionBuilder.
+2016-11-25 - [FastCrowd] dialogues
+2016-11-25 - [ColorTickle]Fixed warnings and cleaned unused stuff
+2016-11-25 - Added filter to avoid using Color words for some games.
+2016-11-25 - Separated all serialized database tables to different assets for easier diff.
+2016-11-25 - [AnturaSpaceUI] Core UI system complete
+2016-11-25 - Dialogue Audio on Stars Screen
+2016-11-25 - Removed unused code. Made LLs interactable also during other animations (during antura they are "magnetized" but without audio). If answers are wrong it is possible to immediatly "magnetize" further answers, audio/visual back will continue to stack indefinitely until all answers are correct.
+2016-11-25 - [FastCrowd] Fixes to Tutorial and drop area
+2016-11-25 - [MissingLetter] fix max number of answer
+2016-11-25 - [Dancing Dots] Getting all letters from Teacher - Adjusted local provider
+2016-11-25 - [SickLetters] Added support for dotless letters , Refactored data retrieval
+2016-11-24 - [ColorTickle][bug]Fixed incorrect pixels conversion on textures for Android build, minor changes, cleaning
+2016-11-24 - [Scanner] Using Teacher - Some VO
+2016-11-24 - [Maze] Fix configuratioon to use correct RandomLetter builder and reflect it in Game [TakeMeHome] Fix configuration to use correct RandomLetter builder and reflect it in Game
+2016-11-24 - [FastCrowd] tutorial
+2016-11-24 - [LL] Fix equals check
+2016-11-24 - [LL] Safe comparison using Equals
+2016-11-24 - [fixed MapScene] some bugs
+2016-11-24 - [FastCrowd] Less annoying running state
+2016-11-24 - [FastCrowd] Fix Counting (10 was written reversed)
+2016-11-24 - Added filters for letter variations. Set alphabet games to use only the 28 letters.
+2016-11-24 - [ReadingGame] Defined Difficulty on Time and number of buttons [ReadingGame] Same blur for different sized text
+2016-11-24 - [AnturaSpaceUI] Setting things up
+2016-11-24 - Fixed bug with alphabet letters not being correctly ordered.
+2016-11-24 - [AlphabetSong] Fixed Difficulty in AlphabetSong
+2016-11-24 - [ReadingGame] Switched to TutorialUI KO Mark in Tutorial, fixed a bug in ReadingGame -> AlphabetSong transition
+2016-11-24 - [ReadingGame] Fixed Bug on Time's up
+2016-11-24 - [PopupWindow] Fixed bug when showing Time's up!
+2016-11-24 - Removed unused log.
+2016-11-24 - Added debug option to SRDebugOptions to set the teacher as verbose.
+2016-11-24 - letterShape starts with 3 rounds. Removed unused old test files
+2016-11-24 - Antura's need just 1 click to go to next state, and tutorial showed again after some time.
+2016-11-24 - Added missing filters to DancingDots.
+2016-11-24 - [Maze] LogError when letter returned from teacher is not within range
+2016-11-24 - [Balloons] Basic tutorial
+2016-11-24 - [Balloons] Tutorial
+2016-11-24 - Fixed FOG on mobile
+2016-11-24 - [ReadingGame] Fixed Blur size
+2016-11-24 - [ReadingGame] Blur effect independent of device resolution
+2016-11-24 - towards v 11.28
+2016-11-24 - Added missing audio (wrong answer/assessment complete) and delayed reward screen loading to allow play the "assessment complete audio"
+2016-11-24 - Fixed antura animation to be more smooth and to use sleeping particles again.
+2016-11-24 - Refactored code to use the new IDialogueManager, which uses the Coroutine Engine.
+2016-11-24 - [FIX] OverlayWidget reset
+2016-11-24 - [Journey] set MaxPosition only if we got a greater one!
+2016-11-24 - [MissingLetter] add dialogs
+2016-11-24 - [IntroManager] Missed a couple of delays
+2016-11-24 - [GlobalUI] Fixed PauseMenu freezing the app when pressed during scene transitions
+2016-11-24 - [IntroManager] onDisable fix
+2016-11-24 - [BugFix] IntroManager last callback fix [BugFix] KeeperManager autoclose+callback fix
+2016-11-24 - [db] fixed rendering of Teh_Marbuta char!
+2016-11-24 - [Maze] Use Teacher Data [Maze] Link teacher data with 3d models [Maze] if Teacher returns data outside our 3d count randomize a letter
+2016-11-24 - Audio in Keeper Manager
+2016-11-24 - [SickLetters] Fixed timer bug
+2016-11-24 - [Scanner] Word Audio Working - UI Bones implemented
+2016-11-24 - [build] enabled Unity Analytics (cont)
+2016-11-24 - [build] enabled Unity Analytics (useful forthis playtest)
+2016-11-24 - [build] enabled Unity Analytics (useful forthis playtest)
+2016-11-24 - [Tobogan] Fixes on audio
+2016-11-24 - [MinigamesIcons] Fixed AlphabetSong missing icon
+2016-11-24 - AudioManager fix
+2016-11-24 - [fixed MapScene] Desactive Pins
+2016-11-24 - [fixed MapScene] rope collider
+2016-11-24 - [fixed MapScene] bugs movement
+2016-11-24 - [Maze] 11 new 3d characters with an automated builder [Maze] Fix bug that caused Lose to be triggered while letter is moving [TakeMeHome] Tutorial VO [TakeMeHome] Fix bug reported on Trello
+2016-11-24 - [Scanner] Using AudioManager.I.PlayWord(wordData.Id); as a temp
+2016-11-23 - [map] timer at 1f
+2016-11-23 - [mp] rediuced tiemr from 5 to 0.1f
+2016-11-23 - [ScannerGame] removed Debug.Log in update() (was flooding the console!)
+2016-11-23 - [db] update PS list
+2016-11-23 - [db] ThrowBalls_LetterinWords moved after PS 4.1.1
+2016-11-23 - - Fix NavigationManager wrong call for minigames.
+2016-11-23 - [db] moved Maze from 1.1.1 to 1.1.2
+2016-11-23 - πplayerBOok] added LetterVariations to combos
+2016-11-23 - [db] enabled AlphabetSong
+2016-11-23 - Set DancingDotsConfiguration to allow diacritics.
+2016-11-23 - [SickLetters] Fixed Alef Bug
+2016-11-23 - Set LettersInWordQuestionBuilder to force journey progression OFF if we require ALL letters.
+2016-11-23 - [FastCrowd] tutorial base script
+2016-11-23 - Unity does not have a IsPaused function, right... cryptobug fixed
+2016-11-23 - Antura now comes di disturb assessments, only few clicks are necessary to kick him off (not anymore clickspamming), and added Dialogues. ^^
+2016-11-23 - [fixed Map Scene] several bugs
+2016-11-23 - Set LettersInWordQuestionBuilder to report all letters regardless of the journey.
+2016-11-23 - Fixed bug with real letters.
+2016-11-23 - [AnturaSpace][change]Using perspective camera, moving throw logic on bones
+2016-11-23 - [Minigames] No more subtitles+VO on game end
+2016-11-23 - [AudioManager] used hack to fix multiple callbacks in PlayDialog
+2016-11-23 - [mIssingLetter] game set to word type
+2016-11-23 - [ColorTickle][feature]Added audio dialogue (with temporary hack)
+2016-11-23 - [SickLetters] Polished data handling
+2016-11-23 - Fixed some Audio in FastCrowd
+2016-11-23 - TakeMeHome Dialog
+2016-11-23 - [audio] missing 4 letter sounds
+2016-11-23 - Fixed bug with LetterAndVariation logic.
+2016-11-23 - [GlobalUI] PopupWidget now uses font for images
+2016-11-23 - [fixed MapScene] bug reset position
+2016-11-23 - Set wordswithletter to work with repeated packs.
+2016-11-23 - [audio] all letters+diacritics sounds to manager
+2016-11-23 - [ThrowBalls] Refactoring.
+2016-11-23 - Removed Audio from subtitles widget (they are 2 different things)
+2016-11-23 - SetText fix
+2016-11-23 - Removing TextID, using the enum
+2016-11-23 - [MissingLetter] add scene Material
+2016-11-23 - [Scanner] Tested difficulty
+2016-11-23 - [Tobogan] Fixed tower pipe
+2016-11-23 - [DebugPanel] fixed the minigames selection and launch
+2016-11-23 - [home] disabeld Reset all buttons (causing to clear everything too easily!) ultil we got a confirmation prompt…
+2016-11-23 - [Make Friends] win celebration
+2016-11-23 - [flow] revert4d navigation amanger to use teacher.I.CurrentMiniGame (was breaking flow)
+2016-11-23 - Missing file
+2016-11-23 - [GameResultUI] Fixed LayerMask issue for rewards + Scene optimizations
+2016-11-23 - [flow & debug] now DebugPanel lanuges games, commented the “filter by not adapt PS (shoudl be set at hand”), use AppManager.Instance.CurrentMinigame instead of TeacherAI.I.CurrentMiniGame
+2016-11-23 - [AlphabetSong] Tutorial Line before song
+2016-11-23 - [Balloons] Win celebration
+2016-11-23 - [ReadingGame] Fixed font size
+2016-11-23 - [ReadingGame] New Song [AudioManager] Callback fix
+2016-11-23 - [db] sqlite db extesnion is now “sqlite3” (and not .bytes) to easy portability
+2016-11-23 - [Minigame] Log stars number, not score number [AudioManager] nested callbacks
+2016-11-23 - [teacher] now LetterVariations (like aleph_hamza_hi and low) are returned as “normal” letters, no more filtered in early LB! TEST!
+2016-11-23 - [MissingLetter] Add missingWordTest
+2016-11-23 - [fixed MapScene] fixed some bugs
+2016-11-23 - [db] aleph_hamza_hi and aleph_hamza_low are now LetterVariation and not Combinations
+2016-11-23 - Removed Antura temporarily added some assessment sound file constants
+2016-11-23 - [audio] uploaded all new letters with diacritics sounds (and moved old ones to trasch)
+2016-11-23 - [map] an introduction line
+2016-11-23 - [keeper] calls automatically its dialogs with optional autoclose
+2016-11-23 - [dialogs UI] now dialog accepts LocalizationData as default
+2016-11-23 - [book & map] some UI icons to buttons
+2016-11-23 - [mood and gameselector] introductions!
+2016-11-23 - [audio] audiomanager PlayDialog now accepts enums to play dialogs (and restored automatic callback if audio not available
+2016-11-23 - [core] changed execution order to isntantiate alla managers before single scene starts
+2016-11-23 - [clean] removed warnings and not needed DebugLog
+2016-11-23 - [db] LocalizationData now has all GameTitles and LB Titles (and added “area” field)
+2016-11-23 - [DB] added enums for all LocalizationDataId (to not get crazy and error in dialog selection)
+2016-11-23 - [LogManager] deprecated previous Logger, now using LogManager.I. as entry point
+2016-11-23 - - PlaySession Result screen without unlock rewards.
+2016-11-23 - - SetMaxJourneyPosition and SetActualJourneyPosition in player profile now save profile by default.
+2016-11-23 - - Fix 2 issue https://trello.com/c/r40yCfw1.
+2016-11-23 - - Quick fix for issue https://trello.com/c/r40yCfw1.
+2016-11-23 - [DancingDots] Added intro, tutorial and gameplay VO
+2016-11-23 - [ReadingGame] Code Repeevishing [TutorialUI] Support for orthographic camera
+2016-11-23 - [SickLetters] Added gameplay VO
+2016-11-22 - [Intro] Fixed the scene
+2016-11-22 - [Intro] Fixed the Scene, Included correct audios, letters on Rockets and the movement of the main Camera
+2016-11-22 - - Fix : CurrentMiniGameInPlaySession stored in playerprofile. Marked as NotSerializable in playerPrefs.
+2016-11-22 - - Max journey position on debug panel.
+2016-11-22 - [TakeMeHome] Use Teach + Letter Provider
+2016-11-22 - [MixedLetters] Now supports Alphabet variation.
+2016-11-22 - [Balloons] Spelling, Words, and Letters variations functional
+2016-11-22 - WordFlexibleContainer: use new font, set as RTL, add Reset() method
+2016-11-22 - [TutorialUI + ReadingGame] Added SetCamera method to TutorialUI + ReadingGame, fixed tutorialUI error
+2016-11-22 - [MixedLetters] Difficulty & Teacher.
+2016-11-22 - [ReadingGame] Tutorial Stub
+2016-11-22 - [ThrowBalls] Letter in Word variation.
+2016-11-22 - - restoring app workflow (WIP) base playsession loop ok.
+2016-11-22 - [Scanner]  Minor Changes
+2016-11-22 - [Tobogan] dialogues
+2016-11-22 - [fixed] Tag missing
+2016-11-22 - [fixed MapScene] Some bugs
+2016-11-22 - [fixed] MiniMap Script
+2016-11-22 - [feature MapScene] Manage the Progression using the Profile info
+2016-11-22 - Merge before adding assessments AUDIO codes
+2016-11-22 - Added ReadingGame text to TextID
+2016-11-22 - emoticons materials tano -> resources
+2016-11-22 - - fix throwball for using new UI. - more features of NavigationManager WIP.
+2016-11-22 - [AnturaSpace][feature]Added button and simple throw bones action, minor changes on the scene
+2016-11-22 - [audioManager] reverted automatic callback due to problem playing game titles
+2016-11-22 - Updated ThrowBalls teacher logic.
+2016-11-22 - [Egg] dialogues, emoticons materials
+2016-11-22 - Fixed bug with teacher minigame selection. Teacher <3 eggs.
+2016-11-22 - Commenting out MiniMap's logs
+2016-11-22 - - App navigation refactoring WIP.
+2016-11-22 - [GlobalUI] ShowPauseMenu now accepts an enum parameter to set the type of pause menu (Start/Utility/Game)
+2016-11-22 - [ProfileSelectorUI] Added sounds
+2016-11-22 - Added FindNextJourneyPosition to return the next play session.
+2016-11-22 - Added support for Word and Letter filters to test data.
+2016-11-22 - [ThrowBalls] Restore collision with bushes.
+2016-11-22 - [ThrowBalls] New crates & bushes.
+2016-11-22 - [db + audio] LocalizationData have now their audiofile id and audiomaager use those. if a played dialog hasn’t an audiofile, it calls callback() directly.
+2016-11-22 - [ColorTickle][change]Enviroment adjustments
+2016-11-22 - [FastCrowd] Merged with Tano changes
+2016-11-22 - [ThrowBalls] Migrate to new interface.
+2016-11-22 - [ThrowBalls] Disable Antura animations.
+2016-11-22 - [GameResultUI] Ready for finalization after Paolo's NavigationManager system will be implemented
+2016-11-22 - [GameResultUI] Sounds + Implemented code modifications to be used by NavigationManager (still needs to be completed)
+2016-11-22 - Skip Question State
+2016-11-22 - [changed] elements in correct folders
+2016-11-22 - [fixed] some bugs
+2016-11-22 - Added final animation for antura.
+2016-11-22 - [Tobogan] Merged changes by Tano
+2016-11-22 - - added auto save features for set journey positions to playerprofile.
+2016-11-22 - [ReadingGame] Merged changes by Tano
+2016-11-22 - Auto Foreground restored
+2016-11-22 - [ThrowBalls] New wrong LL hit animation & fix ground bug.
+2016-11-22 - [db] added Unlock bool to ScoreData to track.. unlocked items
+2016-11-22 - Prepared for improving Antura
+2016-11-22 - [map] moved manager to production
+2016-11-22 - [managers] Navigationmanager and KeeperManager (and some new logs)
+2016-11-22 - [feature] Add 6 stages in Map Scene
+2016-11-22 - - Cheat to set First Contact from debug panel.
+2016-11-22 - - Antura Rewards WIP - Base event Log WIP.
+2016-11-22 - [Balloons] Balloons_Letter variation
+2016-11-22 - [SickLetters] Added Intro and Tutorial VO
+2016-11-22 - [DancingDots] Implemented state machine, added stars and time UI
+2016-11-22 - [audio] LB tell their sound title
+2016-11-22 - preparing version 0.11.24
+2016-11-22 - [audio] 300 dialog audiofiles ready to be played
+2016-11-22 - [Intro] Fixed scene and wainting for audios
+2016-11-22 - [Scanner] Win / Lose updates
+2016-11-21 - [GameResultUI] Endsession screen complete (requires database implementation and 3D rewards)
+2016-11-21 - - Modified scale factor for living letter type letter = 1, type word = 1.4, type phrase = 2.
+2016-11-21 - [Egg]  new graphics
+2016-11-21 - Minor adjustements to difficulty, 2 words instead of 4 in WordsWithLetters
+2016-11-21 - [Tobogan] Audio
+2016-11-21 - More proper music
+2016-11-21 - Small improvements to code, removed simultaneos questions for all assessments.
+2016-11-21 - [MissingLetter] fix for lable and key, update scene, improvement serialization
+2016-11-21 - Set all selection parameters to use RepeatWhenFull and MayRepeatIfNotEnough by default.
+2016-11-21 - Investigating with Michele some stuff
+2016-11-21 - Set all assessment to use the same question builder parameters.
+2016-11-21 - Added AlphabetSong question builder (an empty one).
+2016-11-21 - Forced all games to use by default any data as wrong answers.
+2016-11-21 - [ColorTickle][change]Introducing new enviroment, cleaning
+2016-11-21 - [AudioManager] Use just one music enabled
+2016-11-21 - Updated AssessmentConfiguration of LetterShape.
+2016-11-21 - Added selection filter: MayRepeatIfNotEnough.
+2016-11-21 - Fixed result state loading Rewards
+2016-11-21 - Fixed bug with sequence loading of minigames. Fixed history logic for repeat/alldifferent.
+2016-11-21 - Removed some unused Stuff
+2016-11-21 - Fixed exception on Exiting Editor Play Mode
+2016-11-21 - - Addded range of stages for debug game launcher.
+2016-11-21 - [ColorTickle][bug]Fixed bug of width/height mismatch on textures
+2016-11-21 - debug page refresh playsession.
+2016-11-21 - Added fix to allow assessments to be called by the SRDebugger
+2016-11-21 - [db] duck -> ducks
+2016-11-21 - Refactored QuestionBuilderParameters.
+2016-11-21 - Polished and added more sounds
+2016-11-21 - [GameResultUI] Endsession screen progress
+2016-11-21 - Added AlphabetSong and ReadingGame config. Addded Check of minimum playsession required for test game from debug panel.
+2016-11-21 - Fixed some bugs with question builders.
+2016-11-21 - [data] added SoundZone info to LetterData (for TakeMeHome game)
+2016-11-21 - Updated testing of CommonLetters.
+2016-11-21 - Updated filters for CommonLetters.
+2016-11-21 - [Drawings] missing “second”
+2016-11-21 - Added filters to OrderedWords, WordsInPhrase, WordsWithLetter, LettersWithWord.
+2016-11-21 - Added check for play session existance to the DB.
+2016-11-21 - [ReadingGame] Buttons use the new image font
+2016-11-21 - [Minigame] Fixed gravity switch [FastCrowd] Fixed Word composer
+2016-11-21 - Added Antura's Intro to assessments, improved some animations and added missing sounds.
+2016-11-21 - [Drawings] colors!
+2016-11-21 - [drawing font] updated docs and removed Glyph project
+2016-11-21 - Added filters to Alphabet. SRDebugger now gives an error if a play session for a given minigame is wrong.
+2016-11-21 - [Drawings] added last drawings to Font and fixed broken numbers. added Value to Words to prepare automatic colors and numbers rendering
+2016-11-21 - [Tobogan] Force images in sun/moon
+2016-11-21 - Added word/letter filters to RandomWords, WordsByX and LettersByX question builders.
+2016-11-21 - [Minigames] Shadows in FastCrowd/ReadingGame
+2016-11-21 - [Tobogan] the_sun, the_moon instead of sun/moon
+2016-11-21 - Added Word filters.
+2016-11-21 - Updated QuestionBuilders with LetterFilters and WordFilters. Forced all games to have NO diacritics for now. WordGelper.GetWordDrawing now does not throw an exception. Fixed bug with teacher preview.
+2016-11-21 - [MixedLetters] Show victory rays upon victory.
+2016-11-21 - [MixedLetters] Add starbar.
+2016-11-21 - [MixedLetters] Use new minigames UI.
+2016-11-21 - [MixedLetters] Win animation.
+2016-11-21 - [MixedLetters] Commit latest changes to pull...
+2016-11-21 - [audio] words and phrases recompressed at 22K to halve disk space at really same quality for a mono simple voice
+2016-11-21 - [audio] new words and phrases audiofiles uploaded and playable. new Letter sounds just uploaded
+2016-11-21 - [Maze] Fix timings in all game logic [Maze] Make Rocket appear from random position when each letter is presented
+2016-11-21 - [Maze] Update Rocket LL to correct Prefab
+2016-11-20 - [Drawing] fixed exception if drawing isn’t there in a WordData
+2016-11-21 - [TakeMeHome] Make sure Letters do not repeat
+2016-11-21 - [TakeMeHome] Add Tutorial
+2016-11-20 - [book] disabled minigames if score isn’t enough
+2016-11-20 - [Scanner] Using Tano's art - Using Drawings Font - Other changes
+2016-11-20 - [Intro] Added delay between the states of the introduction
+2016-11-20 - [Intro] Indroduction Audios and pop-ups have been included
+2016-11-20 - [project] added ReadingGame to build
+2016-11-20 - [db] updated Minigame data to launch AlphabetSong in its scene
+2016-11-20 - [GameResult] Implementing Endsession result screen
+2016-11-20 - [book] words categories
+2016-11-20 - [book & Teacher] added score for LearningBlock
+2016-11-20 - [database] reorganized methods into regions for readibility and added
+2016-11-20 - [teacher] moved method
+2016-11-20 - [teacher] LogIntelligence -> LogAI (cont.)
+2016-11-20 - [teacher] LogIntelligence -> LogAI (to be named like other AI helpers)
+2016-11-20 - [book] player profile and parents
+2016-11-20 - [Teacher] moved Scores Methods to custom class
+2016-11-20 - [ColorTicke][change]Reduced outline thickness and color percentage to win, temporary hack to extract only base letters form database
+2016-11-20 - [data] Phrases don’t have drawings
+2016-11-20 - [data] LL_LetterData, LL_WordData, LL_PhraseData and LL_ImageData can (should) be initialized by jsut their Id. they don’t need both Id and Data (which has Id inside already)
+2016-11-20 - [data] we can Init Images, Phrase and Words LL data with jsut Id
+2016-11-20 - [refactor] LLData.Key -> LLData.Id (to coherent with Database)
+2016-11-20 - [LL prefab] show correct diatritic symbols letters
+2016-11-20 - [PlayerBook] now all letters (letters, symbols and combos) are well displayed
+2016-11-20 - [arabic] moved LetterForm property into LetterData class
+2016-11-20 - [MixedLetters] Lose animation.
+2016-11-20 - [MixedLetters] Refactoring.
+2016-11-20 - [PlayerBook] init letters categoris (sylbols and combos)
+2016-11-20 - [LocalizationManager] return LocalizationData with MISSING alert when a ID isn’t found (instead of null)
+2016-11-20 - [Teacher] defalut IgnoreJourneyData is false from today (use DebugPanel to set it true)
+2016-11-20 - [clean] removed unused methods
+2016-11-20 - [DebugPanel] added IgnoreJourneyData option to set the Teacher to NOT use all pregression data, but use all available one (cheat to test gameplays. shoudl be always off)
+2016-11-20 - [DebugPanel] added CheatMode to.. wel.. cheat on progression
+2016-11-20 - [clean] moved Random Utilitis into RandomHelper
+2016-11-19 - [Balloons] Letters display
+2016-11-19 - [LL] No poof if not started/active
+2016-11-19 - [MixedLetters] Now uses the new limbless LL for the separated letters.
+2016-11-19 - [ColorTickle] Included UI Bones
+2016-11-19 - [TB & ML] Fix letters not showing.
+2016-11-19 - [MakeFriends] Popups
+2016-11-19 - Latest changes.
+2016-11-19 - [PlayerBook] LearningBlock lists
+2016-11-19 - [AnturaSpace] scene in Core label
+2016-11-19 - [PlayerBook] Data lists
+2016-11-19 - [PlayerBook] init Letters, Phrases, Minigames and LearningBlocks areas
+2016-11-19 - πplayerbook] prefabs
+2016-11-19 - [db] updated data and models with all new translations
+2016-11-19 - [PlayerBook] refactor menu prefabs
+2016-11-19 - [GameResultUI] Nicer endgame screen/animations
+2016-11-18 - [SickLetters] Using the new font.
+2016-11-18 - [PlauyerBook] fixed automatic opening of the Book
+2016-11-18 - [LL prefab] a bit of more space around Words
+2016-11-18 - [preview_Teacher] improved buttons UI
+2016-11-18 - [Dancing Dots] Dancing slows down with wrong moves
+2016-11-18 - [Make Friends] QuestionPack debugging
+2016-11-18 - [Dancing Dots] New Dotless and Dots Only Font - Using New Font - Cleanup
+2016-11-18 - [FastCrowd] AreaDropMaker draw size update
+2016-11-18 - [Balloons] Fix for empty letters
+2016-11-18 - [FastCrowd] AreaDropMaker draw font update
+2016-11-18 - [MinigameIcons] Added Assessment icon
+2016-11-18 - [arabix] phrase data returns string
+2016-11-18 - [LL adn Book] fixed word rendering on LL! (missing diacritic symbols)
+2016-11-18 - [Tobogan] Image font on pipes
+2016-11-18 - [FastCrowd] new font
+2016-11-18 - [playerBook] fixed brone links
+2016-11-18 - [icons] fake Assessment icon
+2016-11-18 - [ColorTickle][change]Added win particle, increase rounds to 6, stars are awarded with letter completation rather than lives
+2016-11-18 - Better techer preview scene.
+2016-11-18 - Added current play session weight to data selection. Teacher preview scene now can load the different minigames.
+2016-11-18 - [Editor] World Tester for Tano
+2016-11-18 - [ReadingGame] Feedbacks
+2016-11-18 - [GlobalUI] ContinueScreen now uses new UI art + [GameResultUI] Renamed StarFlowers folder and moved unused images to Trash
+2016-11-18 - [HideAndSeek] Modified spawning LL for a new round
+2016-11-18 - - Modified Antura Space scene. Reaorganized some prefabs.
+2016-11-18 - [MissingLetter] Update scene
+2016-11-18 - [HideAndSeek] Removed all popups Widget
+2016-11-18 - [MissingLetter] Refactoring code
+2016-11-18 - Added Teacher preview scene. Updated SelectionParametrs to support getAllData. Fixed issues with BalloonsConfiguration. Added 'ignore journey' parameters to some builders.
+2016-11-18 - [GameResultUI] Better XML comments
+2016-11-18 - Fix : LL prefab lost reference to text label (second try)
+2016-11-18 - [Balloons] Trash the old tutorial
+2016-11-18 - [AlphabetSong] Feedback graphics and difficulty
+2016-11-18 - Fix : broken link on LL Prefab with text label.
+2016-11-18 - Marked StarFlowers as deprecated
+2016-11-18 - [ColorTickle][change]Using the new Font, adjusted tutorial arrow, on letter completation the LL body is cleaned
+2016-11-18 - [GameResultUI] minor fixes to EndgameResult panel
+2016-11-18 - [PlayerBook] init main areas
+2016-11-18 - [clean] moved old stuff into Trash
+2016-11-18 - [GameResultUI] Changed star flowers to new UI with bones etc + implemented it in SampleStarsWidget
+2016-11-18 - [MissingLetter] Changed green color for the right letter + Moved spotlight to light also emoticons
+2016-11-18 - [Balloons] Timer
+2016-11-18 - [Tobogan] new font
+2016-11-18 - - Renamed Lable field to Label.
+2016-11-18 - Added WordsInPhrase to ReadingGameConfiguration.
+2016-11-18 - Added answers handling to WordsInPhraseQuestionBuilder.
+2016-11-18 - Reverting MakeFriends to use only 1 common letter.
+2016-11-18 - [MissingLetter] Change Size of Emoticons
+2016-11-18 - Fixed bug when launched from Debug Launcher, Added proper difficulting scaling
+2016-11-18 - [db] new test questions for ReadingGame game (correct)
+2016-11-18 - [db] new test questions for ReadingGame game
+2016-11-18 - [HideAndSeek] Removed waiting time and added "Listen Again" button in tutorial
+2016-11-18 - - Fix : emoticon bug with animation with 0 keyframes.
+2016-11-18 - [ColorTickle][change]LL losing animation uses angry now, UI selection is white, Temporary fixed font errors by using old font, cleaning
+2016-11-18 - [feature] 14 LB in Map scene Stage 1
+2016-11-18 - [MissingLetter] [WIP] ADD Emoticon reaction on question word
+2016-11-18 - [LL] Added Dancing animation speed
+2016-11-18 - [Balloons] New environment
+2016-11-18 - [MinigamesUI] Stars are now bones (sigh sigh)
+2016-11-18 - - Reinserted DrawForLivingLetter as Obsolete to extend (not for long) retrocompatibility with old ILivingLetterData version.
+2016-11-18 - [Balloons] Popups and environment updated
+2016-11-18 - [Egg] button new font
+2016-11-18 - - Added LL_PhraseData initializable but with not implemented functions from ILivingLetterData interface. Removed DrawForLivingLetter from DrawForLivingLetter inteface and marked as deprecated in concreate implementation.
+2016-11-18 - [SickLetters] preparing for the new font
+2016-11-18 - Fix a LeftToRight/RighToLeft issue
+2016-11-18 - [ThrowBalls] Letter hint now uses new font.
+2016-11-18 - [ThrowBalls] Fix new font bug.
+2016-11-18 - [Balloons] Letters Prompts use new font
+2016-11-18 - [Balloons] debugging words
+2016-11-18 - [playerbook] fixed drawing rendering on LL
+2016-11-18 - playerbook
+2016-11-18 - - Added LL_ImageData.
+2016-11-18 - [LL] removed default Pizza drawing from LLPrefab
+2016-11-18 - [font] applied new font and Drawing font to LL prefab. please check
+2016-11-18 - [ColorTickle] Game State Machine Update
+2016-11-18 - [MixedLetters] Fix new particle system bug.
+2016-11-18 - [playerbook] fixed drawing rendering on LL
+2016-11-18 - playerbook
+2016-11-18 - - Added LL_ImageData.
+2016-11-18 - Removed old unused stuff
+2016-11-18 - [MixedLetters] New theme, new & bigger Antura, bigger victim LL.
+2016-11-18 - [ColorTickle] Tutorial Update
+2016-11-18 - [MissingLetter] Changed Green Color for the missing letter + Removed SpotLight from tutorial round
+2016-11-18 - [LL] removed default Pizza drawing from LLPrefab
+2016-11-18 - [font] applied new font and Drawing font to LL prefab. please check
+2016-11-18 - [SickLetters] Added the AutoWorldPrefab environment, Added poof to LL, Fixed trap, Removed dropping vase during tutorial
+2016-11-18 - [Dancing Dots] Dancing Quads - Preparing Antura's walk
+2016-11-18 - [Maze] Fix order of prefabs in scene
+2016-11-18 - [Maze] Scene props
+2016-11-18 - [Maze] New Art [Maze] New Rocket [Maze] New Antura
+2016-11-17 - [TakeMeHome] Remove Win animation and replace by small particle system
+2016-11-17 - [LL] Scale pelvis bone instead of whole prefab
+2016-11-17 - [Dancing Dots] The sound is finally back
+2016-11-17 - [TakeMeHome] Increase Dropzone area [TakeMeHome] Play Drag animation on LL while dragging [TakeMeHome] LL panics only when antura is clsoe enough [TakeMeHome] Fix bug for rotation after panic
+2016-11-17 - [AlphabetSong] Score
+2016-11-17 - Added configuration for reading of letters and words (disabled by default for LetterShape).
+2016-11-17 - - Added configurations for all assessments variations.
+2016-11-17 - - fix for previous 3 assessments configurations.
+2016-11-17 - [DancingDots] Rainbow -> VictoryRays - Other changes and clean up
+2016-11-17 - [feature] Improve movement letter in Map Scene + dots/pins change color
+2016-11-17 - - Added configurations injection for assessment: LetterShape, WordsWithLetter, MatchLettersToWord.
+2016-11-17 - Added journey logic to most question builders. Added assessment question builders. Refactored pack history logic.
+2016-11-17 - Implmented test providers that test builders.
+2016-11-17 - Fix : First contact workflow.
+2016-11-17 - [Egg] new sound Fx, tutorial and button feedback updated
+2016-11-17 - [MixedLetters] Rotation animation.
+2016-11-17 - Questions hint when spawned,
+2016-11-17 - [ReadingGame] fixed some glitches;
+2016-11-17 - Added pronunciation for Questions and Answers when clicked.
+2016-11-17 - added pronunciation of correct answers when turned.
+2016-11-17 - [MixedLetters] Show rotate button only when letter is dropped.
+2016-11-17 - [playerbook] scrolling
+2016-11-17 - Bug fixes and AnswerChecker completed
+2016-11-17 - - Modified first contact workflow. Hide pause button on antura space.
+2016-11-17 - [GamesSelector] Renamed ReadingGame image to correctly adapt to Main
+2016-11-17 - [GamesSelector] Game bubbles now show a Variation badge too + Modified MiniGameData.cs to add a GetBadgeIconResourcePath method
+2016-11-17 - [Antura] Fixed Jump and some animations
+2016-11-17 - - Added first contact feature and workflow.
+2016-11-17 - [ThrowBalls] New ball shadow, update arrow only when necessary.
+2016-11-17 - [ColorTickle][bug]Fixed bug with stars calculation, minor changes, cleaning
+2016-11-17 - [ThrowBalls] Merging.
+2016-11-17 - [Antura] Fixed animator on re-enable
+2016-11-17 - [ThrowBalls] Some refactoring.
+2016-11-17 - [ReadingGame] Removed vtt file
+2016-11-17 - Fixed Jump back bug
+2016-11-17 - Completed Drag n' Drop system for assessments.
+2016-11-17 - [Dancing Dots] Camera scripts
+2016-11-17 - [AlphabetSong] Aggiornati Break nell'esempio
+2016-11-17 - [Dancing Dots] Fixed Tutorial attached objects
+2016-11-17 - [ReadingGame] New AKR (Antura Karaoke) Format
+2016-11-17 - [Debug] added AlphabetSong and ReadingGame to DebugPanel
+2016-11-17 - - Player profiles updates.
+2016-11-17 - [DancingDots] Added The Tutorial Round.
+2016-11-17 - - Fix : playerPrefs reset clean all and reload scene.
+2016-11-17 - [fonts] updated amatic properties
+2016-11-17 - [debug] warnings on non RTL textfields
+2016-11-17 - [fonts] renamed the Amatic font that we use as english service font
+2016-11-17 - [map] removed DebugLog in Update()
+2016-11-17 - [UI] migrated to new Arabic font
+2016-11-17 - [Docs] udpated and reorganized
+2016-11-17 - [drawings] font in with better details (DF 32 instead of 16)
+2016-11-17 - [ColorTickle] Tutorial Update
+2016-11-17 - [fixed] number of Stage
+2016-11-17 - [db] codes for letter combinations
+2016-11-16 - [SickLetter] Fixed sometimes letters appear as a square.
+2016-11-16 - [db] added category to PhrasesData
+2016-11-16 - [font] added 50 new drawings
+2016-11-16 - Akr sample for song
+2016-11-16 - - Fix : first profile created not available.
+2016-11-16 - [ThrowBalls] Spawn Antura every 6 seconds of idle time.
+2016-11-16 - [AlphabetSong] Synch with song stub
+2016-11-16 - Fixed bug with PlaySessionParser not parsing assessment minigames correctly.
+2016-11-16 - Added question builders for most assessments.
+2016-11-16 - [Tobogan] sunMoon questions fix
+2016-11-16 - [ThrowBalls] Antura enters scene and steals ball.
+2016-11-16 - - Fix default journey position for new profiles to 1.1.1.
+2016-11-16 - LogicInjector done
+2016-11-16 - Fixed bug with SunMoon question provider.
+2016-11-16 - [MakeFriends] Comparisons using List<ILivingLetterData>.Exists()
+2016-11-16 - Changed verbose scope for CommonLetters.
+2016-11-16 - Modified CommonLettersInWordQuestionBuilder to handle a different logic. Added PhraseData question builder.
+2016-11-16 - [MakeFriends] MakeFriendsQuestionProvider
+2016-11-16 - [GlobalUI] GlobalUI is destroyed every scene, but SceneTransitioner is now stored aside as DontDestroyOnLoad
+2016-11-16 - [ColorTickle][change]Lives and Antura probability to scare LL  change with game difficulty, changed win animation for LL
+2016-11-16 - [Throw Balls] New switchable Environment
+2016-11-16 - [Dancing Dots] Question Packs
+2016-11-16 - SunMoon question provider now uses 'the_sun' and 'the_moon'
+2016-11-16 - - Enabled player profile selection from home.
+2016-11-16 - [ThrowBalls] Latest changes.
+2016-11-16 - [Make Friends] New switchable Environment
+2016-11-16 - [Tobogan] tutorial sunMoon variation
+2016-11-16 - [ProfileSelector] Code fixes + [GlobalUI] Set as DontDestroyOnLoad
+2016-11-16 - [ThrowBalls] Add Antura to the scene; make him appear when idle.
+2016-11-16 - [DancingDots] Fix fall down bug with Davide's help - Music is ON - Worked on teacher but getting wrong characters sometimes
+2016-11-16 - - Added call to mood scene after avatar selection play button pressed.
+2016-11-16 - Bug fixes
+2016-11-16 - [MinigameIcons] Imported all new minigame icons (now we have all of them) + Moved possibly (or soon to be) unused images to Trash, and deleted the ones that are surely not used
+2016-11-16 - [ThrowBalls] Add idle state for ball.
+2016-11-16 - - Added avatarId as key form playerprofile selection.
+2016-11-16 - Added vertical offset in "LetterObjectView.Poof" (needed to center Poof on Limbless letters)
+2016-11-16 - [fixed] PlaySession numbers in Map Scene
+2016-11-16 - [Make Friends] Limit MakeFriendsQuestionProvider's attempts
+2016-11-16 - [MisingLetter] fix Particle System
+2016-11-16 - [MissingLetter] update scene
+2016-11-16 - [MissingLetter] add fx on correct answer
+2016-11-16 - [Dancing Dots] With new skin
+2016-11-16 - [feauture] Improved movement by touch in Map Scene
+2016-11-16 - [clean] created Trash to move all unused and to be deleted assets
+2016-11-16 - [db] updated words and some settings
+2016-11-16 - - Player profile selection (work only create players ordered by avatar Id)
+2016-11-16 - [ThrowBalls] Better camera angle.
+2016-11-16 - [font] original Arial font used for Arabic font and updated docs
+2016-11-16 - [PlayerBook] init menus
+2016-11-16 - [optimization] toggled off lots of unneeded textures Mip Maps
+2016-11-16 - [clean] removed unused scenes and added label to preview
+2016-11-16 - [db] update words and phrases
+2016-11-16 - [bug] Changed colliders of the ropes
+2016-11-16 - [TakeMeHome] Add Randomization on tubes appearing
+2016-11-16 - [TakeMeHome] Show YES/No Marks
+2016-11-16 - [TakeMeHome] Update Art [TakeMeHome] Drop pipe updates [TakeMeHome] Update to new Antura [TakeMeHome] Difficulty dictates number of tubes
+2016-11-15 - [ThrowBalls] Lose life upon rebound.
+2016-11-15 - [SickLetters] Polished gameplay and flow, Edited score logic, camera and arts
+2016-11-15 - - Fix startapp event.
+2016-11-15 - [ThrowBalls] Hitting wrong letter bounces the ball back.
+2016-11-15 - [Maze] Minor mods [TakeMeHome] Art implementation
+2016-11-15 - [Tobogan] update tutorial
+2016-11-15 - [Tobogan] tutorial update
+2016-11-15 - - StartApp Log.
+2016-11-15 - [GlobalUI][PopupWidget] Fix for non visible elements
+2016-11-15 - [GlobalUI][Popup] WidgetPopupWindow reskinned with new UI art
+2016-11-15 - Finished  AnswerPlacer
+2016-11-15 - - Fix : wrong log manager default implementations.
+2016-11-15 - - Added Mood log, playsession score and learning block score log.
+2016-11-15 - Added wrong letters' pack history filter for assessments.
+2016-11-15 - Updated question builders to reflect pack selection filters. Added generic logic to handle data filtering for words, letters, and phrases alike. Updated Alphabet, RandomWord, and LetterWord with the new logic. Assessment's RandomLetters uses the new filter.
+2016-11-15 - (missing FastCrowd file)
+2016-11-15 - Balloons and FastCrowd now use ordinal numbers.
+2016-11-15 - [build] preparing all current scenes for build
+2016-11-15 - [bug] Fixed rope collider
+2016-11-15 - [db] new words with the_ (sun & moon words) with LinkedWord field
+2016-11-15 - [ThrowBalls] Fix starbar discrepancy.
+2016-11-15 - [ThrowBalls] Remove popups.
+2016-11-15 - - Created separated log managers for app and minigames.
+2016-11-15 - Prepare Michele's Merge
+2016-11-15 - - MinigameAPI refactoring with better code organization.
+2016-11-15 - Added question builders to assessment configuration.
+2016-11-15 - [bug] Fixed several things in Map Scene
+2016-11-15 - [ThrowBalls] Respawn ball after n seconds.
+2016-11-15 - [arabi helper] restore warning isntead of exception (- isntead of ©)
+2016-11-15 - [arabi helper] restore warning isntead of exception
+2016-11-15 - [arabic] new font, helper, rendering
+2016-11-15 - [ColorTickle][change] Used new Antura prefab, added win/lose/fear animations on LL,, added Sfx for LL and win/lose cases, minor changes
+2016-11-15 - - Added AppLogManager for loggin Play data, learn data, info data, journey data (minigame).
+2016-11-15 - Assessment Configuration per Michele
+2016-11-15 - [FastCrowd] Counting changed to be like Alphabet
+2016-11-15 - Updated FastCrowd and Tobogan with new question builder logic.
+2016-11-15 - [ThrowBalls] Play chest bounce animation upon wrong letter hit.
+2016-11-15 - Returning fake letter if no hexacode is defined.
+2016-11-15 - [Tobogan] Larger LL and AutoCameraColor
+2016-11-15 - [LL] Chest Stop
+2016-11-15 - [MissingLetter] add poof to wrong answers, color to added missing letter
+2016-11-15 - Completato Question Placer
+2016-11-15 - [Fix] Fixed auto camera color
+2016-11-15 - [ThrowBalls] Play win SFX upon winning round.
+2016-11-15 - [GlobalUI][WidgetSubtitles] Updated to new UI art and different animations
+2016-11-15 - [ThrowBalls] Better win state feedback.
+2016-11-15 - [ReadingGame] Antura animations
+2016-11-15 - [ThrowBalls] Nicer shadow color.
+2016-11-15 - [ThrowBalls] Bouncy ball.
+2016-11-15 - [PlayerBook] starting Layout and return to Map button
+2016-11-15 - [feature] Add movement by touch in Map Scene. Map navigable 100%
+2016-11-15 - [GlobalUI] ActionFeedback now uses new UI art, has different animation, and doesn't stay on screen when not necessary
+2016-11-15 - [Audio] Cache resources load and fix on resource names
+2016-11-15 - Fixed compilation
+2016-11-15 - QuestionGenerator Completato.
+2016-11-15 - [AudioManager] return Word AudioClip from Resorces
+2016-11-15 - Moved Files to better place
+2016-11-15 - Commit before moving files
+2016-11-15 - [ThrowBalls] Tutorial level updates.
+2016-11-15 - [text] TextRender helper now dealts with both TMPro and normal Texts
+2016-11-15 - [Teacher] moved GetWordDrawing into WordHelper
+2016-11-15 - [Book] LL rendered in RenderTexture (to allow SelfContained UI Prefab of the Book)
+2016-11-15 - [DebugPanel] added all 13 Assessments
+2016-11-15 - [Debugger] SRDebugger v1.5.0 (better performance and option containers)
+2016-11-15 - [Audio] play Keeper’s and Words dynamically from Resources (preparing to the recordings)
+2016-11-15 - [app] moved Config into AppConstants
+2016-11-15 - [PlayerBook] prefab button with TMIcon to open it, renamed to PlayerBook since the Book will be an independet Prefab (to be potentially opened from any context)
+2016-11-15 - [Assessments] updated descriptions and codes (contnd)
+2016-11-14 - [Assessments] new codes and app_Assessment scene name (used in db)
+2016-11-14 - [Tobogan] tutorial camera
+2016-11-14 - [Tobogan] tutorial base
+2016-11-14 - [db] updated datasets, words in phrases and all Assessments codes
+2016-11-14 - Refactored out few utiles, improved overall structure.
+2016-11-14 - [GENERAL] Added TutorialUI Layer + ScriptExecutionOrder for TutorialUI script + [TutorialUI] now uses TutorialUI Layer
+2016-11-14 - [ColorTickle] UI update, Started to implement the Tutorial
+2016-11-14 - Refactoring teacher word data selection code.
+2016-11-14 - Removed lone SelectionSeverity
+2016-11-14 - Added more advanced word selection parameters. Added better verbose configAI values.
+2016-11-14 - Modified MakeFriends to use only 1 common letter.
+2016-11-14 - [Antura] Barking sound starts with barking animation
+2016-11-14 - [Tobogan] New Antura prefab
+2016-11-14 - LetterInWord configuration
+2016-11-14 - Definizione Interfacce per nuovi assessment
+2016-11-14 - [Assessments] init IDs and db for Assessment_LetterShape, Assessment_WordsWithLetter and Assessment_LetterInWord
+2016-11-14 - Added new selection logic to RandomWordsQuestionBuilder
+2016-11-14 - [db] updated 2
+2016-11-14 - [db] updated
+2016-11-14 - Added LetterKindCategory to LetterData to be able to choose between Base and Combo letters.
+2016-11-14 - Added Words-Phrase methods in WordHelper
+2016-11-14 - Setting journey filters to ignore for backwards compatibility as I work on the builders.
+2016-11-14 - [Intro] Template scene in _app/_scene/
+2016-11-14 - [Intro] Refactor to let Crowd+Antura be used outside FastCrowd game [Antura] Fixed barking animation
+2016-11-14 - Improved wordSelectionAI logic and merged it with the question builders (for now, only for Alphabet and RandomLetters). Added parameters for word selection coming from the builders.
+2016-11-14 - [LL] Fixed LL Idle Animation after Hooray/Angry
+2016-11-14 - Added PlaySession to DebugManager and forced journey use.
+2016-11-14 - - Addded ThrowingBalls on Tano Test.
+2016-11-14 - Merged dev into teacher
+2016-11-14 - Working on word selection
+2016-11-14 - Fixed bug with CommonLettersInWord not returning correct words.
+2016-11-14 - Updated PhraseParse to also handle related words.
+2016-11-14 - Fixed question pack builder for Balloons.
+2016-11-14 - Refactored teacher access for test data. Removed clutter from AppManager.
+2016-11-14 - [book] drawings on LL
+2016-11-14 - [book] preview of all words with their drawings
+2016-11-14 - [Audio] in Manage scene: sort SFX by enum title (with generic helper) and “stop all” button
+2016-11-13 - [drawings] removed duplicate
+2016-11-13 - [drawings] added 23 new Word Drawings
+2016-11-13 - [Sick Letters] Added The Tutorial Round
+2016-11-13 - [LL] Configurable scale
+2016-11-13 - [Drawings] optimized Atlas and test rendering in Book scene
+2016-11-13 - [drawings] detailed README how to create/manage the SDF font
+2016-11-13 - [drawings] first 118 drawings are in EA4S_WordDrawings SDF font
+2016-11-13 - DrawingFont: done with font  41-5a,61-7a
+2016-11-12 - [ProfileSelector] Full interactivity complete (missing connection to actual DB and Antura)
+2016-11-12 - [ProfileSelector] Moved avatars to Resources + progress
+2016-11-12 - - New graphic scenes: DancingDot, MakeFriend, Maze, Scanner, SickLetters, TakeMeHome.
+2016-11-12 - - Add PlayerProfileManager dummy functions for player profile selection scene.
+2016-11-12 - [ProfileSelector] Progress
+2016-11-12 - - Added profilemanager.
+2016-11-12 - [ProfileSelector] Implemented UI core
+2016-11-12 - [LL] Faster Mecanim Walk -> Fear
+2016-11-12 - [ColorTickle][change]Antura stops and go back on LL completation or tickling, xhanged system for hit checking on letter, partial fix of UI
+2016-11-12 - [MissingLetter] Use new Antura Prefab
+2016-11-12 - [Book] init PlayerBook scene
+2016-11-12 - [db] updated words, phrases and PS
+2016-11-12 - [sfx] added EggBreak, EggMove, ThrowArm, ScaleDown, ScaleUp, TickAndWin
+2016-11-12 - fixed itnernal materials names
+2016-11-11 - [Balloons] Bug fix
+2016-11-11 - [ReadingGame] Switched to Demifier Lens
+2016-11-11 - [Egg] tutorial markNO fix
+2016-11-11 - [ReadingGame] Fixed score
+2016-11-11 - [Egg] tutorial markNo
+2016-11-11 - UI update
+2016-11-11 - [TutorialUI] Marks now appear above the finger
+2016-11-11 - [Assessment] init assessment_IdentifyLetter
+2016-11-11 - [sfx] new oens for Egg and Throw Balls
+2016-11-11 - [TutorialUI] Added MarkeYes and MarkNo static methods
+2016-11-11 - - Renamed AnturaStaffs to AnturaStaff.
+2016-11-11 - - added missing AnturaStuffs.meta
+2016-11-11 - - Fix : UnityEditor reference exception.
+2016-11-11 - Label color fix for unity version 5.4.2
+2016-11-11 - Less verbose DB.
+2016-11-11 - Fixed bugs with MakeFriends' question builder.
+2016-11-11 - - Fix : MixedLetters Spelling Exception.
+2016-11-11 - Fixed GetWordsWithLetters logic. Fixed WordsWithLetterQuestionBuilder.
+2016-11-11 - [MissingLetter] fix sfx feedback
+2016-11-11 - [MissingLetter] add sfx feedback when click disable letters
+2016-11-11 - [HideAndSeek] Fixed teacher function deprecated and small changes
+2016-11-10 - [ColorTickle][change]Added backgound music, fix prefab link, minor changes
+2016-11-10 - Fixed scene
+2016-11-10 - UIColors Update ResultState Update AnturaController Update Included HitStateLLController
+2016-11-10 - [MissingLetter] Update Tutorial UI
+2016-11-09 - [HideAndSeek] Fixed scene and adapted for 4:3
+2016-11-08 - [ColorTickle][bug]Fixed coverage area checking
+2016-11-08 - [ColorTickle][change] Adjusted prefab linking
+2016-11-08 - [MissingLetter] Restore missing letter on click
+2016-11-08 - [MissingLetter] Delay others letters animation after correct answer animation
+2016-11-07 - [MissingLetter] tmp fix isolated letter
+2016-11-05 - [MissingLetter] Fix for 4:3 view
+2016-11-11 - Added SetupLearnRules to all games.
+2016-11-11 - [ReadingGame] Integrated background [ReadingGame] Lens Effect [ReadingGame] Advances on UI [ReadingGame] Antura Stub
+2016-11-11 - [HideAndSeek] Fixed positions finger
+2016-11-11 - [HideAndSeek] Added Tutorial
+2016-11-11 - Fixed issue with some question builders using non-existant letters. Refactored QuestionBuilder to create the whole list of packs (needed because some of the question builders control the packs number).
+2016-11-11 - [Egg] tutorial base
+2016-11-11 - [Assessment] init assessment_IdentifyLetter
+2016-11-11 - [sfx] new oens for Egg and Throw Balls
+2016-11-11 - [MissingLetter] BugFix LLs shuffle
+2016-11-11 - Moved some configuration rules to ConfigAI
+2016-11-11 - Added interface to handle MineGameLearnRules per each minigame.
+2016-11-11 - [ColorTickle][change]Adjustetd antura interaction with LL, minor changes, unused scripts and assets cleaning
+2016-11-11 - Updated LogLearnData and ScoreData.
+2016-11-11 - Updated LogIntelligence with score and play logging.
+2016-11-11 - [TutorialUI] Added MarkeYes and MarkNo static methods
+2016-11-11 - - Renamed AnturaStaffs to AnturaStaff.
+2016-11-11 - - added missing AnturaStuffs.meta
+2016-11-11 - - Fix : UnityEditor reference exception.
+2016-11-11 - Fixed issue with LogIntelligence's name
+2016-11-11 - [MissingLetter] Update Question Provider
+2016-11-11 - [MissingLetter] BugFix Antura Enter + Change LLs win/lose animations
+2016-11-11 - Auto-Set camera Color based on world
+2016-11-11 - Renamed 'GimmeAGoodWordData' to 'GetRadomTestWordDataLL'.
+2016-11-11 - Label color fix for unity version 5.4.2
+2016-11-11 - Less verbose DB.
+2016-11-11 - Fixed bugs with MakeFriends' question builder.
+2016-11-11 - - Fix : MixedLetters Spelling Exception.
+2016-11-11 - Fixed GetWordsWithLetters logic. Fixed WordsWithLetterQuestionBuilder.
+2016-11-11 - [LL] Fixed Dancing
+2016-11-11 - [MissingLetter] fix sfx feedback
+2016-11-11 - [MissingLetter] add sfx feedback when click disable letters
+2016-11-11 - Added database versioning table. Fixed issue with android.
+2016-11-11 - [HideAndSeek] Fixed teacher function deprecated and small changes
+2016-11-11 - Added MiniGameLearnRules. Added SunMoonQuestionBuilders. Better ConfigAI. Added support for multiple question packs.
+2016-11-11 - - Fix first creation DB and player issue.
+2016-11-11 - [Docs] WordDrawings
+2016-11-11 - [production] word drawings SVG and working files
+2016-11-11 - [Balloons][MakeFriends] Use LLPrefab, State patern, QuestionProvider
+2016-11-11 - WordDrawings font init
+2016-11-11 - [Dancing Dots] - New Antura and New LL - Needs refactoring - Buggy
+2016-11-11 - [Make Friends] MinigamesUI
+2016-11-11 - [ThrowBalls] Account for Difficulty variable in config script.
+2016-11-11 - [Fixed] Bugs MapManager
+2016-11-11 - Auto-Switch world prefab
+2016-11-11 - [TakeMeHome] Some animations and scaling
+2016-11-11 - [TakeMeHome] Add new UI
+2016-11-11 - [Maze] Add 2 new 3D characters
+2016-11-11 - [ThrowBalls] Integrate new minigame UI.
+2016-11-10 - New UI Timer and Stars
+2016-11-10 - [Sick Letters] Added art assets, Added check mark widget, Edited scor logic
+2016-11-10 - [TutorialUI] Now size and speed of finger etc is independent from the distance from the camera
+2016-11-10 - [Maze] Antura chases LL every 10 seconds of Idle
+2016-11-10 - [ThrowBalls] Use Questions from Configuration script to get letters.
+2016-11-10 - [Maze] Repeat Tutorial via TutorialUI
+2016-11-10 - [Maze] Fix particles and TutorialUI
+2016-11-10 - Add Play Button in Map Scene
+2016-11-10 - [Prefabs] Switchable Prefabs Stub [ReadingGame] Switchable bars for Alphabet Song
+2016-11-10 - [Maze] Add rocket and Tutorial UI
+2016-11-10 - [ThrowBalls] Import new LL.
+2016-11-10 - Upload to dev branch - Working in Final Map Scene
+2016-11-10 - [ColorTickle][change]Added backgound music, fix prefab link, minor changes
+2016-11-10 - Fixed scene
+2016-11-10 - Removed warnings related to teacher
+2016-11-10 - UIColors Update ResultState Update AnturaController Update Included HitStateLLController
+2016-11-10 - Adding learning logging logic to LogInterpreter. Refactoring LogInterpreter.
+2016-11-10 - [Egg] new eggPieces
+2016-11-10 - [ThrowBalls] Fix bug due to ball icon renaming.
+2016-11-10 - [ThrowBalls] Add TutorialUI.
+2016-11-10 - [ThrowBalls] Add tutorial level (without TutorialUI)
+2016-11-10 - - Antura Textures and Materials for dinamic customization.
+2016-11-10 - - New clouds environment for scanner and sickletters.
+2016-11-10 - - Added Cloud prefab common.
+2016-11-10 - [LL] Removed LLController [LL] Removed deprecated behaviours [LL] Added GetState()
+2016-11-10 - - SickLetters new environment.
+2016-11-10 - Add rocket to Aleph
+2016-11-10 - [ThrowBalls] Random spawning of letters.
+2016-11-10 - - Environment structure, models and materials. - Scanner env. and scene.
+2016-11-10 - [TutorialUI][bugfix] Fixed arrow and finger orientation for all cameras
+2016-11-10 - [ThrowBalls] Make arrowhead reach point of impact.
+2016-11-10 - [MissingLetter] Update Tutorial UI
+2016-11-10 - [Make Friends] Use LLPrefab.
+2016-11-10 - [Sick Letters] Added Timer and Stars UI, Added Antura Behavior, Added Difficulties, Fixed LL Collider
+2016-11-10 - [Maze] Scene clean ups
+2016-11-10 - Fix scene props
+2016-11-09 - Saving scene changes
+2016-11-09 - Use new LL
+2016-11-09 - Initial move into States
+2016-11-09 - move and rotate camera to the top and fix all calculations
+2016-11-09 - Use difficulty from configuration
+2016-11-09 - Scale tube collision Make sure LL and Antura prefabs are latest
+2016-11-09 - [UIGadgets] Added a RadialGadget inside _games/_common/Prefabs/UI (to be used in the reading games)
+2016-11-09 - [TutorialUI] Fixed Missing Initialization in Click and ClickRepeat static methods
+2016-11-09 - [ReadingGame] Advances (end game)
+2016-11-09 - Teacher's log interpreter stub.
+2016-11-09 - [Egg] new end animation
+2016-11-09 - - Player Profile API (to be completed).
+2016-11-09 - Deprecating: public List<LL_LetterData> Letters = new List<LL_LetterData>();
+2016-11-09 - [ReadingGame] Advances in buttons screen
+2016-11-09 - [LL ] Removed huge legacy collider
+2016-11-09 - [LL] Fixed jump
+2016-11-09 - [HideAndSeek] Fixed scene and adapted for 4:3
+2016-11-09 - [Scanner] LL Tickled when touched - Refactoring
+2016-11-09 - [ThrowBalls] Save scene.
+2016-11-09 - [ThrowBalls] Bring back trajectory arc.
+2016-11-09 - [LL] Automatic pass to idle and back for doAngry/doHooray/doHighFive [LL] Fixed doAngry/doHooray/doHighFive when doing idle alternative [LL] Fixed twirl
+2016-11-09 - [Egg] buttonIn Antura
+2016-11-09 - [Make Friends] Use a QuestionProvider
+2016-11-09 - [ThrowBalls] Provide 5 balls instead of 3.
+2016-11-09 - [Scanner] Game Logic implementation
+2016-11-08 - [ReadingGame] Buttons Stub
+2016-11-08 - [TutorialUI] Added Click and ClickRepeat static methods
+2016-11-08 - [Sick Letters] Fixed LLPrefab reference, Lose/Win logic and camera movement
+2016-11-08 - [Reading Game] Advances
+2016-11-08 - Fixed bug with non-real letters being returned to some games.
+2016-11-08 - Set various 'Gimme' as deprecated. Fixed issue with missing hex values for letters. Added weighted logic to generate player difficulty. Added verbose option to ConfigAI.
+2016-11-08 - [ColorTickle][bug]Fixed coverage area checking
+2016-11-08 - [LL] Tickling Animation
+2016-11-08 - [Reading] Bars back colorization
+2016-11-08 - Updated configurations to force the use of words with a drawing.
+2016-11-08 - Updated LettersInWordQuestionBuilder
+2016-11-08 - - Restore some other still used textures.
+2016-11-08 - Added logic to handle MakesFriends 2-words questions.
+2016-11-08 - - Restored Circle and shadow textures.
+2016-11-08 - [Egg] starsBar
+2016-11-08 - - Deleted Tano and _Tano folders under _tests folder.
+2016-11-08 - - Added texture and materials for antura customization.
+2016-11-08 - [db] updated and added words in Phrases and Drawings in words are sttrings
+2016-11-08 - [ColorTickle][change] Adjusted prefab linking
+2016-11-08 - [MissingLetter] Restore missing letter on click
+2016-11-08 - [MissingLetter] Delay others letters animation after correct answer animation
+2016-11-08 - [ReadingGame] Multiple bars
+2016-11-08 - [Egg] antura particle
+2016-11-08 - - added transparent_glass_saturated materials in shared location (not under resources).
+2016-11-08 - - Added multiple question support to IQuestionPack interface and refactor for any concrete implementation
+2016-11-07 - [ReadingGame] Advances in reading bar
+2016-11-07 - [Egg] new Antura
+2016-11-07 - missing .meta
+2016-11-07 - Added warning to MakeFriends logic. Removed some debug logs.
+2016-11-07 - [DebugPanel] added Stage and LB
+2016-11-07 - Updated some missing configurations.
+2016-11-07 - Updated LettersInWordQuestionBuilder use
+2016-11-07 - Updated several question builders.
+2016-11-07 - Fixed issue with null question data fields.
+2016-11-07 - Fixed issue with trying to select more than the available number of elements.
+2016-11-07 - Removed OldSwitch.
+2016-11-07 - Fixed configuration with balloons and dancing dots
+2016-11-07 - - Update game configuration method for any active games.
+2016-11-07 - Glass shader
+2016-11-07 - Added builders for MissingLetter, SickLetters, Tobogan
+2016-11-07 - Addded new variation for ThrowBalls.
+2016-11-07 - Added question builders to Maze, MixedLetters, ThrowBalls (missing code!)
+2016-11-07 - Added question builders to Maze, MixedLetters, ThrowBalls
+2016-11-07 - Addde variation for MixedLetters.
+2016-11-07 - Fixed Antura State
+2016-11-07 - Added question builders for most cases. Added question builders to many games.
+2016-11-07 - - Inject game data rules to teacher from game specific configuration class (test on fastcrowd letters). - Added IQuestionProvider and Difficulty prop. to IGameConfiguration.
+2016-11-07 - [MissingLetter] tmp fix isolated letter
+2016-11-07 - Camera Fog visible in editor
+2016-11-07 - Refactored question building system.
+2016-11-07 - fix Audio Obsolete alternative methods
+2016-11-07 - Added SetupBuilder in IGameConfiguration interface and all GameConfiguration classes.
+2016-11-07 - Removed MiniGameConfiguration namespace. Refactored question pack retrieval.
+2016-11-07 - [Antura] Pivot
+2016-11-07 - [Egg] removed some warnings
+2016-11-07 - Updated rainbow folders for Reading Game
+2016-11-07 - [ReadingGame] Renamed [Antura] Updated prefab
+2016-11-07 - Released some MiniGameConfigurationRules
+2016-11-06 - [Sick Letters] Fixed errors produced by a bad commit procedure.
+2016-11-05 - [PauseMenu][GlobalUI] New PauseMenu implemented
+2016-11-05 - [MissingLetter] Fix for 4:3 view
+2016-11-05 - [HideAndSeek] Added new scene improved
+2016-11-05 - [ColorTickle][change]New LL animator integration
+2016-11-05 - [MissingLetter] Fix UI stars score
+2016-11-05 - [MissingLetter] Fix Lose animations
+2016-11-05 - [ColorTickle] Percetage colored fixed, QuestionState included
+2016-11-05 - [MissingLetter] Fix Finger and Light
+2016-11-05 - [MissingLetter] Improvement tutorial suggestion
+2016-11-05 - [MissingLetter] ADD Difficulty management
+2016-11-05 - [ColorTickle][change]Changed inside/outside color. LL appears from the side
+2016-11-05 - Implemented different colorsfor outside and inside. Implemented rounds.
+2016-11-05 - some cleaning and optimizations
+2016-11-05 - removed unused methods
+2016-11-05 - [clean] SickLetters gets highlighted
+2016-11-05 - [clean] removed not used anymore Panda Behaviours… bye bye dear friend!
+2016-11-05 - [clean] removed unused screen fx Depth Of Field
+2016-11-05 - [db] updated PlaySessions
+2016-11-04 - [db] updated for SickLetters
+2016-11-04 - [SickLetters] fix changed Code breaking compilation
+2016-11-04 - some cleaning
+2016-11-05 - [Sick Letters] New game, core gameplay
+2016-11-04 - [Reading] Started working of Reading game
+2016-11-04 - - Added game configurations.
+2016-11-04 - [Egg] letterShadow, lightup pressed buttons
+2016-11-04 - - Some Minigames configurations.
+2016-11-04 - [MissingLetter] fix UI and tutorial behaviour
+2016-11-04 - [MissingLetter] Postpone Antura triggers when round is changing
+2016-11-04 - LL shadow in Tobogan and FastCrowd
+2016-11-04 - Added logic for most minigames using the new configuration rules manager. Refactored WordData and LL_WordData interaction to avoid using LL_WordData in the database.
+2016-11-04 - [MissingLetter] Update UI, remove missing letter in question
+2016-11-04 - [MissingLetter] BugFix + Use Common LLPrefab insteaf of custom one
+2016-11-04 - Fix Hide and Seek flow Repeat letter button
+2016-11-04 - [Tobogan] Moved Play Music in the initial state
+2016-11-04 - [HideAndSeek] Added final result, score system and repeat audio button
+2016-11-04 - [Tobogan] Tobogan tower uses new LL;
+2016-11-04 - [Egg] no popupWidget
+2016-11-04 - [data] dummy sqlite player db
+2016-11-04 - [clean] moved test_home into Elena folder (since it usess her test script)
+2016-11-04 - [clean] removed unused test scenes
+2016-11-04 - [clean] removed Google2U from runtime scripts
+2016-11-04 - [clean] removed old game selector scene
+2016-11-04 - [clean] removed old Wheel scene
+2016-11-04 - [MissingLetter] work in progress replace missing letter
+2016-11-04 - [HideAndSeek] Added win and lose animations
+2016-11-04 - [MissingLetter] ADD TutorialState to make a first guided round
+2016-11-04 - Merge from univr
+2016-11-04 - Antura Head Mask
+2016-11-04 - Fix shadow of the planes
+2016-11-04 - Added Egg_MiniGameConfiguration as an example of building minigame configurations. Updated teacher to better work with LL_LetterData and such. WordHelper now works directly with data (faster).  Added ArabicAlphabetHelper word-to-letter method.
+2016-11-04 - Modified WordParser to handle basic arabic word-to-letter conversion. Fixed bug with PlaySessionParser.
+2016-11-04 - - Fix: null exception for innerTransform in LetterObjectView.
+2016-11-04 - [DebugPanle] ordered items for readibility
+2016-11-04 - - Fix: prevant null Exception for innerTransform in LetterObjectView.
+2016-11-04 - [ColorTickle][change]New prefab, two colors outside/inside letter
+2016-11-04 - Refactored MiniGameLauncher: the launcher now uses a MiniGameConfigurationGenerator that handles the generation of the configuration. The IMiniGameConfigurationRules interface is responsible for defining the correct rules for a specific minigame. Added difficulty interface to TeacherAI. Fixed issue with AppManager calling teacher.
+2016-11-04 - preapring build 0.11.04
+2016-11-04 - [takemehome] fixed launch error
+2016-11-04 - [minigames] fixe launching
+2016-11-04 - [debug manager] launches all minigames passing by dummy configurations
+2016-11-04 - [MissingLetter] Fix double collider + Add LL fear animation when Antura comes
+2016-11-04 - [HideAndSeek] Commit pre merge
+2016-11-04 - [MissingLetter] fix missing Prefab link
+2016-11-04 - [MissingLetter] fix LetterPrefab UnassignedReferenceException
+2016-11-04 - [ColorTickle][change] Fixed letter size and face/outline
+2016-11-04 - [Debug] DebugManager to have minigames settings and cheat codes
+2016-11-04 - Updated game selection interfaces through TeacherAI.
+2016-11-04 - The minigame selector now can select up to N minigames, throws an exception if 0 minigames are found (at least 1 should be always present!)
+2016-11-04 - UI update
+2016-11-03 - [docs] arabic
+2016-11-03 - Scale down LL Modify to use custom LLPrefab (Smaller collider) Allow dropping back on Platform Move the tubes farther from each other Fix some bugs between state transitions and Antura following
+2016-11-03 - [HideAndSeek] New letters movement and animation, updated UI
+2016-11-03 - [Make Friends] New Sprites. Better API compliance.
+2016-11-03 - [Egg] music, letter poof
+2016-11-03 - [LL] Still animation for Letters
+2016-11-03 - [Egg] Switched to System.Random instead of Unity Random Range
+2016-11-03 - Moved SelectOne<T> and Select<T> to RandomHelper (as list extensions)
+2016-11-03 - Added fake logic to make sure the app flow works (until minigames are fixed).
+2016-11-03 - [Egg] new colors for buttons and jump animation for letters
+2016-11-03 - Fixed logic that handles interfacing with the mini game selection by the teacher.
+2016-11-03 - [Tobogan] Letters sound by pressing on the tube (if not hiding) [FIX] Bug fix in Minigames AudioManager: sound group for letters was wrong
+2016-11-03 - UI update . Now we can detect the velocity of the brush. Included Antura on the scene and just started to implement its behaviours.
+2016-11-03 - Refactored TeacherAI to separate interfaces. (NOTE: do not merge this until the TeacherAI refactoring is complete!)
+2016-11-03 - [Make Friends] Updating Core API compliance
+2016-11-03 - Merge with Dev [Antura] Advances in Antura Animation Controller
+2016-11-03 - [MixedLetters] Add boundaries to make sure letters become unreachable.
+2016-11-03 - - Fix some rewards. Multi Reward on same bone (to be completed).
+2016-11-03 - [docs] teacher diagram
+2016-11-03 - [MixedLetters] Play word sounds at the beginning of every round + play letter sound on spawn and click.
+2016-11-03 - [Docs] moved Docs out of Unity Project
+2016-11-03 - Refactored TeacherAI. Added JourneyHelper, modified MapManager with an example of use. LetterWordHelper is now WordHelper.
+2016-11-03 - [MixedLetters] Play SFX when rotating a letter.
+2016-11-03 - [MixedLetters] Limit rounds to 6 and show end game scenario (stars).
+2016-11-03 - [MixedLetters] Bigger rotation buttons placed above the dropzones.
+2016-11-03 - [Egg] emoticons
+2016-11-03 - Trying to avoid Unity Cloud bug by commenting all fallbacks
+2016-11-03 - [shader compilation] try different fallback
+2016-11-03 - [MixedLetters] Allow letter swapping.
+2016-11-03 - [shader compilation] try different fallback
+2016-11-03 - [MixedLetters] Allow letter swapping.
+2016-11-03 - [debug] add all new minigames to cheat menu
+2016-11-03 - Use correct letters and respective tubes Refactor sates MAke the letter go up and down tubes Make the letter re-apear from tube if dropped or put in wrong tube Make each round start from the right Every 10 seconds Antura will chase letter off and LL will re-drop from tube
+2016-11-02 - [MissingLetter] Add Custom Question Provider
+2016-11-02 - [TutorialUI] Minor fix to tester
+2016-11-02 - [TutorialUI] DrawLine system complete
+2016-11-02 - [MissingLetter] fix animations
+2016-11-02 - [TutorialUI] Core complete (needs further testing and optimizations)
+2016-11-02 - Added logic to handle a specific sequence of minigames in a playsession.
+2016-11-02 - [TutorialUI] Progress
+2016-11-02 - Updated missing deprecated antura prefabs
+2016-11-02 - Antura old fbx loaded for placeholder
+2016-11-02 - - Antura reward preview scene.
+2016-11-02 - Correctly separated LearningBlockData  and PlaySessionData
+2016-11-02 - [Antura] Controller Parameters
+2016-11-02 - Added LetterParser validation of combination letters.
+2016-11-02 - Moved UI test classes into preview_UI/_scripts
+2016-11-02 - [db] updated dataset to new letters iso codes
+2016-11-02 - [audio] letters code and sounds now use isocodes
+2016-11-02 - Merged new animations in the old Antura/Antura_T-pose fbx position
+2016-11-02 - Moved dog_anim and tpose
+2016-11-02 - Updated Antura Model with new animations.
+2016-11-02 - [FIX] Avoid GlobalUI reuse across scenes
+2016-11-02 - [Minigames] Added IOverlayWidget
+2016-11-02 - [MInigamesUI] Fix for timer controlled only via Goto calls
+2016-11-02 - [ThrowBalls] Increase elasticity slightly.
+2016-11-02 - [ThrowBalls] Cleanup.
+2016-11-02 - [ThrowBalls] Replace projected line shadow with arrow shadow.
+2016-11-02 - Cleaning > Removed AnturaMenuItems editor class
+2016-11-02 - [audio] letters have new IDs and all sounds have been adjusted
+2016-11-01 - [TutorialUI] Progress + {MinigamesUI] Minor scene change to use new finger coordinates
+2016-11-01 - Trying to understand why fallback doesn't compile on cloud build
+2016-11-01 - Modified shaders fallback
+2016-11-01 - LL inner scale
+2016-11-01 - Removed Description from question providers (was unused) Added some UI elements (still unstable) Linked DeAudio audioGroup to mixer
+2016-11-01 - [TutorialUI] Preparing framework and test scene + [GamesSelector] Implemented "AutoLoadMinigamesOnStartup" option
+2016-11-01 - Antura preview dinamic rewards.
+2016-11-01 - app_GamesSelector scene in build
+2016-11-01 - [game seletor] fixed label and navigation
+2016-11-01 - Antura preview.
+2016-11-01 - [GamesSelector] Reimplemented app_GamesSelector scene that was removed by merge, and moved app_GameSelector inside Old (will need to be adapted)
+2016-11-01 - [GamesSelector] Now it works with perspective cam and adapts to main camera (or given camera) position/rotation + [Utility] Added SortingOrder3D component
+2016-11-01 - Antura test scene.
+2016-11-01 - [fix] compilation error for Editor only class
+2016-11-01 - [minigames] resynched univr minigames
+2016-11-01 - fix merge conflict
 2016-11-01 - [build] fixed GameSelector scene a nd teste full navigation
 2016-11-01 - ArabicTester scene
 2016-11-01 - [db] we don't need static SQLite db, since it's now recreated by code

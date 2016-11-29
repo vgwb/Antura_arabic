@@ -37,6 +37,9 @@ namespace EA4S
         void Start()
         {
             GlobalUI.ShowPauseMenu(false);
+            GlobalUI.ShowBackButton(true,Exit);
+            
+
 
 #if UNITY_EDITOR
 

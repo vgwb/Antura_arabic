@@ -9,13 +9,6 @@ using UnityEngine;
 
 namespace EA4S.MissingLetter
 {
-    //enum game type
-    public enum GameType
-    {
-        WORD = 0,
-        PHRASE = 1
-    }
-
     [System.Serializable]
     public struct LLOffset
     {
@@ -181,13 +174,10 @@ namespace EA4S.MissingLetter
             STARS_1_THRESHOLD = (int)(m_iRoundsLimit * 0.25);
             STARS_2_THRESHOLD = (int)(m_iRoundsLimit * 0.55);
             STARS_3_THRESHOLD = (int)(m_iRoundsLimit * 0.95);
-
-            m_fGameTime = 5.0f;
         }
         #endregion
 
         #region VARS
-        public GameType m_eGameType;
         public GameObject m_oLetterPrefab;
         public GameObject m_oAntura;
         public GameObject m_oEmoticonsController;
