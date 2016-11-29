@@ -61,6 +61,8 @@
                     break;
                 case ReadingGameVariation.ReadAndAnswer:
                     builderParams.wordFilters.excludeColorWords = true;
+                    builderParams.wordFilters.requireDrawings = true;
+                    builderParams.phraseFilters.requireAnswersOrWords = true;
                     builder = new WordsInPhraseQuestionBuilder(nPacks: 10, nCorrect: 1, nWrong: 5, usePhraseAnswersIfFound: true, parameters: builderParams);
                     break;
             } 
