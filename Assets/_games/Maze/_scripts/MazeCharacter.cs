@@ -110,10 +110,11 @@ namespace EA4S.Maze
             
             transform.DOLocalRotateQuaternion(Quaternion.AngleAxis(-angle, Vector3.up), 0.5f);
 
-            
+            transform.position += new Vector3(0, 0.0335f, 0);
             dir.Normalize();
             dir.x = transform.position.x - dir.x*2;
             dir.z = transform.position.z - dir.z *2;
+            dir.y = 0.0335f;
             transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
         }
 
@@ -318,7 +319,7 @@ namespace EA4S.Maze
 			setFruitsList ();
 
 
-            Vector3 initPos = _fruits[0].transform.position;// + new Vector3(0, 0, 1.5f);
+            Vector3 initPos = _fruits[0].transform.position + new Vector3(0, 0.0335f,0);
 
             initialPosition = initPos;
 			targetPos = initialPosition;
@@ -346,6 +347,7 @@ namespace EA4S.Maze
                 dir.Normalize();
                 dir.x = transform.position.x - dir.x*2;
                 dir.z = transform.position.z - dir.z * 2;
+                dir.y = 0.0335f;
                 transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
             });
             
@@ -359,7 +361,7 @@ namespace EA4S.Maze
             transform.DOKill(false);
             donotHandleBorderCollision = false;
             transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isInside = false;
-            transform.position = _fruits[0].transform.position;
+            transform.position = _fruits[0].transform.position + new Vector3(0, 0.0335f,0);
 
 
             initialPosition = transform.position;
@@ -389,6 +391,7 @@ namespace EA4S.Maze
             dir.Normalize();
             dir.x = transform.position.x - dir.x * 1.5f;
             dir.z = transform.position.z - dir.z * 1.5f;
+            dir.y = 0.0335f;
             transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
 
             GetComponent<Collider>().enabled = false;
@@ -432,9 +435,9 @@ namespace EA4S.Maze
             float distance = 0;
             for (int i = 1; i < characterWayPoints.Count; ++i)
                 distance += (characterWayPoints[i] - characterWayPoints[i - 1]).sqrMagnitude;
-            
-            float time = distance * 3;
-            if (time > 5) time = 5;
+
+            float time = distance * 2;
+            if (time > 2) time = 2;
             transform.DOPath(characterWayPoints.ToArray(), time, PathType.Linear, PathMode.Ignore).OnWaypointChange((int index) => {
                 if (index + 3 < characterWayPoints.Count)
                 {
