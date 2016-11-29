@@ -32,27 +32,6 @@ namespace EA4S.Assessment
 
         private IQuestionProvider GetQuestionProvider()
         {
-            if(questionProvider == null)
-            {
-                switch (assessmentType)
-                {
-                    case AssessmentCode.LetterShape:
-                        Debug.Log( "Created LetterShape_TestProvider");
-                        return questionProvider = new LetterShape_TestProvider( 2, 2, 3);
-
-                    case AssessmentCode.WordsWithLetter:
-                        Debug.Log( "Created WordsWithLetterProvider_Tester");
-                        return questionProvider = new WordsWithLetterProvider_Tester( rounds:2, simultaneos:2, correct:3, wrong:2);
-
-                    case AssessmentCode.MatchLettersToWord:
-                        Debug.Log( "Created WordsWithLetterProvider_Tester");
-                        return questionProvider = new MatchLettersToWordProvider_Tester( rounds: 2, simultaneos: 2, correct: 3, wrong: 2);
-
-                    default:
-                        Debug.LogWarning( "Created SampleQuestionProvider");
-                        return questionProvider = new SampleQuestionProvider();
-                }
-            }
             return questionProvider;
         }
 
@@ -128,7 +107,7 @@ namespace EA4S.Assessment
         {
             SimultaneosQuestions = 2;
             snag.SetStartingFrom(0.5f);
-            Rounds = snag.Increase( 1, 2);
+            Rounds = 3;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
@@ -146,11 +125,20 @@ namespace EA4S.Assessment
 
         }
 
+        private IQuestionBuilder Setup_SunMoonWords_LearnRules()
+        {
+            SimultaneosQuestions = 2;
+            snag.SetStartingFrom(0.5f);
+            Rounds = 3;
+
+            return new WordsBySunMoonQuestionBuilder( SimultaneosQuestions * Rounds);
+        }
+
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
             SimultaneosQuestions = 1;
             snag.SetStartingFrom(0.5f); 
-            Rounds = snag.Increase( 1, 3);
+            Rounds = 3;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
@@ -171,7 +159,7 @@ namespace EA4S.Assessment
         {
             SimultaneosQuestions = 1;
             snag.SetStartingFrom(0.5f);
-            Rounds = snag.Increase( 1, 6);
+            Rounds = 3;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
@@ -200,9 +188,17 @@ namespace EA4S.Assessment
                 case AssessmentCode.WordsWithLetter:
                     return Setup_WordsWithLetter_LearnRules();
 
+                case AssessmentCode.SunMoonWord:
+                    return Setup_SunMoonWords_LearnRules();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
+        }
+
+        private MiniGameLearnRules Setup_SunMoonWords_LearnRules()
+        {
+            throw new NotImplementedException();
         }
 
         private MiniGameLearnRules Setup_WordsWithLetter_LearnRules()
