@@ -52,7 +52,6 @@ namespace EA4S
             /* FIRST CONTACT FEATURE */
             if (AppManager.I.Player.IsFirstContact())
             {
-                DesactivateUI();
                 FirstContactBehaviour();
             }
             /* --------------------- */
@@ -76,6 +75,7 @@ namespace EA4S
             if (AppManager.I.Player.IsFirstContact(1))
             {
                 // First contact step 1:
+                DesactivateUI();
                 #region Temp Behaviour (to be deleted)
                 countDown.Start();
                 #endregion
