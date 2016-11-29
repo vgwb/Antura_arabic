@@ -18,11 +18,6 @@ namespace EA4S {
         public Transform Dog_L_ear04;
 
         /// <summary>
-        /// The dog head pointer
-        /// </summary>
-        Transform Dog_head_pointer, Dog_spine01_pointer, Dog_jaw_pointer, Dog_Tail3_pointer, dog_R_ear04_pointer, dog_L_ear04_pointer;
-
-        /// <summary>
         /// Pointer to transform used as parent for add reward model (and remove if already mounted yet).
         /// </summary>
         [HideInInspector]
@@ -33,6 +28,10 @@ namespace EA4S {
         void Awake() {
             Instance = this;
             chargeCategoryList();
+        }
+
+        void Start() {
+            AnturaModelManager.Instance.LoadAnturaCustomization(AppManager.I.Player.CurrentAnturaCustomizations);
         }
 
         #endregion
@@ -58,9 +57,10 @@ namespace EA4S {
 
         public AnturaCustomization SaveAnturaCustomization() {
             AnturaCustomization returnCustomization = new AnturaCustomization();
-            foreach (Reward reward in actualRewardsForCategory) {
-                returnCustomization.Fornitures.Add(new RewardPack() { ItemID = reward.ID, Type = RewardTypes.reward });
+            foreach (LoadedModel loadedModel in LoadedModels) {
+                returnCustomization.Fornitures.Add(new RewardPack() { ItemID = loadedModel.Reward.ItemID, ColorId = loadedModel.Reward.ColorId, Type = RewardTypes.reward });
             }
+            AppManager.I.Player.SaveCustomization(returnCustomization);
             return returnCustomization;
         }
 
@@ -80,6 +80,12 @@ namespace EA4S {
             return null;
         }
 
+        /// <summary>
+        /// Sets the reward material colors.
+        /// </summary>
+        /// <param name="_gameObject">The game object.</param>
+        /// <param name="_rewardPack">The reward pack.</param>
+        /// <returns></returns>
         public GameObject SetRewardMaterialColors(GameObject _gameObject, RewardPack _rewardPack) {
             ModelsManager.SwitchMaterial(_gameObject, _rewardPack.GetMaterialPair());
             //actualRewardsForCategoryColor.Add()
@@ -180,42 +186,21 @@ namespace EA4S {
             }
         }
 
-        /// <summary>
-        /// The actual rewards for place positions.
-        /// </summary>
-        List<Reward> actualRewardsForCategory = new List<Reward>();
-        List<RewardColor> actualRewardsForCategoryColor = new List<RewardColor>();
-        List<GameObject> actualRewardsGameobjectForCategory = new List<GameObject>();
-
-        /// <summary>
-        /// Adds reward to active rewards list and if already exist reward for same category substitute it.
-        /// </summary>
-        /// <param name="_reward">The reward.</param>
-        void AddRewardToActiveRewardsListAndAttackGameObject(Reward _reward) {
-            Reward oldRewardInList = actualRewardsForCategory.Find(r => r.Category == _reward.Category);
-            if (oldRewardInList != null) {
-                actualRewardsForCategory.Remove(oldRewardInList);
-                Destroy(actualRewardsGameobjectForCategory.Find(g => g.name == oldRewardInList.ID));
-            }
-            actualRewardsForCategory.Add(_reward);
-            //actualRewardsGameobjectForCategory.Add(LoadRewardOnAntura(_reward.ID));
-        }
-
         #endregion
 
         #region events
 
         #region subscriptions
         void OnEnable() {
-            RewardSystemManager.OnRewardItemChanged += RewardSystemManager_OnRewardItemChanged;
+            RewardSystemManager.OnRewardChanged += RewardSystemManager_OnRewardItemChanged;
         }
 
-        private void RewardSystemManager_OnRewardItemChanged(string Id, RewardTypes _rewardType) {
-            //LoadRewardOnAntura(Id);
+        private void RewardSystemManager_OnRewardItemChanged(RewardPack _rewardPack) {
+            LoadRewardOnAntura(_rewardPack);
         }
 
         void OnDisable() {
-            RewardSystemManager.OnRewardItemChanged -= RewardSystemManager_OnRewardItemChanged;
+            RewardSystemManager.OnRewardChanged -= RewardSystemManager_OnRewardItemChanged;
         }
         #endregion
 
