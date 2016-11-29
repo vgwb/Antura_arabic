@@ -53,13 +53,13 @@ namespace EA4S
         /// <para><code>IMPORTANT:</code> do not modify the returned array, just use its data</para>
         /// </summary>
         /// <param name="_sessionData">A list of data for each minigame that was part of the session</param>
-        /// <param name="_totUnlockedRewards">Total rewards unlocked in previous sessions (0 to 2)</param>
+        /// <param name="_alreadyUnlockedRewards">Total rewards unlocked in previous sessions (0 to 2)</param>
         /// <param name="_immediate">If TRUE shows the screen immediately with no animations. You can ignore this</param>
         /// <returns></returns>
-        public static GameObject[] ShowEndsessionResult(List<EndsessionResultData> _sessionData, int _totUnlockedRewards, bool _immediate = false)
+        public static GameObject[] ShowEndsessionResult(List<EndsessionResultData> _sessionData, int _alreadyUnlockedRewards, bool _immediate = false)
         {
             Init();
-            I.EndsessionResultPanel.Show(_sessionData, _immediate);
+            I.EndsessionResultPanel.Show(_sessionData, _alreadyUnlockedRewards, _immediate);
             return I.EndsessionResultPanel.RewardsGos;
         }
 

@@ -17,11 +17,13 @@ namespace EA4S
         public Image Lock;
         public Sprite UnlockedSprite;
 
-        public bool IsAchieved { get; private set; }
+        public bool IsRewardAchieved { get; private set; }
+        public bool IsStarAchieved { get; private set; }
         bool hasReward;
         Sprite lockedSprite;
         Color defColor;
-        Sequence achieveTween;
+        Sequence achieveRewardTween;
+        Tween achieveStarTween;
 
         #region Unity
 
@@ -33,10 +35,10 @@ namespace EA4S
             RewardBg.color = LockedColor;
             Star.gameObject.SetActive(false);
 
-            achieveTween = DOTween.Sequence().SetAutoKill(false).Pause()
-                .Append(Star.DOPunchScale(Vector3.one * 1.25f, 0.4f));
+            achieveStarTween = Star.DOPunchScale(Vector3.one * 1.25f, 0.4f).SetAutoKill(false).Pause();
             if (hasReward) {
-                achieveTween.InsertCallback(0.2f, () => Lock.sprite = UnlockedSprite)
+                achieveRewardTween = DOTween.Sequence().SetAutoKill(false).Pause()
+                    .InsertCallback(0.2f, () => Lock.sprite = UnlockedSprite)
                     .Join(Lock.transform.DOPunchScale(Vector3.one * 1.3f, 0.2f))
                     .Insert(0.4f, Lock.transform.DOScale(0.0001f, 0.25f).SetEase(Ease.InQuad).OnComplete(() => Lock.gameObject.SetActive(false)))
                     .Join(Lock.transform.DORotate(new Vector3(0, 0, 220), 0.25f, RotateMode.FastBeyond360))
@@ -44,26 +46,43 @@ namespace EA4S
             }
         }
 
+        void OnDestroy()
+        {
+            achieveRewardTween.Kill();
+            achieveStarTween.Kill();
+        }
+
         #endregion
 
         #region Public Methods
 
-        internal void Achieve(bool _doAchieve)
+        internal void AchieveReward(bool _doAchieve, bool _immediate = false)
         {
-            if (IsAchieved == _doAchieve) return;
+            if (IsRewardAchieved == _doAchieve) return;
 
-            IsAchieved = _doAchieve;
+            IsRewardAchieved = _doAchieve;
             if (hasReward) {
                 Lock.sprite = lockedSprite;
                 Lock.gameObject.SetActive(true);
             }
             if (_doAchieve) {
+                if (_immediate) achieveRewardTween.Complete();
+                else achieveRewardTween.Restart();
+            } else achieveRewardTween.Rewind();
+        }
+
+        internal void AchieveStar(bool _doAchieve)
+        {
+            if (IsStarAchieved == _doAchieve) return;
+
+            IsStarAchieved = _doAchieve;
+            if (_doAchieve) {
                 Star.gameObject.SetActive(true);
-                achieveTween.Restart();
+                achieveStarTween.Restart();
                 AudioManager.I.PlaySfx(EndsessionResultPanel.I.SfxGainStar);
             } else {
                 Star.gameObject.SetActive(false);
-                achieveTween.Rewind();
+                achieveStarTween.Rewind();
             }
         }
 
