@@ -31,7 +31,7 @@ namespace EA4S.Maze
 
             GameObject character = (GameObject)Instantiate(MazeGameManager.instance.characterPrefab, transform);
             character.name = "Mazecharacter";
-            character.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            character.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
             MazeCharacter mazeCharacter = character.GetComponent<MazeCharacter>();
 
             MazeLetter letter = null;

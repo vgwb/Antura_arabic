@@ -17,9 +17,9 @@ namespace EA4S.Maze
 		public static MazeGameManager instance;
 
         public GameObject characterPrefab;
-        
+        public GameObject arrowTargetPrefab;
 
-		public MazeCharacter currentCharacter;
+        public MazeCharacter currentCharacter;
 		public HandTutorial currentTutorial;
 
 		public List<GameObject> prefabs;

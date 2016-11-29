@@ -55,6 +55,9 @@ namespace EA4S.Maze
 
         public bool isAppearing = false;
         public GameObject rocket;
+
+        private GameObject blinkingTarget;
+
 		void Start()
 		{
             LL.SetState(LLAnimationStates.LL_rocketing);
@@ -112,8 +115,8 @@ namespace EA4S.Maze
 
             //transform.position += new Vector3(0, 0.05f, 0);
             dir.Normalize();
-            dir.x = transform.position.x - dir.x*2;
-            dir.z = transform.position.z - dir.z *2;
+            dir.x = transform.position.x - dir.x*1.5f;
+            dir.z = transform.position.z - dir.z * 1.5f;
             dir.y = 1;
             transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
         }
@@ -131,16 +134,28 @@ namespace EA4S.Maze
 			int count = 0;
 
 			foreach (Transform child in Fruits[currentFruitList].transform) {
-				//child.gameObject.SetActive (i==0||i==1? true:false);
+                //child.gameObject.SetActive (i==0||i==1? true:false);
 
-				if(count > 0)
-					child.gameObject.GetComponent<Renderer> ().material.color = Color.red;
+                //if(count > 0)
+                //	child.gameObject.GetComponent<Renderer> ().material.color = Color.red;
 
-				child.gameObject.AddComponent<MazeArrow> ();
-				if (count == 0) {
-					//child.gameObject.transform.localScale = new Vector3 (3, 3, 3);
+                if (child.gameObject.GetComponent<MazeArrow>() == null)
+                    child.gameObject.AddComponent<MazeArrow>();
+                else
+                    child.gameObject.GetComponent<MazeArrow>().resetColor();
+
+                if (count == 0) {
 					child.gameObject.GetComponent<MazeArrow> ().pingPong = true;
-				}
+
+                    if(blinkingTarget == null)
+                    {
+                        blinkingTarget = (GameObject)Instantiate(MazeGameManager.instance.arrowTargetPrefab);
+                        blinkingTarget.transform.position = child.transform.position;
+                        blinkingTarget.transform.localScale = new Vector3(2, 2, 2);
+                        blinkingTarget.transform.SetParent(transform.parent, true);
+                    }
+                    
+                }
 
 				child.gameObject.name = "fruit_" + (i++);
 				child.gameObject.GetComponent<BoxCollider> ().enabled = false;
@@ -183,6 +198,14 @@ namespace EA4S.Maze
 					//_fruits [currentFruitIndex].SetActive (false);
 					currentFruitIndex++;
 
+                    if(index == 0)
+                    {
+                        if(blinkingTarget != null)
+                        {
+                            Destroy(blinkingTarget);
+                            blinkingTarget = null;
+                        }
+                    }
 
 
 				}/* else if(index > currentFruitIndex){
@@ -345,8 +368,8 @@ namespace EA4S.Maze
                 transform.DOLocalRotateQuaternion(Quaternion.AngleAxis(-angle, Vector3.up), 0.5f);
 
                 dir.Normalize();
-                dir.x = transform.position.x - dir.x*2;
-                dir.z = transform.position.z - dir.z * 2;
+                dir.x = transform.position.x - dir.x* 1.5f;
+                dir.z = transform.position.z - dir.z * 1.5f;
                 dir.y = 1;
                 transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
             });
@@ -376,6 +399,7 @@ namespace EA4S.Maze
 
 
             setFruitsList();
+
             toggleVisibility(false);
 
             var dir = _fruits[1].transform.position - transform.position;
