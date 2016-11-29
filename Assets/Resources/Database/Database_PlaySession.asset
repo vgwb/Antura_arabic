@@ -20,9 +20,9 @@ MonoBehaviour:
       Type: MiniGame
       Order: 1
       Minigames:
-      - MiniGameCode: 11
+      - MiniGameCode: 9
         Weight: 100
-      - MiniGameCode: 27
+      - MiniGameCode: 11
         Weight: 100
       Letters:
       - alef
@@ -47,7 +47,9 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 5
         Weight: 100
-      - MiniGameCode: 18
+      - MiniGameCode: 16
+        Weight: 100
+      - MiniGameCode: 27
         Weight: 100
       Letters: []
       Words:
@@ -77,11 +79,13 @@ MonoBehaviour:
       Type: MiniGame
       Order: 2
       Minigames:
+      - MiniGameCode: 9
+        Weight: 1
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
         Weight: 100
-      - MiniGameCode: 18
+      - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 19
         Weight: 1
@@ -112,11 +116,13 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 5
         Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 18
+      - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 19
         Weight: 1
@@ -148,11 +154,13 @@ MonoBehaviour:
       Type: MiniGame
       Order: 2
       Minigames:
+      - MiniGameCode: 9
+        Weight: 1
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 18
+      - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 19
         Weight: 1
@@ -185,11 +193,13 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 5
         Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 18
+      - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 19
         Weight: 1
@@ -223,20 +233,22 @@ MonoBehaviour:
       Type: MiniGame
       Order: 2
       Minigames:
+      - MiniGameCode: 9
+        Weight: 1
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 18
+      - MiniGameCode: 16
         Weight: 1
+      - MiniGameCode: 18
+        Weight: 100
       - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
-      - MiniGameCode: 31
-        Weight: 100
       Letters:
       - dal
       - thal
@@ -261,9 +273,13 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 5
         Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
@@ -272,8 +288,6 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
-        Weight: 1
-      - MiniGameCode: 31
         Weight: 1
       Letters: []
       Words: []
@@ -301,11 +315,15 @@ MonoBehaviour:
       Type: MiniGame
       Order: 2
       Minigames:
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 100
       - MiniGameCode: 11
         Weight: 1
-      - MiniGameCode: 12
-        Weight: 100
       - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
@@ -314,8 +332,6 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
-        Weight: 1
-      - MiniGameCode: 31
         Weight: 1
       Letters:
       - reh
@@ -339,11 +355,17 @@ MonoBehaviour:
       Type: MiniGame
       Order: 2
       Minigames:
+      - MiniGameCode: 5
+        Weight: 1
+      - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
       - MiniGameCode: 11
         Weight: 1
-      - MiniGameCode: 12
-        Weight: 1
       - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
@@ -352,8 +374,6 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
-        Weight: 1
-      - MiniGameCode: 31
         Weight: 1
       Letters: []
       Words: []
@@ -382,10 +402,14 @@ MonoBehaviour:
       Order: 2
       Minigames:
       - MiniGameCode: 9
-        Weight: 100
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
@@ -396,7 +420,7 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 31
-        Weight: 1
+        Weight: 100
       Letters:
       - seen
       - sheen
@@ -423,9 +447,13 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 9
         Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
@@ -463,15 +491,17 @@ MonoBehaviour:
       Type: MiniGame
       Order: 2
       Minigames:
-      - MiniGameCode: 7
-        Weight: 100
       - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
         Weight: 1
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 12
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
@@ -505,15 +535,19 @@ MonoBehaviour:
       Type: MiniGame
       Order: 2
       Minigames:
-      - MiniGameCode: 7
+      - MiniGameCode: 5
         Weight: 1
       - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
         Weight: 1
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 12
         Weight: 1
       - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
@@ -552,19 +586,23 @@ MonoBehaviour:
       Order: 2
       Minigames:
       - MiniGameCode: 7
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
         Weight: 1
       - MiniGameCode: 11
         Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
       - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
         Weight: 1
-      - MiniGameCode: 21
-        Weight: 100
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
@@ -593,19 +631,25 @@ MonoBehaviour:
       Type: MiniGame
       Order: 2
       Minigames:
+      - MiniGameCode: 5
+        Weight: 1
       - MiniGameCode: 7
         Weight: 1
       - MiniGameCode: 9
         Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
       - MiniGameCode: 11
         Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
       - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
-        Weight: 1
-      - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -643,14 +687,22 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 9
         Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
       - MiniGameCode: 11
         Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
       - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
         Weight: 1
+      - MiniGameCode: 21
+        Weight: 100
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
@@ -685,13 +737,21 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 9
         Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
       - MiniGameCode: 11
         Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
       - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -729,15 +789,21 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 9
         Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 12
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -767,9 +833,13 @@ MonoBehaviour:
       Type: MiniGame
       Order: 2
       Minigames:
+      - MiniGameCode: 5
+        Weight: 1
       - MiniGameCode: 7
         Weight: 1
       - MiniGameCode: 9
+        Weight: 1
+      - MiniGameCode: 10
         Weight: 1
       - MiniGameCode: 11
         Weight: 1
@@ -777,9 +847,13 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
+      - MiniGameCode: 16
+        Weight: 1
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -817,12 +891,16 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 9
         Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
       - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
       - MiniGameCode: 16
-        Weight: 100
+        Weight: 1
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
@@ -857,11 +935,17 @@ MonoBehaviour:
       Type: MiniGame
       Order: 2
       Minigames:
+      - MiniGameCode: 5
+        Weight: 1
       - MiniGameCode: 7
         Weight: 1
       - MiniGameCode: 9
         Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
       - MiniGameCode: 11
+        Weight: 1
+      - MiniGameCode: 12
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
@@ -911,6 +995,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 11
         Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
       - MiniGameCode: 14
         Weight: 1
       - MiniGameCode: 16
@@ -918,6 +1004,8 @@ MonoBehaviour:
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
@@ -953,6 +1041,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 11
         Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
       - MiniGameCode: 14
         Weight: 1
       - MiniGameCode: 16
@@ -960,6 +1050,8 @@ MonoBehaviour:
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
@@ -1007,6 +1099,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 19
         Weight: 1
+      - MiniGameCode: 21
+        Weight: 1
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 31
@@ -1034,6 +1128,8 @@ MonoBehaviour:
       Type: MiniGame
       Order: 2
       Minigames:
+      - MiniGameCode: 5
+        Weight: 1
       - MiniGameCode: 7
         Weight: 1
       - MiniGameCode: 9
@@ -1049,6 +1145,8 @@ MonoBehaviour:
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
@@ -1247,7 +1345,7 @@ MonoBehaviour:
       - MiniGameCode: 9
         Weight: 1
       - MiniGameCode: 10
-        Weight: 10
+        Weight: 1
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 12
@@ -7172,7 +7270,64 @@ MonoBehaviour:
       - goodmorning_R
       - goodevening_Q
       - goodevening_R
-      Phrases_previous: []
+      Phrases_previous:
+      - goodmorning_Q
+      - goodmorning_R
+      - goodevening_Q
+      - goodevening_R
+      - hi
+      - yourwelcome
+      - howareyou
+      - fine
+      - thankyou
+      - sure
+      - seeyou
+      - goodbye
+      - the_year_2016
+      - the_year_2017
+      - the_year_2018
+      - the_year_2015
+      - the_year_2009
+      - theboyopenedthewindow
+      - theteacherlaughed
+      - theworkercarriedthebox
+      - thegirldrankthejuice
+      - themountainisbig
+      - therestaurantisclean
+      - thetigeratethedeer
+      - redberry
+      - yellowflower
+      - greywolf
+      - greencucumber
+      - thecarpenterwent
+      - thebirdflew
+      - theshopissmall
+      - thedoctoropenedthehospital
+      - eightscientists
+      - theengineerworethecoat
+      - theplayerwon
+      - theshirtisclean
+      - yesterdaywassunday
+      - thewinteriscold
+      - novemberistheeleventhmonth
+      - theparrotisbeautiful
+      - mayisthefifthmonth
+      - thepolicemanwalked
+      - theicecreamisdelicious
+      - fivebooks
+      - please
+      - thankyouverymuch
+      - goodnight_Q
+      - goodnight_R
+      - congratulations
+      - letsgo_Q
+      - letsgo_R
+      - areyouready_Q
+      - yesiamready_R
+      - question_1
+      - question_2
+      - question_3
+      - question_4
     - Id: 6.1.100
       Stage: 6
       LearningBlock: 1
