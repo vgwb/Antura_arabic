@@ -5,7 +5,7 @@ namespace EA4S
 
     public static class AppConstants
     {
-        public const string AppVersion = "0.11.29a";
+        public const string AppVersion = "0.11.29b";
         public const string DbSchemeVersion = "1";
         public const bool DebugPanelEnabled = true;
         public const bool UseUnityAnalytics = true;
