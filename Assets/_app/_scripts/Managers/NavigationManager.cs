@@ -78,6 +78,7 @@ namespace EA4S
                     break;
                 case AppScene.GameSelector:
                     AppManager.I.Player.ResetPlaySessionMinigame();
+                    WorldManager.I.CurrentWorld = (WorldID)(AppManager.I.Player.CurrentJourneyPosition.Stage-1);
                     GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     break;
                 case AppScene.MiniGame:
