@@ -24,11 +24,13 @@ namespace EA4S
             this.parameters = parameters;
         }
 
-        private List<string> previousPacksIDs = new List<string>();
+        private List<string> previousPacksIDs_letters = new List<string>();
+        private List<string> previousPacksIDs_words = new List<string>();
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
-            previousPacksIDs.Clear();
+            previousPacksIDs_letters.Clear();
+            previousPacksIDs_words.Clear();
             List<QuestionPackData> packs = new List<QuestionPackData>();
             for (int pack_i = 0; pack_i < nPacks; pack_i++)
             {
@@ -45,13 +47,14 @@ namespace EA4S
             var usableLetters = teacher.wordAI.SelectData(
                 () => teacher.wordHelper.GetAllLetters(parameters.letterFilters),
                     new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
-                        packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
+                        packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_letters));
             var commonLetter = usableLetters[0];
 
             // Get words with the letter
             var correctWords = teacher.wordAI.SelectData(
                 () => teacher.wordHelper.GetWordsWithLetter(parameters.wordFilters, commonLetter.Id),
-                    new SelectionParameters(parameters.correctSeverity, nCorrect, useJourney: parameters.useJourneyForCorrect));
+                    new SelectionParameters(parameters.correctSeverity, nCorrect, useJourney: parameters.useJourneyForCorrect,
+                        packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words));
 
             // Get words without the letter
             var wrongWords = teacher.wordAI.SelectData(
