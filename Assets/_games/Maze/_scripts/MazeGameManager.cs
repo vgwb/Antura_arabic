@@ -57,14 +57,13 @@ namespace EA4S.Maze
 
         public bool isTutorialMode;
         //for letters:
-        public List<string> allLetters;
+        public Dictionary<string,int> allLetters;
         void setupIndices()
         {
-            allLetters = new List<string>();
-            List<LL_LetterData> list = AppManager.I.Teacher.GetAllTestLetterDataLL();
-            foreach (LL_LetterData ld in list)
+            allLetters = new Dictionary<string, int>();
+            for(int i =0; i < prefabs.Count;++i)
             {
-                allLetters.Add(ld.Id);
+                allLetters.Add(prefabs[i].name, i);
             }
         }
 
@@ -364,7 +363,19 @@ namespace EA4S.Maze
             IQuestionPack newQuestionPack = MazeConfiguration.Instance.Questions.GetNextQuestion();
             List<ILivingLetterData> ldList =  (List < ILivingLetterData > )newQuestionPack.GetCorrectAnswers();
             LL_LetterData ld = (LL_LetterData)ldList[0];
-            int index = allLetters.IndexOf(ld.Id);
+            int index = -1;
+
+            if (allLetters.ContainsKey(ld.Id))
+                index = allLetters[ld.Id];
+            if (index == -1)
+            {
+                Debug.Log("Letter got from Teacher is: " + ld.Id + " - does not match 11 models we have, we will play sound of the returned data");
+                index = UnityEngine.Random.Range(0, prefabs.Count);
+            }
+            currentLL = ld;
+            currentPrefab = (GameObject)Instantiate(prefabs[index]);
+
+            /*int index = allLetters.IndexOf(ld.Id);
 
             int found = -1;
             for(int i =0; i < prefabs.Count; ++i)
@@ -376,13 +387,10 @@ namespace EA4S.Maze
                     break;
                 }
             }
-            if (found == -1)
-            {
-                Debug.Log("Letter got from Teacher is: " + ld.Id + " - does not match 11 models we have, we will play sound of the returned data");
-                found = UnityEngine.Random.Range(0, prefabs.Count);
-            }
-            currentLL = ld;
-            currentPrefab = (GameObject)Instantiate(prefabs[found]);
+            
+            */
+
+
             //currentPrefab.GetComponent<MazeLetterBuilder>().letterData = ld;
             currentPrefab.GetComponent<MazeLetterBuilder>().build(() => {
 

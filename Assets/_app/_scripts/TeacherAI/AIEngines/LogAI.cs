@@ -19,7 +19,7 @@ namespace EA4S.Teacher
 
         public void LogMood(int mood)
         {
-            float realMood = Mathf.InverseLerp(ConfigAI.minimumMoodValue, ConfigAI.maximumMoodValue, mood);
+            float realMood = Mathf.InverseLerp(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue, mood);
             var data = new LogMoodData(realMood);
             db.Insert(data);
         }
