@@ -43,6 +43,11 @@
         /// <returns>True if the event system was created as a result of this call</returns>
         public static bool EnsureEventSystemExists()
         {
+            if (!Settings.Instance.EnableEventSystemGeneration)
+            {
+                return false;
+            }
+
             if (EventSystem.current != null)
             {
                 return false;

@@ -170,7 +170,7 @@ namespace SRDebugger.UI.Controls
 
                 if (!string.IsNullOrEmpty(Filter))
                 {
-                    if (e.Message.IndexOf(Filter, StringComparison.InvariantCultureIgnoreCase) < 0)
+                    if (e.Message.IndexOf(Filter, StringComparison.OrdinalIgnoreCase) < 0)
                     {
                         if (e == _consoleScrollLayoutGroup.SelectedItem) _consoleScrollLayoutGroup.SelectedItem = null;
                         continue;
