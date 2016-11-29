@@ -65,14 +65,6 @@ namespace EA4S.Assessment
                                         Db.LocalizationDataId.Assessment_Complete_3));
         }
 
-        private YieldInstruction PlayAssessmentWrongSound()
-        {
-            return Dialogues.Dialogue( Localization.Random(
-                                        Db.LocalizationDataId.Assessment_Wrong_1,
-                                        Db.LocalizationDataId.Assessment_Wrong_2,
-                                        Db.LocalizationDataId.Assessment_Wrong_3));
-        }
-
         private YieldInstruction PlayGameDescription()
         {
             return Dialogues.Dialogue( GameDescription);
