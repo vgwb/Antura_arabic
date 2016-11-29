@@ -382,6 +382,7 @@ namespace EA4S.Db
                 if (!allAnswersAreOk) return false;
             }
 
+            if (phraseFilters.requireWords && (nOkWords == 0)) return false;
             if (phraseFilters.requireAnswersOrWords && (nOkAnswers == 0 && nOkWords == 0)) return false;
 
             return true;

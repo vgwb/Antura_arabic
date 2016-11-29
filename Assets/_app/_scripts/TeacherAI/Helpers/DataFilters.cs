@@ -54,12 +54,15 @@
     // Filter parameters for phrases
     public class PhraseFilters
     {
+        public bool requireWords;
         public bool requireAnswersOrWords;
 
         public PhraseFilters(
+            bool requireWords = false,
             bool requireAnswersOrWords = false
             )
         {
+            this.requireWords = requireWords;
             this.requireAnswersOrWords = requireAnswersOrWords;
         }
     }

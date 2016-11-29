@@ -42,6 +42,10 @@
             var builderParams = new Teacher.QuestionBuilderParameters();
             builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
 
+            // TO USE FOR MISSING WORD
+            //builderParams.phraseFilters.requireWords = true;
+            //builder = new WordsInPhraseQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+
             return builder;
         }
 
