@@ -428,7 +428,12 @@ namespace EA4S.Maze
 
             transform.DOMove(characterWayPoints[currentCharacterWayPoint], 0.007f).OnComplete(moveTweenComplete);*/
 
-            float time = 1.0f + characterWayPoints.Count / 10;
+            //average distance:
+            float distance = 0;
+            for (int i = 1; i < characterWayPoints.Count; ++i)
+                distance += (characterWayPoints[i] - characterWayPoints[i - 1]).sqrMagnitude;
+            
+            float time = distance * 3;
             if (time > 5) time = 5;
             transform.DOPath(characterWayPoints.ToArray(), time, PathType.Linear, PathMode.Ignore).OnWaypointChange((int index) => {
                 if (index + 3 < characterWayPoints.Count)
@@ -512,6 +517,8 @@ namespace EA4S.Maze
         }
 		public void initMovement()
 		{
+            if (characterIsMoving) return;
+
             transform.DOKill(false);
             characterIsMoving = true;
 			GetComponent<Collider> ().enabled = true;
