@@ -6,9 +6,7 @@ namespace EA4S.MixedLetters
     {
         public static bool RoundWon = false;
         MixedLettersGame game;
-
         
-
         bool timerWarningSfxPlayed = false;
         public PlayGameState(MixedLettersGame game)
         {

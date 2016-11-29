@@ -48,7 +48,8 @@ namespace EA4S.MixedLetters
             anturaBarked = false;
             anturaExitTimer = Random.Range(0.75f, 1.5f);
             anturaExited = false;
-            game.GenerateNewWord();
+
+            game.GenerateNewWord(true);
 
             VictimLLController.instance.HideVictoryRays();
             VictimLLController.instance.Reset();
