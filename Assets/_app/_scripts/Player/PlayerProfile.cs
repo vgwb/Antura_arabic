@@ -54,6 +54,10 @@ namespace EA4S
         }
         #endregion
 
+        #region Antura Customization        
+        public List<RewardPack> RewardsUnlocked = new List<RewardPack>();
+        #endregion
+
         #region Oldies
         public int AnturaCurrentPreset;
 
