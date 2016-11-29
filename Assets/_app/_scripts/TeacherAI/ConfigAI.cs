@@ -29,20 +29,6 @@ namespace EA4S.Teacher
 
         public const float startingDifficultyForNewMiniGame = 0f;
 
-        // Application details
-        public const float minimumAge = 7;
-        public const float maximumAge = 15;
-
-        public const float minimumStage = 1;
-        public const float maximumStage = 6;
-
-        public const float minimumMiniGameScore = -1;
-        public const float maximumMiniGameScore = 1;
-
-        public const int minimumMoodValue = 1;
-        public const int maximumMoodValue = 5;
-
-
     }
 
 }

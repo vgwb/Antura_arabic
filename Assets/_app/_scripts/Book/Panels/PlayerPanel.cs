@@ -37,22 +37,18 @@ namespace EA4S
             // Total elapsed time
             var db = AppManager.I.DB;
             var tableName = db.GetTableName<LogInfoData>();
-            string query = "select * from \"" + tableName +"\"";
+            string query = "select * from \"" + tableName + "\"";
             List<LogInfoData> list = db.FindLogInfoDataByQuery(query);
 
             System.TimeSpan totalTimespan = new System.TimeSpan(0);
             bool foundStart = false;
             int startTimestamp = 0;
             int endTimestamp = 0;
-            foreach (var infoData in list)
-            {
-                if (!foundStart && infoData.Event == InfoEvent.AppStarted)
-                {
+            foreach (var infoData in list) {
+                if (!foundStart && infoData.Event == InfoEvent.AppStarted) {
                     startTimestamp = infoData.Timestamp;
                     foundStart = true;
-                }
-                else if (foundStart && infoData.Event == InfoEvent.AppClosed)
-                {
+                } else if (foundStart && infoData.Event == InfoEvent.AppClosed) {
                     endTimestamp = infoData.Timestamp;
                     foundStart = false;
 
@@ -71,7 +67,7 @@ namespace EA4S
             int nMoods = 10;
             var latestMoods = AppManager.I.Teacher.GetLastMoodData(nMoods);
             float[] moodValues = latestMoods.ConvertAll(x => x.MoodValue).ToArray();
-            moodGraph.SetValues(nMoods, Teacher.ConfigAI.maximumMoodValue, moodValues);
+            moodGraph.SetValues(nMoods, AppConstants.maximumMoodValue, moodValues);
 
             // Show journey
             float[] journeyValues = unlockedPlaySessionInfos.ConvertAll(x => x.score).ToArray();
