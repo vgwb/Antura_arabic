@@ -86,6 +86,8 @@ namespace EA4S.Maze
 
 		public void toggleVisibility(bool value) {
             foreach(GameObject particle in particles) particle.SetActive(value);
+
+            
             // toggles the visibility of this gameobject and all it's children
             /*Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
 			foreach (Renderer r in renderers)
@@ -325,7 +327,8 @@ namespace EA4S.Maze
 
 		public void setClickedDot()
 		{
-			MazeGameManager.instance.moveToNext (true);
+            toggleVisibility(false);
+            MazeGameManager.instance.moveToNext (true);
 		}
 
 		public void nextPath()
@@ -488,6 +491,7 @@ namespace EA4S.Maze
                 foreach (GameObject particle in particles) particle.SetActive(false);
                 GetComponent<Collider>().enabled = false;
                 characterIsMoving = false;
+                toggleVisibility(false);
                 transform.DOKill(false);
                 MazeGameManager.instance.moveToNext(true);
 
@@ -523,6 +527,7 @@ namespace EA4S.Maze
                         GetComponent<Collider>().enabled = false;
                         characterIsMoving = false;
                         transform.DOKill(false);
+                        toggleVisibility(false);
                         MazeGameManager.instance.moveToNext(true);
 
                         if (currentFruitList == Fruits.Count - 1)
@@ -648,6 +653,36 @@ namespace EA4S.Maze
         {
             toggleVisibility(true);
             isAppearing = true;
+
+            List<Vector3> pts = new List<Vector3>();
+            pts.Add(transform.position);
+
+            Vector3 half = transform.position + (initialPosition - transform.position ) / 2;
+            half.x += 10;
+
+            pts.Add(half);
+
+            pts.Add(initialPosition);
+
+            transform.DOPath(pts.ToArray(), 2, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) => {
+                if (index + 1 < pts.Count)
+                {
+                    var dir = transform.position - pts[index + 1];
+                    var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+
+                    transform.rotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
+                                                                                  // transform.DORotateQuaternion(targetRotation, 0.007f);
+                }
+            }).OnComplete(()=> {
+                toggleVisibility(false);
+                isAppearing = false;
+
+
+
+                //transform.rotation = initialRotation;
+                MazeGameManager.instance.showCurrentTutorial();
+            });
+
         }
         public void fleeTo(Vector3 position)
         {
@@ -689,7 +724,7 @@ namespace EA4S.Maze
             }*/
 			if(isAppearing)
             {
-                moveTowards(initialPosition);
+               /* moveTowards(initialPosition);
                 if (transform.position == initialPosition)
                 {
                     toggleVisibility(false);
@@ -699,7 +734,7 @@ namespace EA4S.Maze
 
                     //transform.rotation = initialRotation;
                     MazeGameManager.instance.showCurrentTutorial();
-                }
+                }*/
                 return;
             }
             if(isFleeing)

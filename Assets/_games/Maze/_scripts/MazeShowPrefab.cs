@@ -15,7 +15,7 @@ namespace EA4S.Maze
 		// Use this for initialization
 		void Start () {
 			
-			transform.position = new Vector3 (40, 0, 0);
+			transform.position = new Vector3 (40, 0, -1);
 
             transform.DOMove(Vector3.zero, 1.0f).OnComplete(()=> {
                 //MazeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterId);

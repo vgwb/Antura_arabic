@@ -37,7 +37,13 @@ namespace EA4S
             
             if (!m_bMovingToDestination)
             {
-                int iRnd = UnityEngine.Random.Range(0, m_iAnims);
+                int iRnd;
+                do
+                {
+                    iRnd = UnityEngine.Random.Range(0, m_iAnims);
+                }
+                while (iRnd == (int)AnturaAnimationStates.sucking);
+
                 m_oAnturaCtrl.State = (AnturaAnimationStates)iRnd;
 
                 if (onAnimationByClick != null)
@@ -112,7 +118,7 @@ namespace EA4S
             if ((m_v3StartPos - transform.position).sqrMagnitude > 0.1f)
             {
                 m_bMovingToDestination = true;
-                m_oAnturaCtrl.State = AnturaAnimationStates.sheeping;
+                m_oAnturaCtrl.State = AnturaAnimationStates.walking;
 
                 float time = (m_v3StartPos - transform.position).magnitude / m_fMovementSpeed;
                 m_oTweener = transform.DOMove(m_v3StartPos, time).OnComplete(() =>
@@ -146,7 +152,7 @@ namespace EA4S
             }
             else //make the progress for this frame
             {
-                m_oAnturaCtrl.State = AnturaAnimationStates.sheeping;
+                m_oAnturaCtrl.State = AnturaAnimationStates.walking;
 
                 gameObject.transform.Translate(_v3PartialMovement, Space.World);
                 gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, Quaternion.LookRotation(_v3MaxMovement), m_fRotationSpeed * Time.deltaTime);

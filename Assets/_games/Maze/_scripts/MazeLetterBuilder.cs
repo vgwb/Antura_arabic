@@ -14,6 +14,8 @@ namespace EA4S.Maze
         // Use this for initialization
         void Start()
         {
+            transform.position = new Vector3(0, 0, -1);
+
 
             transform.localScale = new Vector3(15, 15, 15);
             transform.rotation = Quaternion.Euler(0, 180, 0);
