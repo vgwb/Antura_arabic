@@ -9,6 +9,8 @@ namespace EA4S
         #region EXPOSED MEMBERS
         [SerializeField]
         private Rigidbody m_oBoneRigidbody;
+        [SerializeField]
+        private GameObject m_oParticle;
 
         [Header("Simple Throw")]
 
