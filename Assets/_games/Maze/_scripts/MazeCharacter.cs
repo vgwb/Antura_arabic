@@ -393,7 +393,7 @@ namespace EA4S.Maze
             dir.z = transform.position.z - dir.z * 1.5f;
             dir.y = 0.0335f;
             transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
-
+            characterIsMoving = false;
             GetComponent<Collider>().enabled = false;
         }
 
@@ -521,6 +521,8 @@ namespace EA4S.Maze
 		public void initMovement()
 		{
             if (characterIsMoving) return;
+
+            MazeGameManager.instance.fixLine();
 
             transform.DOKill(false);
             characterIsMoving = true;
@@ -681,10 +683,18 @@ namespace EA4S.Maze
 
                 if (transform.position == fleePosition)
                 {
-                    MazeGameManager.instance.showAllCracks();
-                    MazeGameManager.instance.lostCurrentLetter();
+                    //wait then show cracks:
+                    StartCoroutine(waitAndPerformCallback(3, () => {
+                        MazeGameManager.instance.showAllCracks();
+                        donotHandleBorderCollision = true;
+                        characterIsMoving = false;
+                        transform.DOKill(false);
+                    },
+                    () => {
+                        MazeGameManager.instance.lostCurrentLetter();
+                    }));
 
-                   
+
                 }
                 return;
             }

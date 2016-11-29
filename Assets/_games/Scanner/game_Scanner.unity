@@ -2545,7 +2545,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDragging: 0
-  fingerOffset: {x: 0, y: 3, z: 0}
+  isReady: 0
+  fingerOffset: {x: 0, y: 1, z: 0}
   scale: 0.5
   isCorrectAnswer: 0
   drawing: {fileID: 104520383}
@@ -10455,6 +10456,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 108000013014623442, guid: 25204511df7ed9b4897034df9466e2f4,
+        type: 2}
+      propertyPath: m_Intensity
+      value: 0.95
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25204511df7ed9b4897034df9466e2f4, type: 2}
   m_IsPrefabParent: 0
@@ -11046,7 +11052,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDragging: 0
-  fingerOffset: {x: 0, y: 3, z: 0}
+  isReady: 0
+  fingerOffset: {x: 0, y: 1, z: 0}
   scale: 0.5
   isCorrectAnswer: 0
   drawing: {fileID: 185478057}
@@ -12938,7 +12945,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDragging: 0
-  fingerOffset: {x: 0, y: 3, z: 0}
+  isReady: 0
+  fingerOffset: {x: 0, y: 1, z: 0}
   scale: 0.5
   isCorrectAnswer: 0
   drawing: {fileID: 1186455409}
@@ -15956,7 +15964,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDragging: 0
-  fingerOffset: {x: 0, y: 3, z: 0}
+  isReady: 0
+  fingerOffset: {x: 0, y: 1, z: 0}
   scale: 0.5
   isCorrectAnswer: 0
   drawing: {fileID: 367619080}
@@ -16245,7 +16254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDragging: 0
-  fingerOffset: {x: 0, y: 3, z: 0}
+  isReady: 0
+  fingerOffset: {x: 0, y: 1, z: 0}
   scale: 0.5
   isCorrectAnswer: 0
   drawing: {fileID: 873636679}
