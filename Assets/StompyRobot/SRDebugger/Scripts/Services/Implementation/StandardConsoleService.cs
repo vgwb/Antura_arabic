@@ -1,7 +1,5 @@
 ﻿namespace SRDebugger.Services.Implementation
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using SRF.Service;
     using UnityEngine;
 
@@ -13,25 +11,25 @@
 
         private readonly CircularBuffer<ConsoleEntry> _allConsoleEntries;
         private CircularBuffer<ConsoleEntry> _consoleEntries;
+        private readonly object _threadLock = new object();
 
         public StandardConsoleService()
         {
 #if UNITY_5
-            Application.logMessageReceived += UnityLogCallback;
+            Application.logMessageReceivedThreaded += UnityLogCallback;
 #else
-			Application.RegisterLogCallback(UnityLogCallback);
+			Application.RegisterLogCallbackThreaded(UnityLogCallback);
 #endif
 
             SRServiceManager.RegisterService<IConsoleService>(this);
-
             _collapseEnabled = Settings.Instance.CollapseDuplicateLogEntries;
-
             _allConsoleEntries = new CircularBuffer<ConsoleEntry>(Settings.Instance.MaximumConsoleEntries);
         }
 
         public int ErrorCount { get; private set; }
         public int WarningCount { get; private set; }
         public int InfoCount { get; private set; }
+
         public event ConsoleUpdatedEventHandler Updated;
 
         public IReadOnlyList<ConsoleEntry> Entries
@@ -54,14 +52,17 @@
 
         public void Clear()
         {
-            _hasCleared = true;
-
-            if (_consoleEntries == null)
+            lock (_threadLock)
             {
-                _consoleEntries = new CircularBuffer<ConsoleEntry>(Settings.Instance.MaximumConsoleEntries);
+                _hasCleared = true;
+
+                if (_consoleEntries == null)
+                {
+                    _consoleEntries = new CircularBuffer<ConsoleEntry>(Settings.Instance.MaximumConsoleEntries);
+                }
+
+                ErrorCount = WarningCount = InfoCount = 0;
             }
-            ;
-            ErrorCount = WarningCount = InfoCount = 0;
 
             OnUpdated();
         }
@@ -118,32 +119,36 @@
         }
 
         private void UnityLogCallback(string condition, string stackTrace, LogType type)
-        {
+        {                
             //if (condition.StartsWith("[SRConsole]"))
             //    return;
 
-            var prevMessage = _collapseEnabled && _allConsoleEntries.Count > 0
-                ? _allConsoleEntries[_allConsoleEntries.Count - 1]
-                : null;
+            lock (_threadLock)
+            {
 
-            if (prevMessage != null && prevMessage.LogType == type && prevMessage.Message == condition &&
-                prevMessage.StackTrace == stackTrace)
-            {
-                OnEntryDuplicated(prevMessage);
-            }
-            else
-            {
-                var newEntry = new ConsoleEntry
+                var prevMessage = _collapseEnabled && _allConsoleEntries.Count > 0
+                    ? _allConsoleEntries[_allConsoleEntries.Count - 1]
+                    : null;
+
+                if (prevMessage != null && prevMessage.LogType == type && prevMessage.Message == condition &&
+                    prevMessage.StackTrace == stackTrace)
                 {
-                    LogType = type,
-                    StackTrace = stackTrace,
-                    Message = condition
-                };
+                    OnEntryDuplicated(prevMessage);
+                }
+                else
+                {
+                    var newEntry = new ConsoleEntry
+                    {
+                        LogType = type,
+                        StackTrace = stackTrace,
+                        Message = condition
+                    };
 
-                OnEntryAdded(newEntry);
+                    OnEntryAdded(newEntry);
+                }
+
+                AdjustCounter(type, 1);
             }
-
-            AdjustCounter(type, 1);
         }
 
         private void AdjustCounter(LogType type, int amount)

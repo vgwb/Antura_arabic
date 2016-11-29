@@ -47,6 +47,17 @@ For documentation on other features, including the options tab, bug reporter, pr
 
 # Change Log
 
+1.5.1
+----------
+
+Fixed:
+- Compile on WSA builds.
+- Editor resources not being found when using Mad Compile Time Optimizer to move scripts.
+- Log messages from other threads not being captured.
+
+New:
+- Added setting to disable automatically generated EventSystem.
+
 1.5.0
 ----------
 
