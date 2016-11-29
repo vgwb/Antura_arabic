@@ -8,12 +8,12 @@ namespace EA4S {
         #region API
         public static GameObject MountModel(string _id, Transform _parent, ModelType _type = ModelType.AnturaForniture) {
             GameObject rewardModel = GetObject(_type, _id);
-            CleanTranformChildren(_parent);
             rewardModel.transform.SetParent(_parent, false);
             return rewardModel;
         }
 
         public static GameObject MountModel(string _id, Transform _parent, MaterialPair _materialPair, ModelType _type = ModelType.AnturaForniture) {
+            CleanTranformChildren(_parent);
             GameObject returnObject = MountModel(_id, _parent, _type);
             Reward actualReward = RewardSystemManager.GetRewardById(_id);
             SwitchMaterial(returnObject, _materialPair);
