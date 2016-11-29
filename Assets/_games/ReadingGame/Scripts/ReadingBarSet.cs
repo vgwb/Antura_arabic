@@ -71,6 +71,12 @@ public class ReadingBarSet : MonoBehaviour
             activeBar.Active = true;
     }
 
+    void OnDestroy()
+    {
+        if (songSource != null)
+            songSource.Stop();
+    }
+
     public void Clear()
     {
         currentBarWords = null;

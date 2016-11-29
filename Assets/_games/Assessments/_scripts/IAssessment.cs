@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 
 namespace EA4S.Assessment
@@ -12,7 +12,7 @@ namespace EA4S.Assessment
         IQuestionPlacer QuestionPlacer { get; }
         IAnswerPlacer AnswerPlacer { get; }
         IQuestionGenerator QuestionGenerator { get; }
-        IAssessmentConfiguration AssessmentConfiguration { get; }
+        IAssessmentConfiguration Configuration { get; }
         IGameContext GameContext { get; }
 
         IEnumerator PlayCoroutine( Action gameEndedCallback);

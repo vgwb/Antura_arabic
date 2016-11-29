@@ -1,10 +1,10 @@
+using System;
 using System.Collections.Generic;
 
 namespace EA4S.Assessment
 {
     internal class DefaultLogicInjector : ILogicInjector
     {
-        private int AnswerSetNumber = 0; // used to determine if answer is correct or not
         private IDragManager dragManager = null;
         private IQuestionDecorator decorator = null;
 
@@ -17,13 +17,15 @@ namespace EA4S.Assessment
 
         List< PlaceholderBehaviour> placeholdersList;
         List< AnswerBehaviour> answersList;
+        List<IQuestion> questionsList;
 
         public void ResetRound()
         {
             placeholdersList = new List< PlaceholderBehaviour>();
             answersList = new List< AnswerBehaviour>();
+            questionsList = new List< IQuestion>();
             dragManager.ResetRound();
-            AnswerSetNumber = 0;
+            AnswerSet.ResetTotalCount();
         }
 
         /// <summary>
@@ -42,33 +44,29 @@ namespace EA4S.Assessment
         // Called many times (for loop in assessment)
         public void Wire( IQuestion question, IAnswer[] answers)
         {
-            AnswerSetNumber++; // This one is a new question
+            AnswerSet answerSet = new AnswerSet( answers);
 
-            WireQuestion( question);
+            WireQuestion( question, answerSet);
             WirePlaceHolders( question);
             WireAnswers( answers);
         }
 
-        private void WireQuestion( IQuestion q)
+        private void WireQuestion( IQuestion q, AnswerSet answerSet)
         {
             decorator.DecorateQuestion( q.gameObject.GetComponent< QuestionBehaviour>());
+            q.SetAnswerSet( answerSet);
+            questionsList.Add( q);
         }
 
         private void WireAnswers( IAnswer[] answers)
         {
-            foreach (var a in answers)
+            if (answers == null || answers.Length == 0)
+                return;
+
+            foreach( var a in answers)
             {
                 var behaviour = a.gameObject.GetComponent< AnswerBehaviour>();
-                answersList.Add( behaviour);
-                if (a.IsCorrect())
-                {
-                    behaviour.GetAnswer().SetAnswerSet( AnswerSetNumber);
-                }
-                else
-                {
-                    // I have to set the answer value when detaching to 0
-                    behaviour.GetAnswer().SetAnswerSet( -1);
-                }
+                answersList.Add( behaviour); // TODO: INVESTIGATE WITHIN DRAG MAANGER
             }
         }
 
@@ -78,7 +76,6 @@ namespace EA4S.Assessment
             {
                 var behaviour = p.GetComponent< PlaceholderBehaviour>();
                 behaviour.Placeholder = new DragNDropPlaceholder();
-                behaviour.Placeholder.SetAnswer( AnswerSetNumber);
                 behaviour.Placeholder.SetQuestion( question);
                 placeholdersList.Add( behaviour);
             }
@@ -86,8 +83,17 @@ namespace EA4S.Assessment
 
         public void CompleteWiring()
         {
-            // Problem probably here (Readding) EIGEN CALLED 1*N
-            dragManager.AddElements( placeholdersList, answersList);
+            dragManager.AddElements( placeholdersList, answersList, questionsList);
+        }
+
+        public void EnableDragOnly()
+        {
+            dragManager.EnableDragOnly();
+        }
+
+        public void RemoveDraggables()
+        {
+            dragManager.RemoveDraggables();
         }
     }
 }

@@ -7,9 +7,9 @@ namespace EA4S.Assessment
 {
     public class DefaultQuestionPlacer : IQuestionPlacer
     {
-        private IAudioManager audioManager;
-        private float questionSize;
-        private float answerSize;
+        protected IAudioManager audioManager;
+        protected float questionSize;
+        protected float answerSize;
 
         public DefaultQuestionPlacer( IAudioManager audioManager, float questionSize, float answerSize)
         {
@@ -18,14 +18,14 @@ namespace EA4S.Assessment
             this.answerSize = answerSize;
         }
 
-        private bool isAnimating = false;
+        protected bool isAnimating = false;
             
         public bool IsAnimating()
         {
             return isAnimating;
         }
 
-        private IQuestion[] allQuestions;
+        protected IQuestion[] allQuestions;
 
         public void Place( IQuestion[] question)
         {
@@ -34,7 +34,13 @@ namespace EA4S.Assessment
             Coroutine.Start( PlaceCoroutine());
         }
 
+
         IEnumerator PlaceCoroutine()
+        {
+            return GetPlaceCoroutine();
+        }
+
+        public virtual IEnumerator GetPlaceCoroutine()
         {
             // Count questions and answers
             int questionsNumber = 0;
@@ -59,7 +65,7 @@ namespace EA4S.Assessment
             float spaceIncrement = blankSpace / (questionsNumber + 1);
 
             //Implement Line Break only if needed
-            if ( blankSpace <= bounds.HalfLetterSize() )
+            if ( blankSpace <= bounds.HalfLetterSize()/2f )
                 throw new InvalidOperationException( "Need a line break becase 1 line is not enough for all");
 
             var flow = AssessmentConfiguration.Instance.LocaleTextFlow;
@@ -78,8 +84,10 @@ namespace EA4S.Assessment
                 currentPos.x += answerSize / 2.0f;
                 sign = 1;
             }
+
+            currentPos.y -= 1.5f;
             
-            int questionIndex = 0;
+            int questionIndex = 0; //TODO: check if this redundant
 
             for (int i = 0; i < questionsNumber; i++)
             {
@@ -97,49 +105,12 @@ namespace EA4S.Assessment
                 questionIndex++;
             }
 
-                /*if (flow == AssessmentConfiguration.TextFlow.RightToLeft)
-                {
-                    for (int i = 0; i < questionsNumber; i++)
-                    {
-                        currentPos.x += spaceIncrement + bounds.LetterSize();
-
-                        foreach (var p in allQuestions[ questionIndex].GetPlaceholders())
-                        {
-                            yield return PlacePlaceholder( allQuestions[ questionIndex], p, currentPos);
-                            currentPos.x += bounds.LetterSize();
-                        }
-
-                        yield return PlaceQuestion(
-                            allQuestions[ questionIndex], currentPos);
-
-                        questionIndex++;
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < questionsNumber; i++)
-                    {
-                        currentPos.x += spaceIncrement + bounds.LetterSize();
-
-                        yield return PlaceQuestion(
-                            allQuestions[ questionIndex], currentPos);
-
-                        foreach (var p in allQuestions[ questionIndex].GetPlaceholders())
-                        {
-                            currentPos.x += bounds.LetterSize();
-                            yield return PlacePlaceholder( allQuestions[ questionIndex], p, currentPos);
-                        }
-
-                        questionIndex++;
-                    }
-                }*/
-
             // give time to finish animating elements
             yield return TimeEngine.Wait( 0.65f);
             isAnimating = false;
         }
 
-        private IEnumerator PlaceQuestion( IQuestion q, Vector3 position)
+        protected IEnumerator PlaceQuestion( IQuestion q, Vector3 position)
         {
             var ll = q.gameObject.GetComponent< LetterObjectView>();
 
@@ -151,7 +122,7 @@ namespace EA4S.Assessment
             return TimeEngine.Wait( 1.0f);
         }
 
-        private IEnumerator PlacePlaceholder( IQuestion q, GameObject placeholder, Vector3 position)
+        protected IEnumerator PlacePlaceholder( IQuestion q, GameObject placeholder, Vector3 position)
         {
             Transform tr = placeholder.transform;
             tr.localPosition = position + new Vector3( 0, 5, 0);

@@ -40,7 +40,7 @@ namespace EA4S.DancingDots
 
 		public void Reset()
 		{
-			RandomLetter();
+			SetupLetter();
 			SpeakLetter();
 		}
 
@@ -48,55 +48,106 @@ namespace EA4S.DancingDots
 		{
 			letterObjectView.SetState(LLAnimationStates.LL_dancing);
 		}
-			
-		void RandomLetter()
+
+		void OnMouseUp()
 		{
-			letterData = game.questionsManager.getNewLetter();
-			SetupLetter();
+			if (letterData != null) 
+			{
+				AudioManager.I.PlayLetter(letterData.Id);
+			}
+		}
+
+		void GetDiacritic()
+		{
+			Debug.Log("DD Get Diacritics");
+			char FATHA1 = (char) 1611;
+			char FATHA2 = (char) 1614;
+			char DAMAH = (char) 1615;
+			char KASRAH = (char) 1616;
+			char SOUKON = (char) 1618;
+
+			if (game.currentLetter.Contains(FATHA1.ToString()) ||
+				game.currentLetter.Contains(FATHA2.ToString()))
+			{
+				game.letterDiacritic = DiacriticEnum.Fatha;
+			}
+			else if (game.currentLetter.Contains(DAMAH.ToString()))
+			{
+				game.letterDiacritic = DiacriticEnum.Dameh;
+			}
+
+			else if (game.currentLetter.Contains(KASRAH.ToString()))
+			{
+				game.letterDiacritic = DiacriticEnum.Kasrah;
+			}
+
+			else if (game.currentLetter.Contains(SOUKON.ToString()))
+			{
+				game.letterDiacritic = DiacriticEnum.Sokoun;
+			}
+			else
+			{
+				game.letterDiacritic = DiacriticEnum.None;
+			}
+
+			StartCoroutine(game.SetupDiacritic());
+
+			string output = "";
+			foreach (char c in game.currentLetter)
+			{
+				if (c != FATHA1 && c != FATHA2 && c != DAMAH && c != KASRAH && c != SOUKON)
+				{
+					output += c;
+				}
+			}
+			game.currentLetter = output;
 		}
 
 		void SetupLetter()
 		{
+			letterData = game.questionsManager.getNewLetter();
 
-            DancingDotsGame.instance.currentLetter = letterData.TextForLivingLetter;
+			game.currentLetter = letterData.TextForLivingLetter;
+
+			GetDiacritic();
 
 			string lettersWithOneDot = "ج خ غ ف ض ب ن ز ذ ظ";
 			string lettersWithTwoDots = "ة ق ي ت";
 			string lettersWithThreeDots = "ث ش";
 
-			if (lettersWithThreeDots.Contains(letterData.TextForLivingLetter))
+			if (lettersWithThreeDots.Contains(game.currentLetter))
 			{
-                DancingDotsGame.instance.dotsCount = 3;
+                game.dotsCount = 3;
 			}
-			else if (lettersWithTwoDots.Contains(letterData.TextForLivingLetter))
+			else if (lettersWithTwoDots.Contains(game.currentLetter))
 			{
-                DancingDotsGame.instance.dotsCount = 2;
+                game.dotsCount = 2;
 			}
-			else if (lettersWithOneDot.Contains(letterData.TextForLivingLetter))
+			else if (lettersWithOneDot.Contains(game.currentLetter))
 			{
-                DancingDotsGame.instance.dotsCount = 1;
+                game.dotsCount = 1;
 			}
 			else
 			{
-                DancingDotsGame.instance.dotsCount = 0;
+                game.dotsCount = 0;
 			}
 					
-			hintText.text = letterData.TextForLivingLetter;
-			ShowText(hintText, DancingDotsGame.instance.dotHintAlpha);
-			dotlessText.text = letterData.TextForLivingLetter;
-			fullText.text = letterData.TextForLivingLetter;
+			hintText.text = game.currentLetter;
+			ShowText(hintText, game.dotHintAlpha);
+			dotlessText.text = game.currentLetter;
+			fullText.text = game.currentLetter;
 			fullTextGO.SetActive(false);
 
 		}
 
 		public void HideText(TextMeshPro tmp)
 		{
-			tmp.color = DancingDotsGame.instance.SetAlpha(tmp.color,0);
+			tmp.color = game.SetAlpha(tmp.color,0);
 		}
 
 		public void ShowText(TextMeshPro tmp, byte alpha)
 		{
-			tmp.color = DancingDotsGame.instance.SetAlpha(tmp.color, alpha);
+			tmp.color = game.SetAlpha(tmp.color, alpha);
 		}
 
 		public void ShowRainbow()

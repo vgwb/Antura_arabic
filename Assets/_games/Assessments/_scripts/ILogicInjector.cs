@@ -10,5 +10,7 @@ namespace EA4S.Assessment
         void CompleteWiring();
         void ResetRound();
         bool AllAnswersCorrect();
+        void EnableDragOnly();
+        void RemoveDraggables();
     }
 }

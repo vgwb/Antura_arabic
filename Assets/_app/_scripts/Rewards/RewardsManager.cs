@@ -99,8 +99,7 @@ namespace EA4S
 
         public void Continue()
         {
-            AppManager.I.Player.ResetPlaySessionMinigame();
-            AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
+            // journey progression moved on NavigationManager
             NavigationManager.I.GoToNextScene();
         }
 

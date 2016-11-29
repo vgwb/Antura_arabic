@@ -65,7 +65,7 @@ namespace EA4S.ReadingGame
 
             if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong)
             {
-                game.barSet.PlaySong(game.Context.GetAudioManager().PlayMusic(game.alphabetSongAudio), OnSongEnded);
+                game.barSet.PlaySong(game.Context.GetAudioManager().PlaySound(game.alphabetSongAudio), OnSongEnded);
             }
 
             completedDragging = false;
@@ -194,6 +194,8 @@ namespace EA4S.ReadingGame
                 float distance;
                 if (game.barSet.GetFollowingDistance(out distance))
                 {
+                    distance = Math.Abs(distance);
+
                     if (distance > 100)
                     {
                         timeFarFromTarget += delta;

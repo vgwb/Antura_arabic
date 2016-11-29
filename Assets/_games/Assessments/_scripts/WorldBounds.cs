@@ -36,7 +36,7 @@ namespace EA4S.Assessment
         {
             float questionXmin = QuestionSpaceStart().x;
             float questionXmax = QuestionSpaceEnd().x;
-            float questionYmin = height / 2 - SubtitlesMargin - 3 * LetterSize();
+            float questionYmin = height / 2 - 2f - 3 * LetterSize();
             float xMin = - width / 2 + 0.7f * LetterSize();
             float xMax = width / 2 - 0.7f * LetterSize();
             float yMin = height / 2 - TopMargin();
@@ -108,7 +108,8 @@ namespace EA4S.Assessment
 
         public float TopMargin()
         {
-            return SubtitlesMargin + ElementsSize.LL * 1.5f;
+            // No more subtitles
+            return 0; //SubtitlesMargin + ElementsSize.LL * 1.5f;
         }
 
         public float LetterSize()

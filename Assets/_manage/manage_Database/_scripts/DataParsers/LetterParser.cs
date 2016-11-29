@@ -29,6 +29,8 @@ namespace EA4S.Db.Management
             data.Medial_Unicode = ToString(dict["Medial_Unicode"]);
             data.Final_Unicode = ToString(dict["Final_Unicode"]);
             data.Symbol_Unicode = ToString(dict["Symbol_Unicode"]);
+            data.MedialFix = ToString(dict["MedialFix"]);
+            data.FinalFix = ToString(dict["FinalFix"]);
 
             data.Old_Isolated = ToString(dict["Old_Isolated"]);
             data.Old_Initial = ToString(dict["Old_Initial"]);

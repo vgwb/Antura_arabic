@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,53 +16,58 @@ namespace EA4S.Assessment
             ResetRound();
         }
 
+        private bool dragOnly = false;
+        public void EnableDragOnly()
+        {
+            dragOnly = true;
+            ticking = true;
+            TimeEngine.AddTickable(this);
+            foreach (var a in answers)
+                a.Enable();
+        }
+
         List< PlaceholderBehaviour> placeholders = null;
         List< DroppableBehaviour> answers = null;
+        List< IQuestion> questions = null;
 
         // This should be called onlye once
-        public void AddElements( List< PlaceholderBehaviour> placeholders, List< AnswerBehaviour> answers)
+        public void AddElements(
+                                    List< PlaceholderBehaviour> placeholders, 
+                                    List< AnswerBehaviour> answers,
+                                    List< IQuestion> questions)
         {
             this.placeholders = placeholders;
-            this.answers = new List< DroppableBehaviour>();
+            this.answers = BehaviourFromAnswers( answers);
+            this.questions = questions;
+        }
 
-            foreach (var a in answers)
+        private List< DroppableBehaviour> BehaviourFromAnswers( List< AnswerBehaviour> answers)
+        {
+            var list = new List< DroppableBehaviour>();
+
+            foreach ( var a in answers)
             {
                 var droppable = a.gameObject.AddComponent< DroppableBehaviour>();
                 droppable.SetDragManager( this);
-                this.answers.Add( droppable);
+                list.Add( droppable);
             }
+           
+            return list;
         }
 
         public bool AllAnswered()
-        {
-            bool allAnswered = true;
-            foreach (var p in placeholders)
+        {            
+            if (!checker.IsAnimating() && checker.AreAllAnswered(placeholders))
             {
-                if (p.LinkedDroppable == null)
-                    return false;
-
-                if (p.LinkedDroppable.gameObject.GetComponent< AnswerBehaviour>() == null)
-                    return false;
-
-                var droppa = p.LinkedDroppable.gameObject.GetComponent< AnswerBehaviour>();
-                var place = p.Placeholder;
-                place.LinkAnswer( droppa.GetAnswer().GetAnswerSet());
-                if (place.IsAnswered() == false)
-                    allAnswered = false;
+                checker.Check( placeholders, questions, this);
             }
-            
-            if (allAnswered && !checker.IsAnimating())
-                checker.Check( placeholders, this);
 
             return checker.AllCorrect();
         }
 
         public void Enable()
         {
-            ticking = true;
-            TimeEngine.AddTickable( this);
-            foreach (var a in answers)
-                a.Enable();
+            dragOnly = false; 
         }
 
         public void ResetRound()
@@ -80,27 +86,42 @@ namespace EA4S.Assessment
 
             audioManager.PlaySound( Sfx.ThrowObj);
             this.droppable = droppable;
-            droppable.StartDrag();
+            droppable.StartDrag( x=>RemoveFromUpdateAndPlaceholders(x));
+        }
+
+        void RemoveFromUpdateAndPlaceholders( IDroppable droppa)
+        {
+            RemoveFromUpdate();
+            if (placeholders.Remove(droppa.GetLinkedPlaceholder()) == false)
+                throw new InvalidOperationException("Cannote remove the droppale");
+        }
+
+        void RemoveFromUpdate()
+        {
+            this.droppable.StopDrag();
+            this.droppable = null;
         }
 
         public void StopDragging( IDroppable droppable)
         {
-            if (this.droppable == droppable)
+            if (this.droppable == droppable && droppable != null)
             {
-                audioManager.PlaySound(Sfx.ThrowObj);
-                CheckCollidedWithPlaceholder();
-                this.droppable.StopDrag();
-                this.droppable = null;
+                audioManager.PlaySound( Sfx.ThrowObj);
+                if(dragOnly== false)
+                    CheckCollidedWithPlaceholder( droppable);
+                RemoveFromUpdate();
             }
         }
 
-        private void CheckCollidedWithPlaceholder()
+        private void CheckCollidedWithPlaceholder( IDroppable droppable)
         { 
             foreach(var p in placeholders)
                 if ( NearEnoughToDrop( p.transform))
                 {
-                    droppable.Detach(false);
+                    droppable.Detach( false);
                     droppable.LinkToPlaceholder( p);
+                    var set = p.Placeholder.GetQuestion().GetAnswerSet();
+                    set.OnDroppedAnswer( droppable.GetAnswer());
                     return;
                 }
 
@@ -110,6 +131,9 @@ namespace EA4S.Assessment
 
         bool NearEnoughToDrop( Transform zone)
         {
+            if (droppable == null)
+                return false;
+
             var p1 = zone.transform.position;
             var p2 = droppable.GetTransform().localPosition;
             p1.z = p2.z = 0;
@@ -138,6 +162,16 @@ namespace EA4S.Assessment
         {
             foreach (var a in answers)
                 a.Enable();
+        }
+
+        public void RemoveDraggables()
+        {
+            dragOnly = true;
+            if (this.droppable != null)
+            {                
+                this.droppable.StopDrag();
+                this.droppable = null;
+            }
         }
     }
 }

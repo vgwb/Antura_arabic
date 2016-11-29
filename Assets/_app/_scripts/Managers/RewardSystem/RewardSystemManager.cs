@@ -11,6 +11,10 @@ namespace EA4S {
         public const string ANTURA_REWARDS_CONFIG_PATH = "Configs/" + "AnturaRewardsConfig";
         public const string COLOR_PAIRS_CONFIG_PATH = "Configs/" + "ColorPairs";
         public const string ANTURA_REWARDS_PREFABS_PATH = "Prefabs/Rewards/";
+        /// <summary>
+        /// The maximum rewards unlockable for playsession.
+        /// </summary>
+        public const int MaxRewardsUnlockableForPlaysession = 2;
         #endregion
 
         #region Configurations
@@ -132,7 +136,7 @@ namespace EA4S {
                     }
                     break;
                 default:
-                    Debug.LogWarningFormat("Reward typology {0} not found", _rewardType);
+                    Debug.LogWarningFormat("Reward typology requested {0} not found", _rewardType);
                     break;
             }
 
@@ -151,9 +155,29 @@ namespace EA4S {
         /// <returns></returns>
         public static List<RewardColorItem> SelectRewardItem(string _rewardItemId, RewardTypes _rewardType) {
             List<RewardColorItem> returnList = new List<RewardColorItem>();
-            GetRewardColorsById(_rewardItemId, _rewardType);
-            /// TODO: logic
+            /// logic
+            /// - Trigger selected reward event.
             /// - Load returnList of color for reward checking unlocked and if exist active one
+            if (OnRewardItemChanged != null)
+                OnRewardItemChanged(_rewardItemId, _rewardType);
+
+            switch (_rewardType) {
+                case RewardTypes.reward:
+                    // TODO: filter color selected from unlocked only
+                    foreach (RewardColor color in config.RewardsColorPairs.GetRange(0,5)) {
+                        RewardColorItem rci = new RewardColorItem(color);
+                        ///...
+                        returnList.Add(rci);
+                    }
+                    return returnList;
+                case RewardTypes.texture:
+                    break;
+                case RewardTypes.decal:
+                    break;
+                default:
+                    Debug.LogWarningFormat("Reward typology requested {0} not found", _rewardType);
+                    break;
+            }
             return returnList;
         }
 
@@ -163,7 +187,7 @@ namespace EA4S {
         /// <param name="_rewardColorItemId">The reward color item identifier.</param>
         /// <param name="_rewardType">Type of the reward.</param>
         public static void SelectRewardColorItem(string _rewardColorItemId, RewardTypes _rewardType) {
-            // TODO: logic
+
         }
 
         /// <summary>
@@ -199,13 +223,92 @@ namespace EA4S {
         /// <param name="_color1"></param>
         /// <param name="_color2"></param>
         /// <returns></returns>
+        [Obsolete("...", true)]
         public static MaterialPair GetMaterialPairFromRewardAndColor(string _rewardId, string _color1, string _color2) {
             Reward reward = RewardSystemManager.GetRewardById(_rewardId);
             MaterialPair mp = new MaterialPair(_color1, reward.Material1, _color2, reward.Material2);
             return mp;
         }
 
+        /// <summary>
+        /// Gets the material pair for standard reward.
+        /// </summary>
+        /// <param name="_rewardId">The reward identifier.</param>
+        /// <param name="_colorId">The color identifier.</param>
+        /// <returns></returns>
+        public static MaterialPair GetMaterialPairFromRewardIdAndColorId(string _rewardId, string _colorId) {
+            Reward reward = RewardSystemManager.GetRewardById(_rewardId);
+            RewardColor color = config.RewardsColorPairs.Find(c => c.ID == _colorId);
+            MaterialPair mp = new MaterialPair(color.Color1Name, reward.Material1, color.Color2Name, reward.Material2);
+            return mp;
+        }
+
         #endregion
+
+        #endregion
+
+        #region RewardAI                
+        /// <summary>
+        /// Gets the reward packs for play session ended, already created or create on fly now (and save on player profile).
+        /// </summary>
+        /// <param name="_playSession">The play session.</param>
+        /// <param name="_itemsToUnlock">The items to unlock. Needed to know if must be saved element as unlocked or not.</param>
+        /// <param name="_alreadyUnlocked">The already unlocked.</param>
+        /// <returns></returns>
+        public static List<RewardPack> GetRewardPacksForPlaySession(JourneyPosition _playSession, int _itemsToUnlock, out int _alreadyUnlocked) {
+            List<RewardPack> rpList = AppManager.I.Player.RewardsUnlocked.FindAll(r => r.playSessionId == _playSession.ToString());
+            _alreadyUnlocked = rpList.Count;
+            int count = _alreadyUnlocked;
+            while (rpList.Count < MaxRewardsUnlockableForPlaysession) {
+                RewardPack newRewardPack = GetNextRewardPack(RewardTypes.reward);
+                count++;
+                if (count <= _itemsToUnlock) {
+                    // Then this new reward is unlocked by gameplay result and after creation must be saved as unlocked to profile.
+                    AppManager.I.Player.RewardsUnlocked.Add(newRewardPack);
+                    AppManager.I.Player.Save();
+                }
+                rpList.Add(newRewardPack);
+            }
+            return rpList;
+        }
+
+        /// <summary>
+        /// Gets the next reward pack. Contains all logic to create new reward.
+        /// </summary>
+        /// <param name="_rewardType">Type of the reward.</param>
+        /// <returns></returns>
+        public static RewardPack GetNextRewardPack(RewardTypes _rewardType) {
+            /// TODOs:
+            /// - Retrive 3 type of rewards
+            /// - save to unlock repository!
+            /// - Filter without already unlocked items
+            /// - Automatic select reward type by situation
+            RewardPack rp = new RewardPack() {
+                ItemID = config.Rewards.GetRandom().ID,
+                ColorId = config.RewardsColorPairs.GetRandom().ID,
+                Type = _rewardType,
+                playSessionId = AppManager.I.Player.CurrentJourneyPosition.ToString(),
+                IsNew = true,
+            };
+
+            return rp;
+        }
+            
+
+        #endregion
+
+        #region Events
+
+        public delegate void RewardSystemEventHandler(string Id, RewardTypes _rewardType);
+
+        /// <summary>
+        /// Occurs when [on reward item changed]. Id is item selected id.
+        /// </summary>
+        public static event RewardSystemEventHandler OnRewardItemChanged;
+        /// <summary>
+        /// Occurs when [on reward color changed]. Id is a color selected id.
+        /// </summary>
+        public static event RewardSystemEventHandler OnRewardColorChanged;
 
         #endregion
     }
@@ -255,6 +358,32 @@ namespace EA4S {
     }
     #endregion
 
+    #region Dynamic DB
+
+    /// <summary>
+    /// Class structure to identify reward pack used as price in game.
+    /// </summary>
+    [Serializable]
+    public class RewardPack {
+        public string ItemID;
+        public string ColorId;
+        public RewardTypes Type;
+        /// <summary>
+        /// The play session id where this reward is assigned.
+        /// </summary>
+        public string playSessionId;
+        /// <summary>
+        /// The order of playsession rewards in case of multi reward for same playsession.
+        /// </summary>
+        public int Order = 0;
+        /// <summary>
+        /// True if nevere used by player.
+        /// </summary>
+        public bool IsNew = true;
+    }
+
+    #endregion
+
     #region reward UI data structures
 
     /// <summary>
@@ -273,6 +402,14 @@ namespace EA4S {
     public class RewardColorItem : RewardColor {
         public bool IsSelected;
         public bool IsNew;
+        public RewardColorItem() { }
+        public RewardColorItem(RewardColor _color) {
+            ID = _color.ID;
+            Color1Name = _color.Color1Name;
+            Color1RGB = _color.Color1RGB;
+            Color2Name = _color.Color2Name;
+            Color2RGB = _color.Color2RGB;
+        }
     }
 
     #endregion
@@ -282,6 +419,8 @@ namespace EA4S {
         texture,
         decal,
     }
+
+
 
     #endregion
 }

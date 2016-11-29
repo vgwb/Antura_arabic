@@ -155,7 +155,7 @@ namespace EA4S.Scanner
                 }
                 else
                 {
-                    Debug.Log(Time.deltaTime + " b");
+                    //Debug.Log(Time.deltaTime + " b");
                     TutorialUI.DrawLine(source.position - Vector3.forward * 2, target.transform.position +
                         new Vector3(5f, 3, -2), TutorialUI.DrawLineMode.FingerAndArrow);
                 }
@@ -218,7 +218,14 @@ namespace EA4S.Scanner
 
         bool pauseTut()
         {
-            if (llCounter > game.scannerLL.Count||!isScannerReady || /*(currentLL && currentLL.status != ScannerLivingLetter.LLStatus.StandingOnBelt) ||*/ !target || (currentSuitcases && currentSuitcases.isDragging && TUT_STEP == 2) || !isTutRound || !isScannerReady)
+            if (llCounter > game.scannerLL.Count||
+                !isScannerReady ||
+                /*(currentLL && currentLL.status != ScannerLivingLetter.LLStatus.StandingOnBelt) ||*/ 
+                !target || 
+                (currentSuitcases && (currentSuitcases.isDragging || !currentSuitcases.isReady) && TUT_STEP == 2) ||
+                !isTutRound ||
+                !isScannerReady)
+
                 return true;
             else
                 return false;

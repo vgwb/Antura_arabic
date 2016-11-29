@@ -26,7 +26,6 @@ namespace EA4S.Balloons
         public TextMeshProUGUI roundNumberText;
         public TimerManager timer;
         public Animator countdownAnimator;
-        public StarFlowers starFlowers;
         public GameObject FxParticlesPoof;
         public WinCelebrationController winCelebration;
 

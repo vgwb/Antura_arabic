@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace EA4S {
 
@@ -9,12 +10,25 @@ namespace EA4S {
             // Navigation manager 
             NavigationManager.I.CurrentScene = AppScene.PlaySessionResult;
 
-            int itemToUnlock = NavigationManager.I.CalculateUnlockItemCount();
-            GameObject[] objs = GameResultUI.ShowEndsessionResult(NavigationManager.I.UseEndSessionResults(),itemToUnlock);
-            
-            foreach (GameObject obj in objs) {
-                ModelsManager.MountModel("reward_punk_hair", obj.transform, RewardSystemManager.GetMaterialPairFromRewardAndColor("reward_punk_hair", "red_dark", "yellow_dark"));
+            // Calculate items to unlock count
+            int itemsToUnlock = NavigationManager.I.CalculateUnlockItemCount();
+            // counter for the previously already unlocked rewards
+            int alreadyUnlockedItem = 0;
+            // get rewards for this playsession result (old and/or new if is the first time unlock for this ps)
+            List<RewardPack> rewards = RewardSystemManager.GetRewardPacksForPlaySession(AppManager.I.Player.CurrentJourneyPosition, itemsToUnlock, out alreadyUnlockedItem);
+            // Show UI result and unlock transform parent where show unlocked items
+            GameObject[] objs = new GameObject[] { };
+            objs = GameResultUI.ShowEndsessionResult(NavigationManager.I.UseEndSessionResults(), alreadyUnlockedItem);
+            // for any rewards mount them model on parent transform object (objs)
+            for (int i = 0; i < rewards.Count && i < objs.Length; i++) {
+                ModelsManager.MountModel(
+                    rewards[i].ItemID,
+                    objs[i].transform,
+                    RewardSystemManager.GetMaterialPairFromRewardIdAndColorId(rewards[i].ItemID, rewards[i].ColorId)
+                    );
             }
+            // save max progression (internal check if necessary)
+            NavigationManager.I.MaxJourneyPosistionProgress();
         }
 
     }

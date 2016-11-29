@@ -33,10 +33,10 @@
                 isolated.Position = Db.LetterPosition.Isolated;
                 game.CurrentChallenge.Add(isolated);
 
-                string isolatedChar = isolated.Data.GetChar(Db.LetterPosition.Isolated);
-                string initialChar = isolated.Data.GetChar(Db.LetterPosition.Initial);
-                string medialChar = isolated.Data.GetChar(Db.LetterPosition.Medial);
-                string finalChar = isolated.Data.GetChar(Db.LetterPosition.Final);
+                string isolatedChar = isolated.Data.GetCharFixedForDisplay(Db.LetterPosition.Isolated);
+                string initialChar = isolated.Data.GetCharFixedForDisplay(Db.LetterPosition.Initial);
+                string medialChar = isolated.Data.GetCharFixedForDisplay(Db.LetterPosition.Medial);
+                string finalChar = isolated.Data.GetCharFixedForDisplay(Db.LetterPosition.Final);
 
                 for (int i = 0; i < 3; ++i) {
                     LL_LetterData data = new LL_LetterData(question.GetQuestion().Id);

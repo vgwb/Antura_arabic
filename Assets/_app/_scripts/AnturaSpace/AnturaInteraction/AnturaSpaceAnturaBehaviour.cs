@@ -5,150 +5,190 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using DG.Tweening;
 
-[RequireComponent (typeof(AnturaAnimationController))]
-public class AnturaSpaceAnturaBehaviour : MonoBehaviour
+namespace EA4S
 {
-    #region API
-    public void AddBone(GameObject Bone)
+
+    [RequireComponent(typeof(AnturaAnimationController))]
+    public class AnturaSpaceAnturaBehaviour : MonoBehaviour
     {
-        m_aoBones.Add(Bone);
-    }
-    #endregion
-
-    #region INTERNAL_FUNCTION
-    void Start () {
-        m_oAnturaCtrl = GetComponent<AnturaAnimationController>();
-        Assert.IsNotNull<AnturaAnimationController>(m_oAnturaCtrl, "Add Antura Script to " + name);
-
-        m_iAnims = Enum.GetNames(typeof(AnturaAnimationStates)).Length;
-        m_bIsGoToBone = false;
-    }
-
-    void OnMouseDown()
-    {
-        if(!m_bIsGoToBone)
+        #region API
+        public void AddBone(GameObject Bone)
         {
-            int iRnd = UnityEngine.Random.Range(0, m_iAnims);
-            m_oAnturaCtrl.State = (AnturaAnimationStates)iRnd;
-        }
-    }
-
-    void Update()
-    {
-        //test movement
-        if(Input.GetButtonDown("Jump"))
-        {
-            GameObject go = new GameObject();
-            go.transform.position = transform.position + Vector3.back * 4;
-            BoxCollider b = go.AddComponent<BoxCollider>();
-            b.isTrigger = true;
-            AddBone(go);
+            m_aoBones.Add(Bone);
             m_bMovingToDestination = true;
         }
+        #endregion
 
-        if(m_aoBones.Count > 0)
+        #region INTERNAL_FUNCTION
+        void Start()
         {
-            if (m_bMovingToDestination)
-            {
-                GameObject Bone = m_aoBones[0];
-                m_oAnturaCtrl.State = AnturaAnimationStates.sheeping;
-                MoveTo(Bone.transform.position);
-            }
-        }
-        else
-        {
-            //Vector3 dir = (Camera.main.transform.position - transform.position).normalized;
+            m_oAnturaCtrl = GetComponent<AnturaAnimationController>();
+            Assert.IsNotNull<AnturaAnimationController>(m_oAnturaCtrl, "Add Antura Script to " + name);
 
-            //Vector3 rot = new Vector3(0, Vector3.Angle(Vector3.forward, dir), 0);
-            //rot = (Vector3.Cross(Vector3.forward, dir).y < 0) ? -rot : rot;
-            //transform.DORotate(rot, 0.5f);
-        }
-    }
-
-    //void OnCollisionEnter(Collision collision)
-    //{
-    //    if (IsBoneValid(collision.gameObject))
-    //    {
-    //        BoneReached(collision.gameObject);
-    //    }
-    //}
-
-    void OnTriggerEnter(Collider other)
-    {
-        
-        if (IsBoneValid(other.gameObject))
-        {
-            BoneReached(other.gameObject);
-        }
-    }
-
-    void BoneReached(GameObject Bone)
-    {
-        m_oAnturaCtrl.State = AnturaAnimationStates.idle;
-        m_oAnturaCtrl.DoShout();
-
-        m_bMovingToDestination = false;
-        m_aoBones.Remove(Bone);
-
-        if (onBoneReached != null)
-        {
-            onBoneReached(Bone);
-        }
-
-    }
-    #endregion
-
-    #region PRIVATE_FUNCTION
-    private void MoveTo(Vector3 v3Destination)
-    {
-        Vector3 _v3MaxMovement = v3Destination - gameObject.transform.position;
-        Vector3 _v3PartialMovement = _v3MaxMovement.normalized * m_fMovementSpeed * Time.deltaTime;
-
-        if (_v3PartialMovement.sqrMagnitude >= _v3MaxMovement.sqrMagnitude) //if we reached the destination
-        {
-            //position on the destination
-            gameObject.transform.Translate(_v3MaxMovement, Space.World);
-
+            m_iAnims = Enum.GetNames(typeof(AnturaAnimationStates)).Length;
             m_bMovingToDestination = false;
-
+            m_v3StartPos = transform.position;
+            m_v3IdleRotation = transform.forward;
+            m_oAnturaCtrl.State = AnturaAnimationStates.sitting;
         }
-        else //make the progress for this frame
-        {
-            gameObject.transform.Translate(_v3PartialMovement, Space.World);
-            gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, Quaternion.LookRotation(_v3MaxMovement), m_fRotationSpeed * Time.deltaTime);
-        }
-    }
 
-    private bool IsBoneValid(GameObject _Bone)
-    {
-        foreach(GameObject Bone in m_aoBones)
+        void OnMouseDown()
         {
-            if(Bone == _Bone)
+            
+            if (!m_bMovingToDestination)
             {
-                return true;
+                int iRnd = UnityEngine.Random.Range(0, m_iAnims);
+                m_oAnturaCtrl.State = (AnturaAnimationStates)iRnd;
+
+                if (onAnimationByClick != null)
+                {
+                    onAnimationByClick();
+                }
+            }
+            else
+            {
+                AudioManager.I.PlaySfx(Sfx.DogBarking); //bark when clicked and going to a bone
             }
         }
-        return false;
+
+        void Update()
+        {
+            if (m_aoBones.Count > 0)
+            {
+                if (m_oTweener != null)
+                {
+                    m_oTweener.Kill();
+                }
+                GameObject Bone = m_aoBones[0];
+                Vector3 target = Bone.transform.position;
+                target.y = transform.position.y;
+                MoveTo(target);
+            }
+            else
+            {
+                if (!m_bMovingToDestination)
+                {
+                    m_fTimer -= Time.deltaTime;
+                    if (m_fTimer < 0)
+                    {
+                        m_fTimer = 2;
+                        ResetPosition();
+                    }
+                }
+            }
+        }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            if (IsBoneValid(collision.gameObject))
+            {
+                BoneReached(collision.gameObject);
+            }
+        }
+
+        void BoneReached(GameObject Bone)
+        {
+            m_oAnturaCtrl.State = AnturaAnimationStates.idle;
+            m_oAnturaCtrl.DoShout();
+
+            m_aoBones.Remove(Bone);
+            if (m_aoBones.Count == 0)
+            {
+                m_bMovingToDestination = false;
+            }
+
+            if (onBoneReached != null)
+            {
+                onBoneReached(Bone);
+            }
+
+        }
+        #endregion
+
+        #region PRIVATE_FUNCTION
+
+        private void ResetPosition()
+        {
+            if ((m_v3StartPos - transform.position).sqrMagnitude > 0.1f)
+            {
+                m_bMovingToDestination = true;
+                m_oAnturaCtrl.State = AnturaAnimationStates.sheeping;
+
+                float time = (m_v3StartPos - transform.position).magnitude / m_fMovementSpeed;
+                m_oTweener = transform.DOMove(m_v3StartPos, time).OnComplete(() =>
+                {
+                    m_bMovingToDestination = false;
+                    m_oAnturaCtrl.State = AnturaAnimationStates.sitting;
+
+                    Vector3 _rot = new Vector3(0, Vector3.Angle(Vector3.forward, m_v3IdleRotation), 0);
+                    _rot = (Vector3.Cross(Vector3.forward, Vector3.back).y < 0) ? -_rot : _rot;
+                    transform.DORotate(_rot, 0.5f);
+                });
+
+                Vector3 rot = new Vector3(0, Vector3.Angle(Vector3.forward, Vector3.back), 0);
+                rot = (Vector3.Cross(Vector3.forward, Vector3.back).y < 0) ? -rot : rot;
+                transform.DORotate(rot, 0.5f);
+            }
+        }
+
+        private void MoveTo(Vector3 v3Destination)
+        {
+            Vector3 _v3MaxMovement = v3Destination - gameObject.transform.position;
+            Vector3 _v3PartialMovement = _v3MaxMovement.normalized * m_fMovementSpeed * Time.deltaTime;
+            if (_v3MaxMovement.sqrMagnitude < _v3PartialMovement.sqrMagnitude) //if we reached the destination
+            {
+                m_oAnturaCtrl.State = AnturaAnimationStates.sitting;
+
+                //position on the destination
+                gameObject.transform.position = v3Destination;
+
+                m_bMovingToDestination = false;
+            }
+            else //make the progress for this frame
+            {
+                m_oAnturaCtrl.State = AnturaAnimationStates.sheeping;
+
+                gameObject.transform.Translate(_v3PartialMovement, Space.World);
+                gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, Quaternion.LookRotation(_v3MaxMovement), m_fRotationSpeed * Time.deltaTime);
+            }
+        }
+
+        private bool IsBoneValid(GameObject _Bone)
+        {
+            foreach (GameObject Bone in m_aoBones)
+            {
+                if (Bone == _Bone)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        #endregion
+
+
+        #region VARS
+        private List<GameObject> m_aoBones = new List<GameObject>();
+        private AnturaAnimationController m_oAnturaCtrl;
+        private int m_iAnims;
+
+        private Tweener m_oTweener;
+        private Vector3 m_v3StartPos;
+        private Vector3 m_v3IdleRotation;
+        private float m_fTimer = 2.0f;
+
+        private bool m_bMovingToDestination;
+        private bool m_bRotatingToTarget;
+
+
+        [SerializeField]
+        private float m_fMovementSpeed = 10; //Movement speed
+        [SerializeField]
+        private float m_fRotationSpeed = 180; //Rotation speed by degree
+
+        [HideInInspector]
+        public Action<GameObject> onBoneReached;
+        public Action onAnimationByClick;
+        #endregion
     }
-    #endregion
-
-
-    #region VARS
-    private List<GameObject> m_aoBones = new List<GameObject>();
-    private AnturaAnimationController m_oAnturaCtrl;
-    private int m_iAnims;
-    private bool m_bIsGoToBone;
-
-    private bool m_bMovingToDestination;
-    private bool m_bRotatingToTarget;
-
-    
-    [SerializeField]
-    private float m_fMovementSpeed = 10; //Movement speed
-    [SerializeField]
-    private float m_fRotationSpeed = 180; //Rotation speed by degree
-
-    [HideInInspector]
-    public Action<GameObject> onBoneReached;
-    #endregion
 }

@@ -46,6 +46,23 @@ namespace EA4S
             }
         }
 
+        public void SetTextUnfiltered(string text)
+        {
+            if (isTMPro) {
+                if (isUI) {
+                    gameObject.GetComponent<TextMeshProUGUI>().text = text;
+                } else {
+                    gameObject.GetComponent<TextMeshPro>().text = text;
+                }
+            } else {
+                if (isUI) {
+                    gameObject.GetComponent<Text>().text = text;
+                } else {
+                    gameObject.GetComponent<TextMesh>().text = text;
+                }
+            }
+        }
+
         void updateText()
         {
             if (isTMPro) {

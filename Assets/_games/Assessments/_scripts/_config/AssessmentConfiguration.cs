@@ -32,32 +32,12 @@ namespace EA4S.Assessment
 
         private IQuestionProvider GetQuestionProvider()
         {
-            if(questionProvider == null)
-            {
-                switch (assessmentType)
-                {
-                    case AssessmentCode.LetterShape:
-                        Debug.Log( "Created LetterShape_TestProvider");
-                        return questionProvider = new LetterShape_TestProvider( 2, 2, 3);
-
-                    case AssessmentCode.WordsWithLetter:
-                        Debug.Log( "Created WordsWithLetterProvider_Tester");
-                        return questionProvider = new WordsWithLetterProvider_Tester( rounds:2, simultaneos:2, correct:3, wrong:2);
-
-                    case AssessmentCode.MatchLettersToWord:
-                        Debug.Log( "Created WordsWithLetterProvider_Tester");
-                        return questionProvider = new MatchLettersToWordProvider_Tester( rounds: 2, simultaneos: 2, correct: 3, wrong: 2);
-
-                    default:
-                        Debug.LogWarning( "Created SampleQuestionProvider");
-                        return questionProvider = new SampleQuestionProvider();
-                }
-            }
             return questionProvider;
         }
 
         public float Difficulty { get; set; }
         public int SimultaneosQuestions { get; set; }
+        public int Answers { get; set; }
 
         private int _rounds = 0;
         public int Rounds { get { return _rounds; } set { _rounds = value; } }
@@ -100,12 +80,10 @@ namespace EA4S.Assessment
         /// This is called by MiniGameAPI to create QuestionProvider, that means that if I start game
         /// from debug scene, I need a custom test Provider.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Custom question data for the assessment</returns>
         public IQuestionBuilder SetupBuilder()
         {
             // Testing question builders
-            Teacher.ConfigAI.verboseDataSelection = true;
-            Teacher.ConfigAI.verboseTeacher = true;
             snag = new DifficultyRegulation( Difficulty);
 
             switch (assessmentType)
@@ -119,6 +97,9 @@ namespace EA4S.Assessment
                 case AssessmentCode.WordsWithLetter:
                     return Setup_WordsWithLetter_Builder();
 
+                case AssessmentCode.SunMoonWord:
+                    return Setup_SunMoonWords_Builder();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
@@ -128,7 +109,7 @@ namespace EA4S.Assessment
         {
             SimultaneosQuestions = 2;
             snag.SetStartingFrom(0.5f);
-            Rounds = snag.Increase( 1, 2);
+            Rounds = 3;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
@@ -146,11 +127,19 @@ namespace EA4S.Assessment
 
         }
 
+        private IQuestionBuilder Setup_SunMoonWords_Builder()
+        {
+            SimultaneosQuestions = 2;
+            Rounds = 3;
+            Answers = 2;// limited br screen size on 3:4 screen
+
+            return new WordsBySunMoonQuestionBuilder( SimultaneosQuestions * Rounds * 2);
+        }
+
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
             SimultaneosQuestions = 1;
-            snag.SetStartingFrom(0.5f); 
-            Rounds = snag.Increase( 1, 3);
+            Rounds = 3;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
@@ -170,8 +159,7 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_LetterShape_Builder()
         {
             SimultaneosQuestions = 1;
-            snag.SetStartingFrom(0.5f);
-            Rounds = snag.Increase( 1, 6);
+            Rounds = 3;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
@@ -200,9 +188,17 @@ namespace EA4S.Assessment
                 case AssessmentCode.WordsWithLetter:
                     return Setup_WordsWithLetter_LearnRules();
 
+                case AssessmentCode.SunMoonWord:
+                    return Setup_SunMoonWords_LearnRules();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
+        }
+
+        private MiniGameLearnRules Setup_SunMoonWords_LearnRules()
+        {
+            return new MiniGameLearnRules();
         }
 
         private MiniGameLearnRules Setup_WordsWithLetter_LearnRules()
