@@ -18,7 +18,7 @@ namespace EA4S
             info = _info;
             manager = _manager;
 
-            if (info.unlocked || AppConstants.CheatBookUnlockEverything) {
+            if (info.unlocked || AppConstants.CheatSuperDogMode) {
                 GetComponent<Button>().interactable = true;
             } else {
                 GetComponent<Button>().interactable = false;
@@ -30,7 +30,7 @@ namespace EA4S
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (info.unlocked || AppConstants.CheatBookUnlockEverything) {
+            if (info.unlocked || AppConstants.CheatSuperDogMode) {
                 manager.DetailLetter(info);
             }
         }
