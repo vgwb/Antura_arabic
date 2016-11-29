@@ -13,7 +13,11 @@ namespace EA4S
         [SerializeField]
         private GameObject m_oBonePrefab;
         [SerializeField]
+        private GameObject m_oAntura;
+        [SerializeField]
         private UnityEngine.UI.Text m_oTextBonesNumber;
+
+
 
         [Header("Test")]
         private int m_iTotalBones_Test = 10;
@@ -50,7 +54,9 @@ namespace EA4S
                 m_aiUsedList[_iIdx] = _iIdx;
             }
 
+            m_oAntura.GetComponent<AnturaSpaceAnturaBehaviour>().onBoneReached += ResetInstanceState;
         }
+
         #endregion
 
         #region PUBLIC FUNCTIONS
@@ -82,6 +88,7 @@ namespace EA4S
             Debug.Log("Throwing bone");
             m_oTextBonesNumber.text = "" + (--m_iTotalBones_Test);
             _oBone.SetActive(true);
+            m_oAntura.GetComponent<AnturaSpaceAnturaBehaviour>().AddBone(_oBone);
         }
 
         /// <summary>

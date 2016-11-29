@@ -255,6 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_iMaxSpawnableBones: 10
   m_oBonePrefab: {fileID: 436113017}
+  m_oAntura: {fileID: 2091012742}
   m_oTextBonesNumber: {fileID: 686179631}
 --- !u!4 &252692185
 Transform:
@@ -5262,7 +5263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a65d7e1d5cb3940a97696cdd8edf01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fMovementSpeed: 10
+  m_fMovementSpeed: 4
   m_fRotationSpeed: 180
 --- !u!54 &2091012746
 Rigidbody:
@@ -5277,7 +5278,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 20
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!136 &2091012748
 CapsuleCollider:
@@ -5288,10 +5289,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 3
-  m_Height: 10
+  m_Radius: 3.6555243
+  m_Height: 9.387485
   m_Direction: 2
-  m_Center: {x: 0, y: 3, z: -1}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!1 &2095489784
 GameObject:
   m_ObjectHideFlags: 0
