@@ -9,7 +9,7 @@ namespace EA4S
         public const string DbSchemeVersion = "1";
         public const bool DebugPanelEnabled = true;
         public const bool UseUnityAnalytics = true;
-        public const bool CheatBookUnlockEverything = true;
+        public const bool CheatSuperDogMode = true;
 
         // Application details (used by Teacher and maybe other)
         public const float minimumAge = 7;
