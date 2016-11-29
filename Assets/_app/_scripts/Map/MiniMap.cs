@@ -11,6 +11,9 @@ namespace EA4S
         [Header("Letter")]
         public GameObject letter;
 
+        [Header("NumberStage")]
+        public int numberStage;
+
         [Header("Pines")]
         public Transform[] posPines;
         public int numStepsBetweenPines;
