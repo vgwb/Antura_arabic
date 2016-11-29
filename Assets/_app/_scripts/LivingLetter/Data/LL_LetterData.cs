@@ -32,13 +32,15 @@ namespace EA4S
         }
 
         #region API
-        /// <summary>
-        /// Living Letter Text To Display.
-        /// </summary>
         public string TextForLivingLetter {
             get {
-                //return ArabicAlphabetHelper.GetLetterToDisplay(Data, ShowAs);
                 return Data.GetChar(Position);
+            }
+        }
+
+        public string CharForLivingLetterDisplay {
+            get {
+                return Data.GetCharFixedForDisplay(Position);
             }
         }
 
