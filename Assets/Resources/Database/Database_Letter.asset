@@ -34,6 +34,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE8E
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -59,6 +61,8 @@ MonoBehaviour:
       Medial_Unicode: FE92
       Final_Unicode: FE90
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u0628\u0640\u200E"
       Old_Medial: "\u0640\u0628\u0640\u200E"
@@ -84,6 +88,8 @@ MonoBehaviour:
       Medial_Unicode: FE98
       Final_Unicode: FE96
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u062A\u0640\u200E"
       Old_Medial: "\u0640\u062A\u0640\u200E"
@@ -109,6 +115,8 @@ MonoBehaviour:
       Medial_Unicode: FE9C
       Final_Unicode: FE9A
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u062B\u0640\u200E"
       Old_Medial: "\u0640\u062B\u0640\u200E"
@@ -134,6 +142,8 @@ MonoBehaviour:
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u062C\u0640\u200E"
       Old_Medial: "\u0640\u062C\u0640\u200E"
@@ -159,6 +169,8 @@ MonoBehaviour:
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u062D\u0640\u200E"
       Old_Medial: "\u0640\u062D\u0640\u200E"
@@ -184,6 +196,8 @@ MonoBehaviour:
       Medial_Unicode: FEA8
       Final_Unicode: FEA6
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u062E\u0640\u200E"
       Old_Medial: "\u0640\u062E\u0640\u200E"
@@ -209,6 +223,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAA
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: "\u062F\u200E"
       Old_Medial: "\u0640\u062F\u200E"
@@ -234,6 +250,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAC
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: "\u0630\u200E"
       Old_Medial: "\u0640\u0630\u200E"
@@ -259,6 +277,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAE
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: "\u0631\u200E"
       Old_Medial: "\u0640\u0631\u200E"
@@ -284,6 +304,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEB0
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: "\u0632\u200E"
       Old_Medial: "\u0640\u0632\u200E"
@@ -309,6 +331,8 @@ MonoBehaviour:
       Medial_Unicode: FEB4
       Final_Unicode: FEB2
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u0633\u0640\u200E"
       Old_Medial: "\u0640\u0633\u0640\u200E"
@@ -334,6 +358,8 @@ MonoBehaviour:
       Medial_Unicode: FEB8
       Final_Unicode: FEB6
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u0634\u0640\u200E"
       Old_Medial: "\u0640\u0634\u0640\u200E"
@@ -359,6 +385,8 @@ MonoBehaviour:
       Medial_Unicode: FEBC
       Final_Unicode: FEBA
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u0635\u0640\u200E"
       Old_Medial: "\u0640\u0635\u0640\u200E"
@@ -384,6 +412,8 @@ MonoBehaviour:
       Medial_Unicode: FEC0
       Final_Unicode: FEBE
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u0636\u0640\u200E"
       Old_Medial: "\u0640\u0636\u0640\u200E"
@@ -409,6 +439,8 @@ MonoBehaviour:
       Medial_Unicode: FEC4
       Final_Unicode: FEC2
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u0637\u0640\u200E"
       Old_Medial: "\u0640\u0637\u0640\u200E"
@@ -434,6 +466,8 @@ MonoBehaviour:
       Medial_Unicode: FEC8
       Final_Unicode: FEC6
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u0638\u0640\u200E"
       Old_Medial: "\u0640\u0638\u0640\u200E"
@@ -459,6 +493,8 @@ MonoBehaviour:
       Medial_Unicode: FECC
       Final_Unicode: FECA
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: "\u0639\u0640\u200E"
       Old_Medial: "\u0640\u0639\u0640\u200E"
@@ -484,6 +520,8 @@ MonoBehaviour:
       Medial_Unicode: FED0
       Final_Unicode: FECE
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: "\u063A\u0640\u200E"
       Old_Medial: "\u0640\u063A\u0640\u200E"
@@ -509,6 +547,8 @@ MonoBehaviour:
       Medial_Unicode: FED4
       Final_Unicode: FED2
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u0641\u0640\u200E"
       Old_Medial: "\u0640\u0641\u0640\u200E"
@@ -534,6 +574,8 @@ MonoBehaviour:
       Medial_Unicode: FED8
       Final_Unicode: FED6
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u0642\u0640\u200E"
       Old_Medial: "\u0640\u0642\u0640\u200E"
@@ -559,6 +601,8 @@ MonoBehaviour:
       Medial_Unicode: FEDC
       Final_Unicode: FEDA
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u0643\u0640\u200E"
       Old_Medial: "\u0640\u0643\u0640\u200E"
@@ -584,6 +628,8 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u0644\u0640\u200E"
       Old_Medial: "\u0640\u0644\u0640\u200E"
@@ -609,6 +655,8 @@ MonoBehaviour:
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u0645\u0640\u200E"
       Old_Medial: "\u0640\u0645\u0640\u200E"
@@ -634,6 +682,8 @@ MonoBehaviour:
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u0646\u0640\u200E"
       Old_Medial: "\u0640\u0646\u0640\u200E"
@@ -659,6 +709,8 @@ MonoBehaviour:
       Medial_Unicode: FEEC
       Final_Unicode: FEEA
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: "\u0647\u0640\u200E"
       Old_Medial: "\u0640\u0647\u0640\u200E"
@@ -684,6 +736,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEEE
       Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: "\u0648\u200E"
       Old_Medial: "\u0640\u0648\u200E"
@@ -709,6 +763,8 @@ MonoBehaviour:
       Medial_Unicode: FEF4
       Final_Unicode: FEF2
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u064A\u0640\u200E"
       Old_Medial: "\u0640\u064A\u0640\u200E"
@@ -734,6 +790,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: "\u0621"
       Old_Initial: 
       Old_Medial: 
@@ -759,6 +817,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: "\u0640\u064F"
       Old_Initial: 
       Old_Medial: 
@@ -784,6 +844,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: "-\u064C"
       Old_Initial: 
       Old_Medial: 
@@ -809,6 +871,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: "\u0640\u064E"
       Old_Initial: 
       Old_Medial: 
@@ -834,6 +898,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: "-\u064B"
       Old_Initial: 
       Old_Medial: 
@@ -859,6 +925,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: "\u0640\u0650"
       Old_Initial: 
       Old_Medial: 
@@ -884,6 +952,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: "-\u064D"
       Old_Initial: 
       Old_Medial: 
@@ -909,6 +979,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: "\u0640\u0653"
       Old_Initial: 
       Old_Medial: 
@@ -934,6 +1006,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: "-\u0651"
       Old_Initial: 
       Old_Medial: 
@@ -959,6 +1033,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: "-\u0652"
       Old_Initial: 
       Old_Medial: 
@@ -984,6 +1060,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1009,6 +1087,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1034,6 +1114,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEF0
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1059,6 +1141,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1084,6 +1168,8 @@ MonoBehaviour:
       Medial_Unicode: FE8C
       Final_Unicode: FE8A
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1109,6 +1195,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE94
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1134,6 +1222,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEFC
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1159,6 +1249,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE86
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1184,6 +1276,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE8E
       Symbol_Unicode: 064E
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1209,6 +1303,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE8E
       Symbol_Unicode: 064B
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1234,6 +1330,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1259,6 +1357,8 @@ MonoBehaviour:
       Medial_Unicode: FECC
       Final_Unicode: FECA
       Symbol_Unicode: 064E
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1284,6 +1384,8 @@ MonoBehaviour:
       Medial_Unicode: FECC
       Final_Unicode: FECA
       Symbol_Unicode: 0650
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1309,6 +1411,8 @@ MonoBehaviour:
       Medial_Unicode: FE92
       Final_Unicode: FE90
       Symbol_Unicode: 064F
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1334,6 +1438,8 @@ MonoBehaviour:
       Medial_Unicode: FE92
       Final_Unicode: FE90
       Symbol_Unicode: 064E
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1359,6 +1465,8 @@ MonoBehaviour:
       Medial_Unicode: FE92
       Final_Unicode: FE90
       Symbol_Unicode: 0650
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1384,6 +1492,8 @@ MonoBehaviour:
       Medial_Unicode: FEC0
       Final_Unicode: FEBE
       Symbol_Unicode: 064E
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1409,6 +1519,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAA
       Symbol_Unicode: 064C
+      FinalFix: 1
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1434,6 +1546,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAA
       Symbol_Unicode: 064E
+      FinalFix: 1
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1459,6 +1573,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAC
       Symbol_Unicode: 064E
+      FinalFix: 1
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1484,6 +1600,8 @@ MonoBehaviour:
       Medial_Unicode: FED4
       Final_Unicode: FED2
       Symbol_Unicode: 064E
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1509,6 +1627,8 @@ MonoBehaviour:
       Medial_Unicode: FED4
       Final_Unicode: FED2
       Symbol_Unicode: 0652
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1534,6 +1654,8 @@ MonoBehaviour:
       Medial_Unicode: FEEC
       Final_Unicode: FEEA
       Symbol_Unicode: 064E
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1559,6 +1681,8 @@ MonoBehaviour:
       Medial_Unicode: FEEC
       Final_Unicode: FEEA
       Symbol_Unicode: 0650
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1584,6 +1708,8 @@ MonoBehaviour:
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
       Symbol_Unicode: 064E
+      FinalFix: 
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1609,6 +1735,8 @@ MonoBehaviour:
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
       Symbol_Unicode: 0650
+      FinalFix: 
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1634,6 +1762,8 @@ MonoBehaviour:
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
       Symbol_Unicode: 0651
+      FinalFix: 
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1659,6 +1789,8 @@ MonoBehaviour:
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
       Symbol_Unicode: 064F
+      FinalFix: 
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1684,6 +1816,8 @@ MonoBehaviour:
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
       Symbol_Unicode: 064E
+      FinalFix: 
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1709,6 +1843,8 @@ MonoBehaviour:
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
       Symbol_Unicode: 0651
+      FinalFix: 
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1734,6 +1870,8 @@ MonoBehaviour:
       Medial_Unicode: FEDC
       Final_Unicode: FEDA
       Symbol_Unicode: 064F
+      FinalFix: 
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1759,6 +1897,8 @@ MonoBehaviour:
       Medial_Unicode: FEDC
       Final_Unicode: FEDA
       Symbol_Unicode: 064E
+      FinalFix: 
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1784,6 +1924,8 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 064E
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1809,6 +1951,8 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 0650
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1834,6 +1978,8 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 064D
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1859,6 +2005,8 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 0652
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1884,6 +2032,8 @@ MonoBehaviour:
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
       Symbol_Unicode: 064F
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1909,6 +2059,8 @@ MonoBehaviour:
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
       Symbol_Unicode: 064E
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1934,6 +2086,8 @@ MonoBehaviour:
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
       Symbol_Unicode: 0650
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1959,6 +2113,8 @@ MonoBehaviour:
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
       Symbol_Unicode: 064E
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -1984,6 +2140,8 @@ MonoBehaviour:
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
       Symbol_Unicode: 064D
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -2009,6 +2167,8 @@ MonoBehaviour:
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
       Symbol_Unicode: 0652
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -2034,6 +2194,8 @@ MonoBehaviour:
       Medial_Unicode: FED8
       Final_Unicode: FED6
       Symbol_Unicode: 064E
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -2059,6 +2221,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAE
       Symbol_Unicode: 064E
+      FinalFix: 1
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -2084,6 +2248,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAE
       Symbol_Unicode: 0650
+      FinalFix: 1
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -2109,6 +2275,8 @@ MonoBehaviour:
       Medial_Unicode: FEBC
       Final_Unicode: FEBA
       Symbol_Unicode: 064E
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -2134,6 +2302,8 @@ MonoBehaviour:
       Medial_Unicode: FEB4
       Final_Unicode: FEB2
       Symbol_Unicode: 064E
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -2159,6 +2329,8 @@ MonoBehaviour:
       Medial_Unicode: FEB8
       Final_Unicode: FEB6
       Symbol_Unicode: 064E
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -2184,6 +2356,8 @@ MonoBehaviour:
       Medial_Unicode: FEC4
       Final_Unicode: FEC2
       Symbol_Unicode: 064E
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -2209,6 +2383,8 @@ MonoBehaviour:
       Medial_Unicode: FE98
       Final_Unicode: FE96
       Symbol_Unicode: 064F
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -2234,6 +2410,8 @@ MonoBehaviour:
       Medial_Unicode: FE98
       Final_Unicode: FE96
       Symbol_Unicode: 064E
+      FinalFix: 1
+      MedialFix: 1
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -2259,6 +2437,8 @@ MonoBehaviour:
       Medial_Unicode: FE98
       Final_Unicode: FE96
       Symbol_Unicode: 064C
+      FinalFix: 
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -2284,6 +2464,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEB0
       Symbol_Unicode: 064E
+      FinalFix: 1
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 
@@ -2309,6 +2491,8 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEB0
       Symbol_Unicode: 064F
+      FinalFix: 1
+      MedialFix: 
       Old_Isolated: 
       Old_Initial: 
       Old_Medial: 

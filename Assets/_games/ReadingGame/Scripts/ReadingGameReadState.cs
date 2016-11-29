@@ -65,7 +65,7 @@ namespace EA4S.ReadingGame
 
             if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong)
             {
-                game.barSet.PlaySong(game.Context.GetAudioManager().PlayMusic(game.alphabetSongAudio), OnSongEnded);
+                game.barSet.PlaySong(game.Context.GetAudioManager().PlaySound(game.alphabetSongAudio), OnSongEnded);
             }
 
             completedDragging = false;
