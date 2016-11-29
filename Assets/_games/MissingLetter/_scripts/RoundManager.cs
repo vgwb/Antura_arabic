@@ -29,7 +29,7 @@ namespace EA4S.MissingLetter
             m_oGame.m_oLetterPrefab.GetComponent<LetterBehaviour>().mfDistanceBetweenLetters = m_oGame.m_fDistanceBetweenLetters;
 
             int qstPoolSize = 3;
-            qstPoolSize *= (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.WORD) ? 1 : m_oGame.m_iMaxSentenceSize;
+            qstPoolSize *= (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter) ? 1 : m_oGame.m_iMaxSentenceSize;
 
             m_oGame.m_oLetterPrefab.GetComponent<LetterBehaviour>().SetPositions(m_v3QstPos + Vector3.right * m_oGame.m_sQuestionOffset.fINOffset, m_v3QstPos, m_v3QstPos + Vector3.right * m_oGame.m_sQuestionOffset.fOUTOffset);
             m_oQuestionPool = new GameObjectPool(m_oGame.m_oLetterPrefab, qstPoolSize, false);
@@ -50,7 +50,7 @@ namespace EA4S.MissingLetter
             m_oGame.SetInIdle(false);
             ExitCurrentScene();
 
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.WORD)
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
             {
                 NextWordQuestion();
             }
@@ -319,7 +319,7 @@ namespace EA4S.MissingLetter
             string color = result ? "#4CAF50" : "#DD2C00";
 
             string first;
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.WORD)
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
             {
                 first = tmp.Label.text[index].ToString();
                 tmp.Label.text = tmp.Label.text.Remove(index,1);
