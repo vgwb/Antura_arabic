@@ -24,17 +24,17 @@
             }
 
             int tubeIndex = int.Parse(game.currentLetter.collidedTubes[game.currentLetter.collidedTubes.Count-1].name.Substring(5));
-
+            UnityEngine.Vector3 markPosition = game.currentLetter.collidedTubes[game.currentLetter.collidedTubes.Count - 1].cubeInfo.transform.position + new UnityEngine.Vector3(0, 0, -3);
             win = false;
             if (tubeIndex == game.currentTube)
             {
                 TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
                 win = true;
-                TutorialUI.MarkYes(game.currentLetter.transform.position + new UnityEngine.Vector3(0, 0, -5), TutorialUI.MarkSize.Big);
+                TutorialUI.MarkYes(markPosition, TutorialUI.MarkSize.Big);
             }
             else {
                 TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
-                TutorialUI.MarkNo(game.currentLetter.transform.position + new UnityEngine.Vector3(0, 0, -5), TutorialUI.MarkSize.Big);
+                TutorialUI.MarkNo(markPosition, TutorialUI.MarkSize.Big);
             }
 
             game.currentLetter.followTube(win);
