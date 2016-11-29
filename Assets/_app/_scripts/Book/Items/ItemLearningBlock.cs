@@ -22,26 +22,22 @@ namespace EA4S
             Title.text = info.data.Title_Ar;
             SubTitle.text = info.data.Title_En + " " + info.data.Id;
 
-            if (!info.unlocked)
-            {
-                GetComponent<Button>().interactable = false;
-            }
-            else
-            {
+            if (info.unlocked || AppConstants.CheatBookUnlockEverything) {
                 GetComponent<Button>().interactable = true;
+            } else {
+                GetComponent<Button>().interactable = false;
             }
 
             var score = info.score;
             // @note: we should already save the score when a block is finished, and not compute it when showing it
             //var score = TeacherAI.I.GetLearningBlockScore(info.data);
 
-            Info.text = "Score: " + score; 
+            Info.text = "Score: " + score;
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (info.unlocked)
-            {
+            if (info.unlocked || AppConstants.CheatBookUnlockEverything) {
                 manager.DetailLearningBlock(info);
             }
         }

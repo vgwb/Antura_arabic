@@ -86,7 +86,7 @@ public partial class SROptions
     public void Home()
     {
         WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("_Start");
+        NavigationManager.I.GoToScene(AppScene.Home);
         SRDebug.Instance.HideDebugPanel();
     }
 
@@ -431,8 +431,9 @@ public partial class SROptions
 
     [Category("Max Journey Position")]
     [Sort(7)]
-    public void UnlockAll() {
-        AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(6,14,1), true);
+    public void UnlockAll()
+    {
+        AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(6, 14, 1), true);
         SRDebug.Instance.HideDebugPanel();
         SRDebug.Instance.ShowDebugPanel();
     }

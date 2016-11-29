@@ -46,7 +46,7 @@ namespace EA4S.API
 
             // Call game start
             //NavigationManager.I.GoToNextScene();
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGameData.Scene);
+            NavigationManager.I.GoToScene(miniGameData.Scene);
         }
 
         public IGameConfiguration GetGameConfigurationForMiniGameCode(MiniGameCode code)
@@ -231,12 +231,12 @@ namespace EA4S.API
                     actualConfig = ReadingGame.ReadingGameConfiguration.Instance;
                     break;
                 case MiniGameCode.Scanner:
-					Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.OneWord;
+                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.OneWord;
                     Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     actualConfig = Scanner.ScannerConfiguration.Instance;
                     break;
                 case MiniGameCode.Scanner_phrase:
-					Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.MultipleWords;
+                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.MultipleWords;
                     Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     actualConfig = Scanner.ScannerConfiguration.Instance;
                     break;
