@@ -46,6 +46,8 @@ namespace EA4S {
         }
 
         List<LoadedModel> LoadedModels = new List<LoadedModel>();
+        RewardPack LoadedTileTexture = new RewardPack();
+        RewardPack LoadedDecal = new RewardPack();
 
         #region API
 
@@ -56,7 +58,8 @@ namespace EA4S {
 
                 ModelsManager.SwitchMaterial(LoadRewardPackOnAntura(forniture), forniture.GetMaterialPair());
             }
-            /// - texture
+            LoadRewardPackOnAntura(_anturaCustomization.TileTexture);
+            LoadRewardPackOnAntura(_anturaCustomization.DecalTexture);
             /// - decal
         }
 
@@ -65,6 +68,8 @@ namespace EA4S {
             foreach (LoadedModel loadedModel in LoadedModels) {
                 returnCustomization.Fornitures.Add(new RewardPack() { ItemID = loadedModel.Reward.ItemID, ColorId = loadedModel.Reward.ColorId, Type = RewardTypes.reward });
             }
+            returnCustomization.TileTexture = LoadedTileTexture;
+            returnCustomization.DecalTexture = LoadedDecal;
             AppManager.I.Player.SaveCustomization(returnCustomization);
             return returnCustomization;
         }
@@ -75,9 +80,16 @@ namespace EA4S {
                 case RewardTypes.reward:
                     return LoadRewardOnAntura(_rewardPack);
                 case RewardTypes.texture:
-                    SkinnedMesh.sharedMaterials[0] = MaterialManager.LoadTextureMaterial(_rewardPack.ItemID, _rewardPack.ColorId);
+                    Material[] mats = SkinnedMesh.sharedMaterials;
+                    mats[0] = MaterialManager.LoadTextureMaterial(_rewardPack.ItemID, _rewardPack.ColorId);
+                    SkinnedMesh.sharedMaterials = mats;
+                    LoadedTileTexture = _rewardPack;
                     break;
                 case RewardTypes.decal:
+                    Material[] decalMats = SkinnedMesh.sharedMaterials;
+                    decalMats[1] = MaterialManager.LoadTextureMaterial(_rewardPack.ItemID, _rewardPack.ColorId);
+                    SkinnedMesh.sharedMaterials = decalMats;
+                    LoadedTileTexture = _rewardPack;
                     break;
                 default:
                     Debug.LogWarningFormat("Reward Type {0} not found!", _rewardPack.Type);
@@ -214,19 +226,7 @@ namespace EA4S {
         }
 
         private void RewardSystemManager_OnRewardItemChanged(RewardPack _rewardPack) {
-            switch (_rewardPack.Type) {
-                case RewardTypes.reward:
-                    LoadRewardOnAntura(_rewardPack);
-                    break;
-                case RewardTypes.texture:
-
-                    break;
-                case RewardTypes.decal:
-                    break;
-                default:
-                    break;
-            }
-            
+            LoadRewardPackOnAntura(_rewardPack);
         }
 
         void OnDisable() {
@@ -245,7 +245,7 @@ namespace EA4S {
     [Serializable]
     public class AnturaCustomization {
         public List<RewardPack> Fornitures = new List<RewardPack>();
-        public RewardPack MainTexture = new RewardPack();
+        public RewardPack TileTexture = new RewardPack();
         public RewardPack DecalTexture = new RewardPack();
     }
 
