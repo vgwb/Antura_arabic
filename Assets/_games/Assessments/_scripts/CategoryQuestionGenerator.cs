@@ -109,7 +109,7 @@ namespace EA4S.Assessment
                     for (int j = 0; j < numberOfCategories; j++)
                     {
                         Debug.Log("##CATEGORY:"+ answ.TextForLivingLetter);
-                        if (categoryProvider.Category(j).Equals(answ))
+                        if (categoryProvider.Compare( j, answ))
                         {
                             Debug.Log("##ADDED");
                             answersBuckets[j].Add(pack.GetQuestion());
@@ -242,7 +242,7 @@ namespace EA4S.Assessment
 
         private IQuestion GenerateQuestion( int correctCount)
         {
-            var q = categoryProvider.SpawnCustomObject( currentCategory, true);
+            var q = categoryProvider.SpawnCustomObject( currentCategory);
             return new CategoryQuestion( q, correctCount);
         }
 
