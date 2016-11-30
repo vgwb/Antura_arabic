@@ -200,9 +200,9 @@ namespace EA4S.MissingLetter
             m_oCurrQuestionPack = MissingLetterConfiguration.Instance.Questions.GetNextQuestion();
 
             List<LL_WordData> questionData = GetWordFromPhrases((LL_PhraseData)m_oCurrQuestionPack.GetQuestion());
-            var _correctAnswer = (LL_PhraseData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
+            var _correctAnswer = (LL_WordData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
 
-            var _wrongAnswers = m_oCurrQuestionPack.GetCorrectAnswers().ToList();
+            var _wrongAnswers = m_oCurrQuestionPack.GetWrongAnswers().ToList();
 
             foreach (LL_WordData _word in questionData)
             {
