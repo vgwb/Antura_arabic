@@ -29,6 +29,9 @@ namespace EA4S.MixedLetters
         private bool isChosen = false;
         public SeparateLetterController droppedLetter;
 
+        [HideInInspector]
+        public SeparateLetterController correctLetter;
+
         public RotateButtonController rotateButtonController;
 
         void Start()
@@ -169,6 +172,8 @@ namespace EA4S.MixedLetters
         public void Reset()
         {
             droppedLetter = null;
+            correctLetter = null;
+
             Unhighlight();
             isChosen = false;
 
