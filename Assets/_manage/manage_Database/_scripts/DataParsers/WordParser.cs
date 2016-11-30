@@ -12,6 +12,8 @@ namespace EA4S.Db.Management
 
             data.Id = ToString(dict["Id"]);
             data.Active = (ToInt(dict["Active"]) == 1);
+            if (!data.Active) return null;  // Skip this data if inactive
+
             data.Kind = ParseEnum<WordDataKind>(data, dict["Kind"]);
             data.Category = ParseEnum<WordDataCategory>(data, dict["Category"]);
             data.Form = CustomParseForm(data, dict["Form"]);

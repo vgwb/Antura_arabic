@@ -12,6 +12,8 @@ namespace EA4S.Db.Management
 
             data.Id = ToString(dict["Id"]);
             data.Active = (ToInt(dict["Active"]) == 1);
+            if (!data.Active) return null;  // Skip this data if inactive
+
             data.English = ToString(dict["English"]);
             data.Arabic = ToString(dict["Arabic"]);
             data.Category = ParseEnum<PhraseDataCategory>(data, dict["Category"]);
