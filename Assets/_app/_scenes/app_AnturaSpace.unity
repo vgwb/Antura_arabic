@@ -322,6 +322,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 651568430}
   IcoNew: {fileID: 1182875414}
   ColorImgs:
@@ -397,7 +398,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011149227188, guid: b1eab1b3eca314d40b04cff3efb77336, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4000011149227188, guid: b1eab1b3eca314d40b04cff3efb77336, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -824,6 +825,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 468916105}
   IcoNew: {fileID: 445178688}
   ColorImgs:
@@ -940,7 +942,6 @@ GameObject:
   - 4: {fileID: 111378617}
   - 33: {fileID: 111378620}
   - 64: {fileID: 111378619}
-  - 23: {fileID: 111378618}
   m_Layer: 0
   m_Name: Plane (1)
   m_TagString: Untagged
@@ -961,35 +962,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 692955464}
   m_RootOrder: 1
---- !u!23 &111378618
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 111378616}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!64 &111378619
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1178,6 +1150,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.11764705, g: 0.11764705, b: 0.11764705, a: 1}
   BtLockedColor: {r: 0.86274517, g: 0.25882354, b: 0.098039225, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   RewardImage: {fileID: 502320221}
   IcoLock: {fileID: 819532165}
   IcoNew: {fileID: 735091385}
@@ -1415,6 +1388,36 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 163708288}
+--- !u!1 &167039217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 167039218}
+  m_Layer: 0
+  m_Name: Biscuit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &167039218
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 167039217}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 260543625}
+  - {fileID: 972857729}
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
 --- !u!1 &175482340
 GameObject:
   m_ObjectHideFlags: 0
@@ -1647,6 +1650,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 1338909123}
   IcoNew: {fileID: 1620452748}
   ColorImgs:
@@ -1861,7 +1865,128 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
+--- !u!1001 &260543624
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 167039218}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0998c7ca47222d744a4b13f0630641de, type: 2}
+    - target: {fileID: 400000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_MotionVectors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+      propertyPath: m_Name
+      value: bone_biscuit (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+  m_IsPrefabParent: 0
+--- !u!4 &260543625 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+  m_PrefabInternal: {fileID: 260543624}
+--- !u!1 &260543626 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
+  m_PrefabInternal: {fileID: 260543624}
+--- !u!114 &260543627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 260543626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d250632f868a640b8221c4f1ecf86a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_oBoneRigidbody: {fileID: 260543628}
+  m_oParticle: {fileID: 0}
+  m_v3DirectionMinValues: {x: -0.8, y: 1.5, z: 0}
+  m_v3DirectionMaxValues: {x: -0.1, y: 3, z: 0.5}
+  m_fThrowMinMagnitude: 30
+  m_fThrowMaxMagnitude: 40
+  m_eThrowForceMode: 1
+  m_fRotationMinMagnitude: -100
+  m_fRotationMaxMagnitude: 100
+  m_eRotationForceMode: 1
+  m_fDragThrowMagnitudeScaling: 2
+  m_fTimeSampling: 0.333
+  m_eReleaseForceMode: 1
+--- !u!54 &260543628
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 260543626}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &265175231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,7 +2065,6 @@ GameObject:
   - 4: {fileID: 272090869}
   - 33: {fileID: 272090872}
   - 64: {fileID: 272090871}
-  - 23: {fileID: 272090870}
   m_Layer: 0
   m_Name: Plane (3)
   m_TagString: Untagged
@@ -1961,35 +2085,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 692955464}
   m_RootOrder: 3
---- !u!23 &272090870
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 272090868}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!64 &272090871
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2105,6 +2200,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 1951372300}
   IcoNew: {fileID: 1899658478}
   ColorImgs:
@@ -2423,6 +2519,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 562670686}
   IcoNew: {fileID: 861983850}
   ColorImgs:
@@ -2557,6 +2654,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 945359277}
   IcoNew: {fileID: 1218470002}
   ColorImgs:
@@ -2827,6 +2925,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 1998450080}
   IcoNew: {fileID: 1463961683}
   ColorImgs:
@@ -3826,6 +3925,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.28627452, g: 0.0627451, b: 0.67058825, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   Category: 1
 --- !u!114 &530184767
 MonoBehaviour:
@@ -3938,7 +4038,6 @@ GameObject:
   - 4: {fileID: 577979369}
   - 33: {fileID: 577979368}
   - 64: {fileID: 577979367}
-  - 23: {fileID: 577979366}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -3946,35 +4045,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!23 &577979366
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 577979365}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!64 &577979367
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4236,6 +4306,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.28627452, g: 0.0627451, b: 0.67058825, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   Category: 8
 --- !u!114 &670007843
 MonoBehaviour:
@@ -4376,7 +4447,7 @@ Transform:
   - {fileID: 272090869}
   - {fileID: 1690518581}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &709100844
 GameObject:
   m_ObjectHideFlags: 0
@@ -4438,7 +4509,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &711373956
 GameObject:
   m_ObjectHideFlags: 0
@@ -5165,6 +5236,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.28627452, g: 0.0627451, b: 0.67058825, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   Category: 4
 --- !u!114 &831800072
 MonoBehaviour:
@@ -5360,6 +5432,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.28627452, g: 0.0627451, b: 0.67058825, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   Category: 7
 --- !u!114 &850644118
 MonoBehaviour:
@@ -5626,6 +5699,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 1576888838}
   IcoNew: {fileID: 1262582740}
   ColorImgs:
@@ -5868,6 +5942,81 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 967723667}
+--- !u!1001 &972857728
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 167039218}
+    m_Modifications:
+    - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000014043641798, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+      propertyPath: m_Name
+      value: AnturaShadow (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &972857729 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c,
+    type: 2}
+  m_PrefabInternal: {fileID: 972857728}
 --- !u!1001 &973198126
 Prefab:
   m_ObjectHideFlags: 0
@@ -6159,6 +6308,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.28627452, g: 0.0627451, b: 0.67058825, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   Category: 5
 --- !u!114 &1004754195
 MonoBehaviour:
@@ -6422,6 +6572,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.28627452, g: 0.0627451, b: 0.67058825, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   Category: 3
 --- !u!114 &1096190721
 MonoBehaviour:
@@ -6466,7 +6617,6 @@ GameObject:
   - 4: {fileID: 1113595427}
   - 33: {fileID: 1113595430}
   - 64: {fileID: 1113595429}
-  - 23: {fileID: 1113595428}
   m_Layer: 0
   m_Name: Plane (2)
   m_TagString: Untagged
@@ -6487,35 +6637,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 692955464}
   m_RootOrder: 2
---- !u!23 &1113595428
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1113595426}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!64 &1113595429
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6640,7 +6761,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 2eff0ca861e20d244b76ef2db9dc7f44, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6901,7 +7022,7 @@ RectTransform:
   - {fileID: 1794859816}
   - {fileID: 1575387424}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -7342,6 +7463,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.28627452, g: 0.0627451, b: 0.67058825, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   Category: 6
 --- !u!114 &1327683264
 MonoBehaviour:
@@ -7608,6 +7730,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 1503803608}
   IcoNew: {fileID: 2048026204}
   ColorImgs:
@@ -7946,6 +8069,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 1382227564}
   IcoNew: {fileID: 1117890281}
   ColorImgs:
@@ -8080,7 +8204,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!114 &1472273670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8092,6 +8216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39787cfa8835ee4ca388ae895053f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_oCameraUI: {fileID: 1920108683}
   m_oAnturaBehaviour: {fileID: 2091012743}
   m_oItemsParentUI: {fileID: 320989395}
   m_oCookieButton: {fileID: 2079677548}
@@ -8165,6 +8290,47 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1503803608}
+--- !u!1 &1506229678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1506229679}
+  - 65: {fileID: 1506229680}
+  m_Layer: 0
+  m_Name: bone_physic body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1506229679
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1506229678}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 260543625}
+  m_RootOrder: 0
+--- !u!65 &1506229680
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1506229678}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.9, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1525006814
 GameObject:
   m_ObjectHideFlags: 0
@@ -8261,6 +8427,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 1297008584}
   IcoNew: {fileID: 1538501458}
   ColorImgs:
@@ -8884,7 +9051,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 484274, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
@@ -9361,8 +9528,8 @@ Canvas:
   m_GameObject: {fileID: 1668913312}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1920108683}
   m_PlaneDistance: 10
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -9411,7 +9578,7 @@ RectTransform:
   - {fileID: 1965254908}
   - {fileID: 279416711}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -9521,6 +9688,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  AutoAnimateClick: 1
 --- !u!114 &1685697596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9582,7 +9750,7 @@ Transform:
   m_Children:
   - {fileID: 2017783074}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1 &1690518580
 GameObject:
   m_ObjectHideFlags: 0
@@ -9593,7 +9761,6 @@ GameObject:
   - 4: {fileID: 1690518581}
   - 33: {fileID: 1690518584}
   - 64: {fileID: 1690518583}
-  - 23: {fileID: 1690518582}
   m_Layer: 0
   m_Name: Plane (4)
   m_TagString: Untagged
@@ -9614,35 +9781,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 692955464}
   m_RootOrder: 4
---- !u!23 &1690518582
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1690518580}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!64 &1690518583
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10762,6 +10900,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 845713409}
   IcoNew: {fileID: 758497372}
   ColorImgs:
@@ -10893,6 +11032,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.28627452, g: 0.0627451, b: 0.67058825, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   Category: 2
 --- !u!114 &1833964351
 MonoBehaviour:
@@ -11248,6 +11388,106 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1899658478}
+--- !u!1 &1920108682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1920108688}
+  - 20: {fileID: 1920108683}
+  - 92: {fileID: 1920108687}
+  - 124: {fileID: 1920108686}
+  - 81: {fileID: 1920108685}
+  - 114: {fileID: 1920108684}
+  m_Layer: 0
+  m_Name: CameraUI
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!20 &1920108683
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1920108682}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.6509804, g: 0.95686275, b: 1, a: 0.019607844}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
+--- !u!114 &1920108684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1920108682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 628dddab2b23744d286b087760cffde0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CallbackManager: {fileID: 0}
+--- !u!81 &1920108685
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1920108682}
+  m_Enabled: 0
+--- !u!124 &1920108686
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1920108682}
+  m_Enabled: 0
+--- !u!92 &1920108687
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1920108682}
+  m_Enabled: 0
+--- !u!4 &1920108688
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1920108682}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
 --- !u!1 &1923655434
 GameObject:
   m_ObjectHideFlags: 0
@@ -11344,6 +11584,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 1947305622}
   IcoNew: {fileID: 39522695}
   ColorImgs:
@@ -11478,6 +11719,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 1607738498}
   IcoNew: {fileID: 1577794747}
   ColorImgs:
@@ -11612,6 +11854,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 1745859298}
   IcoNew: {fileID: 1668494979}
   ColorImgs:
@@ -11922,6 +12165,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  AutoAnimateClick: 1
 --- !u!114 &1965254905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12176,6 +12420,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.28627452, g: 0.0627451, b: 0.67058825, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   Category: 9
 --- !u!114 &2010468755
 MonoBehaviour:
@@ -14231,8 +14476,8 @@ GameObject:
   - 114: {fileID: 2048069785}
   - 114: {fileID: 2048069790}
   m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
+  m_Name: GameplayCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14427,6 +14672,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
+  AutoAnimateClick: 1
   IcoLock: {fileID: 163708288}
   IcoNew: {fileID: 10596288}
   ColorImgs:
@@ -14560,6 +14806,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  AutoAnimateClick: 1
 --- !u!114 &2079677550
 MonoBehaviour:
   m_ObjectHideFlags: 0
