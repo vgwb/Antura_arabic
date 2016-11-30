@@ -25,7 +25,7 @@ namespace EA4S
         public IntroMazeCharacter[] m_MazeCharacters;
         public float m_MazeCharactesVelocity = 0.1f;
         public AnimationCurve cameraAnimationCurve;
-        public UnityStandardAssets.ImageEffects.ForegroundCameraEffect foregroundEffect;
+        //public UnityStandardAssets.ImageEffects.ForegroundCameraEffect foregroundEffect;
 
         public GameObject environment;
         AutoMove[] autoMoveObjects;
@@ -62,7 +62,7 @@ namespace EA4S
             time += Time.deltaTime * m_CameraVelocity;
             float t = cameraAnimationCurve.Evaluate(time);
 
-            foregroundEffect.t = t;
+            //foregroundEffect.t = t;
 
             for (int i = 0; i < autoMoveObjects.Length; ++i)
                 autoMoveObjects[i].SetTime(t);
