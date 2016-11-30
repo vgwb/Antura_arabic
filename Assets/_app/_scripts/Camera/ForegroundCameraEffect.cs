@@ -8,7 +8,7 @@ namespace UnityStandardAssets.ImageEffects
     [RequireComponent(typeof(Camera))]
     public class ForegroundCameraEffect : PostEffectsBase
     {
-        public RenderTextureOutput foreground;
+        //public RenderTextureOutput foreground;
         public Shader mergeShader = null;
 
         [Range(0,1)]
@@ -41,7 +41,7 @@ namespace UnityStandardAssets.ImageEffects
                 return;
             }
 
-            mergeMaterial.SetTexture("_Foreground", foreground.output);
+            //mergeMaterial.SetTexture("_Foreground", foreground.output);
             mergeMaterial.SetFloat("_T", 1- Mathf.Pow(1-t, 8));
 
             Graphics.Blit(source, destination, mergeMaterial, 0);

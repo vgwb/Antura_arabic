@@ -41,7 +41,7 @@ namespace EA4S.Scanner
 
             while (timesCanAppear >0)
             {                
-                if (!game.tut.isTutRound && game.roundsManager.numberOfRoundsPlayed >=6)
+                if (!game.tut.isTutRound && game.roundsManager.numberOfRoundsPlayed <6)
                 {
                     yield return new WaitForSeconds(Random.Range(25, 50));
                     
