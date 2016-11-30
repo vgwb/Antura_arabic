@@ -9,7 +9,10 @@
         Theme3 = 4,
         Theme4 = 5,
         Theme6 = 6,
-        Theme7 = 7
+        Theme7 = 7,
+        Theme8 = 8,
+        Theme9 = 9,
+        Theme10 = 10
     }
 
     // last is 45
@@ -92,6 +95,15 @@
                     break;
                 case Music.Theme7:
                     eventName = "Music7";
+                    break;
+                case Music.Theme8:
+                    eventName = "Music8";
+                    break;
+                case Music.Theme9:
+                    eventName = "Music9";
+                    break;
+                case Music.Theme10:
+                    eventName = "Music10";
                     break;
             }
             return eventName;
