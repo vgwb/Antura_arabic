@@ -187,6 +187,7 @@ namespace EA4S
             if (_rewardData == null) {
                 foreach (AnturaSpaceItemButton item in btsItems) item.Toggle(false);
                 // TODO Tell RewardSystemManager the no item is selected for the given category
+                AnturaModelManager.Instance.ClearLoadedRewardInCategory()
                 return;
             }
 

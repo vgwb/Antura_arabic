@@ -210,6 +210,10 @@ namespace EA4S {
                 OnRewardChanged(CurrentReward);
         }
 
+        public static void DeselectAllRewardItemsForCategory(string _categoryRewardId = "") {
+            AnturaModelManager.Instance.ClearLoadedRewardInCategory(_categoryRewardId);
+        }
+
         /// <summary>
         /// TODO: public or private?
         /// Gets the reward colors by identifier.
@@ -221,6 +225,8 @@ namespace EA4S {
             // TODO: logic
             return returnList;
         }
+
+        
 
         #endregion
 

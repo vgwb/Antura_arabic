@@ -106,6 +106,18 @@ namespace EA4S {
         }
 
         /// <summary>
+        /// Clears the loaded reward in category.
+        /// </summary>
+        /// <param name="_categoryId">The category identifier.</param>
+        public void ClearLoadedRewardInCategory(string _categoryId) {
+            LoadedModel lm = LoadedModels.Find(m => m.Reward.GetRewardCategory() == _categoryId);
+            if(lm != null) { 
+                Destroy(lm.GO);
+                LoadedModels.Remove(lm);
+            }
+        }
+
+        /// <summary>
         /// Sets the reward material colors.
         /// </summary>
         /// <param name="_gameObject">The game object.</param>
