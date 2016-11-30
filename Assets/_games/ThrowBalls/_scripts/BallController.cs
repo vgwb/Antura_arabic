@@ -65,7 +65,10 @@ namespace EA4S.ThrowBalls
 
         private void OnPointerDown()
         {
-            SetState(State.Dragging);
+            if (!IsLaunched())
+            {
+                SetState(State.Dragging);
+            }
         }
 
         private void OnPointerDrag()
