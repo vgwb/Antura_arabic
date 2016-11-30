@@ -32,6 +32,9 @@ namespace EA4S.Assessment
 
                 case AssessmentCode.QuestionAndReply:
                     return AssessmentFactory.CreateQuestionAndReplyAssessment();
+
+                case AssessmentCode.SelectPronouncedWord:
+                    return AssessmentFactory.CreatePronouncedWordAssessment();
             }
 
             return null;

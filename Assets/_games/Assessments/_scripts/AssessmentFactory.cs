@@ -127,6 +127,26 @@ namespace EA4S.Assessment
                                             gameDescription);
         }
 
+        public static IAssessment CreatePronouncedWordAssessment()
+        {
+            Init();
+            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = false;
+            IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
+            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
+            IQuestionDecorator questionDecorator = new PronunceAndFlipDecorator();
+            IQuestionGenerator generator = new DefaultQuestionGenerator( configuration.Questions);
+            ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
+            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager, wordSize, wordSize);
+            IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
+
+            gameDescription = Db.LocalizationDataId.Assessment_Select_Word_Listen;
+
+            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
+                                            configuration, context, dialogueManager,
+                                            gameDescription);
+        }
+
         public static IAssessment CreateWordsWithLetterAssessment()
         {
             Init();
