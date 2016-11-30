@@ -39,7 +39,7 @@ Shader "Hidden/MergeForeground" {
 			
 			half4 color = fore.a*fore + (1-fore.a)*tex2D(_MainTex, i.uv);
 
-			return lerp(fixed4(0,0,0,1),color, _T);
+			return lerp(fixed4(0,0,0,0),color, _T);
 
 		}	
 					
