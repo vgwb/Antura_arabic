@@ -42,15 +42,15 @@
                 if (game.currentStars == 0)
                 {
                     AudioManager.I.PlayDialog("Reward_0Star");
-                    WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Reward_0Star, 4, true);
+                    //WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Reward_0Star, 4, true);
                 }
                 else
                 {
                     //string dia = "Reward_" + game.currentStars + "Star_" + UnityEngine.Random.Range(1, 4);
                     Db.LocalizationDataId data = randomRewardData();
-                    WidgetSubtitles.I.gameObject.SetActive(true);
+                    //WidgetSubtitles.I.gameObject.SetActive(true);
                     AudioManager.I.PlayDialog(data);
-                    WidgetSubtitles.I.DisplaySentence(data , 2, true);
+                    //WidgetSubtitles.I.DisplaySentence(data , 2, true);
                 }
                 //game.Context.GetAudioManager().PlayDialogue(Db.LocalizationData)
                 //WidgetSubtitles.I.DisplaySentence()
