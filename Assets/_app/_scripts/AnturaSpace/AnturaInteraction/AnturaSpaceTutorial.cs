@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TMPro;
 
 namespace EA4S
 {
@@ -20,9 +21,11 @@ namespace EA4S
         [SerializeField]
         private AnturaSpaceAnturaBehaviour m_oAnturaBehaviour;
         [SerializeField]
+        private GameObject m_oItemsParentUI;
+        [SerializeField]
         private UnityEngine.UI.Button m_oCookieButton;
         [SerializeField]
-        private UnityEngine.UI.Text m_oCookieNumberText;
+        private TextMeshProUGUI m_oCookieNumberText;
         [SerializeField]
         private UnityEngine.UI.Button m_oCustomizationButton;
         #endregion
@@ -48,7 +51,12 @@ namespace EA4S
             //setup first state, disable UI      
             m_eTutoState = eAnturaSpaceTutoState.ANTURA_ANIM;
 
-            //GlobalUI.ShowBackButton(false);
+#if UNITY_EDITOR
+
+#else
+            GlobalUI.ShowBackButton(false);
+#endif
+
             m_oCookieButton.gameObject.SetActive(false);
             m_oCustomizationButton.gameObject.SetActive(false);
 
@@ -84,14 +92,21 @@ namespace EA4S
 
                     m_oAnturaBehaviour.onAnimationByClick -= AdvanceTutorial;
 
+                    AudioManager.I.StopDialogue(false);
+
                     AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Intro_Touch, delegate () //dialog touch Antura
                     {
                         m_oCookieButton.gameObject.SetActive(true); //after the dialog make appear the cookie button
-                        m_oCookieButton.onClick.AddListener(AdvanceTutorial);//the button call AdvanceTutorial on click
-
+                        m_oCookieButton.interactable = false; //disable interaction temporary 
+                        
                         AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate () //dialog cookies
                         {
-                            AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_1); //dialog tap for cookies
+                            AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_1, delegate() //dialog tap for cookies
+                            {
+                                m_oCookieButton.onClick.AddListener(AdvanceTutorial);//the button can call AdvanceTutorial on click
+                                m_oCookieButton.interactable = true;
+                            }); 
+
                             RectTransform _oRectCookieB = m_oCookieButton.gameObject.GetComponent<RectTransform>();
                             TutorialUI.ClickRepeat(Camera.main.ScreenToWorldPoint(new Vector3(_oRectCookieB.position.x,_oRectCookieB.position.y,Camera.main.nearClipPlane)), float.MaxValue,1);
 
@@ -106,14 +121,16 @@ namespace EA4S
 
                     TutorialUI.Clear(true);
 
+                    AudioManager.I.StopDialogue(false);
+
                     AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_2); //dialog drag cookies
 
-                    Vector3[] _av3Path = new Vector3[2];
+                    /*Vector3[] _av3Path = new Vector3[2];
                     RectTransform _oRectCookieBDrag = m_oCookieButton.gameObject.GetComponent<RectTransform>();
                     _av3Path[0] = Camera.main.ScreenToWorldPoint(new Vector3(_oRectCookieBDrag.position.x, _oRectCookieBDrag.position.y, Camera.main.nearClipPlane));
-                    _av3Path[1] = _av3Path[0] + Vector3.up * 2 + Vector3.left * 2;
-                    TutorialUI.DrawLine(_av3Path[0], _av3Path[1], TutorialUI.DrawLineMode.FingerAndArrow, true, false);
-
+                    _av3Path[1] = Camera.main.ScreenToWorldPoint(new Vector3(_oRectCookieBDrag.position.x-50, _oRectCookieBDrag.position.y-50, Camera.main.nearClipPlane));
+                    TutorialUI.DrawLine(_av3Path[0], _av3Path[1], TutorialUI.DrawLineMode.Finger);
+                    */
                     break;
 
                 case eAnturaSpaceTutoState.USE_ALL_COOKIES:
@@ -125,17 +142,22 @@ namespace EA4S
 
                         m_oCookieButton.onClick.RemoveListener(AdvanceTutorial);
 
+                        AudioManager.I.StopDialogue(false);
+
                         AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_3, delegate () //dialog get more cookies
                         {
                             m_oCustomizationButton.gameObject.SetActive(true); //after the dialog make appear the customization button
 
-                            //--TODO think how detect antura dressup
-                            m_oCustomizationButton.onClick.AddListener(AdvanceTutorial);//the button call AdvanceTutorial on click
-                            //--
-
                             AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Custom_1, delegate () //dialog customize
                             {
-                                AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Custom_2); //dialog click customize
+                                AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Custom_2, delegate() //dialog click customize
+                                {
+                                    //Not knowing how many object there are, register to all buttons
+                                    foreach (var it in m_oItemsParentUI.GetComponentsInChildren<UnityEngine.UI.Button>())
+                                    {
+                                        it.onClick.AddListener(AdvanceTutorial);
+                                    }
+                                }); 
 
                                 RectTransform _oRectCustomB = m_oCustomizationButton.gameObject.GetComponent<RectTransform>();
                                 TutorialUI.ClickRepeat(Camera.main.ScreenToWorldPoint(new Vector3(_oRectCustomB.position.x, _oRectCustomB.position.y, Camera.main.nearClipPlane)), float.MaxValue, 1);
@@ -152,15 +174,21 @@ namespace EA4S
 
                     TutorialUI.Clear(true);
 
-                    //--TODO think how detect antura dressup
-                    m_oCustomizationButton.onClick.RemoveListener(AdvanceTutorial);
+                    //Unregister from object buttons
+                    foreach (var it in m_oItemsParentUI.GetComponentsInChildren<UnityEngine.UI.Button>())
+                    {
+                        it.onClick.RemoveListener(AdvanceTutorial);
+                    }
+
                     GlobalUI.ShowBackButton(true);
+
+                    AudioManager.I.StopDialogue(false);
 
                     AudioManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro_AnturaSpace, delegate () //dialog go to map
                     {
                         TutorialUI.ClickRepeat(Camera.main.ScreenToWorldPoint(new Vector3(GlobalUI.I.BackButton.RectT.position.x, GlobalUI.I.BackButton.RectT.position.y, Camera.main.nearClipPlane)), float.MaxValue, 1);
                     });
-                    //--
+                   
                     break;
 
                 default:
