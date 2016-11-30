@@ -69,7 +69,7 @@ namespace EA4S
             Debug.Log("MaxLB"+AppManager.I.Player.MaxJourneyPosition.LearningBlock);
             Debug.Log("MaxPS"+AppManager.I.Player.MaxJourneyPosition.PlaySession);*/
 
-            AmIFirstorLastPos();
+           
 
             if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
               {
@@ -123,6 +123,7 @@ namespace EA4S
                         AppManager.I.Player.CurrentJourneyPosition.PlaySession = ropeSelected.dots[dotCloser].GetComponent<Dot>().playSessionActual;
                         AppManager.I.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].GetComponent<Dot>().learningBlockActual;
                         UpdateCurrenJourneyPosition();
+                        AmIFirstorLastPos();
                     }
                     else if (hit.collider.tag == "Pin")
                     {
@@ -135,6 +136,7 @@ namespace EA4S
                         AppManager.I.Player.CurrentJourneyPosition.PlaySession = 100;
                         AppManager.I.Player.CurrentJourneyPosition.LearningBlock = colliderRaycast.transform.gameObject.GetComponent<MapPin>().Number;
                         UpdateCurrenJourneyPosition();
+                        AmIFirstorLastPos();
                     }
                     else colliderRaycast = null;
                 }
@@ -152,6 +154,7 @@ namespace EA4S
                     AppManager.I.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].GetComponent<Dot>().learningBlockActual;
                     LookAtRightPin();
                     UpdateCurrenJourneyPosition();
+                    AmIFirstorLastPos();
                 }
                 if (colliderRaycast.tag == "Pin")
                 {
@@ -164,6 +167,7 @@ namespace EA4S
                     if (colliderRaycast.transform.gameObject.GetComponent<MapPin>().Number < miniMapScript.posPines.Length - 1)
                         transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1]);
                     UpdateCurrenJourneyPosition();
+                    AmIFirstorLastPos();
                 }
 
             }
@@ -208,6 +212,7 @@ namespace EA4S
                     LookAtRightPin();
                 }
             }
+            AmIFirstorLastPos();
         }
         public void MoveToTheLeftDot()
         {
@@ -253,6 +258,7 @@ namespace EA4S
                 AppManager.I.Player.CurrentJourneyPosition.LearningBlock = miniMapScript.posDots[pos].GetComponent<Dot>().learningBlockActual;
                 UpdateCurrenJourneyPosition();
             }
+            AmIFirstorLastPos();
         }
 
         public void ResetPosLetter()
