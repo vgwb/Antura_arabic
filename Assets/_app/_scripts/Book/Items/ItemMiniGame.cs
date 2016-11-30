@@ -12,6 +12,7 @@ namespace EA4S
         public TextRender Title;
         public Image Icon;
         public Image BadgeIcon;
+        public Image LockIcon;
 
         GamesPanel manager;
 
@@ -21,9 +22,11 @@ namespace EA4S
             manager = _manager;
 
             if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode) {
-                GetComponent<Button>().interactable = true;
+                LockIcon.enabled = false;
+                this.GetComponent<Button>().interactable = true;
             } else {
-                GetComponent<Button>().interactable = false;
+                LockIcon.enabled = true;
+                this.GetComponent<Button>().interactable = false;
             }
 
             //Title.text = data.Title_Ar;
@@ -51,7 +54,8 @@ namespace EA4S
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode) {
+            if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode)
+            {
                 manager.DetailMiniGame(info);
             }
         }
