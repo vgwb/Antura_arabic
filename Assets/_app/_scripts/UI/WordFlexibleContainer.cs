@@ -8,24 +8,34 @@ using System;
 public class WordFlexibleContainer : MonoBehaviour
 {
     public TextRender Label;
+    public TextRender NumbersLabel;
 
     public void SetText(string text, bool arabic)
     {
+        Label.gameObject.SetActive(true);
+        NumbersLabel.gameObject.SetActive(false);
         Label.setText(text, arabic);
     }
 
     public void SetText(ILivingLetterData data)
     {
+        Label.gameObject.SetActive(true);
+        NumbersLabel.gameObject.SetActive(false);
         Label.SetLetterData(data);
     }
 
     public void Reset()
     {
+        Label.gameObject.SetActive(true);
+        NumbersLabel.gameObject.SetActive(false);
         Label.text = "";
+        NumbersLabel.text = "";
     }
 
-    internal void SetNumber(int numberValue)
+    public void SetNumber(int numberValue)
     {
-        Label.setText(numberValue.ToString(), false);
+        Label.gameObject.SetActive(false);
+        NumbersLabel.gameObject.SetActive(true);
+        NumbersLabel.setText(numberValue.ToString(), false);
     }
 }
