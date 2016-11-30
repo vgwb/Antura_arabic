@@ -20,6 +20,7 @@ namespace EA4S
 
         GameObject btnGO;
         PlayerBookPanel currentArea = PlayerBookPanel.None;
+        MiniGameData currentMiniGame;
 
         void Start()
         {
@@ -68,12 +69,18 @@ namespace EA4S
 
         public void DetailMiniGame(MiniGameInfo info)
         {
+            currentMiniGame = info.data;
             AudioManager.I.PlayDialog(info.data.GetTitleSoundFilename());
 
             var Output = "";
             Output += "Score: " + info.score;
             Output += "\nPlayed: ";
             ScoreText.text = Output;
+        }
+
+        public void OnLaunchMinigame()
+        {
+            // TODO launch currentMiniGame;
         }
 
         void emptyListContainers()
