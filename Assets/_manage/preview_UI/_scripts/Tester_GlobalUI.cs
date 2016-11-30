@@ -64,6 +64,15 @@ namespace EA4S.Test
 
         #endregion
 
+        #region Prompt
+
+        public void Prompt_Show()
+        {
+            GlobalUI.ShowPrompt(true, "لعربية");
+        }
+
+        #endregion
+
         #region WidgetPopup
 
         public void Popup_ShowSentence()

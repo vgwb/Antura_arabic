@@ -42,6 +42,10 @@ namespace EA4S.Assessment
             category2ForThisRound = 0;
             category3ForThisRound = 0;
 
+            Debug.Log("Bucket1:" + answersBuckets[0].Count);
+            Debug.Log("Bucket2:" + answersBuckets[1].Count);
+            Debug.Log("Bucket3:" + answersBuckets[2].Count);
+
             int picksThisRound = numberOfMaxAnswers;
             int totalAnswers = answersBuckets[0].Count + answersBuckets[1].Count + answersBuckets[2].Count;
 
@@ -103,11 +107,14 @@ namespace EA4S.Assessment
                 var pack = provider.GetNextQuestion();
                 foreach (var answ in pack.GetCorrectAnswers())
                     for (int j = 0; j < numberOfCategories; j++)
-                        if (categoryProvider.Category(j).Equals(answ))
+                    {
+                        Debug.Log("##CATEGORY:"+ answ.TextForLivingLetter);
+                        if (categoryProvider.Compare( j, answ))
                         {
                             Debug.Log("##ADDED");
                             answersBuckets[j].Add(pack.GetQuestion());
                         }
+                    }
             }
         }
 
@@ -235,7 +242,7 @@ namespace EA4S.Assessment
 
         private IQuestion GenerateQuestion( int correctCount)
         {
-            var q = categoryProvider.SpawnCustomObject( currentCategory, true);
+            var q = categoryProvider.SpawnCustomObject( currentCategory);
             return new CategoryQuestion( q, correctCount);
         }
 
