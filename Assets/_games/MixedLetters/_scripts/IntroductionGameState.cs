@@ -56,6 +56,8 @@ namespace EA4S.MixedLetters
             anturaExitTimer = Random.Range(0.75f, 1.5f);
             anturaExited = false;
 
+            isAnturaEnterTimerActivated = false;
+
             game.GenerateNewWord();
             game.SayQuestion(OnQuestionOver);
 
