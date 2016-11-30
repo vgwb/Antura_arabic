@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TMPro;
 
 namespace EA4S
 {
@@ -15,7 +16,7 @@ namespace EA4S
         [SerializeField]
         private GameObject m_oAntura;
         [SerializeField]
-        private UnityEngine.UI.Text m_oTextBonesNumber;
+        private TextMeshProUGUI m_oTextBonesNumber;
 
 
 

@@ -17,6 +17,7 @@ namespace EA4S
         public UIButton BtOpenModsPanel;
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
         public AnturaSpaceItemButton BtItemMain;
+        public UIButton BtBones;
 
         bool isModsPanelOpen;
         AnturaSpaceCategoryButton[] btsCategories;
@@ -54,7 +55,9 @@ namespace EA4S
             BtItemMain.Setup();
 
             const float duration = 0.3f;
-            showCategoriesTween = CategoriesContainer.DOAnchorPosY(150, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
+            showCategoriesTween = DOTween.Sequence().SetAutoKill(false).Pause()
+                .Append(CategoriesContainer.DOAnchorPosY(150, duration).From().SetEase(Ease.OutBack))
+                .Join(BtBones.RectT.DOAnchorPosY(-830, duration))
                 .OnRewind(()=> CategoriesContainer.gameObject.SetActive(false));
             showItemsTween = ItemsContainer.DOAnchorPosX(-350, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
                 .OnRewind(() => {
@@ -154,8 +157,8 @@ namespace EA4S
             for (int i = 0; i < currRewardDatas.Count; ++i) {
                 RewardItem rewardData = currRewardDatas[i];
                 AnturaSpaceItemButton item = btsItems[i];
+                item.gameObject.SetActive(true);
                 item.Data = rewardData;
-                item.Lock(rewardData == null);
                 if (rewardData != null) {
                     if (!useImages) {
                         item.RewardContainer.gameObject.SetLayerRecursive(GenericUtilities.LayerMaskToIndex(RewardsLayer));
@@ -165,6 +168,7 @@ namespace EA4S
                     item.Toggle(rewardData.IsSelected);
                     if (rewardData.IsSelected) selectedRewardData = rewardData;
                 }
+                item.Lock(rewardData == null);
             }
 
             ItemsContainer.gameObject.SetActive(true);
@@ -186,21 +190,21 @@ namespace EA4S
             }
 
             // Hide non-existent swatches
-            Debug.Log(currSwatchesDatas.Count + " > " + btsSwatches.Length);
             for (int i = currSwatchesDatas.Count - 1; i < btsSwatches.Length; ++i) btsSwatches[i].gameObject.SetActive(false);
             // Setup and show swatches
             RewardColorItem selectedSwatchData = null;
             for (int i = 0; i < currSwatchesDatas.Count; ++i) {
                 RewardColorItem swatchData = currSwatchesDatas[i];
                 AnturaSpaceSwatchButton swatch = btsSwatches[i];
+                swatch.gameObject.SetActive(true);
                 swatch.Data = swatchData;
-                swatch.Lock(swatchData == null);
                 if (swatchData != null) {
                     swatch.SetAsNew(swatchData.IsNew);
                     swatch.Toggle(swatchData.IsSelected);
                     swatch.SetColors(GenericUtilities.HexToColor(swatchData.Color1RGB), GenericUtilities.HexToColor(swatchData.Color2RGB));
                     if (swatchData.IsSelected) selectedSwatchData = swatchData;
                 }
+                swatch.Lock(swatchData == null);
             }
 
             SwatchesContainer.gameObject.SetActive(true);
