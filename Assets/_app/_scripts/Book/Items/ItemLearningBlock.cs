@@ -12,9 +12,9 @@ namespace EA4S
         public TextRender Info;
         public TextRender SubTitle;
 
-        ParentsPanel manager;
+        BookPanel manager;
 
-        public void Init(ParentsPanel _manager, LearningBlockInfo _info)
+        public void Init(BookPanel _manager, LearningBlockInfo _info)
         {
             info = _info;
             manager = _manager;
