@@ -22,6 +22,7 @@ namespace EA4S.Assessment
 
         private IEnumerator TutorialClicks()
         {
+            idleTime = 0;
             clickEnabled = false;
             yield return TimeEngine.Wait( 0.4f);
             TutorialUI.Click( TutorialHelper.GetWorldPosition());
@@ -57,7 +58,8 @@ namespace EA4S.Assessment
 
         void OnMouseUp()
         {
-            if(clickEnabled)
+            idleTime = 0;
+            if (clickEnabled)
                 AnturaPressed();
         }
 
@@ -120,10 +122,20 @@ namespace EA4S.Assessment
             yield return TimeEngine.Wait( 1.0f);
             Coroutine.Start(TutorialClicks());
 
+            idleTime = 0;
             while (currentState < 3)
             {
                 while (stateDelta == 0)
+                {
+                    if(idleTime > 3f)
+                    {
+                        Coroutine.Start( TutorialClicks());
+                        idleTime = 0;
+                    }
+                        
                     yield return null;
+                }
+                    
 
                 if (stateDelta > 0)
                     IncreaseState();
@@ -228,9 +240,12 @@ namespace EA4S.Assessment
             currentState++;
         }
 
+        float idleTime = 0;
+
         bool ITickable.Update( float deltaTime)
         {
             currentTreshold -= deltaTime;
+            idleTime += deltaTime;
 
             if (currentTreshold < 0)
                 currentTreshold = 0;
