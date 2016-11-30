@@ -158,7 +158,7 @@ namespace EA4S.Assessment
             builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
 
             return new LettersBySunMoonQuestionBuilder( 
-                        SimultaneosQuestions * Rounds * 2,
+                        SimultaneosQuestions * Rounds * 3,
                         builderParams
             );
         }
