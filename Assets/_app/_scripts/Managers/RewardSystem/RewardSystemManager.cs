@@ -280,7 +280,7 @@ namespace EA4S {
             _alreadyUnlocked = rpList.Count;
             int count = _alreadyUnlocked;
             while (rpList.Count < MaxRewardsUnlockableForPlaysession) {
-                RewardPack newRewardPack = GetNextRewardPack(RewardTypes.reward);
+                RewardPack newRewardPack = GetNextNextRewardPack(RewardTypes.reward);
                 count++;
                 if (count <= _itemsToUnlock) {
                     // Then this new reward is unlocked by gameplay result and after creation must be saved as unlocked to profile.
@@ -297,20 +297,42 @@ namespace EA4S {
         /// </summary>
         /// <param name="_rewardType">Type of the reward.</param>
         /// <returns></returns>
-        public static RewardPack GetNextRewardPack(RewardTypes _rewardType) {
+        public static RewardPack GetNextNextRewardPack(RewardTypes _rewardType) {
             /// TODOs:
-            /// - Retrive 3 type of rewards
-            /// - save to unlock repository!
             /// - Filter without already unlocked items
             /// - Automatic select reward type by situation
-            RewardPack rp = new RewardPack() {
-                ItemID = config.Rewards.GetRandom().ID,
-                ColorId = config.RewardsColorPairs.GetRandom().ID,
-                Type = _rewardType,
-                PlaySessionId = AppManager.I.Player.CurrentJourneyPosition.ToString(),
-                IsNew = true,
-            };
-
+            RewardPack rp = new RewardPack();
+            switch (_rewardType) {
+                case RewardTypes.reward:
+                    rp = new RewardPack() {
+                        ItemID = config.Rewards.GetRandom().ID,
+                        ColorId = config.RewardsColorPairs.GetRandom().ID,
+                        Type = _rewardType,
+                        PlaySessionId = AppManager.I.Player.CurrentJourneyPosition.ToString(),
+                        IsNew = true,
+                    };
+                    break;
+                case RewardTypes.texture:
+                    rp = new RewardPack() {
+                        ItemID = config.RewardsTile.GetRandom().ID,
+                        ColorId = config.RewardsTileColor.GetRandom().ID,
+                        Type = _rewardType,
+                        PlaySessionId = AppManager.I.Player.CurrentJourneyPosition.ToString(),
+                        IsNew = true,
+                    };
+                    break;
+                case RewardTypes.decal:
+                    rp = new RewardPack() {
+                        ItemID = config.RewardsDecal.GetRandom().ID,
+                        ColorId = config.RewardsDecalColor.GetRandom().ID,
+                        Type = _rewardType,
+                        PlaySessionId = AppManager.I.Player.CurrentJourneyPosition.ToString(),
+                        IsNew = true,
+                    };
+                    break;
+                default:
+                    break;
+            }
             return rp;
         }
             
