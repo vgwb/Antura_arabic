@@ -59,6 +59,15 @@ namespace EA4S
         /// The rewards unlocked
         /// </summary>
         public List<RewardPack> RewardsUnlocked = new List<RewardPack>();
+
+        /// <summary>
+        /// Adds the reward unlocked.
+        /// </summary>
+        /// <param name="_rewardPack">The reward pack.</param>
+        public void AddRewardUnlocked(RewardPack _rewardPack) {
+            RewardsUnlocked.Add(_rewardPack);
+        }
+
         /// <summary>
         /// The current antura customizations
         /// </summary>
@@ -72,6 +81,7 @@ namespace EA4S
             CurrentAnturaCustomizations = _anturaCustomization;
             Save();
         }
+        
         #endregion
 
         #region Oldies
