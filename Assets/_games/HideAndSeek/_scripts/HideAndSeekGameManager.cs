@@ -249,16 +249,18 @@ namespace EA4S.HideAndSeek
 
         void AnturaEnterScene()
         {
-            AnturaPath = new List<Vector3>();
+            List<Vector3> AnturaPath = new List<Vector3>();
 
             AnturaPath.Add(ArrayTrees[2].transform.position + Vector3.forward * 3);
             AnturaPath.Add(ArrayTrees[6].transform.position + Vector3.forward * 3);
             AnturaPath.Add(ArrayTrees[6].transform.position + Vector3.forward * 3 + Vector3.left * 3);
 
-            AnturaPath.Add(ArrayTrees[0].transform.position + Vector3.back * 3);
+            //AnturaPath.Add(ArrayTrees[0].transform.position + Vector3.back * 3);
             AnturaPath.Add(ArrayTrees[1].transform.position + Vector3.forward * 3);
 
             AnturaPath.Add(transform.position + Vector3.left * 40);
+
+            Vector3[] aAnturaPath = AnturaPath.ToArray();
 
             AnturaAnimationController anturaAC = Antura.GetComponent<AnturaAnimationController>();
             anturaAC.IsAngry = true;
@@ -266,8 +268,8 @@ namespace EA4S.HideAndSeek
 
             anturaAC.State = AnturaAnimationStates.walking;
 
-            Antura.transform.DOPath(AnturaPath.ToArray(), 15, PathType.CatmullRom).OnWaypointChange(delegate (int wayPoint) {
-                Antura.transform.DOLookAt(AnturaPath[wayPoint], 0.5f);
+            Antura.transform.DOPath(aAnturaPath, 10, PathType.CatmullRom).OnWaypointChange(delegate (int wayPoint) {
+                Antura.transform.DOLookAt(aAnturaPath[wayPoint], 0.5f);
             });
         }
 
@@ -280,7 +282,6 @@ namespace EA4S.HideAndSeek
         private int FreePlaceholder;
 
         public GameObject Antura;
-        private List<Vector3> AnturaPath;
 
 
         public GameObject[] ArrayTrees;

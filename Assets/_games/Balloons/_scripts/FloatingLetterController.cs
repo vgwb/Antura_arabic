@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 namespace EA4S.Balloons
 {
@@ -277,6 +278,14 @@ namespace EA4S.Balloons
             if (Letter.isRequired)
             {
                 BalloonsGame.instance.OnPoppedRequiredBalloon(Letter.associatedPromptIndex);
+            }
+            if (BalloonsGame.instance.ActiveGameVariation == BalloonsVariation.Counting)
+            {
+
+                if (Letter.letterData.Id != BalloonsGame.instance.correctAnswers.ToList()[BalloonsGame.instance.countingIndex].Id)
+                {
+                    BalloonsGame.instance.OnPoppedRequiredBalloon(-1);
+                }
             }
 
             if (Balloons.Length == 3)

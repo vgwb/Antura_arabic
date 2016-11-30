@@ -2,6 +2,7 @@
 
 using System;
 using DG.Tweening;
+using EA4S.Db;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,16 +14,43 @@ namespace EA4S
         public float AnimationDuration = 0.75f;
         [Header("References")]
         public Image MaskCover;
-        public RectTransform Icon, Logo;
+        public Image Icon, Logo, BadgeIcon;
+        public RectTransform Badge;
 
         public static bool IsShown { get; private set; }
         public static bool IsPlaying { get; private set; }
 
+        Sprite defIcon;
         Action onCompleteCallback, onRewindCallback;
         Sequence tween;
 
-        // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        // ■■■ PUBLIC METHODS
+        #region Unity
+
+        void Awake()
+        {
+            defIcon = Icon.sprite;
+
+            tween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
+                .Append(MaskCover.DOFillAmount(0, AnimationDuration).From())
+                .Join(Icon.transform.DOScale(0.01f, AnimationDuration * 0.6f).From())
+                .Join(Icon.transform.DOPunchRotation(new Vector3(0, 0, 90), AnimationDuration * 0.9f, 6))
+                .Insert(AnimationDuration * 0.4f, Logo.transform.DOScale(0.01f, AnimationDuration * 0.5f).From().SetEase(Ease.OutBack))
+                .Join(Badge.transform.DOScale(0.01f, AnimationDuration * 0.5f).From().SetEase(Ease.OutBack))
+                .OnPlay(() => this.gameObject.SetActive(true))
+                .OnRewind(OnRewind)
+                .OnComplete(OnComplete);
+
+            this.gameObject.SetActive(false);
+        }
+
+        void OnDestroy()
+        {
+            tween.Kill();
+        }
+
+        #endregion
+
+        #region Public Methods
 
         /// <summary>
         /// Call this to show/hide the scene transitioner.
@@ -33,6 +61,7 @@ namespace EA4S
         {
             GlobalUI.Init();
 
+            GlobalUI.SceneTransitioner.SetContent();
             GlobalUI.SceneTransitioner.DoShow(_doShow, _onComplete);
         }
 
@@ -72,26 +101,28 @@ namespace EA4S
             tween.Rewind();
         }
 
-        // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        // ■■■ INTERNAL
+        #endregion
 
-        void Awake()
+        #region Methods
+
+        void SetContent()
         {
-            tween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
-                .Append(MaskCover.DOFillAmount(0, AnimationDuration).From())
-                .Join(Icon.DOScale(0.01f, AnimationDuration * 0.6f).From())
-                .Join(Icon.DOPunchRotation(new Vector3(0, 0, 90), AnimationDuration * 0.9f, 6))
-                .Insert(AnimationDuration * 0.4f, Logo.DOScale(0.01f, AnimationDuration * 0.5f).From().SetEase(Ease.OutBack))
-                .OnPlay(() => this.gameObject.SetActive(true))
-                .OnRewind(OnRewind)
-                .OnComplete(OnComplete);
-
-            this.gameObject.SetActive(false);
-        }
-
-        void OnDestroy()
-        {
-            tween.Kill();
+            Debug.Log(NavigationManager.I.IsLoadingMinigame + " > " + NavigationManager.I.CurrentScene);
+            bool isLoadingMinigame = NavigationManager.I.IsLoadingMinigame;
+            Logo.gameObject.SetActive(!isLoadingMinigame);
+            if (isLoadingMinigame) {
+                MiniGameData mgData = AppManager.I.CurrentMinigame;
+                Icon.sprite = Resources.Load<Sprite>(mgData.GetIconResourcePath());
+                Sprite badgeSprite = Resources.Load<Sprite>(mgData.GetBadgeIconResourcePath());
+                if (badgeSprite == null) Badge.gameObject.SetActive(false);
+                else {
+                    Badge.gameObject.SetActive(true);
+                    BadgeIcon.sprite = badgeSprite;
+                }
+            } else {
+                Badge.gameObject.SetActive(isLoadingMinigame);
+                Icon.sprite = defIcon;
+            }
         }
 
         void OnRewind()
@@ -108,5 +139,7 @@ namespace EA4S
             if (onCompleteCallback != null)
                 onCompleteCallback();
         }
+
+        #endregion
     }
 }

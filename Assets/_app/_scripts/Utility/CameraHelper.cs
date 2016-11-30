@@ -19,7 +19,6 @@ namespace EA4S
                 if (bounds.size.x < 0) bounds = r.bounds;
                 else bounds.Encapsulate(r.bounds);
             }
-            Debug.Log(bounds);
             Vector3 diff = new Vector3(_trans.position.x - bounds.center.x, _trans.position.y - bounds.center.y, _trans.position.z - bounds.center.z);
             _trans.Translate(diff, Space.World);
             float frustumVal = bounds.size.y >= bounds.size.x ? bounds.size.y : bounds.size.x / _cam.aspect;

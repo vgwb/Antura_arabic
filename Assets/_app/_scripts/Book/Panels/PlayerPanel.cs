@@ -9,8 +9,7 @@ namespace EA4S
     public class PlayerPanel : MonoBehaviour
     {
         public TextRender output;
-        public BookGraph moodGraph;
-        public BookGraph journeyGraph;
+        public GraphJourney journeyGraph;
 
         void Start()
         {
@@ -63,16 +62,8 @@ namespace EA4S
             //AppManager.I.DB.GetLocalizationDataById("Game_Title").Arabic;
             //output.text += "\n" + AppManager.I.DB.GetLocalizationDataById("Game_Title2").Arabic;
 
-            // Show moods
-            int nMoods = 10;
-            var latestMoods = AppManager.I.Teacher.GetLastMoodData(nMoods);
-            float[] moodValues = latestMoods.ConvertAll(x => x.MoodValue).ToArray();
-            moodGraph.SetValues(nMoods, AppConstants.maximumMoodValue, moodValues);
+            journeyGraph.Show(allPlaySessionInfos, unlockedPlaySessionInfos);
 
-            // Show journey
-            float[] journeyValues = unlockedPlaySessionInfos.ConvertAll(x => x.score).ToArray();
-            //string[] journeyLabels = allPsInfo.ConvertAll(x => x.data.Id).ToArray();
-            journeyGraph.SetValues(unlockedPlaySessionInfos.Count, 1f, journeyValues);
         }
 
     }

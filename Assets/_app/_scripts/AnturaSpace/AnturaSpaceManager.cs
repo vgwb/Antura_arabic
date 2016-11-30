@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TMPro;
 
 namespace EA4S
 {
@@ -15,7 +16,7 @@ namespace EA4S
         [SerializeField]
         private GameObject m_oAntura;
         [SerializeField]
-        private UnityEngine.UI.Text m_oTextBonesNumber;
+        private TextMeshProUGUI m_oTextBonesNumber;
 
 
 
@@ -50,10 +51,12 @@ namespace EA4S
             m_oTextBonesNumber.text = "" + m_iTotalBones_Test;
 
             //set the bone initial position behind the button
-            float _fCameraDistance = Mathf.Abs(Camera.main.transform.position.z - Camera.main.nearClipPlane);
+            /*
+             * float _fCameraDistance = Mathf.Abs(Camera.main.transform.position.z - Camera.main.nearClipPlane);
 
             m_oBonePrefab.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(m_oTextBonesNumber.rectTransform.position.x, m_oTextBonesNumber.rectTransform.position.y, _fCameraDistance));
-
+            */
+            m_oBonePrefab.transform.position = m_oTextBonesNumber.transform.position;
 
             //Instantiate the pool of bones
             m_aoPool = new GameObject[m_iMaxSpawnableBones];
