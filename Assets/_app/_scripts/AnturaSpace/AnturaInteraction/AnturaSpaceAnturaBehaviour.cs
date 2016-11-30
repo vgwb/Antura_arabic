@@ -49,7 +49,6 @@ namespace EA4S
             
             if (!m_bMovingToDestination)
             {
-                AudioManager.I.PlaySfx(m_oSfxOnClick);
                 int iRnd;
                 do
                 {
@@ -101,7 +100,7 @@ namespace EA4S
             }
         }
 
-        void OnCollisionStay(Collision collision)
+        void OnCollisionEnter(Collision collision)
         {
             if (IsBoneValid(collision.gameObject))
             {
@@ -148,8 +147,8 @@ namespace EA4S
                     transform.DORotate(_rot, 0.5f);
                 });
 
-                Vector3 rot = new Vector3(0, Vector3.Angle(Vector3.forward, transform.forward), 0);
-                rot = (Vector3.Cross(Vector3.forward, transform.forward).y < 0) ? -rot : rot;
+                Vector3 rot = new Vector3(0, Vector3.Angle(transform.forward, Vector3.forward), 0);
+                rot = (Vector3.Cross(transform.forward, Vector3.forward).y < 0) ? -rot : rot;
                 transform.DORotate(rot, 0.5f);
             }
         }
@@ -208,8 +207,6 @@ namespace EA4S
         private float m_fMovementSpeed = 10; //Movement speed
         [SerializeField]
         private float m_fRotationSpeed = 180; //Rotation speed by degree
-        [SerializeField]
-        private Sfx m_oSfxOnClick;
 
         [HideInInspector]
         public Action<GameObject> onBoneReached;
