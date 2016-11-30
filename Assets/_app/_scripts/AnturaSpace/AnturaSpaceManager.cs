@@ -29,10 +29,13 @@ namespace EA4S
         private int[] m_aiUsedList;
         private int m_iNextToBeUsed = 0;
 
-        //private Rigidbody m_oBonePrefabRigidboy;
+        private GameObject m_oCookieRootContainer;
         private BoneBehaviour m_oDraggedBone;
         private AnturaSpaceAnturaBehaviour m_oAnturaBehaviour;
+
         #endregion
+
+        
 
         #region INTERNALS
         void Start()
@@ -59,6 +62,10 @@ namespace EA4S
             m_oBonePrefab.transform.position = m_oTextBonesNumber.transform.position;
 
             //Instantiate the pool of bones
+            m_oCookieRootContainer = new GameObject("[Cookies]");
+            m_oCookieRootContainer.transform.position = Vector3.zero;
+            
+
             m_aoPool = new GameObject[m_iMaxSpawnableBones];
             m_aiUsedList = new int[m_iMaxSpawnableBones];
 
@@ -68,11 +75,11 @@ namespace EA4S
                 m_aoPool[_iIdx].SetActive(false);
 
                 m_aiUsedList[_iIdx] = _iIdx;
+
+                m_aoPool[_iIdx].transform.SetParent(m_oCookieRootContainer.transform);
             }
 
-            //link variables
-            //m_oBonePrefabRigidboy = m_oBonePrefab.GetComponent<Rigidbody>();
-        
+            //link variables        
             m_oAnturaBehaviour = m_oAntura.GetComponent<AnturaSpaceAnturaBehaviour>();
             m_oAnturaBehaviour.onBoneReached += release;
 
