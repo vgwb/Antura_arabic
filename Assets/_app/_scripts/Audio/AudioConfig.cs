@@ -15,7 +15,7 @@
         Theme10 = 10
     }
 
-    // last is 59
+    // last is 61
     public enum Sfx
     {
         AlarmClock = 13,
@@ -30,6 +30,8 @@
         DogBarking = 22,
         DogSnoring = 23,
         DogSnorting = 24,
+        Dog_Exhale = 60,
+        Dog_Inhale = 61,
         EggBreak = 40,
         EggMove = 41,
         GameTitle = 5,
@@ -181,6 +183,10 @@
                     eventName = "Dog/Snoring"; break;
                 case Sfx.DogSnorting:
                     eventName = "Dog/Snorting"; break;
+                case Sfx.Dog_Exhale:
+                    eventName = "Dog/Exhale"; break;
+                case Sfx.Dog_Inhale:
+                    eventName = "Dog/Inhale"; break;
                 default:
                     eventName = "Sfx/" + sfx.ToString();
                     break;
