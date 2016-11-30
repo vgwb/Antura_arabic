@@ -82,7 +82,7 @@ namespace EA4S.Maze
 
             Context.GetAudioManager().PlayMusic(Music.Theme3);
 
-            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Maze_Title);
+            
 
 
             fleePositions = new List<Vector3>();
@@ -111,10 +111,13 @@ namespace EA4S.Maze
 
 			gameTime = maxGameTime / (1 + MazeConfiguration.Instance.Difficulty);
 
-            
 
-			//init first letter
-			initCurrentLetter();
+
+            //init first letter
+            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Maze_Title,()=> {
+                initCurrentLetter();
+            });
+            
 
 		}
 
@@ -219,30 +222,29 @@ namespace EA4S.Maze
                     correctLetters++;
                     currentLetterIndex++;
                 }
+                //show message:
+                MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
                 
-
-                StartCoroutine(waitAndPerformCallback(2, () =>
-                {
-                    TutorialUI.MarkYes(currentCharacter.transform.position + new Vector3(2,2,2), TutorialUI.MarkSize.Huge);
-                },
-                () => {
+                TutorialUI.MarkYes(currentCharacter.transform.position + new Vector3(2, 2, 2), TutorialUI.MarkSize.Huge);
+                currentCharacter.celebrate(() => {
                     if (currentLetterIndex == 6)
                     { //round is 6
                         endGame();
                         return;
                     }
                     else {
-                        if(isTutorialMode)
+                        if (isTutorialMode)
                         {
                             isTutorialMode = false;
                             initUI();
                         }
-                        
+
 
                         roundNumber.text = "#" + (currentLetterIndex + 1);
                         restartCurrentLetter(won);
                     }
-                }));
+                });
+              
 
                 //print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);
                 
@@ -287,8 +289,9 @@ namespace EA4S.Maze
 				return;
 			} else {
 				roundNumber.text = "#" + (currentLetterIndex + 1);
-                
-				restartCurrentLetter ();
+
+                MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
+                restartCurrentLetter ();
 			}
 			
 		}
@@ -319,14 +322,7 @@ namespace EA4S.Maze
                 MinigamesUI.Starbar.GotoStar(numberOfStars-1);
             }
 
-            //show message:
-            if (won)
-                MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
-            else
-            {
-                MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
-
-            }
+            
 				
 
 			currentPrefab.SendMessage("moveOut",won);
