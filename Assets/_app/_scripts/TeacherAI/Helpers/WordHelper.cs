@@ -368,6 +368,7 @@ namespace EA4S.Db
             int nOkAnswers = answers.Count;
 
             if (phraseFilters.requireWords && (nOkWords == 0)) return false;
+            if (phraseFilters.requireAtLeastTwoWords && (nOkWords <= 1)) return false;
             if (phraseFilters.requireAnswersOrWords && (nOkAnswers == 0 && nOkWords == 0)) return false;
 
             return true;

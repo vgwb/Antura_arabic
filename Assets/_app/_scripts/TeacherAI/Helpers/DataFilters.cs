@@ -56,14 +56,17 @@
     {
         public bool requireWords;
         public bool requireAnswersOrWords;
+        public bool requireAtLeastTwoWords;
 
         public PhraseFilters(
             bool requireWords = false,
-            bool requireAnswersOrWords = false
+            bool requireAnswersOrWords = false,
+            bool requireAtLeastTwoWords = false // @todo: this could be reworked with Phrase Categories so to create better filters, or allow filters to have a numeric value
             )
         {
             this.requireWords = requireWords;
             this.requireAnswersOrWords = requireAnswersOrWords;
+            this.requireAtLeastTwoWords = requireAtLeastTwoWords;
         }
     }
 
