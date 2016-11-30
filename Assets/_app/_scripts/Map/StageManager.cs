@@ -2,6 +2,8 @@
 using System.Collections;
 using EA4S;
 using DG.Tweening;
+using ModularFramework.Components;
+
 namespace EA4S
 {
     public class StageManager : MonoBehaviour
@@ -12,7 +14,7 @@ namespace EA4S
         public GameObject[] miniMaps;
         public GameObject letter;
 
-        [Header("UIButtons")]
+        [Header("LockUI")]
         public GameObject lockUI;
 
         [Header("UIButtons")]
@@ -24,7 +26,7 @@ namespace EA4S
         public GameObject bookButton;
         public GameObject anturaButton;
 
-        int s, i,previousStage, numberStage;
+        int s, i, previousStage, numberStage;
         bool inTransition;
         void Awake()
         {
@@ -45,8 +47,8 @@ namespace EA4S
             Camera.main.backgroundColor = colorMaps[AppManager.I.Player.CurrentJourneyPosition.Stage];
             Camera.main.GetComponent<CameraFog>().color = colorMaps[AppManager.I.Player.CurrentJourneyPosition.Stage];
             letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[AppManager.I.Player.CurrentJourneyPosition.Stage].GetComponent<MiniMap>();
-            
-            StartCoroutine("ResetPosLetter");  
+
+            StartCoroutine("ResetPosLetter");
         }
         void Start()
         {
@@ -56,15 +58,7 @@ namespace EA4S
                 FirstContactBehaviour();
             }
             /* --------------------- */
-
-
             FirstOrLastMap();
-        }
-
-        void Update()
-        {
-            // Remove this with First Contact Temp Behaviour
-            //UpdateTimer();
         }
 
         #region First Contact Session        
@@ -78,12 +72,10 @@ namespace EA4S
             if (AppManager.I.Player.IsFirstContact(1))
             {
                 // First contact step 1:
-                /*#region Temp Behaviour (to be deleted)
-                countDown.Start();
-                #endregion*/
+
                 // ..and set first contact done.
                 DesactivateUI();
-                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro,true,true, AnturaText);
+                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro, true, true, AnturaText);
                 AppManager.I.Player.FirstContactPassed();
                 Debug.Log("First Contact Step1 finished! Go to Antura Space!");
             }
@@ -93,31 +85,25 @@ namespace EA4S
 
                 // ..and set first contact done.             
                 AppManager.I.Player.FirstContactPassed(2);
-                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_First,true,true, ActivateUI);
+                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_First, true, true, ActivateUI);
                 Debug.Log("First Contact Step2 finished! Good Luck!");
+                anturaButton.GetComponent<OnClickButtonChangeScene>().SceneNameCustom = "app_AnturaSpace";
             }
 
         }
-        #region Temp Behaviour (to be deleted)
-        CountdownTimer countDown = new CountdownTimer(1f);
-        void OnEnable() { countDown.onTimesUp += CountDown_onTimesUp; }
-        void OnDisable() { countDown.onTimesUp -= CountDown_onTimesUp; }
-        private void CountDown_onTimesUp() { NavigationManager.I.GoToScene(AppScene.Rewards); }
-        private void UpdateTimer() { countDown.Update(Time.deltaTime); }
-        #endregion
-
-        #endregion
         void AnturaText()
         {
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro_AnturaSpace,true,true, ActivateAnturaButton);
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro_AnturaSpace, true, true, ActivateAnturaButton);
         }
         void ActivateAnturaButton()
         {
             anturaButton.SetActive(true);
+            anturaButton.GetComponent<OnClickButtonChangeScene>().SceneNameCustom = "app_Rewards";
         }
+        #endregion
 
         public void StageLeft()
-        {         
+        {
             if ((numberStage < 6) && (!inTransition))
             {
                 previousStage = numberStage;
@@ -130,7 +116,7 @@ namespace EA4S
                 lockUI.SetActive(true);
                 DesactivateMovementPlayButtons();
 
-                if ( (numberStage <= s) && (AppManager.I.Player.CurrentJourneyPosition.Stage != numberStage))
+                if ((numberStage <= s) && (AppManager.I.Player.CurrentJourneyPosition.Stage != numberStage))
                 {
                     ChangePinDotToBlack();
                     AppManager.I.Player.CurrentJourneyPosition.Stage++;
@@ -139,7 +125,7 @@ namespace EA4S
                     lockUI.SetActive(false);
                     ActivateMovementPlayButtons();
                     letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
-                }            
+                }
                 StartCoroutine("DesactivateMap");
             }
         }
@@ -157,7 +143,7 @@ namespace EA4S
                 lockUI.SetActive(true);
                 DesactivateMovementPlayButtons();
 
-                if ((numberStage <= s) && (AppManager.I.Player.CurrentJourneyPosition.Stage!=numberStage))
+                if ((numberStage <= s) && (AppManager.I.Player.CurrentJourneyPosition.Stage != numberStage))
                 {
                     ChangePinDotToBlack();
                     AppManager.I.Player.CurrentJourneyPosition.Stage--;
