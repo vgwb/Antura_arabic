@@ -106,9 +106,32 @@ namespace EA4S.Assessment
                 case AssessmentCode.QuestionAndReply:
                     return Setup_QuestionAnReply_Builder();
 
+                case AssessmentCode.SelectPronouncedWord:
+                    return Setup_SelectPronuncedWord_Builder();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
+        }
+
+        private IQuestionBuilder Setup_SelectPronuncedWord_Builder()
+        {
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            builderParams.useJourneyForWrong = false;
+
+            SimultaneosQuestions = 1;
+            Rounds = 3;
+            int nCorrect = 1;
+            int nWrong = snag.Increase(2, 4);
+            return new RandomWordsQuestionBuilder(
+                SimultaneosQuestions*Rounds,
+                nCorrect,
+                nWrong,
+                firstCorrectIsQuestion: true,
+                parameters: builderParams);
         }
 
         private IQuestionBuilder Setup_QuestionAnReply_Builder()
@@ -232,9 +255,17 @@ namespace EA4S.Assessment
                 case AssessmentCode.QuestionAndReply:
                     return Setup_QuestionAnReply_LearnRules();
 
+                case AssessmentCode.SelectPronouncedWord:
+                    return Setup_SelectPronuncedWord_LearnRules();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
+        }
+
+        private MiniGameLearnRules Setup_SelectPronuncedWord_LearnRules()
+        {
+            return new MiniGameLearnRules();
         }
 
         private MiniGameLearnRules Setup_QuestionAnReply_LearnRules()
