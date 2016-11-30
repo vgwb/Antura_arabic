@@ -85,15 +85,15 @@ namespace EA4S {
         /// </summary>
         /// <param name="_name">The name.</param>
         void LoadRewardOnDog(string _name) {
-            actualReward = RewardSystemManager.GetConfig().Rewards.Find(r => r.RewardName == _name);
-            actualRewardGO = AnturaModelManager.Instance.LoadRewardOnAntura(actualReward.ID);
-            foreach (var color in actualRewardGO.GetComponentsInChildren<MeshRenderer>()) {
-                if (color.name == "color_1") {
-                    color.materials = new Material[] { MaterialManager.LoadMaterial(material1, (PaletteType)Enum.Parse(typeof(PaletteType), actualReward.Material1)) };
-                } else if (color.name == "color_2") {
-                    color.materials = new Material[] { MaterialManager.LoadMaterial(material2, (PaletteType)Enum.Parse(typeof(PaletteType), actualReward.Material2)) };
-                }
-            }
+            //actualReward = RewardSystemManager.GetConfig().Rewards.Find(r => r.RewardName == _name);
+            //actualRewardGO = AnturaModelManager.Instance.LoadRewardOnAntura(actualReward.ID);
+            //foreach (var color in actualRewardGO.GetComponentsInChildren<MeshRenderer>()) {
+            //    if (color.name == "color_1") {
+            //        color.materials = new Material[] { MaterialManager.LoadMaterial(material1, (PaletteType)Enum.Parse(typeof(PaletteType), actualReward.Material1)) };
+            //    } else if (color.name == "color_2") {
+            //        color.materials = new Material[] { MaterialManager.LoadMaterial(material2, (PaletteType)Enum.Parse(typeof(PaletteType), actualReward.Material2)) };
+            //    }
+            //}
         }
 
 

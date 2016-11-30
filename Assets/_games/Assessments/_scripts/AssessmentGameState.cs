@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace EA4S.Assessment
 {
     public class AssessmentGameState : IGameState
@@ -28,6 +26,15 @@ namespace EA4S.Assessment
 
                 case AssessmentCode.SunMoonWord:
                     return AssessmentFactory.CreateSunMoonWordAssessment();
+
+                case AssessmentCode.SunMoonLetter:
+                    return AssessmentFactory.CreateSunMoonLetterAssessment();
+
+                case AssessmentCode.QuestionAndReply:
+                    return AssessmentFactory.CreateQuestionAndReplyAssessment();
+
+                case AssessmentCode.SelectPronouncedWord:
+                    return AssessmentFactory.CreatePronouncedWordAssessment();
             }
 
             return null;
@@ -35,7 +42,6 @@ namespace EA4S.Assessment
 
         public void EnterState()
         {
-            Debug.Log(" assessment:" + assessment);
             Coroutine.Start( assessment.PlayCoroutine( SetNextState));
         }
 

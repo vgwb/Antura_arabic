@@ -26,7 +26,7 @@ namespace EA4S.Assessment
             yield return TimeEngine.Wait( 0.6f);
             TutorialUI.Click( TutorialHelper.GetWorldPosition());
             yield return TimeEngine.Wait( 0.1f);
-            AssessmentConfiguration.Instance.Context.GetAudioManager().PlaySound( Sfx.ThrowObj);
+            AssessmentConfiguration.Instance.Context.GetAudioManager().PlaySound( Sfx.UIPopup);
             yield return TimeEngine.Wait( 0.6f);
             clickEnabled = true;
         }
@@ -68,7 +68,7 @@ namespace EA4S.Assessment
             currentTreshold += GainPerClick;
             if (currentState < 3)
             {
-                var sound = audioManager.PlaySound( soundOnClick);
+                var sound = audioManager.PlaySound( Sfx.UIPopup);
                 sound.Volume = 0.5f;
             }
         }

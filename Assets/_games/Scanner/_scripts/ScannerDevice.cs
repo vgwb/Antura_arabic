@@ -134,11 +134,17 @@ namespace EA4S.Scanner
                     game.tut.setupTutorial(2, LL);
                 }
 			}
-//			else if (other.tag == ScannerGame.TAG_SCAN_END)
-//			{
-//
-//			}
+            //			else if (other.tag == ScannerGame.TAG_SCAN_END)
+            //			{
+            //
+            //			}
 
+            if (other.gameObject.name.Equals("Antura"))
+            {
+                
+                ScannerAntura.SCARED_COUNTER++;
+                //print(ScannerAntura.SCARED_COUNTER);
+            }
 		}
 	}
 }

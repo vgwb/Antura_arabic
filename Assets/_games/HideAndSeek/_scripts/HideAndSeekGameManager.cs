@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using System.Linq;
+
 
 namespace EA4S.HideAndSeek
 {
@@ -24,6 +25,7 @@ namespace EA4S.HideAndSeek
             {
                 UsedPlaceholder[i] = false;
             }
+            AnturaEnterScene();
         }
 	
 		void Update ()
@@ -245,6 +247,32 @@ namespace EA4S.HideAndSeek
             return -1;
         }
 
+        void AnturaEnterScene()
+        {
+            List<Vector3> AnturaPath = new List<Vector3>();
+
+            AnturaPath.Add(ArrayTrees[2].transform.position + Vector3.forward * 3);
+            AnturaPath.Add(ArrayTrees[6].transform.position + Vector3.forward * 3);
+            AnturaPath.Add(ArrayTrees[6].transform.position + Vector3.forward * 3 + Vector3.left * 3);
+
+            //AnturaPath.Add(ArrayTrees[0].transform.position + Vector3.back * 3);
+            AnturaPath.Add(ArrayTrees[1].transform.position + Vector3.forward * 3);
+
+            AnturaPath.Add(transform.position + Vector3.left * 40);
+
+            Vector3[] aAnturaPath = AnturaPath.ToArray();
+
+            AnturaAnimationController anturaAC = Antura.GetComponent<AnturaAnimationController>();
+            anturaAC.IsAngry = true;
+            //anturaAC.IsSad = true;
+
+            anturaAC.State = AnturaAnimationStates.walking;
+
+            Antura.transform.DOPath(aAnturaPath, 10, PathType.CatmullRom).OnWaypointChange(delegate (int wayPoint) {
+                Antura.transform.DOLookAt(aAnturaPath[wayPoint], 0.5f);
+            });
+        }
+
 
         #region VARIABLES
         bool StartNewRound = true;
@@ -253,7 +281,10 @@ namespace EA4S.HideAndSeek
         private const int MAX_OBJECT = 7;
         private int FreePlaceholder;
 
-		public GameObject[] ArrayTrees;
+        public GameObject Antura;
+
+
+        public GameObject[] ArrayTrees;
         private List<GameObject> ActiveTrees;
         
         public Transform[] ArrayPlaceholder;

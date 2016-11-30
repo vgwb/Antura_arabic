@@ -47,13 +47,17 @@ namespace EA4S.Scanner
             startingRotation = letterObjectView.transform.rotation;
         }
 
-        public void Reset()
+        public void Reset(bool stopCO = true)
         {
-            StopAllCoroutines();
+            if(stopCO)
+                StopAllCoroutines();
             rainbowJet.SetActive(false);
 
 			if (ScannerConfiguration.Instance.gameActive)
 			{
+				status = LLStatus.None;
+				letterObjectView.Falling = false;
+				letterObjectView.SetState(LLAnimationStates.LL_still);
 				gotSuitcase = false;
 	            letterObjectView.transform.rotation = startingRotation;
 	            transform.position = startingPosition;
@@ -63,18 +67,18 @@ namespace EA4S.Scanner
 	            passedMidPoint = false;
 
 	            turnAngle = facingCamera ? 180 : 0;
-	            letterObjectView.SetState(LLAnimationStates.LL_still);
-	            letterObjectView.Falling = true;
-	            status = LLStatus.Sliding;
-	            gameObject.GetComponent<SphereCollider>().enabled = true; // enable feet collider
-				bodyCollider.enabled = false; // disable body collider
-
 				gameObject.SetActive(true);
 
-//	            onReset(this);
+				gameObject.GetComponent<SphereCollider>().enabled = true; // enable feet collider
+				bodyCollider.enabled = false; // disable body collider
 			}
-
         }
+
+		public void StartSliding()
+		{
+			letterObjectView.Falling = true;
+			status = LLStatus.Sliding;
+		}
 
         // Update is called once per frame
         void Update()
@@ -112,9 +116,10 @@ namespace EA4S.Scanner
         {
 //            letterObjectView.DoSmallJump();
 			onFlying(this);
-			status = LLStatus.None;
+			status = LLStatus.Happy;
 
 			letterObjectView.DoSmallJump();            
+			// Rotate in case not facing the camera
 			StartCoroutine(RotateGO(livingLetter, new Vector3(0, 180, 0), 1f));
 			yield return new WaitForSeconds(1f);
 
@@ -137,11 +142,12 @@ namespace EA4S.Scanner
         {
 			if (status == LLStatus.StandingOnBelt)
 			{
-				status = LLStatus.None;
+				status = LLStatus.Sad;
 				letterObjectView.DoAngry();
-            	yield return new WaitForSeconds(2f);
+            	yield return new WaitForSeconds(1.5f);
 			}
-			if (status != LLStatus.Flying || status != LLStatus.Falling)
+			Debug.Log(status);
+			if (status != LLStatus.Flying || status != LLStatus.Falling || status != LLStatus.None)
 			{
 				letterObjectView.Poof();
 				yield return new WaitForSeconds(0.2f);
@@ -222,12 +228,13 @@ namespace EA4S.Scanner
 
             yield return new WaitForSeconds(1f);
 
+//			letterObjectView.SetState(LLAnimationStates.LL_idle);
+
             int index = -1;
             LLAnimationStates[] animations =
             {
                 LLAnimationStates.LL_idle,
-                LLAnimationStates.LL_dancing, 
-				//LLAnimationStates.LL_walking
+                LLAnimationStates.LL_dancing
 			};
 
             do {
@@ -242,8 +249,10 @@ namespace EA4S.Scanner
 
         void OnTriggerEnter(Collider other)
         {
-            if (status == LLStatus.Sliding) {
-                if (other.tag == ScannerGame.TAG_BELT) {
+            if (status == LLStatus.Sliding) 
+			{
+                if (other.tag == ScannerGame.TAG_BELT) 
+				{
 //                    transform.parent = other.transform;
                     status = LLStatus.StandingOnBelt;
                     gameObject.GetComponent<SphereCollider>().enabled = false; // disable feet collider

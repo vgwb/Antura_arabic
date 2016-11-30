@@ -4,15 +4,17 @@ using TMPro;
 
 namespace EA4S.Balloons
 {
-    public class WinCelebrationController : MonoBehaviour
+    public class RoundResultAnimator : MonoBehaviour
     {
         public LetterObjectView LLPrefab;
         public ParticleSystem vfx;
+        public Vector3 wrongMarkPosition1;
+        public Vector3 wrongMarkPosition2;
         public Vector3 onscreenPosition;
         public Vector3 offscreenPosition;
         public float moveDuration;
 
-        public void Show(ILivingLetterData livingLetterData)
+        public void ShowWin(ILivingLetterData livingLetterData)
         {
             this.transform.position = offscreenPosition;
             LLPrefab.gameObject.SetActive(true);
@@ -23,6 +25,22 @@ namespace EA4S.Balloons
             }
             LLPrefab.DoHorray();
             vfx.Play();
+
+            StartCoroutine(Move_Coroutine(offscreenPosition, onscreenPosition, moveDuration));
+        }
+
+        public void ShowLose(ILivingLetterData livingLetterData)
+        {
+            this.transform.position = offscreenPosition;
+            LLPrefab.gameObject.SetActive(true);
+            vfx.gameObject.SetActive(true);
+            if (livingLetterData != null)
+            {
+                LLPrefab.Init(livingLetterData);
+            }
+            LLPrefab.DoAngry();
+            TutorialUI.MarkNo(wrongMarkPosition1, TutorialUI.MarkSize.Huge);
+            TutorialUI.MarkNo(wrongMarkPosition2, TutorialUI.MarkSize.Huge);
 
             StartCoroutine(Move_Coroutine(offscreenPosition, onscreenPosition, moveDuration));
         }

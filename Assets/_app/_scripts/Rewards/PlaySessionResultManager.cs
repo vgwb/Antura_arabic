@@ -24,7 +24,7 @@ namespace EA4S {
                 ModelsManager.MountModel(
                     rewards[i].ItemID,
                     objs[i].transform,
-                    RewardSystemManager.GetMaterialPairFromRewardIdAndColorId(rewards[i].ItemID, rewards[i].ColorId)
+                    rewards[i].GetMaterialPair()
                     );
             }
             // save max progression (internal check if necessary)

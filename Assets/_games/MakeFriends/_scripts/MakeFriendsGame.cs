@@ -19,6 +19,8 @@ namespace EA4S.MakeFriends
         public GameObject sceneCamera;
         public static int numberOfRounds = 6;
         public float uiDelay;
+        public float feedbackDuration;
+        public float loseDuration;
         public Vector3 endCameraPosition;
         public Vector3 endCameraRotation;
         public GameObject letterBalloonPrefab;
@@ -321,10 +323,11 @@ namespace EA4S.MakeFriends
             dropZone.Disappear();
         }
 
-        private void ShowLetterPicker()
+        private void ShowLetterPicker(float delay = -1f)
         {
+            delay = delay == -1f ? uiDelay : delay;
             letterPicker.Block();
-            letterPicker.ShowAndUnblockDelayed(uiDelay);
+            letterPicker.ShowAndUnblockDelayed(delay);
         }
 
         private void HideLetterPicker()
@@ -334,18 +337,21 @@ namespace EA4S.MakeFriends
             letterPicker.Hide();
         }
 
-        public void OnRoundResultPressed()
+        public void NextRound(float delay = 0f)
         {
-            GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.UIButtonClick);
-            Popup.Hide();
+            StartCoroutine(NextRound_Coroutine(delay));
+        }
+
+        private IEnumerator NextRound_Coroutine(float delay)
+        {
+            yield return new WaitForSeconds(delay);
             Play();
         }
 
         public void OnLetterChoiceSelected(LetterChoiceController letterChoice)
         {
-            letterPicker.Block();
-            letterPicker.Hide();
-            letterPicker.ShowAndUnblockDelayed(2f);
+            HideLetterPicker();
+            ShowLetterPicker(feedbackDuration);
 
             if (commonLetters.Exists(x => x.Id == letterChoice.letterData.Id))
             {
@@ -365,7 +371,7 @@ namespace EA4S.MakeFriends
                 }
                 else
                 {
-                    dropZone.ResetLetter(2f);
+                    dropZone.ResetLetter(feedbackDuration);
                 }
                 antura.ReactPositively();
             }
@@ -375,7 +381,7 @@ namespace EA4S.MakeFriends
                 //letterChoice.SpawnBalloon(false);
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterSad);
                 dropZone.AnimateWrong();
-                dropZone.ResetLetter(2f);
+                dropZone.ResetLetter(feedbackDuration);
                 incorrectChoices.Add(letterChoice.letterData);
                 antura.ReactNegatively();
                 if (!isTutorialRound)
@@ -397,76 +403,62 @@ namespace EA4S.MakeFriends
 
         private IEnumerator EndRound_Coroutine(bool win)
         {
-            var winDelay1 = 4f;
+            var winDelay1 = 3.5f;
             var winDelay2 = 1.5f;
             var friendlyExitDelay = leftArea.friendlyExitDuration;
             var loseDelay = 1.5f;
 
             HideLetterPicker();
 
-            if (isTutorialRound) // Ignore score
-            {
-                if (win)
-                {
-                    Debug.Log("Cleared tutorial");
-
-                    isTutorialRound = false;
-                    HideTutorialUI();
-
-                    GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
-                    leftArea.Celebrate();
-                    rightArea.Celebrate();
-                    leftArea.HighFive();
-                    rightArea.HighFive();
-                    winCelebration.Show();
-
-                    yield return new WaitForSeconds(winDelay1);
-                    winCelebration.Hide();
-                    leftArea.MakeFriendlyExit();
-                    rightArea.MakeFriendlyExit();
-
-                    yield return new WaitForSeconds(winDelay2);
-                    HideDropZone();
-
-                    IntroductionState.OnFinishedTutorial();
-                }
-                else
-                {
-                    Debug.Log("This is isn't supposed to happen...");
-                }
-            }
-            else if (win)
+            if (win)
             {
                 Debug.Log("Win");
+
+                if (isTutorialRound)
+                {
+                    Debug.Log("Cleared tutorial");
+                    HideTutorialUI();
+                }
 
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
                 leftArea.Celebrate();
                 rightArea.Celebrate();
-                leftArea.HighFive();
-                rightArea.HighFive();
+                leftArea.HighFive(leftArea.celebrationDuration);
+                rightArea.HighFive(rightArea.celebrationDuration);
                 winCelebration.Show();
-                CurrentScore++;
+                if (!isTutorialRound)
+                {
+                    CurrentScore++;
+                }
 
+                // Exit
                 yield return new WaitForSeconds(winDelay1);
-                // Go to Friends Zone
-                // ...
                 winCelebration.Hide();
                 leftArea.MakeFriendlyExit();
                 rightArea.MakeFriendlyExit();
 
-                yield return new WaitForSeconds(friendlyExitDelay);
-                leftArea.GoToFriendsZone(FriendsZonesManager.instance.currentZone);
-                rightArea.GoToFriendsZone(FriendsZonesManager.instance.currentZone);
-                FriendsZonesManager.instance.IncrementCurrentZone();
+                // Go to Friends Zone
+                if (!isTutorialRound)
+                {
+                    yield return new WaitForSeconds(friendlyExitDelay);
+                    leftArea.GoToFriendsZone(FriendsZonesManager.instance.currentZone);
+                    rightArea.GoToFriendsZone(FriendsZonesManager.instance.currentZone);
+                    FriendsZonesManager.instance.IncrementCurrentZone();
+                }
 
+                // Hide answer Drop Zone
                 yield return new WaitForSeconds(winDelay2);
                 HideDropZone();
-                //WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "comment_welldone", true, null);
-                //Popup.Show();
-                //Popup.SetButtonCallback(OnRoundResultPressed);
-                //Popup.SetTitle(TextID.WELL_DONE);
-                //Popup.SetMark(true, true);
-                Play();
+
+                if (isTutorialRound)
+                {
+                    isTutorialRound = false;
+                    IntroductionState.OnFinishedTutorial();
+                }
+                else
+                {
+                    NextRound();
+                }
             }
             else
             {
@@ -475,11 +467,8 @@ namespace EA4S.MakeFriends
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Lose);
                 yield return new WaitForSeconds(loseDelay);
                 HideDropZone();
-                //WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "game_balloons_commentA", false, null);
-                Popup.Show();
-                Popup.SetButtonCallback(OnRoundResultPressed);
-                //Popup.SetTitle(TextID.GAME_RESULT_RETRY);
-                Popup.SetMark(true, false);
+                TutorialUI.MarkNo(Vector3.zero, TutorialUI.MarkSize.Huge);
+                NextRound(loseDuration);
             }
         }
 
