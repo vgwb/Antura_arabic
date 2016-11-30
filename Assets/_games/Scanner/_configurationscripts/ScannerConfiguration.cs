@@ -99,7 +99,7 @@
 			}
 			else if (Difficulty > 0.25f && Difficulty <= 0.5f)
 			{
-				facingCamera = false;
+				facingCamera = true;
 			}
 			else if (Difficulty > 0.5f && Difficulty <= 0.75f)
 			{
