@@ -12,7 +12,7 @@ using EA4S;
 
 namespace EA4S.DancingDots
 {
-    public enum Diacritic { Sokoun, Fatha, Dameh, Kasrah };
+    public enum DiacriticEnum { None, Sokoun, Fatha, Dameh, Kasrah };
 
     public class DancingDotsGame : MiniGame
     {
@@ -60,6 +60,9 @@ namespace EA4S.DancingDots
 
         [HideInInspector]
         public DancingDotsQuestionsManager questionsManager;
+
+		[HideInInspector]
+		public DiacriticEnum letterDiacritic;
 
 
         DancingDotsTutorial tutorial;
@@ -155,6 +158,9 @@ namespace EA4S.DancingDots
 
             splats = new List<DancingDotsSplat>();
 
+			foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.gameObject.SetActive(false);
+			foreach (DancingDotsDraggableDot dDiacritic in dragableDiacritics) dDiacritic.gameObject.SetActive(false);
+
             //StartRound();
 
             isPlaying = true;
@@ -200,61 +206,36 @@ namespace EA4S.DancingDots
             foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.gameObject.SetActive(false);
             foreach (DancingDotsDraggableDot dDiacritic in dragableDiacritics) dDiacritic.gameObject.SetActive(false);
             foreach (GameObject go in diacritics) go.SetActive(false);
+			isCorrectDiacritic = true;
+
+			foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
+			isCorrectDot = false;
+
 
             switch (level)
             {
                 case Level.Level1: // Dots alone with visual aid
-                                   //				allowedFailedMoves = 2;
-                    isCorrectDot = false;
-                    isCorrectDiacritic = true;
-                    foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
-                    StartCoroutine(RemoveHintDot());
+					StartCoroutine(RemoveHintDot());
                     break;
 
                 case Level.Level2: // Diacritics alone with visual aid
-                    isCorrectDot = true;
-                    isCorrectDiacritic = false;
-                    foreach (DancingDotsDraggableDot dDots in dragableDiacritics) dDots.Reset();
-                    dancingDotsLL.fullTextGO.SetActive(true); // Show dot
-                    StartCoroutine(RandomDiacritic());
-                    StartCoroutine(RemoveHintDiacritic());
+					StartCoroutine(RemoveHintDot());
                     break;
 
                 case Level.Level3: // Dots and diacritics with visual aid
-                    isCorrectDot = false;
-                    isCorrectDiacritic = false;
-                    foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
-                    foreach (DancingDotsDraggableDot dDiacritic in dragableDiacritics) dDiacritic.Reset();
-                    StartCoroutine(RandomDiacritic());
-                    StartCoroutine(RemoveHintDot());
-                    StartCoroutine(RemoveHintDiacritic());
+					StartCoroutine(RemoveHintDot());
                     break;
 
                 case Level.Level4: // Dots alone without visual aid
-                                   //				allowedFailedMoves = 2;
-                    isCorrectDot = false;
-                    isCorrectDiacritic = true;
-                    foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
                     dancingDotsLL.HideText(dancingDotsLL.hintText);
                     break;
 
                 case Level.Level5: // Diacritics alone without visual aid
-                    isCorrectDot = true;
-                    isCorrectDiacritic = false;
-                    foreach (DancingDotsDraggableDot dDots in dragableDiacritics) dDots.Reset();
-                    dancingDotsLL.fullTextGO.SetActive(true); // Show dot
-                    StartCoroutine(RandomDiacritic());
-                    // Level checked in RandomDiacritic instead of activeDiacritic.Hide(); due to frame delay
+					dancingDotsLL.HideText(dancingDotsLL.hintText);
                     break;
 
                 case Level.Level6: // Dots and diacritics without visual aid
-                    isCorrectDot = false;
-                    isCorrectDiacritic = false;
-                    foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
-                    foreach (DancingDotsDraggableDot dDiacritic in dragableDiacritics) dDiacritic.Reset();
-                    StartCoroutine(RandomDiacritic());
-                    dancingDotsLL.HideText(dancingDotsLL.hintText);
-                    // Level checked in RandomDiacritic instead of activeDiacritic.Hide(); due to frame delay
+					dancingDotsLL.HideText(dancingDotsLL.hintText);
                     break;
 
                 default:
@@ -278,7 +259,6 @@ namespace EA4S.DancingDots
 
             Debug.Log("[Dancing Dots] Round: " + numberOfRoundsPlayed);
             numberOfFailedMoves = 0;
-            dancingDotsLL.Reset();
 
             startUI();
 
@@ -315,6 +295,9 @@ namespace EA4S.DancingDots
 
             Debug.Log("[Dancing Dots] pedagogicalLevel: " + pedagogicalLevel + " Game Level: " + currentLevel);
             SetLevel(currentLevel);
+
+			dancingDotsLL.Reset();
+
             tutorial.doTutorial();
 
         }
@@ -349,44 +332,62 @@ namespace EA4S.DancingDots
 
         IEnumerator RemoveHintDiacritic()
         {
-            yield return new WaitForSeconds(hintDiacriticDuration);
-            if (!isCorrectDiacritic)
-            {
-                CreatePoof(activeDiacritic.transform.position, 2f, true);
-                activeDiacritic.Hide();
-            }
+			if (letterDiacritic != DiacriticEnum.None)
+			{
+				yield return new WaitForSeconds(hintDiacriticDuration);
+				if (!isCorrectDiacritic)
+				{
+					CreatePoof(activeDiacritic.transform.position, 2f, true);
+					activeDiacritic.Hide();
+				}
+			}
         }
 
-        private IEnumerator RandomDiacritic()
+        public IEnumerator SetupDiacritic()
         {
+			if (letterDiacritic != DiacriticEnum.None)
+			{
+				foreach (DancingDotsDraggableDot dDots in dragableDiacritics) 
+				{
+					dDots.Reset();
+				}
+				isCorrectDiacritic = false;
+				
+				foreach (GameObject go in diacritics)
+				{
+					go.SetActive(true);
+					if (go.GetComponent<DancingDotsDiacriticPosition>().diacritic == letterDiacritic)
+					{
+						activeDiacritic = go.GetComponent<DancingDotsDiacriticPosition>();
+					}
+					go.SetActive(false);
+					go.GetComponent<DancingDotsDiacriticPosition>().Hide();
+				}
+
+				Debug.Log(activeDiacritic.diacritic);
 
 
-            foreach (GameObject go in diacritics)
-            {
-                go.SetActive(false);
-                go.GetComponent<DancingDotsDiacriticPosition>().Hide();
-            }
+				//            int random = UnityEngine.Random.Range(0, diacritics.Length);
+				//            activeDiacritic = diacritics[random].GetComponent<DancingDotsDiacriticPosition>();
 
-            int random = UnityEngine.Random.Range(0, diacritics.Length);
+				activeDiacritic.gameObject.SetActive(true);
 
-            activeDiacritic = diacritics[random].GetComponent<DancingDotsDiacriticPosition>();
-            activeDiacritic.gameObject.SetActive(true);
+				foreach (DancingDotsDraggableDot dd in dragableDiacritics)
+				{
+					dd.isNeeded = activeDiacritic.diacritic == dd.diacritic;
+				}
 
-            foreach (DancingDotsDraggableDot dd in dragableDiacritics)
-            {
-                dd.isNeeded = activeDiacritic.diacritic == dd.diacritic;
-            }
+				// wait for end of frame to get correct values for meshes
+				yield return new WaitForEndOfFrame();
+				activeDiacritic.CheckPosition();
 
-            // wait for end of frame to get correct values for meshes
-            yield return new WaitForEndOfFrame();
-            activeDiacritic.CheckPosition();
-
-            // Level checked in RandomDiacritic instead of SetLevel due to frame delay
-            if (currentLevel != Level.Level5 && currentLevel != Level.Level6)
-            {
-                activeDiacritic.Show();
-            }
-
+				// Level checked in SetDiacritic instead of SetLevel due to frame delay
+				if (currentLevel != Level.Level5 && currentLevel != Level.Level6)
+				{
+					activeDiacritic.Show();
+					StartCoroutine(RemoveHintDiacritic());
+				}
+			}
         }
 			
         IEnumerator CorrectMove(bool roundWon)

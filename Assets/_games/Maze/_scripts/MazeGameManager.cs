@@ -17,9 +17,9 @@ namespace EA4S.Maze
 		public static MazeGameManager instance;
 
         public GameObject characterPrefab;
-        
+        public GameObject arrowTargetPrefab;
 
-		public MazeCharacter currentCharacter;
+        public MazeCharacter currentCharacter;
 		public HandTutorial currentTutorial;
 
 		public List<GameObject> prefabs;
@@ -82,7 +82,7 @@ namespace EA4S.Maze
 
             Context.GetAudioManager().PlayMusic(Music.Theme3);
 
-            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Maze_Title);
+            
 
 
             fleePositions = new List<Vector3>();
@@ -111,10 +111,13 @@ namespace EA4S.Maze
 
 			gameTime = maxGameTime / (1 + MazeConfiguration.Instance.Difficulty);
 
-            
 
-			//init first letter
-			initCurrentLetter();
+
+            //init first letter
+            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Maze_Title,()=> {
+                initCurrentLetter();
+            });
+            
 
 		}
 
@@ -140,7 +143,7 @@ namespace EA4S.Maze
 			//line.SetColors (Color.green, Color.green);
 			//line.useWorldSpace = true;    
 
-			line.material = new Material(Shader.Find("Unlit/TransparentColor"));
+			line.material = new Material(Shader.Find("Antura/Transparent"));
 			line.material.color = new Color (0.5f, 0.5f, 0.5f, 0.5f);
 
 			lines.Add (line);
@@ -219,30 +222,29 @@ namespace EA4S.Maze
                     correctLetters++;
                     currentLetterIndex++;
                 }
+                //show message:
+                MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
                 
-
-                StartCoroutine(waitAndPerformCallback(2, () =>
-                {
-                    TutorialUI.MarkYes(currentCharacter.transform.position + new Vector3(0,2,0), TutorialUI.MarkSize.Big);
-                },
-                () => {
+                TutorialUI.MarkYes(currentCharacter.transform.position + new Vector3(2, 2, 2), TutorialUI.MarkSize.Huge);
+                currentCharacter.celebrate(() => {
                     if (currentLetterIndex == 6)
                     { //round is 6
                         endGame();
                         return;
                     }
                     else {
-                        if(isTutorialMode)
+                        if (isTutorialMode)
                         {
                             isTutorialMode = false;
                             initUI();
                         }
-                        
+
 
                         roundNumber.text = "#" + (currentLetterIndex + 1);
                         restartCurrentLetter(won);
                     }
-                }));
+                });
+              
 
                 //print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);
                 
@@ -260,7 +262,17 @@ namespace EA4S.Maze
             if (isTutorialMode)
             {
                 hideCracks();
-                removeLines();
+
+                //remove last line
+                if(lines.Count > 0)
+                {
+                    lines[lines.Count - 1].SetVertexCount(0);
+                    lines.RemoveAt(lines.Count - 1);
+                }
+                
+                pointsList.RemoveRange(0, pointsList.Count);
+
+                //removeLines();
 
                 TutorialUI.Clear(false);
                 addLine();
@@ -277,8 +289,9 @@ namespace EA4S.Maze
 				return;
 			} else {
 				roundNumber.text = "#" + (currentLetterIndex + 1);
-                
-				restartCurrentLetter ();
+
+                MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
+                restartCurrentLetter ();
 			}
 			
 		}
@@ -309,14 +322,7 @@ namespace EA4S.Maze
                 MinigamesUI.Starbar.GotoStar(numberOfStars-1);
             }
 
-            //show message:
-            if (won)
-                MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
-            else
-            {
-                MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
-
-            }
+            
 				
 
 			currentPrefab.SendMessage("moveOut",won);
@@ -489,6 +495,12 @@ namespace EA4S.Maze
 				lines[lines.Count-1].SetPosition (pointsList.Count - 1, (Vector3)pointsList [pointsList.Count - 1]);
 			}
 		}
+
+        public void fixLine()
+        {
+            lines[lines.Count - 1].material.color = new Color(1,0.54f,0);
+        }
+
 		public void DrawLine(Vector3 start, Vector3 end, Color color)
 		{
 			/*

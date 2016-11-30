@@ -1,5 +1,11 @@
 ﻿namespace EA4S.MissingLetter
 {
+    public enum MissingLetterVariation : int
+    {
+        MissingLetter = 1,
+        MissingWord = 2
+    }
+
     public class MissingLetterConfiguration : IGameConfiguration
     {
         // Game configuration
@@ -7,6 +13,10 @@
         public IQuestionProvider Questions { get; set; }
 
         public float Difficulty { get; set; }
+
+        #region Game configurations
+        public MissingLetterVariation Variation { get; set; }
+        #endregion
 
         /////////////////
         // Singleton Pattern
@@ -27,9 +37,10 @@
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new SampleQuestionProvider();
-
             Context = new SampleGameContext();
+
             Difficulty = 0.5f;
+            Variation = MissingLetterVariation.MissingLetter;
         }
 
         public IQuestionBuilder SetupBuilder() {
@@ -40,8 +51,18 @@
             int nWrong = 5;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
-            builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
 
+            switch (Variation)
+            {
+                case MissingLetterVariation.MissingLetter:
+                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+                    break;
+
+                case MissingLetterVariation.MissingWord:
+                    builderParams.phraseFilters.requireWords = true;
+                    builder = new WordsInPhraseQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+                    break;
+            }
             return builder;
         }
 

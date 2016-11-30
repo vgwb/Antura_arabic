@@ -27,7 +27,8 @@ namespace EA4S {
 
 
         public static Material LoadTextureMaterial(string _materialID, string _variationId) {
-            Material m = Resources.Load<Material>(string.Format("{0}{1}_{2}", TEXTURES_MATERIALS, _materialID, _variationId));
+            string materialName = string.Format("{0}{1}_{2}", TEXTURES_MATERIALS, _materialID, _variationId);
+            Material m = Resources.Load<Material>(materialName);
             return m;
         }
 

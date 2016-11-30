@@ -17,6 +17,7 @@ namespace EA4S.Balloons
         [Header("References")]
         public WordPromptController wordPrompt;
         public WordFlexibleContainer wordFlexibleContainer;
+        public Animator wordFlexibleContainerAnimator;
         public GameObject floatingLetterPrefab;
         public Transform[] floatingLetterLocations;
         public AnimationClip balloonPopAnimation;
@@ -26,7 +27,6 @@ namespace EA4S.Balloons
         public TextMeshProUGUI roundNumberText;
         public TimerManager timer;
         public Animator countdownAnimator;
-        public StarFlowers starFlowers;
         public GameObject FxParticlesPoof;
         public WinCelebrationController winCelebration;
 
@@ -317,9 +317,11 @@ namespace EA4S.Balloons
 
         private IEnumerator ShowTutorialUI_Coroutine()
         {
+            yield return new WaitForSeconds(1f);
+
             while (isTutorialRound)
             {
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(1f);
 
                 if (ActiveGameVariation == BalloonsVariation.Counting)
                 {
@@ -336,9 +338,16 @@ namespace EA4S.Balloons
                 {
                     foreach (var floatingLetter in floatingLetters)
                     {
-                        if (!floatingLetter.Letter.isRequired)
+                        if (!floatingLetter.Letter.isRequired && floatingLetter.enabled)
                         {
-                            Vector3 position = floatingLetter.transform.position + 5.5f * Vector3.up + 5.5f * Vector3.back;
+                            foreach (var balloon in floatingLetter.ActiveVariation.balloons)
+                            {
+                                if (balloon.balloonCollider.enabled)
+                                {
+                                    TutorialUI.Click(balloon.transform.position + 3f * Vector3.up + 2f * Vector3.back);
+                                }
+                            }
+                            //Vector3 position = floatingLetter.transform.position + 5.5f * Vector3.up + 1f * Vector3.back;
 //                        for (int i = 0; i < floatingLetter.Balloons.Length; i++)
 //                        {
 //                            if (!floatingLetter.Balloons[i].isPopped)
@@ -347,7 +356,7 @@ namespace EA4S.Balloons
 //                                position = floatingLetter.Balloons[i].transform.position + 5.5f * Vector3.back;
 //                            }
 //                        }
-                            TutorialUI.Click(floatingLetter.transform.position + 5.5f * Vector3.up + 5.5f * Vector3.back);
+                            //TutorialUI.Click(position);
                         }
                     }
                 }
@@ -722,18 +731,18 @@ namespace EA4S.Balloons
             }
         }
 
-        private void CreateFloatingLetters_Words(int numberOfExtraWords)
+        private void CreateFloatingLetters_Words(int numberOfExtraImages)
         {
-            numberOfExtraWords = numberOfExtraWords > 0 ? numberOfExtraWords : 1;
-            var numberOfWords = Mathf.Clamp(correctAnswers.Count() + numberOfExtraWords, 0, floatingLetterLocations.Length);
+            numberOfExtraImages = numberOfExtraImages > 0 ? numberOfExtraImages : 1;
+            var numberOfImages = Mathf.Clamp(correctAnswers.Count() + numberOfExtraImages, 0, floatingLetterLocations.Length);
             var correctWord = correctAnswers.Cast<LL_WordData>().ToList()[0];
             var wrongWords = wrongAnswers.Cast<LL_WordData>().GetEnumerator();
 
             // Determine index of required word
-            int requiredWordIndex = Random.Range(0, numberOfWords);
+            int requiredWordIndex = Random.Range(0, numberOfImages);
 
             // Create floating letters
-            for (int i = 0; i < numberOfWords; i++)
+            for (int i = 0; i < numberOfImages; i++)
             {
                 var instance = Instantiate(floatingLetterPrefab);
                 instance.SetActive(true);
@@ -779,7 +788,7 @@ namespace EA4S.Balloons
                     balloons[j].SetColor(balloonColors[randomColorIndex]);
                 }
 
-                // Set words
+                // Set images
                 if (isRequiredWord)
                 {
                     // Set correct word
@@ -792,12 +801,13 @@ namespace EA4S.Balloons
                     }
                     letter.isRequired = true;
                     letter.associatedPromptIndex = -1;
-                    letter.Init(word);
+                    //letter.letterData.DataType = LivingLetterDataType.Image;
+                    letter.Init(new LL_ImageData(word.Id));
                     Debug.Log("Create word balloon with: " + letter.LLPrefab.Data.TextForLivingLetter);
                 }
                 else
                 {
-                    // Set a random letter that is not a required letter
+                    // Set a random image
                     LL_WordData randomWord;
                     bool invalid = false;
                     do
@@ -810,7 +820,14 @@ namespace EA4S.Balloons
                     {
                         Debug.LogError("Error getting valid random word (wrong answer) for balloon!");
                     }
-                    letter.Init(randomWord);
+                    letter.Init(new LL_ImageData(randomWord.Id));
+
+                    if (string.IsNullOrEmpty(letter.letterData.DrawingCharForLivingLetter))
+                    {
+                        Debug.Log("EMPTY DRAWING!!!");
+                        letter.Init(new LL_ImageData("dog"));
+                    }
+
                     Debug.Log("Create random balloon with: " + letter.LLPrefab.Data.TextForLivingLetter);
                 }
 
@@ -1076,6 +1093,12 @@ namespace EA4S.Balloons
             {
                 wordPrompt.letterPrompts[promptIndex].State = LetterPromptController.PromptState.WRONG;
             }
+            if (wordFlexibleContainer.enabled == true)
+            {
+                wordFlexibleContainerAnimator.SetBool("Idle", false);
+                wordFlexibleContainerAnimator.SetBool("Correct", false);
+                wordFlexibleContainerAnimator.SetBool("Wrong", true);
+            }
                 
             if (remainingLives <= 0)
             {
@@ -1090,6 +1113,10 @@ namespace EA4S.Balloons
             if (promptIndex > -1)
             {
                 wordPrompt.letterPrompts[promptIndex].animator.SetTrigger("Flash");
+            }
+            if (wordFlexibleContainer.enabled == true)
+            {
+                wordFlexibleContainerAnimator.SetTrigger("Flash");
             }
         }
 
@@ -1203,6 +1230,9 @@ namespace EA4S.Balloons
             for (int i = 0; i < wordPrompt.letterPrompts.Length; i++)
             {
                 wordPrompt.letterPrompts[i].State = LetterPromptController.PromptState.CORRECT;
+                wordFlexibleContainerAnimator.SetBool("Idle", false);
+                wordFlexibleContainerAnimator.SetBool("Correct", true);
+                wordFlexibleContainerAnimator.SetBool("Wrong", false);
             }
         }
 

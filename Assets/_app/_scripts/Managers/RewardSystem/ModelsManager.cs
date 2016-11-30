@@ -20,7 +20,7 @@ namespace EA4S {
             return returnObject;
         }
 
-        public static GameObject SwitchMaterial(GameObject _gameObject, MaterialPair _materialPair) {
+        public static MaterialPair SwitchMaterial(GameObject _gameObject, MaterialPair _materialPair) {
             foreach (var color in _gameObject.GetComponentsInChildren<MeshRenderer>()) {
                 if (color.name == "color_1") {
                     color.materials = new Material[] { _materialPair.Material1 };
@@ -28,7 +28,7 @@ namespace EA4S {
                     color.materials = new Material[] { _materialPair.Material2 };
                 }
             }
-            return _gameObject;
+            return _materialPair;
         }
 
         public static void CleanTranformChildren(Transform _parent) {
