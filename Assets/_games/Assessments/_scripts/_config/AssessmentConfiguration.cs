@@ -128,6 +128,7 @@ namespace EA4S.Assessment
             Answers = 2;
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wordFilters.excludeArticles = false;
 
             return new WordsByArticleQuestionBuilder(
                 Answers * Rounds * 3,
