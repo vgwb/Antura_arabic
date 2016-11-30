@@ -100,15 +100,50 @@ namespace EA4S.Assessment
                 case AssessmentCode.SunMoonWord:
                     return Setup_SunMoonWords_Builder();
 
+                case AssessmentCode.SunMoonLetter:
+                    return Setup_SunMoonLetter_Builder();
+
+                case AssessmentCode.QuestionAndReply:
+                    return Setup_QuestionAnReply_Builder();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
         }
 
+        private IQuestionBuilder Setup_QuestionAnReply_Builder()
+        {
+            SimultaneosQuestions = 1;
+            Rounds = 3;
+            int nCorrect = 1;
+            int nWrongs = snag.Increase( 2, 4);
+
+            return new  PhraseQuestionsQuestionBuilder(
+                        SimultaneosQuestions * Rounds, // totale questions
+                        nCorrect,
+                        nWrongs     // wrong additional answers
+                );
+        }
+
+        private IQuestionBuilder Setup_SunMoonLetter_Builder()
+        {
+            SimultaneosQuestions = 2;
+            Rounds = 3;
+            Answers = 2;
+
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+
+            return new LettersBySunMoonQuestionBuilder( 
+                        SimultaneosQuestions * Rounds * 2,
+                        builderParams
+            );
+        }
+
         private IQuestionBuilder Setup_WordsWithLetter_Builder()
         {
             SimultaneosQuestions = 2;
-            snag.SetStartingFrom(0.5f);
+            snag.SetStartingFrom( 0.5f);
             Rounds = 3;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
@@ -191,9 +226,25 @@ namespace EA4S.Assessment
                 case AssessmentCode.SunMoonWord:
                     return Setup_SunMoonWords_LearnRules();
 
+                case AssessmentCode.SunMoonLetter:
+                    return Setup_SunMoonLetter_LearnRules();
+
+                case AssessmentCode.QuestionAndReply:
+                    return Setup_QuestionAnReply_LearnRules();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
+        }
+
+        private MiniGameLearnRules Setup_QuestionAnReply_LearnRules()
+        {
+            return new MiniGameLearnRules();
+        }
+
+        private MiniGameLearnRules Setup_SunMoonLetter_LearnRules()
+        {
+            return new MiniGameLearnRules();
         }
 
         private MiniGameLearnRules Setup_SunMoonWords_LearnRules()

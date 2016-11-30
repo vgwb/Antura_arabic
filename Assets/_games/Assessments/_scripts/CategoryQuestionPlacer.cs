@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -33,9 +32,6 @@ namespace EA4S.Assessment
             float blankSpace = gap - occupiedSpace;
 
             float spaceIncrement = blankSpace / (questionsNumber + 1);
-
-            //if (blankSpace <= (bounds.HalfLetterSize() / 2f))
-            //    throw new InvalidOperationException("Need a line break becase 1 line is not enough for all");
 
             var flow = AssessmentConfiguration.Instance.LocaleTextFlow;
             float sign;

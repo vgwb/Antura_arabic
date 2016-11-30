@@ -43,12 +43,7 @@ namespace EA4S.Assessment
             category3ForThisRound = 0;
 
             int picksThisRound = numberOfMaxAnswers;
-            Debug.Log("MAX ANSWERS (per round):" + picksThisRound);
             int totalAnswers = answersBuckets[0].Count + answersBuckets[1].Count + answersBuckets[2].Count;
-            Debug.Log("ANSWERS (total):" + totalAnswers);
-            Debug.Log("Bucket1: " +answersBuckets[0].Count);
-            Debug.Log("Bucket2: " +answersBuckets[1].Count);
-            Debug.Log("Bucket3: " +answersBuckets[2].Count);
 
             while ( picksThisRound > 0 && totalAnswers>0)
             {
@@ -62,7 +57,6 @@ namespace EA4S.Assessment
                     if ( answersBuckets[ temp].Count > 0)
                     {
                         pickFromBucketN = temp;
-                        Debug.Log("pickedFromBucket:"+temp);
                         break;
                     }
 
@@ -76,7 +70,6 @@ namespace EA4S.Assessment
                         if (answersBuckets[i].Count > 0)
                         {
                             pickFromBucketN = i;
-                            Debug.Log("pickedFromBucket:" + i);
                             break;
                         }
                     }
@@ -97,10 +90,6 @@ namespace EA4S.Assessment
 
             }
 
-            Debug.Log( "picked from category1: " + category1ForThisRound);
-            Debug.Log( "picked from category2: " + category2ForThisRound);
-            Debug.Log( "picked from category3: " + category3ForThisRound);
-
             if ( picksThisRound == numberOfMaxAnswers)
                 throw new InvalidOperationException( "buckets empty");
         }
@@ -114,8 +103,11 @@ namespace EA4S.Assessment
                 var pack = provider.GetNextQuestion();
                 foreach (var answ in pack.GetCorrectAnswers())
                     for (int j = 0; j < numberOfCategories; j++)
-                        if (categoryProvider.Category(j).Equals( answ))
-                            answersBuckets[j].Add( pack.GetQuestion());
+                        if (categoryProvider.Category(j).Equals(answ))
+                        {
+                            Debug.Log("##ADDED");
+                            answersBuckets[j].Add(pack.GetQuestion());
+                        }
             }
         }
 
@@ -225,7 +217,6 @@ namespace EA4S.Assessment
                 correctCount++;
                 answers.Add( correctAnsw);
                 totalAnswers.Add( correctAnsw);
-                Debug.Log("Added answer");
             }
 
             partialAnswers = answers.ToArray();
@@ -255,7 +246,5 @@ namespace EA4S.Assessment
             placeholder.localScale = Vector3.zero;
             question.TrackPlaceholder( placeholder.gameObject);
         }
-
-        
     }
 }
