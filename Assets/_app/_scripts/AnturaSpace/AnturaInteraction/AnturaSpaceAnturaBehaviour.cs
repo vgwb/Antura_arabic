@@ -14,12 +14,24 @@ namespace EA4S
         #region API
         public void AddBone(GameObject Bone)
         {
-            m_aoBones.Add(Bone);
-            m_bMovingToDestination = true;
+            float delay = 0f;
+            if(m_oAnturaCtrl.State != AnturaAnimationStates.walking)
+            {
+                delay = 1.0f;
+                m_oAnturaCtrl.State = AnturaAnimationStates.idle;
+            }
+            StartCoroutine(EA4S.MissingLetter.Utils.LaunchDelay<GameObject>(delay, InternalAddBone, Bone));
         }
         #endregion
 
         #region INTERNAL_FUNCTION
+
+        private void InternalAddBone(GameObject Bone)
+        {
+            m_aoBones.Add(Bone);
+            m_bMovingToDestination = true;
+        }
+
         void Start()
         {
             m_oAnturaCtrl = GetComponent<AnturaAnimationController>();
@@ -77,9 +89,13 @@ namespace EA4S
                     m_fTimer -= Time.deltaTime;
                     if (m_fTimer < 0)
                     {
-                        m_fTimer = 2;
+                        m_fTimer = 2.0f;
                         ResetPosition();
                     }
+                }
+                else
+                {
+                    m_fTimer = 2.0f;
                 }
             }
         }
