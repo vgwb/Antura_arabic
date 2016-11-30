@@ -265,7 +265,13 @@ namespace EA4S
         {
             Fabric.AudioComponent audioComponent = null;
 
-            if (eventToComponent.TryGetValue(eventName, out audioComponent)) {
+            if (eventToComponent.TryGetValue(eventName, out audioComponent))
+            {
+                var random = audioComponent as RandomAudioClipComponent;
+
+                if (random != null)
+                    return random._audioClips.GetRandom();
+
                 return audioComponent.AudioClip;
             }
 
