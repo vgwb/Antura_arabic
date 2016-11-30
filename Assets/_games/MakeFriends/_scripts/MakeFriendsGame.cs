@@ -20,6 +20,7 @@ namespace EA4S.MakeFriends
         public static int numberOfRounds = 6;
         public float uiDelay;
         public float feedbackDuration;
+        public float loseDuration;
         public Vector3 endCameraPosition;
         public Vector3 endCameraRotation;
         public GameObject letterBalloonPrefab;
@@ -336,10 +337,14 @@ namespace EA4S.MakeFriends
             letterPicker.Hide();
         }
 
-        public void OnRoundResultPressed()
+        public void NextRound(float delay = 0f)
         {
-            GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.UIButtonClick);
-            Popup.Hide();
+            StartCoroutine(NextRound_Coroutine(delay));
+        }
+
+        private IEnumerator NextRound_Coroutine(float delay)
+        {
+            yield return new WaitForSeconds(delay);
             Play();
         }
 
@@ -452,7 +457,7 @@ namespace EA4S.MakeFriends
                 }
                 else
                 {
-                    Play();
+                    NextRound();
                 }
             }
             else
@@ -462,11 +467,8 @@ namespace EA4S.MakeFriends
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Lose);
                 yield return new WaitForSeconds(loseDelay);
                 HideDropZone();
-                //WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "game_balloons_commentA", false, null);
-                Popup.Show();
-                Popup.SetButtonCallback(OnRoundResultPressed);
-                //Popup.SetTitle(TextID.GAME_RESULT_RETRY);
-                Popup.SetMark(true, false);
+                TutorialUI.MarkNo(Vector3.zero, TutorialUI.MarkSize.Huge);
+                NextRound(loseDuration);
             }
         }
 
