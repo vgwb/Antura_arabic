@@ -78,8 +78,8 @@ namespace EA4S.Scanner
             foreach (ScannerSuitcase sc in game.suitcases)
                 sc.onCorrectDrop += resetTut;
 
-            foreach (ScannerLivingLetter ll in game.scannerLL)
-                ll.facingCamera = true;
+            //foreach (ScannerLivingLetter ll in game.scannerLL)
+              //  ll.facingCamera = true;
         }
 
 

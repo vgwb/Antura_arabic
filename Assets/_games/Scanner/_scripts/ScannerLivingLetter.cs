@@ -47,9 +47,10 @@ namespace EA4S.Scanner
             startingRotation = letterObjectView.transform.rotation;
         }
 
-        public void Reset()
+        public void Reset(bool stopCO = true)
         {
-            StopAllCoroutines();
+            if(stopCO)
+                StopAllCoroutines();
             rainbowJet.SetActive(false);
 
 			if (ScannerConfiguration.Instance.gameActive)
