@@ -223,6 +223,13 @@ namespace EA4S.ThrowBalls
 
         public IEnumerator StartNewRound_LettersInWord()
         {
+            IQuestionPack newQuestionPack = ThrowBallsConfiguration.Instance.Questions.GetNextQuestion();
+
+            List<ILivingLetterData> letterData = newQuestionPack.GetCorrectAnswers().ToList();
+
+            numLettersRemaining = letterData.Count;
+            numLetters = numLettersRemaining;
+
             ResetScene();
 
             if (roundNumber == 1)
@@ -232,14 +239,7 @@ namespace EA4S.ThrowBalls
             }
 
             UIController.instance.Enable();
-
-            IQuestionPack newQuestionPack = ThrowBallsConfiguration.Instance.Questions.GetNextQuestion();
-
-            List<ILivingLetterData> letterData = newQuestionPack.GetCorrectAnswers().ToList();
-
-            numLettersRemaining = letterData.Count;
-            numLetters = numLettersRemaining;
-
+            
             ILivingLetterData firstLetter = letterData[0];
             letterData.RemoveAt(0);
             List<ILivingLetterData> remainingLetters = letterData;
