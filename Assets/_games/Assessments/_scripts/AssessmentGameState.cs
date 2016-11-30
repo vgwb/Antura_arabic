@@ -41,6 +41,9 @@ namespace EA4S.Assessment
 
                 case AssessmentCode.WordArticle:
                     return AssessmentFactory.CreateWordArticleAssessment();
+
+                case AssessmentCode.MatchWordToImage:
+                    return AssessmentFactory.CreateMatchWordToImageAssessment();
             }
 
             return null;

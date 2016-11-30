@@ -44,6 +44,7 @@ namespace EA4S.Assessment
 
         public bool PronunceQuestionWhenClicked { get; set; }
         public bool PronunceAnswerWhenClicked { get; set; }
+        public bool ShowQuestionAsImage { get; set; }
 
 
         public AssessmentCode assessmentType = AssessmentCode.Unsetted;
@@ -115,10 +116,33 @@ namespace EA4S.Assessment
                 case AssessmentCode.WordArticle:
                     return Setup_WordArticle_Builder();
 
+                case AssessmentCode.MatchWordToImage:
+                    return Setup_MatchWordToImage_Builder();
 
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
+        }
+
+        private IQuestionBuilder Setup_MatchWordToImage_Builder()
+        {
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            builderParams.useJourneyForWrong = false;
+            builderParams.wordFilters.requireDrawings = true;
+            SimultaneosQuestions = 1;
+            Rounds = 3;
+            int nCorrect = 1;
+            int nWrong = snag.Increase( 2, 4);
+
+            return new RandomWordsQuestionBuilder(
+                SimultaneosQuestions * Rounds,
+                nCorrect,
+                nWrong,
+                firstCorrectIsQuestion: true,
+                parameters: builderParams);
         }
 
         private IQuestionBuilder Setup_WordArticle_Builder()
@@ -298,9 +322,17 @@ namespace EA4S.Assessment
                 case AssessmentCode.WordArticle:
                     return Setup_WordArticle_LearnRules();
 
+                case AssessmentCode.MatchWordToImage:
+                    return Setup_MatchWordToImage_LearnRules();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
+        }
+
+        private MiniGameLearnRules Setup_MatchWordToImage_LearnRules()
+        {
+            throw new NotImplementedException();
         }
 
         private MiniGameLearnRules Setup_WordArticle_LearnRules()

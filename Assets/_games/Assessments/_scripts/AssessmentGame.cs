@@ -2,13 +2,9 @@ using UnityEngine;
 
 namespace EA4S.Assessment
 {
-    /// <summary>
-    /// This game do not have any localization peculiarity. Touch the prounounced
-    /// letter to make a point, more points => more reward
-    /// </summary>
     public class AssessmentGame : MiniGame
     {
-        [Header("Configuration")] //necessary since there are other public member variables in "MiniGame"
+        [Header("Configuration")]
         public AssessmentCode assessmentCode;
 
         public AssessmentIntroState IntroState { get; private set; }
