@@ -174,6 +174,11 @@ namespace EA4S {
                     CurrentReward = new RewardPack() { ItemID = _rewardItemId, Type = RewardTypes.reward };
                     return returnList;
                 case RewardTypes.texture:
+                    foreach (RewardColor color in config.RewardsTileColor) {
+                        RewardColorItem rci = new RewardColorItem(color);
+                        rci.Color2RGB = rci.Color1RGB;
+                        returnList.Add(rci);
+                    }
                     break;
                 case RewardTypes.decal:
                     break;
@@ -191,9 +196,23 @@ namespace EA4S {
         /// <param name="_rewardColorItemId">The reward color item identifier.</param>
         /// <param name="_rewardType">Type of the reward.</param>
         public static void SelectRewardColorItem(string _rewardColorItemId, RewardTypes _rewardType) {
-            CurrentReward.ColorId = _rewardColorItemId;
-            if (OnRewardChanged != null)
-                OnRewardChanged(CurrentReward);
+            switch (_rewardType) {
+                case RewardTypes.reward:
+                    CurrentReward.ColorId = _rewardColorItemId;
+                    if (OnRewardChanged != null)
+                        OnRewardChanged(CurrentReward);
+                    break;
+                case RewardTypes.texture:
+                    CurrentReward.ColorId = _rewardColorItemId;
+                    if (OnRewardChanged != null)
+                        OnRewardChanged(CurrentReward);
+                    break;
+                case RewardTypes.decal:
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         /// <summary>

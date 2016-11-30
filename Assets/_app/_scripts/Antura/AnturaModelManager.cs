@@ -17,6 +17,9 @@ namespace EA4S {
         public Transform Dog_R_ear04;
         public Transform Dog_L_ear04;
 
+        [Header("Materials Owner")]
+        public SkinnedMeshRenderer SkinnedMesh;
+
         /// <summary>
         /// Pointer to transform used as parent for add reward model (and remove if already mounted yet).
         /// </summary>
@@ -72,6 +75,7 @@ namespace EA4S {
                 case RewardTypes.reward:
                     return LoadRewardOnAntura(_rewardPack);
                 case RewardTypes.texture:
+                    SkinnedMesh.sharedMaterials[0] = MaterialManager.LoadTextureMaterial(_rewardPack.ItemID, _rewardPack.ColorId);
                     break;
                 case RewardTypes.decal:
                     break;
@@ -210,7 +214,19 @@ namespace EA4S {
         }
 
         private void RewardSystemManager_OnRewardItemChanged(RewardPack _rewardPack) {
-            LoadRewardOnAntura(_rewardPack);
+            switch (_rewardPack.Type) {
+                case RewardTypes.reward:
+                    LoadRewardOnAntura(_rewardPack);
+                    break;
+                case RewardTypes.texture:
+
+                    break;
+                case RewardTypes.decal:
+                    break;
+                default:
+                    break;
+            }
+            
         }
 
         void OnDisable() {
