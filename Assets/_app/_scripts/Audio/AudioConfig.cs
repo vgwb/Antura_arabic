@@ -15,15 +15,18 @@
         Theme10 = 10
     }
 
-    // last is 61
+    // last is 68
     public enum Sfx
     {
         AlarmClock = 13,
         BallHit = 31,
         BalloonPop = 2,
+        Blip = 62,
         BushRustlingIn = 32,
         BushRustlingOut = 33,
         CameraMovement = 12,
+        CameraMovementShort = 63,
+        ChoiceSwipe = 64,
         CrateLandOnground = 34,
         DangerClock = 3,
         DangerClockLong = 4,
@@ -61,9 +64,11 @@
         PipeBlowIn = 35,
         PipeBlowOut = 36,
         Poof = 37,
+        RocketMove = 66,
         ScaleDown = 43,
         ScaleUp = 44,
         ScreenHit = 38,
+        ScreenGlassHit = 65,
         Splat = 30,
         StampOK = 29,
         StarFlower = 28,
@@ -71,6 +76,8 @@
         ThrowObj = 39,
         TickAndWin = 45,
         Transition = 27,
+        TrapdoorClose = 67,
+        TrapdoorOpen = 68,
         UIButtonClick = 9,
         UIPauseIn = 10,
         UIPauseOut = 11,
