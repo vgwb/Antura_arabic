@@ -454,7 +454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000012147429376
 GameObject:
   m_ObjectHideFlags: 1
@@ -2380,7 +2380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livingLetter: {fileID: 1000011623591802}
   slideSpeed: 5
-  flightSpeed: 15
+  flightSpeed: 30
   facingCamera: 1
   status: 0
   fallOffPoint: {fileID: 4000012762341688}
@@ -2759,7 +2759,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012696403056}
   serializedVersion: 4
-  lengthInSec: 5
+  lengthInSec: 2
   startDelay:
     scalar: 0
     maxCurve:
@@ -2796,7 +2796,7 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
@@ -2807,7 +2807,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 2.41
+      scalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2842,7 +2842,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     startSpeed:
-      scalar: 1.89
+      scalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2958,7 +2958,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 0.47058824}
       minMaxState: 0
     startSize:
-      scalar: 1.46
+      scalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:

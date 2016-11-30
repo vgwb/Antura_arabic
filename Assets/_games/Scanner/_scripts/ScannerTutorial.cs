@@ -56,7 +56,7 @@ namespace EA4S.Scanner
             if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
                 startDelay = 8;
             else if (ScannerConfiguration.Instance.nCorrect == 3)
-                startDelay = 27;
+                startDelay = 25;
             else if (ScannerConfiguration.Instance.nCorrect == 4)
                 startDelay = 24;
             else
@@ -64,7 +64,7 @@ namespace EA4S.Scanner
 
             StartCoroutine(coDoTutorial());
             originalLLOnBeltSpeed = ScannerConfiguration.Instance.beltSpeed;
-            if (ScannerConfiguration.Instance.Difficulty > 0.5f)
+            if (ScannerConfiguration.Instance.Difficulty >= 0.5f)
             {
                 ScannerConfiguration.Instance.beltSpeed = 1;
             }
@@ -77,6 +77,9 @@ namespace EA4S.Scanner
 
             foreach (ScannerSuitcase sc in game.suitcases)
                 sc.onCorrectDrop += resetTut;
+
+            foreach (ScannerLivingLetter ll in game.scannerLL)
+                ll.facingCamera = true;
         }
 
 

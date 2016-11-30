@@ -83,9 +83,8 @@ namespace EA4S
                 #endregion*/
                 // ..and set first contact done.
                 DesactivateUI();
-                //KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro_AnturaSpace);
+                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro,true,true, AnturaText);
                 AppManager.I.Player.FirstContactPassed();
-                anturaButton.SetActive(true);
                 Debug.Log("First Contact Step1 finished! Go to Antura Space!");
             }
             else if (AppManager.I.Player.IsFirstContact(2))
@@ -94,8 +93,7 @@ namespace EA4S
 
                 // ..and set first contact done.             
                 AppManager.I.Player.FirstContactPassed(2);
-               // KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro);
-                ActivateUI();
+                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_First,true,true, ActivateUI);
                 Debug.Log("First Contact Step2 finished! Good Luck!");
             }
 
@@ -109,7 +107,14 @@ namespace EA4S
         #endregion
 
         #endregion
-
+        void AnturaText()
+        {
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro_AnturaSpace,true,true, ActivateAnturaButton);
+        }
+        void ActivateAnturaButton()
+        {
+            anturaButton.SetActive(true);
+        }
 
         public void StageLeft()
         {         
