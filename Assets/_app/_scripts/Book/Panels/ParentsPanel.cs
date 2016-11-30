@@ -63,7 +63,8 @@ namespace EA4S
         private void SetJourneyAtMaximum()
         {
             var allPlaySessionInfos = AppManager.I.Teacher.scoreHelper.GetAllPlaySessionInfo();
-            var maxPossibleJourneyPosition = AppManager.I.Teacher.journeyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[allPlaySessionInfos.Count-1].data.Id);
+            var secondToLastPS = allPlaySessionInfos[allPlaySessionInfos.Count - 1].data.Id;    // @note: we use the second-to-last because the last gives an error with the map logic
+            var maxPossibleJourneyPosition = AppManager.I.Teacher.journeyHelper.PlaySessionIdToJourneyPosition(secondToLastPS);
             AppManager.I.Player.SetMaxJourneyPosition(maxPossibleJourneyPosition, true);
         }
 
@@ -71,6 +72,9 @@ namespace EA4S
         {
             var logAi = AppManager.I.Teacher.logAI;
             var fakeAppSession = LogManager.I.Session;
+
+            // Enable cheat mode
+            AppManager.I.GameSettings.CheatSuperDogMode = true;
 
             // Add some mood data
             int nMoodData = 15;
