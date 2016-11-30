@@ -1,5 +1,6 @@
 ﻿using ArabicSupport;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -146,17 +147,12 @@ namespace EA4S.MixedLetters
             AnturaController.instance.Disable();
         }
 
-        public void GenerateNewWord(bool sayQuestion)
+        public void GenerateNewWord()
         {
             if (isSpelling)
             {
                 IQuestionPack newQuestion = MixedLettersConfiguration.Instance.Questions.GetNextQuestion();
                 question = newQuestion.GetQuestion();
-
-                if (sayQuestion)
-                {
-                    SayQuestion();
-                }
 
                 lettersInOrder = newQuestion.GetCorrectAnswers().ToList();
                 VictimLLController.instance.letterObjectView.Init(question);
@@ -185,11 +181,38 @@ namespace EA4S.MixedLetters
             }
         }
 
-        public void SayQuestion()
+        public void SayQuestion(Action onQuestionOver)
         {
             if (MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Spelling)
             {
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(question);
+
+                if (onQuestionOver != null)
+                {
+                    onQuestionOver.Invoke();
+                }
+            }
+
+            else
+            {
+                StartCoroutine(AlphabetPronounciationCoroutine(onQuestionOver));
+            }
+        }
+
+        private IEnumerator AlphabetPronounciationCoroutine(Action onQuestionOver)
+        {
+            IAudioManager audioManager = MixedLettersConfiguration.Instance.Context.GetAudioManager();
+
+            foreach (ILivingLetterData letterData in lettersInOrder)
+            {
+                audioManager.PlayLetterData(letterData);
+
+                yield return new WaitForSeconds(0.75f);
+            }
+
+            if (onQuestionOver != null)
+            {
+                onQuestionOver.Invoke();
             }
         }
 
