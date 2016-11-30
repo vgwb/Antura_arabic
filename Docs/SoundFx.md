@@ -65,10 +65,10 @@ Antura throws the letters
 Antura inhales the letters
 
 ## Sfx.EggBreak
-
+[egg] Puff after egg breaks
 
 ## Sfx.EggMove
-
+[egg] Egg move – correct letter button pressed
 
 ## Sfx.GameTitle
 
@@ -98,10 +98,10 @@ Antura inhales the letters
 [Maze] when the rocket moves on the path drawn by the player
 
 ## Sfx.ScaleDown
-
+[egg] Egg roll out of the scene – Left
 
 ## Sfx.ScaleUp
-
+[egg] Egg short roll – wrong answer
 
 ## Sfx.ScreenHit
 
@@ -125,7 +125,7 @@ Antura inhales the letters
 
 
 ## Sfx.TickAndWin
-
+[egg] Egg enter the scene
 
 ## Sfx.Transition
 
@@ -209,18 +209,6 @@ LL jumping with one hand raised – like when going out of the egg in EGG miniga
 LL jump happily (typical in a « win » situation in the game)
 
 ---
-
-some hints where to use the SoundFX
-
-# minigame EGG
-
-Egg enter the scene: Sfx.TickAndWin
-Egg short roll – wrong answer: Sfx.ScaleUp
-Egg roll out of the scene – Left: Sfx.ScaleDown
-Player tap button letter (generic button sound)	SFX_UI_Button_In
-Egg move – correct letter button pressed: Sfx.EggMove
-Puff after egg breaks: Sfx.EggBreak
-
 
 # minigame THROW BALLS
 
