@@ -13,6 +13,8 @@ namespace EA4S
         private GameObject m_oParticle;
         [SerializeField]
         private float m_oParticleTime;
+        [SerializeField]
+        private Sfx m_oSfxOnPoof;
 
         [Header("Simple Throw")]
 
@@ -191,6 +193,8 @@ namespace EA4S
             {
                 particles.Play();
             }
+
+            AudioManager.I.PlaySfx(m_oSfxOnPoof);
 
             CancelInvoke("StopPoof");//if we were quick maybe the particle hasn't stopped yet, so try to cancel the old one;
             Invoke("StopPoof", fDuration);
