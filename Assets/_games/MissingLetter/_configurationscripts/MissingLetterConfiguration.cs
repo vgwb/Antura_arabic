@@ -60,6 +60,7 @@
 
                 case MissingLetterVariation.MissingWord:
                     builderParams.phraseFilters.requireWords = true;
+                    builderParams.phraseFilters.requireAtLeastTwoWords = true;
                     builder = new WordsInPhraseQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
             }
