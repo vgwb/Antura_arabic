@@ -83,7 +83,7 @@ namespace EA4S
                 #endregion*/
                 // ..and set first contact done.
                 DesactivateUI();
-                //KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro_AnturaSpace);
+                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro_AnturaSpace);
                 AppManager.I.Player.FirstContactPassed();
                 anturaButton.SetActive(true);
                 Debug.Log("First Contact Step1 finished! Go to Antura Space!");
@@ -94,7 +94,7 @@ namespace EA4S
 
                 // ..and set first contact done.             
                 AppManager.I.Player.FirstContactPassed(2);
-               // KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro);
+                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro);
                 ActivateUI();
                 Debug.Log("First Contact Step2 finished! Good Luck!");
             }
