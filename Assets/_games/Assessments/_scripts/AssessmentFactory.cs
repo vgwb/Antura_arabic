@@ -20,6 +20,27 @@ namespace EA4S.Assessment
         private static int maxAnswers;
         private static int rounds;
 
+        public static IAssessment CreateMatchWordToImageAssessment()
+        {
+            Init();
+            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = false;
+            AssessmentConfiguration.Instance.ShowQuestionAsImage = true;
+            IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
+            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
+            IQuestionDecorator questionDecorator = new PronunceImageDecorator();
+            IQuestionGenerator generator = new DefaultQuestionGenerator( configuration.Questions);
+            ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
+            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager, letterSize, wordSize);
+            IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
+
+            gameDescription = Db.LocalizationDataId.Assessment_Match_Word_Image;
+
+            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
+                                            configuration, context, dialogueManager,
+                                            gameDescription);
+        }
+
         public static IAssessment CreateLetterInWordAssessment()
         {
             Init();
@@ -227,6 +248,7 @@ namespace EA4S.Assessment
             rounds = configuration.Rounds;
             simultaneousQuestions = configuration.SimultaneosQuestions;
             maxAnswers = configuration.Answers;
+            configuration.ShowQuestionAsImage = false;
         }
     }
 }
