@@ -10,7 +10,7 @@ public class WordFlexibleContainer : MonoBehaviour
 
     public void SetText(string text)
     {
-       Label.text = text;
+        Label.setText(text);
     }
 
     public void Reset()
