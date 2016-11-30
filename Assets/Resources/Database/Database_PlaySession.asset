@@ -4072,7 +4072,6 @@ MonoBehaviour:
         Weight: 1
       Letters:
       - fathah
-      - alef_fathah
       - ain_fathah
       - beh_fathah
       - dad_fathah
@@ -4439,7 +4438,6 @@ MonoBehaviour:
       - dammah
       - kasrah
       - sukun
-      - alef_fathah
       - ain_fathah
       - beh_fathah
       - dad_fathah
@@ -4941,7 +4939,6 @@ MonoBehaviour:
       - fathah_tanwin
       - dammah_tanwin
       - kasrah_tanwin
-      - alef_fathah
       - ain_fathah
       - beh_fathah
       - dad_fathah
@@ -6238,7 +6235,6 @@ MonoBehaviour:
       - fathah
       - kasrah
       - dammah
-      - alef_fathah
       - ain_fathah
       - beh_fathah
       - dad_fathah

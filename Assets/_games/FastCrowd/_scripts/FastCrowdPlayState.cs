@@ -13,6 +13,10 @@ namespace EA4S.FastCrowd
 
         bool initializeOveralyWidget;
 
+        bool hurryUpSfx;
+
+        IAudioSource timesUpAudioSource;
+
         public FastCrowdPlayState(FastCrowdGame game)
         {
             this.game = game;
@@ -61,12 +65,17 @@ namespace EA4S.FastCrowd
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
             StopAntura();
+
+            hurryUpSfx = false;
         }
 
         public void ExitState()
         {
             StopAntura();
-            
+
+            if (timesUpAudioSource != null)
+                timesUpAudioSource.Stop();
+
             gameTime.Stop();
             game.QuestionManager.OnCompleted -= OnQuestionCompleted;
             game.QuestionManager.OnDropped -= OnAnswerDropped;
@@ -136,6 +145,16 @@ namespace EA4S.FastCrowd
 
             gameTime.Update(delta);
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
+
+            if (!hurryUpSfx)
+            {
+                if (gameTime.Time < 4f)
+                {
+                    hurryUpSfx = true;
+
+                    timesUpAudioSource = game.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
+                }
+            }
         }
 
         public void UpdatePhysics(float delta)

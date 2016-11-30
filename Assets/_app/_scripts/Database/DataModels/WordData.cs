@@ -7,6 +7,7 @@ namespace EA4S.Db
     public class WordData : IData, IConvertibleToLivingLetterData
     {
         public string Id;
+        public bool Active;
         public WordDataKind Kind;
         public WordDataCategory Category;
         public WordDataForm Form;
