@@ -1707,6 +1707,7 @@ MonoBehaviour:
   sceneCamera: {fileID: 1451295490}
   uiDelay: 3.5
   feedbackDuration: 1.25
+  loseDuration: 1.1
   endCameraPosition: {x: 0, y: 40, z: 5}
   endCameraRotation: {x: 45, y: 0, z: 0}
   letterBalloonPrefab: {fileID: 1000010726512004, guid: 1f083c493a8bd40289e07e176c6d96a8,
