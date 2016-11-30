@@ -84,7 +84,7 @@ namespace EA4S.Assessment
             if (this.droppable != null)
                 return;
 
-            audioManager.PlaySound( Sfx.ThrowObj);
+            audioManager.PlaySound( Sfx.UIPopup);
             this.droppable = droppable;
             droppable.StartDrag( x=>RemoveFromUpdateAndPlaceholders(x));
         }
@@ -106,7 +106,7 @@ namespace EA4S.Assessment
         {
             if (this.droppable == droppable && droppable != null)
             {
-                audioManager.PlaySound( Sfx.ThrowObj);
+                audioManager.PlaySound( Sfx.UIPopup);
                 if(dragOnly== false)
                     CheckCollidedWithPlaceholder( droppable);
                 RemoveFromUpdate();
