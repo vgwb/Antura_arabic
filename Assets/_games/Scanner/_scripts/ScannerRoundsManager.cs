@@ -68,7 +68,7 @@ namespace EA4S.Scanner
 				for (int i = 0; i < LLs; i++)
 				{
 					ScannerLivingLetter LL = GameObject.Instantiate(game.LLPrefab).GetComponent<ScannerLivingLetter>();
-					LL.facingCamera = true;
+					LL.facingCamera = ScannerConfiguration.Instance.facingCamera;
 					LL.gameObject.SetActive(true);
 					LL.onStartFallOff += OnLetterStartFallOff;
 					LL.onFallOff += OnLetterFallOff;
@@ -83,14 +83,18 @@ namespace EA4S.Scanner
 
 		IEnumerator ResetLetters()
 		{
-
-			Debug.Log("LL Count: " + game.scannerLL.Count);
-			Debug.Log("Ans Count: " + correctAnswers.Count);
-
+			// Reset letters first so that they are set for this round
+			// If not set first fall off will make unset letters fall with next round
 			for (int i = 0; i < game.scannerLL.Count; i++)
 			{
 				game.scannerLL[i].Reset();
 				game.scannerLL[i].letterObjectView.Init(correctAnswers[i]);
+			}
+
+			// Then start sliding gardually
+			for (int i = 0; i < game.scannerLL.Count; i++)
+			{
+				game.scannerLL[i].StartSliding();
 				if (game.scannerLL.Count == 3)
 				{
 					yield return new WaitForSeconds(8f);
@@ -178,32 +182,32 @@ namespace EA4S.Scanner
 			numberOfRoundsPlayed++;
 			numberOfFailedMoves = 0;
 
-			if (ScannerConfiguration.Instance.Difficulty == 0f) // TODO for testing only each round increment Level. Remove later!
-			{
-				switch (numberOfRoundsPlayed)
-				{
-				case 1: 
-				case 2: currentLevel = Level.Level1;
-					break;
-				case 3: currentLevel = Level.Level4;
-					break;
-				case 4: currentLevel = Level.Level2;
-					break;
-				case 5: 
-				case 6: currentLevel = Level.Level3;
-					break;
-				default: currentLevel = Level.Level3;
-					break;
-				}
-			}
-			else
-			{
-				// TODO Move later to Start method
-				var numberOfLevels = Enum.GetNames(typeof(Level)).Length;
-				currentLevel = (Level) Mathf.Clamp((int) Mathf.Floor(game.pedagogicalLevel * numberOfLevels),0, numberOfLevels - 1);
-			}
-				
-			SetLevel(currentLevel);
+//			if (ScannerConfiguration.Instance.Difficulty == 0f) // TODO for testing only each round increment Level. Remove later!
+//			{
+//				switch (numberOfRoundsPlayed)
+//				{
+//				case 1: 
+//				case 2: currentLevel = Level.Level1;
+//					break;
+//				case 3: currentLevel = Level.Level4;
+//					break;
+//				case 4: currentLevel = Level.Level2;
+//					break;
+//				case 5: 
+//				case 6: currentLevel = Level.Level3;
+//					break;
+//				default: currentLevel = Level.Level3;
+//					break;
+//				}
+//			}
+//			else
+//			{
+//				// TODO Move later to Start method
+//				var numberOfLevels = Enum.GetNames(typeof(Level)).Length;
+//				currentLevel = (Level) Mathf.Clamp((int) Mathf.Floor(game.pedagogicalLevel * numberOfLevels),0, numberOfLevels - 1);
+//			}
+//				
+//			SetLevel(currentLevel);
 
 			if (!game.trapDoor.GetBool("TrapUp"))
 			{
