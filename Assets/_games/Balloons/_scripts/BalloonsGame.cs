@@ -400,7 +400,7 @@ namespace EA4S.Balloons
 
                     // Display
                     wordFlexibleContainer.gameObject.SetActive(true);
-                    wordFlexibleContainer.SetText(wordToKeepData.TextForLivingLetter);
+                    wordFlexibleContainer.SetText(wordToKeepData);
 
                     // Debug
                     Debug.Log("[New Round] Word To Keep: " + wordToKeep);
@@ -417,7 +417,7 @@ namespace EA4S.Balloons
 
                     // Display
                     wordFlexibleContainer.gameObject.SetActive(true);
-                    wordFlexibleContainer.SetText(letterToKeep);
+                    wordFlexibleContainer.SetText(letterToKeepData);
 
                     // Debug
                     Debug.Log("[New Round] Letter To Keep: " + letterToKeep);
@@ -456,7 +456,6 @@ namespace EA4S.Balloons
 
             int numberValue = countingIndex + 1;
             //var numberId = "number_" + string.Format("{0:00}", numberValue);
-            var text = numberValue.ToString();
             //.Replace('0', '\u----')
             //.Replace('1', '\u----')
             //.Replace('2', '\u----')
@@ -469,7 +468,7 @@ namespace EA4S.Balloons
             //.Replace('9', '\u----');
 
             wordFlexibleContainer.gameObject.SetActive(true);
-            wordFlexibleContainer.SetText(text);
+            wordFlexibleContainer.SetNumber(numberValue);
         }
 
         private IEnumerator StartNewRound_Coroutine()
