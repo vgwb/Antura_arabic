@@ -107,7 +107,7 @@ namespace EA4S.Scanner
 
 		void OnMouseDown()
 		{
-            if (ScannerGame.disableInput)
+            if (ScannerGame.disableInput || !isReady)
                 return;
 
             shadow.SetActive(false);
@@ -162,7 +162,7 @@ namespace EA4S.Scanner
 
 		void OnMouseUp()
 		{
-            if (ScannerGame.disableInput)
+            if (ScannerGame.disableInput || !isReady)
                 return;
 
             if (overPlayermarker)
