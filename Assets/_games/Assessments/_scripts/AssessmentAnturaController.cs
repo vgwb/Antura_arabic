@@ -23,11 +23,11 @@ namespace EA4S.Assessment
         private IEnumerator TutorialClicks()
         {
             clickEnabled = false;
-            yield return TimeEngine.Wait( 0.6f);
+            yield return TimeEngine.Wait( 0.4f);
             TutorialUI.Click( TutorialHelper.GetWorldPosition());
             yield return TimeEngine.Wait( 0.1f);
             AssessmentConfiguration.Instance.Context.GetAudioManager().PlaySound( Sfx.UIPopup);
-            yield return TimeEngine.Wait( 0.6f);
+            yield return TimeEngine.Wait( 0.2f);
             clickEnabled = true;
         }
 
@@ -63,13 +63,18 @@ namespace EA4S.Assessment
 
         private bool clickEnabled = false;
 
+        private bool soundPlayed = false;
         private void AnturaPressed()
         {
             currentTreshold += GainPerClick;
             if (currentState < 3)
             {
-                var sound = audioManager.PlaySound( Sfx.UIPopup);
-                sound.Volume = 0.5f;
+                if (soundPlayed == false)
+                {
+                    var sound = audioManager.PlaySound( Sfx.UIPopup);
+                    soundPlayed = true;
+                    sound.Volume = 0.5f;
+                }
             }
         }
 
@@ -115,7 +120,6 @@ namespace EA4S.Assessment
             yield return TimeEngine.Wait( 1.0f);
             Coroutine.Start(TutorialClicks());
 
-            bool tutorialCoroutineEnabled = true;
             while (currentState < 3)
             {
                 while (stateDelta == 0)
@@ -133,38 +137,39 @@ namespace EA4S.Assessment
                 switch (currentState)
                 {
                     case 0:
-                        if (tutorialCoroutineEnabled)
-                        {
-                            Coroutine.Start(TutorialClicks());
-                            tutorialCoroutineEnabled = false;
-                        }
+                        Coroutine.Start( TutorialClicks());
                         emission.enabled = true;
                         antura.State = AnturaAnimationStates.sleeping;
                         yield return TimeEngine.Wait( 0.3f);
                         PlayStateSound();
                         TurnAntura( -75f);
                         yield return TimeEngine.Wait( 0.3f);
+                        soundPlayed = false;
                         break;
 
                     case 1:
-                        tutorialCoroutineEnabled = true;
+                        Coroutine.Start(TutorialClicks());
                         emission.enabled = false;
                         antura.State = AnturaAnimationStates.sitting;
                         yield return TimeEngine.Wait( 0.8f);
                         PlayStateSound();
                         yield return TimeEngine.Wait( 1.0f);
+                        soundPlayed = false;
                         break;
 
                     case 2:
+                        Coroutine.Start(TutorialClicks());
                         antura.DoShout(() => audioManager.PlaySound( Sfx.DogBarking));
                         PlayStateSound();
                         yield return TimeEngine.Wait( 1.5f);
+                        soundPlayed = false;
                         break;
 
                     case 3:
                         audioManager.PlaySound( Sfx.Win);
                         antura.DoCharge( ()=> StartMoving());
                         TurnAntura( -65f);
+                        soundPlayed = false;
                         break;
 
                     default:
