@@ -12,6 +12,8 @@ namespace EA4S.MixedLetters
         private float anturaExitTimer;
         private bool anturaExited = false;
 
+        private bool isAnturaEnterTimerActivated = false;
+
         private float timePerRound = 30f;
 
         public IntroductionGameState(MixedLettersGame game)
@@ -41,15 +43,21 @@ namespace EA4S.MixedLetters
             }
         }
 
+        private void OnQuestionOver()
+        {
+            isAnturaEnterTimerActivated = true;
+        }
+
         public void EnterState()
         {
-            anturaEnterTimer = Random.Range(2.5f, 3.5f);
+            anturaEnterTimer = MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Spelling ? 3.25f : 1.5f;
             anturaEntered = false;
             anturaBarked = false;
             anturaExitTimer = Random.Range(0.75f, 1.5f);
             anturaExited = false;
 
-            game.GenerateNewWord(true);
+            game.GenerateNewWord();
+            game.SayQuestion(OnQuestionOver);
 
             VictimLLController.instance.HideVictoryRays();
             VictimLLController.instance.Reset();
@@ -76,7 +84,10 @@ namespace EA4S.MixedLetters
 
         public void Update(float delta)
         {
-            anturaEnterTimer -= delta;
+            if (isAnturaEnterTimerActivated)
+            {
+                anturaEnterTimer -= delta;
+            }
 
             if (anturaEnterTimer < 0.25f && !anturaBarked)
             {

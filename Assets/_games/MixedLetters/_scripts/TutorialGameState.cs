@@ -24,7 +24,7 @@ namespace EA4S.MixedLetters
 
         public void EnterState()
         {
-            game.GenerateNewWord(false);
+            game.GenerateNewWord();
 
             VictimLLController.instance.HideVictoryRays();
             VictimLLController.instance.Reset();
@@ -42,13 +42,14 @@ namespace EA4S.MixedLetters
             game.StartCoroutine(OnTitleVoiceOverDoneCoroutine());
         }
 
-        private IEnumerator OnTitleVoiceOverDoneCoroutine()
+        private void OnQuestionOver()
         {
-            yield return new WaitForSeconds(0.75f);
+            game.StartCoroutine(OnQuestionOverCoroutine());
+        }
 
-            game.SayQuestion();
-
-            yield return new WaitForSeconds(3f);
+        private IEnumerator OnQuestionOverCoroutine()
+        {
+            yield return new WaitForSeconds(MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Alphabet ? 1.5f : 3f);
 
             MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking);
             VictimLLController.instance.LookTowardsAntura();
@@ -57,6 +58,13 @@ namespace EA4S.MixedLetters
 
             AnturaController.instance.Enable();
             AnturaController.instance.EnterScene(OnFightBegan, OnAnturaExitedScene);
+        }
+
+        private IEnumerator OnTitleVoiceOverDoneCoroutine()
+        {
+            yield return new WaitForSeconds(0.75f);
+
+            game.SayQuestion(OnQuestionOver);
         }
 
         private void OnFightBegan()
