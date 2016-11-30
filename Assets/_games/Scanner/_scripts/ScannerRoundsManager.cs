@@ -94,6 +94,9 @@ namespace EA4S.Scanner
 			// Then start sliding gardually
 			for (int i = 0; i < game.scannerLL.Count; i++)
 			{
+                while (ScannerAntura.PAUSE_NEW_LL_SLIDES)
+                    yield return new WaitForEndOfFrame();
+
 				game.scannerLL[i].StartSliding();
 				if (game.scannerLL.Count == 3)
 				{
@@ -108,7 +111,7 @@ namespace EA4S.Scanner
 
 		private void OnLetterPassedMidPoint(ScannerLivingLetter sender)
 		{
-			if (!game.trapDoor.GetBool("TrapDown"))
+			if (!game.trapDoor.GetBool("TrapDown") && !ScannerAntura.IS_IN_SCENE)
 			{
 				game.trapDoor.SetBool("TrapUp",false);
 				game.trapDoor.SetBool("TrapDown", true);
