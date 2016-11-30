@@ -14,6 +14,7 @@ MonoBehaviour:
   table:
     innerList:
     - Id: alef
+      Active: 1
       Number: 1
       Title: alif
       Kind: 1
@@ -41,6 +42,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: beh
+      Active: 1
       Number: 2
       Title: "b\u0101\u2019"
       Kind: 1
@@ -68,6 +70,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0628\u0640\u200E"
       Old_Final: "\u0640\u0628\u200E"
     - Id: teh
+      Active: 1
       Number: 3
       Title: "t\u0101\u2019"
       Kind: 1
@@ -95,6 +98,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u062A\u0640\u200E"
       Old_Final: "\u0640\u062A\u200E"
     - Id: theh
+      Active: 1
       Number: 4
       Title: "th\u0101\u2019"
       Kind: 1
@@ -122,6 +126,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u062B\u0640\u200E"
       Old_Final: "\u0640\u062B\u200E"
     - Id: jeem
+      Active: 1
       Number: 5
       Title: "j\u012Bm"
       Kind: 1
@@ -149,6 +154,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u062C\u0640\u200E"
       Old_Final: "\u0640\u062C\u200E"
     - Id: hah
+      Active: 1
       Number: 6
       Title: "\u1E25\u0101\u2019"
       Kind: 1
@@ -176,6 +182,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u062D\u0640\u200E"
       Old_Final: "\u0640\u062D\u200E"
     - Id: khah
+      Active: 1
       Number: 7
       Title: "kh\u0101\u2019"
       Kind: 1
@@ -203,6 +210,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u062E\u0640\u200E"
       Old_Final: "\u0640\u062E\u200E"
     - Id: dal
+      Active: 1
       Number: 8
       Title: "d\u0101l"
       Kind: 1
@@ -230,6 +238,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u062F\u200E"
       Old_Final: "\u0640\u062F\u200E"
     - Id: thal
+      Active: 1
       Number: 9
       Title: "dh\u0101l"
       Kind: 1
@@ -257,6 +266,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0630\u200E"
       Old_Final: "\u0640\u0630\u200E"
     - Id: reh
+      Active: 1
       Number: 10
       Title: "r\u0101\u2019"
       Kind: 1
@@ -284,6 +294,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0631\u200E"
       Old_Final: "\u0640\u0631\u200E"
     - Id: zain
+      Active: 1
       Number: 11
       Title: "zayn / z\u0101y / z\u0101\u2019"
       Kind: 1
@@ -311,6 +322,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0632\u200E"
       Old_Final: "\u0640\u0632\u200E"
     - Id: seen
+      Active: 1
       Number: 12
       Title: "s\u012Bn"
       Kind: 1
@@ -338,6 +350,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0633\u0640\u200E"
       Old_Final: "\u0640\u0633\u200E"
     - Id: sheen
+      Active: 1
       Number: 13
       Title: "sh\u012Bn"
       Kind: 1
@@ -365,6 +378,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0634\u0640\u200E"
       Old_Final: "\u0640\u0634\u200E"
     - Id: sad
+      Active: 1
       Number: 14
       Title: "\u1E63\u0101d"
       Kind: 1
@@ -392,6 +406,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0635\u0640\u200E"
       Old_Final: "\u0640\u0635\u200E"
     - Id: dad
+      Active: 1
       Number: 15
       Title: "\u1E0D\u0101d"
       Kind: 1
@@ -419,6 +434,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0636\u0640\u200E"
       Old_Final: "\u0640\u0636\u200E"
     - Id: tah
+      Active: 1
       Number: 16
       Title: "\u1E6D\u0101\u2019"
       Kind: 1
@@ -446,6 +462,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0637\u0640\u200E"
       Old_Final: "\u0640\u0637\u200E"
     - Id: zah
+      Active: 1
       Number: 17
       Title: "\u1E0Dh\u0101\u2019"
       Kind: 1
@@ -473,6 +490,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0638\u0640\u200E"
       Old_Final: "\u0640\u0638\u200E"
     - Id: ain
+      Active: 1
       Number: 18
       Title: "\u2018ayn"
       Kind: 1
@@ -500,6 +518,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0639\u0640\u200E"
       Old_Final: "\u0640\u0639\u200E"
     - Id: ghain
+      Active: 1
       Number: 19
       Title: ghayn
       Kind: 1
@@ -527,6 +546,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u063A\u0640\u200E"
       Old_Final: "\u0640\u063A\u200E"
     - Id: feh
+      Active: 1
       Number: 20
       Title: "f\u0101\u2019"
       Kind: 1
@@ -554,6 +574,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0641\u0640\u200E"
       Old_Final: "\u0640\u0641\u200E"
     - Id: qaf
+      Active: 1
       Number: 21
       Title: "q\u0101f"
       Kind: 1
@@ -581,6 +602,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0642\u0640\u200E"
       Old_Final: "\u0640\u0642\u200E"
     - Id: kaf
+      Active: 1
       Number: 22
       Title: "k\u0101f"
       Kind: 1
@@ -608,6 +630,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0643\u0640\u200E"
       Old_Final: "\u0640\u0643\u200E"
     - Id: lam
+      Active: 1
       Number: 23
       Title: "l\u0101m"
       Kind: 1
@@ -635,6 +658,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0644\u0640\u200E"
       Old_Final: "\u0640\u0644\u200E"
     - Id: meem
+      Active: 1
       Number: 24
       Title: "m\u012Bm"
       Kind: 1
@@ -662,6 +686,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0645\u0640\u200E"
       Old_Final: "\u0640\u0645\u200E"
     - Id: noon
+      Active: 1
       Number: 25
       Title: "n\u016Bn"
       Kind: 1
@@ -689,6 +714,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0646\u0640\u200E"
       Old_Final: "\u0640\u0646\u200E"
     - Id: heh
+      Active: 1
       Number: 26
       Title: "h\u0101\u2019"
       Kind: 1
@@ -716,6 +742,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0647\u0640\u200E"
       Old_Final: "\u0640\u0647\u200E"
     - Id: waw
+      Active: 1
       Number: 27
       Title: "w\u0101w"
       Kind: 1
@@ -743,6 +770,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u0648\u200E"
       Old_Final: "\u0640\u0648\u200E"
     - Id: yeh
+      Active: 1
       Number: 28
       Title: "y\u0101\u2019"
       Kind: 1
@@ -770,6 +798,7 @@ MonoBehaviour:
       Old_Medial: "\u0640\u064A\u0640\u200E"
       Old_Final: "\u0640\u064A"
     - Id: hamza
+      Active: 1
       Number: 0
       Title: hamza
       Kind: 2
@@ -797,6 +826,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: dammah
+      Active: 1
       Number: 0
       Title: "\u1E0Dammah"
       Kind: 2
@@ -824,6 +854,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: dammah_tanwin
+      Active: 1
       Number: 0
       Title: dammah tanwin
       Kind: 2
@@ -851,6 +882,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: fathah
+      Active: 1
       Number: 0
       Title: "fat\u1E25ah"
       Kind: 2
@@ -878,6 +910,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: fathah_tanwin
+      Active: 1
       Number: 0
       Title: "fat\u1E25ah tanwin"
       Kind: 2
@@ -905,6 +938,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: kasrah
+      Active: 1
       Number: 0
       Title: kasrah
       Kind: 2
@@ -932,6 +966,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: kasrah_tanwin
+      Active: 1
       Number: 0
       Title: kasrah tanwin
       Kind: 2
@@ -959,6 +994,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: maddah
+      Active: 1
       Number: 0
       Title: maddah
       Kind: 2
@@ -986,6 +1022,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: shaddah
+      Active: 1
       Number: 0
       Title: shaddah
       Kind: 2
@@ -1013,6 +1050,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: sukun
+      Active: 1
       Number: 0
       Title: sukun
       Kind: 2
@@ -1040,6 +1078,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: alef_hamza_hi
+      Active: 1
       Number: 0
       Title: alef hamza (hi)
       Kind: 3
@@ -1067,6 +1106,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: alef_hamza_low
+      Active: 1
       Number: 0
       Title: alef hamza (low)
       Kind: 3
@@ -1094,6 +1134,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: alef_maqsura
+      Active: 1
       Number: 0
       Title: alef maqsura
       Kind: 3
@@ -1121,6 +1162,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: alef_maqsura_hamza
+      Active: 1
       Number: 0
       Title: alef_maqsura_hamza
       Kind: 3
@@ -1148,6 +1190,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: yeh_hamza
+      Active: 1
       Number: 0
       Title: yeh_hamza
       Kind: 3
@@ -1175,6 +1218,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: teh_marbuta
+      Active: 1
       Number: 0
       Title: teh marbuta
       Kind: 3
@@ -1202,6 +1246,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: lam_alef
+      Active: 1
       Number: 0
       Title: lam alef
       Kind: 3
@@ -1229,6 +1274,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: waw_hamza
+      Active: 1
       Number: 0
       Title: waw_hamza
       Kind: 3
@@ -1255,34 +1301,8 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
-    - Id: alef_fathah
-      Number: 0
-      Title: alef_fathah
-      Kind: 4
-      BaseLetter: alef
-      Symbol: fathah
-      Type: 0
-      Tag: 
-      Notes: 
-      SunMoon: 0
-      Sound: 
-      SoundZone: 
-      Isolated: "\u0627\u064E"
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 0627
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: FE8E
-      Symbol_Unicode: 064E
-      FinalFix: 
-      MedialFix: 
-      Old_Isolated: 
-      Old_Initial: 
-      Old_Medial: 
-      Old_Final: 
     - Id: alef_fathah_tanwin
+      Active: 1
       Number: 0
       Title: alef_fathah_tanwin
       Kind: 4
@@ -1310,6 +1330,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: alef_maddah
+      Active: 1
       Number: 0
       Title: alef_maddah
       Kind: 4
@@ -1337,6 +1358,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: ain_fathah
+      Active: 1
       Number: 0
       Title: ain_fathah
       Kind: 4
@@ -1364,6 +1386,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: ain_kasrah
+      Active: 1
       Number: 0
       Title: ain_kasrah
       Kind: 4
@@ -1391,6 +1414,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: beh_dammah
+      Active: 1
       Number: 0
       Title: beh_dammah
       Kind: 4
@@ -1418,6 +1442,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: beh_fathah
+      Active: 1
       Number: 0
       Title: beh_fathah
       Kind: 4
@@ -1445,6 +1470,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: beh_kasrah
+      Active: 1
       Number: 0
       Title: beh_kasrah
       Kind: 4
@@ -1472,6 +1498,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: dad_fathah
+      Active: 1
       Number: 0
       Title: dad_fathah
       Kind: 4
@@ -1499,6 +1526,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: dal_dammah_tanwin
+      Active: 1
       Number: 0
       Title: dal_dammah_tanwin
       Kind: 4
@@ -1526,6 +1554,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: dal_fathah
+      Active: 1
       Number: 0
       Title: dal_fathah
       Kind: 4
@@ -1553,6 +1582,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: thal_fathah
+      Active: 1
       Number: 0
       Title: thal_fathah
       Kind: 4
@@ -1580,6 +1610,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: feh_fathah
+      Active: 1
       Number: 0
       Title: feh_fathah
       Kind: 4
@@ -1607,6 +1638,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: feh_sukun
+      Active: 1
       Number: 0
       Title: feh_sukun
       Kind: 4
@@ -1634,6 +1666,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: heh_fathah
+      Active: 1
       Number: 0
       Title: heh_fathah
       Kind: 4
@@ -1661,6 +1694,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: heh_kasrah
+      Active: 1
       Number: 0
       Title: heh_kasrah
       Kind: 4
@@ -1688,6 +1722,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: hah_fathah
+      Active: 1
       Number: 0
       Title: hah_fathah
       Kind: 4
@@ -1715,6 +1750,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: hah_kasrah
+      Active: 1
       Number: 0
       Title: hah_kasrah
       Kind: 4
@@ -1742,6 +1778,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: hah_shaddah
+      Active: 1
       Number: 0
       Title: hah_shaddah
       Kind: 4
@@ -1769,6 +1806,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: jeem_dammah
+      Active: 1
       Number: 0
       Title: jeem_dammah
       Kind: 4
@@ -1796,6 +1834,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: jeem_fathah
+      Active: 1
       Number: 0
       Title: jeem_fathah
       Kind: 4
@@ -1823,6 +1862,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: jeem_shaddah
+      Active: 1
       Number: 0
       Title: jeem_shaddah
       Kind: 4
@@ -1850,6 +1890,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: kaf_dammah
+      Active: 1
       Number: 0
       Title: kaf_dammah
       Kind: 4
@@ -1877,6 +1918,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: kaf_fathah
+      Active: 1
       Number: 0
       Title: kaf_fathah
       Kind: 4
@@ -1904,6 +1946,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: lam_fathah
+      Active: 1
       Number: 0
       Title: lam_fathah
       Kind: 4
@@ -1931,6 +1974,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: lam_kasrah
+      Active: 1
       Number: 0
       Title: lam_kasrah
       Kind: 4
@@ -1958,6 +2002,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: lam_kasrah_tanwin
+      Active: 1
       Number: 0
       Title: lam_kasrah_tanwin
       Kind: 4
@@ -1985,6 +2030,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: lam_sukun
+      Active: 1
       Number: 0
       Title: lam_sukun
       Kind: 4
@@ -2012,6 +2058,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: meem_dammah
+      Active: 1
       Number: 0
       Title: meem_dammah
       Kind: 4
@@ -2039,6 +2086,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: meem_fathah
+      Active: 1
       Number: 0
       Title: meem_fathah
       Kind: 4
@@ -2066,6 +2114,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: meem_kasrah
+      Active: 1
       Number: 0
       Title: meem_kasrah
       Kind: 4
@@ -2093,6 +2142,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: noon_fathah
+      Active: 1
       Number: 0
       Title: noon_fathah
       Kind: 4
@@ -2120,6 +2170,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: noon_kasrah_tanwin
+      Active: 1
       Number: 0
       Title: noon_kasrah_tanwin
       Kind: 4
@@ -2147,6 +2198,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: noon_sukun
+      Active: 1
       Number: 0
       Title: noon_sukun
       Kind: 4
@@ -2174,6 +2226,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: qaf_fathah
+      Active: 1
       Number: 0
       Title: qaf_fathah
       Kind: 4
@@ -2201,6 +2254,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: reh_fathah
+      Active: 1
       Number: 0
       Title: reh_fathah
       Kind: 4
@@ -2228,6 +2282,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: reh_kasrah
+      Active: 1
       Number: 0
       Title: reh_kasrah
       Kind: 4
@@ -2255,6 +2310,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: sad_fathah
+      Active: 1
       Number: 0
       Title: sad_fathah
       Kind: 4
@@ -2282,6 +2338,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: seen_fathah
+      Active: 1
       Number: 0
       Title: seen_fathah
       Kind: 4
@@ -2309,6 +2366,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: sheen_fathah
+      Active: 1
       Number: 0
       Title: sheen_fathah
       Kind: 4
@@ -2336,6 +2394,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: tah_fathah
+      Active: 1
       Number: 0
       Title: tah_fathah
       Kind: 4
@@ -2363,6 +2422,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: teh_dammah
+      Active: 1
       Number: 0
       Title: teh_dammah
       Kind: 4
@@ -2390,6 +2450,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: teh_fathah
+      Active: 1
       Number: 0
       Title: teh_fathah
       Kind: 4
@@ -2417,6 +2478,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: teh_marbuta_dammah_tanwin
+      Active: 1
       Number: 0
       Title: teh_marbuta_dammah_tanwin
       Kind: 4
@@ -2444,6 +2506,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: zain_fathah
+      Active: 1
       Number: 0
       Title: zain_fathah
       Kind: 4
@@ -2471,6 +2534,7 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
     - Id: zain_dammah
+      Active: 1
       Number: 0
       Title: zain_dammah
       Kind: 4
