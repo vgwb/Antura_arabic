@@ -30,6 +30,8 @@ namespace EA4S
 
             BtYes.Bt.onClick.AddListener(()=> OnClick(BtYes));
             BtNo.Bt.onClick.AddListener(()=> OnClick(BtNo));
+
+            this.gameObject.SetActive(false);
         }
 
         void OnDestroy()
