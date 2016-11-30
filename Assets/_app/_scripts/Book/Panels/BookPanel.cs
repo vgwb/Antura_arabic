@@ -20,9 +20,9 @@ namespace EA4S
         [Header("Prefabs")]
         public GameObject WordItemPrefab;
         public GameObject LetterItemPrefab;
-        public GameObject MinigameItemPrefab;
         public GameObject PhraseItemPrefab;
         public GameObject CategoryItemPrefab;
+        public GameObject LearningBlockItemPrefab;
 
         [Header("References")]
         public GameObject SubmenuContainer;
@@ -66,16 +66,20 @@ namespace EA4S
         {
             switch (panel) {
                 case PlayerBookPanel.BookLetters:
-                    AudioManager.I.PlayDialog("Book_Letters");
+                    AudioManager.I.PlayDialog(LocalizationDataId.UI_Letters);
                     LettersPanel();
                     break;
                 case PlayerBookPanel.BookWords:
-                    AudioManager.I.PlayDialog("Book_Words");
+                    AudioManager.I.PlayDialog(LocalizationDataId.UI_Words);
                     WordsPanel();
                     break;
                 case PlayerBookPanel.BookPhrases:
-                    AudioManager.I.PlayDialog("Book_Phrases");
+                    AudioManager.I.PlayDialog(LocalizationDataId.UI_Phrases);
                     PhrasesPanel();
+                    break;
+                case PlayerBookPanel.BookLearningBlocks:
+                    //AudioManager.I.PlayDialog(LocalizationDataId.UI);
+                    LearningBlockPanel();
                     break;
             }
         }
@@ -175,6 +179,17 @@ namespace EA4S
             }
         }
 
+        void LearningBlockPanel()
+        {
+            emptyListContainers();
+
+            List<LearningBlockInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllLearningBlockInfo();
+            foreach (var item_info in info_list) {
+                btnGO = Instantiate(LearningBlockItemPrefab);
+                btnGO.transform.SetParent(ElementsContainer.transform, false);
+                btnGO.GetComponent<ItemLearningBlock>().Init(this, item_info);
+            }
+        }
 
         public void SelectSubCategory(GenericCategoryData _category)
         {
@@ -204,11 +219,11 @@ namespace EA4S
             output += "\n";
             output += info.data.Arabic;
 
-            output += "\n";
+            //output += "\n";
 
-            foreach (var letter in splittedLetters) {
-                output += letter.GetChar();
-            }
+            //foreach (var letter in splittedLetters) {
+            //    output += letter.GetChar();
+            //}
 
             ArabicText.text = output;
 
@@ -225,10 +240,7 @@ namespace EA4S
             }
         }
 
-        void ResetLL()
-        {
 
-        }
 
         public void DetailLetter(LetterInfo info)
         {
@@ -260,6 +272,12 @@ namespace EA4S
             ScoreText.text = "Score: " + info.score;
         }
 
+        public void DetailLearningBlock(LearningBlockInfo info)
+        {
+            AudioManager.I.PlayDialog(info.data.GetTitleSoundFilename());
+            ScoreText.text = "Score: " + info.score;
+        }
+
 
         void emptyListContainers()
         {
@@ -286,6 +304,14 @@ namespace EA4S
             OpenArea(PlayerBookPanel.BookPhrases);
         }
 
+        public void BtnOpenLearningBlocks()
+        {
+            OpenArea(PlayerBookPanel.BookLearningBlocks);
+        }
 
+        void ResetLL()
+        {
+
+        }
     }
 }
