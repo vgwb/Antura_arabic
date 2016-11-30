@@ -213,13 +213,17 @@ namespace EA4S.MissingLetter
                 qstBehaviour.LetterData = _word;
                 qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
                 qstBehaviour.m_oDefaultIdleAnimation = LLAnimationStates.LL_idle;
+                qstBehaviour.SetInPhrase(m_oCurrQuestionPack.GetQuestion().Id);
 
                 m_aoCurrentQuestionScene.Add(oQuestion);
             }
 
             //after insert in mCurrentQuestionScene
             m_iRemovedLLDataIndex = RemoveWordfromQuestion(questionData);
-            m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().endTransformToCallback += m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().Speak;
+            m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().endTransformToCallback += delegate
+            {
+                AudioManager.I.PlayPhrase(m_oCurrQuestionPack.GetQuestion().Id);
+            };
 
             GameObject _correctAnswerObject = m_oAnswerPool.GetElement();
             LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
