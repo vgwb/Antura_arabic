@@ -20,6 +20,7 @@ namespace EA4S
         public static WidgetPopupWindow WidgetPopupWindow { get; private set; }
         public static WidgetSubtitles WidgetSubtitles { get; private set; }
         public static PauseMenu PauseMenu { get; private set; }
+        public static PromptPanel Prompt { get; private set; }
 
         public UIButton BackButton;
         public ActionFeedbackComponent ActionFeedback { get; private set; }
@@ -52,6 +53,7 @@ namespace EA4S
             WidgetSubtitles = StoreAndAwake<WidgetSubtitles>();
             PauseMenu = StoreAndAwake<PauseMenu>();
             ActionFeedback = StoreAndAwake<ActionFeedbackComponent>();
+            Prompt = StoreAndAwake<PromptPanel>();
 
             if (onGoBack == null) BackButton.gameObject.SetActive(false);
 
@@ -81,6 +83,9 @@ namespace EA4S
                 WidgetSubtitles.Close(true);
         }
 
+        /// <summary>
+        /// Shows/hides the pause menu
+        /// </summary>
         public static void ShowPauseMenu(bool _visible, PauseMenuType _type = PauseMenuType.GameScreen)
         {
             PauseMenu.gameObject.SetActive(_visible);
@@ -96,6 +101,15 @@ namespace EA4S
         {
             I.BackButton.gameObject.SetActive(_doShow);
             if (_doShow) I.onGoBack = _callback == null ? NavigationManager.I.GoBack : _callback;
+        }
+
+        /// <summary>
+        /// Shows a popup with a YES/NO button and relative callbacks
+        /// </summary>
+        public static void ShowPrompt(bool _doShow, string _message = null, Action _onYesCallback = null, Action _onNoCallback = null)
+        {
+            if (_doShow) Prompt.Show(_message, _onYesCallback, _onNoCallback);
+            else Prompt.Close();
         }
 
         T StoreAndAwake<T>() where T : Component
