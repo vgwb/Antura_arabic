@@ -31,9 +31,9 @@ namespace EA4S
         Collider colliderRaycast;
         Tween moveTween, rotateTween;
 
-        int learningblock;
-        int playSession;
-        int stage;
+        int learningblock, learningblockMax;
+        int playSession, playSessionMax;
+        int stage, stageMax;
 
         void Start()
         {
@@ -41,6 +41,12 @@ namespace EA4S
             learningblock = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
             playSession = AppManager.I.Player.CurrentJourneyPosition.PlaySession;
             stage = AppManager.I.Player.CurrentJourneyPosition.Stage;
+
+            learningblockMax = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
+            playSessionMax = AppManager.I.Player.MaxJourneyPosition.PlaySession;
+            stageMax = AppManager.I.Player.MaxJourneyPosition.Stage;
+
+            AmIFirstorLastPos();
         }
         void Floating()
         {
@@ -55,9 +61,13 @@ namespace EA4S
 
         void Update()
         {
-            /* Debug.Log(AppManager.I.Player.CurrentJourneyPosition.Stage);
+             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.Stage);
              Debug.Log(AppManager.I.Player.CurrentJourneyPosition.LearningBlock);
-             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.PlaySession);*/
+             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.PlaySession);
+
+            Debug.Log("Max"+AppManager.I.Player.MaxJourneyPosition.Stage);
+            Debug.Log("MaxLB"+AppManager.I.Player.MaxJourneyPosition.LearningBlock);
+            Debug.Log("MaxPS"+AppManager.I.Player.MaxJourneyPosition.PlaySession);
 
             // transform.position = Vector3.MoveTowards(transform.position, new Vector3(posDot.x, transform.position.y, posDot.z), speed * Time.deltaTime);
             if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
@@ -164,7 +174,7 @@ namespace EA4S
                 if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock != miniMapScript.posPines.Length - 1)
                     transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1]);
             }
-            else if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100) && (pos < (miniMapScript.posMax - 1)))
+            else if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100) && (pos <= (miniMapScript.posMax - 1)))
             {
                 if (pos % 2 != 0)
                     pos++;
@@ -270,7 +280,6 @@ namespace EA4S
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = 1;
             LookAtRightPin();
             UpdateCurrenJourneyPosition();
-            AmIFirstorLastPos();
         }
         void UpdateCurrenJourneyPosition()
         {
@@ -325,17 +334,21 @@ namespace EA4S
         }
         void CanNotMoveToLeft()
         {
-            if(AppManager.I.Player.CurrentJourneyPosition.Stage < AppManager.I.Player.MaxJourneyPosition.Stage)
+            learningblock = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
+            playSession = AppManager.I.Player.CurrentJourneyPosition.PlaySession;
+            stage = AppManager.I.Player.CurrentJourneyPosition.Stage;
+      
+            if (miniMapScript.isAvailableTheWholeMap)
             {
-                if ((AppManager.I.Player.CurrentJourneyPosition.LearningBlock == miniMapScript.posPines.Length-1)&&
-                    (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100)) moveLeftButton.SetActive(false);
+                if ((learningblock == miniMapScript.posPines.Length-1)&&
+                    (playSession == 100)) moveLeftButton.SetActive(false);
                 else moveLeftButton.SetActive(true);
             }
             else
             {
-                if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock == AppManager.I.Player.MaxJourneyPosition.LearningBlock)
+                if (learningblock == learningblockMax)
                 {
-                    if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == AppManager.I.Player.MaxJourneyPosition.PlaySession) moveLeftButton.SetActive(false);
+                    if (playSession == playSessionMax) moveLeftButton.SetActive(false);
                     else moveLeftButton.SetActive(true);
                 }
                 else moveLeftButton.SetActive(true);
