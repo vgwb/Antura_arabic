@@ -119,13 +119,13 @@ namespace EA4S {
                     int countD = 0;
                     foreach (RewardDecal reward in RewardsDecal) {
                         countD++;
-                        if (countD == 1)
-                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = true });
-                        else if (countD == 2)
-                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = true, IsSelected = false });
-                        else if (countD == RewardsDecal.Count)
-                            returnList.Add(null);
-                        else
+                        //if (countD == 1)
+                        //    returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = true });
+                        //else if (countD == 2)
+                        //    returnList.Add(new RewardItem() { ID = reward.ID, IsNew = true, IsSelected = false });
+                        //else if (countD == RewardsDecal.Count)
+                        //    returnList.Add(null);
+                        //else
                             returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = false });
                     }
                     /// - Charge texture
@@ -176,11 +176,20 @@ namespace EA4S {
                 case RewardTypes.texture:
                     foreach (RewardColor color in config.RewardsTileColor) {
                         RewardColorItem rci = new RewardColorItem(color);
-                        rci.Color2RGB = rci.Color1RGB;
+                        rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
                         returnList.Add(rci);
                     }
+                    // set current reward in modification
+                    CurrentReward = new RewardPack() { ItemID = _rewardItemId, Type = RewardTypes.texture };
                     break;
                 case RewardTypes.decal:
+                    foreach (RewardColor color in config.RewardsDecalColor) {
+                        RewardColorItem rci = new RewardColorItem(color);
+                        rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
+                        returnList.Add(rci);
+                    }
+                    // set current reward in modification
+                    CurrentReward = new RewardPack() { ItemID = _rewardItemId, Type = RewardTypes.decal };
                     break;
                 default:
                     Debug.LogWarningFormat("Reward typology requested {0} not found", _rewardType);
@@ -196,23 +205,9 @@ namespace EA4S {
         /// <param name="_rewardColorItemId">The reward color item identifier.</param>
         /// <param name="_rewardType">Type of the reward.</param>
         public static void SelectRewardColorItem(string _rewardColorItemId, RewardTypes _rewardType) {
-            switch (_rewardType) {
-                case RewardTypes.reward:
-                    CurrentReward.ColorId = _rewardColorItemId;
-                    if (OnRewardChanged != null)
-                        OnRewardChanged(CurrentReward);
-                    break;
-                case RewardTypes.texture:
-                    CurrentReward.ColorId = _rewardColorItemId;
-                    if (OnRewardChanged != null)
-                        OnRewardChanged(CurrentReward);
-                    break;
-                case RewardTypes.decal:
-                    break;
-                default:
-                    break;
-            }
-
+            CurrentReward.ColorId = _rewardColorItemId;
+            if (OnRewardChanged != null)
+                OnRewardChanged(CurrentReward);
         }
 
         /// <summary>
