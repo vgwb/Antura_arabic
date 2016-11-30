@@ -35,6 +35,12 @@ namespace EA4S.Assessment
 
                 case AssessmentCode.SelectPronouncedWord:
                     return AssessmentFactory.CreatePronouncedWordAssessment();
+
+                case AssessmentCode.SingularDualPlural:
+                    return AssessmentFactory.CreateSingularDualPluralAssessment();
+
+                case AssessmentCode.WordArticle:
+                    return AssessmentFactory.CreateWordArticleAssessment();
             }
 
             return null;
