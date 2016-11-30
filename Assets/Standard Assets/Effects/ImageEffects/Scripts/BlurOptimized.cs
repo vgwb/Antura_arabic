@@ -59,7 +59,7 @@ namespace UnityStandardAssets.ImageEffects
             int rtH = source.height >> downsample;
 
             // downsample
-            RenderTexture rt = RenderTexture.GetTemporary (rtW, rtH, 0, source.format);
+            RenderTexture rt = RenderTexture.GetTemporary (rtW, rtH, 0, destination.format);
 
             rt.filterMode = FilterMode.Bilinear;
             Graphics.Blit (source, rt, blurMaterial, 0);
@@ -71,14 +71,14 @@ namespace UnityStandardAssets.ImageEffects
                 blurMaterial.SetVector ("_Parameter", new Vector4 (blurSize * widthMod + iterationOffs, -blurSize * widthMod - iterationOffs, 0.0f, 0.0f));
 
                 // vertical blur
-                RenderTexture rt2 = RenderTexture.GetTemporary (rtW, rtH, 0, source.format);
+                RenderTexture rt2 = RenderTexture.GetTemporary (rtW, rtH, 0, destination.format);
                 rt2.filterMode = FilterMode.Bilinear;
                 Graphics.Blit (rt, rt2, blurMaterial, 1 + passOffs);
                 RenderTexture.ReleaseTemporary (rt);
                 rt = rt2;
 
                 // horizontal blur
-                rt2 = RenderTexture.GetTemporary (rtW, rtH, 0, source.format);
+                rt2 = RenderTexture.GetTemporary (rtW, rtH, 0, destination.format);
                 rt2.filterMode = FilterMode.Bilinear;
                 Graphics.Blit (rt, rt2, blurMaterial, 2 + passOffs);
                 RenderTexture.ReleaseTemporary (rt);
