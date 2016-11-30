@@ -152,7 +152,7 @@ namespace EA4S.MixedLetters
             {
                 IQuestionPack newQuestion = MixedLettersConfiguration.Instance.Questions.GetNextQuestion();
                 question = newQuestion.GetQuestion();
-                
+
                 if (sayQuestion)
                 {
                     SayQuestion();
@@ -202,6 +202,12 @@ namespace EA4S.MixedLetters
                     || dropZone.droppedLetter.GetLetter().Id != lettersInOrder[i].Id
                       || Mathf.Abs(dropZone.droppedLetter.transform.rotation.z) > 0.1f)
                 {
+                    for (int j = 0; j < lettersInOrder.Count; j++)
+                    {
+                        SeparateLetterController letter = SeparateLettersSpawnerController.instance.separateLetterControllers[j];
+                        letter.SetIsSubjectOfTutorial(roundNumber == 0 && letter == dropZone.correctLetter);
+                    }
+
                     return;
                 }
             }
@@ -217,7 +223,7 @@ namespace EA4S.MixedLetters
             {
                 numRoundsWon++;
             }
-           
+
             HideRotationButtons();
             ShowGreenTicks();
         }
