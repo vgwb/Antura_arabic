@@ -332,23 +332,24 @@ namespace EA4S.Db
 
         #region Phrase -> Word
 
-        public List<WordData> GetWordsInPhrase(string phraseId)
+        public List<WordData> GetWordsInPhrase(string phraseId, WordFilters wordFilters = null)
         {
+            if (wordFilters == null) wordFilters = new WordFilters();
             PhraseData data = dbManager.GetPhraseDataById(phraseId);
-            return GetWordsInPhrase(data);
+            return GetWordsInPhrase(data, wordFilters);
         }
 
-        public List<WordData> GetWordsInPhrase(PhraseData phraseData)
+        public List<WordData> GetWordsInPhrase(PhraseData phraseData, WordFilters wordFilters)
         {
             var words_ids_list = new List<string>(phraseData.Words);
-            List<WordData> list = dbManager.FindWordData(x => words_ids_list.Contains(x.Id));
+            List<WordData> list = dbManager.FindWordData(x => words_ids_list.Contains(x.Id) && CheckFilters(wordFilters, x));
             return list;
         }
 
-        public List<WordData> GetAnswersToPhrase(PhraseData phraseData)
+        public List<WordData> GetAnswersToPhrase(PhraseData phraseData, WordFilters wordFilters)
         {
             var words_ids_list = new List<string>(phraseData.Answers);
-            List<WordData> list = dbManager.FindWordData(x => words_ids_list.Contains(x.Id));
+            List<WordData> list = dbManager.FindWordData(x => words_ids_list.Contains(x.Id) && CheckFilters(wordFilters, x));
             return list;
         }
 
@@ -359,28 +360,12 @@ namespace EA4S.Db
 
         private bool CheckFilters(WordFilters wordFilters, PhraseFilters phraseFilters, PhraseData data)
         {
-            var words = GetWordsInPhrase(data);
+            // Words are checked with filters. At least 1 must fulfill the requirement.
+            var words = GetWordsInPhrase(data, wordFilters);
+            int nOkWords = words.Count;
 
-            int nOkWords = 0;
-            bool allWordsAreOk = true;
-            foreach (var word in words) {
-                if (!CheckFilters(wordFilters, word))
-                    allWordsAreOk = false;
-                else
-                    nOkWords++;
-                if (!allWordsAreOk) return false;
-            }
-
-            int nOkAnswers = 0;
-            var answers = GetAnswersToPhrase(data);
-            bool allAnswersAreOk = true;
-            foreach (var word in answers) {
-                if (!CheckFilters(wordFilters, word))
-                    allAnswersAreOk = false;
-                else
-                    nOkAnswers++;
-                if (!allAnswersAreOk) return false;
-            }
+            var answers = GetAnswersToPhrase(data, wordFilters);
+            int nOkAnswers = answers.Count;
 
             if (phraseFilters.requireWords && (nOkWords == 0)) return false;
             if (phraseFilters.requireAnswersOrWords && (nOkAnswers == 0 && nOkWords == 0)) return false;
