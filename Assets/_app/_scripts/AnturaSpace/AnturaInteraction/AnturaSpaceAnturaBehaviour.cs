@@ -143,12 +143,12 @@ namespace EA4S
                     m_oAnturaCtrl.State = AnturaAnimationStates.sitting;
 
                     Vector3 _rot = new Vector3(0, Vector3.Angle(Vector3.forward, m_v3IdleRotation), 0);
-                    _rot = (Vector3.Cross(Vector3.forward, Vector3.back).y < 0) ? -_rot : _rot;
+                    _rot = (Vector3.Cross(Vector3.forward, m_v3IdleRotation).y < 0) ? -_rot : _rot;
                     transform.DORotate(_rot, 0.5f);
                 });
 
-                Vector3 rot = new Vector3(0, Vector3.Angle(Vector3.forward, Vector3.back), 0);
-                rot = (Vector3.Cross(Vector3.forward, Vector3.back).y < 0) ? -rot : rot;
+                Vector3 rot = new Vector3(0, Vector3.Angle(Vector3.forward, transform.forward), 0);
+                rot = (Vector3.Cross(Vector3.forward, transform.forward).y < 0) ? -rot : rot;
                 transform.DORotate(rot, 0.5f);
             }
         }
