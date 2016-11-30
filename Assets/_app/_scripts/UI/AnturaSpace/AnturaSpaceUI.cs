@@ -28,6 +28,7 @@ namespace EA4S
         RewardTypes currRewardType;
         List<RewardItem> currRewardDatas;
         List<RewardColorItem> currSwatchesDatas;
+        AnturaSpaceCategoryButton.AnturaSpaceCategory currCategory;
         Tween showCategoriesTween, showItemsTween, showSwatchesTween;
 
         #region Unity
@@ -139,6 +140,7 @@ namespace EA4S
         IEnumerator CO_SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
         {
             // Get rewards list
+            currCategory = _category;
             currRewardType = CategoryToRewardType(_category);
             bool useImages = _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture || _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
             foreach (AnturaSpaceItemButton item in btsItems) item.SetImage(!useImages);
@@ -186,8 +188,10 @@ namespace EA4S
             BTRemoveMods.gameObject.SetActive(_rewardData != null);
             if (_rewardData == null) {
                 foreach (AnturaSpaceItemButton item in btsItems) item.Toggle(false);
-                // TODO Tell RewardSystemManager the no item is selected for the given category
-                AnturaModelManager.Instance.ClearLoadedRewardInCategory()
+                if (currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears) {
+                    AnturaModelManager.Instance.ClearLoadedRewardInCategory("EAR_L");
+                    AnturaModelManager.Instance.ClearLoadedRewardInCategory("EAR_R");
+                } else AnturaModelManager.Instance.ClearLoadedRewardInCategory(currCategory.ToString());
                 return;
             }
 
