@@ -5168,7 +5168,7 @@ MonoBehaviour:
   timer: {fileID: 508411712}
   countdownAnimator: {fileID: 0}
   FxParticlesPoof: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
-  winCelebration: {fileID: 890385396}
+  roundResultAnimator: {fileID: 890385396}
   minX: -20
   maxX: 20
   minY: 8
@@ -5186,6 +5186,8 @@ MonoBehaviour:
   letterDropDelay: 0
   letterAnimationLength: 0.367
   isTutorialRound: 0
+  countingIndex: 0
+  maxCountingIndex: 0
 --- !u!4 &508411711
 Transform:
   m_ObjectHideFlags: 0
@@ -7630,7 +7632,7 @@ GameObject:
   - 4: {fileID: 890385395}
   - 114: {fileID: 890385396}
   m_Layer: 0
-  m_Name: WinCelebration
+  m_Name: RoundResultAnimator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7659,11 +7661,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 890385394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 033d018b78da745998f5f330f353ec18, type: 3}
+  m_Script: {fileID: 11500000, guid: ac96695756eb14bed9f77b27bba1b6c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LLPrefab: {fileID: 1933104513}
   vfx: {fileID: 277648637}
+  wrongMarkPosition: {x: 10, y: 13, z: 1}
   onscreenPosition: {x: 0, y: 10, z: -25}
   offscreenPosition: {x: 0, y: -10, z: -25}
   moveDuration: 0.25
