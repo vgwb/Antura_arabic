@@ -23,6 +23,7 @@ public class PlayerBookManager : MonoBehaviour
 
     [Header("Scene Setup")]
     public Music SceneMusic;
+    public PlayerBookPanel OpeningPanel;
 
     [Header("References")]
     public GameObject BookPanel;
@@ -43,7 +44,8 @@ public class PlayerBookManager : MonoBehaviour
 
         AudioManager.I.PlayDialog("Book_Intro");
 
-        OpenPanel(PlayerBookPanel.Book);
+        HideAllPanels();
+        OpenPanel(OpeningPanel);
     }
 
     void OpenPanel(PlayerBookPanel newPanel)
@@ -71,6 +73,14 @@ public class PlayerBookManager : MonoBehaviour
                 GamesPanel.SetActive(status);
                 break;
         }
+    }
+
+    void HideAllPanels()
+    {
+        BookPanel.SetActive(false);
+        PlayerPanel.SetActive(false);
+        ParentsPanel.SetActive(false);
+        GamesPanel.SetActive(false);
     }
 
     public void BtnOpenBook()
