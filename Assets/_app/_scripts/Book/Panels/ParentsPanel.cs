@@ -25,5 +25,34 @@ namespace EA4S
 
         }
 
+        public void OnSuperDogMode()
+        {
+            GlobalUI.ShowPrompt(true, "go super dog?", GoSuperDogMode);
+        }
+
+        void GoSuperDogMode()
+        {
+            Debug.Log("YEAH!");
+        }
+
+        public void OnDeleteProfile()
+        {
+            GlobalUI.ShowPrompt(true, "delete this profile?", GoDeleteProfile);
+        }
+
+        void GoDeleteProfile()
+        {
+            Debug.Log("YEAH!");
+        }
+
+        public void OnExportData()
+        {
+            GlobalUI.ShowPrompt(true, "Export alla Database?", GoExportData);
+        }
+
+        void GoExportData()
+        {
+            Debug.Log("YEAH!");
+        }
     }
 }

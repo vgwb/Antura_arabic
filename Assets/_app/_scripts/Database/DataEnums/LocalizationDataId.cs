@@ -344,6 +344,7 @@ namespace EA4S.Db
         UI_Vehicles = 337,
         UI_Verb = 338,
         UI_Words = 339,
+        UI_LearningBlock = 340,
     }
 }
 
