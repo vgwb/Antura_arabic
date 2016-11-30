@@ -3323,6 +3323,56 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224000011722212902, guid: 9957d9cfc035045cb9a389ed852a2e79,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011722212902, guid: 9957d9cfc035045cb9a389ed852a2e79,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011722212902, guid: 9957d9cfc035045cb9a389ed852a2e79,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 44.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011722212902, guid: 9957d9cfc035045cb9a389ed852a2e79,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011722212902, guid: 9957d9cfc035045cb9a389ed852a2e79,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 89
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011722212902, guid: 9957d9cfc035045cb9a389ed852a2e79,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 44.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
   m_IsPrefabParent: 0
@@ -7666,7 +7716,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LLPrefab: {fileID: 1933104513}
   vfx: {fileID: 277648637}
-  wrongMarkPosition: {x: 10, y: 13, z: 1}
+  wrongMarkPosition1: {x: 5, y: 15, z: -20}
+  wrongMarkPosition2: {x: -5, y: 12, z: -20}
   onscreenPosition: {x: 0, y: 10, z: -25}
   offscreenPosition: {x: 0, y: -10, z: -25}
   moveDuration: 0.25
