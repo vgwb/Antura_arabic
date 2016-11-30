@@ -477,36 +477,3 @@ MonoBehaviour:
       Linked: areyouready_Q
       Words: []
       Answers: []
-    - Id: question_1
-      English: i am question 1
-      Arabic: "\u0647\u0644 \u0623\u0646\u062A \u062C\u0627\u0647\u0632\u061F 1"
-      Category: 1
-      Linked: 
-      Words: []
-      Answers:
-      - banana
-    - Id: question_2
-      English: i am question 2
-      Arabic: "\u0647\u0644 \u0623\u0646\u062A \u062C\u0627\u0647\u0632\u061F 2"
-      Category: 1
-      Linked: 
-      Words: []
-      Answers:
-      - hat
-      - the_hat
-    - Id: question_3
-      English: i am question 3
-      Arabic: "\u0647\u0644 \u0623\u0646\u062A \u062C\u0627\u0647\u0632\u061F 3"
-      Category: 1
-      Linked: 
-      Words: []
-      Answers:
-      - ball
-    - Id: question_4
-      English: i am question 4
-      Arabic: "\u0647\u0644 \u0623\u0646\u062A \u062C\u0627\u0647\u0632\u061F 4"
-      Category: 1
-      Linked: 
-      Words: []
-      Answers:
-      - kid

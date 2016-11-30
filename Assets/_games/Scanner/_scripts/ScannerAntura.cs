@@ -8,6 +8,7 @@ namespace EA4S.Scanner
 
 
         public static bool PAUSE_NEW_LL_SLIDES, IS_IN_SCENE;
+        public static float LAST_NORMAL_SLIDE;
         public static int SCARED_COUNTER;
         public ScannerGame game;
         public Transform stopPose, chargeEndPose;
@@ -163,6 +164,15 @@ namespace EA4S.Scanner
             if (ScannerConfiguration.Instance.Variation != ScannerVariation.OneWord)
                 StartCoroutine(resetLetters());
 
+            else if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
+            {
+                if (game.scannerLL[0].status == ScannerLivingLetter.LLStatus.None)
+                {
+                    game.scannerLL[0].StartSliding();//.status = ScannerLivingLetter.LLStatus.Sliding;
+                    Debug.LogWarning("VVVV");
+                }
+            }
+
             IS_IN_SCENE = false;
         }
 
@@ -194,15 +204,18 @@ namespace EA4S.Scanner
             {
                 if (fallenLL[i])
                 {
-                    Debug.LogWarning("YYYY");
+                    //Debug.LogWarning("YYYY");
                     fallenLL[i].Reset(false);
                 }
             }
             for (int i = 0; i < LLCount; i++)
             {
+                //while (Time.time - LAST_NORMAL_SLIDE < 5)
+                  //  yield return null;
+
                 if (fallenLL[i])
                 {
-                    Debug.LogWarning("ZZZZ");
+                    //Debug.LogWarning("ZZZZ");
                     fallenLL[i].StartSliding();
                     fallenLL[i] = null;
                     if (game.scannerLL.Count == 3)
