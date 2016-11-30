@@ -14,6 +14,7 @@ namespace EA4S
         public Color BtToggleOffColor = Color.white;
         public Color BtLockedColor = Color.red;
         public bool ToggleIconAlpha = true;
+        public bool AutoAnimateClick = true;
 
         public bool IsToggled { get; private set; }
         public bool IsLocked { get; private set; }
@@ -66,7 +67,7 @@ namespace EA4S
             BtImg.color = _activate ? DefColor : IsLocked ? BtLockedColor : BtToggleOffColor;
             if (ToggleIconAlpha && Ico != null) Ico.SetAlpha(_activate ? 1 : 0.4f);
 
-            if (_animateClick) AnimateClick();
+            if (_animateClick) AnimateClick(true);
         }
 
         public virtual void Lock(bool _doLock)
@@ -89,10 +90,10 @@ namespace EA4S
             pulseTween.Rewind();
         }
 
-        public void AnimateClick()
+        public void AnimateClick(bool _force = false)
         {
             pulseTween.Rewind();
-            clickTween.Restart();
+            if (AutoAnimateClick || _force) clickTween.Restart();
         }
 
         #endregion
