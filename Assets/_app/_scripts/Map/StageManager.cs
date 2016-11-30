@@ -84,8 +84,9 @@ namespace EA4S
                 // First contact step 2:
 
                 // ..and set first contact done.             
+                ActivateUI();
                 AppManager.I.Player.FirstContactPassed(2);
-                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_First, true, true, ActivateUI);
+                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_First);
                 Debug.Log("First Contact Step2 finished! Good Luck!");
                 anturaButton.GetComponent<OnClickButtonChangeScene>().SceneNameCustom = "app_AnturaSpace";
             }
