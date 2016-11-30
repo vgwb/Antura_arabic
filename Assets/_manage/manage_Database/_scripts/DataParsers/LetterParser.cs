@@ -9,6 +9,7 @@ namespace EA4S.Db.Management
             var data = new LetterData();
 
             data.Id = ToString(dict["Id"]);
+            data.Active = (ToInt(dict["Active"]) == 1);
             data.Number = ToInt(dict["Number"]);
             data.Title = ToString(dict["Title"]);
             data.Kind = ParseEnum<LetterDataKind>(data, dict["Kind"]);
