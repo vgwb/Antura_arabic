@@ -161,9 +161,6 @@ namespace EA4S.ThrowBalls
                     break;
                 case State.Dragging:
                     rigidBody.isKinematic = false;
-
-                    audioManager.PlaySound(Sfx.ThrowArm);
-
                     break;
                 case State.Launched:
                     rigidBody.isKinematic = false;
