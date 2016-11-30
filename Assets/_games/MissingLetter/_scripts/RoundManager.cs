@@ -200,8 +200,8 @@ namespace EA4S.MissingLetter
             m_oCurrQuestionPack = MissingLetterConfiguration.Instance.Questions.GetNextQuestion();
 
             List<LL_WordData> questionData = GetWordFromPhrases((LL_PhraseData)m_oCurrQuestionPack.GetQuestion());
-            var _correctAnswer = (LL_WordData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
 
+            var _correctAnswer = (LL_WordData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
             var _wrongAnswers = m_oCurrQuestionPack.GetWrongAnswers().ToList();
 
             foreach (LL_WordData _word in questionData)
@@ -286,8 +286,7 @@ namespace EA4S.MissingLetter
         //Preparing for missingWord
         int RemoveWordfromQuestion(List<LL_WordData> Words)
         {
-            //tmp solution for testing misingWord
-            LL_WordData word = Words[0];
+            LL_WordData word = (LL_WordData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
 
             int index = 0;
             for (; index < Words.Count; ++index)
@@ -299,7 +298,7 @@ namespace EA4S.MissingLetter
             }
 
             LetterObjectView tmp = m_aoCurrentQuestionScene[index].GetComponent<LetterBehaviour>().mLetter;
-            tmp.Label.text = mk_sRemovedLetterChar;
+            tmp.Label.text = "";
             return index;
         }
         
