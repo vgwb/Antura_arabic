@@ -290,9 +290,16 @@ namespace EA4S.Maze
                 {
                     LL.transform.SetParent(transform, true);
                     LL.SetState(LLAnimationStates.LL_idle);
-                    rocket.transform.DOLookAt(Camera.main.transform.position, 0.5f, AxisConstraint.None, Vector3.forward);
-                    rocket.transform.DOMove(Camera.main.transform.position + new Vector3(10, 10, 0), 3);
 
+                    GameObject obj = new GameObject();
+                    obj.transform.position = rocket.transform.position - new Vector3(10,0, 0);
+                    obj.transform.SetParent(rocket.transform.parent, true);
+                    rocket.transform.SetParent(obj.transform, true);
+                    rocket.transform.DOLookAt(Camera.main.transform.position, 0.5f, AxisConstraint.None, Vector3.forward);
+                    rocket.transform.DOMove(Camera.main.transform.position + new Vector3(10, 10, 0),5 );
+
+                    obj.transform.DOLocalRotate(new Vector3(0, 180, 0), 4);
+                    
                 }
                 
             },
@@ -684,6 +691,41 @@ namespace EA4S.Maze
             });
 
         }
+
+        public void celebrate(System.Action action)
+        {
+            toggleVisibility(true);
+            Vector3 pos = transform.position + new Vector3(10, 0, 20);
+            List<Vector3> pts = new List<Vector3>();
+            pts.Add(transform.position);
+
+            Vector3 vec = pos - transform.position;
+            Vector3 perp = Vector3.Cross(vec, Vector3.up);
+
+            Vector3 half = transform.position + (vec) / 2;
+
+            half += perp.normalized * 3;
+
+            pts.Add(half);
+
+            pts.Add(pos);
+
+            transform.DOPath(pts.ToArray(), 2.5f, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) => {
+                if (index + 1 < pts.Count)
+                {
+                    var dir = transform.position - pts[index + 1];
+                    var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+
+                    transform.rotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
+                                                                                  // transform.DORotateQuaternion(targetRotation, 0.007f);
+                }
+            }).OnComplete(() => {
+                toggleVisibility(false);
+                gameObject.SetActive(false);
+                action();
+            });
+        }
+
         public void fleeTo(Vector3 position)
         {
             //wait and flee:
