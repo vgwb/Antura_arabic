@@ -28,6 +28,14 @@ namespace EA4S
             return V;
         }
 
+        /// <summary>
+        /// Extension to Shuffle a list and return a new one
+        /// </summary>
+        public static List<T> Shuffle<T>(this List<T> fromList)
+        {
+            return new List<T>(fromList.OrderBy(a => UnityEngine.Random.value));
+        }
+
         public static List<T> RouletteSelectNonRepeating<T>(List<T> fromList, int numberToSelect)
         {
             if (numberToSelect > fromList.Count) {
@@ -61,7 +69,7 @@ namespace EA4S
 
             if (numberToSelect == fromList.Count) {
                 chosenList.AddRange(fromList);
-                chosenList = new List<T>(chosenList.OrderBy(a => UnityEngine.Random.value));
+                chosenList = chosenList.Shuffle();
                 return chosenList;
             }
 
