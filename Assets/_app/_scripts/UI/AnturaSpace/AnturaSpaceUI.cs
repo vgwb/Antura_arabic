@@ -28,6 +28,7 @@ namespace EA4S
         RewardTypes currRewardType;
         List<RewardItem> currRewardDatas;
         List<RewardColorItem> currSwatchesDatas;
+        AnturaSpaceCategoryButton.AnturaSpaceCategory currCategory;
         Tween showCategoriesTween, showItemsTween, showSwatchesTween;
 
         #region Unity
@@ -58,7 +59,7 @@ namespace EA4S
             showCategoriesTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(CategoriesContainer.DOAnchorPosY(150, duration).From().SetEase(Ease.OutBack))
                 .Join(BtBones.RectT.DOAnchorPosY(-830, duration))
-                .OnRewind(() => CategoriesContainer.gameObject.SetActive(false));
+                .OnRewind(()=> CategoriesContainer.gameObject.SetActive(false));
             showItemsTween = ItemsContainer.DOAnchorPosX(-350, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
                 .OnRewind(() => {
                     ItemsContainer.gameObject.SetActive(false);
@@ -68,26 +69,26 @@ namespace EA4S
                     }
                 });
             showSwatchesTween = SwatchesContainer.DOAnchorPosY(-100, duration).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
-                .OnRewind(() => SwatchesContainer.gameObject.SetActive(false));
+                .OnRewind(()=> SwatchesContainer.gameObject.SetActive(false));
 
             CategoriesContainer.gameObject.SetActive(false);
             ItemsContainer.gameObject.SetActive(false);
             SwatchesContainer.gameObject.SetActive(false);
 
             // Listeneres
-            BtOpenModsPanel.Bt.onClick.AddListener(() => OnClick(BtOpenModsPanel));
-            BTRemoveMods.Bt.onClick.AddListener(() => OnClick(BTRemoveMods));
+            BtOpenModsPanel.Bt.onClick.AddListener(()=> OnClick(BtOpenModsPanel));
+            BTRemoveMods.Bt.onClick.AddListener(()=> OnClick(BTRemoveMods));
             foreach (var bt in btsCategories) {
                 var b = bt;
-                b.Bt.onClick.AddListener(() => OnClickCategory(b));
+                b.Bt.onClick.AddListener(()=> OnClickCategory(b));
             }
             foreach (var bt in btsItems) {
                 var b = bt;
-                b.Bt.onClick.AddListener(() => OnClickItem(b));
+                b.Bt.onClick.AddListener(()=> OnClickItem(b));
             }
             foreach (var bt in btsSwatches) {
                 var b = bt;
-                b.Bt.onClick.AddListener(() => OnClickSwatch(b));
+                b.Bt.onClick.AddListener(()=> OnClickSwatch(b));
             }
         }
 
@@ -139,6 +140,7 @@ namespace EA4S
         IEnumerator CO_SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
         {
             // Get rewards list
+            currCategory = _category;
             currRewardType = CategoryToRewardType(_category);
             bool useImages = _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture || _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
             foreach (AnturaSpaceItemButton item in btsItems) item.SetImage(!useImages);
@@ -186,8 +188,10 @@ namespace EA4S
             BTRemoveMods.gameObject.SetActive(_rewardData != null);
             if (_rewardData == null) {
                 foreach (AnturaSpaceItemButton item in btsItems) item.Toggle(false);
-                // TODO Tell RewardSystemManager the no item is selected for the given category
-                //AnturaModelManager.Instance.ClearLoadedRewardInCategory();
+                if (currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears) {
+                    AnturaModelManager.Instance.ClearLoadedRewardInCategory("EAR_L");
+                    AnturaModelManager.Instance.ClearLoadedRewardInCategory("EAR_R");
+                } else AnturaModelManager.Instance.ClearLoadedRewardInCategory(currCategory.ToString());
                 return;
             }
 
@@ -236,12 +240,12 @@ namespace EA4S
         RewardTypes CategoryToRewardType(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
         {
             switch (_category) {
-                case AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture:
-                    return RewardTypes.texture;
-                case AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal:
-                    return RewardTypes.decal;
-                default:
-                    return RewardTypes.reward;
+            case AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture:
+                return RewardTypes.texture;
+            case AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal:
+                return RewardTypes.decal;
+            default:
+                return RewardTypes.reward;
             }
         }
 
