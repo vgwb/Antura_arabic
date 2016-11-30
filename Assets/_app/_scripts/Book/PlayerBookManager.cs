@@ -12,6 +12,7 @@ public enum PlayerBookPanel
     BookLetters,
     BookWords,
     BookPhrases,
+    BookLearningBlocks,
     Player,
     Parents,
     MiniGames
@@ -33,7 +34,10 @@ public class PlayerBookManager : MonoBehaviour
 
     void Start()
     {
+        AppManager.I.GameSettings.CheatSuperDogMode = true;
+
         GlobalUI.ShowPauseMenu(false);
+        GlobalUI.ShowBackButton(true, ExitThisScene);
         AudioManager.I.PlayMusic(SceneMusic);
         SceneTransitioner.Close();
 
@@ -89,7 +93,7 @@ public class PlayerBookManager : MonoBehaviour
         OpenPanel(PlayerBookPanel.MiniGames);
     }
 
-    public void BtnOpenMap()
+    public void ExitThisScene()
     {
         NavigationManager.I.GoToScene(AppScene.Map);
     }

@@ -87,6 +87,9 @@ namespace EA4S.MixedLetters
                 separateLetterController.SetLetter(letterToSpawn);
                 separateLetterController.SetRotation(new Vector3(0, 0, Random.Range(0, 4) * 90));
                 separateLetterController.SetIsKinematic(false);
+                separateLetterController.SetCorrectDropZone(MixedLettersGame.instance.dropZoneControllers[randIndex]);
+                MixedLettersGame.instance.dropZoneControllers[randIndex].correctLetter = separateLetterController;
+                separateLetterController.SetIsSubjectOfTutorial(MixedLettersGame.instance.roundNumber == 0 && randIndex == 0);
                 separateLetterController.AddForce(new Vector3(throwLetterToTheRight ? Random.Range(2f, 6f) : Random.Range(-6f, -2f), Constants.GRAVITY.y * -0.45f), ForceMode.VelocityChange);
 
                 throwLetterToTheRight = !throwLetterToTheRight;

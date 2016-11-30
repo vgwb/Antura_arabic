@@ -21,9 +21,9 @@ MonoBehaviour:
       Order: 1
       Minigames:
       - MiniGameCode: 9
-        Weight: 100
+        Weight: 2
       - MiniGameCode: 11
-        Weight: 100
+        Weight: 1
       Letters:
       - alef
       - alef_hamza_hi
@@ -46,11 +46,11 @@ MonoBehaviour:
       Order: 1
       Minigames:
       - MiniGameCode: 5
-        Weight: 100
+        Weight: 2
       - MiniGameCode: 16
-        Weight: 100
+        Weight: 1
       - MiniGameCode: 27
-        Weight: 100
+        Weight: 3
       Letters: []
       Words:
       - pear
@@ -169,7 +169,6 @@ MonoBehaviour:
       Words:
       - leg
       - delicious
-      - uncle_father
       Words_previous:
       - cheese
       - whale
@@ -979,6 +978,7 @@ MonoBehaviour:
       Words:
       - mother
       - cheese
+      - uncle_father
       Words_previous:
       - moon
       - rain
@@ -7563,14 +7563,6 @@ MonoBehaviour:
       Type: MiniGame
       Order: 2
       Minigames:
-      - MiniGameCode: 1
-        Weight: 1
-      - MiniGameCode: 3
-        Weight: 1
-      - MiniGameCode: 4
-        Weight: 1
-      - MiniGameCode: 8
-        Weight: 1
       - MiniGameCode: 10
         Weight: 1
       - MiniGameCode: 17
@@ -7580,8 +7572,6 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 24
-        Weight: 1
-      - MiniGameCode: 25
         Weight: 1
       - MiniGameCode: 26
         Weight: 1
@@ -7617,14 +7607,6 @@ MonoBehaviour:
       Type: MiniGame
       Order: 2
       Minigames:
-      - MiniGameCode: 1
-        Weight: 1
-      - MiniGameCode: 3
-        Weight: 1
-      - MiniGameCode: 4
-        Weight: 1
-      - MiniGameCode: 8
-        Weight: 1
       - MiniGameCode: 10
         Weight: 1
       - MiniGameCode: 17
@@ -7634,8 +7616,6 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 24
-        Weight: 1
-      - MiniGameCode: 25
         Weight: 1
       - MiniGameCode: 26
         Weight: 1

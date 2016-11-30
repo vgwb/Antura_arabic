@@ -4,7 +4,7 @@
 	{
 		ScannerGame game;
 
-		float timer = 1.5f;
+		float timer = 2f;
 		public ScannerIntroductionState(ScannerGame game)
 		{
 			this.game = game;

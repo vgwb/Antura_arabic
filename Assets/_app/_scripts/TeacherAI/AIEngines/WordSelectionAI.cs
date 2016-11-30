@@ -12,11 +12,10 @@ namespace EA4S.Teacher
     {
         // References
         private DatabaseManager dbManager;
-        //private PlayerProfile playerProfile;
         private TeacherAI teacher;
         private WordHelper wordHelper;
 
-        // Innert state
+        // Inner state
         private HashSet<LetterData> journeyLetters = new HashSet<LetterData>();
         private HashSet<WordData> journeyWords = new HashSet<WordData>();
         private HashSet<PhraseData> journeyPhrases = new HashSet<PhraseData>();
@@ -28,7 +27,6 @@ namespace EA4S.Teacher
         public WordSelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile, TeacherAI _teacher, WordHelper _wordHelper)
         {
             this.dbManager = _dbManager;
-            //this.playerProfile = _playerProfile;
             this.teacher = _teacher;
             this.wordHelper = _wordHelper;
         }
@@ -179,10 +177,13 @@ namespace EA4S.Teacher
             // Given a (filtered) list of data, select some using weights
             List<ScoreData> score_data_list = dbManager.FindScoreDataByQuery("SELECT * FROM ScoreData WHERE TableName = '" + table.ToString() + "'");
 
+            string debugString = "-- Teacher Selection Weights";
+
             List<float> weights_list = new List<float>();
             foreach (var sourceData in source_data_list)
             {
                 float cumulativeWeight = 0;
+                debugString += "\n"+ sourceData.GetId() + " ---";
 
                 // Get score data
                 var score_data = score_data_list.Find(x => x.ElementId == sourceData.GetId());
@@ -199,16 +200,19 @@ namespace EA4S.Teacher
                 // Score Weight [0,1]: higher the lower the score [-1,1] is
                 var scoreWeight = 0.5f * (1 - currentScore);
                 cumulativeWeight += scoreWeight * ConfigAI.data_scoreWeight;
+                debugString += " \tScore: " + scoreWeight * ConfigAI.data_scoreWeight + "(" + scoreWeight + ")";
 
                 // RecentPlay Weight  [1,0]: higher the more in the past we saw that data
                 const float dayLinerWeightDecrease = 1f / ConfigAI.daysForMaximumRecentPlayMalus;
                 float weightMalus = daysSinceLastScore * dayLinerWeightDecrease;
                 float recentPlayWeight = 1f - UnityEngine.Mathf.Min(1, weightMalus);
                 cumulativeWeight += recentPlayWeight * ConfigAI.data_recentPlayWeight;
+                debugString += " \tRecent: " + recentPlayWeight * ConfigAI.data_recentPlayWeight + "(" + recentPlayWeight + ")";
 
                 // Current focus weight [1,0]: higher if the data is part of the current play session
                 float currentPlaySessionWeight = currentPSData.Contains(sourceData) ? 1 : 0f;
                 cumulativeWeight += currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight;
+                debugString += " \tCurrentPS: " + currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight + "(" + currentPlaySessionWeight + ")";
 
                 // If the cumulative weight goes to the negatives, we give it a fixed weight
                 if (cumulativeWeight <= 0)
@@ -219,6 +223,12 @@ namespace EA4S.Teacher
 
                 // Save cumulative weight
                 weights_list.Add(cumulativeWeight);
+                debugString += " TOTw: " + cumulativeWeight;
+            }
+
+            if (ConfigAI.verboseDataSelection)
+            {
+                UnityEngine.Debug.Log(debugString);
             }
 
             // Select data from the list

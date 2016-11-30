@@ -13,6 +13,7 @@
 		public IQuestionProvider Questions { get; set; }
 		public bool gameActive = true;
 		public float beltSpeed = 1f;
+		public bool facingCamera = true;
 
         #region Game configurations
         public float Difficulty { get; set; }
@@ -71,26 +72,48 @@
 
 			Difficulty = Difficulty < 0.13f ? 0.13f : Difficulty;
 
-			if (Difficulty > 0.4f && Difficulty < 0.6f)
+			if (Difficulty <= 0.4f)
 			{
 				beltSpeed = 1f;
 			}
-			else if (Difficulty < 0.4f)
-			{
-				beltSpeed = 0.75f;
-			}
-			else if (Difficulty > 0.6f && Difficulty < 0.8f)
-			{
-				beltSpeed = 1.25f;
-			}
-			else if (Difficulty > 0.8f && Difficulty < 1f)
-			{
-				beltSpeed = 1.5f;
-			}
-			else if (Difficulty == 1f)
+			else if (Difficulty > 0.4f && Difficulty <= 0.6f)
 			{
 				beltSpeed = 2f;
 			}
+			else if (Difficulty > 0.6f && Difficulty <= 0.8f)
+			{
+				beltSpeed = 3f;
+			}
+			else if (Difficulty > 0.8f && Difficulty < 1f)
+			{
+				beltSpeed = 4f;
+			}
+			else if (Difficulty == 1f)
+			{
+				beltSpeed = 5f;
+			}
+
+			if (Difficulty <= 0.25f)
+			{
+				facingCamera = true;
+			}
+			else if (Difficulty > 0.25f && Difficulty <= 0.5f)
+			{
+				facingCamera = true;
+			}
+			else if (Difficulty > 0.5f && Difficulty <= 0.75f)
+			{
+				facingCamera = true;
+			}
+			else if (Difficulty > 0.75f && Difficulty < 1f)
+			{
+				facingCamera = false;
+			}
+			else if (Difficulty == 1f)
+			{
+				facingCamera = false;
+			}
+
 
 			switch (Variation)
 			{

@@ -2,14 +2,12 @@
 
 namespace EA4S
 {
-
     public static class AppConstants
     {
-        public const string AppVersion = "0.11.29b";
+        public const string AppVersion = "0.11.30a";
         public const string DbSchemeVersion = "1";
         public const bool DebugPanelEnabled = true;
         public const bool UseUnityAnalytics = true;
-        public const bool CheatBookUnlockEverything = true;
 
         // Application details (used by Teacher and maybe other)
         public const float minimumAge = 7;
@@ -45,5 +43,7 @@ namespace EA4S
         public int LastActivePlayerId;
 
         public bool UseTestDatabase;
+
+        public bool CheatSuperDogMode = false;
     }
 }
