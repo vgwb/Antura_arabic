@@ -19,6 +19,8 @@ namespace EA4S
 
         #region EXPOSED MEMBERS
         [SerializeField]
+        private Camera m_oCameraUI;
+        [SerializeField]
         private AnturaSpaceAnturaBehaviour m_oAnturaBehaviour;
         [SerializeField]
         private GameObject m_oItemsParentUI;
@@ -48,6 +50,8 @@ namespace EA4S
                 return;
             }
 
+            TutorialUI.SetCamera(m_oCameraUI);
+
             //setup first state, disable UI      
             m_eTutoState = eAnturaSpaceTutoState.ANTURA_ANIM;
 
@@ -64,7 +68,7 @@ namespace EA4S
 
             AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Intro, delegate()
             {
-                TutorialUI.ClickRepeat(m_oAnturaBehaviour.gameObject.transform.position+(Vector3.forward*-2), float.MaxValue, 1);
+                TutorialUI.ClickRepeat(m_oAnturaBehaviour.gameObject.transform.position+(Vector3.forward*-2) + (Vector3.up), float.MaxValue, 1);
             });
 
         }
@@ -88,7 +92,7 @@ namespace EA4S
 
                     m_eTutoState = eAnturaSpaceTutoState.COOKIE_BUTTON;
 
-                    TutorialUI.Clear(true);
+                    TutorialUI.Clear(false);
 
                     m_oAnturaBehaviour.onAnimationByClick -= AdvanceTutorial;
 
@@ -108,7 +112,7 @@ namespace EA4S
                             }); 
 
                             RectTransform _oRectCookieB = m_oCookieButton.gameObject.GetComponent<RectTransform>();
-                            TutorialUI.ClickRepeat(Camera.main.ScreenToWorldPoint(new Vector3(_oRectCookieB.position.x,_oRectCookieB.position.y,Camera.main.nearClipPlane)), float.MaxValue,1);
+                            TutorialUI.ClickRepeat(_oRectCookieB.position/*m_oCameraUI.ScreenToWorldPoint(new Vector3(_oRectCookieB.position.x,_oRectCookieB.position.y, m_oCameraUI.nearClipPlane))*/, float.MaxValue,1);
 
                         });
                     });
@@ -119,18 +123,14 @@ namespace EA4S
 
                     m_eTutoState = eAnturaSpaceTutoState.USE_ALL_COOKIES;
 
-                    TutorialUI.Clear(true);
+                    TutorialUI.Clear(false);
 
                     AudioManager.I.StopDialogue(false);
 
                     AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_2); //dialog drag cookies
 
-                    /*Vector3[] _av3Path = new Vector3[2];
-                    RectTransform _oRectCookieBDrag = m_oCookieButton.gameObject.GetComponent<RectTransform>();
-                    _av3Path[0] = Camera.main.ScreenToWorldPoint(new Vector3(_oRectCookieBDrag.position.x, _oRectCookieBDrag.position.y, Camera.main.nearClipPlane));
-                    _av3Path[1] = Camera.main.ScreenToWorldPoint(new Vector3(_oRectCookieBDrag.position.x-50, _oRectCookieBDrag.position.y-50, Camera.main.nearClipPlane));
-                    TutorialUI.DrawLine(_av3Path[0], _av3Path[1], TutorialUI.DrawLineMode.Finger);
-                    */
+                    DrawRepeatLineOnCookieButton();
+
                     break;
 
                 case eAnturaSpaceTutoState.USE_ALL_COOKIES:
@@ -138,7 +138,7 @@ namespace EA4S
                     {
                         m_eTutoState = eAnturaSpaceTutoState.CUSTOMIZE;
 
-                        TutorialUI.Clear(true);
+                        TutorialUI.Clear(false);
 
                         m_oCookieButton.onClick.RemoveListener(AdvanceTutorial);
 
@@ -159,8 +159,10 @@ namespace EA4S
                                     }
                                 }); 
 
-                                RectTransform _oRectCustomB = m_oCustomizationButton.gameObject.GetComponent<RectTransform>();
-                                TutorialUI.ClickRepeat(Camera.main.ScreenToWorldPoint(new Vector3(_oRectCustomB.position.x, _oRectCustomB.position.y, Camera.main.nearClipPlane)), float.MaxValue, 1);
+                                /*RectTransform _oRectCustomB = m_oCustomizationButton.gameObject.GetComponent<RectTransform>();
+                                TutorialUI.ClickRepeat(m_oCameraUI.ScreenToWorldPoint(new Vector3(_oRectCustomB.position.x, _oRectCustomB.position.y, m_oCameraUI.nearClipPlane)), float.MaxValue, 1);
+                                */
+                                TutorialUI.ClickRepeat(m_oCustomizationButton.transform.position, float.MaxValue, 1);
 
                             });
                         });
@@ -172,7 +174,7 @@ namespace EA4S
 
                     m_eTutoState = eAnturaSpaceTutoState.FINISH;
 
-                    TutorialUI.Clear(true);
+                    TutorialUI.Clear(false);
 
                     //Unregister from object buttons
                     foreach (var it in m_oItemsParentUI.GetComponentsInChildren<UnityEngine.UI.Button>())
@@ -180,13 +182,13 @@ namespace EA4S
                         it.onClick.RemoveListener(AdvanceTutorial);
                     }
 
-                    GlobalUI.ShowBackButton(true);
+                    GlobalUI.ShowBackButton(true,delegate() { NavigationManager.I.GoToScene(AppScene.Map); });
 
                     AudioManager.I.StopDialogue(false);
 
                     AudioManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro_AnturaSpace, delegate () //dialog go to map
                     {
-                        TutorialUI.ClickRepeat(Camera.main.ScreenToWorldPoint(new Vector3(GlobalUI.I.BackButton.RectT.position.x, GlobalUI.I.BackButton.RectT.position.y, Camera.main.nearClipPlane)), float.MaxValue, 1);
+                        //TutorialUI.ClickRepeat(m_oCameraUI.ScreenToWorldPoint(new Vector3(GlobalUI.I.BackButton.RectT.position.x, GlobalUI.I.BackButton.RectT.position.y, m_oCameraUI.nearClipPlane)), float.MaxValue, 1);
                     });
                    
                     break;
@@ -194,6 +196,29 @@ namespace EA4S
                 default:
                     break;
             }
+
+            
+        }
+        #endregion
+
+        #region PRIVATE FUNCTIONS
+        private void DrawRepeatLineOnCookieButton()
+        {
+            TutorialUI.Clear(false);
+
+            Vector3[] _av3Path = new Vector3[2];
+            RectTransform _oRectCookieBDrag = m_oCookieButton.gameObject.GetComponent<RectTransform>();
+            _av3Path[0] = m_oCookieButton.transform.position;
+            _av3Path[1] = _av3Path[0] + Vector3.up * 2 + Vector3.left * 2;
+            TutorialUIAnimation _oDLAnim = TutorialUI.DrawLine(_av3Path[0], _av3Path[1], TutorialUI.DrawLineMode.Finger, false, true);
+            _oDLAnim.MainTween.timeScale = 0.3f;
+            _oDLAnim.OnComplete(delegate()
+            {
+                if(m_eTutoState!=eAnturaSpaceTutoState.CUSTOMIZE)
+                {
+                    DrawRepeatLineOnCookieButton();
+                }
+            });
         }
         #endregion
     }
