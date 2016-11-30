@@ -13,7 +13,7 @@ namespace EA4S.FastCrowd
         WordFlexibleContainer WordLabel;
         List<LL_LetterData> CompletedLetters = new List<LL_LetterData>();
 
-        void Start()
+        void Awake()
         {
             WordLabel = GetComponent<WordFlexibleContainer>();
             UpdateWord();
@@ -31,7 +31,7 @@ namespace EA4S.FastCrowd
                 word += letter.Data.GetChar();
             }
             
-            WordLabel.SetText(word);
+            WordLabel.SetText(word, true);
         }
 
         public void AddLetter(ILivingLetterData data)
