@@ -1301,34 +1301,6 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
-    - Id: alef_fathah
-      Active: 0
-      Number: 0
-      Title: alef_fathah
-      Kind: 4
-      BaseLetter: alef
-      Symbol: fathah
-      Type: 0
-      Tag: 
-      Notes: 
-      SunMoon: 0
-      Sound: 
-      SoundZone: 
-      Isolated: "\u0627\u064E"
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 0627
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: FE8E
-      Symbol_Unicode: 064E
-      FinalFix: 
-      MedialFix: 
-      Old_Isolated: 
-      Old_Initial: 
-      Old_Medial: 
-      Old_Final: 
     - Id: alef_fathah_tanwin
       Active: 1
       Number: 0

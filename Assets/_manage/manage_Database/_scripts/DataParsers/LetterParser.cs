@@ -10,6 +10,8 @@ namespace EA4S.Db.Management
 
             data.Id = ToString(dict["Id"]);
             data.Active = (ToInt(dict["Active"]) == 1);
+            if (!data.Active) return null;  // Skip this data if inactive
+
             data.Number = ToInt(dict["Number"]);
             data.Title = ToString(dict["Title"]);
             data.Kind = ParseEnum<LetterDataKind>(data, dict["Kind"]);
