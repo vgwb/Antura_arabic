@@ -1,5 +1,6 @@
 ﻿using ArabicSupport;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,13 @@ namespace EA4S.MixedLetters
         public QuestionGameState QuestionState { get; private set; }
         public PlayGameState PlayState { get; private set; }
         public ResultGameState ResultState { get; private set; }
+        public TutorialGameState TutorialState { get; private set; }
 
         public DropZoneController[] dropZoneControllers;
 
         //public LL_WordData wordData;
         //public Db.WordData wordInPlay;
+        private ILivingLetterData question;
         public List<ILivingLetterData> lettersInOrder;
         public GameObject victimLL;
 
@@ -38,6 +41,7 @@ namespace EA4S.MixedLetters
             QuestionState = new QuestionGameState(this);
             PlayState = new PlayGameState(this);
             ResultState = new ResultGameState(this);
+            TutorialState = new TutorialGameState(this);
 
             lettersInOrder = new List<ILivingLetterData>();
             allLettersInAlphabet = new List<ILivingLetterData>();
@@ -60,7 +64,7 @@ namespace EA4S.MixedLetters
 
         protected override IGameState GetInitialState()
         {
-            return IntroductionState;
+            return TutorialState;
         }
 
         protected override IGameConfiguration GetConfiguration()
@@ -148,11 +152,10 @@ namespace EA4S.MixedLetters
             if (isSpelling)
             {
                 IQuestionPack newQuestion = MixedLettersConfiguration.Instance.Questions.GetNextQuestion();
-                LL_WordData wordData = (LL_WordData)newQuestion.GetQuestion();
-                AudioManager.I.PlayWord(wordData.Id);
+                question = newQuestion.GetQuestion();
+
                 lettersInOrder = newQuestion.GetCorrectAnswers().ToList();
-                VictimLLController.instance.letterObjectView.Init(wordData);
-                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(wordData);
+                VictimLLController.instance.letterObjectView.Init(question);
             }
 
             else
@@ -178,6 +181,41 @@ namespace EA4S.MixedLetters
             }
         }
 
+        public void SayQuestion(Action onQuestionOver)
+        {
+            if (MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Spelling)
+            {
+                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(question);
+
+                if (onQuestionOver != null)
+                {
+                    onQuestionOver.Invoke();
+                }
+            }
+
+            else
+            {
+                StartCoroutine(AlphabetPronounciationCoroutine(onQuestionOver));
+            }
+        }
+
+        private IEnumerator AlphabetPronounciationCoroutine(Action onQuestionOver)
+        {
+            IAudioManager audioManager = MixedLettersConfiguration.Instance.Context.GetAudioManager();
+
+            foreach (ILivingLetterData letterData in lettersInOrder)
+            {
+                audioManager.PlayLetterData(letterData);
+
+                yield return new WaitForSeconds(0.75f);
+            }
+
+            if (onQuestionOver != null)
+            {
+                onQuestionOver.Invoke();
+            }
+        }
+
         public void VerifyLetters()
         {
             for (int i = 0; i < lettersInOrder.Count; i++)
@@ -187,6 +225,12 @@ namespace EA4S.MixedLetters
                     || dropZone.droppedLetter.GetLetter().Id != lettersInOrder[i].Id
                       || Mathf.Abs(dropZone.droppedLetter.transform.rotation.z) > 0.1f)
                 {
+                    for (int j = 0; j < lettersInOrder.Count; j++)
+                    {
+                        SeparateLetterController letter = SeparateLettersSpawnerController.instance.separateLetterControllers[j];
+                        letter.SetIsSubjectOfTutorial(roundNumber == 0 && letter == dropZone.correctLetter);
+                    }
+
                     return;
                 }
             }
@@ -197,7 +241,11 @@ namespace EA4S.MixedLetters
         private void OnRoundWon()
         {
             PlayGameState.RoundWon = true;
-            numRoundsWon++;
+
+            if (roundNumber != 0)
+            {
+                numRoundsWon++;
+            }
 
             HideRotationButtons();
             ShowGreenTicks();

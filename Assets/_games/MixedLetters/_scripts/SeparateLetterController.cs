@@ -9,6 +9,8 @@ namespace EA4S.MixedLetters
         // How fast the letter rotates when the rotate button is pressed, in degrees per second:
         private const float ROTATION_SPEED = 720f;
 
+        private const float TUTORIAL_UI_PERIOD = 3f;
+
         public Rigidbody rigidBody;
         public BoxCollider boxCollider;
 
@@ -17,15 +19,19 @@ namespace EA4S.MixedLetters
 
         [HideInInspector]
         public DropZoneController droppedZone;
+        private DropZoneController correctDropZone;
 
         public LetterObjectView letterObjectView;
 
         private enum State
         {
-            NonInteractive, Draggable, Dragging, Rotating
+            NonInteractive, Draggable, Dragging, Rotating, Dropped
         }
 
         private State state;
+        private float stateTime;
+
+        private bool isSubjectOfTutorial;
 
         void Awake()
         {
@@ -51,9 +57,20 @@ namespace EA4S.MixedLetters
             
         }
 
+        private void SetState(State state)
+        {
+            this.state = state;
+            stateTime = 0f;
+
+            if (state == State.Draggable && isSubjectOfTutorial)
+            {
+                ShowTutorial();
+            }
+        }
+
         private void OnPointerDown()
         {
-            if (state == State.Draggable)
+            if (state == State.Draggable || state == State.Dropped)
             {
                 Ray ray = Camera.main.ScreenPointToRay(MixedLettersConfiguration.Instance.Context.GetInputManager().LastPointerPosition);
 
@@ -61,7 +78,7 @@ namespace EA4S.MixedLetters
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity) && hit.collider == boxCollider)
                 {
-                    state = State.Dragging;
+                    SetState(State.Dragging);
                     SetIsKinematic(true);
 
                     if (transform.position.z != DropZoneController.DropZoneZ)
@@ -103,15 +120,17 @@ namespace EA4S.MixedLetters
                     droppedZone.SetDroppedLetter(this);
                     transform.position = droppedZone.transform.position;
                     DropZoneController.chosenDropZone = null;
-                    MixedLettersGame.instance.VerifyLetters();
+                    
+                    SetState(State.Dropped);
                 }
 
                 else
                 {
                     SetIsKinematic(false);
+                    SetState(State.Draggable);
                 }
 
-                state = State.Draggable;
+                MixedLettersGame.instance.VerifyLetters();
             }
         }
 
@@ -123,6 +142,49 @@ namespace EA4S.MixedLetters
         void FixedUpdate()
         {
             rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
+        }
+
+        void Update()
+        {
+            stateTime += Time.deltaTime;
+
+            if (isSubjectOfTutorial && stateTime >= TUTORIAL_UI_PERIOD)
+            {
+                ShowTutorial();
+                stateTime = 0;
+            }
+        }
+
+        public void SetIsSubjectOfTutorial(bool isSubjectOfTutorial)
+        {
+            this.isSubjectOfTutorial = isSubjectOfTutorial;
+
+            if (isSubjectOfTutorial)
+            {
+                ShowTutorial();
+            }
+        }
+
+        public void SetCorrectDropZone(DropZoneController dropZoneController)
+        {
+            correctDropZone = dropZoneController;
+        }
+
+        public void ShowTutorial()
+        {
+            if (state != State.NonInteractive)
+            {
+                if (droppedZone == null || droppedZone != correctDropZone)
+                {
+                    TutorialUI.DrawLine(transform.position, correctDropZone.transform.position, TutorialUI.DrawLineMode.FingerAndArrow);
+                }
+
+                else if ((transform.rotation.z) > 0.1f)
+                {
+                    Vector3 rotateButtonPosition = droppedZone.rotateButtonController.transform.position;
+                    TutorialUI.Click(new Vector3(rotateButtonPosition.x, rotateButtonPosition.y, rotateButtonPosition.z - 1f));
+                }
+            }
         }
 
         public void SetIsKinematic(bool isKinematic)
@@ -143,12 +205,12 @@ namespace EA4S.MixedLetters
 
         public void SetDraggable()
         {
-            state = State.Draggable;
+            SetState(State.Draggable);
         }
 
         public void SetNonInteractive()
         {
-            state = State.NonInteractive;
+            SetState(State.NonInteractive);
         }
 
         public void AddForce(Vector3 force, ForceMode forceMode)
@@ -163,7 +225,7 @@ namespace EA4S.MixedLetters
 
         private IEnumerator RotateCCWCoroutine()
         {
-            state = State.Rotating;
+            SetState(State.Rotating);
 
             float currentZRotation = transform.localEulerAngles.z;
             float targetZRotation = currentZRotation + 90;
@@ -188,17 +250,24 @@ namespace EA4S.MixedLetters
                 yield return new WaitForFixedUpdate();
             }
 
-            state = State.Draggable;
+            SetState(State.Dropped);
+
+            if (isSubjectOfTutorial)
+            {
+                ShowTutorial();
+            }
 
             MixedLettersGame.instance.VerifyLetters();
         }
 
         public void Reset()
         {
-            state = State.NonInteractive;
+            SetState(State.NonInteractive);
             SetIsKinematic(true);
             SetRotation(new Vector3(0, 180, 0));
             droppedZone = null;
+            correctDropZone = null;
+            isSubjectOfTutorial = false;
         }
 
         public void SetPosition(Vector3 position, bool offsetOnZ)

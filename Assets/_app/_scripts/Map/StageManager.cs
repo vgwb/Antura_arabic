@@ -56,7 +56,7 @@ namespace EA4S
                 FirstContactBehaviour();
             }
             /* --------------------- */
-            else ActivateUI();
+
 
             FirstOrLastMap();
         }
@@ -64,7 +64,7 @@ namespace EA4S
         void Update()
         {
             // Remove this with First Contact Temp Behaviour
-            UpdateTimer();
+            //UpdateTimer();
         }
 
         #region First Contact Session        
@@ -78,21 +78,22 @@ namespace EA4S
             if (AppManager.I.Player.IsFirstContact(1))
             {
                 // First contact step 1:
-                DesactivateUI();
-                #region Temp Behaviour (to be deleted)
+                /*#region Temp Behaviour (to be deleted)
                 countDown.Start();
-                #endregion
+                #endregion*/
                 // ..and set first contact done.
+                DesactivateUI();
+                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro,true,true, AnturaText);
                 AppManager.I.Player.FirstContactPassed();
-                anturaButton.SetActive(true);
                 Debug.Log("First Contact Step1 finished! Go to Antura Space!");
             }
             else if (AppManager.I.Player.IsFirstContact(2))
             {
                 // First contact step 2:
 
-                // ..and set first contact done.
+                // ..and set first contact done.             
                 AppManager.I.Player.FirstContactPassed(2);
+                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_First,true,true, ActivateUI);
                 Debug.Log("First Contact Step2 finished! Good Luck!");
             }
 
@@ -106,7 +107,14 @@ namespace EA4S
         #endregion
 
         #endregion
-
+        void AnturaText()
+        {
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro_AnturaSpace,true,true, ActivateAnturaButton);
+        }
+        void ActivateAnturaButton()
+        {
+            anturaButton.SetActive(true);
+        }
 
         public void StageLeft()
         {         

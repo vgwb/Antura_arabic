@@ -1114,7 +1114,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012126422044}
   m_LocalRotation: {x: -0, y: -0.4820511, z: -0, w: 0.87614316}
-  m_LocalPosition: {x: -11.788044, y: -1.0828838, z: -16.63577}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: -57.525, z: 0}
   m_Children:
@@ -1729,9 +1729,8 @@ MonoBehaviour:
   Dog_Tail3: {fileID: 4000011132357180}
   Dog_R_ear04: {fileID: 4000010782369868}
   Dog_L_ear04: {fileID: 4000012725755454}
+  SkinnedMesh: {fileID: 137000012419263434}
   transformParent: {fileID: 0}
-  config:
-    Antura_rewards: []
 --- !u!137 &137000012251546260
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1789,8 +1788,8 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 3dbedea5197b723439242b5310c40453, type: 2}
-  - {fileID: 2100000, guid: d46515f4fd1912243bf904d702b252ea, type: 2}
+  - {fileID: 2100000, guid: f357957c9df24ee458de755e1271b126, type: 2}
+  - {fileID: 2100000, guid: 4262facf9cf9fb349b47e1c25fea5e74, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}

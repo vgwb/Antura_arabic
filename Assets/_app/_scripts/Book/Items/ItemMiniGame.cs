@@ -20,7 +20,7 @@ namespace EA4S
             info = _info;
             manager = _manager;
 
-            if (info.unlocked || AppConstants.CheatSuperDogMode) {
+            if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode) {
                 GetComponent<Button>().interactable = true;
             } else {
                 GetComponent<Button>().interactable = false;
@@ -51,7 +51,7 @@ namespace EA4S
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (info.unlocked || AppConstants.CheatSuperDogMode) {
+            if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode) {
                 manager.DetailMiniGame(info);
             }
         }

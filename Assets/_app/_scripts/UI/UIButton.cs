@@ -12,9 +12,12 @@ namespace EA4S
     public class UIButton : MonoBehaviour
     {
         public Color BtToggleOffColor = Color.white;
+        public Color BtLockedColor = Color.red;
         public bool ToggleIconAlpha = true;
+        public bool AutoAnimateClick = true;
 
         public bool IsToggled { get; private set; }
+        public bool IsLocked { get; private set; }
         public Button Bt { get { if (fooBt == null) fooBt = this.GetComponent<Button>(); return fooBt; } }
         public Image BtImg { get {
             if (fooBtImg == null) {
@@ -29,6 +32,7 @@ namespace EA4S
         protected Color DefColor;
         Button fooBt;
         Image fooBtImg;
+        bool fooIsToggled;
         Image fooIco;
         RectTransform fooRectT;
         Tween clickTween, pulseTween;
@@ -60,10 +64,17 @@ namespace EA4S
             IsToggled = _activate;
 
             pulseTween.Rewind();
-            BtImg.color = _activate ? DefColor : BtToggleOffColor;
+            BtImg.color = _activate ? DefColor : IsLocked ? BtLockedColor : BtToggleOffColor;
             if (ToggleIconAlpha && Ico != null) Ico.SetAlpha(_activate ? 1 : 0.4f);
 
-            if (_animateClick) AnimateClick();
+            if (_animateClick) AnimateClick(true);
+        }
+
+        public virtual void Lock(bool _doLock)
+        {
+            IsLocked = _doLock;
+            BtImg.color = _doLock ? BtLockedColor : IsToggled ? DefColor : BtToggleOffColor;
+            Bt.interactable = !_doLock;
         }
 
         /// <summary>
@@ -79,10 +90,10 @@ namespace EA4S
             pulseTween.Rewind();
         }
 
-        public void AnimateClick()
+        public void AnimateClick(bool _force = false)
         {
             pulseTween.Rewind();
-            clickTween.Restart();
+            if (AutoAnimateClick || _force) clickTween.Restart();
         }
 
         #endregion

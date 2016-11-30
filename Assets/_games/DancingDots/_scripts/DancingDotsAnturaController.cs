@@ -7,43 +7,44 @@ namespace EA4S.DancingDots
 
 	public enum AnturaContollerState
 	{
-		SLEEPING, WALKING, ROTATETING, BARKING, SNIFFING, ATLETTER, ATHOME, DANCING
+		LEFTHOME, RIGHTHOME, DANCING, WALKING, FINISHINGDANICING
 	}
 
 	public class DancingDotsAnturaController : MonoBehaviour
 	{
 		private bool movingToDestination = false; //When true Antura will move towards the setted destination
 		private float movementSpeed = 10; //Movement speed
-		private float rotationSpeed = 180; //Rotation speed by degree
 		private AnturaAnimationController antura;
 		private bool rotatingToTarget;
 		private Vector3 destination;
 
-		private Vector3 startPosition;
 		private Transform targetToLookAt;
+		private AnturaContollerState status;
 
-		public Transform homeLocation;
-		public Transform letterLocation;
+		private float danceDuration;
 
-		public AnturaContollerState status;
+		public Transform leftHome;
+		public Transform rightHome;
+		public Transform[] dancingSpots;
+
 	
 		void Awake()
 		{
 
 			antura = gameObject.GetComponent<AnturaAnimationController>();
-			startPosition = antura.gameObject.transform.position;
 
 			antura.State = AnturaAnimationStates.sitting;
 			antura.WalkingSpeed = 0; //walk-0, run-1
-			status = AnturaContollerState.SLEEPING;
+			status = AnturaContollerState.LEFTHOME;
 
-			AnturaNextDesicion();
+			StartCoroutine(co_AnturaNextDesicion());
 
 		}
 
-		private void MoveToNewDestination(Vector3 dest)
+		private void MoveToNewDestination(Transform dest)
 		{
-			destination = dest;
+			destination = dest.position;
+			gameObject.transform.rotation = dest.rotation;
 			movingToDestination = true;
 			status = AnturaContollerState.WALKING;
 		}
@@ -60,84 +61,37 @@ namespace EA4S.DancingDots
 
 				movingToDestination = false;
 
-				if (letterLocation.position == dest)
+				if (leftHome.position == dest)
 				{
-					status = AnturaContollerState.ATLETTER;
+					status = AnturaContollerState.LEFTHOME;
 				}
 				else
 				{
-					status = AnturaContollerState.ATHOME;
+					status = AnturaContollerState.RIGHTHOME;
 				}
 
-				AnturaNextDesicion();
+				StartCoroutine(co_AnturaNextDesicion());
 
 			}
 			else //make the progress for this frame
 			{
 				gameObject.transform.Translate(partialMovement, Space.World);
-//				gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, Quaternion.LookRotation(maxMovement), rotationSpeed * Time.deltaTime);
-
 			}
 		}
 
-		private void RotateTowards(Transform target)
-		{
-			Quaternion maxRotate = Quaternion.RotateTowards(gameObject.transform.rotation, Quaternion.LookRotation(target.position - transform.position), 180);
-			Quaternion partialRotate = Quaternion.RotateTowards(gameObject.transform.rotation, Quaternion.LookRotation(target.position - transform.position), rotationSpeed*Time.deltaTime);
-			Vector3 temp;
-			float maxAngle=0;
-			float partialAngle=0;
-
-			maxRotate.ToAngleAxis(out maxAngle,out temp);
-			partialRotate.ToAngleAxis(out partialAngle, out temp);
-
-			if (partialAngle >= maxAngle) //if we reached the destination
-			{
-				//rotate on the destination
-				gameObject.transform.rotation = maxRotate;
-
-				rotatingToTarget = false;
-
-				if (letterLocation == target)
-				{
-					status = AnturaContollerState.ATLETTER;
-				}
-				else
-				{
-					status = AnturaContollerState.ATHOME;
-				}
-
-				AnturaNextDesicion();
-
-
-			}
-			else //make the progress for this frame
-			{
-				//rotate
-				gameObject.transform.rotation = partialRotate;
-
-				//m_oAntura.SetAnimation(m_eAnimationOnMoving);
-
-
-			}
-		}
-
-		private void AnturaNextDesicion()
+		IEnumerator co_AnturaNextDesicion()
 		{
 			switch (status) {
-			case AnturaContollerState.ATLETTER:
-				antura.State = AnturaAnimationStates.dancing;
+			case AnturaContollerState.LEFTHOME:
+				yield return new WaitForSeconds(UnityEngine.Random.Range(1,5));
+				MoveToNewDestination(rightHome);
+				antura.State = AnturaAnimationStates.walking;
+				status = AnturaContollerState.WALKING;
+
 				break;
-			case AnturaContollerState.ATHOME:
-				break;
-			case AnturaContollerState.SNIFFING:
-				break;
-			case AnturaContollerState.BARKING:
-				break;
-			case AnturaContollerState.DANCING:
-				break;
-			case AnturaContollerState.SLEEPING:
-				MoveToNewDestination(letterLocation.position);
+			case AnturaContollerState.RIGHTHOME:
+				yield return new WaitForSeconds(UnityEngine.Random.Range(1,5));
+				MoveToNewDestination(leftHome);
 				antura.State = AnturaAnimationStates.walking;
 				status = AnturaContollerState.WALKING;
 				break;
@@ -147,27 +101,52 @@ namespace EA4S.DancingDots
 
 		}
 
+		void OnTriggerEnter(Collider other)
+		{
+			Debug.Log("DD Antura ontrigger");
+			if (other.tag == "Marker") 
+			{
+				danceDuration = 3.5f * UnityEngine.Random.Range(1,3);
+				status = AnturaContollerState.DANCING;
+				antura.State = AnturaAnimationStates.dancing;
+				movingToDestination = false;
+			}
+		}
+
+		private float finishDance;
+
 		void Update()
 		{
+			
 			if (movingToDestination)
 			{
 				MoveTo(destination);
 			}
-
-			if(rotatingToTarget)
+			else if (status == AnturaContollerState.DANCING)
 			{
-				RotateTowards(targetToLookAt);
+				danceDuration -= Time.deltaTime;
+				if (danceDuration < 0)
+				{
+					status = AnturaContollerState.FINISHINGDANICING;
+					antura.State = AnturaAnimationStates.walking;
+					finishDance = 1f;
+				}
+			}
+			else if (status == AnturaContollerState.FINISHINGDANICING)
+			{
+				finishDance -= Time.deltaTime;
+				if (finishDance < 0)
+				{
+					status = AnturaContollerState.WALKING;
+					movingToDestination = true;
+				}
+
+
 			}
 
-//			if (m_eAnturaState == AnturaContollerState.BARKING)
-//			{
-//				m_fBarkTimeProgress += Time.deltaTime;
-//				if (m_fBarkTimeProgress >= m_fBarkTime)
-//				{
-//					AnturaNextTransition();
-//				}
-//			}
-
+		}
+		void RestartMoving()
+		{
 		}
 
 	}

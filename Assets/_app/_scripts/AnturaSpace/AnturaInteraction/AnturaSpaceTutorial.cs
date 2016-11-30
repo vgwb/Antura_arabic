@@ -48,7 +48,7 @@ namespace EA4S
             //setup first state, disable UI      
             m_eTutoState = eAnturaSpaceTutoState.ANTURA_ANIM;
 
-            GlobalUI.ShowBackButton(false);
+            //GlobalUI.ShowBackButton(false);
             m_oCookieButton.gameObject.SetActive(false);
             m_oCustomizationButton.gameObject.SetActive(false);
 

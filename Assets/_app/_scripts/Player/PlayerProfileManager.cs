@@ -36,8 +36,11 @@ namespace EA4S
                     AppManager.I.InitTeacherForPlayer();
 
                     LogManager.I.LogInfo(InfoEvent.AppStarted);
+
                 }
                 actualPlayer = value;
+                if (OnProfileChanged != null)
+                    OnProfileChanged();
 
             }
         }
@@ -109,20 +112,32 @@ namespace EA4S
         /// <returns></returns>
         public PlayerProfile CreateOrLoadPlayerProfile(int _avatarId)
         {
-
+            bool isNew = false;
             PlayerProfile returnProfile = LoadPlayerProfileByAvatarId(_avatarId);
             if (returnProfile == null) {
                 returnProfile = new PlayerProfile();
+                isNew = true;
                 // create new
                 returnProfile.Id = AvailablePlayerProfiles.Count + 1;
                 returnProfile.AvatarId = _avatarId;
                 returnProfile.Key = returnProfile.Id.ToString();
                 returnProfile = AppManager.I.Modules.PlayerProfile.CreateNewPlayer(returnProfile) as PlayerProfile;
             }
+            // Create new antura skin
+            RewardPack tileTexture = RewardSystemManager.GetNextNextRewardPack(RewardTypes.texture);
+            returnProfile.AddRewardUnlocked(tileTexture);
+            returnProfile.CurrentAnturaCustomizations.TileTexture = tileTexture;
+            RewardPack decalTexture = RewardSystemManager.GetNextNextRewardPack(RewardTypes.decal);
+            returnProfile.AddRewardUnlocked(decalTexture);
+            returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
+            // -----
             AppManager.I.PlayerProfileManager.ActualPlayer = returnProfile as PlayerProfile;
             AppManager.I.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.I.PlayerProfileManager.ActualPlayer);
-            //AppManager.I.GameSettings.AvailablePlayers.Add(AppManager.I.PlayerProfileManager.ActualPlayer.Id.ToString());
+            AppManager.I.PlayerProfileManager.ActualPlayer.Save();
             SaveGameSettings();
+            if (isNew && OnNewProfileCreated != null)
+                OnNewProfileCreated();
+
             return AppManager.I.PlayerProfileManager.ActualPlayer;
         }
 
@@ -188,5 +203,14 @@ namespace EA4S
         }
         #endregion
 
+        #region events
+        public delegate void ProfileEventHandler();
+
+        /// <summary>
+        /// Occurs when [on profile changed].
+        /// </summary>
+        public static event ProfileEventHandler OnProfileChanged;
+        public static event ProfileEventHandler OnNewProfileCreated;
+        #endregion
     }
 }
