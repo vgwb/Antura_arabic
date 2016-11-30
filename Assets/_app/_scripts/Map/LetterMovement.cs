@@ -61,9 +61,9 @@ namespace EA4S
 
         void FixedUpdate()
         {
-             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.Stage);
+           /*  Debug.Log(AppManager.I.Player.CurrentJourneyPosition.Stage);
              Debug.Log(AppManager.I.Player.CurrentJourneyPosition.LearningBlock);
-             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.PlaySession);
+             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.PlaySession);*/
 
             /*Debug.Log("Max"+AppManager.I.Player.MaxJourneyPosition.Stage);
             Debug.Log("MaxLB"+AppManager.I.Player.MaxJourneyPosition.LearningBlock);
