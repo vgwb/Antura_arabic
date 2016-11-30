@@ -115,7 +115,7 @@ namespace EA4S.Scanner
                 if (SCARED_COUNTER > 2)
                 {
                     SCARED_COUNTER = 0;
-                    StartCoroutine(leaveScene());
+                    StartCoroutine(leaveScene(true));
                 }
                 else
                     charge();
@@ -147,7 +147,7 @@ namespace EA4S.Scanner
             StartCoroutine(leaveScene());
         }
 
-        IEnumerator leaveScene()
+        IEnumerator leaveScene(bool wasScared = false)
         {
             
             antura.transform.eulerAngles = Vector3.up * 270;
@@ -159,7 +159,10 @@ namespace EA4S.Scanner
                 transform.position += Vector3.right * chargeSpeed * Time.deltaTime;
                 yield return null;
             }
-            StartCoroutine(resetLetters());
+
+            if (ScannerConfiguration.Instance.Variation != ScannerVariation.OneWord)
+                StartCoroutine(resetLetters());
+
             IS_IN_SCENE = false;
         }
 
@@ -175,26 +178,41 @@ namespace EA4S.Scanner
             yield return new WaitForSeconds(2);
             rb.isKinematic = true;
             rb.useGravity = false;
+            
+            if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
+            {
+                yield return new WaitForSeconds(2);
+                StartCoroutine(resetLetters());
+            }
+                
         }
 
         IEnumerator resetLetters()
         {
-            for (int i = 0; i < fallenLL.Count; i++)
+            int LLCount = fallenLL.Count;
+            for (int i = 0; i < LLCount; i++)
             {
-                Debug.LogWarning("YYYY");
-                fallenLL[i].Reset(false);
+                if (fallenLL[i])
+                {
+                    Debug.LogWarning("YYYY");
+                    fallenLL[i].Reset(false);
+                }
             }
-            for (int i = 0; i < fallenLL.Count; i++)
+            for (int i = 0; i < LLCount; i++)
             {
-                Debug.LogWarning("ZZZZ");
-                fallenLL[i].StartSliding();
-                if (game.scannerLL.Count == 3)
-                    yield return new WaitForSeconds(8f);
-                else
-                    yield return new WaitForSeconds(5f);
+                if (fallenLL[i])
+                {
+                    Debug.LogWarning("ZZZZ");
+                    fallenLL[i].StartSliding();
+                    fallenLL[i] = null;
+                    if (game.scannerLL.Count == 3)
+                        yield return new WaitForSeconds(8f);
+                    else
+                        yield return new WaitForSeconds(5f);
+                }
             }
 
-            fallenLL.Clear();
+            //fallenLL.Clear();
             PAUSE_NEW_LL_SLIDES = false;
         }
 
