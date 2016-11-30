@@ -226,8 +226,6 @@ namespace EA4S {
             return returnList;
         }
 
-        
-
         #endregion
 
         #region General
