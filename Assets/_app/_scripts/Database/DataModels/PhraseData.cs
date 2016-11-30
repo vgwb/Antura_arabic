@@ -7,6 +7,7 @@ namespace EA4S.Db
     public class PhraseData : IData, IConvertibleToLivingLetterData
     {
         public string Id;
+        public bool Active;
         public string English;
         public string Arabic;
         public PhraseDataCategory Category;
