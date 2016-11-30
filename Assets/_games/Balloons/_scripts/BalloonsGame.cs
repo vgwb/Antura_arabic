@@ -317,9 +317,11 @@ namespace EA4S.Balloons
 
         private IEnumerator ShowTutorialUI_Coroutine()
         {
+            yield return new WaitForSeconds(1f);
+
             while (isTutorialRound)
             {
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(1f);
 
                 if (ActiveGameVariation == BalloonsVariation.Counting)
                 {
@@ -336,9 +338,16 @@ namespace EA4S.Balloons
                 {
                     foreach (var floatingLetter in floatingLetters)
                     {
-                        if (!floatingLetter.Letter.isRequired)
+                        if (!floatingLetter.Letter.isRequired && floatingLetter.enabled)
                         {
-                            Vector3 position = floatingLetter.transform.position + 5.5f * Vector3.up + 5.5f * Vector3.back;
+                            foreach (var balloon in floatingLetter.ActiveVariation.balloons)
+                            {
+                                if (balloon.balloonCollider.enabled)
+                                {
+                                    TutorialUI.Click(balloon.transform.position + 3f * Vector3.up + 2f * Vector3.back);
+                                }
+                            }
+                            //Vector3 position = floatingLetter.transform.position + 5.5f * Vector3.up + 1f * Vector3.back;
 //                        for (int i = 0; i < floatingLetter.Balloons.Length; i++)
 //                        {
 //                            if (!floatingLetter.Balloons[i].isPopped)
@@ -347,7 +356,7 @@ namespace EA4S.Balloons
 //                                position = floatingLetter.Balloons[i].transform.position + 5.5f * Vector3.back;
 //                            }
 //                        }
-                            TutorialUI.Click(floatingLetter.transform.position + 5.5f * Vector3.up + 5.5f * Vector3.back);
+                            //TutorialUI.Click(position);
                         }
                     }
                 }
@@ -1084,6 +1093,12 @@ namespace EA4S.Balloons
             {
                 wordPrompt.letterPrompts[promptIndex].State = LetterPromptController.PromptState.WRONG;
             }
+            if (wordFlexibleContainer.enabled == true)
+            {
+                wordFlexibleContainerAnimator.SetBool("Idle", false);
+                wordFlexibleContainerAnimator.SetBool("Correct", false);
+                wordFlexibleContainerAnimator.SetBool("Wrong", true);
+            }
                 
             if (remainingLives <= 0)
             {
@@ -1099,7 +1114,7 @@ namespace EA4S.Balloons
             {
                 wordPrompt.letterPrompts[promptIndex].animator.SetTrigger("Flash");
             }
-            if (wordFlexibleContainer.enabled = true)
+            if (wordFlexibleContainer.enabled == true)
             {
                 wordFlexibleContainerAnimator.SetTrigger("Flash");
             }
@@ -1215,6 +1230,9 @@ namespace EA4S.Balloons
             for (int i = 0; i < wordPrompt.letterPrompts.Length; i++)
             {
                 wordPrompt.letterPrompts[i].State = LetterPromptController.PromptState.CORRECT;
+                wordFlexibleContainerAnimator.SetBool("Idle", false);
+                wordFlexibleContainerAnimator.SetBool("Correct", true);
+                wordFlexibleContainerAnimator.SetBool("Wrong", false);
             }
         }
 
