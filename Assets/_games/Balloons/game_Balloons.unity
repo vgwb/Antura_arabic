@@ -3331,6 +3331,27 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22477666, guid: 9957d9cfc035045cb9a389ed852a2e79,
     type: 2}
   m_PrefabInternal: {fileID: 265389550}
+--- !u!1 &265389552 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 177570, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
+  m_PrefabInternal: {fileID: 265389550}
+--- !u!95 &265389553
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 265389552}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f95d3bcf91684d609ddf55244315ae5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &265389555 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11477340, guid: 9957d9cfc035045cb9a389ed852a2e79,
@@ -5127,6 +5148,7 @@ MonoBehaviour:
   UseTestGameplayInfo: 0
   wordPrompt: {fileID: 771629424}
   wordFlexibleContainer: {fileID: 265389555}
+  wordFlexibleContainerAnimator: {fileID: 265389553}
   floatingLetterPrefab: {fileID: 1958974315}
   floatingLetterLocations:
   - {fileID: 1532103225}
@@ -5890,12 +5912,12 @@ Prefab:
     - target: {fileID: 114000011662432866, guid: ed159e8765e464444b24231559d38e6d,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000011662432866, guid: ed159e8765e464444b24231559d38e6d,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000013173225578, guid: ed159e8765e464444b24231559d38e6d, type: 2}
       propertyPath: m_Name

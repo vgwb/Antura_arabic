@@ -17,6 +17,7 @@ namespace EA4S.Balloons
         [Header("References")]
         public WordPromptController wordPrompt;
         public WordFlexibleContainer wordFlexibleContainer;
+        public Animator wordFlexibleContainerAnimator;
         public GameObject floatingLetterPrefab;
         public Transform[] floatingLetterLocations;
         public AnimationClip balloonPopAnimation;
@@ -1097,6 +1098,10 @@ namespace EA4S.Balloons
             if (promptIndex > -1)
             {
                 wordPrompt.letterPrompts[promptIndex].animator.SetTrigger("Flash");
+            }
+            if (wordFlexibleContainer.enabled = true)
+            {
+                wordFlexibleContainerAnimator.SetTrigger("Flash");
             }
         }
 
