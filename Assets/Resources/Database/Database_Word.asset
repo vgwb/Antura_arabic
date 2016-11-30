@@ -2111,18 +2111,6 @@ MonoBehaviour:
       - teh_marbuta
       Difficulty: 0
       Drawing: CD
-    - Id: Id
-      Active: 1
-      Kind: 0
-      Category: 0
-      Form: 0
-      Article: 0
-      LinkedWord: LinkedWord
-      Arabic: Arabic
-      Value: Value
-      Letters: []
-      Difficulty: 0
-      Drawing: Drawing
     - Id: in
       Active: 1
       Kind: 4
