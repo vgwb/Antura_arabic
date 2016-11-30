@@ -721,18 +721,18 @@ namespace EA4S.Balloons
             }
         }
 
-        private void CreateFloatingLetters_Words(int numberOfExtraWords)
+        private void CreateFloatingLetters_Words(int numberOfExtraImages)
         {
-            numberOfExtraWords = numberOfExtraWords > 0 ? numberOfExtraWords : 1;
-            var numberOfWords = Mathf.Clamp(correctAnswers.Count() + numberOfExtraWords, 0, floatingLetterLocations.Length);
+            numberOfExtraImages = numberOfExtraImages > 0 ? numberOfExtraImages : 1;
+            var numberOfImages = Mathf.Clamp(correctAnswers.Count() + numberOfExtraImages, 0, floatingLetterLocations.Length);
             var correctWord = correctAnswers.Cast<LL_WordData>().ToList()[0];
             var wrongWords = wrongAnswers.Cast<LL_WordData>().GetEnumerator();
 
             // Determine index of required word
-            int requiredWordIndex = Random.Range(0, numberOfWords);
+            int requiredWordIndex = Random.Range(0, numberOfImages);
 
             // Create floating letters
-            for (int i = 0; i < numberOfWords; i++)
+            for (int i = 0; i < numberOfImages; i++)
             {
                 var instance = Instantiate(floatingLetterPrefab);
                 instance.SetActive(true);
@@ -778,7 +778,7 @@ namespace EA4S.Balloons
                     balloons[j].SetColor(balloonColors[randomColorIndex]);
                 }
 
-                // Set words
+                // Set images
                 if (isRequiredWord)
                 {
                     // Set correct word
@@ -791,12 +791,13 @@ namespace EA4S.Balloons
                     }
                     letter.isRequired = true;
                     letter.associatedPromptIndex = -1;
-                    letter.Init(word);
+                    //letter.letterData.DataType = LivingLetterDataType.Image;
+                    letter.Init(new LL_ImageData(word.Id));
                     Debug.Log("Create word balloon with: " + letter.LLPrefab.Data.TextForLivingLetter);
                 }
                 else
                 {
-                    // Set a random letter that is not a required letter
+                    // Set a random image
                     LL_WordData randomWord;
                     bool invalid = false;
                     do
@@ -809,7 +810,14 @@ namespace EA4S.Balloons
                     {
                         Debug.LogError("Error getting valid random word (wrong answer) for balloon!");
                     }
-                    letter.Init(randomWord);
+                    letter.Init(new LL_ImageData(randomWord.Id));
+
+                    if (string.IsNullOrEmpty(letter.letterData.DrawingCharForLivingLetter))
+                    {
+                        Debug.Log("EMPTY DRAWING!!!");
+                        letter.Init(new LL_ImageData("dog"));
+                    }
+
                     Debug.Log("Create random balloon with: " + letter.LLPrefab.Data.TextForLivingLetter);
                 }
 

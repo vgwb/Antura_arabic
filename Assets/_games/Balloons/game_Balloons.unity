@@ -3287,14 +3287,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11465470, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11465470, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 22407634, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_AnchorMin.y
       value: 1
@@ -3323,9 +3315,13 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: 89
       objectReference: {fileID: 0}
-    - target: {fileID: 177570, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 11465470, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11465470, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
