@@ -145,7 +145,7 @@ namespace EA4S.ThrowBalls
         {
             if (collision.gameObject.tag == Constants.TAG_POKEBALL && BallController.instance.IsIdle() && !ballGrabbed)
             {
-                //animator.OnJumpGrab();
+                animator.OnJumpGrab();
                 BallController.instance.OnIntercepted();
                 ballOffset = new Vector3(Mathf.Sign(xVelocity) * 4f, 0f, 0f);
                 ballGrabbed = true;
