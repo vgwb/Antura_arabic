@@ -5,6 +5,10 @@ namespace EA4S.ThrowBalls
 {
     public class AnturaController : MonoBehaviour
     {
+        private const float MAX_CHASING_SPEED = 17.5f;
+        private const float MIN_CHASING_SPEED = 3f;
+        private const float CHASING_SQUARED_THRESHOLD = 150f;
+
         public static AnturaController instance;
 
         private const float RUNNING_SPEED = 17.5f;
@@ -22,7 +26,7 @@ namespace EA4S.ThrowBalls
 
         private enum State
         {
-            AboutToJump, Jumping, Falling, Landed
+            Chasing, AboutToJump, Jumping, Falling, Landed
         }
 
         private State state;
@@ -39,7 +43,10 @@ namespace EA4S.ThrowBalls
         {
             animator = GetComponent<AnturaAnimationController>();
 
-            Reset();
+            //Reset();
+
+            state = State.Chasing;
+            animator.State = AnturaAnimationStates.walking;
         }
 
         public void EnterScene()
@@ -82,6 +89,8 @@ namespace EA4S.ThrowBalls
             ballGrabbed = false;
 
             state = State.AboutToJump;
+
+            ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking);
         }
 
         void Update()
@@ -127,28 +136,68 @@ namespace EA4S.ThrowBalls
             }
         }
 
+        public void DoneChasing()
+        {
+            CapsuleCollider capsuleCollider = GetComponent<CapsuleCollider>();
+            capsuleCollider.center = new Vector3(0, 8, -3);
+
+            rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+            rigidBody.useGravity = false;
+        }
+
         void FixedUpdate()
         {
-            rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
-
-            Vector3 position = transform.position;
-            position.x += xVelocity * Time.fixedDeltaTime;
-            transform.position = position;
-
-            if (ballGrabbed)
+            if (state == State.Chasing)
             {
-                BallController.instance.transform.position = modelManager.Dog_jaw.position + ballOffset;
+                Vector3 velocity = BallController.instance.transform.position - transform.position;
+                float distSquared = velocity.sqrMagnitude;
+
+                velocity.Normalize();
+
+                float t = Mathf.Clamp(distSquared / CHASING_SQUARED_THRESHOLD, 0, 1);
+
+                velocity *= Mathf.Lerp(MIN_CHASING_SPEED, MAX_CHASING_SPEED, t);
+
+                animator.SetWalkingSpeed(t < 1 ? t / 2 : 1);
+
+                Vector3 position = transform.position;
+                position += velocity * Time.fixedDeltaTime;
+                transform.position = position;
+
+                MathUtils.LerpLookAtPlanar(transform, transform.position - velocity, Time.deltaTime * 4);
+            }
+
+            else
+            {
+                rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
+
+                Vector3 position = transform.position;
+                position.x += xVelocity * Time.fixedDeltaTime;
+                transform.position = position;
+
+                if (ballGrabbed)
+                {
+                    BallController.instance.transform.position = modelManager.Dog_jaw.position + ballOffset;
+                }
             }
         }
 
         public void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.tag == Constants.TAG_POKEBALL && BallController.instance.IsIdle() && !ballGrabbed)
+            if (collision.gameObject.tag == Constants.TAG_POKEBALL)
             {
-                animator.OnJumpGrab();
-                BallController.instance.OnIntercepted();
-                ballOffset = new Vector3(Mathf.Sign(xVelocity) * 4f, 0f, 0f);
-                ballGrabbed = true;
+                if (state == State.Chasing)
+                {
+                    BallController.instance.rigidBody.AddRelativeForce(new Vector3(Random.Range(-150f, 150f), 150f, Random.Range(-150f, 150f)));
+                }
+
+                else if (BallController.instance.IsIdle() && !ballGrabbed)
+                {
+                    animator.OnJumpGrab();
+                    BallController.instance.OnIntercepted();
+                    ballOffset = new Vector3(Mathf.Sign(xVelocity) * 4f, 0f, 0f);
+                    ballGrabbed = true;
+                }
             }
 
             else if (collision.gameObject.tag == "Ground" && state == State.Falling)
@@ -157,7 +206,7 @@ namespace EA4S.ThrowBalls
 
                 animator.OnJumpEnded();
                 animator.State = AnturaAnimationStates.walking;
-                
+
             }
         }
 

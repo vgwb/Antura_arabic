@@ -89,7 +89,7 @@ namespace EA4S.ThrowBalls
 
             ThrowBallsGame.instance.letterWithPropsPrefab.SetActive(false);
 
-            ResetScene();
+            //ResetScene();
             
             switch (ThrowBallsConfiguration.Instance.Variation)
             {
@@ -111,13 +111,14 @@ namespace EA4S.ThrowBalls
 
         private void OnTitleVoiceOverDone()
         {
-            
-
             audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_letters_Intro, OnIntroVoiceOverDone);
         }
 
         private void OnIntroVoiceOverDone()
         {
+            AnturaController.instance.DoneChasing();
+            AnturaController.instance.Disable();
+
             switch (ThrowBallsConfiguration.Instance.Variation)
             {
                 case ThrowBallsVariation.letters:
