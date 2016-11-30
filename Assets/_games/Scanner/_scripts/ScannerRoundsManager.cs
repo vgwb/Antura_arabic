@@ -94,8 +94,8 @@ namespace EA4S.Scanner
 			// Then start sliding gardually
 			for (int i = 0; i < game.scannerLL.Count; i++)
 			{
-                while (ScannerAntura.PAUSE_NEW_LL_SLIDES)
-                    yield return new WaitForEndOfFrame();
+                //while (ScannerAntura.PAUSE_NEW_LL_SLIDES)
+                 //   yield return new WaitForEndOfFrame();
 
                 ScannerAntura.LAST_NORMAL_SLIDE = Time.time;
 

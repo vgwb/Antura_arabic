@@ -11,6 +11,8 @@ namespace EA4S
         private Rigidbody m_oBoneRigidbody;
         [SerializeField]
         private GameObject m_oParticle;
+        [SerializeField]
+        private float m_oParticleTime;
 
         [Header("Simple Throw")]
 
@@ -45,32 +47,26 @@ namespace EA4S
         #endregion
 
         #region PRIVATE MEMBERS
-        //private Rigidbody m_oBoneRigidboy;
+        private GameObject m_oParticleInstance;
         bool m_bIsDragged = false;
         private Vector3 m_v3LastPosition;
         private float m_fTimeProgression=0;
         #endregion
+
+        private static GameObject s_oParticleRootContainer;
 
         #region GETTER/SETTER
 
         public float boneRotation_MaxMagnitude
         {
             get { return m_fRotationMaxMagnitude; }
-            set
-            {
-                m_fRotationMaxMagnitude = value;
-                CorrectMinMaxRotation();
-            }
+            set { m_fRotationMaxMagnitude = value; }
         }
 
         public float boneRotation_MinMagnitude
         {
             get { return m_fRotationMinMagnitude; }
-            set
-            {
-                m_fRotationMinMagnitude = value;
-                CorrectMinMaxRotation();
-            }
+            set { m_fRotationMinMagnitude = value; }
         }
 
         public Rigidbody boneRigidbody
@@ -83,10 +79,20 @@ namespace EA4S
         void Start()
         {
 
-            //CorrectMinMaxRotation();
-            if (m_fRotationMaxMagnitude < m_fRotationMinMagnitude)
+            if (m_fRotationMaxMagnitude < m_fRotationMinMagnitude ||
+                m_fThrowMaxMagnitude < m_fThrowMinMagnitude ||
+                m_v3DirectionMinValues.x > m_v3DirectionMaxValues.x ||
+                m_v3DirectionMinValues.y > m_v3DirectionMaxValues.y ||
+                m_v3DirectionMinValues.z > m_v3DirectionMaxValues.z )
             {
                 Debug.Log("Warning, unvalid min/max values");
+            }
+
+            //build root for cookies particles
+            if(s_oParticleRootContainer==null)
+            {
+                s_oParticleRootContainer = new GameObject("[CookieParticles]");
+                s_oParticleRootContainer.transform.position = Vector3.zero;
             }
 
         }
@@ -115,6 +121,11 @@ namespace EA4S
             }
 
         }
+
+        private void OnDisable()
+        {
+            Poof(m_oParticleTime);
+        }
         #endregion
 
         #region PUBLIC FUNCTIONS
@@ -124,9 +135,6 @@ namespace EA4S
         /// </summary>
         public void SimpleThrow()
         {
-            Debug.Log("SimpleThrow");
-
-            //CorrectMinMaxRotation();
 
             m_oBoneRigidbody.isKinematic = true; //resets actives forces
             m_oBoneRigidbody.isKinematic = false;
@@ -136,8 +144,7 @@ namespace EA4S
 
         public void Drag()
         {
-            Debug.Log("Dragging");
-
+           
             m_oBoneRigidbody.isKinematic = true; //resets actives forces
 
             gameObject.GetComponentInChildren<Collider>().isTrigger = true; //this way Antura won't eat it since collision won't happen
@@ -152,8 +159,7 @@ namespace EA4S
 
         public void LetGo()
         {
-            Debug.Log("Let Go");
-
+            
             m_oBoneRigidbody.isKinematic = false;
 
             gameObject.GetComponentInChildren<Collider>().isTrigger = false;
@@ -165,6 +171,48 @@ namespace EA4S
             //apply stored forces
             ApplyDragForces();
         }
+
+        /// <summary>
+        /// Plays the particle effect for the given time.
+        /// </summary>
+        /// <param name="fDuration"></param>
+        public void Poof(float fDuration)
+        {
+            if(m_oParticleInstance==null)
+            {
+                m_oParticleInstance = Instantiate<GameObject>(m_oParticle);
+                m_oParticleInstance.transform.SetParent(s_oParticleRootContainer.transform);
+            }
+
+            m_oParticleInstance.transform.position = transform.position;//put particle on cookie
+
+            m_oParticleInstance.SetActive(true);
+            foreach (var particles in m_oParticleInstance.GetComponentsInChildren<ParticleSystem>(true))
+            {
+                particles.Play();
+            }
+
+            CancelInvoke("StopPoof");//if we were quick maybe the particle hasn't stopped yet, so try to cancel the old one;
+            Invoke("StopPoof", fDuration);
+        }
+
+        /// <summary>
+        /// Stop the particle effect.
+        /// </summary>
+        private void StopPoof()
+        {
+            if(m_oParticleInstance)
+            {
+                foreach (var particles in m_oParticleInstance.GetComponentsInChildren<ParticleSystem>(true))
+                {
+                    particles.Stop();
+                }
+
+                m_oParticleInstance.SetActive(false);
+            }
+            
+        }
+
         #region PRIVATE FUNCTIONS
 
         /// <summary>
@@ -195,16 +243,6 @@ namespace EA4S
             m_oBoneRigidbody.AddForce((transform.position-m_v3LastPosition) * m_fDragThrowMagnitudeScaling, m_eReleaseForceMode);
         }
 
-        /// <summary>
-        /// Correct errors of min/max values for rotation
-        /// </summary>
-        private void CorrectMinMaxRotation()
-        {
-            if (m_fRotationMaxMagnitude < m_fRotationMinMagnitude) 
-            {
-                m_fRotationMinMagnitude = m_fRotationMaxMagnitude;
-            }
-        }
         #endregion
     }
 }
