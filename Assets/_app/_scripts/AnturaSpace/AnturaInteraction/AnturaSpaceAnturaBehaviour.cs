@@ -49,6 +49,7 @@ namespace EA4S
             
             if (!m_bMovingToDestination)
             {
+                AudioManager.I.PlaySfx(m_oSfxOnClick);
                 int iRnd;
                 do
                 {
@@ -100,7 +101,7 @@ namespace EA4S
             }
         }
 
-        void OnCollisionEnter(Collision collision)
+        void OnCollisionStay(Collision collision)
         {
             if (IsBoneValid(collision.gameObject))
             {
@@ -207,6 +208,8 @@ namespace EA4S
         private float m_fMovementSpeed = 10; //Movement speed
         [SerializeField]
         private float m_fRotationSpeed = 180; //Rotation speed by degree
+        [SerializeField]
+        private Sfx m_oSfxOnClick;
 
         [HideInInspector]
         public Action<GameObject> onBoneReached;

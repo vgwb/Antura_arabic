@@ -113,7 +113,6 @@ namespace EA4S
                 return;
             }
 
-            Debug.Log("Throwing bone");
             m_oTextBonesNumber.text = "" + (--m_iTotalBones_Test);
             _oBone.SetActive(true);
             _oBone.GetComponent<BoneBehaviour>().SimpleThrow();
@@ -133,7 +132,6 @@ namespace EA4S
                 return;
             }
 
-            Debug.Log("Dragging bone");
             m_oTextBonesNumber.text = "" + (--m_iTotalBones_Test);
 
             _oBone.SetActive(true);
@@ -153,7 +151,6 @@ namespace EA4S
                 return;
             }
 
-            Debug.Log("Let go bone");
             m_oDraggedBone.LetGo();
             m_oDraggedBone = null;
 
