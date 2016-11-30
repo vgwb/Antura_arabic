@@ -1,7 +1,6 @@
-Shader "Hidden/MergeForeground" {
+Shader "Hidden/DarkFade" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
-		_Foreground ("foreground (RGB)", 2D) = "white" {}
 		_T("t", float) = 1
 	}
 	
@@ -10,7 +9,6 @@ Shader "Hidden/MergeForeground" {
 		#include "UnityCG.cginc"
 
 		sampler2D _MainTex;
-		sampler2D _Foreground;
 
 		half _T;
 				
@@ -33,14 +31,9 @@ Shader "Hidden/MergeForeground" {
 
 		half4 frag ( v2f i ) : SV_Target
 		{
-			half2 uv = i.uv.xy;
-			
-			half4 fore = tex2D(_Foreground, i.uv);
-			
-			half4 color = fore.a*fore + (1-fore.a)*tex2D(_MainTex, i.uv);
+			half4 color = tex2D(_MainTex, i.uv);
 
 			return lerp(fixed4(0,0,0,1),color, _T);
-
 		}	
 					
 	ENDCG
