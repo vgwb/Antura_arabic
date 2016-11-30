@@ -11,6 +11,7 @@ namespace EA4S.Db.Management
             var data = new PhraseData();
 
             data.Id = ToString(dict["Id"]);
+            data.Active = (ToInt(dict["Active"]) == 1);
             data.English = ToString(dict["English"]);
             data.Arabic = ToString(dict["Arabic"]);
             data.Category = ParseEnum<PhraseDataCategory>(data, dict["Category"]);
