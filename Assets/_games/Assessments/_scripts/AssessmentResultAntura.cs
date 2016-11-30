@@ -63,7 +63,7 @@ namespace EA4S.Assessment
             Instantiate( anturaPrefab, AnturaPosition.position, AnturaPosition.rotation)
                 as AnturaAnimationController;
 
-            antura.gameObject.SetLayerRecursive( AnturaLayers.ModelsOverUI);
+            antura.gameObject.AddComponent<BringAnturaInFlagSpace>();
 
             antura.transform.localScale = Vector3.zero;
             antura.transform.DOScale( Vector3.one, 0.2f);

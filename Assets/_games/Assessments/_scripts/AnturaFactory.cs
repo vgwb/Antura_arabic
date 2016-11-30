@@ -41,9 +41,8 @@ namespace EA4S.Assessment
                                 anturaStart.rotation) as AnturaAnimationController;
 
             var go = antura.gameObject;
+            go.AddComponent<BringAnturaInFlagSpace>();
             var box = go.AddComponent< BoxCollider>();
-            go.SetLayerRecursive( AnturaLayers.ModelsOverUI);
-
 
             box.center = new Vector3( 0, 2.9f, -1.3f);
             box.size = new Vector3( 5.38f, 5.61f, 9.57f);
