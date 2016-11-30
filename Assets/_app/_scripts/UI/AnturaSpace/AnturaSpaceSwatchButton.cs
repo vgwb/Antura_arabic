@@ -16,10 +16,10 @@ namespace EA4S
 
         #region Public Methods
 
-        public void Lock(bool _doLock)
+        public override void Lock(bool _doLock)
         {
             IcoLock.SetActive(_doLock);
-            Bt.interactable = !_doLock;
+            if (_doLock) IcoNew.SetActive(false);
         }
 
         public void SetAsNew(bool _isNew)

@@ -57,8 +57,7 @@ namespace EA4S
 
             List<MiniGameInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
             foreach (var item_info in info_list) {
-                if (minigame_list.Contains(item_info.data))
-                {
+                if (minigame_list.Contains(item_info.data)) {
                     btnGO = Instantiate(MinigameItemPrefab);
                     btnGO.transform.SetParent(ElementsContainer.transform, false);
                     btnGO.GetComponent<ItemMiniGame>().Init(this, item_info);
@@ -71,7 +70,10 @@ namespace EA4S
         {
             AudioManager.I.PlayDialog(info.data.GetTitleSoundFilename());
 
-            ScoreText.text = "Score: " + info.score;
+            var Output = "";
+            Output += "Score: " + info.score;
+            Output += "\nPlayed: ";
+            ScoreText.text = Output;
         }
 
         void emptyListContainers()

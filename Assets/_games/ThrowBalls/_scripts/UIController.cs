@@ -14,7 +14,7 @@ namespace EA4S.ThrowBalls
         private const float CRACK_FADE_DURATION = 1.5f;
 
         public GameObject letterHint;
-        public TMP_Text letterHintText;
+        public WordFlexibleContainer wordFlexibleContainer;
 
         public GameObject crack;
 
@@ -31,7 +31,7 @@ namespace EA4S.ThrowBalls
 
         public void SetLetterHint(ILivingLetterData _data)
         {
-            letterHintText.text = _data.TextForLivingLetter;
+            wordFlexibleContainer.SetText(_data);
         }
 
         public void Disable()

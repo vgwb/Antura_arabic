@@ -1978,6 +1978,17 @@ MonoBehaviour:
       - teh_marbuta
       Difficulty: 0
       Drawing: CD
+    - Id: Id
+      Kind: 0
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: LinkedWord
+      Arabic: Arabic
+      Value: Value
+      Letters: []
+      Difficulty: 0
+      Drawing: Drawing
     - Id: in
       Kind: 4
       Category: 21
@@ -4587,7 +4598,7 @@ MonoBehaviour:
       - ain
       - beh
       Difficulty: 0
-      Drawing: 21
+      Drawing: 11A
     - Id: the_policeman
       Kind: 5
       Category: 16

@@ -140,7 +140,7 @@ namespace EA4S
                     list = new List<WordData>();
                     break;
                 default:
-                    list = AppManager.I.DB.FindWordDataByCategory(currentWordCategory);
+                    list = AppManager.I.DB.FindWordData((x) => (x.Category == currentWordCategory && x.Article == WordDataArticle.None && x.Kind == WordDataKind.Noun));
                     break;
             }
             emptyListContainers();
