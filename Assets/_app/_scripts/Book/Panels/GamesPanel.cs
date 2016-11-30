@@ -80,7 +80,15 @@ namespace EA4S
 
         public void OnLaunchMinigame()
         {
-            // TODO launch currentMiniGame;
+            // Set to max stage
+            AppManager.I.Player.CurrentJourneyPosition.Stage = AppManager.I.Player.MaxJourneyPosition.Stage;
+            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
+            AppManager.I.Player.CurrentJourneyPosition.PlaySession = AppManager.I.Player.MaxJourneyPosition.PlaySession;
+
+            Debug.Log("Playing minigame " + currentMiniGame.Code + " at PS " + AppManager.I.Player.CurrentJourneyPosition);
+
+            AppManager.I.Teacher.InitialiseCurrentPlaySession(chooseMiniGames:false); // We must force this or the teacher won't use the correct data
+            AppManager.I.GameLauncher.LaunchGame(currentMiniGame.Code);
         }
 
         void emptyListContainers()

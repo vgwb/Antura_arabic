@@ -11,7 +11,7 @@ namespace EA4S
         public TextRender output;
         public GraphJourney journeyGraph;
 
-        void Start()
+        void OnEnable()
         {
             var str = "";
 
