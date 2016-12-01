@@ -36,7 +36,8 @@ namespace EA4S.Db
             GenerateTable<DatabaseInfoData>(true, false); // Makes sure that the database info data table exists
             var info = _connection.Find<DatabaseInfoData>(1);
             if (info == null || info.Version != AppConstants.DbSchemeVersion) {
-                Debug.LogWarning("SQL database is outdated. Recreating it (from " + info.Version + " to " + AppConstants.DbSchemeVersion + ")");
+                var lastVersion = info != null ? info.Version : "NONE";
+                Debug.LogWarning("SQL database is outdated. Recreating it (from " + lastVersion + " to " + AppConstants.DbSchemeVersion + ")");
                 RegenerateDatabase(profileId);
             }
             //Debug.Log("Database ready. Version " + dbPath + "v:" +info.Version);
