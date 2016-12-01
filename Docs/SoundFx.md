@@ -64,6 +64,9 @@ Antura throws the letters
 ## Sfx.Dog_Inhale
 Antura inhales the letters
 
+## Sfx.Dog_Noize
+Antura makes noize! whenever you touch it, for example
+
 ## Sfx.EggBreak
 [egg] Puff after egg breaks
 
