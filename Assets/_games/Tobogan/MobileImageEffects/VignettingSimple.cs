@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class VignettingSimple : MonoBehaviour
 {
+    public float fadeOut = 0;
 
     public float vignetting
     {
@@ -22,12 +23,16 @@ public class VignettingSimple : MonoBehaviour
     protected void Awake()
     {
         vignetteMaterial = new Material(vignetteShader);
+        fadeOut = 0;
     }
 
 
     void OnPostRender()
     {
+        fadeOut = Mathf.Clamp01(fadeOut);
+
         vignetteMaterial.SetFloat("_Intensity", intensity);
+        vignetteMaterial.SetFloat("_FadeOut", fadeOut);
         vignetteMaterial.SetColor("_Color", color);
 
         GL.PushMatrix();

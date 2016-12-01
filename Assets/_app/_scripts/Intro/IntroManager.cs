@@ -26,6 +26,7 @@ namespace EA4S
         public float m_MazeCharactesVelocity = 0.1f;
         public AnimationCurve cameraAnimationCurve;
         //public UnityStandardAssets.ImageEffects.ForegroundCameraEffect foregroundEffect;
+        public VignettingSimple vignetting;
 
         public GameObject environment;
         AutoMove[] autoMoveObjects;
@@ -62,7 +63,7 @@ namespace EA4S
             time += Time.deltaTime * m_CameraVelocity;
             float t = cameraAnimationCurve.Evaluate(time);
 
-            //foregroundEffect.t = t;
+            vignetting.fadeOut = Mathf.Pow((1-t),2);
 
             for (int i = 0; i < autoMoveObjects.Length; ++i)
                 autoMoveObjects[i].SetTime(t);
