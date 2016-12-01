@@ -3948,7 +3948,7 @@ GameObject:
   - 114: {fileID: 585526919}
   - 114: {fileID: 585526918}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Button Export DAta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5498,7 +5498,7 @@ GameObject:
   - 114: {fileID: 805639215}
   - 114: {fileID: 805639214}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Button Delete Profile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10555,7 +10555,7 @@ GameObject:
   - 114: {fileID: 1668137852}
   - 114: {fileID: 1668137851}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button SuperDog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
