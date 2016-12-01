@@ -14,15 +14,14 @@
 
         public void ExitState()
         {
-            game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+            game.Context.GetAudioManager().PlayMusic(Music.Theme8);
         }
 
         public void Update(float delta)
         {
             timer -= delta;
 
-            if (timer <= 0f)
-            {
+            if (timer <= 0f) {
                 game.SetCurrentState(game.QuestionState);
                 return;
             }
