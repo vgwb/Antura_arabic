@@ -25,7 +25,7 @@ namespace EA4S.ThrowBalls
 
         private enum State
         {
-            Anchored, Dragging, Launched, Intercepted, Rebounding, Hanging, Dropping, Idle
+            Chased, Anchored, Dragging, Launched, Intercepted, Rebounding, Hanging, Dropping, Idle
         }
 
         private State state;
@@ -60,7 +60,12 @@ namespace EA4S.ThrowBalls
             inputManager.onPointerDrag += OnPointerDrag;
             inputManager.onPointerUp += OnPointerUp;
 
-            Reset();
+            //Reset();
+
+            SetState(State.Chased);
+
+            ArrowBodyController.instance.Disable();
+            ArrowHeadController.instance.Disable();
         }
 
         private void OnPointerDown()
@@ -105,7 +110,10 @@ namespace EA4S.ThrowBalls
 
         public void OnCollisionEnter()
         {
-            audioManager.PlaySound(Sfx.BallHit);
+            if (state != State.Chased)
+            {
+                audioManager.PlaySound(Sfx.BallHit);
+            }
         }
 
         public void OnCollisionExit(Collision collision)
@@ -124,6 +132,7 @@ namespace EA4S.ThrowBalls
             rigidBody.angularVelocity = new Vector3(0, 0, 0);
             rigidBody.velocity = new Vector3(0, 0, 0);
             rigidBody.isKinematic = false;
+            rigidBody.useGravity = false;
             sphereCollider.enabled = true;
             SetState(State.Anchored);
 
@@ -152,6 +161,11 @@ namespace EA4S.ThrowBalls
         private void SetState(State state)
         {
             this.state = state;
+
+            if (state != State.Idle || state != State.Chased)
+            {
+                Physics.IgnoreLayerCollision(10, 12);
+            }
 
             switch (state)
             {
@@ -193,6 +207,12 @@ namespace EA4S.ThrowBalls
                         AnturaController.instance.EnterScene();
                     }
 
+                    Physics.IgnoreLayerCollision(10, 12, false);
+
+                    break;
+                case State.Chased:
+                    trailRenderer.enabled = false;
+                    Physics.IgnoreLayerCollision(10, 12, false);
                     break;
                 default:
                     break;

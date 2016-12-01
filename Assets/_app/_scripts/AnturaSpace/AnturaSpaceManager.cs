@@ -18,7 +18,8 @@ namespace EA4S
         [SerializeField]
         private TextMeshProUGUI m_oTextBonesNumber;
 
-
+        [SerializeField]
+        private Music m_oBackgroundMusic;
 
         [Header("Test")]
         public int m_iTotalBones_Test = 10;
@@ -42,11 +43,11 @@ namespace EA4S
         {
             GlobalUI.ShowPauseMenu(false);
             GlobalUI.ShowBackButton(true,Exit);
-            
 
+            AudioManager.I.PlayMusic(m_oBackgroundMusic);
 
 #if UNITY_EDITOR
-
+  
 #else
             m_iTotalBones_Test = AppManager.I.Player.GetTotalNumberOfBones();
 #endif
@@ -62,9 +63,13 @@ namespace EA4S
             m_oBonePrefab.transform.position = m_oTextBonesNumber.transform.position;
 
             //Instantiate the pool of bones
-            m_oCookieRootContainer = new GameObject("[Cookies]");
-            m_oCookieRootContainer.transform.position = Vector3.zero;
-            
+            //m_oCookieRootContainer = new GameObject("[Cookies]");
+            //m_oCookieRootContainer.transform.position = Vector3.zero;
+            GameObject _oTempBase = new GameObject();
+            m_oCookieRootContainer = Instantiate(_oTempBase);
+            m_oCookieRootContainer.name = "[Cookies]";
+            Destroy(_oTempBase);
+
 
             m_aoPool = new GameObject[m_iMaxSpawnableBones];
             m_aiUsedList = new int[m_iMaxSpawnableBones];
@@ -85,6 +90,13 @@ namespace EA4S
 
         }
 
+        /*void OnDestroy()
+        {
+            if(m_oCookieRootContainer)
+            {
+                DestroyObject(m_oCookieRootContainer);//this was created as an empty Gameobject, not instantiated
+            }
+        }*/
         #endregion
 
         #region PUBLIC FUNCTIONS

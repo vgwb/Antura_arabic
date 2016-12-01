@@ -1803,6 +1803,7 @@ MonoBehaviour:
   m_oBonePrefab: {fileID: 624599005}
   m_oAntura: {fileID: 2091012742}
   m_oTextBonesNumber: {fileID: 1614356140}
+  m_oBackgroundMusic: 2
   m_iTotalBones_Test: 20
 --- !u!4 &252692185
 Transform:

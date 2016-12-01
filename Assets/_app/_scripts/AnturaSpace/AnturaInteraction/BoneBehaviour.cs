@@ -93,7 +93,11 @@ namespace EA4S
             //build root for cookies particles
             if(s_oParticleRootContainer==null)
             {
-                s_oParticleRootContainer = new GameObject("[CookieParticles]");
+                GameObject _oTempBase = new GameObject();
+                s_oParticleRootContainer = Instantiate(_oTempBase);
+                s_oParticleRootContainer.name = "[CookieParticles]";
+                Destroy(_oTempBase);
+
                 s_oParticleRootContainer.transform.position = Vector3.zero;
             }
 
@@ -127,6 +131,12 @@ namespace EA4S
         private void OnDisable()
         {
             Poof(m_oParticleTime);
+        }
+
+        void OnDestroy()
+        {
+            AudioManager.I.StopSfx(m_oSfxOnPoof);
+            CancelInvoke();
         }
         #endregion
 
@@ -183,7 +193,14 @@ namespace EA4S
             if(m_oParticleInstance==null)
             {
                 m_oParticleInstance = Instantiate<GameObject>(m_oParticle);
-                m_oParticleInstance.transform.SetParent(s_oParticleRootContainer.transform);
+
+                //put cookie in the root
+                if (s_oParticleRootContainer != null)
+                {
+                    m_oParticleInstance.transform.SetParent(s_oParticleRootContainer.transform);
+                }
+
+                
             }
 
             m_oParticleInstance.transform.position = transform.position;//put particle on cookie

@@ -62,8 +62,6 @@ namespace EA4S
 
         void Start()
         {
-            // Navigation manager 
-            NavigationManager.I.CurrentScene = AppScene.GameSelector;
             KeeperManager.I.PlayDialog(Db.LocalizationDataId.SelectGame_Tuto_2, false);
 
             if (mainBubble == null) {
