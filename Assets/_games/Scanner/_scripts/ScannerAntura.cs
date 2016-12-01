@@ -7,33 +7,41 @@ namespace EA4S.Scanner
 	public class ScannerAntura : MonoBehaviour {
 
 
-        public static bool PAUSE_NEW_LL_SLIDES, IS_IN_SCENE;
-        public static float LAST_NORMAL_SLIDE;
+        public static bool  IS_IN_SCENE;
+
         public static int SCARED_COUNTER;
         public ScannerGame game;
         public Transform stopPose, chargeEndPose;
         public float movingSpeed = 8, chargeSpeed = 11;
         public int timesCanAppear = 1;
-        //public bool isScared;
-
+        public List<ScannerLivingLetter> fallenLL = new List<ScannerLivingLetter>();
 
         private AnturaAnimationController antura;
         private Animator anturaAnimator;
-        public List<ScannerLivingLetter> fallenLL = new List<ScannerLivingLetter>();
-		// Use this for initialization
-
-
-		void Start () {
+        
+        int thisRound;
+        void Start () {
 			antura = GetComponent<AnturaAnimationController>();
             anturaAnimator = GetComponent<Animator>();
             antura.SetWalkingSpeed(1);
-            antura.State = AnturaAnimationStates.walking; //AnturaAnimationStates.sucking;
+            antura.State = AnturaAnimationStates.walking;
 
-            transform.position += Vector3.right * 39;
+            transform.position += Vector3.right * 25;
 
             StartCoroutine(handleAnturasEvents());
+
+            thisRound = game.roundsManager.numberOfRoundsPlayed;
         }
 
+        
+        void Update()
+        {
+            if(thisRound != game.roundsManager.numberOfRoundsPlayed)
+            {
+                thisRound = game.roundsManager.numberOfRoundsPlayed;
+                fallenLL.Clear();
+            }
+        }
 
         IEnumerator handleAnturasEvents()
         {
@@ -41,10 +49,15 @@ namespace EA4S.Scanner
 
             while (timesCanAppear >0)
             {                
-                if (!game.tut.isTutRound && game.roundsManager.numberOfRoundsPlayed <6)
+                if (!game.tut.isTutRound)
                 {
-                    yield return new WaitForSeconds(Random.Range(25, 50));
-                    
+                    int d = Random.Range(25, 50);
+                    print(d);
+                    yield return new WaitForSeconds(d);
+
+                    if (game.roundsManager.numberOfRoundsPlayed >= 6)
+                        break;
+
                     StartCoroutine(enterTheScene());
 
                     timesCanAppear--;
@@ -127,7 +140,6 @@ namespace EA4S.Scanner
 
         void charge()
         {
-            PAUSE_NEW_LL_SLIDES = true;
             antura.IsAngry = false;
             antura.IsExcited = false;
             antura.SetWalkingSpeed(1);
@@ -155,28 +167,20 @@ namespace EA4S.Scanner
             antura.SetWalkingSpeed(1);
             antura.State = AnturaAnimationStates.walking;
 
-            while (transform.position.x < stopPose.position.x + 30)
+            while (transform.position.x < stopPose.position.x + 20)
             {
                 transform.position += Vector3.right * chargeSpeed * Time.deltaTime;
                 yield return null;
             }
 
-            /*if (ScannerConfiguration.Instance.Variation != ScannerVariation.OneWord)
-                StartCoroutine(resetLetters());
-
-            else if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
-            {
-                if (game.scannerLL[0].status == ScannerLivingLetter.LLStatus.None)
-                {
-                    game.scannerLL[0].StartSliding();//.status = ScannerLivingLetter.LLStatus.Sliding;
-                    Debug.LogWarning("VVVV");
-                }
-            }
-            */
+            game.trapDoor.SetBool("TrapUp", false);
+            game.trapDoor.SetBool("TrapDown", true);
+            
             IS_IN_SCENE = false;
         }
 
-        IEnumerator throwLL(ScannerLivingLetter ll, float resetDealy) {
+        float sildingDelay;
+        IEnumerator throwLL(ScannerLivingLetter ll, float slideTime) {
 
 
             Rigidbody rb;
@@ -187,63 +191,18 @@ namespace EA4S.Scanner
             ll.letterObjectView.OnJumpStart();
             ll.letterObjectView.OnJumpMaximumHeightReached();
 
-            
+            ll.slidingTime = slideTime;
 
             yield return new WaitForSeconds(2);
             rb.isKinematic = true;
             rb.useGravity = false;
-            ll.status = ScannerLivingLetter.LLStatus.None;
 
-            StartCoroutine(llReset(ll, resetDealy));
-
-            //yield return new WaitForSeconds(2);
-            
-
-           /* if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
-            {
-                yield return new WaitForSeconds(2);
-                StartCoroutine(resetLetters());
-            }*/
+            StartCoroutine(llReset(ll, slideTime));
                 
-        }
-
-        IEnumerator resetLetters()
-        {
-            yield break;
-
-            int LLCount = fallenLL.Count;
-            for (int i = 0; i < LLCount; i++)
-            {
-                if (fallenLL[i])
-                {
-                    //Debug.LogWarning("YYYY");
-                    fallenLL[i].Reset(false);
-                }
-            }
-            for (int i = 0; i < LLCount; i++)
-            {
-                while (Time.time - LAST_NORMAL_SLIDE < calculateDelay()/*2.5f*/)
-                    yield return null;
-
-                if (fallenLL[i])
-                {
-                    //Debug.LogWarning("ZZZZ");
-                    fallenLL[i].StartSliding();
-                    fallenLL[i] = null;
-                    if (game.scannerLL.Count == 3)
-                        yield return new WaitForSeconds(8f);
-                    else
-                        yield return new WaitForSeconds(5f);
-                }
-            }
-
-            //fallenLL.Clear();
-            PAUSE_NEW_LL_SLIDES = false;
         }
 
         void OnTriggerEnter(Collider coll)
         {
-            //print(1);
             ScannerLivingLetter ll = coll.transform.root.GetComponent<ScannerLivingLetter>();
             
             if (ll && !ll.gotSuitcase && ll.status == ScannerLivingLetter.LLStatus.StandingOnBelt)
@@ -261,31 +220,33 @@ namespace EA4S.Scanner
 
         float calculateDelay()
         {
-
-            int llToCome = 0;
-
-            foreach (ScannerLivingLetter ll in game.scannerLL)
+            float slideTime = 0;
+            for (int i = 0; i < game.scannerLL.Count; i++)
             {
-                if (ll.status == ScannerLivingLetter.LLStatus.None /*|| ll.status == ScannerLivingLetter.LLStatus.Sliding*/)
-                    llToCome++;
+                if (game.scannerLL[i].slidingTime > slideTime)
+                    slideTime = game.scannerLL[i].slidingTime;
             }
+
+            
             if (game.scannerLL.Count == 3)
-            {
-                return 8 * (llToCome-1);
-                    
-            }
+                return slideTime + 8;
             else
+                return slideTime + 5;
+        }
+
+        IEnumerator llReset(ScannerLivingLetter ll, float slideTime)
+        {
+            //yield return new WaitForSeconds(delay);
+            while (Time.time < slideTime)
+                yield return null;
+
+            if (fallenLL.IndexOf(ll) >=0  && ll.status == ScannerLivingLetter.LLStatus.None)
             {
-                return 5 * (llToCome-1);
+                ll.Reset();
+                ll.StartSliding();
+                fallenLL[fallenLL.IndexOf(ll)] = null;
             }
         }
 
-        IEnumerator llReset(ScannerLivingLetter ll, float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            ll.Reset();
-            ll.StartSliding();
-            fallenLL[fallenLL.IndexOf(ll)] = null;
-        }
     }
 }
