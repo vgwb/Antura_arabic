@@ -194,7 +194,7 @@ namespace EA4S.TakeMeHome
 			currentRound = 0;
 			roundText.text = "#"+currentRound.ToString ();
 
-			Context.GetAudioManager().PlayMusic(Music.Theme3);
+			Context.GetAudioManager().PlayMusic(Music.Lullaby);
 
 
             //add antura specific script:
