@@ -396,7 +396,7 @@ namespace EA4S {
                     break;
                 case RewardTypes.texture:
                     rp = new RewardPack() {
-                        ItemID = "Antura_scales_tilemat",
+                        ItemID = "Antura_wool_tilemat",
                         ColorId = "color1",
                         Type = _rewardType,
                         PlaySessionId = "0.0.0",
