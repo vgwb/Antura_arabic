@@ -659,6 +659,13 @@
   ],
   "PlaySessionRewardsUnlock" : [
     {
+      "PlaySession" : "0.0.0",
+      "RewardColor" : "",
+      "Reward" : "1",
+      "Texture" : "",
+      "Decal" : ""
+    },
+    {
       "PlaySession" : "1.1.1",
       "RewardColor" : "2",
       "Reward" : "",
@@ -675,8 +682,8 @@
     {
       "PlaySession" : "1.1.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -696,8 +703,8 @@
     {
       "PlaySession" : "1.2.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -717,8 +724,8 @@
     {
       "PlaySession" : "1.3.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -759,8 +766,8 @@
     {
       "PlaySession" : "1.5.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -780,8 +787,8 @@
     {
       "PlaySession" : "1.6.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -801,8 +808,8 @@
     {
       "PlaySession" : "1.7.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -885,8 +892,8 @@
     {
       "PlaySession" : "1.11.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -906,8 +913,8 @@
     {
       "PlaySession" : "1.12.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -927,8 +934,8 @@
     {
       "PlaySession" : "1.13.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -948,8 +955,8 @@
     {
       "PlaySession" : "1.14.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1054,8 +1061,8 @@
       "PlaySession" : "2.5.100",
       "RewardColor" : "",
       "Reward" : "",
-      "Texture" : "",
-      "Decal" : "1"
+      "Texture" : "1",
+      "Decal" : ""
     },
     {
       "PlaySession" : "2.6.1",
@@ -1074,9 +1081,9 @@
     {
       "PlaySession" : "2.6.100",
       "RewardColor" : "",
-      "Reward" : "1",
+      "Reward" : "",
       "Texture" : "",
-      "Decal" : ""
+      "Decal" : "1"
     },
     {
       "PlaySession" : "2.7.1",
@@ -1137,8 +1144,8 @@
     {
       "PlaySession" : "2.9.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1158,8 +1165,8 @@
     {
       "PlaySession" : "2.10.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -1179,8 +1186,8 @@
     {
       "PlaySession" : "2.11.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1263,8 +1270,8 @@
     {
       "PlaySession" : "3.1.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1284,9 +1291,9 @@
     {
       "PlaySession" : "3.2.100",
       "RewardColor" : "",
-      "Reward" : "",
+      "Reward" : "1",
       "Texture" : "",
-      "Decal" : "1"
+      "Decal" : ""
     },
     {
       "PlaySession" : "3.3.1",
@@ -1305,8 +1312,8 @@
     {
       "PlaySession" : "3.3.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1327,8 +1334,8 @@
       "PlaySession" : "3.4.100",
       "RewardColor" : "",
       "Reward" : "",
-      "Texture" : "1",
-      "Decal" : ""
+      "Texture" : "",
+      "Decal" : "1"
     },
     {
       "PlaySession" : "3.5.1",
@@ -1347,8 +1354,8 @@
     {
       "PlaySession" : "3.5.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1368,9 +1375,9 @@
     {
       "PlaySession" : "3.6.100",
       "RewardColor" : "",
-      "Reward" : "",
+      "Reward" : "1",
       "Texture" : "",
-      "Decal" : "1"
+      "Decal" : ""
     },
     {
       "PlaySession" : "3.7.1",
@@ -1389,8 +1396,8 @@
     {
       "PlaySession" : "3.7.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1410,8 +1417,8 @@
     {
       "PlaySession" : "3.8.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -1431,8 +1438,8 @@
     {
       "PlaySession" : "3.9.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1452,9 +1459,9 @@
     {
       "PlaySession" : "3.10.100",
       "RewardColor" : "",
-      "Reward" : "1",
+      "Reward" : "",
       "Texture" : "",
-      "Decal" : ""
+      "Decal" : "1"
     },
     {
       "PlaySession" : "3.11.1",
@@ -1515,8 +1522,8 @@
     {
       "PlaySession" : "3.13.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1536,8 +1543,8 @@
     {
       "PlaySession" : "3.14.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -1557,8 +1564,8 @@
     {
       "PlaySession" : "4.1.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1600,8 +1607,8 @@
       "PlaySession" : "4.3.100",
       "RewardColor" : "",
       "Reward" : "",
-      "Texture" : "",
-      "Decal" : "1"
+      "Texture" : "1",
+      "Decal" : ""
     },
     {
       "PlaySession" : "4.4.1",
@@ -1620,9 +1627,9 @@
     {
       "PlaySession" : "4.4.100",
       "RewardColor" : "",
-      "Reward" : "1",
+      "Reward" : "",
       "Texture" : "",
-      "Decal" : ""
+      "Decal" : "1"
     },
     {
       "PlaySession" : "4.5.1",
@@ -1684,8 +1691,8 @@
       "PlaySession" : "4.7.100",
       "RewardColor" : "",
       "Reward" : "",
-      "Texture" : "",
-      "Decal" : "1"
+      "Texture" : "1",
+      "Decal" : ""
     },
     {
       "PlaySession" : "4.8.1",
@@ -1695,10 +1702,17 @@
       "Decal" : ""
     },
     {
+      "PlaySession" : "4.8.2",
+      "RewardColor" : "2",
+      "Reward" : "",
+      "Texture" : "",
+      "Decal" : ""
+    },
+    {
       "PlaySession" : "4.8.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1718,8 +1732,8 @@
     {
       "PlaySession" : "4.9.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -1739,8 +1753,8 @@
     {
       "PlaySession" : "4.10.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1760,8 +1774,8 @@
     {
       "PlaySession" : "4.11.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1781,8 +1795,8 @@
     {
       "PlaySession" : "4.12.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -1802,8 +1816,8 @@
     {
       "PlaySession" : "4.13.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1842,17 +1856,10 @@
       "Decal" : ""
     },
     {
-      "PlaySession" : "4.15.3",
+      "PlaySession" : "4.15.100",
       "RewardColor" : "",
       "Reward" : "",
       "Texture" : "1",
-      "Decal" : ""
-    },
-    {
-      "PlaySession" : "4.15.100",
-      "RewardColor" : "2",
-      "Reward" : "",
-      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -1865,14 +1872,14 @@
     {
       "PlaySession" : "5.1.2",
       "RewardColor" : "",
-      "Reward" : "1",
+      "Reward" : "",
       "Texture" : "",
       "Decal" : ""
     },
     {
       "PlaySession" : "5.1.100",
       "RewardColor" : "2",
-      "Reward" : "",
+      "Reward" : "1",
       "Texture" : "",
       "Decal" : ""
     },
@@ -1886,7 +1893,7 @@
     {
       "PlaySession" : "5.2.2",
       "RewardColor" : "",
-      "Reward" : "1",
+      "Reward" : "",
       "Texture" : "",
       "Decal" : ""
     },
@@ -1894,7 +1901,7 @@
       "PlaySession" : "5.2.100",
       "RewardColor" : "2",
       "Reward" : "",
-      "Texture" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1909,14 +1916,14 @@
       "RewardColor" : "",
       "Reward" : "",
       "Texture" : "",
-      "Decal" : "1"
+      "Decal" : ""
     },
     {
       "PlaySession" : "5.3.100",
       "RewardColor" : "2",
       "Reward" : "",
       "Texture" : "",
-      "Decal" : ""
+      "Decal" : "1"
     },
     {
       "PlaySession" : "5.4.1",
@@ -1926,10 +1933,17 @@
       "Decal" : ""
     },
     {
+      "PlaySession" : "5.4.2",
+      "RewardColor" : "2",
+      "Reward" : "",
+      "Texture" : "",
+      "Decal" : ""
+    },
+    {
       "PlaySession" : "5.4.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1940,10 +1954,17 @@
       "Decal" : ""
     },
     {
+      "PlaySession" : "5.5.2",
+      "RewardColor" : "2",
+      "Reward" : "",
+      "Texture" : "",
+      "Decal" : ""
+    },
+    {
       "PlaySession" : "5.5.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -1963,8 +1984,8 @@
     {
       "PlaySession" : "5.6.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1984,8 +2005,8 @@
     {
       "PlaySession" : "5.7.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -2005,8 +2026,8 @@
     {
       "PlaySession" : "5.8.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -2026,8 +2047,8 @@
     {
       "PlaySession" : "5.9.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -2038,10 +2059,17 @@
       "Decal" : ""
     },
     {
+      "PlaySession" : "5.10.2",
+      "RewardColor" : "2",
+      "Reward" : "",
+      "Texture" : "",
+      "Decal" : ""
+    },
+    {
       "PlaySession" : "5.10.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -2061,9 +2089,9 @@
     {
       "PlaySession" : "5.11.100",
       "RewardColor" : "",
-      "Reward" : "",
+      "Reward" : "1",
       "Texture" : "",
-      "Decal" : "1"
+      "Decal" : ""
     },
     {
       "PlaySession" : "5.12.1",
@@ -2082,8 +2110,8 @@
     {
       "PlaySession" : "5.12.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -2103,8 +2131,8 @@
     {
       "PlaySession" : "5.13.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -2115,14 +2143,28 @@
       "Decal" : ""
     },
     {
-      "PlaySession" : "6.1.100",
-      "RewardColor" : "",
-      "Reward" : "1",
+      "PlaySession" : "6.1.2",
+      "RewardColor" : "2",
+      "Reward" : "",
       "Texture" : "",
       "Decal" : ""
     },
     {
+      "PlaySession" : "6.1.100",
+      "RewardColor" : "",
+      "Reward" : "",
+      "Texture" : "1",
+      "Decal" : ""
+    },
+    {
       "PlaySession" : "6.2.1",
+      "RewardColor" : "2",
+      "Reward" : "",
+      "Texture" : "",
+      "Decal" : ""
+    },
+    {
+      "PlaySession" : "6.2.2",
       "RewardColor" : "2",
       "Reward" : "",
       "Texture" : "",
@@ -2137,6 +2179,13 @@
     },
     {
       "PlaySession" : "6.3.1",
+      "RewardColor" : "2",
+      "Reward" : "",
+      "Texture" : "",
+      "Decal" : ""
+    },
+    {
+      "PlaySession" : "6.3.2",
       "RewardColor" : "2",
       "Reward" : "",
       "Texture" : "",
@@ -2167,8 +2216,8 @@
       "PlaySession" : "6.4.100",
       "RewardColor" : "",
       "Reward" : "",
-      "Texture" : "1",
-      "Decal" : ""
+      "Texture" : "",
+      "Decal" : "1"
     },
     {
       "PlaySession" : "6.5.1",
@@ -2187,8 +2236,8 @@
     {
       "PlaySession" : "6.5.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -2230,8 +2279,8 @@
       "PlaySession" : "6.7.100",
       "RewardColor" : "",
       "Reward" : "",
-      "Texture" : "",
-      "Decal" : "1"
+      "Texture" : "1",
+      "Decal" : ""
     },
     {
       "PlaySession" : "6.8.1",
@@ -2250,12 +2299,19 @@
     {
       "PlaySession" : "6.8.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
       "PlaySession" : "6.9.1",
+      "RewardColor" : "2",
+      "Reward" : "",
+      "Texture" : "",
+      "Decal" : ""
+    },
+    {
+      "PlaySession" : "6.9.2",
       "RewardColor" : "2",
       "Reward" : "",
       "Texture" : "",
@@ -2348,8 +2404,8 @@
     {
       "PlaySession" : "6.13.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
