@@ -80,7 +80,7 @@ namespace EA4S
                     break;
                 case AppScene.GameSelector:
                     AppManager.I.Player.ResetPlaySessionMinigame();
-                    WorldManager.I.CurrentWorld = (WorldID)(AppManager.I.Player.CurrentJourneyPosition.Stage-1);
+                    WorldManager.I.CurrentWorld = (WorldID)(AppManager.I.Player.CurrentJourneyPosition.Stage - 1);
                     GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     break;
                 case AppScene.MiniGame:
@@ -120,7 +120,8 @@ namespace EA4S
             }
         }
 
-        public void MaxJourneyPosistionProgress() {
+        public void MaxJourneyPosistionProgress()
+        {
             AppManager.I.Player.ResetPlaySessionMinigame();
             AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
         }
@@ -130,11 +131,9 @@ namespace EA4S
             return "";
         }
 
-
-
         public void GoHome()
         {
-
+            GoToScene(AppScene.Home);
         }
 
         public void GoBack() { }
@@ -216,17 +215,19 @@ namespace EA4S
         /// Calculates the unlock item count in accord to gameplay result information.
         /// </summary>
         /// <returns></returns>
-        public int CalculateUnlockItemCount() {
+        public int CalculateUnlockItemCount()
+        {
             int totalEarnedStars = 0;
             for (int i = 0; i < EndSessionResults.Count; i++) {
                 totalEarnedStars += EndSessionResults[i].Stars;
             }
+            // Add bones to player
             int unlockItemsCount = 0;
             if (EndSessionResults.Count > 0) {
                 float starRatio = totalEarnedStars / EndSessionResults.Count;
                 // Prevent aproximation errors (0.99f must be == 1 but 0.7f must be == 0) 
-                unlockItemsCount = starRatio - Mathf.CeilToInt(starRatio) < 0.0001f 
-                    ? Mathf.CeilToInt(starRatio) 
+                unlockItemsCount = starRatio - Mathf.CeilToInt(starRatio) < 0.0001f
+                    ? Mathf.CeilToInt(starRatio)
                     : Mathf.RoundToInt(starRatio);
             }
             // decrement because the number of stars needed to unlock the first reward is 2. 
@@ -239,7 +240,8 @@ namespace EA4S
         /// </summary>
         /// <param name="_stars">The star.</param>
         /// <param name="_bones">The bones.</param>
-        public void EndPlaySession(int _stars, int _bones) {
+        public void EndPlaySession(int _stars, int _bones)
+        {
             // Logic
             // log
             // GoToScene ...

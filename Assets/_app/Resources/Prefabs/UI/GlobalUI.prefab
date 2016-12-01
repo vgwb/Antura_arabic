@@ -89,7 +89,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &151058
 GameObject:
   m_ObjectHideFlags: 1
@@ -1401,7 +1401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000010654129160
 GameObject:
   m_ObjectHideFlags: 1
@@ -2880,41 +2880,6 @@ MonoBehaviour:
 
     <b>ROLE</b>
 
-    <color=#FFFFFF>Gino Pino, Pino Gino, Lino Rina</color>
-
-
-    <color=#e18522><b><size=130%>TEAM</size></b></color>
-
-    <b>ROLE</b>
-
-    <color=#FFFFFF>Gino Pino, Pino Gino, Lino Rina</color>
-
-
-    <color=#e18522><b><size=130%>TEAM</size></b></color>
-
-    <b>ROLE</b>
-
-    <color=#FFFFFF>Gino Pino, Pino Gino, Lino Rina</color>
-
-
-    <color=#e18522><b><size=130%>TEAM</size></b></color>
-
-    <b>ROLE</b>
-
-    <color=#FFFFFF>Gino Pino, Pino Gino, Lino Rina</color>
-
-
-    <color=#e18522><b><size=130%>TEAM</size></b></color>
-
-    <b>ROLE</b>
-
-    <color=#FFFFFF>Gino Pino, Pino Gino, Lino Rina</color>
-
-
-    <color=#e18522><b><size=130%>TEAM</size></b></color>
-
-    <b>ROLE</b>
-
     <color=#FFFFFF>Gino Pino, Pino Gino, Lino Rina</color>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1553d9b8c7e44483fac8acc30002074b, type: 2}
@@ -2924,8 +2889,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281383154
-  m_fontColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -2973,12 +2938,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 250, z: 0, w: 250}
   m_textInfo:
     textComponent: {fileID: 114000010979797290}
-    characterCount: 256
+    characterCount: 41
     spriteCount: 0
-    spaceCount: 52
-    wordCount: 48
+    spaceCount: 7
+    wordCount: 8
     linkCount: 0
-    lineCount: 23
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 1
@@ -4976,9 +4941,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScrollAnimationSpeed: 100
   ScrollAnimationDelay: 1.5
+  CreditsTxt: {fileID: 4900000, guid: f999717d164024c83a225ca2f088d5c8, type: 3}
   CreditsContainer: {fileID: 224000013360767956}
   BtBack: {fileID: 114000010655652248}
-  CreditsText: {fileID: 114000010979797290}
+  TfCredits: {fileID: 114000010979797290}
 --- !u!222 &222000010032395290
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -6022,7 +5988,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 8.500018, y: 0.000061035156}
-  m_SizeDelta: {x: 17, y: 1483.98}
+  m_SizeDelta: {x: 17, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224000013431732186
 RectTransform:

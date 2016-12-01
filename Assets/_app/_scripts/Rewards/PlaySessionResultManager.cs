@@ -12,23 +12,38 @@ namespace EA4S {
 
             // Calculate items to unlock count
             int itemsToUnlock = NavigationManager.I.CalculateUnlockItemCount();
-            // counter for the previously already unlocked rewards
-            int alreadyUnlockedItem = 0;
-            // get rewards for this playsession result (old and/or new if is the first time unlock for this ps)
-            List<RewardPack> rewards = RewardSystemManager.GetRewardPacksForPlaySession(AppManager.I.Player.CurrentJourneyPosition, itemsToUnlock, out alreadyUnlockedItem);
+
+            List<RewardPack> oldRewards = AppManager.I.Player.RewardsUnlocked.FindAll(ru => ru.PlaySessionId == AppManager.I.Player.CurrentJourneyPosition.ToString());
+            int itemAlreadyUnlocked = oldRewards.Count;
+            for (int i = 0; i < itemsToUnlock - oldRewards.Count; i++) {
+                // if necessary add one new random reward unlocked
+                RewardPack newRewardToUnlock = RewardSystemManager.GetNextRewardPack()[0];
+                oldRewards.Add(newRewardToUnlock);
+                AppManager.I.Player.AddRewardUnlocked(newRewardToUnlock);
+            }
+            
             // Show UI result and unlock transform parent where show unlocked items
             GameObject[] objs = new GameObject[] { };
-            objs = GameResultUI.ShowEndsessionResult(NavigationManager.I.UseEndSessionResults(), alreadyUnlockedItem);
-            // for any rewards mount them model on parent transform object (objs)
-            for (int i = 0; i < rewards.Count && i < objs.Length; i++) {
-                ModelsManager.MountModel(
-                    rewards[i].ItemID,
-                    objs[i].transform,
-                    rewards[i].GetMaterialPair()
-                    );
+            objs = GameResultUI.ShowEndsessionResult(NavigationManager.I.UseEndSessionResults(), itemAlreadyUnlocked);
+
+            for (int i = 0; i < objs.Length - oldRewards.Count; i++) {
+                // if necessary add one new random reward not to be unlocked!
+                oldRewards.Add(RewardSystemManager.GetNextRewardPack()[0]);
             }
+
             // save max progression (internal check if necessary)
             NavigationManager.I.MaxJourneyPosistionProgress();
+
+
+            // for any rewards mount them model on parent transform object (objs)
+            for (int i = 0; i < oldRewards.Count && i < objs.Length; i++) {
+                ModelsManager.MountModel(
+                    oldRewards[i].ItemID,
+                    objs[i].transform,
+                    oldRewards[i].GetMaterialPair()
+                    );
+            }
+
         }
 
     }

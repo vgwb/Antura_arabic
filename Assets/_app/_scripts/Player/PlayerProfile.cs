@@ -46,11 +46,14 @@ namespace EA4S
         public int CurrentMiniGameInPlaySession;
 
         #region Bones/coins
-        private int totalNumberOfBones = 0;
-        public int GetTotalNumberOfBones()
-        {
-            // TODO //return totalNumberOfBones;
-            return 20;
+        public int TotalNumberOfBones = 8;
+        public int GetTotalNumberOfBones(){
+            return TotalNumberOfBones;
+        }
+        public int AddBones(int _bonesToAdd) {
+            TotalNumberOfBones += _bonesToAdd;
+            Save();
+            return TotalNumberOfBones;
         }
         #endregion
 
@@ -66,6 +69,7 @@ namespace EA4S
         /// <param name="_rewardPack">The reward pack.</param>
         public void AddRewardUnlocked(RewardPack _rewardPack) {
             RewardsUnlocked.Add(_rewardPack);
+            Save();
         }
 
         /// <summary>
