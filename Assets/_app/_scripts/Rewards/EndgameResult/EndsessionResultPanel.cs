@@ -127,6 +127,7 @@ namespace EA4S
                 _alreadyUnlockedRewards--;
             }
             Bar.Show(_sessionData.Count * 3);
+            GameResultUI.I.BonesCounter.Show();
             while (!Bar.ShowTween.IsComplete()) yield return null;
 
             // Start filling bar and/or show Continue button
