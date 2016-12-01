@@ -25,8 +25,7 @@ namespace EA4S
             set {
                 if (actualPlayer != value) {
 
-                    if (AppManager.I.DB != null)
-                    {
+                    if (AppManager.I.DB != null) {
                         LogManager.I.LogInfo(InfoEvent.AppClosed);
                     }
 
@@ -186,6 +185,11 @@ namespace EA4S
         public void DeleteAllProfiles()
         {
             AppManager.I.Modules.PlayerProfile.DeleteAllPlayerProfiles();
+        }
+
+        public void DeleteCurrentPlayer()
+        {
+            AppManager.I.Modules.PlayerProfile.DeletePlayer(ActualPlayer.Key);
         }
 
         /// <summary>
