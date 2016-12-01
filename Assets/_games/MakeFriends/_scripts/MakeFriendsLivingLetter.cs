@@ -42,7 +42,7 @@ namespace EA4S.MakeFriends
             public bool rotateAfterWalk;
             public Vector3 afterWalkRotation;
 
-            public WalkParameters(Vector3 from, Vector3 to, Vector3 rotation, float duration, float delay, LLAnimationStates walkAnimation, float walkSpeed, LLAnimationStates afterWalkAnimation, float afterWalkSpeed, bool speak, float speakDelay, bool rotateAfterWalk, Vector3 afterWalkRotation)
+            public WalkParameters(Vector3 from, Vector3 to, Vector3 rotation, float duration, float delay = 0f, LLAnimationStates walkAnimation = LLAnimationStates.LL_walking, float walkSpeed = 0f, LLAnimationStates afterWalkAnimation = LLAnimationStates.LL_idle, float afterWalkSpeed = 0f, bool speak = false, float speakDelay = 0f, bool rotateAfterWalk = false, Vector3 afterWalkRotation = default(Vector3))
             {
                 this.from = from;
                 this.to = to;
@@ -119,11 +119,17 @@ namespace EA4S.MakeFriends
 
         public void MoveAwayAngrily(Vector3 position, Vector3 rotation, float duration, float delay)
         {
-            StartCoroutine(MoveAwayAngrily_Coroutine(position, rotation, duration, delay));
+            var parameters = new WalkParameters(from: transform.position, to: position, rotation: rotation, duration: duration, delay: delay);
+            StopCoroutine("MoveAwayAngrily_Coroutine");
+            StartCoroutine("MoveAwayAngrily_Coroutine", parameters);
         }
 
         public void Celebrate(Vector3 celebrationPosition, Vector3 rotation, float celebrationDuration)
         {
+            StopCoroutine("MoveAwayAngrily_Coroutine");
+            StopCoroutine("Walk_Coroutine");
+            StopCoroutine("Focus_Coroutine");
+
             var from = transform.position;
             var to = celebrationPosition;
             var duration = celebrationDuration;
@@ -131,9 +137,9 @@ namespace EA4S.MakeFriends
             Walk(from, to, rotation, duration, walkAnimation: LLAnimationStates.LL_walking, walkSpeed: 1f, afterWalkAnimation: LLAnimationStates.LL_dancing);
         }
 
-        public void HighFive(float delay)
+        public void HighFive(float delay, bool rotate = false, Vector3 rotation = default(Vector3))
         {
-            StartCoroutine(HighFive_Coroutine(delay));
+            StartCoroutine(HighFive_Coroutine(delay, rotate, rotation));
         }
 
         public void SpeakWord()
@@ -163,14 +169,17 @@ namespace EA4S.MakeFriends
             StartCoroutine("Focus_Coroutine");
         }
 
-        private IEnumerator MoveAwayAngrily_Coroutine(Vector3 position, Vector3 rotation, float duration, float delay)
+        private IEnumerator MoveAwayAngrily_Coroutine(WalkParameters parameters)
         {
-            var from = transform.position;
-            var to = position;
+            var from = parameters.from;
+            var to = parameters.to;
+            var rotation = parameters.rotation;
+            var duration = parameters.duration;
+            var delay = parameters.delay;
 
             LookAngry();
             yield return new WaitForSeconds(0.75f);
-            Walk(from, to, rotation, duration, delay: delay);
+            Walk(from, to, rotation, duration: duration, delay: delay);
         }
 
         private IEnumerator Focus_Coroutine()
@@ -197,9 +206,27 @@ namespace EA4S.MakeFriends
             isFocusing = false;
         }
 
-        private IEnumerator HighFive_Coroutine(float delay)
+        private IEnumerator HighFive_Coroutine(float delay, bool rotate, Vector3 rotation)
         {
             yield return new WaitForSeconds(delay);
+            if (rotate)
+            {
+                var initialRotation = transform.rotation.eulerAngles;
+                var finalRotation = rotation;
+
+                var rotationInterpolant = 0f;
+                var rotationLerpProgress = 0f;
+                var rotationLerpLength = 0.25f;
+
+                while (rotationLerpProgress < rotationLerpLength)
+                {
+                    transform.rotation = Quaternion.Euler(Vector3.Lerp(initialRotation, finalRotation, rotationInterpolant));
+                    rotationLerpProgress += Time.deltaTime;
+                    rotationInterpolant = rotationLerpProgress / rotationLerpLength;
+                    rotationInterpolant = Mathf.Sin(rotationInterpolant * Mathf.PI * 0.5f);
+                    yield return new WaitForFixedUpdate();
+                }
+            }
             LLPrefab.DoHighFive();
         }
 
