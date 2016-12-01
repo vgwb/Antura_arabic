@@ -13,6 +13,7 @@ Shader "Hidden/VignettingSimple" {
 	};
 	
 	half _Intensity;
+	half _FadeOut;
 	fixed4 _Color;
 
 	half4 _MainTex_TexelSize;
@@ -34,7 +35,7 @@ Shader "Hidden/VignettingSimple" {
 
 		half mask = coordDot * _Intensity * 0.1; 
 		
-		return fixed4(_Color.rgb, mask);
+		return lerp(fixed4(_Color.rgb, mask), fixed4(0,0,0,1), _FadeOut);
 	}
 
 	ENDCG 
