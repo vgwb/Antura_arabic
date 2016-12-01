@@ -20,7 +20,7 @@ public class VignettingSimple : MonoBehaviour
     public Shader vignetteShader;
     private Material vignetteMaterial;
 
-    protected void Awake()
+    void Start()
     {
         vignetteMaterial = new Material(vignetteShader);
         fadeOut = 0;
