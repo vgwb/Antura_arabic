@@ -11,8 +11,10 @@ namespace EA4S
     {
         public EndgameResultPanel EndgameResultPanel;
         public EndsessionResultPanel EndsessionResultPanel;
+        public BonesCounter BonesCounter;
+        public Vector2 BonesCounterEndgamePos, BonesCounterEndsessionPos;
 
-        static GameResultUI I;
+        public static GameResultUI I;
         const string ResourcesPath = "Prefabs/UI/GameResultUI";
 
         #region Unity + Init
@@ -22,6 +24,7 @@ namespace EA4S
             if (I != null) return;
 
             I = Instantiate(Resources.Load<GameResultUI>(ResourcesPath));
+            I.BonesCounter.Hide();
         }
 
         void Awake()
@@ -44,7 +47,8 @@ namespace EA4S
         public static void ShowEndgameResult(int _numStars)
         {
             Init();
-            
+            I.BonesCounter.GetComponent<RectTransform>().anchoredPosition = I.BonesCounterEndgamePos;
+            I.BonesCounter.Hide();
             I.EndgameResultPanel.Show(_numStars);
         }
 
@@ -59,6 +63,8 @@ namespace EA4S
         public static GameObject[] ShowEndsessionResult(List<EndsessionResultData> _sessionData, int _alreadyUnlockedRewards, bool _immediate = false)
         {
             Init();
+            I.BonesCounter.GetComponent<RectTransform>().anchoredPosition = I.BonesCounterEndsessionPos;
+            I.BonesCounter.Hide();
             I.EndsessionResultPanel.Show(_sessionData, _alreadyUnlockedRewards, _immediate);
             return I.EndsessionResultPanel.RewardsGos;
         }
@@ -70,6 +76,7 @@ namespace EA4S
         {
             if (I == null) return;
             
+            I.BonesCounter.Hide();
             I.EndgameResultPanel.Hide(_immediate);
         }
 
@@ -80,6 +87,7 @@ namespace EA4S
         {
             if (I == null) return;
 
+            I.BonesCounter.Hide();
             I.EndsessionResultPanel.Hide(_immediate);
         }
 

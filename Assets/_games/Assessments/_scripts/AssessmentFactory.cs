@@ -41,7 +41,28 @@ namespace EA4S.Assessment
                                             gameDescription);
         }
 
-        public static IAssessment CreateLetterInWordAssessment()
+        internal static IAssessment CreateCompleteWordAssessment()
+        {
+            //TODO: Show Image
+            Init();
+            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
+            IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
+            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
+            IQuestionDecorator questionDecorator = new PronunceImageDecorator();
+            IQuestionGenerator generator = new ImageQuestionGenerator( configuration.Questions, true);
+            ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
+            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager, wordSize, letterSize, true);
+            IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
+
+            gameDescription = Db.LocalizationDataId.Assessment_Select_Letter_Image;
+
+            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
+                                            configuration, context, dialogueManager,
+                                            gameDescription);
+        }
+
+        public static IAssessment CreateMatchLettersWordAssessment()
         {
             Init();
             AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;

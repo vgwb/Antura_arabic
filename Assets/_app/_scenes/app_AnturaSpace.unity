@@ -1803,6 +1803,7 @@ MonoBehaviour:
   m_oBonePrefab: {fileID: 624599005}
   m_oAntura: {fileID: 2091012742}
   m_oTextBonesNumber: {fileID: 1614356140}
+  m_oCustomButton: {fileID: 1945071809}
   m_oBackgroundMusic: 2
   m_iTotalBones_Test: 20
 --- !u!4 &252692185
@@ -12001,6 +12002,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 1945071808}
+  - 114: {fileID: 1945071809}
   m_Layer: 5
   m_Name: Categories
   m_TagString: Untagged
@@ -12028,6 +12030,17 @@ RectTransform:
   m_AnchoredPosition: {x: 1, y: -102.99997}
   m_SizeDelta: {x: -277, y: 185}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1945071809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1945071807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0b4660721f864f45917f2a9c6a755b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1953493803
 GameObject:
   m_ObjectHideFlags: 0
