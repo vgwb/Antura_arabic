@@ -8,6 +8,10 @@ namespace EA4S
 {
     public class StageManager : MonoBehaviour
     {
+        [Header("Debug")]
+        public bool SimulateFirstContact;
+
+        [Header("Settings")]
         public Color[] colorMaps;
         public GameObject[] stages;
         public GameObject[] cameras;
@@ -26,10 +30,17 @@ namespace EA4S
         public GameObject bookButton;
         public GameObject anturaButton;
 
+        [Header("Other")]
+        public Camera UICamera;
+
         int s, i, previousStage, numberStage;
         bool inTransition;
+        static int firstContactSimulationStep;
+
         void Awake()
         {
+            if (!Application.isEditor) SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
+
             /*AppManager.I.Player.MaxJourneyPosition.Stage = 2;
             AppManager.I.Player.MaxJourneyPosition.LearningBlock = 3;
             AppManager.I.Player.MaxJourneyPosition.PlaySession = 1;*/
@@ -53,12 +64,17 @@ namespace EA4S
         void Start()
         {
             /* FIRST CONTACT FEATURE */
-            if (AppManager.I.Player.IsFirstContact())
+            if (AppManager.I.Player.IsFirstContact() || SimulateFirstContact)
             {
                 FirstContactBehaviour();
             }
             /* --------------------- */
             FirstOrLastMap();
+        }
+
+        void OnDestroy()
+        {
+            this.StopAllCoroutines();
         }
 
         #region First Contact Session        
@@ -68,8 +84,11 @@ namespace EA4S
         /// </summary>
         void FirstContactBehaviour()
         {
+            if (SimulateFirstContact) firstContactSimulationStep++;
+            bool isFirstStep = SimulateFirstContact ? firstContactSimulationStep == 1 : AppManager.I.Player.IsFirstContact(1);
+            bool isSecondStep = SimulateFirstContact ? firstContactSimulationStep == 2 : AppManager.I.Player.IsFirstContact(2);
 
-            if (AppManager.I.Player.IsFirstContact(1))
+            if (isFirstStep)
             {
                 // First contact step 1:
 
@@ -79,7 +98,7 @@ namespace EA4S
                 AppManager.I.Player.FirstContactPassed();
                 Debug.Log("First Contact Step1 finished! Go to Antura Space!");
             }
-            else if (AppManager.I.Player.IsFirstContact(2))
+            else if (isSecondStep)
             {
                 // First contact step 2:
 
@@ -100,6 +119,17 @@ namespace EA4S
         {
             anturaButton.SetActive(true);
             anturaButton.GetComponent<OnClickButtonChangeScene>().SceneNameCustom = "app_Rewards";
+            this.StartCoroutine(CO_Tutorial());
+        }
+        IEnumerator CO_Tutorial()
+        {
+            TutorialUI.SetCamera(UICamera);
+            Vector3 anturaBtPos = anturaButton.transform.position;
+            anturaBtPos.z -= 1;
+            while (true) {
+                TutorialUI.Click(anturaButton.transform.position);
+                yield return new WaitForSeconds(0.85f);
+            }
         }
         #endregion
 

@@ -74,7 +74,11 @@ namespace EA4S
         public Rigidbody boneRigidbody
         { get;set; }
 
-        
+        public bool isDragging()
+        {
+            return m_bIsDragged;
+        }
+
         #endregion
 
         #region INTERNALS
@@ -128,10 +132,10 @@ namespace EA4S
 
         }
 
-        private void OnDisable()
-        {
-            Poof(m_oParticleTime);
-        }
+        //private void OnDisable()
+        //{
+        //    Poof(m_oParticleTime);
+        //}
 
         void OnDestroy()
         {
@@ -151,7 +155,16 @@ namespace EA4S
             m_oBoneRigidbody.isKinematic = true; //resets actives forces
             m_oBoneRigidbody.isKinematic = false;
 
+            //disable collision and enabled after 0.5 sec for avoid that Antura collision shot bone away
+            m_oBoneRigidbody.GetComponentInChildren<Collider>().enabled = false;
+            StartCoroutine(EA4S.MissingLetter.Utils.LaunchDelay(0.5f, 
+                delegate
+                {
+                    m_oBoneRigidbody.GetComponentInChildren<Collider>().enabled = true;
+                }));
+
             ApplyDefaultForces();
+
         }
 
         public void Drag()
@@ -167,7 +180,6 @@ namespace EA4S
 
             m_v3LastPosition = transform.position;
         }
-        #endregion
 
         public void LetGo()
         {
@@ -188,9 +200,9 @@ namespace EA4S
         /// Plays the particle effect for the given time.
         /// </summary>
         /// <param name="fDuration"></param>
-        public void Poof(float fDuration)
-        {
-            if(m_oParticleInstance==null)
+        public void Poof()
+        {      
+            if (m_oParticleInstance==null)
             {
                 m_oParticleInstance = Instantiate<GameObject>(m_oParticle);
 
@@ -214,8 +226,9 @@ namespace EA4S
             AudioManager.I.PlaySfx(m_oSfxOnPoof);
 
             CancelInvoke("StopPoof");//if we were quick maybe the particle hasn't stopped yet, so try to cancel the old one;
-            Invoke("StopPoof", fDuration);
+            Invoke("StopPoof", m_oParticleTime);
         }
+        #endregion
 
         /// <summary>
         /// Stop the particle effect.
