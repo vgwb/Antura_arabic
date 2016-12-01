@@ -72,10 +72,8 @@ namespace EA4S
 
         private void SetJourneyAtMaximum()
         {
-            var allPlaySessionInfos = AppManager.I.Teacher.scoreHelper.GetAllPlaySessionInfo();
-            var secondToLastPS = allPlaySessionInfos[allPlaySessionInfos.Count - 1].data.Id;    // @note: we use the second-to-last because the last gives an error with the map logic
-            var maxPossibleJourneyPosition = AppManager.I.Teacher.journeyHelper.PlaySessionIdToJourneyPosition(secondToLastPS);
-            AppManager.I.Player.SetMaxJourneyPosition(maxPossibleJourneyPosition, true);
+            // @note: set as SRDebugOptions
+            AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(6, 14, 1), true);
         }
 
         private System.Collections.IEnumerator PopulateDatabaseWithUsefulDataCO()
