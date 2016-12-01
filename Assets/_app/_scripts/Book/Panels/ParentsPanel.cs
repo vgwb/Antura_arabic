@@ -67,6 +67,11 @@ namespace EA4S
             Debug.Log("YEAH!");
         }
 
+        public void OnUnlockStage(int stage)
+        {
+
+        }
+
 
         #region Super Dog Helpers
 
