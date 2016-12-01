@@ -45,8 +45,8 @@ namespace EA4S
 
             // Get a letter
             var usableLetters = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetAllLetters(parameters.letterFilters),
-                    new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
+              () => FindEligibleLetters(atLeastNWords: nCorrect),
+                new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_letters));
             var commonLetter = usableLetters[0];
 
@@ -77,5 +77,21 @@ namespace EA4S
             return pack;
         }
 
+        private List<Db.LetterData> FindEligibleLetters(int atLeastNWords)
+        {
+            List<Db.LetterData> eligibleLetters = new List<Db.LetterData>();
+            var teacher = AppManager.I.Teacher;
+            var allLetters = teacher.wordHelper.GetAllLetters(parameters.letterFilters);
+            foreach(var letter in allLetters)
+            {
+                int nWords = teacher.wordHelper.GetWordsWithLetter(parameters.wordFilters, letter.Id).Count;
+                if (nWords >= atLeastNWords)
+                {
+                    eligibleLetters.Add(letter);
+                }
+            }
+            UnityEngine.Debug.LogError(eligibleLetters.Count);
+            return eligibleLetters;
+        }
     }
 }
