@@ -197,7 +197,7 @@ namespace EA4S.ThrowBalls
             BallController.instance.Enable();
 
             UIController.instance.Enable();
-            UIController.instance.SetLetterHint(correctDatum);
+            UIController.instance.SetLetterHint(question);
 
             if (IsTutorialLevel())
             {
