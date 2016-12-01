@@ -102,7 +102,7 @@ namespace EA4S.ColorTickle
                 TextureFormat.ARGB32,
                 false);
 
-            m_tScaledBrush.SetPixels(TextureUtilities.ScaleTexture(m_tBrushShape, m_fBrushScaling, m_fBrushScaling));
+            m_tScaledBrush.SetPixels(TextureUtilities.ScaleTexture(m_tBrushShape, m_tScaledBrush.width, m_tScaledBrush.height));
 
             m_tScaledBrush.Apply();
 
