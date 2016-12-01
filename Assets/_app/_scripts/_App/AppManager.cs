@@ -87,6 +87,19 @@ namespace EA4S
 
         #endregion
 
+        public void ResetCurrentPlayer()
+        {
+            DB.DropProfile();
+            PlayerProfileManager.DeleteCurrentPlayer();
+            // AppManager.I.PlayerProfileManager.DeleteAllProfiles();
+            NavigationManager.I.GoHome();
+        }
+
+        public void ResetEverything()
+        {
+            PlayerPrefs.DeleteAll();
+            NavigationManager.I.GoHome();
+        }
     }
 
 }

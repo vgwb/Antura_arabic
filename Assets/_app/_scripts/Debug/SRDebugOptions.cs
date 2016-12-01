@@ -56,6 +56,22 @@ public partial class SROptions
 
     [Category("Options")]
     [Sort(1)]
+    public void ResetAll()
+    {
+        AppManager.I.ResetEverything();
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Options")]
+    [Sort(1)]
+    public void ResetPlayer()
+    {
+        AppManager.I.ResetCurrentPlayer();
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Options")]
+    [Sort(1)]
     public bool IgnoreJourneyData { get { return DebugManager.I.IgnoreJourneyData; } set { DebugManager.I.IgnoreJourneyData = value; } }
 
     [Category("Options")]
@@ -413,7 +429,8 @@ public partial class SROptions
 
     [Category("Player Profile")]
     [Sort(2)]
-    public void DeleteAllProfiles() {
+    public void DeleteAllProfiles()
+    {
         PlayerPrefs.DeleteAll();
         AppManager.I.GameSettings.AvailablePlayers = new List<string>();
         AppManager.I.PlayerProfileManager.SaveGameSettings();
@@ -459,13 +476,15 @@ public partial class SROptions
 
     [Category("Rewards")]
     [Sort(1)]
-    public void UnlockFirstReward() {
+    public void UnlockFirstReward()
+    {
         AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward));
     }
 
     [Category("Rewards")]
     [Sort(2)]
-    public void UnlockNextPlaysessionRewards() {
+    public void UnlockNextPlaysessionRewards()
+    {
         JourneyPosition CurrentJourney = AppManager.I.Player.CurrentJourneyPosition;
         foreach (RewardPack pack in RewardSystemManager.GetNextRewardPack()) {
             AppManager.I.Player.AddRewardUnlocked(pack);
