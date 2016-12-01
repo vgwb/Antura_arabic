@@ -90,7 +90,6 @@ namespace EA4S
                     eligibleLetters.Add(letter);
                 }
             }
-            UnityEngine.Debug.LogError(eligibleLetters.Count);
             return eligibleLetters;
         }
     }
