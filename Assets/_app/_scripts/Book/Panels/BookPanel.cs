@@ -190,10 +190,9 @@ namespace EA4S
                         area = PlayerBookPanel.BookWords,
                         wordCategory = cat,
                         Id = cat.ToString(),
-                        Title = LocalizationManager.GetTranslation("UI_" + cat.ToString())
+                        Title = LocalizationManager.GetWordCategoryTitle(cat)
                     });
             }
-
         }
 
         void PhrasesPanel()

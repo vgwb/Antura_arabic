@@ -3112,3 +3112,67 @@ MonoBehaviour:
       English: 
       Arabic: "\u062A\u0639\u0644\u0645 \u0628\u0644\u0648\u0643"
       AudioFile: 
+    - Id: UI_None
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u0644\u0627 \u0634\u064A\u0621"
+      AudioFile: 
+    - Id: UI_Player
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: Player Id
+      Arabic: "\u0644\u0627\u0639\u0628"
+      AudioFile: 
+    - Id: UI_TimeSpent
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: Time spent playing
+      Arabic: "\u0648\u0642\u062A \u0627\u0644\u0644\u0639\u0628"
+      AudioFile: 
+    - Id: UI_Size
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u062D\u062C\u0645"
+      AudioFile: 
+    - Id: UI_General
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u0639\u0627\u0645"
+      AudioFile: 
+    - Id: UI_Conjunctions
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u0627\u0644\u0639\u0637\u0641"
+      AudioFile: 
+    - Id: UI_Shapes
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u0627\u0644\u0623\u0634\u0643\u0627\u0644"
+      AudioFile: 
+    - Id: UI_NumbersOrdinal
+      Character: UI
+      Area: ui
+      When: 
+      Context: 
+      English: 
+      Arabic: "\u0627\u0644\u0623\u0639\u062F\u0627\u062F \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u064A\u0629"
+      AudioFile: 
