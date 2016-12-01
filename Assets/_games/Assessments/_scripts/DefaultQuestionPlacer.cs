@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -10,12 +11,14 @@ namespace EA4S.Assessment
         protected IAudioManager audioManager;
         protected float questionSize;
         protected float answerSize;
+        protected bool alsoDrawing;
 
-        public DefaultQuestionPlacer( IAudioManager audioManager, float questionSize, float answerSize)
+        public DefaultQuestionPlacer( IAudioManager audioManager, float questionSize, float answerSize, bool alsoDrawing = false)
         {
             this.audioManager = audioManager;
             this.questionSize = questionSize;
             this.answerSize = answerSize;
+            this.alsoDrawing = alsoDrawing;
         }
 
         protected bool isAnimating = false;
@@ -31,6 +34,7 @@ namespace EA4S.Assessment
         {
             allQuestions = question;
             isAnimating = true;
+            images = new List< LetterObjectView>();
             Coroutine.Start( PlaceCoroutine());
         }
 
@@ -58,6 +62,9 @@ namespace EA4S.Assessment
             var gap = bounds.QuestionGap();
 
             float occupiedSpace = questionsNumber*questionSize + answerSize*placeHoldersNumber;
+            if (alsoDrawing)
+                occupiedSpace += questionsNumber * 3f;
+
             float blankSpace = gap - occupiedSpace;
 
             //  3 words => 4 white zones  (need increment by 1)
@@ -95,6 +102,14 @@ namespace EA4S.Assessment
                 yield return PlaceQuestion( allQuestions[ questionIndex], currentPos);
                 currentPos.x += (questionSize * sign) / 2;
 
+                if (alsoDrawing)
+                {
+                    currentPos.x += (3f * sign) / 2;
+                    yield return PlaceImage( allQuestions[questionIndex], currentPos);
+                    currentPos.x += (3.3f * sign) / 2;
+                    Debug.Log("PlacedImage######");
+                }
+
                 foreach (var p in allQuestions[ questionIndex].GetPlaceholders())
                 {
                     currentPos.x += (answerSize * sign)/2;
@@ -108,6 +123,20 @@ namespace EA4S.Assessment
             // give time to finish animating elements
             yield return TimeEngine.Wait( 0.65f);
             isAnimating = false;
+        }
+
+        private List< LetterObjectView> images;
+
+        protected IEnumerator PlaceImage( IQuestion q, Vector3 imagePos)
+        {
+            var ll = LivingLetterFactory.Instance.SpawnQuestion( q.Image());
+            images.Add( ll);
+            ll.transform.position = imagePos;
+            ll.transform.localScale = Vector3.zero;
+            ll.Poof( ElementsSize.PoofOffset);
+            audioManager.PlaySound( Sfx.Poof);
+            ll.transform.DOScale( 1, 0.3f);
+            return TimeEngine.Wait( 1.0f);
         }
 
         protected IEnumerator PlaceQuestion( IQuestion q, Vector3 position)
@@ -159,12 +188,24 @@ namespace EA4S.Assessment
                 foreach (var p in q.GetPlaceholders())
                     yield return FadeOutPlaceholder( p);
 
+                foreach (var img in images)
+                    yield return FadeOutImage( img);
+
                 yield return FadeOutQuestion( q);
             }
 
             // give time to finish animating elements
             yield return TimeEngine.Wait( 0.65f);
             isAnimating = false;
+        }
+
+        IEnumerator FadeOutImage( LetterObjectView image)
+        {
+            audioManager.PlaySound( Sfx.Poof);
+            image.Poof();
+
+            image.transform.DOScale(0, 0.4f).OnComplete( () => GameObject.Destroy( image.gameObject));
+            yield return TimeEngine.Wait( 0.1f);
         }
 
         IEnumerator FadeOutQuestion( IQuestion q)
