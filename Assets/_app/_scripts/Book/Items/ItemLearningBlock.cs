@@ -11,6 +11,7 @@ namespace EA4S
         public TextRender Title;
         public TextRender Info;
         public TextRender SubTitle;
+        public Image LockIcon;
 
         BookPanel manager;
 
@@ -22,10 +23,12 @@ namespace EA4S
             Title.text = info.data.Title_Ar;
             SubTitle.text = info.data.Title_En + " " + info.data.Id;
 
-            if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode) {
-                GetComponent<Button>().interactable = true;
-            } else {
-                GetComponent<Button>().interactable = false;
+            if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode)
+            {
+                LockIcon.enabled = false;
+            }
+            else {
+                LockIcon.enabled = true;
             }
 
             var score = info.score;
@@ -37,9 +40,7 @@ namespace EA4S
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode) {
-                manager.DetailLearningBlock(info);
-            }
+            manager.DetailLearningBlock(info);
         }
     }
 }

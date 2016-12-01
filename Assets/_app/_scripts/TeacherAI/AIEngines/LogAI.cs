@@ -123,7 +123,7 @@ namespace EA4S.Teacher
 
         public void LogMiniGameScore(MiniGameCode miniGameCode, float score)
         {
-            UpdateScoreDataWithMaximum(DbTables.MiniGames, ((int)miniGameCode).ToString(), score);
+            UpdateScoreDataWithMaximum(DbTables.MiniGames, (miniGameCode).ToString(), score);
         }
 
         public void LogPlaySessionScore(string playSessionId, float score)

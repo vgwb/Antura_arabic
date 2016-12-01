@@ -16,6 +16,30 @@ namespace EA4S.Assessment
         private static readonly float letterSize = 1f * 3;
         private static readonly float wordSize = 1.5f * 3;
         private static readonly float sentenceSize = 2f * 3;
+        private static int simultaneousQuestions;
+        private static int maxAnswers;
+        private static int rounds;
+
+        public static IAssessment CreateMatchWordToImageAssessment()
+        {
+            Init();
+            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = false;
+            AssessmentConfiguration.Instance.ShowQuestionAsImage = true;
+            IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
+            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
+            IQuestionDecorator questionDecorator = new PronunceImageDecorator();
+            IQuestionGenerator generator = new DefaultQuestionGenerator( configuration.Questions);
+            ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
+            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager, letterSize, wordSize);
+            IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
+
+            gameDescription = Db.LocalizationDataId.Assessment_Match_Word_Image;
+
+            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
+                                            configuration, context, dialogueManager,
+                                            gameDescription);
+        }
 
         public static IAssessment CreateLetterInWordAssessment()
         {
@@ -62,15 +86,13 @@ namespace EA4S.Assessment
             Init();
             AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
             AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
-            int rounds = AssessmentConfiguration.Instance.Rounds;
-            int simult = AssessmentConfiguration.Instance.SimultaneosQuestions;
             IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
             ICategoryProvider categoryProvider = new CategoryProvider( CategoryType.SunMoon);
             IQuestionGenerator generator = new CategoryQuestionGenerator(   configuration.Questions, 
                                                                             categoryProvider,
-                                                                            simult, rounds);
+                                                                            maxAnswers, rounds);
             ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
             IQuestionPlacer questionplacer = new CategoryQuestionPlacer( audioManager, letterSize, wordSize);
             IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
@@ -82,20 +104,64 @@ namespace EA4S.Assessment
                                             gameDescription);
         }
 
+        public static IAssessment CreateSingularDualPluralAssessment()
+        {
+            Init();
+            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
+            IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
+            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
+            IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
+            ICategoryProvider categoryProvider = new CategoryProvider( CategoryType.SingularDualPlural);
+            IQuestionGenerator generator = new CategoryQuestionGenerator(   configuration.Questions,
+                                                                            categoryProvider,
+                                                                            maxAnswers, rounds);
+            ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
+            IQuestionPlacer questionplacer = new CategoryQuestionPlacer( audioManager, letterSize, wordSize);
+            IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
+
+            gameDescription = Db.LocalizationDataId.Assessment_Classify_Word_Nouns;
+
+            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
+                                            configuration, context, dialogueManager,
+                                            gameDescription);
+        }
+
+        public static IAssessment CreateWordArticleAssessment()
+        {
+            Init();
+            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
+            IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
+            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
+            IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
+            ICategoryProvider categoryProvider = new CategoryProvider( CategoryType.WithOrWithoutArticle);
+            IQuestionGenerator generator = new CategoryQuestionGenerator(   configuration.Questions,
+                                                                            categoryProvider,
+                                                                            maxAnswers, rounds);
+            ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
+            IQuestionPlacer questionplacer = new CategoryQuestionPlacer( audioManager, wordSize, wordSize);
+            IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
+
+            gameDescription = Db.LocalizationDataId.Assessment_Classify_Word_Article;
+
+            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
+                                            configuration, context, dialogueManager,
+                                            gameDescription);
+        }
+
         public static IAssessment CreateSunMoonLetterAssessment()
         {
             Init();
             AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
             AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
-            int rounds = AssessmentConfiguration.Instance.Rounds;
-            int simult = AssessmentConfiguration.Instance.SimultaneosQuestions;
             IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
             ICategoryProvider categoryProvider = new CategoryProvider( CategoryType.SunMoon);
             IQuestionGenerator generator = new CategoryQuestionGenerator(   configuration.Questions,
                                                                             categoryProvider,
-                                                                            simult, rounds);
+                                                                            maxAnswers, rounds);
             ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
             IQuestionPlacer questionplacer = new CategoryQuestionPlacer( audioManager, letterSize, letterSize);
             IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
@@ -162,7 +228,7 @@ namespace EA4S.Assessment
 
             gameDescription = Db.LocalizationDataId.Assessment_Select_Words;
 
-            return new DefaultAssessment(answerPlacer, questionplacer, generator, injector,
+            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
                                             configuration, context, dialogueManager,
                                             gameDescription);
         }
@@ -179,6 +245,10 @@ namespace EA4S.Assessment
             audioManager = configuration.Context.GetAudioManager();
             subtitles = configuration.Context.GetSubtitleWidget();
             dialogueManager = new DialogueManager( audioManager, subtitles);
+            rounds = configuration.Rounds;
+            simultaneousQuestions = configuration.SimultaneosQuestions;
+            maxAnswers = configuration.Answers;
+            configuration.ShowQuestionAsImage = false;
         }
     }
 }

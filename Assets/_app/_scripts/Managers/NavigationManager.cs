@@ -27,6 +27,7 @@ namespace EA4S
         public static NavigationManager I;
 
         public AppScene CurrentScene;
+        public bool IsLoadingMinigame { get; private set; } // Daniele mod - SceneTransitioner needs it to know when a minigame is being loaded 
 
         void Start()
         {
@@ -35,6 +36,7 @@ namespace EA4S
 
         public void GoToScene(string sceneName)
         {
+            IsLoadingMinigame = sceneName.Substring(0, 5) == "game_";
             GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(sceneName);
 
             if (AppConstants.UseUnityAnalytics) {

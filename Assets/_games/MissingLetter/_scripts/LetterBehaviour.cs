@@ -26,6 +26,7 @@ namespace EA4S.MissingLetter
             endTransformToCallback = null;
             onLetterClick = null;
             mbIsSpeaking = false;
+            m_sInPhrase = "";
         }
 
         /// <summary>
@@ -150,7 +151,11 @@ namespace EA4S.MissingLetter
             if (mLetterData != null && !mbIsSpeaking)
             {
                 mbIsSpeaking = true;
-                if (mLetterData.DataType == LivingLetterDataType.Letter)
+                if(m_sInPhrase != "")
+                {
+                    AudioManager.I.PlayPhrase(m_sInPhrase);
+                }
+                else if (mLetterData.DataType == LivingLetterDataType.Letter)
                 {
                     AudioManager.I.PlayLetter(mLetterData.Id);
                 }
@@ -174,6 +179,11 @@ namespace EA4S.MissingLetter
         public void SuggestLetter()
         {
             PlayAnimation(LLAnimationStates.LL_dancing);
+        }
+
+        public void SetInPhrase(string _phraseId)
+        {
+            m_sInPhrase = _phraseId;
         }
 
 
@@ -292,6 +302,7 @@ namespace EA4S.MissingLetter
         private Collider mCollider;
 
         private bool mbIsSpeaking;
+        private string m_sInPhrase = "";
 
         public ILivingLetterData LetterData
         {
@@ -316,6 +327,7 @@ namespace EA4S.MissingLetter
         public Action<string> onLetterClick;
         [HideInInspector]
         public event Action<GameObject> onLetterBecameInvisible;
+
 
         //public for pool
         [HideInInspector]

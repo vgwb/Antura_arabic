@@ -11712,7 +11712,7 @@ MonoBehaviour:
   chargeEndPose: {fileID: 110705909}
   movingSpeed: 8
   chargeSpeed: 12
-  timesCanAppear: 4
+  timesCanAppear: 5
   fallenLL: []
 --- !u!135 &1218517458
 SphereCollider:

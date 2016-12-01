@@ -3109,7 +3109,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  AutoAnimateClick: 1
 --- !u!1001 &993986125
 Prefab:
   m_ObjectHideFlags: 0
@@ -4058,7 +4060,7 @@ Prefab:
     - target: {fileID: 108000013014623442, guid: 25204511df7ed9b4897034df9466e2f4,
         type: 2}
       propertyPath: m_Intensity
-      value: 0.69
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25204511df7ed9b4897034df9466e2f4, type: 2}
@@ -7790,7 +7792,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  AutoAnimateClick: 1
 --- !u!1 &1857357493
 GameObject:
   m_ObjectHideFlags: 0

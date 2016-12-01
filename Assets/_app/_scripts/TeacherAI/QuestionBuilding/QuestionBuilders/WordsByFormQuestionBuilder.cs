@@ -58,17 +58,6 @@ namespace EA4S
                 wrongWords.Add(choice2);
                 wrongWords.Add(choice3);
 
-                if (ConfigAI.verboseTeacher)
-                {
-                    string debugString = "--------- TEACHER: question pack result ---------";
-                    debugString += "\nQuestion: " + word;
-                    debugString += "\nCorrect Word: " + correctWords.Count;
-                    foreach (var l in correctWords) debugString += " " + l;
-                    debugString += "\nWrong Word: " + wrongWords.Count;
-                    foreach (var l in wrongWords) debugString += " " + l;
-                    UnityEngine.Debug.Log(debugString);
-                }
-
                 var pack = QuestionPackData.Create(word, correctWords, wrongWords);
                 packs.Add(pack);
             }
@@ -80,17 +69,6 @@ namespace EA4S
                 correctWords.Add(choice2);
                 wrongWords.Add(choice1);
                 wrongWords.Add(choice3);
-
-                if (ConfigAI.verboseTeacher)
-                {
-                    string debugString = "--------- TEACHER: question pack result ---------";
-                    debugString += "\nQuestion: " + word;
-                    debugString += "\nCorrect Word: " + correctWords.Count;
-                    foreach (var l in correctWords) debugString += " " + l;
-                    debugString += "\nWrong Word: " + wrongWords.Count;
-                    foreach (var l in wrongWords) debugString += " " + l;
-                    UnityEngine.Debug.Log(debugString);
-                }
 
                 var pack = QuestionPackData.Create(word, correctWords, wrongWords);
                 packs.Add(pack);
@@ -104,20 +82,27 @@ namespace EA4S
                 wrongWords.Add(choice1);
                 wrongWords.Add(choice2);
 
-                if (ConfigAI.verboseTeacher)
-                {
-                    string debugString = "--------- TEACHER: question pack result ---------";
-                    debugString += "\nQuestion: " + word;
-                    debugString += "\nCorrect Word: " + correctWords.Count;
-                    foreach (var l in correctWords) debugString += " " + l;
-                    debugString += "\nWrong Word: " + wrongWords.Count;
-                    foreach (var l in wrongWords) debugString += " " + l;
-                    UnityEngine.Debug.Log(debugString);
-                }
-
                 var pack = QuestionPackData.Create(word, correctWords, wrongWords);
                 packs.Add(pack);
             }
+
+            // Shuffle the packs at the end
+            packs = packs.Shuffle();
+
+            if (ConfigAI.verboseTeacher)
+            {
+                foreach(var pack in packs)
+                {
+                    string debugString = "--------- TEACHER: question pack result ---------";
+                    debugString += "\nQuestion: " + pack.question;
+                    debugString += "\nCorrect Word: " + pack.correctAnswers.Count;
+                    foreach (var l in pack.correctAnswers) debugString += " " + l;
+                    debugString += "\nWrong Word: " + pack.wrongAnswers.Count;
+                    foreach (var l in pack.wrongAnswers) debugString += " " + l;
+                    UnityEngine.Debug.Log(debugString);
+                }
+            }
+
 
             return packs;
         }

@@ -7,15 +7,12 @@ namespace EA4S
     {
         public BookGraph Graph;
 
-        void Start()
+        public void OnEnable()
         {
-
-            // Show moods
             int nMoods = 10;
             var latestMoods = AppManager.I.Teacher.GetLastMoodData(nMoods);
             float[] moodValues = latestMoods.ConvertAll(x => x.MoodValue).ToArray();
             Graph.SetValues(nMoods, AppConstants.maximumMoodValue, moodValues);
-
         }
     }
 }

@@ -18,7 +18,8 @@ namespace EA4S
         [SerializeField]
         private TextMeshProUGUI m_oTextBonesNumber;
 
-
+        [SerializeField]
+        private Music m_oBackgroundMusic;
 
         [Header("Test")]
         public int m_iTotalBones_Test = 10;
@@ -29,21 +30,24 @@ namespace EA4S
         private int[] m_aiUsedList;
         private int m_iNextToBeUsed = 0;
 
-        //private Rigidbody m_oBonePrefabRigidboy;
+        private GameObject m_oCookieRootContainer;
         private BoneBehaviour m_oDraggedBone;
         private AnturaSpaceAnturaBehaviour m_oAnturaBehaviour;
+
         #endregion
+
+        
 
         #region INTERNALS
         void Start()
         {
             GlobalUI.ShowPauseMenu(false);
             GlobalUI.ShowBackButton(true,Exit);
-            
 
+            AudioManager.I.PlayMusic(m_oBackgroundMusic);
 
 #if UNITY_EDITOR
-
+  
 #else
             m_iTotalBones_Test = AppManager.I.Player.GetTotalNumberOfBones();
 #endif
@@ -51,12 +55,22 @@ namespace EA4S
             m_oTextBonesNumber.text = "" + m_iTotalBones_Test;
 
             //set the bone initial position behind the button
-            float _fCameraDistance = Mathf.Abs(Camera.main.transform.position.z - Camera.main.nearClipPlane);
+            /*
+             * float _fCameraDistance = Mathf.Abs(Camera.main.transform.position.z - Camera.main.nearClipPlane);
 
             m_oBonePrefab.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(m_oTextBonesNumber.rectTransform.position.x, m_oTextBonesNumber.rectTransform.position.y, _fCameraDistance));
-
+            */
+            m_oBonePrefab.transform.position = m_oTextBonesNumber.transform.position;
 
             //Instantiate the pool of bones
+            //m_oCookieRootContainer = new GameObject("[Cookies]");
+            //m_oCookieRootContainer.transform.position = Vector3.zero;
+            GameObject _oTempBase = new GameObject();
+            m_oCookieRootContainer = Instantiate(_oTempBase);
+            m_oCookieRootContainer.name = "[Cookies]";
+            Destroy(_oTempBase);
+
+
             m_aoPool = new GameObject[m_iMaxSpawnableBones];
             m_aiUsedList = new int[m_iMaxSpawnableBones];
 
@@ -66,16 +80,23 @@ namespace EA4S
                 m_aoPool[_iIdx].SetActive(false);
 
                 m_aiUsedList[_iIdx] = _iIdx;
+
+                m_aoPool[_iIdx].transform.SetParent(m_oCookieRootContainer.transform);
             }
 
-            //link variables
-            //m_oBonePrefabRigidboy = m_oBonePrefab.GetComponent<Rigidbody>();
-        
+            //link variables        
             m_oAnturaBehaviour = m_oAntura.GetComponent<AnturaSpaceAnturaBehaviour>();
             m_oAnturaBehaviour.onBoneReached += release;
 
         }
 
+        /*void OnDestroy()
+        {
+            if(m_oCookieRootContainer)
+            {
+                DestroyObject(m_oCookieRootContainer);//this was created as an empty Gameobject, not instantiated
+            }
+        }*/
         #endregion
 
         #region PUBLIC FUNCTIONS
@@ -104,7 +125,6 @@ namespace EA4S
                 return;
             }
 
-            Debug.Log("Throwing bone");
             m_oTextBonesNumber.text = "" + (--m_iTotalBones_Test);
             _oBone.SetActive(true);
             _oBone.GetComponent<BoneBehaviour>().SimpleThrow();
@@ -124,7 +144,6 @@ namespace EA4S
                 return;
             }
 
-            Debug.Log("Dragging bone");
             m_oTextBonesNumber.text = "" + (--m_iTotalBones_Test);
 
             _oBone.SetActive(true);
@@ -144,7 +163,6 @@ namespace EA4S
                 return;
             }
 
-            Debug.Log("Let go bone");
             m_oDraggedBone.LetGo();
             m_oDraggedBone = null;
 

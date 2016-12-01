@@ -18,23 +18,29 @@ namespace EA4S
         bool m_TimedUp = false;
 
         Vector3 m_CameraStartPosition;
-        Vector3 m_CameraPath;
-        public float m_CameraHeightAtStart = 30.0f;
+        Vector3 m_CameraEndPosition;
+        public Vector3 cameraOffset = new Vector3(0, 5.0f, -10.0f);
         public float m_CameraVelocity = 0.1f;
 
         public IntroMazeCharacter[] m_MazeCharacters;
         public float m_MazeCharactesVelocity = 0.1f;
+        public AnimationCurve cameraAnimationCurve;
+        //public UnityStandardAssets.ImageEffects.ForegroundCameraEffect foregroundEffect;
+
+        public GameObject environment;
+        AutoMove[] autoMoveObjects;
 
         void Start()
         {
             GlobalUI.ShowPauseMenu(false);
             countDown = new CountdownTimer(m_EndDelay);
-            m_CameraStartPosition = Camera.main.transform.position;
-            Camera.main.transform.position += Vector3.up * m_CameraHeightAtStart;
-            m_CameraPath = m_CameraStartPosition - Camera.main.transform.position;
+            m_CameraEndPosition = Camera.main.transform.position;
+            m_CameraStartPosition = m_CameraEndPosition + cameraOffset;
+            autoMoveObjects = environment.GetComponentsInChildren<AutoMove>();
 
-            foreach (var mazeCharacter in m_MazeCharacters) {
-                mazeCharacter.transform.position += new Vector3(0, m_CameraHeightAtStart - 10f, 0);
+            foreach (var mazeCharacter in m_MazeCharacters)
+            {
+                mazeCharacter.transform.position += new Vector3(0, 10f, 0);
                 mazeCharacter.m_Velocity = m_MazeCharactesVelocity;
             }
         }
@@ -50,24 +56,36 @@ namespace EA4S
                 countDown.onTimesUp -= CountDown_onTimesUp;
         }
 
+        float time;
         void Update()
         {
-            if (m_Start) {
+            time += Time.deltaTime * m_CameraVelocity;
+            float t = cameraAnimationCurve.Evaluate(time);
+
+            //foregroundEffect.t = t;
+
+            for (int i = 0; i < autoMoveObjects.Length; ++i)
+                autoMoveObjects[i].SetTime(t);
+
+            if (m_Start)
+            {
                 m_Start = false;
                 Debug.Log("Start Introduction");
-                foreach (var mazeCharacter in m_MazeCharacters) {
+                foreach (var mazeCharacter in m_MazeCharacters)
+                {
                     mazeCharacter.SetDestination();
                 }
                 StartCoroutine(DoIntroduction());
-            } else {
-                if (m_End) {
+            }
+            else
+            {
+                if (m_End)
+                {
                     countDown.Update(Time.deltaTime);
                 }
             }
 
-            if (Camera.main.transform.position.y > m_CameraStartPosition.y) {
-                Camera.main.transform.position += m_CameraPath * Time.deltaTime * m_CameraVelocity;
-            }
+            Camera.main.transform.position = Vector3.Lerp(m_CameraStartPosition, m_CameraEndPosition, t);
         }
 
         public void DisableAntura()
@@ -81,8 +99,10 @@ namespace EA4S
         IEnumerator DoIntroduction()
         {
             bool completed = false;
-            System.Func<bool> CheckIfCompleted = () => {
-                if (completed) {
+            System.Func<bool> CheckIfCompleted = () =>
+            {
+                if (completed)
+                {
                     // Reset it
                     completed = false;
                     return true;

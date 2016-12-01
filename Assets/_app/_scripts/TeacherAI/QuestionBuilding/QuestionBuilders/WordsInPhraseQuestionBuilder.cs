@@ -57,18 +57,16 @@ namespace EA4S
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
             var question = usablePhrases[0];
 
-            UnityEngine.Debug.Log(question);
-
             // Get words related to the phrase
             var correctWords = new List<Db.WordData>();
             List<Db.WordData> relatedWords = null;
             if (usePhraseAnswersIfFound && question.Answers.Length > 0)
             {
-                relatedWords = teacher.wordHelper.GetAnswersToPhrase(question);
+                relatedWords = teacher.wordHelper.GetAnswersToPhrase(question, parameters.wordFilters);
             }
             else
             {
-                relatedWords = teacher.wordHelper.GetWordsInPhrase(question);
+                relatedWords = teacher.wordHelper.GetWordsInPhrase(question, parameters.wordFilters);
             }
 
             correctWords.AddRange(relatedWords);
