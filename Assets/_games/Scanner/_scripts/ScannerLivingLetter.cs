@@ -23,6 +23,7 @@ namespace EA4S.Scanner
 
         public LetterObjectView letterObjectView;
         public GameObject rainbowJet;
+        public float slidingTime;
 
 //		public event Action <ScannerLivingLetter> onReset;
 		public event Action <ScannerLivingLetter> onStartFallOff;
