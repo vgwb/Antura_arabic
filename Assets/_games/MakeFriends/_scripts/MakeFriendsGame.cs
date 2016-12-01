@@ -29,6 +29,8 @@ namespace EA4S.MakeFriends
         public DropZoneController dropZone;
         public WinCelebrationController winCelebration;
         public MakeFriendsAnturaController antura;
+        public Transform tutorialDropZoneLocation;
+        public Transform[] tutorialLetterLocations;
         [Header("Difficulty Override")]
         public bool overrideDifficulty;
         public MakeFriendsVariation difficultySetting;
@@ -215,19 +217,22 @@ namespace EA4S.MakeFriends
 
         private IEnumerator ShowTutorialUI_Coroutine()
         {
-            yield return new WaitForSeconds(uiDelay);
+            yield return new WaitForSeconds(uiDelay + 0.5f);
 
             while (isTutorialRound)
             {
-                yield return new WaitForSeconds(uiDelay);
-
-                foreach (var choice in letterPicker.CorrectLetterChoices)
+                for (int i = 0; i < letterPicker.CorrectLetterChoices.Count; i++)
                 {
-                    var from = new Vector3(0f, -1f, -1f);
-                    var to = new Vector3(0f, 7f, 0f);
+                    var choice = letterPicker.CorrectLetterChoices[i];
 
-                    TutorialUI.DrawLine(from, to, TutorialUI.DrawLineMode.Finger, false, true);
+                    if (choice.isCorrectChoice)
+                    {
+                        var from = tutorialLetterLocations[i].position;
+                        var to = tutorialDropZoneLocation.position;
+                        TutorialUI.DrawLine(from, to, TutorialUI.DrawLineMode.Finger, false, true);
+                    }
                 }
+                yield return new WaitForSeconds(2.5f);
             }
         }
 
@@ -408,7 +413,7 @@ namespace EA4S.MakeFriends
 
         private IEnumerator EndRound_Coroutine(bool win)
         {
-            var winDelay1 = 4f;
+            var winDelay1 = leftArea.celebrationDuration + 1.5f;
             var winDelay2 = 1.5f;
             var friendlyExitDelay = leftArea.friendlyExitDuration;
             var loseDelay = 1.5f;
@@ -428,8 +433,8 @@ namespace EA4S.MakeFriends
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
                 leftArea.Celebrate();
                 rightArea.Celebrate();
-                leftArea.HighFive(leftArea.celebrationDuration + 1f);
-                rightArea.HighFive(rightArea.celebrationDuration + 1f);
+                leftArea.HighFive(leftArea.celebrationDuration);
+                rightArea.HighFive(rightArea.celebrationDuration);
                 winCelebration.Show();
                 if (!isTutorialRound)
                 {
