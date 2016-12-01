@@ -66,25 +66,29 @@ namespace EA4S
 
         #region MiniGames
 
-        public List<MiniGameData> InitialiseCurrentPlaySession()
+        public List<MiniGameData> InitialiseCurrentPlaySession(bool chooseMiniGames = true)
         {
-            return InitialiseCurrentPlaySession(ConfigAI.numberOfMinigamesPerPlaySession);
+            return InitialiseCurrentPlaySession(ConfigAI.numberOfMinigamesPerPlaySession, chooseMiniGames);
         }
 
-        private List<MiniGameData> InitialiseCurrentPlaySession(int nMinigamesToSelect)
+        private List<MiniGameData> InitialiseCurrentPlaySession(int nMinigamesToSelect, bool chooseMiniGames = true)
         {
             ResetPlaySession();
-            currentPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
 
-            if (ConfigAI.verboseTeacher)
+            if (chooseMiniGames)
             {
-                var debugString = "";
-                debugString += "--------- TEACHER: MiniGames selected ---------";
-                foreach(var minigame in currentPlaySessionMiniGames)
+                currentPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
+
+                if (ConfigAI.verboseTeacher)
                 {
-                    debugString += "\n" + minigame.Code;
+                    var debugString = "";
+                    debugString += "--------- TEACHER: MiniGames selected ---------";
+                    foreach (var minigame in currentPlaySessionMiniGames)
+                    {
+                        debugString += "\n" + minigame.Code;
+                    }
+                    Debug.Log(debugString);
                 }
-                Debug.Log(debugString);
             }
 
             return currentPlaySessionMiniGames;

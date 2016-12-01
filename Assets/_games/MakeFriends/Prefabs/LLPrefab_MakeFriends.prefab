@@ -1789,7 +1789,6 @@ MonoBehaviour:
   focusOnTouch: 1
   animator: {fileID: 95000011127266862}
   letterCollider: {fileID: 136000013401160078}
-  angerGraphic: {fileID: 1000010509749006}
   tmpText: {fileID: 114000013927319314}
   container: {fileID: 0}
 --- !u!114 &114000011031556424
