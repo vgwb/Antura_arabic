@@ -14,6 +14,10 @@ namespace EA4S
         [Tooltip("Units x second for the scroll animation")]
         public float ScrollAnimationSpeed = 100;
         public float ScrollAnimationDelay = 1.5f;
+        public Color Level0Color = Color.blue;
+        public int Level0FontPerc = 140;
+        public Color Level1Color = Color.yellow;
+        public int Level1FontPerc = 110;
         [Header("References")]
         public TextAsset CreditsTxt;
         public RectTransform CreditsContainer;
@@ -41,7 +45,7 @@ namespace EA4S
             // Listeners
             BtBack.Bt.onClick.AddListener(OnClick);
 
-            TfCredits.text = CreditsTxt.text;
+            TfCredits.text = FormatCredits(CreditsTxt.text);
         }
 
         void Update()
@@ -74,6 +78,25 @@ namespace EA4S
             } else {
                 showTween.PlayBackwards();
             }
+        }
+
+        #endregion
+
+        #region Methods
+
+        string FormatCredits(string _txt)
+        {
+            // Format
+            string lv0 = "<size=" + Level0FontPerc + "%><color=#" + GenericUtilities.ColorToHex(Level0Color) + ">";
+            string lv1 = "<size=" + Level1FontPerc + "%><color=#" + GenericUtilities.ColorToHex(Level1Color) + ">";
+            _txt = _txt.Replace("[0]", lv0);
+            _txt = _txt.Replace("[0E]", "</color></size>");
+            _txt = _txt.Replace("[1]", lv1);
+            _txt = _txt.Replace("[1E]", "</color></size>");
+            // Fix missing characters
+            _txt = _txt.Replace("ö", "o");
+
+            return _txt;
         }
 
         void StartScrollLoop()

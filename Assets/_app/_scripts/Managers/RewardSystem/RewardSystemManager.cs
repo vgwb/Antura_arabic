@@ -270,6 +270,15 @@ namespace EA4S {
             return mp;
         }
 
+        /// <summary>
+        /// Gets the unlocked reward for specified playsession.
+        /// </summary>
+        /// <param name="_playsessionID">The playsession identifier (format 1.4.2).</param>
+        /// <returns></returns>
+        public static int GetUnlockedRewardForPlaysession(string _playsessionID) {
+            int rCount = AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.PlaySessionId == _playsessionID).Count;
+            return rCount > 2 ? 2 : rCount;
+        }
         #endregion
 
         #endregion
