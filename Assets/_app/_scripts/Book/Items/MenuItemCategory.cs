@@ -9,6 +9,7 @@ namespace EA4S
     {
         GenericCategoryData data;
         public TextRender Title;
+        public TextRender SubTitle;
         BookPanel manager;
 
         public void Init(BookPanel _manager, GenericCategoryData _data)
@@ -17,6 +18,7 @@ namespace EA4S
             manager = _manager;
 
             Title.text = data.Title;
+            SubTitle.text = data.Id;
         }
 
         public void OnPointerClick(PointerEventData eventData)

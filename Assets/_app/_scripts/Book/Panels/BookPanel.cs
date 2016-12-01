@@ -116,15 +116,21 @@ namespace EA4S
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = PlayerBookPanel.BookLetters, Id = "letter", Title = "Letters" });
+            btnGO.GetComponent<MenuItemCategory>().Init(
+                this,
+                new GenericCategoryData { area = PlayerBookPanel.BookLetters, Id = "letter", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Letters) });
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = PlayerBookPanel.BookLetters, Id = "symbol", Title = "Symbols" });
+            btnGO.GetComponent<MenuItemCategory>().Init(
+                this,
+                new GenericCategoryData { area = PlayerBookPanel.BookLetters, Id = "symbol", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Symbols) });
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = PlayerBookPanel.BookLetters, Id = "combo", Title = "Combinations" });
+            btnGO.GetComponent<MenuItemCategory>().Init(
+                this,
+                new GenericCategoryData { area = PlayerBookPanel.BookLetters, Id = "combo", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Combinations) });
 
         }
 
@@ -162,7 +168,14 @@ namespace EA4S
             foreach (WordDataCategory cat in GenericUtilities.SortEnums<WordDataCategory>()) {
                 btnGO = Instantiate(CategoryItemPrefab);
                 btnGO.transform.SetParent(SubmenuContainer.transform, false);
-                btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = PlayerBookPanel.BookWords, wordCategory = cat, Title = cat.ToString() });
+                btnGO.GetComponent<MenuItemCategory>().Init(
+                    this,
+                    new GenericCategoryData {
+                        area = PlayerBookPanel.BookWords,
+                        wordCategory = cat,
+                        Id = cat.ToString(),
+                        Title = LocalizationManager.GetTranslation("UI_" + cat.ToString())
+                    });
             }
 
         }
