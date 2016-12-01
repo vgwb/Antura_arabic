@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 [AddComponentMenu("Image Effects/Simple Vignette and Chromatic Aberration")]
 
-public class VignettingSimple /* And Chromatic Aberration */ : PostEffectsBase
+public class VignettingSimple : MonoBehaviour
 {
 
     public float vignetting
@@ -19,29 +19,35 @@ public class VignettingSimple /* And Chromatic Aberration */ : PostEffectsBase
     public Shader vignetteShader;
     private Material vignetteMaterial;
 
-    protected override bool CheckResources()
+    protected void Awake()
     {
-        CheckSupport(false);
-
-        vignetteMaterial = CheckShaderAndCreateMaterial(vignetteShader, vignetteMaterial);
-
-        if (!isSupported)
-            ReportAutoDisable();
-        return isSupported;
+        vignetteMaterial = new Material(vignetteShader);
     }
 
-    void OnRenderImage(RenderTexture source, RenderTexture destination)
-    {
-        if (CheckResources() == false)
-        {
-            Graphics.Blit(source, destination);
-            return;
-        }
-        
-        vignetteMaterial.SetFloat("_Intensity", intensity);
-        vignetteMaterial.SetColor("_Color", color);	
-        Graphics.Blit(source, destination, vignetteMaterial, 0);
 
-        source.wrapMode = TextureWrapMode.Clamp;
+    void OnPostRender()
+    {
+        vignetteMaterial.SetFloat("_Intensity", intensity);
+        vignetteMaterial.SetColor("_Color", color);
+
+        GL.PushMatrix();
+        vignetteMaterial.SetPass(0);
+        GL.LoadOrtho();
+        GL.Begin(GL.QUADS);
+
+        GL.TexCoord3(0, 0, 0);
+        GL.Vertex3(0, 0, 0);
+
+        GL.TexCoord3(0, 1, 0);
+        GL.Vertex3(0, 1, 0);
+
+        GL.TexCoord3(1, 1, 0);
+        GL.Vertex3(1, 1, 0);
+
+        GL.TexCoord3(1, 0, 0);
+        GL.Vertex3(1, 0, 0);
+
+        GL.End();
+        GL.PopMatrix();
     }
 }
