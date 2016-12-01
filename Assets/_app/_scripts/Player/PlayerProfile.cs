@@ -40,6 +40,8 @@ namespace EA4S
         public float Musicality;
         public float Sight;
 
+        public string MoodLastVisit;
+
         public JourneyPosition MaxJourneyPosition = new JourneyPosition(1, 1, 1);
         public JourneyPosition CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
         [NonSerialized]
