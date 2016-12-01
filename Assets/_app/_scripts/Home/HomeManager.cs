@@ -25,7 +25,10 @@ namespace EA4S
             LogManager.I.InitNewSession();
             LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new AppInfoParameters()));
 
-            NavigationManager.I.GoToScene(AppScene.Mood);
+            if (AppManager.I.Player.MoodLastVisit == System.DateTime.Today.ToString())
+                NavigationManager.I.GoToScene(AppScene.Map);
+            else
+                NavigationManager.I.GoToScene(AppScene.Mood);
         }
     }
 }
