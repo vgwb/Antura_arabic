@@ -499,7 +499,7 @@ MonoBehaviour:
     - Id: 4.8
       Stage: 4
       LearningBlock: 8
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: The 3 diacritic + double diacritic signs.
       Title_En: single and double symbols
       Title_Ar: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0648\u062D\u0631\u0643\u0627\u062A
@@ -566,7 +566,7 @@ MonoBehaviour:
     - Id: 4.15
       Stage: 4
       LearningBlock: 15
-      NumberOfPlaySessions: 4
+      NumberOfPlaySessions: 3
       Description: Furniture
       Title_En: 'Words: Furniture'
       Title_Ar: "\u0627\u0644\u0645\u0641\u0631\u0648\u0634\u0627\u062A"
@@ -602,7 +602,7 @@ MonoBehaviour:
     - Id: 5.4
       Stage: 5
       LearningBlock: 4
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: The 3 diacritic signs
       Title_En: The 3 diacritic signs
       Title_Ar: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A"
@@ -611,7 +611,7 @@ MonoBehaviour:
     - Id: 5.5
       Stage: 5
       LearningBlock: 5
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: The 3 double diacritic signs (Tanwin)
       Title_En: The 3 double diacritic signs
       Title_Ar: "\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062A\u0646\u0648\u064A\u0646"
@@ -657,7 +657,7 @@ MonoBehaviour:
     - Id: 5.10
       Stage: 5
       LearningBlock: 10
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The definite article \u201Cal\u201D (\u0627\u0644\u0640)"
       Title_En: the article "al"
       Title_Ar: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
@@ -700,7 +700,7 @@ MonoBehaviour:
     - Id: 6.1
       Stage: 6
       LearningBlock: 1
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: Greeting phrase
       Title_En: Greetings
       Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u062D\u064A\u0629"
@@ -709,7 +709,7 @@ MonoBehaviour:
     - Id: 6.2
       Stage: 6
       LearningBlock: 2
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: '"Hello" and "Hi" phrases'
       Title_En: Hello phrases
       Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u0631\u062D\u064A\u0628"
@@ -718,7 +718,7 @@ MonoBehaviour:
     - Id: 6.3
       Stage: 6
       LearningBlock: 3
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: '"How are you" and "Goodbye" phrases'
       Title_En: How are you phrases
       Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u0633\u0624\u0627\u0644
@@ -773,7 +773,7 @@ MonoBehaviour:
     - Id: 6.9
       Stage: 6
       LearningBlock: 9
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: Time expressions such as "today" "yesterday"
       Title_En: Time adverbs
       Title_Ar: "\u0638\u0631\u0648\u0641 \u0627\u0644\u0632\u0645\u0627\u0646"
