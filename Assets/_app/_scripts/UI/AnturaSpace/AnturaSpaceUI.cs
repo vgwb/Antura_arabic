@@ -14,7 +14,7 @@ namespace EA4S
         public LayerMask RewardsLayer;
         public bool FlipRewards = true;
         [Header("References")]
-        public UIButton BtOpenModsPanel;
+        public UIButton BtOpenModsPanel, BTRemoveMods;
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
         public AnturaSpaceItemButton BtItemMain;
         public UIButton BtBones;
@@ -28,6 +28,7 @@ namespace EA4S
         RewardTypes currRewardType;
         List<RewardItem> currRewardDatas;
         List<RewardColorItem> currSwatchesDatas;
+        AnturaSpaceCategoryButton.AnturaSpaceCategory currCategory;
         Tween showCategoriesTween, showItemsTween, showSwatchesTween;
 
         #region Unity
@@ -76,6 +77,7 @@ namespace EA4S
 
             // Listeneres
             BtOpenModsPanel.Bt.onClick.AddListener(()=> OnClick(BtOpenModsPanel));
+            BTRemoveMods.Bt.onClick.AddListener(()=> OnClick(BTRemoveMods));
             foreach (var bt in btsCategories) {
                 var b = bt;
                 b.Bt.onClick.AddListener(()=> OnClickCategory(b));
@@ -97,6 +99,7 @@ namespace EA4S
             showItemsTween.Kill();
             showSwatchesTween.Kill();
             BtOpenModsPanel.Bt.onClick.RemoveAllListeners();
+            BTRemoveMods.Bt.onClick.RemoveAllListeners();
             foreach (var bt in btsCategories) bt.Bt.onClick.RemoveAllListeners();
             foreach (var bt in btsItems) bt.Bt.onClick.RemoveAllListeners();
             foreach (var bt in btsSwatches) bt.Bt.onClick.RemoveAllListeners();
@@ -137,6 +140,7 @@ namespace EA4S
         IEnumerator CO_SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
         {
             // Get rewards list
+            currCategory = _category;
             currRewardType = CategoryToRewardType(_category);
             bool useImages = _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture || _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
             foreach (AnturaSpaceItemButton item in btsItems) item.SetImage(!useImages);
@@ -181,6 +185,15 @@ namespace EA4S
         void SelectReward(RewardItem _rewardData)
         {
             showSwatchesTween.Rewind();
+            BTRemoveMods.gameObject.SetActive(_rewardData != null);
+            if (_rewardData == null) {
+                foreach (AnturaSpaceItemButton item in btsItems) item.Toggle(false);
+                if (currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears) {
+                    AnturaModelManager.Instance.ClearLoadedRewardInCategory("EAR_L");
+                    AnturaModelManager.Instance.ClearLoadedRewardInCategory("EAR_R");
+                } else AnturaModelManager.Instance.ClearLoadedRewardInCategory(currCategory.ToString());
+                return;
+            }
 
             foreach (AnturaSpaceItemButton item in btsItems) item.Toggle(item.Data == _rewardData);
             currSwatchesDatas = RewardSystemManager.SelectRewardItem(_rewardData.ID, currRewardType);
@@ -243,6 +256,7 @@ namespace EA4S
         void OnClick(UIButton _bt)
         {
             if (_bt == BtOpenModsPanel) ToggleModsPanel();
+            else if (_bt == BTRemoveMods) SelectReward(null);
         }
 
         void OnClickCategory(AnturaSpaceCategoryButton _bt)

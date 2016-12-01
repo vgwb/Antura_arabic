@@ -8,6 +8,7 @@ namespace EA4S.Scanner
 
 
         public static bool PAUSE_NEW_LL_SLIDES, IS_IN_SCENE;
+        public static float LAST_NORMAL_SLIDE;
         public static int SCARED_COUNTER;
         public ScannerGame game;
         public Transform stopPose, chargeEndPose;
@@ -40,7 +41,7 @@ namespace EA4S.Scanner
 
             while (timesCanAppear >0)
             {                
-                if (!game.tut.isTutRound)
+                if (!game.tut.isTutRound && game.roundsManager.numberOfRoundsPlayed <6)
                 {
                     yield return new WaitForSeconds(Random.Range(25, 50));
                     
@@ -160,49 +161,73 @@ namespace EA4S.Scanner
                 yield return null;
             }
 
-            if (ScannerConfiguration.Instance.Variation != ScannerVariation.OneWord)
+            /*if (ScannerConfiguration.Instance.Variation != ScannerVariation.OneWord)
                 StartCoroutine(resetLetters());
 
+            else if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
+            {
+                if (game.scannerLL[0].status == ScannerLivingLetter.LLStatus.None)
+                {
+                    game.scannerLL[0].StartSliding();//.status = ScannerLivingLetter.LLStatus.Sliding;
+                    Debug.LogWarning("VVVV");
+                }
+            }
+            */
             IS_IN_SCENE = false;
         }
 
-        IEnumerator throwLL(ScannerLivingLetter ll) {
+        IEnumerator throwLL(ScannerLivingLetter ll, float resetDealy) {
+
 
             Rigidbody rb;
             rb = ll.GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.useGravity = true;
-            rb.AddForce(Vector3.forward * Random.Range(2, 5) + Vector3.up * Random.Range(9, 12), ForceMode.Impulse);
+            rb.AddForce(Vector3.forward * Random.Range(6, 10) + Vector3.up * Random.Range(12, 15), ForceMode.Impulse);
             ll.letterObjectView.OnJumpStart();
             ll.letterObjectView.OnJumpMaximumHeightReached();
+
+            
+
             yield return new WaitForSeconds(2);
             rb.isKinematic = true;
             rb.useGravity = false;
+            ll.status = ScannerLivingLetter.LLStatus.None;
+
+            StartCoroutine(llReset(ll, resetDealy));
+
+            //yield return new WaitForSeconds(2);
             
-            if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
+
+           /* if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
             {
                 yield return new WaitForSeconds(2);
                 StartCoroutine(resetLetters());
-            }
+            }*/
                 
         }
 
         IEnumerator resetLetters()
         {
+            yield break;
+
             int LLCount = fallenLL.Count;
             for (int i = 0; i < LLCount; i++)
             {
                 if (fallenLL[i])
                 {
-                    Debug.LogWarning("YYYY");
+                    //Debug.LogWarning("YYYY");
                     fallenLL[i].Reset(false);
                 }
             }
             for (int i = 0; i < LLCount; i++)
             {
+                while (Time.time - LAST_NORMAL_SLIDE < calculateDelay()/*2.5f*/)
+                    yield return null;
+
                 if (fallenLL[i])
                 {
-                    Debug.LogWarning("ZZZZ");
+                    //Debug.LogWarning("ZZZZ");
                     fallenLL[i].StartSliding();
                     fallenLL[i] = null;
                     if (game.scannerLL.Count == 3)
@@ -228,11 +253,39 @@ namespace EA4S.Scanner
                     ll.status = ScannerLivingLetter.LLStatus.None;
                     fallenLL.Add(ll);
                     AudioManager.I.PlaySfx(Sfx.LetterSad);
-                    StartCoroutine(throwLL(ll));
+                    StartCoroutine(throwLL(ll, calculateDelay()));
                 }
                 
             }
         }
 
+        float calculateDelay()
+        {
+
+            int llToCome = 0;
+
+            foreach (ScannerLivingLetter ll in game.scannerLL)
+            {
+                if (ll.status == ScannerLivingLetter.LLStatus.None /*|| ll.status == ScannerLivingLetter.LLStatus.Sliding*/)
+                    llToCome++;
+            }
+            if (game.scannerLL.Count == 3)
+            {
+                return 8 * (llToCome-1);
+                    
+            }
+            else
+            {
+                return 5 * (llToCome-1);
+            }
+        }
+
+        IEnumerator llReset(ScannerLivingLetter ll, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            ll.Reset();
+            ll.StartSliding();
+            fallenLL[fallenLL.IndexOf(ll)] = null;
+        }
     }
 }

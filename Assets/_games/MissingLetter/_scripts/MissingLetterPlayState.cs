@@ -39,7 +39,11 @@ namespace EA4S.MissingLetter
         public void ExitState()
         {
             AudioManager.I.StopMusic();
-            AudioManager.I.StopSfx(Sfx.DangerClockLong);
+
+            //AudioManager.I.StopSfx(Sfx.DangerClockLong);
+            if (timesUpAudioSource != null)
+                timesUpAudioSource.Stop();
+
             M_oGameTime.Stop();
         }
 
@@ -64,7 +68,8 @@ namespace EA4S.MissingLetter
                 if (M_oGameTime.Time < 4f)
                 {
                     m_bHurryUpSfx = true;
-                    AudioManager.I.PlaySfx(Sfx.DangerClockLong);
+                    //AudioManager.I.PlaySfx(Sfx.DangerClockLong);
+                    timesUpAudioSource = m_oGame.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
                 }
             }
 
@@ -96,6 +101,7 @@ namespace EA4S.MissingLetter
 
         CountdownTimer M_oGameTime;
         MissingLetterGame m_oGame;
+        IAudioSource timesUpAudioSource;
         bool m_bHurryUpSfx;
 
         #endregion

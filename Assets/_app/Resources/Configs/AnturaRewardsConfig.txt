@@ -411,74 +411,144 @@
   ],
   "RewardsColorPairs" : [
     {
-      "ID" : 1,
-      "Color1Name" : "azure_light",
-      "Color1RGB" : "E6FBFBFF",
-      "Color2Name" : "orange_mid",
-      "Color2RGB" : "FFC090FF"
-    },
-    {
-      "ID" : 2,
-      "Color1Name" : "beige_dark",
-      "Color1RGB" : "635C55FF",
-      "Color2Name" : "yellow_light",
-      "Color2RGB" : "FFFF92FF"
-    },
-    {
-      "ID" : 3,
-      "Color1Name" : "blue_dark",
-      "Color1RGB" : "384D67FF",
-      "Color2Name" : "red_dark",
-      "Color2RGB" : "884D4DFF"
-    },
-    {
-      "ID" : 4,
-      "Color1Name" : "green_dark",
-      "Color1RGB" : "345F3BFF",
-      "Color2Name" : "pink_mid",
-      "Color2RGB" : "FFD0E6FF"
-    },
-    {
-      "ID" : 5,
-      "Color1Name" : "orange_dark",
-      "Color1RGB" : "B3835DFF",
-      "Color2Name" : "blue_mid",
-      "Color2RGB" : "8EB9FFFF"
-    },
-    {
-      "ID" : 6,
-      "Color1Name" : "pink_dark",
-      "Color1RGB" : "FFB1EFFF",
-      "Color2Name" : "green_mid",
-      "Color2RGB" : "42723EFF"
-    },
-    {
-      "ID" : 7,
-      "Color1Name" : "purple_dark",
-      "Color1RGB" : "865B9DFF",
-      "Color2Name" : "beige_mid",
-      "Color2RGB" : "766A5EFF"
-    },
-    {
-      "ID" : 8,
-      "Color1Name" : "red_mid",
-      "Color1RGB" : "FF8A8AFF",
-      "Color2Name" : "purple_light",
-      "Color2RGB" : "E3C2FFFF"
-    },
-    {
-      "ID" : 9,
-      "Color1Name" : "yellow_mid",
-      "Color1RGB" : "FFF097FF",
-      "Color2Name" : "orange_light",
-      "Color2RGB" : "FFE2BDFF"
-    },
-    {
-      "ID" : 10,
+      "ID" : "1",
       "Color1Name" : "green_mid",
-      "Color1RGB" : "42723EFF",
-      "Color2Name" : "yellow_light",
-      "Color2RGB" : "FFFF92FF"
+      "Color1RGB" : "2d6c00",
+      "Color2Name" : "pink_dark",
+      "Color2RGB" : "cc2270"
+    },
+    {
+      "ID" : "2",
+      "Color1Name" : "red_mid",
+      "Color1RGB" : "ab0000",
+      "Color2Name" : "orange_light",
+      "Color2RGB" : "cc4e1c"
+    },
+    {
+      "ID" : "3",
+      "Color1Name" : "pink_dark",
+      "Color1RGB" : "cc2270",
+      "Color2Name" : "black_pure",
+      "Color2RGB" : "000000"
+    },
+    {
+      "ID" : "4",
+      "Color1Name" : "blue_light",
+      "Color1RGB" : "00a9cc",
+      "Color2Name" : "blue_mid",
+      "Color2RGB" : "0066ac"
+    },
+    {
+      "ID" : "5",
+      "Color1Name" : "green_mid",
+      "Color1RGB" : "2d6c00",
+      "Color2Name" : "orange_light",
+      "Color2RGB" : "cc4e1c"
+    },
+    {
+      "ID" : "6",
+      "Color1Name" : "orange_light",
+      "Color1RGB" : "cc4e1c",
+      "Color2Name" : "pink_dark",
+      "Color2RGB" : "cc2270"
+    },
+    {
+      "ID" : "7",
+      "Color1Name" : "black_pure",
+      "Color1RGB" : "000000",
+      "Color2Name" : "white",
+      "Color2RGB" : "ffffff"
+    },
+    {
+      "ID" : "8",
+      "Color1Name" : "red_mid",
+      "Color1RGB" : "ab0000",
+      "Color2Name" : "purple_dark",
+      "Color2RGB" : "4e007e"
+    },
+    {
+      "ID" : "9",
+      "Color1Name" : "purple_mid",
+      "Color1RGB" : "85009b",
+      "Color2Name" : "yellow_mid",
+      "Color2RGB" : "fcb300"
+    },
+    {
+      "ID" : "10",
+      "Color1Name" : "white_pure",
+      "Color1RGB" : "ffffff",
+      "Color2Name" : "purple_dark",
+      "Color2RGB" : "4e007e"
+    },
+    {
+      "ID" : "11",
+      "Color1Name" : "azure_mid",
+      "Color1RGB" : "00ccb6",
+      "Color2Name" : "green_light",
+      "Color2RGB" : "7cc741"
+    },
+    {
+      "ID" : "12",
+      "Color1Name" : "beige_dark",
+      "Color1RGB" : "744d40",
+      "Color2Name" : "beige_light",
+      "Color2RGB" : "ccbe85"
+    },
+    {
+      "ID" : "13",
+      "Color1Name" : "green_mid",
+      "Color1RGB" : "2d6c00",
+      "Color2Name" : "red_mid",
+      "Color2RGB" : "ab0000"
+    },
+    {
+      "ID" : "14",
+      "Color1Name" : "purple_dark",
+      "Color1RGB" : "4e007e",
+      "Color2Name" : "pink_light",
+      "Color2RGB" : "ffa1ff"
+    },
+    {
+      "ID" : "15",
+      "Color1Name" : "red_mid",
+      "Color1RGB" : "ab0000",
+      "Color2Name" : "blue_mid",
+      "Color2RGB" : "0066ac"
+    },
+    {
+      "ID" : "16",
+      "Color1Name" : "black_pure",
+      "Color1RGB" : "000000",
+      "Color2Name" : "azure_mid",
+      "Color2RGB" : "00ccb6"
+    },
+    {
+      "ID" : "17",
+      "Color1Name" : "azure_mid",
+      "Color1RGB" : "00ccb6",
+      "Color2Name" : "orange_light",
+      "Color2RGB" : "cc4e1c"
+    },
+    {
+      "ID" : "18",
+      "Color1Name" : "purple_light",
+      "Color1RGB" : "cc34c9",
+      "Color2Name" : "blue_light",
+      "Color2RGB" : "00a6cc"
+    },
+    {
+      "ID" : "19",
+      "Color1Name" : "white_pure",
+      "Color1RGB" : "FFFFFF",
+      "Color2Name" : "red_dark",
+      "Color2RGB" : "a00000"
+    },
+    {
+      "ID" : "20",
+      "Color1Name" : "black_pure",
+      "Color1RGB" : "000000",
+      "Color2Name" : "black_pure",
+      "Color2RGB" : "000000"
     }
   ],
   "RewardsDecal" : [

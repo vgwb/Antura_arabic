@@ -7,24 +7,31 @@ namespace EA4S
     public class BookGraph : MonoBehaviour
     {
         public GameObject barPrefabGo;
-        public float barWidth = 10f;
-        public float barMaxHeight = 100f;
 
-        public void SetValues(int nValues, float maxValue, float[] values, string[] moodLabels = null)
+        public void SetValues(int nValues, float maxValue, float[] values, bool autoMaxValue = true, string[] labels = null)
         {
-            for (int value_i = 0; value_i < values.Length; value_i++)
+            if (autoMaxValue)
+            {
+                maxValue = Mathf.Max(values);
+            }
+
+            // Cleanup
+            foreach(Transform tr in this.transform)
+            {
+                if (tr != this.transform) Destroy(tr.gameObject);
+            }
+
+            for (int i = 0; i < values.Length; i++)
             {
                 var barGo = Instantiate(barPrefabGo);
                 var barImage = barGo.GetComponentInChildren<Image>();
                 var barText = barGo.GetComponentInChildren<Text>();
                 barGo.transform.SetParent(this.transform);
-                barImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, barWidth);
-                barImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, barMaxHeight * values[value_i] / maxValue);
-                barGo.transform.position = (Vector3.right) * (value_i*(barWidth));
+                barImage.rectTransform.anchorMax = new Vector2(1, values[i] / maxValue);
 
-                if (moodLabels != null)
+                if (labels != null)
                 {
-                    barText.text = moodLabels[value_i];
+                    barText.text = labels[i];
                 }
                 else
                 {

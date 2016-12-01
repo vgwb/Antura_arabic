@@ -14,12 +14,24 @@ namespace EA4S
         #region API
         public void AddBone(GameObject Bone)
         {
-            m_aoBones.Add(Bone);
-            m_bMovingToDestination = true;
+            float delay = 0f;
+            if(m_oAnturaCtrl.State != AnturaAnimationStates.walking)
+            {
+                delay = 1.0f;
+                m_oAnturaCtrl.State = AnturaAnimationStates.idle;
+            }
+            StartCoroutine(EA4S.MissingLetter.Utils.LaunchDelay<GameObject>(delay, InternalAddBone, Bone));
         }
         #endregion
 
         #region INTERNAL_FUNCTION
+
+        private void InternalAddBone(GameObject Bone)
+        {
+            m_aoBones.Add(Bone);
+            m_bMovingToDestination = true;
+        }
+
         void Start()
         {
             m_oAnturaCtrl = GetComponent<AnturaAnimationController>();
@@ -37,6 +49,7 @@ namespace EA4S
             
             if (!m_bMovingToDestination)
             {
+                AudioManager.I.PlaySfx(m_oSfxOnClick);
                 int iRnd;
                 do
                 {
@@ -77,14 +90,18 @@ namespace EA4S
                     m_fTimer -= Time.deltaTime;
                     if (m_fTimer < 0)
                     {
-                        m_fTimer = 2;
+                        m_fTimer = 2.0f;
                         ResetPosition();
                     }
+                }
+                else
+                {
+                    m_fTimer = 2.0f;
                 }
             }
         }
 
-        void OnCollisionEnter(Collision collision)
+        void OnCollisionStay(Collision collision)
         {
             if (IsBoneValid(collision.gameObject))
             {
@@ -127,12 +144,12 @@ namespace EA4S
                     m_oAnturaCtrl.State = AnturaAnimationStates.sitting;
 
                     Vector3 _rot = new Vector3(0, Vector3.Angle(Vector3.forward, m_v3IdleRotation), 0);
-                    _rot = (Vector3.Cross(Vector3.forward, Vector3.back).y < 0) ? -_rot : _rot;
+                    _rot = (Vector3.Cross(Vector3.forward, m_v3IdleRotation).y < 0) ? -_rot : _rot;
                     transform.DORotate(_rot, 0.5f);
                 });
 
-                Vector3 rot = new Vector3(0, Vector3.Angle(Vector3.forward, Vector3.back), 0);
-                rot = (Vector3.Cross(Vector3.forward, Vector3.back).y < 0) ? -rot : rot;
+                Vector3 rot = new Vector3(0, Vector3.Angle(transform.forward, Vector3.forward), 0);
+                rot = (Vector3.Cross(transform.forward, Vector3.forward).y < 0) ? -rot : rot;
                 transform.DORotate(rot, 0.5f);
             }
         }
@@ -191,6 +208,8 @@ namespace EA4S
         private float m_fMovementSpeed = 10; //Movement speed
         [SerializeField]
         private float m_fRotationSpeed = 180; //Rotation speed by degree
+        [SerializeField]
+        private Sfx m_oSfxOnClick;
 
         [HideInInspector]
         public Action<GameObject> onBoneReached;

@@ -36,14 +36,15 @@ namespace EA4S.Assessment
         }
 
         public float Difficulty { get; set; }
-        public int SimultaneosQuestions { get; set; }
-        public int Answers { get; set; }
+        public int SimultaneosQuestions { get; set; } // should match category numbers
+        public int Answers { get; set; } // number of answers in category questions
 
         private int _rounds = 0;
         public int Rounds { get { return _rounds; } set { _rounds = value; } }
 
         public bool PronunceQuestionWhenClicked { get; set; }
         public bool PronunceAnswerWhenClicked { get; set; }
+        public bool ShowQuestionAsImage { get; set; }
 
 
         public AssessmentCode assessmentType = AssessmentCode.Unsetted;
@@ -109,9 +110,67 @@ namespace EA4S.Assessment
                 case AssessmentCode.SelectPronouncedWord:
                     return Setup_SelectPronuncedWord_Builder();
 
+                case AssessmentCode.SingularDualPlural:
+                    return Setup_SingularDualPlural_Builder();
+
+                case AssessmentCode.WordArticle:
+                    return Setup_WordArticle_Builder();
+
+                case AssessmentCode.MatchWordToImage:
+                    return Setup_MatchWordToImage_Builder();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
+        }
+
+        private IQuestionBuilder Setup_MatchWordToImage_Builder()
+        {
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            builderParams.useJourneyForWrong = false;
+            builderParams.wordFilters.requireDrawings = true;
+            SimultaneosQuestions = 1;
+            Rounds = 3;
+            int nCorrect = 1;
+            int nWrong = snag.Increase( 2, 4);
+
+            return new RandomWordsQuestionBuilder(
+                SimultaneosQuestions * Rounds,
+                nCorrect,
+                nWrong,
+                firstCorrectIsQuestion: true,
+                parameters: builderParams);
+        }
+
+        private IQuestionBuilder Setup_WordArticle_Builder()
+        {
+            SimultaneosQuestions = 2;
+            Rounds = 3;
+            Answers = 2;
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wordFilters.excludeArticles = false;
+
+            return new WordsByArticleQuestionBuilder(
+                Answers * Rounds * 3,
+                builderParams);
+        }
+
+        private IQuestionBuilder Setup_SingularDualPlural_Builder()
+        {
+            SimultaneosQuestions = 3;
+            Rounds = 3;
+            Answers = 2;
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wordFilters.excludePluralDual = false;
+
+            return new WordsByFormQuestionBuilder(
+                SimultaneosQuestions*Rounds*4,
+                builderParams);
         }
 
         private IQuestionBuilder Setup_SelectPronuncedWord_Builder()
@@ -121,7 +180,6 @@ namespace EA4S.Assessment
             builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
-
             SimultaneosQuestions = 1;
             Rounds = 3;
             int nCorrect = 1;
@@ -158,7 +216,7 @@ namespace EA4S.Assessment
             builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
 
             return new LettersBySunMoonQuestionBuilder( 
-                        SimultaneosQuestions * Rounds * 2,
+                        SimultaneosQuestions * Rounds * 3,
                         builderParams
             );
         }
@@ -189,7 +247,7 @@ namespace EA4S.Assessment
         {
             SimultaneosQuestions = 2;
             Rounds = 3;
-            Answers = 2;// limited br screen size on 3:4 screen
+            Answers = 2;
 
             return new WordsBySunMoonQuestionBuilder( SimultaneosQuestions * Rounds * 2);
         }
@@ -258,9 +316,33 @@ namespace EA4S.Assessment
                 case AssessmentCode.SelectPronouncedWord:
                     return Setup_SelectPronuncedWord_LearnRules();
 
+                case AssessmentCode.SingularDualPlural:
+                    return Setup_SingularDualPlural_LearnRules();
+
+                case AssessmentCode.WordArticle:
+                    return Setup_WordArticle_LearnRules();
+
+                case AssessmentCode.MatchWordToImage:
+                    return Setup_MatchWordToImage_LearnRules();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
+        }
+
+        private MiniGameLearnRules Setup_MatchWordToImage_LearnRules()
+        {
+            throw new NotImplementedException();
+        }
+
+        private MiniGameLearnRules Setup_WordArticle_LearnRules()
+        {
+            return new MiniGameLearnRules();
+        }
+
+        private MiniGameLearnRules Setup_SingularDualPlural_LearnRules()
+        {
+            return new MiniGameLearnRules();
         }
 
         private MiniGameLearnRules Setup_SelectPronuncedWord_LearnRules()

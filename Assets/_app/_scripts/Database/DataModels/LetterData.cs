@@ -26,6 +26,7 @@ namespace EA4S.Db
     public class LetterData : IData, IConvertibleToLivingLetterData
     {
         public string Id;
+        public bool Active;
         public int Number;
         public string Title;
         public LetterDataKind Kind;

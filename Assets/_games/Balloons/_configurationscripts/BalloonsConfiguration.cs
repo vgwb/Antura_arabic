@@ -84,7 +84,7 @@
                 case BalloonsVariation.Words:
                     builderParams.wordFilters.excludeColorWords = true;
                     builderParams.wordFilters.requireDrawings = true;
-                    builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);
+                    builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true, parameters:builderParams);
                     break;
                 case BalloonsVariation.Letter:
                     builder = new WordsWithLetterQuestionBuilder(nPacks, nCorrect, nWrong);
