@@ -12,7 +12,6 @@ namespace EA4S.MakeFriends
         public bool focusOnTouch;
         public Animator animator;
         public Collider letterCollider;
-        public GameObject angerGraphic;
         public LL_LetterData letterData;
         public TMP_Text tmpText;
         [HideInInspector]
@@ -94,7 +93,6 @@ namespace EA4S.MakeFriends
         public void MakeEntrance(Vector3 offscreenPosition, Vector3 startingPosition, Vector3 entranceRotation, float entranceDuration, float speakDelay, Vector3 afterWalkRotation)
         {
             Walk(offscreenPosition, startingPosition, entranceRotation, entranceDuration, speak: true, speakDelay: speakDelay, rotateAfterWalk: true, afterWalkRotation: afterWalkRotation);
-            LookAngry();
         }
 
         public void MakeFriendlyExit(Vector3 position, Vector3 rotation, float duration)
@@ -121,18 +119,11 @@ namespace EA4S.MakeFriends
 
         public void MoveAwayAngrily(Vector3 position, Vector3 rotation, float duration, float delay)
         {
-            var from = transform.position;
-            var to = position;
-
-            LookAngry();
-            Walk(from, to, rotation, duration, delay: delay);
+            StartCoroutine(MoveAwayAngrily_Coroutine(position, rotation, duration, delay));
         }
 
         public void Celebrate(Vector3 celebrationPosition, Vector3 rotation, float celebrationDuration)
         {
-            StopCoroutine("LookAngry_Coroutine");
-            angerGraphic.SetActive(false);
-
             var from = transform.position;
             var to = celebrationPosition;
             var duration = celebrationDuration;
@@ -151,32 +142,35 @@ namespace EA4S.MakeFriends
             {
                 MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(wordData);
             }
-            if (container != null)
-            {
-                container.GetComponent<Animator>().SetTrigger("Throb");
-            }
+            //if (container != null)
+            //{
+            //    container.GetComponent<Animator>().SetTrigger("Throb");
+            //}
+            LookAngry();
+        }
+
+        public void LookAngry()
+        {
+            LLPrefab.DoAngry();
         }
 
         #endregion
 
         #region Private Methods
 
-        private void LookAngry()
-        {
-            StopCoroutine("LookAngry_Coroutine");
-            StartCoroutine("LookAngry_Coroutine");
-        }
-
-        private IEnumerator LookAngry_Coroutine()
-        {
-            angerGraphic.SetActive(true);
-            yield return new WaitForSeconds(2f);
-            angerGraphic.SetActive(false);
-        }
-
         private void Focus()
         {
             StartCoroutine("Focus_Coroutine");
+        }
+
+        private IEnumerator MoveAwayAngrily_Coroutine(Vector3 position, Vector3 rotation, float duration, float delay)
+        {
+            var from = transform.position;
+            var to = position;
+
+            LookAngry();
+            yield return new WaitForSeconds(0.75f);
+            Walk(from, to, rotation, duration, delay: delay);
         }
 
         private IEnumerator Focus_Coroutine()
