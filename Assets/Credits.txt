@@ -1,102 +1,76 @@
 PRODUCED BY
-<color=#e18522><b><size=150%>TH Köln / Cologne Game Lab</size></b></color>
-<color=#e18522><b><size=150%>Video Games Without Borders</size></b></color>
-<color=#e18522><b><size=150%>& Wixel Studios</size></b></color>
+<color=#e18522><size=120%>TH Köln / Cologne Game Lab</size></color>
+<color=#e18522><size=120%>Video Games Without Borders</size></color>
+<color=#e18522><size=120%>& Wixel Studios</size></color>
 
 
+<color=#e18522><size=150%>CORE TEAM</size></color>
 
-
-<color=#e18522><b><size=150%>CORE TEAM</size></b></color>
-
-
-PROJECT LEAD AND CREATIVE DIRECTOR
+<color=#f2b830>PROJECT LEAD AND CREATIVE DIRECTOR</color>
 Dr. Emmanuel Guardiola
 (TH Köln / Cologne Game Lab)
 
-
-ART DIRECTOR AND LEAD ARTIST
+<color=#f2b830>ART DIRECTOR AND LEAD ARTIST</color>
 Gaetano Leonardi
 
-
-GAME DESIGNER AND UX/UI MASTER
+<color=#f2b830>GAME DESIGNER AND UX/UI MASTER</color>
 Daniele Giardini
 
-
-LEAD PROGRAMMERS
+<color=#f2b830>LEAD PROGRAMMERS</color>
 Paolo Bragonzi
 Davide Barbieri
 
-
-MUSIC AND SOUND DESIGNER
+<color=#f2b830>MUSIC AND SOUND DESIGNER</color>
 Hamza Chioua
 
-
-ADDITIONAL DESIGN AND DEVELOPMENT
+<color=#f2b830>ADDITIONAL DESIGN AND DEVELOPMENT</color>
 Stefano Cecere
 
-
-PRODUCER
+<color=#f2b830>PRODUCER</color>
 Francesco Cavallari
 
 
-
-
-<color=#e18522><b><size=150%>TH Köln / Cologne Game Lab</size></b></color>
-
+<color=#e18522><size=150%>TH Köln / Cologne Game Lab</size></color>
 
 PROJECT LEAD AND CREATIVE DIRECTOR
 Prof. Dr. Emmanuel Guardiola
 
-
 PSYCHOLOGY ADVISOR
 Dr. Marc Wittman
-
 
 ARABIC LANGUAGE TEACHER
 Mouna Barmada
 
-
 INTERNATIONAL EDUCATOR
 Bahjat Moura
 
-
 PLAYTEST COORDINATOR
 Lubna Odeh
-
 
 ADMINISTRATION COORDINATION
 Katharina Tillmanns
 
 
-
-
-<color=#e18522><b><size=150%>Video Games Without Borders</size></b></color>
-
+<color=#e18522><size=150%>Video Games Without Borders</size></color>
 
 PRODUCER 
 Francesco Cavallari
 
-
 ART DIRECTOR AND LEAD ARTIST
 Gaetano Leonardi
 
-
 GAME DESIGNER AND UX/UI MASTER
 Daniele Giardini
-
 
 LEAD PROGRAMMERS
 Paolo Bragonzi
 Davide Barbieri
 
-
 MUSIC AND SOUND DESIGNER
 Hamza Chioua
 
-
 ADDITIONAL DESIGN AND DEVELOPMENT 
 Stefano Cecere
-
 
 PROGRAMMERS
 Armando Teora
@@ -104,29 +78,23 @@ Michele Pirovano
 Elena Blanes
 Dario Oliveri
 
-
 3D ART PRODUCER
 Andrey Sazonov
-
 
 3D MODELER
 Andrey Kolesnikov
 
-
 3D ANIMATOR
 Dmitriy Tunik
-
 
 2D ILLUSTRATOR
 Ksenia Glebova
 
 
-<color=#e18522><b><size=150%>Wixel Studios</size></b></color>
-
+<color=#e18522><size=150%>Wixel Studios</size></color>
 
 PRODUCER AND ADDITIONAL GAME DESIGN
 Ziad Feghali
-
 
 PROGRAMMERS
 George Habr
@@ -136,9 +104,7 @@ Fouad Tabsh
 Modar Dergham
 
 
-
-
-<color=#e18522><b><size=150%>University of Verona</size></b></color>
+<color=#e18522><size=150%>University of Verona</size></color>
 MASTER IN COMPUTER GAMES DEVELOPMENT
 
 
@@ -159,7 +125,7 @@ MASTER COORDINATOR
 Umberto Castellani
 
 
-<color=#e18522><b><size=150%>VOICES</size></b></color>
+<color=#e18522><size=150%>VOICES</size></color>
 
 
 THE KEEPER
@@ -172,7 +138,7 @@ Ibtissam Shakar
 
 
 
-<color=#e18522><b><size=150%>OTHER CONTRIBUTORS</size></b></color>
+<color=#e18522><size=150%>OTHER CONTRIBUTORS</size></color>
 
 
 PRODUCER (ALPHA VERSION)
@@ -204,7 +170,7 @@ Dr. Zahen Malla Osman
 
 
 
-<color=#e18522><b><size=150%>SCIENTIFIC BOARD</size></b></color>
+<color=#e18522><size=150%>SCIENTIFIC BOARD</size></color>
 
 
 UNHCR
@@ -220,7 +186,7 @@ Dr. Juho Hamari
 	
 
 
-<color=#e18522><b><size=150%>SPECIAL THANKS TO</size></b></color>
+<color=#e18522><size=150%>SPECIAL THANKS TO</size></color>
 
 
 Gaby Gehlen (Wiku Köln)
