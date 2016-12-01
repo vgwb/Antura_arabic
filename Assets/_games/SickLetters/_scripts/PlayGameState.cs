@@ -30,7 +30,7 @@ namespace EA4S.SickLetters
                 SickLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Relax);
             else
             {
-                SickLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+                SickLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Theme10);
                 game.Context.GetOverlayWidget().Initialize(true, true, false);
                 game.Context.GetOverlayWidget().SetClockDuration(game.gameDuration);
             }

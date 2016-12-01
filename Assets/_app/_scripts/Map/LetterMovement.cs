@@ -80,7 +80,6 @@ namespace EA4S
                 RaycastHit hit;
                 int layerMask = 1 << 15;
                 if (Physics.Raycast(ray, out hit, 500, layerMask)) {
-                    Debug.Log("HIT something" + hit.collider.tag);
                     if (hit.collider.tag == "Rope") {
                         if (hit.transform.parent.gameObject.GetComponent<Rope>().dots[1].activeInHierarchy)//All dots available of all ropes
                         {
@@ -221,7 +220,6 @@ namespace EA4S
         {
             if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 1) {
                 if (pos > 0) {
-                    Debug.Log("AAAA");
                     ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
                     MoveTo(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].transform.position, true);
                     AppManager.I.Player.CurrentJourneyPosition.PlaySession = 100;

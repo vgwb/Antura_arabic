@@ -153,7 +153,7 @@ namespace EA4S.SickLetters
                     Context.GetOverlayWidget().SetClockDuration(gameDuration);
                     scale.counter = 0;
 
-                    SickLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+                    SickLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Theme10);
                 }
 
                 return true;
