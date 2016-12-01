@@ -284,7 +284,7 @@ namespace EA4S {
             _alreadyUnlocked = rpList.Count;
             int count = _alreadyUnlocked;
             while (rpList.Count < MaxRewardsUnlockableForPlaysession) {
-                RewardPack newRewardPack = GetNextNextRewardPack(RewardTypes.reward);
+                RewardPack newRewardPack = GetNextRewardPack()[0]; //GetRewardPack(RewardTypes.reward);
                 count++;
                 if (count <= _itemsToUnlock) {
                     // Then this new reward is unlocked by gameplay result and after creation must be saved as unlocked to profile.
@@ -296,12 +296,40 @@ namespace EA4S {
             return rpList;
         }
 
+        public static List<RewardPack> GetNextRewardPack() {
+            PlaySessionRewardUnlock unlock = config.PlaySessionRewardsUnlock.Find(r => r.PlaySession == AppManager.I.Player.CurrentJourneyPosition.ToString());
+            if (unlock == null) { 
+                Debug.LogErrorFormat("Unable to find reward type for this playsession {0}", AppManager.I.Player.CurrentJourneyPosition.ToString());
+            }
+            List<RewardPack> returnList = new List<RewardPack>();
+            ////////////////////////////////////////////////////
+            
+            if (unlock.RewardColor != string.Empty) {
+                // Get reward color for reward item already unlocked
+                for (int i = 0; i < int.Parse(unlock.RewardColor); i++) {
+                    returnList.Add(GetRewardPack(AppManager.I.Player.CurrentJourneyPosition.ToString(), RewardTypes.reward, false));
+                }
+            } else if (unlock.Reward != string.Empty) {
+                // Get new reward item with random color
+                returnList.Add(GetRewardPack(AppManager.I.Player.CurrentJourneyPosition.ToString(), RewardTypes.reward, true));
+            } else if (unlock.Texture != string.Empty) {
+                // Get new texture
+                returnList.Add(GetRewardPack(AppManager.I.Player.CurrentJourneyPosition.ToString(), RewardTypes.texture, true));
+            } else if (unlock.Decal != string.Empty) {
+                // Get new decal
+                returnList.Add(GetRewardPack(AppManager.I.Player.CurrentJourneyPosition.ToString(), RewardTypes.decal, true));
+            }
+            
+            ////////////////////////////////////////////////////
+            return returnList;
+        }
+
         /// <summary>
         /// Gets the next reward pack. Contains all logic to create new reward.
         /// </summary>
         /// <param name="_rewardType">Type of the reward.</param>
         /// <returns></returns>
-        public static RewardPack GetNextNextRewardPack(RewardTypes _rewardType) {
+        public static RewardPack GetRewardPack(string _playsession, RewardTypes _rewardType, bool _random) {
             /// TODOs:
             /// - Filter without already unlocked items
             /// - Automatic select reward type by situation
@@ -309,11 +337,14 @@ namespace EA4S {
             switch (_rewardType) {
                 case RewardTypes.reward:
                     rp = new RewardPack() {
-                        ItemID = config.Rewards.GetRandom().ID,
+                        // If not random take id from list of already unlocked rewards of this type
+                        ItemID = _random ? config.Rewards.GetRandom().ID : AppManager.I.Player.RewardsUnlocked.FindAll(r => r.Type == RewardTypes.reward).GetRandom<RewardPack>().ItemID,
+                        // Todo: check if color is not already unlocked!
                         ColorId = config.RewardsColorPairs.GetRandom().ID,
                         Type = _rewardType,
-                        PlaySessionId = AppManager.I.Player.CurrentJourneyPosition.ToString(),
+                        PlaySessionId = _playsession,
                         IsNew = true,
+                        
                     };
                     break;
                 case RewardTypes.texture:
@@ -321,7 +352,7 @@ namespace EA4S {
                         ItemID = config.RewardsTile.GetRandom().ID,
                         ColorId = config.RewardsTileColor.GetRandom().ID,
                         Type = _rewardType,
-                        PlaySessionId = AppManager.I.Player.CurrentJourneyPosition.ToString(),
+                        PlaySessionId = _playsession,
                         IsNew = true,
                     };
                     break;
@@ -330,7 +361,7 @@ namespace EA4S {
                         ItemID = config.RewardsDecal.GetRandom().ID,
                         ColorId = config.RewardsDecalColor.GetRandom().ID,
                         Type = _rewardType,
-                        PlaySessionId = AppManager.I.Player.CurrentJourneyPosition.ToString(),
+                        PlaySessionId = _playsession,
                         IsNew = true,
                     };
                     break;
@@ -339,8 +370,41 @@ namespace EA4S {
             }
             return rp;
         }
-            
 
+        /// <summary>
+        /// Gets the first antura reward.
+        /// </summary>
+        /// <param name="_rewardType">Type of the reward.</param>
+        /// <returns></returns>
+        public static RewardPack GetFirstAnturaReward(RewardTypes _rewardType) {
+            RewardPack rp = new RewardPack();
+            switch (_rewardType) {
+                case RewardTypes.reward:
+                    rp = GetRewardPack("0.0.0", _rewardType, true);
+                    break;
+                case RewardTypes.texture:
+                    rp = new RewardPack() {
+                        ItemID = "Antura_scales_tilemat",
+                        ColorId = "color1",
+                        Type = _rewardType,
+                        PlaySessionId = "0.0.0",
+                        IsNew = true,
+                    };
+                    break;
+                case RewardTypes.decal:
+                    rp = new RewardPack() {
+                        ItemID = "Antura_decalmap01",
+                        ColorId = "color1",
+                        Type = _rewardType,
+                        PlaySessionId = "0.0.0",
+                        IsNew = true,
+                    };
+                    break;
+                default:
+                    break;
+            }
+            return rp;
+        }
         #endregion
 
         #region Events
@@ -368,6 +432,16 @@ namespace EA4S {
         public List<RewardColor> RewardsDecalColor;
         public List<RewardTile> RewardsTile;
         public List<RewardColor> RewardsTileColor;
+        public List<PlaySessionRewardUnlock> PlaySessionRewardsUnlock;
+    }
+
+    [Serializable]
+    public class PlaySessionRewardUnlock {
+        public string PlaySession;
+        public string RewardColor;
+        public string Reward;
+        public string Texture;
+        public string Decal;
     }
 
     [Serializable]
@@ -441,6 +515,10 @@ namespace EA4S {
             if (reward != null)
                 return reward.Category;
             return string.Empty;
+        }
+
+        public override string ToString() {
+            return string.Format("{0} : {1} [{2}] [{3}]", ItemID, ColorId, Type, PlaySessionId);
         }
     }
 

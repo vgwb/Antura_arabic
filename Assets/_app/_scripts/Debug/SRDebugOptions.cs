@@ -456,4 +456,23 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
         SRDebug.Instance.ShowDebugPanel();
     }
+
+    [Category("Rewards")]
+    [Sort(1)]
+    public void UnlockFirstReward() {
+        AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward));
+    }
+
+    [Category("Rewards")]
+    [Sort(2)]
+    public void UnlockNextPlaysessionRewards() {
+        JourneyPosition CurrentJourney = AppManager.I.Player.CurrentJourneyPosition;
+        foreach (RewardPack pack in RewardSystemManager.GetNextRewardPack()) {
+            AppManager.I.Player.AddRewardUnlocked(pack);
+            Debug.LogFormat("Pack added: {0}", pack.ToString());
+        }
+        JourneyPosition next = AppManager.I.Teacher.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
+        AppManager.I.Player.SetMaxJourneyPosition(next);
+        AppManager.I.Player.SetCurrentJourneyPosition(next);
+    }
 }

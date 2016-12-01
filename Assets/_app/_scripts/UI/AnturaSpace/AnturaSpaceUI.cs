@@ -94,6 +94,8 @@ namespace EA4S
 
         void OnDestroy()
         {
+            // TODO: is better move this in "exit scene" method?
+            AnturaModelManager.Instance.SaveAnturaCustomization();
             this.StopAllCoroutines();
             showCategoriesTween.Kill();
             showItemsTween.Kill();
@@ -120,7 +122,7 @@ namespace EA4S
                 showCategoriesTween.PlayBackwards();
                 showItemsTween.PlayBackwards();
                 showSwatchesTween.PlayBackwards();
-                AnturaModelManager.Instance.SaveAnturaCustomization();
+                
             }
         }
 

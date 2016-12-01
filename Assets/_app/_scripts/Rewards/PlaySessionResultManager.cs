@@ -10,6 +10,9 @@ namespace EA4S {
             // Navigation manager 
             NavigationManager.I.CurrentScene = AppScene.PlaySessionResult;
 
+            // save max progression (internal check if necessary)
+            NavigationManager.I.MaxJourneyPosistionProgress();
+
             // Calculate items to unlock count
             int itemsToUnlock = NavigationManager.I.CalculateUnlockItemCount();
             // counter for the previously already unlocked rewards
@@ -27,8 +30,7 @@ namespace EA4S {
                     rewards[i].GetMaterialPair()
                     );
             }
-            // save max progression (internal check if necessary)
-            NavigationManager.I.MaxJourneyPosistionProgress();
+
         }
 
     }
