@@ -47,11 +47,10 @@ namespace EA4S
             stageMax = AppManager.I.Player.MaxJourneyPosition.Stage;
 
             /* FIRST CONTACT FEATURE */
-            if (!AppManager.I.Player.IsFirstContact())
-            {
+            if (!AppManager.I.Player.IsFirstContact()) {
                 AmIFirstorLastPos();
             }
-            /* --------------------- */        
+            /* --------------------- */
         }
         void Floating()
         {
@@ -66,26 +65,23 @@ namespace EA4S
 
         void FixedUpdate()
         {
-             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.Stage);
-             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.LearningBlock);
-             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.PlaySession);
+            // Debug.Log(AppManager.I.Player.CurrentJourneyPosition.Stage);
+            // Debug.Log(AppManager.I.Player.CurrentJourneyPosition.LearningBlock);
+            // Debug.Log(AppManager.I.Player.CurrentJourneyPosition.PlaySession);
 
-            Debug.Log("Max"+AppManager.I.Player.MaxJourneyPosition.Stage);
-            Debug.Log("MaxLB"+AppManager.I.Player.MaxJourneyPosition.LearningBlock);
-            Debug.Log("MaxPS"+AppManager.I.Player.MaxJourneyPosition.PlaySession);        
+            //Debug.Log("Max"+AppManager.I.Player.MaxJourneyPosition.Stage);
+            //Debug.Log("MaxLB"+AppManager.I.Player.MaxJourneyPosition.LearningBlock);
+            //Debug.Log("MaxPS"+AppManager.I.Player.MaxJourneyPosition.PlaySession);        
 
-            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
-              {
+            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 Debug.DrawRay(ray.origin, ray.direction * 500, Color.yellow);
- 
+
                 RaycastHit hit;
                 int layerMask = 1 << 15;
-                if (Physics.Raycast(ray, out hit, 500,layerMask))
-                {
-                    Debug.Log("HIT something"+hit.collider.tag);
-                    if (hit.collider.tag == "Rope")
-                    {
+                if (Physics.Raycast(ray, out hit, 500, layerMask)) {
+                    Debug.Log("HIT something" + hit.collider.tag);
+                    if (hit.collider.tag == "Rope") {
                         if (hit.transform.parent.gameObject.GetComponent<Rope>().dots[1].activeInHierarchy)//All dots available of all ropes
                         {
                             int numDotsRope = hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots.Count;
@@ -93,19 +89,15 @@ namespace EA4S
                             float distanceHitBefore = 0;
                             dotCloser = 0;
 
-                            for (int i = 0; i < numDotsRope; i++)
-                            {
+                            for (int i = 0; i < numDotsRope; i++) {
                                 distanceHitBefore = Vector3.Distance(hit.point,
                                     hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots[i].transform.position);
-                                if (distanceHitBefore < distaceHitToDot)
-                                {
+                                if (distanceHitBefore < distaceHitToDot) {
                                     distaceHitToDot = distanceHitBefore;
                                     dotCloser = i;
                                 }
                             }
-                        }
-                        else
-                        {
+                        } else {
                             dotCloser = 0;
                         }
 
@@ -126,9 +118,7 @@ namespace EA4S
                         AppManager.I.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].GetComponent<Dot>().learningBlockActual;
                         UpdateCurrenJourneyPosition();
                         AmIFirstorLastPos();
-                    }
-                    else if (hit.collider.tag == "Pin")
-                    {
+                    } else if (hit.collider.tag == "Pin") {
                         ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
                         colliderRaycast = hit.collider;
                         if (hit.transform.gameObject.GetComponent<MapPin>().Number < miniMapScript.posPines.Length - 1)
@@ -138,16 +128,10 @@ namespace EA4S
                         AppManager.I.Player.CurrentJourneyPosition.LearningBlock = colliderRaycast.transform.gameObject.GetComponent<MapPin>().Number;
                         UpdateCurrenJourneyPosition();
                         AmIFirstorLastPos();
-                    }
-                    else colliderRaycast = null;
-                }
-                else colliderRaycast = null;
-            }
-
-            else if (Input.GetMouseButtonUp(0) && (!EventSystem.current.IsPointerOverGameObject()) && (colliderRaycast != null))
-            {
-                if (colliderRaycast.tag == "Rope")
-                {
+                    } else colliderRaycast = null;
+                } else colliderRaycast = null;
+            } else if (Input.GetMouseButtonUp(0) && (!EventSystem.current.IsPointerOverGameObject()) && (colliderRaycast != null)) {
+                if (colliderRaycast.tag == "Rope") {
                     MoveTo(miniMapScript.posDots[posDotMiniMapScript].transform.position);
 
                     AppManager.I.Player.CurrentJourneyPosition.PlaySession = ropeSelected.dots[dotCloser].GetComponent<Dot>().playSessionActual;
@@ -156,8 +140,7 @@ namespace EA4S
                     UpdateCurrenJourneyPosition();
                     AmIFirstorLastPos();
                 }
-                if (colliderRaycast.tag == "Pin")
-                {
+                if (colliderRaycast.tag == "Pin") {
                     MoveTo(colliderRaycast.transform.position);
                     pos = colliderRaycast.transform.gameObject.GetComponent<MapPin>().posBefore;
 
@@ -175,17 +158,14 @@ namespace EA4S
 
         public void MoveToTheRightDot()
         {
-            if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession == 2) && (miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].tag == "Pin"))
-            {
+            if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession == 2) && (miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].tag == "Pin")) {
                 ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
                 MoveTo(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform.position, true);
                 AppManager.I.Player.CurrentJourneyPosition.PlaySession = 100;
                 UpdateCurrenJourneyPosition();
                 if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock != miniMapScript.posPines.Length - 1)
                     transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1]);
-            }
-            else if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100) && (pos <= (miniMapScript.posMax - 1)))
-            {
+            } else if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100) && (pos <= (miniMapScript.posMax - 1))) {
                 if (pos % 2 != 0)
                     pos++;
                 MoveTo(miniMapScript.posDots[pos].transform.position, true);
@@ -194,11 +174,8 @@ namespace EA4S
                 AppManager.I.Player.CurrentJourneyPosition.LearningBlock++;
                 UpdateCurrenJourneyPosition();
                 LookAtRightPin();
-            }
-            else
-            {
-                if (pos < (miniMapScript.posMax - 1))
-                {
+            } else {
+                if (pos < (miniMapScript.posMax - 1)) {
                     ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
                     pos++;
                     ChangeMaterialDotToRed(miniMapScript.posDots[pos]);
@@ -212,10 +189,8 @@ namespace EA4S
         }
         public void MoveToTheLeftDot()
         {
-            if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 1)
-            {
-                if (pos > 0)
-                {
+            if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 1) {
+                if (pos > 0) {
                     Debug.Log("AAAA");
                     ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
                     MoveTo(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].transform.position, true);
@@ -225,9 +200,7 @@ namespace EA4S
                     UpdateCurrenJourneyPosition();
                     LookAtLeftPin();
                 }
-            }
-            else if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100)
-            {
+            } else if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100) {
                 if (pos % 2 == 0)
                     pos--;
                 MoveTo(miniMapScript.posDots[pos].transform.position, true);
@@ -236,11 +209,8 @@ namespace EA4S
 
                 UpdateCurrenJourneyPosition();
                 LookAtLeftPin();
-            }
-            else
-            {
-                if (pos > 0)
-                {
+            } else {
+                if (pos > 0) {
                     ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
                     pos--;
                     MoveTo(miniMapScript.posDots[pos].transform.position, true);
@@ -260,19 +230,18 @@ namespace EA4S
             {
                 MoveTo(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform.position);
                 pos = miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>().posBefore;
-                if(AppManager.I.Player.CurrentJourneyPosition.LearningBlock < miniMapScript.ropes.Length)
-                    transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock+1]);
+                if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock < miniMapScript.ropes.Length)
+                    transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1]);
                 else transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1]);
-            }
-            else  //Letter is on a dot
-            {
+            } else  //Letter is on a dot
+              {
                 MoveTo(miniMapScript.ropes[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
                     [AppManager.I.Player.CurrentJourneyPosition.PlaySession - 1].transform.position);
                 pos = miniMapScript.ropes[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
                     [AppManager.I.Player.CurrentJourneyPosition.PlaySession - 1].GetComponent<Dot>().pos;
                 miniMapScript.posDots[pos].GetComponent<Renderer>().material = red;
                 transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock]);
-            }          
+            }
         }
         public void ResetPosLetterAfterChangeStage()
         {
@@ -337,22 +306,17 @@ namespace EA4S
             learningblock = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
             playSession = AppManager.I.Player.CurrentJourneyPosition.PlaySession;
             stage = AppManager.I.Player.CurrentJourneyPosition.Stage;
-      
-            if (miniMapScript.isAvailableTheWholeMap)
-            {
-                if ((learningblock == miniMapScript.posPines.Length-1)&&
+
+            if (miniMapScript.isAvailableTheWholeMap) {
+                if ((learningblock == miniMapScript.posPines.Length - 1) &&
                     (playSession == 100)) moveLeftButton.SetActive(false);
                 else moveLeftButton.SetActive(true);
-            }
-            else
-            {
-                if (learningblock == learningblockMax)
-                {
+            } else {
+                if (learningblock == learningblockMax) {
                     if (playSession == playSessionMax) moveLeftButton.SetActive(false);
                     else moveLeftButton.SetActive(true);
-                }
-                else moveLeftButton.SetActive(true);
-            }         
+                } else moveLeftButton.SetActive(true);
+            }
         }
         void CanNotMoveToRight()
         {
