@@ -17,6 +17,7 @@ namespace EA4S
         [Header("References")]
         public RectTransform CreditsContainer;
         public UIButton BtBack;
+        public TMPro.TextMeshProUGUI CreditsText;
 
         public bool HasAwoken { get; private set; }
         RectTransform rectT;
@@ -32,12 +33,14 @@ namespace EA4S
             rectT = this.GetComponent<RectTransform>();
 
             showTween = this.GetComponent<CanvasGroup>().DOFade(0, 0.4f).From().SetEase(Ease.Linear).SetUpdate(true).SetAutoKill(false).Pause()
-                .OnRewind(()=> this.gameObject.SetActive(false));
+                .OnRewind(() => this.gameObject.SetActive(false));
 
             this.gameObject.SetActive(false);
 
             // Listeners
             BtBack.Bt.onClick.AddListener(OnClick);
+
+            CreditsText.text = (Resources.Load("Credits") as TextAsset).text;
         }
 
         void Update()

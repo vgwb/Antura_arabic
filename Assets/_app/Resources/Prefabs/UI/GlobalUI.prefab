@@ -4978,6 +4978,7 @@ MonoBehaviour:
   ScrollAnimationDelay: 1.5
   CreditsContainer: {fileID: 224000013360767956}
   BtBack: {fileID: 114000010655652248}
+  CreditsText: {fileID: 114000010979797290}
 --- !u!222 &222000010032395290
 CanvasRenderer:
   m_ObjectHideFlags: 1
