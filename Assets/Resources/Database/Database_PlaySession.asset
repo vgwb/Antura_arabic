@@ -4988,6 +4988,52 @@ MonoBehaviour:
       - lion_plural
       Phrases: []
       Phrases_previous: []
+    - Id: 4.8.2
+      Stage: 4
+      LearningBlock: 8
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 4.8.100
       Stage: 4
       LearningBlock: 8
@@ -5778,52 +5824,6 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
-    - Id: 4.15.3
-      Stage: 4
-      LearningBlock: 15
-      PlaySession: 3
-      Type: MiniGame
-      Order: 2
-      Minigames:
-      - MiniGameCode: 1
-        Weight: 1
-      - MiniGameCode: 3
-        Weight: 1
-      - MiniGameCode: 4
-        Weight: 1
-      - MiniGameCode: 7
-        Weight: 1
-      - MiniGameCode: 8
-        Weight: 1
-      - MiniGameCode: 10
-        Weight: 1
-      - MiniGameCode: 14
-        Weight: 1
-      - MiniGameCode: 17
-        Weight: 1
-      - MiniGameCode: 18
-        Weight: 1
-      - MiniGameCode: 22
-        Weight: 1
-      - MiniGameCode: 23
-        Weight: 1
-      - MiniGameCode: 25
-        Weight: 1
-      - MiniGameCode: 27
-        Weight: 1
-      - MiniGameCode: 28
-        Weight: 1
-      - MiniGameCode: 29
-        Weight: 1
-      - MiniGameCode: 31
-        Weight: 1
-      - MiniGameCode: 32
-        Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
     - Id: 4.15.100
       Stage: 4
       LearningBlock: 15
@@ -6279,6 +6279,54 @@ MonoBehaviour:
       - safe
       Phrases: []
       Phrases_previous: []
+    - Id: 5.4.2
+      Stage: 5
+      LearningBlock: 4
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 5.4.100
       Stage: 5
       LearningBlock: 4
@@ -6350,6 +6398,54 @@ MonoBehaviour:
       - costume
       - mouth
       - man
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 5.5.2
+      Stage: 5
+      LearningBlock: 5
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
       Words_previous: []
       Phrases: []
       Phrases_previous: []
@@ -6893,6 +6989,54 @@ MonoBehaviour:
       - the_scientist
       Phrases: []
       Phrases_previous: []
+    - Id: 5.10.2
+      Stage: 5
+      LearningBlock: 10
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 7
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 14
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 5.10.100
       Stage: 5
       LearningBlock: 10
@@ -7420,6 +7564,48 @@ MonoBehaviour:
       - question_2
       - question_3
       - question_4
+    - Id: 6.1.2
+      Stage: 6
+      LearningBlock: 1
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 6.1.100
       Stage: 6
       LearningBlock: 1
@@ -7480,6 +7666,48 @@ MonoBehaviour:
       - seeyou
       - goodbye
       Phrases_previous: []
+    - Id: 6.2.2
+      Stage: 6
+      LearningBlock: 2
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 6.2.100
       Stage: 6
       LearningBlock: 2
@@ -7537,6 +7765,48 @@ MonoBehaviour:
       Phrases:
       - howareyou
       - goodbye
+      Phrases_previous: []
+    - Id: 6.3.2
+      Stage: 6
+      LearningBlock: 3
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
       Phrases_previous: []
     - Id: 6.3.100
       Stage: 6
@@ -8146,6 +8416,52 @@ MonoBehaviour:
       Phrases_previous:
       - seeyou
       - goodbye
+    - Id: 6.9.2
+      Stage: 6
+      LearningBlock: 9
+      PlaySession: 2
+      Type: MiniGame
+      Order: 2
+      Minigames:
+      - MiniGameCode: 1
+        Weight: 1
+      - MiniGameCode: 3
+        Weight: 1
+      - MiniGameCode: 4
+        Weight: 1
+      - MiniGameCode: 6
+        Weight: 1
+      - MiniGameCode: 8
+        Weight: 1
+      - MiniGameCode: 10
+        Weight: 1
+      - MiniGameCode: 13
+        Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 22
+        Weight: 1
+      - MiniGameCode: 23
+        Weight: 1
+      - MiniGameCode: 24
+        Weight: 1
+      - MiniGameCode: 25
+        Weight: 1
+      - MiniGameCode: 26
+        Weight: 1
+      - MiniGameCode: 28
+        Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 32
+        Weight: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 6.9.100
       Stage: 6
       LearningBlock: 9
