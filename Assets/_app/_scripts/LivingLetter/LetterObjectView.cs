@@ -136,6 +136,8 @@ namespace EA4S
                     LL_ImageData data = (LL_ImageData)Data;
                     if (data.Data.Category == Db.WordDataCategory.Color) {
                         Drawing.color = GenericUtilities.GetColorFromString(data.Data.Value);
+                    } else {
+                        Drawing.color = Color.black;
                     }
 
                     //ImageSprite.sprite = Data.DrawForLivingLetter;
