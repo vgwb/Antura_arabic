@@ -23,7 +23,8 @@ namespace EA4S
                 // First time playing this session: 0 stars
                 SetStars(0);
             } else {
-                SetStars(2);
+                int unlockedRewards = RewardSystemManager.GetUnlockedRewardForPlaysession(AppManager.I.Player.CurrentJourneyPosition.ToString());
+                SetStars(unlockedRewards + 1);
             }
 //            PlaySessionData playSessionData = AppManager.I.DB.GetPlaySessionDataById(journeyPos.PlaySession);
         }
@@ -34,6 +35,7 @@ namespace EA4S
 
         void SetStars(int _tot)
         {
+            if (_tot > 3) _tot = 3;
             foreach (GameObject star in Stars) star.SetActive(false);
             for (int i = 0; i < _tot; ++i) Stars[i].SetActive(true);
         }
