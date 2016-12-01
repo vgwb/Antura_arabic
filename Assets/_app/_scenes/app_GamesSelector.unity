@@ -146,7 +146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &367746770
 RectTransform:
   m_ObjectHideFlags: 0
@@ -165,7 +165,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -207}
+  m_AnchoredPosition: {x: 0, y: -251}
   m_SizeDelta: {x: 551, y: 193}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &510327629
@@ -269,7 +269,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -314}
+  m_AnchoredPosition: {x: 0, y: -358}
   m_SizeDelta: {x: 200, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &595154819
@@ -773,9 +773,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stars:
-  - {fileID: 510327629}
-  - {fileID: 649010469}
-  - {fileID: 743614945}
+  - {fileID: 667829236}
+  - {fileID: 1705891053}
+  - {fileID: 792058542}
   TfImg: {fileID: 595154819}
   TfTitle: {fileID: 1238808134}
 --- !u!1 &1238808132
@@ -810,7 +810,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -331}
+  m_AnchoredPosition: {x: 0, y: -375}
   m_SizeDelta: {x: 717, y: 164}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1238808134

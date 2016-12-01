@@ -5133,7 +5133,6 @@ MonoBehaviour:
       - alef
       - lam
       - thal
-      - yeh_hamza
       - beh
       Difficulty: 0
       Drawing: FF
@@ -5151,7 +5150,6 @@ MonoBehaviour:
       - lam
       - reh
       - alef
-      - yeh_hamza
       - ain
       Difficulty: 0
       Drawing: 24
@@ -5675,7 +5673,6 @@ MonoBehaviour:
       Value: 
       Letters:
       - thal
-      - yeh_hamza
       - beh
       Difficulty: 0
       Drawing: FF
@@ -5722,7 +5719,6 @@ MonoBehaviour:
       Letters:
       - reh
       - alef
-      - yeh_hamza
       - ain
       Difficulty: 0
       Drawing: 24
