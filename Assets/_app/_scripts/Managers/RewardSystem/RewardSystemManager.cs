@@ -70,19 +70,13 @@ namespace EA4S {
             /// - Load returnList by type and category checking unlocked and if exist active one
             switch (_rewardType) {
                 case RewardTypes.reward:
-                    // TODO: get reward from db of unlocked rewards
-                    List<Reward> rewards = config.Rewards.FindAll(r => r.Category == _categoryRewardId);
-                    int count = 0;
-                    foreach (Reward reward in rewards) {
-                        count++;
-                        if (count == 1)
-                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = true });
-                        else if (count == 2)
-                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = true, IsSelected = false });
-                        else if (count == rewards.Count)
+                    // Filter from unlocked elements (only items with this category and only one for itemID)
+                    foreach (var item in config.Rewards.FindAll(r => r.Category == _categoryRewardId)) {
+                        if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.GetRewardCategory() == _categoryRewardId).Exists(ur => ur.ItemID == item.ID)) {
+                            returnList.Add(new RewardItem() { ID = item.ID, IsNew = false, IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture.ItemID == item.ID });
+                        } else {
                             returnList.Add(null);
-                        else
-                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = false });
+                        }
                     }
                     /// - Charge models
                     for (int i = 0; i < returnList.Count; i++) {
@@ -92,18 +86,13 @@ namespace EA4S {
                     }
                     break;
                 case RewardTypes.texture:
-                    List<RewardTile> rewardsTiles = config.RewardsTile;
-                    int countT = 0;
-                    foreach (RewardTile reward in rewardsTiles) {
-                        countT++;
-                        if (countT == 1)
-                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = true });
-                        else if (countT == 2)
-                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = true, IsSelected = false });
-                        else if (countT == rewardsTiles.Count)
+                    // Filter from unlocked elements (only one for itemID)
+                    foreach (var item in config.RewardsTile) {
+                        if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.texture).Exists(ur => ur.ItemID == item.ID)) {
+                            returnList.Add(new RewardItem() { ID = item.ID, IsNew = false, IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture.ItemID == item.ID });
+                        } else {
                             returnList.Add(null);
-                        else
-                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = false });
+                        }
                     }
                     /// - Charge texture
                     for (int i = 0; i < returnList.Count; i++) {
@@ -115,18 +104,13 @@ namespace EA4S {
                     }
                     break;
                 case RewardTypes.decal:
-                    List<RewardDecal> RewardsDecal = config.RewardsDecal;
-                    int countD = 0;
-                    foreach (RewardDecal reward in RewardsDecal) {
-                        countD++;
-                        //if (countD == 1)
-                        //    returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = true });
-                        //else if (countD == 2)
-                        //    returnList.Add(new RewardItem() { ID = reward.ID, IsNew = true, IsSelected = false });
-                        //else if (countD == RewardsDecal.Count)
-                        //    returnList.Add(null);
-                        //else
-                            returnList.Add(new RewardItem() { ID = reward.ID, IsNew = false, IsSelected = false });
+                    // Filter from unlocked elements (only one for itemID)
+                    foreach (var item in config.RewardsDecal) {
+                        if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.decal).Exists(ur => ur.ItemID == item.ID)) {
+                            returnList.Add(new RewardItem() { ID = item.ID, IsNew = false, IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture.ItemID == item.ID });
+                        } else {
+                            returnList.Add(null);
+                        }
                     }
                     /// - Charge texture
                     for (int i = 0; i < returnList.Count; i++) {
@@ -164,30 +148,45 @@ namespace EA4S {
 
             switch (_rewardType) {
                 case RewardTypes.reward:
-                    // TODO: filter color selected from unlocked only
                     foreach (RewardColor color in config.RewardsColorPairs) {
-                        RewardColorItem rci = new RewardColorItem(color);
-                        ///...
-                        returnList.Add(rci);
+                        if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemID == _rewardItemId && ur.ColorId == color.ID)) {
+                            RewardColorItem rci = new RewardColorItem(color);
+                            returnList.Add(rci);
+                        } else {
+                            returnList.Add(null);
+                        }
                     }
                     // set current reward in modification
                     CurrentReward = new RewardPack() { ItemID = _rewardItemId, Type = RewardTypes.reward };
                     return returnList;
                 case RewardTypes.texture:
                     foreach (RewardColor color in config.RewardsTileColor) {
-                        RewardColorItem rci = new RewardColorItem(color);
-                        rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
-                        returnList.Add(rci);
+                        if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemID == _rewardItemId && ur.ColorId == color.ID)) {
+                            RewardColorItem rci = new RewardColorItem(color);
+                            rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
+                            returnList.Add(rci);
+                        } else {
+                            returnList.Add(null);
+                        }
                     }
                     // set current reward in modification
                     CurrentReward = new RewardPack() { ItemID = _rewardItemId, Type = RewardTypes.texture };
                     break;
                 case RewardTypes.decal:
                     foreach (RewardColor color in config.RewardsDecalColor) {
-                        RewardColorItem rci = new RewardColorItem(color);
-                        rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
-                        returnList.Add(rci);
+                        if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemID == _rewardItemId && ur.ColorId == color.ID)) {
+                            RewardColorItem rci = new RewardColorItem(color);
+                            rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
+                            returnList.Add(rci);
+                        } else {
+                            returnList.Add(null);
+                        }
                     }
+                    //foreach (RewardColor color in config.RewardsDecalColor) {
+                    //    RewardColorItem rci = new RewardColorItem(color);
+                    //    rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
+                    //    returnList.Add(rci);
+                    //}
                     // set current reward in modification
                     CurrentReward = new RewardPack() { ItemID = _rewardItemId, Type = RewardTypes.decal };
                     break;
@@ -210,6 +209,10 @@ namespace EA4S {
                 OnRewardChanged(CurrentReward);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_categoryRewardId"></param>
         public static void DeselectAllRewardItemsForCategory(string _categoryRewardId = "") {
             AnturaModelManager.Instance.ClearLoadedRewardInCategory(_categoryRewardId);
         }
