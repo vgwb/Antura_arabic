@@ -4563,7 +4563,7 @@ Prefab:
     - target: {fileID: 224000012716898888, guid: fc05d6184196b5440810c94d36962a50,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 406
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc05d6184196b5440810c94d36962a50, type: 2}
@@ -7161,6 +7161,16 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012065435050, guid: 8527ee5330d916646be0de1d8b3f847c,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012065435050, guid: 8527ee5330d916646be0de1d8b3f847c,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8527ee5330d916646be0de1d8b3f847c, type: 2}

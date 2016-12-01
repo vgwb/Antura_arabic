@@ -44,12 +44,22 @@ namespace EA4S
 
         void GoDeleteProfile()
         {
-            Debug.Log("YEAH!");
+            AppManager.I.ResetCurrentPlayer();
+        }
+
+        public void OnResetEverything()
+        {
+            GlobalUI.ShowPrompt(true, "Reset all data and everything?", GoResetEverything);
+        }
+
+        void GoResetEverything()
+        {
+            AppManager.I.ResetEverything();
         }
 
         public void OnExportData()
         {
-            GlobalUI.ShowPrompt(true, "Export alla Database?", GoExportData);
+            GlobalUI.ShowPrompt(true, "Export the current Database?", GoExportData);
         }
 
         void GoExportData()
@@ -78,8 +88,7 @@ namespace EA4S
 
             // Add some mood data
             int nMoodData = 15;
-            for (int i = 0; i < nMoodData; i++)
-            {
+            for (int i = 0; i < nMoodData; i++) {
                 logAi.LogMood(Random.Range(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue + 1));
                 Debug.Log("Add mood " + i);
                 yield return null;
@@ -87,8 +96,7 @@ namespace EA4S
 
             // Add scores for all play sessions
             var allPlaySessionInfos = AppManager.I.Teacher.scoreHelper.GetAllPlaySessionInfo();
-            for (int i = 0; i < allPlaySessionInfos.Count; i++)
-            {
+            for (int i = 0; i < allPlaySessionInfos.Count; i++) {
                 logAi.LogPlaySessionScore(allPlaySessionInfos[i].data.Id, Random.Range(1, 4));
                 Debug.Log("Add play session score " + i);
                 yield return null;
@@ -96,8 +104,7 @@ namespace EA4S
 
             // Add scores for all minigames
             var allMiniGameInfo = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
-            for (int i = 0; i < allMiniGameInfo.Count; i++)
-            {
+            for (int i = 0; i < allMiniGameInfo.Count; i++) {
                 logAi.LogMiniGameScore(allMiniGameInfo[i].data.Code, Random.Range(1, 4));
                 Debug.Log("Add minigame score " + i);
                 yield return null;
