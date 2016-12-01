@@ -21,7 +21,7 @@ namespace EA4S
         [SerializeField]
         private Camera m_oCameraUI;
         [SerializeField]
-        private AnturaSpaceAnturaBehaviour m_oAnturaBehaviour;
+        private AnturaBehaviour m_oAnturaBehaviour;
         [SerializeField]
         private GameObject m_oItemsParentUI;
         [SerializeField]
