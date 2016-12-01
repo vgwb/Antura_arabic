@@ -36,7 +36,7 @@ public class PlayerBookManager : MonoBehaviour
     void Start()
     {
         AppManager.I.GameSettings.CheatSuperDogMode = false;
-        Debug.Log("Setting super dog mode (by default) to: " + AppManager.I.GameSettings.CheatSuperDogMode);
+        //Debug.Log("Setting super dog mode (by default) to: " + AppManager.I.GameSettings.CheatSuperDogMode);
 
         GlobalUI.ShowPauseMenu(false);
         GlobalUI.ShowBackButton(true, ExitThisScene);
