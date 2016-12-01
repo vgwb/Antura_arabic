@@ -156,7 +156,7 @@ namespace EA4S.MakeFriends
             StartCoroutine(PlayDialog_Coroutine(EA4S.Db.LocalizationDataId.MakeFriends_Title, 0f));
         }
 
-        public void PlayTutorialVoiceOver(float delay = 3.75f)
+        public void PlayTutorialVoiceOver(float delay = 3.8f)
         {
             StartCoroutine(PlayDialog_Coroutine(EA4S.Db.LocalizationDataId.MakeFriends_Tuto, delay));
         }
@@ -393,6 +393,11 @@ namespace EA4S.MakeFriends
                         EndRound(false);
                     }
                 }
+                else
+                {
+                    leftArea.livingLetter.LookAngry();
+                    rightArea.livingLetter.LookAngry();
+                }
             }
         }
 
@@ -403,7 +408,7 @@ namespace EA4S.MakeFriends
 
         private IEnumerator EndRound_Coroutine(bool win)
         {
-            var winDelay1 = 3.5f;
+            var winDelay1 = 4f;
             var winDelay2 = 1.5f;
             var friendlyExitDelay = leftArea.friendlyExitDuration;
             var loseDelay = 1.5f;
@@ -423,8 +428,8 @@ namespace EA4S.MakeFriends
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
                 leftArea.Celebrate();
                 rightArea.Celebrate();
-                leftArea.HighFive(leftArea.celebrationDuration);
-                rightArea.HighFive(rightArea.celebrationDuration);
+                leftArea.HighFive(leftArea.celebrationDuration + 1f);
+                rightArea.HighFive(rightArea.celebrationDuration + 1f);
                 winCelebration.Show();
                 if (!isTutorialRound)
                 {
