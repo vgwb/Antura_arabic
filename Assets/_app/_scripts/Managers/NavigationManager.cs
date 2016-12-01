@@ -221,6 +221,7 @@ namespace EA4S
             for (int i = 0; i < EndSessionResults.Count; i++) {
                 totalEarnedStars += EndSessionResults[i].Stars;
             }
+            // Add bones to player
             int unlockItemsCount = 0;
             if (EndSessionResults.Count > 0) {
                 float starRatio = totalEarnedStars / EndSessionResults.Count;

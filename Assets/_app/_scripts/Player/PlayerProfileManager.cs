@@ -124,10 +124,10 @@ namespace EA4S
                 returnProfile = AppManager.I.Modules.PlayerProfile.CreateNewPlayer(returnProfile) as PlayerProfile;
             }
             // Create new antura skin
-            RewardPack tileTexture = RewardSystemManager.GetNextNextRewardPack(RewardTypes.texture);
+            RewardPack tileTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
             returnProfile.AddRewardUnlocked(tileTexture);
             returnProfile.CurrentAnturaCustomizations.TileTexture = tileTexture;
-            RewardPack decalTexture = RewardSystemManager.GetNextNextRewardPack(RewardTypes.decal);
+            RewardPack decalTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
             returnProfile.AddRewardUnlocked(decalTexture);
             returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
             // -----

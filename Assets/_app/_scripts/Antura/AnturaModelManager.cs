@@ -89,7 +89,7 @@ namespace EA4S {
                     Material[] decalMats = SkinnedMesh.sharedMaterials;
                     decalMats[1] = MaterialManager.LoadTextureMaterial(_rewardPack.ItemID, _rewardPack.ColorId);
                     SkinnedMesh.sharedMaterials = decalMats;
-                    LoadedTileTexture = _rewardPack;
+                    LoadedDecal = _rewardPack;
                     break;
                 default:
                     Debug.LogWarningFormat("Reward Type {0} not found!", _rewardPack.Type);
