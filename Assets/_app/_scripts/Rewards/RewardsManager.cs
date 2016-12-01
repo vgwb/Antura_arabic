@@ -17,6 +17,10 @@ namespace EA4S
             // Navigation manager 
             NavigationManager.I.CurrentScene = AppScene.Rewards;
 
+            if (AppManager.I.Player.IsFirstContact())
+                GlobalUI.ShowPauseMenu(false);
+
+
             AudioManager.I.PlayMusic(Music.Theme4);
             Debug.Log("RewardsManager playsession: " + AppManager.I.Player.CurrentJourneyPosition.PlaySession);
 
@@ -38,7 +42,7 @@ namespace EA4S
                 //LoggerEA4S.Log("app", "Reward", "get_reward", "3");
                 LogManager.I.LogInfo(InfoEvent.Reward, "reward:3");
             }
-            AnturaController.SetPreset(AppManager.I.Player.AnturaCurrentPreset);
+            //AnturaController.SetPreset(AppManager.I.Player.AnturaCurrentPreset);
             SceneTransitioner.Close();
             ShowReward();
             //ShowTutor();
@@ -87,11 +91,32 @@ namespace EA4S
             //    yield return null;
             yield return new WaitForSeconds(3.5f);
 
+            
             /* FIRST CONTACT FEATURE */
             if (AppManager.I.Player.IsFirstContact()) {
-                // TODO: Move to navigationmanager
-                AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward));
-                NavigationManager.I.GoToScene(AppScene.AnturaSpace);
+                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Reward_Intro);
+                // Clean and Charge antura reward.
+                AnturaModelManager.Instance.ClearLoadedRewards();
+                RewardPack firstUnlockedReward = RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward);
+                AppManager.I.Player.AddRewardUnlocked(firstUnlockedReward);
+                AnturaModelManager.Instance.LoadRewardPackOnAntura(firstUnlockedReward);
+            } else {
+                int rnd = Random.Range(1, 3);
+                switch (rnd) {
+                    case 1:
+                        KeeperManager.I.PlayDialog(Db.LocalizationDataId.Reward_Big_1);
+                        break;
+                    case 3:
+                        KeeperManager.I.PlayDialog(Db.LocalizationDataId.Reward_Big_2);
+                        break;
+                    default:
+                        KeeperManager.I.PlayDialog(Db.LocalizationDataId.Reward_Big_3);
+                        break;
+                }
+                AnturaModelManager.Instance.ClearLoadedRewards();
+                RewardPack newUnlockedReward = RewardSystemManager.GetNextRewardPack()[0];
+                AppManager.I.Player.AddRewardUnlocked(newUnlockedReward);
+                AnturaModelManager.Instance.LoadRewardPackOnAntura(newUnlockedReward);
             }
             /* --------------------- */
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
@@ -99,12 +124,12 @@ namespace EA4S
         }
 
 
-        public void Continue()
-        {
-            // TODO: Move to navigationmanager
-            AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetNextRewardPack()[0]);
-            // journey progression moved on NavigationManager
-            NavigationManager.I.GoToNextScene();
+        public void Continue() {
+            if (AppManager.I.Player.IsFirstContact())
+                NavigationManager.I.GoToScene(AppScene.AnturaSpace);
+            else
+                // journey progression moved on NavigationManager
+                NavigationManager.I.GoToNextScene();
         }
 
     }
