@@ -255,6 +255,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 2118024337}
   IcoNew: {fileID: 888541838}
   ColorImgs:
@@ -390,6 +391,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 1732609269}
   IcoNew: {fileID: 855708286}
   ColorImgs:
@@ -1088,6 +1090,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 85746927}
   IcoNew: {fileID: 1513867123}
   ColorImgs:
@@ -1160,6 +1163,7 @@ MonoBehaviour:
   BtLockedColor: {r: 0.86274517, g: 0.25882354, b: 0.098039225, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   RewardImage: {fileID: 502320221}
   IcoLock: {fileID: 819532165}
   IcoNew: {fileID: 735091385}
@@ -1805,7 +1809,7 @@ MonoBehaviour:
   m_oTextBonesNumber: {fileID: 1614356140}
   m_oCustomButton: {fileID: 1945071809}
   m_oBackgroundMusic: 2
-  m_iTotalBones_Test: 20
+  m_iTotalBones_Local: 25
 --- !u!4 &252692185
 Transform:
   m_ObjectHideFlags: 0
@@ -2466,6 +2470,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 2140315923}
   IcoNew: {fileID: 1232207609}
   ColorImgs:
@@ -2874,6 +2879,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Category: 1
 --- !u!114 &530184767
 MonoBehaviour:
@@ -3122,6 +3128,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 819373217}
   IcoNew: {fileID: 243990652}
   ColorImgs:
@@ -3646,6 +3653,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 727813855}
   IcoNew: {fileID: 817566149}
   ColorImgs:
@@ -3846,6 +3854,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Category: 8
 --- !u!114 &670007843
 MonoBehaviour:
@@ -4277,6 +4286,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 1565398307}
   IcoNew: {fileID: 1864672846}
   ColorImgs:
@@ -4548,6 +4558,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 1828119801}
   IcoNew: {fileID: 850503556}
   ColorImgs:
@@ -4887,6 +4898,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 559836247}
   IcoNew: {fileID: 446452732}
   ColorImgs:
@@ -5019,6 +5031,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
 --- !u!114 &826093788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5146,6 +5159,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Category: 4
 --- !u!114 &831800072
 MonoBehaviour:
@@ -5277,6 +5291,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 209631482}
   IcoNew: {fileID: 1144962346}
   ColorImgs:
@@ -5477,6 +5492,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Category: 7
 --- !u!114 &850644118
 MonoBehaviour:
@@ -6078,6 +6094,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Category: 5
 --- !u!114 &1004754195
 MonoBehaviour:
@@ -6410,6 +6427,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Category: 3
 --- !u!114 &1096190721
 MonoBehaviour:
@@ -6658,6 +6676,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 177288365}
   IcoNew: {fileID: 1255030594}
   ColorImgs:
@@ -7133,6 +7152,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 52120928}
   IcoNew: {fileID: 1637391821}
   ColorImgs:
@@ -7540,6 +7560,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 1585221830}
   IcoNew: {fileID: 691250464}
   ColorImgs:
@@ -7881,6 +7902,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 1939426711}
   IcoNew: {fileID: 588653996}
   ColorImgs:
@@ -8217,6 +8239,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Category: 6
 --- !u!114 &1327683264
 MonoBehaviour:
@@ -8416,6 +8439,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 274145180}
   IcoNew: {fileID: 1965154441}
   ColorImgs:
@@ -8619,6 +8643,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 163005711}
   IcoNew: {fileID: 1894422662}
   ColorImgs:
@@ -8867,6 +8892,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 1645894450}
   IcoNew: {fileID: 2019688566}
   ColorImgs:
@@ -9070,6 +9096,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 1297008584}
   IcoNew: {fileID: 1538501458}
   ColorImgs:
@@ -9716,6 +9743,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 1295861822}
   IcoNew: {fileID: 1647594448}
   ColorImgs:
@@ -11138,6 +11166,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   IcoLock: {fileID: 1229581237}
   IcoNew: {fileID: 1236616540}
   ColorImgs:
@@ -11406,6 +11435,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Category: 2
 --- !u!114 &1833964351
 MonoBehaviour:
@@ -12350,6 +12380,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
 --- !u!114 &1965254905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12605,6 +12636,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Category: 9
 --- !u!114 &2010468755
 MonoBehaviour:
@@ -14857,6 +14889,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
 --- !u!114 &2079677550
 MonoBehaviour:
   m_ObjectHideFlags: 0
