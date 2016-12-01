@@ -9,7 +9,7 @@ namespace EA4S
 {
 
     [RequireComponent(typeof(AnturaAnimationController))]
-    public class AnturaSpaceAnturaBehaviour : MonoBehaviour
+    public class AnturaBehaviour : MonoBehaviour
     {
         #region API
         public void AddBone(GameObject Bone)
@@ -22,15 +22,25 @@ namespace EA4S
             }
             StartCoroutine(EA4S.MissingLetter.Utils.LaunchDelay<GameObject>(delay, InternalAddBone, Bone));
         }
+
+        public void Reset()
+        {
+            foreach(GameObject Bone in m_aoBones)
+            {
+                if(onBoneReached != null)
+                {
+                    onBoneReached(Bone);
+                }
+            }
+            m_aoBones.Clear();
+
+            ResetPosition();       
+        }
+
+        public bool IsInCustomization { get; set; }
         #endregion
 
         #region INTERNAL_FUNCTION
-
-        private void InternalAddBone(GameObject Bone)
-        {
-            m_aoBones.Add(Bone);
-            m_bMovingToDestination = true;
-        }
 
         void Start()
         {
@@ -45,9 +55,16 @@ namespace EA4S
         }
 
         void OnMouseDown()
-        {
-            
-            if (!m_bMovingToDestination)
+        {   
+            if(IsInCustomization)
+            {
+                if(m_oAnturaCtrl.State == AnturaAnimationStates.idle)
+                    m_oAnturaCtrl.State = AnturaAnimationStates.bitingTail;
+                else
+                    m_oAnturaCtrl.State = AnturaAnimationStates.idle;
+
+            }
+            else if (!m_bMovingToDestination)
             {
                 AudioManager.I.PlaySfx(m_oSfxOnClick);
                 int iRnd;
@@ -78,13 +95,24 @@ namespace EA4S
                 {
                     m_oTweener.Kill();
                 }
+
                 GameObject Bone = m_aoBones[0];
-                Vector3 target = Bone.transform.position;
-                target.y = transform.position.y;
-                MoveTo(target);
+                Vector3 targetToReach = Bone.transform.position;
+                targetToReach.y = transform.position.y;
+
+                Vector3 targetToLook = targetToReach;
+                //if the bone is in dragged stop near  
+                if (Bone.GetComponent<BoneBehaviour>().isDragging())
+                {
+                    targetToReach.z += 3;
+                }
+
+
+                MoveTo(targetToReach ,targetToLook);
             }
             else
             {
+                //if you not walking on target for 2 seconds return to start position
                 if (!m_bMovingToDestination)
                 {
                     m_fTimer -= Time.deltaTime;
@@ -113,6 +141,7 @@ namespace EA4S
         {
             m_oAnturaCtrl.State = AnturaAnimationStates.idle;
             m_oAnturaCtrl.DoShout();
+            Bone.GetComponent<BoneBehaviour>().Poof();
 
             m_aoBones.Remove(Bone);
             if (m_aoBones.Count == 0)
@@ -130,14 +159,21 @@ namespace EA4S
 
         #region PRIVATE_FUNCTION
 
-        private void ResetPosition()
+        private void InternalAddBone(GameObject Bone)
         {
-            if ((m_v3StartPos - transform.position).sqrMagnitude > 0.1f)
+            m_aoBones.Add(Bone);
+            m_bMovingToDestination = true;
+        }
+
+        public void ResetPosition()
+        {
+            Vector3 dir = m_v3StartPos - transform.position;
+            if (dir.sqrMagnitude > 0.1f)
             {
                 m_bMovingToDestination = true;
                 m_oAnturaCtrl.State = AnturaAnimationStates.walking;
 
-                float time = (m_v3StartPos - transform.position).magnitude / m_fMovementSpeed;
+                float time = dir.magnitude / m_fMovementSpeed;
                 m_oTweener = transform.DOMove(m_v3StartPos, time).OnComplete(() =>
                 {
                     m_bMovingToDestination = false;
@@ -148,17 +184,16 @@ namespace EA4S
                     transform.DORotate(_rot, 0.5f);
                 });
 
-                Vector3 rot = new Vector3(0, Vector3.Angle(transform.forward, Vector3.forward), 0);
-                rot = (Vector3.Cross(transform.forward, Vector3.forward).y < 0) ? -rot : rot;
-                transform.DORotate(rot, 0.5f);
+                dir.y = transform.position.y;
+                transform.DOLookAt(dir, 0.5f);
             }
         }
 
-        private void MoveTo(Vector3 v3Destination)
+        private void MoveTo(Vector3 v3Destination, Vector3 LookAt)
         {
             Vector3 _v3MaxMovement = v3Destination - gameObject.transform.position;
             Vector3 _v3PartialMovement = _v3MaxMovement.normalized * m_fMovementSpeed * Time.deltaTime;
-            if (_v3MaxMovement.sqrMagnitude < _v3PartialMovement.sqrMagnitude) //if we reached the destination
+            if (_v3MaxMovement.sqrMagnitude <= _v3PartialMovement.sqrMagnitude) //if we reached the destination
             {
                 m_oAnturaCtrl.State = AnturaAnimationStates.sitting;
 
@@ -172,7 +207,9 @@ namespace EA4S
                 m_oAnturaCtrl.State = AnturaAnimationStates.walking;
 
                 gameObject.transform.Translate(_v3PartialMovement, Space.World);
-                gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, Quaternion.LookRotation(_v3MaxMovement), m_fRotationSpeed * Time.deltaTime);
+
+                Quaternion targetRot = Quaternion.LookRotation(LookAt - transform.position);
+                gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, targetRot, m_fRotationSpeed * Time.deltaTime);
             }
         }
 

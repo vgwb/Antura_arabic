@@ -119,9 +119,33 @@ namespace EA4S.Assessment
                 case AssessmentCode.MatchWordToImage:
                     return Setup_MatchWordToImage_Builder();
 
+                case AssessmentCode.CompleteWord:
+                    return Setup_CompleteWord_Builder();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
+        }
+
+        private IQuestionBuilder Setup_CompleteWord_Builder()
+        {
+            SimultaneosQuestions = 1;
+            Rounds = 3;
+
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            builderParams.useJourneyForWrong = true;
+            builderParams.wordFilters.requireDrawings = true;
+
+            return new LettersInWordQuestionBuilder(
+
+                SimultaneosQuestions * Rounds,  // Total Answers
+                1,                              // Always one!
+                snag.Increase(3, 5),            // WrongAnswers
+                useAllCorrectLetters: false,
+                parameters: builderParams);
         }
 
         private IQuestionBuilder Setup_MatchWordToImage_Builder()
@@ -325,14 +349,22 @@ namespace EA4S.Assessment
                 case AssessmentCode.MatchWordToImage:
                     return Setup_MatchWordToImage_LearnRules();
 
+                case AssessmentCode.CompleteWord:
+                    return Setup_CompleteWord_LearnRules();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
         }
 
+        private MiniGameLearnRules Setup_CompleteWord_LearnRules()
+        {
+            return new MiniGameLearnRules();
+        }
+
         private MiniGameLearnRules Setup_MatchWordToImage_LearnRules()
         {
-            throw new NotImplementedException();
+            return new MiniGameLearnRules();
         }
 
         private MiniGameLearnRules Setup_WordArticle_LearnRules()

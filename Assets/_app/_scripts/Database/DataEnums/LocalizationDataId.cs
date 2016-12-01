@@ -345,6 +345,14 @@ namespace EA4S.Db
         UI_Verb = 338,
         UI_Words = 339,
         UI_LearningBlock = 340,
+        UI_None = 341,
+        UI_Player = 342,
+        UI_TimeSpent = 343,
+        UI_Size = 344,
+        UI_General = 345,
+        UI_Conjunctions = 346,
+        UI_Shapes = 347,
+        UI_NumbersOrdinal = 348,
     }
 }
 

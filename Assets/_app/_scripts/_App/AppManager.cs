@@ -89,6 +89,7 @@ namespace EA4S
 
         public void ResetCurrentPlayer()
         {
+            DB.DropProfile();
             PlayerProfileManager.DeleteCurrentPlayer();
             // AppManager.I.PlayerProfileManager.DeleteAllProfiles();
             NavigationManager.I.GoHome();

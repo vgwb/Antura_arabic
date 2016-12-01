@@ -17,6 +17,9 @@ namespace EA4S
         private GameObject m_oAntura;
         [SerializeField]
         private TextMeshProUGUI m_oTextBonesNumber;
+        [SerializeField]
+        private OnActiveBehaviour m_oCustomButton;
+
 
         [SerializeField]
         private Music m_oBackgroundMusic;
@@ -32,12 +35,11 @@ namespace EA4S
 
         private GameObject m_oCookieRootContainer;
         private BoneBehaviour m_oDraggedBone;
-        private AnturaSpaceAnturaBehaviour m_oAnturaBehaviour;
+        private AnturaBehaviour m_oAnturaBehaviour;
 
         #endregion
 
         
-
         #region INTERNALS
         void Start()
         {
@@ -47,7 +49,7 @@ namespace EA4S
             AudioManager.I.PlayMusic(m_oBackgroundMusic);
 
 #if UNITY_EDITOR
-  
+
 #else
             m_iTotalBones_Test = AppManager.I.Player.GetTotalNumberOfBones();
 #endif
@@ -85,8 +87,10 @@ namespace EA4S
             }
 
             //link variables        
-            m_oAnturaBehaviour = m_oAntura.GetComponent<AnturaSpaceAnturaBehaviour>();
+            m_oAnturaBehaviour = m_oAntura.GetComponent<AnturaBehaviour>();
             m_oAnturaBehaviour.onBoneReached += release;
+            m_oCustomButton.OnEnableAction += delegate { m_oAnturaBehaviour.Reset(); m_oAnturaBehaviour.IsInCustomization = true; };
+            m_oCustomButton.OnDisableAction += delegate { m_oAnturaBehaviour.IsInCustomization = false; };
 
         }
 

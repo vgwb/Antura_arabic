@@ -74,7 +74,7 @@ namespace EA4S
 
             var wrongWords = teacher.wordAI.SelectData(
                   () =>  teacher.wordHelper.GetWordsNotIn(parameters.wordFilters, relatedWords.ToArray()),
-                        new SelectionParameters(parameters.correctSeverity, nToUse, useJourney: parameters.useJourneyForCorrect,
+                        new SelectionParameters(parameters.correctSeverity, nWrong, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
 
             if (ConfigAI.verboseTeacher)

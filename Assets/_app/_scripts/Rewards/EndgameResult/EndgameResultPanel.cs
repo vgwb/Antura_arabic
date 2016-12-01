@@ -85,6 +85,8 @@ namespace EA4S
             foreach (EndgameStar star in Stars) star.Reset();
             showTween.Restart();
             this.gameObject.SetActive(true);
+            GameResultUI.I.BonesCounter.Show();
+            GameResultUI.I.BonesCounter.DecreaseBy(_numStars);
         }
 
         public void Hide(bool _immediate)
@@ -106,6 +108,7 @@ namespace EA4S
             int id = 0;
             while (id < numStars) {
                 Stars[id].Gain();
+                GameResultUI.I.BonesCounter.IncreaseByOne();
                 yield return new WaitForSeconds(0.2f);
                 id++;
             }

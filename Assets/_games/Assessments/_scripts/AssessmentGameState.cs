@@ -16,7 +16,7 @@ namespace EA4S.Assessment
             switch (AssessmentConfiguration.Instance.assessmentType)
             {
                 case AssessmentCode.MatchLettersToWord:
-                    return AssessmentFactory.CreateLetterInWordAssessment();
+                    return AssessmentFactory.CreateMatchLettersWordAssessment();
 
                 case AssessmentCode.LetterShape:
                     return AssessmentFactory.CreateLetterShapeAssessment();
@@ -44,6 +44,9 @@ namespace EA4S.Assessment
 
                 case AssessmentCode.MatchWordToImage:
                     return AssessmentFactory.CreateMatchWordToImageAssessment();
+
+                case AssessmentCode.CompleteWord:
+                    return AssessmentFactory.CreateCompleteWordAssessment();
             }
 
             return null;
