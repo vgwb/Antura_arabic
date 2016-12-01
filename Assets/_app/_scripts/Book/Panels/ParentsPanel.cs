@@ -70,6 +70,8 @@ namespace EA4S
 
         #region Super Dog Helpers
 
+        public Image superDogWait;
+
         private void SetJourneyAtMaximum()
         {
             // @note: set as SRDebugOptions
@@ -78,6 +80,8 @@ namespace EA4S
 
         private System.Collections.IEnumerator PopulateDatabaseWithUsefulDataCO()
         {
+            superDogWait.gameObject.SetActive(true);
+
             var logAi = AppManager.I.Teacher.logAI;
             var fakeAppSession = LogManager.I.Session;
 
@@ -145,6 +149,8 @@ namespace EA4S
             FindObjectOfType<GraphMood>().OnEnable();
 
             Debug.Log("Finished dog mode additions");
+
+            superDogWait.gameObject.SetActive(false);
         }
 
 
