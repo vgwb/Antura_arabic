@@ -66,13 +66,13 @@ namespace EA4S
 
         void FixedUpdate()
         {
-           /*  Debug.Log(AppManager.I.Player.CurrentJourneyPosition.Stage);
+             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.Stage);
              Debug.Log(AppManager.I.Player.CurrentJourneyPosition.LearningBlock);
-             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.PlaySession);*/
+             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.PlaySession);
 
-            /*Debug.Log("Max"+AppManager.I.Player.MaxJourneyPosition.Stage);
+            Debug.Log("Max"+AppManager.I.Player.MaxJourneyPosition.Stage);
             Debug.Log("MaxLB"+AppManager.I.Player.MaxJourneyPosition.LearningBlock);
-            Debug.Log("MaxPS"+AppManager.I.Player.MaxJourneyPosition.PlaySession);*/          
+            Debug.Log("MaxPS"+AppManager.I.Player.MaxJourneyPosition.PlaySession);        
 
             if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
               {
@@ -260,7 +260,9 @@ namespace EA4S
             {
                 MoveTo(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform.position);
                 pos = miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>().posBefore;
-                transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock+1]);
+                if(AppManager.I.Player.CurrentJourneyPosition.LearningBlock < miniMapScript.ropes.Length)
+                    transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock+1]);
+                else transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1]);
             }
             else  //Letter is on a dot
             {
