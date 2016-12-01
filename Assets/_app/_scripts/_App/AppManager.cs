@@ -89,16 +89,32 @@ namespace EA4S
 
         public void ResetCurrentPlayer()
         {
+            var playerId = PlayerProfileManager.ActualPlayer;
+
+            // Delete DB
             DB.DropProfile();
+            I.DB = null;
+
             PlayerProfileManager.DeleteCurrentPlayer();
+
             // AppManager.I.PlayerProfileManager.DeleteAllProfiles();
             NavigationManager.I.GoHome();
+            Debug.Log("Reset current player: " + playerId);
         }
 
         public void ResetEverything()
         {
+            // Reset all the Databases
+            foreach(var playerId in AppManager.I.Modules.PlayerProfile.Options.AvailablePlayers)
+            {
+                DB.LoadDynamicDbForPlayerProfile(int.Parse(playerId));
+                DB.DropProfile();
+            }
+            DB = null;
+
             PlayerPrefs.DeleteAll();
             NavigationManager.I.GoHome();
+            Debug.Log("Reset ALL players.");
         }
     }
 
