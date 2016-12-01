@@ -5401,6 +5401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582c3d5e3fbc2be45a677a572e37cd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneMusic: 10
   factory: {fileID: 898991871}
   m_StateDelay: 1
   m_EndDelay: 2
