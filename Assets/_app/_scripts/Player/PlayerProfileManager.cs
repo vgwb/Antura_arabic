@@ -25,8 +25,7 @@ namespace EA4S
             set {
                 if (actualPlayer != value) {
 
-                    if (AppManager.I.DB != null)
-                    {
+                    if (AppManager.I.DB != null) {
                         LogManager.I.LogInfo(InfoEvent.AppClosed);
                     }
 
@@ -124,10 +123,10 @@ namespace EA4S
                 returnProfile = AppManager.I.Modules.PlayerProfile.CreateNewPlayer(returnProfile) as PlayerProfile;
             }
             // Create new antura skin
-            RewardPack tileTexture = RewardSystemManager.GetNextNextRewardPack(RewardTypes.texture);
+            RewardPack tileTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
             returnProfile.AddRewardUnlocked(tileTexture);
             returnProfile.CurrentAnturaCustomizations.TileTexture = tileTexture;
-            RewardPack decalTexture = RewardSystemManager.GetNextNextRewardPack(RewardTypes.decal);
+            RewardPack decalTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
             returnProfile.AddRewardUnlocked(decalTexture);
             returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
             // -----
@@ -186,6 +185,11 @@ namespace EA4S
         public void DeleteAllProfiles()
         {
             AppManager.I.Modules.PlayerProfile.DeleteAllPlayerProfiles();
+        }
+
+        public void DeleteCurrentPlayer()
+        {
+            AppManager.I.Modules.PlayerProfile.DeletePlayer(ActualPlayer.Key);
         }
 
         /// <summary>

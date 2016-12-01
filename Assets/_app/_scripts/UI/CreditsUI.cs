@@ -15,9 +15,10 @@ namespace EA4S
         public float ScrollAnimationSpeed = 100;
         public float ScrollAnimationDelay = 1.5f;
         [Header("References")]
+        public TextAsset CreditsTxt;
         public RectTransform CreditsContainer;
         public UIButton BtBack;
-        public TMPro.TextMeshProUGUI CreditsText;
+        public TMPro.TextMeshProUGUI TfCredits;
 
         public bool HasAwoken { get; private set; }
         RectTransform rectT;
@@ -40,7 +41,7 @@ namespace EA4S
             // Listeners
             BtBack.Bt.onClick.AddListener(OnClick);
 
-            CreditsText.text = (Resources.Load("Credits") as TextAsset).text;
+            TfCredits.text = CreditsTxt.text;
         }
 
         void Update()

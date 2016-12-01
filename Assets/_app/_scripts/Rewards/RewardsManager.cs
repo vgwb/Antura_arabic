@@ -89,6 +89,8 @@ namespace EA4S
 
             /* FIRST CONTACT FEATURE */
             if (AppManager.I.Player.IsFirstContact()) {
+                // TODO: Move to navigationmanager
+                AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward));
                 NavigationManager.I.GoToScene(AppScene.AnturaSpace);
             }
             /* --------------------- */
@@ -99,6 +101,8 @@ namespace EA4S
 
         public void Continue()
         {
+            // TODO: Move to navigationmanager
+            AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetNextRewardPack()[0]);
             // journey progression moved on NavigationManager
             NavigationManager.I.GoToNextScene();
         }
