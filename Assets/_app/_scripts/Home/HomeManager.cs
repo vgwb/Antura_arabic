@@ -9,8 +9,10 @@ namespace EA4S
         [Header("Scene Setup")]
         public Music SceneMusic;
         public AnturaAnimationStates AnturaAnimation = AnturaAnimationStates.sitting;
+        public LLAnimationStates LLAnimation = LLAnimationStates.LL_dancing;
         [Header("References")]
         public AnturaAnimationController AnturaAnimController;
+        public LetterObjectView LLAnimController;
 
         void Start()
         {
@@ -19,7 +21,9 @@ namespace EA4S
             GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
             AudioManager.I.PlayMusic(SceneMusic);
             AudioManager.I.PlaySfx(Sfx.GameTitle);
+
             AnturaAnimController.State = AnturaAnimation;
+            LLAnimController.State = LLAnimation;
         }
 
         public void Play()
