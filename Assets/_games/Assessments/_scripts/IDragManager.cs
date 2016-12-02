@@ -19,5 +19,6 @@ namespace EA4S.Assessment
         void StopDragging( IDroppable droppable);
         void EnableDragOnly();
         void RemoveDraggables();
+        void OnAnswerAdded();
     }
 }

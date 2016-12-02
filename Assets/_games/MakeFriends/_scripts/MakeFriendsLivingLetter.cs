@@ -121,6 +121,7 @@ namespace EA4S.MakeFriends
         {
             var parameters = new WalkParameters(from: transform.position, to: position, rotation: rotation, duration: duration, delay: delay);
             StopCoroutine("MoveAwayAngrily_Coroutine");
+            ResetAnimation();
             StartCoroutine("MoveAwayAngrily_Coroutine", parameters);
         }
 
@@ -129,6 +130,7 @@ namespace EA4S.MakeFriends
             StopCoroutine("MoveAwayAngrily_Coroutine");
             StopCoroutine("Walk_Coroutine");
             StopCoroutine("Focus_Coroutine");
+            ResetAnimation();
 
             var from = transform.position;
             var to = celebrationPosition;
@@ -158,6 +160,11 @@ namespace EA4S.MakeFriends
         public void LookAngry()
         {
             LLPrefab.DoAngry();
+        }
+
+        public void ResetAnimation()
+        {
+            LLPrefab.Reset();
         }
 
         #endregion

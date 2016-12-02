@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -44,6 +45,21 @@ namespace EA4S.Assessment
         public int GetAnswerSet()
         {
             return answerSet;
+        }
+
+        public bool Equals( IAnswer other)
+        {
+            if (Data().Equals(other.Data()))
+            {
+                Debug.Log("TRUE: " + Data().Id + " and " + other.Data().Id);
+                return true;
+            }
+            return false;
+        }
+
+        public ILivingLetterData Data()
+        {
+            return view.Data;
         }
     }
 }

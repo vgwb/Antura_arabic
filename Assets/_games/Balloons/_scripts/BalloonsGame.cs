@@ -19,6 +19,7 @@ namespace EA4S.Balloons
         public WordFlexibleContainer wordFlexibleContainer;
         public Animator wordFlexibleContainerAnimator;
         public GameObject floatingLetterPrefab;
+        public GameObject floatingLetterPrefab_LetterVariation;
         public Transform[] floatingLetterLocations;
         public AnimationClip balloonPopAnimation;
         public GameObject runningAntura;
@@ -884,7 +885,7 @@ namespace EA4S.Balloons
             // Create floating letters
             for (int i = 0; i < numberOfWords; i++)
             {
-                var instance = Instantiate(floatingLetterPrefab);
+                var instance = Instantiate(floatingLetterPrefab_LetterVariation);
                 instance.SetActive(true);
                 instance.transform.SetParent(floatingLetterLocations[i]);
                 instance.transform.localPosition = Vector3.zero;

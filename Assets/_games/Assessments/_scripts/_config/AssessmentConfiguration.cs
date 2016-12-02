@@ -122,9 +122,28 @@ namespace EA4S.Assessment
                 case AssessmentCode.CompleteWord:
                     return Setup_CompleteWord_Builder();
 
+                case AssessmentCode.OrderLettersOfWord:
+                    return Setup_OrderLettersOfWord_Builder();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
+        }
+
+        private IQuestionBuilder Setup_OrderLettersOfWord_Builder()
+        {
+            SimultaneosQuestions = 1;
+            Rounds = 3;
+
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.wordFilters.requireDrawings = true;
+            
+            return new LettersInWordQuestionBuilder(
+                Rounds,
+                2,
+                useAllCorrectLetters: true,
+                parameters: builderParams
+                );
         }
 
         private IQuestionBuilder Setup_CompleteWord_Builder()
@@ -352,9 +371,17 @@ namespace EA4S.Assessment
                 case AssessmentCode.CompleteWord:
                     return Setup_CompleteWord_LearnRules();
 
+                case AssessmentCode.OrderLettersOfWord:
+                    return Setup_OrderLettersOfWord_LearnRules();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
+        }
+
+        private MiniGameLearnRules Setup_OrderLettersOfWord_LearnRules()
+        {
+            return new MiniGameLearnRules();
         }
 
         private MiniGameLearnRules Setup_CompleteWord_LearnRules()
