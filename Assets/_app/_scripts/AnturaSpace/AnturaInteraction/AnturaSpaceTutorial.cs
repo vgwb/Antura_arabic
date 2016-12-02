@@ -67,7 +67,7 @@ namespace EA4S
 
             m_oAnturaBehaviour.onAnimationByClick += AdvanceTutorial;
 
-            AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Intro, delegate()
+            AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Intro, delegate() //dialogue try touch Antura
             {
                 TutorialUI.ClickRepeat(m_oAnturaBehaviour.gameObject.transform.position+(Vector3.forward*-2) + (Vector3.up), float.MaxValue, 1);
             });
@@ -99,21 +99,21 @@ namespace EA4S
 
                     AudioManager.I.StopDialogue(false);
 
-                    AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Intro_Touch, delegate () //dialog touch Antura
+                    AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Intro_Touch, delegate () //dialog Antura
                     {
-                        m_oCookieButton.gameObject.SetActive(true); //after the dialog make appear the cookie button
-                        m_oCookieButton.interactable = false; //disable interaction temporary 
-                        
+
                         AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate () //dialog cookies
                         {
-                            AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_1, delegate() //dialog tap for cookies
+                            AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_1, delegate () //dialog tap for cookies
                             {
-                                m_oCookieButton.onClick.AddListener(AdvanceTutorial);//the button can call AdvanceTutorial on click
-                                m_oCookieButton.interactable = true;
-                            }); 
 
-                            RectTransform _oRectCookieB = m_oCookieButton.gameObject.GetComponent<RectTransform>();
-                            TutorialUI.ClickRepeat(_oRectCookieB.position/*m_oCameraUI.ScreenToWorldPoint(new Vector3(_oRectCookieB.position.x,_oRectCookieB.position.y, m_oCameraUI.nearClipPlane))*/, float.MaxValue,1);
+                                m_oCookieButton.gameObject.SetActive(true); //after the dialog make appear the cookie button
+                                m_oCookieButton.onClick.AddListener(AdvanceTutorial);//the button can call AdvanceTutorial on click
+
+                                //RectTransform _oRectCookieB = m_oCookieButton.gameObject.GetComponent<RectTransform>();
+                                TutorialUI.ClickRepeat(m_oCookieButton.transform.position/*m_oCameraUI.ScreenToWorldPoint(new Vector3(_oRectCookieB.position.x,_oRectCookieB.position.y, m_oCameraUI.nearClipPlane))*/, float.MaxValue, 1);
+
+                            });
 
                         });
                     });
