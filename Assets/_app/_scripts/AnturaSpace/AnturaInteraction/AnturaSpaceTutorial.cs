@@ -155,19 +155,22 @@ namespace EA4S
 
                         AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_3, delegate () //dialog get more cookies
                         {
-                            m_oCustomizationButton.gameObject.SetActive(true); //after the dialog make appear the customization button
-
+                            
                             AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Custom_1, delegate () //dialog customize
                             {
-                                AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Custom_2, delegate() //dialog click customize
+                                m_oCustomizationButton.gameObject.SetActive(true); //after the dialog make appear the customization button
+                                m_oCustomizationButton.onClick.AddListener(AdvanceTutorial);
+
+                                /*AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Custom_2, delegate() //dialog click customize
                                 {
-                                    /*//Not knowing how many object there are, register to all buttons
-                                    foreach (var it in m_oItemsParentUI.GetComponentsInChildren<UnityEngine.UI.Button>())
-                                    {
-                                        it.onClick.AddListener(AdvanceTutorial);
-                                    }*/
+                                    //Not knowing how many object there are, register to all buttons
+                                    //foreach (var it in m_oItemsParentUI.GetComponentsInChildren<UnityEngine.UI.Button>())
+                                    //{
+                                    //   it.onClick.AddListener(AdvanceTutorial);
+                                    //}
                                     m_oCustomizationButton.onClick.AddListener(AdvanceTutorial);
-                                }); 
+                                });
+                                */
 
                                 /*RectTransform _oRectCustomB = m_oCustomizationButton.gameObject.GetComponent<RectTransform>();
                                 TutorialUI.ClickRepeat(m_oCameraUI.ScreenToWorldPoint(new Vector3(_oRectCustomB.position.x, _oRectCustomB.position.y, m_oCameraUI.nearClipPlane)), float.MaxValue, 1);

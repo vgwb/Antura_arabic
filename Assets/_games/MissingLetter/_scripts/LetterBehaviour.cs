@@ -84,6 +84,7 @@ namespace EA4S.MissingLetter
         {
             endTransformToCallback += OnEndLifeCycle;
             mCollider.enabled = false;
+            LightOff();
 
             Vector3 dir = (mv3EndPosition - mv3CenterPosition).normalized;
 
@@ -186,6 +187,25 @@ namespace EA4S.MissingLetter
             m_sInPhrase = _phraseId;
         }
 
+        public void LightOn()
+        {
+            if(m_oLetterLightInstance == null)
+            {
+                m_oLetterLightInstance = Instantiate(m_oLetterLightRef);
+            }
+            m_oLetterLightInstance.transform.parent = transform;
+            m_oLetterLightInstance.transform.position = transform.position;
+            m_oLetterLightInstance.SetActive(true);
+        }
+
+        public void LightOff()
+        {
+            if (m_oLetterLightInstance != null)
+            {
+                m_oLetterLightInstance.SetActive(false);
+            }
+        }
+
 
         #endregion
 
@@ -194,6 +214,7 @@ namespace EA4S.MissingLetter
         {
             mCollider = gameObject.GetComponent<Collider>();
             Assert.IsNotNull<Collider>(mCollider, "Collider Not Set in " + name);
+            Assert.IsNotNull<GameObject>(m_oLetterLightRef, "LightObj Not Set in " + name);
             mCollider.enabled = false;
             mbIsSpeaking = false;
             mLetter.SetWalkingSpeed(1);
@@ -318,6 +339,10 @@ namespace EA4S.MissingLetter
         }
 
         public LetterObjectView mLetter;
+
+        [SerializeField]
+        private GameObject m_oLetterLightRef;
+        private GameObject m_oLetterLightInstance;
 
         [HideInInspector]
         public ILivingLetterData mLetterData;

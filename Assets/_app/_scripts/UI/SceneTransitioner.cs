@@ -107,7 +107,7 @@ namespace EA4S
 
         void SetContent()
         {
-            Debug.Log(NavigationManager.I.IsLoadingMinigame + " > " + NavigationManager.I.CurrentScene);
+            if (AppConstants.VerboseLogging) Debug.Log(NavigationManager.I.IsLoadingMinigame + " > " + NavigationManager.I.CurrentScene);
             bool isLoadingMinigame = NavigationManager.I.IsLoadingMinigame;
             Logo.gameObject.SetActive(!isLoadingMinigame);
             if (isLoadingMinigame) {
