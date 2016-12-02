@@ -111,6 +111,8 @@ namespace EA4S.Assessment
                 while (AnswerPlacer.IsAnimating())
                     yield return null;
 
+                LogicInjector.AnswersAdded();
+
                 if (AnturaShowed == false)
                 {
                     #region ANTURA ANIMATION

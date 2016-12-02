@@ -13,5 +13,16 @@ namespace EA4S.Assessment
         /// Is this a correct answer?
         /// </summary>
         bool IsCorrect();
+
+        /// <summary>
+        /// Compare content of the answer
+        /// </summary>
+        /// <param name="other"> other answer content</param>
+        bool Equals( IAnswer other);
+
+        /// <summary>
+        /// The data of the living letter
+        /// </summary>
+        ILivingLetterData Data();
     }
 }

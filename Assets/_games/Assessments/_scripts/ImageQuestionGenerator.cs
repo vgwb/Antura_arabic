@@ -120,11 +120,30 @@ namespace EA4S.Assessment
             else
             {
                 // ### ORDER LETTERS ###
+                foreach (var correct in currentPack.GetCorrectAnswers())
+                {
+                    var correctAnsw = GenerateCorrectAnswer( correct);
+                    answers.Add( correctAnsw);
+                    totalAnswers.Add( correctAnsw);
+                }
 
+                partialAnswers = answers.ToArray();
+
+                // Generate the question
+                var question = GenerateQuestion(questionData);
+                totalQuestions.Add(question);
+
+                return question;
             }
+        }
 
+        private IQuestion GenerateQuestion( ILivingLetterData data)
+        {
+            if (AssessmentConfiguration.Instance.ShowQuestionAsImage)
+                data = new LL_ImageData( data.Id);
 
-            throw new NotImplementedException("Missing Order Letters");
+            var q = LivingLetterFactory.Instance.SpawnQuestion( data);
+            return new DefaultQuestion( q, 0);
         }
 
         private const string RemovedLetterChar = "_";
@@ -145,7 +164,6 @@ namespace EA4S.Assessment
                 }
             }
 
-            
             var wordGO = LivingLetterFactory.Instance.SpawnQuestion( word);
             wordGO.Label.text = wordGO.Label.text.Remove( index, 1);
             wordGO.Label.text = wordGO.Label.text.Insert( index, RemovedLetterChar);

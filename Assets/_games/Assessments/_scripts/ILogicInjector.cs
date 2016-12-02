@@ -12,5 +12,6 @@ namespace EA4S.Assessment
         bool AllAnswersCorrect();
         void EnableDragOnly();
         void RemoveDraggables();
+        void AnswersAdded();
     }
 }

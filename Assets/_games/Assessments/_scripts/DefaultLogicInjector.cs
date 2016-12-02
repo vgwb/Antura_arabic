@@ -1,11 +1,12 @@
+using System;
 using System.Collections.Generic;
 
 namespace EA4S.Assessment
 {
     internal class DefaultLogicInjector : ILogicInjector
     {
-        private IDragManager dragManager = null;
-        private IQuestionDecorator decorator = null;
+        protected IDragManager dragManager = null;
+        protected IQuestionDecorator decorator = null;
 
         public DefaultLogicInjector( IDragManager dragManager, IQuestionDecorator decorator)
         {
@@ -14,9 +15,9 @@ namespace EA4S.Assessment
             ResetRound();
         }
 
-        List< PlaceholderBehaviour> placeholdersList;
-        List< AnswerBehaviour> answersList;
-        List< IQuestion> questionsList;
+        protected List< PlaceholderBehaviour> placeholdersList;
+        protected List< AnswerBehaviour> answersList;
+        protected List< IQuestion> questionsList;
 
         public void ResetRound()
         {
@@ -50,14 +51,14 @@ namespace EA4S.Assessment
             WireAnswers( answers);
         }
 
-        private void WireQuestion( IQuestion q, AnswerSet answerSet)
+        protected virtual void WireQuestion( IQuestion q, AnswerSet answerSet)
         {
             decorator.DecorateQuestion( q.gameObject.GetComponent< QuestionBehaviour>());
             q.SetAnswerSet( answerSet);
             questionsList.Add( q);
         }
 
-        private void WireAnswers( IAnswer[] answers)
+        protected virtual void WireAnswers( IAnswer[] answers)
         {
             if (answers == null || answers.Length == 0)
                 return;
@@ -69,7 +70,7 @@ namespace EA4S.Assessment
             }
         }
 
-        private void WirePlaceHolders( IQuestion question)
+        protected virtual void WirePlaceHolders( IQuestion question)
         {
             foreach ( var p in question.GetPlaceholders())
             {
@@ -93,6 +94,16 @@ namespace EA4S.Assessment
         public void RemoveDraggables()
         {
             dragManager.RemoveDraggables();
+        }
+
+        public void AnswersAdded()
+        {
+            OnAnswersAdded();
+        }
+
+        protected virtual void OnAnswersAdded()
+        {
+            // nothing. it's ok
         }
     }
 }

@@ -99,7 +99,7 @@ namespace EA4S.Assessment
             for (int i = 0; i < questionsNumber; i++)
             {
                 currentPos.x += (spaceIncrement + questionSize/2) * sign;
-                yield return PlaceQuestion( allQuestions[ questionIndex], currentPos);
+                yield return PlaceQuestion(allQuestions[questionIndex], currentPos);
                 currentPos.x += (questionSize * sign) / 2;
 
                 if (alsoDrawing)
