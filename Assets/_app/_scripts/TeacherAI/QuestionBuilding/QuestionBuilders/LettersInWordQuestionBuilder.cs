@@ -13,11 +13,13 @@ namespace EA4S
         private int nCorrect;
         private bool useAllCorrectLetters;
         private int nWrong;
+        private int maximumWordLength;
         private Db.WordDataCategory category;
         private QuestionBuilderParameters parameters;
 
         public LettersInWordQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, 
             bool useAllCorrectLetters = false, Db.WordDataCategory category = Db.WordDataCategory.None,
+            int maximumWordLength = 20,
             QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
@@ -26,6 +28,7 @@ namespace EA4S
             this.nWrong = nWrong;
             this.useAllCorrectLetters = useAllCorrectLetters;
             this.category = category;
+            this.maximumWordLength = maximumWordLength;
             this.parameters = parameters;
         }
 
@@ -48,7 +51,7 @@ namespace EA4S
 
             // Get a word
             var usableWords = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByCategory(category, parameters.wordFilters),
+                () => FindEligibleWords(maxWordLength: this.maximumWordLength),
                     new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
             var question = usableWords[0];
@@ -80,6 +83,21 @@ namespace EA4S
             }
 
             return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
+        }
+
+        public List<Db.WordData> FindEligibleWords(int maxWordLength)
+        {
+            var teacher = AppManager.I.Teacher;
+            List<Db.WordData> eligibleWords = new List<Db.WordData>();
+            foreach(var word in teacher.wordHelper.GetWordsByCategory(category, parameters.wordFilters))
+            {
+                if (word.Letters.Length <= maxWordLength)
+                {
+                    eligibleWords.Add(word);
+                }
+            }
+            //UnityEngine.Debug.Log("Eligible words: " + eligibleWords.Count + " out of " + teacher.wordHelper.GetWordsByCategory(category, parameters.wordFilters).Count);
+            return eligibleWords;
         }
 
 
