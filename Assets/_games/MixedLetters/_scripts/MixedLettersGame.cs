@@ -30,6 +30,7 @@ namespace EA4S.MixedLetters
 
         public int roundNumber = 0;
         public int numRoundsWon = 0;
+        public bool lastRoundWon = false;
 
         private bool isSpelling = true;
 
@@ -240,7 +241,7 @@ namespace EA4S.MixedLetters
 
         private void OnRoundWon()
         {
-            PlayGameState.RoundWon = true;
+            lastRoundWon = true;
 
             if (roundNumber != 0)
             {

@@ -27,7 +27,7 @@ namespace EA4S.MixedLetters
                 MinigamesUI.Timer.Pause();
             }
 
-            if (!PlayGameState.RoundWon)
+            if (!game.lastRoundWon)
             {
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
                 SeparateLettersSpawnerController.instance.ShowLoseAnimation(OnResultAnimationEnded);
