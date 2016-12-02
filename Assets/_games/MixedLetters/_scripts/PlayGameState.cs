@@ -4,7 +4,6 @@ namespace EA4S.MixedLetters
 {
     public class PlayGameState : IGameState
     {
-        public static bool RoundWon = false;
         MixedLettersGame game;
         
         bool timerWarningSfxPlayed = false;
@@ -16,7 +15,7 @@ namespace EA4S.MixedLetters
         public void EnterState()
         {
             timerWarningSfxPlayed = false;
-            RoundWon = false;
+            game.lastRoundWon = false;
             game.OnRoundStarted();
 
             MinigamesUI.Timer.Play();
@@ -29,7 +28,7 @@ namespace EA4S.MixedLetters
 
         public void Update(float delta)
         {
-            if (MinigamesUI.Timer.Elapsed >= MinigamesUI.Timer.Duration || RoundWon)
+            if (MinigamesUI.Timer.Elapsed >= MinigamesUI.Timer.Duration || game.lastRoundWon)
             {
                 game.SetCurrentState(game.ResultState);
             }

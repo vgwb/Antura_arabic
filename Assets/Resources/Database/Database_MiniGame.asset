@@ -25,7 +25,7 @@ MonoBehaviour:
     - Title_En: Complete the Word
       Title_Ar: 
       Code: 103
-      Available: 0
+      Available: 1
       Type: 2
       Main: Assessment
       Variation: CompleteWord
@@ -52,7 +52,7 @@ MonoBehaviour:
     - Title_En: Match Word To Image
       Title_Ar: 
       Code: 107
-      Available: 0
+      Available: 1
       Type: 2
       Main: Assessment
       Variation: MatchWordToImage
@@ -61,7 +61,7 @@ MonoBehaviour:
     - Title_En: Order Letters Of Word
       Title_Ar: 
       Code: 104
-      Available: 0
+      Available: 1
       Type: 2
       Main: Assessment
       Variation: OrderLettersOfWord
@@ -70,7 +70,7 @@ MonoBehaviour:
     - Title_En: Question And Reply
       Title_Ar: 
       Code: 112
-      Available: 0
+      Available: 1
       Type: 2
       Main: Assessment
       Variation: QuestionAndReply
@@ -79,7 +79,7 @@ MonoBehaviour:
     - Title_En: Select Pronounced Word
       Title_Ar: 
       Code: 106
-      Available: 0
+      Available: 1
       Type: 2
       Main: Assessment
       Variation: SelectPronouncedWord
@@ -88,7 +88,7 @@ MonoBehaviour:
     - Title_En: Singular, Dual, Plural
       Title_Ar: 
       Code: 109
-      Available: 0
+      Available: 1
       Type: 2
       Main: Assessment
       Variation: SingularDualPlural
@@ -97,7 +97,7 @@ MonoBehaviour:
     - Title_En: Sun/Moon Letters
       Title_Ar: 
       Code: 111
-      Available: 0
+      Available: 1
       Type: 2
       Main: Assessment
       Variation: SunMoonLetter
@@ -106,7 +106,7 @@ MonoBehaviour:
     - Title_En: Sun/Moon Words
       Title_Ar: 
       Code: 110
-      Available: 0
+      Available: 1
       Type: 2
       Main: Assessment
       Variation: SunMoonWord
@@ -124,7 +124,7 @@ MonoBehaviour:
     - Title_En: Word Articles
       Title_Ar: 
       Code: 108
-      Available: 0
+      Available: 1
       Type: 2
       Main: Assessment
       Variation: WordArticle
@@ -174,7 +174,7 @@ MonoBehaviour:
       Available: 1
       Type: 1
       Main: Balloons
-      Variation: words
+      Variation: images
       Description: 
       Scene: game_Balloons
     - Title_En: Color Tickle
@@ -256,7 +256,7 @@ MonoBehaviour:
       Available: 1
       Type: 1
       Main: FastCrowd
-      Variation: words
+      Variation: images
       Description: 
       Scene: game_FastCrowd
     - Title_En: Hidden Letters!
