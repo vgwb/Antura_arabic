@@ -32,6 +32,12 @@ namespace EA4S
         public GameObject ElementsContainer;
         public GameObject ListWidePanel;
         public GameObject ElementsContainerWide;
+
+        public UIButton BtnLetters;
+        public UIButton BtnWords;
+        public UIButton BtnPhrases;
+        public UIButton BtnLearningBlocks;
+
         public GameObject MoreInfoPanel;
         public TextRender ArabicText;
 
@@ -67,6 +73,7 @@ namespace EA4S
             if (newArea != currentArea) {
                 currentArea = newArea;
                 activatePanel(currentArea, true);
+                ResetMenuButtons();
             }
         }
 
@@ -91,6 +98,14 @@ namespace EA4S
                     LearningBlockPanel();
                     break;
             }
+        }
+
+        void ResetMenuButtons()
+        {
+            BtnLetters.Lock(currentArea == PlayerBookPanel.BookLetters);
+            BtnWords.Lock(currentArea == PlayerBookPanel.BookWords);
+            BtnPhrases.Lock(currentArea == PlayerBookPanel.BookPhrases);
+            BtnLearningBlocks.Lock(currentArea == PlayerBookPanel.BookLearningBlocks);
         }
 
         void LettersPanel(string _category = "")
@@ -284,19 +299,44 @@ namespace EA4S
             Debug.Log("Detail Letter :" + info.data.Id + " [" + info.data.GetAvailablePositions() + "]");
             AudioManager.I.PlayLetter(info.data.Id);
             MoreInfoPanel.SetActive(true);
-
+            ArabicText.text = "";
             ScoreText.text = "Score: " + info.score;
 
-            LetterTextIsolated.SetTextUnfiltered(info.data.GetCharFixedForDisplay(LetterPosition.Isolated));
-            LetterTextFinal.SetTextUnfiltered(info.data.GetCharFixedForDisplay(LetterPosition.Final));
-            LetterTextMedial.SetTextUnfiltered(info.data.GetCharFixedForDisplay(LetterPosition.Medial));
-            LetterTextInitial.SetTextUnfiltered(info.data.GetCharFixedForDisplay(LetterPosition.Initial));
-
+            var isolatedChar = info.data.GetCharFixedForDisplay(LetterPosition.Isolated);
             LL_Isolated.Init(new LL_LetterData(info.data));
-            LL_Initial.Init(new LL_LetterData(info.data));
-            LL_Medial.Init(new LL_LetterData(info.data));
-            LL_Final.Init(new LL_LetterData(info.data));
+            LL_Isolated.Label.text = isolatedChar;
 
+            var InitialChar = info.data.GetCharFixedForDisplay(LetterPosition.Initial);
+            if (InitialChar != "") {
+                LL_Initial.gameObject.SetActive(true);
+                LL_Initial.Init(new LL_LetterData(info.data));
+                LL_Initial.Label.text = InitialChar;
+            } else {
+                LL_Initial.gameObject.SetActive(false);
+            }
+
+            var MedialChar = info.data.GetCharFixedForDisplay(LetterPosition.Medial);
+            if (MedialChar != "") {
+                LL_Medial.gameObject.SetActive(true);
+                LL_Medial.Init(new LL_LetterData(info.data));
+                LL_Medial.Label.text = MedialChar;
+            } else {
+                LL_Medial.gameObject.SetActive(false);
+            }
+
+            var FinalChar = info.data.GetCharFixedForDisplay(LetterPosition.Final);
+            if (FinalChar != "") {
+                LL_Final.gameObject.SetActive(true);
+                LL_Final.Init(new LL_LetterData(info.data));
+                LL_Final.Label.text = FinalChar;
+            } else {
+                LL_Final.gameObject.SetActive(false);
+            }
+
+            LetterTextIsolated.SetTextUnfiltered(isolatedChar);
+            LetterTextInitial.SetTextUnfiltered(InitialChar);
+            LetterTextMedial.SetTextUnfiltered(MedialChar);
+            LetterTextFinal.SetTextUnfiltered(FinalChar);
         }
 
         public void DetailPhrase(PhraseInfo info)
@@ -306,6 +346,13 @@ namespace EA4S
             AudioManager.I.PlayPhrase(info.data.Id);
             MoreInfoPanel.SetActive(false);
             ScoreText.text = "Score: " + info.score;
+
+            ArabicText.text = info.data.Arabic;
+
+            LL_Isolated.gameObject.SetActive(false);
+            LL_Initial.gameObject.SetActive(false);
+            LL_Medial.gameObject.SetActive(false);
+            LL_Final.gameObject.SetActive(false);
         }
 
         public void DetailLearningBlock(LearningBlockInfo info)
@@ -314,8 +361,14 @@ namespace EA4S
             AudioManager.I.PlayDialog(info.data.GetTitleSoundFilename());
             ScoreText.text = "Score: " + info.score;
             MoreInfoPanel.SetActive(false);
-        }
 
+            ArabicText.text = info.data.Title_Ar;
+
+            LL_Isolated.gameObject.SetActive(false);
+            LL_Initial.gameObject.SetActive(false);
+            LL_Medial.gameObject.SetActive(false);
+            LL_Final.gameObject.SetActive(false);
+        }
 
         void emptyListContainers()
         {

@@ -285,6 +285,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   AvatarImg: {fileID: 1866781908}
 --- !u!1 &144117716
 GameObject:
@@ -393,6 +394,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Type: 7
 --- !u!114 &144117721
 MonoBehaviour:
@@ -554,6 +556,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   AvatarImg: {fileID: 553720889}
 --- !u!1 &181648054
 GameObject:
@@ -895,6 +898,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   AvatarImg: {fileID: 867928762}
 --- !u!1 &261068399
 GameObject:
@@ -1254,6 +1258,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
 --- !u!1 &395537752
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,6 +1386,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   AvatarImg: {fileID: 1069694082}
 --- !u!1 &419845565
 GameObject:
@@ -1624,6 +1630,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   AvatarImg: {fileID: 1813618470}
 --- !u!1 &470635024
 GameObject:
@@ -1752,6 +1759,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   AvatarImg: {fileID: 1941110068}
 --- !u!1 &542358602
 GameObject:
@@ -1880,6 +1888,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   AvatarImg: {fileID: 27122087}
 --- !u!1 &553720887
 GameObject:
@@ -2076,6 +2085,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   AvatarImg: {fileID: 774072121}
 --- !u!1 &588311828
 GameObject:
@@ -2573,6 +2583,10 @@ Prefab:
     - target: {fileID: 4000011149227188, guid: b1eab1b3eca314d40b04cff3efb77336, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012126422044, guid: b1eab1b3eca314d40b04cff3efb77336, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1eab1b3eca314d40b04cff3efb77336, type: 2}
@@ -5194,6 +5208,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Type: 4
 --- !u!114 &1192329513
 MonoBehaviour:
@@ -5357,6 +5372,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   AvatarImg: {fileID: 1145595436}
 --- !u!1 &1295494855
 GameObject:
@@ -5525,6 +5541,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneMusic: 1
+  AnturaAnimation: 2
+  AnturaAnimController: {fileID: 1681467619}
 --- !u!4 &1465923915
 Transform:
   m_ObjectHideFlags: 0
@@ -5737,6 +5755,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
 --- !u!1 &1573337705
 GameObject:
   m_ObjectHideFlags: 0
@@ -5902,6 +5921,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1622773396}
+--- !u!114 &1681467619 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013605779992, guid: b1eab1b3eca314d40b04cff3efb77336,
+    type: 2}
+  m_PrefabInternal: {fileID: 794469388}
+  m_Script: {fileID: 11500000, guid: 8886d6a27b893af4cada5d6bfcc4342f, type: 3}
 --- !u!1 &1739939791
 GameObject:
   m_ObjectHideFlags: 0
@@ -6208,6 +6233,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Type: 2
 --- !u!114 &1778413141
 MonoBehaviour:
@@ -6371,6 +6397,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   AvatarImg: {fileID: 1007909292}
 --- !u!1 &1813618468
 GameObject:
@@ -6674,6 +6701,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
 --- !u!114 &1864890499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7069,6 +7097,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Type: 5
 --- !u!114 &2059727709
 MonoBehaviour:
