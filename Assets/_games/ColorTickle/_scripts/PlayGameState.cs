@@ -178,6 +178,7 @@ namespace EA4S.ColorTickle
             game.gameUI = game.Context.GetOverlayWidget();
             game.gameUI.Initialize(true, false, true);
             game.gameUI.SetMaxLives(game.lives);
+            game.gameUI.SetStarsThresholds(1,2,3);
             game.gameUI.SetStarsScore(0);
 
             game.colorsCanvas.gameObject.SetActive(true);
