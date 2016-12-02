@@ -491,7 +491,10 @@ public partial class SROptions
             Debug.LogFormat("Pack added: {0}", pack.ToString());
         }
         JourneyPosition next = AppManager.I.Teacher.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
-        AppManager.I.Player.SetMaxJourneyPosition(next);
-        AppManager.I.Player.SetCurrentJourneyPosition(next);
+        if (next != null)
+        {
+            AppManager.I.Player.SetMaxJourneyPosition(next);
+            AppManager.I.Player.SetCurrentJourneyPosition(next);
+        }
     }
 }
