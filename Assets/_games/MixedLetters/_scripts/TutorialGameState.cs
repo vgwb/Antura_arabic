@@ -103,7 +103,7 @@ namespace EA4S.MixedLetters
 
         public void Update(float delta)
         {
-            if (PlayGameState.RoundWon)
+            if (game.lastRoundWon)
             {
                 game.SetCurrentState(game.ResultState);
             }
