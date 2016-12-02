@@ -2311,6 +2311,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Type: 7
 --- !u!114 &114000010189578258
 MonoBehaviour:
@@ -2645,6 +2646,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
 --- !u!114 &114000010472806914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2688,6 +2690,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
 --- !u!114 &114000010524204010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2798,6 +2801,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
 --- !u!114 &114000010734850370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3060,6 +3064,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
 --- !u!114 &114000011331323708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3256,7 +3261,7 @@ MonoBehaviour:
   m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 40
+  m_fontSizeMin: 20
   m_fontSizeMax: 80
   m_fontStyle: 0
   m_textAlignment: 17
@@ -3942,6 +3947,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
 --- !u!114 &114000013112968372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4271,6 +4277,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Type: 4
 --- !u!114 &114000013652339624
 MonoBehaviour:
@@ -4287,6 +4294,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Type: 2
 --- !u!114 &114000013653754516
 MonoBehaviour:
@@ -4827,6 +4835,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Type: 1
 --- !u!114 &114000014150731504
 MonoBehaviour:
@@ -4843,6 +4852,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Type: 3
 --- !u!114 &114000014190198668
 MonoBehaviour:
@@ -4900,6 +4910,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
   Type: 5
 --- !u!114 &114000014278853110
 MonoBehaviour:

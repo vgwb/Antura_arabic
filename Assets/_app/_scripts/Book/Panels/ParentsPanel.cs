@@ -34,8 +34,8 @@ namespace EA4S
         void GoUnlockAllGameData()
         {
             Debug.Log("Cheat Mode enabled: unlocking all game data");
-            var maxJourneyPos = new JourneyPosition(6, 14, 1);
-            SetJourneyPos(maxJourneyPos); 
+            var maxJourneyPos = new JourneyPosition(6, 15, 100);
+            SetJourneyPos(maxJourneyPos);
             StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos, true));
             GoUnlockAllRewards();
         }
@@ -52,7 +52,7 @@ namespace EA4S
 
         public void OnResetEverything()
         {
-            GlobalUI.ShowPrompt(true, "Reset all data and everything?", GoResetEverything);
+            GlobalUI.ShowPrompt(true, "ATTENTION\nReally Reset all data and everything?", GoResetEverything);
         }
 
         void GoResetEverything()
@@ -62,12 +62,12 @@ namespace EA4S
 
         public void OnExportData()
         {
-            GlobalUI.ShowPrompt(true, "Export the current Database?", GoExportData);
+            GlobalUI.ShowPrompt(true, "Export the current Database?\n(not yet functional: will save the db into the device or send it to our data gathering center)", GoExportData);
         }
 
         void GoExportData()
         {
-            Debug.Log("YEAH!");
+            Debug.Log("Data exported");
         }
 
         public void OnUnlockStage(int stage)
@@ -80,11 +80,12 @@ namespace EA4S
 
         public void OnUnlockAllRewards()
         {
-            GlobalUI.ShowPrompt(true, "Unlock a bunch of rewards?", GoUnlockAllRewards);
+            GlobalUI.ShowPrompt(true, "Unlock some rewards rewards?", GoUnlockAllRewards);
 
         }
 
-        public void GoUnlockAllRewards() {
+        public void GoUnlockAllRewards()
+        {
             // moved to centralized location
             RewardSystemManager.UnlockAllRewards();
         }
@@ -107,15 +108,13 @@ namespace EA4S
             var logAi = AppManager.I.Teacher.logAI;
             var fakeAppSession = LogManager.I.Session;
 
-            if (cheatMode)
-            {
+            if (cheatMode) {
                 // Enable cheat mode
                 AppManager.I.GameSettings.CheatSuperDogMode = true;
 
                 // Add some mood data
                 int nMoodData = 15;
-                for (int i = 0; i < nMoodData; i++)
-                {
+                for (int i = 0; i < nMoodData; i++) {
                     logAi.LogMood(Random.Range(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue + 1));
                     Debug.Log("Add mood " + i);
                     yield return null;
@@ -128,20 +127,17 @@ namespace EA4S
             // Add scores for all play sessions
             var allPlaySessionInfos = AppManager.I.Teacher.scoreHelper.GetAllPlaySessionInfo();
             for (int i = 0; i < allPlaySessionInfos.Count; i++) {
-                if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage)
-                {
+                if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage) {
                     logAi.LogPlaySessionScore(allPlaySessionInfos[i].data.Id, Random.Range(1, 4));
                     Debug.Log("Add play session score for " + allPlaySessionInfos[i].data.Id);
                     yield return null;
                 }
             }
 
-            if (cheatMode)
-            {
+            if (cheatMode) {
                 // Add scores for all minigames
                 var allMiniGameInfo = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
-                for (int i = 0; i < allMiniGameInfo.Count; i++)
-                {
+                for (int i = 0; i < allMiniGameInfo.Count; i++) {
                     logAi.LogMiniGameScore(allMiniGameInfo[i].data.Code, Random.Range(1, 4));
                     Debug.Log("Add minigame score " + i);
                     yield return null;
@@ -198,11 +194,9 @@ namespace EA4S
 
         public void OnRedParentUnlock()
         {
-            if (parentLockCounter == 7)
-            {
+            if (parentLockCounter == 7) {
                 UnlockParentControls();
-            } else
-            {
+            } else {
                 parentLockCounter = 8; // disabling
             }
         }

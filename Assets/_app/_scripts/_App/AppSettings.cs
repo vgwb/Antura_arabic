@@ -1,5 +1,4 @@
-﻿using ModularFramework.Modules;
-
+﻿
 namespace EA4S
 {
     public static class AppConstants
