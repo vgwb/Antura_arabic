@@ -56,19 +56,11 @@
         }
         #endregion
 
-		public int nCorrect = 1;
-
-        public IQuestionBuilder SetupBuilder() {
-
-            IQuestionBuilder builder = null;
-
-			int nPacks = 7; // One Extra for tutorial
-			nCorrect = 1;
-			int nWrong = 4;
-
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.wordFilters.excludeColorWords = true;
-            builderParams.wordFilters.requireDrawings = true;
+		void SetupVariables()
+		{
+			gameActive = true;
+			beltSpeed = 1f;
+			facingCamera = true;
 
 			Difficulty = Difficulty < 0.13f ? 0.13f : Difficulty;
 
@@ -113,7 +105,22 @@
 			{
 				facingCamera = false;
 			}
+		}
 
+		public int nCorrect = 1;
+
+        public IQuestionBuilder SetupBuilder() {
+
+            IQuestionBuilder builder = null;
+			SetupVariables();
+
+			int nPacks = 7; // One Extra for tutorial
+			nCorrect = 1;
+			int nWrong = 4;
+
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.wordFilters.excludeColorWords = true;
+            builderParams.wordFilters.requireDrawings = true;
 
 			switch (Variation)
 			{
