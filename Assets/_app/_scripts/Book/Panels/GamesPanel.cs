@@ -90,13 +90,14 @@ namespace EA4S
             ScoreText.text = Output;
 
             // Launch button
-            LaunchGameButton.gameObject.SetActive(true);
             if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode)
             {
+                LaunchGameButton.gameObject.SetActive(true);
                 LaunchGameButton.interactable = true;
             }
             else
             {
+                LaunchGameButton.gameObject.SetActive(false);
                 LaunchGameButton.interactable = false;
             }
 
