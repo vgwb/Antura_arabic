@@ -33,7 +33,7 @@ namespace EA4S
 
             setupDone = true;
 
-            SetValueAuto();
+            SetValue(0);
             showTween = this.transform.DOScale(0.001f, 0.35f).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
                 .OnRewind(()=> this.gameObject.SetActive(false));
             showTween.Complete();
@@ -50,9 +50,10 @@ namespace EA4S
 
         #region Public Methods
 
-        public void Show()
+        public void Show(bool _setValueAuto = true)
         {
             Setup();
+            if (_setValueAuto) SetValueAuto();
             this.gameObject.SetActive(true);
             showTween.PlayForward();
         }
