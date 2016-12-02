@@ -456,7 +456,7 @@
       "ID" : "7",
       "Color1Name" : "black_pure",
       "Color1RGB" : "000000",
-      "Color2Name" : "white",
+      "Color2Name" : "white_pure",
       "Color2RGB" : "ffffff"
     },
     {
@@ -569,17 +569,17 @@
     {
       "ID" : "color1",
       "Color1Name" : "",
-      "Color1RGB" : "E6FBFBFF"
+      "Color1RGB" : "FFFFFFFF"
     },
     {
       "ID" : "color2",
       "Color1Name" : "",
-      "Color1RGB" : "635C55FF"
+      "Color1RGB" : "000000FF"
     },
     {
       "ID" : "color3",
       "Color1Name" : "",
-      "Color1RGB" : "384D67FF"
+      "Color1RGB" : "FF00BAFF"
     }
   ],
   "RewardsTile" : [
@@ -624,37 +624,37 @@
     {
       "ID" : "color1",
       "Color1Name" : "",
-      "Color1RGB" : "E6FBFBFF"
+      "Color1RGB" : "00BAFFFF"
     },
     {
       "ID" : "color2",
       "Color1Name" : "",
-      "Color1RGB" : "635C55FF"
+      "Color1RGB" : "BB5400FF"
     },
     {
       "ID" : "color3",
       "Color1Name" : "",
-      "Color1RGB" : "384D67FF"
+      "Color1RGB" : "F78BAFFF"
     },
     {
       "ID" : "color4",
       "Color1Name" : "",
-      "Color1RGB" : "00FBFBFF"
+      "Color1RGB" : "FFFFFFFF"
     },
     {
       "ID" : "color5",
       "Color1Name" : "",
-      "Color1RGB" : "EE5C55FF"
+      "Color1RGB" : "000000FF"
     },
     {
       "ID" : "color6",
       "Color1Name" : "",
-      "Color1RGB" : "FF4D67FF"
+      "Color1RGB" : "FFBA00FF"
     },
     {
       "ID" : "color7",
       "Color1Name" : "",
-      "Color1RGB" : "FFFFFFFF"
+      "Color1RGB" : "85C300FF"
     }
   ],
   "PlaySessionRewardsUnlock" : [
