@@ -47,6 +47,7 @@ namespace EA4S
         public static void ShowEndgameResult(int _numStars)
         {
             Init();
+            AppManager.I.Player.AddBones(_numStars);
             I.BonesCounter.GetComponent<RectTransform>().anchoredPosition = I.BonesCounterEndgamePos;
             I.BonesCounter.Hide();
             I.EndgameResultPanel.Show(_numStars);
