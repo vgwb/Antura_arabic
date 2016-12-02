@@ -80,7 +80,7 @@ namespace EA4S.Maze
             isTutorialMode = true;
             setupIndices();
 
-            Context.GetAudioManager().PlayMusic(Music.Theme3);
+            Context.GetAudioManager().PlayMusic(Music.Theme8);
 
             
 

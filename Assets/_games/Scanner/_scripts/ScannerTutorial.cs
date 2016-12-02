@@ -43,7 +43,10 @@ namespace EA4S.Scanner
                 if (game.roundsManager.numberOfRoundsPlayed == 0)
                     return true;
                 else
+                {
+                    ScannerConfiguration.Instance.beltSpeed = originalLLOnBeltSpeed;
                     return false;
+                }
             }
         }
 
@@ -120,7 +123,7 @@ namespace EA4S.Scanner
         void onTutorialEnd()
         {
             TutorialUI.Clear(true);
-            print(originalLLOnBeltSpeed);
+
             ScannerConfiguration.Instance.beltSpeed = originalLLOnBeltSpeed;
             game.Context.GetOverlayWidget().Initialize(true, false, false);
             game.Context.GetOverlayWidget().SetStarsThresholds(game.STARS_1_THRESHOLD, game.STARS_2_THRESHOLD, game.STARS_3_THRESHOLD);

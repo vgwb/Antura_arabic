@@ -142,7 +142,7 @@ namespace EA4S
                 inTransition = true;
                 stages[numberStage].SetActive(true);
                 ChangeCamera(cameras[numberStage]);
-                ChangeCameraFogColor(AppManager.I.Player.CurrentJourneyPosition.Stage);
+                ChangeCameraFogColor(numberStage);
                 FirstOrLastMap();
                 lockUI.SetActive(true);
                 DesactivateMovementPlayButtons();
@@ -169,7 +169,7 @@ namespace EA4S
                 inTransition = true;
                 stages[numberStage].SetActive(true);
                 ChangeCamera(cameras[numberStage]);
-                ChangeCameraFogColor(AppManager.I.Player.CurrentJourneyPosition.Stage);
+                ChangeCameraFogColor(numberStage);
                 FirstOrLastMap();
                 lockUI.SetActive(true);
                 DesactivateMovementPlayButtons();

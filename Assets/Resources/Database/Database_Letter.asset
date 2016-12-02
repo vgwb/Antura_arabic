@@ -1202,15 +1202,15 @@ MonoBehaviour:
       SunMoon: 0
       Sound: 
       SoundZone: 
-      Isolated: "\u0626"
-      Initial: "\uFE8B"
-      Medial: "\uFE8C"
-      Final: "\uFE8A"
-      Isolated_Unicode: 0626
-      Initial_Unicode: FE8B
-      Medial_Unicode: FE8C
-      Final_Unicode: FE8A
-      Symbol_Unicode: 
+      Isolated: "\u064A"
+      Initial: "\uFEF3"
+      Medial: "\uFEF4"
+      Final: "\uFEF2"
+      Isolated_Unicode: 064A
+      Initial_Unicode: FEF3
+      Medial_Unicode: FEF4
+      Final_Unicode: FEF2
+      Symbol_Unicode: 0621
       FinalFix: 
       MedialFix: 1
       Old_Isolated: 

@@ -2387,6 +2387,7 @@ MonoBehaviour:
   midPoint: {fileID: 4000010346749206}
   letterObjectView: {fileID: 114000010402415976}
   rainbowJet: {fileID: 1000012696403056}
+  slidingTime: 0
   bodyCollider: {fileID: 65000011591538456}
   gotSuitcase: 0
 --- !u!114 &114000014181777866

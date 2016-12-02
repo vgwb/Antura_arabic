@@ -21,6 +21,14 @@ namespace EA4S.Teacher
             return journeyPosition.PlaySession == 100;
         }
 
+        public PlaySessionData GetCurrentPlaySessionData()
+        {
+            var currentJourneyPosition = AppManager.I.Player.CurrentJourneyPosition;
+            var currentPlaySessionId = AppManager.I.Teacher.journeyHelper.JourneyPositionToPlaySessionId(currentJourneyPosition);
+            var playSessionData = AppManager.I.DB.GetPlaySessionDataById(currentPlaySessionId);
+            return playSessionData;
+        }
+
         #endregion
 
         #region JourneyPosition

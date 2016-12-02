@@ -11,25 +11,22 @@ namespace EA4S.ColorTickle
         /// Note: pixels processed sequentially, potentially heavy.
         /// </summary>
         /// <param name="source">The original texture to scale</param>
-        /// <param name="dXScaling">The scaling factor for the width</param>
-        /// <param name="dYScaling">The scaling factor for the height</param>
+        /// <param name="iTargetWidth">The wanted size for the width</param>
+        /// <param name="iTargetHeight">The wanted size for the height</param>
         /// <returns>Resulting pixels</returns>
-        static public Color[] ScaleTexture(Texture2D source, double dXScaling, double dYScaling)
+        static public Color[] ScaleTexture(Texture2D source, int iTargetWidth, int iTargetHeight)
         {
-            int _iScaledWidth = Mathf.FloorToInt(source.width * (float)dXScaling);
-            int _iScaledHeight = Mathf.FloorToInt(source.height * (float)dYScaling);
+            float _fXSampleUnit =  1f / iTargetWidth ;
+            float _fYSampleUnit =  1f / iTargetHeight ;
 
-            float _fXSampleUnit = 1 / (float)_iScaledWidth;
-            float _fYSampleUnit = 1 / (float)_iScaledHeight;
-
-            Color[] resultMatrix = new Color[_iScaledWidth * _iScaledHeight];
+            Color[] resultMatrix = new Color[iTargetWidth * iTargetHeight];
 
             //Fill the color by extracting the bilinear value in the original texture for each sample
-            for (int j = 0; j < _iScaledHeight; ++j)
+            for (int j = 0; j < iTargetHeight; ++j)
             {
-                for (int i = 0; i < _iScaledWidth; ++i)
+                for (int i = 0; i < iTargetWidth; ++i)
                 {
-                    resultMatrix[i + j * _iScaledWidth] = source.GetPixelBilinear(_fXSampleUnit * i, _fYSampleUnit * j);
+                    resultMatrix[i + j * iTargetWidth] = source.GetPixelBilinear(_fXSampleUnit * i, _fYSampleUnit * j);
                 }
             }
 

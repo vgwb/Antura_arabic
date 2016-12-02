@@ -89,26 +89,30 @@ namespace EA4S.Scanner
 			{
 				game.scannerLL[i].Reset();
 				game.scannerLL[i].letterObjectView.Init(correctAnswers[i]);
-			}
 
-			// Then start sliding gardually
-			for (int i = 0; i < game.scannerLL.Count; i++)
+                if (game.scannerLL.Count == 3)
+                    game.scannerLL[i].slidingTime = Time.time + 8 * i;
+                else
+                    game.scannerLL[i].slidingTime = Time.time + 5 * i;
+            }
+
+            // Then start sliding gardually
+            for (int i = 0; i < game.scannerLL.Count; i++)
 			{
-                //while (ScannerAntura.PAUSE_NEW_LL_SLIDES)
-                 //   yield return new WaitForEndOfFrame();
-
-                ScannerAntura.LAST_NORMAL_SLIDE = Time.time;
 
                 game.scannerLL[i].StartSliding();
-				if (game.scannerLL.Count == 3)
-				{
-					yield return new WaitForSeconds(8f);
+
+                if (game.scannerLL.Count == 3)
+				{   
+                    yield return new WaitForSeconds(8f);
 				}
 				else
 				{
-					yield return new WaitForSeconds(5f);
+                    yield return new WaitForSeconds(5f);
 				}
+
 			}
+
 		}
 
 		private void OnLetterPassedMidPoint(ScannerLivingLetter sender)

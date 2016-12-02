@@ -43,8 +43,14 @@ namespace EA4S.MakeFriends
                 var leftLivingLetter = zones[i].left.GetComponentInChildren<MakeFriendsLivingLetter>();
                 var rightLivingLetter = zones[i].right.GetComponentInChildren<MakeFriendsLivingLetter>();
 
-                leftLivingLetter.Dance();
-                rightLivingLetter.Dance();
+                if (leftLivingLetter != null)
+                {
+                    leftLivingLetter.Dance();
+                }
+                if (rightLivingLetter != null)
+                {
+                    rightLivingLetter.Dance();
+                }
             }
         }
     }

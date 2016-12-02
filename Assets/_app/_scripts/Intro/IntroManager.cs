@@ -6,6 +6,9 @@ namespace EA4S
 {
     public class IntroManager : MonoBehaviour
     {
+        [Header("Scene Setup")]
+        public Music SceneMusic;
+
         public IntroFactory factory;
 
         CountdownTimer countDown;
@@ -26,6 +29,7 @@ namespace EA4S
         public float m_MazeCharactesVelocity = 0.1f;
         public AnimationCurve cameraAnimationCurve;
         //public UnityStandardAssets.ImageEffects.ForegroundCameraEffect foregroundEffect;
+        public VignettingSimple vignetting;
 
         public GameObject environment;
         AutoMove[] autoMoveObjects;
@@ -33,13 +37,14 @@ namespace EA4S
         void Start()
         {
             GlobalUI.ShowPauseMenu(false);
+            AudioManager.I.PlayMusic(SceneMusic);
+
             countDown = new CountdownTimer(m_EndDelay);
             m_CameraEndPosition = Camera.main.transform.position;
             m_CameraStartPosition = m_CameraEndPosition + cameraOffset;
             autoMoveObjects = environment.GetComponentsInChildren<AutoMove>();
 
-            foreach (var mazeCharacter in m_MazeCharacters)
-            {
+            foreach (var mazeCharacter in m_MazeCharacters) {
                 mazeCharacter.transform.position += new Vector3(0, 10f, 0);
                 mazeCharacter.m_Velocity = m_MazeCharactesVelocity;
             }
@@ -62,25 +67,20 @@ namespace EA4S
             time += Time.deltaTime * m_CameraVelocity;
             float t = cameraAnimationCurve.Evaluate(time);
 
-            //foregroundEffect.t = t;
+            vignetting.fadeOut = Mathf.Pow((1 - t), 2);
 
             for (int i = 0; i < autoMoveObjects.Length; ++i)
                 autoMoveObjects[i].SetTime(t);
 
-            if (m_Start)
-            {
+            if (m_Start) {
                 m_Start = false;
                 Debug.Log("Start Introduction");
-                foreach (var mazeCharacter in m_MazeCharacters)
-                {
+                foreach (var mazeCharacter in m_MazeCharacters) {
                     mazeCharacter.SetDestination();
                 }
                 StartCoroutine(DoIntroduction());
-            }
-            else
-            {
-                if (m_End)
-                {
+            } else {
+                if (m_End) {
                     countDown.Update(Time.deltaTime);
                 }
             }
@@ -99,10 +99,8 @@ namespace EA4S
         IEnumerator DoIntroduction()
         {
             bool completed = false;
-            System.Func<bool> CheckIfCompleted = () =>
-            {
-                if (completed)
-                {
+            System.Func<bool> CheckIfCompleted = () => {
+                if (completed) {
                     // Reset it
                     completed = false;
                     return true;
