@@ -497,4 +497,10 @@ public partial class SROptions
             AppManager.I.Player.SetCurrentJourneyPosition(next);
         }
     }
+
+    [Category("Rewards")]
+    [Sort(3)]
+    public void UnlockAllRewards() {
+        RewardSystemManager.UnlockAllRewards();
+    }
 }
