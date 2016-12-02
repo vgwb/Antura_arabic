@@ -106,7 +106,7 @@ namespace EA4S.ThrowBalls
                     break;
             }
 
-            AudioManager.I.PlayMusic(Music.MainTheme);
+            AudioManager.I.PlayMusic(Music.Theme10);
         }
 
         private void OnTitleVoiceOverDone()

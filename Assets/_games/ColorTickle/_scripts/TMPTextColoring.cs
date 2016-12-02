@@ -311,7 +311,7 @@ namespace EA4S.ColorTickle
             _tSingleLetterTextureUnscaled.Apply();
 
             //finally scale the texture 
-            Color[] _aColorSingleLetterScaled = TextureUtilities.ScaleTexture(_tSingleLetterTextureUnscaled, m_tLetterDynamicTexture.width / (float)_tSingleLetterTextureUnscaled.width, m_tLetterDynamicTexture.height / (float)_tSingleLetterTextureUnscaled.height);
+            Color[] _aColorSingleLetterScaled = TextureUtilities.ScaleTexture(_tSingleLetterTextureUnscaled, m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height);
 
             m_tSingleLetterRenderedTextureScaledToDynamic = new Texture2D(m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height, TextureFormat.Alpha8, false);
 

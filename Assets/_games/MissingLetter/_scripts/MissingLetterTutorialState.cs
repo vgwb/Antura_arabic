@@ -9,7 +9,7 @@ namespace EA4S.MissingLetter {
         }
 
         public void EnterState() {
-            AudioManager.I.PlayMusic(Music.MainTheme);
+            AudioManager.I.PlayMusic(Music.Theme6);
             m_oGame.m_oRoundManager.SetTutorial(true);
             m_oGame.m_oRoundManager.NewRound();
             m_oGame.m_oRoundManager.onAnswered += OnRoundResult;

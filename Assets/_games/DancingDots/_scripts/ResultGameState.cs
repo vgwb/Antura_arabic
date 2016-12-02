@@ -1,10 +1,14 @@
-﻿namespace EA4S.DancingDots
+﻿using System;
+using UnityEngine;
+
+namespace EA4S.DancingDots
 {
     public class ResultGameState : IGameState
     {
         DancingDotsGame game;
 
-        float timer = 0; 
+        float timer = 2;
+
         public ResultGameState(DancingDotsGame game)
         {
             this.game = game;
@@ -12,8 +16,7 @@
 
         public void EnterState()
         {
-            
-            //game.Context.GetStarsWidget().Hide();
+			AudioManager.I.PlayMusic(Music.Relax);
         }
 
         public void ExitState()
@@ -26,15 +29,12 @@
 
             if (timer < 0)
             {
-
-                //game.Context.GetOverlayWidget().Hide();
-                game.EndGame(game.currStarsNum, 100);
+				game.EndGame(game.currStarsNum, game.numberOfRoundsWon);
 
                 if (game.currStarsNum == 0)
                     AudioManager.I.PlayDialog("Reward_0Star");
                 else
                     AudioManager.I.PlayDialog("Reward_" + game.currStarsNum + "Star_" + UnityEngine.Random.Range(1, 4));
-
             }
         }
 

@@ -14,6 +14,9 @@ namespace EA4S.MakeFriends
         public GameObject letterPickerBlocker;
 
         [HideInInspector]
+        public bool IsBlocked { get { return letterPickerBlocker.activeSelf; } }
+
+        [HideInInspector]
         public LetterChoiceController letterChoiceBeingDragged;
 
         [HideInInspector]

@@ -425,7 +425,7 @@ public partial class SROptions
 
     [Category("Player Profile")]
     [Sort(1)]
-    public bool FirstContactPassed { get { return DebugManager.I.FirstContactPassed; } set { DebugManager.I.FirstContactPassed = value; } }
+    public bool FirstContactPassed { get { return DebugManager.I.FirstContactPassed; } set { DebugManager.I.FirstContactPassed = value; UnlockFirstReward(); } }
 
     [Category("Player Profile")]
     [Sort(2)]

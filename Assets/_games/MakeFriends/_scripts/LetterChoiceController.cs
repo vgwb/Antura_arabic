@@ -16,6 +16,7 @@ namespace EA4S.MakeFriends
         public Image image;
         public Button button;
         public CanvasGroup canvasGroup;
+        public float canvasDistance;
 
         [HideInInspector]
         public ILivingLetterData letterData;
@@ -23,6 +24,9 @@ namespace EA4S.MakeFriends
         public bool isCorrectChoice;
         [HideInInspector]
         public bool wasChosen;
+
+        [HideInInspector]
+        public bool IsDisabled { get { return disabled; } }
 
         public enum ChoiceState
         {
@@ -46,7 +50,8 @@ namespace EA4S.MakeFriends
 
         private ChoiceState _state;
         private bool disabled;
-        private Vector2 initialPosition = Vector2.zero;
+        private Vector3 initialPosition = new Vector3();
+        private Vector3 dragPosition = new Vector3();
 
 
         public void Init(ILivingLetterData _letterData)
@@ -86,9 +91,10 @@ namespace EA4S.MakeFriends
             {
                 return;
             }
-
-            transform.position = eventData.position;
-
+            dragPosition.Set(eventData.position.x, eventData.position.y, canvasDistance);
+            dragPosition = Camera.main.ScreenToWorldPoint(dragPosition);
+            dragPosition.z = initialPosition.z;
+            transform.position = dragPosition;
         }
 
         public void OnEndDrag(PointerEventData eventData)

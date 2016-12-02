@@ -10,6 +10,7 @@ namespace EA4S
     {
         public InfoTable InfoTable;
         public GraphJourney journeyGraph;
+        public Image playerAvatar;
 
         void OnEnable()
         {
@@ -72,6 +73,7 @@ namespace EA4S
 
             journeyGraph.Show(allPlaySessionInfos, unlockedPlaySessionInfos);
 
+            playerAvatar.sprite = AppManager.I.Player.GetAvatar();
         }
 
     }

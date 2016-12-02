@@ -12,7 +12,7 @@
         public void EnterState()
         {
             //game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
-            AudioManager.I.PlayMusic(Music.Relax);
+            AudioManager.I.PlayMusic(Music.Lullaby);
             game.TutorialManager.enabled = true;
         }
 

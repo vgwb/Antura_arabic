@@ -33,8 +33,9 @@ namespace EA4S
         void GoSuperDogMode()
         {
             Debug.Log("Super Dog Mode enabled");
-            SetJourneyAtMaximum();
-            StartCoroutine(PopulateDatabaseWithUsefulDataCO());
+            var maxJourneyPos = new JourneyPosition(6, 14, 1);
+            SetJourneyPos(maxJourneyPos); 
+            StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos, true));
         }
 
         public void OnDeleteProfile()
@@ -67,47 +68,70 @@ namespace EA4S
             Debug.Log("YEAH!");
         }
 
+        public void OnUnlockStage(int stage)
+        {
+            Debug.Log("Unlocking up to stage " + stage);
+            var targetJourneyPos = new JourneyPosition(stage, 1, 1);
+            SetJourneyPos(targetJourneyPos);
+            StartCoroutine(PopulateDatabaseWithUsefulDataCO(targetJourneyPos));
+        }
 
         #region Super Dog Helpers
 
-        private void SetJourneyAtMaximum()
+        public Image superDogWait;
+
+        private void SetJourneyPos(JourneyPosition targetPosition)
         {
-            var allPlaySessionInfos = AppManager.I.Teacher.scoreHelper.GetAllPlaySessionInfo();
-            var secondToLastPS = allPlaySessionInfos[allPlaySessionInfos.Count - 1].data.Id;    // @note: we use the second-to-last because the last gives an error with the map logic
-            var maxPossibleJourneyPosition = AppManager.I.Teacher.journeyHelper.PlaySessionIdToJourneyPosition(secondToLastPS);
-            AppManager.I.Player.SetMaxJourneyPosition(maxPossibleJourneyPosition, true);
+            // @note: set as SRDebugOptions
+            AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(6, 14, 1), true);
         }
 
-        private System.Collections.IEnumerator PopulateDatabaseWithUsefulDataCO()
+        private System.Collections.IEnumerator PopulateDatabaseWithUsefulDataCO(JourneyPosition targetPosition, bool cheatMode = false)
         {
+            superDogWait.gameObject.SetActive(true);
+
             var logAi = AppManager.I.Teacher.logAI;
             var fakeAppSession = LogManager.I.Session;
 
-            // Enable cheat mode
-            AppManager.I.GameSettings.CheatSuperDogMode = true;
+            if (cheatMode)
+            {
+                // Enable cheat mode
+                AppManager.I.GameSettings.CheatSuperDogMode = true;
 
-            // Add some mood data
-            int nMoodData = 15;
-            for (int i = 0; i < nMoodData; i++) {
-                logAi.LogMood(Random.Range(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue + 1));
-                Debug.Log("Add mood " + i);
-                yield return null;
+                // Add some mood data
+                int nMoodData = 15;
+                for (int i = 0; i < nMoodData; i++)
+                {
+                    logAi.LogMood(Random.Range(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue + 1));
+                    Debug.Log("Add mood " + i);
+                    yield return null;
+                }
+
+                // Force update of graph
+                FindObjectOfType<GraphMood>().OnEnable();
             }
 
             // Add scores for all play sessions
             var allPlaySessionInfos = AppManager.I.Teacher.scoreHelper.GetAllPlaySessionInfo();
             for (int i = 0; i < allPlaySessionInfos.Count; i++) {
-                logAi.LogPlaySessionScore(allPlaySessionInfos[i].data.Id, Random.Range(1, 4));
-                Debug.Log("Add play session score " + i);
-                yield return null;
+                if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage)
+                {
+                    logAi.LogPlaySessionScore(allPlaySessionInfos[i].data.Id, Random.Range(1, 4));
+                    Debug.Log("Add play session score for " + allPlaySessionInfos[i].data.Id);
+                    yield return null;
+                }
             }
 
-            // Add scores for all minigames
-            var allMiniGameInfo = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
-            for (int i = 0; i < allMiniGameInfo.Count; i++) {
-                logAi.LogMiniGameScore(allMiniGameInfo[i].data.Code, Random.Range(1, 4));
-                Debug.Log("Add minigame score " + i);
-                yield return null;
+            if (cheatMode)
+            {
+                // Add scores for all minigames
+                var allMiniGameInfo = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
+                for (int i = 0; i < allMiniGameInfo.Count; i++)
+                {
+                    logAi.LogMiniGameScore(allMiniGameInfo[i].data.Code, Random.Range(1, 4));
+                    Debug.Log("Add minigame score " + i);
+                    yield return null;
+                }
             }
 
             // Add scores for some learning data (words/letters/phrases)
@@ -143,10 +167,7 @@ namespace EA4S
                 }
             }*/
 
-            // Force update of graphs
-            FindObjectOfType<GraphMood>().OnEnable();
-
-            Debug.Log("Finished dog mode additions");
+            superDogWait.gameObject.SetActive(false);
         }
 
 
