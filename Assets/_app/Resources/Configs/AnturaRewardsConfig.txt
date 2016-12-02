@@ -92,7 +92,7 @@
       "Done" : "DONE",
       "BoneAttach" : "dog_head",
       "Material1" : "specular_saturated_2side",
-      "Material2" : "trasparent_saturated",
+      "Material2" : "transparent_saturated_2side",
       "Category" : "NOSE",
       "RemTongue" : ""
     },
@@ -456,7 +456,7 @@
       "ID" : "7",
       "Color1Name" : "black_pure",
       "Color1RGB" : "000000",
-      "Color2Name" : "white",
+      "Color2Name" : "white_pure",
       "Color2RGB" : "ffffff"
     },
     {
@@ -569,17 +569,17 @@
     {
       "ID" : "color1",
       "Color1Name" : "",
-      "Color1RGB" : "E6FBFBFF"
+      "Color1RGB" : "FFFFFFFF"
     },
     {
       "ID" : "color2",
       "Color1Name" : "",
-      "Color1RGB" : "635C55FF"
+      "Color1RGB" : "000000FF"
     },
     {
       "ID" : "color3",
       "Color1Name" : "",
-      "Color1RGB" : "384D67FF"
+      "Color1RGB" : "FF00BAFF"
     }
   ],
   "RewardsTile" : [
@@ -624,37 +624,37 @@
     {
       "ID" : "color1",
       "Color1Name" : "",
-      "Color1RGB" : "E6FBFBFF"
+      "Color1RGB" : "00BAFFFF"
     },
     {
       "ID" : "color2",
       "Color1Name" : "",
-      "Color1RGB" : "635C55FF"
+      "Color1RGB" : "BB5400FF"
     },
     {
       "ID" : "color3",
       "Color1Name" : "",
-      "Color1RGB" : "384D67FF"
+      "Color1RGB" : "F78BAFFF"
     },
     {
       "ID" : "color4",
       "Color1Name" : "",
-      "Color1RGB" : "00FBFBFF"
+      "Color1RGB" : "FFFFFFFF"
     },
     {
       "ID" : "color5",
       "Color1Name" : "",
-      "Color1RGB" : "EE5C55FF"
+      "Color1RGB" : "000000FF"
     },
     {
       "ID" : "color6",
       "Color1Name" : "",
-      "Color1RGB" : "FF4D67FF"
+      "Color1RGB" : "FFBA00FF"
     },
     {
       "ID" : "color7",
       "Color1Name" : "",
-      "Color1RGB" : "FFFFFFFF"
+      "Color1RGB" : "85C300FF"
     }
   ],
   "PlaySessionRewardsUnlock" : [
@@ -682,8 +682,8 @@
     {
       "PlaySession" : "1.1.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -703,8 +703,8 @@
     {
       "PlaySession" : "1.2.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -724,8 +724,8 @@
     {
       "PlaySession" : "1.3.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -746,8 +746,8 @@
       "PlaySession" : "1.4.100",
       "RewardColor" : "",
       "Reward" : "",
-      "Texture" : "",
-      "Decal" : "1"
+      "Texture" : "1",
+      "Decal" : ""
     },
     {
       "PlaySession" : "1.5.1",
@@ -766,8 +766,8 @@
     {
       "PlaySession" : "1.5.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -787,8 +787,8 @@
     {
       "PlaySession" : "1.6.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -809,8 +809,8 @@
       "PlaySession" : "1.7.100",
       "RewardColor" : "",
       "Reward" : "",
-      "Texture" : "1",
-      "Decal" : ""
+      "Texture" : "",
+      "Decal" : "1"
     },
     {
       "PlaySession" : "1.8.1",
@@ -829,8 +829,8 @@
     {
       "PlaySession" : "1.8.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -850,8 +850,8 @@
     {
       "PlaySession" : "1.9.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -871,8 +871,8 @@
     {
       "PlaySession" : "1.10.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -892,8 +892,8 @@
     {
       "PlaySession" : "1.11.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -913,8 +913,8 @@
     {
       "PlaySession" : "1.12.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -934,8 +934,8 @@
     {
       "PlaySession" : "1.13.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -1711,8 +1711,8 @@
     {
       "PlaySession" : "4.8.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -1732,8 +1732,8 @@
     {
       "PlaySession" : "4.9.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -1753,8 +1753,8 @@
     {
       "PlaySession" : "4.10.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -2005,8 +2005,8 @@
     {
       "PlaySession" : "5.7.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -2026,8 +2026,8 @@
     {
       "PlaySession" : "5.8.100",
       "RewardColor" : "",
-      "Reward" : "1",
-      "Texture" : "",
+      "Reward" : "",
+      "Texture" : "1",
       "Decal" : ""
     },
     {
@@ -2047,8 +2047,8 @@
     {
       "PlaySession" : "5.9.100",
       "RewardColor" : "",
-      "Reward" : "",
-      "Texture" : "1",
+      "Reward" : "1",
+      "Texture" : "",
       "Decal" : ""
     },
     {
@@ -2446,9 +2446,9 @@
     {
       "PlaySession" : "6.15.100",
       "RewardColor" : "",
-      "Reward" : "",
+      "Reward" : "1",
       "Texture" : "",
-      "Decal" : "1"
+      "Decal" : ""
     }
   ]
 }

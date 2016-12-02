@@ -29,6 +29,9 @@ public class VignettingSimple : MonoBehaviour
 
     void OnPostRender()
     {
+        if (vignetteMaterial == null)
+            return;
+
         fadeOut = Mathf.Clamp01(fadeOut);
 
         vignetteMaterial.SetFloat("_Intensity", intensity);

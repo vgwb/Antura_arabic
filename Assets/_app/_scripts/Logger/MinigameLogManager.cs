@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections.Generic;
 using EA4S.Teacher;
 using System;
 
@@ -37,6 +38,7 @@ namespace EA4S
         /// </summary>
         public void InitGameplayLogSession(MiniGameCode _minigameCode)
         {
+            if (AppConstants.VerboseLogging) Debug.Log("InitGameplayLogSession " + _minigameCode.ToString());
             miniGameCode = _minigameCode;
             minigameSession = DateTime.Now.Ticks.ToString();
             LogManager.I.LogInfo(InfoEvent.GameStart, miniGameCode.ToString());
@@ -53,6 +55,7 @@ namespace EA4S
         /// <param name="_isPositiveResult"></param>
         public void OnAnswer(ILivingLetterData _data, bool _isPositiveResult)
         {
+            if (AppConstants.VerboseLogging) Debug.Log("OnAnswer " + _data.Id + " " + _isPositiveResult);
             ILivingLetterAnswerData newILivingLetterAnswerData = new ILivingLetterAnswerData();
             newILivingLetterAnswerData._data = _data;
             newILivingLetterAnswerData._isPositiveResult = _isPositiveResult;
@@ -63,33 +66,13 @@ namespace EA4S
         /// Called when minigame is finished.
         /// </summary>
         /// <param name="_valuation">The valuation.</param>
-        public void OnGameplaySessionResult(int _valuation)
+        public void OnMiniGameResult(int _valuation)
         {
             //MinigameResultData newGameplaySessionResultData = new MinigameResultData();
             //newGameplaySessionResultData._valuation = _valuation;
             flushLogLearn();
             flushLogPlay();
             LogManager.I.LogMinigameScore(miniGameCode, _valuation);
-        }
-
-        /// <summary>
-        /// Logs the play session score.
-        /// </summary>
-        /// <param name="_score">The score.</param>
-        public void LogPlaySessionScore(float _score)
-        {
-            // TODO: Check if CurrentJourneyPosition is correct.
-            LogManager.I.LogPlaySessionScore(AppManager.I.Player.CurrentJourneyPosition.ToString(), _score);
-        }
-
-        /// <summary>
-        /// Logs the learning block score.
-        /// </summary>
-        /// <param name="_learningBlock">The learning block.</param>
-        /// <param name="_score">The score.</param>
-        public void LogLearningBlockScore(int _learningBlock, float _score)
-        {
-            LogManager.I.LogLearningBlockScore(_learningBlock, _score);
         }
 
         /// <summary>
