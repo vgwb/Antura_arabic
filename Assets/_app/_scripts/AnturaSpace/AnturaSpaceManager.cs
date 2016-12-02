@@ -17,12 +17,18 @@ namespace EA4S
         private GameObject m_oAntura;
         [SerializeField]
         private TextMeshProUGUI m_oTextBonesNumber;
+        [SerializeField]
+        private OnActiveBehaviour m_oCustomButton;
+
 
         [SerializeField]
         private Music m_oBackgroundMusic;
 
         [Header("Test")]
-        public int m_iTotalBones_Test = 10;
+        [SerializeField]
+        private int m_iTotalBones_Local = 10; //setted value is used only if in Editor 
+
+
         #endregion
 
         #region PRIVATE MEMBERS
@@ -32,12 +38,11 @@ namespace EA4S
 
         private GameObject m_oCookieRootContainer;
         private BoneBehaviour m_oDraggedBone;
-        private AnturaSpaceAnturaBehaviour m_oAnturaBehaviour;
+        private AnturaBehaviour m_oAnturaBehaviour;
 
         #endregion
 
         
-
         #region INTERNALS
         void Start()
         {
@@ -47,12 +52,12 @@ namespace EA4S
             AudioManager.I.PlayMusic(m_oBackgroundMusic);
 
 #if UNITY_EDITOR
-  
+            //just use the editor value
 #else
-            m_iTotalBones_Test = AppManager.I.Player.GetTotalNumberOfBones();
+            m_iTotalBones_Local = AppManager.I.Player.GetTotalNumberOfBones();
 #endif
 
-            m_oTextBonesNumber.text = "" + m_iTotalBones_Test;
+            m_oTextBonesNumber.text = "" + m_iTotalBones_Local;
 
             //set the bone initial position behind the button
             /*
@@ -63,8 +68,6 @@ namespace EA4S
             m_oBonePrefab.transform.position = m_oTextBonesNumber.transform.position;
 
             //Instantiate the pool of bones
-            //m_oCookieRootContainer = new GameObject("[Cookies]");
-            //m_oCookieRootContainer.transform.position = Vector3.zero;
             GameObject _oTempBase = new GameObject();
             m_oCookieRootContainer = Instantiate(_oTempBase);
             m_oCookieRootContainer.name = "[Cookies]";
@@ -85,18 +88,13 @@ namespace EA4S
             }
 
             //link variables        
-            m_oAnturaBehaviour = m_oAntura.GetComponent<AnturaSpaceAnturaBehaviour>();
+            m_oAnturaBehaviour = m_oAntura.GetComponent<AnturaBehaviour>();
             m_oAnturaBehaviour.onBoneReached += release;
+            m_oCustomButton.OnEnableAction += delegate { m_oAnturaBehaviour.Reset(); m_oAnturaBehaviour.IsInCustomization = true; };
+            m_oCustomButton.OnDisableAction += delegate { m_oAnturaBehaviour.IsInCustomization = false; };
 
         }
 
-        /*void OnDestroy()
-        {
-            if(m_oCookieRootContainer)
-            {
-                DestroyObject(m_oCookieRootContainer);//this was created as an empty Gameobject, not instantiated
-            }
-        }*/
         #endregion
 
         #region PUBLIC FUNCTIONS
@@ -105,11 +103,6 @@ namespace EA4S
         /// </summary>
         public void Exit()
         {
-
-#if UNITY_EDITOR
-#else
-            //AppManager.I.Player.SetTotalNumberOfBones(m_iTotalBones_Test);//assign new total bones used to the profile
-#endif
             NavigationManager.I.GoToScene(AppScene.Map);
         }
 
@@ -120,12 +113,13 @@ namespace EA4S
         {
             GameObject _oBone = get();
 
-            if (m_oDraggedBone != null || _oBone == null || m_iTotalBones_Test <= 0) {
+            if (m_oDraggedBone != null || _oBone == null || m_iTotalBones_Local <= 0) {
                 Debug.Log("Can't throw bones");
                 return;
             }
 
-            m_oTextBonesNumber.text = "" + (--m_iTotalBones_Test);
+            DecreaseBonesNumber();
+
             _oBone.SetActive(true);
             _oBone.GetComponent<BoneBehaviour>().SimpleThrow();
             m_oAnturaBehaviour.AddBone(_oBone);
@@ -138,13 +132,13 @@ namespace EA4S
         {
             GameObject _oBone = get();
 
-            if (m_oDraggedBone!=null || _oBone == null || m_iTotalBones_Test <= 0)
+            if (m_oDraggedBone!=null || _oBone == null || m_iTotalBones_Local <= 0)
             {
                 Debug.Log("Can't drag bones");
                 return;
             }
 
-            m_oTextBonesNumber.text = "" + (--m_iTotalBones_Test);
+            DecreaseBonesNumber();
 
             _oBone.SetActive(true);
             m_oDraggedBone = _oBone.GetComponent<BoneBehaviour>();
@@ -258,5 +252,19 @@ namespace EA4S
         }
         #endregion
 
+        /// <summary>
+        /// Decrease the total number of bones of the player.
+        /// (Compilation is different from Editor to Build)
+        /// </summary>
+        private void DecreaseBonesNumber()
+        {
+#if UNITY_EDITOR
+
+            m_oTextBonesNumber.text = "" + (--m_iTotalBones_Local);
+#else
+            m_iTotalBones_Local = --AppManager.I.Player.TotalNumberOfBones;
+            m_oTextBonesNumber.text = "" + (m_iTotalBones_Local);
+#endif
+        }
     }
 }

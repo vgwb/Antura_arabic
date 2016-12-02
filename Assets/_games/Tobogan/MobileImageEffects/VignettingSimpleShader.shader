@@ -1,6 +1,5 @@
 Shader "Hidden/VignettingSimple" {
 	Properties {
-		_MainTex ("Base", 2D) = "white" {}
 		_Color("Color", Color) = (0,0,0,0)
 	}
 	
@@ -13,9 +12,8 @@ Shader "Hidden/VignettingSimple" {
 		half2 uv : TEXCOORD0;
 	};
 	
-	sampler2D _MainTex;
-	
 	half _Intensity;
+	half _FadeOut;
 	fixed4 _Color;
 
 	half4 _MainTex_TexelSize;
@@ -34,19 +32,23 @@ Shader "Hidden/VignettingSimple" {
 		
 		coords = (coords - 0.5) * 2.0;		
 		half coordDot = dot (coords,coords);
-		fixed4 color = tex2D (_MainTex, uv);	 
 
-		half mask = 1.0 - coordDot * _Intensity * 0.1; 
+		half mask = coordDot * _Intensity * 0.1; 
 		
-		return lerp(_Color, color, mask);
+		return lerp(fixed4(_Color.rgb, mask), fixed4(0,0,0,1), _FadeOut);
 	}
 
 	ENDCG 
 	
 Subshader {
  Pass {
-	  ZTest Always Cull Off ZWrite Off
-	  Fog { Mode off }      
+	  ZTest Always 
+	  ZWrite Off
+	  Cull Off
+	  Blend SrcAlpha OneMinusSrcAlpha
+	  ColorMask RGB
+	  Fog { Mode off }
+
 
       CGPROGRAM
       #pragma fragmentoption ARB_precision_hint_fastest 

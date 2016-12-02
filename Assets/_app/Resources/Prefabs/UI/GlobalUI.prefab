@@ -2086,7 +2086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000014067424708
 GameObject:
   m_ObjectHideFlags: 1
@@ -4941,6 +4941,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScrollAnimationSpeed: 100
   ScrollAnimationDelay: 1.5
+  Level0Color: {r: 0.882353, g: 0.52156866, b: 0.13333334, a: 1}
+  Level0FontPerc: 140
+  Level1Color: {r: 0.5767463, g: 0.3584559, b: 0.9558824, a: 1}
+  Level1FontPerc: 110
   CreditsTxt: {fileID: 4900000, guid: f999717d164024c83a225ca2f088d5c8, type: 3}
   CreditsContainer: {fileID: 224000013360767956}
   BtBack: {fileID: 114000010655652248}
@@ -5988,7 +5992,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 8.500018, y: 0.000061035156}
-  m_SizeDelta: {x: 17, y: 0}
+  m_SizeDelta: {x: -131, y: 642.18}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224000013431732186
 RectTransform:

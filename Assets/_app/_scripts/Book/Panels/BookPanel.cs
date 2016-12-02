@@ -25,8 +25,20 @@ namespace EA4S
         public GameObject LearningBlockItemPrefab;
 
         [Header("References")]
+        public GameObject DetailPanel;
+        public GameObject Submenu;
         public GameObject SubmenuContainer;
+        public GameObject ListPanel;
         public GameObject ElementsContainer;
+        public GameObject ListWidePanel;
+        public GameObject ElementsContainerWide;
+
+        public UIButton BtnLetters;
+        public UIButton BtnWords;
+        public UIButton BtnPhrases;
+        public UIButton BtnLearningBlocks;
+
+        public GameObject MoreInfoPanel;
         public TextRender ArabicText;
 
         public TextRender LetterTextIsolated;
@@ -37,8 +49,10 @@ namespace EA4S
         public TextRender ScoreText;
         public TMPro.TextMeshProUGUI Drawing;
 
-        public LetterObjectView LLText;
-        public LetterObjectView LLDrawing;
+        public LetterObjectView LL_Isolated;
+        public LetterObjectView LL_Initial;
+        public LetterObjectView LL_Medial;
+        public LetterObjectView LL_Final;
 
         PlayerBookPanel currentArea = PlayerBookPanel.None;
         GameObject btnGO;
@@ -59,11 +73,13 @@ namespace EA4S
             if (newArea != currentArea) {
                 currentArea = newArea;
                 activatePanel(currentArea, true);
+                ResetMenuButtons();
             }
         }
 
         void activatePanel(PlayerBookPanel panel, bool status)
         {
+            DetailPanel.SetActive(false);
             switch (panel) {
                 case PlayerBookPanel.BookLetters:
                     AudioManager.I.PlayDialog(LocalizationDataId.UI_Letters);
@@ -84,8 +100,20 @@ namespace EA4S
             }
         }
 
+        void ResetMenuButtons()
+        {
+            BtnLetters.Lock(currentArea == PlayerBookPanel.BookLetters);
+            BtnWords.Lock(currentArea == PlayerBookPanel.BookWords);
+            BtnPhrases.Lock(currentArea == PlayerBookPanel.BookPhrases);
+            BtnLearningBlocks.Lock(currentArea == PlayerBookPanel.BookLearningBlocks);
+        }
+
         void LettersPanel(string _category = "")
         {
+            ListPanel.SetActive(true);
+            Submenu.SetActive(true);
+            ListWidePanel.SetActive(false);
+
             currentCategory = _category;
             List<LetterData> list;
             switch (currentCategory) {
@@ -136,6 +164,9 @@ namespace EA4S
 
         void WordsPanel(WordDataCategory _category = WordDataCategory.None)
         {
+            ListPanel.SetActive(true);
+            Submenu.SetActive(true);
+            ListWidePanel.SetActive(false);
             currentWordCategory = _category;
 
             List<WordData> list;
@@ -174,32 +205,37 @@ namespace EA4S
                         area = PlayerBookPanel.BookWords,
                         wordCategory = cat,
                         Id = cat.ToString(),
-                        Title = LocalizationManager.GetTranslation("UI_" + cat.ToString())
+                        Title = LocalizationManager.GetWordCategoryTitle(cat)
                     });
             }
-
         }
 
         void PhrasesPanel()
         {
+            ListPanel.SetActive(false);
+            Submenu.SetActive(false);
+            ListWidePanel.SetActive(true);
             emptyListContainers();
 
             List<PhraseInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllPhraseInfo();
             foreach (var info_item in info_list) {
                 btnGO = Instantiate(PhraseItemPrefab);
-                btnGO.transform.SetParent(ElementsContainer.transform, false);
+                btnGO.transform.SetParent(ElementsContainerWide.transform, false);
                 btnGO.GetComponent<ItemPhrase>().Init(this, info_item);
             }
         }
 
         void LearningBlockPanel()
         {
+            ListPanel.SetActive(false);
+            Submenu.SetActive(false);
+            ListWidePanel.SetActive(true);
             emptyListContainers();
 
             List<LearningBlockInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllLearningBlockInfo();
             foreach (var item_info in info_list) {
                 btnGO = Instantiate(LearningBlockItemPrefab);
-                btnGO.transform.SetParent(ElementsContainer.transform, false);
+                btnGO.transform.SetParent(ElementsContainerWide.transform, false);
                 btnGO.GetComponent<ItemLearningBlock>().Init(this, item_info);
             }
         }
@@ -218,9 +254,10 @@ namespace EA4S
 
         public void DetailWord(WordInfo info)
         {
+            DetailPanel.SetActive(true);
             Debug.Log("Detail Word :" + info.data.Id);
             AudioManager.I.PlayWord(info.data.Id);
-
+            MoreInfoPanel.SetActive(false);
             ScoreText.text = "Score: " + info.score;
 
             var output = "";
@@ -240,61 +277,105 @@ namespace EA4S
 
             ArabicText.text = output;
 
-            LLText.Init(new LL_WordData(info.data));
+            LL_Isolated.Init(new LL_WordData(info.data));
+            LL_Initial.gameObject.SetActive(false);
+            LL_Final.gameObject.SetActive(false);
 
             if (info.data.Drawing != "") {
                 var drawingChar = AppManager.I.Teacher.wordHelper.GetWordDrawing(info.data);
                 Drawing.text = drawingChar;
-                LLDrawing.Init(new LL_ImageData(info.data));
+                //LL_Medial.gameObject.SetActive(true);
+                LL_Medial.Init(new LL_ImageData(info.data));
                 Debug.Log("Drawing: " + info.data.Drawing + " / " + ArabicAlphabetHelper.GetLetterFromUnicode(info.data.Drawing));
             } else {
                 Drawing.text = "";
-                LLDrawing.Init(new LL_ImageData(info.data));
+                LL_Medial.gameObject.SetActive(false);
             }
         }
 
-
-
         public void DetailLetter(LetterInfo info)
         {
+            DetailPanel.SetActive(true);
             Debug.Log("Detail Letter :" + info.data.Id + " [" + info.data.GetAvailablePositions() + "]");
             AudioManager.I.PlayLetter(info.data.Id);
-
+            MoreInfoPanel.SetActive(true);
+            ArabicText.text = "";
             ScoreText.text = "Score: " + info.score;
 
-            //ArabicText.text = info.data.GetChar(LetterPosition.Isolated);
-            //ArabicText.text += " " + info.data.GetChar(LetterPosition.Final);
-            //ArabicText.text += " " + info.data.GetChar(LetterPosition.Medial);
-            //ArabicText.text += " " + info.data.GetChar(LetterPosition.Initial);
+            var isolatedChar = info.data.GetCharFixedForDisplay(LetterPosition.Isolated);
+            LL_Isolated.Init(new LL_LetterData(info.data));
+            LL_Isolated.Label.text = isolatedChar;
 
-            LetterTextIsolated.SetTextUnfiltered(info.data.GetCharFixedForDisplay(LetterPosition.Isolated));
-            LetterTextFinal.SetTextUnfiltered(info.data.GetCharFixedForDisplay(LetterPosition.Final));
-            LetterTextMedial.SetTextUnfiltered(info.data.GetCharFixedForDisplay(LetterPosition.Medial));
-            LetterTextInitial.SetTextUnfiltered(info.data.GetCharFixedForDisplay(LetterPosition.Initial));
+            var InitialChar = info.data.GetCharFixedForDisplay(LetterPosition.Initial);
+            if (InitialChar != "") {
+                LL_Initial.gameObject.SetActive(true);
+                LL_Initial.Init(new LL_LetterData(info.data));
+                LL_Initial.Label.text = InitialChar;
+            } else {
+                LL_Initial.gameObject.SetActive(false);
+            }
 
-            // ArabicText.SetTextUnfiltered(lett);
+            var MedialChar = info.data.GetCharFixedForDisplay(LetterPosition.Medial);
+            if (MedialChar != "") {
+                LL_Medial.gameObject.SetActive(true);
+                LL_Medial.Init(new LL_LetterData(info.data));
+                LL_Medial.Label.text = MedialChar;
+            } else {
+                LL_Medial.gameObject.SetActive(false);
+            }
 
-            LLText.Init(new LL_LetterData(info.data));
+            var FinalChar = info.data.GetCharFixedForDisplay(LetterPosition.Final);
+            if (FinalChar != "") {
+                LL_Final.gameObject.SetActive(true);
+                LL_Final.Init(new LL_LetterData(info.data));
+                LL_Final.Label.text = FinalChar;
+            } else {
+                LL_Final.gameObject.SetActive(false);
+            }
+
+            LetterTextIsolated.SetTextUnfiltered(isolatedChar);
+            LetterTextInitial.SetTextUnfiltered(InitialChar);
+            LetterTextMedial.SetTextUnfiltered(MedialChar);
+            LetterTextFinal.SetTextUnfiltered(FinalChar);
         }
 
         public void DetailPhrase(PhraseInfo info)
         {
+            DetailPanel.SetActive(true);
             Debug.Log("Detail Phrase :" + info.data.Id);
             AudioManager.I.PlayPhrase(info.data.Id);
-
+            MoreInfoPanel.SetActive(false);
             ScoreText.text = "Score: " + info.score;
+
+            ArabicText.text = info.data.Arabic;
+
+            LL_Isolated.gameObject.SetActive(false);
+            LL_Initial.gameObject.SetActive(false);
+            LL_Medial.gameObject.SetActive(false);
+            LL_Final.gameObject.SetActive(false);
         }
 
         public void DetailLearningBlock(LearningBlockInfo info)
         {
+            DetailPanel.SetActive(true);
             AudioManager.I.PlayDialog(info.data.GetTitleSoundFilename());
             ScoreText.text = "Score: " + info.score;
-        }
+            MoreInfoPanel.SetActive(false);
 
+            ArabicText.text = info.data.Title_Ar;
+
+            LL_Isolated.gameObject.SetActive(false);
+            LL_Initial.gameObject.SetActive(false);
+            LL_Medial.gameObject.SetActive(false);
+            LL_Final.gameObject.SetActive(false);
+        }
 
         void emptyListContainers()
         {
             foreach (Transform t in ElementsContainer.transform) {
+                Destroy(t.gameObject);
+            }
+            foreach (Transform t in ElementsContainerWide.transform) {
                 Destroy(t.gameObject);
             }
             foreach (Transform t in SubmenuContainer.transform) {

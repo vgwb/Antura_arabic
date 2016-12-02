@@ -1,102 +1,102 @@
 PRODUCED BY
-<color=#e18522><size=120%>TH Köln / Cologne Game Lab</size></color>
-<color=#e18522><size=120%>Video Games Without Borders</size></color>
-<color=#e18522><size=120%>& Wixel Studios</size></color>
+[0]TH Köln / Cologne Game Lab[0E]
+[0]Video Games Without Borders[0E]
+[0]& Wixel Studios[0E]
 
 
-<color=#e18522><size=150%>CORE TEAM</size></color>
+[0]CORE TEAM[0E]
 
-<color=#f2b830>PROJECT LEAD AND CREATIVE DIRECTOR</color>
-Dr. Emmanuel Guardiola
+[1]PROJECT LEAD AND CREATIVE DIRECTOR[1E]
+Prof. Dr. Emmanuel Guardiola
 (TH Köln / Cologne Game Lab)
 
-<color=#f2b830>ART DIRECTOR AND LEAD ARTIST</color>
+[1]ART DIRECTOR AND LEAD ARTIST[1E]
 Gaetano Leonardi
 
-<color=#f2b830>GAME DESIGNER AND UX/UI MASTER</color>
+[1]GAME DESIGNER AND UX/UI MASTER[1E]
 Daniele Giardini
 
-<color=#f2b830>LEAD PROGRAMMERS</color>
+[1]LEAD PROGRAMMERS[1E]
 Paolo Bragonzi
 Davide Barbieri
 
-<color=#f2b830>MUSIC AND SOUND DESIGNER</color>
+[1]MUSIC AND SOUND DESIGNER[1E]
 Hamza Chioua
 
-<color=#f2b830>ADDITIONAL DESIGN AND DEVELOPMENT</color>
+[1]ADDITIONAL DESIGN AND DEVELOPMENT[1E]
 Stefano Cecere
 
-<color=#f2b830>PRODUCER</color>
+[1]PRODUCER[1E]
 Francesco Cavallari
 
 
-<color=#e18522><size=150%>TH Köln / Cologne Game Lab</size></color>
+[0]TH Köln / Cologne Game Lab[0E]
 
-PROJECT LEAD AND CREATIVE DIRECTOR
+[1]PROJECT LEAD AND CREATIVE DIRECTOR[1E]
 Prof. Dr. Emmanuel Guardiola
 
-PSYCHOLOGY ADVISOR
+[1]PSYCHOLOGY ADVISOR[1E]
 Dr. Marc Wittman
 
-ARABIC LANGUAGE TEACHER
+[1]ARABIC LANGUAGE TEACHER[1E]
 Mouna Barmada
 
-INTERNATIONAL EDUCATOR
+[1]INTERNATIONAL EDUCATOR[1E]
 Bahjat Moura
 
-PLAYTEST COORDINATOR
+[1]PLAYTEST COORDINATOR[1E]
 Lubna Odeh
 
-ADMINISTRATION COORDINATION
+[1]ADMINISTRATION COORDINATION[1E]
 Katharina Tillmanns
 
 
-<color=#e18522><size=150%>Video Games Without Borders</size></color>
+[0]Video Games Without Borders[0E]
 
-PRODUCER 
+[1]PRODUCER[1E]
 Francesco Cavallari
 
-ART DIRECTOR AND LEAD ARTIST
+[1]ART DIRECTOR AND LEAD ARTIST[1E]
 Gaetano Leonardi
 
-GAME DESIGNER AND UX/UI MASTER
+[1]GAME DESIGNER AND UX/UI MASTER[1E]
 Daniele Giardini
 
-LEAD PROGRAMMERS
+[1]LEAD PROGRAMMERS[1E]
 Paolo Bragonzi
 Davide Barbieri
 
-MUSIC AND SOUND DESIGNER
+[1]MUSIC AND SOUND DESIGNER[1E]
 Hamza Chioua
 
-ADDITIONAL DESIGN AND DEVELOPMENT 
+[1]ADDITIONAL DESIGN AND DEVELOPMENT [1E]
 Stefano Cecere
 
-PROGRAMMERS
+[1]PROGRAMMERS[1E]
 Armando Teora
 Michele Pirovano
 Elena Blanes
 Dario Oliveri
 
-3D ART PRODUCER
+[1]3D ART PRODUCER[1E]
 Andrey Sazonov
 
-3D MODELER
+[1]3D MODELER[1E]
 Andrey Kolesnikov
 
-3D ANIMATOR
+[1]3D ANIMATOR[1E]
 Dmitriy Tunik
 
-2D ILLUSTRATOR
+[1]2D ILLUSTRATOR[1E]
 Ksenia Glebova
 
 
-<color=#e18522><size=150%>Wixel Studios</size></color>
+[0]Wixel Studios[0E]
 
-PRODUCER AND ADDITIONAL GAME DESIGN
+[1]PRODUCER AND ADDITIONAL GAME DESIGN[1E]
 Ziad Feghali
 
-PROGRAMMERS
+[1]PROGRAMMERS[1E]
 George Habr
 Hussam Kazah
 Joseph Saade
@@ -104,15 +104,13 @@ Fouad Tabsh
 Modar Dergham
 
 
-<color=#e18522><size=150%>University of Verona</size></color>
+[0]University of Verona[0E]
 MASTER IN COMPUTER GAMES DEVELOPMENT
 
-
-LAB SUPERVISOR
+[1]LAB SUPERVISOR[1E]
 Diego Zamprogno
 
-
-MASTER STUDENTS
+[1]MASTER STUDENTS[1E]
 Marco Comencini
 Federico Gobbato
 Enrico Pernigo
@@ -120,74 +118,54 @@ Simone Pessotto
 Simone Sommaggio
 Edoardo Tosatti
 
-
-MASTER COORDINATOR
+[1]MASTER COORDINATOR[1E]
 Umberto Castellani
 
 
-<color=#e18522><size=150%>VOICES</size></color>
+[0]VOICES[0E]
 
-
-THE KEEPER
+[1]THE KEEPER[1E]
 Fares Al-Helou
 
-
-VOCABULARY, TUTORIAL & SONGS
+[1]VOCABULARY, TUTORIAL & SONGS[1E]
 Ibtissam Shakar
 
 
+[0]OTHER CONTRIBUTORS[0E]
 
-
-<color=#e18522><size=150%>OTHER CONTRIBUTORS</size></color>
-
-
-PRODUCER (ALPHA VERSION)
+[1]PRODUCER (ALPHA VERSION)[1E]
 Coline Pannier 
 
-
-3D CHARACTER ANIMATOR (ALPHA VERSION)
+[1]3D CHARACTER ANIMATOR (ALPHA VERSION)[1E]
 Prof. Nanette Kaulig
  (TH Köln / Cologne Game Lab)
-
-
-3D CHARACTER MODELING (ALPHA VERSION)
+ 
+[1]3D CHARACTER MODELING (ALPHA VERSION)[1E]
 Sebastian Schoellhammer
 
-
-ARTIST  (ALPHA VERSION)
+[1]ARTIST  (ALPHA VERSION)[1E]
 Reine Abbas
 
-
-ARTIST  (CONCEPT  PHASE)
+[1]ARTIST  (CONCEPT  PHASE)[1E]
 Delphine Soriano
 
-
-DEVELOPER (CONCEPT PHASE)
+[1]DEVELOPER (CONCEPT PHASE)[1E]
 Dr. Zahen Malla Osman
 
 
+[0]SCIENTIFIC BOARD[0E]
 
+[1]UNHCR[1E]
+Jackie Strecker
 
-
-
-<color=#e18522><size=150%>SCIENTIFIC BOARD</size></color>
-
-
-UNHCR
-Jackie Strecker	
-
-
-CNAM PARIS
+[1]CNAM PARIS[1E]
 Prof. Stephane Natkin
 
-
-UNIVERSITY OF TAMPERE
+[1]UNIVERSITY OF TAMPERE[1E]
 Dr. Juho Hamari
 	
 
-
-<color=#e18522><size=150%>SPECIAL THANKS TO</size></color>
-
+[0]SPECIAL THANKS TO[0E]
 
 Gaby Gehlen (Wiku Köln)
 Sultana Denise Marquardt (Wiku Köln)
@@ -202,40 +180,21 @@ Mai Saki
 Fabio Cecere
 
 
-
-
-PRODUCED WITH THE GENEROUS SUPPORT OF
+[1]PRODUCED WITH THE GENEROUS SUPPORT OF[1E]
 Audio Powered by Fabric
 TextMesh Pro
 Slack
 
-
-AND THE SUPPORT OF
-
-
+[1]AND THE SUPPORT OF[1E]
 DOTween (C# library)
 Arabic Support (C# library)
 Unity
 GitHub
 
 
-
-
-
-
 The EduApp4Syria competition is funded by the Norwegian government and coordinated by the Norwegian Agency for Development Cooperation (Norad) in cooperation with
-
-
-the Norwegian University of Science and Technology (NTNU)
-
-
-All Children Reading: A Grand Challenge for Development, a partnership including the United States Agency of International Development (USAID), World Vision and the Australian Department of Foreign Affairs and Trade
-
-
-mobile operator Orange
-
-
-the Inter-Agency Network for Education in Emergencies (INEE)
-
-
+the Norwegian University of Science and Technology (NTNU),
+All Children Reading: A Grand Challenge for Development, a partnership including the United States Agency of International Development (USAID), World Vision and the Australian Department of Foreign Affairs and Trade.
+the mobile operator Orange,
+the Inter-Agency Network for Education in Emergencies (INEE).
 NOTE: Unicef Innovation has recently joined the partnership.

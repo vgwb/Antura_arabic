@@ -12,11 +12,13 @@ namespace EA4S
         [Header("Prefabs")]
         public GameObject MinigameItemPrefab;
 
-
         [Header("References")]
         public GameObject ElementsContainer;
         public TextRender ArabicText;
         public TextRender ScoreText;
+        public Image MiniGameLogoImage;
+        public Image MiniGameBadgeImage;
+        public Button LaunchGameButton;
 
         GameObject btnGO;
         PlayerBookPanel currentArea = PlayerBookPanel.None;
@@ -33,10 +35,8 @@ namespace EA4S
 
         void OpenArea(PlayerBookPanel newArea)
         {
-            if (newArea != currentArea) {
-                currentArea = newArea;
-                activatePanel(currentArea, true);
-            }
+            currentArea = newArea;
+            activatePanel(currentArea, true);
         }
 
         void activatePanel(PlayerBookPanel panel, bool status)
@@ -44,7 +44,7 @@ namespace EA4S
             switch (panel) {
 
                 case PlayerBookPanel.MiniGames:
-                    AudioManager.I.PlayDialog("Book_Games");
+                    //AudioManager.I.PlayDialog("Book_Games");
                     MinigamesPanel();
                     break;
             }
@@ -64,11 +64,23 @@ namespace EA4S
                     btnGO.GetComponent<ItemMiniGame>().Init(this, item_info);
                 }
             }
+
+            DetailMiniGame(null);
         }
 
 
         public void DetailMiniGame(MiniGameInfo info)
         {
+            if (info == null)
+            {
+                currentMiniGame = null;
+                ScoreText.text = "";
+                MiniGameLogoImage.enabled = false;
+                MiniGameBadgeImage.enabled = false;
+                LaunchGameButton.gameObject.SetActive(false);
+                return;
+            }
+
             currentMiniGame = info.data;
             AudioManager.I.PlayDialog(info.data.GetTitleSoundFilename());
 
@@ -76,6 +88,32 @@ namespace EA4S
             Output += "Score: " + info.score;
             Output += "\nPlayed: ";
             ScoreText.text = Output;
+
+            // Launch button
+            LaunchGameButton.gameObject.SetActive(true);
+            if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode)
+            {
+                LaunchGameButton.interactable = true;
+            }
+            else
+            {
+                LaunchGameButton.interactable = false;
+            }
+
+            // Set icon
+            var icoPath = currentMiniGame.GetIconResourcePath();
+            var badgePath = currentMiniGame.GetBadgeIconResourcePath();
+            MiniGameLogoImage.sprite = Resources.Load<Sprite>(icoPath);
+            MiniGameLogoImage.enabled = true;
+            if (badgePath != "")
+            {
+                MiniGameBadgeImage.enabled = true;
+                MiniGameBadgeImage.sprite = Resources.Load<Sprite>(badgePath);
+            } else
+            {
+                MiniGameBadgeImage.enabled = false;
+            }
+
         }
 
         public void OnLaunchMinigame()

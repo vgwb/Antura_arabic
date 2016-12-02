@@ -21,9 +21,9 @@ namespace EA4S
         [SerializeField]
         private Camera m_oCameraUI;
         [SerializeField]
-        private AnturaSpaceAnturaBehaviour m_oAnturaBehaviour;
-        [SerializeField]
-        private GameObject m_oItemsParentUI;
+        private AnturaBehaviour m_oAnturaBehaviour;
+        //[SerializeField]
+        //private GameObject m_oItemsParentUI;
         [SerializeField]
         private UnityEngine.UI.Button m_oCookieButton;
         [SerializeField]
@@ -34,6 +34,7 @@ namespace EA4S
 
         #region PRIVATE MEMBERS
         private eAnturaSpaceTutoState m_eTutoState = eAnturaSpaceTutoState.ANTURA_ANIM;
+        private bool m_bIsDragAnimPlaying = false;
         #endregion
 
         #region GETTER/SETTER
@@ -129,7 +130,15 @@ namespace EA4S
 
                     AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_2); //dialog drag cookies
 
+                    m_bIsDragAnimPlaying = true;
                     DrawRepeatLineOnCookieButton();
+
+                    //Register delegate to disable draw line after done
+                    UnityEngine.EventSystems.EventTrigger.Entry _oEntry = new UnityEngine.EventSystems.EventTrigger.Entry();
+                    _oEntry.eventID = UnityEngine.EventSystems.EventTriggerType.EndDrag;
+                    _oEntry.callback.AddListener((data) => { m_bIsDragAnimPlaying = false; });
+                    
+                    m_oCookieButton.GetComponent<UnityEngine.EventSystems.EventTrigger>().triggers.Add(_oEntry); //No need to delete it afterwards
 
                     break;
 
@@ -152,11 +161,12 @@ namespace EA4S
                             {
                                 AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Custom_2, delegate() //dialog click customize
                                 {
-                                    //Not knowing how many object there are, register to all buttons
+                                    /*//Not knowing how many object there are, register to all buttons
                                     foreach (var it in m_oItemsParentUI.GetComponentsInChildren<UnityEngine.UI.Button>())
                                     {
                                         it.onClick.AddListener(AdvanceTutorial);
-                                    }
+                                    }*/
+                                    m_oCustomizationButton.onClick.AddListener(AdvanceTutorial);
                                 }); 
 
                                 /*RectTransform _oRectCustomB = m_oCustomizationButton.gameObject.GetComponent<RectTransform>();
@@ -176,11 +186,12 @@ namespace EA4S
 
                     TutorialUI.Clear(false);
 
-                    //Unregister from object buttons
+                    /*//Unregister from object buttons
                     foreach (var it in m_oItemsParentUI.GetComponentsInChildren<UnityEngine.UI.Button>())
                     {
                         it.onClick.RemoveListener(AdvanceTutorial);
-                    }
+                    }*/
+                    m_oCustomizationButton.onClick.RemoveListener(AdvanceTutorial);
 
                     GlobalUI.ShowBackButton(true,delegate() { NavigationManager.I.GoToScene(AppScene.Map); });
 
@@ -206,11 +217,20 @@ namespace EA4S
         {
             TutorialUI.Clear(false);
 
-            Vector3[] _av3Path = new Vector3[2];
+            if(!m_bIsDragAnimPlaying) //stop 
+            {
+                return;
+            }
+
+            Vector3[] _av3Path = new Vector3[3];
             RectTransform _oRectCookieBDrag = m_oCookieButton.gameObject.GetComponent<RectTransform>();
             _av3Path[0] = m_oCookieButton.transform.position;
-            _av3Path[1] = _av3Path[0] + Vector3.up * 2 + Vector3.left * 2;
-            TutorialUIAnimation _oDLAnim = TutorialUI.DrawLine(_av3Path[0], _av3Path[1], TutorialUI.DrawLineMode.Finger, false, true);
+            _av3Path[1] = _av3Path[0] + Vector3.up * 4 + Vector3.left * 2;
+            _av3Path[2] = m_oCameraUI.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2));
+
+            _av3Path[2].z = _av3Path[1].z;
+
+            TutorialUIAnimation _oDLAnim = TutorialUI.DrawLine(_av3Path, TutorialUI.DrawLineMode.Finger, false, true);
             _oDLAnim.MainTween.timeScale = 0.3f;
             _oDLAnim.OnComplete(delegate()
             {

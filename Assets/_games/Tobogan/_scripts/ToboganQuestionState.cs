@@ -33,7 +33,7 @@
                 });
             }
 
-            game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+            game.Context.GetAudioManager().PlayMusic(Music.Theme6);
         }
 
         public void ExitState() { }

@@ -21,7 +21,7 @@
 
         public void ExitState()
         {
-            game.EndGame();
+            game.DancingDotsEndGame();
         }
 
         public void Update(float delta)
@@ -35,7 +35,6 @@
 
             if (timer < 0)
             {
-                game.SetCurrentState(game.ResultState);
                 AudioManager.I.StopSfx(Sfx.DangerClockLong);
                 game.SetCurrentState(game.ResultState);
                 AudioManager.I.PlayDialog("Keeper_TimeUp");

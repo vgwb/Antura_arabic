@@ -15,6 +15,7 @@ namespace EA4S
         public Color BtLockedColor = Color.red;
         public bool ToggleIconAlpha = true;
         public bool AutoAnimateClick = true;
+        public bool AutoPlayButtonFx = false;
 
         public bool IsToggled { get; private set; }
         public bool IsLocked { get; private set; }
@@ -103,6 +104,7 @@ namespace EA4S
         void OnInternalClick()
         {
             AnimateClick();
+            if (AutoPlayButtonFx) AudioManager.I.PlaySfx(Sfx.UIButtonClick);
         }
 
         #endregion

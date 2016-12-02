@@ -27,8 +27,12 @@ namespace EA4S.MakeFriends
         public GameObject letterBalloonContainer;
         public GameObject FxParticlesPoof;
         public DropZoneController dropZone;
-        public WinCelebrationController winCelebration;
+        public RoundResultAnimator roundResultAnimator;
         public MakeFriendsAnturaController antura;
+        public Transform tutorialDropZoneLocation;
+        public Transform[] tutorialLetterLocations;
+        public Vector3 correctChoiceIndicatorPosition;
+        public Camera uiCamera;
         [Header("Difficulty Override")]
         public bool overrideDifficulty;
         public MakeFriendsVariation difficultySetting;
@@ -57,7 +61,7 @@ namespace EA4S.MakeFriends
             get { return _currentScore; }
             set
             {
-                _currentScore = value; 
+                _currentScore = value;
                 if (CurrentScore == STARS_1_THRESHOLD)
                 {
                     MinigamesUI.Starbar.GotoStar(0);
@@ -143,7 +147,7 @@ namespace EA4S.MakeFriends
 
         public void PlayActiveMusic()
         {
-            AudioManager.PlayMusic(Music.Theme6);
+            AudioManager.PlayMusic(Music.Theme9);
         }
 
         public void PlayIdleMusic()
@@ -215,19 +219,23 @@ namespace EA4S.MakeFriends
 
         private IEnumerator ShowTutorialUI_Coroutine()
         {
-            yield return new WaitForSeconds(uiDelay);
+            yield return new WaitForSeconds(uiDelay + 0.5f);
 
             while (isTutorialRound)
             {
-                yield return new WaitForSeconds(uiDelay);
-
-                foreach (var choice in letterPicker.CorrectLetterChoices)
+                for (int i = 0; i < letterPicker.CorrectLetterChoices.Count; i++)
                 {
-                    var from = new Vector3(0f, -1f, -1f);
-                    var to = new Vector3(0f, 7f, 0f);
+                    var choice = letterPicker.CorrectLetterChoices[i];
 
-                    TutorialUI.DrawLine(from, to, TutorialUI.DrawLineMode.Finger, false, true);
+                    if (choice.isCorrectChoice && !choice.IsDisabled && !letterPicker.IsBlocked)
+                    {
+                        var from = choice.transform.position;
+                        var to = dropZone.transform.position;
+                        TutorialUI.SetCamera(uiCamera);
+                        TutorialUI.DrawLine(from, to, TutorialUI.DrawLineMode.Finger, false, false);
+                    }
                 }
+                yield return new WaitForSeconds(2f);
             }
         }
 
@@ -267,7 +275,7 @@ namespace EA4S.MakeFriends
                 choiceLetters = choiceLetters.GetRange(0, letterPicker.letterChoices.Length);
             }
             //Debug.Log("Added " + choiceLetters.Count + " common letters to choices");
-                
+
             int vacantChoiceLettersCount = letterPicker.letterChoices.Length - choiceLetters.Count;
 
             // Get other random letters (without repetition)
@@ -295,7 +303,7 @@ namespace EA4S.MakeFriends
                 choiceLetters.Add(letter);
                 //Debug.Log("Added " + letter.TextForLivingLetter + " to choices");
             }
-            choiceLetters.Shuffle();
+            choiceLetters = choiceLetters.Shuffle();
 
             letterPicker.DisplayLetters(choiceLetters);
             if (isTutorialRound)
@@ -351,7 +359,7 @@ namespace EA4S.MakeFriends
         public void OnLetterChoiceSelected(LetterChoiceController letterChoice)
         {
             HideLetterPicker();
-            ShowLetterPicker(feedbackDuration);
+            ShowLetterPicker(feedbackDuration + 0.75f);
 
             if (commonLetters.Exists(x => x.Id == letterChoice.letterData.Id))
             {
@@ -359,6 +367,7 @@ namespace EA4S.MakeFriends
                 //letterChoice.SpawnBalloon(true);
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
                 dropZone.AnimateCorrect();
+                TutorialUI.MarkYes(correctChoiceIndicatorPosition, TutorialUI.MarkSize.Normal);
 
                 if (!correctChoices.Exists(x => x.Id == letterChoice.letterData.Id))
                 {
@@ -381,6 +390,7 @@ namespace EA4S.MakeFriends
                 //letterChoice.SpawnBalloon(false);
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterSad);
                 dropZone.AnimateWrong();
+                TutorialUI.MarkNo(correctChoiceIndicatorPosition, TutorialUI.MarkSize.Normal);
                 dropZone.ResetLetter(feedbackDuration);
                 incorrectChoices.Add(letterChoice.letterData);
                 antura.ReactNegatively();
@@ -408,7 +418,7 @@ namespace EA4S.MakeFriends
 
         private IEnumerator EndRound_Coroutine(bool win)
         {
-            var winDelay1 = 4f;
+            var winDelay1 = leftArea.celebrationDuration + 1.5f;
             var winDelay2 = 1.5f;
             var friendlyExitDelay = leftArea.friendlyExitDuration;
             var loseDelay = 1.5f;
@@ -428,9 +438,9 @@ namespace EA4S.MakeFriends
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
                 leftArea.Celebrate();
                 rightArea.Celebrate();
-                leftArea.HighFive(leftArea.celebrationDuration + 1f);
-                rightArea.HighFive(rightArea.celebrationDuration + 1f);
-                winCelebration.Show();
+                leftArea.HighFive(leftArea.celebrationDuration);
+                rightArea.HighFive(rightArea.celebrationDuration);
+                roundResultAnimator.ShowWin();
                 if (!isTutorialRound)
                 {
                     CurrentScore++;
@@ -438,7 +448,7 @@ namespace EA4S.MakeFriends
 
                 // Exit
                 yield return new WaitForSeconds(winDelay1);
-                winCelebration.Hide();
+                roundResultAnimator.Hide();
                 leftArea.MakeFriendlyExit();
                 rightArea.MakeFriendlyExit();
 
@@ -472,7 +482,8 @@ namespace EA4S.MakeFriends
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Lose);
                 yield return new WaitForSeconds(loseDelay);
                 HideDropZone();
-                TutorialUI.MarkNo(Vector3.zero, TutorialUI.MarkSize.Huge);
+                roundResultAnimator.ShowLose();
+                //TutorialUI.MarkNo(Vector3.zero, TutorialUI.MarkSize.Huge);
                 NextRound(loseDuration);
             }
         }
@@ -529,32 +540,32 @@ namespace EA4S.MakeFriends
                 interpolant = Mathf.Sin(interpolant * Mathf.PI * 0.5f);
                 yield return new WaitForFixedUpdate();
             }
-                
-//            endGameCanvas.gameObject.SetActive(true);
-//
-//            int numberOfStars = 0;
-//
-//            if (friendships <= 0)
-//            {
-//                numberOfStars = 0;
-//                WidgetSubtitles.I.DisplaySentence("game_result_retry");
-//            }
-//            else if ((float)friendships / numberOfRounds < 0.5f)
-//            {
-//                numberOfStars = 1;
-//                WidgetSubtitles.I.DisplaySentence("game_result_fair");
-//            }
-//            else if (friendships < numberOfRounds)
-//            {
-//                numberOfStars = 2;
-//                WidgetSubtitles.I.DisplaySentence("game_result_good");
-//            }
-//            else
-//            {
-//                numberOfStars = 3;
-//                WidgetSubtitles.I.DisplaySentence("game_result_great");
-//            }
-//            starFlowers.Show(numberOfStars);
+
+            //            endGameCanvas.gameObject.SetActive(true);
+            //
+            //            int numberOfStars = 0;
+            //
+            //            if (friendships <= 0)
+            //            {
+            //                numberOfStars = 0;
+            //                WidgetSubtitles.I.DisplaySentence("game_result_retry");
+            //            }
+            //            else if ((float)friendships / numberOfRounds < 0.5f)
+            //            {
+            //                numberOfStars = 1;
+            //                WidgetSubtitles.I.DisplaySentence("game_result_fair");
+            //            }
+            //            else if (friendships < numberOfRounds)
+            //            {
+            //                numberOfStars = 2;
+            //                WidgetSubtitles.I.DisplaySentence("game_result_good");
+            //            }
+            //            else
+            //            {
+            //                numberOfStars = 3;
+            //                WidgetSubtitles.I.DisplaySentence("game_result_great");
+            //            }
+            //            starFlowers.Show(numberOfStars);
 
             PlayState.OnResult();
         }

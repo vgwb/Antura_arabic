@@ -3637,11 +3637,10 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u0625\u0646\u062C\u0627\u0635"
+      Arabic: "\u0625\u062C\u0627\u0635"
       Value: 
       Letters:
       - alef_hamza_low
-      - noon
       - jeem
       - alef
       - sad
@@ -5134,7 +5133,6 @@ MonoBehaviour:
       - alef
       - lam
       - thal
-      - yeh_hamza
       - beh
       Difficulty: 0
       Drawing: FF
@@ -5152,7 +5150,6 @@ MonoBehaviour:
       - lam
       - reh
       - alef
-      - yeh_hamza
       - ain
       Difficulty: 0
       Drawing: 24
@@ -5676,7 +5673,6 @@ MonoBehaviour:
       Value: 
       Letters:
       - thal
-      - yeh_hamza
       - beh
       Difficulty: 0
       Drawing: FF
@@ -5723,7 +5719,6 @@ MonoBehaviour:
       Letters:
       - reh
       - alef
-      - yeh_hamza
       - ain
       Difficulty: 0
       Drawing: 24

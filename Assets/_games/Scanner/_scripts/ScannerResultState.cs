@@ -7,7 +7,7 @@ namespace EA4S.Scanner
 	{
 		ScannerGame game;
 
-		float timer = 4;
+		float timer = 2;
 
 		public ScannerResultState(ScannerGame game)
 		{
@@ -16,9 +16,7 @@ namespace EA4S.Scanner
 
 		public void EnterState()
 		{
-			timer = 4;
 			AudioManager.I.PlayMusic(Music.Relax);
-
 		}
 
 		public void ExitState()

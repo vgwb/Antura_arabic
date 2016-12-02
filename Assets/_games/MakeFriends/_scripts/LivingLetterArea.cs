@@ -28,6 +28,7 @@ namespace EA4S.MakeFriends
         private Vector3 exitRotation;
 
         private int movingAwayCounter = 1;
+
         private Vector3 NextMovingAwayPosition
         {
             get
@@ -106,12 +107,8 @@ namespace EA4S.MakeFriends
 
         public void HighFive(float delay)
         {
-            if (left)
-            {
-                livingLetter.transform.localRotation = Quaternion.Euler(exitRotation_unreadable * -1f);
-            }
-
-            livingLetter.HighFive(delay);
+            var leftLivingLetterRotation = exitRotation_unreadable * -1f;
+            livingLetter.HighFive(delay, left, leftLivingLetterRotation);
         }
 
         public void Reset()
@@ -124,7 +121,5 @@ namespace EA4S.MakeFriends
             }
             movingAwayCounter = 1;
         }
-
-
     }
 }
