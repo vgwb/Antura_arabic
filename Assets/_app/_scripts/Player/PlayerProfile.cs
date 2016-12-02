@@ -59,36 +59,7 @@ namespace EA4S
         }
         #endregion
 
-        #region Antura Customization                
-        /// <summary>
-        /// The rewards unlocked
-        /// </summary>
-        public List<RewardPack> RewardsUnlocked = new List<RewardPack>();
 
-        /// <summary>
-        /// Adds the reward unlocked.
-        /// </summary>
-        /// <param name="_rewardPack">The reward pack.</param>
-        public void AddRewardUnlocked(RewardPack _rewardPack) {
-            RewardsUnlocked.Add(_rewardPack);
-            Save();
-        }
-
-        /// <summary>
-        /// The current antura customizations
-        /// </summary>
-        public AnturaCustomization CurrentAnturaCustomizations = new AnturaCustomization();
-
-        /// <summary>
-        /// Saves the customization.
-        /// </summary>
-        /// <param name="_anturaCustomization">The antura customization.</param>
-        public void SaveCustomization(AnturaCustomization _anturaCustomization) {
-            CurrentAnturaCustomizations = _anturaCustomization;
-            Save();
-        }
-        
-        #endregion
 
         #region Oldies
         public int AnturaCurrentPreset;
@@ -194,28 +165,14 @@ namespace EA4S
         /// Sets the maximum journey position and save to profile.
         /// @note: check valid data before insert.
         /// </summary>
-        /// <param name="_stage">The stage.</param>
-        /// <param name="_lb">The lb.</param>
-        /// <param name="_ps">The ps.</param>
-        /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
-        public void SetMaxJourneyPosition(int _stage, int _lb, int _ps, bool _save = true)
-        {
-            SetMaxJourneyPosition(new JourneyPosition(_stage, _lb, _ps));
-            if (_save)
-                Save();
-        }
-
-        /// <summary>
-        /// Sets the maximum journey position and save to profile.
-        /// @note: check valid data before insert.
-        /// </summary>
         /// <param name="newJourneyPosition">The journey position.</param>
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
         public void SetMaxJourneyPosition(JourneyPosition newJourneyPosition, bool _save = true)
         {
             if (AppManager.I.Player.MaxJourneyPosition.isMinor(newJourneyPosition)) {
-                AppManager.I.Player.MaxJourneyPosition = newJourneyPosition;
-                AppManager.I.Player.CurrentJourneyPosition = newJourneyPosition;
+                AppManager.I.Player.ResetPlaySessionMinigame();
+                AppManager.I.Player.MaxJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
+                AppManager.I.Player.CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
                 if (_save) {
                     Save();
                 }
@@ -235,9 +192,40 @@ namespace EA4S
         }
         #endregion
 
+        #region Antura Customization                
+        /// <summary>
+        /// The rewards unlocked
+        /// </summary>
+        public List<RewardPack> RewardsUnlocked = new List<RewardPack>();
+
+        /// <summary>
+        /// Adds the reward unlocked.
+        /// </summary>
+        /// <param name="_rewardPack">The reward pack.</param>
+        public void AddRewardUnlocked(RewardPack _rewardPack) {
+            RewardsUnlocked.Add(_rewardPack);
+            Save();
+        }
+
+        /// <summary>
+        /// The current antura customizations
+        /// </summary>
+        public AnturaCustomization CurrentAnturaCustomizations = new AnturaCustomization();
+
+        /// <summary>
+        /// Saves the customization.
+        /// </summary>
+        /// <param name="_anturaCustomization">The antura customization.</param>
+        public void SaveCustomization(AnturaCustomization _anturaCustomization) {
+            CurrentAnturaCustomizations = _anturaCustomization;
+            Save();
+        }
+
+        #endregion
+
         #region Profile completion
 
-        #region First contact (ProfileCompletion = 1 & 2)
+        #region First Contact (ProfileCompletion = 1 & 2)
         /// <summary>
         /// Determines whether [is first contact].
         /// </summary>

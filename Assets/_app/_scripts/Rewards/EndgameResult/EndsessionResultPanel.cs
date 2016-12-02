@@ -122,6 +122,7 @@ namespace EA4S
             yield return new WaitForSeconds(1);
 
             // Show bar
+            if (_alreadyUnlockedRewards > 2) _alreadyUnlockedRewards = 2;
             while (_alreadyUnlockedRewards > -1) {
                 Bar.Achievements[_alreadyUnlockedRewards].AchieveReward(true, true);
                 _alreadyUnlockedRewards--;

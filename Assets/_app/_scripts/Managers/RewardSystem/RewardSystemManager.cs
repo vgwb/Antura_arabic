@@ -290,6 +290,27 @@ namespace EA4S {
         }
         #endregion
 
+        #region Helpers
+
+        /// <summary>
+        /// Unlocks all rewards.
+        /// </summary>
+        public static void UnlockAllRewards() {
+            Debug.Log("Unlocking a lot of rewards");
+            // First reward manual add
+            AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward));
+            var actualCurrentJourneyPosition = AppManager.I.Player.CurrentJourneyPosition;
+            var allPlaySessionInfos = AppManager.I.Teacher.scoreHelper.GetAllPlaySessionInfo();
+            for (int i = 0; i < allPlaySessionInfos.Count; i++) {
+                AppManager.I.Player.SetCurrentJourneyPosition(AppManager.I.Teacher.journeyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id));
+                foreach (RewardPack pack in RewardSystemManager.GetNextRewardPack()) {
+                    AppManager.I.Player.AddRewardUnlocked(pack);
+                }
+            }
+            AppManager.I.Player.SetCurrentJourneyPosition(actualCurrentJourneyPosition);
+        }
+        #endregion
+
         #endregion
 
         #region RewardAI                
@@ -581,8 +602,6 @@ namespace EA4S {
         texture,
         decal,
     }
-
-
-
+    
     #endregion
 }

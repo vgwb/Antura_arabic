@@ -25,10 +25,10 @@
             if (Stage < other.Stage) {
                 return true;
             }
-            if (Stage == other.Stage && LearningBlock < other.LearningBlock) {
+            if (Stage <= other.Stage && LearningBlock < other.LearningBlock) {
                 return true;
             }
-            if (Stage == other.Stage && LearningBlock == other.LearningBlock && PlaySession < other.PlaySession) {
+            if (Stage <= other.Stage && LearningBlock <= other.LearningBlock && PlaySession < other.PlaySession) {
                 return true;
             }
             return false;

@@ -1,12 +1,11 @@
-﻿using ModularFramework.Modules;
-
+﻿
 namespace EA4S
 {
     public static class AppConstants
     {
-        public const string AppVersion = "0.12.02c";
+        public const string AppVersion = "NORAD beta";
         public const string DbSchemeVersion = "1";
-        public const bool DebugPanelEnabled = true;
+        public const bool DebugPanelEnabled = false;
         public const bool UseUnityAnalytics = true;
         public static bool VerboseLogging = false;
 
