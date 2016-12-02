@@ -460,7 +460,7 @@ public partial class SROptions
     [Sort(7)]
     public void UnlockAll()
     {
-        AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(6, 14, 1), true);
+        AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(6, 15, 100), true);
         SRDebug.Instance.HideDebugPanel();
         SRDebug.Instance.ShowDebugPanel();
     }
