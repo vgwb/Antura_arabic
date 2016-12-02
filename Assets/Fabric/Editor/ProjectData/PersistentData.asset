@@ -11,32 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 927041872, guid: e63091ca6420aef40badd679c391c90a, type: 3}
   m_Name: PersistentData
   m_EditorClassIdentifier: 
-  _eventLogFilterEventActions:
-  - 1
-  - 1
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  _eventLogFilterEventActions: 010100000000000000000000000000000000000000000000
   _displayEventMonitorSceneInfo: 1
   _displayAudioClipWaveform: 1
   _playmodePersistance: 1
+  _audioAssetImporter: 0
   _maxRandomization3DDistance: 1000
+  _enableHiearchyIcons: 1
+  _reaperPath: C:/Program Files/REAPER (x64)/reaper.exe
+  _eventLogColor: {r: 0, g: 1, b: 0, a: 1}
