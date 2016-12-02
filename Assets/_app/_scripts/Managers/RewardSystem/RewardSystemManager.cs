@@ -581,8 +581,6 @@ namespace EA4S {
         texture,
         decal,
     }
-
-
-
+    
     #endregion
 }
