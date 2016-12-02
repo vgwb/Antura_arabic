@@ -12,7 +12,6 @@
         public IQuestionProvider Questions { get; set; }
         public float Difficulty { get; set; }
         public MixedLettersVariation Variation { get; set; }
-        public IQuestionProvider MixedLettersQuestions { get; set; }
 
         /////////////////
         // Singleton Pattern
@@ -32,7 +31,7 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            MixedLettersQuestions = new SampleQuestionProvider();
+            Questions = new SampleQuestionProvider();
             Context = new SampleGameContext();
             Difficulty = 0.5f;
         }
