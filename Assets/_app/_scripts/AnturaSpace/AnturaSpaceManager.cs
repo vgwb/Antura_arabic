@@ -24,9 +24,8 @@ namespace EA4S
         [SerializeField]
         private Music m_oBackgroundMusic;
 
-        [Header("Test")]
-        [SerializeField]
-        private int m_iTotalBones_Local = 10; //setted value is used only if in Editor 
+        
+       
 
 
         #endregion
@@ -39,10 +38,10 @@ namespace EA4S
         private GameObject m_oCookieRootContainer;
         private BoneBehaviour m_oDraggedBone;
         private AnturaBehaviour m_oAnturaBehaviour;
-
+ 
+        private int m_iTotalBones_Local = 0; //maybe it's redundant, but can be useful for testing purpose 
         #endregion
 
-        
         #region INTERNALS
         void Start()
         {
@@ -246,7 +245,6 @@ namespace EA4S
             //others specific...
             //goElement.GetComponent<Rigidbody>().isKinematic = m_oBonePrefabRigidboy.isKinematic;
         }
-        #endregion
 
         /// <summary>
         /// Decrease the total number of bones of the player.
@@ -257,5 +255,8 @@ namespace EA4S
             m_iTotalBones_Local = --AppManager.I.Player.TotalNumberOfBones;
             m_oTextBonesNumber.text = "" + (m_iTotalBones_Local);
         }
+        #endregion
+
+
     }
 }
