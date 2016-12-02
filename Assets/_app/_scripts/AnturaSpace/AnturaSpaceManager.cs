@@ -53,7 +53,6 @@ namespace EA4S
 
 #if UNITY_EDITOR
             //just use the editor value
-            m_iTotalBones_Local = AppManager.I.Player.GetTotalNumberOfBones();
 #else
             m_iTotalBones_Local = AppManager.I.Player.GetTotalNumberOfBones();
 #endif

@@ -84,19 +84,9 @@ namespace EA4S
 
         }
 
-        public void GoUnlockAllRewards() { 
-            Debug.Log("Unlocking a lot of rewards");
-            var actualCurrentJourneyPosition = AppManager.I.Player.CurrentJourneyPosition;
-            var allPlaySessionInfos = AppManager.I.Teacher.scoreHelper.GetAllPlaySessionInfo();
-            for (int i = 0; i < allPlaySessionInfos.Count; i++)
-            {
-                AppManager.I.Player.SetCurrentJourneyPosition(AppManager.I.Teacher.journeyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id));
-                foreach (RewardPack pack in RewardSystemManager.GetNextRewardPack())
-                {
-                    AppManager.I.Player.AddRewardUnlocked(pack);
-                }
-            }
-            AppManager.I.Player.SetCurrentJourneyPosition(actualCurrentJourneyPosition);
+        public void GoUnlockAllRewards() {
+            // moved to centralized location
+            RewardSystemManager.UnlockAllRewards();
         }
 
         #region Super Dog Helpers
