@@ -238,7 +238,8 @@ namespace EA4S
         void SelectSwatch(RewardColorItem _colorData)
         {
             foreach (AnturaSpaceSwatchButton item in btsSwatches) item.Toggle(item.Data == _colorData);
-            RewardSystemManager.SelectRewardColorItem(_colorData.ID, currRewardType);
+            if (_colorData != null) RewardSystemManager.SelectRewardColorItem(_colorData.ID, currRewardType);
+            else Debug.Log("SelectSwatch > _colorData is NULL!");
         }
 
         #endregion
