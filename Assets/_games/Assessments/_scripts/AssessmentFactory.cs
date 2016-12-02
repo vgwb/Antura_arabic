@@ -41,6 +41,34 @@ namespace EA4S.Assessment
                                             gameDescription);
         }
 
+        internal static IAssessment CreateOrderLettersInWordAssessment()
+        {
+            Init();
+            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
+            AssessmentConfiguration.Instance.ShowQuestionAsImage = true;
+
+            // V- -- NO LONGER NEED DEFAULT DRAG BEHAVIOUR
+            IDragManager dragManager = new SortingDragManager( audioManager, context.GetCheckmarkWidget());
+            IQuestionDecorator questionDecorator = new PronunceImageDecorator(); // OK
+
+            // V- 100% -- TWEAK TO NO REMOVE LETTER
+            IQuestionGenerator generator = new ImageQuestionGenerator( configuration.Questions, false);
+
+            // V- 100% -- INJECT DIFFERENT COMPONENTS (Answers have to be "Bucketable", Question no placeholder)
+            ILogicInjector injector = new SortingLogicInjector( dragManager, questionDecorator);
+            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager, wordSize, letterSize); // OK
+
+            // V- 100% -- Letters sorted and ticketed
+            IAnswerPlacer answerPlacer = new InARowAnswerPlacer( audioManager, letterSize);
+
+            gameDescription = Db.LocalizationDataId.Assessment_Order_Letters;
+
+            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
+                                            configuration, context, dialogueManager,
+                                            gameDescription);
+        }
+
         internal static IAssessment CreateCompleteWordAssessment()
         {
             //TODO: Show Image
@@ -77,7 +105,7 @@ namespace EA4S.Assessment
 
             gameDescription = Db.LocalizationDataId.Assessment_Match_Letters_Words;
 
-            return new DefaultAssessment(answerPlacer, questionplacer, generator, injector,
+            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
                                             configuration, context, dialogueManager,
                                             gameDescription);
         }
