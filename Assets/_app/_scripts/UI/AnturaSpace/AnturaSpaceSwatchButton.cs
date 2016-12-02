@@ -18,6 +18,8 @@ namespace EA4S
 
         public override void Lock(bool _doLock)
         {
+            base.Lock(_doLock);
+
             IcoLock.SetActive(_doLock);
             if (_doLock) IcoNew.SetActive(false);
         }
