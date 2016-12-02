@@ -34,11 +34,13 @@ namespace EA4S.HideAndSeek
 
             if(win)
             {
+                view.SetState(LLAnimationStates.LL_dancing);
                 view.DoDancingWin();
             }
             else
             {
-               view.DoDancingLose();
+                view.SetState(LLAnimationStates.LL_dancing);
+                view.DoDancingLose();
             }
         }
         

@@ -180,11 +180,13 @@ namespace EA4S.MissingLetter
         #region VARS
         public GameObject m_oLetterPrefab;
         public GameObject m_oAntura;
-        public GameObject m_oEmoticonsController;
-        public GameObject m_oParticleSystem;
-        public Collider m_oFeedBackDisableLetters;
 
+        public GameObject m_oEmoticonsController;
         public MissingLetterEmoticonsMaterials m_oEmoticonsMaterials;
+
+        public GameObject m_oParticleSystem;
+        public GameObject m_oSuggestionLight;
+        public Collider m_oFeedBackDisableLetters;
 
         public Transform m_oQuestionCamera;
         public Transform m_oAnswerCamera;
