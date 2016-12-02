@@ -7,8 +7,9 @@ namespace EA4S
     [RequireComponent(typeof(RewardsAnimator))]
     public class RewardsManager : MonoBehaviour
     {
+        public AnturaAnimationStates AnturaAnimation = AnturaAnimationStates.sitting;
         [Header("References")]
-        public Antura AnturaController;
+        public AnturaAnimationController AnturaAnimController;
 
         int tutorialIndex = 10;
 
@@ -42,7 +43,7 @@ namespace EA4S
                 //LoggerEA4S.Log("app", "Reward", "get_reward", "3");
                 LogManager.I.LogInfo(InfoEvent.Reward, "reward:3");
             }
-            //AnturaController.SetPreset(AppManager.I.Player.AnturaCurrentPreset);
+            AnturaAnimController.State = AnturaAnimation;
             SceneTransitioner.Close();
             ShowReward();
             //ShowTutor();

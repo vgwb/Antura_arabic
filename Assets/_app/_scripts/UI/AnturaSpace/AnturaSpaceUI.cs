@@ -14,7 +14,8 @@ namespace EA4S
         public LayerMask RewardsLayer;
         public bool FlipRewards = true;
         [Header("References")]
-        public UIButton BtOpenModsPanel, BTRemoveMods;
+        public UIButton BtOpenModsPanel;
+        public UIButton BTRemoveMods;
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
         public AnturaSpaceItemButton BtItemMain;
         public UIButton BtBones;
@@ -141,6 +142,8 @@ namespace EA4S
         }
         IEnumerator CO_SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
         {
+            BTRemoveMods.gameObject.SetActive(false);
+
             // Get rewards list
             currCategory = _category;
             currRewardType = CategoryToRewardType(_category);
@@ -173,7 +176,7 @@ namespace EA4S
                     item.SetAsNew(rewardData.IsNew);
                     item.Toggle(rewardData.IsSelected);
                     if (rewardData.IsSelected) selectedRewardData = rewardData;
-                }
+                } else item.Toggle(false);
                 item.Lock(rewardData == null);
             }
 
@@ -182,12 +185,15 @@ namespace EA4S
 
             // Select eventual reward
             if (selectedRewardData != null) SelectReward(selectedRewardData);
+            else showSwatchesTween.Rewind();
         }
 
         void SelectReward(RewardItem _rewardData)
         {
             showSwatchesTween.Rewind();
-            BTRemoveMods.gameObject.SetActive(_rewardData != null);
+            bool isTextureOrDecal = currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture
+                                  || currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
+            BTRemoveMods.gameObject.SetActive(!isTextureOrDecal && _rewardData != null);
             if (_rewardData == null) {
                 foreach (AnturaSpaceItemButton item in btsItems) item.Toggle(false);
                 if (currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears) {
@@ -218,7 +224,7 @@ namespace EA4S
                     swatch.Toggle(swatchData.IsSelected);
                     swatch.SetColors(GenericUtilities.HexToColor(swatchData.Color1RGB), GenericUtilities.HexToColor(swatchData.Color2RGB));
                     if (swatchData.IsSelected) selectedSwatchData = swatchData;
-                }
+                } else swatch.Toggle(false);
                 swatch.Lock(swatchData == null);
             }
 
