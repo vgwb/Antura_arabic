@@ -32,6 +32,16 @@ namespace EA4S.Assessment
             width = height * mainCamera.aspect;
         }
 
+        public float YMin()
+        {
+            return -height / 2 + 0.7f * LetterSize();
+        }
+
+        public float YMax()
+        {
+            return -LetterSize()*1.5f;
+        }
+
         public Vector3 RandomAnswerPosition()
         {
             float questionXmin = QuestionSpaceStart().x;
@@ -39,8 +49,8 @@ namespace EA4S.Assessment
             float questionYmin = height / 2 - 2f - 3 * LetterSize();
             float xMin = - width / 2 + 0.7f * LetterSize();
             float xMax = width / 2 - 0.7f * LetterSize();
-            float yMin = height / 2 - TopMargin();
-            float yMax = - height / 2 + 0.7f * LetterSize();
+            float yMin = YMin();
+            float yMax = YMax();
 
             Vector3 pos = Vector3.zero;
             pos.z = DefaultZ();
