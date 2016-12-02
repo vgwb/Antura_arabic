@@ -1210,7 +1210,7 @@ MonoBehaviour:
       Initial_Unicode: FE8B
       Medial_Unicode: FE8C
       Final_Unicode: FE8A
-      Symbol_Unicode: 
+      Symbol_Unicode: 0621
       FinalFix: 
       MedialFix: 1
       Old_Isolated: 
