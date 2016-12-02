@@ -31,6 +31,7 @@ namespace EA4S.MakeFriends
         public MakeFriendsAnturaController antura;
         public Transform tutorialDropZoneLocation;
         public Transform[] tutorialLetterLocations;
+        public Camera uiCamera;
         [Header("Difficulty Override")]
         public bool overrideDifficulty;
         public MakeFriendsVariation difficultySetting;
@@ -225,15 +226,15 @@ namespace EA4S.MakeFriends
                 {
                     var choice = letterPicker.CorrectLetterChoices[i];
 
-                    if (choice.isCorrectChoice)
+                    if (choice.isCorrectChoice && !choice.IsDisabled && !letterPicker.IsBlocked)
                     {
                         var from = choice.transform.position;
                         var to = dropZone.transform.position;
-                        TutorialUI.SetCamera(Camera.main);
+                        TutorialUI.SetCamera(uiCamera);
                         TutorialUI.DrawLine(from, to, TutorialUI.DrawLineMode.Finger, false, false);
                     }
                 }
-                yield return new WaitForSeconds(2.5f);
+                yield return new WaitForSeconds(2f);
             }
         }
 
