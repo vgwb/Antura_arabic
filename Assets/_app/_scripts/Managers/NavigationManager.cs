@@ -120,9 +120,9 @@ namespace EA4S
             }
         }
 
+
         public void MaxJourneyPosistionProgress()
         {
-            AppManager.I.Player.ResetPlaySessionMinigame();
             AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
         }
 

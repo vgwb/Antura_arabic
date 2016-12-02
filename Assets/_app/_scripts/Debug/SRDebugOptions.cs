@@ -493,8 +493,8 @@ public partial class SROptions
         JourneyPosition next = AppManager.I.Teacher.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
         if (next != null)
         {
-            AppManager.I.Player.SetMaxJourneyPosition(next);
-            AppManager.I.Player.SetCurrentJourneyPosition(next);
+            AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(next.Stage, next.LearningBlock, next.PlaySession));
+            AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(next.Stage, next.LearningBlock, next.PlaySession));
         }
     }
 

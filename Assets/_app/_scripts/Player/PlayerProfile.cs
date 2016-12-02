@@ -170,8 +170,9 @@ namespace EA4S
         public void SetMaxJourneyPosition(JourneyPosition newJourneyPosition, bool _save = true)
         {
             if (AppManager.I.Player.MaxJourneyPosition.isMinor(newJourneyPosition)) {
-                AppManager.I.Player.MaxJourneyPosition = newJourneyPosition;
-                AppManager.I.Player.CurrentJourneyPosition = newJourneyPosition;
+                AppManager.I.Player.ResetPlaySessionMinigame();
+                AppManager.I.Player.MaxJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
+                AppManager.I.Player.CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
                 if (_save) {
                     Save();
                 }
