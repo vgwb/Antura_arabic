@@ -27,10 +27,11 @@ namespace EA4S.MakeFriends
         public GameObject letterBalloonContainer;
         public GameObject FxParticlesPoof;
         public DropZoneController dropZone;
-        public WinCelebrationController winCelebration;
+        public RoundResultAnimator roundResultAnimator;
         public MakeFriendsAnturaController antura;
         public Transform tutorialDropZoneLocation;
         public Transform[] tutorialLetterLocations;
+        public Vector3 correctChoiceIndicatorPosition;
         public Camera uiCamera;
         [Header("Difficulty Override")]
         public bool overrideDifficulty;
@@ -358,7 +359,7 @@ namespace EA4S.MakeFriends
         public void OnLetterChoiceSelected(LetterChoiceController letterChoice)
         {
             HideLetterPicker();
-            ShowLetterPicker(feedbackDuration);
+            ShowLetterPicker(feedbackDuration + 0.75f);
 
             if (commonLetters.Exists(x => x.Id == letterChoice.letterData.Id))
             {
@@ -366,6 +367,7 @@ namespace EA4S.MakeFriends
                 //letterChoice.SpawnBalloon(true);
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
                 dropZone.AnimateCorrect();
+                TutorialUI.MarkYes(correctChoiceIndicatorPosition, TutorialUI.MarkSize.Normal);
 
                 if (!correctChoices.Exists(x => x.Id == letterChoice.letterData.Id))
                 {
@@ -388,6 +390,7 @@ namespace EA4S.MakeFriends
                 //letterChoice.SpawnBalloon(false);
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterSad);
                 dropZone.AnimateWrong();
+                TutorialUI.MarkNo(correctChoiceIndicatorPosition, TutorialUI.MarkSize.Normal);
                 dropZone.ResetLetter(feedbackDuration);
                 incorrectChoices.Add(letterChoice.letterData);
                 antura.ReactNegatively();
@@ -437,7 +440,7 @@ namespace EA4S.MakeFriends
                 rightArea.Celebrate();
                 leftArea.HighFive(leftArea.celebrationDuration);
                 rightArea.HighFive(rightArea.celebrationDuration);
-                winCelebration.Show();
+                roundResultAnimator.ShowWin();
                 if (!isTutorialRound)
                 {
                     CurrentScore++;
@@ -445,7 +448,7 @@ namespace EA4S.MakeFriends
 
                 // Exit
                 yield return new WaitForSeconds(winDelay1);
-                winCelebration.Hide();
+                roundResultAnimator.Hide();
                 leftArea.MakeFriendlyExit();
                 rightArea.MakeFriendlyExit();
 
@@ -479,7 +482,8 @@ namespace EA4S.MakeFriends
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Lose);
                 yield return new WaitForSeconds(loseDelay);
                 HideDropZone();
-                TutorialUI.MarkNo(Vector3.zero, TutorialUI.MarkSize.Huge);
+                roundResultAnimator.ShowLose();
+                //TutorialUI.MarkNo(Vector3.zero, TutorialUI.MarkSize.Huge);
                 NextRound(loseDuration);
             }
         }
