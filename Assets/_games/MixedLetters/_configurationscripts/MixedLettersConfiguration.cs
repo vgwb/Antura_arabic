@@ -49,7 +49,7 @@
                     builder = new AlphabetQuestionBuilder(parameters: builderParams);
                     break;
                 case MixedLettersVariation.Spelling:
-                    builder = new LettersInWordQuestionBuilder(nPacks, useAllCorrectLetters:true, parameters: builderParams);
+                    builder = new LettersInWordQuestionBuilder(nPacks, maximumWordLength: 6, useAllCorrectLetters: true, parameters: builderParams);
                     break;
             }
 
