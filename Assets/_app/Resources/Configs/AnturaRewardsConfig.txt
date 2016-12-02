@@ -92,7 +92,7 @@
       "Done" : "DONE",
       "BoneAttach" : "dog_head",
       "Material1" : "specular_saturated_2side",
-      "Material2" : "trasparent_saturated",
+      "Material2" : "transparent_saturated_2side",
       "Category" : "NOSE",
       "RemTongue" : ""
     },
