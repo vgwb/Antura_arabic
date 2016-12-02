@@ -3,7 +3,7 @@ namespace EA4S
 {
     public static class AppConstants
     {
-        public const string AppVersion = "NORAD beta";
+        public const string AppVersion = "0.55.0";
         public const string DbSchemeVersion = "1";
         public const bool DebugPanelEnabled = true;
         public const bool UseUnityAnalytics = true;
