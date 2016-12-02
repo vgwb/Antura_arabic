@@ -215,9 +215,10 @@ namespace EA4S.Assessment
             List< IAnswer> answers = new List< IAnswer>();
 
             int correctCount = 0;
-            Debug.Log( "CURRENT CATEGORY: " + currentCategory);
             for(int i=0; i<amount; i++)
             {
+                // If crashed here => not enough buckets => Because teacher cannot find enough data
+                // Session number X.X.XX should probably raised a bit.
                 var answer = answersBuckets[currentCategory].Pull();
                 var correctAnsw = GenerateCorrectAnswer( answer);
 
