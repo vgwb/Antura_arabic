@@ -460,7 +460,7 @@ public partial class SROptions
     [Sort(7)]
     public void UnlockAll()
     {
-        AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(6, 14, 1), true);
+        AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(6, 15, 100), true);
         SRDebug.Instance.HideDebugPanel();
         SRDebug.Instance.ShowDebugPanel();
     }
@@ -491,7 +491,16 @@ public partial class SROptions
             Debug.LogFormat("Pack added: {0}", pack.ToString());
         }
         JourneyPosition next = AppManager.I.Teacher.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
-        AppManager.I.Player.SetMaxJourneyPosition(next);
-        AppManager.I.Player.SetCurrentJourneyPosition(next);
+        if (next != null)
+        {
+            AppManager.I.Player.SetMaxJourneyPosition(next);
+            AppManager.I.Player.SetCurrentJourneyPosition(next);
+        }
+    }
+
+    [Category("Rewards")]
+    [Sort(3)]
+    public void UnlockAllRewards() {
+        RewardSystemManager.UnlockAllRewards();
     }
 }

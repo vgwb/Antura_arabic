@@ -30,8 +30,7 @@ namespace EA4S.Teacher
 
         public void LogInfo(string session, InfoEvent infoEvent, string parametersString = "")
         {
-            if (AppManager.I.DB == null)
-            {
+            if (AppManager.I.DB == null) {
                 Debug.Log("No DB to log to. Player profile is probably not set");
                 return;
             }
@@ -128,16 +127,19 @@ namespace EA4S.Teacher
 
         public void LogMiniGameScore(MiniGameCode miniGameCode, float score)
         {
+            if (AppConstants.VerboseLogging) Debug.Log("LogMiniGameScore " + miniGameCode + " / " + score);
             UpdateScoreDataWithMaximum(DbTables.MiniGames, (miniGameCode).ToString(), score);
         }
 
         public void LogPlaySessionScore(string playSessionId, float score)
         {
+            if (AppConstants.VerboseLogging) Debug.Log("LogPlaySessionScore " + playSessionId + " / " + score);
             UpdateScoreDataWithMaximum(DbTables.PlaySessions, (playSessionId).ToString(), score);
         }
 
         public void LogLearningBlockScore(int learningBlock, float score)
         {
+            if (AppConstants.VerboseLogging) Debug.Log("LogLearningBlockScore " + learningBlock + " / " + score);
             UpdateScoreDataWithMaximum(DbTables.LearningBlocks, (learningBlock).ToString(), score);
         }
 

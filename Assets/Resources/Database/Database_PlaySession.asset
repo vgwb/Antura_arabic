@@ -7560,10 +7560,12 @@ MonoBehaviour:
       - letsgo_R
       - areyouready_Q
       - yesiamready_R
-      - question_1
-      - question_2
-      - question_3
-      - question_4
+      - whatisyourname_Q
+      - mynameissamer_R
+      - whatisthetimenow_Q
+      - itis10oclockinthemorning_R
+      - doyouneedhelp_Q
+      - yesplease_R
     - Id: 6.1.2
       Stage: 6
       LearningBlock: 1

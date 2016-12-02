@@ -1,8 +1,10 @@
-﻿namespace EA4S {
+﻿namespace EA4S
+{
     /// <summary>
     /// Interface for Log Manager providers.
     /// </summary>
-    public interface ILogManager {
+    public interface ILogManager
+    {
 
         /// <summary>
         /// Initializes the gameplay log session.
@@ -21,20 +23,7 @@
         /// Called when minigame is finished.
         /// </summary>
         /// <param name="_valuation">The valuation.</param>
-        void OnGameplaySessionResult(int _valuation);
-
-        /// <summary>
-        /// Logs the play session score.
-        /// </summary>
-        /// <param name="_score">The score.</param>
-        void LogPlaySessionScore(float _score);
-
-        /// <summary>
-        /// Logs the learning block score.
-        /// </summary>
-        /// <param name="_learningBlock">The learning block.</param>
-        /// <param name="_score">The score.</param>
-        void LogLearningBlockScore(int _learningBlock, float _score);
+        void OnMiniGameResult(int _valuation);
 
         /// <summary>
         /// Called when player perform a [gameplay skill action] action during gameplay. .

@@ -51,11 +51,7 @@ namespace EA4S
 
             AudioManager.I.PlayMusic(m_oBackgroundMusic);
 
-#if UNITY_EDITOR
-            //just use the editor value
-#else
             m_iTotalBones_Local = AppManager.I.Player.GetTotalNumberOfBones();
-#endif
 
             m_oTextBonesNumber.text = "" + m_iTotalBones_Local;
 
@@ -258,13 +254,8 @@ namespace EA4S
         /// </summary>
         private void DecreaseBonesNumber()
         {
-#if UNITY_EDITOR
-
-            m_oTextBonesNumber.text = "" + (--m_iTotalBones_Local);
-#else
             m_iTotalBones_Local = --AppManager.I.Player.TotalNumberOfBones;
             m_oTextBonesNumber.text = "" + (m_iTotalBones_Local);
-#endif
         }
     }
 }
