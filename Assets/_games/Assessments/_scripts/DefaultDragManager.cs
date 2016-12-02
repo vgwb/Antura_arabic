@@ -173,5 +173,10 @@ namespace EA4S.Assessment
                 this.droppable = null;
             }
         }
+
+        public void OnAnswerAdded()
+        {
+            
+        }
     }
 }

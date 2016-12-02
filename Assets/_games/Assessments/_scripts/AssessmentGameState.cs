@@ -47,6 +47,9 @@ namespace EA4S.Assessment
 
                 case AssessmentCode.CompleteWord:
                     return AssessmentFactory.CreateCompleteWordAssessment();
+
+                case AssessmentCode.OrderLettersOfWord:
+                    return AssessmentFactory.CreateOrderLettersInWordAssessment();
             }
 
             return null;

@@ -83,6 +83,7 @@ namespace EA4S.Assessment
 
         public IQuestion GetNextQuestion()
         {
+            Debug.Log("GetNextQuestion");
             if (state != QuestionGeneratorState.Initialized)
                 throw new InvalidOperationException( "Not Initialized");
 
@@ -106,15 +107,17 @@ namespace EA4S.Assessment
                 totalAnswers.Add( wrongAnsw);
             }
 
+            Debug.Log("PRE");
             int correctCount = 0;
             foreach (var correct in currentPack.GetCorrectAnswers())
             {
                 var correctAnsw = GenerateCorrectAnswer( correct);
-
+                Debug.Log("Added");
                 correctCount++;
                 answers.Add( correctAnsw);
                 totalAnswers.Add( correctAnsw);
             }
+            Debug.Log("POST");
 
             partialAnswers = answers.ToArray();
 
