@@ -430,7 +430,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: e53cc77f757e410439c4403ca5401538, type: 2}
+      objectReference: {fileID: 9100000, guid: b3321dbe040655b47bc1f069983664d6, type: 2}
     - target: {fileID: 1000010529980692, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
       propertyPath: m_Name
       value: LLPrefab (3)
@@ -550,7 +550,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: e53cc77f757e410439c4403ca5401538, type: 2}
+      objectReference: {fileID: 9100000, guid: b3321dbe040655b47bc1f069983664d6, type: 2}
     - target: {fileID: 1000010529980692, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
       propertyPath: m_Name
       value: LLPrefab (2)
@@ -1993,6 +1993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066929f51bc1f4044a1b0f3e3f74eacf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeOut: 0
   intensity: 2.5
   color: {r: 0, g: 0, b: 0, a: 1}
   vignetteShader: {fileID: 4800000, guid: 022619c425ba9954fa18d4e5299f1f6c, type: 3}
@@ -3112,6 +3113,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
 --- !u!1001 &993986125
 Prefab:
   m_ObjectHideFlags: 0
@@ -3783,7 +3785,6 @@ GameObject:
   - 114: {fileID: 1167005736}
   - 114: {fileID: 1167005734}
   - 114: {fileID: 1167005738}
-  - 114: {fileID: 1167005737}
   m_Layer: 0
   m_Name: HideAndSeekGameManager
   m_TagString: Untagged
@@ -3861,17 +3862,6 @@ MonoBehaviour:
   TutorialManager: {fileID: 1167005738}
   isTimesUp: 0
   inGame: 0
---- !u!114 &1167005737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1167005733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93cb4904d19cb4a849fe61999ddb3592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1167005738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4248,7 +4238,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: e53cc77f757e410439c4403ca5401538, type: 2}
+      objectReference: {fileID: 9100000, guid: b3321dbe040655b47bc1f069983664d6, type: 2}
     - target: {fileID: 1000010529980692, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
       propertyPath: m_Name
       value: LLPrefab (5)
@@ -4573,7 +4563,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: e53cc77f757e410439c4403ca5401538, type: 2}
+      objectReference: {fileID: 9100000, guid: b3321dbe040655b47bc1f069983664d6, type: 2}
     - target: {fileID: 1000010529980692, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
       propertyPath: m_Name
       value: LLPrefab (1)
@@ -4646,7 +4636,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: e53cc77f757e410439c4403ca5401538, type: 2}
+      objectReference: {fileID: 9100000, guid: b3321dbe040655b47bc1f069983664d6, type: 2}
     - target: {fileID: 1000010529980692, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
       propertyPath: m_Name
       value: LLPrefab (0)
@@ -4752,7 +4742,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: e53cc77f757e410439c4403ca5401538, type: 2}
+      objectReference: {fileID: 9100000, guid: b3321dbe040655b47bc1f069983664d6, type: 2}
     - target: {fileID: 1000010529980692, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
       propertyPath: m_Name
       value: LLPrefab (6)
@@ -6946,7 +6936,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: e53cc77f757e410439c4403ca5401538, type: 2}
+      objectReference: {fileID: 9100000, guid: b3321dbe040655b47bc1f069983664d6, type: 2}
     - target: {fileID: 1000010529980692, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
       propertyPath: m_Name
       value: LLPrefab (4)
@@ -7795,6 +7785,7 @@ MonoBehaviour:
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
   AutoAnimateClick: 1
+  AutoPlayButtonFx: 0
 --- !u!1 &1857357493
 GameObject:
   m_ObjectHideFlags: 0

@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -2467,7 +2467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -3125,7 +3125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -3650,7 +3650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -4283,7 +4283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -4555,7 +4555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -4895,7 +4895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -5288,7 +5288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -6673,7 +6673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -7149,7 +7149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -7557,7 +7557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -7899,7 +7899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -8436,7 +8436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -8640,7 +8640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -8889,7 +8889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -9093,7 +9093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -9740,7 +9740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
@@ -11163,7 +11163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
-  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  BtLockedColor: {r: 0.9490197, g: 0.72156864, b: 0.18823531, a: 0}
   ToggleIconAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0

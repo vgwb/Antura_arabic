@@ -96,7 +96,7 @@ namespace EA4S.MissingLetter
                 clicked.PlayAnimation(LLAnimationStates.LL_still);
                 clicked.mLetter.DoHorray();
 
-                PlayPartcileSystem(m_aoCurrentQuestionScene[0].transform.position + Vector3.up * 2);
+                PlayParticleSystem(m_aoCurrentQuestionScene[0].transform.position + Vector3.up * 2);
 
                 m_oGame.StartCoroutine(Utils.LaunchDelay(0.5f, OnResponse, true));
             }
@@ -220,10 +220,7 @@ namespace EA4S.MissingLetter
 
             //after insert in mCurrentQuestionScene
             m_iRemovedLLDataIndex = RemoveWordfromQuestion(questionData);
-            m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().endTransformToCallback += delegate
-            {
-                AudioManager.I.PlayPhrase(m_oCurrQuestionPack.GetQuestion().Id);
-            };
+            m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().endTransformToCallback += m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().Speak;
 
             GameObject _correctAnswerObject = m_oAnswerPool.GetElement();
             LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
@@ -282,8 +279,7 @@ namespace EA4S.MissingLetter
 
         }
 
-        
-        //Preparing for missingWord
+
         int RemoveWordfromQuestion(List<LL_WordData> Words)
         {
             LL_WordData word = (LL_WordData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
@@ -411,7 +407,7 @@ namespace EA4S.MissingLetter
             }
         }
 
-        private void PlayPartcileSystem(Vector3 _pos)
+        private void PlayParticleSystem(Vector3 _pos)
         {
             m_oGame.m_oParticleSystem.SetActive(true);
             m_oGame.m_oParticleSystem.transform.position = _pos;
@@ -428,6 +424,7 @@ namespace EA4S.MissingLetter
                 {
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingWin();
+                    m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LightOn();
                 }
                 else
                 {
@@ -435,6 +432,8 @@ namespace EA4S.MissingLetter
                     m_oGame.StartCoroutine(Utils.LaunchDelay(UnityEngine.Random.Range(0, 0.5f), PoofLetter, m_aoCurrentAnswerScene[i]));
                 }
             }
+
+            m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().LightOn();
 
             for (int i = 0; i < m_aoCurrentQuestionScene.Count; ++i)
             {

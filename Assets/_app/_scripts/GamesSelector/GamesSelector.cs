@@ -265,7 +265,7 @@ namespace EA4S
         IEnumerator CO_EndCoroutine()
         {
             yield return new WaitForSeconds(EndDelay);
-            Debug.Log("<b>GamesSelector</b> > Complete");
+            if (AppConstants.VerboseLogging) Debug.Log("<b>GamesSelector</b> > Complete");
             DispatchOnComplete();
         }
 
