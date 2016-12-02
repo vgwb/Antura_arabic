@@ -31,7 +31,6 @@ public class DifficultyRegulation : MonoBehaviour {
                                   // difficulty range is used.
 
         difficulty = Mathf.Clamp01( difficulty);
-        Debug.Log("FinalDifficulty:" + difficulty + " (started from: " + diff + ")");
     }
 
     public void SetStartingFrom( float from)
