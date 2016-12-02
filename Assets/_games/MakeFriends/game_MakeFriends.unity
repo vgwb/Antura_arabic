@@ -1673,7 +1673,7 @@ MonoBehaviour:
   letterBalloonContainer: {fileID: 1611480543}
   FxParticlesPoof: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
   dropZone: {fileID: 750450658}
-  winCelebration: {fileID: 1712824126}
+  roundResultAnimator: {fileID: 1712824126}
   antura: {fileID: 147187138}
   tutorialDropZoneLocation: {fileID: 1628869441}
   tutorialLetterLocations:
@@ -1683,6 +1683,7 @@ MonoBehaviour:
   - {fileID: 2101195289}
   - {fileID: 621927756}
   - {fileID: 297214716}
+  correctChoiceIndicatorPosition: {x: 0, y: 6, z: -10}
   uiCamera: {fileID: 534339582}
   overrideDifficulty: 0
   difficultySetting: 0
@@ -2236,7 +2237,7 @@ MonoBehaviour:
   celebrationDuration: 1.5
   friendlyExitDuration: 0.75
   speakDelay: 0.25
-  movingAwayDuration: 1.5
+  movingAwayDuration: 0.5
   livingLetter: {fileID: 0}
   exitRotation: {x: 0, y: 220, z: 0}
 --- !u!1 &562005187
@@ -9602,7 +9603,7 @@ GameObject:
   - 4: {fileID: 1712824127}
   - 114: {fileID: 1712824126}
   m_Layer: 0
-  m_Name: WinCelebration
+  m_Name: RoundResultAnimator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9616,10 +9617,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1712824125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76e66cf867e324b20a164d2c164c9865, type: 3}
+  m_Script: {fileID: 11500000, guid: 02e35eefd451c4cfc82299023b6ad396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   vfx: {fileID: 1898191200}
+  wrongMarkPosition: {x: 0, y: 9.5, z: -10}
 --- !u!4 &1712824127
 Transform:
   m_ObjectHideFlags: 0
@@ -9989,7 +9991,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012630284620, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 2.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4000012630284620, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
       propertyPath: m_LocalRotation.x
@@ -10010,28 +10012,6 @@ Prefab:
     - target: {fileID: 4000012630284620, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000012355665154, guid: edd9ece41b0bcf2499807e683de71753,
-        type: 2}
-      propertyPath: randomSeed
-      value: 779990282
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000014221448266, guid: edd9ece41b0bcf2499807e683de71753,
-        type: 2}
-      propertyPath: randomSeed
-      value: -1081299554
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012630284620, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012630284620, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012630284620, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000012842538242, guid: edd9ece41b0bcf2499807e683de71753, type: 2}
       propertyPath: m_IsActive
