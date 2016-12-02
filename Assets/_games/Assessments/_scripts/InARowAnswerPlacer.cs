@@ -37,7 +37,7 @@ namespace EA4S.Assessment
             for (int i = 0; i < answer.Length; i++)
                 answer[ i].AddTicket(i);
 
-            answer.Shuffle();
+            answer = answer.Shuffle();
 
             ForceRandom( answer, original);
 

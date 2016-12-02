@@ -113,7 +113,7 @@ namespace EA4S.MissingLetter
             if (m_oGame.IsInIdle())
             {
                 m_oGame.SetInIdle(false);
-                m_aoCurrentAnswerScene.Shuffle();
+                m_aoCurrentAnswerScene = m_aoCurrentAnswerScene.Shuffle();
                 for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i)
                 {
                     float offsetDuration = UnityEngine.Random.Range(-2.0f, 0.0f);
@@ -180,7 +180,7 @@ namespace EA4S.MissingLetter
                 m_aoCurrentAnswerScene.Add(_wrongAnswerObject);
             }
 
-            m_aoCurrentAnswerScene.Shuffle();
+            m_aoCurrentAnswerScene = m_aoCurrentAnswerScene.Shuffle();
         }
 
         private List<LL_WordData> GetWordFromPhrases(LL_PhraseData _phrase)
@@ -252,7 +252,7 @@ namespace EA4S.MissingLetter
                 m_aoCurrentAnswerScene.Add(_wrongAnswerObject);
             }
 
-            m_aoCurrentAnswerScene.Shuffle();
+            m_aoCurrentAnswerScene = m_aoCurrentAnswerScene.Shuffle();
 
             m_oEmoticonsController.init(m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].transform);
 

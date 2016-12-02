@@ -122,8 +122,8 @@ namespace EA4S
                     + "\nCommonLetters: " + commonLetters.Count + " UncommonLetters: " + uncommonLetters.Count);
                 }
 
-                commonLetters.Shuffle();
-                uncommonLetters.Shuffle();
+                commonLetters = commonLetters.Shuffle();
+                uncommonLetters = uncommonLetters.Shuffle();
 
                 correctAnswers = new List<ILivingLetterData>(commonLetters);
                 wrongAnswers = new List<ILivingLetterData>(uncommonLetters);
