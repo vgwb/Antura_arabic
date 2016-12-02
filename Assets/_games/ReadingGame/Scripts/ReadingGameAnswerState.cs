@@ -49,7 +49,7 @@ namespace EA4S.ReadingGame
                 choices.RemoveAt(choices.Count - 1);
 
             choices.Add(correct);
-            choices.Shuffle();
+            choices = choices.Shuffle();
 
             float delay = 0;
             foreach (var c in choices)
