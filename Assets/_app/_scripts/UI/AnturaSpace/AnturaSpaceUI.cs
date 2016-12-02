@@ -173,7 +173,7 @@ namespace EA4S
                     item.SetAsNew(rewardData.IsNew);
                     item.Toggle(rewardData.IsSelected);
                     if (rewardData.IsSelected) selectedRewardData = rewardData;
-                }
+                } else item.Toggle(false);
                 item.Lock(rewardData == null);
             }
 
@@ -182,6 +182,7 @@ namespace EA4S
 
             // Select eventual reward
             if (selectedRewardData != null) SelectReward(selectedRewardData);
+            else showSwatchesTween.Rewind();
         }
 
         void SelectReward(RewardItem _rewardData)
@@ -218,7 +219,7 @@ namespace EA4S
                     swatch.Toggle(swatchData.IsSelected);
                     swatch.SetColors(GenericUtilities.HexToColor(swatchData.Color1RGB), GenericUtilities.HexToColor(swatchData.Color2RGB));
                     if (swatchData.IsSelected) selectedSwatchData = swatchData;
-                }
+                } else swatch.Toggle(false);
                 swatch.Lock(swatchData == null);
             }
 
