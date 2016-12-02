@@ -36,38 +36,43 @@ namespace EA4S.Assessment
 
         private IEnumerator PlaceCoroutine()
         {
-            foreach( var a in allAnswers)
-                yield return PlaceAnswer( a);
+            List< Vector3> positions = new List< Vector3>();
+            WorldBounds bounds = WorldBounds.Instance;
+            float xMin = bounds.ToTheLeftQuestionStart().x;
+            float xMax = bounds.ToTheRightQuestionStart().x;
+            float yMin = bounds.YMin();
+            float yMax = bounds.YMax();
+            float z = bounds.DefaultZ();
+
+            Debug.Log("xMin" + xMin);
+            Debug.Log("xMax" + xMax);
+            Debug.Log("yMin" + yMin);
+            Debug.Log("yMax" + yMax);
+
+            for (float x= xMin; x<xMax; x+= 2.5f)
+                for(float y= yMin; y< yMax; y+= 1.7f)
+                {
+                    float dx = Random.Range( -0.2f, 0.2f);
+                    float dy = Random.Range( -0.1f, 0.2f);
+                    var vec = new Vector3(x + dx, y + dy, z);
+                    positions.Add(vec);
+                    Debug.Log("VECTOR" + vec);
+                }
+
+            Debug.Log("COUNT:" + positions.Count);
+            positions = positions.Shuffle();
+
+            foreach ( var a in allAnswers)
+                yield return PlaceAnswer( a, positions);
 
             yield return TimeEngine.Wait( 0.65f);
             isAnimating = false;
         }
 
-        private IEnumerator PlaceAnswer( IAnswer answer)
+        private IEnumerator PlaceAnswer( IAnswer answer, List< Vector3> positions)
         {
             var go = answer.gameObject;
-            var pos = Vector3.zero;
-            List< Vector3> positions = new List< Vector3>();
-            bool overlapping = false;
-            int attemps = 10000;
-            for (int i = 0; i < attemps; i++)
-            {
-                pos = WorldBounds.Instance.RandomAnswerPosition();
-
-                foreach( var p in positions)
-                {
-                    // If overlapping, which is the nearest tile?
-                    float localDistance = pos.SquaredDistance( p);
-                    if (pos.DistanceIsLessThan( p, 2.1f * WorldBounds.Instance.LetterSize()))
-                        overlapping = true;
-                }
-
-                if (overlapping == false)
-                    break;
-            }
-
-            positions.Add( pos);
-            go.transform.localPosition = pos;
+            go.transform.localPosition = positions.Pull();
             go.transform.DOScale( 1, 0.4f);
             go.GetComponent< LetterObjectView>().Poof( ElementsSize.PoofOffset);
             audioManager.PlaySound( Sfx.Poof);
