@@ -17,25 +17,27 @@ namespace EA4S
         void OnEnable()
         {
             InitUI();
+            parentLockCounter = 0;
+            lockedParentAreaGo.SetActive(false);
         }
 
         void InitUI()
         {
 
-
         }
 
-        public void OnSuperDogMode()
+        public void OnUnlockAllGameData()
         {
-            GlobalUI.ShowPrompt(true, "go super dog?", GoSuperDogMode);
+            GlobalUI.ShowPrompt(true, "UNLOCK EVERYTHING? (also adds fake scores)", GoUnlockAllGameData);
         }
 
-        void GoSuperDogMode()
+        void GoUnlockAllGameData()
         {
-            Debug.Log("Super Dog Mode enabled");
+            Debug.Log("Cheat Mode enabled: unlocking all game data");
             var maxJourneyPos = new JourneyPosition(6, 14, 1);
             SetJourneyPos(maxJourneyPos); 
             StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos, true));
+            GoUnlockAllRewards();
         }
 
         public void OnDeleteProfile()
@@ -76,19 +78,41 @@ namespace EA4S
             StartCoroutine(PopulateDatabaseWithUsefulDataCO(targetJourneyPos));
         }
 
+        public void OnUnlockAllRewards()
+        {
+            GlobalUI.ShowPrompt(true, "Unlock a bunch of rewards?", GoUnlockAllRewards);
+
+        }
+
+        public void GoUnlockAllRewards() { 
+            Debug.Log("Unlocking a lot of rewards");
+            var actualCurrentJourneyPosition = AppManager.I.Player.CurrentJourneyPosition;
+            var allPlaySessionInfos = AppManager.I.Teacher.scoreHelper.GetAllPlaySessionInfo();
+            for (int i = 0; i < allPlaySessionInfos.Count; i++)
+            {
+                AppManager.I.Player.SetCurrentJourneyPosition(AppManager.I.Teacher.journeyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id));
+                foreach (RewardPack pack in RewardSystemManager.GetNextRewardPack())
+                {
+                    AppManager.I.Player.AddRewardUnlocked(pack);
+                }
+            }
+            AppManager.I.Player.SetCurrentJourneyPosition(actualCurrentJourneyPosition);
+        }
+
         #region Super Dog Helpers
 
-        public Image superDogWait;
+        public Image pleaseWaitPanel;
 
         private void SetJourneyPos(JourneyPosition targetPosition)
         {
             // @note: set as SRDebugOptions
-            AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(6, 14, 1), true);
+            AppManager.I.Player.SetMaxJourneyPosition(targetPosition, true);
         }
 
         private System.Collections.IEnumerator PopulateDatabaseWithUsefulDataCO(JourneyPosition targetPosition, bool cheatMode = false)
         {
-            superDogWait.gameObject.SetActive(true);
+            pleaseWaitPanel.gameObject.SetActive(true);
+            GlobalUI.I.BackButton.gameObject.SetActive(false);
 
             var logAi = AppManager.I.Teacher.logAI;
             var fakeAppSession = LogManager.I.Session;
@@ -167,9 +191,38 @@ namespace EA4S
                 }
             }*/
 
-            superDogWait.gameObject.SetActive(false);
+            pleaseWaitPanel.gameObject.SetActive(false);
+            GlobalUI.I.BackButton.gameObject.SetActive(true);
         }
 
+        #endregion
+
+        #region Parent Lock
+
+        private int parentLockCounter;
+
+        public void OnGreenParentUnlock()
+        {
+            parentLockCounter++;
+        }
+
+        public void OnRedParentUnlock()
+        {
+            if (parentLockCounter == 7)
+            {
+                UnlockParentControls();
+            } else
+            {
+                parentLockCounter = 8; // disabling
+            }
+        }
+
+        public GameObject lockedParentAreaGo;
+
+        private void UnlockParentControls()
+        {
+            lockedParentAreaGo.SetActive(true);
+        }
 
         #endregion
     }
