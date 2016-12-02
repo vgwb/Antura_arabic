@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EA4S {
     public static class RewardSystemManager {
@@ -73,7 +74,7 @@ namespace EA4S {
                     // Filter from unlocked elements (only items with this category and only one for itemID)
                     foreach (var item in config.Rewards.FindAll(r => r.Category == _categoryRewardId)) {
                         if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.GetRewardCategory() == _categoryRewardId).Exists(ur => ur.ItemID == item.ID)) {
-                            returnList.Add(new RewardItem() { ID = item.ID, IsNew = false, IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture.ItemID == item.ID });
+                            returnList.Add(new RewardItem() { ID = item.ID, IsNew = false, IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.Fornitures.Exists(f => f.ItemID == item.ID) });
                         } else {
                             returnList.Add(null);
                         }
@@ -107,7 +108,7 @@ namespace EA4S {
                     // Filter from unlocked elements (only one for itemID)
                     foreach (var item in config.RewardsDecal) {
                         if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.decal).Exists(ur => ur.ItemID == item.ID)) {
-                            returnList.Add(new RewardItem() { ID = item.ID, IsNew = false, IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture.ItemID == item.ID });
+                            returnList.Add(new RewardItem() { ID = item.ID, IsNew = false, IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture.ItemID == item.ID });
                         } else {
                             returnList.Add(null);
                         }
@@ -158,7 +159,7 @@ namespace EA4S {
                     }
                     // set current reward in modification
                     CurrentReward = new RewardPack() { ItemID = _rewardItemId, Type = RewardTypes.reward };
-                    return returnList;
+                    break;
                 case RewardTypes.texture:
                     foreach (RewardColor color in config.RewardsTileColor) {
                         if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemID == _rewardItemId && ur.ColorId == color.ID)) {
@@ -194,7 +195,15 @@ namespace EA4S {
                     Debug.LogWarningFormat("Reward typology requested {0} not found", _rewardType);
                     break;
             }
-            
+            // check if there is a selected item, if no one select the first.
+            if (returnList.Count > 0 && !returnList.Exists(c => c != null && c.IsSelected == true)) {
+                foreach (var firstItem in returnList) {
+                    if(firstItem != null) { 
+                        firstItem.IsSelected = true;
+                        return returnList;
+                    }
+                }
+            }
             return returnList;
         }
 
