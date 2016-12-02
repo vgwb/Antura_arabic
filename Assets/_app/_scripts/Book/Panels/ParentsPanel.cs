@@ -34,7 +34,7 @@ namespace EA4S
         void GoUnlockAllGameData()
         {
             Debug.Log("Cheat Mode enabled: unlocking all game data");
-            var maxJourneyPos = new JourneyPosition(6, 14, 1);
+            var maxJourneyPos = new JourneyPosition(6, 15, 100);
             SetJourneyPos(maxJourneyPos); 
             StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos, true));
             GoUnlockAllRewards();
