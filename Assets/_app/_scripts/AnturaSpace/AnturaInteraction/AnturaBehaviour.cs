@@ -49,6 +49,7 @@ namespace EA4S
 
             m_iAnims = Enum.GetNames(typeof(AnturaAnimationStates)).Length;
             m_bMovingToDestination = false;
+            m_bEatingBone = false;
             m_v3StartPos = transform.position;
             m_v3IdleRotation = transform.forward;
             m_oAnturaCtrl.State = AnturaAnimationStates.sitting;
@@ -72,7 +73,7 @@ namespace EA4S
                 {
                     iRnd = UnityEngine.Random.Range(0, m_iAnims);
                 }
-                while (iRnd == (int)AnturaAnimationStates.sucking);
+                while (iRnd == (int)AnturaAnimationStates.sucking || iRnd == (int)m_oAnturaCtrl.State);
 
                 m_oAnturaCtrl.State = (AnturaAnimationStates)iRnd;
 
@@ -96,35 +97,47 @@ namespace EA4S
                     m_oTweener.Kill();
                 }
 
-                GameObject Bone = m_aoBones[0];
-                Vector3 targetToReach = Bone.transform.position;
-                targetToReach.y = transform.position.y;
-
-                Vector3 targetToLook = targetToReach;
-                //if the bone is in dragged stop near  
-                if (Bone.GetComponent<BoneBehaviour>().isDragging())
+                //check if not eating
+                if(!m_bEatingBone)
                 {
-                    targetToReach.z += 3;
+                    GameObject Bone = m_aoBones[0];
+                    //check if the bone is out of scene
+                    m_fTimerDeleteBoneSafe -= Time.deltaTime;
+                    if (m_fTimerDeleteBoneSafe < 0)
+                    {
+                        BoneReached(m_aoBones[0]);
+                        return;
+                    }
+
+                    Vector3 targetToReach = Bone.transform.position;
+                    targetToReach.y = transform.position.y;
+
+                    Vector3 targetToLook = targetToReach;
+                    //if the bone is in dragged stop near  
+                    if (Bone.GetComponent<BoneBehaviour>().isDragging())
+                    {
+                        targetToReach.z += 3;
+                    }
+
+
+                    MoveTo(targetToReach, targetToLook);
                 }
-
-
-                MoveTo(targetToReach ,targetToLook);
             }
-            else
+            else if (!m_bEatingBone)
             {
                 //if you not walking on target for 2 seconds return to start position
                 if (!m_bMovingToDestination)
                 {
-                    m_fTimer -= Time.deltaTime;
-                    if (m_fTimer < 0)
+                    m_fTimerWaitForReturn -= Time.deltaTime;
+                    if (m_fTimerWaitForReturn < 0)
                     {
-                        m_fTimer = 2.0f;
+                        m_fTimerWaitForReturn = 1.0f;
                         ResetPosition();
                     }
                 }
                 else
                 {
-                    m_fTimer = 2.0f;
+                    m_fTimerWaitForReturn = 1.0f;
                 }
             }
         }
@@ -139,8 +152,12 @@ namespace EA4S
 
         void BoneReached(GameObject Bone)
         {
+            m_bEatingBone = true;
+            StartCoroutine(EA4S.MissingLetter.Utils.LaunchDelay(1.0f, () => { m_bEatingBone = false; }));
+
             m_oAnturaCtrl.State = AnturaAnimationStates.idle;
             m_oAnturaCtrl.DoShout();
+            Bone.transform.position = transform.position + transform.forward * 2;
             Bone.GetComponent<BoneBehaviour>().Poof();
 
             m_aoBones.Remove(Bone);
@@ -154,6 +171,7 @@ namespace EA4S
                 onBoneReached(Bone);
             }
 
+            m_fTimerDeleteBoneSafe = 7.0f;
         }
         #endregion
 
@@ -235,11 +253,12 @@ namespace EA4S
         private Tweener m_oTweener;
         private Vector3 m_v3StartPos;
         private Vector3 m_v3IdleRotation;
-        private float m_fTimer = 2.0f;
+        private float m_fTimerWaitForReturn = 1.0f;
+        private float m_fTimerDeleteBoneSafe = 7.0f;
 
         private bool m_bMovingToDestination;
         private bool m_bRotatingToTarget;
-
+        private bool m_bEatingBone;
 
         [SerializeField]
         private float m_fMovementSpeed = 10; //Movement speed
