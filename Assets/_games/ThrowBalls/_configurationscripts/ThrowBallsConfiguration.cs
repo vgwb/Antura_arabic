@@ -63,6 +63,7 @@
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong: nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
                     break;
                 case ThrowBallsVariation.words:
+                    builderParams.wordFilters.requireDrawings = true;
                     builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true, parameters: builderParams);
                     break;
                 case ThrowBallsVariation.lettersinword:
