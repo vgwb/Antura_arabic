@@ -66,21 +66,18 @@ namespace EA4S.Assessment
         private ILivingLetterData GatherData( string id)
         {
             var db = AppManager.I.DB;
-            Debug.Log("getting: "+id);
             return db.GetWordDataById( id).ConvertToLivingLetterData();
         }
 
         private ILivingLetterData GatherImage( string id)
         {
             var db = AppManager.I.DB;
-            Debug.Log("getting: " + id);
             return new LL_ImageData( db.GetWordDataById( id));
         }
 
         private ILivingLetterData GatherNumber( string id)
         {
             var db = AppManager.I.DB;
-            Debug.Log("getting: " + id);
             return new LL_ImageData(db.GetWordDataById(id));
             //return db.GetWordDataById(id).ConvertToLivingLetterData();
             //return new LL_ImageData(db.GetWordDataById(id));

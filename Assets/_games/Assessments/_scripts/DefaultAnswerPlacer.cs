@@ -49,7 +49,7 @@ namespace EA4S.Assessment
             Debug.Log("yMin" + yMin);
             Debug.Log("yMax" + yMax);
 
-            for (float x= xMin; x<xMax; x+= 2.5f)
+            for (float x= xMin; x<xMax; x+= 4.3f)
                 for(float y= yMin; y< yMax; y+= 1.7f)
                 {
                     float dx = Random.Range( -0.2f, 0.2f);
