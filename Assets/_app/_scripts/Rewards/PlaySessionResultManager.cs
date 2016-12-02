@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace EA4S {
+namespace EA4S
+{
 
-    public class PlaySessionResultManager : MonoBehaviour {
+    public class PlaySessionResultManager : MonoBehaviour
+    {
 
-        void Start() {
+        void Start()
+        {
             // Navigation manager 
             NavigationManager.I.CurrentScene = AppScene.PlaySessionResult;
 
@@ -21,7 +24,7 @@ namespace EA4S {
                 oldRewards.Add(newRewardToUnlock);
                 AppManager.I.Player.AddRewardUnlocked(newRewardToUnlock);
             }
-            
+
             // Show UI result and unlock transform parent where show unlocked items
             GameObject[] objs = new GameObject[] { };
             objs = GameResultUI.ShowEndsessionResult(NavigationManager.I.UseEndSessionResults(), itemAlreadyUnlocked);
@@ -31,9 +34,9 @@ namespace EA4S {
                 oldRewards.Add(RewardSystemManager.GetNextRewardPack()[0]);
             }
 
+            LogManager.I.LogPlaySessionScore(TeacherAI.I.journeyHelper.GetCurrentPlaySessionData().Id, objs.Length);
             // save max progression (internal check if necessary)
             NavigationManager.I.MaxJourneyPosistionProgress();
-
 
             // for any rewards mount them model on parent transform object (objs)
             for (int i = 0; i < oldRewards.Count && i < objs.Length; i++) {
