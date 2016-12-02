@@ -23,10 +23,8 @@ namespace EA4S
 
             if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode) {
                 LockIcon.enabled = false;
-                this.GetComponent<Button>().interactable = true;
             } else {
                 LockIcon.enabled = true;
-                this.GetComponent<Button>().interactable = false;
             }
 
             //Title.text = data.Title_Ar;
@@ -54,10 +52,7 @@ namespace EA4S
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode)
-            {
-                manager.DetailMiniGame(info);
-            }
+            manager.DetailMiniGame(info);
         }
     }
 }

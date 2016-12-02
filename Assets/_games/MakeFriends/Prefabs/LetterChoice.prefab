@@ -167,6 +167,7 @@ MonoBehaviour:
   image: {fileID: 114000010033637834}
   button: {fileID: 114000010040920066}
   canvasGroup: {fileID: 225000013945746398}
+  canvasDistance: 5
   isCorrectChoice: 0
   wasChosen: 0
 --- !u!114 &114000012196859426

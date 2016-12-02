@@ -52,7 +52,7 @@ namespace EA4S {
         #region API
 
         public void LoadAnturaCustomization(AnturaCustomization _anturaCustomization) {
-            clearLoadedRewards();
+            ClearLoadedRewards();
             foreach (RewardPack forniture in _anturaCustomization.Fornitures) {
                 GameObject GOAdded = LoadRewardPackOnAntura(forniture);
 
@@ -98,7 +98,7 @@ namespace EA4S {
             return null;
         }
 
-        void clearLoadedRewards() {
+        public void ClearLoadedRewards() {
             foreach (var item in LoadedModels) {
                 Destroy(item.GO);
             }

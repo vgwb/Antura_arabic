@@ -30,6 +30,11 @@ namespace EA4S.Teacher
 
         public void LogInfo(string session, InfoEvent infoEvent, string parametersString = "")
         {
+            if (AppManager.I.DB == null)
+            {
+                Debug.Log("No DB to log to. Player profile is probably not set");
+                return;
+            }
             var data = new LogInfoData(session, infoEvent, parametersString);
             db.Insert(data);
         }
