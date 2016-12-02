@@ -15,7 +15,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   m_enableTintAllSprites: 0
-  m_enableParseEscapeCharacters: 0
+  m_enableParseEscapeCharacters: 1
   m_missingGlyphCharacter: 0
   m_warningsDisabled: 1
   m_defaultFontAsset: {fileID: 11400000, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
@@ -25,9 +25,10 @@ MonoBehaviour:
   m_defaultTextContainerHeight: 0
   m_fallbackFontAssets: []
   m_matchMaterialPreset: 1
-  m_defaultSpriteAsset: {fileID: 11400000, guid: 273ca6c80b4b5d746b5e548f532bffd8,
+  m_defaultSpriteAsset: {fileID: 11400000, guid: 9a952e2781ef26940ae089f1053ef4ef,
     type: 2}
-  m_defaultSpriteAssetPath: Sprites/
+  m_defaultSpriteAssetPath: Sprite Assets/
+  m_enableEmojiSupport: 1
   m_defaultStyleSheet: {fileID: 11400000, guid: 54d1085f9a2fdea4587fcfc7dddcd4bc,
     type: 2}
   m_leadingCharacters: {fileID: 4900000, guid: 8d713940fcbede142ae4a33ea0062b33, type: 3}

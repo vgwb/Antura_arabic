@@ -14,7 +14,7 @@ using System.Collections.Generic;
 namespace TMPro.EditorUtilities
 {
 
-    public static class TMPro_CreateSpriteAssetMenu
+    public static class TMP_SpriteAssetMenu
     {
         // Add a Context Menu to the Sprite Asset Editor Panel to Create and Add a Default Material.
         [MenuItem("CONTEXT/TMP_SpriteAsset/Add Default Material", false, 2000)]
@@ -31,7 +31,7 @@ namespace TMPro.EditorUtilities
         }
 
 
-        [MenuItem("Assets/Create/TextMeshPro - Sprite Asset", false, 100)]
+        [MenuItem("Assets/Create/TextMeshPro/Sprite Asset", false, 100)]
         public static void CreateTextMeshProObjectPerform()
         {
             Object target = Selection.activeObject;
@@ -109,7 +109,7 @@ namespace TMPro.EditorUtilities
             
             List<TMP_Sprite> spriteInfoList = new List<TMP_Sprite>();
 
-            for (int i = 0; i < sprites.Length; i++)   
+            for (int i = 0; i < sprites.Length; i++)
             {
                 TMP_Sprite spriteInfo = new TMP_Sprite();
                 Sprite sprite = sprites[i];

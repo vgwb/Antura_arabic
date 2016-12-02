@@ -74,8 +74,8 @@ Properties {
 	_VertexOffsetX		("Vertex OffsetX", float) = 0
 	_VertexOffsetY		("Vertex OffsetY", float) = 0
 	
-	_MaskCoord			("Mask Coordinates", vector) = (0, 0, 10000, 10000)
-	_ClipRect			("Clip Rect", vector) = (-10000, -10000, 10000, 10000)
+	_MaskCoord			("Mask Coordinates", vector) = (0, 0, 32767, 32767)
+	_ClipRect			("Clip Rect", vector) = (-32767, -32767, 32767, 32767)
 	_MaskSoftnessX		("Mask SoftnessX", float) = 0
 	_MaskSoftnessY		("Mask SoftnessY", float) = 0
 
@@ -90,7 +90,8 @@ Properties {
 
 SubShader {
 
-	Tags {
+	Tags
+  {
 		"Queue"="Overlay"
 		"IgnoreProjector"="True"
 		"RenderType"="Transparent"
@@ -141,7 +142,7 @@ SubShader {
 		struct pixel_t {
 			float4	position		: SV_POSITION;
 			fixed4	color			: COLOR;
-			float4	texcoords		: TEXCOORD0;		// Atlas & Texture
+			float2	atlas			: TEXCOORD0;		// Atlas
 			float4	param			: TEXCOORD1;		// alphaClip, scale, bias, weight
 			float4	mask			: TEXCOORD2;		// Position in object space(xy), pixel Size(zw)
 			float3	viewDir			: TEXCOORD3;
@@ -150,8 +151,12 @@ SubShader {
 			float4	texcoord2		: TEXCOORD4;		// u,v, scale, bias
 			fixed4	underlayColor	: COLOR1;
 		#endif
+			float4 textures			: TEXCOORD5;
 		};
 
+		// Used by Unity internally to handle Texture Tiling and Offset.
+		float4 _FaceTex_ST;
+		float4 _OutlineTex_ST;
 
 		pixel_t VertShader(vertex_t input)
 		{
@@ -168,8 +173,8 @@ SubShader {
 			scale *= abs(input.texcoord1.y) * _GradientScale * 1.5;
 			if (UNITY_MATRIX_P[3][3] == 0) scale = lerp(abs(scale) * (1 - _PerspectiveFilter), scale, abs(dot(UnityObjectToWorldNormal(input.normal.xyz), normalize(WorldSpaceViewDir(vert)))));
 
-			float weight = (lerp(_WeightNormal, _WeightBold, bold)) / _GradientScale;
-			weight += _FaceDilate * _ScaleRatioA * 0.5;
+			float weight = lerp(_WeightNormal, _WeightBold, bold) / 4.0;
+			weight = (weight + _FaceDilate) * _ScaleRatioA * 0.5;
 
 			float bias =(.5 - weight) + (.5 / scale);
 
@@ -198,10 +203,15 @@ SubShader {
 			float4 clampedRect = clamp(_ClipRect, -2e10, 2e10);
 			float2 maskUV = (vert.xy - clampedRect.xy) / (clampedRect.zw - clampedRect.xy);
 
+			// Support for texture tiling and offset
+			float2 textureUV = UnpackUV(input.texcoord1.x);
+			float2 faceUV = TRANSFORM_TEX(textureUV, _FaceTex);
+			float2 outlineUV = TRANSFORM_TEX(textureUV, _OutlineTex);
+
 			pixel_t output = {
 				vPosition,
 				input.color,
-				float4(input.texcoord0, UnpackUV(input.texcoord1.x)),
+				input.texcoord0,
 				float4(alphaClip, scale, bias, weight),
 				half4(vert.xy * 2 - clampedRect.xy - clampedRect.zw, 0.25 / (0.25 * half2(_MaskSoftnessX, _MaskSoftnessY) + pixelSize.xy)),
 				mul((float3x3)_EnvMatrix, _WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld, vert).xyz),
@@ -209,6 +219,7 @@ SubShader {
 				float4(input.texcoord0 + bOffset, bScale, bBias),
 				underlayColor,
 			#endif
+				float4(faceUV, outlineUV),
 			};
 
 			return output;
@@ -217,7 +228,7 @@ SubShader {
 
 		fixed4 PixShader(pixel_t input) : SV_Target
 		{
-			float c = tex2D(_MainTex, input.texcoords.xy).a;
+			float c = tex2D(_MainTex, input.atlas).a;
 		
 		#ifndef UNDERLAY_ON
 			clip(c - input.param.x);
@@ -236,16 +247,16 @@ SubShader {
 
 			faceColor.rgb *= input.color.rgb;
 			
-			faceColor *= tex2D(_FaceTex, input.texcoords.zw + float2(_FaceUVSpeedX, _FaceUVSpeedY) * _Time.y);
-			outlineColor *= tex2D(_OutlineTex, input.texcoords.zw + float2(_OutlineUVSpeedX, _OutlineUVSpeedY) * _Time.y);
+			faceColor *= tex2D(_FaceTex, input.textures.xy + float2(_FaceUVSpeedX, _FaceUVSpeedY) * _Time.y);
+			outlineColor *= tex2D(_OutlineTex, input.textures.zw + float2(_OutlineUVSpeedX, _OutlineUVSpeedY) * _Time.y);
 
 			faceColor = GetColor(sd, faceColor, outlineColor, outline, softness);
 
 		#if BEVEL_ON
 			float3 dxy = float3(0.5 / _TextureWidth, 0.5 / _TextureHeight, 0);
-			float3 n = GetSurfaceNormal(input.texcoords.xy, weight, dxy);
+			float3 n = GetSurfaceNormal(input.atlas, weight, dxy);
 
-			float3 bump = UnpackNormal(tex2D(_BumpMap, input.texcoords.zw)).xyz;
+			float3 bump = UnpackNormal(tex2D(_BumpMap, input.textures.xy + float2(_FaceUVSpeedX, _FaceUVSpeedY) * _Time.y)).xyz;
 			bump *= lerp(_BumpFace, _BumpOutline, saturate(sd + outline * 0.5));
 			n = normalize(n- bump);
 
@@ -275,7 +286,6 @@ SubShader {
 			faceColor.rgb += glowColor.rgb * glowColor.a;
 		#endif
 
-
 		// #if !MASK_OFF
 		#if UNITY_VERSION < 530
 			// Unity 5.2 2D Rect Mask Support
@@ -294,7 +304,6 @@ SubShader {
 		ENDCG
 	}
 }
-
 
 Fallback "TextMeshPro/Mobile/Distance Field"
 CustomEditor "TMPro.EditorUtilities.TMP_SDFShaderGUI"

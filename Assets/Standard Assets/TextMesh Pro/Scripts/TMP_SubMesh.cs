@@ -183,10 +183,32 @@ namespace TMPro
         }
         private Mesh m_mesh;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public BoxCollider boxCollider
+        {
+            get
+            {
+                if (m_boxCollider == null)
+                {
+                    //
+                    m_boxCollider = GetComponent<BoxCollider>();
+                    if (m_boxCollider == null)
+                    {
+                        m_boxCollider = gameObject.AddComponent<BoxCollider>();
+                        gameObject.AddComponent<Rigidbody>();
+                    }
+                }
+
+                return m_boxCollider;
+            }
+        }
+        [SerializeField]
+        private BoxCollider m_boxCollider;
 
         [SerializeField]
         private TextMeshPro m_TextComponent;
-
 
         [NonSerialized]
         private bool m_isRegisteredForEvents;
@@ -199,7 +221,7 @@ namespace TMPro
             {
 #if UNITY_EDITOR
                 TMPro_EventManager.MATERIAL_PROPERTY_EVENT.Add(ON_MATERIAL_PROPERTY_CHANGED);
-                //TMPro_EventManager.FONT_PROPERTY_EVENT.Add(ON_FONT_PROPERTY_CHANGED);
+                TMPro_EventManager.FONT_PROPERTY_EVENT.Add(ON_FONT_PROPERTY_CHANGED);
                 //TMPro_EventManager.TEXTMESHPRO_PROPERTY_EVENT.Add(ON_TEXTMESHPRO_PROPERTY_CHANGED);
                 TMPro_EventManager.DRAG_AND_DROP_MATERIAL_EVENT.Add(ON_DRAG_AND_DROP_MATERIAL);
                 //TMPro_EventManager.TEXT_STYLE_PROPERTY_EVENT.Add(ON_TEXT_STYLE_CHANGED);
@@ -215,7 +237,7 @@ namespace TMPro
 
             // Update _ClipRect values
             if (m_sharedMaterial != null)
-                m_sharedMaterial.SetVector(ShaderUtilities.ID_ClipRect, new Vector4(-10000, -10000, 10000, 10000));
+                m_sharedMaterial.SetVector(ShaderUtilities.ID_ClipRect, new Vector4(-32767, -32767, 32767, 32767));
         }
 
 
@@ -245,11 +267,10 @@ namespace TMPro
                 m_fallbackMaterial = null;
             }
 
-
 #if UNITY_EDITOR
             // Unregister the event this object was listening to
             TMPro_EventManager.MATERIAL_PROPERTY_EVENT.Remove(ON_MATERIAL_PROPERTY_CHANGED);
-            //TMPro_EventManager.FONT_PROPERTY_EVENT.Remove(ON_FONT_PROPERTY_CHANGED);
+            TMPro_EventManager.FONT_PROPERTY_EVENT.Remove(ON_FONT_PROPERTY_CHANGED);
             //TMPro_EventManager.TEXTMESHPRO_PROPERTY_EVENT.Remove(ON_TEXTMESHPRO_PROPERTY_CHANGED);
             TMPro_EventManager.DRAG_AND_DROP_MATERIAL_EVENT.Remove(ON_DRAG_AND_DROP_MATERIAL);
             //TMPro_EventManager.TEXT_STYLE_PROPERTY_EVENT.Remove(ON_TEXT_STYLE_CHANGED);
@@ -321,6 +342,20 @@ namespace TMPro
             }
 
             //}
+        }
+
+        // Event received when font asset properties are changed in Font Inspector
+        void ON_FONT_PROPERTY_CHANGED(bool isChanged, TMP_FontAsset font)
+        {
+            if (font.GetInstanceID() == m_fontAsset.GetInstanceID())
+            {
+                // Copy Normal and Bold Weight
+                if (m_fallbackMaterial != null)
+                {
+                    m_fallbackMaterial.SetFloat(ShaderUtilities.ID_WeightNormal, m_fontAsset.normalStyle);
+                    m_fallbackMaterial.SetFloat(ShaderUtilities.ID_WeightBold, m_fontAsset.boldStyle);
+                }
+            }
         }
 
         /// <summary>
@@ -436,7 +471,8 @@ namespace TMPro
             SetMaterialDirty();
 
 #if UNITY_EDITOR
-            gameObject.name = "TMP SubMesh [" + m_sharedMaterial.name + "]";
+            if (m_sharedMaterial != null)
+                gameObject.name = "TMP SubMesh [" + m_sharedMaterial.name + "]";
 #endif
         }
 
@@ -511,9 +547,36 @@ namespace TMPro
             m_renderer.sharedMaterial = m_sharedMaterial;
 
 #if UNITY_EDITOR
-            if (gameObject.name != "TMP SubMesh [" + m_sharedMaterial.name + "]")
+            if (m_sharedMaterial != null && gameObject.name != "TMP SubMesh [" + m_sharedMaterial.name + "]")
                 gameObject.name = "TMP SubMesh [" + m_sharedMaterial.name + "]";
 #endif
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void UpdateColliders(int vertexCount)
+        {
+            if (this.boxCollider == null) return;
+
+            Vector2 bl = TMP_Math.MAX_16BIT;
+            Vector2 tr = TMP_Math.MIN_16BIT;
+            // Compute the bounds of the sub text object mesh (excluding the transform position).
+            for (int i = 0; i < vertexCount; i++)
+            {
+                bl.x = Mathf.Min(bl.x, m_mesh.vertices[i].x);
+                bl.y = Mathf.Min(bl.y, m_mesh.vertices[i].y);
+
+                tr.x = Mathf.Max(tr.x, m_mesh.vertices[i].x);
+                tr.y = Mathf.Max(tr.y, m_mesh.vertices[i].y);
+            }
+
+            Vector3 center = (bl + tr) / 2;
+            Vector3 size = tr - bl;
+            size.z = .1f;
+            this.boxCollider.center = center;
+            this.boxCollider.size = size;
+
         }
     }
 }

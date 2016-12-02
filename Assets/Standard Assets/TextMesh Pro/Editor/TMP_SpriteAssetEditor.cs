@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using UnityEditor;
+using UnityEditorInternal;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +24,8 @@ namespace TMPro.EditorUtilities
             public static bool spriteInfoPanel = false;
         }
 
+        private int m_moveToIndex = 0;
         private int m_selectedElement = -1;
-
         private int m_page = 0;
 
         private const string k_UndoRedo = "UndoRedoPerformed";
@@ -49,10 +50,12 @@ namespace TMPro.EditorUtilities
 
         public void OnEnable()
         {
+            // Styles
+            //GUIStyle _GroupLabel = TMP_UIStyleManager.Group_Label;
+
             m_spriteAtlas_prop = serializedObject.FindProperty("spriteSheet");
             m_material_prop = serializedObject.FindProperty("material");
             m_spriteInfoList_prop = serializedObject.FindProperty("spriteInfoList");
-
 
             // Get the UI Skin and Styles for the various Editors
             TMP_UIStyleManager.GetUIStyles();
@@ -80,7 +83,7 @@ namespace TMPro.EditorUtilities
             EditorGUI.indentLevel = 1;
 
             //GUI.enabled = false; // Lock UI
-      
+
             EditorGUILayout.PropertyField(m_spriteAtlas_prop , new GUIContent("Sprite Atlas"));
             GUI.enabled = true;
             EditorGUILayout.PropertyField(m_material_prop, new GUIContent("Default Material"));
@@ -89,7 +92,6 @@ namespace TMPro.EditorUtilities
             GUI.enabled = true; // Unlock UI 
             GUILayout.Space(10);
             EditorGUI.indentLevel = 0;
-
 
             if (GUILayout.Button("Sprite List\t\t" + (UI_PanelState.spriteInfoPanel ? uiStateLabel[1] : uiStateLabel[0]), TMP_UIStyleManager.Section_Label))
                 UI_PanelState.spriteInfoPanel = !UI_PanelState.spriteInfoPanel;
@@ -158,7 +160,7 @@ namespace TMPro.EditorUtilities
 
                         EditorGUI.BeginDisabledGroup(i != m_selectedElement);
                         {
-                            EditorGUILayout.BeginVertical(TMP_UIStyleManager.Group_Label, GUILayout.Height(60));
+                            EditorGUILayout.BeginVertical(TMP_UIStyleManager.Group_Label, GUILayout.Height(75));
                             {
                                 EditorGUILayout.PropertyField(spriteInfo);
                             }
@@ -184,12 +186,42 @@ namespace TMPro.EditorUtilities
                             // Draw selection highlight
                             TMP_EditorUtility.DrawBox(selectionArea, 2f, new Color32(40, 192, 255, 255));
 
-                            // Draw options to Add or Remove Sprites
+                            // Draw options to MoveUp, MoveDown, Add or Remove Sprites
                             Rect controlRect = EditorGUILayout.GetControlRect(true, EditorGUIUtility.singleLineHeight * 1f);
                             controlRect.width /= 8;
 
+                            // Move sprite up.
+                            bool guiEnabled = GUI.enabled;
+                            if (i == 0) { GUI.enabled = false; }
+                            if (GUI.Button(controlRect, "Up"))
+                            {
+                                SwapSpriteElement(i, i - 1);
+                            }
+                            GUI.enabled = guiEnabled;
+
+                            // Move sprite down.
+                            controlRect.x += controlRect.width;
+                            if (i == arraySize - 1) { GUI.enabled = false; }
+                            if (GUI.Button(controlRect, "Down"))
+                            {
+                                SwapSpriteElement(i, i + 1);
+                            }
+                            GUI.enabled = guiEnabled;
+
+                            // Move sprite to new index
+                            controlRect.x += controlRect.width * 2;
+                            //if (i == arraySize - 1) { GUI.enabled = false; }
+                            m_moveToIndex = EditorGUI.IntField(controlRect, m_moveToIndex);
+                            controlRect.x -= controlRect.width;
+                            if (GUI.Button(controlRect, "Goto"))
+                            {
+                                MoveSpriteElement(i, m_moveToIndex);
+                            }
+                            //controlRect.x += controlRect.width;
+                            GUI.enabled = guiEnabled;
+
                             // Add new Sprite
-                            controlRect.x += controlRect.width * 6;
+                            controlRect.x += controlRect.width * 4;
                             if (GUI.Button(controlRect, "+"))
                             {
                                 m_spriteInfoList_prop.arraySize += 1;
@@ -363,6 +395,38 @@ namespace TMPro.EditorUtilities
             }
 
             return false;
+        }
+
+
+        /// <summary>
+        /// Swap the sprite item at the currently selected array index to another index.
+        /// </summary>
+        /// <param name="selectedIndex">Selected index.</param>
+        /// <param name="newIndex">New index.</param>
+        void SwapSpriteElement(int selectedIndex, int newIndex)
+        {
+            m_spriteInfoList_prop.MoveArrayElement(selectedIndex, newIndex);
+            m_spriteInfoList_prop.GetArrayElementAtIndex(selectedIndex).FindPropertyRelative("id").intValue = selectedIndex;
+            m_spriteInfoList_prop.GetArrayElementAtIndex(newIndex).FindPropertyRelative("id").intValue = newIndex;
+            m_selectedElement = newIndex;
+            m_isSearchDirty = true;
+        }
+
+        /// <summary>
+        /// Move Sprite Element at selected index to another index and reorder sprite list.
+        /// </summary>
+        /// <param name="selectedIndex"></param>
+        /// <param name="newIndex"></param>
+        void MoveSpriteElement(int selectedIndex, int newIndex)
+        {
+            m_spriteInfoList_prop.MoveArrayElement(selectedIndex, newIndex);
+
+            // Reorder Sprite Element Index
+            for (int i = 0; i < m_spriteInfoList_prop.arraySize; i++)
+                m_spriteInfoList_prop.GetArrayElementAtIndex(i).FindPropertyRelative("id").intValue = i;
+
+            m_selectedElement = newIndex;
+            m_isSearchDirty = true;
         }
 
 

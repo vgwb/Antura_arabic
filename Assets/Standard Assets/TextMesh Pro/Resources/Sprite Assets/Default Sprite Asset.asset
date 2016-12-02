@@ -29,12 +29,12 @@ Material:
         second: 0
       data:
         first:
-          name: _StencilComp
-        second: 8
-      data:
-        first:
           name: _StencilOp
         second: 0
+      data:
+        first:
+          name: _StencilComp
+        second: 8
       data:
         first:
           name: _StencilReadMask
@@ -59,7 +59,7 @@ Material:
       data:
         first:
           name: _ClipRect
-        second: {r: -10000, g: -10000, b: 10000, a: 10000}
+        second: {r: -32767, g: -32767, b: 32767, a: 32767}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,12 +82,13 @@ MonoBehaviour:
     width: 128
     height: 128
     xOffset: 0
-    yOffset: 106.14
+    yOffset: 106.139999
     xAdvance: 128
-    name: 03A5
-    hashCode: 1673815
-    pivot: {x: -64, y: 64}
     scale: 1.25
+    name: Smiley
+    hashCode: -992563897
+    unicode: 128512
+    pivot: {x: -64, y: 64}
     sprite: {fileID: 0}
   - id: 1
     x: 128
@@ -95,12 +96,13 @@ MonoBehaviour:
     width: 128
     height: 128
     xOffset: 0
-    yOffset: 106.14
+    yOffset: 106.139999
     xAdvance: 128
+    scale: 1.25
     name: Default Sprite Asset_1
     hashCode: -1731209668
+    unicode: 0
     pivot: {x: -64, y: 64}
-    scale: 1.25
     sprite: {fileID: 0}
   - id: 2
     x: 256
@@ -108,12 +110,13 @@ MonoBehaviour:
     width: 128
     height: 128
     xOffset: 0
-    yOffset: 106.14
+    yOffset: 106.139999
     xAdvance: 128
-    name: Default Sprite Asset_2
-    hashCode: -1731209665
-    pivot: {x: -64, y: 64}
     scale: 1.25
+    name: Wink
+    hashCode: 3171611
+    unicode: 128521
+    pivot: {x: -64, y: 64}
     sprite: {fileID: 0}
   - id: 3
     x: 384
@@ -121,12 +124,13 @@ MonoBehaviour:
     width: 128
     height: 128
     xOffset: 0
-    yOffset: 106.14
+    yOffset: 106.139999
     xAdvance: 128
+    scale: 1.25
     name: Default Sprite Asset_3
     hashCode: -1731209666
+    unicode: 0
     pivot: {x: -64, y: 64}
-    scale: 1.25
     sprite: {fileID: 0}
   - id: 4
     x: 0
@@ -134,12 +138,13 @@ MonoBehaviour:
     width: 128
     height: 128
     xOffset: 0
-    yOffset: 106.14
+    yOffset: 106.139999
     xAdvance: 128
+    scale: 1.25
     name: Whaaat!
     hashCode: -2000778261
+    unicode: 0
     pivot: {x: -64, y: 64}
-    scale: 1.25
     sprite: {fileID: 0}
   - id: 5
     x: 128
@@ -147,12 +152,13 @@ MonoBehaviour:
     width: 127
     height: 128
     xOffset: 0
-    yOffset: 106.14
+    yOffset: 106.139999
     xAdvance: 128
+    scale: 1.25
     name: Default Sprite Asset_5
     hashCode: -1731209672
+    unicode: 0
     pivot: {x: -64, y: 64}
-    scale: 1.25
     sprite: {fileID: 0}
   - id: 6
     x: 256
@@ -160,12 +166,13 @@ MonoBehaviour:
     width: 128
     height: 128
     xOffset: 0
-    yOffset: 106.14
+    yOffset: 106.139999
     xAdvance: 128
+    scale: 1.25
     name: Default Sprite Asset_6
     hashCode: -1731209669
+    unicode: 0
     pivot: {x: -64, y: 64}
-    scale: 1.25
     sprite: {fileID: 0}
   - id: 7
     x: 384
@@ -173,12 +180,13 @@ MonoBehaviour:
     width: 128
     height: 128
     xOffset: 0
-    yOffset: 106.14
+    yOffset: 106.139999
     xAdvance: 128
+    scale: 1.25
     name: Default Sprite Asset_7
     hashCode: -1731209670
+    unicode: 0
     pivot: {x: -64, y: 64}
-    scale: 1.25
     sprite: {fileID: 0}
   - id: 8
     x: 0
@@ -186,12 +194,13 @@ MonoBehaviour:
     width: 128
     height: 128
     xOffset: 0
-    yOffset: 106.14
+    yOffset: 106.139999
     xAdvance: 128
+    scale: 1.25
     name: Default Sprite Asset_8
     hashCode: -1731209675
+    unicode: 937
     pivot: {x: -64, y: 64}
-    scale: 1.25
     sprite: {fileID: 0}
   - id: 9
     x: 128
@@ -199,12 +208,13 @@ MonoBehaviour:
     width: 384
     height: 128
     xOffset: 0
-    yOffset: 106.14
+    yOffset: 106.139999
     xAdvance: 384
+    scale: 1.25
     name: Default Sprite Asset_11
     hashCode: -1295344243
+    unicode: 0
     pivot: {x: -192, y: 64}
-    scale: 1.25
     sprite: {fileID: 0}
   - id: 10
     x: 0
@@ -212,12 +222,13 @@ MonoBehaviour:
     width: 128
     height: 128
     xOffset: 0
-    yOffset: 106.14
+    yOffset: 106.139999
     xAdvance: 128
+    scale: 1.25
     name: Default Sprite Asset_12
     hashCode: -1295344242
+    unicode: 0
     pivot: {x: -64, y: 64}
-    scale: 1.25
     sprite: {fileID: 0}
   - id: 11
     x: 128
@@ -225,12 +236,13 @@ MonoBehaviour:
     width: 128
     height: 128
     xOffset: 0
-    yOffset: 106.14
+    yOffset: 106.139999
     xAdvance: 128
+    scale: 1.25
     name: Default Sprite Asset_13
     hashCode: -1295344241
+    unicode: 0
     pivot: {x: -64, y: 64}
-    scale: 1.25
     sprite: {fileID: 0}
   - id: 12
     x: 256
@@ -238,12 +250,13 @@ MonoBehaviour:
     width: 128
     height: 128
     xOffset: 0
-    yOffset: 106.14
+    yOffset: 106.139999
     xAdvance: 128
+    scale: 1.25
     name: Default Sprite Asset_14
     hashCode: -1295344248
+    unicode: 0
     pivot: {x: -64, y: 64}
-    scale: 1.25
     sprite: {fileID: 0}
   - id: 13
     x: 384
@@ -251,10 +264,11 @@ MonoBehaviour:
     width: 128
     height: 128
     xOffset: 0
-    yOffset: 106.14
+    yOffset: 106.139999
     xAdvance: 128
+    scale: 1.25
     name: Default Sprite Asset_15
     hashCode: -1295344247
+    unicode: 0
     pivot: {x: -64, y: 64}
-    scale: 1.25
     sprite: {fileID: 0}

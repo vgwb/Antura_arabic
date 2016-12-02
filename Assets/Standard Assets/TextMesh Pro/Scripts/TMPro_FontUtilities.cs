@@ -55,7 +55,7 @@ namespace TMPro
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static TMP_Glyph Clone (TMP_Glyph source)
+        public static TMP_Glyph Clone(TMP_Glyph source)
         {
             TMP_Glyph copy = new TMP_Glyph();
 
@@ -208,4 +208,66 @@ namespace TMPro
                 kerningPairs = kerningPairs.OrderBy(s => s.AscII_Left).ThenBy(s => s.AscII_Right).ToList();
         }
     }
+
+
+    public static class TMP_FontUtilities
+    {
+        /// <summary>
+        /// Search through the given font and its fallbacks for the specified character.
+        /// </summary>
+        /// <param name="font">The font asset to search for the given character.</param>
+        /// <param name="character">The character to find.</param>
+        /// <param name="glyph">out parameter containing the glyph for the specified character (if found).</param>
+        /// <returns></returns>
+        public static TMP_FontAsset SearchForGlyph (TMP_FontAsset font, int character, out TMP_Glyph glyph)
+        {
+            glyph = null;
+            if (font == null) return null;
+
+            if (font.characterDictionary.TryGetValue(character, out glyph))
+            {
+                return font;
+            }
+            else if (font.fallbackFontAssets != null && font.fallbackFontAssets.Count > 0)
+            {
+                for (int i = 0; i < font.fallbackFontAssets.Count && glyph == null; i++)
+                {
+                    TMP_FontAsset temp = SearchForGlyph(font.fallbackFontAssets[i], character, out glyph);
+
+                    if (temp != null)
+                        return temp;
+                }
+            }
+            return null;
+        }
+
+
+        /// <summary>
+        /// Search through the given list of fonts and their possible fallbacks for the specified character.
+        /// </summary>
+        /// <param name="fonts"></param>
+        /// <param name="character"></param>
+        /// <param name="glyph"></param>
+        /// <returns></returns>
+        public static TMP_FontAsset SearchForGlyph(List<TMP_FontAsset> fonts, int character, out TMP_Glyph glyph)
+        {
+            glyph = null;
+
+            if (fonts != null && fonts.Count > 0)
+            {
+                for (int i = 0; i < fonts.Count; i++)
+                {
+                    TMP_FontAsset fontAsset = SearchForGlyph(fonts[i], character, out glyph);
+
+                    if (fontAsset != null)
+                        return fontAsset;
+                }
+            }
+
+            return null;
+        }
+    }
+
+
+
 }

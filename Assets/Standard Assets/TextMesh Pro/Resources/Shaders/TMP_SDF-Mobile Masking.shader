@@ -42,7 +42,7 @@ Properties {
 	_VertexOffsetX		("Vertex OffsetX", float) = 0
 	_VertexOffsetY		("Vertex OffsetY", float) = 0
 
-	_ClipRect			("Clip Rect", vector) = (-10000, -10000, 10000, 10000)
+	_ClipRect			("Clip Rect", vector) = (-32767, -32767, 32767, 32767)
 	_MaskSoftnessX		("Mask SoftnessX", float) = 0
 	_MaskSoftnessY		("Mask SoftnessY", float) = 0
 	_MaskTex			("Mask Texture", 2D) = "white" {}
@@ -140,8 +140,8 @@ SubShader {
 			scale *= abs(input.texcoord1.y) * _GradientScale * 1.5;
 			if(UNITY_MATRIX_P[3][3] == 0) scale = lerp(abs(scale) * (1 - _PerspectiveFilter), scale, abs(dot(UnityObjectToWorldNormal(input.normal.xyz), normalize(WorldSpaceViewDir(vert)))));
 
-			float weight = lerp(_WeightNormal, _WeightBold, bold) / _GradientScale;
-			weight += _FaceDilate * _ScaleRatioA * 0.5;
+			float weight = lerp(_WeightNormal, _WeightBold, bold) / 4.0;
+			weight = (weight + _FaceDilate) * _ScaleRatioA * 0.5;
 
 			float layerScale = scale;
 

@@ -169,10 +169,10 @@ namespace TMPro
 
 
         // Scale Ratios to ensure property ranges are optimum in Material Editor  
-        public static void UpdateShaderRatios(Material mat, bool isBold)
+        public static void UpdateShaderRatios(Material mat)
         {
             //Debug.Log("UpdateShaderRatios() called.");
-            
+
             float ratio_A = 1;
             float ratio_B = 1;
             float ratio_C = 1;
@@ -184,24 +184,35 @@ namespace TMPro
             float faceDilate = mat.GetFloat(ID_FaceDilate);
             float outlineThickness = mat.GetFloat(ID_OutlineWidth);
             float outlineSoftness = mat.GetFloat(ID_OutlineSoftness);
-            float weight = !isBold ? mat.GetFloat(ID_WeightNormal) * 2 / scale : mat.GetFloat(ID_WeightBold) * 2 / scale;
-           
+
+            float weight = Mathf.Max(mat.GetFloat(ID_WeightNormal), mat.GetFloat(ID_WeightBold)) / 4.0f;
+
             float t = Mathf.Max(1, weight + faceDilate + outlineThickness + outlineSoftness);
 
             ratio_A = isRatioEnabled ? (scale - m_clamp) / (scale * t) : 1;
-            mat.SetFloat(ID_ScaleRatio_A, ratio_A);
+
+            //float ratio_A_old = mat.GetFloat(ID_ScaleRatio_A);
+
+            // Only set the ratio if it has changed.
+            //if (ratio_A != ratio_A_old)
+                mat.SetFloat(ID_ScaleRatio_A, ratio_A);
 
             // Compute Ratio B
             if (mat.HasProperty(ID_GlowOffset))
             {
                 float glowOffset = mat.GetFloat(ID_GlowOffset);
                 float glowOuter = mat.GetFloat(ID_GlowOuter);
+
                 float range = (weight + faceDilate) * (scale - m_clamp);
- 
+
                 t = Mathf.Max(1, glowOffset + glowOuter);
 
                 ratio_B = isRatioEnabled ? Mathf.Max(0, scale - m_clamp - range) / (scale * t) : 1;
-                mat.SetFloat(ID_ScaleRatio_B, ratio_B);
+                //float ratio_B_old = mat.GetFloat(ID_ScaleRatio_B);
+
+                // Only set the ratio if it has changed.
+                //if (ratio_B != ratio_B_old)
+                    mat.SetFloat(ID_ScaleRatio_B, ratio_B);
             }
 
             // Compute Ratio C
@@ -213,10 +224,15 @@ namespace TMPro
                 float underlaySoftness = mat.GetFloat(ID_UnderlaySoftness);
 
                 float range = (weight + faceDilate) * (scale - m_clamp);
+
                 t = Mathf.Max(1, Mathf.Max(Mathf.Abs(underlayOffsetX), Mathf.Abs(underlayOffsetY)) + underlayDilate + underlaySoftness);
 
                 ratio_C = isRatioEnabled ? Mathf.Max(0, scale - m_clamp - range) / (scale * t) : 1;
-                mat.SetFloat(ID_ScaleRatio_C, ratio_C);
+                //float ratio_C_old = mat.GetFloat(ID_ScaleRatio_C);
+
+                // Only set the ratio if it has changed.
+                //if (ratio_C != ratio_C_old)
+                    mat.SetFloat(ID_ScaleRatio_C, ratio_C);
             }
         }
 
@@ -276,6 +292,7 @@ namespace TMPro
             Vector4 padding = Vector4.zero;
             Vector4 maxPadding = Vector4.zero;
 
+            //float weight = 0;
             float faceDilate = 0;
             float faceSoftness = 0;
             float outlineThickness = 0;
@@ -290,12 +307,14 @@ namespace TMPro
             // Iterate through each of the assigned materials to find the max values to set the padding.
            
             // Update Shader Ratios prior to computing padding
-            UpdateShaderRatios(material, isBold);
+            UpdateShaderRatios(material);
 
             string[] shaderKeywords = material.shaderKeywords;
 
             if (material.HasProperty(ID_ScaleRatio_A))
                 scaleRatio_A = material.GetFloat(ID_ScaleRatio_A);
+
+            //weight = 0; // Mathf.Max(material.GetFloat(ID_WeightNormal), material.GetFloat(ID_WeightBold)) / 2.0f * scaleRatio_A;
 
             if (material.HasProperty(ID_FaceDilate))
                 faceDilate = material.GetFloat(ID_FaceDilate) * scaleRatio_A;
@@ -357,8 +376,6 @@ namespace TMPro
             maxPadding.z = maxPadding.z < padding.z ? padding.z : maxPadding.z;
             maxPadding.w = maxPadding.w < padding.w ? padding.w : maxPadding.w;
 
-            
-
             float gradientScale = material.GetFloat(ID_GradientScale);
             padding *= gradientScale;
 
@@ -405,9 +422,9 @@ namespace TMPro
             float uniformPadding = 0;
             // Iterate through each of the assigned materials to find the max values to set the padding.
             for (int i = 0; i < materials.Length; i++)
-            {            
+            {
                 // Update Shader Ratios prior to computing padding
-                ShaderUtilities.UpdateShaderRatios(materials[i], isBold);
+                ShaderUtilities.UpdateShaderRatios(materials[i]);
 
                 string[] shaderKeywords = materials[i].shaderKeywords;
 

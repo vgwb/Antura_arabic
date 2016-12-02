@@ -14,7 +14,7 @@ namespace TMPro
 {
 
     [ExecuteInEditMode]
-    public class TMP_SubMeshUI : MaskableGraphic, ITextElement, IClippable, IMaskable, IMaterialModifier
+    public class TMP_SubMeshUI : MaskableGraphic, IClippable, IMaskable, IMaterialModifier
     {
         /// <summary>
         /// The TMP Font Asset assigned to this sub text object.
@@ -259,7 +259,7 @@ namespace TMPro
 
             #if UNITY_EDITOR
                 TMPro_EventManager.MATERIAL_PROPERTY_EVENT.Add(ON_MATERIAL_PROPERTY_CHANGED);
-                //TMPro_EventManager.FONT_PROPERTY_EVENT.Add(ON_FONT_PROPERTY_CHANGED);
+                TMPro_EventManager.FONT_PROPERTY_EVENT.Add(ON_FONT_PROPERTY_CHANGED);
                 //TMPro_EventManager.TEXTMESHPRO_PROPERTY_EVENT.Add(ON_TEXTMESHPRO_PROPERTY_CHANGED);
                 TMPro_EventManager.DRAG_AND_DROP_MATERIAL_EVENT.Add(ON_DRAG_AND_DROP_MATERIAL);
                 //TMPro_EventManager.TEXT_STYLE_PROPERTY_EVENT.Add(ON_TEXT_STYLE_CHANGED);
@@ -320,7 +320,7 @@ namespace TMPro
 #if UNITY_EDITOR
             // Unregister the event this object was listening to
             TMPro_EventManager.MATERIAL_PROPERTY_EVENT.Remove(ON_MATERIAL_PROPERTY_CHANGED);
-            //TMPro_EventManager.FONT_PROPERTY_EVENT.Remove(ON_FONT_PROPERTY_CHANGED);
+            TMPro_EventManager.FONT_PROPERTY_EVENT.Remove(ON_FONT_PROPERTY_CHANGED);
             //TMPro_EventManager.TEXTMESHPRO_PROPERTY_EVENT.Remove(ON_TEXTMESHPRO_PROPERTY_CHANGED);
             TMPro_EventManager.DRAG_AND_DROP_MATERIAL_EVENT.Remove(ON_DRAG_AND_DROP_MATERIAL);
             //TMPro_EventManager.TEXT_STYLE_PROPERTY_EVENT.Remove(ON_TEXT_STYLE_CHANGED);
@@ -336,14 +336,6 @@ namespace TMPro
 
 
 #if UNITY_EDITOR
-        protected override void OnValidate()
-        {
-            //m_ShouldRecalculateStencil = true;
-            //RecalculateClipping();
-            //RecalculateMasking();
-        }
-
-
         // Event received when custom material editor properties are changed.
         void ON_MATERIAL_PROPERTY_CHANGED(bool isChanged, Material mat)
         {
@@ -442,6 +434,20 @@ namespace TMPro
             }
 
             //}
+        }
+
+        // Event received when font asset properties are changed in Font Inspector
+        void ON_FONT_PROPERTY_CHANGED(bool isChanged, TMP_FontAsset font)
+        {
+            if (font.GetInstanceID() == m_fontAsset.GetInstanceID())
+            {
+                // Copy Normal and Bold Weight
+                if (m_fallbackMaterial != null)
+                {
+                    m_fallbackMaterial.SetFloat(ShaderUtilities.ID_WeightNormal, m_fontAsset.normalStyle);
+                    m_fallbackMaterial.SetFloat(ShaderUtilities.ID_WeightBold, m_fontAsset.boldStyle);
+                }
+            }
         }
 
         /// <summary>
@@ -608,6 +614,7 @@ namespace TMPro
         protected override void UpdateGeometry()
         {
             // Need to override to prevent Unity from changing the geometry of the object.
+            Debug.Log("UpdateGeometry()");
         }
 
 

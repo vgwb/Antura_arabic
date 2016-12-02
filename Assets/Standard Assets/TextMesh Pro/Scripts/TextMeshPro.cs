@@ -1,7 +1,7 @@
 // Copyright (C) 2014 - 2016 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
-// Release 1.0.54 
+// Release 1.0.55.52
 
 
 using UnityEngine;
@@ -227,6 +227,9 @@ namespace TMPro
         /// </summary>
         public override void SetLayoutDirty()
         {
+            m_isPreferredWidthDirty = true;
+            m_isPreferredHeightDirty = true;
+
             if (m_layoutAlreadyDirty || this == null || !this.IsActive())
                 return;
 
@@ -315,9 +318,14 @@ namespace TMPro
             //if (!this.IsActive())
             //    return;
 
+            if (m_sharedMaterial == null)
+                return;
+
             if (m_renderer == null) m_renderer = this.renderer;
 
-            m_renderer.sharedMaterial = m_sharedMaterial;
+            // Only update the material if it has changed.
+            if (m_renderer.sharedMaterial.GetInstanceID() != m_sharedMaterial.GetInstanceID())
+                m_renderer.sharedMaterial = m_sharedMaterial;
         }
 
 
@@ -330,6 +338,9 @@ namespace TMPro
             m_isMaskingEnabled = ShaderUtilities.IsMaskingEnabled(m_sharedMaterial);
             m_havePropertiesChanged = true;
             checkPaddingRequired = false;
+
+            // Return if text object is not awake yet.
+            if (m_textInfo == null) return;
 
             // Update sub text objects
             for (int i = 1; i < m_textInfo.materialCount; i++)
@@ -379,6 +390,17 @@ namespace TMPro
             m_renderMode = TextRenderFlags.Render;
 
             return this.textInfo;
+        }
+
+
+        /// <summary>
+        /// Function to clear the geometry of the Primary and Sub Text objects.
+        /// </summary>
+        public override void ClearMesh(bool updateMesh)
+        {
+            if (m_textInfo.meshInfo[0].mesh == null) m_textInfo.meshInfo[0].mesh = m_mesh;
+
+            m_textInfo.ClearMeshInfo(updateMesh);
         }
 
 

@@ -26,7 +26,7 @@ namespace TMPro.EditorUtilities
 
         static TMP_ResourcesLoader()
         {
-            Debug.Log("Loading TMP Resources...");
+            //Debug.Log("Loading TMP Resources...");
 
             //TMPro.TMP_Settings.LoadDefaultSettings();
             //TMPro.TMP_StyleSheet.LoadDefaultStyleSheet();

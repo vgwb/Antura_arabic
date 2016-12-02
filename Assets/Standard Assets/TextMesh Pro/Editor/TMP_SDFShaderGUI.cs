@@ -17,6 +17,10 @@ namespace TMPro.EditorUtilities
 
         static ShaderFeature outlineFeature, underlayFeature, bevelFeature, glowFeature, maskFeature;
 
+        static string[]
+            faceUVSpeedNames = { "_FaceUVSpeedX", "_FaceUVSpeedY" },
+            outlineUVSpeedNames = { "_OutlineUVSpeedX", "_OutlineUVSpeedY" };
+
         static TMP_SDFShaderGUI()
         {
             facePanel = new MaterialPanel("Face", true);
@@ -41,8 +45,8 @@ namespace TMPro.EditorUtilities
                 keywords = new string[] { "UNDERLAY_ON", "UNDERLAY_INNER" },
                 label = new GUIContent("Underlay Type"),
                 keywordLabels = new GUIContent[] {
-                new GUIContent("None"), new GUIContent("Normal"), new GUIContent("Inner")
-            }
+                    new GUIContent("None"), new GUIContent("Normal"), new GUIContent("Inner")
+                }
             };
 
             bevelFeature = new ShaderFeature()
@@ -63,8 +67,8 @@ namespace TMPro.EditorUtilities
                 keywords = new string[] { "MASK_HARD", "MASK_SOFT" },
                 label = new GUIContent("Mask"),
                 keywordLabels = new GUIContent[] {
-                new GUIContent("Mask Off"), new GUIContent("Mask Hard"), new GUIContent("Mask Soft")
-            }
+                    new GUIContent("Mask Off"), new GUIContent("Mask Hard"), new GUIContent("Mask Soft")
+                }
             };
         }
 
@@ -113,9 +117,10 @@ namespace TMPro.EditorUtilities
             DoColor("_FaceColor", "Color");
             if (material.HasProperty(ShaderUtilities.ID_FaceTex))
             {
-                DoTexture2D("_FaceTex", "Texture");
                 if (material.HasProperty("_FaceUVSpeedX"))
-                { DoUVSpeed("_FaceUVSpeedX", "_FaceUVSpeedY", "UV Speed"); }
+                { DoTexture2D("_FaceTex", "Texture", true, faceUVSpeedNames); }
+                else
+                { DoTexture2D("_FaceTex", "Texture", true); }
             }
             DoSlider("_OutlineSoftness", "Softness");
             DoSlider("_FaceDilate", "Dilate");
@@ -130,9 +135,10 @@ namespace TMPro.EditorUtilities
             DoColor("_OutlineColor", "Color");
             if (material.HasProperty(ShaderUtilities.ID_OutlineTex))
             {
-                DoTexture2D("_OutlineTex", "Texture");
                 if (material.HasProperty("_OutlineUVSpeedX"))
-                { DoUVSpeed("_OutlineUVSpeedX", "_OutlineUVSpeedY", "UV Speed"); }
+                { DoTexture2D("_OutlineTex", "Texture", true, outlineUVSpeedNames); }
+                else
+                { DoTexture2D("_OutlineTex", "Texture", true); }
             }
             DoSlider("_OutlineWidth", "Thickness");
             if (material.HasProperty("_OutlineShininess"))

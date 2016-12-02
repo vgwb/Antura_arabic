@@ -250,18 +250,100 @@ namespace TMPro.EditorUtilities
         protected void DoCubeMap(string name, string label)
         { DoTexture(name, label, typeof(Cubemap)); }
 
-        protected void DoTexture2D(string name, string label)
-        { DoTexture(name, label, typeof(Texture2D)); }
+        protected void DoTexture2D(string name, string label, bool withTilingOffset = false, string[] speedNames = null)
+        { DoTexture(name, label, typeof(Texture2D), withTilingOffset, speedNames); }
 
-        void DoTexture(string name, string label, System.Type type)
+        void DoTexture(string name, string label, System.Type type, bool withTilingOffset = false, string[] speedNames = null)
         {
             MaterialProperty property = BeginProperty(name);
             Rect rect = EditorGUILayout.GetControlRect(true, 60f);
+            float totalWidth = rect.width;
             rect.width = EditorGUIUtility.labelWidth + 60f;
             tempLabel.text = label;
             Object tex = EditorGUI.ObjectField(rect, tempLabel, property.textureValue, type, false);
+
             if (EndProperty())
             { property.textureValue = tex as Texture; }
+
+            rect.x += rect.width + 4f;
+            rect.width = totalWidth - rect.width - 4f;
+            rect.height = EditorGUIUtility.singleLineHeight;
+
+            if (withTilingOffset)
+            {
+                DoTilingOffset(rect, property);
+                rect.y += (rect.height + 2f) * 2f;
+            }
+
+            if (speedNames != null)
+            {
+                DoUVSpeed(rect, speedNames);
+            }
+        }
+
+        void DoTilingOffset(Rect rect, MaterialProperty property)
+        {
+            float labelWidth = EditorGUIUtility.labelWidth;
+            int indentLevel = EditorGUI.indentLevel;
+            EditorGUI.indentLevel = 0;
+            EditorGUIUtility.labelWidth = 40f;
+
+            Vector4 vector = property.textureScaleAndOffset;
+
+            bool changed = false;
+            float[] values = tempFloats[2];
+
+            tempLabel.text = "Tiling";
+            Rect vectorRect = EditorGUI.PrefixLabel(rect, tempLabel);
+            values[0] = vector.x;
+            values[1] = vector.y;
+            EditorGUI.BeginChangeCheck();
+            EditorGUI.MultiFloatField(vectorRect, xywhVectorLabels, values);
+            if (EndProperty())
+            {
+                vector.x = values[0];
+                vector.y = values[1];
+                changed = true;
+            }
+
+            rect.y += rect.height + 2f;
+            tempLabel.text = "Offset";
+            vectorRect = EditorGUI.PrefixLabel(rect, tempLabel);
+            values[0] = vector.z;
+            values[1] = vector.w;
+            EditorGUI.BeginChangeCheck();
+            EditorGUI.MultiFloatField(vectorRect, xywhVectorLabels, values);
+            if (EndProperty())
+            {
+                vector.z = values[0];
+                vector.w = values[1];
+                changed = true;
+            }
+
+            if (changed)
+            { property.textureScaleAndOffset = vector; }
+
+            EditorGUIUtility.labelWidth = labelWidth;
+            EditorGUI.indentLevel = indentLevel;
+        }
+
+        protected void DoUVSpeed(Rect rect, string[] names)
+        {
+            float labelWidth = EditorGUIUtility.labelWidth;
+            int indentLevel = EditorGUI.indentLevel;
+            EditorGUI.indentLevel = 0;
+            EditorGUIUtility.labelWidth = 40f;
+
+            tempLabel.text = "Speed";
+            rect = EditorGUI.PrefixLabel(rect, tempLabel);
+
+            EditorGUIUtility.labelWidth = 13f;
+            rect.width = rect.width * 0.5f - 1f;
+            DoFloat(rect, names[0], "X");
+            rect.x += rect.width + 2f;
+            DoFloat(rect, names[1], "Y");
+            EditorGUIUtility.labelWidth = labelWidth;
+            EditorGUI.indentLevel = indentLevel;
         }
 
         protected void DoToggle(string name, string label)
@@ -300,23 +382,6 @@ namespace TMPro.EditorUtilities
             float value = EditorGUI.FloatField(rect, tempLabel, property.floatValue);
             if (EndProperty())
             { property.floatValue = value; }
-        }
-
-        protected void DoUVSpeed(string nameX, string nameY, string label)
-        {
-            tempLabel.text = label;
-            Rect rect = EditorGUILayout.GetControlRect();
-            rect = EditorGUI.PrefixLabel(rect, tempLabel);
-            int indentLevel = EditorGUI.indentLevel;
-            float labelWidth = EditorGUIUtility.labelWidth;
-            EditorGUIUtility.labelWidth = 15f;
-            EditorGUI.indentLevel = 0;
-            rect.width = 65f;
-            DoFloat(rect, nameX, "X");
-            rect.x += rect.width + 5f;
-            DoFloat(rect, nameY, "Y");
-            EditorGUIUtility.labelWidth = labelWidth;
-            EditorGUI.indentLevel = indentLevel;
         }
 
         protected void DoSlider(string name, string label)

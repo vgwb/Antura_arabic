@@ -17,8 +17,8 @@ namespace TMPro
     [Serializable]
     public class TMP_TextInfo
     {
-        private static Vector2 k_InfinityVectorPositive = new Vector2(1000000, 1000000);
-        private static Vector2 k_InfinityVectorNegative = new Vector2(-1000000, -1000000);
+        private static Vector2 k_InfinityVectorPositive = new Vector2(32767, 32767);
+        private static Vector2 k_InfinityVectorNegative = new Vector2(-32767, -32767);
 
         public TMP_Text textComponent;
 
@@ -48,7 +48,7 @@ namespace TMPro
             wordInfo = new TMP_WordInfo[16];
             linkInfo = new TMP_LinkInfo[0];
             lineInfo = new TMP_LineInfo[2];
-            pageInfo = new TMP_PageInfo[16];
+            pageInfo = new TMP_PageInfo[4];
 
             meshInfo = new TMP_MeshInfo[1];
         }
@@ -64,7 +64,7 @@ namespace TMPro
             linkInfo = new TMP_LinkInfo[0];
 
             lineInfo = new TMP_LineInfo[2];
-            pageInfo = new TMP_PageInfo[16];
+            pageInfo = new TMP_PageInfo[4];
 
             meshInfo = new TMP_MeshInfo[1];
             meshInfo[0].mesh = textComponent.mesh;

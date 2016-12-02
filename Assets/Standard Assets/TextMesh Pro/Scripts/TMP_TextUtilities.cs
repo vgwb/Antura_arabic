@@ -182,8 +182,7 @@ namespace TMPro
             {
                 // Get current character info.
                 TMP_CharacterInfo cInfo = text.textInfo.characterInfo[i];
-                if ((visibleOnly && !cInfo.isVisible) || (text.OverflowMode == TextOverflowModes.Page && cInfo.pageNumber + 1 != text.pageToDisplay))
-                    continue;
+                if (visibleOnly && !cInfo.isVisible) continue;
 
                 // Get Bottom Left and Top Right position of the current character
                 Vector3 bl = rectTransform.TransformPoint(cInfo.bottomLeft);
@@ -258,8 +257,7 @@ namespace TMPro
             {
                 // Get current character info.
                 TMP_CharacterInfo cInfo = text.textInfo.characterInfo[i];
-                if ((visibleOnly && !cInfo.isVisible) || (text.OverflowMode == TextOverflowModes.Page && cInfo.pageNumber + 1 != text.pageToDisplay))
-                    continue;
+                if (visibleOnly && !cInfo.isVisible) continue;
 
                 // Get Bottom Left and Top Right position of the current character
                 Vector3 bl = rectTransform.TransformPoint(cInfo.bottomLeft);
@@ -441,9 +439,7 @@ namespace TMPro
                     TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
                     int currentLine = currentCharInfo.lineNumber;
 
-                    bool isCharacterVisible = characterIndex > text.maxVisibleCharacters ||
-                                              currentCharInfo.lineNumber > text.maxVisibleLines ||
-                                             (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) ? false : true;
+                    bool isCharacterVisible = currentCharInfo.isVisible;
 
                     // Track maximum Ascender and minimum Descender for each word.
                     maxAscender = Mathf.Max(maxAscender, currentCharInfo.ascender);
@@ -820,9 +816,7 @@ namespace TMPro
                     TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
                     int currentLine = currentCharInfo.lineNumber;
 
-                    bool isCharacterVisible = characterIndex > text.maxVisibleCharacters ||
-                                              currentCharInfo.lineNumber > text.maxVisibleLines ||
-                                             (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) ? false : true;
+                    bool isCharacterVisible = currentCharInfo.isVisible;
 
                     if (isBeginRegion == false && isCharacterVisible)
                     {
@@ -1947,6 +1941,41 @@ namespace TMPro
  
             return Vector3.Dot( e, e );
         }
+
+
+        /// <summary>
+        /// Function returning the Square Distance from a Point to a Line and Direction.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="point"></param>
+        /// <param name="direction">-1 left, 0 in between, 1 right</param>
+        /// <returns></returns>
+        //public static float DistanceToLineDirectional(Vector3 a, Vector3 b, Vector3 point, ref int direction)
+        //{
+        //    Vector3 n = b - a;
+        //    Vector3 pa = a - point;
+
+        //    float c = Vector3.Dot(n, pa);
+        //    direction = -1;
+
+        //    // Closest point is a
+        //    if (c > 0.0f)
+        //        return Vector3.Dot(pa, pa);
+
+        //    Vector3 bp = point - b;
+        //    direction = 1;
+
+        //    // Closest point is b
+        //    if (Vector3.Dot(n, bp) > 0.0f)
+        //        return Vector3.Dot(bp, bp);
+
+        //    // Closest point is between a and b
+        //    Vector3 e = pa - n * (c / Vector3.Dot(n, n));
+
+        //    direction = 0;
+        //    return Vector3.Dot(e, e);
+        //}
 
 
         /// <summary>
