@@ -5760,10 +5760,10 @@ Material:
       second: 0.8333333
     - first:
         name: _ScaleRatioB
-      second: 0.8333333
+      second: 0.6770833
     - first:
         name: _ScaleRatioC
-      second: 0.8333333
+      second: 0.6770833
     - first:
         name: _ScaleX
       second: 1
@@ -5868,7 +5868,6 @@ Texture2D:
   m_TextureFormat: 1
   m_MipCount: 1
   m_IsReadable: 0
-  m_ReadAllowed: 1
   m_AlphaIsTransparency: 0
   m_ImageCount: 1
   m_TextureDimension: 2
