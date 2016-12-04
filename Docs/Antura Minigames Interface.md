@@ -146,7 +146,7 @@ you do it through the **game context**:
 
 **_var context = {GameName}Configuration.Instance.Context;_**
 
-such object implements the **IGameContext **interface, which is defined in _common/_scripts/Context/IGameContext.cs.
+such object implements the **IGameContext** interface, which is defined in _common/_scripts/Context/IGameContext.cs.
 When you need a core functionality, take a look at that file.
 
 For example, to show the popup widget (that is, a large dialog with some text inside it),
@@ -218,29 +218,21 @@ e.g. **_speed = normalSpeed * difficulty;_**
 
 or, it could have a finite set of parameters configurations, based on difficulty interval:
 
-**_if (difficulty < 0.333f)_**
+```
+if (difficulty < 0.333f)
+{
+	// configure game for "easy"
+}
 
-**_{
-
-	// configure game for "easy"_**
-	
-**_}_**
-
-**_else if (difficulty < 0.666f)_**
-
-**_{_**
-
-**_	// configure game for "medium"_**
-
-**_}_**
-
-**_else_**
-
-**_{_**
-
-**_	// configure game for "hard"_**
-
-**_}_**
+else if (difficulty < 0.666f)
+{
+	// configure game for "medium"
+}
+else
+{
+	// configure game for "hard"
+}
+```
 
 In this case, please configure a set of at least 5 different configurations
 (very easy, easy, medium, hard, very hard).
@@ -315,13 +307,15 @@ When you are developing your mini-game, there is the need to generate game data,
 To do so, just define the default **Question Provider **in your **Game Configuratio****n** class as your custom provider, in the Game Configuration constructor (so it will be used when you will launch your scene directly).
 
 For example:
-*private {GameName}Configuration()*
 
-*{*
-*            **_Questions = new MyQuestionProvider();_**
-*            Context = new SampleGameContext();*
-*            Difficulty = 0.0f;*
-*}*
+```
+private {GameName}Configuration()
+{
+            Questions = new MyQuestionProvider();
+            Context = new SampleGameContext();
+            Difficulty = 0.0f;
+}
+```
 
 Then, implement your question provider by generating data (*ILivingLetterData*) using:
 
