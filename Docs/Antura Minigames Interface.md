@@ -219,16 +219,27 @@ e.g. **_speed = normalSpeed * difficulty;_**
 or, it could have a finite set of parameters configurations, based on difficulty interval:
 
 **_if (difficulty < 0.333f)_**
+
 **_{
+
 	// configure game for "easy"_**
+	
 **_}_**
+
 **_else if (difficulty < 0.666f)_**
+
 **_{_**
+
 **_	// configure game for "medium"_**
+
 **_}_**
+
 **_else_**
+
 **_{_**
+
 **_	// configure game for "hard"_**
+
 **_}_**
 
 In this case, please configure a set of at least 5 different configurations
@@ -307,7 +318,7 @@ For example:
 *private {GameName}Configuration()*
 
 *{*
-*            ***_Questions = new MyQuestionProvider();_**
+*            **_Questions = new MyQuestionProvider();_**
 *            Context = new SampleGameContext();*
 *            Difficulty = 0.0f;*
 *}*
@@ -349,7 +360,9 @@ Use **letterObjectView.Data** to get the current data.
 Then, you can drive the animations using the following interface.
 
 **_bool Crouching;_** // the LL is crouching
+
 **_bool Falling;_** // the LL is falling*
+
 **_bool Horraying;_** // continous horray
 
 You can switch state by using the following method:
@@ -357,12 +370,19 @@ You can switch state by using the following method:
 
 The supported states are:
 **_        LL_idle,_** // when the LL is standing
+
 **_        LL_walking,_** // when the LL is walking or running
+
 **_        LL_dragging,_** // when the player is dragging the LL
+
 **_        LL_hanging,_** // special state for Baloons game (still waiting for animation in the fbx)
+
 **_        LL_dancing,_** // Dance!
+
 **_        LL_rocketing,_** // LL on the Rocket (use DoHorray/{set horraying} for rocket hooray)
+
 **_        LL_tickling,_** // LL is tickling
+
 **_        LL_limbless_** // when the LL has no arms and legs
 
 To switch between Walking and running use:
@@ -374,11 +394,17 @@ To switch between Walking and running use:
 Special animation triggers (it will perform an animation and go back to idle).
 
 **_void DoHorray();_** // triggers a single horray
+
 **_void DoAngry();_**
+
 **_void DoHighFive();_**
+
 **_void DoDancingWin();_**
+
 **_void DoDancingLose();_**
+
 **_void ToggleDance();_** // Switch dance between dancing1 and dancing2
+
 **_void DoTwirl(System.Action onLetterShowingBack);_**
 
 The DoTwirl animation will trigger your callback when the letter is showing its back to the camera (so you can change letter in that moment).
@@ -386,7 +412,9 @@ The DoTwirl animation will trigger your callback when the letter is showing its 
 The following methods can be used to perform a jump. Animations are in place, so you have to move transform when performing jump and just notify the animator with the following events.
 
 **_void OnJumpStart();_**
+
 **_void OnJumpMaximumHeightReached();_**
+
 **_void OnJumpEnded();_**
 
 The Living Letter View has a **Poof()** method that let you create a "poof" particle animation in the current position of the letter. You can use it when you want to make the LL disappear and re-appear on another position, or simply destroy it;
@@ -408,10 +436,15 @@ You can switch state by using the following property:
 
 The supported states are:
 **_    idle,_**  // Antura is standing
+
 **_    walking,_** // Antura walking/running,
+
 **_    sitting,_** // Antura is sitting
+
 **_    sleeping,_** // Antura is sleeping
+
 **_    sheeping,_** // Antura is jumping in place
+
 **_    sucking_** // Antura is inhaling
 
 Properties:
@@ -423,6 +456,7 @@ is used when Antura is sitting, or running to select a special sitting/running a
 Such properties are used when Antura is idle to select a special idle animation.
 
 **_bool isExcited;_**
+
 **_bool isSad;_**
 
 To switch between Walking and running use:
@@ -432,17 +466,24 @@ To switch between Walking and running use:
 *the animation will blend between walk (speed = 0) and run (speed = 1).*
 
 **_void DoBark()_**
+
 **_void DoSniff()_**
+
 **_void DoShout()_**
+
 **_void DoBurp()_**
+
 **_DoSpit(bool openMouth)_**
     
 The following methods can be used to perform a jump. Animations are in place, so you have to move transform when performing jump and just notify the animator with the following events.
 Such events must be called in this order:
 
 **_void OnJumpStart();_**
+
 **_void OnJumpMaximumHeightReached();_**
+
 **_void OnJumpGrab()_**
+
 **_void OnJumpEnded();_**
 
 This method:
