@@ -13,7 +13,6 @@ namespace EA4S
     {
 
         #region Runtime variables
-        // Minigame
         public string session { get { return LogManager.I.Session; } }
         string minigameSession;
         MiniGameCode miniGameCode;
@@ -99,11 +98,6 @@ namespace EA4S
         {
             LogManager.I.LogInfo(_event, _data);
 
-        }
-
-        public void LogMood(int _mood)
-        {
-            LogManager.I.LogMood(_mood);
         }
 
         #endregion
