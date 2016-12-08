@@ -49,44 +49,15 @@ namespace EA4S
 
         #region Bones/coins
         public int TotalNumberOfBones = 8;
-        public int GetTotalNumberOfBones(){
+        public int GetTotalNumberOfBones()
+        {
             return TotalNumberOfBones;
         }
-        public int AddBones(int _bonesToAdd) {
+        public int AddBones(int _bonesToAdd)
+        {
             TotalNumberOfBones += _bonesToAdd;
             Save();
             return TotalNumberOfBones;
-        }
-        #endregion
-
-
-
-        #region Oldies
-        public int AnturaCurrentPreset;
-
-        #region Mood
-        /// <summary>
-        /// False if not executed start mood eval.
-        /// </summary>
-        [HideInInspector]
-        public bool StartMood = false;
-        /// <summary>
-        /// Start Mood value. Values 0,1,2,3,4.
-        /// </summary>
-        [HideInInspector]
-        public int StartMoodEval = 0;
-        /// <summary>
-        /// End Mood value. Values 0,1,2,3,4.
-        /// </summary>
-        [HideInInspector]
-        public int EndMoodEval = 0;
-        #endregion
-
-        public void Reset()
-        {
-            AnturaCurrentPreset = 0;
-            CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
-            CurrentMiniGameInPlaySession = 0;
         }
         #endregion
 
@@ -100,7 +71,6 @@ namespace EA4S
         {
 
         }
-
 
         public void DeleteThisProfile() { }
 
@@ -202,7 +172,8 @@ namespace EA4S
         /// Adds the reward unlocked.
         /// </summary>
         /// <param name="_rewardPack">The reward pack.</param>
-        public void AddRewardUnlocked(RewardPack _rewardPack) {
+        public void AddRewardUnlocked(RewardPack _rewardPack)
+        {
             RewardsUnlocked.Add(_rewardPack);
             Save();
         }
@@ -216,7 +187,8 @@ namespace EA4S
         /// Saves the customization.
         /// </summary>
         /// <param name="_anturaCustomization">The antura customization.</param>
-        public void SaveCustomization(AnturaCustomization _anturaCustomization) {
+        public void SaveCustomization(AnturaCustomization _anturaCustomization)
+        {
             CurrentAnturaCustomizations = _anturaCustomization;
             Save();
         }
