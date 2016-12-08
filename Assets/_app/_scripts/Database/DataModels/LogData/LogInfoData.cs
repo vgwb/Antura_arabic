@@ -1,5 +1,4 @@
 ﻿using SQLite;
-using System;
 
 namespace EA4S
 {
@@ -10,21 +9,17 @@ namespace EA4S
         AppStarted = 20,
         AppClosed = 21,
         AppPlay = 22,
-
+        Book = 30,
         GameStart = 40,
         GameEnd = 41,
-
         Reward = 50,
-
-        Book = 30,
+        AnturaSpace = 60,
+        Map = 70,
     }
-
 }
 
 namespace EA4S.Db
 {
-
-
     [System.Serializable]
     public class LogInfoData : IData
     {
