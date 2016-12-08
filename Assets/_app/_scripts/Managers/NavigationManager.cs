@@ -55,11 +55,6 @@ namespace EA4S
             AppManager.I.GameLauncher.LaunchGame(_miniGame.Code);
         }
 
-        //public string GetNextScene()
-        //{
-        //    return "";
-        //}
-
         public void GoToNextScene()
         {
             //var nextScene = GetNextScene();
