@@ -16,14 +16,14 @@ namespace EA4S
         /// </summary>
         public int MaxNumberOfPlayerProfiles = 5;
 
-        private PlayerProfile actualPlayer;
+        private PlayerProfile currentPlayer;
         /// <summary>
         /// Actual Player.
         /// </summary>
-        public PlayerProfile ActualPlayer {
-            get { return actualPlayer; }
+        public PlayerProfile CurrentPlayer {
+            get { return currentPlayer; }
             set {
-                if (actualPlayer != value) {
+                if (currentPlayer != value) {
 
                     if (AppManager.I.DB != null) {
                         LogManager.I.LogInfo(InfoEvent.AppClosed);
@@ -37,7 +37,7 @@ namespace EA4S
                     LogManager.I.LogInfo(InfoEvent.AppStarted);
 
                 }
-                actualPlayer = value;
+                currentPlayer = value;
                 if (OnProfileChanged != null)
                     OnProfileChanged();
 
@@ -64,7 +64,7 @@ namespace EA4S
             AppManager.I.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
             AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
             if (AppManager.I.GameSettings.LastActivePlayerId > 0)
-                ActualPlayer = LoadPlayerProfileById(AppManager.I.GameSettings.LastActivePlayerId);
+                CurrentPlayer = LoadPlayerProfileById(AppManager.I.GameSettings.LastActivePlayerId);
             reloadAvailablePlayerProfilesList();
         }
 
@@ -130,14 +130,14 @@ namespace EA4S
             returnProfile.AddRewardUnlocked(decalTexture);
             returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
             // -----
-            AppManager.I.PlayerProfileManager.ActualPlayer = returnProfile as PlayerProfile;
-            AppManager.I.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.I.PlayerProfileManager.ActualPlayer);
-            AppManager.I.PlayerProfileManager.ActualPlayer.Save();
+            AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
+            AppManager.I.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.I.PlayerProfileManager.CurrentPlayer);
+            AppManager.I.PlayerProfileManager.CurrentPlayer.Save();
             SaveGameSettings();
             if (isNew && OnNewProfileCreated != null)
                 OnNewProfileCreated();
 
-            return AppManager.I.PlayerProfileManager.ActualPlayer;
+            return AppManager.I.PlayerProfileManager.CurrentPlayer;
         }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace EA4S
 
         public void DeleteCurrentPlayer()
         {
-            AppManager.I.Modules.PlayerProfile.DeletePlayer(ActualPlayer.Key);
+            AppManager.I.Modules.PlayerProfile.DeletePlayer(CurrentPlayer.Key);
         }
 
         /// <summary>

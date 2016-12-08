@@ -89,7 +89,7 @@ namespace EA4S
 
         public void ResetCurrentPlayer()
         {
-            var playerId = PlayerProfileManager.ActualPlayer;
+            var playerId = PlayerProfileManager.CurrentPlayer;
 
             // Delete DB
             DB.DropProfile();
@@ -104,14 +104,13 @@ namespace EA4S
 
         public void ResetEverything()
         {// Reset all the Databases
-            foreach (var playerId in AppManager.I.Modules.PlayerProfile.Options.AvailablePlayers)
-            {
+            foreach (var playerId in AppManager.I.Modules.PlayerProfile.Options.AvailablePlayers) {
                 Debug.Log(playerId);
                 DB.LoadDynamicDbForPlayerProfile(int.Parse(playerId));
                 DB.DropProfile();
             }
             DB = null;
-            
+
             // Reset all profiles (from SRDebugOptions)
             PlayerPrefs.DeleteAll();
             AppManager.I.GameSettings.AvailablePlayers = new System.Collections.Generic.List<string>();
