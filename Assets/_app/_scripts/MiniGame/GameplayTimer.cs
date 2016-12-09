@@ -18,15 +18,15 @@ namespace EA4S
         /// <summary>
         /// 
         /// </summary>
-        protected int ActualTime {
-            get { return actualTime; }
+        protected int CurrentTime {
+            get { return currentTime; }
             set {
-                if (actualTime != (int)timeRemaining)
+                if (currentTime != (int)timeRemaining)
                     timeChanged((int)timeRemaining);
-                actualTime = (int)timeRemaining;
+                currentTime = (int)timeRemaining;
             }
         }
-        private int actualTime;
+        private int currentTime;
         private bool isRunning;
         private float timeRemaining;
         protected List<CustomEventData> CustomEvents;
@@ -101,8 +101,8 @@ namespace EA4S
         {
             if (!timerText)
                 timerText = GetComponent<TextMeshProUGUI>();
-            ActualTime = (int)timeRemaining;
-            var text = ActualTime.ToString(); //Mathf.Floor(timeRemaining).ToString();
+            CurrentTime = (int)timeRemaining;
+            var text = CurrentTime.ToString(); //Mathf.Floor(timeRemaining).ToString();
             timerText.text = text;
         }
 

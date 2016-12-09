@@ -93,7 +93,7 @@ namespace EA4S
             btAddTween.PlayBackwards();
 
             PlayerProfile pp = ProfileManager.CreateOrLoadPlayerProfile(_avatarId);
-            ProfileManager.ActualPlayer = pp;
+            ProfileManager.CurrentPlayer = pp;
             AudioManager.I.PlaySfx(SfxCreateNewProfile);
 
             Setup();
@@ -101,7 +101,7 @@ namespace EA4S
 
         internal void SelectProfile(int _id)
         {
-            ProfileManager.ActualPlayer = ProfileManager.AvailablePlayerProfiles[_id - 1];
+            ProfileManager.CurrentPlayer = ProfileManager.AvailablePlayerProfiles[_id - 1];
             AudioManager.I.PlaySfx(SfxSelectProfile);
             Setup();
         }
@@ -122,7 +122,7 @@ namespace EA4S
                 else {
                     bt.gameObject.SetActive(true);
                     bt.SetAvatar(ProfileManager.AvailablePlayerProfiles[i].AvatarId);
-                    if (i == ProfileManager.ActualPlayer.Id - 1) bt.Toggle(true, true);
+                    if (i == ProfileManager.CurrentPlayer.Id - 1) bt.Toggle(true, true);
                     else bt.Toggle(false);
                 }
             }
@@ -147,7 +147,7 @@ namespace EA4S
             yield return null;
 
             BtPlay.gameObject.SetActive(true);
-            BtPlay.RectT.SetAnchoredPosX(GetAvatarButtonByPlayerId(ProfileManager.ActualPlayer.Id).RectT.anchoredPosition.x);
+            BtPlay.RectT.SetAnchoredPosX(GetAvatarButtonByPlayerId(ProfileManager.CurrentPlayer.Id).RectT.anchoredPosition.x);
             btPlayTween.PlayForward();
         }
 
