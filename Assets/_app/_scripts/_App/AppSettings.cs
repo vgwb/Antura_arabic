@@ -3,11 +3,11 @@ namespace EA4S
 {
     public static class AppConstants
     {
-        public const string AppVersion = "NORAD beta";
+        public const string AppVersion = "0.12.12a";
         public const string DbSchemeVersion = "1";
-        public const bool DebugPanelEnabled = false;
-        public const bool UseUnityAnalytics = true;
-        public static bool VerboseLogging = false;
+        public const bool DebugPanelEnabled = true;
+        public const bool UseUnityAnalytics = false;
+        public static bool VerboseLogging = true;
 
         // Application details (used by Teacher and maybe other)
         public const float minimumAge = 7;

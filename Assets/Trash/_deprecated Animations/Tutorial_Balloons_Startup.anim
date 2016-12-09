@@ -1,0 +1,2072 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Tutorial_Balloons_Startup
+  serializedVersion: 6
+  m_Legacy: 0
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_EulerCurves: []
+  m_PositionCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 1.6708567, y: 11.48005, z: -6}
+        inSlope: {x: 0, y: -0.07842617, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: Infinity}
+        tangentMode: 0
+      - time: 4.366667
+        value: {x: 1.6708567, y: 11.25, z: -6}
+        inSlope: {x: 0, y: -50.37639, z: 0}
+        outSlope: {x: 0, y: -50.37639, z: 0}
+        tangentMode: 0
+      - time: 4.5666666
+        value: {x: 1.6708567, y: -8.89, z: -6}
+        inSlope: {x: 0, y: -100.700096, z: 0}
+        outSlope: {x: 0, y: -100.700096, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: FloatingLetter1
+  m_ScaleCurves: []
+  m_FloatCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.4
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 5.0333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animated Canvas/No
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animated Canvas/Yes
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.3
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.4333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.5666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.7
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.8333334
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.9666667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.1
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.2333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.3666666
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 4.366667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 5.4666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animated Canvas/Evidence - 3D
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.3
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.4333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.5666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.7
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.8333334
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.9666667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.1
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.2333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.3666666
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 5.4666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animated Canvas/Evidence
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 447.5
+        inSlope: -590.86957
+        outSlope: -590.86957
+        tangentMode: 10
+      - time: 0.76666665
+        value: -5.5000153
+        inSlope: -316.8963
+        outSlope: -316.8963
+        tangentMode: 10
+      - time: 1.2
+        value: -24.1
+        inSlope: -21.461517
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.4
+        value: -24.1
+        inSlope: 157.875
+        outSlope: 157.875
+        tangentMode: 10
+      - time: 1.6666666
+        value: 60.1
+        inSlope: 157.875
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.8333334
+        value: 60.1
+        inSlope: 140.33331
+        outSlope: 140.33331
+        tangentMode: 10
+      - time: 2.1333334
+        value: 144.3
+        inSlope: 280.66663
+        outSlope: 280.66663
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.x
+    path: Animated Canvas/Finger
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -14.5
+        inSlope: 18.913067
+        outSlope: 18.913067
+        tangentMode: 10
+      - time: 0.76666665
+        value: 0.0000166893
+        inSlope: 170.99495
+        outSlope: 170.99495
+        tangentMode: 10
+      - time: 1.2
+        value: 140
+        inSlope: 161.53842
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.4
+        value: 140
+        inSlope: 50.062496
+        outSlope: 50.062496
+        tangentMode: 10
+      - time: 1.6666666
+        value: 166.7
+        inSlope: 50.062496
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.8333334
+        value: 166.7
+        inSlope: -37.999996
+        outSlope: -37.999996
+        tangentMode: 10
+      - time: 2.1333334
+        value: 143.9
+        inSlope: -75.99999
+        outSlope: -75.99999
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.y
+    path: Animated Canvas/Finger
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 47.29999
+        inSlope: -65
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.3
+        value: -37.2
+        inSlope: 67.826904
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.7333333
+        value: 49.75
+        inSlope: 200.65381
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 2.1333334
+        value: 131.1
+        inSlope: 200.65381
+        outSlope: Infinity
+        tangentMode: 25
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.x
+    path: Animated Canvas/TouchCircle
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 214.09998
+        inSlope: -12.538441
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.3
+        value: 197.8
+        inSlope: 25.923075
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.7333333
+        value: 225.7
+        inSlope: 64.38459
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 2.1333334
+        value: 198.4
+        inSlope: 64.38459
+        outSlope: Infinity
+        tangentMode: 25
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.y
+    path: Animated Canvas/TouchCircle
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.3
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.4
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.7333333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.8333334
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.1333334
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.2333336
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animated Canvas/TouchCircle
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.7333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: FloatingLetter1/Balloon_1
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.3
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: FloatingLetter1/Balloon_2
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.1333334
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: FloatingLetter1/Balloon_3
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -202
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 2.4
+        value: -202
+        inSlope: -0.000028610231
+        outSlope: -0.000028610231
+        tangentMode: 10
+      - time: 2.6666667
+        value: -202.00002
+        inSlope: -0.000025386544
+        outSlope: -0.000025386544
+        tangentMode: 10
+      - time: 5.0333333
+        value: -202
+        inSlope: 0.000006447376
+        outSlope: 0.000006447376
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.x
+    path: Animated Canvas/No
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -58
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 2.4
+        value: -58
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 2.6666667
+        value: -58
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 5.0333333
+        value: -58
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.y
+    path: Animated Canvas/No
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 322
+        inSlope: -133.75
+        outSlope: -133.75
+        tangentMode: 10
+      - time: 2.4
+        value: 1
+        inSlope: 1151.9886
+        outSlope: 1151.9886
+        tangentMode: 10
+      - time: 2.5333333
+        value: 326.03
+        inSlope: 1046.2513
+        outSlope: 1046.2513
+        tangentMode: 10
+      - time: 2.6666667
+        value: 280
+        inSlope: -93.86234
+        outSlope: -93.86234
+        tangentMode: 10
+      - time: 2.9333334
+        value: 322
+        inSlope: 78.75001
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 4.7
+        value: 322
+        inSlope: -481.49976
+        outSlope: -481.49976
+        tangentMode: 10
+      - time: 5.0333333
+        value: 1
+        inSlope: -962.9995
+        outSlope: -962.9995
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_SizeDelta.x
+    path: Animated Canvas/No
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 322.29
+        inSlope: -133.87083
+        outSlope: -133.87083
+        tangentMode: 10
+      - time: 2.4
+        value: 1
+        inSlope: 1151.8158
+        outSlope: 1151.8158
+        tangentMode: 10
+      - time: 2.5333333
+        value: 326
+        inSlope: 1046.2513
+        outSlope: 1046.2513
+        tangentMode: 10
+      - time: 2.6666667
+        value: 280
+        inSlope: -93.20609
+        outSlope: -93.20609
+        tangentMode: 10
+      - time: 2.9333334
+        value: 322.29
+        inSlope: 79.29377
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 4.7
+        value: 322.29
+        inSlope: -481.93478
+        outSlope: -481.93478
+        tangentMode: 10
+      - time: 5.0333333
+        value: 1
+        inSlope: -963.86957
+        outSlope: -963.86957
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_SizeDelta.y
+    path: Animated Canvas/No
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: -0.8448276
+        outSlope: -0.8448276
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Color.r
+    path: Animated Canvas/Evidence - 3D
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.10344829
+        inSlope: 1.1206896
+        outSlope: 1.1206896
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Color.g
+    path: Animated Canvas/Evidence - 3D
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Color.b
+    path: Animated Canvas/Evidence - 3D
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_EffectColor.r
+    path: Animated Canvas/Evidence
+    classID: 114
+    script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_EffectColor.g
+    path: Animated Canvas/Evidence
+    classID: 114
+    script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_EffectColor.b
+    path: Animated Canvas/Evidence
+    classID: 114
+    script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.101960786
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Color.g
+    path: Animated Canvas/Evidence
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.102941155
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.2
+        value: 0.102941155
+        inSlope: 4.007357
+        outSlope: 4.007357
+        tangentMode: 10
+      - time: 1.3
+        value: 0.9044118
+        inSlope: 1.001842
+        outSlope: 1.001842
+        tangentMode: 10
+      - time: 1.4333333
+        value: 0.102941155
+        inSlope: -0.0000026226044
+        outSlope: -0.0000026226044
+        tangentMode: 10
+      - time: 1.5666667
+        value: 0.9044118
+        inSlope: -0.0000026226044
+        outSlope: -0.0000026226044
+        tangentMode: 10
+      - time: 1.7
+        value: 0.102941155
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.8333334
+        value: 0.9044118
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.9666667
+        value: 0.102941155
+        inSlope: 0.0000026226044
+        outSlope: 0.0000026226044
+        tangentMode: 10
+      - time: 2.1
+        value: 0.9044118
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 2.233333
+        value: 0.102941155
+        inSlope: -0.0000052452087
+        outSlope: -0.0000052452087
+        tangentMode: 10
+      - time: 2.3666666
+        value: 0.9044118
+        inSlope: 6.011025
+        outSlope: 6.011025
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_fontColor.r
+    path: Animated Canvas/WordPrompt/LetterPrompt_3/LetterText
+    classID: 114
+    script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.102941155
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.2
+        value: 0.102941155
+        inSlope: -0.51470625
+        outSlope: -0.51470625
+        tangentMode: 10
+      - time: 1.3
+        value: 0
+        inSlope: -0.12867689
+        outSlope: -0.12867689
+        tangentMode: 10
+      - time: 1.4333333
+        value: 0.102941155
+        inSlope: 0.00000035762787
+        outSlope: 0.00000035762787
+        tangentMode: 10
+      - time: 1.5666667
+        value: 0
+        inSlope: 0.00000035762787
+        outSlope: 0.00000035762787
+        tangentMode: 10
+      - time: 1.7
+        value: 0.102941155
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.8333334
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.9666667
+        value: 0.102941155
+        inSlope: -0.00000032782555
+        outSlope: -0.00000032782555
+        tangentMode: 10
+      - time: 2.1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 2.233333
+        value: 0.102941155
+        inSlope: 0.0000006854534
+        outSlope: 0.0000006854534
+        tangentMode: 10
+      - time: 2.3666666
+        value: 0
+        inSlope: -0.772058
+        outSlope: -0.772058
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_fontColor.g
+    path: Animated Canvas/WordPrompt/LetterPrompt_3/LetterText
+    classID: 114
+    script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.102941155
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.2
+        value: 0.102941155
+        inSlope: -0.51470625
+        outSlope: -0.51470625
+        tangentMode: 10
+      - time: 1.3
+        value: 0
+        inSlope: -0.12867689
+        outSlope: -0.12867689
+        tangentMode: 10
+      - time: 1.4333333
+        value: 0.102941155
+        inSlope: 0.00000035762787
+        outSlope: 0.00000035762787
+        tangentMode: 10
+      - time: 1.5666667
+        value: 0
+        inSlope: 0.00000035762787
+        outSlope: 0.00000035762787
+        tangentMode: 10
+      - time: 1.7
+        value: 0.102941155
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.8333334
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.9666667
+        value: 0.102941155
+        inSlope: -0.00000032782555
+        outSlope: -0.00000032782555
+        tangentMode: 10
+      - time: 2.1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 2.233333
+        value: 0.102941155
+        inSlope: 0.0000006854534
+        outSlope: 0.0000006854534
+        tangentMode: 10
+      - time: 2.3666666
+        value: 0
+        inSlope: -0.772058
+        outSlope: -0.772058
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_fontColor.b
+    path: Animated Canvas/WordPrompt/LetterPrompt_3/LetterText
+    classID: 114
+    script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
+  m_PPtrCurves: []
+  m_SampleRate: 30
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_ClipBindingConstant:
+    genericBindings:
+    - path: 526287514
+      attribute: 1
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2393087822
+      attribute: 2086281974
+      script: {fileID: 0}
+      classID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - path: 1768054140
+      attribute: 2086281974
+      script: {fileID: 0}
+      classID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - path: 3734003092
+      attribute: 2086281974
+      script: {fileID: 0}
+      classID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2993683683
+      attribute: 2086281974
+      script: {fileID: 0}
+      classID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - path: 1880746872
+      attribute: 1460864421
+      script: {fileID: 0}
+      classID: 224
+      customType: 0
+      isPPtrCurve: 0
+    - path: 1880746872
+      attribute: 538195251
+      script: {fileID: 0}
+      classID: 224
+      customType: 0
+      isPPtrCurve: 0
+    - path: 646555870
+      attribute: 1460864421
+      script: {fileID: 0}
+      classID: 224
+      customType: 0
+      isPPtrCurve: 0
+    - path: 646555870
+      attribute: 538195251
+      script: {fileID: 0}
+      classID: 224
+      customType: 0
+      isPPtrCurve: 0
+    - path: 646555870
+      attribute: 2086281974
+      script: {fileID: 0}
+      classID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2606419783
+      attribute: 2086281974
+      script: {fileID: 0}
+      classID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - path: 39034621
+      attribute: 2086281974
+      script: {fileID: 0}
+      classID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - path: 1968483947
+      attribute: 2086281974
+      script: {fileID: 0}
+      classID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2393087822
+      attribute: 1460864421
+      script: {fileID: 0}
+      classID: 224
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2393087822
+      attribute: 1967290853
+      script: {fileID: 0}
+      classID: 224
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2393087822
+      attribute: 38095219
+      script: {fileID: 0}
+      classID: 224
+      customType: 0
+      isPPtrCurve: 0
+    - path: 3734003092
+      attribute: 2526845255
+      script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+      classID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - path: 3734003092
+      attribute: 4215373228
+      script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+      classID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - path: 4269602398
+      attribute: 2110649717
+      script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
+      classID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - path: 4269602398
+      attribute: 269488542
+      script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
+      classID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - path: 4269602398
+      attribute: 1618666769
+      script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
+      classID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2393087822
+      attribute: 538195251
+      script: {fileID: 0}
+      classID: 224
+      customType: 0
+      isPPtrCurve: 0
+    - path: 3734003092
+      attribute: 2334886179
+      script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+      classID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2993683683
+      attribute: 3965000455
+      script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+      classID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2993683683
+      attribute: 2173239276
+      script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+      classID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2993683683
+      attribute: 4058123107
+      script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+      classID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2993683683
+      attribute: 4215373228
+      script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+      classID: 114
+      customType: 0
+      isPPtrCurve: 0
+    pptrCurveMapping: []
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_AdditiveReferencePoseClip: {fileID: 0}
+    m_AdditiveReferencePoseTime: 0
+    m_StartTime: 0
+    m_StopTime: 5.4666667
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_HasAdditiveReferencePose: 0
+    m_LoopTime: 0
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.4
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 5.0333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animated Canvas/No
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animated Canvas/Yes
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.3
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.4333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.5666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.7
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.8333334
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.9666667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.1
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.2333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.3666666
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 4.366667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 5.4666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animated Canvas/Evidence - 3D
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.3
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.4333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.5666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.7
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.8333334
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.9666667
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.1
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.2333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.3666666
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 5.4666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animated Canvas/Evidence
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 447.5
+        inSlope: -590.86957
+        outSlope: -590.86957
+        tangentMode: 10
+      - time: 0.76666665
+        value: -5.5000153
+        inSlope: -316.8963
+        outSlope: -316.8963
+        tangentMode: 10
+      - time: 1.2
+        value: -24.1
+        inSlope: -21.461517
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.4
+        value: -24.1
+        inSlope: 157.875
+        outSlope: 157.875
+        tangentMode: 10
+      - time: 1.6666666
+        value: 60.1
+        inSlope: 157.875
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.8333334
+        value: 60.1
+        inSlope: 140.33331
+        outSlope: 140.33331
+        tangentMode: 10
+      - time: 2.1333334
+        value: 144.3
+        inSlope: 280.66663
+        outSlope: 280.66663
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.x
+    path: Animated Canvas/Finger
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -14.5
+        inSlope: 18.913067
+        outSlope: 18.913067
+        tangentMode: 10
+      - time: 0.76666665
+        value: 0.0000166893
+        inSlope: 170.99495
+        outSlope: 170.99495
+        tangentMode: 10
+      - time: 1.2
+        value: 140
+        inSlope: 161.53842
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.4
+        value: 140
+        inSlope: 50.062496
+        outSlope: 50.062496
+        tangentMode: 10
+      - time: 1.6666666
+        value: 166.7
+        inSlope: 50.062496
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.8333334
+        value: 166.7
+        inSlope: -37.999996
+        outSlope: -37.999996
+        tangentMode: 10
+      - time: 2.1333334
+        value: 143.9
+        inSlope: -75.99999
+        outSlope: -75.99999
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.y
+    path: Animated Canvas/Finger
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 47.29999
+        inSlope: -65
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.3
+        value: -37.2
+        inSlope: 67.826904
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.7333333
+        value: 49.75
+        inSlope: 200.65381
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 2.1333334
+        value: 131.1
+        inSlope: 200.65381
+        outSlope: Infinity
+        tangentMode: 25
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.x
+    path: Animated Canvas/TouchCircle
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 214.09998
+        inSlope: -12.538441
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.3
+        value: 197.8
+        inSlope: 25.923075
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 1.7333333
+        value: 225.7
+        inSlope: 64.38459
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 2.1333334
+        value: 198.4
+        inSlope: 64.38459
+        outSlope: Infinity
+        tangentMode: 25
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.y
+    path: Animated Canvas/TouchCircle
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.3
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.4
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.7333333
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.8333334
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.1333334
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.2333336
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animated Canvas/TouchCircle
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.7333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: FloatingLetter1/Balloon_1
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 1.3
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: FloatingLetter1/Balloon_2
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 2.1333334
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: FloatingLetter1/Balloon_3
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -202
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 2.4
+        value: -202
+        inSlope: -0.000028610231
+        outSlope: -0.000028610231
+        tangentMode: 10
+      - time: 2.6666667
+        value: -202.00002
+        inSlope: -0.000025386544
+        outSlope: -0.000025386544
+        tangentMode: 10
+      - time: 5.0333333
+        value: -202
+        inSlope: 0.000006447376
+        outSlope: 0.000006447376
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.x
+    path: Animated Canvas/No
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -58
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 2.4
+        value: -58
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 2.6666667
+        value: -58
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 5.0333333
+        value: -58
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.y
+    path: Animated Canvas/No
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 322
+        inSlope: -133.75
+        outSlope: -133.75
+        tangentMode: 10
+      - time: 2.4
+        value: 1
+        inSlope: 1151.9886
+        outSlope: 1151.9886
+        tangentMode: 10
+      - time: 2.5333333
+        value: 326.03
+        inSlope: 1046.2513
+        outSlope: 1046.2513
+        tangentMode: 10
+      - time: 2.6666667
+        value: 280
+        inSlope: -93.86234
+        outSlope: -93.86234
+        tangentMode: 10
+      - time: 2.9333334
+        value: 322
+        inSlope: 78.75001
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 4.7
+        value: 322
+        inSlope: -481.49976
+        outSlope: -481.49976
+        tangentMode: 10
+      - time: 5.0333333
+        value: 1
+        inSlope: -962.9995
+        outSlope: -962.9995
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_SizeDelta.x
+    path: Animated Canvas/No
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 322.29
+        inSlope: -133.87083
+        outSlope: -133.87083
+        tangentMode: 10
+      - time: 2.4
+        value: 1
+        inSlope: 1151.8158
+        outSlope: 1151.8158
+        tangentMode: 10
+      - time: 2.5333333
+        value: 326
+        inSlope: 1046.2513
+        outSlope: 1046.2513
+        tangentMode: 10
+      - time: 2.6666667
+        value: 280
+        inSlope: -93.20609
+        outSlope: -93.20609
+        tangentMode: 10
+      - time: 2.9333334
+        value: 322.29
+        inSlope: 79.29377
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 4.7
+        value: 322.29
+        inSlope: -481.93478
+        outSlope: -481.93478
+        tangentMode: 10
+      - time: 5.0333333
+        value: 1
+        inSlope: -963.86957
+        outSlope: -963.86957
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_SizeDelta.y
+    path: Animated Canvas/No
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1.6708567
+        inSlope: 0
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 4.366667
+        value: 1.6708567
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 4.5666666
+        value: 1.6708567
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: FloatingLetter1
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 11.48005
+        inSlope: -0.07842617
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 4.366667
+        value: 11.25
+        inSlope: -50.37639
+        outSlope: -50.37639
+        tangentMode: 10
+      - time: 4.5666666
+        value: -8.89
+        inSlope: -100.700096
+        outSlope: -100.700096
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: FloatingLetter1
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -6
+        inSlope: 0
+        outSlope: Infinity
+        tangentMode: 25
+      - time: 4.366667
+        value: -6
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 4.5666666
+        value: -6
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: FloatingLetter1
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: -0.8448276
+        outSlope: -0.8448276
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Color.r
+    path: Animated Canvas/Evidence - 3D
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.10344829
+        inSlope: 1.1206896
+        outSlope: 1.1206896
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Color.g
+    path: Animated Canvas/Evidence - 3D
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Color.b
+    path: Animated Canvas/Evidence - 3D
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_EffectColor.r
+    path: Animated Canvas/Evidence
+    classID: 114
+    script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_EffectColor.g
+    path: Animated Canvas/Evidence
+    classID: 114
+    script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_EffectColor.b
+    path: Animated Canvas/Evidence
+    classID: 114
+    script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.101960786
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Color.g
+    path: Animated Canvas/Evidence
+    classID: 114
+    script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.102941155
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.2
+        value: 0.102941155
+        inSlope: 4.007357
+        outSlope: 4.007357
+        tangentMode: 10
+      - time: 1.3
+        value: 0.9044118
+        inSlope: 1.001842
+        outSlope: 1.001842
+        tangentMode: 10
+      - time: 1.4333333
+        value: 0.102941155
+        inSlope: -0.0000026226044
+        outSlope: -0.0000026226044
+        tangentMode: 10
+      - time: 1.5666667
+        value: 0.9044118
+        inSlope: -0.0000026226044
+        outSlope: -0.0000026226044
+        tangentMode: 10
+      - time: 1.7
+        value: 0.102941155
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.8333334
+        value: 0.9044118
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.9666667
+        value: 0.102941155
+        inSlope: 0.0000026226044
+        outSlope: 0.0000026226044
+        tangentMode: 10
+      - time: 2.1
+        value: 0.9044118
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 2.233333
+        value: 0.102941155
+        inSlope: -0.0000052452087
+        outSlope: -0.0000052452087
+        tangentMode: 10
+      - time: 2.3666666
+        value: 0.9044118
+        inSlope: 6.011025
+        outSlope: 6.011025
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_fontColor.r
+    path: Animated Canvas/WordPrompt/LetterPrompt_3/LetterText
+    classID: 114
+    script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.102941155
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.2
+        value: 0.102941155
+        inSlope: -0.51470625
+        outSlope: -0.51470625
+        tangentMode: 10
+      - time: 1.3
+        value: 0
+        inSlope: -0.12867689
+        outSlope: -0.12867689
+        tangentMode: 10
+      - time: 1.4333333
+        value: 0.102941155
+        inSlope: 0.00000035762787
+        outSlope: 0.00000035762787
+        tangentMode: 10
+      - time: 1.5666667
+        value: 0
+        inSlope: 0.00000035762787
+        outSlope: 0.00000035762787
+        tangentMode: 10
+      - time: 1.7
+        value: 0.102941155
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.8333334
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.9666667
+        value: 0.102941155
+        inSlope: -0.00000032782555
+        outSlope: -0.00000032782555
+        tangentMode: 10
+      - time: 2.1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 2.233333
+        value: 0.102941155
+        inSlope: 0.0000006854534
+        outSlope: 0.0000006854534
+        tangentMode: 10
+      - time: 2.3666666
+        value: 0
+        inSlope: -0.772058
+        outSlope: -0.772058
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_fontColor.g
+    path: Animated Canvas/WordPrompt/LetterPrompt_3/LetterText
+    classID: 114
+    script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.102941155
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.2
+        value: 0.102941155
+        inSlope: -0.51470625
+        outSlope: -0.51470625
+        tangentMode: 10
+      - time: 1.3
+        value: 0
+        inSlope: -0.12867689
+        outSlope: -0.12867689
+        tangentMode: 10
+      - time: 1.4333333
+        value: 0.102941155
+        inSlope: 0.00000035762787
+        outSlope: 0.00000035762787
+        tangentMode: 10
+      - time: 1.5666667
+        value: 0
+        inSlope: 0.00000035762787
+        outSlope: 0.00000035762787
+        tangentMode: 10
+      - time: 1.7
+        value: 0.102941155
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.8333334
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.9666667
+        value: 0.102941155
+        inSlope: -0.00000032782555
+        outSlope: -0.00000032782555
+        tangentMode: 10
+      - time: 2.1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 2.233333
+        value: 0.102941155
+        inSlope: 0.0000006854534
+        outSlope: 0.0000006854534
+        tangentMode: 10
+      - time: 2.3666666
+        value: 0
+        inSlope: -0.772058
+        outSlope: -0.772058
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_fontColor.b
+    path: Animated Canvas/WordPrompt/LetterPrompt_3/LetterText
+    classID: 114
+    script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
+  m_EulerEditorCurves: []
+  m_HasGenericRootTransform: 0
+  m_HasMotionFloatCurves: 0
+  m_GenerateMotionCurves: 0
+  m_Events: []
