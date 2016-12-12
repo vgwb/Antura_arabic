@@ -43,6 +43,8 @@ namespace EA4S
             GlobalUI.ShowPauseMenu(false);
             GlobalUI.ShowBackButton(true, ExitThisScene);
             AudioManager.I.PlayMusic(SceneMusic);
+            LogManager.I.LogInfo(InfoEvent.Book, "enter");
+
             SceneTransitioner.Close();
 
             AudioManager.I.PlayDialog("Book_Intro");
@@ -117,6 +119,7 @@ namespace EA4S
 
         public void ExitThisScene()
         {
+            LogManager.I.LogInfo(InfoEvent.Book, "exit");
             NavigationManager.I.GoToScene(AppScene.Map);
         }
     }

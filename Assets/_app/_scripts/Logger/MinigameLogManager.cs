@@ -13,7 +13,6 @@ namespace EA4S
     {
 
         #region Runtime variables
-        // Minigame
         public string session { get { return LogManager.I.Session; } }
         string minigameSession;
         MiniGameCode miniGameCode;
@@ -28,17 +27,12 @@ namespace EA4S
             //session = DateTime.Now.Ticks.ToString();
         }
 
-        public void InitPlaySession()
-        {
-
-        }
-
         /// <summary>
         /// Initializes the single minigame gameplay log session.
         /// </summary>
         public void InitGameplayLogSession(MiniGameCode _minigameCode)
         {
-            if (AppConstants.VerboseLogging) Debug.Log("InitGameplayLogSession " + _minigameCode.ToString());
+            if (AppConstants.DebugLogInserts) Debug.Log("InitGameplayLogSession " + _minigameCode.ToString());
             miniGameCode = _minigameCode;
             minigameSession = DateTime.Now.Ticks.ToString();
             LogManager.I.LogInfo(InfoEvent.GameStart, miniGameCode.ToString());
@@ -55,7 +49,7 @@ namespace EA4S
         /// <param name="_isPositiveResult"></param>
         public void OnAnswer(ILivingLetterData _data, bool _isPositiveResult)
         {
-            if (AppConstants.VerboseLogging) Debug.Log("OnAnswer " + _data.Id + " " + _isPositiveResult);
+            if (AppConstants.DebugLogInserts) Debug.Log("pre-log OnAnswer " + _data.Id + " " + _isPositiveResult);
             ILivingLetterAnswerData newILivingLetterAnswerData = new ILivingLetterAnswerData();
             newILivingLetterAnswerData._data = _data;
             newILivingLetterAnswerData._isPositiveResult = _isPositiveResult;
@@ -73,6 +67,7 @@ namespace EA4S
             flushLogLearn();
             flushLogPlay();
             LogManager.I.LogMinigameScore(miniGameCode, _valuation);
+            LogManager.I.LogInfo(InfoEvent.GameEnd, JsonUtility.ToJson(new GameResultInfo() { Game = miniGameCode.ToString(), Result = _valuation.ToString() }));
         }
 
         /// <summary>
@@ -82,6 +77,7 @@ namespace EA4S
         /// <param name="_score">The score.</param>
         public void OnGameplaySkillAction(PlaySkill _ability, float _score)
         {
+            if (AppConstants.DebugLogInserts) Debug.Log("pre-log OnGameplaySkillAction " + _ability + " " + _score);
             bufferizeLogPlayData(new LogAI.PlayResultParameters() {
                 playEvent = PlayEvent.Skill,
                 skill = _ability,
@@ -99,11 +95,6 @@ namespace EA4S
         {
             LogManager.I.LogInfo(_event, _data);
 
-        }
-
-        public void LogMood(int _mood)
-        {
-            LogManager.I.LogMood(_mood);
         }
 
         #endregion
@@ -204,6 +195,12 @@ namespace EA4S
             public string CachedType { get { return "ILivingLetterAnswerData"; } }
             public ILivingLetterData _data;
             public bool _isPositiveResult;
+        }
+
+        public struct GameResultInfo
+        {
+            public string Game;
+            public string Result;
         }
         #endregion
     }

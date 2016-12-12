@@ -19,15 +19,8 @@ namespace EA4S
         private TextMeshProUGUI m_oTextBonesNumber;
         [SerializeField]
         private OnActiveBehaviour m_oCustomButton;
-
-
         [SerializeField]
         private Music m_oBackgroundMusic;
-
-        
-       
-
-
         #endregion
 
         #region PRIVATE MEMBERS
@@ -38,7 +31,7 @@ namespace EA4S
         private GameObject m_oCookieRootContainer;
         private BoneBehaviour m_oDraggedBone;
         private AnturaBehaviour m_oAnturaBehaviour;
- 
+
         private int m_iTotalBones_Local = 0; //maybe it's redundant, but can be useful for testing purpose 
         #endregion
 
@@ -46,9 +39,9 @@ namespace EA4S
         void Start()
         {
             GlobalUI.ShowPauseMenu(false);
-            GlobalUI.ShowBackButton(true,Exit);
-
+            GlobalUI.ShowBackButton(true, Exit);
             AudioManager.I.PlayMusic(m_oBackgroundMusic);
+            LogManager.I.LogInfo(InfoEvent.AnturaSpace, "enter");
 
             m_iTotalBones_Local = AppManager.I.Player.GetTotalNumberOfBones();
 
@@ -98,6 +91,7 @@ namespace EA4S
         /// </summary>
         public void Exit()
         {
+            LogManager.I.LogInfo(InfoEvent.AnturaSpace, "exit");
             NavigationManager.I.GoToScene(AppScene.Map);
         }
 
@@ -109,7 +103,8 @@ namespace EA4S
             GameObject _oBone = get();
 
             if (m_oDraggedBone != null || _oBone == null || m_iTotalBones_Local <= 0) {
-                Debug.Log("Can't throw bones");
+                if (AppConstants.VerboseLogging)
+                    Debug.Log("Can't throw bones");
                 return;
             }
 
@@ -127,9 +122,9 @@ namespace EA4S
         {
             GameObject _oBone = get();
 
-            if (m_oDraggedBone!=null || _oBone == null || m_iTotalBones_Local <= 0)
-            {
-                Debug.Log("Can't drag bones");
+            if (m_oDraggedBone != null || _oBone == null || m_iTotalBones_Local <= 0) {
+                if (AppConstants.VerboseLogging)
+                    Debug.Log("Can't drag bones");
                 return;
             }
 
@@ -146,9 +141,9 @@ namespace EA4S
         /// </summary>
         public void LetGoBone()
         {
-            if(m_oDraggedBone==null)
-            {
-                Debug.Log("No bone to let go");
+            if (m_oDraggedBone == null) {
+                if (AppConstants.VerboseLogging)
+                    Debug.Log("No bone to let go");
                 return;
             }
 

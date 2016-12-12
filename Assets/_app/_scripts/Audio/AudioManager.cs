@@ -38,8 +38,7 @@ namespace EA4S
 
             // Collect all Event name -> Audio clip pairs
             var components = transform.GetComponentsInChildren<AudioComponent>(true);
-            foreach (var c in components)
-            {
+            foreach (var c in components) {
                 var listener = c.GetComponent<EventListener>();
 
                 if (listener != null)
@@ -47,8 +46,7 @@ namespace EA4S
             }
 
             var rndcomponents = transform.GetComponentsInChildren<RandomComponent>(true);
-            foreach (var c in rndcomponents)
-            {
+            foreach (var c in rndcomponents) {
                 var listener = c.GetComponent<EventListener>();
 
                 if (listener != null)
@@ -56,19 +54,16 @@ namespace EA4S
             }
         }
 
-        void OnApplicationPause(bool pauseStatus)
+        public void OnAppPause(bool pauseStatus)
         {
             // app is pausing
-            if (pauseStatus)
-            {
+            if (pauseStatus) {
                 if (Fabric.EventManager.Instance != null)
                     Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.StopAll);
             }
             //app is resuming
-            if (!pauseStatus)
-            {
-                if (musicEnabled)
-                {
+            if (!pauseStatus) {
+                if (musicEnabled) {
                     PlayMusic(currentMusic);
                 }
             }
@@ -77,10 +72,8 @@ namespace EA4S
         public void NotifyEndAudio(Fabric.EventNotificationType type, string boh, object info, GameObject gameObject)
         {
             // Debug.Log ("OnNotify:" + type + "GameObject:" + gameObject.name);
-            if (info != null)
-            {
-                if (type == Fabric.EventNotificationType.OnAudioComponentStopped)
-                {
+            if (info != null) {
+                if (type == Fabric.EventNotificationType.OnAudioComponentStopped) {
                     //Debug.Log("NotifyEndAudio OnAudioComponentStopped()");
                     hasToNotifyEndAudio = true;
                 }
@@ -91,12 +84,9 @@ namespace EA4S
         public void ToggleMusic()
         {
             musicEnabled = !musicEnabled;
-            if (musicEnabled)
-            {
+            if (musicEnabled) {
                 PlayMusic(currentMusic);
-            }
-            else
-            {
+            } else {
                 if (Fabric.EventManager.Instance != null)
                     Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.StopAll);
             }
@@ -106,14 +96,10 @@ namespace EA4S
         {
             currentMusic = music;
             var eventName = AudioConfig.GetMusicEventName(music);
-            if (eventName == "")
-            {
+            if (eventName == "") {
                 StopMusic();
-            }
-            else
-            {
-                if (musicEnabled)
-                {
+            } else {
+                if (musicEnabled) {
                     Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.SetSwitch, eventName);
                     Fabric.EventManager.Instance.PostEvent("MusicTrigger");
                     //Fabric.EventManager.Instance.PostEvent("Music/" + eventName);
@@ -142,8 +128,7 @@ namespace EA4S
         void FadeOutMusic(string n)
         {
             Fabric.Component component = Fabric.FabricManager.Instance.GetComponentByName(n);
-            if (component != null)
-            {
+            if (component != null) {
                 component.FadeOut(0.1f, 0.5f);
             }
         }
@@ -226,8 +211,7 @@ namespace EA4S
 
             OnNotifyEndAudio = null;
 
-            if (data.AudioFile != "")
-            {
+            if (data.AudioFile != "") {
                 //Debug.Log("PlayDialog: " + data.id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
                 Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + data.AudioFile);
                 Fabric.EventManager.Instance.PostEvent("KeeperDialog");
@@ -251,16 +235,13 @@ namespace EA4S
 
             OnNotifyEndAudio = null;
 
-            if (data.AudioFile != "")
-            {
+            if (data.AudioFile != "") {
                 // Debug.Log("PlayDialog with Callback: " + data.id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
 
                 OnNotifyEndAudio = callback;
                 Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + data.AudioFile);
                 Fabric.EventManager.Instance.PostEventNotify("KeeperDialog", NotifyEndAudio);
-            }
-            else
-            {
+            } else {
                 if (callback != null)
                     callback();
             }
@@ -272,8 +253,7 @@ namespace EA4S
         {
             if (data.DataType == LivingLetterDataType.Letter)
                 return GetAudioClip(LETTERS_PREFIX + data.Id);
-            else if (data.DataType == LivingLetterDataType.Word || data.DataType == LivingLetterDataType.Image)
-            {
+            else if (data.DataType == LivingLetterDataType.Word || data.DataType == LivingLetterDataType.Image) {
                 return GetCachedResource("AudioArabic/Words/" + WORDS_PREFIX + data.Id);
             }
             return null;
@@ -288,8 +268,7 @@ namespace EA4S
         {
             Fabric.AudioComponent audioComponent = null;
 
-            if (eventToComponent.TryGetValue(eventName, out audioComponent))
-            {
+            if (eventToComponent.TryGetValue(eventName, out audioComponent)) {
                 var random = audioComponent as RandomAudioClipComponent;
 
                 if (random != null)
@@ -300,8 +279,7 @@ namespace EA4S
 
             Fabric.RandomComponent rndComponent = null;
 
-            if (eventToRndComponent.TryGetValue(eventName, out rndComponent))
-            {
+            if (eventToRndComponent.TryGetValue(eventName, out rndComponent)) {
                 var child = rndComponent.GetChildComponents();
 
                 Fabric.AudioComponent c = child.GetRandom() as AudioComponent;
@@ -336,11 +314,9 @@ namespace EA4S
 
         void Update()
         {
-            if (hasToNotifyEndAudio)
-            {
+            if (hasToNotifyEndAudio) {
                 hasToNotifyEndAudio = false;
-                if (OnNotifyEndAudio != null)
-                {
+                if (OnNotifyEndAudio != null) {
                     var oldCallback = OnNotifyEndAudio;
                     OnNotifyEndAudio = null;
                     oldCallback();
