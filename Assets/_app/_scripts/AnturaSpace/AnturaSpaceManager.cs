@@ -103,7 +103,8 @@ namespace EA4S
             GameObject _oBone = get();
 
             if (m_oDraggedBone != null || _oBone == null || m_iTotalBones_Local <= 0) {
-                Debug.Log("Can't throw bones");
+                if (AppConstants.VerboseLogging)
+                    Debug.Log("Can't throw bones");
                 return;
             }
 
@@ -122,7 +123,8 @@ namespace EA4S
             GameObject _oBone = get();
 
             if (m_oDraggedBone != null || _oBone == null || m_iTotalBones_Local <= 0) {
-                Debug.Log("Can't drag bones");
+                if (AppConstants.VerboseLogging)
+                    Debug.Log("Can't drag bones");
                 return;
             }
 
@@ -140,7 +142,8 @@ namespace EA4S
         public void LetGoBone()
         {
             if (m_oDraggedBone == null) {
-                Debug.Log("No bone to let go");
+                if (AppConstants.VerboseLogging)
+                    Debug.Log("No bone to let go");
                 return;
             }
 
