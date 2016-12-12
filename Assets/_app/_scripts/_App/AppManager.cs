@@ -24,6 +24,8 @@ namespace EA4S
         [HideInInspector]
         public Db.MiniGameData CurrentMinigame;
 
+        bool appIsPaused = false;
+
         #region Init
 
         protected override void GameSetup()
@@ -119,6 +121,27 @@ namespace EA4S
             AppManager.I.Modules.SceneModule.LoadSceneWithTransition(NavigationManager.I.GetSceneName(AppScene.Home));
 
             Debug.Log("Reset ALL players.");
+        }
+
+        void OnApplicationPause(bool pauseStatus)
+        {
+            appIsPaused = pauseStatus;
+
+            // app is pausing
+            if (appIsPaused) {
+                LogManager.I.LogInfo(InfoEvent.AppSuspend);
+            }
+
+            //app is resuming
+            if (!appIsPaused) {
+                LogManager.I.LogInfo(InfoEvent.AppResume);
+            }
+            AudioManager.I.OnAppPause(appIsPaused);
+        }
+
+        void OnApplicationFocus(bool hasFocus)
+        {
+            appIsPaused = !hasFocus;
         }
     }
 
