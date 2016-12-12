@@ -11,6 +11,9 @@ namespace EA4S.Assessment
 
         public void EnterState()
         {
+
+            AssessmentConfiguration.Instance.Context.GetLogManager().OnMiniGameResult(3);
+
             var audioManager = assessmentGame.Context.GetAudioManager();
             IDialogueManager dialogue = new DialogueManager(audioManager, assessmentGame.Context.GetSubtitleWidget());
             audioManager.PlayMusic(Music.Relax);

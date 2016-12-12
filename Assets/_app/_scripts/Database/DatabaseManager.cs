@@ -15,8 +15,7 @@ namespace EA4S
         private DBService dynamicDb;
 
         public Database StaticDatabase {
-            get
-            {
+            get {
                 return staticDb;
             }
         }
@@ -37,8 +36,7 @@ namespace EA4S
         void LoadStaticDB(bool useTestDatabase)
         {
             var dbName = STATIC_DATABASE_NAME;
-            if (useTestDatabase)
-            {
+            if (useTestDatabase) {
                 dbName = STATIC_DATABASE_NAME_TEST;
             }
 
@@ -86,11 +84,15 @@ namespace EA4S
         public void Insert<T>(T data) where T : IData, new()
         {
             dynamicDb.Insert(data);
+            if (AppConstants.DebugLogInserts)
+                Debug.Log("DB Insert: " + data);
         }
 
         public void InsertOrReplace<T>(T data) where T : IData, new()
         {
             dynamicDb.InsertOrReplace(data);
+            if (AppConstants.DebugLogInserts)
+                Debug.Log("DB InsertOrReplace: " + data);
         }
         #endregion
 

@@ -59,14 +59,7 @@ namespace EA4S
             BtAdd.Bt.onClick.AddListener(() => OnClick(BtAdd));
             BtPlay.Bt.onClick.AddListener(() => {
                 AudioManager.I.PlaySfx(Sfx.UIButtonClick);
-                if (AppManager.I.Player.IsFirstContact()) { 
-                    NavigationManager.I.GoToScene(AppScene.Intro);
-                } else { 
-                    if (AppManager.I.Player.MoodLastVisit == System.DateTime.Today.ToString())
-                        NavigationManager.I.GoToScene(AppScene.Map);
-                    else
-                        NavigationManager.I.GoToScene(AppScene.Mood);
-                }
+                HomeManager.I.Play();
             });
             foreach (ProfileSelectorAvatarButton bt in avatarButtons) {
                 ProfileSelectorAvatarButton b = bt;
