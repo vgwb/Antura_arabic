@@ -8,6 +8,7 @@ namespace EA4S
         public const bool DebugPanelEnabled = false;
         public const bool UseUnityAnalytics = true;
         public static bool VerboseLogging = false;
+        public static bool DebugLogInserts = true;
 
         // Application details (used by Teacher and maybe other)
         public const float minimumAge = 7;
