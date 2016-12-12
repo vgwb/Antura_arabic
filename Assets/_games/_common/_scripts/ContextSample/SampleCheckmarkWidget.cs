@@ -1,6 +1,4 @@
-﻿using ArabicSupport;
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EA4S
 {
@@ -8,9 +6,7 @@ namespace EA4S
     {
         public void Show(bool correct)
         {
-
             GlobalUI.I.ActionFeedback.Show(correct);
         }
-        
     }
 }
