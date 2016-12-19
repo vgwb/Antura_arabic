@@ -12,6 +12,7 @@
 /*.userprefs
 /*.pidb
 /*.booproj
+.vscode/
 
 #OS Junk
 Thumbs.db
