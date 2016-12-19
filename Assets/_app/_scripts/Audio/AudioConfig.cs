@@ -6,8 +6,6 @@
         MainTheme = 1,
         Relax = 2,
         Lullaby = 3,
-        Theme3 = 4,
-        Theme4 = 5,
         Theme6 = 6,
         Theme7 = 7,
         Theme8 = 8,
@@ -107,12 +105,6 @@
                     break;
                 case Music.Lullaby:
                     eventName = "Music5";
-                    break;
-                case Music.Theme3:
-                    eventName = "Music3";
-                    break;
-                case Music.Theme4:
-                    eventName = "Music4";
                     break;
                 case Music.Theme6:
                     eventName = "Music6";
