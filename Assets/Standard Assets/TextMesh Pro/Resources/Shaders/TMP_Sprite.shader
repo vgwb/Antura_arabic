@@ -16,7 +16,7 @@ Shader "TextMeshPro/Sprite"
 		_StencilReadMask ("Stencil Read Mask", Float) = 255
 
 		_ColorMask ("Color Mask", Float) = 15
-		_ClipRect ("Clip Rect", vector) = (-10000, -10000, 10000, 10000)
+		_ClipRect ("Clip Rect", vector) = (-32767, -32767, 32767, 32767)
 
 		[Toggle(UNITY_UI_ALPHACLIP)] _UseUIAlphaClip ("Use Alpha Clip", Float) = 0
 	}

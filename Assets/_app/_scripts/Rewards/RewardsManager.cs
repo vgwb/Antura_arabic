@@ -17,7 +17,7 @@ namespace EA4S
             if (AppManager.I.Player.IsFirstContact())
                 GlobalUI.ShowPauseMenu(false);
 
-            AudioManager.I.PlayMusic(Music.Theme4);
+            AudioManager.I.PlayMusic(Music.Theme10);
             Debug.Log("RewardsManager playsession: " + AppManager.I.Player.CurrentJourneyPosition.PlaySession);
 
             // here we set the Rewards base on current progression level (playsession -1 because Rewards appear when playsession is already incremented)

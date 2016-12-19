@@ -15,18 +15,17 @@ namespace TMPro.EditorUtilities
 
     public static class TMP_ColorGradientAssetMenu
     {
-        [MenuItem("Assets/Create/TextMeshPro - Color Gradient", false, 110)]
+        [MenuItem("Assets/Create/TextMeshPro/Color Gradient", false, 110)]
         public static void CreateColorGradient(MenuCommand context)
         {
-            //string filePath = AssetDatabase.GetAssetPath(Selection.activeObject);
+            string filePath;
 
-            string filePath = AssetDatabase.GUIDToAssetPath(Selection.assetGUIDs[0]);
-
-            if (filePath.Length == 0)
-            {
+            if (Selection.assetGUIDs.Length == 0)
                 filePath = "Assets/New TMP Color Gradient.asset";
-            }
-            else if (Directory.Exists(filePath))
+            else
+                filePath = AssetDatabase.GUIDToAssetPath(Selection.assetGUIDs[0]);
+
+            if (Directory.Exists(filePath))
             {
                 filePath += "/New TMP Color Gradient.asset";
             }

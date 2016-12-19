@@ -138,10 +138,10 @@ Material:
       second: 0.8333333
     - first:
         name: _ScaleRatioB
-      second: 0.8333333
+      second: 0.6770833
     - first:
         name: _ScaleRatioC
-      second: 0.8333333
+      second: 0.6770833
     - first:
         name: _ScaleX
       second: 1
@@ -246,7 +246,6 @@ Texture2D:
   m_TextureFormat: 1
   m_MipCount: 1
   m_IsReadable: 1
-  m_ReadAllowed: 1
   m_AlphaIsTransparency: 0
   m_ImageCount: 1
   m_TextureDimension: 2
@@ -274,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74dfce233ddb29b4294c3e23c1d3650d, type: 3}
   m_Name: Antura Arabic SDF (old to be substituted)
   m_EditorClassIdentifier: 
-  hashCode: -1171811274
+  hashCode: 1299012050
   material: {fileID: 2137854}
   materialHashCode: 1119612925
   fontAssetType: 1

@@ -178,6 +178,17 @@ namespace TMPro
         private string m_defaultSpriteAssetPath;
 
         /// <summary>
+        /// Determines if Emoji support is enabled in the Input Field TouchScreenKeyboard.
+        /// </summary>
+        public static bool enableEmojiSupport
+        {
+            get { return instance.m_enableEmojiSupport; }
+            set { instance.m_enableEmojiSupport = value; }
+        }
+        [SerializeField]
+        private bool m_enableEmojiSupport;
+
+        /// <summary>
         /// The Default Style Sheet used by the text objects.
         /// </summary>
         public static TMP_StyleSheet defaultStyleSheet

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace TMPro
 {
-    public enum VertexSortingOrder { Normal, Reverse, Depth };
+    public enum VertexSortingOrder { Normal, Reverse };
 
     /// <summary>
     /// Structure which contains the vertex attributes (geometry) of the text object.
@@ -507,10 +507,19 @@ namespace TMPro
                     // Do nothing 
                     break;
                 case VertexSortingOrder.Reverse:
-                    // 
+                    int size = vertexCount / 4;
+                    for (int i = 0; i < size; i++)
+                    {
+                        int src = i * 4;
+                        int dst = (size - i - 1) * 4;
+
+                        if (src < dst)
+                            SwapVertexData(src, dst);
+
+                    }
                     break;
-                case VertexSortingOrder.Depth:
-                    break;
+                //case VertexSortingOrder.Depth:
+                //    break;
 
             }
         }

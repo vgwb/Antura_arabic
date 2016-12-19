@@ -185,6 +185,7 @@ namespace TMPro
             inputField.textViewport = textAreaRectTransform;
             inputField.textComponent = text;
             inputField.placeholder = placeholder;
+            inputField.fontAsset = text.font;
 
             return root;
         }

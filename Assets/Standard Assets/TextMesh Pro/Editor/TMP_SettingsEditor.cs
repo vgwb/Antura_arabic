@@ -33,6 +33,7 @@ namespace TMPro.EditorUtilities
 
         private SerializedProperty prop_SpriteAsset;
         private SerializedProperty prop_SpriteAssetPath;
+        private SerializedProperty prop_EnableEmojiSupport;
         private SerializedProperty prop_StyleSheet;
         private ReorderableList m_list;
 
@@ -62,6 +63,7 @@ namespace TMPro.EditorUtilities
 
             prop_SpriteAsset = serializedObject.FindProperty("m_defaultSpriteAsset");
             prop_SpriteAssetPath = serializedObject.FindProperty("m_defaultSpriteAssetPath");
+            prop_EnableEmojiSupport = serializedObject.FindProperty("m_enableEmojiSupport");
             prop_StyleSheet = serializedObject.FindProperty("m_defaultStyleSheet");
 
             m_list = new ReorderableList(serializedObject, serializedObject.FindProperty("m_fallbackFontAssets"), true, true, true, true);
@@ -180,9 +182,14 @@ namespace TMPro.EditorUtilities
             // SPRITE ASSET
             EditorGUILayout.BeginVertical(TMP_UIStyleManager.SquareAreaBox85G);
             GUILayout.Label("<b>Default Sprite Asset</b>", TMP_UIStyleManager.Label);
+            //GUI.color = Color.yellow;
             GUILayout.Label("Select the Sprite Asset that will be assigned by default when using the <sprite> tag when no Sprite Asset is specified.", TMP_UIStyleManager.Label);
             GUILayout.Space(5f);
+            //GUI.color = Color.white;
             EditorGUILayout.PropertyField(prop_SpriteAsset);
+            GUILayout.Space(10f);
+            //GUILayout.Label("Enable Emoji Support", TMP_UIStyleManager.Label);
+            EditorGUILayout.PropertyField(prop_EnableEmojiSupport, new GUIContent("Enable Emoji Support", "Enables Emoji support for Touch Screen Keyboards on target devices."));
             GUILayout.Space(10f);
             GUILayout.Label("The relative path to a Resources folder where the Sprite Assets are located.\nExample \"Sprite Assets/\"", TMP_UIStyleManager.Label);
             EditorGUILayout.PropertyField(prop_SpriteAssetPath, new GUIContent("Path:        Resources/"));

@@ -10,7 +10,7 @@ using System.Collections;
 
 namespace TMPro.EditorUtilities
 {
-    
+
     public static class TMP_UIStyleManager
     {
 
@@ -36,6 +36,7 @@ namespace TMPro.EditorUtilities
         public static Texture2D alignCenter;
         public static Texture2D alignRight;
         public static Texture2D alignJustified;
+        public static Texture2D alignFlush;
         public static Texture2D alignTop;
         public static Texture2D alignMiddle;
         public static Texture2D alignBottom;
@@ -70,6 +71,7 @@ namespace TMPro.EditorUtilities
                 alignCenter = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignCenter.psd", typeof(Texture2D)) as Texture2D;
                 alignRight = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignRight.psd", typeof(Texture2D)) as Texture2D;
                 alignJustified = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignJustified.psd", typeof(Texture2D)) as Texture2D;
+                alignFlush = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignFlush.psd", typeof(Texture2D)) as Texture2D;
                 alignTop = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignTop.psd", typeof(Texture2D)) as Texture2D;
                 alignMiddle = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignMiddle.psd", typeof(Texture2D)) as Texture2D;
                 alignBottom = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignBottom.psd", typeof(Texture2D)) as Texture2D;
@@ -92,6 +94,7 @@ namespace TMPro.EditorUtilities
                 alignCenter = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignCenter_Light.psd", typeof(Texture2D)) as Texture2D;
                 alignRight = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignRight_Light.psd", typeof(Texture2D)) as Texture2D;
                 alignJustified = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignJustified_Light.psd", typeof(Texture2D)) as Texture2D;
+                alignFlush = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignFlush_Light.psd", typeof(Texture2D)) as Texture2D;
                 alignTop = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignTop_Light.psd", typeof(Texture2D)) as Texture2D;
                 alignMiddle = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignMiddle_Light.psd", typeof(Texture2D)) as Texture2D;
                 alignBottom = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignBottom_Light.psd", typeof(Texture2D)) as Texture2D;
@@ -118,19 +121,24 @@ namespace TMPro.EditorUtilities
                 SquareAreaBox85G = TMP_GUISkin.FindStyle("Square Area Box (85 Grey)");
 
 
-                alignContent_A = new GUIContent[] { 
+                alignContent_A = new GUIContent[]
+                { 
                     new GUIContent(alignLeft, "Left"), 
                     new GUIContent(alignCenter, "Center"), 
                     new GUIContent(alignRight, "Right"), 
-                    new GUIContent(alignJustified, "Justified") };
+                    new GUIContent(alignJustified, "Justified"),
+                    new GUIContent(alignFlush, "Flush")
+                };
 
-                alignContent_B = new GUIContent[] { 
+                alignContent_B = new GUIContent[]
+                { 
                     new GUIContent(alignTop, "Top"), 
                     new GUIContent(alignMiddle, "Middle"), 
                     new GUIContent(alignBottom, "Bottom"),
                     new GUIContent(alignBaseline, "Baseline"),
                     new GUIContent(alignMidline, "Midline"),
-                    new GUIContent(alignCapline, "Capline") };
+                    new GUIContent(alignCapline, "Capline")
+                };
 
 
             }

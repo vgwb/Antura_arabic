@@ -133,10 +133,10 @@ Material:
       second: 0.8333333
     - first:
         name: _ScaleRatioB
-      second: 0.8333333
+      second: 0.6770833
     - first:
         name: _ScaleRatioC
-      second: 0.8333333
+      second: 0.6770833
     - first:
         name: _ScaleX
       second: 1

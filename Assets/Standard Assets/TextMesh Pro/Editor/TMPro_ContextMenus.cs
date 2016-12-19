@@ -31,7 +31,7 @@ namespace TMPro.EditorUtilities
 
         // Add a Context Menu to allow easy duplication of the Material.
         //[MenuItem("CONTEXT/MaterialComponent/Duplicate Material", false)]
-        [MenuItem("CONTEXT/Material/Duplicate Material", false)]
+        [MenuItem("CONTEXT/Material/Create Material Preset", false)]
         static void DuplicateMaterial(MenuCommand command)
         {
             // Get the type of text object
@@ -77,6 +77,10 @@ namespace TMPro.EditorUtilities
                     }
                 }
             }
+
+            // Select newly created material
+            //EditorUtility.FocusProjectWindow();
+            //Selection.activeObject = duplicate;
         }
 
 

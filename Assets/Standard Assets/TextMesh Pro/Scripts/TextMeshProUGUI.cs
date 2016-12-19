@@ -1,7 +1,7 @@
 // Copyright (C) 2014 - 2016 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
-// Release 1.0.54 
+// Release 1.0.55.52 Beta 3
 
 
 using UnityEngine;
@@ -98,8 +98,6 @@ namespace TMPro
         private bool m_isRebuildingLayout = false;
         //private bool m_isLayoutDirty = false;
 
-      
-
 
         /// <summary>
         /// Function called by Unity when the horizontal layout needs to be recalculated.
@@ -114,6 +112,7 @@ namespace TMPro
 
             if (m_isCalculateSizeRequired || m_rectTransform.hasChanged)
             {
+                
 
                 m_preferredWidth = GetPreferredWidth();
 
@@ -166,6 +165,8 @@ namespace TMPro
         public override void SetLayoutDirty()
         {
             //Debug.Log("SetLayoutDirty() called at frame:" + Time.frameCount + ".");
+            m_isPreferredWidthDirty = true;
+            m_isPreferredHeightDirty = true;
 
             if ( m_layoutAlreadyDirty || this == null || !this.IsActive())
                 return;
@@ -286,6 +287,8 @@ namespace TMPro
             //if (!this.IsActive())
             //    return;
 
+            if (m_sharedMaterial == null) return;
+
             if (m_canvasRenderer == null) m_canvasRenderer = this.canvasRenderer;
 
             m_canvasRenderer.materialCount = 1;
@@ -356,6 +359,18 @@ namespace TMPro
             SetMaterialDirty();
         }
 
+        /// <summary>
+        /// Override of the Cull function to provide for the ability to override the culling of the text object.
+        /// </summary>
+        /// <param name="clipRect"></param>
+        /// <param name="validRect"></param>
+        public override void Cull(Rect clipRect, bool validRect)
+        {
+            if (m_ignoreRectMaskCulling) return;
+
+            base.Cull(clipRect, validRect);
+        }
+
 
         //protected override void UpdateGeometry()
         //{
@@ -423,6 +438,9 @@ namespace TMPro
             m_isMaskingEnabled = ShaderUtilities.IsMaskingEnabled(m_sharedMaterial);
             m_havePropertiesChanged = true;
             checkPaddingRequired = false;
+
+            // Return if text object is not awake yet.
+            if (m_textInfo == null) return;
 
             // Update sub text objects
             for (int i = 1; i < m_textInfo.materialCount; i++)
@@ -511,6 +529,20 @@ namespace TMPro
             m_renderMode = TextRenderFlags.Render;
 
             return this.textInfo;
+        }
+
+        /// <summary>
+        /// Function to clear the geometry of the Primary and Sub Text objects.
+        /// </summary>
+        public override void ClearMesh()
+        {
+            m_canvasRenderer.SetMesh(null);
+
+            for (int i = 1; i < m_subTextObjects.Length && m_subTextObjects[i] != null; i++)
+                m_subTextObjects[i].canvasRenderer.SetMesh(null);
+
+            //if (m_linkedTextComponent != null)
+            //   m_linkedTextComponent.ClearMesh();
         }
 
 

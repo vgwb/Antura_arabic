@@ -55,8 +55,7 @@ namespace EA4S.FastCrowd
             // Reset game timer
             gameTime.Start();
 
-            if(initializeOveralyWidget)
-            {
+            if (initializeOveralyWidget) {
                 initializeOveralyWidget = false;
                 game.InitializeOverlayWidget();
             }
@@ -81,14 +80,13 @@ namespace EA4S.FastCrowd
             game.QuestionManager.OnDropped -= OnAnswerDropped;
             game.QuestionManager.Clean();
         }
-        
+
         void OnQuestionCompleted()
         {
             if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling ||
-                  FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
-            {
+                  FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter) {
                 // In spelling and letter, increment score only when the full question is completed
-                for (int i=0; i<game.CurrentChallenge.Count; ++i)
+                for (int i = 0; i < game.CurrentChallenge.Count; ++i)
                     game.IncrementScore();
             }
 
@@ -102,8 +100,7 @@ namespace EA4S.FastCrowd
             if (result &&
                 (FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Spelling &&
                 FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Letter)
-                )
-            {
+                ) {
                 // In spelling and letter, increment score only when the full question is completed
                 game.IncrementScore();
             }
@@ -117,8 +114,8 @@ namespace EA4S.FastCrowd
             game.antura.SetAnturaTime(false);
             // Schedule next exit
             anturaTimer = UnityEngine.Mathf.Lerp(20, 10, FastCrowdConfiguration.Instance.Difficulty);
-            
-            game.Context.GetAudioManager().PlayMusic(Music.Theme3);
+
+            game.Context.GetAudioManager().PlayMusic(Music.Theme10);
         }
 
         void StartAntura()
@@ -127,7 +124,7 @@ namespace EA4S.FastCrowd
             game.antura.SetAnturaTime(true);
             // Schedule next duration
             anturaTimer = UnityEngine.Mathf.Lerp(5, 15, FastCrowdConfiguration.Instance.Difficulty);
-            
+
             game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
         }
 
@@ -135,8 +132,7 @@ namespace EA4S.FastCrowd
         {
             anturaTimer -= delta;
 
-            if (anturaTimer <= 0.0f)
-            {
+            if (anturaTimer <= 0.0f) {
                 if (isAnturaRunning)
                     StopAntura();
                 else
@@ -146,10 +142,8 @@ namespace EA4S.FastCrowd
             gameTime.Update(delta);
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
-            if (!hurryUpSfx)
-            {
-                if (gameTime.Time < 4f)
-                {
+            if (!hurryUpSfx) {
+                if (gameTime.Time < 4f) {
                     hurryUpSfx = true;
 
                     timesUpAudioSource = game.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);

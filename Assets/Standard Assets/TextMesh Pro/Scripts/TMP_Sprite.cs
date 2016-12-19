@@ -20,6 +20,7 @@ namespace TMPro
         //public int id;
         public string name;
         public int hashCode;
+        public int unicode;
         //public float x;
         //public float y;
         //public float width;

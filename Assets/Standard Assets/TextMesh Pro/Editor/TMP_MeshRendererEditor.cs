@@ -7,14 +7,16 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
+
 namespace TMPro.EditorUtilities
 {
+    // Disabled for compatibility reason as lightprobe setup isn't supported due to inability to inherit from MeshRendererEditor class
+    /*
     [CanEditMultipleObjects]
     [CustomEditor(typeof(MeshRenderer))]
     public class TMP_MeshRendererEditor : Editor
     {
         private SerializedProperty m_Materials;
-
 
         void OnEnable()
         {
@@ -71,4 +73,5 @@ namespace TMPro.EditorUtilities
             }
         }
     }
+    */
 }

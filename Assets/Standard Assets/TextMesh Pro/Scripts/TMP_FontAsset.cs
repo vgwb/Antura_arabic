@@ -339,12 +339,19 @@ namespace TMPro
             m_fontInfo.TabWidth = m_characterDictionary[9].xAdvance;
 
             // Set Cap Height
-            if (m_fontInfo.CapHeight == 0 && m_characterDictionary.ContainsKey(65))
-                m_fontInfo.CapHeight = m_characterDictionary[65].yOffset;
+            if (m_fontInfo.CapHeight == 0 && m_characterDictionary.ContainsKey(72))
+                m_fontInfo.CapHeight = m_characterDictionary[72].yOffset;
 
             // Adjust Font Scale for compatibility reasons
             if (m_fontInfo.Scale == 0)
                 m_fontInfo.Scale = 1.0f;
+
+            // Set Padding value for legacy font assets.
+            if (m_fontInfo.Padding == 0)
+            {
+                if (material.HasProperty(ShaderUtilities.ID_GradientScale))
+                    m_fontInfo.Padding = material.GetFloat(ShaderUtilities.ID_GradientScale) - 1;
+            }
 
             // Populate Dictionary with Kerning Information
             m_kerningDictionary = new Dictionary<int, KerningPair>();
@@ -434,7 +441,7 @@ namespace TMPro
                 // Check Font Asset Fallback fonts.
                 if (fallbackFontAssets != null && fallbackFontAssets.Count > 0)
                 {
-                    for (int i = 0; i < fallbackFontAssets.Count; i++)
+                    for (int i = 0; i < fallbackFontAssets.Count && fallbackFontAssets[i] != null; i++)
                     {
                         if (fallbackFontAssets[i].characterDictionary != null && fallbackFontAssets[i].characterDictionary.ContainsKey(character))
                             return true;
@@ -444,7 +451,7 @@ namespace TMPro
                 // Check general fallback font assets.
                 if (TMP_Settings.fallbackFontAssets != null && TMP_Settings.fallbackFontAssets.Count > 0)
                 {
-                    for (int i = 0; i < TMP_Settings.fallbackFontAssets.Count; i++)
+                    for (int i = 0; i < TMP_Settings.fallbackFontAssets.Count && TMP_Settings.fallbackFontAssets[i] != null; i++)
                     {
                         if (TMP_Settings.fallbackFontAssets[i].characterDictionary != null && TMP_Settings.fallbackFontAssets[i].characterDictionary.ContainsKey(character))
                             return true;

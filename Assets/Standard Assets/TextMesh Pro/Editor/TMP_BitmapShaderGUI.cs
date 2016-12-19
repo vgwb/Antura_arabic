@@ -33,7 +33,7 @@ namespace TMPro.EditorUtilities
             if (material.HasProperty(ShaderUtilities.ID_FaceTex))
             {
                 DoColor("_FaceColor", "Color");
-                DoTexture2D("_FaceTex", "Texture");
+                DoTexture2D("_FaceTex", "Texture", true);
             }
             else
             {

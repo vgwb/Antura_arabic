@@ -18,12 +18,12 @@ MonoBehaviour:
   m_fontInfo:
     Name: EA4S_Arabic_Dotless
     PointSize: 56
-    Scale: 0
+    Scale: 1
     CharacterCount: 616
     LineHeight: 64.375
     Baseline: 0
     Ascender: 50.6875
-    CapHeight: 0
+    CapHeight: 40.125
     Descender: -11.875
     CenterLine: 0
     SuperscriptOffset: 50.6875
@@ -31,7 +31,7 @@ MonoBehaviour:
     SubSize: 0.5
     Underline: -7.984375
     UnderlineThickness: 4.1015625
-    TabWidth: 0
+    TabWidth: 155.625
     Padding: 5
     AtlasWidth: 1024
     AtlasHeight: 1024
@@ -40,10 +40,10 @@ MonoBehaviour:
   - id: 32
     x: 6
     y: 1029
-    width: 0
-    height: 0
+    width: 15.5625
+    height: 62.5625
     xOffset: 0
-    yOffset: 0
+    yOffset: 50.6875
     xAdvance: 15.5625
     scale: 1
   - id: 33
@@ -5760,10 +5760,10 @@ Material:
       second: 0.8333333
     - first:
         name: _ScaleRatioB
-      second: 0.8333333
+      second: 0.6770833
     - first:
         name: _ScaleRatioC
-      second: 0.8333333
+      second: 0.6770833
     - first:
         name: _ScaleX
       second: 1
@@ -5868,7 +5868,6 @@ Texture2D:
   m_TextureFormat: 1
   m_MipCount: 1
   m_IsReadable: 0
-  m_ReadAllowed: 1
   m_AlphaIsTransparency: 0
   m_ImageCount: 1
   m_TextureDimension: 2

@@ -72,6 +72,7 @@ namespace TMPro
         public float aspectRatio;
         public float scale;
         public Color32 color;
+        public Color32 highlightColor;
         public FontStyles style;
         public bool isVisible;
         //public bool isIgnoringAlignment;
@@ -332,11 +333,16 @@ namespace TMPro
         
         public Color32 vertexColor;
         public TMP_XmlTagStack<Color32> colorStack;
+        public TMP_XmlTagStack<Color32> highlightColorStack;
         public TMP_XmlTagStack<float> sizeStack;
+        public TMP_XmlTagStack<float> indentStack;
         public TMP_XmlTagStack<int> fontWeightStack;
         public TMP_XmlTagStack<int> styleStack;
         public TMP_XmlTagStack<int> actionStack;
         public TMP_XmlTagStack<MaterialReference> materialReferenceStack;
+        public TMP_XmlTagStack<TextAlignmentOptions> lineJustificationStack;
+        //public TMP_XmlTagStack<int> spriteAnimationStack;
+        public int spriteAnimationID;
 
         public TMP_FontAsset currentFontAsset;
         public TMP_SpriteAsset currentSpriteAsset;
@@ -365,7 +371,6 @@ namespace TMPro
         public int nameHashCode;
         public TagType valueType;
         public int valueStartIndex;
-        public int valueDecimalIndex;
         public int valueLength;
         public int valueHashCode;
     }

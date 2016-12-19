@@ -12,6 +12,9 @@ namespace TMPro
 
     public class TMP_SpriteAsset : TMP_Asset
     {
+        private Dictionary<int, int> m_UnicodeLookup;
+        private Dictionary<int, int> m_NameLookup;
+
         /// <summary>
         /// Static reference to the default font asset included with TextMesh Pro.
         /// </summary>
@@ -36,8 +39,10 @@ namespace TMPro
         // List which contains the SpriteInfo for the sprites contained in the sprite sheet.
         public List<TMP_Sprite> spriteInfoList;
 
-        // List which contains the individual sprites.
-        private List<Sprite> m_sprites;
+        /// <summary>
+        /// Dictionary used to lookup the index of a given sprite based on a Unicode value.
+        /// </summary>
+        private Dictionary<int, int> m_SpriteUnicodeLookup;
 
 
         //private bool isEditingAsset;
@@ -88,23 +93,67 @@ namespace TMPro
 
 
         /// <summary>
+        /// Function to update the sprite name and unicode lookup tables.
+        /// </summary>
+        public void UpdateLookupTables()
+        {
+            if (m_NameLookup == null) m_NameLookup = new Dictionary<int, int>();
+
+            if (m_UnicodeLookup == null) m_UnicodeLookup = new Dictionary<int, int>();
+
+            for (int i = 0; i < spriteInfoList.Count; i++)
+            {
+                int nameHashCode = spriteInfoList[i].hashCode;
+
+                if (m_NameLookup.ContainsKey(nameHashCode) == false)
+                    m_NameLookup.Add(nameHashCode, i);
+
+                int unicode = spriteInfoList[i].unicode;
+
+                if (m_UnicodeLookup.ContainsKey(unicode) == false)
+                    m_UnicodeLookup.Add(unicode, i);
+            }
+        }
+
+
+        /// <summary>
         /// Function which returns the sprite index using the hashcode of the name
         /// </summary>
         /// <param name="hashCode"></param>
         /// <returns></returns>
-        public int GetSpriteIndex(int hashCode)
+        public int GetSpriteIndexFromHashcode(int hashCode)
         {
-            for (int index = 0; index < spriteInfoList.Count; index++)
-            {
-                if (spriteInfoList[index].hashCode == hashCode)
-                    return index;
-            }
+            if (m_NameLookup == null)
+                UpdateLookupTables();
+
+            int index = 0;
+            if (m_NameLookup.TryGetValue(hashCode, out index))
+                return index;
 
             return -1;
         }
 
 
+        /// <summary>
+        /// Returns the index of the sprite for the given unicode value.
+        /// </summary>
+        /// <param name="unicode"></param>
+        /// <returns></returns>
+        public int GetSpriteIndexFromUnicode (int unicode)
+        {
+            if (m_UnicodeLookup == null)
+                UpdateLookupTables();
 
+            int index = 0;
+
+            if (m_UnicodeLookup.TryGetValue(unicode, out index))
+                return index;
+
+            return -1;
+        }
+
+
+/*
 #if UNITY_EDITOR
         /// <summary>
         /// 
@@ -164,6 +213,6 @@ namespace TMPro
             return m_sprites;
         }
 #endif
-      
+*/      
     }
 }

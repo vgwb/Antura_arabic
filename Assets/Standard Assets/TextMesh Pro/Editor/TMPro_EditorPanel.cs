@@ -70,6 +70,7 @@ namespace TMPro.EditorUtilities
         private SerializedProperty charWidthMaxAdj_prop;
 
         private SerializedProperty characterSpacing_prop;
+        private SerializedProperty wordSpacing_prop;
         private SerializedProperty lineSpacing_prop;
         private SerializedProperty paragraphSpacing_prop;
 
@@ -85,6 +86,8 @@ namespace TMPro.EditorUtilities
         private SerializedProperty wordWrappingRatios_prop;
         private SerializedProperty textOverflowMode_prop;
         private SerializedProperty pageToDisplay_prop;
+        private SerializedProperty linkedTextComponent_prop;
+        private SerializedProperty isLinkedTextComponent_prop;
 
         private SerializedProperty enableKerning_prop;
 
@@ -100,7 +103,9 @@ namespace TMPro.EditorUtilities
         private SerializedProperty enableEscapeCharacterParsing_prop;
         private SerializedProperty useMaxVisibleDescender_prop;
         private SerializedProperty isVolumetricText_prop;
+        private SerializedProperty geometrySortingOrder_prop;
 
+        private SerializedProperty spriteAsset_prop;
         private SerializedProperty isOrthographic_prop;
         //private SerializedProperty isOverlay_prop;
 
@@ -132,8 +137,6 @@ namespace TMPro.EditorUtilities
         //private Vector3[] handlePoints = new Vector3[4]; // { new Vector3(-10, -10, 0), new Vector3(-10, 10, 0), new Vector3(10, 10, 0), new Vector3(10, -10, 0) };
         //private float prev_lineLenght;
 
-
-
         public void OnEnable()
         {
             //Debug.Log("OnEnable() for Inspector ID " + this.GetInstanceID() + " has been called.");
@@ -164,10 +167,10 @@ namespace TMPro.EditorUtilities
             enableVertexGradient_prop = serializedObject.FindProperty ("m_enableVertexGradient");
             fontColorGradient_prop = serializedObject.FindProperty ("m_fontColorGradient");
             fontColorGradientPreset_prop = serializedObject.FindProperty("m_fontColorGradientPreset");
-
             overrideHtmlColor_prop = serializedObject.FindProperty("m_overrideHtmlColors");
 
             characterSpacing_prop = serializedObject.FindProperty("m_characterSpacing");
+            wordSpacing_prop = serializedObject.FindProperty("m_wordSpacing");
             lineSpacing_prop = serializedObject.FindProperty("m_lineSpacing");
             paragraphSpacing_prop = serializedObject.FindProperty("m_paragraphSpacing");
 
@@ -182,6 +185,8 @@ namespace TMPro.EditorUtilities
             wordWrappingRatios_prop = serializedObject.FindProperty("m_wordWrappingRatios");
             textOverflowMode_prop = serializedObject.FindProperty("m_overflowMode");
             pageToDisplay_prop = serializedObject.FindProperty("m_pageToDisplay");
+            linkedTextComponent_prop = serializedObject.FindProperty("m_linkedTextComponent");
+            isLinkedTextComponent_prop = serializedObject.FindProperty("m_isLinkedTextComponent");
 
             enableKerning_prop = serializedObject.FindProperty("m_enableKerning");
             isOrthographic_prop = serializedObject.FindProperty("m_isOrthographic");
@@ -197,6 +202,8 @@ namespace TMPro.EditorUtilities
             enableEscapeCharacterParsing_prop = serializedObject.FindProperty("m_parseCtrlCharacters");
             useMaxVisibleDescender_prop = serializedObject.FindProperty("m_useMaxVisibleDescender");
             isVolumetricText_prop = serializedObject.FindProperty("m_isVolumetricText");
+            geometrySortingOrder_prop = serializedObject.FindProperty("m_geometrySortingOrder");
+            spriteAsset_prop = serializedObject.FindProperty("m_spriteAsset");
 
             //isMaskUpdateRequired_prop = serializedObject.FindProperty("isMaskUpdateRequired");
             //mask_prop = serializedObject.FindProperty("m_mask");
@@ -218,6 +225,10 @@ namespace TMPro.EditorUtilities
             m_textComponent = target as TextMeshPro;
             //m_renderer = m_textComponent.renderer;
             m_targetMaterial = m_textComponent.fontSharedMaterial;
+
+            // Set material editor visibility
+            if (m_foldout.materialEditor)
+                UnityEditorInternal.InternalEditorUtility.SetIsInspectorExpanded(m_targetMaterial, true);
 
             // Find all Material Presets matching the current Font Asset Material
             m_materialPresetNames = GetMaterialPresets();
@@ -266,43 +277,50 @@ namespace TMPro.EditorUtilities
 
             if (m_foldout.textInput)
             {
-                EditorGUI.BeginChangeCheck();
-                text_prop.stringValue = EditorGUILayout.TextArea(text_prop.stringValue, TMP_UIStyleManager.TextAreaBoxEditor, GUILayout.Height(125), GUILayout.ExpandWidth(true));
-
-                if (EditorGUI.EndChangeCheck() || (isRightToLeft_prop.boolValue && (m_RTLText == null || m_RTLText == string.Empty)))
+                // If the text component is linked, disable the text input box.
+                if (isLinkedTextComponent_prop.boolValue)
+                    EditorGUILayout.HelpBox("The Text Input Box is disabled due to this text component being linked to another.", MessageType.Info);
+                else
                 {
-                    inputSource_prop.enumValueIndex = 0;
-                    isInputPasingRequired_prop.boolValue = true;
-                    havePropertiesChanged = true;
 
-                    // Handle Left to Right or Right to Left Editor
-                    if (isRightToLeft_prop.boolValue)
+                    EditorGUI.BeginChangeCheck();
+                    text_prop.stringValue = EditorGUILayout.TextArea(text_prop.stringValue, TMP_UIStyleManager.TextAreaBoxEditor, GUILayout.Height(125), GUILayout.ExpandWidth(true));
+
+                    if (EditorGUI.EndChangeCheck() || (isRightToLeft_prop.boolValue && (m_RTLText == null || m_RTLText == string.Empty)))
                     {
-                        m_RTLText = string.Empty;
-                        string sourceText = text_prop.stringValue;
-                        // Reverse Text displayed in Text Input Box
-                        for (int i = 0; i < sourceText.Length; i++)
+                        inputSource_prop.enumValueIndex = 0;
+                        isInputPasingRequired_prop.boolValue = true;
+                        havePropertiesChanged = true;
+
+                        // Handle Left to Right or Right to Left Editor
+                        if (isRightToLeft_prop.boolValue)
                         {
-                            m_RTLText += sourceText[sourceText.Length - i - 1];
+                            m_RTLText = string.Empty;
+                            string sourceText = text_prop.stringValue;
+                            // Reverse Text displayed in Text Input Box
+                            for (int i = 0; i < sourceText.Length; i++)
+                            {
+                                m_RTLText += sourceText[sourceText.Length - i - 1];
+                            }
                         }
                     }
-                }
 
-                if (isRightToLeft_prop.boolValue)
-                {
-                    EditorGUI.BeginChangeCheck();
-                    m_RTLText = EditorGUILayout.TextArea(m_RTLText, TMP_UIStyleManager.TextAreaBoxEditor, GUILayout.Height(125), GUILayout.ExpandWidth(true));
-                    if (EditorGUI.EndChangeCheck())
+                    if (isRightToLeft_prop.boolValue)
                     {
-                        // Convert RTL input
-                        string sourceText = string.Empty;
-                        // Reverse Text displayed in Text Input Box
-                        for (int i = 0; i < m_RTLText.Length; i++)
+                        EditorGUI.BeginChangeCheck();
+                        m_RTLText = EditorGUILayout.TextArea(m_RTLText, TMP_UIStyleManager.TextAreaBoxEditor, GUILayout.Height(125), GUILayout.ExpandWidth(true));
+                        if (EditorGUI.EndChangeCheck())
                         {
-                            sourceText += m_RTLText[m_RTLText.Length - i - 1];
-                        }
+                            // Convert RTL input
+                            string sourceText = string.Empty;
+                            // Reverse Text displayed in Text Input Box
+                            for (int i = 0; i < m_RTLText.Length; i++)
+                            {
+                                sourceText += m_RTLText[m_RTLText.Length - i - 1];
+                            }
 
-                        text_prop.stringValue = sourceText;
+                            text_prop.stringValue = sourceText;
+                        }
                     }
                 }
             }
@@ -344,7 +362,7 @@ namespace TMPro.EditorUtilities
                     }
 
                     //Make sure material preset selection index matches the selection
-                    if (m_targetMaterial != m_materialPresets[m_materialPresetSelectionIndex] && !havePropertiesChanged)
+                    if (m_materialPresetSelectionIndex < m_materialPresetNames.Length && m_targetMaterial != m_materialPresets[m_materialPresetSelectionIndex] && !havePropertiesChanged)
                         m_isPresetListDirty = true;
                 }
 
@@ -422,6 +440,7 @@ namespace TMPro.EditorUtilities
                     }
                 }
 
+
                 // FONT SIZE
                 EditorGUI.BeginChangeCheck();
                 EditorGUILayout.BeginHorizontal();
@@ -498,8 +517,9 @@ namespace TMPro.EditorUtilities
 
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PrefixLabel("Spacing Options");
-                EditorGUIUtility.labelWidth = 30;
+                EditorGUIUtility.labelWidth = 35;
                 EditorGUILayout.PropertyField(characterSpacing_prop, new GUIContent("Char"), GUILayout.MinWidth(50)); //, GUILayout.MaxWidth(100));
+                EditorGUILayout.PropertyField(wordSpacing_prop, new GUIContent("Word"), GUILayout.MinWidth(50)); //, GUILayout.MaxWidth(100));
                 EditorGUILayout.PropertyField(lineSpacing_prop, new GUIContent("Line"), GUILayout.MinWidth(50)); //, GUILayout.MaxWidth(100));
                 EditorGUILayout.PropertyField(paragraphSpacing_prop, new GUIContent(" Par."), GUILayout.MinWidth(50)); //, GUILayout.MaxWidth(100));
 
@@ -521,28 +541,28 @@ namespace TMPro.EditorUtilities
                 btn.margin = new RectOffset(1, 1, 1, 1);
                 btn.padding = new RectOffset(1, 1, 1, 0);
 
-                selAlignGrid_A = textAlignment_prop.enumValueIndex & ~28;
-                selAlignGrid_B = (textAlignment_prop.enumValueIndex & ~3) / 4;
+                selAlignGrid_A = TMP_EditorUtility.GetHorizontalAlignmentGridValue(textAlignment_prop.intValue);
+                selAlignGrid_B = TMP_EditorUtility.GetVerticalAlignmentGridValue(textAlignment_prop.intValue);
 
                 GUI.Label(new Rect(rect.x, rect.y + 2, 100, rect.height), "Alignment");
                 float columnB = EditorGUIUtility.labelWidth + 15;
-                selAlignGrid_A = GUI.SelectionGrid(new Rect(columnB, rect.y, 23 * 4, rect.height), selAlignGrid_A, TMP_UIStyleManager.alignContent_A, 4, btn);
-                selAlignGrid_B = GUI.SelectionGrid(new Rect(columnB + 23 * 5 + 10, rect.y, 23 * 6, rect.height), selAlignGrid_B, TMP_UIStyleManager.alignContent_B, 6, btn);
+                selAlignGrid_A = GUI.SelectionGrid(new Rect(columnB, rect.y, 23 * 5, rect.height), selAlignGrid_A, TMP_UIStyleManager.alignContent_A, 5, btn);
+                selAlignGrid_B = GUI.SelectionGrid(new Rect(columnB + 23 * 5 + 20, rect.y, 23 * 6, rect.height), selAlignGrid_B, TMP_UIStyleManager.alignContent_B, 6, btn);
 
                 if (EditorGUI.EndChangeCheck())
-                { 
-                    textAlignment_prop.enumValueIndex = selAlignGrid_A + selAlignGrid_B * 4;
+                {
+                    int value = (0x1 << selAlignGrid_A) | (0x100 << selAlignGrid_B);
+                    textAlignment_prop.intValue = value;
                     havePropertiesChanged = true;
                 }
 
                 // WRAPPING RATIOS shown if Justified mode is selected.
                 EditorGUI.BeginChangeCheck();
-                if (textAlignment_prop.enumValueIndex == 3 || textAlignment_prop.enumValueIndex == 7 || textAlignment_prop.enumValueIndex == 11 || textAlignment_prop.enumValueIndex == 19)
+                if (((_HorizontalAlignmentOptions)textAlignment_prop.intValue & _HorizontalAlignmentOptions.Justified) == _HorizontalAlignmentOptions.Justified || ((_HorizontalAlignmentOptions)textAlignment_prop.intValue & _HorizontalAlignmentOptions.Flush) == _HorizontalAlignmentOptions.Flush)
                     DrawPropertySlider("Wrap Mix (W <-> C)", wordWrappingRatios_prop);
 
                 if (EditorGUI.EndChangeCheck())
                     havePropertiesChanged = true;
-
 
 
                 // TEXT WRAPPING & OVERFLOW
@@ -563,13 +583,33 @@ namespace TMPro.EditorUtilities
 
                 // TEXT OVERFLOW
                 EditorGUI.BeginChangeCheck();
-                if (textOverflowMode_prop.enumValueIndex != 5)
+                if ((TextOverflowModes)textOverflowMode_prop.enumValueIndex == TextOverflowModes.Linked)
                 {
                     rect.x += rect.width + 5f;
-                    rect.width -= 5;
+                    rect.width /= 3;
                     EditorGUI.PropertyField(rect, textOverflowMode_prop, GUIContent.none);
+                    rect.x += rect.width;
+                    rect.width = rect.width * 2 - 5;
+
+                    // Cache Reference to Linked Text Component
+                    TMP_Text old_LinkedComponent = linkedTextComponent_prop.objectReferenceValue as TMP_Text;
+
+                    EditorGUI.PropertyField(rect, linkedTextComponent_prop, GUIContent.none);
+                    if (GUI.changed)
+                    {
+                        if (linkedTextComponent_prop.objectReferenceValue == null)
+                        {
+                            if (old_LinkedComponent != null)
+                                old_LinkedComponent.isLinkedTextComponent = false;
+                        }
+                        else
+                        {
+                            TMP_Text textComponent = linkedTextComponent_prop.objectReferenceValue as TMP_Text;
+                            textComponent.isLinkedTextComponent = true;
+                        }
+                    }
                 }
-                else
+                else if ((TextOverflowModes)textOverflowMode_prop.enumValueIndex == TextOverflowModes.Page)
                 {
                     rect.x += rect.width + 5f;
                     rect.width /= 2;
@@ -578,6 +618,13 @@ namespace TMPro.EditorUtilities
                     rect.width -= 5;
                     EditorGUI.PropertyField(rect, pageToDisplay_prop, GUIContent.none);
                 }
+                else
+                {
+                    rect.x += rect.width + 5f;
+                    rect.width -= 5;
+                    EditorGUI.PropertyField(rect, textOverflowMode_prop, GUIContent.none);
+                }
+
                 if (EditorGUI.EndChangeCheck())
                 {
                     havePropertiesChanged = true;
@@ -687,6 +734,8 @@ namespace TMPro.EditorUtilities
                 EditorGUIUtility.labelWidth = old_LabelWidth;
                 EditorGUIUtility.fieldWidth = old_fieldWidth;
 
+                EditorGUILayout.PropertyField(geometrySortingOrder_prop, new GUIContent("Geometry Sorting"));
+
                 EditorGUI.BeginChangeCheck();
                 EditorGUIUtility.labelWidth = 150;
                 //EditorGUILayout.PropertyField(isOverlay_prop, new GUIContent("Overlay Mode?"));
@@ -699,6 +748,8 @@ namespace TMPro.EditorUtilities
                 EditorGUILayout.PropertyField(enableEscapeCharacterParsing_prop, new GUIContent("Parse Escape Characters"));
                 EditorGUILayout.PropertyField(useMaxVisibleDescender_prop, new GUIContent("Use Visible Descender"));
                 EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.PropertyField(spriteAsset_prop, new GUIContent("Sprite Asset", "The Sprite Asset used when NOT specifically referencing one using <sprite=\"Sprite Asset Name\"."), true);
                 if (EditorGUI.EndChangeCheck())
                     havePropertiesChanged = true;
 
@@ -754,7 +805,7 @@ namespace TMPro.EditorUtilities
 
             serializedObject.ApplyModifiedProperties();
 
-          
+
             /*
             Editor materialEditor = Editor.CreateEditor(m_renderer.sharedMaterial);
             if (materialEditor != null)
@@ -922,35 +973,35 @@ namespace TMPro.EditorUtilities
             }
         }
 
-        /*
-        private UndoPropertyModification[] OnUndoRedoEvent(UndoPropertyModification[] modifications)
-        {
-            int eventID = Undo.GetCurrentGroup();
-            PropertyModification modifiedProp = modifications[0].propertyModification;      
-            System.Type targetType = modifiedProp.target.GetType();
-              
-            if (targetType == typeof(Material))
-            {
-                //Debug.Log("Undo / Redo Event Registered in Editor Panel on Target: " + targetObject);
-           
-                //TMPro_EventManager.ON_MATERIAL_PROPERTY_CHANGED(true, targetObject as Material);
-                //EditorUtility.SetDirty(targetObject);        
-            }
-  
-            //string propertyPath = modifications[0].propertyModification.propertyPath;  
-            //if (propertyPath == "m_fontAsset")
-            //{
-                //int currentEvent = Undo.GetCurrentGroup();
-                //Undo.RecordObject(Selection.activeGameObject.renderer.sharedMaterial, "Font Asset Changed");
-                //Undo.CollapseUndoOperations(currentEvent);
-                //Debug.Log("Undo / Redo Event: Font Asset changed. Event ID:" + Undo.GetCurrentGroup());
-            
-            //}
+    /*
+    private UndoPropertyModification[] OnUndoRedoEvent(UndoPropertyModification[] modifications)
+    {
+        int eventID = Undo.GetCurrentGroup();
+        PropertyModification modifiedProp = modifications[0].propertyModification;      
+        System.Type targetType = modifiedProp.target.GetType();
 
-            //Debug.Log("Undo / Redo Event Registered in Editor Panel on Target: " + modifiedProp.propertyPath + "  Undo Event ID:" + eventID + "  Stored ID:" + TMPro_EditorUtility.UndoEventID);
-            //TextMeshPro_EventManager.ON_TEXTMESHPRO_PROPERTY_CHANGED(true, target as TextMeshPro);
-            return modifications;
+        if (targetType == typeof(Material))
+        {
+            //Debug.Log("Undo / Redo Event Registered in Editor Panel on Target: " + targetObject);
+
+            //TMPro_EventManager.ON_MATERIAL_PROPERTY_CHANGED(true, targetObject as Material);
+            //EditorUtility.SetDirty(targetObject);        
         }
-        */
+
+        //string propertyPath = modifications[0].propertyModification.propertyPath;  
+        //if (propertyPath == "m_fontAsset")
+        //{
+            //int currentEvent = Undo.GetCurrentGroup();
+            //Undo.RecordObject(Selection.activeGameObject.renderer.sharedMaterial, "Font Asset Changed");
+            //Undo.CollapseUndoOperations(currentEvent);
+            //Debug.Log("Undo / Redo Event: Font Asset changed. Event ID:" + Undo.GetCurrentGroup());
+
+        //}
+
+        //Debug.Log("Undo / Redo Event Registered in Editor Panel on Target: " + modifiedProp.propertyPath + "  Undo Event ID:" + eventID + "  Stored ID:" + TMPro_EditorUtility.UndoEventID);
+        //TextMeshPro_EventManager.ON_TEXTMESHPRO_PROPERTY_CHANGED(true, target as TextMeshPro);
+        return modifications;
     }
+    */
+}
 }

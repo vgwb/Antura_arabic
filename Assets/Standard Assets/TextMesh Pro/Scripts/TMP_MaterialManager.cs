@@ -6,10 +6,7 @@
 //#define DEBUG_ON
 
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-
 
 using UnityEngine.UI;
 
@@ -23,9 +20,36 @@ namespace TMPro
 
         private static Dictionary<long, FallbackMaterial> m_fallbackMaterials = new Dictionary<long, FallbackMaterial>();
         private static Dictionary<int, long> m_fallbackMaterialLookup = new Dictionary<int, long>();
-        private static List<long> m_fallbackCleanupList = new List<long>();
+        private static List<FallbackMaterial> m_fallbackCleanupList = new List<FallbackMaterial>();
+
+        private static bool isFallbackListDirty;
+
+        static TMP_MaterialManager()
+        {
+            Camera.onPreRender += new Camera.CameraCallback(OnPreRender);
+            Canvas.willRenderCanvases += new Canvas.WillRenderCanvases(OnPreRenderCanvas);
+        }
 
 
+        static void OnPreRender(Camera cam)
+        {
+            if (isFallbackListDirty)
+            {
+                //Debug.Log("1 - Cleaning up Fallback Materials.");
+                CleanupFallbackMaterials();
+                isFallbackListDirty = false;
+            }
+        }
+
+        static void OnPreRenderCanvas()
+        {
+            if (isFallbackListDirty)
+            {
+                //Debug.Log("2 - Cleaning up Fallback Materials.");
+                CleanupFallbackMaterials();
+                isFallbackListDirty = false;
+            }
+        }
 
         /// <summary>
         /// Create a Masking Material Instance for the given ID
@@ -235,13 +259,13 @@ namespace TMPro
 
         public static void ClearMaterials()
         {
-            if (m_materialList.Count() == 0)
+            if (m_materialList.Count == 0)
             {
                 Debug.Log("Material List has already been cleared.");
                 return;
             }
 
-            for (int i = 0; i < m_materialList.Count(); i++)
+            for (int i = 0; i < m_materialList.Count; i++)
             {
                 //Material baseMaterial = m_materialList[i].baseMaterial;
                 Material stencilMaterial = m_materialList[i].stencilMaterial;
@@ -266,7 +290,7 @@ namespace TMPro
             obj.GetComponentsInParent<Mask>(false, maskComponents);
             for (int i = 0; i < maskComponents.Count; i++)
             {
-#if UNITY_5_2 || UNITY_5_3 || UNITY_5_4
+#if UNITY_5_2 || UNITY_5_3_OR_NEWER
                 if (maskComponents[i].IsActive())
                     count += 1;
 #else
@@ -301,14 +325,13 @@ namespace TMPro
                 return fallback.fallbackMaterial;
             }
 
-            //Debug.Log("Creating new fallback material.");
-
             // Create new material from the source material
             Material fallbackMaterial = new Material(sourceMaterial);
             fallbackMaterial.hideFlags = HideFlags.HideAndDontSave;
 
             #if UNITY_EDITOR
                 fallbackMaterial.name += " + " + tex.name;
+                //Debug.Log("Creating new fallback material for " + fallbackMaterial.name);
             #endif
 
             fallbackMaterial.SetTexture(ShaderUtilities.ID_MainTex, tex);
@@ -322,6 +345,7 @@ namespace TMPro
             fallback = new FallbackMaterial();
             fallback.baseID = sourceID;
             fallback.baseMaterial = sourceMaterial;
+            fallback.fallbackID = key;
             fallback.fallbackMaterial = fallbackMaterial;
             fallback.count = 0;
 
@@ -385,7 +409,7 @@ namespace TMPro
                     fallback.count -= 1;
 
                     if (fallback.count < 1)
-                        m_fallbackCleanupList.Add(key);
+                        m_fallbackCleanupList.Add(fallback);
                 }
             }
         }
@@ -396,24 +420,26 @@ namespace TMPro
         /// </summary>
         public static void CleanupFallbackMaterials()
         {
-            FallbackMaterial fallback;
+            // Return if the list is empty.
+            if (m_fallbackCleanupList.Count == 0) return;
 
             for (int i = 0; i < m_fallbackCleanupList.Count; i++)
             {
+                FallbackMaterial fallback = m_fallbackCleanupList[i];
 
-                long key = m_fallbackCleanupList[i];
-                if (m_fallbackMaterials.TryGetValue(key, out fallback))
+                if (fallback.count < 1)
                 {
-                    if (fallback.count < 1)
-                    {
-                        Material mat = fallback.fallbackMaterial;
-                        Object.DestroyImmediate(mat);
-                        m_fallbackMaterials.Remove(key);
-                        m_fallbackMaterialLookup.Remove(mat.GetInstanceID());
-                        mat = null;
-                    }
+                    //Debug.Log("Cleaning up " + fallback.fallbackMaterial.name);
+
+                    Material mat = fallback.fallbackMaterial;
+                    m_fallbackMaterials.Remove(fallback.fallbackID);
+                    m_fallbackMaterialLookup.Remove(mat.GetInstanceID());
+                    Object.DestroyImmediate(mat);
+                    mat = null;
                 }
             }
+
+            m_fallbackCleanupList.Clear();
         }
 
 
@@ -437,17 +463,14 @@ namespace TMPro
                 {
                     //Debug.Log("Releasing Fallback material " + fallback.fallbackMaterial.name + " with remaining reference count of " + (fallback.count - 1));
 
-                    if (fallback.count > 1)
-                        fallback.count -= 1;
-                    else
-                    {
-                        Object.DestroyImmediate(fallback.fallbackMaterial);
-                        m_fallbackMaterials.Remove(key);
-                        m_fallbackMaterialLookup.Remove(materialID);
-                        fallackMaterial = null;
-                    }
+                    fallback.count -= 1;
+
+                    if (fallback.count < 1)
+                        m_fallbackCleanupList.Add(fallback);
                 }
             }
+
+            isFallbackListDirty = true;
 
             #if DEBUG_ON
                 ListFallbackMaterials();
@@ -460,6 +483,7 @@ namespace TMPro
         {
             public int baseID;
             public Material baseMaterial;
+            public long fallbackID;
             public Material fallbackMaterial;
             public int count;
         }

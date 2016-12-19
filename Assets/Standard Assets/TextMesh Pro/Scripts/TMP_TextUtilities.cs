@@ -40,31 +40,30 @@ namespace TMPro
         /// <param name="position">Position to check for intersection.</param>
         /// <param name="camera">The scene camera which may be assigned to a Canvas using ScreenSpace Camera or WorldSpace render mode. Set to null is using ScreenSpace Overlay.</param>
         /// <returns></returns>
-        public static CaretInfo GetCursorInsertionIndex(TMP_Text textComponent, Vector3 position, Camera camera)
-        {
-            int index = TMP_TextUtilities.FindNearestCharacter(textComponent, position, camera, false);
+        //public static CaretInfo GetCursorInsertionIndex(TMP_Text textComponent, Vector3 position, Camera camera)
+        //{
+        //    int index = TMP_TextUtilities.FindNearestCharacter(textComponent, position, camera, false);
 
-            RectTransform rectTransform = textComponent.rectTransform;
+        //    RectTransform rectTransform = textComponent.rectTransform;
 
-            // Convert position into Worldspace coordinates
-            ScreenPointToWorldPointInRectangle(rectTransform, position, camera, out position);
+        //    // Convert position into Worldspace coordinates
+        //    ScreenPointToWorldPointInRectangle(rectTransform, position, camera, out position);
 
-            TMP_CharacterInfo cInfo = textComponent.textInfo.characterInfo[index];
+        //    TMP_CharacterInfo cInfo = textComponent.textInfo.characterInfo[index];
 
-            // Get Bottom Left and Top Right position of the current character
-            Vector3 bl = rectTransform.TransformPoint(cInfo.bottomLeft);
-            //Vector3 tl = rectTransform.TransformPoint(new Vector3(cInfo.bottomLeft.x, cInfo.topRight.y, 0));
-            Vector3 tr = rectTransform.TransformPoint(cInfo.topRight);
-            //Vector3 br = rectTransform.TransformPoint(new Vector3(cInfo.topRight.x, cInfo.bottomLeft.y, 0));
+        //    // Get Bottom Left and Top Right position of the current character
+        //    Vector3 bl = rectTransform.TransformPoint(cInfo.bottomLeft);
+        //    //Vector3 tl = rectTransform.TransformPoint(new Vector3(cInfo.bottomLeft.x, cInfo.topRight.y, 0));
+        //    Vector3 tr = rectTransform.TransformPoint(cInfo.topRight);
+        //    //Vector3 br = rectTransform.TransformPoint(new Vector3(cInfo.topRight.x, cInfo.bottomLeft.y, 0));
 
-            float insertPosition = (position.x - bl.x) / (tr.x - bl.x);
+        //    float insertPosition = (position.x - bl.x) / (tr.x - bl.x);
 
-            if (insertPosition < 0.5f)
-                return new CaretInfo(index, CaretPosition.Left);
-            else
-                return new CaretInfo(index, CaretPosition.Right);
-
-        }
+        //    if (insertPosition < 0.5f)
+        //        return new CaretInfo(index, CaretPosition.Left);
+        //    else
+        //        return new CaretInfo(index, CaretPosition.Right);
+        //}
 
 
         /// <summary>
@@ -107,9 +106,56 @@ namespace TMPro
         /// <param name="camera">The scene camera which may be assigned to a Canvas using ScreenSpace Camera or WorldSpace render mode. Set to null is using ScreenSpace Overlay.</param>
         /// <param name="cursor">The position of the cursor insertion position relative to the position.</param>
         /// <returns></returns>
+        //public static int GetCursorIndexFromPosition(TMP_Text textComponent, Vector3 position, Camera camera, out CaretPosition cursor)
+        //{
+        //    int index = TMP_TextUtilities.FindNearestCharacter(textComponent, position, camera, false);
+
+        //    RectTransform rectTransform = textComponent.rectTransform;
+
+        //    // Convert position into Worldspace coordinates
+        //    ScreenPointToWorldPointInRectangle(rectTransform, position, camera, out position);
+
+        //    TMP_CharacterInfo cInfo = textComponent.textInfo.characterInfo[index];
+
+        //    // Get Bottom Left and Top Right position of the current character
+        //    Vector3 bl = rectTransform.TransformPoint(cInfo.bottomLeft);
+        //    Vector3 tr = rectTransform.TransformPoint(cInfo.topRight);
+
+        //    float insertPosition = (position.x - bl.x) / (tr.x - bl.x);
+
+        //    if (insertPosition < 0.5f)
+        //    {
+        //        cursor = CaretPosition.Left;
+        //        return index;
+        //    }
+        //    else
+        //    {
+        //        cursor = CaretPosition.Right;
+        //        return index;
+        //    }
+        //}
+
+
+        /// <summary>
+        /// Function returning the index of the character whose origin is closest to the cursor.
+        /// </summary>
+        /// <param name="textComponent">A reference to the text object.</param>
+        /// <param name="position">Position to check for intersection.</param>
+        /// <param name="camera">The scene camera which may be assigned to a Canvas using ScreenSpace Camera or WorldSpace render mode. Set to null is using ScreenSpace Overlay.</param>
+        /// <param name="cursor">The position of the cursor insertion position relative to the position.</param>
+        /// <returns></returns>
         public static int GetCursorIndexFromPosition(TMP_Text textComponent, Vector3 position, Camera camera, out CaretPosition cursor)
         {
-            int index = TMP_TextUtilities.FindNearestCharacter(textComponent, position, camera, false);
+            int line = TMP_TextUtilities.FindNearestLine(textComponent, position, camera);
+
+            int index = FindNearestCharacterOnLine(textComponent, position, line, camera, false);
+
+            // Special handling if line contains only one character.
+            if (textComponent.textInfo.lineInfo[line].characterCount == 1)
+            {
+                cursor = CaretPosition.Left;
+                return index;
+            }
 
             RectTransform rectTransform = textComponent.rectTransform;
 
@@ -134,7 +180,111 @@ namespace TMPro
                 cursor = CaretPosition.Right;
                 return index;
             }
+        }
 
+
+        /// <summary>
+        /// Function returning the line nearest to the position.
+        /// </summary>
+        /// <param name="textComponent"></param>
+        /// <param name="position"></param>
+        /// <param name="camera"></param>
+        /// <returns></returns>
+        public static int FindNearestLine(TMP_Text text, Vector3 position, Camera camera)
+        {
+            RectTransform rectTransform = text.rectTransform;
+
+            float distance = Mathf.Infinity;
+            int closest = -1;
+
+            // Convert position into Worldspace coordinates
+            ScreenPointToWorldPointInRectangle(rectTransform, position, camera, out position);
+
+            for (int i = 0; i < text.textInfo.lineCount; i++)
+            {
+                TMP_LineInfo lineInfo = text.textInfo.lineInfo[i];
+
+                float ascender = rectTransform.TransformPoint(new Vector3(0, lineInfo.ascender, 0)).y;
+                float descender = rectTransform.TransformPoint(new Vector3(0, lineInfo.descender, 0)).y;
+
+                if (ascender > position.y && descender < position.y)
+                { 
+                    //Debug.Log("Position is on line " + i);
+                    return i;
+                }
+
+                float d0 = Mathf.Abs(ascender - position.y);
+                float d1 = Mathf.Abs(descender - position.y);
+
+                float d = Mathf.Min(d0, d1);
+                if (d < distance)
+                {
+                    distance = d;
+                    closest = i;
+                }
+            }
+
+            //Debug.Log("Closest line to position is " + closest);
+            return closest;
+        }
+
+
+        /// <summary>
+        /// Function returning the nearest character to position on a given line.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="position"></param>
+        /// <param name="line"></param>
+        /// <param name="camera"></param>
+        /// <returns></returns>
+        public static int FindNearestCharacterOnLine(TMP_Text text, Vector3 position, int line, Camera camera, bool visibleOnly)
+        {
+            RectTransform rectTransform = text.rectTransform;
+
+            // Convert position into Worldspace coordinates
+            ScreenPointToWorldPointInRectangle(rectTransform, position, camera, out position);
+
+            int firstCharacter = text.textInfo.lineInfo[line].firstCharacterIndex;
+            int lastCharacter = text.textInfo.lineInfo[line].lastCharacterIndex;
+
+            float distanceSqr = Mathf.Infinity;
+            int closest = lastCharacter;
+
+            for (int i = firstCharacter; i < lastCharacter; i++)
+            {
+                // Get current character info.
+                TMP_CharacterInfo cInfo = text.textInfo.characterInfo[i];
+                if (visibleOnly && !cInfo.isVisible) continue;
+
+                // Get Bottom Left and Top Right position of the current character
+                Vector3 bl = rectTransform.TransformPoint(cInfo.bottomLeft);
+                Vector3 tl = rectTransform.TransformPoint(new Vector3(cInfo.bottomLeft.x, cInfo.topRight.y, 0));
+                Vector3 tr = rectTransform.TransformPoint(cInfo.topRight);
+                Vector3 br = rectTransform.TransformPoint(new Vector3(cInfo.topRight.x, cInfo.bottomLeft.y, 0));
+
+                if (PointIntersectRectangle(position, bl, tl, tr, br))
+                {
+                    closest = i;
+                    break;
+                }
+
+                // Find the closest corner to position.
+                float dbl = DistanceToLine(bl, tl, position);
+                float dtl = DistanceToLine(tl, tr, position);
+                float dtr = DistanceToLine(tr, br, position);
+                float dbr = DistanceToLine(br, bl, position);
+
+                float d = dbl < dtl ? dbl : dtl;
+                d = d < dtr ? d : dtr;
+                d = d < dbr ? d : dbr;
+
+                if (distanceSqr > d)
+                {
+                    distanceSqr = d;
+                    closest = i;
+                }
+            }
+            return closest;
         }
 
 
@@ -182,8 +332,7 @@ namespace TMPro
             {
                 // Get current character info.
                 TMP_CharacterInfo cInfo = text.textInfo.characterInfo[i];
-                if ((visibleOnly && !cInfo.isVisible) || (text.OverflowMode == TextOverflowModes.Page && cInfo.pageNumber + 1 != text.pageToDisplay))
-                    continue;
+                if (visibleOnly && !cInfo.isVisible) continue;
 
                 // Get Bottom Left and Top Right position of the current character
                 Vector3 bl = rectTransform.TransformPoint(cInfo.bottomLeft);
@@ -258,8 +407,7 @@ namespace TMPro
             {
                 // Get current character info.
                 TMP_CharacterInfo cInfo = text.textInfo.characterInfo[i];
-                if ((visibleOnly && !cInfo.isVisible) || (text.OverflowMode == TextOverflowModes.Page && cInfo.pageNumber + 1 != text.pageToDisplay))
-                    continue;
+                if (visibleOnly && !cInfo.isVisible) continue;
 
                 // Get Bottom Left and Top Right position of the current character
                 Vector3 bl = rectTransform.TransformPoint(cInfo.bottomLeft);
@@ -441,9 +589,7 @@ namespace TMPro
                     TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
                     int currentLine = currentCharInfo.lineNumber;
 
-                    bool isCharacterVisible = characterIndex > text.maxVisibleCharacters ||
-                                              currentCharInfo.lineNumber > text.maxVisibleLines ||
-                                             (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) ? false : true;
+                    bool isCharacterVisible = currentCharInfo.isVisible;
 
                     // Track maximum Ascender and minimum Descender for each word.
                     maxAscender = Mathf.Max(maxAscender, currentCharInfo.ascender);
@@ -820,9 +966,7 @@ namespace TMPro
                     TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
                     int currentLine = currentCharInfo.lineNumber;
 
-                    bool isCharacterVisible = characterIndex > text.maxVisibleCharacters ||
-                                              currentCharInfo.lineNumber > text.maxVisibleLines ||
-                                             (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) ? false : true;
+                    bool isCharacterVisible = currentCharInfo.isVisible;
 
                     if (isBeginRegion == false && isCharacterVisible)
                     {
@@ -1947,6 +2091,41 @@ namespace TMPro
  
             return Vector3.Dot( e, e );
         }
+
+
+        /// <summary>
+        /// Function returning the Square Distance from a Point to a Line and Direction.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="point"></param>
+        /// <param name="direction">-1 left, 0 in between, 1 right</param>
+        /// <returns></returns>
+        //public static float DistanceToLineDirectional(Vector3 a, Vector3 b, Vector3 point, ref int direction)
+        //{
+        //    Vector3 n = b - a;
+        //    Vector3 pa = a - point;
+
+        //    float c = Vector3.Dot(n, pa);
+        //    direction = -1;
+
+        //    // Closest point is a
+        //    if (c > 0.0f)
+        //        return Vector3.Dot(pa, pa);
+
+        //    Vector3 bp = point - b;
+        //    direction = 1;
+
+        //    // Closest point is b
+        //    if (Vector3.Dot(n, bp) > 0.0f)
+        //        return Vector3.Dot(bp, bp);
+
+        //    // Closest point is between a and b
+        //    Vector3 e = pa - n * (c / Vector3.Dot(n, n));
+
+        //    direction = 0;
+        //    return Vector3.Dot(e, e);
+        //}
 
 
         /// <summary>
