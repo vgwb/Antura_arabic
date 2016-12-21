@@ -1,6 +1,6 @@
 # Fetch the Project
 
-1. Get Unity latest stable (Win or Mac, v 5.4.2f2 today) from http://unity3d.com/get-unity/update
+1. Get Unity latest stable (Win or Mac, v 5.5.0) from http://unity3d.com/get-unity/update
 
 2. Download the project. There are two ways:
   1.  the **simple** is to download the zipped package (from Clone or Download green button)
