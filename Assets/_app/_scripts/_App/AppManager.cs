@@ -6,7 +6,7 @@ using EA4S.API;
 namespace EA4S
 {
     /// <summary>
-    /// Core of the applications.
+    /// Core of the application.
     /// Functions as a general manager and entry point for all other systems and managers.
     /// </summary>
     public class AppManager : GameManager
