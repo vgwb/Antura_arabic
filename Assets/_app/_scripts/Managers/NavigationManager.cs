@@ -1,8 +1,6 @@
-﻿using UnityEngine;
-using ModularFramework.Core;
-using System.Collections;
-using EA4S.Db;
+﻿using EA4S.Db;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace EA4S
 {
@@ -22,8 +20,12 @@ namespace EA4S
         DebugPanel
     }
 
+    /// <summary>
+    /// Controls the transitions between different scenes in the application.
+    /// </summary>
     public class NavigationManager : MonoBehaviour
     {
+        // refactor: the singleton entry point should be through the AppManager
         public static NavigationManager I;
 
         public AppScene CurrentScene;
@@ -34,31 +36,17 @@ namespace EA4S
             I = this;
         }
 
-        public void GoToScene(string sceneName)
-        {
-            IsLoadingMinigame = sceneName.Substring(0, 5) == "game_";
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(sceneName);
+        #region Automatic navigation API
 
-            if (AppConstants.UseUnityAnalytics) {
-                UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
-            }
-        }
-
-        public void GoToScene(AppScene newScene)
-        {
-            var nextSceneName = GetSceneName(newScene);
-            GoToScene(nextSceneName);
-        }
-
-        public void GoToGameScene(MiniGameData _miniGame)
-        {
-            AppManager.I.GameLauncher.LaunchGame(_miniGame.Code);
-        }
-
+        /// <summary>
+        /// Given the current context, selects the scene that should be loaded next and loads it.
+        /// </summary>
+        // refactor: the whole NavigationManager could work using just GoToNextScene (and similars, such as GoBack), so that it controls all scene movement
         public void GoToNextScene()
         {
             //var nextScene = GetNextScene();
-            switch (CurrentScene) {
+            switch (CurrentScene)
+            {
                 case AppScene.Home:
                     break;
                 case AppScene.Mood:
@@ -79,20 +67,24 @@ namespace EA4S
                     GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     break;
                 case AppScene.MiniGame:
-                    if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(AppManager.I.Player.CurrentJourneyPosition)) {
+                    if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(AppManager.I.Player.CurrentJourneyPosition))
+                    {
                         // assessment ended!
                         AppManager.I.Player.ResetPlaySessionMinigame();
                         GoToScene(AppScene.Rewards);
-                    } else {
+                    }
+                    else {
                         AppManager.I.Player.NextPlaySessionMinigame();
-                        if (AppManager.I.Player.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count) {
+                        if (AppManager.I.Player.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count)
+                        {
                             /// - Reward screen
                             /// *-- check first contact : 
                             /// 
 
                             // MaxJourneyPosistionProgress (with Reset CurrentMiniGameInPlaySession) is performed contestually to reward creation to avoid un-sync results.
                             GoToScene(AppScene.PlaySessionResult);
-                        } else {
+                        }
+                        else {
                             // Next game
                             GoToGameScene(TeacherAI.I.CurrentMiniGame);
                         }
@@ -101,7 +93,7 @@ namespace EA4S
                 case AppScene.AnturaSpace:
                     break;
                 case AppScene.Rewards:
-                    MaxJourneyPosistionProgress();
+                    MaxJourneyPositionProgress();
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.PlaySessionResult:
@@ -115,25 +107,40 @@ namespace EA4S
             }
         }
 
+        #endregion
 
-        public void MaxJourneyPosistionProgress()
+        #region Direct navigation API
+
+        // refactor: GoToScene can be separated for safety reasons in GoToMinigame (with a string code, or minigame code) and GoToAppScene (with an AppScene as the parameter)
+        public void GoToScene(string sceneName)
         {
-            AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
+            IsLoadingMinigame = sceneName.Substring(0, 5) == "game_";
+            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(sceneName);
+
+            if (AppConstants.UseUnityAnalytics) {
+                UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
+            }
         }
 
-        public string GetCurrentScene()
+        public void GoToScene(AppScene newScene)
         {
-            return "";
+            var nextSceneName = GetSceneName(newScene);
+            GoToScene(nextSceneName);
         }
+
+        public void GoToGameScene(MiniGameData _miniGame)
+        {
+            AppManager.I.GameLauncher.LaunchGame(_miniGame.Code);
+        }
+
+        #endregion
+
+        #region Specific scene change methods
 
         public void GoHome()
         {
             GoToScene(AppScene.Home);
         }
-
-        public void GoBack() { }
-
-        public void ExitCurrentGame() { }
 
         public void OpenPlayerBook()
         {
@@ -142,13 +149,24 @@ namespace EA4S
 
         public void ExitAndGoHome()
         {
-            if (CurrentScene == AppScene.Map) {
+            if (CurrentScene == AppScene.Map)
+            {
                 GoToScene(AppScene.Home);
-            } else {
+            }
+            else {
                 GoToScene(AppScene.Map);
             }
         }
 
+        // obsolete: to be implemented?
+        public void GoBack() { }
+
+        // obsolete: to be implemented?
+        public void ExitCurrentGame() { }
+
+        #endregion
+
+        // refactor: scene names should match AppScene so that this can be removed
         public string GetSceneName(AppScene scene, Db.MiniGameData minigameData = null)
         {
             switch (scene) {
@@ -178,6 +196,18 @@ namespace EA4S
                     return "";
             }
         }
+
+        // refactor: move this method directly to PlayerProfile 
+        public void MaxJourneyPositionProgress()
+        {
+            AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
+        }
+
+        // obsolete: unused
+        /*public string GetCurrentScene()
+        {
+            return "";
+        }*/
 
         #region temp for demo
         List<EndsessionResultData> EndSessionResults = new List<EndsessionResultData>();
