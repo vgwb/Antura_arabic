@@ -18,9 +18,10 @@ Developers should follow these guidelines for contributing to the project.
   * Use Unix newline
   * Use [Allman style](http://en.wikipedia.org/wiki/Indent_style#Allman_style) braces
   * Regions can be used to group code logically. Use (CamelCase) for region names.
-  * Use (camelCase) for internal and private fields
-  * Use (CamelCase) for public fields
-  * Use (CamelCase) for all methods, public and private
+  * Use **camelCase** for internal and private fields
+  * Use **CamelCase** for public fields
+  * Use **CamelCase** for all methods, public and private
+  * No copyright notice nor author metadata should be present at the start of the file, unless it is of a third party
   
 ### Namespaces
 
@@ -45,6 +46,5 @@ Specific subsystem code is inside a (EA4S.***) namespace, where (***) is the sub
  
 ### Current issues
  
-  * What about copyright notices? there are several around the codebase
   * We need to define code conventions. Issues with AppConstants, 
   
