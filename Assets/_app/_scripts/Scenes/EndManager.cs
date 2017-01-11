@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
-using EA4S;
-using ModularFramework.Core;
 
-namespace EA4S
+namespace EA4S.Scenes
 {
+    /// <summary>
+    /// Controls the app_End scene, accessed when the game is completed.
+    /// </summary>
     public class EndManager : MonoBehaviour
     {
         [Header("Scene Setup")]
@@ -32,12 +32,12 @@ namespace EA4S
                     break;
                 case 12:
                     tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Map_EndGame, 1, true, Ready2Play);
+                    WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Map_EndGame, 1, true, ReadyToPlay);
                     break;
             }
         }
 
-        public void Ready2Play()
+        public void ReadyToPlay()
         {
             WidgetSubtitles.I.Close();
             AudioManager.I.PlaySfx(Sfx.GameTitle);

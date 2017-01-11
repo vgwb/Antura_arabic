@@ -4,8 +4,11 @@
 
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Scenes
 {
+    /// <summary>
+    /// Control buttons for the (_Start) scene.
+    /// </summary>
     public class HomeButtons : MonoBehaviour
     {
         public HomeManager HomeMngr;
