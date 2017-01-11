@@ -36,7 +36,7 @@ namespace EA4S
 
             LogManager.I.LogPlaySessionScore(TeacherAI.I.journeyHelper.GetCurrentPlaySessionData().Id, objs.Length);
             // save max progression (internal check if necessary)
-            NavigationManager.I.MaxJourneyPosistionProgress();
+            NavigationManager.I.MaxJourneyPositionProgress();
 
             // for any rewards mount them model on parent transform object (objs)
             for (int i = 0; i < oldRewards.Count && i < objs.Length; i++) {
