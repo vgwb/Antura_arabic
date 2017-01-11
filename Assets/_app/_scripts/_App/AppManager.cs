@@ -5,11 +5,17 @@ using EA4S.API;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Core of the applications.
+    /// Functions as a general manager and entry point for all other systems and managers.
+    /// </summary>
     public class AppManager : GameManager
     {
         public new AppSettings GameSettings = new AppSettings();
 
-        public static AppManager I {
+        // refactor: AppManager.Instance should be the only entry point to the singleton
+        public static AppManager I
+        {
             get { return GameManager.Instance as AppManager; }
         }
 
@@ -21,13 +27,17 @@ namespace EA4S
         public LogManager LogManager;
         public PlayerProfileManager PlayerProfileManager;
 
+        // refactor: access to the current minigame data should be in another subsystem (probably in the NavigationManager)
         [HideInInspector]
         public Db.MiniGameData CurrentMinigame;
 
         bool appIsPaused = false;
 
-        #region Init
+        #region Initialisation
 
+        /// <summary>
+        /// Game entry point.
+        /// </summary>
         protected override void GameSetup()
         {
             base.GameSetup();
@@ -42,6 +52,7 @@ namespace EA4S
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
 
+            // refactor: standardize initialisation of managers
             gameObject.AddComponent<MiniGameAPI>();
 
             LogManager = new LogManager();
@@ -71,8 +82,9 @@ namespace EA4S
         }
         #endregion
 
-        #region settings behaviours
+        #region Settings behaviours
 
+        // refactor: should be moved to AppManager
         public void ToggleQualitygfx()
         {
             GameSettings.HighQualityGfx = !GameSettings.HighQualityGfx;
@@ -83,11 +95,14 @@ namespace EA4S
 
         #region event delegate
 
+        // obsolete: unused
         public void OnMinigameStart()
         {
         }
 
         #endregion
+
+        #region Reset
 
         public void ResetCurrentPlayer()
         {
@@ -105,7 +120,8 @@ namespace EA4S
         }
 
         public void ResetEverything()
-        {// Reset all the Databases
+        {
+            // Reset all the Databases
             foreach (var playerId in AppManager.I.Modules.PlayerProfile.Options.AvailablePlayers) {
                 Debug.Log(playerId);
                 DB.LoadDynamicDbForPlayerProfile(int.Parse(playerId));
@@ -122,6 +138,9 @@ namespace EA4S
 
             Debug.Log("Reset ALL players.");
         }
+        #endregion
+
+        #region Pause
 
         void OnApplicationPause(bool pauseStatus)
         {
@@ -143,6 +162,7 @@ namespace EA4S
         {
             appIsPaused = !hasFocus;
         }
-    }
 
+        #endregion
+    }
 }
