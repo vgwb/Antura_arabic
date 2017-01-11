@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using DG.DeExtensions;
 using DG.Tweening;
 using UnityEngine;
+using EA4S.Scenes;
 
 namespace EA4S
 {
