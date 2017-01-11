@@ -8,6 +8,9 @@ using System.Collections.Generic;
 namespace EA4S
 {
 
+    /// <summary>
+    /// A Player Profile contains persistent data on details and on the progression status of a single player.
+    /// </summary>
     [Serializable]
     public class PlayerProfile : IPlayerProfile
     {

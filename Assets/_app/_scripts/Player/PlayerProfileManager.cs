@@ -1,10 +1,9 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace EA4S
 {
     /// <summary>
-    /// Player profile manager.
+    /// Handles the creation, selection, and deletion of player profiles.
     /// </summary>
     public class PlayerProfileManager
     {
@@ -12,7 +11,7 @@ namespace EA4S
         #region Properties
 
         /// <summary>
-        /// Max number of player profiles usables.
+        /// Max number of player profiles usable.
         /// </summary>
         public int MaxNumberOfPlayerProfiles = 5;
 
