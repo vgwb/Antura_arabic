@@ -17,7 +17,7 @@ Developers should follow these guidelines for contributing to the project.
   * Indent using four spaces (no tabs)
   * Use Unix newline
   * Use [Allman style](http://en.wikipedia.org/wiki/Indent_style#Allman_style) braces
-  * Regions can be used to group code logically. Use (CamelCase) for region names.
+  * Regions can be used to group code logically. Use **CamelCase** for region names.
   * Use **camelCase** for internal and private fields
   * Use **CamelCase** for public fields
   * Use **CamelCase** for all methods, public and private
@@ -25,12 +25,12 @@ Developers should follow these guidelines for contributing to the project.
   
 ### Namespaces
 
-The whole codebase is under the (EA4S) namespace.
+The whole codebase is under the **EA4S** namespace.
 The main systems can be accessed through the EA4S namespace and thus fall under it.
 
-All minigames are under the (EA4S.MiniGames) namespace.
+All minigames are under the **EA4S.MiniGames** namespace.
 
-Specific subsystem code is inside a (EA4S.***) namespace, where (***) is the subsystem's name.
+Specific subsystem code is inside a **EA4S.SUBSYSTEM** namespace, where **SUBSYSTEM** is the subsystem's name.
 
   EA4S
   
