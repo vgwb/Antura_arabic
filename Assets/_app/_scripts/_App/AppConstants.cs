@@ -7,7 +7,7 @@
     // refactor: reorganize all constants (some are statics, others are consts)
     public static class AppConstants
     {
-        public const string AppVersion = "0.12.12x";
+        public const string AppVersion = "0.13.dev";
         public const string DbSchemeVersion = "1";
         public const bool DebugPanelEnabled = true;
         public const bool UseUnityAnalytics = false;
@@ -15,7 +15,7 @@
         public static bool DebugLogInserts = true;
 
         // Application details (used by Teacher and maybe other)
-        public const float minimumAge = 7; 
+        public const float minimumAge = 7;
         public const float maximumAge = 15;
 
         public const float minimumStage = 1;
@@ -30,9 +30,9 @@
         // Resource Paths
         public const string AvatarsResourcesDir = "Images/Avatars/";
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
         public const string UrlGithubRepository = "https://github.com/vgwb/EA4S_Antura_U3D";
         public const string UrlTrello = "https://trello.com/b/ltLndaQI/ea4s-beta";
-    #endif
+#endif
     }
 }
