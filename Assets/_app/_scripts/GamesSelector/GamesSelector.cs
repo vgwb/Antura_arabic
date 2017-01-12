@@ -1,18 +1,16 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/10/23
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using DG.DeExtensions;
 using DG.Tweening;
 using EA4S.Db;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.GamesSelector
 {
     /// <summary>
-    /// The GamesSelector can be instantiated in any scene.
+    /// Handles the GamesSelector logic, showing bubbles for all mini-games that should be played next.
+    ///
+    /// This can be instantiated in any scene.
     /// To create and start it automatically, just call the static <see cref="Show"/> method.
     /// When the user has opened all bubbles and the app should move on, the <see cref="OnComplete"/> event will be dispatched.
     /// </summary>
@@ -228,12 +226,13 @@ namespace EA4S
 
         void AutoLoadMinigames()
         {
-            // ToCheck @michele ref: https://trello.com/c/r40yCfw1
             //AppManager.I.InitDataAI();
             OnComplete += GoToMinigame;
+            // refactor: the current list of minigames should be injected by the AppManager, and not be held in the Teacher
             if (TeacherAI.I.CurrentPlaySessionMiniGames.Count > 0) Show(TeacherAI.I.CurrentPlaySessionMiniGames);
         }
 
+        // refactor: this should be injected
         void GoToMinigame()
         {
             MiniGameCode myGameCode = TeacherAI.I.CurrentMiniGame.Code;

@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 
-namespace EA4S
+namespace EA4S.GamesSelector
 {
+
+    /// <summary>
+    /// Manages the games selector scene, which allows the player to see what minigames will be played next.
+    /// </summary>
     public class GameSelectorManager : MonoBehaviour
     {
 
@@ -14,6 +18,7 @@ namespace EA4S
 
         public void ExitThisScene()
         {
+            // refactor: the NavigationManager should handle the back-target scene
             NavigationManager.I.GoToScene(AppScene.Map);
         }
     }

@@ -1,12 +1,12 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/10/23
-
-using DG.DeExtensions;
+﻿using DG.DeExtensions;
 using DG.Tweening;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.GamesSelector
 {
+    /// <summary>
+    /// A single bubble in the GamesSelector, representing a mini-game.
+    /// </summary>
     public class GamesSelectorBubble : MonoBehaviour
     {
         public GameObject Main;
