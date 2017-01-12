@@ -1,14 +1,13 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/10/24
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using DG.DeExtensions;
 using DG.Tweening;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.GamesSelector
 {
+    /// <summary>
+    /// Tutorial on the GamesSelector.
+    /// </summary>
     public class GamesSelectorTutorial : MonoBehaviour
     {
         public SpriteRenderer Finger;

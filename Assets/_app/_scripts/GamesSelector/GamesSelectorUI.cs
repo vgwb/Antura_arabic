@@ -1,12 +1,11 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/12/01
-
-using EA4S.Db;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.GamesSelector
 {
+    /// <summary>
+    /// User interface of the GamesSelector.
+    /// </summary>
     public class GamesSelectorUI : MonoBehaviour
     {
         public GameObject[] Stars;

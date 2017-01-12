@@ -38,7 +38,10 @@ What follows is a list of all subsystems with their namespaces:
  * **EA4S.Animations** for general animation utilities.
  * **EA4S.AnturaSpace** for code related to the Antura Space scene.
  * **EA4S.PlayerBook** for code related to the Player Book scene.
-  
+ * **EA4S.GamesSelector** handles the Games Selector scene.
+ * **EA4S.Db** for database access and organization.
+
+
 
 ### Git Commit Messages
 
