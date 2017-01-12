@@ -23,32 +23,36 @@ This includes:
  
 The data is compiled into JSON files contained inside the **_manage/manage_Database/Datasets** folder.
 The JSON files are loaded using the **_manage/manage_Database/manage_Database** scene, where consistency checks are performed and the database contents can be inspected.
-The database is loaded at runtime from a set of custom assets (deriving from **ScriptableObject**) that contain a table of data, with one asset per data type. The contents of *Database/DatabaseObjects** define the scriptable objects from which the custom assets are derived.
+The database is converted from JSON to a set of custom assets (deriving from **ScriptableObject**) that contain a table of data, with one asset per data type. The contents of *Database/DatabaseObjects** define the scriptable objects from which the custom assets are derived.
 These assets can be found in the **Assets/Resources/Database** folder.
+To perform the JSON-to-asset conversion, the **DatabaseLoader** scripts employs a *DataParser* for each data type to load, which defines how to parse the JSON file into the corresponding data structure.
 
-At runtime, **EA4S.Db.Database** functions as an entry point for all the data tables.
+At runtime, **EA4S.Db.Database** functions as an entry point for all the assets containing the data tables and is managed by a **EA4S.DatabaseManager** instance.
 
 
 ### Logging Data
 
 Logging data is measured as the player uses the application and saved to the system's memory at runtime.
 
-This data is divided in two categories: history and score data.
+The data is divided in several categories:
 
-History data represents the temporal progression of the player as the app is used.
-This includes:
- * Generic data on application usage (**LogInfoData**)
- * Data on learning achievements by the player (**LogLearnData**)
- * Data on daily mood levels of the player (**LogMoodData**)
- * Data on play-related measurements logged by minigames (**LogPlayData**)
+ * **History data** represents the temporal progression of the player as the app is used. This includes:
+   * Generic data on application usage (**LogInfoData**)
+   * Data on learning achievements by the player (**LogLearnData**)
+   * Data on daily mood levels of the player (**LogMoodData**)
+   * Data on play-related measurements logged by minigames (**LogPlayData**)
 
-Score data rapresents the summary achievements of players.
-This includes:
- * Current learning score value for Letters, Words, Phrases.
- * Minigame-related score levels for MiniGames, PlaySessions, LearningBlocks
-All score data is contained in **ScoreData** instances.
- 
-This database is implemented in SQLite and loaded whenever a player profile is selected.
+ * **Score data** represents the summary achievements of players. All score data is contained in **ScoreData** objects. This includes:
+   * Current learning score value for Letters, Words, Phrases.
+   * Minigame-related score levels for MiniGames, PlaySessions, LearningBlocks
+
+ * **Database information** holds summary details on the current database and is used for versioning.
+  
+The database is implemented in SQLite.
+The SQLite database is loaded and connected to whenever a player profile is selected, and generated if non-existing. 
+All communication with the SQLite database is performed through a **EA4S.Db.DBService** instance, managed by the **DatabaseManager*.
+The structure of the SQLite database can be generated a runtime and this is controlled through the **DBService.GenerateTable(bool create, bool drop)**, which can be updated to reflect any changes in the DB scheme.
+Note that any change to the database scheme must also prompt a sequential update of **AppConstants.DbSchemeVersion** for versioning to function correctly.
 
 ### Profile API
 
