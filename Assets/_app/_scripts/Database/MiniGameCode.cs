@@ -1,6 +1,6 @@
 ﻿namespace EA4S
 {
-
+    // refactor: this enum depends on the specific implemented minigames and should be grouped with them 
     public enum MiniGameCode
     {
         AlphabetSong = 5,

@@ -3,9 +3,12 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using EA4S.Db;
 
-namespace EA4S
+namespace EA4S.PlayerBook
 {
 
+    /// <summary>
+    /// Displays information on minigames that the player has unlocked.
+    /// </summary>
     public class GamesPanel : MonoBehaviour
     {
 

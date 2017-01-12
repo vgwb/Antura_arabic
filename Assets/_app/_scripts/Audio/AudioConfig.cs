@@ -87,6 +87,7 @@
         Win = 6
     }
 
+    // refactor: should be static
     class AudioConfig
     {
 

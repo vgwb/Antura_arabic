@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
 using EA4S.Db;
 
-namespace EA4S
+namespace EA4S.PlayerBook
 {
 
     public struct GenericCategoryData
@@ -14,6 +13,10 @@ namespace EA4S
         public WordDataCategory wordCategory;
     }
 
+    /// <summary>
+    /// Displays information on all learning items the player has unlocked.
+    /// </summary>
+    // refactor: could be renamed to DictionaryPanel
     public class BookPanel : MonoBehaviour
     {
 

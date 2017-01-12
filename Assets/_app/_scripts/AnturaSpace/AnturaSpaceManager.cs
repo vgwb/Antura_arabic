@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 using TMPro;
 
-namespace EA4S
+namespace EA4S.AnturaSpace
 {
 
+    /// <summary>
+    /// Manages the AnturaSpace scene.
+    /// </summary>
+    // refactor: group this class with other scene managers
     public class AnturaSpaceManager : MonoBehaviour
     {
 

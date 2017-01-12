@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace EA4S
+namespace EA4S.AnturaSpace
 {
+    /// <summary>
+    /// Controls interactions and dynamics of a bone thrown to Antura in AnturaSpace.
+    /// </summary>
     public class BoneBehaviour : MonoBehaviour
     {
 

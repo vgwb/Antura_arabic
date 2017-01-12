@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using EA4S.Db;
 using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.PlayerBook
 {
 
     public class PlayerPanel : MonoBehaviour

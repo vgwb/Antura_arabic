@@ -3,8 +3,12 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using EA4S.Db;
 
-namespace EA4S
+namespace EA4S.PlayerBook
 {
+
+    /// <summary>
+    /// Displays a MiniGame item in the MiniGames panel of the Player Book.
+    /// </summary>
     public class ItemMiniGame : MonoBehaviour, IPointerClickHandler
     {
         MiniGameInfo info;

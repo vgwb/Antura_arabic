@@ -27,7 +27,7 @@ namespace EA4S
         public LogManager LogManager;
         public PlayerProfileManager PlayerProfileManager;
 
-        // refactor: access to the current minigame data should be in another subsystem (probably in the NavigationManager)
+        // refactor: access to the current minigame data should be in another subsystem that is responsible for holding temporary data for minigames
         [HideInInspector]
         public Db.MiniGameData CurrentMinigame;
 

@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using EA4S.Db;
-using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.PlayerBook
 {
+
+    /// <summary>
+    /// Displays information relevant to the parent. 
+    /// Also enables cheat/developer commands.
+    /// </summary>
     public class ParentsPanel : MonoBehaviour
     {
         [Header("Prefabs")]

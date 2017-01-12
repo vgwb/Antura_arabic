@@ -3,18 +3,21 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using EA4S.Db;
 
-namespace EA4S
+namespace EA4S.PlayerBook
 {
-    public class ItemLetter : MonoBehaviour, IPointerClickHandler
+    /// <summary>
+    /// Displays a Phrase item in the Dictionary page of the Player Book.
+    /// </summary>
+    public class ItemPhrase : MonoBehaviour, IPointerClickHandler
     {
-        LetterInfo info;
+        PhraseInfo info;
         public TextRender Title;
         public TextRender SubTitle;
         public Image LockIcon;
 
         BookPanel manager;
 
-        public void Init(BookPanel _manager, LetterInfo _info)
+        public void Init(BookPanel _manager, PhraseInfo _info)
         {
             info = _info;
             manager = _manager;
@@ -27,13 +30,14 @@ namespace EA4S
                 LockIcon.enabled = true;
             }
 
-            Title.text = info.data.GetChar();
+            Title.text = info.data.Arabic;
             SubTitle.text = info.data.Id;
+
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailLetter(info);
+             manager.DetailPhrase(info);
         }
     }
 }

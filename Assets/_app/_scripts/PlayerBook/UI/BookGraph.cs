@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
-namespace EA4S
+namespace EA4S.PlayerBook
 {
+    /// <summary>
+    /// Displays data using a bar graph.
+    /// </summary>
+    // refactor: rename to BarGraph
     public class BookGraph : MonoBehaviour
     {
         public GameObject barPrefabGo;

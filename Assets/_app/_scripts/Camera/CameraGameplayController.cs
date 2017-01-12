@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections;
 using DG.Tweening;
 using UnityStandardAssets.ImageEffects;
 
 namespace EA4S
 {
+
     public class CameraGameplayController : MonoBehaviour
     {
+        // refactor: remove the static access
         public static CameraGameplayController I;
         public GameObject CallbackManager;
         public bool FxEnabled { get; private set; }
@@ -51,6 +51,7 @@ namespace EA4S
 
         void MovementCompleted()
         {
+            // refactor: can be implemented with an observer pattern instead
             CallbackManager.SendMessage("CameraReady", SendMessageOptions.DontRequireReceiver);
         }
 

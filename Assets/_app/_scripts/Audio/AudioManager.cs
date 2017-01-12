@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using Fabric;
 using UnityEngine.Audio;
-using System;
 
 namespace EA4S
 {
 
+    /// <summary>
+    /// Handles audio requests throughout the application
+    /// </summary>
+    // conventions: needs renaming
     public class AudioManager : MonoBehaviour
     {
         const string LETTERS_PREFIX = "Letter/";
