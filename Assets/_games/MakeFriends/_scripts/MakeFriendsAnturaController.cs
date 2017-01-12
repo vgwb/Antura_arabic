@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using EA4S;
 
 public class MakeFriendsAnturaController : MonoBehaviour
 {

@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.PlayerBook
 {
+    /// <summary>
+    /// Shows a graph detailing the journey of the player. 
+    /// </summary>
     public class GraphJourney : MonoBehaviour
     {
         public BookGraph Graph;

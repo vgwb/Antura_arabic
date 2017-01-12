@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
 
+// refactor: this can be moved to the utilities.
 public class OnActiveBehaviour : MonoBehaviour {
 
     void OnEnable()

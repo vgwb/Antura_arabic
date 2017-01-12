@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 using DG.Tweening;
 
-namespace EA4S {
-    public class EmoticonsController : MonoBehaviour {
+namespace EA4S
+{
+
+    public class EmoticonsController : MonoBehaviour
+    {
 
         const string EMOTICON_PREFS_PATH = "Prefabs/Emoticons/";
 

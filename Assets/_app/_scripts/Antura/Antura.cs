@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using EA4S;
 
 namespace EA4S
 {
@@ -48,6 +46,10 @@ namespace EA4S
         Normal2 = 5
     }
 
+    /// <summary>
+    /// Controller for the Antura prefab.
+    /// Can be used by MiniGames.
+    /// </summary>
     public class Antura : MonoBehaviour
     {
         [Header("Behavior")]
@@ -147,7 +149,7 @@ namespace EA4S
                     //Debug.Log("PlayAnimation " + AnturaAnimator.name + " " + GetStateName(AnimationState));
                     AnturaAnimator.Play(GetStateName(AnimationState));
                     if (BarkWhenRunning && AnimationState == AnturaAnim.Run) {
-                        prepareNextAnturaBark();
+                        PrepareNextAnturaBark();
                     }
                 } else {
                     AnturaAnimator.StopPlayback();
@@ -158,12 +160,12 @@ namespace EA4S
         void Update()
         {
             if ((IsBarking || (BarkWhenRunning && AnimationState == AnturaAnim.Run)) && Time.time > nextAnturaBarkTime) {
-                prepareNextAnturaBark();
+                PrepareNextAnturaBark();
                 AudioManager.I.PlaySfx(Sfx.DogBarking);
             }
         }
 
-        void prepareNextAnturaBark()
+        void PrepareNextAnturaBark()
         {
             nextAnturaBarkTime = Time.time + Random.Range(1, 3);
         }

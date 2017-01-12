@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace EA4S
+namespace EA4S.PlayerBook
 {
+    /// <summary>
+    /// Shows a graph with the history of moods of the player. 
+    /// </summary>
     public class GraphMood : MonoBehaviour
     {
         public BookGraph Graph;

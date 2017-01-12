@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace EA4S
+namespace EA4S.PlayerBook
 {
     public class TableRow : MonoBehaviour
     {

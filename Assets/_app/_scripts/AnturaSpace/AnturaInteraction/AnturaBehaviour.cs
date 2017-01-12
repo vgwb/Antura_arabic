@@ -1,13 +1,16 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using DG.Tweening;
 
-namespace EA4S
+namespace EA4S.AnturaSpace
 {
-
+    /// <summary>
+    /// Handles user interaction with Antura in the AnturaSpace. 
+    /// </summary>
+    // refactor: rename to AnturaSpaceInteraction or similar to distinguish from Antura
+    // conventions: needs a pass to match conventions
     [RequireComponent(typeof(AnturaAnimationController))]
     public class AnturaBehaviour : MonoBehaviour
     {

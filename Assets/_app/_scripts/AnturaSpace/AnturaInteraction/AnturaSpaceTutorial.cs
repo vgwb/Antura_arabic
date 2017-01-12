@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
-using TMPro;
 
-namespace EA4S
+namespace EA4S.AnturaSpace
 {
  
+    /// <summary>
+    /// Implements a tutorial for the AnturaSpace scene.
+    /// </summary>
     public class AnturaSpaceTutorial : MonoBehaviour
     {
+        // conventions: rename enum 
         //note that the tutorial is totally sequentially
         enum eAnturaSpaceTutoState
         {

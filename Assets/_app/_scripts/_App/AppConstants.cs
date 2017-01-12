@@ -3,6 +3,8 @@
     /// <summary>
     /// Container for application-wide static constants.
     /// </summary>
+    // refactor: enforce code convention
+    // refactor: reorganize all constants (some are statics, others are consts)
     public static class AppConstants
     {
         public const string AppVersion = "0.12.12x";
@@ -13,7 +15,7 @@
         public static bool DebugLogInserts = true;
 
         // Application details (used by Teacher and maybe other)
-        public const float minimumAge = 7;  // refactor: code convention for variables?
+        public const float minimumAge = 7; 
         public const float maximumAge = 15;
 
         public const float minimumStage = 1;

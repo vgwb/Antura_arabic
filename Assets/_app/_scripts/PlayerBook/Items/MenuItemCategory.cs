@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using EA4S.Db;
 
-namespace EA4S
+namespace EA4S.PlayerBook
 {
+
+    /// <summary>
+    /// Displays a category button in the PlayerBook. Used to select a page of the book.
+    /// </summary>
     public class MenuItemCategory : MonoBehaviour, IPointerClickHandler
     {
         GenericCategoryData data;

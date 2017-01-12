@@ -1,6 +1,4 @@
-﻿using EA4S;
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UnityStandardAssets.ImageEffects
 {
