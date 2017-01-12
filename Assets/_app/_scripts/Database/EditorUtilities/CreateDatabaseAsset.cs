@@ -1,10 +1,9 @@
 ﻿#if UNITY_EDITOR
-using UnityEngine;
-using UnityEditor;
-using System;
-
 namespace EA4S.Db
 {
+    /// <summary>
+    /// Utility class that generates a complete empty static database in the given folder.
+    /// </summary>
     public class CreateDatabaseAsset
     {
         public static void CreateAssets(string targetPath, string targetName)

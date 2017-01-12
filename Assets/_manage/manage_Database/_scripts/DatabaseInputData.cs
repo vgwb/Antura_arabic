@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace EA4S.Db.Management
 {
+    /// <summary>
+    /// References JSON assets from which the database should be converted.
+    /// </summary>
     [System.Serializable]
     public struct DatabaseInputData
     {

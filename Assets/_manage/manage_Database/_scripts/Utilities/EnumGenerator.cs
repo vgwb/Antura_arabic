@@ -1,11 +1,13 @@
 ﻿#if UNITY_EDITOR
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-namespace EA4S.Db
+namespace EA4S.Db.Management
 {
+    /// <summary>
+    /// Utility class that generates enumerators and writes them to C# scripts.
+    /// </summary>
     public static class EnumGenerator
     {
 
