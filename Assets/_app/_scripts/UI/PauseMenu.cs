@@ -102,8 +102,6 @@ namespace EA4S
             if (_open) {
                 timeScaleAtMenuOpen = Time.timeScale;
                 Time.timeScale = 0;
-                if (AppManager.I.CurrentGameManagerGO != null)
-                    AppManager.I.CurrentGameManagerGO.SendMessage("DoPause", true, SendMessageOptions.DontRequireReceiver);
                 openMenuTween.timeScale = 1;
                 openMenuTween.PlayForward();
                 AudioManager.I.PlaySfx(Sfx.UIPauseIn);
@@ -111,8 +109,6 @@ namespace EA4S
                 Time.timeScale = timeScaleAtMenuOpen;
                 logoBobTween.Pause();
                 openMenuTween.timeScale = 2; // Speed up tween when going backwards
-                if (AppManager.I.CurrentGameManagerGO != null)
-                    AppManager.I.CurrentGameManagerGO.SendMessage("DoPause", false, SendMessageOptions.DontRequireReceiver);
                 openMenuTween.PlayBackwards();
                 AudioManager.I.PlaySfx(Sfx.UIPauseOut);
             }
