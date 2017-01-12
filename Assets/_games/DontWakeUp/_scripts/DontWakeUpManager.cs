@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using EA4S;
 using ModularFramework.Core;
 
 namespace EA4S
@@ -101,8 +98,6 @@ namespace EA4S.DontWakeUp
             currentRound = StartingLevel;
             currentLevel = currentRound;
             LivesLeft = 4;
-            //AppManager.I.InitDataAI();
-            AppManager.I.CurrentGameManagerGO = gameObject;
 
             //LoggerEA4S.Log("minigame", "dontwakeup", "start", "");
             //LoggerEA4S.Save();
@@ -119,15 +114,15 @@ namespace EA4S.DontWakeUp
             Invoke("GameIntro", 2);
         }
 
-        public void DoPause(bool status)
-        {
-            Debug.Log("GameDontWakeUp DoPause() " + status);
-            if (currentState == DontWakeUpMinigameState.Playing) {
-                currentState = DontWakeUpMinigameState.Paused;
-            } else if (currentState == DontWakeUpMinigameState.Paused) {
-                currentState = DontWakeUpMinigameState.Playing;
-            }
-        }
+        //public void DoPause(bool status)
+        //{
+        //    Debug.Log("GameDontWakeUp DoPause() " + status);
+        //    if (currentState == DontWakeUpMinigameState.Playing) {
+        //        currentState = DontWakeUpMinigameState.Paused;
+        //    } else if (currentState == DontWakeUpMinigameState.Paused) {
+        //        currentState = DontWakeUpMinigameState.Playing;
+        //    }
+        //}
 
         protected override void OnDisable()
         {

@@ -14,8 +14,7 @@ namespace EA4S
         public new AppSettings GameSettings = new AppSettings();
 
         // refactor: AppManager.Instance should be the only entry point to the singleton
-        public static AppManager I
-        {
+        public static AppManager I {
             get { return GameManager.Instance as AppManager; }
         }
 
@@ -23,7 +22,6 @@ namespace EA4S
         public DatabaseManager DB;
         public PlayerProfile Player;
         public MiniGameLauncher GameLauncher;
-        public GameObject CurrentGameManagerGO;
         public LogManager LogManager;
         public PlayerProfileManager PlayerProfileManager;
 
