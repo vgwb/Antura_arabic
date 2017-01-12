@@ -5,6 +5,10 @@ using EA4S.Db;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Entry point for the rest of the application to access database entries.
+    /// This class is responsible for loading all data and provide access to both static (learning) and dynamic (logging) data. 
+    /// </summary>
     public class DatabaseManager
     {
         public const string STATIC_DATABASE_NAME = "Database";

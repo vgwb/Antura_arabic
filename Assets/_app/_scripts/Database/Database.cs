@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace EA4S.Db
@@ -20,6 +19,10 @@ namespace EA4S.Db
         Rewards = 40
     }
 
+    /// <summary>
+    /// Main entry point for learning data access.
+    /// Holds all static input data on learning.
+    /// </summary>
     public class Database : UnityEngine.Object
     {
         public StageDatabase stageDb;

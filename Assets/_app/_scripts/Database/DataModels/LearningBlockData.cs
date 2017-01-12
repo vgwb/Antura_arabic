@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace EA4S.Db
 {
-
     [Serializable]
     public class LearningBlockData : IData
     {

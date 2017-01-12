@@ -30,3 +30,5 @@ See the .md files for more information.
 ### General refactoring notes
 
    * Managers are scattered among many different folders and use widely different conventions. They should be refactored to show a common intention.
+   * Randomization methods and classes use must be standardized throught the codebase
+   

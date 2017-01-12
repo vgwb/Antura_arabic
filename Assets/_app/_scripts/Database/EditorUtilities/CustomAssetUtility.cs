@@ -3,6 +3,12 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
+// refactor: add a namespace
+
+
+/// <summary>
+/// Utility class used to create custom assets in the project folder.
+/// </summary>
 public static class CustomAssetUtility
 {
     public static T CreateAsset<T>(string targetPath, string assetName) where T : ScriptableObject

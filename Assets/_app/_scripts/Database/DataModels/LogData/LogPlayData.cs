@@ -1,5 +1,4 @@
 ﻿using SQLite;
-using System;
 
 namespace EA4S {
 
@@ -21,7 +20,12 @@ namespace EA4S {
     }
 }
 
-namespace EA4S.Db {
+namespace EA4S.Db
+{
+
+    /// <summary>
+    /// Play-related measurements obtained at a given timestamp. Logged at runtime.
+    /// </summary>
     [System.Serializable]
     public class LogPlayData : IData
     {
@@ -48,14 +52,14 @@ namespace EA4S.Db {
 
         public LogPlayData(string _Session, string _PlaySession, MiniGameCode _MiniGame, PlayEvent _PlayEvent, PlaySkill _PlaySkill, float _Score, string _RawData)
         {
-            this.Session = _Session;
-            this.PlaySession = _PlaySession;
-            this.MiniGame = _MiniGame;
-            this.PlayEvent = _PlayEvent;
-            this.PlaySkill = _PlaySkill;
-            this.Score = _Score;
-            this.RawData = _RawData;
-            this.Timestamp = GenericUtilities.GetTimestampForNow();
+            Session = _Session;
+            PlaySession = _PlaySession;
+            MiniGame = _MiniGame;
+            PlayEvent = _PlayEvent;
+            PlaySkill = _PlaySkill;
+            Score = _Score;
+            RawData = _RawData;
+            Timestamp = GenericUtilities.GetTimestampForNow();
         }
 
         public string GetId()

@@ -1,5 +1,6 @@
 ﻿using SQLite;
 
+// refactor: InfoEvent should be easily accessible outside of the EA4S.Db namespace but still be part of it
 namespace EA4S
 {
     public enum InfoEvent
@@ -22,6 +23,9 @@ namespace EA4S
 
 namespace EA4S.Db
 {
+    /// <summary>
+    /// Generic information on application usage at a given timestamp. Logged at runtime.
+    /// </summary>
     [System.Serializable]
     public class LogInfoData : IData
     {

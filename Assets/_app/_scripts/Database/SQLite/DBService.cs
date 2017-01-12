@@ -1,5 +1,4 @@
 ﻿/*
-Database is maintained by Stefano Cecere
 we are using Mysqlite from https://github.com/codecoding/SQLite4Unity3d 
 and engine from https://github.com/praeclarum/sqlite-net
 */
@@ -16,6 +15,9 @@ using System;
 
 namespace EA4S.Db
 {
+    /// <summary>
+    /// Service that connects to SQLite.
+    /// </summary>
     public class DBService
     {
         SQLiteConnection _connection;
