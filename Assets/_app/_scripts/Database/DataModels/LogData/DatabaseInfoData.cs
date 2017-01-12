@@ -1,8 +1,10 @@
 ﻿using SQLite;
-using System;
 
 namespace EA4S.Db
 {
+    /// <summary>
+    /// Serialized information on the database. Used for versioning.
+    /// </summary>
     [System.Serializable]
     public class DatabaseInfoData : IData
     {
