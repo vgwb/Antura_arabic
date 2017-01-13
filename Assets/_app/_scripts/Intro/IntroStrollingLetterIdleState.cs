@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace EA4S.FastCrowd
+﻿namespace EA4S.Intro
 {
     public class IntroStrollingLetterIdleState : IntroStrollingLetterState
     {

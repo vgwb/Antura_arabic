@@ -1,4 +1,4 @@
-﻿namespace EA4S
+﻿namespace EA4S.Intro
 {
     public abstract class IntroStrollingLetterState : IGameState
     {
