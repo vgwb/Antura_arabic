@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 using System;
 
 namespace EA4S
 {
+    /// <summary>
+    /// View of a PhraseData shown as text on a LivingLetter.
+    /// </summary>
+    // refactor: rename to better indicate that this is a view
     public class LL_PhraseData : ILivingLetterData
     {
 
@@ -15,10 +18,10 @@ namespace EA4S
 
         public string Id {
             get { return Data.Id; }
-            set { Data = AppManager.I.DB.GetPhraseDataById(value); }
+            set { Data = AppManager.I.DB.GetPhraseDataById(value); } // refactor: inject the value, no reference to the DB
         }
 
-        public LL_PhraseData(string _id) : this(_id, AppManager.I.DB.GetPhraseDataById(_id))
+        public LL_PhraseData(string _id) : this(_id, AppManager.I.DB.GetPhraseDataById(_id)) // refactor: inject the value, no reference to the DB
         {
         }
 

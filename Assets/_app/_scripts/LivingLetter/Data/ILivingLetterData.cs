@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace EA4S
 {
 
     /// <summary>
-    /// Common interface for living letter data.
+    /// Common interface for data that can appear on a LivingLetter object.
     /// </summary>
     public interface ILivingLetterData
     {
@@ -18,6 +17,9 @@ namespace EA4S
         bool Equals(ILivingLetterData data);
     }
 
+    /// <summary>
+    /// Type of data that can appear on a LivingLetter object.
+    /// </summary>
     public enum LivingLetterDataType
     {
         Letter,

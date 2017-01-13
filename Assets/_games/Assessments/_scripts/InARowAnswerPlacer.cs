@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System;
 using System.Collections;
+using EA4S.LivingLetters;
 using UnityEngine;
 
 namespace EA4S.Assessment
