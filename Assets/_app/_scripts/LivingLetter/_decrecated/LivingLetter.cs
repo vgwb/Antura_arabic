@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using EA4S;
 
+// refactor: remove?
 namespace EA4S
 {
     public enum LivingLetterAnim
