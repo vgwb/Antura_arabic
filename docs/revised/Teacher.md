@@ -20,6 +20,11 @@ It is designed to be agnostic to the specific language and highly configurable i
 
 The Teacher System can be found under the **EA4S.Teacher** namespace.
 
+In this document, the **Teacher** is a shorthand for the Teacher System.
+The person or group of persons that configure the Teacher is instead referred to 
+ singularly as the **expert**.
+ 
+
 ### Elements
 
 The Teacher is composed of several elements:
@@ -28,8 +33,8 @@ The Teacher is composed of several elements:
  
  * Engines are used to implement the expert system for a specific role:
 	* **DifficultySelectionAI** is in charge of selecting what difficulty to use for a given minigame.
-	* **MiniGameSelectionAI** is in charge of selecting what minigames to play during a given playsession, based on the player's position in the journey, the configured progression, and the current performance of the player.
-	* **WordSelectionAI** is in charge of selecting what dictionary data a minigame should use based on player progression, player performance, and the minigame's requirements.  
+	* **MiniGameSelectionAI** is in charge of selecting what minigames to play during a given playsession
+	* **WordSelectionAI** is in charge of selecting what dictionary data a minigame should use.  
 	* **LogAI** handles the logging of play data at runtime.
 	
  * Helper classes make interaction with the underlying Database straightforward:
@@ -54,29 +59,52 @@ The difficulty value depends on:
  
 The weights of the different variables can be configured in **ConfigAI**.
 
+##### Code Flow
 
 The Difficulty Selection Engine is accessed through **TeacherAI.GetCurrentDifficulty(MiniGameCode miniGameCode)**.
  This is called by the **MiniGame Launcher** beore loading a specific minigame
   and assigned to the minigame's Game Configuration class.
  
-##### Code Flow
- 
- * **MiniGameSelectionAI** is in charge of selecting what minigames to play during a given playsession, based on the player's position in the journey, the configured progression, and the current performance of the player.
-	* **WordSelectionAI** is in charge of selecting what dictionary data a minigame should use based on player progression, player performance, and the minigame's requirements.  
-	* **LogAI** handles the logging of play data at runtime.
-	
  
 #### MiniGame Selection Engine
 
 This Engine is in charge of selecting what minigame to use for a given play session.
 
-Mini games can be configured to be more or less difficult for the player.
- The difficulty value is related only to 
+The selection of minigames depends on:
+ * Whether there is a fixed sequence (*PlaySessionDataOrder.Sequence*) or a random one (*PlaySessionDataOrder.Random*). This is defined by the expert.
+ * In case of a fixed sequence, in what order to select the minigames.
+ * In case of a random sequence, the choice depends on:
+	* What minigames are available at all in the application, as read from the database's **Db.MiniGameData**.
+	* What minigames are supported / favoured by the current learning block, as read from the database's **Db.LearningBlockData**.
+	* Whether the game was played recently or not (favour less played minigames).
  
-The difficulty value depends on:
- * The age of the player. The game will be more difficult for older players.
- * The current performance of the player for the given minigame. The game is more difficult the better the player gets.
- * The current journey position of the player. The game is more difficult at advanced stages.
+The weights of the different variables can be configured in **ConfigAI**.
+
+
+##### Code Flow
+ 
+The MiniGame Selection Engine is accessed whenever a new play session start,
+ through **TeacherAI.SelectMiniGamesForPlaySession()**.
+ This is called by **TeacherAI.InitialiseCurrentPlaySession()**,
+  triggered by the **MiniMap** script in the *Map scene* when a new 
+   play session is about to start.
+   
+ 
+
+#### Word Selection Engine
+
+This Engine is in charge of selecting what dictionary data a minigame should use in a given play session.
+
+ based on player progression, player performance, and the minigame's requirements
+
+The selection of dictionary data depends on:
+ * The selected minigame's learning rules and requirements (performed through a configured **QuestionBuilder**)
+ * The current journey progression, as read from the journey data in the database (LearningBlocks and Stages)
+ * 
+ * In case of a random sequence, the choice depends on:
+	* What minigames are available at all in the application, as read from the database's **Db.MiniGameData**.
+	* What minigames are supported / favoured by the current learning block, as read from the database's **Db.LearningBlockData**.
+	* Whether the game was played recently or not (favour less played minigames).
  
 The weights of the different variables can be configured in **ConfigAI**.
 
@@ -122,6 +150,9 @@ Note however that a new QuestionBuilder can be created for specific minigames, i
  
 the Teacher System can be configured by specifying rules
 
+#### Question Builder implementation
+
+@TODO: DESCRIBE
 
 
 

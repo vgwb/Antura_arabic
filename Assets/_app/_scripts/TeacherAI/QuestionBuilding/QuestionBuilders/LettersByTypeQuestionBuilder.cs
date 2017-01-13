@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Categorize letters based on their type (vowel/consonant)
+    /// * Question: Letter to categorize
+    /// * Correct answers: Correct type
+    /// * Wrong answers: Wrong type
+    /// </summary>
     public class LettersByTypeQuestionBuilder : IQuestionBuilder
     {
         // focus: Letters

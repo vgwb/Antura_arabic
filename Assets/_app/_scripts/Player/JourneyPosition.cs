@@ -1,5 +1,8 @@
 ﻿namespace EA4S
 {
+    /// <summary>
+    /// Represents the position of the player in the learning journey.
+    /// </summary>
     [System.Serializable]
     public class JourneyPosition
     {

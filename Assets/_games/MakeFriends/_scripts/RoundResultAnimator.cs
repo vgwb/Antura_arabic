@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.Tutorial;
 using TMPro;
 
 namespace EA4S.MakeFriends

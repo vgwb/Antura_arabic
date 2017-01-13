@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using EA4S.Tutorial;
 using UnityEngine;
 using UnityEngine.UI;
 

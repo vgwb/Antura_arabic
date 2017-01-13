@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.Tutorial;
+
 namespace EA4S.SickLetters
 {
     public class SickLettersTutorial : MonoBehaviour {

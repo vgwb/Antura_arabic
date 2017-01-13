@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
-using EA4S;
 
-namespace EA4S
+namespace EA4S.Map
 {
+    /// <summary>
+    /// Shows a Pin that represents a play session on the map.
+    /// </summary>
     public class MapPin : MonoBehaviour
     {
         public int Number;

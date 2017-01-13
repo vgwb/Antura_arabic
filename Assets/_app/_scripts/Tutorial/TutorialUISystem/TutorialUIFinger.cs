@@ -1,11 +1,8 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/08
-
-using System.Collections;
+﻿using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Tutorial
 {
     public class TutorialUIFinger : TutorialUIProp
     {

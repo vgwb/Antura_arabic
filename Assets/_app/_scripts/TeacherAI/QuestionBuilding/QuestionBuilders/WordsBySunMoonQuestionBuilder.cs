@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Categorize words based on their sun/moon status
+    /// * Question: Word to categorize
+    /// * Correct answers: Correct category
+    /// * Wrong answers: Wrong category
+    /// </summary>
     public class WordsBySunMoonQuestionBuilder : IQuestionBuilder
     {
         // focus: Words

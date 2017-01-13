@@ -2,6 +2,7 @@
 using System.Collections;
 using ModularFramework.Helpers;
 using System.Collections.Generic;
+using EA4S.Tutorial;
 
 namespace EA4S.ColorTickle
 {

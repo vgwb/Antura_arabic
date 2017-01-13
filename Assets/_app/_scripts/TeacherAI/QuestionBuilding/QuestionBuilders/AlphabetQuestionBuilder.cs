@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Selects letters from the alphabet.
+    /// Correct answers: all alphabet letters.
+    /// </summary>
     public class AlphabetQuestionBuilder : IQuestionBuilder
     {
         // focus: Letters
