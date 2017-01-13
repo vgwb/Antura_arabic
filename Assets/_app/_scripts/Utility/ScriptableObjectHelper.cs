@@ -5,6 +5,8 @@ using UnityEditor;
 
 using System.IO;
 
+// refactor: Helpers need to be standardized
+// refactor: move this to Editor utilities
 public class ScriptableObjectHelper : ScriptableObject
 {
     [MenuItem("Assets/Create/Empty asset")]

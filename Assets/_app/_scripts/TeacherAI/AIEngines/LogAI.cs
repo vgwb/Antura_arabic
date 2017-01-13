@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using EA4S.Db;
 
 namespace EA4S.Teacher
 {
+    /// <summary>
+    /// Entry point for logging information on play at runtime, filtered by the Teacher System.
+    /// </summary>
     public class LogAI
     {
         // References

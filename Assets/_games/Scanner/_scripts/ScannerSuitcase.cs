@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using EA4S.Tutorial;
 using TMPro;
 
 

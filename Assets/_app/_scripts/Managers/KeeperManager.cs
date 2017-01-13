@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Manages the Keeper throughout the application. The Keeper gives hints and explains minigames to the player.
+    /// </summary>
     public class KeeperManager : MonoBehaviour
     {
         public static KeeperManager I;
@@ -12,6 +14,7 @@ namespace EA4S
             I = this;
         }
 
+        // refactor: remove or complete this
         public void PlaySceneIntroduction(AppScene scene)
         {
             switch (scene) {

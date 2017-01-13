@@ -1,11 +1,7 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/02
-
-using System.Collections.Generic;
-using DG.Tweening;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Tutorial
 {
     public class TutorialUILineGroup : MonoBehaviour
     {

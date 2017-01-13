@@ -5,7 +5,8 @@ namespace EA4S
 {
 
     /// <summary>
-    /// Given a minigame, handles the generation of question packs
+    /// Given a minigame, handles the generation of question packs.
+    /// This is also used to convert data-only question packs to LivingLetter-related question packs. 
     /// </summary>
     public class QuestionPacksGenerator
     {

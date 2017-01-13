@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
+
+// refactor: Helpers need to be standardized
 
 public class AnimatorStateSelector : MonoBehaviour
 {

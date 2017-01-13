@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Selects letters at random
+    /// * Question: The letter to find
+    /// * Correct answers: The correct letter
+    /// * Wrong answers: Wrong letters
+    /// </summary>
     public class RandomLettersQuestionBuilder : IQuestionBuilder
     {
         // focus: Letters

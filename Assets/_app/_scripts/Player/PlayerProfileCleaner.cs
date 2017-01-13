@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace EA4S {
 
+    /// <summary>
+    /// Handles cleanup of player profiles.
+    /// </summary>
     public class PlayerProfileCleaner : MonoBehaviour {
 
         public void ResetAllPlayerProfiles() {
