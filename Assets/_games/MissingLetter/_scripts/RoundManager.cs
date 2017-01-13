@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ModularFramework.Helpers;
 using System;
+using EA4S.LivingLetters;
 
 namespace EA4S.MissingLetter
 {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.LivingLetters;
+using UnityEngine;
 using ModularFramework.Helpers;
 
 namespace EA4S.Intro

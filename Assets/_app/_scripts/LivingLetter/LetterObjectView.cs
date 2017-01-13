@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using DG.Tweening;
 using TMPro;
 
-namespace EA4S
+namespace EA4S.LivingLetters
 {
     public enum LLAnimationStates
     {
@@ -18,9 +17,8 @@ namespace EA4S
     }
 
     /// <summary>
-    /// View object for letter puppets.
-    /// - init component by data
-    /// - manage animation
+    /// Controller of Living Letter characters. Functions as a view for learning data.
+    /// Manages the Living Letter animations and initialises the view content.
     /// </summary>
     public class LetterObjectView : MonoBehaviour
     {

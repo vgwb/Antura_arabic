@@ -1,6 +1,7 @@
 ﻿using System;
 using EA4S;
 using EA4S.FastCrowd;
+using EA4S.LivingLetters;
 using UnityEngine;
 
 [RequireComponent(typeof(LetterCharacterController))]

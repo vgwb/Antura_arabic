@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.LivingLetters;
 using TMPro;
 
 namespace EA4S.MixedLetters

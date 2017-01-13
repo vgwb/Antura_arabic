@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
-using EA4S;
 
-public class DancingBehaviour : StateMachineBehaviour
+namespace EA4S.LivingLetters
 {
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // refactor: group these behaviours in a folder
+    public class DancingBehaviour : StateMachineBehaviour
     {
-        animator.gameObject.SendMessage("OnDancingStart");
-    }
+        override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            animator.gameObject.SendMessage("OnDancingStart");
+        }
 
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        animator.gameObject.SendMessage("OnDancingEnd");
+        override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            animator.gameObject.SendMessage("OnDancingEnd");
+        }
     }
 }

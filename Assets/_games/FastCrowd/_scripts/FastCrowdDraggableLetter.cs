@@ -2,6 +2,7 @@
 using System.Collections;
 using EA4S;
 using EA4S.FastCrowd;
+using EA4S.LivingLetters;
 
 [RequireComponent(typeof(StrollingLivingLetter))]
 [RequireComponent(typeof(LetterObjectView))]

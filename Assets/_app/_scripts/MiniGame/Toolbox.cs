@@ -5,11 +5,13 @@ using ModularFramework.Modules;
 
 namespace EA4S
 {
+    [System.Obsolete()]
     public class Toolbox : MonoBehaviour
     {
 
         /// <summary>
         /// Manual implementation for gameplay result.
+        /// <deprecated>AA </deprecated>
         /// </summary>
         /// <param name="_stars"></param>
         public void SimulateEndGameplay(int _stars)

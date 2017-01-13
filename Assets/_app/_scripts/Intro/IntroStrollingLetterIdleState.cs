@@ -1,4 +1,6 @@
-﻿namespace EA4S.Intro
+﻿using EA4S.LivingLetters;
+
+namespace EA4S.Intro
 {
     public class IntroStrollingLetterIdleState : IntroStrollingLetterState
     {
