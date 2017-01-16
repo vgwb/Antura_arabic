@@ -75,11 +75,11 @@ namespace EA4S.Assessment
             if ( blankSpace <= bounds.HalfLetterSize()/2f )
                 throw new InvalidOperationException( "Need a line break becase 1 line is not enough for all");
 
-            var flow = AssessmentConfiguration.Instance.LocaleTextFlow;
+            var flow = AssessmentOptions.Instance.LocaleTextFlow;
             float sign;
             Vector3 currentPos;
 
-            if (flow == AssessmentConfiguration.TextFlow.RightToLeft)
+            if (flow == TextFlow.RightToLeft)
             {
                 currentPos = bounds.ToTheRightQuestionStart();
                 //currentPos.x -= answerSize / 2.0f;

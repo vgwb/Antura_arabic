@@ -74,13 +74,13 @@ namespace EA4S.Assessment
             float occupiedSpace = allAnswers.Length * ( letterGap * letterSize);
             float spaceIncrement = ( letterGap * letterSize);
 
-            var flow = AssessmentConfiguration.Instance.LocaleTextFlow;
+            var flow = AssessmentOptions.Instance.LocaleTextFlow;
             float sign;
             Vector3 currentPos = Vector3.zero;
             currentPos.y = -1;
             currentPos.z = bounds.DefaultZ();
 
-            if (flow == AssessmentConfiguration.TextFlow.RightToLeft)
+            if (flow == TextFlow.RightToLeft)
             {
                 currentPos.x = occupiedSpace / 2f;
                 sign = -1;

@@ -1,21 +1,22 @@
 using System;
-using UnityEngine;
 
 namespace EA4S.Assessment
 {
     public class AssessmentConfiguration : IAssessmentConfiguration
     {
-        public enum TextFlow
-        {
-            LeftToRight,
-            RightToLeft
-        }
-
-        public TextFlow LocaleTextFlow { get; set; }
-
-        // Game configuration
+        /// <summary>
+        /// Externally provided Context: Inject all subsystems needed by this minigame
+        /// </summary>
         public IGameContext Context { get; set; }
 
+        /// <summary>
+        /// Configured externally: which assessment we need to start.
+        /// </summary>
+        public AssessmentCode assessmentType = AssessmentCode.Unsetted;
+
+        /// <summary>
+        /// Externally provided Question provider
+        /// </summary>
         private IQuestionProvider questionProvider;
         public IQuestionProvider Questions
         {
@@ -25,7 +26,6 @@ namespace EA4S.Assessment
             }
             set
             {
-                Debug.Log("AssessmentConfiguration: Injected Provider");
                 questionProvider = value;
             }
         }
@@ -35,19 +35,35 @@ namespace EA4S.Assessment
             return questionProvider;
         }
 
+        /// <summary>
+        /// Setted externally: assessments will scale quantity of content (number of questions
+        /// and answers mostly) linearly with this value. It is assumed that Difficulty
+        /// start with 0 and increase up to 1 as long as the Child progress in the world.
+        /// The difficulty should be different for each assessmentType.
+        /// </summary>
         public float Difficulty { get; set; }
-        public int SimultaneosQuestions { get; set; } // should match category numbers
-        public int Answers { get; set; } // number of answers in category questions
 
+        /// <summary>
+        /// How many questions showed simultaneously on the screen.
+        /// </summary>
+        public int SimultaneosQuestions { get; private set; }
+
+        /// <summary>
+        /// How many answers should each question have. In Categorize assessments
+        /// (The ones where the child should put something in the right category,
+        /// like Sun/Moon) this is used to show maximum number of answers even when
+        /// each question has a different number of answers (there could be 2 words
+        /// to be putted in Moon, and 3 in Sun, in this case 3 placeholders are
+        /// showed anyway).
+        /// </summary>
+        public int Answers { get; private set; } // number of answers in category questions
+
+        /// <summary>
+        /// Number of rounds, mostly fixed for each game, this value is setted
+        /// inside SetupBuilder.
+        /// </summary>
+        public int Rounds { get { return _rounds; } private set { _rounds = value; } }
         private int _rounds = 0;
-        public int Rounds { get { return _rounds; } set { _rounds = value; } }
-
-        public bool PronunceQuestionWhenClicked { get; set; }
-        public bool PronunceAnswerWhenClicked { get; set; }
-        public bool ShowQuestionAsImage { get; set; }
-
-
-        public AssessmentCode assessmentType = AssessmentCode.Unsetted;
 
         /////////////////
         // Singleton Pattern
@@ -63,18 +79,11 @@ namespace EA4S.Assessment
         }
         /////////////////
 
-        public string Description { get { return "Missing description AND audio"; } private set { } }
 
-        private AssessmentConfiguration()
-        {
-            // Default values
-            // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            questionProvider = null;
-            Context = new SampleGameContext();
-            LocaleTextFlow = TextFlow.RightToLeft;
-
-        }
-
+        /// <summary>
+        /// This is the "Linear Scaler". It takes a range of parameters and output the value
+        /// "in between" according to the Difficulty.
+        /// </summary>
         private DifficultyRegulation snag;
 
         /// <summary>
