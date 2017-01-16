@@ -25,7 +25,7 @@
         {
             // Default values
             Questions = new ColorTickleLetterProvider();
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext();
             Difficulty = 0.5f;
         }
 

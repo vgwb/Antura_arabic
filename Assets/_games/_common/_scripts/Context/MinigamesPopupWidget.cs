@@ -5,7 +5,7 @@ using EA4S.Db;
 
 namespace EA4S
 {
-    public class SamplePopupWidget : IPopupWidget
+    public class MinigamesPopupWidget : IPopupWidget
     {
         public void Show(System.Action callback, Db.LocalizationDataId text, bool markResult, LL_WordData word = null)
         {

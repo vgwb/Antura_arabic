@@ -1,16 +1,16 @@
 ﻿
 namespace EA4S
 {
-    public class SampleGameContext : IGameContext
+    public class MinigamesGameContext : IGameContext
     {
-        IAudioManager audioManager = new SampleAudioManager();
-        IInputManager inputManager = new SampleInputManager();
+        IAudioManager audioManager = new MinigamesAudioManager();
+        IInputManager inputManager = new MinigamesInputManager();
         ILogManager logManager = new MinigameLogManager();
 
-        ISubtitlesWidget subtitleWidget = new SampleSubtitlesWidget();
-        IStarsWidget starsWidget = new SampleStarsWidget();
-        IPopupWidget questionWidget = new SamplePopupWidget();
-        ICheckmarkWidget checkmarkWidget = new SampleCheckmarkWidget();
+        ISubtitlesWidget subtitleWidget = new MinigamesSubtitlesWidget();
+        IStarsWidget starsWidget = new MinigamesStarsWidget();
+        IPopupWidget questionWidget = new MinigamesPopupWidget();
+        ICheckmarkWidget checkmarkWidget = new MinigamesCheckmarkWidget();
         IOverlayWidget overlayWidget = new MinigamesOverlayWidget();
 
         public IAudioManager GetAudioManager()

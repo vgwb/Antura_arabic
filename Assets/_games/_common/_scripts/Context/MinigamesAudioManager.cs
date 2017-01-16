@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
-    public class SampleAudioManager : IAudioManager
+    public class MinigamesAudioManager : IAudioManager
     {
-        List<SampleAudioSource> playingAudio = new List<SampleAudioSource>();
+        List<MinigamesAudioSource> playingAudio = new List<MinigamesAudioSource>();
 
         DeAudioGroup musicGroup;
         DeAudioGroup wordsLettersGroup;
@@ -58,7 +58,7 @@ namespace EA4S
 
             var source = wordsLettersGroup.Play(clip);
 
-            return new SampleAudioSource(source, wordsLettersGroup, this);
+            return new MinigamesAudioSource(source, wordsLettersGroup, this);
 
         }
 
@@ -97,7 +97,7 @@ namespace EA4S
 
             var source = sfxGroup.Play(clip);
 
-            return new SampleAudioSource(source, sfxGroup, this);
+            return new MinigamesAudioSource(source, sfxGroup, this);
         }
 
         public UnityEngine.AudioClip GetAudioClip(Sfx sfx)
@@ -137,7 +137,7 @@ namespace EA4S
 
             var source = musicGroup.Play(clip);
 
-            return new SampleAudioSource(source, musicGroup, this);
+            return new MinigamesAudioSource(source, musicGroup, this);
         }
 
         public IAudioSource PlaySound(AudioClip clip)
@@ -150,7 +150,7 @@ namespace EA4S
 
             var source = sfxGroup.Play(clip);
 
-            return new SampleAudioSource(source, sfxGroup, this);
+            return new MinigamesAudioSource(source, sfxGroup, this);
         }
 
         public void Update()
@@ -165,7 +165,7 @@ namespace EA4S
             }
         }
 
-        public void OnAudioStarted(SampleAudioSource source)
+        public void OnAudioStarted(MinigamesAudioSource source)
         {
             if (!playingAudio.Contains(source))
                 playingAudio.Add(source);

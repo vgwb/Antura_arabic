@@ -2,7 +2,7 @@
 
 namespace EA4S
 {
-    public class SampleCheckmarkWidget : ICheckmarkWidget
+    public class MinigamesCheckmarkWidget : ICheckmarkWidget
     {
         public void Show(bool correct)
         {

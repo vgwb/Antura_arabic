@@ -32,7 +32,7 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-			Context = new SampleGameContext();
+			Context = new MinigamesGameContext();
 
             Variation = DancingDotsVariation.V_1;
 			Questions = new DancingDotsQuestionProvider();

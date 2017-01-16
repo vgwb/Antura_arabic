@@ -33,7 +33,7 @@
             Letters = new MazeLetterProvider();
             Variation = MazeVariation.V_1;
 
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext();
             Difficulty = 0.5f;
         }
 

@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace EA4S
 {
-    public class SampleAudioSource : IAudioSource
+    public class MinigamesAudioSource : IAudioSource
     {
         AudioClip clip;
         DeAudioSource source;
         DeAudioGroup group;
-        SampleAudioManager manager;
+        MinigamesAudioManager manager;
 
         bool paused = false;
 
@@ -149,7 +149,7 @@ namespace EA4S
             return false;
         }
 
-        public SampleAudioSource(DeAudioSource source, DeAudioGroup group, SampleAudioManager manager)
+        public MinigamesAudioSource(DeAudioSource source, DeAudioGroup group, MinigamesAudioManager manager)
         {
             this.source = source;
             this.group = group;
