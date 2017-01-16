@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Intro
 {
+    /// <summary>
+    /// Controls the animation of plants in the Intro scene.
+    /// </summary>
     public class IntroPlantWind : MonoBehaviour
     {
         Quaternion startRotation;

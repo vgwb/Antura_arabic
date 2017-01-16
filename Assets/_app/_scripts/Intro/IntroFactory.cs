@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System;
 using ModularFramework.Helpers;
 
-namespace EA4S
+namespace EA4S.Intro
 {
+    /// <summary>
+    /// Controls the instantiation of game objects in the Intro scene.
+    /// </summary>
     public class IntroFactory : MonoBehaviour {
 
         public event System.Action<ILivingLetterData, bool> onDropped;
