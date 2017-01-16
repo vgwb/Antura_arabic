@@ -76,14 +76,26 @@ namespace EA4S.Assessment
 
             bool areAllCorrect = AreQuestionsCorrect(questions);
             if (areAllCorrect) {
+                
+                // Log learning progress
+                foreach (var p in placeholders)
+                    if (p.LinkedDroppable != null)
+                    {
+                        var set = p.Placeholder.GetQuestion().GetAnswerSet();
+                        var answ = p.LinkedDroppable.GetAnswer();
+                        if (set.IsCorrect(answ))
+                            AssessmentConfiguration.Instance.Context.GetLogManager().OnAnswer(answ.Data(), false);
+                    }
+                
                 // Just trigger OnQuestionAnswered events if all are correct
-                foreach (var q in questions) {
-                    var behaviour = q.gameObject.GetComponent<QuestionBehaviour>();
+                foreach (var q in questions)
+                {
+                    var behaviour = q.gameObject.GetComponent< QuestionBehaviour>();
                     behaviour.OnQuestionAnswered();
-                    AssessmentConfiguration.Instance.Context.GetLogManager().OnAnswer(q.LetterData(), true);
 
                     yield return TimeEngine.Wait(behaviour.TimeToWait());
                 }
+
             } else {
                 foreach (var p in placeholders) {
                     if (p.LinkedDroppable != null) {
