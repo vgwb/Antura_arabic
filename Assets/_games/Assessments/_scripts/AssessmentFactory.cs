@@ -1,9 +1,10 @@
-using System;
+// Author: Dario Oliveri ( https://github.com/Darelbi )
 
 namespace EA4S.Assessment
 {
     /// <summary>
-    /// This is the code specific to each Assessment (basically only initialization differs)
+    /// Create components for running a Assessment, components are specific
+    /// according to Assessment type and some value tweak is also done here.
     /// </summary>
     public static class AssessmentFactory
     {
@@ -23,9 +24,9 @@ namespace EA4S.Assessment
         public static IAssessment CreateMatchWordToImageAssessment()
         {
             Init();
-            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
-            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = false;
-            AssessmentConfiguration.Instance.ShowQuestionAsImage = true;
+            AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Do not pronunce name of a picture
+            AssessmentOptions.Instance.ShowQuestionAsImage = true;
             IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceImageDecorator();
@@ -44,22 +45,15 @@ namespace EA4S.Assessment
         internal static IAssessment CreateOrderLettersInWordAssessment()
         {
             Init();
-            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
-            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
-            AssessmentConfiguration.Instance.ShowQuestionAsImage = true;
+            AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
+            AssessmentOptions.Instance.ShowQuestionAsImage = true;
 
-            // V- -- NO LONGER NEED DEFAULT DRAG BEHAVIOUR
             IDragManager dragManager = new SortingDragManager( audioManager, context.GetCheckmarkWidget());
-            IQuestionDecorator questionDecorator = new PronunceImageDecorator(); // OK
-
-            // V- 100% -- TWEAK TO NO REMOVE LETTER
+            IQuestionDecorator questionDecorator = new PronunceImageDecorator();
             IQuestionGenerator generator = new ImageQuestionGenerator( configuration.Questions, false);
-
-            // V- 100% -- INJECT DIFFERENT COMPONENTS (Answers have to be "Bucketable", Question no placeholder)
             ILogicInjector injector = new SortingLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager, wordSize, letterSize); // OK
-
-            // V- 100% -- Letters sorted and ticketed
+            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager, wordSize, letterSize);
             IAnswerPlacer answerPlacer = new InARowAnswerPlacer( audioManager, letterSize);
 
             gameDescription = Db.LocalizationDataId.Assessment_Order_Letters;
@@ -71,10 +65,9 @@ namespace EA4S.Assessment
 
         internal static IAssessment CreateCompleteWordAssessment()
         {
-            //TODO: Show Image
             Init();
-            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
-            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
+            AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceImageDecorator();
@@ -93,8 +86,8 @@ namespace EA4S.Assessment
         public static IAssessment CreateMatchLettersWordAssessment()
         {
             Init();
-            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
-            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
+            AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
@@ -113,8 +106,8 @@ namespace EA4S.Assessment
         public static IAssessment CreateQuestionAndReplyAssessment()
         {
             Init();
-            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = false;
-            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = false;
+            AssessmentOptions.Instance.PronunceQuestionWhenClicked = false; // Child should read question
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child shuold read answer
             IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
@@ -133,8 +126,8 @@ namespace EA4S.Assessment
         public static IAssessment CreateSunMoonWordAssessment()
         {
             Init();
-            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
-            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
+            AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
@@ -156,8 +149,8 @@ namespace EA4S.Assessment
         public static IAssessment CreateSingularDualPluralAssessment()
         {
             Init();
-            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
-            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
+            AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
@@ -179,8 +172,8 @@ namespace EA4S.Assessment
         public static IAssessment CreateWordArticleAssessment()
         {
             Init();
-            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
-            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
+            AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
@@ -202,8 +195,8 @@ namespace EA4S.Assessment
         public static IAssessment CreateSunMoonLetterAssessment()
         {
             Init();
-            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
-            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
+            AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
@@ -225,8 +218,8 @@ namespace EA4S.Assessment
         public static IAssessment CreateLetterShapeAssessment()
         {
             Init();
-            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
-            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = false;
+            AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child shuold identify the letter
             IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceAndFlipDecorator();
@@ -245,8 +238,8 @@ namespace EA4S.Assessment
         public static IAssessment CreatePronouncedWordAssessment()
         {
             Init();
-            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
-            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = false;
+            AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child shuold identify the word
             IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceAndFlipDecorator();
@@ -265,8 +258,8 @@ namespace EA4S.Assessment
         public static IAssessment CreateWordsWithLetterAssessment()
         {
             Init();
-            AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
-            AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
+            AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
@@ -282,12 +275,15 @@ namespace EA4S.Assessment
                                             gameDescription);
         }
 
+        /// <summary>
+        /// Perform common initialization to reduce amount of code in creation of assessments.
+        /// </summary>
         private static void Init()
         {
             // ARABIC SETTINGS
-            AssessmentConfiguration.Instance.LocaleTextFlow = AssessmentConfiguration.TextFlow.RightToLeft;
+            AssessmentOptions.Instance.LocaleTextFlow = TextFlow.RightToLeft;
 
-            // Common Stuff
+            // Common Stuff (each game may override these settings where needed).
             TimeEngine.Instance.Clear();
             configuration = AssessmentConfiguration.Instance;
             context = configuration.Context;
@@ -297,7 +293,7 @@ namespace EA4S.Assessment
             rounds = configuration.Rounds;
             simultaneousQuestions = configuration.SimultaneosQuestions;
             maxAnswers = configuration.Answers;
-            configuration.ShowQuestionAsImage = false;
+            AssessmentOptions.Instance.ShowQuestionAsImage = false;
         }
     }
 }

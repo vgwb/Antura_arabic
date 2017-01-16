@@ -12,7 +12,7 @@ namespace EA4S.Assessment
     {   
         IEnumerator Start()
         {
-            //Give times to instantiate Antura's Parts
+            //Give time to instantiate Antura's Parts
             gameObject.SetLayerRecursive( AnturaLayers.ModelsOverUI);
             yield return null;
             gameObject.SetLayerRecursive( AnturaLayers.ModelsOverUI);

@@ -11,7 +11,5 @@ namespace EA4S.Assessment
         [Header("LinkedLL")]
         [SerializeField]
         private LetterObjectView LL;
-
-//        [Header("Parameters")]
     }
 }
