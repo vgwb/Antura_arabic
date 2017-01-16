@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -12,7 +12,7 @@ namespace EA4S.Assessment
         private float timeRemaining;
         private bool elapsed = false;
         public override bool keepWaiting
-        {
+        { 
             get
             {
                 if ( timeRemaining > 0)
