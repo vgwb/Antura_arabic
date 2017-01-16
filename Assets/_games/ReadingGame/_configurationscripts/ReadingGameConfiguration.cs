@@ -46,7 +46,7 @@
             Variation = ReadingGameVariation.ReadAndAnswer;
             //Variation = ReadingGameVariation.AlphabetSong;
 
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext();
             Difficulty = 0.0f;
         }
 

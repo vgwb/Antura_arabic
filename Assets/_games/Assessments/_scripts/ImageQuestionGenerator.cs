@@ -139,7 +139,7 @@ namespace EA4S.Assessment
 
         private IQuestion GenerateQuestion( ILivingLetterData data)
         {
-            if (AssessmentConfiguration.Instance.ShowQuestionAsImage)
+            if (AssessmentOptions.Instance.ShowQuestionAsImage)
                 data = new LL_ImageData( data.Id);
 
             var q = LivingLetterFactory.Instance.SpawnQuestion( data);

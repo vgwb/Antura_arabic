@@ -232,7 +232,7 @@ namespace EA4S.AnturaSpace
             }
 
             Vector3[] _av3Path = new Vector3[3];
-            RectTransform _oRectCookieBDrag = m_oCookieButton.gameObject.GetComponent<RectTransform>();
+            m_oCookieButton.gameObject.GetComponent<RectTransform>();
             _av3Path[0] = m_oCookieButton.transform.position;
             _av3Path[1] = _av3Path[0] + Vector3.up * 4 + Vector3.left * 2;
             _av3Path[2] = m_oCameraUI.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2));

@@ -33,11 +33,11 @@ namespace EA4S.Assessment
 
             float spaceIncrement = blankSpace / (questionsNumber + 1);
 
-            var flow = AssessmentConfiguration.Instance.LocaleTextFlow;
+            var flow = AssessmentOptions.Instance.LocaleTextFlow;
             float sign;
             Vector3 currentPos;
             
-            if (flow == AssessmentConfiguration.TextFlow.RightToLeft)
+            if (flow == TextFlow.RightToLeft)
             {
                 currentPos = bounds.ToTheRightQuestionStart();
                 //currentPos.x -= answerSize / 2.0f;

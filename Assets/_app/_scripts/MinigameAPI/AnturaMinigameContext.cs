@@ -20,7 +20,7 @@ namespace EA4S.API
         #endregion
 
         #region AudioManager provider
-        public IAudioManager audioManager = new SampleAudioManager();
+        public IAudioManager audioManager = new MinigamesAudioManager();
 
         public IAudioManager GetAudioManager()
         {
@@ -29,7 +29,7 @@ namespace EA4S.API
         #endregion
 
         #region InputManger provider
-        public IInputManager inputManager = new SampleInputManager();
+        public IInputManager inputManager = new MinigamesInputManager();
 
         public IInputManager GetInputManager()
         {
@@ -38,7 +38,7 @@ namespace EA4S.API
         #endregion
 
         #region SubTitle provider
-        public ISubtitlesWidget subtitleWidget = new SampleSubtitlesWidget();
+        public ISubtitlesWidget subtitleWidget = new MinigamesSubtitlesWidget();
 
         public IStarsWidget GetStarsWidget()
         {
@@ -47,7 +47,7 @@ namespace EA4S.API
         #endregion
 
         #region StarsWidget provider
-        public IStarsWidget starsWidget = new SampleStarsWidget();
+        public IStarsWidget starsWidget = new MinigamesStarsWidget();
 
         public ISubtitlesWidget GetSubtitleWidget()
         {
@@ -56,7 +56,7 @@ namespace EA4S.API
         #endregion
 
         #region PopupWidget provider
-        public IPopupWidget questionWidget = new SamplePopupWidget();
+        public IPopupWidget questionWidget = new MinigamesPopupWidget();
         public IPopupWidget GetPopupWidget()
         {
             return questionWidget;
@@ -71,7 +71,7 @@ namespace EA4S.API
         }
 
         #region CheckmarkWidget provider
-        public ICheckmarkWidget checkmarkWidget = new SampleCheckmarkWidget();
+        public ICheckmarkWidget checkmarkWidget = new MinigamesCheckmarkWidget();
         public ICheckmarkWidget GetCheckmarkWidget()
         {
             return checkmarkWidget;
@@ -90,10 +90,10 @@ namespace EA4S.API
 
         public static AnturaMinigameContext Default = new AnturaMinigameContext() {
             logManager = new MinigameLogManager(),
-            audioManager = new SampleAudioManager(),
-            subtitleWidget = new SampleSubtitlesWidget(),
-            starsWidget = new SampleStarsWidget(),
-            questionWidget = new SamplePopupWidget(),
+            audioManager = new MinigamesAudioManager(),
+            subtitleWidget = new MinigamesSubtitlesWidget(),
+            starsWidget = new MinigamesStarsWidget(),
+            questionWidget = new MinigamesPopupWidget(),
         };
 
         /// <summary>
@@ -101,10 +101,10 @@ namespace EA4S.API
         /// </summary>
         public static AnturaMinigameContext FastCrowd = new AnturaMinigameContext() {
             logManager = new MinigameLogManager(),
-            audioManager = new SampleAudioManager(),
-            subtitleWidget = new SampleSubtitlesWidget(),
-            starsWidget = new SampleStarsWidget(),
-            questionWidget = new SamplePopupWidget(),
+            audioManager = new MinigamesAudioManager(),
+            subtitleWidget = new MinigamesSubtitlesWidget(),
+            starsWidget = new MinigamesStarsWidget(),
+            questionWidget = new MinigamesPopupWidget(),
         };
 
         #endregion

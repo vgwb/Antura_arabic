@@ -49,7 +49,7 @@
 
             Variation = BalloonsVariation.Spelling;
 
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext();
             Difficulty = 0.5f;
         }
 
