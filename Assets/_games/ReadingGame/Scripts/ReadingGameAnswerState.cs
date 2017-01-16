@@ -76,10 +76,7 @@ namespace EA4S.ReadingGame
 
         public void ExitState()
         {
-            var inputManager = game.Context.GetInputManager();
-
             game.circleBox.GetComponent<CircleButtonBox>().Clear();
-
             game.radialWidget.inFront = false;
 
             if (TutorialMode)

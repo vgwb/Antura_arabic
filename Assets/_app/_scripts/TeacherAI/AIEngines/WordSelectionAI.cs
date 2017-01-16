@@ -12,8 +12,8 @@ namespace EA4S.Teacher
     {
         // References
         private DatabaseManager dbManager;
-        private TeacherAI teacher;
-        private WordHelper wordHelper;
+        //private TeacherAI teacher;
+        //private WordHelper wordHelper;
 
         // Inner state
         private HashSet<LetterData> journeyLetters = new HashSet<LetterData>();
@@ -27,8 +27,8 @@ namespace EA4S.Teacher
         public WordSelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile, TeacherAI _teacher, WordHelper _wordHelper)
         {
             this.dbManager = _dbManager;
-            this.teacher = _teacher;
-            this.wordHelper = _wordHelper;
+            //this.teacher = _teacher;
+            //this.wordHelper = _wordHelper;
         }
 
         public void InitialiseNewPlaySession(string currentPlaySessionId)
