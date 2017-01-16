@@ -10,17 +10,15 @@ namespace EA4S
         // journey: enabled
 
         private int nPacks;
-        private int nCorrect;
         private int nWrong;
         private QuestionBuilderParameters parameters;
 
-        public PhraseQuestionsQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0,
+        public PhraseQuestionsQuestionBuilder(int nPacks, int nWrong = 0,
             QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
 
             this.nPacks = nPacks;
-            this.nCorrect = nCorrect;
             this.nWrong = nWrong;
             this.parameters = parameters;
         }

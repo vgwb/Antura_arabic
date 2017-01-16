@@ -10,7 +10,7 @@
         public const string AppVersion = "0.13.dev";
         public const string DbSchemeVersion = "1";
         public const bool DebugPanelEnabled = true;
-        public const bool UseUnityAnalytics = false;
+        public static bool UseUnityAnalytics = false;
         public static bool VerboseLogging = true;
         public static bool DebugLogInserts = true;
 

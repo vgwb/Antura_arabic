@@ -23,7 +23,7 @@ namespace EA4S
         public static EndgameResultPanel I { get; private set; }
         bool setupDone;
         int numStars;
-        RectTransform raysRT;
+        //RectTransform raysRT;
         Sequence showTween;
         Tween bgTween;
 
@@ -35,7 +35,7 @@ namespace EA4S
 
             setupDone = true;
             I = this;
-            raysRT = Rays.GetComponent<RectTransform>();
+            //raysRT = Rays.GetComponent<RectTransform>();
 
             showTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(this.GetComponent<Image>().DOFade(0, 0.35f).From().SetEase(Ease.Linear))

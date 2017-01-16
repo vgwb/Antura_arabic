@@ -44,7 +44,7 @@ namespace EA4S
 
         Vector3 startScale;
         Vector2 startTextScale;
-        float lastScale = 1.0f;
+        //float lastScale = 1.0f;
         [Range(1, 2)]
         public float Scale = 1.0f;
 
@@ -278,7 +278,7 @@ namespace EA4S
                     contentTransform.localScale = new Vector3(1 / Scale, 1, 1);
                     textTransform.sizeDelta = new Vector3(startTextScale.x * Scale, startTextScale.y);
                 }
-                lastScale = Scale;
+                //lastScale = Scale;
             }
         }
 
@@ -450,13 +450,7 @@ namespace EA4S
         /// onLetterShowingBack is called when the letter is twirling and it shows you the back;
         /// so you can swap letter in that moment!
         /// </summary>
-
-        [System.Obsolete("Use DoTwirl instead; now twirl is used also in other states")]
-        public void DoDancingTwirl(System.Action onLetterShowingBack)
-        {
-            DoTwirl(onLetterShowingBack);
-        }
-
+        
         public void DoTwirl(System.Action onLetterShowingBack)
         {
             if ((State != LLAnimationStates.LL_still) &&
