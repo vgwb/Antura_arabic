@@ -106,7 +106,7 @@ namespace EA4S.MakeFriends
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new MakeFriendsQuestionProvider();
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext();
             Difficulty = 0f;
         }
 

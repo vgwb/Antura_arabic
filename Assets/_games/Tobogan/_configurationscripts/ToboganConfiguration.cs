@@ -48,7 +48,7 @@
             //Variation = ToboganVariation.SunMoon;
             Variation = ToboganVariation.LetterInAWord;
 
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext();
             Difficulty = 0.0f;
         }
 

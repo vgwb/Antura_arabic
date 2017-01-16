@@ -37,7 +37,7 @@
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new SampleQuestionProvider();
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext();
 
             Difficulty = 0.5f;
             Variation = MissingLetterVariation.MissingLetter;

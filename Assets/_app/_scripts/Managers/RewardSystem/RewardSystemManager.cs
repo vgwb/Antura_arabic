@@ -309,6 +309,18 @@ namespace EA4S {
             }
             AppManager.I.Player.SetCurrentJourneyPosition(actualCurrentJourneyPosition);
         }
+
+        /// <summary>
+        /// Return true if Reward for this JourneyPosition is already unlocked.
+        /// </summary>
+        /// <param name="_journeyPosition">The journey position.</param>
+        /// <returns></returns>
+        public static bool RewardAlreadyUnlocked(JourneyPosition _journeyPosition) {
+            RewardPack rewardPack = AppManager.I.Player.RewardsUnlocked.Find(r => r.PlaySessionId == _journeyPosition.ToString());
+            if (rewardPack != null)
+                return true;
+            return false;
+        }
         #endregion
 
         #endregion

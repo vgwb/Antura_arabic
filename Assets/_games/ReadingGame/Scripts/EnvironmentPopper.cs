@@ -8,8 +8,7 @@ public class EnvironmentPopper : MonoBehaviour
     public GameObject poofPrefab;
     public List<GameObject> toPop;
     public ReadingGameGame game;
-
-    int lastScore = 0;
+    
     int popCount = 0;
     int popped = 0;
 
