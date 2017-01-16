@@ -97,10 +97,22 @@ This Engine is in charge of selecting what dictionary data a minigame should use
 
  based on player progression, player performance, and the minigame's requirements
 
-The selection of dictionary data depends on:
+The selection of dictionary data is a two-stage process.
+
+The first stage filters all learning data based on:
  * The selected minigame's learning rules and requirements (performed through a configured **QuestionBuilder**)
  * The current journey progression, as read from the journey data in the database (LearningBlocks and Stages)
- * 
+ * Previously selected data for the same Question Builder.
+ 
+The first stage is needed to make sure that all data to be selected matches
+ the player's knowledge.
+ 
+A second stage selects the learning data using weighted selection,
+ with weights based on:
+ * The learning score of the dictionary data. Lower scores will prompt a given data entry to appear more.
+ * The time since the player last saw that dictionary data. Entries that have not appeared for a while are preferred.
+ * The focus of the current learning block.
+ 
  * In case of a random sequence, the choice depends on:
 	* What minigames are available at all in the application, as read from the database's **Db.MiniGameData**.
 	* What minigames are supported / favoured by the current learning block, as read from the database's **Db.LearningBlockData**.

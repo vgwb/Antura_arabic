@@ -51,11 +51,18 @@ The data is divided in several categories:
 
  * **Database information** holds summary details on the current database and is used for versioning.
   
+See the Logging.md document for further details on logging.
+  
 The database is implemented in SQLite.
 The SQLite database is loaded and connected to whenever a player profile is selected, and generated if non-existing. 
 All communication with the SQLite database is performed through a **EA4S.Db.DBService** instance, managed by the **DatabaseManager*.
 The structure of the SQLite database can be generated a runtime and this is controlled through the **DBService.GenerateTable(bool create, bool drop)**, which can be updated to reflect any changes in the DB scheme.
 Note that any change to the database scheme must also prompt a sequential update of **AppConstants.DbSchemeVersion** for versioning to function correctly.
+
+
+
+
+
 
 ### Profile API
 
