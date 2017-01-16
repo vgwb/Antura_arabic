@@ -73,6 +73,7 @@ namespace EA4S
                 case Emoticons.vfx_emo_negative:
                 case Emoticons.vfx_emo_positive:
                     Et = Instantiate(Resources.Load(EMOTICON_PREFS_PATH + _emoticons.ToString()),EmoticonParentBone, false) as GameObject;
+                    Debug.Assert(Et != null, "Emoticon was not instanced");
                     break;
                 default:
                     Debug.LogWarningFormat("Emoticons {0} not found!", _emoticons.ToString());

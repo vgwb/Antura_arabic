@@ -45,7 +45,7 @@ namespace EA4S
 #if UNITY_EDITOR
         void Update()
         {
-            if (!Application.isPlaying && gameObject.scene != null && prefabSet != null)
+            if (!Application.isPlaying && prefabSet != null)
             {
                 if (testWorld != lastTestWorld || prefabSet != lastPrefabSet)
                 {

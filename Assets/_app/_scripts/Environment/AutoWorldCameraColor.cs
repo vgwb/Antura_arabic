@@ -38,7 +38,7 @@ namespace EA4S
 #if UNITY_EDITOR
         void Update()
         {
-            if (!Application.isPlaying && gameObject.scene != null && backgroundColorSet != null)
+            if (!Application.isPlaying && backgroundColorSet != null)
             {
                 if (testWorld != lastTestWorld || backgroundColorSet != lastColorSet)
                 {
