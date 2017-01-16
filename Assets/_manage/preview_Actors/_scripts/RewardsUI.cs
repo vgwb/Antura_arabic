@@ -138,18 +138,18 @@ namespace EA4S {
         public Image ActiveMaterial1Image;
         public Image ActiveMaterial2Image;
 
-        string material1;
-        string material2;
+        //string material1;
+        //string material2;
 
         public void SetMaterial1(string _materialName) {
-            material1 = _materialName;
+            //material1 = _materialName;
             ActiveMaterial1Image.material = MaterialManager.LoadMaterial(_materialName, PaletteType.specular_saturated_2side);
             if (actualReward != null)
                 LoadRewardOnDog(actualReward.RewardName);
         }
 
         public void SetMaterial2(string _materialName) {
-            material2 = _materialName;
+            //material2 = _materialName;
             ActiveMaterial2Image.material = MaterialManager.LoadMaterial(_materialName, PaletteType.specular_saturated_2side);
             if (actualReward != null)
                 LoadRewardOnDog(actualReward.RewardName);
