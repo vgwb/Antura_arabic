@@ -101,7 +101,8 @@ public class ReadingRadialWidget : MonoBehaviour
 
         foreach (var p in puffGo.GetComponentsInChildren<ParticleSystem>())
         {
-            p.scalingMode = ParticleSystemScalingMode.Hierarchy;
+            var mainModule = p.main;
+            mainModule.scalingMode = ParticleSystemScalingMode.Hierarchy;
             p.gameObject.layer = LayerMask.NameToLayer("UI");
         }
 

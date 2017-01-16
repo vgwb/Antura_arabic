@@ -111,7 +111,7 @@ public class LetterObjectViewTester : MonoBehaviour
         if (doTwirl)
         {
             doTwirl = false;
-            letter.DoDancingTwirl(() => { Debug.Log("BACK!"); });
+            letter.DoTwirl(() => { Debug.Log("BACK!"); });
         }
 
         if (doToggleDance)

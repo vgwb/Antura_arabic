@@ -34,18 +34,17 @@ namespace EA4S.Map
 
         int learningblock, learningblockMax;
         int playSession, playSessionMax;
-        int stage, stageMax;
 
         void Start()
         {
             Floating();
             learningblock = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
             playSession = AppManager.I.Player.CurrentJourneyPosition.PlaySession;
-            stage = AppManager.I.Player.CurrentJourneyPosition.Stage;
+            //int stage = AppManager.I.Player.CurrentJourneyPosition.Stage;
 
             learningblockMax = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
             playSessionMax = AppManager.I.Player.MaxJourneyPosition.PlaySession;
-            stageMax = AppManager.I.Player.MaxJourneyPosition.Stage;
+            //int stageMax = AppManager.I.Player.MaxJourneyPosition.Stage;
 
             /* FIRST CONTACT FEATURE */
             if (!AppManager.I.Player.IsFirstContact()) {
@@ -342,7 +341,7 @@ namespace EA4S.Map
         {
             learningblock = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
             playSession = AppManager.I.Player.CurrentJourneyPosition.PlaySession;
-            stage = AppManager.I.Player.CurrentJourneyPosition.Stage;
+            //int stage = AppManager.I.Player.CurrentJourneyPosition.Stage;
 
             if (miniMapScript.isAvailableTheWholeMap) {
                 if ((learningblock == miniMapScript.posPines.Length - 1) &&

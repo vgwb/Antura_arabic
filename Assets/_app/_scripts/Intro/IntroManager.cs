@@ -20,7 +20,6 @@ namespace EA4S.Intro
 
         bool m_Start = true;
         bool m_End = false;
-        bool m_TimedUp = false;
 
         Vector3 m_CameraStartPosition;
         Vector3 m_CameraEndPosition;

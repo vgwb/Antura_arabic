@@ -54,8 +54,7 @@ namespace EA4S
                 }
             }
         }
-
-        private bool _firstContactPassed;
+        
         /// <summary>
         /// Gets or sets a value indicating whether [first contact passed].
         /// </summary>
@@ -70,7 +69,6 @@ namespace EA4S
                 } else {
                     AppManager.I.Player.ResetPlayerProfileCompletion();
                 }
-                _firstContactPassed = value;
             }
         }
 

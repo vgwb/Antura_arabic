@@ -16,7 +16,7 @@ namespace EA4S
         public static GameObject MountModel(string _id, Transform _parent, MaterialPair _materialPair, ModelType _type = ModelType.AnturaForniture) {
             CleanTranformChildren(_parent);
             GameObject returnObject = MountModel(_id, _parent, _type);
-            Reward actualReward = RewardSystemManager.GetRewardById(_id);
+            //Reward actualReward = RewardSystemManager.GetRewardById(_id);
             SwitchMaterial(returnObject, _materialPair);
             return returnObject;
         }
