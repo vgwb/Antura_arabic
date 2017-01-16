@@ -27,7 +27,7 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext();
             Questions = new SampleQuestionProvider();
             Difficulty = 0.5f;
         }

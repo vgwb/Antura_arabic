@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EA4S
 {
-    public class SampleInputManager : IInputManager
+    public class MinigamesInputManager : IInputManager
     {
         public bool Enabled { get; set; }
 

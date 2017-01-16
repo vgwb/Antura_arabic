@@ -7,9 +7,7 @@ namespace EA4S.TakeMeHome
 	
 	public class TakeMeHomeLetterManager : MonoBehaviour {
 		public GameObject plane;
-		public LetterObjectView LLPrefab;
-		public event System.Action<ILivingLetterData, bool> onDropped;
-		
+		public LetterObjectView LLPrefab;		
 
 		TakeMeHomeLL dragging;
 

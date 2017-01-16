@@ -2,7 +2,7 @@
 
 namespace EA4S
 {
-    public class SampleStarsWidget : IStarsWidget
+    public class MinigamesStarsWidget : IStarsWidget
     {
         public void Show(int stars)
         {

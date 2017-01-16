@@ -1,9 +1,6 @@
-﻿
-using System;
-
-namespace EA4S
+﻿namespace EA4S
 {
-    public class SampleSubtitlesWidget : ISubtitlesWidget
+    public class MinigamesSubtitlesWidget : ISubtitlesWidget
     {
         public void DisplaySentence(Db.LocalizationDataId text, float enterDuration , bool showSpeaker, System.Action onSentenceCompleted)
         {

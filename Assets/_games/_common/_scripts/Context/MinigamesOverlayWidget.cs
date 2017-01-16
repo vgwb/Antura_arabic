@@ -8,7 +8,6 @@ namespace EA4S
         int firstStarsScoreThreshold = 1;
         int secondStarsScoreThreshold = 2;
         int thirdStarsScoreThreshold = 3;
-        int score = 0;
         float timerDuration = 10;
 
         bool showStarsBar;
@@ -47,8 +46,6 @@ namespace EA4S
         {
             if (!showStarsBar)
                 return;
-
-            this.score = score;
 
             // Avoid floating point errors when setting UI
             // thresholds could have different "distances" between them

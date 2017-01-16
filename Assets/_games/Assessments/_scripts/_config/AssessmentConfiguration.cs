@@ -70,7 +70,7 @@ namespace EA4S.Assessment
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             questionProvider = null;
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext();
             LocaleTextFlow = TextFlow.RightToLeft;
 
         }
