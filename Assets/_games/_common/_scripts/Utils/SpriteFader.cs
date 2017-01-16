@@ -11,11 +11,9 @@ public class SpriteFader : MonoBehaviour
     float currentAlpha;
 
     bool overwrittenAlpha = false;
-    bool awaken = false;
 
     void Awake()
     {
-        awaken = true;
         sprite = GetComponent<SpriteRenderer>();
 
         startAlpha = sprite.color.a;

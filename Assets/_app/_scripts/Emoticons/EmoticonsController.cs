@@ -15,17 +15,17 @@ namespace EA4S
         [Header("Container internal color")]
         public PaletteColors Color1 = PaletteColors.white;
         public PaletteTone Tone1 = PaletteTone.light;
-        PaletteType Type = PaletteType.diffuse_saturated;
+        //PaletteType Type = PaletteType.diffuse_saturated;
 
         [Header("Container external color")]
         public PaletteColors Color2 = PaletteColors.white;
         public PaletteTone Tone2 = PaletteTone.light;
-        PaletteType Type2 = PaletteType.diffuse_saturated;
+        //PaletteType Type2 = PaletteType.diffuse_saturated;
 
         [Header("Container cinetic lines color")]
         public PaletteColors Color3 = PaletteColors.white;
         public PaletteTone Tone3 = PaletteTone.light;
-        PaletteType Type3 = PaletteType.diffuse_saturated;
+        //PaletteType Type3 = PaletteType.diffuse_saturated;
 
         [Header("Components")]
         public Animator anim;

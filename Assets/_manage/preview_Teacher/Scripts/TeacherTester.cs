@@ -189,7 +189,7 @@ namespace EA4S.Teacher.Test
         public void PhraseQuestions()
         {
             var builderParams = SetupFakeGame();
-            var builder = new PhraseQuestionsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, parameters: builderParams);
+            var builder = new PhraseQuestionsQuestionBuilder(nPacks: nPacks, nWrong: nWrong, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 

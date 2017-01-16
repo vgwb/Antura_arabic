@@ -29,7 +29,6 @@ namespace EA4S.Map
         public Vector3 pinLeft, pinRight;
         public int posMax;
         public bool isAvailableTheWholeMap;
-        Quaternion rot;
         int numDot = 0;
         int numLearningBlock;
 
@@ -63,7 +62,7 @@ namespace EA4S.Map
                 } else v = (2 * x + 1.5f + 2.5f) * Vector3.Normalize(p2 - p1) + p1;
 
 
-                rot.eulerAngles = new Vector3(90, 0, 0);
+                var rot = Quaternion.Euler(90, 0, 0);
                 GameObject dotGo;
                 dotGo = Instantiate(dot, v, rot) as GameObject;
                 dotGo.GetComponent<Dot>().learningBlockActual = numLearningBlock + 1;
