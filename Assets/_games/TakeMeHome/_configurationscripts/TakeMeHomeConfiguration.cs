@@ -29,7 +29,7 @@
 		private TakeMeHomeConfiguration()
 		{
 			// Default values
-			Context = new SampleGameContext();
+			Context = new MinigamesGameContext();
 			Letters = new TakeMeHomeLettersProvider();
             Questions = new SampleQuestionProvider();
             Difficulty = 0;

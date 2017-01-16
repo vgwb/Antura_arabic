@@ -61,7 +61,7 @@ namespace EA4S
         public void LoadAnturaCustomization(AnturaCustomization _anturaCustomization) {
             ClearLoadedRewards();
             foreach (RewardPack forniture in _anturaCustomization.Fornitures) {
-                GameObject GOAdded = LoadRewardPackOnAntura(forniture);
+                LoadRewardPackOnAntura(forniture);
 
                 ModelsManager.SwitchMaterial(LoadRewardPackOnAntura(forniture), forniture.GetMaterialPair());
             }

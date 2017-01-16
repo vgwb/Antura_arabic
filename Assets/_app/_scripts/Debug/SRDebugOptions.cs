@@ -484,7 +484,7 @@ public partial class SROptions
     [Sort(2)]
     public void UnlockNextPlaysessionRewards()
     {
-        JourneyPosition CurrentJourney = AppManager.I.Player.CurrentJourneyPosition;
+        //JourneyPosition CurrentJourney = AppManager.I.Player.CurrentJourneyPosition;
         foreach (RewardPack pack in RewardSystemManager.GetNextRewardPack()) {
             AppManager.I.Player.AddRewardUnlocked(pack);
             Debug.LogFormat("Pack added: {0}", pack.ToString());

@@ -52,7 +52,7 @@
             //Variation = FastCrowdVariation.Words;
 
 
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext();
             Difficulty = 0.5f;
         }
 
