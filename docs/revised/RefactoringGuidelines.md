@@ -41,3 +41,8 @@ See the .md files for more information.
    * To avoid clashes, we should have a **EA4S.Minigames.XXX* namespace for each minigame.
    * The core code and the Teacher work only with QuestionProviders, so it would be better to just assume that all games will use them (and no other provider)
    * MiniGameAPI, MiniGameLauncher and Debug minigame launch code need to be merged.
+   * Many managers are static makeshift singleton-like classes. Better access should be provided.
+   * The NavigationManager should be the sole responsible for navigation (and it is not)
+   * Database and PlayerProfile use should be linked (no ease of access to either)
+   * We need to standardize some nomenclature: "core" vs "minigames" / "minigame names" vs "minigame IDs" / "vote" vs "outcome" vs "grade" vs "score"
+   

@@ -35,6 +35,7 @@ namespace EA4S
 
         public void InitNewSession()
         {
+            // refactor: should be a sequential number
             Session = Random.Range(10000000, 99999999).ToString();
         }
 
