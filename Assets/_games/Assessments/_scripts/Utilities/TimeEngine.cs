@@ -55,7 +55,7 @@ namespace EA4S.Assessment
         public bool Update(float deltaTime)
         {
             // Remove all ITickables that stopped updating
-            int removedElements = yieldInstructions.RemoveAll( x => x.Update(deltaTime));
+            yieldInstructions.RemoveAll( x => x.Update( deltaTime));
             return yieldInstructions.Count > 0;
         }
     }

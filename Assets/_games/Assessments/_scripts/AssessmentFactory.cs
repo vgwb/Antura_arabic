@@ -17,7 +17,6 @@ namespace EA4S.Assessment
         private static readonly float letterSize = 1f * 3;
         private static readonly float wordSize = 1.5f * 3;
         private static readonly float sentenceSize = 2f * 3;
-        private static int simultaneousQuestions;
         private static int maxAnswers;
         private static int rounds;
 
@@ -291,7 +290,6 @@ namespace EA4S.Assessment
             subtitles = configuration.Context.GetSubtitleWidget();
             dialogueManager = new DialogueManager( audioManager, subtitles);
             rounds = configuration.Rounds;
-            simultaneousQuestions = configuration.SimultaneosQuestions;
             maxAnswers = configuration.Answers;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
         }

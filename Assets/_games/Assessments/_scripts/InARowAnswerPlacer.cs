@@ -69,7 +69,6 @@ namespace EA4S.Assessment
             var bounds = WorldBounds.Instance;
 
             // Text justification "algorithm"
-            var gap = bounds.QuestionGap();
             float letterGap = 1.3f;
             float occupiedSpace = allAnswers.Length * ( letterGap * letterSize);
             float spaceIncrement = ( letterGap * letterSize);

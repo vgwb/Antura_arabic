@@ -22,6 +22,11 @@ namespace EA4S.Assessment
             return other == this;
         }
 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public GameObject gameObject
         {
             get

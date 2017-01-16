@@ -88,13 +88,12 @@ namespace EA4S.Assessment
             return false;
         }
 
-        PlaceholderBehaviour linkedBehaviour = null;
         public void LinkToPlaceholder(PlaceholderBehaviour behaviour)
         {
 
         }
 
-        public void Detach(bool jumpBack = true)
+        public void Detach( bool jumpBack = true)
         {
 
         }
