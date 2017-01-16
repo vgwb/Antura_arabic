@@ -93,8 +93,8 @@ namespace EA4S.Assessment
                 LogicInjector.EnableDragOnly(); //as by new requirments
 
                 //mute feedback audio while speaker is speaking
-                bool answerConfigurationCache = AssessmentConfiguration.Instance.PronunceAnswerWhenClicked;
-                AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = false;
+                bool answerConfigurationCache = AssessmentOptions.Instance.PronunceAnswerWhenClicked;
+                AssessmentOptions.Instance.PronunceAnswerWhenClicked = false;
 
                 QuestionGenerator.CompleteRound();
                 #endregion
@@ -141,7 +141,7 @@ namespace EA4S.Assessment
                 //// GAME LOGIC (WIP)
                 ////----
                 // Restore audio when playing
-                AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = answerConfigurationCache;
+                AssessmentOptions.Instance.PronunceAnswerWhenClicked = answerConfigurationCache;
                 LogicInjector.EnableGamePlay();
 
                 while (LogicInjector.AllAnswersCorrect() == false)

@@ -27,7 +27,9 @@ namespace EA4S.Test
             return optionsToAdd;
         }
 
-        void OnDisable() {
+        protected override void OnDisable() {
+            base.OnDisable();
+
             onValueChanged.RemoveAllListeners();
         }
     }

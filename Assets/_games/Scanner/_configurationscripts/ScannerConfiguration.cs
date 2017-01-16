@@ -44,7 +44,7 @@
 			Variation = ScannerVariation.OneWord;
 
             Questions = new SampleQuestionProvider();
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext();
         }
 
         #region external configuration call

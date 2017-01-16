@@ -35,7 +35,7 @@
 
             Variation = ThrowBallsVariation.letters;
 
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext();
 
             // A difficulty of 0.72 will give the traditional progression of difficulty in the game.
             Difficulty = 0.72f;
