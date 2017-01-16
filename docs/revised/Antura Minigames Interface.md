@@ -24,7 +24,7 @@
     <td>Davide Barbieri</td>
   </tr>
   <tr>
-    <td>12-01-2017</td>
+    <td>13-01-2017</td>
     <td>Michele Pirovano</td>
   </tr>
 </table>
@@ -39,18 +39,16 @@ The purpose of the interface is to expose to mini-games a unified and simplified
 way to access core functionalities, and to define how minigames are launched and configured,
 including the dataflow from the content (e.g. question sets) database towards each minigame.
 
-In this document, we define the word *core* as everything that is not programmed from mini-games’ developers.
-
 # Creating a new mini-game project
 
 If you already have a minigame and don’t want to change its architecture to the proposed one;
 then, just skip to "**_Adapting an already made mini-game when you have absolutely no time to refactor your code using game states_**".
 
-All the mini-games must be in the **__games_** directory of the Antura’s Unity3D project.
+All the mini-games must be in the **_games** directory of the Antura’s Unity3D project.
 
 Instead of starting your own mini-game from scratch, you could use our game template:
 
-1. Make a copy of the **__gametemplate _**directory (which is in the **__games _**directory);
+1. Make a copy of the **_gametemplate**directory (which is in the **_games**directory);
 
 2. Rename it using the name of your game, e.g. *MyNewMasterpiece* and put it under the **_games** directory;
 
@@ -63,6 +61,8 @@ Instead of starting your own mini-game from scratch, you could use our game temp
     2. **TemplateGame** class should become *MyNewMasterpieceGame*
 
     3. **TemplateConfiguration** class should become *MyNewMasterpieceConfiguration*
+    
+***note: MiniGame namespaces may change***
 
 # Game Structure
 
@@ -70,7 +70,7 @@ Here is described the software architecture that should be followed by your mini
 If you copied the Mini-game template, the main classes are already partially implemented to be compliant with such architecture.
 
 The minigame main class should extend **MiniGame** class, inside the EA4S namespace.
-Such class is realized using the *State Pattern*. ([https://en.wikipedia.org/wiki/State_pattern](https://en.wikipedia.org/wiki/State_pattern))
+Such class is realized using the [*State Pattern*](https://en.wikipedia.org/wiki/State_pattern)
 
 
 The game is divided in an arbitrary number of states, for example:
@@ -83,19 +83,21 @@ The game is divided in an arbitrary number of states, for example:
 
 * *ResultState*, a state in which you show the result (e.g. the score) of the player.
 
-Such list is just an example of what states a game could have, it’s up to the mini-game developer to understand how much and what kind of state he should implement.
+Such list is just an example of what states a game could have, it’s up to the mini-game developer to understand how many and what kind of states he should implement.
 
-At each time, only one state is active and running. When it’s running, Update() and UpdatePhysics() are called on the state in each frame. UpdatePhysics is the equivalent of Unity3D’s  FixedUpdate.
+At a given time, only one state is active and running. When it’s running, `Update()` and `UpdatePhysics()` are called on the state in each frame. UpdatePhysics is the equivalent of Unity3D’s FixedUpdate.
 
 
 All state objects are instanced in the game class, which exposes them as public fields.
-Each state must have a reference to the minigame main class, that you could pass through constructor.
+Each state must have a reference to the minigame main class, that you could pass through the constructor.
 
-In this way, when you want to switch game state, you could call:
+In this way, when you want to switch game state, you can call:
 
-**_game.SetCurrentState(game.NewStateName);_**
+```
+game.SetCurrentState(game.NewStateName);
+```
 
-each time a state transition is done, the **_ExitState()_** method is called on the previous state, and **_EnterState()_** is called on the next state.
+each time a state transition is completed, the `ExitState()` method is called on the previous state, and `EnterState()` is called on the next state.
 
 The purpose of these methods is to process things like setting up the scene graphics, resetting timers, showing/hiding panels, etc.
 
@@ -103,13 +105,15 @@ The purpose of these methods is to process things like setting up the scene grap
 
 When the game is over, call the method EndGame of the {GameName}Game class:
 
-**_game.EndGame(howMuchStars, gameScore);_**
+```
+game.EndGame(howMuchStars, gameScore);
+```
 
-**_howMuchStars_** should be in the range (0 to 3, included);
+`howMuchStars` should be in the range (0 to 3, included);
 
-**_gameScore _**is game-specific (could be 0, if not defined for that minigame)
+`gameScore` is game-specific (could be 0, if not defined for that minigame)
 
-In this way, the game will automatically switch to a special OutcomeState, and show how much stars were obtained, then quit the game.
+In this way, the game will automatically switch to a special OutcomeState, and show how many stars were obtained, then quit the game.
 
 # Adapting an already made mini-game when you have absolutely no time to refactor your code using states
 
@@ -123,11 +127,11 @@ From that configuration class (which is a singleton per game) you will access bo
 
 In the only case you are still extending the old MiniGameBase class, you must add this inside your game manager Update():
 
-**var inputManager = Context.GetInputManager();**
-
-**inputManager.Enabled = !(GlobalUI.PauseMenu.IsMenuOpen);**
-
-**inputManager.Update(Time.deltaTime);**
+```
+var inputManager = Context.GetInputManager();
+inputManager.Enabled = !(GlobalUI.PauseMenu.IsMenuOpen);
+inputManager.Update(Time.deltaTime);
+```
 
 # Game Configuration
 
@@ -136,12 +140,19 @@ Each game folder should have two main folders for scripts:
 
 *_configurationscripts*
 
-all the game-related scripts, should be placed inside the **_scripts **folder;
-**_configurationscripts **is a service folder used by core programmers to define game specific 
+all the game-related scripts, should be placed inside the **_scripts** folder;
+**_configurationscripts** is a service folder used by core programmers to define game specific 
 classes and **should not be modified by minigame creators**.
 
 The {GameName}Configuration.cs defines how a minigame is configured by the app,
 and provides the minigame some useful interfaces.
+
+
+
+# Minigame Variations
+
+*** TODO DEFINE VARIATIONS HERE ***
+
 
 ## Accessing core functionalities
 
@@ -157,17 +168,18 @@ For example, to show the popup widget (that is, a large dialog with some text in
 
 you call:
 
-**_context.GetPopupWidget().Show(callback, text, isArabic);_**
+```
+context.GetPopupWidget().Show(callback, text, isArabic);
+```
 
 or, to play the game music:
 
-**_context.GetAudioManager().PlayMusic(Music.MainTheme);_**
+```
+context.GetAudioManager().PlayMusic(Music.MainTheme);
+```
 
 To have a list of all the possible functionalities that you could use, 
-take a look into the **_IGameContext_** source.
-If you need some core functionality that is missing in the current interface,
-
-please ask the creator of this document.
+take a look into the `IGameContext` source.
 
 ## Audio Manager
 
@@ -206,19 +218,45 @@ For example:
 
 More widgets’ interfaces will be added to the context as soon the graphics will be produced.
 
+
+
+
+
+### Game Configuration
+
+The Game Configuration class provides a set of common methods and instances that minigames should use.
+
+
+## Mini Game Code
+
+@todo: explain MiniGameCode and how to add to it
+
+
 ## Game Difficulty
 
-The game configuration class will also provide a difficulty level, set by the game.
+The game configuration provides a difficulty level.
+This difficulty value is provided by the Teacher and can be accessed as:
 
-**_float difficulty = {GameName}Configuration.Instance.Difficulty;_**
+```
+float difficulty = {GameName}Configuration.Instance.Difficulty;
+```
 
 The game difficulty is expressed as a float in the range [0, 1],
 meaning 0 : easy, 1 : hard.
-How such difficulty level is implemented by the game is not defined
-and could be chosen by the minigame developer.
 
-For example, it could have a game speed which is dependent on the difficulty:
-e.g. **_speed = normalSpeed * difficulty;_**
+How such difficulty level is implemented by the game is not defined **a priori**
+and must be defined by the minigame developer.
+
+Possible choices for difficulty can be:
+ * Play speed
+ * Aiming precision 
+ * Rhythm
+ * Short-term memory
+
+For example, the minigame can linearly control the game speed based on difficulty:
+```
+_speed = normalSpeed * difficulty;
+```
 
 or, it could have a finite set of parameters configurations, based on difficulty interval:
 
@@ -241,51 +279,44 @@ else
 In this case, please configure a set of at least 5 different configurations
 (very easy, easy, medium, hard, very hard).
 
-# Retrieving content from core
 
-Often, a mini-game needs some content to be passed directly from the core code.
-For instance, some minigames need a set of arabic words, that are chosen by the
-core based on the current game world, or depending on the past playing history.
+Note that this difficulty must however **not** be related to the learning content, but only to play difficulty.
+This is because learning difficulty is already taken care of by the Teacher generating suitable Question Packs.
 
-Such content will be passed to the game using the {GameName}Configuration.cs class
-by core programmers to mini-games programmers, through one or more **_Provider_** interfaces.
 
-Such providers are added to the Configuration class only if the game needs them.
-For example, if a game needs a set of arabic words to develop its gameplay;
-the Configuration class will provide a member:
+# Retrieving dictionary content from core
 
-**_ILivingLetterDataProvider wordsProvider;_**
+Usually, a mini-game needs dictionary content to be passed directly from the core code.
+For instance, some minigames need a set of words, that are chosen by the
+core based on the current game world, or depending on past play history.
 
-therefore, the game will ask for a word data using that interface, each time it needs another one:
+Such content is passed to the game using the {GameName}Configuration.cs class
+by core programmers to mini-games programmers, through a **QuestionProvider** interface.
 
-**_ILivingLetterData data = {GameName}Configuration.Instance.wordsProvider.GetNextData();_**
-
-**EDIT: WE ARE CURRENTLY USING ONLY QUESTION PROVIDERS FOR ALL MINIGAMES (it is described in the following section)**
-
-## QuestionProvider
-
-There are also special Providers for structured data, that will be defined together with the core programmers.
-
-After reading this section, write inside this table
-[[Data provider usage table]](https://docs.google.com/spreadsheets/d/1XisADjQ97yEEN2ZSeLga1txPQy6H2v77FdPkNOcHro0)
-how they should fill the IQuestionPack (described in this section) that they must pass to your minigame.
-
-For example, there are providers which implements the interface **_IQuestionProvider_**, which exposes the following methods:
+The interface **_IQuestionProvider_** exposes the following methods:
 
 * **_IQuestionPack GetNextQuestion();_**
 * **_string GetDescription();_**
 
-Its purpose is to provide a stream of objects that implements the interface **_IQuestionPack_**, a very general abstraction for a choosing game which includes letters, words and images as fundamental parts.
+Its purpose is to provide a stream of objects that implements the interface **_IQuestionPack_**, a very general abstraction for a learning question which includes letters, words and images as fundamental parts.
+gLetterData* questions and answers.
 
-What is returned as **_IQuestionPack_**, will define a package formed by:
+What is returned as **_IQuestionPack_**, will define a package containing *_ILivingLetterData_* instances structured as:
 
-* a **question** (in form of a Letter, a Word or an Image);
+* a set of **questions**;
+* a set of **wrong answers**;
+* a set of **correct answers**;
 
-* a set of **wrong answers**, (in form of Letters, Words or Images);
+All data implements the *_ILivingLetterData_* interface and can thus be displayed throguh a Living Letter.
+The data can be one of the following:
 
-* a set of **correct answers**, (in form of Letters, Words or Images);
+ * **LL_LetterData** contains a Db.LetterData in text form (a single letter)
+ * **LL_WordData** contains a Db.WordData in text form
+ * **LL_ImageData** contains a Db.WordData in image form (a drawing or picture)
+ * **LL_PhraseData** contains a Db.PhraseData in text form
 
-It follows a list of possible examples:
+
+What follows is a list of possible examples:
 
 * The game shows a word, you must select only the letters which are part of that word
 
@@ -304,11 +335,27 @@ It follows a list of possible examples:
     * The question is the letter (the game should understand how to hide its signs/dots)
     * The correct answers is the set made just by the correct sign/dot
     * The wrong answers are all the other possible signs/dots
+    
+  
+# Question Builder
+    
+Each minigame (or minigame variation) requires question packs in different forms and this is defined 
+ by implementing the method `SetupBuilder()` inside the Game Configuration, which returns
+  an object implementing the *IQuestionBuilder* interface.
+ 
+The **IQuestionBuilder** defines the learning rules and requirements for the current minigame variation
+ and must be correctly setup and configured. 
+ The Question Builder will generate the correct **Question Packs** for a given minigame instance.
+  
+ The minigame developer can choose from a set of question builders that the Teacher can support.
+Refer to the Teacher documentation for further details.
+ *** TODO: LINK THE TEACHER DOCS **
+
 
 # Generating content for test purposes
 
-When you are developing your mini-game, there is the need to generate game data, like letters or words, to be used as test content.
-To do so, just define the default **Question Provider **in your **Game Configuratio****n** class as your custom provider, in the Game Configuration constructor (so it will be used when you will launch your scene directly).
+When you are developing your mini-game, there is the need to generate dictionary data, like letters or words, to be used as test content.
+To do so, just define a default **Question Provider** in your **Game Configuration** class as a custom provider, in the Game Configuration constructor.
 
 For example:
 
@@ -321,21 +368,35 @@ private {GameName}Configuration()
 }
 ```
 
-Then, implement your question provider by generating data (*ILivingLetterData*) using:
+Then, implement your question provider by generating (*ILivingLetterData*) using:
 
-**_var newWord = AppManager.Instance.Teacher.GetRandomTestWordDataLL();_**
-
-**_var newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();_**
+```
+var newWord = AppManager.Instance.Teacher.GetRandomTestWordDataLL()
+var newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
+```
+@todo: remove references to the teacher.
 
 You can also decompose a word in letters:
-**_var letters = ArabicAlphabetHelper.LetterDataListFromWord(newWord.Data.Arabic, AppManager.Instance.Letters)_**
+```
+var letters = ArabicAlphabetHelper.LetterDataListFromWord(newWord.Data.Arabic, AppManager.Instance.Letters)
+```
+@todo: remove references to the arabic language.
 
-Get all Letters/Words/Phrases:**_
+Or instead get all Letters/Words/Phrases:
+
+'''
 var letters = AppManager.Instance.DB.GetAllLetterData();
 var words = AppManager.Instance.DB.GetAllWordData();
-var phrases = AppManager.Instance.DB.GetAllPhraseData();_**
+var phrases = AppManager.Instance.DB.GetAllPhraseData();
+'''
 
-By doing so, when the *real *data will be passed to your minigame from the application, you will not have to change anything, since the **_Questions_** field will be overwritten by the application.
+
+The default Question Provider is used when you launch the game's scene directly.
+Note that when playing the game through the core application, the Question Provider will be the one defined by the core system to provide meaningful learning data as selected by the Teacher. 
+Make sure that the test Question Provider content matches real content, otherwise your game may not work
+ when launched through the core application.
+ 
+
 
 # Using the Living Letter prefab
 
@@ -528,4 +589,27 @@ Another requisite of each minigame scene is that the camera that will render you
 * **AutoWorldCameraColor**, that will change the camera background color and the fog color in CameraFog, according to the current world
 
 The AutoWorldCameraColor, as in AutoWorldPrefab, needs that a field is configured by inspector. The name of the field is **Backgroung Color Set**, and currently you will find just an asset called "**CameraColors**" to be selected.
+
+
+
+### Guidelines for EA4S contributors
+
+These notes are relevant only to EA4S contributors as there are some additional steps for collaboration on creating minigames.
+
+After reading this section, write inside this table
+[[Data provider usage table]](https://docs.google.com/spreadsheets/d/1XisADjQ97yEEN2ZSeLga1txPQy6H2v77FdPkNOcHro0)
+how they should fill the IQuestionPack (described in this section) that they must pass to your minigame.
+
+
+***NOTE: THE FOLLOWING PART IS OUTDATED AS ONLY QUESTION PROVIDERS WILL WORK WITH THE TEACHER***
+Such content will be passed to the game using the {GameName}Configuration.cs class
+by core programmers to mini-games programmers, through one or more **_Provider_** interfaces.
+Such providers are added to the Configuration class only if the game needs them.
+For example, if a game needs a set of words to develop its gameplay;
+the Configuration class will provide a member:
+**_ILivingLetterDataProvider wordsProvider;_**
+therefore, the game will ask for a word data using that interface, each time it needs another one:
+**_ILivingLetterData data = {GameName}Configuration.Instance.wordsProvider.GetNextData();_**
+***NOTE: END OF OUTDATED PART***
+
 

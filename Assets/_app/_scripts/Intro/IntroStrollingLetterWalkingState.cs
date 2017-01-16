@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-using System;
 
-namespace EA4S
+namespace EA4S.Intro
 {
     public class IntroStrollingLetterWalkingState : IntroStrollingLetterState
     {

@@ -1,9 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Intro
 {
+    /// <summary>
+    /// Manages the Intro scene, which shows a non-interactive introduction to the game.
+    /// </summary>
     public class IntroManager : MonoBehaviour
     {
         [Header("Scene Setup")]
@@ -52,6 +54,7 @@ namespace EA4S
 
         private void CountDown_onTimesUp()
         {
+            // refactor: use the navigation manager to decide where to go next
             NavigationManager.I.GoToScene(AppScene.Map);
         }
 
