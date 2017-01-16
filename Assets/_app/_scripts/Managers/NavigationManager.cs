@@ -124,6 +124,20 @@ namespace EA4S
 
         public void GoToScene(AppScene newScene)
         {
+            // Additional checks for specific scenes
+            switch (newScene) {
+                case AppScene.Rewards:
+                    // Already rewarded this playsession?
+                    if (RewardSystemManager.RewardAlreadyUnlocked(AppManager.I.Player.CurrentJourneyPosition)) {
+                        GoToScene(AppScene.Map);
+                        return;
+                    }
+                    break;
+                default:
+                    // Do nothing
+                    break;
+            }
+
             var nextSceneName = GetSceneName(newScene);
             GoToScene(nextSceneName);
         }
