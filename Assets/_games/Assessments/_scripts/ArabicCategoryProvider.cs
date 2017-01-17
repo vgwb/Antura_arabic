@@ -91,8 +91,6 @@ namespace EA4S.Assessment
         {
             var db = AppManager.I.DB;
             return new LL_ImageData(db.GetWordDataById(id));
-            //return db.GetWordDataById(id).ConvertToLivingLetterData();
-            //return new LL_ImageData(db.GetWordDataById(id));
         }
 
         //finally decouple showed images from values expected in question builders
