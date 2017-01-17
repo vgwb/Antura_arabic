@@ -12,7 +12,6 @@ namespace EA4S.Assessment
         public void EnterState()
         {
             assessmentGame.Context.GetAudioManager().PlayMusic( Music.Theme7);
-            TimeEngine.Instance.Clear();
         }
 
         public void ExitState()
@@ -30,7 +29,6 @@ namespace EA4S.Assessment
 
         public void Update( float delta)
         {
-            TimeEngine.Instance.Update( delta);
             timer -= delta;
             if (timer <= 0)
             {

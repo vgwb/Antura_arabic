@@ -31,7 +31,7 @@ namespace EA4S.Assessment
 
         public void Update( float delta)
         {
-            TimeEngine.Instance.Update( delta);
+
         }
 
         public void UpdatePhysics( float delta)

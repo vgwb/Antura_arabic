@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace EA4S.Assessment
 {
-    public interface IDragManager
+    public interface IDragManager: ITimedUpdate
     {
         void ResetRound();
         bool AllAnswered();
