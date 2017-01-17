@@ -5,6 +5,7 @@ using ModularFramework.Helpers;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using EA4S.LivingLetters;
 
 namespace EA4S.ColorTickle
 {

@@ -1,6 +1,9 @@
 ﻿
 namespace EA4S.Teacher
 {
+    /// <summary>
+    /// Constants used to configure the Teacher System.
+    /// </summary>
     public static class ConfigAI
     {
         // Debug

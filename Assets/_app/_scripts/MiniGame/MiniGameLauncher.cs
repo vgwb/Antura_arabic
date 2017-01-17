@@ -6,6 +6,7 @@ namespace EA4S
     /// <summary>
     /// Handles the logic to launch minigames with the correct configuration.
     /// </summary>
+    // refactor: MiniGameLauncher can probably be merged with MiniGameAPI (actually, it's better to move MiniGameAPI here!)
     public class MiniGameLauncher
     {
         private QuestionPacksGenerator questionPacksGenerator;

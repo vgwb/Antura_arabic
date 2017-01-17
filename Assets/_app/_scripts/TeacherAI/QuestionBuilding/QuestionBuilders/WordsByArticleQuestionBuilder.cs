@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Categorize words based on their article (with/without)
+    /// * Question: Word to categorize
+    /// * Correct answers: Correct article
+    /// * Wrong answers: Wrong article
+    /// </summary>
     public class WordsByArticleQuestionBuilder : IQuestionBuilder
     {
         // focus: Words

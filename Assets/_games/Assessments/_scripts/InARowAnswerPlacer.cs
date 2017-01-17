@@ -1,6 +1,8 @@
 using DG.Tweening;
+using Kore.Coroutines;
 using System;
 using System.Collections;
+using EA4S.LivingLetters;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -43,7 +45,7 @@ namespace EA4S.Assessment
 
             allAnswers = answer;
             isAnimating = true;
-            Coroutine.Start( PlaceCoroutine());
+            Koroutine.Run( PlaceCoroutine());
         }
 
         public void ForceRandom( IAnswer[] answer, IAnswer[] original)
@@ -94,11 +96,11 @@ namespace EA4S.Assessment
 
             foreach (var a in allAnswers)
             {
-                yield return PlaceAnswer( a, currentPos);
+                yield return Koroutine.Nested(PlaceAnswer(a, currentPos));
                 currentPos.x += spaceIncrement * sign;
             }
 
-            yield return TimeEngine.Wait( 0.65f);
+            yield return Wait.For( 0.65f);
             isAnimating = false;
         }
 
@@ -110,21 +112,21 @@ namespace EA4S.Assessment
             go.GetComponent< LetterObjectView>().Poof( ElementsSize.PoofOffset);
             audioManager.PlaySound( Sfx.Poof);
 
-            yield return TimeEngine.Wait( UnityEngine.Random.Range( 0.07f, 0.13f));
+            yield return Wait.For( UnityEngine.Random.Range( 0.07f, 0.13f));
         }
 
         public void RemoveAnswers()
         {
             isAnimating = true;
-            Coroutine.Start( RemoveCoroutine());
+            Koroutine.Run( RemoveCoroutine());
         }
 
         private IEnumerator RemoveCoroutine()
         {
             foreach (var a in allAnswers)
-                yield return RemoveAnswer(a.gameObject);
+                yield return Koroutine.Nested( RemoveAnswer( a.gameObject));
 
-            yield return TimeEngine.Wait(0.65f);
+            yield return Wait.For(0.65f);
             isAnimating = false;
         }
 
@@ -135,7 +137,7 @@ namespace EA4S.Assessment
             answ.GetComponent<LetterObjectView>().Poof(ElementsSize.PoofOffset);
             answ.transform.DOScale(0, 0.3f).OnComplete(() => GameObject.Destroy(answ));
 
-            yield return TimeEngine.Wait(0.1f);
+            yield return Wait.For( 0.1f);
         }
     }
 }

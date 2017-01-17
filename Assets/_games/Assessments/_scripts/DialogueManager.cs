@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using EA4S.Db;
 using UnityEngine;
+using Kore.Coroutines;
 
 namespace EA4S.Assessment
 {
@@ -18,9 +19,9 @@ namespace EA4S.Assessment
             isPlayingAudio = false;
         }
 
-        public YieldInstruction Dialogue( LocalizationDataId ID, bool showWalkieTalkie)
+        public IYieldable Dialogue( LocalizationDataId ID, bool showWalkieTalkie)
         {
-            return Coroutine.Start( DialogueCoroutine( ID, showWalkieTalkie , true));
+            return new WaitCoroutine( DialogueCoroutine( ID, showWalkieTalkie, true));
         }
 
         private IEnumerator DialogueCoroutine( LocalizationDataId ID, bool showWalkieTalkie, bool showSubtitles)
@@ -29,13 +30,13 @@ namespace EA4S.Assessment
                 yield return null;
             isPlayingAudio = true;
 
-            yield return TimeEngine.Wait( 0.2f);
+            yield return Wait.For( 0.2f);
 
             if (showSubtitles)
                 widget.DisplaySentence( ID, 2.2f, showWalkieTalkie);
 
             if(showWalkieTalkie && showSubtitles) // give time for walkietalkie sound
-                yield return TimeEngine.Wait( 0.2f);
+                yield return Wait.For( 0.2f);
 
             audioManager.PlayDialogue( ID, () => OnStopPlaying());
 
@@ -45,7 +46,7 @@ namespace EA4S.Assessment
             if(showSubtitles)
                 widget.Clear();
 
-            yield return TimeEngine.Wait( 0.2f);
+            yield return Wait.For( 0.2f);
         }
 
         private void OnStopPlaying()
@@ -58,9 +59,9 @@ namespace EA4S.Assessment
             return isPlayingAudio;
         }
 
-        public YieldInstruction Speak( LocalizationDataId ID)
+        public IYieldable Speak( LocalizationDataId ID)
         {
-            return Coroutine.Start(DialogueCoroutine(ID, false, false));
+            return new WaitCoroutine( DialogueCoroutine( ID, false, false));
         }
     }
 }

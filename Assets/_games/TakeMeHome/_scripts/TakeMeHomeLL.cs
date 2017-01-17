@@ -5,6 +5,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ArabicSupport;
+using EA4S.LivingLetters;
+
 namespace EA4S.TakeMeHome
 {
 public class TakeMeHomeLL : MonoBehaviour {

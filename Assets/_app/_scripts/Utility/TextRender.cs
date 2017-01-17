@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
 
+// refactor: move this to UI utilities
+// refactor: remove reference to Arabic
 namespace EA4S
 {
     public class TextRender : MonoBehaviour
@@ -39,7 +40,8 @@ namespace EA4S
 
         void checkConfiguration()
         {
-            if (isTMPro && isUI && isArabic) {
+            if (isTMPro && isUI && isArabic)
+            {  
                 if (!gameObject.GetComponent<TextMeshProUGUI>().isRightToLeftText) {
                     Debug.LogWarning("TextMeshPro on component " + gameObject.name + " isn't RTL");
                 }

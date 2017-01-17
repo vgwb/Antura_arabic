@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
+// refactor: Helpers need to be standardized
 namespace EA4S
 {
     public static class RandomHelper

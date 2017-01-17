@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
+// refactor: Helpers need to be standardized
 [RequireComponent(typeof(Camera))]
 [ExecuteInEditMode]
 public class RenderTextureOutput : MonoBehaviour

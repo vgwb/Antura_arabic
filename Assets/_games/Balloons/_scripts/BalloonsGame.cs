@@ -8,6 +8,7 @@ using ModularFramework.Core;
 using ModularFramework.Helpers;
 using ArabicSupport;
 using EA4S;
+using EA4S.Tutorial;
 using TMPro;
 
 namespace EA4S.Balloons

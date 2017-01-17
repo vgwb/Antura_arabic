@@ -1,3 +1,4 @@
+using Kore.Coroutines;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -54,7 +55,7 @@ namespace EA4S.Assessment
             isAnimating = true;
             coroutineEnded = false;
             allCorrect = false;
-            Coroutine.Start(CheckCoroutine(placeholders, questions, dragManager));
+            Koroutine.Run(CheckCoroutine(placeholders, questions, dragManager));
         }
 
         private bool AreQuestionsCorrect(List<IQuestion> questions)
@@ -68,8 +69,8 @@ namespace EA4S.Assessment
         }
 
         private bool coroutineEnded = false;
-        private IEnumerator CheckCoroutine(List<PlaceholderBehaviour> placeholders,
-                                            List<IQuestion> questions,
+        private IEnumerator CheckCoroutine(List< PlaceholderBehaviour> placeholders,
+                                            List< IQuestion> questions,
                                             IDragManager dragManager)
         {
             dragManager.DisableInput();
@@ -93,7 +94,7 @@ namespace EA4S.Assessment
                     var behaviour = q.gameObject.GetComponent< QuestionBehaviour>();
                     behaviour.OnQuestionAnswered();
 
-                    yield return TimeEngine.Wait(behaviour.TimeToWait());
+                    yield return Wait.For(behaviour.TimeToWait());
                 }
 
             } else {
@@ -119,15 +120,15 @@ namespace EA4S.Assessment
                     Debug.Log("CheckCoroutine CORRECT");
 
                 audioManager.PlaySound(Sfx.StampOK);
-                yield return TimeEngine.Wait(0.4f);
+                yield return Wait.For( 0.4f);
                 checkmarkWidget.Show(true);
-                yield return TimeEngine.Wait(1.0f);
+                yield return Wait.For( 1.0f);
             } else {
                 if (AppConstants.VerboseLogging)
                     Debug.Log("CheckCoroutine WRONG");
 
                 wrongAnswerAnimationPlaying = true;
-                Coroutine.Start(WrongAnswerCoroutine());
+                Koroutine.Run( WrongAnswerCoroutine());
             }
 
             coroutineEnded = true;
@@ -144,7 +145,7 @@ namespace EA4S.Assessment
             wrongAnswerAnimationPlaying = false;
         }
 
-        YieldInstruction PlayAnswerWrong()
+        IYieldable PlayAnswerWrong()
         {
             return dialogueManager.Speak(Localization.Random(
                                             Db.LocalizationDataId.Assessment_Wrong_1,

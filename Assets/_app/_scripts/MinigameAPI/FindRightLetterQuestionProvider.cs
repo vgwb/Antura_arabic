@@ -6,6 +6,7 @@ namespace EA4S.API {
     /// Default IQuestionProvider that find the right letter question.
     /// </summary>
     /// <seealso cref="EA4S.IQuestionProvider" />
+    // refactor: this should be renamed to SequentialQuestionProvider, as it just moves to the next question
     public class FindRightLetterQuestionProvider : IQuestionProvider {
 
         #region properties

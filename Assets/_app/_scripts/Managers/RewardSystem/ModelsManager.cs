@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 
-namespace EA4S {
-    public static class ModelsManager {
+namespace EA4S
+{
+
+    public static class ModelsManager
+    {
 
         #region API
         public static GameObject MountModel(string _id, Transform _parent, ModelType _type = ModelType.AnturaForniture) {

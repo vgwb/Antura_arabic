@@ -1,9 +1,11 @@
-﻿using EA4S.API;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace EA4S
 {
-
+    /// <summary>
+    /// Holds a single question pack as seen by the Teacher.
+    /// (i.e. a question and its correct / wrong answers).
+    /// </summary>
     public class QuestionPackData
     {
         public IConvertibleToLivingLetterData question;

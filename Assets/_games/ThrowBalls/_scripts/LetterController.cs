@@ -2,6 +2,7 @@
 using System.Collections;
 using TMPro;
 using EA4S;
+using EA4S.LivingLetters;
 
 namespace EA4S.ThrowBalls
 {

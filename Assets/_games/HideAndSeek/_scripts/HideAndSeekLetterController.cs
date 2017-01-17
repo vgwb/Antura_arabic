@@ -4,6 +4,7 @@ using DG.Tweening;
 using ArabicSupport;
 using TMPro;
 using EA4S.Db;
+using EA4S.LivingLetters;
 
 namespace EA4S.HideAndSeek
 {

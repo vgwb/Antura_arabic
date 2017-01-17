@@ -20,7 +20,7 @@ namespace EA4S.Assessment
         private static int maxAnswers;
         private static int rounds;
 
-        public static IAssessment CreateMatchWordToImageAssessment()
+        public static IAssessment CreateMatchWordToImageAssessment( IUpdater updater)
         {
             Init();
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
@@ -35,13 +35,14 @@ namespace EA4S.Assessment
             IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
 
             gameDescription = Db.LocalizationDataId.Assessment_Match_Word_Image;
+            updater.AddTimedUpdate( dragManager);
 
             return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
                                             configuration, context, dialogueManager,
                                             gameDescription);
         }
 
-        internal static IAssessment CreateOrderLettersInWordAssessment()
+        internal static IAssessment CreateOrderLettersInWordAssessment( IUpdater updater)
         {
             Init();
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
@@ -56,13 +57,14 @@ namespace EA4S.Assessment
             IAnswerPlacer answerPlacer = new InARowAnswerPlacer( audioManager, letterSize);
 
             gameDescription = Db.LocalizationDataId.Assessment_Order_Letters;
+            updater.AddTimedUpdate( dragManager);
 
             return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
                                             configuration, context, dialogueManager,
                                             gameDescription);
         }
 
-        internal static IAssessment CreateCompleteWordAssessment()
+        internal static IAssessment CreateCompleteWordAssessment( IUpdater updater)
         {
             Init();
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
@@ -76,13 +78,14 @@ namespace EA4S.Assessment
             IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
 
             gameDescription = Db.LocalizationDataId.Assessment_Select_Letter_Image;
+            updater.AddTimedUpdate( dragManager);
 
             return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
                                             configuration, context, dialogueManager,
                                             gameDescription);
         }
 
-        public static IAssessment CreateMatchLettersWordAssessment()
+        public static IAssessment CreateMatchLettersWordAssessment( IUpdater updater)
         {
             Init();
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
@@ -96,13 +99,14 @@ namespace EA4S.Assessment
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
 
             gameDescription = Db.LocalizationDataId.Assessment_Match_Letters_Words;
+            updater.AddTimedUpdate( dragManager);
 
             return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
                                             configuration, context, dialogueManager,
                                             gameDescription);
         }
 
-        public static IAssessment CreateQuestionAndReplyAssessment()
+        public static IAssessment CreateQuestionAndReplyAssessment( IUpdater updater)
         {
             Init();
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = false; // Child should read question
@@ -116,13 +120,14 @@ namespace EA4S.Assessment
             IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
 
             gameDescription = Db.LocalizationDataId.Assessment_Match_Sentences;
+            updater.AddTimedUpdate( dragManager);
 
             return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
                                             configuration, context, dialogueManager,
                                             gameDescription);
         }
 
-        public static IAssessment CreateSunMoonWordAssessment()
+        public static IAssessment CreateSunMoonWordAssessment( IUpdater updater)
         {
             Init();
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
@@ -139,13 +144,14 @@ namespace EA4S.Assessment
             IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
 
             gameDescription = Db.LocalizationDataId.Assessment_Classify_Words_Article;
+            updater.AddTimedUpdate( dragManager);
 
             return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
                                             configuration, context, dialogueManager,
                                             gameDescription);
         }
 
-        public static IAssessment CreateSingularDualPluralAssessment()
+        public static IAssessment CreateSingularDualPluralAssessment( IUpdater updater)
         {
             Init();
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
@@ -162,13 +168,14 @@ namespace EA4S.Assessment
             IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
 
             gameDescription = Db.LocalizationDataId.Assessment_Classify_Word_Nouns;
+            updater.AddTimedUpdate( dragManager);
 
             return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
                                             configuration, context, dialogueManager,
                                             gameDescription);
         }
 
-        public static IAssessment CreateWordArticleAssessment()
+        public static IAssessment CreateWordArticleAssessment( IUpdater updater)
         {
             Init();
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
@@ -185,13 +192,14 @@ namespace EA4S.Assessment
             IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
 
             gameDescription = Db.LocalizationDataId.Assessment_Classify_Word_Article;
+            updater.AddTimedUpdate( dragManager);
 
             return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
                                             configuration, context, dialogueManager,
                                             gameDescription);
         }
 
-        public static IAssessment CreateSunMoonLetterAssessment()
+        public static IAssessment CreateSunMoonLetterAssessment( IUpdater updater)
         {
             Init();
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
@@ -208,13 +216,14 @@ namespace EA4S.Assessment
             IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
 
             gameDescription = Db.LocalizationDataId.Assessment_Classify_Letters_Article;
+            updater.AddTimedUpdate( dragManager);
 
             return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
                                             configuration, context, dialogueManager,
                                             gameDescription);
         }
 
-        public static IAssessment CreateLetterShapeAssessment()
+        public static IAssessment CreateLetterShapeAssessment( IUpdater updater)
         {
             Init();
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
@@ -228,13 +237,14 @@ namespace EA4S.Assessment
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
 
             gameDescription = Db.LocalizationDataId.Assessment_Select_Letter_Listen;
+            updater.AddTimedUpdate( dragManager);
 
             return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector, 
                                             configuration, context, dialogueManager,
                                             gameDescription);
         }
 
-        public static IAssessment CreatePronouncedWordAssessment()
+        public static IAssessment CreatePronouncedWordAssessment( IUpdater updater)
         {
             Init();
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
@@ -248,13 +258,14 @@ namespace EA4S.Assessment
             IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
 
             gameDescription = Db.LocalizationDataId.Assessment_Select_Word_Listen;
+            updater.AddTimedUpdate( dragManager);
 
             return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
                                             configuration, context, dialogueManager,
                                             gameDescription);
         }
 
-        public static IAssessment CreateWordsWithLetterAssessment()
+        public static IAssessment CreateWordsWithLetterAssessment( IUpdater updater)
         {
             Init();
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
@@ -268,6 +279,7 @@ namespace EA4S.Assessment
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
 
             gameDescription = Db.LocalizationDataId.Assessment_Select_Words;
+            updater.AddTimedUpdate( dragManager);
 
             return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
                                             configuration, context, dialogueManager,
@@ -282,8 +294,6 @@ namespace EA4S.Assessment
             // ARABIC SETTINGS
             AssessmentOptions.Instance.LocaleTextFlow = TextFlow.RightToLeft;
 
-            // Common Stuff (each game may override these settings where needed).
-            TimeEngine.Instance.Clear();
             configuration = AssessmentConfiguration.Instance;
             context = configuration.Context;
             audioManager = configuration.Context.GetAudioManager();

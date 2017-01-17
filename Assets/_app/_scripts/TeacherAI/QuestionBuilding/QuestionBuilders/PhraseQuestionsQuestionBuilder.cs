@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Selects phrases based on a question/answer relationship
+    /// * Question: The question phrase
+    /// * Correct answers: The correct answer
+    /// * Wrong answers: Wrong answers
+    /// </summary>
     public class PhraseQuestionsQuestionBuilder : IQuestionBuilder
     {
         // Focus: Phrases

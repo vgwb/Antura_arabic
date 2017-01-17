@@ -1,7 +1,9 @@
 using DG.Tweening;
+using Kore.Coroutines;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using EA4S.LivingLetters;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -35,7 +37,7 @@ namespace EA4S.Assessment
             allQuestions = question;
             isAnimating = true;
             images = new List< LetterObjectView>();
-            Coroutine.Start( PlaceCoroutine());
+            Koroutine.Run( PlaceCoroutine());
         }
 
 
@@ -121,13 +123,13 @@ namespace EA4S.Assessment
             }
 
             // give time to finish animating elements
-            yield return TimeEngine.Wait( 0.65f);
+            yield return Wait.For( 0.65f);
             isAnimating = false;
         }
 
         private List< LetterObjectView> images;
 
-        protected IEnumerator PlaceImage( IQuestion q, Vector3 imagePos)
+        protected IYieldable PlaceImage( IQuestion q, Vector3 imagePos)
         {
             var ll = LivingLetterFactory.Instance.SpawnQuestion( q.Image());
             images.Add( ll);
@@ -136,10 +138,10 @@ namespace EA4S.Assessment
             ll.Poof( ElementsSize.PoofOffset);
             audioManager.PlaySound( Sfx.Poof);
             ll.transform.DOScale( 1, 0.3f);
-            return TimeEngine.Wait( 1.0f);
+            return Wait.For( 1.0f);
         }
 
-        protected IEnumerator PlaceQuestion( IQuestion q, Vector3 position)
+        protected IYieldable PlaceQuestion( IQuestion q, Vector3 position)
         {
             var ll = q.gameObject.GetComponent< LetterObjectView>();
 
@@ -148,10 +150,10 @@ namespace EA4S.Assessment
             ll.transform.localPosition = position;
             ll.transform.DOScale( 1, 0.3f);
             q.gameObject.GetComponent< QuestionBehaviour>().OnSpawned();
-            return TimeEngine.Wait( 1.0f);
+            return Wait.For( 1.0f);
         }
 
-        protected IEnumerator PlacePlaceholder( IQuestion q, GameObject placeholder, Vector3 position)
+        protected IYieldable PlacePlaceholder( IQuestion q, GameObject placeholder, Vector3 position)
         {
             Transform tr = placeholder.transform;
             tr.localPosition = position + new Vector3( 0, 5, 0);
@@ -172,13 +174,13 @@ namespace EA4S.Assessment
                 .Insert( 0, tr.DOScale( new Vector3( adjust, ElementsSize.DropZoneScale, 1), 0.4f))
                 .Insert( 0, tr.DOMove( position, 0.6f));
 
-            return TimeEngine.Wait( 0.4f);
+            return Wait.For( 0.4f);
         }
 
         public void RemoveQuestions()
         {
             isAnimating = true;
-            Coroutine.Start( RemoveCoroutine());
+            Koroutine.Run( RemoveCoroutine());
         }
 
         IEnumerator RemoveCoroutine()
@@ -186,16 +188,16 @@ namespace EA4S.Assessment
             foreach( var q in allQuestions)
             {
                 foreach (var p in q.GetPlaceholders())
-                    yield return FadeOutPlaceholder( p);
+                    yield return Koroutine.Nested( FadeOutPlaceholder(p));
 
                 foreach (var img in images)
-                    yield return FadeOutImage( img);
+                    yield return Koroutine.Nested( FadeOutImage(img));
 
-                yield return FadeOutQuestion( q);
+                yield return Koroutine.Nested( FadeOutQuestion(q));
             }
 
             // give time to finish animating elements
-            yield return TimeEngine.Wait( 0.65f);
+            yield return Wait.For( 0.65f);
             isAnimating = false;
         }
 
@@ -205,7 +207,7 @@ namespace EA4S.Assessment
             image.Poof();
 
             image.transform.DOScale(0, 0.4f).OnComplete( () => GameObject.Destroy( image.gameObject));
-            yield return TimeEngine.Wait( 0.1f);
+            yield return Wait.For( 0.1f);
         }
 
         IEnumerator FadeOutQuestion( IQuestion q)
@@ -215,7 +217,7 @@ namespace EA4S.Assessment
 
 
             q.gameObject.transform.DOScale( 0, 0.4f).OnComplete(() => GameObject.Destroy( q.gameObject));
-            yield return TimeEngine.Wait( 0.1f);
+            yield return Wait.For( 0.1f);
         }
 
         IEnumerator FadeOutPlaceholder( GameObject go)
@@ -223,7 +225,7 @@ namespace EA4S.Assessment
             audioManager.PlaySound( Sfx.BalloonPop);
 
             go.transform.DOScale(0, 0.23f).OnComplete(() => GameObject.Destroy( go));
-            yield return TimeEngine.Wait(0.06f);
+            yield return Wait.For( 0.06f);
         }
     }
 }

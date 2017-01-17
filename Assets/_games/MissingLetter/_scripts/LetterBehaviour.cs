@@ -8,6 +8,7 @@ using ArabicSupport;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using DG.Tweening.Plugins.Core.PathCore;
+using EA4S.LivingLetters;
 
 namespace EA4S.MissingLetter
 {

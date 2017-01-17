@@ -1,6 +1,10 @@
 ﻿namespace EA4S
 {
-    // Filter parameters for letters
+    // refactor: remove references to Arabic
+
+    /// <summary>
+    /// Parameters used by a QuestionBuilder to filter what letters can be selected.
+    /// </summary>
     public class LetterFilters
     {
         public bool excludeDiacritics;
@@ -21,7 +25,9 @@
         }
     }
 
-    // Filter parameters for words
+    /// <summary>
+    /// Parameters used by a QuestionBuilder to filter what words can be selected.
+    /// </summary>
     public class WordFilters
     {
         public bool excludeDiacritics;
@@ -51,7 +57,9 @@
         }
     }
 
-    // Filter parameters for phrases
+    /// <summary>
+    /// Parameters used by a QuestionBuilder to filter what phrases can be selected.
+    /// </summary>
     public class PhraseFilters
     {
         public bool requireWords;
