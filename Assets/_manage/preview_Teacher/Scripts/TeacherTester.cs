@@ -84,7 +84,7 @@ namespace EA4S.Teacher.Test
 
         public void SimulateMiniGame(MiniGameCode code)
         {
-            var config = API.MiniGameAPI.Instance.GetGameConfigurationForMiniGameCode(code);
+            var config = API.MiniGameAPI.Instance.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
             InitialisePlaySession();
             var builder = config.SetupBuilder();
             Debug.Log("Simulating minigame: " + code + " with builder " + builder.GetType().Name);

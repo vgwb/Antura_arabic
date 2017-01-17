@@ -23,11 +23,6 @@ namespace EA4S
             private set { _session = value; }
         }
 
-        /// <summary>
-        /// The minigame log manager concrete instance.
-        /// </summary>
-        public ILogManager MinigameLogManager = new MinigameLogManager();
-
         public LogManager()
         {
 

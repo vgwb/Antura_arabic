@@ -55,7 +55,8 @@ namespace EA4S
             this.transform.rotation = Quaternion.identity;
             for (int i = 0; i < Lines.Length; ++i) {
                 LineRenderer lr = Lines[i];
-                lr.SetWidth(TutorialUI.I.Cam.fieldOfView * DefStartWidths[i] / 45f, TutorialUI.I.Cam.fieldOfView * DefEndWidths[i] / 45f);
+                lr.startWidth = TutorialUI.I.Cam.fieldOfView * DefStartWidths[i] / 45f;
+                lr.endWidth = TutorialUI.I.Cam.fieldOfView * DefEndWidths[i] / 45f;
                 lr.sortingOrder = _overlayed ? defSortingOrder[i] : 0;
             }
         }
@@ -65,7 +66,7 @@ namespace EA4S
             this.gameObject.SetActive(false);
             wps.Clear();
             foreach (LineRenderer lr in Lines) {
-                lr.SetVertexCount(0);
+                lr.numPositions = 0;
                 lr.SetPositions(new Vector3[0]);
             }
         }
@@ -78,7 +79,7 @@ namespace EA4S
             wpsArray = wps.ToArray();
             int count = wps.Count;
             foreach (LineRenderer lr in Lines) {
-                lr.SetVertexCount(count);
+                lr.numPositions = count;
                 lr.SetPositions(wpsArray);
             }
         }

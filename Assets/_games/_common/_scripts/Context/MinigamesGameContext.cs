@@ -3,15 +3,23 @@ namespace EA4S
 {
     public class MinigamesGameContext : IGameContext
     {
+        public MiniGameCode Code { get; private set; }
+
         IAudioManager audioManager = new MinigamesAudioManager();
         IInputManager inputManager = new MinigamesInputManager();
-        ILogManager logManager = new MinigameLogManager();
 
         ISubtitlesWidget subtitleWidget = new MinigamesSubtitlesWidget();
         IStarsWidget starsWidget = new MinigamesStarsWidget();
         IPopupWidget questionWidget = new MinigamesPopupWidget();
         ICheckmarkWidget checkmarkWidget = new MinigamesCheckmarkWidget();
         IOverlayWidget overlayWidget = new MinigamesOverlayWidget();
+        ILogManager logManager;
+
+        public MinigamesGameContext(MiniGameCode code, string sessionName)
+        {
+            Code = code;
+            logManager = new MinigamesLogManager(code, sessionName);
+        }
 
         public IAudioManager GetAudioManager()
         {

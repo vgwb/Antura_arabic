@@ -32,7 +32,8 @@
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new SampleQuestionProvider();
-            Context = new MinigamesGameContext();
+            Variation = MixedLettersVariation.Alphabet;
+            Context = new MinigamesGameContext(MiniGameCode.MixedLetters_alphabet, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
         }
 

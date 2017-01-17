@@ -192,7 +192,7 @@ namespace EA4S.Egg
                 if (isSequence) {
                     game.eggButtonBox.GetEggButton(letterData).SetOnPressedColor();
                     PositiveFeedback();
-                    game.Context.GetLogManager().OnAnswer(letterData, true);
+                    game.Context.GetLogManager().OnAnswered(letterData, true);
                 } else {
                     progressInput = true;
                 }
@@ -201,7 +201,7 @@ namespace EA4S.Egg
 
                 if (showTutorial) {
                     TutorialPressedWrong(letterData);
-                    game.Context.GetLogManager().OnAnswer(letterData, false);
+                    game.Context.GetLogManager().OnAnswered(letterData, false);
                 } else {
                     NegativeFeedback();
                 }

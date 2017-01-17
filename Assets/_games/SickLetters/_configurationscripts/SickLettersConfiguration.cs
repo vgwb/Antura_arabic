@@ -28,7 +28,7 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Context = new MinigamesGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.SickLetters, System.DateTime.Now.Ticks.ToString());
             Questions = new SickLettersQuestionProvider();
             //SickLettersQuestions = new SickLettersQuestionProvider();
             Difficulty = 0.1f;

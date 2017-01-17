@@ -35,7 +35,7 @@
 
             Variation = ThrowBallsVariation.letters;
 
-            Context = new MinigamesGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.ThrowBalls_letters, System.DateTime.Now.Ticks.ToString());
 
             // A difficulty of 0.72 will give the traditional progression of difficulty in the game.
             Difficulty = 0.72f;

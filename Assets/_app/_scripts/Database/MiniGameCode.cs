@@ -3,6 +3,7 @@
     // refactor: this enum depends on the specific implemented minigames and should be grouped with them 
     public enum MiniGameCode
     {
+        Invalid = 0,
         AlphabetSong = 5,
         Balloons_counting = 6,
         Balloons_letter = 7,
@@ -10,7 +11,6 @@
         Balloons_words = 8,
         ColorTickle = 9,
         DancingDots = 10,
-        DontWakeUp = 2,
         Egg = 11,
         FastCrowd_alphabet = 12,
         FastCrowd_counting = 13,
