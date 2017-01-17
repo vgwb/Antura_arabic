@@ -302,6 +302,7 @@ namespace EA4S.Assessment
             rounds = configuration.Rounds;
             maxAnswers = configuration.Answers;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
+            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
         }
     }
 }

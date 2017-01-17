@@ -14,7 +14,7 @@ namespace EA4S.Assessment
         protected override void OnInitialize( IGameContext context)
         {
             IntroState = new AssessmentIntroState( this);
-            GetConfiguration();
+            GetConfiguration(); //TODO: Can I remove this?
             PlayState = new AssessmentGameState( this);
             ResultState = new AssessmentResultState( this);
         }

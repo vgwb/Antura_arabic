@@ -25,7 +25,7 @@ namespace EA4S.Assessment
                    assessmentGame.PlayState);
         }
 
-        float timer = 0.4f;
+        float timer = 0.05f;
 
         public void Update( float delta)
         {

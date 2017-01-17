@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+using Kore.Utils;
 
 namespace EA4S.Assessment
 {
@@ -15,29 +14,6 @@ namespace EA4S.Assessment
         IAssessmentConfiguration Configuration { get; }
         IGameContext GameContext { get; }
 
-        IEnumerator PlayCoroutine( Action gameEndedCallback);
-
-        /*
-        /// <summary>
-        /// Used to read question data
-        /// </summary>
-        /// <param name="data"> Question to read</param>
-        /// <returns> Return the played audio source to control it</returns>
-        IAudioSource OnQuestionAppear( IQuestion question);
-
-        /// <summary>
-        /// Read the given answer word, letter or image
-        /// </summary>
-        /// <param name="data"> LivingLetter to read</param>
-        /// <returns> Return the played audio source to control it</returns>
-        IAudioSource OnReadAnswer( ILivingLetterData data);
-
-        /// <summary>
-        /// Read the given question word, letter or image
-        /// </summary>
-        /// <param name="data"> Question to read</param>
-        /// <returns> Return the played audio source to control it</returns>
-        IAudioSource OnReadQuestion( IQuestion data);
-        */
+        void StartGameSession( KoreCallback gameEndedCallback);
     }
 }
