@@ -1,10 +1,10 @@
 using DG.Tweening;
+using EA4S.LivingLetters;
 using Kore.Coroutines;
+using ModularFramework.Helpers;
 using System.Collections;
 using System.Collections.Generic;
-using EA4S.LivingLetters;
 using UnityEngine;
-using ModularFramework.Helpers;
 
 namespace EA4S.Assessment
 {
@@ -47,25 +47,14 @@ namespace EA4S.Assessment
             float yMax = bounds.YMax();
             float z = bounds.DefaultZ();
 
-            if (AppConstants.VerboseLogging) {
-                Debug.Log("xMin" + xMin);
-                Debug.Log("xMax" + xMax);
-                Debug.Log("yMin" + yMin);
-                Debug.Log("yMax" + yMax);
-            }
-
             for (float x = xMin; x < xMax; x += 4.3f)
                 for (float y = yMin; y < yMax; y += 1.7f) {
                     float dx = Random.Range(-0.2f, 0.2f);
                     float dy = Random.Range(-0.1f, 0.2f);
                     var vec = new Vector3(x + dx, y + dy, z);
                     positions.Add(vec);
-                    if (AppConstants.VerboseLogging)
-                        Debug.Log("VECTOR" + vec);
                 }
 
-            if (AppConstants.VerboseLogging)
-                Debug.Log("COUNT:" + positions.Count);
             positions.Shuffle();
 
             foreach (var a in allAnswers)

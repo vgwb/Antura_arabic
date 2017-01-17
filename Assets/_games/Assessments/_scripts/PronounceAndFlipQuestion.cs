@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using EA4S.LivingLetters;
 using UnityEngine;

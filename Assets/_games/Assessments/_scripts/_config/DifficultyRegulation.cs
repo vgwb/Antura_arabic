@@ -38,6 +38,9 @@ public class DifficultyRegulation : MonoBehaviour {
         startingFrom = from;
     }
 
+    /// <summary>
+    /// According to difficulty, the result number increase from min to max
+    /// </summary>
 	public int Increase( int min, int max)
     {
         if (min > max)
@@ -47,6 +50,9 @@ public class DifficultyRegulation : MonoBehaviour {
         return (int)Mathf.RoundToInt( Mathf.Lerp( min, max, finalVal));
     }
 
+    /// <summary>
+    /// According to difficulty, the result number decrease from max to min
+    /// </summary>
     public int Decrease( int max, int min)
     {
         if (min > max)

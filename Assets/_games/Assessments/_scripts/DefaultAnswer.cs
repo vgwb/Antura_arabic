@@ -1,4 +1,3 @@
-using System;
 using EA4S.LivingLetters;
 using UnityEngine;
 
@@ -56,10 +55,8 @@ namespace EA4S.Assessment
         public bool Equals( IAnswer other)
         {
             if (Data().Equals(other.Data()))
-            {
-                Debug.Log("TRUE: " + Data().Id + " and " + other.Data().Id);
                 return true;
-            }
+
             return false;
         }
 
