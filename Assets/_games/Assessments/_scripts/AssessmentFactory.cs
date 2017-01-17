@@ -135,7 +135,7 @@ namespace EA4S.Assessment
             IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
-            ICategoryProvider categoryProvider = new CategoryProvider( CategoryType.SunMoon);
+            ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.SunMoon);
             IQuestionGenerator generator = new CategoryQuestionGenerator(   configuration.Questions, 
                                                                             categoryProvider,
                                                                             maxAnswers, rounds);
@@ -159,7 +159,7 @@ namespace EA4S.Assessment
             IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
-            ICategoryProvider categoryProvider = new CategoryProvider( CategoryType.SingularDualPlural);
+            ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.SingularDualPlural);
             IQuestionGenerator generator = new CategoryQuestionGenerator(   configuration.Questions,
                                                                             categoryProvider,
                                                                             maxAnswers, rounds);
@@ -183,7 +183,7 @@ namespace EA4S.Assessment
             IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
-            ICategoryProvider categoryProvider = new CategoryProvider( CategoryType.WithOrWithoutArticle);
+            ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.WithOrWithoutArticle);
             IQuestionGenerator generator = new CategoryQuestionGenerator(   configuration.Questions,
                                                                             categoryProvider,
                                                                             maxAnswers, rounds);
@@ -207,7 +207,7 @@ namespace EA4S.Assessment
             IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
-            ICategoryProvider categoryProvider = new CategoryProvider( CategoryType.SunMoon);
+            ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.SunMoon);
             IQuestionGenerator generator = new CategoryQuestionGenerator(   configuration.Questions,
                                                                             categoryProvider,
                                                                             maxAnswers, rounds);
