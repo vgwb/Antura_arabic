@@ -23,7 +23,12 @@ Developers should follow these guidelines for contributing to the project.
   * Use **THIS_STYLE** for constants.
   * Regions can be used to group code logically. Use **CamelCase** for region names.
   * No copyright notice nor author metadata should be present at the start of the file, unless it is of a third party
-  * Use MiniGame, not Minigame.
+  
+### Naming conventions
+
+  * Use *MiniGame*, not *Minigame* (but *minigame* when lowercase)
+  * All data related to the learning content should be termed *Dictionary* (instead of the triad Letter/Word/Phrase)
+  
   
 ### Namespaces
 
