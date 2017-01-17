@@ -25,7 +25,7 @@
         {
             // Default values
             Questions = new ColorTickleLetterProvider();
-            Context = new MinigamesGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.ColorTickle, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
         }
 

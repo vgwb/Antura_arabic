@@ -49,7 +49,7 @@
 
             Variation = BalloonsVariation.Spelling;
 
-            Context = new MinigamesGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.Balloons_spelling, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
         }
 

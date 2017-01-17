@@ -29,7 +29,7 @@
 		private TakeMeHomeConfiguration()
 		{
 			// Default values
-			Context = new MinigamesGameContext();
+			Context = new MinigamesGameContext(MiniGameCode.TakeMeHome, System.DateTime.Now.Ticks.ToString());
 			Letters = new TakeMeHomeLettersProvider();
             Questions = new SampleQuestionProvider();
             Difficulty = 0;

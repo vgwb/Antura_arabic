@@ -33,7 +33,7 @@
             Letters = new MazeLetterProvider();
             Variation = MazeVariation.V_1;
 
-            Context = new MinigamesGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.Maze, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
         }
 
