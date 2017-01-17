@@ -1,9 +1,9 @@
 using DG.Tweening;
+using EA4S.LivingLetters;
 using Kore.Coroutines;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using EA4S.LivingLetters;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -109,7 +109,6 @@ namespace EA4S.Assessment
                     currentPos.x += (3f * sign) / 2;
                     yield return PlaceImage( allQuestions[questionIndex], currentPos);
                     currentPos.x += (3.3f * sign) / 2;
-                    Debug.Log("PlacedImage######");
                 }
 
                 foreach (var p in allQuestions[ questionIndex].GetPlaceholders())

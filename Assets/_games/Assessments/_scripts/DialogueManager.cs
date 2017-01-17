@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
 using EA4S.Db;
-using UnityEngine;
 using Kore.Coroutines;
+using System.Collections;
 
 namespace EA4S.Assessment
 {

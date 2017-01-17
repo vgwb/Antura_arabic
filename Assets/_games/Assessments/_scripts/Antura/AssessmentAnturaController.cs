@@ -1,9 +1,9 @@
 using DG.Tweening;
+using EA4S.Tutorial;
+using Kore.Coroutines;
 using System;
 using System.Collections;
-using EA4S.Tutorial;
 using UnityEngine;
-using Kore.Coroutines;
 
 namespace EA4S.Assessment
 {
@@ -100,13 +100,9 @@ namespace EA4S.Assessment
 
             yield return Wait.For( 1.0f);
 
-            //Debug.Log("Antura-------------------");
-            //yield return new WaitForTween( 
             transform
             .DOMove(anturaCenter.position, 3.0f)
             .SetEase(Ease.InOutSine);
-            //    );
-           // Debug.Log("Antura2------------------");
 
             yield return Wait.For( 2.6f);
             sleepingParticles = Instantiate( sleepingParticles, paritclesPos) as ParticleSystem;

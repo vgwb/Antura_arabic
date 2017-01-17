@@ -1,10 +1,9 @@
-using DG.Tweening;
-using Kore.Coroutines;
-using System;
-using System.Collections;
-using EA4S.LivingLetters;
-using UnityEngine;
 using DG.DeExtensions;
+using DG.Tweening;
+using EA4S.LivingLetters;
+using Kore.Coroutines;
+using System.Collections;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -36,12 +35,15 @@ namespace EA4S.Assessment
             for (int i = 0; i < answer.Length; i++)
                 original[i] = answer[i];
 
-            Debug.Log("AnswerPlace");
             for (int i = 0; i < answer.Length; i++)
                 answer[ i].AddTicket(i);
 
             answer.Shuffle();
 
+            // Avoid the case where all letters are already in correct order (automatic win)
+            // In case we see there would be an automatic win, we just swap the first 2
+            // different letters. This may introduce some bias on shorter words.. but that's
+            // ok. This is not a gamblin game.
             ForceRandom( answer, original);
 
             allAnswers = answer;

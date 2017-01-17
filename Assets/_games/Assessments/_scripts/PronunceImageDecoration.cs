@@ -1,4 +1,3 @@
-using System;
 using EA4S.LivingLetters;
 using UnityEngine;
 

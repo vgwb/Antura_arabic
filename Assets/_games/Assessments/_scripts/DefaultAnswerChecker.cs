@@ -1,7 +1,6 @@
 using Kore.Coroutines;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -64,7 +63,6 @@ namespace EA4S.Assessment
                 if (q.GetAnswerSet().AllCorrect() == false)
                     return false;
 
-            Debug.Log("Questions all correct");
             return true;
         }
 
@@ -115,18 +113,15 @@ namespace EA4S.Assessment
             while (wrongAnswerAnimationPlaying)
                 yield return null; // wait only if previous message has not finished
 
-            if (allCorrect) {
-                if (AppConstants.VerboseLogging)
-                    Debug.Log("CheckCoroutine CORRECT");
-
+            if (allCorrect)
+            {
                 audioManager.PlaySound(Sfx.StampOK);
                 yield return Wait.For( 0.4f);
                 checkmarkWidget.Show(true);
                 yield return Wait.For( 1.0f);
-            } else {
-                if (AppConstants.VerboseLogging)
-                    Debug.Log("CheckCoroutine WRONG");
-
+            }
+            else
+            {
                 wrongAnswerAnimationPlaying = true;
                 Koroutine.Run( WrongAnswerCoroutine());
             }

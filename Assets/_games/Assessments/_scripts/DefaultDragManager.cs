@@ -163,10 +163,10 @@ namespace EA4S.Assessment
         public void RemoveDraggables()
         {
             dragOnly = true;
-            if (this.droppable != null)
+            if (droppable != null)
             {                
-                this.droppable.StopDrag();
-                this.droppable = null;
+                droppable.StopDrag();
+                droppable = null;
             }
         }
 
