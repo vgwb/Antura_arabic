@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace EA4S.Assessment
 {
+    /// <summary>
+    /// Antura is added from Inspector. This class just Spawn It.
+    /// </summary>
     public class AnturaFactory : MonoBehaviour
     {
         [Header("Prefabs")]

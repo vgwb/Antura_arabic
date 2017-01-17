@@ -16,9 +16,9 @@ namespace EA4S.Assessment
         private int numberOfMaxAnswers;
         private int numberOfRounds;
         private List< ILivingLetterData>[] answersBuckets;
-        private ICategoryProvider categoryProvider;
+        private ArabicCategoryProvider categoryProvider;
 
-        public CategoryQuestionGenerator( IQuestionProvider provider, ICategoryProvider categoryProvider, int maxAnsw, int rounds)
+        public CategoryQuestionGenerator( IQuestionProvider provider, ArabicCategoryProvider categoryProvider, int maxAnsw, int rounds)
         {
             this.provider = provider;
             state = QuestionGeneratorState.Uninitialized;

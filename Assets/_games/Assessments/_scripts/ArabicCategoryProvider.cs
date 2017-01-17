@@ -10,7 +10,19 @@ namespace EA4S.Assessment
         WithOrWithoutArticle
     }
 
-    public class CategoryProvider : ICategoryProvider
+    /// <summary>
+    /// This class is used to spawn LivingLetters representing a category
+    /// (Sun/Moon Singular/Dual/Plural With/WithoutArticle). 
+    /// 
+    /// Refactoring Notes:
+    /// There's actually only one concrete implementation for the interface, 
+    /// the proper solution would be to have 1 different Category provider for
+    /// each Lang, but since I was asked to remove unecessary classes I remove
+    /// this interface.
+    /// 
+    /// You can reintroduce the interface later.. if needed.
+    /// </summary>
+    public class ArabicCategoryProvider
     {
         CategoryType categoryType;
         ILivingLetterData sun;
@@ -44,7 +56,7 @@ namespace EA4S.Assessment
         const string twoString = "number_02";
         const string threeString = "number_03";
 
-        public CategoryProvider( CategoryType type)
+        public ArabicCategoryProvider( CategoryType type)
         {
             categoryType = type;
             sun = GatherData( sunString);
