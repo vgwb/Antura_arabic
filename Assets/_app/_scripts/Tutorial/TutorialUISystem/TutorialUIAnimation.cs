@@ -1,10 +1,7 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/08
-
-using System;
+﻿using System;
 using DG.Tweening;
 
-namespace EA4S
+namespace EA4S.Tutorial
 {
     /// <summary>
     /// Used internally by TutorialUI to store and control animations

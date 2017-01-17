@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using TMPro;
-using EA4S;
 
 // refactor: remove?
-namespace EA4S
+namespace EA4S.LivingLetters
 {
     public enum LivingLetterAnim
     {

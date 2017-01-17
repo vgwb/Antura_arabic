@@ -4,6 +4,7 @@ using DG.Tweening;
 using ArabicSupport;
 using TMPro;
 using EA4S.Db;
+using EA4S.LivingLetters;
 
 namespace EA4S.HideAndSeek
 {
@@ -130,11 +131,6 @@ namespace EA4S.HideAndSeek
                 }
 
 				pos2 = pos1 + new Vector3 ( temp,0,0);
-                float tmpX;
-                if (pos2.x > 0)
-                    tmpX = pos2.x -0.1f;
-                else
-                    tmpX = pos2.x + 0.1f; 
                 
 				isMoving = true;
                 isClickable = true;

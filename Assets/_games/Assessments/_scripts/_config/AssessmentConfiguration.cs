@@ -248,12 +248,10 @@ namespace EA4S.Assessment
         {
             SimultaneosQuestions = 1;
             Rounds = 3;
-            int nCorrect = 1;
             int nWrongs = snag.Increase( 2, 4);
 
             return new  PhraseQuestionsQuestionBuilder(
                         SimultaneosQuestions * Rounds, // totale questions
-                        nCorrect,
                         nWrongs     // wrong additional answers
                 );
         }

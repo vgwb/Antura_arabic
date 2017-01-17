@@ -39,7 +39,7 @@ namespace EA4S
         TweenParams tParms;
         TweenCallback pendingCallback = null;
 
-        float timeScaleAtMenuOpen = 1;
+        //float timeScaleAtMenuOpen = 1;
 
 
         void Start()
@@ -62,7 +62,7 @@ namespace EA4S
             sequence = DOTween.Sequence().SetUpdate(true);
             tParms = new TweenParams()
                 .SetEase(Ease.InOutBack);
-            timeScaleAtMenuOpen = Time.timeScale;
+            //timeScaleAtMenuOpen = Time.timeScale;
             Time.timeScale = 0; // not working
             sequence.Append(GetComponent<RectTransform>().DOAnchorPos(ShowPosition, 0.3f).SetAs(tParms));
             TitleLable.text = _data.Title;

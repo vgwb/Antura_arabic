@@ -85,6 +85,7 @@ namespace EA4S {
         /// </summary>
         /// <param name="_name">The name.</param>
         void LoadRewardOnDog(string _name) {
+            actualReward = null;
             //actualReward = RewardSystemManager.GetConfig().Rewards.Find(r => r.RewardName == _name);
             //actualRewardGO = AnturaModelManager.Instance.LoadRewardOnAntura(actualReward.ID);
             //foreach (var color in actualRewardGO.GetComponentsInChildren<MeshRenderer>()) {

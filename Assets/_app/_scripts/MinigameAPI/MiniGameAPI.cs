@@ -1,26 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 using ModularFramework.Core;
 using EA4S.Db;
-using EA4S;
 
 namespace EA4S.API
 {
 
     /// <summary>
-    /// Entry point to start fame from app.
+    /// This singleton class is the entry point to a minigame from the core app.
     /// </summary>
-    /// <seealso cref="ModularFramework.Core.Singleton{EA4S.API.MiniGameAPI}" />
+    // refactor: merge with MiniGameLauncher to provide a single entry point.
     public class MiniGameAPI : Singleton<MiniGameAPI>
     {
 
         #region Gameplay Management
 
         /// <summary>
-        /// Prepare all context needed and starts the game.
+        /// Prepare all context needed and starts the a minigame.
         /// </summary>
-        /// <param name="_gameCode">The game code.</param>
-        /// <param name="_gameConfiguration">The game configuration.</param>
+        /// <param name="_gameCode">The minigame code.</param>
+        /// <param name="_gameConfiguration">The minigame configuration.</param>
         public void StartGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration)
         {
             if (AppConstants.VerboseLogging) Debug.Log("StartGame " + _gameCode.ToString());

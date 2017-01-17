@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using EA4S;
-using ModularFramework.Core;
 
-namespace EA4S
+namespace EA4S.Map
 {
+    /// <summary>
+    /// Controls the generation of the Map's pins and dots based on the journey's progression data.
+    /// </summary>
+    // refactor: rename to StageMap or similar, as there is no mini-map in the game.
     public class MiniMap : MonoBehaviour
     {
         [Header("Letter")]
@@ -28,7 +29,6 @@ namespace EA4S
         public Vector3 pinLeft, pinRight;
         public int posMax;
         public bool isAvailableTheWholeMap;
-        Quaternion rot;
         int numDot = 0;
         int numLearningBlock;
 
@@ -62,7 +62,7 @@ namespace EA4S
                 } else v = (2 * x + 1.5f + 2.5f) * Vector3.Normalize(p2 - p1) + p1;
 
 
-                rot.eulerAngles = new Vector3(90, 0, 0);
+                var rot = Quaternion.Euler(90, 0, 0);
                 GameObject dotGo;
                 dotGo = Instantiate(dot, v, rot) as GameObject;
                 dotGo.GetComponent<Dot>().learningBlockActual = numLearningBlock + 1;
@@ -165,6 +165,7 @@ namespace EA4S
         }
         public void Play()
         {
+            // refactor: move this initalisation to a better place, maybe inside the MiniGameLauncher.
             AppManager.I.Teacher.InitialiseCurrentPlaySession();   // This must becalled before the games selector is loaded
             NavigationManager.I.GoToNextScene();
         }

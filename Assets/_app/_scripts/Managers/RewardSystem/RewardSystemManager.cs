@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace EA4S {
-    public static class RewardSystemManager {
+namespace EA4S
+{
+    public static class RewardSystemManager
+    {
 
         #region CONST
         public const string ANTURA_REWARDS_CONFIG_PATH = "Configs/" + "AnturaRewardsConfig";

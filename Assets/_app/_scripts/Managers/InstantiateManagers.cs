@@ -3,6 +3,11 @@ using UnityEngine.EventSystems;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Takes care of generating managers when needed.
+    /// Tied to the AppManager.
+    /// </summary>
+    // refactor: standardize Manager access between this and AppManager
     public class InstantiateManagers : MonoBehaviour
     {
         public GameObject AudioManager;

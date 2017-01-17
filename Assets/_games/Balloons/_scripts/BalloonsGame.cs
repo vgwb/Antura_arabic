@@ -8,6 +8,7 @@ using ModularFramework.Core;
 using ModularFramework.Helpers;
 using ArabicSupport;
 using EA4S;
+using EA4S.Tutorial;
 using TMPro;
 
 namespace EA4S.Balloons
@@ -649,7 +650,6 @@ namespace EA4S.Balloons
 
         private void CreateFloatingLetters_Spelling(int numberOfExtraLetters)
         {
-            var wordData = question as LL_WordData;
             var wordLetters = correctAnswers.Cast<LL_LetterData>().ToList();
             var randomLetters = wrongAnswers.Cast<LL_LetterData>().GetEnumerator();
 

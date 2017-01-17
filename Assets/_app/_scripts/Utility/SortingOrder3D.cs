@@ -1,8 +1,6 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/01
+﻿using UnityEngine;
 
-using UnityEngine;
-
+// refactor: move this to Editor utilities
 namespace EA4S
 {
     /// <summary>

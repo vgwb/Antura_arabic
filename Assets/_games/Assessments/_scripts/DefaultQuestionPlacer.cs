@@ -3,6 +3,7 @@ using Kore.Coroutines;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using EA4S.LivingLetters;
 using UnityEngine;
 
 namespace EA4S.Assessment

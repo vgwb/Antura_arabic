@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 
+// refactor: could move this to EA4S.Scenes
 namespace EA4S
 {
+    /// <summary>
+    /// Manager for the Mood scene.
+    /// </summary>
     public class MoodManager : MonoBehaviour
     {
         [Header("Scene Setup")]
@@ -48,7 +52,7 @@ namespace EA4S
         {
             AppManager.I.Player.MoodLastVisit = System.DateTime.Today.ToString();
             AppManager.I.Player.Save();
-            NavigationManager.I.GoToScene(AppScene.Map);
+            NavigationManager.I.GoToScene(AppScene.Map);    // refactor: let the NavigationManager handle the flow
         }
     }
 }

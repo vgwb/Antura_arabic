@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using EA4S.LivingLetters;
 
 namespace EA4S.Maze
 {
