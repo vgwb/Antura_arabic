@@ -4,7 +4,8 @@ using EA4S.API;
 
 namespace EA4S
 {
-    public enum DifficulyLevels
+    // refactor: this enum could be used throughout the application instead of just being in the DebugManager
+    public enum DifficultyLevel
     {
         VeryEasy = 0,
         Easy = 1,
@@ -13,6 +14,10 @@ namespace EA4S
         VeryHard = 4
     }
 
+    /// <summary>
+    /// General manager for debug purposes.
+    /// Allows debugging via forcing the value of some parameters of the application.
+    /// </summary>
     public class DebugManager : MonoBehaviour
     {
         public static DebugManager I;
@@ -28,25 +33,25 @@ namespace EA4S
             }
         }
 
-        private DifficulyLevels _difficultyLevel = DifficulyLevels.Normal;
-        public DifficulyLevels DifficultyLevel {
+        private DifficultyLevel _difficultyLevel = EA4S.DifficultyLevel.Normal;
+        public DifficultyLevel DifficultyLevel {
             get { return _difficultyLevel; }
             set {
                 _difficultyLevel = value;
                 switch (_difficultyLevel) {
-                    case DifficulyLevels.VeryEasy:
+                    case DifficultyLevel.VeryEasy:
                         Difficulty = 0.1f;
                         break;
-                    case DifficulyLevels.Easy:
+                    case DifficultyLevel.Easy:
                         Difficulty = 0.3f;
                         break;
-                    case DifficulyLevels.Normal:
+                    case DifficultyLevel.Normal:
                         Difficulty = 0.5f;
                         break;
-                    case DifficulyLevels.Hard:
+                    case DifficultyLevel.Hard:
                         Difficulty = 0.7f;
                         break;
-                    case DifficulyLevels.VeryHard:
+                    case DifficultyLevel.VeryHard:
                         Difficulty = 1.0f;
                         break;
                     default:
@@ -84,6 +89,8 @@ namespace EA4S
 
         void Update()
         {
+            // refactor: these are not assigned to anything at all!
+
             if (Input.GetKeyDown(KeyCode.Space)) {
                 Debug.Log("DEBUG - SPACE : skip");
             }
@@ -105,6 +112,7 @@ namespace EA4S
             }
         }
 
+        // refactor: this should be merged with MiniGameAPI and MiniGameLauncher
         public void LaunchMinigGame(MiniGameCode miniGameCodeSelected)
         {
             Debug.Log("LaunchMinigGame " + miniGameCodeSelected.ToString());

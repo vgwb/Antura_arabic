@@ -18,7 +18,7 @@ namespace EA4S.GamesSelector
             // Fill with data
             JourneyPosition journeyPos = AppManager.I.Player.CurrentJourneyPosition;
             TfTitle.text = journeyPos.ToString();
-            if (!journeyPos.isMinor(AppManager.I.Player.MaxJourneyPosition)) {
+            if (!journeyPos.IsMinor(AppManager.I.Player.MaxJourneyPosition)) {
                 // First time playing this session: 0 stars
                 SetStars(0);
             } else {
