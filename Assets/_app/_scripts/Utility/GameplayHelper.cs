@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
+// refactor: Helpers need to be standardized
 namespace EA4S
 {
     public class GameplayHelper

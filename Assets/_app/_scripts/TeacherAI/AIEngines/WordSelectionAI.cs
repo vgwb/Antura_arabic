@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using EA4S.Db;
 using System.Linq;
 
 namespace EA4S.Teacher
 {
     /// <summary>
-    /// Handles the selection of what words a minigame should use, given a playsession
+    /// Handles the selection of what dictionary data a minigame should use, given a playsession
     /// </summary>
+    // rename to DictionaryDataSelectionAI
     public class WordSelectionAI 
     {
         // References

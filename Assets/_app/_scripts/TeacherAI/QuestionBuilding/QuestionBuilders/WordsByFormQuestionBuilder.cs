@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Categorize words based on their form
+    /// * Question: Word to categorize
+    /// * Correct answers: Correct form
+    /// * Wrong answers: Wrong form
+    /// </summary>
     public class WordsByFormQuestionBuilder : IQuestionBuilder
     {
         // focus: Words

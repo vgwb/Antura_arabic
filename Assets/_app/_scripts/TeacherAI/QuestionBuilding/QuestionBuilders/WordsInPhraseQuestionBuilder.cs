@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Selects words inside / related to a phrase
+    /// * Question: The phrase
+    /// * Correct answers: The words related to the phrase
+    /// * Wrong answers: Unrelated words
+    /// </summary>
     public class WordsInPhraseQuestionBuilder : IQuestionBuilder
     {
         // Focus: Words & Phrases

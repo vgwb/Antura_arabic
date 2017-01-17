@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using EA4S.Db;
 
 namespace EA4S.Teacher
 {
+    /// <summary>
+    /// Entry point for logging information on play at runtime, filtered by the Teacher System.
+    /// </summary>
     public class LogAI
     {
         // References
@@ -19,6 +21,7 @@ namespace EA4S.Teacher
 
         public void LogMood(int mood)
         {
+            // refactor: this should have a session like the rest of the logging methods
             float realMood = Mathf.InverseLerp(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue, mood);
             var data = new LogMoodData(realMood);
             db.Insert(data);
@@ -101,10 +104,12 @@ namespace EA4S.Teacher
                 db.Insert(data);
 
                 // We also update the score for that data element
+                // refactor: the magic number 5 should become a configuration parameter
                 UpdateScoreDataWithMovingAverage(result.table, result.elementId, score, 5);
             }
         }
 
+        // refactor: these rules should be moved out of the LogAI and be instead placed in the games' configuration, as they belong to the games 
         private MiniGameLearnRules GetLearnRules(MiniGameCode code)
         {
             MiniGameLearnRules rules = new MiniGameLearnRules();

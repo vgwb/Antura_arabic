@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
-namespace EA4S
+
+namespace EA4S.Map
 {
+    // refactor: can be a non-MonoBehaviour class
     public class Dot : MonoBehaviour
     {
         public int learningBlockActual;

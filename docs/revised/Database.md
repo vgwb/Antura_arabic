@@ -10,7 +10,7 @@ Database Management
   </tr>
 </table>
 
-The application uses two different databases for learning data and progression data.
+The application uses two different databases for learning data and logging data.
 
 ### Learning Data
 
@@ -18,8 +18,9 @@ Learning data comprehends all information needed to provide a correct learning e
 This data is included with the application at startup.
 
 This includes:
- * Learning progression: stage, learning block, and play session configurations
- * Learning content: Letters, words, and phrases of the given language.
+ * Progression data: stage, learning block, and play session configurations
+ * Dictionary data: letters, words, and phrases of the given language.
+ * Minigame data: details on the available minigames and how they tie with Progression and Learning data.
  
 The data is compiled into JSON files contained inside the **_manage/manage_Database/Datasets** folder.
 The JSON files are loaded using the **_manage/manage_Database/manage_Database** scene, where consistency checks are performed and the database contents can be inspected.
@@ -29,6 +30,8 @@ To perform the JSON-to-asset conversion, the **DatabaseLoader** scripts employs 
 
 At runtime, **EA4S.Db.Database** functions as an entry point for all the assets containing the data tables and is managed by a **EA4S.DatabaseManager** instance.
 
+
+@todo: describe Progression and Minigame data?
 
 ### Logging Data
 
@@ -48,11 +51,18 @@ The data is divided in several categories:
 
  * **Database information** holds summary details on the current database and is used for versioning.
   
+See the Logging.md document for further details on logging.
+  
 The database is implemented in SQLite.
 The SQLite database is loaded and connected to whenever a player profile is selected, and generated if non-existing. 
 All communication with the SQLite database is performed through a **EA4S.Db.DBService** instance, managed by the **DatabaseManager*.
 The structure of the SQLite database can be generated a runtime and this is controlled through the **DBService.GenerateTable(bool create, bool drop)**, which can be updated to reflect any changes in the DB scheme.
 Note that any change to the database scheme must also prompt a sequential update of **AppConstants.DbSchemeVersion** for versioning to function correctly.
+
+
+
+
+
 
 ### Profile API
 
@@ -92,3 +102,5 @@ Note that learning data is static and thus not writeable at runtime.
  * The logging data structures should be better defined. They are, for now, too little strict and not enough documentation on their purpose is available.
  * Insert/Update should not be directly exposed and instead be used by the log manager and protected from other uses
  * There is a strong dependency in the code on the specific needs of the language (are words/phrase/letters needed in every language?)
+ * Dictionary and Progression data should be separated, so to better enforce their nature.
+ * Localization data should be separated from the rest

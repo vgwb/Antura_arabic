@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EA4S.LivingLetters;
+using EA4S.Tutorial;
 using UnityEngine;
 using TMPro;
 

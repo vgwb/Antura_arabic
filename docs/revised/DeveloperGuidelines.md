@@ -23,13 +23,15 @@ Developers should follow these guidelines for contributing to the project.
   * Use **THIS_STYLE** for constants.
   * Regions can be used to group code logically. Use **CamelCase** for region names.
   * No copyright notice nor author metadata should be present at the start of the file, unless it is of a third party
-
-  ### Namespaces
+  * Use MiniGame, not Minigame.
+  
+### Namespaces
 
 The whole codebase is under the **EA4S** namespace.
 The main systems can be accessed through the EA4S namespace and thus fall under it.
 
 All minigames are under the **EA4S.MiniGames** namespace.
+Each minigame needs its own namespace in the form of **EA4S.MiniGames.GAME_ID** with GAME_ID being the name of the minigame.
 
 Specific subsystem code is inside a **EA4S.SUBSYSTEM** namespace, where SUBSYSTEM is the subsystem's name.
 
@@ -42,6 +44,7 @@ What follows is a list of all subsystems with their namespaces:
  * **EA4S.GamesSelector** handles the Games Selector scene.
  * **EA4S.Animations** for general animation utilities.
  * **EA4S.Db** for database access and organization.
+ * **EA4S.LivingLetters** for scripts related to the Living Letter characters.
 
 
 ### Git Commit Messages

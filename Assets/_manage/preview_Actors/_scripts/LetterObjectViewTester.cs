@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
-using EA4S;
+using EA4S.LivingLetters;
 
 public class LetterObjectViewTester : MonoBehaviour
 {

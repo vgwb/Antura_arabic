@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Kore.Coroutines;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -36,7 +37,7 @@ namespace EA4S.Assessment
 
         public void StartAnimation( Action callback)
         {
-            Coroutine.Start( AnimationCoroutine( callback));
+            Koroutine.Run( AnimationCoroutine( callback));
         }
 
         private IEnumerator AnimationCoroutine( Action callback)
@@ -57,7 +58,7 @@ namespace EA4S.Assessment
 
             AssessmentConfiguration.Instance.Context.GetAudioManager().PlaySound( Sfx.Poof);
 
-            yield return TimeEngine.Wait( 0.15f);
+            yield return Wait.For( 0.15f);
 
             AnturaAnimationController antura =
             Instantiate( anturaPrefab, AnturaPosition.position, AnturaPosition.rotation)
@@ -68,20 +69,20 @@ namespace EA4S.Assessment
             antura.transform.localScale = Vector3.zero;
             antura.transform.DOScale( Vector3.one, 0.2f);
 
-            yield return TimeEngine.Wait( 0.9f);
+            yield return Wait.For( 0.9f);
             antura.DoShout(
                 () => AssessmentConfiguration.Instance.Context.GetAudioManager()
                             .PlaySound( Sfx.DogBarking)
                 );
 
-            yield return TimeEngine.Wait(1.2f);
+            yield return Wait.For(1.2f);
             particles2 =
            Instantiate(poof, AnturaPosition.position, AnturaPosition.rotation)
                as GameObject;
 
             particles2.transform.localScale = new Vector3(2, 2, 2);
             particles2.SetLayerRecursive( AnturaLayers.ModelsOverUI);
-            yield return TimeEngine.Wait( 1f);
+            yield return Wait.For( 1f);
             antura.transform.DOScale( Vector3.zero, 0.2f).SetEase(Ease.InExpo);
             callback();
         }

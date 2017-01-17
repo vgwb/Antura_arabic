@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using EA4S;
-using ModularFramework.Core;
 
-namespace EA4S
+namespace EA4S.Map
 {
+    /// <summary>
+    /// Controls the generation of the Map's pins and dots based on the journey's progression data.
+    /// </summary>
+    // refactor: rename to StageMap or similar, as there is no mini-map in the game.
     public class MiniMap : MonoBehaviour
     {
         [Header("Letter")]
@@ -164,6 +165,7 @@ namespace EA4S
         }
         public void Play()
         {
+            // refactor: move this initalisation to a better place, maybe inside the MiniGameLauncher.
             AppManager.I.Teacher.InitialiseCurrentPlaySession();   // This must becalled before the games selector is loaded
             NavigationManager.I.GoToNextScene();
         }

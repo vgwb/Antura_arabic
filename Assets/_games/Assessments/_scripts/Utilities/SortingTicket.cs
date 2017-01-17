@@ -1,3 +1,4 @@
+using EA4S.LivingLetters;
 using UnityEngine;
 
 namespace EA4S.Assessment

@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using UniRx;
 
-namespace EA4S
+namespace EA4S.LivingLetters
 {
-
+    // obsolete: remove this?
     public class ShadowController : MonoBehaviour
     {
         /*

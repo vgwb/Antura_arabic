@@ -1,11 +1,13 @@
 using DG.Tweening;
 using System;
 using System.Collections;
+using EA4S.Tutorial;
 using UnityEngine;
+using Kore.Coroutines;
 
 namespace EA4S.Assessment
 {
-    public class AssessmentAnturaController : MonoBehaviour, ITickable
+    public class AssessmentAnturaController : MonoBehaviour
     {
         public AnturaAnimationController antura { get; set; }
 
@@ -24,11 +26,11 @@ namespace EA4S.Assessment
         {
             idleTime = 0;
             clickEnabled = false;
-            yield return TimeEngine.Wait( 0.4f);
+            yield return Wait.For( 0.4f);
             TutorialUI.Click( TutorialHelper.GetWorldPosition());
-            yield return TimeEngine.Wait( 0.1f);
+            yield return Wait.For( 0.1f);
             AssessmentConfiguration.Instance.Context.GetAudioManager().PlaySound( Sfx.UIPopup);
-            yield return TimeEngine.Wait( 0.2f);
+            yield return Wait.For( 0.2f);
             clickEnabled = true;
         }
 
@@ -37,11 +39,6 @@ namespace EA4S.Assessment
             instance = this;
             currentState = 0;
             audioManager = AssessmentConfiguration.Instance.Context.GetAudioManager();
-        }
-
-        void Start()
-        {
-            TimeEngine.AddTickable( this);
         }
 
         Action playPushAnturaSound;
@@ -53,7 +50,7 @@ namespace EA4S.Assessment
             isAnimating = true;
             playPushAnturaSound = pushSound;
             playGoneSound = goneSound;
-            Coroutine.Start( CheckStateAndSetAnimation());
+            Koroutine.Run( CheckStateAndSetAnimation());
         }
 
         void OnMouseUp()
@@ -92,11 +89,6 @@ namespace EA4S.Assessment
         private int currentState;
         private int stateDelta;
 
-        void OnDestroy()
-        {
-            TimeEngine.RemoveTickable( this);
-        }
-
         void TurnAntura(float degrees)
         {
             transform.DORotate( new Vector3( 0, degrees, 0), 0.6f).SetEase( Ease.InOutSine);
@@ -106,21 +98,25 @@ namespace EA4S.Assessment
         {
             antura.State = AnturaAnimationStates.walking;
 
-            yield return TimeEngine.Wait( 1.0f);
+            yield return Wait.For( 1.0f);
 
-            yield return transform
-                .DOMove( anturaCenter.position, 3.0f)
-                .SetEase( Ease.InOutSine);
+            //Debug.Log("Antura-------------------");
+            //yield return new WaitForTween( 
+            transform
+            .DOMove(anturaCenter.position, 3.0f)
+            .SetEase(Ease.InOutSine);
+            //    );
+           // Debug.Log("Antura2------------------");
 
-            yield return TimeEngine.Wait( 2.6f);
+            yield return Wait.For( 2.6f);
             sleepingParticles = Instantiate( sleepingParticles, paritclesPos) as ParticleSystem;
             sleepingParticles.transform.localPosition = Vector3.zero;
             antura.State = AnturaAnimationStates.sleeping;
-            yield return TimeEngine.Wait( 2.1f);
+            yield return Wait.For( 2.1f);
 
             playPushAnturaSound();            
-            yield return TimeEngine.Wait( 1.0f);
-            Coroutine.Start(TutorialClicks());
+            yield return Wait.For( 1.0f);
+            Koroutine.Run( TutorialClicks());
 
             idleTime = 0;
             while (currentState < 3)
@@ -129,7 +125,7 @@ namespace EA4S.Assessment
                 {
                     if(idleTime > 3f)
                     {
-                        Coroutine.Start( TutorialClicks());
+                        Koroutine.Run( TutorialClicks());
                         idleTime = 0;
                     }
                         
@@ -149,31 +145,31 @@ namespace EA4S.Assessment
                 switch (currentState)
                 {
                     case 0:
-                        Coroutine.Start( TutorialClicks());
+                        Koroutine.Run( TutorialClicks());
                         emission.enabled = true;
                         antura.State = AnturaAnimationStates.sleeping;
-                        yield return TimeEngine.Wait( 0.3f);
+                        yield return Wait.For( 0.3f);
                         PlayStateSound();
                         TurnAntura( -75f);
-                        yield return TimeEngine.Wait( 0.3f);
+                        yield return Wait.For( 0.3f);
                         soundPlayed = false;
                         break;
 
                     case 1:
-                        Coroutine.Start(TutorialClicks());
+                        Koroutine.Run(TutorialClicks());
                         emission.enabled = false;
                         antura.State = AnturaAnimationStates.sitting;
-                        yield return TimeEngine.Wait( 0.8f);
+                        yield return Wait.For( 0.8f);
                         PlayStateSound();
-                        yield return TimeEngine.Wait( 1.0f);
+                        yield return Wait.For( 1.0f);
                         soundPlayed = false;
                         break;
 
                     case 2:
-                        Coroutine.Start(TutorialClicks());
+                        Koroutine.Run(TutorialClicks());
                         antura.DoShout(() => audioManager.PlaySound( Sfx.DogBarking));
                         PlayStateSound();
-                        yield return TimeEngine.Wait( 1.5f);
+                        yield return Wait.For( 1.5f);
                         soundPlayed = false;
                         break;
 
@@ -192,7 +188,7 @@ namespace EA4S.Assessment
                 stateDelta = 0;
             }
 
-            yield return TimeEngine.Wait( 1.0f);
+            yield return Wait.For( 1.0f);
         }
 
         internal bool IsAnimating()
@@ -227,7 +223,7 @@ namespace EA4S.Assessment
             playSound = true;
             stateDelta = 0;
             if (currentState == 1)
-                Coroutine.Start( TutorialClicks());
+                Koroutine.Run( TutorialClicks());
 
             currentState--;
         }
@@ -242,10 +238,10 @@ namespace EA4S.Assessment
 
         float idleTime = 0;
 
-        bool ITickable.Update( float deltaTime)
+        void Update()
         {
-            currentTreshold -= deltaTime;
-            idleTime += deltaTime;
+            currentTreshold -= Time.deltaTime;
+            idleTime += Time.deltaTime;
 
             if (currentTreshold < 0)
                 currentTreshold = 0;
@@ -261,8 +257,6 @@ namespace EA4S.Assessment
                 currentTreshold = currentMaxTreshold /2;
                 stateDelta++;
             }
-
-            return false;
         }
     }
 }

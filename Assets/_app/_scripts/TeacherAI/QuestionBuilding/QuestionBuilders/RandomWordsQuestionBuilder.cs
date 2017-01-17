@@ -3,7 +3,12 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
-
+    /// <summary>
+    /// Selects words at random
+    /// * Question: The word to find
+    /// * Correct answers: The correct word
+    /// * Wrong answers: Wrong words
+    /// </summary>
     public class RandomWordsQuestionBuilder : IQuestionBuilder
     {
         // Focus: Words

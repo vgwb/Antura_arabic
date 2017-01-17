@@ -1,3 +1,4 @@
+using Kore.Coroutines;
 using System.Collections;
 using UnityEngine;
 
@@ -81,7 +82,7 @@ namespace EA4S.Assessment
             }
 
             // give time to finish animating elements
-            yield return TimeEngine.Wait(0.65f);
+            yield return Wait.For(0.65f);
             isAnimating = false;
         }
     }
