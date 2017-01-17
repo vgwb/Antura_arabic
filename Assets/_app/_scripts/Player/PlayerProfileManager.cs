@@ -24,6 +24,8 @@ namespace EA4S
             set {
                 if (currentPlayer != value) {
 
+                    // refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
+
                     if (AppManager.I.DB != null) {
                         LogManager.I.LogInfo(InfoEvent.AppClosed);
                     }
