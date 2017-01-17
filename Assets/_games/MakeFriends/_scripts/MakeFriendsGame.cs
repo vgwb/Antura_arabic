@@ -304,7 +304,7 @@ namespace EA4S.MakeFriends
                 choiceLetters.Add(letter);
                 //Debug.Log("Added " + letter.TextForLivingLetter + " to choices");
             }
-            choiceLetters = choiceLetters.Shuffle();
+            choiceLetters.Shuffle();
 
             letterPicker.DisplayLetters(choiceLetters);
             if (isTutorialRound)

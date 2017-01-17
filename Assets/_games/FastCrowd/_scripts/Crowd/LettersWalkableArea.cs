@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModularFramework.Helpers;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,12 +19,17 @@ public class LettersWalkableArea : MonoBehaviour
         colliders = GetComponentsInChildren<BoxCollider>(false);
     }
 
-    public Vector3 GetFurthestSpawn(IEnumerable<GameObject> letters)
+    public Vector3 GetFurthestSpawn(IList<GameObject> letters)
     {
         float bestDistance = -1;
         Vector3 bestSpawn = Vector3.zero;
 
-        foreach (var spawn in spawnPoints)
+        var shuffledSpawnPoints = spawnPoints.ShuffleCopy();
+
+        if (letters == null || letters.Count == 0)
+            return shuffledSpawnPoints[0].transform.position;
+
+        foreach (var spawn in shuffledSpawnPoints)
         {
             var spawnPos = spawn.transform.position;
 

@@ -1,4 +1,5 @@
 ﻿using EA4S.Teacher;
+using ModularFramework.Helpers;
 using System.Collections.Generic;
 
 namespace EA4S
@@ -93,7 +94,7 @@ namespace EA4S
             }
 
             // Shuffle the packs at the end
-            packs = packs.Shuffle();
+            packs.Shuffle();
 
             if (ConfigAI.verboseTeacher)
             {

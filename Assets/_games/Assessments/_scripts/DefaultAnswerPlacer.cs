@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using EA4S.LivingLetters;
 using UnityEngine;
+using ModularFramework.Helpers;
 
 namespace EA4S.Assessment
 {
@@ -65,7 +66,7 @@ namespace EA4S.Assessment
 
             if (AppConstants.VerboseLogging)
                 Debug.Log("COUNT:" + positions.Count);
-            positions = positions.Shuffle();
+            positions.Shuffle();
 
             foreach (var a in allAnswers)
                 yield return Koroutine.Nested( PlaceAnswer( a, positions));

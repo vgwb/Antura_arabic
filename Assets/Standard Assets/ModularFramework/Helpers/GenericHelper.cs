@@ -19,6 +19,7 @@
 * -------------------------------------------------------------- */
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ModularFramework.Helpers {
 
@@ -58,6 +59,23 @@ namespace ModularFramework.Helpers {
                 list[n] = value;
             }
         }
+
+        public static IList<T> ShuffleCopy<T>(this IList<T> thisList)
+        {
+            IList<T> list = new List<T>(thisList.ToArray());
+
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+            return list;
+        }
+
 
         #endregion
 
