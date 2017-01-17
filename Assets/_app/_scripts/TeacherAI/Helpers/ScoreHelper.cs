@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using EA4S.Db;
 
 namespace EA4S.Db
 {
     #region Info Wrappers
 
+    /// <summary>
+    /// Pairs the data related to a specific type T with its score and unlock state.
+    /// </summary>
     public class DataInfo<T> where T : IData
     {
         public T data = default(T);
@@ -30,6 +32,9 @@ namespace EA4S.Db
 namespace EA4S.Teacher
 {
 
+    /// <summary>
+    /// Utilities that help in retrieving and updating score values for learning and progression data.
+    /// </summary>
     public class ScoreHelper
     {
         DatabaseManager dbManager;

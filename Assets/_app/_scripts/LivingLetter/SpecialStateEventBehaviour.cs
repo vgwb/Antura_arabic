@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
-using EA4S;
 
-public class SpecialStateEventBehaviour : StateMachineBehaviour
+namespace EA4S.LivingLetters
 {
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // refactor: group these behaviours in a folder
+    public class SpecialStateEventBehaviour : StateMachineBehaviour
     {
-        animator.gameObject.SendMessage("OnActionCompleted");
+        override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            animator.gameObject.SendMessage("OnActionCompleted");
+        }
     }
 }

@@ -16,14 +16,13 @@ namespace EA4S.GamesSelector
         public bool isPlaying { get; private set; }
         Tween showTween, moveTween;
         Sequence trailTimeTween;
-        float defFingerZ;
 
         #region Unity
 
         void Awake()
         {
             Finger.gameObject.SetActive(false);
-            defFingerZ = Finger.transform.position.z;
+            //float defFingerZ = Finger.transform.position.z;
 
             showTween = Finger.DOFade(0, 0.25f).From().SetEase(Ease.Linear).SetAutoKill(false).Pause();
             trailTimeTween = DOTween.Sequence().SetAutoKill(false).Pause();

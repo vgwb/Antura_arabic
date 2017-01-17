@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
-using EA4S;
 
 // refactor: remove?
-namespace EA4S
+namespace EA4S.LivingLetters
 {
     public class LivingLetterClickCollider : MonoBehaviour
     {

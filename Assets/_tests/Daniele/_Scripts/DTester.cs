@@ -19,10 +19,16 @@ namespace EA4S
             // Subtitles - T to show text, SHIFT+T to show keeper text, CTRL/CMD+T to close
             if (WidgetSubtitles.I != null) {
                 if (Input.GetKeyDown(KeyCode.T)) {
-                    if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand)) {
+                    if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand))
+                    {
                         WidgetSubtitles.I.Close();
-                    } else
-                        WidgetSubtitles.I.DisplaySentence("من فضلك، حاول اصطياد البعض منها. من فضلك، حاول التقاطها.", 2, Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
+                    }
+                    else
+                    {
+                        var testData = new Db.LocalizationData();
+                        testData.Arabic = "من فضلك، حاول اصطياد البعض منها. من فضلك، حاول التقاطها.";
+                        WidgetSubtitles.I.DisplaySentence(testData, 2, Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
+                    }
                 }
             }
 

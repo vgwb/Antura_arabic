@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using EA4S.Db;
+using EA4S.LivingLetters;
 
 namespace EA4S.PlayerBook
 {

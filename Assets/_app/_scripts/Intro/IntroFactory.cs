@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using EA4S.LivingLetters;
 using ModularFramework.Helpers;
 
 namespace EA4S.Intro
@@ -25,7 +26,7 @@ namespace EA4S.Intro
         //Queue<ILivingLetterData> toAdd = new Queue<ILivingLetterData>();
 
         Queue<IntroStrollingLetter> toDestroy = new Queue<IntroStrollingLetter>();
-        float destroyTimer = 0;
+        //float destroyTimer = 0;
 
         [HideInInspector]
         public bool StartSpawning = false;

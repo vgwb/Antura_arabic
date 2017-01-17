@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Selects words that have letters in commons.
+    /// * Question: Words with letters in common
+    /// * Correct answers: letters in common
+    /// * Wrong answers: letters not in common
+    /// </summary>
     public class CommonLettersInWordQuestionBuilder : IQuestionBuilder
     {
         // focus: Letters & Words

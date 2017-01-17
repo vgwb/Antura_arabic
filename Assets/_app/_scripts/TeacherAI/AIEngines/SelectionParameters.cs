@@ -2,13 +2,19 @@
 
 namespace EA4S.Teacher
 {
+    /// <summary>
+    /// Defines how to handle repetition when selecting learning data.
+    /// </summary>
     public enum SelectionSeverity
     {
-        AsManyAsPossible,       // If possible, the given number of data valuesis asked for, or less if there are not enough.
+        AsManyAsPossible,       // If possible, the given number of data values is asked for, or less if there are not enough.
         AllRequired,            // The given number of data values is required. Error if it is not reached.
         MayRepeatIfNotEnough    // @todo: may repeat the same values if not enough values are found
     }
 
+    /// <summary>
+    /// Define how to handle multiple question packs.
+    /// </summary>
     public enum PackListHistory
     {
         NoFilter,               // Multiple packs in the game have no influence one over the other
@@ -17,6 +23,9 @@ namespace EA4S.Teacher
         SkipPacks,              // If we cannot find enough data, reduce the number of packs to be generated
     }
 
+    /// <summary>
+    /// Parameters for filtering and selecting learning data based on the minigame requirements, used by QuestionBuilders.
+    /// </summary>
     public struct SelectionParameters
     {
         public SelectionSeverity severity;
@@ -37,6 +46,9 @@ namespace EA4S.Teacher
         }
     }
 
+    /// <summary>
+    /// Parameters used to configure a QuestionBuilder.
+    /// </summary>
     public class QuestionBuilderParameters
     {
         public PackListHistory correctChoicesHistory;

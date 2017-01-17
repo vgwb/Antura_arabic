@@ -2,7 +2,7 @@
 namespace EA4S
 {
     /// <summary>
-    /// Specific rules per mini game
+    /// Specific rules that parameterize how a minigame handles learning content for result purposes
     /// </summary>
     public class MiniGameLearnRules
     {

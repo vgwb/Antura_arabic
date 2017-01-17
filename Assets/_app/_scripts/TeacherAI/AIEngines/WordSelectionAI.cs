@@ -1,19 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using EA4S.Db;
 using System.Linq;
 
 namespace EA4S.Teacher
 {
     /// <summary>
-    /// Handles the selection of what words a minigame should use, given a playsession
+    /// Handles the selection of what dictionary data a minigame should use, given a playsession
     /// </summary>
+    // rename to DictionaryDataSelectionAI
     public class WordSelectionAI 
     {
         // References
         private DatabaseManager dbManager;
-        private TeacherAI teacher;
-        private WordHelper wordHelper;
+        //private TeacherAI teacher;
+        //private WordHelper wordHelper;
 
         // Inner state
         private HashSet<LetterData> journeyLetters = new HashSet<LetterData>();
@@ -27,8 +27,8 @@ namespace EA4S.Teacher
         public WordSelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile, TeacherAI _teacher, WordHelper _wordHelper)
         {
             this.dbManager = _dbManager;
-            this.teacher = _teacher;
-            this.wordHelper = _wordHelper;
+            //this.teacher = _teacher;
+            //this.wordHelper = _wordHelper;
         }
 
         public void InitialiseNewPlaySession(string currentPlaySessionId)

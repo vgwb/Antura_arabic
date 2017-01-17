@@ -1,9 +1,12 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using System;
+﻿using System;
+using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// View of a WordData shown as a drawing or image on a LivingLetter.
+    /// </summary>
+    // refactor: rename to better indicate that this is a view
     public class LL_ImageData : ILivingLetterData
     {
 
@@ -15,10 +18,10 @@ namespace EA4S
 
         public string Id {
             get { return Data.Id; }
-            set { Data = AppManager.I.DB.GetWordDataById(value); }
+            set { Data = AppManager.I.DB.GetWordDataById(value); }  // refactor: inject the value, no reference to the DB
         }
 
-        public LL_ImageData(string _id) : this(AppManager.I.DB.GetWordDataById(_id))
+        public LL_ImageData(string _id) : this(AppManager.I.DB.GetWordDataById(_id))  // refactor: inject the value, no reference to the DB
         {
         }
 
@@ -35,11 +38,11 @@ namespace EA4S
         /// Living Letter Text To Display.
         /// </summary>
         public string TextForLivingLetter {
-            get { return ArabicAlphabetHelper.PrepareArabicStringForDisplay(Data.Arabic); }
+            get { return ArabicAlphabetHelper.PrepareArabicStringForDisplay(Data.Arabic); }  // refactor: remove reference to the Arabic language
         }
 
         public string DrawingCharForLivingLetter {
-            get { return AppManager.I.Teacher.wordHelper.GetWordDrawing(Data); }
+            get { return AppManager.I.Teacher.wordHelper.GetWordDrawing(Data); }  // refactor: inject the value, no reference to the DB
         }
 
         /// <summary>

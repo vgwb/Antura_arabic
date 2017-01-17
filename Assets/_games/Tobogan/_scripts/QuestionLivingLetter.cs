@@ -3,6 +3,7 @@ using DG.Tweening;
 using TMPro;
 using System;
 using ArabicSupport;
+using EA4S.LivingLetters;
 
 namespace EA4S.Tobogan
 {

@@ -9,6 +9,7 @@ using TMPro;
 
 using System;
 using EA4S;
+using EA4S.LivingLetters;
 
 namespace EA4S.DancingDots
 {
