@@ -1,3 +1,4 @@
+using Kore.Coroutines;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -26,7 +27,7 @@ namespace EA4S.Assessment
         }
 
         #region AUDIO
-        private YieldInstruction PlayStartSound()
+        private IYieldable PlayStartSound()
         {
             return Dialogues.Dialogue(Localization.Random(
                                         Db.LocalizationDataId.Assessment_Start_1,
@@ -34,14 +35,14 @@ namespace EA4S.Assessment
                                         Db.LocalizationDataId.Assessment_Start_3), true);
         }
 
-        private YieldInstruction PlayAnturaIsComingSound()
+        private IYieldable PlayAnturaIsComingSound()
         {
             return Dialogues.Dialogue( Localization.Random(
                                         Db.LocalizationDataId.Assessment_Upset_2,
                                         Db.LocalizationDataId.Assessment_Upset_3), true);
         }
 
-        private YieldInstruction PlayPushAnturaSound()
+        private IYieldable PlayPushAnturaSound()
         {
             return Dialogues.Dialogue( Localization.Random(
                                         Db.LocalizationDataId.Assessment_Push_Dog_1,
@@ -49,7 +50,7 @@ namespace EA4S.Assessment
                                         Db.LocalizationDataId.Assessment_Push_Dog_3), true);
         }
 
-        private YieldInstruction PlayAnturaGoneSound()
+        private IYieldable PlayAnturaGoneSound()
         {
             return Dialogues.Dialogue( Localization.Random(
                                         Db.LocalizationDataId.Assessment_Dog_Gone_1,
@@ -57,7 +58,7 @@ namespace EA4S.Assessment
                                         Db.LocalizationDataId.Assessment_Dog_Gone_3), true);
         }
 
-        private YieldInstruction PlayAssessmentCompleteSound()
+        private IYieldable PlayAssessmentCompleteSound()
         {
             return Dialogues.Dialogue( Localization.Random(
                                         Db.LocalizationDataId.Assessment_Complete_1,
@@ -65,7 +66,7 @@ namespace EA4S.Assessment
                                         Db.LocalizationDataId.Assessment_Complete_3), true);
         }
 
-        private YieldInstruction PlayGameDescription()
+        private IYieldable PlayGameDescription()
         {
             return Dialogues.Speak( GameDescription);
         }
@@ -125,7 +126,7 @@ namespace EA4S.Assessment
                     while (anturaController.IsAnimating())
                         yield return null;
 
-                    yield return TimeEngine.Wait( 0.3f);
+                    yield return Wait.For( 0.3f);
                     yield return PlayGameDescription();
                     #endregion
 

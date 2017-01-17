@@ -10,7 +10,7 @@ namespace Kore.Coroutines
     /// Static class to access special coroutines without having to call each time
     /// "Instance" over CoroutineCore.
     /// </summary>
-    public static class Coroutine
+    public static class Koroutine
     {
         private static CoroutineNestedYieldable NestedYield = new CoroutineNestedYieldable();
 
@@ -33,8 +33,8 @@ namespace Kore.Coroutines
         /// <returns> A Yieldable object (you can "yield return" it).</returns>
         public static IYieldable Nested( IEnumerator enumerator)
         {
-            Coroutine.NestedYield.Nested = enumerator;
-            return Coroutine.NestedYield;
+            Koroutine.NestedYield.Nested = enumerator;
+            return Koroutine.NestedYield;
         }
     }
 

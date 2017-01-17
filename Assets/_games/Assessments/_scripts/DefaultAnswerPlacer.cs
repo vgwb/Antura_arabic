@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Kore.Coroutines;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,13 +26,13 @@ namespace EA4S.Assessment
         {
             allAnswers = answer;
             isAnimating = true;
-            Coroutine.Start(PlaceCoroutine());
+            Koroutine.Run( PlaceCoroutine());
         }
 
         public void RemoveAnswers()
         {
             isAnimating = true;
-            Coroutine.Start(RemoveCoroutine());
+            Koroutine.Run( RemoveCoroutine());
         }
 
         private IEnumerator PlaceCoroutine()
@@ -66,13 +67,13 @@ namespace EA4S.Assessment
             positions = positions.Shuffle();
 
             foreach (var a in allAnswers)
-                yield return PlaceAnswer(a, positions);
+                yield return Koroutine.Nested( PlaceAnswer( a, positions));
 
-            yield return TimeEngine.Wait(0.65f);
+            yield return Wait.For( 0.65f);
             isAnimating = false;
         }
 
-        private IEnumerator PlaceAnswer(IAnswer answer, List<Vector3> positions)
+        private IEnumerator PlaceAnswer( IAnswer answer, List<Vector3> positions)
         {
             var go = answer.gameObject;
             go.transform.localPosition = positions.Pull();
@@ -80,15 +81,15 @@ namespace EA4S.Assessment
             go.GetComponent<LetterObjectView>().Poof(ElementsSize.PoofOffset);
             audioManager.PlaySound(Sfx.Poof);
 
-            yield return TimeEngine.Wait(Random.Range(0.07f, 0.13f));
+            yield return Wait.For( Random.Range( 0.07f, 0.13f));
         }
 
         private IEnumerator RemoveCoroutine()
         {
             foreach (var a in allAnswers)
-                yield return RemoveAnswer(a.gameObject);
+                yield return Koroutine.Nested( RemoveAnswer(a.gameObject));
 
-            yield return TimeEngine.Wait(0.65f);
+            yield return Wait.For( 0.65f);
             isAnimating = false;
         }
 
@@ -99,7 +100,7 @@ namespace EA4S.Assessment
             answ.GetComponent<LetterObjectView>().Poof(ElementsSize.PoofOffset);
             answ.transform.DOScale(0, 0.3f).OnComplete(() => GameObject.Destroy(answ));
 
-            yield return TimeEngine.Wait(0.1f);
+            yield return Wait.For( 0.1f);
         }
     }
 }

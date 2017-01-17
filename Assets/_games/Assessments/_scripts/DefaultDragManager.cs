@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EA4S.Assessment
 {
-    internal class DefaultDragManager : IDragManager, ITickable
+    internal class DefaultDragManager : IDragManager
     {
         private IAudioManager audioManager;
         private IAnswerChecker checker;
@@ -20,8 +20,6 @@ namespace EA4S.Assessment
         public void EnableDragOnly()
         {
             dragOnly = true;
-            ticking = true;
-            TimeEngine.AddTickable(this);
             foreach (var a in answers)
                 a.Enable();
         }
@@ -140,8 +138,7 @@ namespace EA4S.Assessment
             return p1.DistanceIsLessThan( p2, 2f);
         }
 
-        bool ticking = false;
-        public bool Update( float deltaTime)
+        public void Update( float deltaTime)
         {
             if (droppable != null)
             {
@@ -149,7 +146,6 @@ namespace EA4S.Assessment
                 pos.z = 5;
                 droppable.GetTransform().localPosition = pos;
             }
-            return !ticking;
         }
 
         public void DisableInput()
