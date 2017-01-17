@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using EA4S.LivingLetters;
 using UnityEngine;
+using DG.DeExtensions;
 
 namespace EA4S.Assessment
 {
@@ -39,7 +40,7 @@ namespace EA4S.Assessment
             for (int i = 0; i < answer.Length; i++)
                 answer[ i].AddTicket(i);
 
-            answer = answer.Shuffle();
+            answer.Shuffle();
 
             ForceRandom( answer, original);
 
