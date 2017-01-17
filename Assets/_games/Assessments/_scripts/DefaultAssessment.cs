@@ -1,5 +1,5 @@
 using Kore.Coroutines;
-using System;
+using Kore.Utils;
 using System.Collections;
 
 namespace EA4S.Assessment
@@ -72,7 +72,86 @@ namespace EA4S.Assessment
 
         #endregion
 
-        public IEnumerator PlayCoroutine( Action gameEndedCallback)
+
+        public void StartGameSession( KoreCallback gameEndedCallback)
+        {
+            Koroutine.Run( RoundsCoroutine( gameEndedCallback));
+        }
+
+        private IEnumerator RoundsCoroutine( KoreCallback gameEndedCallback)
+        { 
+            // Regular Rounds. No tutorial / no antura
+            for (int round = 0; round < Configuration.Rounds; round++)
+            {
+                Init();
+
+                yield return Koroutine.Nested( PlaceQuestions());
+                yield return Koroutine.Nested( PlaceAnswers());
+                yield return Koroutine.Nested( GamePlay());
+                yield return Koroutine.Nested( ClearRound());
+            }
+
+            gameEndedCallback();
+        }
+
+        private IEnumerator PlaceQuestions()
+        {
+            QuestionPlacer.Place( QuestionGenerator.GetAllQuestions());
+            while ( QuestionPlacer.IsAnimating())
+                yield return null;
+        }
+
+        private IEnumerator PlaceAnswers()
+        {
+            AnswerPlacer.Place( QuestionGenerator.GetAllAnswers());
+            while ( AnswerPlacer.IsAnimating())
+                yield return null;
+
+            LogicInjector.AnswersAdded();
+        }
+
+        private IEnumerator GamePlay()
+        {
+            LogicInjector.EnableGamePlay();
+
+            while (LogicInjector.AllAnswersCorrect() == false)
+                yield return null;
+        }
+
+        private IEnumerator ClearRound()
+        {
+            LogicInjector.RemoveDraggables();
+
+            QuestionPlacer.RemoveQuestions();
+            AnswerPlacer.RemoveAnswers();
+
+            while (QuestionPlacer.IsAnimating() || AnswerPlacer.IsAnimating())
+                yield return null;
+
+            LogicInjector.ResetRound();
+        }
+
+        private void Init()
+        {
+            QuestionGenerator.InitRound();
+
+            for (int question = 0; question < Configuration.SimultaneosQuestions; question++)
+
+                LogicInjector.Wire(
+                    QuestionGenerator.GetNextQuestion(),
+                    QuestionGenerator.GetNextAnswers());
+
+            LogicInjector.CompleteWiring();
+            LogicInjector.EnableDragOnly(); // TODO: Requirements changed. again.
+
+            //mute feedback audio while speaker is speaking TODO: Move to SpeakerManager
+            bool answerConfigurationCache = AssessmentOptions.Instance.PronunceAnswerWhenClicked;
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = false;
+
+            QuestionGenerator.CompleteRound();
+        }
+
+        public IEnumerator PlayCoroutine( KoreCallback gameEndedCallback)
         {
             yield return PlayStartSound();
 
@@ -90,9 +169,9 @@ namespace EA4S.Assessment
                         QuestionGenerator.GetNextAnswers()      );
 
                 LogicInjector.CompleteWiring();
-                LogicInjector.EnableDragOnly(); //as by new requirments
+                LogicInjector.EnableDragOnly(); //as by new requirments TODO: Requirements changed. again.
 
-                //mute feedback audio while speaker is speaking
+                //mute feedback audio while speaker is speaking TODO: Move to SpeakerManager
                 bool answerConfigurationCache = AssessmentOptions.Instance.PronunceAnswerWhenClicked;
                 AssessmentOptions.Instance.PronunceAnswerWhenClicked = false;
 

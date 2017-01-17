@@ -101,8 +101,8 @@ namespace EA4S.Assessment
             yield return Wait.For( 1.0f);
 
             transform
-            .DOMove(anturaCenter.position, 3.0f)
-            .SetEase(Ease.InOutSine);
+            .DOMove( anturaCenter.position, 3.0f)
+            .SetEase( Ease.InOutSine);
 
             yield return Wait.For( 2.6f);
             sleepingParticles = Instantiate( sleepingParticles, paritclesPos) as ParticleSystem;

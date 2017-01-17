@@ -1,4 +1,3 @@
-using Kore.Coroutines;
 
 namespace EA4S.Assessment
 {
@@ -64,7 +63,7 @@ namespace EA4S.Assessment
 
         public void EnterState()
         {
-            Koroutine.Run( assessment.PlayCoroutine( SetNextState));
+            assessment.StartGameSession(SetNextState);
         }
 
         public void SetNextState()
