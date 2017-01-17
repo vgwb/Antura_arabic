@@ -6,6 +6,9 @@ using ArabicSupport;
 
 namespace EA4S
 {
+    // refactor: This should be among helpers and not be accessed through the TeacherAI.
+    // refactor: We should create an intermediate layer for accessing language-specific helpers, so that they can be removed easily.
+    // refactor: this class needs a large refactoring as it is used for several different purposes
     public static class ArabicAlphabetHelper
     {
 
@@ -23,6 +26,7 @@ namespace EA4S
             return ArabicFixer.Fix(str, true, true);
         }
 
+        // refactor: not used?
         public static void DebugLetter(Db.LetterData letterData)
         {
             byte[] bytesUtf16 = Encoding.Unicode.GetBytes(letterData.Isolated);
