@@ -223,6 +223,7 @@ namespace EA4S
             return "";
         }*/
 
+        // refactor: move these a more coherent manager, which handles the state of a play session between minigames
         #region temp for demo
         List<EndsessionResultData> EndSessionResults = new List<EndsessionResultData>();
 

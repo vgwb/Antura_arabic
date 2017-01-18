@@ -1,13 +1,13 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/21
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Visual container for minigame instances in the EndsessionResultPanel
+    /// </summary>
     public class EndsessionMinigames : MonoBehaviour
     {
         public EndsessionMinigame MinigamePrefab;

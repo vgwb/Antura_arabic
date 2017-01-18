@@ -1,12 +1,11 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/21
-
-using DG.DeExtensions;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Bar that fills up to show the results of a play session
+    /// </summary>
     public class EndsessionBar : MonoBehaviour
     {
         public RectTransform BarContainer;

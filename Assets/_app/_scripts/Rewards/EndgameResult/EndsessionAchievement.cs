@@ -1,12 +1,12 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/21
-
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Represents an earned achievement (reward) in the EndsessionResultPanel
+    /// </summary>
     public class EndsessionAchievement : MonoBehaviour
     {
         public Color LockedColor = Color.red;
