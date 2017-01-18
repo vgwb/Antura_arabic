@@ -47,6 +47,7 @@ namespace EA4S
 
             AudioManager myTarget = (AudioManager)target;
 
+            /*
             if (GUILayout.Button("Grab from Fabric"))
             {
                 myTarget.sfxConfs.Clear();
@@ -148,6 +149,7 @@ namespace EA4S
                     }
                 }
             }
+            */
 
             EditorGUILayout.LabelField("-- Sound effects --", titlesStyle);
             EditorGUILayout.Separator();

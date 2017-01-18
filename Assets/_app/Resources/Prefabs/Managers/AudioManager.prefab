@@ -139,8 +139,6 @@ GameObject:
   m_Component:
   - component: {fileID: 481964}
   - component: {fileID: 11439158}
-  - component: {fileID: 11481754}
-  - component: {fileID: 11431106}
   - component: {fileID: 114000010424636218}
   m_Layer: 0
   m_Name: AudioManager
@@ -4369,359 +4367,6 @@ MonoBehaviour:
   _syncWithMusicTime: 0
   _markers: []
   _regions: []
---- !u!114 &11431106
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 113176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 181790006, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _globalParameterManager:
-    _globalRTParameters:
-      _keys: []
-      _data: []
-    _globalSwitches:
-      _keys: []
-      _data: []
-  _eventList:
-  - _UnSet_
-  - Dog/Barking
-  - Dog/Snoring
-  - Dog/Snorting
-  - KeeperDialog
-  - LL/Angry
-  - LL/Fear
-  - LL/Happy
-  - LL/Hold
-  - LL/Sad
-  - MusicTrigger
-  - Sfx/AlarmClock
-  - Sfx/BallHit
-  - Sfx/BalloonPop
-  - Sfx/BushRustlingIn
-  - Sfx/BushRustlingOut
-  - Sfx/CameraMovement
-  - Sfx/CrateLandOnground
-  - Sfx/DangerClock
-  - Sfx/DangerClockLong
-  - Sfx/EggBreak
-  - Sfx/EggMove
-  - Sfx/Grab
-  - Sfx/Hit
-  - Sfx/KO
-  - Sfx/Lose
-  - Sfx/OK
-  - Sfx/PipeBlowIn
-  - Sfx/PipeBlowOut
-  - Sfx/Poof
-  - Sfx/ScaleDown
-  - Sfx/ScaleUp
-  - Sfx/ScreenHit
-  - Sfx/Splat
-  - Sfx/StampOK
-  - Sfx/StarFlower
-  - Sfx/ThrowArm
-  - Sfx/ThrowObj
-  - Sfx/TickAndWin
-  - Sfx/Transition
-  - Sfx/UI/Button
-  - Sfx/UI/PauseIn
-  - Sfx/UI/PauseOut
-  - Sfx/UI/Popup
-  - Sfx/WalkieTalkie
-  - Sfx/WheelStart
-  - Sfx/WheelTick
-  - Sfx/Win
-  - VOX/GameTitle
-  - Words
-  - Letter/heh
-  - Letter/ain
-  - Letter/noon
-  - Letter/dal
-  - Letter/alef
-  - Letter/beh
-  - Letter/qaf
-  - Letter/feh
-  - Letter/khah
-  - Letter/dad
-  - Letter/meem
-  - Letter/reh
-  - Letter/hah
-  - Letter/ghain
-  - Letter/sheen
-  - Letter/zah
-  - Letter/zain
-  - Letter/teh
-  - Letter/sad
-  - Letter/thal
-  - Letter/theh
-  - Letter/lam
-  - Letter/jeem
-  - Letter/yeh
-  - Letter/tah
-  - Letter/seen
-  - Letter/waw
-  - Letter/kaf
-  - Letter/sukun
-  - Letter/fathah
-  - Letter/maddah
-  - Letter/shaddah
-  - Letter/hamza
-  - Letter/dammah
-  - Letter/fathah_tanwin
-  - Letter/kasrah
-  - Letter/kasrah_tanwin
-  - Letter/dammah_tanwin
-  - Letter/teh_marbuta
-  - Letter/alef_hamza_hi
-  - Letter/alef_hamza_low
-  - Letter/alef_maqsura_hamza
-  - Letter/alef_maqsura
-  - Letter/yeh_hamza
-  - Letter/lam_alef
-  - Letter/kaf_fathah
-  - Letter/ghain_kasrah
-  - Letter/heh_sukun
-  - Letter/lam_fathah_tanwin
-  - Letter/dad_kasrah
-  - Letter/teh_dammah_tanwin
-  - Letter/qaf_kasrah
-  - Letter/sheen_kasrah_tanwin
-  - Letter/feh_fathah
-  - Letter/teh_kasrah_tanwin
-  - Letter/thal_dammah_tanwin
-  - Letter/lam_fathah
-  - Letter/noon_dammah
-  - Letter/dad_fathah_tanwin
-  - Letter/sheen_fathah
-  - Letter/sheen_kasrah
-  - Letter/teh_dammah
-  - Letter/heh_dammah_tanwin
-  - Letter/alef_fathah
-  - Letter/sad_kasrah
-  - Letter/seen_kasrah
-  - Letter/zain_sukun
-  - Letter/ghain_dammah_tanwin
-  - Letter/tah_kasrah
-  - Letter/ghain_fathah
-  - Letter/noon_dammah_tanwin
-  - Letter/theh_sukun
-  - Letter/tah_dammah_tanwin
-  - Letter/zain_fathah_tanwin
-  - Letter/khah_fathah_tanwin
-  - Letter/ghain_kasrah_tanwin
-  - Letter/tah_sukun
-  - Letter/teh_kasrah
-  - Letter/qaf_fathah_tanwin
-  - Letter/yeh_fathah
-  - Letter/meem_dammah
-  - Letter/qaf_kasrah_tanwin
-  - Letter/alef_dammah_tanwin
-  - Letter/meem_dammah_tanwin
-  - Letter/zah_sukun
-  - Letter/waw_fathah_tanwin
-  - Letter/beh_dammah
-  - Letter/sheen_dammah
-  - Letter/qaf_sukun
-  - Letter/tah_kasrah_tanwin
-  - Letter/jeem_kasrah
-  - Letter/sheen_fathah_tanwin
-  - Letter/thal_kasrah_tanwin
-  - Letter/reh_kasrah_tanwin
-  - Letter/meem_sukun
-  - Letter/zah_dammah
-  - Letter/yeh_fathah_tanwin
-  - Letter/tah_dammah
-  - Letter/zain_dammah
-  - Letter/zah_dammah_tanwin
-  - Letter/beh_kasrah_tanwin
-  - Letter/hah_kasrah
-  - Letter/thal_kasrah
-  - Letter/dad_dammah
-  - Letter/beh_fathah
-  - Letter/heh_kasrah_tanwin
-  - Letter/jeem_kasrah_tanwin
-  - Letter/theh_fathah
-  - Letter/ain_kasrah
-  - Letter/hah_dammah
-  - Letter/zah_kasrah_tanwin
-  - Letter/zain_dammah_tanwin
-  - Letter/noon_kasrah_tanwin
-  - Letter/ain_dammah
-  - Letter/khah_kasrah_tanwin
-  - Letter/reh_dammah_tanwin
-  - Letter/qaf_dammah_tanwin
-  - Letter/sad_kasrah_tanwin
-  - Letter/feh_kasrah_tanwin
-  - Letter/noon_kasrah
-  - Letter/beh_kasrah
-  - Letter/reh_sukun
-  - Letter/alef_kasrah_tanwin
-  - Letter/meem_fathah_tanwin
-  - Letter/yeh_kasrah
-  - Letter/alef_fathah_tanwin
-  - Letter/jeem_sukun
-  - Letter/zah_fathah
-  - Letter/thal_dammah
-  - Letter/yeh_kasrah_tanwin
-  - Letter/waw_sukun
-  - Letter/ghain_fathah_tanwin
-  - Letter/dad_sukun
-  - Letter/sheen_sukun
-  - Letter/beh_dammah_tanwin
-  - Letter/kaf_sukun
-  - Letter/teh_fathah_tanwin
-  - Letter/hah_sukun
-  - Letter/feh_sukun
-  - Letter/thal_fathah
-  - Letter/seen_dammah_tanwin
-  - Letter/meem_kasrah
-  - Letter/noon_sukun
-  - Letter/heh_dammah
-  - Letter/jeem_fathah
-  - Letter/khah_dammah_tanwin
-  - Letter/lam_kasrah
-  - Letter/waw_fathah
-  - Letter/hah_kasrah_tanwin
-  - Letter/sad_dammah_tanwin
-  - Letter/alef_kasrah
-  - Letter/alef_dammah
-  - Letter/dad_dammah_tanwin
-  - Letter/yeh_dammah_tanwin
-  - Letter/thal_fathah_tanwin
-  - Letter/dal_sukun
-  - Letter/beh_sukun
-  - Letter/feh_fathah_tanwin
-  - Letter/sheen_dammah_tanwin
-  - Letter/kaf_dammah
-  - Letter/jeem_dammah_tanwin
-  - Letter/sad_fathah_tanwin
-  - Letter/khah_kasrah
-  - Letter/reh_kasrah
-  - Letter/feh_kasrah
-  - Letter/theh_dammah_tanwin
-  - Letter/sad_sukun
-  - Letter/khah_dammah
-  - Letter/yeh_dammah
-  - Letter/lam_sukun
-  - Letter/hah_dammah_tanwin
-  - Letter/theh_fathah_tanwin
-  - Letter/ghain_sukun
-  - Letter/dal_kasrah
-  - Letter/waw_dammah_tanwin
-  - Letter/dad_fathah
-  - Letter/theh_kasrah
-  - Letter/kaf_dammah_tanwin
-  - Letter/ain_dammah_tanwin
-  - Letter/seen_fathah
-  - Letter/lam_dammah_tanwin
-  - Letter/dal_fathah_tanwin
-  - Letter/teh_sukun
-  - Letter/ain_sukun
-  - Letter/reh_dammah
-  - Letter/seen_kasrah:tanwin
-  - Letter/feh_dammah_tanwin
-  - Letter/noon_fathah
-  - Letter/meem_kasrah_tanwin
-  - Letter/dal_fathah
-  - Letter/theh_kasrah_tanwin
-  - Letter/feh_dammah
-  - Letter/waw_kasrah_tanwin
-  - Letter/heh_fathah
-  - Letter/dal_kasrah_tanwin
-  - Letter/ain_kasrah_tanwin
-  - Letter/dal_dammah_tanwin
-  - Letter/heh_fathah_tanwin
-  - Letter/ghain_dammah
-  - Letter/yeh_sukun
-  - Letter/ain_fathah
-  - Letter/noon_fathah_tanwin
-  - Letter/jeem_fathah_tanwin
-  - Letter/qaf_fathah
-  - Letter/hah_fathah_tanwin
-  - Letter/khah_sukun
-  - Letter/kaf_kasrah_tanwin
-  - Letter/alef_sukun
-  - Letter/waw_kasrah
-  - Letter/lam_kasrah_tanwin
-  - Letter/hah_fathah
-  - Letter/seen_dammah
-  - Letter/reh_fathah_tanwin
-  - Letter/seen_fathah_tanwin
-  - Letter/meem_fathah
-  - Letter/waw_dammah
-  - Letter/thal_sukun
-  - Letter/dal_dammah
-  - Letter/zah_kasrah
-  - Letter/zain_kasrah
-  - Letter/heh_kasrah
-  - Letter/kaf_fathah_tanwin
-  - Letter/khah_fathah
-  - Letter/ain_fathah_tanwin
-  - Letter/beh_fathah_tanwin
-  - Letter/teh_fathah
-  - Letter/sad_dammah
-  - Letter/sad_fathah
-  - Letter/theh_dammah
-  - Letter/zah_fathah_tanwin
-  - Letter/lam_dammah
-  - Letter/qaf_dammah
-  - Letter/zain_fathah
-  - Letter/reh_fathah
-  - Letter/seen_sukun
-  - Letter/dad_kasrah_tanwin
-  - Letter/tah_fathah_tanwin
-  - Letter/jeem_dammah
-  - Letter/kaf_kasrah
-  - Letter/tah_fathah
-  - Letter/zain_kasrah_tanwin
-  - Letter/hah_shaddah
-  - Letter/jeem_shaddah
-  - Letter/alef_maddah
-  - Letter/waw_hamza
-  - LL/Afraid
-  - LL/Annoyed
-  - LL/Giggle
-  - LL/Jump
-  - LL/La
-  - LL/Laugh
-  - LL/No1
-  - LL/No2
-  - LL/No3
-  - LL/Sleep
-  - LL/Surprise
-  - LL/Suspicious
-  - LL/Tada
-  - LL/Yeah
-  - Dog/Exhale
-  - Dog/Inhale
-  - Sfx/Blip
-  - Sfx/CameraMovementShort
-  - Sfx/ChoiceSwipe
-  - Sfx/ScreenGlassHit
-  - Sfx/RocketMove
-  - Sfx/TrapdoorOpen
-  - Sfx/TrapdoorClose
-  - Dog/Noize
-  profiler:
-    totalMS: 0
-    recordedMS: 0
-    percent: 0
-    msPerFrame: 0
-    maxMsPerFrame: 0
-    msPerCall: 0
-    timesPerFrame: 0
-  _eventMenuListFoldout: 0
-  _eventListFoldout: 1
-  _forceQueueAllEvents: 0
-  _eventSequencer:
-    _sequenceEntries:
-      _keys: []
-      _data: []
 --- !u!114 &11431116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5217,9 +4862,29 @@ MonoBehaviour:
     clips: []
     volume: 1
     randomPitchOffset: 0
+  musicConfs:
+  - music: 0
+    clip: {fileID: 0}
+  - music: 1
+    clip: {fileID: 8300000, guid: 462e9bd13f32041098fe186f5e58d7dd, type: 3}
+  - music: 2
+    clip: {fileID: 0}
+  - music: 3
+    clip: {fileID: 0}
+  - music: 6
+    clip: {fileID: 0}
+  - music: 7
+    clip: {fileID: 0}
+  - music: 8
+    clip: {fileID: 0}
+  - music: 9
+    clip: {fileID: 0}
+  - music: 10
+    clip: {fileID: 0}
   musicGroup: {fileID: 24348940, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
   sfxGroup: {fileID: 24356758, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
   lettersGroup: {fileID: 24331624, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
+  keeperGroup: {fileID: 24316638, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
 --- !u!114 &11439240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7801,50 +7466,6 @@ MonoBehaviour:
   _loopDelay: 0
   _delayRandomization: 0
   _delayMaxRandomization: 0
---- !u!114 &11481754
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 113176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -139544205, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dontDestroyOnLoad: 1
-  _audioSourcePool: 0
-  _audioSourcePoolFadeInTime: 0
-  _audioSourcePoolFadeOutTime: 0
-  _showAllInstances: 1
-  _enableVirtualization: 0
-  enableTimelineAssetLoader: 0
-  _createEventListeners: 0
-  _useFullPathForEventListeners: 1
-  _transitionThreshold: 0.5
-  _volumeThreshold: 0
-  _audioBusManager:
-    _audioBuses: []
-  _customCurvesManager:
-    _customCurveList: []
-  _enableDebugLog: 0
-  _bakeComponentInstances: 0
-  _allowExternalGroupComponents: 0
-  _forceAxisVector: {x: 0, y: 0, z: 0}
-  _languages:
-  - _name: Arabic
-    _languagePrefix: 
-    _languageFolder: AudioArabic
-  _activeLanguage: 0
-  _defaultLanguage: 0
-  _sampleManager:
-    _sampleFileList: []
-  _musicTimeSignatures: []
-  _fabricEditorPath: Assets/Resources/Fabric
-  _VRAudioManager:
-    _vrSolutions: []
-    _defaultVRSolution: 0
-  _onApplicationPauseBehavior: 0
 --- !u!114 &11482792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24691,6 +24312,12 @@ MonoBehaviour:
   - mixerGroup: {fileID: 24348940, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
     id: 4
     maxSources: 1
+    preallocate: 1
+    recycle: 1
+    fooVolume: 1
+  - mixerGroup: {fileID: 24316638, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
+    id: 8
+    maxSources: -1
     preallocate: 1
     recycle: 1
     fooVolume: 1
