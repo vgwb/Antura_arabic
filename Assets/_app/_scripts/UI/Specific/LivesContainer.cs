@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace EA4S
 {
+    // refactor: not clear where this is used
     public class LivesContainer : MonoBehaviour
     {
         public GameObject Heart1;

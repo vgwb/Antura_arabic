@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 using DG.Tweening;
 using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Controls the Credits panel.
+    /// </summary>
     public class Credits : MonoBehaviour
     {
         Tween showTween;

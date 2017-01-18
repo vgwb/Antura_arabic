@@ -1,9 +1,5 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/12
-
-using System;
+﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.DeExtensions;
 using DG.Tweening;
 using UnityEngine;
@@ -11,6 +7,10 @@ using EA4S.Scenes;
 
 namespace EA4S
 {
+    /// <summary>
+    /// General controller for the interface of the Profile Selector.
+    /// Used in the Home (_Start) scene.
+    /// </summary>
     public class ProfileSelectorUI : MonoBehaviour
     {
         [Header("References")]

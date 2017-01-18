@@ -1,6 +1,4 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-
-using System;
+﻿using System;
 using DG.Tweening;
 using EA4S.Db;
 using UnityEngine;
@@ -8,6 +6,9 @@ using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Controls the transition animation between two scenes.
+    /// </summary>
     public class SceneTransitioner : MonoBehaviour
     {
         [Header("Options")]

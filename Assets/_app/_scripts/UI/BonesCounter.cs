@@ -1,12 +1,13 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/12/01
-
-using DG.Tweening;
+﻿using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Shows the number of bones obtained.
+    /// Used in the GameResultUI.
+    /// </summary>
     public class BonesCounter : MonoBehaviour
     {
         public TextMeshProUGUI TfCount;

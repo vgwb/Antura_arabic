@@ -1,11 +1,10 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/10/28
-
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Shows the number of current and max lives available in a minigame.
+    /// </summary>
     public class MinigamesUILives : ABSMinigamesUIComponent
     {
         public MinigamesUISingleLife LifePrefab;

@@ -1,12 +1,12 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/12
-
-using System;
+﻿using System;
 using DG.Tweening;
 using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Controller of avatar buttons in the Profile Selector.
+    /// </summary>
     public class ProfileSelectorAvatarSelector : MonoBehaviour
     {
         public bool IsShown { get; private set; }

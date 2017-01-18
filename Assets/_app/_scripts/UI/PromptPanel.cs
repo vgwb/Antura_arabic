@@ -1,7 +1,4 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/30
-
-using System;
+﻿using System;
 using DG.DeExtensions;
 using DG.Tweening;
 using TMPro;
@@ -10,6 +7,10 @@ using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Shows an interactive YES/NO prompt panel.
+    /// Uses callbacks to determine how to react to user input.
+    /// </summary>
     public class PromptPanel : MonoBehaviour
     {
         public RectTransform Content;

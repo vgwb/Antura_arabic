@@ -1,11 +1,11 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/25
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Button used to select a color for an item in the Antura Space scene.
+    /// </summary>
     public class AnturaSpaceSwatchButton : UIButton
     {
         public GameObject IcoLock;

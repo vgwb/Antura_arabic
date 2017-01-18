@@ -2,7 +2,6 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.DeExtensions;
 
 namespace EA4S
 {
@@ -20,6 +19,9 @@ namespace EA4S
         ButtonWithBgFullscreen
     }
 
+    /// <summary>
+    /// Shows a Continue screen, used to navigate forward in the application flow. 
+    /// </summary>
     public class ContinueScreen : MonoBehaviour
     {
         [Header("Settings")]
