@@ -5,7 +5,7 @@ namespace EA4S.Assessment
     /// </summary>
     public interface ILogicInjector
     {
-        void Wire( IQuestion question, IAnswer[] answers);
+        void Wire( IQuestion question, Answer[] answers);
         void EnableGamePlay();
         void CompleteWiring();
         void ResetRound();

@@ -4,15 +4,15 @@ using System.Collections.Generic;
 
 namespace EA4S.Assessment
 {
-    internal class DefaultAnswerChecker : IAnswerChecker
+    internal class AnswerChecker
     {
         private ICheckmarkWidget checkmarkWidget;
         private IAudioManager audioManager;
         private IDialogueManager dialogueManager;
 
-        public DefaultAnswerChecker(ICheckmarkWidget checkmarkWidget,
-                                        IAudioManager audioManager,
-                                        IDialogueManager dialogueManager)
+        public AnswerChecker(    ICheckmarkWidget checkmarkWidget,
+                                 IAudioManager audioManager,
+                                 IDialogueManager dialogueManager)
         {
             this.checkmarkWidget = checkmarkWidget;
             this.audioManager = audioManager;
@@ -36,7 +36,7 @@ namespace EA4S.Assessment
         }
 
         // When need to check validity of answers return true
-        public bool AreAllAnswered(List<PlaceholderBehaviour> placeholders)
+        public bool AreAllAnswered( List< PlaceholderBehaviour> placeholders)
         {
             var count = AnswerSet.GetCorrectCount();
             int linkedDroppables = 0;
@@ -47,17 +47,17 @@ namespace EA4S.Assessment
             return linkedDroppables >= count;
         }
 
-        public void Check(List<PlaceholderBehaviour> placeholders,
-                            List<IQuestion> questions,
+        public void Check(  List< PlaceholderBehaviour> placeholders,
+                            List< IQuestion> questions,
                             IDragManager dragManager)
         {
             isAnimating = true;
             coroutineEnded = false;
             allCorrect = false;
-            Koroutine.Run(CheckCoroutine(placeholders, questions, dragManager));
+            Koroutine.Run( CheckCoroutine( placeholders, questions, dragManager));
         }
 
-        private bool AreQuestionsCorrect(List<IQuestion> questions)
+        private bool AreQuestionsCorrect( List< IQuestion> questions)
         {
             foreach (var q in questions)
                 if (q.GetAnswerSet().AllCorrect() == false)
@@ -67,13 +67,13 @@ namespace EA4S.Assessment
         }
 
         private bool coroutineEnded = false;
-        private IEnumerator CheckCoroutine(List< PlaceholderBehaviour> placeholders,
+        private IEnumerator CheckCoroutine( List< PlaceholderBehaviour> placeholders,
                                             List< IQuestion> questions,
                                             IDragManager dragManager)
         {
             dragManager.DisableInput();
 
-            bool areAllCorrect = AreQuestionsCorrect(questions);
+            bool areAllCorrect = AreQuestionsCorrect( questions);
             if (areAllCorrect) {
                 
                 // Log learning progress

@@ -10,12 +10,12 @@ namespace EA4S.Assessment
     /// <summary>
     /// Place answers in a line, ready to be sorted
     /// </summary>
-    internal class InARowAnswerPlacer : IAnswerPlacer
+    internal class LineAnswerPlacer : IAnswerPlacer
     {
         private IAudioManager audioManager;
         private float letterSize;
 
-        public InARowAnswerPlacer( IAudioManager audioManager, float letterSize)
+        public LineAnswerPlacer( IAudioManager audioManager, float letterSize)
         {
             this.audioManager = audioManager;
             this.letterSize = letterSize;
@@ -27,11 +27,11 @@ namespace EA4S.Assessment
             return isAnimating;
         }
 
-        private IAnswer[] allAnswers;
+        private Answer[] allAnswers;
 
-        public void Place( IAnswer[] answer)
+        public void Place( Answer[] answer)
         {
-            IAnswer[] original = new IAnswer[answer.Length];
+            Answer[] original = new Answer[answer.Length];
             for (int i = 0; i < answer.Length; i++)
                 original[i] = answer[i];
 
@@ -51,7 +51,7 @@ namespace EA4S.Assessment
             Koroutine.Run( PlaceCoroutine());
         }
 
-        public void ForceRandom( IAnswer[] answer, IAnswer[] original)
+        public void ForceRandom( Answer[] answer, Answer[] original)
         {
             for (int i = 0; i < answer.Length; i++)
                 // if there is one element out of place.. GOOD!
@@ -63,7 +63,7 @@ namespace EA4S.Assessment
             for (int i = 0; i < answer.Length; i++)
                 if (answer[i].Equals(answer[0]) == false)
                 {
-                    IAnswer first = answer[0];
+                    Answer first = answer[0];
                     answer[0] = answer[i];
                     answer[i] = first;
                 }
@@ -107,7 +107,7 @@ namespace EA4S.Assessment
             isAnimating = false;
         }
 
-        private IEnumerator PlaceAnswer( IAnswer a, Vector3 currentPos)
+        private IEnumerator PlaceAnswer( Answer a, Vector3 currentPos)
         {
             var go = a.gameObject;
             go.transform.localPosition = currentPos;

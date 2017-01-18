@@ -7,9 +7,9 @@ namespace EA4S.Assessment
     internal class DefaultDragManager : IDragManager
     {
         private IAudioManager audioManager;
-        private IAnswerChecker checker;
+        private AnswerChecker checker;
 
-        public DefaultDragManager( IAudioManager audioManager, IAnswerChecker checker)
+        public DefaultDragManager( IAudioManager audioManager, AnswerChecker checker)
         {
             this.audioManager = audioManager;
             this.checker = checker;
@@ -31,7 +31,7 @@ namespace EA4S.Assessment
         // This should be called onlye once
         public void AddElements(
                                     List< PlaceholderBehaviour> placeholders, 
-                                    List< AnswerBehaviour> answers,
+                                    List< Answer> answers,
                                     List< IQuestion> questions)
         {
             this.placeholders = placeholders;
@@ -39,7 +39,7 @@ namespace EA4S.Assessment
             this.questions = questions;
         }
 
-        private List< DroppableBehaviour> BehaviourFromAnswers( List< AnswerBehaviour> answers)
+        private List< DroppableBehaviour> BehaviourFromAnswers( List< Answer> answers)
         {
             var list = new List< DroppableBehaviour>();
 

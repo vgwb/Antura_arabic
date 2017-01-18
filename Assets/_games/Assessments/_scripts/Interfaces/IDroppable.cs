@@ -32,6 +32,6 @@ namespace EA4S.Assessment
 
         Transform GetTransform();
 
-        IAnswer GetAnswer();
+        Answer GetAnswer();
     }
 }
