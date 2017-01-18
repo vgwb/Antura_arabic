@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using TMPro;
 using DG.Tweening;
 
 namespace EA4S
 {
+    // refactor: not clear where this is used
     public class PopupMissionComponent : MonoBehaviour
     {
         public Image CompletedCheck;

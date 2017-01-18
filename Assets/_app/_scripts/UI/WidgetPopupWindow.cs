@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
-using System.Collections;
 using TMPro;
-using ArabicSupport;
 using DG.DeExtensions;
 using DG.Tweening;
-using EA4S;
 using EA4S.Db;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Shows a general-purpose popup window.
+    /// Can be used by minigames to show additional info to the player.
+    /// </summary>
     public class WidgetPopupWindow : MonoBehaviour
     {
         public static WidgetPopupWindow I;

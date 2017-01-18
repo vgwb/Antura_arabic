@@ -1,10 +1,13 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Shows and controls the Pause menu.
+    /// Can be used throughout the application.
+    /// </summary>
     public class PauseMenu : MonoBehaviour
     {
         public static PauseMenu I;

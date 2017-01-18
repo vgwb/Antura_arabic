@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Shows the WalkieTalkie that the Keeper uses to communicate with the player.
+    /// </summary>
     public class WalkieTalkie : MonoBehaviour
     {
         public bool IsShown { get; private set; }

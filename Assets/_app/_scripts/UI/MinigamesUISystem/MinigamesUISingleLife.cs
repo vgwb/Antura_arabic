@@ -1,11 +1,11 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/10/29
-
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// A single life icon for the MinigamesUILives script.
+    /// </summary>
     public class MinigamesUISingleLife : MonoBehaviour
     {
         public Transform Heart;
