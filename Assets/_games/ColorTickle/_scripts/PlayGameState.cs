@@ -151,6 +151,7 @@ namespace EA4S.ColorTickle
                         /*m_LetterObjectView.DoDancingLose(); //this just set trigger for lose on dancing animation
                         m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);*/
                         m_LetterObjectView.DoAngry();
+                        AudioManager.I.PlaySfx(Sfx.LetterAngry);
                         AudioManager.I.PlaySfx(Sfx.Lose);
                     }                   
                 }
@@ -279,6 +280,7 @@ namespace EA4S.ColorTickle
             m_LetterObjectView.SetState(LLAnimationStates.LL_walking);
             m_LetterObjectView.HasFear = true;
             m_LetterObjectView.SetWalkingSpeed(1);
+            AudioManager.I.PlaySfx(Sfx.LetterFear);
             //m_LetterObjectView.Crouching = true;
         }
 

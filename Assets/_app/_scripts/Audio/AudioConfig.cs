@@ -88,7 +88,7 @@
     }
 
     // refactor: should be static
-    class AudioConfig
+    public class AudioConfig
     {
 
         public static string GetMusicEventName(Music music)
