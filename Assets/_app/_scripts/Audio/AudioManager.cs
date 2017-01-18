@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using Fabric;
 using UnityEngine.Audio;
-using System;
 
 namespace EA4S
 {
@@ -27,6 +25,7 @@ namespace EA4S
         public AudioMixerGroup musicGroup;
         public AudioMixerGroup sfxGroup;
         public AudioMixerGroup lettersGroup;
+        public AudioMixerGroup keeperGroup;
 
         System.Action OnNotifyEndAudio;
         bool hasToNotifyEndAudio = false;
@@ -35,8 +34,6 @@ namespace EA4S
         public bool MusicEnabled { get { return musicEnabled; } }
         Music currentMusic;
 
-        Dictionary<string, Fabric.AudioComponent> eventToComponent = new Dictionary<string, Fabric.AudioComponent>();
-        Dictionary<string, Fabric.RandomComponent> eventToRndComponent = new Dictionary<string, Fabric.RandomComponent>();
         Dictionary<string, AudioClip> audioCache = new Dictionary<string, AudioClip>();
 
         void Awake()
@@ -44,25 +41,6 @@ namespace EA4S
             I = this;
 
             musicEnabled = true;
-
-            // Collect all Event name -> Audio clip pairs
-            var components = transform.GetComponentsInChildren<AudioComponent>(true);
-            foreach (var c in components)
-            {
-                var listener = c.GetComponent<EventListener>();
-
-                if (listener != null)
-                    eventToComponent[listener._eventName] = c;
-            }
-
-            var rndcomponents = transform.GetComponentsInChildren<RandomComponent>(true);
-            foreach (var c in rndcomponents)
-            {
-                var listener = c.GetComponent<EventListener>();
-
-                if (listener != null)
-                    eventToRndComponent[listener._eventName] = c;
-            }
         }
 
         public void OnAppPause(bool pauseStatus)
@@ -276,49 +254,39 @@ namespace EA4S
         }
         #endregion
 
-        #region DeAudio utilities
+        #region Audio clip utilities
+
+        public AudioClip GetAudioClip(Db.LocalizationData data)
+        {
+            return GetCachedResource("AudioArabic/Dialogs/" + data.AudioFile);
+        }
+
+
         public AudioClip GetAudioClip(ILivingLetterData data)
         {
             if (data.DataType == LivingLetterDataType.Letter)
-                return GetAudioClip(LETTERS_PREFIX + data.Id);
+                return GetCachedResource("AudioArabic/Letters/" + data.Id);
             else if (data.DataType == LivingLetterDataType.Word || data.DataType == LivingLetterDataType.Image)
             {
-                return GetCachedResource("AudioArabic/Words/" + WORDS_PREFIX + data.Id);
+                return GetCachedResource("AudioArabic/Words/" + data.Id);
             }
+            else if (data.DataType == LivingLetterDataType.Phrase)
+            {
+                return GetCachedResource("AudioArabic/Phrases/" + data.Id);
+            }
+
             return null;
         }
 
         public AudioClip GetAudioClip(Sfx sfx)
         {
-            return GetAudioClip(AudioConfig.GetSfxEventName(sfx));
-        }
+            // TODO use a dictionary
+            SfxConfiguration conf = sfxConfs.Find((a) => { return a.sfx == (Sfx)sfx; });
 
-        AudioClip GetAudioClip(string eventName)
-        {
-            Fabric.AudioComponent audioComponent = null;
+            if (conf == null)
+                return null;
 
-            if (eventToComponent.TryGetValue(eventName, out audioComponent))
-            {
-                var random = audioComponent as RandomAudioClipComponent;
-
-                if (random != null)
-                    return random._audioClips.GetRandom();
-
-                return audioComponent.AudioClip;
-            }
-
-            Fabric.RandomComponent rndComponent = null;
-
-            if (eventToRndComponent.TryGetValue(eventName, out rndComponent))
-            {
-                var child = rndComponent.GetChildComponents();
-
-                Fabric.AudioComponent c = child.GetRandom() as AudioComponent;
-                if (c != null)
-                    return c.AudioClip;
-            }
-
-            return null;
+            return conf.clips.GetRandom();
         }
 
         AudioClip GetCachedResource(string resource)
