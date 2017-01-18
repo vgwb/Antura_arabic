@@ -66,6 +66,9 @@ namespace EA4S
             GameSettings.HighQualityGfx = false;
         }
 
+        /// <summary>
+        /// New profile entry point
+        /// </summary>
         public void InitTeacherForPlayer()
         {
             if (Player == null)

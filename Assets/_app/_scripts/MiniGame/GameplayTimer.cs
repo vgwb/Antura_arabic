@@ -6,6 +6,7 @@ using TMPro;
 
 namespace EA4S
 {
+    // refactor: this should be moved to _minigames/_common 
     public class GameplayTimer : Singleton<GameplayTimer>
     {
         #region Settings
