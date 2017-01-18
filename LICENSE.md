@@ -2,7 +2,7 @@
 
 All scripts and scene files are distributed under the Simplified BSD License.
 
-Copyright (c) 2017, CGL / VGWB / Wixel
+Copyright (c) 2017, TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -33,4 +33,4 @@ either expressed or implied, of the FreeBSD Project.
 
 Unless mentioned otherwise, all art and media assets (images, 3D models, animations, sounds, musics) are distributed under the [Creative Commons Attribution 4.0 International](http://creativecommons.org/licenses/by/4.0/) license.
 
-* Copyright: CGL / VGWB / Wixel
+* Copyright: TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
