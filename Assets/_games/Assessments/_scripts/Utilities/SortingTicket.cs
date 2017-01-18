@@ -11,7 +11,7 @@ namespace EA4S.Assessment
 
     public static class AddTicketGoExtension
     {
-        public static SortingTicket AddTicket( this IAnswer answ, int ticketN)
+        public static SortingTicket AddTicket( this Answer answ, int ticketN)
         {
             var comp = answ.gameObject.AddComponent< SortingTicket>();
             comp.data = answ.gameObject.GetComponent< LetterObjectView>().Data;
@@ -19,7 +19,7 @@ namespace EA4S.Assessment
             return comp;
         }
 
-        public static int GetTicket( this IAnswer answ)
+        public static int GetTicket( this Answer answ)
         {
             return answ.gameObject.GetComponent<SortingTicket>().number;
         }

@@ -14,12 +14,11 @@ namespace EA4S.Assessment
             this.dragManager = dragManager;
         }
 
-        public IAnswer GetAnswer()
+        public Answer GetAnswer()
         {
-            return GetComponent< AnswerBehaviour>().GetAnswer();
+            return GetComponent< Answer>();
         }
 
-        Vector3 origin; // Memorize starting position for going back
         void OnMouseDown()
         {
             if (!dragEnabled)

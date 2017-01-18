@@ -3,9 +3,13 @@ using System.Collections.Generic;
 
 namespace EA4S.Assessment
 {
+    /// <summary>
+    /// This class collect some answers, those become "a answer set". The Answer
+    /// set is linked to a question to let indentify correct answers easily.
+    /// </summary>
     public class AnswerSet
     {
-        IAnswer[] correctAnswers;
+        Answer[] correctAnswers;
         private static int totalCorrectAnswers = 0;
 
         public static void ResetTotalCount()
@@ -18,7 +22,7 @@ namespace EA4S.Assessment
             return totalCorrectAnswers;
         }
 
-        public AnswerSet( IAnswer[] answers)
+        public AnswerSet( Answer[] answers)
         {
             //Should filter only correct answers
             int count = 0;
@@ -31,21 +35,21 @@ namespace EA4S.Assessment
 
             totalCorrectAnswers += count;
 
-            correctAnswers = new IAnswer[ count];
+            correctAnswers = new Answer[ count];
             int index = 0;
             foreach (var answ in answers)
                 if (answ.IsCorrect())
                     correctAnswers[ index++]= answ;
         }
 
-        List< IAnswer> currentAnswers = new List< IAnswer>();
+        List< Answer> currentAnswers = new List< Answer>();
          
-        public void OnDroppedAnswer( IAnswer answer)
+        public void OnDroppedAnswer( Answer answer)
         {
             currentAnswers.Add( answer);
         }
 
-        public void OnRemovedAnswer( IAnswer answer)
+        public void OnRemovedAnswer( Answer answer)
         {
             if (currentAnswers.Remove( answer) == false)
                 throw new InvalidOperationException( "Cannot remove something that was not added");
@@ -69,7 +73,7 @@ namespace EA4S.Assessment
             return true;
         }
 
-        internal bool IsCorrect( IAnswer answ)
+        internal bool IsCorrect( Answer answ)
         {
             foreach (var c in correctAnswers)
                 if (c == answ)

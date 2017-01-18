@@ -15,13 +15,13 @@ namespace EA4S.Assessment
         }
 
         protected List< PlaceholderBehaviour> placeholdersList;
-        protected List< AnswerBehaviour> answersList;
+        protected List< Answer> answersList;
         protected List< IQuestion> questionsList;
 
         public void ResetRound()
         {
             placeholdersList = new List< PlaceholderBehaviour>();
-            answersList = new List< AnswerBehaviour>();
+            answersList = new List< Answer>();
             questionsList = new List< IQuestion>();
             dragManager.ResetRound();
             AnswerSet.ResetTotalCount();
@@ -41,7 +41,7 @@ namespace EA4S.Assessment
         }
 
         // Called many times (for loop in assessment)
-        public void Wire( IQuestion question, IAnswer[] answers)
+        public void Wire( IQuestion question, Answer[] answers)
         {
             AnswerSet answerSet = new AnswerSet( answers);
 
@@ -57,14 +57,14 @@ namespace EA4S.Assessment
             questionsList.Add( q);
         }
 
-        protected virtual void WireAnswers( IAnswer[] answers)
+        protected virtual void WireAnswers( Answer[] answers)
         {
             if (answers == null || answers.Length == 0)
                 return;
 
             foreach( var a in answers)
             {
-                var behaviour = a.gameObject.GetComponent< AnswerBehaviour>();
+                var behaviour = a.gameObject.GetComponent< Answer>();
                 answersList.Add( behaviour); // TODO: INVESTIGATE WITHIN DRAG MAANGER
             }
         }

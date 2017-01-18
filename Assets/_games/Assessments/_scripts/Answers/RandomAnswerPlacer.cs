@@ -8,9 +8,14 @@ using UnityEngine;
 
 namespace EA4S.Assessment
 {
-    public class DefaultAnswerPlacer : IAnswerPlacer
+    /// <summary>
+    /// Place answers to random places over a grid with small displacement
+    /// (answers are not overlapped and start in different positions,
+    /// without overlapping the question area).
+    /// </summary>
+    public class RandomAnswerPlacer : IAnswerPlacer
     {
-        public DefaultAnswerPlacer(IAudioManager audio)
+        public RandomAnswerPlacer( IAudioManager audio)
         {
             audioManager = audio;
         }
@@ -21,10 +26,10 @@ namespace EA4S.Assessment
             return isAnimating;
         }
 
-        private IAnswer[] allAnswers;
+        private Answer[] allAnswers;
         private IAudioManager audioManager;
 
-        public void Place(IAnswer[] answer)
+        public void Place(Answer[] answer)
         {
             allAnswers = answer;
             isAnimating = true;
@@ -64,7 +69,7 @@ namespace EA4S.Assessment
             isAnimating = false;
         }
 
-        private IEnumerator PlaceAnswer( IAnswer answer, List<Vector3> positions)
+        private IEnumerator PlaceAnswer( Answer answer, List<Vector3> positions)
         {
             var go = answer.gameObject;
             go.transform.localPosition = positions.Pull();

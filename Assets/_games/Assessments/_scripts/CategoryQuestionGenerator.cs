@@ -118,13 +118,14 @@ namespace EA4S.Assessment
             }
         }
 
-        private IAnswer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
+        private Answer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
         {
-            return new DefaultAnswer(
-                LivingLetterFactory.Instance.SpawnAnswer( correctAnswer)
-
-                //correct
-                , true);
+            return
+            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer)
+            .gameObject.AddComponent< Answer>()
+            
+                // Correct answer
+                .Init(true);
         }
 
         public void InitRound()
@@ -139,7 +140,7 @@ namespace EA4S.Assessment
 
         private void ClearCache()
         {
-            totalAnswers = new List< IAnswer>();
+            totalAnswers = new List< Answer>();
             totalQuestions = new List< IQuestion>();
             partialAnswers = null;
             currentCategory = 0;
@@ -154,7 +155,7 @@ namespace EA4S.Assessment
             currentCategory = 0;
         }
 
-        public IAnswer[] GetAllAnswers()
+        public Answer[] GetAllAnswers()
         {
             if (state != QuestionGeneratorState.Completed)
                 throw new InvalidOperationException( "Not Completed");
@@ -170,7 +171,7 @@ namespace EA4S.Assessment
             return totalQuestions.ToArray();
         }
 
-        public IAnswer[] GetNextAnswers()
+        public Answer[] GetNextAnswers()
         {
             if (state != QuestionGeneratorState.QuestionFeeded)
                 throw new InvalidOperationException( "Not Initialized");
@@ -179,9 +180,9 @@ namespace EA4S.Assessment
             return partialAnswers;
         }
 
-        List<IAnswer> totalAnswers;
+        List<Answer> totalAnswers;
         List<IQuestion> totalQuestions;
-        IAnswer[] partialAnswers;
+        Answer[] partialAnswers;
 
         private int currentCategory;
 
@@ -212,7 +213,7 @@ namespace EA4S.Assessment
             if (currentCategory == 2)
                 amount = category3ForThisRound;
 
-            List< IAnswer> answers = new List< IAnswer>();
+            List< Answer> answers = new List< Answer>();
 
             int correctCount = 0;
             for(int i=0; i<amount; i++)
