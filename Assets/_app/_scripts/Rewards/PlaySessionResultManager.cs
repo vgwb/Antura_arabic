@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace EA4S
 {
 
+    /// <summary>
+    /// Manager for the Play Session Result scene.
+    /// Accessed a play session is completed.
+    /// </summary>
     public class PlaySessionResultManager : MonoBehaviour
     {
 

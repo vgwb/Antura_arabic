@@ -1,6 +1,4 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using DG.Tweening;
 

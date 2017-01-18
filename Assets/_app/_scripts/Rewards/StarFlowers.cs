@@ -1,11 +1,9 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
-using DG.Tweening;
-using ModularFramework.Core;
 
 namespace EA4S
 {
+    // refactor: remove this
     [Obsolete("Replaced by EA4S.GameResultUI (but always use the <code>Minigames Interface</code> to access it)")]
     public class StarFlowers : MonoBehaviour
     {
