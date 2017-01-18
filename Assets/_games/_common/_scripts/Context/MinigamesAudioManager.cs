@@ -62,11 +62,6 @@ namespace EA4S
 
         }
 
-        public void PlayText(Db.LocalizationDataId text)
-        {
-            PlayDialogue(text, null);
-        }
-
         public void PlayDialogue(Db.LocalizationDataId text, System.Action callback = null)
         {
             if (callback == null)

@@ -16,11 +16,6 @@ namespace EA4S.ColorTickle
         //            IDLE, SCARED, TICKLING
         //        }
 
-        #region EXPOSED MEMBERS
-        [SerializeField]
-        private Sfx m_oLLTickleSfx;
-        #endregion
-
         #region PRIVATE MEMBERS
         LetterObjectView m_LetterObjectView;
         eHitState m_HitState;
@@ -38,12 +33,6 @@ namespace EA4S.ColorTickle
         public eHitState hitState
         {
             get { return m_HitState; }
-        }
-
-        public Sfx LLTickleSfx
-        {
-            get { return m_oLLTickleSfx; }
-            set { m_oLLTickleSfx = value; }
         }
         #endregion
 
@@ -115,7 +104,7 @@ namespace EA4S.ColorTickle
             m_Tickle = true;
             m_LetterObjectView.SetState(LLAnimationStates.LL_tickling);
 
-            AudioManager.I.PlaySfx(m_oLLTickleSfx);
+            AudioManager.I.PlaySfx(Sfx.LL_Laugh);
 
             if (LoseLife != null)
             {
