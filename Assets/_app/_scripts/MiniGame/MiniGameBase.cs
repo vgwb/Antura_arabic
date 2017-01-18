@@ -5,6 +5,7 @@ using ModularFramework.Modules;
 
 namespace EA4S
 {
+    // refactor: this should be moved to _minigames/_common 
     public abstract class MiniGameBase : SubGame
     {
         /// <summary>

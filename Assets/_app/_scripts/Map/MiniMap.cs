@@ -134,6 +134,8 @@ namespace EA4S.Map
             }
         }
 
+        // refactor: these methods are not called at all, but are needed by the Map to show the state of a play session. The map should be improved to use these.
+
         /// <summary>
         /// Returns a list of all play session data with its score (if a score exists) for the given stage
         /// </summary>
@@ -166,7 +168,7 @@ namespace EA4S.Map
         public void Play()
         {
             // refactor: move this initalisation to a better place, maybe inside the MiniGameLauncher.
-            AppManager.I.Teacher.InitialiseCurrentPlaySession();   // This must becalled before the games selector is loaded
+            AppManager.I.Teacher.InitialiseCurrentPlaySession();   // This must be called before the games selector is loaded
             NavigationManager.I.GoToNextScene();
         }
     }
