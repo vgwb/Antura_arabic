@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using System;
 
 namespace EA4S {
 
+    // refactor: why is this in the Test scripts?s
     public class RewardsUI : MonoBehaviour {
 
         #region life cycle

@@ -1,10 +1,11 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/15
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EA4S.Test
 {
+    /// <summary>
+    /// Helper class to test the GlobalUI
+    /// <seealso cref="GlobalUI"/>
+    /// </summary>
     public class Tester_GlobalUI : MonoBehaviour
     {
         #region ActionFeedback

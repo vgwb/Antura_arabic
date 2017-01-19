@@ -1,12 +1,12 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/10/28
-
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace EA4S.Test
 {
+    /// <summary>
+    /// Helper class to test the MinigamesUI
+    /// <seealso cref="MinigamesUI"/>
+    /// </summary>
     public class Tester_MinigamesUI : MonoBehaviour
     {
         public RadialGadget RadialGadget;

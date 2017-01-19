@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using System;
 using System.Linq;
 using EA4S.API;
@@ -8,7 +7,11 @@ using System.Collections.Generic;
 
 namespace EA4S.Test
 {
-
+    /// <summary>
+    /// Helper class to test the launch of specific minigames
+    /// </summary>
+    // refactor: should use the actual MiniGameLauncher
+    // refactor: rename to TestMiniGameLauncher
     public class MiniGameLauncher : MonoBehaviour
     {
 

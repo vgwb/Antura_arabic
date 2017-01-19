@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace EA4S.Teacher.Test
 {
+    /// <summary>
+    /// Helper class to test Teacher functionality regardless of minigames.
+    /// </summary>
     public class TeacherTester : MonoBehaviour
     {
         public InputField journey_stage_in;
