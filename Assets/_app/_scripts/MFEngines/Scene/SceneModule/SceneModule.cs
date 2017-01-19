@@ -6,6 +6,10 @@ using ModularFramework.Modules;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Module that handles scene load and transitions.
+    /// </summary>
+    // refactor: can we remove the ModularFramerwork?
     public class SceneModule : SceneModuleDefault
     {
 

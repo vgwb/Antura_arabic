@@ -2,6 +2,14 @@
 
 namespace EA4S.Db
 {
+    /// <summary>
+    /// Data defining a Learning Block. 
+    /// Used to define the learning journey progression.
+    /// A Stage contains multiple Learning Blocks.
+    /// Learning Blocks contain one or more play sessions and end with an assessment.
+    /// <seealso cref="StageData"/>
+    /// <seealso cref="PlaySessionData"/>
+    /// </summary>
     [Serializable]
     public class LearningBlockData : IData
     {

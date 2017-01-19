@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
-using MiniJSON;
 using UnityEngine;
 
 namespace EA4S.Db.Management
 {
+    /// <summary>
+    /// Custom JSON parser for PlaySessionData
+    /// </summary>
     public class PlaySessionParser : DataParser<PlaySessionData, PlaySessionTable>
     {
         override protected PlaySessionData CreateData(Dictionary<string, object> dict, Database db)
