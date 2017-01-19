@@ -12,12 +12,12 @@
 
 		public void EnterState()
 		{
-            AudioManager.I.PlayDialog(Db.LocalizationDataId.Scanner_Title);
+            AudioManager.I.PlayDialogue(Db.LocalizationDataId.Scanner_Title);
         }
 
 		public void ExitState()
 		{
-            AudioManager.I.PlayDialog(Db.LocalizationDataId.Scanner_Intro);
+            AudioManager.I.PlayDialogue(Db.LocalizationDataId.Scanner_Intro);
         }
 
 		public void Update(float delta)

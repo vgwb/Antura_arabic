@@ -76,7 +76,7 @@ namespace EA4S
                 if (!ach.IsRewardAchieved && shouldAchieve) ach.AchieveReward(true);
                 ach.AchieveStar(shouldAchieve);
             }
-            AudioManager.I.PlaySfx(EndsessionResultPanel.I.SfxIncreaseBar);
+            AudioManager.I.PlaySound(EndsessionResultPanel.I.SfxIncreaseBar);
         }
 
         #endregion

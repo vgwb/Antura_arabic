@@ -47,7 +47,7 @@ namespace EA4S.PlayerBook
 
             SceneTransitioner.Close();
 
-            AudioManager.I.PlayDialog("Book_Intro");
+            AudioManager.I.PlayDialogue("Book_Intro");
 
             HideAllPanels();
             OpenPanel(OpeningPanel);

@@ -20,13 +20,13 @@ namespace EA4S
         {
             currentCallback = callback;
 
-            AudioManager.I.PlaySfx(Sfx.UIPopup);
+            AudioManager.I.PlaySound(Sfx.UIPopup);
             WidgetPanel.SetActive(true);
         }
 
         public void Close()
         {
-            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
+            AudioManager.I.PlaySound(Sfx.UIButtonClick);
             WidgetPanel.SetActive(false);
         }
 

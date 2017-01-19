@@ -4523,6 +4523,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f042f9bb26c4a7c8d6d8ba0769b11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicGroup: {fileID: 24348940, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
+  sfxGroup: {fileID: 24356758, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
+  lettersGroup: {fileID: 24331624, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
+  keeperGroup: {fileID: 24316638, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
   sfxConfs:
   - sfx: 1
     clips:
@@ -4863,10 +4867,8 @@ MonoBehaviour:
     volume: 1
     randomPitchOffset: 0
   musicConfs:
-  - music: 0
-    clip: {fileID: 0}
   - music: 1
-    clip: {fileID: 8300000, guid: 462e9bd13f32041098fe186f5e58d7dd, type: 3}
+    clip: {fileID: 0}
   - music: 2
     clip: {fileID: 0}
   - music: 3
@@ -4881,10 +4883,6 @@ MonoBehaviour:
     clip: {fileID: 0}
   - music: 10
     clip: {fileID: 0}
-  musicGroup: {fileID: 24348940, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
-  sfxGroup: {fileID: 24356758, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
-  lettersGroup: {fileID: 24331624, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
-  keeperGroup: {fileID: 24316638, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
 --- !u!114 &11439240
 MonoBehaviour:
   m_ObjectHideFlags: 1

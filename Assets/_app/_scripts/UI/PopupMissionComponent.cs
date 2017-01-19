@@ -52,7 +52,7 @@ namespace EA4S
 
         public void Show(Data _data, TweenCallback _callback = null)
         {
-            AudioManager.I.PlaySfx(Sfx.UIPopup);
+            AudioManager.I.PlaySound(Sfx.UIPopup);
 
             MainLable.text = _data.MainTextToDisplay;
             // Preset for animation
@@ -68,12 +68,12 @@ namespace EA4S
             TitleLable.text = _data.Title;
             // Complete check animation.
             if (_data.Type == PopupType.Mission_Completed) {
-                AudioManager.I.PlaySfx(Sfx.StampOK);
+                AudioManager.I.PlaySound(Sfx.StampOK);
                 sequence.Insert(0.3f, CompletedCheck.DOFade(1, 0.1f));
                 sequence.Append(CompletedCheck.rectTransform.DOScale(1, 0.3f).SetAs(tParms));
                 //                    .OnComplete(delegate()
                 //                    {
-                //                        AudioManager.I.PlaySfx(Sfx.Win);
+                //                        AudioManager.I.PlaySound(Sfx.Win);
                 //                    });
             }
             // Draw

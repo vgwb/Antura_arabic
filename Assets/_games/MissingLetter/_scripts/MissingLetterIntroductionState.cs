@@ -11,11 +11,11 @@
         {
             if(MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
             {
-                AudioManager.I.PlayDialog(Db.LocalizationDataId.MissingLetter_Title);
+                AudioManager.I.PlayDialogue(Db.LocalizationDataId.MissingLetter_Title);
             }
             else
             {
-                AudioManager.I.PlayDialog(Db.LocalizationDataId.MissingLetter_phrases_Title);
+                AudioManager.I.PlayDialogue(Db.LocalizationDataId.MissingLetter_phrases_Title);
             }
         }
 

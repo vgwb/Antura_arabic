@@ -54,7 +54,7 @@ namespace EA4S.FastCrowd
         {
             yield return new WaitForSeconds(_delay);
             CompletedLetters.Add(data as LL_LetterData);
-            AudioManager.I.PlaySfx(EA4S.Sfx.Hit);
+            AudioManager.I.PlaySound(EA4S.Sfx.Hit);
             innerTransform.DOShakeScale(1.5f, 0.5f);
             UpdateWord();
         }

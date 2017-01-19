@@ -4,12 +4,13 @@ using UnityEngine;
 
 namespace EA4S
 {
-    public class MinigamesAudioSource : IAudioSource
+    public class AudioSourceWrapper : IAudioSource
     {
+        public DeAudioGroup Group { get; private set; }
+
         AudioClip clip;
         DeAudioSource source;
-        DeAudioGroup group;
-        MinigamesAudioManager manager;
+        AudioManager manager;
 
         bool paused = false;
 
@@ -119,7 +120,7 @@ namespace EA4S
             {
                 paused = false;
 
-                source = group.Play(clip);
+                source = Group.Play(clip);
                 source.locked = true;
                 
                 source.pitch = pitch;
@@ -149,10 +150,10 @@ namespace EA4S
             return false;
         }
 
-        public MinigamesAudioSource(DeAudioSource source, DeAudioGroup group, MinigamesAudioManager manager)
+        public AudioSourceWrapper(DeAudioSource source, DeAudioGroup group, AudioManager manager)
         {
             this.source = source;
-            this.group = group;
+            this.Group = group;
             this.manager = manager;
             this.clip = source.clip;
             duration = source.duration;

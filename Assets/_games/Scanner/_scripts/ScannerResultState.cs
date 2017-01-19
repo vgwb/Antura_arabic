@@ -32,9 +32,9 @@ namespace EA4S.Scanner
 				game.EndGame(game.CurrentStars, game.CurrentScoreRecord);
 
                 if (game.CurrentStars == 0)
-                    AudioManager.I.PlayDialog("Reward_0Star");
+                    AudioManager.I.PlayDialogue("Reward_0Star");
                 else
-                    AudioManager.I.PlayDialog("Reward_" + game.CurrentStars + "Star_" + UnityEngine.Random.Range(1, 4));
+                    AudioManager.I.PlayDialogue("Reward_" + game.CurrentStars + "Star_" + UnityEngine.Random.Range(1, 4));
             }
 		}
 

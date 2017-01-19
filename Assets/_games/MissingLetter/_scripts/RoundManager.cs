@@ -214,7 +214,7 @@ namespace EA4S.MissingLetter
                 qstBehaviour.LetterData = _word;
                 qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
                 qstBehaviour.m_oDefaultIdleAnimation = LLAnimationStates.LL_idle;
-                qstBehaviour.SetInPhrase(m_oCurrQuestionPack.GetQuestion().Id);
+                qstBehaviour.SetInPhrase(m_oCurrQuestionPack.GetQuestion());
 
                 m_aoCurrentQuestionScene.Add(oQuestion);
             }
@@ -393,12 +393,12 @@ namespace EA4S.MissingLetter
         {
             if (correct)
             {
-                AudioManager.I.PlaySfx(Sfx.LetterHappy);
+                AudioManager.I.PlaySound(Sfx.LetterHappy);
                 DoWinAnimations();
             }
             else
             {
-                AudioManager.I.PlaySfx(Sfx.LetterSad);
+                AudioManager.I.PlaySound(Sfx.LetterSad);
                 DoLoseAnimations();
             }
 
@@ -453,7 +453,7 @@ namespace EA4S.MissingLetter
 
             letter.GetComponent<LetterBehaviour>().mLetter.Poof();
             letter.transform.position = Vector3.zero;
-            AudioManager.I.PlaySfx(Sfx.Poof);
+            AudioManager.I.PlaySound(Sfx.Poof);
         }
 
         //lose animation: quesion and correct answer angry other crouch

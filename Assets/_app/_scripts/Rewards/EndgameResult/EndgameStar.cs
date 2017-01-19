@@ -67,7 +67,7 @@ namespace EA4S
         {
             Setup();
             gainTween.PlayForward();
-            AudioManager.I.PlaySfx(EndgameResultPanel.I.SfxGainStar);
+            AudioManager.I.PlaySound(EndgameResultPanel.I.SfxGainStar);
         }
 
         #endregion

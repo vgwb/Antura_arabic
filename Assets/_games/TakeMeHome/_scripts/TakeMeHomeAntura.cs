@@ -34,7 +34,7 @@ namespace EA4S.TakeMeHome
 				if (nextAnturaBarkTimer <= 0)
 				{
 					PrepareNextAnturaBark();
-					AudioManager.I.PlaySfx(Sfx.DogBarking);
+                    TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking);
 				}
 				else
 					nextAnturaBarkTimer -= Time.deltaTime;

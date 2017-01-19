@@ -11,7 +11,7 @@ namespace EA4S.MissingLetter
             if(!m_bIsPlaying)
             {
                 m_bIsPlaying = true;
-                AudioManager.I.PlaySfx(Sfx.Splat);
+                AudioManager.I.PlaySound(Sfx.Splat);
                 StartCoroutine(Utils.LaunchDelay(0.5f, setPlaying, false));
             }
         }
