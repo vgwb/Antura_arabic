@@ -15,9 +15,6 @@ namespace EA4S
         public GameObject PanelLocalization;
         public GameObject PlayButtonPrefab;
 
-
-        Fabric.AudioComponent fabricComponent = null;
-
         Sfx currentSfx;
 
         void Start()
@@ -162,39 +159,14 @@ namespace EA4S
 
         public void StopAll()
         {
-            Fabric.FabricManager.Instance.Stop();
-        }
-
-        public void StartSfxTest(int id)
-        {
-            Fabric.EventManager.Instance.PostEvent(MyEventName, LEDs[id]);
-        }
-
-        public void StopSfxTest(int id)
-        {
-            //AudioManager.I.StopSfx(Sfx.GameTitle);
-            Fabric.EventManager.Instance.PostEvent(MyEventName, Fabric.EventAction.StopSound, LEDs[id]);
-            //MyEventName = "";
-        }
-
-        public void ChangePitch(float pitch)
-        {
-            Fabric.EventManager.Instance.PostEvent(MyEventName, Fabric.EventAction.SetPitch, pitch);
+            AudioManager.I.StopMusic();
+            AudioManager.I.StopSounds();
+            AudioManager.I.StopDialogue(true);
+            AudioManager.I.StopLettersWordsPhrases();
         }
 
         void Update()
         {
-
-            if (fabricComponent == null) {
-                fabricComponent = Fabric.FabricManager.Instance.GetComponentByName("FabricAudioManger_Sfx_UI_Win") as Fabric.AudioComponent;
-
-                // fabricComponent.Volume = 0.5f;
-                //fabricComponent.Loop = true;
-                //var associatedAudioClip = fabricComponent.AudioClip;
-                //Debug.Log(associatedAudioClip.length);
-            }
-
-
 
             //Fabric.Component[] components = Fabric.FabricManager.Instance.GetComponentsByName(MyEventName, LEDs[0]);
 
@@ -206,7 +178,7 @@ namespace EA4S
             //    }
             //}
 
-
+            /*
             if (Fabric.EventManager.Instance.IsEventActive(MyEventName, LEDs[0])) {
                 LEDs[0].SetActive(true);
             } else {
@@ -217,6 +189,7 @@ namespace EA4S
             } else {
                 LEDs[1].SetActive(false);
             }
+            */
         }
     }
 }
