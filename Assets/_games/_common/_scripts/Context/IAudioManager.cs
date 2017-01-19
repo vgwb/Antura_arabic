@@ -8,6 +8,7 @@ namespace EA4S
 
         IAudioSource PlaySound(Sfx sfx);
         IAudioSource PlaySound(AudioClip clip);
+        void StopSounds();
 
         /// <summary>
         /// Play sound for letter or word,

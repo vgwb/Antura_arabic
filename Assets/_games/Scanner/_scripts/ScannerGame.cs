@@ -146,7 +146,7 @@ namespace EA4S.Scanner
 
 		public void CreatePoof(Vector3 position, float duration, bool withSound)
 		{
-			if (withSound) AudioManager.I.PlaySfx(Sfx.BalloonPop);
+			if (withSound) AudioManager.I.PlaySound(Sfx.BalloonPop);
 			GameObject poof = Instantiate(poofPrefab, position, Quaternion.identity) as GameObject;
 			poof.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
 			Destroy(poof, duration);

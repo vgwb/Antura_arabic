@@ -104,7 +104,7 @@ namespace EA4S
         void OnInternalClick()
         {
             AnimateClick();
-            if (AutoPlayButtonFx) AudioManager.I.PlaySfx(Sfx.UIButtonClick);
+            if (AutoPlayButtonFx) AudioManager.I.PlaySound(Sfx.UIButtonClick);
         }
 
         #endregion

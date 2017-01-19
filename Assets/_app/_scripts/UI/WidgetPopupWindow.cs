@@ -123,7 +123,7 @@ namespace EA4S
             TitleGO.GetComponent<TextRender>().isArabic = true;
             TitleGO.GetComponent<TextRender>().text = row.Arabic;
 
-            AudioManager.I.PlayDialog(SentenceId);
+            AudioManager.I.PlayDialogue(SentenceId);
 
             Show(true);
         }
@@ -145,7 +145,7 @@ namespace EA4S
             TitleGO.GetComponent<TextRender>().isArabic = true;
             TitleGO.GetComponent<TextRender>().text = row.Arabic;
 
-            AudioManager.I.PlayDialog(sentenceId);
+            AudioManager.I.PlayDialogue(sentenceId);
 
             Show(true);
         }
@@ -168,7 +168,7 @@ namespace EA4S
 
             TitleGO.GetComponent<TextRender>().SetSentence(sentenceId);
 
-            AudioManager.I.PlayDialog(sentenceId);
+            AudioManager.I.PlayDialogue(sentenceId);
 
             Show(true);
         }
@@ -242,7 +242,7 @@ namespace EA4S
             TutorialImageGO.GetComponent<Image>().sprite = tutorialImage;
             TutorialImageGO.SetActive(true);
 
-            AudioManager.I.PlaySfx(Sfx.UIPopup);
+            AudioManager.I.PlaySound(Sfx.UIPopup);
             Show(true);
         }
 
@@ -304,7 +304,7 @@ namespace EA4S
                 return;
 
             clicked = true;
-            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
+            AudioManager.I.PlaySound(Sfx.UIButtonClick);
 
             if (currentCallback != null)
                 currentCallback();

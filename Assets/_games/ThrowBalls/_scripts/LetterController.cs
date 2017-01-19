@@ -537,7 +537,7 @@ namespace EA4S.ThrowBalls
         {
             if (GameState.instance.isRoundOngoing)
             {
-                AudioManager.I.PlayLetter(letterData.Id);
+                ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
             }
         }
     }

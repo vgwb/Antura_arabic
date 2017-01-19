@@ -118,6 +118,7 @@ namespace EA4S
         #endregion
 
         #region Sfx
+        IAudioSource lastSfxAudioSource;
 
         void AddListenerSfx(Button b, Sfx sfx)
         {
@@ -126,18 +127,20 @@ namespace EA4S
 
         void StopCurrentSfx()
         {
-            AudioManager.I.StopSfx(currentSfx);
+            if (lastSfxAudioSource != null)
+                lastSfxAudioSource.Stop();
         }
         void PlaySfx(Sfx sfx)
         {
             currentSfx = sfx;
             Debug.Log("playing music :" + currentSfx);
-            AudioManager.I.PlaySfx(currentSfx);
+            lastSfxAudioSource = AudioManager.I.PlaySound(currentSfx);
         }
 
         #endregion
 
         #region Dialogs
+        IAudioSource lastDialogueAudioSource;
 
         void AddListenerLocalization(Button b, string localizationID)
         {
@@ -146,12 +149,13 @@ namespace EA4S
 
         void StopCurrentLocalization()
         {
-            AudioManager.I.StopSfx(currentSfx);
+            if (lastDialogueAudioSource != null)
+                lastDialogueAudioSource.Stop();
         }
         void PlayDialog(string localizationID)
         {
             Debug.Log("playing localization :" + localizationID);
-            AudioManager.I.PlayDialog(localizationID);
+            lastDialogueAudioSource = AudioManager.I.PlayDialogue(localizationID);
         }
 
         #endregion

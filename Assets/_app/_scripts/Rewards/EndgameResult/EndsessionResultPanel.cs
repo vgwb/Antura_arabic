@@ -144,7 +144,7 @@ namespace EA4S
                 }
                 yield return new WaitForSeconds(minigamesStarsToBarTween.Duration());
             }
-            AudioManager.I.PlaySfx(SfxShowContinue);
+            AudioManager.I.PlaySound(SfxShowContinue);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
         }
 

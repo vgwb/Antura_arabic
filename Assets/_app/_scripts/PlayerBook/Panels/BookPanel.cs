@@ -86,15 +86,15 @@ namespace EA4S.PlayerBook
             DetailPanel.SetActive(false);
             switch (panel) {
                 case PlayerBookPanel.BookLetters:
-                    AudioManager.I.PlayDialog(LocalizationDataId.UI_Letters);
+                    AudioManager.I.PlayDialogue(LocalizationDataId.UI_Letters);
                     LettersPanel();
                     break;
                 case PlayerBookPanel.BookWords:
-                    AudioManager.I.PlayDialog(LocalizationDataId.UI_Words);
+                    AudioManager.I.PlayDialogue(LocalizationDataId.UI_Words);
                     WordsPanel();
                     break;
                 case PlayerBookPanel.BookPhrases:
-                    AudioManager.I.PlayDialog(LocalizationDataId.UI_Phrases);
+                    AudioManager.I.PlayDialogue(LocalizationDataId.UI_Phrases);
                     PhrasesPanel();
                     break;
                 case PlayerBookPanel.BookLearningBlocks:
@@ -260,7 +260,7 @@ namespace EA4S.PlayerBook
         {
             DetailPanel.SetActive(true);
             Debug.Log("Detail Word :" + info.data.Id);
-            AudioManager.I.PlayWord(info.data.Id);
+            AudioManager.I.PlayWord(info.data);
             MoreInfoPanel.SetActive(false);
             ScoreText.text = "Score: " + info.score;
 
@@ -301,7 +301,7 @@ namespace EA4S.PlayerBook
         {
             DetailPanel.SetActive(true);
             Debug.Log("Detail Letter :" + info.data.Id + " [" + info.data.GetAvailablePositions() + "]");
-            AudioManager.I.PlayLetter(info.data.Id);
+            AudioManager.I.PlayLetter(info.data);
             MoreInfoPanel.SetActive(true);
             ArabicText.text = "";
             ScoreText.text = "Score: " + info.score;
@@ -347,7 +347,7 @@ namespace EA4S.PlayerBook
         {
             DetailPanel.SetActive(true);
             Debug.Log("Detail Phrase :" + info.data.Id);
-            AudioManager.I.PlayPhrase(info.data.Id);
+            AudioManager.I.PlayPhrase(info.data);
             MoreInfoPanel.SetActive(false);
             ScoreText.text = "Score: " + info.score;
 
@@ -362,7 +362,7 @@ namespace EA4S.PlayerBook
         public void DetailLearningBlock(LearningBlockInfo info)
         {
             DetailPanel.SetActive(true);
-            AudioManager.I.PlayDialog(info.data.GetTitleSoundFilename());
+            AudioManager.I.PlayDialogue(info.data.GetTitleSoundFilename());
             ScoreText.text = "Score: " + info.score;
             MoreInfoPanel.SetActive(false);
 

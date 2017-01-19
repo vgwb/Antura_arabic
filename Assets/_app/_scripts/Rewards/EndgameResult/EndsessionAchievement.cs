@@ -79,7 +79,7 @@ namespace EA4S
             if (_doAchieve) {
                 Star.gameObject.SetActive(true);
                 achieveStarTween.Restart();
-                AudioManager.I.PlaySfx(EndsessionResultPanel.I.SfxGainStar);
+                AudioManager.I.PlaySound(EndsessionResultPanel.I.SfxGainStar);
             } else {
                 Star.gameObject.SetActive(false);
                 achieveStarTween.Rewind();

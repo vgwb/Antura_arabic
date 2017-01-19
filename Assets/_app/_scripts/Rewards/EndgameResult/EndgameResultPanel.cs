@@ -115,7 +115,7 @@ namespace EA4S
 
             if (numStars > 0) bgTween.Restart();
 
-            AudioManager.I.PlaySfx(numStars > 0 ? SfxCompleteWithStars : SfxCompleteNoStars);
+            AudioManager.I.PlaySound(numStars > 0 ? SfxCompleteWithStars : SfxCompleteNoStars);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
         }
 

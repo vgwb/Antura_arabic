@@ -47,11 +47,10 @@ namespace EA4S
 
             AudioManager myTarget = (AudioManager)target;
 
-            /*
+            
             if (GUILayout.Button("Grab from Fabric"))
             {
-                myTarget.sfxConfs.Clear();
-
+                myTarget.ClearConfiguration();
                 var components = myTarget.transform.GetComponentsInChildren<Fabric.AudioComponent>(true);
                 foreach (var audioComponent in components)
                 {
@@ -73,13 +72,13 @@ namespace EA4S
 
                         if (found)
                         {
-                            SfxConfiguration conf = myTarget.sfxConfs.Find((a) => { return a.sfx == sfx; });
+                            SfxConfiguration conf = myTarget.GetSfxConfiguration(sfx);
 
                             if (conf == null)
                                 conf = new SfxConfiguration();
 
                             conf.sfx = sfx;
-                            myTarget.sfxConfs.Add(conf);
+                            myTarget.UpdateSfxConfiguration(conf);
 
                             conf.volume = audioComponent.Volume;
                             conf.randomPitchOffset = audioComponent.PitchRandomization;
@@ -96,6 +95,7 @@ namespace EA4S
                         }
                     }
                 }
+
 
                 var rndcomponents = myTarget.transform.GetComponentsInChildren<Fabric.RandomComponent>(true);
                 foreach (var randomComponent in rndcomponents)
@@ -118,7 +118,7 @@ namespace EA4S
 
                         if (found)
                         {
-                            SfxConfiguration conf = myTarget.sfxConfs.Find((a) => { return a.sfx == sfx; });
+                            SfxConfiguration conf = myTarget.GetSfxConfiguration(sfx);
 
                             if (conf == null)
                                 conf = new SfxConfiguration();
@@ -149,20 +149,20 @@ namespace EA4S
                     }
                 }
             }
-            */
+            
 
             EditorGUILayout.LabelField("-- Sound effects --", titlesStyle);
             EditorGUILayout.Separator();
             foreach (var sfx in Enum.GetValues(typeof(Sfx)))
             {
-                SfxConfiguration conf = myTarget.sfxConfs.Find((a) => { return a.sfx == (Sfx)sfx; });
+                SfxConfiguration conf = myTarget.GetSfxConfiguration((Sfx)sfx);
 
                 if (conf == null)
                 {
                     conf = new SfxConfiguration();
                     conf.sfx = (Sfx)sfx;
                     conf.volume = 1;
-                    myTarget.sfxConfs.Add(conf);
+                    myTarget.UpdateSfxConfiguration(conf);
                 }
 
 
@@ -229,22 +229,26 @@ namespace EA4S
 
             EditorGUILayout.LabelField("-- Music --", titlesStyle);
             EditorGUILayout.Separator();
+
             foreach (var music in Enum.GetValues(typeof(Music)))
             {
-                MusicConfiguration conf = myTarget.musicConfs.Find((a) => { return a.music == (Music)music; });
+                if ((Music)music == Music.Silence || (Music)music == Music.Custom)
+                    continue;
+
+                MusicConfiguration conf = myTarget.GetMusicConfiguration((Music)music);
 
                 if (conf == null)
                 {
                     conf = new MusicConfiguration();
 
                     conf.music = (Music)music;
-                    myTarget.musicConfs.Add(conf);
                 }
 
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("Music." + music.ToString(), conf.clip ? goodStyle : badStyle);
                 conf.clip = (AudioClip)EditorGUILayout.ObjectField(conf.clip, typeof(AudioClip), false);
                 EditorGUILayout.EndHorizontal();
+                myTarget.UpdateMusicConfiguration(conf);
             }
         }
     }

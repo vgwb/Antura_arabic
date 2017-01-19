@@ -104,7 +104,7 @@ namespace EA4S.ColorTickle
             m_Tickle = true;
             m_LetterObjectView.SetState(LLAnimationStates.LL_tickling);
 
-            AudioManager.I.PlaySfx(Sfx.LL_Laugh);
+            ColorTickleConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.LL_Laugh);
 
             if (LoseLife != null)
             {

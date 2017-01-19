@@ -254,7 +254,7 @@ namespace EA4S.GamesSelector
                 GamesSelectorBubble bubble = bubbles[i];
                 bubble.gameObject.SetActive(true);
                 showTween.Insert(i * 0.05f, bubble.transform.DOScale(0.0001f, 0.6f).From().SetEase(Ease.OutElastic, 1, 0))
-                    .InsertCallback(i * 0.1f, () => AudioManager.I.PlaySfx(Sfx.BalloonPop));
+                    .InsertCallback(i * 0.1f, () => AudioManager.I.PlaySound(Sfx.BalloonPop));
             }
             yield return showTween.WaitForCompletion();
 
