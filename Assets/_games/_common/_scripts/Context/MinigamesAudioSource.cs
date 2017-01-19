@@ -1,9 +1,11 @@
-﻿using System;
-using DG.DeAudio;
+﻿using DG.DeAudio;
 using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Concrete implementation of IAudioSource. Accessible to minigames.
+    /// </summary>
     public class MinigamesAudioSource : IAudioSource
     {
         AudioClip clip;

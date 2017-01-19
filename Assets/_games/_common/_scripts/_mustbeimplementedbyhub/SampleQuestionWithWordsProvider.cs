@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace EA4S
 {
     /// <summary>
+    /// Example implementation of IQuestionProvider.
+    /// Not to be used in actual production code.
     /// This sample class generates 32 quizzes of type "I give you a word, you say that word"
     /// </summary>
     public class SampleQuestionWithWordsProvider : IQuestionProvider

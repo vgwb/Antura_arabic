@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Provides access to the MinigamesStarsWidget UI element for minigames.
+    /// <seealso cref="MinigamesPopupWidget"/>
+    /// </summary>
     public interface IPopupWidget
     {
         // Manual popup management

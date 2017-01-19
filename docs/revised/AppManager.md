@@ -167,7 +167,7 @@ Refer to **MiniGame.md** for details on how the minigame flow is implemented.
  
 ### MiniGame End
 
-@todo: it is not clear where a minigame actually ends!
+The minigame logic is required to call **MiniGame.EndGame()** to end gameplay.
 
 As a minigame ends, the end game panel is shown, and 
  after user interaction the game is exited.

@@ -1,9 +1,8 @@
-﻿
-
-namespace EA4S
+﻿namespace EA4S
 {
     /// <summary>
-    /// Letter provider sample
+    /// Example implementation of ILivingLetterDataProvider.
+    /// Not to be used in actual production code.
     /// </summary>
     public class SampleLetterProvider : ILivingLetterDataProvider
     {

@@ -1,5 +1,9 @@
 ﻿namespace EA4S
 {
+    /// <summary>
+    /// Interface for a generic timer.
+    /// </summary>
+    // refactor: should be grouped with other utilities
     public interface ITimer
     {
         bool IsRunning { get; }

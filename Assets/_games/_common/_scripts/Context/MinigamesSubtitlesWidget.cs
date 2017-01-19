@@ -1,5 +1,8 @@
 ﻿namespace EA4S
 {
+    /// <summary>
+    /// Concrete implementation of ISubtitlesWidget. Accessible to minigames.
+    /// </summary>
     public class MinigamesSubtitlesWidget : ISubtitlesWidget
     {
         public void DisplaySentence(Db.LocalizationDataId text, float enterDuration , bool showSpeaker, System.Action onSentenceCompleted)

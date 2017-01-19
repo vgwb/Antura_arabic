@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Concrete implementation of an input manager accessible by minigames.
+    /// </summary>
     public class MinigamesInputManager : IInputManager
     {
         public bool Enabled { get; set; }

@@ -1,10 +1,12 @@
-﻿using System;
-using DG.DeAudio;
+﻿using DG.DeAudio;
 using UnityEngine;
 using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Concrete implementation of IAudioManager. Accessible to minigames.
+    /// </summary>
     public class MinigamesAudioManager : IAudioManager
     {
         List<MinigamesAudioSource> playingAudio = new List<MinigamesAudioSource>();

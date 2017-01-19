@@ -620,3 +620,25 @@ therefore, the game will ask for a word data using that interface, each time it 
 ***NOTE: END OF OUTDATED PART***
 
 
+
+
+### MiniGame Architecture 
+
+This section details the software architecture of the minigames.
+ The system is designed to allow minigames to use core data, without requiring them to actually access the core code,
+  and viceversa.
+  
+This is achieved through a set of interfaces:
+ * **IGame** represents the capabilities of the main scene manager of the minigame.
+	**EA4S.MiniGame** implements it and is used as the base class for all minigame.
+ * **IGameState** represents a general state inside the Game State Manager.
+ * **IGameContext** provides the minigames with access to core functionalities. 
+ * **IGameConfiguration** represents the configuration for launching the specific minigame.
+ * **IQuestionProvider**
+ * **IQuestionBuilder** 
+ 
+Core functionalities are also accessed through similar interfaces
+  that can be found in the **IGameContext** interface,
+  in the form **IXXXManager**  or **IXXXWidget**. 
+   Refer to the **IGameContext** class documentation for further details.
+ 

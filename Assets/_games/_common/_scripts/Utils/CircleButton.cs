@@ -1,10 +1,13 @@
 ﻿using DG.Tweening;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// A circle-shaped button.
+    /// </summary>
+    // refactor: should be merged with other UI elements
     public class CircleButton : MonoBehaviour
     {
         bool active = true;

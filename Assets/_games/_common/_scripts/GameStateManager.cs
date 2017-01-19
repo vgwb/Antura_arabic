@@ -1,10 +1,10 @@
-﻿
-namespace EA4S
+﻿namespace EA4S
 {
-
     /// <summary>
-    /// Manages game states/phases
+    /// Implements a Finite State Machine (FSM).
+    /// This is used to control minigame flow, and may also be used as a general purpose FSM.
     /// </summary>
+    /// refactor: we may remove the *Game* prefix, as this is used as a general FSM
     public class GameStateManager
     {
         // Use to prevent recursive calls to ExitState, when the transition happens in ExitState
