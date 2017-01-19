@@ -30,29 +30,25 @@
 </table>
 
 
-
-
-In this document, we describe the programming interface that should be used
+In this document, we describe the programming interface that is used
 by all the minigames in the Antura project.
 
 The purpose of the interface is to expose to mini-games a unified and simplified
 way to access core functionalities, and to define how minigames are launched and configured,
 including the dataflow from the content (e.g. question sets) database towards each minigame.
 
-# Creating a new mini-game project
 
-If you already have a minigame and don’t want to change its architecture to the proposed one;
-then, just skip to "**_Adapting an already made mini-game when you have absolutely no time to refactor your code using game states_**".
+# Creating a new minigame project
 
-All the mini-games must be in the **_games** directory of the Antura’s Unity3D project.
+All the minigames are in the **_games** directory of the Antura’s Unity3D project.
 
-Instead of starting your own mini-game from scratch, you could use our game template:
+Instead of starting your own minigame from scratch, you can use the provided game template:
 
 1. Make a copy of the **_gametemplate**directory (which is in the **_games**directory);
 
 2. Rename it using the name of your game, e.g. *MyNewMasterpiece* and put it under the **_games** directory;
 
-3. In such folder (*MyNewMasterPiece*), you will find a set of files and subfolders. You must find and rename "TemplateGame.cs" and “TemplateConfiguration.cs” into “MyNewMasterpieceGame.cs” and “MyNewMasterpieceConfiguration.cs”, according to the game’s name you chose;
+3. In the folder (*MyNewMasterpiece*) you will find a set of files and subfolders. You must find and rename "TemplateGame.cs" and “TemplateConfiguration.cs” into “MyNewMasterpieceGame.cs” and “MyNewMasterpieceConfiguration.cs”, according to the game name you chose;
 
 4. Edit these source files, and change the class names in order to comply with this name change, for example:
 
@@ -64,10 +60,26 @@ Instead of starting your own mini-game from scratch, you could use our game temp
     
 ***note: MiniGame namespaces may change***
 
+
+# Making a minigame accessible from the core application
+
+A minigame does not exist in a vacuum. The core app needs to know of its existance and how to handle it.
+For this purpose, the following should be performed:
+ * a new entry named *MyNewMasterpiece* should be added to the **MiniGameCode** enumerator
+ * the database should be updated to support the new minigame. (refer to the **Database.md** document)  This requires:
+	* adding a new **MiniGameData** entry 
+	* updating the table of **PlaySessionData** to support the new minigame at a given learning block
+ * **MiniGameAPI.ConfigureMiniGame()** should be updated to provide the correct configuration for the new minigame code.
+ *  **LogAI.GetLearnRules(MiniGameCode code)** should be updated to provide the correct logging rules for the new minigame.
+ 
+***note: the above requirements are bound to change as it couples minigames with the core codebase***
+
+
+
 # Game Structure
 
-Here is described the software architecture that should be followed by your mini-games.
-If you copied the Mini-game template, the main classes are already partially implemented to be compliant with such architecture.
+Here we describe the software architecture that should be followed by your mini-games.
+If you copied the Minigame template, the main classes are already partially implemented to be compliant with such architecture.
 
 The minigame main class should extend **MiniGame** class, inside the EA4S namespace.
 Such class is realized using the [*State Pattern*](https://en.wikipedia.org/wiki/State_pattern)
@@ -101,6 +113,7 @@ each time a state transition is completed, the `ExitState()` method is called on
 
 The purpose of these methods is to process things like setting up the scene graphics, resetting timers, showing/hiding panels, etc.
 
+
 # Ending the Game
 
 When the game is over, call the method EndGame of the {GameName}Game class:
@@ -115,35 +128,23 @@ game.EndGame(howMuchStars, gameScore);
 
 In this way, the game will automatically switch to a special OutcomeState, and show how many stars were obtained, then quit the game.
 
-# Adapting an already made mini-game when you have absolutely no time to refactor your code using states
 
-With this and all the following sections, I’ll describe the mandatory requirements that each mini-game should fulfill in order to be compliant with the rest of the Antura project.
-If you created a game using the template described in the previous sections, skip to "**Game Configuration**"
-
-The first requirement of your minigame is to have the game configuration script described in "Game Configuration". If you want to see how a configuration class is made, you could just copy it from the template directory or from Tobogan/Fastcrowd minigames.
-
-From that configuration class (which is a singleton per game) you will access both core functionalities (e.g. Audio/Input/HUD) and receive data from the app.
-
-
-In the only case you are still extending the old MiniGameBase class, you must add this inside your game manager Update():
-
-```
-var inputManager = Context.GetInputManager();
-inputManager.Enabled = !(GlobalUI.PauseMenu.IsMenuOpen);
-inputManager.Update(Time.deltaTime);
-```
 
 # Game Configuration
 
 Each game folder should have two main folders for scripts:
+
 *_scripts*
 
 *_configurationscripts*
 
 all the game-related scripts, should be placed inside the **_scripts** folder;
-**_configurationscripts** is a service folder used by core programmers to define game specific 
-classes and **should not be modified by minigame creators**.
+**_configurationscripts** is a service folder used to define game specific classes
+ that help the in communicating with the core codebase.
 
+The first requirement of your minigame is to have a game configuration script. 
+  If you want to see how a configuration class is made, you could just copy it from the template directory.
+ 
 The {GameName}Configuration.cs defines how a minigame is configured by the app,
 and provides the minigame some useful interfaces.
 
@@ -151,8 +152,72 @@ and provides the minigame some useful interfaces.
 
 # Minigame Variations
 
-*** TODO DEFINE VARIATIONS HERE ***
+Each minigame is created inside its own scene and namespace.
+Usually, the core application refers to the minigame using
+ a 1-to-1 relationship, detailed by the **MiniGameCode** that
+  represents the minigame in the core application.
+  
+However, sometimes it is useful to have a single scene support multiple 
+ instances of minigames with slight variations.
+ These minigames are called *variations*.
+ Variations are transparent to the core application (they are considered different minigames),
+  but multiple variations point to the same minigame scene.
 
+  Variations are specified in the specific minigame's configuration code, if needed.
+  
+
+
+
+## Game Difficulty
+
+The game configuration provides a difficulty level.
+This difficulty value is provided by the Teacher and can be accessed as:
+
+```
+float difficulty = {GameName}Configuration.Instance.Difficulty;
+```
+
+The game difficulty is expressed as a float in the range [0, 1],
+meaning 0 : easy, 1 : hard.
+
+How such difficulty level is implemented by the game is not defined **a priori**
+and must be defined by the minigame developer.
+
+Possible choices for difficulty can be:
+ * Play speed
+ * Aiming precision 
+ * Rhythm
+ * Short-term memory
+
+For example, the minigame can linearly control the game speed based on difficulty:
+```
+_speed = normalSpeed * difficulty;
+```
+
+or, it could have a finite set of parameters configurations, based on difficulty interval:
+
+```
+if (difficulty < 0.333f)
+{
+	// configure game for "easy"
+}
+
+else if (difficulty < 0.666f)
+{
+	// configure game for "medium"
+}
+else
+{
+	// configure game for "hard"
+}
+```
+
+In this case, please configure a set of at least 5 different configurations
+(very easy, easy, medium, hard, very hard).
+
+
+Note that this difficulty must however **not** be related to the learning content, but only to play difficulty.
+This is because learning difficulty is already taken care of by the Teacher generating suitable Question Packs.
 
 ## Accessing core functionalities
 
@@ -222,68 +287,6 @@ More widgets’ interfaces will be added to the context as soon the graphics wil
 
 
 
-### Game Configuration
-
-The Game Configuration class provides a set of common methods and instances that minigames should use.
-
-
-## Mini Game Code
-
-@todo: explain MiniGameCode and how to add to it
-
-
-## Game Difficulty
-
-The game configuration provides a difficulty level.
-This difficulty value is provided by the Teacher and can be accessed as:
-
-```
-float difficulty = {GameName}Configuration.Instance.Difficulty;
-```
-
-The game difficulty is expressed as a float in the range [0, 1],
-meaning 0 : easy, 1 : hard.
-
-How such difficulty level is implemented by the game is not defined **a priori**
-and must be defined by the minigame developer.
-
-Possible choices for difficulty can be:
- * Play speed
- * Aiming precision 
- * Rhythm
- * Short-term memory
-
-For example, the minigame can linearly control the game speed based on difficulty:
-```
-_speed = normalSpeed * difficulty;
-```
-
-or, it could have a finite set of parameters configurations, based on difficulty interval:
-
-```
-if (difficulty < 0.333f)
-{
-	// configure game for "easy"
-}
-
-else if (difficulty < 0.666f)
-{
-	// configure game for "medium"
-}
-else
-{
-	// configure game for "hard"
-}
-```
-
-In this case, please configure a set of at least 5 different configurations
-(very easy, easy, medium, hard, very hard).
-
-
-Note that this difficulty must however **not** be related to the learning content, but only to play difficulty.
-This is because learning difficulty is already taken care of by the Teacher generating suitable Question Packs.
-
-
 # Retrieving dictionary content from core
 
 Usually, a mini-game needs dictionary content to be passed directly from the core code.
@@ -349,7 +352,6 @@ The **IQuestionBuilder** defines the learning rules and requirements for the cur
   
  The minigame developer can choose from a set of question builders that the Teacher can support.
 Refer to the Teacher documentation for further details.
- *** TODO: LINK THE TEACHER DOCS **
 
 
 # Generating content for test purposes
@@ -478,8 +480,9 @@ The following methods can be used to perform a jump. Animations are in place, so
 
 The Living Letter View has a **Poof()** method that let you create a "poof" particle animation in the current position of the letter. You can use it when you want to make the LL disappear and re-appear on another position, or simply destroy it;
 
-# Using the Antura prefab
 
+
+# Using the Antura prefab
 
 The contents of the AnturaSpace folder handle interactions with Antura in the AnturaSpace scene, used for reward and customization purposes.
 
@@ -562,9 +565,9 @@ IsAngry is set to true automatically (needed to use the angry run).
 After such animation ends, **_onChargeEnded_** will be called to inform you, and passes automatically into running state.
 You should use **_onChargeEnded_** to understand when you should begin to move the antura's transform.
 
-# Adding Environment Assets
 
-Note: Ask Gaetano Leonardi about the new graphics, since he was already preparing it for the current mini-games (he made a copy of the minigames’ scenes to update them).
+
+# Adding Environment Assets
 
 Environment graphics, like trees, are selected in the scene in order to match the current world of the minigame (there are 6 worlds).
 To do so, you must use the following auto-switching component: **AutoWorldPrefab**.
@@ -599,46 +602,7 @@ The AutoWorldCameraColor, as in AutoWorldPrefab, needs that a field is configure
 
 
 
-### Guidelines for EA4S contributors
-
-These notes are relevant only to EA4S contributors as there are some additional steps for collaboration on creating minigames.
-
-After reading this section, write inside this table
-[[Data provider usage table]](https://docs.google.com/spreadsheets/d/1XisADjQ97yEEN2ZSeLga1txPQy6H2v77FdPkNOcHro0)
-how they should fill the IQuestionPack (described in this section) that they must pass to your minigame.
-
-
-***NOTE: THE FOLLOWING PART IS OUTDATED AS ONLY QUESTION PROVIDERS WILL WORK WITH THE TEACHER***
-Such content will be passed to the game using the {GameName}Configuration.cs class
-by core programmers to mini-games programmers, through one or more **_Provider_** interfaces.
-Such providers are added to the Configuration class only if the game needs them.
-For example, if a game needs a set of words to develop its gameplay;
-the Configuration class will provide a member:
-**_ILivingLetterDataProvider wordsProvider;_**
-therefore, the game will ask for a word data using that interface, each time it needs another one:
-**_ILivingLetterData data = {GameName}Configuration.Instance.wordsProvider.GetNextData();_**
-***NOTE: END OF OUTDATED PART***
-
-
-
-
-### MiniGame Architecture 
-
-This section details the software architecture of the minigames.
- The system is designed to allow minigames to use core data, without requiring them to actually access the core code,
-  and viceversa.
-  
-This is achieved through a set of interfaces:
- * **IGame** represents the capabilities of the main scene manager of the minigame.
-	**EA4S.MiniGame** implements it and is used as the base class for all minigame.
- * **IGameState** represents a general state inside the Game State Manager.
- * **IGameContext** provides the minigames with access to core functionalities. 
- * **IGameConfiguration** represents the configuration for launching the specific minigame.
- * **IQuestionProvider**
- * **IQuestionBuilder** 
- 
-Core functionalities are also accessed through similar interfaces
-  that can be found in the **IGameContext** interface,
-  in the form **IXXXManager**  or **IXXXWidget**. 
-   Refer to the **IGameContext** class documentation for further details.
- 
+#### Refactoring Notes
+	* variations are not actually enforced by the codebase, but it would be a good idea to make all games use them, as currently the core app reasons in terms of 'MiniGameCode', but a minigame is actually identified by the 'game scene' and the 'variation'
+	* code common to minigames (interfaces, minigames***managers, and so on) should be in a separate namespace, and also 
+	* code common to all minigames is now separated into _games/_common and _core/MiniGame, and _core/MinigameAPI. Should be better organized
