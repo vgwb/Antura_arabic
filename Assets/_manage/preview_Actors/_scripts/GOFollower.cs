@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 
-namespace EA4S { 
+// refactor: add to the Test namespace
+namespace EA4S
+{ 
     /// <summary>
     /// Follow the gameobject on selected axes with selected delay.
     /// </summary>

@@ -1,12 +1,13 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/18
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using EA4S.Db;
 using UnityEngine;
 
 namespace EA4S.Test
 {
+    /// <summary>
+    /// Helper class to test the GameResultUI
+    /// <seealso cref="GameResultUI"/>
+    /// </summary>
     public class Tester_GameResultUI : MonoBehaviour
     {
         #region EndgameResult
