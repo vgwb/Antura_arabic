@@ -2,6 +2,9 @@
 
 namespace EA4S.Db.Management
 {
+    /// <summary>
+    /// Custom JSON parser for StageData
+    /// </summary>
     public class StageParser : DataParser<StageData, StageTable>
     {
         override protected StageData CreateData(Dictionary<string, object> dict, Database db)

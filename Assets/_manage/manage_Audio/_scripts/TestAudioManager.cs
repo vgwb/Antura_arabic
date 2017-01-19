@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System;
-using System.Linq;
 
-namespace EA4S
+namespace EA4S.Management.Test
 {
+    /// <summary>
+    /// Test class for testing the audio manager.
+    /// </summary>
+    // refactor: is this needed anymore?
     public class TestAudioManager : MonoBehaviour
     {
 

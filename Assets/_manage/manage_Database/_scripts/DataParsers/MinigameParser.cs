@@ -2,6 +2,9 @@
 
 namespace EA4S.Db.Management
 {
+    /// <summary>
+    /// Custom JSON parser for MiniGameData
+    /// </summary>
     public class MiniGameParser : DataParser<MiniGameData, MiniGameTable>
     {
         override protected MiniGameData CreateData(Dictionary<string, object> dict, Database db)

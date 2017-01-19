@@ -38,6 +38,7 @@ See the .md files for more information.
 		* Part of the core depends on what minigames are available. The core should work without minigames. See SRDebug, MiniGameAPI, and others.
 		* ModularFramework is included for some parts, but not for others. We should decide whether to keep it or not. It may be better to remove it and merge what we need inside the core app instead.
 		* First Contact code is scattered throughout the codebase
+		* Rewards code needs to be refactored
 		
 	* Nomenclature
 		* The word 'Data' is used interchangeably for 'LivingLetterData' and the database 'Data' (see LL_WordData versus Db.WordData). This creates confusion especially when handling learning data. This can be solved by making sure that LivingLetters data is converted into Views, and that the database's learning data is instead defined as LearningData (example: WordLearningData). Note also that the core should not use LL***Data, but ***Data. The view choice should be made by the minigame.

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace EA4S.Db
 {
+    /// <summary>
+    /// Custom asset container for LocalizationData. 
+    /// </summary>
     public class LocalizationDatabase : ScriptableObject
     {
         [SerializeField]

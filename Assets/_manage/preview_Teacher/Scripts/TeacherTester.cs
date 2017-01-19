@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 namespace EA4S.Teacher.Test
 {
-
     public class TeacherTester : MonoBehaviour
     {
         public InputField journey_stage_in;
