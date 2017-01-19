@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using EA4S.Teacher;
-using System;
 
 namespace EA4S
 {
     /// <summary>
-    /// Concrete implementation of log manager to store log data on db.
-    /// Use this to log from minigame.
+    /// Concrete implementation of the log manager, accessible to minigames.
     /// </summary>
     public class MinigamesLogManager : ILogManager
     {

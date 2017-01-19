@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
 using ModularFramework.Core;
 using TMPro;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Contains the logig for a timer used inside minigames.
+    /// </summary>
     // refactor: this should be moved to _minigames/_common 
     public class GameplayTimer : Singleton<GameplayTimer>
     {

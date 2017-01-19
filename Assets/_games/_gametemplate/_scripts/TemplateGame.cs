@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace EA4S.Template
+﻿namespace EA4S.Template
 {
+    /// <summary>
+    /// Sample game, to be used as a starting point for implementing new minigames.
+    /// Implements a fake game with an introduction, a question, a gameplay, and a result phase.
+    /// </summary>
     public class TemplateGame : MiniGame
     {
         public IntroductionGameState IntroductionState { get; private set; }

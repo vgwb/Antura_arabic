@@ -1,5 +1,9 @@
 ﻿namespace EA4S.Template
 {
+    /// <summary>
+    /// Template configuration for a minigame.
+    /// Use this as a starting point.
+    /// </summary>
     public class TemplateConfiguration : IGameConfiguration
     {
         // Game configuration
@@ -31,7 +35,7 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            // TODO
+            // CONFIGURE HERE WHAT BUILDER THE MINIGAME IS EXPECTING
             return builder;
         }
 

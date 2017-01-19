@@ -1,13 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace EA4S.API {
+namespace EA4S.API
+{
+
     /// <summary>
     /// Data Pack for "find right question" mechanics.
-    /// One data question data, many right answare data, many answare data.
+    /// One data question data, many right answer data, many answer data.
     /// </summary>
     /// <seealso cref="EA4S.IQuestionPack" />
-    public class FindRightDataQuestionPack : IQuestionPack {
+    // refactor: this is used in all minigames as the core application reasons only in terms of question packs
+    public class FindRightDataQuestionPack : IQuestionPack
+    {
         IEnumerable<ILivingLetterData> questionsSentences;
         IEnumerable<ILivingLetterData> wrongAnswersSentence;
         IEnumerable<ILivingLetterData> correctAnswersSentence;
@@ -51,7 +55,6 @@ namespace EA4S.API {
         public IEnumerable<ILivingLetterData> GetCorrectAnswers() {
             return correctAnswersSentence;
         }
-
 
     }
 }

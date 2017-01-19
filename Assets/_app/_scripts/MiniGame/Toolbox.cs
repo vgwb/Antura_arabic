@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using ModularFramework.Core;
-using ModularFramework.Modules;
 
 namespace EA4S
 {

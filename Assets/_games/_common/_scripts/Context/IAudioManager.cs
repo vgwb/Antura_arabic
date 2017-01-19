@@ -2,6 +2,10 @@
 
 namespace EA4S
 {
+    /// <summary>
+    /// Provides generic audio access to the core and to minigames.
+    /// <seealso cref="MinigamesAudioManager"/>
+    /// </summary>
     public interface IAudioManager
     {
         bool MusicEnabled { get; set; }

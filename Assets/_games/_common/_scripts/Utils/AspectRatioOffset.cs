@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Applies an offset to a transform based on the current aspect ratio.
+/// </summary>
+// refactor: add to a namespace
 public class AspectRatioOffset : MonoBehaviour
 {
     public Vector3 offsetWhen16_9;
