@@ -50,6 +50,10 @@ namespace EA4S.API
             NavigationManager.I.GoToScene(miniGameData.Scene);
         }
 
+        /// <summary>
+        /// Prepare the configuration for a given minigame.
+        /// </summary>
+        // refactor: this depends on the specific minigames, should be abstracted
         public IGameConfiguration ConfigureMiniGame(MiniGameCode code, string sessionName)
         {
             var defaultContext = new MinigamesGameContext(code, sessionName);
