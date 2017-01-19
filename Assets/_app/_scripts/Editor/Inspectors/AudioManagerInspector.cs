@@ -1,9 +1,10 @@
-﻿using System;
+﻿using EA4S.Editor;
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Editor
 {
     [CustomEditor(typeof(AudioManager))]
     public class AudioManagerInspector : UnityEditor.Editor
@@ -47,7 +48,7 @@ namespace EA4S
 
             AudioManager myTarget = (AudioManager)target;
 
-            
+            /*
             if (GUILayout.Button("Grab from Fabric"))
             {
                 myTarget.ClearConfiguration();
@@ -95,7 +96,6 @@ namespace EA4S
                         }
                     }
                 }
-
 
                 var rndcomponents = myTarget.transform.GetComponentsInChildren<Fabric.RandomComponent>(true);
                 foreach (var randomComponent in rndcomponents)
@@ -150,6 +150,7 @@ namespace EA4S
                 }
             }
             
+                */
 
             EditorGUILayout.LabelField("-- Sound effects --", titlesStyle);
             EditorGUILayout.Separator();
@@ -195,7 +196,29 @@ namespace EA4S
                 EditorGUILayout.LabelField("Sfx." + sfx.ToString(), hasClips ? subtitleStyle : subtitleBadStyle);
 
                 for (int i = 0; i < clips.Count; ++i)
+                {
+                    EditorGUILayout.BeginHorizontal();
                     clips[i] = (AudioClip)EditorGUILayout.ObjectField(clips[i], typeof(AudioClip), false);
+
+                    if (GUILayout.Button("Play", GUILayout.Width(40)))
+                    {
+                        AudioUtils.PlayClip(clips[i]);
+                    }
+                    if (GUILayout.Button("Stop", GUILayout.Width(40)))
+                    {
+                        AudioUtils.StopAllClips();
+                    }
+
+                    var prevColor = GUI.color;
+                    GUI.color = Color.red;
+                    if (GUILayout.Button("Remove", GUILayout.Width(60)))
+                    {
+                        clips[i] = null;
+                    }
+                    GUI.color = prevColor;
+
+                    EditorGUILayout.EndHorizontal();
+                }
 
                 EditorGUILayout.BeginHorizontal();
 

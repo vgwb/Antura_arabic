@@ -85,8 +85,7 @@ namespace EA4S
 
         [SerializeField, HideInInspector]
         List<MusicConfiguration> musicConfs = new List<MusicConfiguration>();
-
-        bool configurationInitialized = false;
+        
         Dictionary<Sfx, SfxConfiguration> sfxConfigurationMap = new Dictionary<Sfx, SfxConfiguration>();
         Dictionary<Music, MusicConfiguration> musicConfigurationMap = new Dictionary<Music, MusicConfiguration>();
 
@@ -96,7 +95,6 @@ namespace EA4S
             musicConfs.Clear();
             sfxConfigurationMap.Clear();
             musicConfigurationMap.Clear();
-            configurationInitialized = false;
         }
 
         public void UpdateSfxConfiguration(SfxConfiguration conf)
@@ -329,8 +327,11 @@ namespace EA4S
         {
             SfxConfiguration conf = GetSfxConfiguration(sfx);
 
-            if (conf == null)
+            if (conf == null || conf.clips == null || conf.clips.Count == 0)
+            {
+                Debug.Log("No Audio clips configured for: " + sfx);
                 return null;
+            }
 
             return conf.clips.GetRandom();
         }
