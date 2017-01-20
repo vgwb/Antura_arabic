@@ -198,7 +198,9 @@ namespace EA4S
         public IAudioSource PlaySound(Sfx sfx)
         {
             AudioClip clip = GetAudioClip(sfx);
-            return new AudioSourceWrapper(sfxGroup.Play(clip), sfxGroup, this);
+            var source = new AudioSourceWrapper(sfxGroup.Play(clip), sfxGroup, this);
+            source.Pitch = 1 + ((Random.value-0.5f)*GetRandomPitchOffset(sfx))*2;
+            return source;
         }
 
         public void StopSounds()
@@ -334,6 +336,19 @@ namespace EA4S
             }
 
             return conf.clips.GetRandom();
+        }
+
+        public float GetRandomPitchOffset(Sfx sfx)
+        {
+            SfxConfiguration conf = GetSfxConfiguration(sfx);
+
+            if (conf == null || conf.clips == null || conf.clips.Count == 0)
+            {
+                Debug.Log("No Audio clips configured for: " + sfx);
+                return 0;
+            }
+
+            return conf.randomPitchOffset;
         }
 
         public AudioClip GetAudioClip(Music music)
