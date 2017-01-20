@@ -69,7 +69,7 @@ namespace EA4S.HideAndSeek
             var winInitialDelay = 1f;
             yield return new WaitForSeconds(winInitialDelay);
 
-            AudioManager.I.PlayLetter(GetCorrectAnswer().Id);
+            game.Context.GetAudioManager().PlayLetterData(GetCorrectAnswer());
 
             buttonRepeater.SetActive(true);
 
@@ -137,7 +137,7 @@ namespace EA4S.HideAndSeek
             if (script.view.Data.Id == GetCorrectAnswer().Id)
             {
                 script.resultAnimation(true);
-                AudioManager.I.PlaySfx(Sfx.Win);
+                AudioManager.I.PlaySound(Sfx.Win);
                 game.Context.GetCheckmarkWidget().Show(true);
                 StartCoroutine(GoToPlay());
                 phase = -1;
@@ -149,7 +149,7 @@ namespace EA4S.HideAndSeek
                 ArrayTrees[1].GetComponent<CapsuleCollider>().enabled = true;
                 phase = 2;
                 TutorialUI.Clear(false);
-                AudioManager.I.PlaySfx(Sfx.Lose);
+                AudioManager.I.PlaySound(Sfx.Lose);
                 game.Context.GetCheckmarkWidget().Show(false);
                 timeFinger = Time.time + animDuration + timeToWait;
             }
@@ -164,7 +164,7 @@ namespace EA4S.HideAndSeek
             foreach(GameObject x in ArrayLetters)
             {
                 x.GetComponent<LetterObjectView>().Poof();
-                AudioManager.I.PlaySfx(Sfx.Poof);
+                AudioManager.I.PlaySound(Sfx.Poof);
                 x.SetActive(false);
             }
 
@@ -187,7 +187,7 @@ namespace EA4S.HideAndSeek
 
         public void RepeatAudio()
         {
-            AudioManager.I.PlayLetter(GetCorrectAnswer().Id);
+            game.Context.GetAudioManager().PlayLetterData(GetCorrectAnswer());
         }
 
         public GameObject[] ArrayTrees;

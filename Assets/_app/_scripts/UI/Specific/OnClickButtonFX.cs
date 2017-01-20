@@ -24,7 +24,7 @@ namespace EA4S
 
         void playFx()
         {
-            AudioManager.I.PlaySfx(SfxOnClick);
+            AudioManager.I.PlaySound(SfxOnClick);
         }
     }
 }

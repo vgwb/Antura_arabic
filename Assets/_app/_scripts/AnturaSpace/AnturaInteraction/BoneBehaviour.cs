@@ -84,6 +84,8 @@ namespace EA4S.AnturaSpace
         #endregion
 
         #region INTERNALS
+        IAudioSource poofSound;
+
         void Start()
         {
 
@@ -141,7 +143,11 @@ namespace EA4S.AnturaSpace
 
         void OnDestroy()
         {
-            AudioManager.I.StopSfx(m_oSfxOnPoof);
+            if (poofSound != null)
+            {
+                poofSound.Stop();
+                poofSound = null;
+            }
             CancelInvoke();
         }
         #endregion
@@ -225,7 +231,7 @@ namespace EA4S.AnturaSpace
                 particles.Play();
             }
 
-            AudioManager.I.PlaySfx(m_oSfxOnPoof);
+            poofSound = AudioManager.I.PlaySound(m_oSfxOnPoof);
 
             CancelInvoke("StopPoof");//if we were quick maybe the particle hasn't stopped yet, so try to cancel the old one;
             Invoke("StopPoof", m_oParticleTime);

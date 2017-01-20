@@ -61,7 +61,7 @@ namespace EA4S.HideAndSeek
 
         public void RepeatAudio()
         {
-            AudioManager.I.PlayLetter(GetCorrectAnswer().Id);
+            game.Context.GetAudioManager().PlayLetterData(GetCorrectAnswer());
         }
 
 
@@ -74,7 +74,7 @@ namespace EA4S.HideAndSeek
 
             foreach (GameObject x in ArrayLetters) {
                 x.GetComponent<LetterObjectView>().Poof();
-                AudioManager.I.PlaySfx(Sfx.Poof);
+                AudioManager.I.PlaySound(Sfx.Poof);
                 x.SetActive(false);
             }
 
@@ -95,13 +95,13 @@ namespace EA4S.HideAndSeek
                 script.resultAnimation(true);
                 game.OnResult();
                 buttonRepeater.SetActive(false);
-                AudioManager.I.PlaySfx(Sfx.Win);
+                AudioManager.I.PlaySound(Sfx.Win);
             } else {
                 RemoveLife();
                 script.resultAnimation(false);
                 if (lifes == 0) {
                     LockTrees();
-                    AudioManager.I.PlaySfx(Sfx.Lose);
+                    AudioManager.I.PlaySound(Sfx.Lose);
                     StartCoroutine(DelayAnimation());
                     buttonRepeater.SetActive(false);
                 }
@@ -209,7 +209,7 @@ namespace EA4S.HideAndSeek
             var winInitialDelay = 0.5f;
             yield return new WaitForSeconds(winInitialDelay);
 
-            AudioManager.I.PlayLetter(GetCorrectAnswer().Id);
+            game.Context.GetAudioManager().PlayLetterData(GetCorrectAnswer());
             game.PlayState.gameTime.Start();
 
             buttonRepeater.SetActive(true);

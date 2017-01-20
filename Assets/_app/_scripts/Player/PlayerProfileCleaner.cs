@@ -5,8 +5,8 @@ namespace EA4S {
     /// <summary>
     /// Handles cleanup of player profiles.
     /// </summary>
-    public class PlayerProfileCleaner : MonoBehaviour {
-
+    public class PlayerProfileCleaner : MonoBehaviour
+    {
         public void ResetAllPlayerProfiles() {
             AppManager.I.PlayerProfileManager.DeleteAllProfiles();
             AppManager.I.PlayerProfileManager = new PlayerProfileManager();
@@ -19,6 +19,5 @@ namespace EA4S {
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, UnityEngine.SceneManagement.LoadSceneMode.Single);
             AppManager.I.PlayerProfileManager = new PlayerProfileManager();
         }
-
     }
 }

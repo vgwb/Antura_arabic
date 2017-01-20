@@ -40,7 +40,7 @@ namespace EA4S.Scenes
         public void ReadyToPlay()
         {
             WidgetSubtitles.I.Close();
-            AudioManager.I.PlaySfx(Sfx.GameTitle);
+            AudioManager.I.PlaySound(Sfx.GameTitle);
             ContinueScreen.Show(RestartGame, ContinueScreenMode.Button);
         }
 

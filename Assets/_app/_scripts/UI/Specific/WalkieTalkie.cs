@@ -42,7 +42,7 @@ namespace EA4S
             IsShown = _doShow;
             if (_doShow) {
                 this.gameObject.SetActive(true);
-                AudioManager.I.PlaySfx(Sfx.WalkieTalkie);
+                AudioManager.I.PlaySound(Sfx.WalkieTalkie);
                 StopPulse(true);
                 if (_immediate) showTween.Complete();
                 else showTween.PlayForward();

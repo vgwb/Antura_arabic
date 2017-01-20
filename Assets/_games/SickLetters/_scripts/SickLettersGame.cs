@@ -224,7 +224,7 @@ namespace EA4S.SickLetters
             Debug.Log("XXXXX "+Time.deltaTime);
             lastMoveIsCorrect = false;
             goodCommentCounter = correctMoveSequence = 0;
-            AudioManager.I.PlayDialog("Keeper_Bad_" + UnityEngine.Random.Range(1,6));
+            AudioManager.I.PlayDialogue("Keeper_Bad_" + UnityEngine.Random.Range(1,6));
             TutorialUI.MarkNo(scale.transform.position - Vector3.forward * 2 + Vector3.up, TutorialUI.MarkSize.Big);
             Context.GetAudioManager().PlaySound(Sfx.Lose);
         }
@@ -237,7 +237,7 @@ namespace EA4S.SickLetters
 
             if (goodCommentCounter == 3 || !lastMoveIsCorrect)
             {
-                AudioManager.I.PlayDialog("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
+                AudioManager.I.PlayDialogue("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
                 goodCommentCounter = 0;
             }
 

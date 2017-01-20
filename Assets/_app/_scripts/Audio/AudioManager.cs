@@ -1,138 +1,195 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using Fabric;
-using UnityEngine.Audio;
+using EA4S.Db;
+using DG.DeAudio;
 
 namespace EA4S
 {
-
     /// <summary>
     /// Handles audio requests throughout the application
     /// </summary>
-    // conventions: needs renaming
-    public class AudioManager : MonoBehaviour
+    public class AudioManager : MonoBehaviour, ISerializationCallbackReceiver
     {
-        const string LETTERS_PREFIX = "Letter/";
-        const string WORDS_PREFIX = "";
-
         public static AudioManager I;
 
-        public AudioMixerGroup musicGroup;
-        public AudioMixerGroup sfxGroup;
-        public AudioMixerGroup lettersGroup;
+        public bool IsAppPaused { get; private set; }
 
-        System.Action OnNotifyEndAudio;
-        bool hasToNotifyEndAudio = false;
+        List<AudioSourceWrapper> playingAudio = new List<AudioSourceWrapper>();
+
+        DeAudioGroup musicGroup;
+        DeAudioGroup wordsLettersPhrasesGroup;
+        DeAudioGroup keeperGroup;
+        DeAudioGroup sfxGroup;
+
+        System.Action OnDialogueEnded;
+        bool hasToNotifyEndDialogue = false;
 
         bool musicEnabled = true;
-        public bool MusicEnabled { get { return musicEnabled; } }
+        AudioClip customMusic;
         Music currentMusic;
+        public bool MusicEnabled
+        {
+            get
+            {
+                return musicEnabled;
+            }
 
-        Dictionary<string, Fabric.AudioComponent> eventToComponent = new Dictionary<string, Fabric.AudioComponent>();
-        Dictionary<string, Fabric.RandomComponent> eventToRndComponent = new Dictionary<string, Fabric.RandomComponent>();
+            set
+            {
+                if (musicEnabled == value)
+                    return;
+
+                musicEnabled = value;
+
+                if (musicEnabled && (currentMusic != Music.Silence))
+                {
+                    if (musicGroup != null)
+                    {
+                        musicGroup.Resume();
+
+                        bool hasToReset = false;
+
+                        if (musicGroup.sources == null)
+                            hasToReset = true;
+                        else
+                        {
+                            foreach (var s in musicGroup.sources)
+                            {
+                                if (s.isPlaying)
+                                    goto Cont;
+                            }
+                            hasToReset = true;
+                        }
+                    Cont:
+                        if (hasToReset)
+                        {
+                            if (currentMusic == Music.Custom)
+                                musicGroup.Play(customMusic, 1, 1, true);
+                            else
+                                musicGroup.Play(GetAudioClip(currentMusic), 1, 1, true);
+                        }
+
+                    }
+                }
+                else
+                {
+                    if (musicGroup != null)
+                        musicGroup.Pause();
+                }
+            }
+        }
+
         Dictionary<string, AudioClip> audioCache = new Dictionary<string, AudioClip>();
+
+        #region Serialized Configuration
+        [SerializeField, HideInInspector]
+        List<SfxConfiguration> sfxConfs = new List<SfxConfiguration>();
+
+        [SerializeField, HideInInspector]
+        List<MusicConfiguration> musicConfs = new List<MusicConfiguration>();
+        
+        Dictionary<Sfx, SfxConfiguration> sfxConfigurationMap = new Dictionary<Sfx, SfxConfiguration>();
+        Dictionary<Music, MusicConfiguration> musicConfigurationMap = new Dictionary<Music, MusicConfiguration>();
+
+        public void ClearConfiguration()
+        {
+            sfxConfs.Clear();
+            musicConfs.Clear();
+            sfxConfigurationMap.Clear();
+            musicConfigurationMap.Clear();
+        }
+
+        public void UpdateSfxConfiguration(SfxConfiguration conf)
+        {
+            var id = sfxConfs.FindIndex((a) => { return a.sfx == conf.sfx; });
+
+            if (id >= 0)
+                sfxConfs.RemoveAt(id);
+
+            sfxConfs.Add(conf);
+            sfxConfigurationMap[conf.sfx] = conf;
+        }
+
+        public void UpdateMusicConfiguration(MusicConfiguration conf)
+        {
+            var id = musicConfs.FindIndex((a) => { return a.music == conf.music; });
+
+            if (id >= 0)
+                musicConfs.RemoveAt(id);
+
+            musicConfs.Add(conf);
+            musicConfigurationMap[conf.music] = conf;
+        }
+
+        public MusicConfiguration GetMusicConfiguration(Music music)
+        {
+            MusicConfiguration v;
+            if (musicConfigurationMap.TryGetValue(music, out v))
+                return v;
+            return null;
+        }
+
+        public SfxConfiguration GetSfxConfiguration(Sfx sfx)
+        {
+            SfxConfiguration v;
+            if (sfxConfigurationMap.TryGetValue(sfx, out v))
+                return v;
+            return null;
+        }
+        #endregion
 
         void Awake()
         {
             I = this;
 
+            sfxGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.FX);
+            musicGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Music);
+            wordsLettersPhrasesGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Custom0);
+            keeperGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Custom1);
+
             musicEnabled = true;
-
-            // Collect all Event name -> Audio clip pairs
-            var components = transform.GetComponentsInChildren<AudioComponent>(true);
-            foreach (var c in components) {
-                var listener = c.GetComponent<EventListener>();
-
-                if (listener != null)
-                    eventToComponent[listener._eventName] = c;
-            }
-
-            var rndcomponents = transform.GetComponentsInChildren<RandomComponent>(true);
-            foreach (var c in rndcomponents) {
-                var listener = c.GetComponent<EventListener>();
-
-                if (listener != null)
-                    eventToRndComponent[listener._eventName] = c;
-            }
         }
 
         public void OnAppPause(bool pauseStatus)
         {
-            // app is pausing
-            if (pauseStatus) {
-                if (Fabric.EventManager.Instance != null)
-                    Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.StopAll);
-            }
-            //app is resuming
-            if (!pauseStatus) {
-                if (musicEnabled) {
-                    PlayMusic(currentMusic);
-                }
-            }
-        }
-
-        public void NotifyEndAudio(Fabric.EventNotificationType type, string boh, object info, GameObject gameObject)
-        {
-            // Debug.Log ("OnNotify:" + type + "GameObject:" + gameObject.name);
-            if (info != null) {
-                if (type == Fabric.EventNotificationType.OnAudioComponentStopped) {
-                    //Debug.Log("NotifyEndAudio OnAudioComponentStopped()");
-                    hasToNotifyEndAudio = true;
-                }
-            }
+            MusicEnabled = !pauseStatus;
+            IsAppPaused = pauseStatus;
         }
 
         #region Music
         public void ToggleMusic()
         {
-            musicEnabled = !musicEnabled;
-            if (musicEnabled) {
-                PlayMusic(currentMusic);
-            } else {
-                if (Fabric.EventManager.Instance != null)
-                    Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.StopAll);
-            }
+            MusicEnabled = !musicEnabled;
         }
 
         public void PlayMusic(Music music)
         {
             currentMusic = music;
-            var eventName = AudioConfig.GetMusicEventName(music);
-            if (eventName == "") {
+            musicGroup.Stop();
+
+            var musicClip = GetAudioClip(music);
+
+            if (music == Music.Silence || musicClip == null)
+            {
                 StopMusic();
-            } else {
-                if (musicEnabled) {
-                    Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.SetSwitch, eventName);
-                    Fabric.EventManager.Instance.PostEvent("MusicTrigger");
-                    //Fabric.EventManager.Instance.PostEvent("Music/" + eventName);
+            }
+            else
+            {
+                if (musicEnabled)
+                {
+                    musicGroup.Play(musicClip, 1, 1, true);
+                }
+                else
+                {
+                    musicGroup.Stop();
                 }
             }
-        }
-
-        public void StopDialogue(bool clearPreviousCallback)
-        {
-            if (!clearPreviousCallback && OnNotifyEndAudio != null)
-                OnNotifyEndAudio();
-
-            OnNotifyEndAudio = null;
-
-            if (Fabric.EventManager.Instance != null)
-                Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.StopAll);
         }
 
         public void StopMusic()
         {
             currentMusic = Music.Silence;
-            if (Fabric.EventManager.Instance != null)
-                Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.StopAll);
-        }
-
-        void FadeOutMusic(string n)
-        {
-            Fabric.Component component = Fabric.FabricManager.Instance.GetComponentByName(n);
-            if (component != null) {
-                component.FadeOut(0.1f, 0.5f);
-            }
+            musicGroup.Stop();
         }
         #endregion
 
@@ -141,155 +198,170 @@ namespace EA4S
         /// Play a soundFX
         /// </summary>
         /// <param name="sfx">Sfx.</param>
-        public void PlaySfx(Sfx sfx)
+        public IAudioSource PlaySound(Sfx sfx)
         {
-            PlaySound(AudioConfig.GetSfxEventName(sfx));
+            AudioClip clip = GetAudioClip(sfx);
+            var source = new AudioSourceWrapper(sfxGroup.Play(clip), sfxGroup, this);
+            source.Pitch = 1 + ((Random.value-0.5f)*GetRandomPitchOffset(sfx))*2;
+            return source;
         }
 
-        public void StopSfx(Sfx sfx)
+        public void StopSounds()
         {
-            StopSound(AudioConfig.GetSfxEventName(sfx));
-        }
-        #endregion
-
-        #region generic sound
-        void PlaySound(string eventName)
-        {
-            Fabric.EventManager.Instance.PostEvent(eventName);
-        }
-
-        void PlaySound(string eventName, GameObject GO)
-        {
-            Fabric.EventManager.Instance.PostEvent(eventName, GO);
+            sfxGroup.Stop();
         }
         #endregion
 
-        #region Letters, WOrds and Phrases
-        public void PlayLetter(string letterId)
+        #region Letters, Words and Phrases
+        public IAudioSource PlayLetter(LetterData data)
         {
-            Fabric.EventManager.Instance.PostEvent(LETTERS_PREFIX + letterId);
+            AudioClip clip = GetAudioClip(data);
+            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), sfxGroup, this);
         }
 
-        public void PlayWord(string wordId)
+        public IAudioSource PlayWord(WordData data)
         {
-            //Debug.Log("PlayWord: " + wordId);
-            Fabric.EventManager.Instance.PostEvent("Words", Fabric.EventAction.SetAudioClipReference, "Words/" + wordId);
-            Fabric.EventManager.Instance.PostEvent("Words");
-            //Fabric.EventManager.Instance.PostEvent(WORDS_PREFIX + wordId);
+            AudioClip clip = GetAudioClip(data);
+            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), sfxGroup, this);
         }
 
-        public void PlayPhrase(string phraseId)
+        public IAudioSource PlayPhrase(PhraseData data)
         {
-            //Debug.Log("PlayWord: " + wordId);
-            Fabric.EventManager.Instance.PostEvent("Words", Fabric.EventAction.SetAudioClipReference, "Phrases/" + phraseId);
-            Fabric.EventManager.Instance.PostEvent("Words");
-            //Fabric.EventManager.Instance.PostEvent(WORDS_PREFIX + wordId);
+            AudioClip clip = GetAudioClip(data);
+            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), sfxGroup, this);
+        }
+
+        public void StopLettersWordsPhrases()
+        {
+            if (wordsLettersPhrasesGroup != null)
+                wordsLettersPhrasesGroup.Stop();
         }
         #endregion
 
-        void StopSound(string eventName)
+        #region Dialogue
+        public IAudioSource PlayDialogue(string localizationData_id)
         {
-            if (Fabric.EventManager.Instance != null)
-                Fabric.EventManager.Instance.PostEvent(eventName, Fabric.EventAction.StopAll);
+            return PlayDialogue(LocalizationManager.GetLocalizationData(localizationData_id));
         }
 
-
-
-        #region Dialog
-        public void PlayDialog(string localizationData_id)
+        public IAudioSource PlayDialogue(Db.LocalizationDataId id)
         {
-            PlayDialog(LocalizationManager.GetLocalizationData(localizationData_id));
+            return PlayDialogue(LocalizationManager.GetLocalizationData(id));
         }
 
-        public void PlayDialog(Db.LocalizationDataId id)
+        public IAudioSource PlayDialogue(Db.LocalizationData data, bool clearPreviousCallback = false)
         {
-            PlayDialog(LocalizationManager.GetLocalizationData(id));
-        }
+            if (!clearPreviousCallback && OnDialogueEnded != null)
+                OnDialogueEnded();
 
-        public void PlayDialog(Db.LocalizationData data, bool clearPreviousCallback = false)
-        {
-            if (!clearPreviousCallback && OnNotifyEndAudio != null)
-                OnNotifyEndAudio();
+            OnDialogueEnded = null;
 
-            OnNotifyEndAudio = null;
-
-            if (data.AudioFile != "") {
-                //Debug.Log("PlayDialog: " + data.id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
-                Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + data.AudioFile);
-                Fabric.EventManager.Instance.PostEvent("KeeperDialog");
+            if (!string.IsNullOrEmpty(data.AudioFile))
+            {
+                AudioClip clip = GetAudioClip(data);
+                return new AudioSourceWrapper(sfxGroup.Play(clip), keeperGroup, this);
             }
+            return null;
         }
 
-        public void PlayDialog(string localizationData_id, System.Action callback)
+        public IAudioSource PlayDialogue(string localizationData_id, System.Action callback)
         {
-            PlayDialog(LocalizationManager.GetLocalizationData(localizationData_id), callback);
+            return PlayDialogue(LocalizationManager.GetLocalizationData(localizationData_id), callback);
         }
 
-        public void PlayDialog(Db.LocalizationDataId id, System.Action callback)
+        public IAudioSource PlayDialogue(Db.LocalizationDataId id, System.Action callback)
         {
-            PlayDialog(LocalizationManager.GetLocalizationData(id), callback);
+            return PlayDialogue(LocalizationManager.GetLocalizationData(id), callback);
         }
 
-        public void PlayDialog(Db.LocalizationData data, System.Action callback, bool clearPreviousCallback = false)
+        public IAudioSource PlayDialogue(Db.LocalizationData data, System.Action callback, bool clearPreviousCallback = false)
         {
-            if (!clearPreviousCallback && OnNotifyEndAudio != null)
-                OnNotifyEndAudio();
+            if (!clearPreviousCallback && OnDialogueEnded != null)
+                OnDialogueEnded();
 
-            OnNotifyEndAudio = null;
+            OnDialogueEnded = null;
 
-            if (data.AudioFile != "") {
-                // Debug.Log("PlayDialog with Callback: " + data.id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
-
-                OnNotifyEndAudio = callback;
-                Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + data.AudioFile);
-                Fabric.EventManager.Instance.PostEventNotify("KeeperDialog", NotifyEndAudio);
-            } else {
+            if (!string.IsNullOrEmpty(data.AudioFile))
+            {
+                OnDialogueEnded = callback;
+                AudioClip clip = GetAudioClip(data);
+                return new AudioSourceWrapper(sfxGroup.Play(clip), keeperGroup, this);
+            }
+            else
+            {
                 if (callback != null)
                     callback();
             }
+            return null;
+        }
+
+        public void StopDialogue(bool clearPreviousCallback)
+        {
+            if (!clearPreviousCallback && OnDialogueEnded != null)
+                OnDialogueEnded();
+
+            OnDialogueEnded = null;
+
+            keeperGroup.Stop();
         }
         #endregion
 
-        #region DeAudio utilities
-        public AudioClip GetAudioClip(ILivingLetterData data)
+        #region Audio clip management
+
+        public AudioClip GetAudioClip(Db.LocalizationData data)
         {
-            if (data.DataType == LivingLetterDataType.Letter)
-                return GetAudioClip(LETTERS_PREFIX + data.Id);
-            else if (data.DataType == LivingLetterDataType.Word || data.DataType == LivingLetterDataType.Image) {
-                return GetCachedResource("AudioArabic/Words/" + WORDS_PREFIX + data.Id);
-            }
-            return null;
+            return GetCachedResource("AudioArabic/Dialogs/" + data.AudioFile);
+        }
+
+        public AudioClip GetAudioClip(LetterData data)
+        {
+            return GetCachedResource("AudioArabic/Letters/" + data.Id);
+        }
+
+        public AudioClip GetAudioClip(WordData data)
+        {
+            return GetCachedResource("AudioArabic/Words/" + data.Id);
+        }
+
+        public AudioClip GetAudioClip(PhraseData data)
+        {
+            return GetCachedResource("AudioArabic/Phrases/" + data.Id);
         }
 
         public AudioClip GetAudioClip(Sfx sfx)
         {
-            return GetAudioClip(AudioConfig.GetSfxEventName(sfx));
+            SfxConfiguration conf = GetSfxConfiguration(sfx);
+
+            if (conf == null || conf.clips == null || conf.clips.Count == 0)
+            {
+                Debug.Log("No Audio clips configured for: " + sfx);
+                return null;
+            }
+
+            return conf.clips.GetRandom();
         }
 
-        AudioClip GetAudioClip(string eventName)
+        public float GetRandomPitchOffset(Sfx sfx)
         {
-            Fabric.AudioComponent audioComponent = null;
+            SfxConfiguration conf = GetSfxConfiguration(sfx);
 
-            if (eventToComponent.TryGetValue(eventName, out audioComponent)) {
-                var random = audioComponent as RandomAudioClipComponent;
-
-                if (random != null)
-                    return random._audioClips.GetRandom();
-
-                return audioComponent.AudioClip;
+            if (conf == null || conf.clips == null || conf.clips.Count == 0)
+            {
+                Debug.Log("No Audio clips configured for: " + sfx);
+                return 0;
             }
 
-            Fabric.RandomComponent rndComponent = null;
+            return conf.randomPitchOffset;
+        }
 
-            if (eventToRndComponent.TryGetValue(eventName, out rndComponent)) {
-                var child = rndComponent.GetChildComponents();
+        public AudioClip GetAudioClip(Music music)
+        {
+            MusicConfiguration conf = GetMusicConfiguration(music);
 
-                Fabric.AudioComponent c = child.GetRandom() as AudioComponent;
-                if (c != null)
-                    return c.AudioClip;
-            }
+            if (conf == null)
+                return null;
 
-            return null;
+            return conf.clip;
         }
 
         AudioClip GetCachedResource(string resource)
@@ -314,16 +386,75 @@ namespace EA4S
         #endregion
 
 
-        void Update()
+        public void Update()
         {
-            if (hasToNotifyEndAudio) {
-                hasToNotifyEndAudio = false;
-                if (OnNotifyEndAudio != null) {
-                    var oldCallback = OnNotifyEndAudio;
-                    OnNotifyEndAudio = null;
+            for (int i = 0; i < playingAudio.Count; ++i)
+            {
+                var source = playingAudio[i];
+                if (source.Update())
+                {
+                    // could be collected
+                    playingAudio.RemoveAt(i--);
+
+                    if (source.Group == keeperGroup)
+                        hasToNotifyEndDialogue = true;
+                }
+            }
+
+            if (hasToNotifyEndDialogue)
+            {
+                hasToNotifyEndDialogue = false;
+                if (OnDialogueEnded != null)
+                {
+                    var oldCallback = OnDialogueEnded;
+                    OnDialogueEnded = null;
                     oldCallback();
                 }
             }
+        }
+
+        public void OnAfterDeserialize()
+        {
+            // Update map from serialized data
+            sfxConfigurationMap.Clear();
+            for (int i = 0, count = sfxConfs.Count; i < count; ++i)
+                sfxConfigurationMap[sfxConfs[i].sfx] = sfxConfs[i];
+
+            musicConfigurationMap.Clear();
+            for (int i = 0, count = musicConfs.Count; i < count; ++i)
+                musicConfigurationMap[musicConfs[i].music] = musicConfs[i];
+        }
+
+        public void OnBeforeSerialize()
+        {
+
+        }
+
+        public IAudioSource PlaySound(AudioClip clip)
+        {
+            return new AudioSourceWrapper(sfxGroup.Play(clip), sfxGroup, this);
+        }
+
+        public IAudioSource PlayMusic(AudioClip clip)
+        {
+            StopMusic();
+            currentMusic = Music.Custom;
+
+            var source = musicGroup.Play(clip);
+
+            customMusic = clip;
+
+            return new AudioSourceWrapper(source, musicGroup, this);
+        }
+
+        /// <summary>
+        /// Used by AudioSourceWrappers.
+        /// </summary>
+        /// <param name="source"></param>
+        public void OnAudioStarted(AudioSourceWrapper source)
+        {
+            if (!playingAudio.Contains(source))
+                playingAudio.Add(source);
         }
     }
 }
