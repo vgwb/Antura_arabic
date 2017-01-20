@@ -235,7 +235,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 			//free fall:
 			if (!clampPosition) {
 				if (respawn && transform.position.y < (maxY - 20)) {
-					AudioManager.I.PlaySfx (Sfx.Splat);
+                    TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Splat);
                     //transform.position = 
                     isPanicing = false;
                     transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));

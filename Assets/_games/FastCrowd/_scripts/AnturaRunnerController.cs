@@ -35,7 +35,7 @@ namespace EA4S
                     PrepareNextAnturaBark();
                     antura.DoShout(() =>
                     {
-                        AudioManager.I.PlaySfx(Sfx.DogBarking);
+                        AudioManager.I.PlaySound(Sfx.DogBarking);
                     });
 
                 }

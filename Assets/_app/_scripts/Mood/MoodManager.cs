@@ -44,7 +44,7 @@ namespace EA4S
         public void MoodSelected(int _mood)
         {
             AppManager.I.Teacher.logAI.LogMood(_mood);
-            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
+            AudioManager.I.PlaySound(Sfx.UIButtonClick);
             Invoke("exitScene", 0.5f);
         }
 

@@ -38,14 +38,14 @@ namespace EA4S
             if (autoClose) {
                 WidgetSubtitles.I.DisplaySentence(data, 2, isKeeper, null);
                 var callback = _callback;
-                AudioManager.I.PlayDialog(data, () => {
+                AudioManager.I.PlayDialogue(data, () => {
                     CloseDialog();
                     if (callback != null)
                         callback();
                 });
             } else {
                 WidgetSubtitles.I.DisplaySentence(data, 2, true, null);
-                AudioManager.I.PlayDialog(data, _callback);
+                AudioManager.I.PlayDialogue(data, _callback);
             }
         }
 

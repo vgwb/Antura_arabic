@@ -24,6 +24,8 @@ namespace EA4S
         Sequence showTween, godraysTween;
         Tween pedestalTween;
 
+        IAudioSource alarmClockSound;
+
         IEnumerator Start()
         {
             LockClosed.gameObject.SetActive(false);
@@ -34,7 +36,7 @@ namespace EA4S
                 .Append(LockClosed.DOScale(0.0001f, 0.45f).From().SetEase(Ease.OutBack))
                 .AppendInterval(0.3f)
                 .AppendCallback(() => {
-                    AudioManager.I.PlaySfx(Sfx.AlarmClock);
+                    alarmClockSound = AudioManager.I.PlaySound(Sfx.AlarmClock);
                 })
                 .Append(LockClosed.DOShakePosition(0.8f, 40f, 16, 90, false, false))
                 .Join(LockClosed.DOShakeRotation(0.8f, new Vector3(0, 0, 70f), 16, 90, false))
@@ -42,8 +44,9 @@ namespace EA4S
                 .AppendCallback(() => {
                     LockClosed.gameObject.SetActive(false);
                     LockOpen.gameObject.SetActive(true);
-                    AudioManager.I.StopSfx(Sfx.AlarmClock);
-                    AudioManager.I.PlaySfx(Sfx.UIPopup);
+                    if (alarmClockSound != null)
+                        alarmClockSound.Stop();
+                    AudioManager.I.PlaySound(Sfx.UIPopup);
                 })
                 .Join(LockClosed.DOScale(0.00001f, 0.4f))
                 .Join(LockOpen.DOScale(0.00001f, 0.4f).From().SetEase(Ease.OutBack))
@@ -51,7 +54,7 @@ namespace EA4S
                 .AppendInterval(0.7f)
                 .Append(LockOpen.DOScale(0.00001f, 0.6f).SetEase(Ease.InBack))
                 .AppendCallback(() => {
-                    AudioManager.I.PlaySfx(Sfx.Win);
+                    AudioManager.I.PlaySound(Sfx.Win);
                 })
                 .Join(LockOpen.DORotate(new Vector3(0, 0, 360), 0.6f, RotateMode.FastBeyond360).SetRelative().SetEase(Ease.InCubic))
                 .Join(Godray1.DOScale(0.00001f, 0.6f).SetEase(Ease.InCubic))

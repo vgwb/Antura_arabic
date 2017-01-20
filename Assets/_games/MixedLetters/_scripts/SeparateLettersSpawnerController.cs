@@ -40,7 +40,7 @@ namespace EA4S.MixedLetters
 
         public SeparateLetterController[] separateLetterControllers;
 
-        public AudioSource audioSource;
+        public AudioSourceWrapper audioSource;
 
         private IEnumerator spawnLettersCoroutine;
 
@@ -108,7 +108,7 @@ namespace EA4S.MixedLetters
 
         private void PlayCartoonFightSfx()
         {
-            audioSource.pitch = Random.Range(0.8f, 1.2f);
+            audioSource.Pitch = Random.Range(0.8f, 1.2f);
             audioSource.Play();
         }
 

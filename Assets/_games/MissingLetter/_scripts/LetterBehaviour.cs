@@ -27,7 +27,7 @@ namespace EA4S.MissingLetter
             endTransformToCallback = null;
             onLetterClick = null;
             mbIsSpeaking = false;
-            m_sInPhrase = "";
+            m_sInPhrase = null;
         }
 
         /// <summary>
@@ -153,17 +153,13 @@ namespace EA4S.MissingLetter
             if (mLetterData != null && !mbIsSpeaking)
             {
                 mbIsSpeaking = true;
-                if(m_sInPhrase != "")
+                if(m_sInPhrase != null)
                 {
-                    AudioManager.I.PlayPhrase(m_sInPhrase);
-                }
-                else if (mLetterData.DataType == LivingLetterDataType.Letter)
-                {
-                    AudioManager.I.PlayLetter(mLetterData.Id);
+                    MissingLetterConfiguration.Instance.Context.GetAudioManager().PlayLetterData(m_sInPhrase);
                 }
                 else
                 {
-                    AudioManager.I.PlayWord(mLetterData.Id);
+                    MissingLetterConfiguration.Instance.Context.GetAudioManager().PlayLetterData(mLetterData);
                 }
                 StartCoroutine(Utils.LaunchDelay(0.8f, SetIsSpeaking, false));
             }
@@ -183,7 +179,7 @@ namespace EA4S.MissingLetter
             PlayAnimation(LLAnimationStates.LL_dancing);
         }
 
-        public void SetInPhrase(string _phraseId)
+        public void SetInPhrase(ILivingLetterData _phraseId)
         {
             m_sInPhrase = _phraseId;
         }
@@ -324,7 +320,7 @@ namespace EA4S.MissingLetter
         private Collider mCollider;
 
         private bool mbIsSpeaking;
-        private string m_sInPhrase = "";
+        private ILivingLetterData m_sInPhrase = null;
 
         public ILivingLetterData LetterData
         {

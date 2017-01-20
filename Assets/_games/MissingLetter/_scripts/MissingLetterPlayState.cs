@@ -68,7 +68,7 @@ namespace EA4S.MissingLetter
                 if (M_oGameTime.Time < 4f)
                 {
                     m_bHurryUpSfx = true;
-                    //AudioManager.I.PlaySfx(Sfx.DangerClockLong);
+                    //AudioManager.I.PlaySound(Sfx.DangerClockLong);
                     timesUpAudioSource = m_oGame.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
                 }
             }

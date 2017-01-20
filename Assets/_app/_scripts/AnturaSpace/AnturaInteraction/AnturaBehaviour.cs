@@ -70,7 +70,7 @@ namespace EA4S.AnturaSpace
             }
             else if (!m_bMovingToDestination)
             {
-                AudioManager.I.PlaySfx(m_oSfxOnClick);
+                AudioManager.I.PlaySound(m_oSfxOnClick);
                 int iRnd;
                 do
                 {
@@ -87,7 +87,7 @@ namespace EA4S.AnturaSpace
             }
             else
             {
-                AudioManager.I.PlaySfx(Sfx.DogBarking); //bark when clicked and going to a bone
+                AudioManager.I.PlaySound(Sfx.DogBarking); //bark when clicked and going to a bone
             }
         }
 

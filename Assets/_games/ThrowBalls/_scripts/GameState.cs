@@ -318,15 +318,7 @@ namespace EA4S.ThrowBalls
 
         private void SayQuestion()
         {
-            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.letters)
-            {
-                AudioManager.I.PlayLetter(question.Id);
-            }
-
-            else
-            {
-                AudioManager.I.PlayWord(question.Id);
-            }
+            game.Context.GetAudioManager().PlayLetterData(question);
         }
 
         private void ShowTutorialUI()
@@ -479,7 +471,7 @@ namespace EA4S.ThrowBalls
 
         private IEnumerator OnRoundLostCoroutine()
         {
-            AudioManager.I.PlaySfx(Sfx.Lose);
+            game.Context.GetAudioManager().PlaySound(Sfx.Lose);
             yield return new WaitForSeconds(3f);
             OnRoundConcluded();
         }
@@ -509,7 +501,7 @@ namespace EA4S.ThrowBalls
             correctLetterCntrl.letterObjectView.DoHorray();
             correctLetterCntrl.ShowVictoryRays();
 
-            AudioManager.I.PlaySfx(Sfx.Win);
+            game.Context.GetAudioManager().PlaySound(Sfx.Win);
 
             yield return new WaitForSeconds(3f);
 

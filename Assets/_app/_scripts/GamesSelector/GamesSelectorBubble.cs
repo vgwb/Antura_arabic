@@ -61,7 +61,7 @@ namespace EA4S.GamesSelector
                 shakeTween.Kill(true);
                 openTween = Main.transform.DOPunchRotation(new Vector3(0, 0, 45), 0.75f);
                 if (hasBadge) showBadgeTween = Badge.transform.DOLocalMoveY(0, 0.45f).From().SetDelay(0.35f).SetEase(Ease.OutBack);
-                AudioManager.I.PlaySfx(Sfx.Poof);
+                AudioManager.I.PlaySound(Sfx.Poof);
             } else {
                 PouffParticleSys.Stop();
                 PouffParticleSys.Clear();

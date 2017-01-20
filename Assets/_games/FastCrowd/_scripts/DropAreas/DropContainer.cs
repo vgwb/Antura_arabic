@@ -54,7 +54,7 @@ namespace EA4S
                     {
                         // Todo: move to FastCrowd domain
                         if (FastCrowd.FastCrowdConfiguration.Instance.Variation == FastCrowd.FastCrowdVariation.Words)
-                            AudioManager.I.PlaySfx(Sfx.Hit);
+                            AudioManager.I.PlaySound(Sfx.Hit);
                         dropAreaSetPosition();
                     });
             } else {
@@ -66,7 +66,7 @@ namespace EA4S
                                 // Todo: move to FastCrowd domain
                                 float waitAtEnd = 2;
                                 if (FastCrowd.FastCrowdConfiguration.Instance.Variation == FastCrowd.FastCrowdVariation.Words) { 
-                                    AudioManager.I.PlaySfx(Sfx.Hit);
+                                    AudioManager.I.PlaySound(Sfx.Hit);
                                     waitAtEnd = 1;
                                 }
                             
@@ -127,7 +127,7 @@ namespace EA4S
 
         private void Droppable_OnWrongMatch(LetterObjectView _letterView)
         {
-            AudioManager.I.PlaySfx(Sfx.KO);
+            AudioManager.I.PlaySound(Sfx.KO);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace EA4S
         /// </summary>
         private void Droppable_OnRightMatch(LetterObjectView _letterView)
         {
-            AudioManager.I.PlaySfx(Sfx.OK);
+            AudioManager.I.PlaySound(Sfx.OK);
             NextArea();
         }
 

@@ -174,7 +174,7 @@ namespace EA4S
             }
             if (clicked) {
                 btIdleTween.Pause();
-                AudioManager.I.PlaySfx(Sfx.UIButtonClick);
+                AudioManager.I.PlaySound(Sfx.UIButtonClick);
             }
         }
     }
