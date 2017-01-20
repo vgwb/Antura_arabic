@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 namespace EA4S
 {
@@ -25,7 +24,7 @@ namespace EA4S
 
         void playFx()
         {
-            AudioManager.I.PlaySfx(SfxOnClick);
+            AudioManager.I.PlaySound(SfxOnClick);
         }
     }
 }

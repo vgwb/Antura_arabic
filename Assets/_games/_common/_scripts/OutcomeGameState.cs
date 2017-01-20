@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
-
-namespace EA4S
+﻿namespace EA4S
 {
+    /// <summary>
+    /// The game state reached when the minigame ends.
+    /// This state is present in all minigames and is always accessed last.
+    /// </summary>
     public class OutcomeGameState : IGameState
     {
         MiniGame game;

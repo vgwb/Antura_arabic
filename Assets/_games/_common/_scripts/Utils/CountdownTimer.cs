@@ -1,7 +1,9 @@
-﻿using System;
-
-namespace EA4S
+﻿namespace EA4S
 {
+    /// <summary>
+    /// Concrete implementation of ITimer that counts down and triggers an event when the time is up.
+    /// Used by minigames.  
+    /// </summary>
     public class CountdownTimer : ITimer
     {
         public event System.Action onTimesUp;

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using EA4S.LivingLetters;
 
+// refactor: add to the Test namespace
 public class LetterObjectViewTester : MonoBehaviour
 {
     LetterObjectView letter;

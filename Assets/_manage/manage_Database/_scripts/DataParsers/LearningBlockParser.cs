@@ -2,6 +2,9 @@
 
 namespace EA4S.Db.Management
 {
+    /// <summary>
+    /// Custom JSON parser for LearningBlockData
+    /// </summary>
     public class LearningBlockParser : DataParser<LearningBlockData, LearningBlockTable>
     {
         override protected LearningBlockData CreateData(Dictionary<string, object> dict, Database db)

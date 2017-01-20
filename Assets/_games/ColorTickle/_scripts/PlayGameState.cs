@@ -124,7 +124,7 @@ namespace EA4S.ColorTickle
                     //disable color components to avoid input in this phase (or ignore input using touch manager?)
                     DisableLetterComponents();
 
-                    AudioManager.I.PlayLetter(m_LetterObjectView.Data.Id);//play letter pronounce again
+                    ColorTickleConfiguration.Instance.Context.GetAudioManager().PlayLetterData(m_LetterObjectView.Data);//play letter pronounce again
 
                     m_SurfaceColoringLetter.Reset();//reset to clean surface of LL (maybe make a function to clean it rather than reinitialize it)
 
@@ -136,7 +136,7 @@ namespace EA4S.ColorTickle
                         game.gameUI.SetStarsScore(game.starsAwarded);
 
                         m_LetterObjectView.DoHorray();
-                        AudioManager.I.PlaySfx(Sfx.Win);
+                        ColorTickleConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
 
                         //play win particle
                         game.winParticle.SetActive(true);
@@ -151,7 +151,8 @@ namespace EA4S.ColorTickle
                         /*m_LetterObjectView.DoDancingLose(); //this just set trigger for lose on dancing animation
                         m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);*/
                         m_LetterObjectView.DoAngry();
-                        AudioManager.I.PlaySfx(Sfx.Lose);
+                        game.Context.GetAudioManager().PlaySound(Sfx.LetterAngry);
+                        game.Context.GetAudioManager().PlaySound(Sfx.Lose);
                     }                   
                 }
             }
@@ -205,7 +206,7 @@ namespace EA4S.ColorTickle
             m_HitStateLLController = m_CurrentLetter.GetComponent<HitStateLLController>();
             m_HitStateLLController.LoseLife += LoseLife;
 
-            m_LLController.OnDestinationReached += delegate () { AudioManager.I.PlayLetter(m_LetterObjectView.Data.Id); };//play audio on destination
+            m_LLController.OnDestinationReached += delegate () { game.Context.GetAudioManager().PlayLetterData(m_LetterObjectView.Data); };//play audio on destination
 
 
             m_HitStateLLController.EnableAntura += EnableAntura;
@@ -279,6 +280,7 @@ namespace EA4S.ColorTickle
             m_LetterObjectView.SetState(LLAnimationStates.LL_walking);
             m_LetterObjectView.HasFear = true;
             m_LetterObjectView.SetWalkingSpeed(1);
+            game.Context.GetAudioManager().PlaySound(Sfx.LetterFear);
             //m_LetterObjectView.Crouching = true;
         }
 

@@ -1,11 +1,9 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
-using DG.Tweening;
-using ModularFramework.Core;
 
 namespace EA4S
 {
+    // refactor: remove this
     [Obsolete("Replaced by EA4S.GameResultUI (but always use the <code>Minigames Interface</code> to access it)")]
     public class StarFlowers : MonoBehaviour
     {
@@ -61,21 +59,21 @@ namespace EA4S
         //    {
         //        sequence.Append(Flower3.DOFade(1, 0.1f));
         //        sequence.Append(Flower3.rectTransform.DOAnchorPos(f3pos, 0.3f).SetAs(tParms));
-        //        sequence.AppendCallback(() => AudioManager.I.PlaySfx(Sfx.StarFlower));
+        //        sequence.AppendCallback(() => AudioManager.I.PlaySound(Sfx.StarFlower));
         //    }
 
         //    if (_stars > 1)
         //    {
         //        sequence.Append(Flower2.DOFade(1, 0.1f));
         //        sequence.Append(Flower2.rectTransform.DOAnchorPos(f2pos, 0.3f).SetAs(tParms));
-        //        sequence.AppendCallback(() => AudioManager.I.PlaySfx(Sfx.StarFlower));
+        //        sequence.AppendCallback(() => AudioManager.I.PlaySound(Sfx.StarFlower));
         //    }
 
         //    if (_stars > 2)
         //    {
         //        sequence.Append(Flower1.DOFade(1, 0.1f));
         //        sequence.Append(Flower1.rectTransform.DOAnchorPos(f1pos, 0.3f).SetAs(tParms));
-        //        sequence.AppendCallback(() => AudioManager.I.PlaySfx(Sfx.StarFlower));
+        //        sequence.AppendCallback(() => AudioManager.I.PlaySound(Sfx.StarFlower));
         //    }
 
         //    sequence.Play().OnComplete(ShowButton);

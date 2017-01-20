@@ -2,6 +2,12 @@
 
 namespace EA4S.Db
 {
+    /// <summary>
+    /// Data defining a Word.
+    /// This is one of the fundamental dictionary (i.e. learning content) elements.
+    /// <seealso cref="PhraseData"/>
+    /// <seealso cref="LetterData"/>
+    /// </summary>
     [Serializable]
     public class WordData : IData, IConvertibleToLivingLetterData
     {

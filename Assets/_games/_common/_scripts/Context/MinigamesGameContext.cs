@@ -1,6 +1,9 @@
 ﻿
 namespace EA4S
 {
+    /// <summary>
+    /// Concrete implementation of IGameContext. Accessible to minigames.
+    /// </summary>
     public class MinigamesGameContext : IGameContext
     {
         public MiniGameCode Code { get; private set; }

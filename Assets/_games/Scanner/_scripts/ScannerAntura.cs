@@ -101,7 +101,7 @@ namespace EA4S.Scanner
             yield return new WaitForSeconds(0.75f);
             antura.IsExcited = false;
             anturaAnimator.SetTrigger("doShout");
-            AudioManager.I.PlaySfx(Sfx.DogBarking);
+            AudioManager.I.PlaySound(Sfx.DogBarking);
             yield return new WaitForSeconds(2f);
             antura.OnJumpStart();
             yield return new WaitForSeconds(0.5f);
@@ -118,10 +118,10 @@ namespace EA4S.Scanner
             {
                 yield return new WaitForSeconds(1.5f);
                 anturaAnimator.SetTrigger("doShout");
-                AudioManager.I.PlaySfx(Sfx.DogBarking);
+                AudioManager.I.PlaySound(Sfx.DogBarking);
                 yield return new WaitForSeconds(2f);
                 antura.DoBurp();
-                AudioManager.I.PlaySfx(Sfx.DogBarking);
+                AudioManager.I.PlaySound(Sfx.DogBarking);
                 yield return new WaitForSeconds(0.5f);
                 antura.IsAngry = true;
 
@@ -148,7 +148,7 @@ namespace EA4S.Scanner
 
         IEnumerator chargeMove()
         {
-            AudioManager.I.PlaySfx(Sfx.DogBarking);
+            AudioManager.I.PlaySound(Sfx.DogBarking);
 
             while (transform.position.x > chargeEndPose.position.x + 0.01f)
             {
@@ -211,7 +211,7 @@ namespace EA4S.Scanner
                 {
                     ll.status = ScannerLivingLetter.LLStatus.None;
                     fallenLL.Add(ll);
-                    AudioManager.I.PlaySfx(Sfx.LetterSad);
+                    AudioManager.I.PlaySound(Sfx.LetterSad);
                     StartCoroutine(throwLL(ll, calculateDelay()));
                 }
                 

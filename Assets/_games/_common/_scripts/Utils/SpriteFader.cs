@@ -1,6 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Fades a sprite from-to a specific transparency value in time.
+/// </summary>
+// refactor: add to a namespace
 public class SpriteFader : MonoBehaviour
 {
     public bool show = true;

@@ -3,7 +3,8 @@
 namespace EA4S
 {
     /// <summary>
-    /// Word provider sample
+    /// Example implementation of ILivingLetterDataProvider.
+    /// Not to be used in actual production code.
     /// </summary>
     public class SampleWordProvider : ILivingLetterDataProvider
     {

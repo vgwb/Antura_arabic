@@ -1,8 +1,9 @@
-﻿using System;
-using UnityEngine;
-
+﻿
 namespace EA4S
 {
+    /// <summary>
+    /// Concrete implementation of IOverlayWidget. Accessible to minigames.
+    /// </summary>
     public class MinigamesOverlayWidget : IOverlayWidget
     {
         int firstStarsScoreThreshold = 1;

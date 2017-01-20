@@ -1,8 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EA4S
 {
+    // refactor: should be grouped with other sample data
     public class StringTestData : ILivingLetterData
     {
         string text;

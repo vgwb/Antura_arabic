@@ -161,7 +161,7 @@ namespace EA4S
         {
             if ((IsBarking || (BarkWhenRunning && AnimationState == AnturaAnim.Run)) && Time.time > nextAnturaBarkTime) {
                 PrepareNextAnturaBark();
-                AudioManager.I.PlaySfx(Sfx.DogBarking);
+                AudioManager.I.PlaySound(Sfx.DogBarking);
             }
         }
 
@@ -215,7 +215,7 @@ namespace EA4S
                 RandomAnimation();
 
             if (ClickToBark)
-                AudioManager.I.PlaySfx(Sfx.DogBarking);
+                AudioManager.I.PlaySound(Sfx.DogBarking);
         }
 
         void RefreshEyes()

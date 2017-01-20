@@ -1,11 +1,12 @@
-﻿// Modified by: Daniele Giardini - 2016/11/15
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
 namespace EA4S
 {
+    /// <summary>
+    /// General-purpose feedback icon (positive or negative).
+    /// </summary>
     [RequireComponent(typeof(RectTransform))]
     public class ActionFeedbackComponent : MonoBehaviour
     {

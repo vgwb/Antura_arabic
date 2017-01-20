@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System;
-using System.Collections;
 
 namespace EA4S.Teacher.Test
 {
-
+    /// <summary>
+    /// Helper class that generates a button for each minigame in the Teacher Management scene.
+    /// </summary>
     public class MinigameButtonGenerator : MonoBehaviour
     {
         public GameObject buttonPrefab;

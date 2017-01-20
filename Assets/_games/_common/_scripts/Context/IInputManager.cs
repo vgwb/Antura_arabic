@@ -2,6 +2,10 @@
 
 namespace EA4S
 {
+    /// <summary>
+    /// Provides generic input access to the core and to minigames.
+    /// <seealso cref="MinigamesInputManager"/>
+    /// </summary>
     public interface IInputManager
     {
         // does not raise events when disabled

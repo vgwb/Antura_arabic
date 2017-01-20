@@ -372,7 +372,7 @@ namespace EA4S.ColorTickle
                 //m_oAntura.IsBarking = true;
                 m_oAntura.State = m_eAnimationOnLLReached;
                 m_oAntura.DoShout();
-                AudioManager.I.PlaySfx(Sfx.DogBarking);
+                ColorTickleConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking);
 
                 m_fBarkTimeProgress = 0;
 

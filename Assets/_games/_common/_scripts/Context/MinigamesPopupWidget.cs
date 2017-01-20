@@ -1,10 +1,11 @@
-﻿using ArabicSupport;
-using System;
+﻿using System;
 using UnityEngine;
-using EA4S.Db;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Concrete implementation of IPopupWidget. Accessible to minigames.
+    /// </summary>
     public class MinigamesPopupWidget : IPopupWidget
     {
         public void Show(System.Action callback, Db.LocalizationDataId text, bool markResult, LL_WordData word = null)

@@ -15,6 +15,13 @@ namespace EA4S.PlayerBook
         MiniGames
     }
 
+    /// <summary>
+    /// Manages the Player Book scene.
+    /// - shows unlocked learning content
+    /// - provides information on player progression
+    /// - grants direct access to minigames
+    /// - grants access to the Parents' Panel
+    /// </summary>
     public class PlayerBookManager : MonoBehaviour
     {
 
@@ -47,7 +54,7 @@ namespace EA4S.PlayerBook
 
             SceneTransitioner.Close();
 
-            AudioManager.I.PlayDialog("Book_Intro");
+            AudioManager.I.PlayDialogue("Book_Intro");
 
             HideAllPanels();
             OpenPanel(OpeningPanel);

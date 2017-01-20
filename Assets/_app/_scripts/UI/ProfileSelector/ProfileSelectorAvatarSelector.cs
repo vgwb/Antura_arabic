@@ -1,12 +1,12 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/12
-
-using System;
+﻿using System;
 using DG.Tweening;
 using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Controller of avatar buttons in the Profile Selector.
+    /// </summary>
     public class ProfileSelectorAvatarSelector : MonoBehaviour
     {
         public bool IsShown { get; private set; }
@@ -48,7 +48,7 @@ namespace EA4S
             if (IsShown) return;
 
             IsShown = true;
-            AudioManager.I.PlaySfx(ProfileSelectorUI.I.SfxOpenCreateProfile);
+            AudioManager.I.PlaySound(ProfileSelectorUI.I.SfxOpenCreateProfile);
 
             // Set available avatars
             bool hasProfiles = ProfileSelectorUI.I.ProfileManager.AvailablePlayerProfiles != null
@@ -78,7 +78,7 @@ namespace EA4S
 
             IsShown = false;
             showTween.PlayBackwards();
-            AudioManager.I.PlaySfx(ProfileSelectorUI.I.SfxOpenCreateProfile);
+            AudioManager.I.PlaySound(ProfileSelectorUI.I.SfxOpenCreateProfile);
         }
 
         #endregion

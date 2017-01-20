@@ -44,11 +44,11 @@ namespace EA4S.MissingLetter {
             {
                 if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
                 {
-                    AudioManager.I.PlayDialog(Db.LocalizationDataId.MissingLetter_Tuto);
+                    AudioManager.I.PlayDialogue(Db.LocalizationDataId.MissingLetter_Tuto);
                 }
                 else
                 {
-                    AudioManager.I.PlayDialog(Db.LocalizationDataId.MissingLetter_phrases_Tuto);
+                    AudioManager.I.PlayDialogue(Db.LocalizationDataId.MissingLetter_phrases_Tuto);
                 }
 
                 m_oGame.m_oRoundManager.GetCorrectLLObject().GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);

@@ -1,9 +1,5 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/12
-
-using System;
+﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.DeExtensions;
 using DG.Tweening;
 using UnityEngine;
@@ -11,6 +7,10 @@ using EA4S.Scenes;
 
 namespace EA4S
 {
+    /// <summary>
+    /// General controller for the interface of the Profile Selector.
+    /// Used in the Home (_Start) scene.
+    /// </summary>
     public class ProfileSelectorUI : MonoBehaviour
     {
         [Header("References")]
@@ -59,7 +59,7 @@ namespace EA4S
             // Listeners
             BtAdd.Bt.onClick.AddListener(() => OnClick(BtAdd));
             BtPlay.Bt.onClick.AddListener(() => {
-                AudioManager.I.PlaySfx(Sfx.UIButtonClick);
+                AudioManager.I.PlaySound(Sfx.UIButtonClick);
                 HomeManager.I.Play();
             });
             foreach (ProfileSelectorAvatarButton bt in avatarButtons) {
@@ -88,7 +88,7 @@ namespace EA4S
 
             PlayerProfile pp = ProfileManager.CreateOrLoadPlayerProfile(_avatarId);
             ProfileManager.CurrentPlayer = pp;
-            AudioManager.I.PlaySfx(SfxCreateNewProfile);
+            AudioManager.I.PlaySound(SfxCreateNewProfile);
 
             Setup();
         }
@@ -96,7 +96,7 @@ namespace EA4S
         internal void SelectProfile(int _id)
         {
             ProfileManager.CurrentPlayer = ProfileManager.AvailablePlayerProfiles[_id - 1];
-            AudioManager.I.PlaySfx(SfxSelectProfile);
+            AudioManager.I.PlaySound(SfxSelectProfile);
             Setup();
         }
 

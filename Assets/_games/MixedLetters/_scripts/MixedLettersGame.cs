@@ -13,7 +13,6 @@ namespace EA4S.MixedLetters
         public static MixedLettersGame instance;
 
         public IntroductionGameState IntroductionState { get; private set; }
-        public QuestionGameState QuestionState { get; private set; }
         public PlayGameState PlayState { get; private set; }
         public ResultGameState ResultState { get; private set; }
         public TutorialGameState TutorialState { get; private set; }
@@ -39,7 +38,6 @@ namespace EA4S.MixedLetters
             instance = this;
 
             IntroductionState = new IntroductionGameState(this);
-            QuestionState = new QuestionGameState(this);
             PlayState = new PlayGameState(this);
             ResultState = new ResultGameState(this);
             TutorialState = new TutorialGameState(this);

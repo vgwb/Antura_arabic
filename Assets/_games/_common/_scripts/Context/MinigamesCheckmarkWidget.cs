@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-
-namespace EA4S
+﻿namespace EA4S
 {
+    /// <summary>
+    /// Concrete implementation of ICheckmarkWidget. Accessible to minigames.
+    /// </summary>
     public class MinigamesCheckmarkWidget : ICheckmarkWidget
     {
         public void Show(bool correct)

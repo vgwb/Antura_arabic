@@ -1,6 +1,11 @@
 ﻿namespace EA4S {
 
-    public class GameConfiguration {
+    /// <summary>
+    /// Data passed to a minigame to configure it. 
+    /// </summary>
+    // refactor: rename this, it is similar to IGameConfiguration but has a different purpose. The purpose here is for the MiniGameAPI to be called with a specific difficulty.
+    public class GameConfiguration
+    {
 
         public float Difficulty = 0;
 

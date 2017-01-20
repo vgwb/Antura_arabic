@@ -4,11 +4,14 @@ using System.Collections;
 using TMPro;
 using ArabicSupport;
 using DG.Tweening;
-using EA4S;
 using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Shows a popup with text subtitles.
+    /// Used by the Keeper.
+    /// </summary>
     public class WidgetSubtitles : MonoBehaviour
     {
         public Color BgNoKeeperColor = Color.white;

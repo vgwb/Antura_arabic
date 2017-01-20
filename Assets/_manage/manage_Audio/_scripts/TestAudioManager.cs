@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System;
-using System.Linq;
 
-namespace EA4S
+namespace EA4S.Management.Test
 {
+    /// <summary>
+    /// Test class for testing the audio manager.
+    /// </summary>
+    // refactor: is this needed anymore?
     public class TestAudioManager : MonoBehaviour
     {
 
@@ -14,9 +16,6 @@ namespace EA4S
         public GameObject PanelSfx;
         public GameObject PanelLocalization;
         public GameObject PlayButtonPrefab;
-
-
-        Fabric.AudioComponent fabricComponent = null;
 
         Sfx currentSfx;
 
@@ -118,6 +117,7 @@ namespace EA4S
         #endregion
 
         #region Sfx
+        IAudioSource lastSfxAudioSource;
 
         void AddListenerSfx(Button b, Sfx sfx)
         {
@@ -126,18 +126,20 @@ namespace EA4S
 
         void StopCurrentSfx()
         {
-            AudioManager.I.StopSfx(currentSfx);
+            if (lastSfxAudioSource != null)
+                lastSfxAudioSource.Stop();
         }
         void PlaySfx(Sfx sfx)
         {
             currentSfx = sfx;
             Debug.Log("playing music :" + currentSfx);
-            AudioManager.I.PlaySfx(currentSfx);
+            lastSfxAudioSource = AudioManager.I.PlaySound(currentSfx);
         }
 
         #endregion
 
         #region Dialogs
+        IAudioSource lastDialogueAudioSource;
 
         void AddListenerLocalization(Button b, string localizationID)
         {
@@ -146,51 +148,27 @@ namespace EA4S
 
         void StopCurrentLocalization()
         {
-            AudioManager.I.StopSfx(currentSfx);
+            if (lastDialogueAudioSource != null)
+                lastDialogueAudioSource.Stop();
         }
         void PlayDialog(string localizationID)
         {
             Debug.Log("playing localization :" + localizationID);
-            AudioManager.I.PlayDialog(localizationID);
+            lastDialogueAudioSource = AudioManager.I.PlayDialogue(localizationID);
         }
 
         #endregion
 
         public void StopAll()
         {
-            Fabric.FabricManager.Instance.Stop();
-        }
-
-        public void StartSfxTest(int id)
-        {
-            Fabric.EventManager.Instance.PostEvent(MyEventName, LEDs[id]);
-        }
-
-        public void StopSfxTest(int id)
-        {
-            //AudioManager.I.StopSfx(Sfx.GameTitle);
-            Fabric.EventManager.Instance.PostEvent(MyEventName, Fabric.EventAction.StopSound, LEDs[id]);
-            //MyEventName = "";
-        }
-
-        public void ChangePitch(float pitch)
-        {
-            Fabric.EventManager.Instance.PostEvent(MyEventName, Fabric.EventAction.SetPitch, pitch);
+            AudioManager.I.StopMusic();
+            AudioManager.I.StopSounds();
+            AudioManager.I.StopDialogue(true);
+            AudioManager.I.StopLettersWordsPhrases();
         }
 
         void Update()
         {
-
-            if (fabricComponent == null) {
-                fabricComponent = Fabric.FabricManager.Instance.GetComponentByName("FabricAudioManger_Sfx_UI_Win") as Fabric.AudioComponent;
-
-                // fabricComponent.Volume = 0.5f;
-                //fabricComponent.Loop = true;
-                //var associatedAudioClip = fabricComponent.AudioClip;
-                //Debug.Log(associatedAudioClip.length);
-            }
-
-
 
             //Fabric.Component[] components = Fabric.FabricManager.Instance.GetComponentsByName(MyEventName, LEDs[0]);
 
@@ -202,7 +180,7 @@ namespace EA4S
             //    }
             //}
 
-
+            /*
             if (Fabric.EventManager.Instance.IsEventActive(MyEventName, LEDs[0])) {
                 LEDs[0].SetActive(true);
             } else {
@@ -213,6 +191,7 @@ namespace EA4S
             } else {
                 LEDs[1].SetActive(false);
             }
+            */
         }
     }
 }

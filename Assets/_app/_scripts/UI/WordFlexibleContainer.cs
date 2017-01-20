@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
-using TMPro;
-using ArabicSupport;
 using EA4S;
-using System;
 
+/// <summary>
+/// A flexible container for text.
+/// </summary>
+// refactor: place in a namespace
 public class WordFlexibleContainer : MonoBehaviour
 {
     public TextRender Label;
