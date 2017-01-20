@@ -202,9 +202,9 @@ namespace EA4S.Egg
 
                 if (showTutorial) {
                     TutorialPressedWrong(letterData);
-                    game.Context.GetLogManager().OnAnswered(letterData, false);
                 } else {
                     NegativeFeedback();
+                    game.Context.GetLogManager().OnAnswered(letterData, false);
                 }
             }
         }
