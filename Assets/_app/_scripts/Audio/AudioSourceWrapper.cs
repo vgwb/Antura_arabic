@@ -104,7 +104,10 @@ namespace EA4S
         public void Stop()
         {
             if (source != null && source.audioSource != null)
+            {
+                source.loop = false;
                 source.Stop();
+            }
 
             source = null;
             paused = false;
@@ -119,6 +122,11 @@ namespace EA4S
             else
             {
                 paused = false;
+
+                if (source != null)
+                {
+                    source.Stop();
+                }
 
                 source = Group.Play(clip);
                 source.locked = true;
@@ -140,8 +148,9 @@ namespace EA4S
         {
             if (source != null)
             {
-                if (!source.isPlaying && !source.isPaused && source.time == 0)
+                if (!source.isPlaying && !source.isPaused && source.time == 0 && !manager.IsAppPaused)
                 {
+                    source.Stop();
                     source.locked = false;
                     source = null;
                     return true;

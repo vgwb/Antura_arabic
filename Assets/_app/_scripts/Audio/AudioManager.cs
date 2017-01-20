@@ -12,6 +12,8 @@ namespace EA4S
     {
         public static AudioManager I;
 
+        public bool IsAppPaused { get; private set; }
+
         List<AudioSourceWrapper> playingAudio = new List<AudioSourceWrapper>();
 
         DeAudioGroup musicGroup;
@@ -151,6 +153,7 @@ namespace EA4S
         public void OnAppPause(bool pauseStatus)
         {
             MusicEnabled = !pauseStatus;
+            IsAppPaused = pauseStatus;
         }
 
         #region Music
