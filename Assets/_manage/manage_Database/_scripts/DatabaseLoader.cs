@@ -5,7 +5,7 @@ using UnityEditor;
 namespace EA4S.Db.Management
 {
     /// <summary>
-    /// Converts JSON data to static database assets.
+    /// Management class that converts JSON data to static database custom assets.
     /// </summary>
     public class DatabaseLoader : MonoBehaviour
     {

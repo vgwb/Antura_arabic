@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Example implementation of IQuestionPack.
+    /// Not to be used in actual production code.
+    /// </summary>
     class SampleQuestionPack : IQuestionPack
     {
         ILivingLetterData questionSentence;

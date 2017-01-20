@@ -1,9 +1,4 @@
-﻿/*
-we are using Mysqlite from https://github.com/codecoding/SQLite4Unity3d 
-and engine from https://github.com/praeclarum/sqlite-net
-*/
-
-using UnityEngine;
+﻿using UnityEngine;
 #if !UNITY_EDITOR
 using System.Collections;
 using System.IO;
@@ -17,6 +12,8 @@ namespace EA4S.Db
 {
     /// <summary>
     /// Service that connects to SQLite.
+    ///  we are using Mysqlite from https://github.com/codecoding/SQLite4Unity3d 
+    /// and engine from https://github.com/praeclarum/sqlite-net
     /// </summary>
     public class DBService
     {

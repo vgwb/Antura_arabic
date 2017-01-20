@@ -24,6 +24,8 @@ This includes:
  
 The data is compiled into JSON files contained inside the **_manage/manage_Database/Datasets** folder.
 The JSON files are loaded using the **_manage/manage_Database/manage_Database** scene, where consistency checks are performed and the database contents can be inspected.
+@todo: explain DataParsers too.
+
 The database is converted from JSON to a set of custom assets (deriving from **ScriptableObject**) that contain a table of data, with one asset per data type. The contents of *Database/DatabaseObjects** define the scriptable objects from which the custom assets are derived.
 These assets can be found in the **Assets/Resources/Database** folder.
 To perform the JSON-to-asset conversion, the **DatabaseLoader** scripts employs a *DataParser* for each data type to load, which defines how to parse the JSON file into the corresponding data structure.
@@ -71,6 +73,8 @@ A profile can be selected using **EA4S.Db.DatabaseManager.LoadDynamicDbForPlayer
 Player profiles are also supported with:
  * New profile creation (through **CreateProfile()**)
  * Profile deletion (through **DropProfile()**)
+ 
+@todo: explain profileId from the PlayerProfile
 
 ### Reading API
 

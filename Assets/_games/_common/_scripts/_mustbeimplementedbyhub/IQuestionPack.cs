@@ -3,10 +3,13 @@
 namespace EA4S
 {
     /// <summary>
-    /// A question pack: which includes a question (under the form of a letter, word or image),
-    /// and a set of wrong answers and correct andwers of the same format.
+    /// Interface for learning content data in the form:
+    /// - a question
+    /// - a set of correct answers
+    /// - a set of wrong answers
     /// </summary>
-   public interface IQuestionPack : IGameData {
+    public interface IQuestionPack : IGameData
+    {
         ILivingLetterData GetQuestion();
         IEnumerable<ILivingLetterData> GetQuestions();
         IEnumerable<ILivingLetterData> GetWrongAnswers();

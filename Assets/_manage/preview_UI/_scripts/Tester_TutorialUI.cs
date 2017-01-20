@@ -1,7 +1,4 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/01
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using EA4S.Tutorial;
 using UnityEngine;
@@ -9,6 +6,10 @@ using UnityEngine.UI;
 
 namespace EA4S.Test
 {
+    /// <summary>
+    /// Helper class to test the TutorialUI
+    /// <seealso cref="TutorialUI"/>
+    /// </summary>
     public class Tester_TutorialUI : MonoBehaviour
     {
         public enum DrawMode

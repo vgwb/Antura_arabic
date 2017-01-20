@@ -1,11 +1,11 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/21
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Represents a minigame in the End Session Results panel
+    /// </summary>
     public class EndsessionMinigame : MonoBehaviour
     {
         [Tooltip("Alpha will be ignored")]

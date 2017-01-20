@@ -1,11 +1,12 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/10/29
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace EA4S.Test
 {
+    /// <summary>
+    /// Helper class to test the MinigamesUIPanel
+    /// <seealso cref="MinigamesUI"/>
+    /// </summary>
     public class Tester_MinigamesUIPanel : MonoBehaviour
     {
         public enum UIPanelType

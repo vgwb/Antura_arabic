@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// A container for circle-shaped buttons.
+    /// <seealso cref="CircleButton"/>
+    /// </summary>
+    // refactor: should be merged with other UI elements
     public class CircleButtonBox : MonoBehaviour
     {
         bool active = true;

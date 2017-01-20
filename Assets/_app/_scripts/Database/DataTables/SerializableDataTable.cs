@@ -2,6 +2,10 @@
 
 namespace EA4S.Db
 {
+    /// <summary>
+    /// Concrete implementation of IDataTable.
+    /// Can be serialized.
+    /// </summary>
     [System.Serializable]
     public class SerializableDataTable<K> : IDataTable where K : IData
     {

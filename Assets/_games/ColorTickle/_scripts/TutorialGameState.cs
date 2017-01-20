@@ -88,13 +88,13 @@ namespace EA4S.ColorTickle
                 //disable color components to avoid input in this phase (or ignore input using touch manager?)
                 DisableLetterComponents();
 
-                AudioManager.I.PlayLetter(m_LetterObjectView.Data.Id);//play letter pronounce again
+                game.Context.GetAudioManager().PlayLetterData(m_LetterObjectView.Data);//play letter pronounce again
 
                 m_SurfaceColoringLetter.Reset();//reset to clean surface of LL (maybe make a function to clean it rather than reinitialize it)
 
 
                 m_LetterObjectView.DoHorray();
-                AudioManager.I.PlaySfx(Sfx.Win);
+                game.Context.GetAudioManager().PlaySound(Sfx.Win);
 
                 //play win particle
                 game.winParticle.SetActive(true);

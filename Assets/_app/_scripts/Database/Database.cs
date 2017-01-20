@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace EA4S.Db
 {
+    /// <summary>
+    /// Enumerator that defines a single table (i.e. data type) that can be accessed in the static database.
+    /// </summary>
     public enum DbTables
     {
         Letters = 1,

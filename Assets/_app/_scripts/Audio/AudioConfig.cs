@@ -10,7 +10,8 @@
         Theme7 = 7,
         Theme8 = 8,
         Theme9 = 9,
-        Theme10 = 10
+        Theme10 = 10,
+        Custom = -1
     }
 
     // last is 69
@@ -88,44 +89,8 @@
     }
 
     // refactor: should be static
-    class AudioConfig
+    public class AudioConfig
     {
-
-        public static string GetMusicEventName(Music music)
-        {
-            var eventName = "";
-            switch (music) {
-                case Music.Silence:
-                    eventName = "";
-                    break;
-                case Music.MainTheme:
-                    eventName = "Music1";
-                    break;
-                case Music.Relax:
-                    eventName = "Music2";
-                    break;
-                case Music.Lullaby:
-                    eventName = "Music5";
-                    break;
-                case Music.Theme6:
-                    eventName = "Music6";
-                    break;
-                case Music.Theme7:
-                    eventName = "Music7";
-                    break;
-                case Music.Theme8:
-                    eventName = "Music8";
-                    break;
-                case Music.Theme9:
-                    eventName = "Music9";
-                    break;
-                case Music.Theme10:
-                    eventName = "Music10";
-                    break;
-            }
-            return eventName;
-        }
-
         public static string GetSfxEventName(Sfx sfx)
         {
             var eventName = "";

@@ -30,7 +30,7 @@ namespace EA4S.Scenes
 
             GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
             AudioManager.I.PlayMusic(SceneMusic);
-            AudioManager.I.PlaySfx(Sfx.GameTitle);
+            AudioManager.I.PlaySound(Sfx.GameTitle);
 
             AnturaAnimController.State = AnturaAnimation;
             LLAnimController.State = LLAnimation;

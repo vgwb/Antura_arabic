@@ -1,103 +1,56 @@
 ﻿using System;
-using DG.DeAudio;
 using UnityEngine;
-using System.Collections.Generic;
 
 namespace EA4S
 {
     public class MinigamesAudioManager : IAudioManager
     {
-        List<MinigamesAudioSource> playingAudio = new List<MinigamesAudioSource>();
-
-        DeAudioGroup musicGroup;
-        DeAudioGroup wordsLettersGroup;
-        DeAudioGroup sfxGroup;
-
-        Music currentMusic;
         public bool MusicEnabled
         {
-            get
-            {
-                return AudioManager.I.MusicEnabled;
-            }
-
-            set
-            {
-                if (AudioManager.I.MusicEnabled != value)
-                    AudioManager.I.ToggleMusic();
-
-                if (AudioManager.I.MusicEnabled)
-                {
-                    PlayMusic(currentMusic);
-
-                    if (musicGroup != null)
-                        musicGroup.Resume();
-                }
-                else
-                {
-                    StopMusic();
-
-                    if (musicGroup != null)
-                        musicGroup.Pause();
-                }
-            }
+            get { return AudioManager.I.MusicEnabled; }
+            set { AudioManager.I.MusicEnabled = value; }
         }
 
-        public IAudioSource PlayLetterData(ILivingLetterData id, bool stopAllLetters = false)
+        public IAudioSource PlayLetterData(ILivingLetterData data, bool exclusive = false)
         {
-            AudioClip clip = AudioManager.I.GetAudioClip(id);
+            if (exclusive)
+                AudioManager.I.StopLettersWordsPhrases();
 
-            if (wordsLettersGroup == null)
-            {
-                wordsLettersGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Custom0);
-                wordsLettersGroup.mixerGroup = AudioManager.I.lettersGroup;
-            }
-
-            if (stopAllLetters)
-                wordsLettersGroup.Stop();
-
-            var source = wordsLettersGroup.Play(clip);
-
-            return new MinigamesAudioSource(source, wordsLettersGroup, this);
-
-        }
-
-        public void PlayText(Db.LocalizationDataId text)
-        {
-            PlayDialogue(text, null);
+            if (data.DataType == LivingLetterDataType.Letter)
+                return AudioManager.I.PlayLetter(new LL_LetterData(data.Id).Data);
+            else if (data.DataType == LivingLetterDataType.Word || data.DataType == LivingLetterDataType.Image)
+                return AudioManager.I.PlayWord(new LL_WordData(data.Id).Data);
+            else if (data.DataType == LivingLetterDataType.Phrase)
+                return AudioManager.I.PlayPhrase(new LL_PhraseData(data.Id).Data);
+            return null;
         }
 
         public void PlayDialogue(Db.LocalizationDataId text, System.Action callback = null)
         {
             if (callback == null)
-                AudioManager.I.PlayDialog(text.ToString());
+                AudioManager.I.PlayDialogue(text.ToString());
             else
-                AudioManager.I.PlayDialog(text.ToString(), callback);
+                AudioManager.I.PlayDialogue(text.ToString(), callback);
         }
 
         public void PlayMusic(Music music)
         {
-            StopMusic();
+            AudioManager.I.PlayMusic(music);
+        }
 
-            currentMusic = music;
-
-            if (MusicEnabled)
-                AudioManager.I.PlayMusic(music);
+        public void StopMusic()
+        {
+            AudioManager.I.StopMusic();
         }
 
         public IAudioSource PlaySound(Sfx sfx)
         {
-            AudioClip clip = AudioManager.I.GetAudioClip(sfx);
+            return AudioManager.I.PlaySound(sfx);
+        }
 
-            if (sfxGroup == null)
-            {
-                sfxGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.FX);
-                sfxGroup.mixerGroup = AudioManager.I.sfxGroup;
-            }
-
-            var source = sfxGroup.Play(clip);
-
-            return new MinigamesAudioSource(source, sfxGroup, this);
+        public void StopSounds()
+        {
+            AudioManager.I.StopSounds();
         }
 
         public UnityEngine.AudioClip GetAudioClip(Sfx sfx)
@@ -105,70 +58,26 @@ namespace EA4S
             return AudioManager.I.GetAudioClip(sfx);
         }
 
-        public void StopMusic()
-        {
-            if (musicGroup != null)
-                musicGroup.Stop();
-
-            AudioManager.I.StopMusic();
-        }
-
         public void Reset()
         {
             StopMusic();
-
-            if (wordsLettersGroup != null)
-                wordsLettersGroup.Stop();
-
+            AudioManager.I.StopLettersWordsPhrases();
             AudioManager.I.ClearCache();
             AudioManager.I.StopDialogue(true);
-            playingAudio.Clear();
         }
 
         public IAudioSource PlayMusic(AudioClip clip)
         {
-            StopMusic();
-
-            if (musicGroup == null)
-            {
-                musicGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Music);
-                musicGroup.mixerGroup = AudioManager.I.musicGroup;
-            }
-
-            var source = musicGroup.Play(clip);
-
-            return new MinigamesAudioSource(source, musicGroup, this);
+            return AudioManager.I.PlayMusic(clip);
         }
 
         public IAudioSource PlaySound(AudioClip clip)
         {
-            if (sfxGroup == null)
-            {
-                sfxGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.FX);
-                sfxGroup.mixerGroup = AudioManager.I.sfxGroup;
-            }
-
-            var source = sfxGroup.Play(clip);
-
-            return new MinigamesAudioSource(source, sfxGroup, this);
+            return AudioManager.I.PlaySound(clip);
         }
 
         public void Update()
         {
-            for (int i = 0; i < playingAudio.Count; ++i)
-            {
-                if (playingAudio[i].Update())
-                {
-                    // could be collected
-                    playingAudio.RemoveAt(i--);
-                }
-            }
-        }
-
-        public void OnAudioStarted(MinigamesAudioSource source)
-        {
-            if (!playingAudio.Contains(source))
-                playingAudio.Add(source);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace EA4S.DancingDots
         {
             this.game.dancingDotsLL.contentGO.SetActive(false);
             Debug.Log("Intro");
-            AudioManager.I.PlayDialog("DancingDots_Title");
+            AudioManager.I.PlayDialogue("DancingDots_Title");
             game.dancingDotsLL.letterObjectView.DoTwirl(null);
             game.disableInput = true;
             //game.StartRound();

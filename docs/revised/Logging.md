@@ -233,5 +233,3 @@ To generate the score values,
  * LogAI and LogManager are a bit redundant, could be merged. 
  * LogAI could be separated from the teacher.
  * Better nomenclature in general is needed
- 
- * 

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using ModularFramework.Core;
-using ModularFramework.Components;
 
 namespace EA4S
 {
+    // refactor: was this used as a old way to call minigames? All access should be through the MiniGamesLauncher now.
     public class OnClickStartGame : MonoBehaviour
     {
         /// <summary>

@@ -1,7 +1,9 @@
-﻿using System;
-
-namespace EA4S
+﻿namespace EA4S
 {
+    /// <summary>
+    /// Concrete implementation of ITimer.
+    /// Used by minigames.  
+    /// </summary>
     public class Timer : ITimer
     {
         float time = 0;

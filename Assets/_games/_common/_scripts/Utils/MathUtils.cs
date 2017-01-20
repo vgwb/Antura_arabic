@@ -2,6 +2,7 @@
 
 namespace EA4S
 {
+    // refactor: should be merged with other utilities
     public static class MathUtils
     {
         public static float AngleCounterClockwise(Vector2 a, Vector2 b)

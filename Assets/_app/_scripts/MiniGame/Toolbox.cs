@@ -1,17 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
-using ModularFramework.Core;
-using ModularFramework.Modules;
 
 namespace EA4S
 {
-    [System.Obsolete()]
+    // refactor: is this used at all? It is not clear.
     public class Toolbox : MonoBehaviour
     {
 
         /// <summary>
         /// Manual implementation for gameplay result.
-        /// <deprecated>AA </deprecated>
         /// </summary>
         /// <param name="_stars"></param>
         public void SimulateEndGameplay(int _stars)

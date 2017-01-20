@@ -9,6 +9,7 @@ using System.IO;
 /// <summary>
 /// Utility class used to create custom assets in the project folder.
 /// </summary>
+// refactor: move to utilities
 public static class CustomAssetUtility
 {
     public static T CreateAsset<T>(string targetPath, string assetName) where T : ScriptableObject

@@ -2,6 +2,10 @@
 
 namespace EA4S.Db.Management
 {
+    /// <summary>
+    /// Custom JSON parser for RewardData
+    /// </summary>
+    // refactor: this is not used for now!
     public class RewardParser : DataParser<RewardData, RewardTable>
     {
         override protected RewardData CreateData(Dictionary<string, object> dict, Database db)

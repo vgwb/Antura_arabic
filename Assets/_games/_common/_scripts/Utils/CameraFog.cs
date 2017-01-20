@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Controls the fog in a scene.
+/// </summary>
+// refactor: add to a namespace
 [ExecuteInEditMode]
 public class CameraFog : MonoBehaviour
 {

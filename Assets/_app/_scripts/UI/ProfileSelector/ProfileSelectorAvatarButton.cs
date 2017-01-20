@@ -1,11 +1,11 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/12
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Button for selecting an avatar in the Profile Selector.
+    /// </summary>
     public class ProfileSelectorAvatarButton : UIButton
     {
         public Image AvatarImg;

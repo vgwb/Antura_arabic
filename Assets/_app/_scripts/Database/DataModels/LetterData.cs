@@ -22,6 +22,14 @@ namespace EA4S.Db
         Final = 8
     }
 
+    /// <summary>
+    /// Data defining a Letter.
+    /// This is one of the fundamental dictionary (i.e. learning content) elements.
+    /// <seealso cref="PhraseData"/>
+    /// <seealso cref="WordData"/>
+    /// </summary>
+    // refactor: this requires heavy refactoring!
+    // refactor: we could make this general in respect to the language
     [Serializable]
     public class LetterData : IData, IConvertibleToLivingLetterData
     {

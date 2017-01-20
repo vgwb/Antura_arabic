@@ -1,12 +1,13 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/18
-
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Controls the UI that shows the end results of a minigame or play session.
+    /// - Shown when a minigame ends
+    /// - Shown when a play session ends
+    /// </summary>
     public class GameResultUI : MonoBehaviour
     {
         public EndgameResultPanel EndgameResultPanel;

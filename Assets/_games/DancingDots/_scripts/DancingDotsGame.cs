@@ -299,7 +299,7 @@ namespace EA4S.DancingDots
 
         private void CreatePoof(Vector3 position, float duration, bool withSound)
         {
-            if (withSound) AudioManager.I.PlaySfx(Sfx.BalloonPop);
+            if (withSound) Context.GetAudioManager().PlaySound(Sfx.BalloonPop);
             GameObject poof = Instantiate(poofPrefab, position, Quaternion.identity) as GameObject;
             Destroy(poof, duration);
         }
@@ -377,7 +377,7 @@ namespace EA4S.DancingDots
         IEnumerator CorrectMove(bool roundWon)
         {
             //AudioManager.I.PlayDialog("comment_welldone");
-            AudioManager.I.PlayDialog("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
+            AudioManager.I.PlayDialogue("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
             dancingDotsLL.ShowRainbow();
             dancingDotsLL.letterObjectView.SetDancingSpeed(1f);
 
@@ -427,7 +427,7 @@ namespace EA4S.DancingDots
         public void WrongMove(Vector3 pos)
         {
 
-            AudioManager.I.PlayDialog("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
+            AudioManager.I.PlayDialogue("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
             numberOfFailedMoves++;
             dancingDotsLL.letterObjectView.SetDancingSpeed(1f - numberOfFailedMoves * 0.25f);
             GameObject splat = (GameObject)Instantiate(splatPrefab);
@@ -465,7 +465,7 @@ namespace EA4S.DancingDots
         IEnumerator RoundLost()
         {
             yield return new WaitForSeconds(0.5f);
-            AudioManager.I.PlaySfx(Sfx.Lose);
+            Context.GetAudioManager().PlaySound(Sfx.Lose);
 
             StartCoroutine(PoofOthers(dragableDots));
             StartCoroutine(PoofOthers(dragableDiacritics));
@@ -486,7 +486,7 @@ namespace EA4S.DancingDots
             }
 
             yield return new WaitForSeconds(0.25f);
-            AudioManager.I.PlaySfx(Sfx.Win);
+            Context.GetAudioManager().PlaySound(Sfx.Win);
             yield return new WaitForSeconds(1f);
 
             StartCoroutine(CheckNewRound());
@@ -498,7 +498,7 @@ namespace EA4S.DancingDots
             isPlaying = false;
             dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_idle);
             // Stop danger clock if rounds finish and it is running
-            AudioManager.I.StopSfx(Sfx.DangerClockLong);
+            Context.GetAudioManager().StopSounds();
             this.SetCurrentState(this.ResultState);
             //StartCoroutine(EndGame_Coroutine());
         }

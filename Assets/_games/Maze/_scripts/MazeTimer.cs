@@ -43,7 +43,7 @@ namespace EA4S.Maze
 					DisplayTime();
 				}
 				if (!playedSfx && timeRemaining < 5f) {
-					AudioManager.I.PlaySfx(Sfx.DangerClockLong);
+					AudioManager.I.PlaySound(Sfx.DangerClockLong);
 					playedSfx = true;
 				}
 				if (timeRemaining < 1f) {

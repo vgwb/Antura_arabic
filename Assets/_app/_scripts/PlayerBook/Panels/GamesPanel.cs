@@ -85,7 +85,7 @@ namespace EA4S.PlayerBook
             }
 
             currentMiniGame = info.data;
-            AudioManager.I.PlayDialog(info.data.GetTitleSoundFilename());
+            AudioManager.I.PlayDialogue(info.data.GetTitleSoundFilename());
 
             var Output = "";
             Output += "Score: " + info.score;

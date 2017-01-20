@@ -1,8 +1,4 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/08/04 12:49
-// License Copyright (c) Daniele Giardini
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EA4S.Scenes
 {

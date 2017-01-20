@@ -114,7 +114,7 @@ namespace EA4S.Scanner
 
         void onTutorialStart()
         {
-            AudioManager.I.PlayDialog(Db.LocalizationDataId.Scanner_Tuto);
+            AudioManager.I.PlayDialogue(Db.LocalizationDataId.Scanner_Tuto);
             ScannerConfiguration.Instance.beltSpeed = 0;
             ScannerGame.disableInput = false;
             StartCoroutine(sayTut(repeatDelay));

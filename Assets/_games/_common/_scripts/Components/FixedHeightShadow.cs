@@ -1,8 +1,12 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Shows a shadow with a fixed height.
+    /// May be used inside minigames.
+    /// </summary>
+    // refactor: maybe move to _games/_common/_scripts/_utils
     public class FixedHeightShadow : MonoBehaviour
     {
         public Transform toFollow;
