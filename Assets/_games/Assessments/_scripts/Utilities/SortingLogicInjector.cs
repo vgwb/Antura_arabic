@@ -4,15 +4,15 @@ namespace EA4S.Assessment
 {
     internal class SortingLogicInjector : DefaultLogicInjector
     {
-        public SortingLogicInjector( IDragManager dragManager, IQuestionDecorator questionDecorator)
-            :base( dragManager, questionDecorator)
+        public SortingLogicInjector( IDragManager dragManager /*,IQuestionDecorator questionDecorator*/)
+            :base( dragManager/*, questionDecorator*/)
         {
 
         }
 
         protected override void WireQuestion( IQuestion q, AnswerSet answerSet)
         {
-            decorator.DecorateQuestion( q.gameObject.GetComponent< QuestionBehaviour>());
+            //decorator.DecorateQuestion( q.gameObject.GetComponent< QuestionBehaviour>());
         }
 
         protected override void WireAnswers( Answer[] answers)

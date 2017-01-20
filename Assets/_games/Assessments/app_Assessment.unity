@@ -1022,11 +1022,6 @@ Prefab:
       propertyPath: LivingLetterPrefab
       value: 
       objectReference: {fileID: 12606178}
-    - target: {fileID: 114000013908833718, guid: 998c7211c33aab649a372bdc784b9b87,
-        type: 2}
-      propertyPath: SubtitlesMargin
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 998c7211c33aab649a372bdc784b9b87, type: 2}
   m_IsPrefabParent: 0

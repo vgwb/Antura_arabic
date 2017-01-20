@@ -31,12 +31,15 @@ namespace EA4S.Assessment
         }
 
         protected IQuestion[] allQuestions;
+        protected List< IEnumerator> questionSounds;
+        private List< LetterObjectView> images;
 
-        public void Place( IQuestion[] question)
+        public void Place( IQuestion[] question, bool playSound)
         {
             allQuestions = question;
             isAnimating = true;
             images = new List< LetterObjectView>();
+            questionSounds = new List< IEnumerator>();
             Koroutine.Run( PlaceCoroutine());
         }
 
@@ -126,8 +129,6 @@ namespace EA4S.Assessment
             isAnimating = false;
         }
 
-        private List< LetterObjectView> images;
-
         protected IYieldable PlaceImage( IQuestion q, Vector3 imagePos)
         {
             var ll = LivingLetterFactory.Instance.SpawnQuestion( q.Image());
@@ -194,7 +195,7 @@ namespace EA4S.Assessment
 
                 yield return Koroutine.Nested( FadeOutQuestion(q));
             }
-
+            
             // give time to finish animating elements
             yield return Wait.For( 0.65f);
             isAnimating = false;
@@ -223,8 +224,13 @@ namespace EA4S.Assessment
         {
             audioManager.PlaySound( Sfx.BalloonPop);
 
-            go.transform.DOScale(0, 0.23f).OnComplete(() => GameObject.Destroy( go));
+            go.transform.DOScale( 0, 0.23f).OnComplete(() => GameObject.Destroy( go));
             yield return Wait.For( 0.06f);
+        }
+
+        public IYieldable PlayQuestionSound()
+        {
+            throw new NotImplementedException();
         }
     }
 }

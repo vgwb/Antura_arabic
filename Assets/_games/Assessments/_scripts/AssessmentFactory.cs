@@ -8,301 +8,378 @@ namespace EA4S.Assessment
     /// </summary>
     public static class AssessmentFactory
     {
-        private static AssessmentConfiguration configuration;
-        private static IGameContext context;
-        private static IAudioManager audioManager;
-        private static ISubtitlesWidget subtitles;
-        private static IDialogueManager dialogueManager;
-        private static Db.LocalizationDataId gameDescription;
+        /// <summary>
+        /// Configuration variables
+        /// </summary>
         private static readonly float letterSize = 1f * 3;
         private static readonly float wordSize = 1.5f * 3;
         private static readonly float sentenceSize = 2f * 3;
         private static int maxAnswers;
         private static int rounds;
 
-        public static IAssessment CreateMatchWordToImageAssessment( IUpdater updater)
+        public enum DragManagerType
         {
-            Init();
+            Default,
+            Sorting
+        }
+
+        public enum LogicInjectorType
+        {
+            Default,
+            Sorting
+        }
+
+        public enum AnswerPlacerType
+        {
+            Line,
+            Random
+        }
+
+        public static Assessment CreateMatchWordToImageAssessment( AssessmentContext context)
+        {
+            // Assessment Specific configuration.
+            context.GameDescription = Db.LocalizationDataId.Assessment_Match_Word_Image;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Do not pronunce name of a picture
             AssessmentOptions.Instance.ShowQuestionAsImage = true;
-            AnswerChecker checker = new AnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
-            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
-            IQuestionDecorator questionDecorator = new PronunceImageDecorator();
-            IQuestionGenerator generator = new DefaultQuestionGenerator( configuration.Questions);
-            ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager, letterSize, wordSize);
-            IAnswerPlacer answerPlacer = new RandomAnswerPlacer( audioManager);
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word to sort
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
 
-            gameDescription = Db.LocalizationDataId.Assessment_Match_Word_Image;
-            updater.AddTimedUpdate( dragManager);
+            // Get references from GameContext (utils)
+            Init( context);
 
-            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
-                                            configuration, context, dialogueManager,
-                                            gameDescription);
+            // Instantiate the correct managers
+            CreateManagers( context,
+                            DragManagerType.Default,
+                            LogicInjectorType.Default,
+                            AnswerPlacerType.Line
+                            );
+
+            // Create the custom managers
+            context.QuestionGenerator = new DefaultQuestionGenerator( context.Configuration.Questions);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, letterSize, wordSize);
+
+            // Build the assessment
+            return CreateAssessment( context);
         }
 
-        internal static IAssessment CreateOrderLettersInWordAssessment( IUpdater updater)
+        internal static Assessment CreateOrderLettersInWordAssessment( AssessmentContext context)
         {
-            Init();
+            context.GameDescription = Db.LocalizationDataId.Assessment_Order_Letters;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = true;
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word to sort
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
 
-            IDragManager dragManager = new SortingDragManager( audioManager, context.GetCheckmarkWidget());
-            IQuestionDecorator questionDecorator = new PronunceImageDecorator();
-            IQuestionGenerator generator = new ImageQuestionGenerator( configuration.Questions, false);
-            ILogicInjector injector = new SortingLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager, wordSize, letterSize);
-            IAnswerPlacer answerPlacer = new LineAnswerPlacer( audioManager, letterSize);
+            Init( context);
 
-            gameDescription = Db.LocalizationDataId.Assessment_Order_Letters;
-            updater.AddTimedUpdate( dragManager);
+            CreateManagers( context,
+                            DragManagerType.Sorting,
+                            LogicInjectorType.Sorting,
+                            AnswerPlacerType.Line
+                            );
 
-            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
-                                            configuration, context, dialogueManager,
-                                            gameDescription);
+
+            context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, false);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize);
+
+            return CreateAssessment( context);
         }
 
-        internal static IAssessment CreateCompleteWordAssessment( IUpdater updater)
+        internal static Assessment CreateCompleteWordAssessment( AssessmentContext context)
         {
-            Init();
+            context.GameDescription = Db.LocalizationDataId.Assessment_Select_Letter_Image;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
-            AnswerChecker checker = new AnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
-            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
-            IQuestionDecorator questionDecorator = new PronunceImageDecorator();
-            IQuestionGenerator generator = new ImageQuestionGenerator( configuration.Questions, true);
-            ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager, wordSize, letterSize, true);
-            IAnswerPlacer answerPlacer = new RandomAnswerPlacer( audioManager);
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the complete word
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
 
-            gameDescription = Db.LocalizationDataId.Assessment_Select_Letter_Image;
-            updater.AddTimedUpdate( dragManager);
+            Init( context);
 
-            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
-                                            configuration, context, dialogueManager,
-                                            gameDescription);
+            CreateManagers( context,
+                            DragManagerType.Default,
+                            LogicInjectorType.Default,
+                            AnswerPlacerType.Random
+                            );
+
+            context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, true);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize, true);
+
+            return CreateAssessment( context);
         }
 
-        public static IAssessment CreateMatchLettersWordAssessment( IUpdater updater)
+        public static Assessment CreateMatchLettersWordAssessment( AssessmentContext context)
         {
-            Init();
+            context.GameDescription = Db.LocalizationDataId.Assessment_Match_Letters_Words;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
-            AnswerChecker checker          = new AnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
-            IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
-            IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
-            IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions);
-            ILogicInjector injector         = new DefaultLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager, wordSize, letterSize);
-            IAnswerPlacer answerPlacer      = new RandomAnswerPlacer( audioManager);
+            //..
 
-            gameDescription = Db.LocalizationDataId.Assessment_Match_Letters_Words;
-            updater.AddTimedUpdate( dragManager);
+            Init( context);
 
-            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
-                                            configuration, context, dialogueManager,
-                                            gameDescription);
+            CreateManagers( context,
+                            DragManagerType.Default,
+                            LogicInjectorType.Default,
+                            AnswerPlacerType.Random
+                            );
+
+            context.QuestionGenerator = new DefaultQuestionGenerator( context.Configuration.Questions);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize);
+
+            return CreateAssessment( context);
         }
 
-        public static IAssessment CreateQuestionAndReplyAssessment( IUpdater updater)
+        public static Assessment CreateQuestionAndReplyAssessment( AssessmentContext context)
         {
-            Init();
+            context.GameDescription = Db.LocalizationDataId.Assessment_Match_Sentences;
+            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = true;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = false; // Child should read question
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child shuold read answer
-            AnswerChecker checker = new AnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
-            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
-            IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
-            IQuestionGenerator generator = new DefaultQuestionGenerator( configuration.Questions);
-            ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager, sentenceSize, sentenceSize);
-            IAnswerPlacer answerPlacer = new RandomAnswerPlacer( audioManager);
+            //..
 
-            gameDescription = Db.LocalizationDataId.Assessment_Match_Sentences;
-            updater.AddTimedUpdate( dragManager);
+            Init( context);
 
-            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
-                                            configuration, context, dialogueManager,
-                                            gameDescription);
+            CreateManagers( context,
+                            DragManagerType.Default,
+                            LogicInjectorType.Default,
+                            AnswerPlacerType.Random
+                            );
+
+            context.QuestionGenerator = new DefaultQuestionGenerator( context.Configuration.Questions);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, sentenceSize, sentenceSize);
+
+            return CreateAssessment( context);
         }
 
-        public static IAssessment CreateSunMoonWordAssessment( IUpdater updater)
+        public static Assessment CreateSunMoonWordAssessment( AssessmentContext context)
         {
-            Init();
+            context.GameDescription = Db.LocalizationDataId.Assessment_Classify_Words_Article;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
-            AnswerChecker checker = new AnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
-            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
-            IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
+            //..
+
+            Init( context);
+
+            CreateManagers( context,
+                            DragManagerType.Default,
+                            LogicInjectorType.Default,
+                            AnswerPlacerType.Random
+                            );
+
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.SunMoon);
-            IQuestionGenerator generator = new CategoryQuestionGenerator(   configuration.Questions, 
+            context.QuestionGenerator = new CategoryQuestionGenerator( context.Configuration.Questions, 
                                                                             categoryProvider,
                                                                             maxAnswers, rounds);
-            ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer = new CategoryQuestionPlacer( audioManager, letterSize, wordSize);
-            IAnswerPlacer answerPlacer = new RandomAnswerPlacer( audioManager);
+            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, wordSize);
 
-            gameDescription = Db.LocalizationDataId.Assessment_Classify_Words_Article;
-            updater.AddTimedUpdate( dragManager);
-
-            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
-                                            configuration, context, dialogueManager,
-                                            gameDescription);
+            return CreateAssessment( context);
         }
 
-        public static IAssessment CreateSingularDualPluralAssessment( IUpdater updater)
+        public static Assessment CreateSingularDualPluralAssessment( AssessmentContext context)
         {
-            Init();
+            context.GameDescription = Db.LocalizationDataId.Assessment_Classify_Word_Nouns;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
-            AnswerChecker checker = new AnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
-            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
-            IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
+            //..
+
+            Init( context);
+
+            CreateManagers( context,
+                            DragManagerType.Default,
+                            LogicInjectorType.Default,
+                            AnswerPlacerType.Random
+                            );
+
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.SingularDualPlural);
-            IQuestionGenerator generator = new CategoryQuestionGenerator(   configuration.Questions,
+            context.QuestionGenerator = new CategoryQuestionGenerator( context.Configuration.Questions,
                                                                             categoryProvider,
                                                                             maxAnswers, rounds);
-            ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer = new CategoryQuestionPlacer( audioManager, letterSize, wordSize);
-            IAnswerPlacer answerPlacer = new RandomAnswerPlacer( audioManager);
+            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, wordSize);
 
-            gameDescription = Db.LocalizationDataId.Assessment_Classify_Word_Nouns;
-            updater.AddTimedUpdate( dragManager);
-
-            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
-                                            configuration, context, dialogueManager,
-                                            gameDescription);
+            return CreateAssessment( context);
         }
 
-        public static IAssessment CreateWordArticleAssessment( IUpdater updater)
+        public static Assessment CreateWordArticleAssessment( AssessmentContext context)
         {
-            Init();
+            context.GameDescription = Db.LocalizationDataId.Assessment_Classify_Word_Article;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
-            AnswerChecker checker = new AnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
-            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
-            IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
+            //..
+
+            Init( context);
+
+            CreateManagers( context,
+                            DragManagerType.Default,
+                            LogicInjectorType.Default,
+                            AnswerPlacerType.Random
+                            );
+
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.WithOrWithoutArticle);
-            IQuestionGenerator generator = new CategoryQuestionGenerator(   configuration.Questions,
+            context.QuestionGenerator = new CategoryQuestionGenerator( context.Configuration.Questions,
                                                                             categoryProvider,
                                                                             maxAnswers, rounds);
-            ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer = new CategoryQuestionPlacer( audioManager, wordSize, wordSize);
-            IAnswerPlacer answerPlacer = new RandomAnswerPlacer( audioManager);
+            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, wordSize, wordSize);
 
-            gameDescription = Db.LocalizationDataId.Assessment_Classify_Word_Article;
-            updater.AddTimedUpdate( dragManager);
-
-            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
-                                            configuration, context, dialogueManager,
-                                            gameDescription);
+            return CreateAssessment( context);
         }
 
-        public static IAssessment CreateSunMoonLetterAssessment( IUpdater updater)
+        public static Assessment CreateSunMoonLetterAssessment( AssessmentContext context)
         {
-            Init();
+            context.GameDescription = Db.LocalizationDataId.Assessment_Classify_Letters_Article;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
-            AnswerChecker checker = new AnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
-            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
-            IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
+            //..
+
+            Init( context);
+
+            CreateManagers( context,
+                            DragManagerType.Default,
+                            LogicInjectorType.Default,
+                            AnswerPlacerType.Random
+                            );
+
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.SunMoon);
-            IQuestionGenerator generator = new CategoryQuestionGenerator(   configuration.Questions,
+            context.QuestionGenerator = new CategoryQuestionGenerator( context.Configuration.Questions,
                                                                             categoryProvider,
                                                                             maxAnswers, rounds);
-            ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer = new CategoryQuestionPlacer( audioManager, letterSize, letterSize);
-            IAnswerPlacer answerPlacer = new RandomAnswerPlacer( audioManager);
+            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, letterSize);
 
-            gameDescription = Db.LocalizationDataId.Assessment_Classify_Letters_Article;
-            updater.AddTimedUpdate( dragManager);
-
-            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
-                                            configuration, context, dialogueManager,
-                                            gameDescription);
+            return CreateAssessment( context);
         }
 
-        public static IAssessment CreateLetterShapeAssessment( IUpdater updater)
+        public static Assessment CreateLetterShapeAssessment( AssessmentContext context)
         {
-            Init();
+            context.GameDescription = Db.LocalizationDataId.Assessment_Select_Letter_Listen;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child shuold identify the letter
-            AnswerChecker checker          = new AnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
-            IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
-            IQuestionDecorator questionDecorator = new PronunceAndFlipDecorator();
-            IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions);
-            ILogicInjector injector         = new DefaultLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager, letterSize, letterSize);
-            IAnswerPlacer answerPlacer      = new RandomAnswerPlacer( audioManager);
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word to sort
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = true;
 
-            gameDescription = Db.LocalizationDataId.Assessment_Select_Letter_Listen;
-            updater.AddTimedUpdate( dragManager);
+            Init( context);
 
-            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector, 
-                                            configuration, context, dialogueManager,
-                                            gameDescription);
+            CreateManagers( context,
+                            DragManagerType.Default,
+                            LogicInjectorType.Default,
+                            AnswerPlacerType.Random
+                            );
+
+            context.QuestionGenerator = new DefaultQuestionGenerator( context.Configuration.Questions);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, letterSize, letterSize);
+
+            return CreateAssessment( context);
         }
 
-        public static IAssessment CreatePronouncedWordAssessment( IUpdater updater)
+        public static Assessment CreatePronouncedWordAssessment( AssessmentContext context)
         {
-            Init();
+            context.GameDescription = Db.LocalizationDataId.Assessment_Select_Word_Listen;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
-            AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child shuold identify the word
-            AnswerChecker checker = new AnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
-            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
-            IQuestionDecorator questionDecorator = new PronunceAndFlipDecorator();
-            IQuestionGenerator generator = new DefaultQuestionGenerator( configuration.Questions);
-            ILogicInjector injector = new DefaultLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager, wordSize, wordSize);
-            IAnswerPlacer answerPlacer = new RandomAnswerPlacer( audioManager);
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child should identify the word
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word to sort
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = true;
 
-            gameDescription = Db.LocalizationDataId.Assessment_Select_Word_Listen;
-            updater.AddTimedUpdate( dragManager);
+            Init( context);
 
-            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
-                                            configuration, context, dialogueManager,
-                                            gameDescription);
+            CreateManagers( context,
+                            DragManagerType.Default,
+                            LogicInjectorType.Default,
+                            AnswerPlacerType.Random
+                            );
+
+            context.QuestionGenerator = new DefaultQuestionGenerator( context.Configuration.Questions);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, wordSize);
+
+            return CreateAssessment( context);
         }
 
-        public static IAssessment CreateWordsWithLetterAssessment( IUpdater updater)
+        public static Assessment CreateWordsWithLetterAssessment( AssessmentContext context)
         {
-            Init();
+            context.GameDescription = Db.LocalizationDataId.Assessment_Select_Words;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
-            AnswerChecker checker          = new AnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
-            IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
-            IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
-            IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions);
-            ILogicInjector injector         = new DefaultLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager, letterSize, wordSize);
-            IAnswerPlacer answerPlacer      = new RandomAnswerPlacer( audioManager);
+            //..
 
-            gameDescription = Db.LocalizationDataId.Assessment_Select_Words;
-            updater.AddTimedUpdate( dragManager);
+            Init( context);
 
-            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
-                                            configuration, context, dialogueManager,
-                                            gameDescription);
+            CreateManagers( context,
+                            DragManagerType.Default,
+                            LogicInjectorType.Default,
+                            AnswerPlacerType.Random
+                            );
+
+            context.QuestionGenerator = new DefaultQuestionGenerator( context.Configuration.Questions);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, letterSize, wordSize);
+
+            return CreateAssessment( context);
         }
 
         /// <summary>
         /// Perform common initialization to reduce amount of code in creation of assessments.
         /// </summary>
-        private static void Init()
+        private static void Init( AssessmentContext context)
         {
             // ARABIC SETTINGS
             AssessmentOptions.Instance.LocaleTextFlow = TextFlow.RightToLeft;
 
-            configuration = AssessmentConfiguration.Instance;
-            context = configuration.Context;
-            audioManager = configuration.Context.GetAudioManager();
-            subtitles = configuration.Context.GetSubtitleWidget();
-            dialogueManager = new DialogueManager( audioManager, subtitles);
-            rounds = configuration.Rounds;
-            maxAnswers = configuration.Answers;
+            context.Configuration = AssessmentConfiguration.Instance;
+            context.Utils = AssessmentConfiguration.Instance.Context;
+            context.AudioManager = context.Utils.GetAudioManager();
+            context.Subtitles = context.Utils.GetSubtitleWidget();
+            context.CheckmarkWidget = context.Utils.GetCheckmarkWidget();
+            context.DialogueManager = new AssessmentDialogues( context.AudioManager,
+                                                               context.Subtitles,
+                                                               context.GameDescription);
+
+            context.AnswerChecker = new AnswerChecker( context.CheckmarkWidget,
+                                                       context.AudioManager,
+                                                       context.DialogueManager);
+
+            rounds = AssessmentConfiguration.Instance.Rounds;
+            maxAnswers = AssessmentConfiguration.Instance.Answers;
+
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
             AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = false;
+        }
+
+        /// <summary>
+        /// Create Assessment from context
+        /// </summary>
+        /// <param name="context"> managers used to configure the game</param>
+        private static Assessment CreateAssessment( AssessmentContext context)
+        {
+            return new Assessment( context.AnswerPlacer, context.QuestionPlacer, context.QuestionGenerator,
+                                   context.LogicInjector, context.Configuration, context.Utils,
+                                   context.DialogueManager);
+        }
+
+        /// <summary>
+        /// Create managers depending on Assessment type
+        /// </summary>
+        private static void CreateManagers(
+                AssessmentContext context,
+                DragManagerType dragManager,
+                LogicInjectorType logicInjector,
+                AnswerPlacerType answerPlacer)
+        {
+            if (dragManager == DragManagerType.Default)
+                context.DragManager = new DefaultDragManager( context.AudioManager, context.AnswerChecker);
+            else
+                context.DragManager = new SortingDragManager( context.AudioManager, context.CheckmarkWidget);
+
+            if (logicInjector == LogicInjectorType.Default)
+                context.LogicInjector = new DefaultLogicInjector( context.DragManager);
+            else
+                context.LogicInjector = new SortingLogicInjector( context.DragManager);
+
+            if (answerPlacer == AnswerPlacerType.Line)
+                context.AnswerPlacer = new LineAnswerPlacer( context.AudioManager, letterSize);
+            else
+                context.AnswerPlacer = new RandomAnswerPlacer( context.AudioManager);
         }
     }
 }
