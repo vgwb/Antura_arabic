@@ -45,6 +45,11 @@ namespace EA4S.Assessment
         GameObject gameObject { get; }
 
         /// <summary>
+        /// Access the question behaviour of this question
+        /// </summary>
+        QuestionBehaviour QuestionBehaviour { get; }
+
+        /// <summary>
         /// Set of valid answers, each question has its own valid answers
         /// </summary>
         void SetAnswerSet( AnswerSet answerSet);

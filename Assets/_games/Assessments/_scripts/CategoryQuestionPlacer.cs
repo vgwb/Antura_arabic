@@ -12,8 +12,12 @@ namespace EA4S.Assessment
 
         }
 
-        public override IEnumerator GetPlaceCoroutine()
+        public override IEnumerator GetPlaceCoroutine( bool playAudio)
         {
+            if (playAudio)
+                // warn our heirs
+                Debug.LogWarning( "playAudio, parameter not used for Categorization questions");
+
             // Count questions and answers
             int questionsNumber = 0;
             int placeHoldersNumber = 0;
@@ -41,7 +45,6 @@ namespace EA4S.Assessment
             if (flow == TextFlow.RightToLeft)
             {
                 currentPos = bounds.ToTheRightQuestionStart();
-                //currentPos.x -= answerSize / 2.0f;
                 sign = -1;
             }
             else
@@ -76,7 +79,9 @@ namespace EA4S.Assessment
                 var questionPos = currentPos;
                 questionPos.y += bounds.LetterSize()*1.35f;
                 questionPos.x = (max + min) /2f;
-                yield return PlaceQuestion( allQuestions[ questionIndex], questionPos);
+
+                // Category questions never read the category
+                yield return PlaceQuestion( allQuestions[ questionIndex], questionPos, false);
 
                 questionIndex++;
             }

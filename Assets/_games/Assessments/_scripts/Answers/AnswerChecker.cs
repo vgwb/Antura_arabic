@@ -4,15 +4,15 @@ using System.Collections.Generic;
 
 namespace EA4S.Assessment
 {
-    internal class AnswerChecker
+    public class AnswerChecker
     {
         private ICheckmarkWidget checkmarkWidget;
         private IAudioManager audioManager;
-        private IDialogueManager dialogueManager;
+        private AssessmentDialogues dialogueManager;
 
         public AnswerChecker(    ICheckmarkWidget checkmarkWidget,
                                  IAudioManager audioManager,
-                                 IDialogueManager dialogueManager)
+                                 AssessmentDialogues dialogueManager)
         {
             this.checkmarkWidget = checkmarkWidget;
             this.audioManager = audioManager;
@@ -89,10 +89,8 @@ namespace EA4S.Assessment
                 // Just trigger OnQuestionAnswered events if all are correct
                 foreach (var q in questions)
                 {
-                    var behaviour = q.gameObject.GetComponent< QuestionBehaviour>();
-                    behaviour.OnQuestionAnswered();
-
-                    yield return Wait.For(behaviour.TimeToWait());
+                    q.QuestionBehaviour.OnQuestionAnswered();
+                    yield return Wait.For( q.QuestionBehaviour.TimeToWait());
                 }
 
             } else {
@@ -100,9 +98,9 @@ namespace EA4S.Assessment
                     if (p.LinkedDroppable != null) {
                         var set = p.Placeholder.GetQuestion().GetAnswerSet();
                         var answ = p.LinkedDroppable.GetAnswer();
-                        if (set.IsCorrect(answ) == false) {
-                            AssessmentConfiguration.Instance.Context.GetLogManager().OnAnswered(answ.Data(), false);
-                            p.LinkedDroppable.Detach(true);
+                        if (set.IsCorrect( answ) == false) {
+                            AssessmentConfiguration.Instance.Context.GetLogManager().OnAnswered( answ.Data(), false);
+                            p.LinkedDroppable.Detach( true);
                         }
                     }
                 }
@@ -110,14 +108,14 @@ namespace EA4S.Assessment
 
             allCorrect = areAllCorrect;
 
-            while (wrongAnswerAnimationPlaying)
+            while ( wrongAnswerAnimationPlaying)
                 yield return null; // wait only if previous message has not finished
 
             if (allCorrect)
             {
-                audioManager.PlaySound(Sfx.StampOK);
+                audioManager.PlaySound( Sfx.StampOK);
                 yield return Wait.For( 0.4f);
-                checkmarkWidget.Show(true);
+                checkmarkWidget.Show( true);
                 yield return Wait.For( 1.0f);
             }
             else
@@ -134,15 +132,15 @@ namespace EA4S.Assessment
 
         private IEnumerator WrongAnswerCoroutine()
         {
-            checkmarkWidget.Show(false);
-            audioManager.PlaySound(Sfx.KO);
+            checkmarkWidget.Show( false);
+            audioManager.PlaySound( Sfx.KO);
             yield return PlayAnswerWrong();
             wrongAnswerAnimationPlaying = false;
         }
 
         IYieldable PlayAnswerWrong()
         {
-            return dialogueManager.Speak(Localization.Random(
+            return dialogueManager.Speak( Localization.Random(
                                             Db.LocalizationDataId.Assessment_Wrong_1,
                                             Db.LocalizationDataId.Assessment_Wrong_2,
                                             Db.LocalizationDataId.Assessment_Wrong_3));
