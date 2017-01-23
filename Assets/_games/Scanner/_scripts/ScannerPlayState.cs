@@ -29,7 +29,7 @@ namespace EA4S.Minigames.Scanner
 
 		void OnRoundsFinished(int numberOfRoundsWon)
 		{
-			ScannerConfiguration.Instance.gameActive = false;
+            game.gameActive = false;
 			game.CurrentScoreRecord = numberOfRoundsWon;
 			game.SetCurrentState(game.ResultState);
 			return;

@@ -5,7 +5,7 @@ namespace EA4S.Minigames.Scanner
 
 	public class ScannerRotateGear : MonoBehaviour {
 
-
+        public ScannerGame game;
 		public float direction;
 		// Use this for initialization
 
@@ -15,7 +15,7 @@ namespace EA4S.Minigames.Scanner
 
 		// Update is called once per frame
 		void Update () {
-			transform.Rotate(0,0,direction * ScannerConfiguration.Instance.beltSpeed);
+			transform.Rotate(0,0,direction * game.beltSpeed);
 		}
 	}
 }

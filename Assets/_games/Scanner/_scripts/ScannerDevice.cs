@@ -81,7 +81,7 @@ namespace EA4S.Minigames.Scanner
 
 		void OnMouseDown()
 		{
-            if (ScannerGame.disableInput)
+            if (game.disableInput)
                 return;
 
 			isDragging = true;
@@ -142,7 +142,7 @@ namespace EA4S.Minigames.Scanner
             if (other.gameObject.name.Equals("Antura"))
             {
                 
-                ScannerAntura.SCARED_COUNTER++;
+                game.antura.GetComponent<ScannerAntura>().scaredCounter++;
                 //print(ScannerAntura.SCARED_COUNTER);
             }
 		}

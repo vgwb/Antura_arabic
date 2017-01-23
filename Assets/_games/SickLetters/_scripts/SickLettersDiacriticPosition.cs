@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+using System.Collections;
+using TMPro;
+
 
 namespace EA4S.Minigames.SickLetters
 {
@@ -11,11 +14,9 @@ namespace EA4S.Minigames.SickLetters
 		public float offSetY = 0.0f;
 
 		private MeshRenderer diacriticMesh;
-		//private TextMeshPro diacriticText;
 
 		void Awake () {
 			diacriticMesh = GetComponent<MeshRenderer>();
-			//diacriticText = GetComponent<TextMeshPro>();
 		}
 
 		// Use this for initialization
