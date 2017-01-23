@@ -2,7 +2,7 @@
 using System.Collections;
 using TMPro;
 
-namespace EA4S.SickLetters
+namespace EA4S.Minigames.SickLetters
 {
     public class SickLettersVase : MonoBehaviour
     {

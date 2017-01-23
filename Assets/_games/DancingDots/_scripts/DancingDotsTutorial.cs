@@ -4,7 +4,7 @@ using EA4S.Audio;
 using EA4S.Tutorial;
 using TMPro;
 
-namespace EA4S.DancingDots
+namespace EA4S.Minigames.DancingDots
 {
     public class DancingDotsTutorial : MonoBehaviour
     {

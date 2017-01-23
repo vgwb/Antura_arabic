@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace EA4S.SickLetters
+
+namespace EA4S.Minigames.SickLetters
 {
     public class SickLettersAntura : MonoBehaviour
     {

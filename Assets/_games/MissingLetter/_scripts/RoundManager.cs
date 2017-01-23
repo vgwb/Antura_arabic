@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.Assertions;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using ModularFramework.Helpers;
 using System;
@@ -10,7 +8,7 @@ using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.MissingLetter
+namespace EA4S.Minigames.MissingLetter
 {
 
     public class RoundManager

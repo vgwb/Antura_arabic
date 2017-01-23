@@ -1,15 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using ModularFramework.Helpers;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.ColorTickle
+namespace EA4S.Minigames.ColorTickle
 {
     public class IntroductionGameState : IGameState
     {

@@ -1,7 +1,7 @@
 ﻿using EA4S.Audio;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.MissingLetter
+namespace EA4S.Minigames.MissingLetter
 {
     public class MissingLetterIntroductionState : IGameState
     {

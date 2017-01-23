@@ -1,7 +1,7 @@
 ﻿using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 
-namespace EA4S.TakeMeHome
+namespace EA4S.Minigames.TakeMeHome
 {
 	public class TakeMeHomeResetState : IGameState {
 

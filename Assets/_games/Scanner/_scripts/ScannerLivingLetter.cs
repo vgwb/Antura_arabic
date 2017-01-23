@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 using EA4S.LivingLetters;
 
-namespace EA4S.Scanner
+namespace EA4S.Minigames.Scanner
 {
 
     public class ScannerLivingLetter : MonoBehaviour

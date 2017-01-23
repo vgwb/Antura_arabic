@@ -3,7 +3,7 @@ using System.Collections;
 using EA4S.Antura;
 using EA4S.Utilities;
 
-namespace EA4S.TakeMeHome
+namespace EA4S.Minigames.TakeMeHome
 {
 	public class TakeMeHomeAntura : MonoBehaviour
 	{

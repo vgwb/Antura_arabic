@@ -1,7 +1,6 @@
 ﻿using EA4S.Audio;
-using EA4S.MinigamesCommon;
 
-namespace EA4S.SickLetters
+namespace EA4S.Minigames.SickLetters
 {
     public class ResultGameState : IGameState
     {

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using EA4S.Audio;
 using EA4S.LivingLetters;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using UnityEngine;
-using TMPro;
 
-namespace EA4S.SickLetters
+namespace EA4S.Minigames.SickLetters
 {
     public enum Diacritic { Sokoun, Fatha, Dameh, Kasrah, None };
 

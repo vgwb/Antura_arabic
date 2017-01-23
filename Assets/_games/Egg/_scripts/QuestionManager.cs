@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using EA4S.MinigamesAPI;
 
-namespace EA4S.Egg
+namespace EA4S.Minigames.Egg
 {
     public class QuestionManager
     {

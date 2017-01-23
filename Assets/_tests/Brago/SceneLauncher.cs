@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 using ModularFramework.Core;
 using ModularFramework.Components;
-using EA4S.FastCrowd;
+using EA4S.Minigames.FastCrowd;
 
 namespace EA4S {
 

@@ -1,11 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
+﻿using System.Collections.Generic;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
 
-namespace EA4S.ColorTickle
+namespace EA4S.Minigames.ColorTickle
 {
     /// <summary>
     /// Letter provider sample
