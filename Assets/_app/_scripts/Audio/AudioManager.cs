@@ -202,7 +202,15 @@ namespace EA4S
         {
             AudioClip clip = GetAudioClip(sfx);
             var source = new AudioSourceWrapper(sfxGroup.Play(clip), sfxGroup, this);
-            source.Pitch = 1 + ((Random.value-0.5f)*GetRandomPitchOffset(sfx))*2;
+
+            var conf = GetConfiguration(sfx);
+
+            if (conf != null)
+            {
+                source.Pitch = 1 + ((Random.value - 0.5f) * conf.randomPitchOffset) * 2;
+                source.Volume = conf.volume;
+            }
+            
             return source;
         }
 
@@ -341,17 +349,17 @@ namespace EA4S
             return conf.clips.GetRandom();
         }
 
-        public float GetRandomPitchOffset(Sfx sfx)
+        public SfxConfiguration GetConfiguration(Sfx sfx)
         {
             SfxConfiguration conf = GetSfxConfiguration(sfx);
 
             if (conf == null || conf.clips == null || conf.clips.Count == 0)
             {
                 Debug.Log("No Audio clips configured for: " + sfx);
-                return 0;
+                return null;
             }
 
-            return conf.randomPitchOffset;
+            return conf;
         }
 
         public AudioClip GetAudioClip(Music music)
