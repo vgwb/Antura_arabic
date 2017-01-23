@@ -15,6 +15,7 @@ namespace Kore.Utils
     /// won't be called. I also provide a replacement OnDestroyCalled.
     /// </summary>
     public class SceneScopedSingletonI< T, I> : MonoBehaviour, IInitiable where T : MonoBehaviour, I, IInitiable
+        where I: class
     {
         public virtual void Init()
         {
@@ -23,19 +24,25 @@ namespace Kore.Utils
 
         public virtual void OnDestroyCalled()
         {
-
+            Instantiated = false;
+            instanceInterface = null;
         }
 
         // since T should be subclass of MonoBehaviour and I, and MonoBehaviour is a class
         // therefore I can only be a interface
-        private static I instanceInterface = default(I);
+        private static I instanceInterface = null;
+
+        // flag to avoid null comparation check of monobeahviours (which is very expensive)
+        // this actually makes this class one of the fastest Singletons
+        private static bool Instantiated = false;
 
         public static I Instance
         {
             get
             {
-                if (instanceInterface == null && ApplicationIsQuitting == false)
+                if (Instantiated == false)
                 {
+                    Instantiated = true;
                     instanceInterface = SingletonInstance_SceneScoped.GO.AddComponent<T>();
                     (instanceInterface as IInitiable).Init();
                     return instanceInterface;
@@ -43,22 +50,6 @@ namespace Kore.Utils
 
                 return instanceInterface;
             }
-        }
-
-        private static bool ApplicationIsQuitting = false;
-
-        /// <summary>
-        /// Forbid to access instance after OnDestroy is called, if some code
-        /// access instance then it gets null exception because it is doing obviously
-        /// something wrong.
-        /// </summary>
-        protected void OnDestroy() // protected so user get warning to use "new keyword" if 
-                                   // accidentally redeclaring the member:
-                                   // Instead the user should override "OnDestroyCalled"
-        {
-            ApplicationIsQuitting = true;
-            (instanceInterface as IInitiable).OnDestroyCalled();
-            instanceInterface = default( I);
         }
     }
 
@@ -71,7 +62,8 @@ namespace Kore.Utils
 
         public virtual void OnDestroyCalled()
         {
-
+            instanceConcrete = null;
+            Instantiated = false;
         }
 
         private static T instanceConcrete = null;
@@ -84,7 +76,7 @@ namespace Kore.Utils
         {
             get
             {
-                if (Instantiated == false && !ApplicationIsQuitting)
+                if (Instantiated == false)
                 {
                     Instantiated = true;
                     instanceConcrete = SingletonInstance_SceneScoped.GO.AddComponent< T>();
@@ -94,18 +86,6 @@ namespace Kore.Utils
 
                 return instanceConcrete;
             }
-        }
-
-        private static bool ApplicationIsQuitting = false;
-
-        protected void OnDestroy() // protected so user get warning to use "new keyword" if 
-                                   // accidentally redeclaring the member:
-                                   // Instead the user should override "OnDestroyCalled"
-        {
-            ApplicationIsQuitting = true;
-            instanceConcrete.OnDestroyCalled();
-            instanceConcrete = null;
-            Instantiated = false;
         }
     }
 
@@ -126,7 +106,7 @@ namespace Kore.Utils
                 // Creates only 1 game object
                 if (Instantiated == false)
                 {
-                    TheOnlyGO = new GameObject("[Singletons:SceneScoped]");
+                    TheOnlyGO = new GameObject( "[Singletons:SceneScoped]");
                     TheOnlyGO.AddComponent< SceneScopedSingleton_Resetter>();
                     Instantiated = true;
                 }
@@ -137,8 +117,16 @@ namespace Kore.Utils
 
         internal static void Reset()
         {
+            ResetSingletons();
             Instantiated = false;
             TheOnlyGO = null;
+        }
+
+        internal static void ResetSingletons()
+        {
+            var singletons = TheOnlyGO.GetComponents< IInitiable>();
+            foreach (var single in singletons)
+                single.OnDestroyCalled();
         }
     }
 
