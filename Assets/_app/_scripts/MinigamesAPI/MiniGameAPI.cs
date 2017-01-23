@@ -37,7 +37,7 @@ namespace EA4S.MinigamesAPI
             // rule setted in config and used by AI to create correct game data
             rules = currentGameConfig.SetupBuilder();
             // question packs (game data)
-            currentGameConfig.Questions = new FindRightLetterQuestionProvider(AppManager.I.GameLauncher.RetrieveQuestionPacks(rules), miniGameData.Description);
+            currentGameConfig.Questions = new FindRightLetterQuestionProvider(AppManager.I.GameLauncher.RetrieveQuestionPacks(rules));
 
             // Save current game code to appmanager currentminigame
             AppManager.I.CurrentMinigame = miniGameData;    // refactor: this should be held in the NavigationManager or something similar that holds minigame state

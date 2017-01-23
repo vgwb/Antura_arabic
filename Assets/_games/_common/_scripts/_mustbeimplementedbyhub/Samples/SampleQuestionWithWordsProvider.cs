@@ -10,15 +10,12 @@ namespace EA4S.MinigamesAPI.Sample
     public class SampleQuestionWithWordsProvider : IQuestionProvider
     {
         List<SampleQuestionPack> questions = new List<SampleQuestionPack>();
-        string description;
 
         int currentQuestion;
 
         public SampleQuestionWithWordsProvider ()
         {
             currentQuestion = 0;
-
-            description = "Questions description";
 
             for (int i = 0; i < 32; i++)
             {
@@ -46,11 +43,6 @@ namespace EA4S.MinigamesAPI.Sample
                 var currentPack = new SampleQuestionPack(newWordData, wrongAnswers, correctAnswers);
                 questions.Add(currentPack);
             }
-        }
-
-        public string GetDescription()
-        {
-            return description;
         }
 
         IQuestionPack IQuestionProvider.GetNextQuestion()
