@@ -1,24 +1,5 @@
-﻿using SQLite;
-
-namespace EA4S {
-
-    public enum PlaySkill {
-        None = 0,
-        Precision = 1,
-        Reaction = 2,
-        Memory = 3,
-        Logic = 4,
-        Rhythm = 5,
-        Musicality = 6,
-        Sight = 7
-    }
-
-    public enum PlayEvent {
-        GameStarted = 0,
-        GameFinished = 1,
-        Skill = 2
-    }
-}
+﻿using EA4S.Utilities;
+using SQLite;
 
 namespace EA4S.Db
 {

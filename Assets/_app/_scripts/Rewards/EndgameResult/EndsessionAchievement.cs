@@ -1,8 +1,9 @@
 ﻿using DG.Tweening;
+using EA4S.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.Rewards
 {
     /// <summary>
     /// Represents an earned achievement (reward) in the EndsessionResultPanel

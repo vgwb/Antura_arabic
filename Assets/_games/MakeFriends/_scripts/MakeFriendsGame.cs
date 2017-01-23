@@ -7,6 +7,7 @@ using ModularFramework.Core;
 using ModularFramework.Helpers;
 using ArabicSupport;
 using EA4S;
+using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 
 namespace EA4S.MakeFriends

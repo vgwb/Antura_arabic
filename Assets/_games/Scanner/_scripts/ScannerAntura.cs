@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using EA4S.Antura;
+using EA4S.Audio;
 
 namespace EA4S.Scanner
 {

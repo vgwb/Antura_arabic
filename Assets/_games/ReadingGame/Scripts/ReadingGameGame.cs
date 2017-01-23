@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 using TMPro;
 using UnityEngine;
 

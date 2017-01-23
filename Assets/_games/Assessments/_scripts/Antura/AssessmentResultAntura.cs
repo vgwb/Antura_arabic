@@ -2,6 +2,7 @@ using DG.Tweening;
 using Kore.Coroutines;
 using System;
 using System.Collections;
+using EA4S.Antura;
 using UnityEngine;
 
 namespace EA4S.Assessment

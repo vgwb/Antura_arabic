@@ -1,7 +1,7 @@
-﻿using System;
+﻿using EA4S.Audio;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.MinigamesCommon
 {
     public class MinigamesAudioManager : IAudioManager
     {

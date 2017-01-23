@@ -1,4 +1,4 @@
-﻿namespace EA4S
+﻿namespace EA4S.MinigamesCommon
 {
     /// <summary>
     /// Provides access to the OverlayWidget UI element for minigames.

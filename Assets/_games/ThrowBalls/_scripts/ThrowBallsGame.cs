@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using EA4S;
+using EA4S.MinigamesCommon;
 
 namespace EA4S.ThrowBalls
 {

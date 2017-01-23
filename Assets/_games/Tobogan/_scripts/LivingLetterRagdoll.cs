@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.MinigamesCommon;
 
 public class LivingLetterRagdoll : MonoBehaviour, ICollidable
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using EA4S.Teacher;
 
-namespace EA4S
+namespace EA4S.MinigamesCommon
 {
     /// <summary>
     /// Concrete implementation of the log manager, accessible to minigames.

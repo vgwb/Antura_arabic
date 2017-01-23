@@ -1,4 +1,6 @@
-﻿namespace EA4S.Tobogan
+﻿using EA4S.MinigamesCommon;
+
+namespace EA4S.Tobogan
 {
     public class ToboganResultGameState : IGameState
     {

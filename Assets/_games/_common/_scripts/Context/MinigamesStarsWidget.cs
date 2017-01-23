@@ -1,4 +1,6 @@
-﻿namespace EA4S
+﻿using EA4S.Rewards;
+
+namespace EA4S.MinigamesCommon
 {
     /// <summary>
     /// Concrete implementation of IStarsWidget. Accessible to minigames.

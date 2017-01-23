@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.CameraEffects;
+using UnityEngine;
 
 public class HiddenText : MonoBehaviour
 {

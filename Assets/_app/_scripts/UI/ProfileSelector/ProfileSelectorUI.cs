@@ -2,6 +2,8 @@
 using System.Collections;
 using DG.DeExtensions;
 using DG.Tweening;
+using EA4S.Audio;
+using EA4S.Profile;
 using UnityEngine;
 using EA4S.Scenes;
 

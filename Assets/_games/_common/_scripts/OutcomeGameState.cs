@@ -1,4 +1,4 @@
-﻿namespace EA4S
+﻿namespace EA4S.MinigamesCommon
 {
     /// <summary>
     /// The game state reached when the minigame ends.

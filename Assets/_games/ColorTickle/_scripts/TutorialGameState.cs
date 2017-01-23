@@ -1,4 +1,5 @@
 ﻿using EA4S.LivingLetters;
+using EA4S.MinigamesCommon;
 using UnityEngine;
 using UnityEngine.UI;
 using ModularFramework.Helpers;

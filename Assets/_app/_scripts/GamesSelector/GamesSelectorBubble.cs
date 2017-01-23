@@ -1,5 +1,6 @@
 ﻿using DG.DeExtensions;
 using DG.Tweening;
+using EA4S.Audio;
 using UnityEngine;
 
 namespace EA4S.GamesSelector

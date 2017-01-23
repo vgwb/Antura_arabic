@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using DG.Tweening;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// General-purpose feedback icon (positive or negative).

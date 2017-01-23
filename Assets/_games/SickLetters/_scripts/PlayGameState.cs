@@ -2,6 +2,8 @@
 using TMPro;
 using UnityEngine;
 using System.Collections;
+using EA4S.Audio;
+using EA4S.MinigamesCommon;
 
 namespace EA4S.SickLetters
 {

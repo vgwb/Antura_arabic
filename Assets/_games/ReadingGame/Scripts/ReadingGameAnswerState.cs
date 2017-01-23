@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using UnityEngine;
 

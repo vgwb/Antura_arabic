@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
-
+using EA4S.Audio;
 using Random = UnityEngine.Random;
 
 namespace EA4S.MixedLetters

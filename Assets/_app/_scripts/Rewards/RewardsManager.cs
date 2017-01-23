@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.Antura;
+using EA4S.Audio;
 
-namespace EA4S
+namespace EA4S.Rewards
 {
     /// <summary>
     /// Manages the Rewards scene.

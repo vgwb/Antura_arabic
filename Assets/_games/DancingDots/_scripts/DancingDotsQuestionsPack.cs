@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using EA4S.MinigamesAPI;
 
 namespace EA4S.DancingDots
 {

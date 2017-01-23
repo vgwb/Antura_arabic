@@ -1,4 +1,7 @@
-﻿namespace EA4S.SickLetters
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.SickLetters
 {
     public class SickLettersConfiguration : IGameConfiguration
     {

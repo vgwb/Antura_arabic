@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace EA4S.Teacher.Test
@@ -85,7 +87,7 @@ namespace EA4S.Teacher.Test
 
         public void SimulateMiniGame(MiniGameCode code)
         {
-            var config = API.MiniGameAPI.Instance.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
+            var config = MiniGameAPI.Instance.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
             InitialisePlaySession();
             var builder = config.SetupBuilder();
             Debug.Log("Simulating minigame: " + code + " with builder " + builder.GetType().Name);

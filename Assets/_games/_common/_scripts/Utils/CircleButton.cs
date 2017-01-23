@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.MinigamesCommon
 {
     /// <summary>
     /// A circle-shaped button.
