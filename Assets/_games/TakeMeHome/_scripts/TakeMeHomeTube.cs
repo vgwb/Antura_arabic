@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 using DG.Tweening;
 
-
-namespace EA4S.TakeMeHome
+namespace EA4S.Minigames.TakeMeHome
 {
 	
-public class TakeMeHomeTube : MonoBehaviour {
+    public class TakeMeHomeTube : MonoBehaviour {
 
 		Tweener moveTweener;
 

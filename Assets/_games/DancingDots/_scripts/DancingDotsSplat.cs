@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using EA4S.Audio;
 
-namespace EA4S.DancingDots
+namespace EA4S.Minigames.DancingDots
 {
 	public class DancingDotsSplat : MonoBehaviour {
 

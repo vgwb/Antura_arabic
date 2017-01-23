@@ -2,7 +2,9 @@
 using EA4S.MinigamesAPI.Sample;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.Maze {
+namespace EA4S.Minigames.Maze
+{
+
     public enum MazeVariation : int {
         V_1 = 1,
     }

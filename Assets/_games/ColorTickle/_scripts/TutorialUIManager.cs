@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
-using ModularFramework.Helpers;
-using System.Collections.Generic;
 using EA4S.Tutorial;
 
-namespace EA4S.ColorTickle
+namespace EA4S.Minigames.ColorTickle
 {
     public class TutorialUIManager : MonoBehaviour
     {

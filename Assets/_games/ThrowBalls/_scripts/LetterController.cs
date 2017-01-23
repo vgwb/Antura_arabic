@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using TMPro;
-using EA4S;
 using EA4S.LivingLetters;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.ThrowBalls
+namespace EA4S.Minigames.ThrowBalls
 {
     public class LetterController : MonoBehaviour
     {

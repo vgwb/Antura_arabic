@@ -1,7 +1,7 @@
 ﻿using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.ColorTickle
+namespace EA4S.Minigames.ColorTickle
 {
     public class ColorTickleConfiguration : IGameConfiguration
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EA4S.Egg
+namespace EA4S.Minigames.Egg
 {
     public class EggControllerCollider : MonoBehaviour
     {

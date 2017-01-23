@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using EA4S.LivingLetters;
+using EA4S.Minigames.FastCrowd;
 using ModularFramework.Helpers;
 
 namespace EA4S.Intro

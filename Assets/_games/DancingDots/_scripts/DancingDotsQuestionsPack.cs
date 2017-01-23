@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 using System.Collections.Generic;
 using EA4S.MinigamesAPI;
 
-namespace EA4S.DancingDots
+namespace EA4S.Minigames.DancingDots
 {
 	public class DancingDotsQuestionsPack : MonoBehaviour, IQuestionPack
 	{

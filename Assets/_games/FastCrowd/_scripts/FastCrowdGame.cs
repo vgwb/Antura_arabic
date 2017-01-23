@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
-using TMPro;
 using UnityEngine;
 
-namespace EA4S.FastCrowd
+namespace EA4S.Minigames.FastCrowd
 {
     public class FastCrowdGame : MiniGame
     {

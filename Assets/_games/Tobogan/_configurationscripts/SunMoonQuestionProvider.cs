@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
 
-namespace EA4S
+namespace EA4S.Minigames.Tobogan
 {
     public class SunMoonQuestionProvider : IQuestionProvider
     {

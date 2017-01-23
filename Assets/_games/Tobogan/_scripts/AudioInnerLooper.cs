@@ -1,85 +1,87 @@
-﻿using EA4S;
-using EA4S.MinigamesCommon;
+﻿using EA4S.MinigamesCommon;
 
-public class AudioInnerLooper
+namespace EA4S.Minigames.Tobogan
 {
-    float startPerc;
-    float endPerc;
-
-    IAudioSource source;
-
-    public bool shouldPlay = false;
-
-    const int START = 1;
-    const int LOOP = 2;
-    const int STOP = 3;
-
-    int phase = START;
-
-    public AudioInnerLooper(IAudioSource source, float startPerc, float endPerc)
+    public class AudioInnerLooper
     {
-        this.source = source;
-        this.startPerc = startPerc;
-        this.endPerc = endPerc;
-    }
+        float startPerc;
+        float endPerc;
 
-    public void Stop()
-    {
-        if (source.IsPlaying)
+        IAudioSource source;
+
+        public bool shouldPlay = false;
+
+        const int START = 1;
+        const int LOOP = 2;
+        const int STOP = 3;
+
+        int phase = START;
+
+        public AudioInnerLooper(IAudioSource source, float startPerc, float endPerc)
         {
-            source.Stop();
+            this.source = source;
+            this.startPerc = startPerc;
+            this.endPerc = endPerc;
         }
-    }
 
-    public void Update()
-    {
-        if (!shouldPlay)
-            phase = STOP;
-        else
+        public void Stop()
         {
-            if (!source.IsPlaying)
+            if (source.IsPlaying)
             {
-                phase = START;
-                source.Position = 0.0f;
-                source.Loop = false;
-                source.Play();
+                source.Stop();
             }
         }
 
-        if (!source.IsPlaying)
-            return;
-
-
-        var length = source.Duration;
-
-        if (phase == LOOP)
+        public void Update()
         {
-            source.Loop = true;
-
-            if (source.Position >= endPerc * length)
+            if (!shouldPlay)
+                phase = STOP;
+            else
             {
-                source.Position = startPerc * length;
-            }
-        }
-        else
-        {
-            source.Loop = false;
-
-            if (phase == START)
-            {
-                if (source.Position >= startPerc * length)
+                if (!source.IsPlaying)
                 {
-                    phase = LOOP;
-                    source.Loop = true;
+                    phase = START;
+                    source.Position = 0.0f;
+                    source.Loop = false;
+                    source.Play();
                 }
             }
-            else // STOP
+
+            if (!source.IsPlaying)
+                return;
+
+
+            var length = source.Duration;
+
+            if (phase == LOOP)
             {
-                if (source.IsPlaying && 
-                    source.Position < 0.75f * (endPerc * length) && 
-                    source.Position >= startPerc * length)
+                source.Loop = true;
+
+                if (source.Position >= endPerc * length)
                 {
-                    source.Position = endPerc * length;
+                    source.Position = startPerc * length;
+                }
+            }
+            else
+            {
+                source.Loop = false;
+
+                if (phase == START)
+                {
+                    if (source.Position >= startPerc * length)
+                    {
+                        phase = LOOP;
+                        source.Loop = true;
+                    }
+                }
+                else // STOP
+                {
+                    if (source.IsPlaying && 
+                        source.Position < 0.75f * (endPerc * length) && 
+                        source.Position >= startPerc * length)
+                    {
+                        source.Position = endPerc * length;
+                    }
                 }
             }
         }

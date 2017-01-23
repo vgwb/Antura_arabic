@@ -1,13 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
-using EA4S;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.ThrowBalls
+namespace EA4S.Minigames.ThrowBalls
 {
     public class ThrowBallsGame : MiniGame
     {
