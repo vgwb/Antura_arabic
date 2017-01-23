@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using EA4S.Antura;
 
-namespace EA4S.MixedLetters
+namespace EA4S.Minigames.MixedLetters
 {
     public class AnturaController : MonoBehaviour
     {

@@ -4,7 +4,7 @@ using DG.Tweening;
 using EA4S.Audio;
 using EA4S.LivingLetters;
 
-namespace EA4S
+namespace EA4S.Minigames.FastCrowd
 {
 
     public class DropContainer : MonoBehaviour
@@ -54,7 +54,7 @@ namespace EA4S
                 DOTween.Sequence().InsertCallback(1, delegate ()
                     {
                         // Todo: move to FastCrowd domain
-                        if (FastCrowd.FastCrowdConfiguration.Instance.Variation == FastCrowd.FastCrowdVariation.Words)
+                        if (Minigames.FastCrowd.FastCrowdConfiguration.Instance.Variation == Minigames.FastCrowd.FastCrowdVariation.Words)
                             AudioManager.I.PlaySound(Sfx.Hit);
                         dropAreaSetPosition();
                     });
@@ -66,7 +66,7 @@ namespace EA4S
                             {
                                 // Todo: move to FastCrowd domain
                                 float waitAtEnd = 2;
-                                if (FastCrowd.FastCrowdConfiguration.Instance.Variation == FastCrowd.FastCrowdVariation.Words) { 
+                                if (Minigames.FastCrowd.FastCrowdConfiguration.Instance.Variation == Minigames.FastCrowd.FastCrowdVariation.Words) { 
                                     AudioManager.I.PlaySound(Sfx.Hit);
                                     waitAtEnd = 1;
                                 }

@@ -2,7 +2,7 @@
 using EA4S.MinigamesAPI.Sample;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.FastCrowd
+namespace EA4S.Minigames.FastCrowd
 {
     public enum FastCrowdVariation : int
     {

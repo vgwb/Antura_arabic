@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
-namespace EA4S.Maze
+namespace EA4S.Minigames.Maze
 {
     public class MazeLetterBuilder : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-﻿namespace EA4S
+﻿namespace EA4S.Minigames.ReadingGame
 {
     public struct ReadingBarWord
     {

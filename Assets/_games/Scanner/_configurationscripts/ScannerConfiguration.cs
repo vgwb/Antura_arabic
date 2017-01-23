@@ -2,22 +2,15 @@
 using EA4S.MinigamesAPI.Sample;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.Scanner 
+namespace EA4S.Minigames.Scanner 
 {
-	public enum ScannerVariation : int
-	{
-		OneWord = 1,
-		MultipleWords = 2
-	}
 
     public class ScannerConfiguration : IGameConfiguration 
 	{
         // Game configuration
 		public IGameContext Context { get; set; }
 		public IQuestionProvider Questions { get; set; }
-		public bool gameActive = true;
-		public float beltSpeed = 1f;
-		public bool facingCamera = true;
+		
 
         #region Game configurations
         public float Difficulty { get; set; }
@@ -60,63 +53,14 @@ namespace EA4S.Scanner
         }
         #endregion
 
-		void SetupVariables()
-		{
-			gameActive = true;
-			beltSpeed = 1f;
-			facingCamera = true;
-
-			Difficulty = Difficulty < 0.13f ? 0.13f : Difficulty;
-
-			if (Difficulty <= 0.4f)
-			{
-				beltSpeed = 1f;
-			}
-			else if (Difficulty > 0.4f && Difficulty <= 0.6f)
-			{
-				beltSpeed = 2f;
-			}
-			else if (Difficulty > 0.6f && Difficulty <= 0.8f)
-			{
-				beltSpeed = 3f;
-			}
-			else if (Difficulty > 0.8f && Difficulty < 1f)
-			{
-				beltSpeed = 4f;
-			}
-			else if (Difficulty == 1f)
-			{
-				beltSpeed = 5f;
-			}
-
-			if (Difficulty <= 0.25f)
-			{
-				facingCamera = true;
-			}
-			else if (Difficulty > 0.25f && Difficulty <= 0.5f)
-			{
-				facingCamera = true;
-			}
-			else if (Difficulty > 0.5f && Difficulty <= 0.75f)
-			{
-				facingCamera = true;
-			}
-			else if (Difficulty > 0.75f && Difficulty < 1f)
-			{
-				facingCamera = false;
-			}
-			else if (Difficulty == 1f)
-			{
-				facingCamera = false;
-			}
-		}
+		
 
 		public int nCorrect = 1;
 
         public IQuestionBuilder SetupBuilder() {
 
             IQuestionBuilder builder = null;
-			SetupVariables();
+
 
 			int nPacks = 7; // One Extra for tutorial
 			nCorrect = 1;

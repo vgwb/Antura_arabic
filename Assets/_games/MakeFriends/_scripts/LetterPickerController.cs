@@ -1,11 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using ModularFramework.Core;
-using ModularFramework.Helpers;
-using EA4S;
 
-namespace EA4S.MakeFriends
+namespace EA4S.Minigames.MakeFriends
 {
     public class LetterPickerController : MonoBehaviour
     {

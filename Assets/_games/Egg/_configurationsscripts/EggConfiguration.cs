@@ -1,7 +1,7 @@
 ﻿using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.Egg
+namespace EA4S.Minigames.Egg
 {
     public class EggConfiguration : IGameConfiguration
     {
@@ -37,18 +37,25 @@ namespace EA4S.Egg
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Context = new MinigamesGameContext(MiniGameCode.Egg, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.1f;
-            Questions = new SampleEggQuestionProvider(Difficulty);
             Variation = EggVariation.Single;
+
+            if (Variation == EggVariation.Sequence)
+                Questions = new SampleEggSequenceQuestionProvider();
+            else
+                Questions = new SampleEggSingleQuestionProvider();
         }
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
-            int nCorrect = 5;
-            int nWrong = 5;
+            int nCorrect = 6;
+            int nWrong = 7;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctSeverity = Teacher.SelectionSeverity.AsManyAsPossible;
+
             builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
 
             return builder;
@@ -60,6 +67,5 @@ namespace EA4S.Egg
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
         }
-
     }
 }

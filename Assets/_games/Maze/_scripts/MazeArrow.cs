@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace EA4S.Maze
+namespace EA4S.Minigames.Maze
 {
 	public class MazeArrow : MonoBehaviour {
 

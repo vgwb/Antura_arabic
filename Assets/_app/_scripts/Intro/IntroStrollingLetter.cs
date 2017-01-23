@@ -1,4 +1,4 @@
-﻿using EA4S.FastCrowd;
+﻿using EA4S.Minigames.FastCrowd;
 using EA4S.LivingLetters;
 using UnityEngine;
 

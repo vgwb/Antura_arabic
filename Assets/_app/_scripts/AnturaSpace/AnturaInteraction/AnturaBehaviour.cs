@@ -25,7 +25,7 @@ namespace EA4S.AnturaSpace
                 delay = 1.0f;
                 m_oAnturaCtrl.State = AnturaAnimationStates.idle;
             }
-            StartCoroutine(EA4S.MissingLetter.Utils.LaunchDelay<GameObject>(delay, InternalAddBone, Bone));
+            StartCoroutine(Minigames.MissingLetter.Utils.LaunchDelay<GameObject>(delay, InternalAddBone, Bone));
         }
 
         public void Reset()
@@ -158,7 +158,7 @@ namespace EA4S.AnturaSpace
         void BoneReached(GameObject Bone)
         {
             m_bEatingBone = true;
-            StartCoroutine(EA4S.MissingLetter.Utils.LaunchDelay(1.0f, () => { m_bEatingBone = false; }));
+            StartCoroutine(Minigames.MissingLetter.Utils.LaunchDelay(1.0f, () => { m_bEatingBone = false; }));
 
             m_oAnturaCtrl.State = AnturaAnimationStates.idle;
             m_oAnturaCtrl.DoShout();

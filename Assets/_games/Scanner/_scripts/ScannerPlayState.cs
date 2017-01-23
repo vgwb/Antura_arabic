@@ -1,10 +1,7 @@
-﻿using System;
-using EA4S.Audio;
+﻿using EA4S.Audio;
 using EA4S.MinigamesCommon;
-using TMPro;
-using UnityEngine;
 
-namespace EA4S.Scanner
+namespace EA4S.Minigames.Scanner
 {
 	public class ScannerPlayState : IGameState
 	{
@@ -32,7 +29,7 @@ namespace EA4S.Scanner
 
 		void OnRoundsFinished(int numberOfRoundsWon)
 		{
-			ScannerConfiguration.Instance.gameActive = false;
+            game.gameActive = false;
 			game.CurrentScoreRecord = numberOfRoundsWon;
 			game.SetCurrentState(game.ResultState);
 			return;

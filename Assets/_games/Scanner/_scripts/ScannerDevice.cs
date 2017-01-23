@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace EA4S.Scanner
+namespace EA4S.Minigames.Scanner
 {
 	public class ScannerDevice : MonoBehaviour {
 
@@ -81,7 +81,7 @@ namespace EA4S.Scanner
 
 		void OnMouseDown()
 		{
-            if (ScannerGame.disableInput)
+            if (game.disableInput)
                 return;
 
 			isDragging = true;
@@ -142,7 +142,7 @@ namespace EA4S.Scanner
             if (other.gameObject.name.Equals("Antura"))
             {
                 
-                ScannerAntura.SCARED_COUNTER++;
+                game.antura.GetComponent<ScannerAntura>().scaredCounter++;
                 //print(ScannerAntura.SCARED_COUNTER);
             }
 		}

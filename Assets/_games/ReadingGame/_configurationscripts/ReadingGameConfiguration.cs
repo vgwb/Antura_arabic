@@ -1,7 +1,7 @@
 ﻿using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.ReadingGame
+namespace EA4S.Minigames.ReadingGame
 {
     public enum ReadingGameVariation : int
     {

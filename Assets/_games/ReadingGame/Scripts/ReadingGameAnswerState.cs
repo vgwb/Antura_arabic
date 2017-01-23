@@ -2,12 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using DG.Tweening;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using UnityEngine;
 
-namespace EA4S.ReadingGame
+namespace EA4S.Minigames.ReadingGame
 {
     public class ReadingGameAnswerState : IGameState
     {

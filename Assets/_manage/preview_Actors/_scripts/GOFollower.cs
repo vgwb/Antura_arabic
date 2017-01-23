@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 
-// refactor: add to the Test namespace
-namespace EA4S
+namespace EA4S.Test
 { 
     /// <summary>
     /// Follow the gameobject on selected axes with selected delay.
     /// </summary>
-    public class GOFollower : MonoBehaviour {
+    public class GOFollower : MonoBehaviour
+    {
         [Header("Follow configuration")]
         [Tooltip("Object to follow")]
         public GameObject GOToFollow;

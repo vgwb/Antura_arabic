@@ -1,5 +1,4 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EA4S
 {

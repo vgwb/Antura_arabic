@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using EA4S.Tutorial;
 
-namespace EA4S.MixedLetters
+namespace EA4S.Minigames.MixedLetters
 {
     public class DropZoneController : MonoBehaviour
     {
         public static DropZoneController chosenDropZone;
 
-        public static float DropZoneZ = -41.5f;
+        public const float DropZoneZ = -41.5f;
 
         public SpriteRenderer spriteRenderer;
 

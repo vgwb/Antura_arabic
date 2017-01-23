@@ -8,7 +8,7 @@ using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 
-namespace EA4S.HideAndSeek
+namespace EA4S.Minigames.HideAndSeek
 {
     public class HideAndSeekTutorialManager : MonoBehaviour
     {

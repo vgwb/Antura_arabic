@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using EA4S.LivingLetters;
 using UnityEngine;
 
-namespace EA4S.FastCrowd
+namespace EA4S.Minigames.FastCrowd
 {
     public class StrollingLetterHangingState : StrollingLetterState
     {

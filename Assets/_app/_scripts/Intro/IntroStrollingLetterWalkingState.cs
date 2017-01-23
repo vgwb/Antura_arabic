@@ -1,4 +1,5 @@
 ﻿using EA4S.LivingLetters;
+using EA4S.Minigames.FastCrowd;
 using UnityEngine;
 
 namespace EA4S.Intro

@@ -1,107 +1,108 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 
-public class MagnifingGlass : MonoBehaviour
+namespace EA4S.Minigames.ReadingGame
 {
-    SpriteRenderer spriteRenderer;
-
-    public SpriteRenderer[] shines;
-    float[] startShinesAlpha;
-    Vector3[] startLeftArrowPositions;
-    Vector3[] startRightArrowPositions;
-
-    public Color normalColor;
-    public Color badColor;
-
-    public float Shining = 0;
-    public float Bad = 0;
-    public float DistanceFactor = 0;
-
-    public SpriteRenderer[] leftArrows;
-    public SpriteRenderer[] rightArrows;
-    public float[] leftArrowsAlpha;
-    public float[] rightArrowsAlpha;
-
-    float arrowAnimation = 0;
-
-    public bool ShowArrows { get; internal set; }
-
-    void Awake()
+    public class MagnifingGlass : MonoBehaviour
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        startShinesAlpha = new float[shines.Length];
-        startLeftArrowPositions = new Vector3[leftArrows.Length];
-        startRightArrowPositions = new Vector3[rightArrows.Length];
-        leftArrowsAlpha = new float[leftArrows.Length];
-        rightArrowsAlpha = new float[rightArrows.Length];
+        SpriteRenderer spriteRenderer;
 
-        for (int i = 0; i < shines.Length; ++i)
+        public SpriteRenderer[] shines;
+        float[] startShinesAlpha;
+        Vector3[] startLeftArrowPositions;
+        Vector3[] startRightArrowPositions;
+
+        public Color normalColor;
+        public Color badColor;
+
+        public float Shining = 0;
+        public float Bad = 0;
+        public float DistanceFactor = 0;
+
+        public SpriteRenderer[] leftArrows;
+        public SpriteRenderer[] rightArrows;
+        public float[] leftArrowsAlpha;
+        public float[] rightArrowsAlpha;
+
+        float arrowAnimation = 0;
+
+        public bool ShowArrows { get; internal set; }
+
+        void Awake()
         {
-            startShinesAlpha[i] = shines[i].color.a;
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            startShinesAlpha = new float[shines.Length];
+            startLeftArrowPositions = new Vector3[leftArrows.Length];
+            startRightArrowPositions = new Vector3[rightArrows.Length];
+            leftArrowsAlpha = new float[leftArrows.Length];
+            rightArrowsAlpha = new float[rightArrows.Length];
+
+            for (int i = 0; i < shines.Length; ++i)
+            {
+                startShinesAlpha[i] = shines[i].color.a;
+            }
+
+            for (int i = 0; i < leftArrows.Length; ++i)
+            {
+                startLeftArrowPositions[i] = leftArrows[i].transform.localPosition;
+                leftArrowsAlpha[i] = 0;
+            }
+
+            for (int i = 0; i < rightArrows.Length; ++i)
+            {
+                startRightArrowPositions[i] = rightArrows[i].transform.localPosition;
+                rightArrowsAlpha[i] = 0;
+            }
         }
 
-        for (int i = 0; i < leftArrows.Length; ++i)
+        void Start()
         {
-            startLeftArrowPositions[i] = leftArrows[i].transform.localPosition;
-            leftArrowsAlpha[i] = 0;
+            Update();
         }
 
-        for (int i = 0; i < rightArrows.Length; ++i)
+        public Vector3 GetSize()
         {
-            startRightArrowPositions[i] = rightArrows[i].transform.localPosition;
-            rightArrowsAlpha[i] = 0;
-        }
-    }
-
-    void Start()
-    {
-        Update();
-    }
-
-    public Vector3 GetSize()
-    {
-        return spriteRenderer.bounds.extents;
-    }
-
-    void Update()
-    {
-        arrowAnimation += Time.deltaTime;
-        arrowAnimation = Mathf.Repeat(arrowAnimation, 1);
-
-        var oldColor = spriteRenderer.color;
-        var oldAlpha = oldColor.a;
-        oldColor = Color.Lerp(normalColor, badColor, Bad);
-        oldColor.a = oldAlpha;
-        spriteRenderer.color = oldColor;
-
-        for (int i = 0; i < shines.Length; ++i)
-        {
-            var old = shines[i].color;
-            old.a = spriteRenderer.color.a * startShinesAlpha[i] * Shining;
-            shines[i].color = old;
+            return spriteRenderer.bounds.extents;
         }
 
-        const float ARROW_ANIMATION_DISTANCE = 0.25f;
-
-        for (int i = 0; i < leftArrows.Length; ++i)
+        void Update()
         {
-            leftArrows[i].transform.localPosition = startLeftArrowPositions[i] + Mathf.Cos(arrowAnimation * Mathf.PI * 2) * ARROW_ANIMATION_DISTANCE * Vector3.left;
+            arrowAnimation += Time.deltaTime;
+            arrowAnimation = Mathf.Repeat(arrowAnimation, 1);
 
-            var old = leftArrows[i].color;
-            leftArrowsAlpha[i] = Mathf.Lerp(leftArrowsAlpha[i], (ShowArrows && DistanceFactor < -(i + 1)) ? 1 : 0, Time.deltaTime * 5);
-            old.a = spriteRenderer.color.a * leftArrowsAlpha[i];
-            leftArrows[i].color = old;
-        }
+            var oldColor = spriteRenderer.color;
+            var oldAlpha = oldColor.a;
+            oldColor = Color.Lerp(normalColor, badColor, Bad);
+            oldColor.a = oldAlpha;
+            spriteRenderer.color = oldColor;
 
-        for (int i = 0; i < rightArrows.Length; ++i)
-        {
-            rightArrows[i].transform.localPosition = startRightArrowPositions[i] + Mathf.Cos(arrowAnimation * Mathf.PI * 2) * ARROW_ANIMATION_DISTANCE * Vector3.left;
+            for (int i = 0; i < shines.Length; ++i)
+            {
+                var old = shines[i].color;
+                old.a = spriteRenderer.color.a * startShinesAlpha[i] * Shining;
+                shines[i].color = old;
+            }
 
-            var old = leftArrows[i].color;
-            rightArrowsAlpha[i] = Mathf.Lerp(rightArrowsAlpha[i], (ShowArrows && DistanceFactor > (i + 1)) ? 1 : 0, Time.deltaTime * 5);
-            old.a = spriteRenderer.color.a * rightArrowsAlpha[i];
-            rightArrows[i].color = old;
+            const float ARROW_ANIMATION_DISTANCE = 0.25f;
+
+            for (int i = 0; i < leftArrows.Length; ++i)
+            {
+                leftArrows[i].transform.localPosition = startLeftArrowPositions[i] + Mathf.Cos(arrowAnimation * Mathf.PI * 2) * ARROW_ANIMATION_DISTANCE * Vector3.left;
+
+                var old = leftArrows[i].color;
+                leftArrowsAlpha[i] = Mathf.Lerp(leftArrowsAlpha[i], (ShowArrows && DistanceFactor < -(i + 1)) ? 1 : 0, Time.deltaTime * 5);
+                old.a = spriteRenderer.color.a * leftArrowsAlpha[i];
+                leftArrows[i].color = old;
+            }
+
+            for (int i = 0; i < rightArrows.Length; ++i)
+            {
+                rightArrows[i].transform.localPosition = startRightArrowPositions[i] + Mathf.Cos(arrowAnimation * Mathf.PI * 2) * ARROW_ANIMATION_DISTANCE * Vector3.left;
+
+                var old = leftArrows[i].color;
+                rightArrowsAlpha[i] = Mathf.Lerp(rightArrowsAlpha[i], (ShowArrows && DistanceFactor > (i + 1)) ? 1 : 0, Time.deltaTime * 5);
+                old.a = spriteRenderer.color.a * rightArrowsAlpha[i];
+                rightArrows[i].color = old;
+            }
         }
     }
 }
