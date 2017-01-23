@@ -3,29 +3,27 @@ using EA4S.MinigamesAPI;
 
 namespace EA4S.Minigames.Egg
 {
-    public class QuestionManager
+    public class EggChallenge
     {
-        List<ILivingLetterData> lLetterDataSequence = new List<ILivingLetterData>();
-
+        public List<ILivingLetterData> Letters { get; private set; }
         bool sequence;
 
-        public void StartNewQuestion(float difficulty, bool onlyLetter)
+        public EggChallenge(float difficulty, bool onlyLetter)
         {
+            Letters = new List<ILivingLetterData>();
             sequence = false;
-
-            lLetterDataSequence.Clear();
 
             IQuestionPack questionPack = EggConfiguration.Instance.Questions.GetNextQuestion();
 
             List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
-            
+
             correctAnswers.AddRange(questionPack.GetCorrectAnswers());
             wrongAnswers.AddRange(questionPack.GetWrongAnswers());
 
             sequence = EggConfiguration.Instance.Variation == EggConfiguration.EggVariation.Sequence;
 
-            int numberOfLetters = 2; 
+            int numberOfLetters = 2;
 
             numberOfLetters += ((int)(difficulty * 5) + 1);
 
@@ -36,7 +34,7 @@ namespace EA4S.Minigames.Egg
 
             if (!sequence)
             {
-                lLetterDataSequence.Add(correctAnswers[0]);
+                Letters.Add(correctAnswers[0]);
 
                 numberOfLetters -= 1;
 
@@ -47,7 +45,7 @@ namespace EA4S.Minigames.Egg
 
                 for (int i = 0; i < numberOfLetters; i++)
                 {
-                    lLetterDataSequence.Add(wrongAnswers[i]);
+                    Letters.Add(wrongAnswers[i]);
                 }
             }
             else
@@ -59,14 +57,9 @@ namespace EA4S.Minigames.Egg
 
                 for (int i = 0; i < numberOfLetters; i++)
                 {
-                    lLetterDataSequence.Add(correctAnswers[i]);
+                    Letters.Add(correctAnswers[i]);
                 }
             }
-        }
-
-        public List<ILivingLetterData> GetlLetterDataSequence()
-        {
-            return lLetterDataSequence;
         }
 
         public bool IsSequence()
