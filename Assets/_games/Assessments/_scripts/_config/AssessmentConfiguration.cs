@@ -318,8 +318,8 @@ namespace EA4S.Assessment
             return new LettersInWordQuestionBuilder(
 
                 SimultaneosQuestions * Rounds,   // Total Answers
-                snag.Decrease( 3, 2),            // CorrectAnswers
-                snag.Increase( 1, 4),            // WrongAnswers
+                snag.Increase( 1, 2),            // CorrectAnswers
+                snag.Increase( 2, 4),            // WrongAnswers
                 useAllCorrectLetters: false,
                 parameters: builderParams);
         }
