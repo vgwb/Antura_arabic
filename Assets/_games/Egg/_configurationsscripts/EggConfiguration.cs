@@ -37,11 +37,12 @@ namespace EA4S.Egg
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Context = new MinigamesGameContext(MiniGameCode.Egg, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.1f;
-            Questions = new SampleEggQuestionProvider(Difficulty);
-            Variation = EggVariation.Single;
+            Questions = new SampleEggSingleQuestionProvider();
+            Variation = EggVariation.Sequence;
         }
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
@@ -49,6 +50,8 @@ namespace EA4S.Egg
             int nWrong = 5;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctSeverity = Teacher.SelectionSeverity.AsManyAsPossible;
+
             builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
 
             return builder;
@@ -60,6 +63,5 @@ namespace EA4S.Egg
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
         }
-
     }
 }

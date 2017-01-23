@@ -37,7 +37,7 @@ namespace EA4S.Egg
             }
         }
 
-        public float gameDifficulty
+        public float GameDifficulty
         {
             get { return EggConfiguration.Instance.Difficulty; }
         }
@@ -45,7 +45,7 @@ namespace EA4S.Egg
         public bool stagePositiveResult { get; set; }
 
         bool tutorial;
-        public bool showTutorial { get { if (tutorial) { tutorial = false; return true; } else return false; } }
+        public bool ShowTutorial { get { if (tutorial) { tutorial = false; return true; } else return false; } }
 
         public QuestionManager questionManager;
 

@@ -23,7 +23,7 @@ namespace EA4S.Egg
 
             bool onlyLetter = Random.Range(0, 2) == 0;
 
-            game.questionManager.StartNewQuestion(game.gameDifficulty, onlyLetter);
+            game.questionManager.StartNewQuestion(game.GameDifficulty, onlyLetter);
             game.eggController.Reset();
 
             if (firstQuestion)
@@ -80,7 +80,7 @@ namespace EA4S.Egg
 
         void ShowQuestionSequence()
         {
-            bool lightUpButtons = game.gameDifficulty < 0.25f || (game.gameDifficulty >= 0.5f && game.gameDifficulty < 0.75f);
+            bool lightUpButtons = game.GameDifficulty < 0.5f;
 
             bool isSequence = game.questionManager.IsSequence();
 

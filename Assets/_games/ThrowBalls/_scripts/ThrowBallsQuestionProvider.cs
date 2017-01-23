@@ -9,15 +9,12 @@ namespace EA4S.ThrowBalls
     public class ThrowBallsQuestionProvider : IQuestionProvider
     {
         List<SampleQuestionPack> questions = new List<SampleQuestionPack>();
-        string description;
 
         int currentQuestion;
 
         public ThrowBallsQuestionProvider()
         {
             currentQuestion = 0;
-
-            description = "Hi";
 
             // 10 QuestionPacks
             for (int i = 0; i < 10; i++)
@@ -54,11 +51,6 @@ namespace EA4S.ThrowBalls
                 if (list[i].Id == letter.Id)
                     return true;
             return false;
-        }
-
-        public string GetDescription()
-        {
-            return description;
         }
 
         IQuestionPack IQuestionProvider.GetNextQuestion()

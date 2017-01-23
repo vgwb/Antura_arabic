@@ -14,7 +14,6 @@ namespace EA4S
     public class MakeFriendsQuestionProvider : IQuestionProvider
     {
         List<MakeFriendsQuestionPack> questions = new List<MakeFriendsQuestionPack>();
-        string description;
 
         int currentQuestion;
         readonly int quizzesCount = 10;
@@ -22,7 +21,6 @@ namespace EA4S
         public MakeFriendsQuestionProvider()
         {
             currentQuestion = 0;
-            description = "Questions description";
 
             List <ILivingLetterData> correctAnswers;
             List <ILivingLetterData> wrongAnswers;
@@ -132,11 +130,6 @@ namespace EA4S
                 var currentPack = new MakeFriendsQuestionPack(newWordData1, newWordData2, wrongAnswers, correctAnswers);
                 questions.Add(currentPack);
             }
-        }
-
-        public string GetDescription()
-        {
-            return description;
         }
 
         IQuestionPack IQuestionProvider.GetNextQuestion()
