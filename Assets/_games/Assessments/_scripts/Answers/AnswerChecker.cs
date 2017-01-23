@@ -89,10 +89,8 @@ namespace EA4S.Assessment
                 // Just trigger OnQuestionAnswered events if all are correct
                 foreach (var q in questions)
                 {
-                    var behaviour = q.gameObject.GetComponent< QuestionBehaviour>();
-                    behaviour.OnQuestionAnswered();
-
-                    yield return Wait.For( behaviour.TimeToWait());
+                    q.QuestionBehaviour.OnQuestionAnswered();
+                    yield return Wait.For( q.QuestionBehaviour.TimeToWait());
                 }
 
             } else {

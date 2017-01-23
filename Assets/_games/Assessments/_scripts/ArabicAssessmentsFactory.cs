@@ -5,8 +5,12 @@ namespace EA4S.Assessment
     /// <summary>
     /// Create components for running a Assessment, components are specific
     /// according to Assessment type and some value tweak is also done here.
+    /// 
+    /// Here Arabic assessments are configured, there is no point in 
+    /// over-abstracting this one. The easiest way is to create another
+    /// class LanguageXAssessmentsFactory using this file as template.
     /// </summary>
-    public static class AssessmentFactory
+    public static class ArabicAssessmentsFactory
     {
         /// <summary>
         /// Configuration variables
@@ -42,8 +46,10 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Do not pronunce name of a picture
             AssessmentOptions.Instance.ShowQuestionAsImage = true;
-            AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word to sort
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word of the image
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
+            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = true;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             // Get references from GameContext (utils)
             Init( context);
@@ -52,7 +58,7 @@ namespace EA4S.Assessment
             CreateManagers( context,
                             DragManagerType.Default,
                             LogicInjectorType.Default,
-                            AnswerPlacerType.Line
+                            AnswerPlacerType.Random
                             );
 
             // Create the custom managers
@@ -71,6 +77,8 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.ShowQuestionAsImage = true;
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word to sort
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
+            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = true;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
 
@@ -94,6 +102,9 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the complete word
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
+            AssessmentOptions.Instance.ShowQuestionAsImage = false;
+            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = true;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
 
@@ -114,7 +125,11 @@ namespace EA4S.Assessment
             context.GameDescription = Db.LocalizationDataId.Assessment_Match_Letters_Words;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
-            //..
+            AssessmentOptions.Instance.ShowQuestionAsImage = false;
+            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
 
@@ -133,10 +148,13 @@ namespace EA4S.Assessment
         public static Assessment CreateQuestionAndReplyAssessment( AssessmentContext context)
         {
             context.GameDescription = Db.LocalizationDataId.Assessment_Match_Sentences;
-            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = true;
+            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = false; // Child should read question
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child shuold read answer
-            //..
+            AssessmentOptions.Instance.ShowQuestionAsImage = false;
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
 
@@ -157,7 +175,11 @@ namespace EA4S.Assessment
             context.GameDescription = Db.LocalizationDataId.Assessment_Classify_Words_Article;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
-            //..
+            AssessmentOptions.Instance.ShowQuestionAsImage = false;
+            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
 
@@ -181,7 +203,11 @@ namespace EA4S.Assessment
             context.GameDescription = Db.LocalizationDataId.Assessment_Classify_Word_Nouns;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
-            //..
+            AssessmentOptions.Instance.ShowQuestionAsImage = false;
+            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
 
@@ -205,7 +231,11 @@ namespace EA4S.Assessment
             context.GameDescription = Db.LocalizationDataId.Assessment_Classify_Word_Article;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
-            //..
+            AssessmentOptions.Instance.ShowQuestionAsImage = false;
+            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
 
@@ -229,7 +259,12 @@ namespace EA4S.Assessment
             context.GameDescription = Db.LocalizationDataId.Assessment_Classify_Letters_Article;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
-            //..
+
+            AssessmentOptions.Instance.ShowQuestionAsImage = false;
+            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
 
@@ -256,6 +291,8 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word to sort
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
             AssessmentOptions.Instance.QuestionAnsweredFlip = true;
+            AssessmentOptions.Instance.ShowQuestionAsImage = false;
+            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = true;
 
             Init( context);
 
@@ -279,6 +316,8 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word to sort
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
             AssessmentOptions.Instance.QuestionAnsweredFlip = true;
+            AssessmentOptions.Instance.ShowQuestionAsImage = false;
+            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = true;
 
             Init( context);
 
@@ -299,7 +338,11 @@ namespace EA4S.Assessment
             context.GameDescription = Db.LocalizationDataId.Assessment_Select_Words;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
-            //..
+            AssessmentOptions.Instance.ShowQuestionAsImage = false;
+            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
 
@@ -316,7 +359,7 @@ namespace EA4S.Assessment
         }
 
         /// <summary>
-        /// Perform common initialization to reduce amount of code in creation of assessments.
+        /// Perform common initialization
         /// </summary>
         private static void Init( AssessmentContext context)
         {
@@ -338,12 +381,6 @@ namespace EA4S.Assessment
 
             rounds = AssessmentConfiguration.Instance.Rounds;
             maxAnswers = AssessmentConfiguration.Instance.Answers;
-
-            AssessmentOptions.Instance.ShowQuestionAsImage = false;
-            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
-            AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
-            AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
-            AssessmentOptions.Instance.QuestionAnsweredFlip = false;
         }
 
         /// <summary>

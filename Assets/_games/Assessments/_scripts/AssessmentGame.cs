@@ -25,40 +25,40 @@ namespace EA4S.Assessment
             switch (AssessmentConfiguration.Instance.assessmentType)
             {
                 case AssessmentCode.MatchLettersToWord:
-                    return AssessmentFactory.CreateMatchLettersWordAssessment( context);
+                    return ArabicAssessmentsFactory.CreateMatchLettersWordAssessment( context);
 
                 case AssessmentCode.LetterShape:
-                    return AssessmentFactory.CreateLetterShapeAssessment( context);
+                    return ArabicAssessmentsFactory.CreateLetterShapeAssessment( context);
 
                 case AssessmentCode.WordsWithLetter:
-                    return AssessmentFactory.CreateWordsWithLetterAssessment( context);
+                    return ArabicAssessmentsFactory.CreateWordsWithLetterAssessment( context);
 
                 case AssessmentCode.SunMoonWord:
-                    return AssessmentFactory.CreateSunMoonWordAssessment( context);
+                    return ArabicAssessmentsFactory.CreateSunMoonWordAssessment( context);
 
                 case AssessmentCode.SunMoonLetter:
-                    return AssessmentFactory.CreateSunMoonLetterAssessment( context);
+                    return ArabicAssessmentsFactory.CreateSunMoonLetterAssessment( context);
 
                 case AssessmentCode.QuestionAndReply:
-                    return AssessmentFactory.CreateQuestionAndReplyAssessment( context);
+                    return ArabicAssessmentsFactory.CreateQuestionAndReplyAssessment( context);
 
                 case AssessmentCode.SelectPronouncedWord:
-                    return AssessmentFactory.CreatePronouncedWordAssessment( context);
+                    return ArabicAssessmentsFactory.CreatePronouncedWordAssessment( context);
 
                 case AssessmentCode.SingularDualPlural:
-                    return AssessmentFactory.CreateSingularDualPluralAssessment( context);
+                    return ArabicAssessmentsFactory.CreateSingularDualPluralAssessment( context);
 
                 case AssessmentCode.WordArticle:
-                    return AssessmentFactory.CreateWordArticleAssessment( context);
+                    return ArabicAssessmentsFactory.CreateWordArticleAssessment( context);
 
                 case AssessmentCode.MatchWordToImage:
-                    return AssessmentFactory.CreateMatchWordToImageAssessment( context);
+                    return ArabicAssessmentsFactory.CreateMatchWordToImageAssessment( context);
 
                 case AssessmentCode.CompleteWord:
-                    return AssessmentFactory.CreateCompleteWordAssessment( context);
+                    return ArabicAssessmentsFactory.CreateCompleteWordAssessment( context);
 
                 case AssessmentCode.OrderLettersOfWord:
-                    return AssessmentFactory.CreateOrderLettersInWordAssessment( context);
+                    return ArabicAssessmentsFactory.CreateOrderLettersInWordAssessment( context);
             }
 
             return null;
