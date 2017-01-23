@@ -19,7 +19,7 @@ namespace EA4S.MakeFriends
         public LetterPickerController letterPicker;
         public Canvas endGameCanvas;
         public GameObject sceneCamera;
-        public static int numberOfRounds = 6;
+        public const int numberOfRounds = 6;
         public float uiDelay;
         public float feedbackDuration;
         public float loseDuration;

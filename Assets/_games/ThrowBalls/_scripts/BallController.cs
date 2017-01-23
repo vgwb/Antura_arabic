@@ -7,7 +7,7 @@ namespace EA4S.ThrowBalls
 {
     public class BallController : MonoBehaviour
     {
-        public static Vector3 INITIAL_BALL_POSITION = new Vector3(0, 5.25f, -20f);
+        public Vector3 INITIAL_BALL_POSITION = new Vector3(0, 5.25f, -20f);
         private readonly Vector3 REBOUND_DESTINATION = new Vector3(0, 15f, -30f);
         public const float BALL_RESPAWN_TIME = 3f;
         public const float REBOUND_TIME = 0.2f;
