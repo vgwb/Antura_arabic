@@ -4,21 +4,9 @@ using System.Collections.Generic;
 namespace EA4S.Assessment
 {
     /// <summary>
-    /// Used to update Non-MonoBehaviours
-    /// </summary>
-    public interface IUpdater
-    {
-        void UpdateDelta( float delta);
-
-        void AddTimedUpdate( ITimedUpdate timedUpdate);
-
-        void Clear();
-    }
-
-    /// <summary>
     /// Implement IUpdater
     /// </summary>
-    public class Updater : SceneScopedSingletonI< Updater, IUpdater>, IUpdater
+    public class Updater: SceneScopedSingleton< Updater>
     {
         List< ITimedUpdate> updates = null;
 

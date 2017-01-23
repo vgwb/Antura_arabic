@@ -8,7 +8,7 @@ namespace EA4S.Assessment
         private Assessment assessment;
         private AssessmentResultState resultState;
         private AssessmentGame assessmentGame;
-        private IUpdater updater;
+        private Updater updater;
         private IDragManager dragManager;
 
         public AssessmentGameState( IDragManager dragManager, Assessment assessment, 
