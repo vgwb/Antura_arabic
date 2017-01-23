@@ -9,7 +9,7 @@ namespace EA4S.MixedLetters
     {
         public static DropZoneController chosenDropZone;
 
-        public static float DropZoneZ = -41.5f;
+        public const float DropZoneZ = -41.5f;
 
         public SpriteRenderer spriteRenderer;
 
