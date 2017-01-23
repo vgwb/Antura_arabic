@@ -14,11 +14,11 @@ namespace EA4S.SickLetters
 		public float offSetY = 0.0f;
 
 		private MeshRenderer diacriticMesh;
-		private TextMeshPro diacriticText;
+		//private TextMeshPro diacriticText;
 
 		void Awake () {
 			diacriticMesh = GetComponent<MeshRenderer>();
-			diacriticText = GetComponent<TextMeshPro>();
+			//diacriticText = GetComponent<TextMeshPro>();
 		}
 
 		// Use this for initialization

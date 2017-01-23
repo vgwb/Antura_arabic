@@ -18,7 +18,7 @@ namespace EA4S.ThrowBalls
         private Vector3 launchForce;
 
         // The elasticity. The higher the value, the more the ball travels for a fixed tug at the slingshot.
-        private float elasticity = SROptions.Current.Elasticity;
+        //private float elasticity = SROptions.Current.Elasticity;
 
         void Awake()
         {

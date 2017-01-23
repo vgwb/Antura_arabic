@@ -25,8 +25,8 @@ namespace EA4S.SickLetters
 
         public bool isDragging = false;
 
-        bool isLeftOver = true;
-		bool overDestinationMarker = false;
+        //bool isLeftOver = true;
+		//bool overDestinationMarker = false;
 		bool overPlayermarker = false;
         bool shake = false;
         bool release = false;
@@ -36,11 +36,12 @@ namespace EA4S.SickLetters
         [HideInInspector]
         public BoxCollider boxCollider;
         Transform origParent;
-        Vector3 correctStartPos, origPosition, origLocalPosition, origRotation, origLocalRotation, origBoxColliderSize, origBoxColliderCenter;
+        //Vector3 correctStartPos, origPosition, origLocalPosition, origRotation, origBoxColliderSize, origBoxColliderCenter;
+        Vector3 origLocalRotation;
 
-        float startX;
-        float startY;
-        float startZ;
+        //float startX;
+        //float startY;
+        //float startZ;
 
         bool _checkDDCollision;
         public bool checkDDCollision
@@ -67,9 +68,9 @@ namespace EA4S.SickLetters
         {
             thisRigidBody = GetComponent<Rigidbody>();
             boxCollider = GetComponent<BoxCollider>();
-            startX = transform.position.x;
-            startY = transform.position.y;
-            startZ = transform.position.z;
+            //startX = transform.position.x;
+            //startY = transform.position.y;
+            //startZ = transform.position.z;
             //Reset();
         }
 
@@ -84,12 +85,12 @@ namespace EA4S.SickLetters
 			screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
             origParent = transform.parent;
-            origRotation = transform.eulerAngles;
-            origPosition = transform.position;
+            //origRotation = transform.eulerAngles;
+            //origPosition = transform.position;
             origLocalRotation = transform.localEulerAngles;
-            origLocalPosition = transform.localPosition;
-            origBoxColliderSize = boxCollider.bounds.size;
-            origBoxColliderCenter = boxCollider.bounds.center;
+            //origLocalPosition = transform.localPosition;
+            //origBoxColliderSize = boxCollider.bounds.size;
+            //origBoxColliderCenter = boxCollider.bounds.center;
             
 
             transform.parent = null;
@@ -99,7 +100,7 @@ namespace EA4S.SickLetters
                 if(game.roundsCount > 0)
                     game.wrongDraggCount++;
                 shake = true;
-                correctStartPos = draggableText.transform.localPosition;
+                //correctStartPos = draggableText.transform.localPosition;
                 draggableText.transform.parent = transform;
             }
 
@@ -168,7 +169,7 @@ namespace EA4S.SickLetters
                 boxCollider.center = Vector3.zero;
                 boxCollider.size = new Vector3(0.1f, 0.25f, 0.1f);
 
-                isLeftOver = false;
+                //isLeftOver = false;
 
                 //if (isTouchingVase)
                   //  game.scale.addNewDDToVas(this);
@@ -178,7 +179,7 @@ namespace EA4S.SickLetters
             }
 
             overPlayermarker = false;
-            overDestinationMarker = false;
+            //overDestinationMarker = false;
 
             StartCoroutine(destroyIfStuck());
         }
@@ -196,9 +197,9 @@ namespace EA4S.SickLetters
 
         public void setInitPos(Vector3 initPos)
         {
-            startX = initPos.x;
-            startY = initPos.y;
-            startZ = initPos.z;
+            //startX = initPos.x;
+            //startY = initPos.y;
+            //startZ = initPos.z;
         }
 
         

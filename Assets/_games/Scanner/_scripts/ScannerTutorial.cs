@@ -17,7 +17,7 @@ namespace EA4S.Scanner
 
         public static int TUT_STEP = 1;
         private bool doTutOnDots;
-        private int step = 1;
+        //private int step = 1;
         ScannerGame game;
         Transform source, target;
         Vector3 targetPosition;

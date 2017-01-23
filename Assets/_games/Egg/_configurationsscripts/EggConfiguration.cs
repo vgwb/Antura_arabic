@@ -5,10 +5,17 @@ namespace EA4S.Egg
 {
     public class EggConfiguration : IGameConfiguration
     {
+        public enum EggVariation : int
+        {
+            Single = 1,
+            Sequence = 2,
+        }
+
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
         public float Difficulty { get; set; }
+        public EggVariation Variation { get; set; }
 
         /////////////////
         // Singleton Pattern
@@ -31,6 +38,7 @@ namespace EA4S.Egg
             Context = new MinigamesGameContext(MiniGameCode.Egg, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.1f;
             Questions = new SampleEggQuestionProvider(Difficulty);
+            Variation = EggVariation.Single;
         }
 
         public IQuestionBuilder SetupBuilder() {

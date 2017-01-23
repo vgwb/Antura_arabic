@@ -12,7 +12,7 @@ namespace EA4S.SickLetters
         SickLettersGame game;
         Vector3 correctDotPos;
 
-        float timer = 2, t = 0;
+        float timer = 2;
         int alarmIsTriggered;
 
         IAudioSource clockSound;
@@ -83,7 +83,6 @@ namespace EA4S.SickLetters
 
             if (Input.GetKeyDown(KeyCode.A))
              {
-                 t = 1;
                  game.LLPrefab.jumpOut();
             }
 

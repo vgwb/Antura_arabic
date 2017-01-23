@@ -12,8 +12,6 @@ namespace EA4S.Management.Test
     // refactor: is this needed anymore?
     public class TestAudioManager : MonoBehaviour
     {
-
-        public string MyEventName;
         public GameObject[] LEDs;
         public GameObject PanelMusic;
         public GameObject PanelSfx;
@@ -27,7 +25,6 @@ namespace EA4S.Management.Test
             GlobalUI.ShowPauseMenu(false);
 
             InitUI();
-            MyEventName = AudioConfig.GetSfxEventName(Sfx.AlarmClock);
         }
 
 
@@ -168,33 +165,6 @@ namespace EA4S.Management.Test
             AudioManager.I.StopSounds();
             AudioManager.I.StopDialogue(true);
             AudioManager.I.StopLettersWordsPhrases();
-        }
-
-        void Update()
-        {
-
-            //Fabric.Component[] components = Fabric.FabricManager.Instance.GetComponentsByName(MyEventName, LEDs[0]);
-
-            //if (components != null && components.Length > 0) {
-            //    components[0].Volume = 0.5f;
-
-            //    if (components[0].IsPlaying() == true) {
-            //        Debug.Log("Component is playing");
-            //    }
-            //}
-
-            /*
-            if (Fabric.EventManager.Instance.IsEventActive(MyEventName, LEDs[0])) {
-                LEDs[0].SetActive(true);
-            } else {
-                LEDs[0].SetActive(false);
-            }
-            if (Fabric.EventManager.Instance.IsEventActive(MyEventName, LEDs[1])) {
-                LEDs[1].SetActive(true);
-            } else {
-                LEDs[1].SetActive(false);
-            }
-            */
         }
     }
 }

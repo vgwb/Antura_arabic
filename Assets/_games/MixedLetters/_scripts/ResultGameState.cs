@@ -7,7 +7,6 @@ namespace EA4S.MixedLetters
 {
     public class ResultGameState : IGameState
     {
-        IPopupWidget popupWidget;
         MixedLettersGame game;
 
         float endResultTimer = 1f;
@@ -16,7 +15,6 @@ namespace EA4S.MixedLetters
         public ResultGameState(MixedLettersGame game)
         {
             this.game = game;
-            popupWidget = MixedLettersConfiguration.Instance.Context.GetPopupWidget();
         }
 
         public void EnterState()

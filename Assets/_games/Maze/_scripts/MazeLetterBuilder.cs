@@ -9,7 +9,7 @@ namespace EA4S.Maze
         public int letterDataIndex = 0;
         //public ILivingLetterData letterData;
 
-        private bool isBuild = false;
+        //private bool isBuild = false;
         private System.Action _callback = null;
         // Use this for initialization
         void Start()
