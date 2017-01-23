@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 using DG.Tweening;
+using EA4S.Antura;
 
 namespace EA4S {
 

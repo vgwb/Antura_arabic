@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.Collections;
+using EA4S.Audio;
+using EA4S.MinigamesCommon;
+using EA4S.Utilities;
 
 namespace EA4S.Scanner
 {

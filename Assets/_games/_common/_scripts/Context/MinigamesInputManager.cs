@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.MinigamesCommon
 {
     /// <summary>
     /// Concrete implementation of an input manager accessible by minigames.

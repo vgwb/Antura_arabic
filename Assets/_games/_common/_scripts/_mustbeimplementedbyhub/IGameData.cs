@@ -1,4 +1,4 @@
-﻿namespace EA4S
+﻿namespace EA4S.MinigamesAPI
 {
     /// <summary>
     /// General interface for generic learning content that needs to be accessed by minigames.

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Profile
 {
     /// <summary>
     /// Handles the creation, selection, and deletion of player profiles.

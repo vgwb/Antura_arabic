@@ -1,4 +1,6 @@
-﻿namespace EA4S.Template
+﻿using EA4S.MinigamesCommon;
+
+namespace EA4S.Template
 {
     /// <summary>
     /// Sample game, to be used as a starting point for implementing new minigames.

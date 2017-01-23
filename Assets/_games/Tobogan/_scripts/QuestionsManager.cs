@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using EA4S.MinigamesAPI;
 
 namespace EA4S.Tobogan
 {

@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 
-// refactor: Helpers need to be standardized
-
-public class AnimatorStateSelector : MonoBehaviour
+namespace EA4S.Utilities
 {
-    public string AnimatorState;
-
-    void Start()
+    public class AnimatorStateSelector : MonoBehaviour
     {
-        gameObject.GetComponent<Animator>().Play(AnimatorState);
-    }
+        public string AnimatorState;
 
+        void Start()
+        {
+            gameObject.GetComponent<Animator>().Play(AnimatorState);
+        }
+
+    }
 }

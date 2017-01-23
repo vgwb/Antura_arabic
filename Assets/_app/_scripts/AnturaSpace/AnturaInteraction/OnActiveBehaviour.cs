@@ -1,26 +1,30 @@
 ﻿using UnityEngine;
 using System;
 
-// refactor: this can be moved to the utilities.
-public class OnActiveBehaviour : MonoBehaviour {
+namespace EA4S.Utilities
+{
+    public class OnActiveBehaviour : MonoBehaviour {
 
-    void OnEnable()
-    {
-        if(OnEnableAction != null)
+        void OnEnable()
         {
-            OnEnableAction();
+            if(OnEnableAction != null)
+            {
+                OnEnableAction();
+            }
         }
-    }
 
-    void OnDisable()
-    {
-        if(OnDisableAction != null)
+        void OnDisable()
         {
-            OnDisableAction();
+            if(OnDisableAction != null)
+            {
+                OnDisableAction();
+            }
         }
-    }
 
-    [HideInInspector]
-    public Action OnEnableAction;
-    public Action OnDisableAction;
+        [HideInInspector]
+        public Action OnEnableAction;
+        public Action OnDisableAction;
+    }
 }
+
+// refactor: this can be moved to the utilities.

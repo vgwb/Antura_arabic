@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using DG.Tweening;
+using EA4S.Utilities;
 using UnityEngine;
 
 namespace EA4S

@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Audio
 {
     [System.Serializable]
     public class MusicConfiguration

@@ -1,4 +1,6 @@
-﻿namespace EA4S.MissingLetter
+﻿using EA4S.MinigamesCommon;
+
+namespace EA4S.MissingLetter
 {
     public class MissingLetterResultState : IGameState
     {

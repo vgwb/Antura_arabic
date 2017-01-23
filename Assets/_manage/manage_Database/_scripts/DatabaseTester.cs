@@ -3,6 +3,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using EA4S.Profile;
+using EA4S.Utilities;
 
 // refactor: standardize random use across the codebase
 using RND = UnityEngine.Random;

@@ -1,4 +1,6 @@
-﻿#if UNITY_EDITOR
+﻿using EA4S.EditorUtilities;
+
+#if UNITY_EDITOR
 namespace EA4S.Db
 {
     /// <summary>

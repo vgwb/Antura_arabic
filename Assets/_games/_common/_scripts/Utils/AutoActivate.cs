@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-/// <summary>
-/// Utility script that automatically activates a list of game objects when awoken.
-/// </summary>
-// refactor: add a namespace
-public class AutoActivate : MonoBehaviour
+namespace EA4S.MinigamesCommon
 {
-    public List<GameObject> toAwake = new List<GameObject>();
-
-	void Awake()
+    /// <summary>
+    /// Utility script that automatically activates a list of game objects when awoken.
+    /// </summary>
+    public class AutoActivate : MonoBehaviour
     {
-        foreach (var g in toAwake)
+        public List<GameObject> toAwake = new List<GameObject>();
+
+        void Awake()
         {
-            if(g != null)
+            foreach (var g in toAwake)
             {
-                g.SetActive(true);
+                if(g != null)
+                {
+                    g.SetActive(true);
+                }
             }
         }
     }

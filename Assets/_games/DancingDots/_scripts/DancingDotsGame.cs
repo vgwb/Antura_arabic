@@ -9,7 +9,10 @@ using TMPro;
 
 using System;
 using EA4S;
+using EA4S.Antura;
+using EA4S.Audio;
 using EA4S.LivingLetters;
+using EA4S.MinigamesCommon;
 
 namespace EA4S.DancingDots
 {

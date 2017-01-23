@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using EA4S.MinigamesAPI;
 using UnityEngine;
 
 namespace EA4S.Assessment

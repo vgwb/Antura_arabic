@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using EA4S.Db;
+using EA4S.Profile;
 using UnityEngine;
 
 namespace EA4S.Teacher

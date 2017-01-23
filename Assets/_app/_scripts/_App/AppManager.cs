@@ -1,7 +1,14 @@
 ﻿using UnityEngine;
 using ModularFramework.Core;
 using ModularFramework.Modules;
-using EA4S.API;
+using EA4S.Audio;
+using EA4S.CameraControl;
+using EA4S.Db;
+using EA4S.Debugging;
+using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
+using EA4S.Profile;
+using PlayerProfile = EA4S.Profile.PlayerProfile;
 
 namespace EA4S
 {

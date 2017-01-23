@@ -1,5 +1,7 @@
 ﻿using EA4S.Db;
 using System.Collections.Generic;
+using EA4S.Environment;
+using EA4S.Rewards;
 using UnityEngine;
 
 namespace EA4S

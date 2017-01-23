@@ -1,5 +1,5 @@
-﻿using EA4S.API;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using EA4S.MinigamesAPI;
 
 namespace EA4S
 {

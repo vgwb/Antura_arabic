@@ -1,4 +1,6 @@
-﻿namespace EA4S.Maze
+﻿using EA4S.MinigamesCommon;
+
+namespace EA4S.Maze
 {
     public class MazeIntroState : IGameState
     {

@@ -1,4 +1,5 @@
 ﻿using EA4S;
+using EA4S.MinigamesCommon;
 
 public class AudioInnerLooper
 {

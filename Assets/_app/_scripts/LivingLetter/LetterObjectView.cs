@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using EA4S.MinigamesCommon;
+using EA4S.Utilities;
+using UnityEngine;
 using TMPro;
 
 namespace EA4S.LivingLetters

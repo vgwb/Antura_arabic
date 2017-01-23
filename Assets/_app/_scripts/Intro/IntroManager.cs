@@ -1,4 +1,8 @@
 ﻿using System.Collections;
+using EA4S.Animation;
+using EA4S.Audio;
+using EA4S.CameraEffects;
+using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Intro

@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using EA4S.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 

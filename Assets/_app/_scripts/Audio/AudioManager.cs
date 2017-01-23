@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using EA4S.Db;
 using DG.DeAudio;
+using EA4S.MinigamesCommon;
+using EA4S.Utilities;
 
-namespace EA4S
+namespace EA4S.Audio
 {
     /// <summary>
     /// Handles audio requests throughout the application

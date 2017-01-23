@@ -1,4 +1,7 @@
-﻿namespace EA4S.DancingDots {
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.DancingDots {
     public enum DancingDotsVariation : int {
         V_1 = 1,
     }

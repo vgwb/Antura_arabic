@@ -1,7 +1,8 @@
 ﻿using DG.Tweening;
+using EA4S.Audio;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Rewards
 {
     /// <summary>
     /// Bar that fills up to show the results of a play session

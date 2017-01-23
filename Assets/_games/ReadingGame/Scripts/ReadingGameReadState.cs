@@ -1,4 +1,5 @@
 ﻿using System;
+using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using UnityEngine;
 

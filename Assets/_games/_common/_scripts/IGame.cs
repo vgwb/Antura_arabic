@@ -1,5 +1,4 @@
-﻿
-namespace EA4S
+﻿namespace EA4S.MinigamesCommon
 {
     public delegate void GameResultAction(int stars, int score);
 
@@ -18,4 +17,5 @@ namespace EA4S
         /// </summary>
         GameStateManager StateManager { get; }
     }
+
 }

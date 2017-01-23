@@ -1,5 +1,7 @@
 ﻿using System;
 using DG.Tweening;
+using EA4S.Audio;
+using EA4S.Profile;
 using UnityEngine;
 
 namespace EA4S

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using EA4S.MinigamesCommon;
 
 namespace EA4S.FastCrowd
 {

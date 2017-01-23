@@ -3,43 +3,43 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
-// refactor: add a namespace
-
-
-/// <summary>
-/// Utility class used to create custom assets in the project folder.
-/// </summary>
-// refactor: move to utilities
-public static class CustomAssetUtility
+namespace EA4S.EditorUtilities
 {
-    public static T CreateAsset<T>(string targetPath, string assetName) where T : ScriptableObject
+    /// <summary>
+    /// Utility class used to create custom assets in the project folder.
+    /// </summary>
+    // refactor: move to utilities
+    public static class CustomAssetUtility
     {
-        T asset = ScriptableObject.CreateInstance<T>();
-        string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath(targetPath + "/" + assetName + ".asset");
-        AssetDatabase.CreateAsset(asset, assetPathAndName);
-        AssetDatabase.SaveAssets();
-        return asset;
-    }
-
-    public static T CreateAsset<T>() where T : ScriptableObject
-    {
-        T asset = ScriptableObject.CreateInstance<T>();
-
-        string path = AssetDatabase.GetAssetPath(Selection.activeObject);
-        if (path == "") {
-            path = "Assets";
-        } else if (Path.GetExtension(path) != "") {
-            path = path.Replace(Path.GetFileName(AssetDatabase.GetAssetPath(Selection.activeObject)), "");
+        public static T CreateAsset<T>(string targetPath, string assetName) where T : ScriptableObject
+        {
+            T asset = ScriptableObject.CreateInstance<T>();
+            string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath(targetPath + "/" + assetName + ".asset");
+            AssetDatabase.CreateAsset(asset, assetPathAndName);
+            AssetDatabase.SaveAssets();
+            return asset;
         }
 
-        string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath(path + "/New " + typeof(T).ToString() + ".asset");
+        public static T CreateAsset<T>() where T : ScriptableObject
+        {
+            T asset = ScriptableObject.CreateInstance<T>();
 
-        AssetDatabase.CreateAsset(asset, assetPathAndName);
+            string path = AssetDatabase.GetAssetPath(Selection.activeObject);
+            if (path == "") {
+                path = "Assets";
+            } else if (Path.GetExtension(path) != "") {
+                path = path.Replace(Path.GetFileName(AssetDatabase.GetAssetPath(Selection.activeObject)), "");
+            }
 
-        AssetDatabase.SaveAssets();
-        EditorUtility.FocusProjectWindow();
-        Selection.activeObject = asset;
-        return asset;
+            string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath(path + "/New " + typeof(T).ToString() + ".asset");
+
+            AssetDatabase.CreateAsset(asset, assetPathAndName);
+
+            AssetDatabase.SaveAssets();
+            EditorUtility.FocusProjectWindow();
+            Selection.activeObject = asset;
+            return asset;
+        }
     }
 }
 #endif

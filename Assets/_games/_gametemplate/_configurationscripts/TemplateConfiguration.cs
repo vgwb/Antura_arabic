@@ -1,4 +1,7 @@
-﻿namespace EA4S.Template
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Template
 {
     /// <summary>
     /// Template configuration for a minigame.

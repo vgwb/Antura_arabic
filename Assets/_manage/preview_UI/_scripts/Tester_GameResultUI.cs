@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using EA4S.Db;
+using EA4S.Rewards;
 using UnityEngine;
 
 namespace EA4S.Test
