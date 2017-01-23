@@ -9,6 +9,7 @@ namespace EA4S.Minigames.Scanner
     public class ScannerLivingLetter : MonoBehaviour
     {
 
+        public ScannerGame game;
         public enum LLStatus { None, Sliding, StandingOnBelt, RunningFromAntura, Lost, Won, Happy, Sad, Flying, Poofing, Falling };
         public GameObject livingLetter;
         public float slideSpeed = 2f;
@@ -55,7 +56,7 @@ namespace EA4S.Minigames.Scanner
                 StopAllCoroutines();
             rainbowJet.SetActive(false);
 
-			if (ScannerConfiguration.Instance.gameActive)
+			if (game.gameActive)
 			{
 				status = LLStatus.None;
 				letterObjectView.Falling = false;
@@ -91,7 +92,7 @@ namespace EA4S.Minigames.Scanner
 			}
 			else if (status == LLStatus.StandingOnBelt)
 			{
-				transform.Translate(ScannerConfiguration.Instance.beltSpeed * Time.deltaTime,0,0);
+				transform.Translate(game.beltSpeed * Time.deltaTime,0,0);
             }
 			else if (status == LLStatus.Flying) 
 			{

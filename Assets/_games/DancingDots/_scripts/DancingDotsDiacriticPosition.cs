@@ -6,6 +6,7 @@ namespace EA4S.Minigames.DancingDots
 {
 	public class DancingDotsDiacriticPosition : MonoBehaviour {
 
+        public DancingDotsGame game;
 		public MeshRenderer letterMesh;
 		public MeshRenderer dotmesh;
 		public DiacriticEnum diacritic;
@@ -26,12 +27,12 @@ namespace EA4S.Minigames.DancingDots
 
 		public void Hide()
 		{
-			diacriticText.color = DancingDotsGame.instance.SetAlpha(diacriticText.color,0);
+			diacriticText.color = game.SetAlpha(diacriticText.color,0);
 		}
 
 		public void Show()
 		{
-			diacriticText.color = DancingDotsGame.instance.SetAlpha(diacriticText.color, DancingDotsGame.instance.dotHintAlpha);
+			diacriticText.color = game.SetAlpha(diacriticText.color, game.dotHintAlpha);
 		}
 
 		public void CheckPosition()

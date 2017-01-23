@@ -245,7 +245,7 @@ namespace EA4S.Minigames.SickLetters
                         newDragable.transform.parent = dz.transform;
                         newDragable.transform.localPosition = Vector3.zero;
                         newDragable.transform.localEulerAngles = new Vector3(0, -90, 0);
-                        newDragable.setInitPos(newDragable.transform.localPosition);
+                        //newDragable.setInitPos(newDragable.transform.localPosition);
                         newDragable.checkDDCollision = true;
                         //newDragable.isAttached = true;
 

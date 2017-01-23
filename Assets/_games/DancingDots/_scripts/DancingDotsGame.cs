@@ -11,6 +11,10 @@ using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.DancingDots
 {
+    public enum DancingDotsVariation : int
+    {
+        V_1 = 1,
+    }
     public enum DiacriticEnum { None, Sokoun, Fatha, Dameh, Kasrah };
 
     public class DancingDotsGame : MiniGame
@@ -39,7 +43,7 @@ namespace EA4S.Minigames.DancingDots
             return DancingDotsConfiguration.Instance;
         }
 
-        public static DancingDotsGame instance;
+        //public static DancingDotsGame instance;
         public Canvas endGameCanvas;
         //        public StarFlowers starFlowers;
 
@@ -131,7 +135,7 @@ namespace EA4S.Minigames.DancingDots
         protected override void Awake()
         {
             base.Awake();
-            instance = this;
+            //instance = this;
         }
 
         protected override void Start()

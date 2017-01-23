@@ -37,7 +37,6 @@ namespace EA4S.Minigames.SickLetters
         }
         
         SickLettersDraggableDD dd;
-        //bool cheatingDetected = false;
 
         void OnTriggerEnter(Collider coll)
         {
@@ -74,8 +73,7 @@ namespace EA4S.Minigames.SickLetters
                 if (!dd || dd.isDragging || dd.isInVase || dd.collidedWithVase)
                     return;
 
-                //if (dd.isDragging)
-                //  cheatingDetected = true;
+
                 dd.collidedWithVase = true;
                 addNewDDToVas(dd);
 

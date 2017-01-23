@@ -6,6 +6,7 @@ namespace EA4S.Minigames.Scanner
 
 		const float BELT_FACTOR = -0.4f;
 
+        public ScannerGame game;
 		private Renderer rend;
 
 		void Start() {
@@ -13,7 +14,7 @@ namespace EA4S.Minigames.Scanner
 		}
 
 		void Update() {
-			float offset = Time.time * BELT_FACTOR * ScannerConfiguration.Instance.beltSpeed;
+			float offset = Time.time * BELT_FACTOR * game.beltSpeed;
 			rend.material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
 		}
 
