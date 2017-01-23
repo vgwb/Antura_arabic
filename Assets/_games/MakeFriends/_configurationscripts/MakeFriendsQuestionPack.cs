@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using EA4S.MinigamesAPI;
 
-namespace EA4S
+namespace EA4S.Minigames.MakeFriends
 {
     public class MakeFriendsQuestionPack : IQuestionPack
     {

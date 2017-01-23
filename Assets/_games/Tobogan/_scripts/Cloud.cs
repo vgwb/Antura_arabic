@@ -1,30 +1,32 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Cloud : MonoBehaviour
+namespace EA4S.Minigames.Tobogan
 {
-    public float tiltSpeed = 0.25f;
-    public float tiltAmount = 5.0f;
-    public float blobSpeed = 2.0f;
-
-    float tiltOffset;
-
-    float startScale = 1;
-    void Start()
+    public class Cloud : MonoBehaviour
     {
-        startScale = transform.localScale.x;
-        tiltOffset = Random.value;
-    }
+        public float tiltSpeed = 0.25f;
+        public float tiltAmount = 5.0f;
+        public float blobSpeed = 2.0f;
 
-    void Update()
-    {
-        float tilt = Mathf.Sin(Time.time * tiltSpeed + tiltOffset*3.14f);
-        float blob = Mathf.Sin(Time.time * blobSpeed);
+        float tiltOffset;
 
-        transform.localEulerAngles = new Vector3(0, 0, tilt * tiltAmount);
+        float startScale = 1;
+        void Start()
+        {
+            startScale = transform.localScale.x;
+            tiltOffset = Random.value;
+        }
 
-        float blobX = 1.0f + blob * 0.05f;
-        transform.localScale = new Vector3(blobX, 1.0f / blobX, 1.0f)* startScale;
+        void Update()
+        {
+            float tilt = Mathf.Sin(Time.time * tiltSpeed + tiltOffset*3.14f);
+            float blob = Mathf.Sin(Time.time * blobSpeed);
 
+            transform.localEulerAngles = new Vector3(0, 0, tilt * tiltAmount);
+
+            float blobX = 1.0f + blob * 0.05f;
+            transform.localScale = new Vector3(blobX, 1.0f / blobX, 1.0f)* startScale;
+
+        }
     }
 }

@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using ArabicSupport;
 using EA4S.LivingLetters;
 
-namespace EA4S.MakeFriends
+namespace EA4S.Minigames.MakeFriends
 {
     public class MakeFriendsLivingLetter : MonoBehaviour
     {

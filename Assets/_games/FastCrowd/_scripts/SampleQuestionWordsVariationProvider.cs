@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
 
-namespace EA4S.FastCrowd
+namespace EA4S.Minigames.FastCrowd
 {
     /// <summary>
     /// This sample class generates 32 quizzes of type "I give you a word, you say that word"

@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using EA4S.MinigamesAPI;
 
-namespace EA4S.TakeMeHome
+namespace EA4S.Minigames.TakeMeHome
 {
     /// <summary>
     /// Letter provider sample

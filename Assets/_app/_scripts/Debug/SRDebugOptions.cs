@@ -415,7 +415,7 @@ public partial class SROptions
     public bool MakeFriendsUseDifficulty { get; set; }
 
     [Category("MakeFriends")]
-    public EA4S.MakeFriends.MakeFriendsVariation MakeFriendsDifficulty { get; set; }
+    public EA4S.Minigames.MakeFriends.MakeFriendsVariation MakeFriendsDifficulty { get; set; }
 
     /// ThrowBalls
     private bool ThrowBallsShowProjection = true;

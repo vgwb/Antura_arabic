@@ -2,7 +2,7 @@
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
 
-namespace EA4S.Egg
+namespace EA4S.Minigames.Egg
 {
     public class SampleEggQuestionProvider : IQuestionProvider
     {

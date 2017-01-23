@@ -1,11 +1,8 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
-using System.Collections;
+﻿using UnityEngine;
 using EA4S.Audio;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.SickLetters
+namespace EA4S.Minigames.SickLetters
 {
     public class IntroductionGameState : IGameState
     {

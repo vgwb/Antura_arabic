@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using ModularFramework.Helpers;
 using ArabicSupport;
 using EA4S.MinigamesAPI;
 
-namespace EA4S
+namespace EA4S.Minigames.MakeFriends
 {
     /// <summary>
     /// This sample class generates 10 quizzes of type "I give you 2 words, you find the common letter(s)"

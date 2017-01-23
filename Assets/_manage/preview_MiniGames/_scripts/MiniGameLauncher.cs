@@ -4,7 +4,6 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
 
 namespace EA4S.Test
 {

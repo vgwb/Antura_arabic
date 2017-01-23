@@ -3,7 +3,7 @@ using System.Collections;
 using EA4S.Audio;
 using EA4S.Tutorial;
 
-namespace EA4S.SickLetters
+namespace EA4S.Minigames.SickLetters
 {
     public class SickLettersTutorial : MonoBehaviour {
 

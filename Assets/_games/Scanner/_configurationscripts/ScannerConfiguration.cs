@@ -2,7 +2,7 @@
 using EA4S.MinigamesAPI.Sample;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.Scanner 
+namespace EA4S.Minigames.Scanner 
 {
 	public enum ScannerVariation : int
 	{

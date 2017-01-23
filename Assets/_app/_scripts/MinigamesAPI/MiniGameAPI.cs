@@ -147,128 +147,128 @@ namespace EA4S.MinigamesAPI
                     currentGameConfig = Balloons.BalloonsConfiguration.Instance;
                     break;
                 case MiniGameCode.ColorTickle:
-                    ColorTickle.ColorTickleConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = ColorTickle.ColorTickleConfiguration.Instance;
+                    Minigames.ColorTickle.ColorTickleConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.ColorTickle.ColorTickleConfiguration.Instance;
                     break;
                 case MiniGameCode.DancingDots:
-                    DancingDots.DancingDotsConfiguration.Instance.Variation = DancingDots.DancingDotsVariation.V_1;
-                    DancingDots.DancingDotsConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = DancingDots.DancingDotsConfiguration.Instance;
+                    Minigames.DancingDots.DancingDotsConfiguration.Instance.Variation = Minigames.DancingDots.DancingDotsVariation.V_1;
+                    Minigames.DancingDots.DancingDotsConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.DancingDots.DancingDotsConfiguration.Instance;
                     break;
                 case MiniGameCode.Egg:
-                    Egg.EggConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = Egg.EggConfiguration.Instance;
+                    Minigames.Egg.EggConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.Egg.EggConfiguration.Instance;
                     break;
                 case MiniGameCode.FastCrowd_alphabet:
-                    FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Alphabet;
-                    FastCrowd.FastCrowdConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = FastCrowd.FastCrowdConfiguration.Instance;
+                    Minigames.FastCrowd.FastCrowdConfiguration.Instance.Variation = Minigames.FastCrowd.FastCrowdVariation.Alphabet;
+                    Minigames.FastCrowd.FastCrowdConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.FastCrowd.FastCrowdConfiguration.Instance;
                     break;
                 case MiniGameCode.FastCrowd_counting:
-                    FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Counting;
-                    FastCrowd.FastCrowdConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = FastCrowd.FastCrowdConfiguration.Instance;
+                    Minigames.FastCrowd.FastCrowdConfiguration.Instance.Variation = Minigames.FastCrowd.FastCrowdVariation.Counting;
+                    Minigames.FastCrowd.FastCrowdConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.FastCrowd.FastCrowdConfiguration.Instance;
                     break;
                 case MiniGameCode.FastCrowd_letter:
-                    FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Letter;
-                    FastCrowd.FastCrowdConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = FastCrowd.FastCrowdConfiguration.Instance;
+                    Minigames.FastCrowd.FastCrowdConfiguration.Instance.Variation = Minigames.FastCrowd.FastCrowdVariation.Letter;
+                    Minigames.FastCrowd.FastCrowdConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.FastCrowd.FastCrowdConfiguration.Instance;
                     break;
                 case MiniGameCode.FastCrowd_spelling:
-                    FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Spelling;
-                    FastCrowd.FastCrowdConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = FastCrowd.FastCrowdConfiguration.Instance;
+                    Minigames.FastCrowd.FastCrowdConfiguration.Instance.Variation = Minigames.FastCrowd.FastCrowdVariation.Spelling;
+                    Minigames.FastCrowd.FastCrowdConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.FastCrowd.FastCrowdConfiguration.Instance;
                     break;
                 case MiniGameCode.FastCrowd_words:
-                    FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Words;
-                    FastCrowd.FastCrowdConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = FastCrowd.FastCrowdConfiguration.Instance;
+                    Minigames.FastCrowd.FastCrowdConfiguration.Instance.Variation = Minigames.FastCrowd.FastCrowdVariation.Words;
+                    Minigames.FastCrowd.FastCrowdConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.FastCrowd.FastCrowdConfiguration.Instance;
                     break;
                 case MiniGameCode.TakeMeHome:
-                    TakeMeHome.TakeMeHomeConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = TakeMeHome.TakeMeHomeConfiguration.Instance;
+                    Minigames.TakeMeHome.TakeMeHomeConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.TakeMeHome.TakeMeHomeConfiguration.Instance;
                     break;
                 case MiniGameCode.HideSeek:
-                    HideAndSeek.HideAndSeekConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = HideAndSeek.HideAndSeekConfiguration.Instance;
+                    Minigames.HideAndSeek.HideAndSeekConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.HideAndSeek.HideAndSeekConfiguration.Instance;
                     break;
                 case MiniGameCode.MakeFriends:
-                    MakeFriends.MakeFriendsConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = MakeFriends.MakeFriendsConfiguration.Instance;
+                    Minigames.MakeFriends.MakeFriendsConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.MakeFriends.MakeFriendsConfiguration.Instance;
                     break;
                 case MiniGameCode.Maze:
-                    Maze.MazeConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = Maze.MazeConfiguration.Instance;
+                    Minigames.Maze.MazeConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.Maze.MazeConfiguration.Instance;
                     break;
                 case MiniGameCode.MissingLetter:
-                    MissingLetter.MissingLetterConfiguration.Instance.Variation = MissingLetter.MissingLetterVariation.MissingLetter;
-                    MissingLetter.MissingLetterConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = MissingLetter.MissingLetterConfiguration.Instance;
+                    Minigames.MissingLetter.MissingLetterConfiguration.Instance.Variation = Minigames.MissingLetter.MissingLetterVariation.MissingLetter;
+                    Minigames.MissingLetter.MissingLetterConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.MissingLetter.MissingLetterConfiguration.Instance;
                     break;
                 case MiniGameCode.MissingLetter_phrases:
-                    MissingLetter.MissingLetterConfiguration.Instance.Variation = MissingLetter.MissingLetterVariation.MissingWord;
-                    MissingLetter.MissingLetterConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = MissingLetter.MissingLetterConfiguration.Instance;
+                    Minigames.MissingLetter.MissingLetterConfiguration.Instance.Variation = Minigames.MissingLetter.MissingLetterVariation.MissingWord;
+                    Minigames.MissingLetter.MissingLetterConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.MissingLetter.MissingLetterConfiguration.Instance;
                     break;
                 case MiniGameCode.MixedLetters_alphabet:
                     // TODO: set variation
-                    MixedLetters.MixedLettersConfiguration.Instance.Variation = MixedLetters.MixedLettersConfiguration.MixedLettersVariation.Alphabet;
-                    MixedLetters.MixedLettersConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = MixedLetters.MixedLettersConfiguration.Instance;
+                    Minigames.MixedLetters.MixedLettersConfiguration.Instance.Variation = Minigames.MixedLetters.MixedLettersConfiguration.MixedLettersVariation.Alphabet;
+                    Minigames.MixedLetters.MixedLettersConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.MixedLetters.MixedLettersConfiguration.Instance;
                     break;
                 case MiniGameCode.MixedLetters_spelling:
-                    MixedLetters.MixedLettersConfiguration.Instance.Variation = MixedLetters.MixedLettersConfiguration.MixedLettersVariation.Spelling;
-                    MixedLetters.MixedLettersConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = MixedLetters.MixedLettersConfiguration.Instance;
+                    Minigames.MixedLetters.MixedLettersConfiguration.Instance.Variation = Minigames.MixedLetters.MixedLettersConfiguration.MixedLettersVariation.Spelling;
+                    Minigames.MixedLetters.MixedLettersConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.MixedLetters.MixedLettersConfiguration.Instance;
                     break;
                 case MiniGameCode.SickLetters:
-                    SickLetters.SickLettersConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = SickLetters.SickLettersConfiguration.Instance;
+                    Minigames.SickLetters.SickLettersConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.SickLetters.SickLettersConfiguration.Instance;
                     break;
                 case MiniGameCode.ReadingGame:
-                    ReadingGame.ReadingGameConfiguration.Instance.Variation = ReadingGame.ReadingGameVariation.ReadAndAnswer;
-                    ReadingGame.ReadingGameConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = ReadingGame.ReadingGameConfiguration.Instance;
+                    Minigames.ReadingGame.ReadingGameConfiguration.Instance.Variation = Minigames.ReadingGame.ReadingGameVariation.ReadAndAnswer;
+                    Minigames.ReadingGame.ReadingGameConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.ReadingGame.ReadingGameConfiguration.Instance;
                     break;
                 case MiniGameCode.AlphabetSong:
-                    ReadingGame.ReadingGameConfiguration.Instance.Variation = ReadingGame.ReadingGameVariation.AlphabetSong;
-                    ReadingGame.ReadingGameConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = ReadingGame.ReadingGameConfiguration.Instance;
+                    Minigames.ReadingGame.ReadingGameConfiguration.Instance.Variation = Minigames.ReadingGame.ReadingGameVariation.AlphabetSong;
+                    Minigames.ReadingGame.ReadingGameConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.ReadingGame.ReadingGameConfiguration.Instance;
                     break;
                 case MiniGameCode.Scanner:
-                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.OneWord;
-                    Scanner.ScannerConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = Scanner.ScannerConfiguration.Instance;
+                    Minigames.Scanner.ScannerConfiguration.Instance.Variation = Minigames.Scanner.ScannerVariation.OneWord;
+                    Minigames.Scanner.ScannerConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.Scanner.ScannerConfiguration.Instance;
                     break;
                 case MiniGameCode.Scanner_phrase:
-                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.MultipleWords;
-                    Scanner.ScannerConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = Scanner.ScannerConfiguration.Instance;
+                    Minigames.Scanner.ScannerConfiguration.Instance.Variation = Minigames.Scanner.ScannerVariation.MultipleWords;
+                    Minigames.Scanner.ScannerConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.Scanner.ScannerConfiguration.Instance;
                     break;
                 case MiniGameCode.ThrowBalls_letters:
-                    ThrowBalls.ThrowBallsConfiguration.Instance.Variation = ThrowBalls.ThrowBallsVariation.letters;
-                    ThrowBalls.ThrowBallsConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = ThrowBalls.ThrowBallsConfiguration.Instance;
+                    Minigames.ThrowBalls.ThrowBallsConfiguration.Instance.Variation = Minigames.ThrowBalls.ThrowBallsVariation.letters;
+                    Minigames.ThrowBalls.ThrowBallsConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.ThrowBalls.ThrowBallsConfiguration.Instance;
                     break;
                 case MiniGameCode.ThrowBalls_words:
-                    ThrowBalls.ThrowBallsConfiguration.Instance.Variation = ThrowBalls.ThrowBallsVariation.words;
-                    ThrowBalls.ThrowBallsConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = ThrowBalls.ThrowBallsConfiguration.Instance;
+                    Minigames.ThrowBalls.ThrowBallsConfiguration.Instance.Variation = Minigames.ThrowBalls.ThrowBallsVariation.words;
+                    Minigames.ThrowBalls.ThrowBallsConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.ThrowBalls.ThrowBallsConfiguration.Instance;
                     break;
                 case MiniGameCode.ThrowBalls_letterinword:
-                    ThrowBalls.ThrowBallsConfiguration.Instance.Variation = ThrowBalls.ThrowBallsVariation.lettersinword;
-                    ThrowBalls.ThrowBallsConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = ThrowBalls.ThrowBallsConfiguration.Instance;
+                    Minigames.ThrowBalls.ThrowBallsConfiguration.Instance.Variation = Minigames.ThrowBalls.ThrowBallsVariation.lettersinword;
+                    Minigames.ThrowBalls.ThrowBallsConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.ThrowBalls.ThrowBallsConfiguration.Instance;
                     break;
                 case MiniGameCode.Tobogan_letters:
-                    Tobogan.ToboganConfiguration.Instance.Variation = Tobogan.ToboganVariation.LetterInAWord;
-                    Tobogan.ToboganConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = Tobogan.ToboganConfiguration.Instance;
+                    Minigames.Tobogan.ToboganConfiguration.Instance.Variation = Minigames.Tobogan.ToboganVariation.LetterInAWord;
+                    Minigames.Tobogan.ToboganConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.Tobogan.ToboganConfiguration.Instance;
                     break;
                 case MiniGameCode.Tobogan_words:
-                    Tobogan.ToboganConfiguration.Instance.Variation = Tobogan.ToboganVariation.SunMoon;
-                    Tobogan.ToboganConfiguration.Instance.Context = defaultContext;
-                    currentGameConfig = Tobogan.ToboganConfiguration.Instance;
+                    Minigames.Tobogan.ToboganConfiguration.Instance.Variation = Minigames.Tobogan.ToboganVariation.SunMoon;
+                    Minigames.Tobogan.ToboganConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.Tobogan.ToboganConfiguration.Instance;
                     break;
                 default:
                     Debug.LogWarningFormat("Minigame selected {0} not found.", code.ToString());
