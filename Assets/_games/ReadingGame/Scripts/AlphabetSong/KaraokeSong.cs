@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Minigames.ReadingGame
 {
     public class KaraokeSong
     {

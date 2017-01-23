@@ -2,14 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using EA4S;
 using System;
 using EA4S.Audio;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 
-namespace EA4S.ThrowBalls
+namespace EA4S.Minigames.ThrowBalls
 {
     public class GameState : IGameState
     {

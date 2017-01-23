@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
-namespace EA4S
+namespace EA4S.Minigames.ReadingGame
 {
     public interface ISongParser
     {

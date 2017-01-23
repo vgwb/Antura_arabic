@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using EA4S.LivingLetters;
 
-namespace EA4S.Tobogan
+namespace EA4S.Minigames.Tobogan
 {
     public class LettersTower : MonoBehaviour
     {
@@ -397,7 +397,7 @@ namespace EA4S.Tobogan
             letter.GetComponentInChildren<LetterObjectView>().Falling = true;
             spawnTimer = 0;
 
-            EA4S.Tobogan.ToboganConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.UIPopup);
+            ToboganConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.UIPopup);
         }
 
         void UpdateBacklog()

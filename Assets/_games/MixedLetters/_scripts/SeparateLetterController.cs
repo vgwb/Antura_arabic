@@ -3,9 +3,8 @@ using System.Collections;
 using EA4S.LivingLetters;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
-using TMPro;
 
-namespace EA4S.MixedLetters
+namespace EA4S.Minigames.MixedLetters
 {
     public class SeparateLetterController : MonoBehaviour
     {

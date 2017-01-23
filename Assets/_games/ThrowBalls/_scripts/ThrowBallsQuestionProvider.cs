@@ -1,23 +1,18 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
 
-namespace EA4S.ThrowBalls
+namespace EA4S.Minigames.ThrowBalls
 {
     public class ThrowBallsQuestionProvider : IQuestionProvider
     {
         List<SampleQuestionPack> questions = new List<SampleQuestionPack>();
-        string description;
 
         int currentQuestion;
 
         public ThrowBallsQuestionProvider()
         {
             currentQuestion = 0;
-
-            description = "Hi";
 
             // 10 QuestionPacks
             for (int i = 0; i < 10; i++)
@@ -54,11 +49,6 @@ namespace EA4S.ThrowBalls
                 if (list[i].Id == letter.Id)
                     return true;
             return false;
-        }
-
-        public string GetDescription()
-        {
-            return description;
         }
 
         IQuestionPack IQuestionProvider.GetNextQuestion()

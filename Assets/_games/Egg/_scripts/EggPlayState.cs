@@ -2,7 +2,7 @@
 using EA4S.Tutorial;
 using UnityEngine;
 
-namespace EA4S.Egg
+namespace EA4S.Minigames.Egg
 {
     public class EggPlayState : IGameState
     {
@@ -69,7 +69,7 @@ namespace EA4S.Egg
 
             game.eggButtonBox.SetOnPressedCallback(OnEggButtonPressed);
 
-            showTutorial = game.showTutorial;
+            showTutorial = game.ShowTutorial;
             tutorialCorrectActive = false;
             tutorialDelayTimer = tutorialDelayTime;
             tutorialStop = false;

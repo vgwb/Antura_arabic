@@ -2,7 +2,7 @@
 using EA4S.MinigamesAPI.Sample;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.MissingLetter
+namespace EA4S.Minigames.MissingLetter
 {
     public enum MissingLetterVariation : int
     {

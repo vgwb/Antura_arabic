@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using EA4S.LivingLetters;
 using TMPro;
 
-namespace EA4S.DancingDots
+namespace EA4S.Minigames.DancingDots
 {
 
 	public enum LivingLetterAnim {

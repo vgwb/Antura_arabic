@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-//using ArabicSupport;
 using TMPro;
-using System;
 
-namespace EA4S.SickLetters
+namespace EA4S.Minigames.SickLetters
 {
 	public class SickLettersDraggableDD : MonoBehaviour {
 

@@ -167,7 +167,7 @@ namespace EA4S.AnturaSpace
 
             //disable collision and enabled after 0.5 sec for avoid that Antura collision shot bone away
             m_oBoneRigidbody.GetComponentInChildren<Collider>().enabled = false;
-            StartCoroutine(EA4S.MissingLetter.Utils.LaunchDelay(0.5f, 
+            StartCoroutine(Minigames.MissingLetter.Utils.LaunchDelay(0.5f, 
                 delegate
                 {
                     m_oBoneRigidbody.GetComponentInChildren<Collider>().enabled = true;
