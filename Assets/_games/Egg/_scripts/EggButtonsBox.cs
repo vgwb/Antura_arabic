@@ -54,7 +54,7 @@ namespace EA4S.Minigames.Egg
 
                 if (eggButton.livingLetterData == letterData)
                 {
-                    eggButton.ScaleTo(0f, 0.1f, 0f, delegate () { Destroy(eggButton.gameObject); });
+                    eggButton.ScaleTo(0f, 0.3f, 0f, delegate () { Destroy(eggButton.gameObject); });
 
                     eggButtons.RemoveAt(i--);
                     removed = true;
@@ -83,7 +83,7 @@ namespace EA4S.Minigames.Egg
             {
                 EggButton eggButton = eggButtons[i];
 
-                eggButton.ScaleTo(0f, 0.1f, 0f, delegate () { Destroy(eggButton.gameObject); });
+                eggButton.ScaleTo(0f, 0.3f, 0f, delegate () { Destroy(eggButton.gameObject); });
             }
 
             eggButtons.Clear();
