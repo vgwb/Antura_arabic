@@ -45,7 +45,7 @@ namespace EA4S.Balloons
         public Sprite FailTime;
 
         [Header("Game Parameters")] [Tooltip("e.g.: 6")]
-        public static int numberOfRounds = 6;
+        public const int numberOfRounds = 6;
         public int lives;
         [Range(10, 300)] [Tooltip("e.g.: 30.9")]
         public float roundTime;

@@ -87,7 +87,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         private void UpdateArc()
         {
-            if (BallController.instance.transform.position == BallController.INITIAL_BALL_POSITION)
+            if (BallController.instance.transform.position == BallController.instance.INITIAL_BALL_POSITION)
             {
                 arc.SetActive(false);
             }

@@ -80,9 +80,9 @@ namespace EA4S.Minigames.MakeFriends
             }
         }
 
-        public readonly static float EASY_THRESHOLD = 0f;
-        public readonly static float MEDIUM_THRESHOLD = 0.3f;
-        public readonly static float HARD_THRESHOLD = 0.7f;
+        public const float EASY_THRESHOLD = 0f;
+        public const float MEDIUM_THRESHOLD = 0.3f;
+        public const float HARD_THRESHOLD = 0.7f;
 
            
         /////////////////
