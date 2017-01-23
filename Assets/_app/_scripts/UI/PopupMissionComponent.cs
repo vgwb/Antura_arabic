@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using EA4S.Audio;
 
 namespace EA4S
 {

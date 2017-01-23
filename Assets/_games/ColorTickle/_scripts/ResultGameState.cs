@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.MinigamesCommon;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace EA4S.ColorTickle

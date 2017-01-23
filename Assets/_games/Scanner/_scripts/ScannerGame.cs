@@ -7,6 +7,8 @@ using System.Linq;
 
 
 using EA4S;
+using EA4S.Audio;
+using EA4S.MinigamesCommon;
 
 namespace EA4S.Scanner
 {

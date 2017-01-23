@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using DG.Tweening;
+using EA4S.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.Rewards
 {
     /// <summary>
     /// Visual container for minigame instances in the EndsessionResultPanel

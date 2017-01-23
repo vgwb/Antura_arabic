@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using EA4S.Audio;
+using EA4S.Utilities;
+using UnityEngine;
 using TMPro;
 
 namespace EA4S.AnturaSpace

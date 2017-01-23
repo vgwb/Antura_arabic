@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using EA4S.Audio;
 
 namespace EA4S
 {

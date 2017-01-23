@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.Antura;
+using EA4S.Audio;
+using EA4S.Utilities;
 
 namespace EA4S.Maze
 {

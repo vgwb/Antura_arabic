@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using System;
 using System.Collections.Generic;
+using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Egg

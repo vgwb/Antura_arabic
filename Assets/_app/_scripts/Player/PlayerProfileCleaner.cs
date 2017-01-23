@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S {
+namespace EA4S.Profile {
 
     /// <summary>
     /// Handles cleanup of player profiles.

@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using EA4S.Db;
 using System.Collections.Generic;
+using EA4S.Utilities;
 
 namespace EA4S.PlayerBook
 {

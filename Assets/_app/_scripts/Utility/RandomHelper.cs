@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using ModularFramework.Helpers;
 
 // refactor: Helpers need to be standardized
-namespace EA4S
+namespace EA4S.Utilities
 {
     public static class RandomHelper
     {

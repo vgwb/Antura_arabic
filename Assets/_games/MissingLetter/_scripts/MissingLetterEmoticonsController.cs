@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.LivingLetters;
+using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace EA4S.MissingLetter

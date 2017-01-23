@@ -1,5 +1,6 @@
 ﻿using System;
 using EA4S;
+using EA4S.Utilities;
 using UnityEngine;
 
 public class LetterCharacterController : MonoBehaviour

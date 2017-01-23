@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Rewards
 {
     /// <summary>
     /// Controls the UI that shows the end results of a minigame or play session.

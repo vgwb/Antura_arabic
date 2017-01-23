@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using EA4S.MinigamesCommon;
+
 namespace EA4S.MixedLetters
 {
     public class IntroductionGameState : IGameState

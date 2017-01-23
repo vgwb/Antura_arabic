@@ -2,6 +2,7 @@
 using System.Collections;
 using EA4S;
 using System;
+using EA4S.MinigamesCommon;
 
 public class ReadingRadialWidget : MonoBehaviour
 {

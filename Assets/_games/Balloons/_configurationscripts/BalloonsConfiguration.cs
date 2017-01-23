@@ -1,4 +1,8 @@
-﻿namespace EA4S.Balloons
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesAPI.Sample;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Balloons
 {
     public enum BalloonsVariation : int
     {

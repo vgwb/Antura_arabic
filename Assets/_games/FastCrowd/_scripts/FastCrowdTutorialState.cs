@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using EA4S.LivingLetters;
+using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using UnityEngine;
 

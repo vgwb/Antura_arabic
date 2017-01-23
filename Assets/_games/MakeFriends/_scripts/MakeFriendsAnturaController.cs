@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using EA4S;
+using EA4S.Antura;
 
 public class MakeFriendsAnturaController : MonoBehaviour
 {

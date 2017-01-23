@@ -1,4 +1,5 @@
-﻿using EA4S.Tutorial;
+﻿using EA4S.MinigamesCommon;
+using EA4S.Tutorial;
 using UnityEngine;
 
 namespace EA4S.Egg

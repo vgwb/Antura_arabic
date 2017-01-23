@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using EA4S.Db;
+using EA4S.Profile;
 using EA4S.Teacher;
+using EA4S.Utilities;
 
 namespace EA4S
 {

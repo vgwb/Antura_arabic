@@ -1,4 +1,5 @@
 ﻿using System;
+using EA4S.MinigamesCommon;
 
 namespace EA4S.Tobogan
 {

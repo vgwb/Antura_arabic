@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.DemiLib.Attributes;
+using EA4S.UI;
 using UnityEngine;
 
 namespace EA4S

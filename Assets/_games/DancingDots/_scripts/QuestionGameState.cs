@@ -1,4 +1,6 @@
-﻿namespace EA4S.DancingDots
+﻿using EA4S.MinigamesCommon;
+
+namespace EA4S.DancingDots
 {
     public class QuestionGameState : IGameState
     {

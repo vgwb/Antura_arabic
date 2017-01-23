@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using EA4S.Audio;
 using EA4S.Db;
 using UnityEngine;
 

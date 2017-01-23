@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using DG.Tweening;
+using EA4S.CameraControl;
+using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using ModularFramework.Components;
 

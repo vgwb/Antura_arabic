@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using DG.Tweening;
+using EA4S.Audio;
+using EA4S.MinigamesCommon;
 
-namespace EA4S
+namespace EA4S.Rewards
 {
     /// <summary>
     /// Animates the appearance of the reward scene

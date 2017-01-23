@@ -1,4 +1,6 @@
-﻿namespace EA4S.ReadingGame
+﻿using EA4S.MinigamesCommon;
+
+namespace EA4S.ReadingGame
 {
     public abstract class AnturaState : IGameState
     {

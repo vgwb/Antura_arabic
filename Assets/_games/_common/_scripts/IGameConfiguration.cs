@@ -1,4 +1,6 @@
-﻿namespace EA4S
+﻿using EA4S.MinigamesAPI;
+
+namespace EA4S.MinigamesCommon
 {
     /// <summary>
     /// Interface for all configuration containers of minigames.

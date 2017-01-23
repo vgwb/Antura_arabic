@@ -4,7 +4,7 @@ using TMPro;
 
 // refactor: move this to UI utilities
 // refactor: remove reference to Arabic
-namespace EA4S
+namespace EA4S.Utilities
 {
     public class TextRender : MonoBehaviour
     {

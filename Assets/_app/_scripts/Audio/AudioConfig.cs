@@ -1,4 +1,82 @@
-﻿namespace EA4S
+﻿namespace EA4S.Audio
+{
+    // refactor: should be static
+    public class AudioConfig
+    {
+        public static string GetSfxEventName(Sfx sfx)
+        {
+            var eventName = "";
+            switch (sfx) {
+                case Sfx.UIPopup:
+                    eventName = "Sfx/UI/Popup"; break;
+                case Sfx.UIButtonClick:
+                    eventName = "Sfx/UI/Button"; break;
+                case Sfx.UIPauseIn:
+                    eventName = "Sfx/UI/PauseIn"; break;
+                case Sfx.UIPauseOut:
+                    eventName = "Sfx/UI/PauseOut"; break;
+                case Sfx.LetterAngry:
+                    eventName = "LL/Angry"; break;
+                case Sfx.LetterHappy:
+                    eventName = "LL/Happy"; break;
+                case Sfx.LetterSad:
+                    eventName = "LL/Sad"; break;
+                case Sfx.LetterHold:
+                    eventName = "LL/Hold"; break;
+                case Sfx.LetterFear:
+                    eventName = "LL/Fear"; break;
+                case Sfx.LL_Afraid:
+                    eventName = "LL/Afraid"; break;
+                case Sfx.LL_Annoyed:
+                    eventName = "LL/Annoyed"; break;
+                case Sfx.LL_Giggle:
+                    eventName = "LL/Giggle"; break;
+                case Sfx.LL_Jump:
+                    eventName = "LL/Jump"; break;
+                case Sfx.LL_La:
+                    eventName = "LL/La"; break;
+                case Sfx.LL_Laugh:
+                    eventName = "LL/Laugh"; break;
+                case Sfx.LL_No1:
+                    eventName = "LL/No1"; break;
+                case Sfx.LL_No2:
+                    eventName = "LL/No2"; break;
+                case Sfx.LL_No3:
+                    eventName = "LL/No3"; break;
+                case Sfx.LL_Sleep:
+                    eventName = "LL/Sleep"; break;
+                case Sfx.LL_Surprise:
+                    eventName = "LL/Surprise"; break;
+                case Sfx.LL_Suspicious:
+                    eventName = "LL/Suspicious"; break;
+                case Sfx.LL_Tada:
+                    eventName = "LL/Tada"; break;
+                case Sfx.LL_Yeah:
+                    eventName = "LL/Yeah"; break;
+                case Sfx.GameTitle:
+                    eventName = "VOX/GameTitle"; break;
+                case Sfx.DogBarking:
+                    eventName = "Dog/Barking"; break;
+                case Sfx.DogSnoring:
+                    eventName = "Dog/Snoring"; break;
+                case Sfx.DogSnorting:
+                    eventName = "Dog/Snorting"; break;
+                case Sfx.Dog_Exhale:
+                    eventName = "Dog/Exhale"; break;
+                case Sfx.Dog_Inhale:
+                    eventName = "Dog/Inhale"; break;
+                case Sfx.Dog_Noize:
+                    eventName = "Dog/Noize"; break;
+                default:
+                    eventName = "Sfx/" + sfx.ToString();
+                    break;
+            }
+            return eventName;
+        }
+    }
+}
+
+namespace EA4S
 {
     public enum Music
     {
@@ -88,78 +166,4 @@
         Win = 6
     }
 
-    // refactor: should be static
-    public class AudioConfig
-    {
-        public static string GetSfxEventName(Sfx sfx)
-        {
-            var eventName = "";
-            switch (sfx) {
-                case Sfx.UIPopup:
-                    eventName = "Sfx/UI/Popup"; break;
-                case Sfx.UIButtonClick:
-                    eventName = "Sfx/UI/Button"; break;
-                case Sfx.UIPauseIn:
-                    eventName = "Sfx/UI/PauseIn"; break;
-                case Sfx.UIPauseOut:
-                    eventName = "Sfx/UI/PauseOut"; break;
-                case Sfx.LetterAngry:
-                    eventName = "LL/Angry"; break;
-                case Sfx.LetterHappy:
-                    eventName = "LL/Happy"; break;
-                case Sfx.LetterSad:
-                    eventName = "LL/Sad"; break;
-                case Sfx.LetterHold:
-                    eventName = "LL/Hold"; break;
-                case Sfx.LetterFear:
-                    eventName = "LL/Fear"; break;
-                case Sfx.LL_Afraid:
-                    eventName = "LL/Afraid"; break;
-                case Sfx.LL_Annoyed:
-                    eventName = "LL/Annoyed"; break;
-                case Sfx.LL_Giggle:
-                    eventName = "LL/Giggle"; break;
-                case Sfx.LL_Jump:
-                    eventName = "LL/Jump"; break;
-                case Sfx.LL_La:
-                    eventName = "LL/La"; break;
-                case Sfx.LL_Laugh:
-                    eventName = "LL/Laugh"; break;
-                case Sfx.LL_No1:
-                    eventName = "LL/No1"; break;
-                case Sfx.LL_No2:
-                    eventName = "LL/No2"; break;
-                case Sfx.LL_No3:
-                    eventName = "LL/No3"; break;
-                case Sfx.LL_Sleep:
-                    eventName = "LL/Sleep"; break;
-                case Sfx.LL_Surprise:
-                    eventName = "LL/Surprise"; break;
-                case Sfx.LL_Suspicious:
-                    eventName = "LL/Suspicious"; break;
-                case Sfx.LL_Tada:
-                    eventName = "LL/Tada"; break;
-                case Sfx.LL_Yeah:
-                    eventName = "LL/Yeah"; break;
-                case Sfx.GameTitle:
-                    eventName = "VOX/GameTitle"; break;
-                case Sfx.DogBarking:
-                    eventName = "Dog/Barking"; break;
-                case Sfx.DogSnoring:
-                    eventName = "Dog/Snoring"; break;
-                case Sfx.DogSnorting:
-                    eventName = "Dog/Snorting"; break;
-                case Sfx.Dog_Exhale:
-                    eventName = "Dog/Exhale"; break;
-                case Sfx.Dog_Inhale:
-                    eventName = "Dog/Inhale"; break;
-                case Sfx.Dog_Noize:
-                    eventName = "Dog/Noize"; break;
-                default:
-                    eventName = "Sfx/" + sfx.ToString();
-                    break;
-            }
-            return eventName;
-        }
-    }
 }

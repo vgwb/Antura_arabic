@@ -1,4 +1,4 @@
-﻿namespace EA4S
+﻿namespace EA4S.MinigamesCommon
 {
     /// <summary>
     /// Concrete implementation of ITimer that counts down and triggers an event when the time is up.

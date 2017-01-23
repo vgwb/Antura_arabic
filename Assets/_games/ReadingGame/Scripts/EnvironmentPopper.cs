@@ -2,6 +2,7 @@
 using System.Collections;
 using EA4S.ReadingGame;
 using System.Collections.Generic;
+using EA4S.MinigamesCommon;
 
 public class EnvironmentPopper : MonoBehaviour
 {

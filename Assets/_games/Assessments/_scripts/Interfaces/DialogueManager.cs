@@ -1,6 +1,7 @@
 using EA4S.Db;
 using Kore.Coroutines;
 using System.Collections;
+using EA4S.MinigamesCommon;
 
 namespace EA4S.Assessment
 {

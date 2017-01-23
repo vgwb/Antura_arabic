@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace EA4S
+namespace EA4S.Environment
 {
     [ExecuteInEditMode]
     public class AutoWorldPrefab : MonoBehaviour
