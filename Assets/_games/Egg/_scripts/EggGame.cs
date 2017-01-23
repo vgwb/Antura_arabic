@@ -47,7 +47,7 @@ namespace EA4S.Minigames.Egg
         bool tutorial;
         public bool ShowTutorial { get { if (tutorial) { tutorial = false; return true; } else return false; } }
 
-        public QuestionManager questionManager;
+        public EggChallenge CurrentQuestion;
 
         public EggIntroductionState IntroductionState { get; private set; }
         public EggQuestionState QuestionState { get; private set; }
@@ -71,7 +71,7 @@ namespace EA4S.Minigames.Egg
             PlayState = new EggPlayState(this);
             ResultState = new EggResultState(this);
 
-            questionManager = new QuestionManager();
+            CurrentQuestion = null;
 
             tutorial = true;
             overlayWidgetInitialized = false;

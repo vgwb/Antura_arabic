@@ -37,7 +37,7 @@ namespace EA4S.Minigames.Egg
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Context = new MinigamesGameContext(MiniGameCode.Egg, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.1f;
-            Variation = EggVariation.Sequence;
+            Variation = EggVariation.Single;
 
             if (Variation == EggVariation.Sequence)
                 Questions = new SampleEggSequenceQuestionProvider();

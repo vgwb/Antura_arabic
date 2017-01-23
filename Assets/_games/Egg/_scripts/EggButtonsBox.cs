@@ -45,6 +45,38 @@ namespace EA4S.Minigames.Egg
             eggButtons.Add(eggButton);
         }
 
+        public bool RemoveButton(ILivingLetterData letterData)
+        {
+            bool removed = false;
+            for (int i = 0; i < eggButtons.Count; i++)
+            {
+                EggButton eggButton = eggButtons[i];
+
+                if (eggButton.livingLetterData == letterData)
+                {
+                    eggButton.ScaleTo(0f, 0.1f, 0f, delegate () { Destroy(eggButton.gameObject); });
+
+                    eggButtons.RemoveAt(i--);
+                    removed = true;
+                }
+            }
+            return removed;
+        }
+
+        public void RemoveButtons(Predicate<ILivingLetterData> predicate)
+        {
+            for (int i = 0; i < eggButtons.Count; i++)
+            {
+                EggButton eggButton = eggButtons[i];
+
+                if (predicate(eggButton.livingLetterData))
+                {
+                    if (RemoveButton(eggButton.livingLetterData))
+                        --i;
+                }
+            }
+        }
+
         public void RemoveButtons()
         {
             for (int i = 0; i < eggButtons.Count; i++)
