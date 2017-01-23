@@ -1,8 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
-using EA4S.MinigamesAPI;
+﻿using EA4S.MinigamesAPI;
 
-namespace EA4S.SickLetters
+namespace EA4S.Minigames.SickLetters
 {
     public class QuestionsManager
     {

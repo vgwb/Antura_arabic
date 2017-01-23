@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using ModularFramework.Helpers;
 using ArabicSupport;
 using EA4S.MinigamesAPI;
 
-namespace EA4S
+namespace EA4S.Minigames.MakeFriends
 {
     /// <summary>
     /// This sample class generates 10 quizzes of type "I give you 2 words, you find the common letter(s)"
@@ -14,7 +11,6 @@ namespace EA4S
     public class MakeFriendsQuestionProvider : IQuestionProvider
     {
         List<MakeFriendsQuestionPack> questions = new List<MakeFriendsQuestionPack>();
-        string description;
 
         int currentQuestion;
         readonly int quizzesCount = 10;
@@ -22,7 +18,6 @@ namespace EA4S
         public MakeFriendsQuestionProvider()
         {
             currentQuestion = 0;
-            description = "Questions description";
 
             List <ILivingLetterData> correctAnswers;
             List <ILivingLetterData> wrongAnswers;
@@ -132,11 +127,6 @@ namespace EA4S
                 var currentPack = new MakeFriendsQuestionPack(newWordData1, newWordData2, wrongAnswers, correctAnswers);
                 questions.Add(currentPack);
             }
-        }
-
-        public string GetDescription()
-        {
-            return description;
         }
 
         IQuestionPack IQuestionProvider.GetNextQuestion()

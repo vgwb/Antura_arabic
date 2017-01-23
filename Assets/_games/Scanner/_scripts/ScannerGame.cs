@@ -1,24 +1,28 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 using System.Linq;
-
-
-using EA4S;
 using EA4S.Audio;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.Scanner
+namespace EA4S.Minigames.Scanner
 {
+    public enum ScannerVariation : int
+    {
+        OneWord = 1,
+        MultipleWords = 2
+    }
 
-	public class ScannerGame : MiniGame 
+
+    public class ScannerGame : MiniGame 
 	{
 
         //		public static ScannerGame instance;
 
-        public static bool disableInput;
+        public bool disableInput;
+        public bool gameActive = true;
+        public float beltSpeed = 1f;
+        public bool facingCamera = true;
+
         public const string TAG_BELT = "Scanner_Belt";
 		public const string TAG_SCAN_START = "Scanner_ScanStart";
 		public const string TAG_SCAN_END = "Scanner_ScanEnd";
@@ -101,14 +105,69 @@ namespace EA4S.Scanner
 			return ScannerConfiguration.Instance;
 		}
 
-		protected override void OnInitialize(IGameContext context)
+        void SetupVariables()
+        {
+            gameActive = true;
+            beltSpeed = 1f;
+            facingCamera = true;
+            float Difficulty = ScannerConfiguration.Instance.Difficulty;
+
+             Difficulty = Difficulty < 0.13f ? 0.13f : Difficulty;
+
+            if (Difficulty <= 0.4f)
+            {
+                beltSpeed = 1f;
+            }
+            else if (Difficulty > 0.4f && Difficulty <= 0.6f)
+            {
+                beltSpeed = 2f;
+            }
+            else if (Difficulty > 0.6f && Difficulty <= 0.8f)
+            {
+                beltSpeed = 3f;
+            }
+            else if (Difficulty > 0.8f && Difficulty < 1f)
+            {
+                beltSpeed = 4f;
+            }
+            else if (Difficulty == 1f)
+            {
+                beltSpeed = 5f;
+            }
+
+            if (Difficulty <= 0.25f)
+            {
+                facingCamera = true;
+            }
+            else if (Difficulty > 0.25f && Difficulty <= 0.5f)
+            {
+                facingCamera = true;
+            }
+            else if (Difficulty > 0.5f && Difficulty <= 0.75f)
+            {
+                facingCamera = true;
+            }
+            else if (Difficulty > 0.75f && Difficulty < 1f)
+            {
+                facingCamera = false;
+            }
+            else if (Difficulty == 1f)
+            {
+                facingCamera = false;
+            }
+        }
+
+        protected override void OnInitialize(IGameContext context)
 		{
 			
 			STARS_1_THRESHOLD = numberOfRounds/3;
 			STARS_2_THRESHOLD = numberOfRounds/2;
 			STARS_3_THRESHOLD = numberOfRounds;
 
-			LLCount = ScannerConfiguration.Instance.nCorrect;
+            SetupVariables();
+
+
+            LLCount = ScannerConfiguration.Instance.nCorrect;
 
 			if (LLCount == 3)
 			{

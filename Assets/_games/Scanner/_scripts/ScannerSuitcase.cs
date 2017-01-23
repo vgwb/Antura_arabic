@@ -4,17 +4,16 @@ using System.Collections;
 using EA4S.Tutorial;
 using TMPro;
 
-
-namespace EA4S.Scanner
+namespace EA4S.Minigames.Scanner
 {
 
 	public class ScannerSuitcase : MonoBehaviour {
 
-		public bool isDragging = false, isReady;
+        public ScannerGame game;
+        public bool isDragging = false, isReady;
 		private Vector3 screenPoint;
 		private Vector3 offset;
 		private float startX;
-		//private float startY;
 		private float startZ;
 		private Collider player;
 		private Transform originalParent;
@@ -72,7 +71,6 @@ namespace EA4S.Scanner
 		{
 			originalParent = transform.parent;
 			startX = transform.position.x;
-			//startY = transform.position.y;
 			startZ = transform.position.z;
 
             thisCollider = GetComponentInChildren<BoxCollider>();
@@ -108,7 +106,7 @@ namespace EA4S.Scanner
 
 		void OnMouseDown()
 		{
-            if (ScannerGame.disableInput || !isReady)
+            if (game.disableInput || !isReady)
                 return;
 
             shadow.SetActive(false);
@@ -163,7 +161,7 @@ namespace EA4S.Scanner
 
 		void OnMouseUp()
 		{
-            if (ScannerGame.disableInput || !isReady)
+            if (game.disableInput || !isReady)
                 return;
 
             if (overPlayermarker)
@@ -177,7 +175,7 @@ namespace EA4S.Scanner
 					onCorrectDrop(gameObject, LL);
                     transform.localScale = new Vector3(scale, scale, scale);
                     TutorialUI.Clear(true);
-                    ScannerTutorial.TUT_STEP = 1;
+                    game.GetComponent<ScannerTutorial>().tutStep = 1;
                 }
 				else
 				{

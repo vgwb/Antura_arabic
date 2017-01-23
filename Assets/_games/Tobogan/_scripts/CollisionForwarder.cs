@@ -1,20 +1,22 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public interface ICollidable
+namespace EA4S.Minigames.Tobogan
 {
-    void OnCollisionEnter(Collision collision);
-}
-
-public class CollisionForwarder : MonoBehaviour
-{
-    public GameObject[] forwardTo;
-
-    public void OnCollisionEnter(Collision collision)
+    public interface ICollidable
     {
-        foreach (var f in forwardTo)
+        void OnCollisionEnter(Collision collision);
+    }
+
+    public class CollisionForwarder : MonoBehaviour
+    {
+        public GameObject[] forwardTo;
+
+        public void OnCollisionEnter(Collision collision)
         {
-            f.GetComponent<ICollidable>().OnCollisionEnter(collision);
+            foreach (var f in forwardTo)
+            {
+                f.GetComponent<ICollidable>().OnCollisionEnter(collision);
+            }
         }
     }
 }

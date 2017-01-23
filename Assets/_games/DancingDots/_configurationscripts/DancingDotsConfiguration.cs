@@ -1,10 +1,7 @@
 ﻿using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.DancingDots {
-    public enum DancingDotsVariation : int {
-        V_1 = 1,
-    }
+namespace EA4S.Minigames.DancingDots {
 
     public class DancingDotsConfiguration : IGameConfiguration
     {

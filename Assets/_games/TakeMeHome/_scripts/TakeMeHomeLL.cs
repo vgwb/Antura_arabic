@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
 using DG.Tweening;
-using TMPro;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using ArabicSupport;
 using EA4S.LivingLetters;
 
-namespace EA4S.TakeMeHome
+namespace EA4S.Minigames.TakeMeHome
 {
 public class TakeMeHomeLL : MonoBehaviour {
 

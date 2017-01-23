@@ -2,9 +2,8 @@
 using System.Collections;
 using EA4S.Audio;
 using EA4S.Tutorial;
-using TMPro;
 
-namespace EA4S.Scanner
+namespace EA4S.Minigames.Scanner
 {
     public class ScannerTutorial : MonoBehaviour
     {
@@ -15,9 +14,9 @@ namespace EA4S.Scanner
         public float originalLLOnBeltSpeed;
         public float startDelay = 8, repeatDelay = 3;
 
-        public static int TUT_STEP = 1;
+        public int tutStep = 1;
         private bool doTutOnDots;
-        //private int step = 1;
+
         ScannerGame game;
         Transform source, target;
         Vector3 targetPosition;
@@ -46,7 +45,7 @@ namespace EA4S.Scanner
                     return true;
                 else
                 {
-                    ScannerConfiguration.Instance.beltSpeed = originalLLOnBeltSpeed;
+                    game.beltSpeed = originalLLOnBeltSpeed;
                     return false;
                 }
             }
@@ -68,13 +67,13 @@ namespace EA4S.Scanner
                 startDelay = 25.5f;
 
             StartCoroutine(coDoTutorial());
-            originalLLOnBeltSpeed = ScannerConfiguration.Instance.beltSpeed;
+            originalLLOnBeltSpeed = game.beltSpeed;
             if (ScannerConfiguration.Instance.Difficulty >= 0.5f)
             {
-                ScannerConfiguration.Instance.beltSpeed = 1;
+                game.beltSpeed = 1;
             }
 
-            ScannerGame.disableInput = true;
+            game.disableInput = true;
             //warm up
             TutorialUI.DrawLine(-100 * Vector3.up, -100 * Vector3.up, TutorialUI.DrawLineMode.Arrow);
 
@@ -104,7 +103,7 @@ namespace EA4S.Scanner
                 target = currentLL.transform;
             }
 
-            TUT_STEP = step;
+            tutStep = step;
             if (step == 1)
                 source = scannerDevice;
 
@@ -116,8 +115,8 @@ namespace EA4S.Scanner
         void onTutorialStart()
         {
             AudioManager.I.PlayDialogue(Db.LocalizationDataId.Scanner_Tuto);
-            ScannerConfiguration.Instance.beltSpeed = 0;
-            ScannerGame.disableInput = false;
+            game.beltSpeed = 0;
+            game.disableInput = false;
             StartCoroutine(sayTut(repeatDelay));
             
         }
@@ -126,7 +125,7 @@ namespace EA4S.Scanner
         {
             TutorialUI.Clear(true);
 
-            ScannerConfiguration.Instance.beltSpeed = originalLLOnBeltSpeed;
+            game.beltSpeed = originalLLOnBeltSpeed;
             game.Context.GetOverlayWidget().Initialize(true, false, false);
             game.Context.GetOverlayWidget().SetStarsThresholds(game.STARS_1_THRESHOLD, game.STARS_2_THRESHOLD, game.STARS_3_THRESHOLD);
 
@@ -148,7 +147,7 @@ namespace EA4S.Scanner
                     continue;
                 }
 
-                if (TUT_STEP == 1)
+                if (tutStep == 1)
                 {
                     //Debug.Log(llCounter+"<<<");
                     target = getNewTarget();
@@ -230,7 +229,7 @@ namespace EA4S.Scanner
                 !isScannerReady ||
                 /*(currentLL && currentLL.status != ScannerLivingLetter.LLStatus.StandingOnBelt) ||*/ 
                 !target || 
-                (currentSuitcases && (currentSuitcases.isDragging || !currentSuitcases.isReady) && TUT_STEP == 2) ||
+                (currentSuitcases && (currentSuitcases.isDragging || !currentSuitcases.isReady) && tutStep == 2) ||
                 !isTutRound ||
                 !isScannerReady)
 

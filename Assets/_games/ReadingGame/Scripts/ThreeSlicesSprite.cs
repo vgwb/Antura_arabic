@@ -1,28 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ThreeSlicesSprite : MonoBehaviour
+namespace EA4S.Minigames.ReadingGame
 {
-    SpriteRenderer spriteRenderer;
-    Material material;
-
-    [Range(0, 1)]
-    public float donePercentage;
-
-    void Start()
+    public class ThreeSlicesSprite : MonoBehaviour
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        material = spriteRenderer.material;
-    }
+        SpriteRenderer spriteRenderer;
+        Material material;
 
-    void Update()
-    {
-        material.SetFloat("_ScreenLeftOffset", Camera.main.WorldToScreenPoint(spriteRenderer.bounds.min).x);
-        material.SetFloat("_ScreenRightOffset", Camera.main.WorldToScreenPoint(spriteRenderer.bounds.max).x);
-        material.SetFloat("_Done", donePercentage);
+        [Range(0, 1)]
+        public float donePercentage;
+
+        void Start()
+        {
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            material = spriteRenderer.material;
+        }
+
+        void Update()
+        {
+            material.SetFloat("_ScreenLeftOffset", Camera.main.WorldToScreenPoint(spriteRenderer.bounds.min).x);
+            material.SetFloat("_ScreenRightOffset", Camera.main.WorldToScreenPoint(spriteRenderer.bounds.max).x);
+            material.SetFloat("_Done", donePercentage);
+        }
     }
 }
-

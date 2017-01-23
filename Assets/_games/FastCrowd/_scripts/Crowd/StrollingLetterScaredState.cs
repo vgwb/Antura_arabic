@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-using System;
 using EA4S.LivingLetters;
 
-namespace EA4S
+namespace EA4S.Minigames.FastCrowd
 {
     public class StrollingLetterScaredState : StrollingLetterState
     {

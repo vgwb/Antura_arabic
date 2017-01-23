@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using EA4S.Antura;
 using EA4S.Audio;
 
-namespace EA4S.Scanner
+namespace EA4S.Minigames.Scanner
 {
 	public class ScannerAntura : MonoBehaviour {
 
 
-        public static bool  IS_IN_SCENE;
+        public bool  isInScene;
 
-        public static int SCARED_COUNTER;
+        public int scaredCounter;
         public ScannerGame game;
         public Transform stopPose, chargeEndPose;
         public float movingSpeed = 8, chargeSpeed = 11;
@@ -70,8 +70,8 @@ namespace EA4S.Scanner
 
         public IEnumerator enterTheScene()
         {
-            SCARED_COUNTER = 0;
-            IS_IN_SCENE = true;
+            scaredCounter = 0;
+            isInScene = true;
 
             game.trapDoor.SetBool("TrapDown", false);
             game.trapDoor.SetBool("TrapUp", true);
@@ -110,9 +110,9 @@ namespace EA4S.Scanner
             antura.OnJumpEnded();
             yield return new WaitForSeconds(1.5f);
 
-            if (SCARED_COUNTER > 2)
+            if (scaredCounter > 2)
             {
-                SCARED_COUNTER = 0;
+                scaredCounter = 0;
                 StartCoroutine(leaveScene());
             }
 
@@ -128,9 +128,9 @@ namespace EA4S.Scanner
                 antura.IsAngry = true;
 
                 yield return new WaitForSeconds(2f);
-                if (SCARED_COUNTER > 2)
+                if (scaredCounter > 2)
                 {
-                    SCARED_COUNTER = 0;
+                    scaredCounter = 0;
                     StartCoroutine(leaveScene(true));
                 }
                 else
@@ -178,7 +178,7 @@ namespace EA4S.Scanner
             game.trapDoor.SetBool("TrapUp", false);
             game.trapDoor.SetBool("TrapDown", true);
             
-            IS_IN_SCENE = false;
+            isInScene = false;
         }
 
         float sildingDelay;

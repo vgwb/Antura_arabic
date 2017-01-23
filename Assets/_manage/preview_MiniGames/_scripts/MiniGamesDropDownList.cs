@@ -2,7 +2,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace EA4S.Test {
+namespace EA4S.Test
+{
 
     /// <summary>
     /// Dropdown for selecting minigames. Used in the Minigame preview scene.

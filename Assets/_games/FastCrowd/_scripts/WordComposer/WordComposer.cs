@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using System.Collections;
-using System;
 using EA4S.Audio;
 
-namespace EA4S.FastCrowd
+namespace EA4S.Minigames.FastCrowd
 {
 
     public class WordComposer : MonoBehaviour

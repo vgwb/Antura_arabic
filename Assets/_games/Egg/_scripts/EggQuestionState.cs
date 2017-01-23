@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.Egg
+namespace EA4S.Minigames.Egg
 {
     public class EggQuestionState : IGameState
     {
@@ -23,7 +23,7 @@ namespace EA4S.Egg
 
             bool onlyLetter = Random.Range(0, 2) == 0;
 
-            game.questionManager.StartNewQuestion(game.gameDifficulty, onlyLetter);
+            game.CurrentQuestion = new EggChallenge(game.GameDifficulty, onlyLetter);
             game.eggController.Reset();
 
             if (firstQuestion)
@@ -64,7 +64,7 @@ namespace EA4S.Egg
 
         void SetAndShowEggButtons()
         {
-            List<ILivingLetterData> lLetterDataSequence = game.questionManager.GetlLetterDataSequence();
+            List<ILivingLetterData> lLetterDataSequence = game.CurrentQuestion.Letters;
 
             for (int i = 0; i < lLetterDataSequence.Count; i++)
             {
@@ -80,20 +80,20 @@ namespace EA4S.Egg
 
         void ShowQuestionSequence()
         {
-            bool lightUpButtons = game.gameDifficulty < 0.25f || (game.gameDifficulty >= 0.5f && game.gameDifficulty < 0.75f);
+            bool lightUpButtons = game.GameDifficulty < 0.5f;
 
-            bool isSequence = game.questionManager.IsSequence();
+            bool isSequence = game.CurrentQuestion.IsSequence();
 
             game.eggController.EmoticonInterrogative();
 
             if (isSequence)
             {
-                game.eggController.SetQuestion(game.questionManager.GetlLetterDataSequence());
+                game.eggController.SetQuestion(game.CurrentQuestion.Letters);
                 game.eggButtonBox.PlayButtonsAudio(lightUpButtons, false, 0f, OnQuestionAudioComplete);
             }
             else
             {
-                game.eggController.SetQuestion(game.questionManager.GetlLetterDataSequence()[0]);
+                game.eggController.SetQuestion(game.CurrentQuestion.Letters[0]);
 
                 if (lightUpButtons)
                 {
@@ -112,7 +112,7 @@ namespace EA4S.Egg
 
         void OnEggButtonPressed(ILivingLetterData letterData)
         {
-            if (!game.questionManager.IsSequence())
+            if (!game.CurrentQuestion.IsSequence())
             {
                 game.eggButtonBox.StopButtonsAudio();
             }

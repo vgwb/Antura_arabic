@@ -1,7 +1,6 @@
 ﻿using EA4S.Audio;
-using EA4S.MinigamesCommon;
 
-namespace EA4S.HideAndSeek
+namespace EA4S.Minigames.HideAndSeek
 {
     public class TutorialGameState : IGameState
     {

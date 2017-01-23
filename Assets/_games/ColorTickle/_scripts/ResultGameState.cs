@@ -1,8 +1,6 @@
-﻿using EA4S.MinigamesCommon;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
-namespace EA4S.ColorTickle
+namespace EA4S.Minigames.ColorTickle
 {
     public class ResultGameState : IGameState
     {

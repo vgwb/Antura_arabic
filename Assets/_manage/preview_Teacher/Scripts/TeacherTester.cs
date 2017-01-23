@@ -1,5 +1,4 @@
 ﻿using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
 using UnityEngine;
 using UnityEngine.UI;
 

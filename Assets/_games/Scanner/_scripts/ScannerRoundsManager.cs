@@ -7,7 +7,7 @@ using EA4S.Audio;
 using EA4S.MinigamesCommon;
 using EA4S.Utilities;
 
-namespace EA4S.Scanner
+namespace EA4S.Minigames.Scanner
 {
 	public class ScannerRoundsManager {
 		
@@ -28,7 +28,7 @@ namespace EA4S.Scanner
 
 		enum Level { Level1, Level2, Level3, Level4, Level5, Level6 };
 
-		//private Level currentLevel = Level.Level4;
+
 
 		public ScannerRoundsManager(ScannerGame game)
 		{
@@ -71,11 +71,12 @@ namespace EA4S.Scanner
 				for (int i = 0; i < LLs; i++)
 				{
 					ScannerLivingLetter LL = GameObject.Instantiate(game.LLPrefab).GetComponent<ScannerLivingLetter>();
-					LL.facingCamera = ScannerConfiguration.Instance.facingCamera;
+					LL.facingCamera = game.facingCamera;
 					LL.gameObject.SetActive(true);
 					LL.onStartFallOff += OnLetterStartFallOff;
 					LL.onFallOff += OnLetterFallOff;
 					LL.onPassedMidPoint += OnLetterPassedMidPoint;
+                    LL.game = game;
 					game.scannerLL.Add(LL);
 				}
 
@@ -120,7 +121,7 @@ namespace EA4S.Scanner
 
 		private void OnLetterPassedMidPoint(ScannerLivingLetter sender)
 		{
-			if (!game.trapDoor.GetBool("TrapDown") && !ScannerAntura.IS_IN_SCENE)
+			if (!game.trapDoor.GetBool("TrapDown") && !game.antura.GetComponent<ScannerAntura>().isInScene)
 			{
 				game.trapDoor.SetBool("TrapUp",false);
 				game.trapDoor.SetBool("TrapDown", true);

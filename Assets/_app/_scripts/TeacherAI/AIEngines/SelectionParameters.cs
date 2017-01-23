@@ -9,7 +9,7 @@ namespace EA4S.Teacher
     {
         AsManyAsPossible,       // If possible, the given number of data values is asked for, or less if there are not enough.
         AllRequired,            // The given number of data values is required. Error if it is not reached.
-        MayRepeatIfNotEnough    // @todo: may repeat the same values if not enough values are found
+        MayRepeatIfNotEnough    // May repeat the same values if not enough values are found
     }
 
     /// <summary>

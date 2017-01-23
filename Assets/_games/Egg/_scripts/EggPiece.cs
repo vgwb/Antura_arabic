@@ -3,7 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.Egg
+namespace EA4S.Minigames.Egg
 {
     public class EggPiece : MonoBehaviour
     {

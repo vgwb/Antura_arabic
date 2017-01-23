@@ -1,14 +1,12 @@
-﻿using ArabicSupport;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.MixedLetters
+namespace EA4S.Minigames.MixedLetters
 {
     public class MixedLettersGame : MiniGame
     {

@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System;
 using EA4S.LivingLetters;
 using EA4S.MinigamesCommon;
 
-namespace EA4S
+namespace EA4S.Minigames.FastCrowd
 {
     /// <summary>
     /// This class manages the letters crowd
