@@ -16,9 +16,7 @@ namespace EA4S.Assessment
     /// 
     /// Refactoring Notes:
     /// There's actually only one concrete implementation for the interface, 
-    /// the proper solution would be to have 1 different Category provider for
-    /// each Lang, but since I was asked to remove unecessary classes I remove
-    /// this interface.
+    /// A interface can be added later for implementing LanguageXCategoryProvider
     /// 
     /// You can reintroduce the interface later.. if needed.
     /// </summary>

@@ -62,6 +62,9 @@ namespace EA4S.Assessment
 
         private IEnumerator TutorialRoundBegin()
         {
+            // It is perfectly possible we will no longer need this flag in definitive
+            // game version. For now requisites has not been decided yet:
+            // It first of all need testing
             bool playAfter = AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial;
 
             yield return Koroutine.Nested( PlaceQuestions( playAfter == false));
@@ -74,12 +77,14 @@ namespace EA4S.Assessment
 
         private IEnumerator RoundBegin()
         {
-            yield return Koroutine.Nested( PlaceQuestions());
-            yield return QuestionPlacer.PlayQuestionSound();
+            bool playSound = AssessmentOptions.Instance.QuestionSpawnedPlaySound;
+            yield return Koroutine.Nested( PlaceQuestions( playSound));
         }
 
         private IEnumerator PlaceQuestions( bool playAudio = false)
         {
+            // It is possible that in definite game release the boolean flag will be always
+            // false. In that case we can simplify the code later.
             QuestionPlacer.Place( QuestionGenerator.GetAllQuestions(), playAudio);
             while ( QuestionPlacer.IsAnimating())
                 yield return null;

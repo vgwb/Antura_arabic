@@ -38,7 +38,7 @@ namespace EA4S.Assessment
             assessmentGame.SetCurrentState( gameState);
         }
 
-        float timer = 0.05f;
+        float timer = 0.6f; // Gives Time to show the first question appearing
 
         public void Update( float delta)
         {

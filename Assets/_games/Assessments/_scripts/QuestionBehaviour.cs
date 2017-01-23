@@ -21,7 +21,7 @@ namespace EA4S.Assessment
         public void FaceDownInstant()
         {
             Debug.Log("FaceDown");
-            transform.rotation = Quaternion.Euler( new Vector3(0, 180, 0));
+            transform.rotation = Quaternion.Euler( new Vector3(0, 0, 0));
         }
 
         bool triggered = false;
@@ -70,7 +70,7 @@ namespace EA4S.Assessment
 
         internal void OnSpawned()
         {
-            if (AssessmentOptions.Instance.QuestionAnsweredPlaySound)
+            if (AssessmentOptions.Instance.QuestionSpawnedPlaySound)
                 ReadMeSound();
         }
 
