@@ -14,7 +14,7 @@ namespace EA4S.Scanner
 		private Vector3 screenPoint;
 		private Vector3 offset;
 		private float startX;
-		private float startY;
+		//private float startY;
 		private float startZ;
 		private Collider player;
 		private Transform originalParent;
@@ -72,7 +72,7 @@ namespace EA4S.Scanner
 		{
 			originalParent = transform.parent;
 			startX = transform.position.x;
-			startY = transform.position.y;
+			//startY = transform.position.y;
 			startZ = transform.position.z;
 
             thisCollider = GetComponentInChildren<BoxCollider>();

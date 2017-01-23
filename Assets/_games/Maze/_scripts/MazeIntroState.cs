@@ -4,7 +4,7 @@
     {
         MazeGameManager game;
 
-        int currentShownTubes = 2;
+        //int currentShownTubes = 2;
 
 
 

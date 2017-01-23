@@ -35,10 +35,9 @@ namespace EA4S.SickLetters
             vaseStartRot = transform.eulerAngles;
             vaseRB = GetComponent<Rigidbody>();
         }
-
-        int c = 0;
+        
         SickLettersDraggableDD dd;
-        bool cheatingDetected = false;
+        //bool cheatingDetected = false;
 
         void OnTriggerEnter(Collider coll)
         {

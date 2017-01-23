@@ -33,7 +33,7 @@ namespace EA4S.MissingLetter
 
             OpenEmoticons(Emoticons.vfx_emo_positive);
 
-            autoClose = true;
+            //autoClose = true;
         }
 
         public void EmoticonNegative()
@@ -45,14 +45,14 @@ namespace EA4S.MissingLetter
 
             OpenEmoticons(Emoticons.vfx_emo_negative);
 
-            autoClose = true;
+            //autoClose = true;
         }
 
         public void CloseEmoticons()
         {
             emoticonsController.Open(false);
 
-            emoticonsClosed = true;
+            //emoticonsClosed = true;
             currentEmoticon = null;
         }
         #endregion
@@ -68,7 +68,7 @@ namespace EA4S.MissingLetter
                 emoticonsController.SetEmoticon(icon, true);
             }
 
-            emoticonsClosed = false;
+            //emoticonsClosed = false;
         }
 
         void UpdateEmoticonsColor()
@@ -114,8 +114,8 @@ namespace EA4S.MissingLetter
         EmoticonsController emoticonsController;
         MissingLetterEmoticonsMaterials missingLetterEmoticonsMaterials;
 
-        bool autoClose;
-        bool emoticonsClosed;
+        //bool autoClose;
+        //bool emoticonsClosed;
         Emoticons? currentEmoticon;
 
         Material iconMaterial;
