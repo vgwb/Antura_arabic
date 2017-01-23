@@ -17,12 +17,29 @@ namespace EA4S.Assessment
     /// These options are setted by AssessmentFactory after MiniGameAPI produced the
     /// AssessmentConfiguration instance.
     /// </summary>
-    public class AssessmentOptions : SceneScopedSingleton< AssessmentOptions>
+    public class AssessmentOptions
     {
+        private static AssessmentOptions instance;
+        public static AssessmentOptions Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        public static void Reset()
+        {
+            instance = new AssessmentOptions();
+        }
+
         public TextFlow LocaleTextFlow { get; set; }
         public bool PronunceQuestionWhenClicked { get; set; }
         public bool PronunceAnswerWhenClicked { get; set; }
         public bool ShowQuestionAsImage { get; set; }
         public bool PlayQuestionAudioAfterTutorial { get; set; }
+        public bool QuestionAnsweredFlip { get; set; }
+        public bool QuestionAnsweredPlaySound { get; set; }
+        public bool QuestionSpawnedPlaySound { get; set; }
     }
 }

@@ -31,22 +31,25 @@ namespace EA4S.Assessment
         }
 
         protected IQuestion[] allQuestions;
+        protected List< IEnumerator> questionSounds;
+        private List< LetterObjectView> images;
 
-        public void Place( IQuestion[] question)
+        public void Place( IQuestion[] question, bool playSound)
         {
             allQuestions = question;
             isAnimating = true;
             images = new List< LetterObjectView>();
-            Koroutine.Run( PlaceCoroutine());
+            questionSounds = new List< IEnumerator>();
+            Koroutine.Run( PlaceCoroutine( playSound));
         }
 
 
-        IEnumerator PlaceCoroutine()
+        IEnumerator PlaceCoroutine( bool playAudio)
         {
-            return GetPlaceCoroutine();
+            return GetPlaceCoroutine( playAudio);
         }
 
-        public virtual IEnumerator GetPlaceCoroutine()
+        public virtual IEnumerator GetPlaceCoroutine( bool playAudio)
         {
             // Count questions and answers
             int questionsNumber = 0;
@@ -101,7 +104,7 @@ namespace EA4S.Assessment
             for (int i = 0; i < questionsNumber; i++)
             {
                 currentPos.x += (spaceIncrement + questionSize/2) * sign;
-                yield return PlaceQuestion(allQuestions[questionIndex], currentPos);
+                yield return PlaceQuestion(allQuestions[questionIndex], currentPos, playAudio);
                 currentPos.x += (questionSize * sign) / 2;
 
                 if (alsoDrawing)
@@ -126,8 +129,6 @@ namespace EA4S.Assessment
             isAnimating = false;
         }
 
-        private List< LetterObjectView> images;
-
         protected IYieldable PlaceImage( IQuestion q, Vector3 imagePos)
         {
             var ll = LivingLetterFactory.Instance.SpawnQuestion( q.Image());
@@ -140,15 +141,20 @@ namespace EA4S.Assessment
             return Wait.For( 1.0f);
         }
 
-        protected IYieldable PlaceQuestion( IQuestion q, Vector3 position)
+        IQuestion lastPlacedQuestion = null;
+
+        protected IYieldable PlaceQuestion( IQuestion q, Vector3 position, bool playAudio)
         {
+            lastPlacedQuestion = q;
             var ll = q.gameObject.GetComponent< LetterObjectView>();
 
             ll.Poof( ElementsSize.PoofOffset);
             audioManager.PlaySound( Sfx.Poof);
             ll.transform.localPosition = position;
             ll.transform.DOScale( 1, 0.3f);
-            q.gameObject.GetComponent< QuestionBehaviour>().OnSpawned();
+            if(playAudio)
+                q.QuestionBehaviour.ReadMeSound();
+
             return Wait.For( 1.0f);
         }
 
@@ -194,7 +200,7 @@ namespace EA4S.Assessment
 
                 yield return Koroutine.Nested( FadeOutQuestion(q));
             }
-
+            
             // give time to finish animating elements
             yield return Wait.For( 0.65f);
             isAnimating = false;
@@ -213,8 +219,6 @@ namespace EA4S.Assessment
         {
             audioManager.PlaySound( Sfx.Poof);
             q.gameObject.GetComponent< LetterObjectView>().Poof( ElementsSize.PoofOffset);
-
-
             q.gameObject.transform.DOScale( 0, 0.4f).OnComplete(() => GameObject.Destroy( q.gameObject));
             yield return Wait.For( 0.1f);
         }
@@ -223,8 +227,31 @@ namespace EA4S.Assessment
         {
             audioManager.PlaySound( Sfx.BalloonPop);
 
-            go.transform.DOScale(0, 0.23f).OnComplete(() => GameObject.Destroy( go));
+            go.transform.DOScale( 0, 0.23f).OnComplete(() => GameObject.Destroy( go));
             yield return Wait.For( 0.06f);
+        }
+
+        /// <summary>
+        ///  Should highlight 1 QUESTION and play their audio. This is called
+        ///  only if we have to pronunce question, and only if we should pronunce it
+        ///  after the tutorial brief. Actually this is always called in the first round
+        ///  (I find it more natural) but requisites may change later so, it is still 
+        ///  possible that we have to play this Before the tutorial brief.
+        ///  (that is the reason I still have a
+        ///  AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial
+        ///  flag
+        /// </summary>
+        public IYieldable PlayQuestionSound()
+        {
+            audioManager.PlaySound( Sfx.Blip);
+            var sequence = DOTween.Sequence();
+            lastPlacedQuestion.QuestionBehaviour.ReadMeSound();
+
+            sequence
+                .Append( lastPlacedQuestion.gameObject.transform.DOScale( 0.5f, 0.15f))
+                .Append( lastPlacedQuestion.gameObject.transform.DOScale( 1.0f, 0.15f));
+
+            return Wait.For( 1.0f);
         }
     }
 }

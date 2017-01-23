@@ -11,7 +11,6 @@ namespace EA4S.Assessment
     {
         private IQuestionProvider provider;
         private QuestionGeneratorState state;
-        private IQuestionPack currentPack;
         private int numberOfCategories;
         private int numberOfMaxAnswers;
         private int numberOfRounds;
@@ -34,17 +33,14 @@ namespace EA4S.Assessment
             FillBuckets();
         }
 
-        // Unluckily the question provider can be used only in the following mode
-        // because of how API was designed.
+        // The QuestionProvider gives answers divided by category. Weird
+        // Because of that we have to take all answers and divide them by category
+        // then we pick something random from each "bucket".
         private void TakeAnswersFromBuckets()
         {
             category1ForThisRound = 0;
             category2ForThisRound = 0;
             category3ForThisRound = 0;
-
-            Debug.Log("Bucket1:" + answersBuckets[0].Count);
-            Debug.Log("Bucket2:" + answersBuckets[1].Count);
-            Debug.Log("Bucket3:" + answersBuckets[2].Count);
 
             int picksThisRound = numberOfMaxAnswers;
             int totalAnswers = answersBuckets[0].Count + answersBuckets[1].Count + answersBuckets[2].Count;
@@ -63,7 +59,6 @@ namespace EA4S.Assessment
                         pickFromBucketN = temp;
                         break;
                     }
-
                 }
 
                 if (pickFromBucketN == -1)

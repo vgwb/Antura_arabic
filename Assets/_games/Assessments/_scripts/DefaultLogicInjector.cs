@@ -1,16 +1,15 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
     internal class DefaultLogicInjector : ILogicInjector
     {
         protected IDragManager dragManager = null;
-        protected IQuestionDecorator decorator = null;
 
-        public DefaultLogicInjector( IDragManager dragManager, IQuestionDecorator decorator)
+        public DefaultLogicInjector( IDragManager dragManager)
         {
             this.dragManager = dragManager;
-            this.decorator = decorator;
             ResetRound();
         }
 
@@ -52,7 +51,9 @@ namespace EA4S.Assessment
 
         protected virtual void WireQuestion( IQuestion q, AnswerSet answerSet)
         {
-            decorator.DecorateQuestion( q.gameObject.GetComponent< QuestionBehaviour>());
+            if (AssessmentOptions.Instance.QuestionAnsweredFlip)
+                q.QuestionBehaviour.FaceDownInstant();
+
             q.SetAnswerSet( answerSet);
             questionsList.Add( q);
         }

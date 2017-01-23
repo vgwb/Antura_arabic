@@ -27,6 +27,14 @@ namespace EA4S.Assessment
             }
         }
 
+        public QuestionBehaviour QuestionBehaviour
+        {
+            get
+            {
+                return view.GetComponent< QuestionBehaviour>();
+            }
+        }
+
         public ILivingLetterData Image()
         {
             throw new NotImplementedException( "Not implemented (on purpose)");
