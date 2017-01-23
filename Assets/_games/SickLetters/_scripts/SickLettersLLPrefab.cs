@@ -5,8 +5,7 @@ using EA4S.LivingLetters;
 using EA4S.Utilities;
 using TMPro;
 
-
-namespace EA4S.SickLetters
+namespace EA4S.Minigames.SickLetters
 {
 
     public enum letterStatus { idle, angry, horry}

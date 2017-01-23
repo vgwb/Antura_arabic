@@ -1,10 +1,8 @@
 ﻿using EA4S.LivingLetters;
 using EA4S.MinigamesCommon;
 using UnityEngine;
-using UnityEngine.UI;
-using ModularFramework.Helpers;
 
-namespace EA4S.ColorTickle
+namespace EA4S.Minigames.ColorTickle
 {
     public class TutorialGameState : IGameState
     {

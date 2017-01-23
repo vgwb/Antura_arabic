@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 using DG.Tweening;
-using TMPro;
 using System;
 using System.Collections.Generic;
-using ArabicSupport;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using DG.Tweening.Plugins.Core.PathCore;
 using EA4S.LivingLetters;
 
-namespace EA4S.MissingLetter
+namespace EA4S.Minigames.MissingLetter
 {
 
     public class LetterBehaviour : MonoBehaviour

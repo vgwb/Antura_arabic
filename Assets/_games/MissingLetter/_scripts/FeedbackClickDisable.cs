@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using EA4S.Audio;
 
-namespace EA4S.MissingLetter
+namespace EA4S.Minigames.MissingLetter
 {
     public class FeedbackClickDisable : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.ReadingGame
+namespace EA4S.Minigames.ReadingGame
 {
     public class WalkAnturaState : AnturaState
     {

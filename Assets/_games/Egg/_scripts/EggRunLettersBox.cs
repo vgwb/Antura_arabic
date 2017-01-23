@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace EA4S.Egg
+namespace EA4S.Minigames.Egg
 {
     public class EggRunLettersBox : MonoBehaviour
     {

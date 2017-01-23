@@ -4,7 +4,7 @@ using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using UnityEngine;
 
-namespace EA4S.MissingLetter {
+namespace EA4S.Minigames.MissingLetter {
 
     public class MissingLetterTutorialState : IGameState {
 

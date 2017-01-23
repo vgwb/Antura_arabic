@@ -2,7 +2,7 @@
 using EA4S.Tutorial;
 using UnityEngine;
 
-namespace EA4S.Egg
+namespace EA4S.Minigames.Egg
 {
     public class EggPlayState : IGameState
     {

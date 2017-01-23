@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class GroundController : MonoBehaviour {
+namespace EA4S.Minigames.ThrowBalls
+{
+    public class GroundController : MonoBehaviour {
 
-    public static GroundController instance;
+        public static GroundController instance;
 
-    void Awake()
-    {
-        instance = this;
+        void Awake()
+        {
+            instance = this;
+        }
     }
 }

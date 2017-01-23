@@ -1,20 +1,15 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
-using ModularFramework.Core;
-using ModularFramework.Helpers;
 using TMPro;
 
 using System;
-using EA4S;
 using EA4S.Antura;
 using EA4S.Audio;
 using EA4S.LivingLetters;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.DancingDots
+namespace EA4S.Minigames.DancingDots
 {
     public enum DiacriticEnum { None, Sokoun, Fatha, Dameh, Kasrah };
 

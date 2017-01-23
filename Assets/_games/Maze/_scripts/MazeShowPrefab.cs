@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 
-namespace EA4S.Maze
+namespace EA4S.Minigames.Maze
 {
 	public class MazeShowPrefab : MonoBehaviour {
 

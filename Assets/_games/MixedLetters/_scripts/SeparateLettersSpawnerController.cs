@@ -5,7 +5,7 @@ using System;
 using EA4S.Audio;
 using Random = UnityEngine.Random;
 
-namespace EA4S.MixedLetters
+namespace EA4S.Minigames.MixedLetters
 {
     public class SeparateLettersSpawnerController : MonoBehaviour
     {

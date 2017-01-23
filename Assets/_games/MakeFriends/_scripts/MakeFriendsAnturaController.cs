@@ -1,37 +1,39 @@
 ﻿using UnityEngine;
-using EA4S;
 using EA4S.Antura;
 
-public class MakeFriendsAnturaController : MonoBehaviour
+namespace EA4S.Minigames.MakeFriends
 {
-    public AnturaAnimationController animationController;
-    public Vector3 runDirection;
-    public float runSpeed;
-
-    private bool run;
-
-
-    public void ReactToEndGame()
+    public class MakeFriendsAnturaController : MonoBehaviour
     {
-        animationController.DoCharge(null);
-        run = true;
-    }
+        public AnturaAnimationController animationController;
+        public Vector3 runDirection;
+        public float runSpeed;
 
-    void FixedUpdate()
-    {
-        if (run)
+        private bool run;
+
+
+        public void ReactToEndGame()
         {
-            transform.Translate(runDirection * runSpeed);
+            animationController.DoCharge(null);
+            run = true;
         }
-    }
 
-    public void ReactNegatively()
-    {
-        animationController.DoShout();
-    }
+        void FixedUpdate()
+        {
+            if (run)
+            {
+                transform.Translate(runDirection * runSpeed);
+            }
+        }
 
-    public void ReactPositively()
-    {
-        animationController.DoSniff();
+        public void ReactNegatively()
+        {
+            animationController.DoShout();
+        }
+
+        public void ReactPositively()
+        {
+            animationController.DoSniff();
+        }
     }
 }

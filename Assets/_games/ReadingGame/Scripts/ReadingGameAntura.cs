@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using EA4S.Antura;
 
-namespace EA4S.ReadingGame
+namespace EA4S.Minigames.ReadingGame
 {
     public class ReadingGameAntura : MonoBehaviour
     {
