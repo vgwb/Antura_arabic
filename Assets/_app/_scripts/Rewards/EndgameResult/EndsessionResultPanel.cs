@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using EA4S.Audio;
+using EA4S.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.Rewards
 {
     /// <summary>
     /// Controls the panel that shows information on the results after a play session ends.

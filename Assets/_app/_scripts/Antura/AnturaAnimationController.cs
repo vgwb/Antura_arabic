@@ -1,22 +1,7 @@
 ﻿using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Antura
 {
-    // conventions: requires renaming
-    public enum AnturaAnimationStates
-    {
-        idle,
-        walking,
-        sitting,
-        sleeping,
-        sheeping,
-        sucking,
-        bellyUp,
-        digging,
-        dancing,
-        bitingTail
-    }
-
     /// <summary>
     /// Handles the animations of Antura.
     /// </summary>
@@ -331,5 +316,22 @@ namespace EA4S
             }
         }
     }
+}
 
+namespace EA4S
+{
+    // conventions: requires renaming
+    public enum AnturaAnimationStates
+    {
+        idle,
+        walking,
+        sitting,
+        sleeping,
+        sheeping,
+        sucking,
+        bellyUp,
+        digging,
+        dancing,
+        bitingTail
+    }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using EA4S.MinigamesAPI;
+using EA4S.MinigamesAPI.Sample;
 
 namespace EA4S
 {

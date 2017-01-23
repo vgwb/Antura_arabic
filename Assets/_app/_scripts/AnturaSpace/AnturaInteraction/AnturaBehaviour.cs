@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using DG.Tweening;
+using EA4S.Antura;
+using EA4S.Audio;
 
 namespace EA4S.AnturaSpace
 {

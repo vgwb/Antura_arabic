@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using EA4S;
+using EA4S.Antura;
 
 // refactor: add to the Test namespace
 public class AnturaAnimationTester : MonoBehaviour

@@ -1,4 +1,6 @@
 
+using EA4S.MinigamesCommon;
+
 namespace EA4S.Assessment
 {
     public class AssessmentGameState : IGameState

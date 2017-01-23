@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using EA4S.MinigamesAPI;
+using EA4S.MinigamesAPI.Sample;
 
 namespace EA4S.Egg
 {

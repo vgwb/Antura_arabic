@@ -5,28 +5,32 @@ using UnityEditor;
 
 using System.IO;
 
-// refactor: Helpers need to be standardized
-// refactor: move this to Editor utilities
-public class ScriptableObjectHelper : ScriptableObject
+namespace EA4S.Utilities
 {
-    [MenuItem("Assets/Create/Empty asset")]
-    public static void Create()
+    public class ScriptableObjectHelper : ScriptableObject
     {
-		var asset = CreateInstance<ScriptableObject>();
-		string path = AssetDatabase.GetAssetPath (Selection.activeObject);
-		if (path == "")
-		{
-			path = "Assets";
-		}
-		else if (Path.GetExtension(path) != "")
-		{
-			path = path.Replace(Path.GetFileName (AssetDatabase.GetAssetPath (Selection.activeObject)), "");
-		}
-        AssetDatabase.CreateAsset(asset, AssetDatabase.GenerateUniqueAssetPath(path + "/Empty asset.asset"));
+        [MenuItem("Assets/Create/Empty asset")]
+        public static void Create()
+        {
+            var asset = CreateInstance<ScriptableObject>();
+            string path = AssetDatabase.GetAssetPath (Selection.activeObject);
+            if (path == "")
+            {
+                path = "Assets";
+            }
+            else if (Path.GetExtension(path) != "")
+            {
+                path = path.Replace(Path.GetFileName (AssetDatabase.GetAssetPath (Selection.activeObject)), "");
+            }
+            AssetDatabase.CreateAsset(asset, AssetDatabase.GenerateUniqueAssetPath(path + "/Empty asset.asset"));
 
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
     }
 }
+
+// refactor: Helpers need to be standardized
+// refactor: move this to Editor utilities
 
 #endif

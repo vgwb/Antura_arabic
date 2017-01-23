@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using EA4S.Profile;
 
-namespace EA4S
+namespace EA4S.Antura
 {
-
     /// <summary>
     /// Handles loading and assignment of visual reward props appearing on Antura.
     /// </summary>
@@ -256,6 +256,10 @@ namespace EA4S
 
         #endregion
     }
+}
+
+namespace EA4S
+{
 
     #region Data Structures    
     /// <summary>

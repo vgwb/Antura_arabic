@@ -1,8 +1,8 @@
-﻿using System;
-using DG.DeAudio;
+﻿using DG.DeAudio;
+using EA4S.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Audio
 {
     public class AudioSourceWrapper : IAudioSource
     {

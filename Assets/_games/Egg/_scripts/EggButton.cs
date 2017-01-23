@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
+using EA4S.MinigamesCommon;
+using EA4S.Utilities;
 
 namespace EA4S.Egg
 {

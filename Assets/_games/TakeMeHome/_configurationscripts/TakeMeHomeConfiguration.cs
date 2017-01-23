@@ -1,4 +1,8 @@
-﻿namespace EA4S.TakeMeHome
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesAPI.Sample;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.TakeMeHome
 {
 	
 	public class TakeMeHomeConfiguration : IGameConfiguration

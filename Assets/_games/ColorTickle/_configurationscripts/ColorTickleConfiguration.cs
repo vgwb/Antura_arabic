@@ -1,4 +1,7 @@
-﻿namespace EA4S.ColorTickle
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.ColorTickle
 {
     public class ColorTickleConfiguration : IGameConfiguration
     {

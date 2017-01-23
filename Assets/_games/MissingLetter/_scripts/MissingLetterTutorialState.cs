@@ -1,4 +1,6 @@
-﻿using EA4S.LivingLetters;
+﻿using EA4S.Audio;
+using EA4S.LivingLetters;
+using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using UnityEngine;
 

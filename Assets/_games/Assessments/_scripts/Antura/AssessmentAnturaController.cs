@@ -3,6 +3,8 @@ using EA4S.Tutorial;
 using Kore.Coroutines;
 using System;
 using System.Collections;
+using EA4S.Antura;
+using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Assessment

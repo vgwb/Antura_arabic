@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Rewards
 {
     // refactor: remove this
     [Obsolete("Replaced by EA4S.GameResultUI (but always use the <code>Minigames Interface</code> to access it)")]

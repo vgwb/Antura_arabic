@@ -5,7 +5,10 @@ using System.Collections;
 using System.Collections.Generic;
 using ModularFramework.Helpers;
 using System;
+using EA4S.Audio;
 using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 
 namespace EA4S.MissingLetter
 {

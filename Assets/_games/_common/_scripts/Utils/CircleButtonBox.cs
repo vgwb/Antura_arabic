@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.MinigamesCommon
 {
     /// <summary>
     /// A container for circle-shaped buttons.

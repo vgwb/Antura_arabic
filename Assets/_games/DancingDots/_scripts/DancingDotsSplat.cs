@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.Audio;
 
 namespace EA4S.DancingDots
 {

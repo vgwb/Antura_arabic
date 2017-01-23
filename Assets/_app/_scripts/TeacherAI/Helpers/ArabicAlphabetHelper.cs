@@ -3,6 +3,7 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using ArabicSupport;
+using EA4S.Utilities;
 
 namespace EA4S
 {

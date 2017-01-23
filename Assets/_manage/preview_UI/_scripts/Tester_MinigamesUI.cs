@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Test

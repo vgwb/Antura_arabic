@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Antura
 {
-    
+    /// <summary>
+    /// State for Antura's animation. Animates a walk cylce.
+    /// </summary>
     public class AnturaWalkBehaviour : StateMachineBehaviour
     {
 

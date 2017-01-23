@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
+using EA4S.Antura;
+using EA4S.Utilities;
 
 namespace EA4S
 {

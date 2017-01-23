@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using EA4S.Audio;
 using UnityStandardAssets.ImageEffects;
 
-namespace EA4S
+namespace EA4S.CameraControl
 {
 
+    /// <summary>
+    /// Controller for the camera used during gameplay and to show the 3D world.
+    /// </summary>
     public class CameraGameplayController : MonoBehaviour
     {
         // refactor: remove the static access

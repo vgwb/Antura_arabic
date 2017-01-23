@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using EA4S.Utilities;
+using SQLite;
 
 namespace EA4S.Db
 {

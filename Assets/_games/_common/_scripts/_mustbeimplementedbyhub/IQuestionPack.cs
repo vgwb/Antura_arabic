@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.MinigamesAPI
 {
     /// <summary>
     /// Interface for learning content data in the form:

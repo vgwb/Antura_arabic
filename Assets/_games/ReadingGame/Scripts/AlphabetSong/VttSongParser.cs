@@ -25,7 +25,7 @@ namespace EA4S
                 {
                     foreach (var p in parts)
                     {
-                        var lines = p.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                        var lines = p.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
                         var item = new KaraokeSegment();
                         bool parsedTime = false;

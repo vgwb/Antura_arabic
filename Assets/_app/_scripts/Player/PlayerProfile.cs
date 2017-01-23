@@ -1,11 +1,9 @@
 ﻿using System;
-using UnityEngine.UI;
-using ModularFramework.Core;
 using ModularFramework.Modules;
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Profile
 {
 
     /// <summary>

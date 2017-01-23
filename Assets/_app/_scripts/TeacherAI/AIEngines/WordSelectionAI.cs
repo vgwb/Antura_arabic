@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using EA4S.Db;
 using System.Linq;
+using EA4S.Profile;
+using EA4S.Utilities;
 
 namespace EA4S.Teacher
 {

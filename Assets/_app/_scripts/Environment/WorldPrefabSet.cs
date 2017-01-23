@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Environment
 {
     public class WorldPrefabSet : ScriptableObject
     {

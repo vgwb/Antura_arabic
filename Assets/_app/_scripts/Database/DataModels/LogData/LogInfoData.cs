@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using EA4S.Utilities;
+using SQLite;
 
 // refactor: InfoEvent should be easily accessible outside of the EA4S.Db namespace but still be part of it
 namespace EA4S

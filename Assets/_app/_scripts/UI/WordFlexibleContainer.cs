@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using EA4S;
+using EA4S.Utilities;
 
 /// <summary>
 /// A flexible container for text.

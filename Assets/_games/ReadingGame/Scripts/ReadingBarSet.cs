@@ -2,6 +2,7 @@
 using EA4S;
 using UnityEngine;
 using System.Collections.Generic;
+using EA4S.MinigamesCommon;
 
 public class ReadingBarSet : MonoBehaviour
 {

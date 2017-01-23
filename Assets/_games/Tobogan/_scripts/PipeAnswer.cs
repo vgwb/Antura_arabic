@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System;
 using ArabicSupport;
 using System.Collections.Generic;
+using EA4S.Utilities;
 
 namespace EA4S.Tobogan
 {

@@ -1,5 +1,4 @@
-﻿
-namespace EA4S
+﻿namespace EA4S.MinigamesCommon
 {
     /// <summary>
     /// Concrete implementation of IOverlayWidget. Accessible to minigames.

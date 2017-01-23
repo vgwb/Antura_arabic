@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-
+using EA4S.MinigamesCommon;
 using Random = UnityEngine.Random;
 
 namespace EA4S.MixedLetters

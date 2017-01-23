@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ModularFramework.Helpers;
 using ArabicSupport;
+using EA4S.MinigamesAPI;
 
 namespace EA4S
 {

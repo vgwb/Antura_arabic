@@ -4,7 +4,9 @@ using System;
 using TMPro;
 using DG.DeExtensions;
 using DG.Tweening;
+using EA4S.Audio;
 using EA4S.Db;
+using EA4S.Utilities;
 
 namespace EA4S
 {

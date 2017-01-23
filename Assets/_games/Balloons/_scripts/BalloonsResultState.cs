@@ -1,4 +1,6 @@
-﻿namespace EA4S.Balloons
+﻿using EA4S.MinigamesCommon;
+
+namespace EA4S.Balloons
 {
     public class BalloonsResultState : IGameState
     {
