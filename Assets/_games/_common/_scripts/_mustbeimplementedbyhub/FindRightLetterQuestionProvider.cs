@@ -13,19 +13,13 @@ namespace EA4S.MinigamesAPI
 
         #region properties
         List<IQuestionPack> questions = new List<IQuestionPack>();
-        string description;
         int currentQuestion;
         #endregion
 
-        public FindRightLetterQuestionProvider(List<IQuestionPack> _questionsPack, string descriptions) {
+        public FindRightLetterQuestionProvider(List<IQuestionPack> _questionsPack) {
             currentQuestion = 0;
-            description = "Antura Questions";
 
             questions.AddRange(_questionsPack);
-        }
-
-        public string GetDescription() {
-            return description;
         }
 
         /// <summary>

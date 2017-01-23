@@ -69,7 +69,7 @@ namespace EA4S.Egg
 
             game.eggButtonBox.SetOnPressedCallback(OnEggButtonPressed);
 
-            showTutorial = game.showTutorial;
+            showTutorial = game.ShowTutorial;
             tutorialCorrectActive = false;
             tutorialDelayTimer = tutorialDelayTime;
             tutorialStop = false;
