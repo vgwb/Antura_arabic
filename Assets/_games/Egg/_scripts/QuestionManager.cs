@@ -7,8 +7,6 @@ namespace EA4S.Minigames.Egg
     {
         List<ILivingLetterData> lLetterDataSequence = new List<ILivingLetterData>();
 
-        string questionDescription;
-
         bool sequence;
 
         public void StartNewQuestion(float difficulty, bool onlyLetter)
@@ -18,8 +16,6 @@ namespace EA4S.Minigames.Egg
             lLetterDataSequence.Clear();
 
             IQuestionPack questionPack = EggConfiguration.Instance.Questions.GetNextQuestion();
-
-            questionDescription = "";
 
             List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
@@ -34,10 +30,7 @@ namespace EA4S.Minigames.Egg
                 wrongAnswers.Add(letterData);
             }
 
-            if (wrongAnswers.Count == 0)
-            {
-                sequence = true;
-            }
+            sequence = EggConfiguration.Instance.Variation == EggConfiguration.EggVariation.Sequence;
 
             int numberOfLetters = 2; 
 
@@ -87,10 +80,5 @@ namespace EA4S.Minigames.Egg
         {
             return sequence;
         }
-
-        public string GetQuestionDescription()
-        {
-            return questionDescription;
-        } 
     }
 }

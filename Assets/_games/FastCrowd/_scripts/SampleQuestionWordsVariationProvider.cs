@@ -10,15 +10,12 @@ namespace EA4S.Minigames.FastCrowd
     public class SampleQuestionWordsVariationProvider : IQuestionProvider
     {
         List<SampleQuestionPack> questions = new List<SampleQuestionPack>();
-        string description;
 
         int currentQuestion;
 
         public SampleQuestionWordsVariationProvider()
         {
             currentQuestion = 0;
-
-            description = "Questions description";
 
             for (int i = 0; i < 32; i++)
             {
@@ -46,11 +43,6 @@ namespace EA4S.Minigames.FastCrowd
                 var currentPack = new SampleQuestionPack(null, wrongAnswers, correctAnswers);
                 questions.Add(currentPack);
             }
-        }
-
-        public string GetDescription()
-        {
-            return description;
         }
 
         IQuestionPack IQuestionProvider.GetNextQuestion()
