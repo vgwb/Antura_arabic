@@ -1,7 +1,8 @@
 ﻿using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.ThrowBalls {
+namespace EA4S.Minigames.ThrowBalls
+{
     public enum ThrowBallsVariation : int {
         letters = 1,
         words = 2,

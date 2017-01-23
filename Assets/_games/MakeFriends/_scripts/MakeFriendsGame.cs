@@ -3,14 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using ModularFramework.Core;
 using ModularFramework.Helpers;
 using ArabicSupport;
-using EA4S;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 
-namespace EA4S.MakeFriends
+namespace EA4S.Minigames.MakeFriends
 {
     public class MakeFriendsGame : MiniGame
     {

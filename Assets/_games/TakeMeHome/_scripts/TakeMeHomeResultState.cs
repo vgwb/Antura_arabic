@@ -1,8 +1,7 @@
-﻿using EA4S.MinigamesCommon;
-
-namespace EA4S.TakeMeHome
+﻿namespace EA4S.Minigames.TakeMeHome
 {
-public class TakeMeHomeResultState : IGameState {
+
+    public class TakeMeHomeResultState : IGameState {
 
 		
 		public TakeMeHomeResultState(TakeMeHomeGame game)

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using EA4S.Antura;
 using EA4S.Audio;
 
-namespace EA4S.Scanner
+namespace EA4S.Minigames.Scanner
 {
 	public class ScannerAntura : MonoBehaviour {
 

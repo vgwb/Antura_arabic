@@ -1,9 +1,6 @@
-﻿using System;
-using EA4S.Audio;
-using EA4S.MinigamesCommon;
-using UnityEngine;
+﻿using EA4S.Audio;
 
-namespace EA4S.DancingDots
+namespace EA4S.Minigames.DancingDots
 {
     public class ResultGameState : IGameState
     {

@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using EA4S.Antura;
 using EA4S.Utilities;
 
-namespace EA4S.ThrowBalls
+namespace EA4S.Minigames.ThrowBalls
 {
     public class AnturaController : MonoBehaviour
     {

@@ -1,7 +1,6 @@
-﻿using System;
-using EA4S.MinigamesCommon;
+﻿using EA4S.MinigamesCommon;
 
-namespace EA4S.Tobogan
+namespace EA4S.Minigames.Tobogan
 {
     public class ToboganPlayState : IGameState
     {

@@ -7,7 +7,7 @@ using EA4S.Audio;
 using EA4S.MinigamesCommon;
 using EA4S.Utilities;
 
-namespace EA4S.Scanner
+namespace EA4S.Minigames.Scanner
 {
 	public class ScannerRoundsManager {
 		

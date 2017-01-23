@@ -1,6 +1,4 @@
-﻿using EA4S.MinigamesCommon;
-
-namespace EA4S
+﻿namespace EA4S.Minigames.FastCrowd
 {
     public abstract class StrollingLetterState : IGameState
     {

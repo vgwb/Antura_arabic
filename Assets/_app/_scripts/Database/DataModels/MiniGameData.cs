@@ -19,7 +19,6 @@ namespace EA4S.Db
         public MiniGameDataType Type;
         public string Main;
         public string Variation;
-        public string Description;
         public string Scene;
 
         public string GetId()

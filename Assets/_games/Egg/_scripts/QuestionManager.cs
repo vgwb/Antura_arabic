@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using EA4S.MinigamesAPI;
 
-namespace EA4S.Egg
+namespace EA4S.Minigames.Egg
 {
     public class QuestionManager
     {
         List<ILivingLetterData> lLetterDataSequence = new List<ILivingLetterData>();
-
-        string questionDescription;
 
         bool sequence;
 
@@ -19,25 +17,13 @@ namespace EA4S.Egg
 
             IQuestionPack questionPack = EggConfiguration.Instance.Questions.GetNextQuestion();
 
-            questionDescription = "";
-
             List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
+            
+            correctAnswers.AddRange(questionPack.GetCorrectAnswers());
+            wrongAnswers.AddRange(questionPack.GetWrongAnswers());
 
-            foreach (ILivingLetterData letterData in questionPack.GetCorrectAnswers())
-            {
-                correctAnswers.Add(letterData);
-            }
-
-            foreach (ILivingLetterData letterData in questionPack.GetWrongAnswers())
-            {
-                wrongAnswers.Add(letterData);
-            }
-
-            if (wrongAnswers.Count == 0)
-            {
-                sequence = true;
-            }
+            sequence = EggConfiguration.Instance.Variation == EggConfiguration.EggVariation.Sequence;
 
             int numberOfLetters = 2; 
 
@@ -52,7 +38,7 @@ namespace EA4S.Egg
             {
                 lLetterDataSequence.Add(correctAnswers[0]);
 
-                numberOfLetters += -1;
+                numberOfLetters -= 1;
 
                 if (numberOfLetters > wrongAnswers.Count)
                 {
@@ -87,10 +73,5 @@ namespace EA4S.Egg
         {
             return sequence;
         }
-
-        public string GetQuestionDescription()
-        {
-            return questionDescription;
-        } 
     }
 }

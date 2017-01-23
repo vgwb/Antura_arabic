@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using EA4S.Utilities;
 using TMPro;
 
-namespace EA4S {
+namespace EA4S.Minigames.FastCrowd
+{
     public class DropSingleArea : MonoBehaviour
     {
         public TMP_FontAsset normalFont;

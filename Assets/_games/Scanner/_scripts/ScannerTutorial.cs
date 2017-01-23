@@ -2,9 +2,8 @@
 using System.Collections;
 using EA4S.Audio;
 using EA4S.Tutorial;
-using TMPro;
 
-namespace EA4S.Scanner
+namespace EA4S.Minigames.Scanner
 {
     public class ScannerTutorial : MonoBehaviour
     {

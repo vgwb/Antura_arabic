@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-using EA4S.MinigamesAPI;
+﻿using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 
-namespace EA4S.MakeFriends
+namespace EA4S.Minigames.MakeFriends
 {
     public enum MakeFriendsVariation
     {
