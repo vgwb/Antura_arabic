@@ -32,8 +32,8 @@ namespace EA4S.MissingLetter
             m_oNextPos = m_oNextPos == m_oStart ? m_oEnd : m_oStart;
         }
 
-        [SerializeField]
-        private Transform m_oStart, m_oEnd;
+        [SerializeField, HideInInspector]
+        public Transform m_oStart, m_oEnd;
 
         private Transform m_oNextPos;
         private AnturaAnimationController m_oAnturaCtrl;

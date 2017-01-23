@@ -16,7 +16,7 @@ namespace EA4S.MixedLetters
         public Rigidbody rigidBody;
         public BoxCollider boxCollider;
 
-        private float cameraDistance;
+        //private float cameraDistance;
         private LL_LetterData letterData;
 
         [HideInInspector]
@@ -52,7 +52,7 @@ namespace EA4S.MixedLetters
             inputManager.onPointerDrag += OnPointerDrag;
             inputManager.onPointerUp += OnPointerUp;
 
-            cameraDistance = Vector3.Distance(Camera.main.transform.position, transform.position);
+            //cameraDistance = Vector3.Distance(Camera.main.transform.position, transform.position);
 
             letterObjectView.SetState(LLAnimationStates.LL_still);
             letterObjectView.SetState(LLAnimationStates.LL_limbless);

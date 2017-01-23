@@ -7,7 +7,7 @@ namespace EA4S.Assessment
 {
     class WaitForTween : IYieldable, ICustomYield
     {
-        bool done = false;
+        //bool done = false;
         Tweener tweenToWait = null; 
 
         public WaitForTween(Tweener tween)
