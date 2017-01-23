@@ -37,8 +37,12 @@ namespace EA4S.Egg
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Context = new MinigamesGameContext(MiniGameCode.Egg, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.1f;
-            Questions = new SampleEggSingleQuestionProvider();
             Variation = EggVariation.Sequence;
+
+            if (Variation == EggVariation.Sequence)
+                Questions = new SampleEggSequenceQuestionProvider();
+            else
+                Questions = new SampleEggSingleQuestionProvider();
         }
 
         public IQuestionBuilder SetupBuilder()
@@ -46,8 +50,8 @@ namespace EA4S.Egg
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
-            int nCorrect = 5;
-            int nWrong = 5;
+            int nCorrect = 6;
+            int nWrong = 7;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.correctSeverity = Teacher.SelectionSeverity.AsManyAsPossible;
