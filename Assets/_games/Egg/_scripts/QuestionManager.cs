@@ -19,16 +19,9 @@ namespace EA4S.Egg
 
             List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
-
-            foreach (ILivingLetterData letterData in questionPack.GetCorrectAnswers())
-            {
-                correctAnswers.Add(letterData);
-            }
-
-            foreach (ILivingLetterData letterData in questionPack.GetWrongAnswers())
-            {
-                wrongAnswers.Add(letterData);
-            }
+            
+            correctAnswers.AddRange(questionPack.GetCorrectAnswers());
+            wrongAnswers.AddRange(questionPack.GetWrongAnswers());
 
             sequence = EggConfiguration.Instance.Variation == EggConfiguration.EggVariation.Sequence;
 
@@ -45,7 +38,7 @@ namespace EA4S.Egg
             {
                 lLetterDataSequence.Add(correctAnswers[0]);
 
-                numberOfLetters += -1;
+                numberOfLetters -= 1;
 
                 if (numberOfLetters > wrongAnswers.Count)
                 {
