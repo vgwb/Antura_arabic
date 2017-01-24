@@ -28,8 +28,6 @@ namespace EA4S.Scenes
 
         void Start()
         {
-            AppManager.I.NavigationManager.CurrentScene = AppScene.Home;
-
             GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
             AudioManager.I.PlayMusic(SceneMusic);
             AudioManager.I.PlaySound(Sfx.GameTitle);

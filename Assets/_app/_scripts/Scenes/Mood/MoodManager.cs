@@ -13,9 +13,6 @@ namespace EA4S.Scenes
 
         void Start()
         {
-            AppManager.I.NavigationManager.CurrentScene = AppScene.Mood;
-
-
             AudioManager.I.PlayMusic(SceneMusic);
             GlobalUI.ShowPauseMenu(false);
 
