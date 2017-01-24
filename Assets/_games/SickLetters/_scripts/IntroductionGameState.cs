@@ -12,11 +12,14 @@ namespace EA4S.Minigames.SickLetters
         public IntroductionGameState(SickLettersGame game)
         {
             this.game = game;
+            
+            
         }
 
         public void EnterState()
         {
             Debug.Log("enter intro");
+            game.processDifiiculties(SickLettersConfiguration.Instance.Difficulty);
             AudioManager.I.PlayDialogue(Db.LocalizationDataId.SickLetters_Title);
             //WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.SickLetters_Title, 1.75f, true);
             game.antura.sleep();
