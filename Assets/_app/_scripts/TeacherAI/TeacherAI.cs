@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using EA4S.Db;
@@ -63,31 +64,29 @@ namespace EA4S
 
         #region MiniGames
 
-        public List<MiniGameData> InitialiseCurrentPlaySession(bool chooseMiniGames = true)
-        {
-            return InitialiseCurrentPlaySession(ConfigAI.numberOfMinigamesPerPlaySession, chooseMiniGames);
-        }
-
-        private List<MiniGameData> InitialiseCurrentPlaySession(int nMinigamesToSelect, bool chooseMiniGames = true)
+        public void InitialiseNewPlaySession()
         {
             ResetPlaySession();
+        }
 
-            List<MiniGameData> newPlaySessionMiniGames = null;
+        public List<MiniGameData> SelectMiniGames()
+        {
+            return SelectMiniGames(ConfigAI.numberOfMinigamesPerPlaySession);
+        }
 
-            if (chooseMiniGames)
+        private List<MiniGameData> SelectMiniGames(int nMinigamesToSelect)
+        {
+            List<MiniGameData> newPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
+
+            if (ConfigAI.verboseTeacher)
             {
-                newPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
-
-                if (ConfigAI.verboseTeacher)
+                var debugString = "";
+                debugString += "--------- TEACHER: MiniGames selected ---------";
+                foreach (var minigame in newPlaySessionMiniGames)
                 {
-                    var debugString = "";
-                    debugString += "--------- TEACHER: MiniGames selected ---------";
-                    foreach (var minigame in newPlaySessionMiniGames)
-                    {
-                        debugString += "\n" + minigame.Code;
-                    }
-                    Debug.Log(debugString);
+                    debugString += "\n" + minigame.Code;
                 }
+                Debug.Log(debugString);
             }
 
             return newPlaySessionMiniGames;

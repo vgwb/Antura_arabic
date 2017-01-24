@@ -41,7 +41,7 @@ namespace EA4S
         public void InitialiseNewPlaySession()
         {
             CurrentMiniGameIndexInPlaySession = 0;
-            CurrentPlaySessionMiniGames = AppManager.I.Teacher.InitialiseCurrentPlaySession();
+            CurrentPlaySessionMiniGames = AppManager.I.Teacher.SelectMiniGames();
         }
 
         public void SetFirstMinigame()
@@ -328,7 +328,11 @@ namespace EA4S
             get { return NavData.CurrentPlaySessionMiniGames; }
         }
 
-        private void GotoPlaysessione() {
+        private void GotoPlaysessione()
+        {
+            // This must be called before any play session is started
+            NavData.InitialiseNewPlaySession();  
+
             // From the map
             if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
             {

@@ -64,10 +64,8 @@ namespace EA4S.Teacher.Test
 
         private void InitialisePlaySession()
         {
-            AppManager.I.Player.CurrentJourneyPosition.Stage = currentJourneyStage;
-            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = currentJourneyLB;
-            AppManager.I.Player.CurrentJourneyPosition.PlaySession = currentJourneyPS;
-            AppManager.I.Teacher.InitialiseCurrentPlaySession();
+            AppManager.I.Player.CurrentJourneyPosition.SetPosition(currentJourneyStage, currentJourneyLB, currentJourneyPS);
+            AppManager.I.Teacher.InitialiseNewPlaySession();
         }
 
         QuestionBuilderParameters SetupFakeGame()
@@ -86,7 +84,7 @@ namespace EA4S.Teacher.Test
 
         public void SimulateMiniGame(MiniGameCode code)
         {
-            var config = MiniGameAPI.Instance.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
+            var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
             InitialisePlaySession();
             var builder = config.SetupBuilder();
             Debug.Log("Simulating minigame: " + code + " with builder " + builder.GetType().Name);
