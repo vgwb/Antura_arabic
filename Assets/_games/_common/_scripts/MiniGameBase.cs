@@ -17,7 +17,7 @@ namespace EA4S.MinigamesCommon
 
         protected virtual void Start()
         {
-            NavigationManager.I.CurrentScene = AppScene.MiniGame;
+            AppManager.I.NavigationManager.CurrentScene = AppScene.MiniGame;
 
             if (!UseTestGameplayInfo)
                 GameplayInfo = AppManager.I.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;

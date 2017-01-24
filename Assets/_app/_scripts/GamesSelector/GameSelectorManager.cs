@@ -11,7 +11,7 @@ namespace EA4S.GamesSelector
 
         void Start()
         {
-            NavigationManager.I.CurrentScene = AppScene.GameSelector;
+            AppManager.I.NavigationManager.CurrentScene = AppScene.GameSelector;
             GlobalUI.ShowPauseMenu(false);
             GlobalUI.ShowBackButton(true, ExitThisScene);
         }
@@ -19,7 +19,7 @@ namespace EA4S.GamesSelector
         public void ExitThisScene()
         {
             // refactor: the NavigationManager should handle the back-target scene
-            NavigationManager.I.GoToScene(AppScene.Map);
+            AppManager.I.NavigationManager.GoToScene(AppScene.Map);
         }
     }
 }
