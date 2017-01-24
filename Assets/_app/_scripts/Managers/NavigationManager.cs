@@ -84,48 +84,17 @@ namespace EA4S
                 case AppScene.Mood:
                     break;
                 case AppScene.Map:
-                    if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
-                        // TODO: TeacherAI.I.CurrentMiniGame from NavData
-                        GoToGameScene(TeacherAI.I.CurrentMiniGame);
-                    else
-                        GoToScene(AppScene.GameSelector);
+                    GotoPlaysessione();
                     break;
                 case AppScene.Book:
                     break;
                 case AppScene.Intro:
                     break;
                 case AppScene.GameSelector:
-                    NavData.CurrentPlayer.ResetPlaySessionMinigame(); 
-                    // TODO: ??? 
-                    WorldManager.I.CurrentWorld = (WorldID)(NavData.CurrentPlayer.CurrentJourneyPosition.Stage - 1);
-                    GoToGameScene(TeacherAI.I.CurrentMiniGame);
+                    GotoFirsGameOfPlaysession();
                     break;
                 case AppScene.MiniGame:
-                    // TODO: 
-                    if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
-                    {
-                        // assessment ended!
-                        NavData.CurrentPlayer.ResetPlaySessionMinigame();
-                        GoToScene(AppScene.Rewards);
-                    }
-                    else {
-                        NavData.CurrentPlayer.NextPlaySessionMinigame();
-                        // TODO
-                        if (NavData.CurrentPlayer.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count)
-                        {
-                            /// - Reward screen
-                            /// *-- check first contact : 
-                            /// 
-
-                            // MaxJourneyPosistionProgress (with Reset CurrentMiniGameInPlaySession) is performed contestually to reward creation to avoid un-sync results.
-                            GoToScene(AppScene.PlaySessionResult);
-                        }
-                        else {
-                            // Next game
-                            // TODO
-                            GoToGameScene(TeacherAI.I.CurrentMiniGame);
-                        }
-                    }
+                    GotoNextGameOfPlaysession();
                     break;
                 case AppScene.AnturaSpace:
                     break;
@@ -324,6 +293,53 @@ namespace EA4S
             // log
             // GoToScene ...
         }
+        #endregion
+
+
+        #region Michele
+
+        private void GotoPlaysessione() {
+            // Map
+            if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
+                // TODO: TeacherAI.I.CurrentMiniGame from NavData
+                GoToGameScene(TeacherAI.I.CurrentMiniGame);
+            else
+                GoToScene(AppScene.GameSelector);
+        }
+
+        private void GotoNextGameOfPlaysession() {
+            // Game next flow
+            // TODO: 
+            if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
+                // assessment ended!
+                NavData.CurrentPlayer.ResetPlaySessionMinigame();
+                GoToScene(AppScene.Rewards);
+            } else {
+                NavData.CurrentPlayer.NextPlaySessionMinigame();
+                // TODO
+                if (NavData.CurrentPlayer.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count) {
+                    /// - Reward screen
+                    /// *-- check first contact : 
+                    /// 
+
+                    // MaxJourneyPosistionProgress (with Reset CurrentMiniGameInPlaySession) is performed contestually to reward creation to avoid un-sync results.
+                    GoToScene(AppScene.PlaySessionResult);
+                } else {
+                    // Next game
+                    // TODO
+                    GoToGameScene(TeacherAI.I.CurrentMiniGame);
+                }
+            }
+        }
+
+        private void GotoFirsGameOfPlaysession() {
+            // Game selector
+            NavData.CurrentPlayer.ResetPlaySessionMinigame();
+            // TODO: ??? 
+            WorldManager.I.CurrentWorld = (WorldID)(NavData.CurrentPlayer.CurrentJourneyPosition.Stage - 1);
+            GoToGameScene(TeacherAI.I.CurrentMiniGame);
+        }
+
         #endregion
     }
 }
