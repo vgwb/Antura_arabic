@@ -49,10 +49,6 @@ namespace EA4S.Profile
         public JourneyPosition MaxJourneyPosition = new JourneyPosition(1, 1, 1);
         public JourneyPosition CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
 
-        // refactor: this should be handled by the NavigationManager
-        [NonSerialized]
-        public int CurrentMiniGameInPlaySession;
-
         #region Bones/coins
         public int TotalNumberOfBones = 8;
         public int GetTotalNumberOfBones()

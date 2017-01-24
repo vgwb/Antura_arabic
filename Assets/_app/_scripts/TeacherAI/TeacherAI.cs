@@ -33,10 +33,7 @@ namespace EA4S
         public WordHelper wordHelper;
         public JourneyHelper journeyHelper;
         public ScoreHelper scoreHelper;
-
-        // State
-        private List<MiniGameData> currentPlaySessionMiniGames = new List<MiniGameData>();
-
+        
         #region Setup
 
         public TeacherAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
@@ -58,9 +55,6 @@ namespace EA4S
         private void ResetPlaySession()
         {
             var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
-
-            currentPlaySessionMiniGames.Clear();
-
             minigameSelectionAI.InitialiseNewPlaySession();
             wordAI.InitialiseNewPlaySession(currentPlaySessionId);
         }
@@ -78,15 +72,17 @@ namespace EA4S
         {
             ResetPlaySession();
 
+            List<MiniGameData> newPlaySessionMiniGames = null;
+
             if (chooseMiniGames)
             {
-                currentPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
+                newPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
 
                 if (ConfigAI.verboseTeacher)
                 {
                     var debugString = "";
                     debugString += "--------- TEACHER: MiniGames selected ---------";
-                    foreach (var minigame in currentPlaySessionMiniGames)
+                    foreach (var minigame in newPlaySessionMiniGames)
                     {
                         debugString += "\n" + minigame.Code;
                     }
@@ -94,11 +90,11 @@ namespace EA4S
                 }
             }
 
-            return currentPlaySessionMiniGames;
+            return newPlaySessionMiniGames;
         }
 
         // refactor: this should not be in the TeacherAI, but in the NavigationManager or something similar that holds data between minigames
-        public List<MiniGameData> CurrentPlaySessionMiniGames {
+        /*public List<MiniGameData> CurrentPlaySessionMiniGames {
             get {
                 return currentPlaySessionMiniGames;
             }
@@ -113,7 +109,7 @@ namespace EA4S
                         : null
                     ;
             }
-        }
+        }*/
 
         private List<MiniGameData> SelectMiniGamesForCurrentPlaySession(int nMinigamesToSelect)
         {
