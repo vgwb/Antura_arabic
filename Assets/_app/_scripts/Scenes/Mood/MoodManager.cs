@@ -52,7 +52,7 @@ namespace EA4S.Scenes
         {
             AppManager.I.Player.MoodLastVisit = System.DateTime.Today.ToString();
             AppManager.I.Player.Save();
-            AppManager.I.NavigationManager.GoToScene(AppScene.Map);    // refactor: let the NavigationManager handle the flow
+            AppManager.I.NavigationManager.GoToNextScene();
         }
     }
 }
