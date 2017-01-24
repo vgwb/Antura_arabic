@@ -66,6 +66,9 @@ namespace EA4S
 
             gameObject.AddComponent<DebugManager>();
             NavigationManager = gameObject.AddComponent<NavigationManager>();
+            SceneModule sceneModule = new SceneModule();
+            sceneModule.SetupModule(new SceneModuleDefault());
+            NavigationManager.InjectSceneModule(sceneModule);
             gameObject.AddComponent<KeeperManager>();
 
             RewardSystemManager.Init();
