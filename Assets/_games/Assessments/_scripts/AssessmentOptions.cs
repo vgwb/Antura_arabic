@@ -37,7 +37,7 @@ namespace EA4S.Assessment
         public bool PronunceQuestionWhenClicked { get; set; }
         public bool PronunceAnswerWhenClicked { get; set; }
         public bool ShowQuestionAsImage { get; set; }
-        public bool PlayQuestionAudioAfterTutorial { get; set; }
+        public bool PlayQuestionAlsoAfterTutorial { get; set; }
         public bool QuestionAnsweredFlip { get; set; }
         public bool QuestionAnsweredPlaySound { get; set; }
         public bool QuestionSpawnedPlaySound { get; set; }

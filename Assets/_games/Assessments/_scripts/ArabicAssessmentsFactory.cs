@@ -48,7 +48,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.ShowQuestionAsImage = true;
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word of the image
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
-            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = true;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = true;
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             // Get references from GameContext (utils)
@@ -77,7 +77,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.ShowQuestionAsImage = true;
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word to sort
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
-            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = true;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = true;
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
@@ -103,7 +103,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the complete word
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
-            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = true;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = true;
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
@@ -126,7 +126,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
-            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = false;
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
@@ -148,7 +148,7 @@ namespace EA4S.Assessment
         public static Assessment CreateQuestionAndReplyAssessment( AssessmentContext context)
         {
             context.GameDescription = Db.LocalizationDataId.Assessment_Match_Sentences;
-            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = false;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = false; // Child should read question
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child shuold read answer
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
@@ -176,7 +176,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
-            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = false;
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
@@ -204,7 +204,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
-            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = false;
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
@@ -232,7 +232,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
-            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = false;
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
@@ -261,7 +261,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
 
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
-            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = false;
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
@@ -292,7 +292,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
             AssessmentOptions.Instance.QuestionAnsweredFlip = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
-            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = true;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = true;
 
             Init( context);
 
@@ -317,7 +317,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
             AssessmentOptions.Instance.QuestionAnsweredFlip = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
-            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = true;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = true;
 
             Init( context);
 
@@ -339,8 +339,8 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
-            AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial = false;
-            AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = false;
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = true;
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
