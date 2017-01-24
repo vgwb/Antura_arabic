@@ -227,18 +227,17 @@ namespace EA4S.GamesSelector
 
         void AutoLoadMinigames()
         {
-            //AppManager.I.InitDataAI();
             OnComplete += GoToMinigame;
-            // refactor: the current list of minigames should be injected by the AppManager, and not be held in the Teacher
-            if (TeacherAI.I.CurrentPlaySessionMiniGames.Count > 0) Show(TeacherAI.I.CurrentPlaySessionMiniGames);
+
+            // refactor: the current list of minigames should be injected by the navigation manager instead
+            var minigames = AppManager.I.NavigationManager.CurrentPlaySessionMiniGames;
+            if (minigames.Count > 0)
+                Show(minigames);
         }
 
         // refactor: this should be injected
         void GoToMinigame()
         {
-            //MiniGameCode myGameCode = TeacherAI.I.CurrentMiniGame.Code;
-            //myGameCode = MiniGameCode.Egg;  // SET THIS TO TET SPECIFIC MINIGAMES IN THE MAIN PROGRESSION FLOW
-            // AppManager.I.GameLauncher.LaunchGame(myGameCode);
             AppManager.I.NavigationManager.GoToNextScene();
         }
 

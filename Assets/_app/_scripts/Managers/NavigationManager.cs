@@ -308,6 +308,16 @@ namespace EA4S
 
         #region Michele
 
+        public MiniGameData CurrentMiniGameData
+        {
+            get { return NavData.CurrentMiniGameData; }
+        }
+
+        public List<MiniGameData> CurrentPlaySessionMiniGames
+        {
+            get { return NavData.CurrentPlaySessionMiniGames; }
+        }
+
         private void GotoPlaysessione() {
             // From the map
             if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
