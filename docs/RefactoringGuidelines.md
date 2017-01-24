@@ -34,50 +34,37 @@ See the other .md files for more information.
 
 ### Refactoring notes: Important
 
+These notes are for current development.
 
-
-
+	* Database and PlayerProfile use should be linked (no ease of access to either)
+	* MiniJSON and MySQLLite should be moved to the Plugins (and check whether they can be used at all!) 
+	* ModularFramework is included for some parts, but not for others. It may be better to remove it and merge what we need inside the core app instead.
+	* Managers are scattered among many different folders and use widely different conventions. They should be refactored to show a common intention.
+	* Many managers are static makeshift singleton-like classes. Better access should be provided.
+	* Scene managers do not follow a single convention (IntroManager, HomeManager, etc). An abstract SceneManager can be added.
+	* Helper / utility methods and classes use must be standardized throught the codebase. 
+	* Helpers should probably belong to the DB, and not to the teacher.
+	* The application flow is confusing and there is no single logic throught the codebase for it. It should be standardized and placed in a NavigationManager (or something similar, which can also hold the state of the current play session and minigames selection)
+	* MiniGameAPI, MiniGameLauncher and Debug minigame launch code need to be merged.
+	
 ### Refactoring notes: New Language
 
 These refactoring notes should be followed to prepare for supporting a new language.
 
- * Game and Core scripts should be correctly separated. For example, the Intro scene is using code from the _games/_common folders (IGameState for example). The contents of (_games/_common) could be placed in (_app/GamesCommonCode), so that the (_games) folder could be removed completely with no consequence.
- 
+	* Game and Core scripts should be correctly separated. For example, the Intro scene is using code from the _games/_common folders (IGameState for example). The contents of (_games/_common) could be placed in (_app/GamesCommonCode), so that the (_games) folder could be removed completely with no consequence.
+	* A lot of the code is tied to the Arabic language. See Localization, the QuestionBuilders, and many minigames.
+
  
 ### Refactoring notes: Wishlist
 
-	* There are different implementations of state machines in the codebase (see IGameState versus StateMachineBehaviour)
+These notes are for future reference.
 
+	* We need to standardize some nomenclature: "core" vs "minigames" / "minigame names" vs "minigame IDs" / "vote" vs "outcome" vs "grade" vs "score"
 
-	* Codebase
-		* Database and PlayerProfile use should be linked (no ease of access to either)
+	Codebase
 		* The core code and the Teacher work only with QuestionProviders, so it would be better to just assume that all games will use them (and no other provider)
-		* A lot of the code is tied to the Arabic language. See Localization, the QuestionBuilders, and many minigames.
-		* Part of the core depends on what minigames are available. The core should work without minigames. See SRDebug, MiniGameAPI, and others.
-		* ModularFramework is included for some parts, but not for others. We should decide whether to keep it or not. It may be better to remove it and merge what we need inside the core app instead.
-		* First Contact code is scattered throughout the codebase
-		* Rewards code needs to be refactored
-		* MiniJSON and MySQLLite should be moved to the Plugins (and check whether they can be used at all!) 
-		
-	* Nomenclature
 		* The word 'Data' is used interchangeably for 'LivingLetterData' and the database 'Data' (see LL_WordData versus Db.WordData). This creates confusion especially when handling learning data. This can be solved by making sure that LivingLetters data is converted into Views, and that the database's learning data is instead defined as LearningData (example: WordLearningData). Note also that the core should not use LL***Data, but ***Data. The view choice should be made by the minigame.
-		* To avoid clashes, we should have a **EA4S.Minigames.XXX* namespace for each minigame.
-		* We need to standardize some nomenclature: "core" vs "minigames" / "minigame names" vs "minigame IDs" / "vote" vs "outcome" vs "grade" vs "score"
-
-	* Managers
-		* Managers are scattered among many different folders and use widely different conventions. They should be refactored to show a common intention.
-		* Randomization methods and classes use must be standardized throught the codebase. 
-		* In general, static Helpers and Utilities should be better organized and standardized.
-		* Scene managers do not follow a single convention (IntroManager, HomeManager, etc). An abstract SceneManager can be added.
-		* Many managers are static makeshift singleton-like classes. Better access should be provided.
-
-	* App flow
-		* The application flow is confusing and there is no single logic throught the codebase for it. It should be standardized and placed in a NavigationManager (or something similar, which can also hold the state of the current play session and minigames selection)
-		* The NavigationManager should be the sole responsible for navigation (and it is not).
-		* We need a PlaySessionManager that holds the data returned by the TeacherAI whenever a new play session is started (CurrentMiniGames, Play Session State, minigame results, etc.)
-		* MiniGameAPI, MiniGameLauncher and Debug minigame launch code need to be merged.
-
-   
-### Specific refactoring notes
-
-   * Rewards are not in the PlayerProfile but will be merged with the Database code.
+	
+	Minigame Data
+		* Minigame variations are not actually enforced by the codebase, but it would be a good idea to make all games use them, as currently the core app reasons in terms of 'MiniGameCode', but a minigame is actually identified by the 'game scene' and the 'variation'
+		* We could make the Minigame register to the Core, and make sure that the MiniGameData is generated by the core
