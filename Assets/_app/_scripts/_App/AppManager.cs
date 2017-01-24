@@ -55,8 +55,6 @@ namespace EA4S
             }
 
             // refactor: standardize initialisation of managers
-            gameObject.AddComponent<MiniGameAPI>();
-
             LogManager = new LogManager();
             PlayerProfileManager = new PlayerProfileManager();
 

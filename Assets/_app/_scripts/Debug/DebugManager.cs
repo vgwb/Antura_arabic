@@ -121,14 +121,8 @@ namespace EA4S.Debugging
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = PlaySession;
 
-            // We must force this or the teacher won't use the correct data
-            AppManager.I.Teacher.InitialiseCurrentPlaySession();
-
             // Call start game with parameters
-            MiniGameAPI.Instance.StartGame(
-                miniGameCodeSelected,
-                new GameConfiguration(Difficulty)
-            );
+            AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected, new GameConfiguration(Difficulty), newPlaySession: true);
 
         }
 
