@@ -325,7 +325,7 @@ namespace EA4S
         private void GotoFirsGameOfPlaysession()
         {
             // Game selector -> go to the first game
-            NavData.FirstMinigame();
+            NavData.SetFirstMinigame();
             // TODO: ??? 
             WorldManager.I.CurrentWorld = (WorldID)(NavData.CurrentPlayer.CurrentJourneyPosition.Stage - 1);
             GoToGameScene(NavData.CurrentMiniGameData);
@@ -341,8 +341,8 @@ namespace EA4S
             }
             else
             {
-                // Not an assessment. 
-                if (NavData.NextMinigame())
+                // Not an assessment. Do we have any more?
+                if (NavData.SetNextMinigame())
                 {
                     // Go to the next minigame.
                     GoToGameScene(NavData.CurrentMiniGameData);
