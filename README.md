@@ -8,8 +8,8 @@ by TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
 The developer docs are here: [/docs/](/docs)
 
 These are divided in several files:
- * *ApplicationFlow.md* describes the complete flow of the application, useful if you want to understand the call flow.
- * *DataFlow.md* describes how the learning content data flows from the database, to the teacher system, and finally to minigames.
+ * [ApplicationFlow](docs/ApplicationFlow.md) describes the complete flow of the application, useful if you want to understand the call flow.
+ * [DataFlow](docs/DataFlow.md)*DataFlow.md* describes how the learning content data flows from the database, to the teacher system, and finally to minigames.
  * *DeveloperGuildeines.md* describes general guidelines for developers that want to contribute to the project.
  * *Logging.md* describes the implementation and use of the Logging System.
  * *Minigames.md* describes how to create and structure new minigames and how to correctly link them to the core application.
