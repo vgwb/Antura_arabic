@@ -88,7 +88,7 @@ namespace EA4S.Minigames.SickLetters
             {
                 game.Poof(dd.transform);
                 dd.resetCorrectDD();
-                game.onWrongMove();
+                game.onWrongMove(dd.isCorrect);
                 StartCoroutine(onDroppingCorrectDD());
                 
             }

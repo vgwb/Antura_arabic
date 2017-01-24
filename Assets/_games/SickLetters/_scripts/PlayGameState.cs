@@ -22,7 +22,7 @@ namespace EA4S.Minigames.SickLetters
         public void EnterState()
         {
             
-            game.processDifiiculties(SickLettersConfiguration.Instance.Difficulty);
+            
 
             timer = game.gameDuration;
 

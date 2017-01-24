@@ -310,14 +310,14 @@ namespace EA4S.Minigames.SickLetters
                 else
                     resetWrongDD();
 
-                game.onWrongMove();
+                game.onWrongMove(isCorrect);
                 game.tut.doTutorial();
                 return;
             }
 
             if (!isInVase)
             {
-                game.onWrongMove();
+                game.onWrongMove(isCorrect);
             }
 
             if (isCorrect)
