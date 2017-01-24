@@ -287,23 +287,6 @@ namespace EA4S.Profile
 
         #endregion
 
-        #region Current minigame in playsession        
-        /// <summary>
-        /// Nexts the play session minigame.
-        /// </summary>
-        public void NextPlaySessionMinigame()
-        {
-            CurrentMiniGameInPlaySession++;
-        }
-        /// <summary>
-        /// Resets position in play session minigame.
-        /// </summary>
-        public void ResetPlaySessionMinigame()
-        {
-            CurrentMiniGameInPlaySession = 0;
-        }
-        #endregion
-
         #endregion
 
 

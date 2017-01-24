@@ -93,24 +93,6 @@ namespace EA4S
             return newPlaySessionMiniGames;
         }
 
-        // refactor: this should not be in the TeacherAI, but in the NavigationManager or something similar that holds data between minigames
-        /*public List<MiniGameData> CurrentPlaySessionMiniGames {
-            get {
-                return currentPlaySessionMiniGames;
-            }
-        }
-
-        // refactor: this should not be in the TeacherAI, but in the NavigationManager or something similar that holds data between minigames
-        public MiniGameData CurrentMiniGame {
-            get {
-                return
-                    playerProfile.CurrentMiniGameInPlaySession < currentPlaySessionMiniGames.Count
-                        ? currentPlaySessionMiniGames.ElementAt(playerProfile.CurrentMiniGameInPlaySession)
-                        : null
-                    ;
-            }
-        }*/
-
         private List<MiniGameData> SelectMiniGamesForCurrentPlaySession(int nMinigamesToSelect)
         {
             var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
