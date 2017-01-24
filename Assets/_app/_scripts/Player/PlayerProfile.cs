@@ -143,7 +143,6 @@ namespace EA4S.Profile
         public void SetMaxJourneyPosition(JourneyPosition newJourneyPosition, bool _save = true)
         {
             if (AppManager.I.Player.MaxJourneyPosition.IsMinor(newJourneyPosition)) {
-                AppManager.I.Player.ResetPlaySessionMinigame();
                 AppManager.I.Player.MaxJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
                 AppManager.I.Player.CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
                 if (_save) {
@@ -285,23 +284,6 @@ namespace EA4S.Profile
         }
         #endregion
 
-        #endregion
-
-        #region Current minigame in playsession        
-        /// <summary>
-        /// Nexts the play session minigame.
-        /// </summary>
-        public void NextPlaySessionMinigame()
-        {
-            CurrentMiniGameInPlaySession++;
-        }
-        /// <summary>
-        /// Resets position in play session minigame.
-        /// </summary>
-        public void ResetPlaySessionMinigame()
-        {
-            CurrentMiniGameInPlaySession = 0;
-        }
         #endregion
 
         #endregion

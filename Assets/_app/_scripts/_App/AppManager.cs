@@ -33,10 +33,6 @@ namespace EA4S
         public PlayerProfileManager PlayerProfileManager;
         public NavigationManager NavigationManager;
 
-        // refactor: access to the current minigame data should be in another subsystem that is responsible for holding temporary data for minigames
-        //[HideInInspector]
-        //public Db.MiniGameData CurrentMinigame;
-
         bool appIsPaused = false;
 
         #region Initialisation

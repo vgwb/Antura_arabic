@@ -28,7 +28,6 @@ namespace EA4S
         public PlayerProfile CurrentPlayer;
         public AppScene CurrentScene;
 
-
         /// <summary>
         /// List of minigames selected for the current play session
         /// </summary>
@@ -37,7 +36,7 @@ namespace EA4S
         /// <summary>
         /// Current minigame index in 
         /// </summary>
-        public int CurrentMiniGameIndexInPlaySession;
+        private int CurrentMiniGameIndexInPlaySession;
 
         public void InitialiseNewPlaySession()
         {
@@ -45,9 +44,20 @@ namespace EA4S
             CurrentPlaySessionMiniGames = AppManager.I.Teacher.InitialiseCurrentPlaySession();
         }
 
-        public void NextMinigame()
+        public void SetFirstMinigame()
         {
-            CurrentMiniGameIndexInPlaySession++;
+            CurrentMiniGameIndexInPlaySession = 0;
+        }
+
+        public bool SetNextMinigame()
+        {
+            int NextIndex = CurrentMiniGameIndexInPlaySession + 1;
+            if (NextIndex < CurrentPlaySessionMiniGames.Count)
+            {
+                CurrentMiniGameIndexInPlaySession = NextIndex;
+                return true;
+            }
+            return false;
         }
 
         public MiniGameData CurrentMiniGameData
@@ -307,47 +317,67 @@ namespace EA4S
 
         #region Michele
 
-        private void GotoPlaysessione() {
-            // Map
-            if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
-                // TODO: TeacherAI.I.CurrentMiniGame from NavData
-                GoToGameScene(TeacherAI.I.CurrentMiniGame);
-            else
-                GoToScene(AppScene.GameSelector);
+        public MiniGameData CurrentMiniGameData
+        {
+            get { return NavData.CurrentMiniGameData; }
         }
 
-        private void GotoNextGameOfPlaysession() {
-            // Game next flow
-            // TODO: 
-            if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
-                // assessment ended!
-                NavData.CurrentPlayer.ResetPlaySessionMinigame();
+        public List<MiniGameData> CurrentPlaySessionMiniGames
+        {
+            get { return NavData.CurrentPlaySessionMiniGames; }
+        }
+
+        private void GotoPlaysessione() {
+            // From the map
+            if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
+            {
+                // Direct to the current minigame (which is an assessment)
+                GoToGameScene(NavData.CurrentMiniGameData);
+            }
+            else
+            {
+                // Show the games selector
+                GoToScene(AppScene.GameSelector);
+            }
+        }
+
+        private void GotoFirsGameOfPlaysession()
+        {
+            // Game selector -> go to the first game
+            NavData.SetFirstMinigame();
+            // TODO: ??? 
+            WorldManager.I.CurrentWorld = (WorldID)(NavData.CurrentPlayer.CurrentJourneyPosition.Stage - 1);
+            GoToGameScene(NavData.CurrentMiniGameData);
+        }
+
+        private void GotoNextGameOfPlaysession()
+        {
+            // From one game to the next
+            if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
+            {
+                // Assessment ended, go to the rewards scene
                 GoToScene(AppScene.Rewards);
-            } else {
-                NavData.CurrentPlayer.NextPlaySessionMinigame();
-                // TODO
-                if (NavData.CurrentPlayer.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count) {
+            }
+            else
+            {
+                // Not an assessment. Do we have any more?
+                if (NavData.SetNextMinigame())
+                {
+                    // Go to the next minigame.
+                    GoToGameScene(NavData.CurrentMiniGameData);
+                }
+                else
+                {
+                    // Finished minigames. Go to the reward scene.
                     /// - Reward screen
                     /// *-- check first contact : 
                     /// 
-
                     // MaxJourneyPosistionProgress (with Reset CurrentMiniGameInPlaySession) is performed contestually to reward creation to avoid un-sync results.
                     GoToScene(AppScene.PlaySessionResult);
-                } else {
-                    // Next game
-                    // TODO
-                    GoToGameScene(TeacherAI.I.CurrentMiniGame);
                 }
             }
         }
 
-        private void GotoFirsGameOfPlaysession() {
-            // Game selector
-            NavData.CurrentPlayer.ResetPlaySessionMinigame();
-            // TODO: ??? 
-            WorldManager.I.CurrentWorld = (WorldID)(NavData.CurrentPlayer.CurrentJourneyPosition.Stage - 1);
-            GoToGameScene(TeacherAI.I.CurrentMiniGame);
-        }
 
         #endregion
     }
