@@ -121,7 +121,7 @@ namespace EA4S.Rewards
         void Continue()
         {
             //          GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.MiniGameDone());
-            NavigationManager.I.GoToNextScene();
+            AppManager.I.NavigationManager.GoToNextScene();
         }
 
         #endregion

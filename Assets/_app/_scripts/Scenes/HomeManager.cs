@@ -28,7 +28,7 @@ namespace EA4S.Scenes
 
         void Start()
         {
-            NavigationManager.I.CurrentScene = AppScene.Home;
+            AppManager.I.NavigationManager.CurrentScene = AppScene.Home;
 
             GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
             AudioManager.I.PlayMusic(SceneMusic);
@@ -54,17 +54,17 @@ namespace EA4S.Scenes
             // refactor: as this is related only to navigation, move the logic to the NavigationManager
             if (AppManager.I.Player.IsFirstContact())
             {
-                NavigationManager.I.GoToScene(AppScene.Intro);
+                AppManager.I.NavigationManager.GoToScene(AppScene.Intro);
             }
             else
             {
                 if (AppManager.I.Player.MoodLastVisit == System.DateTime.Today.ToString())
                 {
-                    NavigationManager.I.GoToScene(AppScene.Map);
+                    AppManager.I.NavigationManager.GoToScene(AppScene.Map);
                 }
                 else
                 {
-                    NavigationManager.I.GoToScene(AppScene.Mood);
+                    AppManager.I.NavigationManager.GoToScene(AppScene.Mood);
                 }
             }
         }
