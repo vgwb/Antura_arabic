@@ -40,9 +40,9 @@ namespace EA4S.MinigamesAPI
             currentGameConfig.Questions = new FindRightLetterQuestionProvider(AppManager.I.GameLauncher.RetrieveQuestionPacks(rules));
 
             // Save current game code to appmanager currentminigame
-            AppManager.I.CurrentMinigame = miniGameData;    // refactor: this should be held in the NavigationManager or something similar that holds minigame state
+            //AppManager.I.CurrentMinigame = miniGameData;    // refactor: this should be held in the NavigationManager or something similar that holds minigame state
+           
             // Comunicate to LogManager that start new single minigame play session.
-
             if (AppConstants.DebugLogInserts) Debug.Log("InitGameplayLogSession " + _gameCode.ToString());
             LogManager.I.LogInfo(InfoEvent.GameStart, _gameCode.ToString());
 
