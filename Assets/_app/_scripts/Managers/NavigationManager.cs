@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using EA4S.Environment;
 using EA4S.Rewards;
 using UnityEngine;
+using EA4S.Profile;
 
 namespace EA4S
 {
+
+
+
     public enum AppScene
     {
         Home,
@@ -22,21 +26,19 @@ namespace EA4S
         DebugPanel
     }
 
+    struct NavigationData {
+        public PlayerProfile CurrentPlayer;
+        public AppScene CurrentScene;
+    }
+
     /// <summary>
     /// Controls the transitions between different scenes in the application.
     /// </summary>
     public class NavigationManager : MonoBehaviour
     {
-        // refactor: the singleton entry point should be through the AppManager
-        public static NavigationManager I;
 
-        public AppScene CurrentScene;
+
         public bool IsLoadingMinigame { get; private set; } // Daniele mod - SceneTransitioner needs it to know when a minigame is being loaded 
-
-        void Start()
-        {
-            I = this;
-        }
 
         #region Automatic navigation API
 
