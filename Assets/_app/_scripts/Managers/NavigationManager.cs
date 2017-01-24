@@ -8,8 +8,6 @@ using EA4S.Profile;
 namespace EA4S
 {
 
-
-
     public enum AppScene
     {
         Home,
@@ -26,7 +24,7 @@ namespace EA4S
         DebugPanel
     }
 
-    struct NavigationData {
+    internal struct NavigationData {
         public PlayerProfile CurrentPlayer;
         public AppScene CurrentScene;
     }
@@ -36,7 +34,7 @@ namespace EA4S
     /// </summary>
     public class NavigationManager : MonoBehaviour
     {
-
+        private NavigationData NavData;
 
         public bool IsLoadingMinigame { get; private set; } // Daniele mod - SceneTransitioner needs it to know when a minigame is being loaded 
 
@@ -49,14 +47,15 @@ namespace EA4S
         public void GoToNextScene()
         {
             //var nextScene = GetNextScene();
-            switch (CurrentScene)
+            switch (NavData.CurrentScene)
             {
                 case AppScene.Home:
                     break;
                 case AppScene.Mood:
                     break;
                 case AppScene.Map:
-                    if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(AppManager.I.Player.CurrentJourneyPosition))
+                    if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
+                        // TODO: TeacherAI.I.CurrentMiniGame from NavData
                         GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     else
                         GoToScene(AppScene.GameSelector);
@@ -66,20 +65,23 @@ namespace EA4S
                 case AppScene.Intro:
                     break;
                 case AppScene.GameSelector:
-                    AppManager.I.Player.ResetPlaySessionMinigame();
-                    WorldManager.I.CurrentWorld = (WorldID)(AppManager.I.Player.CurrentJourneyPosition.Stage - 1);
+                    NavData.CurrentPlayer.ResetPlaySessionMinigame(); 
+                    // TODO: ??? 
+                    WorldManager.I.CurrentWorld = (WorldID)(NavData.CurrentPlayer.CurrentJourneyPosition.Stage - 1);
                     GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     break;
                 case AppScene.MiniGame:
-                    if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(AppManager.I.Player.CurrentJourneyPosition))
+                    // TODO: 
+                    if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
                     {
                         // assessment ended!
-                        AppManager.I.Player.ResetPlaySessionMinigame();
+                        NavData.CurrentPlayer.ResetPlaySessionMinigame();
                         GoToScene(AppScene.Rewards);
                     }
                     else {
-                        AppManager.I.Player.NextPlaySessionMinigame();
-                        if (AppManager.I.Player.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count)
+                        NavData.CurrentPlayer.NextPlaySessionMinigame();
+                        // TODO
+                        if (NavData.CurrentPlayer.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count)
                         {
                             /// - Reward screen
                             /// *-- check first contact : 
@@ -90,6 +92,7 @@ namespace EA4S
                         }
                         else {
                             // Next game
+                            // TODO
                             GoToGameScene(TeacherAI.I.CurrentMiniGame);
                         }
                     }
@@ -119,6 +122,7 @@ namespace EA4S
         public void GoToScene(string sceneName)
         {
             IsLoadingMinigame = sceneName.Substring(0, 5) == "game_";
+            // TODO: change scenemodule to private for this class
             AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(sceneName);
 
             if (AppConstants.UseUnityAnalytics) {
@@ -167,7 +171,7 @@ namespace EA4S
 
         public void ExitAndGoHome()
         {
-            if (CurrentScene == AppScene.Map)
+            if (NavData.CurrentScene == AppScene.Map)
             {
                 GoToScene(AppScene.Home);
             }
