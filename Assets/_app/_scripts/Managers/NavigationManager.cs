@@ -121,6 +121,7 @@ namespace EA4S
                     GotoNextGameOfPlaysession();
                     break;
                 case AppScene.AnturaSpace:
+                    GoToScene(AppScene.Map);
                     break;
                 case AppScene.Rewards:
                     MaxJourneyPositionProgress();
