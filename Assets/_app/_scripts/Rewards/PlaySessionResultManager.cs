@@ -13,9 +13,6 @@ namespace EA4S.Rewards
 
         void Start()
         {
-            // Navigation manager 
-            AppManager.I.NavigationManager.CurrentScene = AppScene.PlaySessionResult;
-
             // Calculate items to unlock count
             int itemsToUnlock = AppManager.I.NavigationManager.CalculateUnlockItemCount();
 

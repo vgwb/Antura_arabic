@@ -125,7 +125,6 @@ namespace EA4S.Debugging
             AppManager.I.Teacher.InitialiseCurrentPlaySession();
 
             // Call start game with parameters
-            AppManager.I.NavigationManager.CurrentScene = AppScene.DebugPanel;
             MiniGameAPI.Instance.StartGame(
                 miniGameCodeSelected,
                 new GameConfiguration(Difficulty)
