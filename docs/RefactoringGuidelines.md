@@ -8,10 +8,14 @@
     <td>11-01-2017</td>
     <td>Michele Pirovano</td>
   </tr>
+  <tr>
+    <td>24-01-2017</td>
+    <td>Michele Pirovano</td>
+  </tr>
 </table>
 
 
-These notes attempt to provide notes and guidelines for refactoring the Antura code.
+These notes represent guidelines for refactoring the Antura code.
 
 ### Code annotations
 
@@ -25,13 +29,27 @@ The following tags may be found throughout the code:
 ### Documentation notes
 
 The specific systems documentation files contain more general notes on refactoring partaining to that subsystem.
-See the .md files for more information.
+See the other .md files for more information.
 
-### General refactoring notes
+
+### Refactoring notes: Important
+
+
+
+
+### Refactoring notes: New Language
+
+These refactoring notes should be followed to prepare for supporting a new language.
+
+ * Game and Core scripts should be correctly separated. For example, the Intro scene is using code from the _games/_common folders (IGameState for example). The contents of (_games/_common) could be placed in (_app/GamesCommonCode), so that the (_games) folder could be removed completely with no consequence.
+ 
+ 
+### Refactoring notes: Wishlist
+
+	* There are different implementations of state machines in the codebase (see IGameState versus StateMachineBehaviour)
+
 
 	* Codebase
-		* Game and Core scripts should be correctly separated. The Intro scene is using code from the _games/_common folders (IGameState for example). The contents of (_games/_common) could be placed in (_app/GamesCommonCode), so that the (_games) folder could be removed completely with no consequence.
-		* There are different implementations of state machines in the codebase (see IGameState versus StateMachineBehaviour)
 		* Database and PlayerProfile use should be linked (no ease of access to either)
 		* The core code and the Teacher work only with QuestionProviders, so it would be better to just assume that all games will use them (and no other provider)
 		* A lot of the code is tied to the Arabic language. See Localization, the QuestionBuilders, and many minigames.
