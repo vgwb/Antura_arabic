@@ -49,22 +49,7 @@ namespace EA4S.Scenes
             LogManager.I.InitNewSession();
             LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new AppInfoParameters()));
 
-            // refactor: as this is related only to navigation, move the logic to the NavigationManager
-            if (AppManager.I.Player.IsFirstContact())
-            {
-                AppManager.I.NavigationManager.GoToScene(AppScene.Intro);
-            }
-            else
-            {
-                if (AppManager.I.Player.MoodLastVisit == System.DateTime.Today.ToString())
-                {
-                    AppManager.I.NavigationManager.GoToScene(AppScene.Map);
-                }
-                else
-                {
-                    AppManager.I.NavigationManager.GoToScene(AppScene.Mood);
-                }
-            }
+
         }
     }
 }

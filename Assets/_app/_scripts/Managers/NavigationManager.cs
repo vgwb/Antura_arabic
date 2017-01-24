@@ -92,8 +92,20 @@ namespace EA4S
             switch (NavData.CurrentScene)
             {
                 case AppScene.Home:
+
+                    if (NavData.CurrentPlayer.IsFirstContact()) {
+                        GoToScene(AppScene.Intro);
+                    } else {
+                        if (NavData.CurrentPlayer.MoodLastVisit == System.DateTime.Today.ToString()) {
+                            GoToScene(AppScene.Map);
+                        } else {
+                            GoToScene(AppScene.Mood);
+                        }
+                    }
+
                     break;
                 case AppScene.Mood:
+                    GoToScene(AppScene.Map);
                     break;
                 case AppScene.Map:
                     GotoPlaysessione();
@@ -101,6 +113,7 @@ namespace EA4S
                 case AppScene.Book:
                     break;
                 case AppScene.Intro:
+                    GoToScene(AppScene.Map);
                     break;
                 case AppScene.GameSelector:
                     GotoFirsGameOfPlaysession();
@@ -135,7 +148,7 @@ namespace EA4S
         {
             IsLoadingMinigame = sceneName.Substring(0, 5) == "game_";
             // TODO: change scenemodule to private for this class
-            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(sceneName);
+            sceneModule.LoadSceneWithTransition(sceneName, new ModularFramework.Modules.SceneTransition() { });
 
             if (AppConstants.UseUnityAnalytics) {
                 UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
@@ -157,6 +170,8 @@ namespace EA4S
                     // Do nothing
                     break;
             }
+
+            NavData.CurrentScene = newScene;
 
             var nextSceneName = GetSceneName(newScene);
             GoToScene(nextSceneName);
