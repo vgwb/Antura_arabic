@@ -23,12 +23,12 @@ namespace EA4S.MinigamesAPI
         /// Uses the configuration chosen by the teacher.
         /// </summary>
         /// <param name="_gameCode">The minigame code.</param>
-        /// <param name="newPlaySession">Is this a new play session?</param>
-        public void LaunchGame(MiniGameCode miniGameCode, bool newPlaySession = false)
+        /// <param name="forceNewPlaySession">Is this a new play session?</param>
+        public void LaunchGame(MiniGameCode miniGameCode, bool forceNewPlaySession = false)
         {
             float difficulty = teacher.GetCurrentDifficulty(miniGameCode);
             GameConfiguration configuration = new GameConfiguration(difficulty);
-            LaunchGame(miniGameCode, configuration, newPlaySession);
+            LaunchGame(miniGameCode, configuration, forceNewPlaySession);
         }
 
         /// <summary>
@@ -36,10 +36,10 @@ namespace EA4S.MinigamesAPI
         /// </summary>
         /// <param name="_gameCode">The minigame code.</param>
         /// <param name="_gameConfiguration">The minigame configuration.</param>
-        /// <param name="newPlaySession">Is this a new play session?</param>
-        public void LaunchGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration, bool newPlaySession = false)
+        /// <param name="forceNewPlaySession">Is this a new play session?</param>
+        public void LaunchGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration, bool forceNewPlaySession = false)
         {
-            if (newPlaySession)
+            if (forceNewPlaySession)
             {
                 teacher.InitialiseNewPlaySession();
             }

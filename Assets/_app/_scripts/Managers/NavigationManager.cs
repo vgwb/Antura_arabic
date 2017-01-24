@@ -41,6 +41,7 @@ namespace EA4S
         public void InitialiseNewPlaySession()
         {
             CurrentMiniGameIndexInPlaySession = 0;
+            AppManager.I.Teacher.InitialiseNewPlaySession();
             CurrentPlaySessionMiniGames = AppManager.I.Teacher.SelectMiniGames();
         }
 

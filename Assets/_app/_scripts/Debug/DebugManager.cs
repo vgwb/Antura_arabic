@@ -121,9 +121,7 @@ namespace EA4S.Debugging
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = PlaySession;
 
-            // Call start game with parameters
-            AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected, new GameConfiguration(Difficulty), newPlaySession: true);
-
+            AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected, new GameConfiguration(Difficulty), forceNewPlaySession: true);
         }
 
     }

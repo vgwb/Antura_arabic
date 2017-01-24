@@ -131,7 +131,7 @@ namespace EA4S.PlayerBook
 
             Debug.Log("Playing minigame " + currentMiniGame.Code + " at PS " + AppManager.I.Player.CurrentJourneyPosition);
 
-            AppManager.I.GameLauncher.LaunchGame(currentMiniGame.Code, newPlaySession : true);
+            AppManager.I.GameLauncher.LaunchGame(currentMiniGame.Code, forceNewPlaySession : true);
         }
 
         void emptyListContainers()
