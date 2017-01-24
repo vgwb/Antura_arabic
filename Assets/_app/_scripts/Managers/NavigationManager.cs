@@ -27,6 +27,36 @@ namespace EA4S
     internal struct NavigationData {
         public PlayerProfile CurrentPlayer;
         public AppScene CurrentScene;
+
+
+        /// <summary>
+        /// List of minigames selected for the current play session
+        /// </summary>
+        public List<MiniGameData> CurrentPlaySessionMiniGames;
+
+        /// <summary>
+        /// Current minigame index in 
+        /// </summary>
+        public int CurrentMiniGameIndexInPlaySession;
+
+        public void InitialiseNewPlaySession()
+        {
+            CurrentMiniGameIndexInPlaySession = 0;
+            CurrentPlaySessionMiniGames = AppManager.I.Teacher.InitialiseCurrentPlaySession();
+        }
+
+        public void NextMinigame()
+        {
+            CurrentMiniGameIndexInPlaySession++;
+        }
+
+        public MiniGameData CurrentMiniGameData
+        {
+            get
+            {
+                return CurrentPlaySessionMiniGames[CurrentMiniGameIndexInPlaySession];
+            }
+        }
     }
 
     /// <summary>

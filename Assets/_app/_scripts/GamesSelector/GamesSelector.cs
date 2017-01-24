@@ -239,7 +239,7 @@ namespace EA4S.GamesSelector
             //MiniGameCode myGameCode = TeacherAI.I.CurrentMiniGame.Code;
             //myGameCode = MiniGameCode.Egg;  // SET THIS TO TET SPECIFIC MINIGAMES IN THE MAIN PROGRESSION FLOW
             // AppManager.I.GameLauncher.LaunchGame(myGameCode);
-            NavigationManager.I.GoToNextScene();
+            AppManager.I.NavigationManager.GoToNextScene();
         }
 
         #endregion

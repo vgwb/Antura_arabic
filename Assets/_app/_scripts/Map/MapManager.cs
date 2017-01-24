@@ -14,7 +14,7 @@ namespace EA4S.Map
         void Start()
         {
             // Navigation manager 
-            NavigationManager.I.CurrentScene = AppScene.Map;
+            AppManager.I.NavigationManager.CurrentScene = AppScene.Map;
             AudioManager.I.PlayMusic(SceneMusic);
 
             //KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro);

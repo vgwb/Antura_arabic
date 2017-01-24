@@ -18,7 +18,7 @@ namespace EA4S.Rewards
 
         void Start()
         {
-            NavigationManager.I.CurrentScene = AppScene.Rewards;
+            AppManager.I.NavigationManager.CurrentScene = AppScene.Rewards;
 
             if (AppManager.I.Player.IsFirstContact())
                 GlobalUI.ShowPauseMenu(false);
@@ -98,9 +98,9 @@ namespace EA4S.Rewards
         public void Continue()
         {
             if (AppManager.I.Player.IsFirstContact())
-                NavigationManager.I.GoToScene(AppScene.AnturaSpace);
+                AppManager.I.NavigationManager.GoToScene(AppScene.AnturaSpace);
             else
-                NavigationManager.I.GoToNextScene();
+                AppManager.I.NavigationManager.GoToNextScene();
         }
     }
 }
