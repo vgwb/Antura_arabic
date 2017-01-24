@@ -130,7 +130,8 @@ namespace EA4S
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.DebugPanel:
-                    GoToGameScene(AppManager.I.CurrentMinigame);
+                    NavData.SetFirstMinigame();
+                    GoToGameScene(NavData.CurrentMiniGameData);
                     break;
                 default:
                     break;
@@ -274,9 +275,9 @@ namespace EA4S
         /// <param name="_stars">The stars.</param>
         public void EndMinigame(int _stars)
         {
-            if (TeacherAI.I.CurrentMiniGame == null)
+            if (NavData.CurrentMiniGameData == null)
                 return;
-            EndsessionResultData res = new EndsessionResultData(_stars, TeacherAI.I.CurrentMiniGame.GetIconResourcePath(), TeacherAI.I.CurrentMiniGame.GetBadgeIconResourcePath());
+            EndsessionResultData res = new EndsessionResultData(_stars, NavData.CurrentMiniGameData.GetIconResourcePath(), NavData.CurrentMiniGameData.GetBadgeIconResourcePath());
             EndSessionResults.Add(res);
 
         }

@@ -18,8 +18,6 @@ namespace EA4S.Rewards
 
         void Start()
         {
-            AppManager.I.NavigationManager.CurrentScene = AppScene.Rewards;
-
             if (AppManager.I.Player.IsFirstContact())
                 GlobalUI.ShowPauseMenu(false);
 
