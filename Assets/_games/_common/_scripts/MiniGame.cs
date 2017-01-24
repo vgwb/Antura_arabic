@@ -48,7 +48,7 @@ namespace EA4S.MinigamesCommon
         {
             StarsScore = stars;
 
-            NavigationManager.I.EndMinigame(stars);
+            AppManager.I.NavigationManager.EndMinigame(stars);
 
             if (OnGameEnded != null)
                 OnGameEnded(stars, score);

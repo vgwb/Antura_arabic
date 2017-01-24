@@ -203,7 +203,7 @@ namespace EA4S.AnturaSpace
                     }*/
                     m_oCustomizationButton.onClick.RemoveListener(AdvanceTutorial);
 
-                    GlobalUI.ShowBackButton(true,delegate() { NavigationManager.I.GoToScene(AppScene.Map); });
+                    GlobalUI.ShowBackButton(true,delegate() { AppManager.I.NavigationManager.GoToScene(AppScene.Map); });
 
                     AudioManager.I.StopDialogue(false);
 

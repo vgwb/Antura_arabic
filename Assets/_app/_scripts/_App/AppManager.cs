@@ -31,10 +31,11 @@ namespace EA4S
         public MiniGameLauncher GameLauncher;
         public LogManager LogManager;
         public PlayerProfileManager PlayerProfileManager;
+        public NavigationManager NavigationManager;
 
         // refactor: access to the current minigame data should be in another subsystem that is responsible for holding temporary data for minigames
-        [HideInInspector]
-        public Db.MiniGameData CurrentMinigame;
+        //[HideInInspector]
+        //public Db.MiniGameData CurrentMinigame;
 
         bool appIsPaused = false;
 
@@ -64,7 +65,7 @@ namespace EA4S
             PlayerProfileManager = new PlayerProfileManager();
 
             gameObject.AddComponent<DebugManager>();
-            gameObject.AddComponent<NavigationManager>();
+            NavigationManager = gameObject.AddComponent<NavigationManager>();
             gameObject.AddComponent<KeeperManager>();
 
             RewardSystemManager.Init();
@@ -123,7 +124,7 @@ namespace EA4S
             PlayerProfileManager.DeleteCurrentPlayer();
 
             // AppManager.I.PlayerProfileManager.DeleteAllProfiles();
-            NavigationManager.I.GoHome();
+            AppManager.I.NavigationManager.GoHome();
             Debug.Log("Reset current player: " + playerId);
         }
 
@@ -142,7 +143,7 @@ namespace EA4S
             AppManager.I.GameSettings.AvailablePlayers = new System.Collections.Generic.List<string>();
             AppManager.I.PlayerProfileManager.SaveGameSettings();
             SRDebug.Instance.HideDebugPanel();
-            AppManager.I.Modules.SceneModule.LoadSceneWithTransition(NavigationManager.I.GetSceneName(AppScene.Home));
+            AppManager.I.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.NavigationManager.GetSceneName(AppScene.Home));
 
             Debug.Log("Reset ALL players.");
         }
