@@ -14,6 +14,7 @@ namespace EA4S.Minigames.SickLetters
         public SickLettersLLPrefab LLPrefab;
         public SickLettersAntura antura;
         public SickLettersVase scale;
+        public GameObject buttonRepeater;
         public GameObject DropZonesGO;
         public Transform[] safeDropZones;
         public UnityEngine.Animation hole;
@@ -145,11 +146,15 @@ namespace EA4S.Minigames.SickLetters
                 {
                     LLPrefab.letterView.DoHorray();
                     SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
+                    Context.GetAudioManager().PlayLetterData(LLPrefab.letterView.Data, true);
                     LLPrefab.jumpOut(1.5f);
                 }
                 else
+                {
                     LLPrefab.jumpOut(0.5f);
-
+                    if(roundsCount > 0)
+                        Context.GetAudioManager().PlayLetterData(LLPrefab.letterView.Data, true);
+                }
                 if (roundsCount == 1)
                 {
                     Context.GetOverlayWidget().Initialize(true, true, false);
@@ -217,14 +222,19 @@ namespace EA4S.Minigames.SickLetters
                 setDifficulty(diff, 180, 42, 3.0f, true, true);
         }
 
-        public void onWrongMove()
+        public void onWrongMove(bool isDDCorrect = false)
         {
             Debug.Log("XXXXX "+Time.deltaTime);
             lastMoveIsCorrect = false;
             goodCommentCounter = correctMoveSequence = 0;
-            AudioManager.I.PlayDialogue("Keeper_Bad_" + UnityEngine.Random.Range(1,6));
-            TutorialUI.MarkNo(scale.transform.position - Vector3.forward * 2 + Vector3.up, TutorialUI.MarkSize.Big);
-            Context.GetAudioManager().PlaySound(Sfx.Lose);
+            Context.GetLogManager().OnAnswered(LLPrefab.letterView.Data, false);
+            if (isDDCorrect)
+            {
+                AudioManager.I.PlayDialogue("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
+                TutorialUI.MarkNo(scale.transform.position - Vector3.forward * 2 + Vector3.up, TutorialUI.MarkSize.Big);
+                Context.GetAudioManager().PlaySound(Sfx.Lose);
+            }
+            
         }
 
 
@@ -236,6 +246,7 @@ namespace EA4S.Minigames.SickLetters
             if (goodCommentCounter == 3 || !lastMoveIsCorrect)
             {
                 AudioManager.I.PlayDialogue("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
+                
                 goodCommentCounter = 0;
             }
 
@@ -253,7 +264,7 @@ namespace EA4S.Minigames.SickLetters
             TutorialUI.MarkYes(scale.transform.position - Vector3.forward * 2 + Vector3.up, TutorialUI.MarkSize.Big);
             //game.Context.GetCheckmarkWidget().Show(true);
             Context.GetAudioManager().PlaySound(Sfx.OK);
-
+            Context.GetLogManager().OnAnswered(LLPrefab.letterView.Data, true);
 
             //int prevStarNum = game.currentStars;
             if (scale.counter > maxWieght)
@@ -270,7 +281,13 @@ namespace EA4S.Minigames.SickLetters
 
             checkForNextRound();
         }
-    
+
+        public void RepeatAudio()
+        {
+            if(LLPrefab.letterView && LLPrefab.letterView.Data != null && !disableInput)
+                Context.GetAudioManager().PlayLetterData(LLPrefab.letterView.Data, true);
+        }
+
     }
 
     
