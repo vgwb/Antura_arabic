@@ -1,18 +1,11 @@
-Database Management
-===============
+# Database Management
 
-*Edits:*
-
-<table>
-  <tr>
-    <td>12-01-2017</td>
-    <td>Michele Pirovano</td>
-  </tr>
-</table>
+* TOC
+{:toc}
 
 The application uses two different databases for learning data and logging data.
 
-### Learning Data
+## Learning Data
 
 Learning data comprehends all information needed to provide a correct learning experience for the players.
 This data is included with the application at startup.
@@ -21,7 +14,7 @@ This includes:
  * Progression data: stage, learning block, and play session configurations
  * Dictionary data: letters, words, and phrases of the given language.
  * Minigame data: details on the available minigames and how they tie with Progression and Learning data.
- 
+
 The data is compiled into JSON files contained inside the **_manage/manage_Database/Datasets** folder.
 The JSON files are loaded using the **_manage/manage_Database/manage_Database** scene, where consistency checks are performed and the database contents can be inspected.
 @todo: explain DataParsers too.
@@ -35,7 +28,7 @@ At runtime, **EA4S.Db.Database** functions as an entry point for all the assets 
 
 @todo: describe Progression and Minigame data?
 
-### Logging Data
+## Logging Data
 
 Logging data is measured as the player uses the application and saved to the system's memory at runtime.
 
@@ -52,11 +45,11 @@ The data is divided in several categories:
    * Minigame-related score levels for MiniGames, PlaySessions, LearningBlocks
 
  * **Database information** holds summary details on the current database and is used for versioning.
-  
+
 See the Logging.md document for further details on logging.
-  
+
 The database is implemented in SQLite.
-The SQLite database is loaded and connected to whenever a player profile is selected, and generated if non-existing. 
+The SQLite database is loaded and connected to whenever a player profile is selected, and generated if non-existing.
 All communication with the SQLite database is performed through a **EA4S.Db.DBService** instance, managed by the **DatabaseManager*.
 The structure of the SQLite database can be generated a runtime and this is controlled through the **DBService.GenerateTable(bool create, bool drop)**, which can be updated to reflect any changes in the DB scheme.
 Note that any change to the database scheme must also prompt a sequential update of **AppConstants.DbSchemeVersion** for versioning to function correctly.
@@ -73,10 +66,10 @@ A profile can be selected using **EA4S.Db.DatabaseManager.LoadDynamicDbForPlayer
 Player profiles are also supported with:
  * New profile creation (through **CreateProfile()**)
  * Profile deletion (through **DropProfile()**)
- 
+
 @todo: explain profileId from the PlayerProfile
 
-### Reading API
+## Reading API
 
 To read learning or logging data, a single entry point is used throughout the application.
 **EA4S.DatabaseManager** is the entry point and can be access through the public field **AppManager.Instance.Db**.
@@ -92,16 +85,16 @@ To access logging data, the following methods can be used:
 
  * For logging data, literal queries in SQL can be also used through **FindXXXDataByQuery()** methods.
 
-### Writing API
+## Writing API
 
 To write to the database, the Database Manager provides the following methods:
  * **Insert<T>()** to insert new data in the database.
  * **UpdateScoreData()** to overwrite the current score data for a given element.
 
-Note that these methods should not be called directly and that all minigames should use the *LogManager* to indirectly write to the database. 
+Note that these methods should not be called directly and that all minigames should use the *LogManager* to indirectly write to the database.
 Note that learning data is static and thus not writeable at runtime.
 
-### Refactoring notes
+## Refactoring notes
 
  * The logging data structures should be better defined. They are, for now, too little strict and not enough documentation on their purpose is available.
  * Insert/Update should not be directly exposed and instead be used by the log manager and protected from other uses
