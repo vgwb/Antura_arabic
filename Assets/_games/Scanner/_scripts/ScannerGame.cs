@@ -213,11 +213,16 @@ namespace EA4S.Minigames.Scanner
 			Destroy(poof, duration);
 		}
 
-//        public override Vector3 GetGravity()
-//        {
-//            return Vector3.up * (-80);
-//        }
+        //        public override Vector3 GetGravity()
+        //        {
+        //            return Vector3.up * (-80);
+        //        }
 
+        public void LogAnswer(ILivingLetterData data ,bool isCorrect)
+        {
+            Context.GetLogManager().OnAnswered(data, isCorrect);
+            //Debug.Log(data.TextForLivingLetter);
+        }
 
     }
 }
