@@ -5,6 +5,7 @@ using System.Linq;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace EA4S.Minigames.MixedLetters
 {
@@ -33,6 +34,8 @@ namespace EA4S.Minigames.MixedLetters
 
         private bool isSpelling = true;
 
+        public Button repeatPromptButton;
+
         protected override void OnInitialize(IGameContext context)
         {
             instance = this;
@@ -59,6 +62,8 @@ namespace EA4S.Minigames.MixedLetters
             ResetScene();
 
             MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Theme9);
+
+            DisableRepeatPromptButton();
         }
 
         protected override IGameState GetInitialState()
@@ -180,6 +185,11 @@ namespace EA4S.Minigames.MixedLetters
             }
         }
 
+        public void SayQuestion()
+        {
+            SayQuestion(null);
+        }
+
         public void SayQuestion(Action onQuestionOver)
         {
             if (MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Spelling)
@@ -248,6 +258,16 @@ namespace EA4S.Minigames.MixedLetters
 
             HideRotationButtons();
             ShowGreenTicks();
+        }
+
+        public void EnableRepeatPromptButton()
+        {
+            repeatPromptButton.gameObject.SetActive(true);
+        }
+
+        public void DisableRepeatPromptButton()
+        {
+            repeatPromptButton.gameObject.SetActive(false);
         }
     }
 }

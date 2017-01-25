@@ -18,6 +18,8 @@ namespace EA4S.Minigames.MixedLetters
             game.lastRoundWon = false;
             game.OnRoundStarted();
 
+            game.EnableRepeatPromptButton();
+
             MinigamesUI.Timer.Play();
         }
 
