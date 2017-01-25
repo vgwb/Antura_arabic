@@ -9968,7 +9968,6 @@ MonoBehaviour:
   victimLL: {fileID: 0}
   roundNumber: 0
   numRoundsWon: 0
-  lastRoundWon: 0
   repeatPromptButton: {fileID: 1203294978}
 --- !u!4 &907367148
 Transform:

@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using EA4S.LivingLetters;
+using EA4S.Audio;
 
 namespace EA4S.Minigames.Scanner
 {
@@ -172,7 +173,9 @@ namespace EA4S.Minigames.Scanner
             letterObjectView.SetState(LLAnimationStates.LL_idle);
 			letterObjectView.DoSmallJump();
             StartCoroutine(RotateGO(livingLetter, new Vector3(90, 90, 0), 1f));
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
+            AudioManager.I.PlaySound(Sfx.LetterSad);
+            yield return new WaitForSeconds(0.25f);
             letterObjectView.Falling = true;
             status = LLStatus.Falling;
 
@@ -186,6 +189,7 @@ namespace EA4S.Minigames.Scanner
         void OnMouseUp()
         {
             letterObjectView.SetState(LLAnimationStates.LL_tickling);
+            game.Context.GetAudioManager().PlayLetterData(letterObjectView.Data, true);
         }
 
         public void RoundLost()
