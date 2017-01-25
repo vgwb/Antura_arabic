@@ -104,7 +104,12 @@ namespace EA4S.Minigames.ReadingGame
 
         void OnAnswered(CircleButton button)
         {
-            game.Context.GetAudioManager().PlaySound(button.Answer == correct ? Sfx.OK : Sfx.KO);
+            bool result = button.Answer == correct;
+
+            game.Context.GetAudioManager().PlaySound(result ? Sfx.OK : Sfx.KO);
+            
+            if (!TutorialMode)
+                game.Context.GetLogManager().OnAnswered(correct, result);
 
             if (button.Answer == correct)
             {
