@@ -59,7 +59,9 @@ namespace EA4S.Assessment
         private IEnumerator DescriptionAudio( bool playQuestion)
         {
             yield return Dialogues.PlayGameDescription();
-            yield return QuestionPlacer.PlayQuestionSound();
+
+            if(playQuestion)
+                yield return QuestionPlacer.PlayQuestionSound();
         }
 
         private IEnumerator AnturaGag()
@@ -117,15 +119,28 @@ namespace EA4S.Assessment
             QuestionGenerator.InitRound();
 
             for (int question = 0; question < Configuration.SimultaneosQuestions; question++)
-
-                LogicInjector.Wire(
-                    QuestionGenerator.GetNextQuestion(),
-                    QuestionGenerator.GetNextAnswers());
+                WireLogicInjector( LogicInjector, QuestionGenerator);
 
             LogicInjector.CompleteWiring();
             LogicInjector.EnableDragOnly();
 
             QuestionGenerator.CompleteRound();
+        }
+
+        private void WireLogicInjector( ILogicInjector injector, IQuestionGenerator generator)
+        {
+            try
+            {
+                IQuestion question = generator.GetNextQuestion();
+                Answer[] answers = generator.GetNextAnswers();
+
+                injector.Wire( question, answers);
+            }
+            catch ( System.Exception ex)
+            {
+                Debug.LogWarning( "Not enough teacher data to generate an additional question at this stage: " +
+                    ex.Message);
+            }
         }
 
         public IAnswerPlacer AnswerPlacer { get; private set; }
