@@ -18,6 +18,8 @@ namespace EA4S.Minigames.MixedLetters
         {
             SeparateLettersSpawnerController.instance.SetLettersNonInteractive();
 
+            game.DisableRepeatPromptButton();
+
             if (game.roundNumber != 0)
             {
                 MinigamesUI.Timer.Pause();
