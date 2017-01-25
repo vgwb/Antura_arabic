@@ -1,5 +1,12 @@
-﻿namespace EA4S.Template
+﻿using EA4S.MinigamesCommon;
+
+namespace EA4S.Template
 {
+    /// <summary>
+    /// Sample game state used by the TemplateGame. 
+    /// Implements a phase in whic the results of the play session are gathered.
+    /// Note that EndGame is called to enter the final common state: OutcomeState.
+    /// </summary>
     public class ResultGameState : IGameState
     {
         TemplateGame game;

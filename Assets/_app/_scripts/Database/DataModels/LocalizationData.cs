@@ -1,8 +1,10 @@
 ﻿using System;
-using UnityEngine;
 
 namespace EA4S.Db
 {
+    /// <summary>
+    /// Data defining a Localization key-value pair.
+    /// </summary>
     [Serializable]
     public class LocalizationData : IData
     {

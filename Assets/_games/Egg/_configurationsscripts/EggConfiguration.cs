@@ -1,11 +1,21 @@
-﻿namespace EA4S.Egg
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.Egg
 {
     public class EggConfiguration : IGameConfiguration
     {
+        public enum EggVariation : int
+        {
+            Single = 1,
+            Sequence = 2,
+        }
+
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
         public float Difficulty { get; set; }
+        public EggVariation Variation { get; set; }
 
         /////////////////
         // Singleton Pattern
@@ -25,19 +35,27 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.Egg, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.1f;
-            Questions = new SampleEggQuestionProvider(Difficulty);
+            Variation = EggVariation.Single;
+
+            if (Variation == EggVariation.Sequence)
+                Questions = new SampleEggSequenceQuestionProvider();
+            else
+                Questions = new SampleEggSingleQuestionProvider();
         }
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
-            int nCorrect = 5;
-            int nWrong = 5;
+            int nCorrect = 6;
+            int nWrong = 7;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctSeverity = Teacher.SelectionSeverity.AsManyAsPossible;
+
             builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
 
             return builder;
@@ -49,6 +67,5 @@
             // example: a.minigameVoteSkewOffset = 1f;
             return rules;
         }
-
     }
 }

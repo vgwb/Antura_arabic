@@ -1,8 +1,15 @@
 ﻿using EA4S.Teacher;
 using System.Collections.Generic;
+using EA4S.Utilities;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Selects words inside / related to a phrase
+    /// * Question: The phrase
+    /// * Correct answers: The words related to the phrase
+    /// * Wrong answers: Unrelated words
+    /// </summary>
     public class WordsInPhraseQuestionBuilder : IQuestionBuilder
     {
         // Focus: Words & Phrases

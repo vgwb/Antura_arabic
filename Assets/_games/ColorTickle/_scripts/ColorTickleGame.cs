@@ -1,11 +1,7 @@
 ﻿using UnityEngine;
+using EA4S.MinigamesCommon;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace EA4S.ColorTickle
+namespace EA4S.Minigames.ColorTickle
 {
     public class ColorTickleGame : MiniGame
     {

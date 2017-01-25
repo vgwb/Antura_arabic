@@ -1,8 +1,15 @@
 ﻿using EA4S.Teacher;
+using ModularFramework.Helpers;
 using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Categorize letters based on their type (vowel/consonant)
+    /// * Question: Letter to categorize
+    /// * Correct answers: Correct type
+    /// * Wrong answers: Wrong type
+    /// </summary>
     public class LettersByTypeQuestionBuilder : IQuestionBuilder
     {
         // focus: Letters
@@ -65,7 +72,7 @@ namespace EA4S
 
 
             // Shuffle the packs at the end
-            packs = packs.Shuffle();
+            packs.Shuffle();
 
             if (ConfigAI.verboseTeacher)
             {

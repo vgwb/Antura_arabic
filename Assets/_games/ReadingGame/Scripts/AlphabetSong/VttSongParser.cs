@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace EA4S
+namespace EA4S.Minigames.ReadingGame
 {
     public class VttSongParser : ISongParser
     {
@@ -25,7 +24,7 @@ namespace EA4S
                 {
                     foreach (var p in parts)
                     {
-                        var lines = p.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                        var lines = p.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
                         var item = new KaraokeSegment();
                         bool parsedTime = false;

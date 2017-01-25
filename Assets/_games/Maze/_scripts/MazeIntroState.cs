@@ -1,10 +1,10 @@
-﻿namespace EA4S.Maze
+﻿namespace EA4S.Minigames.Maze
 {
     public class MazeIntroState : IGameState
     {
         MazeGameManager game;
 
-        int currentShownTubes = 2;
+        //int currentShownTubes = 2;
 
 
 

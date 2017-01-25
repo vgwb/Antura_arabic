@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using System.Collections;
-using System;
+using EA4S.Audio;
 
-namespace EA4S.FastCrowd
+namespace EA4S.Minigames.FastCrowd
 {
 
     public class WordComposer : MonoBehaviour
@@ -54,7 +54,7 @@ namespace EA4S.FastCrowd
         {
             yield return new WaitForSeconds(_delay);
             CompletedLetters.Add(data as LL_LetterData);
-            AudioManager.I.PlaySfx(EA4S.Sfx.Hit);
+            AudioManager.I.PlaySound(EA4S.Sfx.Hit);
             innerTransform.DOShakeScale(1.5f, 0.5f);
             UpdateWord();
         }

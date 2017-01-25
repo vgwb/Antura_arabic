@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
+using EA4S.LivingLetters;
 
-namespace EA4S {
+namespace EA4S.Minigames.FastCrowd {
+
     /// <summary>
     /// Add functionality to be droppable on DropSingleArea.
     /// </summary>

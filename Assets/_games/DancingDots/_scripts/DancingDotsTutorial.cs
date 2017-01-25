@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.Audio;
+using EA4S.Tutorial;
 using TMPro;
 
-namespace EA4S.DancingDots
+namespace EA4S.Minigames.DancingDots
 {
     public class DancingDotsTutorial : MonoBehaviour
     {
@@ -113,7 +115,7 @@ namespace EA4S.DancingDots
         IEnumerator sayTut(float delay)
         {
             yield return new WaitForSeconds(delay);
-			AudioManager.I.PlayDialog(EA4S.Db.LocalizationDataId.DancingDots_Tuto);
+			AudioManager.I.PlayDialogue(EA4S.Db.LocalizationDataId.DancingDots_Tuto);
         }
     }
 }

@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using EA4S.MinigamesAPI;
 
-namespace EA4S.Maze
+namespace EA4S.Minigames.Maze
 {
     /// <summary>
     /// Letter provider sample

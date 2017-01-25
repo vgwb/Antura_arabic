@@ -1,4 +1,6 @@
-﻿namespace EA4S.FastCrowd
+﻿using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.FastCrowd
 {
     public class FastCrowdQuestionState : IGameState
     {

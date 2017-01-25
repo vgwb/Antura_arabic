@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
-using EA4S.Db;
+using EA4S.Profile;
+using EA4S.Utilities;
 
-namespace EA4S
+namespace EA4S.Db
 {
+    /// <summary>
+    /// Entry point for the rest of the application to access database entries.
+    /// This class is responsible for loading all data and provide access to both static (learning) and dynamic (logging) data. 
+    /// </summary>
     public class DatabaseManager
     {
         public const string STATIC_DATABASE_NAME = "Database";

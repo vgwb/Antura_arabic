@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using EA4S.MinigamesAPI;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -11,14 +12,13 @@ namespace EA4S.Assessment
     {
         private IQuestionProvider provider;
         private QuestionGeneratorState state;
-        private IQuestionPack currentPack;
         private int numberOfCategories;
         private int numberOfMaxAnswers;
         private int numberOfRounds;
         private List< ILivingLetterData>[] answersBuckets;
-        private ICategoryProvider categoryProvider;
+        private ArabicCategoryProvider categoryProvider;
 
-        public CategoryQuestionGenerator( IQuestionProvider provider, ICategoryProvider categoryProvider, int maxAnsw, int rounds)
+        public CategoryQuestionGenerator( IQuestionProvider provider, ArabicCategoryProvider categoryProvider, int maxAnsw, int rounds)
         {
             this.provider = provider;
             state = QuestionGeneratorState.Uninitialized;
@@ -34,17 +34,14 @@ namespace EA4S.Assessment
             FillBuckets();
         }
 
-        // Unluckily the question provider can be used only in the following mode
-        // because of how API was designed.
+        // The QuestionProvider gives answers divided by category. Weird
+        // Because of that we have to take all answers and divide them by category
+        // then we pick something random from each "bucket".
         private void TakeAnswersFromBuckets()
         {
             category1ForThisRound = 0;
             category2ForThisRound = 0;
             category3ForThisRound = 0;
-
-            Debug.Log("Bucket1:" + answersBuckets[0].Count);
-            Debug.Log("Bucket2:" + answersBuckets[1].Count);
-            Debug.Log("Bucket3:" + answersBuckets[2].Count);
 
             int picksThisRound = numberOfMaxAnswers;
             int totalAnswers = answersBuckets[0].Count + answersBuckets[1].Count + answersBuckets[2].Count;
@@ -63,7 +60,6 @@ namespace EA4S.Assessment
                         pickFromBucketN = temp;
                         break;
                     }
-
                 }
 
                 if (pickFromBucketN == -1)
@@ -118,13 +114,14 @@ namespace EA4S.Assessment
             }
         }
 
-        private IAnswer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
+        private Answer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
         {
-            return new DefaultAnswer(
-                LivingLetterFactory.Instance.SpawnAnswer( correctAnswer)
-
-                //correct
-                , true);
+            return
+            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer)
+            .gameObject.AddComponent< Answer>()
+            
+                // Correct answer
+                .Init(true);
         }
 
         public void InitRound()
@@ -139,7 +136,7 @@ namespace EA4S.Assessment
 
         private void ClearCache()
         {
-            totalAnswers = new List< IAnswer>();
+            totalAnswers = new List< Answer>();
             totalQuestions = new List< IQuestion>();
             partialAnswers = null;
             currentCategory = 0;
@@ -154,7 +151,7 @@ namespace EA4S.Assessment
             currentCategory = 0;
         }
 
-        public IAnswer[] GetAllAnswers()
+        public Answer[] GetAllAnswers()
         {
             if (state != QuestionGeneratorState.Completed)
                 throw new InvalidOperationException( "Not Completed");
@@ -170,7 +167,7 @@ namespace EA4S.Assessment
             return totalQuestions.ToArray();
         }
 
-        public IAnswer[] GetNextAnswers()
+        public Answer[] GetNextAnswers()
         {
             if (state != QuestionGeneratorState.QuestionFeeded)
                 throw new InvalidOperationException( "Not Initialized");
@@ -179,9 +176,9 @@ namespace EA4S.Assessment
             return partialAnswers;
         }
 
-        List<IAnswer> totalAnswers;
+        List<Answer> totalAnswers;
         List<IQuestion> totalQuestions;
-        IAnswer[] partialAnswers;
+        Answer[] partialAnswers;
 
         private int currentCategory;
 
@@ -212,7 +209,7 @@ namespace EA4S.Assessment
             if (currentCategory == 2)
                 amount = category3ForThisRound;
 
-            List< IAnswer> answers = new List< IAnswer>();
+            List< Answer> answers = new List< Answer>();
 
             int correctCount = 0;
             for(int i=0; i<amount; i++)

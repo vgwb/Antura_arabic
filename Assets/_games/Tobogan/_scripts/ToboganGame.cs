@@ -1,8 +1,8 @@
-﻿using System;
-using TMPro;
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.Tobogan
+namespace EA4S.Minigames.Tobogan
 {
     public class ToboganGame : MiniGame
     {

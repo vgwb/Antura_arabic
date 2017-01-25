@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
+using EA4S.Tutorial;
 
-namespace EA4S.Maze
+namespace EA4S.Minigames.Maze
 {
 	
 	public class HandTutorial : MonoBehaviour {
@@ -17,10 +17,10 @@ namespace EA4S.Maze
 		private List<Vector3> wayPoints = new List<Vector3> ();
 
 		private int currentPath = 0;
-		private int currentWayPoint = 0;
+		//private int currentWayPoint = 0;
 
 
-		private bool isMovingOnPath = false;
+		//private bool isMovingOnPath = false;
 		public bool isStopped = false;
 
 		private Vector3 startingPosition;
@@ -57,7 +57,7 @@ namespace EA4S.Maze
 			if(startingPosition.x != -1 && startingPosition.y != -1 && startingPosition.z != -1)
 				gameObject.transform.position = startingPosition;
 			gameObject.SetActive (true);
-			isMovingOnPath = true;
+			//isMovingOnPath = true;
 			setWayPoints ();
 			
 		}
@@ -70,7 +70,7 @@ namespace EA4S.Maze
 			gameObject.SetActive (false);
 
 			//set tutorial done:
-			isMovingOnPath = false;
+			//isMovingOnPath = false;
 			isStopped = true;
 		}
 
@@ -93,7 +93,7 @@ namespace EA4S.Maze
 
            
 
-            currentWayPoint = 0;
+            //currentWayPoint = 0;
             isShownOnce = true;
             MazeGameManager.instance.timer.StartTimer();
             if (wayPoints.Count == 1)

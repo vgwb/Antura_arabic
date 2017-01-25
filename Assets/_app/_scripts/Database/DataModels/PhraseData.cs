@@ -1,8 +1,13 @@
 ﻿using System;
-using UnityEngine;
 
 namespace EA4S.Db
 {
+    /// <summary>
+    /// Data defining a Phrase.
+    /// This is one of the fundamental dictionary (i.e. learning content) elements.
+    /// <seealso cref="WordData"/>
+    /// <seealso cref="LetterData"/>
+    /// </summary>
     [Serializable]
     public class PhraseData : IData, IConvertibleToLivingLetterData
     {

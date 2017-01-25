@@ -1,78 +1,46 @@
+
+using EA4S.MinigamesCommon;
+
 namespace EA4S.Assessment
 {
     public class AssessmentGameState : IGameState
     {
+        private Assessment assessment;
+        private AssessmentResultState resultState;
         private AssessmentGame assessmentGame;
-        private IAssessment assessment;
+        private Updater updater;
+        private IDragManager dragManager;
 
-        public AssessmentGameState( AssessmentGame assessmentGame)
+        public AssessmentGameState( IDragManager dragManager, Assessment assessment, 
+                                    AssessmentResultState resultState, AssessmentGame game)
         {
-            this.assessmentGame = assessmentGame;
-            assessment = GetAssessment();
-        }
-
-        private IAssessment GetAssessment()
-        {
-            switch (AssessmentConfiguration.Instance.assessmentType)
-            {
-                case AssessmentCode.MatchLettersToWord:
-                    return AssessmentFactory.CreateMatchLettersWordAssessment();
-
-                case AssessmentCode.LetterShape:
-                    return AssessmentFactory.CreateLetterShapeAssessment();
-
-                case AssessmentCode.WordsWithLetter:
-                    return AssessmentFactory.CreateWordsWithLetterAssessment();
-
-                case AssessmentCode.SunMoonWord:
-                    return AssessmentFactory.CreateSunMoonWordAssessment();
-
-                case AssessmentCode.SunMoonLetter:
-                    return AssessmentFactory.CreateSunMoonLetterAssessment();
-
-                case AssessmentCode.QuestionAndReply:
-                    return AssessmentFactory.CreateQuestionAndReplyAssessment();
-
-                case AssessmentCode.SelectPronouncedWord:
-                    return AssessmentFactory.CreatePronouncedWordAssessment();
-
-                case AssessmentCode.SingularDualPlural:
-                    return AssessmentFactory.CreateSingularDualPluralAssessment();
-
-                case AssessmentCode.WordArticle:
-                    return AssessmentFactory.CreateWordArticleAssessment();
-
-                case AssessmentCode.MatchWordToImage:
-                    return AssessmentFactory.CreateMatchWordToImageAssessment();
-
-                case AssessmentCode.CompleteWord:
-                    return AssessmentFactory.CreateCompleteWordAssessment();
-
-                case AssessmentCode.OrderLettersOfWord:
-                    return AssessmentFactory.CreateOrderLettersInWordAssessment();
-            }
-
-            return null;
+            this.assessment = assessment;
+            this.resultState = resultState;
+            this.assessmentGame = game;
+            this.dragManager = dragManager;
         }
 
         public void EnterState()
         {
-            Coroutine.Start( assessment.PlayCoroutine( SetNextState));
+            updater = Updater.Instance;
+            updater.AddTimedUpdate( dragManager);
+            assessment.StartGameSession( SetNextState);
         }
 
         public void SetNextState()
         {
-            assessmentGame.SetCurrentState( assessmentGame.ResultState);
+            assessmentGame.SetCurrentState( resultState);
         }
 
         public void ExitState()
         {
-
+            updater.Clear();
+            updater = null;
         }
 
         public void Update( float delta)
         {
-            TimeEngine.Instance.Update( delta);
+            updater.UpdateDelta( delta);
         }
 
         public void UpdatePhysics( float delta)

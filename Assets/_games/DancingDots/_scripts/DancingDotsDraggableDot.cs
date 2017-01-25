@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
-//using ArabicSupport;
 using TMPro;
 
-namespace EA4S.DancingDots
+namespace EA4S.Minigames.DancingDots
 {
 	public class DancingDotsDraggableDot : MonoBehaviour {
 
 		private Vector3 screenPoint;
 		private Vector3 offset;
 
-        public DancingDotsGame gameManager;
+        public DancingDotsGame game;
 
 
         public bool isDot;
@@ -29,7 +28,7 @@ namespace EA4S.DancingDots
 
 		void OnMouseDown()
 		{
-            if (gameManager.disableInput)
+            if (game.disableInput)
                 return;
 
 			isDragging = true;
@@ -42,7 +41,7 @@ namespace EA4S.DancingDots
 
 		void OnMouseDrag()
 		{
-            if (gameManager.disableInput)
+            if (game.disableInput)
                 return;
 
             Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
@@ -54,18 +53,18 @@ namespace EA4S.DancingDots
 
 		void OnMouseUp()
 		{
-            if (gameManager.disableInput)
+            if (game.disableInput)
                 return;
 
             if (overDestinationMarker)
 			{
 				if (isDot)
 				{
-                    DancingDotsGame.instance.CorrectDot(); 
+                    game.CorrectDot(); 
 				}
 				else
 				{
-                    DancingDotsGame.instance.CorrectDiacritic();
+                    game.CorrectDiacritic();
 				}
 				gameObject.SetActive(false);
 			}
@@ -75,13 +74,13 @@ namespace EA4S.DancingDots
 				{
                     isDragging = false;
 
-                    if (gameManager.isTutRound)
+                    if (game.isTutRound)
                     {
                         Reset();
                         return;
                     }
 
-                    DancingDotsGame.instance.WrongMove(transform.position);
+                    game.WrongMove(transform.position);
 					
 					gameObject.SetActive(false);
 				}
@@ -160,8 +159,8 @@ namespace EA4S.DancingDots
 			{
 				if (other.tag == DancingDotsGame.DANCING_DOTS)
 				{
-					if (other.GetComponent<DancingDotsDropZone>().letters.Contains(DancingDotsGame.instance.currentLetter) 
-						&& DancingDotsGame.instance.dotsCount == dots)
+					if (other.GetComponent<DancingDotsDropZone>().letters.Contains(game.currentLetter) 
+						&& game.dotsCount == dots)
 					{
 						overDestinationMarker = markerStatus;
 					}
@@ -171,7 +170,7 @@ namespace EA4S.DancingDots
 			{
 				if (other.tag == DancingDotsGame.DANCING_DIACRITICS)
 				{
-					if (DancingDotsGame.instance.activeDiacritic.diacritic == diacritic)
+					if (game.activeDiacritic.diacritic == diacritic)
 					{
 						overDestinationMarker = markerStatus;
 					}

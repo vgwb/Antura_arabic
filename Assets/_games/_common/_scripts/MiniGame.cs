@@ -1,17 +1,28 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace EA4S
+namespace EA4S.MinigamesCommon
 {
+    /// <summary>
+    /// Base abstract class for all minigame in-scene managers.
+    /// Main entry point for the logic of a minigame.
+    /// </summary>
+    // refactor: this could be merged with MiniGameBase
+    // refactor: this could be better organized to signal what the minigame needs to access, and what the core needs
     public abstract class MiniGame : MiniGameBase, IGame
     {
+        /// <summary>
+        /// State reached when the minigame ends. 
+        /// Exists regardless of the specific minigame.
+        /// </summary>
         private OutcomeGameState OutcomeState;
 
         public int StarsScore { get; private set; }
 
         public IGameContext Context { get; private set; }
 
-        // When the game is ended, this event is raised
+        /// <summary>
+        /// Event raised whenever the game ends.
+        /// </summary>
         public event GameResultAction OnGameEnded;
 
         /// <summary>
@@ -29,6 +40,10 @@ namespace EA4S
         /// </summary>
         protected abstract void OnInitialize(IGameContext context);
 
+        /// <summary>
+        /// This must be called whenever the minigame ends.
+        /// Called by the minigame logic.
+        /// </summary>
         public void EndGame(int stars, int score)
         {
             StarsScore = stars;
@@ -39,17 +54,25 @@ namespace EA4S
                 OnGameEnded(stars, score);
 
             // Log trace game result
-            Context.GetLogManager().OnMiniGameResult(stars);
+            Context.GetLogManager().OnGameEnded(stars);
 
             this.SetCurrentState(OutcomeState);
         }
 
-        GameStateManager stateManager = new GameStateManager();
+
+
+        /// <summary>
+        /// Access the GameStateManager that controls the minigame's FSM.
+        /// </summary>
         public GameStateManager StateManager { get { return stateManager; } }
+        GameStateManager stateManager = new GameStateManager();
 
         bool initialized = false;
         Vector3 oldGravity;
 
+        /// <summary>
+        /// Initializes the minigame with the given context.
+        /// </summary>
         void Initialize(IGameContext context)
         {
             Context = context;

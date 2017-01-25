@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
-namespace EA4S.Maze
+using EA4S.LivingLetters;
+
+namespace EA4S.Minigames.Maze
 {
     public class MazeLL : MonoBehaviour
     {

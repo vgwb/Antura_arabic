@@ -1,12 +1,19 @@
 ﻿using System;
-using System.Linq;
 using UnityEngine;
 using System.Collections.Generic;
+using EA4S.Profile;
 
-namespace EA4S {
+namespace EA4S.Antura
+{
+    /// <summary>
+    /// Handles loading and assignment of visual reward props appearing on Antura.
+    /// </summary>
+    // convention: rename variables
+    // refactor: the class needs a complete refactoring
+    public class AnturaModelManager : MonoBehaviour
+    {
 
-    public class AnturaModelManager : MonoBehaviour {
-
+        // refactor: remove static instance
         public static AnturaModelManager Instance;
 
         [Header("Bones Attach")]
@@ -54,7 +61,7 @@ namespace EA4S {
         public void LoadAnturaCustomization(AnturaCustomization _anturaCustomization) {
             ClearLoadedRewards();
             foreach (RewardPack forniture in _anturaCustomization.Fornitures) {
-                GameObject GOAdded = LoadRewardPackOnAntura(forniture);
+                LoadRewardPackOnAntura(forniture);
 
                 ModelsManager.SwitchMaterial(LoadRewardPackOnAntura(forniture), forniture.GetMaterialPair());
             }
@@ -249,6 +256,10 @@ namespace EA4S {
 
         #endregion
     }
+}
+
+namespace EA4S
+{
 
     #region Data Structures    
     /// <summary>

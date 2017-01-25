@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Rewards
 {
 
+    /// <summary>
+    /// Manager for the Play Session Result scene.
+    /// Accessed a play session is completed.
+    /// </summary>
     public class PlaySessionResultManager : MonoBehaviour
     {
 
@@ -36,7 +39,7 @@ namespace EA4S
 
             LogManager.I.LogPlaySessionScore(TeacherAI.I.journeyHelper.GetCurrentPlaySessionData().Id, objs.Length);
             // save max progression (internal check if necessary)
-            NavigationManager.I.MaxJourneyPosistionProgress();
+            NavigationManager.I.MaxJourneyPositionProgress();
 
             // for any rewards mount them model on parent transform object (objs)
             for (int i = 0; i < oldRewards.Count && i < objs.Length; i++) {

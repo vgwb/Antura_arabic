@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Assessment
 {
-    internal class DefaultDragManager : IDragManager, ITickable
+    internal class DefaultDragManager : IDragManager
     {
         private IAudioManager audioManager;
-        private IAnswerChecker checker;
+        private AnswerChecker checker;
 
-        public DefaultDragManager( IAudioManager audioManager, IAnswerChecker checker)
+        public DefaultDragManager( IAudioManager audioManager, AnswerChecker checker)
         {
             this.audioManager = audioManager;
             this.checker = checker;
@@ -20,8 +21,6 @@ namespace EA4S.Assessment
         public void EnableDragOnly()
         {
             dragOnly = true;
-            ticking = true;
-            TimeEngine.AddTickable(this);
             foreach (var a in answers)
                 a.Enable();
         }
@@ -33,7 +32,7 @@ namespace EA4S.Assessment
         // This should be called onlye once
         public void AddElements(
                                     List< PlaceholderBehaviour> placeholders, 
-                                    List< AnswerBehaviour> answers,
+                                    List< Answer> answers,
                                     List< IQuestion> questions)
         {
             this.placeholders = placeholders;
@@ -41,7 +40,7 @@ namespace EA4S.Assessment
             this.questions = questions;
         }
 
-        private List< DroppableBehaviour> BehaviourFromAnswers( List< AnswerBehaviour> answers)
+        private List< DroppableBehaviour> BehaviourFromAnswers( List< Answer> answers)
         {
             var list = new List< DroppableBehaviour>();
 
@@ -140,8 +139,7 @@ namespace EA4S.Assessment
             return p1.DistanceIsLessThan( p2, 2f);
         }
 
-        bool ticking = false;
-        public bool Update( float deltaTime)
+        public void Update( float deltaTime)
         {
             if (droppable != null)
             {
@@ -149,7 +147,6 @@ namespace EA4S.Assessment
                 pos.z = 5;
                 droppable.GetTransform().localPosition = pos;
             }
-            return !ticking;
         }
 
         public void DisableInput()
@@ -167,10 +164,10 @@ namespace EA4S.Assessment
         public void RemoveDraggables()
         {
             dragOnly = true;
-            if (this.droppable != null)
+            if (droppable != null)
             {                
-                this.droppable.StopDrag();
-                this.droppable = null;
+                droppable.StopDrag();
+                droppable = null;
             }
         }
 

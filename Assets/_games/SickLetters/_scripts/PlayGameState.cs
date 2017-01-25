@@ -1,17 +1,18 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
-using System.Collections;
+﻿using UnityEngine;
+using EA4S.Audio;
+using EA4S.MinigamesCommon;
 
-namespace EA4S.SickLetters
+namespace EA4S.Minigames.SickLetters
 {
     public class PlayGameState : IGameState
     {
         SickLettersGame game;
         Vector3 correctDotPos;
 
-        float timer = 2, t = 0;
+        float timer = 2;
         int alarmIsTriggered;
+
+        IAudioSource clockSound;
 
         public PlayGameState(SickLettersGame game)
         {
@@ -21,7 +22,7 @@ namespace EA4S.SickLetters
         public void EnterState()
         {
             
-            game.processDifiiculties(SickLettersConfiguration.Instance.Difficulty);
+            
 
             timer = game.gameDuration;
 
@@ -56,25 +57,29 @@ namespace EA4S.SickLetters
             }
             if (timer < 0)
             {
-                AudioManager.I.StopSfx(Sfx.DangerClockLong);
+                if (clockSound != null)
+                {
+                    clockSound.Stop();
+                    clockSound = null;
+                }
+
                 game.SetCurrentState(game.ResultState);
-                AudioManager.I.PlayDialog("Keeper_TimeUp");
+                AudioManager.I.PlayDialogue("Keeper_TimeUp");
             }
 
             if (alarmIsTriggered == 0 && timer < 2)
             {
                 alarmIsTriggered = 1;
-                AudioManager.I.PlayDialog("Keeper_Time_"+UnityEngine.Random.Range(1,4));
+                AudioManager.I.PlayDialogue("Keeper_Time_"+UnityEngine.Random.Range(1,4));
             }
             if (alarmIsTriggered == 1 && timer < 4)
             {
                 alarmIsTriggered = 2;
-                AudioManager.I.PlaySfx(Sfx.DangerClockLong);
+                clockSound = SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
             }
 
             if (Input.GetKeyDown(KeyCode.A))
              {
-                 t = 1;
                  game.LLPrefab.jumpOut();
             }
 

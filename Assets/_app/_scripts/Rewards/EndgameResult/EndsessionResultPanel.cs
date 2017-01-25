@@ -1,15 +1,16 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/20
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using ModularFramework.Core;
+using EA4S.Audio;
+using EA4S.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.Rewards
 {
+    /// <summary>
+    /// Controls the panel that shows information on the results after a play session ends.
+    /// </summary>
     public class EndsessionResultPanel : MonoBehaviour
     {
         [Header("Settings")]
@@ -144,7 +145,7 @@ namespace EA4S
                 }
                 yield return new WaitForSeconds(minigamesStarsToBarTween.Duration());
             }
-            AudioManager.I.PlaySfx(SfxShowContinue);
+            AudioManager.I.PlaySound(SfxShowContinue);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
         }
 

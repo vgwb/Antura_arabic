@@ -1,9 +1,7 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/01
+﻿using UnityEngine;
 
-using UnityEngine;
-
-namespace EA4S
+// refactor: move this to Editor utilities
+namespace EA4S.Utilities
 {
     /// <summary>
     /// Allows to set the sortingOrder of 3D objects in the world, simply setting the order (no layerName/Id)

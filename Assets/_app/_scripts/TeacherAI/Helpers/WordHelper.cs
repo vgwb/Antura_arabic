@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 
 namespace EA4S.Db
@@ -7,6 +6,7 @@ namespace EA4S.Db
     /// <summary>
     /// Provides helpers to get correct letter/word/phrase data according to the teacher's logic and based on the player's progression
     /// </summary>
+    // refactor: rename to DictionaryHelper
     public class WordHelper
     {
         private DatabaseManager dbManager;

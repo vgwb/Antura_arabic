@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using TMPro;
-using EA4S;
+using EA4S.LivingLetters;
+using EA4S.MinigamesCommon;
 
-namespace EA4S.ThrowBalls
+namespace EA4S.Minigames.ThrowBalls
 {
     public class LetterController : MonoBehaviour
     {
@@ -536,7 +536,7 @@ namespace EA4S.ThrowBalls
         {
             if (GameState.instance.isRoundOngoing)
             {
-                AudioManager.I.PlayLetter(letterData.Id);
+                ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
             }
         }
     }

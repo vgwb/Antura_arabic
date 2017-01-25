@@ -1,5 +1,12 @@
-﻿namespace EA4S.Template
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Template
 {
+    /// <summary>
+    /// Template configuration for a minigame.
+    /// Use this as a starting point.
+    /// </summary>
     public class TemplateConfiguration : IGameConfiguration
     {
         // Game configuration
@@ -25,13 +32,13 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.Invalid, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
         }
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            // TODO
+            // CONFIGURE HERE WHAT BUILDER THE MINIGAME IS EXPECTING
             return builder;
         }
 

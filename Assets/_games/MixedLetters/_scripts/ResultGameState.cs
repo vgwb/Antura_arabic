@@ -1,12 +1,9 @@
-﻿using System.Linq;
-using System.Collections;
-using UnityEngine;
+﻿using EA4S.MinigamesCommon;
 
-namespace EA4S.MixedLetters
+namespace EA4S.Minigames.MixedLetters
 {
     public class ResultGameState : IGameState
     {
-        IPopupWidget popupWidget;
         MixedLettersGame game;
 
         float endResultTimer = 1f;
@@ -15,7 +12,6 @@ namespace EA4S.MixedLetters
         public ResultGameState(MixedLettersGame game)
         {
             this.game = game;
-            popupWidget = MixedLettersConfiguration.Instance.Context.GetPopupWidget();
         }
 
         public void EnterState()

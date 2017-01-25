@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace EA4S.Db.Management
 {
+    /// <summary>
+    /// Allows the parsing of a set of data contained in a JSON string and converst it 
+    /// Provides support for custom validation and automatic generation of enumerators.
+    /// </summary>
+    /// <typeparam name="D">Data type to parse for each row of the JSON content</typeparam>
+    /// <typeparam name="Dtable">Type for a table of the type to parse</typeparam>
     public abstract class DataParser<D, Dtable> where D : IData where Dtable : SerializableDataTable<D>
     {
         public void Parse(string json, Database db, Dtable table)

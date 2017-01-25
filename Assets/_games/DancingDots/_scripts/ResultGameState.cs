@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using EA4S.Audio;
 
-namespace EA4S.DancingDots
+namespace EA4S.Minigames.DancingDots
 {
     public class ResultGameState : IGameState
     {
@@ -32,9 +31,9 @@ namespace EA4S.DancingDots
 				game.EndGame(game.currStarsNum, game.numberOfRoundsWon);
 
                 if (game.currStarsNum == 0)
-                    AudioManager.I.PlayDialog("Reward_0Star");
+                    AudioManager.I.PlayDialogue("Reward_0Star");
                 else
-                    AudioManager.I.PlayDialog("Reward_" + game.currStarsNum + "Star_" + UnityEngine.Random.Range(1, 4));
+                    AudioManager.I.PlayDialogue("Reward_" + game.currStarsNum + "Star_" + UnityEngine.Random.Range(1, 4));
             }
         }
 

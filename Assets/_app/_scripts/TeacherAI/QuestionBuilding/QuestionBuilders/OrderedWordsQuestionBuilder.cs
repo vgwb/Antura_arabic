@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Selects words in a given order
+    /// * Correct answers: Ordered words
+    /// </summary>
     public class OrderedWordsQuestionBuilder : IQuestionBuilder
     {
         // focus: Words

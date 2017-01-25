@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using ArabicSupport;
-using TMPro;
 
-namespace EA4S.DancingDots
+namespace EA4S.Minigames.DancingDots
 {
 	public class DancingDotsDropZone : MonoBehaviour
 	{

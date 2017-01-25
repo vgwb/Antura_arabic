@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
+using EA4S.MinigamesCommon;
 
-namespace EA4S.MixedLetters
+namespace EA4S.Minigames.MixedLetters
 {
     public class RotateButtonController : MonoBehaviour
     {

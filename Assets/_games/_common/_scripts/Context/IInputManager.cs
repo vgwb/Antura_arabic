@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 
-namespace EA4S
+namespace EA4S.MinigamesCommon
 {
+    /// <summary>
+    /// Provides generic input access to the core and to minigames.
+    /// <seealso cref="MinigamesInputManager"/>
+    /// </summary>
     public interface IInputManager
     {
         // does not raise events when disabled

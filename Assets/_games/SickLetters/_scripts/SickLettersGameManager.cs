@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.MinigamesCommon;
 
-namespace EA4S.SickLetters
+namespace EA4S.Minigames.SickLetters
 {
     public class SickLettersGameManager : MonoBehaviour
     {

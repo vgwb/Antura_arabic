@@ -1,14 +1,13 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/10/24
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using DG.DeExtensions;
 using DG.Tweening;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.GamesSelector
 {
+    /// <summary>
+    /// Tutorial on the GamesSelector.
+    /// </summary>
     public class GamesSelectorTutorial : MonoBehaviour
     {
         public SpriteRenderer Finger;
@@ -17,14 +16,13 @@ namespace EA4S
         public bool isPlaying { get; private set; }
         Tween showTween, moveTween;
         Sequence trailTimeTween;
-        float defFingerZ;
 
         #region Unity
 
         void Awake()
         {
             Finger.gameObject.SetActive(false);
-            defFingerZ = Finger.transform.position.z;
+            //float defFingerZ = Finger.transform.position.z;
 
             showTween = Finger.DOFade(0, 0.25f).From().SetEase(Ease.Linear).SetAutoKill(false).Pause();
             trailTimeTween = DOTween.Sequence().SetAutoKill(false).Pause();

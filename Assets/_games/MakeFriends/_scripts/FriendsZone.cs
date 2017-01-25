@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace EA4S.MakeFriends
+namespace EA4S.Minigames.MakeFriends
 {
     public class FriendsZone : MonoBehaviour
     {

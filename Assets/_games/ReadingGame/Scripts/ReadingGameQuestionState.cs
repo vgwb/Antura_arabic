@@ -1,7 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using EA4S.MinigamesCommon;
+using EA4S.Tutorial;
 
-namespace EA4S.ReadingGame
+namespace EA4S.Minigames.ReadingGame
 {
     public class ReadingGameQuestionState : IGameState
     {

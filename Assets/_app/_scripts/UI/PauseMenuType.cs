@@ -1,6 +1,4 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/22
-namespace EA4S
+﻿namespace EA4S
 {
     public enum PauseMenuType
     {

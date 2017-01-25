@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using EA4S.LivingLetters;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -25,6 +26,14 @@ namespace EA4S.Assessment
             get
             {
                 return view.gameObject;
+            }
+        }
+
+        public QuestionBehaviour QuestionBehaviour
+        {
+            get
+            {
+                return view.GetComponent< QuestionBehaviour>();
             }
         }
 

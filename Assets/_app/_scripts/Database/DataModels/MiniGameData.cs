@@ -2,7 +2,12 @@
 
 namespace EA4S.Db
 {
-
+    /// <summary>
+    /// Data defining a Minigame.
+    /// One entry should exist for each minigame (or minigame variation).
+    /// A Play Session contains one or more minigames that can be selected to play when reaching that play session.
+    /// <seealso cref="PlaySessionData"/>
+    /// </summary>
     [Serializable]
     public class MiniGameData : IData
     {
@@ -14,7 +19,6 @@ namespace EA4S.Db
         public MiniGameDataType Type;
         public string Main;
         public string Variation;
-        public string Description;
         public string Scene;
 
         public string GetId()

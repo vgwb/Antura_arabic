@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-namespace EA4S.MixedLetters
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.MixedLetters
 {
     public class IntroductionGameState : IGameState
     {
@@ -9,8 +10,8 @@ namespace EA4S.MixedLetters
         private float anturaEnterTimer;
         private bool anturaEntered = false;
         private bool anturaBarked = false;
-        private float anturaExitTimer;
-        private bool anturaExited = false;
+        //private float anturaExitTimer;
+        //private bool anturaExited = false;
 
         private bool isAnturaEnterTimerActivated = false;
 
@@ -53,8 +54,8 @@ namespace EA4S.MixedLetters
             anturaEnterTimer = MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Spelling ? 3.25f : 1.5f;
             anturaEntered = false;
             anturaBarked = false;
-            anturaExitTimer = Random.Range(0.75f, 1.5f);
-            anturaExited = false;
+            //anturaExitTimer = Random.Range(0.75f, 1.5f);
+            //anturaExited = false;
 
             isAnturaEnterTimerActivated = false;
 
@@ -131,7 +132,7 @@ namespace EA4S.MixedLetters
             AnturaController.instance.Enable();
             AnturaController.instance.SetPositionWithOffset(VictimLLController.instance.transform.position, new Vector3(0, 0, 1f));
             ParticleSystemController.instance.Disable();
-            anturaExited = true;
+            //anturaExited = true;
         }
     }
 }

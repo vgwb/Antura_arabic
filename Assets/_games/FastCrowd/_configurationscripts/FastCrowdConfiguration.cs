@@ -1,4 +1,8 @@
-﻿namespace EA4S.FastCrowd
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesAPI.Sample;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.FastCrowd
 {
     public enum FastCrowdVariation : int
     {
@@ -52,7 +56,7 @@
             //Variation = FastCrowdVariation.Words;
 
 
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.FastCrowd_spelling, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
         }
 

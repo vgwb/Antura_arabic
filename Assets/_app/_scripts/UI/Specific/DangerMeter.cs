@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
 
+// refactor: this class should be part of the DontWakeUp minigame code
 namespace EA4S.DontWakeUp
 {
     public class DangerMeter : MonoBehaviour

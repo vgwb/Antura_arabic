@@ -1,4 +1,6 @@
-﻿namespace EA4S.ColorTickle
+﻿using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.ColorTickle
 {
     public class QuestionGameState : IGameState
     {

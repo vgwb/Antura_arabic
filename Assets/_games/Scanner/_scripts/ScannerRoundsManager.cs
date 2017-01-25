@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.Collections;
+using EA4S.Audio;
+using EA4S.MinigamesCommon;
+using EA4S.Utilities;
 
-namespace EA4S.Scanner
+namespace EA4S.Minigames.Scanner
 {
 	public class ScannerRoundsManager {
 		
@@ -25,7 +28,7 @@ namespace EA4S.Scanner
 
 		enum Level { Level1, Level2, Level3, Level4, Level5, Level6 };
 
-		private Level currentLevel = Level.Level4;
+
 
 		public ScannerRoundsManager(ScannerGame game)
 		{
@@ -68,11 +71,12 @@ namespace EA4S.Scanner
 				for (int i = 0; i < LLs; i++)
 				{
 					ScannerLivingLetter LL = GameObject.Instantiate(game.LLPrefab).GetComponent<ScannerLivingLetter>();
-					LL.facingCamera = ScannerConfiguration.Instance.facingCamera;
+					LL.facingCamera = game.facingCamera;
 					LL.gameObject.SetActive(true);
 					LL.onStartFallOff += OnLetterStartFallOff;
 					LL.onFallOff += OnLetterFallOff;
 					LL.onPassedMidPoint += OnLetterPassedMidPoint;
+                    LL.game = game;
 					game.scannerLL.Add(LL);
 				}
 
@@ -117,7 +121,7 @@ namespace EA4S.Scanner
 
 		private void OnLetterPassedMidPoint(ScannerLivingLetter sender)
 		{
-			if (!game.trapDoor.GetBool("TrapDown") && !ScannerAntura.IS_IN_SCENE)
+			if (!game.trapDoor.GetBool("TrapDown") && !game.antura.GetComponent<ScannerAntura>().isInScene)
 			{
 				game.trapDoor.SetBool("TrapUp",false);
 				game.trapDoor.SetBool("TrapDown", true);
@@ -233,7 +237,7 @@ namespace EA4S.Scanner
 
 		public void CorrectMove(GameObject GO, ScannerLivingLetter livingLetter)
 		{
-			AudioManager.I.PlayDialog("Keeper_Good_" + UnityEngine.Random.Range(1, 12));
+			AudioManager.I.PlayDialogue("Keeper_Good_" + UnityEngine.Random.Range(1, 12));
 			livingLetter.RoundWon();
 			if (game.scannerLL.All(ll => ll.gotSuitcase))
 			{
@@ -254,7 +258,7 @@ namespace EA4S.Scanner
 		public void WrongMove(GameObject GO)
 		{
 			numberOfFailedMoves++;
-			AudioManager.I.PlayDialog("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
+			AudioManager.I.PlayDialogue("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
 			game.CreatePoof(GO.transform.position,2f,true);
 
             if (game.tut.isTutRound)
@@ -292,7 +296,7 @@ namespace EA4S.Scanner
 
 		private void OnLetterStartFallOff(ScannerLivingLetter sender)
 		{
-//			AudioManager.I.PlaySfx(Sfx.Lose);
+//			AudioManager.I.PlaySound(Sfx.Lose);
 //			game.StartCoroutine(PoofOthers(game.suitcases));
 //			game.StartCoroutine(RoundLost());
 
@@ -308,7 +312,7 @@ namespace EA4S.Scanner
 		IEnumerator RoundLost()
 		{
 			yield return new WaitForSeconds(0.5f);
-			AudioManager.I.PlaySfx(Sfx.Lose);
+			AudioManager.I.PlaySound(Sfx.Lose);
 			foreach (ScannerLivingLetter LL in game.scannerLL)
 			{
 				LL.RoundLost();
@@ -327,7 +331,7 @@ namespace EA4S.Scanner
 			game.Context.GetOverlayWidget().SetStarsScore(numberOfRoundsWon);
 
 			yield return new WaitForSeconds(0.25f);
-			AudioManager.I.PlaySfx(Sfx.Win);
+			AudioManager.I.PlaySound(Sfx.Win);
 //			foreach (ScannerLivingLetter LL in game.scannerLL)
 //			{
 //				LL.RoundWon();

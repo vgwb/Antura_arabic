@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.EventSystems;
-using EA4S;
-using System.Collections.Generic;
 using DG.Tweening;
 
-namespace EA4S
+namespace EA4S.Map
 {
+    /// <summary>
+    /// Controls the movement of the player on the current Stage Map.
+    /// Allows navigation from one dot to the next (PlaySessions)
+    /// </summary>
     public class LetterMovement : MonoBehaviour
     {
         [Header("MiniMap")]
@@ -33,18 +34,17 @@ namespace EA4S
 
         int learningblock, learningblockMax;
         int playSession, playSessionMax;
-        int stage, stageMax;
 
         void Start()
         {
             Floating();
             learningblock = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
             playSession = AppManager.I.Player.CurrentJourneyPosition.PlaySession;
-            stage = AppManager.I.Player.CurrentJourneyPosition.Stage;
+            //int stage = AppManager.I.Player.CurrentJourneyPosition.Stage;
 
             learningblockMax = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
             playSessionMax = AppManager.I.Player.MaxJourneyPosition.PlaySession;
-            stageMax = AppManager.I.Player.MaxJourneyPosition.Stage;
+            //int stageMax = AppManager.I.Player.MaxJourneyPosition.Stage;
 
             /* FIRST CONTACT FEATURE */
             if (!AppManager.I.Player.IsFirstContact()) {
@@ -185,6 +185,10 @@ namespace EA4S
 
             }
         }
+
+        /// <summary>
+        /// Move to next Dot on the current map
+        /// </summary>
         public void MoveToTheRightDot()
         {
             if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession == 2) && (miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].tag == "Pin")) {
@@ -216,6 +220,10 @@ namespace EA4S
             }
             AmIFirstorLastPos();
         }
+
+        /// <summary>
+        /// Move to previous Dot on the current map
+        /// </summary>
         public void MoveToTheLeftDot()
         {
             if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 1) {
@@ -333,7 +341,7 @@ namespace EA4S
         {
             learningblock = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
             playSession = AppManager.I.Player.CurrentJourneyPosition.PlaySession;
-            stage = AppManager.I.Player.CurrentJourneyPosition.Stage;
+            //int stage = AppManager.I.Player.CurrentJourneyPosition.Stage;
 
             if (miniMapScript.isAvailableTheWholeMap) {
                 if ((learningblock == miniMapScript.posPines.Length - 1) &&

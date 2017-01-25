@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace EA4S.HideAndSeek
+namespace EA4S.Minigames.HideAndSeek
 {
     public class HideAndSeekTreeController : MonoBehaviour
     {

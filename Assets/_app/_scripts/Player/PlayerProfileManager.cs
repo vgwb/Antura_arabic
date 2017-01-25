@@ -1,10 +1,9 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Profile
 {
     /// <summary>
-    /// Player profile manager.
+    /// Handles the creation, selection, and deletion of player profiles.
     /// </summary>
     public class PlayerProfileManager
     {
@@ -12,7 +11,7 @@ namespace EA4S
         #region Properties
 
         /// <summary>
-        /// Max number of player profiles usables.
+        /// Max number of player profiles usable.
         /// </summary>
         public int MaxNumberOfPlayerProfiles = 5;
 
@@ -24,6 +23,8 @@ namespace EA4S
             get { return currentPlayer; }
             set {
                 if (currentPlayer != value) {
+
+                    // refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
 
                     if (AppManager.I.DB != null) {
                         LogManager.I.LogInfo(InfoEvent.AppClosed);

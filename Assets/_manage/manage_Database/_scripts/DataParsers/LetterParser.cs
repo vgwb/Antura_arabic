@@ -2,6 +2,9 @@
 
 namespace EA4S.Db.Management
 {
+    /// <summary>
+    /// Custom JSON parser for LetterData
+    /// </summary>
     public class LetterParser : DataParser<LetterData, LetterTable>
     {
         override protected LetterData CreateData(Dictionary<string, object> dict, Database db)

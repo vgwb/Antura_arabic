@@ -1,4 +1,8 @@
-﻿namespace EA4S.Balloons
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesAPI.Sample;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Balloons
 {
     public enum BalloonsVariation : int
     {
@@ -49,7 +53,7 @@
 
             Variation = BalloonsVariation.Spelling;
 
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.Balloons_spelling, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
         }
 

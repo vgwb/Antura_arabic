@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
-namespace EA4S.ColorTickle
+namespace EA4S.Minigames.ColorTickle
 {
     public class ResultGameState : IGameState
     {

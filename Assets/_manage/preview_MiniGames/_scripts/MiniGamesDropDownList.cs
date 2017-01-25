@@ -1,13 +1,14 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
-using EA4S;
-using EA4S.API;
-using System.Linq;
 
-namespace EA4S.Test {
+namespace EA4S.Test
+{
 
+    /// <summary>
+    /// Dropdown for selecting minigames. Used in the Minigame preview scene.
+    /// </summary>
+    // refactor: needs a full refactor
     public class MiniGamesDropDownList : Dropdown {
 
 
@@ -71,7 +72,8 @@ namespace EA4S.Test {
             return optionsToAdd;
         }
 
-        void OnDisable() {
+        protected override void OnDisable() {
+            base.OnDisable();
             onValueChanged.RemoveAllListeners();
         }
     }

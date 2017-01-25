@@ -1,13 +1,15 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/24
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using EA4S.Antura;
+using EA4S.Utilities;
 using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// General controller of the UI in the Antura Space scene.
+    /// </summary>
     public class AnturaSpaceUI : MonoBehaviour
     {
         public int MaxItems = 10;

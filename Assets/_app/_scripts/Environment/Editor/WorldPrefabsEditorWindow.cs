@@ -1,9 +1,10 @@
-﻿using UnityEditor;
+﻿using EA4S.Environment;
+using UnityEditor;
 
 public class WorldPrefabsEditorWindow : EditorWindow
 {
-    EA4S.WorldID world = EA4S.WorldID.Default;
-    EA4S.WorldID lastWorld = EA4S.WorldID.Default;
+    WorldID world = WorldID.Default;
+    WorldID lastWorld = WorldID.Default;
 
     [MenuItem("Tools/EA4S Antura/World Prefabs")]
     static void Init()
@@ -15,11 +16,11 @@ public class WorldPrefabsEditorWindow : EditorWindow
 
     void OnGUI()
     {
-        world = (EA4S.WorldID)EditorGUILayout.EnumPopup(world);
+        world = (WorldID)EditorGUILayout.EnumPopup(world);
 
         if (world != lastWorld) {
-            var prefabs = FindObjectsOfType<EA4S.AutoWorldPrefab>();
-            var cameras = FindObjectsOfType<EA4S.AutoWorldCameraColor>();
+            var prefabs = FindObjectsOfType<AutoWorldPrefab>();
+            var cameras = FindObjectsOfType<AutoWorldCameraColor>();
 
             foreach (var p in prefabs) {
                 p.testWorld = world;

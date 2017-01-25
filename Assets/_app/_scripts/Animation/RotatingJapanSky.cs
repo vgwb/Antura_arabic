@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class RotatingJapanSky : MonoBehaviour
+namespace EA4S.Animation
 {
-    public float speed = 20f;
-
-    Vector3 rotationEuler;
-
-    void Update()
+    public class RotatingJapanSky : MonoBehaviour
     {
-        rotationEuler += Vector3.forward * speed * Time.deltaTime; //increment 30 degrees every second
-        transform.rotation = Quaternion.Euler(rotationEuler);
+        public float speed = 20f;
 
-        //To convert Quaternion -> Euler, use eulerAngles
-        //print(transform.rotation.eulerAngles);
+        Vector3 rotationEuler;
+
+        void Update()
+        {
+            rotationEuler += Vector3.forward * speed * Time.deltaTime; //increment 30 degrees every second
+            transform.rotation = Quaternion.Euler(rotationEuler);
+
+            //To convert Quaternion -> Euler, use eulerAngles
+            //print(transform.rotation.eulerAngles);
+        }
     }
 }

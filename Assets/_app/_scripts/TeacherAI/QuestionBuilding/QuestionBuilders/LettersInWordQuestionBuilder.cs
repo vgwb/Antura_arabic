@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Selects letters inside a word
+    /// * Question: Word
+    /// * Correct answers: Letters contained in the word
+    /// * Wrong answers: Letters not contained in the word
+    /// </summary>
     public class LettersInWordQuestionBuilder : IQuestionBuilder
     {
         // focus: Letters & Words

@@ -3,12 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using ModularFramework.Core;
 using ModularFramework.Helpers;
 using ArabicSupport;
-using EA4S;
+using EA4S.MinigamesCommon;
+using EA4S.Tutorial;
 
-namespace EA4S.MakeFriends
+namespace EA4S.Minigames.MakeFriends
 {
     public class MakeFriendsGame : MiniGame
     {
@@ -17,7 +17,7 @@ namespace EA4S.MakeFriends
         public LetterPickerController letterPicker;
         public Canvas endGameCanvas;
         public GameObject sceneCamera;
-        public static int numberOfRounds = 6;
+        public const int numberOfRounds = 6;
         public float uiDelay;
         public float feedbackDuration;
         public float loseDuration;
@@ -303,7 +303,7 @@ namespace EA4S.MakeFriends
                 choiceLetters.Add(letter);
                 //Debug.Log("Added " + letter.TextForLivingLetter + " to choices");
             }
-            choiceLetters = choiceLetters.Shuffle();
+            choiceLetters.Shuffle();
 
             letterPicker.DisplayLetters(choiceLetters);
             if (isTutorialRound)

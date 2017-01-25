@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using System;
+﻿using EA4S.LivingLetters;
+using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Intro
 {
+
     public class IntroStrollingLetterFallingState : IntroStrollingLetterState
     {
         LetterObjectView view;

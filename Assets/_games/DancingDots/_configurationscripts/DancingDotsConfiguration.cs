@@ -1,7 +1,7 @@
-﻿namespace EA4S.DancingDots {
-    public enum DancingDotsVariation : int {
-        V_1 = 1,
-    }
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.DancingDots {
 
     public class DancingDotsConfiguration : IGameConfiguration
     {
@@ -32,7 +32,7 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-			Context = new SampleGameContext();
+			Context = new MinigamesGameContext(MiniGameCode.DancingDots, System.DateTime.Now.Ticks.ToString());
 
             Variation = DancingDotsVariation.V_1;
 			Questions = new DancingDotsQuestionProvider();

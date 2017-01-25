@@ -1,4 +1,8 @@
-﻿namespace EA4S.Tobogan
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesAPI.Sample;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.Tobogan
 {
     public enum ToboganVariation : int
     {
@@ -48,7 +52,7 @@
             //Variation = ToboganVariation.SunMoon;
             Variation = ToboganVariation.LetterInAWord;
 
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.Tobogan_letters, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.0f;
         }
 

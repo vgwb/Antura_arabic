@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.Antura;
+using EA4S.Utilities;
 
-namespace EA4S.TakeMeHome
+namespace EA4S.Minigames.TakeMeHome
 {
 	public class TakeMeHomeAntura : MonoBehaviour
 	{
@@ -34,7 +36,7 @@ namespace EA4S.TakeMeHome
 				if (nextAnturaBarkTimer <= 0)
 				{
 					PrepareNextAnturaBark();
-					AudioManager.I.PlaySfx(Sfx.DogBarking);
+                    TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking);
 				}
 				else
 					nextAnturaBarkTimer -= Time.deltaTime;

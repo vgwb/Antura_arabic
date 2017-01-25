@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using EA4S.MinigamesCommon;
+using EA4S.Tutorial;
+using UnityEngine;
 
-namespace EA4S.Tobogan
+namespace EA4S.Minigames.Tobogan
 {
     public class ToboganTutorialState : IGameState
     {

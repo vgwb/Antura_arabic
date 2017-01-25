@@ -1,13 +1,14 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/12
-
-using DG.DeExtensions;
+﻿using DG.DeExtensions;
 using DG.Tweening;
+using EA4S.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// A general-purpose button
+    /// </summary>
     [RequireComponent(typeof(Button))]
     public class UIButton : MonoBehaviour
     {
@@ -104,7 +105,7 @@ namespace EA4S
         void OnInternalClick()
         {
             AnimateClick();
-            if (AutoPlayButtonFx) AudioManager.I.PlaySfx(Sfx.UIButtonClick);
+            if (AutoPlayButtonFx) AudioManager.I.PlaySound(Sfx.UIButtonClick);
         }
 
         #endregion

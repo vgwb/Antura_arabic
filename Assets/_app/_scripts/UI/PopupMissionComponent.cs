@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using TMPro;
 using DG.Tweening;
+using EA4S.Audio;
 
 namespace EA4S
 {
+    // refactor: not clear where this is used
     public class PopupMissionComponent : MonoBehaviour
     {
         public Image CompletedCheck;
@@ -39,7 +40,7 @@ namespace EA4S
         TweenParams tParms;
         TweenCallback pendingCallback = null;
 
-        float timeScaleAtMenuOpen = 1;
+        //float timeScaleAtMenuOpen = 1;
 
 
         void Start()
@@ -52,7 +53,7 @@ namespace EA4S
 
         public void Show(Data _data, TweenCallback _callback = null)
         {
-            AudioManager.I.PlaySfx(Sfx.UIPopup);
+            AudioManager.I.PlaySound(Sfx.UIPopup);
 
             MainLable.text = _data.MainTextToDisplay;
             // Preset for animation
@@ -62,18 +63,18 @@ namespace EA4S
             sequence = DOTween.Sequence().SetUpdate(true);
             tParms = new TweenParams()
                 .SetEase(Ease.InOutBack);
-            timeScaleAtMenuOpen = Time.timeScale;
+            //timeScaleAtMenuOpen = Time.timeScale;
             Time.timeScale = 0; // not working
             sequence.Append(GetComponent<RectTransform>().DOAnchorPos(ShowPosition, 0.3f).SetAs(tParms));
             TitleLable.text = _data.Title;
             // Complete check animation.
             if (_data.Type == PopupType.Mission_Completed) {
-                AudioManager.I.PlaySfx(Sfx.StampOK);
+                AudioManager.I.PlaySound(Sfx.StampOK);
                 sequence.Insert(0.3f, CompletedCheck.DOFade(1, 0.1f));
                 sequence.Append(CompletedCheck.rectTransform.DOScale(1, 0.3f).SetAs(tParms));
                 //                    .OnComplete(delegate()
                 //                    {
-                //                        AudioManager.I.PlaySfx(Sfx.Win);
+                //                        AudioManager.I.PlaySound(Sfx.Win);
                 //                    });
             }
             // Draw

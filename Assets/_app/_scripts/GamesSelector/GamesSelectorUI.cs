@@ -1,12 +1,11 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/12/01
-
-using EA4S.Db;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.GamesSelector
 {
+    /// <summary>
+    /// User interface of the GamesSelector.
+    /// </summary>
     public class GamesSelectorUI : MonoBehaviour
     {
         public GameObject[] Stars;
@@ -19,7 +18,7 @@ namespace EA4S
             // Fill with data
             JourneyPosition journeyPos = AppManager.I.Player.CurrentJourneyPosition;
             TfTitle.text = journeyPos.ToString();
-            if (!journeyPos.isMinor(AppManager.I.Player.MaxJourneyPosition)) {
+            if (!journeyPos.IsMinor(AppManager.I.Player.MaxJourneyPosition)) {
                 // First time playing this session: 0 stars
                 SetStars(0);
             } else {

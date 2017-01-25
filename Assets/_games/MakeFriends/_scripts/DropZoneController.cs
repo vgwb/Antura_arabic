@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using TMPro;
 
-namespace EA4S.MakeFriends
+namespace EA4S.Minigames.MakeFriends
 {
     public class DropZoneController : MonoBehaviour, IDropHandler, IPointerEnterHandler
     {

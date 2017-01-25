@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
-using MiniJSON;
-using UnityEngine;
 
 namespace EA4S.Db.Management
 {
+    /// <summary>
+    /// Custom JSON parser for WordData
+    /// </summary>
     public class WordParser : DataParser<WordData, WordTable>
     {
         override protected WordData CreateData(Dictionary<string, object> dict, Database db)

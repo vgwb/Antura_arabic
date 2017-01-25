@@ -1,10 +1,12 @@
-﻿using System;
-using EA4S;
-using EA4S.FastCrowd;
+﻿using EA4S.Minigames.FastCrowd;
+using EA4S.LivingLetters;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Intro
 {
+    /// <summary>
+    /// Behaviour of the LivingLetters in the Introduction
+    /// </summary>
     public class IntroStrollingLetter : MonoBehaviour
     {
         public event System.Action onDestroy;
@@ -12,6 +14,7 @@ namespace EA4S
 
         GameStateManager stateManager = new GameStateManager();
 
+        // refactor: the use of FSMs is not standardized across the codebase
         public IntroStrollingLetterWalkingState WalkingState { get; private set; }
         public IntroStrollingLetterIdleState IdleState { get; private set; }
         public IntroStrollingLetterFallingState FallingState { get; private set; }
@@ -37,11 +40,6 @@ namespace EA4S
             HangingState = new IntroStrollingLetterHangingState(this);
 
             SetCurrentState(FallingState);
-        }
-
-        void Start()
-        {
-
         }
 
         void Update()

@@ -1,13 +1,14 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/21
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DG.Tweening;
+using EA4S.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.Rewards
 {
+    /// <summary>
+    /// Visual container for minigame instances in the EndsessionResultPanel
+    /// </summary>
     public class EndsessionMinigames : MonoBehaviour
     {
         public EndsessionMinigame MinigamePrefab;
@@ -66,7 +67,7 @@ namespace EA4S
             for (int i = 0; i < totGames; ++i) {
                 EndsessionMinigame mg = minigames[i];
                 float startPos = i * 0.1f;
-                minigamesTween.InsertCallback(startPos, ()=> AudioManager.I.PlaySfx(EndsessionResultPanel.I.SfxMinigamePopup))
+                minigamesTween.InsertCallback(startPos, ()=> AudioManager.I.PlaySound(EndsessionResultPanel.I.SfxMinigamePopup))
                     .Join(mg.Bubble.DOScale(0.0001f, 0.35f).From().SetEase(Ease.OutBack));
                 int starsLen = mg.Stars.Length;
                 for (int c = 0; c < starsLen; ++c) {

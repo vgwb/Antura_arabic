@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections;
 using DG.Tweening;
+using EA4S.Audio;
 using UnityStandardAssets.ImageEffects;
 
-namespace EA4S
+namespace EA4S.CameraControl
 {
+
+    /// <summary>
+    /// Controller for the camera used during gameplay and to show the 3D world.
+    /// </summary>
     public class CameraGameplayController : MonoBehaviour
     {
+        // refactor: remove the static access
         public static CameraGameplayController I;
         public GameObject CallbackManager;
         public bool FxEnabled { get; private set; }
@@ -41,7 +45,7 @@ namespace EA4S
         public void MoveToPosition(Vector3 newPosition, Quaternion newRotation, float duration = 1)
         {
             // Debug.Log("MoveToPosition");
-            AudioManager.I.PlaySfx(Sfx.CameraMovementShort);
+            AudioManager.I.PlaySound(Sfx.CameraMovementShort);
 
             DOTween.Sequence()
                 .Append(transform.DOLocalMove(newPosition, duration))
@@ -51,6 +55,7 @@ namespace EA4S
 
         void MovementCompleted()
         {
+            // refactor: can be implemented with an observer pattern instead
             CallbackManager.SendMessage("CameraReady", SendMessageOptions.DontRequireReceiver);
         }
 

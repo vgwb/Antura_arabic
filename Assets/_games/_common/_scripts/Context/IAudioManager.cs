@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 
-namespace EA4S
+namespace EA4S.MinigamesCommon
 {
+    /// <summary>
+    /// Provides generic audio access to the core and to minigames.
+    /// <seealso cref="MinigamesAudioManager"/>
+    /// </summary>
     public interface IAudioManager
     {
         bool MusicEnabled { get; set; }
 
         IAudioSource PlaySound(Sfx sfx);
         IAudioSource PlaySound(AudioClip clip);
+        void StopSounds();
 
         /// <summary>
         /// Play sound for letter or word,

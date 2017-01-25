@@ -1,10 +1,8 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/01
-
-using DG.Tweening;
+﻿using DG.Tweening;
+using EA4S.Utilities;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Tutorial
 {
     /// <summary>
     /// Can be a single trail, or a collection of multiple trails

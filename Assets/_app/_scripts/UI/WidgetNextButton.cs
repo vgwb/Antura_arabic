@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
+using EA4S.Audio;
 
 namespace EA4S
 {
+    /// <summary>
+    /// A general-purpose *Next* button.
+    /// </summary>
     public class WidgetNextButton : MonoBehaviour
     {
         public static WidgetNextButton I;
@@ -20,13 +23,13 @@ namespace EA4S
         {
             currentCallback = callback;
 
-            AudioManager.I.PlaySfx(Sfx.UIPopup);
+            AudioManager.I.PlaySound(Sfx.UIPopup);
             WidgetPanel.SetActive(true);
         }
 
         public void Close()
         {
-            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
+            AudioManager.I.PlaySound(Sfx.UIButtonClick);
             WidgetPanel.SetActive(false);
         }
 

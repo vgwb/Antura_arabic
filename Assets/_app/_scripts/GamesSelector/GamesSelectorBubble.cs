@@ -1,12 +1,13 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/10/23
-
-using DG.DeExtensions;
+﻿using DG.DeExtensions;
 using DG.Tweening;
+using EA4S.Audio;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.GamesSelector
 {
+    /// <summary>
+    /// A single bubble in the GamesSelector, representing a mini-game.
+    /// </summary>
     public class GamesSelectorBubble : MonoBehaviour
     {
         public GameObject Main;
@@ -61,7 +62,7 @@ namespace EA4S
                 shakeTween.Kill(true);
                 openTween = Main.transform.DOPunchRotation(new Vector3(0, 0, 45), 0.75f);
                 if (hasBadge) showBadgeTween = Badge.transform.DOLocalMoveY(0, 0.45f).From().SetDelay(0.35f).SetEase(Ease.OutBack);
-                AudioManager.I.PlaySfx(Sfx.Poof);
+                AudioManager.I.PlaySound(Sfx.Poof);
             } else {
                 PouffParticleSys.Stop();
                 PouffParticleSys.Clear();

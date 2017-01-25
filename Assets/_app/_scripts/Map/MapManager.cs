@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using EA4S.Audio;
+using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Map
 {
+    /// <summary>
+    /// Manages the Map scene, from which the next Play Session can be started.
+    /// </summary>
     public class MapManager : MonoBehaviour
     {
         [Header("Scene Setup")]

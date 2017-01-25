@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using System;
+using EA4S.Antura;
 
 namespace EA4S {
 
+    // refactor: why is this in the Test scripts?s
     public class RewardsUI : MonoBehaviour {
 
         #region life cycle
@@ -85,6 +85,7 @@ namespace EA4S {
         /// </summary>
         /// <param name="_name">The name.</param>
         void LoadRewardOnDog(string _name) {
+            actualReward = null;
             //actualReward = RewardSystemManager.GetConfig().Rewards.Find(r => r.RewardName == _name);
             //actualRewardGO = AnturaModelManager.Instance.LoadRewardOnAntura(actualReward.ID);
             //foreach (var color in actualRewardGO.GetComponentsInChildren<MeshRenderer>()) {
@@ -138,18 +139,18 @@ namespace EA4S {
         public Image ActiveMaterial1Image;
         public Image ActiveMaterial2Image;
 
-        string material1;
-        string material2;
+        //string material1;
+        //string material2;
 
         public void SetMaterial1(string _materialName) {
-            material1 = _materialName;
+            //material1 = _materialName;
             ActiveMaterial1Image.material = MaterialManager.LoadMaterial(_materialName, PaletteType.specular_saturated_2side);
             if (actualReward != null)
                 LoadRewardOnDog(actualReward.RewardName);
         }
 
         public void SetMaterial2(string _materialName) {
-            material2 = _materialName;
+            //material2 = _materialName;
             ActiveMaterial2Image.material = MaterialManager.LoadMaterial(_materialName, PaletteType.specular_saturated_2side);
             if (actualReward != null)
                 LoadRewardOnDog(actualReward.RewardName);

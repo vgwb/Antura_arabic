@@ -4,11 +4,14 @@ using System.Collections;
 using TMPro;
 using ArabicSupport;
 using DG.Tweening;
-using EA4S;
 using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Shows a popup with text subtitles.
+    /// Used by the Keeper.
+    /// </summary>
     public class WidgetSubtitles : MonoBehaviour
     {
         public Color BgNoKeeperColor = Color.white;
@@ -123,7 +126,7 @@ namespace EA4S
             this.gameObject.SetActive(true);
             if (WalkieTalkie.IsShown) WalkieTalkie.Pulse();
 
-            TextUI.text = data.Arabic != "" ? ReverseText(ArabicFixer.Fix(data.Arabic)) : data.Id;
+            TextUI.text = string.IsNullOrEmpty(data.Arabic) ? data.Id : ReverseText(ArabicFixer.Fix(data.Arabic));
             this.StartCoroutine(DisplayTextCoroutine(_duration));
 
             Debug.Log("DisplayText() " + data + " - " + data.English);

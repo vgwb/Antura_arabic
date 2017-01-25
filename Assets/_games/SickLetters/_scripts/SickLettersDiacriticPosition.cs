@@ -3,7 +3,7 @@ using System.Collections;
 using TMPro;
 
 
-namespace EA4S.SickLetters
+namespace EA4S.Minigames.SickLetters
 {
 	public class SickLettersDiacriticPosition : MonoBehaviour {
 
@@ -14,11 +14,9 @@ namespace EA4S.SickLetters
 		public float offSetY = 0.0f;
 
 		private MeshRenderer diacriticMesh;
-		private TextMeshPro diacriticText;
 
 		void Awake () {
 			diacriticMesh = GetComponent<MeshRenderer>();
-			diacriticText = GetComponent<TextMeshPro>();
 		}
 
 		// Use this for initialization

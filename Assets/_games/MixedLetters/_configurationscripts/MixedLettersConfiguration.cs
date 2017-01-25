@@ -1,4 +1,8 @@
-﻿namespace EA4S.MixedLetters
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesAPI.Sample;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.MixedLetters
 {
     public class MixedLettersConfiguration : IGameConfiguration
     {
@@ -32,7 +36,8 @@
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new SampleQuestionProvider();
-            Context = new SampleGameContext();
+            Variation = MixedLettersVariation.Alphabet;
+            Context = new MinigamesGameContext(MiniGameCode.MixedLetters_alphabet, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
         }
 

@@ -1,11 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
-using EA4S;
 using DG.Tweening;
+using EA4S.CameraControl;
+using EA4S.MinigamesCommon;
+using EA4S.Tutorial;
 using ModularFramework.Components;
 
-namespace EA4S
+namespace EA4S.Map
 {
+    /// <summary>
+    /// General manager for the Map scene. Handles the different maps for all Stages of the game.
+    /// Allows navigation from one map to the next (between stages).
+    /// </summary>
     public class StageManager : MonoBehaviour
     {
         [Header("Debug")]
@@ -133,6 +139,9 @@ namespace EA4S
         }
         #endregion
 
+        /// <summary>
+        /// Move to next Stage map
+        /// </summary>
         public void StageLeft()
         {
             if ((numberStage < 6) && (!inTransition))
@@ -160,6 +169,10 @@ namespace EA4S
                 StartCoroutine("DesactivateMap");
             }
         }
+
+        /// <summary>
+        /// Move to the previous Stage map
+        /// </summary>
         public void StageRight()
         {
             if ((numberStage >= 1) && (!inTransition))

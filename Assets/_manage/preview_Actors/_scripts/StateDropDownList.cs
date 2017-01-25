@@ -1,11 +1,10 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
-using EA4S;
+using EA4S.LivingLetters;
 
-namespace EA4S.Test {
-
+namespace EA4S.Test
+{
     public class StateDropDownList : Dropdown {
 
         new void Start() {
@@ -27,7 +26,9 @@ namespace EA4S.Test {
             return optionsToAdd;
         }
 
-        void OnDisable() {
+        protected override void OnDisable() {
+            base.OnDisable();
+
             onValueChanged.RemoveAllListeners();
         }
     }

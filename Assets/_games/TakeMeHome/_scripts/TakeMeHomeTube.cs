@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 using DG.Tweening;
 
-
-namespace EA4S.TakeMeHome
+namespace EA4S.Minigames.TakeMeHome
 {
 	
-public class TakeMeHomeTube : MonoBehaviour {
+    public class TakeMeHomeTube : MonoBehaviour {
 
 		Tweener moveTweener;
 
@@ -52,7 +50,8 @@ public class TakeMeHomeTube : MonoBehaviour {
 			{
 				moveTweener.Kill();
 			}
-			AudioManager.I.PlaySfx (Sfx.Hit);
+
+            TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Hit);
 			moveTweener = transform.DOShakePosition (0.5f, 0.2f, 1).OnComplete(delegate () { transform.position = originalPosition; });
 		}
 	}

@@ -1,12 +1,4 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/08/04 11:47
-
-using UnityEngine;
-using UnityEngine.UI;
-using DG.DeExtensions;
-using DG.Tweening;
-
-namespace EA4S
+﻿namespace EA4S
 {
     public enum MenuButtonType
     {
@@ -20,6 +12,9 @@ namespace EA4S
         Credits
     }
 
+    /// <summary>
+    /// A button used in a menu.
+    /// </summary>
     public class MenuButton : UIButton
     {
         public MenuButtonType Type;

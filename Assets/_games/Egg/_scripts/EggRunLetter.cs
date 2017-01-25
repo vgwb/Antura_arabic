@@ -1,8 +1,9 @@
 ﻿using DG.Tweening;
 using System;
+using EA4S.LivingLetters;
 using UnityEngine;
 
-namespace EA4S.Egg
+namespace EA4S.Minigames.Egg
 {
     public class EggRunLetter
     {

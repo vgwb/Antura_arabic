@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
-using ModularFramework.Core;
-using ModularFramework.Helpers;
 using EA4S;
+using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
+using EA4S.Tutorial;
 using TMPro;
 
 
-namespace EA4S.Maze
+namespace EA4S.Minigames.Maze
 {
 	public class MazeGameManager : MiniGame
     {
@@ -138,8 +137,9 @@ namespace EA4S.Maze
             go.transform.Rotate(new Vector3(90,0,0));
             LineRenderer line = go.AddComponent<LineRenderer> ();
 			//line.material = new Material (Shader.Find ("Particles/Additive"));
-			line.SetVertexCount (0);
-			line.SetWidth (0.6f, 0.6f);
+			line.numPositions = 0;
+            line.startWidth = 0.6f;
+            line.endWidth = 0.6f;
 			//line.SetColors (Color.green, Color.green);
 			//line.useWorldSpace = true;    
 
@@ -266,7 +266,7 @@ namespace EA4S.Maze
                 //remove last line
                 if(lines.Count > 0)
                 {
-                    lines[lines.Count - 1].SetVertexCount(0);
+                    lines[lines.Count - 1].numPositions = 0;
                     lines.RemoveAt(lines.Count - 1);
                 }
                 
@@ -341,7 +341,7 @@ namespace EA4S.Maze
 		void removeLines()
 		{
 			foreach(LineRenderer line in lines)		
-				line.SetVertexCount (0);
+				line.numPositions = 0;
 			lines = new List<LineRenderer> ();
 			pointsList.RemoveRange (0, pointsList.Count);
             
@@ -491,7 +491,7 @@ namespace EA4S.Maze
 			if (!pointsList.Contains (mousePos)) {
 				//mousePos.z = -0.1071415f;
 				pointsList.Add (mousePos);
-				lines[lines.Count-1].SetVertexCount (pointsList.Count);
+				lines[lines.Count-1].numPositions = pointsList.Count;
 				lines[lines.Count-1].SetPosition (pointsList.Count - 1, (Vector3)pointsList [pointsList.Count - 1]);
 			}
 		}

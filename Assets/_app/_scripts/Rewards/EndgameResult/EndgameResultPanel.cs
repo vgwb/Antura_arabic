@@ -1,15 +1,14 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/18
-
-using System.Collections;
-using DG.DeExtensions;
+﻿using System.Collections;
 using DG.Tweening;
-using ModularFramework.Core;
+using EA4S.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.Rewards
 {
+    /// <summary>
+    /// Controls the panel that shows information on the results after a minigame ends.
+    /// </summary>
     public class EndgameResultPanel : MonoBehaviour
     {
         public RectTransform ContentRT;
@@ -23,7 +22,7 @@ namespace EA4S
         public static EndgameResultPanel I { get; private set; }
         bool setupDone;
         int numStars;
-        RectTransform raysRT;
+        //RectTransform raysRT;
         Sequence showTween;
         Tween bgTween;
 
@@ -35,7 +34,7 @@ namespace EA4S
 
             setupDone = true;
             I = this;
-            raysRT = Rays.GetComponent<RectTransform>();
+            //raysRT = Rays.GetComponent<RectTransform>();
 
             showTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(this.GetComponent<Image>().DOFade(0, 0.35f).From().SetEase(Ease.Linear))
@@ -115,7 +114,7 @@ namespace EA4S
 
             if (numStars > 0) bgTween.Restart();
 
-            AudioManager.I.PlaySfx(numStars > 0 ? SfxCompleteWithStars : SfxCompleteNoStars);
+            AudioManager.I.PlaySound(numStars > 0 ? SfxCompleteWithStars : SfxCompleteNoStars);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
         }
 

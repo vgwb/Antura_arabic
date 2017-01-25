@@ -1,4 +1,10 @@
-﻿namespace EA4S.Maze {
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesAPI.Sample;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.Maze
+{
+
     public enum MazeVariation : int {
         V_1 = 1,
     }
@@ -33,7 +39,7 @@
             Letters = new MazeLetterProvider();
             Variation = MazeVariation.V_1;
 
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.Maze, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
         }
 

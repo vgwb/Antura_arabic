@@ -1,7 +1,4 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/10/28
-
-using System;
+﻿using System;
 using DG.DeExtensions;
 using DG.Tweening;
 using UnityEngine;
@@ -18,6 +15,9 @@ namespace EA4S
         TimerAndLives = 16
     }
 
+    /// <summary>
+    /// General controller of common UI for all minigames.
+    /// </summary>
     public class MinigamesUI : MonoBehaviour
     {
         public static MinigamesUIStarbar Starbar;

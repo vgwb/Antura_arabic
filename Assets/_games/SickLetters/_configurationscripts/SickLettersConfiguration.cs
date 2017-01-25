@@ -1,4 +1,7 @@
-﻿namespace EA4S.SickLetters
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.SickLetters
 {
     public class SickLettersConfiguration : IGameConfiguration
     {
@@ -28,7 +31,7 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.SickLetters, System.DateTime.Now.Ticks.ToString());
             Questions = new SickLettersQuestionProvider();
             //SickLettersQuestions = new SickLettersQuestionProvider();
             Difficulty = 0.1f;

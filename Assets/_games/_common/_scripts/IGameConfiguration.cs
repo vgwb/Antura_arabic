@@ -1,5 +1,12 @@
-﻿namespace EA4S
+﻿using EA4S.MinigamesAPI;
+
+namespace EA4S.MinigamesCommon
 {
+    /// <summary>
+    /// Interface for all configuration containers of minigames.
+    /// Holds data passed from the core application to the minigame at a given instance.
+    /// All minigames define their own configuration class.
+    /// </summary>
     public interface IGameConfiguration
     {
         /// <summary>

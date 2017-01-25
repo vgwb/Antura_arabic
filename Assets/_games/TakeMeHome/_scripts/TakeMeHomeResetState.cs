@@ -1,4 +1,7 @@
-﻿namespace EA4S.TakeMeHome
+﻿using EA4S.MinigamesCommon;
+using EA4S.Tutorial;
+
+namespace EA4S.Minigames.TakeMeHome
 {
 	public class TakeMeHomeResetState : IGameState {
 
@@ -26,7 +29,7 @@
             win = false;
 			if (tubeIndex == game.currentTube) {
                 TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
-				//AudioManager.I.PlaySfx (Sfx.Win);
+				//AudioManager.I.PlaySound (Sfx.Win);
 				win = true;
 				game.IncrementScore ();
                 TutorialUI.MarkYes(markPosition, TutorialUI.MarkSize.Big);

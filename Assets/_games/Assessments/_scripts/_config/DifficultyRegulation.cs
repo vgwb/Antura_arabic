@@ -17,42 +17,52 @@ using UnityEngine;
 /// Using some offsett we can get maximum value even if difficulty is slightly less than 1
 /// 
 /// </summary>
-public class DifficultyRegulation : MonoBehaviour {
 
-    float difficulty;
-    float startingFrom;
-
-    public DifficultyRegulation( float diff)
+namespace EA4S.Assessment
+{
+    public class DifficultyRegulation
     {
-        difficulty = diff;
-        difficulty *= 1.33f;
-        difficulty -= 0.32f; // difficulty is never setted to 0. however
-                                  // configuration is based on assumption the whole 
-                                  // difficulty range is used.
+        float difficulty;
+        float startingFrom;
 
-        difficulty = Mathf.Clamp01( difficulty);
-    }
+        public DifficultyRegulation( float diff)
+        {
+            difficulty = diff;
+            difficulty *= 1.33f;
+            difficulty -= 0.32f; // difficulty is never setted to 0. however
+                                 // configuration is based on assumption the whole 
+                                 // difficulty range is used.
 
-    public void SetStartingFrom( float from)
-    {
-        startingFrom = from;
-    }
+            difficulty = Mathf.Clamp01( difficulty);
+        }
 
-	public int Increase( int min, int max)
-    {
-        if (min > max)
-            throw new ArgumentException( "This parameter should only increase.");
+        public void SetStartingFrom( float from)
+        {
+            startingFrom = from;
+        }
 
-        float finalVal = Mathf.Clamp01(difficulty - startingFrom);
-        return (int)Mathf.RoundToInt( Mathf.Lerp( min, max, finalVal));
-    }
+        /// <summary>
+        /// According to difficulty, the result number increase from min to max
+        /// </summary>
+        public int Increase( int min, int max)
+        {
+            if (min > max)
+                throw new ArgumentException( "This parameter should only increase.");
 
-    public int Decrease( int max, int min)
-    {
-        if (min > max)
-            throw new ArgumentException( "This parameter should only decrease.");
+            float finalVal = Mathf.Clamp01( difficulty - startingFrom);
+            return (int)Mathf.RoundToInt( Mathf.Lerp( min, max, finalVal));
+        }
 
-        float finalVal = Mathf.Clamp01(difficulty - startingFrom);
-        return (int)Mathf.RoundToInt( Mathf.Lerp( max, min, finalVal));
+        /// <summary>
+        /// According to difficulty, the result number decrease from max to min
+        /// </summary>
+        public int Decrease( int max, int min)
+        {
+            if (min > max)
+                throw new ArgumentException( "This parameter should only decrease.");
+
+            float finalVal = Mathf.Clamp01( difficulty - startingFrom);
+            return (int)Mathf.RoundToInt( Mathf.Lerp( max, min, finalVal));
+        }
     }
 }

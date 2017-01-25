@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using EA4S.API;
+using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 
-namespace EA4S
+namespace EA4S.Debugging
 {
-    public enum DifficulyLevels
+    // refactor: this enum could be used throughout the application instead of just being in the DebugManager
+    public enum DifficultyLevel
     {
         VeryEasy = 0,
         Easy = 1,
@@ -15,6 +15,10 @@ namespace EA4S
         VeryHard = 4
     }
 
+    /// <summary>
+    /// General manager for debug purposes.
+    /// Allows debugging via forcing the value of some parameters of the application.
+    /// </summary>
     public class DebugManager : MonoBehaviour
     {
         public static DebugManager I;
@@ -30,25 +34,25 @@ namespace EA4S
             }
         }
 
-        private DifficulyLevels _difficultyLevel = DifficulyLevels.Normal;
-        public DifficulyLevels DifficultyLevel {
+        private DifficultyLevel _difficultyLevel = DifficultyLevel.Normal;
+        public DifficultyLevel DifficultyLevel {
             get { return _difficultyLevel; }
             set {
                 _difficultyLevel = value;
                 switch (_difficultyLevel) {
-                    case DifficulyLevels.VeryEasy:
+                    case DifficultyLevel.VeryEasy:
                         Difficulty = 0.1f;
                         break;
-                    case DifficulyLevels.Easy:
+                    case DifficultyLevel.Easy:
                         Difficulty = 0.3f;
                         break;
-                    case DifficulyLevels.Normal:
+                    case DifficultyLevel.Normal:
                         Difficulty = 0.5f;
                         break;
-                    case DifficulyLevels.Hard:
+                    case DifficultyLevel.Hard:
                         Difficulty = 0.7f;
                         break;
-                    case DifficulyLevels.VeryHard:
+                    case DifficultyLevel.VeryHard:
                         Difficulty = 1.0f;
                         break;
                     default:
@@ -56,8 +60,7 @@ namespace EA4S
                 }
             }
         }
-
-        private bool _firstContactPassed;
+        
         /// <summary>
         /// Gets or sets a value indicating whether [first contact passed].
         /// </summary>
@@ -72,7 +75,6 @@ namespace EA4S
                 } else {
                     AppManager.I.Player.ResetPlayerProfileCompletion();
                 }
-                _firstContactPassed = value;
             }
         }
 
@@ -88,30 +90,33 @@ namespace EA4S
 
         void Update()
         {
+            // refactor: these are not assigned to anything at all!
+
             if (Input.GetKeyDown(KeyCode.Space)) {
-                Debug.Log("DEBUG - SPACE : skip");
+                UnityEngine.Debug.Log("DEBUG - SPACE : skip");
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0)) {
-                Debug.Log("DEBUG - 0");
+                UnityEngine.Debug.Log("DEBUG - 0");
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1)) {
-                Debug.Log("DEBUG - 1");
+                UnityEngine.Debug.Log("DEBUG - 1");
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2)) {
-                Debug.Log("DEBUG - 2");
+                UnityEngine.Debug.Log("DEBUG - 2");
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3)) {
-                Debug.Log("DEBUG - 3");
+                UnityEngine.Debug.Log("DEBUG - 3");
             }
         }
 
+        // refactor: this should be merged with MiniGameAPI and MiniGameLauncher
         public void LaunchMinigGame(MiniGameCode miniGameCodeSelected)
         {
-            Debug.Log("LaunchMinigGame " + miniGameCodeSelected.ToString());
+            UnityEngine.Debug.Log("LaunchMinigGame " + miniGameCodeSelected.ToString());
             AppManager.I.Player.CurrentJourneyPosition.Stage = Stage;
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = PlaySession;

@@ -1,9 +1,8 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
-using System.Collections;
+﻿using UnityEngine;
+using EA4S.Audio;
+using EA4S.MinigamesCommon;
 
-namespace EA4S.SickLetters
+namespace EA4S.Minigames.SickLetters
 {
     public class IntroductionGameState : IGameState
     {
@@ -13,12 +12,15 @@ namespace EA4S.SickLetters
         public IntroductionGameState(SickLettersGame game)
         {
             this.game = game;
+            
+            
         }
 
         public void EnterState()
         {
             Debug.Log("enter intro");
-            AudioManager.I.PlayDialog(Db.LocalizationDataId.SickLetters_Title);
+            game.processDifiiculties(SickLettersConfiguration.Instance.Difficulty);
+            AudioManager.I.PlayDialogue(Db.LocalizationDataId.SickLetters_Title);
             //WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.SickLetters_Title, 1.75f, true);
             game.antura.sleep();
             game.disableInput = true;
@@ -27,7 +29,7 @@ namespace EA4S.SickLetters
         public void ExitState()
         {
             Debug.Log("exit intro");
-            AudioManager.I.PlayDialog(Db.LocalizationDataId.SickLetters_Intro);
+            AudioManager.I.PlayDialogue(Db.LocalizationDataId.SickLetters_Intro);
             //WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.SickLetters_Intro, 5.75f, true);
         }
 

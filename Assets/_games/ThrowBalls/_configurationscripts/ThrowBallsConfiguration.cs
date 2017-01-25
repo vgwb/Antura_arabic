@@ -1,4 +1,8 @@
-﻿namespace EA4S.ThrowBalls {
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.ThrowBalls
+{
     public enum ThrowBallsVariation : int {
         letters = 1,
         words = 2,
@@ -35,7 +39,7 @@
 
             Variation = ThrowBallsVariation.letters;
 
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.ThrowBalls_letters, System.DateTime.Now.Ticks.ToString());
 
             // A difficulty of 0.72 will give the traditional progression of difficulty in the game.
             Difficulty = 0.72f;

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using EA4S.MinigamesCommon;
 using UnityEngine;
-using TMPro;
 
-namespace EA4S.HideAndSeek
+namespace EA4S.Minigames.HideAndSeek
 {
     public class HideAndSeekGame : MiniGame
     {

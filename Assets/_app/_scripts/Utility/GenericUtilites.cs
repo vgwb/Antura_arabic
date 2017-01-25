@@ -3,7 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EA4S
+// refactor: Helpers need to be standardized
+namespace EA4S.Utilities
 {
     public static class GenericUtilities
     {

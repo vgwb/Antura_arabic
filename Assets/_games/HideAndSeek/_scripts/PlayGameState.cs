@@ -1,6 +1,7 @@
-﻿using System;
+﻿using EA4S.Audio;
+using EA4S.MinigamesCommon;
 
-namespace EA4S.HideAndSeek
+namespace EA4S.Minigames.HideAndSeek
 {
     public class PlayGameState : IGameState
     {

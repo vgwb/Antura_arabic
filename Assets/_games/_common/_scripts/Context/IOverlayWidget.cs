@@ -1,7 +1,9 @@
-﻿using UnityEngine;
-
-namespace EA4S
+﻿namespace EA4S.MinigamesCommon
 {
+    /// <summary>
+    /// Provides access to the OverlayWidget UI element for minigames.
+    /// <seealso cref="MinigamesOverlayWidget"/>
+    /// </summary>
     public interface IOverlayWidget
     {
         void Initialize(bool showStarsBar, bool showClock, bool showLives);

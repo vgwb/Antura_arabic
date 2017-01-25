@@ -1,19 +1,18 @@
-﻿using ArabicSupport;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.MixedLetters
+namespace EA4S.Minigames.MixedLetters
 {
     public class MixedLettersGame : MiniGame
     {
         public static MixedLettersGame instance;
 
         public IntroductionGameState IntroductionState { get; private set; }
-        public QuestionGameState QuestionState { get; private set; }
         public PlayGameState PlayState { get; private set; }
         public ResultGameState ResultState { get; private set; }
         public TutorialGameState TutorialState { get; private set; }
@@ -39,7 +38,6 @@ namespace EA4S.MixedLetters
             instance = this;
 
             IntroductionState = new IntroductionGameState(this);
-            QuestionState = new QuestionGameState(this);
             PlayState = new PlayGameState(this);
             ResultState = new ResultGameState(this);
             TutorialState = new TutorialGameState(this);

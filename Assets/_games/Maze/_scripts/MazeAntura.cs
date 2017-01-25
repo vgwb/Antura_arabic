@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.Antura;
+using EA4S.Audio;
+using EA4S.Utilities;
 
-namespace EA4S.Maze
+namespace EA4S.Minigames.Maze
 {
     public class MazeAntura : MonoBehaviour
     {
@@ -35,7 +38,7 @@ namespace EA4S.Maze
                 {
                     PrepareNextAnturaBark();
 
-                    AudioManager.I.PlaySfx(Sfx.DogBarking);
+                    AudioManager.I.PlaySound(Sfx.DogBarking);
                 }
                 else
                     nextAnturaBarkTimer -= Time.deltaTime;

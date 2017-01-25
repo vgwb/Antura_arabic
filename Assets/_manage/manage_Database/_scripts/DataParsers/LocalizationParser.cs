@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
-using MiniJSON;
-using UnityEngine;
 
 namespace EA4S.Db.Management
 {
+    /// <summary>
+    /// Custom JSON parser for LocalizationData
+    /// </summary>
     public class LocalizationParser : DataParser<LocalizationData, LocalizationTable>
     {
         override protected LocalizationData CreateData(Dictionary<string, object> dict, Database db)

@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
-using TMPro;
+using EA4S.Tutorial;
 
-namespace EA4S.MakeFriends
+namespace EA4S.Minigames.MakeFriends
 {
     public class RoundResultAnimator : MonoBehaviour
     {

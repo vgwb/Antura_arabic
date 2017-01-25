@@ -1,14 +1,26 @@
 ﻿using UnityEngine;
 using ModularFramework.Core;
 using ModularFramework.Modules;
-using EA4S.API;
+using EA4S.Audio;
+using EA4S.CameraControl;
+using EA4S.Db;
+using EA4S.Debugging;
+using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
+using EA4S.Profile;
+using PlayerProfile = EA4S.Profile.PlayerProfile;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Core of the application.
+    /// Functions as a general manager and entry point for all other systems and managers.
+    /// </summary>
     public class AppManager : GameManager
     {
         public new AppSettings GameSettings = new AppSettings();
 
+        // refactor: AppManager.Instance should be the only entry point to the singleton
         public static AppManager I {
             get { return GameManager.Instance as AppManager; }
         }
@@ -17,17 +29,20 @@ namespace EA4S
         public DatabaseManager DB;
         public PlayerProfile Player;
         public MiniGameLauncher GameLauncher;
-        public GameObject CurrentGameManagerGO;
         public LogManager LogManager;
         public PlayerProfileManager PlayerProfileManager;
 
+        // refactor: access to the current minigame data should be in another subsystem that is responsible for holding temporary data for minigames
         [HideInInspector]
         public Db.MiniGameData CurrentMinigame;
 
         bool appIsPaused = false;
 
-        #region Init
+        #region Initialisation
 
+        /// <summary>
+        /// Game entry point.
+        /// </summary>
         protected override void GameSetup()
         {
             base.GameSetup();
@@ -42,6 +57,7 @@ namespace EA4S
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
 
+            // refactor: standardize initialisation of managers
             gameObject.AddComponent<MiniGameAPI>();
 
             LogManager = new LogManager();
@@ -57,6 +73,9 @@ namespace EA4S
             GameSettings.HighQualityGfx = false;
         }
 
+        /// <summary>
+        /// New profile entry point
+        /// </summary>
         public void InitTeacherForPlayer()
         {
             if (Player == null)
@@ -71,8 +90,9 @@ namespace EA4S
         }
         #endregion
 
-        #region settings behaviours
+        #region Settings behaviours
 
+        // refactor: should be moved to AppManager
         public void ToggleQualitygfx()
         {
             GameSettings.HighQualityGfx = !GameSettings.HighQualityGfx;
@@ -83,11 +103,14 @@ namespace EA4S
 
         #region event delegate
 
+        // obsolete: unused
         public void OnMinigameStart()
         {
         }
 
         #endregion
+
+        #region Reset
 
         public void ResetCurrentPlayer()
         {
@@ -105,7 +128,8 @@ namespace EA4S
         }
 
         public void ResetEverything()
-        {// Reset all the Databases
+        {
+            // Reset all the Databases
             foreach (var playerId in AppManager.I.Modules.PlayerProfile.Options.AvailablePlayers) {
                 Debug.Log(playerId);
                 DB.LoadDynamicDbForPlayerProfile(int.Parse(playerId));
@@ -122,6 +146,9 @@ namespace EA4S
 
             Debug.Log("Reset ALL players.");
         }
+        #endregion
+
+        #region Pause
 
         void OnApplicationPause(bool pauseStatus)
         {
@@ -143,6 +170,7 @@ namespace EA4S
         {
             appIsPaused = !hasFocus;
         }
-    }
 
+        #endregion
+    }
 }
