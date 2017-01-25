@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace EA4S.Tobogan
+namespace EA4S.Minigames.Tobogan
 {
     public class PipesAnswerController : MonoBehaviour
     {

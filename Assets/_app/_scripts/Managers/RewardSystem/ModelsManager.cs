@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 
-namespace EA4S {
-    public static class ModelsManager {
+namespace EA4S
+{
+
+    public static class ModelsManager
+    {
 
         #region API
         public static GameObject MountModel(string _id, Transform _parent, ModelType _type = ModelType.AnturaForniture) {
@@ -15,7 +16,7 @@ namespace EA4S {
         public static GameObject MountModel(string _id, Transform _parent, MaterialPair _materialPair, ModelType _type = ModelType.AnturaForniture) {
             CleanTranformChildren(_parent);
             GameObject returnObject = MountModel(_id, _parent, _type);
-            Reward actualReward = RewardSystemManager.GetRewardById(_id);
+            //Reward actualReward = RewardSystemManager.GetRewardById(_id);
             SwitchMaterial(returnObject, _materialPair);
             return returnObject;
         }

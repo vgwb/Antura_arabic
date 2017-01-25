@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace EA4S.SickLetters
+using EA4S.Audio;
+using EA4S.Tutorial;
+
+namespace EA4S.Minigames.SickLetters
 {
     public class SickLettersTutorial : MonoBehaviour {
 
@@ -28,9 +31,12 @@ namespace EA4S.SickLetters
 
         public void doTutorial(Transform start = null)
         {
-            
+
             if (game.roundsCount > 0)
+            {
+                game.buttonRepeater.SetActive(true);
                 return;
+            }
 
             if (start)
                 path[0] = start.position;
@@ -53,13 +59,14 @@ namespace EA4S.SickLetters
         void onTutStart()
         {
             game.disableInput = false;
-            AudioManager.I.PlayDialog(Db.LocalizationDataId.SickLetters_Tuto);//, () => { WidgetSubtitles.I.gameObject.SetActive(false); });
+            AudioManager.I.PlayDialogue(Db.LocalizationDataId.SickLetters_Tuto, ()=>{ game.buttonRepeater.SetActive(true); });//, () => { WidgetSubtitles.I.gameObject.SetActive(false); });
             //WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.SickLetters_Tuto, 5, false);
         }
 
         void onTutEnd()
         {
             TutorialUI.Clear(true);
+            
         }
 
         IEnumerator coDoTutorial(Transform start = null)

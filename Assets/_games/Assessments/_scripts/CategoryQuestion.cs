@@ -6,14 +6,12 @@ namespace EA4S.Assessment
 {
     public class CategoryQuestion : IQuestion
     {
-        private int correctCount;
         private GameObject gameObj;
 
         public CategoryQuestion( GameObject q, int correctAnswers)
         {
             gameObj = q;
             placeholdersSet = new List<GameObject>();
-            this.correctCount = correctAnswers;
             var question = gameObj.AddComponent< QuestionBehaviour>();
             question.SetQuestion(this);
         }
@@ -23,6 +21,14 @@ namespace EA4S.Assessment
             get
             {
                 return gameObj;
+            }
+        }
+
+        public QuestionBehaviour QuestionBehaviour
+        {
+            get
+            {
+                return gameObj.GetComponent< QuestionBehaviour>();
             }
         }
 

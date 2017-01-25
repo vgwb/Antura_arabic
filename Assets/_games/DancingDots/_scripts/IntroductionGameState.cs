@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using EA4S.Audio;
+using EA4S.MinigamesCommon;
+using UnityEngine;
 
-namespace EA4S.DancingDots
+namespace EA4S.Minigames.DancingDots
 {
     public class IntroductionGameState : IGameState
     {
@@ -16,7 +18,7 @@ namespace EA4S.DancingDots
         {
             this.game.dancingDotsLL.contentGO.SetActive(false);
             Debug.Log("Intro");
-            AudioManager.I.PlayDialog("DancingDots_Title");
+            AudioManager.I.PlayDialogue("DancingDots_Title");
             game.dancingDotsLL.letterObjectView.DoTwirl(null);
             game.disableInput = true;
             //game.StartRound();

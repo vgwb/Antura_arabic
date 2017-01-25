@@ -1,11 +1,11 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/10/28
-
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Shows the number of obtained stars available in a minigame.
+    /// </summary>
     public class MinigamesUIStarbar : ABSMinigamesUIComponent
     {
         public RectTransform ProgressBar;

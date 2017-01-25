@@ -2,7 +2,7 @@
 using System.Collections;
 using TMPro;
 
-namespace EA4S.SickLetters
+namespace EA4S.Minigames.SickLetters
 {
     public class SickLettersVase : MonoBehaviour
     {
@@ -35,10 +35,8 @@ namespace EA4S.SickLetters
             vaseStartRot = transform.eulerAngles;
             vaseRB = GetComponent<Rigidbody>();
         }
-
-        int c = 0;
+        
         SickLettersDraggableDD dd;
-        bool cheatingDetected = false;
 
         void OnTriggerEnter(Collider coll)
         {
@@ -75,8 +73,7 @@ namespace EA4S.SickLetters
                 if (!dd || dd.isDragging || dd.isInVase || dd.collidedWithVase)
                     return;
 
-                //if (dd.isDragging)
-                //  cheatingDetected = true;
+
                 dd.collidedWithVase = true;
                 addNewDDToVas(dd);
 
@@ -91,7 +88,7 @@ namespace EA4S.SickLetters
             {
                 game.Poof(dd.transform);
                 dd.resetCorrectDD();
-                game.onWrongMove();
+                game.onWrongMove(dd.isCorrect);
                 StartCoroutine(onDroppingCorrectDD());
                 
             }

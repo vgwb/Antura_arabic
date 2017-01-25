@@ -1,11 +1,13 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Collections;
-using System.Collections.Generic;
+﻿using EA4S.LivingLetters;
+using UnityEngine;
 using ModularFramework.Helpers;
 
-namespace EA4S
+namespace EA4S.Intro
 {
+    /// <summary>
+    /// A special LivingLetter character with special animations.
+    /// </summary>
+    // refactor: remove the references to the Maze minigame
     public class IntroMazeCharacter : MonoBehaviour
     {
 
@@ -31,11 +33,6 @@ namespace EA4S
             Destination -= new Vector3(200, 0, 0);
             Path = transform.position - Destination;
             m_Move = true;
-        }
-
-        public void SetDestination(Vector3 destination)
-        {
-
         }
 
         //public void toggleVisibility(bool value)

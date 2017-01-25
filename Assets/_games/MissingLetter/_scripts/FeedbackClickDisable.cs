@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
+using EA4S.Audio;
 
-namespace EA4S.MissingLetter
+namespace EA4S.Minigames.MissingLetter
 {
     public class FeedbackClickDisable : MonoBehaviour
     {
@@ -11,7 +11,7 @@ namespace EA4S.MissingLetter
             if(!m_bIsPlaying)
             {
                 m_bIsPlaying = true;
-                AudioManager.I.PlaySfx(Sfx.Splat);
+                AudioManager.I.PlaySound(Sfx.Splat);
                 StartCoroutine(Utils.LaunchDelay(0.5f, setPlaying, false));
             }
         }

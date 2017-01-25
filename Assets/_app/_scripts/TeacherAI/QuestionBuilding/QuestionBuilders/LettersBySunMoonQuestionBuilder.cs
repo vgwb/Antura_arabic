@@ -1,8 +1,16 @@
 ﻿using EA4S.Teacher;
+using ModularFramework.Helpers;
 using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Categorize letters and shows words that are either Sun or Moon.
+    /// * Question: Letter to categorize
+    /// * Correct answers: Sun or Moon
+    /// * Wrong answers: Sun or Moon
+    /// </summary>
+    // refactor: this question builder is tied to the arabic language and should thus be separated from the others
     public class LettersBySunMoonQuestionBuilder : IQuestionBuilder
     {
         // focus: Letters
@@ -65,7 +73,7 @@ namespace EA4S
 
 
             // Shuffle the packs at the end
-            packs = packs.Shuffle();
+            packs.Shuffle();
 
             if (ConfigAI.verboseTeacher)
             {

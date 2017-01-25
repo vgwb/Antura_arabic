@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System;
+using EA4S.LivingLetters;
+using EA4S.Minigames.FastCrowd;
 using ModularFramework.Helpers;
 
-namespace EA4S
+namespace EA4S.Intro
 {
+    /// <summary>
+    /// Controls the instantiation of game objects in the Intro scene.
+    /// </summary>
     public class IntroFactory : MonoBehaviour {
 
         public event System.Action<ILivingLetterData, bool> onDropped;
@@ -23,7 +27,7 @@ namespace EA4S
         //Queue<ILivingLetterData> toAdd = new Queue<ILivingLetterData>();
 
         Queue<IntroStrollingLetter> toDestroy = new Queue<IntroStrollingLetter>();
-        float destroyTimer = 0;
+        //float destroyTimer = 0;
 
         [HideInInspector]
         public bool StartSpawning = false;

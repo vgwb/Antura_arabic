@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.LivingLetters;
 
-namespace EA4S.MixedLetters
+namespace EA4S.Minigames.MixedLetters
 {
     public class VictimLLController : MonoBehaviour
     {

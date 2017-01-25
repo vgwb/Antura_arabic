@@ -1,12 +1,16 @@
-﻿using UnityEngine;
-using System.Collections;
-using TMPro;
+﻿using EA4S.Audio;
+using EA4S.Tutorial;
+using UnityEngine;
 
-namespace EA4S
+namespace EA4S.AnturaSpace
 {
  
+    /// <summary>
+    /// Implements a tutorial for the AnturaSpace scene.
+    /// </summary>
     public class AnturaSpaceTutorial : MonoBehaviour
     {
+        // conventions: rename enum 
         //note that the tutorial is totally sequentially
         enum eAnturaSpaceTutoState
         {
@@ -63,7 +67,7 @@ namespace EA4S
             m_oCookieButton.gameObject.SetActive(false);
             m_oCustomizationButton.gameObject.SetActive(false);
 
-            AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Intro, delegate() //dialogue try touch Antura
+            AudioManager.I.PlayDialogue(Db.LocalizationDataId.AnturaSpace_Intro, delegate() //dialogue try touch Antura
             {
                 m_oAnturaBehaviour.onAnimationByClick += AdvanceTutorial;
                 TutorialUI.ClickRepeat(m_oAnturaBehaviour.gameObject.transform.position+(Vector3.forward*-2) + (Vector3.up), float.MaxValue, 1);
@@ -104,12 +108,12 @@ namespace EA4S
 
                     AudioManager.I.StopDialogue(false);
 
-                    AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Intro_Touch, delegate () //dialog Antura
+                    AudioManager.I.PlayDialogue(Db.LocalizationDataId.AnturaSpace_Intro_Touch, delegate () //dialog Antura
                     {
 
-                        AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate () //dialog cookies
+                        AudioManager.I.PlayDialogue(Db.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate () //dialog cookies
                         {
-                            AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_1, delegate () //dialog tap for cookies
+                            AudioManager.I.PlayDialogue(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_1, delegate () //dialog tap for cookies
                             {
 
                                 m_oCookieButton.gameObject.SetActive(true); //after the dialog make appear the cookie button
@@ -135,7 +139,7 @@ namespace EA4S
 
                     AudioManager.I.StopDialogue(false);
 
-                    AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_2); //dialog drag cookies
+                    AudioManager.I.PlayDialogue(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_2); //dialog drag cookies
 
                     m_bIsDragAnimPlaying = true;
                     DrawRepeatLineOnCookieButton();
@@ -156,10 +160,10 @@ namespace EA4S
 
                         AudioManager.I.StopDialogue(false);
 
-                        AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_3, delegate () //dialog get more cookies
+                        AudioManager.I.PlayDialogue(Db.LocalizationDataId.AnturaSpace_Tuto_Cookie_3, delegate () //dialog get more cookies
                         {
                             
-                            AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Custom_1, delegate () //dialog customize
+                            AudioManager.I.PlayDialogue(Db.LocalizationDataId.AnturaSpace_Custom_1, delegate () //dialog customize
                             {
                                 m_oCustomizationButton.gameObject.SetActive(true); //after the dialog make appear the customization button
                                 m_oCustomizationButton.onClick.AddListener(AdvanceTutorial);
@@ -203,7 +207,7 @@ namespace EA4S
 
                     AudioManager.I.StopDialogue(false);
 
-                    AudioManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro_AnturaSpace, delegate () //dialog go to map
+                    AudioManager.I.PlayDialogue(Db.LocalizationDataId.Map_Intro_AnturaSpace, delegate () //dialog go to map
                     {
                         //TutorialUI.ClickRepeat(m_oCameraUI.ScreenToWorldPoint(new Vector3(GlobalUI.I.BackButton.RectT.position.x, GlobalUI.I.BackButton.RectT.position.y, m_oCameraUI.nearClipPlane)), float.MaxValue, 1);
                     });
@@ -229,7 +233,7 @@ namespace EA4S
             }
 
             Vector3[] _av3Path = new Vector3[3];
-            RectTransform _oRectCookieBDrag = m_oCookieButton.gameObject.GetComponent<RectTransform>();
+            m_oCookieButton.gameObject.GetComponent<RectTransform>();
             _av3Path[0] = m_oCookieButton.transform.position;
             _av3Path[1] = _av3Path[0] + Vector3.up * 4 + Vector3.left * 2;
             _av3Path[2] = m_oCameraUI.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2));

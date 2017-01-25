@@ -1,4 +1,8 @@
-﻿namespace EA4S.MissingLetter
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesAPI.Sample;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.MissingLetter
 {
     public enum MissingLetterVariation : int
     {
@@ -37,7 +41,7 @@
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new SampleQuestionProvider();
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.MissingLetter, System.DateTime.Now.Ticks.ToString());
 
             Difficulty = 0.5f;
             Variation = MissingLetterVariation.MissingLetter;

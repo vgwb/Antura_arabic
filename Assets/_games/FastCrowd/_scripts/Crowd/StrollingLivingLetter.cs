@@ -1,140 +1,141 @@
-﻿using System;
-using EA4S;
-using EA4S.FastCrowd;
+﻿using EA4S.LivingLetters;
 using UnityEngine;
 
-[RequireComponent(typeof(LetterCharacterController))]
-public class StrollingLivingLetter : MonoBehaviour
+namespace EA4S.Minigames.FastCrowd
 {
-    public event System.Action onDestroy;
-    public event System.Action<bool> onDropped;
-
-    GameStateManager stateManager = new GameStateManager();
-
-    public StrollingLetterWalkingState WalkingState { get; private set; }
-    public StrollingLetterIdleState IdleState { get; private set; }
-    public StrollingLetterFallingState FallingState { get; private set; }
-    public StrollingLetterHangingState HangingState { get; private set; }
-    public StrollingLetterTutorialState TutorialState { get; private set; }
-
-    // Use Scare() method instead
-    private StrollingLetterScaredState ScaredState { get; set; }
-
-    Collider[] colliders;
-
-    public LetterCrowd crowd;
-    public LettersWalkableArea walkableArea { get { return crowd.walkableArea; } }
-    public AnturaRunnerController antura { get { return crowd.antura; } }
-
-    void Awake()
+    [RequireComponent(typeof(LetterCharacterController))]
+    public class StrollingLivingLetter : MonoBehaviour
     {
-        colliders = GetComponentsInChildren<Collider>();
+        public event System.Action onDestroy;
+        public event System.Action<bool> onDropped;
 
-        WalkingState = new StrollingLetterWalkingState(this);
-        IdleState = new StrollingLetterIdleState(this);
-        ScaredState = new StrollingLetterScaredState(this);
-        FallingState = new StrollingLetterFallingState(this);
-        HangingState = new StrollingLetterHangingState(this);
-        TutorialState = new StrollingLetterTutorialState(this);
+        GameStateManager stateManager = new GameStateManager();
 
-        SetCurrentState(FallingState);
-    }
+        public StrollingLetterWalkingState WalkingState { get; private set; }
+        public StrollingLetterIdleState IdleState { get; private set; }
+        public StrollingLetterFallingState FallingState { get; private set; }
+        public StrollingLetterHangingState HangingState { get; private set; }
+        public StrollingLetterTutorialState TutorialState { get; private set; }
 
-    void Start()
-    {
+        // Use Scare() method instead
+        private StrollingLetterScaredState ScaredState { get; set; }
 
-    }
+        Collider[] colliders;
 
-    void Update()
-    {
-        stateManager.Update(Time.deltaTime);
+        public LetterCrowd crowd;
+        public LettersWalkableArea walkableArea { get { return crowd.walkableArea; } }
+        public AnturaRunnerController antura { get { return crowd.antura; } }
 
-        // Just to be safe
-        var currentState = GetCurrentState();
-        if (currentState != HangingState && currentState != FallingState)
+        void Awake()
         {
-            var oldPos = transform.position;
+            colliders = GetComponentsInChildren<Collider>();
 
-            if (oldPos.y != 0)
-                oldPos.y = 0;
-            transform.position = oldPos;
+            WalkingState = new StrollingLetterWalkingState(this);
+            IdleState = new StrollingLetterIdleState(this);
+            ScaredState = new StrollingLetterScaredState(this);
+            FallingState = new StrollingLetterFallingState(this);
+            HangingState = new StrollingLetterHangingState(this);
+            TutorialState = new StrollingLetterTutorialState(this);
+
+            SetCurrentState(FallingState);
         }
 
-        if (Vector3.Distance(transform.position, antura.transform.position) < 15.0f)
+        void Start()
         {
-            Scare(antura.transform.position, 5);
-            return;
+
         }
-    }
 
-    void FixedUpdate()
-    {
-        stateManager.UpdatePhysics(Time.fixedDeltaTime);
-    }
-
-    public bool Raycast(out float distance, out Vector3 position, Ray ray, float maxDistance)
-    {
-        for (int i = 0, count = colliders.Length; i < count; ++i)
+        void Update()
         {
-            RaycastHit info;
-            if (colliders[i].Raycast(ray, out info, maxDistance))
+            stateManager.Update(Time.deltaTime);
+
+            // Just to be safe
+            var currentState = GetCurrentState();
+            if (currentState != HangingState && currentState != FallingState)
             {
-                position = info.point;
-                distance = info.distance;
-                return true;
+                var oldPos = transform.position;
+
+                if (oldPos.y != 0)
+                    oldPos.y = 0;
+                transform.position = oldPos;
+            }
+
+            if (Vector3.Distance(transform.position, antura.transform.position) < 15.0f)
+            {
+                Scare(antura.transform.position, 5);
+                return;
             }
         }
-        position = Vector3.zero;
-        distance = 0;
-        return false;
-    }
 
-    public void SetCurrentState(StrollingLetterState letterState)
-    {
-        stateManager.CurrentState = letterState;
-    }
-
-    public StrollingLetterState GetCurrentState()
-    {
-        return (StrollingLetterState)stateManager.CurrentState;
-    }
-
-    /// <summary>
-    /// Scare time is the duration of being in scared state
-    /// </summary>
-    public void Scare(Vector3 scareSource, float scareTime)
-    {
-        ScaredState.ScaredDuration = scareTime;
-        ScaredState.ScareSource = scareSource;
-
-        if (GetCurrentState() == IdleState ||
-            GetCurrentState() == WalkingState)
-            SetCurrentState(ScaredState);
-    }
-
-    public void Tutorial()
-    {
-        SetCurrentState(TutorialState);
-    }
-
-    void OnDestroy()
-    {
-        if (onDestroy != null)
-            onDestroy();
-    }
-
-    public void DropOnArea(DropAreaWidget area)
-    {
-        var currentData = area.GetActiveData();
-
-        if (currentData != null)
+        void FixedUpdate()
         {
-            //bool matching = GetComponent<LetterObjectView>().Model.Data.Key == currentData.Key;
-            //bool matching = GetComponent<LetterObjectView>().Data == currentData;
-            bool matching = GetComponent<LetterObjectView>().Data.Equals(currentData);
+            stateManager.UpdatePhysics(Time.fixedDeltaTime);
+        }
 
-            if (onDropped != null)
-                onDropped(matching);
+        public bool Raycast(out float distance, out Vector3 position, Ray ray, float maxDistance)
+        {
+            for (int i = 0, count = colliders.Length; i < count; ++i)
+            {
+                RaycastHit info;
+                if (colliders[i].Raycast(ray, out info, maxDistance))
+                {
+                    position = info.point;
+                    distance = info.distance;
+                    return true;
+                }
+            }
+            position = Vector3.zero;
+            distance = 0;
+            return false;
+        }
+
+        public void SetCurrentState(StrollingLetterState letterState)
+        {
+            stateManager.CurrentState = letterState;
+        }
+
+        public StrollingLetterState GetCurrentState()
+        {
+            return (StrollingLetterState)stateManager.CurrentState;
+        }
+
+        /// <summary>
+        /// Scare time is the duration of being in scared state
+        /// </summary>
+        public void Scare(Vector3 scareSource, float scareTime)
+        {
+            ScaredState.ScaredDuration = scareTime;
+            ScaredState.ScareSource = scareSource;
+
+            if (GetCurrentState() == IdleState ||
+                GetCurrentState() == WalkingState)
+                SetCurrentState(ScaredState);
+        }
+
+        public void Tutorial()
+        {
+            SetCurrentState(TutorialState);
+        }
+
+        void OnDestroy()
+        {
+            if (onDestroy != null)
+                onDestroy();
+        }
+
+        public void DropOnArea(DropAreaWidget area)
+        {
+            var currentData = area.GetActiveData();
+
+            if (currentData != null)
+            {
+                //bool matching = GetComponent<LetterObjectView>().Model.Data.Key == currentData.Key;
+                //bool matching = GetComponent<LetterObjectView>().Data == currentData;
+                bool matching = GetComponent<LetterObjectView>().Data.Equals(currentData);
+
+                if (onDropped != null)
+                    onDropped(matching);
+            }
         }
     }
 }

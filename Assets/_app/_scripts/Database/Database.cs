@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace EA4S.Db
 {
+    /// <summary>
+    /// Enumerator that defines a single table (i.e. data type) that can be accessed in the static database.
+    /// </summary>
     public enum DbTables
     {
         Letters = 1,
@@ -20,6 +22,10 @@ namespace EA4S.Db
         Rewards = 40
     }
 
+    /// <summary>
+    /// Main entry point for learning data access.
+    /// Holds all static input data on learning.
+    /// </summary>
     public class Database : UnityEngine.Object
     {
         public StageDatabase stageDb;

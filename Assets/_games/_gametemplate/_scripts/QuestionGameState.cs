@@ -1,5 +1,11 @@
-﻿namespace EA4S.Template
+﻿using EA4S.MinigamesCommon;
+
+namespace EA4S.Template
 {
+    /// <summary>
+    /// Sample game state used by the TemplateGame. 
+    /// Implements a phase where a question is shown to the player.
+    /// </summary>
     public class QuestionGameState : IGameState
     {
         TemplateGame game;

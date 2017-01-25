@@ -1,15 +1,18 @@
 namespace EA4S
 {
+    /// <summary>
+    /// Static class that helps in localizing strings.
+    /// </summary>
     public class LocalizationManager
     {
         public static string GetTranslation(Db.LocalizationDataId id)
         {
-            return GetLocalizationData(id).Arabic;
+            return GetLocalizationData(id).Arabic; // refactor: remove reference to the Arabic language
         }
 
         public static string GetTranslation(string id)
         {
-            return GetLocalizationData(id).Arabic;
+            return GetLocalizationData(id).Arabic;  // refactor: remove reference to the Arabic language
         }
 
         public static Db.LocalizationData GetLocalizationData(Db.LocalizationDataId id)

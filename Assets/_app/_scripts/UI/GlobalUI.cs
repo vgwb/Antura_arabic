@@ -1,8 +1,6 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/07/28 15:04
-
-using System;
+﻿using System;
 using DG.DemiLib.Attributes;
+using EA4S.UI;
 using UnityEngine;
 
 namespace EA4S

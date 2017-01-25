@@ -1,13 +1,13 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/29
-
-using System.Collections;
+﻿using System.Collections;
 using DG.Tweening;
+using EA4S.Utilities;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Controls the Credits panel.
+    /// </summary>
     [RequireComponent(typeof(CanvasGroup))]
     public class CreditsUI : MonoBehaviour
     {

@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using EA4S.LivingLetters;
 
-namespace EA4S.FastCrowd
+namespace EA4S.Minigames.FastCrowd
 {
     public class StrollingLetterIdleState : StrollingLetterState
     {

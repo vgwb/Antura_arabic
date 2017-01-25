@@ -1,4 +1,8 @@
-﻿namespace EA4S.TakeMeHome
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesAPI.Sample;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.TakeMeHome
 {
 	
 	public class TakeMeHomeConfiguration : IGameConfiguration
@@ -29,7 +33,7 @@
 		private TakeMeHomeConfiguration()
 		{
 			// Default values
-			Context = new SampleGameContext();
+			Context = new MinigamesGameContext(MiniGameCode.TakeMeHome, System.DateTime.Now.Ticks.ToString());
 			Letters = new TakeMeHomeLettersProvider();
             Questions = new SampleQuestionProvider();
             Difficulty = 0;

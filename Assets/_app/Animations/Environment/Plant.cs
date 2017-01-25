@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 using DG.Tweening;
 
 namespace EA4S
 {
+    // refactor: this is almost the same as IntroPlant. Merge the two.
+    // refactor: move to the _scripts folder
     public class Plant : MonoBehaviour
     {
         public float MinRotationOffset = -24;

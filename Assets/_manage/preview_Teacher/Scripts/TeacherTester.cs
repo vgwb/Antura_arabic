@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using EA4S.MinigamesAPI;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 namespace EA4S.Teacher.Test
 {
-
+    /// <summary>
+    /// Helper class to test Teacher functionality regardless of minigames.
+    /// </summary>
     public class TeacherTester : MonoBehaviour
     {
         public InputField journey_stage_in;
@@ -84,7 +86,7 @@ namespace EA4S.Teacher.Test
 
         public void SimulateMiniGame(MiniGameCode code)
         {
-            var config = API.MiniGameAPI.Instance.GetGameConfigurationForMiniGameCode(code);
+            var config = MiniGameAPI.Instance.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
             InitialisePlaySession();
             var builder = config.SetupBuilder();
             Debug.Log("Simulating minigame: " + code + " with builder " + builder.GetType().Name);
@@ -189,7 +191,7 @@ namespace EA4S.Teacher.Test
         public void PhraseQuestions()
         {
             var builderParams = SetupFakeGame();
-            var builder = new PhraseQuestionsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, parameters: builderParams);
+            var builder = new PhraseQuestionsQuestionBuilder(nPacks: nPacks, nWrong: nWrong, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 

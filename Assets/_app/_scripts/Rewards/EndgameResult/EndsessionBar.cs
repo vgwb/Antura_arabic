@@ -1,12 +1,12 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/21
-
-using DG.DeExtensions;
-using DG.Tweening;
+﻿using DG.Tweening;
+using EA4S.Audio;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Rewards
 {
+    /// <summary>
+    /// Bar that fills up to show the results of a play session
+    /// </summary>
     public class EndsessionBar : MonoBehaviour
     {
         public RectTransform BarContainer;
@@ -76,7 +76,7 @@ namespace EA4S
                 if (!ach.IsRewardAchieved && shouldAchieve) ach.AchieveReward(true);
                 ach.AchieveStar(shouldAchieve);
             }
-            AudioManager.I.PlaySfx(EndsessionResultPanel.I.SfxIncreaseBar);
+            AudioManager.I.PlaySound(EndsessionResultPanel.I.SfxIncreaseBar);
         }
 
         #endregion

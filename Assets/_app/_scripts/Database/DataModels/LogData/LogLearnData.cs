@@ -1,13 +1,12 @@
-﻿using SQLite;
-using System;
+﻿using EA4S.Utilities;
+using SQLite;
 
 namespace EA4S.Db
 {
-
     /// <summary>
+    /// Learning achievements obtained at a given timestamp. Logged at runtime.
     /// Table can be: Letter, Phrase, Word
     /// </summary>
-
     [System.Serializable]
     public class LogLearnData : IData
     {
@@ -28,13 +27,13 @@ namespace EA4S.Db
 
         public LogLearnData(string _Session, string _PlaySession, MiniGameCode _MiniGame, DbTables _table, string _elementId, float _score)
         {
-            this.Session = _Session;
-            this.PlaySession = _PlaySession;
-            this.MiniGame = _MiniGame;
-            this.TableName = _table.ToString();
-            this.ElementId = _elementId;
-            this.Score = _score;
-            this.Timestamp = GenericUtilities.GetTimestampForNow();
+            Session = _Session;
+            PlaySession = _PlaySession;
+            MiniGame = _MiniGame;
+            TableName = _table.ToString();
+            ElementId = _elementId;
+            Score = _score;
+            Timestamp = GenericUtilities.GetTimestampForNow();
         }
 
         public string GetId()

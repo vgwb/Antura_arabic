@@ -1,8 +1,11 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using EA4S.Audio;
+using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Manages the Keeper throughout the application. The Keeper gives hints and explains minigames to the player.
+    /// </summary>
     public class KeeperManager : MonoBehaviour
     {
         public static KeeperManager I;
@@ -12,6 +15,7 @@ namespace EA4S
             I = this;
         }
 
+        // refactor: remove or complete this
         public void PlaySceneIntroduction(AppScene scene)
         {
             switch (scene) {
@@ -35,14 +39,14 @@ namespace EA4S
             if (autoClose) {
                 WidgetSubtitles.I.DisplaySentence(data, 2, isKeeper, null);
                 var callback = _callback;
-                AudioManager.I.PlayDialog(data, () => {
+                AudioManager.I.PlayDialogue(data, () => {
                     CloseDialog();
                     if (callback != null)
                         callback();
                 });
             } else {
                 WidgetSubtitles.I.DisplaySentence(data, 2, true, null);
-                AudioManager.I.PlayDialog(data, _callback);
+                AudioManager.I.PlayDialogue(data, _callback);
             }
         }
 

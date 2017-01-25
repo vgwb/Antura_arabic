@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
+using EA4S.LivingLetters;
 
-namespace EA4S.ColorTickle
+namespace EA4S.Minigames.ColorTickle
 {
     public class ColorTickle_LLController : MonoBehaviour
     {

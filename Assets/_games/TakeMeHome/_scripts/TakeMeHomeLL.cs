@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using DG.Tweening;
-using TMPro;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using ArabicSupport;
-namespace EA4S.TakeMeHome
+using EA4S.LivingLetters;
+
+namespace EA4S.Minigames.TakeMeHome
 {
 public class TakeMeHomeLL : MonoBehaviour {
 
@@ -233,7 +233,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 			//free fall:
 			if (!clampPosition) {
 				if (respawn && transform.position.y < (maxY - 20)) {
-					AudioManager.I.PlaySfx (Sfx.Splat);
+                    TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Splat);
                     //transform.position = 
                     isPanicing = false;
                     transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));

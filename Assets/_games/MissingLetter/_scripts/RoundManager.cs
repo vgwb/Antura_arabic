@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
-using UnityEngine.Assertions;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using ModularFramework.Helpers;
 using System;
+using EA4S.Audio;
+using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 
-namespace EA4S.MissingLetter
+namespace EA4S.Minigames.MissingLetter
 {
 
     public class RoundManager
@@ -113,7 +115,7 @@ namespace EA4S.MissingLetter
             if (m_oGame.IsInIdle())
             {
                 m_oGame.SetInIdle(false);
-                m_aoCurrentAnswerScene = m_aoCurrentAnswerScene.Shuffle();
+                m_aoCurrentAnswerScene.Shuffle();
                 for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i)
                 {
                     float offsetDuration = UnityEngine.Random.Range(-2.0f, 0.0f);
@@ -180,7 +182,7 @@ namespace EA4S.MissingLetter
                 m_aoCurrentAnswerScene.Add(_wrongAnswerObject);
             }
 
-            m_aoCurrentAnswerScene = m_aoCurrentAnswerScene.Shuffle();
+            m_aoCurrentAnswerScene.Shuffle();
         }
 
         private List<LL_WordData> GetWordFromPhrases(LL_PhraseData _phrase)
@@ -213,7 +215,7 @@ namespace EA4S.MissingLetter
                 qstBehaviour.LetterData = _word;
                 qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
                 qstBehaviour.m_oDefaultIdleAnimation = LLAnimationStates.LL_idle;
-                qstBehaviour.SetInPhrase(m_oCurrQuestionPack.GetQuestion().Id);
+                qstBehaviour.SetInPhrase(m_oCurrQuestionPack.GetQuestion());
 
                 m_aoCurrentQuestionScene.Add(oQuestion);
             }
@@ -252,7 +254,7 @@ namespace EA4S.MissingLetter
                 m_aoCurrentAnswerScene.Add(_wrongAnswerObject);
             }
 
-            m_aoCurrentAnswerScene = m_aoCurrentAnswerScene.Shuffle();
+            m_aoCurrentAnswerScene.Shuffle();
 
             m_oEmoticonsController.init(m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].transform);
 
@@ -392,12 +394,12 @@ namespace EA4S.MissingLetter
         {
             if (correct)
             {
-                AudioManager.I.PlaySfx(Sfx.LetterHappy);
+                AudioManager.I.PlaySound(Sfx.LetterHappy);
                 DoWinAnimations();
             }
             else
             {
-                AudioManager.I.PlaySfx(Sfx.LetterSad);
+                AudioManager.I.PlaySound(Sfx.LetterSad);
                 DoLoseAnimations();
             }
 
@@ -452,7 +454,7 @@ namespace EA4S.MissingLetter
 
             letter.GetComponent<LetterBehaviour>().mLetter.Poof();
             letter.transform.position = Vector3.zero;
-            AudioManager.I.PlaySfx(Sfx.Poof);
+            AudioManager.I.PlaySound(Sfx.Poof);
         }
 
         //lose animation: quesion and correct answer angry other crouch

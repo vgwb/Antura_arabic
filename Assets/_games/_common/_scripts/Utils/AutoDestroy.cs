@@ -1,16 +1,22 @@
 ﻿using UnityEngine;
 
-public class AutoDestroy : MonoBehaviour
+namespace EA4S.MinigamesCommon
 {
-    public float duration;
-
-    void Update()
+    /// <summary>
+    /// Utility script that automatically destroys a game object after a given duration.
+    /// </summary>
+    public class AutoDestroy : MonoBehaviour
     {
-        duration -= Time.deltaTime;
+        public float duration;
 
-        if (duration <= 0)
+        void Update()
         {
-            Destroy(gameObject);
+            duration -= Time.deltaTime;
+
+            if (duration <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

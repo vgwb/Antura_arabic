@@ -1,8 +1,15 @@
 ﻿using EA4S.Teacher;
+using ModularFramework.Helpers;
 using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Categorize words based on their form
+    /// * Question: Word to categorize
+    /// * Correct answers: Correct form
+    /// * Wrong answers: Wrong form
+    /// </summary>
     public class WordsByFormQuestionBuilder : IQuestionBuilder
     {
         // focus: Words
@@ -87,7 +94,7 @@ namespace EA4S
             }
 
             // Shuffle the packs at the end
-            packs = packs.Shuffle();
+            packs.Shuffle();
 
             if (ConfigAI.verboseTeacher)
             {

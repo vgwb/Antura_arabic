@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
-namespace EA4S.SickLetters
+using EA4S.LivingLetters;
+
+namespace EA4S.Minigames.SickLetters
 {
     public class SickLettersLLCollider : MonoBehaviour
     {

@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using EA4S.MinigamesAPI;
+using EA4S.MinigamesAPI.Sample;
 
-namespace EA4S
+namespace EA4S.Minigames.ReadingGame
 {
     public class SampleReadingGameQuestionProvider : IQuestionProvider
     {

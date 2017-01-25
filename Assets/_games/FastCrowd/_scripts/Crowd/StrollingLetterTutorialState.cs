@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using EA4S.LivingLetters;
+using UnityEngine;
 
-namespace EA4S.FastCrowd
+namespace EA4S.Minigames.FastCrowd
 {
     public class StrollingLetterTutorialState : StrollingLetterState
     {
@@ -33,8 +34,6 @@ namespace EA4S.FastCrowd
             }
             else
             {
-                bool running = !letter.walkableArea.IsInside(letter.transform.position, true);
-
                 // set letter animation
                 letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_walking);
                 letter.gameObject.GetComponent<LetterObjectView>().SetWalkingSpeed(LetterObjectView.RUN_SPEED);

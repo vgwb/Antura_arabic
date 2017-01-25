@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
+using EA4S.LivingLetters;
 using TMPro;
 
-namespace EA4S.DancingDots
+namespace EA4S.Minigames.DancingDots
 {
 
 	public enum LivingLetterAnim {
@@ -51,9 +51,9 @@ namespace EA4S.DancingDots
 
 		void OnMouseUp()
 		{
-			if (letterData != null) 
-			{
-				AudioManager.I.PlayLetter(letterData.Id);
+			if (letterData != null)
+            {
+                DancingDotsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
 			}
 		}
 
@@ -162,8 +162,9 @@ namespace EA4S.DancingDots
 
 		private void SpeakLetter()
 		{
-			if (letterData != null && !game.isTutRound) {
-				AudioManager.I.PlayLetter(letterData.Id);
+			if (letterData != null && !game.isTutRound)
+            {
+                DancingDotsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
 			}
 		}
 

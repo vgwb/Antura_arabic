@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using System;
+﻿using EA4S.LivingLetters;
+using EA4S.Minigames.FastCrowd;
+using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Intro
 {
     public class IntroStrollingLetterWalkingState : IntroStrollingLetterState
     {

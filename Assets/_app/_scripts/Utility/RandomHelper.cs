@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using ModularFramework.Helpers;
 
-namespace EA4S
+// refactor: Helpers need to be standardized
+namespace EA4S.Utilities
 {
     public static class RandomHelper
     {
@@ -26,14 +28,6 @@ namespace EA4S
             var A = Enum.GetValues(typeof(T));
             var V = (T)A.GetValue(UnityEngine.Random.Range(0, A.Length));
             return V;
-        }
-
-        /// <summary>
-        /// Extension to Shuffle a list and return a new one
-        /// </summary>
-        public static List<T> Shuffle<T>(this List<T> fromList)
-        {
-            return new List<T>(fromList.OrderBy(a => UnityEngine.Random.value));
         }
 
         public static List<T> RouletteSelectNonRepeating<T>(List<T> fromList, int numberToSelect)
@@ -69,7 +63,7 @@ namespace EA4S
 
             if (numberToSelect == fromList.Count) {
                 chosenList.AddRange(fromList);
-                chosenList = chosenList.Shuffle();
+                chosenList.Shuffle();
                 return chosenList;
             }
 

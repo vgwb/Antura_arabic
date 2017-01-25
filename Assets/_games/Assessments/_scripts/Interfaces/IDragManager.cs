@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace EA4S.Assessment
 {
-    public interface IDragManager
+    public interface IDragManager: ITimedUpdate
     {
         void ResetRound();
         bool AllAnswered();
@@ -12,7 +12,7 @@ namespace EA4S.Assessment
         void EnableInput();
 
         void AddElements(   List< PlaceholderBehaviour> placeholders,
-                            List< AnswerBehaviour> answers,
+                            List< Answer> answers,
                             List< IQuestion> questions);
 
         void StartDragging( IDroppable droppable);

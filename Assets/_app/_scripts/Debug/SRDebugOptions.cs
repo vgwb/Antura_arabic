@@ -1,12 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using EA4S;
-using ModularFramework.Core;
+using EA4S.Debugging;
 
+// refactoring: this is tied to SRDebugger, but we have a DebugManager. Move all debug logic there and make this behave only as a wrapping interface.
 public partial class SROptions
 {
+    // refactoring: merge with MiniGameAPI, MiniGameLauncher, DebugManager.LaunchMinigame
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
         //if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
@@ -58,6 +59,7 @@ public partial class SROptions
     [Sort(1)]
     public void ResetAll()
     {
+        // refactor: move to DebugManager
         AppManager.I.ResetEverything();
         SRDebug.Instance.HideDebugPanel();
     }
@@ -66,6 +68,7 @@ public partial class SROptions
     [Sort(1)]
     public void ResetPlayer()
     {
+        // refactor: move to DebugManager
         AppManager.I.ResetCurrentPlayer();
         SRDebug.Instance.HideDebugPanel();
     }
@@ -95,12 +98,13 @@ public partial class SROptions
 
     [Category("Options")]
     [Sort(40)]
-    public DifficulyLevels DifficultyLevel { get { return DebugManager.I.DifficultyLevel; } set { DebugManager.I.DifficultyLevel = value; } }
+    public DifficultyLevel DifficultyLevel { get { return DebugManager.I.DifficultyLevel; } set { DebugManager.I.DifficultyLevel = value; } }
 
     [Category("Options")]
     [Sort(60)]
     public void Home()
     {
+        // refactor: move to DebugManager
         WidgetPopupWindow.I.Close();
         NavigationManager.I.GoToScene(AppScene.Home);
         SRDebug.Instance.HideDebugPanel();
@@ -110,9 +114,12 @@ public partial class SROptions
     [Sort(80)]
     public void ToggleQuality()
     {
+        // refactor: move to DebugManager
         AppManager.I.ToggleQualitygfx();
         SRDebug.Instance.HideDebugPanel();
     }
+
+    // refactor: we should use a parameterized version for calling minigames so we are not dependant on the existing minigames
 
     [Category("Minigames")]
     [Sort(10)]
@@ -401,12 +408,14 @@ public partial class SROptions
     //    SRDebug.Instance.HideDebugPanel();
     //}
 
+    // refactor: minigame-specific debug options should not be here, place them in other partial classes if truly needed
+
     /// MakeFriends
     [Category("MakeFriends")]
     public bool MakeFriendsUseDifficulty { get; set; }
 
     [Category("MakeFriends")]
-    public EA4S.MakeFriends.MakeFriendsVariation MakeFriendsDifficulty { get; set; }
+    public EA4S.Minigames.MakeFriends.MakeFriendsVariation MakeFriendsDifficulty { get; set; }
 
     /// ThrowBalls
     private bool ThrowBallsShowProjection = true;
@@ -431,6 +440,7 @@ public partial class SROptions
     [Sort(2)]
     public void DeleteAllProfiles()
     {
+        // refactor: move to DebugManager
         PlayerPrefs.DeleteAll();
         AppManager.I.GameSettings.AvailablePlayers = new List<string>();
         AppManager.I.PlayerProfileManager.SaveGameSettings();
@@ -448,6 +458,7 @@ public partial class SROptions
     [Sort(6)]
     public void ForwardMaxPosition()
     {
+        // refactor: move to DebugManager
         JourneyPosition newPos = TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.MaxJourneyPosition);
         if (newPos != null) {
             AppManager.I.Player.SetMaxJourneyPosition(newPos, true);
@@ -460,6 +471,7 @@ public partial class SROptions
     [Sort(7)]
     public void UnlockAll()
     {
+        // refactor: move to DebugManager
         AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(6, 15, 100), true);
         SRDebug.Instance.HideDebugPanel();
         SRDebug.Instance.ShowDebugPanel();
@@ -469,6 +481,7 @@ public partial class SROptions
     [Sort(8)]
     public void ResetMaxPosition()
     {
+        // refactor: move to DebugManager
         AppManager.I.Player.ResetMaxJourneyPosition();
         SRDebug.Instance.HideDebugPanel();
         SRDebug.Instance.ShowDebugPanel();
@@ -478,6 +491,7 @@ public partial class SROptions
     [Sort(1)]
     public void UnlockFirstReward()
     {
+        // refactor: move to DebugManager
         AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward));
     }
 
@@ -485,7 +499,9 @@ public partial class SROptions
     [Sort(2)]
     public void UnlockNextPlaysessionRewards()
     {
-        JourneyPosition CurrentJourney = AppManager.I.Player.CurrentJourneyPosition;
+        // refactor: move to DebugManager
+
+        //JourneyPosition CurrentJourney = AppManager.I.Player.CurrentJourneyPosition;
         foreach (RewardPack pack in RewardSystemManager.GetNextRewardPack()) {
             AppManager.I.Player.AddRewardUnlocked(pack);
             Debug.LogFormat("Pack added: {0}", pack.ToString());

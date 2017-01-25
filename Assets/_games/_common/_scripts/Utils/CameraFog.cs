@@ -1,34 +1,40 @@
 ﻿using UnityEngine;
 
-[ExecuteInEditMode]
-public class CameraFog : MonoBehaviour
+namespace EA4S.MinigamesCommon
 {
-    public Color color;
-    public FogMode fogMode;
-    public float fogDensity;
-    public float fogStartDistance;
-    public float fogEndDistance;
+    /// <summary>
+    /// Controls the fog in a scene.
+    /// </summary>
+    [ExecuteInEditMode]
+    public class CameraFog : MonoBehaviour
+    {
+        public Color color;
+        public FogMode fogMode;
+        public float fogDensity;
+        public float fogStartDistance;
+        public float fogEndDistance;
 
-    bool oldState;
+        bool oldState;
     
-    void Start()
-    {
+        void Start()
+        {
 
-    }
+        }
 
-    void OnPreRender()
-    {
-        oldState = RenderSettings.fog;
-        RenderSettings.fog = enabled;
-        RenderSettings.fogColor = color;
-        RenderSettings.fogDensity = fogDensity;
-        RenderSettings.fogMode = fogMode;
-        RenderSettings.fogStartDistance = fogStartDistance;
-        RenderSettings.fogEndDistance = fogEndDistance;
-    }
+        void OnPreRender()
+        {
+            oldState = RenderSettings.fog;
+            RenderSettings.fog = enabled;
+            RenderSettings.fogColor = color;
+            RenderSettings.fogDensity = fogDensity;
+            RenderSettings.fogMode = fogMode;
+            RenderSettings.fogStartDistance = fogStartDistance;
+            RenderSettings.fogEndDistance = fogEndDistance;
+        }
 
-    void OnPostRender()
-    {
-        RenderSettings.fog = oldState;
+        void OnPostRender()
+        {
+            RenderSettings.fog = oldState;
+        }
     }
 }

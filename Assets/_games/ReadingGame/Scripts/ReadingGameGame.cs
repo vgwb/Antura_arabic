@@ -1,10 +1,10 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text;
-using TMPro;
+using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 using UnityEngine;
 
-namespace EA4S.ReadingGame
+namespace EA4S.Minigames.ReadingGame
 {
     public class ReadingGameGame : MiniGame // ReadingGameGameGameGameGame!
     {

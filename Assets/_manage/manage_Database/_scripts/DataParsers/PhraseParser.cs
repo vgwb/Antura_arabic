@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
-using MiniJSON;
-using UnityEngine;
 
 namespace EA4S.Db.Management
 {
+    /// <summary>
+    /// Custom JSON parser for PhraseData
+    /// </summary>
     public class PhraseParser : DataParser<PhraseData, PhraseTable>
     {
         override protected PhraseData CreateData(Dictionary<string, object> dict, Database db)

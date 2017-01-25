@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using EA4S.MinigamesCommon;
+using UnityEngine;
 
-namespace EA4S.Egg
+namespace EA4S.Minigames.Egg
 {
     public class EggGame : MiniGame
     {
@@ -36,7 +37,7 @@ namespace EA4S.Egg
             }
         }
 
-        public float gameDifficulty
+        public float GameDifficulty
         {
             get { return EggConfiguration.Instance.Difficulty; }
         }
@@ -44,9 +45,9 @@ namespace EA4S.Egg
         public bool stagePositiveResult { get; set; }
 
         bool tutorial;
-        public bool showTutorial { get { if (tutorial) { tutorial = false; return true; } else return false; } }
+        public bool ShowTutorial { get { if (tutorial) { tutorial = false; return true; } else return false; } }
 
-        public QuestionManager questionManager;
+        public EggChallenge CurrentQuestion;
 
         public EggIntroductionState IntroductionState { get; private set; }
         public EggQuestionState QuestionState { get; private set; }
@@ -70,7 +71,7 @@ namespace EA4S.Egg
             PlayState = new EggPlayState(this);
             ResultState = new EggResultState(this);
 
-            questionManager = new QuestionManager();
+            CurrentQuestion = null;
 
             tutorial = true;
             overlayWidgetInitialized = false;

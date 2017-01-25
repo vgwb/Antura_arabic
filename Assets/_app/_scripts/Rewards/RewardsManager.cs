@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.Antura;
+using EA4S.Audio;
 
-namespace EA4S
+namespace EA4S.Rewards
 {
+    /// <summary>
+    /// Manages the Rewards scene.
+    /// Accessed after a learning block is completed.
+    /// </summary>
     [RequireComponent(typeof(RewardsAnimator))]
     public class RewardsManager : MonoBehaviour
     {
@@ -88,12 +94,12 @@ namespace EA4S
             yield return null;
         }
 
+        // refactor: move the whole navigation logic to the NavigationManager
         public void Continue()
         {
             if (AppManager.I.Player.IsFirstContact())
                 NavigationManager.I.GoToScene(AppScene.AnturaSpace);
             else
-                // journey progression moved on NavigationManager
                 NavigationManager.I.GoToNextScene();
         }
     }

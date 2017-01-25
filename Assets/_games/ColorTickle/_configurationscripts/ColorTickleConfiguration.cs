@@ -1,4 +1,7 @@
-﻿namespace EA4S.ColorTickle
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.ColorTickle
 {
     public class ColorTickleConfiguration : IGameConfiguration
     {
@@ -25,7 +28,7 @@
         {
             // Default values
             Questions = new ColorTickleLetterProvider();
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.ColorTickle, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0.5f;
         }
 

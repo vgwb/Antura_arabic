@@ -1,4 +1,6 @@
-﻿namespace EA4S.SickLetters
+﻿using EA4S.Audio;
+
+namespace EA4S.Minigames.SickLetters
 {
     public class ResultGameState : IGameState
     {
@@ -41,7 +43,7 @@
 
                 if (game.currentStars == 0)
                 {
-                    AudioManager.I.PlayDialog("Reward_0Star");
+                    AudioManager.I.PlayDialogue("Reward_0Star");
                     //WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Reward_0Star, 4, true);
                 }
                 else
@@ -49,7 +51,7 @@
                     //string dia = "Reward_" + game.currentStars + "Star_" + UnityEngine.Random.Range(1, 4);
                     Db.LocalizationDataId data = randomRewardData();
                     //WidgetSubtitles.I.gameObject.SetActive(true);
-                    AudioManager.I.PlayDialog(data);
+                    AudioManager.I.PlayDialogue(data);
                     //WidgetSubtitles.I.DisplaySentence(data , 2, true);
                 }
                 //game.Context.GetAudioManager().PlayDialogue(Db.LocalizationData)

@@ -1,10 +1,8 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/27
-
-using DG.DeExtensions;
+﻿using DG.DeExtensions;
 using UnityEngine;
 
-namespace EA4S
+// refactor: Helpers need to be standardized
+namespace EA4S.Utilities
 {
     public static class CameraHelper
     {

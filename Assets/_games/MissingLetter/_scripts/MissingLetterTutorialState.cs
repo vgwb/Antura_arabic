@@ -1,6 +1,10 @@
-﻿using UnityEngine;
+﻿using EA4S.Audio;
+using EA4S.LivingLetters;
+using EA4S.MinigamesCommon;
+using EA4S.Tutorial;
+using UnityEngine;
 
-namespace EA4S.MissingLetter {
+namespace EA4S.Minigames.MissingLetter {
 
     public class MissingLetterTutorialState : IGameState {
 
@@ -42,11 +46,11 @@ namespace EA4S.MissingLetter {
             {
                 if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
                 {
-                    AudioManager.I.PlayDialog(Db.LocalizationDataId.MissingLetter_Tuto);
+                    AudioManager.I.PlayDialogue(Db.LocalizationDataId.MissingLetter_Tuto);
                 }
                 else
                 {
-                    AudioManager.I.PlayDialog(Db.LocalizationDataId.MissingLetter_phrases_Tuto);
+                    AudioManager.I.PlayDialogue(Db.LocalizationDataId.MissingLetter_phrases_Tuto);
                 }
 
                 m_oGame.m_oRoundManager.GetCorrectLLObject().GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);

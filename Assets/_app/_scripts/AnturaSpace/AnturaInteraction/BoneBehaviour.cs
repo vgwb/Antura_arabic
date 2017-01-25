@@ -1,8 +1,12 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using EA4S.Audio;
+using EA4S.MinigamesCommon;
+using UnityEngine;
 
-namespace EA4S
+namespace EA4S.AnturaSpace
 {
+    /// <summary>
+    /// Controls interactions and dynamics of a bone thrown to Antura in AnturaSpace.
+    /// </summary>
     public class BoneBehaviour : MonoBehaviour
     {
 
@@ -82,6 +86,8 @@ namespace EA4S
         #endregion
 
         #region INTERNALS
+        IAudioSource poofSound;
+
         void Start()
         {
 
@@ -139,7 +145,11 @@ namespace EA4S
 
         void OnDestroy()
         {
-            AudioManager.I.StopSfx(m_oSfxOnPoof);
+            if (poofSound != null)
+            {
+                poofSound.Stop();
+                poofSound = null;
+            }
             CancelInvoke();
         }
         #endregion
@@ -157,7 +167,7 @@ namespace EA4S
 
             //disable collision and enabled after 0.5 sec for avoid that Antura collision shot bone away
             m_oBoneRigidbody.GetComponentInChildren<Collider>().enabled = false;
-            StartCoroutine(EA4S.MissingLetter.Utils.LaunchDelay(0.5f, 
+            StartCoroutine(Minigames.MissingLetter.Utils.LaunchDelay(0.5f, 
                 delegate
                 {
                     m_oBoneRigidbody.GetComponentInChildren<Collider>().enabled = true;
@@ -223,7 +233,7 @@ namespace EA4S
                 particles.Play();
             }
 
-            AudioManager.I.PlaySfx(m_oSfxOnPoof);
+            poofSound = AudioManager.I.PlaySound(m_oSfxOnPoof);
 
             CancelInvoke("StopPoof");//if we were quick maybe the particle hasn't stopped yet, so try to cancel the old one;
             Invoke("StopPoof", m_oParticleTime);

@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using TMPro;
 
-namespace EA4S.Maze
+namespace EA4S.Minigames.Maze
 {
 	public class MazeTimer : MonoBehaviour {
 
@@ -43,7 +42,7 @@ namespace EA4S.Maze
 					DisplayTime();
 				}
 				if (!playedSfx && timeRemaining < 5f) {
-					AudioManager.I.PlaySfx(Sfx.DangerClockLong);
+					AudioManager.I.PlaySound(Sfx.DangerClockLong);
 					playedSfx = true;
 				}
 				if (timeRemaining < 1f) {

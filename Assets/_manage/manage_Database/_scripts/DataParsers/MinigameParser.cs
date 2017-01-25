@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
-using MiniJSON;
-using UnityEngine;
 
 namespace EA4S.Db.Management
 {
+    /// <summary>
+    /// Custom JSON parser for MiniGameData
+    /// </summary>
     public class MiniGameParser : DataParser<MiniGameData, MiniGameTable>
     {
         override protected MiniGameData CreateData(Dictionary<string, object> dict, Database db)
@@ -14,7 +15,6 @@ namespace EA4S.Db.Management
             data.Main = ToString(dict["Main"]);
             data.Variation = ToString(dict["Variation"]);
             data.Type = ParseEnum<MiniGameDataType>(data, dict["Type"]);
-            data.Description = ToString(dict["Description"]);
             data.Title_En = ToString(dict["Title_En"]);
             data.Title_Ar = ToString(dict["Title_Ar"]);
             data.Scene = ToString(dict["Scene"]);

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using EA4S.Db;
+using EA4S.Profile;
 using EA4S.Teacher;
+using EA4S.Utilities;
 
 namespace EA4S
 {
@@ -27,6 +29,7 @@ namespace EA4S
         DifficultySelectionAI difficultySelectionAI;
 
         // Helpers
+        // refactor: these helpers should be separated from the TeacherAI.
         public WordHelper wordHelper;
         public JourneyHelper journeyHelper;
         public ScoreHelper scoreHelper;
@@ -94,12 +97,14 @@ namespace EA4S
             return currentPlaySessionMiniGames;
         }
 
+        // refactor: this should not be in the TeacherAI, but in the NavigationManager or something similar that holds data between minigames
         public List<MiniGameData> CurrentPlaySessionMiniGames {
             get {
                 return currentPlaySessionMiniGames;
             }
         }
 
+        // refactor: this should not be in the TeacherAI, but in the NavigationManager or something similar that holds data between minigames
         public MiniGameData CurrentMiniGame {
             get {
                 return
@@ -121,6 +126,7 @@ namespace EA4S
             return minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
         }
 
+        // refactor: this is not used for now, could probably be used by the DebugManager
         public bool CanMiniGameBePlayedAtPlaySession(string playSessionId, MiniGameCode code)
         {
             if (dbManager.HasPlaySessionDataById(playSessionId))
@@ -146,6 +152,7 @@ namespace EA4S
 
         #region Learning Blocks
 
+        // refactor: Not used. 
         public float GetLearningBlockScore(LearningBlockData lb)
         {
             var allScores = scoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(lb.Stage, lb.LearningBlock);
@@ -156,6 +163,7 @@ namespace EA4S
 
         #region Assessment
 
+        // refactor: Only for tests purpose. Remove from the teacher.
         public List<LetterData> GetFailedAssessmentLetters(MiniGameCode assessmentCode) // also play session
         {
             // @note: this code shows how to work on the dynamic and static db together
@@ -169,6 +177,7 @@ namespace EA4S
             return letters;
         }
 
+        // refactor: Only for tests purpose. Remove from the teacher.
         public List<WordData> GetFailedAssessmentWords(MiniGameCode assessmentCode)
         {
             string query =
@@ -185,6 +194,7 @@ namespace EA4S
 
         #region Journeymap
 
+        // refactor: Only for tests purpose. Remove from the teacher.
         public List<LogPlayData> GetScoreHistoryForCurrentJourneyPosition()
         {
             // @note: shows how to work with playerprofile as well as the database
@@ -199,6 +209,7 @@ namespace EA4S
 
         #region Mood
 
+        // refactor: Refactor access to the data through an AnalyticsManager, instead of passing through the TeacherAI.
         public List<LogMoodData> GetLastMoodData(int number)
         {
             string query = string.Format("SELECT * FROM LogMoodData ORDER BY Timestamp LIMIT {0}", number);
@@ -211,6 +222,7 @@ namespace EA4S
 
         #region Fake data for question providers
 
+        // refactor: Refactor access to test data throught a TestDataManager, instead of passing through the TeacherAI.
         private static bool giveWarningOnFake = false;
 
         public List<LL_LetterData> GetAllTestLetterDataLL(LetterFilters filters = null)

@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace EA4S {
+namespace EA4S.Profile {
 
-    public class PlayerProfileCleaner : MonoBehaviour {
-
+    /// <summary>
+    /// Handles cleanup of player profiles.
+    /// </summary>
+    public class PlayerProfileCleaner : MonoBehaviour
+    {
         public void ResetAllPlayerProfiles() {
             AppManager.I.PlayerProfileManager.DeleteAllProfiles();
             AppManager.I.PlayerProfileManager = new PlayerProfileManager();
@@ -13,10 +15,9 @@ namespace EA4S {
 
         public void TotalResetPlayerPref() {
             PlayerPrefs.DeleteAll();
-            UnityEngine.SceneManagement.SceneManager.UnloadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+            //UnityEngine.SceneManagement.SceneManager.UnloadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, UnityEngine.SceneManagement.LoadSceneMode.Single);
             AppManager.I.PlayerProfileManager = new PlayerProfileManager();
         }
-
     }
 }

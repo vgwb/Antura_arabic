@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
-using ModularFramework.Core;
-using ModularFramework.Helpers;
 using TMPro;
 
 using System;
-using EA4S;
+using EA4S.Antura;
+using EA4S.Audio;
+using EA4S.LivingLetters;
+using EA4S.MinigamesCommon;
 
-namespace EA4S.DancingDots
+namespace EA4S.Minigames.DancingDots
 {
+    public enum DancingDotsVariation : int
+    {
+        V_1 = 1,
+    }
     public enum DiacriticEnum { None, Sokoun, Fatha, Dameh, Kasrah };
 
     public class DancingDotsGame : MiniGame
@@ -40,9 +43,9 @@ namespace EA4S.DancingDots
             return DancingDotsConfiguration.Instance;
         }
 
-        public static DancingDotsGame instance;
+        //public static DancingDotsGame instance;
         public Canvas endGameCanvas;
-//        public StarFlowers starFlowers;
+        //        public StarFlowers starFlowers;
 
         public const string DANCING_DOTS = "DancingDots_DotZone";
         public const string DANCING_DIACRITICS = "DancingDots_Diacritic";
@@ -61,16 +64,14 @@ namespace EA4S.DancingDots
         [HideInInspector]
         public DancingDotsQuestionsManager questionsManager;
 
-		[HideInInspector]
-		public DiacriticEnum letterDiacritic;
+        [HideInInspector]
+        public DiacriticEnum letterDiacritic;
 
 
         DancingDotsTutorial tutorial;
 
-        public bool isTutRound
-        {
-            get
-            {
+        public bool isTutRound {
+            get {
                 if (numberOfRoundsPlayed == 0)
                     return true;
                 else
@@ -80,17 +81,13 @@ namespace EA4S.DancingDots
 
         public string currentLetter = "";
         private int _dotsCount;
-        public int dotsCount
-        {
-            get
-            {
+        public int dotsCount {
+            get {
                 return _dotsCount;
             }
-            set
-            {
+            set {
                 _dotsCount = value;
-                foreach (DancingDotsDraggableDot dd in dragableDots)
-                {
+                foreach (DancingDotsDraggableDot dd in dragableDots) {
                     dd.isNeeded = dd.dots == _dotsCount;
                 }
             }
@@ -138,7 +135,7 @@ namespace EA4S.DancingDots
         protected override void Awake()
         {
             base.Awake();
-            instance = this;
+            //instance = this;
         }
 
         protected override void Start()
@@ -148,7 +145,6 @@ namespace EA4S.DancingDots
             tutorial = GetComponent<DancingDotsTutorial>();
 
             AppManager.I.InitTeacherForPlayer();
-            AppManager.I.CurrentGameManagerGO = gameObject;
             SceneTransitioner.Close();
 
             AudioManager.I.PlayMusic(Music.MainTheme);
@@ -158,8 +154,8 @@ namespace EA4S.DancingDots
 
             splats = new List<DancingDotsSplat>();
 
-			foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.gameObject.SetActive(false);
-			foreach (DancingDotsDraggableDot dDiacritic in dragableDiacritics) dDiacritic.gameObject.SetActive(false);
+            foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.gameObject.SetActive(false);
+            foreach (DancingDotsDraggableDot dDiacritic in dragableDiacritics) dDiacritic.gameObject.SetActive(false);
 
             //StartRound();
 
@@ -171,12 +167,9 @@ namespace EA4S.DancingDots
 
         public Color32 SetAlpha(Color32 color, byte alpha)
         {
-            if (alpha >= 0 && alpha <= 255)
-            {
+            if (alpha >= 0 && alpha <= 255) {
                 return new Color32(color.r, color.g, color.b, alpha);
-            }
-            else
-            {
+            } else {
                 return color;
             }
         }
@@ -186,8 +179,7 @@ namespace EA4S.DancingDots
             Vector3 pos = antura.transform.position;
             // Move antura off screen because SetActive is reseting the animation to running
             antura.transform.position = new Vector3(-50, pos.y, pos.z);
-            do
-            {
+            do {
                 yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinDelay, anturaMaxDelay));
                 CreatePoof(pos, 2f, false);
                 yield return new WaitForSeconds(0.4f);
@@ -206,49 +198,48 @@ namespace EA4S.DancingDots
             foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.gameObject.SetActive(false);
             foreach (DancingDotsDraggableDot dDiacritic in dragableDiacritics) dDiacritic.gameObject.SetActive(false);
             foreach (GameObject go in diacritics) go.SetActive(false);
-			isCorrectDiacritic = true;
+            isCorrectDiacritic = true;
 
-			foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
-			isCorrectDot = false;
+            foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
+            isCorrectDot = false;
 
 
-            switch (level)
-            {
-			case Level.Level1: // Dots alone with visual aid
-				gameDuration = 120;
-				StartCoroutine(RemoveHintDot());
-				break;
+            switch (level) {
+                case Level.Level1: // Dots alone with visual aid
+                    gameDuration = 120;
+                    StartCoroutine(RemoveHintDot());
+                    break;
 
-			case Level.Level2: // Diacritics alone with visual aid
-				gameDuration = 110;
+                case Level.Level2: // Diacritics alone with visual aid
+                    gameDuration = 110;
 
-				StartCoroutine(RemoveHintDot());
-				break;
+                    StartCoroutine(RemoveHintDot());
+                    break;
 
-			case Level.Level3: // Dots and diacritics with visual aid
-				gameDuration = 100;
+                case Level.Level3: // Dots and diacritics with visual aid
+                    gameDuration = 100;
 
-				StartCoroutine(RemoveHintDot());
-				break;
+                    StartCoroutine(RemoveHintDot());
+                    break;
 
-			case Level.Level4: // Dots alone without visual aid
-				gameDuration = 90;
-				dancingDotsLL.HideText(dancingDotsLL.hintText);
-				break;
+                case Level.Level4: // Dots alone without visual aid
+                    gameDuration = 90;
+                    dancingDotsLL.HideText(dancingDotsLL.hintText);
+                    break;
 
-			case Level.Level5: // Diacritics alone without visual aid
-				gameDuration = 90;
-				dancingDotsLL.HideText(dancingDotsLL.hintText);
-				break;
+                case Level.Level5: // Diacritics alone without visual aid
+                    gameDuration = 90;
+                    dancingDotsLL.HideText(dancingDotsLL.hintText);
+                    break;
 
-			case Level.Level6: // Dots and diacritics without visual aid
-				gameDuration = 80;
-				dancingDotsLL.HideText(dancingDotsLL.hintText);
-				break;
+                case Level.Level6: // Dots and diacritics without visual aid
+                    gameDuration = 80;
+                    dancingDotsLL.HideText(dancingDotsLL.hintText);
+                    break;
 
-			default:
-				SetLevel(Level.Level1);
-				break;
+                default:
+                    SetLevel(Level.Level1);
+                    break;
 
             }
         }
@@ -260,7 +251,7 @@ namespace EA4S.DancingDots
 
             dancingDotsLL.letterObjectView.SetDancingSpeed(1f);
 
-            if(splats != null)
+            if (splats != null)
                 splats.Clear();
 
             dancingDotsLL.HideRainbow();
@@ -271,8 +262,7 @@ namespace EA4S.DancingDots
 
             if (pedagogicalLevel == 0f) // TODO for testing only each round increment Level. Remove later!
             {
-                switch (numberOfRoundsPlayed)
-                {
+                switch (numberOfRoundsPlayed) {
                     case 1:
                     case 2:
                         currentLevel = Level.Level1;
@@ -291,29 +281,27 @@ namespace EA4S.DancingDots
                         currentLevel = Level.Level3;
                         break;
                 }
-            }
-            else
-            {
+            } else {
                 // TODO Move later to Start method
                 var numberOfLevels = Enum.GetNames(typeof(Level)).Length;
-				pedagogicalLevel = DancingDotsConfiguration.Instance.Difficulty;
+                pedagogicalLevel = DancingDotsConfiguration.Instance.Difficulty;
                 currentLevel = (Level)Mathf.Clamp((int)Mathf.Floor(pedagogicalLevel * numberOfLevels), 0, numberOfLevels - 1);
             }
 
             Debug.Log("[Dancing Dots] pedagogicalLevel: " + pedagogicalLevel + " Game Level: " + currentLevel);
             SetLevel(currentLevel);
 
-			startUI();
+            startUI();
 
-			dancingDotsLL.Reset();
+            dancingDotsLL.Reset();
 
             tutorial.doTutorial();
 
         }
-			
+
         private void CreatePoof(Vector3 position, float duration, bool withSound)
         {
-            if (withSound) AudioManager.I.PlaySfx(Sfx.BalloonPop);
+            if (withSound) Context.GetAudioManager().PlaySound(Sfx.BalloonPop);
             GameObject poof = Instantiate(poofPrefab, position, Quaternion.identity) as GameObject;
             Destroy(poof, duration);
         }
@@ -322,14 +310,11 @@ namespace EA4S.DancingDots
         IEnumerator RemoveHintDot()
         {
             yield return new WaitForSeconds(hintDotDuration);
-            if (!isCorrectDot)
-            {
+            if (!isCorrectDot) {
                 // find dot postion
                 Vector3 poofPosition = Vector3.zero;
-                foreach (DancingDotsDropZone dz in dropZones)
-                {
-                    if (dz.letters.Contains(currentLetter))
-                    {
+                foreach (DancingDotsDropZone dz in dropZones) {
+                    if (dz.letters.Contains(currentLetter)) {
                         poofPosition = new Vector3(dz.transform.position.x, dz.transform.position.y, -8);
                         break;
                     }
@@ -341,78 +326,67 @@ namespace EA4S.DancingDots
 
         IEnumerator RemoveHintDiacritic()
         {
-			if (letterDiacritic != DiacriticEnum.None)
-			{
-				yield return new WaitForSeconds(hintDiacriticDuration);
-				if (!isCorrectDiacritic)
-				{
-					CreatePoof(activeDiacritic.transform.position, 2f, true);
-					activeDiacritic.Hide();
-				}
-			}
+            if (letterDiacritic != DiacriticEnum.None) {
+                yield return new WaitForSeconds(hintDiacriticDuration);
+                if (!isCorrectDiacritic) {
+                    CreatePoof(activeDiacritic.transform.position, 2f, true);
+                    activeDiacritic.Hide();
+                }
+            }
         }
 
         public IEnumerator SetupDiacritic()
         {
-			if (letterDiacritic != DiacriticEnum.None)
-			{
-				foreach (DancingDotsDraggableDot dDots in dragableDiacritics) 
-				{
-					dDots.Reset();
-				}
-				isCorrectDiacritic = false;
-				
-				foreach (GameObject go in diacritics)
-				{
-					go.SetActive(true);
-					if (go.GetComponent<DancingDotsDiacriticPosition>().diacritic == letterDiacritic)
-					{
-						activeDiacritic = go.GetComponent<DancingDotsDiacriticPosition>();
-					}
-					go.SetActive(false);
-					go.GetComponent<DancingDotsDiacriticPosition>().Hide();
-				}
+            if (letterDiacritic != DiacriticEnum.None) {
+                foreach (DancingDotsDraggableDot dDots in dragableDiacritics) {
+                    dDots.Reset();
+                }
+                isCorrectDiacritic = false;
 
-				Debug.Log(activeDiacritic.diacritic);
+                foreach (GameObject go in diacritics) {
+                    go.SetActive(true);
+                    if (go.GetComponent<DancingDotsDiacriticPosition>().diacritic == letterDiacritic) {
+                        activeDiacritic = go.GetComponent<DancingDotsDiacriticPosition>();
+                    }
+                    go.SetActive(false);
+                    go.GetComponent<DancingDotsDiacriticPosition>().Hide();
+                }
+
+                Debug.Log(activeDiacritic.diacritic);
 
 
-				//            int random = UnityEngine.Random.Range(0, diacritics.Length);
-				//            activeDiacritic = diacritics[random].GetComponent<DancingDotsDiacriticPosition>();
+                //            int random = UnityEngine.Random.Range(0, diacritics.Length);
+                //            activeDiacritic = diacritics[random].GetComponent<DancingDotsDiacriticPosition>();
 
-				activeDiacritic.gameObject.SetActive(true);
+                activeDiacritic.gameObject.SetActive(true);
 
-				foreach (DancingDotsDraggableDot dd in dragableDiacritics)
-				{
-					dd.isNeeded = activeDiacritic.diacritic == dd.diacritic;
-				}
+                foreach (DancingDotsDraggableDot dd in dragableDiacritics) {
+                    dd.isNeeded = activeDiacritic.diacritic == dd.diacritic;
+                }
 
-				// wait for end of frame to get correct values for meshes
-				yield return new WaitForEndOfFrame();
-				activeDiacritic.CheckPosition();
+                // wait for end of frame to get correct values for meshes
+                yield return new WaitForEndOfFrame();
+                activeDiacritic.CheckPosition();
 
-				// Level checked in SetDiacritic instead of SetLevel due to frame delay
-				if (currentLevel != Level.Level5 && currentLevel != Level.Level6)
-				{
-					activeDiacritic.Show();
-					StartCoroutine(RemoveHintDiacritic());
-				}
-			}
+                // Level checked in SetDiacritic instead of SetLevel due to frame delay
+                if (currentLevel != Level.Level5 && currentLevel != Level.Level6) {
+                    activeDiacritic.Show();
+                    StartCoroutine(RemoveHintDiacritic());
+                }
+            }
         }
-			
+
         IEnumerator CorrectMove(bool roundWon)
         {
             //AudioManager.I.PlayDialog("comment_welldone");
-            AudioManager.I.PlayDialog("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
+            AudioManager.I.PlayDialogue("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
             dancingDotsLL.ShowRainbow();
             dancingDotsLL.letterObjectView.SetDancingSpeed(1f);
 
 
-            if (roundWon)
-            {
+            if (roundWon) {
                 StartCoroutine(RoundWon());
-            }
-            else
-            {
+            } else {
                 dancingDotsLL.letterObjectView.DoHorray(); // ("Jump");
                 yield return new WaitForSeconds(1f);
                 dancingDotsLL.HideRainbow();
@@ -425,10 +399,8 @@ namespace EA4S.DancingDots
 
         IEnumerator PoofOthers(DancingDotsDraggableDot[] draggables)
         {
-            foreach (DancingDotsDraggableDot dd in draggables)
-            {
-                if (dd.gameObject.activeSelf)
-                {
+            foreach (DancingDotsDraggableDot dd in draggables) {
+                if (dd.gameObject.activeSelf) {
                     yield return new WaitForSeconds(0.25f);
                     dd.gameObject.SetActive(false);
                     CreatePoof(dd.transform.position, 2f, true);
@@ -457,7 +429,7 @@ namespace EA4S.DancingDots
         public void WrongMove(Vector3 pos)
         {
 
-            AudioManager.I.PlayDialog("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
+            AudioManager.I.PlayDialogue("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
             numberOfFailedMoves++;
             dancingDotsLL.letterObjectView.SetDancingSpeed(1f - numberOfFailedMoves * 0.25f);
             GameObject splat = (GameObject)Instantiate(splatPrefab);
@@ -469,8 +441,7 @@ namespace EA4S.DancingDots
 
             splats.Add(splat.GetComponent<DancingDotsSplat>());
 
-            if (numberOfFailedMoves >= allowedFailedMoves)
-            {
+            if (numberOfFailedMoves >= allowedFailedMoves) {
                 StartCoroutine(RoundLost());
             }
 
@@ -480,12 +451,9 @@ namespace EA4S.DancingDots
         {
             dancingDotsLL.letterObjectView.SetDancingSpeed(1f);
 
-            if (numberOfRoundsPlayed >= numberOfRounds)
-            {
+            if (numberOfRoundsPlayed >= numberOfRounds) {
                 DancingDotsEndGame();
-            }
-            else
-            {
+            } else {
 
                 dancingDotsLL.letterObjectView.DoTwirl(null);
                 foreach (DancingDotsSplat splat in splats) splat.CleanSplat();
@@ -499,7 +467,7 @@ namespace EA4S.DancingDots
         IEnumerator RoundLost()
         {
             yield return new WaitForSeconds(0.5f);
-            AudioManager.I.PlaySfx(Sfx.Lose);
+            Context.GetAudioManager().PlaySound(Sfx.Lose);
 
             StartCoroutine(PoofOthers(dragableDots));
             StartCoroutine(PoofOthers(dragableDiacritics));
@@ -513,15 +481,14 @@ namespace EA4S.DancingDots
 
         IEnumerator RoundWon()
         {
-            if (!isTutRound)
-            {
+            if (!isTutRound) {
                 numberOfRoundsWon++;
                 currStarsNum = numberOfRoundsWon / 2;
-				Context.GetOverlayWidget().SetStarsScore(numberOfRoundsWon);
+                Context.GetOverlayWidget().SetStarsScore(numberOfRoundsWon);
             }
 
             yield return new WaitForSeconds(0.25f);
-            AudioManager.I.PlaySfx(Sfx.Win);
+            Context.GetAudioManager().PlaySound(Sfx.Win);
             yield return new WaitForSeconds(1f);
 
             StartCoroutine(CheckNewRound());
@@ -532,24 +499,23 @@ namespace EA4S.DancingDots
             dancingDotsLL.letterObjectView.DoDancingWin();
             isPlaying = false;
             dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_idle);
-			// Stop danger clock if rounds finish and it is running
-			AudioManager.I.StopSfx(Sfx.DangerClockLong);
+            // Stop danger clock if rounds finish and it is running
+            Context.GetAudioManager().StopSounds();
             this.SetCurrentState(this.ResultState);
             //StartCoroutine(EndGame_Coroutine());
         }
 
-		void startUI()
-		{
-			if (numberOfRoundsPlayed != 1)
-			{
-				return;
-			}
-			Debug.Log("UI Started");
-			Context.GetOverlayWidget().Initialize(true, true, false);
-			Context.GetOverlayWidget().SetClockDuration(gameDuration);
-			Context.GetOverlayWidget().SetStarsThresholds(2,3,6);
-			Context.GetOverlayWidget().SetStarsScore(0);
-		}
+        void startUI()
+        {
+            if (numberOfRoundsPlayed != 1) {
+                return;
+            }
+            Debug.Log("UI Started");
+            Context.GetOverlayWidget().Initialize(true, true, false);
+            Context.GetOverlayWidget().SetClockDuration(gameDuration);
+            Context.GetOverlayWidget().SetStarsThresholds(2, 3, 6);
+            Context.GetOverlayWidget().SetStarsScore(0);
+        }
 
-	}
+    }
 }

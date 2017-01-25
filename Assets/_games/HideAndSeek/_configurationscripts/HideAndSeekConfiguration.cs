@@ -1,4 +1,8 @@
-﻿namespace EA4S.HideAndSeek
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesAPI.Sample;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.HideAndSeek
 {
     public class HideAndSeekConfiguration : IGameConfiguration
     {
@@ -27,7 +31,7 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.HideSeek, System.DateTime.Now.Ticks.ToString());
             Questions = new SampleQuestionProvider();
             Difficulty = 0.5f;
         }

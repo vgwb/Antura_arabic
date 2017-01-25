@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System;
-using TMPro;
 
-namespace EA4S.ThrowBalls
+namespace EA4S.Minigames.ThrowBalls
 {
     public class UIController : MonoBehaviour
     {
@@ -51,7 +49,7 @@ namespace EA4S.ThrowBalls
 
         private IEnumerator CrackAnimationCoroutine()
         {
-            AudioManager.I.PlaySfx(Sfx.ScreenHit);
+            ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.ScreenHit);
 
             crackImageColor.a = 1;
             crackImage.color = crackImageColor;

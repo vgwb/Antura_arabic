@@ -1,126 +1,130 @@
 ﻿using UnityEngine;
-using System.Collections;
-using EA4S;
+using EA4S.Antura;
 
-public class AnturaAnimationTester : MonoBehaviour
+namespace EA4S.Test
 {
-    AnturaAnimationController antura;
-
-    public AnturaAnimationStates targetState;
-    public bool doTransition;
-
-    [Range(0,1)]
-    public float walkSpeed;
-
-    public bool angry;
-
-    public bool onJumpStart;
-    public bool onJumpGrab;
-    public bool onJumpMiddle;
-    public bool onJumpEnd;
-    public bool doCharge;
-
-    public bool doBurp;
-    public bool doShout;
-    public bool doSniff;
-
-    public bool doSpitOpen;
-    public bool doSpitClosed;
-
-    public bool onSlipStart;
-    public bool onSlipEnd;
-
-    void Start ()
+    public class AnturaAnimationTester : MonoBehaviour
     {
-        antura = GetComponent<AnturaAnimationController>();
-	}
+        AnturaAnimationController antura;
+
+        public AnturaAnimationStates targetState;
+        public bool doTransition;
+
+        [Range(0,1)]
+        public float walkSpeed;
+
+        public bool angry;
+
+        public bool onJumpStart;
+        public bool onJumpGrab;
+        public bool onJumpMiddle;
+        public bool onJumpEnd;
+        public bool doCharge;
+
+        public bool doBurp;
+        public bool doShout;
+        public bool doSniff;
+
+        public bool doSpitOpen;
+        public bool doSpitClosed;
+
+        public bool onSlipStart;
+        public bool onSlipEnd;
+
+        void Start ()
+        {
+            antura = GetComponent<AnturaAnimationController>();
+        }
 	
-	void Update ()
-    {
-        antura.IsAngry = angry;
-
-        antura.SetWalkingSpeed(walkSpeed);
-
-	    if (doTransition)
+        void Update ()
         {
-            doTransition = false;
-            antura.State = targetState;
-        }
+            antura.IsAngry = angry;
 
-        if (doBurp)
-        {
-            doBurp = false;
-            antura.DoBurp();
-        }
+            antura.SetWalkingSpeed(walkSpeed);
 
+            if (doTransition)
+            {
+                doTransition = false;
+                antura.State = targetState;
+            }
 
-        if (doShout)
-        {
-            doShout = false;
-            antura.DoShout();
-        }
-
-
-        if (doSniff)
-        {
-            doSniff = false;
-            antura.DoSniff();
-        }
+            if (doBurp)
+            {
+                doBurp = false;
+                antura.DoBurp();
+            }
 
 
-        if (onJumpStart)
-        {
-            onJumpStart = false;
-            antura.OnJumpStart();
-        }
+            if (doShout)
+            {
+                doShout = false;
+                antura.DoShout();
+            }
 
 
-        if (onJumpMiddle)
-        {
-            onJumpMiddle = false;
-            antura.OnJumpMaximumHeightReached();
-        }
+            if (doSniff)
+            {
+                doSniff = false;
+                antura.DoSniff();
+            }
 
-        if (onJumpGrab)
-        {
-            onJumpGrab = false;
-            antura.OnJumpGrab();
-        }
 
-        if (onJumpEnd)
-        {
-            onJumpEnd = false;
-            antura.OnJumpEnded();
-        }
+            if (onJumpStart)
+            {
+                onJumpStart = false;
+                antura.OnJumpStart();
+            }
 
-        if (doCharge)
-        {
-            doCharge = false;
-            antura.DoCharge(null);
-        }
 
-        if (doSpitOpen)
-        {
-            doSpitOpen = false;
-            antura.DoSpit(true);
-        }
+            if (onJumpMiddle)
+            {
+                onJumpMiddle = false;
+                antura.OnJumpMaximumHeightReached();
+            }
 
-        if (doSpitClosed)
-        {
-            doSpitClosed = false;
-            antura.DoSpit(false);
-        }
+            if (onJumpGrab)
+            {
+                onJumpGrab = false;
+                antura.OnJumpGrab();
+            }
 
-        if (onSlipStart)
-        {
-            onSlipStart = false;
-            antura.OnSlipStarted();
-        }
+            if (onJumpEnd)
+            {
+                onJumpEnd = false;
+                antura.OnJumpEnded();
+            }
 
-        if (onSlipEnd)
-        {
-            onSlipEnd = false;
-            antura.OnSlipEnded();
+            if (doCharge)
+            {
+                doCharge = false;
+                antura.DoCharge(null);
+            }
+
+            if (doSpitOpen)
+            {
+                doSpitOpen = false;
+                antura.DoSpit(true);
+            }
+
+            if (doSpitClosed)
+            {
+                doSpitClosed = false;
+                antura.DoSpit(false);
+            }
+
+            if (onSlipStart)
+            {
+                onSlipStart = false;
+                antura.OnSlipStarted();
+            }
+
+            if (onSlipEnd)
+            {
+                onSlipEnd = false;
+                antura.OnSlipEnded();
+            }
         }
     }
 }
+
+// refactor: add to the Test namespace

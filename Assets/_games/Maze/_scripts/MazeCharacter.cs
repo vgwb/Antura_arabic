@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using EA4S.LivingLetters;
 
-namespace EA4S.Maze
+namespace EA4S.Minigames.Maze
 {
     public delegate void VoidDelegate();
     public class MazeCharacter: MonoBehaviour {
@@ -37,7 +37,7 @@ namespace EA4S.Maze
 		public Quaternion initialRotation;
 		Vector3 targetPos;
 		Quaternion targetRotation;
-		int currentWayPoint;
+		//int currentWayPoint;
 
 
 		public List<GameObject> _fruits;
@@ -69,7 +69,7 @@ namespace EA4S.Maze
 
 
 
-			currentWayPoint = 0;
+			//currentWayPoint = 0;
 			GetComponent<Collider> ().enabled = false;
 
 			//collider.GetComponent<MeshRenderer> ().enabled = false;
@@ -636,7 +636,7 @@ namespace EA4S.Maze
 
 
 
-			var dir = transform.position - characterWayPoints[currentCharacterWayPoint];
+			//var dir = transform.position - characterWayPoints[currentCharacterWayPoint];
 			
 
 			if(previousPosition != targetPos)

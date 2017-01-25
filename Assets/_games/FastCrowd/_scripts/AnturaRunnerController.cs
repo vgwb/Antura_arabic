@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿using EA4S.Antura;
+using EA4S.Audio;
+using EA4S.Utilities;
+using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Minigames.FastCrowd
 {
     public class AnturaRunnerController : MonoBehaviour
     {
@@ -35,7 +38,7 @@ namespace EA4S
                     PrepareNextAnturaBark();
                     antura.DoShout(() =>
                     {
-                        AudioManager.I.PlaySfx(Sfx.DogBarking);
+                        AudioManager.I.PlaySound(Sfx.DogBarking);
                     });
 
                 }

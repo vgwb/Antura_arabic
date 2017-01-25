@@ -1,13 +1,18 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using DG.Tweening;
+using EA4S.Antura;
+using EA4S.Audio;
 
-namespace EA4S
+namespace EA4S.AnturaSpace
 {
-
+    /// <summary>
+    /// Handles user interaction with Antura in the AnturaSpace. 
+    /// </summary>
+    // refactor: rename to AnturaSpaceInteraction or similar to distinguish from Antura
+    // conventions: needs a pass to match conventions
     [RequireComponent(typeof(AnturaAnimationController))]
     public class AnturaBehaviour : MonoBehaviour
     {
@@ -20,7 +25,7 @@ namespace EA4S
                 delay = 1.0f;
                 m_oAnturaCtrl.State = AnturaAnimationStates.idle;
             }
-            StartCoroutine(EA4S.MissingLetter.Utils.LaunchDelay<GameObject>(delay, InternalAddBone, Bone));
+            StartCoroutine(Minigames.MissingLetter.Utils.LaunchDelay<GameObject>(delay, InternalAddBone, Bone));
         }
 
         public void Reset()
@@ -67,7 +72,7 @@ namespace EA4S
             }
             else if (!m_bMovingToDestination)
             {
-                AudioManager.I.PlaySfx(m_oSfxOnClick);
+                AudioManager.I.PlaySound(m_oSfxOnClick);
                 int iRnd;
                 do
                 {
@@ -84,7 +89,7 @@ namespace EA4S
             }
             else
             {
-                AudioManager.I.PlaySfx(Sfx.DogBarking); //bark when clicked and going to a bone
+                AudioManager.I.PlaySound(Sfx.DogBarking); //bark when clicked and going to a bone
             }
         }
 
@@ -153,7 +158,7 @@ namespace EA4S
         void BoneReached(GameObject Bone)
         {
             m_bEatingBone = true;
-            StartCoroutine(EA4S.MissingLetter.Utils.LaunchDelay(1.0f, () => { m_bEatingBone = false; }));
+            StartCoroutine(Minigames.MissingLetter.Utils.LaunchDelay(1.0f, () => { m_bEatingBone = false; }));
 
             m_oAnturaCtrl.State = AnturaAnimationStates.idle;
             m_oAnturaCtrl.DoShout();

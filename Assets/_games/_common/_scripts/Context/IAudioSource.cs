@@ -1,6 +1,9 @@
-﻿
-namespace EA4S
+﻿namespace EA4S.MinigamesCommon
 {
+    /// <summary>
+    /// Provides access to an Audio Source for minigames.
+    /// <seealso cref="MinigamesAudioSource"/>
+    /// </summary>
     public interface IAudioSource
     {
         bool Loop { get; set; }

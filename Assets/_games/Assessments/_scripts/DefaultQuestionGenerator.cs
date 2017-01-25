@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using EA4S.MinigamesAPI;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -39,7 +40,7 @@ namespace EA4S.Assessment
 
         private void ClearCache()
         {
-            totalAnswers = new List< IAnswer>();
+            totalAnswers = new List< Answer>();
             totalQuestions = new List< IQuestion>();
             partialAnswers = null;
         }
@@ -52,7 +53,7 @@ namespace EA4S.Assessment
             state = QuestionGeneratorState.Completed;
         }
 
-        public IAnswer[] GetAllAnswers()
+        public Answer[] GetAllAnswers()
         {
             if (state != QuestionGeneratorState.Completed)
                 throw new InvalidOperationException("Not Completed");
@@ -68,7 +69,7 @@ namespace EA4S.Assessment
             return totalQuestions.ToArray();
         }
 
-        public IAnswer[] GetNextAnswers()
+        public Answer[] GetNextAnswers()
         {
             if (state != QuestionGeneratorState.QuestionFeeded)
                 throw new InvalidOperationException("Not Initialized");
@@ -77,13 +78,12 @@ namespace EA4S.Assessment
             return partialAnswers;
         }
 
-        List< IAnswer> totalAnswers;
+        List< Answer> totalAnswers;
         List< IQuestion> totalQuestions;
-        IAnswer[] partialAnswers;
+        Answer[] partialAnswers;
 
         public IQuestion GetNextQuestion()
         {
-            Debug.Log("GetNextQuestion");
             if (state != QuestionGeneratorState.Initialized)
                 throw new InvalidOperationException( "Not Initialized");
 
@@ -91,7 +91,7 @@ namespace EA4S.Assessment
 
             currentPack = provider.GetNextQuestion();
 
-            List< IAnswer> answers = new List< IAnswer>();
+            List< Answer> answers = new List< Answer>();
             ILivingLetterData questionData = currentPack.GetQuestion();
 
             //____________________________________
@@ -107,17 +107,14 @@ namespace EA4S.Assessment
                 totalAnswers.Add( wrongAnsw);
             }
 
-            Debug.Log("PRE");
             int correctCount = 0;
             foreach (var correct in currentPack.GetCorrectAnswers())
             {
                 var correctAnsw = GenerateCorrectAnswer( correct);
-                Debug.Log("Added");
                 correctCount++;
                 answers.Add( correctAnsw);
                 totalAnswers.Add( correctAnsw);
             }
-            Debug.Log("POST");
 
             partialAnswers = answers.ToArray();
 
@@ -134,20 +131,21 @@ namespace EA4S.Assessment
 
         private IQuestion GenerateQuestion( ILivingLetterData data, int correctCount)
         {   
-            if(AssessmentConfiguration.Instance.ShowQuestionAsImage)
+            if(AssessmentOptions.Instance.ShowQuestionAsImage)
                 data = new LL_ImageData(data.Id);
 
             var q = LivingLetterFactory.Instance.SpawnQuestion( data);
             return new DefaultQuestion( q, correctCount);
         }
 
-        private IAnswer GenerateWrongAnswer( ILivingLetterData wrongAnswer)
+        private Answer GenerateWrongAnswer( ILivingLetterData wrongAnswer)
         {
-            return new DefaultAnswer( 
-                LivingLetterFactory.Instance.SpawnAnswer( wrongAnswer)
+            return
+            LivingLetterFactory.Instance.SpawnAnswer( wrongAnswer)
+            .gameObject.AddComponent< Answer>()
 
-                //wrong
-                , false);
+                // Correct answer
+                .Init(false);
         }
 
         private void GeneratePlaceHolder( IQuestion question)
@@ -158,13 +156,14 @@ namespace EA4S.Assessment
             question.TrackPlaceholder( placeholder.gameObject);
         }
 
-        private IAnswer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
+        private Answer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
         {
-            return new DefaultAnswer(
-                LivingLetterFactory.Instance.SpawnAnswer( correctAnswer)
+            return
+            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer)
+            .gameObject.AddComponent< Answer>()
 
-                //correct
-                , true);
+                // Correct answer
+                .Init(true);
         }
     }
 }

@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using EA4S.Antura;
+using EA4S.Utilities;
 
-namespace EA4S {
-    public static class RewardSystemManager {
+namespace EA4S
+{
+    public static class RewardSystemManager
+    {
 
         #region CONST
         public const string ANTURA_REWARDS_CONFIG_PATH = "Configs/" + "AnturaRewardsConfig";
@@ -308,6 +310,18 @@ namespace EA4S {
                 }
             }
             AppManager.I.Player.SetCurrentJourneyPosition(actualCurrentJourneyPosition);
+        }
+
+        /// <summary>
+        /// Return true if Reward for this JourneyPosition is already unlocked.
+        /// </summary>
+        /// <param name="_journeyPosition">The journey position.</param>
+        /// <returns></returns>
+        public static bool RewardAlreadyUnlocked(JourneyPosition _journeyPosition) {
+            RewardPack rewardPack = AppManager.I.Player.RewardsUnlocked.Find(r => r.PlaySessionId == _journeyPosition.ToString());
+            if (rewardPack != null)
+                return true;
+            return false;
         }
         #endregion
 

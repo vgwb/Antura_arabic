@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
-namespace EA4S.ColorTickle
+namespace EA4S.Minigames.ColorTickle
 {
     public class ColorsUIManager : MonoBehaviour
     {

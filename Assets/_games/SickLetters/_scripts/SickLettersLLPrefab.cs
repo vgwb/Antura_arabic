@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using EA4S.LivingLetters;
+using EA4S.Utilities;
 using TMPro;
 
-
-namespace EA4S.SickLetters
+namespace EA4S.Minigames.SickLetters
 {
 
     public enum letterStatus { idle, angry, horry}
@@ -244,7 +245,7 @@ namespace EA4S.SickLetters
                         newDragable.transform.parent = dz.transform;
                         newDragable.transform.localPosition = Vector3.zero;
                         newDragable.transform.localEulerAngles = new Vector3(0, -90, 0);
-                        newDragable.setInitPos(newDragable.transform.localPosition);
+                        //newDragable.setInitPos(newDragable.transform.localPosition);
                         newDragable.checkDDCollision = true;
                         //newDragable.isAttached = true;
 

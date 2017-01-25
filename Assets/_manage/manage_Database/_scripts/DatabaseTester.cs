@@ -2,14 +2,18 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using EA4S.Profile;
+using EA4S.Utilities;
 
+// refactor: standardize random use across the codebase
 using RND = UnityEngine.Random;
 
 namespace EA4S.Db.Management
 {
+    /// <summary>
+    /// Helps in managing and testing database contents.
+    /// </summary>
     public class DatabaseTester : MonoBehaviour
     {
         private DatabaseLoader dbLoader;

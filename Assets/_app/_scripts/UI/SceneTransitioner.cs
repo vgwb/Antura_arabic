@@ -1,13 +1,15 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-
-using System;
+﻿using System;
 using DG.Tweening;
+using EA4S.Audio;
 using EA4S.Db;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Controls the transition animation between two scenes.
+    /// </summary>
     public class SceneTransitioner : MonoBehaviour
     {
         [Header("Options")]
@@ -81,7 +83,7 @@ namespace EA4S
                 onCompleteCallback = _onComplete;
                 tween.Restart();
                 this.gameObject.SetActive(true);
-                AudioManager.I.PlaySfx(Sfx.Transition);
+                AudioManager.I.PlaySound(Sfx.Transition);
                 IsPlaying = true;
             } else {
                 MaskCover.fillClockwise = false;

@@ -1,8 +1,8 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/20
-namespace EA4S
+﻿namespace EA4S.Rewards
 {
+
     /// <summary>
+    /// Data related to a minigame played during a play session.
     /// NOTE: could be a struct, but will probably need to be a class later, so keeping it as class from the beginning
     /// </summary>
     public class EndsessionResultData

@@ -1,5 +1,4 @@
-﻿
-namespace EA4S
+﻿namespace EA4S.MinigamesCommon
 {
     public static class IGameExtensions
     {

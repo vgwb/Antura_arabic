@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System;
+using EA4S.MinigamesAPI;
+using EA4S.MinigamesAPI.Sample;
 
-namespace EA4S.SickLetters
+namespace EA4S.Minigames.SickLetters
 {
     /*
     This is a Dummy Provider, used only when the game is started from the Editor, 

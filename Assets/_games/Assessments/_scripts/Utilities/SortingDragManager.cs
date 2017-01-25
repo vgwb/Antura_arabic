@@ -1,11 +1,13 @@
+using Kore.Coroutines;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Assessment
 {
-    internal class SortingDragManager : IDragManager, ITickable
+    internal class SortingDragManager : IDragManager, ITimedUpdate
     {
         private IAudioManager audioManager;
         private ICheckmarkWidget widget;
@@ -21,8 +23,6 @@ namespace EA4S.Assessment
         public void EnableDragOnly()
         {
             dragOnly = true;
-            ticking = true;
-            TimeEngine.AddTickable(this);
             foreach (var a in answers)
                 a.Enable();
         }
@@ -32,7 +32,7 @@ namespace EA4S.Assessment
         // This should be called onlye once
         public void AddElements(
                                     List< PlaceholderBehaviour> placeholders,
-                                    List< AnswerBehaviour> answers,
+                                    List< Answer> answers,
                                     List< IQuestion> questions)
         {
             this.answers = BehaviourFromAnswers( answers);
@@ -61,7 +61,7 @@ namespace EA4S.Assessment
             searchForBuckets = false;
         }
 
-        private List< SortableBehaviour> BehaviourFromAnswers( List< AnswerBehaviour> answers)
+        private List< SortableBehaviour> BehaviourFromAnswers( List< Answer> answers)
         {
             var list = new List< SortableBehaviour>();
 
@@ -78,9 +78,9 @@ namespace EA4S.Assessment
         IEnumerator AllCorrectCoroutine()
         {
             audioManager.PlaySound( Sfx.StampOK);
-            yield return TimeEngine.Wait(0.4f);
+            yield return Wait.For( 0.4f);
             widget.Show(true);
-            yield return TimeEngine.Wait(1.0f);
+            yield return Wait.For( 1.0f);
         }
 
         public bool AllAnswered()
@@ -91,8 +91,8 @@ namespace EA4S.Assessment
             if (sortables == null)
                 return false;
 
-            IAnswer[] answer = new IAnswer[ answers.Count];
-            IAnswer[] answerSorted = new IAnswer[ answers.Count];
+            Answer[] answer = new Answer[ answers.Count];
+            Answer[] answerSorted = new Answer[ answers.Count];
 
             //Answers like are actually sorted
             var sorted = sortables.OrderByDescending( x => x.transform.position.x).ToArray();
@@ -100,7 +100,7 @@ namespace EA4S.Assessment
             int index = 0;
             foreach( var a in answers)
             {
-                answerSorted[ index] = sorted[ index].gameObject.GetComponent< AnswerBehaviour>().GetAnswer();
+                answerSorted[ index] = sorted[ index].gameObject.GetComponent< Answer>();
                 index++;
             }
 
@@ -123,7 +123,7 @@ namespace EA4S.Assessment
             //Debug.Log("Return TRUE");
             // two words identical!
             returnedAllAnswered = true;
-            Coroutine.Start( AllCorrectCoroutine());
+            Koroutine.Run( AllCorrectCoroutine());
             return true;
         }
 
@@ -168,12 +168,10 @@ namespace EA4S.Assessment
             }
         }
 
-        bool ticking = false;
-
         Vector3[] positions;
         SortableBehaviour[] sortables;
 
-        public bool Update(float deltaTime)
+        public void Update( float deltaTime)
         {
             if (searchForBuckets)
                 FindBuckets();
@@ -186,8 +184,6 @@ namespace EA4S.Assessment
             }
 
             MoveStuffToPosition();
-
-            return !ticking;
         }
 
         private void MoveStuffToPosition()
@@ -203,7 +199,7 @@ namespace EA4S.Assessment
             {
                 var s = sortables[i];
                 //DO NOT TWEEN THE OBJECT WE ARE DRAGGIN
-                if ((s as IDroppable) != droppable /*&& s.SetSortIndex(i)*/)
+                if ((s as IDroppable) != droppable )
                 {
                     s.SetSortIndex(i);
                     s.Move( positions[i], 0.3f);

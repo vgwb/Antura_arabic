@@ -2,9 +2,16 @@
 using ModularFramework.Core;
 using ModularFramework.Modules;
 
-namespace EA4S {
+namespace EA4S
+{
 
-    public class AnturaGameplayInstaller : ModuleInstaller<IGameplayModule> {
+    /// <summary>
+    /// Installer for the SceneModule.
+    /// <seealso cref="GameplayModuleAnturaGameplay"/>
+    /// </summary>
+    // refactor: can we remove the ModularFramerwork?
+    public class AnturaGameplayInstaller : ModuleInstaller<IGameplayModule>
+    {
         public AnturaGameplayInstallerSettings settings;
         public override IGameplayModule InstallModule() {
             var concreteInstance = new GameplayModuleAnturaGameplay() { Settings = settings };

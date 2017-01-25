@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
-namespace EA4S.Maze
+namespace EA4S.Minigames.Maze
 {
     public class MazeLetterBuilder : MonoBehaviour
     {
         public int letterDataIndex = 0;
         //public ILivingLetterData letterData;
 
-        private bool isBuild = false;
+        //private bool isBuild = false;
         private System.Action _callback = null;
         // Use this for initialization
         void Start()

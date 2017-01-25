@@ -1,5 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using EA4S.Db;
+using EA4S.Profile;
+using EA4S.Utilities;
 
 namespace EA4S.Teacher
 {

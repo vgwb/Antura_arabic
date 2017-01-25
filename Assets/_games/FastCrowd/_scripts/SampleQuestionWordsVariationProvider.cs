@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using EA4S.MinigamesAPI;
+using EA4S.MinigamesAPI.Sample;
 
-namespace EA4S.FastCrowd
+namespace EA4S.Minigames.FastCrowd
 {
     /// <summary>
     /// This sample class generates 32 quizzes of type "I give you a word, you say that word"
@@ -10,15 +10,12 @@ namespace EA4S.FastCrowd
     public class SampleQuestionWordsVariationProvider : IQuestionProvider
     {
         List<SampleQuestionPack> questions = new List<SampleQuestionPack>();
-        string description;
 
         int currentQuestion;
 
         public SampleQuestionWordsVariationProvider()
         {
             currentQuestion = 0;
-
-            description = "Questions description";
 
             for (int i = 0; i < 32; i++)
             {
@@ -46,11 +43,6 @@ namespace EA4S.FastCrowd
                 var currentPack = new SampleQuestionPack(null, wrongAnswers, correctAnswers);
                 questions.Add(currentPack);
             }
-        }
-
-        public string GetDescription()
-        {
-            return description;
         }
 
         IQuestionPack IQuestionProvider.GetNextQuestion()

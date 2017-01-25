@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace EA4S.ThrowBalls
+namespace EA4S.Minigames.ThrowBalls
 {
     public class SlingshotController : MonoBehaviour
     {
@@ -18,7 +17,7 @@ namespace EA4S.ThrowBalls
         private Vector3 launchForce;
 
         // The elasticity. The higher the value, the more the ball travels for a fixed tug at the slingshot.
-        private float elasticity = SROptions.Current.Elasticity;
+        //private float elasticity = SROptions.Current.Elasticity;
 
         void Awake()
         {
@@ -88,7 +87,7 @@ namespace EA4S.ThrowBalls
 
         private void UpdateArc()
         {
-            if (BallController.instance.transform.position == BallController.INITIAL_BALL_POSITION)
+            if (BallController.instance.transform.position == BallController.instance.INITIAL_BALL_POSITION)
             {
                 arc.SetActive(false);
             }

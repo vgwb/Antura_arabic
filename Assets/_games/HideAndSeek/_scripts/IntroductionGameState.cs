@@ -1,4 +1,6 @@
-﻿namespace EA4S.HideAndSeek
+﻿using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.HideAndSeek
 {
     public class IntroductionGameState : IGameState
     {

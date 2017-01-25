@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using ModularFramework.Core;
+using EA4S.Profile;
 
 namespace EA4S {
 

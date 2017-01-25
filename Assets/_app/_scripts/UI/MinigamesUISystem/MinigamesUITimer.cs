@@ -1,13 +1,13 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/10/28
-
-using DG.Tweening;
+﻿using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Shows a timer during a minigame.
+    /// </summary>
     public class MinigamesUITimer : ABSMinigamesUIComponent
     {
         public Image Radial;

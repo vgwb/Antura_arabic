@@ -1,4 +1,7 @@
-﻿namespace EA4S.MissingLetter
+﻿using EA4S.Audio;
+using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.MissingLetter
 {
     public class MissingLetterIntroductionState : IGameState
     {
@@ -11,11 +14,11 @@
         {
             if(MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
             {
-                AudioManager.I.PlayDialog(Db.LocalizationDataId.MissingLetter_Title);
+                AudioManager.I.PlayDialogue(Db.LocalizationDataId.MissingLetter_Title);
             }
             else
             {
-                AudioManager.I.PlayDialog(Db.LocalizationDataId.MissingLetter_phrases_Title);
+                AudioManager.I.PlayDialogue(Db.LocalizationDataId.MissingLetter_phrases_Title);
             }
         }
 

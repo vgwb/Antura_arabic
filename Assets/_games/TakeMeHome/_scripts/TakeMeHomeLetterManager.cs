@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
+using EA4S.LivingLetters;
 
-namespace EA4S.TakeMeHome
+namespace EA4S.Minigames.TakeMeHome
 {
 	
 	public class TakeMeHomeLetterManager : MonoBehaviour {
 		public GameObject plane;
-		public LetterObjectView LLPrefab;
-		public event System.Action<ILivingLetterData, bool> onDropped;
-		
+		public LetterObjectView LLPrefab;		
 
 		TakeMeHomeLL dragging;
 

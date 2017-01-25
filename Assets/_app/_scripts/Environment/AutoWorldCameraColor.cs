@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using EA4S.MinigamesCommon;
+using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Environment
 {
     [ExecuteInEditMode]
     public class AutoWorldCameraColor : MonoBehaviour
@@ -38,7 +39,7 @@ namespace EA4S
 #if UNITY_EDITOR
         void Update()
         {
-            if (!Application.isPlaying && gameObject.scene != null && backgroundColorSet != null)
+            if (!Application.isPlaying && backgroundColorSet != null)
             {
                 if (testWorld != lastTestWorld || backgroundColorSet != lastColorSet)
                 {

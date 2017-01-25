@@ -1,9 +1,11 @@
-﻿using SQLite;
-using System;
+﻿using EA4S.Utilities;
+using SQLite;
 
 namespace EA4S.Db
 {
-
+    /// <summary>
+    /// Daily mood level of a player at a given timestamp. Logged at runtime.
+    /// </summary>
     [System.Serializable]
     public class LogMoodData : IData
     {
@@ -20,8 +22,8 @@ namespace EA4S.Db
 
         public LogMoodData(float _mood)
         {
-            this.MoodValue = _mood;
-            this.Timestamp = GenericUtilities.GetTimestampForNow();
+            MoodValue = _mood;
+            Timestamp = GenericUtilities.GetTimestampForNow();
         }
 
         public string GetId()

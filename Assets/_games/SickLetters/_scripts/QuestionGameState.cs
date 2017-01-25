@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-namespace EA4S.SickLetters
+﻿using EA4S.MinigamesCommon;
+
+namespace EA4S.Minigames.SickLetters
 {
     public class QuestionGameState : IGameState
     {

@@ -1,12 +1,10 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/09
-
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.MinigamesCommon
 {
+    // refactor: should be handled as other widgets are
     public class RadialGadget : MonoBehaviour
     {
         public Image Radial;

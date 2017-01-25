@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections;
 using ModularFramework.Core;
 using ModularFramework.Modules;
-using System;
 
-namespace EA4S {
+namespace EA4S
+{
     /// <summary>
     /// Concrete implementation for module type GameplayModule.
     /// </summary>
-    public class GameplayModuleAnturaGameplay : IGameplayModule {
+    // refactor: can we remove the ModularFramerwork?
+    public class GameplayModuleAnturaGameplay : IGameplayModule
+    {
 
         #region IModule Implementation
         public IGameplayModule ConcreteModuleImplementation { get; set; }

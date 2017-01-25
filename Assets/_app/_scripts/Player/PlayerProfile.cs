@@ -1,13 +1,14 @@
 ﻿using System;
-using UnityEngine.UI;
-using ModularFramework.Core;
 using ModularFramework.Modules;
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Profile
 {
 
+    /// <summary>
+    /// A Player Profile contains persistent data on details and on the progression status of a single player.
+    /// </summary>
     [Serializable]
     public class PlayerProfile : IPlayerProfile
     {
@@ -22,6 +23,7 @@ namespace EA4S
         //BookVisited: ProfileCompletion = 3
         public int ProfileCompletion = 0;
 
+        // refactor: these are not used and are instead in the DB
         // Mood (1 to 5 indicators)
         public float MainMood = 3f;
         public float Impatient = 3f;
@@ -31,6 +33,7 @@ namespace EA4S
         public float Collector = 3f;
         public float Frustrated = 3f;
 
+        // refactor: these are not used and are instead in the DB
         // PlaySkills
         public float Precision;
         public float Reaction;
@@ -40,10 +43,13 @@ namespace EA4S
         public float Musicality;
         public float Sight;
 
+        // refactor: should we move this to the DB app?
         public string MoodLastVisit;
 
         public JourneyPosition MaxJourneyPosition = new JourneyPosition(1, 1, 1);
         public JourneyPosition CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
+
+        // refactor: this should be handled by the NavigationManager
         [NonSerialized]
         public int CurrentMiniGameInPlaySession;
 
@@ -64,6 +70,7 @@ namespace EA4S
         #region API
 
         #region management
+
         /// <summary>
         /// Automatically select first avatar profile.
         /// </summary>
@@ -139,7 +146,7 @@ namespace EA4S
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
         public void SetMaxJourneyPosition(JourneyPosition newJourneyPosition, bool _save = true)
         {
-            if (AppManager.I.Player.MaxJourneyPosition.isMinor(newJourneyPosition)) {
+            if (AppManager.I.Player.MaxJourneyPosition.IsMinor(newJourneyPosition)) {
                 AppManager.I.Player.ResetPlaySessionMinigame();
                 AppManager.I.Player.MaxJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
                 AppManager.I.Player.CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);

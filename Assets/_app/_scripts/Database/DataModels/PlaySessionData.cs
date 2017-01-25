@@ -4,6 +4,15 @@ using System.Collections.Generic;
 namespace EA4S.Db
 {
 
+    /// <summary>
+    /// Data defining a Play Session. 
+    /// Used to define the learning journey progression.
+    /// Learning Blocks contain one or more play sessions and end with an assessment.
+    /// A Play Session contains one or more minigames that can be selected to play when reaching that play session.
+    /// <seealso cref="StageData"/>
+    /// <seealso cref="LearningBlockData"/>
+    /// <seealso cref="MiniGameData"/>
+    /// </summary>
     [Serializable]
     public class PlaySessionData : IData
     {

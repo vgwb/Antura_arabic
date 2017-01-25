@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 
-namespace EA4S.MakeFriends
+namespace EA4S.Minigames.MakeFriends
 {
     public enum MakeFriendsVariation
     {
@@ -80,9 +80,9 @@ namespace EA4S.MakeFriends
             }
         }
 
-        public readonly static float EASY_THRESHOLD = 0f;
-        public readonly static float MEDIUM_THRESHOLD = 0.3f;
-        public readonly static float HARD_THRESHOLD = 0.7f;
+        public const float EASY_THRESHOLD = 0f;
+        public const float MEDIUM_THRESHOLD = 0.3f;
+        public const float HARD_THRESHOLD = 0.7f;
 
            
         /////////////////
@@ -106,7 +106,7 @@ namespace EA4S.MakeFriends
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new MakeFriendsQuestionProvider();
-            Context = new SampleGameContext();
+            Context = new MinigamesGameContext(MiniGameCode.MakeFriends, System.DateTime.Now.Ticks.ToString());
             Difficulty = 0f;
         }
 

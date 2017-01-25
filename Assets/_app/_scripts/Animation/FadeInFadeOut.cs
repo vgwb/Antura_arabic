@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using DG.Tweening;
 
-namespace EA4S
+namespace EA4S.Animation
 {
+    // obsolete: remove the class
     public class FadeInFadeOut : MonoBehaviour
     {
         Tween showTween;

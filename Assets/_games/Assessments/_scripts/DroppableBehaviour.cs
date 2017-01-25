@@ -14,9 +14,9 @@ namespace EA4S.Assessment
             this.dragManager = dragManager;
         }
 
-        public IAnswer GetAnswer()
+        public Answer GetAnswer()
         {
-            return GetComponent< AnswerBehaviour>().GetAnswer();
+            return GetComponent< Answer>();
         }
 
         Vector3 origin; // Memorize starting position for going back
@@ -61,8 +61,8 @@ namespace EA4S.Assessment
             dragEnabled = true;
         }
 
-        Action<IDroppable> OnGoDestroyed = null;
-        public void StartDrag( Action<IDroppable> onDestroyed)
+        Action< IDroppable> OnGoDestroyed = null;
+        public void StartDrag( Action< IDroppable> onDestroyed)
         {
             OnGoDestroyed = onDestroyed;
             SetScale( 1.3f);

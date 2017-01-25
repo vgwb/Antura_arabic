@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using EA4S;
 
-namespace EA4S
+namespace EA4S.Map
 {
+    // refactor: can be a non-MonoBehaviour class
     public class Rope : MonoBehaviour
     {
         public int learningBlockRope;

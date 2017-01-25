@@ -1,12 +1,13 @@
-﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/11/21
-
-using DG.Tweening;
+﻿using DG.Tweening;
+using EA4S.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.Rewards
 {
+    /// <summary>
+    /// Represents an earned achievement (reward) in the EndsessionResultPanel
+    /// </summary>
     public class EndsessionAchievement : MonoBehaviour
     {
         public Color LockedColor = Color.red;
@@ -79,7 +80,7 @@ namespace EA4S
             if (_doAchieve) {
                 Star.gameObject.SetActive(true);
                 achieveStarTween.Restart();
-                AudioManager.I.PlaySfx(EndsessionResultPanel.I.SfxGainStar);
+                AudioManager.I.PlaySound(EndsessionResultPanel.I.SfxGainStar);
             } else {
                 Star.gameObject.SetActive(false);
                 achieveStarTween.Rewind();

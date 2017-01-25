@@ -1,10 +1,14 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
+using EA4S.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Shows and controls the Pause menu.
+    /// Can be used throughout the application.
+    /// </summary>
     public class PauseMenu : MonoBehaviour
     {
         public static PauseMenu I;
@@ -102,19 +106,15 @@ namespace EA4S
             if (_open) {
                 timeScaleAtMenuOpen = Time.timeScale;
                 Time.timeScale = 0;
-                if (AppManager.I.CurrentGameManagerGO != null)
-                    AppManager.I.CurrentGameManagerGO.SendMessage("DoPause", true, SendMessageOptions.DontRequireReceiver);
                 openMenuTween.timeScale = 1;
                 openMenuTween.PlayForward();
-                AudioManager.I.PlaySfx(Sfx.UIPauseIn);
+                AudioManager.I.PlaySound(Sfx.UIPauseIn);
             } else {
                 Time.timeScale = timeScaleAtMenuOpen;
                 logoBobTween.Pause();
                 openMenuTween.timeScale = 2; // Speed up tween when going backwards
-                if (AppManager.I.CurrentGameManagerGO != null)
-                    AppManager.I.CurrentGameManagerGO.SendMessage("DoPause", false, SendMessageOptions.DontRequireReceiver);
                 openMenuTween.PlayBackwards();
-                AudioManager.I.PlaySfx(Sfx.UIPauseOut);
+                AudioManager.I.PlaySound(Sfx.UIPauseOut);
             }
         }
 

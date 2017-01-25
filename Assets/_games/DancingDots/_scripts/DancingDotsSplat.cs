@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
+using EA4S.Audio;
 
-namespace EA4S.DancingDots
+namespace EA4S.Minigames.DancingDots
 {
 	public class DancingDotsSplat : MonoBehaviour {
 
@@ -10,7 +10,7 @@ namespace EA4S.DancingDots
 		// Use this for initialization
 		void Start () {
 			GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Length)];
-			AudioManager.I.PlaySfx(Sfx.Splat);
+			AudioManager.I.PlaySound(Sfx.Splat);
 		}
 
 		public void CleanSplat()
@@ -46,7 +46,7 @@ namespace EA4S.DancingDots
 //
 //			float timer = 0;
 //
-//			AudioManager.I.PlaySfx(Sfx.Splat);
+//			AudioManager.I.PlaySound(Sfx.Splat);
 //
 //			// Scale
 //			while(splatMaxSize > trans.localScale.x)

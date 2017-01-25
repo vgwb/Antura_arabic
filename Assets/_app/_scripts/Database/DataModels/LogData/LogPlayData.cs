@@ -1,27 +1,12 @@
-﻿using SQLite;
-using System;
+﻿using EA4S.Utilities;
+using SQLite;
 
-namespace EA4S {
+namespace EA4S.Db
+{
 
-    public enum PlaySkill {
-        None = 0,
-        Precision = 1,
-        Reaction = 2,
-        Memory = 3,
-        Logic = 4,
-        Rhythm = 5,
-        Musicality = 6,
-        Sight = 7
-    }
-
-    public enum PlayEvent {
-        GameStarted = 0,
-        GameFinished = 1,
-        Skill = 2
-    }
-}
-
-namespace EA4S.Db {
+    /// <summary>
+    /// Play-related measurements obtained at a given timestamp. Logged at runtime.
+    /// </summary>
     [System.Serializable]
     public class LogPlayData : IData
     {
@@ -48,14 +33,14 @@ namespace EA4S.Db {
 
         public LogPlayData(string _Session, string _PlaySession, MiniGameCode _MiniGame, PlayEvent _PlayEvent, PlaySkill _PlaySkill, float _Score, string _RawData)
         {
-            this.Session = _Session;
-            this.PlaySession = _PlaySession;
-            this.MiniGame = _MiniGame;
-            this.PlayEvent = _PlayEvent;
-            this.PlaySkill = _PlaySkill;
-            this.Score = _Score;
-            this.RawData = _RawData;
-            this.Timestamp = GenericUtilities.GetTimestampForNow();
+            Session = _Session;
+            PlaySession = _PlaySession;
+            MiniGame = _MiniGame;
+            PlayEvent = _PlayEvent;
+            PlaySkill = _PlaySkill;
+            Score = _Score;
+            RawData = _RawData;
+            Timestamp = GenericUtilities.GetTimestampForNow();
         }
 
         public string GetId()
