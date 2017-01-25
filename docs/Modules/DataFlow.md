@@ -9,40 +9,28 @@ This document describes how dictionary data flows from the database, through the
 
 ### Database
 
-All learning data of a given language (letters, words, and phrases),
- as well as their relationships, are contained in a database.
+All learning data of a given language (letters, words, and phrases), as well as their relationships, are contained in a database.
 
 The Teacher can directly access the database.
-The database must instead not be accessed directly by the minigames,
-  as the Teacher must filter the data based on learning requirements.
+The database must instead not be accessed directly by the minigames, as the Teacher must filter the data based on learning requirements.
 
 Refer to the **Database** documentation for further details.
 @todo: LINK
 
 ### Teacher filtering
 
-The minigame data flow is started whenever a minigame is
-  launched through **MiniGameAPI.StartGame()**.
+The minigame data flow is started whenever a minigame is launched through **MiniGameAPI.StartGame()**.
 
-Prior to loading the minigame, the Teacher retrieves the
- static minigame configuration (*IGameConfiguration*) and
-  obtains from it the configured **IQuestionBuilder**  through a call to **IGameConfiguration.SetupBuilder()**.
-  The **IQuestionBuilder** defines the learning rules and requirements for the current minigame variation.
+Prior to loading the minigame, the Teacher retrieves the static minigame configuration (*IGameConfiguration*) and obtains from it the configured **IQuestionBuilder**  through a call to **IGameConfiguration.SetupBuilder()**.
+The **IQuestionBuilder** defines the learning rules and requirements for the current minigame variation.
 
- Based on the minigame rules and requirements,
-  the Teacher then selects the learning data suited to the current context
-   and generates a list of **IQuestionPack** through
-   **QuestionPacksGenerator.GenerateQuestionPacks(IQuestionBuilder  builder)**.
+ Based on the minigame rules and requirements, the Teacher then selects the learning data suited to the current context
+   and generates a list of **IQuestionPack** through **QuestionPacksGenerator.GenerateQuestionPacks(IQuestionBuilder  builder)**.
 
- Each **IQuestionPack**  thus generated contains a list of questions, correct answers, and wrong answers suitable
- for the current learning progression and supported by the minigame.
+ Each **IQuestionPack**  thus generated contains a list of questions, correct answers, and wrong answers suitable for the current learning progression and supported by the minigame.
 
- The list is then injected into the game configuration
-  by creating a **FindRightLetterQuestionProvider**
-   and storing it inside **IGameConfiguration.Questions**,
-    then the minigame is loaded.
- The **FindRightLetterQuestionProvider** is here used to provide sequentially the
-  list of question packs that the Teacher selected.
+ The list is then injected into the game configuration by creating a **FindRightLetterQuestionProvider** and storing it inside **IGameConfiguration.Questions**, then the minigame is loaded.
+ The **FindRightLetterQuestionProvider** is here used to provide sequentially the list of question packs that the Teacher selected.
 
 Refer to the **Teacher** documentation for further details on **QuestionBuilders**
  and on how the Teacher selects the learning data.
@@ -51,15 +39,10 @@ Refer to the **Teacher** documentation for further details on **QuestionBuilders
 
 ### Question Provider & Minigame Data Access
 
- At any point during play (but, usually, during the minigame's initialisation),
-  the minigame code can access the next question pack
-   for play by calling its static configuration's instance
-    **IGameConfiguration.Questions.GetNextQuestion()** and thus retrieving a **IQuestionPack**.
+ At any point during play (but, usually, during the minigame's initialisation), the minigame code can access the next question pack for play by calling its static configuration's instance    **IGameConfiguration.Questions.GetNextQuestion()** and thus retrieving a **IQuestionPack**.
 
- The minigame is then free to display the learning data
- to the player according to its inner workings.
- For this purpose, Living Letters can be used as a convenient
-  and shared way to display the learning data.
+ The minigame is then free to display the learning data to the player according to its inner workings.
+ For this purpose, Living Letters can be used as a convenient and shared way to display the learning data.
 
 
 ### Living Letters
@@ -75,9 +58,6 @@ The display method is set by converting a given learning data instance into a co
  * **LL_WordData** displays a Db.WordData in text form
  * **LL_ImageData** displays a Db.WordData in image form (a drawing or picture)
  * **LL_PhraseData** displays a Db.PhraseData in text form
-
-
-
 
 ### Test data
 

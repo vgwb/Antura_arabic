@@ -54,12 +54,7 @@ All communication with the SQLite database is performed through a **EA4S.Db.DBSe
 The structure of the SQLite database can be generated a runtime and this is controlled through the **DBService.GenerateTable(bool create, bool drop)**, which can be updated to reflect any changes in the DB scheme.
 Note that any change to the database scheme must also prompt a sequential update of **AppConstants.DbSchemeVersion** for versioning to function correctly.
 
-
-
-
-
-
-### Profile API
+## Profile API
 
 The logging database supports multiple profiles.
 A profile can be selected using **EA4S.Db.DatabaseManager.LoadDynamicDbForPlayerProfile(int profileId)**, which loads (or creates if it does not exists) a database for logging data of the chosen player.

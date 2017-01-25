@@ -4,10 +4,9 @@
 {:toc}
 
 @todo: make sure to add a summary to all the main managers so to generate the docs.
-
 @todo: add an app flow diagram too?
 
-### Core and Minigame code
+## Core and Minigame code
 
 The code of EA4S is separated in two main sections.
 
@@ -20,7 +19,7 @@ Note that part of the *core* code can be used by minigame code, such as *Tutoria
  this is referred to as *shared minigames code* and is part of the core application.
 
 
-### App Manager
+## App Manager
 
 The App Manager represents the core of the application.
 It functions as a general manager and entry point for all other systems and managers.
@@ -38,7 +37,7 @@ The **AppManager.InitTeacherForPlayer()** method instead initializes
  whenever a new profile is selected.
 
 
-### Application Flow
+## Application Flow
 
 This section details the flow of the player inside the application and what
  classes and sub-systems are affected.
@@ -46,9 +45,9 @@ This section details the flow of the player inside the application and what
 The flow of the whole application is handled by the *Navigation Manager*,
  which controls the transitions between different scenes in the application.
 
-#### Home and Intro
+### Home and Intro
 
-The entry point for the application is the **Start scene** (app/_scenes/_Start),
+The entry point for the application is the **Start scene** (`app/_scenes/_Start`),
  managed by the *Home Manager*.
 This scene initialises the *App Manager*, shows the *Profile Selector UI*
  to allow the user to select a profile throught the *Player Profile Manager*.
@@ -160,18 +159,16 @@ Refer to **MiniGame.md** for details on how the minigame flow is implemented.
 
 The minigame logic is required to call **MiniGame.EndGame()** to end gameplay.
 
-As a minigame ends, the end game panel is shown, and
- after user interaction the game is exited.
-  (note that the actual flow is
-  **OutcomeGameState.EnterState() ->
-     MinigamesStarsWidget.Show() ->
- GameResultUI.ShowEndgameResult() ->
-   EndgameResultPanel.Show()  ->
-   EndgameResultPanel.Continue()*
-	  **).
+As a minigame ends, the end game panel is shown, and  after user interaction the game is exited.
+(note that the actual flow is
+```OutcomeGameState.EnterState() ->
+MinigamesStarsWidget.Show() ->
+GameResultUI.ShowEndgameResult() ->
+EndgameResultPanel.Show() ->
+EndgameResultPanel.Continue()
+```
 
-As a minigame ends,
- the *Navigation Manager* may either:
+As a minigame ends, the *Navigation Manager* may either:
  * start the next minigame (refer to the *MiniGame Start* section);
  * access the **Play Session Results scene** if the minigame was the last for the play session;
  * or access the **Rewards scene** if an assessment play session was completed.
