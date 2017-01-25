@@ -42,8 +42,6 @@ namespace EA4S.Minigames.MixedLetters
             {
                 timePerRound = 15f;
             }
-
-            timePerRound = 10f;
         }
 
         private void OnQuestionOver()

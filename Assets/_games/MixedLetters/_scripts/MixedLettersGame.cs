@@ -84,6 +84,7 @@ namespace EA4S.Minigames.MixedLetters
             if (!isSpelling)
             {
                 allLettersInAlphabet = MixedLettersConfiguration.Instance.Questions.GetNextQuestion().GetCorrectAnswers().ToList();
+                VictimLLController.instance.SetBigScale();
             }
 
             Physics.IgnoreLayerCollision(0, 5);
