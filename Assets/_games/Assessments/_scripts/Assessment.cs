@@ -46,10 +46,16 @@ namespace EA4S.Assessment
                 yield return Koroutine.Nested( PlaceAnswers());
 
                 bool playQuestion = AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial;
-                var audio = new WaitCoroutine( DescriptionAudio( playQuestion));
+
+                IYieldable audio = null;
+                if(round == 0)
+                    audio = new WaitCoroutine( DescriptionAudio( playQuestion));
 
                 yield return Koroutine.Nested( GamePlay());
-                yield return audio;
+                
+                if(audio != null)
+                    yield return audio;
+
                 yield return Koroutine.Nested( ClearRound());
             }
 

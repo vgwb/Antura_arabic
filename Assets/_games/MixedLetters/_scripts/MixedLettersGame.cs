@@ -22,15 +22,47 @@ namespace EA4S.Minigames.MixedLetters
 
         //public LL_WordData wordData;
         //public Db.WordData wordInPlay;
+        private IQuestionPack spellingQuestionPack;
         private ILivingLetterData question;
-        public List<ILivingLetterData> lettersInOrder;
+
+        public List<ILivingLetterData> PromptLettersInOrder
+        {
+            get
+            {
+                List<ILivingLetterData> _promptLettersInOrder;
+
+                if (isSpelling)
+                {
+                    _promptLettersInOrder = spellingQuestionPack.GetCorrectAnswers().ToList();
+                }
+
+                else
+                {
+                    int numLettersPerRound = allLettersInAlphabet.Count / 6;
+                    int remainder = allLettersInAlphabet.Count % 6;
+                    _promptLettersInOrder = allLettersInAlphabet.GetRange(roundNumber * numLettersPerRound, roundNumber == 4 ? remainder : numLettersPerRound);
+                }
+
+                return _promptLettersInOrder;
+            }
+        }
+
+        private bool _wasLastRoundWon;
+
+        public bool WasLastRoundWon
+        {
+            get
+            {
+                return _wasLastRoundWon;
+            }
+        }
+
         public GameObject victimLL;
 
         public List<ILivingLetterData> allLettersInAlphabet;
 
         public int roundNumber = 0;
         public int numRoundsWon = 0;
-        public bool lastRoundWon = false;
 
         private bool isSpelling = true;
 
@@ -44,8 +76,7 @@ namespace EA4S.Minigames.MixedLetters
             PlayState = new PlayGameState(this);
             ResultState = new ResultGameState(this);
             TutorialState = new TutorialGameState(this);
-
-            lettersInOrder = new List<ILivingLetterData>();
+            
             allLettersInAlphabet = new List<ILivingLetterData>();
 
             isSpelling = MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Spelling;
@@ -53,6 +84,7 @@ namespace EA4S.Minigames.MixedLetters
             if (!isSpelling)
             {
                 allLettersInAlphabet = MixedLettersConfiguration.Instance.Questions.GetNextQuestion().GetCorrectAnswers().ToList();
+                VictimLLController.instance.SetBigScale();
             }
 
             Physics.IgnoreLayerCollision(0, 5);
@@ -78,7 +110,7 @@ namespace EA4S.Minigames.MixedLetters
 
         public void ShowDropZones()
         {
-            int numLetters = lettersInOrder.Count;
+            int numLetters = PromptLettersInOrder.Count;
             bool isEven = numLetters % 2 == 0;
             float dropZoneWidthWithSpace = Constants.DROP_ZONE_WIDTH + 1f;
             float dropZoneXStart = isEven ? numLetters / 2 - 0.5f : Mathf.Floor(numLetters / 2);
@@ -102,6 +134,7 @@ namespace EA4S.Minigames.MixedLetters
 
         public void OnRoundStarted()
         {
+            _wasLastRoundWon = false;
             ShowDropZones();
             SeparateLettersSpawnerController.instance.SetLettersDraggable();
         }
@@ -124,7 +157,7 @@ namespace EA4S.Minigames.MixedLetters
 
         public void ShowGreenTicks()
         {
-            for (int i = 0; i < lettersInOrder.Count; i++)
+            for (int i = 0; i < PromptLettersInOrder.Count; i++)
             {
                 dropZoneControllers[i].ShowGreenTick();
             }
@@ -145,7 +178,7 @@ namespace EA4S.Minigames.MixedLetters
             DropZoneController.chosenDropZone = null;
             SeparateLettersSpawnerController.instance.ResetLetters();
             SeparateLettersSpawnerController.instance.DisableLetters();
-            lettersInOrder.Clear();
+
             ParticleSystemController.instance.Reset();
             ParticleSystemController.instance.Disable();
             AnturaController.instance.Disable();
@@ -155,27 +188,24 @@ namespace EA4S.Minigames.MixedLetters
         {
             if (isSpelling)
             {
-                IQuestionPack newQuestion = MixedLettersConfiguration.Instance.Questions.GetNextQuestion();
-                question = newQuestion.GetQuestion();
+                IQuestionPack newQuestionPack = MixedLettersConfiguration.Instance.Questions.GetNextQuestion();
+                spellingQuestionPack = newQuestionPack;
+                question = newQuestionPack.GetQuestion();
 
-                lettersInOrder = newQuestion.GetCorrectAnswers().ToList();
                 VictimLLController.instance.letterObjectView.Init(question);
             }
 
             else
             {
-                int numLettersPerRound = allLettersInAlphabet.Count / 6;
-                int remainder = allLettersInAlphabet.Count % 6;
-                lettersInOrder = allLettersInAlphabet.GetRange(roundNumber * numLettersPerRound, roundNumber == 4 ? remainder : numLettersPerRound);
                 VictimLLController.instance.letterObjectView.Init(null);
 
                 string victimLLWord = "";
 
-                for (int i = 0; i < lettersInOrder.Count; i++)
+                for (int i = 0; i < PromptLettersInOrder.Count; i++)
                 {
-                    victimLLWord += ((LL_LetterData)lettersInOrder[i]).Data.GetChar();
+                    victimLLWord += ((LL_LetterData)PromptLettersInOrder[i]).Data.GetChar();
 
-                    if (i != lettersInOrder.Count - 1)
+                    if (i != PromptLettersInOrder.Count - 1)
                     {
                         victimLLWord += " ";
                     }
@@ -212,7 +242,7 @@ namespace EA4S.Minigames.MixedLetters
         {
             IAudioManager audioManager = MixedLettersConfiguration.Instance.Context.GetAudioManager();
 
-            foreach (ILivingLetterData letterData in lettersInOrder)
+            foreach (ILivingLetterData letterData in PromptLettersInOrder)
             {
                 audioManager.PlayLetterData(letterData);
 
@@ -227,14 +257,14 @@ namespace EA4S.Minigames.MixedLetters
 
         public void VerifyLetters()
         {
-            for (int i = 0; i < lettersInOrder.Count; i++)
+            for (int i = 0; i < PromptLettersInOrder.Count; i++)
             {
                 DropZoneController dropZone = dropZoneControllers[i];
                 if (dropZone.droppedLetter == null
-                    || dropZone.droppedLetter.GetLetter().Id != lettersInOrder[i].Id
+                    || dropZone.droppedLetter.GetLetter().Id != PromptLettersInOrder[i].Id
                       || Mathf.Abs(dropZone.droppedLetter.transform.rotation.z) > 0.1f)
                 {
-                    for (int j = 0; j < lettersInOrder.Count; j++)
+                    for (int j = 0; j < PromptLettersInOrder.Count; j++)
                     {
                         SeparateLetterController letter = SeparateLettersSpawnerController.instance.separateLetterControllers[j];
                         letter.SetIsSubjectOfTutorial(roundNumber == 0 && letter == dropZone.correctLetter);
@@ -249,7 +279,7 @@ namespace EA4S.Minigames.MixedLetters
 
         private void OnRoundWon()
         {
-            lastRoundWon = true;
+            _wasLastRoundWon = true;
 
             if (roundNumber != 0)
             {

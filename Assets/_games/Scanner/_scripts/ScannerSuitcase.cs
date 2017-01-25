@@ -14,12 +14,13 @@ namespace EA4S.Minigames.Scanner
 		private Vector3 screenPoint;
 		private Vector3 offset;
 		private float startX;
-		private float startZ;
+        private float startY;
+        private float startZ;
 		private Collider player;
 		private Transform originalParent;
         private BoxCollider thisCollider;
         private Rigidbody thisRigidbody;
-        private Vector3 originalColliderSize, originalColliderCenter;
+        private Vector3 originalColliderSize, originalColliderCenter, shadowStartPos;
 
         public Vector3 fingerOffset;
 		public float scale = 0.5f;
@@ -35,7 +36,7 @@ namespace EA4S.Minigames.Scanner
 
 
 		public event Action <GameObject, ScannerLivingLetter> onCorrectDrop;
-		public event Action <GameObject> onWrongDrop;
+		public event Action <GameObject, ScannerLivingLetter> onWrongDrop;
 
 		IEnumerator Coroutine_ScaleOverTime(float time)
 		{
@@ -53,6 +54,10 @@ namespace EA4S.Minigames.Scanner
 
         IEnumerator dropSuitcase()
         {
+            shadow.transform.localScale = Vector3.zero;
+            shadow.transform.position = shadowStartPos;
+            transform.position = new Vector3(startX, 20, startZ);
+
             yield return new WaitForSeconds(UnityEngine.Random.value / 2);
             thisRigidbody.isKinematic = false;
             thisRigidbody.useGravity = true;
@@ -67,12 +72,30 @@ namespace EA4S.Minigames.Scanner
             thisCollider.center = originalColliderCenter;
         }
 
-		void Start()
+        IEnumerator resetSuitCasePos()
+        {
+            while (transform.position.y > startY + 0.01f)
+            {
+                transform.position = Vector3.Lerp(transform.position, new Vector3(startX, startY, startZ), 0.25f);
+                shadow.transform.position = new Vector3(transform.position.x, shadow.transform.position.y, transform.position.z);
+                yield return null;
+            }
+
+            isReady = true;
+            thisRigidbody.isKinematic = true;
+            thisCollider.size = originalColliderSize;
+            thisCollider.center = originalColliderCenter;
+        }
+
+
+        void Start()
 		{
 			originalParent = transform.parent;
 			startX = transform.position.x;
-			startZ = transform.position.z;
+            startY = transform.position.y;
+            startZ = transform.position.z;
 
+            shadowStartPos = shadow.transform.position;
             thisCollider = GetComponentInChildren<BoxCollider>();
             thisRigidbody = GetComponent<Rigidbody>();
             //Reset();
@@ -83,14 +106,15 @@ namespace EA4S.Minigames.Scanner
             transform.localPosition = Vector3.up * 20;
         }
 
-		public void Reset()
+		public void Reset(bool newRound = true)
 		{
             isReady = false;
             transform.parent = originalParent;
-            shadow.transform.localScale = Vector3.zero;
+            
             //transform.position = new Vector3(startX, startY, startZ);
             thisRigidbody.isKinematic = true;
-            transform.position = new Vector3(startX, 20, startZ);
+
+            
 
             thisCollider.size = new Vector3(originalColliderSize.x, 1, originalColliderSize.z);
             thisCollider.center = new Vector3(originalColliderCenter.x, 0, originalColliderCenter.z);
@@ -99,8 +123,16 @@ namespace EA4S.Minigames.Scanner
             transform.localScale = Vector3.one;
             gameObject.SetActive(true);
 			shadow.SetActive(true);
-            
-            StartCoroutine(dropSuitcase());
+            //shadow.transform.position = shadowStartPos;
+
+            if (newRound)
+            {
+                StartCoroutine(dropSuitcase());
+            }
+            else
+            {
+                StartCoroutine(resetSuitCasePos());
+            }
 
         }
 
@@ -109,7 +141,8 @@ namespace EA4S.Minigames.Scanner
             if (game.disableInput || !isReady)
                 return;
 
-            shadow.SetActive(false);
+            
+            //shadow.SetActive(false);
 			isDragging = true;
 			screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
@@ -128,7 +161,9 @@ namespace EA4S.Minigames.Scanner
 				Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 				Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 				transform.position = 
-					new Vector3 (curPosition.x + fingerOffset.x, curPosition.y + fingerOffset.y, transform.position.z);
+					new Vector3 (curPosition.x + fingerOffset.x, curPosition.y + fingerOffset.y, Mathf.Clamp(startZ + transform.position.y/1.80f, -100, -11.5f));
+                shadow.transform.position = new Vector3(transform.position.x, shadow.transform.position.y, transform.position.z);
+
 			}
 
 		}
@@ -166,7 +201,8 @@ namespace EA4S.Minigames.Scanner
 
             if (overPlayermarker)
 			{
-				ScannerLivingLetter LL = player.transform.parent.GetComponent<ScannerLivingLetter>();
+                shadow.transform.localScale = Vector3.zero;
+                ScannerLivingLetter LL = player.transform.parent.GetComponent<ScannerLivingLetter>();
 				if (isCorrectAnswer && LL.letterObjectView.Data.Id == wordId)
 				{
 					LL.gotSuitcase = true;
@@ -176,15 +212,16 @@ namespace EA4S.Minigames.Scanner
                     transform.localScale = new Vector3(scale, scale, scale);
                     TutorialUI.Clear(true);
                     game.GetComponent<ScannerTutorial>().tutStep = 1;
+                    
                 }
 				else
 				{
-					onWrongDrop(gameObject);
+					onWrongDrop(gameObject, LL);
 				}
 			}
 			else
 			{
-				Reset();
+				Reset(false);
 			}
 			isDragging = false;
 			overPlayermarker = false;
