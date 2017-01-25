@@ -1,4 +1,6 @@
-# Fetch the Project
+# Install Antura
+
+## Fetch the Project
 
 1. Get Unity latest stable (Win or Mac, v 5.5.0) from http://unity3d.com/get-unity/update
 
