@@ -1,8 +1,8 @@
 # Developer Guidelines
-Developers should follow these guidelines for contributing to the project.
-
 * TOC
 {:toc}
+
+Developers should follow these guidelines for contributing to the project.
 
 ## Coding conventions
 
@@ -19,9 +19,9 @@ Developers should follow these guidelines for contributing to the project.
 
 ## Naming conventions
 
-  * Use *MiniGame*, not *Minigame* (but *minigame* when lowercase)
-  * All data related to the learning content should be referred to as *Dictionary data* (instead of the triad Letter/Word/Phrase)
-  * All data related to the journey progression should be referred to as *Journey data*
+- Use *MiniGame*, not *Minigame* (but *minigame* when lowercase)
+- All data related to the learning content should be referred to as *Dictionary data* (instead of the triad Letter/Word/Phrase)
+- All data related to the journey progression should be referred to as *Journey data*
 
 
 ## Namespaces
@@ -48,4 +48,4 @@ What follows is a list of subsystems with their namespaces:
 
 ## Current issues
 
-  * nothing to report for now
+- nothing to report for now

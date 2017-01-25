@@ -111,11 +111,10 @@ Each game folder should have two main folders for scripts:
 *_configurationscripts*
 
 all the game-related scripts, should be placed inside the **_scripts** folder;
-**_configurationscripts** is a service folder used to define game specific classes
- that help the in communicating with the core codebase.
+**_configurationscripts** is a service folder used to define game specific classes that help the in communicating with the core codebase.
 
 The first requirement of your minigame is to have a game configuration script.
-  If you want to see how a configuration class is made, you could just copy it from the template directory.
+If you want to see how a configuration class is made, you could just copy it from the template directory.
 
 The {GameName}Configuration.cs defines how a minigame is configured by the app,
 and provides the minigame some useful interfaces.
@@ -126,19 +125,13 @@ and provides the minigame some useful interfaces.
 
 Each minigame is created inside its own scene and namespace.
 Usually, the core application refers to the minigame using
- a 1-to-1 relationship, detailed by the **MiniGameCode** that
-  represents the minigame in the core application.
+ a 1-to-1 relationship, detailed by the **MiniGameCode** that represents the minigame in the core application.
 
-However, sometimes it is useful to have a single scene support multiple
- instances of minigames with slight variations.
- These minigames are called *variations*.
- Variations are transparent to the core application (they are considered different minigames),
-  but multiple variations point to the same minigame scene.
+However, sometimes it is useful to have a single scene support multiple instances of minigames with slight variations.
+These minigames are called *variations*.
+Variations are transparent to the core application (they are considered different minigames), but multiple variations point to the same minigame scene.
 
-  Variations are specified in the specific minigame's configuration code, if needed.
-
-
-
+Variations are specified in the specific minigame's configuration code, if needed.
 
 ## Game Difficulty
 
@@ -149,8 +142,7 @@ This difficulty value is provided by the Teacher and can be accessed as:
 float difficulty = {GameName}Configuration.Instance.Difficulty;
 ```
 
-The game difficulty is expressed as a float in the range [0, 1],
-meaning 0 : easy, 1 : hard.
+The game difficulty is expressed as a float in the range [0, 1], meaning 0 : easy, 1 : hard.
 
 How such difficulty level is implemented by the game is not defined **a priori**
 and must be defined by the minigame developer.
@@ -184,9 +176,7 @@ else
 }
 ```
 
-In this case, please configure a set of at least 5 different configurations
-(very easy, easy, medium, hard, very hard).
-
+In this case, please configure a set of at least 5 different configurations (very easy, easy, medium, hard, very hard).
 
 Note that this difficulty must however **not** be related to the learning content, but only to play difficulty.
 This is because learning difficulty is already taken care of by the Teacher generating suitable Question Packs.
@@ -314,15 +304,12 @@ What follows is a list of possible examples:
 
 # Question Builder
 
-Each minigame (or minigame variation) requires question packs in different forms and this is defined
- by implementing the method `SetupBuilder()` inside the Game Configuration, which returns
-  an object implementing the *IQuestionBuilder* interface.
+Each minigame (or minigame variation) requires question packs in different forms and this is defined by implementing the method `SetupBuilder()` inside the Game Configuration, which returns an object implementing the *IQuestionBuilder* interface.
 
-The **IQuestionBuilder** defines the learning rules and requirements for the current minigame variation
- and must be correctly setup and configured.
- The Question Builder will generate the correct **Question Packs** for a given minigame instance.
+The **IQuestionBuilder** defines the learning rules and requirements for the current minigame variation and must be correctly setup and configured.
+The Question Builder will generate the correct **Question Packs** for a given minigame instance.
 
- The minigame developer can choose from a set of question builders that the Teacher can support.
+The minigame developer can choose from a set of question builders that the Teacher can support.
 Refer to the Teacher documentation for further details.
 
 
@@ -367,10 +354,7 @@ var phrases = AppManager.Instance.DB.GetAllPhraseData();
 
 The default Question Provider is used when you launch the game's scene directly.
 Note that when playing the game through the core application, the Question Provider will be the one defined by the core system to provide meaningful learning data as selected by the Teacher.
-Make sure that the test Question Provider content matches real content, otherwise your game may not work
- when launched through the core application.
-
-
+Make sure that the test Question Provider content matches real content, otherwise your game may not work when launched through the core application.
 
 # Using the Living Letter prefab
 
@@ -537,25 +521,17 @@ IsAngry is set to true automatically (needed to use the angry run).
 After such animation ends, **_onChargeEnded_** will be called to inform you, and passes automatically into running state.
 You should use **_onChargeEnded_** to understand when you should begin to move the antura's transform.
 
-
-
 # Adding Environment Assets
 
 Environment graphics, like trees, are selected in the scene in order to match the current world of the minigame (there are 6 worlds).
 To do so, you must use the following auto-switching component: **AutoWorldPrefab**.
 
 * Create an empy game object
-
 * Add the "**AutoWorldPrefab**" component on it
-
 * Select the **Prefab Set**, using the inspector
-
 * In the **assets** tab you will find a list of possible assets, e.g.
-
     * Tree1
-
     * Tree2
-
     * Foreground1
 
 * From the "Test World" drop-down in the inspector you can preview how the piece will look like when instanced in each world
@@ -572,9 +548,7 @@ Another requisite of each minigame scene is that the camera that will render you
 
 The AutoWorldCameraColor, as in AutoWorldPrefab, needs that a field is configured by inspector. The name of the field is **Backgroung Color Set**, and currently you will find just an asset called "**CameraColors**" to be selected.
 
-
-
 #### Refactoring Notes
-	* variations are not actually enforced by the codebase, but it would be a good idea to make all games use them, as currently the core app reasons in terms of 'MiniGameCode', but a minigame is actually identified by the 'game scene' and the 'variation'
-	* code common to minigames (interfaces, minigames***managers, and so on) should be in a separate namespace, and also
-	* code common to all minigames is now separated into _games/_common and _core/MiniGame, and _core/MinigameAPI. Should be better organized
+- variations are not actually enforced by the codebase, but it would be a good idea to make all games use them, as currently the core app reasons in terms of 'MiniGameCode', but a minigame is actually identified by the 'game scene' and the 'variation'
+- code common to minigames (interfaces, minigames***managers, and so on) should be in a separate namespace, and also
+- code common to all minigames is now separated into _games/_common and _core/MiniGame, and _core/MinigameAPI. Should be better organized

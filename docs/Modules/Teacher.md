@@ -34,9 +34,9 @@ The Teacher is composed of several elements:
    	* **JourneyHelper** provides methods for retrieving and comparing data progression data from the database.
    	* **WordHelper** provides method for retrieving and comparing dictionary data.
 
-### Engines
+## Engines
 
-#### Difficulty Selection Engine
+### Difficulty Selection Engine
 
 This Engine is in charge of selecting what difficulty to use for a given minigame.
 
@@ -51,14 +51,13 @@ The difficulty value depends on:
 
 The weights of the different variables can be configured in **ConfigAI**.
 
-##### Code Flow
+#### Code Flow
 
 The Difficulty Selection Engine is accessed through **TeacherAI.GetCurrentDifficulty(MiniGameCode miniGameCode)**.
- This is called by the **MiniGame Launcher** beore loading a specific minigame
-  and assigned to the minigame's Game Configuration class.
+This is called by the **MiniGame Launcher** beore loading a specific minigame and assigned to the minigame's Game Configuration class.
 
 
-#### MiniGame Selection Engine
+### MiniGame Selection Engine
 
 This Engine is in charge of selecting what minigame to use for a given play session.
 
@@ -73,7 +72,7 @@ The selection of minigames depends on:
 The weights of the different variables can be configured in **ConfigAI**.
 
 
-##### Code Flow
+#### Code Flow
 
 The MiniGame Selection Engine is accessed whenever a new play session start,
  through **TeacherAI.SelectMiniGamesForPlaySession()**.
@@ -83,11 +82,11 @@ The MiniGame Selection Engine is accessed whenever a new play session start,
 
 
 
-#### Word Selection Engine
+### Word Selection Engine
 
 This Engine is in charge of selecting what dictionary data a minigame should use in a given play session.
 
- based on player progression, player performance, and the minigame's requirements
+based on player progression, player performance, and the minigame's requirements
 
 The selection of dictionary data is a two-stage process.
 
@@ -96,11 +95,9 @@ The first stage filters all learning data based on:
  * The current journey progression, as read from the journey data in the database (LearningBlocks and Stages)
  * Previously selected data for the same Question Builder.
 
-The first stage is needed to make sure that all data to be selected matches
- the player's knowledge.
+The first stage is needed to make sure that all data to be selected matches the player's knowledge.
 
-A second stage selects the learning data using weighted selection,
- with weights based on:
+A second stage selects the learning data using weighted selection, with weights based on:
  * The learning score of the dictionary data. Lower scores will prompt a given data entry to appear more.
  * The time since the player last saw that dictionary data. Entries that have not appeared for a while are preferred.
  * The focus of the current learning block.
@@ -114,7 +111,7 @@ The weights of the different variables can be configured in **ConfigAI**.
 
 
 
-### Minigame dictionary data selection
+## Minigame dictionary data selection
 
 The Teacher System is designed so that many minigames, with various requirements, can be supported through a single interface.
 A procedure is needed to match what the teacher deems necessary for the current learning progression and what a given minigame can support.
@@ -153,7 +150,7 @@ Refer to the API documentation for a complete list of question builders.
 Note however that a new QuestionBuilder can be created for specific minigame, if the need arises.
 
 
-#### Question Builder configuration
+## Question Builder configuration
 
 **Question Builders** are designed to be flexible, so that minigames can safely configure them with their specific requirements.
 In its **SetupBuilder()** call, a minigame's configuration class may configure the **Question Builder** by specifying a set of parameters.
@@ -188,7 +185,7 @@ A **QuestionBuilderParameters** defines additional common parameters and include
 
 
 
-#### Question Builder implementation
+## Question Builder implementation
 
 Whenever a new minigame instance is started, the Teacher retrieves the minigame's **IQuestionBuilder** through **SetupBuilder()**, then  generates a **List\<QuestionPacks\>** through the builder's **CreateAllQuestionPacks()** method.
 
@@ -201,11 +198,11 @@ The **Question Builder** will thus generate the question, the correct answers, a
  * **SelectionParameters selectionParams** is an internal structure that defines parameters for filtering and selecting learning data based on the minigame requirements. This is built from the **QuestionBuilderPamaters** instance defined above.
 
 
-#### Configuration
+## Configuration
 
 The teacher can be configured by editing constants in the **ConfigAI** static class.
 
-### Refactoring Notes
+## Refactoring Notes
 
- * Helpers should probably belong to the DB, and not to the teacher.
- * LogAI should be a Helper
+- Helpers should probably belong to the DB, and not to the teacher.
+- LogAI should be a Helper
