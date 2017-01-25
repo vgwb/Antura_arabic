@@ -5,6 +5,199 @@ to generate git log:
 git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 =============
 
+2017-01-25 - [MixedLetters] Bigger LL for the Alphabet variation.
+2017-01-25 - [docs] title and description
+2017-01-25 - [docs] new index.md
+2017-01-25 - [docs] removed index
+2017-01-25 - [MixedLetters] Win animation update & refactoring.
+2017-01-25 - [docs] index
+2017-01-25 - [Scanner] Added number of livesUI #78, Added the sound when touching the LL #101, Added sound FX when the LL falls #102, Fixed suitcases and shadow movement #105 + #106,
+2017-01-25 - [assessment] FIX: description repeated at each round
+2017-01-25 - [Arabic] Added a utility method to get a word with a missing letter [Assessments] Fixed missing letter with diacritics
+2017-01-25 - [MixedLetters] Add button to replay prompt.
+2017-01-25 - removed app_End scene
+2017-01-25 - [MixedLetters] Fixed audio and removed old antura
+2017-01-25 - Removed old Antura prefab from Balloons/TakeMeHome
+2017-01-25 - app_icon not compressed
+2017-01-25 - fix .meta for deleted folders
+2017-01-25 - removed LeanTouch Lib (and relative unused Touchmanager)
+2017-01-25 - removed PianoWoof minigame
+2017-01-23 - Set theme jekyll-theme-architect
+2017-01-25 - update project to Unity 5.5.1f1
+2017-01-25 - fix .meta
+2017-01-25 - fix compilation error
+2017-01-25 - update Unity
+2017-01-25 - Fixed exception in categoryQuestionGenerator
+2017-01-24 - Updated developer guidelines
+2017-01-24 - Updated refactoring guidelines.
+2017-01-24 - Refactoring guidelines updates
+2017-01-24 - Updated README.md
+2017-01-24 - Reorganized docs.
+2017-01-24 - [SickLetters] Added UI repeat letter button, Fixed vase shrinking visibility, pronounce the letter when a round is completed, Removed Negative feedback for dropping a dot on the floor
+2017-01-24 - [FIXED: Assessment WordWithLetter] The questions are not pronounced when they appear  f
+2017-01-23 - More natural answer placement (still need the patch on LL)
+2017-01-23 - [SickLetters,Scanner,DancigDots] Removed static variables, cleaned the configuration script
+2017-01-23 - [Egg] Slower ScaleOut animation
+2017-01-23 - Update Teacher.md
+2017-01-23 - [Egg] Clearer gameplay and some refactoring
+2017-01-23 - [B, MF, ML, TB] Refactor static vars.
+2017-01-23 - [Egg] Fixed test configuration
+2017-01-23 - Refactored namespaces for all minigames.
+2017-01-23 - [Egg] Split in two variations
+2017-01-23 - [Assessments] -Fixed issue # 86 :  It's not useful/nice to have the letter repeated 3 times in the answers
+2017-01-23 - - Addressed Issue #81 [Assessment] the second time you enter an Assessment it does not start - Moved external opensource library to standard assets
+2017-01-23 - Refactored namespace for the core.
+2017-01-23 - Removed all warnings
+2017-01-23 - [AudioManager] Removed event names
+2017-01-23 - [AudioManager] Configurable volume
+2017-01-23 - Set theme jekyll-theme-architect
+2017-01-23 - Update README.md
+2017-01-23 - New flow complete => next thing todo : Antura's Gag and test it.
+2017-01-21 - [clean] there’s not this folder
+2017-01-21 - [clean] removed Old Arabic Font
+2017-01-20 - Main refactoring almost done, removed decorators, cleaned Assessment Factory, added a AssessmentContext, small improvements.
+2017-01-20 - Egg core: re-reformat
+2017-01-20 - [BugFix] Log code in Egg was wrong
+2017-01-20 - Removed poof text
+2017-01-20 - [AudioManager] Fixed Audio Resume Bug on application pause
+2017-01-20 - Removed unused LimblessView and removed "Poof" text from animation
+2017-01-20 - [AudioManager] Random Pitch supported
+2017-01-19 - Management classes documentation.
+2017-01-19 - Added PlayerProfile docs.
+2017-01-19 - Documentation: adding comments to MFEngines, Database, manage_Database
+2017-01-19 - [AudioManager] Bye Bye Fabric
+2017-01-19 - Documentation renaming
+2017-01-19 - Adapdated Antura Minigames Interface to be used as documentation instead of a 'how to' (and not referring to the current minigames).
+2017-01-19 - Getting rid of Fabric
+2017-01-19 - Refactoring comments and documentation added to _games/_common_scripts and other MiniGame related scripts.
+2017-01-18 - More work on AudioManager
+2017-01-18 - Advances on new Audio Manager
+2017-01-18 - Added refactor notes and commented scripts in the UI subfolder.
+2017-01-18 - Refactoring noites for the Rewards subfolder.
+2017-01-18 - Minor refactoring notes. Added documentation on the whole Application Flow.
+2017-01-18 - Documented interface of Answer Placer
+2017-01-18 - Refactored Answers this should also optimize the Assessments.
+2017-01-18 - updated License names
+2017-01-17 - removing commented code
+2017-01-17 - Simplified Category provider. Moved to Antura folder stuff of Antura.
+2017-01-17 - Removed QuestionState (unused). First draft of game flow (note: need extra polishing, do not remove methods from here).
+2017-01-17 - Refactoring notes amd minor refactorings for: JourneyPosition, DebugManager, ArabicAlphabetHelper, JourneyHelper, player profile.
+2017-01-17 - Minor polishing removing unused stuff (automated).
+2017-01-17 - Removed unnecessary shuffle, started to use the one from DemiLib.
+2017-01-17 - Uniform implementation of Shuffle (in place), the one which returns a copy is renamed in ShuffleCopy Fixed start position in FastCrowd
+2017-01-17 - Refactored log interface for minigames and context creation (no reuse) Removed some warnings
+2017-01-17 - Removed Time Engine Singleton, now we have a Updater, but injected from constructor. Improved a bit performance of coroutines. Fixed a yield instruction.
+2017-01-16 - Documented all logging.
+2017-01-16 - Removed some warnings
+2017-01-16 - Fixed improper use of LogManager. Now checking its usage for all assessments.
+2017-01-16 - Fixed warnings
+2017-01-16 - AssessmentConfiguration Improvements: - Removed unused code - Removed boilderplate code - Added documentation / Removed TODOs - Stuff that is not needed by MiniGameAPI was moved to AssessmentOptions class. - Fixed visibility of public properties to be private where proper.
+2017-01-16 - Refactored some Sample managers in Default used for minigame context
+2017-01-16 - BugFix : [Reward] The Reward Screen is called ALWAYS after an Assessment #32
+2017-01-16 - Removed some unused data Removed some warnings Moved some shared data from minigame folder
+2017-01-15 - [clean] removed ref to old UI
+2017-01-15 - [clean] removed ref to old font
+2017-01-15 - [clean] removed ref to old font and old antura
+2017-01-15 - [clean] removed references to obsolete fonts and UI elements
+2017-01-15 - [clean] removed obsolete logger
+2017-01-15 - [clean] removed old face image from GlobalUI (wasn’t used)
+2017-01-13 - Updating docs. Updating comments and namespaces for Tutorial, Helpers, IGameContext, Map, Teacher, and others.
+2017-01-13 - Updated with the current state of the system.
+2017-01-13 - Improving docs.
+2017-01-13 - Added refactiring notes to LivingLetters. Added LivingLetters namespace.
+2017-01-13 - Refactoring comments for Intro scene. Minor fixes.
+2017-01-13 - Updated Developer Guidelines.
+2017-01-12 - [trash] removed deprecated unused prefabs and animations
+2017-01-12 - [clean] removed unused reference to obsolete icon
+2017-01-12 - [trash] removed old sounds
+2017-01-12 - [clean] removed unused folder
+2017-01-12 - [clean] removed obsolete CurrentGamemanagerGO
+2017-01-12 - appversion is 0.13.dev
+2017-01-12 - updated project to Unity 5.5.0p4 (needed for splash screen intro animation)
+2017-01-12 - Added GamesSelector namespace. Added refactor notes to GamesSelector.
+2017-01-12 - Updated database documentation.
+2017-01-12 - Added refactoring notes to Database code. Added database docs. Updated several docs.
+2017-01-12 - [clean] removed some Trashed assets
+2017-01-12 - Added various refactoring notes and cleaned some code.
+2017-01-12 - Updated ProjectStructure.md
+2017-01-11 - Update DeveloperGuidelines.md
+2017-01-11 - Update DeveloperGuidelines.md
+2017-01-11 - Update DeveloperGuidelines.md
+2017-01-11 - Update ProjectStructure.md
+2017-01-11 - Added initial documentation drafts.
+2017-01-11 - Typo fixed.
+2017-01-11 - Added minor comments to PlayerProfile & PlayerpProfileManager.
+2017-01-11 - Refactor: added refactoring notes to NavigationManager.
+2017-01-11 - Typo
+2017-01-11 - Refactor: added refactor notes to _scripts/Animation contents
+2017-01-11 - Fixed bug with usings inside ProfileSelectorUI
+2017-01-11 - Refactor: separated AppConstants rom AppSettings. Added refactor notes to AppManager.
+2017-01-11 - Refactor: added EA4S.Scenes namespace. Moved HomeManager and EndManager to the /_scripts/Scenes folder. Added refactoring notes to EndManager and HomeManager.
+2017-01-11 - updated LICENSE & README
+2016-12-21 - [docs] updates
+2016-12-20 - [clean] removed unused plugin
+2016-12-20 - updated .gitignore
+2016-12-20 - [clean] removed unused plugin
+2016-12-19 - disabled .vscode settings
+2016-12-19 - [audio] moved (yet) unused letter combo sounds out of Resources
+2016-12-13 - UNity 5.5 new splash screen with animation
+2016-12-13 - [audio] removed Theme3 and Theme4 (substituted by Theme10)
+2016-12-13 - TMPro: updated fonts serializations
+2016-12-13 - moved to our EA4S tools menu
+2016-12-13 - [font] reserialized old font
+2016-12-13 - [plugins] update TextMesh Pro - Release 1.0.55.52 Beta 3
+2016-12-13 - [scanner] disabled imported materials
+2016-12-13 - [plugin] Rainbow Folders 0.3.1
+2016-12-13 - [build] preparing for next 0.12.x release
+2016-12-13 - [clean] some trashing
+2016-12-13 - [clean] removed old scripts
+2016-12-12 - [build] enabled DebugPanel
+2016-12-12 - [assessments] log results and wrong answears
+2016-12-12 - Egg core: Log answears
+2016-12-12 - Egg core: reformat
+2016-12-12 - minigamelogger: log deferred inserts
+2016-12-12 - Assessments: core reorganization
+2016-12-12 - log book scene
+2016-12-12 - option to debug log DB inserts
+2016-12-12 - settigns for build
+2016-12-12 - moved DebugLogs under Verbose condition
+2016-12-12 - [home] Play button calls HomeManager
+2016-12-12 - [clean]
+2016-12-12 - [log] app pause and resume
+2016-12-09 - [docs] renamved from Docs to docs (we need this for automatic Page generation)
+2016-12-09 - [docs] removed all (to regenerate in next commit)
+2016-12-09 - [docs] index
+2016-12-08 - [RewardsManager & PlayerProfile] cleaned obsolete
+2016-12-08 - ActualTime -> CurrentTime
+2016-12-08 - ActualPlayer -> CurrentPlayer
+2016-12-08 - deprecated unused animations
+2016-12-08 - Map: removed references to obsolete letter and font
+2016-12-08 - [clean] Map scene and moved in safe place used test models
+2016-12-08 - [clan] Start scene and removed huge old credits image
+2016-12-08 - updated project settings for 5.4.3
+2016-12-08 - [Logger] let’s start logging Antura Space activities
+2016-12-08 - cleaner var names
+2016-12-08 - [clena] old logger to Trash
+2016-12-08 - [clean] some removing of old stuff
+2016-12-08 - [build] we are now Uning Unity 5.4.3
+2016-12-08 - [build] preparing for next test version v 0.12.12
+2016-12-04 - Update Antura Minigames Interface.md
+2016-12-04 - Update Antura Minigames Interface.md
+2016-12-04 - Update Antura Minigames Interface.md
+2016-12-04 - Antura Minigame Interface in md format
+2016-12-03 - updated CHANGELOG
+2016-12-03 - Fonts updated to new TMpro version
+2016-12-02 - [plugins] updated TextmeshPro to 1.0.55 Beta 2
+2016-12-02 - [build] here we are in v 0.55
+2016-12-02 - [clena] update to 5.5
+2016-12-02 - [clean] updateing prefabs to 5.5
+2016-12-02 - [plugins] update UniRx to 5.5
+2016-12-02 - [plugins] udpated Fabric to 2.2.8
+2016-12-02 - [core] update to Unity 5.5f3
+2016-12-02 - [clean] removed UniRX (doesn’t work on 5.5)
+2016-12-02 - Stars Thresholds fixed in Color Tickle
+2016-12-02 - re eenabled DebugPanel (this is my new job.. the DebugPanel switcher!)
+
 ## 2016-12-02 NORAD-BETA RELEASE
 
 2016-12-02 - [build] disable DebugPanel for master build
