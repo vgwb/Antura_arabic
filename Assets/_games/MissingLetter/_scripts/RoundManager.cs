@@ -15,6 +15,11 @@ namespace EA4S.Minigames.MissingLetter
     {
 
         #region API
+        public IQuestionPack CurrentQuestion
+        {
+            get { return m_oCurrQuestionPack; }
+        }
+
         public RoundManager(MissingLetterGame _game)
         {
             m_oGame = _game;
@@ -43,7 +48,8 @@ namespace EA4S.Minigames.MissingLetter
             m_oEmoticonsController = new MissingLetterEmoticonsController(m_oGame.m_oEmoticonsController, m_oGame.m_oEmoticonsMaterials);
         }
 
-        public void SetTutorial(bool _enabled) {
+        public void SetTutorial(bool _enabled)
+        {
             this.m_bTutorialEnabled = _enabled;
         }
 
@@ -70,7 +76,7 @@ namespace EA4S.Minigames.MissingLetter
 
         public void Terminate()
         {
-            if(m_oGame.m_iCurrentRound < m_oGame.m_iRoundsLimit)
+            if (m_oGame.m_iCurrentRound < m_oGame.m_iRoundsLimit)
                 ExitCurrentScene();
         }
 
@@ -129,7 +135,8 @@ namespace EA4S.Minigames.MissingLetter
 
         #region PRIVATE_FUNCTION
 
-        void NextWordQuestion() {
+        void NextWordQuestion()
+        {
 
             m_iRemovedLLDataIndex = 0;
 
@@ -166,14 +173,15 @@ namespace EA4S.Minigames.MissingLetter
             m_aoCurrentAnswerScene.Add(_correctAnswerObject);
             m_oCorrectAnswer = _correctAnswerObject;
 
-            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count()+1; ++i) {
+            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count() + 1; ++i)
+            {
                 GameObject _wrongAnswerObject = m_oAnswerPool.GetElement();
                 LetterBehaviour wrongAnsBheaviour = _wrongAnswerObject.GetComponent<LetterBehaviour>();
                 wrongAnsBheaviour.Reset();
-                wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i-1);
+                wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i - 1);
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
 
-                if(!m_bTutorialEnabled)
+                if (!m_bTutorialEnabled)
                 {
                     wrongAnsBheaviour.onLetterClick += OnAnswerClicked;
                 }
@@ -189,7 +197,7 @@ namespace EA4S.Minigames.MissingLetter
         {
             List<LL_WordData> phrase = new List<LL_WordData>();
             var dbWords = AppManager.I.Teacher.wordHelper.GetWordsInPhrase(_phrase.Id);
-            foreach(var dbWord in dbWords)
+            foreach (var dbWord in dbWords)
             {
                 phrase.Add((LL_WordData)dbWord.ConvertToLivingLetterData());
             }
@@ -299,7 +307,7 @@ namespace EA4S.Minigames.MissingLetter
             tmp.Label.text = "";
             return index;
         }
-        
+
 
         void RestoreQuestion(bool result)
         {
@@ -311,11 +319,11 @@ namespace EA4S.Minigames.MissingLetter
                 _obj.GetComponent<LetterBehaviour>().Refresh();
             }
 
-            if(result)
+            if (result)
                 m_oEmoticonsController.EmoticonPositive();
             else
                 m_oEmoticonsController.EmoticonNegative();
-            
+
             //change restored color letter with tag
             string color = result ? "#4CAF50" : "#DD2C00";
 
@@ -323,40 +331,47 @@ namespace EA4S.Minigames.MissingLetter
             if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
             {
                 first = tmp.Label.text[index].ToString();
-                tmp.Label.text = tmp.Label.text.Remove(index,1);
+                tmp.Label.text = tmp.Label.text.Remove(index, 1);
                 tmp.Label.text = tmp.Label.text.Insert(index, "<color=" + color + ">" + first + "</color>");
             }
             else
             {
                 first = tmp.Label.text;
-                tmp.Label.text = tmp.Label.text.Replace(first, "<color="+ color + ">" + first + "</color>");
+                tmp.Label.text = tmp.Label.text.Replace(first, "<color=" + color + ">" + first + "</color>");
             }
 
         }
 
-        void EnterCurrentScene() {
+        void EnterCurrentScene()
+        {
             int _pos = 0;
-            foreach (GameObject _obj in m_aoCurrentQuestionScene) {
+            foreach (GameObject _obj in m_aoCurrentQuestionScene)
+            {
                 _obj.GetComponent<LetterBehaviour>().EnterScene(_pos, m_aoCurrentQuestionScene.Count());
                 ++_pos;
             }
 
             _pos = 0;
-            foreach (GameObject _obj in m_aoCurrentAnswerScene) {
-                _obj.GetComponent<LetterBehaviour>().EnterScene( _pos, m_aoCurrentAnswerScene.Count());
+            foreach (GameObject _obj in m_aoCurrentAnswerScene)
+            {
+                _obj.GetComponent<LetterBehaviour>().EnterScene(_pos, m_aoCurrentAnswerScene.Count());
                 ++_pos;
             }
         }
 
-        void ExitCurrentScene() {
-            if (m_oCurrQuestionPack != null) {
+        void ExitCurrentScene()
+        {
+            if (m_oCurrQuestionPack != null)
+            {
 
-                foreach (GameObject _obj in m_aoCurrentQuestionScene) {
+                foreach (GameObject _obj in m_aoCurrentQuestionScene)
+                {
                     _obj.GetComponent<LetterBehaviour>().ExitScene();
                 }
                 m_aoCurrentQuestionScene.Clear();
 
-                foreach (GameObject _obj in m_aoCurrentAnswerScene) {
+                foreach (GameObject _obj in m_aoCurrentAnswerScene)
+                {
                     _obj.GetComponent<LetterBehaviour>().ExitScene();
                 }
                 m_aoCurrentAnswerScene.Clear();
@@ -364,12 +379,14 @@ namespace EA4S.Minigames.MissingLetter
         }
 
 
-        void OnQuestionLetterBecameInvisible(GameObject _obj) {
+        void OnQuestionLetterBecameInvisible(GameObject _obj)
+        {
             m_oQuestionPool.FreeElement(_obj);
             _obj.GetComponent<LetterBehaviour>().onLetterBecameInvisible -= OnQuestionLetterBecameInvisible;
         }
 
-        void OnAnswerLetterBecameInvisible(GameObject _obj) {
+        void OnAnswerLetterBecameInvisible(GameObject _obj)
+        {
             m_oAnswerPool.FreeElement(_obj);
             _obj.GetComponent<LetterBehaviour>().onLetterBecameInvisible -= OnAnswerLetterBecameInvisible;
         }
@@ -422,7 +439,7 @@ namespace EA4S.Minigames.MissingLetter
         {
             for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i)
             {
-                if(isCorrectAnswer(m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Id))
+                if (isCorrectAnswer(m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Id))
                 {
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingWin();

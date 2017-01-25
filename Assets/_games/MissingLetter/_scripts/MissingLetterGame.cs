@@ -46,6 +46,9 @@ namespace EA4S.Minigames.MissingLetter
 
         public void OnResult(bool _result)
         {
+            var question = m_oRoundManager.CurrentQuestion;
+            Context.GetLogManager().OnAnswered(question.GetQuestion(), _result);
+
             Context.GetCheckmarkWidget().Show(_result);
             m_iCurrentRound++;
 
