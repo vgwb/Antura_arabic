@@ -13,7 +13,6 @@ namespace EA4S
     {
         public GameObject AudioManager;
         public GameObject EventsManager;
-        public GameObject TouchManager;
 
         void Awake()
         {
@@ -23,10 +22,6 @@ namespace EA4S
 
             if (FindObjectOfType(typeof(EventSystem)) == null) {
                 Instantiate(EventsManager);
-            }
-
-            if (FindObjectOfType(typeof(Lean.Touch.LeanTouch)) == null) {
-                Instantiate(TouchManager);
             }
 
             // init the mighty GlobalUI
