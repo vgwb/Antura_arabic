@@ -10,20 +10,18 @@ namespace EA4S.Assessment
     /// </summary>
     public class CategoryQuestionGenerator : IQuestionGenerator
     {
-        private IQuestionProvider provider;
         private QuestionGeneratorState state;
-        private int numberOfCategories;
         private int numberOfMaxAnswers;
         private int numberOfRounds;
         private List< ILivingLetterData>[] answersBuckets;
         private ArabicCategoryProvider categoryProvider;
 
-        public CategoryQuestionGenerator( IQuestionProvider provider, ArabicCategoryProvider categoryProvider, int maxAnsw, int rounds)
+        public CategoryQuestionGenerator( IQuestionProvider questionProvider, 
+                                          ArabicCategoryProvider categoryProvider,
+                                          int maxAnsw, int rounds)
         {
-            this.provider = provider;
             state = QuestionGeneratorState.Uninitialized;
             numberOfMaxAnswers = maxAnsw;
-            numberOfCategories = categoryProvider.GetCategories();
             numberOfRounds = rounds;
             answersBuckets = new List< ILivingLetterData>[ 3];
             this.categoryProvider = categoryProvider;
@@ -31,14 +29,17 @@ namespace EA4S.Assessment
                 answersBuckets[i] = new List< ILivingLetterData>();
                         
             ClearCache();
-            FillBuckets();
+            FillBuckets( questionProvider);
         }
 
         // The QuestionProvider gives answers divided by category. Weird
         // Because of that we have to take all answers and divide them by category
         // then we pick something random from each "bucket".
-        private void TakeAnswersFromBuckets()
+        // A bucket represents a category and for each category we can take some answers
+        // each round. FInished a round we replace buckets
+        private void NumberOfAnswersFromEachBucket()
         {
+            // decide in advance (randomly) how many answers for each category to take.
             category1ForThisRound = 0;
             category2ForThisRound = 0;
             category3ForThisRound = 0;
@@ -52,14 +53,11 @@ namespace EA4S.Assessment
 
                 //ok as long as we have 10 or less buckets
                 // try to be fair (but never use infinite loop.)
-                for( int i=0; i<1000000; i++)
+                for( int i=0; i<1000000 && pickFromBucketN == -1; i++)
                 {
                     int temp = UnityEngine.Random.Range( 0, 3);
                     if ( answersBuckets[ temp].Count > 0)
-                    {
                         pickFromBucketN = temp;
-                        break;
-                    }
                 }
 
                 if (pickFromBucketN == -1)
@@ -90,28 +88,31 @@ namespace EA4S.Assessment
 
             }
 
+            // Not working
+
+            Debug.Log( "Picks from category 1 this round: " + category1ForThisRound);
+            Debug.Log( "Picks from category 2 this round: " + category2ForThisRound);
+            Debug.Log( "Picks from category 3 this round: " + category3ForThisRound);
+
             if ( picksThisRound == numberOfMaxAnswers)
                 throw new InvalidOperationException( "buckets empty");
         }
 
-        private void FillBuckets()
+        private void FillBuckets( IQuestionProvider questionProvider)
         {
             // We need to aggregate answers before so we can later generate Questions
             int max = numberOfRounds * numberOfMaxAnswers;
             for (int i = 0; i < max; i++)
             {
-                var pack = provider.GetNextQuestion();
+                var pack = questionProvider.GetNextQuestion();
                 foreach (var answ in pack.GetCorrectAnswers())
-                    for (int j = 0; j < numberOfCategories; j++)
-                    {
-                        Debug.Log("##CATEGORY:"+ answ.TextForLivingLetter);
+                    for (int j = 0; j < categoryProvider.GetCategories(); j++)
                         if (categoryProvider.Compare( j, answ))
-                        {
-                            Debug.Log("##ADDED");
                             answersBuckets[j].Add(pack.GetQuestion());
-                        }
-                    }
             }
+
+            for (int i = 0; i < 3; i++)
+                Debug.Log("BUCKET(" + i + "): " + answersBuckets[i].Count + " answers");
         }
 
         private Answer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
@@ -131,7 +132,7 @@ namespace EA4S.Assessment
 
             state = QuestionGeneratorState.Initialized;
             ClearCache();
-            TakeAnswersFromBuckets();
+            NumberOfAnswersFromEachBucket();
         }
 
         private void ClearCache()
@@ -176,8 +177,8 @@ namespace EA4S.Assessment
             return partialAnswers;
         }
 
-        List<Answer> totalAnswers;
-        List<IQuestion> totalQuestions;
+        List< Answer> totalAnswers;
+        List< IQuestion> totalQuestions;
         Answer[] partialAnswers;
 
         private int currentCategory;
@@ -200,23 +201,20 @@ namespace EA4S.Assessment
 
             // Assumption: Here each category have enough elements
             int amount = 0;
-            if (currentCategory == 0)
-                amount = category1ForThisRound;
-            else
-            if (currentCategory == 1)
-                amount = category2ForThisRound;
-            else
-            if (currentCategory == 2)
-                amount = category3ForThisRound;
+            switch (currentCategory)
+            {
+                case 0: amount = category1ForThisRound; break;
+                case 1: amount = category2ForThisRound; break;
+                default: amount = category3ForThisRound; break;
+            }
+            Debug.Log("amount: " + amount);
 
             List< Answer> answers = new List< Answer>();
 
             int correctCount = 0;
             for(int i=0; i<amount; i++)
             {
-                // If crashed here => not enough buckets => Because teacher cannot find enough data
-                // Session number X.X.XX should probably raised a bit.
-                var answer = answersBuckets[currentCategory].Pull();
+                var answer = answersBuckets[ currentCategory].Pull();
                 var correctAnsw = GenerateCorrectAnswer( answer);
 
                 correctCount++;

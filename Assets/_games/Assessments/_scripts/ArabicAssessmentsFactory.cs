@@ -192,7 +192,7 @@ namespace EA4S.Assessment
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.SunMoon);
             context.QuestionGenerator = new CategoryQuestionGenerator( context.Configuration.Questions, 
                                                                             categoryProvider,
-                                                                            maxAnswers, rounds);
+                                                                            2, rounds);
             context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, wordSize);
 
             return CreateAssessment( context);
@@ -220,7 +220,7 @@ namespace EA4S.Assessment
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.SingularDualPlural);
             context.QuestionGenerator = new CategoryQuestionGenerator( context.Configuration.Questions,
                                                                             categoryProvider,
-                                                                            maxAnswers, rounds);
+                                                                            2, rounds);
             context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, wordSize);
 
             return CreateAssessment( context);
@@ -248,7 +248,7 @@ namespace EA4S.Assessment
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.WithOrWithoutArticle);
             context.QuestionGenerator = new CategoryQuestionGenerator( context.Configuration.Questions,
                                                                             categoryProvider,
-                                                                            maxAnswers, rounds);
+                                                                            2, rounds);
             context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, wordSize, wordSize);
 
             return CreateAssessment( context);
@@ -277,7 +277,7 @@ namespace EA4S.Assessment
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.SunMoon);
             context.QuestionGenerator = new CategoryQuestionGenerator( context.Configuration.Questions,
                                                                             categoryProvider,
-                                                                            maxAnswers, rounds);
+                                                                            2, rounds);
             context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, letterSize);
 
             return CreateAssessment( context);

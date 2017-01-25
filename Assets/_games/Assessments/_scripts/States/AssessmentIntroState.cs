@@ -25,7 +25,6 @@ namespace EA4S.Assessment
 
         public void EnterState()
         {
-            Debug.Log( "Assessment IntroState ENTERED!");
             audioManager.PlayMusic( Music.Theme7);
         }
 
@@ -35,7 +34,6 @@ namespace EA4S.Assessment
 
         private void SetNextState()
         {
-            Debug.Log( "Entered GameState");
             assessmentGame.SetCurrentState( gameState);
         }
 
@@ -45,10 +43,7 @@ namespace EA4S.Assessment
         {
             timer -= delta;
             if (timer <= 0)
-            {
-                Debug.Log("Called Twice");
                 SetNextState();
-            }
         }
 
         public void UpdatePhysics( float delta)
