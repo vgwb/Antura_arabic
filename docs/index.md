@@ -6,6 +6,7 @@ by TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
 ## Documentation
 
 These are divided in several files:
+
 - [ApplicationFlow](ApplicationFlow.md) describes the complete flow of the application, useful if you want to understand the call flow.
 - [DataFlow](DataFlow.md) describes how the learning content data flows from the database, to the teacher system, and finally to minigames.
 - [DeveloperGuildeines](DeveloperGuildeines.md).md* describes general guidelines for developers that want to contribute to the project.
