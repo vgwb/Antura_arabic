@@ -14,6 +14,8 @@ namespace EA4S.Minigames.MixedLetters
         private float endResultTimer;
         private bool isGameOver;
 
+        private int lastNumStarsWentTo = 0;
+
         public ResultGameState(MixedLettersGame game)
         {
             this.game = game;
@@ -41,19 +43,12 @@ namespace EA4S.Minigames.MixedLetters
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
                 SeparateLettersSpawnerController.instance.ShowWinAnimation(OnVictimLLIsShowingBack, OnResultAnimationEnded);
 
-                if (game.numRoundsWon == 1)
-                {
-                    MinigamesUI.Starbar.GotoStar(0);
-                }
+                int numStarsAsOfCurrentRound = game.GetNumStarsAsOfCurrentRound();
 
-                else if (game.numRoundsWon == 3)
+                if (numStarsAsOfCurrentRound != lastNumStarsWentTo)
                 {
-                    MinigamesUI.Starbar.GotoStar(1);
-                }
-
-                else if (game.numRoundsWon == 5)
-                {
-                    MinigamesUI.Starbar.GotoStar(2);
+                    MinigamesUI.Starbar.GotoStar(numStarsAsOfCurrentRound - 1);
+                    lastNumStarsWentTo = numStarsAsOfCurrentRound;
                 }
             }
 
@@ -61,11 +56,19 @@ namespace EA4S.Minigames.MixedLetters
             wasBackShownDuringTwirlAnimation = false;
             endResultTimer = END_RESULT_DELAY;
             isGameOver = false;
+
+            // Increase the round number here so the victim LL loads the prompt of the next round correctly during
+            // the twirl animation:
+            game.roundNumber++;
         }
 
         private void OnVictimLLIsShowingBack()
         {
-            game.GenerateNewWord();
+            if (!game.IsGameOver)
+            {
+                game.GenerateNewWord();
+            }
+
             wasBackShownDuringTwirlAnimation = true;
         }
 
@@ -76,7 +79,7 @@ namespace EA4S.Minigames.MixedLetters
 
         public void OnResultAnimationEnded()
         {
-            if (game.roundNumber < 5)
+            if (!game.IsGameOver)
             {
                 game.SetCurrentState(game.IntroductionState);
             }
@@ -84,6 +87,11 @@ namespace EA4S.Minigames.MixedLetters
             else
             {
                 isGameOver = true;
+
+                if (game.WasLastRoundWon)
+                {
+                    endResultTimer = 0f;
+                }
             }
         }
 
@@ -95,26 +103,7 @@ namespace EA4S.Minigames.MixedLetters
 
                 if (endResultTimer < 0)
                 {
-                    int numberOfStars;
-
-                    if (game.numRoundsWon == 0)
-                    {
-                        numberOfStars = 0;
-                    }
-                    else if (game.numRoundsWon == 1 || game.numRoundsWon == 2)
-                    {
-                        numberOfStars = 1;
-                    }
-                    else if (game.numRoundsWon == 3 || game.numRoundsWon == 4)
-                    {
-                        numberOfStars = 2;
-                    }
-                    else
-                    {
-                        numberOfStars = 3;
-                    }
-
-                    game.EndGame(numberOfStars, 0);
+                    game.EndGame(game.GetNumStarsAsOfCurrentRound(), 0);
                 }
             }
 
