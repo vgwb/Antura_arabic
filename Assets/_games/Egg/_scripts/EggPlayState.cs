@@ -242,6 +242,9 @@ namespace EA4S.Minigames.Egg
                         Vector3 clickPosition = game.eggButtonBox.GetButtons(false)[0].transform.position;
                         TutorialUI.ClickRepeat(clickPosition, 4);
                         game.eggButtonBox.RemoveButtons((a) => { return a != letterData; });
+
+                        if (!showTutorial)
+                            game.Context.GetLogManager().OnAnswered(letterData, true);
                     }
                 }
             }

@@ -74,7 +74,7 @@ namespace EA4S.Assessment
         {
             if ( AssessmentOptions.Instance.PronunceAnswerWhenClicked)
                 AssessmentConfiguration.Instance.Context.GetAudioManager()
-                    .PlayLetterData( Data());
+                    .PlayLetterData( Data(), true);
         }
     }
 }
