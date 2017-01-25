@@ -1,5 +1,8 @@
 # Teacher System
 
+* TOC
+{:toc}
+
 The Teacher System represents the language teacher inside the application.
 It is an Expert System that controls the learning progression of the player based on:
   * Player journey progression
@@ -14,8 +17,7 @@ In this document, the **Teacher** is a shorthand for the Teacher System.
 The person or group of persons that configure the Teacher is instead referred to
  singularly as the **expert**.
 
-
-### Elements
+## Elements
 
 The Teacher is composed of several elements:
 

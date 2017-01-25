@@ -1,5 +1,8 @@
 # Player Profile
 
+* TOC
+{:toc}
+
 This document explains how Player Profiles are handled throughout the application.
 
 A Player Profile contains data on a given player, allowing multiple players to use the application
