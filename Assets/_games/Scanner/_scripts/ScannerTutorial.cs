@@ -126,9 +126,9 @@ namespace EA4S.Minigames.Scanner
             TutorialUI.Clear(true);
 
             game.beltSpeed = originalLLOnBeltSpeed;
-            game.Context.GetOverlayWidget().Initialize(true, false, false);
+            game.Context.GetOverlayWidget().Initialize(true, false, true);
             game.Context.GetOverlayWidget().SetStarsThresholds(game.STARS_1_THRESHOLD, game.STARS_2_THRESHOLD, game.STARS_3_THRESHOLD);
-
+            game.Context.GetOverlayWidget().SetMaxLives(game.allowedFailedMoves);
         }
 
         IEnumerator coDoTutorial()

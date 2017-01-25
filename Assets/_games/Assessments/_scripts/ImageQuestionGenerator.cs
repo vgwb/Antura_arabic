@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using EA4S.MinigamesAPI;
 using UnityEngine;
+using EA4S.Utilities;
 
 namespace EA4S.Assessment
 {
@@ -154,20 +155,11 @@ namespace EA4S.Assessment
             var imageData = new LL_ImageData( data.Id);
             LL_WordData word = (LL_WordData)data;
             LL_LetterData letter = (LL_LetterData)letterToRemove;
-            var Letters = ArabicAlphabetHelper.ExtractLetterDataFromArabicWord( word.Data.Arabic);
-            
-            int index = 0;
-            for (; index < Letters.Count; ++index)
-            {
-                if (Letters[index].Id == letter.Id)
-                {
-                    break;
-                }
-            }
+
+            string text = ArabicAlphabetHelper.GetWordWithMissingLetter(word.Data, letter.Data, RemovedLetterChar);
 
             var wordGO = LivingLetterFactory.Instance.SpawnQuestion( word);
-            wordGO.Label.text = wordGO.Label.text.Remove( index, 1);
-            wordGO.Label.text = wordGO.Label.text.Insert( index, RemovedLetterChar);
+            wordGO.Label.text = text;
 
             return new ImageQuestion( wordGO, imageData);
         }
