@@ -35,8 +35,14 @@ namespace EA4S.Minigames.MixedLetters
         // The delay for the big LL (with the whole word) to appear, in seconds:
         private const float WIN_ANIMATION_BIG_LL_DELAY = 0.5f;
 
+        // The delay for the big LL to start twirling:
+        private const float WIN_ANIMATION_BIG_LL_TWIRL_DELAY = 0.5f;
+
+        // The duration of the big LL's twirling:
+        private const float WIN_ANIMATION_BIG_LL_TWIRL_DURATION = 2f;
+
         // The delay to announce the end of the animation, in seconds:
-        private const float WIN_ANIMATION_END_DELAY = 2f;
+        private const float WIN_ANIMATION_END_DELAY = 0f;
 
         public SeparateLetterController[] separateLetterControllers;
 
@@ -191,16 +197,16 @@ namespace EA4S.Minigames.MixedLetters
             OnAnimationEnded();
         }
 
-        public void ShowWinAnimation(Action OnAnimationEnded)
+        public void ShowWinAnimation(Action OnVictimLLIsShowingBack, Action OnAnimationEnded)
         {
-            StartCoroutine(WinAnimationCoroutine(OnAnimationEnded));
+            StartCoroutine(WinAnimationCoroutine(OnVictimLLIsShowingBack, OnAnimationEnded));
         }
 
-        private IEnumerator WinAnimationCoroutine(Action OnAnimationEnded)
+        private IEnumerator WinAnimationCoroutine(Action OnVictimLLIsShowingBack, Action OnAnimationEnded)
         {
             yield return new WaitForSeconds(WIN_ANIMATION_POOF_DELAY);
 
-            for (int i = 0; i < MixedLettersGame.instance.lettersInOrder.Count; i++)
+            for (int i = 0; i < MixedLettersGame.instance.PromptLettersInOrder.Count; i++)
             {
                 if (i != 0)
                 {
@@ -224,9 +230,15 @@ namespace EA4S.Minigames.MixedLetters
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(VictimLLController.instance.letterObjectView.Data);
             }
 
+            yield return new WaitForSeconds(WIN_ANIMATION_BIG_LL_TWIRL_DELAY);
+
+            VictimLLController.instance.letterObjectView.DoTwirl(OnVictimLLIsShowingBack);
+
+            yield return new WaitForSeconds(WIN_ANIMATION_BIG_LL_TWIRL_DURATION);
+
             yield return new WaitForSeconds(WIN_ANIMATION_END_DELAY);
 
-            OnAnimationEnded();
+            //OnAnimationEnded();
         }
 
         public void SetLettersDraggable()
