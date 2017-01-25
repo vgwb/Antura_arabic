@@ -7,6 +7,9 @@ The purpose of the interface is to expose to mini-games a unified and simplified
 way to access core functionalities, and to define how minigames are launched and configured,
 including the dataflow from the content (e.g. question sets) database towards each minigame.
 
+* TOC
+{:toc}
+
 # Creating a new minigame project
 
 All the minigames are in the **_games** directory of the Antura’s Unity3D project.
