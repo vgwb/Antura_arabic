@@ -52,6 +52,7 @@ namespace EA4S.Minigames.MixedLetters
             yield return new WaitForSeconds(MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Alphabet ? 1.5f : 3f);
 
             MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking);
+            AnturaController.instance.PrepareToEnterScene();
             VictimLLController.instance.LookTowardsAntura();
 
             yield return new WaitForSeconds(0.25f);
@@ -75,7 +76,7 @@ namespace EA4S.Minigames.MixedLetters
             ParticleSystemController.instance.Enable();
             ParticleSystemController.instance.SetPosition(VictimLLController.instance.transform.position);
             SeparateLettersSpawnerController.instance.SetPosition(VictimLLController.instance.transform.position);
-            SeparateLettersSpawnerController.instance.SpawnLetters(game.lettersInOrder, OnFightEnded);
+            SeparateLettersSpawnerController.instance.SpawnLetters(game.PromptLettersInOrder, OnFightEnded);
         }
 
         private void OnFightEnded()
@@ -104,7 +105,7 @@ namespace EA4S.Minigames.MixedLetters
 
         public void Update(float delta)
         {
-            if (game.lastRoundWon)
+            if (game.WasLastRoundWon)
             {
                 game.SetCurrentState(game.ResultState);
             }
