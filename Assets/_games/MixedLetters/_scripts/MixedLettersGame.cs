@@ -13,6 +13,8 @@ namespace EA4S.Minigames.MixedLetters
     {
         public static MixedLettersGame instance;
 
+        private readonly int[] ALPHABET_PICKING_ORDER = new int[] { 4, 3, 4, 4, 4, 4, 2, 3 };
+
         public IntroductionGameState IntroductionState { get; private set; }
         public PlayGameState PlayState { get; private set; }
         public ResultGameState ResultState { get; private set; }
@@ -38,9 +40,14 @@ namespace EA4S.Minigames.MixedLetters
 
                 else
                 {
-                    int numLettersPerRound = allLettersInAlphabet.Count / 6;
-                    int remainder = allLettersInAlphabet.Count % 6;
-                    _promptLettersInOrder = allLettersInAlphabet.GetRange(roundNumber * numLettersPerRound, roundNumber == 4 ? remainder : numLettersPerRound);
+                    int startIndex = 0;
+
+                    for (int i = 0; i < roundNumber; i++)
+                    {
+                        startIndex += ALPHABET_PICKING_ORDER[i];
+                    }
+
+                    _promptLettersInOrder = entireAlphabet.GetRange(startIndex, ALPHABET_PICKING_ORDER[roundNumber]);
                 }
 
                 return _promptLettersInOrder;
@@ -57,9 +64,31 @@ namespace EA4S.Minigames.MixedLetters
             }
         }
 
-        public GameObject victimLL;
+        public bool IsGameOver
+        {
+            get
+            {
+                return roundNumber >= TotalNumRounds;
+            }
+        }
 
-        public List<ILivingLetterData> allLettersInAlphabet;
+        public int TotalNumRounds
+        {
+            get
+            {
+                if (isSpelling)
+                {
+                    return 6;
+                }
+
+                else
+                {
+                    return ALPHABET_PICKING_ORDER.Length;
+                }
+            }
+        }
+
+        public List<ILivingLetterData> entireAlphabet;
 
         public int roundNumber = 0;
         public int numRoundsWon = 0;
@@ -76,14 +105,14 @@ namespace EA4S.Minigames.MixedLetters
             PlayState = new PlayGameState(this);
             ResultState = new ResultGameState(this);
             TutorialState = new TutorialGameState(this);
-            
-            allLettersInAlphabet = new List<ILivingLetterData>();
+
+            entireAlphabet = new List<ILivingLetterData>();
 
             isSpelling = MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Spelling;
 
             if (!isSpelling)
             {
-                allLettersInAlphabet = MixedLettersConfiguration.Instance.Questions.GetNextQuestion().GetCorrectAnswers().ToList();
+                entireAlphabet = MixedLettersConfiguration.Instance.Questions.GetNextQuestion().GetCorrectAnswers().ToList();
                 VictimLLController.instance.SetBigScale();
             }
 
@@ -281,10 +310,7 @@ namespace EA4S.Minigames.MixedLetters
         {
             _wasLastRoundWon = true;
 
-            if (roundNumber != 0)
-            {
-                numRoundsWon++;
-            }
+            numRoundsWon++;
 
             HideRotationButtons();
             ShowGreenTicks();
@@ -298,6 +324,28 @@ namespace EA4S.Minigames.MixedLetters
         public void DisableRepeatPromptButton()
         {
             repeatPromptButton.gameObject.SetActive(false);
+        }
+
+        public int GetNumStarsAsOfCurrentRound()
+        {
+            float progress = (numRoundsWon + 0f) / TotalNumRounds;
+
+            if (progress < 0.33f)
+            {
+                return 0;
+            }
+
+            else if (progress < 0.67f)
+            {
+                return 1;
+            }
+
+            else if (progress < 1f)
+            {
+                return 2;
+            }
+
+            else return 3;
         }
     }
 }
