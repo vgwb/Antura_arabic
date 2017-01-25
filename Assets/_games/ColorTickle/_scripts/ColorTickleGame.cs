@@ -24,7 +24,6 @@ namespace EA4S.Minigames.ColorTickle
 
         // GAME STATES
         public IntroductionGameState IntroductionState { get; private set; }
-        //public QuestionGameState QuestionState { get; private set; }
         public TutorialGameState TutorialState { get; private set; }
         public PlayGameState PlayState { get; private set; }
         public ResultGameState ResultState { get; private set; }
@@ -123,7 +122,6 @@ namespace EA4S.Minigames.ColorTickle
         protected override void OnInitialize(IGameContext context)
         {
             IntroductionState = new IntroductionGameState(this);
-            //QuestionState = new QuestionGameState(this);
             TutorialState = new TutorialGameState(this);
             PlayState = new PlayGameState(this);
             ResultState = new ResultGameState(this);
