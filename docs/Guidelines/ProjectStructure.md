@@ -1,8 +1,9 @@
 # Project Structure
-This document describes the organization of the project folders.
 
 * TOC
 {:toc}
+
+This document describes the organization of the project folders.
 
 ## Folders
 
@@ -17,10 +18,10 @@ The project is separated into 4 main folders:
 
 Other folders have special purposes:
 
-  * **Plugins** and (StreamingAssets) contain build-related files.
-  * **Resources** contains settings and data that is loaded at runtime.
-  * **Standard Assets** contains third party plugins and code.
-  * **StompyRobot** is third party plugins that must be placed in the root folder to function.
+- **Plugins** and (StreamingAssets) contain build-related files.
+- **Resources** contains settings and data that is loaded at runtime.
+- **Standard Assets** contains third party plugins and code.
+- **StompyRobot** is third party plugins that must be placed in the root folder to function.
 
 ## Refactoring notes
 

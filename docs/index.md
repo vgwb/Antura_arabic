@@ -9,7 +9,7 @@ by TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
 - [ProjectStructure](Guidelines/ProjectStructure.md) describes the structure of the Unity3D project.
 - [Refactorig Guidelines](Guidelines/RefactoringGuidelines.md)
 
-## Modules Documentation
+## Modules
 
 - [ApplicationFlow](Modules/ApplicationFlow.md) describes the complete flow of the application, useful if you want to understand the call flow.
 - [DataFlow](Modules/DataFlow.md) describes how the learning content data flows from the database, to the teacher system, and finally to minigames.
@@ -18,12 +18,14 @@ by TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
 - [PlayerProfile](Modules/PlayerProfile.md) describes how the Player Profile Manager works, a subsystem that allows the use of several profiles on the same device.
 - [Teacher](Modules/Teacher.md) describes how the Teacher System works. This subsystem is responsible for providing learning content data to the minigames.
 
+### API
+The html class documentation can be found here: [TODO UPLOAD DOXYGEN]()
+
 ## HowTo
 - [Arabic Font](HowTo/ArabicFont.md) how to create the arabic Atlas with TextMeshPro
 - [Drawingic Font](HowTo/DrawingsFont.md) how to create the drawings font Atlas with TextMeshPro
 - [Install](HowTo/INSTALL.md) how to install and run the Unity project
 
-The html class documentation can be found here: [TODO UPLOAD DOXYGEN]()
 
 ## Licensing
 
