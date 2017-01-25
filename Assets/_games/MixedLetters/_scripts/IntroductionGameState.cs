@@ -59,6 +59,8 @@ namespace EA4S.Minigames.MixedLetters
 
             isAnturaEnterTimerActivated = false;
 
+            game.DisableRepeatPromptButton();
+
             game.GenerateNewWord();
             game.SayQuestion(OnQuestionOver);
 

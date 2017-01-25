@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System;
 using EA4S.Audio;
 using Random = UnityEngine.Random;
-using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.MixedLetters
 {
@@ -41,8 +40,7 @@ namespace EA4S.Minigames.MixedLetters
 
         public SeparateLetterController[] separateLetterControllers;
 
-        public AudioClip fightClip;
-        IAudioSource audioSource;
+        public AudioSource audioSource;
 
         private IEnumerator spawnLettersCoroutine;
 
@@ -103,24 +101,15 @@ namespace EA4S.Minigames.MixedLetters
             }
 
             yield return new WaitForSeconds(1);
-            if (audioSource != null)
-                audioSource.Stop();
+            audioSource.Stop();
 
             spawnOverCallback.Invoke();
         }
 
         private void PlayCartoonFightSfx()
         {
-            if (audioSource != null)
-            {
-                audioSource.Pitch = Random.Range(0.8f, 1.2f);
-                audioSource.Play();
-            }
-            else
-            {
-                audioSource = MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(fightClip);
-                audioSource.Pitch = Random.Range(0.8f, 1.2f);
-            }
+            audioSource.pitch = Random.Range(0.8f, 1.2f);
+            audioSource.Play();
         }
 
         public void ShowLoseAnimation(Action OnAnimationEnded)
