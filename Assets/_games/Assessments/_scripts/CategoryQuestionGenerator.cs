@@ -32,14 +32,13 @@ namespace EA4S.Assessment
             FillBuckets( questionProvider);
         }
 
-        // The QuestionProvider gives answers divided by category. Weird
-        // Because of that we have to take all answers and divide them by category
-        // then we pick something random from each "bucket".
-        // A bucket represents a category and for each category we can take some answers
-        // each round. FInished a round we replace buckets
+        /// <summary>
+        /// IQuestionProvider returns answers sorted by category.( S,S,M,M,M,M)
+        /// After we have divided answers into category buckets, we use this function
+        /// to select desired number of elements from random buckets. Called each Round.
+        /// </summary>
         private void NumberOfAnswersFromEachBucket()
         {
-            // decide in advance (randomly) how many answers for each category to take.
             category1ForThisRound = 0;
             category2ForThisRound = 0;
             category3ForThisRound = 0;
@@ -98,10 +97,16 @@ namespace EA4S.Assessment
                 throw new InvalidOperationException( "buckets empty");
         }
 
+        /// <summary>
+        /// Draw the Questions/Answers for the whole game session (6 answers)
+        /// It is called just once before the 3 rounds. Answers are removed
+        /// from Buckets when GetNextQuestion is called.
+        /// </summary>
         private void FillBuckets( IQuestionProvider questionProvider)
         {
-            // We need to aggregate answers before so we can later generate Questions
             int max = numberOfRounds * numberOfMaxAnswers;
+            Debug.Log("Drawed answers: " + max);
+
             for (int i = 0; i < max; i++)
             {
                 var pack = questionProvider.GetNextQuestion();
