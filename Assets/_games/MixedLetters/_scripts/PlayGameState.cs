@@ -15,8 +15,9 @@ namespace EA4S.Minigames.MixedLetters
         public void EnterState()
         {
             timerWarningSfxPlayed = false;
-            game.lastRoundWon = false;
             game.OnRoundStarted();
+
+            game.EnableRepeatPromptButton();
 
             MinigamesUI.Timer.Play();
         }
@@ -28,7 +29,7 @@ namespace EA4S.Minigames.MixedLetters
 
         public void Update(float delta)
         {
-            if (MinigamesUI.Timer.Elapsed >= MinigamesUI.Timer.Duration || game.lastRoundWon)
+            if (MinigamesUI.Timer.Elapsed >= MinigamesUI.Timer.Duration || game.WasLastRoundWon)
             {
                 game.SetCurrentState(game.ResultState);
             }
