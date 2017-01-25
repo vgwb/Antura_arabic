@@ -1,8 +1,10 @@
 # Refactoring Guidelines
-
 These notes represent guidelines for refactoring the Antura code.
 
-### Code annotations
+* TOC
+{:toc}
+
+## Code annotations
 
 The code is annotated to highlight pieces of code that should be refactored.
 The following tags may be found throughout the code:
@@ -11,13 +13,12 @@ The following tags may be found throughout the code:
   * (obsolete): the code should be removed
   * (convention): the code should be refactored to match our conventions
 
-### Documentation notes
+## Documentation notes
 
 The specific systems documentation files contain more general notes on refactoring partaining to that subsystem.
 See the other .md files for more information.
 
-
-### Refactoring notes: Important
+## Refactoring notes: Important
 
 These notes are for current development.
 
@@ -32,7 +33,7 @@ These notes are for current development.
 	* The application flow is confusing and there is no single logic throught the codebase for it. It should be standardized and placed in a NavigationManager (or something similar, which can also hold the state of the current play session and minigames selection)
 	* MiniGameAPI, MiniGameLauncher and Debug minigame launch code need to be merged.
 
-### Refactoring notes: New Language
+## Refactoring notes: New Language
 
 These refactoring notes should be followed to prepare for supporting a new language.
 
@@ -40,7 +41,7 @@ These refactoring notes should be followed to prepare for supporting a new langu
 	* A lot of the code is tied to the Arabic language. See Localization, the QuestionBuilders, and many minigames.
 
 
-### Refactoring notes: Wishlist
+## Refactoring notes: Wishlist
 
 These notes are for future reference.
 

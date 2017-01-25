@@ -1,5 +1,8 @@
 # Logging System
 
+* TOC
+{:toc}
+
 This document describes the Logging System implemented in EA4S.
 Logging allows the application to gather information on the player's progression
  and save it to the database (see Database.md).

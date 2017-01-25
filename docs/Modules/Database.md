@@ -1,8 +1,11 @@
 # Database Management
 
+* TOC
+{:toc}
+
 The application uses two different databases for learning data and logging data.
 
-### Learning Data
+## Learning Data
 
 Learning data comprehends all information needed to provide a correct learning experience for the players.
 This data is included with the application at startup.
@@ -25,7 +28,7 @@ At runtime, **EA4S.Db.Database** functions as an entry point for all the assets 
 
 @todo: describe Progression and Minigame data?
 
-### Logging Data
+## Logging Data
 
 Logging data is measured as the player uses the application and saved to the system's memory at runtime.
 
@@ -66,7 +69,7 @@ Player profiles are also supported with:
 
 @todo: explain profileId from the PlayerProfile
 
-### Reading API
+## Reading API
 
 To read learning or logging data, a single entry point is used throughout the application.
 **EA4S.DatabaseManager** is the entry point and can be access through the public field **AppManager.Instance.Db**.
@@ -82,7 +85,7 @@ To access logging data, the following methods can be used:
 
  * For logging data, literal queries in SQL can be also used through **FindXXXDataByQuery()** methods.
 
-### Writing API
+## Writing API
 
 To write to the database, the Database Manager provides the following methods:
  * **Insert<T>()** to insert new data in the database.
@@ -91,7 +94,7 @@ To write to the database, the Database Manager provides the following methods:
 Note that these methods should not be called directly and that all minigames should use the *LogManager* to indirectly write to the database.
 Note that learning data is static and thus not writeable at runtime.
 
-### Refactoring notes
+## Refactoring notes
 
  * The logging data structures should be better defined. They are, for now, too little strict and not enough documentation on their purpose is available.
  * Insert/Update should not be directly exposed and instead be used by the log manager and protected from other uses

@@ -1,5 +1,8 @@
 # Data Flow
 
+* TOC
+{:toc}
+
 This document describes how dictionary data flows from the database, through the Teacher System, to the specific minigames.
 
 @todo: add a diagram for the data flow
