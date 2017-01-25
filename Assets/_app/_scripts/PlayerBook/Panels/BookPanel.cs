@@ -268,7 +268,7 @@ namespace EA4S.PlayerBook
 
             var output = "";
 
-            var splittedLetters = ArabicAlphabetHelper.SplitWordIntoLetters(info.data.Arabic);
+            var splittedLetters = ArabicAlphabetHelper.SplitWordIntoLetters(info.data);
             foreach (var letter in splittedLetters) {
                 output += letter.GetChar() + " ";
             }
