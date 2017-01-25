@@ -1,4 +1,5 @@
-﻿using EA4S.MinigamesCommon;
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using UnityEngine;
 
@@ -119,13 +120,13 @@ namespace EA4S.Minigames.Tobogan
 
         public void UpdatePhysics(float delta) { }
 
-        void OnAnswered(bool result)
+        void OnAnswered(IQuestionPack pack, bool result)
         {
             if(result)
             {
                 questionCount++;
 
-                game.questionsManager.QuestionEnd();
+                game.questionsManager.OnQuestionEnd();
 
                 if (!sunMoonGameVariation || (sunMoonGameVariation && questionCount == 2))
                 {

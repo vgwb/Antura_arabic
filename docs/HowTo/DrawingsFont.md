@@ -1,4 +1,4 @@
-# EA4S_WordDrawings - how to create the Drawings font
+# how to create the Drawings font
 
 the art department provides a single grid with all drawings (rename it in SVG/EA4S_WordDrawings_grid.svg
 
