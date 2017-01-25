@@ -23,6 +23,7 @@ namespace EA4S.Minigames.MixedLetters
 
         public void EnterState()
         {
+            game.DisableRepeatPromptButton();
             game.GenerateNewWord();
 
             VictimLLController.instance.HideVictoryRays();
@@ -92,6 +93,7 @@ namespace EA4S.Minigames.MixedLetters
         private void OnIntroVoiceOverDone()
         {
             MixedLettersGame.instance.OnRoundStarted();
+            game.EnableRepeatPromptButton();
             audioManager.PlayDialogue(isSpelling ? Db.LocalizationDataId.MixedLetters_spelling_Tuto : Db.LocalizationDataId.MixedLetters_alphabet_Tuto);
         }
 
