@@ -186,11 +186,7 @@ namespace EA4S.Minigames.ColorTickle
         private void CalcPercentageLetterColored()
         {
             float percentageRequiredToWin = m_TMPTextColoringLetter.percentageRequiredToWin;
-            m_PercentageLetterColored = ((m_TMPTextColoringLetter.GetRachedCoverage() * 100.0f) / percentageRequiredToWin) * 100.0f;
-            if (m_PercentageLetterColored > 100.0f)
-            {
-                m_PercentageLetterColored = 100.0f;
-            }
+            m_PercentageLetterColored = Mathf.Min(100, ((m_TMPTextColoringLetter.GetRachedCoverage() * 100.0f) / percentageRequiredToWin) * 100.0f);
         }
 
         private void EnableAntura()

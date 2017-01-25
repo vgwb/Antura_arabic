@@ -185,8 +185,9 @@ namespace EA4S.Minigames.Scanner
 			var question = provider.GetNextQuestion();
 		    wrongAnswers = question.GetWrongAnswers().ToList();
 			correctAnswers = question.GetCorrectAnswers().ToList();
+            game.Context.GetOverlayWidget().SetLives(game.allowedFailedMoves);
 
-			Debug.Log("Correct Answers: " + correctAnswers.Count);
+            Debug.Log("Correct Answers: " + correctAnswers.Count);
 			Debug.Log("Wrong   Answers: " + wrongAnswers.Count);
 
 
@@ -238,7 +239,10 @@ namespace EA4S.Minigames.Scanner
 		public void CorrectMove(GameObject GO, ScannerLivingLetter livingLetter)
 		{
 			AudioManager.I.PlayDialogue("Keeper_Good_" + UnityEngine.Random.Range(1, 12));
-			livingLetter.RoundWon();
+            game.LogAnswer(livingLetter.letterObjectView.Data, true);
+            
+
+            livingLetter.RoundWon();
 			if (game.scannerLL.All(ll => ll.gotSuitcase))
 			{
 				if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
@@ -255,11 +259,13 @@ namespace EA4S.Minigames.Scanner
 
 		}
 
-		public void WrongMove(GameObject GO)
+		public void WrongMove(GameObject GO, ScannerLivingLetter livingLetter)
 		{
 			numberOfFailedMoves++;
 			AudioManager.I.PlayDialogue("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
-			game.CreatePoof(GO.transform.position,2f,true);
+            game.LogAnswer(livingLetter.letterObjectView.Data, false);
+            game.CreatePoof(GO.transform.position,2f,true);
+            game.Context.GetOverlayWidget().SetLives(game.allowedFailedMoves - numberOfFailedMoves);
 
             if (game.tut.isTutRound)
             {
@@ -329,6 +335,7 @@ namespace EA4S.Minigames.Scanner
 			    numberOfRoundsWon++;
 
 			game.Context.GetOverlayWidget().SetStarsScore(numberOfRoundsWon);
+            
 
 			yield return new WaitForSeconds(0.25f);
 			AudioManager.I.PlaySound(Sfx.Win);

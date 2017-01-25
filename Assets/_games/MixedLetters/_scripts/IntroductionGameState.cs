@@ -51,6 +51,11 @@ namespace EA4S.Minigames.MixedLetters
 
         public void EnterState()
         {
+            if (!game.WasLastRoundWon)
+            {
+                game.GenerateNewWord();
+            }
+
             anturaEnterTimer = MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Spelling ? 3.25f : 1.5f;
             anturaEntered = false;
             anturaBarked = false;
@@ -59,16 +64,18 @@ namespace EA4S.Minigames.MixedLetters
 
             isAnturaEnterTimerActivated = false;
 
-            game.GenerateNewWord();
+            game.DisableRepeatPromptButton();
+
+            //game.GenerateNewWord();
             game.SayQuestion(OnQuestionOver);
 
             VictimLLController.instance.HideVictoryRays();
             VictimLLController.instance.Reset();
             VictimLLController.instance.Enable();
 
-            Vector3 victimLLPosition = VictimLLController.instance.transform.position;
+            /*Vector3 victimLLPosition = VictimLLController.instance.transform.position;
             victimLLPosition.x = Random.Range(0, 40) % 2 == 0 ? 0.5f : -0.5f;
-            VictimLLController.instance.SetPosition(victimLLPosition);
+            VictimLLController.instance.SetPosition(victimLLPosition);*/
 
             game.roundNumber++;
 
@@ -95,6 +102,8 @@ namespace EA4S.Minigames.MixedLetters
             if (anturaEnterTimer < 0.25f && !anturaBarked)
             {
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking);
+                //AnturaController.instance.Enable();
+                AnturaController.instance.PrepareToEnterScene();
                 VictimLLController.instance.LookTowardsAntura();
                 anturaBarked = true;
             }
@@ -124,7 +133,7 @@ namespace EA4S.Minigames.MixedLetters
             ParticleSystemController.instance.Enable();
             ParticleSystemController.instance.SetPosition(VictimLLController.instance.transform.position);
             SeparateLettersSpawnerController.instance.SetPosition(VictimLLController.instance.transform.position);
-            SeparateLettersSpawnerController.instance.SpawnLetters(game.lettersInOrder, OnFightEnded);
+            SeparateLettersSpawnerController.instance.SpawnLetters(game.PromptLettersInOrder, OnFightEnded);
         }
 
         public void OnFightEnded()
