@@ -1,19 +1,4 @@
-Contributing to EA4S - Antura and the Letters
-=================
-
-*Edits:*
-
-<table>
-  <tr>
-    <td>11-01-2017</td>
-    <td>Michele Pirovano</td>
-  </tr>
-  <tr>
-    <td>24-01-2017</td>
-    <td>Michele Pirovano</td>
-  </tr>
-</table>
-
+# Developer Guidelines
 Developers should follow these guidelines for contributing to the project.
 
 ### Coding conventions
@@ -28,14 +13,14 @@ Developers should follow these guidelines for contributing to the project.
   * Regions can be used to group code logically. Use **CamelCase** for region names.
   * No copyright notice nor author metadata should be present at the start of the file, unless it is of a third party
   * **Never** commit if you encounter compilation errors or warnings.
-  
+
 ### Naming conventions
 
   * Use *MiniGame*, not *Minigame* (but *minigame* when lowercase)
   * All data related to the learning content should be referred to as *Dictionary data* (instead of the triad Letter/Word/Phrase)
-  * All data related to the journey progression should be referred to as *Journey data* 
+  * All data related to the journey progression should be referred to as *Journey data*
 
-  
+
 ### Namespaces
 
 The whole codebase is under the **EA4S** namespace.
@@ -57,7 +42,7 @@ What follows is a list of subsystems with their namespaces:
  * et cetera...
 
 **Never commit anything without a namespace, nor anything under the root EA4S namespace**
- 
+
 ### Current issues
- 
+
   * nothing to report for now

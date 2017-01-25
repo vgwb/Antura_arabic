@@ -1,34 +1,4 @@
-**Antura Minigames Interface**
-
-*Edits:*
-
-<table>
-  <tr>
-    <td>04-10-2016</td>
-    <td>Davide Barbieri</td>
-  </tr>
-  <tr>
-    <td>28-10-2016</td>
-    <td>Davide Barbieri</td>
-  </tr>
-  <tr>
-    <td>31-10-2016</td>
-    <td>Davide Barbieri</td>
-  </tr>
-  <tr>
-    <td>01-11-2016</td>
-    <td>Davide Barbieri</td>
-  </tr>
-  <tr>
-    <td>16-11-2016</td>
-    <td>Davide Barbieri</td>
-  </tr>
-  <tr>
-    <td>13-01-2017</td>
-    <td>Michele Pirovano</td>
-  </tr>
-</table>
-
+# Antura Minigames Interface
 
 In this document, we describe the programming interface that is used
 by all the minigames in the Antura project.
@@ -36,7 +6,6 @@ by all the minigames in the Antura project.
 The purpose of the interface is to expose to mini-games a unified and simplified
 way to access core functionalities, and to define how minigames are launched and configured,
 including the dataflow from the content (e.g. question sets) database towards each minigame.
-
 
 # Creating a new minigame project
 
@@ -57,7 +26,7 @@ Instead of starting your own minigame from scratch, you can use the provided gam
     2. **TemplateGame** class should become *MyNewMasterpieceGame*
 
     3. **TemplateConfiguration** class should become *MyNewMasterpieceConfiguration*
-    
+
 ***note: MiniGame namespaces may change***
 
 
@@ -67,11 +36,11 @@ A minigame does not exist in a vacuum. The core app needs to know of its existan
 For this purpose, the following should be performed:
  * a new entry named *MyNewMasterpiece* should be added to the **MiniGameCode** enumerator
  * the database should be updated to support the new minigame. (refer to the **Database.md** document)  This requires:
-	* adding a new **MiniGameData** entry 
+	* adding a new **MiniGameData** entry
 	* updating the table of **PlaySessionData** to support the new minigame at a given learning block
  * **MiniGameAPI.ConfigureMiniGame()** should be updated to provide the correct configuration for the new minigame code.
  *  **LogAI.GetLearnRules(MiniGameCode code)** should be updated to provide the correct logging rules for the new minigame.
- 
+
 ***note: the above requirements are bound to change as it couples minigames with the core codebase***
 
 
@@ -142,9 +111,9 @@ all the game-related scripts, should be placed inside the **_scripts** folder;
 **_configurationscripts** is a service folder used to define game specific classes
  that help the in communicating with the core codebase.
 
-The first requirement of your minigame is to have a game configuration script. 
+The first requirement of your minigame is to have a game configuration script.
   If you want to see how a configuration class is made, you could just copy it from the template directory.
- 
+
 The {GameName}Configuration.cs defines how a minigame is configured by the app,
 and provides the minigame some useful interfaces.
 
@@ -156,15 +125,15 @@ Each minigame is created inside its own scene and namespace.
 Usually, the core application refers to the minigame using
  a 1-to-1 relationship, detailed by the **MiniGameCode** that
   represents the minigame in the core application.
-  
-However, sometimes it is useful to have a single scene support multiple 
+
+However, sometimes it is useful to have a single scene support multiple
  instances of minigames with slight variations.
  These minigames are called *variations*.
  Variations are transparent to the core application (they are considered different minigames),
   but multiple variations point to the same minigame scene.
 
   Variations are specified in the specific minigame's configuration code, if needed.
-  
+
 
 
 
@@ -185,7 +154,7 @@ and must be defined by the minigame developer.
 
 Possible choices for difficulty can be:
  * Play speed
- * Aiming precision 
+ * Aiming precision
  * Rhythm
  * Short-term memory
 
@@ -243,7 +212,7 @@ or, to play the game music:
 context.GetAudioManager().PlayMusic(Music.MainTheme);
 ```
 
-To have a list of all the possible functionalities that you could use, 
+To have a list of all the possible functionalities that you could use,
 take a look into the `IGameContext` source.
 
 ## Audio Manager
@@ -338,18 +307,18 @@ What follows is a list of possible examples:
     * The question is the letter (the game should understand how to hide its signs/dots)
     * The correct answers is the set made just by the correct sign/dot
     * The wrong answers are all the other possible signs/dots
-    
-  
+
+
 # Question Builder
-    
-Each minigame (or minigame variation) requires question packs in different forms and this is defined 
+
+Each minigame (or minigame variation) requires question packs in different forms and this is defined
  by implementing the method `SetupBuilder()` inside the Game Configuration, which returns
   an object implementing the *IQuestionBuilder* interface.
- 
+
 The **IQuestionBuilder** defines the learning rules and requirements for the current minigame variation
- and must be correctly setup and configured. 
+ and must be correctly setup and configured.
  The Question Builder will generate the correct **Question Packs** for a given minigame instance.
-  
+
  The minigame developer can choose from a set of question builders that the Teacher can support.
 Refer to the Teacher documentation for further details.
 
@@ -394,10 +363,10 @@ var phrases = AppManager.Instance.DB.GetAllPhraseData();
 
 
 The default Question Provider is used when you launch the game's scene directly.
-Note that when playing the game through the core application, the Question Provider will be the one defined by the core system to provide meaningful learning data as selected by the Teacher. 
+Note that when playing the game through the core application, the Question Provider will be the one defined by the core system to provide meaningful learning data as selected by the Teacher.
 Make sure that the test Question Provider content matches real content, otherwise your game may not work
  when launched through the core application.
- 
+
 
 
 # Using the Living Letter prefab
@@ -414,7 +383,7 @@ The prefab has a **LetterObjectView** component that let you change animation an
 To set the current letter/word, just call
 **void Init(ILivingLetterData _data)**
 
-by passing the data that you want to see displayed on the LL. 
+by passing the data that you want to see displayed on the LL.
 
 Use **letterObjectView.Data** to get the current data.
 
@@ -543,7 +512,7 @@ To switch between Walking and running use:
 **_void DoBurp()_**
 
 **_DoSpit(bool openMouth)_**
-    
+
 The following methods can be used to perform a jump. Animations are in place, so you have to move transform when performing jump and just notify the animator with the following events.
 Such events must be called in this order:
 
@@ -558,7 +527,7 @@ Such events must be called in this order:
 This method:
 
 **_void DoCharge(System.Action onChargeEnded)_**
-makes Antura do an angry charge. 
+makes Antura do an angry charge.
 The Dog makes an angry charging animation (it must stay in the same position during this animation);
 IsAngry is set to true automatically (needed to use the angry run).
 
@@ -604,5 +573,5 @@ The AutoWorldCameraColor, as in AutoWorldPrefab, needs that a field is configure
 
 #### Refactoring Notes
 	* variations are not actually enforced by the codebase, but it would be a good idea to make all games use them, as currently the core app reasons in terms of 'MiniGameCode', but a minigame is actually identified by the 'game scene' and the 'variation'
-	* code common to minigames (interfaces, minigames***managers, and so on) should be in a separate namespace, and also 
+	* code common to minigames (interfaces, minigames***managers, and so on) should be in a separate namespace, and also
 	* code common to all minigames is now separated into _games/_common and _core/MiniGame, and _core/MinigameAPI. Should be better organized
