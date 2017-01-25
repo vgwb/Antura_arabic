@@ -49,19 +49,23 @@ namespace EA4S.Assessment
             WorldBounds bounds = WorldBounds.Instance;
             float xMin = bounds.ToTheLeftQuestionStart().x;
             float xMax = bounds.ToTheRightQuestionStart().x;
-            float yMin = bounds.YMin();
-            float yMax = bounds.YMax();
+            float yMin = bounds.YMin()-0.4f;
             float z = bounds.DefaultZ();
 
-            for (float x = xMin; x < xMax; x += 4.3f)
-                for (float y = yMin; y < yMax; y += 1.7f) {
-                    float dx = Random.Range(-0.2f, 0.2f);
-                    float dy = Random.Range(-0.1f, 0.2f);
-                    var vec = new Vector3(x + dx, y + dy, z);
+
+            for (float x = xMin; x < xMax; x += 4.2f)
+            {
+                int times = 0;
+                for (float y = yMin; times < 3; y += 3.0f, times++)
+                {
+                    float dx = Random.Range(-0.1f, 0.1f);
+                    var vec = new Vector3(x + dx, y, z);
                     positions.Add(vec);
                 }
+            }
 
             positions.Shuffle();
+            Debug.Log( "Total Answer Positions:" + positions.Count);
 
             foreach (var a in allAnswers)
                 yield return Koroutine.Nested( PlaceAnswer( a, positions));
@@ -70,13 +74,13 @@ namespace EA4S.Assessment
             isAnimating = false;
         }
 
-        private IEnumerator PlaceAnswer( Answer answer, List<Vector3> positions)
+        private IEnumerator PlaceAnswer( Answer answer, List< Vector3> positions)
         {
             var go = answer.gameObject;
             go.transform.localPosition = positions.Pull();
             go.transform.DOScale(1, 0.4f);
-            go.GetComponent<LetterObjectView>().Poof(ElementsSize.PoofOffset);
-            audioManager.PlaySound(Sfx.Poof);
+            go.GetComponent< LetterObjectView>().Poof( ElementsSize.PoofOffset);
+            audioManager.PlaySound( Sfx.Poof);
 
             yield return Wait.For( Random.Range( 0.07f, 0.13f));
         }
@@ -84,18 +88,18 @@ namespace EA4S.Assessment
         private IEnumerator RemoveCoroutine()
         {
             foreach (var a in allAnswers)
-                yield return Koroutine.Nested( RemoveAnswer(a.gameObject));
+                yield return Koroutine.Nested( RemoveAnswer( a.gameObject));
 
             yield return Wait.For( 0.65f);
             isAnimating = false;
         }
 
-        private IEnumerator RemoveAnswer(GameObject answ)
+        private IEnumerator RemoveAnswer( GameObject answ)
         {
-            audioManager.PlaySound(Sfx.Poof);
+            audioManager.PlaySound( Sfx.Poof);
 
-            answ.GetComponent<LetterObjectView>().Poof(ElementsSize.PoofOffset);
-            answ.transform.DOScale(0, 0.3f).OnComplete(() => GameObject.Destroy(answ));
+            answ.GetComponent< LetterObjectView>().Poof( ElementsSize.PoofOffset);
+            answ.transform.DOScale(0, 0.3f).OnComplete( () => GameObject.Destroy( answ));
 
             yield return Wait.For( 0.1f);
         }

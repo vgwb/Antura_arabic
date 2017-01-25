@@ -42,38 +42,31 @@ namespace EA4S.Assessment
 
                 InitRound();
 
-                // Play tutorial audio
-                if (round == 0)
-                    yield return Koroutine.Nested( TutorialRoundBegin());
-                else
-                    yield return Koroutine.Nested( RoundBegin());
-
+                yield return Koroutine.Nested( RoundBegin());
                 yield return Koroutine.Nested( PlaceAnswers());
+
+                bool playQuestion = AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial;
+                var audio = new WaitCoroutine( DescriptionAudio( playQuestion));
+
                 yield return Koroutine.Nested( GamePlay());
+                yield return audio;
                 yield return Koroutine.Nested( ClearRound());
             }
 
             gameEndedCallback();
         }
 
+        private IEnumerator DescriptionAudio( bool playQuestion)
+        {
+            yield return Dialogues.PlayGameDescription();
+
+            if(playQuestion)
+                yield return QuestionPlacer.PlayQuestionSound();
+        }
+
         private IEnumerator AnturaGag()
         {
             yield return null;
-        }
-
-        private IEnumerator TutorialRoundBegin()
-        {
-            // It is perfectly possible we will no longer need this flag in definitive
-            // game version. For now requisites has not been decided yet:
-            // It first of all need testing
-            bool playAfter = AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial;
-
-            yield return Koroutine.Nested( PlaceQuestions( playAfter == false));
-
-            yield return Dialogues.PlayGameDescription();
-
-            if (playAfter)
-                QuestionPlacer.PlayQuestionSound();
         }
 
         private IEnumerator RoundBegin()
@@ -126,15 +119,28 @@ namespace EA4S.Assessment
             QuestionGenerator.InitRound();
 
             for (int question = 0; question < Configuration.SimultaneosQuestions; question++)
-
-                LogicInjector.Wire(
-                    QuestionGenerator.GetNextQuestion(),
-                    QuestionGenerator.GetNextAnswers());
+                WireLogicInjector( LogicInjector, QuestionGenerator);
 
             LogicInjector.CompleteWiring();
             LogicInjector.EnableDragOnly();
 
             QuestionGenerator.CompleteRound();
+        }
+
+        private void WireLogicInjector( ILogicInjector injector, IQuestionGenerator generator)
+        {
+            try
+            {
+                IQuestion question = generator.GetNextQuestion();
+                Answer[] answers = generator.GetNextAnswers();
+
+                injector.Wire( question, answers);
+            }
+            catch ( System.Exception ex)
+            {
+                Debug.LogWarning( "Not enough teacher data to generate an additional question at this stage: " +
+                    ex.Message);
+            }
         }
 
         public IAnswerPlacer AnswerPlacer { get; private set; }
