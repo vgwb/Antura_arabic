@@ -39,9 +39,7 @@ namespace EA4S.Minigames.MixedLetters
 
             letterObjectView.SetState(LLAnimationStates.LL_still);
 
-            bool anturaEntersFromLeft = transform.position.x > 0;
-
-            float targetAngle = 180 + 80 * (anturaEntersFromLeft ? 1 : -1);
+            float targetAngle = 180 + 80 * (AnturaController.instance.LastEnteredFromTheLeft ? 1 : -1);
 
             float timeElapsed = 0;
             float sinFactor = 2 * Mathf.PI * Mathf.Pow(LOOK_TOWARDS_ANTURA_TIME * 4, -1);

@@ -4,10 +4,15 @@ namespace EA4S.Minigames.MixedLetters
 {
     public class ResultGameState : IGameState
     {
-        MixedLettersGame game;
+        private MixedLettersGame game;
 
-        float endResultTimer = 1f;
-        bool isGameOver = false;
+        private const float TWIRL_ANIMATION_BACK_SHOWN_DELAY = 1f;
+        private const float END_RESULT_DELAY = 1f;
+
+        private float twirlAnimationDelayTimer;
+        private bool wasBackShownDuringTwirlAnimation;
+        private float endResultTimer;
+        private bool isGameOver;
 
         public ResultGameState(MixedLettersGame game)
         {
@@ -25,7 +30,7 @@ namespace EA4S.Minigames.MixedLetters
                 MinigamesUI.Timer.Pause();
             }
 
-            if (!game.lastRoundWon)
+            if (!game.WasLastRoundWon)
             {
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
                 SeparateLettersSpawnerController.instance.ShowLoseAnimation(OnResultAnimationEnded);
@@ -34,7 +39,7 @@ namespace EA4S.Minigames.MixedLetters
             else
             {
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
-                SeparateLettersSpawnerController.instance.ShowWinAnimation(OnResultAnimationEnded);
+                SeparateLettersSpawnerController.instance.ShowWinAnimation(OnVictimLLIsShowingBack, OnResultAnimationEnded);
 
                 if (game.numRoundsWon == 1)
                 {
@@ -51,6 +56,17 @@ namespace EA4S.Minigames.MixedLetters
                     MinigamesUI.Starbar.GotoStar(2);
                 }
             }
+
+            twirlAnimationDelayTimer = TWIRL_ANIMATION_BACK_SHOWN_DELAY;
+            wasBackShownDuringTwirlAnimation = false;
+            endResultTimer = END_RESULT_DELAY;
+            isGameOver = false;
+        }
+
+        private void OnVictimLLIsShowingBack()
+        {
+            game.GenerateNewWord();
+            wasBackShownDuringTwirlAnimation = true;
         }
 
         public void ExitState()
@@ -99,6 +115,19 @@ namespace EA4S.Minigames.MixedLetters
                     }
 
                     game.EndGame(numberOfStars, 0);
+                }
+            }
+
+            else if (game.WasLastRoundWon)
+            {
+                if (wasBackShownDuringTwirlAnimation)
+                {
+                    twirlAnimationDelayTimer -= delta;
+
+                    if (twirlAnimationDelayTimer <= 0)
+                    {
+                        OnResultAnimationEnded();
+                    }
                 }
             }
         }
