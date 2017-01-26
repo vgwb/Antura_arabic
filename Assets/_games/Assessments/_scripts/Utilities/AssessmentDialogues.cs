@@ -106,20 +106,22 @@ namespace EA4S.Assessment
 
         private IEnumerator PlayLetterDataCoroutine( ILivingLetterData data)
         {
-            var audioTicket = ticket.LockLowPriority();
+            //var audioTicket = ticket.LockLowPriority();
 
             var audioSource = 
             AssessmentConfiguration.Instance.Context.GetAudioManager()
                     .PlayLetterData( data);
 
-            while (audioSource.IsPlaying && ticket.IsLowPriorityTicketValid(audioTicket))
+            yield return null;
+
+            /*while (audioSource.IsPlaying && ticket.IsLowPriorityTicketValid(audioTicket))
                 yield return null;
 
 
             if (audioSource.IsPlaying)
                 audioSource.Stop();
 
-            ticket.UnlockLowPriorityTicket( audioTicket);
+            ticket.UnlockLowPriorityTicket( audioTicket);*/
         }
 
 

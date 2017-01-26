@@ -226,19 +226,19 @@ namespace EA4S.Audio
         public IAudioSource PlayLetter(LetterData data)
         {
             AudioClip clip = GetAudioClip(data);
-            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), sfxGroup, this);
+            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), wordsLettersPhrasesGroup, this);
         }
 
         public IAudioSource PlayWord(WordData data)
         {
             AudioClip clip = GetAudioClip(data);
-            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), sfxGroup, this);
+            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), wordsLettersPhrasesGroup, this);
         }
 
         public IAudioSource PlayPhrase(PhraseData data)
         {
             AudioClip clip = GetAudioClip(data);
-            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), sfxGroup, this);
+            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), wordsLettersPhrasesGroup, this);
         }
 
         public void StopLettersWordsPhrases()
@@ -269,7 +269,7 @@ namespace EA4S.Audio
             if (!string.IsNullOrEmpty(data.AudioFile))
             {
                 AudioClip clip = GetAudioClip(data);
-                return new AudioSourceWrapper(sfxGroup.Play(clip), keeperGroup, this);
+                return new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
             }
             return null;
         }
@@ -295,7 +295,7 @@ namespace EA4S.Audio
             {
                 OnDialogueEnded = callback;
                 AudioClip clip = GetAudioClip(data);
-                return new AudioSourceWrapper(sfxGroup.Play(clip), keeperGroup, this);
+                return new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
             }
             else
             {

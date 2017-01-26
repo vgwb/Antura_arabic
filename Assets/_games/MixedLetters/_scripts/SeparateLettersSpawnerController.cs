@@ -206,8 +206,13 @@ namespace EA4S.Minigames.MixedLetters
         {
             yield return new WaitForSeconds(WIN_ANIMATION_POOF_DELAY);
 
-            for (int i = 0; i < MixedLettersGame.instance.PromptLettersInOrder.Count; i++)
+            for (int i = 0; i < MixedLettersGame.instance.dropZoneControllers.Length; i++)
             {
+                if (!MixedLettersGame.instance.dropZoneControllers[i].gameObject.activeInHierarchy)
+                {
+                    continue;
+                }
+
                 if (i != 0)
                 {
                     yield return new WaitForSeconds(WIN_ANIMATION_POOF_OFFSET);

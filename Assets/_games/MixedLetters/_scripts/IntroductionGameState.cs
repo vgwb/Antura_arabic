@@ -42,8 +42,6 @@ namespace EA4S.Minigames.MixedLetters
             {
                 timePerRound = 15f;
             }
-
-            timePerRound = 10f;
         }
 
         private void OnQuestionOver()
@@ -78,9 +76,7 @@ namespace EA4S.Minigames.MixedLetters
             /*Vector3 victimLLPosition = VictimLLController.instance.transform.position;
             victimLLPosition.x = Random.Range(0, 40) % 2 == 0 ? 0.5f : -0.5f;
             VictimLLController.instance.SetPosition(victimLLPosition);*/
-
-            game.roundNumber++;
-
+            
             if (game.roundNumber == 1)
             {
                 MinigamesUI.Init(MinigamesUIElement.Timer | MinigamesUIElement.Starbar);

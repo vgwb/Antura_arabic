@@ -6,7 +6,7 @@ namespace EA4S.Minigames.FastCrowd
     public class QuestionManager : MonoBehaviour
     {
         public event System.Action OnCompleted;
-        public event System.Action<bool> OnDropped;
+        public event System.Action<ILivingLetterData, bool> OnDropped;
 
         public DropAreaWidget dropContainer;
         public FastCrowdLetterCrowd crowd;
@@ -37,7 +37,7 @@ namespace EA4S.Minigames.FastCrowd
             }
 
             if (OnDropped != null)
-                OnDropped(result);
+                OnDropped(data, result);
         }
 
         public void StartQuestion(List<ILivingLetterData> nextChallenge, List<ILivingLetterData> wrongAnswers)

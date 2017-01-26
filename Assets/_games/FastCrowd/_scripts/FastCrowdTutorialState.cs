@@ -82,7 +82,7 @@ namespace EA4S.Minigames.FastCrowd
             game.SetCurrentState(game.QuestionState);
         }
 
-        void OnAnswerDropped(bool result)
+        void OnAnswerDropped(ILivingLetterData data, bool result)
         {
             if (result)
             {
