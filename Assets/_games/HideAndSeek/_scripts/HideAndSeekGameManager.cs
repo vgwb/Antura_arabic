@@ -153,7 +153,7 @@ namespace EA4S.Minigames.HideAndSeek
         {
             for (int i = 0; i < MAX_OBJECT; ++i)
             {
-                ArrayTrees[i].GetComponent<CapsuleCollider>().enabled = false;
+                ArrayTrees[i].GetComponent<SphereCollider>().enabled = false;
             }
         }
         public void ClearRound()
@@ -224,7 +224,7 @@ namespace EA4S.Minigames.HideAndSeek
         {
             foreach (GameObject tree in ActiveTrees)
             {
-                tree.GetComponent<CapsuleCollider>().enabled = true;
+                tree.GetComponent<SphereCollider>().enabled = true;
             }
 
             var winInitialDelay = 0.5f;
