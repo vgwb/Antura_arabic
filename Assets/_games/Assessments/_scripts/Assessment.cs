@@ -49,10 +49,6 @@ namespace EA4S.Assessment
                     audio = new WaitCoroutine( DescriptionAudio( playQuestion));
 
                 yield return Koroutine.Nested( GamePlay());
-                
-                if(audio != null)
-                    yield return audio;
-
                 yield return Koroutine.Nested( ClearRound());
             }
 
