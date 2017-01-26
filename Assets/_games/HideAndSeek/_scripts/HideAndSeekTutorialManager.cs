@@ -108,6 +108,7 @@ namespace EA4S.Minigames.HideAndSeek
 
         void MoveObject(int id)
         {
+            HideAndSeekConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.BushRustlingOut);
             if (ArrayLetters.Length > 0)
             {
                 script = ArrayLetters[GetIdFromPosition(id)].GetComponent<HideAndSeekLetterController>();

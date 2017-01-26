@@ -7,7 +7,7 @@ namespace EA4S.Minigames.HideAndSeek
     {
 		HideAndSeekGame game;
 
-        public CountdownTimer gameTime = new CountdownTimer(40.0f);
+        public CountdownTimer gameTime = new CountdownTimer(60.0f);
         IAudioSource timesUpAudioSource;
 
         bool hurryUpSfx;
