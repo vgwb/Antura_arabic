@@ -18,7 +18,6 @@ namespace EA4S.Assessment
         private static readonly float letterSize = 1f * 3;
         private static readonly float wordSize = 1.5f * 3;
         private static readonly float sentenceSize = 2f * 3;
-        private static int maxAnswers;
         private static int rounds;
 
         public enum DragManagerType
@@ -392,7 +391,6 @@ namespace EA4S.Assessment
                                                        context.DialogueManager);
 
             rounds = AssessmentConfiguration.Instance.Rounds;
-            maxAnswers = AssessmentConfiguration.Instance.Answers;
         }
 
         /// <summary>
