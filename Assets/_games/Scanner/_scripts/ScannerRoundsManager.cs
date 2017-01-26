@@ -6,6 +6,7 @@ using System.Collections;
 using EA4S.Audio;
 using EA4S.MinigamesCommon;
 using EA4S.Utilities;
+using EA4S.Tutorial;
 
 namespace EA4S.Minigames.Scanner
 {
@@ -248,7 +249,8 @@ namespace EA4S.Minigames.Scanner
 
 		public void CorrectMove(GameObject GO, ScannerLivingLetter livingLetter)
 		{
-			AudioManager.I.PlayDialogue("Keeper_Good_" + UnityEngine.Random.Range(1, 12));
+            TutorialUI.MarkYes(GO.transform.position + Vector3.up * 3 + Vector3.right, TutorialUI.MarkSize.Normal);
+            AudioManager.I.PlayDialogue("Keeper_Good_" + UnityEngine.Random.Range(1, 12));
             game.LogAnswer(livingLetter.letterObjectView.Data, true);
             game.tut.playTut = false;
 
@@ -272,7 +274,8 @@ namespace EA4S.Minigames.Scanner
 		public void WrongMove(GameObject GO, ScannerLivingLetter livingLetter)
 		{
 			numberOfFailedMoves++;
-			AudioManager.I.PlayDialogue("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
+            TutorialUI.MarkNo(GO.transform.position + Vector3.up*2 + Vector3.right * 1.5f, TutorialUI.MarkSize.Normal);
+            AudioManager.I.PlayDialogue("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
             game.LogAnswer(livingLetter.letterObjectView.Data, false);
             game.CreatePoof(GO.transform.position,2f,true);
             game.Context.GetOverlayWidget().SetLives(game.allowedFailedMoves - numberOfFailedMoves);
