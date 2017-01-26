@@ -62,7 +62,8 @@ namespace EA4S.Assessment
                             );
 
             // Create the custom managers
-            context.QuestionGenerator = new DefaultQuestionGenerator( context.Configuration.Questions);
+            context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
+                                                                        context.DialogueManager);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, letterSize, wordSize);
 
             // Build the assessment
@@ -89,7 +90,8 @@ namespace EA4S.Assessment
                             );
 
 
-            context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, false);
+            context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, false,
+                                                                    context.DialogueManager);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize);
 
             return CreateAssessment( context);
@@ -114,7 +116,8 @@ namespace EA4S.Assessment
                             AnswerPlacerType.Random
                             );
 
-            context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, true);
+            context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, true,
+                                                                    context.DialogueManager);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize, true);
 
             return CreateAssessment( context);
@@ -139,7 +142,8 @@ namespace EA4S.Assessment
                             AnswerPlacerType.Random
                             );
 
-            context.QuestionGenerator = new DefaultQuestionGenerator( context.Configuration.Questions);
+            context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
+                                                                        context.DialogueManager);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize);
 
             return CreateAssessment( context);
@@ -164,7 +168,8 @@ namespace EA4S.Assessment
                             AnswerPlacerType.Random
                             );
 
-            context.QuestionGenerator = new DefaultQuestionGenerator( context.Configuration.Questions);
+            context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
+                                                                        context.DialogueManager);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, sentenceSize, sentenceSize);
 
             return CreateAssessment( context);
@@ -190,9 +195,10 @@ namespace EA4S.Assessment
                             );
 
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.SunMoon);
-            context.QuestionGenerator = new CategoryQuestionGenerator( context.Configuration.Questions, 
-                                                                            categoryProvider,
-                                                                            2, rounds);
+            context.QuestionGenerator = new CategoryQuestionGenerator(  context.Configuration.Questions,
+                                                                        categoryProvider,
+                                                                        context.DialogueManager,
+                                                                        2, rounds);
             context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, wordSize);
 
             return CreateAssessment( context);
@@ -218,9 +224,10 @@ namespace EA4S.Assessment
                             );
 
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.SingularDualPlural);
-            context.QuestionGenerator = new CategoryQuestionGenerator( context.Configuration.Questions,
-                                                                            categoryProvider,
-                                                                            2, rounds);
+            context.QuestionGenerator = new CategoryQuestionGenerator(  context.Configuration.Questions,
+                                                                        categoryProvider,
+                                                                        context.DialogueManager,
+                                                                        2, rounds);
             context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, wordSize);
 
             return CreateAssessment( context);
@@ -246,9 +253,10 @@ namespace EA4S.Assessment
                             );
 
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.WithOrWithoutArticle);
-            context.QuestionGenerator = new CategoryQuestionGenerator( context.Configuration.Questions,
-                                                                            categoryProvider,
-                                                                            2, rounds);
+            context.QuestionGenerator = new CategoryQuestionGenerator(  context.Configuration.Questions,
+                                                                        categoryProvider,
+                                                                        context.DialogueManager,
+                                                                        2, rounds);
             context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, wordSize, wordSize);
 
             return CreateAssessment( context);
@@ -276,8 +284,9 @@ namespace EA4S.Assessment
 
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.SunMoon);
             context.QuestionGenerator = new CategoryQuestionGenerator( context.Configuration.Questions,
-                                                                            categoryProvider,
-                                                                            2, rounds);
+                                                                       categoryProvider,
+                                                                       context.DialogueManager,
+                                                                       2, rounds);
             context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, letterSize);
 
             return CreateAssessment( context);
@@ -302,7 +311,8 @@ namespace EA4S.Assessment
                             AnswerPlacerType.Random
                             );
 
-            context.QuestionGenerator = new DefaultQuestionGenerator( context.Configuration.Questions);
+            context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
+                                                                        context.DialogueManager);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, letterSize, letterSize);
 
             return CreateAssessment( context);
@@ -327,7 +337,8 @@ namespace EA4S.Assessment
                             AnswerPlacerType.Random
                             );
 
-            context.QuestionGenerator = new DefaultQuestionGenerator( context.Configuration.Questions);
+            context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
+                                                                        context.DialogueManager);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, wordSize);
 
             return CreateAssessment( context);
@@ -352,7 +363,8 @@ namespace EA4S.Assessment
                             AnswerPlacerType.Random
                             );
 
-            context.QuestionGenerator = new DefaultQuestionGenerator( context.Configuration.Questions);
+            context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
+                                                                        context.DialogueManager);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, letterSize, wordSize);
 
             return CreateAssessment( context);

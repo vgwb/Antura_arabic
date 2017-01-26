@@ -22,9 +22,10 @@ namespace EA4S.Assessment
         private QuestionGeneratorState state;
         private IQuestionPack currentPack;
 
-        public DefaultQuestionGenerator( IQuestionProvider provider)
+        public DefaultQuestionGenerator( IQuestionProvider provider, AssessmentDialogues dialogues)
         {
             this.provider = provider;
+            this.dialogues = dialogues;
             state = QuestionGeneratorState.Uninitialized;
             ClearCache();
         }
@@ -81,6 +82,7 @@ namespace EA4S.Assessment
         List< Answer> totalAnswers;
         List< IQuestion> totalQuestions;
         Answer[] partialAnswers;
+        private AssessmentDialogues dialogues;
 
         public IQuestion GetNextQuestion()
         {
@@ -135,7 +137,7 @@ namespace EA4S.Assessment
                 data = new LL_ImageData(data.Id);
 
             var q = LivingLetterFactory.Instance.SpawnQuestion( data);
-            return new DefaultQuestion( q, correctCount);
+            return new DefaultQuestion( q, correctCount, dialogues);
         }
 
         private Answer GenerateWrongAnswer( ILivingLetterData wrongAnswer)
@@ -145,7 +147,7 @@ namespace EA4S.Assessment
             .gameObject.AddComponent< Answer>()
 
                 // Correct answer
-                .Init(false);
+                .Init(false, dialogues);
         }
 
         private void GeneratePlaceHolder( IQuestion question)
@@ -163,7 +165,7 @@ namespace EA4S.Assessment
             .gameObject.AddComponent< Answer>()
 
                 // Correct answer
-                .Init(true);
+                .Init( true, dialogues);
         }
     }
 }

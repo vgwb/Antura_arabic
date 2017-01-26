@@ -14,8 +14,7 @@ namespace EA4S.Assessment
 
         public void ReadMeSound()
         {
-            AssessmentConfiguration.Instance.Context.GetAudioManager()
-               .PlayLetterData( GetComponent< LetterObjectView>().Data);
+            dialogues.PlayLetterData( GetComponent< LetterObjectView>().Data);
         }
 
         public void FaceDownInstant()
@@ -34,8 +33,11 @@ namespace EA4S.Assessment
             transform.DORotate( new Vector3( 0, 180, 0), 1);
         }
 
-        public void SetQuestion( IQuestion qst)
+        AssessmentDialogues dialogues;
+        public void SetQuestion( IQuestion qst, AssessmentDialogues dialogues)
         {
+            this.dialogues = dialogues;
+
             if (qst == null)
                 throw new ArgumentException( "Null questions");
 
@@ -53,8 +55,7 @@ namespace EA4S.Assessment
         void OnMouseDown()
         {
             if( AssessmentOptions.Instance.PronunceQuestionWhenClicked)
-                AssessmentConfiguration.Instance.Context.GetAudioManager()
-                    .PlayLetterData( GetComponent< LetterObjectView>().Data);
+                dialogues.PlayLetterData( GetComponent< LetterObjectView>().Data);
         }
 
         public IQuestionDecoration questionAnswered;
