@@ -56,6 +56,7 @@ namespace EA4S.Minigames.HideAndSeek
 
             ArrayLetters[0].GetComponentInChildren<LetterObjectView>().Init(wrong);
             ArrayTrees[0].GetComponent<CapsuleCollider>().enabled = true;
+            ArrayLetters[0].GetComponent<CapsuleCollider>().enabled = false;
 
 
             // Set the correct answer
@@ -118,7 +119,8 @@ namespace EA4S.Minigames.HideAndSeek
             if(GetIdFromPosition(id) == 0)
             {
                 ArrayTrees[0].GetComponent<CapsuleCollider>().enabled = false;
-                phase = 1;
+                ArrayTrees[1].GetComponent<CapsuleCollider>().enabled = true; // skip to phase 2
+                phase = 2;
                 TutorialUI.Clear(false);
                 timeFinger = Time.time + animDuration + timeToWait;
             }
@@ -170,6 +172,7 @@ namespace EA4S.Minigames.HideAndSeek
                 x.GetComponent<LetterObjectView>().Poof();
                 AudioManager.I.PlaySound(Sfx.Poof);
                 x.SetActive(false);
+                x.GetComponent<CapsuleCollider>().enabled = true;
             }
 
             var delay = 1f;
