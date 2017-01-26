@@ -1,7 +1,6 @@
 using Kore.Coroutines;
 using Kore.Utils;
 using System.Collections;
-using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -13,7 +12,6 @@ namespace EA4S.Assessment
                             IQuestionGenerator question_generator,
                             ILogicInjector logic_injector,
                             IAssessmentConfiguration game_conf,
-                            IGameContext game_context,
                             AssessmentDialogues dialogues)
         {
             AnswerPlacer = answ_placer;
@@ -21,7 +19,6 @@ namespace EA4S.Assessment
             QuestionPlacer = question_placer;
             LogicInjector = logic_injector;
             Configuration = game_conf;
-            GameContext = game_context;
             Dialogues = dialogues;
         }
 
@@ -158,8 +155,6 @@ namespace EA4S.Assessment
         public IQuestionPlacer QuestionPlacer { get; private set; }
 
         public IAssessmentConfiguration Configuration { get; private set; }
-
-        public IGameContext GameContext { get; private set; }
 
         public AssessmentDialogues Dialogues { get; private set; }
     }

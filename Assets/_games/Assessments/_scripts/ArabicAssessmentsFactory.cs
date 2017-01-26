@@ -402,8 +402,7 @@ namespace EA4S.Assessment
         private static Assessment CreateAssessment( AssessmentContext context)
         {
             return new Assessment( context.AnswerPlacer, context.QuestionPlacer, context.QuestionGenerator,
-                                   context.LogicInjector, context.Configuration, context.Utils,
-                                   context.DialogueManager);
+                                   context.LogicInjector, context.Configuration, context.DialogueManager);
         }
 
         /// <summary>
