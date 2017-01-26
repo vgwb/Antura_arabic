@@ -127,8 +127,8 @@ namespace EA4S.Minigames.HideAndSeek
                 }
 
 				pos2 = pos1 + new Vector3 ( temp,0,0);
-                
-				isMoving = true;
+
+                isMoving = true;
                 isClickable = true;
 
                 MoveTo(pos2, walkDuration);
@@ -136,8 +136,8 @@ namespace EA4S.Minigames.HideAndSeek
 		}
 
 		void OnMouseDown()
-		{
-			if (isClickable && onLetterTouched != null) {
+        {
+            if (isClickable && onLetterTouched != null) {
                 HideAndSeekConfiguration.Instance.Context.GetAudioManager().PlayLetterData(view.Data);
                 isClickable = false;
                 onLetterTouched (id);
