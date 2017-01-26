@@ -138,6 +138,8 @@ namespace EA4S.Minigames.ColorTickle
                         m_LetterObjectView.DoHorray();
                         ColorTickleConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
 
+                        game.Context.GetLogManager().OnAnswered(m_LetterObjectView.Data, true);
+
                         //play win particle
                         game.winParticle.SetActive(true);
                         foreach (var particles in game.winParticle.GetComponentsInChildren<ParticleSystem>(true))
@@ -151,6 +153,7 @@ namespace EA4S.Minigames.ColorTickle
                         /*m_LetterObjectView.DoDancingLose(); //this just set trigger for lose on dancing animation
                         m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);*/
                         m_LetterObjectView.DoAngry();
+                        game.Context.GetLogManager().OnAnswered(m_LetterObjectView.Data, false);
                         game.Context.GetAudioManager().PlaySound(Sfx.LetterAngry);
                         game.Context.GetAudioManager().PlaySound(Sfx.Lose);
                     }                   

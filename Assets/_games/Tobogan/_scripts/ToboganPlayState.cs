@@ -1,4 +1,5 @@
-﻿using EA4S.MinigamesCommon;
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.Tobogan
 {
@@ -98,14 +99,16 @@ namespace EA4S.Minigames.Tobogan
 
         public void UpdatePhysics(float delta) { }
 
-        void OnAnswered(bool result)
+        void OnAnswered(IQuestionPack pack, bool result)
         {
             requestNextQueston = true;
             nextQuestionTimer = nextQuestiontime;
 
-            game.questionsManager.QuestionEnd();
+            game.questionsManager.OnQuestionEnd();
 
             game.OnResult(result);
+
+            game.Context.GetLogManager().OnAnswered(pack.GetQuestion(), result);
         }
 
         void OnTimesUp()

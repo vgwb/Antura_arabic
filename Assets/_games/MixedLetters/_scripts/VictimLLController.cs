@@ -7,6 +7,7 @@ namespace EA4S.Minigames.MixedLetters
     public class VictimLLController : MonoBehaviour
     {
         private const float LOOK_TOWARDS_ANTURA_TIME = 0.33f;
+        private const float BIG_SCALE_VALUE = 1.5f;
 
         public static VictimLLController instance;
         public LetterObjectView letterObjectView;
@@ -16,6 +17,11 @@ namespace EA4S.Minigames.MixedLetters
         void Awake()
         {
             instance = this;
+        }
+
+        public void SetBigScale()
+        {
+            letterObjectView.Scale = BIG_SCALE_VALUE;
         }
 
         public void SetCustomText(string text)

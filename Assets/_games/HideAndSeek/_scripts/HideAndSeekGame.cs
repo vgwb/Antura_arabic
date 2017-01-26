@@ -64,9 +64,12 @@ namespace EA4S.Minigames.HideAndSeek
 			return HideAndSeekConfiguration.Instance;
         }
 
-        public void OnResult()
+        public void OnResult(ILivingLetterData data, bool result)
         {
-            Context.GetOverlayWidget().SetStarsScore(++CurrentScore);
+            if (result)
+                Context.GetOverlayWidget().SetStarsScore(++CurrentScore);
+
+            Context.GetLogManager().OnAnswered(data, result);
         }
     }
 }
