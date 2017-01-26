@@ -1,5 +1,3 @@
-using Kore.Utils;
-
 namespace EA4S.Assessment
 {
     /// <summary>

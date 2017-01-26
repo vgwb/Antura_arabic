@@ -42,11 +42,8 @@ namespace EA4S.Assessment
                 yield return Koroutine.Nested( RoundBegin());
                 yield return Koroutine.Nested( PlaceAnswers());
 
-                bool playQuestion = AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial;
-
-                IYieldable audio = null;
                 if(round == 0)
-                    audio = new WaitCoroutine( DescriptionAudio( playQuestion));
+                   Koroutine.Run( DescriptionAudio());
 
                 yield return Koroutine.Nested( GamePlay());
                 yield return Koroutine.Nested( ClearRound());
@@ -55,11 +52,11 @@ namespace EA4S.Assessment
             gameEndedCallback();
         }
 
-        private IEnumerator DescriptionAudio( bool playQuestion)
+        private IEnumerator DescriptionAudio()
         {
             yield return Dialogues.PlayGameDescription();
 
-            if(playQuestion)
+            if(AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial)
                 yield return QuestionPlacer.PlayQuestionSound();
         }
 

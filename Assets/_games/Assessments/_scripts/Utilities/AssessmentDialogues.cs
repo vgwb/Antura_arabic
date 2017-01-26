@@ -1,8 +1,7 @@
 using EA4S.Db;
+using EA4S.MinigamesCommon;
 using Kore.Coroutines;
 using System.Collections;
-using EA4S.MinigamesCommon;
-using UnityEngine;
 
 namespace EA4S.Assessment
 {
