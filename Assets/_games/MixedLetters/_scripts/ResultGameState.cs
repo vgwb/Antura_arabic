@@ -67,8 +67,9 @@ namespace EA4S.Minigames.MixedLetters
             if (!game.IsGameOver)
             {
                 game.GenerateNewWord();
+                VictimLLController.instance.HideVictoryRays();
             }
-
+            
             wasBackShownDuringTwirlAnimation = true;
         }
 

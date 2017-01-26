@@ -68,8 +68,7 @@ namespace EA4S.Minigames.MixedLetters
 
             //game.GenerateNewWord();
             game.SayQuestion(OnQuestionOver);
-
-            VictimLLController.instance.HideVictoryRays();
+            
             VictimLLController.instance.Reset();
             VictimLLController.instance.Enable();
 
