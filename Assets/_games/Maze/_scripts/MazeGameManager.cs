@@ -144,7 +144,7 @@ namespace EA4S.Minigames.Maze
 			//line.useWorldSpace = true;    
 
 			line.material = new Material(Shader.Find("Antura/Transparent"));
-			line.material.color = new Color (0.5f, 0.5f, 0.5f, 0.5f);
+			line.material.color = new Color (1f, 0.15f, 0f, 0.75f);
 
 			lines.Add (line);
 
