@@ -436,7 +436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c39c2eba87b045059f7cb2f8d2d8c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyEventName: 
   LEDs:
   - {fileID: 1896870229}
   - {fileID: 455287876}
@@ -1047,7 +1046,6 @@ GameObject:
   - component: {fileID: 448518487}
   - component: {fileID: 448518486}
   - component: {fileID: 448518485}
-  - component: {fileID: 448518484}
   m_Layer: 5
   m_Name: Button Music
   m_TagString: Untagged
@@ -1074,52 +1072,6 @@ RectTransform:
   m_AnchoredPosition: {x: -483, y: -97}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &448518484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 448518482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2066047398, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  switchPresetData:
-    _sourcePreset: 
-    _targetPreset: 
-  globalParameterData:
-    _name: 
-    _value: 0
-  globalSwitchParameterData:
-    _name: 
-    _switch: 
-  transitionToSnapshotData:
-    _snapshot: 
-    _timeToReach: 0
-  _eventName: MusicTrigger
-  _eventAction: 0
-  _eventTriggerOnEnter: 0
-  _triggerEnterTag: 
-  _trigger: 0
-  _eventValue: 
-  _eventParameter: 1
-  _eventScheduleParameter: 0
-  _eventParameterName: 
-  _delay: 0
-  _probability: 100
-  _eventTriggerType: 10
-  _ignoreGameObject: 0
-  _overrideParentGameObject: 0
-  _addToQueue: 0
-  _min: 0
-  _max: 1
-  _dspType: 0
-  _timeToTarget: 0
-  _curve: 0.5
-  _parentGameObject: {fileID: 448518482}
-  _useEventID: 0
-  _postCountMax: 0
 --- !u!114 &448518485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2507,48 +2459,6 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &1851912528
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 481964, guid: 8d2a6e676863b4658a06be3b5a745eca, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 481964, guid: 8d2a6e676863b4658a06be3b5a745eca, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 481964, guid: 8d2a6e676863b4658a06be3b5a745eca, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 481964, guid: 8d2a6e676863b4658a06be3b5a745eca, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 481964, guid: 8d2a6e676863b4658a06be3b5a745eca, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 481964, guid: 8d2a6e676863b4658a06be3b5a745eca, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 481964, guid: 8d2a6e676863b4658a06be3b5a745eca, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 481964, guid: 8d2a6e676863b4658a06be3b5a745eca, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 8d2a6e676863b4658a06be3b5a745eca, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1896870229
 GameObject:
