@@ -122,10 +122,12 @@ namespace EA4S.Minigames.Scanner
 			onFlying(this);
 			status = LLStatus.Happy;
 
-			letterObjectView.DoSmallJump();            
-			// Rotate in case not facing the camera
-			StartCoroutine(RotateGO(livingLetter, new Vector3(0, 180, 0), 1f));
-			yield return new WaitForSeconds(1f);
+            letterObjectView.State = LLAnimationStates.LL_dancing;
+            letterObjectView.DoDancingWin();
+            //letterObjectView.DoSmallJump();            
+            // Rotate in case not facing the camera
+            StartCoroutine(RotateGO(livingLetter, new Vector3(0, 180, 0), 1f));
+			yield return new WaitForSeconds(2f);
 
 //			// building anticipation
 //			letterObjectView.Crouching = true;
@@ -133,10 +135,12 @@ namespace EA4S.Minigames.Scanner
 //			letterObjectView.Crouching = false;
 
 			// Starting flight
-			letterObjectView.DoHorray();            
+			letterObjectView.DoHorray();
             yield return new WaitForSeconds(0.75f);
-			status = LLStatus.Flying;
             rainbowJet.SetActive(true);
+            //yield return new WaitForSeconds(0.15f);
+			status = LLStatus.Flying;
+            
 			letterObjectView.SetState(LLAnimationStates.LL_still);
             yield return new WaitForSeconds(2f);
 //            Reset();
