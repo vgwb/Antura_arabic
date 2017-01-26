@@ -381,8 +381,7 @@ namespace EA4S.Minigames.Maze
 
 
             index = 20;
-
-
+            
             currentLL = ld;
             currentPrefab = (GameObject)Instantiate(prefabs[index]);
 
