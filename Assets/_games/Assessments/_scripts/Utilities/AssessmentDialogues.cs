@@ -2,6 +2,7 @@ using EA4S.Db;
 using Kore.Coroutines;
 using System.Collections;
 using EA4S.MinigamesCommon;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -46,6 +47,14 @@ namespace EA4S.Assessment
                                         LocalizationDataId.Assessment_Complete_3), true);
         }
 
+        public IYieldable PlayAnswerWrong()
+        {
+            return Speak( Localization.Random(
+                                        LocalizationDataId.Assessment_Wrong_1,
+                                        LocalizationDataId.Assessment_Wrong_2,
+                                        LocalizationDataId.Assessment_Wrong_3));
+        }
+
         public IYieldable PlayGameDescription()
         {
             return Speak( gameDescription);
@@ -75,7 +84,7 @@ namespace EA4S.Assessment
         private IAudioManager audioManager;
         private ISubtitlesWidget widget;
         private LocalizationDataId gameDescription;
-        private bool isPlayingAudio;
+        private PriorityTikets ticket = new PriorityTikets();
 
         public AssessmentDialogues( IAudioManager audioManager, 
                                     ISubtitlesWidget widget,
@@ -84,46 +93,70 @@ namespace EA4S.Assessment
             this.audioManager = audioManager;
             this.widget = widget;
             this.gameDescription = gameDescription;
-            isPlayingAudio = false;
         }
 
+        /// <summary>
+        /// Play LL sound files, supend them if there's some main audio event.
+        /// </summary>
+        /// <param name="data">Sound to play</param>
+        public void PlayLetterData( ILivingLetterData data)
+        {
+            Koroutine.Run( PlayLetterDataCoroutine( data));
+        }
+
+        private IEnumerator PlayLetterDataCoroutine( ILivingLetterData data)
+        {
+            var audioTicket = ticket.LockLowPriority();
+
+            var audioSource = 
+            AssessmentConfiguration.Instance.Context.GetAudioManager()
+                    .PlayLetterData( data);
+
+            while (audioSource.IsPlaying && ticket.IsLowPriorityTicketValid(audioTicket))
+                yield return null;
+
+
+            if (audioSource.IsPlaying)
+                audioSource.Stop();
+
+            ticket.UnlockLowPriorityTicket( audioTicket);
+        }
+
+
+        /// <summary>
+        /// Now dialougues are just ignored if there's already some audio playing.
+        /// </summary>
+        /// <param name="ID"> Statement to play/display</param>
         private IEnumerator DialogueCoroutine( LocalizationDataId ID, bool showWalkieTalkie, bool showSubtitles)
         {
-            bool answerConfigurationCache = AssessmentOptions.Instance.PronunceAnswerWhenClicked;
-            AssessmentOptions.Instance.PronunceAnswerWhenClicked = false;
-
-            while (IsPlayingAudio())
-                yield return null;
-            isPlayingAudio = true;
-
             yield return Wait.For( 0.2f);
 
-            if (showSubtitles)
-                widget.DisplaySentence( ID, 2.2f, showWalkieTalkie);
+            var audioTicket = ticket.LockHighPriority();
+            bool playing = false;
 
-            if (showWalkieTalkie && showSubtitles) // give time for walkietalkie sound
+            if (ticket.IsHighPriorityTicketValid( audioTicket))
+            {
+                // Can Play Audio
+                playing = true;
+
+                if (showSubtitles)
+                    widget.DisplaySentence( ID, 2.2f, showWalkieTalkie);
+
+                if (showWalkieTalkie && showSubtitles) // give time for walkietalkie sound
+                    yield return Wait.For( 0.2f);
+
+                audioManager.PlayDialogue( ID, () => { playing = false; });
+
+                while (playing)
+                    yield return null;
+
+                if (showSubtitles)
+                    widget.Clear();
+
                 yield return Wait.For( 0.2f);
+            }
 
-            audioManager.PlayDialogue( ID, () => OnStopPlaying());
-
-            while (IsPlayingAudio())
-                yield return null;
-
-            if (showSubtitles)
-                widget.Clear();
-
-            AssessmentOptions.Instance.PronunceAnswerWhenClicked = answerConfigurationCache;
-            yield return Wait.For( 0.2f);
-        }
-
-        private void OnStopPlaying()
-        {
-            isPlayingAudio = false;
-        }
-
-        private bool IsPlayingAudio()
-        {
-            return isPlayingAudio;
+            ticket.UnlockHighPriorityTicket( audioTicket);
         }
     }
 }
