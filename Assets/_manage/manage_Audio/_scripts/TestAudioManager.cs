@@ -153,6 +153,8 @@ namespace EA4S.Management.Test
         }
         void PlayDialog(string localizationID)
         {
+            StopCurrentLocalization();
+
             Debug.Log("playing localization :" + localizationID);
             lastDialogueAudioSource = AudioManager.I.PlayDialogue(localizationID);
         }
