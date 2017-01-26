@@ -101,29 +101,9 @@ namespace EA4S.Assessment
         /// <param name="data">Sound to play</param>
         public void PlayLetterData( ILivingLetterData data)
         {
-            Koroutine.Run( PlayLetterDataCoroutine( data));
-        }
-
-        private IEnumerator PlayLetterDataCoroutine( ILivingLetterData data)
-        {
-            //var audioTicket = ticket.LockLowPriority();
-
-            var audioSource = 
             AssessmentConfiguration.Instance.Context.GetAudioManager()
-                    .PlayLetterData( data);
-
-            yield return null;
-
-            /*while (audioSource.IsPlaying && ticket.IsLowPriorityTicketValid(audioTicket))
-                yield return null;
-
-
-            if (audioSource.IsPlaying)
-                audioSource.Stop();
-
-            ticket.UnlockLowPriorityTicket( audioTicket);*/
+                    .PlayLetterData(data);
         }
-
 
         /// <summary>
         /// Now dialougues are just ignored if there's already some audio playing.
