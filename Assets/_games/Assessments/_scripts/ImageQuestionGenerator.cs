@@ -17,10 +17,11 @@ namespace EA4S.Assessment
         private IQuestionPack currentPack;
         private bool missingLetter;
 
-        public ImageQuestionGenerator( IQuestionProvider provider , bool missingLetter)
+        public ImageQuestionGenerator( IQuestionProvider provider , bool missingLetter, AssessmentDialogues dialogues)
         {
             this.provider = provider;
             this.missingLetter = missingLetter;
+            this.dialogues = dialogues;
             state = QuestionGeneratorState.Uninitialized;
             ClearCache();
         }
@@ -145,10 +146,11 @@ namespace EA4S.Assessment
                 data = new LL_ImageData( data.Id);
 
             var q = LivingLetterFactory.Instance.SpawnQuestion( data);
-            return new DefaultQuestion( q, 0);
+            return new DefaultQuestion( q, 0, dialogues);
         }
 
         private const string RemovedLetterChar = "_";
+        private AssessmentDialogues dialogues;
 
         private IQuestion GenerateMissingLetterQuestion( ILivingLetterData data, ILivingLetterData letterToRemove)
         {
@@ -161,7 +163,7 @@ namespace EA4S.Assessment
             var wordGO = LivingLetterFactory.Instance.SpawnQuestion( word);
             wordGO.Label.text = text;
 
-            return new ImageQuestion( wordGO, imageData);
+            return new ImageQuestion( wordGO, imageData, dialogues);
         }
 
         private Answer GenerateWrongAnswer( ILivingLetterData wrongAnswer)
@@ -171,7 +173,7 @@ namespace EA4S.Assessment
             .gameObject.AddComponent< Answer>()
 
                 // Correct answer
-                .Init( false);
+                .Init( false, dialogues);
         }
 
         private void GeneratePlaceHolder( IQuestion question)
@@ -189,7 +191,7 @@ namespace EA4S.Assessment
             .gameObject.AddComponent< Answer>()
 
                 // Correct answer
-                .Init( true);
+                .Init( true, dialogues);
         }
     }
 }

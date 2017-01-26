@@ -18,6 +18,7 @@ namespace EA4S.Assessment
 
         public CategoryQuestionGenerator( IQuestionProvider questionProvider, 
                                           ArabicCategoryProvider categoryProvider,
+                                          AssessmentDialogues dialogues,
                                           int maxAnsw, int rounds)
         {
             state = QuestionGeneratorState.Uninitialized;
@@ -25,6 +26,8 @@ namespace EA4S.Assessment
             numberOfRounds = rounds;
             answersBuckets = new List< ILivingLetterData>[ 3];
             this.categoryProvider = categoryProvider;
+            this.dialogues = dialogues;
+
             for (int i = 0; i < 3; i++)
                 answersBuckets[i] = new List< ILivingLetterData>();
                         
@@ -127,7 +130,7 @@ namespace EA4S.Assessment
             .gameObject.AddComponent< Answer>()
             
                 // Correct answer
-                .Init(true);
+                .Init(true, dialogues);
         }
 
         public void InitRound()
@@ -192,6 +195,7 @@ namespace EA4S.Assessment
         private int category1ForThisRound;
         private int category2ForThisRound;
         private int category3ForThisRound;
+        private AssessmentDialogues dialogues;
 
         public IQuestion GetNextQuestion()
         {
@@ -244,7 +248,7 @@ namespace EA4S.Assessment
         private IQuestion GenerateQuestion( int correctCount)
         {
             var q = categoryProvider.SpawnCustomObject( currentCategory);
-            return new CategoryQuestion( q, correctCount);
+            return new CategoryQuestion( q, correctCount, dialogues);
         }
 
         private void GeneratePlaceHolder( IQuestion question)

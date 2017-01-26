@@ -10,13 +10,13 @@ namespace EA4S.Assessment
         private LetterObjectView view;
         private int placeholdersCount;
 
-        public DefaultQuestion( LetterObjectView letter, int placeholders)
+        public DefaultQuestion( LetterObjectView letter, int placeholders, AssessmentDialogues dialogues)
         {
             view = letter;
             placeholdersCount = placeholders;
             placeholdersSet = new List< GameObject>();
             var question = letter.gameObject.AddComponent< QuestionBehaviour>();
-            question.SetQuestion( this);
+            question.SetQuestion( this, dialogues);
         }
 
         public GameObject gameObject
@@ -66,6 +66,7 @@ namespace EA4S.Assessment
         }
 
         private AnswerSet answerSet;
+
         public void SetAnswerSet( AnswerSet answerSet)
         {
             this.answerSet = answerSet;

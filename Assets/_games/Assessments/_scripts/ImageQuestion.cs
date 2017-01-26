@@ -10,14 +10,14 @@ namespace EA4S.Assessment
         private LetterObjectView view;
         private ILivingLetterData imageData;
 
-        public ImageQuestion( LetterObjectView wordGO, ILivingLetterData image)
+        public ImageQuestion( LetterObjectView wordGO, ILivingLetterData image, AssessmentDialogues dialogues)
         {
             imageData = image;
             view = wordGO;
             placeholdersSet = new List<GameObject>();
 
             var question = wordGO.gameObject.AddComponent< QuestionBehaviour>();
-            question.SetQuestion( this);
+            question.SetQuestion( this, dialogues);
         }
 
 
