@@ -16,7 +16,6 @@ namespace EA4S.Assessment
         public IAudioManager AudioManager;
         public IDragManager DragManager;
         public ILogicInjector LogicInjector;
-        public ISubtitlesWidget Subtitles;
         public IQuestionPlacer QuestionPlacer;
         public IAnswerPlacer AnswerPlacer;
         public AnswerChecker AnswerChecker;
