@@ -133,6 +133,7 @@ namespace EA4S.Assessment
         protected IYieldable PlaceImage( IQuestion q, Vector3 imagePos)
         {
             var ll = LivingLetterFactory.Instance.SpawnQuestion( q.Image());
+
             images.Add( ll);
             ll.transform.position = imagePos;
             ll.transform.localScale = Vector3.zero;

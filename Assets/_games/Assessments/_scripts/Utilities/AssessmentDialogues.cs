@@ -96,7 +96,7 @@ namespace EA4S.Assessment
         }
 
         /// <summary>
-        /// Play LL sound files, supend them if there's some main audio event.
+        /// Play LL sound files
         /// </summary>
         /// <param name="data">Sound to play</param>
         public void PlayLetterData( ILivingLetterData data)
