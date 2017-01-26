@@ -41,6 +41,8 @@ namespace EA4S.Minigames.Maze
             List<GameObject> arrows = new List<GameObject>();
             List<GameObject> lines = new List<GameObject>();
 
+            List<GameObject> tutorialWaypoints = new List<GameObject>();
+
             Vector3 characterPosition = new Vector3();
 
             foreach (Transform child in transform)
@@ -75,6 +77,12 @@ namespace EA4S.Minigames.Maze
 
                     foreach (Transform fruit in child.transform)
                         fruit.gameObject.AddComponent<BoxCollider>();
+
+                    Transform tutorialWaypointsForPath = transform.FindChild("TutorialWaypoints" + child.name.Substring(5));
+                    tutorialWaypoints.Add(tutorialWaypointsForPath == null ? child.gameObject : tutorialWaypointsForPath.gameObject);
+
+                    Debug.Log("Tutorial waypoints for " + child.name + " was" + (tutorialWaypointsForPath == null ? "" : " not") + " null.");
+                    
                 }
                 if (child.name.IndexOf("line") == 0)
                 {
@@ -96,7 +104,8 @@ namespace EA4S.Minigames.Maze
             hd.transform.position = characterPosition;
 
             HandTutorial handTut = hd.AddComponent<HandTutorial>();
-            handTut.pathsToFollow = arrows;
+            handTut.pathsToFollow = tutorialWaypoints;
+            handTut.visibleArrows = arrows;
             handTut.linesToShow = lines;
 
             gameObject.AddComponent<MazeShowPrefab>().letterIndex = letterDataIndex;
