@@ -12,7 +12,7 @@ namespace Kore.Utils
     /// created.
     /// </summary>
     /// <typeparam name="T">Poolable (Reset method) class with new operator</typeparam>
-    class MiniPool<T> where T: IPoolable, new()
+    public class MiniPool<T> where T: IPoolable, new()
     {
         // Stack is slightly faster than a Queue: I guess because Pushing/Popping
         // from a stack access the same memory location, thus has slightly more

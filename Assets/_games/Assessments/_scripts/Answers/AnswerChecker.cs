@@ -141,10 +141,7 @@ namespace EA4S.Assessment
 
         IYieldable PlayAnswerWrong()
         {
-            return dialogueManager.Speak( Localization.Random(
-                                            Db.LocalizationDataId.Assessment_Wrong_1,
-                                            Db.LocalizationDataId.Assessment_Wrong_2,
-                                            Db.LocalizationDataId.Assessment_Wrong_3));
+            return dialogueManager.PlayAnswerWrong();
         }
 
         private bool WrongAnswerAnimationPlaying()
