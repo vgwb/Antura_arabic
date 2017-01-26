@@ -378,6 +378,11 @@ namespace EA4S.Minigames.Maze
                 Debug.Log("Letter got from Teacher is: " + ld.Id + " - does not match 11 models we have, we will play sound of the returned data");
                 index = UnityEngine.Random.Range(0, prefabs.Count);
             }
+
+
+            index = 20;
+
+
             currentLL = ld;
             currentPrefab = (GameObject)Instantiate(prefabs[index]);
 
