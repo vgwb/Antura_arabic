@@ -1,5 +1,4 @@
 ﻿// ReSharper disable once RedundantUsingDirective
-using System.Reflection;
 
 namespace SRDebugger.UI.Controls.Data
 {

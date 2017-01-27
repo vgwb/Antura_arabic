@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using EA4S.Core;
 using EA4S.MinigamesAPI;
 using TMPro;
 

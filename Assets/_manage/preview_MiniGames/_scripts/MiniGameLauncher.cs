@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using EA4S.Core;
 using EA4S.Helpers;
 using EA4S.MinigamesAPI;
 

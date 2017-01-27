@@ -2,11 +2,10 @@
 using System.Collections;
 using EA4S.Antura;
 using EA4S.Helpers;
-using EA4S.Utilities;
 
 namespace EA4S.Minigames.TakeMeHome
 {
-	public class TakeMeHomeAntura : MonoBehaviour
+    public class TakeMeHomeAntura : MonoBehaviour
 	{
 		
 		Vector3 target;

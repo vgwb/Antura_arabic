@@ -1,6 +1,4 @@
-﻿using EA4S.Core;
-
-namespace EA4S.MinigamesAPI
+﻿namespace EA4S.MinigamesAPI
 {
     /// <summary>
     /// Interface for a provider of ILivingLetterData.

@@ -5,7 +5,6 @@ using DG.DeAudio;
 using EA4S.Core;
 using EA4S.Helpers;
 using EA4S.MinigamesCommon;
-using EA4S.Utilities;
 
 namespace EA4S.Audio
 {

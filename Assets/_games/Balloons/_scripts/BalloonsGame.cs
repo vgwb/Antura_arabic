@@ -1,14 +1,8 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using ModularFramework.Core;
-using ModularFramework.Helpers;
 using ArabicSupport;
-using EA4S;
-using EA4S.Core;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
