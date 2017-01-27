@@ -78,9 +78,19 @@ namespace EA4S.Database
             dynamicDb.DropAllTables();
         }
 
+        #endregion
+
+
+        #region Player Profile Data
+
         public void UpdatePlayerProfileData(PlayerProfileData playerProfileData)
         {
             dynamicDb.InsertOrReplace(playerProfileData);
+        }
+
+        public PlayerProfileData GetPlayerProfileData()
+        {
+            return dynamicDb.FindById<PlayerProfileData>("1");
         }
 
         #endregion
