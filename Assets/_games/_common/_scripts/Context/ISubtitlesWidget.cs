@@ -1,4 +1,6 @@
 ﻿
+using EA4S.UI;
+
 namespace EA4S.MinigamesCommon
 {
     /// <summary>
@@ -7,7 +9,7 @@ namespace EA4S.MinigamesCommon
     /// </summary>
     public interface ISubtitlesWidget
     {
-        void DisplaySentence(Db.LocalizationDataId text, float enterDuration = 2, bool showSpeaker = false, System.Action onSentenceCompleted = null);
+        void DisplaySentence(Database.LocalizationDataId text, float enterDuration = 2, bool showSpeaker = false, System.Action onSentenceCompleted = null);
         void Clear();
     }
 }

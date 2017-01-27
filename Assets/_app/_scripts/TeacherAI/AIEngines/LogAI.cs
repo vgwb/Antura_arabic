@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.Db;
+using EA4S.Core;
+using EA4S.Database;
 
 namespace EA4S.Teacher
 {

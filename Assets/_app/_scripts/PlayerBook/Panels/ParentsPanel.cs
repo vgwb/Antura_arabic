@@ -1,4 +1,7 @@
-﻿using EA4S.Utilities;
+﻿using EA4S.Core;
+using EA4S.Rewards;
+using EA4S.UI;
+using EA4S.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 

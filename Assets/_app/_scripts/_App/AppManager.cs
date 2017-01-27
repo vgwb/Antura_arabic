@@ -3,11 +3,13 @@ using ModularFramework.Core;
 using ModularFramework.Modules;
 using EA4S.Audio;
 using EA4S.CameraControl;
-using EA4S.Db;
+using EA4S.Core;
+using EA4S.Database;
 using EA4S.Debugging;
 using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
 using EA4S.Profile;
+using EA4S.Rewards;
+using EA4S.Teacher;
 using PlayerProfile = EA4S.Profile.PlayerProfile;
 
 namespace EA4S
@@ -34,7 +36,7 @@ namespace EA4S
 
         // refactor: access to the current minigame data should be in another subsystem that is responsible for holding temporary data for minigames
         [HideInInspector]
-        public Db.MiniGameData CurrentMinigame;
+        public Database.MiniGameData CurrentMinigame;
 
         bool appIsPaused = false;
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.MinigamesAPI;
+using UnityEngine;
 
 namespace EA4S.Minigames.MakeFriends
 {

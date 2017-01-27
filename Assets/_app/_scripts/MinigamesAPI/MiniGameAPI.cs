@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using EA4S.Core;
+using UnityEngine;
 using ModularFramework.Core;
-using EA4S.Db;
+using EA4S.Database;
 using EA4S.MinigamesCommon;
+using EA4S.Teacher;
 
 namespace EA4S.MinigamesAPI
 {

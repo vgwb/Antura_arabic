@@ -7,7 +7,7 @@ using EA4S.Profile;
 using UnityEngine;
 using EA4S.Scenes;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// General controller for the interface of the Profile Selector.

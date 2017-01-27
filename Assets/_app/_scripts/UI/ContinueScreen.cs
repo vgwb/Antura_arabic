@@ -4,7 +4,7 @@ using EA4S.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.UI
 {
     public enum ContinueScreenMode
     {
@@ -20,6 +20,30 @@ namespace EA4S
         ButtonWithBgFullscreen
     }
 
+    [System.Serializable]
+    public struct ButtonSnapshot
+    {
+        public Vector2 AnchoredPos, AnchorMin, AnchorMax, SizeDelta;
+        public Vector2 IcoAnchoredPos;
+
+        public ButtonSnapshot(Vector2 _anchoredPos, Vector2 _anchorMin, Vector2 _anchorMax, Vector2 _sizeDelta, Vector2 _icoAnchoredPos)
+        {
+            AnchoredPos = _anchoredPos;
+            AnchorMin = _anchorMin;
+            AnchorMax = _anchorMax;
+            SizeDelta = _sizeDelta;
+            IcoAnchoredPos = _icoAnchoredPos;
+        }
+
+        public void Apply(RectTransform _bt, RectTransform _ico)
+        {
+            _bt.anchorMin = AnchorMin;
+            _bt.anchorMax = AnchorMax;
+            _bt.anchoredPosition = AnchoredPos;
+            _bt.sizeDelta = SizeDelta;
+            _ico.anchoredPosition = IcoAnchoredPos;
+        }
+    }
     /// <summary>
     /// Shows a Continue screen, used to navigate forward in the application flow. 
     /// </summary>
@@ -180,32 +204,4 @@ namespace EA4S
         }
     }
 
-    // █████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
-    // ███ CLASS ███████████████████████████████████████████████████████████████████████████████████████████████████████████
-    // █████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
-
-    [System.Serializable]
-    public struct ButtonSnapshot
-    {
-        public Vector2 AnchoredPos, AnchorMin, AnchorMax, SizeDelta;
-        public Vector2 IcoAnchoredPos;
-
-        public ButtonSnapshot(Vector2 _anchoredPos, Vector2 _anchorMin, Vector2 _anchorMax, Vector2 _sizeDelta, Vector2 _icoAnchoredPos)
-        {
-            AnchoredPos = _anchoredPos;
-            AnchorMin = _anchorMin;
-            AnchorMax = _anchorMax;
-            SizeDelta = _sizeDelta;
-            IcoAnchoredPos = _icoAnchoredPos;
-        }
-
-        public void Apply(RectTransform _bt, RectTransform _ico)
-        {
-            _bt.anchorMin = AnchorMin;
-            _bt.anchorMax = AnchorMax;
-            _bt.anchoredPosition = AnchoredPos;
-            _bt.sizeDelta = SizeDelta;
-            _ico.anchoredPosition = IcoAnchoredPos;
-        }
-    }
 }

@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using EA4S.Audio;
-using EA4S.Db;
+using EA4S.Core;
+using EA4S.Database;
+using EA4S.Teacher;
 using UnityEngine;
 
 namespace EA4S.GamesSelector
@@ -61,7 +63,7 @@ namespace EA4S.GamesSelector
 
         void Start()
         {
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.SelectGame_Tuto_2, false);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.SelectGame_Tuto_2, false);
 
             if (mainBubble == null) {
                 mainBubble = this.GetComponentInChildren<GamesSelectorBubble>();

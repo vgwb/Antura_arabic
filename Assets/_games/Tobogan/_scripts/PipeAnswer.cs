@@ -1,6 +1,9 @@
 ﻿using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
+using EA4S.Core;
+using EA4S.MinigamesAPI;
+using EA4S.UI;
 using EA4S.Utilities;
 
 namespace EA4S.Minigames.Tobogan

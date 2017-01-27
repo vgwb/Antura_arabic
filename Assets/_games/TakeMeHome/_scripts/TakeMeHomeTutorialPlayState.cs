@@ -19,7 +19,7 @@ namespace EA4S.Minigames.TakeMeHome
         {
             
             //create a random LL and make it move:
-            TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.TakeMeHome_Tuto, ()=> {
+            TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.TakeMeHome_Tuto, ()=> {
                 game.currentLetter.sayLetter();
             });
 

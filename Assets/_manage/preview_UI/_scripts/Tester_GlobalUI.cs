@@ -1,4 +1,6 @@
-﻿using EA4S.Utilities;
+﻿using EA4S.Helpers;
+using EA4S.UI;
+using EA4S.Utilities;
 using UnityEngine;
 
 namespace EA4S.Test
@@ -79,7 +81,7 @@ namespace EA4S.Test
 
         public void Popup_ShowSentence()
         {
-            GlobalUI.WidgetPopupWindow.ShowSentence(() => GlobalUI.WidgetPopupWindow.Close(), Db.LocalizationDataId.Assessment_Start_2);
+            GlobalUI.WidgetPopupWindow.ShowSentence(() => GlobalUI.WidgetPopupWindow.Close(), Database.LocalizationDataId.Assessment_Start_2);
         }
 
         public void Popup_ShowImage()
@@ -103,13 +105,13 @@ namespace EA4S.Test
             GlobalUI.WidgetSubtitles.Close();
         }
 
-        Db.LocalizationDataId RandomTextId()
+        Database.LocalizationDataId RandomTextId()
         {
-            return RandomHelper.GetRandomParams(Db.LocalizationDataId.Assessment_Start_1,
-                Db.LocalizationDataId.Assessment_Start_2,
-                Db.LocalizationDataId.Assessment_Start_3,
-                Db.LocalizationDataId.Assessment_Complete_1,
-                Db.LocalizationDataId.Assessment_Classify_Letters);
+            return RandomHelper.GetRandomParams(Database.LocalizationDataId.Assessment_Start_1,
+                Database.LocalizationDataId.Assessment_Start_2,
+                Database.LocalizationDataId.Assessment_Start_3,
+                Database.LocalizationDataId.Assessment_Complete_1,
+                Database.LocalizationDataId.Assessment_Classify_Letters);
         }
 
         #endregion

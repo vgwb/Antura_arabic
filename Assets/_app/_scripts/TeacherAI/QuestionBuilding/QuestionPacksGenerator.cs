@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using EA4S.MinigamesAPI;
 
-namespace EA4S
+namespace EA4S.Teacher
 {
 
     /// <summary>

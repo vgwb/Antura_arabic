@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using DG.Tweening;
 using EA4S.Audio;
+using EA4S.Core;
+using EA4S.UI;
 using UnityEngine;
 using UnityEngine.UI;
 

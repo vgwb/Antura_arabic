@@ -1,4 +1,5 @@
-using EA4S.Db;
+using EA4S.Database;
+using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using Kore.Coroutines;
 using System.Collections;

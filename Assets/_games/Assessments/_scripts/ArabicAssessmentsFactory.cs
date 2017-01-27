@@ -41,7 +41,7 @@ namespace EA4S.Assessment
         public static Assessment CreateMatchWordToImageAssessment( AssessmentContext context)
         {
             // Assessment Specific configuration.
-            context.GameDescription = Db.LocalizationDataId.Assessment_Match_Word_Image;
+            context.GameDescription = Database.LocalizationDataId.Assessment_Match_Word_Image;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Do not pronunce name of a picture
             AssessmentOptions.Instance.ShowQuestionAsImage = true;
@@ -71,7 +71,7 @@ namespace EA4S.Assessment
 
         internal static Assessment CreateOrderLettersInWordAssessment( AssessmentContext context)
         {
-            context.GameDescription = Db.LocalizationDataId.Assessment_Order_Letters;
+            context.GameDescription = Database.LocalizationDataId.Assessment_Order_Letters;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = true;
@@ -98,7 +98,7 @@ namespace EA4S.Assessment
 
         internal static Assessment CreateCompleteWordAssessment( AssessmentContext context)
         {
-            context.GameDescription = Db.LocalizationDataId.Assessment_Select_Letter_Image;
+            context.GameDescription = Database.LocalizationDataId.Assessment_Select_Letter_Image;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the complete word
@@ -124,7 +124,7 @@ namespace EA4S.Assessment
 
         public static Assessment CreateMatchLettersWordAssessment( AssessmentContext context)
         {
-            context.GameDescription = Db.LocalizationDataId.Assessment_Match_Letters_Words;
+            context.GameDescription = Database.LocalizationDataId.Assessment_Match_Letters_Words;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
@@ -150,7 +150,7 @@ namespace EA4S.Assessment
 
         public static Assessment CreateQuestionAndReplyAssessment( AssessmentContext context)
         {
-            context.GameDescription = Db.LocalizationDataId.Assessment_Match_Sentences;
+            context.GameDescription = Database.LocalizationDataId.Assessment_Match_Sentences;
             AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = false;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = false; // Child should read question
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child shuold read answer
@@ -176,7 +176,7 @@ namespace EA4S.Assessment
 
         public static Assessment CreateSunMoonWordAssessment( AssessmentContext context)
         {
-            context.GameDescription = Db.LocalizationDataId.Assessment_Classify_Words_Article;
+            context.GameDescription = Database.LocalizationDataId.Assessment_Classify_Words_Article;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
@@ -205,7 +205,7 @@ namespace EA4S.Assessment
 
         public static Assessment CreateSingularDualPluralAssessment( AssessmentContext context)
         {
-            context.GameDescription = Db.LocalizationDataId.Assessment_Classify_Word_Nouns;
+            context.GameDescription = Database.LocalizationDataId.Assessment_Classify_Word_Nouns;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
@@ -234,7 +234,7 @@ namespace EA4S.Assessment
 
         public static Assessment CreateWordArticleAssessment( AssessmentContext context)
         {
-            context.GameDescription = Db.LocalizationDataId.Assessment_Classify_Word_Article;
+            context.GameDescription = Database.LocalizationDataId.Assessment_Classify_Word_Article;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
@@ -263,7 +263,7 @@ namespace EA4S.Assessment
 
         public static Assessment CreateSunMoonLetterAssessment( AssessmentContext context)
         {
-            context.GameDescription = Db.LocalizationDataId.Assessment_Classify_Letters_Article;
+            context.GameDescription = Database.LocalizationDataId.Assessment_Classify_Letters_Article;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
 
@@ -293,7 +293,7 @@ namespace EA4S.Assessment
 
         public static Assessment CreateLetterShapeAssessment( AssessmentContext context)
         {
-            context.GameDescription = Db.LocalizationDataId.Assessment_Select_Letter_Listen;
+            context.GameDescription = Database.LocalizationDataId.Assessment_Select_Letter_Listen;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child shuold identify the letter
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word to sort
@@ -319,7 +319,7 @@ namespace EA4S.Assessment
 
         public static Assessment CreatePronouncedWordAssessment( AssessmentContext context)
         {
-            context.GameDescription = Db.LocalizationDataId.Assessment_Select_Word_Listen;
+            context.GameDescription = Database.LocalizationDataId.Assessment_Select_Word_Listen;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = false; // Child should identify the word
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the word to sort
@@ -345,7 +345,7 @@ namespace EA4S.Assessment
 
         public static Assessment CreateWordsWithLetterAssessment( AssessmentContext context)
         {
-            context.GameDescription = Db.LocalizationDataId.Assessment_Select_Words;
+            context.GameDescription = Database.LocalizationDataId.Assessment_Select_Words;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;

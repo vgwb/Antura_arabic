@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using EA4S.Core;
+using EA4S.MinigamesAPI;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;

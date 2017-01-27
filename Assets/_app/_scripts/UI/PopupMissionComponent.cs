@@ -4,7 +4,7 @@ using TMPro;
 using DG.Tweening;
 using EA4S.Audio;
 
-namespace EA4S
+namespace EA4S.UI
 {
     // refactor: not clear where this is used
     public class PopupMissionComponent : MonoBehaviour

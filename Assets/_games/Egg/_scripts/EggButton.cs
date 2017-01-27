@@ -2,7 +2,10 @@
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
+using EA4S.Core;
+using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
+using EA4S.UI;
 using EA4S.Utilities;
 
 namespace EA4S.Minigames.Egg

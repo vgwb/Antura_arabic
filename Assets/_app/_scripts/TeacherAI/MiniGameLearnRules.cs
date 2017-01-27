@@ -1,5 +1,4 @@
-﻿
-namespace EA4S
+﻿namespace EA4S.Teacher
 {
     /// <summary>
     /// Specific rules that parameterize how a minigame handles learning content for result purposes

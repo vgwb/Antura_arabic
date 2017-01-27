@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using EA4S;
+using EA4S.UI;
 using TMPro;
 
 namespace EA4S.Balloons

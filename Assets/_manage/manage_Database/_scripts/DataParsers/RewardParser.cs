@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EA4S.Db.Management
+namespace EA4S.Database.Management
 {
     /// <summary>
     /// Custom JSON parser for RewardData
@@ -8,7 +8,7 @@ namespace EA4S.Db.Management
     // refactor: this is not used for now!
     public class RewardParser : DataParser<RewardData, RewardTable>
     {
-        override protected RewardData CreateData(Dictionary<string, object> dict, Database db)
+        override protected RewardData CreateData(Dictionary<string, object> dict, DatabaseObject db)
         {
             var data = new RewardData();
 

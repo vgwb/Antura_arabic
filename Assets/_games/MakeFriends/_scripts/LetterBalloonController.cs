@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.Core;
+using EA4S.MinigamesAPI;
 using TMPro;
 
 namespace EA4S.Minigames.MakeFriends
