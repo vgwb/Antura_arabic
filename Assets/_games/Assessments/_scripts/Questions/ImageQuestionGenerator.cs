@@ -17,7 +17,8 @@ namespace EA4S.Assessment
         private IQuestionPack currentPack;
         private bool missingLetter;
 
-        public ImageQuestionGenerator( IQuestionProvider provider , bool missingLetter, AssessmentDialogues dialogues)
+        public ImageQuestionGenerator(  IQuestionProvider provider , bool missingLetter, 
+                                        AssessmentDialogues dialogues)
         {
             this.provider = provider;
             this.missingLetter = missingLetter;

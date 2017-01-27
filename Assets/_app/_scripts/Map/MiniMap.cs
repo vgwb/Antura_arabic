@@ -169,8 +169,7 @@ namespace EA4S.Map
         public void Play()
         {
             // refactor: move this initalisation to a better place, maybe inside the MiniGameLauncher.
-            AppManager.I.Teacher.InitialiseCurrentPlaySession();   // This must be called before the games selector is loaded
-            NavigationManager.I.GoToNextScene();
+            AppManager.I.NavigationManager.GoToNextScene();
         }
     }
 }

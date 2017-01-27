@@ -15,9 +15,6 @@ namespace EA4S.Scenes
 
         void Start()
         {
-            NavigationManager.I.CurrentScene = AppScene.Mood;
-
-
             AudioManager.I.PlayMusic(SceneMusic);
             GlobalUI.ShowPauseMenu(false);
 
@@ -54,7 +51,7 @@ namespace EA4S.Scenes
         {
             AppManager.I.Player.MoodLastVisit = System.DateTime.Today.ToString();
             AppManager.I.Player.Save();
-            NavigationManager.I.GoToScene(AppScene.Map);    // refactor: let the NavigationManager handle the flow
+            AppManager.I.NavigationManager.GoToNextScene();
         }
     }
 }

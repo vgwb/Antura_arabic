@@ -108,7 +108,7 @@ namespace EA4S.Teacher
                 // refactor: the magic number 5 should become a configuration parameter
                 UpdateScoreDataWithMovingAverage(result.table, result.elementId, score, 5);
             }
-        }
+        } 
 
         // refactor: these rules should be moved out of the LogAI and be instead placed in the games' configuration, as they belong to the games 
         private MiniGameLearnRules GetLearnRules(MiniGameCode code)

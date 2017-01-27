@@ -42,7 +42,7 @@ namespace EA4S.Assessment
         public void ExitState()
         {
             if (exited == false) {
-                NavigationManager.I.GoToScene( AppScene.Rewards);
+                AppManager.I.NavigationManager.GoToNextScene();// AppScene.Rewards
                 exited = true;
             }
         }

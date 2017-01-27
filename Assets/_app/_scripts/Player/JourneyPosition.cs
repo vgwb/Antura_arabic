@@ -20,6 +20,13 @@
             PlaySession = _ps;
         }
 
+        public void SetPosition(int _stage, int _lb, int _ps)
+        {
+            Stage = _stage;
+            LearningBlock = _lb;
+            PlaySession = _ps;
+        }
+
         // refactor: this is used by part of the application to convert hourney to an ID for DB purposes. Make this more robust.
         public override string ToString()
         {

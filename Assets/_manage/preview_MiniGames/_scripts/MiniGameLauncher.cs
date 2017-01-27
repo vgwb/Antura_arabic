@@ -26,11 +26,7 @@ namespace EA4S.Test
             float difficulty = float.Parse(FindObjectsOfType<InputField>().First(n => n.name == "Difficulty").text);
            
             // Call start game with parameters
-            MiniGameAPI.Instance.StartGame(
-                miniGameCodeSelected,
-                new GameConfiguration(difficulty)
-            );
-
+            AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected, new GameConfiguration(difficulty) );
         }
 
         #region Test Helpers

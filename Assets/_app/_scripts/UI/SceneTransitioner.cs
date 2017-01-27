@@ -110,11 +110,11 @@ namespace EA4S.UI
 
         void SetContent()
         {
-            if (AppConstants.VerboseLogging) Debug.Log(NavigationManager.I.IsLoadingMinigame + " > " + NavigationManager.I.CurrentScene);
-            bool isLoadingMinigame = NavigationManager.I.IsLoadingMinigame;
+            //if (AppConstants.VerboseLogging) Debug.Log(AppManager.I.NavigationManager.IsLoadingMinigame + " > " + AppManager.I.NavigationManager.CurrentMiniGameData);
+            bool isLoadingMinigame = AppManager.I.NavigationManager.IsLoadingMinigame;
             Logo.gameObject.SetActive(!isLoadingMinigame);
             if (isLoadingMinigame) {
-                MiniGameData mgData = AppManager.I.CurrentMinigame;
+                MiniGameData mgData = AppManager.I.NavigationManager.CurrentMiniGameData;
                 Icon.sprite = Resources.Load<Sprite>(mgData.GetIconResourcePath());
                 Sprite badgeSprite = Resources.Load<Sprite>(mgData.GetBadgeIconResourcePath());
                 if (badgeSprite == null) Badge.gameObject.SetActive(false);
