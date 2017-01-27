@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using EA4S.Core;
+using EA4S.Database;
 using EA4S.Rewards;
 
 namespace EA4S.Profile
@@ -124,10 +125,10 @@ namespace EA4S.Profile
                 returnProfile = AppManager.I.Modules.PlayerProfile.CreateNewPlayer(returnProfile) as PlayerProfile;
             }
             // Create new antura skin
-            RewardPack tileTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
+            RewardPackUnlockData tileTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
             returnProfile.AddRewardUnlocked(tileTexture);
             returnProfile.CurrentAnturaCustomizations.TileTexture = tileTexture;
-            RewardPack decalTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
+            RewardPackUnlockData decalTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
             returnProfile.AddRewardUnlocked(decalTexture);
             returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
             // -----

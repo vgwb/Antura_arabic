@@ -3,6 +3,7 @@ using System.ComponentModel;
 using UnityEngine;
 using EA4S;
 using EA4S.Core;
+using EA4S.Database;
 using EA4S.Debugging;
 using EA4S.Rewards;
 using EA4S.Teacher;
@@ -506,7 +507,7 @@ public partial class SROptions
         // refactor: move to DebugManager
 
         //JourneyPosition CurrentJourney = AppManager.I.Player.CurrentJourneyPosition;
-        foreach (RewardPack pack in RewardSystemManager.GetNextRewardPack()) {
+        foreach (RewardPackUnlockData pack in RewardSystemManager.GetNextRewardPack()) {
             AppManager.I.Player.AddRewardUnlocked(pack);
             Debug.LogFormat("Pack added: {0}", pack.ToString());
         }

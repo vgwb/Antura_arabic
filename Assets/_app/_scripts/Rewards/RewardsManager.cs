@@ -3,6 +3,7 @@ using System.Collections;
 using EA4S.Antura;
 using EA4S.Audio;
 using EA4S.Core;
+using EA4S.Database;
 using EA4S.UI;
 
 namespace EA4S.Rewards
@@ -68,7 +69,7 @@ namespace EA4S.Rewards
                 KeeperManager.I.PlayDialog(Database.LocalizationDataId.Reward_Intro);
                 // Clean and Charge antura reward.
                 AnturaModelManager.Instance.ClearLoadedRewards();
-                RewardPack firstUnlockedReward = RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward);
+                RewardPackUnlockData firstUnlockedReward = RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward);
                 AppManager.I.Player.AddRewardUnlocked(firstUnlockedReward);
                 AnturaModelManager.Instance.LoadRewardPackOnAntura(firstUnlockedReward);
             } else {
@@ -85,7 +86,7 @@ namespace EA4S.Rewards
                         break;
                 }
                 AnturaModelManager.Instance.ClearLoadedRewards();
-                RewardPack newUnlockedReward = RewardSystemManager.GetNextRewardPack()[0];
+                RewardPackUnlockData newUnlockedReward = RewardSystemManager.GetNextRewardPack()[0];
                 AppManager.I.Player.AddRewardUnlocked(newUnlockedReward);
                 AnturaModelManager.Instance.LoadRewardPackOnAntura(newUnlockedReward);
             }

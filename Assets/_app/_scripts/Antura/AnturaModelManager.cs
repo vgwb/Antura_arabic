@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using EA4S.Database;
 using EA4S.Profile;
 using EA4S.Rewards;
 
@@ -49,19 +50,19 @@ namespace EA4S.Antura
         #endregion
 
         class LoadedModel {
-            public RewardPack Reward;
+            public RewardPackUnlockData Reward;
             public GameObject GO;
         }
 
         List<LoadedModel> LoadedModels = new List<LoadedModel>();
-        RewardPack LoadedTileTexture = new RewardPack();
-        RewardPack LoadedDecal = new RewardPack();
+        RewardPackUnlockData LoadedTileTexture = new RewardPackUnlockData();
+        RewardPackUnlockData LoadedDecal = new RewardPackUnlockData();
 
         #region API
 
         public void LoadAnturaCustomization(AnturaCustomization _anturaCustomization) {
             ClearLoadedRewards();
-            foreach (RewardPack forniture in _anturaCustomization.Fornitures) {
+            foreach (RewardPackUnlockData forniture in _anturaCustomization.Fornitures) {
                 LoadRewardPackOnAntura(forniture);
 
                 ModelsManager.SwitchMaterial(LoadRewardPackOnAntura(forniture), forniture.GetMaterialPair());
@@ -74,7 +75,7 @@ namespace EA4S.Antura
         public AnturaCustomization SaveAnturaCustomization() {
             AnturaCustomization returnCustomization = new AnturaCustomization();
             foreach (LoadedModel loadedModel in LoadedModels) {
-                returnCustomization.Fornitures.Add(new RewardPack() { ItemID = loadedModel.Reward.ItemID, ColorId = loadedModel.Reward.ColorId, Type = RewardTypes.reward });
+                returnCustomization.Fornitures.Add(new RewardPackUnlockData() { ItemID = loadedModel.Reward.ItemID, ColorId = loadedModel.Reward.ColorId, Type = RewardTypes.reward });
             }
             returnCustomization.TileTexture = LoadedTileTexture;
             returnCustomization.DecalTexture = LoadedDecal;
@@ -83,24 +84,24 @@ namespace EA4S.Antura
         }
 
 
-        public GameObject LoadRewardPackOnAntura(RewardPack _rewardPack) {
-            switch (_rewardPack.Type) {
+        public GameObject LoadRewardPackOnAntura(RewardPackUnlockData rewardPackUnlockData) {
+            switch (rewardPackUnlockData.Type) {
                 case RewardTypes.reward:
-                    return LoadRewardOnAntura(_rewardPack);
+                    return LoadRewardOnAntura(rewardPackUnlockData);
                 case RewardTypes.texture:
                     Material[] mats = SkinnedMesh.sharedMaterials;
-                    mats[0] = MaterialManager.LoadTextureMaterial(_rewardPack.ItemID, _rewardPack.ColorId);
+                    mats[0] = MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemID, rewardPackUnlockData.ColorId);
                     SkinnedMesh.sharedMaterials = mats;
-                    LoadedTileTexture = _rewardPack;
+                    LoadedTileTexture = rewardPackUnlockData;
                     break;
                 case RewardTypes.decal:
                     Material[] decalMats = SkinnedMesh.sharedMaterials;
-                    decalMats[1] = MaterialManager.LoadTextureMaterial(_rewardPack.ItemID, _rewardPack.ColorId);
+                    decalMats[1] = MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemID, rewardPackUnlockData.ColorId);
                     SkinnedMesh.sharedMaterials = decalMats;
-                    LoadedDecal = _rewardPack;
+                    LoadedDecal = rewardPackUnlockData;
                     break;
                 default:
-                    Debug.LogWarningFormat("Reward Type {0} not found!", _rewardPack.Type);
+                    Debug.LogWarningFormat("Reward Type {0} not found!", rewardPackUnlockData.Type);
                     break;
             }
             return null;
@@ -129,10 +130,10 @@ namespace EA4S.Antura
         /// Sets the reward material colors.
         /// </summary>
         /// <param name="_gameObject">The game object.</param>
-        /// <param name="_rewardPack">The reward pack.</param>
+        /// <param name="rewardPackUnlockData">The reward pack.</param>
         /// <returns></returns>
-        public GameObject SetRewardMaterialColors(GameObject _gameObject, RewardPack _rewardPack) {
-            ModelsManager.SwitchMaterial(_gameObject, _rewardPack.GetMaterialPair());
+        public GameObject SetRewardMaterialColors(GameObject _gameObject, RewardPackUnlockData rewardPackUnlockData) {
+            ModelsManager.SwitchMaterial(_gameObject, rewardPackUnlockData.GetMaterialPair());
             //actualRewardsForCategoryColor.Add()
             return _gameObject;
         }
@@ -142,10 +143,10 @@ namespace EA4S.Antura
         /// </summary>
         /// <param name="_id">The identifier.</param>
         /// <returns></returns>
-        public GameObject LoadRewardOnAntura(RewardPack _rewardPack) {
-            Reward reward = RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == _rewardPack.ItemID);
+        public GameObject LoadRewardOnAntura(RewardPackUnlockData rewardPackUnlockData) {
+            Reward reward = RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == rewardPackUnlockData.ItemID);
             if (reward == null) {
-                Debug.LogFormat("Reward {0} not found!", _rewardPack.ItemID);
+                Debug.LogFormat("Reward {0} not found!", rewardPackUnlockData.ItemID);
                 return null;
             }
             // Check if already charged reward of this category
@@ -207,10 +208,10 @@ namespace EA4S.Antura
             }
 
             // Set materials
-            ModelsManager.SwitchMaterial(rewardModel, _rewardPack.GetMaterialPair());
+            ModelsManager.SwitchMaterial(rewardModel, rewardPackUnlockData.GetMaterialPair());
 
             // Save on LoadedModel List
-            LoadedModels.Add(new LoadedModel() { Reward = _rewardPack, GO = rewardModel });
+            LoadedModels.Add(new LoadedModel() { Reward = rewardPackUnlockData, GO = rewardModel });
             return rewardModel;
         }
         #endregion
@@ -245,8 +246,8 @@ namespace EA4S.Antura
             LoadAnturaCustomization(AppManager.I.Player.CurrentAnturaCustomizations);
         }
 
-        private void RewardSystemManager_OnRewardItemChanged(RewardPack _rewardPack) {
-            LoadRewardPackOnAntura(_rewardPack);
+        private void RewardSystemManager_OnRewardItemChanged(RewardPackUnlockData rewardPackUnlockData) {
+            LoadRewardPackOnAntura(rewardPackUnlockData);
         }
 
         void OnDisable() {
@@ -263,8 +264,8 @@ namespace EA4S.Antura
     /// </summary>
     [Serializable]
     public class AnturaCustomization {
-        public List<RewardPack> Fornitures = new List<RewardPack>();
-        public RewardPack TileTexture = new RewardPack();
-        public RewardPack DecalTexture = new RewardPack();
+        public List<RewardPackUnlockData> Fornitures = new List<RewardPackUnlockData>();
+        public RewardPackUnlockData TileTexture = new RewardPackUnlockData();
+        public RewardPackUnlockData DecalTexture = new RewardPackUnlockData();
     }
 }
