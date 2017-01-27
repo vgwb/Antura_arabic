@@ -19,7 +19,7 @@ namespace EA4S.PlayerBook
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            AppManager.I.NavigationManager.OpenPlayerBook();
+            AppManager.I.NavigationManager.GoToPlayerBook();
         }
 
     }

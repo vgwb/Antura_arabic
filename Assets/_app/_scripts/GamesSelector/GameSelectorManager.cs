@@ -18,7 +18,7 @@ namespace EA4S.GamesSelector
         public void ExitThisScene()
         {
             // refactor: the NavigationManager should handle the back-target scene
-            AppManager.I.NavigationManager.GoToScene(AppScene.Map);
+            AppManager.I.NavigationManager.GoBack();
         }
     }
 }

@@ -26,6 +26,7 @@ namespace EA4S
 
     internal struct NavigationData {
         public PlayerProfile CurrentPlayer;
+        public AppScene PrevScene;
         public AppScene CurrentScene;
 
         /// <summary>
@@ -80,6 +81,24 @@ namespace EA4S
 
         public bool IsLoadingMinigame { get; private set; } // Daniele mod - SceneTransitioner needs it to know when a minigame is being loaded 
 
+        #region API
+        /// <summary>
+        /// Injects the scene module.
+        /// </summary>
+        /// <param name="_sceneModule">The scene module.</param>
+        public void InjectSceneModule(ModularFramework.Modules.ISceneModule _sceneModule) {
+            sceneModule = _sceneModule as SceneModule;
+        }
+
+        /// <summary>
+        /// Sets the player navigation data.
+        /// </summary>
+        /// <param name="_playerProfile">The player profile.</param>
+        public void SetPlayerNavigationData(PlayerProfile _playerProfile) {
+            NavData.CurrentPlayer = _playerProfile ;
+        }
+        #endregion
+
         #region Automatic navigation API
 
         /// <summary>
@@ -88,6 +107,7 @@ namespace EA4S
         // refactor: the whole NavigationManager could work using just GoToNextScene (and similars, such as GoBack), so that it controls all scene movement
         public void GoToNextScene()
         {
+            Debug.Log(" ---- USED NAVIGATION_MANAGER ---- ");
             //var nextScene = GetNextScene();
             switch (NavData.CurrentScene)
             {
@@ -122,7 +142,10 @@ namespace EA4S
                     GotoNextGameOfPlaysession();
                     break;
                 case AppScene.AnturaSpace:
-                    GoToScene(AppScene.Map);
+                    if (NavData.CurrentPlayer.IsFirstContact())
+                        GoToScene(AppScene.AnturaSpace);
+                    else
+                        GoToScene(AppScene.Map);
                     break;
                 case AppScene.Rewards:
                     MaxJourneyPositionProgress();
@@ -140,29 +163,46 @@ namespace EA4S
             }
         }
 
+        /// <summary>
+        /// Apply logic for back button in current scene.
+        /// </summary>
+        public void GoBack() {
+            switch (NavData.CurrentScene) {
+                case AppScene.Book:
+                case AppScene.GameSelector:
+                case AppScene.AnturaSpace:
+                    GoToScene(AppScene.Map);
+                    break;
+                default:
+                    GoToScene(NavData.PrevScene);
+                    break;
+            }
+        }
+
         #endregion
 
-        #region Direct navigation API
+        #region Direct navigation (private)
 
         // refactor: GoToScene can be separated for safety reasons in GoToMinigame (with a string code, or minigame code) and GoToAppScene (with an AppScene as the parameter)
-        public void GoToScene(string sceneName)
+        private void GoToScene(string sceneName)
         {
             IsLoadingMinigame = sceneName.Substring(0, 5) == "game_";
             // TODO: change scenemodule to private for this class
-            sceneModule.LoadSceneWithTransition(sceneName, new ModularFramework.Modules.SceneTransition() { });
+            Debug.LogFormat(" ==== {0} scene to load ====", sceneName);
+            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(sceneName, new ModularFramework.Modules.SceneTransition() { });
 
             if (AppConstants.UseUnityAnalytics) {
                 UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
             }
         }
 
-        public void GoToScene(AppScene newScene)
+        private void GoToScene(AppScene newScene)
         {
             // Additional checks for specific scenes
             switch (newScene) {
                 case AppScene.Rewards:
                     // Already rewarded this playsession?
-                    if (RewardSystemManager.RewardAlreadyUnlocked(AppManager.I.Player.CurrentJourneyPosition)) {
+                    if (RewardSystemManager.RewardAlreadyUnlocked(NavData.CurrentPlayer.CurrentJourneyPosition)) {
                         GoToScene(AppScene.Map);
                         return;
                     }
@@ -172,27 +212,42 @@ namespace EA4S
                     break;
             }
 
+            // Scene switch
+            NavData.PrevScene = NavData.CurrentScene;
             NavData.CurrentScene = newScene;
 
             var nextSceneName = GetSceneName(newScene);
             GoToScene(nextSceneName);
         }
 
-        public void GoToGameScene(MiniGameData _miniGame)
+        private void GoToGameScene(MiniGameData _miniGame)
         {
+            // Scene switch
+            NavData.PrevScene = NavData.CurrentScene;
+            NavData.CurrentScene = AppScene.MiniGame;
+
             AppManager.I.GameLauncher.LaunchGame(_miniGame.Code);
         }
 
         #endregion
 
-        #region Specific scene change methods
+        #region Special request
 
-        public void GoHome()
+        /// <summary>
+        /// Go to home if is allowed for current scene.
+        /// </summary>
+        public void GoToHome()
         {
-            GoToScene(AppScene.Home);
+            switch (NavData.CurrentScene) {
+                case AppScene.DebugPanel:
+                    GoToScene(AppScene.Home);
+                    break;
+                default:
+                    break;
+            }
         }
 
-        public void OpenPlayerBook()
+        public void GoToPlayerBook()
         {
             GoToScene(AppScene.Book);
         }
@@ -208,21 +263,20 @@ namespace EA4S
             }
         }
 
-        // obsolete: to be implemented?
-        public void GoBack() { }
+        public void LaunchMinigame() {
+            switch (NavData.CurrentScene) {
+                case AppScene.MiniGame:
+                    GoToScene(NavData.CurrentMiniGameData.Scene);
+                    break;
+                default:
+                    break;
+            }
+        }
 
         // obsolete: to be implemented?
         public void ExitCurrentGame() { }
 
         #endregion
-
-        /// <summary>
-        /// Injects the scene module.
-        /// </summary>
-        /// <param name="_sceneModule">The scene module.</param>
-        public void InjectSceneModule(SceneModule _sceneModule) {
-            sceneModule = _sceneModule;
-        }
 
         // refactor: scene names should match AppScene so that this can be removed
         public string GetSceneName(AppScene scene, Db.MiniGameData minigameData = null)
