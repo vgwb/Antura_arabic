@@ -50,7 +50,7 @@ namespace EA4S.Database
             ItemID = _ItemID;
             ColorId = _ColorId;
             Type = _Type;
-            PlaySessionId = PlaySessionId;
+            PlaySessionId = _PlaySessionId;
             Order = 0;
             IsNew = true;
             IsLocked = true;
