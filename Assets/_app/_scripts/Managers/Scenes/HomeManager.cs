@@ -31,8 +31,6 @@ namespace EA4S.Scenes
 
         void Start()
         {
-            NavigationManager.I.CurrentScene = AppScene.Home;
-
             GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
             AudioManager.I.PlayMusic(SceneMusic);
             AudioManager.I.PlaySound(Sfx.GameTitle);
@@ -54,22 +52,7 @@ namespace EA4S.Scenes
             LogManager.I.InitNewSession();
             LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new AppInfoParameters()));
 
-            // refactor: as this is related only to navigation, move the logic to the NavigationManager
-            if (AppManager.I.Player.IsFirstContact())
-            {
-                NavigationManager.I.GoToScene(AppScene.Intro);
-            }
-            else
-            {
-                if (AppManager.I.Player.MoodLastVisit == System.DateTime.Today.ToString())
-                {
-                    NavigationManager.I.GoToScene(AppScene.Map);
-                }
-                else
-                {
-                    NavigationManager.I.GoToScene(AppScene.Mood);
-                }
-            }
+            AppManager.I.NavigationManager.GoToNextScene();
         }
     }
 }

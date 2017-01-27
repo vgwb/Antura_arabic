@@ -6,10 +6,10 @@ using EA4S.CameraControl;
 using EA4S.Core;
 using EA4S.Database;
 using EA4S.Debugging;
-using EA4S.MinigamesAPI;
 using EA4S.Profile;
 using EA4S.Rewards;
 using EA4S.Teacher;
+using EA4S.MinigamesAPI;
 using PlayerProfile = EA4S.Profile.PlayerProfile;
 
 namespace EA4S
@@ -33,11 +33,7 @@ namespace EA4S
         public MiniGameLauncher GameLauncher;
         public LogManager LogManager;
         public PlayerProfileManager PlayerProfileManager;
-
-        // refactor: access to the current minigame data should be in another subsystem that is responsible for holding temporary data for minigames
-        [HideInInspector]
-        public Database.MiniGameData CurrentMinigame;
-
+        public NavigationManager NavigationManager;
         bool appIsPaused = false;
 
         #region Initialisation
@@ -60,13 +56,11 @@ namespace EA4S
             }
 
             // refactor: standardize initialisation of managers
-            gameObject.AddComponent<MiniGameAPI>();
-
             LogManager = new LogManager();
-            PlayerProfileManager = new PlayerProfileManager();
 
+            NavigationManager = gameObject.AddComponent<NavigationManager>();
+            PlayerProfileManager = new PlayerProfileManager();
             gameObject.AddComponent<DebugManager>();
-            gameObject.AddComponent<NavigationManager>();
             gameObject.AddComponent<KeeperManager>();
 
             RewardSystemManager.Init();
@@ -125,7 +119,7 @@ namespace EA4S
             PlayerProfileManager.DeleteCurrentPlayer();
 
             // AppManager.I.PlayerProfileManager.DeleteAllProfiles();
-            NavigationManager.I.GoHome();
+            AppManager.I.NavigationManager.GoToHome();
             Debug.Log("Reset current player: " + playerId);
         }
 
@@ -144,7 +138,7 @@ namespace EA4S
             AppManager.I.GameSettings.AvailablePlayers = new System.Collections.Generic.List<string>();
             AppManager.I.PlayerProfileManager.SaveGameSettings();
             SRDebug.Instance.HideDebugPanel();
-            AppManager.I.Modules.SceneModule.LoadSceneWithTransition(NavigationManager.I.GetSceneName(AppScene.Home));
+            AppManager.I.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.NavigationManager.GetSceneName(AppScene.Home));
 
             Debug.Log("Reset ALL players.");
         }

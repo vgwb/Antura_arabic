@@ -59,8 +59,8 @@ namespace EA4S.Intro
 
         private void CountDown_onTimesUp()
         {
-            // refactor: use the navigation manager to decide where to go next
-            NavigationManager.I.GoToScene(AppScene.Map);
+
+            AppManager.I.NavigationManager.GoToNextScene();
         }
 
         void OnDisable()

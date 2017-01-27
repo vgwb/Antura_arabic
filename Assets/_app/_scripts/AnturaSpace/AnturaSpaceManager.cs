@@ -99,7 +99,7 @@ namespace EA4S.AnturaSpace
         public void Exit()
         {
             LogManager.I.LogInfo(InfoEvent.AnturaSpace, "exit");
-            NavigationManager.I.GoToScene(AppScene.Map);
+            AppManager.I.NavigationManager.GoToNextScene();
         }
 
         /// <summary>

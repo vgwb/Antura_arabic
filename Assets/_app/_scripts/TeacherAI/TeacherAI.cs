@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using EA4S.Core;
@@ -34,10 +35,7 @@ namespace EA4S.Teacher
         public WordHelper wordHelper;
         public JourneyHelper journeyHelper;
         public ScoreHelper scoreHelper;
-
-        // State
-        private List<MiniGameData> currentPlaySessionMiniGames = new List<MiniGameData>();
-
+        
         #region Setup
 
         public TeacherAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
@@ -59,9 +57,6 @@ namespace EA4S.Teacher
         private void ResetPlaySession()
         {
             var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
-
-            currentPlaySessionMiniGames.Clear();
-
             minigameSelectionAI.InitialiseNewPlaySession();
             wordAI.LoadCurrentPlaySessionData(currentPlaySessionId);
         }
@@ -70,50 +65,32 @@ namespace EA4S.Teacher
 
         #region MiniGames
 
-        public List<MiniGameData> InitialiseCurrentPlaySession(bool chooseMiniGames = true)
-        {
-            return InitialiseCurrentPlaySession(ConfigAI.numberOfMinigamesPerPlaySession, chooseMiniGames);
-        }
-
-        private List<MiniGameData> InitialiseCurrentPlaySession(int nMinigamesToSelect, bool chooseMiniGames = true)
+        public void InitialiseNewPlaySession()
         {
             ResetPlaySession();
+        }
 
-            if (chooseMiniGames)
+        public List<MiniGameData> SelectMiniGames()
+        {
+            return SelectMiniGames(ConfigAI.numberOfMinigamesPerPlaySession);
+        }
+
+        private List<MiniGameData> SelectMiniGames(int nMinigamesToSelect)
+        {
+            List<MiniGameData> newPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
+
+            if (ConfigAI.verboseTeacher)
             {
-                currentPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
-
-                if (ConfigAI.verboseTeacher)
+                var debugString = "";
+                debugString += "--------- TEACHER: MiniGames selected ---------";
+                foreach (var minigame in newPlaySessionMiniGames)
                 {
-                    var debugString = "";
-                    debugString += "--------- TEACHER: MiniGames selected ---------";
-                    foreach (var minigame in currentPlaySessionMiniGames)
-                    {
-                        debugString += "\n" + minigame.Code;
-                    }
-                    Debug.Log(debugString);
+                    debugString += "\n" + minigame.Code;
                 }
+                Debug.Log(debugString);
             }
 
-            return currentPlaySessionMiniGames;
-        }
-
-        // refactor: this should not be in the TeacherAI, but in the NavigationManager or something similar that holds data between minigames
-        public List<MiniGameData> CurrentPlaySessionMiniGames {
-            get {
-                return currentPlaySessionMiniGames;
-            }
-        }
-
-        // refactor: this should not be in the TeacherAI, but in the NavigationManager or something similar that holds data between minigames
-        public MiniGameData CurrentMiniGame {
-            get {
-                return
-                    playerProfile.CurrentMiniGameInPlaySession < currentPlaySessionMiniGames.Count
-                        ? currentPlaySessionMiniGames.ElementAt(playerProfile.CurrentMiniGameInPlaySession)
-                        : null
-                    ;
-            }
+            return newPlaySessionMiniGames;
         }
 
         private List<MiniGameData> SelectMiniGamesForCurrentPlaySession(int nMinigamesToSelect)

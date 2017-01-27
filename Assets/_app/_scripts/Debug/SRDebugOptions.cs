@@ -110,7 +110,7 @@ public partial class SROptions
     {
         // refactor: move to DebugManager
         WidgetPopupWindow.I.Close();
-        NavigationManager.I.GoToScene(AppScene.Home);
+        AppManager.I.NavigationManager.GoToHome();
         SRDebug.Instance.HideDebugPanel();
     }
 
@@ -449,7 +449,7 @@ public partial class SROptions
         AppManager.I.GameSettings.AvailablePlayers = new List<string>();
         AppManager.I.PlayerProfileManager.SaveGameSettings();
         SRDebug.Instance.HideDebugPanel();
-        AppManager.I.Modules.SceneModule.LoadSceneWithTransition(NavigationManager.I.GetSceneName(AppScene.Home));
+        AppManager.I.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.NavigationManager.GetSceneName(AppScene.Home));
     }
 
     [Category("Max Journey Position")]

@@ -98,7 +98,7 @@ namespace EA4S.UI
         public static void ShowBackButton(bool _doShow, Action _callback = null)
         {
             I.BackButton.gameObject.SetActive(_doShow);
-            if (_doShow) I.onGoBack = _callback == null ? NavigationManager.I.GoBack : _callback;
+            if (_doShow) I.onGoBack = _callback == null ? AppManager.I.NavigationManager.GoBack : _callback;
         }
 
         /// <summary>

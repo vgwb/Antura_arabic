@@ -140,7 +140,7 @@ namespace EA4S.UI
                 switch (_bt.Type) {
                     case MenuButtonType.Back: // Exit
                         OpenMenu(false);
-                        NavigationManager.I.ExitAndGoHome();
+                        AppManager.I.NavigationManager.ExitAndGoHome();
                         break;
                     case MenuButtonType.MusicToggle: // Music on/off
                         AudioManager.I.ToggleMusic();

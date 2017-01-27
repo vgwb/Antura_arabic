@@ -106,6 +106,20 @@ namespace EA4S.Assessment
         }
 
         /// <summary>
+        /// Play LL sound files, coroutine
+        /// </summary>
+        /// <param name="data">Sound to play</param>
+        public IEnumerator PlayLetterDataCoroutine( ILivingLetterData data)
+        {
+            var audioSource = 
+            AssessmentConfiguration.Instance.Context.GetAudioManager()
+                    .PlayLetterData( data);
+
+            while (audioSource.IsPlaying)
+                yield return null;
+        }
+
+        /// <summary>
         /// Now dialougues are just ignored if there's already some audio playing.
         /// </summary>
         /// <param name="ID"> Statement to play/display</param>
