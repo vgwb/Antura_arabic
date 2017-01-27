@@ -5,7 +5,7 @@ namespace EA4S.Minigames.MissingLetter
 {
     public class MissingLetterPlayState : IGameState
     {
-        
+
         public MissingLetterPlayState(MissingLetterGame _game)
         {
             this.m_oGame = _game;
@@ -47,12 +47,16 @@ namespace EA4S.Minigames.MissingLetter
         public void Update(float _delta)
         {
 
-            if(m_oGame.m_iAnturaTriggersIndex < m_oGame.m_afAnturaEnterTriggers.Length && M_oGameTime.Time <= m_oGame.m_afAnturaEnterTriggers[m_oGame.m_iAnturaTriggersIndex]) {
-                if (m_oGame.IsInIdle()) {
+            if (m_oGame.m_iAnturaTriggersIndex < m_oGame.m_afAnturaEnterTriggers.Length && M_oGameTime.Time <= m_oGame.m_afAnturaEnterTriggers[m_oGame.m_iAnturaTriggersIndex])
+            {
+                if (m_oGame.IsInIdle())
+                {
                     ++m_oGame.m_iAnturaTriggersIndex;
                     m_oGame.m_oAntura.GetComponent<AnturaBehaviour>().EnterScene(m_oGame.m_fAnturaAnimDuration);
                     m_oGame.StartCoroutine(Utils.LaunchDelay(m_oGame.m_fAnturaAnimDuration / 6, m_oGame.m_oRoundManager.ShuffleLetters, m_oGame.m_fAnturaAnimDuration / 2));
-                } else {
+                }
+                else
+                {
                     m_oGame.m_afAnturaEnterTriggers[m_oGame.m_iAnturaTriggersIndex] -= 3.0f;
                 }
             }
@@ -88,7 +92,8 @@ namespace EA4S.Minigames.MissingLetter
         }
 
 
-        void OnRoundResult(bool _result) {
+        void OnRoundResult(bool _result)
+        {
             m_oGame.OnResult(_result);
             m_oGame.m_oRoundManager.NewRound();
         }

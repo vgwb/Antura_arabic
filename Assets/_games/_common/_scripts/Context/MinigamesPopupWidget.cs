@@ -1,4 +1,6 @@
 ﻿using System;
+using EA4S.MinigamesAPI;
+using EA4S.UI;
 using UnityEngine;
 
 namespace EA4S.MinigamesCommon
@@ -8,7 +10,7 @@ namespace EA4S.MinigamesCommon
     /// </summary>
     public class MinigamesPopupWidget : IPopupWidget
     {
-        public void Show(System.Action callback, Db.LocalizationDataId text, bool markResult, LL_WordData word = null)
+        public void Show(System.Action callback, Database.LocalizationDataId text, bool markResult, LL_WordData word = null)
         {
             if (word != null)
                 WidgetPopupWindow.I.ShowSentenceAndWordWithMark(callback, text, word, markResult);
@@ -16,7 +18,7 @@ namespace EA4S.MinigamesCommon
                 WidgetPopupWindow.I.ShowSentenceWithMark(callback, text, markResult, null);
         }
 
-        public void Show(System.Action callback, Db.LocalizationDataId text, LL_WordData word = null)
+        public void Show(System.Action callback, Database.LocalizationDataId text, LL_WordData word = null)
         {
             if (word != null)
                 WidgetPopupWindow.I.ShowSentenceAndWord(callback, text, word);
@@ -52,12 +54,12 @@ namespace EA4S.MinigamesCommon
             WidgetPopupWindow.I.SetButtonCallback(callback);
         }
 
-        public void SetMessage(Db.LocalizationDataId text)
+        public void SetMessage(Database.LocalizationDataId text)
         {
             WidgetPopupWindow.I.SetMessage(text);
         }
 
-        public void SetTitle(Db.LocalizationDataId text)
+        public void SetTitle(Database.LocalizationDataId text)
         {
             WidgetPopupWindow.I.SetTitleSentence(text);
         }

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace EA4S.Db.Management
+namespace EA4S.Database.Management
 {
     /// <summary>
     /// Custom JSON parser for PlaySessionData
     /// </summary>
     public class PlaySessionParser : DataParser<PlaySessionData, PlaySessionTable>
     {
-        override protected PlaySessionData CreateData(Dictionary<string, object> dict, Database db)
+        override protected PlaySessionData CreateData(Dictionary<string, object> dict, DatabaseObject db)
         {
             var data = new PlaySessionData();
 
@@ -33,7 +33,7 @@ namespace EA4S.Db.Management
             return data;
         }
 
-        private void CustomAddDiacritics(PlaySessionData psData, Database db)
+        private void CustomAddDiacritics(PlaySessionData psData, DatabaseObject db)
         {
             // Make sure to also add all combos, if a symbol is found
             HashSet<string> newLetters = new HashSet<string>();

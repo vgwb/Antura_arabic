@@ -1,7 +1,8 @@
 ﻿using EA4S.Audio;
+using EA4S.Scenes;
 using UnityEngine;
 
-namespace EA4S.Scenes
+namespace EA4S.UI
 {
     /// <summary>
     /// Control buttons for the (_Start) scene.

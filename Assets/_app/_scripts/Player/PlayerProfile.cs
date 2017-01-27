@@ -2,6 +2,9 @@
 using ModularFramework.Modules;
 using UnityEngine;
 using System.Collections.Generic;
+using EA4S.Antura;
+using EA4S.Core;
+using EA4S.Rewards;
 
 namespace EA4S.Profile
 {

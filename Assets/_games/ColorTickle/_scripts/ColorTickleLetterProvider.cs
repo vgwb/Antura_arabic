@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
+using EA4S.Teacher;
 
 namespace EA4S.Minigames.ColorTickle
 {

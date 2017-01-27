@@ -1,5 +1,4 @@
-﻿
-namespace EA4S.MinigamesCommon
+﻿namespace EA4S.MinigamesCommon
 {
     /// <summary>
     /// Provides access to the SubtitlesWidget UI element for minigames.
@@ -7,7 +6,7 @@ namespace EA4S.MinigamesCommon
     /// </summary>
     public interface ISubtitlesWidget
     {
-        void DisplaySentence(Db.LocalizationDataId text, float enterDuration = 2, bool showSpeaker = false, System.Action onSentenceCompleted = null);
+        void DisplaySentence(Database.LocalizationDataId text, float enterDuration = 2, bool showSpeaker = false, System.Action onSentenceCompleted = null);
         void Clear();
     }
 }

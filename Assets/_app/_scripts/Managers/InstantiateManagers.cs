@@ -1,8 +1,9 @@
 ﻿using EA4S.Audio;
+using EA4S.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace EA4S
+namespace EA4S.Core
 {
     /// <summary>
     /// Takes care of generating managers when needed.
@@ -13,7 +14,6 @@ namespace EA4S
     {
         public GameObject AudioManager;
         public GameObject EventsManager;
-        public GameObject TouchManager;
 
         void Awake()
         {
@@ -23,10 +23,6 @@ namespace EA4S
 
             if (FindObjectOfType(typeof(EventSystem)) == null) {
                 Instantiate(EventsManager);
-            }
-
-            if (FindObjectOfType(typeof(Lean.Touch.LeanTouch)) == null) {
-                Instantiate(TouchManager);
             }
 
             // init the mighty GlobalUI

@@ -1,5 +1,5 @@
 ﻿using DG.Tweening;
-using EA4S.Utilities;
+using EA4S.EditorUtilities;
 using UnityEngine;
 
 namespace EA4S.Tutorial

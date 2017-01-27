@@ -1,7 +1,6 @@
-﻿using EA4S.Teacher;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Teacher
 {
     /// <summary>
     /// Selects words in a given order
@@ -13,10 +12,10 @@ namespace EA4S
         // pack history filter: only 1 pack
         // journey: enabled
 
-        private Db.WordDataCategory category;
+        private Database.WordDataCategory category;
         private QuestionBuilderParameters parameters;
 
-        public OrderedWordsQuestionBuilder(Db.WordDataCategory category, QuestionBuilderParameters parameters = null)
+        public OrderedWordsQuestionBuilder(Database.WordDataCategory category, QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
 

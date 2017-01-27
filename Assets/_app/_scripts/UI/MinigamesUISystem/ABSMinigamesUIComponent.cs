@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S
+namespace EA4S.UI
 {
     public class ABSMinigamesUIComponent : MonoBehaviour
     {

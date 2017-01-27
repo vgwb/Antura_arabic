@@ -20,7 +20,7 @@ namespace EA4S.Minigames.ColorTickle
 
         public void EnterState()
         {
-            game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.ColorTickle_Title);
+            game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ColorTickle_Title);
 
             game.colorsCanvas.gameObject.SetActive(false);
 

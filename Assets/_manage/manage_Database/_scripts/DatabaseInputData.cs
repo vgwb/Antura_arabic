@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S.Db.Management
+namespace EA4S.Database.Management
 {
     /// <summary>
     /// References JSON assets from which the database should be converted.

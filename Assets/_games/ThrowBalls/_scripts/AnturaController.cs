@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using EA4S.Antura;
-using EA4S.Utilities;
+using EA4S.Helpers;
 
 namespace EA4S.Minigames.ThrowBalls
 {

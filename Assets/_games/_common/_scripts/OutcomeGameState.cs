@@ -21,16 +21,16 @@
 
             game.Context.GetStarsWidget().Show(starsScore);
 
-            Db.LocalizationDataId text;
+            Database.LocalizationDataId text;
 
             if (starsScore < 1)
-                text = (Db.LocalizationDataId.Keeper_Bad_2);
+                text = (Database.LocalizationDataId.Keeper_Bad_2);
             else if (starsScore < 2)
-                text = (Db.LocalizationDataId.Keeper_Good_5);
+                text = (Database.LocalizationDataId.Keeper_Good_5);
             else if (starsScore < 3)
-                text = (Db.LocalizationDataId.Keeper_Good_2);
+                text = (Database.LocalizationDataId.Keeper_Good_2);
             else
-                text = (Db.LocalizationDataId.Keeper_Good_1);
+                text = (Database.LocalizationDataId.Keeper_Good_1);
             
             //game.Context.GetSubtitleWidget().DisplaySentence(text);
             game.Context.GetAudioManager().PlayDialogue(text);

@@ -1,4 +1,4 @@
-﻿using EA4S.Utilities;
+﻿using EA4S.UI;
 using UnityEngine;
 
 namespace EA4S.PlayerBook

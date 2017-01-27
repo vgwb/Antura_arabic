@@ -1,5 +1,6 @@
-﻿using EA4S.MinigamesCommon;
-using UnityEditor;
+﻿using EA4S.Core;
+ using EA4S.MinigamesCommon;
+using EA4S.Teacher;
 using UnityEngine;
 
 namespace EA4S.MinigamesAPI
@@ -39,7 +40,7 @@ namespace EA4S.MinigamesAPI
         /// <param name="forceNewPlaySession">Is this a new play session?</param>
         public void LaunchGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration, bool forceNewPlaySession = false)
         {
-            Db.MiniGameData miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
+            Database.MiniGameData miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
 
             if (forceNewPlaySession)
             {

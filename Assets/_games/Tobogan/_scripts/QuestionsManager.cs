@@ -21,13 +21,14 @@ namespace EA4S.Minigames.Tobogan
         List<QuestionLivingLetter> livingLetters = new List<QuestionLivingLetter>();
         
         // return aswer result
-        public event Action<bool> onAnswered;
+        public event Action<IQuestionPack, bool> onAnswered;
         public event Action<bool> playerInputPointerUp;
 
         bool sunMoonGameVariation;
         bool playWhenDragged = true;
         bool playWhenEnter = true;
 
+        IQuestionPack currentQuestionPack;
 
         public QuestionsManager(ToboganGame game)
         {
@@ -84,6 +85,7 @@ namespace EA4S.Minigames.Tobogan
 
         void UpdateQuestion(IQuestionPack questionPack)
         {
+            currentQuestionPack = questionPack;
             ResetLetters();
 
             questionLivingLetter = livingLetters[questionLetterIndex];
@@ -197,13 +199,13 @@ namespace EA4S.Minigames.Tobogan
                     game.Context.GetAudioManager().PlaySound(Sfx.LetterSad);
 
                 if (onAnswered != null)
-                    onAnswered(isCorrectAnswer);
+                    onAnswered(currentQuestionPack, isCorrectAnswer);
 
                 pipeAnswer.StopSelectedAnimation();
             }
         }
 
-        public void QuestionEnd()
+        public void OnQuestionEnd()
         {
             questionLivingLetter.GoToFirstPostion();
 

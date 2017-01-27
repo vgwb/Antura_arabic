@@ -22,7 +22,7 @@ namespace EA4S
     }
 }
 
-namespace EA4S.Db
+namespace EA4S.Database
 {
     /// <summary>
     /// Generic information on application usage at a given timestamp. Logged at runtime.

@@ -2,7 +2,7 @@
 using EA4S.Audio;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// Shows the WalkieTalkie that the Keeper uses to communicate with the player.

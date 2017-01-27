@@ -1,6 +1,4 @@
-﻿using EA4S.MinigamesCommon;
-
-namespace EA4S.Template
+﻿namespace EA4S.Template
 {
     /// <summary>
     /// Sample game state used by the TemplateGame. 

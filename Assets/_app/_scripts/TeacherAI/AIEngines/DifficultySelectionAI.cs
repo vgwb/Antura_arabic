@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using EA4S.Db;
+﻿using System.Collections.Generic;
+using EA4S.Core;
+using EA4S.Database;
 using EA4S.Profile;
 using UnityEngine;
 
@@ -45,7 +45,7 @@ namespace EA4S.Teacher
             // Performance
             float playerPerformance;
             string query = string.Format("SELECT * FROM ScoreData WHERE TableName = 'MiniGames' AND ElementId = '{0}'", (int)miniGameCode);
-            List<Db.ScoreData> minigame_scoreData_list = dbManager.FindScoreDataByQuery(query);
+            List<Database.ScoreData> minigame_scoreData_list = dbManager.FindScoreDataByQuery(query);
             if (minigame_scoreData_list.Count == 0) {
                 playerPerformance = ConfigAI.startingDifficultyForNewMiniGame;
             } else {

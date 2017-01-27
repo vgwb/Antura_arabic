@@ -4,7 +4,7 @@ using EA4S.MinigamesAPI.Sample;
 
 namespace EA4S.Minigames.DancingDots
 {
-	public class DancingDotsQuestionProvider : IQuestionProvider
+    public class DancingDotsQuestionProvider : IQuestionProvider
 	{
 
 		public IQuestionPack GetNextQuestion()

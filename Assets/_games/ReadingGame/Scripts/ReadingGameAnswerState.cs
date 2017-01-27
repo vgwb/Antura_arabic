@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using UnityEngine;
@@ -104,7 +105,12 @@ namespace EA4S.Minigames.ReadingGame
 
         void OnAnswered(CircleButton button)
         {
-            game.Context.GetAudioManager().PlaySound(button.Answer == correct ? Sfx.OK : Sfx.KO);
+            bool result = button.Answer == correct;
+
+            game.Context.GetAudioManager().PlaySound(result ? Sfx.OK : Sfx.KO);
+            
+            if (!TutorialMode)
+                game.Context.GetLogManager().OnAnswered(correct, result);
 
             if (button.Answer == correct)
             {

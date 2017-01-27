@@ -1,9 +1,10 @@
 ﻿using DG.Tweening;
 using EA4S.Audio;
+using EA4S.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// Shows and controls the Pause menu.

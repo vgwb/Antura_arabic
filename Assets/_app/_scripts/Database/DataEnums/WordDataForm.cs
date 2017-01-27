@@ -1,4 +1,4 @@
-namespace EA4S.Db
+namespace EA4S.Database
 {
     public enum WordDataForm
     {

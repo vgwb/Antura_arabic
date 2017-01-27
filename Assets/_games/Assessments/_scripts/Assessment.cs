@@ -1,7 +1,6 @@
 using Kore.Coroutines;
 using Kore.Utils;
 using System.Collections;
-using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -13,7 +12,6 @@ namespace EA4S.Assessment
                             IQuestionGenerator question_generator,
                             ILogicInjector logic_injector,
                             IAssessmentConfiguration game_conf,
-                            IGameContext game_context,
                             AssessmentDialogues dialogues)
         {
             AnswerPlacer = answ_placer;
@@ -21,7 +19,6 @@ namespace EA4S.Assessment
             QuestionPlacer = question_placer;
             LogicInjector = logic_injector;
             Configuration = game_conf;
-            GameContext = game_context;
             Dialogues = dialogues;
         }
 
@@ -42,13 +39,12 @@ namespace EA4S.Assessment
 
                 InitRound();
 
-                // Play tutorial audio
-                if (round == 0)
-                    yield return Koroutine.Nested( TutorialRoundBegin());
-                else
-                    yield return Koroutine.Nested( RoundBegin());
-
+                yield return Koroutine.Nested( RoundBegin());
                 yield return Koroutine.Nested( PlaceAnswers());
+
+                if(round == 0)
+                   Koroutine.Run( DescriptionAudio());
+
                 yield return Koroutine.Nested( GamePlay());
                 yield return Koroutine.Nested( ClearRound());
             }
@@ -56,24 +52,17 @@ namespace EA4S.Assessment
             gameEndedCallback();
         }
 
+        private IEnumerator DescriptionAudio()
+        {
+            yield return Dialogues.PlayGameDescription();
+
+            if(AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial)
+                yield return QuestionPlacer.PlayQuestionSound();
+        }
+
         private IEnumerator AnturaGag()
         {
             yield return null;
-        }
-
-        private IEnumerator TutorialRoundBegin()
-        {
-            // It is perfectly possible we will no longer need this flag in definitive
-            // game version. For now requisites has not been decided yet:
-            // It first of all need testing
-            bool playAfter = AssessmentOptions.Instance.PlayQuestionAudioAfterTutorial;
-
-            yield return Koroutine.Nested( PlaceQuestions( playAfter == false));
-
-            yield return Dialogues.PlayGameDescription();
-
-            if (playAfter)
-                QuestionPlacer.PlayQuestionSound();
         }
 
         private IEnumerator RoundBegin()
@@ -84,8 +73,6 @@ namespace EA4S.Assessment
 
         private IEnumerator PlaceQuestions( bool playAudio = false)
         {
-            // It is possible that in definite game release the boolean flag will be always
-            // false. In that case we can simplify the code later.
             QuestionPlacer.Place( QuestionGenerator.GetAllQuestions(), playAudio);
             while ( QuestionPlacer.IsAnimating())
                 yield return null;
@@ -112,6 +99,8 @@ namespace EA4S.Assessment
         {
             LogicInjector.RemoveDraggables();
 
+            yield return Koroutine.Nested( LogicInjector.AllAnsweredEvent());
+
             QuestionPlacer.RemoveQuestions();
             AnswerPlacer.RemoveAnswers();
 
@@ -126,15 +115,28 @@ namespace EA4S.Assessment
             QuestionGenerator.InitRound();
 
             for (int question = 0; question < Configuration.SimultaneosQuestions; question++)
-
-                LogicInjector.Wire(
-                    QuestionGenerator.GetNextQuestion(),
-                    QuestionGenerator.GetNextAnswers());
+                WireLogicInjector( LogicInjector, QuestionGenerator);
 
             LogicInjector.CompleteWiring();
             LogicInjector.EnableDragOnly();
 
             QuestionGenerator.CompleteRound();
+        }
+
+        private void WireLogicInjector( ILogicInjector injector, IQuestionGenerator generator)
+        {
+            try
+            {
+                IQuestion question = generator.GetNextQuestion();
+                Answer[] answers = generator.GetNextAnswers();
+
+                injector.Wire( question, answers);
+            }
+            catch ( System.Exception ex)
+            {
+                Debug.LogWarning( "Not enough teacher data to generate an additional question at this stage: " +
+                    ex.Message);
+            }
         }
 
         public IAnswerPlacer AnswerPlacer { get; private set; }
@@ -146,8 +148,6 @@ namespace EA4S.Assessment
         public IQuestionPlacer QuestionPlacer { get; private set; }
 
         public IAssessmentConfiguration Configuration { get; private set; }
-
-        public IGameContext GameContext { get; private set; }
 
         public AssessmentDialogues Dialogues { get; private set; }
     }

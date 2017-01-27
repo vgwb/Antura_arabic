@@ -1,4 +1,5 @@
-﻿using EA4S.MinigamesCommon;
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using UnityEngine;
 
@@ -82,11 +83,11 @@ namespace EA4S.Minigames.Egg
 
                 if (isSequence)
                 {
-                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Egg_Tuto_Sequence);
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_Tuto_Sequence);
                 }
                 else
                 {
-                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Egg_Tuto_Button);
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_Tuto_Button);
                 }
             }
 
@@ -242,6 +243,9 @@ namespace EA4S.Minigames.Egg
                         Vector3 clickPosition = game.eggButtonBox.GetButtons(false)[0].transform.position;
                         TutorialUI.ClickRepeat(clickPosition, 4);
                         game.eggButtonBox.RemoveButtons((a) => { return a != letterData; });
+
+                        if (!showTutorial)
+                            game.Context.GetLogManager().OnAnswered(letterData, true);
                     }
                 }
             }

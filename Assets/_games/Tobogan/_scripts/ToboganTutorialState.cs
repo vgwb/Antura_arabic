@@ -1,4 +1,5 @@
-﻿using EA4S.MinigamesCommon;
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using UnityEngine;
 
@@ -51,11 +52,11 @@ namespace EA4S.Minigames.Tobogan
 
             if (sunMoonGameVariation)
             {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Tobogan_words_Tuto_Article);
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Tobogan_words_Tuto_Article);
             }
             else
             {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Tobogan_letters_Tuto);
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Tobogan_letters_Tuto);
             }
 
             nextQuestionTimer = 0f;
@@ -119,13 +120,13 @@ namespace EA4S.Minigames.Tobogan
 
         public void UpdatePhysics(float delta) { }
 
-        void OnAnswered(bool result)
+        void OnAnswered(IQuestionPack pack, bool result)
         {
             if(result)
             {
                 questionCount++;
 
-                game.questionsManager.QuestionEnd();
+                game.questionsManager.OnQuestionEnd();
 
                 if (!sunMoonGameVariation || (sunMoonGameVariation && questionCount == 2))
                 {

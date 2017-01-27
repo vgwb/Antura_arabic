@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using EA4S.Audio;
-using EA4S.Db;
+using EA4S.Core;
+using EA4S.Database;
+using EA4S.Helpers;
 using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
+using EA4S.UI;
 using EA4S.Utilities;
 
 namespace EA4S.PlayerBook
@@ -268,7 +272,7 @@ namespace EA4S.PlayerBook
 
             var output = "";
 
-            var splittedLetters = ArabicAlphabetHelper.SplitWordIntoLetters(info.data.Arabic);
+            var splittedLetters = ArabicAlphabetHelper.SplitWordIntoLetters(info.data);
             foreach (var letter in splittedLetters) {
                 output += letter.GetChar() + " ";
             }

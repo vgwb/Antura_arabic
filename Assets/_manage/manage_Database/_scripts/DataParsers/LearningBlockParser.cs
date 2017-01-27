@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace EA4S.Db.Management
+namespace EA4S.Database.Management
 {
     /// <summary>
     /// Custom JSON parser for LearningBlockData
     /// </summary>
     public class LearningBlockParser : DataParser<LearningBlockData, LearningBlockTable>
     {
-        override protected LearningBlockData CreateData(Dictionary<string, object> dict, Database db)
+        override protected LearningBlockData CreateData(Dictionary<string, object> dict, DatabaseObject db)
         {
             var data = new LearningBlockData();
 
@@ -37,7 +37,7 @@ namespace EA4S.Db.Management
             ExtractEnum(rowdicts_list, "Focus", addNoneValue: true);
         }
 
-        protected override void FinalValidation(LearningBlockTable table, Database db)
+        protected override void FinalValidation(LearningBlockTable table, DatabaseObject db)
         {
             // Field 'NumberOfPlaySessions' can be computed only at the end
             var playSessionsList = new List<PlaySessionData>(db.GetPlaySessionTable().GetValuesTyped());

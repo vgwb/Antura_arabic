@@ -15,7 +15,7 @@ namespace EA4S.Minigames.Scanner
         public float startDelay = 8, repeatDelay = 3;
 
         public int tutStep = 1;
-        private bool doTutOnDots;
+        public bool playTut = true;
 
         ScannerGame game;
         Transform source, target;
@@ -41,7 +41,7 @@ namespace EA4S.Minigames.Scanner
         {
             get
             {
-                if (game.roundsManager.numberOfRoundsPlayed == 0)
+                if (game.roundsManager.numberOfRoundsPlayed <= 0)
                     return true;
                 else
                 {
@@ -57,7 +57,7 @@ namespace EA4S.Minigames.Scanner
         }
         void Start()
         {
-            if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
+            if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord || isTutRound)
                 startDelay = 8;
             else if (ScannerConfiguration.Instance.nCorrect == 3)
                 startDelay = 25;
@@ -68,10 +68,9 @@ namespace EA4S.Minigames.Scanner
 
             StartCoroutine(coDoTutorial());
             originalLLOnBeltSpeed = game.beltSpeed;
-            if (ScannerConfiguration.Instance.Difficulty >= 0.5f)
-            {
-                game.beltSpeed = 1;
-            }
+            //if (ScannerConfiguration.Instance.Difficulty >= 0.5f)
+            game.beltSpeed = 2;
+
 
             game.disableInput = true;
             //warm up
@@ -114,7 +113,7 @@ namespace EA4S.Minigames.Scanner
 
         void onTutorialStart()
         {
-            AudioManager.I.PlayDialogue(Db.LocalizationDataId.Scanner_Tuto);
+            AudioManager.I.PlayDialogue(Database.LocalizationDataId.Scanner_Tuto);
             game.beltSpeed = 0;
             game.disableInput = false;
             StartCoroutine(sayTut(repeatDelay));
@@ -126,10 +125,18 @@ namespace EA4S.Minigames.Scanner
             TutorialUI.Clear(true);
 
             game.beltSpeed = originalLLOnBeltSpeed;
-            game.Context.GetOverlayWidget().Initialize(true, false, false);
-            game.Context.GetOverlayWidget().SetStarsThresholds(game.STARS_1_THRESHOLD, game.STARS_2_THRESHOLD, game.STARS_3_THRESHOLD);
+            if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
+            {
+                game.Context.GetOverlayWidget().Initialize(true, false, true);
+                game.Context.GetOverlayWidget().SetMaxLives(game.allowedFailedMoves);
+            }
+            else
+                game.Context.GetOverlayWidget().Initialize(true, false, false);
 
+            game.Context.GetOverlayWidget().SetStarsThresholds(game.STARS_1_THRESHOLD, game.STARS_2_THRESHOLD, game.STARS_3_THRESHOLD);
+            
         }
+
 
         IEnumerator coDoTutorial()
         {
@@ -139,7 +146,7 @@ namespace EA4S.Minigames.Scanner
 
 
 
-            while (isTutRound)
+            while (isTutRound && playTut)
             {
                 if (pauseTut())
                 {

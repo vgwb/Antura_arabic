@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Core
 {
     /// <summary>
     /// App Log Manager. Use this to log any event from app.

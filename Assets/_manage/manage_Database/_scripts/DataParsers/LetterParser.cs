@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace EA4S.Db.Management
+namespace EA4S.Database.Management
 {
     /// <summary>
     /// Custom JSON parser for LetterData
     /// </summary>
     public class LetterParser : DataParser<LetterData, LetterTable>
     {
-        override protected LetterData CreateData(Dictionary<string, object> dict, Database db)
+        override protected LetterData CreateData(Dictionary<string, object> dict, DatabaseObject db)
         {
             var data = new LetterData();
 
@@ -53,7 +53,7 @@ namespace EA4S.Db.Management
             ExtractEnum(rowdicts_list, "SunMoon", addNoneValue: true);
         }
 
-        protected override void FinalValidation(LetterTable table, Database db)
+        protected override void FinalValidation(LetterTable table, DatabaseObject db)
         {
             // Fields 'BaseLetter' and 'Symbol' are validated with a final validation step, since they are based on this same table
             // Also, Combination letters are validated with their BaseLetter and Symbol.

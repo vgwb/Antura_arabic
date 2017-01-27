@@ -1,16 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using ModularFramework.Core;
-using ModularFramework.Helpers;
 using ArabicSupport;
-using EA4S;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
+using EA4S.UI;
 using TMPro;
 
 namespace EA4S.Balloons
@@ -205,20 +201,20 @@ namespace EA4S.Balloons
 
         public void PlayTitleVoiceOver()
         {            
-            EA4S.Db.LocalizationDataId title = default(EA4S.Db.LocalizationDataId);
+            EA4S.Database.LocalizationDataId title = default(EA4S.Database.LocalizationDataId);
             switch (ActiveGameVariation)
             {
                 case BalloonsVariation.Spelling:
-                    title = EA4S.Db.LocalizationDataId.Balloons_spelling_Title;
+                    title = EA4S.Database.LocalizationDataId.Balloons_spelling_Title;
                     break;
                 case BalloonsVariation.Letter:
-                    title = EA4S.Db.LocalizationDataId.Balloons_letter_Title;
+                    title = EA4S.Database.LocalizationDataId.Balloons_letter_Title;
                     break;
                 case BalloonsVariation.Words:
-                    title = EA4S.Db.LocalizationDataId.Balloons_words_Title;
+                    title = EA4S.Database.LocalizationDataId.Balloons_words_Title;
                     break;
                 case BalloonsVariation.Counting:
-                    title = EA4S.Db.LocalizationDataId.Balloons_counting_Title;
+                    title = EA4S.Database.LocalizationDataId.Balloons_counting_Title;
                     break;
                 default:
                     Debug.LogError("Invalid Balloons Game Variation!");
@@ -229,20 +225,20 @@ namespace EA4S.Balloons
 
         public void PlayTutorialVoiceOver(float delay = 2f)
         {
-            EA4S.Db.LocalizationDataId tutorial = default(EA4S.Db.LocalizationDataId);
+            EA4S.Database.LocalizationDataId tutorial = default(EA4S.Database.LocalizationDataId);
             switch (ActiveGameVariation)
             {
                 case BalloonsVariation.Spelling:
-                    tutorial = EA4S.Db.LocalizationDataId.Balloons_spelling_Tuto;
+                    tutorial = EA4S.Database.LocalizationDataId.Balloons_spelling_Tuto;
                     break;
                 case BalloonsVariation.Letter:
-                    tutorial = EA4S.Db.LocalizationDataId.Balloons_letter_Tuto;
+                    tutorial = EA4S.Database.LocalizationDataId.Balloons_letter_Tuto;
                     break;
                 case BalloonsVariation.Words:
-                    tutorial = EA4S.Db.LocalizationDataId.Balloons_words_Tuto;
+                    tutorial = EA4S.Database.LocalizationDataId.Balloons_words_Tuto;
                     break;
                 case BalloonsVariation.Counting:
-                    tutorial = EA4S.Db.LocalizationDataId.Balloons_counting_Tuto;
+                    tutorial = EA4S.Database.LocalizationDataId.Balloons_counting_Tuto;
                     break;
                 default:
                     Debug.LogError("Invalid Balloons Game Variation!");
@@ -253,20 +249,20 @@ namespace EA4S.Balloons
 
         public void PlayIntroVoiceOver(float delay = 2f)
         {
-            EA4S.Db.LocalizationDataId intro = default(EA4S.Db.LocalizationDataId);
+            EA4S.Database.LocalizationDataId intro = default(EA4S.Database.LocalizationDataId);
             switch (ActiveGameVariation)
             {
                 case BalloonsVariation.Spelling:
-                    intro = EA4S.Db.LocalizationDataId.Balloons_spelling_Intro;
+                    intro = EA4S.Database.LocalizationDataId.Balloons_spelling_Intro;
                     break;
                 case BalloonsVariation.Letter:
-                    intro = EA4S.Db.LocalizationDataId.Balloons_letter_Intro;
+                    intro = EA4S.Database.LocalizationDataId.Balloons_letter_Intro;
                     break;
                 case BalloonsVariation.Words:
-                    intro = EA4S.Db.LocalizationDataId.Balloons_words_Intro;
+                    intro = EA4S.Database.LocalizationDataId.Balloons_words_Intro;
                     break;
                 case BalloonsVariation.Counting:
-                    intro = EA4S.Db.LocalizationDataId.Balloons_counting_Intro;
+                    intro = EA4S.Database.LocalizationDataId.Balloons_counting_Intro;
                     break;
                 default:
                     Debug.LogError("Invalid Balloons Game Variation!");
@@ -275,7 +271,7 @@ namespace EA4S.Balloons
             StartCoroutine(PlayDialog_Coroutine(intro, delay));
         }
 
-        private IEnumerator PlayDialog_Coroutine(EA4S.Db.LocalizationDataId dialog, float delay)
+        private IEnumerator PlayDialog_Coroutine(EA4S.Database.LocalizationDataId dialog, float delay)
         {
             yield return new WaitForSeconds(delay);
             GetConfiguration().Context.GetAudioManager().PlayDialogue(dialog);

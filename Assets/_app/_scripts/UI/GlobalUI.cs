@@ -1,9 +1,9 @@
 ﻿using System;
 using DG.DemiLib.Attributes;
-using EA4S.UI;
+using EA4S.Core;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// Global UI created dynamically at runtime,

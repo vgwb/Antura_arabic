@@ -1,13 +1,21 @@
 ﻿using EA4S.MinigamesCommon;
+using EA4S.UI;
 
 namespace EA4S.Minigames.MixedLetters
 {
     public class ResultGameState : IGameState
     {
-        MixedLettersGame game;
+        private MixedLettersGame game;
 
-        float endResultTimer = 1f;
-        bool isGameOver = false;
+        private const float TWIRL_ANIMATION_BACK_SHOWN_DELAY = 1f;
+        private const float END_RESULT_DELAY = 1f;
+
+        private float twirlAnimationDelayTimer;
+        private bool wasBackShownDuringTwirlAnimation;
+        private float endResultTimer;
+        private bool isGameOver;
+
+        private int lastNumStarsWentTo = 0;
 
         public ResultGameState(MixedLettersGame game)
         {
@@ -18,12 +26,14 @@ namespace EA4S.Minigames.MixedLetters
         {
             SeparateLettersSpawnerController.instance.SetLettersNonInteractive();
 
+            game.DisableRepeatPromptButton();
+
             if (game.roundNumber != 0)
             {
                 MinigamesUI.Timer.Pause();
             }
 
-            if (!game.lastRoundWon)
+            if (!game.WasLastRoundWon)
             {
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
                 SeparateLettersSpawnerController.instance.ShowLoseAnimation(OnResultAnimationEnded);
@@ -32,23 +42,36 @@ namespace EA4S.Minigames.MixedLetters
             else
             {
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
-                SeparateLettersSpawnerController.instance.ShowWinAnimation(OnResultAnimationEnded);
+                SeparateLettersSpawnerController.instance.ShowWinAnimation(OnVictimLLIsShowingBack, OnResultAnimationEnded);
 
-                if (game.numRoundsWon == 1)
-                {
-                    MinigamesUI.Starbar.GotoStar(0);
-                }
+                int numStarsAsOfCurrentRound = game.GetNumStarsAsOfCurrentRound();
 
-                else if (game.numRoundsWon == 3)
+                if (numStarsAsOfCurrentRound != lastNumStarsWentTo)
                 {
-                    MinigamesUI.Starbar.GotoStar(1);
-                }
-
-                else if (game.numRoundsWon == 5)
-                {
-                    MinigamesUI.Starbar.GotoStar(2);
+                    MinigamesUI.Starbar.GotoStar(numStarsAsOfCurrentRound - 1);
+                    lastNumStarsWentTo = numStarsAsOfCurrentRound;
                 }
             }
+
+            twirlAnimationDelayTimer = TWIRL_ANIMATION_BACK_SHOWN_DELAY;
+            wasBackShownDuringTwirlAnimation = false;
+            endResultTimer = END_RESULT_DELAY;
+            isGameOver = false;
+
+            // Increase the round number here so the victim LL loads the prompt of the next round correctly during
+            // the twirl animation:
+            game.roundNumber++;
+        }
+
+        private void OnVictimLLIsShowingBack()
+        {
+            if (!game.IsGameOver)
+            {
+                game.GenerateNewWord();
+                VictimLLController.instance.HideVictoryRays();
+            }
+            
+            wasBackShownDuringTwirlAnimation = true;
         }
 
         public void ExitState()
@@ -58,7 +81,7 @@ namespace EA4S.Minigames.MixedLetters
 
         public void OnResultAnimationEnded()
         {
-            if (game.roundNumber < 5)
+            if (!game.IsGameOver)
             {
                 game.SetCurrentState(game.IntroductionState);
             }
@@ -66,6 +89,11 @@ namespace EA4S.Minigames.MixedLetters
             else
             {
                 isGameOver = true;
+
+                if (game.WasLastRoundWon)
+                {
+                    endResultTimer = 0f;
+                }
             }
         }
 
@@ -77,26 +105,20 @@ namespace EA4S.Minigames.MixedLetters
 
                 if (endResultTimer < 0)
                 {
-                    int numberOfStars;
+                    game.EndGame(game.GetNumStarsAsOfCurrentRound(), 0);
+                }
+            }
 
-                    if (game.numRoundsWon == 0)
-                    {
-                        numberOfStars = 0;
-                    }
-                    else if (game.numRoundsWon == 1 || game.numRoundsWon == 2)
-                    {
-                        numberOfStars = 1;
-                    }
-                    else if (game.numRoundsWon == 3 || game.numRoundsWon == 4)
-                    {
-                        numberOfStars = 2;
-                    }
-                    else
-                    {
-                        numberOfStars = 3;
-                    }
+            else if (game.WasLastRoundWon)
+            {
+                if (wasBackShownDuringTwirlAnimation)
+                {
+                    twirlAnimationDelayTimer -= delta;
 
-                    game.EndGame(numberOfStars, 0);
+                    if (twirlAnimationDelayTimer <= 0)
+                    {
+                        OnResultAnimationEnded();
+                    }
                 }
             }
         }

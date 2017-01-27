@@ -49,7 +49,7 @@ namespace EA4S.Minigames.SickLetters
                 else
                 {
                     //string dia = "Reward_" + game.currentStars + "Star_" + UnityEngine.Random.Range(1, 4);
-                    Db.LocalizationDataId data = randomRewardData();
+                    Database.LocalizationDataId data = randomRewardData();
                     //WidgetSubtitles.I.gameObject.SetActive(true);
                     AudioManager.I.PlayDialogue(data);
                     //WidgetSubtitles.I.DisplaySentence(data , 2, true);
@@ -64,14 +64,14 @@ namespace EA4S.Minigames.SickLetters
         {
         }
 
-        Db.LocalizationDataId randomRewardData()
+        Database.LocalizationDataId randomRewardData()
         {
             if (game.currentStars == 1)
-                return (Db.LocalizationDataId)(UnityEngine.Random.Range(262,265));
+                return (Database.LocalizationDataId)(UnityEngine.Random.Range(262,265));
             else if (game.currentStars == 2)
-                return (Db.LocalizationDataId)(UnityEngine.Random.Range(265, 268));
+                return (Database.LocalizationDataId)(UnityEngine.Random.Range(265, 268));
             else
-                return (Db.LocalizationDataId)(UnityEngine.Random.Range(268, 271));
+                return (Database.LocalizationDataId)(UnityEngine.Random.Range(268, 271));
 
         }
     }
