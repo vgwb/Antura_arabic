@@ -12,43 +12,43 @@ namespace EA4S.Minigames.Maze
 {
     public class MazeGameManager : MiniGame
     {
-		
-		public static MazeGameManager instance;
+
+        public static MazeGameManager instance;
 
         public GameObject characterPrefab;
         public GameObject arrowTargetPrefab;
 
         public MazeCharacter currentCharacter;
-		public HandTutorial currentTutorial;
+        public HandTutorial currentTutorial;
 
-		public List<GameObject> prefabs;
+        public List<GameObject> prefabs;
 
-		public Canvas endGameCanvas;
-
-		
-
-		 
-		public float idleTime = 7;
-		public TextMeshProUGUI roundNumber;
+        public Canvas endGameCanvas;
 
 
-		int currentLetterIndex;
-		public GameObject currentPrefab;
-		public int health = 4;
-		public GameObject cracks;
-		List<GameObject> _cracks;
-		//List<GameObject> lines;
-		public List<Vector3> pointsList;
 
-		public List<LineRenderer> lines;
 
-		int correctLetters = 0;
-		int wrongLetters = 0;
+        public float idleTime = 7;
+        public TextMeshProUGUI roundNumber;
 
-		[HideInInspector]
-		public float gameTime = 0;
-		public float maxGameTime = 120;
-		public MazeTimer timer;
+
+        int currentLetterIndex;
+        public GameObject currentPrefab;
+        public int health = 4;
+        public GameObject cracks;
+        List<GameObject> _cracks;
+        //List<GameObject> lines;
+        public List<Vector3> pointsList;
+
+        public List<LineRenderer> lines;
+
+        int correctLetters = 0;
+        int wrongLetters = 0;
+
+        [HideInInspector]
+        public float gameTime = 0;
+        public float maxGameTime = 120;
+        public MazeTimer timer;
         public GameObject antura;
         public GameObject fleePositionObject;
 
@@ -56,32 +56,57 @@ namespace EA4S.Minigames.Maze
 
         public bool isTutorialMode;
         //for letters:
-        public Dictionary<string,int> allLetters;
+        public Dictionary<string, int> allLetters;
+
+        private MazeLetter currentMazeLetter;
+        private IInputManager inputManager;
+
         void setupIndices()
         {
             allLetters = new Dictionary<string, int>();
-            for(int i =0; i < prefabs.Count;++i)
+            for (int i = 0; i < prefabs.Count; ++i)
             {
                 allLetters.Add(prefabs[i].name, i);
             }
         }
 
+        private void OnPointerDown()
+        {
+            if (currentMazeLetter != null)
+            {
+                currentMazeLetter.OnPointerDown();
+            }
+        }
+
+        private void OnPointerUp()
+        {
+            if (currentMazeLetter != null)
+            {
+                currentMazeLetter.OnPointerUp();
+            }
+        }
+
+        public Vector2 GetLastPointerPosition()
+        {
+            return inputManager.LastPointerPosition;
+        }
+
         protected override void Awake()
-		{
-			base.Awake();
-			instance = this;
+        {
+            base.Awake();
+            instance = this;
 
 
-		}
+        }
 
-		public void startGame()
-		{
+        public void startGame()
+        {
             isTutorialMode = true;
             setupIndices();
 
             Context.GetAudioManager().PlayMusic(Music.Theme8);
 
-            
+
 
 
             fleePositions = new List<Vector3>();
@@ -92,65 +117,67 @@ namespace EA4S.Minigames.Maze
 
             antura.AddComponent<MazeAntura>();
             //cracks to display:
-            _cracks = new List<GameObject> ();
-			cracks.SetActive (true);
-			foreach (Transform child in cracks.transform) {
-				child.gameObject.SetActive (false);
-				_cracks.Add (child.gameObject);
-			}
-			//lines = new List<GameObject>();
+            _cracks = new List<GameObject>();
+            cracks.SetActive(true);
+            foreach (Transform child in cracks.transform)
+            {
+                child.gameObject.SetActive(false);
+                _cracks.Add(child.gameObject);
+            }
+            //lines = new List<GameObject>();
 
-			lines = new List<LineRenderer> ();
+            lines = new List<LineRenderer>();
 
 
 
 
-			currentLetterIndex = 0;
-			roundNumber.text = "#" + (currentLetterIndex + 1);
+            currentLetterIndex = 0;
+            roundNumber.text = "#" + (currentLetterIndex + 1);
 
-			gameTime = maxGameTime / (1 + MazeConfiguration.Instance.Difficulty);
+            gameTime = maxGameTime / (1 + MazeConfiguration.Instance.Difficulty);
 
 
 
             //init first letter
-            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Title,()=> {
+            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Title, () =>
+            {
                 initCurrentLetter();
             });
-            
 
-		}
+
+        }
 
         public void initUI()
         {
             //ui:
             MinigamesUI.Init(MinigamesUIElement.Starbar | MinigamesUIElement.Timer);
 
-            timer.initTimer ();
+            timer.initTimer();
         }
 
         public void addLine()
-		{
-			
-			pointsList = new List<Vector3> ();
-			GameObject go = new GameObject ();
-			go.transform.position = new Vector3 (0, 0, -0.2f);
-            go.transform.Rotate(new Vector3(90,0,0));
-            LineRenderer line = go.AddComponent<LineRenderer> ();
-			//line.material = new Material (Shader.Find ("Particles/Additive"));
-			line.numPositions = 0;
+        {
+
+            pointsList = new List<Vector3>();
+            GameObject go = new GameObject();
+            go.transform.position = new Vector3(0, 0, -0.2f);
+            go.transform.Rotate(new Vector3(90, 0, 0));
+            LineRenderer line = go.AddComponent<LineRenderer>();
+            //line.material = new Material (Shader.Find ("Particles/Additive"));
+            line.numPositions = 0;
             line.startWidth = 0.6f;
             line.endWidth = 0.6f;
-			//line.SetColors (Color.green, Color.green);
-			//line.useWorldSpace = true;    
+            //line.SetColors (Color.green, Color.green);
+            //line.useWorldSpace = true;    
 
-			line.material = new Material(Shader.Find("Antura/Transparent"));
-			line.material.color = new Color (1f, 0.15f, 0f, 0.75f);
+            line.material = new Material(Shader.Find("Antura/Transparent"));
+            line.material.color = new Color(1f, 0.15f, 0f, 0.75f);
 
-			lines.Add (line);
+            lines.Add(line);
 
-		}
+        }
 
-		/*protected override void ReadyForGameplay()
+        /*protected override void ReadyForGameplay()
 		{
 			base.ReadyForGameplay();
 		}
@@ -165,37 +192,37 @@ namespace EA4S.Minigames.Maze
 			base.OnMinigameQuit();
 		}*/
 
-		public bool tutorialForLetterisComplete()
-		{
-			return currentTutorial.isCurrentTutorialDone ();
-		}
+        public bool tutorialForLetterisComplete()
+        {
+            return currentTutorial.isCurrentTutorialDone();
+        }
 
-		public bool isCurrentLetterComplete()
-		{
-			return currentTutorial.isComplete ();
-		}
+        public bool isCurrentLetterComplete()
+        {
+            return currentTutorial.isComplete();
+        }
 
-		public void showAllCracks()
-		{
+        public void showAllCracks()
+        {
             if (!currentCharacter || currentCharacter.isAppearing || !currentCharacter.gameObject.activeSelf) return;
             if (health == 0)
-				return;
-			
-			for (int i = 0; i < _cracks.Count; ++i)
-				_cracks [i].SetActive (true);
-			//StartCoroutine (shakeCamera (0.5f, 0.5f));
+                return;
 
-		}
-		public void wasHit()
-		{
+            for (int i = 0; i < _cracks.Count; ++i)
+                _cracks[i].SetActive(true);
+            //StartCoroutine (shakeCamera (0.5f, 0.5f));
+
+        }
+        public void wasHit()
+        {
 
             if (!currentCharacter || currentCharacter.isAppearing || !currentCharacter.gameObject.activeSelf) return;
-            _cracks [_cracks.Count- health].SetActive (true);
-			health--;
+            _cracks[_cracks.Count - health].SetActive(true);
+            health--;
 
-			//StartCoroutine (shakeCamera (0.5f, 0.5f));
+            //StartCoroutine (shakeCamera (0.5f, 0.5f));
 
-		}
+        }
 
         IEnumerator waitAndPerformCallback(float seconds, VoidDelegate init, VoidDelegate callback)
         {
@@ -208,31 +235,34 @@ namespace EA4S.Minigames.Maze
 
 
         public void moveToNext(bool won = false)
-		{
+        {
             if (!currentCharacter || currentCharacter.isAppearing || !currentCharacter.gameObject.activeSelf) return;
 
             isShowingAntura = false;
             //check if current letter is complete:
-            if (currentCharacter.isComplete ()) {
+            if (currentCharacter.isComplete())
+            {
 
-                
 
-                if(!isTutorialMode)
+
+                if (!isTutorialMode)
                 {
                     correctLetters++;
                     currentLetterIndex++;
                 }
                 //show message:
                 MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
-                
+
                 TutorialUI.MarkYes(currentCharacter.transform.position + new Vector3(2, 2, 2), TutorialUI.MarkSize.Huge);
-                currentCharacter.celebrate(() => {
+                currentCharacter.celebrate(() =>
+                {
                     if (currentLetterIndex == 6)
                     { //round is 6
                         endGame();
                         return;
                     }
-                    else {
+                    else
+                    {
                         if (isTutorialMode)
                         {
                             isTutorialMode = false;
@@ -244,19 +274,21 @@ namespace EA4S.Minigames.Maze
                         restartCurrentLetter(won);
                     }
                 });
-              
+
 
                 //print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);
-                
-			} else {
-				addLine ();
-				currentCharacter.nextPath ();
-				currentTutorial.moveToNextPath ();
-			}
-		}
 
-		public void lostCurrentLetter()
-		{
+            }
+            else
+            {
+                addLine();
+                currentCharacter.nextPath();
+                currentTutorial.moveToNextPath();
+            }
+        }
+
+        public void lostCurrentLetter()
+        {
             if (!currentCharacter || currentCharacter.isAppearing || !currentCharacter.gameObject.activeSelf) return;
 
             if (isTutorialMode)
@@ -264,12 +296,12 @@ namespace EA4S.Minigames.Maze
                 hideCracks();
 
                 //remove last line
-                if(lines.Count > 0)
+                if (lines.Count > 0)
                 {
                     lines[lines.Count - 1].numPositions = 0;
                     lines.RemoveAt(lines.Count - 1);
                 }
-                
+
                 pointsList.RemoveRange(0, pointsList.Count);
 
                 //removeLines();
@@ -283,21 +315,24 @@ namespace EA4S.Minigames.Maze
             }
 
             wrongLetters++;
-			currentLetterIndex++;
-			if (currentLetterIndex == 6) {
+            currentLetterIndex++;
+            if (currentLetterIndex == 6)
+            {
                 endGame();
-				return;
-			} else {
-				roundNumber.text = "#" + (currentLetterIndex + 1);
+                return;
+            }
+            else
+            {
+                roundNumber.text = "#" + (currentLetterIndex + 1);
 
                 MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
-                restartCurrentLetter ();
-			}
-			
-		}
+                restartCurrentLetter();
+            }
 
-		public void restartCurrentLetter(bool won = false)
-		{
+        }
+
+        public void restartCurrentLetter(bool won = false)
+        {
 
             //Destroy (currentPrefab);
             int numberOfStars = 0;
@@ -313,61 +348,63 @@ namespace EA4S.Minigames.Maze
             {
                 numberOfStars = 1;
             }
-            else {
+            else
+            {
                 numberOfStars = 0;
             }
 
             if (numberOfStars > 0)
             {
-                MinigamesUI.Starbar.GotoStar(numberOfStars-1);
+                MinigamesUI.Starbar.GotoStar(numberOfStars - 1);
             }
 
-            
-				
-
-			currentPrefab.SendMessage("moveOut",won);
-
-			hideCracks ();
-			removeLines ();
-
-			initCurrentLetter ();
-		
 
 
 
+            currentPrefab.SendMessage("moveOut", won);
 
-		}
+            hideCracks();
+            removeLines();
 
-		void removeLines()
-		{
-			foreach(LineRenderer line in lines)		
-				line.numPositions = 0;
-			lines = new List<LineRenderer> ();
-			pointsList.RemoveRange (0, pointsList.Count);
-            
-		}
+            initCurrentLetter();
 
-		void hideCracks()
-		{
-			health = 4;
-			//hide cracks:
-			foreach (Transform child in cracks.transform) {
-				child.gameObject.SetActive (false);
-			}
-		}
+
+
+
+
+        }
+
+        void removeLines()
+        {
+            foreach (LineRenderer line in lines)
+                line.numPositions = 0;
+            lines = new List<LineRenderer>();
+            pointsList.RemoveRange(0, pointsList.Count);
+
+        }
+
+        void hideCracks()
+        {
+            health = 4;
+            //hide cracks:
+            foreach (Transform child in cracks.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
         private LL_LetterData currentLL = null;
-		void initCurrentLetter()
-		{
+        void initCurrentLetter()
+        {
             currentCharacter = null;
             currentTutorial = null;
 
             TutorialUI.Clear(false);
-            addLine ();
+            addLine();
 
 
             //get a new letter:
             IQuestionPack newQuestionPack = MazeConfiguration.Instance.Questions.GetNextQuestion();
-            List<ILivingLetterData> ldList =  (List < ILivingLetterData > )newQuestionPack.GetCorrectAnswers();
+            List<ILivingLetterData> ldList = (List<ILivingLetterData>)newQuestionPack.GetCorrectAnswers();
             LL_LetterData ld = (LL_LetterData)ldList[0];
             int index = -1;
 
@@ -378,7 +415,7 @@ namespace EA4S.Minigames.Maze
                 Debug.Log("Letter got from Teacher is: " + ld.Id + " - does not match 11 models we have, we will play sound of the returned data");
                 index = UnityEngine.Random.Range(0, prefabs.Count);
             }
-            
+
             currentLL = ld;
             currentPrefab = (GameObject)Instantiate(prefabs[index]);
 
@@ -399,11 +436,12 @@ namespace EA4S.Minigames.Maze
 
 
             //currentPrefab.GetComponent<MazeLetterBuilder>().letterData = ld;
-            currentPrefab.GetComponent<MazeLetterBuilder>().build(() => {
+            currentPrefab.GetComponent<MazeLetterBuilder>().build(() =>
+            {
 
-                if(!isTutorialMode)
+                if (!isTutorialMode)
                     MazeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(ld);
-                
+
 
 
                 foreach (Transform child in currentPrefab.transform)
@@ -415,22 +453,25 @@ namespace EA4S.Minigames.Maze
                 }
 
                 currentCharacter.gameObject.SetActive(false);
-            });
 
+                currentMazeLetter = currentPrefab.GetComponentInChildren<MazeLetter>();
+            });
         }
 
         public void showCharacterMovingIn()
         {
-            if(isTutorialMode)
+            if (isTutorialMode)
             {
                 MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Intro,
-                        () => {
-                            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Tuto, ()=> {
+                        () =>
+                        {
+                            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Tuto, () =>
+                            {
                                 MazeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(currentLL);
                             });
                             currentCharacter.initialPosition = currentCharacter.transform.position;
                             currentCharacter.initialRotation = currentCharacter.transform.rotation;
-                            currentCharacter.transform.position = new Vector3(0,0,15);
+                            currentCharacter.transform.position = new Vector3(0, 0, 15);
                             currentCharacter.gameObject.SetActive(true);
                             currentCharacter.appear();
                         }
@@ -444,67 +485,72 @@ namespace EA4S.Minigames.Maze
             currentCharacter.appear();
         }
 
-		public void showCurrentTutorial()
-		{
+        public void showCurrentTutorial()
+        {
             isShowingAntura = false;
 
-            if (currentTutorial != null) {
-				currentTutorial.showCurrentTutorial ();
+            if (currentTutorial != null)
+            {
+                currentTutorial.showCurrentTutorial();
 
-			}
-			if (currentCharacter != null) {
-                
-                currentCharacter.initialize ();
+            }
+            if (currentCharacter != null)
+            {
 
-			}
+                currentCharacter.initialize();
 
-		}
+            }
 
-		IEnumerator shakeCamera(float duration, float magnitude) {
-			
-			float elapsed = 0.0f;
+        }
 
-			Vector3 originalCamPos = Camera.main.transform.position;
+        IEnumerator shakeCamera(float duration, float magnitude)
+        {
 
-			while (elapsed < duration) {
+            float elapsed = 0.0f;
 
-				elapsed += Time.deltaTime;          
+            Vector3 originalCamPos = Camera.main.transform.position;
 
-				float percentComplete = elapsed / duration;         
-				float damper = 1.0f - Mathf.Clamp(4.0f * percentComplete - 3.0f, 0.0f, 1.0f);
+            while (elapsed < duration)
+            {
 
-				// map value to [-1, 1]
-				float x = UnityEngine.Random.value * 2.0f - 1.0f;
-				float y = UnityEngine.Random.value * 2.0f - 1.0f;
-				x *= magnitude * damper;
-				y *= magnitude * damper;
+                elapsed += Time.deltaTime;
 
-				Camera.main.transform.position = new Vector3(x, y, originalCamPos.z);
+                float percentComplete = elapsed / duration;
+                float damper = 1.0f - Mathf.Clamp(4.0f * percentComplete - 3.0f, 0.0f, 1.0f);
 
-				yield return null;
-			}
+                // map value to [-1, 1]
+                float x = UnityEngine.Random.value * 2.0f - 1.0f;
+                float y = UnityEngine.Random.value * 2.0f - 1.0f;
+                x *= magnitude * damper;
+                y *= magnitude * damper;
 
-			Camera.main.transform.position = originalCamPos;
-		}
+                Camera.main.transform.position = new Vector3(x, y, originalCamPos.z);
 
-		public void appendToLine(Vector3 mousePos)
-		{
-			if (!pointsList.Contains (mousePos)) {
-				//mousePos.z = -0.1071415f;
-				pointsList.Add (mousePos);
-				lines[lines.Count-1].numPositions = pointsList.Count;
-				lines[lines.Count-1].SetPosition (pointsList.Count - 1, (Vector3)pointsList [pointsList.Count - 1]);
-			}
-		}
+                yield return null;
+            }
+
+            Camera.main.transform.position = originalCamPos;
+        }
+
+        public void appendToLine(Vector3 mousePos)
+        {
+            if (!pointsList.Contains(mousePos))
+            {
+                //mousePos.z = -0.1071415f;
+                pointsList.Add(mousePos);
+                lines[lines.Count - 1].numPositions = pointsList.Count;
+                lines[lines.Count - 1].SetPosition(pointsList.Count - 1, (Vector3)pointsList[pointsList.Count - 1]);
+            }
+        }
 
         public void fixLine()
         {
-            lines[lines.Count - 1].material.color = new Color(1,0.54f,0);
+            lines[lines.Count - 1].material.color = new Color(1, 0.54f, 0);
         }
 
-		public void DrawLine(Vector3 start, Vector3 end, Color color)
-		{
-			/*
+        public void DrawLine(Vector3 start, Vector3 end, Color color)
+        {
+            /*
 			start.z = end.z = -0.1f;//-0.1f;
 			GameObject myLine = new GameObject();
 			myLine.transform.position = start;
@@ -519,11 +565,11 @@ namespace EA4S.Minigames.Maze
 			lr.SetPosition(1, end);
 
 			lines.Add(myLine);*/
-		}
+        }
 
         bool gameEnded = false;
         private void endGame()
-		{
+        {
             if (gameEnded)
                 return;
 
@@ -545,7 +591,8 @@ namespace EA4S.Minigames.Maze
             {
                 numberOfStars = 1;
             }
-            else {
+            else
+            {
                 numberOfStars = 0;
             }
 
@@ -558,11 +605,11 @@ namespace EA4S.Minigames.Maze
             //StartCoroutine(EndGame_Coroutine());
         }
 
-        
+
 
         private IEnumerator EndGame_Coroutine()
-		{
-			yield return new WaitForSeconds(1f);
+        {
+            yield return new WaitForSeconds(1f);
             int numberOfStars = 0;
             if (correctLetters == 6)
             {
@@ -576,30 +623,31 @@ namespace EA4S.Minigames.Maze
             {
                 numberOfStars = 1;
             }
-            else {
+            else
+            {
                 numberOfStars = 0;
             }
             EndGame(numberOfStars, correctLetters);
-            
+
         }
 
 
         public void onTimeUp()
-		{
+        {
             //end game:
             endGame();
-		}
+        }
 
         public bool isShowingAntura = false;
-		public void onIdleTime()
-		{
+        public void onIdleTime()
+        {
             if (isShowingAntura) return;
             isShowingAntura = true;
 
             timer.StopTimer();
 
-            antura.SetActive (true);
-            antura.GetComponent<MazeAntura>().SetAnturaTime(true,currentCharacter.transform.position);
+            antura.SetActive(true);
+            antura.GetComponent<MazeAntura>().SetAnturaTime(true, currentCharacter.transform.position);
 
             int randIndex = UnityEngine.Random.Range(0, fleePositions.Count);
             currentCharacter.fleeTo(fleePositions[randIndex]);
@@ -626,17 +674,11 @@ namespace EA4S.Minigames.Maze
 
         protected override void OnInitialize(IGameContext context)
         {
-            
             IntroductionState = new MazeIntroState(this);
-             
 
+            inputManager = context.GetInputManager();
+            inputManager.onPointerDown += OnPointerDown;
+            inputManager.onPointerUp += OnPointerUp;
         }
     }
-/*
-	[Serializable]
-	public class MazeGameplayInfo : AnturaGameplayInfo
-	{
-		[Tooltip("Play session duration in seconds.")]
-		public float PlayTime = 0f;
-	}*/
 }

@@ -446,8 +446,10 @@ namespace EA4S.Minigames.Maze
 			//pos.z = _fruits[0].transform.position.z;
 
             float mag = (pos - _fruits[0].transform.position).sqrMagnitude;
+
+            Debug.Log("Distance magnitude = " + mag);
            
-            return ((pos - _fruits [0].transform.position).sqrMagnitude) <= 1;
+            return ((pos - _fruits [0].transform.position).sqrMagnitude) <= 4;
 
 
 		}
