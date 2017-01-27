@@ -11,9 +11,9 @@ namespace EA4S.PlayerBook
 
         public void Init(string _title, string _value, string _subtitle = "")
         {
-            TxTitle.setText(_title);
-            TxSubtitle.setText(_subtitle);
-            TxValue.setText(_value);
+            TxTitle.SetText(_title);
+            TxSubtitle.SetText(_subtitle);
+            TxValue.SetText(_value);
         }
     }
 }

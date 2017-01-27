@@ -111,7 +111,7 @@ namespace EA4S.Minigames.SickLetters
 
             string letterWithoutDiac = removeDiacritics(newLetter.TextForLivingLetter);
 
-            dotlessLetter.GetComponent<TextRender>().setText(letterWithoutDiac, true);
+            dotlessLetter.GetComponent<TextRender>().SetText(letterWithoutDiac, true);
 
             //Deal with dotless letters
             if (!game.LettersWithDots.Contains(letterWithoutDiac))

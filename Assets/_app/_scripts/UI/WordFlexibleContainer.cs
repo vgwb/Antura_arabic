@@ -16,7 +16,7 @@ namespace EA4S.UI
         {
             Label.gameObject.SetActive(true);
             NumbersLabel.gameObject.SetActive(false);
-            Label.setText(text, arabic);
+            Label.SetText(text, arabic);
         }
 
         public void SetText(ILivingLetterData data)
@@ -38,7 +38,7 @@ namespace EA4S.UI
         {
             Label.gameObject.SetActive(false);
             NumbersLabel.gameObject.SetActive(true);
-            NumbersLabel.setText(numberValue.ToString(), false);
+            NumbersLabel.SetText(numberValue.ToString(), false);
         }
     }
 }
