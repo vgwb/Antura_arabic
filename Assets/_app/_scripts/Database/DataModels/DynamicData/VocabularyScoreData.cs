@@ -14,7 +14,7 @@ namespace EA4S.Database
     /// Summary score results relative to a vocabulary element. Updated at runtime.
     /// </summary>
     [System.Serializable]
-    public class VocabularyScoreData : IData
+    public class VocabularyScoreData : IData, IScoreData
     {
         public float GetScore()
         {

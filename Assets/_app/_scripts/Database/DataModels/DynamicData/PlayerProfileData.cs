@@ -32,8 +32,7 @@ namespace EA4S.Database
         {
         }
 
-        public PlayerProfileData(string _PlayerKey, int _PlayerId, int _AvatarId, 
-            int _Age, string _Name, int _TotalNumberOfBones)
+        public PlayerProfileData(string _PlayerKey, int _PlayerId, int _AvatarId, int _Age, string _Name, int _TotalNumberOfBones)
         {
             Id = 1;  // Only one record
             PlayerKey = _PlayerKey;
@@ -43,15 +42,42 @@ namespace EA4S.Database
             Name = _Name;
             ProfileCompletion = 0;
             TotalNumberOfBones = _TotalNumberOfBones;
-            MaxJourneyPosition_Stage = JourneyPosition.InitialJourneyPosition.Stage;
-            MaxJourneyPosition_LearningBlock = JourneyPosition.InitialJourneyPosition.LearningBlock;
-            MaxJourneyPosition_PlaySession = JourneyPosition.InitialJourneyPosition.PlaySession;
-            CurrentJourneyPosition_Stage = JourneyPosition.InitialJourneyPosition.Stage;
-            CurrentJourneyPosition_LearningBlock = JourneyPosition.InitialJourneyPosition.LearningBlock;
-            CurrentJourneyPosition_PlaySession = JourneyPosition.InitialJourneyPosition.PlaySession;
+            SetMaxJourneyPosition(JourneyPosition.InitialJourneyPosition);
+            SetCurrentJourneyPosition(JourneyPosition.InitialJourneyPosition);
             CreationTimestamp = GenericUtilities.GetTimestampForNow();
         }
 
+        #region Journey Position
+
+        public void SetMaxJourneyPosition(JourneyPosition pos)
+        {
+            MaxJourneyPosition_Stage = pos.Stage;
+            MaxJourneyPosition_LearningBlock = pos.LearningBlock;
+            MaxJourneyPosition_PlaySession = pos.PlaySession;
+        }
+
+        public void SetCurrentJourneyPosition(JourneyPosition pos)
+        {
+            CurrentJourneyPosition_Stage = pos.Stage;
+            CurrentJourneyPosition_LearningBlock = pos.LearningBlock;
+            CurrentJourneyPosition_LearningBlock = pos.PlaySession;
+        }
+
+        public JourneyPosition GetMaxJourneyPosition()
+        {
+            return new JourneyPosition(MaxJourneyPosition_Stage, MaxJourneyPosition_LearningBlock, MaxJourneyPosition_PlaySession);
+        }
+
+        public JourneyPosition GetCurrentJourneyPosition()
+        {
+            return new JourneyPosition(CurrentJourneyPosition_Stage, CurrentJourneyPosition_LearningBlock, CurrentJourneyPosition_PlaySession);
+        }
+
+        #endregion
+
+        #region Database API
+
+        
         public string GetId()
         {
             return Id.ToString();
@@ -65,6 +91,8 @@ namespace EA4S.Database
                 CreationTimestamp
             );
         }
+
+        #endregion
 
     }
 }
