@@ -497,15 +497,17 @@ namespace EA4S
                 }
                 else
                 {
-
-
-
-                    // Finished minigames. Go to the reward scene.
-                    /// - Reward screen
-                    /// *-- check first contact : 
-                    /// 
-                    // MaxJourneyPosistionProgress (with Reset CurrentMiniGameInPlaySession) is performed contestually to reward creation to avoid un-sync results.
-                    GoToScene(AppScene.PlaySessionResult);
+                    // Finished all minigames for the current play session
+                    if (NavData.RealPlaySession)
+                    {
+                        // Go to the reward scene.
+                        GoToScene(AppScene.PlaySessionResult);
+                    }
+                    else
+                    {
+                        // Go where you were previously
+                        GoBack();
+                    }
                 }
             }
         }
