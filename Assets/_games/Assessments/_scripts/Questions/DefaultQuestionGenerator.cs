@@ -39,8 +39,6 @@ namespace EA4S.Assessment
 
         IEnumerator ReadQuestionAndReplyEvent()
         {
-            Debug.Log( "Reading Question & Reply");
-
             yield return Koroutine.Nested( 
                     dialogues.PlayLetterDataCoroutine( cacheQuestionToRead));
 
@@ -69,7 +67,7 @@ namespace EA4S.Assessment
         public void CompleteRound()
         {
             if (state != QuestionGeneratorState.Initialized)
-                throw new InvalidOperationException("Not Initialized");
+                throw new InvalidOperationException( "Not Initialized");
 
             state = QuestionGeneratorState.Completed;
         }
