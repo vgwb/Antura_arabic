@@ -160,7 +160,7 @@ namespace EA4S
                     break;
                 case AppScene.DebugPanel:
                     NavData.SetFirstMinigame();
-                    LaunchGameScene(NavData.CurrentMiniGameData);
+                    InternalLaunchGameScene(NavData.CurrentMiniGameData);
                     break;
                 default:
                     break;
@@ -230,7 +230,7 @@ namespace EA4S
         /// !!! WARNING !!! Direct call is allowed only by NavigationManager internal, Book and debugger.
         /// </summary>
         /// <param name="_miniGame">The mini game.</param>
-        public void LaunchGameScene(MiniGameData _miniGame)
+        private void InternalLaunchGameScene(MiniGameData _miniGame)
         {
             switch (NavData.CurrentScene) {
                 case AppScene.Book:
@@ -446,7 +446,7 @@ namespace EA4S
             if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
             {
                 // Direct to the current minigame (which is an assessment)
-                LaunchGameScene(NavData.CurrentMiniGameData);
+                InternalLaunchGameScene(NavData.CurrentMiniGameData);
             }
             else
             {
@@ -461,7 +461,7 @@ namespace EA4S
             NavData.SetFirstMinigame();
             // TODO: ??? 
             WorldManager.I.CurrentWorld = (WorldID)(NavData.CurrentPlayer.CurrentJourneyPosition.Stage - 1);
-            LaunchGameScene(NavData.CurrentMiniGameData);
+            InternalLaunchGameScene(NavData.CurrentMiniGameData);
         }
 
         private void GotoNextGameOfPlaysession()
@@ -478,7 +478,7 @@ namespace EA4S
                 if (NavData.SetNextMinigame())
                 {
                     // Go to the next minigame.
-                    LaunchGameScene(NavData.CurrentMiniGameData);
+                    InternalLaunchGameScene(NavData.CurrentMiniGameData);
                 }
                 else
                 {
