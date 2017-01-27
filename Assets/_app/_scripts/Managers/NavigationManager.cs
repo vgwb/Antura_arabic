@@ -279,6 +279,7 @@ namespace EA4S.Core
                 // Normal flow
                 case AppScene.MiniGame:
                 case AppScene.GameSelector:
+                case AppScene.Map:
                     canTravel = true;
                     break;
 
