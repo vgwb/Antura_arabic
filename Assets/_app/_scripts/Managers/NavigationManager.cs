@@ -232,16 +232,7 @@ namespace EA4S
         /// <param name="_miniGame">The mini game.</param>
         private void InternalLaunchGameScene(MiniGameData _miniGame)
         {
-            switch (NavData.CurrentScene) {
-                case AppScene.Book:
-                    //NavData.CurrentMiniGameData = _miniGame;
-                    AppManager.I.GameLauncher.LaunchGame(_miniGame.Code, true);
-                    break;
-                default:
-                    AppManager.I.GameLauncher.LaunchGame(_miniGame.Code);
-                    break;
-            }
-            
+            AppManager.I.GameLauncher.LaunchGame(_miniGame.Code);
         }
 
         #endregion
