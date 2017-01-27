@@ -74,7 +74,7 @@ namespace EA4S.Teacher
         /// </summary>
         public struct LearnResultParameters
         {
-            public DbTables table;
+            public VocabularyDataType dataType;
             public string elementId;
             public int nCorrect;
             public int nWrong;
@@ -101,12 +101,12 @@ namespace EA4S.Teacher
                 score *= learnRules.minigameImportanceWeight;
                 score += learnRules.minigameVoteSkewOffset;
 
-                var data = new LogLearnData(session, playSession, miniGameCode, result.table, result.elementId, score);
+                var data = new LogLearnData(session, playSession, miniGameCode, result.dataType, result.elementId, score);
                 db.Insert(data);
 
                 // We also update the score for that data element
                 // refactor: the magic number 5 should become a configuration parameter
-                UpdateScoreDataWithMovingAverage(result.table, result.elementId, score, 5);
+                UpdateVocabularyScoreDataWithMovingAverage(result.dataType, result.elementId, score, 5);
             }
         } 
 
@@ -131,51 +131,51 @@ namespace EA4S.Teacher
 
         #region Journey Scores
 
-        public void LogMiniGameScore(MiniGameCode miniGameCode, float score)
+        public void LogMiniGameScore(MiniGameCode miniGameCode, int score)
         {
             if (AppConstants.VerboseLogging) Debug.Log("LogMiniGameScore " + miniGameCode + " / " + score);
-            UpdateScoreDataWithMaximum(DbTables.MiniGames, (miniGameCode).ToString(), score);
+            UpdateJourneyScoreDataWithMaximum(JourneyDataType.Minigame, (miniGameCode).ToString(), score);
         }
 
-        public void LogPlaySessionScore(string playSessionId, float score)
+        public void LogPlaySessionScore(string playSessionId, int score)
         {
             if (AppConstants.VerboseLogging) Debug.Log("LogPlaySessionScore " + playSessionId + " / " + score);
-            UpdateScoreDataWithMaximum(DbTables.PlaySessions, (playSessionId).ToString(), score);
+            UpdateJourneyScoreDataWithMaximum(JourneyDataType.PlaySession,(playSessionId).ToString(), score);
         }
 
-        public void LogLearningBlockScore(int learningBlock, float score)
+        public void LogLearningBlockScore(int learningBlock, int score)
         {
             if (AppConstants.VerboseLogging) Debug.Log("LogLearningBlockScore " + learningBlock + " / " + score);
-            UpdateScoreDataWithMaximum(DbTables.LearningBlocks, (learningBlock).ToString(), score);
+            UpdateJourneyScoreDataWithMaximum(JourneyDataType.LearningBlock, (learningBlock).ToString(), score);
         }
 
         #endregion
 
         #region Score Utilities
 
-        private void UpdateScoreDataWithMaximum(DbTables table, string elementId, float newScore)
+        private void UpdateJourneyScoreDataWithMaximum(JourneyDataType dataType, string elementId, int newScore)
         {
-            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = '{0}' AND ElementId = '{1}'", table.ToString(), elementId);
-            List<ScoreData> scoreDataList = db.FindScoreDataByQuery(query);
-            float previousMaxScore = 0;
+            string query = string.Format("SELECT * FROM JourneyScoreData WHERE JourneyDataType = '{0}' AND ElementId = '{1}'", (int)dataType, elementId);
+            List<JourneyScoreData> scoreDataList = db.FindDataByQuery<JourneyScoreData>(query);
+            int previousMaxScore = 0;
             if (scoreDataList.Count > 0) {
                 previousMaxScore = scoreDataList[0].Score;
             }
-            float newMaxScore = Mathf.Max(previousMaxScore, newScore);
-            db.UpdateScoreData(table, elementId, newMaxScore);
+            int newMaxScore = Mathf.Max(previousMaxScore, newScore);
+            db.UpdateJourneyScoreData(dataType, elementId, newMaxScore);
         }
 
-        private void UpdateScoreDataWithMovingAverage(DbTables table, string elementId, float newScore, int movingAverageSpan)
+        private void UpdateVocabularyScoreDataWithMovingAverage(VocabularyDataType dataType, string elementId, float newScore, int movingAverageSpan)
         {
-            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = '{0}' AND ElementId = '{1}'", table.ToString(), elementId);
-            List<ScoreData> scoreDataList = db.FindScoreDataByQuery(query);
+            string query = string.Format("SELECT * FROM VocabularyScoreData WHERE VocabularyDataType = '{0}' AND ElementId = '{1}'", (int)dataType, elementId);
+            List<VocabularyScoreData> scoreDataList = db.FindDataByQuery<VocabularyScoreData>(query);
             float previousAverageScore = 0;
             if (scoreDataList.Count > 0) {
                 previousAverageScore = scoreDataList[0].Score;
             }
             // @note: for the first movingAverageSpan values, this won't be accurate
             float newAverageScore = previousAverageScore - previousAverageScore / movingAverageSpan + newScore / movingAverageSpan;
-            db.UpdateScoreData(table, elementId, newAverageScore);
+            db.UpdateVocabularyScoreData(dataType, elementId, newAverageScore);
         }
 
         #endregion

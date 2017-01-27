@@ -2,6 +2,7 @@
 using EA4S.Database;
 using EA4S.Utilities;
 
+// @todo: refactor this to separate JourneyInfo from VocabularyInfo (different rules)
 namespace EA4S.Database
 {
     #region Info Wrappers
@@ -23,6 +24,7 @@ namespace EA4S.Database
 
     public class PlaySessionInfo : DataInfo<PlaySessionData> { }
     public class MiniGameInfo : DataInfo<MiniGameData> { }
+
     public class WordInfo : DataInfo<WordData> { }
     public class LetterInfo : DataInfo<LetterData> { }
     public class PhraseInfo : DataInfo<PhraseData> { }
@@ -98,8 +100,8 @@ namespace EA4S.Teacher
             }
 
             // Find available scores
-            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = '" + table.ToString() + "' ORDER BY ElementId ");
-            List<ScoreData> scoredata_list = dbManager.FindScoreDataByQuery(query);
+            string query = string.Format("SELECT * FROM JourneyScoreData WHERE JourneyDataType = '" + table.ToString() + "' ORDER BY ElementId ");
+            List<JourneyScoreData> scoredata_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
             for (int i = 0; i < info_list.Count; i++)
             {
                 var info = info_list[i];
@@ -132,55 +134,55 @@ namespace EA4S.Teacher
             return scores;
         }
 
-        public List<ScoreData> GetCurrentScoreForAllPlaySessions()
+        public List<JourneyScoreData> GetCurrentScoreForAllPlaySessions()
         {
-            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = 'PlaySessions' ORDER BY ElementId ");
-            List<ScoreData> list = dbManager.FindScoreDataByQuery(query);
+            string query = string.Format("SELECT * FROM JourneyScoreData WHERE JourneyDataType = '{0}'  ORDER BY ElementId", JourneyDataType.PlaySession);
+            List<JourneyScoreData> list = dbManager.FindDataByQuery<JourneyScoreData>(query);
             return list;
         }
 
-        public List<ScoreData> GetCurrentScoreForPlaySessionsOfStage(int stage)
+        public List<JourneyScoreData> GetCurrentScoreForPlaySessionsOfStage(int stage)
         {
             // First, get all data given a stage
             List<PlaySessionData> eligiblePlaySessionData_list = this.dbManager.FindPlaySessionData(x => x.Stage == stage);
             List<string> eligiblePlaySessionData_id_list = eligiblePlaySessionData_list.ConvertAll(x => x.Id);
 
             // Then, get all scores
-            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = 'PlaySessions'");
-            List<ScoreData> all_score_list = dbManager.FindScoreDataByQuery(query);
+            string query = string.Format("SELECT * FROM JourneyScoreData WHERE JourneyDataType = '{0}'", JourneyDataType.PlaySession);
+            List <JourneyScoreData> all_score_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
 
             // At last, filter by the given stage
-            List<ScoreData> filtered_score_list = all_score_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
+            List<JourneyScoreData> filtered_score_list = all_score_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
             return filtered_score_list;
         }
 
-        public List<ScoreData> GetCurrentScoreForPlaySessionsOfLearningBlock(int stage, int learningBlock)
+        public List<JourneyScoreData> GetCurrentScoreForPlaySessionsOfLearningBlock(int stage, int learningBlock)
         {
             // First, get all data given a stage
             List<PlaySessionData> eligiblePlaySessionData_list = this.dbManager.FindPlaySessionData(x => x.Stage == stage && x.LearningBlock == learningBlock); // TODO: make this readily available!
             List<string> eligiblePlaySessionData_id_list = eligiblePlaySessionData_list.ConvertAll(x => x.Id);
 
             // Then, get all scores
-            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = 'PlaySessions'");
-            List<ScoreData> all_score_list = dbManager.FindScoreDataByQuery(query);
+            string query = string.Format("SELECT * FROM JourneyScoreData WHERE JourneyDataType = '{0}'", JourneyDataType.PlaySession);
+            List<JourneyScoreData> all_score_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
 
             // At last, filter
-            List<ScoreData> filtered_score_list = all_score_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
+            List<JourneyScoreData> filtered_score_list = all_score_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
             return filtered_score_list;
         }
 
-        public List<ScoreData> GetCurrentScoreForLearningBlocksOfStage(int stage)
+        public List<JourneyScoreData> GetCurrentScoreForLearningBlocksOfStage(int stage)
         {
             // First, get all data given a stage
             List<LearningBlockData> eligibleLearningBlockData_list = this.dbManager.FindLearningBlockData(x => x.Stage == stage);
             List<string> eligibleLearningBlockData_id_list = eligibleLearningBlockData_list.ConvertAll(x => x.Id);
 
             // Then, get all scores
-            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = 'LearningBlock'");
-            List<ScoreData> all_score_list = dbManager.FindScoreDataByQuery(query);
+            string query = string.Format("SELECT * FROM JourneyScoreData WHERE JourneyDataType= '{0}'", JourneyDataType.LearningBlock);
+            List<JourneyScoreData> all_score_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
 
             // At last, filter by the given stage
-            List<ScoreData> filtered_score_list = all_score_list.FindAll(x => eligibleLearningBlockData_id_list.Contains(x.ElementId));
+            List<JourneyScoreData> filtered_score_list = all_score_list.FindAll(x => eligibleLearningBlockData_id_list.Contains(x.ElementId));
             return filtered_score_list;
         }
 
@@ -195,7 +197,7 @@ namespace EA4S.Teacher
         /// <returns>The average score.</returns>
         /// <param name="_scoreList">Score list.</param>
         /// <param name="numberOfItems">Number of items.</param>
-        public float GetAverageScore(List<ScoreData> _scoreList, int numberOfItems = -1)
+        public float GetAverageScore(List<JourneyScoreData> _scoreList, int numberOfItems = -1)
         {
             var average = 0f;
 

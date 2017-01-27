@@ -89,7 +89,7 @@ namespace EA4S.Teacher
             return selectedMiniGameData;
         }
 
-        private List<Database.MiniGameData> PerformSelection_Random(Database.PlaySessionData playSessionData, int numberToSelect)
+        private List<MiniGameData> PerformSelection_Random(Database.PlaySessionData playSessionData, int numberToSelect)
         { 
             // Get all minigames ids for the given playsession (from PlaySessionData)
             // ... also, keep the weights around
@@ -108,7 +108,7 @@ namespace EA4S.Teacher
             List<float> weights_list = new List<float>(minigame_data_list.Count);
 
             // Retrieve the current score data (state) for each minigame (from the dynamic DB)
-            List<Database.ScoreData> minigame_score_list = dbManager.FindScoreDataByQuery("SELECT * FROM ScoreData WHERE TableName = 'MiniGames'");
+            List<JourneyScoreData> minigame_score_list = dbManager.FindDataByQuery<JourneyScoreData>("SELECT * FROM JourneyScoreData WHERE JourneyDataType = '" + (int)JourneyDataType.Minigame + "'");
 
             //UnityEngine.Debug.Log("M GAME SCORE LIST: " + minigame_score_list.Count);
             //foreach(var l in minigame_score_list) UnityEngine.Debug.Log(l.ElementId);
