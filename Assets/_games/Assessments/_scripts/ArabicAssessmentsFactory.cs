@@ -63,7 +63,8 @@ namespace EA4S.Assessment
             // Create the custom managers
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
                                                                         context.DialogueManager);
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, letterSize, wordSize);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, letterSize, wordSize,
+                                                                context.Events);
 
             // Build the assessment
             return CreateAssessment( context);
@@ -91,7 +92,8 @@ namespace EA4S.Assessment
 
             context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, false,
                                                                     context.DialogueManager);
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize,
+                                                                context.Events);
 
             return CreateAssessment( context);
         }
@@ -117,7 +119,8 @@ namespace EA4S.Assessment
 
             context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, true,
                                                                     context.DialogueManager);
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize, true);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize,
+                                                                context.Events, true);
 
             return CreateAssessment( context);
         }
@@ -143,7 +146,8 @@ namespace EA4S.Assessment
 
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
                                                                         context.DialogueManager);
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize,
+                                                                context.Events);
 
             return CreateAssessment( context);
         }
@@ -169,7 +173,8 @@ namespace EA4S.Assessment
 
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
                                                                         context.DialogueManager);
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, sentenceSize, sentenceSize);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, sentenceSize, sentenceSize,
+                                                                context.Events);
 
             return CreateAssessment( context);
         }
@@ -198,7 +203,8 @@ namespace EA4S.Assessment
                                                                         categoryProvider,
                                                                         context.DialogueManager,
                                                                         2, rounds);
-            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, wordSize);
+            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, wordSize,
+                                                                 context.Events);
 
             return CreateAssessment( context);
         }
@@ -227,7 +233,8 @@ namespace EA4S.Assessment
                                                                         categoryProvider,
                                                                         context.DialogueManager,
                                                                         2, rounds);
-            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, wordSize);
+            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, wordSize,
+                                                                 context.Events);
 
             return CreateAssessment( context);
         }
@@ -256,7 +263,8 @@ namespace EA4S.Assessment
                                                                         categoryProvider,
                                                                         context.DialogueManager,
                                                                         2, rounds);
-            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, wordSize, wordSize);
+            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, wordSize, wordSize,
+                                                                 context.Events);
 
             return CreateAssessment( context);
         }
@@ -286,7 +294,8 @@ namespace EA4S.Assessment
                                                                        categoryProvider,
                                                                        context.DialogueManager,
                                                                        2, rounds);
-            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, letterSize);
+            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, letterSize,
+                                                                 context.Events);
 
             return CreateAssessment( context);
         }
@@ -312,7 +321,8 @@ namespace EA4S.Assessment
 
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
                                                                         context.DialogueManager);
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, letterSize, letterSize);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, letterSize, letterSize,
+                                                                context.Events);
 
             return CreateAssessment( context);
         }
@@ -338,7 +348,8 @@ namespace EA4S.Assessment
 
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
                                                                         context.DialogueManager);
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, wordSize);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, wordSize,
+                                                                context.Events);
 
             return CreateAssessment( context);
         }
@@ -364,7 +375,8 @@ namespace EA4S.Assessment
 
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
                                                                         context.DialogueManager);
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, letterSize, wordSize);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, letterSize, wordSize,
+                                                                context.Events);
 
             return CreateAssessment( context);
         }

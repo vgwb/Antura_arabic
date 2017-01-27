@@ -7,8 +7,9 @@ namespace EA4S.Assessment
 {
     internal class CategoryQuestionPlacer : DefaultQuestionPlacer
     {
-        public CategoryQuestionPlacer(IAudioManager audioManager, float questionSize, float answerSize)
-            :base(audioManager, questionSize, answerSize)
+        public CategoryQuestionPlacer(  IAudioManager audioManager, float questionSize, float answerSize,
+                                        AssessmentEvents events)
+            :base( audioManager, questionSize, answerSize, events, false)
         {
 
         }

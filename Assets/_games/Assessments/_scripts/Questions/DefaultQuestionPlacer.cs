@@ -15,13 +15,16 @@ namespace EA4S.Assessment
         protected float questionSize;
         protected float answerSize;
         protected bool alsoDrawing;
+        protected AssessmentEvents events;
 
-        public DefaultQuestionPlacer( IAudioManager audioManager, float questionSize, float answerSize, bool alsoDrawing = false)
+        public DefaultQuestionPlacer(   IAudioManager audioManager, float questionSize, float answerSize, 
+                                        AssessmentEvents events, bool alsoDrawing = false)
         {
             this.audioManager = audioManager;
             this.questionSize = questionSize;
             this.answerSize = answerSize;
             this.alsoDrawing = alsoDrawing;
+            this.events = events;
         }
 
         protected bool isAnimating = false;
