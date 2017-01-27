@@ -1,14 +1,5 @@
 ﻿//#define ENABLE_TEST_SROPTIONS
 
-using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using SRDebugger;
-using SRDebugger.Services;
-using SRF;
-using SRF.Service;
-using Debug = UnityEngine.Debug;
-using Random = UnityEngine.Random;
 
 public partial class SROptions
 {

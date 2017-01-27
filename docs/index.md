@@ -19,7 +19,7 @@ by TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
 - [Teacher](Modules/Teacher.md) describes how the Teacher System works. This subsystem is responsible for providing learning content data to the minigames.
 
 ### API
-The html class documentation can be found here: [TODO UPLOAD DOXYGEN]()
+The html class documentation can be found [here](API/index.html)
 
 ## HowTo
 - [Arabic Font](HowTo/ArabicFont.md) how to create the arabic Atlas with TextMeshPro

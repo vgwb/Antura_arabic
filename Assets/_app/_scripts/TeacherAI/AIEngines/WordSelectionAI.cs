@@ -34,7 +34,7 @@ namespace EA4S.Teacher
             //this.wordHelper = _wordHelper;
         }
 
-        public void InitialiseNewPlaySession(string currentPlaySessionId)
+        public void LoadCurrentPlaySessionData(string currentPlaySessionId)
         {
             currentPlaySessionLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId));
             currentPlaySessionWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId));
