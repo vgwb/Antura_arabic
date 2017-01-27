@@ -63,8 +63,7 @@ namespace EA4S.MinigamesAPI
             LogManager.I.LogInfo(InfoEvent.GameStart, _gameCode.ToString());
 
             // Launch the game
-            //AppManager.I.NavigationManager.GoToNextScene();
-            AppManager.I.NavigationManager.GoToNextScene();
+            AppManager.I.NavigationManager.GotoMinigameScene();
         }
 
         /// <summary>

@@ -19,6 +19,8 @@ namespace EA4S.Map
             //KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro);
         }
 
+        public void GoToAnturaSpace() {
+            AppManager.I.NavigationManager.GoToAnturaSpace();
+        }
     }
-
 }

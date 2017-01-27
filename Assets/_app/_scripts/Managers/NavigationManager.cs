@@ -107,7 +107,7 @@ namespace EA4S
         // refactor: the whole NavigationManager could work using just GoToNextScene (and similars, such as GoBack), so that it controls all scene movement
         public void GoToNextScene()
         {
-            Debug.Log(" ---- USED NAVIGATION_MANAGER ---- ");
+            Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToNextScene");
             //var nextScene = GetNextScene();
             switch (NavData.CurrentScene)
             {
@@ -148,15 +148,19 @@ namespace EA4S
                         GoToScene(AppScene.Map);
                     break;
                 case AppScene.Rewards:
-                    MaxJourneyPositionProgress();
-                    GoToScene(AppScene.Map);
+                    if (NavData.CurrentPlayer.IsFirstContact()) { 
+                        GoToScene(AppScene.AnturaSpace);
+                    } else { 
+                        MaxJourneyPositionProgress();
+                        GoToScene(AppScene.Map);
+                    }
                     break;
                 case AppScene.PlaySessionResult:
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.DebugPanel:
                     NavData.SetFirstMinigame();
-                    GoToGameScene(NavData.CurrentMiniGameData);
+                    LaunchGameScene(NavData.CurrentMiniGameData);
                     break;
                 default:
                     break;
@@ -167,6 +171,7 @@ namespace EA4S
         /// Apply logic for back button in current scene.
         /// </summary>
         public void GoBack() {
+            Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoBack");
             switch (NavData.CurrentScene) {
                 case AppScene.Book:
                 case AppScene.GameSelector:
@@ -220,13 +225,23 @@ namespace EA4S
             GoToScene(nextSceneName);
         }
 
-        private void GoToGameScene(MiniGameData _miniGame)
+        /// <summary>
+        /// Launches the game scene.
+        /// !!! WARNING !!! Direct call is allowed only by NavigationManager internal, Book and debugger.
+        /// </summary>
+        /// <param name="_miniGame">The mini game.</param>
+        public void LaunchGameScene(MiniGameData _miniGame)
         {
-            // Scene switch
-            NavData.PrevScene = NavData.CurrentScene;
-            NavData.CurrentScene = AppScene.MiniGame;
-
-            AppManager.I.GameLauncher.LaunchGame(_miniGame.Code);
+            switch (NavData.CurrentScene) {
+                case AppScene.Book:
+                    //NavData.CurrentMiniGameData = _miniGame;
+                    AppManager.I.GameLauncher.LaunchGame(_miniGame.Code, true);
+                    break;
+                default:
+                    AppManager.I.GameLauncher.LaunchGame(_miniGame.Code);
+                    break;
+            }
+            
         }
 
         #endregion
@@ -238,6 +253,7 @@ namespace EA4S
         /// </summary>
         public void GoToHome()
         {
+            Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToHome");
             switch (NavData.CurrentScene) {
                 case AppScene.DebugPanel:
                     GoToScene(AppScene.Home);
@@ -249,11 +265,22 @@ namespace EA4S
 
         public void GoToPlayerBook()
         {
+            Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToPlaybook");
             GoToScene(AppScene.Book);
+        }
+
+        public void GoToAnturaSpace() {
+            Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToAnturaSpace");
+            // no restrictions?
+            if (NavData.CurrentPlayer.IsFirstContact())
+                GoToScene(AppScene.Rewards);
+            else
+                GoToScene(AppScene.AnturaSpace);
         }
 
         public void ExitAndGoHome()
         {
+            Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "ExitAndGoHome");
             if (NavData.CurrentScene == AppScene.Map)
             {
                 GoToScene(AppScene.Home);
@@ -263,14 +290,25 @@ namespace EA4S
             }
         }
 
-        public void LaunchMinigame() {
+        public void GotoMinigameScene() {
+
+
+
             switch (NavData.CurrentScene) {
                 case AppScene.MiniGame:
+                case AppScene.Book:
+                case AppScene.GameSelector:
+                    // Scene switch
+                    NavData.PrevScene = NavData.CurrentScene;
+                    NavData.CurrentScene = AppScene.MiniGame;
+
                     GoToScene(NavData.CurrentMiniGameData.Scene);
                     break;
                 default:
-                    break;
+                    return;
             }
+
+
         }
 
         // obsolete: to be implemented?
@@ -408,7 +446,7 @@ namespace EA4S
             if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
             {
                 // Direct to the current minigame (which is an assessment)
-                GoToGameScene(NavData.CurrentMiniGameData);
+                LaunchGameScene(NavData.CurrentMiniGameData);
             }
             else
             {
@@ -423,7 +461,7 @@ namespace EA4S
             NavData.SetFirstMinigame();
             // TODO: ??? 
             WorldManager.I.CurrentWorld = (WorldID)(NavData.CurrentPlayer.CurrentJourneyPosition.Stage - 1);
-            GoToGameScene(NavData.CurrentMiniGameData);
+            LaunchGameScene(NavData.CurrentMiniGameData);
         }
 
         private void GotoNextGameOfPlaysession()
@@ -440,7 +478,7 @@ namespace EA4S
                 if (NavData.SetNextMinigame())
                 {
                     // Go to the next minigame.
-                    GoToGameScene(NavData.CurrentMiniGameData);
+                    LaunchGameScene(NavData.CurrentMiniGameData);
                 }
                 else
                 {
