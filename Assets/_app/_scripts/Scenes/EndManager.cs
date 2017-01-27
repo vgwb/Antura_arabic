@@ -47,7 +47,7 @@ namespace EA4S.Scenes
 
         public void RestartGame()
         {
-            AppManager.I.NavigationManager.GoToScene(AppScene.Home);
+            AppManager.I.NavigationManager.GoToHome();
         }
     }
 }

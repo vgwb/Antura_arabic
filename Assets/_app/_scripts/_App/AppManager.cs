@@ -56,13 +56,13 @@ namespace EA4S
 
             // refactor: standardize initialisation of managers
             LogManager = new LogManager();
-            PlayerProfileManager = new PlayerProfileManager();
 
-            gameObject.AddComponent<DebugManager>();
             NavigationManager = gameObject.AddComponent<NavigationManager>();
-            SceneModule sceneModule = new SceneModule();
-            sceneModule.SetupModule(new SceneModuleDefault());
-            NavigationManager.InjectSceneModule(sceneModule);
+            //SceneModule sceneModule = new SceneModule();
+            //sceneModule.SetupModule(new SceneModuleDefault());
+            NavigationManager.InjectSceneModule(Modules.SceneModule);
+            PlayerProfileManager = new PlayerProfileManager();
+            gameObject.AddComponent<DebugManager>();
             gameObject.AddComponent<KeeperManager>();
 
             RewardSystemManager.Init();
@@ -121,7 +121,7 @@ namespace EA4S
             PlayerProfileManager.DeleteCurrentPlayer();
 
             // AppManager.I.PlayerProfileManager.DeleteAllProfiles();
-            AppManager.I.NavigationManager.GoHome();
+            AppManager.I.NavigationManager.GoToHome();
             Debug.Log("Reset current player: " + playerId);
         }
 

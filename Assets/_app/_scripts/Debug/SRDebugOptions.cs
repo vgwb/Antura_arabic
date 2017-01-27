@@ -106,7 +106,7 @@ public partial class SROptions
     {
         // refactor: move to DebugManager
         WidgetPopupWindow.I.Close();
-        AppManager.I.NavigationManager.GoToScene(AppScene.Home);
+        AppManager.I.NavigationManager.GoToHome();
         SRDebug.Instance.HideDebugPanel();
     }
 

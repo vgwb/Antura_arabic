@@ -23,24 +23,22 @@ namespace EA4S.Profile
             get { return currentPlayer; }
             set {
                 if (currentPlayer != value) {
-
+                    currentPlayer = value;
                     // refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
-
                     if (AppManager.I.DB != null) {
                         LogManager.I.LogInfo(InfoEvent.AppClosed);
                     }
-
                     AppManager.I.Player = value;
                     AppManager.I.GameSettings.LastActivePlayerId = value.Id;
                     SaveGameSettings();
                     AppManager.I.InitTeacherForPlayer();
-
                     LogManager.I.LogInfo(InfoEvent.AppStarted);
-
+                    AppManager.I.NavigationManager.SetPlayerNavigationData(currentPlayer);
+                    if (OnProfileChanged != null)
+                        OnProfileChanged();
                 }
                 currentPlayer = value;
-                if (OnProfileChanged != null)
-                    OnProfileChanged();
+                
 
             }
         }

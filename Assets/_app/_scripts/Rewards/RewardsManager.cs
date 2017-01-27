@@ -92,13 +92,9 @@ namespace EA4S.Rewards
             yield return null;
         }
 
-        // refactor: move the whole navigation logic to the NavigationManager
         public void Continue()
         {
-            if (AppManager.I.Player.IsFirstContact())
-                AppManager.I.NavigationManager.GoToScene(AppScene.AnturaSpace);
-            else
-                AppManager.I.NavigationManager.GoToNextScene();
+            AppManager.I.NavigationManager.GoToNextScene();
         }
     }
 }

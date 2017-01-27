@@ -49,7 +49,7 @@ namespace EA4S.Scenes
             LogManager.I.InitNewSession();
             LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new AppInfoParameters()));
 
-
+            AppManager.I.NavigationManager.GoToNextScene();
         }
     }
 }

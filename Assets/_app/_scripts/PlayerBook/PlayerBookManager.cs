@@ -128,7 +128,7 @@ namespace EA4S.PlayerBook
         public void ExitThisScene()
         {
             LogManager.I.LogInfo(InfoEvent.Book, "exit");
-            AppManager.I.NavigationManager.GoToScene(AppScene.Map);
+            AppManager.I.NavigationManager.GoBack();
         }
     }
 }
