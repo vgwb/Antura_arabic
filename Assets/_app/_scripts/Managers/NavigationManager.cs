@@ -1,4 +1,5 @@
-﻿using EA4S.Db;
+﻿using System;
+using EA4S.Db;
 using System.Collections.Generic;
 using EA4S.Environment;
 using EA4S.Rewards;
@@ -276,24 +277,34 @@ namespace EA4S
             }
         }
 
-        public void GotoMinigameScene() {
-
-
+        public void GotoMinigameScene()
+        {
+            bool canTravel = false;
 
             switch (NavData.CurrentScene) {
-                case AppScene.MiniGame:
-                case AppScene.Book:
-                case AppScene.GameSelector:
-                    // Scene switch
-                    NavData.PrevScene = NavData.CurrentScene;
-                    NavData.CurrentScene = AppScene.MiniGame;
 
-                    GoToScene(NavData.CurrentMiniGameData.Scene);
+                // Normal flow
+                case AppScene.MiniGame:
+                case AppScene.GameSelector:
+                    canTravel = true;
                     break;
+
+                // "Fake minigame" flow
                 default:
-                    return;
+                    canTravel = !NavData.RealPlaySession;
+                    break;
             }
 
+            if (canTravel)
+            {
+                NavData.PrevScene = NavData.CurrentScene;
+                NavData.CurrentScene = AppScene.MiniGame;
+                GoToScene(NavData.CurrentMiniGameData.Scene);
+            }
+            else
+            {
+                throw new Exception("Cannot go to a minigame from the current scene!");
+            }
 
         }
 
@@ -486,6 +497,9 @@ namespace EA4S
                 }
                 else
                 {
+
+
+
                     // Finished minigames. Go to the reward scene.
                     /// - Reward screen
                     /// *-- check first contact : 
