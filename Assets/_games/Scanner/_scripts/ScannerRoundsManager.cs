@@ -193,7 +193,8 @@ namespace EA4S.Minigames.Scanner
 		private void StartRound()
 		{
 			game.StopAllCoroutines();
-			var provider = ScannerConfiguration.Instance.Questions;
+            game.disableInput = false;
+            var provider = ScannerConfiguration.Instance.Questions;
 			var question = provider.GetNextQuestion();
 		    wrongAnswers = question.GetWrongAnswers().ToList();
 			correctAnswers = question.GetCorrectAnswers().ToList();
@@ -301,6 +302,7 @@ namespace EA4S.Minigames.Scanner
 
 		IEnumerator co_CheckNewRound()
 		{
+            
 			yield return new WaitForSeconds(2f);
 
 			if (numberOfRoundsPlayed >= game.numberOfRounds)
@@ -331,7 +333,8 @@ namespace EA4S.Minigames.Scanner
 
 		IEnumerator RoundLost()
 		{
-			yield return new WaitForSeconds(0.5f);
+            game.disableInput = true;
+            yield return new WaitForSeconds(0.5f);
 			AudioManager.I.PlaySound(Sfx.Lose);
 			foreach (ScannerLivingLetter LL in game.scannerLL)
 			{
@@ -347,8 +350,8 @@ namespace EA4S.Minigames.Scanner
 		{
             if(!game.tut.isTutRound)
 			    numberOfRoundsWon++;
-
-			game.Context.GetOverlayWidget().SetStarsScore(numberOfRoundsWon);
+            game.disableInput = true;
+            game.Context.GetOverlayWidget().SetStarsScore(numberOfRoundsWon);
             
 
 			yield return new WaitForSeconds(0.25f);

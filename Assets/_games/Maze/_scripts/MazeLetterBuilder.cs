@@ -80,8 +80,6 @@ namespace EA4S.Minigames.Maze
 
                     Transform tutorialWaypointsForPath = transform.FindChild("TutorialWaypoints" + child.name.Substring(5));
                     tutorialWaypoints.Add(tutorialWaypointsForPath == null ? child.gameObject : tutorialWaypointsForPath.gameObject);
-
-                    Debug.Log("Tutorial waypoints for " + child.name + " was" + (tutorialWaypointsForPath == null ? "" : " not") + " null.");
                     
                 }
                 if (child.name.IndexOf("line") == 0)

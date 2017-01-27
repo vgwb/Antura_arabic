@@ -16,7 +16,8 @@ namespace EA4S.Assessment
         protected float answerSize;
         protected bool alsoDrawing;
 
-        public DefaultQuestionPlacer( IAudioManager audioManager, float questionSize, float answerSize, bool alsoDrawing = false)
+        public DefaultQuestionPlacer(   IAudioManager audioManager, float questionSize, 
+                                        float answerSize, bool alsoDrawing = false)
         {
             this.audioManager = audioManager;
             this.questionSize = questionSize;

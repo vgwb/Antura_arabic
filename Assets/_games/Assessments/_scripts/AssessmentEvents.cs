@@ -6,7 +6,7 @@ namespace EA4S.Assessment
     {
         public delegate IEnumerator CoroutineEvent();
 
-        public CoroutineEvent OnAllQuestionsAnswered;
+        public CoroutineEvent OnAllQuestionsAnswered = null;
 
         public IEnumerator NoEvent()
         {

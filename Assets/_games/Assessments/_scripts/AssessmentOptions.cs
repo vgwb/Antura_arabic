@@ -39,5 +39,8 @@ namespace EA4S.Assessment
         public bool QuestionAnsweredFlip { get; set; }
         public bool QuestionAnsweredPlaySound { get; set; }
         public bool QuestionSpawnedPlaySound { get; set; }
+        
+        // Options for event "on all answered".
+        public bool ReadQuestionAndAnswer { get; set; }
     }
 }
