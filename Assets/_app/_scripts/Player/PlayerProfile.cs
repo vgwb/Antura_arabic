@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using EA4S.Antura;
 using EA4S.Core;
+using EA4S.Database;
 using EA4S.Rewards;
 
 namespace EA4S.Profile
@@ -171,15 +172,15 @@ namespace EA4S.Profile
         /// <summary>
         /// The rewards unlocked
         /// </summary>
-        public List<RewardPack> RewardsUnlocked = new List<RewardPack>();
+        public List<RewardPackUnlockData> RewardsUnlocked = new List<RewardPackUnlockData>();
 
         /// <summary>
         /// Adds the reward unlocked.
         /// </summary>
-        /// <param name="_rewardPack">The reward pack.</param>
-        public void AddRewardUnlocked(RewardPack _rewardPack)
+        /// <param name="rewardPackUnlockData">The reward pack.</param>
+        public void AddRewardUnlocked(RewardPackUnlockData rewardPackUnlockData)
         {
-            RewardsUnlocked.Add(_rewardPack);
+            RewardsUnlocked.Add(rewardPackUnlockData);
             Save();
         }
 
