@@ -1,4 +1,6 @@
-﻿namespace EA4S.MinigamesCommon
+﻿using EA4S.UI;
+
+namespace EA4S.MinigamesCommon
 {
     /// <summary>
     /// Concrete implementation of ICheckmarkWidget. Accessible to minigames.

@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using System;
+using EA4S.Core;
 using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
 
 namespace EA4S.Minigames.Tobogan
 {

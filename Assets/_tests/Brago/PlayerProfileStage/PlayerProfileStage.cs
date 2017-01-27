@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using EA4S.Core;
 
 namespace EA4S.Test {
     /// <summary>

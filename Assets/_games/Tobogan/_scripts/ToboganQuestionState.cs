@@ -22,14 +22,14 @@ namespace EA4S.Minigames.Tobogan
 
             if (ToboganConfiguration.Instance.Variation == ToboganVariation.LetterInAWord)
             {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Tobogan_letters_Title, delegate ()
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Tobogan_letters_Title, delegate ()
                 {
                     playIntro = true;
                 });
             }
             else
             {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Tobogan_words_Title, delegate ()
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Tobogan_words_Title, delegate ()
                 {
                     playIntro = true;
                 });
@@ -61,14 +61,14 @@ namespace EA4S.Minigames.Tobogan
 
                 if (ToboganConfiguration.Instance.Variation == ToboganVariation.LetterInAWord)
                 {
-                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Tobogan_letters_Intro, delegate ()
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Tobogan_letters_Intro, delegate ()
                     {
                         nextState = true;
                     });
                 }
                 else
                 {
-                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Tobogan_letters_Intro, delegate ()
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Tobogan_letters_Intro, delegate ()
                     {
                         nextState = true;
                     });

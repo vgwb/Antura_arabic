@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using EA4S.Db;
+using EA4S.Database;
+using EA4S.Helpers;
 using EA4S.Profile;
 using EA4S.Utilities;
 
@@ -25,17 +26,17 @@ namespace EA4S.Teacher
             // Nothing to be done here
         }
 
-        public List<Db.MiniGameData> PerformSelection(string playSessionId, int numberToSelect)
+        public List<Database.MiniGameData> PerformSelection(string playSessionId, int numberToSelect)
         {
-            Db.PlaySessionData playSessionData = dbManager.GetPlaySessionDataById(playSessionId);
+            Database.PlaySessionData playSessionData = dbManager.GetPlaySessionDataById(playSessionId);
 
-            List<Db.MiniGameData> selectedMiniGameData = null;
+            List<Database.MiniGameData> selectedMiniGameData = null;
             switch (playSessionData.Order)
             {
-                case Db.PlaySessionDataOrder.Sequence:
+                case Database.PlaySessionDataOrder.Sequence:
                     selectedMiniGameData = PerformSelection_Sequence(playSessionData, numberToSelect);
                     break;
-                case Db.PlaySessionDataOrder.Random:
+                case Database.PlaySessionDataOrder.Random:
                     selectedMiniGameData = PerformSelection_Random(playSessionData, numberToSelect);
                     break;
             }
@@ -43,7 +44,7 @@ namespace EA4S.Teacher
             return selectedMiniGameData;
         }
 
-        private List<Db.MiniGameData> PerformSelection_Sequence(Db.PlaySessionData playSessionData, int numberToSelect)
+        private List<Database.MiniGameData> PerformSelection_Sequence(Database.PlaySessionData playSessionData, int numberToSelect)
         {
             // Get all minigame codes for the given playsession
             // ... also, use the weights to determine insertion order (used to determine the sequential order)
@@ -62,7 +63,7 @@ namespace EA4S.Teacher
             }
 
             // Get, in order, each minigame data, filter by availability (from the static DB)
-            List<Db.MiniGameData> minigame_data_list = new List<Db.MiniGameData>();
+            List<Database.MiniGameData> minigame_data_list = new List<Database.MiniGameData>();
             foreach(var orderedPair in ordered_minigamecodes)
             {
                 var data = dbManager.GetMiniGameDataByCode(orderedPair.Value);
@@ -88,7 +89,7 @@ namespace EA4S.Teacher
             return selectedMiniGameData;
         }
 
-        private List<Db.MiniGameData> PerformSelection_Random(Db.PlaySessionData playSessionData, int numberToSelect)
+        private List<Database.MiniGameData> PerformSelection_Random(Database.PlaySessionData playSessionData, int numberToSelect)
         { 
             // Get all minigames ids for the given playsession (from PlaySessionData)
             // ... also, keep the weights around
@@ -101,13 +102,13 @@ namespace EA4S.Teacher
             }
 
             // Get all minigame data, filter by availability (from the static DB)
-            List<Db.MiniGameData> minigame_data_list = dbManager.FindMiniGameData(x => x.Available && minigame_id_list.Contains(x.GetId()));
+            List<Database.MiniGameData> minigame_data_list = dbManager.FindMiniGameData(x => x.Available && minigame_id_list.Contains(x.GetId()));
 
             // Create the weights list too
             List<float> weights_list = new List<float>(minigame_data_list.Count);
 
             // Retrieve the current score data (state) for each minigame (from the dynamic DB)
-            List<Db.ScoreData> minigame_score_list = dbManager.FindScoreDataByQuery("SELECT * FROM ScoreData WHERE TableName = 'MiniGames'");
+            List<Database.ScoreData> minigame_score_list = dbManager.FindScoreDataByQuery("SELECT * FROM ScoreData WHERE TableName = 'MiniGames'");
 
             //UnityEngine.Debug.Log("M GAME SCORE LIST: " + minigame_score_list.Count);
             //foreach(var l in minigame_score_list) UnityEngine.Debug.Log(l.ElementId);

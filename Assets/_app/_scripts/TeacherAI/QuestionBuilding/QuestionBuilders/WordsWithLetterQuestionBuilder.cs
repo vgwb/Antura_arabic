@@ -1,7 +1,6 @@
-﻿using EA4S.Teacher;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Teacher
 {
     /// <summary>
     /// Selects words given a letter
@@ -83,9 +82,9 @@ namespace EA4S
             return pack;
         }
 
-        private List<Db.LetterData> FindEligibleLetters(int atLeastNWords)
+        private List<Database.LetterData> FindEligibleLetters(int atLeastNWords)
         {
-            List<Db.LetterData> eligibleLetters = new List<Db.LetterData>();
+            List<Database.LetterData> eligibleLetters = new List<Database.LetterData>();
             var teacher = AppManager.I.Teacher;
             var allLetters = teacher.wordHelper.GetAllLetters(parameters.letterFilters);
             foreach(var letter in allLetters)

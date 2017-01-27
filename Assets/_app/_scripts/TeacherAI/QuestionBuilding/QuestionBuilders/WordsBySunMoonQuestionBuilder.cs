@@ -1,7 +1,6 @@
-﻿using EA4S.Teacher;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Teacher
 {
     /// <summary>
     /// Categorize words based on their sun/moon status
@@ -39,7 +38,7 @@ namespace EA4S
             var choice2 = db.GetWordDataById("the_moon");
 
             var wordsWithArticle = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.Determinative, parameters.wordFilters),
+                () => teacher.wordHelper.GetWordsByArticle(Database.WordDataArticle.Determinative, parameters.wordFilters),
                 new SelectionParameters(parameters.correctSeverity, nPacks, useJourney: parameters.useJourneyForCorrect)
                 );
 
@@ -47,16 +46,16 @@ namespace EA4S
             {
                 int articleLength = 2;
                 var letterAfterArticle = teacher.wordHelper.GetLettersInWord(wordWithArticle)[articleLength];
-                var correctWords = new List<Db.WordData>();
-                var wrongWords = new List<Db.WordData>();
+                var correctWords = new List<Database.WordData>();
+                var wrongWords = new List<Database.WordData>();
                 switch (letterAfterArticle.SunMoon)
                 {
-                    case Db.LetterDataSunMoon.Sun:
+                    case Database.LetterDataSunMoon.Sun:
                         correctWords.Add(choice1);
                         wrongWords.Add(choice2);
                         break;
 
-                    case Db.LetterDataSunMoon.Moon:
+                    case Database.LetterDataSunMoon.Moon:
                         correctWords.Add(choice2);
                         wrongWords.Add(choice1);
                         break;

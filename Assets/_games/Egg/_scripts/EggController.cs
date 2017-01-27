@@ -1,6 +1,8 @@
 ﻿using DG.Tweening;
 using System;
 using System.Collections.Generic;
+using EA4S.Core;
+using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using UnityEngine;
 

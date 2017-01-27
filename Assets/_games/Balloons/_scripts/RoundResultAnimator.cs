@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.Core;
 using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
 using EA4S.Tutorial;
 using TMPro;
 

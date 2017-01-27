@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using EA4S.Db;
+using EA4S.Database;
+using EA4S.UI;
 using EA4S.Utilities;
 
 namespace EA4S.PlayerBook
@@ -38,7 +39,7 @@ namespace EA4S.PlayerBook
 
             if (info.data.Drawing != "") {
                 Drawing.text = AppManager.I.Teacher.wordHelper.GetWordDrawing(info.data);
-                if (info.data.Category == Db.WordDataCategory.Color) {
+                if (info.data.Category == Database.WordDataCategory.Color) {
                     Drawing.SetColor(GenericUtilities.GetColorFromString(info.data.Value));
                 }
                 //GetComponent<Image>().color = Color.green;

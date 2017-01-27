@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using EA4S.Core;
+using UnityEngine;
 using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
 using TMPro;
 
 namespace EA4S.Minigames.DancingDots

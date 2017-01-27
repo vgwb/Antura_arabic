@@ -2,7 +2,7 @@
 using MiniJSON;
 using UnityEngine;
 
-namespace EA4S.Db.Management
+namespace EA4S.Database.Management
 {
     /// <summary>
     /// Allows the parsing of a set of data contained in a JSON string and converst it 
@@ -12,7 +12,7 @@ namespace EA4S.Db.Management
     /// <typeparam name="Dtable">Type for a table of the type to parse</typeparam>
     public abstract class DataParser<D, Dtable> where D : IData where Dtable : SerializableDataTable<D>
     {
-        public void Parse(string json, Database db, Dtable table)
+        public void Parse(string json, DatabaseObject db, Dtable table)
         {
             table.Clear();  // we re-generate the whole table
 
@@ -46,9 +46,9 @@ namespace EA4S.Db.Management
         }
 
 
-        protected abstract D CreateData(Dictionary<string, object> dict, Database db);
+        protected abstract D CreateData(Dictionary<string, object> dict, DatabaseObject db);
 
-        protected virtual void FinalValidation(Dtable table, Database db) { }
+        protected virtual void FinalValidation(Dtable table, DatabaseObject db) { }
 
         protected T ParseEnum<T>(D data, object enum_object)
         {

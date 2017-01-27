@@ -1,4 +1,6 @@
+using EA4S.Core;
 using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
 using UnityEngine;
 
 namespace EA4S.Assessment

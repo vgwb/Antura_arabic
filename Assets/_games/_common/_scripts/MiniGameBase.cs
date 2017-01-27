@@ -1,4 +1,5 @@
-﻿using ModularFramework.Core;
+﻿using EA4S.Core;
+using ModularFramework.Core;
 
 namespace EA4S.MinigamesCommon
 {

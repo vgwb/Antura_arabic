@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using UnityEngine;
@@ -139,7 +140,7 @@ namespace EA4S.Minigames.FastCrowd
 
                 if (showAsGoodAnswer)
                 {
-                    popupWidget.SetTitle(Db.LocalizationDataId.Keeper_Good_5);
+                    popupWidget.SetTitle(Database.LocalizationDataId.Keeper_Good_5);
                     popupWidget.SetMark(true, true);
                 }
                 else

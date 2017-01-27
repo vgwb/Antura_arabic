@@ -14,7 +14,7 @@ namespace EA4S.Minigames.TakeMeHome
        
         public void EnterState()
         {
-            TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.TakeMeHome_Title, playedTitleSFX);
+            TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.TakeMeHome_Title, playedTitleSFX);
             
             
         }
@@ -22,7 +22,7 @@ namespace EA4S.Minigames.TakeMeHome
         private void playedTitleSFX()
         {
             UnityEngine.Debug.Log("Played Title");
-            TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.TakeMeHome_Intro, playedIntroSFX);
+            TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.TakeMeHome_Intro, playedIntroSFX);
         }
        
 

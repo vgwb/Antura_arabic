@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EA4S
+namespace EA4S.UI
 {
     // refactor: not clear where this is used
     public class LivesContainer : MonoBehaviour

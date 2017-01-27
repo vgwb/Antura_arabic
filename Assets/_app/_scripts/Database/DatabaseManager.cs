@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using EA4S.Core;
+using EA4S.Helpers;
 using EA4S.Profile;
 using EA4S.Utilities;
 
-namespace EA4S.Db
+namespace EA4S.Database
 {
     /// <summary>
     /// Entry point for the rest of the application to access database entries.
@@ -16,10 +18,10 @@ namespace EA4S.Db
         public const string STATIC_DATABASE_NAME_TEST = STATIC_DATABASE_NAME + "_Test";
 
         // DB references
-        private Database staticDb;
+        private DatabaseObject staticDb;
         private DBService dynamicDb;
 
-        public Database StaticDatabase {
+        public DatabaseObject StaticDatabase {
             get {
                 return staticDb;
             }
@@ -45,7 +47,7 @@ namespace EA4S.Db
                 dbName = STATIC_DATABASE_NAME_TEST;
             }
 
-            this.staticDb = Database.LoadDB(dbName);
+            this.staticDb = DatabaseObject.LoadDB(dbName);
         }
 
         #region Profile

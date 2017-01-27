@@ -1,7 +1,7 @@
 ﻿#if UNITY_EDITOR
 using EA4S.EditorUtilities;
 
-namespace EA4S.Db
+namespace EA4S.Database
 {
     /// <summary>
     /// Utility class that generates a complete empty static database in the given folder.
