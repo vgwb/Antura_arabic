@@ -191,13 +191,35 @@ namespace EA4S.Helpers
         }
 
         /// <summary>
-        /// Return a string of a word without a character
+        /// Return a string of a word without a character. Warning: the word is already reversed and fixed for rendering.
+        /// This is mandatory since PrepareArabicStringForDisplay should be called before adding the "_" character.
         /// </summary>
         public static string GetWordWithMissingLetter(Database.WordData arabicWord, Database.LetterData letterToRemove, string removedLetterChar = "_")
         {
             var Letters = SplitWordIntoLetters(arabicWord);
 
-            string text = "";
+            // Second attempt
+            int charPosition = 0;
+            bool found = false;
+            for (int index = 0; index < Letters.Count; ++index)
+            {
+                if (Letters[index].Id == letterToRemove.Id)
+                {
+                    found = true;
+                    break;
+                }
+                else
+                    charPosition += Letters[index].GetChar().Length;
+            }
+
+            if (!found)
+                return ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
+
+            string text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
+            text = text.Substring(0, charPosition) + removedLetterChar + text.Substring(charPosition + letterToRemove.GetChar().Length);
+
+            /*
+            
 
             for (int index = 0; index < Letters.Count; ++index)
             {
@@ -221,6 +243,7 @@ namespace EA4S.Helpers
                     text = text + Letters[index].GetChar(position);
 
             }
+            */
 
             return text;
         }

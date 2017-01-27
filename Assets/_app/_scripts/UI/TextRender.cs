@@ -34,7 +34,7 @@ namespace EA4S.UI
 
         }
 
-        public void setText(string _text, bool arabic = false)
+        public void SetText(string _text, bool arabic = false)
         {
             isArabic = arabic;
             text = _text;
