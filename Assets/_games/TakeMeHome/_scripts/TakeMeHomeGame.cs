@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using EA4S.Core;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.UI;
@@ -8,7 +7,7 @@ using UnityEngine;
 
 namespace EA4S.Minigames.TakeMeHome
 {
-	public class TakeMeHomeGame : MiniGame
+    public class TakeMeHomeGame : MiniGame
 	{
 		
 		public TextMeshProUGUI timerText;

@@ -1,6 +1,4 @@
-﻿using EA4S.Core;
-
-namespace EA4S.MinigamesAPI.Sample
+﻿namespace EA4S.MinigamesAPI.Sample
 {
     /// <summary>
     /// Example implementation of ILivingLetterDataProvider.

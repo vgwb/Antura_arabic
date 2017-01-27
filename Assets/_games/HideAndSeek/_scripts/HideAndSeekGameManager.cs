@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using DG.Tweening;
 using EA4S.Antura;
 using EA4S.Audio;
-using EA4S.Core;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 
