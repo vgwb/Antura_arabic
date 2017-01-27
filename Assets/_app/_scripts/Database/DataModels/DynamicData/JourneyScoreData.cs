@@ -11,11 +11,6 @@ namespace EA4S.Database
         PlaySession
     }
 
-    public interface IScoreData
-    {
-        float GetScore();
-    }
-
     /// <summary>
     /// Score (in stars) relative to a journey element or a minigame. Updated at runtime.
     /// </summary>

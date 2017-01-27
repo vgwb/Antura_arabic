@@ -77,6 +77,12 @@ namespace EA4S.Database
         {
             dynamicDb.DropAllTables();
         }
+
+        public void UpdatePlayerProfileData(PlayerProfileData playerProfileData)
+        {
+            dynamicDb.InsertOrReplace(playerProfileData);
+        }
+
         #endregion
 
         #region Utilities
@@ -391,5 +397,18 @@ namespace EA4S.Database
 
         #endregion
 
+        #region Reward Unlock
+
+        public List<RewardPackUnlockData> GetAllRewardPackUnlockData()
+        {
+            return GetAllDynamicData<RewardPackUnlockData>();
+        }
+
+        public void UpdateRewardPackUnlockData(RewardPackUnlockData updatedData)
+        {
+            dynamicDb.InsertOrReplace(updatedData);
+        }
+
+        #endregion
     }
 }
