@@ -73,8 +73,6 @@ namespace EA4S.Assessment
 
         private IEnumerator PlaceQuestions( bool playAudio = false)
         {
-            // It is possible that in definite game release the boolean flag will be always
-            // false. In that case we can simplify the code later.
             QuestionPlacer.Place( QuestionGenerator.GetAllQuestions(), playAudio);
             while ( QuestionPlacer.IsAnimating())
                 yield return null;
@@ -100,6 +98,8 @@ namespace EA4S.Assessment
         private IEnumerator ClearRound()
         {
             LogicInjector.RemoveDraggables();
+
+            yield return Koroutine.Nested( LogicInjector.AllAnsweredEvent());
 
             QuestionPlacer.RemoveQuestions();
             AnswerPlacer.RemoveAnswers();
