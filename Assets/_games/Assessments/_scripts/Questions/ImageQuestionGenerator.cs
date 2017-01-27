@@ -32,8 +32,18 @@ namespace EA4S.Assessment
             if(AssessmentOptions.Instance.CompleteWordOnAnswered)
                 events.OnAllQuestionsAnswered = CompleteWordCoroutine;
 
+            if (AssessmentOptions.Instance.ShowFullWordOnAnswered)
+                events.OnAllQuestionsAnswered = ShowFullWordCoroutine;
+
             state = QuestionGeneratorState.Uninitialized;
             ClearCache();
+        }
+
+        private IEnumerator ShowFullWordCoroutine()
+        {
+            cacheFullWordDataLL.Poof( ElementsSize.PoofOffset);
+            cacheFullWordDataLL.Init( cacheFullWordData);
+            yield return Wait.For( AssessmentOptions.Instance.TimeToShowCompleteWord);
         }
 
         string cacheCompleteWord = null;
@@ -43,7 +53,7 @@ namespace EA4S.Assessment
         {
             cacheCompleteWordLL.Poof( ElementsSize.PoofOffset);
             cacheCompleteWordLL.Label.text = cacheCompleteWord;
-            yield return Wait.For( 2.0f);
+            yield return Wait.For( AssessmentOptions.Instance.TimeToShowCompleteWord);
         }
 
         public void InitRound()
@@ -160,13 +170,18 @@ namespace EA4S.Assessment
             }
         }
 
+        private LL_WordData cacheFullWordData;
+        private LetterObjectView cacheFullWordDataLL;
+
         private IQuestion GenerateQuestion( ILivingLetterData data)
         {
+            cacheFullWordData = new LL_WordData( data.Id);
+
             if (AssessmentOptions.Instance.ShowQuestionAsImage)
                 data = new LL_ImageData( data.Id);
 
-            var q = LivingLetterFactory.Instance.SpawnQuestion( data);
-            return new DefaultQuestion( q, 0, dialogues);
+            cacheFullWordDataLL = LivingLetterFactory.Instance.SpawnQuestion( data);
+            return new DefaultQuestion( cacheFullWordDataLL, 0, dialogues);
         }
 
         private const string RemovedLetterChar = "_";

@@ -83,6 +83,8 @@ namespace EA4S.Assessment
 
             Init( context);
 
+            AssessmentOptions.Instance.ShowFullWordOnAnswered = true;
+
             CreateManagers( context,
                             DragManagerType.Sorting,
                             LogicInjectorType.Sorting,
@@ -390,6 +392,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.LocaleTextFlow = TextFlow.RightToLeft;
             AssessmentOptions.Instance.ReadQuestionAndAnswer = false;
             AssessmentOptions.Instance.CompleteWordOnAnswered = false;
+            AssessmentOptions.Instance.ShowFullWordOnAnswered = false;
 
             context.Configuration = AssessmentConfiguration.Instance;
             context.Events = new AssessmentEvents();
