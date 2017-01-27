@@ -5,10 +5,11 @@ using TMPro;
 using DG.DeExtensions;
 using DG.Tweening;
 using EA4S.Audio;
-using EA4S.Db;
-using EA4S.Utilities;
+using EA4S.Core;
+using EA4S.Database;
+using EA4S.MinigamesAPI;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// Shows a general-purpose popup window.
@@ -114,14 +115,14 @@ namespace EA4S
             currentCallback = callback;
         }
 
-        public void ShowSentence(Action callback, Db.LocalizationDataId SentenceId)
+        public void ShowSentence(Action callback, Database.LocalizationDataId SentenceId)
         {
             ResetContents();
 
             currentCallback = callback;
             ButtonGO.gameObject.SetActive(callback != null);
 
-            Db.LocalizationData row = LocalizationManager.GetLocalizationData(SentenceId);
+            Database.LocalizationData row = LocalizationManager.GetLocalizationData(SentenceId);
 
             TitleGO.GetComponent<TextRender>().isArabic = true;
             TitleGO.GetComponent<TextRender>().text = row.Arabic;
@@ -131,7 +132,7 @@ namespace EA4S
             Show(true);
         }
 
-        public void ShowSentence(Action callback, Db.LocalizationDataId sentenceId, Sprite image2show)
+        public void ShowSentence(Action callback, Database.LocalizationDataId sentenceId, Sprite image2show)
         {
             ResetContents();
 
@@ -144,7 +145,7 @@ namespace EA4S
                 TutorialImageGO.SetActive(true);
             }
 
-            Db.LocalizationData row = LocalizationManager.GetLocalizationData(sentenceId);
+            Database.LocalizationData row = LocalizationManager.GetLocalizationData(sentenceId);
             TitleGO.GetComponent<TextRender>().isArabic = true;
             TitleGO.GetComponent<TextRender>().text = row.Arabic;
 
@@ -153,7 +154,7 @@ namespace EA4S
             Show(true);
         }
 
-        public void ShowSentenceWithMark(Action callback, Db.LocalizationDataId sentenceId, bool result, Sprite image2show)
+        public void ShowSentenceWithMark(Action callback, Database.LocalizationDataId sentenceId, bool result, Sprite image2show)
         {
             ResetContents();
 
@@ -195,7 +196,7 @@ namespace EA4S
 
 
 
-        public void ShowSentenceAndWord(Action callback, Db.LocalizationDataId SentenceId, LL_WordData wordData)
+        public void ShowSentenceAndWord(Action callback, Database.LocalizationDataId SentenceId, LL_WordData wordData)
         {
             ResetContents();
 
@@ -211,7 +212,7 @@ namespace EA4S
             Show(true);
         }
 
-        public void ShowSentenceAndWordWithMark(Action callback, Db.LocalizationDataId SentenceId, LL_WordData wordData, bool result)
+        public void ShowSentenceAndWordWithMark(Action callback, Database.LocalizationDataId SentenceId, LL_WordData wordData, bool result)
         {
             ResetContents();
 
@@ -255,7 +256,7 @@ namespace EA4S
             TitleGO.GetComponent<TextRender>().text = text;
         }
 
-        public void SetMessage(Db.LocalizationDataId SentenceId)
+        public void SetMessage(Database.LocalizationDataId SentenceId)
         {
             MessageTextGO.GetComponent<TextRender>().SetSentence(SentenceId);
         }
@@ -266,7 +267,7 @@ namespace EA4S
             MessageTextGO.GetComponent<TextRender>().text = text;
         }
 
-        public void SetTitleSentence(Db.LocalizationDataId SentenceId)
+        public void SetTitleSentence(Database.LocalizationDataId SentenceId)
         {
             TitleGO.GetComponent<TextRender>().SetSentence(SentenceId);
         }

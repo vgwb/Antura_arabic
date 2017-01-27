@@ -1,6 +1,7 @@
 ﻿using System;
+using EA4S.MinigamesAPI;
 
-namespace EA4S.Db
+namespace EA4S.Database
 {
     /// <summary>
     /// Data defining a Word.

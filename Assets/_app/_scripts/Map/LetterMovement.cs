@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using EA4S.Core;
 
 namespace EA4S.Map
 {

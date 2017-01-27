@@ -34,7 +34,7 @@ namespace EA4S.Minigames.MixedLetters
             victimLLPosition.x = Random.Range(0, 40) % 2 == 0 ? 0.5f : -0.5f;
             VictimLLController.instance.SetPosition(victimLLPosition);
 
-            audioManager.PlayDialogue(isSpelling ? Db.LocalizationDataId.MixedLetters_spelling_Title : Db.LocalizationDataId.MixedLetters_alphabet_Title, OnTitleVoiceOverDone);
+            audioManager.PlayDialogue(isSpelling ? Database.LocalizationDataId.MixedLetters_spelling_Title : Database.LocalizationDataId.MixedLetters_alphabet_Title, OnTitleVoiceOverDone);
         }
 
         private void OnTitleVoiceOverDone()
@@ -88,14 +88,14 @@ namespace EA4S.Minigames.MixedLetters
 
         private void OnAnturaExitedScene()
         {
-            audioManager.PlayDialogue(isSpelling ? Db.LocalizationDataId.MixedLetters_spelling_Intro : Db.LocalizationDataId.MixedLetters_alphabet_Intro, OnIntroVoiceOverDone);
+            audioManager.PlayDialogue(isSpelling ? Database.LocalizationDataId.MixedLetters_spelling_Intro : Database.LocalizationDataId.MixedLetters_alphabet_Intro, OnIntroVoiceOverDone);
         }
 
         private void OnIntroVoiceOverDone()
         {
             MixedLettersGame.instance.OnRoundStarted();
             game.EnableRepeatPromptButton();
-            audioManager.PlayDialogue(isSpelling ? Db.LocalizationDataId.MixedLetters_spelling_Tuto : Db.LocalizationDataId.MixedLetters_alphabet_Tuto);
+            audioManager.PlayDialogue(isSpelling ? Database.LocalizationDataId.MixedLetters_spelling_Tuto : Database.LocalizationDataId.MixedLetters_alphabet_Tuto);
         }
 
         public void ExitState()

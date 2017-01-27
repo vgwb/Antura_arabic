@@ -1,4 +1,4 @@
-using EA4S.Db;
+using EA4S.Database;
 using EA4S.MinigamesCommon;
 
 namespace EA4S.Assessment
@@ -10,13 +10,13 @@ namespace EA4S.Assessment
     public class AssessmentContext
     {
         public AssessmentConfiguration Configuration;
+        public AssessmentEvents Events;
         public IGameContext Utils;
         public ICheckmarkWidget CheckmarkWidget;
         public IQuestionGenerator QuestionGenerator;
         public IAudioManager AudioManager;
         public IDragManager DragManager;
         public ILogicInjector LogicInjector;
-        public ISubtitlesWidget Subtitles;
         public IQuestionPlacer QuestionPlacer;
         public IAnswerPlacer AnswerPlacer;
         public AnswerChecker AnswerChecker;

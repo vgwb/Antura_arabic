@@ -4,13 +4,14 @@ using System;
 using System.Linq;
 using System.Collections;
 using EA4S.Audio;
+using EA4S.Helpers;
+using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
-using EA4S.Utilities;
 using EA4S.Tutorial;
 
 namespace EA4S.Minigames.Scanner
 {
-	public class ScannerRoundsManager {
+    public class ScannerRoundsManager {
 		
 		public event Action <int> onRoundsFinished;
 

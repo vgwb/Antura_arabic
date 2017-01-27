@@ -59,7 +59,7 @@ namespace EA4S.Minigames.SickLetters
         void onTutStart()
         {
             game.disableInput = false;
-            AudioManager.I.PlayDialogue(Db.LocalizationDataId.SickLetters_Tuto, ()=>{ game.buttonRepeater.SetActive(true); });//, () => { WidgetSubtitles.I.gameObject.SetActive(false); });
+            AudioManager.I.PlayDialogue(Database.LocalizationDataId.SickLetters_Tuto, ()=>{ game.buttonRepeater.SetActive(true); });//, () => { WidgetSubtitles.I.gameObject.SetActive(false); });
             //WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.SickLetters_Tuto, 5, false);
         }
 

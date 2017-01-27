@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-using EA4S;
-using TMPro;
+using EA4S.UI;
 
 namespace EA4S.Balloons
 {

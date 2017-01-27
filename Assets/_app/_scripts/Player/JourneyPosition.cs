@@ -1,4 +1,4 @@
-﻿namespace EA4S
+﻿namespace EA4S.Core
 {
     /// <summary>
     /// Represents the position of the player in the learning journey.

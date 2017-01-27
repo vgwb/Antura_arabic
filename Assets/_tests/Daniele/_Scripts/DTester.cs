@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.UI;
+using UnityEngine;
 
 namespace EA4S
 {
@@ -24,7 +25,7 @@ namespace EA4S
                     }
                     else
                     {
-                        var testData = new Db.LocalizationData();
+                        var testData = new Database.LocalizationData();
                         testData.Arabic = "من فضلك، حاول اصطياد البعض منها. من فضلك، حاول التقاطها.";
                         WidgetSubtitles.I.DisplaySentence(testData, 2, Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
                     }

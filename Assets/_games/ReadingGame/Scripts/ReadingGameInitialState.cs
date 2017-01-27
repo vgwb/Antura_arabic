@@ -1,6 +1,4 @@
-﻿using System;
-using EA4S.MinigamesCommon;
-using UnityEngine;
+﻿using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.ReadingGame
 {
@@ -23,11 +21,11 @@ namespace EA4S.Minigames.ReadingGame
 
             if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
             {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.ReadingGame_Title, () => { introCompleted = true; });
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ReadingGame_Title, () => { introCompleted = true; });
             }
             else if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong)
             {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.AlphabetSong_Title, () => { introCompleted = true; });
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.AlphabetSong_Title, () => { introCompleted = true; });
             }
             else
             {

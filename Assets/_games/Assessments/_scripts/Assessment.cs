@@ -1,7 +1,6 @@
 using Kore.Coroutines;
 using Kore.Utils;
 using System.Collections;
-using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -13,7 +12,6 @@ namespace EA4S.Assessment
                             IQuestionGenerator question_generator,
                             ILogicInjector logic_injector,
                             IAssessmentConfiguration game_conf,
-                            IGameContext game_context,
                             AssessmentDialogues dialogues)
         {
             AnswerPlacer = answ_placer;
@@ -21,7 +19,6 @@ namespace EA4S.Assessment
             QuestionPlacer = question_placer;
             LogicInjector = logic_injector;
             Configuration = game_conf;
-            GameContext = game_context;
             Dialogues = dialogues;
         }
 
@@ -45,28 +42,21 @@ namespace EA4S.Assessment
                 yield return Koroutine.Nested( RoundBegin());
                 yield return Koroutine.Nested( PlaceAnswers());
 
-                bool playQuestion = AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial;
-
-                IYieldable audio = null;
                 if(round == 0)
-                    audio = new WaitCoroutine( DescriptionAudio( playQuestion));
+                   Koroutine.Run( DescriptionAudio());
 
                 yield return Koroutine.Nested( GamePlay());
-                
-                if(audio != null)
-                    yield return audio;
-
                 yield return Koroutine.Nested( ClearRound());
             }
 
             gameEndedCallback();
         }
 
-        private IEnumerator DescriptionAudio( bool playQuestion)
+        private IEnumerator DescriptionAudio()
         {
             yield return Dialogues.PlayGameDescription();
 
-            if(playQuestion)
+            if(AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial)
                 yield return QuestionPlacer.PlayQuestionSound();
         }
 
@@ -83,8 +73,6 @@ namespace EA4S.Assessment
 
         private IEnumerator PlaceQuestions( bool playAudio = false)
         {
-            // It is possible that in definite game release the boolean flag will be always
-            // false. In that case we can simplify the code later.
             QuestionPlacer.Place( QuestionGenerator.GetAllQuestions(), playAudio);
             while ( QuestionPlacer.IsAnimating())
                 yield return null;
@@ -110,6 +98,8 @@ namespace EA4S.Assessment
         private IEnumerator ClearRound()
         {
             LogicInjector.RemoveDraggables();
+
+            yield return Koroutine.Nested( LogicInjector.AllAnsweredEvent());
 
             QuestionPlacer.RemoveQuestions();
             AnswerPlacer.RemoveAnswers();
@@ -158,8 +148,6 @@ namespace EA4S.Assessment
         public IQuestionPlacer QuestionPlacer { get; private set; }
 
         public IAssessmentConfiguration Configuration { get; private set; }
-
-        public IGameContext GameContext { get; private set; }
 
         public AssessmentDialogues Dialogues { get; private set; }
     }

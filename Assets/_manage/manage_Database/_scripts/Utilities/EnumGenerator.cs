@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 
-namespace EA4S.Db.Management
+namespace EA4S.Database.Management
 {
     /// <summary>
     /// Utility class that generates enumerators and writes them to C# scripts.

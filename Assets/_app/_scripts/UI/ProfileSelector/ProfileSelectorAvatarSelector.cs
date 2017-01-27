@@ -4,7 +4,7 @@ using EA4S.Audio;
 using EA4S.Profile;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// Controller of avatar buttons in the Profile Selector.

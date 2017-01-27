@@ -1,4 +1,5 @@
-﻿using EA4S.MinigamesCommon;
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.FastCrowd
 {

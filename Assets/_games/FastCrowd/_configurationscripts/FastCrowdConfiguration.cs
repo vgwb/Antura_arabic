@@ -1,6 +1,7 @@
 ﻿using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
 using EA4S.MinigamesCommon;
+using EA4S.Teacher;
 
 namespace EA4S.Minigames.FastCrowd
 {
@@ -84,7 +85,7 @@ namespace EA4S.Minigames.FastCrowd
                     builder = new AlphabetQuestionBuilder();
                     break;
                 case FastCrowdVariation.Counting:
-                    builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.NumberOrdinal);
+                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.NumberOrdinal);
                     break;
                 case FastCrowdVariation.Letter:
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);

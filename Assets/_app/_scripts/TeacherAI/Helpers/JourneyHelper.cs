@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using EA4S.Db;
+using EA4S.Core;
+using EA4S.Database;
 
 namespace EA4S.Teacher
 {   
@@ -81,7 +82,7 @@ namespace EA4S.Teacher
             // @todo: probably move this to ScoreHelper
             List<LearningBlockInfo> learningBlockInfo_list = new List<LearningBlockInfo>();
 
-            List<Db.LearningBlockData> learningBlockData_list = FindLearningBlockDataOfStage(targetStage);
+            List<Database.LearningBlockData> learningBlockData_list = FindLearningBlockDataOfStage(targetStage);
             foreach (var learningBlockData in learningBlockData_list) {
                 LearningBlockInfo info = new LearningBlockInfo();
                 info.data = learningBlockData;
@@ -90,10 +91,10 @@ namespace EA4S.Teacher
             }
 
             // Find all previous scores
-            List<Db.ScoreData> scoreData_list = teacher.scoreHelper.GetCurrentScoreForLearningBlocksOfStage(targetStage);
+            List<Database.ScoreData> scoreData_list = teacher.scoreHelper.GetCurrentScoreForLearningBlocksOfStage(targetStage);
             for (int i = 0; i < learningBlockInfo_list.Count; i++) {
                 var info = learningBlockInfo_list[i];
-                var scoreData = scoreData_list.Find(x => x.TableName == typeof(Db.LearningBlockData).Name && x.ElementId == info.data.Id);
+                var scoreData = scoreData_list.Find(x => x.TableName == typeof(Database.LearningBlockData).Name && x.ElementId == info.data.Id);
                 info.score = scoreData.Score;
             }
 
@@ -111,7 +112,7 @@ namespace EA4S.Teacher
             // @todo: probably move this to ScoreHelper
             List<PlaySessionInfo> playSessionInfo_list = new List<PlaySessionInfo>();
 
-            List<Db.PlaySessionData> playSessionData_list = FindPlaySessionDataOfStageAndLearningBlock(targetStage, targetLearningBlock);
+            List<Database.PlaySessionData> playSessionData_list = FindPlaySessionDataOfStageAndLearningBlock(targetStage, targetLearningBlock);
             foreach (var playSessionData in playSessionData_list) {
                 PlaySessionInfo info = new PlaySessionInfo();
                 info.data = playSessionData;
@@ -120,10 +121,10 @@ namespace EA4S.Teacher
             }
 
             // Find all previous scores
-            List<Db.ScoreData> scoreData_list = teacher.scoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(targetStage, targetLearningBlock);
+            List<Database.ScoreData> scoreData_list = teacher.scoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(targetStage, targetLearningBlock);
             for (int i = 0; i < playSessionInfo_list.Count; i++) {
                 var info = playSessionInfo_list[i];
-                var scoreData = scoreData_list.Find(x => x.TableName == typeof(Db.PlaySessionData).Name && x.ElementId == info.data.Id);
+                var scoreData = scoreData_list.Find(x => x.TableName == typeof(Database.PlaySessionData).Name && x.ElementId == info.data.Id);
                 info.score = scoreData.Score;
             }
 
@@ -134,12 +135,12 @@ namespace EA4S.Teacher
 
         #region Stage -> LearningBlock -> PlaySession
 
-        public List<Db.LearningBlockData> FindLearningBlockDataOfStage(int targetStage)
+        public List<Database.LearningBlockData> FindLearningBlockDataOfStage(int targetStage)
         {
             return dbManager.FindLearningBlockData(x => x.Stage == targetStage);
         }
 
-        public List<Db.PlaySessionData> FindPlaySessionDataOfStageAndLearningBlock(int targetStage, int targetLearningBlock)
+        public List<Database.PlaySessionData> FindPlaySessionDataOfStageAndLearningBlock(int targetStage, int targetLearningBlock)
         {
             return dbManager.FindPlaySessionData(x => x.Stage == targetStage && x.LearningBlock == targetLearningBlock);
         }
@@ -149,7 +150,7 @@ namespace EA4S.Teacher
         /// </summary>
         /// <param name="targetStage"></param>
         /// <returns></returns>
-        public List<Db.PlaySessionData> FindPlaySessionDataOfStage(int targetStage)
+        public List<Database.PlaySessionData> FindPlaySessionDataOfStage(int targetStage)
         {
             return dbManager.FindPlaySessionData(x => x.Stage == targetStage);
         }

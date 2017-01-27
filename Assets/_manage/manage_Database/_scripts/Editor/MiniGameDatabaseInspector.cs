@@ -1,8 +1,6 @@
 ﻿using UnityEditor;
-using UnityEngine;
-using UnityEngine.UI;
 
-namespace EA4S.Db.Management.Editor
+namespace EA4S.Database.Management.Editor
 {
     [CustomEditor(typeof(MiniGameDatabase))]
     public class MiniGameDatabaseInspector : AbstractDatabaseInspector

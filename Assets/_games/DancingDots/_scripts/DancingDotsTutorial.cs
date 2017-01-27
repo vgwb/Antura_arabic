@@ -115,7 +115,7 @@ namespace EA4S.Minigames.DancingDots
         IEnumerator sayTut(float delay)
         {
             yield return new WaitForSeconds(delay);
-			AudioManager.I.PlayDialogue(EA4S.Db.LocalizationDataId.DancingDots_Tuto);
+			AudioManager.I.PlayDialogue(EA4S.Database.LocalizationDataId.DancingDots_Tuto);
         }
     }
 }

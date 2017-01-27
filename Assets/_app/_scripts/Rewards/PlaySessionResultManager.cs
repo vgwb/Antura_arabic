@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using EA4S.Core;
+using EA4S.Teacher;
 
 namespace EA4S.Rewards
 {

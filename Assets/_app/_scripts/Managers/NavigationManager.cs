@@ -1,10 +1,11 @@
-﻿using EA4S.Db;
+﻿using EA4S.Database;
 using System.Collections.Generic;
 using EA4S.Environment;
 using EA4S.Rewards;
+using EA4S.Teacher;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Core
 {
     public enum AppScene
     {
@@ -183,7 +184,7 @@ namespace EA4S
         #endregion
 
         // refactor: scene names should match AppScene so that this can be removed
-        public string GetSceneName(AppScene scene, Db.MiniGameData minigameData = null)
+        public string GetSceneName(AppScene scene, Database.MiniGameData minigameData = null)
         {
             switch (scene) {
                 case AppScene.Home:

@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
-namespace EA4S
+namespace EA4S.MinigamesAPI
 {
-
     /// <summary>
     /// Common interface for data that can appear on a LivingLetter object.
     /// This represents a piece of learning content (dictionary data) as viewed through a LivingLetter character.
@@ -32,7 +31,10 @@ namespace EA4S
 
         bool Equals(ILivingLetterData data);
     }
+}
 
+namespace EA4S
+{
     /// <summary>
     /// Type of data that can appear on a LivingLetter object.
     /// </summary>

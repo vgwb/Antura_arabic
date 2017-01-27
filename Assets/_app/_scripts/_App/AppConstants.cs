@@ -1,4 +1,4 @@
-﻿namespace EA4S
+﻿namespace EA4S.Core
 {
     /// <summary>
     /// Container for application-wide static constants.

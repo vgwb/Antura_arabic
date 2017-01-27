@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.Egg
@@ -28,7 +29,7 @@ namespace EA4S.Minigames.Egg
 
             if (firstQuestion)
             {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Egg_Title);
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_Title);
             }
 
             EggEnter();
@@ -54,7 +55,7 @@ namespace EA4S.Minigames.Egg
         {
             if (firstQuestion)
             {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Egg_Intro, delegate () { SetAndShowEggButtons(); });
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_Intro, delegate () { SetAndShowEggButtons(); });
             }
             else
             {

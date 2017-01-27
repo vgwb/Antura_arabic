@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using EA4S.Core;
+using EA4S.Rewards;
+using TMPro;
 using UnityEngine;
 
 namespace EA4S.GamesSelector

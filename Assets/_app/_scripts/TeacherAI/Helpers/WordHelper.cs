@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
+using EA4S.Teacher;
 
-namespace EA4S.Db
+namespace EA4S.Database
 {
     /// <summary>
     /// Provides helpers to get correct letter/word/phrase data according to the teacher's logic and based on the player's progression

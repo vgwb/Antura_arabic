@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
 
 namespace EA4S.Minigames.TakeMeHome
 {
-	
-	public class TakeMeHomeLetterManager : MonoBehaviour {
+
+    public class TakeMeHomeLetterManager : MonoBehaviour {
 		public GameObject plane;
 		public LetterObjectView LLPrefab;		
 

@@ -1,4 +1,4 @@
-﻿using EA4S.Utilities;
+﻿using EA4S.Helpers;
 using UnityEngine;
 
 namespace EA4S.Minigames.FastCrowd

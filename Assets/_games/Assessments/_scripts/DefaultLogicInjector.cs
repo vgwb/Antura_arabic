@@ -1,15 +1,17 @@
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace EA4S.Assessment
 {
     internal class DefaultLogicInjector : ILogicInjector
     {
         protected IDragManager dragManager = null;
+        protected AssessmentEvents events = null;
 
-        public DefaultLogicInjector( IDragManager dragManager)
+        public DefaultLogicInjector( IDragManager dragManager, AssessmentEvents events)
         {
             this.dragManager = dragManager;
+            this.events = events;
             ResetRound();
         }
 
@@ -94,11 +96,19 @@ namespace EA4S.Assessment
         public void RemoveDraggables()
         {
             dragManager.RemoveDraggables();
+            
         }
 
         public void AnswersAdded()
         {
             OnAnswersAdded();
+        }
+
+        public IEnumerator AllAnsweredEvent()
+        {
+            if(events.OnAllQuestionsAnswered != null)
+                return events.OnAllQuestionsAnswered();
+            return events.NoEvent();
         }
 
         protected virtual void OnAnswersAdded()
