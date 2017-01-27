@@ -1,12 +1,12 @@
+using EA4S.Helpers;
+using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
+using Kore.Coroutines;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using EA4S.Helpers;
-using EA4S.MinigamesAPI;
 using UnityEngine;
-using EA4S.LivingLetters;
-using Kore.Coroutines;
 
 namespace EA4S.Assessment
 {
@@ -43,7 +43,7 @@ namespace EA4S.Assessment
         {
             cacheCompleteWordLL.Poof( ElementsSize.PoofOffset);
             cacheCompleteWordLL.Label.text = cacheCompleteWord;
-            yield return Wait.For( 1.0f);
+            yield return Wait.For( 2.0f);
         }
 
         public void InitRound()
