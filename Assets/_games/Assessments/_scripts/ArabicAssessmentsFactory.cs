@@ -378,6 +378,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.LocaleTextFlow = TextFlow.RightToLeft;
 
             context.Configuration = AssessmentConfiguration.Instance;
+            context.Events = new AssessmentEvents();
             context.Utils = AssessmentConfiguration.Instance.Context;
             context.AudioManager = context.Utils.GetAudioManager();
             context.CheckmarkWidget = context.Utils.GetCheckmarkWidget();
@@ -417,9 +418,9 @@ namespace EA4S.Assessment
                 context.DragManager = new SortingDragManager( context.AudioManager, context.CheckmarkWidget);
 
             if (logicInjector == LogicInjectorType.Default)
-                context.LogicInjector = new DefaultLogicInjector( context.DragManager);
+                context.LogicInjector = new DefaultLogicInjector( context.DragManager, context.Events);
             else
-                context.LogicInjector = new SortingLogicInjector( context.DragManager);
+                context.LogicInjector = new SortingLogicInjector( context.DragManager, context.Events);
 
             if (answerPlacer == AnswerPlacerType.Line)
                 context.AnswerPlacer = new LineAnswerPlacer( context.AudioManager, letterSize);
