@@ -1,5 +1,5 @@
 using System;
-using EA4S.MinigamesCommon;
+using EA4S.Core;
 
 namespace EA4S.Assessment
 {

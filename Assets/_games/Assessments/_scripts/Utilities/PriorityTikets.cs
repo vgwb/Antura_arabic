@@ -12,7 +12,7 @@ namespace EA4S.Assessment
 
     public class PriorityTikets
     {
-        MiniPool< Ticket> ticketPool = new MiniPool< Ticket>( 10);
+        MiniPool< Ticket> ticketPool = new MiniPool< Ticket>( 2);
         Ticket lowPriorityTicket = null;
         Ticket highPriorityTicket = null;
 

@@ -2,7 +2,7 @@
 using System;
 using EA4S.Audio;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// A general-purpose *Next* button.

@@ -4,9 +4,10 @@ using System.Collections;
 using TMPro;
 using ArabicSupport;
 using DG.Tweening;
+using EA4S.Core;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// Shows a popup with text subtitles.
@@ -68,7 +69,7 @@ namespace EA4S
         /// <summary>
         /// Activate view elements if SentenceId != "" and display sentence.
         /// </summary>
-        public void DisplaySentence(Db.LocalizationDataId _sentenceId, float _duration = 2, bool _isKeeper = false, System.Action _callback = null)
+        public void DisplaySentence(Database.LocalizationDataId _sentenceId, float _duration = 2, bool _isKeeper = false, System.Action _callback = null)
         {
             var data = LocalizationManager.GetLocalizationData(_sentenceId);
             DisplaySentence(data, _duration, _isKeeper, _callback);
@@ -84,7 +85,7 @@ namespace EA4S
         /// <summary>
         /// Activate view elements if SentenceId != "" and display sentence.
         /// </summary>
-        public void DisplaySentence(Db.LocalizationData data, float _duration = 2, bool _isKeeper = false, System.Action _callback = null)
+        public void DisplaySentence(Database.LocalizationData data, float _duration = 2, bool _isKeeper = false, System.Action _callback = null)
         {
             GlobalUI.Init();
             this.StopAllCoroutines();
@@ -111,7 +112,7 @@ namespace EA4S
             WalkieTalkie.Show(false, _immediate);
         }
 
-        void DisplayText(Db.LocalizationData data, float _duration = 3)
+        void DisplayText(Database.LocalizationData data, float _duration = 3)
         {
             //            bool isContinue = !string.IsNullOrEmpty(TextUI.text);
             this.StopAllCoroutines();

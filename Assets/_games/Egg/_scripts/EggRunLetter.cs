@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using System;
 using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
 using UnityEngine;
 
 namespace EA4S.Minigames.Egg

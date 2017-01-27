@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
-using TMPro;
 
 
 namespace EA4S.Minigames.SickLetters
 {
-	public class SickLettersDiacriticPosition : MonoBehaviour {
+    public class SickLettersDiacriticPosition : MonoBehaviour {
 
 		public MeshRenderer letterMesh;
 		public MeshRenderer dotmesh;

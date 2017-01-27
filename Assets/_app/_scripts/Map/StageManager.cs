@@ -2,6 +2,7 @@
 using System.Collections;
 using DG.Tweening;
 using EA4S.CameraControl;
+using EA4S.Core;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using ModularFramework.Components;
@@ -100,7 +101,7 @@ namespace EA4S.Map
 
                 // ..and set first contact done.
                 DesactivateUI();
-                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro, true, true, AnturaText);
+                KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_Intro, true, true, AnturaText);
                 AppManager.I.Player.FirstContactPassed();
                 Debug.Log("First Contact Step1 finished! Go to Antura Space!");
             }
@@ -111,7 +112,7 @@ namespace EA4S.Map
                 // ..and set first contact done.             
                 ActivateUI();
                 AppManager.I.Player.FirstContactPassed(2);
-                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_First);
+                KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_First);
                 Debug.Log("First Contact Step2 finished! Good Luck!");
                 anturaButton.GetComponent<OnClickButtonChangeScene>().SceneNameCustom = "app_AnturaSpace";
             }
@@ -119,7 +120,7 @@ namespace EA4S.Map
         }
         void AnturaText()
         {
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro_AnturaSpace, true, true, ActivateAnturaButton);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_Intro_AnturaSpace, true, true, ActivateAnturaButton);
         }
         void ActivateAnturaButton()
         {

@@ -3,8 +3,10 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using DG.Tweening;
 using EA4S.Antura;
+using EA4S.Rewards;
 
-namespace EA4S {
+namespace EA4S
+{
 
     // refactor: why is this in the Test scripts?s
     public class RewardsUI : MonoBehaviour {

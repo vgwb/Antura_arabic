@@ -2,7 +2,11 @@
 using System.ComponentModel;
 using UnityEngine;
 using EA4S;
+using EA4S.Core;
 using EA4S.Debugging;
+using EA4S.Rewards;
+using EA4S.Teacher;
+using EA4S.UI;
 
 // refactoring: this is tied to SRDebugger, but we have a DebugManager. Move all debug logic there and make this behave only as a wrapping interface.
 public partial class SROptions

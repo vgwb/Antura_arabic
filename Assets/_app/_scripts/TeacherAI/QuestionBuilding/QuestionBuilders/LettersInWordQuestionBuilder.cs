@@ -1,7 +1,6 @@
-﻿using EA4S.Teacher;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Teacher
 {
     /// <summary>
     /// Selects letters inside a word
@@ -20,11 +19,11 @@ namespace EA4S
         private bool useAllCorrectLetters;
         private int nWrong;
         private int maximumWordLength;
-        private Db.WordDataCategory category;
+        private Database.WordDataCategory category;
         private QuestionBuilderParameters parameters;
 
         public LettersInWordQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, 
-            bool useAllCorrectLetters = false, Db.WordDataCategory category = Db.WordDataCategory.None,
+            bool useAllCorrectLetters = false, Database.WordDataCategory category = Database.WordDataCategory.None,
             int maximumWordLength = 20,
             QuestionBuilderParameters parameters = null)
         {
@@ -91,10 +90,10 @@ namespace EA4S
             return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
         }
 
-        public List<Db.WordData> FindEligibleWords(int maxWordLength)
+        public List<Database.WordData> FindEligibleWords(int maxWordLength)
         {
             var teacher = AppManager.I.Teacher;
-            List<Db.WordData> eligibleWords = new List<Db.WordData>();
+            List<Database.WordData> eligibleWords = new List<Database.WordData>();
             foreach(var word in teacher.wordHelper.GetWordsByCategory(category, parameters.wordFilters))
             {
                 if (word.Letters.Length <= maxWordLength)

@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace EA4S.Db.Management
+namespace EA4S.Database.Management
 {
     /// <summary>
     /// Custom JSON parser for PhraseData
     /// </summary>
     public class PhraseParser : DataParser<PhraseData, PhraseTable>
     {
-        override protected PhraseData CreateData(Dictionary<string, object> dict, Database db)
+        override protected PhraseData CreateData(Dictionary<string, object> dict, DatabaseObject db)
         {
             var data = new PhraseData();
 
@@ -30,7 +30,7 @@ namespace EA4S.Db.Management
             ExtractEnum(rowdicts_list, "Category", addNoneValue: true);
         }
 
-        protected override void FinalValidation(PhraseTable table, Database db)
+        protected override void FinalValidation(PhraseTable table, DatabaseObject db)
         {
             // Field 'Linked' is validated with a final validation step, since it is based on this same table
             foreach (var data in table.GetValuesTyped()) {

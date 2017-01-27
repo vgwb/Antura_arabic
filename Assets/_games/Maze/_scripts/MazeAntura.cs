@@ -2,7 +2,7 @@
 using System.Collections;
 using EA4S.Antura;
 using EA4S.Audio;
-using EA4S.Utilities;
+using EA4S.Helpers;
 
 namespace EA4S.Minigames.Maze
 {

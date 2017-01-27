@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.MinigamesAPI
 {
     /// <summary>
     /// View of a LetterData shown as a single letter on a LivingLetter.
@@ -9,8 +9,8 @@ namespace EA4S
     // refactor: rename to better indicate that this is a view
     public class LL_LetterData : ILivingLetterData
     {
-        public Db.LetterData Data;
-        public Db.LetterPosition Position = Db.LetterPosition.Isolated; // refactor: this is tied to the Arabic language
+        public Database.LetterData Data;
+        public Database.LetterPosition Position = Database.LetterPosition.Isolated; // refactor: this is tied to the Arabic language
 
         public LivingLetterDataType DataType {
             get { return LivingLetterDataType.Letter; }
@@ -25,11 +25,11 @@ namespace EA4S
         {
         }
 
-        public LL_LetterData(string _id, Db.LetterData _data) : this(_data)
+        public LL_LetterData(string _id, Database.LetterData _data) : this(_data)
         {
         }
 
-        public LL_LetterData(Db.LetterData _data)
+        public LL_LetterData(Database.LetterData _data)
         {
             Data = _data;
         }

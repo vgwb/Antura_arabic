@@ -1,11 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
-using ModularFramework.Core;
-using ModularFramework.Components;
-using EA4S.Minigames.FastCrowd;
+﻿using ModularFramework.Components;
 
-namespace EA4S {
+namespace EA4S
+{
 
     public class SceneLauncher : OnClickButtonChangeScene {
 /*

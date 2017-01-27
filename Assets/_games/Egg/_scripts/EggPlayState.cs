@@ -1,4 +1,5 @@
-﻿using EA4S.MinigamesCommon;
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using UnityEngine;
 
@@ -82,11 +83,11 @@ namespace EA4S.Minigames.Egg
 
                 if (isSequence)
                 {
-                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Egg_Tuto_Sequence);
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_Tuto_Sequence);
                 }
                 else
                 {
-                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Egg_Tuto_Button);
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_Tuto_Button);
                 }
             }
 

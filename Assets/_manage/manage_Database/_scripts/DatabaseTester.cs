@@ -3,13 +3,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using EA4S.Core;
+using EA4S.Helpers;
 using EA4S.Profile;
+using EA4S.Teacher;
+using EA4S.UI;
 using EA4S.Utilities;
 
 // refactor: standardize random use across the codebase
 using RND = UnityEngine.Random;
 
-namespace EA4S.Db.Management
+namespace EA4S.Database.Management
 {
     /// <summary>
     /// Helps in managing and testing database contents.

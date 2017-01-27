@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using EA4S.Core;
+using EA4S.MinigamesAPI;
 using EA4S.Teacher;
 
 namespace EA4S.MinigamesCommon
@@ -120,13 +122,13 @@ namespace EA4S.MinigamesCommon
                         actualLearnResult = new LogAI.LearnResultParameters();
                         switch (l._data.DataType) {
                             case LivingLetterDataType.Letter:
-                                actualLearnResult.table = Db.DbTables.Letters;
+                                actualLearnResult.table = Database.DbTables.Letters;
                                 break;
                             case LivingLetterDataType.Word:
-                                actualLearnResult.table = Db.DbTables.Words;
+                                actualLearnResult.table = Database.DbTables.Words;
                                 break;
                             case LivingLetterDataType.Image:
-                                actualLearnResult.table = Db.DbTables.Words;
+                                actualLearnResult.table = Database.DbTables.Words;
                                 break;
                             default:
                                 // data type not found. Make soft exception.

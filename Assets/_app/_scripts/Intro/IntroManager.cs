@@ -2,7 +2,9 @@
 using EA4S.Animation;
 using EA4S.Audio;
 using EA4S.CameraEffects;
+using EA4S.Core;
 using EA4S.MinigamesCommon;
+using EA4S.UI;
 using UnityEngine;
 
 namespace EA4S.Intro
@@ -118,7 +120,7 @@ namespace EA4S.Intro
 
             yield return new WaitForSeconds(m_StateDelay);
 
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_welcome, true, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.Intro_welcome, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
@@ -126,27 +128,27 @@ namespace EA4S.Intro
             Debug.Log("Start Spawning");
             factory.StartSpawning = true;
 
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Letters_1, true, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.Intro_Letters_1, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
 
             Debug.Log("Second Intro Letter");
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Letters_2, true, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.Intro_Letters_2, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
 
             factory.antura.SetAnturaTime(true);
             Debug.Log("Antura is enable");
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Dog, true, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.Intro_Dog, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
 
             DisableAntura();
 
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Dog_Chase, true, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.Intro_Dog_Chase, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
 

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace EA4S.Db.Management
+namespace EA4S.Database.Management
 {
     /// <summary>
     /// Management class that converts JSON data to static database custom assets.
@@ -10,78 +10,78 @@ namespace EA4S.Db.Management
     public class DatabaseLoader : MonoBehaviour
     {
         public DatabaseInputData inputData;
-        private Database database;
+        private DatabaseObject _databaseObject;
         public bool verbose;
 
         public void RecreateDatabase()
         {
             CreateDatabaseAsset.CreateAssets("Assets/Resources/" + DatabaseManager.STATIC_DATABASE_NAME+"/", DatabaseManager.STATIC_DATABASE_NAME);
-            this.database = Database.LoadDB(DatabaseManager.STATIC_DATABASE_NAME);
+            this._databaseObject = DatabaseObject.LoadDB(DatabaseManager.STATIC_DATABASE_NAME);
         }
 
         public void CopyCurrentDatabaseForTesting()
         {
-            this.database = Database.LoadDB(DatabaseManager.STATIC_DATABASE_NAME);
+            this._databaseObject = DatabaseObject.LoadDB(DatabaseManager.STATIC_DATABASE_NAME);
 
-            var test_db = Database.LoadDB(DatabaseManager.STATIC_DATABASE_NAME_TEST);
+            var test_db = DatabaseObject.LoadDB(DatabaseManager.STATIC_DATABASE_NAME_TEST);
             if (!test_db.HasTables())
             {
                 CreateDatabaseAsset.CreateAssets("Assets/Resources/" + DatabaseManager.STATIC_DATABASE_NAME_TEST+"/", DatabaseManager.STATIC_DATABASE_NAME_TEST);
-                test_db = Database.LoadDB(DatabaseManager.STATIC_DATABASE_NAME_TEST);
+                test_db = DatabaseObject.LoadDB(DatabaseManager.STATIC_DATABASE_NAME_TEST);
             }
 
             {
                 var table = test_db.GetLetterTable();
                 table.Clear();
-                table.AddRange(this.database.GetLetterTable().GetValuesTyped());
+                table.AddRange(this._databaseObject.GetLetterTable().GetValuesTyped());
             }
 
             {
                 var table = test_db.GetWordTable();
                 table.Clear();
-                table.AddRange(this.database.GetWordTable().GetValuesTyped());
+                table.AddRange(this._databaseObject.GetWordTable().GetValuesTyped());
             }
 
             {
                 var table = test_db.GetPhraseTable();
                 table.Clear();
-                table.AddRange(this.database.GetPhraseTable().GetValuesTyped());
+                table.AddRange(this._databaseObject.GetPhraseTable().GetValuesTyped());
             }
 
             {
                 var table = test_db.GetLocalizationTable();
                 table.Clear();
-                table.AddRange(this.database.GetLocalizationTable().GetValuesTyped());
+                table.AddRange(this._databaseObject.GetLocalizationTable().GetValuesTyped());
             }
 
             {
                 var table = test_db.GetMiniGameTable();
                 table.Clear();
-                table.AddRange(this.database.GetMiniGameTable().GetValuesTyped());
+                table.AddRange(this._databaseObject.GetMiniGameTable().GetValuesTyped());
             }
 
             {
                 var table = test_db.GetPlaySessionTable();
                 table.Clear();
-                table.AddRange(this.database.GetPlaySessionTable().GetValuesTyped());
+                table.AddRange(this._databaseObject.GetPlaySessionTable().GetValuesTyped());
             }
 
             {
                 var table = test_db.GetLearningBlockTable();
                 table.Clear();
-                table.AddRange(this.database.GetLearningBlockTable().GetValuesTyped()); 
+                table.AddRange(this._databaseObject.GetLearningBlockTable().GetValuesTyped()); 
             }
 
             {
                 var table = test_db.GetStageTable();
                 table.Clear();
-                table.AddRange(this.database.GetStageTable().GetValuesTyped());
+                table.AddRange(this._databaseObject.GetStageTable().GetValuesTyped());
             }
 
             {
                 var table = test_db.GetRewardTable();
                 table.Clear();
-                table.AddRange(this.database.GetRewardTable().GetValuesTyped());
+                table.AddRange(this._databaseObject.GetRewardTable().GetValuesTyped());
             }
 
             Debug.Log("Database copied");
@@ -163,7 +163,7 @@ namespace EA4S.Db.Management
         {
             if (verbose) Debug.Log("Loading data from JSON files...");
 
-            this.database = Database.LoadDB(DatabaseManager.STATIC_DATABASE_NAME);
+            this._databaseObject = DatabaseObject.LoadDB(DatabaseManager.STATIC_DATABASE_NAME);
             LoadDataFrom(inputData);
 
             if (verbose) Debug.Log("Finished loading!");
@@ -178,71 +178,71 @@ namespace EA4S.Db.Management
             {
                 Debug.Log("Loading Letters...");
                 var parser = new LetterParser();
-                parser.Parse(DBInputData.letterDataAsset.text, database, database.GetLetterTable());
+                parser.Parse(DBInputData.letterDataAsset.text, _databaseObject, _databaseObject.GetLetterTable());
             }
 
             {
                 // @note: depends on Letter
                 Debug.Log("Loading Words...");
                 var parser = new WordParser();
-                parser.Parse(DBInputData.wordDataAsset.text, database, database.GetWordTable());
+                parser.Parse(DBInputData.wordDataAsset.text, _databaseObject, _databaseObject.GetWordTable());
             }
 
             {
                 // @note: depends on Word
                 Debug.Log("Loading Phrases...");
                 var parser = new PhraseParser();
-                parser.Parse(DBInputData.phraseDataAsset.text, database, database.GetPhraseTable());
+                parser.Parse(DBInputData.phraseDataAsset.text, _databaseObject, _databaseObject.GetPhraseTable());
             }
 
             {
                 Debug.Log("Loading MiniGames...");
                 var parser = new MiniGameParser();
-                parser.Parse(DBInputData.minigameDataAsset.text, database, database.GetMiniGameTable());
+                parser.Parse(DBInputData.minigameDataAsset.text, _databaseObject, _databaseObject.GetMiniGameTable());
             }
 
             {
                 // @note: depends on Minigame
                 Debug.Log("Loading PlaySessions...");
                 var parser = new PlaySessionParser();
-                parser.Parse(DBInputData.playSessionDataAsset.text, database, database.GetPlaySessionTable());
+                parser.Parse(DBInputData.playSessionDataAsset.text, _databaseObject, _databaseObject.GetPlaySessionTable());
             }
 
             {
                 // @note: depends on Letter, Word, Phrase, PlaySession
                 Debug.Log("Loading LearningBlocks...");
                 var parser = new LearningBlockParser();
-                parser.Parse(DBInputData.playSessionDataAsset.text, database, database.GetLearningBlockTable());
+                parser.Parse(DBInputData.playSessionDataAsset.text, _databaseObject, _databaseObject.GetLearningBlockTable());
             }
 
             {
                 Debug.Log("Loading Localization...");
                 var parser = new LocalizationParser();
-                parser.Parse(DBInputData.localizationDataAsset.text, database, database.GetLocalizationTable());
+                parser.Parse(DBInputData.localizationDataAsset.text, _databaseObject, _databaseObject.GetLocalizationTable());
             }
 
             {
                 Debug.Log("Loading Stages...");
                 var parser = new StageParser();
-                parser.Parse(DBInputData.stageDataAsset.text, database, database.GetStageTable());
+                parser.Parse(DBInputData.stageDataAsset.text, _databaseObject, _databaseObject.GetStageTable());
             }
 
             {
                 Debug.Log("Loading Rewards...");
                 var parser = new RewardParser();
-                parser.Parse(DBInputData.rewardDataAsset.text, database, database.GetRewardTable());
+                parser.Parse(DBInputData.rewardDataAsset.text, _databaseObject, _databaseObject.GetRewardTable());
             }
 
             // Save database modifications
-            EditorUtility.SetDirty(database.stageDb);
-            EditorUtility.SetDirty(database.minigameDb);
-            EditorUtility.SetDirty(database.rewardDb);
-            EditorUtility.SetDirty(database.letterDb);
-            EditorUtility.SetDirty(database.wordDb);
-            EditorUtility.SetDirty(database.phraseDb);
-            EditorUtility.SetDirty(database.localizationDb);
-            EditorUtility.SetDirty(database.learningblockDb);
-            EditorUtility.SetDirty(database.playsessionDb);
+            EditorUtility.SetDirty(_databaseObject.stageDb);
+            EditorUtility.SetDirty(_databaseObject.minigameDb);
+            EditorUtility.SetDirty(_databaseObject.rewardDb);
+            EditorUtility.SetDirty(_databaseObject.letterDb);
+            EditorUtility.SetDirty(_databaseObject.wordDb);
+            EditorUtility.SetDirty(_databaseObject.phraseDb);
+            EditorUtility.SetDirty(_databaseObject.localizationDb);
+            EditorUtility.SetDirty(_databaseObject.learningblockDb);
+            EditorUtility.SetDirty(_databaseObject.playsessionDb);
             AssetDatabase.SaveAssets();
         }
         #endregion

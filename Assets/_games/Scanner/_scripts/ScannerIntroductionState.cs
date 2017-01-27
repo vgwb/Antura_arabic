@@ -15,12 +15,12 @@ namespace EA4S.Minigames.Scanner
 
 		public void EnterState()
 		{
-            AudioManager.I.PlayDialogue(Db.LocalizationDataId.Scanner_Title);
+            AudioManager.I.PlayDialogue(Database.LocalizationDataId.Scanner_Title);
         }
 
 		public void ExitState()
 		{
-            AudioManager.I.PlayDialogue(Db.LocalizationDataId.Scanner_Intro);
+            AudioManager.I.PlayDialogue(Database.LocalizationDataId.Scanner_Intro);
         }
 
 		public void Update(float delta)
