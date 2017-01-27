@@ -2,12 +2,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using EA4S.Db;
+using EA4S.Core;
+using EA4S.Database;
+using EA4S.Helpers;
+using EA4S.MinigamesAPI;
 using EA4S.Profile;
-using EA4S.Teacher;
-using EA4S.Utilities;
 
-namespace EA4S
+namespace EA4S.Teacher
 {
     /// <summary>
     /// Handles logic that represent the Teacher's expert system:
@@ -57,7 +58,7 @@ namespace EA4S
         {
             var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
             minigameSelectionAI.InitialiseNewPlaySession();
-            wordAI.InitialiseNewPlaySession(currentPlaySessionId);
+            wordAI.LoadCurrentPlaySessionData(currentPlaySessionId);
         }
 
         #endregion
@@ -202,12 +203,22 @@ namespace EA4S
         // refactor: Refactor access to test data throught a TestDataManager, instead of passing through the TeacherAI.
         private static bool giveWarningOnFake = false;
 
-        public List<LL_LetterData> GetAllTestLetterDataLL(LetterFilters filters = null)
+        public List<LL_LetterData> GetAllTestLetterDataLL(LetterFilters filters = null, bool useMaxJourneyData = false)
         {
             if (filters == null) filters = new LetterFilters();
 
+            if (useMaxJourneyData)
+            {
+               wordAI.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+            }
+
+            var availableLetters = wordAI.SelectData(
+              () => wordHelper.GetAllLetters(filters),
+                new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
+              );
+
             List<LL_LetterData> list = new List<LL_LetterData>();
-            foreach (var letterData in this.wordHelper.GetAllLetters(filters))
+            foreach (var letterData in availableLetters)
                 list.Add(BuildLetterData_LL(letterData));
 
             /*if (ConfigAI.verboseTeacher)
@@ -218,16 +229,27 @@ namespace EA4S
             return list;
         }
 
-        public LL_LetterData GetRandomTestLetterLL(LetterFilters filters = null)
+        public LL_LetterData GetRandomTestLetterLL(LetterFilters filters = null, bool useMaxJourneyData = false)
         {
             if (filters == null) filters = new LetterFilters();
 
-            if (giveWarningOnFake) {
+            if (useMaxJourneyData)
+            {
+               wordAI.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+            }
+
+            var availableLetters = wordAI.SelectData(
+              () => wordHelper.GetAllLetters(filters),
+                new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
+              );
+
+            if (giveWarningOnFake)
+            {
                 Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
                 giveWarningOnFake = false;
             }
 
-            var data = this.wordHelper.GetAllLetters(filters).RandomSelectOne();
+            var data = availableLetters.RandomSelectOne();
 
             /*if (ConfigAI.verboseTeacher)
             {
@@ -237,16 +259,27 @@ namespace EA4S
             return BuildLetterData_LL(data);
         }
 
-        public LL_WordData GetRandomTestWordDataLL(WordFilters filters = null)
+        public LL_WordData GetRandomTestWordDataLL(WordFilters filters = null, bool useMaxJourneyData = false)
         {
             if (filters == null) filters = new WordFilters();
 
-            if (giveWarningOnFake) {
+            if (useMaxJourneyData)
+            {
+                wordAI.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+            }
+
+            if (giveWarningOnFake)
+            {
                 Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
                 giveWarningOnFake = false;
             }
 
-            var data = this.wordHelper.GetWordsByCategory(WordDataCategory.Animal, filters).RandomSelectOne();
+            var availableWords = wordAI.SelectData(
+              () => wordHelper.GetWordsByCategory(WordDataCategory.Animal, filters),
+                new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
+              );
+
+            var data = availableWords.RandomSelectOne();
 
             /*if (ConfigAI.verboseTeacher)
             {

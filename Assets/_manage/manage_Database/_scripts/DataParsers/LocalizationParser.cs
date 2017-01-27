@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace EA4S.Db.Management
+namespace EA4S.Database.Management
 {
     /// <summary>
     /// Custom JSON parser for LocalizationData
     /// </summary>
     public class LocalizationParser : DataParser<LocalizationData, LocalizationTable>
     {
-        override protected LocalizationData CreateData(Dictionary<string, object> dict, Database db)
+        override protected LocalizationData CreateData(Dictionary<string, object> dict, DatabaseObject db)
         {
             var data = new LocalizationData();
 

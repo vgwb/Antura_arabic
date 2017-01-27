@@ -10,8 +10,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_app/_scenes/app_AnturaSpace.unity
   - enabled: 1
-    path: Assets/_app/_scenes/app_End.unity
-  - enabled: 1
     path: Assets/_app/_scenes/app_GamesSelector.unity
   - enabled: 1
     path: Assets/_app/_scenes/app_Intro.unity

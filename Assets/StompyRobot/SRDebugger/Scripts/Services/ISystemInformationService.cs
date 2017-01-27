@@ -1,7 +1,6 @@
 ﻿namespace SRDebugger
 {
     using System;
-    using Services;
     using SRF;
 
     public sealed class InfoEntry

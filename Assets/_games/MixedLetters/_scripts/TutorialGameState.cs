@@ -23,6 +23,7 @@ namespace EA4S.Minigames.MixedLetters
 
         public void EnterState()
         {
+            game.DisableRepeatPromptButton();
             game.GenerateNewWord();
 
             VictimLLController.instance.HideVictoryRays();
@@ -33,7 +34,7 @@ namespace EA4S.Minigames.MixedLetters
             victimLLPosition.x = Random.Range(0, 40) % 2 == 0 ? 0.5f : -0.5f;
             VictimLLController.instance.SetPosition(victimLLPosition);
 
-            audioManager.PlayDialogue(isSpelling ? Db.LocalizationDataId.MixedLetters_spelling_Title : Db.LocalizationDataId.MixedLetters_alphabet_Title, OnTitleVoiceOverDone);
+            audioManager.PlayDialogue(isSpelling ? Database.LocalizationDataId.MixedLetters_spelling_Title : Database.LocalizationDataId.MixedLetters_alphabet_Title, OnTitleVoiceOverDone);
         }
 
         private void OnTitleVoiceOverDone()
@@ -51,6 +52,7 @@ namespace EA4S.Minigames.MixedLetters
             yield return new WaitForSeconds(MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Alphabet ? 1.5f : 3f);
 
             MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking);
+            AnturaController.instance.PrepareToEnterScene();
             VictimLLController.instance.LookTowardsAntura();
 
             yield return new WaitForSeconds(0.25f);
@@ -74,7 +76,7 @@ namespace EA4S.Minigames.MixedLetters
             ParticleSystemController.instance.Enable();
             ParticleSystemController.instance.SetPosition(VictimLLController.instance.transform.position);
             SeparateLettersSpawnerController.instance.SetPosition(VictimLLController.instance.transform.position);
-            SeparateLettersSpawnerController.instance.SpawnLetters(game.lettersInOrder, OnFightEnded);
+            SeparateLettersSpawnerController.instance.SpawnLetters(game.PromptLettersInOrder, OnFightEnded);
         }
 
         private void OnFightEnded()
@@ -86,13 +88,14 @@ namespace EA4S.Minigames.MixedLetters
 
         private void OnAnturaExitedScene()
         {
-            audioManager.PlayDialogue(isSpelling ? Db.LocalizationDataId.MixedLetters_spelling_Intro : Db.LocalizationDataId.MixedLetters_alphabet_Intro, OnIntroVoiceOverDone);
+            audioManager.PlayDialogue(isSpelling ? Database.LocalizationDataId.MixedLetters_spelling_Intro : Database.LocalizationDataId.MixedLetters_alphabet_Intro, OnIntroVoiceOverDone);
         }
 
         private void OnIntroVoiceOverDone()
         {
             MixedLettersGame.instance.OnRoundStarted();
-            audioManager.PlayDialogue(isSpelling ? Db.LocalizationDataId.MixedLetters_spelling_Tuto : Db.LocalizationDataId.MixedLetters_alphabet_Tuto);
+            game.EnableRepeatPromptButton();
+            audioManager.PlayDialogue(isSpelling ? Database.LocalizationDataId.MixedLetters_spelling_Tuto : Database.LocalizationDataId.MixedLetters_alphabet_Tuto);
         }
 
         public void ExitState()
@@ -102,7 +105,7 @@ namespace EA4S.Minigames.MixedLetters
 
         public void Update(float delta)
         {
-            if (game.lastRoundWon)
+            if (game.WasLastRoundWon)
             {
                 game.SetCurrentState(game.ResultState);
             }

@@ -55,7 +55,8 @@ namespace EA4S.Minigames.HideAndSeek
             ArrayLetters[0].GetComponent<HideAndSeekLetterController>().id = 3;
 
             ArrayLetters[0].GetComponentInChildren<LetterObjectView>().Init(wrong);
-            ArrayTrees[0].GetComponent<CapsuleCollider>().enabled = true;
+            ArrayTrees[0].GetComponent<SphereCollider>().enabled = true;
+            ArrayLetters[0].GetComponent<CapsuleCollider>().enabled = false;
 
 
             // Set the correct answer
@@ -82,8 +83,8 @@ namespace EA4S.Minigames.HideAndSeek
         void ShowFinger()
         {
             Vector3 offset = new Vector3(0f, 3f, -1.5f);
-            Vector3 offsetCentral = new Vector3(0f, 2.5f, -2f);
-            Vector3 offsetFirst = new Vector3(0.5f, 2f, -2f);
+            Vector3 offsetCentral = new Vector3(0f, 3f, -2f);
+            Vector3 offsetFirst = new Vector3(0.5f, 3f, -2f);
 
 
             switch (phase)
@@ -108,6 +109,7 @@ namespace EA4S.Minigames.HideAndSeek
 
         void MoveObject(int id)
         {
+            HideAndSeekConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.BushRustlingOut);
             if (ArrayLetters.Length > 0)
             {
                 script = ArrayLetters[GetIdFromPosition(id)].GetComponent<HideAndSeekLetterController>();
@@ -116,8 +118,9 @@ namespace EA4S.Minigames.HideAndSeek
 
             if(GetIdFromPosition(id) == 0)
             {
-                ArrayTrees[0].GetComponent<CapsuleCollider>().enabled = false;
-                phase = 1;
+                ArrayTrees[0].GetComponent<SphereCollider>().enabled = false;
+                ArrayTrees[1].GetComponent<SphereCollider>().enabled = true; // skip to phase 2
+                phase = 2;
                 TutorialUI.Clear(false);
                 timeFinger = Time.time + animDuration + timeToWait;
             }
@@ -125,7 +128,7 @@ namespace EA4S.Minigames.HideAndSeek
 
             if (GetIdFromPosition(id) == 1)
             {
-                ArrayTrees[1].GetComponent<CapsuleCollider>().enabled = false;
+                ArrayTrees[1].GetComponent<SphereCollider>().enabled = false;
                 phase = 3;
                 TutorialUI.Clear(false);
                 timeFinger = Time.time + animDuration + timeToWait;
@@ -149,7 +152,7 @@ namespace EA4S.Minigames.HideAndSeek
             else
             {
                 script.resultAnimation(false);
-                ArrayTrees[1].GetComponent<CapsuleCollider>().enabled = true;
+                ArrayTrees[1].GetComponent<SphereCollider>().enabled = true;
                 phase = 2;
                 TutorialUI.Clear(false);
                 AudioManager.I.PlaySound(Sfx.Lose);
@@ -169,6 +172,7 @@ namespace EA4S.Minigames.HideAndSeek
                 x.GetComponent<LetterObjectView>().Poof();
                 AudioManager.I.PlaySound(Sfx.Poof);
                 x.SetActive(false);
+                x.GetComponent<CapsuleCollider>().enabled = true;
             }
 
             var delay = 1f;

@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using EA4S.Helpers;
 
-namespace EA4S.Db.Management
+namespace EA4S.Database.Management
 {
     /// <summary>
     /// Custom JSON parser for WordData
     /// </summary>
     public class WordParser : DataParser<WordData, WordTable>
     {
-        override protected WordData CreateData(Dictionary<string, object> dict, Database db)
+        override protected WordData CreateData(Dictionary<string, object> dict, DatabaseObject db)
         {
             var data = new WordData();
 
@@ -29,7 +30,7 @@ namespace EA4S.Db.Management
             return data;
         }
 
-        private string[] CustomParseLetters(WordData wordData, Database db)
+        private string[] CustomParseLetters(WordData wordData, DatabaseObject db)
         {
             //Debug.Log(wordData.ToString());
             return ArabicAlphabetHelper.ExtractLettersFromArabicWord(wordData.Arabic, db).ToArray();
@@ -52,7 +53,7 @@ namespace EA4S.Db.Management
             ExtractEnum(rowdicts_list, "Article", addNoneValue: true);
         }
 
-        protected override void FinalValidation(WordTable table, Database db)
+        protected override void FinalValidation(WordTable table, DatabaseObject db)
         {
             // Field 'LinkedWord' is validated with a final validation step, since it is based on this same table
             foreach (var data in table.GetValuesTyped()) {

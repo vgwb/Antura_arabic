@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using EA4S.Db;
+using EA4S.Database;
 using DG.DeAudio;
+using EA4S.Core;
+using EA4S.Helpers;
 using EA4S.MinigamesCommon;
-using EA4S.Utilities;
 
 namespace EA4S.Audio
 {
@@ -226,19 +227,19 @@ namespace EA4S.Audio
         public IAudioSource PlayLetter(LetterData data)
         {
             AudioClip clip = GetAudioClip(data);
-            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), sfxGroup, this);
+            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), wordsLettersPhrasesGroup, this);
         }
 
         public IAudioSource PlayWord(WordData data)
         {
             AudioClip clip = GetAudioClip(data);
-            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), sfxGroup, this);
+            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), wordsLettersPhrasesGroup, this);
         }
 
         public IAudioSource PlayPhrase(PhraseData data)
         {
             AudioClip clip = GetAudioClip(data);
-            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), sfxGroup, this);
+            return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), wordsLettersPhrasesGroup, this);
         }
 
         public void StopLettersWordsPhrases()
@@ -254,12 +255,12 @@ namespace EA4S.Audio
             return PlayDialogue(LocalizationManager.GetLocalizationData(localizationData_id));
         }
 
-        public IAudioSource PlayDialogue(Db.LocalizationDataId id)
+        public IAudioSource PlayDialogue(Database.LocalizationDataId id)
         {
             return PlayDialogue(LocalizationManager.GetLocalizationData(id));
         }
 
-        public IAudioSource PlayDialogue(Db.LocalizationData data, bool clearPreviousCallback = false)
+        public IAudioSource PlayDialogue(Database.LocalizationData data, bool clearPreviousCallback = false)
         {
             if (!clearPreviousCallback && OnDialogueEnded != null)
                 OnDialogueEnded();
@@ -269,7 +270,7 @@ namespace EA4S.Audio
             if (!string.IsNullOrEmpty(data.AudioFile))
             {
                 AudioClip clip = GetAudioClip(data);
-                return new AudioSourceWrapper(sfxGroup.Play(clip), keeperGroup, this);
+                return new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
             }
             return null;
         }
@@ -279,12 +280,12 @@ namespace EA4S.Audio
             return PlayDialogue(LocalizationManager.GetLocalizationData(localizationData_id), callback);
         }
 
-        public IAudioSource PlayDialogue(Db.LocalizationDataId id, System.Action callback)
+        public IAudioSource PlayDialogue(Database.LocalizationDataId id, System.Action callback)
         {
             return PlayDialogue(LocalizationManager.GetLocalizationData(id), callback);
         }
 
-        public IAudioSource PlayDialogue(Db.LocalizationData data, System.Action callback, bool clearPreviousCallback = false)
+        public IAudioSource PlayDialogue(Database.LocalizationData data, System.Action callback, bool clearPreviousCallback = false)
         {
             if (!clearPreviousCallback && OnDialogueEnded != null)
                 OnDialogueEnded();
@@ -295,7 +296,7 @@ namespace EA4S.Audio
             {
                 OnDialogueEnded = callback;
                 AudioClip clip = GetAudioClip(data);
-                return new AudioSourceWrapper(sfxGroup.Play(clip), keeperGroup, this);
+                return new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
             }
             else
             {
@@ -318,7 +319,7 @@ namespace EA4S.Audio
 
         #region Audio clip management
 
-        public AudioClip GetAudioClip(Db.LocalizationData data)
+        public AudioClip GetAudioClip(Database.LocalizationData data)
         {
             return GetCachedResource("AudioArabic/Dialogs/" + data.AudioFile);
         }

@@ -4,12 +4,14 @@ using System;
 using System.Linq;
 using System.Collections;
 using EA4S.Audio;
+using EA4S.Helpers;
+using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
-using EA4S.Utilities;
+using EA4S.Tutorial;
 
 namespace EA4S.Minigames.Scanner
 {
-	public class ScannerRoundsManager {
+    public class ScannerRoundsManager {
 		
 		public event Action <int> onRoundsFinished;
 
@@ -54,39 +56,46 @@ namespace EA4S.Minigames.Scanner
 
 				Debug.Log("[Scanner] Diffculty: " + ScannerConfiguration.Instance.Difficulty);
 
-				int LLs = 0;
+                SetupLLs();
 
-				if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
-				{
-					LLs = 1;
-				}
-				else if (ScannerConfiguration.Instance.Variation == ScannerVariation.MultipleWords)
-				{
-					LLs = game.LLCount;
-				}
-
-				Debug.Log("[Scanner] LLs: " + LLs);
-
-
-				for (int i = 0; i < LLs; i++)
-				{
-					ScannerLivingLetter LL = GameObject.Instantiate(game.LLPrefab).GetComponent<ScannerLivingLetter>();
-					LL.facingCamera = game.facingCamera;
-					LL.gameObject.SetActive(true);
-					LL.onStartFallOff += OnLetterStartFallOff;
-					LL.onFallOff += OnLetterFallOff;
-					LL.onPassedMidPoint += OnLetterPassedMidPoint;
-                    LL.game = game;
-					game.scannerLL.Add(LL);
-				}
-
-				StartRound();
+                StartRound();
 
 			}
 		}
 
+        public void SetupLLs()
+        {
+            int LLs = 0;
+            game.scannerLL.Clear();
+
+            if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
+            {
+                LLs = 1;
+            }
+            else if (ScannerConfiguration.Instance.Variation == ScannerVariation.MultipleWords)
+            {
+                LLs = game.LLCount;
+            }
+
+            Debug.Log("[Scanner] LLs: " + LLs);
+
+
+            for (int i = 0; i < LLs; i++)
+            {
+                ScannerLivingLetter LL = GameObject.Instantiate(game.LLPrefab).GetComponent<ScannerLivingLetter>();
+                LL.facingCamera = game.facingCamera;
+                LL.gameObject.SetActive(true);
+                LL.onStartFallOff += OnLetterStartFallOff;
+                LL.onFallOff += OnLetterFallOff;
+                LL.onPassedMidPoint += OnLetterPassedMidPoint;
+                LL.game = game;
+                game.scannerLL.Add(LL);
+            }
+        }
+
 		IEnumerator ResetLetters()
 		{
+
 			// Reset letters first so that they are set for this round
 			// If not set first fall off will make unset letters fall with next round
 			for (int i = 0; i < game.scannerLL.Count; i++)
@@ -105,6 +114,9 @@ namespace EA4S.Minigames.Scanner
 			{
 
                 game.scannerLL[i].StartSliding();
+
+                if (game.tut.isTutRound)// slide only one LL during the tutorial
+                    break;
 
                 if (game.scannerLL.Count == 3)
 				{   
@@ -185,8 +197,9 @@ namespace EA4S.Minigames.Scanner
 			var question = provider.GetNextQuestion();
 		    wrongAnswers = question.GetWrongAnswers().ToList();
 			correctAnswers = question.GetCorrectAnswers().ToList();
+            game.Context.GetOverlayWidget().SetLives(game.allowedFailedMoves);
 
-			Debug.Log("Correct Answers: " + correctAnswers.Count);
+            Debug.Log("Correct Answers: " + correctAnswers.Count);
 			Debug.Log("Wrong   Answers: " + wrongAnswers.Count);
 
 
@@ -237,11 +250,15 @@ namespace EA4S.Minigames.Scanner
 
 		public void CorrectMove(GameObject GO, ScannerLivingLetter livingLetter)
 		{
-			AudioManager.I.PlayDialogue("Keeper_Good_" + UnityEngine.Random.Range(1, 12));
-			livingLetter.RoundWon();
-			if (game.scannerLL.All(ll => ll.gotSuitcase))
+            TutorialUI.MarkYes(GO.transform.position + Vector3.up * 3 + Vector3.right, TutorialUI.MarkSize.Normal);
+            AudioManager.I.PlayDialogue("Keeper_Good_" + UnityEngine.Random.Range(1, 12));
+            game.LogAnswer(livingLetter.letterObjectView.Data, true);
+            game.tut.playTut = false;
+
+            livingLetter.RoundWon();
+			if (game.scannerLL.All(ll => ll.gotSuitcase) || game.tut.isTutRound)
 			{
-				if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord)
+				if (ScannerConfiguration.Instance.Variation == ScannerVariation.OneWord || game.tut.isTutRound)
 				{
 					game.StartCoroutine(PoofOthers(game.suitcases));
 				}
@@ -255,11 +272,14 @@ namespace EA4S.Minigames.Scanner
 
 		}
 
-		public void WrongMove(GameObject GO)
+		public void WrongMove(GameObject GO, ScannerLivingLetter livingLetter)
 		{
 			numberOfFailedMoves++;
-			AudioManager.I.PlayDialogue("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
-			game.CreatePoof(GO.transform.position,2f,true);
+            TutorialUI.MarkNo(GO.transform.position + Vector3.up*2 + Vector3.right * 1.5f, TutorialUI.MarkSize.Normal);
+            AudioManager.I.PlayDialogue("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
+            game.LogAnswer(livingLetter.letterObjectView.Data, false);
+            game.CreatePoof(GO.transform.position,2f,true);
+            game.Context.GetOverlayWidget().SetLives(game.allowedFailedMoves - numberOfFailedMoves);
 
             if (game.tut.isTutRound)
             {
@@ -329,6 +349,7 @@ namespace EA4S.Minigames.Scanner
 			    numberOfRoundsWon++;
 
 			game.Context.GetOverlayWidget().SetStarsScore(numberOfRoundsWon);
+            
 
 			yield return new WaitForSeconds(0.25f);
 			AudioManager.I.PlaySound(Sfx.Win);

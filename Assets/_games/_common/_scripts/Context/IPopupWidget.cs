@@ -1,4 +1,5 @@
 ﻿using System;
+using EA4S.MinigamesAPI;
 using UnityEngine;
 
 namespace EA4S.MinigamesCommon
@@ -12,9 +13,9 @@ namespace EA4S.MinigamesCommon
         // Manual popup management
         void Show(bool reset = true);
         void SetButtonCallback(System.Action callback);
-        void SetTitle(Db.LocalizationDataId text);
+        void SetTitle(Database.LocalizationDataId text);
         void SetTitle(string text);
-        void SetMessage(Db.LocalizationDataId text);
+        void SetMessage(Database.LocalizationDataId text);
         void SetMessage(string text);
         void SetImage(Sprite image);
         void SetLetterData(ILivingLetterData data); // Modifies Text + Image      
@@ -24,10 +25,10 @@ namespace EA4S.MinigamesCommon
         void ShowTimeUp(System.Action callback);
 
         [Obsolete("Using manual configuration", false)]
-        void Show(System.Action callback, Db.LocalizationDataId text, bool markResult, LL_WordData word = null);
+        void Show(System.Action callback, Database.LocalizationDataId text, bool markResult, LL_WordData word = null);
 
         [Obsolete("Using manual configuration", false)]
-        void Show(System.Action callback, Db.LocalizationDataId text, LL_WordData word = null);
+        void Show(System.Action callback, Database.LocalizationDataId text, LL_WordData word = null);
 
         [Obsolete("Using manual configuration", false)]
         void Show(System.Action callback, Sprite image);

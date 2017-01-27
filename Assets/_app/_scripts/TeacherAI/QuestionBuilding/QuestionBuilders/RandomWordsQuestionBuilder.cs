@@ -1,7 +1,6 @@
-﻿using EA4S.Teacher;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Teacher
 {
     /// <summary>
     /// Selects words at random
@@ -19,11 +18,11 @@ namespace EA4S
         private int nCorrect;
         private int nWrong;
         private bool firstCorrectIsQuestion;
-        private Db.WordDataCategory category;
+        private Database.WordDataCategory category;
         private QuestionBuilderParameters parameters;
 
         public RandomWordsQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, 
-            bool firstCorrectIsQuestion = false, Db.WordDataCategory category = Db.WordDataCategory.None, QuestionBuilderParameters parameters = null)
+            bool firstCorrectIsQuestion = false, Database.WordDataCategory category = Database.WordDataCategory.None, QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
 

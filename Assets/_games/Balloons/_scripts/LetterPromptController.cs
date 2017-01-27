@@ -1,11 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
-using ModularFramework.Core;
-using ModularFramework.Helpers;
 using TMPro;
-using EA4S;
+using EA4S.MinigamesAPI;
 
 namespace EA4S.Balloons
 {

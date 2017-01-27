@@ -1,4 +1,5 @@
-﻿using EA4S.MinigamesCommon;
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.FastCrowd
 {
@@ -54,7 +55,8 @@ namespace EA4S.Minigames.FastCrowd
             // Reset game timer
             gameTime.Start();
 
-            if (initializeOveralyWidget) {
+            if (initializeOveralyWidget)
+            {
                 initializeOveralyWidget = false;
                 game.InitializeOverlayWidget();
             }
@@ -83,25 +85,39 @@ namespace EA4S.Minigames.FastCrowd
         void OnQuestionCompleted()
         {
             if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling ||
-                  FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter) {
+                  FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
+            {
                 // In spelling and letter, increment score only when the full question is completed
                 for (int i = 0; i < game.CurrentChallenge.Count; ++i)
                     game.IncrementScore();
             }
 
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling)
+            {
+                var question = game.CurrentQuestion;
+
+                if (question != null && question.GetQuestion() != null)
+                    game.Context.GetLogManager().OnAnswered(question.GetQuestion(), true);
+            }
+
             game.SetCurrentState(game.ResultState);
         }
 
-        void OnAnswerDropped(bool result)
+        void OnAnswerDropped(ILivingLetterData data, bool result)
         {
             game.Context.GetCheckmarkWidget().Show(result);
 
-            if (result &&
-                (FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Spelling &&
+            if ((FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Spelling &&
                 FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Letter)
-                ) {
-                // In spelling and letter, increment score only when the full question is completed
-                game.IncrementScore();
+                )
+            {
+                if (result)
+                {
+                    // In spelling and letter, increment score only when the full question is completed
+                    game.IncrementScore();
+                }
+
+                game.Context.GetLogManager().OnAnswered(data, result);
             }
 
             game.Context.GetAudioManager().PlaySound(result ? Sfx.OK : Sfx.KO);
@@ -131,7 +147,8 @@ namespace EA4S.Minigames.FastCrowd
         {
             anturaTimer -= delta;
 
-            if (anturaTimer <= 0.0f) {
+            if (anturaTimer <= 0.0f)
+            {
                 if (isAnturaRunning)
                     StopAntura();
                 else
@@ -141,8 +158,10 @@ namespace EA4S.Minigames.FastCrowd
             gameTime.Update(delta);
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
-            if (!hurryUpSfx) {
-                if (gameTime.Time < 4f) {
+            if (!hurryUpSfx)
+            {
+                if (gameTime.Time < 4f)
+                {
                     hurryUpSfx = true;
 
                     timesUpAudioSource = game.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);

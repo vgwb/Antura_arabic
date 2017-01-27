@@ -20,15 +20,15 @@ namespace EA4S.Minigames.FastCrowd
             playIntro = false;
 
             if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet) {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_alphabet_Title, () => { playIntro = true; });
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_alphabet_Title, () => { playIntro = true; });
             } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting) {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_counting_Title, () => { playIntro = true; });
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_counting_Title, () => { playIntro = true; });
             } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter) {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_letter_Title, () => { playIntro = true; });
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_letter_Title, () => { playIntro = true; });
             } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling) {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_spelling_Title, () => { playIntro = true; });
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_spelling_Title, () => { playIntro = true; });
             } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words) {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_words_Title, () => { playIntro = true; });
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_words_Title, () => { playIntro = true; });
             } else {
                 nextState = true;
             }
@@ -49,15 +49,15 @@ namespace EA4S.Minigames.FastCrowd
                 playIntro = false;
 
                 if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet) {
-                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_alphabet_Intro, () => { nextState = true; });
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_alphabet_Intro, () => { nextState = true; });
                 } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting) {
-                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_counting_Intro, () => { nextState = true; });
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_counting_Intro, () => { nextState = true; });
                 } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter) {
-                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_letter_Intro, () => { nextState = true; });
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_letter_Intro, () => { nextState = true; });
                 } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling) {
-                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_spelling_Intro, () => { nextState = true; });
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_spelling_Intro, () => { nextState = true; });
                 } else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words) {
-                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_words_Intro, () => { nextState = true; });
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_words_Intro, () => { nextState = true; });
                 }
             }
         }

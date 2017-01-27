@@ -3,11 +3,13 @@ using ModularFramework.Core;
 using ModularFramework.Modules;
 using EA4S.Audio;
 using EA4S.CameraControl;
-using EA4S.Db;
+using EA4S.Core;
+using EA4S.Database;
 using EA4S.Debugging;
-using EA4S.MinigamesAPI;
-using EA4S.MinigamesCommon;
 using EA4S.Profile;
+using EA4S.Rewards;
+using EA4S.Teacher;
+using EA4S.MinigamesAPI;
 using PlayerProfile = EA4S.Profile.PlayerProfile;
 
 namespace EA4S
@@ -32,7 +34,6 @@ namespace EA4S
         public LogManager LogManager;
         public PlayerProfileManager PlayerProfileManager;
         public NavigationManager NavigationManager;
-
         bool appIsPaused = false;
 
         #region Initialisation

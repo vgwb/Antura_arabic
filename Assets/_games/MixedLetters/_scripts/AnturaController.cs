@@ -15,6 +15,15 @@ namespace EA4S.Minigames.MixedLetters
 
         private AnturaAnimationController animator;
 
+        private bool _lastEnteredFromTheLeft;
+        public bool LastEnteredFromTheLeft
+        {
+            get
+            {
+                return _lastEnteredFromTheLeft;
+            }
+        }
+
         void Awake()
         {
             instance = this;
@@ -47,7 +56,7 @@ namespace EA4S.Minigames.MixedLetters
             }
         }
 
-        public void EnterScene(System.Action notifyFightBeganCallback, System.Action notifyAnturaExitedScene)
+        public void PrepareToEnterScene()
         {
             Vector3 victimLLPosition = VictimLLController.instance.transform.position;
             Vector3 anturaPosition = victimLLPosition;
@@ -57,12 +66,19 @@ namespace EA4S.Minigames.MixedLetters
 
             anturaPosition.x = frustumWidth / 2 + 12f;
 
-            if (victimLLPosition.x > 0)
+            if (Random.Range(0f, 1f) <= 0.5f)
             {
                 anturaPosition.x *= -1;
             }
 
-            velocity.x = victimLLPosition.x - anturaPosition.x;
+            _lastEnteredFromTheLeft = anturaPosition.x < 0f;
+
+            transform.position = anturaPosition;
+        }
+
+        public void EnterScene(System.Action notifyFightBeganCallback, System.Action notifyAnturaExitedScene)
+        {
+            velocity.x = VictimLLController.instance.transform.position.x - transform.position.x;
 
             if (velocity.x > 0)
             {
@@ -73,9 +89,7 @@ namespace EA4S.Minigames.MixedLetters
             {
                 transform.rotation = Quaternion.Euler(0, 90, 0);
             }
-
-            transform.position = anturaPosition;
-
+            
             NotifyFightBeganCallback = notifyFightBeganCallback;
             NotifyAnturaExitedScene = notifyAnturaExitedScene;
         }

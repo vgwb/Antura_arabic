@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using EA4S.Db;
+using EA4S.Database;
 
-namespace EA4S
+namespace EA4S.Teacher
 {
     /// <summary>
     /// Holds a single question pack as seen by the Teacher.

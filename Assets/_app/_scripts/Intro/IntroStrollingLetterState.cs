@@ -1,6 +1,4 @@
-﻿using EA4S.MinigamesCommon;
-
-namespace EA4S.Intro
+﻿namespace EA4S.Intro
 {
     public abstract class IntroStrollingLetterState : IGameState
     {

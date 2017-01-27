@@ -3,11 +3,12 @@ using System.Collections;
 using DG.DeExtensions;
 using DG.Tweening;
 using EA4S.Audio;
+using EA4S.LivingLetters;
 using EA4S.Profile;
 using UnityEngine;
 using EA4S.Scenes;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// General controller for the interface of the Profile Selector.
@@ -30,6 +31,8 @@ namespace EA4S
         int maxProfiles;
         ProfileSelectorAvatarButton[] avatarButtons;
         Tween btAddTween, btPlayTween;
+
+        public LetterObjectView LLObjectView;
 
         #region Unity
 
@@ -91,7 +94,7 @@ namespace EA4S
             PlayerProfile pp = ProfileManager.CreateOrLoadPlayerProfile(_avatarId);
             ProfileManager.CurrentPlayer = pp;
             AudioManager.I.PlaySound(SfxCreateNewProfile);
-
+            LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL());
             Setup();
         }
 
@@ -99,6 +102,7 @@ namespace EA4S
         {
             ProfileManager.CurrentPlayer = ProfileManager.AvailablePlayerProfiles[_id - 1];
             AudioManager.I.PlaySound(SfxSelectProfile);
+            LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
             Setup();
         }
 

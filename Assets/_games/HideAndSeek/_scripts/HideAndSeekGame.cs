@@ -1,4 +1,5 @@
-﻿using EA4S.MinigamesCommon;
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Minigames.HideAndSeek
@@ -64,9 +65,12 @@ namespace EA4S.Minigames.HideAndSeek
 			return HideAndSeekConfiguration.Instance;
         }
 
-        public void OnResult()
+        public void OnResult(ILivingLetterData data, bool result)
         {
-            Context.GetOverlayWidget().SetStarsScore(++CurrentScore);
+            if (result)
+                Context.GetOverlayWidget().SetStarsScore(++CurrentScore);
+
+            Context.GetLogManager().OnAnswered(data, result);
         }
     }
 }

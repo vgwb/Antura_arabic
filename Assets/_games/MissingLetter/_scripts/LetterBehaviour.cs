@@ -7,6 +7,7 @@ using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using DG.Tweening.Plugins.Core.PathCore;
 using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
 
 namespace EA4S.Minigames.MissingLetter
 {

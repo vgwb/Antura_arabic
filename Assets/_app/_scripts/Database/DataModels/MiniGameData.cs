@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EA4S.Db
+namespace EA4S.Database
 {
     /// <summary>
     /// Data defining a Minigame.

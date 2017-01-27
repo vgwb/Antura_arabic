@@ -7,6 +7,7 @@ using EA4S.Audio;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
+using EA4S.UI;
 
 namespace EA4S.Minigames.ThrowBalls
 {
@@ -97,13 +98,13 @@ namespace EA4S.Minigames.ThrowBalls
             switch (ThrowBallsConfiguration.Instance.Variation)
             {
                 case ThrowBallsVariation.letters:
-                    audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_letters_Title, OnTitleVoiceOverDone);
+                    audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Title, OnTitleVoiceOverDone);
                     break;
                 case ThrowBallsVariation.words:
-                    audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_words_Title, OnTitleVoiceOverDone);
+                    audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_words_Title, OnTitleVoiceOverDone);
                     break;
                 case ThrowBallsVariation.lettersinword:
-                    audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_letterinword_Title, OnTitleVoiceOverDone);
+                    audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letterinword_Title, OnTitleVoiceOverDone);
                     break;
                 default:
                     break;
@@ -114,7 +115,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         private void OnTitleVoiceOverDone()
         {
-            audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_letters_Intro, OnIntroVoiceOverDone);
+            audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Intro, OnIntroVoiceOverDone);
         }
 
         private void OnIntroVoiceOverDone()
@@ -207,13 +208,13 @@ namespace EA4S.Minigames.ThrowBalls
                 switch (ThrowBallsConfiguration.Instance.Variation)
                 {
                     case ThrowBallsVariation.letters:
-                        audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_letters_Tuto);
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Tuto);
                         break;
                     case ThrowBallsVariation.words:
-                        audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_words_Tuto);
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_words_Tuto);
                         break;
                     case ThrowBallsVariation.lettersinword:
-                        audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_letterinword_Tuto);
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letterinword_Tuto);
                         break;
                     default:
                         break;
@@ -300,13 +301,13 @@ namespace EA4S.Minigames.ThrowBalls
                 switch (ThrowBallsConfiguration.Instance.Variation)
                 {
                     case ThrowBallsVariation.letters:
-                        audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_letters_Tuto);
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Tuto);
                         break;
                     case ThrowBallsVariation.words:
-                        audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_words_Tuto);
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_words_Tuto);
                         break;
                     case ThrowBallsVariation.lettersinword:
-                        audioManager.PlayDialogue(Db.LocalizationDataId.ThrowBalls_letterinword_Tuto);
+                        audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letterinword_Tuto);
                         break;
                     default:
                         break;

@@ -4,7 +4,7 @@ using EA4S.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// A general-purpose button

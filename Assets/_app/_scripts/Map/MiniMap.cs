@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using EA4S.Core;
 
 namespace EA4S.Map
 {
@@ -124,10 +125,10 @@ namespace EA4S.Map
 
         private class PlaySessionState
         {
-            public Db.PlaySessionData data;
+            public Database.PlaySessionData data;
             public float score;
 
-            public PlaySessionState(Db.PlaySessionData _data, float _score)
+            public PlaySessionState(Database.PlaySessionData _data, float _score)
             {
                 this.data = _data;
                 this.score = _score;
@@ -144,7 +145,7 @@ namespace EA4S.Map
         private List<PlaySessionState> GetAllPlaySessionStateForStage(int _stage)
         {
             // Get all available scores for this stage
-            List<Db.ScoreData> scoreData_list = AppManager.I.Teacher.scoreHelper.GetCurrentScoreForPlaySessionsOfStage(_stage);
+            List<Database.ScoreData> scoreData_list = AppManager.I.Teacher.scoreHelper.GetCurrentScoreForPlaySessionsOfStage(_stage);
 
             // For each score entry, get its play session data and build a structure containing both
             List<PlaySessionState> playSessionState_list = new List<PlaySessionState>();
@@ -161,7 +162,7 @@ namespace EA4S.Map
         /// </summary>
         /// <param name="_stage"></param>
         /// <returns></returns>
-        private List<Db.PlaySessionData> GetAllPlaySessionDataForStage(int _stage)
+        private List<Database.PlaySessionData> GetAllPlaySessionDataForStage(int _stage)
         {
             return AppManager.I.DB.FindPlaySessionData(x => x.Stage == _stage);
         }

@@ -1,8 +1,7 @@
-﻿using EA4S.Teacher;
-using System.Collections.Generic;
-using EA4S.Utilities;
+﻿using System.Collections.Generic;
+using EA4S.Helpers;
 
-namespace EA4S
+namespace EA4S.Teacher
 {
     /// <summary>
     /// Selects words that have letters in commons.

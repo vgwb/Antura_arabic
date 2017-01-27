@@ -3,6 +3,7 @@ using EA4S.MinigamesCommon;
 using EA4S.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
+using EA4S.UI;
 
 namespace EA4S.Management.Test
 {
@@ -153,6 +154,8 @@ namespace EA4S.Management.Test
         }
         void PlayDialog(string localizationID)
         {
+            StopCurrentLocalization();
+
             Debug.Log("playing localization :" + localizationID);
             lastDialogueAudioSource = AudioManager.I.PlayDialogue(localizationID);
         }

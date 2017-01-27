@@ -50,7 +50,7 @@ namespace EA4S.Minigames.ReadingGame
                 }
                 else
                 {
-                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.ReadingGame_Tuto);
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ReadingGame_Tuto);
                     drawTutorialLineTimer = 0;
                 }
             }

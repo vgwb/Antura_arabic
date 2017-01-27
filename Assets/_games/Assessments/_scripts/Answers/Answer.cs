@@ -1,4 +1,5 @@
 using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -11,12 +12,14 @@ namespace EA4S.Assessment
     public class Answer: MonoBehaviour
     {
         private LetterObjectView view;
+        private AssessmentDialogues dialogues;
         private bool isCorrect;
 
-        public Answer Init( bool correct)
+        public Answer Init( bool correct, AssessmentDialogues dialogues)
         {
             view = GetComponent< LetterObjectView>();
             isCorrect = correct;
+            this.dialogues = dialogues;
             return this;
         }
 
@@ -73,8 +76,7 @@ namespace EA4S.Assessment
         void OnMouseDown()
         {
             if ( AssessmentOptions.Instance.PronunceAnswerWhenClicked)
-                AssessmentConfiguration.Instance.Context.GetAudioManager()
-                    .PlayLetterData( Data());
+                dialogues.PlayLetterData( Data());
         }
     }
 }

@@ -1,8 +1,7 @@
-﻿using EA4S.Teacher;
-using System.Collections.Generic;
-using EA4S.Utilities;
+﻿using System.Collections.Generic;
+using EA4S.Helpers;
 
-namespace EA4S
+namespace EA4S.Teacher
 {
     /// <summary>
     /// Selects words inside / related to a phrase
@@ -65,8 +64,8 @@ namespace EA4S
             var question = usablePhrases[0];
 
             // Get words related to the phrase
-            var correctWords = new List<Db.WordData>();
-            List<Db.WordData> relatedWords = null;
+            var correctWords = new List<Database.WordData>();
+            List<Database.WordData> relatedWords = null;
             if (usePhraseAnswersIfFound && question.Answers.Length > 0)
             {
                 relatedWords = teacher.wordHelper.GetAnswersToPhrase(question, parameters.wordFilters);

@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using EA4S;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
+using EA4S.UI;
 using TMPro;
 
 
 namespace EA4S.Minigames.Maze
 {
-	public class MazeGameManager : MiniGame
+    public class MazeGameManager : MiniGame
     {
 		
 		public static MazeGameManager instance;
@@ -113,7 +113,7 @@ namespace EA4S.Minigames.Maze
 
 
             //init first letter
-            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Maze_Title,()=> {
+            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Title,()=> {
                 initCurrentLetter();
             });
             
@@ -144,7 +144,7 @@ namespace EA4S.Minigames.Maze
 			//line.useWorldSpace = true;    
 
 			line.material = new Material(Shader.Find("Antura/Transparent"));
-			line.material.color = new Color (0.5f, 0.5f, 0.5f, 0.5f);
+			line.material.color = new Color (1f, 0.15f, 0f, 0.75f);
 
 			lines.Add (line);
 
@@ -378,6 +378,10 @@ namespace EA4S.Minigames.Maze
                 Debug.Log("Letter got from Teacher is: " + ld.Id + " - does not match 11 models we have, we will play sound of the returned data");
                 index = UnityEngine.Random.Range(0, prefabs.Count);
             }
+
+
+            index = 20;
+            
             currentLL = ld;
             currentPrefab = (GameObject)Instantiate(prefabs[index]);
 
@@ -422,9 +426,9 @@ namespace EA4S.Minigames.Maze
         {
             if(isTutorialMode)
             {
-                MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Maze_Intro,
+                MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Intro,
                         () => {
-                            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Maze_Tuto, ()=> {
+                            MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Tuto, ()=> {
                                 MazeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(currentLL);
                             });
                             currentCharacter.initialPosition = currentCharacter.transform.position;

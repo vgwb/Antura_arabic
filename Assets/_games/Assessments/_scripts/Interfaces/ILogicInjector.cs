@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace EA4S.Assessment
 {
     /// <summary>
@@ -13,5 +15,6 @@ namespace EA4S.Assessment
         void EnableDragOnly();
         void RemoveDraggables();
         void AnswersAdded();
+        IEnumerator AllAnsweredEvent();
     }
 }

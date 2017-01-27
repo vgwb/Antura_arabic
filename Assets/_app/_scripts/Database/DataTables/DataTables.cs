@@ -1,5 +1,5 @@
 ﻿
-namespace EA4S.Db
+namespace EA4S.Database
 {
     [System.Serializable]
     public class MiniGameTable : SerializableDataTable<MiniGameData> { }

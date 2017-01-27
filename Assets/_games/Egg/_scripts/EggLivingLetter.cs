@@ -2,6 +2,7 @@
 using UnityEngine;
 using DG.Tweening;
 using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
 
 namespace EA4S.Minigames.Egg
 {

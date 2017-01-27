@@ -1,14 +1,17 @@
-﻿using UnityEngine;
+﻿using EA4S.Core;
+using UnityEngine;
 using TMPro;
-using EA4S;
 
-/// <summary>
-/// Shows the version of the application. Used in the Home scene.
-/// </summary>
-public class VersionText : MonoBehaviour
+namespace EA4S.UI
 {
-    void Start()
+    /// <summary>
+    /// Shows the version of the application. Used in the Home scene.
+    /// </summary>
+    public class VersionText : MonoBehaviour
     {
-        gameObject.GetComponent<TextMeshProUGUI>().text = "v " + AppConstants.AppVersion;
+        void Start()
+        {
+            gameObject.GetComponent<TextMeshProUGUI>().text = "v " + AppConstants.AppVersion;
+        }
     }
 }

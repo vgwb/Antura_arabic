@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// Shows the number of bones obtained.
