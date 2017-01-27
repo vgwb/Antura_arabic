@@ -58,9 +58,6 @@ namespace EA4S
             LogManager = new LogManager();
 
             NavigationManager = gameObject.AddComponent<NavigationManager>();
-            //SceneModule sceneModule = new SceneModule();
-            //sceneModule.SetupModule(new SceneModuleDefault());
-            NavigationManager.InjectSceneModule(Modules.SceneModule);
             PlayerProfileManager = new PlayerProfileManager();
             gameObject.AddComponent<DebugManager>();
             gameObject.AddComponent<KeeperManager>();

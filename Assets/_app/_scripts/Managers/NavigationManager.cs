@@ -73,18 +73,10 @@ namespace EA4S
     public class NavigationManager : MonoBehaviour
     {
         private NavigationData NavData;
-        private SceneModule sceneModule;
 
         public bool IsLoadingMinigame { get; private set; } // Daniele mod - SceneTransitioner needs it to know when a minigame is being loaded 
 
         #region API
-        /// <summary>
-        /// Injects the scene module.
-        /// </summary>
-        /// <param name="_sceneModule">The scene module.</param>
-        public void InjectSceneModule(ModularFramework.Modules.ISceneModule _sceneModule) {
-            sceneModule = _sceneModule as SceneModule;
-        }
 
         /// <summary>
         /// Sets the player navigation data.
