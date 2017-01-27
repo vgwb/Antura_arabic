@@ -166,12 +166,14 @@ namespace EA4S.Minigames.Scanner
 			}
 
 		}
-			
+
+        private ScannerLivingLetter lastDetectedLL;
 		void OnTriggerEnter(Collider other)
 		{
-			if (other.tag == "Player") 
-			{ 
-				overPlayermarker = true;
+            if (other.tag == "Player")
+            {
+                lastDetectedLL = other.transform.root.GetComponent<ScannerLivingLetter>();
+                overPlayermarker = true;
 				player = other;
 			}
 		}
@@ -180,7 +182,8 @@ namespace EA4S.Minigames.Scanner
 		{
 			if (other.tag == "Player") 
 			{
-				overPlayermarker = true;
+                lastDetectedLL = other.transform.root.GetComponent<ScannerLivingLetter>();
+                overPlayermarker = true;
 				player = other;
 			}
 		}
@@ -198,7 +201,7 @@ namespace EA4S.Minigames.Scanner
             if (game.disableInput || !isReady)
                 return;
 
-            if (overPlayermarker)
+            if (overPlayermarker && lastDetectedLL && lastDetectedLL.status == ScannerLivingLetter.LLStatus.StandingOnBelt)
 			{
                 shadow.transform.localScale = Vector3.zero;
                 ScannerLivingLetter LL = player.transform.parent.GetComponent<ScannerLivingLetter>();
@@ -221,7 +224,8 @@ namespace EA4S.Minigames.Scanner
 			{
 				Reset(false);
 			}
-			isDragging = false;
+            lastDetectedLL = null;
+            isDragging = false;
 			overPlayermarker = false;
 		}
 
