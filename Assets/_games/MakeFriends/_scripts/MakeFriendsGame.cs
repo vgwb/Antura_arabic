@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using ModularFramework.Helpers;
 using ArabicSupport;
+using EA4S.Core;
+using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
+using EA4S.UI;
 
 namespace EA4S.Minigames.MakeFriends
 {
@@ -157,20 +160,20 @@ namespace EA4S.Minigames.MakeFriends
 
         public void PlayTitleVoiceOver()
         {
-            StartCoroutine(PlayDialog_Coroutine(EA4S.Db.LocalizationDataId.MakeFriends_Title, 0f));
+            StartCoroutine(PlayDialog_Coroutine(EA4S.Database.LocalizationDataId.MakeFriends_Title, 0f));
         }
 
         public void PlayTutorialVoiceOver(float delay = 3.8f)
         {
-            StartCoroutine(PlayDialog_Coroutine(EA4S.Db.LocalizationDataId.MakeFriends_Tuto, delay));
+            StartCoroutine(PlayDialog_Coroutine(EA4S.Database.LocalizationDataId.MakeFriends_Tuto, delay));
         }
 
         public void PlayIntroVoiceOver(float delay = 3.75f)
         {
-            StartCoroutine(PlayDialog_Coroutine(EA4S.Db.LocalizationDataId.MakeFriends_Intro, delay));
+            StartCoroutine(PlayDialog_Coroutine(EA4S.Database.LocalizationDataId.MakeFriends_Intro, delay));
         }
 
-        private IEnumerator PlayDialog_Coroutine(EA4S.Db.LocalizationDataId dialog, float delay)
+        private IEnumerator PlayDialog_Coroutine(EA4S.Database.LocalizationDataId dialog, float delay)
         {
             yield return new WaitForSeconds(delay);
             AudioManager.PlayDialogue(dialog);

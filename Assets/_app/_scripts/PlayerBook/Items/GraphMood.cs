@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.Core;
+using UnityEngine;
 
 namespace EA4S.PlayerBook
 {

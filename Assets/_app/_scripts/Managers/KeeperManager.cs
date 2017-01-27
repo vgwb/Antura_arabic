@@ -1,7 +1,8 @@
 ﻿using EA4S.Audio;
+using EA4S.UI;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.Core
 {
     /// <summary>
     /// Manages the Keeper throughout the application. The Keeper gives hints and explains minigames to the player.
@@ -29,12 +30,12 @@ namespace EA4S
             PlayDialog(LocalizationManager.GetLocalizationData(localizationData_id), isKeeper, autoClose, _callback);
         }
 
-        public void PlayDialog(Db.LocalizationDataId id, bool isKeeper = true, bool autoClose = true, System.Action _callback = null)
+        public void PlayDialog(Database.LocalizationDataId id, bool isKeeper = true, bool autoClose = true, System.Action _callback = null)
         {
             PlayDialog(LocalizationManager.GetLocalizationData(id), isKeeper, autoClose, _callback);
         }
 
-        public void PlayDialog(Db.LocalizationData data, bool isKeeper = true, bool autoClose = true, System.Action _callback = null)
+        public void PlayDialog(Database.LocalizationData data, bool isKeeper = true, bool autoClose = true, System.Action _callback = null)
         {
             if (autoClose) {
                 WidgetSubtitles.I.DisplaySentence(data, 2, isKeeper, null);

@@ -3,9 +3,10 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using ArabicSupport;
+using EA4S.MinigamesAPI;
 using EA4S.Utilities;
 
-namespace EA4S
+namespace EA4S.Helpers
 {
     // refactor: This should be among helpers and not be accessed through the TeacherAI.
     // refactor: We should create an intermediate layer for accessing language-specific helpers, so that they can be removed easily.
@@ -29,7 +30,7 @@ namespace EA4S
         }
 
         // refactor: not used?
-        public static void DebugLetter(Db.LetterData letterData)
+        public static void DebugLetter(Database.LetterData letterData)
         {
             byte[] bytesUtf16 = Encoding.Unicode.GetBytes(letterData.Isolated);
             foreach (var item in bytesUtf16)
@@ -72,11 +73,11 @@ namespace EA4S
         /// <summary>
         /// Returns the list of letters found in a word string
         /// </summary>
-        public static List<Db.LetterData> SplitWordIntoLetters(Db.WordData arabicWord, bool reverseOrder = false, bool separateDiacritics = false)
+        public static List<Database.LetterData> SplitWordIntoLetters(Database.WordData arabicWord, bool reverseOrder = false, bool separateDiacritics = false)
         {
-            List<Db.LetterData> allLetterData = new List<Db.LetterData>(AppManager.I.DB.StaticDatabase.GetLetterTable().GetValuesTyped());
+            List<Database.LetterData> allLetterData = new List<Database.LetterData>(AppManager.I.DB.StaticDatabase.GetLetterTable().GetValuesTyped());
 
-            var returnList = new List<Db.LetterData>();
+            var returnList = new List<Database.LetterData>();
 
             char[] chars = arabicWord.Arabic.ToCharArray();
             if (reverseOrder)
@@ -88,10 +89,10 @@ namespace EA4S
                 char _char = chars[i];
                 string unicodeString = GetHexUnicodeFromChar(_char);
 
-                Db.LetterData letterData = allLetterData.Find(l => l.Isolated_Unicode == unicodeString);
+                Database.LetterData letterData = allLetterData.Find(l => l.Isolated_Unicode == unicodeString);
                 if (letterData != null)
                 {
-                    if (!separateDiacritics && letterData.Kind == Db.LetterDataKind.Symbol && letterData.Type == Db.LetterDataType.DiacriticSymbol)
+                    if (!separateDiacritics && letterData.Kind == Database.LetterDataKind.Symbol && letterData.Type == Database.LetterDataType.DiacriticSymbol)
                     {
                         var symbolId = letterData.Id;
                         var lastLetterData = allLetterData.Find(l => l.Id == returnList[returnList.Count - 1].Id);
@@ -124,9 +125,9 @@ namespace EA4S
         /// <summary>
         /// Returns the list of letters found in a word string
         /// </summary>
-        public static List<string> ExtractLettersFromArabicWord(string arabicWord, Db.Database db, bool reverseOrder = false, bool separateDiacritics = false)
+        public static List<string> ExtractLettersFromArabicWord(string arabicWord, Database.DatabaseObject db, bool reverseOrder = false, bool separateDiacritics = false)
         {
-            List<Db.LetterData> allLetterData = new List<Db.LetterData>(db.GetLetterTable().GetValuesTyped());
+            List<Database.LetterData> allLetterData = new List<Database.LetterData>(db.GetLetterTable().GetValuesTyped());
 
             var returnList = new List<string>();
 
@@ -140,10 +141,10 @@ namespace EA4S
                 char _char = chars[i];
                 string unicodeString = GetHexUnicodeFromChar(_char);
 
-                Db.LetterData letterData = allLetterData.Find(l => l.Isolated_Unicode == unicodeString);
+                Database.LetterData letterData = allLetterData.Find(l => l.Isolated_Unicode == unicodeString);
                 if (letterData != null)
                 {
-                    if (!separateDiacritics && letterData.Kind == Db.LetterDataKind.Symbol && letterData.Type == Db.LetterDataType.DiacriticSymbol)
+                    if (!separateDiacritics && letterData.Kind == Database.LetterDataKind.Symbol && letterData.Type == Database.LetterDataType.DiacriticSymbol)
                     {
                         var symbolId = letterData.Id;
                         var lastLetterData = allLetterData.Find(l => l.Id == returnList[returnList.Count - 1]);
@@ -183,7 +184,7 @@ namespace EA4S
             var returnList = new List<LL_LetterData>();
             foreach (var id in lettersIds)
             {
-                var llLetterData = new LL_LetterData((Db.LetterData)db.GetLetterTable().GetValue(id));
+                var llLetterData = new LL_LetterData((Database.LetterData)db.GetLetterTable().GetValue(id));
                 returnList.Add(llLetterData);
             }
             return returnList;
@@ -192,7 +193,7 @@ namespace EA4S
         /// <summary>
         /// Return a string of a word without a character
         /// </summary>
-        public static string GetWordWithMissingLetter(Db.WordData arabicWord, Db.LetterData letterToRemove, string removedLetterChar = "_")
+        public static string GetWordWithMissingLetter(Database.WordData arabicWord, Database.LetterData letterToRemove, string removedLetterChar = "_")
         {
             var Letters = SplitWordIntoLetters(arabicWord);
 
@@ -200,16 +201,16 @@ namespace EA4S
 
             for (int index = 0; index < Letters.Count; ++index)
             {
-                Db.LetterPosition position = Db.LetterPosition.Isolated;
+                Database.LetterPosition position = Database.LetterPosition.Isolated;
 
                 if (Letters.Count > 0)
                 {
                     if (index == 0)
-                        position = Db.LetterPosition.Initial;
+                        position = Database.LetterPosition.Initial;
                     else if (index == Letters.Count - 1)
-                        position = Db.LetterPosition.Final;
+                        position = Database.LetterPosition.Final;
                     else
-                        position = Db.LetterPosition.Medial;
+                        position = Database.LetterPosition.Medial;
                 }
 
                 if (Letters[index].Id == letterToRemove.Id)

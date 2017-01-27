@@ -14,11 +14,11 @@ namespace EA4S.Minigames.MissingLetter
         {
             if(MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
             {
-                AudioManager.I.PlayDialogue(Db.LocalizationDataId.MissingLetter_Title);
+                AudioManager.I.PlayDialogue(Database.LocalizationDataId.MissingLetter_Title);
             }
             else
             {
-                AudioManager.I.PlayDialogue(Db.LocalizationDataId.MissingLetter_phrases_Title);
+                AudioManager.I.PlayDialogue(Database.LocalizationDataId.MissingLetter_phrases_Title);
             }
         }
 

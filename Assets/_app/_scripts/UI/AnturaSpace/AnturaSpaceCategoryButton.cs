@@ -1,4 +1,4 @@
-﻿namespace EA4S
+﻿namespace EA4S.UI
 {
     /// <summary>
     /// Button for a category in the Antura Space scene.

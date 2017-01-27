@@ -8,6 +8,7 @@ using EA4S.Antura;
 using EA4S.Audio;
 using EA4S.LivingLetters;
 using EA4S.MinigamesCommon;
+using EA4S.UI;
 
 namespace EA4S.Minigames.DancingDots
 {

@@ -1,4 +1,5 @@
-﻿using EA4S.MinigamesCommon;
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 using EA4S.Utilities;
 using UnityEngine;
 using TMPro;
@@ -134,7 +135,7 @@ namespace EA4S.LivingLetters
                     Drawing.enabled = true;
 
                     LL_ImageData data = (LL_ImageData)Data;
-                    if (data.Data.Category == Db.WordDataCategory.Color) {
+                    if (data.Data.Category == Database.WordDataCategory.Color) {
                         Drawing.color = GenericUtilities.GetColorFromString(data.Data.Value);
                     } else {
                         Drawing.color = Color.black;

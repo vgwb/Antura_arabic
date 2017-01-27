@@ -3,7 +3,7 @@ using DG.Tweening;
 using EA4S.Utilities;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// Controls the Credits panel.

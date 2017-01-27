@@ -1,7 +1,8 @@
 ﻿using System;
+using EA4S.Helpers;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.MinigamesAPI
 {
     /// <summary>
     /// View of a WordData shown as a drawing or image on a LivingLetter.
@@ -10,7 +11,7 @@ namespace EA4S
     public class LL_ImageData : ILivingLetterData
     {
 
-        public Db.WordData Data;
+        public Database.WordData Data;
 
         public LivingLetterDataType DataType {
             get { return LivingLetterDataType.Image; }
@@ -25,11 +26,11 @@ namespace EA4S
         {
         }
 
-        public LL_ImageData(string _id, Db.WordData _data) : this(_data)
+        public LL_ImageData(string _id, Database.WordData _data) : this(_data)
         {
         }
 
-        public LL_ImageData(Db.WordData _data)
+        public LL_ImageData(Database.WordData _data)
         {
             Data = _data;
         }

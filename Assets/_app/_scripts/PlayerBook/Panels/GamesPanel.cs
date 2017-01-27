@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 using EA4S.Audio;
-using EA4S.Db;
+using EA4S.Database;
+using EA4S.UI;
 using EA4S.Utilities;
 
 namespace EA4S.PlayerBook

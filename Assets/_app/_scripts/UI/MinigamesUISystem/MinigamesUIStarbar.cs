@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// Shows the number of obtained stars available in a minigame.

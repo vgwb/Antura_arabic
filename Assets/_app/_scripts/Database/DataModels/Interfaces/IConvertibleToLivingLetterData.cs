@@ -1,4 +1,7 @@
-﻿namespace EA4S.Db
+﻿using EA4S.Core;
+using EA4S.MinigamesAPI;
+
+namespace EA4S.Database
 {
     /// <summary>
     /// Defines a type of data that can be converted to a LivingLetterData

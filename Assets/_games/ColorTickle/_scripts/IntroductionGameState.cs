@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Linq;
+using EA4S.Core;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
@@ -20,7 +21,7 @@ namespace EA4S.Minigames.ColorTickle
 
         public void EnterState()
         {
-            game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.ColorTickle_Title);
+            game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.ColorTickle_Title);
 
             game.colorsCanvas.gameObject.SetActive(false);
 

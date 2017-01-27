@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
 
@@ -32,12 +33,12 @@ namespace EA4S.Minigames.Tobogan
                 ILivingLetterData sunWord = new LL_ImageData(sunData.GetId(), sunData);
                 ILivingLetterData moonWord = new LL_ImageData(moonData.GetId(), moonData);
 
-                if (data.Data.SunMoon == Db.LetterDataSunMoon.Sun)
+                if (data.Data.SunMoon == Database.LetterDataSunMoon.Sun)
                 {
                     correctAnswers.Add(sunWord);
                     wrongAnswers.Add(moonWord);
                 }
-                else if (data.Data.SunMoon == Db.LetterDataSunMoon.Moon)
+                else if (data.Data.SunMoon == Database.LetterDataSunMoon.Moon)
                 {
                     correctAnswers.Add(moonWord);
                     wrongAnswers.Add(sunWord);

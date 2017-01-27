@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using EA4S.MinigamesCommon;
+using EA4S.UI;
 
 namespace EA4S.Minigames.MixedLetters
 {

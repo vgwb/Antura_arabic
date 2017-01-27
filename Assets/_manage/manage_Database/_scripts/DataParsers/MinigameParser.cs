@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace EA4S.Db.Management
+namespace EA4S.Database.Management
 {
     /// <summary>
     /// Custom JSON parser for MiniGameData
     /// </summary>
     public class MiniGameParser : DataParser<MiniGameData, MiniGameTable>
     {
-        override protected MiniGameData CreateData(Dictionary<string, object> dict, Database db)
+        override protected MiniGameData CreateData(Dictionary<string, object> dict, DatabaseObject db)
         {
             var data = new MiniGameData();
 

@@ -1,11 +1,12 @@
 ﻿using System;
 using DG.Tweening;
 using EA4S.Audio;
-using EA4S.Db;
+using EA4S.Core;
+using EA4S.Database;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// Controls the transition animation between two scenes.

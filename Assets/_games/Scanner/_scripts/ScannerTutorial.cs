@@ -113,7 +113,7 @@ namespace EA4S.Minigames.Scanner
 
         void onTutorialStart()
         {
-            AudioManager.I.PlayDialogue(Db.LocalizationDataId.Scanner_Tuto);
+            AudioManager.I.PlayDialogue(Database.LocalizationDataId.Scanner_Tuto);
             game.beltSpeed = 0;
             game.disableInput = false;
             StartCoroutine(sayTut(repeatDelay));

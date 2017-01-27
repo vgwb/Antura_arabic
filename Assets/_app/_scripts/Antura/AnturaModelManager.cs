@@ -1,7 +1,9 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.Profile;
+using EA4S.Rewards;
 
 namespace EA4S.Antura
 {
@@ -256,12 +258,7 @@ namespace EA4S.Antura
 
         #endregion
     }
-}
 
-namespace EA4S
-{
-
-    #region Data Structures    
     /// <summary>
     /// 
     /// </summary>
@@ -271,6 +268,4 @@ namespace EA4S
         public RewardPack TileTexture = new RewardPack();
         public RewardPack DecalTexture = new RewardPack();
     }
-
-    #endregion
 }

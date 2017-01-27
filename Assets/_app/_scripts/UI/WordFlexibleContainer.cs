@@ -1,42 +1,45 @@
-﻿using UnityEngine;
-using EA4S;
-using EA4S.Utilities;
+﻿using EA4S.Core;
+using EA4S.MinigamesAPI;
+using UnityEngine;
 
-/// <summary>
-/// A flexible container for text.
-/// </summary>
-// refactor: place in a namespace
-public class WordFlexibleContainer : MonoBehaviour
+namespace EA4S.UI
 {
-    public TextRender Label;
-    public TextRender NumbersLabel;
-
-    public void SetText(string text, bool arabic)
+    /// <summary>
+    /// A flexible container for text.
+    /// </summary>
+// refactor: place in a namespace
+    public class WordFlexibleContainer : MonoBehaviour
     {
-        Label.gameObject.SetActive(true);
-        NumbersLabel.gameObject.SetActive(false);
-        Label.setText(text, arabic);
-    }
+        public TextRender Label;
+        public TextRender NumbersLabel;
 
-    public void SetText(ILivingLetterData data)
-    {
-        Label.gameObject.SetActive(true);
-        NumbersLabel.gameObject.SetActive(false);
-        Label.SetLetterData(data);
-    }
+        public void SetText(string text, bool arabic)
+        {
+            Label.gameObject.SetActive(true);
+            NumbersLabel.gameObject.SetActive(false);
+            Label.setText(text, arabic);
+        }
 
-    public void Reset()
-    {
-        Label.gameObject.SetActive(true);
-        NumbersLabel.gameObject.SetActive(false);
-        Label.text = "";
-        NumbersLabel.text = "";
-    }
+        public void SetText(ILivingLetterData data)
+        {
+            Label.gameObject.SetActive(true);
+            NumbersLabel.gameObject.SetActive(false);
+            Label.SetLetterData(data);
+        }
 
-    public void SetNumber(int numberValue)
-    {
-        Label.gameObject.SetActive(false);
-        NumbersLabel.gameObject.SetActive(true);
-        NumbersLabel.setText(numberValue.ToString(), false);
+        public void Reset()
+        {
+            Label.gameObject.SetActive(true);
+            NumbersLabel.gameObject.SetActive(false);
+            Label.text = "";
+            NumbersLabel.text = "";
+        }
+
+        public void SetNumber(int numberValue)
+        {
+            Label.gameObject.SetActive(false);
+            NumbersLabel.gameObject.SetActive(true);
+            NumbersLabel.setText(numberValue.ToString(), false);
+        }
     }
 }

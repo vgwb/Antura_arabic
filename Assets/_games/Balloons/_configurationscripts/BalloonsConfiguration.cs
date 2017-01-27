@@ -1,6 +1,7 @@
 ﻿using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
 using EA4S.MinigamesCommon;
+using EA4S.Teacher;
 
 namespace EA4S.Balloons
 {
@@ -94,7 +95,7 @@ namespace EA4S.Balloons
                     builder = new WordsWithLetterQuestionBuilder(nPacks, nCorrect, nWrong);
                     break;  
                 case BalloonsVariation.Counting:
-                    builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.NumberOrdinal); 
+                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.NumberOrdinal); 
                     break;
             }
 
