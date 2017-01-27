@@ -25,12 +25,12 @@ namespace EA4S.Database
         {
         }
 
-        public LogLearnData(string _Session, string _PlaySession, MiniGameCode _MiniGame, DbTables _table, string _elementId, float _score)
+        public LogLearnData(string _Session, string _PlaySession, MiniGameCode _MiniGame, VocabularyDataType _dataType, string _elementId, float _score)
         {
             Session = _Session;
             PlaySession = _PlaySession;
             MiniGame = _MiniGame;
-            TableName = _table.ToString();
+            TableName = _dataType.ToString();   //  TODO: instead of TableName we should use VocabularyDataType 
             ElementId = _elementId;
             Score = _score;
             Timestamp = GenericUtilities.GetTimestampForNow();

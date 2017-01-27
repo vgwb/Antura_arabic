@@ -325,9 +325,9 @@ namespace EA4S.Database
             return dynamicDb.FindAll<LogPlayData>();
         }
 
-        public List<ScoreData> GetAllScoreData()
+        public List<T> GetAllDynamicData<T>() where T : IData, new()
         {
-            return dynamicDb.FindAll<ScoreData>();
+            return dynamicDb.FindAll<T>();
         }
 
         // Find all (expression)
@@ -363,9 +363,9 @@ namespace EA4S.Database
             return dynamicDb.FindByQuery<LogPlayData>(query);
         }
 
-        public List<ScoreData> FindScoreDataByQuery(string query)
+        public List<T> FindDataByQuery<T>(string query) where T : IData, new()
         {
-            return dynamicDb.FindByQuery<ScoreData>(query);
+            return dynamicDb.FindByQuery<T>(query);
         }
 
         public List<object> FindCustomDataByQuery(SQLite.TableMapping mapping, string query)
@@ -376,17 +376,20 @@ namespace EA4S.Database
 
 
         #region Score
-        public void UpdateScoreData(DbTables table, string elementId, float score)
+
+        public void UpdateVocabularyScoreData(VocabularyDataType dataType, string elementId, float score)
         {
-            ScoreData data = new ScoreData(elementId, table, score);
+            VocabularyScoreData data = new VocabularyScoreData(elementId, dataType, score);
             dynamicDb.InsertOrReplace(data);
         }
 
-        public void Debug_UpdateScoreData(DbTables table, string elementId, float score, int timestamp)
+        public void UpdateJourneyScoreData(JourneyDataType dataType, string elementId, int score)
         {
-            ScoreData data = new ScoreData(elementId, table, score, timestamp);
+            JourneyScoreData data = new JourneyScoreData(elementId, dataType, score);
             dynamicDb.InsertOrReplace(data);
         }
+
         #endregion
+
     }
 }

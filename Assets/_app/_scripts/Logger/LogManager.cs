@@ -36,7 +36,7 @@ namespace EA4S.Core
 
         #region Proxy From Minigame log manager provider To App Log Intellingence
 
-        protected internal void LogMinigameScore(MiniGameCode miniGameCode, float score)
+        protected internal void LogMinigameScore(MiniGameCode miniGameCode, int score)
         {
             AppManager.I.Teacher.logAI.LogMiniGameScore(miniGameCode, score);
         }
@@ -59,7 +59,7 @@ namespace EA4S.Core
         /// </summary>
         /// <param name="playSessionId">The play session identifier.</param>
         /// <param name="score">The score.</param>
-        public void LogPlaySessionScore(string playSessionId, float score)
+        public void LogPlaySessionScore(string playSessionId, int score)
         {
             AppManager.I.Teacher.logAI.LogPlaySessionScore(playSessionId, score);
         }
@@ -69,7 +69,7 @@ namespace EA4S.Core
         /// </summary>
         /// <param name="learningBlock">The learning block.</param>
         /// <param name="score">The score.</param>
-        public void LogLearningBlockScore(int learningBlock, float score)
+        public void LogLearningBlockScore(int learningBlock, int score)
         {
             AppManager.I.Teacher.logAI.LogLearningBlockScore(learningBlock, score);
         }

@@ -16,6 +16,11 @@ namespace EA4S.Database
     [System.Serializable]
     public class VocabularyScoreData : IData
     {
+        public float GetScore()
+        {
+            return Score;
+        }
+
         [PrimaryKey]
         public string Id { get; set; }
 

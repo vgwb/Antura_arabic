@@ -145,7 +145,7 @@ namespace EA4S.Database.Management
 
         public void DumpAllScoreData()
         {
-            DumpAllData(dbManager.GetAllScoreData());
+            // deprecated (create one for Vocabulary and Journey instead)
         }
 
         public void DumpLetterById(string id)
@@ -295,47 +295,60 @@ namespace EA4S.Database.Management
             PrintOutput("Inserted new LogPlayData: " + newData.ToString());
         }
 
+        /// <summary>
+        /// Randomly insert score values (for vocabulary, journey, or reward unlocks)
+        /// </summary>
         public void TestInsertScoreData()
         {
-            int rndTableValue = RND.Range(0, 7);
-            DbTables rndTable = DbTables.Letters;
+            int rndTableValue = RND.Range(0, 6);
+            VocabularyDataType vocabularyDataType = VocabularyDataType.Letter;
+            JourneyDataType journeyDataType = JourneyDataType.Minigame;
             string rndId = "";
             switch (rndTableValue) {
                 case 0:
-                    rndTable = DbTables.Letters;
+                    vocabularyDataType = VocabularyDataType.Letter;
                     rndId = RandomHelper.GetRandom(dbManager.GetAllLetterData()).GetId();
                     break;
                 case 1:
-                    rndTable = DbTables.Words;
+                    vocabularyDataType = VocabularyDataType.Word;
                     rndId = RandomHelper.GetRandom(dbManager.GetAllWordData()).GetId();
                     break;
                 case 2:
-                    rndTable = DbTables.Phrases;
+                    vocabularyDataType = VocabularyDataType.Phrase;
                     rndId = RandomHelper.GetRandom(dbManager.GetAllPhraseData()).GetId();
-                    break; ;
+                    break; 
+
                 case 3:
-                    rndTable = DbTables.MiniGames;
+                    journeyDataType = JourneyDataType.Minigame;
                     rndId = RandomHelper.GetRandom(dbManager.GetAllMiniGameData()).GetId();
                     break;
                 case 4:
-                    rndTable = DbTables.PlaySessions;
+                    journeyDataType = JourneyDataType.PlaySession;
                     rndId = RandomHelper.GetRandom(dbManager.GetAllPlaySessionData()).GetId();
                     break;
                 case 5:
-                    rndTable = DbTables.Stages;
+                    journeyDataType = JourneyDataType.Stage;
                     rndId = RandomHelper.GetRandom(dbManager.GetAllStageData()).GetId();
-                    break;
-                case 6:
-                    rndTable = DbTables.Rewards;
-                    rndId = RandomHelper.GetRandom(dbManager.GetAllRewardData()).GetId();
                     break;
             }
 
-            var lastAccessTimestamp = GenericUtilities.GetRelativeTimestampFromNow(-RND.Range(0, 5));
-            var score = RND.Range(0f, 1f);
+            //var lastAccessTimestamp = GenericUtilities.GetRelativeTimestampFromNow(-RND.Range(0, 5));
+            // @note: lastAccessTimestamp is not used
+            
 
-            this.dbManager.Debug_UpdateScoreData(rndTable, rndId, score, lastAccessTimestamp);
-            PrintOutput("Inserted (or replaced) new ScoreData: " + lastAccessTimestamp.ToString());
+            // Choose what type to update
+            if (rndTableValue < 3)
+            {
+                var score = RND.Range(-1f, 1f);
+                dbManager.UpdateVocabularyScoreData(vocabularyDataType, rndId, score);
+            }
+            else if (rndTableValue < 6)
+            {
+                var score = RND.Range(0, 4);
+                dbManager.UpdateJourneyScoreData(journeyDataType, rndId, score);
+            }
+
+            PrintOutput("Inserted (or replaced) score data");
         }
 
         #endregion

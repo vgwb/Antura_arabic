@@ -122,13 +122,13 @@ namespace EA4S.MinigamesCommon
                         actualLearnResult = new LogAI.LearnResultParameters();
                         switch (l._data.DataType) {
                             case LivingLetterDataType.Letter:
-                                actualLearnResult.table = Database.DbTables.Letters;
+                                actualLearnResult.dataType = Database.VocabularyDataType.Letter;
                                 break;
                             case LivingLetterDataType.Word:
-                                actualLearnResult.table = Database.DbTables.Words;
+                                actualLearnResult.dataType = Database.VocabularyDataType.Word;
                                 break;
                             case LivingLetterDataType.Image:
-                                actualLearnResult.table = Database.DbTables.Words;
+                                actualLearnResult.dataType = Database.VocabularyDataType.Word;
                                 break;
                             default:
                                 // data type not found. Make soft exception.
