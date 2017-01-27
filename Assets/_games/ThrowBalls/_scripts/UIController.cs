@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using EA4S.Core;
 using EA4S.MinigamesAPI;
 using EA4S.UI;
 

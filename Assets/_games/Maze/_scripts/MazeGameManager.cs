@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using EA4S;
-using EA4S.Core;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
@@ -12,7 +10,7 @@ using TMPro;
 
 namespace EA4S.Minigames.Maze
 {
-	public class MazeGameManager : MiniGame
+    public class MazeGameManager : MiniGame
     {
 		
 		public static MazeGameManager instance;

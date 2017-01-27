@@ -1,5 +1,4 @@
-﻿using EA4S.Core;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EA4S.MinigamesAPI.Sample
 {

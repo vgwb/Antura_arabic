@@ -1,5 +1,4 @@
-﻿using EA4S.Core;
-using UnityEngine;
+﻿using UnityEngine;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using TMPro;
@@ -7,7 +6,7 @@ using TMPro;
 namespace EA4S.Minigames.DancingDots
 {
 
-	public enum LivingLetterAnim {
+    public enum LivingLetterAnim {
 		Nothing = 0,
 		idle = 1,
 		hold = 2,

@@ -63,7 +63,7 @@ namespace EA4S.Teacher
             currentPlaySessionMiniGames.Clear();
 
             minigameSelectionAI.InitialiseNewPlaySession();
-            wordAI.InitialiseNewPlaySession(currentPlaySessionId);
+            wordAI.LoadCurrentPlaySessionData(currentPlaySessionId);
         }
 
         #endregion
@@ -226,12 +226,22 @@ namespace EA4S.Teacher
         // refactor: Refactor access to test data throught a TestDataManager, instead of passing through the TeacherAI.
         private static bool giveWarningOnFake = false;
 
-        public List<LL_LetterData> GetAllTestLetterDataLL(LetterFilters filters = null)
+        public List<LL_LetterData> GetAllTestLetterDataLL(LetterFilters filters = null, bool useMaxJourneyData = false)
         {
             if (filters == null) filters = new LetterFilters();
 
+            if (useMaxJourneyData)
+            {
+               wordAI.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+            }
+
+            var availableLetters = wordAI.SelectData(
+              () => wordHelper.GetAllLetters(filters),
+                new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
+              );
+
             List<LL_LetterData> list = new List<LL_LetterData>();
-            foreach (var letterData in this.wordHelper.GetAllLetters(filters))
+            foreach (var letterData in availableLetters)
                 list.Add(BuildLetterData_LL(letterData));
 
             /*if (ConfigAI.verboseTeacher)
@@ -242,16 +252,27 @@ namespace EA4S.Teacher
             return list;
         }
 
-        public LL_LetterData GetRandomTestLetterLL(LetterFilters filters = null)
+        public LL_LetterData GetRandomTestLetterLL(LetterFilters filters = null, bool useMaxJourneyData = false)
         {
             if (filters == null) filters = new LetterFilters();
 
-            if (giveWarningOnFake) {
+            if (useMaxJourneyData)
+            {
+               wordAI.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+            }
+
+            var availableLetters = wordAI.SelectData(
+              () => wordHelper.GetAllLetters(filters),
+                new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
+              );
+
+            if (giveWarningOnFake)
+            {
                 Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
                 giveWarningOnFake = false;
             }
 
-            var data = this.wordHelper.GetAllLetters(filters).RandomSelectOne();
+            var data = availableLetters.RandomSelectOne();
 
             /*if (ConfigAI.verboseTeacher)
             {
@@ -261,16 +282,27 @@ namespace EA4S.Teacher
             return BuildLetterData_LL(data);
         }
 
-        public LL_WordData GetRandomTestWordDataLL(WordFilters filters = null)
+        public LL_WordData GetRandomTestWordDataLL(WordFilters filters = null, bool useMaxJourneyData = false)
         {
             if (filters == null) filters = new WordFilters();
 
-            if (giveWarningOnFake) {
+            if (useMaxJourneyData)
+            {
+                wordAI.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+            }
+
+            if (giveWarningOnFake)
+            {
                 Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
                 giveWarningOnFake = false;
             }
 
-            var data = this.wordHelper.GetWordsByCategory(WordDataCategory.Animal, filters).RandomSelectOne();
+            var availableWords = wordAI.SelectData(
+              () => wordHelper.GetWordsByCategory(WordDataCategory.Animal, filters),
+                new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
+              );
+
+            var data = availableWords.RandomSelectOne();
 
             /*if (ConfigAI.verboseTeacher)
             {

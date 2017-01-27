@@ -1,7 +1,4 @@
-﻿
-using EA4S.UI;
-
-namespace EA4S.MinigamesCommon
+﻿namespace EA4S.MinigamesCommon
 {
     /// <summary>
     /// Provides access to the SubtitlesWidget UI element for minigames.

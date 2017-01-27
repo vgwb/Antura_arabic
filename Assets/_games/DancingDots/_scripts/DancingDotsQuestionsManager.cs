@@ -1,11 +1,10 @@
 ﻿using System.Linq;
-using EA4S.Core;
 using EA4S.MinigamesAPI;
 
 
 namespace EA4S.Minigames.DancingDots
 {
-	public class DancingDotsQuestionsManager
+    public class DancingDotsQuestionsManager
 	{
 		private IQuestionProvider provider;
 

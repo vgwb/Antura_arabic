@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using DG.Tweening;
-using EA4S.Core;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using DG.Tweening;
 using System.Collections;
 using EA4S.Audio;
-using EA4S.Core;
 using EA4S.MinigamesAPI;
 using EA4S.UI;
 

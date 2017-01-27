@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using DG.Tweening.Plugins.Core.PathCore;
-using EA4S.Core;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 

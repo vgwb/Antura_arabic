@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
-using EA4S.Audio;
-using EA4S.Core;
 using EA4S.MinigamesAPI;
 using Random = UnityEngine.Random;
 

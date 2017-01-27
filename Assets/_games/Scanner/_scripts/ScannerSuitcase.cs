@@ -1,13 +1,12 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using EA4S.Tutorial;
 using TMPro;
 
 namespace EA4S.Minigames.Scanner
 {
 
-	public class ScannerSuitcase : MonoBehaviour {
+    public class ScannerSuitcase : MonoBehaviour {
 
         public ScannerGame game;
         public bool isDragging = false, isReady;

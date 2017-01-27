@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
-using EA4S.Core;
 using EA4S.MinigamesAPI;
 
 namespace EA4S.Minigames.DancingDots
 {
-	public class DancingDotsQuestionsPack : MonoBehaviour, IQuestionPack
+    public class DancingDotsQuestionsPack : MonoBehaviour, IQuestionPack
 	{
 		LL_LetterData correctAnswers, question;
 
