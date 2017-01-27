@@ -1895,10 +1895,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
+  disableInput: 0
   gameActive: 1
   beltSpeed: 1
   facingCamera: 1
-  disableInput: 0
   antura: {fileID: 1218517452}
   anturaMinDelay: 3
   anturaMaxDelay: 10
@@ -1945,6 +1945,7 @@ MonoBehaviour:
   startDelay: 8
   repeatDelay: 2
   tutStep: 1
+  playTut: 1
 --- !u!4 &315913121 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013653253802, guid: 0f95fe55fb3038a45b8e01cbe421e68f,
@@ -4467,7 +4468,7 @@ ParticleSystem:
   m_GameObject: {fileID: 838428343}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -7674,7 +7675,7 @@ ParticleSystem:
   m_GameObject: {fileID: 900616531}
   serializedVersion: 5
   lengthInSec: 2
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -10570,7 +10571,7 @@ ParticleSystem:
   m_GameObject: {fileID: 976970178}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -17738,6 +17739,16 @@ Prefab:
       propertyPath: game
       value: 
       objectReference: {fileID: 309455391}
+    - target: {fileID: 198000013752816986, guid: 968db9f4005364e82be9b254cd7ce716,
+        type: 2}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000013752816986, guid: 968db9f4005364e82be9b254cd7ce716,
+        type: 2}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 968db9f4005364e82be9b254cd7ce716, type: 2}
   m_IsPrefabParent: 0

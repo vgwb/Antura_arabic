@@ -205,12 +205,11 @@ namespace EA4S.Minigames.Scanner
                 ScannerLivingLetter LL = player.transform.parent.GetComponent<ScannerLivingLetter>();
 				if (isCorrectAnswer && LL.letterObjectView.Data.Id == wordId)
 				{
-					LL.gotSuitcase = true;
+                    LL.gotSuitcase = true;
 					transform.parent = player.transform;
 					transform.localPosition = new Vector3(5.5f, 1,-2);
 					onCorrectDrop(gameObject, LL);
                     transform.localScale = new Vector3(scale, scale, scale);
-                    TutorialUI.Clear(true);
                     game.GetComponent<ScannerTutorial>().tutStep = 1;
                     
                 }
