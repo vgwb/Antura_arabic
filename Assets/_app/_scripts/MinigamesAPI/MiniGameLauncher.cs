@@ -39,14 +39,15 @@ namespace EA4S.MinigamesAPI
         /// <param name="forceNewPlaySession">Is this a new play session?</param>
         public void LaunchGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration, bool forceNewPlaySession = false)
         {
+            Db.MiniGameData miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
+
             if (forceNewPlaySession)
             {
-                teacher.InitialiseNewPlaySession();
+                AppManager.I.NavigationManager.InitialiseNewPlaySession(miniGameData);
             }
 
             if (AppConstants.VerboseLogging) Debug.Log("StartGame " + _gameCode.ToString());
 
-            Db.MiniGameData miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
 
             // Retrieve the configuration for the given minigame
             string minigameSession = System.DateTime.Now.Ticks.ToString();

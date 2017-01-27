@@ -24,10 +24,12 @@ namespace EA4S
         DebugPanel
     }
 
-    internal struct NavigationData {
+    internal struct NavigationData
+    {
         public PlayerProfile CurrentPlayer;
         public AppScene PrevScene;
         public AppScene CurrentScene;
+        public bool RealPlaySession;
 
         /// <summary>
         /// List of minigames selected for the current play session
@@ -38,13 +40,6 @@ namespace EA4S
         /// Current minigame index in 
         /// </summary>
         private int CurrentMiniGameIndexInPlaySession;
-
-        public void InitialiseNewPlaySession()
-        {
-            CurrentMiniGameIndexInPlaySession = 0;
-            AppManager.I.Teacher.InitialiseNewPlaySession();
-            CurrentPlaySessionMiniGames = AppManager.I.Teacher.SelectMiniGames();
-        }
 
         public void SetFirstMinigame()
         {
@@ -437,10 +432,28 @@ namespace EA4S
             get { return NavData.CurrentPlaySessionMiniGames; }
         }
 
+        public void InitialiseNewPlaySession(MiniGameData dataToUse = null)
+        {
+            NavData.RealPlaySession = (dataToUse == null);
+
+            AppManager.I.Teacher.InitialiseNewPlaySession();
+            NavData.SetFirstMinigame();
+
+            if (NavData.RealPlaySession)
+            {
+                NavData.CurrentPlaySessionMiniGames = AppManager.I.Teacher.SelectMiniGames();
+            }
+            else
+            {
+                NavData.CurrentPlaySessionMiniGames = new List<MiniGameData>();
+                NavData.CurrentPlaySessionMiniGames.Add(dataToUse);
+            }
+        }
+
         private void GotoPlaysessione()
         {
             // This must be called before any play session is started
-            NavData.InitialiseNewPlaySession();  
+            InitialiseNewPlaySession();  
 
             // From the map
             if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
