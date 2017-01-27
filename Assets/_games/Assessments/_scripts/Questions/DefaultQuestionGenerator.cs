@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using EA4S.MinigamesAPI;
 using UnityEngine;
+using System.Collections;
+using Kore.Coroutines;
 
 namespace EA4S.Assessment
 {
@@ -22,18 +24,36 @@ namespace EA4S.Assessment
         private QuestionGeneratorState state;
         private IQuestionPack currentPack;
 
-        public DefaultQuestionGenerator( IQuestionProvider provider, AssessmentDialogues dialogues)
+        public DefaultQuestionGenerator(    IQuestionProvider provider, AssessmentDialogues dialogues,
+                                            AssessmentEvents events)
         {
             this.provider = provider;
             this.dialogues = dialogues;
+
+            if( AssessmentOptions.Instance.ReadQuestionAndAnswer)
+                events.OnAllQuestionsAnswered = ReadQuestionAndReplyEvent;
+
             state = QuestionGeneratorState.Uninitialized;
             ClearCache();
+        }
+
+        IEnumerator ReadQuestionAndReplyEvent()
+        {
+            Debug.Log( "Reading Question & Reply");
+
+            yield return Koroutine.Nested( 
+                    dialogues.PlayLetterDataCoroutine( cacheQuestionToRead));
+
+            yield return Wait.For( 0.3f);
+
+            yield return Koroutine.Nested(
+                    dialogues.PlayLetterDataCoroutine( cacheAnswerToRead));
         }
 
         public void InitRound()
         {
             if (state != QuestionGeneratorState.Uninitialized && state != QuestionGeneratorState.Completed)
-                throw new InvalidOperationException("Cannot initialized");
+                throw new InvalidOperationException( "Cannot initialized");
 
             state = QuestionGeneratorState.Initialized;
             ClearCache();
@@ -131,10 +151,14 @@ namespace EA4S.Assessment
             return question;
         }
 
+        ILivingLetterData cacheQuestionToRead;
+        ILivingLetterData cacheAnswerToRead;
+
         private IQuestion GenerateQuestion( ILivingLetterData data, int correctCount)
-        {   
-            if(AssessmentOptions.Instance.ShowQuestionAsImage)
-                data = new LL_ImageData(data.Id);
+        {
+            cacheQuestionToRead = data;
+            if (AssessmentOptions.Instance.ShowQuestionAsImage)
+                data = new LL_ImageData( data.Id);
 
             var q = LivingLetterFactory.Instance.SpawnQuestion( data);
             return new DefaultQuestion( q, correctCount, dialogues);
@@ -160,6 +184,8 @@ namespace EA4S.Assessment
 
         private Answer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
         {
+            cacheAnswerToRead = correctAnswer;
+
             return
             LivingLetterFactory.Instance.SpawnAnswer( correctAnswer)
             .gameObject.AddComponent< Answer>()
