@@ -1,4 +1,5 @@
 ﻿using EA4S.MinigamesAPI;
+using EA4S.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -149,7 +150,7 @@ namespace EA4S.Teacher.Test
         public void OrderedWordsTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.NumberOrdinal, parameters: builderParams);
+            var builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.NumberOrdinal, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 

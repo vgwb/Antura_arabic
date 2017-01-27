@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using EA4S.Core;
+using EA4S.Rewards;
 
 namespace EA4S.LivingLetters
 {

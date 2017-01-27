@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EA4S.Db
+namespace EA4S.Database
 {
     /// <summary>
     /// Concrete implementation of IDataTable.

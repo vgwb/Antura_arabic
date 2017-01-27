@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using EA4S.MinigamesCommon;
+using EA4S.UI;
 
 namespace EA4S.Minigames.ReadingGame
 {
@@ -37,8 +38,8 @@ namespace EA4S.Minigames.ReadingGame
             this.percentage = percentage;
             currentPercentage = percentage;
 
-            if (EA4S.MinigamesUI.Timer != null)
-                transform.position = EA4S.MinigamesUI.Timer.transform.position + startOffset;
+            if (MinigamesUI.Timer != null)
+                transform.position = MinigamesUI.Timer.transform.position + startOffset;
             transform.localScale = Vector3.one * startScale;
 
         }
@@ -46,14 +47,14 @@ namespace EA4S.Minigames.ReadingGame
         // Update is called once per frame
         void Update()
         {
-            if (EA4S.MinigamesUI.Timer != null)
+            if (MinigamesUI.Timer != null)
             {
-                Vector3 startPosition = EA4S.MinigamesUI.Timer.transform.position + startOffset;
+                Vector3 startPosition = MinigamesUI.Timer.transform.position + startOffset;
                 var targetScale = Vector3.one * (inFront ? frontScale : startScale);
 
                 if (!parentSet)
                 {
-                    transform.SetParent(EA4S.MinigamesUI.Timer.transform.parent);
+                    transform.SetParent(MinigamesUI.Timer.transform.parent);
                     transform.SetAsFirstSibling();
                     parentSet = true;
                 }

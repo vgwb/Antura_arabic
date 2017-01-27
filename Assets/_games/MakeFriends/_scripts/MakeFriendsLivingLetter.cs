@@ -2,6 +2,7 @@
 using System.Collections;
 using TMPro;
 using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
 
 namespace EA4S.Minigames.MakeFriends
 {

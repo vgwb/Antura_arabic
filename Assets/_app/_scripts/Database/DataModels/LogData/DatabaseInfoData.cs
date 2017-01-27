@@ -1,7 +1,7 @@
 ﻿using EA4S.Utilities;
 using SQLite;
 
-namespace EA4S.Db
+namespace EA4S.Database
 {
     /// <summary>
     /// Serialized information on the database. Used for versioning.

@@ -10,7 +10,7 @@ namespace EA4S.PlayerBook
     {
         public BookGraph Graph;
 
-        public void Show(List<Db.PlaySessionInfo> allPsInfo, List<Db.PlaySessionInfo> unlockedPlaySessionInfos)
+        public void Show(List<Database.PlaySessionInfo> allPsInfo, List<Database.PlaySessionInfo> unlockedPlaySessionInfos)
         {
             float[] journeyValues = allPsInfo.ConvertAll(x => x.score).ToArray();
             //string[] journeyLabels = allPsInfo.ConvertAll(x => x.data.Id).ToArray();

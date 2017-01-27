@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace EA4S
+namespace EA4S.Profile
 {
     /// <summary>
     /// TODO: to be deleted during final app lifecycle refactoring.

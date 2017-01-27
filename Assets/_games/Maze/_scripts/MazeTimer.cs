@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.UI;
+using UnityEngine;
 using TMPro;
 
 namespace EA4S.Minigames.Maze

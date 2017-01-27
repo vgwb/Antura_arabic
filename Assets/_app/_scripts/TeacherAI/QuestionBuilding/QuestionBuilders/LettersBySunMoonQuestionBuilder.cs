@@ -1,8 +1,7 @@
-﻿using EA4S.Teacher;
-using ModularFramework.Helpers;
+﻿using ModularFramework.Helpers;
 using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Teacher
 {
     /// <summary>
     /// Categorize letters and shows words that are either Sun or Moon.
@@ -40,19 +39,19 @@ namespace EA4S
             int nPerType = nPacks / 2;
 
             var list_choice1 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Sun, parameters.letterFilters),
+                () => teacher.wordHelper.GetLettersBySunMoon(Database.LetterDataSunMoon.Sun, parameters.letterFilters),
                 new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             var list_choice2 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Moon, parameters.letterFilters),
+                () => teacher.wordHelper.GetLettersBySunMoon(Database.LetterDataSunMoon.Moon, parameters.letterFilters),
                 new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             foreach (var data in list_choice1)
             {
-                var correctWords = new List<Db.WordData>();
-                var wrongWords = new List<Db.WordData>();
+                var correctWords = new List<Database.WordData>();
+                var wrongWords = new List<Database.WordData>();
                 correctWords.Add(choice1);
                 wrongWords.Add(choice2);
 
@@ -62,8 +61,8 @@ namespace EA4S
 
             foreach (var data in list_choice2)
             {
-                var correctWords = new List<Db.WordData>();
-                var wrongWords = new List<Db.WordData>();
+                var correctWords = new List<Database.WordData>();
+                var wrongWords = new List<Database.WordData>();
                 correctWords.Add(choice2);
                 wrongWords.Add(choice1);
 

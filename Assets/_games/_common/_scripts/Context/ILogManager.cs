@@ -1,4 +1,7 @@
-﻿namespace EA4S.MinigamesCommon
+﻿using EA4S.Core;
+using EA4S.MinigamesAPI;
+
+namespace EA4S.MinigamesCommon
 {
     /// <summary>
     /// Provides generic log access to the core and to minigames.

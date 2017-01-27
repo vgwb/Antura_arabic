@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using UnityEngine;
@@ -35,23 +37,23 @@ namespace EA4S.Minigames.FastCrowd
 
             if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet)
             {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_alphabet_Tuto, () => { StartTutorial(); });
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_alphabet_Tuto, () => { StartTutorial(); });
             }
             else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting)
             {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_counting_Tuto, () => { StartTutorial(); });
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_counting_Tuto, () => { StartTutorial(); });
             }
             else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
             {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_letter_Tuto, () => { StartTutorial(); });
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_letter_Tuto, () => { StartTutorial(); });
             }
             else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling)
             {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_spelling_Tuto, () => { StartTutorial(); });
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_spelling_Tuto, () => { StartTutorial(); });
             }
             else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
             {
-                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_words_Tuto, () => { StartTutorial(); });
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.FastCrowd_words_Tuto, () => { StartTutorial(); });
             }
             else
             {

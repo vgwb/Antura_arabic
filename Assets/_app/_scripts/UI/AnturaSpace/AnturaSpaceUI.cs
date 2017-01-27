@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using EA4S.Antura;
+using EA4S.Core;
+using EA4S.Rewards;
 using EA4S.Utilities;
 using UnityEngine;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// General controller of the UI in the Antura Space scene.

@@ -1,7 +1,6 @@
-﻿using EA4S.Teacher;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Teacher
 {
     /// <summary>
     /// Selects phrases based on a question/answer relationship
@@ -49,7 +48,7 @@ namespace EA4S
             // Get a question phrase at random
             int nToUse = 1;
             var usablePhrases = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetPhrasesByCategory(Db.PhraseDataCategory.Question, parameters.wordFilters, parameters.phraseFilters),
+                () => teacher.wordHelper.GetPhrasesByCategory(Database.PhraseDataCategory.Question, parameters.wordFilters, parameters.phraseFilters),
                     new SelectionParameters(parameters.correctSeverity, nToUse, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
             var question = usablePhrases[0];
@@ -57,7 +56,7 @@ namespace EA4S
             // Get the linked reply phrase
             var reply = teacher.wordHelper.GetLinkedPhraseOf(question);
 
-            var correctAnswers = new List<Db.PhraseData>();
+            var correctAnswers = new List<Database.PhraseData>();
             correctAnswers.Add(reply);
 
             // Get random wrong phrases

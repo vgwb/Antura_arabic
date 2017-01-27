@@ -1,8 +1,7 @@
-﻿using EA4S.Teacher;
-using ModularFramework.Helpers;
+﻿using ModularFramework.Helpers;
 using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Teacher
 {
     /// <summary>
     /// Categorize words based on their form
@@ -43,24 +42,24 @@ namespace EA4S
             int nPerType = nPacks / 3;
 
             var list_choice1 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Singular, parameters.wordFilters),
+                () => teacher.wordHelper.GetWordsByForm(Database.WordDataForm.Singular, parameters.wordFilters),
                 new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             var list_choice2 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Plural, parameters.wordFilters),
+                () => teacher.wordHelper.GetWordsByForm(Database.WordDataForm.Plural, parameters.wordFilters),
                 new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             var list_choice3 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Dual, parameters.wordFilters),
+                () => teacher.wordHelper.GetWordsByForm(Database.WordDataForm.Dual, parameters.wordFilters),
                 new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             foreach (var word in list_choice1)
             {
-                var correctWords = new List<Db.WordData>();
-                var wrongWords = new List<Db.WordData>();
+                var correctWords = new List<Database.WordData>();
+                var wrongWords = new List<Database.WordData>();
                 correctWords.Add(choice1);
                 wrongWords.Add(choice2);
                 wrongWords.Add(choice3);
@@ -71,8 +70,8 @@ namespace EA4S
 
             foreach (var word in list_choice2)
             {
-                var correctWords = new List<Db.WordData>();
-                var wrongWords = new List<Db.WordData>();
+                var correctWords = new List<Database.WordData>();
+                var wrongWords = new List<Database.WordData>();
                 correctWords.Add(choice2);
                 wrongWords.Add(choice1);
                 wrongWords.Add(choice3);
@@ -83,8 +82,8 @@ namespace EA4S
 
             foreach (var word in list_choice3)
             {
-                var correctWords = new List<Db.WordData>();
-                var wrongWords = new List<Db.WordData>();
+                var correctWords = new List<Database.WordData>();
+                var wrongWords = new List<Database.WordData>();
                 correctWords.Add(choice3);
                 wrongWords.Add(choice1);
                 wrongWords.Add(choice2);

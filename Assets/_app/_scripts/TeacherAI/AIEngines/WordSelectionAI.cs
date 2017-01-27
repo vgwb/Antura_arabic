@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using EA4S.Db;
+using EA4S.Database;
 using System.Linq;
+using EA4S.Helpers;
 using EA4S.Profile;
 using EA4S.Utilities;
 

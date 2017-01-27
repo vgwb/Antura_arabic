@@ -1,7 +1,7 @@
 ﻿using EA4S.Utilities;
 using SQLite;
 
-namespace EA4S.Db
+namespace EA4S.Database
 {
     /// <summary>
     /// Daily mood level of a player at a given timestamp. Logged at runtime.

@@ -4,6 +4,7 @@
 
 using DG.DemiEditor;
 using DG.DemiLib;
+using EA4S.UI;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;

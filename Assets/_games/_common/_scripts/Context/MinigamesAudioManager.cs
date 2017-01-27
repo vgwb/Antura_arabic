@@ -1,4 +1,6 @@
 ﻿using EA4S.Audio;
+using EA4S.Core;
+using EA4S.MinigamesAPI;
 using UnityEngine;
 
 namespace EA4S.MinigamesCommon
@@ -25,7 +27,7 @@ namespace EA4S.MinigamesCommon
             return null;
         }
 
-        public void PlayDialogue(Db.LocalizationDataId text, System.Action callback = null)
+        public void PlayDialogue(Database.LocalizationDataId text, System.Action callback = null)
         {
             if (callback == null)
                 AudioManager.I.PlayDialogue(text.ToString());

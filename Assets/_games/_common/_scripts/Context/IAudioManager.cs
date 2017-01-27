@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using EA4S.Core;
+using EA4S.MinigamesAPI;
+using UnityEngine;
 
 namespace EA4S.MinigamesCommon
 {
@@ -29,7 +31,7 @@ namespace EA4S.MinigamesCommon
         void PlayMusic(Music music);
         void StopMusic();
 
-        void PlayDialogue(Db.LocalizationDataId text, System.Action onCompleted = null);
+        void PlayDialogue(Database.LocalizationDataId text, System.Action onCompleted = null);
 
         void Update();
     }

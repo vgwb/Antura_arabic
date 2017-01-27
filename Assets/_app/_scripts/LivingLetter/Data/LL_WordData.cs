@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System;
+using EA4S.Core;
+using EA4S.Helpers;
 
-namespace EA4S
+namespace EA4S.MinigamesAPI
 {
     /// <summary>
     /// View of a PhraseData shown as text on a LivingLetter.
@@ -10,7 +12,7 @@ namespace EA4S
     public class LL_WordData : ILivingLetterData
     {
 
-        public Db.WordData Data;
+        public Database.WordData Data;
 
         public LivingLetterDataType DataType {
             get { return LivingLetterDataType.Word; }
@@ -25,11 +27,11 @@ namespace EA4S
         {
         }
 
-        public LL_WordData(string _id, Db.WordData _data) : this(_data)
+        public LL_WordData(string _id, Database.WordData _data) : this(_data)
         {
         }
 
-        public LL_WordData(Db.WordData _data)
+        public LL_WordData(Database.WordData _data)
         {
             Data = _data;
         }

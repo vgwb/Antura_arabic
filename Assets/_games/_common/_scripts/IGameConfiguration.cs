@@ -1,4 +1,5 @@
 ﻿using EA4S.MinigamesAPI;
+using EA4S.Teacher;
 
 namespace EA4S.MinigamesCommon
 {

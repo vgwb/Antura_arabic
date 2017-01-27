@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using EA4S.Core;
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.UI
 {
     /// <summary>
     /// Button for selecting an avatar in the Profile Selector.
