@@ -16,13 +16,15 @@ namespace EA4S.Minigames.Scanner
 
 		public Vector3 fingerOffset;
 
-		public float backDepth = -5f;
+		public float dragDamping = 10, backDepth = -5f;
 
 		public float depthMovementSpeed = 10f;
 
 		public ScannerGame game;
 
-		private float timeDelta;
+        public float smoothedDraggingSpeed;
+
+        private float timeDelta;
 
 		private float frontDepth;
 
@@ -46,9 +48,17 @@ namespace EA4S.Minigames.Scanner
 			StartCoroutine(co_Reset());
 		}
 			
-		void Update()
+        public float speed = 1;
+        public ScannerLivingLetter LL;
+        MinigamesCommon.IAudioSource wordSound;
+
+        
+        void Update()
 		{
-			if (game.scannerLL.Count != 0 && letterEventsNotSet)
+
+            calculateSmoothedSpeed();
+
+            if (game.scannerLL.Count != 0 && letterEventsNotSet)
 			{
 				letterEventsNotSet = false;
 				foreach (ScannerLivingLetter LL in game.scannerLL)
@@ -68,14 +78,38 @@ namespace EA4S.Minigames.Scanner
 
 		}
 
-		public void Reset()
+        
+        float curPos, prevPose;
+        float[] values = new float[16];
+        int i = 0;
+        void calculateSmoothedSpeed()
+        {
+            prevPose = curPos;
+            curPos = Mathf.Abs(transform.position.x);
+
+            values[i] = Mathf.Abs(curPos - prevPose);
+            i++;
+            if (i == values.Length)
+                i = 0;
+
+            for (int x = 0; x < values.Length; x++)
+                smoothedDraggingSpeed = smoothedDraggingSpeed + values[x];
+
+            smoothedDraggingSpeed = (smoothedDraggingSpeed / values.Length);
+
+            //draggingSpeed = Mathf.SmoothDamp( draggingSpeed, Mathf.Abs(curPos - prevPose), ref draggingSpeed, Time.deltaTime);// time;
+            //draggingSpeed = (draggingSpeed + prevPose) / 2;
+            //Debug.LogError(smoothedDraggingSpeed);
+        }
+
+        public void Reset()
 		{
 			moveBack = false;
 		}
 
 		IEnumerator co_Reset()
 		{
-			yield return new WaitForSeconds(2.5f);
+			yield return new WaitForSeconds(3f);
 			moveBack = false;
 		}
 
@@ -99,10 +133,10 @@ namespace EA4S.Minigames.Scanner
 			{
 				Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 				Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-				transform.position = new Vector3 (
+				transform.position = Vector3.Lerp(transform.position, new Vector3 (
 					Mathf.Clamp(curPosition.x, minX, maxX),
 					transform.position.y, 
-					transform.position.z);
+					transform.position.z), Time.deltaTime * dragDamping);
 			}
 
 		}
@@ -129,9 +163,12 @@ namespace EA4S.Minigames.Scanner
 				{
 					ScannerLivingLetter LL = other.transform.parent.GetComponent<ScannerLivingLetter>();
 					timeDelta = Time.time - timeDelta;
+                    //Debug.LogError(timeDelta);
 					game.PlayWord(timeDelta, LL);
 					timeDelta = 0;
-                    game.tut.setupTutorial(2, LL);
+
+                    if(game.tut.tutStep == 1)
+                        game.tut.setupTutorial(2, LL);
                 }
 			}
             //			else if (other.tag == ScannerGame.TAG_SCAN_END)
@@ -139,11 +176,9 @@ namespace EA4S.Minigames.Scanner
             //
             //			}
 
-            if (other.gameObject.name.Equals("Antura"))
+            if (other.gameObject.name.Equals("Antura") && isDragging)
             {
-                
                 game.antura.GetComponent<ScannerAntura>().scaredCounter++;
-                //print(ScannerAntura.SCARED_COUNTER);
             }
 		}
 	}

@@ -14,7 +14,7 @@ namespace EA4S.Minigames.Scanner
         public float originalLLOnBeltSpeed;
         public float startDelay = 8, repeatDelay = 3;
 
-        public int tutStep = 1;
+        public int tutStep = 0;
         public bool playTut = true;
 
         ScannerGame game;
@@ -22,6 +22,7 @@ namespace EA4S.Minigames.Scanner
         Vector3 targetPosition;
         ScannerSuitcase currentSuitcases;
         ScannerLivingLetter currentLL;
+        ScannerAntura antura;
 
         float scannerStartZPos;
         int llCounter = 0;
@@ -81,12 +82,13 @@ namespace EA4S.Minigames.Scanner
             foreach (ScannerSuitcase sc in game.suitcases)
                 sc.onCorrectDrop += resetTut;
 
+            antura = game.antura.GetComponent<ScannerAntura>();
             //foreach (ScannerLivingLetter ll in game.scannerLL)
-              //  ll.facingCamera = true;
+            //  ll.facingCamera = true;
         }
 
 
-        public void setupTutorial(int step = 1, ScannerLivingLetter targetLL = null)
+        public void setupTutorial(int step = 0, ScannerLivingLetter targetLL = null)
         {
 
             if (!isTutRound)
@@ -103,7 +105,7 @@ namespace EA4S.Minigames.Scanner
             }
 
             tutStep = step;
-            if (step == 1)
+            if (step <= 1)
                 source = scannerDevice;
 
             else if (step == 2)
@@ -113,10 +115,10 @@ namespace EA4S.Minigames.Scanner
 
         void onTutorialStart()
         {
-            AudioManager.I.PlayDialogue(Database.LocalizationDataId.Scanner_Tuto);
+            //AudioManager.I.PlayDialogue(Database.LocalizationDataId.Scanner_Tuto);
             game.beltSpeed = 0;
             game.disableInput = false;
-            StartCoroutine(sayTut(repeatDelay));
+            StartCoroutine(sayTut(1));
             
         }
 
@@ -140,7 +142,9 @@ namespace EA4S.Minigames.Scanner
 
         IEnumerator coDoTutorial()
         {
-            yield return new WaitForSeconds(startDelay);
+            yield return new WaitForSeconds(startDelay - 3);
+            StartCoroutine(antura.enterTheScene());
+            yield return new WaitForSeconds(3);
             resetTut(null, null);
             onTutorialStart();
 
@@ -154,7 +158,20 @@ namespace EA4S.Minigames.Scanner
                     continue;
                 }
 
-                if (tutStep == 1)
+                if (tutStep == 0)
+                {
+                    //Debug.Log(llCounter+"<<<");
+                    target = game.antura.transform;
+                    if (target)
+                        TutorialUI.DrawLine(source.position - Vector3.forward * 2, target.position +
+                            new Vector3(0, scannerDevice.position.y - target.position.y, -2),
+                            TutorialUI.DrawLineMode.FingerAndArrow);
+                    else
+                    {
+                        TutorialUI.Clear(true);
+                    }
+                }
+                else if (tutStep == 1)
                 {
                     //Debug.Log(llCounter+"<<<");
                     target = getNewTarget();
@@ -198,7 +215,7 @@ namespace EA4S.Minigames.Scanner
         void resetTut(GameObject g, ScannerLivingLetter sll)
         {
             llCounter++;
-            setupTutorial(1);
+            setupTutorial();
         }
 
         Transform getNewTarget()
@@ -226,8 +243,12 @@ namespace EA4S.Minigames.Scanner
         }
         IEnumerator sayTut(float delay)
         {
+            
+            while (tutStep == 0)
+                yield return null;
+
             yield return new WaitForSeconds(delay);
-            Debug.Log("start Tutorial Dialog");
+            AudioManager.I.PlayDialogue(Database.LocalizationDataId.Scanner_Tuto);
         }
 
         bool pauseTut()
