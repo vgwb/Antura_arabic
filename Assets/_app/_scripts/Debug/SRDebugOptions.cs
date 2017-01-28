@@ -129,7 +129,7 @@ public partial class SROptions
     [Sort(10)]
     public void AlphabetSong()
     {
-        LaunchMinigame(MiniGameCode.AlphabetSong);
+        LaunchMinigame(MiniGameCode.AlphabetSong_alphabet);
     }
 
     [Category("Minigames")]
@@ -178,7 +178,7 @@ public partial class SROptions
     [Sort(14)]
     public void Egg()
     {
-        LaunchMinigame(MiniGameCode.Egg);
+        LaunchMinigame(MiniGameCode.Egg_letters);
     }
 
     [Category("Minigames")]

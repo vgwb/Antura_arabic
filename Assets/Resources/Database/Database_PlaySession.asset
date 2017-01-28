@@ -24,6 +24,8 @@ MonoBehaviour:
         Weight: 2
       - MiniGameCode: 11
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - alef
       - alef_hamza_hi
@@ -51,6 +53,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 3
+      - MiniGameCode: 33
+        Weight: 2
       Letters: []
       Words:
       - pear
@@ -89,6 +93,8 @@ MonoBehaviour:
         Weight: 100
       - MiniGameCode: 27
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - beh
       - teh
@@ -123,6 +129,10 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -162,6 +172,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - jeem
       - hah
@@ -197,6 +209,10 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -238,6 +254,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - dal
       - thal
@@ -275,6 +293,10 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -318,6 +340,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - reh
       - zain
@@ -357,6 +381,10 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -402,6 +430,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 31
         Weight: 100
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - seen
       - sheen
@@ -443,6 +473,10 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -490,6 +524,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - sad
       - dad
@@ -533,6 +569,10 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -582,6 +622,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - tah
       - zah
@@ -627,6 +669,10 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -678,6 +724,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - ain
       - ghain
@@ -725,6 +773,10 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -776,6 +828,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - feh
       - qaf
@@ -823,6 +877,10 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -874,6 +932,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - kaf
       - lam
@@ -921,6 +981,10 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -972,6 +1036,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - meem
       - noon
@@ -1020,6 +1086,10 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -1071,6 +1141,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - yeh
       - waw
@@ -1120,6 +1192,10 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -1158,6 +1234,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - alef
       - waw
@@ -1192,6 +1270,8 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 31
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -1235,6 +1315,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - alef
       Words:
@@ -1273,6 +1355,10 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -1322,6 +1408,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 100
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - beh
       Words:
@@ -1364,6 +1452,8 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -1415,6 +1505,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - teh
       - teh_marbuta
@@ -1460,6 +1552,8 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -1509,6 +1603,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - theh
       Words:
@@ -1553,6 +1649,10 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -1604,6 +1704,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - jeem
       Words:
@@ -1648,6 +1750,8 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -1699,6 +1803,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - hah
       Words:
@@ -1743,6 +1849,8 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -1792,6 +1900,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - khah
       Words:
@@ -1836,6 +1946,10 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -1887,6 +2001,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - dal
       Words:
@@ -1931,6 +2047,8 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -1982,6 +2100,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - thal
       Words:
@@ -2025,6 +2145,8 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -2074,6 +2196,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - reh
       Words:
@@ -2118,6 +2242,10 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -2169,6 +2297,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - zain
       Words:
@@ -2213,6 +2343,8 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -2264,6 +2396,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - seen
       Words:
@@ -2308,6 +2442,8 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -2357,6 +2493,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - sheen
       Words:
@@ -2401,6 +2539,10 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -2452,6 +2594,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - sad
       Words:
@@ -2496,6 +2640,8 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -2549,6 +2695,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - dad
       Words:
@@ -2594,6 +2742,8 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -2647,6 +2797,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - tah
       Words:
@@ -2695,6 +2847,10 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -2752,6 +2908,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - zah
       Words:
@@ -2800,6 +2958,8 @@ MonoBehaviour:
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -2859,6 +3019,8 @@ MonoBehaviour:
         Weight: 100
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - ain
       Words:
@@ -2911,6 +3073,8 @@ MonoBehaviour:
       - MiniGameCode: 28
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -2968,6 +3132,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - ghain
       Words:
@@ -3020,6 +3186,10 @@ MonoBehaviour:
       - MiniGameCode: 28
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -3079,6 +3249,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - feh
       Words:
@@ -3131,6 +3303,8 @@ MonoBehaviour:
       - MiniGameCode: 28
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -3190,6 +3364,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - qaf
       Words:
@@ -3242,6 +3418,8 @@ MonoBehaviour:
       - MiniGameCode: 28
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -3299,6 +3477,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - kaf
       Words:
@@ -3351,6 +3531,10 @@ MonoBehaviour:
       - MiniGameCode: 28
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -3410,6 +3594,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - lam
       Words:
@@ -3462,6 +3648,8 @@ MonoBehaviour:
       - MiniGameCode: 28
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -3521,6 +3709,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - meem
       Words:
@@ -3573,6 +3763,8 @@ MonoBehaviour:
       - MiniGameCode: 28
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -3630,6 +3822,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - noon
       Words:
@@ -3682,6 +3876,10 @@ MonoBehaviour:
       - MiniGameCode: 28
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -3741,6 +3939,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - heh
       Words:
@@ -3793,6 +3993,8 @@ MonoBehaviour:
       - MiniGameCode: 28
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -3852,6 +4054,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - waw
       Words:
@@ -3904,6 +4108,8 @@ MonoBehaviour:
       - MiniGameCode: 28
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -3961,6 +4167,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+      - MiniGameCode: 34
+        Weight: 1
       Letters:
       - yeh
       Words:
@@ -4013,6 +4221,10 @@ MonoBehaviour:
       - MiniGameCode: 28
         Weight: 1
       - MiniGameCode: 29
+        Weight: 1
+      - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 34
         Weight: 1
       Letters: []
       Words: []
@@ -5202,7 +5414,7 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters:
-      - waw
+      - waw_diph
       Words: []
       Words_previous:
       - banana
@@ -5314,7 +5526,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
+      Letters:
+      - yeh_diph
       Words: []
       Words_previous:
       - oil
@@ -8751,16 +8964,22 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous:
-      - number_15
+      Words:
+      - year
+      - number_2000
       - number_16
+      - and
       - number_17
       - number_18
-      - number_19
-      - number_20
+      - number_15
+      - number_09
+      Words_previous: []
       Phrases:
       - the_year_2016
+      - the_year_2017
+      - the_year_2018
+      - the_year_2015
+      - the_year_2009
       Phrases_previous: []
     - Id: 6.12.2
       Stage: 6
