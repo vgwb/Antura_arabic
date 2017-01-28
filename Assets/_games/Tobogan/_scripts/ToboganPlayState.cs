@@ -3,7 +3,7 @@ using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.Tobogan
 {
-    public class ToboganPlayState : IGameState
+    public class ToboganPlayState : IState
     {
         CountdownTimer gameTime = new CountdownTimer(90.0f);
         ToboganGame game;

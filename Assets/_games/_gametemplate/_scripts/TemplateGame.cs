@@ -21,7 +21,7 @@ namespace EA4S.Template
             ResultState = new ResultGameState(this);
         }
 
-        protected override IGameState GetInitialState()
+        protected override IState GetInitialState()
         {
             return IntroductionState;
         }

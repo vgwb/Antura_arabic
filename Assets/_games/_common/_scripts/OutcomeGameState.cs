@@ -4,7 +4,7 @@
     /// The game state reached when the minigame ends.
     /// This state is present in all minigames and is always accessed last.
     /// </summary>
-    public class OutcomeGameState : IGameState
+    public class OutcomeGameState : IState
     {
         MiniGame game;
 

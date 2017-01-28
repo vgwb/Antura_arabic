@@ -3,7 +3,7 @@ using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.HideAndSeek
 {
-    public class PlayGameState : IGameState
+    public class PlayGameState : IState
     {
 		HideAndSeekGame game;
 

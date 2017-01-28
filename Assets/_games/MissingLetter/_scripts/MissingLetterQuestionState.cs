@@ -2,7 +2,7 @@
 
 namespace EA4S.Minigames.MissingLetter
 {
-    public class MissingLetterQuestionState : IGameState
+    public class MissingLetterQuestionState : IState
     {
         
         public MissingLetterQuestionState(MissingLetterGame _game)

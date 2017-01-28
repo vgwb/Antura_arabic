@@ -2,7 +2,7 @@
 
 namespace EA4S.Minigames.HideAndSeek
 {
-    public class QuestionGameState : IGameState
+    public class QuestionGameState : IState
     {
 		HideAndSeekGame game;
         

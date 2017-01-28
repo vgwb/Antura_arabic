@@ -4,14 +4,13 @@
     /// Implements a Finite State Machine (FSM).
     /// This is used to control minigame flow, and may also be used as a general purpose FSM.
     /// </summary>
-    /// refactor: we may remove the *Game* prefix, as this is used as a general FSM
-    public class GameStateManager
+    public class StateManager
     {
         // Use to prevent recursive calls to ExitState, when the transition happens in ExitState
         bool isInExitTransition = false;
 
-        IGameState currentState;
-        public IGameState CurrentState
+        IState currentState;
+        public IState CurrentState
         {
             get
             {

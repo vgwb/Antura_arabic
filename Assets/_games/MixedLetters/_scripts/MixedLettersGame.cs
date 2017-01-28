@@ -127,7 +127,7 @@ namespace EA4S.Minigames.MixedLetters
             DisableRepeatPromptButton();
         }
 
-        protected override IGameState GetInitialState()
+        protected override IState GetInitialState()
         {
             return TutorialState;
         }

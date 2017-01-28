@@ -3,7 +3,7 @@ using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.Scanner
 {
-	public class ScannerIntroductionState : IGameState
+	public class ScannerIntroductionState : IState
 	{
 		ScannerGame game;
 

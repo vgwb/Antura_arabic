@@ -79,7 +79,7 @@ namespace EA4S.Minigames.ReadingGame
             return ReadingGameConfiguration.Instance;
         }
 
-        protected override IGameState GetInitialState()
+        protected override IState GetInitialState()
         {
             return InitialState;
         }

@@ -667,7 +667,7 @@ namespace EA4S.Minigames.Maze
             return MazeConfiguration.Instance;
         }
 
-        protected override IGameState GetInitialState()
+        protected override IState GetInitialState()
         {
             return IntroductionState;
         }

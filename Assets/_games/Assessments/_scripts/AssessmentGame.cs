@@ -83,7 +83,7 @@ namespace EA4S.Assessment
             IntroState = new AssessmentIntroState( this, GameState, context.AudioManager);
         }
 
-        protected override IGameState GetInitialState()
+        protected override IState GetInitialState()
         {
             return IntroState;
         }
