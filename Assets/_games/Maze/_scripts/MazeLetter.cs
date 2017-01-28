@@ -4,32 +4,23 @@ namespace EA4S.Minigames.Maze
 {
     public class MazeLetter : MonoBehaviour
     {
-
-
-        //the character that should follow the path
-        public MazeCharacter character;
-
-
+        public MazeCharacter LLOnRocket;
         public bool isInside;
-
         public float idleSeconds = 0;
-
         public float anturaSeconds;
-
-        // Use this for initialization
+        
         void Start()
         {
             anturaSeconds = 0;
             isInside = false;
-            character.toggleVisibility(false);
+            LLOnRocket.toggleVisibility(false);
             //character.gameObject.SetActive (false);
         }
-
-        // Update is called once per frame
+        
         void Update()
         {
 
-            if (character.characterIsMoving)
+            if (LLOnRocket.characterIsMoving)
             {
                 anturaSeconds = 0;
                 return;
@@ -75,13 +66,13 @@ namespace EA4S.Minigames.Maze
             {
                 anturaSeconds = 0;
 
-                character.calculateMovementAndRotation();
+                LLOnRocket.calculateMovementAndRotation();
             }
         }
 
         public void OnPointerDown()
         {
-            if (character.characterIsMoving || !character.canMouseBeDown())
+            if (LLOnRocket.characterIsMoving || !LLOnRocket.canMouseBeDown())
             {
                 return;
             }
@@ -98,16 +89,32 @@ namespace EA4S.Minigames.Maze
 
         public void OnPointerUp()
         {
-            if (!MazeGameManager.instance.tutorialForLetterisComplete() || !isInside)
-                return;
+            if (CanLaunchRocket())
+            {
+                LaunchRocket();
+            }
+        }
+
+        public void OnPointerOverTrackBounds()
+        {
+            if (CanLaunchRocket())
+            {
+                LaunchRocket();
+            }
+        }
+
+        private bool CanLaunchRocket()
+        {
+            return MazeGameManager.instance.tutorialForLetterisComplete() && isInside;
+        }
+
+        private void LaunchRocket()
+        {
             isInside = false;
-            character.toggleVisibility(true);
-            //character.gameObject.SetActive (true);
-            character.initMovement();
+            LLOnRocket.toggleVisibility(true);
+            LLOnRocket.initMovement();
 
             MazeGameManager.instance.timer.StopTimer();
         }
-
     }
-
 }
