@@ -102,40 +102,59 @@ namespace EA4S.Minigames.Scanner
             antura.IsExcited = true;
             yield return new WaitForSeconds(0.75f);
             antura.IsExcited = false;
+
+            if (scaredCounter != 0)
+            { StartCoroutine(leaveScene(true)); yield break; }
+
             anturaAnimator.SetTrigger("doShout");
             AudioManager.I.PlaySound(Sfx.DogBarking);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
+
+            if (scaredCounter != 0)
+            { StartCoroutine(leaveScene(true)); yield break; }
+
+            yield return new WaitForSeconds(1f);
             antura.OnJumpStart();
             yield return new WaitForSeconds(0.5f);
             antura.OnJumpEnded();
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1.0f);
 
-            if (scaredCounter > 2)
-            {
-                scaredCounter = 0;
-                StartCoroutine(leaveScene());
-            }
+            if (scaredCounter != 0)
+            {  StartCoroutine(leaveScene(true)); yield break; }
 
+            yield return new WaitForSeconds(1.0f);
+
+            if (scaredCounter != 0)
+            { StartCoroutine(leaveScene(true)); yield break; }
+
+            yield return new WaitForSeconds(1.0f);
+            anturaAnimator.SetTrigger("doShout");
+            AudioManager.I.PlaySound(Sfx.DogBarking);
+            yield return new WaitForSeconds(1f);
+
+            if (scaredCounter != 0)
+            { StartCoroutine(leaveScene(true)); yield break; }
+
+            yield return new WaitForSeconds(1f);
+
+            if (scaredCounter != 0)
+            { StartCoroutine(leaveScene(true)); yield break; }
+
+            antura.DoBurp();
+            AudioManager.I.PlaySound(Sfx.DogBarking);
+            yield return new WaitForSeconds(0.5f);
+            antura.IsAngry = true;
+            yield return new WaitForSeconds(1f);
+
+            if (scaredCounter != 0)
+            { StartCoroutine(leaveScene(true)); yield break; }
+
+            yield return new WaitForSeconds(1f);
+            if (game.tut.isTutRound && game.tut.tutStep == 0)
+                StartCoroutine(bark());
             else
-            {
-                yield return new WaitForSeconds(1.5f);
-                anturaAnimator.SetTrigger("doShout");
-                AudioManager.I.PlaySound(Sfx.DogBarking);
-                yield return new WaitForSeconds(2f);
-                antura.DoBurp();
-                AudioManager.I.PlaySound(Sfx.DogBarking);
-                yield return new WaitForSeconds(0.5f);
-                antura.IsAngry = true;
+                charge();
 
-                yield return new WaitForSeconds(2f);
-                if (scaredCounter > 2)
-                {
-                    scaredCounter = 0;
-                    StartCoroutine(leaveScene(true));
-                }
-                else
-                    charge();
-            }
             yield return null;
         }
 
@@ -162,9 +181,17 @@ namespace EA4S.Minigames.Scanner
             StartCoroutine(leaveScene());
         }
 
-        IEnumerator leaveScene(bool wasScared = false)
+        public IEnumerator leaveScene(bool wasScared = false, float delay = 0f)
         {
-            
+            if (game.tut.isTutRound && game.tut.tutStep == 0)
+                game.tut.setupTutorial(1);
+
+            if (wasScared)
+            {
+                AudioManager.I.PlaySound(Sfx.Dog_Noize);
+                scaredCounter = 1;
+            }
+            yield return new WaitForSeconds(delay);
             antura.transform.eulerAngles = Vector3.up * 270;
             antura.SetWalkingSpeed(1);
             antura.State = AnturaAnimationStates.walking;

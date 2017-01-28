@@ -1910,8 +1910,8 @@ MonoBehaviour:
   pedagogicalLevel: 0
   numberOfRounds: 6
   allowedFailedMoves: 3
-  maxPlaySpeed: 2
-  minPlaySpeed: 0.5
+  maxPlaySpeed: 3
+  minPlaySpeed: 0.25
   LLPrefab: {fileID: 1000012082208024, guid: 968db9f4005364e82be9b254cd7ce716, type: 2}
   scannerLL: []
   suitcases:
@@ -1927,6 +1927,8 @@ MonoBehaviour:
   STARS_1_THRESHOLD: 0
   STARS_2_THRESHOLD: 0
   STARS_3_THRESHOLD: 0
+  min: 0.03
+  max: 0.6
 --- !u!114 &309455392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1944,7 +1946,7 @@ MonoBehaviour:
   originalLLOnBeltSpeed: 0
   startDelay: 8
   repeatDelay: 2
-  tutStep: 1
+  tutStep: 0
   playTut: 1
 --- !u!4 &315913121 stripped
 Transform:
@@ -2292,9 +2294,13 @@ MonoBehaviour:
   maxX: 11.5
   goLight: {fileID: 900616531}
   fingerOffset: {x: 0, y: 0, z: 0}
-  backDepth: -5
-  depthMovementSpeed: 10
+  dragDamping: 10
+  backDepth: -8
+  depthMovementSpeed: 15
   game: {fileID: 309455391}
+  smoothedDraggingSpeed: 0
+  speed: 1
+  LL: {fileID: 0}
 --- !u!4 &366469177 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400014, guid: c06714ef4675af740a41bcd70f5946c8, type: 3}
@@ -17979,7 +17985,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 54bf7a0290ece4638b48294486b5cb21, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.3333347
+      value: 1.6103557
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 54bf7a0290ece4638b48294486b5cb21, type: 3}
       propertyPath: m_Materials.Array.data[0]
