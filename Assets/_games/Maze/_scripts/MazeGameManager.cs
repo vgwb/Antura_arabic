@@ -12,8 +12,9 @@ namespace EA4S.Minigames.Maze
 {
     public class MazeGameManager : MiniGame
     {
-
         public static MazeGameManager instance;
+
+        private const int MAX_NUM_ROUNDS = 6;
 
         public GameObject characterPrefab;
         public GameObject arrowTargetPrefab;
@@ -29,10 +30,10 @@ namespace EA4S.Minigames.Maze
 
 
         public float idleTime = 7;
-        public TextMeshProUGUI roundNumber;
+        public TextMeshProUGUI roundNumberText;
 
 
-        int currentLetterIndex;
+        private int roundNumber;
         public GameObject currentPrefab;
         public int health = 4;
         public GameObject cracks;
@@ -131,8 +132,8 @@ namespace EA4S.Minigames.Maze
 
 
 
-            currentLetterIndex = 0;
-            roundNumber.text = "#" + (currentLetterIndex + 1);
+            roundNumber = 0;
+            roundNumberText.text = "#" + (roundNumber + 1);
 
             gameTime = maxGameTime / (1 + MazeConfiguration.Instance.Difficulty);
 
@@ -248,7 +249,7 @@ namespace EA4S.Minigames.Maze
                 if (!isTutorialMode)
                 {
                     correctLetters++;
-                    currentLetterIndex++;
+                    roundNumber++;
                 }
                 //show message:
                 MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
@@ -256,8 +257,8 @@ namespace EA4S.Minigames.Maze
                 TutorialUI.MarkYes(currentCharacter.transform.position + new Vector3(2, 2, 2), TutorialUI.MarkSize.Huge);
                 currentCharacter.celebrate(() =>
                 {
-                    if (currentLetterIndex == 6)
-                    { //round is 6
+                    if (roundNumber == MAX_NUM_ROUNDS)
+                    {
                         endGame();
                         return;
                     }
@@ -270,7 +271,7 @@ namespace EA4S.Minigames.Maze
                         }
 
 
-                        roundNumber.text = "#" + (currentLetterIndex + 1);
+                        roundNumberText.text = "#" + (roundNumber + 1);
                         restartCurrentLetter(won);
                     }
                 });
@@ -315,15 +316,15 @@ namespace EA4S.Minigames.Maze
             }
 
             wrongLetters++;
-            currentLetterIndex++;
-            if (currentLetterIndex == 6)
+            roundNumber++;
+            if (roundNumber == MAX_NUM_ROUNDS)
             {
                 endGame();
                 return;
             }
             else
             {
-                roundNumber.text = "#" + (currentLetterIndex + 1);
+                roundNumberText.text = "#" + (roundNumber + 1);
 
                 MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
                 restartCurrentLetter();
@@ -634,7 +635,6 @@ namespace EA4S.Minigames.Maze
 
         public void onTimeUp()
         {
-            //end game:
             endGame();
         }
 
