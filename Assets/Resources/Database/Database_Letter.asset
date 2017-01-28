@@ -797,6 +797,62 @@ MonoBehaviour:
       Old_Initial: "\u064A\u0640\u200E"
       Old_Medial: "\u0640\u064A\u0640\u200E"
       Old_Final: "\u0640\u064A"
+    - Id: waw_diph
+      Active: 1
+      Number: 0
+      Title: "w\u0101w"
+      Kind: 3
+      BaseLetter: 
+      Symbol: 
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: w, uu
+      SoundZone: A
+      Isolated: "\u0648"
+      Initial: 
+      Medial: 
+      Final: "\uFEEE"
+      Isolated_Unicode: 0648
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEEE
+      Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: "\u0648\u200E"
+      Old_Medial: "\u0640\u0648\u200E"
+      Old_Final: "\u0640\u0648\u200E"
+    - Id: yeh_diph
+      Active: 1
+      Number: 0
+      Title: "y\u0101\u2019"
+      Kind: 3
+      BaseLetter: 
+      Symbol: 
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: y, ii
+      SoundZone: C
+      Isolated: "\u064A"
+      Initial: "\uFEF3"
+      Medial: "\uFEF4"
+      Final: "\uFEF2"
+      Isolated_Unicode: 064A
+      Initial_Unicode: FEF3
+      Medial_Unicode: FEF4
+      Final_Unicode: FEF2
+      Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: "\u064A\u0640\u200E"
+      Old_Medial: "\u0640\u064A\u0640\u200E"
+      Old_Final: "\u0640\u064A"
     - Id: hamza
       Active: 1
       Number: 0

@@ -173,7 +173,7 @@ namespace EA4S.MinigamesAPI
                     Minigames.DancingDots.DancingDotsConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Minigames.DancingDots.DancingDotsConfiguration.Instance;
                     break;
-                case MiniGameCode.Egg:
+                case MiniGameCode.Egg_letters:
                     Minigames.Egg.EggConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Minigames.Egg.EggConfiguration.Instance;
                     break;
@@ -248,7 +248,7 @@ namespace EA4S.MinigamesAPI
                     Minigames.ReadingGame.ReadingGameConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Minigames.ReadingGame.ReadingGameConfiguration.Instance;
                     break;
-                case MiniGameCode.AlphabetSong:
+                case MiniGameCode.AlphabetSong_alphabet:
                     Minigames.ReadingGame.ReadingGameConfiguration.Instance.Variation = Minigames.ReadingGame.ReadingGameVariation.AlphabetSong;
                     Minigames.ReadingGame.ReadingGameConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Minigames.ReadingGame.ReadingGameConfiguration.Instance;

@@ -101,7 +101,7 @@ namespace EA4S.GamesSelector
                     new MiniGameData() { Main = MiniGameCode.Maze.ToString(), Variation = "letters" },
                     new MiniGameData() { Main = MiniGameCode.DancingDots.ToString(), Variation = "words" },
                     new MiniGameData() { Main = MiniGameCode.MakeFriends.ToString(), Variation = "spelling" },
-                    new MiniGameData() { Main = MiniGameCode.Egg.ToString(), Variation = "sunmoon" },
+                    new MiniGameData() { Main = MiniGameCode.Egg_letters.ToString(), Variation = "sunmoon" },
                     new MiniGameData() { Main = MiniGameCode.DancingDots.ToString(), Variation = "counting" }
                 });
                 return;

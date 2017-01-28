@@ -20,7 +20,14 @@ MonoBehaviour:
       Type: 1
       Main: AlphabetSong
       Variation: alphabet
-      Description: 
+      Scene: game_ReadingGame
+    - Title_En: Alphabet Song letters
+      Title_Ar: 
+      Code: 33
+      Available: 1
+      Type: 1
+      Main: AlphabetSong
+      Variation: letters
       Scene: game_ReadingGame
     - Title_En: Complete the Word
       Title_Ar: 
@@ -29,7 +36,6 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: CompleteWord
-      Description: 
       Scene: app_Assessment
     - Title_En: Letter Shapes
       Title_Ar: 
@@ -38,7 +44,6 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: LetterShape
-      Description: Select the Letter Shape of the pronounced Letter
       Scene: app_Assessment
     - Title_En: Letters & Words
       Title_Ar: 
@@ -47,7 +52,6 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: MatchLettersToWord
-      Description: Match the Letters to the Words containing them
       Scene: app_Assessment
     - Title_En: Match Word To Image
       Title_Ar: 
@@ -56,7 +60,6 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: MatchWordToImage
-      Description: 
       Scene: app_Assessment
     - Title_En: Order Letters Of Word
       Title_Ar: 
@@ -65,7 +68,6 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: OrderLettersOfWord
-      Description: 
       Scene: app_Assessment
     - Title_En: Question And Reply
       Title_Ar: 
@@ -74,7 +76,6 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: QuestionAndReply
-      Description: 
       Scene: app_Assessment
     - Title_En: Select Pronounced Word
       Title_Ar: 
@@ -83,7 +84,6 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: SelectPronouncedWord
-      Description: 
       Scene: app_Assessment
     - Title_En: Singular, Dual, Plural
       Title_Ar: 
@@ -92,7 +92,6 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: SingularDualPlural
-      Description: 
       Scene: app_Assessment
     - Title_En: Sun/Moon Letters
       Title_Ar: 
@@ -101,7 +100,6 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: SunMoonLetter
-      Description: 
       Scene: app_Assessment
     - Title_En: Sun/Moon Words
       Title_Ar: 
@@ -110,7 +108,6 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: SunMoonWord
-      Description: 
       Scene: app_Assessment
     - Title_En: Vowel Or Consonant
       Title_Ar: 
@@ -119,7 +116,6 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: VowelOrConsonant
-      Description: 
       Scene: app_Assessment
     - Title_En: Word Articles
       Title_Ar: 
@@ -128,7 +124,6 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: WordArticle
-      Description: 
       Scene: app_Assessment
     - Title_En: Words with Letter
       Title_Ar: 
@@ -137,7 +132,6 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: WordsWithLetter
-      Description: Select the Words containing the indicated Letter
       Scene: app_Assessment
     - Title_En: Balloons & Numbers!
       Title_Ar: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0623\u0631\u0642\u0627\u0645!"
@@ -146,7 +140,6 @@ MonoBehaviour:
       Type: 1
       Main: Balloons
       Variation: counting
-      Description: 
       Scene: game_Balloons
     - Title_En: Balloons & the Shared Letter!
       Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u062D\u0631\u0641
@@ -156,7 +149,6 @@ MonoBehaviour:
       Type: 1
       Main: Balloons
       Variation: letters
-      Description: 
       Scene: game_Balloons
     - Title_En: Balloons & the Hidden Word!
       Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064F \u0648\u0627\u0644\u0643\u0644\u0645\u0629\u064F
@@ -166,7 +158,6 @@ MonoBehaviour:
       Type: 1
       Main: Balloons
       Variation: spelling
-      Description: 
       Scene: game_Balloons
     - Title_En: Balloons & Images!
       Title_Ar: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0635\u0648\u0631!"
@@ -175,7 +166,6 @@ MonoBehaviour:
       Type: 1
       Main: Balloons
       Variation: images
-      Description: 
       Scene: game_Balloons
     - Title_En: Color Tickle
       Title_Ar: "\u062F\u063A\u062F\u063A\u0629\u064F \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
@@ -184,7 +174,6 @@ MonoBehaviour:
       Type: 1
       Main: ColorTickle
       Variation: letters
-      Description: 
       Scene: game_ColorTickle
     - Title_En: Dancing Star!
       Title_Ar: "\u0646\u062C\u0648\u0645\u064F \u0627\u0644\u0631\u0642\u0635!"
@@ -193,25 +182,22 @@ MonoBehaviour:
       Type: 1
       Main: DancingDots
       Variation: letters
-      Description: 
       Scene: game_DancingDots
-    - Title_En: Don't Wake Up
-      Title_Ar: "\u0644\u0627 \u062A\u0648\u0642\u0638 \u0639\u0646\u062A\u0648\u0631\u0629"
-      Code: 2
-      Available: 0
-      Type: 1
-      Main: DontWakeUp
-      Variation: 
-      Description: 
-      Scene: game_DontWakeUp
-    - Title_En: The Egg!
+    - Title_En: The Egg! letters
       Title_Ar: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       Code: 11
       Available: 1
       Type: 1
       Main: Egg
       Variation: letters
-      Description: 
+      Scene: game_Egg
+    - Title_En: The Egg! sequence
+      Title_Ar: 
+      Code: 34
+      Available: 1
+      Type: 1
+      Main: Egg
+      Variation: sequence
       Scene: game_Egg
     - Title_En: Alphabet Crowd!
       Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
@@ -220,7 +206,6 @@ MonoBehaviour:
       Type: 1
       Main: FastCrowd
       Variation: alphabet
-      Description: 
       Scene: game_FastCrowd
     - Title_En: Number Crowd!
       Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0631\u0642\u0627\u0645!"
@@ -229,7 +214,6 @@ MonoBehaviour:
       Type: 1
       Main: FastCrowd
       Variation: counting
-      Description: 
       Scene: game_FastCrowd
     - Title_En: Letter Crowd!
       Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
@@ -238,7 +222,6 @@ MonoBehaviour:
       Type: 1
       Main: FastCrowd
       Variation: letters
-      Description: 
       Scene: game_FastCrowd
     - Title_En: 'Letter Crowd: Form a Word!'
       Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641:
@@ -248,7 +231,6 @@ MonoBehaviour:
       Type: 1
       Main: FastCrowd
       Variation: spelling
-      Description: 
       Scene: game_FastCrowd
     - Title_En: Word Crowd!
       Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
@@ -257,7 +239,6 @@ MonoBehaviour:
       Type: 1
       Main: FastCrowd
       Variation: images
-      Description: 
       Scene: game_FastCrowd
     - Title_En: Hidden Letters!
       Title_Ar: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u062E\u0641\u064A\u0629!"
@@ -266,7 +247,6 @@ MonoBehaviour:
       Type: 1
       Main: HideSeek
       Variation: letters
-      Description: 
       Scene: game_HideAndSeek
     - Title_En: Friendship Spark!
       Title_Ar: "\u0634\u0631\u0627\u0631\u0629\u064F \u0627\u0644\u0635\u062F\u0627\u0642\u0629!"
@@ -275,7 +255,6 @@ MonoBehaviour:
       Type: 1
       Main: MakeFriends
       Variation: words
-      Description: 
       Scene: game_MakeFriends
     - Title_En: Rocket Race!
       Title_Ar: "\u0633\u0628\u0627\u0642\u064F \u0627\u0644\u0635\u0627\u0631\u0648\u062E!"
@@ -284,7 +263,6 @@ MonoBehaviour:
       Type: 1
       Main: Maze
       Variation: letters
-      Description: 
       Scene: game_Maze
     - Title_En: Missing Letter!
       Title_Ar: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
@@ -293,7 +271,6 @@ MonoBehaviour:
       Type: 1
       Main: MissingLetter
       Variation: letters
-      Description: 
       Scene: game_MissingLetter
     - Title_En: Missing Word!
       Title_Ar: "\u0627\u0644\u0643\u0644\u0645\u0629\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F\u0629!"
@@ -302,7 +279,6 @@ MonoBehaviour:
       Type: 1
       Main: MissingLetter
       Variation: words
-      Description: 
       Scene: game_MissingLetter
     - Title_En: Letter Salad!
       Title_Ar: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
@@ -311,7 +287,6 @@ MonoBehaviour:
       Type: 1
       Main: MixedLetters
       Variation: alphabet
-      Description: 
       Scene: game_MixedLetters
     - Title_En: Word Salad!
       Title_Ar: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
@@ -320,7 +295,6 @@ MonoBehaviour:
       Type: 1
       Main: MixedLetters
       Variation: spelling
-      Description: 
       Scene: game_MixedLetters
     - Title_En: Reading Discovery!
       Title_Ar: "\u0627\u0642\u0631\u0623 \u0648\u0627\u0633\u062A\u0643\u0634\u0641!"
@@ -329,7 +303,6 @@ MonoBehaviour:
       Type: 1
       Main: ReadingGame
       Variation: words
-      Description: 
       Scene: game_ReadingGame
     - Title_En: Word Scanner!
       Title_Ar: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
@@ -338,7 +311,6 @@ MonoBehaviour:
       Type: 1
       Main: Scanner
       Variation: images
-      Description: 
       Scene: game_Scanner
     - Title_En: Phrase Scanner!
       Title_Ar: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0639\u0650\u0628\u0627\u0631\u0627\u062A!"
@@ -347,7 +319,6 @@ MonoBehaviour:
       Type: 1
       Main: Scanner
       Variation: words
-      Description: 
       Scene: game_Scanner
     - Title_En: Sick Letters!
       Title_Ar: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u0645\u0631\u064A\u0636\u0629!"
@@ -356,7 +327,6 @@ MonoBehaviour:
       Type: 1
       Main: SickLetters
       Variation: letters
-      Description: 
       Scene: game_SickLetters
     - Title_En: Take Me Home!
       Title_Ar: "\u062E\u0630\u0646\u064A \u0625\u0644\u0649 \u0627\u0644\u0628\u064A\u062A!"
@@ -365,7 +335,6 @@ MonoBehaviour:
       Type: 1
       Main: TakeMeHome
       Variation: letters
-      Description: 
       Scene: game_TakeMeHome
     - Title_En: 'Dodge Ball: Form a Word!'
       Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
@@ -375,7 +344,6 @@ MonoBehaviour:
       Type: 1
       Main: ThrowBalls
       Variation: spelling
-      Description: 
       Scene: game_ThrowBalls
     - Title_En: 'Dodge Ball: Letters!'
       Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
@@ -386,7 +354,6 @@ MonoBehaviour:
       Type: 1
       Main: ThrowBalls
       Variation: letters
-      Description: 
       Scene: game_ThrowBalls
     - Title_En: 'Dodge Ball: Words!'
       Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
@@ -396,7 +363,6 @@ MonoBehaviour:
       Type: 1
       Main: ThrowBalls
       Variation: words
-      Description: 
       Scene: game_ThrowBalls
     - Title_En: The Tower!
       Title_Ar: "\u0628\u0631\u062C\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
@@ -405,7 +371,6 @@ MonoBehaviour:
       Type: 1
       Main: Tobogan
       Variation: letters
-      Description: 
       Scene: game_Tobogan
     - Title_En: Sun & Moon Tower!
       Title_Ar: "\u0623\u0628\u0631\u0627\u062C\u064F \u0627\u0644\u0634\u0645\u0633\u0650
@@ -415,5 +380,4 @@ MonoBehaviour:
       Type: 1
       Main: Tobogan
       Variation: sunmoon
-      Description: 
       Scene: game_Tobogan
