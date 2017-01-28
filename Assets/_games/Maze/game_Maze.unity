@@ -3210,7 +3210,6 @@ MonoBehaviour:
   antura: {fileID: 1703196620}
   fleePositionObject: {fileID: 1166380990}
   isTutorialMode: 0
-  INDEX_TO_LOAD: 0
   isShowingAntura: 0
 --- !u!4 &436118478
 Transform:
