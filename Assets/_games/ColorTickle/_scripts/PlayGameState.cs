@@ -16,10 +16,8 @@ namespace EA4S.Minigames.ColorTickle
         int m_Lives;
         int m_Rounds;
         int m_iRoundsSuccessfull;
-
-        Button m_PercentageLetterColoredButton;
-        float m_PercentageLetterColored;
         
+        float m_PercentageLetterColored;
 
         ColorsUIManager m_ColorsUIManager;
 
@@ -74,11 +72,6 @@ namespace EA4S.Minigames.ColorTickle
             else
             {
                 CalcPercentageLetterColored();
-
-                if (m_PercentageLetterColoredButton != null)
-                {
-                    m_PercentageLetterColoredButton.GetComponentInChildren<Text>().text = Mathf.FloorToInt(m_PercentageLetterColored) + "%";
-                }
 
                 if(m_bLLVanishing) //if the LL is about to vanish
                 {
@@ -172,10 +165,6 @@ namespace EA4S.Minigames.ColorTickle
 			m_Lives = m_MaxLives;
             game.gameUI.SetLives(m_MaxLives);
             m_PercentageLetterColored = 0;
-            if (m_PercentageLetterColoredButton != null)
-            {
-                m_PercentageLetterColoredButton.GetComponentInChildren<Text>().text = "0 %";
-            }        
         }
 
 		private void InitGameUI()
@@ -189,11 +178,6 @@ namespace EA4S.Minigames.ColorTickle
             game.colorsCanvas.gameObject.SetActive(true);
             m_ColorsUIManager = game.colorsCanvas.GetComponentInChildren<ColorsUIManager>();
             m_ColorsUIManager.SetBrushColor += SetBrushColor;
-
-            if (m_ColorsUIManager.percentageColoredButton != null)
-            {
-                m_PercentageLetterColoredButton = m_ColorsUIManager.percentageColoredButton;
-            }
 		}
 
 		private void InitLetter()
