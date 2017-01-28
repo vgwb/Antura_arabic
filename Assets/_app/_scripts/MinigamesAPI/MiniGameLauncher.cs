@@ -235,7 +235,6 @@ namespace EA4S.MinigamesAPI
                     currentGameConfig = Minigames.MissingLetter.MissingLetterConfiguration.Instance;
                     break;
                 case MiniGameCode.MixedLetters_alphabet:
-                    // TODO: set variation
                     Minigames.MixedLetters.MixedLettersConfiguration.Instance.Variation = Minigames.MixedLetters.MixedLettersConfiguration.MixedLettersVariation.Alphabet;
                     Minigames.MixedLetters.MixedLettersConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Minigames.MixedLetters.MixedLettersConfiguration.Instance;
