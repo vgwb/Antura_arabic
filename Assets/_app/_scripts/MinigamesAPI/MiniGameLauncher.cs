@@ -174,6 +174,12 @@ namespace EA4S.MinigamesAPI
                     currentGameConfig = Minigames.DancingDots.DancingDotsConfiguration.Instance;
                     break;
                 case MiniGameCode.Egg_letters:
+                    Minigames.Egg.EggConfiguration.Instance.Variation = Minigames.Egg.EggConfiguration.EggVariation.Single;
+                    Minigames.Egg.EggConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.Egg.EggConfiguration.Instance;
+                    break;
+                case MiniGameCode.Egg_sequence:
+                    Minigames.Egg.EggConfiguration.Instance.Variation = Minigames.Egg.EggConfiguration.EggVariation.Sequence;
                     Minigames.Egg.EggConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Minigames.Egg.EggConfiguration.Instance;
                     break;

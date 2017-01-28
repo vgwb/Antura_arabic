@@ -62,7 +62,7 @@ namespace EA4S.Minigames.Tobogan
             return ToboganConfiguration.Instance;
         }
 
-        protected override IGameState GetInitialState()
+        protected override IState GetInitialState()
         {
             return QuestionState;
         }

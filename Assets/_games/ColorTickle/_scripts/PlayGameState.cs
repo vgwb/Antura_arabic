@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace EA4S.Minigames.ColorTickle
 {
-    public class PlayGameState : IGameState
+    public class PlayGameState : IState
     {
         #region PRIVATE MEMBERS
 

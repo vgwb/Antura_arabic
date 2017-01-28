@@ -6,7 +6,7 @@ namespace EA4S.Template
     /// Sample game state used by the TemplateGame. 
     /// Implements the play-state of a minigame, where actual gameplay is performed.
     /// </summary>
-    public class PlayGameState : IGameState
+    public class PlayGameState : IState
     {
         TemplateGame game;
 

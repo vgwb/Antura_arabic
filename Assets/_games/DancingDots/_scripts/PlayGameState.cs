@@ -3,7 +3,7 @@ using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.DancingDots
 {
-    public class PlayGameState : IGameState
+    public class PlayGameState : IState
     {
         DancingDotsGame game;
 

@@ -176,9 +176,16 @@ public partial class SROptions
 
     [Category("Minigames")]
     [Sort(14)]
-    public void Egg()
+    public void EggLetters()
     {
         LaunchMinigame(MiniGameCode.Egg_letters);
+    }
+
+    [Category("Minigames")]
+    [Sort(14)]
+    public void EggSequence()
+    {
+        LaunchMinigame(MiniGameCode.Egg_sequence);
     }
 
     [Category("Minigames")]

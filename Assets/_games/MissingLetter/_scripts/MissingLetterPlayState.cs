@@ -3,7 +3,7 @@ using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.MissingLetter
 {
-    public class MissingLetterPlayState : IGameState
+    public class MissingLetterPlayState : IState
     {
 
         public MissingLetterPlayState(MissingLetterGame _game)

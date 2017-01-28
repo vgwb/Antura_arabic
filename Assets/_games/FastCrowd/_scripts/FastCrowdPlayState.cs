@@ -3,7 +3,7 @@ using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.FastCrowd
 {
-    public class FastCrowdPlayState : IGameState
+    public class FastCrowdPlayState : IState
     {
         CountdownTimer gameTime;
         FastCrowdGame game;

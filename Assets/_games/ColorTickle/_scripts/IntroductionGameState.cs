@@ -6,7 +6,7 @@ using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.ColorTickle
 {
-    public class IntroductionGameState : IGameState
+    public class IntroductionGameState : IState
     {
         ColorTickleGame game;
 

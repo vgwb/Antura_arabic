@@ -105,7 +105,7 @@ namespace EA4S.Minigames.FastCrowd
             return FastCrowdConfiguration.Instance;
         }
 
-        protected override IGameState GetInitialState()
+        protected override IState GetInitialState()
         {
             return IntroductionState;
         }

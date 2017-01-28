@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace EA4S.Minigames.ReadingGame
 {
-    public class ReadingGameReadState : IGameState
+    public class ReadingGameReadState : IState
     {
         public bool TutorialMode = false;
 

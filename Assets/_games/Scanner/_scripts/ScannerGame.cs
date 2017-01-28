@@ -96,7 +96,7 @@ namespace EA4S.Minigames.Scanner
 			CurrentScoreRecord = 0;
 		}
 
-		protected override IGameState GetInitialState()
+		protected override IState GetInitialState()
 		{
 			return IntroductionState;
 		}

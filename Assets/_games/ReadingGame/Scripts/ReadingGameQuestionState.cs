@@ -3,7 +3,7 @@ using EA4S.Tutorial;
 
 namespace EA4S.Minigames.ReadingGame
 {
-    public class ReadingGameQuestionState : IGameState
+    public class ReadingGameQuestionState : IState
     {
         ReadingGameGame game;
         bool firstRun = true;

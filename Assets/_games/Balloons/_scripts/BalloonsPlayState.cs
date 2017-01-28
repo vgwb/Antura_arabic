@@ -3,7 +3,7 @@ using EA4S.UI;
 
 namespace EA4S.Balloons
 {
-    public class BalloonsPlayState : IGameState
+    public class BalloonsPlayState : IState
     {
         BalloonsGame game;
 

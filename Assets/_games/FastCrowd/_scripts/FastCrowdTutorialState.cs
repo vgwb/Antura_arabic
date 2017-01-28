@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace EA4S.Minigames.FastCrowd
 {
-    public class FastCrowdTutorialState : IGameState
+    public class FastCrowdTutorialState : IState
     {
         FastCrowdGame game;
 

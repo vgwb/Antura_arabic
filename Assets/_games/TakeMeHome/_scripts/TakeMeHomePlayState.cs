@@ -3,7 +3,7 @@ using EA4S.UI;
 
 namespace EA4S.Minigames.TakeMeHome
 {
-	public class TakeMeHomePlayState : IGameState {
+	public class TakeMeHomePlayState : IState {
 
 		TakeMeHomeGame game;
 

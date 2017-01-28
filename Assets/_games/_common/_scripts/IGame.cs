@@ -15,7 +15,7 @@
         /// <summary>
         /// Access the GameStateManager that controls the FSM that controls the minigame flow.
         /// </summary>
-        GameStateManager StateManager { get; }
+        StateManager StateManager { get; }
     }
 
 }

@@ -30,7 +30,7 @@ namespace EA4S.MinigamesCommon
         /// <summary>
         /// Specify which is the first state of this game using this method
         /// </summary>
-        protected abstract IGameState GetInitialState();
+        protected abstract IState GetInitialState();
 
         /// <summary>
         /// Specify which is the game configuration class for this game
@@ -66,8 +66,8 @@ namespace EA4S.MinigamesCommon
         /// <summary>
         /// Access the GameStateManager that controls the minigame's FSM.
         /// </summary>
-        public GameStateManager StateManager { get { return stateManager; } }
-        GameStateManager stateManager = new GameStateManager();
+        public StateManager StateManager { get { return stateManager; } }
+        StateManager stateManager = new StateManager();
 
         bool initialized = false;
         Vector3 oldGravity;

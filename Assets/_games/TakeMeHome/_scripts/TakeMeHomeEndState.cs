@@ -1,6 +1,6 @@
 ﻿namespace EA4S.Minigames.TakeMeHome
 {
-	public class TakeMeHomeEndState : IGameState {
+	public class TakeMeHomeEndState : IState {
 
 		TakeMeHomeGame game;
 

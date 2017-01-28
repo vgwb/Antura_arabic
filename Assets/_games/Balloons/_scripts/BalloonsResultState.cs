@@ -1,6 +1,6 @@
 ﻿namespace EA4S.Balloons
 {
-    public class BalloonsResultState : IGameState
+    public class BalloonsResultState : IState
     {
         BalloonsGame game;
 

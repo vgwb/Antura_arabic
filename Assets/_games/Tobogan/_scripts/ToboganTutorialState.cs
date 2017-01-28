@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace EA4S.Minigames.Tobogan
 {
-    public class ToboganTutorialState : IGameState
+    public class ToboganTutorialState : IState
     {
         ToboganGame game;
 

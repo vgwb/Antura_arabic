@@ -7,7 +7,7 @@ namespace EA4S.Assessment
     /// Result state. notify the LogManager of game ended and play final animation.
     /// Also teleport to main map.
     /// </summary>
-    public class AssessmentResultState : IGameState
+    public class AssessmentResultState : IState
     {
         private AssessmentGame assessmentGame;
         private AssessmentDialogues dialogueManager;

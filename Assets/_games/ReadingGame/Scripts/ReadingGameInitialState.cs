@@ -2,7 +2,7 @@
 
 namespace EA4S.Minigames.ReadingGame
 {
-    public class ReadingGameInitialState : IGameState
+    public class ReadingGameInitialState : IState
     {
         ReadingGameGame game;
 

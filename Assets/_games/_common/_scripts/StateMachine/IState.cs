@@ -1,9 +1,9 @@
 ﻿namespace EA4S
 {
     /// <summary>
-    /// Represents a game state in the GameStateManager
+    /// Represents a game state in the StateManager
     /// </summary>
-    public interface IGameState
+    public interface IState
     {
         void EnterState();
         void ExitState();

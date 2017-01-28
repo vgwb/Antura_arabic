@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace EA4S.Minigames.MixedLetters
 {
-    public class TutorialGameState : IGameState
+    public class TutorialGameState : IState
     {
         MixedLettersGame game;
 
