@@ -21,7 +21,8 @@
 
             if (game.isTimesUp)
             {
-                game.Context.GetPopupWidget().ShowTimeUp(OnPopupTimeUpCloseRequested);
+                //game.Context.GetPopupWidget().ShowTimeUp(OnPopupTimeUpCloseRequested);
+                OnPopupTimeUpCloseRequested();
             }
 
             // Show some animation
