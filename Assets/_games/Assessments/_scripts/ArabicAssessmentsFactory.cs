@@ -168,6 +168,7 @@ namespace EA4S.Assessment
             
             Init( context);
 
+            AssessmentOptions.Instance.WideLL = true;
             AssessmentOptions.Instance.ReadQuestionAndAnswer = true;
 
             CreateManagers( context,
@@ -393,6 +394,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.ReadQuestionAndAnswer = false;
             AssessmentOptions.Instance.CompleteWordOnAnswered = false;
             AssessmentOptions.Instance.ShowFullWordOnAnswered = false;
+            AssessmentOptions.Instance.WideLL = false;
 
             context.Configuration = AssessmentConfiguration.Instance;
             context.Events = new AssessmentEvents();

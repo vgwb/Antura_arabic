@@ -12,7 +12,7 @@ namespace EA4S.Assessment
         private float width;
         private Vector3 center;
         private Camera mainCamera;
-        public float SubtitlesMargin;
+        private float SubtitlesMargin = 0;
 
         static WorldBounds instance;
         public static WorldBounds Instance
@@ -57,7 +57,6 @@ namespace EA4S.Assessment
 
             while (true)
             {
-                //TODO: limit y position after N attemps?
                 pos.x = Random.Range( xMin, xMax);
                 pos.y = Random.Range( yMin, yMax);
 
@@ -118,8 +117,7 @@ namespace EA4S.Assessment
 
         public float TopMargin()
         {
-            // No more subtitles
-            return 0; //SubtitlesMargin + ElementsSize.LL * 1.5f;
+            return 0;
         }
 
         public float LetterSize()

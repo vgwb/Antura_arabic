@@ -28,7 +28,7 @@ namespace EA4S.Assessment
             audioManager.PlaySound( Sfx.TickAndWin);
             dialogueManager.PlayAssessmentCompleteSound();
 
-            Koroutine.Run( QuitAfterSomeTime( seconds: 1));
+            Koroutine.Run( QuitAfterSomeTime( seconds: 2));
         }
 
         IEnumerator QuitAfterSomeTime(float seconds)

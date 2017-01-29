@@ -110,7 +110,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013022712494}
   - component: {fileID: 114000013822948356}
-  - component: {fileID: 114000011271351544}
   - component: {fileID: 114000010710646388}
   - component: {fileID: 114000013908833718}
   m_Layer: 0
@@ -288,25 +287,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
   assessmentCode: 1
---- !u!114 &114000011271351544
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012520946144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30ca846c50e64d247be3319af209c0a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anturaPrefab: {fileID: 114000013605779992, guid: b1eab1b3eca314d40b04cff3efb77336,
-    type: 2}
-  sleepingParticles: {fileID: 198000013691418782, guid: ecfa18a3174ca09468b636bbf1b1b44a,
-    type: 2}
-  anturaGoAway: {fileID: 4000010954138254}
-  sleepingStart: {fileID: 4000012399039158}
-  anturaStart: {fileID: 4000013203469100}
-  particlesPosition: {fileID: 4000013171580562}
 --- !u!114 &114000013822948356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -335,4 +315,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70585e09b49d9d4c93492f8790acc31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SubtitlesMargin: 0
