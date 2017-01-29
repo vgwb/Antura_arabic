@@ -149,7 +149,7 @@ namespace EA4S.Minigames.Maze
 
             Fruits = fruitsLists;
         }
-        
+
         private void SetFruitsList()
         {
             if (Fruits.Count == 0)
@@ -484,20 +484,9 @@ namespace EA4S.Minigames.Maze
 
         }
 
-        private void moveTween()
+        private void MoveTween()
         {
-            /*if (currentCharacterWayPoint + 3 < characterWayPoints.Count)
-            {
-                var dir = transform.position - characterWayPoints[currentCharacterWayPoint + 3];
-                var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
-
-                targetRotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
-                transform.DORotateQuaternion(targetRotation, 0.007f);
-            }
-
-            transform.DOMove(characterWayPoints[currentCharacterWayPoint], 0.007f).OnComplete(moveTweenComplete);*/
-
-            //average distance:
+            // Average distance:
             float distance = 0;
             for (int i = 1; i < characterWayPoints.Count; ++i)
                 distance += (characterWayPoints[i] - characterWayPoints[i - 1]).sqrMagnitude;
@@ -542,7 +531,10 @@ namespace EA4S.Minigames.Maze
                 }
             }
             else
+            {
+                _fruits[currentFruitIndex].GetComponent<MazeArrow>().MarkAsUnreached();
                 waitAndRestartScene();
+            }
         }
 
         private void moveTweenComplete()
@@ -580,7 +572,7 @@ namespace EA4S.Minigames.Maze
                         waitAndRestartScene();
                 }
                 else
-                    moveTween();
+                    MoveTween();
 
                 //enable collider when we reach the second waypoint
                 if (currentCharacterWayPoint == 1)
@@ -589,67 +581,27 @@ namespace EA4S.Minigames.Maze
         }
         public void initMovement()
         {
-            if (characterIsMoving) return;
-
-            MazeGameManager.instance.fixLine();
+            if (characterIsMoving)
+            {
+                return;
+            }
 
             transform.DOKill(false);
             characterIsMoving = true;
             GetComponent<Collider>().enabled = true;
-            // if (particles) particles.SetActive(true);
-            foreach (GameObject particle in particles) particle.SetActive(true);
+
+            foreach (GameObject particle in particles)
+            {
+                particle.SetActive(true);
+            }
+
             foreach (GameObject fruit in _fruits)
             {
                 fruit.GetComponent<BoxCollider>().enabled = true;
             }
 
-            //test with tweens:
-            moveTween();
-
-            /*
-            transform.position = Vector3.MoveTowards (transform.position, characterWayPoints[currentCharacterWayPoint], Time.deltaTime*10);
-
-				if (currentCharacterWayPoint + 3 < characterWayPoints.Count) {
-					var dir = transform.position - characterWayPoints [currentCharacterWayPoint + 3];
-					var angle = Mathf.Atan2 (dir.z, dir.x) * Mathf.Rad2Deg;
-
-                    targetRotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
-
-					transform.rotation = Quaternion.RotateTowards (transform.rotation, targetRotation, 5);
-				}
-				
-				if(transform.position == characterWayPoints[currentCharacterWayPoint] && currentCharacterWayPoint < characterWayPoints.Count-1){
-
-					currentCharacterWayPoint++;
-
-					//reached the end:
-					if (currentCharacterWayPoint == characterWayPoints.Count-1) {
-
-                        transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isInside = false;
-
-                        //arrived!
-                        //transform.rotation = initialRotation;
-                        if (currentFruitIndex == _fruits.Count) {
-                            
-                            print ("Won");
-                           // if (particles) particles.SetActive(false);
-                            foreach (GameObject particle in particles) particle.SetActive(false);
-                            GetComponent<Collider> ().enabled = false;
-							characterIsMoving = false;
-							MazeGameManager.instance.moveToNext (true);
-
-							if (currentFruitList == Fruits.Count - 1) {
-								if (dot != null)
-									dot.GetComponent<BoxCollider> ().enabled = true;
-							}
-						} else
-							waitAndRestartScene ();
-					}
-
-					//enable collider when we reach the second waypoint
-					if (currentCharacterWayPoint == 1)
-						myCollider.SetActive (true);
-				}*/
+            // Test with tweens:
+            MoveTween();
         }
 
         public void calculateMovementAndRotation()

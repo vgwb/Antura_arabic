@@ -104,17 +104,19 @@ namespace EA4S.Minigames.Maze
 
         public void ColorCurrentLinesAsIncorrect()
         {
-            foreach (var line in lines)
+            /*foreach (var line in lines)
             {
                 line.material.DOColor(incorrectLineColor, durationToTweenLineColors);
-            }
+            }*/
+
+            lines[lines.Count - 1].material.DOColor(incorrectLineColor, durationToTweenLineColors);
         }
 
         public void startGame()
         {
             isTutorialMode = true;
             setupIndices();
-            
+
             fleePositions = new List<Vector3>();
             foreach (Transform child in fleePositionObject.transform)
             {
@@ -133,12 +135,12 @@ namespace EA4S.Minigames.Maze
             //lines = new List<GameObject>();
 
             lines = new List<LineRenderer>();
-            
+
             roundNumber = 0;
             roundNumberText.text = "#" + (roundNumber + 1);
 
             gameTime = maxGameTime / (1 + MazeConfiguration.Instance.Difficulty);
-            
+
             //init first letter
             MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Title, () =>
             {
@@ -542,30 +544,6 @@ namespace EA4S.Minigames.Maze
                 lines[lines.Count - 1].numPositions = pointsList.Count;
                 lines[lines.Count - 1].SetPosition(pointsList.Count - 1, (Vector3)pointsList[pointsList.Count - 1]);
             }
-        }
-
-        public void fixLine()
-        {
-            lines[lines.Count - 1].material.color = new Color(1, 0.54f, 0);
-        }
-
-        public void DrawLine(Vector3 start, Vector3 end, Color color)
-        {
-            /*
-			start.z = end.z = -0.1f;//-0.1f;
-			GameObject myLine = new GameObject();
-			myLine.transform.position = start;
-			myLine.AddComponent<LineRenderer>();
-			LineRenderer lr = myLine.GetComponent<LineRenderer>();
-			lr.material = new Material(Shader.Find("Unlit/Color"));
-			lr.material.color = color;
-			//lr.SetColors(color, color);
-
-			lr.SetWidth(0.3f, 0.3f);
-			lr.SetPosition(0, start);
-			lr.SetPosition(1, end);
-
-			lines.Add(myLine);*/
         }
 
         bool gameEnded = false;
