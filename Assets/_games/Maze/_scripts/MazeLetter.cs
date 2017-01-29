@@ -5,14 +5,14 @@ namespace EA4S.Minigames.Maze
     public class MazeLetter : MonoBehaviour
     {
         public MazeCharacter LLOnRocket;
-        public bool isInside;
+        public bool isDrawing;
         public float idleSeconds = 0;
         public float anturaSeconds;
         
         void Start()
         {
             anturaSeconds = 0;
-            isInside = false;
+            isDrawing = false;
             LLOnRocket.toggleVisibility(false);
             //character.gameObject.SetActive (false);
         }
@@ -27,7 +27,7 @@ namespace EA4S.Minigames.Maze
             }
 
             //should we replay tutorial?
-            if (!isInside)
+            if (!isDrawing)
             {
 
                 if (!MazeGameManager.instance.currentCharacter || MazeGameManager.instance.currentCharacter.isFleeing || MazeGameManager.instance.currentCharacter.isAppearing)
@@ -62,7 +62,7 @@ namespace EA4S.Minigames.Maze
             }
 
 
-            if (isInside)
+            if (isDrawing)
             {
                 anturaSeconds = 0;
 
@@ -84,7 +84,7 @@ namespace EA4S.Minigames.Maze
             anturaSeconds = 0;
 
             // Inform that we are inside the collision:
-            isInside = true;
+            isDrawing = true;
         }
 
         public void OnPointerUp()
@@ -100,21 +100,30 @@ namespace EA4S.Minigames.Maze
             if (CanLaunchRocket())
             {
                 LaunchRocket();
+                MazeGameManager.instance.ColorCurrentLinesAsIncorrect();
             }
         }
 
         private bool CanLaunchRocket()
         {
-            return MazeGameManager.instance.tutorialForLetterisComplete() && isInside;
+            return MazeGameManager.instance.tutorialForLetterisComplete() && isDrawing;
         }
 
         private void LaunchRocket()
         {
-            isInside = false;
+            isDrawing = false;
             LLOnRocket.toggleVisibility(true);
             LLOnRocket.initMovement();
 
             MazeGameManager.instance.timer.StopTimer();
+        }
+
+        public void NotifyFruitGotMouseOver(MazeArrow fruit)
+        {
+            if (isDrawing)
+            {
+                fruit.Highlight();
+            }
         }
     }
 }
