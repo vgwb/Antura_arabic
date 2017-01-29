@@ -6,7 +6,7 @@ using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using EA4S.UI;
 using TMPro;
-
+using DG.Tweening;
 
 namespace EA4S.Minigames.Maze
 {
@@ -62,6 +62,10 @@ namespace EA4S.Minigames.Maze
         private MazeLetter currentMazeLetter;
         private IInputManager inputManager;
 
+        public Color drawingColor;
+        public Color incorrectLineColor;
+        public float durationToTweenLineColors;
+
         void setupIndices()
         {
             allLetters = new Dictionary<string, int>();
@@ -96,20 +100,21 @@ namespace EA4S.Minigames.Maze
         {
             base.Awake();
             instance = this;
+        }
 
-
+        public void ColorCurrentLinesAsIncorrect()
+        {
+            foreach (var line in lines)
+            {
+                line.material.DOColor(incorrectLineColor, durationToTweenLineColors);
+            }
         }
 
         public void startGame()
         {
             isTutorialMode = true;
             setupIndices();
-
-            Context.GetAudioManager().PlayMusic(Music.Theme8);
-
-
-
-
+            
             fleePositions = new List<Vector3>();
             foreach (Transform child in fleePositionObject.transform)
             {
@@ -128,24 +133,19 @@ namespace EA4S.Minigames.Maze
             //lines = new List<GameObject>();
 
             lines = new List<LineRenderer>();
-
-
-
-
+            
             roundNumber = 0;
             roundNumberText.text = "#" + (roundNumber + 1);
 
             gameTime = maxGameTime / (1 + MazeConfiguration.Instance.Difficulty);
-
-
-
+            
             //init first letter
             MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Title, () =>
             {
                 initCurrentLetter();
             });
 
-
+            Context.GetAudioManager().PlayMusic(Music.Theme8);
         }
 
         public void initUI()
@@ -172,7 +172,7 @@ namespace EA4S.Minigames.Maze
             //line.useWorldSpace = true;    
 
             line.material = new Material(Shader.Find("Antura/Transparent"));
-            line.material.color = new Color(1f, 0.15f, 0f, 0.75f);
+            line.material.color = drawingColor;
 
             lines.Add(line);
 
@@ -416,7 +416,7 @@ namespace EA4S.Minigames.Maze
                 Debug.Log("Letter got from Teacher is: " + ld.Id + " - does not match 11 models we have, we will play sound of the returned data");
                 index = UnityEngine.Random.Range(0, prefabs.Count);
             }
-
+            
             currentLL = ld;
             currentPrefab = (GameObject)Instantiate(prefabs[index]);
 

@@ -94,8 +94,9 @@ namespace EA4S.Minigames.Maze
 
             //fix mazecharacter:
             mazeCharacter.myCollider = BorderColldider;
-            mazeCharacter.Fruits = arrows;
-
+            mazeCharacter.SetMazeLetter(letter);
+            mazeCharacter.CreateFruits(arrows);
+            
             letter.LLOnRocket = mazeCharacter;
 
             hd = new GameObject();
