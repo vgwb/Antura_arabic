@@ -1,5 +1,5 @@
-using System;
-using EA4S.Core;
+using Kore.Coroutines;
+using System.Collections;
 
 namespace EA4S.Assessment
 {
@@ -28,14 +28,13 @@ namespace EA4S.Assessment
             audioManager.PlaySound( Sfx.TickAndWin);
             dialogueManager.PlayAssessmentCompleteSound();
 
-            AssessmentResultAntura.Instance.StartAnimation( //TODO: need new Antura Gag
-                    () => ExitState()
-                );
+            Koroutine.Run( QuitAfterSomeTime( seconds: 1));
         }
 
-        internal void InitState()
+        IEnumerator QuitAfterSomeTime(float seconds)
         {
-            throw new NotImplementedException();
+            yield return Wait.For( seconds);
+            ExitState();
         }
 
         bool exited = false;
