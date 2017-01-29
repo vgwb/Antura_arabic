@@ -84,7 +84,8 @@ namespace EA4S.Minigames.SickLetters
                 if(game.roundsCount > 0)
                     game.wrongDraggCount++;
                 shake = true;
-                draggableText.transform.parent = transform;
+                //draggableText.transform.parent = transform;
+                draggableText.transform.SetParent(transform, true);
             }
 
             else
@@ -216,7 +217,8 @@ namespace EA4S.Minigames.SickLetters
             thisRigidBody.useGravity = false;
             boxCollider.enabled = true;
 
-            draggableText.transform.parent = origParent;
+            //draggableText.transform.parent = origParent;
+            draggableText.transform.SetParent(origParent, true);
             draggableText.transform.localPosition = new Vector3(-0.5f, 0.5f,0);
             draggableText.transform.localEulerAngles = new Vector3(90, 0.0f, 90);
             draggableText.transform.localScale = Vector3.one;
