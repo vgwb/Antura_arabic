@@ -152,7 +152,7 @@ namespace EA4S.Minigames.MissingLetter
             LetterBehaviour qstBehaviour = oQuestion.GetComponent<LetterBehaviour>();
             qstBehaviour.Reset();
             qstBehaviour.LetterData = questionData;
-            qstBehaviour.endTransformToCallback += qstBehaviour.Speak;
+            qstBehaviour.onEnterScene += qstBehaviour.Speak;
             qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
             qstBehaviour.m_oDefaultIdleAnimation = LLAnimationStates.LL_idle;
             m_aoCurrentQuestionScene.Add(oQuestion);
@@ -231,7 +231,7 @@ namespace EA4S.Minigames.MissingLetter
 
             //after insert in mCurrentQuestionScene
             m_iRemovedLLDataIndex = RemoveWordfromQuestion(questionData);
-            m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().endTransformToCallback += m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().Speak;
+            m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().onEnterScene += m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().Speak;
 
             GameObject _correctAnswerObject = m_oAnswerPool.GetElement();
             LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
