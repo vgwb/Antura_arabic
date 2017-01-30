@@ -34,7 +34,7 @@ namespace EA4S.Profile
                     AppManager.I.Player = value;
                     AppManager.I.GameSettings.LastActivePlayerId = value.Id;
                     SaveGameSettings();
-                    AppManager.I.InitTeacherForPlayer();
+                    AppManager.I.Teacher.SetPlayerProfile(value);
                     LogManager.I.LogInfo(InfoEvent.AppStarted);
                     AppManager.I.NavigationManager.SetPlayerNavigationData(currentPlayer);
                     if (OnProfileChanged != null)
