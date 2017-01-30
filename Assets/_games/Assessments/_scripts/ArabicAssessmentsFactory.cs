@@ -70,7 +70,7 @@ namespace EA4S.Assessment
             return CreateAssessment( context);
         }
 
-        internal static Assessment CreateOrderLettersInWordAssessment( AssessmentContext context)
+        public static Assessment CreateOrderLettersInWordAssessment( AssessmentContext context)
         {
             context.GameDescription = Database.LocalizationDataId.Assessment_Order_Letters;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
@@ -100,7 +100,7 @@ namespace EA4S.Assessment
             return CreateAssessment( context);
         }
 
-        internal static Assessment CreateCompleteWordAssessment( AssessmentContext context)
+        public static Assessment CreateCompleteWordAssessment( AssessmentContext context)
         {
             context.GameDescription = Database.LocalizationDataId.Assessment_Select_Letter_Image;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;

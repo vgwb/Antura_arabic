@@ -202,7 +202,7 @@ namespace EA4S.Assessment
             wordGO.Label.text = text;
             cacheCompleteWordLL = wordGO;
 
-            var collider = wordGO.GetComponent<BoxCollider>();
+            var collider = wordGO.GetComponent< BoxCollider>();
             collider.center = new Vector3( 1.5f, 0, 0);
             collider.size = new Vector3( 7.5f, 3, 1.5f);
 
@@ -212,11 +212,7 @@ namespace EA4S.Assessment
         private Answer GenerateWrongAnswer( ILivingLetterData wrongAnswer)
         {
             return
-            LivingLetterFactory.Instance.SpawnAnswer(wrongAnswer)
-            .gameObject.AddComponent< Answer>()
-
-                // Correct answer
-                .Init( false, dialogues);
+            LivingLetterFactory.Instance.SpawnAnswer( wrongAnswer, false, dialogues);
         }
 
         private void GeneratePlaceHolder( IQuestion question)
@@ -230,11 +226,7 @@ namespace EA4S.Assessment
         private Answer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
         {
             return
-            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer)
-            .gameObject.AddComponent< Answer>()
-
-                // Correct answer
-                .Init( true, dialogues);
+            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer, true, dialogues);
         }
     }
 }

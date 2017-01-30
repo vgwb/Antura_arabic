@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
 using EA4S.MinigamesAPI;
-using UnityEngine;
-using System.Collections;
 using Kore.Coroutines;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -165,11 +165,7 @@ namespace EA4S.Assessment
         private Answer GenerateWrongAnswer( ILivingLetterData wrongAnswer)
         {
             return
-            LivingLetterFactory.Instance.SpawnAnswer( wrongAnswer)
-            .gameObject.AddComponent< Answer>()
-
-                // Correct answer
-                .Init(false, dialogues);
+            LivingLetterFactory.Instance.SpawnAnswer( wrongAnswer, false, dialogues);
         }
 
         private void GeneratePlaceHolder( IQuestion question)
@@ -185,11 +181,7 @@ namespace EA4S.Assessment
             cacheAnswerToRead = correctAnswer;
 
             return
-            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer)
-            .gameObject.AddComponent< Answer>()
-
-                // Correct answer
-                .Init( true, dialogues);
+            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer, true, dialogues);
         }
     }
 }

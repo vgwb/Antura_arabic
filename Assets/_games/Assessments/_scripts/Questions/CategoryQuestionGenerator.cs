@@ -1,6 +1,6 @@
+using EA4S.MinigamesAPI;
 using System;
 using System.Collections.Generic;
-using EA4S.MinigamesAPI;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -90,12 +90,6 @@ namespace EA4S.Assessment
 
             }
 
-            // Not working
-
-            Debug.Log( "Picks from category 1 this round: " + category1ForThisRound);
-            Debug.Log( "Picks from category 2 this round: " + category2ForThisRound);
-            Debug.Log( "Picks from category 3 this round: " + category3ForThisRound);
-
             if ( picksThisRound == numberOfMaxAnswers)
                 throw new InvalidOperationException( "buckets empty");
         }
@@ -108,7 +102,6 @@ namespace EA4S.Assessment
         private void FillBuckets( IQuestionProvider questionProvider)
         {
             int max = numberOfRounds * numberOfMaxAnswers;
-            Debug.Log("Drawed answers: " + max);
 
             for (int i = 0; i < max; i++)
             {
@@ -118,19 +111,12 @@ namespace EA4S.Assessment
                         if (categoryProvider.Compare( j, answ))
                             answersBuckets[j].Add(pack.GetQuestion());
             }
-
-            for (int i = 0; i < 3; i++)
-                Debug.Log("BUCKET(" + i + "): " + answersBuckets[i].Count + " answers");
         }
 
         private Answer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
         {
             return
-            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer)
-            .gameObject.AddComponent< Answer>()
-            
-                // Correct answer
-                .Init(true, dialogues);
+            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer, true, dialogues);
         }
 
         public void InitRound()
@@ -216,7 +202,6 @@ namespace EA4S.Assessment
                 case 1: amount = category2ForThisRound; break;
                 default: amount = category3ForThisRound; break;
             }
-            Debug.Log("amount: " + amount);
 
             List< Answer> answers = new List< Answer>();
 

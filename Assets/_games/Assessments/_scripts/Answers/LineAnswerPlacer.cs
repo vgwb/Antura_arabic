@@ -1,9 +1,9 @@
 using DG.DeExtensions;
 using DG.Tweening;
 using EA4S.LivingLetters;
+using EA4S.MinigamesCommon;
 using Kore.Coroutines;
 using System.Collections;
-using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -116,7 +116,7 @@ namespace EA4S.Assessment
             go.GetComponent< LetterObjectView>().Poof( ElementsSize.PoofOffset);
             audioManager.PlaySound( Sfx.Poof);
 
-            yield return Wait.For( UnityEngine.Random.Range( 0.07f, 0.13f));
+            yield return Wait.For( Random.Range( 0.07f, 0.13f));
         }
 
         public void RemoveAnswers()
@@ -130,13 +130,13 @@ namespace EA4S.Assessment
             foreach (var a in allAnswers)
                 yield return Koroutine.Nested( RemoveAnswer( a.gameObject));
 
-            yield return Wait.For(0.65f);
+            yield return Wait.For( 0.65f);
             isAnimating = false;
         }
 
-        private IEnumerator RemoveAnswer(GameObject answ)
+        private IEnumerator RemoveAnswer( GameObject answ)
         {
-            audioManager.PlaySound(Sfx.Poof);
+            audioManager.PlaySound( Sfx.Poof);
 
             answ.GetComponent<LetterObjectView>().Poof(ElementsSize.PoofOffset);
             answ.transform.DOScale(0, 0.3f).OnComplete(() => GameObject.Destroy(answ));
