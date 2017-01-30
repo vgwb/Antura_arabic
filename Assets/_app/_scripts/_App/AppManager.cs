@@ -65,7 +65,7 @@ namespace EA4S
 
             RewardSystemManager.Init();
 
-            InitTeacherForPlayer();
+            //InitTeacherForPlayer();
             GameSettings.HighQualityGfx = false;
         }
 
@@ -74,15 +74,10 @@ namespace EA4S
         /// </summary>
         public void InitTeacherForPlayer()
         {
-            if (Player == null)
-                Player = new PlayerProfile();
-
-            DB = new DatabaseManager(GameSettings.UseTestDatabase, Player);
+            // @todo: reassign the new player
             Teacher = new TeacherAI(DB, Player);
-
             if (GameLauncher == null)
                 GameLauncher = new MiniGameLauncher(Teacher);
-
         }
         #endregion
 
