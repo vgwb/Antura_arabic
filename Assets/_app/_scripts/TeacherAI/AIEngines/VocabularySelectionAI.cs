@@ -26,11 +26,9 @@ namespace EA4S.Teacher
         private HashSet<WordData> currentPlaySessionWords = new HashSet<WordData>();
         private HashSet<PhraseData> currentPlaySessionPhrases = new HashSet<PhraseData>();
 
-        public VocabularySelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile, TeacherAI _teacher, WordHelper _wordHelper)
+        public VocabularySelectionAI(DatabaseManager _dbManager)
         {
             this.dbManager = _dbManager;
-            //this.teacher = _teacher;
-            //this.wordHelper = _wordHelper;
         }
 
         public void LoadCurrentPlaySessionData(string currentPlaySessionId)

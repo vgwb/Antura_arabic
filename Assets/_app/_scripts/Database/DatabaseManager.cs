@@ -26,36 +26,40 @@ namespace EA4S.Database
             }
         }
 
+        #region Player assignment
 
-        #region Factory
-
-        public static void CreateDatabaseForPlayer(PlayerProfileData playerProfileData)
+        public void CreateDatabaseForPlayer(PlayerProfileData playerProfileData)
         {
-            AppManager.I.DB = new DatabaseManager(AppManager.I.GameSettings.UseTestDatabase, playerProfileData.PlayerId);
-            AppManager.I.DB.UpdatePlayerProfileData(playerProfileData);
+            SetPlayerProfile(playerProfileData.PlayerId);
+            UpdatePlayerProfileData(playerProfileData);
         }
 
-        public static PlayerProfileData LoadDatabaseForPlayer(int playerId)
+        public PlayerProfileData LoadDatabaseForPlayer(int playerId)
         {
-            AppManager.I.DB = new DatabaseManager(AppManager.I.GameSettings.UseTestDatabase, playerId);
-            return AppManager.I.DB.GetPlayerProfileData();
+            SetPlayerProfile(playerId);
+            return GetPlayerProfileData();
         }
 
         #endregion
 
-
-        public DatabaseManager(bool useTestDatabase, int playerProfileId)
+        public DatabaseManager(bool useTestDatabase)
         {
+            // Only the static DB is available until the player profile is also assigned
             LoadStaticDB(useTestDatabase);
+        }
 
+        private void SetPlayerProfile(int playerProfileId)
+        {
             // SAFE MODE: we need to make sure that the static db has some entires, otherwise there is something wrong
-            if (staticDb.GetPlaySessionTable().GetDataCount() == 0) {
+            if (staticDb.GetPlaySessionTable().GetDataCount() == 0)
+            {
                 throw new System.Exception("Database is empty, it was probably not setup correctly. Make sure it has been statically loaded by the management scene.");
             }
 
             // We load the selected player profile
             LoadDynamicDbForPlayerProfile(playerProfileId);
         }
+
 
         void LoadStaticDB(bool useTestDatabase)
         {

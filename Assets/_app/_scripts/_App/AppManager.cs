@@ -63,22 +63,15 @@ namespace EA4S
             gameObject.AddComponent<DebugManager>();
             gameObject.AddComponent<KeeperManager>();
 
+            DB = new DatabaseManager(GameSettings.UseTestDatabase);
+            Teacher = new TeacherAI(DB);
+            GameLauncher = new MiniGameLauncher(Teacher);
+
             RewardSystemManager.Init();
 
-            //InitTeacherForPlayer();
             GameSettings.HighQualityGfx = false;
         }
 
-        /// <summary>
-        /// New profile entry point
-        /// </summary>
-        public void InitTeacherForPlayer()
-        {
-            // @todo: reassign the new player
-            Teacher = new TeacherAI(DB, Player);
-            if (GameLauncher == null)
-                GameLauncher = new MiniGameLauncher(Teacher);
-        }
         #endregion
 
         #region Settings behaviours
