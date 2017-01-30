@@ -206,7 +206,7 @@ namespace EA4S.PlayerBook
             //btnGO.transform.SetParent(SubmenuContainer.transform, false);
             //btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { Id = WordDataCategory.None.ToString(), Title = "All" });
 
-            foreach (WordDataCategory cat in GenericUtilities.SortEnums<WordDataCategory>()) {
+            foreach (WordDataCategory cat in GenericHelper.SortEnums<WordDataCategory>()) {
                 btnGO = Instantiate(CategoryItemPrefab);
                 btnGO.transform.SetParent(SubmenuContainer.transform, false);
                 btnGO.GetComponent<MenuItemCategory>().Init(

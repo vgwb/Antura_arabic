@@ -90,7 +90,7 @@ namespace EA4S.Database
 
         public PlayerProfileData GetPlayerProfileData()
         {
-            return dynamicDb.FindById<PlayerProfileData>("1");
+            return dynamicDb.FindPlayerProfileDataById(PlayerProfileData.UNIQUE_ID);
         }
 
         #endregion
@@ -137,7 +137,7 @@ namespace EA4S.Database
         //public LetterData GetLetterDataByRandom()
         //{
         //    var letterslist = GetAllLetterData();
-        //    return GenericUtilities.GetRandom(letterslist);
+        //    return GenericHelper.GetRandom(letterslist);
         //}
         #endregion
 
@@ -393,15 +393,19 @@ namespace EA4S.Database
 
         #region Score
 
-        public void UpdateVocabularyScoreData(VocabularyDataType dataType, string elementId, float score)
+        public void UpdateVocabularyScoreData(VocabularyDataType dataType, string elementId, float score, int timestamp = -1)
         {
-            VocabularyScoreData data = new VocabularyScoreData(elementId, dataType, score);
+            VocabularyScoreData data = null;
+            if (timestamp > 0) data = new VocabularyScoreData(elementId, dataType, score, timestamp);
+            else data = new VocabularyScoreData(elementId, dataType, score);
             dynamicDb.InsertOrReplace(data);
         }
 
-        public void UpdateJourneyScoreData(JourneyDataType dataType, string elementId, int score)
+        public void UpdateJourneyScoreData(JourneyDataType dataType, string elementId, int score, int timestamp = -1)
         {
-            JourneyScoreData data = new JourneyScoreData(elementId, dataType, score);
+            JourneyScoreData data = null;
+            if (timestamp > 0) data = new JourneyScoreData(elementId, dataType, score, timestamp);
+            else data = new JourneyScoreData(elementId, dataType, score);
             dynamicDb.InsertOrReplace(data);
         }
 

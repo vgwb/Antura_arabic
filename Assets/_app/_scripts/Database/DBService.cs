@@ -114,12 +114,17 @@ namespace EA4S.Database
             return _connection.Table<LogInfoData>().Where((x) => (x.Id.Equals(target_id))).FirstOrDefault();
         }
 
+        public PlayerProfileData FindPlayerProfileDataById(string target_id)
+        {
+            return _connection.Table<PlayerProfileData>().Where((x) => (x.Id.Equals(target_id))).FirstOrDefault();
+        }
+
         // @note: this cannot be used as the current SQLite implementation does not support Parameter expression nodes in LINQ
         // Get one entry by ID
-        public T FindById<T>(string target_id) where T : IData, new()
+        /*public T FindById<T>(string target_id) where T : IData, new()
         {
             return _connection.Table<T>().Where((x) => (x.GetId().Equals(target_id))).FirstOrDefault();
-        }
+        }*/
 
         // select * from (Ttable)
         public List<T> FindAll<T>() where T : IData, new()

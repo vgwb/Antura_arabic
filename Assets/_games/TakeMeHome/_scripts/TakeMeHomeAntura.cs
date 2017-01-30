@@ -61,7 +61,7 @@ namespace EA4S.Minigames.TakeMeHome
 			{
 				distance.Normalize();
 				transform.position += distance * Vector3.Dot(distance, transform.forward) * ANTURA_SPEED * Time.deltaTime;
-				MathUtils.LerpLookAtPlanar(transform, target, Time.deltaTime * 3);
+				GameplayHelper.LerpLookAtPlanar(transform, target, Time.deltaTime * 3);
 			}
 		}
 

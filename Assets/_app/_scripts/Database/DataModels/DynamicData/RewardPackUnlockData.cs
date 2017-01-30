@@ -1,4 +1,5 @@
 ﻿using EA4S.Core;
+using EA4S.Helpers;
 using EA4S.Rewards;
 using EA4S.Utilities;
 using SQLite;
@@ -54,7 +55,7 @@ namespace EA4S.Database
             Order = 0;
             IsNew = true;
             IsLocked = true;
-            CreationTimestamp = GenericUtilities.GetTimestampForNow();
+            CreationTimestamp = GenericHelper.GetTimestampForNow();
         }
 
 

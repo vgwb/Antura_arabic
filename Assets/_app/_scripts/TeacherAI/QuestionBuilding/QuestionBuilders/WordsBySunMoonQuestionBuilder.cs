@@ -37,7 +37,7 @@ namespace EA4S.Teacher
             var choice1 = db.GetWordDataById("the_sun");
             var choice2 = db.GetWordDataById("the_moon");
 
-            var wordsWithArticle = teacher.wordAI.SelectData(
+            var wordsWithArticle = teacher.VocabularyAi.SelectData(
                 () => teacher.wordHelper.GetWordsByArticle(Database.WordDataArticle.Determinative, parameters.wordFilters),
                 new SelectionParameters(parameters.correctSeverity, nPacks, useJourney: parameters.useJourneyForCorrect)
                 );

@@ -8,6 +8,7 @@ using EA4S.Helpers;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
+using EA4S.Utilities;
 
 namespace EA4S.Minigames.MissingLetter
 {

@@ -1,8 +1,7 @@
 ﻿using DG.DeExtensions;
 using UnityEngine;
 
-// refactor: Helpers need to be standardized
-namespace EA4S.Utilities
+namespace EA4S.Helpers
 {
     public static class CameraHelper
     {

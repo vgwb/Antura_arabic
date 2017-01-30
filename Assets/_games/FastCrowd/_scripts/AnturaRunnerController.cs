@@ -56,7 +56,7 @@ namespace EA4S.Minigames.FastCrowd
             {
                 distance.Normalize();
                 transform.position += distance * Mathf.Abs(Vector3.Dot(distance, transform.forward)) * ANTURA_SPEED * Time.deltaTime;
-                MathUtils.LerpLookAtPlanar(transform, target, Time.deltaTime * 4);
+                GameplayHelper.LerpLookAtPlanar(transform, target, Time.deltaTime * 4);
             }
         }
 
