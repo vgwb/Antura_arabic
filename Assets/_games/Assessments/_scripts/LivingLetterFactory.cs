@@ -1,6 +1,6 @@
 using EA4S.LivingLetters;
-using System;
 using EA4S.MinigamesAPI;
+using System;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -26,12 +26,16 @@ namespace EA4S.Assessment
             return go;
         }
 
-        public LetterObjectView SpawnAnswer( ILivingLetterData data)
+        public Answer SpawnAnswer( ILivingLetterData data, bool correct, AssessmentDialogues dialogues)
         {
             // Organize LLs in inspector (just aestetical change)
-            var go = SpawnLivingLetter( data);
-            go.transform.SetParent( Answers.transform);
-            return go;
+            var ll = SpawnLivingLetter( data);
+            ll.transform.SetParent( Answers.transform);
+
+            // Link LL to answer
+            var answ = ll.gameObject.AddComponent< Answer>();
+            answ.Init( correct, dialogues);
+            return answ;
         }
 
         private LetterObjectView SpawnLivingLetter( ILivingLetterData data)
