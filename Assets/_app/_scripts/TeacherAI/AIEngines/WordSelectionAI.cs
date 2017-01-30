@@ -179,7 +179,7 @@ namespace EA4S.Teacher
         private List<T> WeightedDataSelect<T>(List<T> source_data_list, HashSet<T> currentPSData, int nToSelect, VocabularyDataType dataType, SelectionSeverity severity) where T : IData
         {
             // Given a (filtered) list of data, select some using weights
-            List<VocabularyScoreData> score_data_list = dbManager.FindDataByQuery<VocabularyScoreData>("SELECT * FROM ScoreData WHERE VocabularyDataType = '" + (int)dataType + "'");
+            List<VocabularyScoreData> score_data_list = dbManager.FindDataByQuery<VocabularyScoreData>("SELECT * FROM VocabularyScoreData WHERE VocabularyDataType = '" + (int)dataType + "'");
 
             string debugString = "-- Teacher Selection Weights";
 
