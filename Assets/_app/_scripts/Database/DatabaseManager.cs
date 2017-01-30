@@ -26,7 +26,25 @@ namespace EA4S.Database
             }
         }
 
-        public DatabaseManager(bool useTestDatabase, PlayerProfile playerProfile)
+
+        #region Factory
+
+        public static void CreateDatabaseForPlayer(PlayerProfileData playerProfileData)
+        {
+            AppManager.I.DB = new DatabaseManager(AppManager.I.GameSettings.UseTestDatabase, playerProfileData.PlayerId);
+            AppManager.I.DB.UpdatePlayerProfileData(playerProfileData);
+        }
+
+        public static PlayerProfileData LoadDatabaseForPlayer(int playerId)
+        {
+            AppManager.I.DB = new DatabaseManager(AppManager.I.GameSettings.UseTestDatabase, playerId);
+            return AppManager.I.DB.GetPlayerProfileData();
+        }
+
+        #endregion
+
+
+        public DatabaseManager(bool useTestDatabase, int playerProfileId)
         {
             LoadStaticDB(useTestDatabase);
 
@@ -36,7 +54,7 @@ namespace EA4S.Database
             }
 
             // We load the selected player profile
-            LoadDynamicDbForPlayerProfile(playerProfile.Id);
+            LoadDynamicDbForPlayerProfile(playerProfileId);
         }
 
         void LoadStaticDB(bool useTestDatabase)

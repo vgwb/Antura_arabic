@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace EA4S.Helpers
 {
+    /// <summary>
+    /// Static helper class for math functions.
+    /// </summary>
     public static class MathHelper
     {
         public static float AngleCounterClockwise(Vector2 a, Vector2 b)
