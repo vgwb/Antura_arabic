@@ -1,4 +1,5 @@
 ﻿using EA4S.Core;
+using EA4S.Helpers;
 using EA4S.Utilities;
 using SQLite;
 
@@ -44,7 +45,7 @@ namespace EA4S.Database
             TotalNumberOfBones = _TotalNumberOfBones;
             SetMaxJourneyPosition(JourneyPosition.InitialJourneyPosition);
             SetCurrentJourneyPosition(JourneyPosition.InitialJourneyPosition);
-            CreationTimestamp = GenericUtilities.GetTimestampForNow();
+            CreationTimestamp = GenericHelper.GetTimestampForNow();
         }
 
         #region Journey Position

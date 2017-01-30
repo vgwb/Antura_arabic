@@ -1,4 +1,5 @@
-﻿using EA4S.Utilities;
+﻿using EA4S.Helpers;
+using EA4S.Utilities;
 using SQLite;
 
 namespace EA4S.Database
@@ -36,7 +37,7 @@ namespace EA4S.Database
         {
 
         }
-        public JourneyScoreData(string elementId, JourneyDataType dataType, int score) : this(elementId, dataType, score, GenericUtilities.GetTimestampForNow())
+        public JourneyScoreData(string elementId, JourneyDataType dataType, int score) : this(elementId, dataType, score, GenericHelper.GetTimestampForNow())
         {
         }
         public JourneyScoreData(string elementId, JourneyDataType dataType, int score, int timestamp)

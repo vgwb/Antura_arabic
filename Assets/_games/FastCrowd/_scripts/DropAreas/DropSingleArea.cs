@@ -1,4 +1,5 @@
-﻿using EA4S.MinigamesAPI;
+﻿using EA4S.Helpers;
+using EA4S.MinigamesAPI;
 using EA4S.UI;
 using UnityEngine;
 using EA4S.Utilities;
@@ -44,7 +45,7 @@ namespace EA4S.Minigames.FastCrowd
             Data = _data;
 
             LetterLable.font = numbersFont;
-            LetterLable.text = GenericUtilities.ReverseText(text.ToString());
+            LetterLable.text = GenericHelper.ReverseText(text.ToString());
             DrawText.gameObject.SetActive(false);
 
             AreaState = State.disabled;
@@ -56,7 +57,7 @@ namespace EA4S.Minigames.FastCrowd
             Data = _data;
 
             LetterLable.font = normalFont;
-            LetterLable.text = GenericUtilities.ReverseText(text);
+            LetterLable.text = GenericHelper.ReverseText(text);
             DrawText.gameObject.SetActive(false);
 
             AreaState = State.disabled;

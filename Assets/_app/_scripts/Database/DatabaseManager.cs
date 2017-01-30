@@ -137,7 +137,7 @@ namespace EA4S.Database
         //public LetterData GetLetterDataByRandom()
         //{
         //    var letterslist = GetAllLetterData();
-        //    return GenericUtilities.GetRandom(letterslist);
+        //    return GenericHelper.GetRandom(letterslist);
         //}
         #endregion
 

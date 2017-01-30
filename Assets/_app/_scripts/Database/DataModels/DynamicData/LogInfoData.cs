@@ -1,4 +1,5 @@
-﻿using EA4S.Utilities;
+﻿using EA4S.Helpers;
+using EA4S.Utilities;
 using SQLite;
 
 // refactor: InfoEvent should be easily accessible outside of the EA4S.Db namespace but still be part of it
@@ -47,7 +48,7 @@ namespace EA4S.Database
             this.Session = _Session;
             this.Event = _Event;
             this.Parameters = _Parameters;
-            this.Timestamp = GenericUtilities.GetTimestampForNow();
+            this.Timestamp = GenericHelper.GetTimestampForNow();
         }
 
         public string GetId()

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using DG.Tweening;
+using EA4S.Helpers;
 using EA4S.Utilities;
 using UnityEngine;
 
@@ -87,8 +88,8 @@ namespace EA4S.UI
         string FormatCredits(string _txt)
         {
             // Format
-            string lv0 = "<size=" + Level0FontPerc + "%><color=#" + GenericUtilities.ColorToHex(Level0Color) + ">";
-            string lv1 = "<size=" + Level1FontPerc + "%><color=#" + GenericUtilities.ColorToHex(Level1Color) + ">";
+            string lv0 = "<size=" + Level0FontPerc + "%><color=#" + GenericHelper.ColorToHex(Level0Color) + ">";
+            string lv1 = "<size=" + Level1FontPerc + "%><color=#" + GenericHelper.ColorToHex(Level1Color) + ">";
             _txt = _txt.Replace("[0]", lv0);
             _txt = _txt.Replace("[0E]", "</color></size>");
             _txt = _txt.Replace("[1]", lv1);

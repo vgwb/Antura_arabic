@@ -1,5 +1,7 @@
 ﻿using ModularFramework.Helpers;
 using System.Collections.Generic;
+using EA4S.Helpers;
+using EA4S.Utilities;
 
 namespace EA4S.Teacher
 {
@@ -41,17 +43,17 @@ namespace EA4S.Teacher
 
             int nPerType = nPacks / 3;
 
-            var list_choice1 = teacher.wordAI.SelectData(
+            var list_choice1 = teacher.VocabularyAi.SelectData(
                 () => teacher.wordHelper.GetWordsByForm(Database.WordDataForm.Singular, parameters.wordFilters),
                 new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
-            var list_choice2 = teacher.wordAI.SelectData(
+            var list_choice2 = teacher.VocabularyAi.SelectData(
                 () => teacher.wordHelper.GetWordsByForm(Database.WordDataForm.Plural, parameters.wordFilters),
                 new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
-            var list_choice3 = teacher.wordAI.SelectData(
+            var list_choice3 = teacher.VocabularyAi.SelectData(
                 () => teacher.wordHelper.GetWordsByForm(Database.WordDataForm.Dual, parameters.wordFilters),
                 new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );

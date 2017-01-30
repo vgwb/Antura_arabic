@@ -10,8 +10,7 @@ namespace EA4S.Teacher
     /// <summary>
     /// Handles the selection of what dictionary data a minigame should use, given a playsession
     /// </summary>
-    // rename to DictionaryDataSelectionAI
-    public class WordSelectionAI 
+    public class VocabularySelectionAI 
     {
         // References
         private DatabaseManager dbManager;
@@ -27,7 +26,7 @@ namespace EA4S.Teacher
         private HashSet<WordData> currentPlaySessionWords = new HashSet<WordData>();
         private HashSet<PhraseData> currentPlaySessionPhrases = new HashSet<PhraseData>();
 
-        public WordSelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile, TeacherAI _teacher, WordHelper _wordHelper)
+        public VocabularySelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile, TeacherAI _teacher, WordHelper _wordHelper)
         {
             this.dbManager = _dbManager;
             //this.teacher = _teacher;
@@ -195,7 +194,7 @@ namespace EA4S.Teacher
                 int daysSinceLastScore = 0;
                 if (score_data != null)
                 {
-                    var timespanFromLastScoreToNow = GenericUtilities.GetTimeSpanBetween(score_data.LastAccessTimestamp, GenericUtilities.GetTimestampForNow());
+                    var timespanFromLastScoreToNow = GenericHelper.GetTimeSpanBetween(score_data.LastAccessTimestamp, GenericHelper.GetTimestampForNow());
                     daysSinceLastScore = timespanFromLastScoreToNow.Days;
                     currentScore = score_data.Score;
                 }

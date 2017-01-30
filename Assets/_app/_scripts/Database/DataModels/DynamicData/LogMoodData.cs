@@ -1,4 +1,5 @@
-﻿using EA4S.Utilities;
+﻿using EA4S.Helpers;
+using EA4S.Utilities;
 using SQLite;
 
 namespace EA4S.Database
@@ -23,7 +24,7 @@ namespace EA4S.Database
         public LogMoodData(float _mood)
         {
             MoodValue = _mood;
-            Timestamp = GenericUtilities.GetTimestampForNow();
+            Timestamp = GenericHelper.GetTimestampForNow();
         }
 
         public string GetId()

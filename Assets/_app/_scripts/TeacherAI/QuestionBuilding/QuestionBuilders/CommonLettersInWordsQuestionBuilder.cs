@@ -59,7 +59,7 @@ namespace EA4S.Teacher
             // instead, I should just count common letters, and then select these letters that appear more than nWords*nPacks times
 
             // Get all words
-            var usableWords = teacher.wordAI.SelectData(
+            var usableWords = teacher.VocabularyAi.SelectData(
                 () => teacher.wordHelper.GetAllWords(parameters.wordFilters),
                     new SelectionParameters(parameters.correctSeverity, getMaxData: true, useJourney: parameters.useJourneyForCorrect));
 
