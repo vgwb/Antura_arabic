@@ -26,15 +26,14 @@ namespace EA4S.Profile
             get { return currentPlayer; }
             set {
                 if (currentPlayer != value) {
-                    currentPlayer = value;
+                    AppManager.I.Player = currentPlayer = value;
+                    AppManager.I.Teacher.SetPlayerProfile(value);
                     // refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
                     if (AppManager.I.DB != null) {
                         LogManager.I.LogInfo(InfoEvent.AppClosed);
                     }
-                    AppManager.I.Player = value;
                     AppManager.I.GameSettings.LastActivePlayerId = value.Id;
                     SaveGameSettings();
-                    AppManager.I.Teacher.SetPlayerProfile(value);
                     LogManager.I.LogInfo(InfoEvent.AppStarted);
                     AppManager.I.NavigationManager.SetPlayerNavigationData(currentPlayer);
                     if (OnProfileChanged != null)
@@ -69,6 +68,7 @@ namespace EA4S.Profile
             AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
             if (AppManager.I.GameSettings.LastActivePlayerId > 0)
                 CurrentPlayer = LoadPlayerProfileById(AppManager.I.GameSettings.LastActivePlayerId);
+            // TODO : Refactor Reward System
             //reloadAvailablePlayerProfilesList();
         }
 
@@ -76,7 +76,7 @@ namespace EA4S.Profile
         //void reloadAvailablePlayerProfilesList() {
         //    List<PlayerProfile> returnList = new List<PlayerProfile>();
         //    foreach (string pId in AppManager.I.GameSettings.AvailablePlayers) {
-                
+
         //        PlayerProfile pp = AppManager.I.Modules.PlayerProfile.LoadPlayerSettings<PlayerProfile>(pId) as PlayerProfile;
         //        if (pp != null)
         //            returnList.Add(pp);
@@ -109,26 +109,26 @@ namespace EA4S.Profile
         }
 
         /// <summary>
-        /// Return PlayerProfile with avatar id in param.
-        /// If not exist create new with default settings.
+        /// Sets the player profile with corresposnding avatarId to current player.
         /// </summary>
-        /// <param name="_avatarId"></param>
+        /// <param name="_avatarId">The avatar identifier.</param>
+        /// <param name="_isNew">if set to <c>true</c> create new one.</param>
         /// <returns></returns>
         public PlayerProfile SetPlayerProfile(int _avatarId, bool _isNew)
         {
-            bool isNew = false;
             PlayerProfile returnProfile;
-            if (isNew) {
+            if (_isNew) {
                 returnProfile = new PlayerProfile();
-                isNew = true;
                 // create new
                 returnProfile.Id = AppManager.I.GameSettings.AvailablePlayers.Count + 1;
                 returnProfile.AvatarId = _avatarId;
                 returnProfile.Key = returnProfile.Id.ToString();
-                returnProfile = AppManager.I.Modules.PlayerProfile.CreateNewPlayer(returnProfile) as PlayerProfile;
+                // TODO : Refactor Reward System
+                // returnProfile = AppManager.I.Modules.PlayerProfile.CreateNewPlayer(returnProfile) as PlayerProfile;
             } else {
                 returnProfile = LoadPlayerProfileByAvatarId(_avatarId);
             }
+            AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
             // Create new antura skin
             RewardPackUnlockData tileTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
             returnProfile.AddRewardUnlocked(tileTexture);
@@ -137,12 +137,11 @@ namespace EA4S.Profile
             returnProfile.AddRewardUnlocked(decalTexture);
             returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
             // -----
-            AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
             // TODO : Refactor Reward System
             //AppManager.I.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.I.PlayerProfileManager.CurrentPlayer);
             //AppManager.I.PlayerProfileManager.CurrentPlayer.Save();
             SaveGameSettings();
-            if (isNew && OnNewProfileCreated != null)
+            if (_isNew && OnNewProfileCreated != null)
                 OnNewProfileCreated();
 
             return AppManager.I.PlayerProfileManager.CurrentPlayer;

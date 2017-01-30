@@ -93,9 +93,8 @@ namespace EA4S.UI
         {
             AvatarSelector.Hide();
             btAddTween.PlayBackwards();
-
-            PlayerProfile pp = ProfileManager.SetPlayerProfile(_avatarId, true);
-            ProfileManager.CurrentPlayer = pp;
+            PlayerProfileManager ppm = AppManager.I.PlayerProfileManager;
+            ppm.SetPlayerProfile(_avatarId, true);
             AudioManager.I.PlaySound(SfxCreateNewProfile);
             LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL());
             Setup();
