@@ -24,8 +24,8 @@ namespace EA4S.Database.Management
             data.Arabic = ToString(dict["Arabic"]);
             data.Value = ToString(dict["Value"]);
             data.Letters = CustomParseLetters(data, db);
-            data.Difficulty = ToInt(dict["Difficulty"]);
             data.Drawing = ToString(dict["Drawing"]);
+            data.Intrinsic = ToFloat(dict["Intrinsic"]);
 
             return data;
         }

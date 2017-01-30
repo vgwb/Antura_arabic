@@ -20,6 +20,7 @@ namespace EA4S.Database
         public string Linked;
         public string[] Words;
         public string[] Answers;
+        public float Intrinsic;
 
         public override string ToString()
         {
