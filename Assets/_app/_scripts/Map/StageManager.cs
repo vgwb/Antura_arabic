@@ -48,9 +48,6 @@ namespace EA4S.Map
         {
             if (!Application.isEditor) SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
 
-            /*AppManager.I.Player.MaxJourneyPosition.Stage = 2;
-            AppManager.I.Player.MaxJourneyPosition.LearningBlock = 3;
-            AppManager.I.Player.MaxJourneyPosition.PlaySession = 1;*/
             numberStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
             s = AppManager.I.Player.MaxJourneyPosition.Stage;
             for (i = 1; i <= (s - 1); i++)
