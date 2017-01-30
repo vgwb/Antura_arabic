@@ -214,8 +214,6 @@ namespace EA4S.Minigames.HideAndSeek
                 script.SetMovement(MovementType.OnlyRight);
             else if (placeholder == 2)
                 script.SetMovement(MovementType.OnlyLeft);
-            else if (placeholder == 0 || placeholder == 6)
-                script.SetMovement(MovementType.Enhanced);
             else
                 script.SetMovement(MovementType.Normal);
         }

@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Light_floor_hide_seek
-  m_Shader: {fileID: 4800000, guid: 50305544bb6ab544ab71467fecca1a99, type: 3}
+  m_Shader: {fileID: 4800000, guid: 750a3936f0b329a49ae58f4f26470329, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
