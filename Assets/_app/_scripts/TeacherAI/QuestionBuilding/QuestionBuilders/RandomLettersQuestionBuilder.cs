@@ -50,13 +50,13 @@ namespace EA4S.Teacher
         {
             var teacher = AppManager.I.Teacher;
 
-            var correctLetters = teacher.wordAI.SelectData(
+            var correctLetters = teacher.VocabularyAi.SelectData(
                 () => teacher.wordHelper.GetAllLetters(parameters.letterFilters),
                     new SelectionParameters(parameters.correctSeverity, nCorrect, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs)
                 );
 
-            var wrongLetters = teacher.wordAI.SelectData(
+            var wrongLetters = teacher.VocabularyAi.SelectData(
                 () => teacher.wordHelper.GetLettersNotIn(parameters.letterFilters, correctLetters.ToArray()),
                     new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
                      packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs)

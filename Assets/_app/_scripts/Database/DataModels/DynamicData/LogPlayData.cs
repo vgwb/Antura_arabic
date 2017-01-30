@@ -1,4 +1,5 @@
-﻿using EA4S.Utilities;
+﻿using EA4S.Helpers;
+using EA4S.Utilities;
 using SQLite;
 
 namespace EA4S.Database
@@ -40,7 +41,7 @@ namespace EA4S.Database
             PlaySkill = _PlaySkill;
             Score = _Score;
             RawData = _RawData;
-            Timestamp = GenericUtilities.GetTimestampForNow();
+            Timestamp = GenericHelper.GetTimestampForNow();
         }
 
         public string GetId()

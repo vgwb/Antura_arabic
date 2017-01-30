@@ -1,7 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 using EA4S.Core;
 using EA4S.Database;
 using EA4S.Helpers;
@@ -26,7 +24,7 @@ namespace EA4S.Teacher
 
         // Inner engines
         public LogAI logAI;
-        public WordSelectionAI wordAI;
+        public VocabularySelectionAI VocabularyAi;
         MiniGameSelectionAI minigameSelectionAI;
         DifficultySelectionAI difficultySelectionAI;
 
@@ -50,7 +48,7 @@ namespace EA4S.Teacher
 
             logAI = new LogAI(_dbManager);
             minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
-            wordAI = new WordSelectionAI(dbManager, playerProfile, this, wordHelper);
+            VocabularyAi = new VocabularySelectionAI(dbManager, playerProfile, this, wordHelper);
             difficultySelectionAI = new DifficultySelectionAI(dbManager, playerProfile);
         }
 
@@ -58,7 +56,7 @@ namespace EA4S.Teacher
         {
             var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
             minigameSelectionAI.InitialiseNewPlaySession();
-            wordAI.LoadCurrentPlaySessionData(currentPlaySessionId);
+            VocabularyAi.LoadCurrentPlaySessionData(currentPlaySessionId);
         }
 
         #endregion
@@ -209,10 +207,10 @@ namespace EA4S.Teacher
 
             if (useMaxJourneyData)
             {
-               wordAI.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+               VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
             }
 
-            var availableLetters = wordAI.SelectData(
+            var availableLetters = VocabularyAi.SelectData(
               () => wordHelper.GetAllLetters(filters),
                 new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
               );
@@ -235,10 +233,10 @@ namespace EA4S.Teacher
 
             if (useMaxJourneyData)
             {
-               wordAI.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+               VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
             }
 
-            var availableLetters = wordAI.SelectData(
+            var availableLetters = VocabularyAi.SelectData(
               () => wordHelper.GetAllLetters(filters),
                 new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
               );
@@ -265,7 +263,7 @@ namespace EA4S.Teacher
 
             if (useMaxJourneyData)
             {
-                wordAI.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+                VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
             }
 
             if (giveWarningOnFake)
@@ -274,7 +272,7 @@ namespace EA4S.Teacher
                 giveWarningOnFake = false;
             }
 
-            var availableWords = wordAI.SelectData(
+            var availableWords = VocabularyAi.SelectData(
               () => wordHelper.GetWordsByCategory(WordDataCategory.Animal, filters),
                 new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
               );

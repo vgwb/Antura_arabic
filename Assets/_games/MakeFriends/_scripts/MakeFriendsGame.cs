@@ -6,10 +6,12 @@ using System.Linq;
 using ModularFramework.Helpers;
 using ArabicSupport;
 using EA4S.Core;
+using EA4S.Helpers;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using EA4S.UI;
+using EA4S.Utilities;
 
 namespace EA4S.Minigames.MakeFriends
 {
@@ -293,13 +295,13 @@ namespace EA4S.Minigames.MakeFriends
                         //Debug.Log("Considering as choice: " + letter.TextForLivingLetter);
                         if (choiceLetters.Exists(x => x.Id == letter.Id))
                         {
-                            letter = AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement();
+                            letter = AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom();
                             //Debug.Log("Using random choice instead: " + letter);
                         }
                     }
                     else
                     {
-                        letter = AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement();
+                        letter = AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom();
                         //Debug.Log("No more word letters, using random: " + letter.TextForLivingLetter);
                     }
                 } while (choiceLetters.Exists(x => x.Id == letter.Id));

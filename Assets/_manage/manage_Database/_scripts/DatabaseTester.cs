@@ -236,7 +236,7 @@ namespace EA4S.Database.Management
         {
             var newData = new LogInfoData();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
-            newData.Timestamp = GenericUtilities.GetTimestampForNow();
+            newData.Timestamp = GenericHelper.GetTimestampForNow();
 
             newData.Event = InfoEvent.Book;
             newData.Parameters = "test:1";
@@ -249,7 +249,7 @@ namespace EA4S.Database.Management
         {
             var newData = new LogLearnData();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
-            newData.Timestamp = GenericUtilities.GetTimestampForNow();
+            newData.Timestamp = GenericHelper.GetTimestampForNow();
 
             newData.PlaySession = "1.1.1";
             newData.MiniGame = MiniGameCode.Assessment_LetterShape;
@@ -270,7 +270,7 @@ namespace EA4S.Database.Management
         {
             var newData = new LogMoodData();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
-            newData.Timestamp = GenericUtilities.GetTimestampForNow();
+            newData.Timestamp = GenericHelper.GetTimestampForNow();
 
             newData.MoodValue = RND.Range(0, 20);
 
@@ -282,7 +282,7 @@ namespace EA4S.Database.Management
         {
             var newData = new LogPlayData();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
-            newData.Timestamp = GenericUtilities.GetRelativeTimestampFromNow(-RND.Range(0, 5));
+            newData.Timestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
 
             newData.PlaySession = "1.1.1";
             newData.MiniGame = MiniGameCode.Balloons_counting;
@@ -332,7 +332,7 @@ namespace EA4S.Database.Management
                     break;
             }
 
-            //var lastAccessTimestamp = GenericUtilities.GetRelativeTimestampFromNow(-RND.Range(0, 5));
+            //var lastAccessTimestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
             // @note: lastAccessTimestamp is not used
             
 
@@ -427,7 +427,7 @@ namespace EA4S.Database.Management
             var list = teacherAI.GetLastMoodData(10);
 
             string output = "Latest 10 moods:\n";
-            foreach (var data in list) output += GenericUtilities.FromTimestamp(data.Timestamp) + ": " + data.ToString() + "\n";
+            foreach (var data in list) output += GenericHelper.FromTimestamp(data.Timestamp) + ": " + data.ToString() + "\n";
             PrintOutput(output);
         }
 
@@ -472,7 +472,7 @@ namespace EA4S.Database.Management
             var list = teacherAI.GetScoreHistoryForCurrentJourneyPosition();
 
             string output = "Score history for the current journey position (" + playerProfile.CurrentJourneyPosition.ToString() + ") in the PlayerProfile:\n";
-            foreach (var data in list) output += GenericUtilities.FromTimestamp(data.Timestamp) + ": " + data.Score + "\n";
+            foreach (var data in list) output += GenericHelper.FromTimestamp(data.Timestamp) + ": " + data.Score + "\n";
             PrintOutput(output);
         }
 

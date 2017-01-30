@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using EA4S.Database;
+using EA4S.Helpers;
 using EA4S.Utilities;
 
 // @todo: refactor this to separate JourneyInfo from VocabularyInfo (different rules)
@@ -126,7 +127,7 @@ namespace EA4S.Teacher
 
         public List<float> GetLatestScoresForMiniGame(MiniGameCode minigameCode, int nLastDays)
         {
-            int fromTimestamp = GenericUtilities.GetRelativeTimestampFromNow(-nLastDays);
+            int fromTimestamp = GenericHelper.GetRelativeTimestampFromNow(-nLastDays);
             string query = string.Format("SELECT * FROM LogPlayData WHERE MiniGame = '{0}' AND Timestamp < {1}",
                 (int)minigameCode, fromTimestamp);
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);

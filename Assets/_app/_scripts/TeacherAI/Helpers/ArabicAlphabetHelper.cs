@@ -24,7 +24,7 @@ namespace EA4S.Helpers
             if (reversed)
             {
                 // needed to be set in a TMPro RTL text
-                return GenericUtilities.ReverseText(ArabicFixer.Fix(str, true, true));
+                return GenericHelper.ReverseText(ArabicFixer.Fix(str, true, true));
             }
             return ArabicFixer.Fix(str, true, true);
         }
