@@ -194,7 +194,7 @@ namespace EA4S.Helpers
         /// Return a string of a word without a character. Warning: the word is already reversed and fixed for rendering.
         /// This is mandatory since PrepareArabicStringForDisplay should be called before adding removedLetterChar.
         /// </summary>
-        public static string GetWordWithMissingLetter(Database.WordData arabicWord, Database.LetterData letterToRemove, string removedLetterChar = "_")
+        public static string GetWordWithMissingLetterText(Database.WordData arabicWord, Database.LetterData letterToRemove, string removedLetterChar = "_")
         {
             var Letters = SplitWordIntoLetters(arabicWord);
             
@@ -221,10 +221,10 @@ namespace EA4S.Helpers
         }
 
         /// <summary>
-        /// Return a string of a word without a character. Warning: the word is already reversed and fixed for rendering.
-        /// This is mandatory since PrepareArabicStringForDisplay should be called before adding the "_" character.
+        /// Return a string of a word with the "color" tag enveloping a character. Warning: the word is already reversed and fixed for rendering.
+        /// This is mandatory since PrepareArabicStringForDisplay should be called before adding the tags.
         /// </summary>
-        public static string GetWordWithMarkedLetter(Database.WordData arabicWord, Database.LetterData letterToMark, Color color)
+        public static string GetWordWithMarkedLetterText(Database.WordData arabicWord, Database.LetterData letterToMark, Color color)
         {
             var Letters = SplitWordIntoLetters(arabicWord);
 
