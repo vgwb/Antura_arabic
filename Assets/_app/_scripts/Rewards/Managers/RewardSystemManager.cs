@@ -396,34 +396,15 @@ namespace EA4S.Rewards
             RewardPackUnlockData rp = new RewardPackUnlockData();
             switch (_rewardType) {
                 case RewardTypes.reward:
-                    rp = new RewardPackUnlockData() {
-                        // If not random take id from list of already unlocked rewards of this type
-                        ItemID = _random ? config.Rewards.GetRandom().ID : AppManager.I.Player.RewardsUnlocked.FindAll(r => r.Type == RewardTypes.reward).GetRandom<RewardPackUnlockData>().ItemID,
-                        // Todo: check if color is not already unlocked!
-                        ColorId = config.RewardsColorPairs.GetRandom().ID,
-                        Type = _rewardType,
-                        PlaySessionId = _playsession,
-                        IsNew = true,
-                        
-                    };
+                    // If not random take id from list of already unlocked rewards of this type
+                    string _itemId = _random ? config.Rewards.GetRandom().ID : AppManager.I.Player.RewardsUnlocked.FindAll(r => r.Type == RewardTypes.reward).GetRandom<RewardPackUnlockData>().ItemID;
+                    rp = new RewardPackUnlockData(_itemId, config.RewardsColorPairs.GetRandom().ID, _rewardType, _playsession);
                     break;
                 case RewardTypes.texture:
-                    rp = new RewardPackUnlockData() {
-                        ItemID = config.RewardsTile.GetRandom().ID,
-                        ColorId = config.RewardsTileColor.GetRandom().ID,
-                        Type = _rewardType,
-                        PlaySessionId = _playsession,
-                        IsNew = true,
-                    };
+                    rp = new RewardPackUnlockData(config.RewardsTile.GetRandom().ID, config.RewardsTileColor.GetRandom().ID, _rewardType, _playsession);
                     break;
                 case RewardTypes.decal:
-                    rp = new RewardPackUnlockData() {
-                        ItemID = config.RewardsDecal.GetRandom().ID,
-                        ColorId = config.RewardsDecalColor.GetRandom().ID,
-                        Type = _rewardType,
-                        PlaySessionId = _playsession,
-                        IsNew = true,
-                    };
+                    rp = new RewardPackUnlockData(config.RewardsDecal.GetRandom().ID, config.RewardsDecalColor.GetRandom().ID, _rewardType,_playsession);
                     break;
                 default:
                     break;
@@ -443,22 +424,10 @@ namespace EA4S.Rewards
                     rp = GetRewardPack("0.0.0", _rewardType, true);
                     break;
                 case RewardTypes.texture:
-                    rp = new RewardPackUnlockData() {
-                        ItemID = "Antura_wool_tilemat",
-                        ColorId = "color1",
-                        Type = _rewardType,
-                        PlaySessionId = "0.0.0",
-                        IsNew = true,
-                    };
+                    rp = new RewardPackUnlockData("Antura_wool_tilemat","color1",_rewardType,"0.0.0");
                     break;
                 case RewardTypes.decal:
-                    rp = new RewardPackUnlockData() {
-                        ItemID = "Antura_decalmap01",
-                        ColorId = "color1",
-                        Type = _rewardType,
-                        PlaySessionId = "0.0.0",
-                        IsNew = true,
-                    };
+                    rp = new RewardPackUnlockData("Antura_decalmap01","color1",_rewardType,"0.0.0");
                     break;
                 default:
                     break;
