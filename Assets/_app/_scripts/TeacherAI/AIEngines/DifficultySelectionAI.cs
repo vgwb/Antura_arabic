@@ -21,9 +21,13 @@ namespace EA4S.Teacher
         private float journeyWeight = ConfigAI.difficulty_weight_journey;     // Higher journey stage -> higher difficulty
         private float performanceWeight = ConfigAI.difficulty_weight_performance;       // Higher performance -> higher difficulty
 
-        public DifficultySelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
+        public DifficultySelectionAI(DatabaseManager _dbManager)
         {
             this.dbManager = _dbManager;
+        }
+
+        public void SetPlayerProfile(PlayerProfile _playerProfile)
+        {
             this.playerProfile = _playerProfile;
         }
 
