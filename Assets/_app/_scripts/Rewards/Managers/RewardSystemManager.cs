@@ -329,7 +329,8 @@ namespace EA4S.Rewards
 
         #endregion
 
-        #region RewardAI                
+        #region RewardAI 
+        [Obsolete("TODO: check!")]
         /// <summary>
         /// Gets the reward packs for play session ended, already created or create on fly now (and save on player profile).
         /// </summary>
@@ -354,6 +355,7 @@ namespace EA4S.Rewards
             return rpList;
         }
 
+        [Obsolete("TODO: check!")]
         public static List<RewardPackUnlockData> GetNextRewardPack() {
             PlaySessionRewardUnlock unlock = config.PlaySessionRewardsUnlock.Find(r => r.PlaySession == AppManager.I.Player.CurrentJourneyPosition.ToString());
             if (unlock == null) { 
@@ -381,7 +383,7 @@ namespace EA4S.Rewards
             ////////////////////////////////////////////////////
             return returnList;
         }
-
+        
         /// <summary>
         /// Gets the next reward pack. Contains all logic to create new reward.
         /// </summary>
