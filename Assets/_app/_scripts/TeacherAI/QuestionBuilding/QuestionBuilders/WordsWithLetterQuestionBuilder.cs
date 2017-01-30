@@ -47,6 +47,7 @@ namespace EA4S.Teacher
         private QuestionPackData CreateSingleQuestionPackData()
         {
             var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             // Get a letter
             var usableLetters = teacher.VocabularyAi.SelectData(
@@ -57,13 +58,13 @@ namespace EA4S.Teacher
 
             // Get words with the letter
             var correctWords = teacher.VocabularyAi.SelectData(
-                () => teacher.wordHelper.GetWordsWithLetter(parameters.wordFilters, commonLetter.Id),
+                () => vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, commonLetter.Id),
                     new SelectionParameters(parameters.correctSeverity, nCorrect, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words));
 
             // Get words without the letter
             var wrongWords = teacher.VocabularyAi.SelectData(
-                () => teacher.wordHelper.GetWordsNotIn(parameters.wordFilters, correctWords.ToArray()),
+                () => vocabularyHelper.GetWordsNotIn(parameters.wordFilters, correctWords.ToArray()),
                     new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong));
 
             var pack = QuestionPackData.Create(commonLetter, correctWords, wrongWords);
@@ -85,11 +86,11 @@ namespace EA4S.Teacher
         private List<Database.LetterData> FindEligibleLetters(int atLeastNWords)
         {
             List<Database.LetterData> eligibleLetters = new List<Database.LetterData>();
-            var teacher = AppManager.I.Teacher;
-            var allLetters = teacher.wordHelper.GetAllLetters(parameters.letterFilters);
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
+            var allLetters = vocabularyHelper.GetAllLetters(parameters.letterFilters);
             foreach(var letter in allLetters)
             {
-                int nWords = teacher.wordHelper.GetWordsWithLetter(parameters.wordFilters, letter.Id).Count;
+                int nWords = vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, letter.Id).Count;
                 if (nWords >= atLeastNWords)
                 {
                     eligibleLetters.Add(letter);

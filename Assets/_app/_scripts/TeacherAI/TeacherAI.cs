@@ -30,18 +30,18 @@ namespace EA4S.Teacher
 
         // Helpers
         // refactor: these helpers should be separated from the TeacherAI.
-        public WordHelper wordHelper;
+        private VocabularyHelper VocabularyHelper;
         public JourneyHelper journeyHelper;
         public ScoreHelper scoreHelper;
         
         #region Setup
 
-        public TeacherAI(DatabaseManager _dbManager)
+        public TeacherAI(DatabaseManager _dbManager, VocabularyHelper _vocabularyHelper)
         {
             I = this;
             dbManager = _dbManager;
 
-            wordHelper = new WordHelper(_dbManager);
+            VocabularyHelper = _vocabularyHelper;
             journeyHelper = new JourneyHelper(_dbManager, this);
             scoreHelper = new ScoreHelper(_dbManager);
 
@@ -216,7 +216,7 @@ namespace EA4S.Teacher
             }
 
             var availableLetters = VocabularyAi.SelectData(
-              () => wordHelper.GetAllLetters(filters),
+              () => VocabularyHelper.GetAllLetters(filters),
                 new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
               );
 
@@ -242,7 +242,7 @@ namespace EA4S.Teacher
             }
 
             var availableLetters = VocabularyAi.SelectData(
-              () => wordHelper.GetAllLetters(filters),
+              () => VocabularyHelper.GetAllLetters(filters),
                 new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
               );
 
@@ -278,7 +278,7 @@ namespace EA4S.Teacher
             }
 
             var availableWords = VocabularyAi.SelectData(
-              () => wordHelper.GetWordsByCategory(WordDataCategory.Animal, filters),
+              () => VocabularyHelper.GetWordsByCategory(WordDataCategory.Animal, filters),
                 new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
               );
 

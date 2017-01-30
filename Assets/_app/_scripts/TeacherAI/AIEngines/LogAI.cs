@@ -34,7 +34,7 @@ namespace EA4S.Teacher
 
         public void LogInfo(string session, InfoEvent infoEvent, string parametersString = "")
         {
-            if (AppManager.I.DB.HasLoadedPlayerProfile()) {
+            if (!AppManager.I.DB.HasLoadedPlayerProfile()) {
                 Debug.Log("No player profile DB to log to. Player profile is probably not set");
                 return;
             }

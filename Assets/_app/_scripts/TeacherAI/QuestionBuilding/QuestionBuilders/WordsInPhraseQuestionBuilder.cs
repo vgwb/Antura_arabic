@@ -52,11 +52,12 @@ namespace EA4S.Teacher
         private QuestionPackData CreateSingleQuestionPackData()
         {
             var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             // Get a phrase
             int nToUse = 1;
             var usablePhrases = teacher.VocabularyAi.SelectData(
-                () => teacher.wordHelper.GetAllPhrases(
+                () => vocabularyHelper.GetAllPhrases(
                     parameters.wordFilters,
                     parameters.phraseFilters),
                     new SelectionParameters(parameters.correctSeverity, nToUse, useJourney: parameters.useJourneyForCorrect,
@@ -68,18 +69,18 @@ namespace EA4S.Teacher
             List<Database.WordData> relatedWords = null;
             if (usePhraseAnswersIfFound && question.Answers.Length > 0)
             {
-                relatedWords = teacher.wordHelper.GetAnswersToPhrase(question, parameters.wordFilters);
+                relatedWords = vocabularyHelper.GetAnswersToPhrase(question, parameters.wordFilters);
             }
             else
             {
-                relatedWords = teacher.wordHelper.GetWordsInPhrase(question, parameters.wordFilters);
+                relatedWords = vocabularyHelper.GetWordsInPhrase(question, parameters.wordFilters);
             }
 
             correctWords.AddRange(relatedWords);
             if (!useAllCorrectWords) correctWords = correctWords.RandomSelect(nCorrect);
 
             var wrongWords = teacher.VocabularyAi.SelectData(
-                  () =>  teacher.wordHelper.GetWordsNotIn(parameters.wordFilters, relatedWords.ToArray()),
+                  () => vocabularyHelper.GetWordsNotIn(parameters.wordFilters, relatedWords.ToArray()),
                         new SelectionParameters(parameters.correctSeverity, nWrong, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
 
