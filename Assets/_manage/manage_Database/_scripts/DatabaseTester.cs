@@ -36,7 +36,7 @@ namespace EA4S.Database.Management
 
             playerProfile = new PlayerProfile();
             playerProfile.CurrentJourneyPosition = new JourneyPosition(1, 2, 2);    // test
-            this.dbManager = new DatabaseManager(useTestDatabase, playerProfile);
+            this.dbManager = new DatabaseManager(useTestDatabase, playerProfile.Id);
 
             teacherAI = new TeacherAI(dbManager, playerProfile);
         }
