@@ -55,7 +55,7 @@ namespace EA4S.Teacher
             var teacher = AppManager.I.Teacher;
 
             // Get a word
-            var usableWords = teacher.wordAI.SelectData(
+            var usableWords = teacher.VocabularyAi.SelectData(
                 () => FindEligibleWords(maxWordLength: this.maximumWordLength),
                     new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
@@ -67,12 +67,12 @@ namespace EA4S.Teacher
             bool useJourneyForLetters = parameters.useJourneyForCorrect; 
             if (useAllCorrectLetters) useJourneyForLetters = false;  // @note: we force journey in this case to be off so that all letters can be found
 
-            var correctAnswers = teacher.wordAI.SelectData(
+            var correctAnswers = teacher.VocabularyAi.SelectData(
                 () => wordLetters,
                  new SelectionParameters(parameters.correctSeverity, nCorrect, getMaxData:useAllCorrectLetters, 
                  useJourney: useJourneyForLetters));  
 
-            var wrongAnswers = teacher.wordAI.SelectData(
+            var wrongAnswers = teacher.VocabularyAi.SelectData(
                 () => teacher.wordHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray()),
                     new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong));
 

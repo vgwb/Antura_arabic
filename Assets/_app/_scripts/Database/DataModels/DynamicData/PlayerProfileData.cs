@@ -1,5 +1,5 @@
 ﻿using EA4S.Core;
-using EA4S.Utilities;
+using EA4S.Helpers;
 using SQLite;
 
 namespace EA4S.Database
@@ -10,8 +10,10 @@ namespace EA4S.Database
     [System.Serializable]
     public class PlayerProfileData : IData
     {
+        public const string UNIQUE_ID = "1";
+
         [PrimaryKey]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string PlayerKey { get; set; }
         public int PlayerId { get; set; }
@@ -34,7 +36,7 @@ namespace EA4S.Database
 
         public PlayerProfileData(string _PlayerKey, int _PlayerId, int _AvatarId, int _Age, string _Name, int _TotalNumberOfBones)
         {
-            Id = 1;  // Only one record
+            Id = UNIQUE_ID;  // Only one record
             PlayerKey = _PlayerKey;
             PlayerId = _PlayerId;
             AvatarId = _AvatarId;
@@ -44,7 +46,7 @@ namespace EA4S.Database
             TotalNumberOfBones = _TotalNumberOfBones;
             SetMaxJourneyPosition(JourneyPosition.InitialJourneyPosition);
             SetCurrentJourneyPosition(JourneyPosition.InitialJourneyPosition);
-            CreationTimestamp = GenericUtilities.GetTimestampForNow();
+            CreationTimestamp = GenericHelper.GetTimestampForNow();
         }
 
         #region Journey Position
@@ -60,7 +62,7 @@ namespace EA4S.Database
         {
             CurrentJourneyPosition_Stage = pos.Stage;
             CurrentJourneyPosition_LearningBlock = pos.LearningBlock;
-            CurrentJourneyPosition_LearningBlock = pos.PlaySession;
+            CurrentJourneyPosition_LearningBlock = pos.PlaySession; 
         }
 
         public JourneyPosition GetMaxJourneyPosition()
@@ -76,11 +78,10 @@ namespace EA4S.Database
         #endregion
 
         #region Database API
-
         
         public string GetId()
         {
-            return Id.ToString();
+            return Id;
         }
 
         public override string ToString()

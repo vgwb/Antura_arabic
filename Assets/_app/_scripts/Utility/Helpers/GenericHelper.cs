@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
-// refactor: Helpers need to be standardized
-namespace EA4S.Utilities
+namespace EA4S.Helpers
 {
-    public static class GenericUtilities
+    /// <summary>
+    /// Static helper class for generic utility functions.
+    /// </summary>
+    public static class GenericHelper
     {
+        #region Enumerators
 
         /// <summary>
         /// sort an Enum by its names.. returns List;
@@ -15,19 +18,24 @@ namespace EA4S.Utilities
         /// </summary>
         public static IOrderedEnumerable<TEnum> SortEnums<TEnum>()
         {
-            // alternative: Enum.GetValues(typeof(TEnum)).Cast<TEnum>().OrderBy(v => v.ToString());
             return ((TEnum[])Enum.GetValues(typeof(TEnum))).OrderBy(v => v.ToString());
         }
+
+        #endregion
+
+        #region Text
 
         public static string ReverseText(string text)
         {
             var cArray = text.ToCharArray();
-            var reverse = string.Empty;
+            var reverse = String.Empty;
             for (var i = cArray.Length - 1; i > -1; i--) {
                 reverse += cArray[i];
             }
             return reverse;
         }
+
+        #endregion
 
         #region DateTime
         private static DateTime TIME_START = new DateTime(1970, 1, 1, 0, 0, 0);
@@ -68,22 +76,6 @@ namespace EA4S.Utilities
 
         #endregion
 
-        #region Math
-        public static float GetAverage(List<float> floatsList)
-        {
-            if (floatsList.Count < 1)
-                return 0f;
-
-            var average = 0f;
-
-            foreach (var item in floatsList) {
-                average += item;
-            }
-
-            return (average / floatsList.Count);
-        }
-        #endregion
-
         #region Colors
 
         // Taken from here: http://answers.unity3d.com/questions/812240/convert-hex-int-to-colorcolor32.html
@@ -92,11 +84,11 @@ namespace EA4S.Utilities
             _hex = _hex.Replace ("0x", "");
             _hex = _hex.Replace ("#", "");
             byte a = 255;
-            byte r = byte.Parse(_hex.Substring(0,2), System.Globalization.NumberStyles.HexNumber);
-            byte g = byte.Parse(_hex.Substring(2,2), System.Globalization.NumberStyles.HexNumber);
-            byte b = byte.Parse(_hex.Substring(4,2), System.Globalization.NumberStyles.HexNumber);
+            byte r = Byte.Parse(_hex.Substring(0,2), NumberStyles.HexNumber);
+            byte g = Byte.Parse(_hex.Substring(2,2), NumberStyles.HexNumber);
+            byte b = Byte.Parse(_hex.Substring(4,2), NumberStyles.HexNumber);
             // Only use alpha if the string has enough characters
-            if(_hex.Length == 8) a = byte.Parse(_hex.Substring(4,2), System.Globalization.NumberStyles.HexNumber);
+            if(_hex.Length == 8) a = Byte.Parse(_hex.Substring(4,2), NumberStyles.HexNumber);
             return new Color32(r,g,b,a);
         }
 

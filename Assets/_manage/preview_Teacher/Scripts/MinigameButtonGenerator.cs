@@ -1,4 +1,5 @@
-﻿using EA4S.Utilities;
+﻿using EA4S.Helpers;
+using EA4S.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,7 @@ namespace EA4S.Teacher.Test
 
         void Start()
         {
-            foreach (var enumValue in GenericUtilities.SortEnums<MiniGameCode>()) {
+            foreach (var enumValue in GenericHelper.SortEnums<MiniGameCode>()) {
                 MiniGameCode code = enumValue;
                 var btnGO = Instantiate(buttonPrefab);
                 btnGO.transform.SetParent(this.transform);

@@ -38,7 +38,7 @@ namespace EA4S.Teacher
             var teacher = AppManager.I.Teacher;
 
             // Fully ordered alphabet, only 1 pack
-            var alphabetLetters = teacher.wordAI.SelectData(
+            var alphabetLetters = teacher.VocabularyAi.SelectData(
                 () => teacher.wordHelper.GetAllLetters(parameters.letterFilters),
                 new SelectionParameters(parameters.correctSeverity, getMaxData:true, useJourney: parameters.useJourneyForCorrect)
                 );

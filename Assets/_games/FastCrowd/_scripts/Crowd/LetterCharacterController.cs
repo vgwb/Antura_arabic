@@ -38,12 +38,12 @@ namespace EA4S.Minigames.FastCrowd
 
         public void LookAt(Vector3 position)
         {
-            MathUtils.LerpLookAtPlanar(transform, position, 1);
+            GameplayHelper.LerpLookAtPlanar(transform, position, 1);
         }
 
         public void LerpLookAt(Vector3 position, float t)
         {
-            MathUtils.LerpLookAtPlanar(transform, position, t);
+            GameplayHelper.LerpLookAtPlanar(transform, position, t);
         }
     }
 }

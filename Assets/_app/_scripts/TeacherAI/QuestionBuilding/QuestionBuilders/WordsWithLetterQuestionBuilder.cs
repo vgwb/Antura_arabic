@@ -49,20 +49,20 @@ namespace EA4S.Teacher
             var teacher = AppManager.I.Teacher;
 
             // Get a letter
-            var usableLetters = teacher.wordAI.SelectData(
+            var usableLetters = teacher.VocabularyAi.SelectData(
               () => FindEligibleLetters(atLeastNWords: nCorrect),
                 new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_letters));
             var commonLetter = usableLetters[0];
 
             // Get words with the letter
-            var correctWords = teacher.wordAI.SelectData(
+            var correctWords = teacher.VocabularyAi.SelectData(
                 () => teacher.wordHelper.GetWordsWithLetter(parameters.wordFilters, commonLetter.Id),
                     new SelectionParameters(parameters.correctSeverity, nCorrect, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words));
 
             // Get words without the letter
-            var wrongWords = teacher.wordAI.SelectData(
+            var wrongWords = teacher.VocabularyAi.SelectData(
                 () => teacher.wordHelper.GetWordsNotIn(parameters.wordFilters, correctWords.ToArray()),
                     new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong));
 

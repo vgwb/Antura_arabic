@@ -1,4 +1,5 @@
-﻿using EA4S.Utilities;
+﻿using EA4S.Helpers;
+using EA4S.Utilities;
 using SQLite;
 
 namespace EA4S.Database
@@ -33,7 +34,7 @@ namespace EA4S.Database
             TableName = _dataType.ToString();   //  TODO: instead of TableName we should use VocabularyDataType 
             ElementId = _elementId;
             Score = _score;
-            Timestamp = GenericUtilities.GetTimestampForNow();
+            Timestamp = GenericHelper.GetTimestampForNow();
         }
 
         public string GetId()

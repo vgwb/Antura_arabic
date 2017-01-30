@@ -47,7 +47,7 @@ namespace EA4S.Teacher
 
             // Get a question phrase at random
             int nToUse = 1;
-            var usablePhrases = teacher.wordAI.SelectData(
+            var usablePhrases = teacher.VocabularyAi.SelectData(
                 () => teacher.wordHelper.GetPhrasesByCategory(Database.PhraseDataCategory.Question, parameters.wordFilters, parameters.phraseFilters),
                     new SelectionParameters(parameters.correctSeverity, nToUse, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
@@ -60,7 +60,7 @@ namespace EA4S.Teacher
             correctAnswers.Add(reply);
 
             // Get random wrong phrases
-            var wrongPhrases = teacher.wordAI.SelectData(
+            var wrongPhrases = teacher.VocabularyAi.SelectData(
                 () => teacher.wordHelper.GetPhrasesNotIn(parameters.wordFilters, parameters.phraseFilters, question, reply),
                     new SelectionParameters(parameters.correctSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
                         packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs));

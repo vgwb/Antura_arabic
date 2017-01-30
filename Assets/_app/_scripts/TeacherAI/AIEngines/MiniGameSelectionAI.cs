@@ -122,7 +122,7 @@ namespace EA4S.Teacher
                 int daysSinceLastScore = 0;
                 if (minigame_scoredata != null)
                 {
-                    var timespanFromLastScoreToNow = GenericUtilities.GetTimeSpanBetween(minigame_scoredata.LastAccessTimestamp, GenericUtilities.GetTimestampForNow());
+                    var timespanFromLastScoreToNow = GenericHelper.GetTimeSpanBetween(minigame_scoredata.LastAccessTimestamp, GenericHelper.GetTimestampForNow());
                     daysSinceLastScore = timespanFromLastScoreToNow.Days;
                 }
                 debugString += minigame_data.Code + " --- \t";

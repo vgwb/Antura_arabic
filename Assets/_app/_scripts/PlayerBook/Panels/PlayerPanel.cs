@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using EA4S.Database;
 using System.Collections.Generic;
+using EA4S.Helpers;
 using EA4S.Utilities;
 
 namespace EA4S.PlayerBook
@@ -59,7 +60,7 @@ namespace EA4S.PlayerBook
                     endTimestamp = infoData.Timestamp;
                     foundStart = false;
 
-                    var deltaTimespan = GenericUtilities.FromTimestamp(endTimestamp) - GenericUtilities.FromTimestamp(startTimestamp);
+                    var deltaTimespan = GenericHelper.FromTimestamp(endTimestamp) - GenericHelper.FromTimestamp(startTimestamp);
                     totalTimespan += deltaTimespan;
                     //Debug.Log("TIME FOUND:"  + deltaTimespan.Days + " days " + deltaTimespan.Hours + " hours " + deltaTimespan.Minutes + " minutes " + deltaTimespan.Seconds + " seconds");
                 }

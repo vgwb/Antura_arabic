@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using EA4S.Antura;
+using EA4S.Helpers;
 using EA4S.Rewards;
 using EA4S.Utilities;
 using UnityEngine;
@@ -173,7 +174,7 @@ namespace EA4S.UI
                 item.Data = rewardData;
                 if (rewardData != null) {
                     if (!useImages) {
-                        item.RewardContainer.gameObject.SetLayerRecursive(GenericUtilities.LayerMaskToIndex(RewardsLayer));
+                        item.RewardContainer.gameObject.SetLayerRecursive(GenericHelper.LayerMaskToIndex(RewardsLayer));
                         CameraHelper.FitRewardToUICamera(item.RewardContainer.GetChild(0), item.RewardCamera, FlipRewards);
                     }
                     item.SetAsNew(rewardData.IsNew);
@@ -225,7 +226,7 @@ namespace EA4S.UI
                 if (swatchData != null) {
                     swatch.SetAsNew(swatchData.IsNew);
                     swatch.Toggle(swatchData.IsSelected);
-                    swatch.SetColors(GenericUtilities.HexToColor(swatchData.Color1RGB), GenericUtilities.HexToColor(swatchData.Color2RGB));
+                    swatch.SetColors(GenericHelper.HexToColor(swatchData.Color1RGB), GenericHelper.HexToColor(swatchData.Color2RGB));
                     if (swatchData.IsSelected) selectedSwatchData = swatchData;
                 } else swatch.Toggle(false);
                 swatch.Lock(swatchData == null);

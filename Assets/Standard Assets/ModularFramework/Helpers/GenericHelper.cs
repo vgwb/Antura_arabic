@@ -24,58 +24,7 @@ using System.Linq;
 namespace ModularFramework.Helpers {
 
     public static class GenericHelper {
-
-        /// <summary>
-        /// Return random float value around _value parameter + or - _variation.
-        /// </summary>
-        /// <param name="_value"></param>
-        /// <param name="_variation"></param>
-        /// <returns></returns>
-        public static float GetValueWithRandomVariation(float _value, float _variation) {
-            return Random.Range(_value - _variation, _value + _variation);
-        }
-
         #region extensions
-
-        /// <summary>
-        /// Return random element of list.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="_thisList"></param>
-        /// <returns></returns>
-        public static T GetRandomElement<T>(this List<T> _thisList) {
-            return _thisList[Random.Range(0, _thisList.Count)];
-        }
-
-        private static System.Random rng = new System.Random();
-
-        public static void Shuffle<T>(this IList<T> list) {
-            int n = list.Count;
-            while (n > 1) {
-                n--;
-                int k = rng.Next(n + 1);
-                T value = list[k];
-                list[k] = list[n];
-                list[n] = value;
-            }
-        }
-
-        public static IList<T> ShuffleCopy<T>(this IList<T> thisList)
-        {
-            IList<T> list = new List<T>(thisList.ToArray());
-
-            int n = list.Count;
-            while (n > 1)
-            {
-                n--;
-                int k = rng.Next(n + 1);
-                T value = list[k];
-                list[k] = list[n];
-                list[n] = value;
-            }
-            return list;
-        }
-
 
         #endregion
 

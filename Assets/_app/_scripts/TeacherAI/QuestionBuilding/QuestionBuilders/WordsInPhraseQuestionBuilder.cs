@@ -55,7 +55,7 @@ namespace EA4S.Teacher
 
             // Get a phrase
             int nToUse = 1;
-            var usablePhrases = teacher.wordAI.SelectData(
+            var usablePhrases = teacher.VocabularyAi.SelectData(
                 () => teacher.wordHelper.GetAllPhrases(
                     parameters.wordFilters,
                     parameters.phraseFilters),
@@ -78,7 +78,7 @@ namespace EA4S.Teacher
             correctWords.AddRange(relatedWords);
             if (!useAllCorrectWords) correctWords = correctWords.RandomSelect(nCorrect);
 
-            var wrongWords = teacher.wordAI.SelectData(
+            var wrongWords = teacher.VocabularyAi.SelectData(
                   () =>  teacher.wordHelper.GetWordsNotIn(parameters.wordFilters, relatedWords.ToArray()),
                         new SelectionParameters(parameters.correctSeverity, nWrong, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));

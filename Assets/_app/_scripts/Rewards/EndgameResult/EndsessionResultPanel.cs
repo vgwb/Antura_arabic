@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using EA4S.Audio;
 using EA4S.Core;
+using EA4S.Helpers;
 using EA4S.UI;
 using EA4S.Utilities;
 using UnityEngine;
@@ -162,7 +163,7 @@ namespace EA4S.Rewards
             for (int i = 0; i < RewardsGos.Length; ++i) {
                 GameObject go = RewardsGos[i];
                 if (go.transform.childCount == 0) continue;
-                go.SetLayerRecursive(GenericUtilities.LayerMaskToIndex(RewardsGosLayer));
+                go.SetLayerRecursive(GenericHelper.LayerMaskToIndex(RewardsGosLayer));
                 CameraHelper.FitRewardToUICamera(go.transform.GetChild(0), RewardsCams[i], true);
             }
         }

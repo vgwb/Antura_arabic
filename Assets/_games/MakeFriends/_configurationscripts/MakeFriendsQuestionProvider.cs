@@ -3,6 +3,7 @@ using ModularFramework.Helpers;
 using ArabicSupport;
 using EA4S.Helpers;
 using EA4S.MinigamesAPI;
+using EA4S.Utilities;
 
 namespace EA4S.Minigames.MakeFriends
 {

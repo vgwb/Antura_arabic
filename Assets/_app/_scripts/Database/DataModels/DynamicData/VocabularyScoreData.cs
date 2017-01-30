@@ -1,4 +1,5 @@
-﻿using EA4S.Utilities;
+﻿using EA4S.Helpers;
+using EA4S.Utilities;
 using SQLite;
 
 namespace EA4S.Database
@@ -35,7 +36,7 @@ namespace EA4S.Database
         {
 
         }
-        public VocabularyScoreData(string elementId, VocabularyDataType dataType, float score) :  this(elementId, dataType, score, GenericUtilities.GetTimestampForNow())
+        public VocabularyScoreData(string elementId, VocabularyDataType dataType, float score) :  this(elementId, dataType, score, GenericHelper.GetTimestampForNow())
         {
         }
         public VocabularyScoreData(string elementId, VocabularyDataType dataType, float score, int timestamp)
