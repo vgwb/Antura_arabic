@@ -85,7 +85,7 @@ namespace EA4S.Profile
         /// Saves this instance.
         /// </summary>
         public void Save()
-        {
+        {            
             AppManager.I.PlayerProfileManager.SavePlayerSettings(this);
         }
 
@@ -308,6 +308,13 @@ namespace EA4S.Profile
 
         #endregion
 
-
+        #region To PlayerProfileData
+        public PlayerProfileData ToData() {
+            PlayerProfileData newProfileData = new PlayerProfileData(this.Key, this.Id, this.AvatarId, this.Age, this.Name, this.TotalNumberOfBones, ProfileCompletion);
+            newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
+            newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
+            return newProfileData;
+        }
+        #endregion
     }
 }
