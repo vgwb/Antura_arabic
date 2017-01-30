@@ -51,7 +51,7 @@ namespace EA4S.UI
             btAddTween = BtAdd.transform.DORotate(new Vector3(0, 0, -45), 0.3f).SetAutoKill(false).Pause()
                 .SetEase(Ease.OutBack)
                 .OnRewind(() => {
-                    if (ProfileManager.AvailablePlayerProfiles == null || ProfileManager.AvailablePlayerProfiles.Count == 0) BtAdd.Pulse();
+                    if (AppManager.I.GameSettings.AvailablePlayers == null || AppManager.I.GameSettings.AvailablePlayers.Count == 0) BtAdd.Pulse();
                 });
             btPlayTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(BtPlay.RectT.DOAnchorPosY(-210, 0.2f).From(true))
@@ -91,16 +91,20 @@ namespace EA4S.UI
             AvatarSelector.Hide();
             btAddTween.PlayBackwards();
 
-            PlayerProfile pp = ProfileManager.CreateOrLoadPlayerProfile(_avatarId);
+            PlayerProfile pp = ProfileManager.SetPlayerProfile(_avatarId, true);
             ProfileManager.CurrentPlayer = pp;
             AudioManager.I.PlaySound(SfxCreateNewProfile);
             LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL());
             Setup();
         }
 
+        /// <summary>
+        /// Selects the profile.
+        /// </summary>
+        /// <param name="_id">Player id.</param>
         internal void SelectProfile(int _id)
         {
-            ProfileManager.CurrentPlayer = ProfileManager.AvailablePlayerProfiles[_id - 1];
+            ProfileManager.SetPlayerProfile(_id, false);
             AudioManager.I.PlaySound(SfxSelectProfile);
             LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
             Setup();
@@ -114,14 +118,14 @@ namespace EA4S.UI
         void Setup()
         {
             ActivateProfileButtons(true);
-            int totProfiles = ProfileManager.AvailablePlayerProfiles == null ? 0 : ProfileManager.AvailablePlayerProfiles.Count;
+            int totProfiles = AppManager.I.GameSettings.AvailablePlayers == null ? 0 : AppManager.I.GameSettings.AvailablePlayers.Count;
             int len = avatarButtons.Length;
             for (int i = 0; i < len; ++i) {
                 ProfileSelectorAvatarButton bt = GetAvatarButtonByPlayerId(i + 1); // right to left
                 if (i >= totProfiles) bt.gameObject.SetActive(false);
                 else {
                     bt.gameObject.SetActive(true);
-                    bt.SetAvatar(ProfileManager.AvailablePlayerProfiles[i].AvatarId);
+                    bt.SetAvatar(int.Parse(AppManager.I.GameSettings.AvailablePlayers[i]));
                     if (i == ProfileManager.CurrentPlayer.Id - 1) bt.Toggle(true, true);
                     else bt.Toggle(false);
                 }
@@ -168,7 +172,7 @@ namespace EA4S.UI
                 if (AvatarSelector.IsShown) {
                     btAddTween.PlayBackwards();
                     AvatarSelector.Hide();
-                    if (ProfileManager.AvailablePlayerProfiles != null && ProfileManager.AvailablePlayerProfiles.Count > 0) btPlayTween.PlayForward();
+                    if (AppManager.I.GameSettings.AvailablePlayers != null && AppManager.I.GameSettings.AvailablePlayers.Count > 0) btPlayTween.PlayForward();
                     ActivateProfileButtons(true);
                 } else {
                     btAddTween.PlayForward();

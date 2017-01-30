@@ -308,12 +308,32 @@ namespace EA4S.Profile
 
         #endregion
 
-        #region To PlayerProfileData
+        #region To/From PlayerProfileData        
+        /// <summary>
+        /// Converte this instance to PlayerProfileData.
+        /// </summary>
+        /// <returns></returns>
         public PlayerProfileData ToData() {
             PlayerProfileData newProfileData = new PlayerProfileData(this.Key, this.Id, this.AvatarId, this.Age, this.Name, this.TotalNumberOfBones, ProfileCompletion);
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
             return newProfileData;
+        }
+
+        /// <summary>
+        /// Charge this with PlayerProfileData.
+        /// </summary>
+        public PlayerProfile FromData(PlayerProfileData _data) {
+            Key = _data.PlayerKey;
+            Id = _data.PlayerId;
+            AvatarId = _data.AvatarId;
+            Age = _data.Age;
+            Name = _data.Name;
+            ProfileCompletion = _data.ProfileCompletion;
+            TotalNumberOfBones = _data.TotalNumberOfBones;
+            this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition());
+            this.SetMaxJourneyPosition(_data.GetMaxJourneyPosition());
+            return this;
         }
         #endregion
     }
