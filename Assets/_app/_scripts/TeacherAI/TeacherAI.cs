@@ -36,20 +36,25 @@ namespace EA4S.Teacher
         
         #region Setup
 
-        public TeacherAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
+        public TeacherAI(DatabaseManager _dbManager)
         {
             I = this;
             dbManager = _dbManager;
-            playerProfile = _playerProfile;
 
             wordHelper = new WordHelper(_dbManager);
             journeyHelper = new JourneyHelper(_dbManager, this);
             scoreHelper = new ScoreHelper(_dbManager);
 
             logAI = new LogAI(_dbManager);
-            minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
-            VocabularyAi = new VocabularySelectionAI(dbManager, playerProfile, this, wordHelper);
-            difficultySelectionAI = new DifficultySelectionAI(dbManager, playerProfile);
+            minigameSelectionAI = new MiniGameSelectionAI(dbManager);
+            VocabularyAi = new VocabularySelectionAI(dbManager);
+            difficultySelectionAI = new DifficultySelectionAI(dbManager);
+        }
+
+        public void SetPlayerProfile(PlayerProfile _playerProfile)
+        {
+            playerProfile = _playerProfile;
+            difficultySelectionAI.SetPlayerProfile(_playerProfile);
         }
 
         private void ResetPlaySession()

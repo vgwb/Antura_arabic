@@ -36,9 +36,11 @@ namespace EA4S.Database.Management
 
             playerProfile = new PlayerProfile();
             playerProfile.CurrentJourneyPosition = new JourneyPosition(1, 2, 2);    // test
-            this.dbManager = new DatabaseManager(useTestDatabase, playerProfile.Id);
+            this.dbManager = new DatabaseManager(useTestDatabase);
+            this.dbManager.LoadDatabaseForPlayer(playerProfile.Id);
 
-            teacherAI = new TeacherAI(dbManager, playerProfile);
+            teacherAI = new TeacherAI(dbManager);
+            teacherAI.SetPlayerProfile(playerProfile);
         }
 
         #region Main Actions
