@@ -33,10 +33,11 @@ namespace EA4S.Teacher
         private QuestionPackData CreateSingleQuestionPackData()
         {
             var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             // Ordered words
             var words = teacher.VocabularyAi.SelectData(
-                 () => teacher.wordHelper.GetWordsByCategory(category, parameters.wordFilters),
+                 () => vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters),
                  new SelectionParameters(parameters.correctSeverity, getMaxData:true, useJourney:parameters.useJourneyForCorrect) 
                );
 

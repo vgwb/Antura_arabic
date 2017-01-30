@@ -34,13 +34,9 @@ namespace EA4S.Database.Management
         {
             this.dbLoader = GetComponentInChildren<DatabaseLoader>();
 
-            playerProfile = new PlayerProfile();
-            playerProfile.CurrentJourneyPosition = new JourneyPosition(1, 2, 2);    // test
-            this.dbManager = new DatabaseManager(useTestDatabase);
-            this.dbManager.LoadDatabaseForPlayer(playerProfile.Id);
-
-            teacherAI = new TeacherAI(dbManager);
-            teacherAI.SetPlayerProfile(playerProfile);
+            dbManager = new DatabaseManager(useTestDatabase);
+            var vocabularyHelper = new VocabularyHelper(dbManager);
+            teacherAI = new TeacherAI(dbManager, vocabularyHelper);
         }
 
         #region Main Actions
@@ -561,7 +557,10 @@ namespace EA4S.Database.Management
 
         public void LoadProfile(int profileId)
         {
-            this.dbManager.LoadDynamicDbForPlayerProfile(profileId);
+            dbManager.LoadDatabaseForPlayer(profileId);
+            playerProfile = new PlayerProfile();
+            playerProfile.CurrentJourneyPosition = new JourneyPosition(1, 2, 2);    // test
+            teacherAI.SetPlayerProfile(playerProfile);
             PrintOutput("Loading profile " + profileId);
         }
 

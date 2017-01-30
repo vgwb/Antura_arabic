@@ -28,6 +28,7 @@ namespace EA4S
         }
 
         public TeacherAI Teacher;
+        public VocabularyHelper VocabularyHelper;
         public DatabaseManager DB;
         public PlayerProfile Player;
         public MiniGameLauncher GameLauncher;
@@ -58,14 +59,15 @@ namespace EA4S
             // refactor: standardize initialisation of managers
             LogManager = new LogManager();
 
+            DB = new DatabaseManager(GameSettings.UseTestDatabase);
+            VocabularyHelper = new VocabularyHelper(DB);
+            Teacher = new TeacherAI(DB, VocabularyHelper);
+            GameLauncher = new MiniGameLauncher(Teacher);
+
             NavigationManager = gameObject.AddComponent<NavigationManager>();
             PlayerProfileManager = new PlayerProfileManager();
             gameObject.AddComponent<DebugManager>();
             gameObject.AddComponent<KeeperManager>();
-
-            DB = new DatabaseManager(GameSettings.UseTestDatabase);
-            Teacher = new TeacherAI(DB);
-            GameLauncher = new MiniGameLauncher(Teacher);
 
             RewardSystemManager.Init();
 
