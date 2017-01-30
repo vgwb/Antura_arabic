@@ -109,6 +109,8 @@ namespace EA4S.Minigames.SickLetters
             if (game.roundsCount == 0)
                 yield break;
 
+            game.disableInput = true;
+
             StartCoroutine(game.antura.bark());
 
             yield return new WaitForSeconds(0.5f);
@@ -125,6 +127,7 @@ namespace EA4S.Minigames.SickLetters
             vaseRB.constraints = RigidbodyConstraints.None;
             vaseRB.isKinematic = false;
 
+            
 
             StartCoroutine(dropVase());
 
@@ -145,6 +148,11 @@ namespace EA4S.Minigames.SickLetters
             game.antura.sleep();
             
             summonVase();
+
+            yield return new WaitForSeconds(1f);
+
+            if (game.wrongDDsOnLL() > 0)
+                game.disableInput = false;
         }
 
         public IEnumerator dropVase(float delay = 0, bool moveCam = false)
@@ -164,6 +172,7 @@ namespace EA4S.Minigames.SickLetters
                     dd.boxCollider.isTrigger = false;
                     dd.thisRigidBody.isKinematic = false;
                     dd.thisRigidBody.useGravity = true;
+                    dd.poofDD(Mathf.Clamp( Random.value * 10f, 1.5f, 3));
                 }
             }
 
