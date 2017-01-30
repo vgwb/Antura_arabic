@@ -5635,7 +5635,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: EA4S_Arabic_Dots_Only SDF Material
-  m_Shader: {fileID: 4800000, guid: b29bad89649122d44b963fb342a75711, type: 3}
+  m_Shader: {fileID: 4800000, guid: 0c0d5cc8a63e24740a5f41a1f0725a95, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
