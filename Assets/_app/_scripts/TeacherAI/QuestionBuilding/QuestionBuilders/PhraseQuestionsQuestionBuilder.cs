@@ -44,24 +44,25 @@ namespace EA4S.Teacher
         private QuestionPackData CreateSingleQuestionPackData()
         {
             var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             // Get a question phrase at random
             int nToUse = 1;
             var usablePhrases = teacher.VocabularyAi.SelectData(
-                () => teacher.wordHelper.GetPhrasesByCategory(Database.PhraseDataCategory.Question, parameters.wordFilters, parameters.phraseFilters),
+                () => vocabularyHelper.GetPhrasesByCategory(Database.PhraseDataCategory.Question, parameters.wordFilters, parameters.phraseFilters),
                     new SelectionParameters(parameters.correctSeverity, nToUse, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
             var question = usablePhrases[0];
 
             // Get the linked reply phrase
-            var reply = teacher.wordHelper.GetLinkedPhraseOf(question);
+            var reply = vocabularyHelper.GetLinkedPhraseOf(question);
 
             var correctAnswers = new List<Database.PhraseData>();
             correctAnswers.Add(reply);
 
             // Get random wrong phrases
             var wrongPhrases = teacher.VocabularyAi.SelectData(
-                () => teacher.wordHelper.GetPhrasesNotIn(parameters.wordFilters, parameters.phraseFilters, question, reply),
+                () => vocabularyHelper.GetPhrasesNotIn(parameters.wordFilters, parameters.phraseFilters, question, reply),
                     new SelectionParameters(parameters.correctSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
                         packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs));
 

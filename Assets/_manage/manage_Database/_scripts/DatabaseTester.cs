@@ -35,8 +35,8 @@ namespace EA4S.Database.Management
             this.dbLoader = GetComponentInChildren<DatabaseLoader>();
 
             dbManager = new DatabaseManager(useTestDatabase);
-            teacherAI = new TeacherAI(dbManager);
-
+            var vocabularyHelper = new VocabularyHelper(dbManager);
+            teacherAI = new TeacherAI(dbManager, vocabularyHelper);
         }
 
         #region Main Actions

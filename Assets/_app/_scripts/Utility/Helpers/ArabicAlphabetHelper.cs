@@ -4,11 +4,9 @@ using System.Text;
 using System.Collections.Generic;
 using ArabicSupport;
 using EA4S.MinigamesAPI;
-using EA4S.Utilities;
 
 namespace EA4S.Helpers
 {
-    // refactor: This should be among helpers and not be accessed through the TeacherAI.
     // refactor: We should create an intermediate layer for accessing language-specific helpers, so that they can be removed easily.
     // refactor: this class needs a large refactoring as it is used for several different purposes
     public static class ArabicAlphabetHelper

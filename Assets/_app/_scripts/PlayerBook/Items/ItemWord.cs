@@ -39,7 +39,7 @@ namespace EA4S.PlayerBook
             SubTitle.text = info.data.Id;
 
             if (info.data.Drawing != "") {
-                Drawing.text = AppManager.I.Teacher.wordHelper.GetWordDrawing(info.data);
+                Drawing.text = AppManager.I.VocabularyHelper.GetWordDrawing(info.data);
                 if (info.data.Category == Database.WordDataCategory.Color) {
                     Drawing.SetColor(GenericHelper.GetColorFromString(info.data.Value));
                 }

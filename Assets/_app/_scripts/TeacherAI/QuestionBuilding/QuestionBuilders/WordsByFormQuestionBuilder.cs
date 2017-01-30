@@ -35,6 +35,7 @@ namespace EA4S.Teacher
         {
             List<QuestionPackData> packs = new List<QuestionPackData>();
             var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             var db = AppManager.I.DB;
             var choice1 = db.GetWordDataById("singular");
@@ -44,17 +45,17 @@ namespace EA4S.Teacher
             int nPerType = nPacks / 3;
 
             var list_choice1 = teacher.VocabularyAi.SelectData(
-                () => teacher.wordHelper.GetWordsByForm(Database.WordDataForm.Singular, parameters.wordFilters),
+                () => vocabularyHelper.GetWordsByForm(Database.WordDataForm.Singular, parameters.wordFilters),
                 new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             var list_choice2 = teacher.VocabularyAi.SelectData(
-                () => teacher.wordHelper.GetWordsByForm(Database.WordDataForm.Plural, parameters.wordFilters),
+                () => vocabularyHelper.GetWordsByForm(Database.WordDataForm.Plural, parameters.wordFilters),
                 new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             var list_choice3 = teacher.VocabularyAi.SelectData(
-                () => teacher.wordHelper.GetWordsByForm(Database.WordDataForm.Dual, parameters.wordFilters),
+                () => vocabularyHelper.GetWordsByForm(Database.WordDataForm.Dual, parameters.wordFilters),
                 new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 

@@ -32,6 +32,7 @@ namespace EA4S.Teacher
         {
             List<QuestionPackData> packs = new List<QuestionPackData>();
             var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             var db = AppManager.I.DB;
             var choice1 = db.GetWordDataById("consonant");
@@ -40,12 +41,12 @@ namespace EA4S.Teacher
             int nPerType = nPacks / 2;
 
             var list_choice1 = teacher.VocabularyAi.SelectData(
-                () => teacher.wordHelper.GetConsonantLetter(parameters.letterFilters),
+                () => vocabularyHelper.GetConsonantLetter(parameters.letterFilters),
                 new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             var list_choice2 = teacher.VocabularyAi.SelectData(
-                () => teacher.wordHelper.GetVowelLetter(parameters.letterFilters),
+                () => vocabularyHelper.GetVowelLetter(parameters.letterFilters),
                 new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
