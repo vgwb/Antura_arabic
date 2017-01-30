@@ -1,15 +1,36 @@
 ﻿using UnityEngine;
-
-namespace EA4S.Map
+using System.Collections;
+namespace EA4S
 {
-    /// <summary>
-    /// Represents a single dot in the Map scene, from which a new play session can be accessed.
-    /// </summary>
-    // refactor: can be a non-MonoBehaviour class
     public class Dot : MonoBehaviour
     {
         public int learningBlockActual;
         public int playSessionActual;
         public int pos;
+        public Material blackDot;
+        public Material redDot;
+
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                ChangeMaterialPinToRed();
+            }
+        }
+        void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                ChangeMaterialPinToBlack();
+            }
+        }
+        public void ChangeMaterialPinToBlack()
+        {
+            GetComponent<Renderer>().material = blackDot;
+        }
+        public void ChangeMaterialPinToRed()
+        {
+            GetComponent<Renderer>().material = redDot;
+        }
     }
 }
