@@ -34,7 +34,7 @@ namespace EA4S.Database
         {
         }
 
-        public PlayerProfileData(string _PlayerKey, int _PlayerId, int _AvatarId, int _Age, string _Name, int _TotalNumberOfBones)
+        public PlayerProfileData(string _PlayerKey, int _PlayerId, int _AvatarId, int _Age, string _Name, int _TotalNumberOfBones, int _ProfileCompletion)
         {
             Id = UNIQUE_ID;  // Only one record
             PlayerKey = _PlayerKey;
@@ -42,7 +42,7 @@ namespace EA4S.Database
             AvatarId = _AvatarId;
             Age = _Age;
             Name = _Name;
-            ProfileCompletion = 0;
+            ProfileCompletion = _ProfileCompletion;
             TotalNumberOfBones = _TotalNumberOfBones;
             SetMaxJourneyPosition(JourneyPosition.InitialJourneyPosition);
             SetCurrentJourneyPosition(JourneyPosition.InitialJourneyPosition);

@@ -52,6 +52,7 @@ namespace EA4S.Profile
         /// </summary>
         public List<PlayerProfile> AvailablePlayerProfiles {
             get {
+                // TODO : Refactor Reward System
                 reloadAvailablePlayerProfilesList();
                 return availablePlayerProfiles;
             }
@@ -67,19 +68,20 @@ namespace EA4S.Profile
             AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
             if (AppManager.I.GameSettings.LastActivePlayerId > 0)
                 CurrentPlayer = LoadPlayerProfileById(AppManager.I.GameSettings.LastActivePlayerId);
-            reloadAvailablePlayerProfilesList();
+            //reloadAvailablePlayerProfilesList();
         }
 
-        void reloadAvailablePlayerProfilesList()
-        {
-            List<PlayerProfile> returnList = new List<PlayerProfile>();
-            foreach (string pId in AppManager.I.GameSettings.AvailablePlayers) {
-                PlayerProfile pp = AppManager.I.Modules.PlayerProfile.LoadPlayerSettings<PlayerProfile>(pId) as PlayerProfile;
-                if (pp != null)
-                    returnList.Add(pp);
-            }
-            availablePlayerProfiles = returnList;
-        }
+        // TODO : Refactor Reward System
+        //void reloadAvailablePlayerProfilesList()
+        //{
+        //    List<PlayerProfile> returnList = new List<PlayerProfile>();
+        //    foreach (string pId in AppManager.I.GameSettings.AvailablePlayers) {
+        //        PlayerProfile pp = AppManager.I.Modules.PlayerProfile.LoadPlayerSettings<PlayerProfile>(pId) as PlayerProfile;
+        //        if (pp != null)
+        //            returnList.Add(pp);
+        //    }
+        //    availablePlayerProfiles = returnList;
+        //}
         #endregion
 
         #region API        
@@ -148,7 +150,10 @@ namespace EA4S.Profile
         /// <param name="_playerProfile">The player profile.</param>
         public void SavePlayerSettings(PlayerProfile _playerProfile)
         {
-            AppManager.I.Modules.PlayerProfile.SavePlayerSettings(_playerProfile);
+            // TODO : Refactor Reward System
+            AppManager.I.DB.UpdatePlayerProfileData(_playerProfile.ToData());
+            // Old 
+            //AppManager.I.Modules.PlayerProfile.SavePlayerSettings(_playerProfile);
         }
 
         /// <summary>
@@ -168,6 +173,8 @@ namespace EA4S.Profile
         /// <returns></returns>
         public PlayerProfile LoadPlayerProfileById(int _Id)
         {
+            // TODO : Refactor Reward System
+            
             return AppManager.I.PlayerProfile.LoadPlayerSettings<PlayerProfile>(_Id.ToString()) as PlayerProfile;
         }
 
