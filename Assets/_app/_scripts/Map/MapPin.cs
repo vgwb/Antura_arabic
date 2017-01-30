@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
+using System.Collections;
+using EA4S;
 
-namespace EA4S.Map
+namespace EA4S
 {
-    /// <summary>
-    /// Shows a Pin that represents a play session on the map.
-    /// </summary>
     public class MapPin : MonoBehaviour
     {
-        public int Number;
+        public int learningBlockPin;
+        public int playSessionPin;
         public bool unlocked;
         public Transform RopeNode;
         public GameObject Dot;
         public Material blackPin;
         public Material redPin;
-        public int posBefore;
+        public int pos;
 
         void Start()
         {
