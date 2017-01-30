@@ -366,7 +366,8 @@ namespace EA4S.LivingLetters
         public void DoHorray()
         {
             if ((State != LLAnimationStates.LL_still) &&
-                (State != LLAnimationStates.LL_idle)) {
+                (State != LLAnimationStates.LL_idle) &&
+                (State != LLAnimationStates.LL_rocketing)) {
                 if (!hasToGoBackState)
                     backState = State;
                 SetState(LLAnimationStates.LL_still);

@@ -8,7 +8,7 @@ namespace EA4S.Intro
     /// A special LivingLetter character with special animations.
     /// </summary>
     // refactor: remove the references to the Maze minigame
-    public class IntroMazeCharacter : MonoBehaviour
+    public class IntroRocketCharacter : MonoBehaviour
     {
 
         public LetterObjectView LL;
@@ -25,6 +25,7 @@ namespace EA4S.Intro
         {
             LL.Init(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement()); 
             LL.SetState(LLAnimationStates.LL_rocketing);
+            LL.Horraying = true;
         }
 
         public void SetDestination ()
