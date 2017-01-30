@@ -27,8 +27,8 @@ MonoBehaviour:
       - sheen
       - yeh
       - tah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: agreed
       Active: 1
       Kind: 2
@@ -43,8 +43,8 @@ MonoBehaviour:
       - alef
       - feh_fathah
       - qaf_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: al
       Active: 1
       Kind: 3
@@ -57,8 +57,8 @@ MonoBehaviour:
       Letters:
       - alef
       - lam
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: and
       Active: 1
       Kind: 4
@@ -70,8 +70,8 @@ MonoBehaviour:
       Value: 
       Letters:
       - waw
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 0
     - Id: anger
       Active: 1
       Kind: 5
@@ -85,8 +85,8 @@ MonoBehaviour:
       - ghain
       - yeh
       - zah
-      Difficulty: 0
       Drawing: 41
+      Intrinsic: 1
     - Id: apple
       Active: 1
       Kind: 5
@@ -101,8 +101,8 @@ MonoBehaviour:
       - feh
       - alef
       - hah
-      Difficulty: 0
       Drawing: 42
+      Intrinsic: 1
     - Id: apricot
       Active: 1
       Kind: 5
@@ -117,8 +117,8 @@ MonoBehaviour:
       - sheen
       - meem
       - sheen
-      Difficulty: 2
       Drawing: 43
+      Intrinsic: 1
     - Id: ate
       Active: 1
       Kind: 2
@@ -131,8 +131,8 @@ MonoBehaviour:
       Letters:
       - kaf_fathah
       - lam_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: aunt_father
       Active: 1
       Kind: 5
@@ -146,8 +146,8 @@ MonoBehaviour:
       - ain
       - meem
       - teh_marbuta
-      Difficulty: 1
       Drawing: A1
+      Intrinsic: 1
     - Id: aunt_mother
       Active: 1
       Kind: 5
@@ -162,8 +162,8 @@ MonoBehaviour:
       - alef
       - lam
       - teh_marbuta
-      Difficulty: 2
       Drawing: 3B
+      Intrinsic: 1
     - Id: back
       Active: 1
       Kind: 5
@@ -177,8 +177,8 @@ MonoBehaviour:
       - zah
       - heh
       - reh
-      Difficulty: 0
       Drawing: 45
+      Intrinsic: 1
     - Id: ball
       Active: 1
       Kind: 5
@@ -192,8 +192,8 @@ MonoBehaviour:
       - kaf
       - reh
       - teh_marbuta
-      Difficulty: 0
       Drawing: A3
+      Intrinsic: 1
     - Id: banana
       Active: 1
       Kind: 5
@@ -207,8 +207,8 @@ MonoBehaviour:
       - meem
       - waw
       - zain
-      Difficulty: 1
       Drawing: 46
+      Intrinsic: 1
     - Id: bank
       Active: 1
       Kind: 5
@@ -223,8 +223,8 @@ MonoBehaviour:
       - sad
       - reh
       - feh
-      Difficulty: 0
       Drawing: 47
+      Intrinsic: 1
     - Id: basketball
       Active: 1
       Kind: 5
@@ -243,8 +243,8 @@ MonoBehaviour:
       - seen
       - lam
       - teh_marbuta
-      Difficulty: 0
       Drawing: 48
+      Intrinsic: 1
     - Id: bear
       Active: 1
       Kind: 5
@@ -257,8 +257,8 @@ MonoBehaviour:
       Letters:
       - dal
       - beh
-      Difficulty: 1
       Drawing: 49
+      Intrinsic: 1
     - Id: beautiful
       Active: 1
       Kind: 1
@@ -273,8 +273,8 @@ MonoBehaviour:
       - meem
       - yeh
       - lam
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: bed
       Active: 1
       Kind: 5
@@ -289,8 +289,8 @@ MonoBehaviour:
       - reh
       - alef
       - sheen
-      Difficulty: 0
       Drawing: 4A
+      Intrinsic: 1
     - Id: believed
       Active: 1
       Kind: 2
@@ -304,8 +304,8 @@ MonoBehaviour:
       - alef_maddah
       - meem_fathah
       - noon_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: belly
       Active: 1
       Kind: 5
@@ -319,8 +319,8 @@ MonoBehaviour:
       - beh
       - tah
       - noon
-      Difficulty: 1
       Drawing: 4B
+      Intrinsic: 1
     - Id: berry
       Active: 1
       Kind: 5
@@ -334,8 +334,8 @@ MonoBehaviour:
       - teh
       - waw
       - teh
-      Difficulty: 1
       Drawing: 4C
+      Intrinsic: 1
     - Id: big
       Active: 1
       Kind: 1
@@ -350,8 +350,8 @@ MonoBehaviour:
       - beh
       - yeh
       - reh
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: bird
       Active: 1
       Kind: 5
@@ -367,8 +367,8 @@ MonoBehaviour:
       - feh
       - waw
       - reh
-      Difficulty: 0
       Drawing: 4D
+      Intrinsic: 1
     - Id: book
       Active: 1
       Kind: 5
@@ -383,8 +383,8 @@ MonoBehaviour:
       - teh
       - alef
       - beh
-      Difficulty: 0
       Drawing: 4E
+      Intrinsic: 1
     - Id: books
       Active: 1
       Kind: 5
@@ -398,8 +398,8 @@ MonoBehaviour:
       - kaf_dammah
       - teh_dammah
       - beh
-      Difficulty: 0
       Drawing: 4F
+      Intrinsic: 1
     - Id: box
       Active: 1
       Kind: 5
@@ -415,8 +415,8 @@ MonoBehaviour:
       - dal
       - waw
       - qaf
-      Difficulty: 0
       Drawing: 50
+      Intrinsic: 1
     - Id: boy
       Active: 1
       Kind: 5
@@ -430,8 +430,8 @@ MonoBehaviour:
       - sad
       - beh
       - yeh
-      Difficulty: 0
       Drawing: 51
+      Intrinsic: 1
     - Id: brain
       Active: 1
       Kind: 5
@@ -446,8 +446,8 @@ MonoBehaviour:
       - meem
       - alef
       - ghain
-      Difficulty: 0
       Drawing: 52
+      Intrinsic: 1
     - Id: brave
       Active: 1
       Kind: 1
@@ -462,8 +462,8 @@ MonoBehaviour:
       - jeem
       - alef
       - ain
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: bread
       Active: 1
       Kind: 5
@@ -477,8 +477,8 @@ MonoBehaviour:
       - khah
       - beh
       - zain
-      Difficulty: 1
       Drawing: 53
+      Intrinsic: 1
     - Id: breeze
       Active: 1
       Kind: 5
@@ -493,8 +493,8 @@ MonoBehaviour:
       - seen
       - meem
       - teh_marbuta
-      Difficulty: 0
       Drawing: 54
+      Intrinsic: 1
     - Id: broad_bean
       Active: 1
       Kind: 5
@@ -508,8 +508,8 @@ MonoBehaviour:
       - feh
       - waw
       - lam
-      Difficulty: 0
       Drawing: 55
+      Intrinsic: 1
     - Id: brother
       Active: 1
       Kind: 5
@@ -522,8 +522,8 @@ MonoBehaviour:
       Letters:
       - alef_hamza_hi
       - khah
-      Difficulty: 1
       Drawing: 2F
+      Intrinsic: 1
     - Id: bulgar
       Active: 1
       Kind: 5
@@ -538,8 +538,8 @@ MonoBehaviour:
       - reh
       - ghain
       - lam
-      Difficulty: 0
       Drawing: 5F
+      Intrinsic: 1
     - Id: bus
       Active: 1
       Kind: 5
@@ -553,8 +553,8 @@ MonoBehaviour:
       - beh
       - alef
       - sad
-      Difficulty: 0
       Drawing: 44
+      Intrinsic: 1
     - Id: camel
       Active: 1
       Kind: 5
@@ -568,8 +568,8 @@ MonoBehaviour:
       - jeem
       - meem
       - lam_kasrah_tanwin
-      Difficulty: 0
       Drawing: 56
+      Intrinsic: 1
     - Id: carpenter
       Active: 1
       Kind: 5
@@ -584,8 +584,8 @@ MonoBehaviour:
       - jeem_shaddah
       - alef
       - reh
-      Difficulty: 0
       Drawing: 57
+      Intrinsic: 1
     - Id: carried
       Active: 1
       Kind: 2
@@ -599,8 +599,8 @@ MonoBehaviour:
       - hah_fathah
       - meem_fathah
       - lam_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: carrot
       Active: 1
       Kind: 5
@@ -614,8 +614,8 @@ MonoBehaviour:
       - jeem_fathah
       - zain_fathah
       - reh
-      Difficulty: 0
       Drawing: 58
+      Intrinsic: 1
     - Id: cat
       Active: 1
       Kind: 5
@@ -628,8 +628,8 @@ MonoBehaviour:
       Letters:
       - heh
       - reh
-      Difficulty: 1
       Drawing: 59
+      Intrinsic: 1
     - Id: caught
       Active: 1
       Kind: 2
@@ -643,8 +643,8 @@ MonoBehaviour:
       - meem_fathah
       - seen_fathah
       - kaf_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: chair
       Active: 1
       Kind: 5
@@ -659,8 +659,8 @@ MonoBehaviour:
       - reh
       - seen
       - yeh
-      Difficulty: 0
       Drawing: 5A
+      Intrinsic: 1
     - Id: cheese
       Active: 1
       Kind: 5
@@ -674,8 +674,8 @@ MonoBehaviour:
       - jeem
       - beh
       - noon
-      Difficulty: 1
       Drawing: 61
+      Intrinsic: 1
     - Id: cherry
       Active: 1
       Kind: 5
@@ -689,8 +689,8 @@ MonoBehaviour:
       - kaf
       - reh
       - zain
-      Difficulty: 0
       Drawing: 62
+      Intrinsic: 1
     - Id: chest
       Active: 1
       Kind: 5
@@ -704,8 +704,8 @@ MonoBehaviour:
       - sad
       - dal
       - reh
-      Difficulty: 0
       Drawing: 63
+      Intrinsic: 1
     - Id: chickpea
       Active: 1
       Kind: 5
@@ -719,8 +719,8 @@ MonoBehaviour:
       - hah
       - meem
       - sad
-      Difficulty: 0
       Drawing: 64
+      Intrinsic: 1
     - Id: classroom
       Active: 1
       Kind: 5
@@ -733,8 +733,8 @@ MonoBehaviour:
       Letters:
       - sad
       - feh
-      Difficulty: 0
       Drawing: 30
+      Intrinsic: 1
     - Id: clean
       Active: 1
       Kind: 1
@@ -749,8 +749,8 @@ MonoBehaviour:
       - zah
       - yeh
       - feh
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: cloud
       Active: 1
       Kind: 5
@@ -765,8 +765,8 @@ MonoBehaviour:
       - yeh
       - meem
       - teh_marbuta
-      Difficulty: 0
       Drawing: 65
+      Intrinsic: 1
     - Id: club
       Active: 1
       Kind: 5
@@ -782,8 +782,8 @@ MonoBehaviour:
       - teh
       - dal
       - alef_maqsura
-      Difficulty: 0
       Drawing: 102
+      Intrinsic: 1
     - Id: coat
       Active: 1
       Kind: 5
@@ -798,8 +798,8 @@ MonoBehaviour:
       - ain
       - tah
       - feh
-      Difficulty: 0
       Drawing: 104
+      Intrinsic: 1
     - Id: cold
       Active: 1
       Kind: 1
@@ -813,8 +813,8 @@ MonoBehaviour:
       - beh
       - reh
       - dal
-      Difficulty: 1
       Drawing: 
+      Intrinsic: 1
     - Id: cold_food
       Active: 1
       Kind: 1
@@ -829,8 +829,8 @@ MonoBehaviour:
       - alef
       - reh
       - dal
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: color_black
       Active: 1
       Kind: 1
@@ -845,8 +845,8 @@ MonoBehaviour:
       - seen
       - waw
       - dal
-      Difficulty: 0
       Drawing: 100
+      Intrinsic: 1
     - Id: color_blue
       Active: 1
       Kind: 1
@@ -861,8 +861,8 @@ MonoBehaviour:
       - zain
       - reh
       - qaf
-      Difficulty: 0
       Drawing: 100
+      Intrinsic: 1
     - Id: color_brown
       Active: 1
       Kind: 1
@@ -876,8 +876,8 @@ MonoBehaviour:
       - beh_dammah
       - noon
       - yeh
-      Difficulty: 0
       Drawing: 100
+      Intrinsic: 1
     - Id: color_gold
       Active: 1
       Kind: 1
@@ -892,8 +892,8 @@ MonoBehaviour:
       - heh
       - beh
       - yeh
-      Difficulty: 0
       Drawing: 100
+      Intrinsic: 1
     - Id: color_green
       Active: 1
       Kind: 1
@@ -908,8 +908,8 @@ MonoBehaviour:
       - khah
       - dad
       - reh
-      Difficulty: 0
       Drawing: 100
+      Intrinsic: 1
     - Id: color_grey
       Active: 1
       Kind: 1
@@ -925,8 +925,8 @@ MonoBehaviour:
       - alef
       - dal
       - yeh
-      Difficulty: 0
       Drawing: 100
+      Intrinsic: 1
     - Id: color_orange
       Active: 1
       Kind: 1
@@ -944,8 +944,8 @@ MonoBehaviour:
       - alef
       - lam
       - yeh
-      Difficulty: 0
       Drawing: 100
+      Intrinsic: 1
     - Id: color_pink
       Active: 1
       Kind: 1
@@ -960,8 +960,8 @@ MonoBehaviour:
       - reh
       - dal
       - yeh
-      Difficulty: 0
       Drawing: 100
+      Intrinsic: 1
     - Id: color_purple
       Active: 1
       Kind: 1
@@ -978,8 +978,8 @@ MonoBehaviour:
       - seen
       - jeem
       - yeh
-      Difficulty: 0
       Drawing: 100
+      Intrinsic: 1
     - Id: color_red
       Active: 1
       Kind: 1
@@ -994,8 +994,8 @@ MonoBehaviour:
       - hah
       - meem
       - reh
-      Difficulty: 0
       Drawing: 100
+      Intrinsic: 1
     - Id: color_silver
       Active: 1
       Kind: 1
@@ -1009,8 +1009,8 @@ MonoBehaviour:
       - feh
       - dad
       - yeh
-      Difficulty: 0
       Drawing: 100
+      Intrinsic: 1
     - Id: color_white
       Active: 1
       Kind: 1
@@ -1025,8 +1025,8 @@ MonoBehaviour:
       - beh
       - yeh
       - dad
-      Difficulty: 0
       Drawing: 100
+      Intrinsic: 1
     - Id: color_yellow
       Active: 1
       Kind: 1
@@ -1041,8 +1041,8 @@ MonoBehaviour:
       - sad
       - feh
       - reh
-      Difficulty: 0
       Drawing: 100
+      Intrinsic: 1
     - Id: consonant
       Active: 1
       Kind: 6
@@ -1060,8 +1060,8 @@ MonoBehaviour:
       - alef
       - kaf
       - noon
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: costume
       Active: 1
       Kind: 5
@@ -1077,8 +1077,8 @@ MonoBehaviour:
       - alef
       - seen
       - alef_fathah_tanwin
-      Difficulty: 0
       Drawing: 67
+      Intrinsic: 1
     - Id: cried
       Active: 1
       Kind: 2
@@ -1092,8 +1092,8 @@ MonoBehaviour:
       - beh
       - kaf
       - alef_maqsura
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: cucumber
       Active: 1
       Kind: 5
@@ -1108,8 +1108,8 @@ MonoBehaviour:
       - yeh
       - alef
       - reh
-      Difficulty: 0
       Drawing: 68
+      Intrinsic: 1
     - Id: cupboard
       Active: 1
       Kind: 5
@@ -1125,8 +1125,8 @@ MonoBehaviour:
       - alef
       - noon
       - teh_marbuta
-      Difficulty: 0
       Drawing: C1
+      Intrinsic: 1
     - Id: day
       Active: 1
       Kind: 5
@@ -1140,8 +1140,8 @@ MonoBehaviour:
       - yeh
       - waw
       - meem
-      Difficulty: 0
       Drawing: 2B
+      Intrinsic: 1
     - Id: day_friday
       Active: 1
       Kind: 5
@@ -1158,8 +1158,8 @@ MonoBehaviour:
       - meem
       - ain
       - teh_marbuta
-      Difficulty: 0
       Drawing: 2212
+      Intrinsic: 1
     - Id: day_monday
       Active: 1
       Kind: 5
@@ -1177,8 +1177,8 @@ MonoBehaviour:
       - noon
       - yeh
       - noon
-      Difficulty: 0
       Drawing: D7
+      Intrinsic: 1
     - Id: day_saturday
       Active: 1
       Kind: 5
@@ -1194,8 +1194,8 @@ MonoBehaviour:
       - seen
       - beh
       - teh
-      Difficulty: 0
       Drawing: F7
+      Intrinsic: 1
     - Id: day_sunday
       Active: 1
       Kind: 5
@@ -1211,8 +1211,8 @@ MonoBehaviour:
       - alef_hamza_hi
       - hah
       - dal
-      Difficulty: 0
       Drawing: 3D
+      Intrinsic: 1
     - Id: day_thursday
       Active: 1
       Kind: 5
@@ -1229,8 +1229,8 @@ MonoBehaviour:
       - meem
       - yeh
       - seen
-      Difficulty: 0
       Drawing: 2260
+      Intrinsic: 1
     - Id: day_tuesday
       Active: 1
       Kind: 5
@@ -1249,8 +1249,8 @@ MonoBehaviour:
       - theh
       - alef
       - hamza
-      Difficulty: 0
       Drawing: 3E
+      Intrinsic: 1
     - Id: day_wednesday
       Active: 1
       Kind: 5
@@ -1269,8 +1269,8 @@ MonoBehaviour:
       - ain
       - alef
       - hamza
-      Difficulty: 0
       Drawing: 3C
+      Intrinsic: 1
     - Id: deer
       Active: 1
       Kind: 5
@@ -1285,8 +1285,8 @@ MonoBehaviour:
       - zain
       - alef
       - lam
-      Difficulty: 0
       Drawing: 69
+      Intrinsic: 1
     - Id: delicious
       Active: 1
       Kind: 1
@@ -1300,8 +1300,8 @@ MonoBehaviour:
       - hah
       - lam
       - waw
-      Difficulty: 1
       Drawing: 
+      Intrinsic: 1
     - Id: doctor
       Active: 1
       Kind: 5
@@ -1316,8 +1316,8 @@ MonoBehaviour:
       - beh
       - yeh
       - beh
-      Difficulty: 0
       Drawing: 6A
+      Intrinsic: 1
     - Id: dog
       Active: 1
       Kind: 5
@@ -1331,8 +1331,8 @@ MonoBehaviour:
       - kaf
       - lam
       - beh
-      Difficulty: 1
       Drawing: 6B
+      Intrinsic: 1
     - Id: door
       Active: 1
       Kind: 5
@@ -1346,8 +1346,8 @@ MonoBehaviour:
       - beh
       - alef
       - beh
-      Difficulty: 0
       Drawing: 6C
+      Intrinsic: 1
     - Id: drank
       Active: 1
       Kind: 2
@@ -1361,8 +1361,8 @@ MonoBehaviour:
       - sheen_fathah
       - reh_kasrah
       - beh_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: dual
       Active: 1
       Kind: 6
@@ -1377,8 +1377,8 @@ MonoBehaviour:
       - theh
       - noon
       - alef_maqsura
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: ducks
       Active: 1
       Kind: 5
@@ -1391,8 +1391,8 @@ MonoBehaviour:
       Letters:
       - beh
       - tah
-      Difficulty: 0
       Drawing: 31
+      Intrinsic: 1
     - Id: eagle
       Active: 1
       Kind: 5
@@ -1406,8 +1406,8 @@ MonoBehaviour:
       - noon
       - seen
       - reh
-      Difficulty: 0
       Drawing: 6D
+      Intrinsic: 1
     - Id: ear
       Active: 1
       Kind: 5
@@ -1421,8 +1421,8 @@ MonoBehaviour:
       - alef_hamza_hi
       - thal
       - noon
-      Difficulty: 1
       Drawing: 6E
+      Intrinsic: 1
     - Id: elephant
       Active: 1
       Kind: 5
@@ -1436,8 +1436,8 @@ MonoBehaviour:
       - feh
       - yeh
       - lam
-      Difficulty: 0
       Drawing: 6F
+      Intrinsic: 1
     - Id: engineer
       Active: 1
       Kind: 5
@@ -1453,8 +1453,8 @@ MonoBehaviour:
       - noon
       - dal
       - seen
-      Difficulty: 0
       Drawing: F2
+      Intrinsic: 1
     - Id: evening
       Active: 1
       Kind: 5
@@ -1469,8 +1469,8 @@ MonoBehaviour:
       - seen
       - alef
       - hamza
-      Difficulty: 0
       Drawing: 7D
+      Intrinsic: 1
     - Id: eye
       Active: 1
       Kind: 5
@@ -1484,8 +1484,8 @@ MonoBehaviour:
       - ain
       - yeh
       - noon
-      Difficulty: 1
       Drawing: 70
+      Intrinsic: 1
     - Id: face
       Active: 1
       Kind: 5
@@ -1499,8 +1499,8 @@ MonoBehaviour:
       - waw
       - jeem
       - heh
-      Difficulty: 0
       Drawing: 71
+      Intrinsic: 1
     - Id: fall
       Active: 1
       Kind: 5
@@ -1515,8 +1515,8 @@ MonoBehaviour:
       - reh
       - yeh
       - feh
-      Difficulty: 0
       Drawing: 7B
+      Intrinsic: 1
     - Id: farmer
       Active: 1
       Kind: 5
@@ -1531,8 +1531,8 @@ MonoBehaviour:
       - lam
       - alef
       - hah
-      Difficulty: 0
       Drawing: 72
+      Intrinsic: 1
     - Id: father
       Active: 1
       Kind: 5
@@ -1547,8 +1547,8 @@ MonoBehaviour:
       - alef
       - beh
       - alef
-      Difficulty: 1
       Drawing: 5B
+      Intrinsic: 0.4
     - Id: field
       Active: 1
       Kind: 5
@@ -1562,8 +1562,8 @@ MonoBehaviour:
       - hah
       - qaf
       - lam
-      Difficulty: 0
       Drawing: 73
+      Intrinsic: 1
     - Id: fig
       Active: 1
       Kind: 5
@@ -1577,8 +1577,8 @@ MonoBehaviour:
       - teh
       - yeh
       - noon
-      Difficulty: 0
       Drawing: 74
+      Intrinsic: 1
     - Id: finger
       Active: 1
       Kind: 5
@@ -1593,8 +1593,8 @@ MonoBehaviour:
       - sad
       - beh
       - ain
-      Difficulty: 0
       Drawing: 75
+      Intrinsic: 1
     - Id: flag
       Active: 1
       Kind: 5
@@ -1608,8 +1608,8 @@ MonoBehaviour:
       - ain
       - lam_fathah
       - meem
-      Difficulty: 0
       Drawing: 76
+      Intrinsic: 1
     - Id: flapped
       Active: 1
       Kind: 2
@@ -1624,8 +1624,8 @@ MonoBehaviour:
       - feh_sukun
       - reh_fathah
       - feh_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: flew
       Active: 1
       Kind: 2
@@ -1639,8 +1639,8 @@ MonoBehaviour:
       - tah
       - alef
       - reh
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: flower
       Active: 1
       Kind: 5
@@ -1654,8 +1654,8 @@ MonoBehaviour:
       - waw
       - reh
       - dal
-      Difficulty: 1
       Drawing: 77
+      Intrinsic: 1
     - Id: food
       Active: 1
       Kind: 5
@@ -1669,8 +1669,8 @@ MonoBehaviour:
       - alef_hamza_hi
       - kaf
       - lam
-      Difficulty: 0
       Drawing: 5D
+      Intrinsic: 1
     - Id: foot
       Active: 1
       Kind: 5
@@ -1684,8 +1684,8 @@ MonoBehaviour:
       - qaf
       - dal
       - meem
-      Difficulty: 1
       Drawing: CC
+      Intrinsic: 1
     - Id: football
       Active: 1
       Kind: 5
@@ -1704,8 +1704,8 @@ MonoBehaviour:
       - qaf
       - dal
       - meem
-      Difficulty: 0
       Drawing: 78
+      Intrinsic: 1
     - Id: forest
       Active: 1
       Kind: 5
@@ -1720,8 +1720,8 @@ MonoBehaviour:
       - alef
       - beh
       - teh_marbuta_dammah_tanwin
-      Difficulty: 0
       Drawing: 79
+      Intrinsic: 1
     - Id: fridge
       Active: 1
       Kind: 5
@@ -1737,8 +1737,8 @@ MonoBehaviour:
       - alef
       - jeem
       - teh_marbuta
-      Difficulty: 0
       Drawing: 7A
+      Intrinsic: 1
     - Id: from
       Active: 1
       Kind: 4
@@ -1751,8 +1751,8 @@ MonoBehaviour:
       Letters:
       - meem
       - noon
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 0
     - Id: furniture
       Active: 1
       Kind: 5
@@ -1767,8 +1767,8 @@ MonoBehaviour:
       - theh
       - alef
       - theh
-      Difficulty: 0
       Drawing: 32
+      Intrinsic: 1
     - Id: garden
       Active: 1
       Kind: 5
@@ -1784,8 +1784,8 @@ MonoBehaviour:
       - teh
       - alef
       - noon
-      Difficulty: 0
       Drawing: C2
+      Intrinsic: 1
     - Id: garlic
       Active: 1
       Kind: 5
@@ -1799,8 +1799,8 @@ MonoBehaviour:
       - theh
       - waw
       - meem
-      Difficulty: 0
       Drawing: C4
+      Intrinsic: 1
     - Id: girl
       Active: 1
       Kind: 5
@@ -1814,8 +1814,8 @@ MonoBehaviour:
       - beh
       - noon
       - teh
-      Difficulty: 0
       Drawing: C0
+      Intrinsic: 1
     - Id: glue
       Active: 1
       Kind: 5
@@ -1829,8 +1829,8 @@ MonoBehaviour:
       - sad_fathah
       - meem
       - ghain
-      Difficulty: 0
       Drawing: C5
+      Intrinsic: 1
     - Id: granddaughter
       Active: 1
       Kind: 5
@@ -1846,8 +1846,8 @@ MonoBehaviour:
       - yeh
       - dal
       - teh_marbuta
-      Difficulty: 0
       Drawing: 33
+      Intrinsic: 1
     - Id: grandfather
       Active: 1
       Kind: 5
@@ -1860,8 +1860,8 @@ MonoBehaviour:
       Letters:
       - jeem
       - dal
-      Difficulty: 1
       Drawing: 34
+      Intrinsic: 0.5
     - Id: grandmother
       Active: 1
       Kind: 5
@@ -1875,8 +1875,8 @@ MonoBehaviour:
       - jeem
       - dal
       - teh_marbuta
-      Difficulty: 1
       Drawing: 35
+      Intrinsic: 1
     - Id: grandson
       Active: 1
       Kind: 5
@@ -1891,8 +1891,8 @@ MonoBehaviour:
       - feh
       - yeh
       - dal
-      Difficulty: 0
       Drawing: 36
+      Intrinsic: 1
     - Id: grapes
       Active: 1
       Kind: 5
@@ -1906,8 +1906,8 @@ MonoBehaviour:
       - ain
       - noon
       - beh
-      Difficulty: 0
       Drawing: C6
+      Intrinsic: 1
     - Id: ground
       Active: 1
       Kind: 5
@@ -1921,8 +1921,8 @@ MonoBehaviour:
       - alef_hamza_hi
       - reh
       - dad
-      Difficulty: 0
       Drawing: 37
+      Intrinsic: 1
     - Id: hair
       Active: 1
       Kind: 5
@@ -1936,8 +1936,8 @@ MonoBehaviour:
       - sheen
       - ain
       - reh
-      Difficulty: 0
       Drawing: C7
+      Intrinsic: 1
     - Id: hand
       Active: 1
       Kind: 5
@@ -1950,8 +1950,8 @@ MonoBehaviour:
       Letters:
       - yeh
       - dal
-      Difficulty: 1
       Drawing: D0
+      Intrinsic: 1
     - Id: happy
       Active: 1
       Kind: 1
@@ -1966,8 +1966,8 @@ MonoBehaviour:
       - ain
       - yeh
       - dal
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: hat
       Active: 1
       Kind: 5
@@ -1982,8 +1982,8 @@ MonoBehaviour:
       - beh
       - ain
       - teh_marbuta
-      Difficulty: 0
       Drawing: C9
+      Intrinsic: 1
     - Id: head
       Active: 1
       Kind: 5
@@ -1997,8 +1997,8 @@ MonoBehaviour:
       - reh
       - alef_hamza_hi
       - seen
-      Difficulty: 1
       Drawing: CA
+      Intrinsic: 1
     - Id: hi
       Active: 1
       Kind: 7
@@ -2014,8 +2014,8 @@ MonoBehaviour:
       - hah
       - beh
       - alef_fathah_tanwin
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: hospital
       Active: 1
       Kind: 5
@@ -2032,8 +2032,8 @@ MonoBehaviour:
       - sheen
       - feh
       - alef_maqsura
-      Difficulty: 0
       Drawing: CB
+      Intrinsic: 1
     - Id: hot_temperature
       Active: 1
       Kind: 1
@@ -2047,8 +2047,8 @@ MonoBehaviour:
       - seen
       - khah
       - noon
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: hot_weather
       Active: 1
       Kind: 1
@@ -2062,8 +2062,8 @@ MonoBehaviour:
       - sheen
       - waw
       - beh
-      Difficulty: 1
       Drawing: 
+      Intrinsic: 1
     - Id: hour
       Active: 1
       Kind: 5
@@ -2078,8 +2078,8 @@ MonoBehaviour:
       - alef
       - ain
       - teh_marbuta
-      Difficulty: 0
       Drawing: 38
+      Intrinsic: 1
     - Id: house
       Active: 1
       Kind: 5
@@ -2093,8 +2093,8 @@ MonoBehaviour:
       - beh
       - yeh
       - teh
-      Difficulty: 0
       Drawing: C8
+      Intrinsic: 1
     - Id: icecream
       Active: 1
       Kind: 5
@@ -2109,8 +2109,8 @@ MonoBehaviour:
       - waw
       - zah
       - teh_marbuta
-      Difficulty: 0
       Drawing: CD
+      Intrinsic: 1
     - Id: in
       Active: 1
       Kind: 4
@@ -2123,8 +2123,8 @@ MonoBehaviour:
       Letters:
       - feh
       - yeh
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 0
     - Id: insistent
       Active: 1
       Kind: 1
@@ -2138,8 +2138,8 @@ MonoBehaviour:
       - meem_dammah
       - lam_kasrah
       - hah_shaddah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: islands
       Active: 1
       Kind: 5
@@ -2153,8 +2153,8 @@ MonoBehaviour:
       - jeem_dammah
       - zain_dammah
       - reh
-      Difficulty: 0
       Drawing: CE
+      Intrinsic: 1
     - Id: juice
       Active: 1
       Kind: 5
@@ -2169,8 +2169,8 @@ MonoBehaviour:
       - sad
       - yeh
       - reh
-      Difficulty: 0
       Drawing: 39
+      Intrinsic: 1
     - Id: kid
       Active: 1
       Kind: 5
@@ -2184,8 +2184,8 @@ MonoBehaviour:
       - waw
       - lam
       - dal
-      Difficulty: 0
       Drawing: 28
+      Intrinsic: 1
     - Id: knowledge
       Active: 1
       Kind: 5
@@ -2199,8 +2199,8 @@ MonoBehaviour:
       - ain_kasrah
       - lam_sukun
       - meem
-      Difficulty: 0
       Drawing: 5C
+      Intrinsic: 1
     - Id: last
       Active: 1
       Kind: 1
@@ -2217,8 +2217,8 @@ MonoBehaviour:
       - alef
       - dad
       - yeh
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: laughed
       Active: 1
       Kind: 2
@@ -2232,8 +2232,8 @@ MonoBehaviour:
       - dad_fathah
       - hah_kasrah
       - kaf_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: lazy
       Active: 1
       Kind: 1
@@ -2248,8 +2248,8 @@ MonoBehaviour:
       - seen
       - waw
       - lam
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: leg
       Active: 1
       Kind: 5
@@ -2263,8 +2263,8 @@ MonoBehaviour:
       - reh_kasrah
       - jeem
       - lam
-      Difficulty: 0
       Drawing: CF
+      Intrinsic: 1
     - Id: lentil
       Active: 1
       Kind: 5
@@ -2278,8 +2278,8 @@ MonoBehaviour:
       - ain
       - dal
       - seen
-      Difficulty: 0
       Drawing: 29
+      Intrinsic: 1
     - Id: light
       Active: 1
       Kind: 5
@@ -2293,8 +2293,8 @@ MonoBehaviour:
       - dad
       - waw
       - hamza
-      Difficulty: 0
       Drawing: B7
+      Intrinsic: 1
     - Id: lion
       Active: 1
       Kind: 5
@@ -2308,8 +2308,8 @@ MonoBehaviour:
       - alef_hamza_hi
       - seen
       - dal
-      Difficulty: 0
       Drawing: D1
+      Intrinsic: 1
     - Id: lion_dual
       Active: 1
       Kind: 5
@@ -2325,8 +2325,8 @@ MonoBehaviour:
       - dal
       - alef
       - noon
-      Difficulty: 0
       Drawing: 2039
+      Intrinsic: 1
     - Id: lion_plural
       Active: 1
       Kind: 5
@@ -2341,8 +2341,8 @@ MonoBehaviour:
       - seen
       - waw
       - dal_dammah_tanwin
-      Difficulty: 0
       Drawing: 203A
+      Intrinsic: 1
     - Id: lips
       Active: 1
       Kind: 5
@@ -2357,8 +2357,8 @@ MonoBehaviour:
       - feh
       - alef
       - heh
-      Difficulty: 0
       Drawing: 2022
+      Intrinsic: 1
     - Id: man
       Active: 1
       Kind: 5
@@ -2372,8 +2372,8 @@ MonoBehaviour:
       - reh_fathah
       - jeem_dammah
       - lam_kasrah_tanwin
-      Difficulty: 0
       Drawing: 2D
+      Intrinsic: 1
     - Id: market
       Active: 1
       Kind: 5
@@ -2387,8 +2387,8 @@ MonoBehaviour:
       - seen
       - waw
       - qaf
-      Difficulty: 0
       Drawing: AB
+      Intrinsic: 1
     - Id: meat
       Active: 1
       Kind: 5
@@ -2402,8 +2402,8 @@ MonoBehaviour:
       - lam
       - hah
       - meem
-      Difficulty: 0
       Drawing: D3
+      Intrinsic: 1
     - Id: melancholy
       Active: 1
       Kind: 5
@@ -2418,8 +2418,8 @@ MonoBehaviour:
       - alef_maddah
       - beh
       - teh_marbuta
-      Difficulty: 0
       Drawing: BB
+      Intrinsic: 1
     - Id: month
       Active: 1
       Kind: 5
@@ -2433,8 +2433,8 @@ MonoBehaviour:
       - sheen
       - heh
       - reh
-      Difficulty: 0
       Drawing: 2265
+      Intrinsic: 1
     - Id: month_april
       Active: 1
       Kind: 5
@@ -2450,8 +2450,8 @@ MonoBehaviour:
       - seen
       - alef
       - noon
-      Difficulty: 0
       Drawing: 2264
+      Intrinsic: 1
     - Id: month_august
       Active: 1
       Kind: 5
@@ -2464,8 +2464,8 @@ MonoBehaviour:
       Letters:
       - alef_maddah
       - beh
-      Difficulty: 0
       Drawing: B1
+      Intrinsic: 1
     - Id: month_december
       Active: 1
       Kind: 5
@@ -2486,8 +2486,8 @@ MonoBehaviour:
       - alef_hamza_hi
       - waw
       - lam
-      Difficulty: 0
       Drawing: 2248
+      Intrinsic: 1
     - Id: month_february
       Active: 1
       Kind: 5
@@ -2502,8 +2502,8 @@ MonoBehaviour:
       - beh
       - alef
       - tah
-      Difficulty: 0
       Drawing: 7E
+      Intrinsic: 1
     - Id: month_january
       Active: 1
       Kind: 5
@@ -2525,8 +2525,8 @@ MonoBehaviour:
       - alef
       - noon
       - yeh
-      Difficulty: 0
       Drawing: AC
+      Intrinsic: 1
     - Id: month_july
       Active: 1
       Kind: 5
@@ -2541,8 +2541,8 @@ MonoBehaviour:
       - meem
       - waw
       - zain
-      Difficulty: 0
       Drawing: 2205
+      Intrinsic: 1
     - Id: month_june
       Active: 1
       Kind: 5
@@ -2559,8 +2559,8 @@ MonoBehaviour:
       - reh
       - alef
       - noon
-      Difficulty: 0
       Drawing: 221E
+      Intrinsic: 1
     - Id: month_march
       Active: 1
       Kind: 5
@@ -2575,8 +2575,8 @@ MonoBehaviour:
       - thal
       - alef
       - reh
-      Difficulty: 0
       Drawing: 222B
+      Intrinsic: 1
     - Id: month_may
       Active: 1
       Kind: 5
@@ -2591,8 +2591,8 @@ MonoBehaviour:
       - yeh
       - alef
       - reh
-      Difficulty: 0
       Drawing: 220F
+      Intrinsic: 1
     - Id: month_november
       Active: 1
       Kind: 5
@@ -2614,8 +2614,8 @@ MonoBehaviour:
       - alef
       - noon
       - yeh
-      Difficulty: 0
       Drawing: 2211
+      Intrinsic: 1
     - Id: month_october
       Active: 1
       Kind: 5
@@ -2636,8 +2636,8 @@ MonoBehaviour:
       - alef_hamza_hi
       - waw
       - lam
-      Difficulty: 0
       Drawing: 221A
+      Intrinsic: 1
     - Id: month_september
       Active: 1
       Kind: 5
@@ -2653,8 +2653,8 @@ MonoBehaviour:
       - lam
       - waw
       - lam
-      Difficulty: 0
       Drawing: 2202
+      Intrinsic: 1
     - Id: moon
       Active: 1
       Kind: 5
@@ -2668,8 +2668,8 @@ MonoBehaviour:
       - qaf
       - meem
       - reh
-      Difficulty: 0
       Drawing: D4
+      Intrinsic: 1
     - Id: morning
       Active: 1
       Kind: 5
@@ -2684,8 +2684,8 @@ MonoBehaviour:
       - beh
       - alef
       - hah
-      Difficulty: 0
       Drawing: 25
+      Intrinsic: 1
     - Id: mother
       Active: 1
       Kind: 5
@@ -2700,8 +2700,8 @@ MonoBehaviour:
       - alef
       - meem
       - alef
-      Difficulty: 1
       Drawing: D6
+      Intrinsic: 1
     - Id: mountain
       Active: 1
       Kind: 5
@@ -2715,8 +2715,8 @@ MonoBehaviour:
       - jeem
       - beh
       - lam
-      Difficulty: 0
       Drawing: D2
+      Intrinsic: 1
     - Id: mountain_dual
       Active: 1
       Kind: 5
@@ -2732,8 +2732,8 @@ MonoBehaviour:
       - lam
       - alef
       - noon
-      Difficulty: 0
       Drawing: B0
+      Intrinsic: 1
     - Id: mountain_plural
       Active: 1
       Kind: 5
@@ -2748,8 +2748,8 @@ MonoBehaviour:
       - beh
       - alef
       - lam
-      Difficulty: 0
       Drawing: 7C
+      Intrinsic: 1
     - Id: mouse
       Active: 1
       Kind: 5
@@ -2763,8 +2763,8 @@ MonoBehaviour:
       - feh
       - alef_hamza_hi
       - reh
-      Difficulty: 1
       Drawing: D8
+      Intrinsic: 1
     - Id: mouth
       Active: 1
       Kind: 5
@@ -2777,8 +2777,8 @@ MonoBehaviour:
       Letters:
       - feh
       - meem
-      Difficulty: 1
       Drawing: D5
+      Intrinsic: 1
     - Id: nail
       Active: 1
       Kind: 5
@@ -2792,8 +2792,8 @@ MonoBehaviour:
       - zah
       - feh
       - reh
-      Difficulty: 0
       Drawing: 152
+      Intrinsic: 1
     - Id: needle
       Active: 1
       Kind: 5
@@ -2808,8 +2808,8 @@ MonoBehaviour:
       - beh
       - reh
       - teh_marbuta
-      Difficulty: 0
       Drawing: DE
+      Intrinsic: 1
     - Id: nest
       Active: 1
       Kind: 5
@@ -2822,8 +2822,8 @@ MonoBehaviour:
       Letters:
       - ain
       - sheen
-      Difficulty: 0
       Drawing: DA
+      Intrinsic: 1
     - Id: next
       Active: 1
       Kind: 1
@@ -2840,8 +2840,8 @@ MonoBehaviour:
       - alef
       - dal
       - meem
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: nose
       Active: 1
       Kind: 5
@@ -2855,8 +2855,8 @@ MonoBehaviour:
       - alef_hamza_hi
       - noon
       - feh
-      Difficulty: 1
       Drawing: DB
+      Intrinsic: 1
     - Id: notebook
       Active: 1
       Kind: 5
@@ -2871,8 +2871,8 @@ MonoBehaviour:
       - feh
       - teh_fathah
       - reh
-      Difficulty: 0
       Drawing: DC
+      Intrinsic: 1
     - Id: now
       Active: 1
       Kind: 7
@@ -2887,8 +2887,8 @@ MonoBehaviour:
       - lam
       - alef_maddah
       - noon
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: number_00
       Active: 1
       Kind: 5
@@ -2902,8 +2902,8 @@ MonoBehaviour:
       - sad
       - feh
       - reh
-      Difficulty: 0
       Drawing: 2669
+      Intrinsic: 1
     - Id: number_01
       Active: 1
       Kind: 5
@@ -2918,8 +2918,8 @@ MonoBehaviour:
       - alef
       - hah
       - dal
-      Difficulty: 0
       Drawing: 266A
+      Intrinsic: 1
     - Id: number_02
       Active: 1
       Kind: 5
@@ -2935,8 +2935,8 @@ MonoBehaviour:
       - noon
       - alef
       - noon
-      Difficulty: 0
       Drawing: 266B
+      Intrinsic: 1
     - Id: number_03
       Active: 1
       Kind: 5
@@ -2952,8 +2952,8 @@ MonoBehaviour:
       - alef
       - theh
       - teh_marbuta
-      Difficulty: 0
       Drawing: 266C
+      Intrinsic: 1
     - Id: number_04
       Active: 1
       Kind: 5
@@ -2969,8 +2969,8 @@ MonoBehaviour:
       - beh
       - ain
       - teh_marbuta
-      Difficulty: 0
       Drawing: 266D
+      Intrinsic: 1
     - Id: number_05
       Active: 1
       Kind: 5
@@ -2985,8 +2985,8 @@ MonoBehaviour:
       - meem
       - seen
       - teh_marbuta
-      Difficulty: 0
       Drawing: 266E
+      Intrinsic: 1
     - Id: number_06
       Active: 1
       Kind: 5
@@ -3000,8 +3000,8 @@ MonoBehaviour:
       - seen
       - teh
       - teh_marbuta
-      Difficulty: 0
       Drawing: 266F
+      Intrinsic: 1
     - Id: number_07
       Active: 1
       Kind: 5
@@ -3016,8 +3016,8 @@ MonoBehaviour:
       - beh
       - ain
       - teh_marbuta_dammah_tanwin
-      Difficulty: 0
       Drawing: 10E
+      Intrinsic: 1
     - Id: number_08
       Active: 1
       Kind: 5
@@ -3034,8 +3034,8 @@ MonoBehaviour:
       - noon
       - yeh
       - teh_marbuta
-      Difficulty: 0
       Drawing: 122
+      Intrinsic: 1
     - Id: number_09
       Active: 1
       Kind: 5
@@ -3050,8 +3050,8 @@ MonoBehaviour:
       - seen
       - ain
       - teh_marbuta
-      Difficulty: 0
       Drawing: 12A
+      Intrinsic: 1
     - Id: number_10
       Active: 1
       Kind: 5
@@ -3066,8 +3066,8 @@ MonoBehaviour:
       - sheen
       - reh
       - teh_marbuta
-      Difficulty: 0
       Drawing: 12E
+      Intrinsic: 1
     - Id: number_11
       Active: 1
       Kind: 5
@@ -3084,8 +3084,8 @@ MonoBehaviour:
       - ain
       - sheen
       - reh
-      Difficulty: 0
       Drawing: 136
+      Intrinsic: 1
     - Id: number_12
       Active: 1
       Kind: 5
@@ -3103,8 +3103,8 @@ MonoBehaviour:
       - ain
       - sheen
       - reh
-      Difficulty: 0
       Drawing: 14A
+      Intrinsic: 1
     - Id: number_13
       Active: 1
       Kind: 5
@@ -3123,8 +3123,8 @@ MonoBehaviour:
       - ain
       - sheen
       - reh
-      Difficulty: 0
       Drawing: 103
+      Intrinsic: 1
     - Id: number_14
       Active: 1
       Kind: 5
@@ -3143,8 +3143,8 @@ MonoBehaviour:
       - ain
       - sheen
       - reh
-      Difficulty: 0
       Drawing: 10F
+      Intrinsic: 1
     - Id: number_15
       Active: 1
       Kind: 5
@@ -3162,8 +3162,8 @@ MonoBehaviour:
       - ain
       - sheen
       - reh
-      Difficulty: 0
       Drawing: 113
+      Intrinsic: 1
     - Id: number_16
       Active: 1
       Kind: 5
@@ -3180,8 +3180,8 @@ MonoBehaviour:
       - ain
       - sheen
       - reh
-      Difficulty: 0
       Drawing: 119
+      Intrinsic: 1
     - Id: number_17
       Active: 1
       Kind: 5
@@ -3199,8 +3199,8 @@ MonoBehaviour:
       - ain
       - sheen
       - reh
-      Difficulty: 0
       Drawing: 123
+      Intrinsic: 1
     - Id: number_18
       Active: 1
       Kind: 5
@@ -3220,8 +3220,8 @@ MonoBehaviour:
       - ain
       - sheen
       - reh
-      Difficulty: 0
       Drawing: 12B
+      Intrinsic: 1
     - Id: number_19
       Active: 1
       Kind: 5
@@ -3239,8 +3239,8 @@ MonoBehaviour:
       - ain
       - sheen
       - reh
-      Difficulty: 0
       Drawing: 12F
+      Intrinsic: 1
     - Id: number_20
       Active: 1
       Kind: 5
@@ -3256,8 +3256,8 @@ MonoBehaviour:
       - reh
       - waw
       - noon
-      Difficulty: 0
       Drawing: 137
+      Intrinsic: 1
     - Id: number_2000
       Active: 1
       Kind: 5
@@ -3273,8 +3273,8 @@ MonoBehaviour:
       - feh
       - yeh
       - noon
-      Difficulty: 0
       Drawing: 14B
+      Intrinsic: 1
     - Id: number_o01
       Active: 1
       Kind: 5
@@ -3290,8 +3290,8 @@ MonoBehaviour:
       - alef_hamza_hi
       - waw
       - lam
-      Difficulty: 0
       Drawing: AE
+      Intrinsic: 1
     - Id: number_o02
       Active: 1
       Kind: 5
@@ -3308,8 +3308,8 @@ MonoBehaviour:
       - alef
       - noon
       - yeh
-      Difficulty: 0
       Drawing: A6
+      Intrinsic: 1
     - Id: number_o03
       Active: 1
       Kind: 5
@@ -3326,8 +3326,8 @@ MonoBehaviour:
       - alef
       - lam
       - theh
-      Difficulty: 0
       Drawing: 2020
+      Intrinsic: 1
     - Id: number_o04
       Active: 1
       Kind: 5
@@ -3344,8 +3344,8 @@ MonoBehaviour:
       - alef
       - beh
       - ain
-      Difficulty: 0
       Drawing: 2021
+      Intrinsic: 1
     - Id: number_o05
       Active: 1
       Kind: 5
@@ -3362,8 +3362,8 @@ MonoBehaviour:
       - alef
       - meem
       - seen
-      Difficulty: 0
       Drawing: 5E
+      Intrinsic: 1
     - Id: number_o06
       Active: 1
       Kind: 5
@@ -3380,8 +3380,8 @@ MonoBehaviour:
       - alef
       - dal
       - seen
-      Difficulty: 0
       Drawing: 308
+      Intrinsic: 1
     - Id: number_o07
       Active: 1
       Kind: 5
@@ -3398,8 +3398,8 @@ MonoBehaviour:
       - alef
       - beh
       - ain
-      Difficulty: 0
       Drawing: 307
+      Intrinsic: 1
     - Id: number_o08
       Active: 1
       Kind: 5
@@ -3416,8 +3416,8 @@ MonoBehaviour:
       - alef
       - meem
       - noon
-      Difficulty: 0
       Drawing: 300
+      Intrinsic: 1
     - Id: number_o09
       Active: 1
       Kind: 5
@@ -3434,8 +3434,8 @@ MonoBehaviour:
       - alef
       - seen
       - ain
-      Difficulty: 0
       Drawing: 301
+      Intrinsic: 1
     - Id: number_o10
       Active: 1
       Kind: 5
@@ -3452,8 +3452,8 @@ MonoBehaviour:
       - alef
       - sheen
       - reh
-      Difficulty: 0
       Drawing: 302
+      Intrinsic: 1
     - Id: number_o11
       Active: 1
       Kind: 5
@@ -3473,8 +3473,8 @@ MonoBehaviour:
       - ain
       - sheen
       - reh
-      Difficulty: 0
       Drawing: 10C
+      Intrinsic: 1
     - Id: of_course
       Active: 1
       Kind: 7
@@ -3489,8 +3489,8 @@ MonoBehaviour:
       - beh
       - ain
       - alef_fathah_tanwin
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: oil
       Active: 1
       Kind: 5
@@ -3504,8 +3504,8 @@ MonoBehaviour:
       - zain
       - yeh
       - teh
-      Difficulty: 0
       Drawing: D9
+      Intrinsic: 1
     - Id: on
       Active: 1
       Kind: 4
@@ -3519,8 +3519,8 @@ MonoBehaviour:
       - ain
       - lam
       - alef_maqsura
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 0
     - Id: onion
       Active: 1
       Kind: 5
@@ -3534,8 +3534,8 @@ MonoBehaviour:
       - beh
       - sad
       - lam
-      Difficulty: 0
       Drawing: DD
+      Intrinsic: 1
     - Id: OokaDH
       Active: 1
       Kind: 5
@@ -3550,8 +3550,8 @@ MonoBehaviour:
       - kaf
       - alef
       - zah
-      Difficulty: 0
       Drawing: A9
+      Intrinsic: 1
     - Id: opened
       Active: 1
       Kind: 2
@@ -3565,8 +3565,8 @@ MonoBehaviour:
       - feh_fathah
       - teh_fathah
       - hah_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: oven
       Active: 1
       Kind: 5
@@ -3580,8 +3580,8 @@ MonoBehaviour:
       - feh
       - reh
       - noon
-      Difficulty: 0
       Drawing: A7
+      Intrinsic: 1
     - Id: paper
       Active: 1
       Kind: 5
@@ -3595,8 +3595,8 @@ MonoBehaviour:
       - waw
       - reh
       - qaf
-      Difficulty: 0
       Drawing: E1
+      Intrinsic: 1
     - Id: parrot
       Active: 1
       Kind: 5
@@ -3612,8 +3612,8 @@ MonoBehaviour:
       - ghain
       - alef
       - hamza
-      Difficulty: 0
       Drawing: E2
+      Intrinsic: 1
     - Id: peace
       Active: 1
       Kind: 5
@@ -3628,8 +3628,8 @@ MonoBehaviour:
       - lam
       - alef
       - meem
-      Difficulty: 0
       Drawing: 40
+      Intrinsic: 1
     - Id: pear
       Active: 1
       Kind: 5
@@ -3644,8 +3644,8 @@ MonoBehaviour:
       - jeem
       - alef
       - sad
-      Difficulty: 0
       Drawing: E4
+      Intrinsic: 1
     - Id: pear_big
       Active: 1
       Kind: 5
@@ -3661,8 +3661,8 @@ MonoBehaviour:
       - theh
       - reh
       - alef_maqsura
-      Difficulty: 0
       Drawing: B6
+      Intrinsic: 1
     - Id: pearl
       Active: 1
       Kind: 5
@@ -3677,8 +3677,8 @@ MonoBehaviour:
       - waw_hamza
       - lam
       - waw_hamza
-      Difficulty: 0
       Drawing: E0
+      Intrinsic: 1
     - Id: pencil
       Active: 1
       Kind: 5
@@ -3692,8 +3692,8 @@ MonoBehaviour:
       - qaf
       - lam
       - meem
-      Difficulty: 0
       Drawing: E5
+      Intrinsic: 1
     - Id: played
       Active: 1
       Kind: 2
@@ -3707,8 +3707,8 @@ MonoBehaviour:
       - lam_fathah
       - ain_kasrah
       - beh_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: player
       Active: 1
       Kind: 5
@@ -3723,8 +3723,8 @@ MonoBehaviour:
       - alef
       - ain
       - beh
-      Difficulty: 0
       Drawing: 20AC
+      Intrinsic: 1
     - Id: playground
       Active: 1
       Kind: 5
@@ -3739,8 +3739,8 @@ MonoBehaviour:
       - lam
       - ain
       - beh
-      Difficulty: 0
       Drawing: 11A
+      Intrinsic: 1
     - Id: plum
       Active: 1
       Kind: 5
@@ -3754,8 +3754,8 @@ MonoBehaviour:
       - khah
       - waw
       - khah
-      Difficulty: 0
       Drawing: E3
+      Intrinsic: 1
     - Id: plural
       Active: 1
       Kind: 6
@@ -3769,8 +3769,8 @@ MonoBehaviour:
       - jeem
       - meem
       - ain
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: policeman
       Active: 1
       Kind: 5
@@ -3785,8 +3785,8 @@ MonoBehaviour:
       - reh
       - tah
       - yeh
-      Difficulty: 0
       Drawing: E6
+      Intrinsic: 1
     - Id: potato
       Active: 1
       Kind: 5
@@ -3802,8 +3802,8 @@ MonoBehaviour:
       - alef
       - tah
       - alef
-      Difficulty: 0
       Drawing: E7
+      Intrinsic: 1
     - Id: rain
       Active: 1
       Kind: 5
@@ -3817,8 +3817,8 @@ MonoBehaviour:
       - meem
       - tah_fathah
       - reh
-      Difficulty: 1
       Drawing: F0
+      Intrinsic: 1
     - Id: rainy
       Active: 1
       Kind: 1
@@ -3833,8 +3833,8 @@ MonoBehaviour:
       - alef
       - tah
       - reh
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: released
       Active: 1
       Kind: 2
@@ -3848,8 +3848,8 @@ MonoBehaviour:
       - teh_fathah
       - reh_fathah
       - kaf_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: restaurant
       Active: 1
       Kind: 5
@@ -3864,8 +3864,8 @@ MonoBehaviour:
       - tah
       - ain_fathah
       - meem
-      Difficulty: 0
       Drawing: 26
+      Intrinsic: 1
     - Id: rice
       Active: 1
       Kind: 5
@@ -3878,8 +3878,8 @@ MonoBehaviour:
       Letters:
       - reh
       - zain
-      Difficulty: 1
       Drawing: E9
+      Intrinsic: 1
     - Id: river
       Active: 1
       Kind: 5
@@ -3893,8 +3893,8 @@ MonoBehaviour:
       - noon
       - heh
       - reh
-      Difficulty: 0
       Drawing: EA
+      Intrinsic: 1
     - Id: river_dual
       Active: 1
       Kind: 5
@@ -3910,8 +3910,8 @@ MonoBehaviour:
       - reh
       - alef
       - noon
-      Difficulty: 0
       Drawing: 2195
+      Intrinsic: 1
     - Id: river_plural
       Active: 1
       Kind: 5
@@ -3927,8 +3927,8 @@ MonoBehaviour:
       - heh
       - alef
       - reh
-      Difficulty: 0
       Drawing: 2194
+      Intrinsic: 1
     - Id: room
       Active: 1
       Kind: 5
@@ -3943,8 +3943,8 @@ MonoBehaviour:
       - reh
       - feh
       - teh_marbuta
-      Difficulty: 0
       Drawing: 3A
+      Intrinsic: 1
     - Id: sad
       Active: 1
       Kind: 1
@@ -3959,8 +3959,8 @@ MonoBehaviour:
       - zain
       - yeh
       - noon
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: safe
       Active: 1
       Kind: 1
@@ -3974,8 +3974,8 @@ MonoBehaviour:
       - alef_maddah
       - meem_kasrah
       - noon_sukun
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: salt
       Active: 1
       Kind: 5
@@ -3989,8 +3989,8 @@ MonoBehaviour:
       - meem_kasrah
       - lam_sukun
       - hah
-      Difficulty: 0
       Drawing: EB
+      Intrinsic: 1
     - Id: sat
       Active: 1
       Kind: 2
@@ -4004,8 +4004,8 @@ MonoBehaviour:
       - jeem_fathah
       - lam_fathah
       - seen_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: saw
       Active: 1
       Kind: 2
@@ -4019,8 +4019,8 @@ MonoBehaviour:
       - reh
       - alef_hamza_hi
       - alef_maqsura
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: school
       Active: 1
       Kind: 5
@@ -4036,8 +4036,8 @@ MonoBehaviour:
       - reh
       - seen
       - teh_marbuta
-      Difficulty: 0
       Drawing: 2196
+      Intrinsic: 1
     - Id: scientist
       Active: 1
       Kind: 5
@@ -4052,8 +4052,8 @@ MonoBehaviour:
       - alef
       - lam
       - meem
-      Difficulty: 0
       Drawing: 2C
+      Intrinsic: 1
     - Id: scientist_dual
       Active: 1
       Kind: 5
@@ -4070,8 +4070,8 @@ MonoBehaviour:
       - meem
       - alef
       - noon
-      Difficulty: 0
       Drawing: 2190
+      Intrinsic: 1
     - Id: scientist_plural
       Active: 1
       Kind: 5
@@ -4087,8 +4087,8 @@ MonoBehaviour:
       - meem
       - alef
       - hamza
-      Difficulty: 0
       Drawing: 2199
+      Intrinsic: 1
     - Id: scissors
       Active: 1
       Kind: 5
@@ -4102,8 +4102,8 @@ MonoBehaviour:
       - meem
       - qaf
       - sad
-      Difficulty: 0
       Drawing: E8
+      Intrinsic: 1
     - Id: second
       Active: 1
       Kind: 5
@@ -4119,8 +4119,8 @@ MonoBehaviour:
       - noon
       - yeh
       - teh_marbuta
-      Difficulty: 0
       Drawing: 2193
+      Intrinsic: 1
     - Id: shirt
       Active: 1
       Kind: 5
@@ -4135,8 +4135,8 @@ MonoBehaviour:
       - meem
       - yeh
       - sad
-      Difficulty: 0
       Drawing: ED
+      Intrinsic: 1
     - Id: shoe
       Active: 1
       Kind: 5
@@ -4151,8 +4151,8 @@ MonoBehaviour:
       - thal
       - alef
       - hamza
-      Difficulty: 0
       Drawing: 112
+      Intrinsic: 1
     - Id: shop
       Active: 1
       Kind: 5
@@ -4167,8 +4167,8 @@ MonoBehaviour:
       - kaf
       - alef
       - noon_kasrah_tanwin
-      Difficulty: 0
       Drawing: 2198
+      Intrinsic: 1
     - Id: singular
       Active: 1
       Kind: 6
@@ -4183,8 +4183,8 @@ MonoBehaviour:
       - feh
       - reh
       - dal
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: sister
       Active: 1
       Kind: 5
@@ -4198,8 +4198,8 @@ MonoBehaviour:
       - alef_hamza_hi
       - khah
       - teh
-      Difficulty: 1
       Drawing: EE
+      Intrinsic: 1
     - Id: sky
       Active: 1
       Kind: 5
@@ -4214,8 +4214,8 @@ MonoBehaviour:
       - meem
       - alef
       - hamza
-      Difficulty: 0
       Drawing: 2026
+      Intrinsic: 1
     - Id: slow
       Active: 1
       Kind: 1
@@ -4230,8 +4230,8 @@ MonoBehaviour:
       - tah
       - yeh
       - hamza
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: small
       Active: 1
       Kind: 1
@@ -4246,8 +4246,8 @@ MonoBehaviour:
       - ghain
       - yeh
       - reh
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: snow
       Active: 1
       Kind: 5
@@ -4261,8 +4261,8 @@ MonoBehaviour:
       - teh
       - lam
       - jeem
-      Difficulty: 1
       Drawing: EF
+      Intrinsic: 1
     - Id: sound
       Active: 1
       Kind: 5
@@ -4276,8 +4276,8 @@ MonoBehaviour:
       - sad
       - waw
       - teh
-      Difficulty: 0
       Drawing: EC
+      Intrinsic: 1
     - Id: spring
       Active: 1
       Kind: 5
@@ -4292,8 +4292,8 @@ MonoBehaviour:
       - beh
       - yeh
       - ain
-      Difficulty: 0
       Drawing: 2192
+      Intrinsic: 1
     - Id: station
       Active: 1
       Kind: 5
@@ -4308,8 +4308,8 @@ MonoBehaviour:
       - hah
       - tah
       - teh_marbuta
-      Difficulty: 0
       Drawing: 2197
+      Intrinsic: 1
     - Id: studied
       Active: 1
       Kind: 2
@@ -4323,8 +4323,8 @@ MonoBehaviour:
       - dal_fathah
       - reh_fathah
       - seen_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: sugar
       Active: 1
       Kind: 5
@@ -4338,8 +4338,8 @@ MonoBehaviour:
       - seen
       - kaf
       - reh
-      Difficulty: 1
       Drawing: 2191
+      Intrinsic: 1
     - Id: summer
       Active: 1
       Kind: 5
@@ -4353,8 +4353,8 @@ MonoBehaviour:
       - sad
       - yeh
       - feh
-      Difficulty: 0
       Drawing: 2030
+      Intrinsic: 1
     - Id: sun
       Active: 1
       Kind: 5
@@ -4368,8 +4368,8 @@ MonoBehaviour:
       - sheen
       - meem
       - seen
-      Difficulty: 0
       Drawing: F1
+      Intrinsic: 1
     - Id: sure
       Active: 1
       Kind: 7
@@ -4384,8 +4384,8 @@ MonoBehaviour:
       - feh
       - waw
       - alef_fathah_tanwin
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: table
       Active: 1
       Kind: 5
@@ -4401,8 +4401,8 @@ MonoBehaviour:
       - waw
       - lam
       - teh_marbuta
-      Difficulty: 0
       Drawing: F3
+      Intrinsic: 1
     - Id: tea
       Active: 1
       Kind: 5
@@ -4416,8 +4416,8 @@ MonoBehaviour:
       - sheen
       - alef
       - yeh
-      Difficulty: 1
       Drawing: F4
+      Intrinsic: 1
     - Id: teacher
       Active: 1
       Kind: 5
@@ -4432,8 +4432,8 @@ MonoBehaviour:
       - ain
       - lam
       - meem
-      Difficulty: 0
       Drawing: F6
+      Intrinsic: 1
     - Id: television
       Active: 1
       Kind: 5
@@ -4449,8 +4449,8 @@ MonoBehaviour:
       - feh
       - alef
       - zain
-      Difficulty: 0
       Drawing: A5
+      Intrinsic: 1
     - Id: thankyou
       Active: 1
       Kind: 7
@@ -4465,8 +4465,8 @@ MonoBehaviour:
       - kaf
       - reh
       - alef_fathah_tanwin
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: the_active
       Active: 1
       Kind: 1
@@ -4483,8 +4483,8 @@ MonoBehaviour:
       - sheen
       - yeh
       - tah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: the_back
       Active: 1
       Kind: 5
@@ -4500,8 +4500,8 @@ MonoBehaviour:
       - zah
       - heh
       - reh
-      Difficulty: 0
       Drawing: 45
+      Intrinsic: 1
     - Id: the_ball
       Active: 1
       Kind: 5
@@ -4517,8 +4517,8 @@ MonoBehaviour:
       - kaf
       - reh
       - teh_marbuta
-      Difficulty: 0
       Drawing: A3
+      Intrinsic: 1
     - Id: the_bear
       Active: 1
       Kind: 5
@@ -4533,8 +4533,8 @@ MonoBehaviour:
       - lam
       - dal
       - beh
-      Difficulty: 0
       Drawing: 49
+      Intrinsic: 1
     - Id: the_beautiful
       Active: 1
       Kind: 1
@@ -4551,8 +4551,8 @@ MonoBehaviour:
       - meem
       - yeh
       - lam
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: the_bed
       Active: 1
       Kind: 5
@@ -4569,8 +4569,8 @@ MonoBehaviour:
       - reh
       - alef
       - sheen
-      Difficulty: 0
       Drawing: 4A
+      Intrinsic: 1
     - Id: the_berry
       Active: 1
       Kind: 5
@@ -4586,8 +4586,8 @@ MonoBehaviour:
       - teh
       - waw
       - teh
-      Difficulty: 0
       Drawing: 4C
+      Intrinsic: 1
     - Id: the_book
       Active: 1
       Kind: 5
@@ -4604,8 +4604,8 @@ MonoBehaviour:
       - teh
       - alef
       - beh
-      Difficulty: 0
       Drawing: 4E
+      Intrinsic: 1
     - Id: the_box
       Active: 1
       Kind: 5
@@ -4623,8 +4623,8 @@ MonoBehaviour:
       - dal
       - waw
       - qaf
-      Difficulty: 0
       Drawing: 50
+      Intrinsic: 1
     - Id: the_bread
       Active: 1
       Kind: 5
@@ -4640,8 +4640,8 @@ MonoBehaviour:
       - khah
       - beh
       - zain
-      Difficulty: 0
       Drawing: 53
+      Intrinsic: 1
     - Id: the_bus
       Active: 1
       Kind: 5
@@ -4657,8 +4657,8 @@ MonoBehaviour:
       - beh
       - alef
       - sad
-      Difficulty: 0
       Drawing: 44
+      Intrinsic: 1
     - Id: the_carrot
       Active: 1
       Kind: 5
@@ -4674,8 +4674,8 @@ MonoBehaviour:
       - jeem
       - zain
       - reh
-      Difficulty: 0
       Drawing: 58
+      Intrinsic: 1
     - Id: the_coat
       Active: 1
       Kind: 5
@@ -4692,8 +4692,8 @@ MonoBehaviour:
       - ain
       - tah
       - feh
-      Difficulty: 0
       Drawing: 66
+      Intrinsic: 1
     - Id: the_engineer
       Active: 1
       Kind: 5
@@ -4711,8 +4711,8 @@ MonoBehaviour:
       - noon
       - dal
       - seen
-      Difficulty: 0
       Drawing: F2
+      Intrinsic: 1
     - Id: the_eye
       Active: 1
       Kind: 5
@@ -4728,8 +4728,8 @@ MonoBehaviour:
       - ain
       - yeh
       - noon
-      Difficulty: 0
       Drawing: 70
+      Intrinsic: 1
     - Id: the_happy
       Active: 1
       Kind: 1
@@ -4746,8 +4746,8 @@ MonoBehaviour:
       - ain
       - yeh
       - dal
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: the_hat
       Active: 1
       Kind: 5
@@ -4764,8 +4764,8 @@ MonoBehaviour:
       - beh
       - ain
       - teh_marbuta
-      Difficulty: 0
       Drawing: C9
+      Intrinsic: 1
     - Id: the_lazy
       Active: 1
       Kind: 1
@@ -4782,8 +4782,8 @@ MonoBehaviour:
       - seen
       - waw
       - lam
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: the_leg
       Active: 1
       Kind: 5
@@ -4799,8 +4799,8 @@ MonoBehaviour:
       - reh
       - jeem
       - lam
-      Difficulty: 0
       Drawing: CF
+      Intrinsic: 1
     - Id: the_light
       Active: 1
       Kind: 5
@@ -4816,8 +4816,8 @@ MonoBehaviour:
       - dad
       - waw
       - hamza
-      Difficulty: 0
       Drawing: B7
+      Intrinsic: 1
     - Id: the_moon
       Active: 1
       Kind: 5
@@ -4833,8 +4833,8 @@ MonoBehaviour:
       - qaf
       - meem
       - reh
-      Difficulty: 0
       Drawing: D4
+      Intrinsic: 1
     - Id: the_oil
       Active: 1
       Kind: 5
@@ -4850,8 +4850,8 @@ MonoBehaviour:
       - zain
       - yeh
       - teh
-      Difficulty: 0
       Drawing: D9
+      Intrinsic: 1
     - Id: the_player
       Active: 1
       Kind: 5
@@ -4868,8 +4868,8 @@ MonoBehaviour:
       - alef
       - ain
       - beh
-      Difficulty: 0
       Drawing: 20AC
+      Intrinsic: 1
     - Id: the_playground
       Active: 1
       Kind: 5
@@ -4886,8 +4886,8 @@ MonoBehaviour:
       - lam
       - ain
       - beh
-      Difficulty: 0
       Drawing: 11A
+      Intrinsic: 1
     - Id: the_policeman
       Active: 1
       Kind: 5
@@ -4904,8 +4904,8 @@ MonoBehaviour:
       - reh
       - tah
       - yeh
-      Difficulty: 0
       Drawing: E6
+      Intrinsic: 1
     - Id: the_room
       Active: 1
       Kind: 5
@@ -4922,8 +4922,8 @@ MonoBehaviour:
       - reh
       - feh
       - teh_marbuta
-      Difficulty: 0
       Drawing: 3A
+      Intrinsic: 1
     - Id: the_sad
       Active: 1
       Kind: 1
@@ -4940,8 +4940,8 @@ MonoBehaviour:
       - zain
       - yeh
       - noon
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: the_scientist
       Active: 1
       Kind: 5
@@ -4958,8 +4958,8 @@ MonoBehaviour:
       - alef
       - lam
       - meem
-      Difficulty: 0
       Drawing: 2C
+      Intrinsic: 1
     - Id: the_shirt
       Active: 1
       Kind: 5
@@ -4976,8 +4976,8 @@ MonoBehaviour:
       - meem
       - yeh
       - sad
-      Difficulty: 0
       Drawing: ED
+      Intrinsic: 1
     - Id: the_shoe
       Active: 1
       Kind: 5
@@ -4994,8 +4994,8 @@ MonoBehaviour:
       - thal
       - alef
       - hamza
-      Difficulty: 0
       Drawing: 23
+      Intrinsic: 1
     - Id: the_snow
       Active: 1
       Kind: 5
@@ -5011,8 +5011,8 @@ MonoBehaviour:
       - theh
       - lam
       - jeem
-      Difficulty: 0
       Drawing: EF
+      Intrinsic: 1
     - Id: the_sun
       Active: 1
       Kind: 5
@@ -5028,8 +5028,8 @@ MonoBehaviour:
       - sheen
       - meem
       - seen
-      Difficulty: 0
       Drawing: F1
+      Intrinsic: 1
     - Id: the_table
       Active: 1
       Kind: 5
@@ -5047,8 +5047,8 @@ MonoBehaviour:
       - waw
       - lam
       - teh_marbuta
-      Difficulty: 0
       Drawing: F3
+      Intrinsic: 1
     - Id: the_tooth
       Active: 1
       Kind: 5
@@ -5063,8 +5063,8 @@ MonoBehaviour:
       - lam
       - seen
       - noon
-      Difficulty: 0
       Drawing: DF
+      Intrinsic: 1
     - Id: the_trousers
       Active: 1
       Kind: 5
@@ -5082,8 +5082,8 @@ MonoBehaviour:
       - tah
       - alef
       - lam
-      Difficulty: 0
       Drawing: F8
+      Intrinsic: 1
     - Id: the_whale
       Active: 1
       Kind: 5
@@ -5099,8 +5099,8 @@ MonoBehaviour:
       - hah
       - waw
       - teh
-      Difficulty: 0
       Drawing: FD
+      Intrinsic: 1
     - Id: the_window
       Active: 1
       Kind: 5
@@ -5118,8 +5118,8 @@ MonoBehaviour:
       - feh
       - thal
       - teh_marbuta
-      Difficulty: 0
       Drawing: 177
+      Intrinsic: 1
     - Id: the_wolf
       Active: 1
       Kind: 5
@@ -5134,8 +5134,8 @@ MonoBehaviour:
       - lam
       - thal
       - beh
-      Difficulty: 0
       Drawing: FF
+      Intrinsic: 1
     - Id: the_wonderful
       Active: 1
       Kind: 5
@@ -5151,8 +5151,8 @@ MonoBehaviour:
       - reh
       - alef
       - ain
-      Difficulty: 0
       Drawing: 24
+      Intrinsic: 1
     - Id: the_worker
       Active: 1
       Kind: 5
@@ -5169,8 +5169,8 @@ MonoBehaviour:
       - alef
       - meem
       - lam
-      Difficulty: 0
       Drawing: 27
+      Intrinsic: 1
     - Id: tiger
       Active: 1
       Kind: 5
@@ -5184,8 +5184,8 @@ MonoBehaviour:
       - noon
       - meem
       - reh
-      Difficulty: 0
       Drawing: F5
+      Intrinsic: 1
     - Id: to
       Active: 1
       Kind: 4
@@ -5199,8 +5199,8 @@ MonoBehaviour:
       - alef_hamza_low
       - lam
       - alef_maqsura
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 0
     - Id: today
       Active: 1
       Kind: 7
@@ -5216,8 +5216,8 @@ MonoBehaviour:
       - yeh
       - waw
       - meem
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: toilet
       Active: 1
       Kind: 5
@@ -5233,8 +5233,8 @@ MonoBehaviour:
       - hah
       - alef
       - dad
-      Difficulty: 0
       Drawing: 153
+      Intrinsic: 1
     - Id: tomato
       Active: 1
       Kind: 5
@@ -5251,8 +5251,8 @@ MonoBehaviour:
       - waw
       - reh
       - teh_marbuta
-      Difficulty: 0
       Drawing: FE
+      Intrinsic: 1
     - Id: tomorrow
       Active: 1
       Kind: 7
@@ -5266,8 +5266,8 @@ MonoBehaviour:
       - ghain
       - dal
       - alef_fathah_tanwin
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: tongue
       Active: 1
       Kind: 5
@@ -5282,8 +5282,8 @@ MonoBehaviour:
       - seen
       - alef
       - noon
-      Difficulty: 0
       Drawing: 118
+      Intrinsic: 1
     - Id: tooth
       Active: 1
       Kind: 5
@@ -5296,8 +5296,8 @@ MonoBehaviour:
       Letters:
       - seen
       - noon
-      Difficulty: 1
       Drawing: DF
+      Intrinsic: 1
     - Id: tower
       Active: 1
       Kind: 5
@@ -5311,8 +5311,8 @@ MonoBehaviour:
       - beh
       - reh
       - jeem
-      Difficulty: 0
       Drawing: FA
+      Intrinsic: 1
     - Id: tree
       Active: 1
       Kind: 5
@@ -5326,8 +5326,8 @@ MonoBehaviour:
       - sheen
       - jeem
       - reh
-      Difficulty: 1
       Drawing: FB
+      Intrinsic: 1
     - Id: triangle
       Active: 1
       Kind: 5
@@ -5342,8 +5342,8 @@ MonoBehaviour:
       - theh
       - lam
       - theh
-      Difficulty: 0
       Drawing: FC
+      Intrinsic: 1
     - Id: trousers
       Active: 1
       Kind: 5
@@ -5359,8 +5359,8 @@ MonoBehaviour:
       - tah
       - alef
       - lam
-      Difficulty: 0
       Drawing: F8
+      Intrinsic: 1
     - Id: uncle_father
       Active: 1
       Kind: 5
@@ -5373,8 +5373,8 @@ MonoBehaviour:
       Letters:
       - ain
       - meem
-      Difficulty: 1
       Drawing: A4
+      Intrinsic: 1
     - Id: uncle_mother
       Active: 1
       Kind: 5
@@ -5388,8 +5388,8 @@ MonoBehaviour:
       - khah
       - alef
       - lam
-      Difficulty: 1
       Drawing: A2
+      Intrinsic: 1
     - Id: understood
       Active: 1
       Kind: 2
@@ -5403,8 +5403,8 @@ MonoBehaviour:
       - feh_fathah
       - heh_kasrah
       - meem_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: vegetables
       Active: 1
       Kind: 5
@@ -5418,8 +5418,8 @@ MonoBehaviour:
       - khah
       - dad
       - reh
-      Difficulty: 0
       Drawing: 2E
+      Intrinsic: 1
     - Id: virtuous
       Active: 1
       Kind: 1
@@ -5434,8 +5434,8 @@ MonoBehaviour:
       - zain
       - yeh
       - heh
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: voice
       Active: 1
       Kind: 5
@@ -5449,8 +5449,8 @@ MonoBehaviour:
       - sad
       - waw
       - teh
-      Difficulty: 0
       Drawing: F9
+      Intrinsic: 1
     - Id: vowel
       Active: 1
       Kind: 6
@@ -5467,8 +5467,8 @@ MonoBehaviour:
       - ain
       - lam
       - teh_marbuta
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: walked
       Active: 1
       Kind: 2
@@ -5482,8 +5482,8 @@ MonoBehaviour:
       - meem
       - sheen
       - alef_maqsura
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: washing_machine
       Active: 1
       Kind: 5
@@ -5499,8 +5499,8 @@ MonoBehaviour:
       - alef
       - lam
       - teh_marbuta
-      Difficulty: 0
       Drawing: 175
+      Intrinsic: 1
     - Id: water
       Active: 1
       Kind: 5
@@ -5514,8 +5514,8 @@ MonoBehaviour:
       - meem
       - alef
       - hamza
-      Difficulty: 1
       Drawing: 2019
+      Intrinsic: 1
     - Id: watermelon
       Active: 1
       Kind: 5
@@ -5530,8 +5530,8 @@ MonoBehaviour:
       - tah
       - yeh
       - khah
-      Difficulty: 0
       Drawing: 3F
+      Intrinsic: 1
     - Id: welcome
       Active: 1
       Kind: 7
@@ -5546,8 +5546,8 @@ MonoBehaviour:
       - heh
       - lam
       - alef_fathah_tanwin
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: went
       Active: 1
       Kind: 2
@@ -5561,8 +5561,8 @@ MonoBehaviour:
       - thal_fathah
       - heh_fathah
       - beh_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: whale
       Active: 1
       Kind: 5
@@ -5576,8 +5576,8 @@ MonoBehaviour:
       - hah
       - waw
       - teh
-      Difficulty: 0
       Drawing: FD
+      Intrinsic: 1
     - Id: window
       Active: 1
       Kind: 5
@@ -5593,8 +5593,8 @@ MonoBehaviour:
       - feh
       - thal
       - teh_marbuta
-      Difficulty: 0
       Drawing: 177
+      Intrinsic: 1
     - Id: winter
       Active: 1
       Kind: 5
@@ -5609,8 +5609,8 @@ MonoBehaviour:
       - teh
       - alef
       - hamza
-      Difficulty: 0
       Drawing: BF
+      Intrinsic: 1
     - Id: with_article
       Active: 1
       Kind: 6
@@ -5634,8 +5634,8 @@ MonoBehaviour:
       - reh
       - yeh
       - feh
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: without_article
       Active: 1
       Kind: 6
@@ -5660,8 +5660,8 @@ MonoBehaviour:
       - reh
       - yeh
       - feh
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: wolf
       Active: 1
       Kind: 5
@@ -5674,8 +5674,8 @@ MonoBehaviour:
       Letters:
       - thal
       - beh
-      Difficulty: 0
       Drawing: FF
+      Intrinsic: 1
     - Id: woman
       Active: 1
       Kind: 5
@@ -5690,8 +5690,8 @@ MonoBehaviour:
       - reh
       - alef_hamza_hi
       - teh_marbuta
-      Difficulty: 0
       Drawing: 22
+      Intrinsic: 1
     - Id: won
       Active: 1
       Kind: 2
@@ -5705,8 +5705,8 @@ MonoBehaviour:
       - reh_fathah
       - beh_kasrah
       - hah_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: wonderful
       Active: 1
       Kind: 1
@@ -5720,8 +5720,8 @@ MonoBehaviour:
       - reh
       - alef
       - ain
-      Difficulty: 0
       Drawing: 24
+      Intrinsic: 1
     - Id: wore
       Active: 1
       Kind: 2
@@ -5735,8 +5735,8 @@ MonoBehaviour:
       - lam_fathah
       - beh_kasrah
       - seen_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: worker
       Active: 1
       Kind: 5
@@ -5751,8 +5751,8 @@ MonoBehaviour:
       - alef
       - meem
       - lam
-      Difficulty: 0
       Drawing: 27
+      Intrinsic: 1
     - Id: worker_dual
       Active: 1
       Kind: 5
@@ -5769,8 +5769,8 @@ MonoBehaviour:
       - lam
       - alef
       - noon
-      Difficulty: 0
       Drawing: 201D
+      Intrinsic: 1
     - Id: worker_plural
       Active: 1
       Kind: 5
@@ -5785,8 +5785,8 @@ MonoBehaviour:
       - meem
       - alef
       - lam
-      Difficulty: 0
       Drawing: 2018
+      Intrinsic: 1
     - Id: wrote
       Active: 1
       Kind: 2
@@ -5800,8 +5800,8 @@ MonoBehaviour:
       - kaf_fathah
       - teh_fathah
       - beh_fathah
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: year
       Active: 1
       Kind: 5
@@ -5815,8 +5815,8 @@ MonoBehaviour:
       - ain
       - alef
       - meem
-      Difficulty: 0
       Drawing: 201C
+      Intrinsic: 1
     - Id: yesterday
       Active: 1
       Kind: 7
@@ -5834,8 +5834,8 @@ MonoBehaviour:
       - reh
       - hah
       - teh_marbuta
-      Difficulty: 0
       Drawing: 
+      Intrinsic: 1
     - Id: yogurt
       Active: 1
       Kind: 5
@@ -5849,5 +5849,5 @@ MonoBehaviour:
       - lam
       - beh
       - noon
-      Difficulty: 1
       Drawing: 2A
+      Intrinsic: 1
