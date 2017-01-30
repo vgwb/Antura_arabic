@@ -109,7 +109,7 @@ namespace EA4S.Assessment
                 foreach (var answ in pack.GetCorrectAnswers())
                     for (int j = 0; j < categoryProvider.GetCategories(); j++)
                         if (categoryProvider.Compare( j, answ))
-                            answersBuckets[j].Add(pack.GetQuestion());
+                            answersBuckets[j].Add( pack.GetQuestion());
             }
         }
 
