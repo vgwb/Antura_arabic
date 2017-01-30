@@ -62,6 +62,7 @@ namespace EA4S.Database
         public string Old_Initial;
         public string Old_Medial;
         public string Old_Final;
+        public float Intrinsic;
 
         public override string ToString()
         {

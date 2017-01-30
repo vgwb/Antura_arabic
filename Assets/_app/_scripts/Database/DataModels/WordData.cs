@@ -23,8 +23,8 @@ namespace EA4S.Database
         public string Value;
         public string[] Letters;
         //public LetterSymbol[] Symbols; //TODO
-        public int Difficulty;
         public string Drawing;
+        public float Intrinsic;
 
         public int NumberOfLetters { get { return Letters.Length; } }
 
