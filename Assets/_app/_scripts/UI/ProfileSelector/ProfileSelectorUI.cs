@@ -42,6 +42,9 @@ namespace EA4S.UI
 
             avatarButtons = ProfilesPanel.GetComponentsInChildren<ProfileSelectorAvatarButton>(true);
             maxProfiles = avatarButtons.Length;
+
+            // By default, the letter shows a truly random letter
+            LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL());
         }
 
         void Start()

@@ -198,7 +198,7 @@ namespace EA4S.Minigames.MissingLetter
         private List<LL_WordData> GetWordFromPhrases(LL_PhraseData _phrase)
         {
             List<LL_WordData> phrase = new List<LL_WordData>();
-            var dbWords = AppManager.I.Teacher.wordHelper.GetWordsInPhrase(_phrase.Id);
+            var dbWords = AppManager.I.VocabularyHelper.GetWordsInPhrase(_phrase.Id);
             foreach (var dbWord in dbWords)
             {
                 phrase.Add((LL_WordData)dbWord.ConvertToLivingLetterData());

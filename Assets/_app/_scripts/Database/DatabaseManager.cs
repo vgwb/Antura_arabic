@@ -26,6 +26,11 @@ namespace EA4S.Database
             }
         }
 
+        public bool HasLoadedPlayerProfile()
+        {
+            return dynamicDb != null;
+        }
+
         #region Player assignment
 
         public void CreateDatabaseForPlayer(PlayerProfileData playerProfileData)
@@ -76,13 +81,11 @@ namespace EA4S.Database
         public void LoadDynamicDbForPlayerProfile(int profileId)
         {
             dynamicDb = new DBService("EA4S_Database" + "_" + profileId + ".sqlite3", profileId);
-            //dbLoaded = true;
         }
 
         public void UnloadCurrentProfile()
         {
             dynamicDb = null;
-            //dbLoaded = false;
         }
 
         public void CreateProfile()

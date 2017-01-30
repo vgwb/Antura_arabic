@@ -51,6 +51,7 @@ namespace EA4S.Teacher
         {
             QuestionPackData pack = null;
             var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             // @note this specific builder works differently, because we first need to get words and then their letters
             // this is a special case because the focus in both on words and on letters
@@ -60,7 +61,7 @@ namespace EA4S.Teacher
 
             // Get all words
             var usableWords = teacher.VocabularyAi.SelectData(
-                () => teacher.wordHelper.GetAllWords(parameters.wordFilters),
+                () => vocabularyHelper.GetAllWords(parameters.wordFilters),
                     new SelectionParameters(parameters.correctSeverity, getMaxData: true, useJourney: parameters.useJourneyForCorrect));
 
             int nAttempts = 100;
@@ -68,7 +69,7 @@ namespace EA4S.Teacher
             while (nAttempts > 0 && !found)
             {
                 var wordsToUse = usableWords.RandomSelect(nWords);
-                var commonLetters = teacher.wordHelper.GetCommonLettersInWords(wordsToUse.ToArray());
+                var commonLetters = vocabularyHelper.GetCommonLettersInWords(wordsToUse.ToArray());
                 //UnityEngine.Debug.Log("Trying letters: " + commonLetters.Count);
                 if (commonLetters.Count < nMinCommonLetters || commonLetters.Count > nMaxCommonLetters)
                 {
@@ -76,7 +77,7 @@ namespace EA4S.Teacher
                     continue;
                 }
 
-                var nonCommonLetters = teacher.wordHelper.GetLettersNotIn(parameters.letterFilters, commonLetters.ToArray()).RandomSelect(nWrong);
+                var nonCommonLetters = vocabularyHelper.GetLettersNotIn(parameters.letterFilters, commonLetters.ToArray()).RandomSelect(nWrong);
 
                 // Debug
                 if (ConfigAI.verboseTeacher)

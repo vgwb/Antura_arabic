@@ -15,7 +15,7 @@ namespace EA4S.Teacher
         // References
         private DatabaseManager dbManager;
         //private TeacherAI teacher;
-        //private WordHelper wordHelper;
+        //private VocabularyHelper VocabularyHelper;
 
         // Inner state
         private HashSet<LetterData> journeyLetters = new HashSet<LetterData>();
