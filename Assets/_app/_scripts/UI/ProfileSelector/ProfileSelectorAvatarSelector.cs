@@ -53,15 +53,15 @@ namespace EA4S.UI
             AudioManager.I.PlaySound(ProfileSelectorUI.I.SfxOpenCreateProfile);
 
             // Set available avatars
-            bool hasProfiles = ProfileSelectorUI.I.ProfileManager.AvailablePlayerProfiles != null
-                && ProfileSelectorUI.I.ProfileManager.AvailablePlayerProfiles.Count > 0;
+            bool hasProfiles = AppManager.I.GameSettings.AvailablePlayers != null
+                && AppManager.I.GameSettings.AvailablePlayers.Count > 0;
             for (int i = 0; i < avatarButtons.Length; ++i) {
                 ProfileSelectorAvatarButton bt = avatarButtons[i];
                 int id = i + 1;
                 bool isAvailable = true;
                 if (hasProfiles) {
-                    foreach (PlayerProfile pp in ProfileSelectorUI.I.ProfileManager.AvailablePlayerProfiles) {
-                        if (pp.AvatarId == id) {
+                    foreach (string avatarId in AppManager.I.GameSettings.AvailablePlayers) {
+                        if (int.Parse(avatarId) == id) {
                             isAvailable = false;
                             break;
                         }
