@@ -563,25 +563,9 @@ Prefab:
       propertyPath: poofPrefab
       value: 
       objectReference: {fileID: 870303149}
-    - target: {fileID: 114001497908019052, guid: 9796690aa4d4ebf418e65146780f0918,
-        type: 2}
-      propertyPath: m_margins.w
-      value: -0.00000011920929
-      objectReference: {fileID: 0}
-    - target: {fileID: 224517010780152638, guid: 9796690aa4d4ebf418e65146780f0918,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 224517010780152638, guid: 9796690aa4d4ebf418e65146780f0918,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 114001497908019052, guid: 9796690aa4d4ebf418e65146780f0918,
-        type: 2}
-      propertyPath: m_margins.y
-      value: -0.043245077
+    - target: {fileID: 1942231629936472, guid: 9796690aa4d4ebf418e65146780f0918, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9796690aa4d4ebf418e65146780f0918, type: 2}
