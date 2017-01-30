@@ -42,7 +42,7 @@ namespace EA4S.Assessment
         {
             counter++;
             var letter = (Instantiate( LivingLetterPrefab) as GameObject)
-                    .GetComponent<LetterObjectView>();
+                    .GetComponent< LetterObjectView>();
 
             letter.gameObject.name= "instance_" + counter;
             letter.Init( data);
