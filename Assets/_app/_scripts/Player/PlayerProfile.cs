@@ -168,11 +168,23 @@ namespace EA4S.Profile
         }
         #endregion
 
-        #region Antura Customization                
+        #region Antura Customization   
+        private List<RewardPackUnlockData> _rewardsUnlocked;
         /// <summary>
-        /// The rewards unlocked
+        /// Gets or sets the rewards unlocked.
         /// </summary>
-        public List<RewardPackUnlockData> RewardsUnlocked = new List<RewardPackUnlockData>();
+        /// <value>
+        /// The rewards unlocked.
+        /// </value>
+        public List<RewardPackUnlockData> RewardsUnlocked {
+            get {
+                if (_rewardsUnlocked == null)
+                    return AppManager.I.DB.GetAllRewardPackUnlockData();
+                return _rewardsUnlocked;
+            }
+
+            private set { _rewardsUnlocked = value; }
+        }
 
         /// <summary>
         /// Adds the reward unlocked.
