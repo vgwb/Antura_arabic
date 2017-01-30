@@ -90,7 +90,7 @@ namespace EA4S.Database
 
         public PlayerProfileData GetPlayerProfileData()
         {
-            return dynamicDb.FindById<PlayerProfileData>("1");
+            return dynamicDb.FindPlayerProfileDataById(PlayerProfileData.UNIQUE_ID);
         }
 
         #endregion
