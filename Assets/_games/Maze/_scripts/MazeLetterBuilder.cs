@@ -34,6 +34,7 @@ namespace EA4S.Minigames.Maze
             character.name = "Mazecharacter";
             character.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
             MazeCharacter mazeCharacter = character.GetComponent<MazeCharacter>();
+            mazeCharacter.SpawnOffscreen();
 
             MazeLetter letter = null;
             GameObject BorderColldider = null;
@@ -90,7 +91,7 @@ namespace EA4S.Minigames.Maze
                 }
             }
 
-            character.transform.position = characterPosition + new Vector3(0,1,0);
+            //character.transform.position = characterPosition + new Vector3(0,1,0);
 
             //fix mazecharacter:
             mazeCharacter.myCollider = BorderColldider;

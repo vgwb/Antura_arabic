@@ -9,10 +9,9 @@ namespace EA4S.Minigames.Maze
     public delegate void VoidDelegate();
     public class MazeCharacter : MonoBehaviour
     {
-
-        //for internal use:
-
-
+        private const float VERTICAL_DISTANCE_FROM_CAMERA = 0.2f;
+        private const float MIN_XZ_DISTANCE_FROM_CAMERA = 1f;
+        private const float MAX_XZ_DISTANCE_FROM_CAMERA = 2f;
 
         public List<Vector3> characterWayPoints;
 
@@ -92,6 +91,35 @@ namespace EA4S.Minigames.Maze
 
         }
 
+        private float GetFrustumHeightAtDistance(float distanceFromCamera)
+        {
+            return 2.0f * distanceFromCamera * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
+        }
+
+        private float GetFrustumWidth(float frustumHeight)
+        {
+            return frustumHeight * Camera.main.aspect;
+        }
+
+        public void SpawnOffscreen()
+        {
+            var frustumHeight = GetFrustumHeightAtDistance(VERTICAL_DISTANCE_FROM_CAMERA);
+            var frustumWidth = GetFrustumWidth(frustumHeight);
+
+            var xDisplacement = Random.Range(MIN_XZ_DISTANCE_FROM_CAMERA, MAX_XZ_DISTANCE_FROM_CAMERA);
+            xDisplacement *= Random.value <= 0.5f ? 1f : -1f;
+
+            var zDisplacement = Random.Range(MIN_XZ_DISTANCE_FROM_CAMERA, MAX_XZ_DISTANCE_FROM_CAMERA);
+            zDisplacement *= Random.value <= 0.5f ? 1f : -1f;
+
+            var cameraPosition = Camera.main.transform.position;
+
+            Vector3 startPoint = new Vector3(cameraPosition.x + (frustumWidth / 2 * Mathf.Sign(xDisplacement)) + xDisplacement,
+                                                cameraPosition.y - VERTICAL_DISTANCE_FROM_CAMERA, cameraPosition.z + (frustumHeight / 2 * Mathf.Sign(zDisplacement)) + zDisplacement);
+
+            transform.position = startPoint;
+        }
+
         public void toggleVisibility(bool value)
         {
             foreach (GameObject particle in particles) particle.SetActive(value);
@@ -111,7 +139,6 @@ namespace EA4S.Minigames.Maze
             initialRotation = transform.rotation;
             targetRotation = initialRotation;
 
-
             characterWayPoints.Add(initialPosition);
             SetFruitsList();
 
@@ -120,11 +147,8 @@ namespace EA4S.Minigames.Maze
 
             angle = 360 + angle;
 
-
-
             transform.DOLocalRotateQuaternion(Quaternion.AngleAxis(-angle, Vector3.up), 0.5f);
 
-            //transform.position += new Vector3(0, 0.05f, 0);
             dir.Normalize();
             dir.x = transform.position.x - dir.x * 1.5f;
             dir.z = transform.position.z - dir.z * 1.5f;
@@ -644,26 +668,48 @@ namespace EA4S.Minigames.Maze
 
         }
 
-        public void appear()
+        public void Appear()
         {
             toggleVisibility(true);
             isAppearing = true;
 
-            List<Vector3> pts = new List<Vector3>();
-            pts.Add(transform.position);
+            List<Vector3> trajectoryPoints = new List<Vector3>();
+            
+            var finalPosition = Fruits[0].transform.GetChild(0).gameObject.transform.position;
 
-            Vector3 half = transform.position + (initialPosition - transform.position) / 2;
-            half.x += 10;
+            Vector3 secondPoint = transform.position + finalPosition;
+            secondPoint *= 0.66f;
 
-            pts.Add(half);
+            Vector3 thirdPoint = secondPoint * 0.5f;
 
-            pts.Add(initialPosition);
+            var frustumHeightAtSecondPoint = GetFrustumHeightAtDistance(Camera.main.transform.position.y - secondPoint.y);
+            var frustumWidthAtSecondPoint = GetFrustumWidth(frustumHeightAtSecondPoint);
 
-            transform.DOPath(pts.ToArray(), 2, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) =>
+            var frustumHeightAtThirdPoint = GetFrustumHeightAtDistance(Camera.main.transform.position.y - thirdPoint.y);
+            var frustumWidthAtThirdPoint = GetFrustumWidth(frustumHeightAtThirdPoint);
+
+            secondPoint.x = frustumWidthAtSecondPoint * 0.8f * 0.5f;
+            secondPoint.x *= -1f * Mathf.Sign(transform.position.x);
+
+            secondPoint.z = frustumHeightAtSecondPoint * 0.8f * 0.5f;
+            secondPoint.z *= -1f * Mathf.Sign(transform.position.z);
+            
+            thirdPoint.x = frustumWidthAtThirdPoint * 0.8f * 0.5f;
+            thirdPoint.x *= -1f * Mathf.Sign(secondPoint.x);
+
+            thirdPoint.z = frustumHeightAtThirdPoint * 0.8f * 0.5f;
+            thirdPoint.z *= -1f * Mathf.Sign(secondPoint.z);
+
+            trajectoryPoints.Add(transform.position);
+            trajectoryPoints.Add(secondPoint);
+            trajectoryPoints.Add(thirdPoint);
+            trajectoryPoints.Add(finalPosition);
+
+            transform.DOPath(trajectoryPoints.ToArray(), 3, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) =>
             {
-                if (index + 1 < pts.Count)
+                if (index + 1 < trajectoryPoints.Count)
                 {
-                    var dir = transform.position - pts[index + 1];
+                    var dir = transform.position - trajectoryPoints[index + 1];
                     var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
 
                     transform.rotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
@@ -771,6 +817,8 @@ namespace EA4S.Minigames.Maze
                      //transform.rotation = initialRotation;
                      MazeGameManager.instance.showCurrentTutorial();
                  }*/
+                 
+
                 return;
             }
             if (isFleeing)
