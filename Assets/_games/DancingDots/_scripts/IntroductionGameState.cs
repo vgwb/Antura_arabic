@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EA4S.Minigames.DancingDots
 {
-    public class IntroductionGameState : IGameState
+    public class IntroductionGameState : IState
     {
         DancingDotsGame game;
 

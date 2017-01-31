@@ -120,7 +120,7 @@ namespace EA4S.Minigames.MakeFriends
             ResultState = new MakeFriendsResultState(this);
         }
 
-        protected override IGameState GetInitialState()
+        protected override IState GetInitialState()
         {
             return IntroductionState;
         }

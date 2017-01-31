@@ -1,6 +1,6 @@
 ﻿namespace EA4S.Minigames.FastCrowd
 {
-    public abstract class StrollingLetterState : IGameState
+    public abstract class StrollingLetterState : IState
     {
         protected StrollingLivingLetter letter;
 

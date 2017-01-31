@@ -1,8 +1,11 @@
+using EA4S.Helpers;
+using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
+using Kore.Coroutines;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using EA4S.Helpers;
-using EA4S.MinigamesAPI;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -15,16 +18,42 @@ namespace EA4S.Assessment
         private IQuestionProvider provider;
         private QuestionGeneratorState state;
         private IQuestionPack currentPack;
+
         private bool missingLetter;
 
         public ImageQuestionGenerator(  IQuestionProvider provider , bool missingLetter, 
-                                        AssessmentDialogues dialogues)
+                                        AssessmentDialogues dialogues,
+                                        AssessmentEvents events)
         {
             this.provider = provider;
             this.missingLetter = missingLetter;
             this.dialogues = dialogues;
+
+            if(AssessmentOptions.Instance.CompleteWordOnAnswered)
+                events.OnAllQuestionsAnswered = CompleteWordCoroutine;
+
+            if (AssessmentOptions.Instance.ShowFullWordOnAnswered)
+                events.OnAllQuestionsAnswered = ShowFullWordCoroutine;
+
             state = QuestionGeneratorState.Uninitialized;
             ClearCache();
+        }
+
+        private IEnumerator ShowFullWordCoroutine()
+        {
+            cacheFullWordDataLL.Poof( ElementsSize.PoofOffset);
+            cacheFullWordDataLL.Initialize( cacheFullWordData);
+            yield return Wait.For( AssessmentOptions.Instance.TimeToShowCompleteWord);
+        }
+
+        string cacheCompleteWord = null;
+        LetterObjectView cacheCompleteWordLL = null;
+
+        private IEnumerator CompleteWordCoroutine()
+        {
+            cacheCompleteWordLL.Poof( ElementsSize.PoofOffset);
+            cacheCompleteWordLL.Label.text = cacheCompleteWord;
+            yield return Wait.For( AssessmentOptions.Instance.TimeToShowCompleteWord);
         }
 
         public void InitRound()
@@ -141,14 +170,18 @@ namespace EA4S.Assessment
             }
         }
 
+        private LL_WordData cacheFullWordData;
+        private LetterObjectView cacheFullWordDataLL;
+
         private IQuestion GenerateQuestion( ILivingLetterData data)
         {
-            Debug.Log("Generate Question");
+            cacheFullWordData = new LL_WordData( data.Id);
+
             if (AssessmentOptions.Instance.ShowQuestionAsImage)
                 data = new LL_ImageData( data.Id);
 
-            var q = LivingLetterFactory.Instance.SpawnQuestion( data);
-            return new DefaultQuestion( q, 0, dialogues);
+            cacheFullWordDataLL = LivingLetterFactory.Instance.SpawnQuestion( data);
+            return new DefaultQuestion( cacheFullWordDataLL, 0, dialogues);
         }
 
         private const string RemovedLetterChar = "_";
@@ -156,18 +189,20 @@ namespace EA4S.Assessment
 
         private IQuestion GenerateMissingLetterQuestion( ILivingLetterData data, ILivingLetterData letterToRemove)
         {
-            Debug.Log("Generate MissingLetter Question");
             var imageData = new LL_ImageData( data.Id);
             LL_WordData word = (LL_WordData)data;
             LL_LetterData letter = (LL_LetterData)letterToRemove;
 
-            string text = ArabicAlphabetHelper.GetWordWithMissingLetter(word.Data, letter.Data, RemovedLetterChar);
+            cacheCompleteWord = word.TextForLivingLetter;
+
+            string text = ArabicAlphabetHelper.GetWordWithMissingLetterText( word.Data, letter.Data, RemovedLetterChar);
 
             //Spawn word, then replace text with text with missing letter
             var wordGO = LivingLetterFactory.Instance.SpawnQuestion( word);
             wordGO.Label.text = text;
+            cacheCompleteWordLL = wordGO;
 
-            var collider = wordGO.GetComponent<BoxCollider>();
+            var collider = wordGO.GetComponent< BoxCollider>();
             collider.center = new Vector3( 1.5f, 0, 0);
             collider.size = new Vector3( 7.5f, 3, 1.5f);
 
@@ -177,11 +212,7 @@ namespace EA4S.Assessment
         private Answer GenerateWrongAnswer( ILivingLetterData wrongAnswer)
         {
             return
-            LivingLetterFactory.Instance.SpawnAnswer(wrongAnswer)
-            .gameObject.AddComponent< Answer>()
-
-                // Correct answer
-                .Init( false, dialogues);
+            LivingLetterFactory.Instance.SpawnAnswer( wrongAnswer, false, dialogues);
         }
 
         private void GeneratePlaceHolder( IQuestion question)
@@ -195,11 +226,7 @@ namespace EA4S.Assessment
         private Answer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
         {
             return
-            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer)
-            .gameObject.AddComponent< Answer>()
-
-                // Correct answer
-                .Init( true, dialogues);
+            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer, true, dialogues);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace EA4S.Minigames.TakeMeHome
 {
-	public class TakeMeHomeAnturaState : IGameState
+	public class TakeMeHomeAnturaState : IState
 	{
 		TakeMeHomeGame game;
 

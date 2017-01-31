@@ -2,7 +2,7 @@
 
 namespace EA4S.Minigames.Scanner
 {
-	public class ScannerResultState : IGameState
+	public class ScannerResultState : IState
 	{
 		ScannerGame game;
 

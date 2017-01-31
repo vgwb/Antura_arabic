@@ -63,6 +63,8 @@ namespace EA4S.Core
         {
             get
             {
+                if (CurrentPlaySessionMiniGames == null) return null;
+                if (CurrentPlaySessionMiniGames.Count == 0) return null;
                 return CurrentPlaySessionMiniGames[CurrentMiniGameIndexInPlaySession];
             }
         }

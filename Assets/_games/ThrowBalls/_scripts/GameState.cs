@@ -11,7 +11,7 @@ using EA4S.UI;
 
 namespace EA4S.Minigames.ThrowBalls
 {
-    public class GameState : IGameState
+    public class GameState : IState
     {
         public const int MAX_NUM_ROUNDS = 5;
         public const int NUM_LETTERS_IN_POOL = 7;

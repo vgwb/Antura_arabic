@@ -168,7 +168,7 @@ namespace EA4S.Minigames.TakeMeHome
 			return TakeMeHomeConfiguration.Instance;
 		}
 
-		protected override IGameState GetInitialState()
+		protected override IState GetInitialState()
 		{
 			return TutorialIntroState;
 		}

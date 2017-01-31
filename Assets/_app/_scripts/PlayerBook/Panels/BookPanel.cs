@@ -287,7 +287,7 @@ namespace EA4S.PlayerBook
 
             ArabicText.text = output;
 
-            LL_Isolated.Init(new LL_WordData(info.data));
+            LL_Isolated.Initialize(new LL_WordData(info.data));
             LL_Initial.gameObject.SetActive(false);
             LL_Final.gameObject.SetActive(false);
 
@@ -295,7 +295,7 @@ namespace EA4S.PlayerBook
                 var drawingChar = AppManager.I.VocabularyHelper.GetWordDrawing(info.data);
                 Drawing.text = drawingChar;
                 //LL_Medial.gameObject.SetActive(true);
-                LL_Medial.Init(new LL_ImageData(info.data));
+                LL_Medial.Initialize(new LL_ImageData(info.data));
                 Debug.Log("Drawing: " + info.data.Drawing + " / " + ArabicAlphabetHelper.GetLetterFromUnicode(info.data.Drawing));
             } else {
                 Drawing.text = "";
@@ -313,13 +313,13 @@ namespace EA4S.PlayerBook
             ScoreText.text = "Score: " + info.score;
 
             var isolatedChar = info.data.GetCharFixedForDisplay(LetterPosition.Isolated);
-            LL_Isolated.Init(new LL_LetterData(info.data));
+            LL_Isolated.Initialize(new LL_LetterData(info.data));
             LL_Isolated.Label.text = isolatedChar;
 
             var InitialChar = info.data.GetCharFixedForDisplay(LetterPosition.Initial);
             if (InitialChar != "") {
                 LL_Initial.gameObject.SetActive(true);
-                LL_Initial.Init(new LL_LetterData(info.data));
+                LL_Initial.Initialize(new LL_LetterData(info.data));
                 LL_Initial.Label.text = InitialChar;
             } else {
                 LL_Initial.gameObject.SetActive(false);
@@ -328,7 +328,7 @@ namespace EA4S.PlayerBook
             var MedialChar = info.data.GetCharFixedForDisplay(LetterPosition.Medial);
             if (MedialChar != "") {
                 LL_Medial.gameObject.SetActive(true);
-                LL_Medial.Init(new LL_LetterData(info.data));
+                LL_Medial.Initialize(new LL_LetterData(info.data));
                 LL_Medial.Label.text = MedialChar;
             } else {
                 LL_Medial.gameObject.SetActive(false);
@@ -337,7 +337,7 @@ namespace EA4S.PlayerBook
             var FinalChar = info.data.GetCharFixedForDisplay(LetterPosition.Final);
             if (FinalChar != "") {
                 LL_Final.gameObject.SetActive(true);
-                LL_Final.Init(new LL_LetterData(info.data));
+                LL_Final.Initialize(new LL_LetterData(info.data));
                 LL_Final.Label.text = FinalChar;
             } else {
                 LL_Final.gameObject.SetActive(false);

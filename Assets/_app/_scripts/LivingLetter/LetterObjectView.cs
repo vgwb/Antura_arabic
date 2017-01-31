@@ -70,21 +70,79 @@ namespace EA4S.LivingLetters
         /// Gets the data.
         /// </summary>
         ILivingLetterData data;
-        public ILivingLetterData Data {
-            get {
+        public ILivingLetterData Data
+        {
+            get
+            {
                 return data;
             }
-            private set {
+            private set
+            {
                 data = value;
 
-                OnModelChanged();
+                if (Data == null)
+                {
+                    ImageSprite.enabled = false;
+                    Drawing.enabled = false;
+                    Label.enabled = false;
+                }
+                else
+                {
+                    if (Data.DataType == LivingLetterDataType.Image)
+                    {
+                        Drawing.text = Data.DrawingCharForLivingLetter;
+                        Drawing.enabled = true;
+
+                        LL_ImageData data = (LL_ImageData)Data;
+                        if (data.Data.Category == Database.WordDataCategory.Color)
+                        {
+                            Drawing.color = GenericHelper.GetColorFromString(data.Data.Value);
+                        }
+                        else
+                        {
+                            Drawing.color = Color.black;
+                        }
+
+                        //ImageSprite.sprite = Data.DrawForLivingLetter;
+                        //ImageSprite.enabled = true;
+                        Label.enabled = false;
+                    }
+                    else
+                    {
+                        ImageSprite.enabled = false;
+                        Drawing.enabled = false;
+                        Label.enabled = true;
+
+                        Label.text = Data.TextForLivingLetter;
+
+                        // Scale modification
+                        switch (data.DataType)
+                        {
+                            case LivingLetterDataType.Word:
+                                Scale = 1.3f;
+                                break;
+                            case LivingLetterDataType.Phrase:
+                                Scale = 2f;
+                                break;
+                            case LivingLetterDataType.Letter:
+                                Scale = 1f;
+                                break;
+                            default:
+                                Scale = 1f;
+                                break;
+                        }
+                    }
+                }
             }
         }
 
-        public LLAnimationStates State {
+        public LLAnimationStates State
+        {
             get { return state; }
-            set {
-                if (state != value) {
+            set
+            {
+                if (state != value)
+                {
                     var oldState = state;
                     state = value;
                     OnStateChanged(oldState, state);
@@ -94,8 +152,10 @@ namespace EA4S.LivingLetters
         }
         private LLAnimationStates state = LLAnimationStates.LL_idle;
 
-        Animator animator {
-            get {
+        Animator animator
+        {
+            get
+            {
                 if (!anim)
                     anim = GetComponentInChildren<Animator>();
                 return anim;
@@ -113,7 +173,10 @@ namespace EA4S.LivingLetters
         {
             startScale = transform.localScale;
             startTextScale = textTransform.sizeDelta;
-            OnModelChanged();
+
+            ImageSprite.enabled = false;
+            Drawing.enabled = false;
+            Label.enabled = false;
         }
 
         void Start()
@@ -122,66 +185,32 @@ namespace EA4S.LivingLetters
         }
 
         /// <summary>
-        /// Called when [model changed].
+        /// Initializes object with the specified data.
         /// </summary>
-        void OnModelChanged()
+        /// <param name="data">The data.</param>
+        public void Initialize(ILivingLetterData data)
         {
-            if (Data == null) {
-                ImageSprite.enabled = false;
-                Drawing.enabled = false;
-                Label.enabled = false;
-            } else {
-                if (Data.DataType == LivingLetterDataType.Image) {
-                    Drawing.text = Data.DrawingCharForLivingLetter;
-                    Drawing.enabled = true;
-
-                    LL_ImageData data = (LL_ImageData)Data;
-                    if (data.Data.Category == Database.WordDataCategory.Color) {
-                        Drawing.color = GenericHelper.GetColorFromString(data.Data.Value);
-                    } else {
-                        Drawing.color = Color.black;
-                    }
-
-                    //ImageSprite.sprite = Data.DrawForLivingLetter;
-                    //ImageSprite.enabled = true;
-                    Label.enabled = false;
-                } else {
-                    ImageSprite.enabled = false;
-                    Drawing.enabled = false;
-                    Label.enabled = true;
-
-                    // Scale modification
-                    switch (data.DataType) {
-                        case LivingLetterDataType.Word:
-                            Label.text = Data.TextForLivingLetter;
-                            Scale = 1.3f;
-                            break;
-                        case LivingLetterDataType.Phrase:
-                            Label.text = Data.TextForLivingLetter;
-                            Scale = 2f;
-                            break;
-                        case LivingLetterDataType.Letter:
-                            Label.text = Data.TextForLivingLetter;
-                            Scale = 1f;
-                            break;
-                        default:
-                            Label.text = Data.TextForLivingLetter;
-                            Scale = 1f;
-                            break;
-                    }
-                }
-            }
+            idleTimer = Random.Range(3, 8);
+            Data = data;
         }
 
         /// <summary>
-        /// Initializes  object with the specified data.
+        /// Manually initializes object with the specified text.
         /// </summary>
-        /// <param name="_data">The data.</param>
-        public void Init(ILivingLetterData _data)
+        /// <param name="data">Used as data reference.</param>
+        /// <param name="customText">The text.</param>
+        /// <param name="scale">The scale used to resize the LL.</param>
+        public void Initialize(ILivingLetterData data, string customText, float scale)
         {
             idleTimer = Random.Range(3, 8);
 
-            Data = _data;
+            Data = data;
+            ImageSprite.enabled = false;
+            Drawing.enabled = false;
+            Label.enabled = true;
+
+            Label.text = customText;
+            Scale = scale;
         }
         #endregion
 
@@ -200,7 +229,8 @@ namespace EA4S.LivingLetters
             animator.SetBool("tickling", false);
             animator.SetBool("idle", false);
 
-            if (_oldState != LLAnimationStates.LL_limbless && _newState == LLAnimationStates.LL_limbless) {
+            if (_oldState != LLAnimationStates.LL_limbless && _newState == LLAnimationStates.LL_limbless)
+            {
                 // going limbless
                 if (started)
                     Poof();
@@ -209,7 +239,9 @@ namespace EA4S.LivingLetters
                     normalGraphics[i].SetActive(false);
                 for (int i = 0; i < limblessGraphics.Length; ++i)
                     limblessGraphics[i].SetActive(true);
-            } else if (_oldState == LLAnimationStates.LL_limbless && _newState != LLAnimationStates.LL_limbless) {
+            }
+            else if (_oldState == LLAnimationStates.LL_limbless && _newState != LLAnimationStates.LL_limbless)
+            {
                 if (started)
                     Poof();
 
@@ -219,7 +251,8 @@ namespace EA4S.LivingLetters
                     limblessGraphics[i].SetActive(false);
             }
 
-            switch (_newState) {
+            switch (_newState)
+            {
                 case LLAnimationStates.LL_idle:
                 case LLAnimationStates.LL_still:
                     animator.SetBool("idle", true);
@@ -250,10 +283,12 @@ namespace EA4S.LivingLetters
 
         void Update()
         {
-            if (State == LLAnimationStates.LL_idle) {
+            if (State == LLAnimationStates.LL_idle)
+            {
                 idleTimer -= Time.deltaTime;
 
-                if (idleTimer < 0.0f) {
+                if (idleTimer < 0.0f)
+                {
                     idleTimer = Random.Range(3, 8);
                     animator.SetFloat("random", Random.value);
                     animator.SetTrigger("doAlternative");
@@ -275,7 +310,8 @@ namespace EA4S.LivingLetters
         {
             //if (Scale != lastScale && Scale >= 1.0f)
             {
-                if (contentTransform) {
+                if (contentTransform)
+                {
                     boneToScaleTransform.localScale = new Vector3(startScale.x, startScale.y, startScale.z * Scale);
                     contentTransform.localScale = new Vector3(1 / Scale, 1, 1);
                     textTransform.sizeDelta = new Vector3(startTextScale.x * Scale, startTextScale.y);
@@ -297,9 +333,11 @@ namespace EA4S.LivingLetters
         }
 
         bool crouch;
-        public bool Crouching {
+        public bool Crouching
+        {
             get { return crouch; }
-            set {
+            set
+            {
                 crouch = value;
                 animator.SetBool("crouch", value);
 
@@ -308,9 +346,11 @@ namespace EA4S.LivingLetters
 
         bool jumping;
         bool falling;
-        public bool Falling {
+        public bool Falling
+        {
             get { return falling; }
-            set {
+            set
+            {
                 falling = value;
                 animator.SetBool("falling", value);
 
@@ -318,9 +358,11 @@ namespace EA4S.LivingLetters
         }
 
         bool fear;
-        public bool HasFear {
+        public bool HasFear
+        {
             get { return fear; }
-            set {
+            set
+            {
                 fear = value;
                 animator.SetBool("fear", value);
             }
@@ -328,11 +370,14 @@ namespace EA4S.LivingLetters
 
 
         bool hooraying;
-        public bool Horraying {
+        public bool Horraying
+        {
             get { return hooraying; }
-            set {
+            set
+            {
                 animator.SetBool("holdHorray", value);
-                if (value) {
+                if (value)
+                {
                     DoHorray();
                 }
                 hooraying = value;
@@ -367,14 +412,17 @@ namespace EA4S.LivingLetters
         public void DoHorray()
         {
             if ((State != LLAnimationStates.LL_still) &&
-                (State != LLAnimationStates.LL_idle)) {
+                (State != LLAnimationStates.LL_idle) &&
+                (State != LLAnimationStates.LL_rocketing))
+            {
                 if (!hasToGoBackState)
                     backState = State;
                 SetState(LLAnimationStates.LL_still);
                 hasToGoBackState = true;
             }
 
-            if (!hooraying) {
+            if (!hooraying)
+            {
                 if (inIdleAlternative)
                     animator.SetTrigger("stopAlternative");
                 animator.SetTrigger("doHorray");
@@ -384,7 +432,8 @@ namespace EA4S.LivingLetters
         public void DoChestStop()
         {
             if ((State != LLAnimationStates.LL_still) &&
-                (State != LLAnimationStates.LL_idle)) {
+                (State != LLAnimationStates.LL_idle))
+            {
                 if (!hasToGoBackState)
                     backState = State;
                 SetState(LLAnimationStates.LL_still);
@@ -399,7 +448,8 @@ namespace EA4S.LivingLetters
         public void DoAngry()
         {
             if ((State != LLAnimationStates.LL_still) &&
-                (State != LLAnimationStates.LL_idle)) {
+                (State != LLAnimationStates.LL_idle))
+            {
                 if (!hasToGoBackState)
                     backState = State;
                 SetState(LLAnimationStates.LL_still);
@@ -415,7 +465,8 @@ namespace EA4S.LivingLetters
         public void DoHighFive()
         {
             if ((State != LLAnimationStates.LL_still) &&
-                (State != LLAnimationStates.LL_idle)) {
+                (State != LLAnimationStates.LL_idle))
+            {
                 if (!hasToGoBackState)
                     backState = State;
                 SetState(LLAnimationStates.LL_still);
@@ -432,7 +483,8 @@ namespace EA4S.LivingLetters
         /// </summary>
         void OnActionCompleted()
         {
-            if (hasToGoBackState) {
+            if (hasToGoBackState)
+            {
                 hasToGoBackState = false;
                 SetState(backState);
             }
@@ -452,12 +504,13 @@ namespace EA4S.LivingLetters
         /// onLetterShowingBack is called when the letter is twirling and it shows you the back;
         /// so you can swap letter in that moment!
         /// </summary>
-        
+
         public void DoTwirl(System.Action onLetterShowingBack)
         {
             if ((State != LLAnimationStates.LL_still) &&
                 (State != LLAnimationStates.LL_idle) &&
-                (State != LLAnimationStates.LL_dancing)) {
+                (State != LLAnimationStates.LL_dancing))
+            {
                 if (!hasToGoBackState)
                     backState = State;
                 SetState(LLAnimationStates.LL_still);
@@ -481,7 +534,8 @@ namespace EA4S.LivingLetters
         {
             if ((State != LLAnimationStates.LL_still) &&
                 (State != LLAnimationStates.LL_idle) &&
-                (State != LLAnimationStates.LL_walking)) {
+                (State != LLAnimationStates.LL_walking))
+            {
                 if (!hasToGoBackState)
                     backState = State;
                 SetState(LLAnimationStates.LL_still);
@@ -509,7 +563,8 @@ namespace EA4S.LivingLetters
         public void DoSmallJump()
         {
             if ((State != LLAnimationStates.LL_still) &&
-                (State != LLAnimationStates.LL_idle)) {
+                (State != LLAnimationStates.LL_idle))
+            {
                 if (!hasToGoBackState)
                     backState = State;
                 SetState(LLAnimationStates.LL_still);
@@ -537,7 +592,8 @@ namespace EA4S.LivingLetters
 
         void OnTwirlBack()
         {
-            if (onTwirlCallback != null) {
+            if (onTwirlCallback != null)
+            {
                 onTwirlCallback();
                 onTwirlCallback = null;
             }

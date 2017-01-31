@@ -34,7 +34,7 @@ namespace EA4S.Minigames.DancingDots
             ResultState = new ResultGameState(this);
         }
 
-        protected override IGameState GetInitialState()
+        protected override IState GetInitialState()
         {
             return IntroductionState;
         }

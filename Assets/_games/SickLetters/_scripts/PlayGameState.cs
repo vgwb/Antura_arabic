@@ -4,7 +4,7 @@ using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.SickLetters
 {
-    public class PlayGameState : IGameState
+    public class PlayGameState : IState
     {
         SickLettersGame game;
         Vector3 correctDotPos;

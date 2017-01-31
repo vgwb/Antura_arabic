@@ -64,6 +64,9 @@ namespace EA4S.Minigames.SickLetters
             letterView.OnJumpEnded();
             letterAnimator.SetBool("dancing", game.LLCanDance);
 
+            if (game.roundsCount > 0)
+                game.disableInput = false;
+
             yield return new WaitForSeconds(1f);
 
             if (game.roundsCount == 0)
@@ -71,7 +74,7 @@ namespace EA4S.Minigames.SickLetters
                 game.tut.doTutorial(thisLLWrongDDs[Random.Range(0, thisLLWrongDDs.Count-1)].transform);
             }
             else
-                SickLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterView.Data, true);
+                SickLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterView.Data, true);          
             
         }
 
@@ -103,7 +106,7 @@ namespace EA4S.Minigames.SickLetters
         public void getNewLetterData()
         {
             ILivingLetterData newLetter = game.questionManager.getNewLetter();
-            letterView.Init(newLetter);
+            letterView.Initialize(newLetter);
             letterView.Label.GetComponent<TextRender>().SetLetterData(newLetter);
 
             
@@ -111,7 +114,7 @@ namespace EA4S.Minigames.SickLetters
 
             string letterWithoutDiac = removeDiacritics(newLetter.TextForLivingLetter);
 
-            dotlessLetter.GetComponent<TextRender>().setText(letterWithoutDiac, true);
+            dotlessLetter.GetComponent<TextRender>().SetText(letterWithoutDiac, true);
 
             //Deal with dotless letters
             if (!game.LettersWithDots.Contains(letterWithoutDiac))

@@ -30,7 +30,7 @@ namespace EA4S.Minigames.ThrowBalls
             return ThrowBallsConfiguration.Instance;
         }
 
-        protected override IGameState GetInitialState()
+        protected override IState GetInitialState()
         {
             return GameState;
         }

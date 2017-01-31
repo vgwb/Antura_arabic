@@ -189,36 +189,66 @@ namespace EA4S.Helpers
         }
 
         /// <summary>
-        /// Return a string of a word without a character
+        /// Return a string of a word without a character. Warning: the word is already reversed and fixed for rendering.
+        /// This is mandatory since PrepareArabicStringForDisplay should be called before adding removedLetterChar.
         /// </summary>
-        public static string GetWordWithMissingLetter(Database.WordData arabicWord, Database.LetterData letterToRemove, string removedLetterChar = "_")
+        public static string GetWordWithMissingLetterText(Database.WordData arabicWord, Database.LetterData letterToRemove, string removedLetterChar = "_")
+        {
+            var Letters = SplitWordIntoLetters(arabicWord);
+            
+            int charPosition = 0;
+            bool found = false;
+            for (int index = 0; index < Letters.Count; ++index)
+            {
+                if (Letters[index].Id == letterToRemove.Id)
+                {
+                    found = true;
+                    break;
+                }
+                else
+                    charPosition += Letters[index].GetChar().Length;
+            }
+
+            if (!found)
+                return ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
+
+            string text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
+            text = text.Substring(0, charPosition) + removedLetterChar + text.Substring(charPosition + letterToRemove.GetChar().Length);
+
+            return text;
+        }
+
+        /// <summary>
+        /// Return a string of a word with the "color" tag enveloping a character. Warning: the word is already reversed and fixed for rendering.
+        /// This is mandatory since PrepareArabicStringForDisplay should be called before adding the tags.
+        /// </summary>
+        public static string GetWordWithMarkedLetterText(Database.WordData arabicWord, Database.LetterData letterToMark, Color color)
         {
             var Letters = SplitWordIntoLetters(arabicWord);
 
-            string text = "";
-
+            int charPosition = 0;
+            bool found = false;
             for (int index = 0; index < Letters.Count; ++index)
             {
-                Database.LetterPosition position = Database.LetterPosition.Isolated;
-
-                if (Letters.Count > 0)
+                if (Letters[index].Id == letterToMark.Id)
                 {
-                    if (index == 0)
-                        position = Database.LetterPosition.Initial;
-                    else if (index == Letters.Count - 1)
-                        position = Database.LetterPosition.Final;
-                    else
-                        position = Database.LetterPosition.Medial;
-                }
-
-                if (Letters[index].Id == letterToRemove.Id)
-                {
-                    text = text + removedLetterChar;
+                    found = true;
+                    break;
                 }
                 else
-                    text = text + Letters[index].GetChar(position);
-
+                    charPosition += Letters[index].GetChar().Length;
             }
+
+            if (!found)
+                return ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
+
+            string tagStart = "<color=#" + GenericHelper.ColorToHex(color) + ">";
+            string tagEnd = "</color>";
+
+            string text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
+            text = text.Substring(0, charPosition) + 
+                tagStart + text.Substring(charPosition, letterToMark.GetChar().Length) + tagEnd + // Marked letter
+                text.Substring(charPosition + letterToMark.GetChar().Length);
 
             return text;
         }

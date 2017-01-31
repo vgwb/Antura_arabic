@@ -4792,7 +4792,7 @@ ParticleSystem:
   m_GameObject: {fileID: 751147610}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -8713,21 +8713,11 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011483999658, guid: 8efa21770d4d5b740a4f1c76c7211e49,
-        type: 2}
-      propertyPath: game
-      value: 
-      objectReference: {fileID: 1474454552}
     - target: {fileID: 33000013269948836, guid: 8efa21770d4d5b740a4f1c76c7211e49,
         type: 2}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013536962220, guid: 8efa21770d4d5b740a4f1c76c7211e49,
-        type: 2}
-      propertyPath: game
-      value: 
-      objectReference: {fileID: 1474454552}
     - target: {fileID: 33000011377336302, guid: 8efa21770d4d5b740a4f1c76c7211e49,
         type: 2}
       propertyPath: m_Mesh
@@ -8738,6 +8728,21 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 33000013502075732, guid: 8efa21770d4d5b740a4f1c76c7211e49,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011483999658, guid: 8efa21770d4d5b740a4f1c76c7211e49,
+        type: 2}
+      propertyPath: game
+      value: 
+      objectReference: {fileID: 1474454552}
+    - target: {fileID: 114000013536962220, guid: 8efa21770d4d5b740a4f1c76c7211e49,
+        type: 2}
+      propertyPath: game
+      value: 
+      objectReference: {fileID: 1474454552}
     - target: {fileID: 114000011046123554, guid: 8efa21770d4d5b740a4f1c76c7211e49,
         type: 2}
       propertyPath: game
@@ -8763,71 +8768,6 @@ Prefab:
       propertyPath: game
       value: 
       objectReference: {fileID: 1474454552}
-    - target: {fileID: 33000013502075732, guid: 8efa21770d4d5b740a4f1c76c7211e49,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012218788810, guid: 8efa21770d4d5b740a4f1c76c7211e49,
-        type: 2}
-      propertyPath: m_fontSize
-      value: 9.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012218788810, guid: 8efa21770d4d5b740a4f1c76c7211e49,
-        type: 2}
-      propertyPath: m_fontSizeBase
-      value: 9.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010467280710, guid: 8efa21770d4d5b740a4f1c76c7211e49,
-        type: 2}
-      propertyPath: m_fontSize
-      value: 9.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010467280710, guid: 8efa21770d4d5b740a4f1c76c7211e49,
-        type: 2}
-      propertyPath: m_fontSizeBase
-      value: 9.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012821472054, guid: 8efa21770d4d5b740a4f1c76c7211e49,
-        type: 2}
-      propertyPath: m_fontSize
-      value: 9.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012821472054, guid: 8efa21770d4d5b740a4f1c76c7211e49,
-        type: 2}
-      propertyPath: m_fontSizeBase
-      value: 9.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013827549096, guid: 8efa21770d4d5b740a4f1c76c7211e49,
-        type: 2}
-      propertyPath: m_fontSize
-      value: 9.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013827549096, guid: 8efa21770d4d5b740a4f1c76c7211e49,
-        type: 2}
-      propertyPath: m_fontSizeBase
-      value: 9.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012155740970, guid: 8efa21770d4d5b740a4f1c76c7211e49,
-        type: 2}
-      propertyPath: fingerOffset.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013967772002, guid: 8efa21770d4d5b740a4f1c76c7211e49,
-        type: 2}
-      propertyPath: fingerOffset.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011046123554, guid: 8efa21770d4d5b740a4f1c76c7211e49,
-        type: 2}
-      propertyPath: fingerOffset.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012786647306, guid: 8efa21770d4d5b740a4f1c76c7211e49,
-        type: 2}
-      propertyPath: fingerOffset.z
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8efa21770d4d5b740a4f1c76c7211e49, type: 2}
   m_IsPrefabParent: 0
@@ -14094,7 +14034,7 @@ ParticleSystem:
   m_GameObject: {fileID: 2062843197}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1

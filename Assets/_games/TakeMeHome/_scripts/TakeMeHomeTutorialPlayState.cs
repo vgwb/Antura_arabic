@@ -3,7 +3,7 @@ using EA4S.Tutorial;
 
 namespace EA4S.Minigames.TakeMeHome
 {
-    public class TakeMeHomeTutorialPlayState : IGameState
+    public class TakeMeHomeTutorialPlayState : IState
     {
 
         TakeMeHomeGame game;

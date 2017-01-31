@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace EA4S.Minigames.ReadingGame
 {
-    public class ReadingGameAnswerState : IGameState
+    public class ReadingGameAnswerState : IState
     {
         public bool TutorialMode = false;
         ReadingGameGame game;

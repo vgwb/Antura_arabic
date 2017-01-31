@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace EA4S.Minigames.MissingLetter {
 
-    public class MissingLetterTutorialState : IGameState {
+    public class MissingLetterTutorialState : IState {
 
         public MissingLetterTutorialState(MissingLetterGame _game) {
             this.m_oGame = _game;

@@ -3,7 +3,7 @@ using EA4S.UI;
 
 namespace EA4S.Minigames.MixedLetters
 {
-    public class PlayGameState : IGameState
+    public class PlayGameState : IState
     {
         MixedLettersGame game;
         

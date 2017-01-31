@@ -41,6 +41,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: beh
       Active: 1
       Number: 2
@@ -69,6 +70,7 @@ MonoBehaviour:
       Old_Initial: "\u0628\u0640\u200E"
       Old_Medial: "\u0640\u0628\u0640\u200E"
       Old_Final: "\u0640\u0628\u200E"
+      Intrinsic: 1
     - Id: teh
       Active: 1
       Number: 3
@@ -97,6 +99,7 @@ MonoBehaviour:
       Old_Initial: "\u062A\u0640\u200E"
       Old_Medial: "\u0640\u062A\u0640\u200E"
       Old_Final: "\u0640\u062A\u200E"
+      Intrinsic: 1
     - Id: theh
       Active: 1
       Number: 4
@@ -125,6 +128,7 @@ MonoBehaviour:
       Old_Initial: "\u062B\u0640\u200E"
       Old_Medial: "\u0640\u062B\u0640\u200E"
       Old_Final: "\u0640\u062B\u200E"
+      Intrinsic: 1
     - Id: jeem
       Active: 1
       Number: 5
@@ -153,6 +157,7 @@ MonoBehaviour:
       Old_Initial: "\u062C\u0640\u200E"
       Old_Medial: "\u0640\u062C\u0640\u200E"
       Old_Final: "\u0640\u062C\u200E"
+      Intrinsic: 1
     - Id: hah
       Active: 1
       Number: 6
@@ -181,6 +186,7 @@ MonoBehaviour:
       Old_Initial: "\u062D\u0640\u200E"
       Old_Medial: "\u0640\u062D\u0640\u200E"
       Old_Final: "\u0640\u062D\u200E"
+      Intrinsic: 1
     - Id: khah
       Active: 1
       Number: 7
@@ -209,6 +215,7 @@ MonoBehaviour:
       Old_Initial: "\u062E\u0640\u200E"
       Old_Medial: "\u0640\u062E\u0640\u200E"
       Old_Final: "\u0640\u062E\u200E"
+      Intrinsic: 1
     - Id: dal
       Active: 1
       Number: 8
@@ -237,6 +244,7 @@ MonoBehaviour:
       Old_Initial: "\u062F\u200E"
       Old_Medial: "\u0640\u062F\u200E"
       Old_Final: "\u0640\u062F\u200E"
+      Intrinsic: 1
     - Id: thal
       Active: 1
       Number: 9
@@ -265,6 +273,7 @@ MonoBehaviour:
       Old_Initial: "\u0630\u200E"
       Old_Medial: "\u0640\u0630\u200E"
       Old_Final: "\u0640\u0630\u200E"
+      Intrinsic: 1
     - Id: reh
       Active: 1
       Number: 10
@@ -293,6 +302,7 @@ MonoBehaviour:
       Old_Initial: "\u0631\u200E"
       Old_Medial: "\u0640\u0631\u200E"
       Old_Final: "\u0640\u0631\u200E"
+      Intrinsic: 1
     - Id: zain
       Active: 1
       Number: 11
@@ -321,6 +331,7 @@ MonoBehaviour:
       Old_Initial: "\u0632\u200E"
       Old_Medial: "\u0640\u0632\u200E"
       Old_Final: "\u0640\u0632\u200E"
+      Intrinsic: 1
     - Id: seen
       Active: 1
       Number: 12
@@ -349,6 +360,7 @@ MonoBehaviour:
       Old_Initial: "\u0633\u0640\u200E"
       Old_Medial: "\u0640\u0633\u0640\u200E"
       Old_Final: "\u0640\u0633\u200E"
+      Intrinsic: 1
     - Id: sheen
       Active: 1
       Number: 13
@@ -377,6 +389,7 @@ MonoBehaviour:
       Old_Initial: "\u0634\u0640\u200E"
       Old_Medial: "\u0640\u0634\u0640\u200E"
       Old_Final: "\u0640\u0634\u200E"
+      Intrinsic: 1
     - Id: sad
       Active: 1
       Number: 14
@@ -405,6 +418,7 @@ MonoBehaviour:
       Old_Initial: "\u0635\u0640\u200E"
       Old_Medial: "\u0640\u0635\u0640\u200E"
       Old_Final: "\u0640\u0635\u200E"
+      Intrinsic: 1
     - Id: dad
       Active: 1
       Number: 15
@@ -433,6 +447,7 @@ MonoBehaviour:
       Old_Initial: "\u0636\u0640\u200E"
       Old_Medial: "\u0640\u0636\u0640\u200E"
       Old_Final: "\u0640\u0636\u200E"
+      Intrinsic: 1
     - Id: tah
       Active: 1
       Number: 16
@@ -461,6 +476,7 @@ MonoBehaviour:
       Old_Initial: "\u0637\u0640\u200E"
       Old_Medial: "\u0640\u0637\u0640\u200E"
       Old_Final: "\u0640\u0637\u200E"
+      Intrinsic: 1
     - Id: zah
       Active: 1
       Number: 17
@@ -489,6 +505,7 @@ MonoBehaviour:
       Old_Initial: "\u0638\u0640\u200E"
       Old_Medial: "\u0640\u0638\u0640\u200E"
       Old_Final: "\u0640\u0638\u200E"
+      Intrinsic: 1
     - Id: ain
       Active: 1
       Number: 18
@@ -517,6 +534,7 @@ MonoBehaviour:
       Old_Initial: "\u0639\u0640\u200E"
       Old_Medial: "\u0640\u0639\u0640\u200E"
       Old_Final: "\u0640\u0639\u200E"
+      Intrinsic: 1
     - Id: ghain
       Active: 1
       Number: 19
@@ -545,6 +563,7 @@ MonoBehaviour:
       Old_Initial: "\u063A\u0640\u200E"
       Old_Medial: "\u0640\u063A\u0640\u200E"
       Old_Final: "\u0640\u063A\u200E"
+      Intrinsic: 1
     - Id: feh
       Active: 1
       Number: 20
@@ -573,6 +592,7 @@ MonoBehaviour:
       Old_Initial: "\u0641\u0640\u200E"
       Old_Medial: "\u0640\u0641\u0640\u200E"
       Old_Final: "\u0640\u0641\u200E"
+      Intrinsic: 1
     - Id: qaf
       Active: 1
       Number: 21
@@ -601,6 +621,7 @@ MonoBehaviour:
       Old_Initial: "\u0642\u0640\u200E"
       Old_Medial: "\u0640\u0642\u0640\u200E"
       Old_Final: "\u0640\u0642\u200E"
+      Intrinsic: 1
     - Id: kaf
       Active: 1
       Number: 22
@@ -629,6 +650,7 @@ MonoBehaviour:
       Old_Initial: "\u0643\u0640\u200E"
       Old_Medial: "\u0640\u0643\u0640\u200E"
       Old_Final: "\u0640\u0643\u200E"
+      Intrinsic: 1
     - Id: lam
       Active: 1
       Number: 23
@@ -657,6 +679,7 @@ MonoBehaviour:
       Old_Initial: "\u0644\u0640\u200E"
       Old_Medial: "\u0640\u0644\u0640\u200E"
       Old_Final: "\u0640\u0644\u200E"
+      Intrinsic: 1
     - Id: meem
       Active: 1
       Number: 24
@@ -685,6 +708,7 @@ MonoBehaviour:
       Old_Initial: "\u0645\u0640\u200E"
       Old_Medial: "\u0640\u0645\u0640\u200E"
       Old_Final: "\u0640\u0645\u200E"
+      Intrinsic: 1
     - Id: noon
       Active: 1
       Number: 25
@@ -713,6 +737,7 @@ MonoBehaviour:
       Old_Initial: "\u0646\u0640\u200E"
       Old_Medial: "\u0640\u0646\u0640\u200E"
       Old_Final: "\u0640\u0646\u200E"
+      Intrinsic: 1
     - Id: heh
       Active: 1
       Number: 26
@@ -741,6 +766,7 @@ MonoBehaviour:
       Old_Initial: "\u0647\u0640\u200E"
       Old_Medial: "\u0640\u0647\u0640\u200E"
       Old_Final: "\u0640\u0647\u200E"
+      Intrinsic: 1
     - Id: waw
       Active: 1
       Number: 27
@@ -769,6 +795,7 @@ MonoBehaviour:
       Old_Initial: "\u0648\u200E"
       Old_Medial: "\u0640\u0648\u200E"
       Old_Final: "\u0640\u0648\u200E"
+      Intrinsic: 1
     - Id: yeh
       Active: 1
       Number: 28
@@ -797,6 +824,65 @@ MonoBehaviour:
       Old_Initial: "\u064A\u0640\u200E"
       Old_Medial: "\u0640\u064A\u0640\u200E"
       Old_Final: "\u0640\u064A"
+      Intrinsic: 1
+    - Id: waw_diph
+      Active: 1
+      Number: 0
+      Title: "w\u0101w"
+      Kind: 3
+      BaseLetter: 
+      Symbol: 
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: w, uu
+      SoundZone: A
+      Isolated: "\u0648"
+      Initial: 
+      Medial: 
+      Final: "\uFEEE"
+      Isolated_Unicode: 0648
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEEE
+      Symbol_Unicode: 
+      FinalFix: 1
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: "\u0648\u200E"
+      Old_Medial: "\u0640\u0648\u200E"
+      Old_Final: "\u0640\u0648\u200E"
+      Intrinsic: 1
+    - Id: yeh_diph
+      Active: 1
+      Number: 0
+      Title: "y\u0101\u2019"
+      Kind: 3
+      BaseLetter: 
+      Symbol: 
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: y, ii
+      SoundZone: C
+      Isolated: "\u064A"
+      Initial: "\uFEF3"
+      Medial: "\uFEF4"
+      Final: "\uFEF2"
+      Isolated_Unicode: 064A
+      Initial_Unicode: FEF3
+      Medial_Unicode: FEF4
+      Final_Unicode: FEF2
+      Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: "\u064A\u0640\u200E"
+      Old_Medial: "\u0640\u064A\u0640\u200E"
+      Old_Final: "\u0640\u064A"
+      Intrinsic: 1
     - Id: hamza
       Active: 1
       Number: 0
@@ -825,6 +911,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: dammah
       Active: 1
       Number: 0
@@ -853,6 +940,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: dammah_tanwin
       Active: 1
       Number: 0
@@ -881,6 +969,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: fathah
       Active: 1
       Number: 0
@@ -909,6 +998,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: fathah_tanwin
       Active: 1
       Number: 0
@@ -937,6 +1027,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: kasrah
       Active: 1
       Number: 0
@@ -965,6 +1056,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: kasrah_tanwin
       Active: 1
       Number: 0
@@ -993,6 +1085,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: maddah
       Active: 1
       Number: 0
@@ -1021,6 +1114,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: shaddah
       Active: 1
       Number: 0
@@ -1049,6 +1143,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: sukun
       Active: 1
       Number: 0
@@ -1077,6 +1172,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: alef_hamza_hi
       Active: 1
       Number: 0
@@ -1105,6 +1201,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: alef_hamza_low
       Active: 1
       Number: 0
@@ -1133,6 +1230,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: alef_maqsura
       Active: 1
       Number: 0
@@ -1161,6 +1259,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: alef_maqsura_hamza
       Active: 1
       Number: 0
@@ -1189,6 +1288,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: yeh_hamza
       Active: 1
       Number: 0
@@ -1217,6 +1317,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: teh_marbuta
       Active: 1
       Number: 0
@@ -1245,6 +1346,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: lam_alef
       Active: 1
       Number: 0
@@ -1273,6 +1375,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: waw_hamza
       Active: 1
       Number: 0
@@ -1301,6 +1404,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: alef_fathah_tanwin
       Active: 1
       Number: 0
@@ -1329,6 +1433,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: alef_maddah
       Active: 1
       Number: 0
@@ -1357,6 +1462,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: ain_fathah
       Active: 1
       Number: 0
@@ -1385,6 +1491,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: ain_kasrah
       Active: 1
       Number: 0
@@ -1413,6 +1520,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: beh_dammah
       Active: 1
       Number: 0
@@ -1441,6 +1549,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: beh_fathah
       Active: 1
       Number: 0
@@ -1469,6 +1578,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: beh_kasrah
       Active: 1
       Number: 0
@@ -1497,6 +1607,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: dad_fathah
       Active: 1
       Number: 0
@@ -1525,6 +1636,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: dal_dammah_tanwin
       Active: 1
       Number: 0
@@ -1553,6 +1665,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: dal_fathah
       Active: 1
       Number: 0
@@ -1581,6 +1694,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: thal_fathah
       Active: 1
       Number: 0
@@ -1609,6 +1723,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: feh_fathah
       Active: 1
       Number: 0
@@ -1637,6 +1752,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: feh_sukun
       Active: 1
       Number: 0
@@ -1665,6 +1781,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: heh_fathah
       Active: 1
       Number: 0
@@ -1693,6 +1810,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: heh_kasrah
       Active: 1
       Number: 0
@@ -1721,6 +1839,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: hah_fathah
       Active: 1
       Number: 0
@@ -1749,6 +1868,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: hah_kasrah
       Active: 1
       Number: 0
@@ -1777,6 +1897,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: hah_shaddah
       Active: 1
       Number: 0
@@ -1805,6 +1926,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: jeem_dammah
       Active: 1
       Number: 0
@@ -1833,6 +1955,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: jeem_fathah
       Active: 1
       Number: 0
@@ -1861,6 +1984,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: jeem_shaddah
       Active: 1
       Number: 0
@@ -1889,6 +2013,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: kaf_dammah
       Active: 1
       Number: 0
@@ -1917,6 +2042,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: kaf_fathah
       Active: 1
       Number: 0
@@ -1945,6 +2071,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: lam_fathah
       Active: 1
       Number: 0
@@ -1973,6 +2100,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: lam_kasrah
       Active: 1
       Number: 0
@@ -2001,6 +2129,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: lam_kasrah_tanwin
       Active: 1
       Number: 0
@@ -2029,6 +2158,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: lam_sukun
       Active: 1
       Number: 0
@@ -2057,6 +2187,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: meem_dammah
       Active: 1
       Number: 0
@@ -2085,6 +2216,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: meem_fathah
       Active: 1
       Number: 0
@@ -2113,6 +2245,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: meem_kasrah
       Active: 1
       Number: 0
@@ -2141,6 +2274,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: noon_fathah
       Active: 1
       Number: 0
@@ -2169,6 +2303,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: noon_kasrah_tanwin
       Active: 1
       Number: 0
@@ -2197,6 +2332,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: noon_sukun
       Active: 1
       Number: 0
@@ -2225,6 +2361,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: qaf_fathah
       Active: 1
       Number: 0
@@ -2253,6 +2390,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: reh_fathah
       Active: 1
       Number: 0
@@ -2281,6 +2419,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: reh_kasrah
       Active: 1
       Number: 0
@@ -2309,6 +2448,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: sad_fathah
       Active: 1
       Number: 0
@@ -2337,6 +2477,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: seen_fathah
       Active: 1
       Number: 0
@@ -2365,6 +2506,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: sheen_fathah
       Active: 1
       Number: 0
@@ -2393,6 +2535,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: tah_fathah
       Active: 1
       Number: 0
@@ -2421,6 +2564,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: teh_dammah
       Active: 1
       Number: 0
@@ -2449,6 +2593,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: teh_fathah
       Active: 1
       Number: 0
@@ -2477,6 +2622,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: teh_marbuta_dammah_tanwin
       Active: 1
       Number: 0
@@ -2505,6 +2651,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: zain_fathah
       Active: 1
       Number: 0
@@ -2533,6 +2680,7 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1
     - Id: zain_dammah
       Active: 1
       Number: 0
@@ -2561,3 +2709,4 @@ MonoBehaviour:
       Old_Initial: 
       Old_Medial: 
       Old_Final: 
+      Intrinsic: 1

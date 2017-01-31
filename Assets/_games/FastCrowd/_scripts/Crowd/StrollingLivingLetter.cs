@@ -9,7 +9,7 @@ namespace EA4S.Minigames.FastCrowd
         public event System.Action onDestroy;
         public event System.Action<bool> onDropped;
 
-        GameStateManager stateManager = new GameStateManager();
+        StateManager stateManager = new StateManager();
 
         public StrollingLetterWalkingState WalkingState { get; private set; }
         public StrollingLetterIdleState IdleState { get; private set; }

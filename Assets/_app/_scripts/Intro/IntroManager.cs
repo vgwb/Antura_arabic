@@ -32,7 +32,7 @@ namespace EA4S.Intro
         public Vector3 cameraOffset = new Vector3(0, 5.0f, -10.0f);
         public float m_CameraVelocity = 0.1f;
 
-        public IntroMazeCharacter[] m_MazeCharacters;
+        public IntroRocketCharacter[] m_MazeCharacters;
         public float m_MazeCharactesVelocity = 0.1f;
         public AnimationCurve cameraAnimationCurve;
         //public UnityStandardAssets.ImageEffects.ForegroundCameraEffect foregroundEffect;

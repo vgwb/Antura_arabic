@@ -4,7 +4,7 @@ using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.SickLetters
 {
-    public class IntroductionGameState : IGameState
+    public class IntroductionGameState : IState
     {
         SickLettersGame game;
 

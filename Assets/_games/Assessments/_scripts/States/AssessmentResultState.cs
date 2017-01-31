@@ -1,5 +1,5 @@
-using System;
-using EA4S.Core;
+using Kore.Coroutines;
+using System.Collections;
 
 namespace EA4S.Assessment
 {
@@ -7,7 +7,7 @@ namespace EA4S.Assessment
     /// Result state. notify the LogManager of game ended and play final animation.
     /// Also teleport to main map.
     /// </summary>
-    public class AssessmentResultState : IGameState
+    public class AssessmentResultState : IState
     {
         private AssessmentGame assessmentGame;
         private AssessmentDialogues dialogueManager;
@@ -28,14 +28,13 @@ namespace EA4S.Assessment
             audioManager.PlaySound( Sfx.TickAndWin);
             dialogueManager.PlayAssessmentCompleteSound();
 
-            AssessmentResultAntura.Instance.StartAnimation( //TODO: need new Antura Gag
-                    () => ExitState()
-                );
+            Koroutine.Run( QuitAfterSomeTime( seconds: 2));
         }
 
-        internal void InitState()
+        IEnumerator QuitAfterSomeTime(float seconds)
         {
-            throw new NotImplementedException();
+            yield return Wait.For( seconds);
+            ExitState();
         }
 
         bool exited = false;

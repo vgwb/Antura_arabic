@@ -70,7 +70,7 @@ namespace EA4S.Assessment
             return CreateAssessment( context);
         }
 
-        internal static Assessment CreateOrderLettersInWordAssessment( AssessmentContext context)
+        public static Assessment CreateOrderLettersInWordAssessment( AssessmentContext context)
         {
             context.GameDescription = Database.LocalizationDataId.Assessment_Order_Letters;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
@@ -83,6 +83,8 @@ namespace EA4S.Assessment
 
             Init( context);
 
+            AssessmentOptions.Instance.ShowFullWordOnAnswered = true;
+
             CreateManagers( context,
                             DragManagerType.Sorting,
                             LogicInjectorType.Sorting,
@@ -91,13 +93,14 @@ namespace EA4S.Assessment
 
 
             context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, false,
-                                                                    context.DialogueManager);
+                                                                    context.DialogueManager,
+                                                                    context.Events);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize);
 
             return CreateAssessment( context);
         }
 
-        internal static Assessment CreateCompleteWordAssessment( AssessmentContext context)
+        public static Assessment CreateCompleteWordAssessment( AssessmentContext context)
         {
             context.GameDescription = Database.LocalizationDataId.Assessment_Select_Letter_Image;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
@@ -110,6 +113,8 @@ namespace EA4S.Assessment
 
             Init( context);
 
+            AssessmentOptions.Instance.CompleteWordOnAnswered = true;
+
             CreateManagers( context,
                             DragManagerType.Default,
                             LogicInjectorType.Default,
@@ -117,7 +122,7 @@ namespace EA4S.Assessment
                             );
 
             context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, true,
-                                                                    context.DialogueManager);
+                                                                    context.DialogueManager, context.Events);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize, true);
 
             return CreateAssessment( context);
@@ -163,6 +168,7 @@ namespace EA4S.Assessment
             
             Init( context);
 
+            AssessmentOptions.Instance.WideLL = true;
             AssessmentOptions.Instance.ReadQuestionAndAnswer = true;
 
             CreateManagers( context,
@@ -174,6 +180,7 @@ namespace EA4S.Assessment
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
                                                                         context.DialogueManager,
                                                                         context.Events);
+
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, sentenceSize, sentenceSize);
 
             return CreateAssessment( context);
@@ -385,6 +392,9 @@ namespace EA4S.Assessment
             // ARABIC SETTINGS
             AssessmentOptions.Instance.LocaleTextFlow = TextFlow.RightToLeft;
             AssessmentOptions.Instance.ReadQuestionAndAnswer = false;
+            AssessmentOptions.Instance.CompleteWordOnAnswered = false;
+            AssessmentOptions.Instance.ShowFullWordOnAnswered = false;
+            AssessmentOptions.Instance.WideLL = false;
 
             context.Configuration = AssessmentConfiguration.Instance;
             context.Events = new AssessmentEvents();

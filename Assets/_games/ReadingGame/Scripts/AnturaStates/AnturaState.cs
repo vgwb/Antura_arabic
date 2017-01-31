@@ -1,6 +1,6 @@
 ﻿namespace EA4S.Minigames.ReadingGame
 {
-    public abstract class AnturaState : IGameState
+    public abstract class AnturaState : IState
     {
         protected ReadingGameAntura antura;
 

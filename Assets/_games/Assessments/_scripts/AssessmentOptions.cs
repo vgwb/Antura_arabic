@@ -42,5 +42,10 @@ namespace EA4S.Assessment
         
         // Options for event "on all answered".
         public bool ReadQuestionAndAnswer { get; set; }
+        public bool CompleteWordOnAnswered { get; set; }
+        public bool ShowFullWordOnAnswered { get; set; }
+        public bool WideLL { get; set; }
+
+        public float TimeToShowCompleteWord = 3.3f;
     }
 }

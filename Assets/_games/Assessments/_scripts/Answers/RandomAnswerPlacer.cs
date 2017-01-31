@@ -67,7 +67,6 @@ namespace EA4S.Assessment
             }
 
             positions.Shuffle();
-            Debug.Log( "Total Answer Positions:" + positions.Count);
 
             foreach (var a in allAnswers)
                 yield return Koroutine.Nested( PlaceAnswer( a, positions));

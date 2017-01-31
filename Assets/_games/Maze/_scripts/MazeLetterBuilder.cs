@@ -34,13 +34,13 @@ namespace EA4S.Minigames.Maze
             character.name = "Mazecharacter";
             character.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
             MazeCharacter mazeCharacter = character.GetComponent<MazeCharacter>();
+            mazeCharacter.SpawnOffscreen();
 
             MazeLetter letter = null;
             GameObject BorderColldider = null;
             GameObject hd;
             List<GameObject> arrows = new List<GameObject>();
             List<GameObject> lines = new List<GameObject>();
-
             List<GameObject> tutorialWaypoints = new List<GameObject>();
 
             Vector3 characterPosition = new Vector3();
@@ -64,6 +64,9 @@ namespace EA4S.Minigames.Maze
                     rb.isKinematic = true;
 
                     child.gameObject.AddComponent<MeshCollider>();
+                    
+                    TrackBounds trackBounds = child.gameObject.AddComponent<TrackBounds>();
+                    trackBounds.SetMazeLetter(letter);
                 }
                 if (child.name.IndexOf("arrow") == 0)
                 {
@@ -88,13 +91,14 @@ namespace EA4S.Minigames.Maze
                 }
             }
 
-            character.transform.position = characterPosition + new Vector3(0,1,0);
+            //character.transform.position = characterPosition + new Vector3(0,1,0);
 
             //fix mazecharacter:
             mazeCharacter.myCollider = BorderColldider;
-            mazeCharacter.Fruits = arrows;
-
-            letter.character = mazeCharacter;
+            mazeCharacter.SetMazeLetter(letter);
+            mazeCharacter.CreateFruits(arrows);
+            
+            letter.LLOnRocket = mazeCharacter;
 
             hd = new GameObject();
             hd.name = "HandTutorial";
