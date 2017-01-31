@@ -256,8 +256,8 @@ namespace EA4S.Minigames.Maze
                 //show message:
                 MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
 
-                TutorialUI.MarkYes(currentCharacter.transform.position + new Vector3(2, 2, 2), TutorialUI.MarkSize.Huge);
-                currentCharacter.celebrate(() =>
+                //TutorialUI.MarkYes(currentCharacter.transform.position + new Vector3(2, 2, 2), TutorialUI.MarkSize.Huge);
+                currentCharacter.Celebrate(() =>
                 {
                     if (roundNumber == MAX_NUM_ROUNDS)
                     {
@@ -395,7 +395,7 @@ namespace EA4S.Minigames.Maze
                 child.gameObject.SetActive(false);
             }
         }
-        private LL_LetterData currentLL = null;
+        public LL_LetterData currentLL = null;
         void initCurrentLetter()
         {
             currentCharacter = null;
