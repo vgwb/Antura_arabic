@@ -13,6 +13,24 @@ namespace EA4S.Minigames.Maze
         private const float MIN_XZ_DISTANCE_FROM_CAMERA = 1f;
         private const float MAX_XZ_DISTANCE_FROM_CAMERA = 2f;
 
+        private const float CELEBRATION_PATH_MIDPOINT_X_ANCHOR = 0.2f;
+        private const float CELEBRATION_PATH_MIDPOINT_Z_ANCHOR = -0.2f;
+
+        private const float CELEBRATION_PATH_ENDPOINT_X_ANCHOR = -0.33f;
+        private const float CELEBRATION_PATH_ENDPOINT_Z_ANCHOR = 0f;
+        private const float CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA = 5f;
+        private const float CELEBRATION_PATH_DURATION = 2.5f;
+
+        private enum State
+        {
+            Normal, Braked
+        }
+
+        private State state;
+        private float stateTime;
+
+        private Vector3 brakeRotation;
+
         public List<Vector3> characterWayPoints;
 
         public LetterObjectView LL;
@@ -60,6 +78,8 @@ namespace EA4S.Minigames.Maze
 
         private MazeLetter mazeLetter;
 
+        public GameObject winParticleVFX;
+
         public void SetMazeLetter(MazeLetter mazeLetter)
         {
             this.mazeLetter = mazeLetter;
@@ -91,6 +111,15 @@ namespace EA4S.Minigames.Maze
 
         }
 
+        private Vector3 GetCorrectedRotationOfRocket(Vector3 direction)
+        {
+            var xAngle = Vector3.Angle(direction, Vector3.up);
+            var yAngle = Vector3.Angle(direction, Vector3.left);
+            var zAngle = Vector3.Angle(direction, Vector3.left) - 20;
+
+            return new Vector3(xAngle, yAngle, zAngle);
+        }
+
         private float GetFrustumHeightAtDistance(float distanceFromCamera)
         {
             return 2.0f * distanceFromCamera * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
@@ -107,10 +136,10 @@ namespace EA4S.Minigames.Maze
             var frustumWidth = GetFrustumWidth(frustumHeight);
 
             var xDisplacement = Random.Range(MIN_XZ_DISTANCE_FROM_CAMERA, MAX_XZ_DISTANCE_FROM_CAMERA);
-            xDisplacement *= Random.value <= 0.5f ? 1f : -1f;
+            xDisplacement *= -1f;
 
             var zDisplacement = Random.Range(MIN_XZ_DISTANCE_FROM_CAMERA, MAX_XZ_DISTANCE_FROM_CAMERA);
-            zDisplacement *= Random.value <= 0.5f ? 1f : -1f;
+            zDisplacement *= -1f;
 
             var cameraPosition = Camera.main.transform.position;
 
@@ -674,7 +703,7 @@ namespace EA4S.Minigames.Maze
             isAppearing = true;
 
             List<Vector3> trajectoryPoints = new List<Vector3>();
-            
+
             var finalPosition = Fruits[0].transform.GetChild(0).gameObject.transform.position;
 
             Vector3 secondPoint = transform.position + finalPosition;
@@ -693,7 +722,7 @@ namespace EA4S.Minigames.Maze
 
             secondPoint.z = frustumHeightAtSecondPoint * 0.8f * 0.5f;
             secondPoint.z *= -1f * Mathf.Sign(transform.position.z);
-            
+
             thirdPoint.x = frustumWidthAtThirdPoint * 0.8f * 0.5f;
             thirdPoint.x *= -1f * Mathf.Sign(secondPoint.x);
 
@@ -720,50 +749,107 @@ namespace EA4S.Minigames.Maze
                 toggleVisibility(false);
                 isAppearing = false;
 
-
-
                 //transform.rotation = initialRotation;
                 MazeGameManager.instance.showCurrentTutorial();
             });
 
         }
 
-        public void celebrate(System.Action action)
+        public void Celebrate(System.Action OnCelebrationOver)
         {
-            toggleVisibility(true);
-            Vector3 pos = transform.position + new Vector3(10, 0, 20);
-            List<Vector3> pts = new List<Vector3>();
-            pts.Add(transform.position);
+            List<Vector3> celebrationPathPoints = new List<Vector3>();
 
-            Vector3 vec = pos - transform.position;
-            Vector3 perp = Vector3.Cross(vec, Vector3.up);
+            var cameraPosition = Camera.main.transform.position;
 
-            Vector3 half = transform.position + (vec) / 2;
+            var frustumHeight = GetFrustumHeightAtDistance(CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA);
+            var frustumWidth = GetFrustumWidth(frustumHeight);
 
-            half += perp.normalized * 3;
+            Vector3 endPoint = new Vector3(cameraPosition.x + (frustumWidth / 2) * CELEBRATION_PATH_ENDPOINT_X_ANCHOR,
+                                            cameraPosition.y - CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA,
+                                                cameraPosition.z + (frustumHeight / 2) * CELEBRATION_PATH_ENDPOINT_Z_ANCHOR);
 
-            pts.Add(half);
+            Vector3 offscreenPoint = new Vector3(endPoint.x, endPoint.y, endPoint.z);
+            offscreenPoint.x = cameraPosition.x + ((frustumWidth / 2) + 2f) * Mathf.Sign(CELEBRATION_PATH_ENDPOINT_X_ANCHOR);
 
-            pts.Add(pos);
+            Vector3 midPoint = transform.position + endPoint;
+            midPoint *= 0.5f;
 
-            transform.DOPath(pts.ToArray(), 2.5f, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) =>
+            frustumHeight = GetFrustumHeightAtDistance(cameraPosition.y - midPoint.y);
+            frustumWidth = GetFrustumWidth(frustumHeight);
+
+            midPoint = new Vector3(cameraPosition.x + (frustumWidth / 2) * CELEBRATION_PATH_MIDPOINT_X_ANCHOR,
+                                            midPoint.y,
+                                                cameraPosition.z + (frustumHeight / 2) * CELEBRATION_PATH_MIDPOINT_Z_ANCHOR);
+
+
+            celebrationPathPoints.Add(transform.position);
+            celebrationPathPoints.Add(midPoint);
+            celebrationPathPoints.Add(endPoint);
+            celebrationPathPoints.Add(offscreenPoint);
+
+            LL.Init(MazeGameManager.instance.currentLL);
+
+            transform.DOPath(celebrationPathPoints.ToArray(), CELEBRATION_PATH_DURATION, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) =>
             {
-                if (index + 1 < pts.Count)
+                if (index < celebrationPathPoints.Count - 2)
                 {
-                    var dir = transform.position - pts[index + 1];
-                    var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+                    var dir = transform.position - celebrationPathPoints[index + 1];
 
-                    transform.rotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
-                                                                                  // transform.DORotateQuaternion(targetRotation, 0.007f);
+                    brakeRotation = GetCorrectedRotationOfRocket(dir);
+
+                    transform.DORotate(brakeRotation, 0.33f);
                 }
+
+                else if (index == celebrationPathPoints.Count - 2)
+                {
+                    transform.DOPause();
+
+                    state = State.Braked;
+
+                    winParticleVFX.SetActive(true);
+
+                    var tickPosition = transform.position;
+                    tickPosition.z -= 1.5f;
+                    tickPosition.x -= 0.5f;
+
+                    Tutorial.TutorialUI.MarkYes(tickPosition, Tutorial.TutorialUI.MarkSize.Big);
+
+                    transform.DOMove(transform.position + new Vector3(-0.5f, 0.5f, -0.5f), 0.75f).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
+                {
+                    state = State.Normal;
+
+                    transform.DOPlay();
+
+                    var dir = transform.position - celebrationPathPoints[index + 1];
+
+                    brakeRotation = GetCorrectedRotationOfRocket(dir);
+
+                    transform.DORotate(brakeRotation, 0.33f);
+                });
+                }
+
             }).OnComplete(() =>
             {
                 toggleVisibility(false);
                 gameObject.SetActive(false);
-                action();
+                OnCelebrationOver();
             });
         }
 
+        private void FixedUpdate()
+        {
+            switch (state)
+            {
+                case State.Normal:
+                    break;
+                case State.Braked:
+                    transform.rotation = Quaternion.Euler(brakeRotation);
+                    break;
+                default:
+                    break;
+            }
+        }
+        
         public void fleeTo(Vector3 position)
         {
             //wait and flee:
@@ -817,7 +903,7 @@ namespace EA4S.Minigames.Maze
                      //transform.rotation = initialRotation;
                      MazeGameManager.instance.showCurrentTutorial();
                  }*/
-                 
+
 
                 return;
             }
