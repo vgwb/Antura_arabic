@@ -62,7 +62,7 @@ namespace EA4S.Database
         {
             CurrentJourneyPosition_Stage = pos.Stage;
             CurrentJourneyPosition_LearningBlock = pos.LearningBlock;
-            CurrentJourneyPosition_LearningBlock = pos.PlaySession; 
+            CurrentJourneyPosition_PlaySession = pos.PlaySession; 
         }
 
         public JourneyPosition GetMaxJourneyPosition()

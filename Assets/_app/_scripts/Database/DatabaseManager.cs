@@ -110,12 +110,15 @@ namespace EA4S.Database
 
         public void UpdatePlayerProfileData(PlayerProfileData playerProfileData)
         {
+            Debug.LogError(playerProfileData.ToString());
             dynamicDb.InsertOrReplace(playerProfileData);
         }
 
         public PlayerProfileData GetPlayerProfileData()
         {
-            return dynamicDb.FindPlayerProfileDataById(PlayerProfileData.UNIQUE_ID);
+            var data = dynamicDb.FindPlayerProfileDataById(PlayerProfileData.UNIQUE_ID);
+            Debug.LogError(data.ToString());
+            return data;
         }
 
         #endregion
