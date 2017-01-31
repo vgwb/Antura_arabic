@@ -44,7 +44,7 @@ namespace EA4S.UI
             maxProfiles = avatarButtons.Length;
 
             // By default, the letter shows a truly random letter
-            LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL());
+            LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL());
         }
 
         void Start()
@@ -96,7 +96,7 @@ namespace EA4S.UI
             PlayerProfileManager ppm = AppManager.I.PlayerProfileManager;
             ppm.SetPlayerProfile(_avatarId, true);
             AudioManager.I.PlaySound(SfxCreateNewProfile);
-            LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL());
+            LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL());
             Setup();
         }
 
@@ -108,7 +108,7 @@ namespace EA4S.UI
         {
             ProfileManager.SetPlayerProfile(int.Parse(AppManager.I.PlayerProfileManager.GetAvatarIdFromPlayerId(_id)), false);
             AudioManager.I.PlaySound(SfxSelectProfile);
-            LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
+            LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
             Setup();
         }
 

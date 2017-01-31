@@ -8,19 +8,20 @@ namespace EA4S.Minigames.HideAndSeek
     {
         Normal,
         OnlyRight,
-        OnlyLeft,
-        Enhanced
+        OnlyLeft
     }
 
-    public class HideAndSeekLetterController : MonoBehaviour {
-        
-		public delegate void TouchAction(int i);
-		public static event TouchAction onLetterTouched;
-	
-	    void Start ()
+    public class HideAndSeekLetterController : MonoBehaviour
+    {
+
+        public delegate void TouchAction(int i);
+        public static event TouchAction onLetterTouched;
+
+        void Start()
         {
+            idleTime = 0.5f + 4f * (1 - HideAndSeekConfiguration.Instance.Difficulty);
             view = GetComponent<LetterObjectView>();
-	    }
+        }
 
         public void resultAnimation(bool win)
         {
@@ -29,7 +30,7 @@ namespace EA4S.Minigames.HideAndSeek
                 moveTweener.Kill();
             }
 
-            if(win)
+            if (win)
             {
                 view.SetState(LLAnimationStates.LL_dancing);
                 view.DoDancingWin();
@@ -40,13 +41,13 @@ namespace EA4S.Minigames.HideAndSeek
                 view.DoDancingLose();
             }
         }
-        
+
         void MoveTo(Vector3 position, float duration)
         {
             view.SetState(LLAnimationStates.LL_walking);
             if (position == pos1)
                 view.HasFear = true;
-            
+
             view.SetWalkingSpeed(1f);
             if (moveTweener != null)
             {
@@ -54,20 +55,19 @@ namespace EA4S.Minigames.HideAndSeek
             }
 
             moveTweener = transform.DOLocalMove(position, duration).OnComplete(
-                delegate () {
+                delegate ()
+                {
+                    view.SetState(LLAnimationStates.LL_idle);
                     if (position == pos2)
                     {
                         startTime = Time.time;
                         isArrived = true;
-                    } else if(position == pos1)
+                    }
+                    else if (position == pos1)
                     {
                         isMoving = false;
                         isClickable = false;
-                        view.SetState(LLAnimationStates.LL_idle);
                         view.HasFear = false;
-                    } else
-                    {
-                        view.SetState(LLAnimationStates.LL_idle);
                     }
                 });
         }
@@ -81,14 +81,14 @@ namespace EA4S.Minigames.HideAndSeek
             isClickable = false;
         }
 
-        void Update ()
+        void Update()
         {
-            if(isArrived && Time.time > startTime + idleTime )
+            if (isArrived && Time.time > startTime + idleTime)
             {
                 MoveTo(pos1, walkDuration / 2);
                 isArrived = false;
             }
-		}
+        }
 
         public void SetStartPosition(Vector3 pos)
         {
@@ -105,44 +105,40 @@ namespace EA4S.Minigames.HideAndSeek
 
         public void Move()
         {
-			if (!isMoving) {
-                float temp = Random.Range(-ray, ray);
-                if (Mathf.Abs(temp) < minMove)
-                {
-                    if (temp >= 0)
-                        temp = minMove;
-                    else
-                        temp = -minMove;
-                }
+            if (!isMoving)
+            {
+                int direction;
 
-                if(movement == MovementType.OnlyLeft)
+                if (movement == MovementType.OnlyLeft)
                 {
-                    temp = -1.3f * Mathf.Abs(temp);
-                } else if(movement == MovementType.OnlyRight)
-                {
-                    temp = 1.3f * Mathf.Abs(temp);
-                } else if(movement == MovementType.Enhanced)
-                {
-                    temp *= 1.5f;
+                    direction = -1;
                 }
+                else if (movement == MovementType.OnlyRight)
+                {
+                    direction = 1;
+                }
+                else
+                    direction = Random.Range(0, 2) * 2 - 1; // -1 or 1
 
-				pos2 = pos1 + new Vector3 ( temp,0,0);
+                float moveOffset = direction * minMove;
+                pos2 = pos1 + new Vector3(moveOffset, 0, 0);
 
                 isMoving = true;
                 isClickable = true;
 
                 MoveTo(pos2, walkDuration);
-			}
-		}
+            }
+        }
 
-		void OnMouseDown()
+        void OnMouseDown()
         {
-            if (isClickable && onLetterTouched != null) {
+            if (isClickable && onLetterTouched != null)
+            {
                 HideAndSeekConfiguration.Instance.Context.GetAudioManager().PlayLetterData(view.Data);
                 isClickable = false;
-                onLetterTouched (id);
-			}
-		}
+                onLetterTouched(id);
+            }
+        }
 
         public void SetMovement(MovementType mov)
         {
@@ -152,20 +148,20 @@ namespace EA4S.Minigames.HideAndSeek
 
         #region VARIABLES
         public int id;
-		public float idleTime = 0f;
-		public float ray = 5f;
-		public float minMove = 2.5f;
+        float idleTime = 5f;
+        public float ray = 5f;
+        float minMove = 3f;
 
         private bool isClickable = false;
-        
-		private bool isMoving = false;
+
+        private bool isMoving = false;
         private bool isArrived = false;
-        
-		private float startTime;
-		private Vector3 pos1;
-		private Vector3 pos2;
-       
-		private Animator anim;
+
+        private float startTime;
+        private Vector3 pos1;
+        private Vector3 pos2;
+
+        private Animator anim;
 
         [HideInInspector]
         public LetterObjectView view;

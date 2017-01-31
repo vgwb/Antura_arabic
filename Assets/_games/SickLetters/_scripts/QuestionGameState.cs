@@ -2,7 +2,7 @@
 
 namespace EA4S.Minigames.SickLetters
 {
-    public class QuestionGameState : IGameState
+    public class QuestionGameState : IState
     {
         SickLettersGame game;
         

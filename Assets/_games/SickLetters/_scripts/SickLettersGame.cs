@@ -79,7 +79,7 @@ namespace EA4S.Minigames.SickLetters
             scale.transform.localScale = new Vector3(vaseWidth, scale.transform.localScale.y, scale.transform.localScale.z);
         }
 
-        protected override IGameState GetInitialState()
+        protected override IState GetInitialState()
         {
             return IntroductionState;
         }
@@ -123,14 +123,8 @@ namespace EA4S.Minigames.SickLetters
             if (StateManager.CurrentState == ResultState)
                 return false;
 
-            int i = 0;
-            foreach (SickLettersDraggableDD dd in LLPrefab.thisLLWrongDDs)
-            {
-                if (dd && !dd.deattached)
-                    i++;
-            }
 
-            if (i == 0)
+            if (wrongDDsOnLL() == 0)
             {
                 if (roundsCount == maxRoundsCount)
                 {
@@ -139,6 +133,7 @@ namespace EA4S.Minigames.SickLetters
                 }
 
                 roundsCount++;
+                disableInput = true;
                 //Context.GetOverlayWidget().SetStarsScore(roundsCount / 2);
                 LLPrefab.letterAnimator.SetBool("dancing", false);
                 LLPrefab.letterAnimator.Play("LL_idle_1", -1);
@@ -187,7 +182,19 @@ namespace EA4S.Minigames.SickLetters
                 return false;
         }
 
-        
+
+        public int wrongDDsOnLL()
+        {
+            int i = 0;
+            foreach (SickLettersDraggableDD dd in LLPrefab.thisLLWrongDDs)
+            {
+                if (dd && dd.transform.root.GetComponent<LetterObjectView>())//if (dd && !dd.deattached)
+                    i++;
+            }
+
+            return i;
+        }
+
 
         public void setDifficulty(float diff, int gameDuration, int targetScale, float vaseWidth, bool LLCanDance, bool with7arakat)
         {

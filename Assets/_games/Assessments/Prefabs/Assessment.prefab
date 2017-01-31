@@ -26,21 +26,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000010929398278
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4000010954138254}
-  m_Layer: 14
-  m_Name: SleepingEnd
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1000011088275054
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,36 +56,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000011976760964
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4000013171580562}
-  m_Layer: 0
-  m_Name: ParticlesPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1000012335177928
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4000010633514580}
-  m_Layer: 0
-  m_Name: Positions
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1000012520946144
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +65,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013022712494}
   - component: {fileID: 114000013822948356}
-  - component: {fileID: 114000011271351544}
   - component: {fileID: 114000010710646388}
   - component: {fileID: 114000013908833718}
   m_Layer: 0
@@ -120,66 +74,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000012660615718
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4000013203469100}
-  m_Layer: 14
-  m_Name: AnturaStartPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1000013275869256
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4000012399039158}
-  m_Layer: 0
-  m_Name: SleepingStart
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4000010633514580
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012335177928}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4000010954138254}
-  - {fileID: 4000012399039158}
-  - {fileID: 4000013203469100}
-  - {fileID: 4000013171580562}
-  m_Father: {fileID: 4000013022712494}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4000010954138254
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010929398278}
-  m_LocalRotation: {x: -0, y: -0.6427876, z: -0, w: 0.7660445}
-  m_LocalPosition: {x: 38.053078, y: -1.0828838, z: 24.086838}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4000010633514580}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000011635047100
 Transform:
   m_ObjectHideFlags: 1
@@ -206,19 +100,6 @@ Transform:
   m_Father: {fileID: 4000013022712494}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4000012399039158
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013275869256}
-  m_LocalRotation: {x: 0, y: -0.6427876, z: 0, w: 0.7660445}
-  m_LocalPosition: {x: -5.18, y: -1.8, z: 31.71}
-  m_LocalScale: {x: 1, y: 1, z: 1.0000002}
-  m_Children: []
-  m_Father: {fileID: 4000010633514580}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -80, z: 0}
 --- !u!4 &4000013022712494
 Transform:
   m_ObjectHideFlags: 1
@@ -232,36 +113,9 @@ Transform:
   - {fileID: 4000011635047100}
   - {fileID: 4000012128482078}
   - {fileID: 4000013692065684}
-  - {fileID: 4000010633514580}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4000013171580562
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011976760964}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0.32, z: 27.87}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4000010633514580}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4000013203469100
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012660615718}
-  m_LocalRotation: {x: 0, y: 0.7217603, z: -0, w: -0.6921432}
-  m_LocalPosition: {x: -24.1, y: -1.0828838, z: 31.5}
-  m_LocalScale: {x: 1.0000004, y: 1, z: 1.0000004}
-  m_Children: []
-  m_Father: {fileID: 4000010633514580}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 267.6, z: 0}
 --- !u!4 &4000013692065684
 Transform:
   m_ObjectHideFlags: 1
@@ -288,25 +142,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
   assessmentCode: 1
---- !u!114 &114000011271351544
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012520946144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30ca846c50e64d247be3319af209c0a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anturaPrefab: {fileID: 114000013605779992, guid: b1eab1b3eca314d40b04cff3efb77336,
-    type: 2}
-  sleepingParticles: {fileID: 198000013691418782, guid: ecfa18a3174ca09468b636bbf1b1b44a,
-    type: 2}
-  anturaGoAway: {fileID: 4000010954138254}
-  sleepingStart: {fileID: 4000012399039158}
-  anturaStart: {fileID: 4000013203469100}
-  particlesPosition: {fileID: 4000013171580562}
 --- !u!114 &114000013822948356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -335,4 +170,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70585e09b49d9d4c93492f8790acc31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SubtitlesMargin: 0

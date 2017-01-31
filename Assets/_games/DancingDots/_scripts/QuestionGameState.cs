@@ -2,7 +2,7 @@
 
 namespace EA4S.Minigames.DancingDots
 {
-    public class QuestionGameState : IGameState
+    public class QuestionGameState : IState
     {
         DancingDotsGame game;
         

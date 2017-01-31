@@ -6,7 +6,7 @@ using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.ColorTickle
 {
-    public class IntroductionGameState : IGameState
+    public class IntroductionGameState : IState
     {
         ColorTickleGame game;
 
@@ -73,7 +73,7 @@ namespace EA4S.Minigames.ColorTickle
                 _qp = ColorTickleConfiguration.Instance.Questions.GetNextQuestion();
                 _lldata = _qp.GetCorrectAnswers().ToList()[0];
                
-                game.myLetters[i].GetComponent<LetterObjectView>().Init(_lldata);
+                game.myLetters[i].GetComponent<LetterObjectView>().Initialize(_lldata);
                 
                 game.myLetters[i].GetComponent<ColorTickle_LLController>().movingToDestination = false;
                 
@@ -87,7 +87,7 @@ namespace EA4S.Minigames.ColorTickle
             game.tutorialLetter.SetActive(true);
             // HACK fix for the automatic reset of the color after update at Unity 5.4.2
             game.tutorialLetter.GetComponent<LetterObjectView>().Label.color = Color.white;
-            game.tutorialLetter.GetComponent<LetterObjectView>().Init(LLdata);
+            game.tutorialLetter.GetComponent<LetterObjectView>().Initialize(LLdata);
             game.tutorialLetter.GetComponent<ColorTickle_LLController>().movingToDestination = false;
         }
 

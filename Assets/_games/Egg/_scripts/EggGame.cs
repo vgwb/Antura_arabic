@@ -59,7 +59,7 @@ namespace EA4S.Minigames.Egg
             return EggConfiguration.Instance;
         }
 
-        protected override IGameState GetInitialState()
+        protected override IState GetInitialState()
         {
             return IntroductionState;
         }

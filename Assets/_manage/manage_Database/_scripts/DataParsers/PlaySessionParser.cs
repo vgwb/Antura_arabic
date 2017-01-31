@@ -28,6 +28,7 @@ namespace EA4S.Database.Management
             data.Phrases_previous = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases_previous"], db.GetPhraseTable());
 
             data.Order = ParseEnum<PlaySessionDataOrder>(data, dict["Order"]);
+            data.NumberOfMinigames = ToInt(dict["NumberOfMinigames"]);
             data.Minigames = CustomParseMinigames(data, dict, db.GetMiniGameTable());
 
             return data;
@@ -38,11 +39,9 @@ namespace EA4S.Database.Management
             // Make sure to also add all combos, if a symbol is found
             HashSet<string> newLetters = new HashSet<string>();
             newLetters.UnionWith(psData.Letters);
-            foreach (var letterId in psData.Letters)
-            {
+            foreach (var letterId in psData.Letters) {
                 var letterData = db.GetById(db.GetLetterTable(), letterId);
-                if (letterData.Kind == LetterDataKind.Symbol)
-                {
+                if (letterData.Kind == LetterDataKind.Symbol) {
                     // this is a symbol
                     var symbolId = letterId;
                     var allDiacriticCombos = db.FindAll(db.GetLetterTable(), x => x.Symbol == symbolId);
@@ -57,13 +56,11 @@ namespace EA4S.Database.Management
         {
             var list = new List<MiniGameInPlaySession>();
 
-            if (data.Type == "Assessment")
-            {
+            if (data.Type == "Assessment") {
                 // Assessments have AssessmentType as their minigame
                 var minigameStruct = new MiniGameInPlaySession();
                 var assessmentType = ToString(dict["AssessmentType"]);
-                if (assessmentType == "")
-                {
+                if (assessmentType == "") {
                     Debug.LogWarning(data.GetType().ToString() + " could not find AssessmentType for assessment " + data.Id);
                     return list; // this means that no assessment type has been selected
                 }
@@ -71,12 +68,9 @@ namespace EA4S.Database.Management
                 minigameStruct.Weight = 1;  // weight is forced to be 1
 
                 list.Add(minigameStruct);
-            }
-            else
-            {
+            } else {
                 // Non-Assessments (i.e. Minigames) must be checked through columns
-                for (int enum_i = 0; enum_i < System.Enum.GetValues(typeof(MiniGameCode)).Length; enum_i++)
-                {
+                for (int enum_i = 0; enum_i < System.Enum.GetValues(typeof(MiniGameCode)).Length; enum_i++) {
                     var enum_string = ((MiniGameCode)enum_i).ToString();
                     if (enum_string == "") continue; // this means that the enum does not exist
                     if (enum_string == "0") continue; // 0 does not exist in the table
@@ -90,8 +84,7 @@ namespace EA4S.Database.Management
                     var minigameStruct = new MiniGameInPlaySession();
                     minigameStruct.MiniGameCode = (MiniGameCode)enum_i;
                     minigameStruct.Weight = ToInt(dict[enum_string]);
-                    if (minigameStruct.Weight == 0)
-                    {
+                    if (minigameStruct.Weight == 0) {
                         // Skip adding if the weight is zero
                         continue;
                     }

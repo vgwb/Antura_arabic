@@ -2,7 +2,7 @@
 
 namespace EA4S.Minigames.Egg
 {
-    public class EggResultState : IGameState
+    public class EggResultState : IState
     {
         EggGame game;
 

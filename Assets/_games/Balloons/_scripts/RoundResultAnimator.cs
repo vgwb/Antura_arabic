@@ -23,7 +23,7 @@ namespace EA4S.Balloons
             vfx.gameObject.SetActive(true);
             if (livingLetterData != null)
             {
-                LLPrefab.Init(livingLetterData);
+                LLPrefab.Initialize(livingLetterData);
             }
             LLPrefab.DoHorray();
             vfx.Play();
@@ -38,7 +38,7 @@ namespace EA4S.Balloons
             vfx.gameObject.SetActive(true);
             if (livingLetterData != null)
             {
-                LLPrefab.Init(livingLetterData);
+                LLPrefab.Initialize(livingLetterData);
             }
             LLPrefab.DoAngry();
             TutorialUI.MarkNo(wrongMarkPosition1, TutorialUI.MarkSize.Huge);

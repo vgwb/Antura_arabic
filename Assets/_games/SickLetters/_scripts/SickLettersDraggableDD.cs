@@ -65,16 +65,20 @@ namespace EA4S.Minigames.SickLetters
 
         void OnMouseDown()
 		{
+            origParent = transform.parent;
+            origLocalRotation = transform.localEulerAngles;
+            screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+
             if (game.disableInput)
                 return;
 
             release = false;
             isDragging = true;
 
-			screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+			
 
-            origParent = transform.parent;
-            origLocalRotation = transform.localEulerAngles;
+            //origParent = transform.parent;
+            //origLocalRotation = transform.localEulerAngles;
             
 
             transform.parent = null;
@@ -84,7 +88,8 @@ namespace EA4S.Minigames.SickLetters
                 if(game.roundsCount > 0)
                     game.wrongDraggCount++;
                 shake = true;
-                draggableText.transform.parent = transform;
+                //draggableText.transform.parent = transform;
+                draggableText.transform.SetParent(transform, true);
             }
 
             else
@@ -95,6 +100,7 @@ namespace EA4S.Minigames.SickLetters
 
 		void OnMouseDrag()
 		{
+
             if (isDragging && game.disableInput)
                 releaseDD();
             else if (game.disableInput)
@@ -153,10 +159,12 @@ namespace EA4S.Minigames.SickLetters
                 boxCollider.size = new Vector3(0.1f, 0.25f, 0.1f);
 
                 //if (isTouchingVase)
-                  //  game.scale.addNewDDToVas(this);
-                
-            //if (game.scale.vaseCollider.bounds.Contains(transform.position))
-                    
+                //  game.scale.addNewDDToVas(this);
+
+                //if (game.scale.vaseCollider.bounds.Contains(transform.position))
+
+                if (game.wrongDDsOnLL() == 0 || isCorrect)
+                    game.disableInput = true;
             }
 
             overPlayermarker = false;
@@ -208,6 +216,9 @@ namespace EA4S.Minigames.SickLetters
             boxCollider.isTrigger = true;
             boxCollider.size = new Vector3(0.6f, 3.89f, 0.6f);
             boxCollider.center = Vector3.zero + Vector3.up * -1.62f;
+
+            if (game.wrongDDsOnLL() > 0)
+                game.disableInput = false;
         }
         public void resetCorrectDD()
         {
@@ -216,7 +227,8 @@ namespace EA4S.Minigames.SickLetters
             thisRigidBody.useGravity = false;
             boxCollider.enabled = true;
 
-            draggableText.transform.parent = origParent;
+            //draggableText.transform.parent = origParent;
+            draggableText.transform.SetParent(origParent, true);
             draggableText.transform.localPosition = new Vector3(-0.5f, 0.5f,0);
             draggableText.transform.localEulerAngles = new Vector3(90, 0.0f, 90);
             draggableText.transform.localScale = Vector3.one;
@@ -226,6 +238,9 @@ namespace EA4S.Minigames.SickLetters
             transform.localEulerAngles = origLocalRotation;
 
             collidedWithVase = touchedVase = false;
+
+            if (game.wrongDDsOnLL() > 0)
+                game.disableInput = false;
 
         }
 
@@ -256,7 +271,6 @@ namespace EA4S.Minigames.SickLetters
             //Debug.LogError(coll.gameObject.name);
             if (coll.gameObject.tag == "Marker")
             {
-
                 touchedVase = true;
             }
             if (coll.gameObject.tag == "Obstacle")
@@ -299,8 +313,17 @@ namespace EA4S.Minigames.SickLetters
             }
         }
 
-        void poofDD()
+        public void poofDD(float delay = 0)
         {
+            StartCoroutine(coPoof(delay));
+        }
+
+        IEnumerator coPoof(float delay) {
+            yield return new WaitForSeconds(delay);
+
+            if (!this)
+                yield break;
+
             game.Poof(transform);
 
             if (game.roundsCount == 0 && !isInVase)
@@ -312,7 +335,7 @@ namespace EA4S.Minigames.SickLetters
 
                 game.onWrongMove(isCorrect);
                 game.tut.doTutorial();
-                return;
+                yield break;
             }
 
             if (!isInVase)
@@ -322,8 +345,8 @@ namespace EA4S.Minigames.SickLetters
 
             if (isCorrect)
             {
-                StartCoroutine(game.scale.onDroppingCorrectDD());
                 resetCorrectDD();
+                StartCoroutine(game.scale.onDroppingCorrectDD());
             }
             else
             {
@@ -336,7 +359,6 @@ namespace EA4S.Minigames.SickLetters
                 Destroy(gameObject, 0.0f);
             }
         }
-
 
         void shakeTransform(Transform t, float speed, float amount, Vector2 startPose)
         {

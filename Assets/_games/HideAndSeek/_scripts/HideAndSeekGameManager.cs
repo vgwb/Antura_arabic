@@ -199,7 +199,7 @@ namespace EA4S.Minigames.HideAndSeek
                     scriptComponent.SetStartPosition(ArrayPlaceholder[index].transform.position);
                     scriptComponent.id = index;
                     SetLetterMovement(index, scriptComponent);
-                    ArrayLetters[i].GetComponentInChildren<LetterObjectView>().Init(letterList[i]);
+                    ArrayLetters[i].GetComponentInChildren<LetterObjectView>().Initialize(letterList[i]);
 
                     ArrayLetters[i].transform.DOMove(ArrayPlaceholder[index].transform.position, 0.5f);
                 }
@@ -214,8 +214,6 @@ namespace EA4S.Minigames.HideAndSeek
                 script.SetMovement(MovementType.OnlyRight);
             else if (placeholder == 2)
                 script.SetMovement(MovementType.OnlyLeft);
-            else if (placeholder == 0 || placeholder == 6)
-                script.SetMovement(MovementType.Enhanced);
             else
                 script.SetMovement(MovementType.Normal);
         }

@@ -2,7 +2,7 @@
 
 namespace EA4S.Minigames.FastCrowd
 {
-    public class FastCrowdResultState : IGameState
+    public class FastCrowdResultState : IState
     {
         FastCrowdGame game;
 

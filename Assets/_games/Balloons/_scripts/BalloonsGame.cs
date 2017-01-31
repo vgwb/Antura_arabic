@@ -162,7 +162,7 @@ namespace EA4S.Balloons
             ResultState = new BalloonsResultState(this);
         }
 
-        protected override IGameState GetInitialState()
+        protected override IState GetInitialState()
         {
             return IntroductionState;
         }

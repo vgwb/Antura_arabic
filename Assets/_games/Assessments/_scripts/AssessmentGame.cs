@@ -72,18 +72,12 @@ namespace EA4S.Assessment
             context.Game = this;
             assessment = CreateConfiguredAssessment( context);
 
-            // We cannot Inject Widgets here, the references are in old scene
-            // when we load a new scene the references are no longer valid!
-            /*ResultState = new AssessmentResultState( this, context.DialogueManager);
-            GameState = new AssessmentGameState( context.DragManager, assessment, ResultState, this);
-            IntroState = new AssessmentIntroState( this, GameState, context.AudioManager);*/
-
             ResultState = new AssessmentResultState( this, context.DialogueManager);
             GameState = new AssessmentGameState( context.DragManager, assessment, ResultState, this);
             IntroState = new AssessmentIntroState( this, GameState, context.AudioManager);
         }
 
-        protected override IGameState GetInitialState()
+        protected override IState GetInitialState()
         {
             return IntroState;
         }

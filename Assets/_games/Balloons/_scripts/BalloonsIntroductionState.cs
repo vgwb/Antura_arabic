@@ -2,7 +2,7 @@
 
 namespace EA4S.Balloons
 {
-    public class BalloonsIntroductionState : IGameState
+    public class BalloonsIntroductionState : IState
     {
         BalloonsGame game;
 

@@ -7,14 +7,16 @@
     public enum MiniGameCode
     {
         Invalid = 0,
-        AlphabetSong = 5,
+        AlphabetSong_alphabet = 5,
+        AlphabetSong_letters = 33,
         Balloons_counting = 6,
         Balloons_letter = 7,
         Balloons_spelling = 3,
         Balloons_words = 8,
         ColorTickle = 9,
         DancingDots = 10,
-        Egg = 11,
+        Egg_letters = 11,
+        Egg_sequence = 34,
         FastCrowd_alphabet = 12,
         FastCrowd_counting = 13,
         FastCrowd_letter = 14,

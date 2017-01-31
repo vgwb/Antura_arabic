@@ -6,7 +6,7 @@ namespace EA4S.Template
     /// Sample game state used by the TemplateGame. 
     /// Implements a timed introduction before advancing to the next state.
     /// </summary>
-    public class IntroductionGameState : IGameState
+    public class IntroductionGameState : IState
     {
         TemplateGame game;
 

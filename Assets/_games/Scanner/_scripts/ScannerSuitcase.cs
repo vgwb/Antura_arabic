@@ -137,7 +137,7 @@ namespace EA4S.Minigames.Scanner
 
 		void OnMouseDown()
 		{
-            if (game.disableInput || !isReady)
+            if (game.disableInput || !isReady || game.tut.tutStep == 0)
                 return;
 
             

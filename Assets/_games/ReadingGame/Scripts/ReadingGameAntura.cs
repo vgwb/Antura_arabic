@@ -15,7 +15,7 @@ namespace EA4S.Minigames.ReadingGame
         [HideInInspector]
         public AnturaAnimationController animator;
 
-        GameStateManager stateManager = new GameStateManager();
+        StateManager stateManager = new StateManager();
 
         public WalkAnturaState WalkingState { get; private set; }
         public IdleAnturaState IdleState { get; private set; }

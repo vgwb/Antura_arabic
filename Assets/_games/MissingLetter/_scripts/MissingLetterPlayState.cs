@@ -3,9 +3,8 @@ using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.MissingLetter
 {
-    public class MissingLetterPlayState : IGameState
+    public class MissingLetterPlayState : IState
     {
-
         public MissingLetterPlayState(MissingLetterGame _game)
         {
             this.m_oGame = _game;
@@ -35,6 +34,8 @@ namespace EA4S.Minigames.MissingLetter
 
         public void ExitState()
         {
+            m_oGame.m_oRoundManager.onAnswered -= OnRoundResult;
+
             AudioManager.I.StopMusic();
 
             //AudioManager.I.StopSfx(Sfx.DangerClockLong);
@@ -74,7 +75,8 @@ namespace EA4S.Minigames.MissingLetter
                 }
             }
 
-            M_oGameTime.Update(_delta);
+            if (m_oGame.IsInIdle())
+                M_oGameTime.Update(_delta);
         }
 
         public void UpdatePhysics(float delta)

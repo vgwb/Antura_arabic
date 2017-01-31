@@ -23,7 +23,8 @@ namespace EA4S.Minigames.MissingLetter
         public void Reset() {
             gameObject.transform.position = mv3StartPosition;
             gameObject.transform.rotation = Quaternion.identity;
-            endTransformToCallback = null;
+            onEnterScene = null;
+            onExitScene = null;
             onLetterClick = null;
             mbIsSpeaking = false;
             m_sInPhrase = null;
@@ -56,7 +57,7 @@ namespace EA4S.Minigames.MissingLetter
         /// </summary>
         public void Refresh()
         {
-            mLetter.Init(mLetterData);
+            mLetter.Initialize(mLetterData);
         }
 
         /// <summary>
@@ -68,13 +69,13 @@ namespace EA4S.Minigames.MissingLetter
         {
             Vector3 dir = (mv3CenterPosition - mv3StartPosition).normalized;
             Vector3 _GoalPos = CalculatePos(_idxPos, _length);
-            endTransformToCallback += delegate { mCollider.enabled = true; };
+            onEnterScene += delegate { mCollider.enabled = true; };
 
             //move and rotate letter
             gameObject.transform.forward = dir;
-            endTransformToCallback += delegate { RotateTo(Vector3.up * 180, 0.5f); };
+            onEnterScene += delegate { RotateTo(Vector3.up * 180, 0.5f); };
 
-            MoveTo(_GoalPos, 1);
+            MoveTo(_GoalPos, 1, true);
         }
 
         /// <summary>
@@ -82,7 +83,8 @@ namespace EA4S.Minigames.MissingLetter
         /// </summary>
         public void ExitScene()
         {
-            endTransformToCallback += OnEndLifeCycle;
+            onEnterScene = null;
+            onExitScene += OnEndLifeCycle;
             mCollider.enabled = false;
             LightOff();
 
@@ -92,7 +94,7 @@ namespace EA4S.Minigames.MissingLetter
             rot = (Vector3.Cross(Vector3.forward, dir).y < 0) ? -rot : rot;
             RotateTo(rot, 1f);
 
-            MoveTo(mv3EndPosition, 1);
+            MoveTo(mv3EndPosition, 1, false);
         }
 
         /// <summary>
@@ -221,7 +223,7 @@ namespace EA4S.Minigames.MissingLetter
         /// </summary>
         /// <param name="_position"> target position </param>
         /// <param name="_duration"> time for action </param>
-        void MoveTo(Vector3 _position, float _duration)
+        void MoveTo(Vector3 _position, float _duration, bool entering)
         {
             PlayAnimation(LLAnimationStates.LL_walking);
             mLetter.SetWalkingSpeed(1);
@@ -234,8 +236,16 @@ namespace EA4S.Minigames.MissingLetter
             moveTweener = transform.DOLocalMove(_position, _duration).OnComplete(
                 delegate () {
                     PlayAnimation(m_oDefaultIdleAnimation);
-                    if (endTransformToCallback != null)
-                        endTransformToCallback();
+                    if (entering)
+                    { 
+                        if (onEnterScene != null)
+                        onEnterScene();
+                    }
+                    else
+                    {
+                        if (onExitScene != null)
+                            onExitScene();
+                    }
                 });
         }
 
@@ -330,7 +340,7 @@ namespace EA4S.Minigames.MissingLetter
             set
             {
                 mLetterData = value;
-                mLetter.Init(value);
+                mLetter.Initialize(value);
             }
         }
 
@@ -343,7 +353,9 @@ namespace EA4S.Minigames.MissingLetter
         [HideInInspector]
         public ILivingLetterData mLetterData;
         [HideInInspector]
-        public Action endTransformToCallback;
+        public Action onEnterScene;
+        [HideInInspector]
+        public Action onExitScene;
         [HideInInspector]
         public Action<string> onLetterClick;
         [HideInInspector]

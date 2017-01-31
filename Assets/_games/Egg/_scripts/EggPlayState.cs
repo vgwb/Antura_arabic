@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace EA4S.Minigames.Egg
 {
-    public class EggPlayState : IGameState
+    public class EggPlayState : IState
     {
         EggGame game;
 

@@ -3198,7 +3198,7 @@ MonoBehaviour:
   - {fileID: 1000010643226284, guid: 1a1103320cc0c0c42a764f9d5dbc996f, type: 2}
   endGameCanvas: {fileID: 0}
   idleTime: 7
-  roundNumber: {fileID: 207166661}
+  roundNumberText: {fileID: 207166661}
   currentPrefab: {fileID: 0}
   health: 4
   cracks: {fileID: 174049808}
@@ -3209,8 +3209,10 @@ MonoBehaviour:
   timer: {fileID: 681553896}
   antura: {fileID: 1703196620}
   fleePositionObject: {fileID: 1166380990}
-  INDEXTOLOOOOAD: 28
   isTutorialMode: 0
+  drawingColor: {r: 0, g: 0.60784316, b: 0.06666667, a: 0.78431374}
+  incorrectLineColor: {r: 0.9411765, g: 0.08996537, b: 0.08996537, a: 0.78431374}
+  durationToTweenLineColors: 0.33
   isShowingAntura: 0
 --- !u!4 &436118478
 Transform:

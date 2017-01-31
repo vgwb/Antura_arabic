@@ -96,7 +96,7 @@ namespace EA4S.Minigames.Scanner
 			CurrentScoreRecord = 0;
 		}
 
-		protected override IGameState GetInitialState()
+		protected override IState GetInitialState()
 		{
 			return IntroductionState;
 		}
@@ -199,14 +199,16 @@ namespace EA4S.Minigames.Scanner
 			Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
 		}
 
+        public float min = 0.03f, max = 0.6f;
 		public void PlayWord(float deltaTime, ScannerLivingLetter LL)
 		{
 			Debug.Log("Play word: " + deltaTime);
 			IAudioSource wordSound = Context.GetAudioManager().PlayLetterData(LL.letterObjectView.Data, true);
-			wordSound.Pitch = Mathf.Abs(maxPlaySpeed - Mathf.Clamp(deltaTime,minPlaySpeed,maxPlaySpeed + minPlaySpeed));
-		}
+            //float scaledDelta = (maxPlaySpeed - minPlaySpeed) / (max - min) * (deltaTime - max) + maxPlaySpeed;
+            wordSound.Pitch = Mathf.Clamp(scannerDevice.smoothedDraggingSpeed * 4f, minPlaySpeed, maxPlaySpeed);
+        }
 
-		public void CreatePoof(Vector3 position, float duration, bool withSound)
+        public void CreatePoof(Vector3 position, float duration, bool withSound)
 		{
 			if (withSound) AudioManager.I.PlaySound(Sfx.BalloonPop);
 			GameObject poof = Instantiate(poofPrefab, position, Quaternion.identity) as GameObject;

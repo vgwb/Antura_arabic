@@ -12,7 +12,7 @@ namespace EA4S.Intro
         public event System.Action onDestroy;
         public event System.Action<bool> onDropped;
 
-        GameStateManager stateManager = new GameStateManager();
+        StateManager stateManager = new StateManager();
 
         // refactor: the use of FSMs is not standardized across the codebase
         public IntroStrollingLetterWalkingState WalkingState { get; private set; }

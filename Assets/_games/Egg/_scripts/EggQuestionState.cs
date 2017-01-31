@@ -5,7 +5,7 @@ using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.Egg
 {
-    public class EggQuestionState : IGameState
+    public class EggQuestionState : IState
     {
         EggGame game;
 

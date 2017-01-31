@@ -127,7 +127,7 @@ namespace EA4S.Minigames.MixedLetters
             DisableRepeatPromptButton();
         }
 
-        protected override IGameState GetInitialState()
+        protected override IState GetInitialState()
         {
             return TutorialState;
         }
@@ -221,12 +221,12 @@ namespace EA4S.Minigames.MixedLetters
                 spellingQuestionPack = newQuestionPack;
                 question = newQuestionPack.GetQuestion();
 
-                VictimLLController.instance.letterObjectView.Init(question);
+                VictimLLController.instance.letterObjectView.Initialize(question);
             }
 
             else
             {
-                VictimLLController.instance.letterObjectView.Init(null);
+                VictimLLController.instance.letterObjectView.Initialize(null);
 
                 string victimLLWord = "";
 

@@ -173,7 +173,13 @@ namespace EA4S.MinigamesAPI
                     Minigames.DancingDots.DancingDotsConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Minigames.DancingDots.DancingDotsConfiguration.Instance;
                     break;
-                case MiniGameCode.Egg:
+                case MiniGameCode.Egg_letters:
+                    Minigames.Egg.EggConfiguration.Instance.Variation = Minigames.Egg.EggConfiguration.EggVariation.Single;
+                    Minigames.Egg.EggConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.Egg.EggConfiguration.Instance;
+                    break;
+                case MiniGameCode.Egg_sequence:
+                    Minigames.Egg.EggConfiguration.Instance.Variation = Minigames.Egg.EggConfiguration.EggVariation.Sequence;
                     Minigames.Egg.EggConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Minigames.Egg.EggConfiguration.Instance;
                     break;
@@ -229,7 +235,6 @@ namespace EA4S.MinigamesAPI
                     currentGameConfig = Minigames.MissingLetter.MissingLetterConfiguration.Instance;
                     break;
                 case MiniGameCode.MixedLetters_alphabet:
-                    // TODO: set variation
                     Minigames.MixedLetters.MixedLettersConfiguration.Instance.Variation = Minigames.MixedLetters.MixedLettersConfiguration.MixedLettersVariation.Alphabet;
                     Minigames.MixedLetters.MixedLettersConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Minigames.MixedLetters.MixedLettersConfiguration.Instance;
@@ -248,7 +253,7 @@ namespace EA4S.MinigamesAPI
                     Minigames.ReadingGame.ReadingGameConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Minigames.ReadingGame.ReadingGameConfiguration.Instance;
                     break;
-                case MiniGameCode.AlphabetSong:
+                case MiniGameCode.AlphabetSong_alphabet:
                     Minigames.ReadingGame.ReadingGameConfiguration.Instance.Variation = Minigames.ReadingGame.ReadingGameVariation.AlphabetSong;
                     Minigames.ReadingGame.ReadingGameConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Minigames.ReadingGame.ReadingGameConfiguration.Instance;

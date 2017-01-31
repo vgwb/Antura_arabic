@@ -153,7 +153,7 @@ namespace EA4S.Minigames.MissingLetter
             LetterBehaviour qstBehaviour = oQuestion.GetComponent<LetterBehaviour>();
             qstBehaviour.Reset();
             qstBehaviour.LetterData = questionData;
-            qstBehaviour.endTransformToCallback += qstBehaviour.Speak;
+            qstBehaviour.onEnterScene += qstBehaviour.Speak;
             qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
             qstBehaviour.m_oDefaultIdleAnimation = LLAnimationStates.LL_idle;
             m_aoCurrentQuestionScene.Add(oQuestion);
@@ -232,7 +232,7 @@ namespace EA4S.Minigames.MissingLetter
 
             //after insert in mCurrentQuestionScene
             m_iRemovedLLDataIndex = RemoveWordfromQuestion(questionData);
-            m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().endTransformToCallback += m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().Speak;
+            m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().onEnterScene += m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().Speak;
 
             GameObject _correctAnswerObject = m_oAnswerPool.GetElement();
             LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
@@ -273,21 +273,10 @@ namespace EA4S.Minigames.MissingLetter
         void RemoveLetterfromQuestion()
         {
             LL_WordData word = (LL_WordData)m_oCurrQuestionPack.GetQuestion();
-            var Letters = ArabicAlphabetHelper.ExtractLetterDataFromArabicWord(word.Data.Arabic);
-
             LL_LetterData letter = (LL_LetterData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
-            int index = 0;
-            for (; index < Letters.Count; ++index)
-            {
-                if (Letters[index].Id == letter.Id)
-                {
-                    break;
-                }
-            }
-
-            LetterObjectView tmp = m_aoCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
-            tmp.Label.text = tmp.Label.text.Remove(index, 1);
-            tmp.Label.text = tmp.Label.text.Insert(index, mk_sRemovedLetterChar);
+            
+            LetterObjectView letterView = m_aoCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
+            letterView.Label.text = ArabicAlphabetHelper.GetWordWithMissingLetterText(word.Data, letter.Data, mk_sRemovedLetterChar);
 
         }
 
@@ -313,9 +302,8 @@ namespace EA4S.Minigames.MissingLetter
 
         void RestoreQuestion(bool result)
         {
-            LetterObjectView tmp = m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().mLetter;
-            int index = tmp.Label.text.IndexOf(mk_sRemovedLetterChar);
-
+            LetterObjectView letterView = m_aoCurrentQuestionScene[m_iRemovedLLDataIndex].GetComponent<LetterBehaviour>().mLetter;
+            
             foreach (GameObject _obj in m_aoCurrentQuestionScene)
             {
                 _obj.GetComponent<LetterBehaviour>().Refresh();
@@ -327,19 +315,18 @@ namespace EA4S.Minigames.MissingLetter
                 m_oEmoticonsController.EmoticonNegative();
 
             //change restored color letter with tag
+            Color32 markColor = result ? new Color32(0x4C, 0xAF, 0x50, 0xFF) : new Color32(0xDD, 0x2C, 0x00, 0xFF);
             string color = result ? "#4CAF50" : "#DD2C00";
-
-            string first;
+            
             if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
             {
-                first = tmp.Label.text[index].ToString();
-                tmp.Label.text = tmp.Label.text.Remove(index, 1);
-                tmp.Label.text = tmp.Label.text.Insert(index, "<color=" + color + ">" + first + "</color>");
+                LL_WordData word = (LL_WordData)m_oCurrQuestionPack.GetQuestion();
+                LL_LetterData letter = (LL_LetterData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
+                letterView.Label.text = ArabicAlphabetHelper.GetWordWithMarkedLetterText(word.Data, letter.Data, markColor);
             }
             else
             {
-                first = tmp.Label.text;
-                tmp.Label.text = tmp.Label.text.Replace(first, "<color=" + color + ">" + first + "</color>");
+                letterView.Label.text = "<color=" + color + ">" + letterView.Label.text + "</color>";
             }
 
         }

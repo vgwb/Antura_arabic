@@ -2,7 +2,7 @@
 
 namespace EA4S.Minigames.MakeFriends
 {
-    public class MakeFriendsIntroductionState : IGameState
+    public class MakeFriendsIntroductionState : IState
     {
         MakeFriendsGame game;
 

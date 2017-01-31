@@ -5,7 +5,7 @@
     /// Implements a phase in whic the results of the play session are gathered.
     /// Note that EndGame is called to enter the final common state: OutcomeState.
     /// </summary>
-    public class ResultGameState : IGameState
+    public class ResultGameState : IState
     {
         TemplateGame game;
 
