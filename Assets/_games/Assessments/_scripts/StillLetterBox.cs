@@ -16,7 +16,7 @@ namespace EA4S.Assessment
         /// </summary>
         public TMP_Text Label;
         public TextMeshPro Drawing;
-        public SkinnedMeshRenderer Body;
+        public MeshRenderer Body;
         public GameObject poofPrefab;
 
         public SpriteRenderer LetterSlot;
