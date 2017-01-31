@@ -146,57 +146,60 @@ namespace EA4S.Map
             psData = GetAllPlaySessionDataForStage(numberStage);
             for (int d = 0; d < psData.Count; d++)
             {
-                switch (psData[d].LearningBlock)
+                if(psData[d].PlaySession!=100)
                 {
-                    case 1:
-                        numberStepsPerLB[0]++;
-                        break;
-                    case 2:
-                        numberStepsPerLB[1]++;
-                        break;
-                    case 3:
-                        numberStepsPerLB[2]++;
-                        break;
-                    case 4:
-                        numberStepsPerLB[3]++;
-                        break;
-                    case 5:
-                        numberStepsPerLB[4]++;
-                        break;
-                    case 6:
-                        numberStepsPerLB[5]++;
-                        break;
-                    case 7:
-                        numberStepsPerLB[6]++;
-                        break;
-                    case 8:
-                        numberStepsPerLB[7]++;
-                        break;
-                    case 9:
-                        numberStepsPerLB[8]++;
-                        break;
-                    case 10:
-                        numberStepsPerLB[9]++;
-                        break;
-                    case 11:
-                        numberStepsPerLB[10]++;
-                        break;
-                    case 12:
-                        numberStepsPerLB[11]++;
-                        break;
-                    case 13:
-                        numberStepsPerLB[12]++;
-                        break;
-                    case 14:
-                        numberStepsPerLB[13]++;
-                        break;
-                    case 15:
-                        numberStepsPerLB[14]++;
-                        break;
-                    default:
-                        break;
+                    switch (psData[d].LearningBlock)
+                    {
+                        case 1:
+                            numberStepsPerLB[0]++;
+                            break;
+                        case 2:
+                            numberStepsPerLB[1]++;
+                            break;
+                        case 3:
+                            numberStepsPerLB[2]++;
+                            break;
+                        case 4:
+                            numberStepsPerLB[3]++;
+                            break;
+                        case 5:
+                            numberStepsPerLB[4]++;
+                            break;
+                        case 6:
+                            numberStepsPerLB[5]++;
+                            break;
+                        case 7:
+                            numberStepsPerLB[6]++;
+                            break;
+                        case 8:
+                            numberStepsPerLB[7]++;
+                            break;
+                        case 9:
+                            numberStepsPerLB[8]++;
+                            break;
+                        case 10:
+                            numberStepsPerLB[9]++;
+                            break;
+                        case 11:
+                            numberStepsPerLB[10]++;
+                            break;
+                        case 12:
+                            numberStepsPerLB[11]++;
+                            break;
+                        case 13:
+                            numberStepsPerLB[12]++;
+                            break;
+                        case 14:
+                            numberStepsPerLB[13]++;
+                            break;
+                        case 15:
+                            numberStepsPerLB[14]++;
+                            break;
+                        default:
+                            break;
 
-                }
+                    }
+                }           
             }
         }
 
