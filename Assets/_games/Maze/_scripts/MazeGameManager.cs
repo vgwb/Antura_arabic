@@ -418,7 +418,7 @@ namespace EA4S.Minigames.Maze
                 Debug.Log("Letter got from Teacher is: " + ld.Id + " - does not match 11 models we have, we will play sound of the returned data");
                 index = UnityEngine.Random.Range(0, prefabs.Count);
             }
-            
+
             currentLL = ld;
             currentPrefab = (GameObject)Instantiate(prefabs[index]);
 
@@ -474,18 +474,18 @@ namespace EA4S.Minigames.Maze
                             });
                             currentCharacter.initialPosition = currentCharacter.transform.position;
                             currentCharacter.initialRotation = currentCharacter.transform.rotation;
-                            currentCharacter.transform.position = new Vector3(0, 0, 15);
+                            //currentCharacter.transform.position = new Vector3(0, 0, 15);
                             currentCharacter.gameObject.SetActive(true);
-                            currentCharacter.appear();
+                            currentCharacter.Appear();
                         }
                         );
                 return;
             }
             currentCharacter.initialPosition = currentCharacter.transform.position;
             currentCharacter.initialRotation = currentCharacter.transform.rotation;
-            currentCharacter.transform.position = new Vector3(0, 0, 15);
+            //currentCharacter.transform.position = new Vector3(0, 0, 15);
             currentCharacter.gameObject.SetActive(true);
-            currentCharacter.appear();
+            currentCharacter.Appear();
         }
 
         public void showCurrentTutorial()
@@ -497,13 +497,11 @@ namespace EA4S.Minigames.Maze
                 currentTutorial.showCurrentTutorial();
 
             }
+
             if (currentCharacter != null)
             {
-
                 currentCharacter.initialize();
-
             }
-
         }
 
         IEnumerator shakeCamera(float duration, float magnitude)
