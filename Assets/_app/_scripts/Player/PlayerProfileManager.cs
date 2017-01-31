@@ -129,24 +129,23 @@ namespace EA4S.Profile
                     AppManager.I.GameSettings.AvailablePlayers.Add(_avatarId.ToString());
                     SaveGameSettings();
                 }
+                // Create new antura skin
+                RewardPackUnlockData tileTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
+                returnProfile.AddRewardUnlocked(tileTexture);
+                returnProfile.CurrentAnturaCustomizations.TileTexture = tileTexture;
+                RewardPackUnlockData decalTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
+                returnProfile.AddRewardUnlocked(decalTexture);
+                returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
                 // TODO : Refactor Reward System
                 // returnProfile = AppManager.I.Modules.PlayerProfile.CreateNewPlayer(returnProfile) as PlayerProfile;
             } else {
                 returnProfile = LoadPlayerProfileByAvatarId(_avatarId);
             }
             AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
-            // Create new antura skin
-            RewardPackUnlockData tileTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
-            returnProfile.AddRewardUnlocked(tileTexture);
-            returnProfile.CurrentAnturaCustomizations.TileTexture = tileTexture;
-            RewardPackUnlockData decalTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
-            returnProfile.AddRewardUnlocked(decalTexture);
-            returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
             // -----
             // TODO : Refactor Reward System
             //AppManager.I.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.I.PlayerProfileManager.CurrentPlayer);
             //AppManager.I.PlayerProfileManager.CurrentPlayer.Save();
-            
             if (_isNew && OnNewProfileCreated != null)
                 OnNewProfileCreated();
 
