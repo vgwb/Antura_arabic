@@ -326,17 +326,32 @@ namespace EA4S.Audio
 
         public AudioClip GetAudioClip(LetterData data)
         {
-            return GetCachedResource("AudioArabic/Letters/" + data.Id);
+            var res = GetCachedResource("AudioArabic/Letters/" + data.Id);
+            
+            if (res == null)
+                Debug.Log("Warning: cannot find audio clip for " + data);
+
+            return res;
         }
 
         public AudioClip GetAudioClip(WordData data)
         {
-            return GetCachedResource("AudioArabic/Words/" + data.Id);
+            var res = GetCachedResource("AudioArabic/Words/" + data.Id);
+
+            if (res == null)
+                Debug.Log("Warning: cannot find audio clip for " + data);
+
+            return res;
         }
 
         public AudioClip GetAudioClip(PhraseData data)
         {
-            return GetCachedResource("AudioArabic/Phrases/" + data.Id);
+            var res = GetCachedResource("AudioArabic/Phrases/" + data.Id);
+
+            if (res == null)
+                Debug.Log("Warning: cannot find audio clip for " + data);
+
+            return res;
         }
 
         public AudioClip GetAudioClip(Sfx sfx)
