@@ -419,6 +419,8 @@ namespace EA4S.Minigames.Maze
                 index = UnityEngine.Random.Range(0, prefabs.Count);
             }
 
+            //index = 3;
+
             currentLL = ld;
             currentPrefab = (GameObject)Instantiate(prefabs[index]);
 
