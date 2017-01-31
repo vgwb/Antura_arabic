@@ -7,7 +7,7 @@ namespace EA4S.Minigames.Maze
     public class TrackBounds : MonoBehaviour
     {
         private MazeLetter mazeLetter;
-        
+
         private void OnMouseOver()
         {
             mazeLetter.OnPointerOverTrackBounds();
