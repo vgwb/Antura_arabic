@@ -38,7 +38,7 @@ namespace EA4S.Minigames.Egg
 
             letterObject = UnityEngine.Object.Instantiate(letterObjectPrefab).GetComponent<LetterObjectView>();
             letterObject.transform.SetParent(parent);
-            letterObject.Init(letterData);
+            letterObject.Initialize(letterData);
 
             currentOutPosition = UnityEngine.Random.Range(0, 2);
 

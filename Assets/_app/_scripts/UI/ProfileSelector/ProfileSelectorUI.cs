@@ -94,7 +94,7 @@ namespace EA4S.UI
             PlayerProfile pp = ProfileManager.CreateOrLoadPlayerProfile(_avatarId);
             ProfileManager.CurrentPlayer = pp;
             AudioManager.I.PlaySound(SfxCreateNewProfile);
-            LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL());
+            LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL());
             Setup();
         }
 
@@ -102,7 +102,7 @@ namespace EA4S.UI
         {
             ProfileManager.CurrentPlayer = ProfileManager.AvailablePlayerProfiles[_id - 1];
             AudioManager.I.PlaySound(SfxSelectProfile);
-            LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
+            LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
             Setup();
         }
 

@@ -6,6 +6,12 @@ namespace EA4S.Minigames.Tobogan
 {
     public class ToboganGame : MiniGame
     {
+        public static readonly Color32 LETTER_MARK_COLOR = new Color32(0x4C, 0xAF, 0x50, 0xFF);
+        public static readonly Color32 LETTER_MARK_PIPE_COLOR = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
+
+        public Material textMaterial;
+        public Material markedTextMaterial;
+
         public PipesAnswerController pipesAnswerController;
         public GameObject questionLivingLetterPrefab;
         public FixedHeightShadow shadowPrefab;
