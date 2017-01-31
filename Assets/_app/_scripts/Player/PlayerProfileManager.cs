@@ -66,7 +66,8 @@ namespace EA4S.Profile
         {
             AppManager.I.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
             AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
-            if (AppManager.I.GameSettings.LastActivePlayerId > 0)
+            int lastActivePlayerId = AppManager.I.GameSettings.LastActivePlayerId;
+            if (lastActivePlayerId > 0)
                 CurrentPlayer = LoadPlayerProfileById(AppManager.I.GameSettings.LastActivePlayerId);
             // TODO : Refactor Reward System
             //reloadAvailablePlayerProfilesList();
@@ -123,6 +124,11 @@ namespace EA4S.Profile
                 returnProfile.Id = AppManager.I.GameSettings.AvailablePlayers.Count + 1;
                 returnProfile.AvatarId = _avatarId;
                 returnProfile.Key = returnProfile.Id.ToString();
+                AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
+                if (!AppManager.I.GameSettings.AvailablePlayers.Exists(p => p == _avatarId.ToString())) {
+                    AppManager.I.GameSettings.AvailablePlayers.Add(_avatarId.ToString());
+                    SaveGameSettings();
+                }
                 // TODO : Refactor Reward System
                 // returnProfile = AppManager.I.Modules.PlayerProfile.CreateNewPlayer(returnProfile) as PlayerProfile;
             } else {
@@ -140,7 +146,7 @@ namespace EA4S.Profile
             // TODO : Refactor Reward System
             //AppManager.I.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.I.PlayerProfileManager.CurrentPlayer);
             //AppManager.I.PlayerProfileManager.CurrentPlayer.Save();
-            SaveGameSettings();
+            
             if (_isNew && OnNewProfileCreated != null)
                 OnNewProfileCreated();
 
@@ -214,6 +220,16 @@ namespace EA4S.Profile
         public int GetPlayerIdFromAvatarId(int _avatarId)
         {
             return AppManager.I.GameSettings.AvailablePlayers.FindIndex(a => a == _avatarId.ToString()) + 1;
+        }
+
+        /// <summary>
+        /// Gets the avatar identifier from player identifier.
+        /// </summary>
+        /// <param name="_playerId">The player identifier.</param>
+        /// <returns></returns>
+        public string GetAvatarIdFromPlayerId(int _playerId) 
+        {
+            return AppManager.I.GameSettings.AvailablePlayers[_playerId - 1];
         }
         #endregion
 

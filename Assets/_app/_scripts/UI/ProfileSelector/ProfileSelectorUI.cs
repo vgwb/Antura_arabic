@@ -106,7 +106,7 @@ namespace EA4S.UI
         /// <param name="_id">Player id.</param>
         internal void SelectProfile(int _id)
         {
-            ProfileManager.SetPlayerProfile(_id, false);
+            ProfileManager.SetPlayerProfile(int.Parse(AppManager.I.PlayerProfileManager.GetAvatarIdFromPlayerId(_id)), false);
             AudioManager.I.PlaySound(SfxSelectProfile);
             LLObjectView.Init(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
             Setup();
