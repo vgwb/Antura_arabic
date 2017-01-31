@@ -116,6 +116,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011445498092}
   - component: {fileID: 114000010485318718}
+  - component: {fileID: 54303018665901006}
+  - component: {fileID: 135193754064778864}
   m_Layer: 0
   m_Name: rocket (1)
   m_TagString: Untagged
@@ -1231,7 +1233,7 @@ Transform:
   m_GameObject: {fileID: 1000010318923098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.244}
-  m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4000012692881754}
   - {fileID: 4528655877480926}
@@ -2424,6 +2426,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!54 &54303018665901006
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010509039930}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!64 &64000012023203032
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -2645,6 +2662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 176356b36873d0f4eba969dd004c2d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionForce: 0
+  loseState: 0
   characterWayPoints: []
   LL: {fileID: 114000010486517032}
   myCollider: {fileID: 0}
@@ -2946,6 +2965,18 @@ MonoBehaviour:
   m_maskType: 0
   m_lineLength: 0
   m_anchor: 10
+--- !u!135 &135193754064778864
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010509039930}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 2.95
+  m_Center: {x: 0, y: 0, z: 0.79}
 --- !u!136 &136000012508366432
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -16315,7 +16346,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -16365,7 +16396,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -16415,7 +16446,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89

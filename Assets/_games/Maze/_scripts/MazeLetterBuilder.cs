@@ -98,7 +98,7 @@ namespace EA4S.Minigames.Maze
             mazeCharacter.SetMazeLetter(letter);
             mazeCharacter.CreateFruits(arrows);
             
-            letter.LLOnRocket = mazeCharacter;
+            letter.mazeCharacter = mazeCharacter;
 
             hd = new GameObject();
             hd.name = "HandTutorial";
