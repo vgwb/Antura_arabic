@@ -4,7 +4,7 @@
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
 
-Shader "TextMeshPro/Distance Field SL" {
+Shader "Custom/SickLetters/Distance Field SL" {
 
 Properties {
 	_FaceTex			("Face Texture", 2D) = "white" {}
@@ -129,8 +129,8 @@ SubShader {
 		
 		#include "UnityCG.cginc"
 		#include "UnityUI.cginc"
-		#include "TMPro_Properties.cginc"
-		#include "TMPro.cginc"
+		#include "Assets\Standard Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc"
+		#include "Assets\Standard Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc"
 
 		struct vertex_t {
 			float4	position		: POSITION;

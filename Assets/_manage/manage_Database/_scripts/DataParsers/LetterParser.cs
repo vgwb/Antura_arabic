@@ -37,6 +37,7 @@ namespace EA4S.Database.Management
             data.Symbol_Unicode = ToString(dict["Symbol_Unicode"]);
             data.MedialFix = ToString(dict["MedialFix"]);
             data.FinalFix = ToString(dict["FinalFix"]);
+            data.Intrinsic = ToFloat(dict["Intrinsic"]);
 
             data.Old_Isolated = ToString(dict["Old_Isolated"]);
             data.Old_Initial = ToString(dict["Old_Initial"]);
