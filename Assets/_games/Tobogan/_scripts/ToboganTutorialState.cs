@@ -73,7 +73,7 @@ namespace EA4S.Minigames.Tobogan
             TutorialUI.Clear(true);
 
             game.questionsManager.SetEnteringAudio(true);
-            game.pipesAnswerController.SetSignHidingProbability(ToboganConfiguration.Instance.Difficulty);
+            game.pipesAnswerController.SetSignHidingProbability(2 * Mathf.Clamp01(ToboganConfiguration.Instance.Difficulty - 0.5f));
         }
 
         public void Update(float delta)

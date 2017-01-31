@@ -720,7 +720,7 @@ namespace EA4S.Minigames.Maze
             celebrationPathPoints.Add(endPoint);
             celebrationPathPoints.Add(offscreenPoint);
 
-            LL.Init(MazeGameManager.instance.currentLL);
+            LL.Initialize(MazeGameManager.instance.currentLL);
 
             transform.DOPath(celebrationPathPoints.ToArray(), CELEBRATION_PATH_DURATION, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) =>
             {

@@ -82,7 +82,7 @@ namespace EA4S.Minigames.FastCrowd
 
             letterObjectView.transform.position = newPosition;
             letterObjectView.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.value * 360, 0);
-            letterObjectView.Init(toAdd.Dequeue());
+            letterObjectView.Initialize(toAdd.Dequeue());
 
             var livingLetter = letterObjectView.gameObject.AddComponent<StrollingLivingLetter>();
             livingLetter.crowd = this;
