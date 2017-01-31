@@ -19,7 +19,7 @@ namespace EA4S.Minigames.Tobogan
 
         int questionLetterIndex;
         List<QuestionLivingLetter> livingLetters = new List<QuestionLivingLetter>();
-        
+
         // return aswer result
         public event Action<IQuestionPack, bool> onAnswered;
         public event Action<bool> playerInputPointerUp;
@@ -57,8 +57,8 @@ namespace EA4S.Minigames.Tobogan
             sunMoonGameVariation = ToboganVariation.SunMoon == ToboganConfiguration.Instance.Variation;
 
             IQuestionPack nextQuestionPack = null;
-            
-            if(sunMoonGameVariation)
+
+            if (sunMoonGameVariation)
             {
                 nextQuestionPack = game.SunMoonQuestions.GetNextQuestion();
             }
@@ -89,14 +89,18 @@ namespace EA4S.Minigames.Tobogan
             ResetLetters();
 
             questionLivingLetter = livingLetters[questionLetterIndex];
-
-            questionLivingLetter.SetQuestionText(questionPack.GetQuestion());
-
             ILivingLetterData correctAnswer = null;
 
             var correctAnswers = questionPack.GetCorrectAnswers();
             var correctList = correctAnswers.ToList();
             correctAnswer = correctList[UnityEngine.Random.Range(0, correctList.Count)];
+
+            if (ToboganConfiguration.Instance.Variation == ToboganVariation.LetterInAWord && ToboganConfiguration.Instance.Difficulty <= 0.3f)
+            {
+                questionLivingLetter.SetQuestionText(questionPack.GetQuestion() as LL_WordData, correctAnswer as LL_LetterData, ToboganGame.LETTER_MARK_COLOR);
+            }
+            else
+                questionLivingLetter.SetQuestionText(questionPack.GetQuestion());
 
             var wrongAnswers = questionPack.GetWrongAnswers().ToList();
 
