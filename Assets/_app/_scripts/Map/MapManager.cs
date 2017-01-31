@@ -23,5 +23,13 @@ namespace EA4S.Map
         public void GoToAnturaSpace() {
             AppManager.I.NavigationManager.GoToAnturaSpace();
         }
+
+
+        public void Play()
+        {
+            // refactor: move this initalisation to a better place, maybe inside the MiniGameLauncher.
+            AppManager.I.NavigationManager.GoToNextScene();
+        }
+
     }
 }
