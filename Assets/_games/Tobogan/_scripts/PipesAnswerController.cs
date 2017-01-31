@@ -73,11 +73,11 @@ namespace EA4S.Minigames.Tobogan
                     wrongIndex = 0;
                 }
 
-                pipeAnswers[correctIndex].SetAnswer(correctAnswers, true);
+                pipeAnswers[correctIndex].SetAnswer(correctAnswers, true, game.textMaterial, Color.black);
                 pipeAnswers[correctIndex].active = true;
                 pipeAnswers[correctIndex].ShowSign = true;
 
-                pipeAnswers[wrongIndex].SetAnswer(wrongs[0], false);
+                pipeAnswers[wrongIndex].SetAnswer(wrongs[0], false, game.textMaterial, Color.black);
                 pipeAnswers[wrongIndex].active = true;
                 pipeAnswers[wrongIndex].ShowSign = true;
 
@@ -90,13 +90,15 @@ namespace EA4S.Minigames.Tobogan
                 {
                     if (i == correctPosition)
                     {
-                        pipeAnswers[i].SetAnswer(correctAnswers, true);
+                        pipeAnswers[i].SetAnswer(correctAnswers, true, 
+                            ToboganConfiguration.Instance.Difficulty <= 0.1f ? game.markedTextMaterial : game.textMaterial,
+                            ToboganConfiguration.Instance.Difficulty <= 0.1f ? (Color)ToboganGame.LETTER_MARK_PIPE_COLOR : Color.black);
                     }
                     else
                     {
                         int wrongIndex = Random.Range(0, wrongs.Count);
 
-                        pipeAnswers[i].SetAnswer(wrongs[wrongIndex], false);
+                        pipeAnswers[i].SetAnswer(wrongs[wrongIndex], false, game.textMaterial, Color.black);
 
                         wrongs.RemoveAt(wrongIndex);
                     }
