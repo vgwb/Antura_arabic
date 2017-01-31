@@ -1043,10 +1043,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1814291033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62697f1eeb87d4e029d14bb9fc96227c, type: 3}
+  m_Script: {fileID: 11500000, guid: 67d3031e35dd5854ba0a46ec0386ab38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnturaAnimation: 1
+  AnturaAnimation: 2
   AnturaAnimController: {fileID: 866367118}
 --- !u!114 &1814291035
 MonoBehaviour:
