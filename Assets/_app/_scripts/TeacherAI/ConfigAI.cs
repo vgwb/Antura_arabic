@@ -12,7 +12,6 @@
 
         // General configuration
         public const int daysForMaximumRecentPlayMalus = 4;   // Days at which we get the maximum malus for a recent play weight
-        public const int numberOfMinigamesPerPlaySession = 3;
 
         // Minigame selection weights
         public const float minigame_playSessionWeight = 1f;
