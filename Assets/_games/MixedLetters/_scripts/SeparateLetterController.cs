@@ -302,7 +302,7 @@ namespace EA4S.Minigames.MixedLetters
         public void SetLetter(LL_LetterData letterData)
         {
             this.letterData = letterData;
-            letterObjectView.Init(letterData);
+            letterObjectView.Initialize(letterData);
         }
 
         public LL_LetterData GetLetter()

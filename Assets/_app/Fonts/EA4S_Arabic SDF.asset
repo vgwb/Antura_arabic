@@ -5676,7 +5676,7 @@ Material:
     m_Floats:
     - first:
         name: _Ambient
-      second: 0.5
+      second: 0.554
     - first:
         name: _Bevel
       second: 0.5
@@ -5703,7 +5703,7 @@ Material:
       second: 15
     - first:
         name: _Diffuse
-      second: 0.5
+      second: 0.517
     - first:
         name: _FaceDilate
       second: 0
@@ -5718,13 +5718,13 @@ Material:
       second: 0.05
     - first:
         name: _GlowOffset
-      second: 0
+      second: -0.283
     - first:
         name: _GlowOuter
       second: 0.05
     - first:
         name: _GlowPower
-      second: 0.75
+      second: 0
     - first:
         name: _GradientScale
       second: 6
@@ -5754,7 +5754,7 @@ Material:
       second: 0.875
     - first:
         name: _Reflectivity
-      second: 10
+      second: 13.12
     - first:
         name: _ScaleRatioA
       second: 0.8333333
@@ -5799,7 +5799,7 @@ Material:
       second: 1024
     - first:
         name: _UnderlayDilate
-      second: 0
+      second: 0.288
     - first:
         name: _UnderlayOffsetX
       second: 0
@@ -5808,7 +5808,7 @@ Material:
       second: 0
     - first:
         name: _UnderlaySoftness
-      second: 0
+      second: 0.166
     - first:
         name: _VertexOffsetX
       second: 0
@@ -5851,7 +5851,7 @@ Material:
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _UnderlayColor
-      second: {r: 0, g: 0, b: 0, a: 0.5}
+      second: {r: 0, g: 0, b: 0, a: 1}
 --- !u!28 &28000010948364288
 Texture2D:
   m_ObjectHideFlags: 0

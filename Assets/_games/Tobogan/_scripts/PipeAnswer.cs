@@ -99,7 +99,7 @@ namespace EA4S.Minigames.Tobogan
             }
         }
 
-        public void SetAnswer(ILivingLetterData livingLetterData, bool correct)
+        public void SetAnswer(ILivingLetterData livingLetterData, bool correct, Material textMaterial, Color color)
         {
             Data = livingLetterData;
             
@@ -138,6 +138,8 @@ namespace EA4S.Minigames.Tobogan
             }
             else
             {
+                answerText.fontMaterial = textMaterial;
+                answerText.color = color;
                 answerRender.gameObject.SetActive(true);
                 answerWordDrawings.gameObject.SetActive(false);
                 

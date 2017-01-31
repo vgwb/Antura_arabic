@@ -3,6 +3,7 @@ using DG.Tweening;
 using System;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
+using EA4S.Helpers;
 
 namespace EA4S.Minigames.Tobogan
 {
@@ -97,12 +98,19 @@ namespace EA4S.Minigames.Tobogan
 
         public void SetQuestionText(ILivingLetterData livingLetterData)
         {
-            letter.Init(livingLetterData);
+            letter.Initialize(livingLetterData);
+        }
+
+        public void SetQuestionText(LL_WordData word, LL_LetterData markedLetter, Color color)
+        {
+            var text = ArabicAlphabetHelper.GetWordWithMarkedLetterText(word.Data, markedLetter.Data, color);
+
+            letter.Initialize(word, text, 1.3f);
         }
 
         public void ClearQuestionText()
         {
-            letter.Init(null);
+            letter.Initialize(null);
         }
 
         void MoveTo(Vector3 position, float duration)
