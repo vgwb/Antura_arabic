@@ -75,7 +75,11 @@ namespace EA4S.Teacher
 
         public List<MiniGameData> SelectMiniGames()
         {
-            return SelectMiniGames(ConfigAI.numberOfMinigamesPerPlaySession);
+            // Check the number of minigames for the current play session
+            var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
+            Database.PlaySessionData playSessionData = dbManager.GetPlaySessionDataById(currentPlaySessionId);
+            int nMinigamesToSelect = playSessionData.NumberOfMinigames;
+            return SelectMiniGames(nMinigamesToSelect);
         }
 
         private List<MiniGameData> SelectMiniGames(int nMinigamesToSelect)
