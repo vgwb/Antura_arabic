@@ -131,10 +131,7 @@ namespace EA4S.Core
                     GotoNextGameOfPlaysession();
                     break;
                 case AppScene.AnturaSpace:
-                    if (NavData.CurrentPlayer.IsFirstContact())
-                        GoToScene(AppScene.AnturaSpace);
-                    else
-                        GoToScene(AppScene.Map);
+                    GoToScene(AppScene.Map);
                     break;
                 case AppScene.Rewards:
                     if (NavData.CurrentPlayer.IsFirstContact()) { 
