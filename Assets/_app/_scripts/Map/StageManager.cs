@@ -56,15 +56,15 @@ namespace EA4S.Map
             for (i = 1; i <= (s - 1); i++)
             {
                 stages[i].SetActive(false);
-                miniMaps[i].GetComponent<MiniMap>().isAvailableTheWholeMap = true;
-                miniMaps[i].GetComponent<MiniMap>().CalculateSettingsStageMap();
+                miniMaps[i].GetComponent<Stage>().isAvailableTheWholeMap = true;
+                miniMaps[i].GetComponent<Stage>().CalculateStepsStage();
             }
-            miniMaps[i].GetComponent<MiniMap>().CalculateSettingsStageMap();
+            miniMaps[i].GetComponent<Stage>().CalculateStepsStage();
 
             stages[AppManager.I.Player.CurrentJourneyPosition.Stage].SetActive(true);
             Camera.main.backgroundColor = colorMaps[AppManager.I.Player.CurrentJourneyPosition.Stage];
             Camera.main.GetComponent<CameraFog>().color = colorMaps[AppManager.I.Player.CurrentJourneyPosition.Stage];
-            letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[AppManager.I.Player.CurrentJourneyPosition.Stage].GetComponent<MiniMap>();
+            letter.GetComponent<LetterMovement>().stageScript = miniMaps[AppManager.I.Player.CurrentJourneyPosition.Stage].GetComponent<Stage>();
 
             StartCoroutine("ResetPosLetter");
         }
@@ -159,9 +159,9 @@ namespace EA4S.Map
 
                 if ((numberStage <= s) && (AppManager.I.Player.CurrentJourneyPosition.Stage != numberStage))
                 {
-                    ChangePinDotToBlack();
+                    //ChangePinDotToBlack();
                     AppManager.I.Player.CurrentJourneyPosition.Stage++;
-                    letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage].GetComponent<MiniMap>();
+                    letter.GetComponent<LetterMovement>().stageScript = miniMaps[numberStage].GetComponent<Stage>();
                     letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
                     lockUI.SetActive(false);
                     ActivateMovementPlayButtons();
@@ -190,9 +190,9 @@ namespace EA4S.Map
 
                 if ((numberStage <= s) && (AppManager.I.Player.CurrentJourneyPosition.Stage != numberStage))
                 {
-                    ChangePinDotToBlack();
+                  //  ChangePinDotToBlack();
                     AppManager.I.Player.CurrentJourneyPosition.Stage--;
-                    letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage].GetComponent<MiniMap>();
+                    letter.GetComponent<LetterMovement>().stageScript = miniMaps[numberStage].GetComponent<Stage>();
                     letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
                     lockUI.SetActive(false);
                     ActivateMovementPlayButtons();
@@ -222,7 +222,7 @@ namespace EA4S.Map
             letter.SetActive(true);
             CameraGameplayController.I.transform.position = cameras[AppManager.I.Player.CurrentJourneyPosition.Stage].transform.position;
         }
-        void ChangePinDotToBlack()
+      /*  void ChangePinDotToBlack()
         {
             if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100)//change color pin to black
             {
@@ -231,7 +231,7 @@ namespace EA4S.Map
             }
             else
                 letter.GetComponent<LetterMovement>().ChangeMaterialDotToBlack(letter.GetComponent<LetterMovement>().miniMapScript.posDots[letter.GetComponent<LetterMovement>().pos]);
-        }
+        }*/
         void ChangeCameraFogColor(int c)
         {
             Camera.main.DOColor(colorMaps[c], 1);

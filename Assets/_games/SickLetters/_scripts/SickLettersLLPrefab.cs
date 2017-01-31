@@ -64,6 +64,9 @@ namespace EA4S.Minigames.SickLetters
             letterView.OnJumpEnded();
             letterAnimator.SetBool("dancing", game.LLCanDance);
 
+            if (game.roundsCount > 0)
+                game.disableInput = false;
+
             yield return new WaitForSeconds(1f);
 
             if (game.roundsCount == 0)
@@ -71,7 +74,7 @@ namespace EA4S.Minigames.SickLetters
                 game.tut.doTutorial(thisLLWrongDDs[Random.Range(0, thisLLWrongDDs.Count-1)].transform);
             }
             else
-                SickLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterView.Data, true);
+                SickLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterView.Data, true);          
             
         }
 

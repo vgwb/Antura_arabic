@@ -1,57 +1,44 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.EventSystems;
+using EA4S;
+using System.Collections.Generic;
 using DG.Tweening;
 using EA4S.Core;
+using EA4S.Map;
 
 namespace EA4S.Map
 {
-    /// <summary>
-    /// Controls the movement of the player on the current Stage Map.
-    /// Allows navigation from one dot to the next (PlaySessions)
-    /// </summary>
     public class LetterMovement : MonoBehaviour
     {
-        [Header("MiniMap")]
-        public MiniMap miniMapScript;
-
-        [Header("Materials")]
-        public Material black;
-        public Material red;
+        [Header("Stage")]
+        public Stage stageScript;
 
         [Header("UIButtons")]
         public GameObject moveRightButton;
         public GameObject moveLeftButton;
 
-        public int pos;
-
         float distanceNextDotToHitPoint;
         float distanceBeforelDotToHitPoint;
         float distanceActualDotToHitPoint;
-        int numDots;
-        int posDotMiniMapScript, dotCloser;
+        int dotCloser;
         Rope ropeSelected;
         Collider colliderRaycast;
         Tween moveTween, rotateTween;
 
-        int learningblock, learningblockMax;
-        int playSession, playSessionMax;
-
         void Start()
         {
             Floating();
-            learningblock = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
-            playSession = AppManager.I.Player.CurrentJourneyPosition.PlaySession;
-            //int stage = AppManager.I.Player.CurrentJourneyPosition.Stage;
-
-            learningblockMax = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
-            playSessionMax = AppManager.I.Player.MaxJourneyPosition.PlaySession;
-            //int stageMax = AppManager.I.Player.MaxJourneyPosition.Stage;
 
             /* FIRST CONTACT FEATURE */
             if (!AppManager.I.Player.IsFirstContact()) {
                 AmIFirstorLastPos();
             }
             /* --------------------- */
+
+
+        //    stageScript.positionPin++;
+          //  MoveTo(stageScript.positionsPlayerPin[1].transform.position, true);
         }
         void Floating()
         {
@@ -72,26 +59,30 @@ namespace EA4S.Map
 
             Debug.Log("Max"+AppManager.I.Player.MaxJourneyPosition.Stage);
             Debug.Log("MaxLB"+AppManager.I.Player.MaxJourneyPosition.LearningBlock);
-            Debug.Log("MaxPS"+AppManager.I.Player.MaxJourneyPosition.PlaySession);    */    
+            Debug.Log("MaxPS"+AppManager.I.Player.MaxJourneyPosition.PlaySession);     */
 
             if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Debug.DrawRay(ray.origin, ray.direction * 500, Color.yellow);
 
                 RaycastHit hit;
                 int layerMask = 1 << 15;
                 if (Physics.Raycast(ray, out hit, 500, layerMask)) {
                     if (hit.collider.tag == "Rope") {
-                        if (hit.transform.parent.gameObject.GetComponent<Rope>().dots[1].activeInHierarchy)//All dots available of all ropes
+                        ropeSelected = hit.transform.parent.gameObject.GetComponent<Rope>();
+                        int numDotsRope = 0;
+                        for (int r=0;r<ropeSelected.dots.Count;r++)
                         {
-                            int numDotsRope = hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots.Count;
+                            if (ropeSelected.dots[r] != null) numDotsRope++;
+                        }
+                        if (numDotsRope>1)
+                        {
                             float distaceHitToDot = 1000;
                             float distanceHitBefore = 0;
                             dotCloser = 0;
 
                             for (int i = 0; i < numDotsRope; i++) {
                                 distanceHitBefore = Vector3.Distance(hit.point,
-                                    hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots[i].transform.position);
+                                    ropeSelected.dots[i].transform.position);
                                 if (distanceHitBefore < distaceHitToDot) {
                                     distaceHitToDot = distanceHitBefore;
                                     dotCloser = i;
@@ -99,164 +90,69 @@ namespace EA4S.Map
                             }
                         } else {
                             dotCloser = 0;
-                        }
-
-
-                        posDotMiniMapScript = hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots[dotCloser].GetComponent<Dot>().pos;
-
-                        ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
-                        pos = posDotMiniMapScript;
-                        ChangeMaterialDotToRed(miniMapScript.posDots[pos]);
-
-                        ropeSelected = hit.transform.parent.transform.gameObject.GetComponent<Rope>();
-
-                        MoveTo(miniMapScript.posDots[posDotMiniMapScript].transform.position);
-                        transform.LookAt(miniMapScript.posPines[hit.transform.parent.transform.gameObject.GetComponent<Rope>().learningBlockRope]);
-
+                        }                     
                         colliderRaycast = hit.collider;
-                        AppManager.I.Player.CurrentJourneyPosition.PlaySession = ropeSelected.dots[dotCloser].GetComponent<Dot>().playSessionActual;
-                        AppManager.I.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].GetComponent<Dot>().learningBlockActual;
-                        UpdateCurrenJourneyPosition();
-                        AmIFirstorLastPos();
+                        MoveToDot();
                     } else if (hit.collider.tag == "Pin") {
-                        ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
                         colliderRaycast = hit.collider;
-                        if (hit.transform.gameObject.GetComponent<MapPin>().Number < miniMapScript.posPines.Length - 1)
-                            transform.LookAt(miniMapScript.posPines[hit.transform.gameObject.GetComponent<MapPin>().Number + 1]);
-                        MoveTo(colliderRaycast.transform.position);
-                        pos = colliderRaycast.transform.gameObject.GetComponent<MapPin>().posBefore;
-                        AppManager.I.Player.CurrentJourneyPosition.PlaySession = 100;
-                        AppManager.I.Player.CurrentJourneyPosition.LearningBlock = colliderRaycast.transform.gameObject.GetComponent<MapPin>().Number;
-                        UpdateCurrenJourneyPosition();
-                        AmIFirstorLastPos();
+                        MoveToPin();
                     } else colliderRaycast = null;
                 } else colliderRaycast = null;
-            } /*else if (Input.GetMouseButtonUp(0) && (!EventSystem.current.IsPointerOverGameObject()) && (colliderRaycast != null)) {
-                if (colliderRaycast.tag == "Rope") {
-                    MoveTo(miniMapScript.posDots[posDotMiniMapScript].transform.position);
-
-                    AppManager.I.Player.CurrentJourneyPosition.PlaySession = ropeSelected.dots[dotCloser].GetComponent<Dot>().playSessionActual;
-                    AppManager.I.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].GetComponent<Dot>().learningBlockActual;
-                    LookAtRightPin();
-                    UpdateCurrenJourneyPosition();
-                    AmIFirstorLastPos();
-                }
-                if (colliderRaycast.tag == "Pin") {
-                    MoveTo(colliderRaycast.transform.position);
-                    pos = colliderRaycast.transform.gameObject.GetComponent<MapPin>().posBefore;
-
-                    AppManager.I.Player.CurrentJourneyPosition.PlaySession = 100;
-                    AppManager.I.Player.CurrentJourneyPosition.LearningBlock = colliderRaycast.transform.gameObject.GetComponent<MapPin>().Number;
-                    if (colliderRaycast.transform.gameObject.GetComponent<MapPin>().Number < miniMapScript.posPines.Length - 1)
-                        transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1]);
-                    UpdateCurrenJourneyPosition();
-                    AmIFirstorLastPos();
-                }
-
-            }*/
+            } 
         }
-
         void LateUpdate()
         {
             if (Input.GetMouseButtonUp(0) && (!EventSystem.current.IsPointerOverGameObject()) && (colliderRaycast != null))
             {
-                if (colliderRaycast.tag == "Rope")
-                {
-                    MoveTo(miniMapScript.posDots[posDotMiniMapScript].transform.position);
-
-                    AppManager.I.Player.CurrentJourneyPosition.PlaySession = ropeSelected.dots[dotCloser].GetComponent<Dot>().playSessionActual;
-                    AppManager.I.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].GetComponent<Dot>().learningBlockActual;
-                    LookAtRightPin();
-                    UpdateCurrenJourneyPosition();
-                    AmIFirstorLastPos();
-                }
-                if (colliderRaycast.tag == "Pin")
-                {
-                    MoveTo(colliderRaycast.transform.position);
-                    pos = colliderRaycast.transform.gameObject.GetComponent<MapPin>().posBefore;
-
-                    AppManager.I.Player.CurrentJourneyPosition.PlaySession = 100;
-                    AppManager.I.Player.CurrentJourneyPosition.LearningBlock = colliderRaycast.transform.gameObject.GetComponent<MapPin>().Number;
-                    if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock < miniMapScript.ropes.Length)
-                        transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1]);
-                    else transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1]);
-                    UpdateCurrenJourneyPosition();
-                    AmIFirstorLastPos();
-                }
-
+                if (colliderRaycast.tag == "Rope") MoveToDot();
+                else if (colliderRaycast.tag == "Pin") MoveToPin();
             }
         }
 
-        /// <summary>
-        /// Move to next Dot on the current map
-        /// </summary>
-        public void MoveToTheRightDot()
+        void MoveToDot()
         {
-            if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession == 2) && (miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].tag == "Pin")) {
-                ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
-                MoveTo(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform.position, true);
-                AppManager.I.Player.CurrentJourneyPosition.PlaySession = 100;
-                UpdateCurrenJourneyPosition();
-                if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock != miniMapScript.posPines.Length - 1)
-                    transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1]);
-            } else if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100) && (pos <= (miniMapScript.posMax - 1))) {
-                if (pos % 2 != 0)
-                    pos++;
-                MoveTo(miniMapScript.posDots[pos].transform.position, true);
-                ChangeMaterialDotToRed(miniMapScript.posDots[pos]);
-                AppManager.I.Player.CurrentJourneyPosition.PlaySession = miniMapScript.posDots[pos].GetComponent<Dot>().playSessionActual;
-                AppManager.I.Player.CurrentJourneyPosition.LearningBlock++;
-                UpdateCurrenJourneyPosition();
-                LookAtRightPin();
-            } else {
-                if (pos < (miniMapScript.posMax - 1)) {
-                    ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
-                    pos++;
-                    ChangeMaterialDotToRed(miniMapScript.posDots[pos]);
-                    MoveTo(miniMapScript.posDots[pos].transform.position, true);
-                    AppManager.I.Player.CurrentJourneyPosition.PlaySession = miniMapScript.posDots[pos].GetComponent<Dot>().playSessionActual;
-                    UpdateCurrenJourneyPosition();
-                    LookAtRightPin();
-                }
-            }
+            stageScript.positionPin = ropeSelected.dots[dotCloser].GetComponent<Dot>().pos;
+            MoveTo(stageScript.positionsPlayerPin[stageScript.positionPin].transform.position);
+            AppManager.I.Player.CurrentJourneyPosition.PlaySession = ropeSelected.dots[dotCloser].GetComponent<Dot>().playSessionActual;
+            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].GetComponent<Dot>().learningBlockActual;        
+            UpdateCurrentJourneyPosition();
+            AmIFirstorLastPos();
+            transform.LookAt(stageScript.pines[ropeSelected.learningBlockRope].transform);
+        }
+        void MoveToPin()
+        {
+            MoveTo(colliderRaycast.transform.position);
+            stageScript.positionPin = colliderRaycast.transform.gameObject.GetComponent<MapPin>().pos;
+            AppManager.I.Player.CurrentJourneyPosition.PlaySession = 100;
+            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = colliderRaycast.transform.gameObject.GetComponent<MapPin>().learningBlockPin;
+            if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock < stageScript.numberLearningBlocks)
+                transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1].transform);
+            else transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].transform);
+            UpdateCurrentJourneyPosition();
             AmIFirstorLastPos();
         }
-
-        /// <summary>
-        /// Move to previous Dot on the current map
-        /// </summary>
-        public void MoveToTheLeftDot()
+        public void MoveToTheRightDot()
         {
-            if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 1) {
-                if (pos > 0) {
-                    ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
-                    MoveTo(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].transform.position, true);
-                    AppManager.I.Player.CurrentJourneyPosition.PlaySession = 100;
-                    AppManager.I.Player.CurrentJourneyPosition.LearningBlock--;
+            if((stageScript.positionPin < (stageScript.positionsPlayerPin.Count-1)) && (stageScript.positionPin!=stageScript.positionPinMax))
+            {
+                stageScript.positionPin++;
+                MoveTo(stageScript.positionsPlayerPin[stageScript.positionPin].transform.position, true);
 
-                    UpdateCurrenJourneyPosition();
-                    LookAtLeftPin();
-                }
-            } else if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100) {
-                if (pos % 2 == 0)
-                    pos--;
-                MoveTo(miniMapScript.posDots[pos].transform.position, true);
-                ChangeMaterialDotToRed(miniMapScript.posDots[pos]);
-                AppManager.I.Player.CurrentJourneyPosition.PlaySession = miniMapScript.posDots[pos].GetComponent<Dot>().playSessionActual;
+                SetJourneyPosition();
+                LookAtRightPin();
+            }
+            
+            AmIFirstorLastPos();
+        }
+        public void MoveToTheLeftDot()
+        {            
+            if (stageScript.positionPin > 1)
+            {
+                stageScript.positionPin--;
+                MoveTo(stageScript.positionsPlayerPin[stageScript.positionPin].transform.position, true);
 
-                UpdateCurrenJourneyPosition();
+                SetJourneyPosition();
                 LookAtLeftPin();
-            } else {
-                if (pos > 0) {
-                    ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
-                    pos--;
-                    MoveTo(miniMapScript.posDots[pos].transform.position, true);
-                    ChangeMaterialDotToRed(miniMapScript.posDots[pos]);
-                    LookAtLeftPin();
-                }
-                AppManager.I.Player.CurrentJourneyPosition.PlaySession = miniMapScript.posDots[pos].GetComponent<Dot>().playSessionActual;
-                AppManager.I.Player.CurrentJourneyPosition.LearningBlock = miniMapScript.posDots[pos].GetComponent<Dot>().learningBlockActual;
-                UpdateCurrenJourneyPosition();
             }
             AmIFirstorLastPos();
         }
@@ -265,44 +161,55 @@ namespace EA4S.Map
         {
             if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100)//Letter is on a pin
             {
-                MoveTo(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform.position);
-                pos = miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>().posBefore;
-                if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock < miniMapScript.ropes.Length)
-                    transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1]);
-                else transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1]);
+                MoveTo(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform.position);
+                stageScript.positionPin = stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>().pos;
+                if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock < stageScript.ropes.Length)
+                    transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1].transform);
+                else transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].transform);
             } else  //Letter is on a dot
               {
-                MoveTo(miniMapScript.ropes[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
+                MoveTo(stageScript.ropes[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
                     [AppManager.I.Player.CurrentJourneyPosition.PlaySession - 1].transform.position);
-                pos = miniMapScript.ropes[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
+                stageScript.positionPin = stageScript.ropes[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
                     [AppManager.I.Player.CurrentJourneyPosition.PlaySession - 1].GetComponent<Dot>().pos;
-                miniMapScript.posDots[pos].GetComponent<Renderer>().material = red;
-                transform.LookAt(miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock]);
+                transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform);
             }
+            //AmIFirstorLastPos();
         }
         public void ResetPosLetterAfterChangeStage()
         {
-            pos = 0;
-            MoveTo(miniMapScript.posDots[pos].transform.position);
-            miniMapScript.posDots[pos].GetComponent<Renderer>().material = red;
+            stageScript.positionPin = 1;
+            MoveTo(stageScript.positionsPlayerPin[1].transform.position);
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = 1;
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = 1;
             LookAtRightPin();
-            UpdateCurrenJourneyPosition();
+            UpdateCurrentJourneyPosition();
         }
-        void UpdateCurrenJourneyPosition()
+        void SetJourneyPosition()
+        {
+            if (stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<Dot>() != null)
+            {
+                AppManager.I.Player.CurrentJourneyPosition.PlaySession =
+                    stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<Dot>().playSessionActual;
+                AppManager.I.Player.CurrentJourneyPosition.LearningBlock =
+                    stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<Dot>().learningBlockActual;
+
+            }
+            else
+            {
+                AppManager.I.Player.CurrentJourneyPosition.PlaySession =
+               stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<MapPin>().playSessionPin;
+                AppManager.I.Player.CurrentJourneyPosition.LearningBlock =
+                    stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<MapPin>().learningBlockPin;
+
+            }
+            UpdateCurrentJourneyPosition();
+        }
+        void UpdateCurrentJourneyPosition()
         {
             AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(AppManager.I.Player.CurrentJourneyPosition.Stage,
              AppManager.I.Player.CurrentJourneyPosition.LearningBlock,
               AppManager.I.Player.CurrentJourneyPosition.PlaySession), true);
-        }
-        public void ChangeMaterialDotToBlack(GameObject dot)
-        {
-            dot.GetComponent<Renderer>().material = black;
-        }
-        void ChangeMaterialDotToRed(GameObject dot)
-        {
-            dot.GetComponent<Renderer>().material = red;
         }
         void LookAtRightPin()
         {
@@ -318,8 +225,8 @@ namespace EA4S.Map
             rotateTween.Kill();
             Quaternion currRotation = this.transform.rotation;
             this.transform.LookAt(leftPin
-                ? miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1]
-                : miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock]
+                ? stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].transform.position
+                : stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform.position
             );
             Quaternion toRotation = this.transform.rotation;
             this.transform.rotation = currRotation;
@@ -335,30 +242,30 @@ namespace EA4S.Map
 
         public void AmIFirstorLastPos()
         {
-            CanNotMoveToRight();
-            CanNotMoveToLeft();
-        }
-        void CanNotMoveToLeft()
-        {
-            learningblock = AppManager.I.Player.CurrentJourneyPosition.LearningBlock;
-            playSession = AppManager.I.Player.CurrentJourneyPosition.PlaySession;
-            //int stage = AppManager.I.Player.CurrentJourneyPosition.Stage;
+            if (stageScript.positionPin == 1)
+            {
+                if (stageScript.positionPinMax == 1)
+                {
+                    moveRightButton.SetActive(false);
+                    moveLeftButton.SetActive(false);
+                }
+                else
+                {
+                    moveRightButton.SetActive(false);
+                    moveLeftButton.SetActive(true);
+                }
 
-            if (miniMapScript.isAvailableTheWholeMap) {
-                if ((learningblock == miniMapScript.posPines.Length - 1) &&
-                    (playSession == 100)) moveLeftButton.SetActive(false);
-                else moveLeftButton.SetActive(true);
-            } else {
-                if (learningblock == learningblockMax) {
-                    if (playSession == playSessionMax) moveLeftButton.SetActive(false);
-                    else moveLeftButton.SetActive(true);
-                } else moveLeftButton.SetActive(true);
             }
-        }
-        void CanNotMoveToRight()
-        {
-            if (pos == 0) moveRightButton.SetActive(false);
-            else moveRightButton.SetActive(true);
+            else if (stageScript.positionPin == stageScript.positionPinMax)
+            {
+                moveRightButton.SetActive(true);
+                moveLeftButton.SetActive(false);
+            }
+            else
+            {
+                moveRightButton.SetActive(true);
+                moveLeftButton.SetActive(true);
+            }
         }
     }
 }

@@ -116,6 +116,19 @@ namespace EA4S.Database.Management
             }
             return target_int;
         }
+
+        protected float ToFloat(object _input)
+        {
+            // Force empty to 0
+            if ((string)_input == "")
+                return 0f;
+
+            float target_float = 0f;
+            if (!float.TryParse((string)_input, out target_float)) {
+                Debug.LogError("Object " + (string)_input + " should be a float.");
+            }
+            return target_float;
+        }
         #endregion
 
         #region  Enums
