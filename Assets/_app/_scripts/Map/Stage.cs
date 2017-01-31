@@ -244,10 +244,6 @@ namespace EA4S.Map
         {
             return AppManager.I.DB.FindPlaySessionData(x => x.Stage == _stage);
         }
-        public void Play()
-        {
-            // refactor: move this initalisation to a better place, maybe inside the MiniGameLauncher.
-            AppManager.I.NavigationManager.GoToNextScene();
-        }
+  
     }
 }

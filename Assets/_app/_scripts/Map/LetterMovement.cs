@@ -72,7 +72,7 @@ namespace EA4S.Map
                         int numDotsRope = 0;
                         for (int r=0;r<ropeSelected.dots.Count;r++)
                         {
-                            if (ropeSelected.dots[r] != null) numDotsRope++;
+                            if (ropeSelected.dots[r].activeInHierarchy) numDotsRope++;
                         }
                         if (numDotsRope>1)
                         {
