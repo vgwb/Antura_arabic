@@ -63,7 +63,7 @@ namespace EA4S.Minigames.Maze
                     rb.useGravity = false;
                     rb.isKinematic = true;
 
-                    child.gameObject.AddComponent<MeshCollider>();
+                    mazeCharacter.myCollider = child.gameObject.AddComponent<MeshCollider>();
                     
                     TrackBounds trackBounds = child.gameObject.AddComponent<TrackBounds>();
                     trackBounds.SetMazeLetter(letter);
@@ -94,7 +94,6 @@ namespace EA4S.Minigames.Maze
             //character.transform.position = characterPosition + new Vector3(0,1,0);
 
             //fix mazecharacter:
-            mazeCharacter.myCollider = BorderColldider;
             mazeCharacter.SetMazeLetter(letter);
             mazeCharacter.CreateFruits(arrows);
             

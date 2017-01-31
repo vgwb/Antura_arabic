@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using EA4S.LivingLetters;
+using EA4S.Minigames.Tobogan;
 
 namespace EA4S.Minigames.Maze
 {
@@ -21,17 +22,41 @@ namespace EA4S.Minigames.Maze
         private const float CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA = 5f;
         private const float CELEBRATION_PATH_DURATION = 2.5f;
 
-        private enum State
+        private enum LLState
         {
-            Normal, Braked
+            Normal, Braked, Impacted, Ragdolling
         }
 
-        private State state;
+        private LLState _state;
+        private LLState State
+        {
+            get
+            {
+                return _state;
+            }
+
+            set
+            {
+                if (_state != value)
+                {
+                    _state = value;
+
+                    switch (_state)
+                    {
+                        case LLState.Ragdolling:
+                            ragdoll.SetRagdoll(true, rocket.GetComponent<Rigidbody>().velocity);
+                            break;
+                    }
+
+                    stateTime = 0f;
+                }
+            }
+        }
         private float stateTime;
 
         public enum LoseState
         {
-            OutOfBounds, Incomplete
+            None, OutOfBounds, Incomplete
         }
 
         public LoseState loseState;
@@ -41,8 +66,9 @@ namespace EA4S.Minigames.Maze
         public List<Vector3> characterWayPoints;
 
         public LetterObjectView LL;
+        private Transform LLParent;
 
-        public GameObject myCollider;
+        public MeshCollider myCollider;
         public List<GameObject> particles;
 
         public List<GameObject> Fruits;
@@ -81,6 +107,8 @@ namespace EA4S.Minigames.Maze
 
         private readonly Vector3 ROCKET_LOCAL_ROTATION = new Vector3(0, -90f, 90f);
 
+        public LivingLetterRagdoll ragdoll;
+
         public void SetMazeLetter(MazeLetter mazeLetter)
         {
             this.mazeLetter = mazeLetter;
@@ -89,6 +117,8 @@ namespace EA4S.Minigames.Maze
         void Start()
         {
             LL.SetState(LLAnimationStates.LL_rocketing);
+
+            LLParent = ragdoll.transform.parent;
 
             isFleeing = false;
             characterIsMoving = false;
@@ -154,9 +184,30 @@ namespace EA4S.Minigames.Maze
             rocket.GetComponent<SphereCollider>().enabled = false;
         }
 
-        public void initialize()
+        private void ResetLivingLetter()
+        {
+            ragdoll.transform.parent = LLParent;
+            ragdoll.SetRagdoll(false, Vector3.zero);
+
+            ragdoll.transform.localPosition = Vector3.zero;
+            ragdoll.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
+            LL.SetState(LLAnimationStates.LL_rocketing);
+        }
+
+        private void Reset()
         {
             ResetRocket();
+            ResetLivingLetter();
+
+            loseState = LoseState.None;
+
+            myCollider.enabled = true;
+        }
+
+        public void initialize()
+        {
+            Reset();
 
             initialPosition = transform.position;
             targetPos = initialPosition;
@@ -509,9 +560,7 @@ namespace EA4S.Minigames.Maze
 
         private void OnRocketImpactedWithBorder()
         {
-            LL.transform.SetParent(transform, true);
-
-            //TODO: Make it ragdoll
+            ragdoll.transform.SetParent(rocket.transform, true);
 
             rocket.GetComponent<SphereCollider>().enabled = true;
 
@@ -519,8 +568,20 @@ namespace EA4S.Minigames.Maze
             rocketRigidBody.isKinematic = false;
             rocketRigidBody.useGravity = true;
 
-            rocketRigidBody.AddExplosionForce(30f, Vector3.zero, 0f, 7f, ForceMode.Impulse);
+            rocketRigidBody.AddExplosionForce(35f, Vector3.down, 0f, 3f, ForceMode.VelocityChange);
+
+            /*var forceToApply = rocketRigidBody.velocity;
+            forceToApply.Normalize();
+            forceToApply *= 10f;
+            //forceToApply.y = 20f;
+
+            rocketRigidBody.velocity = Vector3.zero;
+            rocketRigidBody.angularVelocity = Vector3.zero;
+
+            rocketRigidBody.velocity = forceToApply;*/
             rocketRigidBody.AddRelativeTorque(new Vector3(Random.Range(-40f, 40f), Random.Range(-40f, 40f), Random.Range(-40f, 40f)) * 100f);
+
+            State = LLState.Impacted;
         }
 
         private void moveTweenComplete()
@@ -561,8 +622,8 @@ namespace EA4S.Minigames.Maze
                     MoveTween();
 
                 //enable collider when we reach the second waypoint
-                if (currentCharacterWayPoint == 1)
-                    myCollider.SetActive(true);
+                //if (currentCharacterWayPoint == 1)
+                    //myCollider.SetActive(true);
             }
         }
         public void initMovement()
@@ -585,6 +646,8 @@ namespace EA4S.Minigames.Maze
             {
                 fruit.GetComponent<BoxCollider>().enabled = true;
             }
+
+            myCollider.enabled = false;
 
             // Test with tweens:
             MoveTween();
@@ -737,7 +800,7 @@ namespace EA4S.Minigames.Maze
                 {
                     transform.DOPause();
 
-                    state = State.Braked;
+                    State = LLState.Braked;
 
                     winParticleVFX.SetActive(true);
 
@@ -749,7 +812,7 @@ namespace EA4S.Minigames.Maze
 
                     transform.DOMove(transform.position + new Vector3(-0.5f, 0.5f, -0.5f), 0.75f).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
                 {
-                    state = State.Normal;
+                    State = LLState.Normal;
 
                     transform.DOPlay();
 
@@ -771,16 +834,24 @@ namespace EA4S.Minigames.Maze
 
         private void FixedUpdate()
         {
-            switch (state)
+            switch (_state)
             {
-                case State.Normal:
+                case LLState.Normal:
                     break;
-                case State.Braked:
+                case LLState.Braked:
                     transform.rotation = Quaternion.Euler(brakeRotation);
+                    break;
+                case LLState.Impacted:
+                    if (stateTime >= 0.33f)
+                    {
+                        State = LLState.Ragdolling;
+                    }
                     break;
                 default:
                     break;
             }
+
+            stateTime += Time.fixedDeltaTime;
         }
 
         public void fleeTo(Vector3 position)
