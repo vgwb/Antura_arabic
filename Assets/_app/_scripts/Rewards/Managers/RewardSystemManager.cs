@@ -355,7 +355,6 @@ namespace EA4S.Rewards
             return rpList;
         }
 
-        [Obsolete("TODO: check!")]
         public static List<RewardPackUnlockData> GetNextRewardPack() {
             PlaySessionRewardUnlock unlock = config.PlaySessionRewardsUnlock.Find(r => r.PlaySession == AppManager.I.Player.CurrentJourneyPosition.ToString());
             if (unlock == null) { 

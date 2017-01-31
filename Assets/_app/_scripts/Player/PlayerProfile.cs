@@ -74,12 +74,15 @@ namespace EA4S.Profile
         /// <summary>
         /// Automatically select first avatar profile.
         /// </summary>
-        public PlayerProfile()
+        public PlayerProfile() 
         {
 
         }
 
-        public void DeleteThisProfile() { }
+        public void DeleteThisProfile()
+        {
+
+        }
 
         /// <summary>
         /// Saves this instance.
@@ -331,8 +334,8 @@ namespace EA4S.Profile
             Name = _data.Name;
             ProfileCompletion = _data.ProfileCompletion;
             TotalNumberOfBones = _data.TotalNumberOfBones;
-            this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition());
-            this.SetMaxJourneyPosition(_data.GetMaxJourneyPosition());
+            this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
+            this.SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
             return this;
         }
         #endregion
