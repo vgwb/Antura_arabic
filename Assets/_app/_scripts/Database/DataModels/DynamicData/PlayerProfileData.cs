@@ -86,10 +86,18 @@ namespace EA4S.Database
 
         public override string ToString()
         {
-            return string.Format("ID{0},P{1},Ts{2}",
+            return string.Format("ID{0},P{1},Ts{2}, MaxJ({3}.{4}.{5}), CurrentJ({6}.{7}.{8})",
                 Id,
                 PlayerId,
-                CreationTimestamp
+                CreationTimestamp,
+
+                MaxJourneyPosition_Stage,
+                MaxJourneyPosition_LearningBlock,
+                MaxJourneyPosition_PlaySession,
+
+                CurrentJourneyPosition_Stage,
+                CurrentJourneyPosition_LearningBlock,
+                CurrentJourneyPosition_PlaySession
             );
         }
 
