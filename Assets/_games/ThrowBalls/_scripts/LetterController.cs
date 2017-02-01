@@ -164,7 +164,7 @@ namespace EA4S.Minigames.ThrowBalls
         public void SetLetter(ILivingLetterData _data)
         {
             letterData = _data;
-            letterObjectView.Init(letterData);
+            letterObjectView.Initialize(letterData);
         }
 
         public ILivingLetterData GetLetter()

@@ -57,7 +57,7 @@ namespace EA4S.Minigames.MissingLetter
         /// </summary>
         public void Refresh()
         {
-            mLetter.Init(mLetterData);
+            mLetter.Initialize(mLetterData);
         }
 
         /// <summary>
@@ -340,7 +340,7 @@ namespace EA4S.Minigames.MissingLetter
             set
             {
                 mLetterData = value;
-                mLetter.Init(value);
+                mLetter.Initialize(value);
             }
         }
 

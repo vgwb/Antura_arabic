@@ -23,7 +23,7 @@ namespace EA4S.Intro
 
         void Start()
         {
-            LL.Init(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement()); 
+            LL.Initialize(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandomElement()); 
             LL.SetState(LLAnimationStates.LL_rocketing);
             LL.Horraying = true;
         }

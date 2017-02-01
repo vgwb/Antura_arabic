@@ -45,7 +45,7 @@ namespace EA4S.Assessment
                     .GetComponent< LetterObjectView>();
 
             letter.gameObject.name= "instance_" + counter;
-            letter.Init( data);
+            letter.Initialize( data);
             letter.gameObject.SetActive( true);            
             letter.transform.localScale = Vector3.zero;          
             letter.SetState( LLAnimationStates.LL_limbless);
