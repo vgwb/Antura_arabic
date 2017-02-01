@@ -12,21 +12,30 @@ namespace EA4S.Minigames.HideAndSeek
 {
     public class HideAndSeekTutorialManager : MonoBehaviour
     {
-
         void OnEnable()
         {
-            HideAndSeekTreeController.onTreeTouched += MoveObject;
-            HideAndSeekLetterController.onLetterTouched += CheckResult;
+            foreach (var a in ArrayLetters)
+            {
+                a.GetComponent<HideAndSeekLetterController>().onLetterTouched += CheckResult;
+            }
+
+            foreach (var a in ArrayTrees)
+                a.GetComponent<HideAndSeekTreeController>().onTreeTouched += MoveObject;
 
             SetupTutorial();
 
             phase = 0;
-            
         }
+
         void OnDisable()
         {
-            HideAndSeekTreeController.onTreeTouched -= MoveObject;
-            HideAndSeekLetterController.onLetterTouched -= CheckResult;
+            foreach (var a in ArrayLetters)
+            {
+                a.GetComponent<HideAndSeekLetterController>().onLetterTouched -= CheckResult;
+            }
+
+            foreach (var a in ArrayTrees)
+                a.GetComponent<HideAndSeekTreeController>().onTreeTouched -= MoveObject;
         }
 
         void Update()
