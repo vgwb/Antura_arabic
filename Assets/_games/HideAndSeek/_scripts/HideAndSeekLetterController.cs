@@ -23,7 +23,7 @@ namespace EA4S.Minigames.HideAndSeek
             view = GetComponent<LetterObjectView>();
         }
 
-        public void resultAnimation(bool win)
+        public void PlayResultAnimation(bool win)
         {
             if (moveTweener != null)
             {
@@ -45,7 +45,7 @@ namespace EA4S.Minigames.HideAndSeek
         void MoveTo(Vector3 position, float duration)
         {
             view.SetState(LLAnimationStates.LL_walking);
-            if (position == pos1)
+            if (position == positionStart)
                 view.HasFear = true;
 
             view.SetWalkingSpeed(1f);
@@ -58,12 +58,12 @@ namespace EA4S.Minigames.HideAndSeek
                 delegate ()
                 {
                     view.SetState(LLAnimationStates.LL_idle);
-                    if (position == pos2)
+                    if (position == positionUncovered)
                     {
                         startTime = Time.time;
                         isArrived = true;
                     }
-                    else if (position == pos1)
+                    else if (position == positionStart)
                     {
                         isMoving = false;
                         isClickable = false;
@@ -85,21 +85,22 @@ namespace EA4S.Minigames.HideAndSeek
         {
             if (isArrived && Time.time > startTime + idleTime)
             {
-                MoveTo(pos1, walkDuration / 2);
+                // TODO Enable Tree collider
+                MoveTo(positionStart, walkDuration / 2);
                 isArrived = false;
             }
         }
 
         public void SetStartPosition(Vector3 pos)
         {
-            pos1 = pos;
+            positionStart = pos;
         }
 
         public void MoveTutorial()
         {
-            Vector3 pos = new Vector3(transform.position.x - 4.0f, transform.position.y, transform.position.z);
+            Vector3 uncoveredPosition = new Vector3(transform.position.x - 4.0f, transform.position.y, transform.position.z);
             isClickable = true;
-            MoveTo(pos, walkDuration);
+            MoveTo(uncoveredPosition, walkDuration);
         }
 
 
@@ -121,12 +122,13 @@ namespace EA4S.Minigames.HideAndSeek
                     direction = Random.Range(0, 2) * 2 - 1; // -1 or 1
 
                 float moveOffset = direction * minMove;
-                pos2 = pos1 + new Vector3(moveOffset, 0, 0);
+                positionUncovered = positionStart + new Vector3(moveOffset, 0, 0);
 
                 isMoving = true;
                 isClickable = true;
 
-                MoveTo(pos2, walkDuration);
+                // TODO Disable Tree collider
+                MoveTo(positionUncovered, walkDuration);
             }
         }
 
@@ -158,8 +160,8 @@ namespace EA4S.Minigames.HideAndSeek
         private bool isArrived = false;
 
         private float startTime;
-        private Vector3 pos1;
-        private Vector3 pos2;
+        private Vector3 positionStart;
+        private Vector3 positionUncovered;
 
         private Animator anim;
 
