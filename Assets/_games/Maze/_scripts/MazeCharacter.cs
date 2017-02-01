@@ -19,8 +19,16 @@ namespace EA4S.Minigames.Maze
 
         private const float CELEBRATION_PATH_ENDPOINT_X_ANCHOR = -0.33f;
         private const float CELEBRATION_PATH_ENDPOINT_Z_ANCHOR = 0f;
-        private const float CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA = 5f;
+        private const float CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA = 5.5f;
         private const float CELEBRATION_PATH_DURATION = 2.5f;
+
+        private const float FLEE_PATH_MIDPOINT_X_ANCHOR = -0.6f;
+        private const float FLEE_PATH_MIDPOINT_Z_ANCHOR = 0.2f;
+
+        private const float FLEE_PATH_ENDPOINT_X_ANCHOR = 0.33f;
+        private const float FLEE_PATH_ENDPOINT_Z_ANCHOR = -0.33f;
+        private const float FLEE_PATH_ENDPOINT_DISTANCE_FROM_CAMERA = 5f;
+        private const float FLEE_PATH_DURATION = 2.5f;
 
         private enum LLState
         {
@@ -94,7 +102,6 @@ namespace EA4S.Minigames.Maze
         private bool startCheckingForCollision = false;
         private bool donotHandleBorderCollision = false;
         public bool isFleeing = false;
-        private Vector3 fleePosition;
 
         public bool isAppearing = false;
         public GameObject rocket;
@@ -316,42 +323,18 @@ namespace EA4S.Minigames.Maze
             //stop for a second and restart the level:
             StartCoroutine(waitAndPerformCallback(3, () =>
             {
-                if (loseState != LoseState.OutOfBounds)
-                {
-                    MazeGameManager.instance.showAllCracks();
-                }
-
                 donotHandleBorderCollision = true;
                 characterIsMoving = false;
                 transform.DOKill(false);
-                //launchRocket = true;
                 toggleVisibility(true);
-
-                if (!MazeGameManager.instance.isTutorialMode)
-                {
-                    LL.transform.SetParent(transform, true);
-                    LL.SetState(LLAnimationStates.LL_idle);
-
-                    GameObject obj = new GameObject();
-                    obj.transform.position = rocket.transform.position - new Vector3(10, 0, 0);
-                    obj.transform.SetParent(rocket.transform.parent, true);
-                    rocket.transform.SetParent(obj.transform, true);
-                    rocket.transform.DOLookAt(Camera.main.transform.position, 0.5f, AxisConstraint.None, Vector3.forward);
-                    rocket.transform.DOMove(Camera.main.transform.position + new Vector3(10, 10, 0), 5);
-
-                    obj.transform.DOLocalRotate(new Vector3(0, 180, 0), 4);
-
-                }
 
                 MazeGameManager.instance.ColorCurrentLinesAsIncorrect();
 
             },
                 () =>
                 {
-                    MazeGameManager.instance.lostCurrentLetter();//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    MazeGameManager.instance.lostCurrentLetter();
                 }));
-
-
         }
 
         //corutine to handle pausing a bit then resuming
@@ -623,7 +606,7 @@ namespace EA4S.Minigames.Maze
 
                 //enable collider when we reach the second waypoint
                 //if (currentCharacterWayPoint == 1)
-                    //myCollider.SetActive(true);
+                //myCollider.SetActive(true);
             }
         }
         public void initMovement()
@@ -751,6 +734,92 @@ namespace EA4S.Minigames.Maze
 
         }
 
+        public void Flee()
+        {
+            StartCoroutine(Flee_Coroutine());
+        }
+
+        private IEnumerator Flee_Coroutine()
+        {
+            yield return new WaitForSeconds(0.25f);
+
+            isFleeing = true;
+
+            List<Vector3> fleePathPoints = new List<Vector3>();
+
+            var cameraPosition = Camera.main.transform.position;
+
+            var frustumHeight = GetFrustumHeightAtDistance(FLEE_PATH_ENDPOINT_DISTANCE_FROM_CAMERA);
+            var frustumWidth = GetFrustumWidth(frustumHeight);
+
+            Vector3 endPoint = new Vector3(cameraPosition.x + (frustumWidth / 2) * FLEE_PATH_ENDPOINT_X_ANCHOR,
+                                            cameraPosition.y - FLEE_PATH_ENDPOINT_DISTANCE_FROM_CAMERA,
+                                                cameraPosition.z + (frustumHeight / 2) * FLEE_PATH_ENDPOINT_Z_ANCHOR);
+
+            Vector3 midPoint = transform.position + endPoint;
+            midPoint *= 0.5f;
+
+            frustumHeight = GetFrustumHeightAtDistance(cameraPosition.y - midPoint.y);
+            frustumWidth = GetFrustumWidth(frustumHeight);
+
+            midPoint = new Vector3(cameraPosition.x + (frustumWidth / 2) * FLEE_PATH_MIDPOINT_X_ANCHOR,
+                                            midPoint.y,
+                                                cameraPosition.z + (frustumHeight / 2) * FLEE_PATH_MIDPOINT_Z_ANCHOR);
+
+
+            fleePathPoints.Add(transform.position);
+            fleePathPoints.Add(midPoint);
+            fleePathPoints.Add(endPoint);
+
+            LL.Initialize(MazeGameManager.instance.currentLL);
+
+            transform.DOPath(fleePathPoints.ToArray(), FLEE_PATH_DURATION, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) =>
+            {
+                if (index < fleePathPoints.Count - 1)
+                {
+                    var dir = transform.position - fleePathPoints[index + 1];
+
+                    brakeRotation = GetCorrectedRotationOfRocket(dir);
+                    brakeRotation.z += 20f;
+
+                    transform.DORotate(brakeRotation, 0.33f);
+                }
+
+            }).OnComplete(() =>
+            {
+                //wait then show cracks:
+                StartCoroutine(waitAndPerformCallback(3.5f, () =>
+                {
+                    MazeGameManager.instance.showAllCracks();
+                    donotHandleBorderCollision = true;
+                    characterIsMoving = false;
+                    transform.DOKill(false);
+
+                    rocket.GetComponent<SphereCollider>().enabled = true;
+
+                    var rocketRigidBody = rocket.GetComponent<Rigidbody>();
+                    rocketRigidBody.isKinematic = false;
+                    rocketRigidBody.useGravity = true;
+
+                    State = LLState.Ragdolling;
+
+                    ragdoll.deleteOnRagdollHit = true;
+
+                    MazeGameManager.instance.ColorCurrentLinesAsIncorrect();
+
+                    var tickPosition = transform.position;
+                    tickPosition.z -= 1f;
+                    tickPosition.y -= 1.5f;
+                    Tutorial.TutorialUI.MarkNo(tickPosition, Tutorial.TutorialUI.MarkSize.Big);
+
+                },
+                () =>
+                {
+                    MazeGameManager.instance.lostCurrentLetter();
+                }));
+            });
+        }
+
         public void Celebrate(System.Action OnCelebrationOver)
         {
             List<Vector3> celebrationPathPoints = new List<Vector3>();
@@ -810,18 +879,18 @@ namespace EA4S.Minigames.Maze
 
                     Tutorial.TutorialUI.MarkYes(tickPosition, Tutorial.TutorialUI.MarkSize.Big);
 
-                    transform.DOMove(transform.position + new Vector3(-0.5f, 0.5f, -0.5f), 0.75f).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
-                {
-                    State = LLState.Normal;
+                    transform.DOMove(transform.position + new Vector3(-0.5f, 0.5f, -0.5f) * 0.33f, 0.75f).SetEase(Ease.InOutSine).SetLoops(3, LoopType.Yoyo).OnComplete(() =>
+                  {
+                      State = LLState.Normal;
 
-                    transform.DOPlay();
+                      transform.DOPlay();
 
-                    var dir = transform.position - celebrationPathPoints[index + 1];
+                      var dir = transform.position - celebrationPathPoints[index + 1];
 
-                    brakeRotation = GetCorrectedRotationOfRocket(dir);
+                      brakeRotation = GetCorrectedRotationOfRocket(dir);
 
-                    transform.DORotate(brakeRotation, 0.33f);
-                });
+                      transform.DORotate(brakeRotation, 0.33f);
+                  });
                 }
 
             }).OnComplete(() =>
@@ -854,25 +923,6 @@ namespace EA4S.Minigames.Maze
             stateTime += Time.fixedDeltaTime;
         }
 
-        public void fleeTo(Vector3 position)
-        {
-            //wait and flee:
-            StartCoroutine(waitAndPerformCallback(0.5f, () =>
-            {
-
-            },
-                () =>
-                {
-                    transform.DOKill(true);
-                    toggleVisibility(true);
-                    fleePosition = position;
-                    isFleeing = true;
-                }));
-
-
-
-        }
-
         void moveTowards(Vector3 position, float speed = 10, bool useUpVector = true)
         {
             transform.position = Vector3.MoveTowards(transform.position, position, Time.deltaTime * speed);
@@ -883,42 +933,6 @@ namespace EA4S.Minigames.Maze
             targetRotation = Quaternion.AngleAxis(-angle, useUpVector ? Vector3.up : Vector3.forward);// * initialRotation;
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 5);
-        }
-
-        void Update()
-        {
-            if (isAppearing)
-            {
-                return;
-            }
-
-            if (isFleeing)
-            {
-
-                moveTowards(fleePosition);
-
-                if (transform.position == fleePosition)
-                {
-                    //wait then show cracks:
-                    StartCoroutine(waitAndPerformCallback(3, () =>
-                    {
-                        MazeGameManager.instance.showAllCracks();
-                        donotHandleBorderCollision = true;
-                        characterIsMoving = false;
-                        transform.DOKill(false);
-
-                        MazeGameManager.instance.ColorCurrentLinesAsIncorrect();
-
-                    },
-                    () =>
-                    {
-                        MazeGameManager.instance.lostCurrentLetter();
-                    }));
-
-
-                }
-                return;
-            }
         }
     }
 }

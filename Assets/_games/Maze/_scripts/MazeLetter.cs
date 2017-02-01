@@ -28,7 +28,6 @@ namespace EA4S.Minigames.Maze
             //should we replay tutorial?
             if (!isDrawing)
             {
-
                 if (!MazeGameManager.instance.currentCharacter || MazeGameManager.instance.currentCharacter.isFleeing || MazeGameManager.instance.currentCharacter.isAppearing)
                     return;
 

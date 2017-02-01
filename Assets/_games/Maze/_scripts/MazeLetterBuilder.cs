@@ -78,6 +78,8 @@ namespace EA4S.Minigames.Maze
                         characterPosition = child.GetChild(0).position;
                     }
 
+                    child.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+
                     foreach (Transform fruit in child.transform)
                         fruit.gameObject.AddComponent<BoxCollider>();
 
