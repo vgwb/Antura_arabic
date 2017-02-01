@@ -1,53 +1,151 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EA4S.Database;
 using System.Linq;
+using EA4S.Core;
 using EA4S.Helpers;
-using EA4S.Profile;
-using EA4S.Utilities;
+using UnityEngine.UI;
 
 namespace EA4S.Teacher
 {
+    public class VocabularyContents
+    {
+        public HashSet<LetterData> letters = new HashSet<LetterData>();
+        public HashSet<WordData> words = new HashSet<WordData>();
+        public HashSet<PhraseData> phrases = new HashSet<PhraseData>();
+    }
+
     /// <summary>
-    /// Handles the selection of what dictionary data a minigame should use, given a playsession
+    /// Class that contains all vocabulary contents related to the journey progression.
+    /// Useful for data filtering.
+    /// </summary>
+    public class ProgressionVocabularyContents
+    {
+        /// <summary>
+        /// Play sessions unlocked thus far
+        /// </summary>
+        private Dictionary<JourneyPosition, VocabularyContents> playSessionsContents = new Dictionary<JourneyPosition, VocabularyContents>();
+        private VocabularyContents allContents = new VocabularyContents();
+
+        #region Get API
+        public VocabularyContents GetContentsOfPlaySession(string psId)
+        {
+            var pos = new JourneyPosition(psId);
+            return CreateContentsFromFunc(pair => pair.Key == pos);
+        }
+
+        public VocabularyContents GetContentsUpToPlaySession(string psId)
+        {
+            var pos = new JourneyPosition(psId);
+            return CreateContentsFromFunc(pair => pair.Key.IsMinor(pos) || pair.Key == pos);
+        }
+
+        public VocabularyContents GetContentsOfLearningBlock(int lbIndex)
+        {
+            return CreateContentsFromFunc(pair => pair.Key.LearningBlock == lbIndex);
+        }
+
+        public VocabularyContents GetContentsOfStage(int stageIndex)
+        {
+            return CreateContentsFromFunc(pair => pair.Key.Stage == stageIndex);
+        }
+        #endregion
+
+        private VocabularyContents CreateContentsFromFunc(Func<KeyValuePair<JourneyPosition, VocabularyContents>,bool> function)
+        {
+            var contents = new VocabularyContents();
+            foreach (var pair in playSessionsContents.Where(function))
+            {
+                contents.letters.UnionWith(pair.Value.letters);
+                contents.words.UnionWith(pair.Value.words);
+                contents.phrases.UnionWith(pair.Value.phrases);
+            }
+            return contents;
+        }
+
+
+        #region Building
+
+        public void AddPlaySession(string psId, List<LetterData> letters, List<WordData> words, List<PhraseData> phrases)
+        {
+            var newContents = new VocabularyContents();
+            newContents.letters.UnionWith(letters);
+            newContents.words.UnionWith(words);
+            newContents.phrases.UnionWith(phrases);
+            playSessionsContents[new JourneyPosition(psId)] = newContents;
+
+            allContents.letters.UnionWith(letters);
+            allContents.words.UnionWith(words);
+            allContents.phrases.UnionWith(phrases);
+        }
+
+        #endregion
+    }
+
+
+    /// <summary>
+    /// Handles the selection of what vocabulary data a minigame should use, given a playsession
     /// </summary>
     public class VocabularySelectionAI 
     {
         // References
         private DatabaseManager dbManager;
-        //private TeacherAI teacher;
-        //private VocabularyHelper VocabularyHelper;
 
-        // Inner state
-        private HashSet<LetterData> journeyLetters = new HashSet<LetterData>();
-        private HashSet<WordData> journeyWords = new HashSet<WordData>();
-        private HashSet<PhraseData> journeyPhrases = new HashSet<PhraseData>();
+        // Data found in the whole journey
+        // private HashSet<LetterData> journeyLetters = new HashSet<LetterData>();
+        //private HashSet<WordData> journeyWords = new HashSet<WordData>();
+        //private HashSet<PhraseData> journeyPhrases = new HashSet<PhraseData>();
 
-        private HashSet<LetterData> currentPlaySessionLetters = new HashSet<LetterData>();
-        private HashSet<WordData> currentPlaySessionWords = new HashSet<WordData>();
-        private HashSet<PhraseData> currentPlaySessionPhrases = new HashSet<PhraseData>();
+        // Data found in the current play session
+        //private HashSet<LetterData> currentPlaySessionLetters = new HashSet<LetterData>();
+        //private HashSet<WordData> currentPlaySessionWords = new HashSet<WordData>();
+        // private HashSet<PhraseData> currentPlaySessionPhrases = new HashSet<PhraseData>();
+
+        private ProgressionVocabularyContents progressionContents;
+        private VocabularyContents currentPlaySessionContents;
+        private VocabularyContents currentBlockContents;
+        private VocabularyContents currentStageContents;
+        private VocabularyContents currentJourneyContents;
 
         public VocabularySelectionAI(DatabaseManager _dbManager)
         {
             this.dbManager = _dbManager;
+
+            // Prepare all contents
+            progressionContents = new ProgressionVocabularyContents();
+            foreach (var psData in dbManager.GetAllPlaySessionData())
+            {
+                var psId = psData.Id;
+                var letters = GetLettersInPlaySession(psId, pastSessionsToo: true);
+                var words = GetWordsInPlaySession(psId, previousToo: true, pastSessionsToo: true);
+                var phrases = GetPhrasesInPlaySession(psId, previousToo: true, pastSessionsToo:true);
+                progressionContents.AddPlaySession(psId, letters, words, phrases);
+            }
         }
 
         public void LoadCurrentPlaySessionData(string currentPlaySessionId)
         {
-            currentPlaySessionLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId));
-            currentPlaySessionWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId));
-            currentPlaySessionPhrases = new HashSet<PhraseData>(GetPhrasesInPlaySession(currentPlaySessionId, true));
+            var pos = new JourneyPosition(currentPlaySessionId);
+            currentPlaySessionContents = progressionContents.GetContentsOfPlaySession(currentPlaySessionId);
+            currentJourneyContents = progressionContents.GetContentsOfPlaySession(currentPlaySessionId);
+            currentBlockContents = progressionContents.GetContentsOfLearningBlock(pos.LearningBlock);
+            currentStageContents = progressionContents.GetContentsOfStage(pos.Stage);
 
-            journeyLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId, true));
-            journeyWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId, true, true));
-            journeyPhrases = new HashSet<PhraseData>(GetPhrasesInPlaySession(currentPlaySessionId, true, true));
+            //currentPlaySessionLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId));
+            // currentPlaySessionWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId));
+            //currentPlaySessionPhrases = new HashSet<PhraseData>(GetPhrasesInPlaySession(currentPlaySessionId, true));
+
+            //journeyLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId, true));
+            //journeyWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId, true, true));
+            //journeyPhrases = new HashSet<PhraseData>(GetPhrasesInPlaySession(currentPlaySessionId, true, true));
 
             if (ConfigAI.verboseDataSelection)
             {
                 string debugString = "";
                 debugString += "--------- TEACHER: play session initialisation (journey " + currentPlaySessionId + ") --------- ";
-                debugString += "\n" + journeyLetters.Count + " letters available";
-                debugString += "\n" + journeyWords.Count + " words available";
-                debugString += "\n" + journeyPhrases.Count + " phrases available";
+                debugString += "\n" + currentJourneyContents.letters.Count + " letters available";
+                debugString += "\n" + currentJourneyContents.words.Count + " words available";
+                debugString += "\n" + currentJourneyContents.phrases.Count + " phrases available";
                 UnityEngine.Debug.Log(debugString);
             }
         }
@@ -65,26 +163,25 @@ namespace EA4S.Teacher
             // @note: not the best of solutions, but I do not seem to be able to get more generic than this without rewriting most stuff.
             System.Type typeParameterType = typeof(T);
             HashSet<T> journeyData = null;
-            HashSet<T> currentPSData = null;
-            //DbTables table = DbTables.Letters;
+            //HashSet<T> currentPSData = null;
             VocabularyDataType dataType = VocabularyDataType.Letter;
             if (typeParameterType == typeof(LetterData))
             {
                 dataType = VocabularyDataType.Letter;
-                journeyData = new HashSet<T>(journeyLetters.Cast<T>());
-                currentPSData = new HashSet<T>(currentPlaySessionLetters.Cast<T>());
+                journeyData = new HashSet<T>(currentJourneyContents.letters.Cast<T>());
+                // currentPSData = new HashSet<T>(currentPlaySessionLetters.Cast<T>());
             }
             else if (typeParameterType == typeof(WordData))
             {
                 dataType = VocabularyDataType.Word;
-                journeyData = new HashSet<T>(journeyWords.Cast<T>());
-                currentPSData = new HashSet<T>(currentPlaySessionWords.Cast<T>());
+                journeyData = new HashSet<T>(currentJourneyContents.words.Cast<T>());
+                // currentPSData = new HashSet<T>(currentPlaySessionWords.Cast<T>());
             }
             else if (typeParameterType == typeof(PhraseData))
             {
                 dataType = VocabularyDataType.Phrase;
-                journeyData = new HashSet<T>(journeyPhrases.Cast<T>());
-                currentPSData = new HashSet<T>(currentPlaySessionPhrases.Cast<T>());
+                journeyData = new HashSet<T>(currentJourneyContents.phrases.Cast<T>());
+                // currentPSData = new HashSet<T>(currentPlaySessionPhrases.Cast<T>());
             }
 
             // Get unfiltered data based on the builder's logic
@@ -145,7 +242,7 @@ namespace EA4S.Teacher
             // Weighted selection on the remaining number
             List<T> selectedList = null;
             if (selectionParams.getMaxData) selectedList = dataList;
-            else selectedList = WeightedDataSelect(dataList, currentPSData, selectionParams.nRequired, dataType, selectionParams.severity);
+            else selectedList = WeightedDataSelect(dataList, selectionParams.nRequired, dataType, selectionParams.severity);
             debugString += (" \tSelection: " + selectedList.Count);
 
             if (ConfigAI.verboseDataSelection)
@@ -173,8 +270,10 @@ namespace EA4S.Teacher
                 || (selectionParams.getMaxData && dataList.Count >= nAfterBuilder);
         }
 
-        private List<T> WeightedDataSelect<T>(List<T> source_data_list, HashSet<T> currentPSData, int nToSelect, VocabularyDataType dataType, SelectionSeverity severity) where T : IData
+        private List<T> WeightedDataSelect<T>(List<T> source_data_list, int nToSelect, VocabularyDataType dataType, SelectionSeverity severity) where T : IData
         {
+            // @todo: take from here
+
             // Given a (filtered) list of data, select some using weights
             List<VocabularyScoreData> score_data_list = dbManager.FindDataByQuery<VocabularyScoreData>("SELECT * FROM VocabularyScoreData WHERE VocabularyDataType = '" + (int)dataType + "'");
 
