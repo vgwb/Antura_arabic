@@ -522,7 +522,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1753021933
+--- !u!1001 &1751162097
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -561,11 +561,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114748560329468034, guid: 9796690aa4d4ebf418e65146780f0918,
-        type: 2}
-      propertyPath: poofPrefab
-      value: 
-      objectReference: {fileID: 870303149}
     - target: {fileID: 114807908430855550, guid: 9796690aa4d4ebf418e65146780f0918,
         type: 2}
       propertyPath: m_havePropertiesChanged
@@ -575,31 +570,32 @@ Prefab:
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114141025178559814, guid: 9796690aa4d4ebf418e65146780f0918,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114141025178559814, guid: 9796690aa4d4ebf418e65146780f0918,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 33138882498375684, guid: 9796690aa4d4ebf418e65146780f0918,
         type: 2}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114141025178559814, guid: 9796690aa4d4ebf418e65146780f0918,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114141025178559814, guid: 9796690aa4d4ebf418e65146780f0918,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 33196648662843430, guid: 9796690aa4d4ebf418e65146780f0918,
         type: 2}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 1942231629936472, guid: 9796690aa4d4ebf418e65146780f0918, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 114748560329468034, guid: 9796690aa4d4ebf418e65146780f0918,
+        type: 2}
+      propertyPath: poofPrefab
+      value: 
+      objectReference: {fileID: 870303149}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9796690aa4d4ebf418e65146780f0918, type: 2}
   m_IsPrefabParent: 0
