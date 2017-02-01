@@ -84,7 +84,7 @@ namespace EA4S.Assessment
                         var set = p.Placeholder.GetQuestion().GetAnswerSet();
                         var answ = p.LinkedDroppable.GetAnswer();
                         if (set.IsCorrect(answ))
-                            AssessmentConfiguration.Instance.Context.GetLogManager().OnAnswered(answ.Data(), false);
+                            AssessmentConfiguration.Instance.Context.GetLogManager().OnAnswered(answ.Data(), true);
                     }
                 
                 // Just trigger OnQuestionAnswered events if all are correct

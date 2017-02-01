@@ -27,6 +27,9 @@ namespace EA4S.Teacher
 
             this.nPacks = nPacks;
             this.parameters = parameters;
+
+            // Forced filters
+            this.parameters.letterFilters.excludeDiphthongs = true;
         }
 
         public List<QuestionPackData> CreateAllQuestionPacks()

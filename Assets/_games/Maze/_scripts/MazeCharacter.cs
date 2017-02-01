@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using EA4S.LivingLetters;
+using EA4S.Minigames.Tobogan;
 
 namespace EA4S.Minigames.Maze
 {
@@ -18,28 +19,67 @@ namespace EA4S.Minigames.Maze
 
         private const float CELEBRATION_PATH_ENDPOINT_X_ANCHOR = -0.33f;
         private const float CELEBRATION_PATH_ENDPOINT_Z_ANCHOR = 0f;
-        private const float CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA = 5f;
+        private const float CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA = 5.5f;
         private const float CELEBRATION_PATH_DURATION = 2.5f;
 
-        private enum State
+        private const float FLEE_PATH_MIDPOINT_X_ANCHOR = -0.6f;
+        private const float FLEE_PATH_MIDPOINT_Z_ANCHOR = 0.2f;
+
+        private const float FLEE_PATH_ENDPOINT_X_ANCHOR = 0.33f;
+        private const float FLEE_PATH_ENDPOINT_Z_ANCHOR = -0.33f;
+        private const float FLEE_PATH_ENDPOINT_DISTANCE_FROM_CAMERA = 5f;
+        private const float FLEE_PATH_DURATION = 2.5f;
+
+        private enum LLState
         {
-            Normal, Braked
+            Normal, Braked, Impacted, Ragdolling
         }
 
-        private State state;
+        private LLState _state;
+        private LLState State
+        {
+            get
+            {
+                return _state;
+            }
+
+            set
+            {
+                if (_state != value)
+                {
+                    _state = value;
+
+                    switch (_state)
+                    {
+                        case LLState.Ragdolling:
+                            ragdoll.SetRagdoll(true, rocket.GetComponent<Rigidbody>().velocity);
+                            break;
+                    }
+
+                    stateTime = 0f;
+                }
+            }
+        }
         private float stateTime;
+
+        public enum LoseState
+        {
+            None, OutOfBounds, Incomplete
+        }
+
+        public LoseState loseState;
 
         private Vector3 brakeRotation;
 
         public List<Vector3> characterWayPoints;
 
         public LetterObjectView LL;
+        private Transform LLParent;
 
-        public GameObject myCollider;
+        public MeshCollider myCollider;
         public List<GameObject> particles;
 
         public List<GameObject> Fruits;
-
 
         public bool characterIsMoving;
 
@@ -47,29 +87,21 @@ namespace EA4S.Minigames.Maze
 
         public Transform nextPosition;
 
-
         int currentCharacterWayPoint;
-
 
         public Vector3 initialPosition;
         public Quaternion initialRotation;
         Vector3 targetPos;
         Quaternion targetRotation;
-        //int currentWayPoint;
-
 
         public List<GameObject> _fruits;
         int currentFruitList = 0;
-
-
-
 
         int currentFruitIndex;
 
         private bool startCheckingForCollision = false;
         private bool donotHandleBorderCollision = false;
         public bool isFleeing = false;
-        private Vector3 fleePosition;
 
         public bool isAppearing = false;
         public GameObject rocket;
@@ -80,6 +112,10 @@ namespace EA4S.Minigames.Maze
 
         public GameObject winParticleVFX;
 
+        private readonly Vector3 ROCKET_LOCAL_ROTATION = new Vector3(0, -90f, 90f);
+
+        public LivingLetterRagdoll ragdoll;
+
         public void SetMazeLetter(MazeLetter mazeLetter)
         {
             this.mazeLetter = mazeLetter;
@@ -89,26 +125,14 @@ namespace EA4S.Minigames.Maze
         {
             LL.SetState(LLAnimationStates.LL_rocketing);
 
+            LLParent = ragdoll.transform.parent;
+
             isFleeing = false;
             characterIsMoving = false;
             characterWayPoints = new List<Vector3>();
             currentCharacterWayPoint = 0;
 
-
-
-            //currentWayPoint = 0;
             GetComponent<Collider>().enabled = false;
-
-            //collider.GetComponent<MeshRenderer> ().enabled = false;
-            //collider.SetActive(false);
-
-
-            //foreach (GameObject fruitList in Fruits)
-            //	fruitList.SetActive (false);
-
-
-
-
         }
 
         private Vector3 GetCorrectedRotationOfRocket(Vector3 direction)
@@ -152,16 +176,46 @@ namespace EA4S.Minigames.Maze
         public void toggleVisibility(bool value)
         {
             foreach (GameObject particle in particles) particle.SetActive(value);
+        }
 
+        private void ResetRocket()
+        {
+            var rocketRigidBody = rocket.GetComponent<Rigidbody>();
+            rocketRigidBody.isKinematic = true;
+            rocketRigidBody.useGravity = false;
+            rocketRigidBody.velocity = Vector3.zero;
+            rocketRigidBody.angularVelocity = Vector3.zero;
+            rocket.transform.localPosition = Vector3.zero;
+            rocket.transform.localRotation = Quaternion.Euler(ROCKET_LOCAL_ROTATION);
 
-            // toggles the visibility of this gameobject and all it's children
-            /*Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
-			foreach (Renderer r in renderers)
-				r.enabled = value;*/
+            rocket.GetComponent<SphereCollider>().enabled = false;
+        }
+
+        private void ResetLivingLetter()
+        {
+            ragdoll.transform.parent = LLParent;
+            ragdoll.SetRagdoll(false, Vector3.zero);
+
+            ragdoll.transform.localPosition = Vector3.zero;
+            ragdoll.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
+            LL.SetState(LLAnimationStates.LL_rocketing);
+        }
+
+        private void Reset()
+        {
+            ResetRocket();
+            ResetLivingLetter();
+
+            loseState = LoseState.None;
+
+            myCollider.enabled = true;
         }
 
         public void initialize()
         {
+            Reset();
+
             initialPosition = transform.position;
             targetPos = initialPosition;
 
@@ -237,19 +291,6 @@ namespace EA4S.Minigames.Maze
 
             print("Colliding with: " + other.gameObject.name);
 
-            if (other.gameObject.name == "BorderCollider")
-            {
-
-                //if this is the 1st hit ignore it:
-                if (!startCheckingForCollision)
-                {
-                    startCheckingForCollision = true;
-                    return;
-                }
-
-                wasHit();
-            }
-
             if (other.gameObject.name.IndexOf("fruit_") == 0)
             {
                 //we hit a fruit make sure it is in order:
@@ -257,13 +298,10 @@ namespace EA4S.Minigames.Maze
 
                 if (index == currentFruitIndex)
                 {
-                    //_fruits [currentFruitIndex].GetComponent<BoxCollider> ().enabled = false;
-
                     //lerp
                     _fruits[currentFruitIndex].GetComponent<MazeArrow>().pingPong = false;
                     _fruits[currentFruitIndex].GetComponent<MazeArrow>().tweenToColor = true;
 
-                    //_fruits [currentFruitIndex].SetActive (false);
                     currentFruitIndex++;
 
                     if (index == 0)
@@ -274,76 +312,9 @@ namespace EA4S.Minigames.Maze
                             blinkingTarget = null;
                         }
                     }
-
-
-                }/* else if(index > currentFruitIndex){
-					//lose?
-					waitAndRestartScene();
-				}*/
+                }
             }
         }
-
-
-        void OnTriggerExit(Collider other)
-        {
-
-            print("trigger exit " + other.gameObject.name);
-            print("Current letter " + MazeGameManager.instance.currentPrefab.name);
-
-            if (other.gameObject.name == "MazeLetter")
-            {
-                //if the character completely exits the maze letter:
-                //stop for a second and restart the level:
-                waitAndRestartScene();
-            }
-
-        }
-
-        void wasHit()
-        {
-
-
-            MazeGameManager.instance.wasHit();
-
-
-
-
-            if (MazeGameManager.instance.health == 0)
-            {
-
-                waitAndRestartScene();
-
-                return;
-            }
-
-
-            //stop checking for border collision for half a second
-            StartCoroutine(waitAndPerformCallback(0.5f, () =>
-            {
-                donotHandleBorderCollision = true;
-            },
-                () =>
-                {
-                    donotHandleBorderCollision = false;
-                }));
-
-            //stop moving the character for a second
-            StartCoroutine(waitAndPerformCallback(1, () =>
-            {
-                characterIsMoving = false;
-                transform.DOPause();
-            },
-                () =>
-                {
-                    characterIsMoving = true;
-                    transform.DOPlay();
-
-                }));
-
-
-        }
-
-
 
         void waitAndRestartScene()
         {
@@ -352,38 +323,18 @@ namespace EA4S.Minigames.Maze
             //stop for a second and restart the level:
             StartCoroutine(waitAndPerformCallback(3, () =>
             {
-                MazeGameManager.instance.showAllCracks();
                 donotHandleBorderCollision = true;
                 characterIsMoving = false;
                 transform.DOKill(false);
-                //launchRocket = true;
                 toggleVisibility(true);
-
-                if (!MazeGameManager.instance.isTutorialMode)
-                {
-                    LL.transform.SetParent(transform, true);
-                    LL.SetState(LLAnimationStates.LL_idle);
-
-                    GameObject obj = new GameObject();
-                    obj.transform.position = rocket.transform.position - new Vector3(10, 0, 0);
-                    obj.transform.SetParent(rocket.transform.parent, true);
-                    rocket.transform.SetParent(obj.transform, true);
-                    rocket.transform.DOLookAt(Camera.main.transform.position, 0.5f, AxisConstraint.None, Vector3.forward);
-                    rocket.transform.DOMove(Camera.main.transform.position + new Vector3(10, 10, 0), 5);
-
-                    obj.transform.DOLocalRotate(new Vector3(0, 180, 0), 4);
-
-                }
 
                 MazeGameManager.instance.ColorCurrentLinesAsIncorrect();
 
             },
                 () =>
                 {
-                    MazeGameManager.instance.lostCurrentLetter();//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    MazeGameManager.instance.lostCurrentLetter();
                 }));
-
-
         }
 
         //corutine to handle pausing a bit then resuming
@@ -466,11 +417,7 @@ namespace EA4S.Minigames.Maze
                 dir.y = 1;
                 transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
             });
-
-
-
         }
-
 
         public void resetToCurrent()
         {
@@ -478,7 +425,6 @@ namespace EA4S.Minigames.Maze
             donotHandleBorderCollision = false;
             transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isDrawing = false;
             transform.position = _fruits[0].transform.position + new Vector3(0, 1, 0);
-
 
             initialPosition = transform.position;
             targetPos = initialPosition;
@@ -525,16 +471,9 @@ namespace EA4S.Minigames.Maze
             Vector3 pos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs(distance));
             pos = Camera.main.ScreenToWorldPoint(pos);
 
-            //check distance to first fruit:
-            //pos.z = _fruits[0].transform.position.z;
-
             float mag = (pos - _fruits[0].transform.position).sqrMagnitude;
 
-            Debug.Log("Distance magnitude = " + mag);
-
             return ((pos - _fruits[0].transform.position).sqrMagnitude) <= 4;
-
-
         }
 
         private void MoveTween()
@@ -555,6 +494,7 @@ namespace EA4S.Minigames.Maze
 
                     transform.rotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
                                                                                   // transform.DORotateQuaternion(targetRotation, 0.007f);
+
                 }
             }).OnComplete(pathMoveComplete);
         }
@@ -585,9 +525,46 @@ namespace EA4S.Minigames.Maze
             }
             else
             {
-                _fruits[currentFruitIndex].GetComponent<MazeArrow>().MarkAsUnreached();
+                if (loseState != LoseState.OutOfBounds)
+                {
+                    _fruits[currentFruitIndex].GetComponent<MazeArrow>().MarkAsUnreached();
+
+                    loseState = LoseState.Incomplete;
+                }
+
+                else
+                {
+                    OnRocketImpactedWithBorder();
+                }
+
                 waitAndRestartScene();
             }
+        }
+
+        private void OnRocketImpactedWithBorder()
+        {
+            ragdoll.transform.SetParent(rocket.transform, true);
+
+            rocket.GetComponent<SphereCollider>().enabled = true;
+
+            var rocketRigidBody = rocket.GetComponent<Rigidbody>();
+            rocketRigidBody.isKinematic = false;
+            rocketRigidBody.useGravity = true;
+
+            rocketRigidBody.AddExplosionForce(35f, Vector3.down, 0f, 3f, ForceMode.VelocityChange);
+
+            /*var forceToApply = rocketRigidBody.velocity;
+            forceToApply.Normalize();
+            forceToApply *= 10f;
+            //forceToApply.y = 20f;
+
+            rocketRigidBody.velocity = Vector3.zero;
+            rocketRigidBody.angularVelocity = Vector3.zero;
+
+            rocketRigidBody.velocity = forceToApply;*/
+            rocketRigidBody.AddRelativeTorque(new Vector3(Random.Range(-40f, 40f), Random.Range(-40f, 40f), Random.Range(-40f, 40f)) * 100f);
+
+            State = LLState.Impacted;
         }
 
         private void moveTweenComplete()
@@ -628,8 +605,8 @@ namespace EA4S.Minigames.Maze
                     MoveTween();
 
                 //enable collider when we reach the second waypoint
-                if (currentCharacterWayPoint == 1)
-                    myCollider.SetActive(true);
+                //if (currentCharacterWayPoint == 1)
+                //myCollider.SetActive(true);
             }
         }
         public void initMovement()
@@ -652,6 +629,8 @@ namespace EA4S.Minigames.Maze
             {
                 fruit.GetComponent<BoxCollider>().enabled = true;
             }
+
+            myCollider.enabled = false;
 
             // Test with tweens:
             MoveTween();
@@ -755,6 +734,92 @@ namespace EA4S.Minigames.Maze
 
         }
 
+        public void Flee()
+        {
+            StartCoroutine(Flee_Coroutine());
+        }
+
+        private IEnumerator Flee_Coroutine()
+        {
+            yield return new WaitForSeconds(0.25f);
+
+            isFleeing = true;
+
+            List<Vector3> fleePathPoints = new List<Vector3>();
+
+            var cameraPosition = Camera.main.transform.position;
+
+            var frustumHeight = GetFrustumHeightAtDistance(FLEE_PATH_ENDPOINT_DISTANCE_FROM_CAMERA);
+            var frustumWidth = GetFrustumWidth(frustumHeight);
+
+            Vector3 endPoint = new Vector3(cameraPosition.x + (frustumWidth / 2) * FLEE_PATH_ENDPOINT_X_ANCHOR,
+                                            cameraPosition.y - FLEE_PATH_ENDPOINT_DISTANCE_FROM_CAMERA,
+                                                cameraPosition.z + (frustumHeight / 2) * FLEE_PATH_ENDPOINT_Z_ANCHOR);
+
+            Vector3 midPoint = transform.position + endPoint;
+            midPoint *= 0.5f;
+
+            frustumHeight = GetFrustumHeightAtDistance(cameraPosition.y - midPoint.y);
+            frustumWidth = GetFrustumWidth(frustumHeight);
+
+            midPoint = new Vector3(cameraPosition.x + (frustumWidth / 2) * FLEE_PATH_MIDPOINT_X_ANCHOR,
+                                            midPoint.y,
+                                                cameraPosition.z + (frustumHeight / 2) * FLEE_PATH_MIDPOINT_Z_ANCHOR);
+
+
+            fleePathPoints.Add(transform.position);
+            fleePathPoints.Add(midPoint);
+            fleePathPoints.Add(endPoint);
+
+            LL.Initialize(MazeGameManager.instance.currentLL);
+
+            transform.DOPath(fleePathPoints.ToArray(), FLEE_PATH_DURATION, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) =>
+            {
+                if (index < fleePathPoints.Count - 1)
+                {
+                    var dir = transform.position - fleePathPoints[index + 1];
+
+                    brakeRotation = GetCorrectedRotationOfRocket(dir);
+                    brakeRotation.z += 20f;
+
+                    transform.DORotate(brakeRotation, 0.33f);
+                }
+
+            }).OnComplete(() =>
+            {
+                //wait then show cracks:
+                StartCoroutine(waitAndPerformCallback(3.5f, () =>
+                {
+                    MazeGameManager.instance.showAllCracks();
+                    donotHandleBorderCollision = true;
+                    characterIsMoving = false;
+                    transform.DOKill(false);
+
+                    rocket.GetComponent<SphereCollider>().enabled = true;
+
+                    var rocketRigidBody = rocket.GetComponent<Rigidbody>();
+                    rocketRigidBody.isKinematic = false;
+                    rocketRigidBody.useGravity = true;
+
+                    State = LLState.Ragdolling;
+
+                    ragdoll.deleteOnRagdollHit = true;
+
+                    MazeGameManager.instance.ColorCurrentLinesAsIncorrect();
+
+                    var tickPosition = transform.position;
+                    tickPosition.z -= 1f;
+                    tickPosition.y -= 1.5f;
+                    Tutorial.TutorialUI.MarkNo(tickPosition, Tutorial.TutorialUI.MarkSize.Big);
+
+                },
+                () =>
+                {
+                    MazeGameManager.instance.lostCurrentLetter();
+                }));
+            });
+        }
+
         public void Celebrate(System.Action OnCelebrationOver)
         {
             List<Vector3> celebrationPathPoints = new List<Vector3>();
@@ -804,7 +869,7 @@ namespace EA4S.Minigames.Maze
                 {
                     transform.DOPause();
 
-                    state = State.Braked;
+                    State = LLState.Braked;
 
                     winParticleVFX.SetActive(true);
 
@@ -814,18 +879,18 @@ namespace EA4S.Minigames.Maze
 
                     Tutorial.TutorialUI.MarkYes(tickPosition, Tutorial.TutorialUI.MarkSize.Big);
 
-                    transform.DOMove(transform.position + new Vector3(-0.5f, 0.5f, -0.5f), 0.75f).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo).OnComplete(() =>
-                {
-                    state = State.Normal;
+                    transform.DOMove(transform.position + new Vector3(-0.5f, 0.5f, -0.5f) * 0.33f, 0.75f).SetEase(Ease.InOutSine).SetLoops(3, LoopType.Yoyo).OnComplete(() =>
+                  {
+                      State = LLState.Normal;
 
-                    transform.DOPlay();
+                      transform.DOPlay();
 
-                    var dir = transform.position - celebrationPathPoints[index + 1];
+                      var dir = transform.position - celebrationPathPoints[index + 1];
 
-                    brakeRotation = GetCorrectedRotationOfRocket(dir);
+                      brakeRotation = GetCorrectedRotationOfRocket(dir);
 
-                    transform.DORotate(brakeRotation, 0.33f);
-                });
+                      transform.DORotate(brakeRotation, 0.33f);
+                  });
                 }
 
             }).OnComplete(() =>
@@ -838,37 +903,25 @@ namespace EA4S.Minigames.Maze
 
         private void FixedUpdate()
         {
-            switch (state)
+            switch (_state)
             {
-                case State.Normal:
+                case LLState.Normal:
                     break;
-                case State.Braked:
+                case LLState.Braked:
                     transform.rotation = Quaternion.Euler(brakeRotation);
+                    break;
+                case LLState.Impacted:
+                    if (stateTime >= 0.33f)
+                    {
+                        State = LLState.Ragdolling;
+                    }
                     break;
                 default:
                     break;
             }
+
+            stateTime += Time.fixedDeltaTime;
         }
-        
-        public void fleeTo(Vector3 position)
-        {
-            //wait and flee:
-            StartCoroutine(waitAndPerformCallback(0.5f, () =>
-            {
-
-            },
-                () =>
-                {
-                    transform.DOKill(true);
-                    toggleVisibility(true);
-                    fleePosition = position;
-                    isFleeing = true;
-                }));
-
-
-
-        }
-
 
         void moveTowards(Vector3 position, float speed = 10, bool useUpVector = true)
         {
@@ -880,107 +933,6 @@ namespace EA4S.Minigames.Maze
             targetRotation = Quaternion.AngleAxis(-angle, useUpVector ? Vector3.up : Vector3.forward);// * initialRotation;
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 5);
-        }
-
-        void Update()
-        {
-            /*if(launchRocket)
-            {
-                //moveTowards(Camera.main.transform.position,20, false);
-               
-                return;
-            }*/
-            if (isAppearing)
-            {
-                /* moveTowards(initialPosition);
-                 if (transform.position == initialPosition)
-                 {
-                     toggleVisibility(false);
-                     isAppearing = false;
-
-
-
-                     //transform.rotation = initialRotation;
-                     MazeGameManager.instance.showCurrentTutorial();
-                 }*/
-
-
-                return;
-            }
-            if (isFleeing)
-            {
-
-                moveTowards(fleePosition);
-
-                if (transform.position == fleePosition)
-                {
-                    //wait then show cracks:
-                    StartCoroutine(waitAndPerformCallback(3, () =>
-                    {
-                        MazeGameManager.instance.showAllCracks();
-                        donotHandleBorderCollision = true;
-                        characterIsMoving = false;
-                        transform.DOKill(false);
-
-                        MazeGameManager.instance.ColorCurrentLinesAsIncorrect();
-
-                    },
-                    () =>
-                    {
-                        MazeGameManager.instance.lostCurrentLetter();
-                    }));
-
-
-                }
-                return;
-            }
-
-
-            /*if (characterIsMoving) {
-				transform.position = Vector3.MoveTowards (transform.position, characterWayPoints[currentCharacterWayPoint], Time.deltaTime*10);
-
-				if (currentCharacterWayPoint + 3 < characterWayPoints.Count) {
-					var dir = transform.position - characterWayPoints [currentCharacterWayPoint + 3];
-					var angle = Mathf.Atan2 (dir.z, dir.x) * Mathf.Rad2Deg;
-
-                    targetRotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
-
-					transform.rotation = Quaternion.RotateTowards (transform.rotation, targetRotation, 5);
-				}
-				
-				if(transform.position == characterWayPoints[currentCharacterWayPoint] && currentCharacterWayPoint < characterWayPoints.Count-1){
-
-					currentCharacterWayPoint++;
-
-					//reached the end:
-					if (currentCharacterWayPoint == characterWayPoints.Count-1) {
-
-                        transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isInside = false;
-
-                        //arrived!
-                        //transform.rotation = initialRotation;
-                        if (currentFruitIndex == _fruits.Count) {
-                            
-                            print ("Won");
-                           // if (particles) particles.SetActive(false);
-                            foreach (GameObject particle in particles) particle.SetActive(false);
-                            GetComponent<Collider> ().enabled = false;
-							characterIsMoving = false;
-							MazeGameManager.instance.moveToNext (true);
-
-							if (currentFruitList == Fruits.Count - 1) {
-								if (dot != null)
-									dot.GetComponent<BoxCollider> ().enabled = true;
-							}
-						} else
-							waitAndRestartScene ();
-					}
-
-					//enable collider when we reach the second waypoint
-					if (currentCharacterWayPoint == 1)
-						myCollider.SetActive (true);
-				}
-			}*/
         }
     }
 }
