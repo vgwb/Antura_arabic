@@ -829,12 +829,12 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: "w\u0101w"
-      Kind: 3
-      BaseLetter: 
+      Kind: 2
+      BaseLetter: waw
       Symbol: 
       Type: 0
       Tag: 
-      Notes: 
+      Notes: same letter, different sound
       SunMoon: 0
       Sound: w, uu
       SoundZone: A
@@ -858,12 +858,12 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: "y\u0101\u2019"
-      Kind: 3
-      BaseLetter: 
+      Kind: 2
+      BaseLetter: yeh
       Symbol: 
       Type: 0
       Tag: 
-      Notes: 
+      Notes: same letter, different sound
       SunMoon: 0
       Sound: y, ii
       SoundZone: C
@@ -887,7 +887,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: hamza
-      Kind: 2
+      Kind: 3
       BaseLetter: 
       Symbol: 
       Type: 0
@@ -916,7 +916,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: "\u1E0Dammah"
-      Kind: 2
+      Kind: 3
       BaseLetter: 
       Symbol: 
       Type: 4
@@ -945,7 +945,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: dammah tanwin
-      Kind: 2
+      Kind: 3
       BaseLetter: 
       Symbol: 
       Type: 4
@@ -974,7 +974,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: "fat\u1E25ah"
-      Kind: 2
+      Kind: 3
       BaseLetter: 
       Symbol: 
       Type: 4
@@ -1003,7 +1003,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: "fat\u1E25ah tanwin"
-      Kind: 2
+      Kind: 3
       BaseLetter: 
       Symbol: 
       Type: 4
@@ -1032,7 +1032,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: kasrah
-      Kind: 2
+      Kind: 3
       BaseLetter: 
       Symbol: 
       Type: 4
@@ -1061,7 +1061,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: kasrah tanwin
-      Kind: 2
+      Kind: 3
       BaseLetter: 
       Symbol: 
       Type: 4
@@ -1090,7 +1090,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: maddah
-      Kind: 2
+      Kind: 3
       BaseLetter: 
       Symbol: 
       Type: 0
@@ -1119,7 +1119,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: shaddah
-      Kind: 2
+      Kind: 3
       BaseLetter: 
       Symbol: 
       Type: 4
@@ -1148,7 +1148,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: sukun
-      Kind: 2
+      Kind: 3
       BaseLetter: 
       Symbol: 
       Type: 4
@@ -1177,7 +1177,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: alef hamza (hi)
-      Kind: 3
+      Kind: 4
       BaseLetter: alef
       Symbol: hamza
       Type: 1
@@ -1206,7 +1206,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: alef hamza (low)
-      Kind: 3
+      Kind: 4
       BaseLetter: alef
       Symbol: hamza
       Type: 1
@@ -1235,7 +1235,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: alef maqsura
-      Kind: 3
+      Kind: 4
       BaseLetter: alef
       Symbol: 
       Type: 0
@@ -1264,7 +1264,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: alef_maqsura_hamza
-      Kind: 3
+      Kind: 4
       BaseLetter: alef_maqsura
       Symbol: hamza
       Type: 0
@@ -1293,7 +1293,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: yeh_hamza
-      Kind: 3
+      Kind: 4
       BaseLetter: yeh
       Symbol: hamza
       Type: 0
@@ -1322,7 +1322,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: teh marbuta
-      Kind: 3
+      Kind: 4
       BaseLetter: teh
       Symbol: 
       Type: 0
@@ -1351,7 +1351,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: lam alef
-      Kind: 3
+      Kind: 4
       BaseLetter: lam
       Symbol: alef
       Type: 0
@@ -1380,7 +1380,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: waw_hamza
-      Kind: 3
+      Kind: 4
       BaseLetter: waw
       Symbol: hamza
       Type: 0
@@ -1409,7 +1409,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: alef_fathah_tanwin
-      Kind: 4
+      Kind: 5
       BaseLetter: alef
       Symbol: fathah_tanwin
       Type: 0
@@ -1438,7 +1438,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: alef_maddah
-      Kind: 4
+      Kind: 5
       BaseLetter: alef
       Symbol: maddah
       Type: 0
@@ -1467,7 +1467,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: ain_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: ain
       Symbol: fathah
       Type: 0
@@ -1496,7 +1496,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: ain_kasrah
-      Kind: 4
+      Kind: 5
       BaseLetter: ain
       Symbol: kasrah
       Type: 0
@@ -1525,7 +1525,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: beh_dammah
-      Kind: 4
+      Kind: 5
       BaseLetter: beh
       Symbol: dammah
       Type: 0
@@ -1554,7 +1554,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: beh_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: beh
       Symbol: fathah
       Type: 0
@@ -1583,7 +1583,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: beh_kasrah
-      Kind: 4
+      Kind: 5
       BaseLetter: beh
       Symbol: kasrah
       Type: 0
@@ -1612,7 +1612,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: dad_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: dad
       Symbol: fathah
       Type: 0
@@ -1641,7 +1641,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: dal_dammah_tanwin
-      Kind: 4
+      Kind: 5
       BaseLetter: dal
       Symbol: dammah_tanwin
       Type: 0
@@ -1670,7 +1670,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: dal_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: dal
       Symbol: fathah
       Type: 0
@@ -1699,7 +1699,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: thal_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: thal
       Symbol: fathah
       Type: 0
@@ -1728,7 +1728,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: feh_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: feh
       Symbol: fathah
       Type: 0
@@ -1757,7 +1757,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: feh_sukun
-      Kind: 4
+      Kind: 5
       BaseLetter: feh
       Symbol: sukun
       Type: 0
@@ -1786,7 +1786,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: heh_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: heh
       Symbol: fathah
       Type: 0
@@ -1815,7 +1815,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: heh_kasrah
-      Kind: 4
+      Kind: 5
       BaseLetter: heh
       Symbol: kasrah
       Type: 0
@@ -1844,7 +1844,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: hah_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: hah
       Symbol: fathah
       Type: 0
@@ -1873,7 +1873,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: hah_kasrah
-      Kind: 4
+      Kind: 5
       BaseLetter: hah
       Symbol: kasrah
       Type: 0
@@ -1902,7 +1902,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: hah_shaddah
-      Kind: 4
+      Kind: 5
       BaseLetter: hah
       Symbol: shaddah
       Type: 0
@@ -1931,7 +1931,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: jeem_dammah
-      Kind: 4
+      Kind: 5
       BaseLetter: jeem
       Symbol: dammah
       Type: 0
@@ -1960,7 +1960,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: jeem_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: jeem
       Symbol: fathah
       Type: 0
@@ -1989,7 +1989,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: jeem_shaddah
-      Kind: 4
+      Kind: 5
       BaseLetter: jeem
       Symbol: shaddah
       Type: 0
@@ -2018,7 +2018,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: kaf_dammah
-      Kind: 4
+      Kind: 5
       BaseLetter: kaf
       Symbol: dammah
       Type: 0
@@ -2047,7 +2047,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: kaf_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: kaf
       Symbol: fathah
       Type: 0
@@ -2076,7 +2076,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: lam_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: lam
       Symbol: fathah
       Type: 0
@@ -2105,7 +2105,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: lam_kasrah
-      Kind: 4
+      Kind: 5
       BaseLetter: lam
       Symbol: kasrah
       Type: 0
@@ -2134,7 +2134,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: lam_kasrah_tanwin
-      Kind: 4
+      Kind: 5
       BaseLetter: lam
       Symbol: kasrah_tanwin
       Type: 0
@@ -2163,7 +2163,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: lam_sukun
-      Kind: 4
+      Kind: 5
       BaseLetter: lam
       Symbol: sukun
       Type: 0
@@ -2192,7 +2192,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: meem_dammah
-      Kind: 4
+      Kind: 5
       BaseLetter: meem
       Symbol: dammah
       Type: 0
@@ -2221,7 +2221,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: meem_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: meem
       Symbol: fathah
       Type: 0
@@ -2250,7 +2250,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: meem_kasrah
-      Kind: 4
+      Kind: 5
       BaseLetter: meem
       Symbol: kasrah
       Type: 0
@@ -2279,7 +2279,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: noon_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: noon
       Symbol: fathah
       Type: 0
@@ -2308,7 +2308,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: noon_kasrah_tanwin
-      Kind: 4
+      Kind: 5
       BaseLetter: noon
       Symbol: kasrah_tanwin
       Type: 0
@@ -2337,7 +2337,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: noon_sukun
-      Kind: 4
+      Kind: 5
       BaseLetter: noon
       Symbol: sukun
       Type: 0
@@ -2366,7 +2366,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: qaf_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: qaf
       Symbol: fathah
       Type: 0
@@ -2395,7 +2395,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: reh_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: reh
       Symbol: fathah
       Type: 0
@@ -2424,7 +2424,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: reh_kasrah
-      Kind: 4
+      Kind: 5
       BaseLetter: reh
       Symbol: kasrah
       Type: 0
@@ -2453,7 +2453,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: sad_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: sad
       Symbol: fathah
       Type: 0
@@ -2482,7 +2482,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: seen_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: seen
       Symbol: fathah
       Type: 0
@@ -2511,7 +2511,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: sheen_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: sheen
       Symbol: fathah
       Type: 0
@@ -2540,7 +2540,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: tah_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: tah
       Symbol: fathah
       Type: 0
@@ -2569,7 +2569,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: teh_dammah
-      Kind: 4
+      Kind: 5
       BaseLetter: teh
       Symbol: dammah
       Type: 0
@@ -2598,7 +2598,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: teh_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: teh
       Symbol: fathah
       Type: 0
@@ -2627,7 +2627,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: teh_marbuta_dammah_tanwin
-      Kind: 4
+      Kind: 5
       BaseLetter: teh_marbuta
       Symbol: dammah_tanwin
       Type: 0
@@ -2656,7 +2656,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: zain_fathah
-      Kind: 4
+      Kind: 5
       BaseLetter: zain
       Symbol: fathah
       Type: 0
@@ -2685,7 +2685,7 @@ MonoBehaviour:
       Active: 1
       Number: 0
       Title: zain_dammah
-      Kind: 4
+      Kind: 5
       BaseLetter: zain
       Symbol: dammah
       Type: 0
