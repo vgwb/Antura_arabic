@@ -419,6 +419,8 @@ namespace EA4S.Minigames.Maze
                 index = UnityEngine.Random.Range(0, prefabs.Count);
             }
 
+            //index = 3;
+
             currentLL = ld;
             currentPrefab = (GameObject)Instantiate(prefabs[index]);
 
@@ -626,7 +628,8 @@ namespace EA4S.Minigames.Maze
             antura.GetComponent<MazeAntura>().SetAnturaTime(true, currentCharacter.transform.position);
 
             int randIndex = UnityEngine.Random.Range(0, fleePositions.Count);
-            currentCharacter.fleeTo(fleePositions[randIndex]);
+            //currentCharacter.fleeTo(fleePositions[randIndex]);
+            currentCharacter.Flee();
         }
 
         public Vector3 getRandFleePosition()

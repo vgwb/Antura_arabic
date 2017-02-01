@@ -42,7 +42,7 @@ namespace EA4S.Assessment
         private IEnumerator ShowFullWordCoroutine()
         {
             cacheFullWordDataLL.Poof( ElementsSize.PoofOffset);
-            cacheFullWordDataLL.Init( cacheFullWordData);
+            cacheFullWordDataLL.Initialize( cacheFullWordData);
             yield return Wait.For( AssessmentOptions.Instance.TimeToShowCompleteWord);
         }
 

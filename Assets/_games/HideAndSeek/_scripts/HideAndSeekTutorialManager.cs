@@ -54,7 +54,7 @@ namespace EA4S.Minigames.HideAndSeek
             ArrayLetters[0].transform.position = ArrayPlaceholder[0].transform.position;
             ArrayLetters[0].GetComponent<HideAndSeekLetterController>().id = 3;
 
-            ArrayLetters[0].GetComponentInChildren<LetterObjectView>().Init(wrong);
+            ArrayLetters[0].GetComponentInChildren<LetterObjectView>().Initialize(wrong);
             ArrayTrees[0].GetComponent<SphereCollider>().enabled = true;
             ArrayLetters[0].GetComponent<CapsuleCollider>().enabled = false;
 
@@ -63,7 +63,7 @@ namespace EA4S.Minigames.HideAndSeek
             ArrayLetters[1].transform.position = ArrayPlaceholder[1].transform.position;
             ArrayLetters[1].GetComponent<HideAndSeekLetterController>().id = 5;
 
-            ArrayLetters[1].GetComponentInChildren<LetterObjectView>().Init(right);
+            ArrayLetters[1].GetComponentInChildren<LetterObjectView>().Initialize(right);
 
             StartCoroutine(WaitTutorial());
         }
