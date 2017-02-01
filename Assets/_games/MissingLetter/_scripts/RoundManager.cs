@@ -194,7 +194,7 @@ namespace EA4S.Minigames.MissingLetter
             m_aoCurrentAnswerScene.Shuffle();
         }
 
-        private List<LL_WordData> GetWordFromPhrases(LL_PhraseData _phrase)
+        private List<LL_WordData> GetWordsFromPhrase(LL_PhraseData _phrase)
         {
             List<LL_WordData> phrase = new List<LL_WordData>();
             var dbWords = AppManager.I.Teacher.wordHelper.GetWordsInPhrase(_phrase.Id);
@@ -202,7 +202,6 @@ namespace EA4S.Minigames.MissingLetter
             {
                 phrase.Add((LL_WordData)dbWord.ConvertToLivingLetterData());
             }
-
             return phrase;
         }
 
@@ -210,7 +209,7 @@ namespace EA4S.Minigames.MissingLetter
         {
             m_oCurrQuestionPack = MissingLetterConfiguration.Instance.Questions.GetNextQuestion();
 
-            List<LL_WordData> questionData = GetWordFromPhrases((LL_PhraseData)m_oCurrQuestionPack.GetQuestion());
+            List<LL_WordData> questionData = GetWordsFromPhrase((LL_PhraseData)m_oCurrQuestionPack.GetQuestion());
 
             var _correctAnswer = (LL_WordData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
             var _wrongAnswers = m_oCurrQuestionPack.GetWrongAnswers().ToList();

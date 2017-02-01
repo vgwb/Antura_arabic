@@ -15,7 +15,10 @@ namespace EA4S.Minigames.HideAndSeek
     {
 
         public delegate void TouchAction(int i);
-        public static event TouchAction onLetterTouched;
+        public event TouchAction onLetterTouched;
+        public event TouchAction onLetterReturned;
+
+        bool lockMovement = false;
 
         void Start()
         {
@@ -30,6 +33,7 @@ namespace EA4S.Minigames.HideAndSeek
                 moveTweener.Kill();
             }
 
+            lockMovement = true;
             if (win)
             {
                 view.SetState(LLAnimationStates.LL_dancing);
@@ -44,6 +48,9 @@ namespace EA4S.Minigames.HideAndSeek
 
         void MoveTo(Vector3 position, float duration)
         {
+            if (lockMovement)
+                return;
+
             view.SetState(LLAnimationStates.LL_walking);
             if (position == positionStart)
                 view.HasFear = true;
@@ -79,15 +86,17 @@ namespace EA4S.Minigames.HideAndSeek
             isArrived = false;
             isMoving = false;
             isClickable = false;
+            lockMovement = false;
         }
 
         void Update()
         {
-            if (isArrived && Time.time > startTime + idleTime)
+            if (!lockMovement && isArrived && Time.time > startTime + idleTime)
             {
-                // TODO Enable Tree collider
                 MoveTo(positionStart, walkDuration / 2);
                 isArrived = false;
+                if (onLetterReturned != null)
+                    onLetterReturned(id);
             }
         }
 
@@ -104,8 +113,11 @@ namespace EA4S.Minigames.HideAndSeek
         }
 
 
-        public void Move()
+        public bool Move()
         {
+            if (lockMovement)
+                return false;
+
             if (!isMoving)
             {
                 int direction;
@@ -126,10 +138,11 @@ namespace EA4S.Minigames.HideAndSeek
 
                 isMoving = true;
                 isClickable = true;
-
-                // TODO Disable Tree collider
+                
                 MoveTo(positionUncovered, walkDuration);
+                return true;
             }
+            return false;
         }
 
         void OnMouseDown()
