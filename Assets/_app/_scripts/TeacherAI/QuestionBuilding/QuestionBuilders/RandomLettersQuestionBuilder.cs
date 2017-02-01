@@ -29,6 +29,9 @@ namespace EA4S.Teacher
             this.nWrong = nWrong;
             this.firstCorrectIsQuestion = firstCorrectIsQuestion;
             this.parameters = parameters;
+
+            // Forced filters
+            this.parameters.letterFilters.excludeDiphthongs = true; 
         }
 
         private List<string> previousPacksIDs = new List<string>();

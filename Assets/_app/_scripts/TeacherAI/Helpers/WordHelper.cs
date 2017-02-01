@@ -28,6 +28,7 @@ namespace EA4S.Database
             if (filters.excludeDiacritics_keepMain && data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)
                 && !mainDiacriticsIds.Contains(data.Symbol)) return false;
             if (filters.excludeLetterVariations && data.IsOfKindCategory(LetterKindCategory.LetterVariation)) return false;
+            if (filters.excludeDiphthongs && data.IsOfKindCategory(LetterKindCategory.Base) && data.Type == LetterDataType.LongVowel) return false;
             if (data.IsOfKindCategory(LetterKindCategory.Symbol)) return false; // always skip symbols
             return true;
         }
@@ -38,7 +39,7 @@ namespace EA4S.Database
 
         public List<LetterData> GetAllBaseLetters()
         {
-            var p = new LetterFilters(excludeDiacritics: true, excludeLetterVariations: true);
+            var p = new LetterFilters(excludeDiacritics: true, excludeLetterVariations: true, excludeDiphthongs:true);
             return GetAllLetters(p);
         }
 

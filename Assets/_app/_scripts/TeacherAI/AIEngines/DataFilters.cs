@@ -11,17 +11,20 @@
         public bool excludeDiacritics_keepMain; // HACK filter
         public bool excludeLetterVariations;
         public bool requireDiacritics;
+        public bool excludeDiphthongs;
 
         public LetterFilters(
             bool excludeDiacritics = false,
             bool excludeDiacritics_keepMain = false,
             bool excludeLetterVariations = false,
-            bool requireDiacritics = false)
+            bool requireDiacritics = false,
+            bool excludeDiphthongs = false)
         {
             this.excludeDiacritics = excludeDiacritics;
             this.excludeDiacritics_keepMain = excludeDiacritics_keepMain;
             this.excludeLetterVariations = excludeLetterVariations;
             this.requireDiacritics = requireDiacritics;
+            this.excludeDiphthongs = excludeDiphthongs;
         }
     }
 
