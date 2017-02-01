@@ -17884,8 +17884,7 @@ MonoBehaviour:
   UseTestGameplayInfo: 0
   textMaterial: {fileID: 21000011752393256, guid: ec76213212ac2438986d3d12b10f0625,
     type: 2}
-  markedTextMaterial: {fileID: 21000011752393256, guid: eea0d8c436551f64da07ddaa2bc91ebb,
-    type: 2}
+  markedTextMaterial: {fileID: 2100000, guid: 4411a18e622c31a43a94c7a825d07b14, type: 2}
   pipesAnswerController: {fileID: 630206917}
   questionLivingLetterPrefab: {fileID: 1279241928}
   shadowPrefab: {fileID: 651094031}

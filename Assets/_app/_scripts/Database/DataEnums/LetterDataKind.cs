@@ -5,9 +5,10 @@ namespace EA4S.Database
   public enum LetterDataKind
   {
       Letter = 1,
-      Symbol = 2,
-      LetterVariation = 3,
-      DiacriticCombo = 4,
+      Diphthong = 2,
+      Symbol = 3,
+      LetterVariation = 4,
+      DiacriticCombo = 5,
   }
 }
 

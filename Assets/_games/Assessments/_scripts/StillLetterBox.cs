@@ -16,18 +16,12 @@ namespace EA4S.Assessment
         /// </summary>
         public TMP_Text Label;
         public TextMeshPro Drawing;
-        public MeshRenderer Body;
         public GameObject poofPrefab;
+        public Transform scaleSprite;
 
-        public SpriteRenderer LetterSlot;
-        public SpriteRenderer WordSlot;
-        public SpriteRenderer PhraseSlot;
-
-        /// <summary>
-        /// State-holders
-        /// </summary>
-        private float wideness;
-        private bool showBox;
+        public SpriteRenderer questionSprite;
+        public SpriteRenderer answerSprite;
+        public SpriteRenderer slotSprite;
 
         /// <summary>
         /// Gets the data.
@@ -47,6 +41,19 @@ namespace EA4S.Assessment
             }
         }
 
+        private float Wideness
+        {
+            get
+            {
+                return scaleSprite.localScale.x;
+            }
+            set
+            {
+                scaleSprite.localScale = new Vector3( value, 1, 1);
+                GetComponent<BoxCollider>().size = new Vector3( 3 * value, 3, 1);
+            }
+        }
+
         private void Start()
         {
             OnModelChanged();
@@ -60,7 +67,7 @@ namespace EA4S.Assessment
             DisableSlots();
             if (Data == null)
             {
-                wideness = 1.0f;
+                Wideness = 1.0f;
                 Drawing.enabled = false;
                 Label.enabled = false;
             }
@@ -82,7 +89,7 @@ namespace EA4S.Assessment
                     }
 
                     Label.enabled = false;
-                    wideness = 1.0f;
+                    Wideness = 1.0f;
                 }
                 else
                 {
@@ -100,38 +107,22 @@ namespace EA4S.Assessment
             switch (dataType)
             {
                 case LivingLetterDataType.Word:
-                    wideness = 1.3f;
+                    Wideness = 1.3f;
                     break;
                 case LivingLetterDataType.Phrase:
-                    wideness = 3.5f;
+                    Wideness = 3.5f;
                     break;
                 default:
-                    wideness = 1f;
+                    Wideness = 1f;
                     break;
             }
         }
 
         private void DisableSlots()
         {
-            LetterSlot.enabled = false;
-            WordSlot.enabled = false;
-            PhraseSlot.enabled = false;
-        }
-
-        private void SetSlot( LivingLetterDataType dataType)
-        {
-            switch (dataType)
-            {
-                case LivingLetterDataType.Word:
-                    WordSlot.enabled = true;
-                    break;
-                case LivingLetterDataType.Phrase:
-                    PhraseSlot.enabled = true;
-                    break;
-                default:
-                    LetterSlot.enabled = true;
-                    break;
-            }
+            questionSprite.enabled = false;
+            answerSprite.enabled = false;
+            slotSprite.enabled = false;
         }
 
         /// <summary>
@@ -140,17 +131,18 @@ namespace EA4S.Assessment
         /// <returns></returns>
         public float GetSize()
         {
-            return wideness;
+            return Wideness;
         }
 
         /// <summary>
         /// Initializes  object with the specified data.
         /// </summary>
         /// <param name="_data">The data.</param>
-        public void Init( ILivingLetterData _data, bool showBox)
+        public void Init( ILivingLetterData _data, bool answer)
         {
-            this.showBox = showBox;
             Data = _data;
+            answerSprite.enabled = answer;
+            questionSprite.enabled = !answer;
         }
 
         /// <summary>
@@ -159,10 +151,9 @@ namespace EA4S.Assessment
         /// <param name="_data">The data.</param>
         public void InitAsSlot( LivingLetterDataType dataType)
         {
-            showBox = false;
             Data = null;
             SetScale( dataType);
+            slotSprite.enabled = true;
         }
-
     }
 }

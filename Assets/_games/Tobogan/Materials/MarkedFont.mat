@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: EA4S_Arabic SDF Outline
+  m_Name: MarkedFont
   m_Shader: {fileID: 4800000, guid: dca26082f9cb439469295791d9f76fe5, type: 3}
   m_ShaderKeywords: UNDERLAY_ON
   m_LightmapFlags: 5
@@ -49,7 +49,7 @@ Material:
     m_Floats:
     - first:
         name: _Ambient
-      second: 0.5
+      second: 0.554
     - first:
         name: _Bevel
       second: 0.5
@@ -76,7 +76,7 @@ Material:
       second: 15
     - first:
         name: _Diffuse
-      second: 0.5
+      second: 0.517
     - first:
         name: _FaceDilate
       second: 0
@@ -91,13 +91,13 @@ Material:
       second: 0.05
     - first:
         name: _GlowOffset
-      second: 0
+      second: -0.283
     - first:
         name: _GlowOuter
       second: 0.05
     - first:
         name: _GlowPower
-      second: 0.75
+      second: 0
     - first:
         name: _GradientScale
       second: 6
@@ -127,7 +127,7 @@ Material:
       second: 0.875
     - first:
         name: _Reflectivity
-      second: 10
+      second: 13.12
     - first:
         name: _ScaleRatioA
       second: 0.8333333
@@ -172,7 +172,7 @@ Material:
       second: 1024
     - first:
         name: _UnderlayDilate
-      second: 0.1
+      second: 0.288
     - first:
         name: _UnderlayOffsetX
       second: 0
@@ -181,7 +181,7 @@ Material:
       second: 0
     - first:
         name: _UnderlaySoftness
-      second: 0
+      second: 0.166
     - first:
         name: _VertexOffsetX
       second: 0

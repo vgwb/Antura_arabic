@@ -4,7 +4,7 @@ namespace EA4S.Minigames.Maze
 {
     public class MazeLetter : MonoBehaviour
     {
-        public MazeCharacter LLOnRocket;
+        public MazeCharacter mazeCharacter;
         public bool isDrawing;
         public float idleSeconds = 0;
         public float anturaSeconds;
@@ -13,14 +13,13 @@ namespace EA4S.Minigames.Maze
         {
             anturaSeconds = 0;
             isDrawing = false;
-            LLOnRocket.toggleVisibility(false);
+            mazeCharacter.toggleVisibility(false);
             //character.gameObject.SetActive (false);
         }
         
         void Update()
         {
-
-            if (LLOnRocket.characterIsMoving)
+            if (mazeCharacter.characterIsMoving)
             {
                 anturaSeconds = 0;
                 return;
@@ -29,7 +28,6 @@ namespace EA4S.Minigames.Maze
             //should we replay tutorial?
             if (!isDrawing)
             {
-
                 if (!MazeGameManager.instance.currentCharacter || MazeGameManager.instance.currentCharacter.isFleeing || MazeGameManager.instance.currentCharacter.isAppearing)
                     return;
 
@@ -44,8 +42,7 @@ namespace EA4S.Minigames.Maze
                     }
 
                 }
-
-
+                
                 if (MazeGameManager.instance.currentTutorial != null &&
                     MazeGameManager.instance.currentTutorial.isStopped == false &&
                     MazeGameManager.instance.currentTutorial.isShownOnce == true)
@@ -60,19 +57,18 @@ namespace EA4S.Minigames.Maze
                     }
                 }
             }
-
-
+            
             if (isDrawing)
             {
                 anturaSeconds = 0;
 
-                LLOnRocket.calculateMovementAndRotation();
+                mazeCharacter.calculateMovementAndRotation();
             }
         }
 
         public void OnPointerDown()
         {
-            if (LLOnRocket.characterIsMoving || !LLOnRocket.canMouseBeDown())
+            if (mazeCharacter.characterIsMoving || !mazeCharacter.canMouseBeDown())
             {
                 return;
             }
@@ -101,6 +97,15 @@ namespace EA4S.Minigames.Maze
             {
                 LaunchRocket();
                 MazeGameManager.instance.ColorCurrentLinesAsIncorrect();
+
+                var lastPointerPosition = MazeGameManager.instance.GetLastPointerPosition();
+
+                var pointOfImpact = Camera.main.ScreenToWorldPoint(new Vector3(lastPointerPosition.x, lastPointerPosition.y,
+                                                        Camera.main.transform.position.y - transform.position.y - 2f));
+
+                Tutorial.TutorialUI.MarkNo(pointOfImpact);
+
+                mazeCharacter.loseState = MazeCharacter.LoseState.OutOfBounds;
             }
         }
 
@@ -112,8 +117,8 @@ namespace EA4S.Minigames.Maze
         private void LaunchRocket()
         {
             isDrawing = false;
-            LLOnRocket.toggleVisibility(true);
-            LLOnRocket.initMovement();
+            mazeCharacter.toggleVisibility(true);
+            mazeCharacter.initMovement();
 
             MazeGameManager.instance.timer.StopTimer();
         }
