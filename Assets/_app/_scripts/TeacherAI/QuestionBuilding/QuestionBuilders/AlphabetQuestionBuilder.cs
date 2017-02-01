@@ -18,12 +18,14 @@ namespace EA4S.Teacher
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
 
-            parameters.letterFilters.excludeLetterVariations = true;
-            parameters.letterFilters.excludeDiacritics = true;
-            parameters.wordFilters.excludeLetterVariations = true;
-            parameters.wordFilters.excludeDiacritics = true;
-
             this.parameters = parameters;
+
+            // Forced filters
+            this.parameters.letterFilters.excludeLetterVariations = true;
+            this.parameters.letterFilters.excludeDiacritics = true;
+            this.parameters.wordFilters.excludeLetterVariations = true;
+            this.parameters.wordFilters.excludeDiacritics = true;
+            this.parameters.letterFilters.excludeDiphthongs = true;
         }
 
         public List<QuestionPackData> CreateAllQuestionPacks()
