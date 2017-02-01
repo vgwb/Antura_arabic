@@ -20,7 +20,7 @@ namespace EA4S.Database
         #region Letter Utilities
 
 
-        List<string> mainDiacriticsIds = new List<string>() {"fathah","dammah","kasrah","sukun"}; // HACK: this is just for dancing dots, to be removed later on
+        List<string> mainDiacriticsIds = new List<string>() { "fathah", "dammah", "kasrah", "sukun" }; // HACK: this is just for dancing dots, to be removed later on
         private bool CheckFilters(LetterFilters filters, LetterData data)
         {
             if (filters.requireDiacritics && !data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) return false;
@@ -332,6 +332,13 @@ namespace EA4S.Database
         #endregion
 
         #region Phrase -> Word
+
+        /// <summary>
+        /// Gets the words in phrase, taken from field Words of data Pharse. these words are set manually in the db
+        /// </summary>
+        /// <returns>The words in phrase.</returns>
+        /// <param name="phraseId">Phrase identifier.</param>
+        /// <param name="wordFilters">Word filters.</param>
 
         public List<WordData> GetWordsInPhrase(string phraseId, WordFilters wordFilters = null)
         {
