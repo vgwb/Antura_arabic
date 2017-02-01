@@ -142,7 +142,7 @@ namespace EA4S.Minigames.HideAndSeek
             HideAndSeekLetterController script = ArrayLetters[letterInAnimation].GetComponent<HideAndSeekLetterController>();
             if (script.view.Data.Id == GetCorrectAnswer().Id)
             {
-                script.resultAnimation(true);
+                script.PlayResultAnimation(true);
                 AudioManager.I.PlaySound(Sfx.Win);
                 game.Context.GetCheckmarkWidget().Show(true);
                 StartCoroutine(GoToPlay());
@@ -151,7 +151,7 @@ namespace EA4S.Minigames.HideAndSeek
             }
             else
             {
-                script.resultAnimation(false);
+                script.PlayResultAnimation(false);
                 ArrayTrees[1].GetComponent<SphereCollider>().enabled = true;
                 phase = 2;
                 TutorialUI.Clear(false);

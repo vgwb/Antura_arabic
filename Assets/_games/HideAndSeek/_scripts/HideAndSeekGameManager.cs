@@ -96,13 +96,17 @@ namespace EA4S.Minigames.HideAndSeek
 
         void CheckResult(int id)
         {
+            if (game.isTimesUp)
+                return;
+
             letterInAnimation = GetIdFromPosition(id);
             HideAndSeekLetterController script = ArrayLetters[letterInAnimation].GetComponent<HideAndSeekLetterController>();
             if (script.view.Data.Id == GetCorrectAnswer().Id)
             {
                 LockTrees();
+                LockLetters(true);
                 StartCoroutine(DelayAnimation());
-                script.resultAnimation(true);
+                script.PlayResultAnimation(true);
                 game.OnResult(GetCorrectAnswer(), true);
                 buttonRepeater.SetActive(false);
                 AudioManager.I.PlaySound(Sfx.Win);
@@ -111,10 +115,11 @@ namespace EA4S.Minigames.HideAndSeek
             {
                 game.OnResult(GetCorrectAnswer(), false);
                 RemoveLife();
-                script.resultAnimation(false);
+                script.PlayResultAnimation(false);
                 if (lifes == 0)
                 {
                     LockTrees();
+                    LockLetters(true);
                     AudioManager.I.PlaySound(Sfx.Lose);
                     StartCoroutine(DelayAnimation());
                     buttonRepeater.SetActive(false);
@@ -156,6 +161,15 @@ namespace EA4S.Minigames.HideAndSeek
                 ArrayTrees[i].GetComponent<SphereCollider>().enabled = false;
             }
         }
+
+        void LockLetters(bool toLock)
+        {
+            for (int i = 0; i < MAX_OBJECT; ++i)
+            {
+                ArrayLetters[i].GetComponent<CapsuleCollider>().enabled = !toLock;
+            }
+        }
+
         public void ClearRound()
         {
             for (int i = 0; i < MAX_OBJECT; ++i)
@@ -204,6 +218,9 @@ namespace EA4S.Minigames.HideAndSeek
                     ArrayLetters[i].transform.DOMove(ArrayPlaceholder[index].transform.position, 0.5f);
                 }
             }
+
+            LockLetters(false);
+
             StartCoroutine(DisplayRound_Coroutine());
 
         }
