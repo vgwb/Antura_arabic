@@ -39,10 +39,19 @@ namespace EA4S.Database.Management
 
             foreach (var playSkill in GenericUtilities.SortEnums<PlaySkill>())
             {
+                if (playSkill == PlaySkill.None) continue;
+
                 var key = "Skill" + playSkill;
-                if (ToString(dict[key]) != "")
+                if (!dict.ContainsKey(key))
                 {
-                    list.Add(playSkill);
+                    UnityEngine.Debug.LogError("Could not find key " + key + " as a play skill for minigame " + data.Code);
+                }
+                else
+                {
+                    if (ToString(dict[key]) != "")
+                    {
+                        list.Add(playSkill);
+                    }
                 }
             }
 
