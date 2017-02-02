@@ -152,8 +152,10 @@ namespace EA4S
             appIsPaused = pauseStatus;
 
             // app is pausing
-            if (appIsPaused) {
-                GlobalUI.PauseMenu.OpenMenu(true);
+            if (appIsPaused)
+            {
+                if (!SceneTransitioner.IsShown)
+                    GlobalUI.PauseMenu.OpenMenu(true);
                 LogManager.I.LogInfo(InfoEvent.AppSuspend);
             }
 
