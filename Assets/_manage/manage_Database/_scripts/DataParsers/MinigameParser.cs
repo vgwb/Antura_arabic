@@ -19,6 +19,7 @@ namespace EA4S.Database.Management
             data.Title_Ar = ToString(dict["Title_Ar"]);
             data.Scene = ToString(dict["Scene"]);
             data.Available = ToString(dict["Status"]) == "active";
+            data.PlaySkills = CustomParsePlaySkills(data, dict);
 
             return data;
         }
@@ -30,5 +31,44 @@ namespace EA4S.Database.Management
             ExtractEnum(rowdicts_list, "Type");
         }
 
+
+        List<MiniGameSkill> CustomParsePlaySkills(MiniGameData data, Dictionary<string, object> dict)
+        {
+            var list = new List<MiniGameSkill>();
+
+            // string[] skillFileds = { "SkillTiming", "SkillPrecision", "SkillObservation", "SkillListening", "SkillLogic", "SkillMemory" };
+
+            if (ToString(dict["SkillTiming"]) != "") {
+                var skill = new MiniGameSkill(PlaySkill.Timing, ToFloat(dict["SkillTiming"]));
+                list.Add(skill);
+            }
+
+            if (ToString(dict["SkillPrecision"]) != "") {
+                var skill = new MiniGameSkill(PlaySkill.Precision, ToFloat(dict["SkillPrecision"]));
+                list.Add(skill);
+            }
+
+            if (ToString(dict["SkillObservation"]) != "") {
+                var skill = new MiniGameSkill(PlaySkill.Observation, ToFloat(dict["SkillObservation"]));
+                list.Add(skill);
+            }
+
+            if (ToString(dict["SkillListening"]) != "") {
+                var skill = new MiniGameSkill(PlaySkill.Listening, ToFloat(dict["SkillListening"]));
+                list.Add(skill);
+            }
+
+            if (ToString(dict["SkillLogic"]) != "") {
+                var skill = new MiniGameSkill(PlaySkill.Logic, ToFloat(dict["SkillLogic"]));
+                list.Add(skill);
+            }
+
+            if (ToString(dict["SkillMemory"]) != "") {
+                var skill = new MiniGameSkill(PlaySkill.Memory, ToFloat(dict["SkillMemory"]));
+                list.Add(skill);
+            }
+
+            return list;
+        }
     }
 }
