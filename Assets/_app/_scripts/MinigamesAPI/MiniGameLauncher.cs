@@ -258,6 +258,11 @@ namespace EA4S.MinigamesAPI
                     Minigames.ReadingGame.ReadingGameConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Minigames.ReadingGame.ReadingGameConfiguration.Instance;
                     break;
+                case MiniGameCode.AlphabetSong_letters:
+                    Minigames.ReadingGame.ReadingGameConfiguration.Instance.Variation = Minigames.ReadingGame.ReadingGameVariation.DiacriticSong;
+                    Minigames.ReadingGame.ReadingGameConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.ReadingGame.ReadingGameConfiguration.Instance;
+                    break;
                 case MiniGameCode.Scanner:
                     Minigames.Scanner.ScannerConfiguration.Instance.Variation = Minigames.Scanner.ScannerVariation.OneWord;
                     Minigames.Scanner.ScannerConfiguration.Instance.Context = defaultContext;

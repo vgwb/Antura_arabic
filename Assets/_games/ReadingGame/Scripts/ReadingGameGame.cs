@@ -25,9 +25,12 @@ namespace EA4S.Minigames.ReadingGame
         public int Lives { get { return lives; } }
 
         [HideInInspector]
-        public KaraokeSong alphabetSong;
+        public KaraokeSong songToPlay;
+
         public AudioClip alphabetSongAudio;
+        public AudioClip diacriticSongAudio;
         public TextAsset alphabetSongSrt;
+        public TextAsset diacriticSongSrt;
 
         public int TimeToAnswer
         {
@@ -47,10 +50,10 @@ namespace EA4S.Minigames.ReadingGame
                 return Mathf.FloorToInt(MAX_QUESTIONS * TimeToAnswer * READING_STARS_THRESHOLDS_RATIOS[stars - 1]);
             }
 
-            if (alphabetSong == null)
+            if (songToPlay == null)
                 return int.MaxValue;
 
-            var t = (int)(alphabetSong.GetSegmentsLength() / (4 - stars));
+            var t = (int)(songToPlay.GetSegmentsLength() / (4 - stars));
             return t;
         }
 
@@ -91,13 +94,15 @@ namespace EA4S.Minigames.ReadingGame
             ReadState = new ReadingGameReadState(this);
             AnswerState = new ReadingGameAnswerState(this);
 
-            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong)
+            if (ReadingGameConfiguration.Instance.Variation != ReadingGameVariation.ReadAndAnswer)
             {
                 ISongParser parser = new AkrSongParser();
 
-                using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(alphabetSongSrt.text)))
+                var textAsset = ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong ? alphabetSongSrt : diacriticSongSrt;
+
+                using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(textAsset.text)))
                 {
-                    alphabetSong = new KaraokeSong(parser.Parse(stream));
+                    songToPlay = new KaraokeSong(parser.Parse(stream));
                 }
             }
 

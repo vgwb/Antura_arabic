@@ -54,6 +54,13 @@ namespace EA4S.Teacher
             public PlayEvent playEvent;
             public PlaySkill skill;
             public float score;
+
+            public PlayResultParameters(PlayEvent playEvent, PlaySkill skill, float score)
+            {
+                this.playEvent = playEvent;
+                this.skill = skill;
+                this.score = score;
+            }
         }
 
         public void LogPlay(string session, string playSession, MiniGameCode miniGameCode, List<PlayResultParameters> resultsList)
@@ -131,10 +138,19 @@ namespace EA4S.Teacher
 
         #region Journey Scores
 
-        public void LogMiniGameScore(MiniGameCode miniGameCode, int score)
+        public void LogMiniGameScore(string session, string playSession, MiniGameCode miniGameCode, int score)
         {
             if (AppConstants.VerboseLogging) Debug.Log("LogMiniGameScore " + miniGameCode + " / " + score);
-            UpdateJourneyScoreDataWithMaximum(JourneyDataType.Minigame, (miniGameCode).ToString(), score);
+            UpdateJourneyScoreDataWithMaximum(JourneyDataType.Minigame, miniGameCode.ToString(), score);
+
+            // We also log play skills related to that minigame, as read from MiniGameData
+            var minigameData = db.GetMiniGameDataByCode(miniGameCode);
+            List<PlayResultParameters> results = new List<PlayResultParameters>();
+            foreach (var playSkill in minigameData.AffectedPlaySkills)
+            {
+                results.Add(new PlayResultParameters(PlayEvent.Skill, playSkill, score));
+            }
+            LogPlay(session, playSession, miniGameCode, results);
         }
 
         public void LogPlaySessionScore(string playSessionId, int score)

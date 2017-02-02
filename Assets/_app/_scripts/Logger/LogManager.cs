@@ -36,11 +36,12 @@ namespace EA4S.Core
 
         #region Proxy From Minigame log manager provider To App Log Intellingence
 
-        protected internal void LogMinigameScore(MiniGameCode miniGameCode, int score)
+        protected internal void LogMinigameScore(string playSession, MiniGameCode miniGameCode, int score)
         {
-            AppManager.I.Teacher.logAI.LogMiniGameScore(miniGameCode, score);
+            AppManager.I.Teacher.logAI.LogMiniGameScore(Session, playSession, miniGameCode, score);
         }
 
+        /// @note: deprecated (unless we re-add minigame direct logplay logging)
         protected internal void LogPlay(string playSession, MiniGameCode miniGameCode, List<Teacher.LogAI.PlayResultParameters> resultsList)
         {
             AppManager.I.Teacher.logAI.LogPlay(Session, playSession, miniGameCode, resultsList);
