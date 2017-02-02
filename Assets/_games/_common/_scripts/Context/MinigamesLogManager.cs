@@ -57,6 +57,7 @@ namespace EA4S.MinigamesCommon
             LogManager.I.LogInfo(InfoEvent.GameEnd, JsonUtility.ToJson(new GameResultInfo() { Game = miniGameCode.ToString(), Result = _valuation.ToString() }));
         }
 
+        /*
         /// <summary>
         /// Called when player perform a [gameplay skill action] action during gameplay. .
         /// </summary>
@@ -71,6 +72,7 @@ namespace EA4S.MinigamesCommon
                 score = _score,
             });
         }
+        */
 
         #endregion
 
