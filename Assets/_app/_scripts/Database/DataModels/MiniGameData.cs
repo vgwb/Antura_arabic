@@ -21,7 +21,7 @@ namespace EA4S.Database
         public string Main;
         public string Variation;
         public string Scene;
-        public List<MiniGameSkill> PlaySkills;
+        public List<WeightedPlaySkill> AffectedPlaySkills;
 
         public string GetId()
         {
@@ -50,12 +50,12 @@ namespace EA4S.Database
     }
 
     [Serializable]
-    public struct MiniGameSkill
+    public struct WeightedPlaySkill
     {
         public PlaySkill Skill;
         public float Weight;
 
-        public MiniGameSkill(PlaySkill skill, float weight)
+        public WeightedPlaySkill(PlaySkill skill, float weight)
         {
             Skill = skill;
             Weight = weight;
