@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Utilities;
 
 namespace EA4S.Database.Management
 {
@@ -19,7 +20,7 @@ namespace EA4S.Database.Management
             data.Title_Ar = ToString(dict["Title_Ar"]);
             data.Scene = ToString(dict["Scene"]);
             data.Available = ToString(dict["Status"]) == "active";
-            data.PlaySkills = CustomParsePlaySkills(data, dict);
+            data.AffectedPlaySkills = CustomParsePlaySkills(data, dict);
 
             return data;
         }
@@ -32,40 +33,26 @@ namespace EA4S.Database.Management
         }
 
 
-        List<MiniGameSkill> CustomParsePlaySkills(MiniGameData data, Dictionary<string, object> dict)
+        List<WeightedPlaySkill> CustomParsePlaySkills(MiniGameData data, Dictionary<string, object> dict)
         {
-            var list = new List<MiniGameSkill>();
+            var list = new List<WeightedPlaySkill>();
 
-            // string[] skillFileds = { "SkillTiming", "SkillPrecision", "SkillObservation", "SkillListening", "SkillLogic", "SkillMemory" };
+            foreach (var playSkill in GenericUtilities.SortEnums<PlaySkill>())
+            {
+                if (playSkill == PlaySkill.None) continue;
 
-            if (ToString(dict["SkillTiming"]) != "") {
-                var skill = new MiniGameSkill(PlaySkill.Timing, ToFloat(dict["SkillTiming"]));
-                list.Add(skill);
-            }
-
-            if (ToString(dict["SkillPrecision"]) != "") {
-                var skill = new MiniGameSkill(PlaySkill.Precision, ToFloat(dict["SkillPrecision"]));
-                list.Add(skill);
-            }
-
-            if (ToString(dict["SkillObservation"]) != "") {
-                var skill = new MiniGameSkill(PlaySkill.Observation, ToFloat(dict["SkillObservation"]));
-                list.Add(skill);
-            }
-
-            if (ToString(dict["SkillListening"]) != "") {
-                var skill = new MiniGameSkill(PlaySkill.Listening, ToFloat(dict["SkillListening"]));
-                list.Add(skill);
-            }
-
-            if (ToString(dict["SkillLogic"]) != "") {
-                var skill = new MiniGameSkill(PlaySkill.Logic, ToFloat(dict["SkillLogic"]));
-                list.Add(skill);
-            }
-
-            if (ToString(dict["SkillMemory"]) != "") {
-                var skill = new MiniGameSkill(PlaySkill.Memory, ToFloat(dict["SkillMemory"]));
-                list.Add(skill);
+                var key = "Skill" + playSkill;
+                if (!dict.ContainsKey(key))
+                {
+                    UnityEngine.Debug.LogError("Could not find key " + key + " as a play skill for minigame " + data.Code);
+                }
+                else
+                {
+                    if (ToString(dict[key]) != "")
+                    {
+                        list.Add(new WeightedPlaySkill(playSkill, ToFloat(dict[key])));
+                    }
+                }
             }
 
             return list;
