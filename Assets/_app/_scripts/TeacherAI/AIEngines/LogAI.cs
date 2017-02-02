@@ -146,9 +146,9 @@ namespace EA4S.Teacher
             // We also log play skills related to that minigame, as read from MiniGameData
             var minigameData = db.GetMiniGameDataByCode(miniGameCode);
             List<PlayResultParameters> results = new List<PlayResultParameters>();
-            foreach (var playSkill in minigameData.AffectedPlaySkills)
+            foreach (var weightedPlaySkill in minigameData.AffectedPlaySkills)
             {
-                results.Add(new PlayResultParameters(PlayEvent.Skill, playSkill, score));
+                results.Add(new PlayResultParameters(PlayEvent.Skill, weightedPlaySkill.Skill, score));
             }
             LogPlay(session, playSession, miniGameCode, results);
         }

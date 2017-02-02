@@ -33,9 +33,9 @@ namespace EA4S.Database.Management
         }
 
 
-        List<PlaySkill> CustomParsePlaySkills(MiniGameData data, Dictionary<string, object> dict)
+        List<WeightedPlaySkill> CustomParsePlaySkills(MiniGameData data, Dictionary<string, object> dict)
         {
-            var list = new List<PlaySkill>();
+            var list = new List<WeightedPlaySkill>();
 
             foreach (var playSkill in GenericUtilities.SortEnums<PlaySkill>())
             {
@@ -50,7 +50,7 @@ namespace EA4S.Database.Management
                 {
                     if (ToString(dict[key]) != "")
                     {
-                        list.Add(playSkill);
+                        list.Add(new WeightedPlaySkill(playSkill, ToFloat(dict[key])));
                     }
                 }
             }
