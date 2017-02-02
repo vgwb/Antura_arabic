@@ -25,6 +25,11 @@ namespace EA4S.Core
             }
         }
 
+        public void StopDialog()
+        {
+            AudioManager.I.StopDialogue(true);
+        }
+
         public void PlayDialog(string localizationData_id, bool isKeeper = true, bool autoClose = true, System.Action _callback = null)
         {
             PlayDialog(LocalizationManager.GetLocalizationData(localizationData_id), isKeeper, autoClose, _callback);

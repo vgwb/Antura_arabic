@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using ModularFramework.Helpers;
 using ArabicSupport;
 using EA4S.Core;
 using EA4S.Helpers;
@@ -11,7 +10,6 @@ using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using EA4S.UI;
-using EA4S.Utilities;
 
 namespace EA4S.Minigames.MakeFriends
 {

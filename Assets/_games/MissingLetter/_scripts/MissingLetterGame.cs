@@ -1,4 +1,5 @@
-﻿using EA4S.MinigamesCommon;
+﻿using System;
+using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Minigames.MissingLetter
@@ -50,13 +51,7 @@ namespace EA4S.Minigames.MissingLetter
             Context.GetLogManager().OnAnswered(question.GetQuestion(), _result);
 
             Context.GetCheckmarkWidget().Show(_result);
-            m_iCurrentRound++;
-
-            if (m_iCurrentRound >= m_iRoundsLimit)
-            {
-                this.SetCurrentState(ResultState);
-            }
-
+            
             if (_result)
             {
                 ++m_iCurrentScore;
@@ -79,10 +74,7 @@ namespace EA4S.Minigames.MissingLetter
         #region PROTECTED_FUNCTION
         protected override void OnInitialize(IGameContext context)
         {
-
             CalculateDifficulty();
-
-            m_iCurrentRound = 0;
 
             m_oRoundManager = new RoundManager(this);
             m_oRoundManager.Initialize();
@@ -228,9 +220,6 @@ namespace EA4S.Minigames.MissingLetter
 
         [HideInInspector]
         public int m_iCurrentScore { get; private set; }
-
-        [HideInInspector]
-        public int m_iCurrentRound { get; private set; }
 
         [HideInInspector]
         public int m_iRoundsLimit;

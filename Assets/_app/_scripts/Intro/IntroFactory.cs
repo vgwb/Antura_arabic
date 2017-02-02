@@ -4,8 +4,6 @@ using EA4S.Helpers;
 using EA4S.LivingLetters;
 using EA4S.Minigames.FastCrowd;
 using EA4S.MinigamesAPI;
-using EA4S.Utilities;
-using ModularFramework.Helpers;
 
 namespace EA4S.Intro
 {

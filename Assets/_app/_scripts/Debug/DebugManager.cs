@@ -23,6 +23,9 @@ namespace EA4S.Debugging
     {
         public static DebugManager I;
 
+        public delegate void OnSkipCurrentSceneDelegate();
+        public static event OnSkipCurrentSceneDelegate OnSkipCurrentScene;
+
         public bool CheatMode = false;
 
         private bool _ignoreJourneyData = false;
@@ -60,7 +63,7 @@ namespace EA4S.Debugging
                 }
             }
         }
-        
+
         /// <summary>
         /// Gets or sets a value indicating whether [first contact passed].
         /// </summary>
@@ -93,30 +96,31 @@ namespace EA4S.Debugging
             // refactor: these are not assigned to anything at all!
 
             if (Input.GetKeyDown(KeyCode.Space)) {
-                UnityEngine.Debug.Log("DEBUG - SPACE : skip");
+                Debug.Log("DEBUG - SPACE : skip");
+                OnSkipCurrentScene();
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0)) {
-                UnityEngine.Debug.Log("DEBUG - 0");
+                Debug.Log("DEBUG - 0");
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1)) {
-                UnityEngine.Debug.Log("DEBUG - 1");
+                Debug.Log("DEBUG - 1");
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2)) {
-                UnityEngine.Debug.Log("DEBUG - 2");
+                Debug.Log("DEBUG - 2");
             }
 
             if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3)) {
-                UnityEngine.Debug.Log("DEBUG - 3");
+                Debug.Log("DEBUG - 3");
             }
         }
 
         // refactor: this should be merged with MiniGameAPI and MiniGameLauncher
         public void LaunchMinigGame(MiniGameCode miniGameCodeSelected)
         {
-            UnityEngine.Debug.Log("LaunchMinigGame " + miniGameCodeSelected.ToString());
+            Debug.Log("LaunchMinigGame " + miniGameCodeSelected.ToString());
             AppManager.I.Player.CurrentJourneyPosition.Stage = Stage;
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = PlaySession;

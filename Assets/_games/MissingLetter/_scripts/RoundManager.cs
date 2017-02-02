@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
-using ModularFramework.Helpers;
 using System;
 using EA4S.Audio;
 using EA4S.Helpers;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
-using EA4S.Utilities;
 
 namespace EA4S.Minigames.MissingLetter
 {
 
     public class RoundManager
     {
+        [HideInInspector]
+        public int m_iCurrentRound { get; private set; }
 
         #region API
         public IQuestionPack CurrentQuestion
@@ -25,6 +25,7 @@ namespace EA4S.Minigames.MissingLetter
         public RoundManager(MissingLetterGame _game)
         {
             m_oGame = _game;
+            m_iCurrentRound = -1;
         }
 
         public void Initialize()
@@ -57,6 +58,14 @@ namespace EA4S.Minigames.MissingLetter
 
         public void NewRound()
         {
+            m_iCurrentRound++;
+
+            if (m_iCurrentRound >= m_oGame.m_iRoundsLimit)
+            {
+                m_oGame.SetCurrentState(m_oGame.ResultState);
+                return;
+            }
+
             m_oGame.SetInIdle(false);
             ExitCurrentScene();
 
@@ -78,7 +87,7 @@ namespace EA4S.Minigames.MissingLetter
 
         public void Terminate()
         {
-            if (m_oGame.m_iCurrentRound < m_oGame.m_iRoundsLimit)
+            if (m_iCurrentRound < m_oGame.m_iRoundsLimit)
                 ExitCurrentScene();
         }
 
@@ -89,6 +98,9 @@ namespace EA4S.Minigames.MissingLetter
 
         public void OnAnswerClicked(string _key)
         {
+            if (m_oGame.GetCurrentState() != m_oGame.PlayState && m_oGame.GetCurrentState() != m_oGame.TutorialState)
+                return;
+
             m_oGame.SetInIdle(false);
 
             //refresh the data (for graphics)
@@ -108,7 +120,7 @@ namespace EA4S.Minigames.MissingLetter
 
                 PlayParticleSystem(m_aoCurrentQuestionScene[0].transform.position + Vector3.up * 2);
 
-                m_oGame.StartCoroutine(Utils.LaunchDelay(0.5f, OnResponse, true));
+               OnResponse(true);
             }
             else
             {
@@ -195,7 +207,7 @@ namespace EA4S.Minigames.MissingLetter
             m_aoCurrentAnswerScene.Shuffle();
         }
 
-        private List<LL_WordData> GetWordFromPhrases(LL_PhraseData _phrase)
+        private List<LL_WordData> GetWordsFromPhrase(LL_PhraseData _phrase)
         {
             List<LL_WordData> phrase = new List<LL_WordData>();
             var dbWords = AppManager.I.VocabularyHelper.GetWordsInPhrase(_phrase.Id);
@@ -203,7 +215,6 @@ namespace EA4S.Minigames.MissingLetter
             {
                 phrase.Add((LL_WordData)dbWord.ConvertToLivingLetterData());
             }
-
             return phrase;
         }
 
@@ -211,7 +222,7 @@ namespace EA4S.Minigames.MissingLetter
         {
             m_oCurrQuestionPack = MissingLetterConfiguration.Instance.Questions.GetNextQuestion();
 
-            List<LL_WordData> questionData = GetWordFromPhrases((LL_PhraseData)m_oCurrQuestionPack.GetQuestion());
+            List<LL_WordData> questionData = GetWordsFromPhrase((LL_PhraseData)m_oCurrQuestionPack.GetQuestion());
 
             var _correctAnswer = (LL_WordData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
             var _wrongAnswers = m_oCurrQuestionPack.GetWrongAnswers().ToList();
@@ -411,6 +422,7 @@ namespace EA4S.Minigames.MissingLetter
 
             if (onAnswered != null)
             {
+                m_oGame.OnResult(correct);
                 m_oGame.StartCoroutine(Utils.LaunchDelay(2.0f, onAnswered, correct));
             }
         }

@@ -15,7 +15,10 @@ namespace EA4S.Minigames.HideAndSeek
     {
 
         public delegate void TouchAction(int i);
-        public static event TouchAction onLetterTouched;
+        public event TouchAction onLetterTouched;
+        public event TouchAction onLetterReturned;
+
+        bool lockMovement = false;
 
         void Start()
         {
@@ -23,13 +26,14 @@ namespace EA4S.Minigames.HideAndSeek
             view = GetComponent<LetterObjectView>();
         }
 
-        public void resultAnimation(bool win)
+        public void PlayResultAnimation(bool win)
         {
             if (moveTweener != null)
             {
                 moveTweener.Kill();
             }
 
+            lockMovement = true;
             if (win)
             {
                 view.SetState(LLAnimationStates.LL_dancing);
@@ -44,8 +48,11 @@ namespace EA4S.Minigames.HideAndSeek
 
         void MoveTo(Vector3 position, float duration)
         {
+            if (lockMovement)
+                return;
+
             view.SetState(LLAnimationStates.LL_walking);
-            if (position == pos1)
+            if (position == positionStart)
                 view.HasFear = true;
 
             view.SetWalkingSpeed(1f);
@@ -58,12 +65,12 @@ namespace EA4S.Minigames.HideAndSeek
                 delegate ()
                 {
                     view.SetState(LLAnimationStates.LL_idle);
-                    if (position == pos2)
+                    if (position == positionUncovered)
                     {
                         startTime = Time.time;
                         isArrived = true;
                     }
-                    else if (position == pos1)
+                    else if (position == positionStart)
                     {
                         isMoving = false;
                         isClickable = false;
@@ -79,32 +86,38 @@ namespace EA4S.Minigames.HideAndSeek
             isArrived = false;
             isMoving = false;
             isClickable = false;
+            lockMovement = false;
         }
 
         void Update()
         {
-            if (isArrived && Time.time > startTime + idleTime)
+            if (!lockMovement && isArrived && Time.time > startTime + idleTime)
             {
-                MoveTo(pos1, walkDuration / 2);
+                MoveTo(positionStart, walkDuration / 2);
                 isArrived = false;
+                if (onLetterReturned != null)
+                    onLetterReturned(id);
             }
         }
 
         public void SetStartPosition(Vector3 pos)
         {
-            pos1 = pos;
+            positionStart = pos;
         }
 
         public void MoveTutorial()
         {
-            Vector3 pos = new Vector3(transform.position.x - 4.0f, transform.position.y, transform.position.z);
+            Vector3 uncoveredPosition = new Vector3(transform.position.x - 4.0f, transform.position.y, transform.position.z);
             isClickable = true;
-            MoveTo(pos, walkDuration);
+            MoveTo(uncoveredPosition, walkDuration);
         }
 
 
-        public void Move()
+        public bool Move()
         {
+            if (lockMovement)
+                return false;
+
             if (!isMoving)
             {
                 int direction;
@@ -121,13 +134,15 @@ namespace EA4S.Minigames.HideAndSeek
                     direction = Random.Range(0, 2) * 2 - 1; // -1 or 1
 
                 float moveOffset = direction * minMove;
-                pos2 = pos1 + new Vector3(moveOffset, 0, 0);
+                positionUncovered = positionStart + new Vector3(moveOffset, 0, 0);
 
                 isMoving = true;
                 isClickable = true;
-
-                MoveTo(pos2, walkDuration);
+                
+                MoveTo(positionUncovered, walkDuration);
+                return true;
             }
+            return false;
         }
 
         void OnMouseDown()
@@ -158,8 +173,8 @@ namespace EA4S.Minigames.HideAndSeek
         private bool isArrived = false;
 
         private float startTime;
-        private Vector3 pos1;
-        private Vector3 pos2;
+        private Vector3 positionStart;
+        private Vector3 positionUncovered;
 
         private Animator anim;
 
