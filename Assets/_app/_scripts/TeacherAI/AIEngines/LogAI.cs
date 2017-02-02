@@ -138,10 +138,10 @@ namespace EA4S.Teacher
 
         #region Journey Scores
 
-        public void LogMiniGameScore(string session, string playSession, MiniGameCode miniGameCode, int score)
+        public void LogMiniGameScore(string session, string playSession, MiniGameCode miniGameCode, float totalPlayTime, int score)
         {
             if (AppConstants.VerboseLogging) Debug.Log("LogMiniGameScore " + miniGameCode + " / " + score);
-            UpdateJourneyScoreDataWithMaximum(JourneyDataType.Minigame, miniGameCode.ToString(), score);
+            UpdateMinigameScoreDataWithMaximum(miniGameCode.ToString(), totalPlayTime, score);
 
             // We also log play skills related to that minigame, as read from MiniGameData
             var minigameData = db.GetMiniGameDataByCode(miniGameCode);
@@ -168,6 +168,22 @@ namespace EA4S.Teacher
         #endregion
 
         #region Score Utilities
+
+        private void UpdateMinigameScoreDataWithMaximum(string elementId, float playTime, int newScore)
+        {
+            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData) + " WHERE ElementId = '{0}'", elementId);
+            var scoreDataList = db.FindDataByQuery<MinigameScoreData>(query);
+            int previousMaxScore = 0;
+            float previousTotalPlayTime = 0;
+            if (scoreDataList.Count > 0)
+            {
+                previousMaxScore = scoreDataList[0].Score;
+                previousTotalPlayTime = scoreDataList[0].TotalPlayTime;
+            }
+            float newTotalPlayTime = previousTotalPlayTime + playTime;
+            int newMaxScore = Mathf.Max(previousMaxScore, newScore);
+            db.UpdateMinigameScoreData(elementId, newTotalPlayTime, newMaxScore);
+        }
 
         private void UpdateJourneyScoreDataWithMaximum(JourneyDataType dataType, string elementId, int newScore)
         {
