@@ -9,6 +9,7 @@ using EA4S.Debugging;
 using EA4S.Profile;
 using EA4S.Rewards;
 using EA4S.Teacher;
+using EA4S.UI;
 using EA4S.MinigamesAPI;
 using PlayerProfile = EA4S.Profile.PlayerProfile;
 
@@ -152,6 +153,7 @@ namespace EA4S
 
             // app is pausing
             if (appIsPaused) {
+                GlobalUI.PauseMenu.OpenMenu(true);
                 LogManager.I.LogInfo(InfoEvent.AppSuspend);
             }
 
