@@ -41,6 +41,8 @@ namespace EA4S.Intro
         public GameObject environment;
         AutoMove[] autoMoveObjects;
 
+        float time;
+
         void Start()
         {
             GlobalUI.ShowPauseMenu(false);
@@ -57,19 +59,33 @@ namespace EA4S.Intro
             }
         }
 
+        void OnEnable()
+        {
+            Debugging.DebugManager.OnSkipCurrentScene += SkipScene;
+        }
+
         private void CountDown_onTimesUp()
         {
-
             AppManager.I.NavigationManager.GoToNextScene();
         }
 
         void OnDisable()
         {
-            if (countDown != null)
+            Debugging.DebugManager.OnSkipCurrentScene -= SkipScene;
+
+            if (countDown != null) {
                 countDown.onTimesUp -= CountDown_onTimesUp;
+            }
+            Debug.Log("OnDisable() Intro scene");
         }
 
-        float time;
+        void SkipScene()
+        {
+            StopCoroutine(DoIntroduction());
+            KeeperManager.I.StopDialog();
+            AppManager.I.NavigationManager.GoToNextScene();
+        }
+
         void Update()
         {
             time += Time.deltaTime * m_CameraVelocity;
