@@ -8,6 +8,7 @@ namespace EA4S.Minigames.ReadingGame
     {
         ReadAndAnswer = 1,
         AlphabetSong = 2,
+        DiacriticSong = 3,
     }
 
     public class ReadingGameConfiguration : IGameConfiguration
@@ -61,6 +62,7 @@ namespace EA4S.Minigames.ReadingGame
             switch (Variation)
             {
                 case ReadingGameVariation.AlphabetSong:
+                case ReadingGameVariation.DiacriticSong:
                     builder = new EmptyQuestionBuilder();
                     break;
                 case ReadingGameVariation.ReadAndAnswer:
