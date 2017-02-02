@@ -13,6 +13,19 @@ namespace EA4S.Teacher
         public HashSet<LetterData> letters = new HashSet<LetterData>();
         public HashSet<WordData> words = new HashSet<WordData>();
         public HashSet<PhraseData> phrases = new HashSet<PhraseData>();
+
+        public bool Contains(LetterData data)
+        {
+            return letters.Contains(data);
+        }
+        public bool Contains(WordData data)
+        {
+            return words.Contains(data);
+        }
+        public bool Contains(PhraseData data)
+        {
+            return phrases.Contains(data);
+        }
     }
 
     /// <summary>
@@ -310,7 +323,7 @@ namespace EA4S.Teacher
                 debugString += " \tRecent: " + recentPlayWeight * ConfigAI.data_recentPlayWeight + "(" + recentPlayWeight + ")";
 
                 // Current focus weight [1,0]: higher if the data is part of the current play session
-                float currentPlaySessionWeight = currentPSData.Contains(sourceData) ? 1 : 0f;
+                float currentPlaySessionWeight = currentPlaySessionContents.Contains(sourceData) ? 1 : 0f;
                 cumulativeWeight += currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight;
                 debugString += " \tCurrentPS: " + currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight + "(" + currentPlaySessionWeight + ")";
 
