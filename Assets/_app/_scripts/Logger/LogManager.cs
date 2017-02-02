@@ -38,7 +38,8 @@ namespace EA4S.Core
 
         protected internal void LogMinigameScore(string playSession, MiniGameCode miniGameCode, int score)
         {
-            AppManager.I.Teacher.logAI.LogMiniGameScore(Session, playSession, miniGameCode, score);
+            // @todo: the minigame play time should be passed here
+            AppManager.I.Teacher.logAI.LogMiniGameScore(Session, playSession, miniGameCode, 0f, score);
         }
 
         /// @note: deprecated (unless we re-add minigame direct logplay logging)

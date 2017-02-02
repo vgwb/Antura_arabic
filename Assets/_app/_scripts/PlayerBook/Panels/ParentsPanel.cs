@@ -144,7 +144,7 @@ namespace EA4S.PlayerBook
                 // Add scores for all minigames
                 var allMiniGameInfo = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
                 for (int i = 0; i < allMiniGameInfo.Count; i++) {
-                    logAi.LogMiniGameScore("1","1.1.1",allMiniGameInfo[i].data.Code, Random.Range(1, 4));
+                    logAi.LogMiniGameScore("1","1.1.1", allMiniGameInfo[i].data.Code, 12f, Random.Range(1, 4));
                     Debug.Log("Add minigame score " + i);
                     yield return null;
                 }
