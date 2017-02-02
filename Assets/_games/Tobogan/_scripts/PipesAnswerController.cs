@@ -17,7 +17,8 @@ namespace EA4S.Minigames.Tobogan
 
         List<PipeAnswer> toHide = new List<PipeAnswer>();
 
-        float maxLetterDistance = 3.5f;
+        float maxLetterDistanceX = 3.0f;
+        float maxLetterDistanceY = 3.5f;
 
         public void SetSignHidingProbability(float hidingProbability)
         {
@@ -195,24 +196,26 @@ namespace EA4S.Minigames.Tobogan
                 return;
             }
 
-            float pipeDistance = float.PositiveInfinity;
+            float pipeDistanceX = float.PositiveInfinity;
+            float pipeDistanceY = float.PositiveInfinity;
 
             for (int i = 0; i < pipeAnswers.Length; i++)
             {
                 if (pipeAnswers[i].active)
                 {
                     Vector3 pipePosition = pipeAnswers[i].tutorialPoint.position;
-                    float newPipeDistance = Vector3.Distance(pipePosition, letterPosition.Value);
+                    float newPipeDistance = Mathf.Abs(pipePosition.x - letterPosition.Value.x);
 
-                    if (newPipeDistance < pipeDistance)
+                    if (newPipeDistance < pipeDistanceX)
                     {
                         newPipeAnswer = pipeAnswers[i];
-                        pipeDistance = newPipeDistance;
+                        pipeDistanceX = newPipeDistance;
+                        pipeDistanceY = Mathf.Abs(pipePosition.y - letterPosition.Value.y);
                     }
                 }
             }
 
-            if (pipeDistance > maxLetterDistance)
+            if (pipeDistanceX > maxLetterDistanceX || pipeDistanceY > maxLetterDistanceY)
             {
                 currentLivingLetter.NearTube = null;
 
