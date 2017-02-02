@@ -61,6 +61,13 @@ namespace EA4S.MinigamesCommon
             this.SetCurrentState(OutcomeState);
         }
 
+        /// <summary>
+        /// Check if the game is in OutcomeState
+        /// </summary>
+        public bool IsEnded()
+        {
+            return stateManager.CurrentState == OutcomeState;
+        }
 
 
         /// <summary>
