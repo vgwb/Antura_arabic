@@ -17,7 +17,7 @@ namespace EA4S.Minigames.Tobogan
 
         List<PipeAnswer> toHide = new List<PipeAnswer>();
 
-        float maxLetterDistance = 4.5f;
+        float maxLetterDistance = 3.5f;
 
         public void SetSignHidingProbability(float hidingProbability)
         {
@@ -177,7 +177,8 @@ namespace EA4S.Minigames.Tobogan
 
         void UpdateCurrentPipeAnswer()
         {
-            if (game.questionsManager.GetQuestionLivingLetter() == null)
+            var currentLivingLetter = game.questionsManager.GetQuestionLivingLetter();
+            if (currentLivingLetter == null)
             {
                 currentPipeAnswer = null;
                 return;
@@ -185,7 +186,14 @@ namespace EA4S.Minigames.Tobogan
 
             PipeAnswer newPipeAnswer = null;
 
-            Vector3 letterPosition = game.questionsManager.GetQuestionLivingLetter().letter.contentTransform.position;
+            Vector3? letterPosition = currentLivingLetter.TargetContentDragPosition;
+
+            if (!letterPosition.HasValue)
+            {
+                currentPipeAnswer = null;
+                currentLivingLetter.NearTube = null;
+                return;
+            }
 
             float pipeDistance = float.PositiveInfinity;
 
@@ -194,7 +202,7 @@ namespace EA4S.Minigames.Tobogan
                 if (pipeAnswers[i].active)
                 {
                     Vector3 pipePosition = pipeAnswers[i].tutorialPoint.position;
-                    float newPipeDistance = Vector3.Distance(pipePosition, letterPosition);
+                    float newPipeDistance = Vector3.Distance(pipePosition, letterPosition.Value);
 
                     if (newPipeDistance < pipeDistance)
                     {
@@ -206,6 +214,8 @@ namespace EA4S.Minigames.Tobogan
 
             if (pipeDistance > maxLetterDistance)
             {
+                currentLivingLetter.NearTube = null;
+
                 if (currentPipeAnswer != null)
                 {
                     currentPipeAnswer.StopSelectedAnimation();
@@ -219,6 +229,8 @@ namespace EA4S.Minigames.Tobogan
                     currentPipeAnswer.StopSelectedAnimation();
                     currentPipeAnswer = null;
                 }
+                
+                currentLivingLetter.NearTube = currentPipeAnswer;
 
                 if (currentPipeAnswer == null)
                 {
