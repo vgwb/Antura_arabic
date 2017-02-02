@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Helpers;
 
 namespace EA4S.Database.Management
 {
@@ -19,6 +20,7 @@ namespace EA4S.Database.Management
             data.Title_Ar = ToString(dict["Title_Ar"]);
             data.Scene = ToString(dict["Scene"]);
             data.Available = ToString(dict["Status"]) == "active";
+            data.AffectedPlaySkills = CustomParsePlaySkills(data, dict);
 
             return data;
         }
@@ -30,5 +32,30 @@ namespace EA4S.Database.Management
             ExtractEnum(rowdicts_list, "Type");
         }
 
+
+        List<PlaySkill> CustomParsePlaySkills(MiniGameData data, Dictionary<string, object> dict)
+        {
+            var list = new List<PlaySkill>();
+
+            foreach (var playSkill in GenericHelper.SortEnums<PlaySkill>())
+            {
+                if (playSkill == PlaySkill.None) continue;
+
+                var key = "Skill" + playSkill;
+                if (!dict.ContainsKey(key))
+                {
+                    UnityEngine.Debug.LogError("Could not find key " + key + " as a play skill for minigame " + data.Code);
+                }
+                else
+                {
+                    if (ToString(dict[key]) != "")
+                    {
+                        list.Add(playSkill);
+                    }
+                }
+            }
+
+            return list;
+        }
     }
 }

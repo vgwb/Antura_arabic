@@ -1,8 +1,6 @@
 ﻿using EA4S.Helpers;
 using EA4S.LivingLetters;
-using EA4S.Utilities;
 using UnityEngine;
-using ModularFramework.Helpers;
 
 namespace EA4S.Intro
 {
