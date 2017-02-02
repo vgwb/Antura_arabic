@@ -15,13 +15,30 @@ namespace EA4S.Minigames.HideAndSeek
     {
         void OnEnable()
         {
-            HideAndSeekTreeController.onTreeTouched += MoveObject;
-            HideAndSeekLetterController.onLetterTouched += CheckResult;
+            foreach (var a in ArrayLetters)
+            {
+                a.GetComponent<HideAndSeekLetterController>().onLetterTouched += CheckResult;
+                a.GetComponent<HideAndSeekLetterController>().onLetterReturned += OnLetterReturned;
+            }
+
+            foreach (var a in ArrayTrees)
+                a.GetComponent<HideAndSeekTreeController>().onTreeTouched += MoveObject;
         }
+
         void OnDisable()
         {
-            HideAndSeekTreeController.onTreeTouched -= MoveObject;
-            HideAndSeekLetterController.onLetterTouched -= CheckResult;
+            foreach (var a in ArrayLetters)
+            {
+                if (a == null)
+                    continue;
+
+                a.GetComponent<HideAndSeekLetterController>().onLetterTouched -= CheckResult;
+                a.GetComponent<HideAndSeekLetterController>().onLetterReturned -= OnLetterReturned;
+            }
+
+            foreach (var a in ArrayTrees)
+                if (a != null)
+                    a.GetComponent<HideAndSeekTreeController>().onTreeTouched -= MoveObject;
         }
 
         void Start()
@@ -47,7 +64,10 @@ namespace EA4S.Minigames.HideAndSeek
             {
                 HideAndSeekConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.BushRustlingOut);
                 script = ArrayLetters[GetIdFromPosition(id)].GetComponent<HideAndSeekLetterController>();
-                script.Move();
+                if (script.Move())
+                {
+                    LockTree(id, true);
+                }
             }
         }
 
@@ -94,15 +114,27 @@ namespace EA4S.Minigames.HideAndSeek
             SetTime();
         }
 
+        void OnLetterReturned(int id)
+        {
+            if (isRoundRunning && !game.isTimesUp)
+                LockTree(id, false);
+        }
+
         void CheckResult(int id)
         {
+            if (game.isTimesUp)
+                return;
+
+            isRoundRunning = false;
+
             letterInAnimation = GetIdFromPosition(id);
             HideAndSeekLetterController script = ArrayLetters[letterInAnimation].GetComponent<HideAndSeekLetterController>();
             if (script.view.Data.Id == GetCorrectAnswer().Id)
             {
                 LockTrees();
+                LockLetters(true);
                 StartCoroutine(DelayAnimation());
-                script.resultAnimation(true);
+                script.PlayResultAnimation(true);
                 game.OnResult(GetCorrectAnswer(), true);
                 buttonRepeater.SetActive(false);
                 AudioManager.I.PlaySound(Sfx.Win);
@@ -111,10 +143,11 @@ namespace EA4S.Minigames.HideAndSeek
             {
                 game.OnResult(GetCorrectAnswer(), false);
                 RemoveLife();
-                script.resultAnimation(false);
+                script.PlayResultAnimation(false);
                 if (lifes == 0)
                 {
                     LockTrees();
+                    LockLetters(true);
                     AudioManager.I.PlaySound(Sfx.Lose);
                     StartCoroutine(DelayAnimation());
                     buttonRepeater.SetActive(false);
@@ -156,6 +189,20 @@ namespace EA4S.Minigames.HideAndSeek
                 ArrayTrees[i].GetComponent<SphereCollider>().enabled = false;
             }
         }
+
+        public void LockTree(int id, bool toLock)
+        {
+            ArrayTrees[id].GetComponent<SphereCollider>().enabled = !toLock;
+        }
+
+        void LockLetters(bool toLock)
+        {
+            for (int i = 0; i < MAX_OBJECT; ++i)
+            {
+                ArrayLetters[i].GetComponent<CapsuleCollider>().enabled = !toLock;
+            }
+        }
+
         public void ClearRound()
         {
             for (int i = 0; i < MAX_OBJECT; ++i)
@@ -171,6 +218,7 @@ namespace EA4S.Minigames.HideAndSeek
         {
             ClearRound();
 
+            isRoundRunning = true;
             currentQuestion = HideAndSeekConfiguration.Instance.Questions.GetNextQuestion();
             StartNewRound = false;
             SetFullLife();
@@ -204,6 +252,9 @@ namespace EA4S.Minigames.HideAndSeek
                     ArrayLetters[i].transform.DOMove(ArrayPlaceholder[index].transform.position, 0.5f);
                 }
             }
+
+            LockLetters(false);
+
             StartCoroutine(DisplayRound_Coroutine());
 
         }
@@ -282,6 +333,7 @@ namespace EA4S.Minigames.HideAndSeek
 
 
         #region VARIABLES
+        bool isRoundRunning = false;
         bool StartNewRound = true;
         int lifes;
         int ActiveLetters;
@@ -289,7 +341,6 @@ namespace EA4S.Minigames.HideAndSeek
         private int FreePlaceholder;
 
         public GameObject Antura;
-
 
         public GameObject[] ArrayTrees;
         private List<GameObject> ActiveTrees;

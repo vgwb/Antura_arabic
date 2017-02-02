@@ -27,6 +27,10 @@ namespace EA4S.Minigames.ReadingGame
             {
                 game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.AlphabetSong_Title, () => { introCompleted = true; });
             }
+            else if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.DiacriticSong)
+            {
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Diacritic_Song_Title, () => { introCompleted = true; });
+            }
             else
             {
                 introCompleted = true;

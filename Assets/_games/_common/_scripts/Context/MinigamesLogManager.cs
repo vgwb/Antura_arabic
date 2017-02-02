@@ -52,11 +52,12 @@ namespace EA4S.MinigamesCommon
         public void OnGameEnded(int _valuation)
         {
             FlushLogLearn();
-            FlushLogPlay();
-            LogManager.I.LogMinigameScore(miniGameCode, _valuation);
+            //FlushLogPlay();   // Unless minigames can directly log play skills, this is not needed
+            LogManager.I.LogMinigameScore(sessionName, miniGameCode, _valuation);
             LogManager.I.LogInfo(InfoEvent.GameEnd, JsonUtility.ToJson(new GameResultInfo() { Game = miniGameCode.ToString(), Result = _valuation.ToString() }));
         }
 
+        /*
         /// <summary>
         /// Called when player perform a [gameplay skill action] action during gameplay. .
         /// </summary>
@@ -71,12 +72,14 @@ namespace EA4S.MinigamesCommon
                 score = _score,
             });
         }
+        */
 
         #endregion
 
         #region Gameplay        
         /// <summary>
         /// Bufferizes the log play data.
+        /// @note: deprecated (unless we re-add minigame direct logplay logging)
         /// </summary>
         /// <param name="_playResultParameters">The play result parameters.</param>
         void BufferizeLogPlayData(LogAI.PlayResultParameters _playResultParameters)
@@ -85,7 +88,8 @@ namespace EA4S.MinigamesCommon
         }
         /// <summary>
         /// Flushes the log play to app teacher log intellingence.
-        /// </summary>
+        /// @note: deprecated (unless we re-add minigame direct logplay logging)
+        /// /// </summary>
         void FlushLogPlay()
         {
             LogManager.I.LogPlay(sessionName, miniGameCode, logPlayBuffer);

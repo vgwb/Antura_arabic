@@ -49,7 +49,7 @@ namespace EA4S.Minigames.ReadingGame
                 game.barSet.SetShowTargets(ReadingGameConfiguration.Instance.Difficulty < 0.3f);
                 game.barSet.SetShowArrows(ReadingGameConfiguration.Instance.Difficulty < 0.6f);
 
-                game.barSet.SetData(game.alphabetSong);
+                game.barSet.SetData(game.songToPlay);
             }
 
             game.barSet.active = false;
@@ -63,7 +63,10 @@ namespace EA4S.Minigames.ReadingGame
                 }
                 else
                 {
-                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.AlphabetSong_Intro, () =>
+                    var introDialogue = ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong ?
+                        Database.LocalizationDataId.AlphabetSong_Intro : Database.LocalizationDataId.Diacritic_Song_Intro;
+
+                    game.Context.GetAudioManager().PlayDialogue(introDialogue, () =>
                     {
                         var firstBar = game.barSet.GetNextBar();
                         TutorialUI.DrawLine(firstBar.start.transform.position, firstBar.endCompleted.transform.position, TutorialUI.DrawLineMode.FingerAndArrow, false, true);

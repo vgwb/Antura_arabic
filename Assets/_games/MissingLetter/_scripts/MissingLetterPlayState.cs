@@ -75,8 +75,7 @@ namespace EA4S.Minigames.MissingLetter
                 }
             }
 
-            if (m_oGame.IsInIdle())
-                M_oGameTime.Update(_delta);
+            M_oGameTime.Update(_delta);
         }
 
         public void UpdatePhysics(float delta)
@@ -96,7 +95,6 @@ namespace EA4S.Minigames.MissingLetter
 
         void OnRoundResult(bool _result)
         {
-            m_oGame.OnResult(_result);
             m_oGame.m_oRoundManager.NewRound();
         }
 
