@@ -111,7 +111,8 @@ namespace EA4S.UI
                 openMenuTween.PlayForward();
                 AudioManager.I.PlaySound(Sfx.UIPauseIn);
             } else {
-                Time.timeScale = timeScaleAtMenuOpen;
+                //Time.timeScale = timeScaleAtMenuOpen;
+                Time.timeScale = 1;
                 logoBobTween.Pause();
                 openMenuTween.timeScale = 2; // Speed up tween when going backwards
                 openMenuTween.PlayBackwards();
