@@ -20,13 +20,13 @@ namespace EA4S.Database
         public int PlaySession { get; set; }
 
         public int Score { get; set; } // 0:3
-        public int PlayTime { get; set; } 
+        public float PlayTime { get; set; } 
 
         public LogPlaySessionScoreData()
         {
         }
 
-        public LogPlaySessionScoreData(string _AppSession, JourneyPosition _pos, int _score, int _playTime)
+        public LogPlaySessionScoreData(string _AppSession, JourneyPosition _pos, int _score, float _playTime)
         {
             AppSession = _AppSession;
             Stage = _pos.Stage;

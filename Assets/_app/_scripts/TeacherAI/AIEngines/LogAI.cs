@@ -149,13 +149,18 @@ namespace EA4S.Teacher
 
         #region Journey Scores
 
-        public void LogMiniGameScore(string session, string playSession, MiniGameCode miniGameCode, float totalPlayTime, int score)
+        public void LogMiniGameScore(string session, string playSession, MiniGameCode miniGameCode, int score, float playTime)
         {
             if (AppConstants.VerboseLogging) Debug.Log("LogMiniGameScore " + miniGameCode + " / " + score);
+            if (AppConstants.VerboseLogging) Debug.Log(playSession);
 
-            JourneyPosition pos = new JourneyPosition();
+            // Log for history
+            JourneyPosition pos = new JourneyPosition(playSession);
+            var data = new LogMinigameScoreData(session, pos, miniGameCode, score, playTime);
+            db.Insert(data);
 
-            UpdateMinigameScoreDataWithMaximum(miniGameCode.ToString(), totalPlayTime, score);
+            // Score update
+            UpdateMinigameScoreDataWithMaximum(miniGameCode.ToString(), playTime, score);
 
             // We also log play skills related to that minigame, as read from MiniGameData
             var minigameData = db.GetMiniGameDataByCode(miniGameCode);
@@ -167,12 +172,20 @@ namespace EA4S.Teacher
             LogPlay(session, playSession, miniGameCode, results);
         }
 
-        public void LogPlaySessionScore(string playSessionId, int score)
+        public void LogPlaySessionScore(string session, string playSessionId, int score, float playTime)
         {
             if (AppConstants.VerboseLogging) Debug.Log("LogPlaySessionScore " + playSessionId + " / " + score);
-            UpdateJourneyScoreDataWithMaximum(JourneyDataType.PlaySession,(playSessionId).ToString(), score);
+
+            // Log for history
+            JourneyPosition pos = new JourneyPosition(playSessionId);
+            var data = new LogPlaySessionScoreData(session, pos, score, playTime);
+            db.Insert(data);
+
+            // Score update
+            UpdateJourneyScoreDataWithMaximum(JourneyDataType.PlaySession, playSessionId, score);
         }
 
+        // TODO: DEPRECATED PROBABLY, WHAT IS A LEARNING BLOCK SCORE?
         public void LogLearningBlockScore(int learningBlock, int score)
         {
             if (AppConstants.VerboseLogging) Debug.Log("LogLearningBlockScore " + learningBlock + " / " + score);

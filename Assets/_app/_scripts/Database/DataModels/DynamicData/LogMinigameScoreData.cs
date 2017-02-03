@@ -23,13 +23,13 @@ namespace EA4S.Database
         public MiniGameCode MiniGameCode { get; set; }
 
         public int Score { get; set; } // 0:3
-        public int PlayTime { get; set; }
+        public float PlayTime { get; set; }
 
         public LogMinigameScoreData()
         {
         }
 
-        public LogMinigameScoreData(string _AppSession, JourneyPosition _pos, MiniGameCode _code, int _score, int _playTime)
+        public LogMinigameScoreData(string _AppSession, JourneyPosition _pos, MiniGameCode _code, int _score, float _playTime)
         {
             AppSession = _AppSession;
             Stage = _pos.Stage;

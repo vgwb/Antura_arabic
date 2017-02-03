@@ -39,7 +39,7 @@ namespace EA4S.Core
         protected internal void LogMinigameScore(string playSession, MiniGameCode miniGameCode, int score)
         {
             // @todo: the minigame play time should be passed here
-            AppManager.I.Teacher.logAI.LogMiniGameScore(Session, playSession, miniGameCode, 0f, score);
+            AppManager.I.Teacher.logAI.LogMiniGameScore(Session, playSession, miniGameCode, score, 0f);
         }
 
         /// @note: deprecated (unless we re-add minigame direct logplay logging)
@@ -63,7 +63,8 @@ namespace EA4S.Core
         /// <param name="score">The score.</param>
         public void LogPlaySessionScore(string playSessionId, int score)
         {
-            AppManager.I.Teacher.logAI.LogPlaySessionScore(playSessionId, score);
+            // @todo: the complete play session play time should be passed here
+            AppManager.I.Teacher.logAI.LogPlaySessionScore(Session, playSessionId, score, 0f);
         }
 
         /// <summary>

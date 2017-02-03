@@ -130,7 +130,6 @@ namespace EA4S
 
             // Delete DB
             DB.DropProfile();
-            I.DB = null;
 
             PlayerProfileManager.DeleteCurrentPlayer();
 
