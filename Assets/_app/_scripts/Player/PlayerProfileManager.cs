@@ -246,7 +246,6 @@ namespace EA4S.Profile
                 AppManager.I.DB.LoadDatabaseForPlayer(int.Parse(playerId));
                 AppManager.I.DB.DropProfile();
             }
-            AppManager.I.DB = null;
 
             // Reset all profiles (from SRDebugOptions)
             UnityEngine.PlayerPrefs.DeleteAll();

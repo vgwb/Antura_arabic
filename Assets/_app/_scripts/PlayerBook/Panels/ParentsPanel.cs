@@ -134,7 +134,7 @@ namespace EA4S.PlayerBook
             var allPlaySessionInfos = AppManager.I.Teacher.scoreHelper.GetAllPlaySessionInfo();
             for (int i = 0; i < allPlaySessionInfos.Count; i++) {
                 if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage) {
-                    logAi.LogPlaySessionScore(allPlaySessionInfos[i].data.Id, Random.Range(1, 4));
+                    logAi.LogPlaySessionScore("1", allPlaySessionInfos[i].data.Id, Random.Range(1, 4), 12f);
                     Debug.Log("Add play session score for " + allPlaySessionInfos[i].data.Id);
                     yield return null;
                 }
@@ -144,7 +144,7 @@ namespace EA4S.PlayerBook
                 // Add scores for all minigames
                 var allMiniGameInfo = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
                 for (int i = 0; i < allMiniGameInfo.Count; i++) {
-                    logAi.LogMiniGameScore("1","1.1.1", allMiniGameInfo[i].data.Code, 12f, Random.Range(1, 4));
+                    logAi.LogMiniGameScore("1","1.1.1", allMiniGameInfo[i].data.Code, Random.Range(1, 4), 12f);
                     Debug.Log("Add minigame score " + i);
                     yield return null;
                 }
