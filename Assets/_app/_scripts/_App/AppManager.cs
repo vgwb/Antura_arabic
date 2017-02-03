@@ -30,12 +30,35 @@ namespace EA4S
         public TeacherAI Teacher;
         public VocabularyHelper VocabularyHelper;
         public DatabaseManager DB;
-        public PlayerProfile Player;
         public MiniGameLauncher GameLauncher;
         public LogManager LogManager;
-        public PlayerProfileManager PlayerProfileManager;
         public NavigationManager NavigationManager;
+        
         bool appIsPaused = false;
+
+        private PlayerProfileManager _playerProfileManager;
+        /// <summary>
+        /// Gets or sets the player profile manager.
+        /// Reload GameSettings at any playerProfileManager changes.
+        /// </summary>
+        /// <value>
+        /// The player profile manager.
+        /// </value>
+        public PlayerProfileManager PlayerProfileManager {
+            get { return _playerProfileManager; }
+            set {
+                if (_playerProfileManager != value) {
+                    _playerProfileManager = value;
+                    _playerProfileManager.ReloadGameSettings();
+                    return;
+                }
+                _playerProfileManager = value;
+            }
+        }
+        public PlayerProfile Player {
+            get { return PlayerProfileManager != null ? PlayerProfileManager.CurrentPlayer : null; }
+            set { PlayerProfileManager.CurrentPlayer = value; }
+        }
 
         #region Initialisation
 
@@ -58,6 +81,8 @@ namespace EA4S
 
             // refactor: standardize initialisation of managers
             LogManager = new LogManager();
+
+            
 
             DB = new DatabaseManager(GameSettings.UseTestDatabase);
             VocabularyHelper = new VocabularyHelper(DB);
