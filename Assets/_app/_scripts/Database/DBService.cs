@@ -54,7 +54,7 @@ namespace EA4S.Database
 
         public void GenerateTables(bool create, bool drop)
         {
-            Debug.LogError(("GENERATING TABLES: " + create + " " + drop));
+            //Debug.Log(("GENERATING TABLES: " + create + " " + drop));
 
             // @note: define the DB structure here
             GenerateTable<DatabaseInfoData>(create, drop);

@@ -35,7 +35,7 @@ namespace EA4S
         public LogManager LogManager;
         public NavigationManager NavigationManager;
         
-        bool appIsPaused = false;
+        public bool IsPaused { get; private set; }
 
         private PlayerProfileManager _playerProfileManager;
         /// <summary>
@@ -144,26 +144,20 @@ namespace EA4S
 
         void OnApplicationPause(bool pauseStatus)
         {
-            appIsPaused = pauseStatus;
+            IsPaused = pauseStatus;
 
             // app is pausing
-            if (appIsPaused) {
-                GlobalUI.PauseMenu.OpenMenu(true);
+            if (IsPaused)
+            {
                 LogManager.I.LogInfo(InfoEvent.AppSuspend);
             }
 
             //app is resuming
-            if (!appIsPaused) {
+            if (!IsPaused) {
                 LogManager.I.LogInfo(InfoEvent.AppResume);
             }
-            AudioManager.I.OnAppPause(appIsPaused);
+            AudioManager.I.OnAppPause(IsPaused);
         }
-
-        void OnApplicationFocus(bool hasFocus)
-        {
-            appIsPaused = !hasFocus;
-        }
-
         #endregion
     }
 }
