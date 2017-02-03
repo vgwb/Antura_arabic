@@ -3,7 +3,6 @@ using Kore.Coroutines;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -144,7 +143,7 @@ namespace EA4S.Assessment
 
             // Generate placeholders
             foreach (var correct in currentPack.GetCorrectAnswers())
-                GeneratePlaceHolder( question);
+                GeneratePlaceHolder( question, AssessmentOptions.Instance.AnswerType);
 
             return question;
         }
@@ -159,6 +158,10 @@ namespace EA4S.Assessment
                 data = new LL_ImageData( data.Id);
 
             var q = LivingLetterFactory.Instance.SpawnQuestion( data);
+
+            if (AssessmentOptions.Instance.QuestionAnsweredFlip)
+                q.GetComponent< StillLetterBox>().HideHiddenQuestion();
+
             return new DefaultQuestion( q, correctCount, dialogues);
         }
 
@@ -168,11 +171,10 @@ namespace EA4S.Assessment
             LivingLetterFactory.Instance.SpawnAnswer( wrongAnswer, false, dialogues);
         }
 
-        private void GeneratePlaceHolder( IQuestion question)
+        private void GeneratePlaceHolder( IQuestion question, LivingLetterDataType dataType)
         {
-            var placeholder = LivingLetterFactory.Instance.SpawnCustomElement( CustomElement.Placeholder).transform;
-            placeholder.localPosition = new Vector3( 0, 5, 0);
-            placeholder.localScale = Vector3.zero;
+            var placeholder = LivingLetterFactory.Instance.SpawnPlaceholder( dataType);
+            placeholder.InstaShrink();
             question.TrackPlaceholder( placeholder.gameObject);
         }
 

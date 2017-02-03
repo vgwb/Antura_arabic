@@ -1,4 +1,3 @@
-using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ namespace EA4S.Assessment
         public static SortingTicket AddTicket( this Answer answ, int ticketN)
         {
             var comp = answ.gameObject.AddComponent< SortingTicket>();
-            comp.data = answ.gameObject.GetComponent< LetterObjectView>().Data;
+            comp.data = answ.gameObject.GetComponent< StillLetterBox>().Data;
             comp.number = ticketN;
             return comp;
         }

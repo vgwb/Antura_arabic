@@ -1,7 +1,7 @@
-using System;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Teacher;
+using System;
 
 namespace EA4S.Assessment
 {
