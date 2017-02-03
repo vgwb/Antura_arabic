@@ -47,7 +47,6 @@ namespace EA4S.Profile
         public float Musicality;
         public float Sight;
 
-        // refactor: should we move this to the DB app?
         public string MoodLastVisit;
 
         public JourneyPosition MaxJourneyPosition = new JourneyPosition(1, 1, 1);
@@ -109,6 +108,22 @@ namespace EA4S.Profile
             return Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + AvatarId);
         }
 
+        /// <summary>
+        /// True if player already answered to mood question for today.
+        /// </summary>
+        /// <value>
+        ///   True if player already answered to mood question for today.
+        /// </value>
+        public bool MoodAlreadyAnswered {
+            get {
+                int secondAmount = AppManager.I.Teacher.logAI.SecondsFromLastMoodLog();
+                if (secondAmount > 86400)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
         #endregion
 
         #region journey position        
@@ -135,7 +150,7 @@ namespace EA4S.Profile
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
         public void SetCurrentJourneyPosition(JourneyPosition _journeyPosition, bool _save = true)
         {
-            AppManager.I.Player.CurrentJourneyPosition = _journeyPosition;
+            CurrentJourneyPosition = _journeyPosition;
             if (_save)
                 Save();
 
@@ -149,9 +164,9 @@ namespace EA4S.Profile
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
         public void SetMaxJourneyPosition(JourneyPosition newJourneyPosition, bool _save = true)
         {
-            if (AppManager.I.Player.MaxJourneyPosition.IsMinor(newJourneyPosition)) {
-                AppManager.I.Player.MaxJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
-                AppManager.I.Player.CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
+            if (MaxJourneyPosition.IsMinor(newJourneyPosition)) {
+                MaxJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
+                CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
                 if (_save) {
                     Save();
                 }
@@ -163,8 +178,8 @@ namespace EA4S.Profile
         /// </summary>
         public void ResetMaxJourneyPosition(bool _save = true)
         {
-            AppManager.I.Player.MaxJourneyPosition = new JourneyPosition(1, 1, 1);
-            AppManager.I.Player.CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
+            MaxJourneyPosition = new JourneyPosition(1, 1, 1);
+            CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
             if (_save) {
                 Save();
             }
@@ -339,5 +354,7 @@ namespace EA4S.Profile
             return this;
         }
         #endregion
+
+        
     }
 }
