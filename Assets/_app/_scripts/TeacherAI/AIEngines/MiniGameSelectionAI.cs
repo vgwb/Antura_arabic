@@ -106,7 +106,7 @@ namespace EA4S.Teacher
             List<float> weights_list = new List<float>(minigame_data_list.Count);
 
             // Retrieve the current score data (state) for each minigame (from the dynamic DB)
-            var minigame_score_list = dbManager.FindDataByQuery<MinigameScoreData>("SELECT * FROM " + typeof(MinigameScoreData));
+            var minigame_score_list = dbManager.FindDataByQuery<MinigameScoreData>("SELECT * FROM " + typeof(MinigameScoreData).Name);
 
             //UnityEngine.Debug.Log("M GAME SCORE LIST: " + minigame_score_list.Count);
             //foreach(var l in minigame_score_list) UnityEngine.Debug.Log(l.ElementId);

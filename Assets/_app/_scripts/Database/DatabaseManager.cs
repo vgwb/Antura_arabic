@@ -117,7 +117,7 @@ namespace EA4S.Database
         public PlayerProfileData GetPlayerProfileData()
         {
             var data = dynamicDb.FindPlayerProfileDataById(PlayerProfileData.UNIQUE_ID);
-            Debug.LogError("get -> " + data.ToString());
+            if (data != null) Debug.LogError("get -> " + data.ToString());
             return data;
         }
 
