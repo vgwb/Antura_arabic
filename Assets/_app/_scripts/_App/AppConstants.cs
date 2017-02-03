@@ -21,9 +21,6 @@
         public const float minimumStage = 1;
         public const float maximumStage = 6;
 
-        public const float minimumMiniGameScore = -1;
-        public const float maximumMiniGameScore = 1;
-
         public const int minimumMoodValue = 1;
         public const int maximumMoodValue = 5;
 

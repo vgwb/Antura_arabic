@@ -49,11 +49,34 @@ namespace EA4S.Teacher
             }
             else
             {
-                float minigameScore = minigame_scoreData_list[0].Score;
-                playerPerformance = minigameScore;
+                // We use a custom logic to define the difficulty:
+                // - start from performance = 0
+                // - get last N scores for the minigame
+                // - a score of 0 diminishes the performance
+                // - a score of 1 does not change it 
+                // - a score of 2 or 3 increases it
+
+                // TODO: query on last X minigame logged scores
+                List<int> scores = new List<int>() {1,0,2,2,0,1,3};
+
+                // Diminish to create the wegiths [-1, 0, 1, 2]
+                for (var i = 0; i < scores.Count; i++)
+                    scores[i] -= 1;
+
+                // Compute the performance for these minigames starting from zero and adding values
+                const float scorePointsContribution = 0.3f;
+                playerPerformance = 0f;
+                for (var i = 0; i < scores.Count; i++)
+                {
+                    playerPerformance += scores[i] * scorePointsContribution;
+                }
+                playerPerformance = Mathf.Clamp01(playerPerformance);
+
+                //int minigameScore = minigame_scoreData_list[0].Score;
+                //playerPerformance = minigameScore;
             }
 
-            float performanceDifficulty = Mathf.Clamp01(Mathf.InverseLerp(AppConstants.minimumMiniGameScore, AppConstants.maximumMiniGameScore, playerPerformance));
+            float performanceDifficulty = playerPerformance;
             float weightedPerformanceDifficulty = performanceDifficulty * performanceWeightContribution / totalWeight;
 
             // Total
