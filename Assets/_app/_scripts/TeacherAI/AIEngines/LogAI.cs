@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using EA4S.Core;
 using EA4S.Database;
+using EA4S.Helpers;
 
 namespace EA4S.Teacher
 {
@@ -26,6 +28,15 @@ namespace EA4S.Teacher
             float realMood = Mathf.InverseLerp(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue, mood);
             var data = new LogMoodData(realMood);
             db.Insert(data);
+        }
+
+        public int SecondsFromLastMoodLog()
+        {
+            string query = string.Format("SELECT * FROM " + typeof(LogMoodData).Name);
+            var logMoodData = db.FindDataByQuery<LogMoodData>(query).LastOrDefault();
+            if (logMoodData != null) Debug.Log(GenericHelper.GetTimeSpanBetween(logMoodData.Timestamp, GenericHelper.GetTimestampForNow()));
+            if (logMoodData != null) return (int)GenericHelper.GetTimeSpanBetween(logMoodData.Timestamp, GenericHelper.GetTimestampForNow()).TotalSeconds;
+            return int.MaxValue;
         }
 
         #endregion
@@ -171,7 +182,7 @@ namespace EA4S.Teacher
 
         private void UpdateMinigameScoreDataWithMaximum(string elementId, float playTime, int newScore)
         {
-            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData) + " WHERE ElementId = '{0}'", elementId);
+            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name + " WHERE ElementId = '{0}'", elementId);
             var scoreDataList = db.FindDataByQuery<MinigameScoreData>(query);
             int previousMaxScore = 0;
             float previousTotalPlayTime = 0;
@@ -187,7 +198,7 @@ namespace EA4S.Teacher
 
         private void UpdateJourneyScoreDataWithMaximum(JourneyDataType dataType, string elementId, int newScore)
         {
-            string query = string.Format("SELECT * FROM JourneyScoreData WHERE JourneyDataType = '{0}' AND ElementId = '{1}'", (int)dataType, elementId);
+            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '{0}' AND ElementId = '{1}'", (int)dataType, elementId);
             List<JourneyScoreData> scoreDataList = db.FindDataByQuery<JourneyScoreData>(query);
             int previousMaxScore = 0;
             if (scoreDataList.Count > 0) {
@@ -199,7 +210,7 @@ namespace EA4S.Teacher
 
         private void UpdateVocabularyScoreDataWithMovingAverage(VocabularyDataType dataType, string elementId, float newScore, int movingAverageSpan)
         {
-            string query = string.Format("SELECT * FROM VocabularyScoreData WHERE VocabularyDataType = '{0}' AND ElementId = '{1}'", (int)dataType, elementId);
+            string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name +  " WHERE VocabularyDataType = '{0}' AND ElementId = '{1}'", (int)dataType, elementId);
             List<VocabularyScoreData> scoreDataList = db.FindDataByQuery<VocabularyScoreData>(query);
             float previousAverageScore = 0;
             if (scoreDataList.Count > 0) {

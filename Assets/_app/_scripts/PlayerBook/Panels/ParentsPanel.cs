@@ -63,7 +63,7 @@ namespace EA4S.PlayerBook
 
         void GoResetEverything()
         {
-            AppManager.I.ResetEverything();
+            AppManager.I.PlayerProfileManager.ResetEverything();
         }
 
         public void OnExportData()

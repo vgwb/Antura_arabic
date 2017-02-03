@@ -65,8 +65,10 @@ public partial class SROptions
     public void ResetAll()
     {
         // refactor: move to DebugManager
-        AppManager.I.ResetEverything();
+        AppManager.I.PlayerProfileManager.ResetEverything();
         SRDebug.Instance.HideDebugPanel();
+        AppManager.I.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.NavigationManager.GetSceneName(AppScene.Home));
+        UnityEngine.Debug.Log("Reset ALL players and DB.");
     }
 
     [Category("Options")]
@@ -459,12 +461,7 @@ public partial class SROptions
     [Sort(2)]
     public void DeleteAllProfiles()
     {
-        // refactor: move to DebugManager
-        PlayerPrefs.DeleteAll();
-        AppManager.I.GameSettings.AvailablePlayers = new List<string>();
-        AppManager.I.PlayerProfileManager.SaveGameSettings();
-        SRDebug.Instance.HideDebugPanel();
-        AppManager.I.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.NavigationManager.GetSceneName(AppScene.Home));
+        ResetAll();
     }
 
     [Category("Max Journey Position")]

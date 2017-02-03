@@ -128,7 +128,7 @@ namespace EA4S.UI
                 else {
                     bt.gameObject.SetActive(true);
                     bt.SetAvatar(int.Parse(AppManager.I.GameSettings.AvailablePlayers[i]));
-                    if (i == ProfileManager.CurrentPlayer.Id - 1) bt.Toggle(true, true);
+                    if (i == AppManager.I.Player.Id - 1) bt.Toggle(true, true);
                     else bt.Toggle(false);
                 }
             }
@@ -153,7 +153,7 @@ namespace EA4S.UI
             yield return null;
 
             BtPlay.gameObject.SetActive(true);
-            BtPlay.RectT.SetAnchoredPosX(GetAvatarButtonByPlayerId(ProfileManager.CurrentPlayer.Id).RectT.anchoredPosition.x);
+            BtPlay.RectT.SetAnchoredPosX(GetAvatarButtonByPlayerId(AppManager.I.Player.Id).RectT.anchoredPosition.x);
             btPlayTween.PlayForward();
         }
 
