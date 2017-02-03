@@ -80,12 +80,9 @@ namespace EA4S
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
 
+            DB = new DatabaseManager(GameSettings.UseTestDatabase);
             // refactor: standardize initialisation of managers
             LogManager = new LogManager();
-
-            
-
-            DB = new DatabaseManager(GameSettings.UseTestDatabase);
             VocabularyHelper = new VocabularyHelper(DB);
             Teacher = new TeacherAI(DB, VocabularyHelper);
             GameLauncher = new MiniGameLauncher(Teacher);
@@ -98,6 +95,8 @@ namespace EA4S
             RewardSystemManager.Init();
 
             GameSettings.HighQualityGfx = false;
+
+            
         }
 
         #endregion
