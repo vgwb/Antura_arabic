@@ -102,7 +102,7 @@ namespace EA4S.Assessment
         public void PlayLetterData( ILivingLetterData data)
         {
             AssessmentConfiguration.Instance.Context.GetAudioManager()
-                    .PlayLetterData(data);
+                    .PlayLetterData(data, true);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace EA4S.Assessment
         {
             var audioSource = 
             AssessmentConfiguration.Instance.Context.GetAudioManager()
-                    .PlayLetterData( data);
+                    .PlayLetterData( data, true);
 
             while (audioSource.IsPlaying)
                 yield return null;
