@@ -32,8 +32,8 @@ namespace EA4S.Teacher
 
         public int SecondsFromLastMoodLog()
         {
-            string query = string.Format("SELECT * FROM " + typeof(LogMoodData));
-            var logMoodData = db.FindDataByQuery<LogMoodData>(query).First();
+            string query = string.Format("SELECT * FROM " + typeof(LogMoodData).Name);
+            var logMoodData = db.FindDataByQuery<LogMoodData>(query).FirstOrDefault();
             if (logMoodData != null) return (int)GenericHelper.GetTimeSpanBetween(logMoodData.Timestamp, GenericHelper.GetTimestampForNow()).TotalSeconds;
             return int.MaxValue;
         }
@@ -181,7 +181,7 @@ namespace EA4S.Teacher
 
         private void UpdateMinigameScoreDataWithMaximum(string elementId, float playTime, int newScore)
         {
-            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData) + " WHERE ElementId = '{0}'", elementId);
+            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name + " WHERE ElementId = '{0}'", elementId);
             var scoreDataList = db.FindDataByQuery<MinigameScoreData>(query);
             int previousMaxScore = 0;
             float previousTotalPlayTime = 0;
@@ -197,7 +197,7 @@ namespace EA4S.Teacher
 
         private void UpdateJourneyScoreDataWithMaximum(JourneyDataType dataType, string elementId, int newScore)
         {
-            string query = string.Format("SELECT * FROM JourneyScoreData WHERE JourneyDataType = '{0}' AND ElementId = '{1}'", (int)dataType, elementId);
+            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '{0}' AND ElementId = '{1}'", (int)dataType, elementId);
             List<JourneyScoreData> scoreDataList = db.FindDataByQuery<JourneyScoreData>(query);
             int previousMaxScore = 0;
             if (scoreDataList.Count > 0) {
@@ -209,7 +209,7 @@ namespace EA4S.Teacher
 
         private void UpdateVocabularyScoreDataWithMovingAverage(VocabularyDataType dataType, string elementId, float newScore, int movingAverageSpan)
         {
-            string query = string.Format("SELECT * FROM VocabularyScoreData WHERE VocabularyDataType = '{0}' AND ElementId = '{1}'", (int)dataType, elementId);
+            string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name +  " WHERE VocabularyDataType = '{0}' AND ElementId = '{1}'", (int)dataType, elementId);
             List<VocabularyScoreData> scoreDataList = db.FindDataByQuery<VocabularyScoreData>(query);
             float previousAverageScore = 0;
             if (scoreDataList.Count > 0) {
