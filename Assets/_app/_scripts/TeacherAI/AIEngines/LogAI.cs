@@ -152,6 +152,9 @@ namespace EA4S.Teacher
         public void LogMiniGameScore(string session, string playSession, MiniGameCode miniGameCode, float totalPlayTime, int score)
         {
             if (AppConstants.VerboseLogging) Debug.Log("LogMiniGameScore " + miniGameCode + " / " + score);
+
+            JourneyPosition pos = new JourneyPosition();
+
             UpdateMinigameScoreDataWithMaximum(miniGameCode.ToString(), totalPlayTime, score);
 
             // We also log play skills related to that minigame, as read from MiniGameData
