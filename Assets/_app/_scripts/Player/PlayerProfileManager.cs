@@ -235,6 +235,26 @@ namespace EA4S.Profile
         {
             return AppManager.I.GameSettings.AvailablePlayers[_playerId - 1];
         }
+
+        /// <summary>
+        /// Resets the everything.
+        /// </summary>
+        public void ResetEverything() {
+            // Reset all the Databases
+            foreach (var playerId in AppManager.I.Modules.PlayerProfile.Options.AvailablePlayers) {
+                UnityEngine.Debug.Log(playerId);
+                AppManager.I.DB.LoadDatabaseForPlayer(int.Parse(playerId));
+                AppManager.I.DB.DropProfile();
+            }
+            AppManager.I.DB = null;
+
+            // Reset all profiles (from SRDebugOptions)
+            UnityEngine.PlayerPrefs.DeleteAll();
+            AppManager.I.GameSettings.AvailablePlayers = new System.Collections.Generic.List<string>();
+            AppManager.I.PlayerProfileManager.SaveGameSettings();
+
+        }
+
         #endregion
 
         #region events

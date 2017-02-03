@@ -139,25 +139,7 @@ namespace EA4S
             Debug.Log("Reset current player: " + playerId);
         }
 
-        public void ResetEverything()
-        {
-            // Reset all the Databases
-            foreach (var playerId in AppManager.I.Modules.PlayerProfile.Options.AvailablePlayers) {
-                Debug.Log(playerId);
-                DB.LoadDatabaseForPlayer(int.Parse(playerId));
-                DB.DropProfile();
-            }
-            DB = null;
 
-            // Reset all profiles (from SRDebugOptions)
-            PlayerPrefs.DeleteAll();
-            AppManager.I.GameSettings.AvailablePlayers = new System.Collections.Generic.List<string>();
-            AppManager.I.PlayerProfileManager.SaveGameSettings();
-            SRDebug.Instance.HideDebugPanel();
-            AppManager.I.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.NavigationManager.GetSceneName(AppScene.Home));
-
-            Debug.Log("Reset ALL players.");
-        }
         #endregion
 
         #region Pause
