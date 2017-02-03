@@ -229,7 +229,7 @@ namespace EA4S.Minigames.Egg
             {
                 if (isSequence)
                 {
-                    game.eggButtonBox.GetEggButton(letterData).SetOnPressedColor();
+                    game.eggButtonBox.GetEggButton(letterData).SetPressed();
                     PositiveFeedback();
                     game.Context.GetLogManager().OnAnswered(letterData, true);
                 }
@@ -251,6 +251,9 @@ namespace EA4S.Minigames.Egg
             }
             else
             {
+                if (isSequence && game.eggButtonBox.GetEggButton(letterData).IsPressed())
+                    return;
+
                 game.eggButtonBox.SetButtonsOnStandardColor(game.eggButtonBox.GetEggButton(letterData));
 
                 if (showTutorial)
@@ -376,7 +379,8 @@ namespace EA4S.Minigames.Egg
             DisableAllGameplayInput();
             game.stagePositiveResult = false;
             toNextState = true;
-            game.eggButtonBox.SetButtonsOnStandardColor();
+            //game.eggButtonBox.SetButtonsOnStandardColor();
+            game.eggButtonBox.DisableButtonsInput();
         }
 
         void OnEggCrackComplete()
@@ -403,7 +407,7 @@ namespace EA4S.Minigames.Egg
             }
             else
             {
-                game.eggButtonBox.GetEggButton(game.CurrentQuestion.Letters[0]).SetOnPressedColor();
+                //game.eggButtonBox.GetEggButton(game.CurrentQuestion.Letters[0]).SetPressed();
             }
 
             game.eggController.ParticleWinDisabled();

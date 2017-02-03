@@ -79,8 +79,10 @@ namespace EA4S.Minigames.Egg
             currentStage = 0;
             correctStages = 0;
 
+            bool isSingleVariation = EggConfiguration.Instance.Variation == EggConfiguration.EggVariation.Single;
+
             eggController.Initialize(letterObjectPrefab, shadowPrefab, eggBox.GetEggLocalPositions(), eggBox.GetLocalLettersMaxPositions(), EggConfiguration.Instance.Context.GetAudioManager());
-            eggButtonBox.Initialize(eggButtonPrefab, context.GetAudioManager());
+            eggButtonBox.Initialize(eggButtonPrefab, context.GetAudioManager(), isSingleVariation ? 30 : 20, isSingleVariation);
             runLettersBox.Initialize(letterObjectPrefab, shadowPrefab);
             antura.Initialize(anturaPrefab);
         }
