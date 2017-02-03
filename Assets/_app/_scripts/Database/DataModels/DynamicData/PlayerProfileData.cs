@@ -29,13 +29,14 @@ namespace EA4S.Database
         public int CurrentJourneyPosition_Stage { get; set; }
         public int CurrentJourneyPosition_LearningBlock { get; set; }
         public int CurrentJourneyPosition_PlaySession { get; set; }
+        public string CurrentAnturaCustomization { get; set; }
         
 
         public PlayerProfileData()
         {
         }
 
-        public PlayerProfileData(string _PlayerKey, int _PlayerId, int _AvatarId, int _Age, string _Name, int _TotalNumberOfBones, int _ProfileCompletion)
+        public PlayerProfileData(string _PlayerKey, int _PlayerId, int _AvatarId, int _Age, string _Name, int _TotalNumberOfBones, int _ProfileCompletion, string _AnturaCustomization = null)
         {
             Id = UNIQUE_ID;  // Only one record
             PlayerKey = _PlayerKey;
@@ -48,6 +49,7 @@ namespace EA4S.Database
             SetMaxJourneyPosition(JourneyPosition.InitialJourneyPosition);
             SetCurrentJourneyPosition(JourneyPosition.InitialJourneyPosition);
             CreationTimestamp = GenericHelper.GetTimestampForNow();
+            CurrentAnturaCustomization = _AnturaCustomization;
         }
 
         #region Journey Position
