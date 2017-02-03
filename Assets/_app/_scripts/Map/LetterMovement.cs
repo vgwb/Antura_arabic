@@ -53,13 +53,13 @@ namespace EA4S.Map
 
         void FixedUpdate()
         {
-           /* Debug.Log(AppManager.I.Player.CurrentJourneyPosition.Stage);
+            Debug.Log(AppManager.I.Player.CurrentJourneyPosition.Stage);
             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.LearningBlock);
             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.PlaySession);
 
             Debug.Log("Max"+AppManager.I.Player.MaxJourneyPosition.Stage);
             Debug.Log("MaxLB"+AppManager.I.Player.MaxJourneyPosition.LearningBlock);
-            Debug.Log("MaxPS"+AppManager.I.Player.MaxJourneyPosition.PlaySession);     */
+            Debug.Log("MaxPS"+AppManager.I.Player.MaxJourneyPosition.PlaySession);     
 
             if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
