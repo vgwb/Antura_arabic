@@ -107,7 +107,7 @@ namespace EA4S.Core
                     if (NavData.CurrentPlayer.IsFirstContact()) {
                         GoToScene(AppScene.Intro);
                     } else {
-                        if (NavData.CurrentPlayer.MoodLastVisit == System.DateTime.Today.ToString()) {
+                        if (NavData.CurrentPlayer.MoodAlreadyAnswered) {
                             GoToScene(AppScene.Map);
                         } else {
                             GoToScene(AppScene.Mood);

@@ -47,7 +47,6 @@ namespace EA4S.Profile
         public float Musicality;
         public float Sight;
 
-        // refactor: should we move this to the DB app?
         public string MoodLastVisit;
 
         public JourneyPosition MaxJourneyPosition = new JourneyPosition(1, 1, 1);
@@ -107,6 +106,22 @@ namespace EA4S.Profile
         public Sprite GetAvatar()
         {
             return Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + AvatarId);
+        }
+
+        /// <summary>
+        /// True if player already answered to mood question for today.
+        /// </summary>
+        /// <value>
+        ///   True if player already answered to mood question for today.
+        /// </value>
+        public bool MoodAlreadyAnswered {
+            get {
+                int secondAmount = AppManager.I.Teacher.logAI.SecondsFromLastMoodLog();
+                if (secondAmount > 86400)
+                    return false;
+                else
+                    return true;
+            }
         }
 
         #endregion
@@ -339,5 +354,7 @@ namespace EA4S.Profile
             return this;
         }
         #endregion
+
+        
     }
 }

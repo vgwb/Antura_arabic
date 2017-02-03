@@ -29,6 +29,7 @@ namespace EA4S.Database
         public int CurrentJourneyPosition_Stage { get; set; }
         public int CurrentJourneyPosition_LearningBlock { get; set; }
         public int CurrentJourneyPosition_PlaySession { get; set; }
+        
 
         public PlayerProfileData()
         {
