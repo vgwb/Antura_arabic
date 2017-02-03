@@ -69,12 +69,16 @@ namespace EA4S.Minigames.ReadingGame
             {
                 game.barSet.PlaySong(game.Context.GetAudioManager().PlaySound(game.alphabetSongAudio), OnSongEnded);
             }
+            else if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.DiacriticSong)
+            {
+                game.barSet.PlaySong(game.Context.GetAudioManager().PlaySound(game.diacriticSongAudio), OnSongEnded);
+            }
 
             completedDragging = false;
 
             if (firstRealRun)
             {
-                bool isSong = (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong);
+                bool isSong = (ReadingGameConfiguration.Instance.Variation != ReadingGameVariation.ReadAndAnswer);
 
                 if (!TutorialMode)
                 {

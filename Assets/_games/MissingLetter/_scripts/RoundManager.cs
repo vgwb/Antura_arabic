@@ -14,6 +14,8 @@ namespace EA4S.Minigames.MissingLetter
 
     public class RoundManager
     {
+        [HideInInspector]
+        public int m_iCurrentRound { get; private set; }
 
         #region API
         public IQuestionPack CurrentQuestion
@@ -24,6 +26,7 @@ namespace EA4S.Minigames.MissingLetter
         public RoundManager(MissingLetterGame _game)
         {
             m_oGame = _game;
+            m_iCurrentRound = -1;
         }
 
         public void Initialize()
@@ -56,6 +59,14 @@ namespace EA4S.Minigames.MissingLetter
 
         public void NewRound()
         {
+            m_iCurrentRound++;
+
+            if (m_iCurrentRound >= m_oGame.m_iRoundsLimit)
+            {
+                m_oGame.SetCurrentState(m_oGame.ResultState);
+                return;
+            }
+
             m_oGame.SetInIdle(false);
             ExitCurrentScene();
 
@@ -77,7 +88,7 @@ namespace EA4S.Minigames.MissingLetter
 
         public void Terminate()
         {
-            if (m_oGame.m_iCurrentRound < m_oGame.m_iRoundsLimit)
+            if (m_iCurrentRound < m_oGame.m_iRoundsLimit)
                 ExitCurrentScene();
         }
 
@@ -88,6 +99,9 @@ namespace EA4S.Minigames.MissingLetter
 
         public void OnAnswerClicked(string _key)
         {
+            if (m_oGame.GetCurrentState() != m_oGame.PlayState && m_oGame.GetCurrentState() != m_oGame.TutorialState)
+                return;
+
             m_oGame.SetInIdle(false);
 
             //refresh the data (for graphics)
@@ -107,7 +121,7 @@ namespace EA4S.Minigames.MissingLetter
 
                 PlayParticleSystem(m_aoCurrentQuestionScene[0].transform.position + Vector3.up * 2);
 
-                m_oGame.StartCoroutine(Utils.LaunchDelay(0.5f, OnResponse, true));
+               OnResponse(true);
             }
             else
             {
@@ -409,6 +423,7 @@ namespace EA4S.Minigames.MissingLetter
 
             if (onAnswered != null)
             {
+                m_oGame.OnResult(correct);
                 m_oGame.StartCoroutine(Utils.LaunchDelay(2.0f, onAnswered, correct));
             }
         }

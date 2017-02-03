@@ -133,6 +133,13 @@ public partial class SROptions
     }
 
     [Category("Minigames")]
+    [Sort(10)]
+    public void DiacriticSong()
+    {
+        LaunchMinigame(MiniGameCode.AlphabetSong_letters);
+    }
+
+    [Category("Minigames")]
     [Sort(11)]
     public void BalloonsLetter()
     {

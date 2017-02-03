@@ -22,11 +22,13 @@ namespace EA4S.MinigamesCommon
         /// <param name="isPositiveResult"></param>
         void OnAnswered(ILivingLetterData data, bool isPositiveResult);
 
+        /* OnGameplaySkillAction is now called by LogAI and not by minigames
         /// <summary>
         /// Called when players perform a [gameplay skill action] action during gameplay.
         /// </summary>
         /// <param name="ability">The ability.</param>
         /// <param name="score">The score (0 to 1).</param>
         void OnGameplaySkillAction(PlaySkill ability, float score);
+        */
     }
 }
