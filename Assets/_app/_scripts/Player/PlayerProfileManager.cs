@@ -90,7 +90,6 @@ namespace EA4S.Profile
         /// Reloads the game settings (AppSettings) from PlayerPrefs.
         /// </summary>
         public void ReloadGameSettings() {
-            AppSettings settings = AppManager.I.GameSettings;
             AppManager.I.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
             AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
             int lastActivePlayerId = AppManager.I.GameSettings.LastActivePlayerId;
