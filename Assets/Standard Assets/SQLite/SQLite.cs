@@ -1297,6 +1297,7 @@ namespace SQLite
                 return 0;
             }
 
+            UnityEngine.Debug.Log(obj.ToString() + " " + extra + " " + objType);
 
             var map = GetMapping(objType);
 
