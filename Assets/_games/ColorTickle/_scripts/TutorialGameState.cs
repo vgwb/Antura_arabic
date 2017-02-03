@@ -48,6 +48,8 @@ namespace EA4S.Minigames.ColorTickle
 
         public void Update(float delta)
         {
+            bool stillWaitForInput = !(m_HitStateLLController != null && m_HitStateLLController.hitState == eHitState.HIT_LETTEROUTSIDE) && (m_TMPTextColoringLetter != null && m_TMPTextColoringLetter.IsTouching);
+
             CalcPercentageLetterColored();
 
             if (m_bLLVanishing) //if the LL is about to vanish
@@ -76,7 +78,7 @@ namespace EA4S.Minigames.ColorTickle
                     game.SetCurrentState(game.PlayState);
                 }
             }
-            else if (m_PercentageLetterColored >= 100) //else check for letter completed
+            else if (m_PercentageLetterColored >= 100 && !stillWaitForInput) //else check for letter completed
             {
 				game.tutorialUIManager.StartTutorial = false;
 

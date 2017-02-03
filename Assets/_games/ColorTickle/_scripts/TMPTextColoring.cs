@@ -87,6 +87,8 @@ namespace EA4S.Minigames.ColorTickle
             get { return m_iPercentageRequiredToWin; }
             set { m_iPercentageRequiredToWin = value; }
         }
+
+        public bool IsTouching { get; private set; }
         #endregion
 
         #region INTERNALS
@@ -143,7 +145,8 @@ namespace EA4S.Minigames.ColorTickle
 
         void Update()
         {
-            
+            IsTouching = false;
+
             if (Input.GetMouseButton(0)) //On touch 
             {
 
@@ -152,7 +155,8 @@ namespace EA4S.Minigames.ColorTickle
                 //check for ray collision
                 if (m_oLetterMeshCollider.Raycast(_mouseRay, out m_oRayHit, Mathf.Infinity)) //Populate hit data on the letter texture
                 {
-                    
+                    IsTouching = true;
+
                     //Now we find out which color we hitted to check if we are inside the letter outline
                     //To do this we must combine the letter uvs from the main texture (the outer rect) with the uvs of the dynamic texture(a sub rect) (NOT NEEDED ANYMORE, NOW WE USE A SEPARATED TEXTURE FOR CHECK)
                     //Vector2 fullUV = TextureUtilities.CombineSubUV(m_oRayHit.textureCoord, m_aUVLetterInMainTexture[0], m_aUVLetterInMainTexture[1].y - m_aUVLetterInMainTexture[0].y, m_aUVLetterInMainTexture[2].x - m_aUVLetterInMainTexture[1].x);
