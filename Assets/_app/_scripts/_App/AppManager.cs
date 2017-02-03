@@ -35,8 +35,6 @@ namespace EA4S
         public LogManager LogManager;
         public NavigationManager NavigationManager;
         
-        bool appIsPaused = false;
-
         public bool IsPaused { get; private set; }
 
         private PlayerProfileManager _playerProfileManager;
