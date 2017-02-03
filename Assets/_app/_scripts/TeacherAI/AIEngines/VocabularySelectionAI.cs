@@ -323,7 +323,7 @@ namespace EA4S.Teacher
                 debugString += " \tRecent: " + recentPlayWeight * ConfigAI.data_recentPlayWeight + "(" + recentPlayWeight + ")";
 
                 // Current focus weight [1,0]: higher if the data is part of the current play session
-                float currentPlaySessionWeight = currentPlaySessionContents.Contains(sourceData) ? 1 : 0f;
+                float currentPlaySessionWeight = 1f;// @todo: readd: currentPlaySessionContents.Contains(sourceData) ? 1 : 0f;
                 cumulativeWeight += currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight;
                 debugString += " \tCurrentPS: " + currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight + "(" + currentPlaySessionWeight + ")";
 
