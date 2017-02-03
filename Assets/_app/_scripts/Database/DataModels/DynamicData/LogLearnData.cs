@@ -1,5 +1,4 @@
 ﻿using EA4S.Helpers;
-using EA4S.Utilities;
 using SQLite;
 
 namespace EA4S.Database
@@ -13,12 +12,12 @@ namespace EA4S.Database
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string Session { get; set; } // DailySession Id
+        public string AppSession { get; set; } 
         public int Timestamp { get; set; }
 
         public string PlaySession { get; set; }
         public MiniGameCode MiniGame { get; set; }
-        public string TableName { get; set; } // word, letter, phrases (see DbTables enum)
+        public VocabularyDataType VocabularyDataType { get; set; }
         public string ElementId { get; set; }
         public float Score { get; set; } // -1.0 (bad)... 1.0 (perfect)
 
@@ -26,12 +25,12 @@ namespace EA4S.Database
         {
         }
 
-        public LogLearnData(string _Session, string _PlaySession, MiniGameCode _MiniGame, VocabularyDataType _dataType, string _elementId, float _score)
+        public LogLearnData(string _AppSession, string _PlaySession, MiniGameCode _MiniGame, VocabularyDataType _dataType, string _elementId, float _score)
         {
-            Session = _Session;
+            AppSession = _AppSession;
             PlaySession = _PlaySession;
             MiniGame = _MiniGame;
-            TableName = _dataType.ToString();   //  TODO: instead of TableName we should use VocabularyDataType 
+            VocabularyDataType = _dataType;
             ElementId = _elementId;
             Score = _score;
             Timestamp = GenericHelper.GetTimestampForNow();
@@ -44,12 +43,12 @@ namespace EA4S.Database
 
         public override string ToString()
         {
-            return string.Format("S{0},T{1},PS{2},MG{3},T{4},E{5},S{6}",
-                Session,
+            return string.Format("S{0},T{1},PS{2},MG{3},VDT{4},E{5},S{6}",
+                AppSession,
                 Timestamp,
                 PlaySession,
                 MiniGame,
-                TableName,
+                VocabularyDataType,
                 ElementId,
                 Score
                 );
