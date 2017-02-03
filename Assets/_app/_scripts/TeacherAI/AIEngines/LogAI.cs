@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using EA4S.Core;
 using EA4S.Database;
+using EA4S.Helpers;
 
 namespace EA4S.Teacher
 {
@@ -26,6 +28,14 @@ namespace EA4S.Teacher
             float realMood = Mathf.InverseLerp(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue, mood);
             var data = new LogMoodData(realMood);
             db.Insert(data);
+        }
+
+        public int SecondsFromLastMoodLog()
+        {
+            string query = string.Format("SELECT * FROM " + typeof(LogMoodData));
+            var logMoodData = db.FindDataByQuery<LogMoodData>(query).First();
+            if (logMoodData != null) return (int)GenericHelper.GetTimeSpanBetween(logMoodData.Timestamp, GenericHelper.GetTimestampForNow()).TotalSeconds;
+            return int.MaxValue;
         }
 
         #endregion
