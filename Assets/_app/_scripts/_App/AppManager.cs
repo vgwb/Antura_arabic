@@ -144,7 +144,7 @@ namespace EA4S
             // Reset all the Databases
             foreach (var playerId in AppManager.I.Modules.PlayerProfile.Options.AvailablePlayers) {
                 Debug.Log(playerId);
-                DB.LoadDynamicDbForPlayerProfile(int.Parse(playerId));
+                DB.LoadDatabaseForPlayer(int.Parse(playerId));
                 DB.DropProfile();
             }
             DB = null;

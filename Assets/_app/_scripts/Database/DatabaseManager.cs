@@ -78,7 +78,7 @@ namespace EA4S.Database
 
         #region Profile
 
-        public void LoadDynamicDbForPlayerProfile(int profileId)
+        private void LoadDynamicDbForPlayerProfile(int profileId)
         {
             dynamicDb = new DBService("EA4S_Database" + "_" + profileId + ".sqlite3", profileId);
         }
