@@ -74,6 +74,8 @@ namespace EA4S.Assessment
         {
             OnGoDestroyed = null;
             SetScale(1f);
+            var v = transform.localPosition;
+            transform.localPosition = new Vector3(v.x, v.y, 5);
         }
 
         private int index = -1;

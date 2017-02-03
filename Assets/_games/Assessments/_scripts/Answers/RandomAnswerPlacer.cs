@@ -1,10 +1,9 @@
 using DG.Tweening;
-using EA4S.LivingLetters;
+using EA4S.MinigamesCommon;
 using Kore.Coroutines;
 using ModularFramework.Helpers;
 using System.Collections;
 using System.Collections.Generic;
-using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -77,8 +76,8 @@ namespace EA4S.Assessment
         {
             var go = answer.gameObject;
             go.transform.localPosition = positions.Pull();
-            go.transform.DOScale(1, 0.4f);
-            go.GetComponent< LetterObjectView>().Poof( ElementsSize.PoofOffset);
+            go.GetComponent< StillLetterBox>().Poof();
+            go.GetComponent< StillLetterBox>().Magnify();
             audioManager.PlaySound( Sfx.Poof);
 
             yield return Wait.For( Random.Range( 0.07f, 0.13f));
@@ -97,8 +96,8 @@ namespace EA4S.Assessment
         {
             audioManager.PlaySound( Sfx.Poof);
 
-            answ.GetComponent< LetterObjectView>().Poof( ElementsSize.PoofOffset);
-            answ.transform.DOScale(0, 0.3f).OnComplete( () => GameObject.Destroy( answ));
+            answ.GetComponent< StillLetterBox>().Poof();
+            answ.transform.DOScale( 0, 0.3f).OnComplete( () => GameObject.Destroy( answ));
 
             yield return Wait.For( 0.1f);
         }

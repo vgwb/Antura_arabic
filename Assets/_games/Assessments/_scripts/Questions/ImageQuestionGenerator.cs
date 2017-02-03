@@ -1,5 +1,4 @@
 using EA4S.Helpers;
-using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using Kore.Coroutines;
 using System;
@@ -41,17 +40,17 @@ namespace EA4S.Assessment
 
         private IEnumerator ShowFullWordCoroutine()
         {
-            cacheFullWordDataLL.Poof( ElementsSize.PoofOffset);
-            cacheFullWordDataLL.Initialize( cacheFullWordData);
+            cacheFullWordDataLL.Poof();
+            cacheFullWordDataLL.Init( cacheFullWordData, false);
             yield return Wait.For( AssessmentOptions.Instance.TimeToShowCompleteWord);
         }
 
         string cacheCompleteWord = null;
-        LetterObjectView cacheCompleteWordLL = null;
+        StillLetterBox cacheCompleteWordLL = null;
 
         private IEnumerator CompleteWordCoroutine()
         {
-            cacheCompleteWordLL.Poof( ElementsSize.PoofOffset);
+            cacheCompleteWordLL.Poof();
             cacheCompleteWordLL.Label.text = cacheCompleteWord;
             yield return Wait.For( AssessmentOptions.Instance.TimeToShowCompleteWord);
         }
@@ -120,6 +119,7 @@ namespace EA4S.Assessment
 
             List< Answer> answers = new List< Answer>();
             ILivingLetterData questionData = currentPack.GetQuestion();
+            LivingLetterDataType cacheLivingLetterType = LivingLetterDataType.Letter;
 
             //____________________________________
             //Prepare answers for next method call
@@ -130,6 +130,7 @@ namespace EA4S.Assessment
                 // ### MISSING LETTER ###
                 foreach (var wrong in currentPack.GetWrongAnswers())
                 {
+                    cacheLivingLetterType = wrong.DataType;
                     var wrongAnsw = GenerateWrongAnswer( wrong);
 
                     answers.Add( wrongAnsw);
@@ -137,6 +138,8 @@ namespace EA4S.Assessment
                 }
 
                 var correct = currentPack.GetCorrectAnswers().ToList()[ 0];
+                cacheLivingLetterType = correct.DataType;
+
                 var correctAnsw = GenerateCorrectAnswer( correct);
 
                 answers.Add( correctAnsw);
@@ -147,7 +150,7 @@ namespace EA4S.Assessment
                 // Generate the question
                 var question = GenerateMissingLetterQuestion( questionData, correct);
                 totalQuestions.Add( question);
-                GeneratePlaceHolder( question);
+                GeneratePlaceHolder( question, cacheLivingLetterType);
                 return question;
             }
             else
@@ -163,15 +166,15 @@ namespace EA4S.Assessment
                 partialAnswers = answers.ToArray();
 
                 // Generate the question
-                var question = GenerateQuestion(questionData);
-                totalQuestions.Add(question);
+                var question = GenerateQuestion( questionData);
+                totalQuestions.Add( question);
 
                 return question;
             }
         }
 
         private LL_WordData cacheFullWordData;
-        private LetterObjectView cacheFullWordDataLL;
+        private StillLetterBox cacheFullWordDataLL;
 
         private IQuestion GenerateQuestion( ILivingLetterData data)
         {
@@ -199,6 +202,8 @@ namespace EA4S.Assessment
 
             //Spawn word, then replace text with text with missing letter
             var wordGO = LivingLetterFactory.Instance.SpawnQuestion( word);
+            wordGO.InstaShrink();
+
             wordGO.Label.text = text;
             cacheCompleteWordLL = wordGO;
 
@@ -215,12 +220,11 @@ namespace EA4S.Assessment
             LivingLetterFactory.Instance.SpawnAnswer( wrongAnswer, false, dialogues);
         }
 
-        private void GeneratePlaceHolder( IQuestion question)
+        private void GeneratePlaceHolder( IQuestion question, LivingLetterDataType dataType)
         {
-            var placeholder = LivingLetterFactory.Instance.SpawnCustomElement( CustomElement.Placeholder).transform;
-            placeholder.localPosition = new Vector3( 0, 5, 0);
-            placeholder.localScale = Vector3.zero;
-            question.TrackPlaceholder( placeholder.gameObject);
+            var placeholder = LivingLetterFactory.Instance.SpawnPlaceholder( dataType);
+            placeholder.InstaShrink();
+            question.TrackPlaceholder(placeholder.gameObject);
         }
 
         private Answer GenerateCorrectAnswer( ILivingLetterData correctAnswer)

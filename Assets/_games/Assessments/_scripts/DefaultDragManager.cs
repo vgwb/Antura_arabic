@@ -1,6 +1,6 @@
+using EA4S.MinigamesCommon;
 using System;
 using System.Collections.Generic;
-using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -144,7 +144,7 @@ namespace EA4S.Assessment
             if (droppable != null)
             {
                 var pos = Camera.main.ScreenToWorldPoint( Input.mousePosition);
-                pos.z = 5;
+                pos.z = 4;
                 droppable.GetTransform().localPosition = pos;
             }
         }

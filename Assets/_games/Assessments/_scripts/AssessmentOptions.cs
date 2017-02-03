@@ -47,5 +47,6 @@ namespace EA4S.Assessment
         public bool WideLL { get; set; }
 
         public float TimeToShowCompleteWord = 3.3f;
+        public LivingLetterDataType AnswerType { get; set; }
     }
 }

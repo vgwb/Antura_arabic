@@ -10,7 +10,7 @@ namespace EA4S.Assessment
     /// </summary>
     public class AssessmentGame : MiniGame
     {
-        [Header("Configuration")]
+        [HideInInspector]
         public AssessmentCode assessmentCode;
 
         public AssessmentIntroState IntroState { get; private set; }
