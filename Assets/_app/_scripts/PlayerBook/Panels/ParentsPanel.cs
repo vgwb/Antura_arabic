@@ -112,7 +112,7 @@ namespace EA4S.PlayerBook
             GlobalUI.I.BackButton.gameObject.SetActive(false);
 
             var logAi = AppManager.I.Teacher.logAI;
-            var fakeAppSession = LogManager.I.Session;
+            var fakeAppSession = LogManager.I.AppSession;
 
             if (cheatMode) {
                 // Enable cheat mode
