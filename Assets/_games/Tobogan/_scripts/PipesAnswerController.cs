@@ -17,7 +17,8 @@ namespace EA4S.Minigames.Tobogan
 
         List<PipeAnswer> toHide = new List<PipeAnswer>();
 
-        float maxLetterDistance = 4.5f;
+        float maxLetterDistanceX = 3.0f;
+        float maxLetterDistanceY = 3.5f;
 
         public void SetSignHidingProbability(float hidingProbability)
         {
@@ -177,7 +178,8 @@ namespace EA4S.Minigames.Tobogan
 
         void UpdateCurrentPipeAnswer()
         {
-            if (game.questionsManager.GetQuestionLivingLetter() == null)
+            var currentLivingLetter = game.questionsManager.GetQuestionLivingLetter();
+            if (currentLivingLetter == null)
             {
                 currentPipeAnswer = null;
                 return;
@@ -185,27 +187,38 @@ namespace EA4S.Minigames.Tobogan
 
             PipeAnswer newPipeAnswer = null;
 
-            Vector3 letterPosition = game.questionsManager.GetQuestionLivingLetter().letter.contentTransform.position;
+            Vector3? letterPosition = currentLivingLetter.TargetContentDragPosition;
 
-            float pipeDistance = float.PositiveInfinity;
+            if (!letterPosition.HasValue)
+            {
+                currentPipeAnswer = null;
+                currentLivingLetter.NearTube = null;
+                return;
+            }
+
+            float pipeDistanceX = float.PositiveInfinity;
+            float pipeDistanceY = float.PositiveInfinity;
 
             for (int i = 0; i < pipeAnswers.Length; i++)
             {
                 if (pipeAnswers[i].active)
                 {
                     Vector3 pipePosition = pipeAnswers[i].tutorialPoint.position;
-                    float newPipeDistance = Vector3.Distance(pipePosition, letterPosition);
+                    float newPipeDistance = Mathf.Abs(pipePosition.x - letterPosition.Value.x);
 
-                    if (newPipeDistance < pipeDistance)
+                    if (newPipeDistance < pipeDistanceX)
                     {
                         newPipeAnswer = pipeAnswers[i];
-                        pipeDistance = newPipeDistance;
+                        pipeDistanceX = newPipeDistance;
+                        pipeDistanceY = Mathf.Abs(pipePosition.y - letterPosition.Value.y);
                     }
                 }
             }
 
-            if (pipeDistance > maxLetterDistance)
+            if (pipeDistanceX > maxLetterDistanceX || pipeDistanceY > maxLetterDistanceY)
             {
+                currentLivingLetter.NearTube = null;
+
                 if (currentPipeAnswer != null)
                 {
                     currentPipeAnswer.StopSelectedAnimation();
@@ -219,6 +232,8 @@ namespace EA4S.Minigames.Tobogan
                     currentPipeAnswer.StopSelectedAnimation();
                     currentPipeAnswer = null;
                 }
+                
+                currentLivingLetter.NearTube = currentPipeAnswer;
 
                 if (currentPipeAnswer == null)
                 {

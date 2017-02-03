@@ -71,6 +71,8 @@ namespace EA4S.Minigames.ColorTickle
             }
             else
             {
+                bool stillWaitForInput = !(m_HitStateLLController != null && m_HitStateLLController.hitState == eHitState.HIT_LETTEROUTSIDE) && (m_TMPTextColoringLetter != null && m_TMPTextColoringLetter.IsTouching);
+
                 CalcPercentageLetterColored();
 
                 if(m_bLLVanishing) //if the LL is about to vanish
@@ -109,7 +111,7 @@ namespace EA4S.Minigames.ColorTickle
                         }
                     }
                 }
-                else if (m_PercentageLetterColored >= 100 || m_Lives <=0) //else check for letter completed
+                else if ((m_PercentageLetterColored >= 100 && !stillWaitForInput) || m_Lives <=0) //else check for letter completed
                 {
                     game.anturaController.ForceAnturaToGoBack();//we completed the letter, antura turn back
                     m_bLLVanishing = true; //LL is about to disappear

@@ -21,7 +21,7 @@ namespace EA4S.Database
         public string Main;
         public string Variation;
         public string Scene;
-        public List<PlaySkill> AffectedPlaySkills;
+        public List<WeightedPlaySkill> AffectedPlaySkills;
 
         public string GetId()
         {
