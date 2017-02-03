@@ -627,8 +627,6 @@ namespace EA4S.Minigames.Maze
             antura.SetActive(true);
             antura.GetComponent<MazeAntura>().SetAnturaTime(true, currentCharacter.transform.position);
 
-            int randIndex = UnityEngine.Random.Range(0, fleePositions.Count);
-            //currentCharacter.fleeTo(fleePositions[randIndex]);
             currentCharacter.Flee();
         }
 

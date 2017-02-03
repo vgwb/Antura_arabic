@@ -96,7 +96,8 @@ namespace EA4S.Map
             {
                 if (ropes[i].GetComponent<Rope>().learningBlockRope == l)
                 {
-                    for(int j=0;j<p;j++)
+                    if (p == 100) p = ropes[i].GetComponent<Rope>().dots.Count;
+                    for (int j=0;j<p;j++)
                     {
                         ropes[i].GetComponent<Rope>().dots[j].SetActive(true);
                         positionPinMax = ropes[i].GetComponent<Rope>().dots[j].GetComponent<Dot>().pos;
@@ -110,7 +111,6 @@ namespace EA4S.Map
                     }
                 }
             }
-
             CalculatePin_RopeAvailable();
         }
         void CalculatePin_RopeAvailable()
@@ -130,8 +130,9 @@ namespace EA4S.Map
             else
             {
                 int l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
-
-                for (int i = 1; i < l; i++)
+                int p = AppManager.I.Player.MaxJourneyPosition.PlaySession;
+                if (p == 100) positionPinMax = pines[l].GetComponent<MapPin>().pos;
+                for (int i = 1; i <= l; i++)
                 {
                     pines[i].tag = "Pin";
                     pines[i].GetComponent<MapPin>().unlocked = true;
