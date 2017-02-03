@@ -62,6 +62,7 @@ namespace EA4S.Database
             GenerateTable<LogMoodData>(create, drop);
             GenerateTable<LogPlayData>(create, drop);
             GenerateTable<VocabularyScoreData>(create, drop);
+            GenerateTable<MinigameScoreData>(create, drop);
             GenerateTable<JourneyScoreData>(create, drop);
             GenerateTable<RewardPackUnlockData>(create, drop);
         }
