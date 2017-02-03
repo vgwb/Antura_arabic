@@ -3,18 +3,11 @@ using SQLite;
 
 namespace EA4S.Database
 {
-    public enum JourneyDataType
-    {
-        Stage,
-        LearningBlock,
-        PlaySession
-    }
-
     /// <summary>
-    /// Score (in stars) relative to a journey element or a minigame. Updated at runtime.
+    /// Saved data on achievements related to a minigame. Updated at runtime.
     /// </summary>
     [System.Serializable]
-    public class JourneyScoreData : IData, IScoreData
+    public class MinigameScoreData : IData, IScoreData
     {
         public float GetScore()
         {
@@ -23,26 +16,24 @@ namespace EA4S.Database
 
         [PrimaryKey]
         public string Id { get; set; } 
-
-        public JourneyDataType JourneyDataType { get; set; } 
         public string ElementId { get; set; }
 
         public int Score { get; set; }  // [0,3]
+        public float TotalPlayTime { get; set; } 
         public int LastAccessTimestamp { get; set; }
 
-        public JourneyScoreData()
-        {
-
-        }
-        public JourneyScoreData(string elementId, JourneyDataType dataType, int score) : this(elementId, dataType, score, GenericHelper.GetTimestampForNow())
+        public MinigameScoreData()
         {
         }
-        public JourneyScoreData(string elementId, JourneyDataType dataType, int score, int timestamp)
+        public MinigameScoreData(string elementId, int score, float totalPlayTime) : this(elementId, score, totalPlayTime, GenericHelper.GetTimestampForNow())
+        {
+        }
+        public MinigameScoreData(string elementId, int score, float totalPlayTime, int timestamp)
         {
             ElementId = elementId;
-            JourneyDataType = dataType;
-            Id = JourneyDataType + "." + ElementId;
+            Id = ElementId;
             Score = score;
+            TotalPlayTime = totalPlayTime;
             LastAccessTimestamp = timestamp;
         }
 
@@ -53,10 +44,10 @@ namespace EA4S.Database
 
         public override string ToString()
         {
-            return string.Format("T{0},E{1},S{2},T{3}",
-                JourneyDataType,
+            return string.Format("E{0},S{1},T{2},TS{3}",
                 ElementId,
                 Score,
+                TotalPlayTime,
                 LastAccessTimestamp
                 );
         }

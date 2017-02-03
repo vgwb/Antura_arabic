@@ -192,7 +192,7 @@ namespace EA4S.Minigames.MissingLetter
                 m_oLetterLightInstance = Instantiate(m_oLetterLightRef);
             }
             m_oLetterLightInstance.transform.parent = transform;
-            m_oLetterLightInstance.transform.position = transform.position;
+            m_oLetterLightInstance.transform.position = transform.position + Vector3.up*0.1f;
             m_oLetterLightInstance.SetActive(true);
         }
 

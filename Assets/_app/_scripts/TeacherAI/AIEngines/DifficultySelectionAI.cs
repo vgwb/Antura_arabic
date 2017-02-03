@@ -48,8 +48,8 @@ namespace EA4S.Teacher
 
             // Performance
             float playerPerformance;
-            string query = string.Format("SELECT * FROM JourneyScoreData WHERE JourneyDataType = '{0}' AND ElementId = '{0}'", (int)JourneyDataType.Minigame, (int)miniGameCode);
-            List<JourneyScoreData> minigame_scoreData_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
+            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData) + " AND ElementId = '{0}'",  (int)miniGameCode);
+            List<MinigameScoreData> minigame_scoreData_list = dbManager.FindDataByQuery<MinigameScoreData>(query);
             if (minigame_scoreData_list.Count == 0) {
                 playerPerformance = ConfigAI.startingDifficultyForNewMiniGame;
             } else {

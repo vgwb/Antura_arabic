@@ -437,6 +437,13 @@ namespace EA4S.Database
             dynamicDb.InsertOrReplace(data);
         }
 
+        public void UpdateMinigameScoreData(string elementId, float totalPlayTime, int score, int timestamp = -1)
+        {
+            MinigameScoreData data = null;
+            if (timestamp > 0) data = new MinigameScoreData(elementId, score, totalPlayTime, timestamp);
+            else data = new MinigameScoreData(elementId, score, totalPlayTime);
+            dynamicDb.InsertOrReplace(data);
+        }
         #endregion
 
         #region Reward Unlock

@@ -235,6 +235,7 @@ namespace EA4S.Database.Management
 
             for (int i = 0; i < RND.Range(20, 30); i++) TestInsertVocabularyScoreData();
             for (int i = 0; i < RND.Range(20, 30); i++) TestInsertJourneyScoreData();
+            for (int i = 0; i < RND.Range(20, 30); i++) TestInsertMinigameScoreData();
 
         }
 
@@ -359,10 +360,6 @@ namespace EA4S.Database.Management
             string rndId = "";
             switch (journeyDataType)
             {
-                case JourneyDataType.Minigame:
-                    rndId = RandomHelper.GetRandom(dbManager.GetAllMiniGameData()).GetId();
-                    break;
-
                 case JourneyDataType.PlaySession:
                     rndId = RandomHelper.GetRandom(dbManager.GetAllPlaySessionData()).GetId();
                     break;
@@ -382,6 +379,18 @@ namespace EA4S.Database.Management
             dbManager.UpdateJourneyScoreData(journeyDataType, rndId, score, lastAccessTimestamp);
 
             PrintOutput("Inserted (or replaced) journey score data " + lastAccessTimestamp);
+        }
+
+        /// <summary>
+        /// Randomly insert minigame score values
+        /// </summary>
+        public void TestInsertMinigameScoreData()
+        {
+            string rndId = RandomHelper.GetRandom(dbManager.GetAllMiniGameData()).GetId();
+            var lastAccessTimestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
+            var score = RND.Range(0, 4);
+            dbManager.UpdateMinigameScoreData(rndId, RND.Range(1,100f), score, lastAccessTimestamp);
+            PrintOutput("Inserted (or replaced) minigame score data " + lastAccessTimestamp);
         }
 
         #endregion

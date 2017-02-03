@@ -99,8 +99,13 @@ namespace EA4S.Minigames.Maze
 
         int currentFruitIndex;
 
+#pragma warning disable 0219
+#pragma warning disable 0414
         private bool startCheckingForCollision = false;
         private bool donotHandleBorderCollision = false;
+#pragma warning restore 0414
+#pragma warning restore 0219
+
         public bool isFleeing = false;
 
         public bool isAppearing = false;
