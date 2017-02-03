@@ -62,16 +62,7 @@ namespace EA4S.Profile
         #endregion
 
         #region internal functions
-        void reloadGameSettings()
-        {
-            AppManager.I.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
-            AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
-            int lastActivePlayerId = AppManager.I.GameSettings.LastActivePlayerId;
-            if (lastActivePlayerId > 0)
-                CurrentPlayer = LoadPlayerProfileById(AppManager.I.GameSettings.LastActivePlayerId);
-            // TODO : Refactor Reward System
-            //reloadAvailablePlayerProfilesList();
-        }
+        
 
         // TODO : Refactor Reward System
         //void reloadAvailablePlayerProfilesList() {
@@ -92,7 +83,21 @@ namespace EA4S.Profile
         /// </summary>
         public PlayerProfileManager()
         {
-            reloadGameSettings();
+            // ReloadGameSettings();
+        }
+
+        /// <summary>
+        /// Reloads the game settings (AppSettings) from PlayerPrefs.
+        /// </summary>
+        public void ReloadGameSettings() {
+            AppSettings settings = AppManager.I.GameSettings;
+            AppManager.I.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
+            AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
+            int lastActivePlayerId = AppManager.I.GameSettings.LastActivePlayerId;
+            if (lastActivePlayerId > 0)
+                CurrentPlayer = LoadPlayerProfileById(AppManager.I.GameSettings.LastActivePlayerId);
+            // TODO : Refactor Reward System
+            //reloadAvailablePlayerProfilesList();
         }
 
         /// <summary>

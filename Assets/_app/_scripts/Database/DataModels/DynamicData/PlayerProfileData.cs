@@ -86,7 +86,7 @@ namespace EA4S.Database
 
         public override string ToString()
         {
-            return string.Format("ID{0},P{1},Ts{2}, MaxJ({3}.{4}.{5}), CurrentJ({6}.{7}.{8})",
+            return string.Format("ID{0},P{1},Ts{2}, MaxJ({3}.{4}.{5}), CurrentJ({6}.{7}.{8}), ProfCompl{9},",
                 Id,
                 PlayerId,
                 CreationTimestamp,
@@ -97,7 +97,9 @@ namespace EA4S.Database
 
                 CurrentJourneyPosition_Stage,
                 CurrentJourneyPosition_LearningBlock,
-                CurrentJourneyPosition_PlaySession
+                CurrentJourneyPosition_PlaySession,
+
+                ProfileCompletion
             );
         }
 
