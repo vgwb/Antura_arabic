@@ -57,14 +57,17 @@ namespace EA4S.Database
             // @note: define the DB structure here
             GenerateTable<DatabaseInfoData>(create, drop);
             GenerateTable<PlayerProfileData>(create, drop);
-            GenerateTable<LogInfoData>(create, drop);
-            GenerateTable<LogLearnData>(create, drop);
-            GenerateTable<LogMoodData>(create, drop);
-            GenerateTable<LogPlayData>(create, drop);
             GenerateTable<VocabularyScoreData>(create, drop);
             GenerateTable<MinigameScoreData>(create, drop);
             GenerateTable<JourneyScoreData>(create, drop);
             GenerateTable<RewardPackUnlockData>(create, drop);
+
+            GenerateTable<LogInfoData>(create, drop);
+            GenerateTable<LogLearnData>(create, drop);
+            GenerateTable<LogMoodData>(create, drop);
+            GenerateTable<LogPlayData>(create, drop);
+            GenerateTable<LogMinigameScoreData>(create, drop);
+            GenerateTable<LogPlaySessionScoreData>(create, drop);
         }
 
         private void GenerateTable<T>(bool create, bool drop)
