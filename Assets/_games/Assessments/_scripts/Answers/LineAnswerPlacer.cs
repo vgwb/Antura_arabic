@@ -1,6 +1,5 @@
 using DG.DeExtensions;
 using DG.Tweening;
-using EA4S.LivingLetters;
 using EA4S.MinigamesCommon;
 using Kore.Coroutines;
 using System.Collections;
@@ -100,7 +99,7 @@ namespace EA4S.Assessment
 
             foreach (var a in allAnswers)
             {
-                yield return Koroutine.Nested(PlaceAnswer(a, currentPos));
+                yield return Koroutine.Nested( PlaceAnswer( a, currentPos));
                 currentPos.x += spaceIncrement * sign;
             }
 
@@ -113,7 +112,7 @@ namespace EA4S.Assessment
             var go = a.gameObject;
             go.transform.localPosition = currentPos;
             go.transform.DOScale( 1, 0.4f);
-            go.GetComponent< LetterObjectView>().Poof( ElementsSize.PoofOffset);
+            go.GetComponent< StillLetterBox>().Poof();
             audioManager.PlaySound( Sfx.Poof);
 
             yield return Wait.For( Random.Range( 0.07f, 0.13f));
@@ -138,8 +137,8 @@ namespace EA4S.Assessment
         {
             audioManager.PlaySound( Sfx.Poof);
 
-            answ.GetComponent<LetterObjectView>().Poof(ElementsSize.PoofOffset);
-            answ.transform.DOScale(0, 0.3f).OnComplete(() => GameObject.Destroy(answ));
+            answ.GetComponent< StillLetterBox>().Poof();
+            answ.transform.DOScale( 0, 0.3f).OnComplete(() => GameObject.Destroy( answ));
 
             yield return Wait.For( 0.1f);
         }
