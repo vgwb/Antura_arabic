@@ -9,6 +9,7 @@ using EA4S.Debugging;
 using EA4S.Profile;
 using EA4S.Rewards;
 using EA4S.Teacher;
+using EA4S.UI;
 using EA4S.MinigamesAPI;
 using PlayerProfile = EA4S.Profile.PlayerProfile;
 
@@ -34,7 +35,8 @@ namespace EA4S
         public LogManager LogManager;
         public PlayerProfileManager PlayerProfileManager;
         public NavigationManager NavigationManager;
-        bool appIsPaused = false;
+
+        public bool IsPaused { get; private set; }
 
         #region Initialisation
 
@@ -148,25 +150,20 @@ namespace EA4S
 
         void OnApplicationPause(bool pauseStatus)
         {
-            appIsPaused = pauseStatus;
+            IsPaused = pauseStatus;
 
             // app is pausing
-            if (appIsPaused) {
+            if (IsPaused)
+            {
                 LogManager.I.LogInfo(InfoEvent.AppSuspend);
             }
 
             //app is resuming
-            if (!appIsPaused) {
+            if (!IsPaused) {
                 LogManager.I.LogInfo(InfoEvent.AppResume);
             }
-            AudioManager.I.OnAppPause(appIsPaused);
+            AudioManager.I.OnAppPause(IsPaused);
         }
-
-        void OnApplicationFocus(bool hasFocus)
-        {
-            appIsPaused = !hasFocus;
-        }
-
         #endregion
     }
 }

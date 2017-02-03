@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EA4S.Database
 {
@@ -20,6 +21,7 @@ namespace EA4S.Database
         public string Main;
         public string Variation;
         public string Scene;
+        public List<WeightedPlaySkill> AffectedPlaySkills;
 
         public string GetId()
         {
@@ -46,4 +48,18 @@ namespace EA4S.Database
             return "Images/GameIcons/minigame_BadgeIco_" + Variation;
         }
     }
+
+    [Serializable]
+    public struct WeightedPlaySkill
+    {
+        public PlaySkill Skill;
+        public float Weight;
+
+        public WeightedPlaySkill(PlaySkill skill, float weight)
+        {
+            Skill = skill;
+            Weight = weight;
+        }
+    }
+
 }

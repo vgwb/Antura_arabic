@@ -48,7 +48,7 @@ namespace EA4S.Minigames.Egg
         void EggEnter()
         {
             game.Context.GetAudioManager().PlaySound(Sfx.TickAndWin);
-            game.eggController.MoveNext(2f, OnEggEnterComplete);
+            game.eggController.MoveNext(1.3f, OnEggEnterComplete);
         }
 
         void OnEggEnterComplete()
