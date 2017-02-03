@@ -1,4 +1,3 @@
-using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using UnityEngine;
 
@@ -11,13 +10,13 @@ namespace EA4S.Assessment
     /// </summary>
     public class Answer: MonoBehaviour
     {
-        private LetterObjectView view;
+        private ILivingLetterData data;
         private AssessmentDialogues dialogues;
         private bool isCorrect;
 
-        public Answer Init( bool correct, AssessmentDialogues dialogues)
+        public Answer Init( bool correct, AssessmentDialogues dialogues, ILivingLetterData data)
         {
-            view = GetComponent< LetterObjectView>();
+            this.data = data;
             isCorrect = correct;
             this.dialogues = dialogues;
             return this;
@@ -67,7 +66,7 @@ namespace EA4S.Assessment
         /// </summary>
         public ILivingLetterData Data()
         {
-            return view.Data;
+            return data;
         }
 
         /// <summary>

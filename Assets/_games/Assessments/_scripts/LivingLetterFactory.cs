@@ -1,4 +1,3 @@
-using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using System;
 using UnityEngine;
@@ -8,7 +7,7 @@ namespace EA4S.Assessment
     public class LivingLetterFactory: MonoBehaviour
     {
         [Header( "Prefabs")]
-        public GameObject LivingLetterPrefab = null;
+        public GameObject StillLetterBox = null;
         public GameObject DropZonePrefab = null;
 
         [Header( "Folders")]
@@ -18,47 +17,47 @@ namespace EA4S.Assessment
 
         private int counter = 0;
 
-        public LetterObjectView SpawnQuestion( ILivingLetterData data)
+        public StillLetterBox SpawnQuestion( ILivingLetterData data)
         {
-            // Organize LLs in inspector (just aestetical change)
-            var go = SpawnLivingLetter( data);
-            go.transform.SetParent( Questions.transform);
-            return go;
+            // Organize LLs in inspector's hierarchy view
+            var letter = SpawnStillLetter( Questions);
+            letter.Init( data, false);
+
+            return letter;
         }
 
         public Answer SpawnAnswer( ILivingLetterData data, bool correct, AssessmentDialogues dialogues)
         {
-            // Organize LLs in inspector (just aestetical change)
-            var ll = SpawnLivingLetter( data);
-            ll.transform.SetParent( Answers.transform);
+            // Organize LLs in inspector's hierarchy view
+            var letter = SpawnStillLetter( Answers);
 
             // Link LL to answer
-            var answ = ll.gameObject.AddComponent< Answer>();
-            answ.Init( correct, dialogues);
+            var answ = letter.gameObject.AddComponent< Answer>();
+            letter.Init( data, true);
+            answ.Init( correct, dialogues, data);
             return answ;
         }
 
-        private LetterObjectView SpawnLivingLetter( ILivingLetterData data)
+        public StillLetterBox SpawnPlaceholder( LivingLetterDataType type)
         {
-            counter++;
-            var letter = (Instantiate( LivingLetterPrefab) as GameObject)
-                    .GetComponent< LetterObjectView>();
-
-            letter.gameObject.name= "instance_" + counter;
-            letter.Initialize( data);
-            letter.gameObject.SetActive( true);            
-            letter.transform.localScale = Vector3.zero;          
-            letter.SetState( LLAnimationStates.LL_limbless);
-            
+            // Organize LLs in inspector's hierarchy view
+            var letter = SpawnStillLetter( Placeholders);
+            letter.InitAsSlot( type);
+            letter.gameObject.AddComponent< PlaceholderBehaviour>();
             return letter;
         }
 
-        // LL are not centered on Glyph center, but on legs, but we do not have legs so..
-        private void FixShiftInLetter( GameObject go)
+        private StillLetterBox SpawnStillLetter( GameObject parent_Folder)
         {
-            // Now Fixed as new Prefab in scene
-            var child = go.transform.GetChild( 0);
-            child.localPosition = new Vector3( 0, -3.5f, 0);
+            counter++;
+            var letter = (Instantiate( StillLetterBox) as GameObject)
+                    .GetComponent< StillLetterBox>();
+
+            letter.gameObject.name= "instance_" + counter;
+            letter.InstaShrink();
+            letter.transform.SetParent( parent_Folder.transform);
+            
+            return letter;
         }
 
         void Awake()
@@ -89,7 +88,7 @@ namespace EA4S.Assessment
 
         private GameObject SpawnPlaceHolder()
         {
-            return ( Instantiate(DropZonePrefab) as GameObject);    
+            return ( Instantiate( DropZonePrefab) as GameObject);    
         }
     }
 }

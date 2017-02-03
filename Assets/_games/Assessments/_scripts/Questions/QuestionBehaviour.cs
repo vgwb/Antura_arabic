@@ -1,5 +1,3 @@
-using DG.Tweening;
-using EA4S.LivingLetters;
 using System;
 using UnityEngine;
 
@@ -14,23 +12,17 @@ namespace EA4S.Assessment
 
         public void ReadMeSound()
         {
-            dialogues.PlayLetterData( GetComponent< LetterObjectView>().Data);
-        }
-
-        public void FaceDownInstant()
-        {
-            Debug.Log("FaceDown");
-            transform.rotation = Quaternion.Euler( new Vector3(0, 0, 0));
+            dialogues.PlayLetterData( GetComponent< StillLetterBox>().Data);
         }
 
         bool triggered = false;
         public void TurnFaceUp()
-        {
+        {   
             if (triggered)
                 return;
 
             triggered = true;
-            transform.DORotate( new Vector3( 0, 180, 0), 1);
+            GetComponent< StillLetterBox>().RevealHiddenQuestion();
         }
 
         AssessmentDialogues dialogues;
@@ -54,8 +46,8 @@ namespace EA4S.Assessment
 
         void OnMouseDown()
         {
-            if( AssessmentOptions.Instance.PronunceQuestionWhenClicked)
-                dialogues.PlayLetterData( GetComponent< LetterObjectView>().Data);
+            if (AssessmentOptions.Instance.PronunceQuestionWhenClicked)
+                ReadMeSound();
         }
 
         public IQuestionDecoration questionAnswered;

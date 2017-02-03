@@ -1,21 +1,20 @@
+using EA4S.MinigamesAPI;
 using System;
 using System.Collections.Generic;
-using EA4S.LivingLetters;
-using EA4S.MinigamesAPI;
 using UnityEngine;
 
 namespace EA4S.Assessment
 {
     public class ImageQuestion : IQuestion
     {
-        private LetterObjectView view;
+        private StillLetterBox view;
         private ILivingLetterData imageData;
 
-        public ImageQuestion( LetterObjectView wordGO, ILivingLetterData image, AssessmentDialogues dialogues)
+        public ImageQuestion( StillLetterBox wordGO, ILivingLetterData image, AssessmentDialogues dialogues)
         {
             imageData = image;
             view = wordGO;
-            placeholdersSet = new List<GameObject>();
+            placeholdersSet = new List< GameObject>();
 
             var question = wordGO.gameObject.AddComponent< QuestionBehaviour>();
             question.SetQuestion( this, dialogues);

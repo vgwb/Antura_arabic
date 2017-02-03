@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using EA4S.MinigamesAPI;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S.Assessment
