@@ -188,11 +188,21 @@ namespace EA4S.Minigames.Scanner
 
             if (wasScared)
             {
-                AudioManager.I.PlaySound(Sfx.Dog_Noize);
+                AudioManager.I.PlaySound(Sfx.DogBarking);
                 scaredCounter = 1;
             }
             yield return new WaitForSeconds(delay);
-            antura.transform.eulerAngles = Vector3.up * 270;
+            
+            //anturaAnimator.Play("dog_turn180", 1);
+            if (wasScared)
+            {
+                antura.State = AnturaAnimationStates.bitingTail;
+                //anturaAnimator.SetBool("bitingTail", true);
+                yield return new WaitForSeconds(1f);
+            }
+            else
+                antura.transform.eulerAngles = Vector3.up * 270;
+
             antura.SetWalkingSpeed(1);
             antura.State = AnturaAnimationStates.walking;
 
