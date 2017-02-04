@@ -268,7 +268,7 @@ namespace EA4S.Minigames.TakeMeHome
 
         public override Vector3 GetGravity()
         {
-            return Vector3.up * (-40);
+            return Vector3.up * (-20);
         }
     }
 }
