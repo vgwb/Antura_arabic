@@ -127,7 +127,13 @@ namespace EA4S.Map
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = colliderRaycast.transform.gameObject.GetComponent<MapPin>().learningBlockPin;
             if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock < stageScript.numberLearningBlocks)
                 transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1].transform);
-            else transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].transform);
+            else
+            {
+                transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock-1].transform);
+                transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x,
+                    transform.rotation.eulerAngles.y + 180,
+                    transform.rotation.eulerAngles.z));
+            }
             UpdateCurrentJourneyPosition();
             AmIFirstorLastPos();
         }
@@ -165,7 +171,13 @@ namespace EA4S.Map
                 stageScript.positionPin = stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>().pos;
                 if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock < stageScript.ropes.Length)
                     transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1].transform);
-                else transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].transform);
+                else
+                {
+                    transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform);
+                    transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x,
+                            transform.rotation.eulerAngles.y + 180,
+                            transform.rotation.eulerAngles.z));
+                }
             } else  //Letter is on a dot
               {
                 MoveTo(stageScript.ropes[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
