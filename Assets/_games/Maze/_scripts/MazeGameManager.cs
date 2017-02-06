@@ -100,6 +100,8 @@ namespace EA4S.Minigames.Maze
         {
             base.Awake();
             instance = this;
+
+            Physics.IgnoreLayerCollision(10, 12);
         }
 
         public void ColorCurrentLinesAsIncorrect()
@@ -419,8 +421,6 @@ namespace EA4S.Minigames.Maze
                 index = UnityEngine.Random.Range(0, prefabs.Count);
             }
 
-            //index = 3;
-
             currentLL = ld;
             currentPrefab = (GameObject)Instantiate(prefabs[index]);
 
@@ -579,6 +579,9 @@ namespace EA4S.Minigames.Maze
             {
                 MinigamesUI.Starbar.GotoStar(numberOfStars - 1);
             }
+
+            // Reset physics collisions:
+            Physics.IgnoreLayerCollision(10, 12, false);
 
             EndGame(numberOfStars, correctLetters);
             //StartCoroutine(EndGame_Coroutine());

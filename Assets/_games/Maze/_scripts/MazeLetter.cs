@@ -8,7 +8,7 @@ namespace EA4S.Minigames.Maze
         public bool isDrawing;
         public float idleSeconds = 0;
         public float anturaSeconds;
-        
+
         void Start()
         {
             anturaSeconds = 0;
@@ -16,7 +16,7 @@ namespace EA4S.Minigames.Maze
             mazeCharacter.toggleVisibility(false);
             //character.gameObject.SetActive (false);
         }
-        
+
         void Update()
         {
             if (mazeCharacter.characterIsMoving)
@@ -42,7 +42,7 @@ namespace EA4S.Minigames.Maze
                     }
 
                 }
-                
+
                 if (MazeGameManager.instance.currentTutorial != null &&
                     MazeGameManager.instance.currentTutorial.isStopped == false &&
                     MazeGameManager.instance.currentTutorial.isShownOnce == true)
@@ -57,7 +57,7 @@ namespace EA4S.Minigames.Maze
                     }
                 }
             }
-            
+
             if (isDrawing)
             {
                 anturaSeconds = 0;
@@ -95,7 +95,8 @@ namespace EA4S.Minigames.Maze
         {
             if (CanLaunchRocket())
             {
-                LaunchRocket();
+                mazeCharacter.loseState = MazeCharacter.LoseState.OutOfBounds;
+
                 MazeGameManager.instance.ColorCurrentLinesAsIncorrect();
 
                 var lastPointerPosition = MazeGameManager.instance.GetLastPointerPosition();
@@ -105,7 +106,7 @@ namespace EA4S.Minigames.Maze
 
                 Tutorial.TutorialUI.MarkNo(pointOfImpact);
 
-                mazeCharacter.loseState = MazeCharacter.LoseState.OutOfBounds;
+                LaunchRocket();
             }
         }
 
