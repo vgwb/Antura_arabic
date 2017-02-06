@@ -164,7 +164,7 @@ namespace EA4S.Teacher
 
         #region Data Selection logic
 
-        public List<T> SelectData<T>(System.Func<List<T>> builderSelectionFunction, SelectionParameters selectionParams) where T : IData
+        public List<T> SelectData<T>(System.Func<List<T>> builderSelectionFunction, SelectionParameters selectionParams) where T : IVocabularyData
         {
             // skip if we require 0 values
             if (selectionParams.nRequired == 0 && !selectionParams.getMaxData) return new List<T>();
@@ -272,6 +272,9 @@ namespace EA4S.Teacher
             {
                 selectionParams.filteringIds.AddRange(selectedList.ConvertAll<string>(x => x.GetId()).ToArray());
             }
+
+            // Reorder the data to show based on intrinsic difficulty
+            selectedList.Sort((x, y) => (int)(x.GetIntrinsicDifficulty() - y.GetIntrinsicDifficulty()));
 
             return selectedList;
         }
