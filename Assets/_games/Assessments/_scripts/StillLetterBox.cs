@@ -19,7 +19,7 @@ namespace EA4S.Assessment
         /// </summary>
         public TMP_Text Label;
         public TextMeshPro Drawing;
-        public GameObject poofPrefab;
+        public ParticleSystem poofPrefab;
 
         public SpriteRenderer questionSprite;
         public SpriteRenderer answerSprite;
@@ -230,10 +230,13 @@ namespace EA4S.Assessment
 
         public void Poof()
         {
-            var puffGo = GameObject.Instantiate( poofPrefab);
-            puffGo.AddComponent< AutoDestroy>().duration = 2;
-            puffGo.SetActive( true);
-            puffGo.transform.localScale *= 0.75f;
+            var rotation = Quaternion.Euler( new Vector3( -90, 0, 0));
+            var puffGo = 
+                GameObject.Instantiate( poofPrefab, transform.position, rotation) 
+                    as ParticleSystem;
+
+            puffGo.gameObject.AddComponent< AutoDestroy>().duration = 2;
+            puffGo.gameObject.SetActive( true);
         }
     }
 }
