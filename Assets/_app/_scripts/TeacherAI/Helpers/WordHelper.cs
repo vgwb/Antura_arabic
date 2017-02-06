@@ -28,7 +28,7 @@ namespace EA4S.Database
             if (filters.excludeDiacritics_keepMain && data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)
                 && !mainDiacriticsIds.Contains(data.Symbol)) return false;
             if (filters.excludeLetterVariations && data.IsOfKindCategory(LetterKindCategory.LetterVariation)) return false;
-            if (filters.excludeDiphthongs && data.IsOfKindCategory(LetterKindCategory.Base) && data.Type == LetterDataType.LongVowel) return false;
+            if (filters.excludeDiphthongs && data.Kind == LetterDataKind.Diphthong) return false;
             if (data.IsOfKindCategory(LetterKindCategory.Symbol)) return false; // always skip symbols
             return true;
         }
