@@ -76,7 +76,7 @@ namespace EA4S.Assessment
 
         internal void Grabbed()
         {
-            Scale = 1.3f;
+            Scale = 1.1f;
         }
 
         internal void Dropped()
