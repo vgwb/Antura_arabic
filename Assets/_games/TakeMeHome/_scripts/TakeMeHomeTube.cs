@@ -9,6 +9,7 @@ namespace EA4S.Minigames.TakeMeHome
 		Tweener moveTweener;
 
 		Vector3 originalPosition;
+        public bool upperTube;
         public GameObject aspiration;
         public GameObject winParticles;
         public GameObject cubeInfo;
@@ -31,11 +32,13 @@ namespace EA4S.Minigames.TakeMeHome
         public void activate()
         {
             aspiration.SetActive(true);
+            shake();
         }
 
         public void deactivate()
         {
             aspiration.SetActive(false);
+            moveTweener = transform.DOMove(originalPosition, 0.5f);
         }
 		
 		// Update is called once per frame
@@ -52,7 +55,10 @@ namespace EA4S.Minigames.TakeMeHome
 			}
 
             TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Hit);
-			moveTweener = transform.DOShakePosition (0.5f, 0.2f, 1).OnComplete(delegate () { transform.position = originalPosition; });
-		}
+            if(upperTube)
+                moveTweener = transform.DOLocalMoveY(originalPosition.y - 0.25f, 0.35f);//transform.DOShakePosition(0.5f, 0.2f, 1).OnComplete(delegate () { transform.position = originalPosition; });
+            else
+                moveTweener = transform.DOLocalMoveY(originalPosition.y + 0.25f, 0.35f);
+        }
 	}
 }

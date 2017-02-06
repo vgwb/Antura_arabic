@@ -1,5 +1,8 @@
 using EA4S.Helpers;
 using EA4S.MinigamesAPI;
+using DG.Tweening;
+using EA4S.MinigamesCommon;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -17,20 +20,95 @@ namespace EA4S.Assessment
         public TMP_Text Label;
         public TextMeshPro Drawing;
         public GameObject poofPrefab;
-        public Transform scaleSprite;
 
         public SpriteRenderer questionSprite;
         public SpriteRenderer answerSprite;
+
+        ///################# ANIMATIONS #################
+        
+        // Local Tween
+        Tween tween = null;
+
+        /// <summary>
+        /// Flip the LetterBox updside down to reveal the letter
+        /// </summary>
+        internal void RevealHiddenQuestion()
+        {
+            KillTween();
+            answerSprite.enabled = true;
+
+            answerSprite.DOColor( new Color32( 61, 185, 30, 255), 0.5f);
+            questionSprite.DOFade( 0, 1);
+            Label.alpha = 0;
+            Label.DOFade( 1, 0.6f);
+        }
+
+
+        /// <summary>
+        /// Hides the letter
+        /// </summary>
+        internal void HideHiddenQuestion()
+        {
+            Label.alpha = 0;
+            answerSprite.color = new Color( 1, 1, 1, 0);
+            InstaShrink();
+        }
+
+        /// <summary>
+        /// Magnify animation.
+        /// </summary>
+        internal void Magnify()
+        {
+            TweenScale( 1);
+        }
+
+        internal void InstaShrink()
+        {
+            Scale = 0;
+        }
+
+        internal void Grabbed()
+        {
+            Scale = 1.3f;
+        }
+
+        internal void Dropped()
+        {
+            Scale = 1;
+        }
+
+        internal void TweenScale( float newScale)
+        {
+            KillTween();
+
+            tween =
+                DOTween.To( () => Scale, x => Scale = x, newScale, 0.4f);
+        }
+
+        private void KillTween()
+        {
+            if (tween != null)
+                tween.Kill( true);
+
+            tween = null;
+        }
+
+
+        ///############### IMPLEMENTATION ################
+
         public SpriteRenderer slotSprite;
 
         /// <summary>
         /// Gets the data.
         /// </summary>
-        ILivingLetterData data;
+        ILivingLetterData data = null; // NOT SET ALWAYS. DEBUGGIN
+        bool nullOnDemand = false;
         public ILivingLetterData Data
         {
             get
             {
+                if (data == null && ! nullOnDemand)
+                    throw new ArgumentNullException( "Null on demand: " + nullOnDemand);
                 return data;
             }
             private set
@@ -41,22 +119,22 @@ namespace EA4S.Assessment
             }
         }
 
-        private float Wideness
+
+        private float Wideness { get; set; }
+
+        private float Scale
         {
             get
             {
-                return scaleSprite.localScale.x;
+                return transform.localScale.x;
             }
             set
             {
-                scaleSprite.localScale = new Vector3( value, 1, 1);
-                GetComponent<BoxCollider>().size = new Vector3( 3 * value, 3, 1);
+                float effectiveScale = value * Wideness;
+                transform.localScale = new Vector3( effectiveScale, value, 1);
+                GetComponent< BoxCollider>().size =
+                    transform.localScale * 3;
             }
-        }
-
-        private void Start()
-        {
-            OnModelChanged();
         }
 
         /// <summary>
@@ -65,7 +143,7 @@ namespace EA4S.Assessment
         private void OnModelChanged()
         {
             DisableSlots();
-            if (Data == null)
+            if (data == null)
             {
                 Wideness = 1.0f;
                 Drawing.enabled = false;
@@ -97,25 +175,14 @@ namespace EA4S.Assessment
                     Label.enabled = true;
                     Label.text = Data.TextForLivingLetter;
 
-                    SetScale( data.DataType);
+                    SetWidness( data.DataType);
                 }
             }
         }
 
-        private void SetScale( LivingLetterDataType dataType)
+        private void SetWidness( LivingLetterDataType dataType)
         {
-            switch (dataType)
-            {
-                case LivingLetterDataType.Word:
-                    Wideness = 1.3f;
-                    break;
-                case LivingLetterDataType.Phrase:
-                    Wideness = 3.5f;
-                    break;
-                default:
-                    Wideness = 1f;
-                    break;
-            }
+            Wideness = ElementsSize.Get( dataType);
         }
 
         private void DisableSlots()
@@ -128,7 +195,6 @@ namespace EA4S.Assessment
         /// <summary>
         /// Return size of LL, usefull for determining layout offsets
         /// </summary>
-        /// <returns></returns>
         public float GetSize()
         {
             return Wideness;
@@ -140,6 +206,11 @@ namespace EA4S.Assessment
         /// <param name="_data">The data.</param>
         public void Init( ILivingLetterData _data, bool answer)
         {
+            if (_data == null)
+                throw new ArgumentNullException( "Cannot init with null data");
+
+            nullOnDemand = false;
+
             Data = _data;
             answerSprite.enabled = answer;
             questionSprite.enabled = !answer;
@@ -151,9 +222,18 @@ namespace EA4S.Assessment
         /// <param name="_data">The data.</param>
         public void InitAsSlot( LivingLetterDataType dataType)
         {
+            nullOnDemand = true;
             Data = null;
-            SetScale( dataType);
+            SetWidness( dataType);
             slotSprite.enabled = true;
+        }
+
+        public void Poof()
+        {
+            var puffGo = GameObject.Instantiate( poofPrefab);
+            puffGo.AddComponent< AutoDestroy>().duration = 2;
+            puffGo.SetActive( true);
+            puffGo.transform.localScale *= 0.75f;
         }
     }
 }
