@@ -53,6 +53,12 @@ namespace EA4S.Minigames.Maze
                     {
                         case LLState.Ragdolling:
                             ragdoll.SetRagdoll(true, rocket.GetComponent<Rigidbody>().velocity);
+
+                            foreach (Collider collider in ragdoll.GetComponentsInChildren<Collider>())
+                            {
+                                collider.enabled = true;
+                            }
+
                             break;
                     }
 
@@ -138,6 +144,11 @@ namespace EA4S.Minigames.Maze
             currentCharacterWayPoint = 0;
 
             GetComponent<Collider>().enabled = false;
+
+            foreach (Collider collider in rocket.GetComponentsInChildren<Collider>())
+            {
+                collider.enabled = false;
+            }
         }
 
         private Vector3 GetCorrectedRotationOfRocket(Vector3 direction)
@@ -204,6 +215,11 @@ namespace EA4S.Minigames.Maze
             ragdoll.transform.localPosition = Vector3.zero;
             ragdoll.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
+            foreach (Collider collider in ragdoll.GetComponentsInChildren<Collider>())
+            {
+                collider.enabled = false;
+            }
+
             LL.SetState(LLAnimationStates.LL_rocketing);
         }
 
@@ -215,6 +231,8 @@ namespace EA4S.Minigames.Maze
             loseState = LoseState.None;
 
             myCollider.enabled = true;
+
+            GetComponent<CapsuleCollider>().enabled = true;
         }
 
         public void initialize()
@@ -286,7 +304,7 @@ namespace EA4S.Minigames.Maze
                 _fruits.Add(child);
             }
 
-            currentFruitIndex = 0;
+            currentFruitIndex = 1;
         }
 
         void OnTriggerEnter(Collider other)
@@ -300,6 +318,11 @@ namespace EA4S.Minigames.Maze
             {
                 //we hit a fruit make sure it is in order:
                 int index = int.Parse(other.gameObject.name.Substring(6));
+
+                if (index == 0)
+                {
+                    return;
+                }
 
                 if (index == currentFruitIndex)
                 {
@@ -490,6 +513,12 @@ namespace EA4S.Minigames.Maze
 
             float time = distance * 2;
             if (time > 2) time = 2;
+
+            if (loseState == LoseState.OutOfBounds)
+            {
+                time = 0.33f;
+            }
+
             transform.DOPath(characterWayPoints.ToArray(), time, PathType.Linear, PathMode.Ignore).OnWaypointChange((int index) =>
             {
                 if (index + 3 < characterWayPoints.Count)
@@ -497,8 +526,7 @@ namespace EA4S.Minigames.Maze
                     var dir = transform.position - characterWayPoints[index + 3];
                     var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
 
-                    transform.rotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
-                                                                                  // transform.DORotateQuaternion(targetRotation, 0.007f);
+                    transform.rotation = Quaternion.AngleAxis(-angle, Vector3.up);
 
                 }
             }).OnComplete(pathMoveComplete);
@@ -548,6 +576,10 @@ namespace EA4S.Minigames.Maze
 
         private void OnRocketImpactedWithBorder()
         {
+            GetComponent<CapsuleCollider>().enabled = false;
+            myCollider.enabled = false;
+            mazeLetter.GetComponent<BoxCollider>().enabled = false;
+
             ragdoll.transform.SetParent(rocket.transform, true);
 
             rocket.GetComponent<SphereCollider>().enabled = true;
@@ -556,17 +588,16 @@ namespace EA4S.Minigames.Maze
             rocketRigidBody.isKinematic = false;
             rocketRigidBody.useGravity = true;
 
-            rocketRigidBody.AddExplosionForce(35f, Vector3.down, 0f, 3f, ForceMode.VelocityChange);
+            var rocketRotation = rocket.transform.rotation.eulerAngles.y;
 
-            /*var forceToApply = rocketRigidBody.velocity;
-            forceToApply.Normalize();
-            forceToApply *= 10f;
-            //forceToApply.y = 20f;
+            var velocity = new Vector3(Mathf.Sin(rocketRotation * Mathf.Deg2Rad), 0f, Mathf.Cos(rocketRotation * Mathf.Deg2Rad));
+            velocity *= 10f;
+            velocity.y = 20f;
 
             rocketRigidBody.velocity = Vector3.zero;
             rocketRigidBody.angularVelocity = Vector3.zero;
 
-            rocketRigidBody.velocity = forceToApply;*/
+            rocketRigidBody.AddForce(velocity, ForceMode.VelocityChange);
             rocketRigidBody.AddRelativeTorque(new Vector3(Random.Range(-40f, 40f), Random.Range(-40f, 40f), Random.Range(-40f, 40f)) * 100f);
 
             State = LLState.Impacted;
@@ -690,32 +721,28 @@ namespace EA4S.Minigames.Maze
 
             var finalPosition = Fruits[0].transform.GetChild(0).gameObject.transform.position;
 
-            Vector3 secondPoint = transform.position + finalPosition;
-            secondPoint *= 0.66f;
+            int numTrajectoryPoints = 7;
+            float yDecrement = (finalPosition.y - transform.position.y) / (numTrajectoryPoints + 1);
 
-            Vector3 thirdPoint = secondPoint * 0.5f;
-
-            var frustumHeightAtSecondPoint = GetFrustumHeightAtDistance(Camera.main.transform.position.y - secondPoint.y);
-            var frustumWidthAtSecondPoint = GetFrustumWidth(frustumHeightAtSecondPoint);
-
-            var frustumHeightAtThirdPoint = GetFrustumHeightAtDistance(Camera.main.transform.position.y - thirdPoint.y);
-            var frustumWidthAtThirdPoint = GetFrustumWidth(frustumHeightAtThirdPoint);
-
-            secondPoint.x = frustumWidthAtSecondPoint * 0.8f * 0.5f;
-            secondPoint.x *= -1f * Mathf.Sign(transform.position.x);
-
-            secondPoint.z = frustumHeightAtSecondPoint * 0.8f * 0.5f;
-            secondPoint.z *= -1f * Mathf.Sign(transform.position.z);
-
-            thirdPoint.x = frustumWidthAtThirdPoint * 0.8f * 0.5f;
-            thirdPoint.x *= -1f * Mathf.Sign(secondPoint.x);
-
-            thirdPoint.z = frustumHeightAtThirdPoint * 0.8f * 0.5f;
-            thirdPoint.z *= -1f * Mathf.Sign(secondPoint.z);
+            float[] trajectoryPointXAnchors = { -0.7f, 0f, 0.7f, 0f, -0.75f, -0.4f, 0f };
+            float[] trajectoryPointZAnchors = { 0f, 0.8f, 0f, -0.8f, -0.5f, 0.7f, 0.85f, 1.2f };
 
             trajectoryPoints.Add(transform.position);
-            trajectoryPoints.Add(secondPoint);
-            trajectoryPoints.Add(thirdPoint);
+
+            for (int i = 0; i < numTrajectoryPoints; i++)
+            {
+                Vector3 trajectoryPoint = new Vector3();
+                trajectoryPoint.y = transform.position.y + (i + 1) * yDecrement;
+
+                var frustumHeight = GetFrustumHeightAtDistance(Camera.main.transform.position.y - trajectoryPoint.y);
+                var frustumWidth = GetFrustumWidth(frustumHeight);
+
+                trajectoryPoint.x = frustumWidth * 0.5f * trajectoryPointXAnchors[i];
+                trajectoryPoint.z = frustumHeight * 0.5f * trajectoryPointZAnchors[i];
+
+                trajectoryPoints.Add(trajectoryPoint);
+            }
+
             trajectoryPoints.Add(finalPosition);
 
             transform.DOPath(trajectoryPoints.ToArray(), 3, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) =>

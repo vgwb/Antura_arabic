@@ -146,11 +146,10 @@ namespace EA4S.Assessment
 
         protected IYieldable PlaceQuestion( IQuestion q, Vector3 position, bool playAudio)
         {
-            //TODO: Bug here. Where is data setted?
             lastPlacedQuestion = q;
             var ll = q.gameObject.GetComponent< StillLetterBox>();
 
-            ll.Poof(); // ll.Data is null. why? <<<<-----
+            ll.Poof();
 
             audioManager.PlaySound( Sfx.Poof);
             ll.transform.localPosition = position;
@@ -236,6 +235,7 @@ namespace EA4S.Assessment
             audioManager.PlaySound( Sfx.Blip);
             var sequence = DOTween.Sequence();
             lastPlacedQuestion.QuestionBehaviour.ReadMeSound();
+            lastPlacedQuestion.gameObject.GetComponent< StillLetterBox>().Poof();
 
             sequence
                 .Append( lastPlacedQuestion.gameObject.transform.DOScale( 0.5f, 0.15f))
