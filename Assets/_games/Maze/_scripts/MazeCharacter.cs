@@ -304,7 +304,7 @@ namespace EA4S.Minigames.Maze
                 _fruits.Add(child);
             }
 
-            currentFruitIndex = 0;
+            currentFruitIndex = 1;
         }
 
         void OnTriggerEnter(Collider other)
@@ -318,6 +318,11 @@ namespace EA4S.Minigames.Maze
             {
                 //we hit a fruit make sure it is in order:
                 int index = int.Parse(other.gameObject.name.Substring(6));
+
+                if (index == 0)
+                {
+                    return;
+                }
 
                 if (index == currentFruitIndex)
                 {
