@@ -75,6 +75,8 @@ namespace EA4S.Minigames.Maze
 
             Debug.Log("started Drawing!");
 
+            MazeGameManager.instance.drawingTool.SetActive(true);
+
             idleSeconds = 0;
             MazeGameManager.instance.currentTutorial.stopCurrentTutorial();
             anturaSeconds = 0;
@@ -89,6 +91,7 @@ namespace EA4S.Minigames.Maze
         {
             if (CanLaunchRocket())
             {
+                MazeGameManager.instance.drawingTool.SetActive(false);
                 LaunchRocket();
             }
         }

@@ -300,6 +300,11 @@ namespace EA4S.Minigames.Maze
                 _fruits.Add(child);
             }
 
+            foreach (GameObject fruit in _fruits)
+            {
+                fruit.GetComponent<BoxCollider>().enabled = true;
+            }
+
             currentFruitIndex = 1;
         }
 
@@ -662,13 +667,8 @@ namespace EA4S.Minigames.Maze
                 particle.SetActive(true);
             }
 
-            foreach (GameObject fruit in _fruits)
-            {
-                fruit.GetComponent<BoxCollider>().enabled = true;
-            }
-
             myCollider.enabled = false;
-            
+
             // Test with tweens:
             MoveTween();
         }
@@ -687,20 +687,13 @@ namespace EA4S.Minigames.Maze
                 //MazeGameManager.Instance.DrawLine (previousPosition, targetPos, Color.red);
                 MazeGameManager.instance.appendToLine(targetPos);
             }
-
-
-
-
-
-            //var dir = transform.position - characterWayPoints[currentCharacterWayPoint];
+            
 
 
             if (previousPosition != targetPos)
             {
-
-
                 characterWayPoints.Add(targetPos + new Vector3(0, 1, 0));
-
+                MazeGameManager.instance.drawingTool.transform.position = targetPos + new Vector3(0, 1, 0);
             }
 
             if ((_fruits[_fruits.Count - 1].transform.position - targetPos).sqrMagnitude < 0.1f)

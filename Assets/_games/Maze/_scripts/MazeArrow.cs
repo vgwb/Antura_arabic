@@ -31,18 +31,13 @@ namespace EA4S.Minigames.Maze
             this.mazeLetter = mazeLetter;
         }
 
-        public void OnMouseOver()
-        {
-            if (mazeLetter != null && !IsHighlighted)
-            {
-                mazeLetter.NotifyFruitGotMouseOver(this);
-            }
-        }
-
         public void Highlight()
         {
-            highlightFX.SetActive(true);
-            _renderer.material.color = highlightedColor;
+            if (!IsHighlighted)
+            {
+                highlightFX.SetActive(true);
+                _renderer.material.color = highlightedColor;
+            }
         }
 
         public void Unhighlight()
@@ -83,17 +78,6 @@ namespace EA4S.Minigames.Maze
             tweenToColor = false;
             pingPong = false;
             Unhighlight();
-        }
-
-        void Update()
-        {
-            /*if (!tweenToColor && !pingPong)
-                return;
-
-            if (tweenToColor)
-                _renderer.material.color = Color.Lerp(_renderer.material.color, Color.green, Time.deltaTime * 2);
-            else if (pingPong)
-                _renderer.material.color = Color.Lerp(Color.red, Color.green, Mathf.PingPong(Time.time, 1));*/
         }
     }
 }
