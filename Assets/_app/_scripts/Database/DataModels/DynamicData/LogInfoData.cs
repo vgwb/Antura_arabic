@@ -17,9 +17,11 @@ namespace EA4S
         Book = 30,
         GameStart = 40,
         GameEnd = 41,
-        Reward = 50,
         AnturaSpace = 60,
         Map = 70,
+
+        Reward = 50,
+        CustomizationChange = 51,
     }
 }
 

@@ -56,10 +56,13 @@ namespace EA4S.Teacher
                 // - a score of 1 does not change it 
                 // - a score of 2 or 3 increases it
 
-                // TODO: query on last X minigame logged scores
-                List<int> scores = new List<int>() {1,0,2,2,0,1,3};
+                // Query on last X minigame logged scores
+                const int LAST_SCORES_NUMBER = 10;
+                string query2 = "SELECT * FROM " + typeof(LogMinigameScoreData).Name  + " WHERE MiniGameCode = " + (int)miniGameCode + " LIMIT " + LAST_SCORES_NUMBER;
+                List<LogMinigameScoreData> logMinigameScoreDatas = dbManager.FindDataByQuery<LogMinigameScoreData>(query2);
+                List<int> scores = logMinigameScoreDatas.ConvertAll(x => x.Score);
 
-                // Diminish to create the wegiths [-1, 0, 1, 2]
+                // Diminish to create the weights [-1, 0, 1, 2]
                 for (var i = 0; i < scores.Count; i++)
                     scores[i] -= 1;
 

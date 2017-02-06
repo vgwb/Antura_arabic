@@ -4,7 +4,6 @@ using EA4S.Database;
 using System.Linq;
 using EA4S.Core;
 using EA4S.Helpers;
-using UnityEngine.UI;
 
 namespace EA4S.Teacher
 {
@@ -288,7 +287,7 @@ namespace EA4S.Teacher
             // @todo: take from here
 
             // Given a (filtered) list of data, select some using weights
-            List<VocabularyScoreData> score_data_list = dbManager.FindDataByQuery<VocabularyScoreData>("SELECT * FROM VocabularyScoreData WHERE VocabularyDataType = '" + (int)dataType + "'");
+            List<VocabularyScoreData> score_data_list = dbManager.FindDataByQuery<VocabularyScoreData>("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" + (int)dataType + "'");
 
             string debugString = "-- Teacher Selection Weights";
 
