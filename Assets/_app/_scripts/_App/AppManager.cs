@@ -35,7 +35,7 @@ namespace EA4S
         public LogManager LogManager;
         public NavigationManager NavigationManager;
         
-        bool appIsPaused = false;
+        public bool IsPaused { get; private set; }
 
         private PlayerProfileManager _playerProfileManager;
         /// <summary>
@@ -80,12 +80,9 @@ namespace EA4S
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
 
+            DB = new DatabaseManager(GameSettings.UseTestDatabase);
             // refactor: standardize initialisation of managers
             LogManager = new LogManager();
-
-            
-
-            DB = new DatabaseManager(GameSettings.UseTestDatabase);
             VocabularyHelper = new VocabularyHelper(DB);
             Teacher = new TeacherAI(DB, VocabularyHelper);
             GameLauncher = new MiniGameLauncher(Teacher);
@@ -98,6 +95,8 @@ namespace EA4S
             RewardSystemManager.Init();
 
             GameSettings.HighQualityGfx = false;
+
+            
         }
 
         #endregion
@@ -130,7 +129,6 @@ namespace EA4S
 
             // Delete DB
             DB.DropProfile();
-            I.DB = null;
 
             PlayerProfileManager.DeleteCurrentPlayer();
 
@@ -146,26 +144,20 @@ namespace EA4S
 
         void OnApplicationPause(bool pauseStatus)
         {
-            appIsPaused = pauseStatus;
+            IsPaused = pauseStatus;
 
             // app is pausing
-            if (appIsPaused) {
-                GlobalUI.PauseMenu.OpenMenu(true);
+            if (IsPaused)
+            {
                 LogManager.I.LogInfo(InfoEvent.AppSuspend);
             }
 
             //app is resuming
-            if (!appIsPaused) {
+            if (!IsPaused) {
                 LogManager.I.LogInfo(InfoEvent.AppResume);
             }
-            AudioManager.I.OnAppPause(appIsPaused);
+            AudioManager.I.OnAppPause(IsPaused);
         }
-
-        void OnApplicationFocus(bool hasFocus)
-        {
-            appIsPaused = !hasFocus;
-        }
-
         #endregion
     }
 }

@@ -90,6 +90,10 @@ namespace EA4S.Assessment
 
             }
 
+            Debug.Log(" category1ForThisRound++ "+ category1ForThisRound);
+            Debug.Log(" category2ForThisRound++ "+ category2ForThisRound);
+            Debug.Log(" category3ForThisRound++ "+ category3ForThisRound);
+
             if ( picksThisRound == numberOfMaxAnswers)
                 throw new InvalidOperationException( "buckets empty");
         }
@@ -106,10 +110,15 @@ namespace EA4S.Assessment
             for (int i = 0; i < max; i++)
             {
                 var pack = questionProvider.GetNextQuestion();
-                foreach (var answ in pack.GetCorrectAnswers())
+
+                
+                foreach (var answ in pack.GetCorrectAnswers()) //Arabic has different order!
                     for (int j = 0; j < categoryProvider.GetCategories(); j++)
-                        if (categoryProvider.Compare( j, answ))
-                            answersBuckets[j].Add( pack.GetQuestion());
+                        if (categoryProvider.Compare(j, answ))
+                        {
+                            Debug.Log("Filling Bucket: "+ j);
+                            answersBuckets[j].Add(pack.GetQuestion());
+                        }
             }
         }
 
@@ -206,9 +215,12 @@ namespace EA4S.Assessment
             List< Answer> answers = new List< Answer>();
 
             int correctCount = 0;
-            for(int i=0; i<amount; i++)
+            Debug.Log("Amount: " + amount);
+            for (int i=0; i<amount; i++)
             {
+                Debug.Log("answersBuckets[ currentCategory] lenght: " + answersBuckets[currentCategory].Count);
                 var answer = answersBuckets[ currentCategory].Pull();
+                Debug.Log("Planced answers: " + (i+1));
                 var correctAnsw = GenerateCorrectAnswer( answer);
 
                 correctCount++;
@@ -224,7 +236,7 @@ namespace EA4S.Assessment
 
             // Generate placeholders
             for (int i=0; i<numberOfMaxAnswers; i++)
-                GeneratePlaceHolder( question);
+                GeneratePlaceHolder( question, AssessmentOptions.Instance.AnswerType);
 
             currentCategory++;
             return question;
@@ -236,9 +248,9 @@ namespace EA4S.Assessment
             return new CategoryQuestion( q, correctCount, dialogues);
         }
 
-        private void GeneratePlaceHolder( IQuestion question)
+        private void GeneratePlaceHolder( IQuestion question, LivingLetterDataType dataType)
         {
-            var placeholder = LivingLetterFactory.Instance.SpawnCustomElement( CustomElement.Placeholder).transform;
+            var placeholder = LivingLetterFactory.Instance.SpawnPlaceholder( dataType).transform;
             placeholder.localPosition = new Vector3( 0, 5, 0);
             placeholder.localScale = Vector3.zero;
             question.TrackPlaceholder( placeholder.gameObject);

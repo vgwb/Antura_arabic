@@ -1,5 +1,5 @@
-using System;
 using EA4S.MinigamesAPI;
+using System;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -89,7 +89,7 @@ namespace EA4S.Assessment
         private ILivingLetterData GatherNumber( string id)
         {
             var db = AppManager.I.DB;
-            return new LL_ImageData(db.GetWordDataById(id));
+            return new LL_ImageData( db.GetWordDataById( id));
         }
 
         //finally decouple showed images from values expected in question builders

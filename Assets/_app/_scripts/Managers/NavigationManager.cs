@@ -26,7 +26,7 @@ namespace EA4S.Core
         DebugPanel
     }
 
-    internal struct NavigationData
+    public struct NavigationData
     {
         public PlayerProfile CurrentPlayer;
         public AppScene PrevScene;
@@ -41,7 +41,7 @@ namespace EA4S.Core
         /// <summary>
         /// Current minigame index in 
         /// </summary>
-        private int CurrentMiniGameIndexInPlaySession;
+        public int CurrentMiniGameIndexInPlaySession { get; private set; }
 
         public void SetFirstMinigame()
         {
@@ -75,7 +75,7 @@ namespace EA4S.Core
     /// </summary>
     public class NavigationManager : MonoBehaviour
     {
-        private NavigationData NavData;
+        public NavigationData NavData;
 
         public bool IsLoadingMinigame { get; private set; } // Daniele mod - SceneTransitioner needs it to know when a minigame is being loaded 
 

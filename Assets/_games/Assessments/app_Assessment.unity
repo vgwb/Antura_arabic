@@ -164,7 +164,7 @@ Prefab:
       objectReference: {fileID: 870303149}
     - target: {fileID: 1000010529980692, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000010673987186, guid: d5826ab7f51b7c549919cf0b6fe83693,
         type: 2}
@@ -522,7 +522,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1751162097
+--- !u!1001 &1266520080
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -531,7 +531,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4967269277620494, guid: 9796690aa4d4ebf418e65146780f0918, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -6.86
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4967269277620494, guid: 9796690aa4d4ebf418e65146780f0918, type: 2}
       propertyPath: m_LocalPosition.y
@@ -561,15 +561,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114807908430855550, guid: 9796690aa4d4ebf418e65146780f0918,
+    - target: {fileID: 33196648662843430, guid: 9796690aa4d4ebf418e65146780f0918,
         type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114807908430855550, guid: 9796690aa4d4ebf418e65146780f0918,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 33138882498375684, guid: 9796690aa4d4ebf418e65146780f0918,
         type: 2}
@@ -586,10 +581,15 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 33196648662843430, guid: 9796690aa4d4ebf418e65146780f0918,
+    - target: {fileID: 114807908430855550, guid: 9796690aa4d4ebf418e65146780f0918,
         type: 2}
-      propertyPath: m_Mesh
-      value: 
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114807908430855550, guid: 9796690aa4d4ebf418e65146780f0918,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114748560329468034, guid: 9796690aa4d4ebf418e65146780f0918,
         type: 2}
@@ -599,6 +599,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9796690aa4d4ebf418e65146780f0918, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1726753070 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1942231629936472, guid: 9796690aa4d4ebf418e65146780f0918,
+    type: 2}
+  m_PrefabInternal: {fileID: 1266520080}
 --- !u!1001 &1815004157
 Prefab:
   m_ObjectHideFlags: 0
@@ -686,9 +691,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114000013822948356, guid: 998c7211c33aab649a372bdc784b9b87,
         type: 2}
-      propertyPath: LivingLetterPrefab
+      propertyPath: StillLetterBox
       value: 
-      objectReference: {fileID: 12606178}
+      objectReference: {fileID: 1726753070}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 998c7211c33aab649a372bdc784b9b87, type: 2}
   m_IsPrefabParent: 0

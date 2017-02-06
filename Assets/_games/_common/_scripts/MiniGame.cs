@@ -119,6 +119,9 @@ namespace EA4S.MinigamesCommon
             // TODO: move this outside this method (actually it is useless with the current implementation of PauseMenu)
             inputManager.Enabled = !(GlobalUI.PauseMenu.IsMenuOpen);
 
+            if (AppManager.I.IsPaused && !SceneTransitioner.IsShown)
+                GlobalUI.PauseMenu.OpenMenu(true);
+
             inputManager.Update(Time.deltaTime);
             audioManager.Update();
 

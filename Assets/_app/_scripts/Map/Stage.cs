@@ -131,12 +131,17 @@ namespace EA4S.Map
             {
                 int l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
                 int p = AppManager.I.Player.MaxJourneyPosition.PlaySession;
-                if (p == 100) positionPinMax = pines[l].GetComponent<MapPin>().pos;
-                for (int i = 1; i <= l; i++)
+                for (int i = 1; i < l; i++)
                 {
                     pines[i].tag = "Pin";
                     pines[i].GetComponent<MapPin>().unlocked = true;
                     ropes[i].transform.GetChild(0).tag = "Rope";
+                }
+                if (p == 100)
+                {
+                    positionPinMax = pines[l].GetComponent<MapPin>().pos;
+                    pines[l].tag = "Pin";
+                    pines[l].GetComponent<MapPin>().unlocked = true;
                 }
             }
         }

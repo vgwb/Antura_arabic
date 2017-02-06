@@ -29,7 +29,7 @@ namespace EA4S.Profile
                     AppManager.I.Player = currentPlayer = value;
                     AppManager.I.Teacher.SetPlayerProfile(value);
                     // refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
-                    if (AppManager.I.DB != null) {
+                    if (AppManager.I.DB.HasLoadedPlayerProfile()) {
                         LogManager.I.LogInfo(InfoEvent.AppClosed);
                     }
                     AppManager.I.GameSettings.LastActivePlayerId = value.Id;
@@ -90,7 +90,6 @@ namespace EA4S.Profile
         /// Reloads the game settings (AppSettings) from PlayerPrefs.
         /// </summary>
         public void ReloadGameSettings() {
-            AppSettings settings = AppManager.I.GameSettings;
             AppManager.I.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
             AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
             int lastActivePlayerId = AppManager.I.GameSettings.LastActivePlayerId;
@@ -246,10 +245,10 @@ namespace EA4S.Profile
                 AppManager.I.DB.LoadDatabaseForPlayer(int.Parse(playerId));
                 AppManager.I.DB.DropProfile();
             }
-            AppManager.I.DB = null;
 
             // Reset all profiles (from SRDebugOptions)
             UnityEngine.PlayerPrefs.DeleteAll();
+            AppManager.I.PlayerProfileManager.ReloadGameSettings();
             AppManager.I.GameSettings.AvailablePlayers = new System.Collections.Generic.List<string>();
             AppManager.I.PlayerProfileManager.SaveGameSettings();
 
