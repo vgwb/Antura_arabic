@@ -67,7 +67,7 @@ namespace EA4S.Assessment
         /// inside SetupBuilder.
         /// </summary>
         public int Rounds { get { return _rounds; } private set { _rounds = value; } }
-        public int NumberOfRounds { get { return _rounds; } private set { _rounds = value; } }
+        public int NumberOfRounds { get { return _rounds; }  set { _rounds = value; } }
         private int _rounds = 0;
 
         /////////////////
