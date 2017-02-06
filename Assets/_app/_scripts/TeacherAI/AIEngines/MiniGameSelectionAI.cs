@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using EA4S.Database;
 using EA4S.Helpers;
-using EA4S.Profile;
-using EA4S.Utilities;
 
 namespace EA4S.Teacher
 {
