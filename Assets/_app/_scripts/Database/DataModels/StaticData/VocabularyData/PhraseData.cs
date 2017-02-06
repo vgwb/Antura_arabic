@@ -10,7 +10,7 @@ namespace EA4S.Database
     /// <seealso cref="LetterData"/>
     /// </summary>
     [Serializable]
-    public class PhraseData : IData, IConvertibleToLivingLetterData
+    public class PhraseData : IVocabularyData, IConvertibleToLivingLetterData
     {
         public string Id;
         public bool Active;
@@ -21,6 +21,11 @@ namespace EA4S.Database
         public string[] Words;
         public string[] Answers;
         public float Intrinsic;
+
+        public float GetIntrinsicDifficulty()
+        {
+            return Intrinsic;
+        }
 
         public override string ToString()
         {

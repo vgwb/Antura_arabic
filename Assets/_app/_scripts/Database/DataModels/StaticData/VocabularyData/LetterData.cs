@@ -32,7 +32,7 @@ namespace EA4S.Database
     // refactor: this requires heavy refactoring!
     // refactor: we could make this general in respect to the language
     [Serializable]
-    public class LetterData : IData, IConvertibleToLivingLetterData
+    public class LetterData : IVocabularyData, IConvertibleToLivingLetterData
     {
         public string Id;
         public bool Active;
@@ -67,6 +67,11 @@ namespace EA4S.Database
         public override string ToString()
         {
             return Id + ": " + Isolated;
+        }
+
+        public float GetIntrinsicDifficulty()
+        {
+            return Intrinsic;
         }
 
         public string GetId()
