@@ -131,15 +131,11 @@ namespace EA4S.Database
         public void Insert<T>(T data) where T : IData, new()
         {
             dynamicDb.Insert(data);
-            if (AppConstants.DebugLogInserts)
-                Debug.Log("DB Insert: " + data);
         }
 
         public void InsertOrReplace<T>(T data) where T : IData, new()
         {
             dynamicDb.InsertOrReplace(data);
-            if (AppConstants.DebugLogInserts)
-                Debug.Log("DB InsertOrReplace: " + data);
         }
         #endregion
 
@@ -434,11 +430,11 @@ namespace EA4S.Database
             dynamicDb.InsertOrReplace(data);
         }
 
-        public void UpdateMinigameScoreData(string elementId, float totalPlayTime, int score, int timestamp = -1)
+        public void UpdateMinigameScoreData(MiniGameCode miniGameCode, float totalPlayTime, int score, int timestamp = -1)
         {
             MinigameScoreData data = null;
-            if (timestamp > 0) data = new MinigameScoreData(elementId, score, totalPlayTime, timestamp);
-            else data = new MinigameScoreData(elementId, score, totalPlayTime);
+            if (timestamp > 0) data = new MinigameScoreData(miniGameCode, score, totalPlayTime, timestamp);
+            else data = new MinigameScoreData(miniGameCode, score, totalPlayTime);
             dynamicDb.InsertOrReplace(data);
         }
         #endregion

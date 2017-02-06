@@ -41,11 +41,12 @@ namespace EA4S.Teacher
 
             // Performance
             float playerPerformance;
-            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name + " WHERE ElementId = '{0}'",  (int)miniGameCode);
+            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name + " WHERE MiniGameCode = '{0}'",  (int)miniGameCode);
             List<MinigameScoreData> minigame_scoreData_list = dbManager.FindDataByQuery<MinigameScoreData>(query);
             if (minigame_scoreData_list.Count == 0)
             {
                 playerPerformance = ConfigAI.startingDifficultyForNewMiniGame;
+                //Debug.Log("No previous scores");
             }
             else
             {
@@ -58,27 +59,26 @@ namespace EA4S.Teacher
 
                 // Query on last X minigame logged scores
                 const int LAST_SCORES_NUMBER = 10;
-                string query2 = "SELECT * FROM " + typeof(LogMinigameScoreData).Name  + " WHERE MiniGameCode = " + (int)miniGameCode + " LIMIT " + LAST_SCORES_NUMBER;
+                string query2 = "SELECT * FROM " + typeof(LogMinigameScoreData).Name  + " WHERE MiniGameCode = " + (int)miniGameCode + " ORDER BY Timestamp LIMIT " + LAST_SCORES_NUMBER;
                 List<LogMinigameScoreData> logMinigameScoreDatas = dbManager.FindDataByQuery<LogMinigameScoreData>(query2);
                 List<int> scores = logMinigameScoreDatas.ConvertAll(x => x.Score);
+
+                //Debug.Log("Found " + (scores.Count) + " previous scores");
 
                 // Diminish to create the weights [-1, 0, 1, 2]
                 for (var i = 0; i < scores.Count; i++)
                     scores[i] -= 1;
 
                 // Compute the performance for these minigames starting from zero and adding values
-                const float scorePointsContribution = 0.3f;
+                const float scorePointsContribution = 0.15f;
                 playerPerformance = 0f;
                 for (var i = 0; i < scores.Count; i++)
                 {
                     playerPerformance += scores[i] * scorePointsContribution;
+                    //Debug.LogWarning("Score " + i + " was " + (scores[i] + 1) + " contrib: " + scores[i] * scorePointsContribution + " current " + playerPerformance);
                 }
                 playerPerformance = Mathf.Clamp01(playerPerformance);
-
-                //int minigameScore = minigame_scoreData_list[0].Score;
-                //playerPerformance = minigameScore;
             }
-
             float performanceDifficulty = playerPerformance;
             float weightedPerformanceDifficulty = performanceDifficulty * performanceWeightContribution / totalWeight;
 
@@ -88,8 +88,8 @@ namespace EA4S.Teacher
             // Debug log
             if (ConfigAI.verboseTeacher) {
                 string debugString = "-----  TEACHER: Selected Difficulty: " + totalDifficulty + " -----";
-                debugString += "\n From Age (C " + ageWeightContribution + "): " + ageDifficulty + " xw(" + weightedAgeDifficulty + ")";
-                debugString += "\n From Performance (C " + performanceWeightContribution + "): " + performanceDifficulty + " xw(" + weightedPerformanceDifficulty + ")";
+                debugString += "\n From Age (C " + ageWeightContribution + "): " + ageDifficulty + " w(" + weightedAgeDifficulty + ")";
+                debugString += "\n From Performance (C " + performanceWeightContribution + "): " + performanceDifficulty + " w(" + weightedPerformanceDifficulty + ")";
                 Debug.Log(debugString);
             }
 

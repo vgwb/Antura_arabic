@@ -97,11 +97,15 @@ namespace EA4S.Database
 
         public void Insert<T>(T data) where T : IData, new()
         {
+            if (AppConstants.DebugLogInserts)
+                Debug.Log("DB Insert: " + data);
             _connection.Insert(data);
         }
 
         public void InsertOrReplace<T>(T data) where T : IData, new()
         {
+            if (AppConstants.DebugLogInserts)
+                Debug.Log("DB Insert: " + data);
             _connection.InsertOrReplace(data);
         }
 
