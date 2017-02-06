@@ -21,7 +21,8 @@ namespace EA4S.Database.Management
     public class DatabaseTester : MonoBehaviour
     {
         private DatabaseLoader dbLoader;
-        private DatabaseManager dbManager;
+        [HideInInspector]
+        public DatabaseManager dbManager;
         private TeacherAI teacherAI;
         private PlayerProfile playerProfile;
 
@@ -614,7 +615,7 @@ namespace EA4S.Database.Management
 
         #region Utilities
 
-        void PrintOutput(string output)
+        public void PrintOutput(string output)
         {
             Debug.Log(output);
             OutputText.text = output.Substring(0, Mathf.Min(1000, output.Length));

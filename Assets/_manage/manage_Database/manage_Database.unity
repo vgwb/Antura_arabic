@@ -7598,6 +7598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1322033635}
   - component: {fileID: 1322033634}
+  - component: {fileID: 1322033636}
   m_Layer: 0
   m_Name: DatabaseTester
   m_TagString: Untagged
@@ -7633,6 +7634,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1322033636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1322033633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec5673d1fb6b0749bce7c84a20c6190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1326432633
 GameObject:
   m_ObjectHideFlags: 0
@@ -8133,11 +8145,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1322033634}
+      objectReference: {fileID: 1322033636}
     - target: {fileID: 114000014187559028, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Teacher_LastNMoods
+      value: QueryLastMoods
       objectReference: {fileID: 0}
     - target: {fileID: 114000014187559028, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
