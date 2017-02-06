@@ -66,6 +66,8 @@ namespace EA4S.Minigames.Maze
         public Color incorrectLineColor;
         public float durationToTweenLineColors;
 
+        public GameObject drawingTool;
+
         void setupIndices()
         {
             allLetters = new Dictionary<string, int>();
@@ -150,6 +152,11 @@ namespace EA4S.Minigames.Maze
             });
 
             Context.GetAudioManager().PlayMusic(Music.Theme8);
+        }
+
+        public void OnFruitGotDrawnOver(MazeArrow mazeArrow)
+        {
+            currentMazeLetter.NotifyFruitGotMouseOver(mazeArrow);
         }
 
         public void initUI()
