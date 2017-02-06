@@ -53,6 +53,12 @@ namespace EA4S.Minigames.Maze
                     {
                         case LLState.Ragdolling:
                             ragdoll.SetRagdoll(true, rocket.GetComponent<Rigidbody>().velocity);
+
+                            foreach (Collider collider in ragdoll.GetComponentsInChildren<Collider>())
+                            {
+                                collider.enabled = true;
+                            }
+
                             break;
                     }
 
@@ -138,6 +144,11 @@ namespace EA4S.Minigames.Maze
             currentCharacterWayPoint = 0;
 
             GetComponent<Collider>().enabled = false;
+
+            foreach (Collider collider in rocket.GetComponentsInChildren<Collider>())
+            {
+                collider.enabled = false;
+            }
         }
 
         private Vector3 GetCorrectedRotationOfRocket(Vector3 direction)
@@ -204,6 +215,11 @@ namespace EA4S.Minigames.Maze
             ragdoll.transform.localPosition = Vector3.zero;
             ragdoll.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
+            foreach (Collider collider in ragdoll.GetComponentsInChildren<Collider>())
+            {
+                collider.enabled = false;
+            }
+
             LL.SetState(LLAnimationStates.LL_rocketing);
         }
 
@@ -215,6 +231,8 @@ namespace EA4S.Minigames.Maze
             loseState = LoseState.None;
 
             myCollider.enabled = true;
+
+            GetComponent<CapsuleCollider>().enabled = true;
         }
 
         public void initialize()
@@ -490,6 +508,12 @@ namespace EA4S.Minigames.Maze
 
             float time = distance * 2;
             if (time > 2) time = 2;
+
+            if (loseState == LoseState.OutOfBounds)
+            {
+                time = 0.33f;
+            }
+
             transform.DOPath(characterWayPoints.ToArray(), time, PathType.Linear, PathMode.Ignore).OnWaypointChange((int index) =>
             {
                 if (index + 3 < characterWayPoints.Count)
@@ -497,8 +521,7 @@ namespace EA4S.Minigames.Maze
                     var dir = transform.position - characterWayPoints[index + 3];
                     var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
 
-                    transform.rotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
-                                                                                  // transform.DORotateQuaternion(targetRotation, 0.007f);
+                    transform.rotation = Quaternion.AngleAxis(-angle, Vector3.up);
 
                 }
             }).OnComplete(pathMoveComplete);
@@ -548,6 +571,10 @@ namespace EA4S.Minigames.Maze
 
         private void OnRocketImpactedWithBorder()
         {
+            GetComponent<CapsuleCollider>().enabled = false;
+            myCollider.enabled = false;
+            mazeLetter.GetComponent<BoxCollider>().enabled = false;
+
             ragdoll.transform.SetParent(rocket.transform, true);
 
             rocket.GetComponent<SphereCollider>().enabled = true;
@@ -556,17 +583,16 @@ namespace EA4S.Minigames.Maze
             rocketRigidBody.isKinematic = false;
             rocketRigidBody.useGravity = true;
 
-            rocketRigidBody.AddExplosionForce(35f, Vector3.down, 0f, 3f, ForceMode.VelocityChange);
+            var rocketRotation = rocket.transform.rotation.eulerAngles.y;
 
-            /*var forceToApply = rocketRigidBody.velocity;
-            forceToApply.Normalize();
-            forceToApply *= 10f;
-            //forceToApply.y = 20f;
+            var velocity = new Vector3(Mathf.Sin(rocketRotation * Mathf.Deg2Rad), 0f, Mathf.Cos(rocketRotation * Mathf.Deg2Rad));
+            velocity *= 10f;
+            velocity.y = 20f;
 
             rocketRigidBody.velocity = Vector3.zero;
             rocketRigidBody.angularVelocity = Vector3.zero;
 
-            rocketRigidBody.velocity = forceToApply;*/
+            rocketRigidBody.AddForce(velocity, ForceMode.VelocityChange);
             rocketRigidBody.AddRelativeTorque(new Vector3(Random.Range(-40f, 40f), Random.Range(-40f, 40f), Random.Range(-40f, 40f)) * 100f);
 
             State = LLState.Impacted;
