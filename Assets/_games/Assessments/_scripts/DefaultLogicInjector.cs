@@ -53,9 +53,6 @@ namespace EA4S.Assessment
 
         protected virtual void WireQuestion( IQuestion q, AnswerSet answerSet)
         {
-            if (AssessmentOptions.Instance.QuestionAnsweredFlip)
-                q.QuestionBehaviour.FaceDownInstant();
-
             q.SetAnswerSet( answerSet);
             questionsList.Add( q);
         }

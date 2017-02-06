@@ -42,21 +42,28 @@ namespace EA4S.Assessment
                 yield return Koroutine.Nested( RoundBegin());
                 yield return Koroutine.Nested( PlaceAnswers());
 
-                if(round == 0)
-                   Koroutine.Run( DescriptionAudio());
+
+                if (round == 0)
+                {
+                    executingRound0 = true;
+                    Koroutine.Run(DescriptionAudio());
+                }
 
                 yield return Koroutine.Nested( GamePlay());
+                executingRound0 = false;
                 yield return Koroutine.Nested( ClearRound());
             }
 
             gameEndedCallback();
         }
 
+        bool executingRound0 = false;
+
         private IEnumerator DescriptionAudio()
         {
             yield return Dialogues.PlayGameDescription();
 
-            if(AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial)
+            if( executingRound0 && AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial)
                 yield return QuestionPlacer.PlayQuestionSound();
         }
 
@@ -125,18 +132,10 @@ namespace EA4S.Assessment
 
         private void WireLogicInjector( ILogicInjector injector, IQuestionGenerator generator)
         {
-            try
-            {
-                IQuestion question = generator.GetNextQuestion();
-                Answer[] answers = generator.GetNextAnswers();
+            IQuestion question = generator.GetNextQuestion();
+            Answer[] answers = generator.GetNextAnswers();
 
-                injector.Wire( question, answers);
-            }
-            catch ( System.Exception ex)
-            {
-                Debug.LogWarning( "Not enough teacher data to generate an additional question at this stage: " +
-                    ex.Message);
-            }
+            injector.Wire( question, answers);
         }
 
         public IAnswerPlacer AnswerPlacer { get; private set; }
