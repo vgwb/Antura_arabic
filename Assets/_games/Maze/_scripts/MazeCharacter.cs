@@ -17,7 +17,7 @@ namespace EA4S.Minigames.Maze
         private const float CELEBRATION_PATH_MIDPOINT_X_ANCHOR = 0.2f;
         private const float CELEBRATION_PATH_MIDPOINT_Z_ANCHOR = -0.2f;
 
-        private const float CELEBRATION_PATH_ENDPOINT_X_ANCHOR = -0.33f;
+        private const float CELEBRATION_PATH_ENDPOINT_X_ANCHOR = -0.5f;
         private const float CELEBRATION_PATH_ENDPOINT_Z_ANCHOR = 0f;
         private const float CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA = 5.5f;
         private const float CELEBRATION_PATH_DURATION = 2.5f;
