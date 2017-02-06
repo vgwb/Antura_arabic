@@ -264,8 +264,16 @@ namespace EA4S.Antura
     /// </summary>
     [Serializable]
     public class AnturaCustomization {
+        [NonSerialized]
         public List<RewardPackUnlockData> Fornitures = new List<RewardPackUnlockData>();
+        public List<string> FornituresIds = new List<string>();
+        [NonSerialized]
         public RewardPackUnlockData TileTexture = new RewardPackUnlockData();
+        public string TileTextureId;
+        [NonSerialized]
         public RewardPackUnlockData DecalTexture = new RewardPackUnlockData();
+        public string DecalTextureId;
+
+
     }
 }

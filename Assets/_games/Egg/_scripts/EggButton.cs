@@ -10,14 +10,18 @@ namespace EA4S.Minigames.Egg
 {
     public class EggButton : MonoBehaviour
     {
+        public bool useEnlargeAnimation = true;
+
         public TextRender buttonText;
         public Image buttonImage;
         public Button button;
 
         public Color colorStandard;
         public Color colorLightUp;
+        float sizeStandard = 1;
+        float sizeLightUp = 1.5f;
 
-        Tween colorTweener;
+        Tween animationTweener;
 
         public ILivingLetterData livingLetterData { get; private set; }
 
@@ -41,6 +45,8 @@ namespace EA4S.Minigames.Egg
         Sequence moveSequence;
 
         Tween shakeTwenner;
+
+        bool holdPressed;
 
         public void Initialize(IAudioManager audioManager)
         {
@@ -68,37 +74,63 @@ namespace EA4S.Minigames.Egg
 
             float duration = audioSource.Duration;
 
-            if (colorTweener != null)
-                colorTweener.Kill();
+            if (animationTweener != null)
+                animationTweener.Kill();
 
             Color newColor = lightUp ? colorLightUp : colorStandard;
+            float newSize = lightUp ? sizeLightUp : sizeStandard;
 
-            colorTweener = DOTween.To(() => buttonImage.color, x => buttonImage.color = x, newColor, duration / 2f).OnComplete(delegate ()
+            if (useEnlargeAnimation)
             {
-                colorTweener = DOTween.To(() => buttonImage.color, x => buttonImage.color = x, colorStandard, duration / 2f).OnComplete(delegate ()
+                animationTweener = buttonImage.rectTransform.DOScale(Vector3.one * newSize, duration / 2f).OnComplete(delegate ()
                 {
-                    if (playButtonAudioCallback != null)
+                    animationTweener = buttonImage.rectTransform.DOScale(Vector3.one * sizeStandard, duration / 2f).OnComplete(delegate ()
                     {
-                        playButtonAudioCallback();
-                    }
-                });
-            }).OnStart(delegate ()
-            {
-                audioSource = audioManager.PlayLetterData(livingLetterData);
-
-                if(startButtonAudioCallback != null)
+                        if (playButtonAudioCallback != null)
+                        {
+                            playButtonAudioCallback();
+                        }
+                    });
+                }).OnStart(delegate ()
                 {
-                    startButtonAudioCallback();
-                }
+                    audioSource = audioManager.PlayLetterData(livingLetterData);
 
-            }).SetDelay(delay);
+                    if (startButtonAudioCallback != null)
+                    {
+                        startButtonAudioCallback();
+                    }
+
+                }).SetDelay(delay);
+            }
+            else
+            {
+                animationTweener = DOTween.To(() => buttonImage.color, x => buttonImage.color = x, newColor, duration / 2f).OnComplete(delegate ()
+                {
+                    animationTweener = DOTween.To(() => buttonImage.color, x => buttonImage.color = x, colorStandard, duration / 2f).OnComplete(delegate ()
+                    {
+                        if (playButtonAudioCallback != null)
+                        {
+                            playButtonAudioCallback();
+                        }
+                    });
+                }).OnStart(delegate ()
+                {
+                    audioSource = audioManager.PlayLetterData(livingLetterData);
+
+                    if (startButtonAudioCallback != null)
+                    {
+                        startButtonAudioCallback();
+                    }
+
+                }).SetDelay(delay);
+            }
 
             return duration;
         }
 
         public void StopButtonAudio()
         {
-            SetOnStandardColor();
+            SetNormal();
 
             if (audioSource != null)
             {
@@ -120,7 +152,8 @@ namespace EA4S.Minigames.Egg
         {
             if (inputEnabled)
             {
-                ChangeColorOnButtonPressed();
+                if (!holdPressed)
+                    ChangeColorOnButtonPressed();
 
                 if (onButtonPressed != null)
                 {
@@ -131,28 +164,54 @@ namespace EA4S.Minigames.Egg
 
         void ChangeColorOnButtonPressed()
         {
-            if (colorTweener != null)
-                colorTweener.Kill();
+            if (animationTweener != null)
+                animationTweener.Kill();
 
-            buttonImage.color = colorLightUp;
+            if (useEnlargeAnimation)
+            {
+                var currentEnlargeValue = buttonImage.rectTransform.localScale.x;
 
-            colorTweener = DOTween.To(() => buttonImage.color, x => buttonImage.color = x, colorStandard, 1f);
+                float enlargeTarget = Mathf.Min(sizeLightUp * 1.25f, currentEnlargeValue * 1.2f);
+
+                buttonImage.rectTransform.localScale = Vector3.one * enlargeTarget;
+                animationTweener = buttonImage.rectTransform.DOScale(Vector3.one * sizeStandard, 0.75f);
+            }
+            else
+            {
+                buttonImage.color = colorLightUp;
+                animationTweener = DOTween.To(() => buttonImage.color, x => buttonImage.color = x, colorStandard, 1f);
+            }
         }
 
-        public void SetOnPressedColor()
+        public bool IsPressed()
         {
-            if (colorTweener != null)
-                colorTweener.Kill();
-
-            buttonImage.color = colorLightUp;
+            return holdPressed;
         }
 
-        public void SetOnStandardColor(bool killTween = true)
+        public void SetPressed()
         {
-            if (colorTweener != null && killTween)
-                colorTweener.Kill();
+            holdPressed = true;
 
-            buttonImage.color = colorStandard;
+            if (animationTweener != null)
+                animationTweener.Kill();
+
+            if (useEnlargeAnimation)
+                buttonImage.rectTransform.localScale = sizeLightUp*Vector3.one;
+            else
+                buttonImage.color = colorLightUp;
+        }
+
+        public void SetNormal(bool killTween = true)
+        {
+            holdPressed = false;
+
+            if (animationTweener != null && killTween)
+                animationTweener.Kill();
+
+            if (useEnlargeAnimation)
+                buttonImage.rectTransform.localScale = sizeStandard * Vector3.one;
+            else
+                buttonImage.color = colorStandard;
         }
 
         public void EnableInput()

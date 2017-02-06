@@ -1,10 +1,9 @@
 using DG.Tweening;
-using EA4S.LivingLetters;
+using EA4S.MinigamesCommon;
 using Kore.Coroutines;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -34,13 +33,13 @@ namespace EA4S.Assessment
 
         protected IQuestion[] allQuestions;
         protected List< IEnumerator> questionSounds;
-        private List< LetterObjectView> images;
+        private List< StillLetterBox> images;
 
         public void Place( IQuestion[] question, bool playSound)
         {
             allQuestions = question;
             isAnimating = true;
-            images = new List< LetterObjectView>();
+            images = new List< StillLetterBox>();
             questionSounds = new List< IEnumerator>();
             Koroutine.Run( PlaceCoroutine( playSound));
         }
@@ -89,7 +88,6 @@ namespace EA4S.Assessment
             if (flow == TextFlow.RightToLeft)
             {
                 currentPos = bounds.ToTheRightQuestionStart();
-                //currentPos.x -= answerSize / 2.0f;
                 sign = -1;
             }
             else
@@ -119,7 +117,7 @@ namespace EA4S.Assessment
                 foreach (var p in allQuestions[ questionIndex].GetPlaceholders())
                 {
                     currentPos.x += (answerSize * sign)/2;
-                    yield return PlacePlaceholder( allQuestions[ questionIndex], p, currentPos);
+                    yield return PlacePlaceholder( p, currentPos);
                     currentPos.x += (answerSize * sign) / 2;
                 }
 
@@ -137,10 +135,10 @@ namespace EA4S.Assessment
 
             images.Add( ll);
             ll.transform.position = imagePos;
-            ll.transform.localScale = Vector3.zero;
-            ll.Poof( ElementsSize.PoofOffset);
+            ll.InstaShrink();
+            ll.Poof();
             audioManager.PlaySound( Sfx.Poof);
-            ll.transform.DOScale( 1, 0.3f);
+            ll.Magnify();
             return Wait.For( 1.0f);
         }
 
@@ -148,40 +146,29 @@ namespace EA4S.Assessment
 
         protected IYieldable PlaceQuestion( IQuestion q, Vector3 position, bool playAudio)
         {
+            //TODO: Bug here. Where is data setted?
             lastPlacedQuestion = q;
-            var ll = q.gameObject.GetComponent< LetterObjectView>();
+            var ll = q.gameObject.GetComponent< StillLetterBox>();
 
-            ll.Poof( ElementsSize.PoofOffset);
+            ll.Poof(); // ll.Data is null. why? <<<<-----
+
             audioManager.PlaySound( Sfx.Poof);
             ll.transform.localPosition = position;
-            ll.transform.DOScale( 1, 0.3f);
-            if(playAudio)
+
+            ll.transform.GetComponent< StillLetterBox>().Magnify();
+
+            if ( playAudio)
                 q.QuestionBehaviour.ReadMeSound();
 
             return Wait.For( 1.0f);
         }
 
-        protected IYieldable PlacePlaceholder( IQuestion q, GameObject placeholder, Vector3 position)
+        protected IYieldable PlacePlaceholder( GameObject placeholder, Vector3 position)
         {
-            Transform tr = placeholder.transform;
-            tr.localPosition = position + new Vector3( 0, 5, 0);
-            tr.localScale = new Vector3( 0.5f, 0.5f, 0.5f);
+            var tr = placeholder.transform;
             audioManager.PlaySound( Sfx.StarFlower);
-
-            float adjust = 4.5f;
-
-            if (answerSize == (1.5f * 3f))
-                adjust = 3;
-
-            if (answerSize == (1f * 3f))
-                adjust = ElementsSize.DropZoneScale;
-
-
-            var seq = DOTween.Sequence();
-            seq
-                .Insert( 0, tr.DOScale( new Vector3( adjust, ElementsSize.DropZoneScale, 1), 0.4f))
-                .Insert( 0, tr.DOMove( position, 0.6f));
-
+            tr.localPosition = position;
+            tr.GetComponent< StillLetterBox>().Magnify();
             return Wait.For( 0.4f);
         }
 
@@ -196,12 +183,12 @@ namespace EA4S.Assessment
             foreach( var q in allQuestions)
             {
                 foreach (var p in q.GetPlaceholders())
-                    yield return Koroutine.Nested( FadeOutPlaceholder(p));
+                    yield return Koroutine.Nested( FadeOutPlaceholder( p));
 
                 foreach (var img in images)
-                    yield return Koroutine.Nested( FadeOutImage(img));
+                    yield return Koroutine.Nested( FadeOutImage( img));
 
-                yield return Koroutine.Nested( FadeOutQuestion(q));
+                yield return Koroutine.Nested( FadeOutQuestion( q));
             }
             
             // give time to finish animating elements
@@ -209,19 +196,19 @@ namespace EA4S.Assessment
             isAnimating = false;
         }
 
-        IEnumerator FadeOutImage( LetterObjectView image)
+        IEnumerator FadeOutImage( StillLetterBox image)
         {
             audioManager.PlaySound( Sfx.Poof);
             image.Poof();
 
-            image.transform.DOScale(0, 0.4f).OnComplete( () => GameObject.Destroy( image.gameObject));
+            image.transform.DOScale( 0, 0.4f).OnComplete( () => GameObject.Destroy( image.gameObject));
             yield return Wait.For( 0.1f);
         }
 
         IEnumerator FadeOutQuestion( IQuestion q)
         {
             audioManager.PlaySound( Sfx.Poof);
-            q.gameObject.GetComponent< LetterObjectView>().Poof( ElementsSize.PoofOffset);
+            q.gameObject.GetComponent< StillLetterBox>().Poof();
             q.gameObject.transform.DOScale( 0, 0.4f).OnComplete(() => GameObject.Destroy( q.gameObject));
             yield return Wait.For( 0.1f);
         }

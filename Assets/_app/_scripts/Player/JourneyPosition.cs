@@ -43,6 +43,11 @@
             return Stage + "." + LearningBlock + "." + PlaySession;
         }
 
+        public string ToStringId()
+        {
+            return Stage + "." + LearningBlock + "." + PlaySession;
+        }
+
         public bool IsMinor(JourneyPosition other)
         {
             if (Stage < other.Stage) {

@@ -193,7 +193,7 @@ namespace EA4S.Minigames.Scanner
         void OnMouseUp()
         {
             letterObjectView.SetState(LLAnimationStates.LL_tickling);
-            game.Context.GetAudioManager().PlayLetterData(letterObjectView.Data, true);
+            game.Context.GetAudioManager().PlaySound(Sfx.LL_Annoyed);
         }
 
         public void RoundLost()

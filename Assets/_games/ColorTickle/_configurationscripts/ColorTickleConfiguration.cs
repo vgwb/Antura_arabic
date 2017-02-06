@@ -41,6 +41,8 @@ namespace EA4S.Minigames.ColorTickle
 
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.letterFilters.excludeDiacritics = true;
+            builderParams.letterFilters.excludeDiphthongs = true;
+            builderParams.letterFilters.excludeLetterVariations = true;
             builderParams.wordFilters.excludeDiacritics = true;
             builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, parameters: builderParams);
 

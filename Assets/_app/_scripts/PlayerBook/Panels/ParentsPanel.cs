@@ -112,7 +112,7 @@ namespace EA4S.PlayerBook
             GlobalUI.I.BackButton.gameObject.SetActive(false);
 
             var logAi = AppManager.I.Teacher.logAI;
-            var fakeAppSession = LogManager.I.Session;
+            var fakeAppSession = LogManager.I.AppSession;
 
             if (cheatMode) {
                 // Enable cheat mode
@@ -121,7 +121,7 @@ namespace EA4S.PlayerBook
                 // Add some mood data
                 int nMoodData = 15;
                 for (int i = 0; i < nMoodData; i++) {
-                    logAi.LogMood(Random.Range(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue + 1));
+                    logAi.LogMood("XXX", Random.Range(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue + 1));
                     Debug.Log("Add mood " + i);
                     yield return null;
                 }
@@ -134,7 +134,7 @@ namespace EA4S.PlayerBook
             var allPlaySessionInfos = AppManager.I.Teacher.scoreHelper.GetAllPlaySessionInfo();
             for (int i = 0; i < allPlaySessionInfos.Count; i++) {
                 if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage) {
-                    logAi.LogPlaySessionScore(allPlaySessionInfos[i].data.Id, Random.Range(1, 4));
+                    logAi.LogPlaySessionScore("XXX", allPlaySessionInfos[i].data.GetJourneyPosition(), Random.Range(1, 4), 12f);
                     Debug.Log("Add play session score for " + allPlaySessionInfos[i].data.Id);
                     yield return null;
                 }
@@ -144,7 +144,7 @@ namespace EA4S.PlayerBook
                 // Add scores for all minigames
                 var allMiniGameInfo = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
                 for (int i = 0; i < allMiniGameInfo.Count; i++) {
-                    logAi.LogMiniGameScore("1","1.1.1", allMiniGameInfo[i].data.Code, 12f, Random.Range(1, 4));
+                    logAi.LogMiniGameScore("XXX", JourneyPosition.InitialJourneyPosition, allMiniGameInfo[i].data.Code, Random.Range(1, 4), 12f);
                     Debug.Log("Add minigame score " + i);
                     yield return null;
                 }

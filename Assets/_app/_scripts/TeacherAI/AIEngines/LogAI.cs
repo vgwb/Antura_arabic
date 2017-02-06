@@ -22,11 +22,11 @@ namespace EA4S.Teacher
 
         #region Mood
 
-        public void LogMood(int mood)
+        public void LogMood(string appSession, int mood)
         {
             // refactor: this should have a session like the rest of the logging methods
             float realMood = Mathf.InverseLerp(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue, mood);
-            var data = new LogMoodData(realMood);
+            var data = new LogMoodData(appSession, realMood);
             db.Insert(data);
         }
 
@@ -43,13 +43,13 @@ namespace EA4S.Teacher
 
         #region Info
 
-        public void LogInfo(string session, InfoEvent infoEvent, string parametersString = "")
+        public void LogInfo(string appSession, InfoEvent infoEvent, string parametersString = "")
         {
             if (!AppManager.I.DB.HasLoadedPlayerProfile()) {
                 Debug.Log("No player profile DB to log to. Player profile is probably not set");
                 return;
             }
-            var data = new LogInfoData(session, infoEvent, parametersString);
+            var data = new LogInfoData(appSession, infoEvent, parametersString);
             db.Insert(data);
         }
 
@@ -74,11 +74,11 @@ namespace EA4S.Teacher
             }
         }
 
-        public void LogPlay(string session, string playSession, MiniGameCode miniGameCode, List<PlayResultParameters> resultsList)
+        public void LogPlay(string appSession, JourneyPosition pos, MiniGameCode miniGameCode, List<PlayResultParameters> resultsList)
         {
             // The teacher receives a score for each play skill the minigame deems worthy of analysis
             foreach (var result in resultsList) {
-                var data = new LogPlayData(session, playSession, miniGameCode, result.playEvent, result.skill, result.score);
+                var data = new LogPlayData(appSession, pos.ToStringId(), miniGameCode, result.playEvent, result.skill, result.score);
                 db.Insert(data);
             }
         }
@@ -98,7 +98,7 @@ namespace EA4S.Teacher
             public int nWrong;
         }
 
-        public void LogLearn(string session, string playSession, MiniGameCode miniGameCode, List<LearnResultParameters> resultsList)
+        public void LogLearn(string appSession, JourneyPosition pos, MiniGameCode miniGameCode, List<LearnResultParameters> resultsList)
         {
             var learnRules = GetLearnRules(miniGameCode);
 
@@ -119,7 +119,7 @@ namespace EA4S.Teacher
                 score *= learnRules.minigameImportanceWeight;
                 score += learnRules.minigameVoteSkewOffset;
 
-                var data = new LogLearnData(session, playSession, miniGameCode, result.dataType, result.elementId, score);
+                var data = new LogLearnData(appSession, pos.ToStringId(), miniGameCode, result.dataType, result.elementId, score);
                 db.Insert(data);
 
                 // We also update the score for that data element
@@ -149,27 +149,40 @@ namespace EA4S.Teacher
 
         #region Journey Scores
 
-        public void LogMiniGameScore(string session, string playSession, MiniGameCode miniGameCode, float totalPlayTime, int score)
+        public void LogMiniGameScore(string appSession, JourneyPosition pos, MiniGameCode miniGameCode, int score, float playTime)
         {
             if (AppConstants.VerboseLogging) Debug.Log("LogMiniGameScore " + miniGameCode + " / " + score);
-            UpdateMinigameScoreDataWithMaximum(miniGameCode.ToString(), totalPlayTime, score);
+
+            // Log for history
+            var data = new LogMinigameScoreData(appSession, pos, miniGameCode, score, playTime);
+            db.Insert(data);
+
+            // Score update
+            UpdateMinigameScoreDataWithMaximum(miniGameCode.ToString(), playTime, score);
 
             // We also log play skills related to that minigame, as read from MiniGameData
             var minigameData = db.GetMiniGameDataByCode(miniGameCode);
             List<PlayResultParameters> results = new List<PlayResultParameters>();
-            foreach (var playSkill in minigameData.AffectedPlaySkills)
+            foreach (var weightedPlaySkill in minigameData.AffectedPlaySkills)
             {
-                results.Add(new PlayResultParameters(PlayEvent.Skill, playSkill, score));
+                results.Add(new PlayResultParameters(PlayEvent.Skill, weightedPlaySkill.Skill, score));
             }
-            LogPlay(session, playSession, miniGameCode, results);
+            LogPlay(appSession, pos, miniGameCode, results);
         }
 
-        public void LogPlaySessionScore(string playSessionId, int score)
+        public void LogPlaySessionScore(string appSession, JourneyPosition pos, int score, float playTime)
         {
-            if (AppConstants.VerboseLogging) Debug.Log("LogPlaySessionScore " + playSessionId + " / " + score);
-            UpdateJourneyScoreDataWithMaximum(JourneyDataType.PlaySession,(playSessionId).ToString(), score);
+            if (AppConstants.VerboseLogging) Debug.Log("LogPlaySessionScore " + pos.ToStringId() + " / " + score);
+
+            // Log for history
+            var data = new LogPlaySessionScoreData(appSession, pos, score, playTime);
+            db.Insert(data);
+
+            // Score update
+            UpdateJourneyScoreDataWithMaximum(JourneyDataType.PlaySession, pos.ToStringId(), score);
         }
 
+        // TODO: DEPRECATED PROBABLY, WHAT IS A LEARNING BLOCK SCORE?
         public void LogLearningBlockScore(int learningBlock, int score)
         {
             if (AppConstants.VerboseLogging) Debug.Log("LogLearningBlockScore " + learningBlock + " / " + score);

@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using EA4S.Core;
 using EA4S.Helpers;
-using EA4S.Profile;
 
 namespace EA4S.Database
 {
@@ -110,14 +109,12 @@ namespace EA4S.Database
 
         public void UpdatePlayerProfileData(PlayerProfileData playerProfileData)
         {
-            Debug.LogError("upd -> " + playerProfileData.ToString());
             dynamicDb.InsertOrReplace(playerProfileData);
         }
 
         public PlayerProfileData GetPlayerProfileData()
         {
             var data = dynamicDb.FindPlayerProfileDataById(PlayerProfileData.UNIQUE_ID);
-            if (data != null) Debug.LogError("get -> " + data.ToString());
             return data;
         }
 

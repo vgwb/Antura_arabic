@@ -1,6 +1,6 @@
+using EA4S.MinigamesCommon;
 using Kore.Coroutines;
 using System.Collections;
-using EA4S.MinigamesCommon;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -73,7 +73,7 @@ namespace EA4S.Assessment
                     if (currentPos.x < min)
                         min = currentPos.x;
 
-                    yield return PlacePlaceholder(allQuestions[ questionIndex], p, currentPos);
+                    yield return PlacePlaceholder( p, currentPos);
                     currentPos.x += (answerSize * sign) / 2;
                 }
 

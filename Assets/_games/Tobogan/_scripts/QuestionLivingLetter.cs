@@ -9,6 +9,9 @@ namespace EA4S.Minigames.Tobogan
 {
     public class QuestionLivingLetter : MonoBehaviour
     {
+        [HideInInspector]
+        public PipeAnswer NearTube;
+
         public bool playWhenDragged = true;
         public Transform livingLetterTransform;
         public BoxCollider boxCollider;
@@ -29,7 +32,7 @@ namespace EA4S.Minigames.Tobogan
         float minY;
         float maxY;
 
-        bool dropLetter;
+        bool isFalling;
         bool dragging = false;
         Vector3 dragOffset = Vector3.zero;
 
@@ -42,6 +45,20 @@ namespace EA4S.Minigames.Tobogan
 
         Vector3 colliderStartScale;
 
+        Vector3 targetDragPosition;
+
+        public Vector3? TargetContentDragPosition
+        {
+            get
+            {
+                if (dragging)
+                    return targetDragPosition + ContentOffset;
+                return null;
+            }
+        }
+
+        Vector3 ContentOffset { get; set; }
+
         void Awake()
         {
             normalPosition = livingLetterTransform.localPosition;
@@ -50,6 +67,8 @@ namespace EA4S.Minigames.Tobogan
             holdPosition.y = normalPosition.y;
 
             colliderStartScale = boxCollider.size;
+
+            ContentOffset = letter.contentTransform.position - transform.position;
         }
 
         public void Initialize(Camera tubesCamera, Vector3 upRightMaxPosition, Vector3 downLeftMaxPosition, Transform[] letterPositions)
@@ -122,7 +141,7 @@ namespace EA4S.Minigames.Tobogan
                 moveTweener.Kill();
             }
 
-            moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate () 
+            moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate ()
             {
                 if (letter.Data == null)
                     PlayStillAnimation();
@@ -159,7 +178,7 @@ namespace EA4S.Minigames.Tobogan
 
         public void GoToPosition(int positionNumber)
         {
-            dropLetter = false;
+            isFalling = false;
 
             if (moveTweener != null) { moveTweener.Kill(); }
             if (rotationTweener != null) { rotationTweener.Kill(); }
@@ -172,7 +191,7 @@ namespace EA4S.Minigames.Tobogan
 
         public void MoveToNextPosition(float duration, Action callback)
         {
-            dropLetter = false;
+            isFalling = false;
 
             if (moveTweener != null) { moveTweener.Kill(); }
             if (rotationTweener != null) { rotationTweener.Kill(); }
@@ -212,13 +231,12 @@ namespace EA4S.Minigames.Tobogan
         {
             if (dragging)
             {
-                dropLetter = false;
+                isFalling = false;
 
                 Vector3 mousePosition = new Vector3(pointerPosition.x, pointerPosition.y, cameraDistance);
 
-                transform.position = tubesCamera.ScreenToWorldPoint(mousePosition);
-
-                transform.position = ClampPositionToStage(transform.position - dragOffset);
+                targetDragPosition = tubesCamera.ScreenToWorldPoint(mousePosition);
+                targetDragPosition = ClampPositionToStage(targetDragPosition - dragOffset);
             }
         }
 
@@ -227,7 +245,7 @@ namespace EA4S.Minigames.Tobogan
             if (dragging)
             {
                 dragging = false;
-                dropLetter = true;
+                isFalling = true;
 
                 PlayIdleAnimation();
 
@@ -238,20 +256,37 @@ namespace EA4S.Minigames.Tobogan
             }
         }
 
-        void Drop(float delta)
-        {
-            Vector3 dropPosition = transform.position;
-
-            dropPosition += Physics.gravity * delta;
-
-            transform.position = ClampPositionToStage(dropPosition);
-        }
-
         void Update()
         {
-            if (dropLetter)
+            if (!dragging)
+                NearTube = null;
+
+            Vector3 targetScale;
+            Vector3 targetPosition = transform.position;
+
+            if (dragging)
+                targetPosition = targetDragPosition;
+
+            if (NearTube != null)
             {
-                Drop(Time.deltaTime);
+                float yScale = 1.3f * (1 + 0.1f * Mathf.Cos(Time.realtimeSinceStartup * 3.14f * 6));
+
+                targetScale = 0.75f * new Vector3(1 / yScale, yScale, 1);
+                
+                targetPosition = NearTube.tutorialPoint.position - ContentOffset;
+
+                targetPosition.y = Mathf.Lerp(targetPosition.y, maxY, 2.0f*Mathf.Abs(targetPosition.x - transform.position.x));
+            }
+            else
+                targetScale = Vector3.one;
+
+            transform.localScale = Vector3.Lerp(transform.localScale, targetScale, 15.0f * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, 25.0f * Time.deltaTime);
+
+            if (isFalling)
+            {
+                // Linear fall
+                transform.position = ClampPositionToStage(transform.position + Vector3.down * 20 * Time.deltaTime);
             }
 
             boxCollider.size = new Vector3(colliderStartScale.x * letter.Scale, colliderStartScale.y, colliderStartScale.z);

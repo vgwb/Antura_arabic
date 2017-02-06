@@ -22,6 +22,7 @@ namespace EA4S.Minigames.Egg
         List<EggButton> eggButtons = new List<EggButton>();
 
         float buttonDistance = 20f;
+        bool useEnlargeAnimation;
 
         int buttonCount;
 
@@ -29,10 +30,12 @@ namespace EA4S.Minigames.Egg
 
         System.Random randomGenerator;
 
-        public void Initialize(GameObject eggButtonPrefab, IAudioManager audioManager)
+        public void Initialize(GameObject eggButtonPrefab, IAudioManager audioManager, float buttonDistance, bool useEnlargeAnimation)
         {
             this.eggButtonPrefab = eggButtonPrefab;
             this.audioManager = audioManager;
+            this.buttonDistance = buttonDistance;
+            this.useEnlargeAnimation = useEnlargeAnimation;
 
             randomGenerator = new System.Random((int)Time.realtimeSinceStartup);
         }
@@ -40,6 +43,7 @@ namespace EA4S.Minigames.Egg
         public void AddButton(ILivingLetterData letterData)
         {
             EggButton eggButton = CreateButton();
+            eggButton.useEnlargeAnimation = useEnlargeAnimation;
 
             eggButton.SetAnswer(letterData);
 
@@ -121,7 +125,7 @@ namespace EA4S.Minigames.Egg
         {
             for (int i = 0; i < eggButtons.Count; i++)
             {
-                eggButtons[i].SetOnPressedColor();
+                eggButtons[i].SetPressed();
             }
         }
 
@@ -131,7 +135,7 @@ namespace EA4S.Minigames.Egg
             {
                 if (eggButtons[i] != without)
                 {
-                    eggButtons[i].SetOnStandardColor(killTween);
+                    eggButtons[i].SetNormal(killTween);
                 }
             }
         }
