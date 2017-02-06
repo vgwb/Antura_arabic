@@ -1,17 +1,16 @@
-using EA4S.LivingLetters;
+using EA4S.MinigamesAPI;
 using System;
 using System.Collections.Generic;
-using EA4S.MinigamesAPI;
 using UnityEngine;
 
 namespace EA4S.Assessment
 {
     public class DefaultQuestion : IQuestion
     {
-        private LetterObjectView view;
+        private StillLetterBox view;
         private int placeholdersCount;
 
-        public DefaultQuestion( LetterObjectView letter, int placeholders, AssessmentDialogues dialogues)
+        public DefaultQuestion( StillLetterBox letter, int placeholders, AssessmentDialogues dialogues)
         {
             view = letter;
             placeholdersCount = placeholders;

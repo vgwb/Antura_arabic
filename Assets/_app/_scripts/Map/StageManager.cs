@@ -48,18 +48,22 @@ namespace EA4S.Map
         {
             if (!Application.isEditor) SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
 
-           /* AppManager.I.Player.MaxJourneyPosition.Stage = 2;
-            AppManager.I.Player.MaxJourneyPosition.LearningBlock = 3;
+           /* AppManager.I.Player.MaxJourneyPosition.Stage = 6;
+            AppManager.I.Player.MaxJourneyPosition.LearningBlock = 15;
             AppManager.I.Player.MaxJourneyPosition.PlaySession = 100;*/
+
             numberStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
             s = AppManager.I.Player.MaxJourneyPosition.Stage;
-            for (i = 1; i <= (s - 1); i++)
+            int nStage;
+            if (s == 6) nStage = 6;
+            else nStage = s - 1;
+            for (i = 1; i <= nStage; i++)
             {
                 stages[i].SetActive(false);
                 miniMaps[i].GetComponent<Stage>().isAvailableTheWholeMap = true;
                 miniMaps[i].GetComponent<Stage>().CalculateStepsStage();
             }
-            miniMaps[i].GetComponent<Stage>().CalculateStepsStage();
+            if(s<6) miniMaps[i].GetComponent<Stage>().CalculateStepsStage();
 
             stages[AppManager.I.Player.CurrentJourneyPosition.Stage].SetActive(true);
             Camera.main.backgroundColor = colorMaps[AppManager.I.Player.CurrentJourneyPosition.Stage];

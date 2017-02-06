@@ -7,7 +7,6 @@ namespace EA4S.Assessment
     public class DroppableBehaviour : MonoBehaviour, IDroppable
     {
         IDragManager dragManager = null;
-        Tween tween = null;
 
         public void SetDragManager( IDragManager dragManager)
         {
@@ -31,15 +30,7 @@ namespace EA4S.Assessment
                 origin = transform.localPosition;
 
             dragManager.StartDragging( this);
-            SetScale( 1.3f);
-        }
-
-        void SetScale( float scale)
-        {
-            if (tween != null)
-                tween.Kill( false);
-
-            tween = transform.DOScale( scale, 0.4f).OnComplete( () => tween = null);
+            GetComponent< StillLetterBox>().Grabbed();
         }
 
         void OnMouseUp()
@@ -65,7 +56,7 @@ namespace EA4S.Assessment
         public void StartDrag( Action< IDroppable> onDestroyed)
         {
             OnGoDestroyed = onDestroyed;
-            SetScale( 1.3f);
+            GetComponent< StillLetterBox>().Grabbed();
         }
 
         void OnDestroy()
@@ -78,7 +69,9 @@ namespace EA4S.Assessment
         public void StopDrag()
         {
             OnGoDestroyed = null;
-            SetScale( 1f);
+            GetComponent<StillLetterBox>().TweenScale( 1);
+            var v = transform.localPosition;
+            transform.localPosition = new Vector3(v.x, v.y, 5);
         }
 
 

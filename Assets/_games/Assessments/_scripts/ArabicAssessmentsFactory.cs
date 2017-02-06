@@ -52,6 +52,7 @@ namespace EA4S.Assessment
 
             // Get references from GameContext (utils)
             Init( context);
+            AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Word;
 
             // Instantiate the correct managers
             CreateManagers( context,
@@ -167,6 +168,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
             
             Init( context);
+            AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Phrase;
 
             AssessmentOptions.Instance.WideLL = true;
             AssessmentOptions.Instance.ReadQuestionAndAnswer = true;
@@ -198,6 +200,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
+            AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Word;
 
             CreateManagers( context,
                             DragManagerType.Default,
@@ -227,6 +230,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
+            AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Word;
 
             CreateManagers( context,
                             DragManagerType.Default,
@@ -256,6 +260,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
+            AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Word;
 
             CreateManagers( context,
                             DragManagerType.Default,
@@ -342,6 +347,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = true;
 
             Init( context);
+            AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Word;
 
             CreateManagers( context,
                             DragManagerType.Default,
@@ -369,6 +375,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
+            AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Word;
 
             CreateManagers( context,
                             DragManagerType.Default,
@@ -395,6 +402,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.CompleteWordOnAnswered = false;
             AssessmentOptions.Instance.ShowFullWordOnAnswered = false;
             AssessmentOptions.Instance.WideLL = false;
+            AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Letter;
 
             context.Configuration = AssessmentConfiguration.Instance;
             context.Events = new AssessmentEvents();

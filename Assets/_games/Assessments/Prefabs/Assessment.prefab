@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933b154e60e1a204493651a02102bb0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LivingLetterPrefab: {fileID: 0}
+  StillLetterBox: {fileID: 0}
   DropZonePrefab: {fileID: 1000011656232934, guid: d17661468d7dbb64d9d84de4a665e6e1,
     type: 2}
   Questions: {fileID: 1000010592757816}
