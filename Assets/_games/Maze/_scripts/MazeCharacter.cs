@@ -721,32 +721,28 @@ namespace EA4S.Minigames.Maze
 
             var finalPosition = Fruits[0].transform.GetChild(0).gameObject.transform.position;
 
-            Vector3 secondPoint = transform.position + finalPosition;
-            secondPoint *= 0.66f;
+            int numTrajectoryPoints = 7;
+            float yDecrement = (finalPosition.y - transform.position.y) / (numTrajectoryPoints + 1);
 
-            Vector3 thirdPoint = secondPoint * 0.5f;
-
-            var frustumHeightAtSecondPoint = GetFrustumHeightAtDistance(Camera.main.transform.position.y - secondPoint.y);
-            var frustumWidthAtSecondPoint = GetFrustumWidth(frustumHeightAtSecondPoint);
-
-            var frustumHeightAtThirdPoint = GetFrustumHeightAtDistance(Camera.main.transform.position.y - thirdPoint.y);
-            var frustumWidthAtThirdPoint = GetFrustumWidth(frustumHeightAtThirdPoint);
-
-            secondPoint.x = frustumWidthAtSecondPoint * 0.8f * 0.5f;
-            secondPoint.x *= -1f * Mathf.Sign(transform.position.x);
-
-            secondPoint.z = frustumHeightAtSecondPoint * 0.8f * 0.5f;
-            secondPoint.z *= -1f * Mathf.Sign(transform.position.z);
-
-            thirdPoint.x = frustumWidthAtThirdPoint * 0.8f * 0.5f;
-            thirdPoint.x *= -1f * Mathf.Sign(secondPoint.x);
-
-            thirdPoint.z = frustumHeightAtThirdPoint * 0.8f * 0.5f;
-            thirdPoint.z *= -1f * Mathf.Sign(secondPoint.z);
+            float[] trajectoryPointXAnchors = { -0.7f, 0f, 0.7f, 0f, -0.75f, -0.4f, 0f };
+            float[] trajectoryPointZAnchors = { 0f, 0.8f, 0f, -0.8f, -0.5f, 0.7f, 0.85f, 1.2f };
 
             trajectoryPoints.Add(transform.position);
-            trajectoryPoints.Add(secondPoint);
-            trajectoryPoints.Add(thirdPoint);
+
+            for (int i = 0; i < numTrajectoryPoints; i++)
+            {
+                Vector3 trajectoryPoint = new Vector3();
+                trajectoryPoint.y = transform.position.y + (i + 1) * yDecrement;
+
+                var frustumHeight = GetFrustumHeightAtDistance(Camera.main.transform.position.y - trajectoryPoint.y);
+                var frustumWidth = GetFrustumWidth(frustumHeight);
+
+                trajectoryPoint.x = frustumWidth * 0.5f * trajectoryPointXAnchors[i];
+                trajectoryPoint.z = frustumHeight * 0.5f * trajectoryPointZAnchors[i];
+
+                trajectoryPoints.Add(trajectoryPoint);
+            }
+
             trajectoryPoints.Add(finalPosition);
 
             transform.DOPath(trajectoryPoints.ToArray(), 3, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) =>
