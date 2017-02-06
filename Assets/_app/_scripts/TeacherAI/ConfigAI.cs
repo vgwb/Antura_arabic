@@ -29,6 +29,9 @@
 
         public const float startingDifficultyForNewMiniGame = 0f;
 
+        public const int lastScoresForPerformanceWindow = 10;
+        public const float scoreStarsToDifficultyContribution = 0.15f;
+
     }
 
 }

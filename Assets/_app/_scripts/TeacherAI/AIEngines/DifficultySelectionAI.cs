@@ -58,8 +58,7 @@ namespace EA4S.Teacher
                 // - a score of 2 or 3 increases it
 
                 // Query on last X minigame logged scores
-                const int LAST_SCORES_NUMBER = 10;
-                string query2 = "SELECT * FROM " + typeof(LogMinigameScoreData).Name  + " WHERE MiniGameCode = " + (int)miniGameCode + " ORDER BY Timestamp LIMIT " + LAST_SCORES_NUMBER;
+                string query2 = "SELECT * FROM " + typeof(LogMinigameScoreData).Name  + " WHERE MiniGameCode = " + (int)miniGameCode + " ORDER BY Timestamp LIMIT " + ConfigAI.lastScoresForPerformanceWindow;
                 List<LogMinigameScoreData> logMinigameScoreDatas = dbManager.FindDataByQuery<LogMinigameScoreData>(query2);
                 List<int> scores = logMinigameScoreDatas.ConvertAll(x => x.Score);
 
@@ -70,11 +69,10 @@ namespace EA4S.Teacher
                     scores[i] -= 1;
 
                 // Compute the performance for these minigames starting from zero and adding values
-                const float scorePointsContribution = 0.15f;
                 playerPerformance = 0f;
                 for (var i = 0; i < scores.Count; i++)
                 {
-                    playerPerformance += scores[i] * scorePointsContribution;
+                    playerPerformance += scores[i] * ConfigAI.scoreStarsToDifficultyContribution;
                     //Debug.LogWarning("Score " + i + " was " + (scores[i] + 1) + " contrib: " + scores[i] * scorePointsContribution + " current " + playerPerformance);
                 }
                 playerPerformance = Mathf.Clamp01(playerPerformance);
