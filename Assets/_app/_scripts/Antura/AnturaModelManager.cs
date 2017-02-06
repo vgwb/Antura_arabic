@@ -274,6 +274,21 @@ namespace EA4S.Antura
         public RewardPackUnlockData DecalTexture = new RewardPackUnlockData();
         public string DecalTextureId;
 
+        /// <summary>
+        /// Loads all rewards in this object instance from list of reward ids.
+        /// </summary>
+        /// <param name="_listOfIdsAsJsonString">The list of ids as json string.</param>
+        public void LoadListOfIds(string _listOfIdsAsJsonString) {
+            JsonUtility.FromJson<AnturaCustomization>(_listOfIdsAsJsonString);
+            foreach (var item in FornituresIds) {
+                // Load Fornitures for any id from db
+            }
 
+            // Load TileTexture from TileTextureId
+            
+
+            // Load DecalTexture from DecalTextureId
+
+        }
     }
 }

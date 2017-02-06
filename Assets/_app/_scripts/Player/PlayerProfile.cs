@@ -186,7 +186,8 @@ namespace EA4S.Profile
         }
         #endregion
 
-        #region Antura Customization   
+        #region Antura Customization
+
         private List<RewardPackUnlockData> _rewardsUnlocked;
         /// <summary>
         /// Gets or sets the rewards unlocked.
@@ -230,6 +231,8 @@ namespace EA4S.Profile
         public void SaveCustomization(AnturaCustomization _anturaCustomization)
         {
             CurrentAnturaCustomizations = _anturaCustomization;
+            // TODO : Refactor Reward System
+            
             Save();
         }
 
@@ -335,6 +338,7 @@ namespace EA4S.Profile
             PlayerProfileData newProfileData = new PlayerProfileData(this.Key, this.Id, this.AvatarId, this.Age, this.Name, this.TotalNumberOfBones, ProfileCompletion);
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
+            newProfileData.CurrentAnturaCustomization = JsonUtility.ToJson(this.CurrentAnturaCustomizations);
             return newProfileData;
         }
 
@@ -351,6 +355,7 @@ namespace EA4S.Profile
             TotalNumberOfBones = _data.TotalNumberOfBones;
             this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
             this.SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
+            CurrentAnturaCustomizations.LoadListOfIds(_data.CurrentAnturaCustomization)
             return this;
         }
         #endregion
