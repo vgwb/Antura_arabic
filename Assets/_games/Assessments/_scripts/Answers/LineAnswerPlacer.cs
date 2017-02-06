@@ -111,8 +111,8 @@ namespace EA4S.Assessment
         {
             var go = a.gameObject;
             go.transform.localPosition = currentPos;
-            go.transform.DOScale( 1, 0.4f);
             go.GetComponent< StillLetterBox>().Poof();
+            go.GetComponent< StillLetterBox>().Magnify();
             audioManager.PlaySound( Sfx.Poof);
 
             yield return Wait.For( Random.Range( 0.07f, 0.13f));

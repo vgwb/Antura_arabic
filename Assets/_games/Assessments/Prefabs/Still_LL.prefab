@@ -591,7 +591,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Label: {fileID: 114141025178559814}
   Drawing: {fileID: 114807908430855550}
-  poofPrefab: {fileID: 0}
+  poofPrefab: {fileID: 198139065911209746, guid: 9548344520ec01149a7d5a2f4a1606a5,
+    type: 2}
   questionSprite: {fileID: 212094867352178172}
   answerSprite: {fileID: 212466523750547132}
   slotSprite: {fileID: 212604182904043482}
