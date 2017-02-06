@@ -570,6 +570,11 @@ namespace EA4S.Minigames.Maze
             }
         }
 
+        public void UnhighlightStartingFX()
+        {
+            _fruits[0].GetComponent<MazeArrow>().Unhighlight();
+        }
+
         private void OnRocketImpactedWithBorder()
         {
             GetComponent<CapsuleCollider>().enabled = false;
@@ -663,7 +668,7 @@ namespace EA4S.Minigames.Maze
             }
 
             myCollider.enabled = false;
-
+            
             // Test with tweens:
             MoveTween();
         }
