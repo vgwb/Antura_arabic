@@ -21,7 +21,7 @@ namespace EA4S
         Map = 70,
 
         Reward = 50,
-        CustomizationChange = 51,
+        AnturaCustomization = 51,
     }
 }
 
