@@ -17,7 +17,7 @@ namespace EA4S.Minigames.Maze
         private const float CELEBRATION_PATH_MIDPOINT_X_ANCHOR = 0.2f;
         private const float CELEBRATION_PATH_MIDPOINT_Z_ANCHOR = -0.2f;
 
-        private const float CELEBRATION_PATH_ENDPOINT_X_ANCHOR = -0.33f;
+        private const float CELEBRATION_PATH_ENDPOINT_X_ANCHOR = -0.5f;
         private const float CELEBRATION_PATH_ENDPOINT_Z_ANCHOR = 0f;
         private const float CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA = 5.5f;
         private const float CELEBRATION_PATH_DURATION = 2.5f;
@@ -248,18 +248,14 @@ namespace EA4S.Minigames.Maze
             characterWayPoints.Add(initialPosition);
             SetFruitsList();
 
-            var dir = _fruits[1].transform.position - transform.position;
-            var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+            var firstArrowRotation = _fruits[0].transform.rotation.eulerAngles;
+            firstArrowRotation.x += 90f;
+            firstArrowRotation.y += 180f;
 
-            angle = 360 + angle;
-
-            transform.DOLocalRotateQuaternion(Quaternion.AngleAxis(-angle, Vector3.up), 0.5f);
-
-            dir.Normalize();
-            dir.x = transform.position.x - dir.x * 1.5f;
-            dir.z = transform.position.z - dir.z * 1.5f;
-            dir.y = 1;
-            transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+            transform.DORotate(firstArrowRotation, 0.5f).OnComplete(() =>
+            {
+                transform.DOMove(transform.position - transform.TransformVector(Vector3.left), 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+            });
         }
 
         public void CreateFruits(List<GameObject> fruitsLists)
@@ -435,15 +431,15 @@ namespace EA4S.Minigames.Maze
             transform.DOMove(_fruits[0].transform.position, 1).OnComplete(() =>
             {
                 toggleVisibility(false);
-                dir = _fruits[1].transform.position - transform.position;
-                angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
-                transform.DOLocalRotateQuaternion(Quaternion.AngleAxis(-angle, Vector3.up), 0.5f);
 
-                dir.Normalize();
-                dir.x = transform.position.x - dir.x * 1.5f;
-                dir.z = transform.position.z - dir.z * 1.5f;
-                dir.y = 1;
-                transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+                var firstArrowRotation = _fruits[0].transform.rotation.eulerAngles;
+                firstArrowRotation.x += 90f;
+                firstArrowRotation.y += 180f;
+
+                transform.DORotate(firstArrowRotation, 0.5f).OnComplete(() =>
+                {
+                    transform.DOMove(transform.position - transform.TransformVector(Vector3.left), 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+                });
             });
         }
 
@@ -574,6 +570,11 @@ namespace EA4S.Minigames.Maze
             }
         }
 
+        public void UnhighlightStartingFX()
+        {
+            _fruits[0].GetComponent<MazeArrow>().Unhighlight();
+        }
+
         private void OnRocketImpactedWithBorder()
         {
             GetComponent<CapsuleCollider>().enabled = false;
@@ -667,7 +668,7 @@ namespace EA4S.Minigames.Maze
             }
 
             myCollider.enabled = false;
-
+            
             // Test with tweens:
             MoveTween();
         }

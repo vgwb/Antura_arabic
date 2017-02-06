@@ -622,7 +622,7 @@ namespace EA4S.Minigames.Maze
         public bool isShowingAntura = false;
         public void onIdleTime()
         {
-            if (isShowingAntura) return;
+            if (isShowingAntura || gameEnded) return;
             isShowingAntura = true;
 
             timer.StopTimer();

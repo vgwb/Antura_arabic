@@ -79,6 +79,8 @@ namespace EA4S.Minigames.Maze
             MazeGameManager.instance.currentTutorial.stopCurrentTutorial();
             anturaSeconds = 0;
 
+            mazeCharacter.UnhighlightStartingFX();
+
             // Inform that we are inside the collision:
             isDrawing = true;
         }
@@ -126,7 +128,7 @@ namespace EA4S.Minigames.Maze
 
         public void NotifyFruitGotMouseOver(MazeArrow fruit)
         {
-            if (isDrawing)
+            if (isDrawing && fruit.gameObject != mazeCharacter._fruits[0])
             {
                 fruit.Highlight();
             }
