@@ -86,6 +86,9 @@ namespace EA4S.Antura
             get { return walkRefCount > 0; }
         }
 
+        System.Action onSniffStartedCallback;
+        System.Action onSniffEndedCallback;
+
         System.Action onShoutStartedCallback;
 
         public void SetWalkingSpeed(float speed = WALKING_SPEED)
@@ -93,8 +96,9 @@ namespace EA4S.Antura
             walkingSpeed = speed;
         }
 
-        public void DoSniff()
+        public void DoSniff(System.Action onSniffEnded = null)
         {
+            onSniffEndedCallback = onSniffEnded;
             if (State != AnturaAnimationStates.idle)
             {
                 if (!hasToGoBackState)
@@ -231,6 +235,12 @@ namespace EA4S.Antura
         {
             if (onShoutStartedCallback != null)
                 onShoutStartedCallback();
+        }
+
+        void OnSniffEnd()
+        {
+            if (onSniffEndedCallback != null)
+                onSniffEndedCallback();
         }
 
         void OnStateChanged(AnturaAnimationStates oldState, AnturaAnimationStates newState)
