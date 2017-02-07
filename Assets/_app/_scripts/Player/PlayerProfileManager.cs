@@ -93,8 +93,9 @@ namespace EA4S.Profile
             AppManager.I.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
             AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
             int lastActivePlayerId = AppManager.I.GameSettings.LastActivePlayerId;
-            if (lastActivePlayerId > 0)
+            if (lastActivePlayerId > 0) {
                 CurrentPlayer = LoadPlayerProfileById(AppManager.I.GameSettings.LastActivePlayerId);
+            }
             // TODO : Refactor Reward System
             //reloadAvailablePlayerProfilesList();
         }
@@ -187,6 +188,7 @@ namespace EA4S.Profile
         {
             // TODO : Refactor Reward System
             return new PlayerProfile().FromData(AppManager.I.DB.LoadDatabaseForPlayer(_Id));
+                
             // return AppManager.I.PlayerProfile.LoadPlayerSettings<PlayerProfile>(_Id.ToString()) as PlayerProfile;
         }
 

@@ -22,7 +22,7 @@ namespace EA4S.Core
         Assessment,
         AnturaSpace,
         Rewards,
-        PlaySessionResult,
+        PlaySessionResult, 
         DebugPanel
     }
 
