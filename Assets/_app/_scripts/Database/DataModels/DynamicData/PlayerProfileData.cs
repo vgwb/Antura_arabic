@@ -20,6 +20,7 @@ namespace EA4S.Database
         public int AvatarId { get; set; }
         public int Age { get; set; }
         public string Name { get; set; }
+        public bool IsFemale { get; set; }
         public int ProfileCompletion { get; set; }
         public int TotalNumberOfBones { get; set; }
         public int CreationTimestamp { get; set; }
@@ -36,7 +37,7 @@ namespace EA4S.Database
         {
         }
 
-        public PlayerProfileData(string _PlayerKey, int _PlayerId, int _AvatarId, int _Age, string _Name, int _TotalNumberOfBones, int _ProfileCompletion, string _AnturaCustomization = null)
+        public PlayerProfileData(string _PlayerKey, int _PlayerId, int _AvatarId, int _Age, string _Name, bool _isFemale, int _TotalNumberOfBones, int _ProfileCompletion, string _AnturaCustomization = null)
         {
             Id = UNIQUE_ID;  // Only one record
             PlayerKey = _PlayerKey;
@@ -44,6 +45,7 @@ namespace EA4S.Database
             AvatarId = _AvatarId;
             Age = _Age;
             Name = _Name;
+            IsFemale = _isFemale;
             ProfileCompletion = _ProfileCompletion;
             TotalNumberOfBones = _TotalNumberOfBones;
             SetMaxJourneyPosition(JourneyPosition.InitialJourneyPosition);
