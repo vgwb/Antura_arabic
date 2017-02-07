@@ -4,7 +4,13 @@ namespace EA4S.Assessment
 {
     public interface IAssessmentConfiguration: IGameConfiguration
     {
-        int Rounds { get; }
+        int NumberOfRounds { get; set; }
+
+        // Internal use only
+        int Rounds { get;}
+
+        // Internal use only
         int SimultaneosQuestions { get; }
+
     }
 }

@@ -9,7 +9,7 @@ namespace EA4S.UI
     /// </summary>
     public class HomeButtons : MonoBehaviour
     {
-        public HomeManager HomeMngr;
+        public HomeScene HomeMngr;
         public Credits CreditsWindow;
         public MenuButton BtPlay, BtMusic, BtFx, BtCredits;
 
