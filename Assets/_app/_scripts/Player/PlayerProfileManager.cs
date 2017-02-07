@@ -46,36 +46,6 @@ namespace EA4S.Profile
             }
         }
 
-        // TODO : Refactor Reward System
-
-        //private List<PlayerProfile> availablePlayerProfiles;
-        ///// <summary>
-        ///// List of available player profiles (already created).
-        ///// </summary>
-        //public List<PlayerProfile> AvailablePlayerProfiles {
-        //    get {
-        //        reloadAvailablePlayerProfilesList();
-        //        return availablePlayerProfiles;
-        //    }
-        //    set { availablePlayerProfiles = value; }
-        //}
-
-        #endregion
-
-        #region internal functions
-        
-
-        // TODO : Refactor Reward System
-        //void reloadAvailablePlayerProfilesList() {
-        //    List<PlayerProfile> returnList = new List<PlayerProfile>();
-        //    foreach (string pId in AppManager.I.GameSettings.AvailablePlayers) {
-
-        //        PlayerProfile pp = AppManager.I.Modules.PlayerProfile.LoadPlayerSettings<PlayerProfile>(pId) as PlayerProfile;
-        //        if (pp != null)
-        //            returnList.Add(pp);
-        //    }
-        //    availablePlayerProfiles = returnList;
-        //}
         #endregion
 
         #region API        
@@ -99,8 +69,6 @@ namespace EA4S.Profile
                 int avatarId = int.Parse(GetAvatarIdFromPlayerId(AppManager.I.GameSettings.LastActivePlayerId));
                 SetPlayerProfile(avatarId);
             }
-            // TODO : Refactor Reward System
-            //reloadAvailablePlayerProfilesList();
         }
 
         /// <summary>
@@ -151,16 +119,11 @@ namespace EA4S.Profile
                 RewardPackUnlockData decalTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
                 returnProfile.AddRewardUnlocked(decalTexture);
                 returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
-                // TODO : Refactor Reward System
-                // returnProfile = AppManager.I.Modules.PlayerProfile.CreateNewPlayer(returnProfile) as PlayerProfile;
             } else {
                 returnProfile = new PlayerProfile().FromData(profileFromDB);
             }
             AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
-            // -----
-            // TODO : Refactor Reward System
-            //AppManager.I.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.I.PlayerProfileManager.CurrentPlayer);
-            //AppManager.I.PlayerProfileManager.CurrentPlayer.Save();
+
             if (profileFromDB == null && OnNewProfileCreated != null)
                 OnNewProfileCreated();
 
@@ -173,38 +136,8 @@ namespace EA4S.Profile
         /// <param name="_playerProfile">The player profile.</param>
         public void SavePlayerSettings(PlayerProfile _playerProfile)
         {
-            // TODO : Refactor Reward System
             AppManager.I.DB.UpdatePlayerProfileData(_playerProfile.ToData());
-            // Old 
-            //AppManager.I.Modules.PlayerProfile.SavePlayerSettings(_playerProfile);
         }
-
-        ///// <summary>
-        ///// Loads the player profile by avatar identifier.
-        ///// </summary>
-        ///// <param name="_avatarId">The avatar identifier.</param>
-        ///// <returns></returns>
-        //public PlayerProfile LoadPlayerProfileByAvatarId(int _avatarId)
-        //{
-        //    return LoadPlayerProfileById(GetPlayerIdFromAvatarId(_avatarId));
-        //}
-
-        ///// <summary>
-        ///// Loads the player profile by identifier.
-        ///// </summary>
-        ///// <param name="_Id">The identifier.</param>
-        ///// <returns></returns>
-        //public PlayerProfile LoadPlayerProfileById(int _Id)
-        //{
-        //    int avatarId = GetPlayerIdFromAvatarId(_Id);
-        //    PlayerProfileData profileDataFromDB = AppManager.I.DB.LoadDatabaseForPlayer(_Id);
-        //    if (profileDataFromDB == null)
-        //        return SetPlayerProfile(avatarId, true);
-        //    else
-        //        return new PlayerProfile().FromData(profileDataFromDB);
-                
-        //    // return AppManager.I.PlayerProfile.LoadPlayerSettings<PlayerProfile>(_Id.ToString()) as PlayerProfile;
-        //}
 
         /// <summary>
         /// Saves the game settings.
@@ -213,8 +146,6 @@ namespace EA4S.Profile
         {
             AppManager.I.Modules.PlayerProfile.Options = AppManager.I.GameSettings;
             AppManager.I.Modules.PlayerProfile.SaveAllOptions();
-            // TODO : Refactor Reward System
-            //reloadAvailablePlayerProfilesList();
         }
 
         /// <summary>

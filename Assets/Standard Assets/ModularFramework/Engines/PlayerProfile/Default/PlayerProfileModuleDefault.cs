@@ -66,8 +66,6 @@ namespace ModularFramework.Modules
         public IPlayerProfile CreateNewPlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null) {
             if (!Options.AvailablePlayers.Exists(p => p == _newPlayer.Key)) {
                 Options.AvailablePlayers.Add(_newPlayer.Key);
-                // TODO : Refactor Reward System
-                // SavePlayerSettings(_newPlayer);
                 SaveAllOptions();
             }
             return _newPlayer;
@@ -82,8 +80,6 @@ namespace ModularFramework.Modules
             Options.AvailablePlayers.Remove(_playerId);
         }
 
-        // TODO : Refactor Reward System
-        // Deprecated
         /// <summary>
         /// Load player settings.
         /// </summary>
@@ -107,8 +103,6 @@ namespace ModularFramework.Modules
         /// <param name="_extProfile"></param>
         public void SavePlayerSettings(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null)
         {
-            // TODO : Refactor Reward System
-            // deprecated? 
             string storeKey = GetStoreKeyForPlayer(_newPlayer.Key);
             string serializedObjs = JsonUtility.ToJson(_newPlayer);
             if (serializedObjs != null)

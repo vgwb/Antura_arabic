@@ -246,12 +246,7 @@ namespace EA4S.Profile
         /// <param name="rewardPackUnlockData">The reward pack.</param>
         public void AddRewardUnlocked(RewardPackUnlockData rewardPackUnlockData)
         {
-            /// TODO : Refactor Reward System
-            /// - Save to db unlocked reward
-            /// - Do not save unlocked into playerprofile prefs
             AppManager.I.DB.UpdateRewardPackUnlockData(rewardPackUnlockData);
-            //RewardsUnlocked.Add(rewardPackUnlockData);
-            //Save();
         }
 
         /// <summary>
