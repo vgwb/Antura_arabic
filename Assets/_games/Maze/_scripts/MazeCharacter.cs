@@ -101,6 +101,7 @@ namespace EA4S.Minigames.Maze
         Quaternion targetRotation;
 
         public List<GameObject> _fruits;
+
         int currentFruitList = 0;
 
         int currentFruitIndex;
@@ -294,7 +295,7 @@ namespace EA4S.Minigames.Maze
 
                 if (i == 0)
                 {
-                    mazeArrow.Highlight();
+                    mazeArrow.Highlight(true);
                 }
 
                 _fruits.Add(child);
@@ -403,13 +404,6 @@ namespace EA4S.Minigames.Maze
 
             transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isDrawing = false;
             currentFruitList++;
-
-
-            if (currentFruitList == 1)
-            {
-                int breakMe = 4;
-                breakMe += 02;
-            }
 
             SetFruitsList();
 
@@ -561,7 +555,22 @@ namespace EA4S.Minigames.Maze
             {
                 if (loseState != LoseState.OutOfBounds)
                 {
-                    _fruits[currentFruitIndex].GetComponent<MazeArrow>().MarkAsUnreached();
+                    for (int i = currentFruitIndex; i < _fruits.Count; i++)
+                    {
+                        _fruits[i].GetComponent<MazeArrow>().MarkAsUnreached(i == currentFruitIndex);
+                    }
+
+                    Vector3 direction = _fruits[currentFruitIndex].transform.position - rocket.transform.position;
+                    Vector3 rotatedVector = direction;
+                    var piOverTwo = Mathf.PI / 2;
+                    rotatedVector.x = direction.x * Mathf.Cos(piOverTwo) - direction.z * Mathf.Sin(piOverTwo);
+                    rotatedVector.z = direction.x * Mathf.Sin(piOverTwo) + direction.z * Mathf.Cos(piOverTwo);
+                    rotatedVector.y = 0f;
+                    rotatedVector.Normalize();
+                    rotatedVector *= 1.5f;
+                    rotatedVector.y = 2f;
+
+                    Tutorial.TutorialUI.MarkNo((_fruits[currentFruitIndex].transform.position + rocket.transform.position) / 2 + rotatedVector, Tutorial.TutorialUI.MarkSize.Normal);
 
                     loseState = LoseState.Incomplete;
                 }
@@ -687,7 +696,7 @@ namespace EA4S.Minigames.Maze
                 //MazeGameManager.Instance.DrawLine (previousPosition, targetPos, Color.red);
                 MazeGameManager.instance.appendToLine(targetPos);
             }
-            
+
 
 
             if (previousPosition != targetPos)
