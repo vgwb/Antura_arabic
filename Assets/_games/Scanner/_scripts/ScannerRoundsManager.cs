@@ -16,9 +16,9 @@ namespace EA4S.Minigames.Scanner
 		public event Action <int> onRoundsFinished;
 
 		IAudioSource wordAudioSource;
-        
 
-		private int numberOfRoundsWon = 0;
+
+        public int numberOfRoundsWon = 0;
 		public int numberOfRoundsPlayed = -1;
 		private int numberOfFailedMoves = 0;
 
@@ -351,6 +351,7 @@ namespace EA4S.Minigames.Scanner
             if(!game.tut.isTutRound)
 			    numberOfRoundsWon++;
             game.disableInput = true;
+            game.Context.GetOverlayWidget().SetStarsThresholds((game.numberOfRounds / 3), (game.numberOfRounds * 2 / 3), game.numberOfRounds);
             game.Context.GetOverlayWidget().SetStarsScore(numberOfRoundsWon);
             
 
