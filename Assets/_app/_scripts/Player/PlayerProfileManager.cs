@@ -95,7 +95,9 @@ namespace EA4S.Profile
             AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
             int lastActivePlayerId = AppManager.I.GameSettings.LastActivePlayerId;
             if (lastActivePlayerId > 0) {
-                CurrentPlayer = LoadPlayerProfileById(AppManager.I.GameSettings.LastActivePlayerId);
+                //CurrentPlayer = LoadPlayerProfileById(AppManager.I.GameSettings.LastActivePlayerId);
+                int avatarId = int.Parse(GetAvatarIdFromPlayerId(AppManager.I.GameSettings.LastActivePlayerId));
+                SetPlayerProfile(avatarId);
             }
             // TODO : Refactor Reward System
             //reloadAvailablePlayerProfilesList();
@@ -121,13 +123,20 @@ namespace EA4S.Profile
         /// <param name="_avatarId">The avatar identifier.</param>
         /// <param name="_isNew">if set to <c>true</c> create new one.</param>
         /// <returns></returns>
-        public PlayerProfile SetPlayerProfile(int _avatarId, bool _isNew)
+        public PlayerProfile SetPlayerProfile(int _avatarId)
         {
             PlayerProfile returnProfile;
-            if (_isNew) {
+            PlayerProfileData profileFromDB = AppManager.I.DB.LoadDatabaseForPlayer(GetPlayerIdFromAvatarId(_avatarId));
+            
+            if (profileFromDB == null) { // not present in db or old db, create new one
                 returnProfile = new PlayerProfile();
                 // create new
-                returnProfile.Id = AppManager.I.GameSettings.AvailablePlayers.Count + 1;
+                if (AppManager.I.GameSettings.AvailablePlayers.Contains(_avatarId.ToString())) {
+                    List<string> tmpList = AppManager.I.GameSettings.AvailablePlayers;
+                    returnProfile.Id = AppManager.I.GameSettings.AvailablePlayers.FindIndex(s => s == _avatarId.ToString()) + 1;
+                } else {
+                    returnProfile.Id = AppManager.I.GameSettings.AvailablePlayers.Count + 1;
+                }
                 returnProfile.AvatarId = _avatarId;
                 returnProfile.Key = returnProfile.Id.ToString();
                 AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
@@ -145,14 +154,14 @@ namespace EA4S.Profile
                 // TODO : Refactor Reward System
                 // returnProfile = AppManager.I.Modules.PlayerProfile.CreateNewPlayer(returnProfile) as PlayerProfile;
             } else {
-                returnProfile = LoadPlayerProfileByAvatarId(_avatarId);
+                returnProfile = new PlayerProfile().FromData(profileFromDB);
             }
             AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
             // -----
             // TODO : Refactor Reward System
             //AppManager.I.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.I.PlayerProfileManager.CurrentPlayer);
             //AppManager.I.PlayerProfileManager.CurrentPlayer.Save();
-            if (_isNew && OnNewProfileCreated != null)
+            if (profileFromDB == null && OnNewProfileCreated != null)
                 OnNewProfileCreated();
 
             return AppManager.I.PlayerProfileManager.CurrentPlayer;
@@ -170,28 +179,32 @@ namespace EA4S.Profile
             //AppManager.I.Modules.PlayerProfile.SavePlayerSettings(_playerProfile);
         }
 
-        /// <summary>
-        /// Loads the player profile by avatar identifier.
-        /// </summary>
-        /// <param name="_avatarId">The avatar identifier.</param>
-        /// <returns></returns>
-        public PlayerProfile LoadPlayerProfileByAvatarId(int _avatarId)
-        {
-            return LoadPlayerProfileById(GetPlayerIdFromAvatarId(_avatarId));
-        }
+        ///// <summary>
+        ///// Loads the player profile by avatar identifier.
+        ///// </summary>
+        ///// <param name="_avatarId">The avatar identifier.</param>
+        ///// <returns></returns>
+        //public PlayerProfile LoadPlayerProfileByAvatarId(int _avatarId)
+        //{
+        //    return LoadPlayerProfileById(GetPlayerIdFromAvatarId(_avatarId));
+        //}
 
-        /// <summary>
-        /// Loads the player profile by identifier.
-        /// </summary>
-        /// <param name="_Id">The identifier.</param>
-        /// <returns></returns>
-        public PlayerProfile LoadPlayerProfileById(int _Id)
-        {
-            // TODO : Refactor Reward System
-            return new PlayerProfile().FromData(AppManager.I.DB.LoadDatabaseForPlayer(_Id));
+        ///// <summary>
+        ///// Loads the player profile by identifier.
+        ///// </summary>
+        ///// <param name="_Id">The identifier.</param>
+        ///// <returns></returns>
+        //public PlayerProfile LoadPlayerProfileById(int _Id)
+        //{
+        //    int avatarId = GetPlayerIdFromAvatarId(_Id);
+        //    PlayerProfileData profileDataFromDB = AppManager.I.DB.LoadDatabaseForPlayer(_Id);
+        //    if (profileDataFromDB == null)
+        //        return SetPlayerProfile(avatarId, true);
+        //    else
+        //        return new PlayerProfile().FromData(profileDataFromDB);
                 
-            // return AppManager.I.PlayerProfile.LoadPlayerSettings<PlayerProfile>(_Id.ToString()) as PlayerProfile;
-        }
+        //    // return AppManager.I.PlayerProfile.LoadPlayerSettings<PlayerProfile>(_Id.ToString()) as PlayerProfile;
+        //}
 
         /// <summary>
         /// Saves the game settings.

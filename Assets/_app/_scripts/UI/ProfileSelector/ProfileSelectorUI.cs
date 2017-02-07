@@ -94,7 +94,7 @@ namespace EA4S.UI
             AvatarSelector.Hide();
             btAddTween.PlayBackwards();
             PlayerProfileManager ppm = AppManager.I.PlayerProfileManager;
-            ppm.SetPlayerProfile(_avatarId, true);
+            ppm.SetPlayerProfile(_avatarId);
             AudioManager.I.PlaySound(SfxCreateNewProfile);
             LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL());
             Setup();
@@ -106,7 +106,7 @@ namespace EA4S.UI
         /// <param name="_id">Player id.</param>
         internal void SelectProfile(int _id)
         {
-            ProfileManager.SetPlayerProfile(int.Parse(AppManager.I.PlayerProfileManager.GetAvatarIdFromPlayerId(_id)), false);
+            ProfileManager.SetPlayerProfile(int.Parse(AppManager.I.PlayerProfileManager.GetAvatarIdFromPlayerId(_id)));
             AudioManager.I.PlaySound(SfxSelectProfile);
             LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
             Setup();

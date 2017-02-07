@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4751437504674956}
   m_Layer: 0
-  m_Name: beard_curls
+  m_Name: reward_beard_curls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
