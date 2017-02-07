@@ -8,7 +8,7 @@ namespace EA4S.Scenes
     /// <summary>
     /// Manager for the Mood scene.
     /// </summary>
-    public class MoodManager : MonoBehaviour
+    public class MoodScene : MonoBehaviour
     {
         [Header("Scene Setup")]
         public Music SceneMusic;
