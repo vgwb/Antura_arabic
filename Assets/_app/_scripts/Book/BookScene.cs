@@ -25,7 +25,7 @@ namespace EA4S.PlayerBook
     /// - grants direct access to minigames
     /// - grants access to the Parents' Panel
     /// </summary>
-    public class PlayerBookManager : MonoBehaviour
+    public class BookScene : MonoBehaviour
     {
 
         [Header("Scene Setup")]
