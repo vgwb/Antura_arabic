@@ -203,7 +203,8 @@ namespace EA4S.Profile
             }
             private set {
                 _currentAnturaCustomizations = value;
-                jsonAnturaCustimizationData = _currentAnturaCustomizations.GetJsonListOfIds(); 
+                jsonAnturaCustimizationData = _currentAnturaCustomizations.GetJsonListOfIds();
+                SaveCustomization();
             }
         }
 
@@ -246,14 +247,13 @@ namespace EA4S.Profile
         }
 
         /// <summary>
-        /// Saves the customization.
+        /// Saves the customization on db.
         /// </summary>
-        /// <param name="_anturaCustomization">The antura customization.</param>
-        public void SaveCustomization(AnturaCustomization _anturaCustomization)
+        /// <param name="_anturaCustomization">The antura customization. If null save only on db.</param>
+        public void SaveCustomization(AnturaCustomization _anturaCustomization = null)
         {
-            CurrentAnturaCustomizations = _anturaCustomization;
-            // TODO : Refactor Reward System
-            
+            if(_anturaCustomization != null)
+                CurrentAnturaCustomizations = _anturaCustomization;
             Save();
         }
 
