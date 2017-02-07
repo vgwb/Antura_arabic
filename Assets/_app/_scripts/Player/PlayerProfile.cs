@@ -188,17 +188,22 @@ namespace EA4S.Profile
 
         #region Antura Customization
 
-        private AnturaCustomization _currentAnturaCustomizations = new AnturaCustomization();
+        private AnturaCustomization _currentAnturaCustomizations;
         /// <summary>
         /// The current antura customizations
         /// </summary>
         public AnturaCustomization CurrentAnturaCustomizations {
             get {
-                if (!String.IsNullOrEmpty(jsonAnturaCustimizationData))
+                if (_currentAnturaCustomizations == null) {
+                    _currentAnturaCustomizations = new AnturaCustomization();
                     _currentAnturaCustomizations.LoadFromListOfIds(jsonAnturaCustimizationData);
+                }
                 return _currentAnturaCustomizations;
             }
-            private set { _currentAnturaCustomizations = value; }
+            private set {
+                _currentAnturaCustomizations = value;
+                jsonAnturaCustimizationData = _currentAnturaCustomizations.GetJsonListOfIds(); 
+            }
         }
 
         private List<RewardPackUnlockData> _rewardsUnlocked;
