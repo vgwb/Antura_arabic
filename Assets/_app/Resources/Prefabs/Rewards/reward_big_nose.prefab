@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4483708962920334}
   m_Layer: 0
-  m_Name: big_nose
+  m_Name: reward_big_nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
