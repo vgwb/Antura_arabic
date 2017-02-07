@@ -80,22 +80,25 @@ namespace EA4S.Minigames.MixedLetters
 
             bool throwLetterToTheRight = Random.Range(1, 40) % 2 == 0;
 
+            bool spawnLettersInOrder = MixedLettersGame.instance.Difficulty == MixedLettersGame.MixedLettersDifficulty.VeryEasy;
+            int numDegreesOfRotation = GetNumDegreesOfRotation();
+
             for (int i = 0; i < lettersToSpawn.Count; i++)
             {
-                int randIndex = indices[Random.Range(0, indices.Count)];
-                indices.Remove(randIndex);
+                int indexToSpawn = spawnLettersInOrder ? i : indices[Random.Range(0, indices.Count)];
+                indices.Remove(indexToSpawn);
 
-                LL_LetterData letterToSpawn = (LL_LetterData)lettersToSpawn[randIndex];
+                LL_LetterData letterToSpawn = (LL_LetterData)lettersToSpawn[indexToSpawn];
 
                 SeparateLetterController separateLetterController = separateLetterControllers[i];
                 separateLetterController.Enable();
                 separateLetterController.SetPosition(transform.position, false);
                 separateLetterController.SetLetter(letterToSpawn);
-                separateLetterController.SetRotation(new Vector3(0, 0, Random.Range(0, 4) * 90));
+                separateLetterController.SetRotation(new Vector3(0, 0, Random.Range(0, numDegreesOfRotation + 1) * -90));
                 separateLetterController.SetIsKinematic(false);
-                separateLetterController.SetCorrectDropZone(MixedLettersGame.instance.dropZoneControllers[randIndex]);
-                MixedLettersGame.instance.dropZoneControllers[randIndex].correctLetter = separateLetterController;
-                separateLetterController.SetIsSubjectOfTutorial(MixedLettersGame.instance.roundNumber == 0 && randIndex == 0);
+                separateLetterController.SetCorrectDropZone(MixedLettersGame.instance.dropZoneControllers[indexToSpawn]);
+                MixedLettersGame.instance.dropZoneControllers[indexToSpawn].correctLetter = separateLetterController;
+                separateLetterController.SetIsSubjectOfTutorial(MixedLettersGame.instance.roundNumber == 0 && indexToSpawn == 0);
                 separateLetterController.AddForce(new Vector3(throwLetterToTheRight ? Random.Range(2f, 6f) : Random.Range(-6f, -2f), Constants.GRAVITY.y * -0.45f), ForceMode.VelocityChange);
 
                 throwLetterToTheRight = !throwLetterToTheRight;
@@ -110,6 +113,27 @@ namespace EA4S.Minigames.MixedLetters
             audioSource.Stop();
 
             spawnOverCallback.Invoke();
+        }
+
+        private int GetNumDegreesOfRotation()
+        {
+            MixedLettersGame.MixedLettersDifficulty difficulty = MixedLettersGame.instance.Difficulty;
+
+            switch (difficulty)
+            {
+                case MixedLettersGame.MixedLettersDifficulty.VeryEasy:
+                    return 1;
+                case MixedLettersGame.MixedLettersDifficulty.Easy:
+                    return 1;
+                case MixedLettersGame.MixedLettersDifficulty.Medium:
+                    return 2;
+                case MixedLettersGame.MixedLettersDifficulty.Hard:
+                    return 3;
+                case MixedLettersGame.MixedLettersDifficulty.VeryHard:
+                    return 3;
+                default:
+                    return 2;
+            }
         }
 
         private void PlayCartoonFightSfx()
