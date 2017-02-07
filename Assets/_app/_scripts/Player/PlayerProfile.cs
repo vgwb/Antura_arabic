@@ -65,7 +65,7 @@ namespace EA4S.Profile
             return TotalNumberOfBones;
         }
         #endregion
-
+        
         #region API
 
         #region management
@@ -188,6 +188,18 @@ namespace EA4S.Profile
 
         #region Antura Customization
 
+        private AnturaCustomization _currentAnturaCustomizations = new AnturaCustomization();
+        /// <summary>
+        /// The current antura customizations
+        /// </summary>
+        public AnturaCustomization CurrentAnturaCustomizations {
+            get {
+                if (_currentAnturaCustomizations == null)
+                    CurrentAnturaCustomizations.LoadFromListOfIds(jsonAnturaCustimizationData);
+                return _currentAnturaCustomizations; }
+            private set { _currentAnturaCustomizations = value; }
+        }
+
         private List<RewardPackUnlockData> _rewardsUnlocked;
         /// <summary>
         /// Gets or sets the rewards unlocked.
@@ -206,6 +218,13 @@ namespace EA4S.Profile
         }
 
         /// <summary>
+        /// Used to store antura custumization data in json and load it at runtime.
+        /// </summary>
+        string jsonAnturaCustimizationData = string.Empty;
+
+        #region API
+
+        /// <summary>
         /// Adds the reward unlocked.
         /// </summary>
         /// <param name="rewardPackUnlockData">The reward pack.</param>
@@ -220,11 +239,6 @@ namespace EA4S.Profile
         }
 
         /// <summary>
-        /// The current antura customizations
-        /// </summary>
-        public AnturaCustomization CurrentAnturaCustomizations = new AnturaCustomization();
-
-        /// <summary>
         /// Saves the customization.
         /// </summary>
         /// <param name="_anturaCustomization">The antura customization.</param>
@@ -235,6 +249,8 @@ namespace EA4S.Profile
             
             Save();
         }
+
+        #endregion
 
         #endregion
 
@@ -338,7 +354,8 @@ namespace EA4S.Profile
             PlayerProfileData newProfileData = new PlayerProfileData(this.Key, this.Id, this.AvatarId, this.Age, this.Name, this.TotalNumberOfBones, ProfileCompletion);
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
-            newProfileData.CurrentAnturaCustomization = JsonUtility.ToJson(this.CurrentAnturaCustomizations);
+            string jsonStringForAnturaCustomization = this.CurrentAnturaCustomizations.GetJsonListOfIds();
+            newProfileData.CurrentAnturaCustomization = jsonStringForAnturaCustomization;
             return newProfileData;
         }
 
@@ -355,9 +372,13 @@ namespace EA4S.Profile
             TotalNumberOfBones = _data.TotalNumberOfBones;
             this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
             this.SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
-            CurrentAnturaCustomizations.LoadListOfIds(_data.CurrentAnturaCustomization)
+            // Antura customization save only customization data
+            jsonAnturaCustimizationData = _data.CurrentAnturaCustomization;
+                
             return this;
         }
+
+
         #endregion
 
         

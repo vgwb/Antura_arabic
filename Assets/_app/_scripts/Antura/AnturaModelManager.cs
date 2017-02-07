@@ -60,6 +60,10 @@ namespace EA4S.Antura
 
         #region API
 
+        /// <summary>
+        /// Loads the antura customization elements on Antura model.
+        /// </summary>
+        /// <param name="_anturaCustomization">The antura customization.</param>
         public void LoadAnturaCustomization(AnturaCustomization _anturaCustomization) {
             ClearLoadedRewards();
             foreach (RewardPackUnlockData forniture in _anturaCustomization.Fornitures) {
@@ -75,10 +79,14 @@ namespace EA4S.Antura
         public AnturaCustomization SaveAnturaCustomization() {
             AnturaCustomization returnCustomization = new AnturaCustomization();
             foreach (LoadedModel loadedModel in LoadedModels) {
-                returnCustomization.Fornitures.Add(new RewardPackUnlockData() { ItemID = loadedModel.Reward.ItemID, ColorId = loadedModel.Reward.ColorId, Type = RewardTypes.reward });
+                RewardPackUnlockData pack = new RewardPackUnlockData() { ItemID = loadedModel.Reward.ItemID, ColorId = loadedModel.Reward.ColorId, Type = RewardTypes.reward };
+                returnCustomization.Fornitures.Add(pack);
+                returnCustomization.FornituresIds.Add(pack.GetIdAccordingToDBRules());
             }
             returnCustomization.TileTexture = LoadedTileTexture;
+            returnCustomization.TileTextureId = LoadedTileTexture.GetIdAccordingToDBRules();
             returnCustomization.DecalTexture = LoadedDecal;
+            returnCustomization.DecalTextureId = LoadedDecal.GetIdAccordingToDBRules();
             AppManager.I.Player.SaveCustomization(returnCustomization);
             return returnCustomization;
         }
@@ -278,17 +286,44 @@ namespace EA4S.Antura
         /// Loads all rewards in this object instance from list of reward ids.
         /// </summary>
         /// <param name="_listOfIdsAsJsonString">The list of ids as json string.</param>
-        public void LoadListOfIds(string _listOfIdsAsJsonString) {
-            JsonUtility.FromJson<AnturaCustomization>(_listOfIdsAsJsonString);
-            foreach (var item in FornituresIds) {
+        public void LoadFromListOfIds(string _listOfIdsAsJsonString) {
+            AnturaCustomization tmp = JsonUtility.FromJson<AnturaCustomization>(_listOfIdsAsJsonString);
+            FornituresIds = tmp.FornituresIds;
+            TileTextureId = tmp.TileTextureId;
+            DecalTextureId = tmp.DecalTextureId;
+            foreach (string itemId in FornituresIds) {
                 // Load Fornitures for any id from db
+                Debug.Log(AppManager.I.Player);
+                RewardPackUnlockData pack = AppManager.I.Player.RewardsUnlocked.Find(r => r.Id == itemId);
+                Fornitures.Add(pack);
             }
 
             // Load TileTexture from TileTextureId
-            
+            if(TileTextureId != null)
+                TileTexture = AppManager.I.Player.RewardsUnlocked.Find(r => r.Id == TileTextureId);
 
             // Load DecalTexture from DecalTextureId
+            if (DecalTextureId != null)
+                DecalTexture = AppManager.I.Player.RewardsUnlocked.Find(r => r.Id == DecalTextureId);
 
         }
+
+        /// <summary>
+        /// Return all rewards objects to json list of ids (to be stored on db).
+        /// </summary>
+        public string GetJsonListOfIds() {
+            //// Fornitures
+            //foreach (RewardPackUnlockData pack in Fornitures) {
+            //    FornituresIds.Add(pack.Id);
+            //}
+
+            //// TileTextureId
+            //TileTextureId = TileTexture.Id;
+
+            //// DecalTextureId
+            //DecalTextureId = DecalTexture.Id;
+            return JsonUtility.ToJson(this);
+        }
+
     }
 }

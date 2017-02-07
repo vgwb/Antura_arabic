@@ -104,7 +104,6 @@ namespace EA4S.Database
 
         #endregion
 
-
         #region Player Profile Data
 
         public void UpdatePlayerProfileData(PlayerProfileData playerProfileData)
