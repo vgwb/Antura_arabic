@@ -79,6 +79,7 @@ namespace EA4S.Teacher
             var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
             Database.PlaySessionData playSessionData = dbManager.GetPlaySessionDataById(currentPlaySessionId);
             int nMinigamesToSelect = playSessionData.NumberOfMinigames;
+            if (nMinigamesToSelect == 0) nMinigamesToSelect = 1; // Force (needed for assessment, since we always need one)
             return SelectMiniGames(nMinigamesToSelect);
         }
 
