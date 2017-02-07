@@ -575,7 +575,7 @@ namespace EA4S.Database.Management
 
         public void TestDynamicProfileData()
         {
-            dbManager.UpdatePlayerProfileData(new PlayerProfileData("1", 255, 0, 5, "Carl", 8, 0));
+            dbManager.UpdatePlayerProfileData(new PlayerProfileData("1", 255, 0, 5, "Carl", false, 8, 0));
             var playerProfileData = dbManager.GetPlayerProfileData();
             PrintOutput(playerProfileData.ToString());
         }
