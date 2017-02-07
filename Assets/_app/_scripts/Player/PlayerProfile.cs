@@ -204,7 +204,7 @@ namespace EA4S.Profile
             private set {
                 _currentAnturaCustomizations = value;
                 jsonAnturaCustimizationData = _currentAnturaCustomizations.GetJsonListOfIds();
-                SaveCustomization();
+                //SaveCustomization();
             }
         }
 
