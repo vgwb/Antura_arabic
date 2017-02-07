@@ -198,7 +198,7 @@ namespace EA4S.Minigames.Scanner
             {
                 antura.State = AnturaAnimationStates.bitingTail;
                 //anturaAnimator.SetBool("bitingTail", true);
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(.6f);
             }
             else
                 antura.transform.eulerAngles = Vector3.up * 270;

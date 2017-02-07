@@ -77,13 +77,15 @@ namespace EA4S.Minigames.Scanner
 		{
 			get
 			{
-				if (CurrentScoreRecord < STARS_1_THRESHOLD)
+                return (int)Mathf.Ceil(roundsManager.numberOfRoundsWon / 2f);
+
+                /*if (CurrentScoreRecord < STARS_1_THRESHOLD)
 					return 0;
 				if (CurrentScoreRecord < STARS_2_THRESHOLD)
 					return 1;
 				if (CurrentScoreRecord < STARS_3_THRESHOLD)
 					return 2;
-				return 3;
+				return 3;*/
 			}
 		}
 
@@ -129,11 +131,11 @@ namespace EA4S.Minigames.Scanner
             }
             else if (Difficulty > 0.8f && Difficulty < 1f)
             {
-                beltSpeed = 4f;
+                beltSpeed = 3.5f;
             }
             else if (Difficulty == 1f)
             {
-                beltSpeed = 5f;
+                beltSpeed = 4.5f;
             }
 
             if (Difficulty <= 0.25f)
