@@ -326,7 +326,7 @@ namespace EA4S.Minigames.Maze
                     return;
                 }
 
-                if (index == currentFruitIndex)
+                else if (index == currentFruitIndex)
                 {
                     //lerp
                     _fruits[currentFruitIndex].GetComponent<MazeArrow>().pingPong = false;
