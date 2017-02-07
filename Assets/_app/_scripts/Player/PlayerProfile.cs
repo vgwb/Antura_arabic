@@ -20,7 +20,7 @@ namespace EA4S.Profile
         public int Id;
         public int AvatarId;
         public int Age;
-        public bool IsFemale;
+        public string Gender;
         public string Name;
 
         //int to track first visit
@@ -358,7 +358,7 @@ namespace EA4S.Profile
         /// </summary>
         /// <returns></returns>
         public PlayerProfileData ToData() {
-            PlayerProfileData newProfileData = new PlayerProfileData(this.Key, this.Id, this.AvatarId, this.Age, this.Name, this.IsFemale, this.TotalNumberOfBones, ProfileCompletion);
+            PlayerProfileData newProfileData = new PlayerProfileData(this.Key, this.Id, this.AvatarId, this.Age, this.Name, this.Gender, this.TotalNumberOfBones, ProfileCompletion);
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
             string jsonStringForAnturaCustomization = this.CurrentAnturaCustomizations.GetJsonListOfIds();
