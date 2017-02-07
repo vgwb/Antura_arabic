@@ -8,9 +8,12 @@ namespace EA4S.Minigames.Maze
     {
         private MazeLetter mazeLetter;
 
-        private void OnMouseOver()
+        void OnTriggerEnter(Collider other)
         {
-            mazeLetter.OnPointerOverTrackBounds();
+            if (other.gameObject.name == "MiniDrawingTool")
+            {
+                mazeLetter.OnPointerOverTrackBounds();
+            }
         }
 
         public void SetMazeLetter(MazeLetter mazeLetter)

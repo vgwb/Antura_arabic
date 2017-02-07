@@ -17,6 +17,10 @@ namespace EA4S.Minigames.Maze
 
         private MazeLetter mazeLetter;
         private GameObject highlightFX;
+        private ParticleSystem.MainModule particleSystemMainModule;
+
+        private Color greenParticleSystemColor = new Color(0.2549f, 1f, 0f, 0.3765f);
+        private Color redParticleSystemColor = new Color(1f, 0f, 0.102f, 0.3765f);
 
         private bool IsHighlighted
         {
@@ -31,18 +35,14 @@ namespace EA4S.Minigames.Maze
             this.mazeLetter = mazeLetter;
         }
 
-        public void OnMouseOver()
+        public void Highlight(bool isLooping)
         {
-            if (mazeLetter != null && !IsHighlighted)
+            if (!IsHighlighted)
             {
-                mazeLetter.NotifyFruitGotMouseOver(this);
+                particleSystemMainModule.loop = isLooping;
+                highlightFX.SetActive(true);
+                _renderer.material.color = highlightedColor;
             }
-        }
-
-        public void Highlight()
-        {
-            highlightFX.SetActive(true);
-            _renderer.material.color = highlightedColor;
         }
 
         public void Unhighlight()
@@ -51,16 +51,15 @@ namespace EA4S.Minigames.Maze
             _renderer.material.color = normalColor;
         }
 
-        public void MarkAsUnreached()
+        public void MarkAsUnreached(bool isFirstUnreachedArrow)
         {
             _renderer.material.color = unreachedColor;
 
-            Vector3 rotatedVector = new Vector3();
-            float rotationAngle = transform.rotation.eulerAngles.y * Mathf.Deg2Rad;
-            rotatedVector.x = WRONG_MARK_OFFSET.x * Mathf.Cos(rotationAngle) + WRONG_MARK_OFFSET.z * Mathf.Sin(rotationAngle);
-            rotatedVector.z = -WRONG_MARK_OFFSET.x * Mathf.Sin(rotationAngle) + WRONG_MARK_OFFSET.z * Mathf.Cos(rotationAngle);
-
-            Tutorial.TutorialUI.MarkNo(transform.position + rotatedVector);
+            if (isFirstUnreachedArrow)
+            {
+                particleSystemMainModule.startColor = redParticleSystemColor;
+                highlightFX.SetActive(true);
+            }
         }
 
         void Awake()
@@ -75,6 +74,9 @@ namespace EA4S.Minigames.Maze
             highlightFX.transform.position = transform.position;
             highlightFX.transform.localScale = Vector3.one * 2f;
             highlightFX.transform.parent = gameObject.transform;
+
+            particleSystemMainModule = highlightFX.GetComponent<ParticleSystem>().main;
+
             highlightFX.SetActive(false);
         }
 
@@ -82,18 +84,9 @@ namespace EA4S.Minigames.Maze
         {
             tweenToColor = false;
             pingPong = false;
+            particleSystemMainModule.startColor = greenParticleSystemColor;
+            particleSystemMainModule.loop = true;
             Unhighlight();
-        }
-
-        void Update()
-        {
-            /*if (!tweenToColor && !pingPong)
-                return;
-
-            if (tweenToColor)
-                _renderer.material.color = Color.Lerp(_renderer.material.color, Color.green, Time.deltaTime * 2);
-            else if (pingPong)
-                _renderer.material.color = Color.Lerp(Color.red, Color.green, Mathf.PingPong(Time.time, 1));*/
         }
     }
 }

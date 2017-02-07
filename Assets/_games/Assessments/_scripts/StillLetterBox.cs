@@ -21,11 +21,18 @@ namespace EA4S.Assessment
         public TextMeshPro Drawing;
         public ParticleSystem poofPrefab;
 
-        public SpriteRenderer questionSprite;
-        public SpriteRenderer answerSprite;
+        public NineSlicedSprite questionSprite;
+        public NineSlicedSprite answerSprite;
+
+        Vector2 startTextScale;
+        Vector2 startDrawingScale;
+
+        public RectTransform textTransform;
+        public RectTransform drawingTransform;
+        public Transform backgroundTransform;
 
         ///################# ANIMATIONS #################
-        
+
         // Local Tween
         Tween tween = null;
 
@@ -37,8 +44,8 @@ namespace EA4S.Assessment
             KillTween();
             answerSprite.enabled = true;
 
-            answerSprite.DOColor( new Color32( 61, 185, 30, 255), 0.5f);
-            questionSprite.DOFade( 0, 1);
+            answerSprite.Material.DOColor( new Color32( 61, 185, 30, 255), 0.5f);
+            questionSprite.Material.DOFade( 0, 1);
             Label.alpha = 0;
             Label.DOFade( 1, 0.6f);
         }
@@ -50,7 +57,7 @@ namespace EA4S.Assessment
         internal void HideHiddenQuestion()
         {
             Label.alpha = 0;
-            answerSprite.color = new Color( 1, 1, 1, 0);
+            answerSprite.Material.color = new Color( 1, 1, 1, 0);
             InstaShrink();
         }
 
@@ -69,7 +76,7 @@ namespace EA4S.Assessment
 
         internal void Grabbed()
         {
-            Scale = 1.3f;
+            Scale = 1.1f;
         }
 
         internal void Dropped()
@@ -96,7 +103,7 @@ namespace EA4S.Assessment
 
         ///############### IMPLEMENTATION ################
 
-        public SpriteRenderer slotSprite;
+        public NineSlicedSprite slotSprite;
 
         /// <summary>
         /// Gets the data.
@@ -120,20 +127,28 @@ namespace EA4S.Assessment
         }
 
 
-        private float Wideness { get; set; }
+        private float Wideness;
 
         private float Scale
         {
             get
             {
-                return transform.localScale.x;
+                return textTransform.sizeDelta.x / (startTextScale.x * Wideness);
             }
             set
             {
-                float effectiveScale = value * Wideness;
-                transform.localScale = new Vector3( effectiveScale, value, 1);
-                GetComponent< BoxCollider>().size =
-                    transform.localScale * 3;
+                float widthScale = value * Wideness;
+
+                foreach (NineSlicedSprite sprite in backgroundTransform.GetComponentsInChildren<NineSlicedSprite>(true))
+                {
+                    sprite.Width = sprite.initialWidth * widthScale;
+                    sprite.Height = sprite.initialHeight * value;
+                }
+
+                textTransform.sizeDelta = new Vector2(startTextScale.x * widthScale, startTextScale.y * value);
+                drawingTransform.sizeDelta = new Vector2(startTextScale.x * widthScale, startTextScale.y * value);
+
+                GetComponent< BoxCollider>().size = textTransform.sizeDelta;
             }
         }
 
@@ -237,6 +252,12 @@ namespace EA4S.Assessment
 
             puffGo.gameObject.AddComponent< AutoDestroy>().duration = 2;
             puffGo.gameObject.SetActive( true);
+        }
+
+        void Awake()
+        {
+            startTextScale = textTransform.sizeDelta;
+            startDrawingScale = drawingTransform.sizeDelta;
         }
     }
 }
