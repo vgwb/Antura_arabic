@@ -291,15 +291,17 @@ namespace EA4S.Antura
             FornituresIds = tmp.FornituresIds;
             TileTextureId = tmp.TileTextureId;
             DecalTextureId = tmp.DecalTextureId;
-            foreach (string itemId in FornituresIds) {
-                // Load Fornitures for any id from db
-                Debug.Log(AppManager.I.Player);
-                RewardPackUnlockData pack = AppManager.I.Player.RewardsUnlocked.Find(r => r.Id == itemId);
-                Fornitures.Add(pack);
+            if (TileTextureId == string.Empty) {
+                RewardPackUnlockData defaultTileTexturePack = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
+                TileTextureId = defaultTileTexturePack.GetId();
+            }
+            if (DecalTextureId == string.Empty) {
+                RewardPackUnlockData defaultDecalTexturePack = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
+                DecalTextureId = defaultDecalTexturePack.GetId();
             }
 
             // Load TileTexture from TileTextureId
-            if(TileTextureId != null)
+            if (TileTextureId != null)
                 TileTexture = AppManager.I.Player.RewardsUnlocked.Find(r => r.Id == TileTextureId);
 
             // Load DecalTexture from DecalTextureId

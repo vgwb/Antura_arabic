@@ -194,9 +194,10 @@ namespace EA4S.Profile
         /// </summary>
         public AnturaCustomization CurrentAnturaCustomizations {
             get {
-                if (_currentAnturaCustomizations == null)
-                    CurrentAnturaCustomizations.LoadFromListOfIds(jsonAnturaCustimizationData);
-                return _currentAnturaCustomizations; }
+                if (!String.IsNullOrEmpty(jsonAnturaCustimizationData))
+                    _currentAnturaCustomizations.LoadFromListOfIds(jsonAnturaCustimizationData);
+                return _currentAnturaCustomizations;
+            }
             private set { _currentAnturaCustomizations = value; }
         }
 
