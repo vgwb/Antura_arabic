@@ -3,6 +3,7 @@ using EA4S.MinigamesAPI;
 using DG.Tweening;
 using EA4S.MinigamesCommon;
 using System;
+using EA4S.Utilities;
 using TMPro;
 using UnityEngine;
 
