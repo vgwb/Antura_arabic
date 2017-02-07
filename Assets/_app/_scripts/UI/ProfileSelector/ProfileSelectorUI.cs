@@ -65,7 +65,7 @@ namespace EA4S.UI
             BtAdd.Bt.onClick.AddListener(() => OnClick(BtAdd));
             BtPlay.Bt.onClick.AddListener(() => {
                 AudioManager.I.PlaySound(Sfx.UIButtonClick);
-                HomeManager.I.Play();
+                HomeScene.I.Play();
             });
             foreach (ProfileSelectorAvatarButton bt in avatarButtons) {
                 ProfileSelectorAvatarButton b = bt;

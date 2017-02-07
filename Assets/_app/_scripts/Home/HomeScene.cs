@@ -11,10 +11,10 @@ namespace EA4S.Scenes
     /// <summary>
     /// Controls the _Start scene, providing an entry point for all users prior to having selected a player profile. 
     /// </summary>
-    public class HomeManager : MonoBehaviour
+    public class HomeScene : MonoBehaviour
     {
         // refactor: Remove the static access. The ProfileSelectorUI can directly access the HomeManager. Better yet, remove the Play() method from here and place something similar in AppManager.
-        public static HomeManager I;
+        public static HomeScene I;
 
         [Header("Scene Setup")]
         public Music SceneMusic;
@@ -53,6 +53,11 @@ namespace EA4S.Scenes
             LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new AppInfoParameters()));
 
             AppManager.I.NavigationManager.GoToNextScene();
+        }
+
+        public void BtnParentsPanel()
+        {
+
         }
     }
 }
