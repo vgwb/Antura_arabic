@@ -296,11 +296,11 @@ namespace EA4S.Antura
             }
             if (TileTextureId == string.Empty) {
                 RewardPackUnlockData defaultTileTexturePack = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
-                TileTextureId = defaultTileTexturePack.GetId();
+                TileTextureId = defaultTileTexturePack.GetIdAccordingToDBRules();
             }
             if (DecalTextureId == string.Empty) {
                 RewardPackUnlockData defaultDecalTexturePack = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
-                DecalTextureId = defaultDecalTexturePack.GetId();
+                DecalTextureId = defaultDecalTexturePack.GetIdAccordingToDBRules();
             }
             Fornitures = new List<RewardPackUnlockData>();
             foreach (string itemId in FornituresIds) {
