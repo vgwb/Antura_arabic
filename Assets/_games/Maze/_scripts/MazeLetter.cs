@@ -133,7 +133,7 @@ namespace EA4S.Minigames.Maze
         {
             if (isDrawing && fruit.gameObject != mazeCharacter._fruits[0])
             {
-                fruit.Highlight();
+                fruit.Highlight(false);
             }
         }
     }
