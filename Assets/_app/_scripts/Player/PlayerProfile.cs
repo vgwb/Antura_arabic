@@ -218,11 +218,19 @@ namespace EA4S.Profile
         public List<RewardPackUnlockData> RewardsUnlocked {
             get {
                 if (_rewardsUnlocked == null)
-                    return AppManager.I.DB.GetAllRewardPackUnlockData();
+                    return LoadRewardsUnlockedFromDB();
                 return _rewardsUnlocked;
             }
 
             private set { _rewardsUnlocked = value; }
+        }
+
+        /// <summary>
+        /// Loads the rewards unlocked from database.
+        /// </summary>
+        /// <returns></returns>
+        public List<RewardPackUnlockData> LoadRewardsUnlockedFromDB() {
+            return AppManager.I.DB.GetAllRewardPackUnlockData();
         }
 
         /// <summary>

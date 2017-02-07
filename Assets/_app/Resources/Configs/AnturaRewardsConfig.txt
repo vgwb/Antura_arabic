@@ -74,7 +74,7 @@
     },
     {
       "Type" : "Reward",
-      "ID" : "big_nose",
+      "ID" : "reward_big_nose",
       "RewardName" : "Big Nose",
       "Priority" : "",
       "Done" : "DONE",
@@ -194,7 +194,7 @@
     },
     {
       "Type" : "Reward",
-      "ID" : "beard_curls",
+      "ID" : "reward_beard_curls",
       "RewardName" : "Beard Curls",
       "Priority" : "",
       "Done" : "DONE",
