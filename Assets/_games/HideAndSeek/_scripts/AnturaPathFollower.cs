@@ -44,7 +44,7 @@ namespace EA4S.Minigames.HideAndSeek
                 var distance = target - transform.position;
                 distance.y = 0;
 
-                if (distance.sqrMagnitude < 0.1f)
+                if (distance.sqrMagnitude < 2)
                 {
                     // reached
                     ++currentNode;
@@ -65,13 +65,18 @@ namespace EA4S.Minigames.HideAndSeek
                     {
                         randomSniffTime = UnityEngine.Random.Range(3, 6);
                         isSniffing = true;
+                        speed = 0;
                         animationController.DoSniff(() => { isSniffing = false; });
                     }
                     else
                     {
                         distance.Normalize();
-                        transform.position += distance * Mathf.Abs(Vector3.Dot(distance, transform.forward)) * speed * Time.deltaTime;
-                        MathUtils.LerpLookAtPlanar(transform, target, Time.deltaTime * 2);
+
+                        speed = Mathf.Min(12, speed + 20 * Time.deltaTime);
+
+                        //transform.position += distance * Mathf.Abs(Vector3.Dot(distance, transform.forward)) * speed * Time.deltaTime;
+                        transform.position += transform.forward * speed * Time.deltaTime;
+                        MathUtils.LerpLookAtPlanar(transform, target, Time.deltaTime * 4);
                     }
                 }
             }
