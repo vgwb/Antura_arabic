@@ -39,7 +39,7 @@ namespace EA4S.Core
         public List<MiniGameData> CurrentPlaySessionMiniGames;
 
         /// <summary>
-        /// Current minigame index in 
+        /// Current minigame index in
         /// </summary>
         private int CurrentMiniGameIndexInPlaySession;
 
@@ -77,7 +77,7 @@ namespace EA4S.Core
     {
         private NavigationData NavData;
 
-        public bool IsLoadingMinigame { get; private set; } // Daniele mod - SceneTransitioner needs it to know when a minigame is being loaded 
+        public bool IsLoadingMinigame { get; private set; } // Daniele mod - SceneTransitioner needs it to know when a minigame is being loaded
 
         #region API
 
@@ -139,9 +139,9 @@ namespace EA4S.Core
                         GoToScene(AppScene.Map);
                     break;
                 case AppScene.Rewards:
-                    if (NavData.CurrentPlayer.IsFirstContact()) { 
+                    if (NavData.CurrentPlayer.IsFirstContact()) {
                         GoToScene(AppScene.AnturaSpace);
-                    } else { 
+                    } else {
                         MaxJourneyPositionProgress();
                         GoToScene(AppScene.Map);
                     }
@@ -320,7 +320,7 @@ namespace EA4S.Core
                 case AppScene.Map:
                     return "app_Map";
                 case AppScene.Book:
-                    return "app_PlayerBook";
+                    return "app_Book";
                 case AppScene.Intro:
                     return "app_Intro";
                 case AppScene.GameSelector:
@@ -340,7 +340,7 @@ namespace EA4S.Core
             }
         }
 
-        // refactor: move this method directly to PlayerProfile 
+        // refactor: move this method directly to PlayerProfile
         public void MaxJourneyPositionProgress()
         {
             AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
@@ -394,12 +394,12 @@ namespace EA4S.Core
             int unlockItemsCount = 0;
             if (EndSessionResults.Count > 0) {
                 float starRatio = totalEarnedStars / EndSessionResults.Count;
-                // Prevent aproximation errors (0.99f must be == 1 but 0.7f must be == 0) 
+                // Prevent aproximation errors (0.99f must be == 1 but 0.7f must be == 0)
                 unlockItemsCount = starRatio - Mathf.CeilToInt(starRatio) < 0.0001f
                     ? Mathf.CeilToInt(starRatio)
                     : Mathf.RoundToInt(starRatio);
             }
-            // decrement because the number of stars needed to unlock the first reward is 2. 
+            // decrement because the number of stars needed to unlock the first reward is 2.
             unlockItemsCount -= 1;
             return unlockItemsCount;
         }
@@ -451,7 +451,7 @@ namespace EA4S.Core
         private void GotoPlaysessione()
         {
             // This must be called before any play session is started
-            InitialiseNewPlaySession();  
+            InitialiseNewPlaySession();
 
             // From the map
             if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
@@ -470,7 +470,7 @@ namespace EA4S.Core
         {
             // Game selector -> go to the first game
             NavData.SetFirstMinigame();
-            // TODO: ??? 
+            // TODO: ???
             WorldManager.I.CurrentWorld = (WorldID)(NavData.CurrentPlayer.CurrentJourneyPosition.Stage - 1);
             InternalLaunchGameScene(NavData.CurrentMiniGameData);
         }
