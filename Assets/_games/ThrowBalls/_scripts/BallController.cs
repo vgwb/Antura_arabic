@@ -55,7 +55,6 @@ namespace EA4S.Minigames.ThrowBalls
             INITIAL_BALL_POSITION.y = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height / 3, cameraDistance)).y;
 
             IInputManager inputManager = ThrowBallsConfiguration.Instance.Context.GetInputManager();
-            inputManager.onPointerDown += OnPointerDown;
             inputManager.onPointerDrag += OnPointerDrag;
             inputManager.onPointerUp += OnPointerUp;
 
@@ -67,7 +66,7 @@ namespace EA4S.Minigames.ThrowBalls
             ArrowHeadController.instance.Disable();
         }
 
-        private void OnPointerDown()
+        private void OnMouseDown()
         {
             if (!IsLaunched())
             {
