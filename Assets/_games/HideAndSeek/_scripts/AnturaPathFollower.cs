@@ -76,7 +76,7 @@ namespace EA4S.Minigames.HideAndSeek
 
                         //transform.position += distance * Mathf.Abs(Vector3.Dot(distance, transform.forward)) * speed * Time.deltaTime;
                         transform.position += transform.forward * speed * Time.deltaTime;
-                        MathUtils.LerpLookAtPlanar(transform, target, Time.deltaTime * 4);
+                        GameplayHelper.LerpLookAtPlanar(transform, target, Time.deltaTime * 4);
                     }
                 }
             }
