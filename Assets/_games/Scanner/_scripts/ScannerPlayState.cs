@@ -31,7 +31,7 @@ namespace EA4S.Minigames.Scanner
 		{
             game.gameActive = false;
 			game.CurrentScoreRecord = numberOfRoundsWon;
-			game.SetCurrentState(game.ResultState);
+            game.SetCurrentState(game.ResultState);
 			return;
 		}
 

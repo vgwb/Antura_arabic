@@ -27,7 +27,7 @@ namespace EA4S.Minigames.Scanner
 			timer -= delta;
 
 			if (timer < 0)
-			{
+            {
 				game.EndGame(game.CurrentStars, game.CurrentScoreRecord);
 
                 if (game.CurrentStars == 0)
