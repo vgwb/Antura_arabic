@@ -54,13 +54,22 @@ namespace EA4S.Database
 
         public void GenerateTables(bool create, bool drop)
         {
+            //Debug.Log(("GENERATING TABLES: " + create + " " + drop));
+
             // @note: define the DB structure here
             GenerateTable<DatabaseInfoData>(create, drop);
+            GenerateTable<PlayerProfileData>(create, drop);
+            GenerateTable<VocabularyScoreData>(create, drop);
+            GenerateTable<MinigameScoreData>(create, drop);
+            GenerateTable<JourneyScoreData>(create, drop);
+            GenerateTable<RewardPackUnlockData>(create, drop);
+
             GenerateTable<LogInfoData>(create, drop);
             GenerateTable<LogLearnData>(create, drop);
             GenerateTable<LogMoodData>(create, drop);
             GenerateTable<LogPlayData>(create, drop);
-            GenerateTable<ScoreData>(create, drop);
+            GenerateTable<LogMinigameScoreData>(create, drop);
+            GenerateTable<LogPlaySessionScoreData>(create, drop);
         }
 
         private void GenerateTable<T>(bool create, bool drop)
@@ -111,12 +120,17 @@ namespace EA4S.Database
             return _connection.Table<LogInfoData>().Where((x) => (x.Id.Equals(target_id))).FirstOrDefault();
         }
 
+        public PlayerProfileData FindPlayerProfileDataById(string target_id)
+        {
+            return _connection.Table<PlayerProfileData>().Where((x) => (x.Id.Equals(target_id))).FirstOrDefault();
+        }
+
         // @note: this cannot be used as the current SQLite implementation does not support Parameter expression nodes in LINQ
         // Get one entry by ID
-        public T FindById<T>(string target_id) where T : IData, new()
+        /*public T FindById<T>(string target_id) where T : IData, new()
         {
             return _connection.Table<T>().Where((x) => (x.GetId().Equals(target_id))).FirstOrDefault();
-        }
+        }*/
 
         // select * from (Ttable)
         public List<T> FindAll<T>() where T : IData, new()

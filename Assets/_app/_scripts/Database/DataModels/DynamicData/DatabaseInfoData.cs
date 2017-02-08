@@ -1,4 +1,5 @@
-﻿using EA4S.Utilities;
+﻿using EA4S.Helpers;
+using EA4S.Utilities;
 using SQLite;
 
 namespace EA4S.Database
@@ -24,7 +25,7 @@ namespace EA4S.Database
             this.Id = 1;  // Only one record
             this.Version = _Version;
             this.PlayerId = _PlayerId;
-            this.CreationTimestamp = GenericUtilities.GetTimestampForNow();
+            this.CreationTimestamp = GenericHelper.GetTimestampForNow();
         }
 
         public string GetId()

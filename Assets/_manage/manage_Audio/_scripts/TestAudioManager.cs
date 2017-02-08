@@ -1,4 +1,5 @@
 ﻿using EA4S.Audio;
+using EA4S.Helpers;
 using EA4S.MinigamesCommon;
 using EA4S.Utilities;
 using UnityEngine;
@@ -44,7 +45,7 @@ namespace EA4S.Management.Test
             btnGO.GetComponentInChildren<Text>().text = "Stop Music";
             btnGO.GetComponent<Button>().onClick.AddListener(StopMusic);
 
-            foreach (Music mus in GenericUtilities.SortEnums<Music>()) {
+            foreach (Music mus in GenericHelper.SortEnums<Music>()) {
                 //Debug.Log(mus.ToString());
                 btnGO = Instantiate(PlayButtonPrefab);
                 btnGO.transform.SetParent(PanelMusic.transform, false);
@@ -63,7 +64,7 @@ namespace EA4S.Management.Test
             btnGO.GetComponentInChildren<Text>().text = "Stop Sfx";
             btnGO.GetComponent<Button>().onClick.AddListener(StopCurrentSfx);
 
-            foreach (Sfx sfx in GenericUtilities.SortEnums<Sfx>()) {
+            foreach (Sfx sfx in GenericHelper.SortEnums<Sfx>()) {
                 //Debug.Log(sfx.ToString());
                 btnGO = Instantiate(PlayButtonPrefab);
                 btnGO.transform.SetParent(PanelSfx.transform, false);

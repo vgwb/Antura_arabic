@@ -91,10 +91,10 @@ namespace EA4S.Teacher
             }
 
             // Find all previous scores
-            List<Database.ScoreData> scoreData_list = teacher.scoreHelper.GetCurrentScoreForLearningBlocksOfStage(targetStage);
+            List<JourneyScoreData> scoreData_list = teacher.scoreHelper.GetCurrentScoreForLearningBlocksOfStage(targetStage);
             for (int i = 0; i < learningBlockInfo_list.Count; i++) {
                 var info = learningBlockInfo_list[i];
-                var scoreData = scoreData_list.Find(x => x.TableName == typeof(Database.LearningBlockData).Name && x.ElementId == info.data.Id);
+                var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.LearningBlock && x.ElementId == info.data.Id);
                 info.score = scoreData.Score;
             }
 
@@ -121,10 +121,10 @@ namespace EA4S.Teacher
             }
 
             // Find all previous scores
-            List<Database.ScoreData> scoreData_list = teacher.scoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(targetStage, targetLearningBlock);
+            List<JourneyScoreData> scoreData_list = teacher.scoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(targetStage, targetLearningBlock);
             for (int i = 0; i < playSessionInfo_list.Count; i++) {
                 var info = playSessionInfo_list[i];
-                var scoreData = scoreData_list.Find(x => x.TableName == typeof(Database.PlaySessionData).Name && x.ElementId == info.data.Id);
+                var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.PlaySession && x.ElementId == info.data.Id);
                 info.score = scoreData.Score;
             }
 

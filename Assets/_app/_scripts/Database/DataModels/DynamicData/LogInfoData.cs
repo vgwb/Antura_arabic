@@ -1,4 +1,5 @@
-﻿using EA4S.Utilities;
+﻿using EA4S.Helpers;
+using EA4S.Utilities;
 using SQLite;
 
 // refactor: InfoEvent should be easily accessible outside of the EA4S.Db namespace but still be part of it
@@ -32,7 +33,7 @@ namespace EA4S.Database
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string Session { get; set; }
+        public string AppSession { get; set; }
         public int Timestamp { get; set; }
 
         public InfoEvent Event { get; set; }
@@ -42,12 +43,12 @@ namespace EA4S.Database
         {
         }
 
-        public LogInfoData(string _Session, InfoEvent _Event, string _Parameters)
+        public LogInfoData(string _AppSession, InfoEvent _Event, string _Parameters)
         {
-            this.Session = _Session;
+            this.AppSession = _AppSession;
             this.Event = _Event;
             this.Parameters = _Parameters;
-            this.Timestamp = GenericUtilities.GetTimestampForNow();
+            this.Timestamp = GenericHelper.GetTimestampForNow();
         }
 
         public string GetId()
@@ -57,8 +58,8 @@ namespace EA4S.Database
 
         public override string ToString()
         {
-            return string.Format("T{0},T{1},E{2},PARS{3}",
-                Session,
+            return string.Format("AS{0},T{1},E{2},PARS{3}",
+                AppSession,
                 Timestamp,
                 Event,
                 Parameters

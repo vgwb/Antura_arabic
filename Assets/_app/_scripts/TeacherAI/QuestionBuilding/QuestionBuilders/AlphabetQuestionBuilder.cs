@@ -38,10 +38,11 @@ namespace EA4S.Teacher
         public QuestionPackData CreateAlphabetQuestionPackData()
         {
             var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             // Fully ordered alphabet, only 1 pack
-            var alphabetLetters = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetAllLetters(parameters.letterFilters),
+            var alphabetLetters = teacher.VocabularyAi.SelectData(
+                () => vocabularyHelper.GetAllLetters(parameters.letterFilters),
                 new SelectionParameters(parameters.correctSeverity, getMaxData:true, useJourney: parameters.useJourneyForCorrect)
                 );
 

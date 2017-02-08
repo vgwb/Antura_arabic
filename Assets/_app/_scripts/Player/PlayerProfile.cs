@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using EA4S.Antura;
 using EA4S.Core;
+using EA4S.Database;
 using EA4S.Rewards;
 
 namespace EA4S.Profile
@@ -19,6 +20,7 @@ namespace EA4S.Profile
         public int Id;
         public int AvatarId;
         public int Age;
+        public string Gender;
         public string Name;
 
         //int to track first visit
@@ -46,7 +48,6 @@ namespace EA4S.Profile
         public float Musicality;
         public float Sight;
 
-        // refactor: should we move this to the DB app?
         public string MoodLastVisit;
 
         public JourneyPosition MaxJourneyPosition = new JourneyPosition(1, 1, 1);
@@ -65,7 +66,7 @@ namespace EA4S.Profile
             return TotalNumberOfBones;
         }
         #endregion
-
+        
         #region API
 
         #region management
@@ -73,18 +74,21 @@ namespace EA4S.Profile
         /// <summary>
         /// Automatically select first avatar profile.
         /// </summary>
-        public PlayerProfile()
+        public PlayerProfile() 
         {
 
         }
 
-        public void DeleteThisProfile() { }
+        public void DeleteThisProfile()
+        {
+
+        }
 
         /// <summary>
         /// Saves this instance.
         /// </summary>
         public void Save()
-        {
+        {            
             AppManager.I.PlayerProfileManager.SavePlayerSettings(this);
         }
 
@@ -103,6 +107,22 @@ namespace EA4S.Profile
         public Sprite GetAvatar()
         {
             return Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + AvatarId);
+        }
+
+        /// <summary>
+        /// True if player already answered to mood question for today.
+        /// </summary>
+        /// <value>
+        ///   True if player already answered to mood question for today.
+        /// </value>
+        public bool MoodAlreadyAnswered {
+            get {
+                int secondAmount = AppManager.I.Teacher.logAI.SecondsFromLastMoodLog();
+                if (secondAmount > 86400)
+                    return false;
+                else
+                    return true;
+            }
         }
 
         #endregion
@@ -131,7 +151,7 @@ namespace EA4S.Profile
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
         public void SetCurrentJourneyPosition(JourneyPosition _journeyPosition, bool _save = true)
         {
-            AppManager.I.Player.CurrentJourneyPosition = _journeyPosition;
+            CurrentJourneyPosition = _journeyPosition;
             if (_save)
                 Save();
 
@@ -145,9 +165,9 @@ namespace EA4S.Profile
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
         public void SetMaxJourneyPosition(JourneyPosition newJourneyPosition, bool _save = true)
         {
-            if (AppManager.I.Player.MaxJourneyPosition.IsMinor(newJourneyPosition)) {
-                AppManager.I.Player.MaxJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
-                AppManager.I.Player.CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
+            if (MaxJourneyPosition.IsMinor(newJourneyPosition)) {
+                MaxJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
+                CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
                 if (_save) {
                     Save();
                 }
@@ -159,44 +179,88 @@ namespace EA4S.Profile
         /// </summary>
         public void ResetMaxJourneyPosition(bool _save = true)
         {
-            AppManager.I.Player.MaxJourneyPosition = new JourneyPosition(1, 1, 1);
-            AppManager.I.Player.CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
+            MaxJourneyPosition = new JourneyPosition(1, 1, 1);
+            CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
             if (_save) {
                 Save();
             }
         }
         #endregion
 
-        #region Antura Customization                
+        #region Antura Customization
+
+        private AnturaCustomization _currentAnturaCustomizations;
         /// <summary>
-        /// The rewards unlocked
+        /// The current antura customizations
         /// </summary>
-        public List<RewardPack> RewardsUnlocked = new List<RewardPack>();
+        public AnturaCustomization CurrentAnturaCustomizations {
+            get {
+                if (_currentAnturaCustomizations == null) {
+                    _currentAnturaCustomizations = new AnturaCustomization();
+                    _currentAnturaCustomizations.LoadFromListOfIds(jsonAnturaCustimizationData);
+                }
+                return _currentAnturaCustomizations;
+            }
+            private set {
+                _currentAnturaCustomizations = value;
+                jsonAnturaCustimizationData = _currentAnturaCustomizations.GetJsonListOfIds();
+                //SaveCustomization();
+            }
+        }
+
+        private List<RewardPackUnlockData> _rewardsUnlocked;
+        /// <summary>
+        /// Gets or sets the rewards unlocked.
+        /// </summary>
+        /// <value>
+        /// The rewards unlocked.
+        /// </value>
+        public List<RewardPackUnlockData> RewardsUnlocked {
+            get {
+                if (_rewardsUnlocked == null)
+                    return LoadRewardsUnlockedFromDB();
+                return _rewardsUnlocked;
+            }
+
+            private set { _rewardsUnlocked = value; }
+        }
+
+        /// <summary>
+        /// Loads the rewards unlocked from database.
+        /// </summary>
+        /// <returns></returns>
+        public List<RewardPackUnlockData> LoadRewardsUnlockedFromDB() {
+            return AppManager.I.DB.GetAllRewardPackUnlockData();
+        }
+
+        /// <summary>
+        /// Used to store antura custumization data in json and load it at runtime.
+        /// </summary>
+        string jsonAnturaCustimizationData = string.Empty;
+
+        #region API
 
         /// <summary>
         /// Adds the reward unlocked.
         /// </summary>
-        /// <param name="_rewardPack">The reward pack.</param>
-        public void AddRewardUnlocked(RewardPack _rewardPack)
+        /// <param name="rewardPackUnlockData">The reward pack.</param>
+        public void AddRewardUnlocked(RewardPackUnlockData rewardPackUnlockData)
         {
-            RewardsUnlocked.Add(_rewardPack);
-            Save();
+            AppManager.I.DB.UpdateRewardPackUnlockData(rewardPackUnlockData);
         }
 
         /// <summary>
-        /// The current antura customizations
+        /// Saves the customization on db.
         /// </summary>
-        public AnturaCustomization CurrentAnturaCustomizations = new AnturaCustomization();
-
-        /// <summary>
-        /// Saves the customization.
-        /// </summary>
-        /// <param name="_anturaCustomization">The antura customization.</param>
-        public void SaveCustomization(AnturaCustomization _anturaCustomization)
+        /// <param name="_anturaCustomization">The antura customization. If null save only on db.</param>
+        public void SaveCustomization(AnturaCustomization _anturaCustomization = null)
         {
-            CurrentAnturaCustomizations = _anturaCustomization;
+            if(_anturaCustomization != null)
+                CurrentAnturaCustomizations = _anturaCustomization;
             Save();
         }
+
+        #endregion
 
         #endregion
 
@@ -291,6 +355,42 @@ namespace EA4S.Profile
 
         #endregion
 
+        #region To/From PlayerProfileData        
+        /// <summary>
+        /// Converte this instance to PlayerProfileData.
+        /// </summary>
+        /// <returns></returns>
+        public PlayerProfileData ToData() {
+            PlayerProfileData newProfileData = new PlayerProfileData(this.Key, this.Id, this.AvatarId, this.Age, this.Name, this.Gender, this.TotalNumberOfBones, ProfileCompletion);
+            newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
+            newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
+            string jsonStringForAnturaCustomization = this.CurrentAnturaCustomizations.GetJsonListOfIds();
+            newProfileData.CurrentAnturaCustomization = jsonStringForAnturaCustomization;
+            return newProfileData;
+        }
 
+        /// <summary>
+        /// Charge this with PlayerProfileData.
+        /// </summary>
+        public PlayerProfile FromData(PlayerProfileData _data) {
+            Key = _data.PlayerKey;
+            Id = _data.PlayerId;
+            AvatarId = _data.AvatarId;
+            Age = _data.Age;
+            Name = _data.Name;
+            ProfileCompletion = _data.ProfileCompletion;
+            TotalNumberOfBones = _data.TotalNumberOfBones;
+            this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
+            this.SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
+            // Antura customization save only customization data
+            jsonAnturaCustimizationData = _data.CurrentAnturaCustomization;
+                
+            return this;
+        }
+
+
+        #endregion
+
+        
     }
 }

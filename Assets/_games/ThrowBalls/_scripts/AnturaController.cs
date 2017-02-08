@@ -165,7 +165,7 @@ namespace EA4S.Minigames.ThrowBalls
                 position += velocity * Time.fixedDeltaTime;
                 transform.position = position;
 
-                MathUtils.LerpLookAtPlanar(transform, transform.position - velocity, Time.deltaTime * 4);
+                GameplayHelper.LerpLookAtPlanar(transform, transform.position - velocity, Time.deltaTime * 4);
             }
 
             else

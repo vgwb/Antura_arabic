@@ -10,13 +10,12 @@ namespace EA4S.Teacher
     /// <summary>
     /// Handles the selection of what dictionary data a minigame should use, given a playsession
     /// </summary>
-    // rename to DictionaryDataSelectionAI
-    public class WordSelectionAI 
+    public class VocabularySelectionAI 
     {
         // References
         private DatabaseManager dbManager;
         //private TeacherAI teacher;
-        //private WordHelper wordHelper;
+        //private VocabularyHelper VocabularyHelper;
 
         // Inner state
         private HashSet<LetterData> journeyLetters = new HashSet<LetterData>();
@@ -27,11 +26,9 @@ namespace EA4S.Teacher
         private HashSet<WordData> currentPlaySessionWords = new HashSet<WordData>();
         private HashSet<PhraseData> currentPlaySessionPhrases = new HashSet<PhraseData>();
 
-        public WordSelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile, TeacherAI _teacher, WordHelper _wordHelper)
+        public VocabularySelectionAI(DatabaseManager _dbManager)
         {
             this.dbManager = _dbManager;
-            //this.teacher = _teacher;
-            //this.wordHelper = _wordHelper;
         }
 
         public void LoadCurrentPlaySessionData(string currentPlaySessionId)
@@ -69,22 +66,23 @@ namespace EA4S.Teacher
             System.Type typeParameterType = typeof(T);
             HashSet<T> journeyData = null;
             HashSet<T> currentPSData = null;
-            DbTables table = DbTables.Letters;
+            //DbTables table = DbTables.Letters;
+            VocabularyDataType dataType = VocabularyDataType.Letter;
             if (typeParameterType == typeof(LetterData))
             {
-                table = DbTables.Letters;
+                dataType = VocabularyDataType.Letter;
                 journeyData = new HashSet<T>(journeyLetters.Cast<T>());
                 currentPSData = new HashSet<T>(currentPlaySessionLetters.Cast<T>());
             }
             else if (typeParameterType == typeof(WordData))
             {
-                table = DbTables.Words;
+                dataType = VocabularyDataType.Word;
                 journeyData = new HashSet<T>(journeyWords.Cast<T>());
                 currentPSData = new HashSet<T>(currentPlaySessionWords.Cast<T>());
             }
             else if (typeParameterType == typeof(PhraseData))
             {
-                table = DbTables.Phrases;
+                dataType = VocabularyDataType.Phrase;
                 journeyData = new HashSet<T>(journeyPhrases.Cast<T>());
                 currentPSData = new HashSet<T>(currentPlaySessionPhrases.Cast<T>());
             }
@@ -147,7 +145,7 @@ namespace EA4S.Teacher
             // Weighted selection on the remaining number
             List<T> selectedList = null;
             if (selectionParams.getMaxData) selectedList = dataList;
-            else selectedList = WeightedDataSelect(dataList, currentPSData, selectionParams.nRequired, table, selectionParams.severity);
+            else selectedList = WeightedDataSelect(dataList, currentPSData, selectionParams.nRequired, dataType, selectionParams.severity);
             debugString += (" \tSelection: " + selectedList.Count);
 
             if (ConfigAI.verboseDataSelection)
@@ -175,10 +173,10 @@ namespace EA4S.Teacher
                 || (selectionParams.getMaxData && dataList.Count >= nAfterBuilder);
         }
 
-        private List<T> WeightedDataSelect<T>(List<T> source_data_list, HashSet<T> currentPSData, int nToSelect, DbTables table, SelectionSeverity severity) where T : IData
+        private List<T> WeightedDataSelect<T>(List<T> source_data_list, HashSet<T> currentPSData, int nToSelect, VocabularyDataType dataType, SelectionSeverity severity) where T : IData
         {
             // Given a (filtered) list of data, select some using weights
-            List<ScoreData> score_data_list = dbManager.FindScoreDataByQuery("SELECT * FROM ScoreData WHERE TableName = '" + table.ToString() + "'");
+            List<VocabularyScoreData> score_data_list = dbManager.FindDataByQuery<VocabularyScoreData>("SELECT * FROM VocabularyScoreData WHERE VocabularyDataType = '" + (int)dataType + "'");
 
             string debugString = "-- Teacher Selection Weights";
 
@@ -194,7 +192,7 @@ namespace EA4S.Teacher
                 int daysSinceLastScore = 0;
                 if (score_data != null)
                 {
-                    var timespanFromLastScoreToNow = GenericUtilities.GetTimeSpanBetween(score_data.LastAccessTimestamp, GenericUtilities.GetTimestampForNow());
+                    var timespanFromLastScoreToNow = GenericHelper.GetTimeSpanBetween(score_data.LastAccessTimestamp, GenericHelper.GetTimestampForNow());
                     daysSinceLastScore = timespanFromLastScoreToNow.Days;
                     currentScore = score_data.Score;
                 }

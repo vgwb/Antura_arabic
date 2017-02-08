@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using EA4S.Core;
 using EA4S.Helpers;
-using EA4S.Profile;
 
 namespace EA4S.Database
 {
@@ -26,18 +25,45 @@ namespace EA4S.Database
             }
         }
 
-        public DatabaseManager(bool useTestDatabase, PlayerProfile playerProfile)
+        public bool HasLoadedPlayerProfile()
         {
-            LoadStaticDB(useTestDatabase);
+            return dynamicDb != null;
+        }
 
+        #region Player assignment
+
+        public void CreateDatabaseForPlayer(PlayerProfileData playerProfileData)
+        {
+            SetPlayerProfile(playerProfileData.PlayerId);
+            UpdatePlayerProfileData(playerProfileData);
+        }
+
+        public PlayerProfileData LoadDatabaseForPlayer(int playerId)
+        {
+            SetPlayerProfile(playerId);
+            return GetPlayerProfileData();
+        }
+
+        #endregion
+
+        public DatabaseManager(bool useTestDatabase)
+        {
+            // Only the static DB is available until the player profile is also assigned
+            LoadStaticDB(useTestDatabase);
+        }
+
+        private void SetPlayerProfile(int playerProfileId)
+        {
             // SAFE MODE: we need to make sure that the static db has some entires, otherwise there is something wrong
-            if (staticDb.GetPlaySessionTable().GetDataCount() == 0) {
+            if (staticDb.GetPlaySessionTable().GetDataCount() == 0)
+            {
                 throw new System.Exception("Database is empty, it was probably not setup correctly. Make sure it has been statically loaded by the management scene.");
             }
 
             // We load the selected player profile
-            LoadDynamicDbForPlayerProfile(playerProfile.Id);
+            LoadDynamicDbForPlayerProfile(playerProfileId);
         }
+
 
         void LoadStaticDB(bool useTestDatabase)
         {
@@ -51,16 +77,14 @@ namespace EA4S.Database
 
         #region Profile
 
-        public void LoadDynamicDbForPlayerProfile(int profileId)
+        private void LoadDynamicDbForPlayerProfile(int profileId)
         {
             dynamicDb = new DBService("EA4S_Database" + "_" + profileId + ".sqlite3", profileId);
-            //dbLoaded = true;
         }
 
         public void UnloadCurrentProfile()
         {
             dynamicDb = null;
-            //dbLoaded = false;
         }
 
         public void CreateProfile()
@@ -77,6 +101,22 @@ namespace EA4S.Database
         {
             dynamicDb.DropAllTables();
         }
+
+        #endregion
+
+        #region Player Profile Data
+
+        public void UpdatePlayerProfileData(PlayerProfileData playerProfileData)
+        {
+            dynamicDb.InsertOrReplace(playerProfileData);
+        }
+
+        public PlayerProfileData GetPlayerProfileData()
+        {
+            var data = dynamicDb.FindPlayerProfileDataById(PlayerProfileData.UNIQUE_ID);
+            return data;
+        }
+
         #endregion
 
         #region Utilities
@@ -121,7 +161,7 @@ namespace EA4S.Database
         //public LetterData GetLetterDataByRandom()
         //{
         //    var letterslist = GetAllLetterData();
-        //    return GenericUtilities.GetRandom(letterslist);
+        //    return GenericHelper.GetRandom(letterslist);
         //}
         #endregion
 
@@ -325,9 +365,9 @@ namespace EA4S.Database
             return dynamicDb.FindAll<LogPlayData>();
         }
 
-        public List<ScoreData> GetAllScoreData()
+        public List<T> GetAllDynamicData<T>() where T : IData, new()
         {
-            return dynamicDb.FindAll<ScoreData>();
+            return dynamicDb.FindAll<T>();
         }
 
         // Find all (expression)
@@ -363,9 +403,9 @@ namespace EA4S.Database
             return dynamicDb.FindByQuery<LogPlayData>(query);
         }
 
-        public List<ScoreData> FindScoreDataByQuery(string query)
+        public List<T> FindDataByQuery<T>(string query) where T : IData, new()
         {
-            return dynamicDb.FindByQuery<ScoreData>(query);
+            return dynamicDb.FindByQuery<T>(query);
         }
 
         public List<object> FindCustomDataByQuery(SQLite.TableMapping mapping, string query)
@@ -376,17 +416,44 @@ namespace EA4S.Database
 
 
         #region Score
-        public void UpdateScoreData(DbTables table, string elementId, float score)
+
+        public void UpdateVocabularyScoreData(VocabularyDataType dataType, string elementId, float score, int timestamp = -1)
         {
-            ScoreData data = new ScoreData(elementId, table, score);
+            VocabularyScoreData data = null;
+            if (timestamp > 0) data = new VocabularyScoreData(elementId, dataType, score, timestamp);
+            else data = new VocabularyScoreData(elementId, dataType, score);
             dynamicDb.InsertOrReplace(data);
         }
 
-        public void Debug_UpdateScoreData(DbTables table, string elementId, float score, int timestamp)
+        public void UpdateJourneyScoreData(JourneyDataType dataType, string elementId, int score, int timestamp = -1)
         {
-            ScoreData data = new ScoreData(elementId, table, score, timestamp);
+            JourneyScoreData data = null;
+            if (timestamp > 0) data = new JourneyScoreData(elementId, dataType, score, timestamp);
+            else data = new JourneyScoreData(elementId, dataType, score);
             dynamicDb.InsertOrReplace(data);
         }
+
+        public void UpdateMinigameScoreData(string elementId, float totalPlayTime, int score, int timestamp = -1)
+        {
+            MinigameScoreData data = null;
+            if (timestamp > 0) data = new MinigameScoreData(elementId, score, totalPlayTime, timestamp);
+            else data = new MinigameScoreData(elementId, score, totalPlayTime);
+            dynamicDb.InsertOrReplace(data);
+        }
+        #endregion
+
+        #region Reward Unlock
+
+        public List<RewardPackUnlockData> GetAllRewardPackUnlockData()
+        {
+            return GetAllDynamicData<RewardPackUnlockData>();
+        }
+
+        public void UpdateRewardPackUnlockData(RewardPackUnlockData updatedData)
+        {
+            dynamicDb.InsertOrReplace(updatedData);
+        }
+
         #endregion
     }
 }

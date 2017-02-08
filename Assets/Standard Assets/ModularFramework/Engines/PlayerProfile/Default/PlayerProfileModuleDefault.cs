@@ -66,7 +66,6 @@ namespace ModularFramework.Modules
         public IPlayerProfile CreateNewPlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null) {
             if (!Options.AvailablePlayers.Exists(p => p == _newPlayer.Key)) {
                 Options.AvailablePlayers.Add(_newPlayer.Key);
-                SavePlayerSettings(_newPlayer);
                 SaveAllOptions();
             }
             return _newPlayer;

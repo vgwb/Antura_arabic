@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ModularFramework.Helpers;
 using ArabicSupport;
 using EA4S.Helpers;
 using EA4S.MinigamesAPI;

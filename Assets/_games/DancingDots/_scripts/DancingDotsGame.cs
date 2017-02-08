@@ -145,7 +145,6 @@ namespace EA4S.Minigames.DancingDots
             base.Start();
             tutorial = GetComponent<DancingDotsTutorial>();
 
-            AppManager.I.InitTeacherForPlayer();
             SceneTransitioner.Close();
 
             AudioManager.I.PlayMusic(Music.MainTheme);

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using UnityEngine;
 using EA4S;
 using EA4S.Core;
+using EA4S.Database;
 using EA4S.Debugging;
 using EA4S.Rewards;
 using EA4S.Teacher;
@@ -64,8 +65,10 @@ public partial class SROptions
     public void ResetAll()
     {
         // refactor: move to DebugManager
-        AppManager.I.ResetEverything();
+        AppManager.I.PlayerProfileManager.ResetEverything();
         SRDebug.Instance.HideDebugPanel();
+        AppManager.I.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.NavigationManager.GetSceneName(AppScene.Home));
+        UnityEngine.Debug.Log("Reset ALL players and DB.");
     }
 
     [Category("Options")]
@@ -458,12 +461,7 @@ public partial class SROptions
     [Sort(2)]
     public void DeleteAllProfiles()
     {
-        // refactor: move to DebugManager
-        PlayerPrefs.DeleteAll();
-        AppManager.I.GameSettings.AvailablePlayers = new List<string>();
-        AppManager.I.PlayerProfileManager.SaveGameSettings();
-        SRDebug.Instance.HideDebugPanel();
-        AppManager.I.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.NavigationManager.GetSceneName(AppScene.Home));
+        ResetAll();
     }
 
     [Category("Max Journey Position")]
@@ -520,7 +518,7 @@ public partial class SROptions
         // refactor: move to DebugManager
 
         //JourneyPosition CurrentJourney = AppManager.I.Player.CurrentJourneyPosition;
-        foreach (RewardPack pack in RewardSystemManager.GetNextRewardPack()) {
+        foreach (RewardPackUnlockData pack in RewardSystemManager.GetNextRewardPack()) {
             AppManager.I.Player.AddRewardUnlocked(pack);
             Debug.LogFormat("Pack added: {0}", pack.ToString());
         }

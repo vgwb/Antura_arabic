@@ -1,8 +1,9 @@
-using DG.Tweening;
+using EA4S.Helpers;
 using EA4S.MinigamesAPI;
+using DG.Tweening;
 using EA4S.MinigamesCommon;
-using EA4S.Utilities;
 using System;
+using EA4S.Utilities;
 using TMPro;
 using UnityEngine;
 
@@ -174,7 +175,7 @@ namespace EA4S.Assessment
                     LL_ImageData data = ( LL_ImageData)Data;
                     if (data.Data.Category == Database.WordDataCategory.Color)
                     {
-                        Drawing.color = GenericUtilities.GetColorFromString( data.Data.Value);
+                        Drawing.color = GenericHelper.GetColorFromString( data.Data.Value);
                     }
                     else
                     {

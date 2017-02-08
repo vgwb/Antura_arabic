@@ -1,5 +1,5 @@
-﻿using ModularFramework.Helpers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using EA4S.Helpers;
 using UnityEngine;
 
 namespace EA4S.Minigames.FastCrowd

@@ -52,15 +52,16 @@ namespace EA4S.Teacher
         private QuestionPackData CreateSingleQuestionPackData()
         {
             var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
-            var correctLetters = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetAllLetters(parameters.letterFilters),
+            var correctLetters = teacher.VocabularyAi.SelectData(
+                () => vocabularyHelper.GetAllLetters(parameters.letterFilters),
                     new SelectionParameters(parameters.correctSeverity, nCorrect, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs)
                 );
 
-            var wrongLetters = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetLettersNotIn(parameters.letterFilters, correctLetters.ToArray()),
+            var wrongLetters = teacher.VocabularyAi.SelectData(
+                () => vocabularyHelper.GetLettersNotIn(parameters.letterFilters, correctLetters.ToArray()),
                     new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
                      packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs)
                 );

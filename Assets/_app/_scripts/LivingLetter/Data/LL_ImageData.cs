@@ -43,7 +43,7 @@ namespace EA4S.MinigamesAPI
         }
 
         public string DrawingCharForLivingLetter {
-            get { return AppManager.I.Teacher.wordHelper.GetWordDrawing(Data); }  // refactor: inject the value, no reference to the DB
+            get { return AppManager.I.VocabularyHelper.GetWordDrawing(Data); }  // refactor: inject the value, no reference to the DB
         }
 
         /// <summary>

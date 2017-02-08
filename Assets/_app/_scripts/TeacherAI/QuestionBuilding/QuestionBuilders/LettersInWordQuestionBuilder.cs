@@ -53,27 +53,28 @@ namespace EA4S.Teacher
         private QuestionPackData CreateSingleQuestionPackData()
         {
             var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             // Get a word
-            var usableWords = teacher.wordAI.SelectData(
+            var usableWords = teacher.VocabularyAi.SelectData(
                 () => FindEligibleWords(maxWordLength: this.maximumWordLength),
                     new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
             var question = usableWords[0];
 
             // Get letters of that word
-            var wordLetters = teacher.wordHelper.GetLettersInWord(question);
+            var wordLetters = vocabularyHelper.GetLettersInWord(question);
 
             bool useJourneyForLetters = parameters.useJourneyForCorrect; 
             if (useAllCorrectLetters) useJourneyForLetters = false;  // @note: we force journey in this case to be off so that all letters can be found
 
-            var correctAnswers = teacher.wordAI.SelectData(
+            var correctAnswers = teacher.VocabularyAi.SelectData(
                 () => wordLetters,
                  new SelectionParameters(parameters.correctSeverity, nCorrect, getMaxData:useAllCorrectLetters, 
                  useJourney: useJourneyForLetters));  
 
-            var wrongAnswers = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray()),
+            var wrongAnswers = teacher.VocabularyAi.SelectData(
+                () => vocabularyHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray()),
                     new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong));
 
             if (ConfigAI.verboseTeacher)
@@ -92,16 +93,16 @@ namespace EA4S.Teacher
 
         public List<Database.WordData> FindEligibleWords(int maxWordLength)
         {
-            var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
             List<Database.WordData> eligibleWords = new List<Database.WordData>();
-            foreach(var word in teacher.wordHelper.GetWordsByCategory(category, parameters.wordFilters))
+            foreach(var word in vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters))
             {
                 if (word.Letters.Length <= maxWordLength)
                 {
                     eligibleWords.Add(word);
                 }
             }
-            //UnityEngine.Debug.Log("Eligible words: " + eligibleWords.Count + " out of " + teacher.wordHelper.GetWordsByCategory(category, parameters.wordFilters).Count);
+            //UnityEngine.Debug.Log("Eligible words: " + eligibleWords.Count + " out of " + teacher.VocabularyHelper.GetWordsByCategory(category, parameters.wordFilters).Count);
             return eligibleWords;
         }
 

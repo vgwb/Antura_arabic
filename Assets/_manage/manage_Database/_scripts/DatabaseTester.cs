@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using EA4S.Core;
 using EA4S.Helpers;
 using EA4S.Profile;
+using EA4S.Rewards;
 using EA4S.Teacher;
 using EA4S.UI;
-using EA4S.Utilities;
 
 // refactor: standardize random use across the codebase
 using RND = UnityEngine.Random;
@@ -34,11 +34,9 @@ namespace EA4S.Database.Management
         {
             this.dbLoader = GetComponentInChildren<DatabaseLoader>();
 
-            playerProfile = new PlayerProfile();
-            playerProfile.CurrentJourneyPosition = new JourneyPosition(1, 2, 2);    // test
-            this.dbManager = new DatabaseManager(useTestDatabase, playerProfile);
-
-            teacherAI = new TeacherAI(dbManager, playerProfile);
+            dbManager = new DatabaseManager(useTestDatabase);
+            var vocabularyHelper = new VocabularyHelper(dbManager);
+            teacherAI = new TeacherAI(dbManager, vocabularyHelper);
         }
 
         #region Main Actions
@@ -143,9 +141,14 @@ namespace EA4S.Database.Management
             DumpAllData(dbManager.GetAllLogPlayData());
         }
 
-        public void DumpAllScoreData()
+        public void DumpAllVocabularyScoreData()
         {
-            DumpAllData(dbManager.GetAllScoreData());
+            DumpAllData(dbManager.GetAllDynamicData<VocabularyScoreData>());
+        }
+
+        public void DumpAllJourneyScoreData()
+        {
+            DumpAllData(dbManager.GetAllDynamicData<JourneyScoreData>());
         }
 
         public void DumpLetterById(string id)
@@ -229,14 +232,18 @@ namespace EA4S.Database.Management
             for (int i = 0; i < RND.Range(10, 20); i++) TestInsertLogLearnData();
             for (int i = 0; i < RND.Range(10, 20); i++) TestInsertLogMoodData();
             for (int i = 0; i < RND.Range(10, 20); i++) TestInsertLogPlayData();
-            for (int i = 0; i < RND.Range(40, 60); i++) TestInsertScoreData();
+
+            for (int i = 0; i < RND.Range(20, 30); i++) TestInsertVocabularyScoreData();
+            for (int i = 0; i < RND.Range(20, 30); i++) TestInsertJourneyScoreData();
+            for (int i = 0; i < RND.Range(20, 30); i++) TestInsertMinigameScoreData();
+
         }
 
         public void TestInsertLogInfoData()
         {
             var newData = new LogInfoData();
-            newData.Session = UnityEngine.Random.Range(0, 10).ToString();
-            newData.Timestamp = GenericUtilities.GetTimestampForNow();
+            newData.AppSession = UnityEngine.Random.Range(0, 10).ToString();
+            newData.Timestamp = GenericHelper.GetTimestampForNow();
 
             newData.Event = InfoEvent.Book;
             newData.Parameters = "test:1";
@@ -248,17 +255,26 @@ namespace EA4S.Database.Management
         public void TestInsertLogLearnData()
         {
             var newData = new LogLearnData();
-            newData.Session = UnityEngine.Random.Range(0, 10).ToString();
-            newData.Timestamp = GenericUtilities.GetTimestampForNow();
+            newData.AppSession = UnityEngine.Random.Range(0, 10).ToString();
+            newData.Timestamp = GenericHelper.GetTimestampForNow();
 
             newData.PlaySession = "1.1.1";
             newData.MiniGame = MiniGameCode.Assessment_LetterShape;
 
-            bool useLetter = RND.value > 0.5f;
-            newData.TableName = useLetter ? "LetterData" : "WordData";
-            newData.ElementId = useLetter
-                ? RandomHelper.GetRandom(dbManager.GetAllLetterData()).GetId()
-                : RandomHelper.GetRandom(dbManager.GetAllWordData()).GetId();
+            newData.VocabularyDataType = RandomHelper.GetRandomEnum<VocabularyDataType>();
+
+            switch (newData.VocabularyDataType)
+            {
+                case VocabularyDataType.Letter:
+                    newData.ElementId = RandomHelper.GetRandom(dbManager.GetAllLetterData()).GetId();
+                    break;
+                case VocabularyDataType.Word:
+                    newData.ElementId = RandomHelper.GetRandom(dbManager.GetAllWordData()).GetId();
+                    break;
+                case VocabularyDataType.Phrase:
+                    newData.ElementId = RandomHelper.GetRandom(dbManager.GetAllPhraseData()).GetId();
+                    break;
+            }
 
             newData.Score = RND.Range(-1f, 1f);
 
@@ -269,8 +285,8 @@ namespace EA4S.Database.Management
         public void TestInsertLogMoodData()
         {
             var newData = new LogMoodData();
-            newData.Session = UnityEngine.Random.Range(0, 10).ToString();
-            newData.Timestamp = GenericUtilities.GetTimestampForNow();
+            newData.AppSession = UnityEngine.Random.Range(0, 10).ToString();
+            newData.Timestamp = GenericHelper.GetTimestampForNow();
 
             newData.MoodValue = RND.Range(0, 20);
 
@@ -281,8 +297,8 @@ namespace EA4S.Database.Management
         public void TestInsertLogPlayData()
         {
             var newData = new LogPlayData();
-            newData.Session = UnityEngine.Random.Range(0, 10).ToString();
-            newData.Timestamp = GenericUtilities.GetRelativeTimestampFromNow(-RND.Range(0, 5));
+            newData.AppSession = UnityEngine.Random.Range(0, 10).ToString();
+            newData.Timestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
 
             newData.PlaySession = "1.1.1";
             newData.MiniGame = MiniGameCode.Balloons_counting;
@@ -295,47 +311,74 @@ namespace EA4S.Database.Management
             PrintOutput("Inserted new LogPlayData: " + newData.ToString());
         }
 
-        public void TestInsertScoreData()
+        /// <summary>
+        /// Randomly insert vocabulary score values
+        /// </summary>
+        public void TestInsertVocabularyScoreData()
         {
-            int rndTableValue = RND.Range(0, 7);
-            DbTables rndTable = DbTables.Letters;
+            VocabularyDataType vocabularyDataType = RandomHelper.GetRandomEnum<VocabularyDataType>();
             string rndId = "";
-            switch (rndTableValue) {
-                case 0:
-                    rndTable = DbTables.Letters;
+            switch (vocabularyDataType)
+            {
+                case VocabularyDataType.Letter:
                     rndId = RandomHelper.GetRandom(dbManager.GetAllLetterData()).GetId();
                     break;
-                case 1:
-                    rndTable = DbTables.Words;
+                case VocabularyDataType.Word:
                     rndId = RandomHelper.GetRandom(dbManager.GetAllWordData()).GetId();
                     break;
-                case 2:
-                    rndTable = DbTables.Phrases;
+                case VocabularyDataType.Phrase:
                     rndId = RandomHelper.GetRandom(dbManager.GetAllPhraseData()).GetId();
-                    break; ;
-                case 3:
-                    rndTable = DbTables.MiniGames;
-                    rndId = RandomHelper.GetRandom(dbManager.GetAllMiniGameData()).GetId();
-                    break;
-                case 4:
-                    rndTable = DbTables.PlaySessions;
-                    rndId = RandomHelper.GetRandom(dbManager.GetAllPlaySessionData()).GetId();
-                    break;
-                case 5:
-                    rndTable = DbTables.Stages;
-                    rndId = RandomHelper.GetRandom(dbManager.GetAllStageData()).GetId();
-                    break;
-                case 6:
-                    rndTable = DbTables.Rewards;
-                    rndId = RandomHelper.GetRandom(dbManager.GetAllRewardData()).GetId();
                     break;
             }
 
-            var lastAccessTimestamp = GenericUtilities.GetRelativeTimestampFromNow(-RND.Range(0, 5));
-            var score = RND.Range(0f, 1f);
+            var lastAccessTimestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
 
-            this.dbManager.Debug_UpdateScoreData(rndTable, rndId, score, lastAccessTimestamp);
-            PrintOutput("Inserted (or replaced) new ScoreData: " + lastAccessTimestamp.ToString());
+            float score = RND.Range(-1f, 1f);
+            dbManager.UpdateVocabularyScoreData(vocabularyDataType, rndId, score, lastAccessTimestamp);
+
+            PrintOutput("Inserted (or replaced) vocabulary score data " + lastAccessTimestamp);
+        }
+
+        /// <summary>
+        /// Randomly insert journey score values
+        /// </summary>
+        public void TestInsertJourneyScoreData()
+        {
+            JourneyDataType journeyDataType = RandomHelper.GetRandomEnum<JourneyDataType>();
+            string rndId = "";
+            switch (journeyDataType)
+            {
+                case JourneyDataType.PlaySession:
+                    rndId = RandomHelper.GetRandom(dbManager.GetAllPlaySessionData()).GetId();
+                    break;
+
+                case JourneyDataType.LearningBlock:
+                    rndId = RandomHelper.GetRandom(dbManager.GetAllLearningBlockData()).GetId();
+                    break;
+
+                case JourneyDataType.Stage:
+                    rndId = RandomHelper.GetRandom(dbManager.GetAllStageData()).GetId();
+                    break;
+            }
+
+            var lastAccessTimestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
+
+            var score = RND.Range(0, 4);
+            dbManager.UpdateJourneyScoreData(journeyDataType, rndId, score, lastAccessTimestamp);
+
+            PrintOutput("Inserted (or replaced) journey score data " + lastAccessTimestamp);
+        }
+
+        /// <summary>
+        /// Randomly insert minigame score values
+        /// </summary>
+        public void TestInsertMinigameScoreData()
+        {
+            string rndId = RandomHelper.GetRandom(dbManager.GetAllMiniGameData()).GetId();
+            var lastAccessTimestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
+            var score = RND.Range(0, 4);
+            dbManager.UpdateMinigameScoreData(rndId, RND.Range(1,100f), score, lastAccessTimestamp);
+            PrintOutput("Inserted (or replaced) minigame score data " + lastAccessTimestamp);
         }
 
         #endregion
@@ -414,7 +457,7 @@ namespace EA4S.Database.Management
             var list = teacherAI.GetLastMoodData(10);
 
             string output = "Latest 10 moods:\n";
-            foreach (var data in list) output += GenericUtilities.FromTimestamp(data.Timestamp) + ": " + data.ToString() + "\n";
+            foreach (var data in list) output += GenericHelper.FromTimestamp(data.Timestamp) + ": " + data.ToString() + "\n";
             PrintOutput(output);
         }
 
@@ -459,7 +502,7 @@ namespace EA4S.Database.Management
             var list = teacherAI.GetScoreHistoryForCurrentJourneyPosition();
 
             string output = "Score history for the current journey position (" + playerProfile.CurrentJourneyPosition.ToString() + ") in the PlayerProfile:\n";
-            foreach (var data in list) output += GenericUtilities.FromTimestamp(data.Timestamp) + ": " + data.Score + "\n";
+            foreach (var data in list) output += GenericHelper.FromTimestamp(data.Timestamp) + ": " + data.Score + "\n";
             PrintOutput(output);
         }
 
@@ -511,7 +554,10 @@ namespace EA4S.Database.Management
 
         public void LoadProfile(int profileId)
         {
-            this.dbManager.LoadDynamicDbForPlayerProfile(profileId);
+            dbManager.LoadDatabaseForPlayer(profileId);
+            playerProfile = new PlayerProfile();
+            playerProfile.CurrentJourneyPosition = new JourneyPosition(1, 2, 2);    // test
+            teacherAI.SetPlayerProfile(playerProfile);
             PrintOutput("Loading profile " + profileId);
         }
 
@@ -525,6 +571,26 @@ namespace EA4S.Database.Management
         {
             this.dbManager.DropProfile();
             PrintOutput("Deleting tables for current selected profile");
+        }
+
+        public void TestDynamicProfileData()
+        {
+            dbManager.UpdatePlayerProfileData(new PlayerProfileData("1", 255, 0, 5, "Carl", "M", 8, 0));
+            var playerProfileData = dbManager.GetPlayerProfileData();
+            PrintOutput(playerProfileData.ToString());
+        }
+
+        #endregion
+
+        #region Rewards
+
+        public void TestRewardUnlocks()
+        {
+            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData("aaa", "black", RewardTypes.decal, "1.1.2"));
+            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData("bbb", "black", RewardTypes.decal, "1.1.2"));
+            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData("ccc", "black", RewardTypes.decal, "1.1.2"));
+            var rewardPackUnlockDatas = dbManager.GetAllRewardPackUnlockData();
+            DumpAllData(rewardPackUnlockDatas);
         }
 
         #endregion

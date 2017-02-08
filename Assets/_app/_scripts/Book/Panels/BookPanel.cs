@@ -206,7 +206,7 @@ namespace EA4S.PlayerBook
             //btnGO.transform.SetParent(SubmenuContainer.transform, false);
             //btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { Id = WordDataCategory.None.ToString(), Title = "All" });
 
-            foreach (WordDataCategory cat in GenericUtilities.SortEnums<WordDataCategory>()) {
+            foreach (WordDataCategory cat in GenericHelper.SortEnums<WordDataCategory>()) {
                 btnGO = Instantiate(CategoryItemPrefab);
                 btnGO.transform.SetParent(SubmenuContainer.transform, false);
                 btnGO.GetComponent<MenuItemCategory>().Init(
@@ -292,7 +292,7 @@ namespace EA4S.PlayerBook
             LL_Final.gameObject.SetActive(false);
 
             if (info.data.Drawing != "") {
-                var drawingChar = AppManager.I.Teacher.wordHelper.GetWordDrawing(info.data);
+                var drawingChar = AppManager.I.VocabularyHelper.GetWordDrawing(info.data);
                 Drawing.text = drawingChar;
                 //LL_Medial.gameObject.SetActive(true);
                 LL_Medial.Initialize(new LL_ImageData(info.data));

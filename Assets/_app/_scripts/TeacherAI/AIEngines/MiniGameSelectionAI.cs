@@ -13,12 +13,10 @@ namespace EA4S.Teacher
     {
         // References
         private DatabaseManager dbManager;
-        //private PlayerProfile playerProfile;
 
-        public MiniGameSelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
+        public MiniGameSelectionAI(DatabaseManager _dbManager)
         {
             this.dbManager = _dbManager;
-            // this.playerProfile = _playerProfile;
         }
 
         public void InitialiseNewPlaySession()
@@ -89,7 +87,7 @@ namespace EA4S.Teacher
             return selectedMiniGameData;
         }
 
-        private List<Database.MiniGameData> PerformSelection_Random(Database.PlaySessionData playSessionData, int numberToSelect)
+        private List<MiniGameData> PerformSelection_Random(Database.PlaySessionData playSessionData, int numberToSelect)
         { 
             // Get all minigames ids for the given playsession (from PlaySessionData)
             // ... also, keep the weights around
@@ -108,7 +106,7 @@ namespace EA4S.Teacher
             List<float> weights_list = new List<float>(minigame_data_list.Count);
 
             // Retrieve the current score data (state) for each minigame (from the dynamic DB)
-            List<Database.ScoreData> minigame_score_list = dbManager.FindScoreDataByQuery("SELECT * FROM ScoreData WHERE TableName = 'MiniGames'");
+            var minigame_score_list = dbManager.FindDataByQuery<MinigameScoreData>("SELECT * FROM " + typeof(MinigameScoreData).Name);
 
             //UnityEngine.Debug.Log("M GAME SCORE LIST: " + minigame_score_list.Count);
             //foreach(var l in minigame_score_list) UnityEngine.Debug.Log(l.ElementId);
@@ -122,7 +120,7 @@ namespace EA4S.Teacher
                 int daysSinceLastScore = 0;
                 if (minigame_scoredata != null)
                 {
-                    var timespanFromLastScoreToNow = GenericUtilities.GetTimeSpanBetween(minigame_scoredata.LastAccessTimestamp, GenericUtilities.GetTimestampForNow());
+                    var timespanFromLastScoreToNow = GenericHelper.GetTimeSpanBetween(minigame_scoredata.LastAccessTimestamp, GenericHelper.GetTimestampForNow());
                     daysSinceLastScore = timespanFromLastScoreToNow.Days;
                 }
                 debugString += minigame_data.Code + " --- \t";
