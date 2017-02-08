@@ -42,9 +42,11 @@ namespace EA4S.Minigames.HideAndSeek
                 var target = path[currentNode];
 
                 var distance = target - transform.position;
+                float distanceSqrMagnitude = distance.sqrMagnitude;
+
                 distance.y = 0;
 
-                if (distance.sqrMagnitude < 2)
+                if (distanceSqrMagnitude < 2)
                 {
                     // reached
                     ++currentNode;
@@ -74,8 +76,10 @@ namespace EA4S.Minigames.HideAndSeek
 
                         speed = Mathf.Min(12, speed + 20 * Time.deltaTime);
 
-                        //transform.position += distance * Mathf.Abs(Vector3.Dot(distance, transform.forward)) * speed * Time.deltaTime;
-                        transform.position += transform.forward * speed * Time.deltaTime;
+                        transform.position += distance * Mathf.Abs(Vector3.Dot(distance, transform.forward)) * speed * Time.deltaTime;
+                        //Vector3 direction = Vector3.Slerp(distance, transform.forward, Mathf.Sqrt(distanceSqrMagnitude)/2);
+
+                        //transform.position += direction * speed * Time.deltaTime;
                         GameplayHelper.LerpLookAtPlanar(transform, target, Time.deltaTime * 4);
                     }
                 }
