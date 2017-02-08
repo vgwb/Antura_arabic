@@ -16,7 +16,7 @@ namespace EA4S.UI
             for (int i = 0; i < uiButtons.Length; ++i)
             {
                 UIButton bt = uiButtons[i];
-                Color color = PlayerColorConverter.ToColor((PlayerColor)(i + 1));
+                Color color = PlayerTintConverter.ToColor((PlayerTint)(i + 1));
                 bt.BtImg.color = bt.DefaultColor = color;
             }
         }

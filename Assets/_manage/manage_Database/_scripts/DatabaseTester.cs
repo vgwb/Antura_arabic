@@ -263,8 +263,7 @@ namespace EA4S.Database.Management
 
             newData.VocabularyDataType = RandomHelper.GetRandomEnum<VocabularyDataType>();
 
-            switch (newData.VocabularyDataType)
-            {
+            switch (newData.VocabularyDataType) {
                 case VocabularyDataType.Letter:
                     newData.ElementId = RandomHelper.GetRandom(dbManager.GetAllLetterData()).GetId();
                     break;
@@ -318,8 +317,7 @@ namespace EA4S.Database.Management
         {
             VocabularyDataType vocabularyDataType = RandomHelper.GetRandomEnum<VocabularyDataType>();
             string rndId = "";
-            switch (vocabularyDataType)
-            {
+            switch (vocabularyDataType) {
                 case VocabularyDataType.Letter:
                     rndId = RandomHelper.GetRandom(dbManager.GetAllLetterData()).GetId();
                     break;
@@ -346,8 +344,7 @@ namespace EA4S.Database.Management
         {
             JourneyDataType journeyDataType = RandomHelper.GetRandomEnum<JourneyDataType>();
             string rndId = "";
-            switch (journeyDataType)
-            {
+            switch (journeyDataType) {
                 case JourneyDataType.PlaySession:
                     rndId = RandomHelper.GetRandom(dbManager.GetAllPlaySessionData()).GetId();
                     break;
@@ -377,7 +374,7 @@ namespace EA4S.Database.Management
             string rndId = RandomHelper.GetRandom(dbManager.GetAllMiniGameData()).GetId();
             var lastAccessTimestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
             var score = RND.Range(0, 4);
-            dbManager.UpdateMinigameScoreData(rndId, RND.Range(1,100f), score, lastAccessTimestamp);
+            dbManager.UpdateMinigameScoreData(rndId, RND.Range(1, 100f), score, lastAccessTimestamp);
             PrintOutput("Inserted (or replaced) minigame score data " + lastAccessTimestamp);
         }
 
@@ -575,7 +572,7 @@ namespace EA4S.Database.Management
 
         public void TestDynamicProfileData()
         {
-            dbManager.UpdatePlayerProfileData(new PlayerProfileData("1", 255, 0, 5, "Carl", "M", 8, 0));
+            dbManager.UpdatePlayerProfileData(new PlayerProfileData("1", 255, 0, 5, PlayerGender.M, PlayerTint.Green, 8, 0));
             var playerProfileData = dbManager.GetPlayerProfileData();
             PrintOutput(playerProfileData.ToString());
         }
