@@ -17,15 +17,18 @@ namespace EA4S.Teacher
         private int nPacks;
         private int nCorrect;
         private int nWrong;
+        private bool packsUsedTogether;
         private QuestionBuilderParameters parameters;
 
         public WordsWithLetterQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0,
-            QuestionBuilderParameters parameters = null)
+              bool packsUsedTogether = false, 
+              QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
+            this.packsUsedTogether = packsUsedTogether;
             this.parameters = parameters;
         }
 
@@ -56,7 +59,8 @@ namespace EA4S.Teacher
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_letters));
             var commonLetter = usableLetters[0];
 
-            // Get words with the letter
+            // Get words with the letter 
+            // (but without the previous letters)
             var correctWords = teacher.VocabularyAi.SelectData(
                 () => vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, commonLetter.Id),
                     new SelectionParameters(parameters.correctSeverity, nCorrect, useJourney: parameters.useJourneyForCorrect,
