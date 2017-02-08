@@ -85,7 +85,24 @@ namespace EA4S.Assessment
 
             audioManager.PlaySound( Sfx.UIPopup);
             this.droppable = droppable;
+            PutDroppableOnTopOfList( droppable);
             droppable.StartDrag( x=>RemoveFromUpdateAndPlaceholders(x));
+        }
+
+        private void PutDroppableOnTopOfList( IDroppable droppable)
+        {
+            DroppableBehaviour dropped = (DroppableBehaviour) droppable;
+            answers.Remove( dropped);
+            answers.Insert( 0, dropped);
+
+            float ZMin = 2;
+            float ZMax = 4.9f;
+            int count = answers.Count;
+            float currentZ = ZMin;
+            int i = 0;
+
+            foreach (var answer in answers)
+                answer.SetZ(ZMin + (i++) * (ZMax - ZMin) / count);
         }
 
         void RemoveFromUpdateAndPlaceholders( IDroppable droppa)
@@ -143,8 +160,10 @@ namespace EA4S.Assessment
         {
             if (droppable != null)
             {
+                var currentDroppable = (DroppableBehaviour) droppable;
+
                 var pos = Camera.main.ScreenToWorldPoint( Input.mousePosition);
-                pos.z = 4;
+                pos.z = currentDroppable.GetZ();
                 droppable.GetTransform().localPosition = pos;
             }
         }
