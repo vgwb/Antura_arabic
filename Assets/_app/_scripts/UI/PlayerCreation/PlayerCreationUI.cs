@@ -32,14 +32,14 @@ namespace EA4S.UI
             }
         }
         int selectionStep = 0; // 0: age // 1: gender // 2: avatar // 3: color
-        float selectionStepOffset;
+        float selectionStepOffsetY;
         Tween stepTween;
 
         #region Unity
 
         void Start()
         {
-            selectionStepOffset = StartupOffsetY / 3f;
+            selectionStepOffsetY = StartupOffsetY / 3f;
             CategoriesContainer.SetAnchoredPosY(StartupOffsetY);
             for (int i = 1; i < Categories.Length; ++i) Categories[i].gameObject.SetActive(false);
             BtCreate.gameObject.SetActive(false);
@@ -73,7 +73,7 @@ namespace EA4S.UI
             selectionStep++;
             if (stepTween != null) stepTween.Complete();
             Categories[selectionStep].gameObject.SetActive(true);
-            stepTween = CategoriesContainer.DOAnchorPosY(-selectionStepOffset, 0.4f).SetRelative();
+            stepTween = CategoriesContainer.DOAnchorPosY(StartupOffsetY - selectionStepOffsetY * selectionStep, 0.4f);
         }
 
         void StepBackwards(int toStep)
@@ -88,7 +88,7 @@ namespace EA4S.UI
                 cat.gameObject.SetActive(false);
             }
             selectionStep = toStep;
-            stepTween = CategoriesContainer.DOAnchorPosY(selectionStepOffset * totSteps, 0.4f).SetRelative();
+            stepTween = CategoriesContainer.DOAnchorPosY(StartupOffsetY - selectionStepOffsetY * selectionStep, 0.4f);
         }
 
         void SetGender()
