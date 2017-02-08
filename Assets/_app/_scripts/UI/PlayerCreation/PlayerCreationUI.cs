@@ -2,6 +2,7 @@
 using DG.DeExtensions;
 using DG.Tweening;
 using EA4S.Core;
+using EA4S.Scenes;
 using UnityEngine;
 
 namespace EA4S.UI
@@ -97,7 +98,12 @@ namespace EA4S.UI
 
         void CreateProfile()
         {
-            throw new System.NotImplementedException();
+            PlayerCreationScene.CreatePlayer(
+                Categories[0].SelectedIndex + 4,
+                Categories[1].SelectedIndex == 0 ? PlayerGender.M : PlayerGender.F,
+                Categories[2].SelectedIndex + 1,
+                (PlayerColor)(Categories[3].SelectedIndex + 1)
+            );
         }
 
         #endregion
