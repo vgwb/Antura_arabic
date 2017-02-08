@@ -97,8 +97,7 @@ namespace EA4S.Teacher.Test
                 var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
                 InitialisePlaySession();
                 var builder = config.SetupBuilder();
-                Debug.LogError("SIMULATION " + (i + 1));
-                Debug.Log("Simulating minigame: " + code + " with builder " + builder.GetType().Name);
+                Debug.Log("SIMULATION " + (i + 1) + " minigame: " + code + " with builder " + builder.GetType().Name);
                 builder.CreateAllQuestionPacks();
                 if (i % yieldEverySimulations == 0)
                     yield return null;
