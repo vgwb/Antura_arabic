@@ -7,8 +7,8 @@ namespace EA4S.Assessment
 {
     internal class CategoryQuestionPlacer : DefaultQuestionPlacer
     {
-        public CategoryQuestionPlacer(  IAudioManager audioManager, float questionSize, float answerSize)
-            :base( audioManager, questionSize, answerSize, false)
+        public CategoryQuestionPlacer(  IAudioManager audioManager, QuestionPlacerOptions options)
+            :base( audioManager, options)
         {
 
         }
@@ -29,33 +29,24 @@ namespace EA4S.Assessment
                 placeHoldersNumber += q.PlaceholdersCount();
             }
 
-            var bounds = WorldBounds.Instance;
-
-            // Text justification "algorithm"
-            var gap = bounds.QuestionGap();
-
-            float occupiedSpace = answerSize * placeHoldersNumber; //Different from default placer
-            float blankSpace = gap - occupiedSpace;
-
+            float occupiedSpace = placeHoldersNumber * options.SlotSize;
+            float blankSpace = options.RightX -options.LeftX - occupiedSpace;
             float spaceIncrement = blankSpace / (questionsNumber + 1);
 
             var flow = AssessmentOptions.Instance.LocaleTextFlow;
             float sign;
-            Vector3 currentPos;
+            Vector3 currentPos = new Vector3( 0, options.QuestionY-3.5f, 5f);
             
             if (flow == TextFlow.RightToLeft)
             {
-                currentPos = bounds.ToTheRightQuestionStart();
+                currentPos.x = options.RightX;
                 sign = -1;
             }
             else
             {
-                currentPos = bounds.ToTheLeftQuestionStart();
-                currentPos.x += answerSize / 2.0f;
+                currentPos.x = options.LeftX;
                 sign = 1;
             }
-
-            currentPos.y -= bounds.LetterSize()*1.35f;
 
             int questionIndex = 0;
             for (int i = 0; i < questionsNumber; i++)
@@ -65,7 +56,7 @@ namespace EA4S.Assessment
 
                 foreach (var p in allQuestions[ questionIndex].GetPlaceholders())
                 {
-                    currentPos.x += (answerSize * sign) / 2;
+                    currentPos.x += (options.SlotSize / 2)* sign;
 
                     if (currentPos.x > max)
                         max = currentPos.x;
@@ -74,21 +65,23 @@ namespace EA4S.Assessment
                         min = currentPos.x;
 
                     yield return PlacePlaceholder( p, currentPos);
-                    currentPos.x += (answerSize * sign) / 2;
+                    currentPos.x += (options.SlotSize / 2) * sign;
                 }
 
                 var questionPos = currentPos;
-                questionPos.y += bounds.LetterSize()*1.35f;
+                questionPos.y = options.QuestionY;
                 questionPos.x = (max + min) /2f;
 
                 // Category questions never read the category
                 yield return PlaceQuestion( allQuestions[ questionIndex], questionPos, false);
 
+                WrapQuestionInABox( allQuestions[ questionIndex]);
+
                 questionIndex++;
             }
 
             // give time to finish animating elements
-            yield return Wait.For(0.65f);
+            yield return Wait.For( 0.65f);
             isAnimating = false;
         }
     }
