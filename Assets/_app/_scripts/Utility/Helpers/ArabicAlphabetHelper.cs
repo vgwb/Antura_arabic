@@ -207,6 +207,7 @@ namespace EA4S.Helpers
                 {
                     found = true;
                     // Check shape
+                    //Debug.Log("(" + text + ") pos:" + charPosition + " - len:" + text.Length + " - charlen:" + letterToRemove.GetChar().Length + " char:" + letterToRemove.GetChar());
                     var character = text.Substring(charPosition, letterToRemove.GetChar().Length);
 
                     // This test order is important, do not change
@@ -224,7 +225,7 @@ namespace EA4S.Helpers
                     break;
                 }
                 else
-                    charPosition += Letters[index].GetChar().Length;
+                    charPosition += Letters[index].GetChar().Trim().Length;
             }
 
             if (!found)
