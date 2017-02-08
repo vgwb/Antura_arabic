@@ -91,7 +91,7 @@ namespace EA4S.Minigames.ThrowBalls
             if (!spring.Released)
             {
                 if (!dragging && ball.IsAnchored())
-                    spring.t = Mathf.Lerp(spring.t, 0, Time.deltaTime);
+                    spring.t = Mathf.Lerp(spring.t, 0, 6*Time.deltaTime);
 
                 ball.transform.position = spring.Slot.position;
 
