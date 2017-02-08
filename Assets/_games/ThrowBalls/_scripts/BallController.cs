@@ -35,7 +35,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         private float cameraDistance;
 
-        private float yzStretchRange = 3f;
+        //private float yzStretchRange = 3f;
 
         void Awake()
         {

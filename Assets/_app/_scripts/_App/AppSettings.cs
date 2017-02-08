@@ -14,5 +14,7 @@
         public bool UseTestDatabase;
 
         public bool CheatSuperDogMode = false;
+
+        public bool EnglishSubtitles = false;
     }
 }

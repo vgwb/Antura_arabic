@@ -22,7 +22,7 @@ namespace EA4S.Minigames.MissingLetter
             get { return m_oCurrQuestionPack; }
         }
 
-        Database.LetterPosition questionLetterShape;
+        //Database.LetterPosition questionLetterShape;
 
         public RoundManager(MissingLetterGame _game)
         {
@@ -300,6 +300,7 @@ namespace EA4S.Minigames.MissingLetter
             LL_LetterData letter = (LL_LetterData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
 
             LetterObjectView letterView = m_aoCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
+            Database.LetterPosition questionLetterShape;
             letterView.Label.text = ArabicAlphabetHelper.GetWordWithMissingLetterText(out questionLetterShape, word.Data, letter.Data, mk_sRemovedLetterChar);
         }
 
