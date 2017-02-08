@@ -23,6 +23,8 @@ namespace EA4S.Minigames.MissingLetter
             get { return m_oCurrQuestionPack; }
         }
 
+        Database.LetterPosition questionLetterShape;
+
         public RoundManager(MissingLetterGame _game)
         {
             m_oGame = _game;
@@ -193,7 +195,15 @@ namespace EA4S.Minigames.MissingLetter
                 GameObject _wrongAnswerObject = m_oAnswerPool.GetElement();
                 LetterBehaviour wrongAnsBheaviour = _wrongAnswerObject.GetComponent<LetterBehaviour>();
                 wrongAnsBheaviour.Reset();
-                wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i - 1);
+
+                var answer = _wrongAnswers[i - 1];
+
+                /*
+                if (answer is LL_LetterData)
+                    ((LL_LetterData)answer).Position = questionLetterShape;
+                    */
+
+                wrongAnsBheaviour.LetterData = answer;
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
 
                 if (!m_bTutorialEnabled)
@@ -264,7 +274,10 @@ namespace EA4S.Minigames.MissingLetter
                 GameObject _wrongAnswerObject = m_oAnswerPool.GetElement();
                 LetterBehaviour wrongAnsBheaviour = _wrongAnswerObject.GetComponent<LetterBehaviour>();
                 wrongAnsBheaviour.Reset();
-                wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i - 1);
+
+                var answer = _wrongAnswers[i - 1];
+
+                wrongAnsBheaviour.LetterData = answer;
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
 
                 if (!m_bTutorialEnabled)
@@ -286,10 +299,9 @@ namespace EA4S.Minigames.MissingLetter
         {
             LL_WordData word = (LL_WordData)m_oCurrQuestionPack.GetQuestion();
             LL_LetterData letter = (LL_LetterData)m_oCurrQuestionPack.GetCorrectAnswers().ToList()[0];
-            
-            LetterObjectView letterView = m_aoCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
-            letterView.Label.text = ArabicAlphabetHelper.GetWordWithMissingLetterText(word.Data, letter.Data, mk_sRemovedLetterChar);
 
+            LetterObjectView letterView = m_aoCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
+            letterView.Label.text = ArabicAlphabetHelper.GetWordWithMissingLetterText(out questionLetterShape, word.Data, letter.Data, mk_sRemovedLetterChar);
         }
 
 
