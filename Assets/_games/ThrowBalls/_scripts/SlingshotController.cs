@@ -86,7 +86,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         void Update()
         {
-            spring.Released = ball.IsLaunched();
+            spring.Released = !(ball.IsAnchored() || ball.IsDragging());
 
             if (!spring.Released)
             {
