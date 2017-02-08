@@ -1,9 +1,9 @@
+using DG.Tweening;
 using EA4S.Helpers;
 using EA4S.MinigamesAPI;
-using DG.Tweening;
 using EA4S.MinigamesCommon;
-using System;
 using EA4S.Utilities;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -26,7 +26,6 @@ namespace EA4S.Assessment
         public NineSlicedSprite answerSprite;
 
         Vector2 startTextScale;
-        Vector2 startDrawingScale;
 
         public RectTransform textTransform;
         public RectTransform drawingTransform;
@@ -140,16 +139,17 @@ namespace EA4S.Assessment
             {
                 float widthScale = value * Wideness;
 
-                foreach (NineSlicedSprite sprite in backgroundTransform.GetComponentsInChildren<NineSlicedSprite>(true))
+                foreach (NineSlicedSprite sprite in backgroundTransform.GetComponentsInChildren< NineSlicedSprite>(true))
                 {
                     sprite.Width = sprite.initialWidth * widthScale;
                     sprite.Height = sprite.initialHeight * value;
                 }
 
-                textTransform.sizeDelta = new Vector2(startTextScale.x * widthScale, startTextScale.y * value);
-                drawingTransform.sizeDelta = new Vector2(startTextScale.x * widthScale, startTextScale.y * value);
+                textTransform.sizeDelta = new Vector2( startTextScale.x * widthScale, startTextScale.y * value);
+                drawingTransform.sizeDelta = new Vector2( startTextScale.x * widthScale, startTextScale.y * value);
 
-                GetComponent< BoxCollider>().size = textTransform.sizeDelta;
+                if(extendedBoxCollider == false)
+                    GetComponent< BoxCollider>().size = textTransform.sizeDelta;
             }
         }
 
@@ -209,11 +209,19 @@ namespace EA4S.Assessment
         }
 
         /// <summary>
-        /// Return size of LL, usefull for determining layout offsets
+        /// Return half width of LL, usefull for determining layout offsets
         /// </summary>
-        public float GetSize()
+        public float GetHalfWidth()
         {
-            return Wideness;
+            return Wideness * 3.0f /2.0f;
+        }
+
+        /// <summary>
+        /// Return half height of LL, usefull for determining layout offsets
+        /// </summary>
+        public float GetHalfHeight()
+        {
+            return 3.0f / 2.0f;
         }
 
         /// <summary>
@@ -258,7 +266,15 @@ namespace EA4S.Assessment
         void Awake()
         {
             startTextScale = textTransform.sizeDelta;
-            startDrawingScale = drawingTransform.sizeDelta;
+        }
+
+        bool extendedBoxCollider = false;
+
+        internal void SetExtendedBoxCollider()
+        {
+            extendedBoxCollider = true;
+            GetComponent< BoxCollider>().size = new Vector3( 6.8f, 2.6f, 1);
+            GetComponent< BoxCollider>().center = new Vector3( 1.6f, 0, 0);
         }
     }
 }
