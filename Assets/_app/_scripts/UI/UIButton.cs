@@ -1,4 +1,5 @@
-﻿using DG.DeExtensions;
+﻿using System;
+using DG.DeExtensions;
 using DG.Tweening;
 using EA4S.Audio;
 using UnityEngine;
@@ -12,34 +13,54 @@ namespace EA4S.UI
     [RequireComponent(typeof(Button))]
     public class UIButton : MonoBehaviour
     {
+        #region Serialized
+
         public Color BtToggleOffColor = Color.white;
         public Color BtLockedColor = Color.red;
         public bool ToggleIconAlpha = true;
+        [Tooltip("If this is TRUE and a CanvasGroup is not found, it is automatically added")]
+        public bool ToggleCanvasGroupAlpha = false;
         public bool AutoAnimateClick = true;
         public bool AutoPlayButtonFx = false;
+        
+        #endregion
 
+        /// <summary>Default color of the button image</summary>
+        [NonSerialized] public Color DefaultColor;
         public bool IsToggled { get; private set; }
         public bool IsLocked { get; private set; }
         public Button Bt { get { if (fooBt == null) fooBt = this.GetComponent<Button>(); return fooBt; } }
-        public Image BtImg { get {
-            if (fooBtImg == null) {
-                fooBtImg = this.GetComponent<Image>();
-                DefColor = fooBtImg.color;
-            }
-            return fooBtImg;
-        }}
         public Image Ico { get { if (fooIco == null) fooIco = this.GetComponent<Image>(); return fooIco; } }
         public RectTransform RectT { get { if (fooRectT == null) fooRectT = this.GetComponent<RectTransform>(); return fooRectT; } }
-
-        protected Color DefColor;
+        public Image BtImg {
+            get {
+                if (fooBtImg == null)
+                {
+                    fooBtImg = this.GetComponent<Image>();
+                    DefaultColor = fooBtImg.color;
+                }
+                return fooBtImg;
+            }
+        }
+        public CanvasGroup CGroup {
+            get {
+                if (fooCGroup == null)
+                {
+                    fooCGroup = this.GetComponent<CanvasGroup>();
+                    if (fooCGroup == null) fooCGroup = this.gameObject.AddComponent<CanvasGroup>();
+                }
+                return fooCGroup;
+            }
+        }
         Button fooBt;
         Image fooBtImg;
-        bool fooIsToggled;
         Image fooIco;
         RectTransform fooRectT;
+        CanvasGroup fooCGroup;
+
         Tween clickTween, pulseTween;
 
-        #region Unity
+        #region Unity + INIT
 
         protected virtual void Awake()
         {
@@ -66,8 +87,9 @@ namespace EA4S.UI
             IsToggled = _activate;
 
             pulseTween.Rewind();
-            BtImg.color = _activate ? DefColor : IsLocked ? BtLockedColor : BtToggleOffColor;
+            BtImg.color = _activate ? DefaultColor : IsLocked ? BtLockedColor : BtToggleOffColor;
             if (ToggleIconAlpha && Ico != null) Ico.SetAlpha(_activate ? 1 : 0.4f);
+            if (ToggleCanvasGroupAlpha) CGroup.alpha = _activate ? 1 : 0.4f;
 
             if (_animateClick) AnimateClick(true);
         }
@@ -75,7 +97,7 @@ namespace EA4S.UI
         public virtual void Lock(bool _doLock)
         {
             IsLocked = _doLock;
-            BtImg.color = _doLock ? BtLockedColor : IsToggled ? DefColor : BtToggleOffColor;
+            BtImg.color = _doLock ? BtLockedColor : IsToggled ? DefaultColor : BtToggleOffColor;
             Bt.interactable = !_doLock;
         }
 
