@@ -55,7 +55,6 @@ namespace EA4S.Minigames.ThrowBalls
             INITIAL_BALL_POSITION.y = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height / 3, cameraDistance)).y;
 
             IInputManager inputManager = ThrowBallsConfiguration.Instance.Context.GetInputManager();
-            inputManager.onPointerDown += OnPointerDown;
             inputManager.onPointerDrag += OnPointerDrag;
             inputManager.onPointerUp += OnPointerUp;
 
@@ -67,7 +66,7 @@ namespace EA4S.Minigames.ThrowBalls
             ArrowHeadController.instance.Disable();
         }
 
-        private void OnPointerDown()
+        private void OnMouseDown()
         {
             if (!IsLaunched())
             {
@@ -89,7 +88,7 @@ namespace EA4S.Minigames.ThrowBalls
                 touchPosInWorldUnits.y = INITIAL_BALL_POSITION.y - yzFactor * yzStretchRange;
                 touchPosInWorldUnits.z = INITIAL_BALL_POSITION.z - yzFactor * yzStretchRange;
 
-                transform.position = touchPosInWorldUnits; 
+                transform.position = touchPosInWorldUnits;
             }
         }
 
@@ -99,7 +98,7 @@ namespace EA4S.Minigames.ThrowBalls
             {
                 Vector3 forceToApply = SlingshotController.instance.GetLaunchForce();
                 rigidBody.isKinematic = false;
-                rigidBody.AddForce(forceToApply, ForceMode.VelocityChange);
+                rigidBody.AddForceAtPosition(forceToApply, transform.position + Vector3.up * 0.5f, ForceMode.VelocityChange);
                 SetState(State.Launched);
 
                 ArrowBodyController.instance.Disable();
@@ -132,6 +131,7 @@ namespace EA4S.Minigames.ThrowBalls
             rigidBody.velocity = new Vector3(0, 0, 0);
             rigidBody.isKinematic = false;
             rigidBody.useGravity = false;
+            transform.rotation = Quaternion.Euler(new Vector3(-90f, 0f, 0f));
             sphereCollider.enabled = true;
             SetState(State.Anchored);
 

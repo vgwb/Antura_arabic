@@ -231,7 +231,7 @@ namespace EA4S.Map
         private List<PlaySessionState> GetAllPlaySessionStateForStage(int _stage)
         {
             // Get all available scores for this stage
-            List<Database.ScoreData> scoreData_list = AppManager.I.Teacher.scoreHelper.GetCurrentScoreForPlaySessionsOfStage(_stage);
+            List<Database.JourneyScoreData> scoreData_list = AppManager.I.Teacher.scoreHelper.GetCurrentScoreForPlaySessionsOfStage(_stage);
 
             // For each score entry, get its play session data and build a structure containing both
             List<PlaySessionState> playSessionState_list = new List<PlaySessionState>();

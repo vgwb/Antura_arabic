@@ -42,6 +42,9 @@ namespace EA4S.UI
 
             avatarButtons = ProfilesPanel.GetComponentsInChildren<ProfileSelectorAvatarButton>(true);
             maxProfiles = avatarButtons.Length;
+
+            // By default, the letter shows a truly random letter
+            LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL());
         }
 
         void Start()
@@ -51,7 +54,7 @@ namespace EA4S.UI
             btAddTween = BtAdd.transform.DORotate(new Vector3(0, 0, -45), 0.3f).SetAutoKill(false).Pause()
                 .SetEase(Ease.OutBack)
                 .OnRewind(() => {
-                    if (ProfileManager.AvailablePlayerProfiles == null || ProfileManager.AvailablePlayerProfiles.Count == 0) BtAdd.Pulse();
+                    if (AppManager.I.GameSettings.AvailablePlayers == null || AppManager.I.GameSettings.AvailablePlayers.Count == 0) BtAdd.Pulse();
                 });
             btPlayTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(BtPlay.RectT.DOAnchorPosY(-210, 0.2f).From(true))
@@ -90,17 +93,20 @@ namespace EA4S.UI
         {
             AvatarSelector.Hide();
             btAddTween.PlayBackwards();
-
-            PlayerProfile pp = ProfileManager.CreateOrLoadPlayerProfile(_avatarId);
-            ProfileManager.CurrentPlayer = pp;
+            PlayerProfileManager ppm = AppManager.I.PlayerProfileManager;
+            ppm.SetPlayerProfile(_avatarId);
             AudioManager.I.PlaySound(SfxCreateNewProfile);
             LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL());
             Setup();
         }
 
+        /// <summary>
+        /// Selects the profile.
+        /// </summary>
+        /// <param name="_id">Player id.</param>
         internal void SelectProfile(int _id)
         {
-            ProfileManager.CurrentPlayer = ProfileManager.AvailablePlayerProfiles[_id - 1];
+            ProfileManager.SetPlayerProfile(int.Parse(AppManager.I.PlayerProfileManager.GetAvatarIdFromPlayerId(_id)));
             AudioManager.I.PlaySound(SfxSelectProfile);
             LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
             Setup();
@@ -114,15 +120,15 @@ namespace EA4S.UI
         void Setup()
         {
             ActivateProfileButtons(true);
-            int totProfiles = ProfileManager.AvailablePlayerProfiles == null ? 0 : ProfileManager.AvailablePlayerProfiles.Count;
+            int totProfiles = AppManager.I.GameSettings.AvailablePlayers == null ? 0 : AppManager.I.GameSettings.AvailablePlayers.Count;
             int len = avatarButtons.Length;
             for (int i = 0; i < len; ++i) {
                 ProfileSelectorAvatarButton bt = GetAvatarButtonByPlayerId(i + 1); // right to left
                 if (i >= totProfiles) bt.gameObject.SetActive(false);
                 else {
                     bt.gameObject.SetActive(true);
-                    bt.SetAvatar(ProfileManager.AvailablePlayerProfiles[i].AvatarId);
-                    if (i == ProfileManager.CurrentPlayer.Id - 1) bt.Toggle(true, true);
+                    bt.SetAvatar(int.Parse(AppManager.I.GameSettings.AvailablePlayers[i]));
+                    if (i == AppManager.I.Player.Id - 1) bt.Toggle(true, true);
                     else bt.Toggle(false);
                 }
             }
@@ -147,7 +153,7 @@ namespace EA4S.UI
             yield return null;
 
             BtPlay.gameObject.SetActive(true);
-            BtPlay.RectT.SetAnchoredPosX(GetAvatarButtonByPlayerId(ProfileManager.CurrentPlayer.Id).RectT.anchoredPosition.x);
+            BtPlay.RectT.SetAnchoredPosX(GetAvatarButtonByPlayerId(AppManager.I.Player.Id).RectT.anchoredPosition.x);
             btPlayTween.PlayForward();
         }
 
@@ -168,7 +174,7 @@ namespace EA4S.UI
                 if (AvatarSelector.IsShown) {
                     btAddTween.PlayBackwards();
                     AvatarSelector.Hide();
-                    if (ProfileManager.AvailablePlayerProfiles != null && ProfileManager.AvailablePlayerProfiles.Count > 0) btPlayTween.PlayForward();
+                    if (AppManager.I.GameSettings.AvailablePlayers != null && AppManager.I.GameSettings.AvailablePlayers.Count > 0) btPlayTween.PlayForward();
                     ActivateProfileButtons(true);
                 } else {
                     btAddTween.PlayForward();

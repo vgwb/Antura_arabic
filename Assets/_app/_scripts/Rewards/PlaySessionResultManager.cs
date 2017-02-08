@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using EA4S.Core;
+using EA4S.Database;
 using EA4S.Teacher;
 
 namespace EA4S.Rewards
@@ -18,11 +19,11 @@ namespace EA4S.Rewards
             // Calculate items to unlock count
             int itemsToUnlock = AppManager.I.NavigationManager.CalculateUnlockItemCount();
 
-            List<RewardPack> oldRewards = AppManager.I.Player.RewardsUnlocked.FindAll(ru => ru.PlaySessionId == AppManager.I.Player.CurrentJourneyPosition.ToString());
+            List<RewardPackUnlockData> oldRewards = AppManager.I.Player.RewardsUnlocked.FindAll(ru => ru.PlaySessionId == AppManager.I.Player.CurrentJourneyPosition.ToString());
             int itemAlreadyUnlocked = oldRewards.Count;
             for (int i = 0; i < itemsToUnlock - oldRewards.Count; i++) {
                 // if necessary add one new random reward unlocked
-                RewardPack newRewardToUnlock = RewardSystemManager.GetNextRewardPack()[0];
+                RewardPackUnlockData newRewardToUnlock = RewardSystemManager.GetNextRewardPack()[0];
                 oldRewards.Add(newRewardToUnlock);
                 AppManager.I.Player.AddRewardUnlocked(newRewardToUnlock);
             }

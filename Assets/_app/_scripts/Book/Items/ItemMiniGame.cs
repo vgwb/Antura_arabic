@@ -40,7 +40,7 @@ namespace EA4S.PlayerBook
             // @note: we get the minigame saved score, which should be the maximum score achieved
             // @note: I'm leaving the average-based method commented if we want to return to that logic
             var score = info.score;
-            //var score = GenericUtilities.GetAverage(TeacherAI.I.scoreHelper.GetLatestScoresForMiniGame(info.data.Code, -1));
+            //var score = GenericHelper.GetAverage(TeacherAI.I.scoreHelper.GetLatestScoresForMiniGame(info.data.Code, -1));
 
             if (score < 0.1f) {
                 // disabled

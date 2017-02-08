@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using EA4S.Core;
+using EA4S.Database;
 using EA4S.Rewards;
 
 namespace EA4S.Profile
@@ -25,17 +26,17 @@ namespace EA4S.Profile
             get { return currentPlayer; }
             set {
                 if (currentPlayer != value) {
-                    currentPlayer = value;
+                    AppManager.I.Player = currentPlayer = value;
+                    AppManager.I.Teacher.SetPlayerProfile(value);
                     // refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
-                    if (AppManager.I.DB != null) {
+                    if (AppManager.I.DB.HasLoadedPlayerProfile()) {
                         LogManager.I.LogInfo(InfoEvent.AppClosed);
                     }
-                    AppManager.I.Player = value;
                     AppManager.I.GameSettings.LastActivePlayerId = value.Id;
                     SaveGameSettings();
-                    AppManager.I.InitTeacherForPlayer();
                     LogManager.I.LogInfo(InfoEvent.AppStarted);
                     AppManager.I.NavigationManager.SetPlayerNavigationData(currentPlayer);
+                    currentPlayer.LoadRewardsUnlockedFromDB(); // refresh list of unlocked rewards
                     if (OnProfileChanged != null)
                         OnProfileChanged();
                 }
@@ -45,40 +46,6 @@ namespace EA4S.Profile
             }
         }
 
-        private List<PlayerProfile> availablePlayerProfiles;
-        /// <summary>
-        /// List of available player profiles (already created).
-        /// </summary>
-        public List<PlayerProfile> AvailablePlayerProfiles {
-            get {
-                reloadAvailablePlayerProfilesList();
-                return availablePlayerProfiles;
-            }
-            set { availablePlayerProfiles = value; }
-        }
-
-        #endregion
-
-        #region internal functions
-        void reloadGameSettings()
-        {
-            AppManager.I.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
-            AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
-            if (AppManager.I.GameSettings.LastActivePlayerId > 0)
-                CurrentPlayer = LoadPlayerProfileById(AppManager.I.GameSettings.LastActivePlayerId);
-            reloadAvailablePlayerProfilesList();
-        }
-
-        void reloadAvailablePlayerProfilesList()
-        {
-            List<PlayerProfile> returnList = new List<PlayerProfile>();
-            foreach (string pId in AppManager.I.GameSettings.AvailablePlayers) {
-                PlayerProfile pp = AppManager.I.Modules.PlayerProfile.LoadPlayerSettings<PlayerProfile>(pId) as PlayerProfile;
-                if (pp != null)
-                    returnList.Add(pp);
-            }
-            availablePlayerProfiles = returnList;
-        }
         #endregion
 
         #region API        
@@ -87,7 +54,21 @@ namespace EA4S.Profile
         /// </summary>
         public PlayerProfileManager()
         {
-            reloadGameSettings();
+            // ReloadGameSettings();
+        }
+
+        /// <summary>
+        /// Reloads the game settings (AppSettings) from PlayerPrefs.
+        /// </summary>
+        public void ReloadGameSettings() {
+            AppManager.I.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
+            AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
+            int lastActivePlayerId = AppManager.I.GameSettings.LastActivePlayerId;
+            if (lastActivePlayerId > 0) {
+                //CurrentPlayer = LoadPlayerProfileById(AppManager.I.GameSettings.LastActivePlayerId);
+                int avatarId = int.Parse(GetAvatarIdFromPlayerId(AppManager.I.GameSettings.LastActivePlayerId));
+                SetPlayerProfile(avatarId);
+            }
         }
 
         /// <summary>
@@ -98,44 +79,52 @@ namespace EA4S.Profile
         {
             List<int> returnList = new List<int>();
             for (int i = 1; i < MaxNumberOfPlayerProfiles + 1; i++) {
-                if (availablePlayerProfiles.Find(p => p.Id == i) == null)
+                if (AppManager.I.GameSettings.AvailablePlayers[i] == null)
                     returnList.Add(i);
             }
             return returnList;
         }
 
         /// <summary>
-        /// Return PlayerProfile with avatar id in param.
-        /// If not exist create new with default settings.
+        /// Sets the player profile with corresposnding avatarId to current player.
         /// </summary>
-        /// <param name="_avatarId"></param>
+        /// <param name="_avatarId">The avatar identifier.</param>
+        /// <param name="_isNew">if set to <c>true</c> create new one.</param>
         /// <returns></returns>
-        public PlayerProfile CreateOrLoadPlayerProfile(int _avatarId)
+        public PlayerProfile SetPlayerProfile(int _avatarId)
         {
-            bool isNew = false;
-            PlayerProfile returnProfile = LoadPlayerProfileByAvatarId(_avatarId);
-            if (returnProfile == null) {
+            PlayerProfile returnProfile;
+            PlayerProfileData profileFromDB = AppManager.I.DB.LoadDatabaseForPlayer(GetPlayerIdFromAvatarId(_avatarId));
+            
+            if (profileFromDB == null) { // not present in db or old db, create new one
                 returnProfile = new PlayerProfile();
-                isNew = true;
                 // create new
-                returnProfile.Id = AvailablePlayerProfiles.Count + 1;
+                if (AppManager.I.GameSettings.AvailablePlayers.Contains(_avatarId.ToString())) {
+                    List<string> tmpList = AppManager.I.GameSettings.AvailablePlayers;
+                    returnProfile.Id = AppManager.I.GameSettings.AvailablePlayers.FindIndex(s => s == _avatarId.ToString()) + 1;
+                } else {
+                    returnProfile.Id = AppManager.I.GameSettings.AvailablePlayers.Count + 1;
+                }
                 returnProfile.AvatarId = _avatarId;
                 returnProfile.Key = returnProfile.Id.ToString();
-                returnProfile = AppManager.I.Modules.PlayerProfile.CreateNewPlayer(returnProfile) as PlayerProfile;
+                AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
+                if (!AppManager.I.GameSettings.AvailablePlayers.Exists(p => p == _avatarId.ToString())) {
+                    AppManager.I.GameSettings.AvailablePlayers.Add(_avatarId.ToString());
+                    SaveGameSettings();
+                }
+                // Create new antura skin
+                RewardPackUnlockData tileTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
+                returnProfile.AddRewardUnlocked(tileTexture);
+                returnProfile.CurrentAnturaCustomizations.TileTexture = tileTexture;
+                RewardPackUnlockData decalTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
+                returnProfile.AddRewardUnlocked(decalTexture);
+                returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
+            } else {
+                returnProfile = new PlayerProfile().FromData(profileFromDB);
             }
-            // Create new antura skin
-            RewardPack tileTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
-            returnProfile.AddRewardUnlocked(tileTexture);
-            returnProfile.CurrentAnturaCustomizations.TileTexture = tileTexture;
-            RewardPack decalTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
-            returnProfile.AddRewardUnlocked(decalTexture);
-            returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
-            // -----
             AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
-            AppManager.I.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.I.PlayerProfileManager.CurrentPlayer);
-            AppManager.I.PlayerProfileManager.CurrentPlayer.Save();
-            SaveGameSettings();
-            if (isNew && OnNewProfileCreated != null)
+
+            if (profileFromDB == null && OnNewProfileCreated != null)
                 OnNewProfileCreated();
 
             return AppManager.I.PlayerProfileManager.CurrentPlayer;
@@ -147,27 +136,7 @@ namespace EA4S.Profile
         /// <param name="_playerProfile">The player profile.</param>
         public void SavePlayerSettings(PlayerProfile _playerProfile)
         {
-            AppManager.I.Modules.PlayerProfile.SavePlayerSettings(_playerProfile);
-        }
-
-        /// <summary>
-        /// Loads the player profile by avatar identifier.
-        /// </summary>
-        /// <param name="_avatarId">The avatar identifier.</param>
-        /// <returns></returns>
-        public PlayerProfile LoadPlayerProfileByAvatarId(int _avatarId)
-        {
-            return LoadPlayerProfileById(GetPlayerIdFromAvatarId(_avatarId));
-        }
-
-        /// <summary>
-        /// Loads the player profile by identifier.
-        /// </summary>
-        /// <param name="_Id">The identifier.</param>
-        /// <returns></returns>
-        public PlayerProfile LoadPlayerProfileById(int _Id)
-        {
-            return AppManager.I.PlayerProfile.LoadPlayerSettings<PlayerProfile>(_Id.ToString()) as PlayerProfile;
+            AppManager.I.DB.UpdatePlayerProfileData(_playerProfile.ToData());
         }
 
         /// <summary>
@@ -177,7 +146,6 @@ namespace EA4S.Profile
         {
             AppManager.I.Modules.PlayerProfile.Options = AppManager.I.GameSettings;
             AppManager.I.Modules.PlayerProfile.SaveAllOptions();
-            reloadAvailablePlayerProfilesList();
         }
 
         /// <summary>
@@ -195,17 +163,44 @@ namespace EA4S.Profile
 
         /// <summary>
         /// Gets the player identifier from avatar identifier.
+        /// If == 0 player not found.
         /// </summary>
         /// <param name="_avatarId">The avatar identifier.</param>
         /// <returns></returns>
         public int GetPlayerIdFromAvatarId(int _avatarId)
         {
-            PlayerProfile pp = availablePlayerProfiles.Find(p => p.AvatarId == _avatarId);
-            if (pp != null)
-                return pp.Id;
-            else
-                return 0;
+            return AppManager.I.GameSettings.AvailablePlayers.FindIndex(a => a == _avatarId.ToString()) + 1;
         }
+
+        /// <summary>
+        /// Gets the avatar identifier from player identifier.
+        /// </summary>
+        /// <param name="_playerId">The player identifier.</param>
+        /// <returns></returns>
+        public string GetAvatarIdFromPlayerId(int _playerId) 
+        {
+            return AppManager.I.GameSettings.AvailablePlayers[_playerId - 1];
+        }
+
+        /// <summary>
+        /// Resets the everything.
+        /// </summary>
+        public void ResetEverything() {
+            // Reset all the Databases
+            foreach (var playerId in AppManager.I.Modules.PlayerProfile.Options.AvailablePlayers) {
+                UnityEngine.Debug.Log(playerId);
+                AppManager.I.DB.LoadDatabaseForPlayer(int.Parse(playerId));
+                AppManager.I.DB.DropProfile();
+            }
+
+            // Reset all profiles (from SRDebugOptions)
+            UnityEngine.PlayerPrefs.DeleteAll();
+            AppManager.I.PlayerProfileManager.ReloadGameSettings();
+            AppManager.I.GameSettings.AvailablePlayers = new System.Collections.Generic.List<string>();
+            AppManager.I.PlayerProfileManager.SaveGameSettings();
+
+        }
+
         #endregion
 
         #region events

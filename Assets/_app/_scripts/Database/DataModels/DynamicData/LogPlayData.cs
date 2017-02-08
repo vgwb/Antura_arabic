@@ -1,4 +1,5 @@
-﻿using EA4S.Utilities;
+﻿using EA4S.Helpers;
+using EA4S.Utilities;
 using SQLite;
 
 namespace EA4S.Database
@@ -12,7 +13,7 @@ namespace EA4S.Database
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string Session { get; set; } // DailySession Id
+        public string AppSession { get; set; }
         public int Timestamp { get; set; }
 
         public string PlaySession { get; set; }
@@ -26,21 +27,21 @@ namespace EA4S.Database
         {
         }
 
-        public LogPlayData(string _Session, string _PlaySession, MiniGameCode _MiniGame, PlayEvent _PlayEvent, PlaySkill _PlaySkill, float _Score)
-            : this(_Session, _PlaySession, _MiniGame, _PlayEvent, _PlaySkill, _Score, "")
+        public LogPlayData(string _AppSession, string _PlaySession, MiniGameCode _MiniGame, PlayEvent _PlayEvent, PlaySkill _PlaySkill, float _Score)
+            : this(_AppSession, _PlaySession, _MiniGame, _PlayEvent, _PlaySkill, _Score, "")
         {
         }
 
-        public LogPlayData(string _Session, string _PlaySession, MiniGameCode _MiniGame, PlayEvent _PlayEvent, PlaySkill _PlaySkill, float _Score, string _RawData)
+        public LogPlayData(string _AppSession, string _PlaySession, MiniGameCode _MiniGame, PlayEvent _PlayEvent, PlaySkill _PlaySkill, float _Score, string _RawData)
         {
-            Session = _Session;
+            AppSession = _AppSession;
             PlaySession = _PlaySession;
             MiniGame = _MiniGame;
             PlayEvent = _PlayEvent;
             PlaySkill = _PlaySkill;
             Score = _Score;
             RawData = _RawData;
-            Timestamp = GenericUtilities.GetTimestampForNow();
+            Timestamp = GenericHelper.GetTimestampForNow();
         }
 
         public string GetId()
@@ -50,8 +51,8 @@ namespace EA4S.Database
 
         public override string ToString()
         {
-            return string.Format("S{0},T{1},PS{2},MG{3},PE{4},SK{5},S{6},RD{7}",
-                Session,
+            return string.Format("AS{0},T{1},PS{2},MG{3},PE{4},SK{5},S{6},RD{7}",
+                AppSession,
                 Timestamp,
                 PlaySession,
                 MiniGame,

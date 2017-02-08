@@ -268,7 +268,6 @@ namespace EA4S.Minigames.Maze
                     Transform child = fruitsList.transform.GetChild(i);
 
                     MazeArrow mazeArrow = child.gameObject.AddComponent<MazeArrow>();
-                    mazeArrow.SetMazeLetter(mazeLetter);
 
                     child.gameObject.name = "fruit_" + (i);
                 }

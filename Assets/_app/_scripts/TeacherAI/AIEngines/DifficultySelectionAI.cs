@@ -21,9 +21,13 @@ namespace EA4S.Teacher
         private float journeyWeight = ConfigAI.difficulty_weight_journey;     // Higher journey stage -> higher difficulty
         private float performanceWeight = ConfigAI.difficulty_weight_performance;       // Higher performance -> higher difficulty
 
-        public DifficultySelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
+        public DifficultySelectionAI(DatabaseManager _dbManager)
         {
             this.dbManager = _dbManager;
+        }
+
+        public void SetPlayerProfile(PlayerProfile _playerProfile)
+        {
             this.playerProfile = _playerProfile;
         }
 
@@ -44,8 +48,8 @@ namespace EA4S.Teacher
 
             // Performance
             float playerPerformance;
-            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = 'MiniGames' AND ElementId = '{0}'", (int)miniGameCode);
-            List<Database.ScoreData> minigame_scoreData_list = dbManager.FindScoreDataByQuery(query);
+            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name + " WHERE ElementId = '{0}'",  (int)miniGameCode);
+            List<MinigameScoreData> minigame_scoreData_list = dbManager.FindDataByQuery<MinigameScoreData>(query);
             if (minigame_scoreData_list.Count == 0) {
                 playerPerformance = ConfigAI.startingDifficultyForNewMiniGame;
             } else {

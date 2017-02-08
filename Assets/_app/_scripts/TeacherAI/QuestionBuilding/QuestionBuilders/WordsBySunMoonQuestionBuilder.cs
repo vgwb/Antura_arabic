@@ -32,20 +32,21 @@ namespace EA4S.Teacher
         {
             List<QuestionPackData> packs = new List<QuestionPackData>();
             var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             var db = AppManager.I.DB;
             var choice1 = db.GetWordDataById("the_sun");
             var choice2 = db.GetWordDataById("the_moon");
 
-            var wordsWithArticle = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByArticle(Database.WordDataArticle.Determinative, parameters.wordFilters),
+            var wordsWithArticle = teacher.VocabularyAi.SelectData(
+                () => vocabularyHelper.GetWordsByArticle(Database.WordDataArticle.Determinative, parameters.wordFilters),
                 new SelectionParameters(parameters.correctSeverity, nPacks, useJourney: parameters.useJourneyForCorrect)
                 );
 
             foreach (var wordWithArticle in wordsWithArticle)
             {
                 int articleLength = 2;
-                var letterAfterArticle = teacher.wordHelper.GetLettersInWord(wordWithArticle)[articleLength];
+                var letterAfterArticle = vocabularyHelper.GetLettersInWord(wordWithArticle)[articleLength];
                 var correctWords = new List<Database.WordData>();
                 var wrongWords = new List<Database.WordData>();
                 switch (letterAfterArticle.SunMoon)

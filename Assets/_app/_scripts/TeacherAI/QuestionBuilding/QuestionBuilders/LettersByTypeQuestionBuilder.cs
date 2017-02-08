@@ -1,5 +1,5 @@
-﻿using ModularFramework.Helpers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using EA4S.Helpers;
 
 namespace EA4S.Teacher
 {
@@ -33,6 +33,7 @@ namespace EA4S.Teacher
         {
             List<QuestionPackData> packs = new List<QuestionPackData>();
             var teacher = AppManager.I.Teacher;
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             var db = AppManager.I.DB;
             var choice1 = db.GetWordDataById("consonant");
@@ -40,13 +41,13 @@ namespace EA4S.Teacher
 
             int nPerType = nPacks / 2;
 
-            var list_choice1 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetConsonantLetter(parameters.letterFilters),
+            var list_choice1 = teacher.VocabularyAi.SelectData(
+                () => vocabularyHelper.GetConsonantLetter(parameters.letterFilters),
                 new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
-            var list_choice2 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetVowelLetter(parameters.letterFilters),
+            var list_choice2 = teacher.VocabularyAi.SelectData(
+                () => vocabularyHelper.GetVowelLetter(parameters.letterFilters),
                 new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 

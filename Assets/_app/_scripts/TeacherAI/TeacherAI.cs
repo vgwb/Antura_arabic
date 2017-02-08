@@ -1,7 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 using EA4S.Core;
 using EA4S.Database;
 using EA4S.Helpers;
@@ -26,39 +24,44 @@ namespace EA4S.Teacher
 
         // Inner engines
         public LogAI logAI;
-        public WordSelectionAI wordAI;
+        public VocabularySelectionAI VocabularyAi;
         MiniGameSelectionAI minigameSelectionAI;
         DifficultySelectionAI difficultySelectionAI;
 
         // Helpers
         // refactor: these helpers should be separated from the TeacherAI.
-        public WordHelper wordHelper;
+        private VocabularyHelper VocabularyHelper;
         public JourneyHelper journeyHelper;
         public ScoreHelper scoreHelper;
         
         #region Setup
 
-        public TeacherAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
+        public TeacherAI(DatabaseManager _dbManager, VocabularyHelper _vocabularyHelper)
         {
             I = this;
             dbManager = _dbManager;
-            playerProfile = _playerProfile;
 
-            wordHelper = new WordHelper(_dbManager);
+            VocabularyHelper = _vocabularyHelper;
             journeyHelper = new JourneyHelper(_dbManager, this);
             scoreHelper = new ScoreHelper(_dbManager);
 
             logAI = new LogAI(_dbManager);
-            minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
-            wordAI = new WordSelectionAI(dbManager, playerProfile, this, wordHelper);
-            difficultySelectionAI = new DifficultySelectionAI(dbManager, playerProfile);
+            minigameSelectionAI = new MiniGameSelectionAI(dbManager);
+            VocabularyAi = new VocabularySelectionAI(dbManager);
+            difficultySelectionAI = new DifficultySelectionAI(dbManager);
+        }
+
+        public void SetPlayerProfile(PlayerProfile _playerProfile)
+        {
+            playerProfile = _playerProfile;
+            difficultySelectionAI.SetPlayerProfile(_playerProfile);
         }
 
         private void ResetPlaySession()
         {
             var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
             minigameSelectionAI.InitialiseNewPlaySession();
-            wordAI.LoadCurrentPlaySessionData(currentPlaySessionId);
+            VocabularyAi.LoadCurrentPlaySessionData(currentPlaySessionId);
         }
 
         #endregion
@@ -72,7 +75,12 @@ namespace EA4S.Teacher
 
         public List<MiniGameData> SelectMiniGames()
         {
-            return SelectMiniGames(ConfigAI.numberOfMinigamesPerPlaySession);
+            // Check the number of minigames for the current play session
+            var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
+            Database.PlaySessionData playSessionData = dbManager.GetPlaySessionDataById(currentPlaySessionId);
+            int nMinigamesToSelect = playSessionData.NumberOfMinigames;
+            if (nMinigamesToSelect == 0) nMinigamesToSelect = 1; // Force (needed for assessment, since we always need one)
+            return SelectMiniGames(nMinigamesToSelect);
         }
 
         private List<MiniGameData> SelectMiniGames(int nMinigamesToSelect)
@@ -147,7 +155,7 @@ namespace EA4S.Teacher
             // @note: this code shows how to work on the dynamic and static db together
             string query =
                 string.Format(
-                    "SELECT * FROM LogLearnData WHERE TableName = 'LetterData' AND Score < 0 and MiniGame = {0}",
+                    "SELECT * FROM " + typeof(LogLearnData).Name + " WHERE TableName = 'LetterData' AND Score < 0 and MiniGame = {0}",
                     (int)assessmentCode);
             List<LogLearnData> logLearnData_list = dbManager.FindLogLearnDataByQuery(query);
             List<string> letter_ids_list = logLearnData_list.ConvertAll(x => x.ElementId);
@@ -160,7 +168,7 @@ namespace EA4S.Teacher
         {
             string query =
                 string.Format(
-                    "SELECT * FROM LogLearnData WHERE TableName = 'WordData' AND Score < 0 and MiniGame = {0}",
+                    "SELECT * FROM " + typeof(LogLearnData).Name + " WHERE TableName = 'WordData' AND Score < 0 and MiniGame = {0}",
                     (int)assessmentCode);
             List<LogLearnData> logLearnData_list = dbManager.FindLogLearnDataByQuery(query);
             List<string> words_ids_list = logLearnData_list.ConvertAll(x => x.ElementId);
@@ -177,7 +185,7 @@ namespace EA4S.Teacher
         {
             // @note: shows how to work with playerprofile as well as the database
             JourneyPosition currentJourneyPosition = playerProfile.CurrentJourneyPosition;
-            string query = string.Format("SELECT * FROM LogPlayData WHERE PlayEvent = {0} AND PlaySession = '{1}'",
+            string query = string.Format("SELECT * FROM " + typeof(LogPlayData).Name + " WHERE PlayEvent = {0} AND PlaySession = '{1}'",
                 (int)PlayEvent.GameFinished, currentJourneyPosition.ToString());
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             return list;
@@ -190,7 +198,7 @@ namespace EA4S.Teacher
         // refactor: Refactor access to the data through an AnalyticsManager, instead of passing through the TeacherAI.
         public List<LogMoodData> GetLastMoodData(int number)
         {
-            string query = string.Format("SELECT * FROM LogMoodData ORDER BY Timestamp LIMIT {0}", number);
+            string query = string.Format("SELECT * FROM " + typeof(LogMoodData).Name + " ORDER BY Timestamp LIMIT {0}", number);
             List<LogMoodData> list = dbManager.FindLogMoodDataByQuery(query);
             return list;
         }
@@ -209,11 +217,11 @@ namespace EA4S.Teacher
 
             if (useMaxJourneyData)
             {
-               wordAI.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+               VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
             }
 
-            var availableLetters = wordAI.SelectData(
-              () => wordHelper.GetAllLetters(filters),
+            var availableLetters = VocabularyAi.SelectData(
+              () => VocabularyHelper.GetAllLetters(filters),
                 new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
               );
 
@@ -235,11 +243,11 @@ namespace EA4S.Teacher
 
             if (useMaxJourneyData)
             {
-               wordAI.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+               VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
             }
 
-            var availableLetters = wordAI.SelectData(
-              () => wordHelper.GetAllLetters(filters),
+            var availableLetters = VocabularyAi.SelectData(
+              () => VocabularyHelper.GetAllLetters(filters),
                 new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
               );
 
@@ -265,7 +273,7 @@ namespace EA4S.Teacher
 
             if (useMaxJourneyData)
             {
-                wordAI.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+                VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
             }
 
             if (giveWarningOnFake)
@@ -274,8 +282,8 @@ namespace EA4S.Teacher
                 giveWarningOnFake = false;
             }
 
-            var availableWords = wordAI.SelectData(
-              () => wordHelper.GetWordsByCategory(WordDataCategory.Animal, filters),
+            var availableWords = VocabularyAi.SelectData(
+              () => VocabularyHelper.GetWordsByCategory(WordDataCategory.Animal, filters),
                 new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
               );
 

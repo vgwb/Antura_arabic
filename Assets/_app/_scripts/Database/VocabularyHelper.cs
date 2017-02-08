@@ -7,12 +7,11 @@ namespace EA4S.Database
     /// <summary>
     /// Provides helpers to get correct letter/word/phrase data according to the teacher's logic and based on the player's progression
     /// </summary>
-    // refactor: rename to DictionaryHelper
-    public class WordHelper
+    public class VocabularyHelper
     {
         private DatabaseManager dbManager;
 
-        public WordHelper(DatabaseManager _dbManager)
+        public VocabularyHelper(DatabaseManager _dbManager)
         {
             this.dbManager = _dbManager;
         }

@@ -17,7 +17,7 @@ namespace EA4S.Core
         /// <value>
         /// The session.
         /// </value>
-        public string Session {
+        public string AppSession {
             get { return _session; }
             private set { _session = value; }
         }
@@ -31,25 +31,26 @@ namespace EA4S.Core
         public void InitNewSession()
         {
             // refactor: should be a sequential number
-            Session = Random.Range(10000000, 99999999).ToString();
+            AppSession = Random.Range(10000000, 99999999).ToString();
         }
 
         #region Proxy From Minigame log manager provider To App Log Intellingence
 
-        protected internal void LogMinigameScore(string playSession, MiniGameCode miniGameCode, float score)
+        protected internal void LogMinigameScore(string playSession, MiniGameCode miniGameCode, int score)
         {
-            AppManager.I.Teacher.logAI.LogMiniGameScore(Session, playSession, miniGameCode, score);
+            // @todo: the minigame play time should be passed here
+            AppManager.I.Teacher.logAI.LogMiniGameScore(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, score, 0f);
         }
 
         /// @note: deprecated (unless we re-add minigame direct logplay logging)
         protected internal void LogPlay(string playSession, MiniGameCode miniGameCode, List<Teacher.LogAI.PlayResultParameters> resultsList)
         {
-            AppManager.I.Teacher.logAI.LogPlay(Session, playSession, miniGameCode, resultsList);
+            AppManager.I.Teacher.logAI.LogPlay(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, resultsList);
         }
 
         protected internal void LogLearn(string playSession, MiniGameCode miniGameCode, List<Teacher.LogAI.LearnResultParameters> resultsList)
         {
-            AppManager.I.Teacher.logAI.LogLearn(Session, playSession, miniGameCode, resultsList);
+            AppManager.I.Teacher.logAI.LogLearn(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, resultsList);
         }
 
         #endregion
@@ -60,9 +61,10 @@ namespace EA4S.Core
         /// </summary>
         /// <param name="playSessionId">The play session identifier.</param>
         /// <param name="score">The score.</param>
-        public void LogPlaySessionScore(string playSessionId, float score)
+        public void LogPlaySessionScore(string playSessionId, int score)
         {
-            AppManager.I.Teacher.logAI.LogPlaySessionScore(playSessionId, score);
+            // @todo: the complete play session play time should be passed here
+            AppManager.I.Teacher.logAI.LogPlaySessionScore(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, score, 0f);
         }
 
         /// <summary>
@@ -70,7 +72,7 @@ namespace EA4S.Core
         /// </summary>
         /// <param name="learningBlock">The learning block.</param>
         /// <param name="score">The score.</param>
-        public void LogLearningBlockScore(int learningBlock, float score)
+        public void LogLearningBlockScore(int learningBlock, int score)
         {
             AppManager.I.Teacher.logAI.LogLearningBlockScore(learningBlock, score);
         }
@@ -82,7 +84,7 @@ namespace EA4S.Core
         /// <param name="parametersString">The parameters string.</param>
         public void LogInfo(InfoEvent infoEvent, string parametersString = "")
         {
-            AppManager.I.Teacher.logAI.LogInfo(Session, infoEvent, parametersString);
+            AppManager.I.Teacher.logAI.LogInfo(AppSession, infoEvent, parametersString);
         }
 
         /// <summary>
@@ -91,7 +93,7 @@ namespace EA4S.Core
         /// <param name="mood">The mood.</param>
         public void LogMood(int mood)
         {
-            AppManager.I.Teacher.logAI.LogMood(mood);
+            AppManager.I.Teacher.logAI.LogMood(AppSession, mood);
         }
 
         public void StartApp()

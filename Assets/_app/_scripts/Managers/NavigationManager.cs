@@ -22,11 +22,11 @@ namespace EA4S.Core
         Assessment,
         AnturaSpace,
         Rewards,
-        PlaySessionResult,
+        PlaySessionResult, 
         DebugPanel
     }
 
-    internal struct NavigationData
+    public struct NavigationData
     {
         public PlayerProfile CurrentPlayer;
         public AppScene PrevScene;
@@ -41,7 +41,7 @@ namespace EA4S.Core
         /// <summary>
         /// Current minigame index in
         /// </summary>
-        private int CurrentMiniGameIndexInPlaySession;
+        public int CurrentMiniGameIndexInPlaySession { get; private set; }
 
         public void SetFirstMinigame()
         {
@@ -75,7 +75,7 @@ namespace EA4S.Core
     /// </summary>
     public class NavigationManager : MonoBehaviour
     {
-        private NavigationData NavData;
+        public NavigationData NavData;
 
         public bool IsLoadingMinigame { get; private set; } // Daniele mod - SceneTransitioner needs it to know when a minigame is being loaded
 
@@ -107,7 +107,7 @@ namespace EA4S.Core
                     if (NavData.CurrentPlayer.IsFirstContact()) {
                         GoToScene(AppScene.Intro);
                     } else {
-                        if (NavData.CurrentPlayer.MoodLastVisit == System.DateTime.Today.ToString()) {
+                        if (NavData.CurrentPlayer.MoodAlreadyAnswered) {
                             GoToScene(AppScene.Map);
                         } else {
                             GoToScene(AppScene.Mood);
@@ -133,10 +133,7 @@ namespace EA4S.Core
                     GotoNextGameOfPlaysession();
                     break;
                 case AppScene.AnturaSpace:
-                    if (NavData.CurrentPlayer.IsFirstContact())
-                        GoToScene(AppScene.AnturaSpace);
-                    else
-                        GoToScene(AppScene.Map);
+                    GoToScene(AppScene.Map);
                     break;
                 case AppScene.Rewards:
                     if (NavData.CurrentPlayer.IsFirstContact()) {

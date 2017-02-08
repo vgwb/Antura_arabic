@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using EA4S.Core;
 
 namespace EA4S.Database
 {
@@ -46,6 +47,11 @@ namespace EA4S.Database
                 output += "\n      " + minigame.MiniGameCode + ": \t" + minigame.Weight;
             }
             return output;
+        }
+
+        public JourneyPosition GetJourneyPosition()
+        {
+            return new JourneyPosition(Stage,LearningBlock,PlaySession);
         }
     }
 

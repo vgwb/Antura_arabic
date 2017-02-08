@@ -4,8 +4,6 @@ namespace EA4S.Minigames.Maze
 {
     public class MazeArrow : MonoBehaviour
     {
-        private readonly Vector3 WRONG_MARK_OFFSET = Vector3.left * 1.25f;
-
         public bool tweenToColor = false;
         public bool pingPong = false;
 
@@ -14,8 +12,7 @@ namespace EA4S.Minigames.Maze
         private Color unreachedColor;
 
         Renderer _renderer;
-
-        private MazeLetter mazeLetter;
+        
         private GameObject highlightFX;
         private ParticleSystem.MainModule particleSystemMainModule;
 
@@ -28,11 +25,6 @@ namespace EA4S.Minigames.Maze
             {
                 return highlightFX.activeSelf;
             }
-        }
-
-        public void SetMazeLetter(MazeLetter mazeLetter)
-        {
-            this.mazeLetter = mazeLetter;
         }
 
         public void Highlight(bool isLooping)

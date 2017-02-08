@@ -74,8 +74,8 @@
     },
     {
       "Type" : "Reward",
-      "ID" : "reward_robot_upper_jaw",
-      "RewardName" : "Robot upper jaw",
+      "ID" : "reward_big_nose",
+      "RewardName" : "Big Nose",
       "Priority" : "",
       "Done" : "DONE",
       "BoneAttach" : "dog_head",
@@ -194,15 +194,15 @@
     },
     {
       "Type" : "Reward",
-      "ID" : "reward_robot_lower_jaw",
-      "RewardName" : "Robot Lower Jaw",
+      "ID" : "reward_beard_curls",
+      "RewardName" : "Beard Curls",
       "Priority" : "",
       "Done" : "DONE",
       "BoneAttach" : "dog_jaw",
       "Material1" : "specular_saturated_2side",
       "Material2" : "specular_saturated_2side",
       "Category" : "JAW",
-      "RemTongue" : "true"
+      "RemTongue" : ""
     },
     {
       "Type" : "Reward",

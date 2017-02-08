@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using EA4S.Utilities;
+using EA4S.Helpers;
 
 namespace EA4S.Database.Management
 {
@@ -37,7 +37,7 @@ namespace EA4S.Database.Management
         {
             var list = new List<WeightedPlaySkill>();
 
-            foreach (var playSkill in GenericUtilities.SortEnums<PlaySkill>())
+            foreach (var playSkill in GenericHelper.SortEnums<PlaySkill>())
             {
                 if (playSkill == PlaySkill.None) continue;
 

@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
-// refactor: Helpers need to be standardized
 namespace EA4S.Helpers
 {
-    public class GameplayHelper
+    /// <summary>
+    /// Static helper class for gameplay purposes.
+    /// </summary>
+    static public class GameplayHelper
     {
 
         /// <summary>
@@ -16,13 +19,37 @@ namespace EA4S.Helpers
         public static bool RandomPointInWalkableArea(Vector3 _center, float _range, out Vector3 _result, int _areaMask = 1)
         {
             Vector3 randomPoint = _center + Random.insideUnitSphere * (_range + Random.Range(-_range / 2f, _range / 2f));
-            UnityEngine.AI.NavMeshHit hit;
-            if (UnityEngine.AI.NavMesh.SamplePosition(randomPoint, out hit, 10.0f, _areaMask)) {
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 10.0f, _areaMask)) {
                 _result = hit.position;
                 return true;
             }
             _result = Vector3.zero;
             return false;
+        }
+
+        /// <summary>
+        /// Lerp the current transform rotation to point towards world position "position" using t.
+        /// The look-at is planar, meaning that the transform.up will be Vector3.up.
+        /// </summary>
+        public static void LerpLookAtPlanar(Transform transform, Vector3 position, float t)
+        {
+            Vector3 targetDir3D = (transform.position - position);
+            if (targetDir3D.sqrMagnitude < 0.001f)
+                return;
+
+            Vector2 targetDir = new Vector2(targetDir3D.x, targetDir3D.z);
+            Vector2 currentDir = new Vector2(transform.forward.x, transform.forward.z);
+
+            targetDir.Normalize();
+            currentDir.Normalize();
+
+            var desiredAngle = MathHelper.AngleCounterClockwise(targetDir, Vector2.down);
+            var currentAngle = MathHelper.AngleCounterClockwise(currentDir, Vector2.up);
+
+            currentAngle = Mathf.LerpAngle(currentAngle, desiredAngle, t);
+
+            transform.rotation = Quaternion.AngleAxis(currentAngle * Mathf.Rad2Deg, Vector3.up);
         }
     }
 }

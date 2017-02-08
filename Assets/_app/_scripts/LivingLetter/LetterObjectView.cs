@@ -1,4 +1,5 @@
-﻿using EA4S.MinigamesAPI;
+﻿using EA4S.Helpers;
+using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Utilities;
 using UnityEngine;
@@ -95,7 +96,7 @@ namespace EA4S.LivingLetters
                         LL_ImageData data = (LL_ImageData)Data;
                         if (data.Data.Category == Database.WordDataCategory.Color)
                         {
-                            Drawing.color = GenericUtilities.GetColorFromString(data.Data.Value);
+                            Drawing.color = GenericHelper.GetColorFromString(data.Data.Value);
                         }
                         else
                         {
@@ -190,7 +191,6 @@ namespace EA4S.LivingLetters
         public void Initialize(ILivingLetterData data)
         {
             idleTimer = Random.Range(3, 8);
-
             Data = data;
         }
 

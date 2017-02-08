@@ -13,11 +13,21 @@
         public int LearningBlock = 1;
         public int PlaySession = 1;
 
+        public static JourneyPosition InitialJourneyPosition = new JourneyPosition(1,1,1);
+
         public JourneyPosition(int _stage, int _lb, int _ps)
         {
             Stage = _stage;
             LearningBlock = _lb;
             PlaySession = _ps;
+        }
+
+        public JourneyPosition(string psId)
+        {
+            var splits = psId.Split('.');
+            Stage = int.Parse(splits[0]);
+            LearningBlock = int.Parse(splits[1]);
+            PlaySession = int.Parse(splits[2]);
         }
 
         public void SetPosition(int _stage, int _lb, int _ps)
@@ -29,6 +39,11 @@
 
         // refactor: this is used by part of the application to convert hourney to an ID for DB purposes. Make this more robust.
         public override string ToString()
+        {
+            return Stage + "." + LearningBlock + "." + PlaySession;
+        }
+
+        public string ToStringId()
         {
             return Stage + "." + LearningBlock + "." + PlaySession;
         }

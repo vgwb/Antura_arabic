@@ -29,14 +29,37 @@ namespace EA4S
         }
 
         public TeacherAI Teacher;
+        public VocabularyHelper VocabularyHelper;
         public DatabaseManager DB;
-        public PlayerProfile Player;
         public MiniGameLauncher GameLauncher;
         public LogManager LogManager;
-        public PlayerProfileManager PlayerProfileManager;
         public NavigationManager NavigationManager;
-
+        
         public bool IsPaused { get; private set; }
+
+        private PlayerProfileManager _playerProfileManager;
+        /// <summary>
+        /// Gets or sets the player profile manager.
+        /// Reload GameSettings at any playerProfileManager changes.
+        /// </summary>
+        /// <value>
+        /// The player profile manager.
+        /// </value>
+        public PlayerProfileManager PlayerProfileManager {
+            get { return _playerProfileManager; }
+            set {
+                if (_playerProfileManager != value) {
+                    _playerProfileManager = value;
+                    _playerProfileManager.ReloadGameSettings();
+                    return;
+                }
+                _playerProfileManager = value;
+            }
+        }
+        public PlayerProfile Player {
+            get { return PlayerProfileManager != null ? PlayerProfileManager.CurrentPlayer : null; }
+            set { PlayerProfileManager.CurrentPlayer = value; }
+        }
 
         #region Initialisation
 
@@ -57,8 +80,12 @@ namespace EA4S
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
 
+            DB = new DatabaseManager(GameSettings.UseTestDatabase);
             // refactor: standardize initialisation of managers
             LogManager = new LogManager();
+            VocabularyHelper = new VocabularyHelper(DB);
+            Teacher = new TeacherAI(DB, VocabularyHelper);
+            GameLauncher = new MiniGameLauncher(Teacher);
 
             NavigationManager = gameObject.AddComponent<NavigationManager>();
             PlayerProfileManager = new PlayerProfileManager();
@@ -67,25 +94,11 @@ namespace EA4S
 
             RewardSystemManager.Init();
 
-            InitTeacherForPlayer();
             GameSettings.HighQualityGfx = false;
+
+            
         }
 
-        /// <summary>
-        /// New profile entry point
-        /// </summary>
-        public void InitTeacherForPlayer()
-        {
-            if (Player == null)
-                Player = new PlayerProfile();
-
-            DB = new DatabaseManager(GameSettings.UseTestDatabase, Player);
-            Teacher = new TeacherAI(DB, Player);
-
-            if (GameLauncher == null)
-                GameLauncher = new MiniGameLauncher(Teacher);
-
-        }
         #endregion
 
         #region Settings behaviours
@@ -116,7 +129,6 @@ namespace EA4S
 
             // Delete DB
             DB.DropProfile();
-            I.DB = null;
 
             PlayerProfileManager.DeleteCurrentPlayer();
 
@@ -125,25 +137,7 @@ namespace EA4S
             Debug.Log("Reset current player: " + playerId);
         }
 
-        public void ResetEverything()
-        {
-            // Reset all the Databases
-            foreach (var playerId in AppManager.I.Modules.PlayerProfile.Options.AvailablePlayers) {
-                Debug.Log(playerId);
-                DB.LoadDynamicDbForPlayerProfile(int.Parse(playerId));
-                DB.DropProfile();
-            }
-            DB = null;
 
-            // Reset all profiles (from SRDebugOptions)
-            PlayerPrefs.DeleteAll();
-            AppManager.I.GameSettings.AvailablePlayers = new System.Collections.Generic.List<string>();
-            AppManager.I.PlayerProfileManager.SaveGameSettings();
-            SRDebug.Instance.HideDebugPanel();
-            AppManager.I.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.NavigationManager.GetSceneName(AppScene.Home));
-
-            Debug.Log("Reset ALL players.");
-        }
         #endregion
 
         #region Pause
