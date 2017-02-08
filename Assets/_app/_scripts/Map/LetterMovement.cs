@@ -173,7 +173,7 @@ namespace EA4S.Map
                     transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1].transform);
                 else
                 {
-                    transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform);
+                    transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock-1].transform);
                     transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x,
                             transform.rotation.eulerAngles.y + 180,
                             transform.rotation.eulerAngles.z));

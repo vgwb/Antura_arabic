@@ -50,7 +50,10 @@ namespace EA4S.Map
 
            /* AppManager.I.Player.MaxJourneyPosition.Stage = 6;
             AppManager.I.Player.MaxJourneyPosition.LearningBlock = 15;
-            AppManager.I.Player.MaxJourneyPosition.PlaySession = 100;*/
+            AppManager.I.Player.MaxJourneyPosition.PlaySession = 100;
+            AppManager.I.Player.CurrentJourneyPosition.Stage = 1;
+            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = 14;
+            AppManager.I.Player.CurrentJourneyPosition.PlaySession = 100;*/
 
             numberStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
             s = AppManager.I.Player.MaxJourneyPosition.Stage;
@@ -153,23 +156,12 @@ namespace EA4S.Map
             {
                 previousStage = numberStage;
                 numberStage++;
-                inTransition = true;
-                stages[numberStage].SetActive(true);
-                ChangeCamera(cameras[numberStage]);
-                ChangeCameraFogColor(numberStage);
-                FirstOrLastMap();
-                lockUI.SetActive(true);
-                DesactivateMovementPlayButtons();
+                CalculateSettingsStage();
 
                 if ((numberStage <= s) && (AppManager.I.Player.CurrentJourneyPosition.Stage != numberStage))
                 {
-                    //ChangePinDotToBlack();
                     AppManager.I.Player.CurrentJourneyPosition.Stage++;
-                    letter.GetComponent<LetterMovement>().stageScript = miniMaps[numberStage].GetComponent<Stage>();
-                    letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
-                    lockUI.SetActive(false);
-                    ActivateMovementPlayButtons();
-                    letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
+                    CalculatePosPin();
                 }
                 StartCoroutine("DesactivateMap");
             }
@@ -184,23 +176,12 @@ namespace EA4S.Map
             {
                 previousStage = numberStage;
                 numberStage--;
-                inTransition = true;
-                stages[numberStage].SetActive(true);
-                ChangeCamera(cameras[numberStage]);
-                ChangeCameraFogColor(numberStage);
-                FirstOrLastMap();
-                lockUI.SetActive(true);
-                DesactivateMovementPlayButtons();
+                CalculateSettingsStage();
 
                 if ((numberStage <= s) && (AppManager.I.Player.CurrentJourneyPosition.Stage != numberStage))
                 {
-                  //  ChangePinDotToBlack();
                     AppManager.I.Player.CurrentJourneyPosition.Stage--;
-                    letter.GetComponent<LetterMovement>().stageScript = miniMaps[numberStage].GetComponent<Stage>();
-                    letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
-                    lockUI.SetActive(false);
-                    ActivateMovementPlayButtons();
-                    letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
+                    CalculatePosPin();
                 }
                 else if (AppManager.I.Player.CurrentJourneyPosition.Stage == numberStage)
                 {
@@ -208,10 +189,26 @@ namespace EA4S.Map
                     ActivateMovementPlayButtons();
                     letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
                 }
-
-
                 StartCoroutine("DesactivateMap");
             }
+        }
+        void CalculateSettingsStage()
+        {
+            inTransition = true;
+            stages[numberStage].SetActive(true);
+            ChangeCamera(cameras[numberStage]);
+            ChangeCameraFogColor(numberStage);
+            FirstOrLastMap();
+            lockUI.SetActive(true);
+            DesactivateMovementPlayButtons();
+        }
+        void CalculatePosPin()
+        {
+            letter.GetComponent<LetterMovement>().stageScript = miniMaps[numberStage].GetComponent<Stage>();
+            letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
+            lockUI.SetActive(false);
+            ActivateMovementPlayButtons();
+            letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
         }
         public void ChangeCamera(GameObject ZoomCameraGO)
         {
@@ -226,16 +223,6 @@ namespace EA4S.Map
             letter.SetActive(true);
             CameraGameplayController.I.transform.position = cameras[AppManager.I.Player.CurrentJourneyPosition.Stage].transform.position;
         }
-      /*  void ChangePinDotToBlack()
-        {
-            if (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100)//change color pin to black
-            {
-                letter.GetComponent<LetterMovement>().miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>().ChangeMaterialPinToBlack();
-                letter.GetComponent<LetterMovement>().miniMapScript.posPines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform.GetChild(0).gameObject.SetActive(true); //activate pin
-            }
-            else
-                letter.GetComponent<LetterMovement>().ChangeMaterialDotToBlack(letter.GetComponent<LetterMovement>().miniMapScript.posDots[letter.GetComponent<LetterMovement>().pos]);
-        }*/
         void ChangeCameraFogColor(int c)
         {
             Camera.main.DOColor(colorMaps[c], 1);
@@ -292,12 +279,5 @@ namespace EA4S.Map
             leftMovementButton.SetActive(true);
             playButton.SetActive(true);
         }
-        /*void DesactivateMap()
-        {
-            stages[previousStage].SetActive(false);
-            inTransition = false;
-        }*/
-
-
     }
 }
