@@ -2,6 +2,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections.Generic;
 using EA4S.Core;
 using EA4S.Helpers;
@@ -572,7 +573,7 @@ namespace EA4S.Database.Management
 
         public void TestDynamicProfileData()
         {
-            dbManager.UpdatePlayerProfileData(new PlayerProfileData("1", 255, 0, 5, PlayerGender.M, PlayerTint.Green, 8, 0));
+            dbManager.UpdatePlayerProfileData(new PlayerProfileData(Guid.NewGuid().ToString(), "1", 255, 0, 5, PlayerGender.M, PlayerTint.Green, 8, 0));
             var playerProfileData = dbManager.GetPlayerProfileData();
             PrintOutput(playerProfileData.ToString());
         }

@@ -15,12 +15,15 @@ namespace EA4S.Profile
     [Serializable]
     public class PlayerProfile : IPlayerProfile
     {
-        public string Key { get; set; }
-        public int Id;
+        public string Guid;
         public int AvatarId;
-        public int Age;
         public PlayerGender Gender;
         public PlayerTint Tint;
+        public int Age;
+
+        // refactor: to be deleted after using Guid only
+        public string Key { get; set; }
+        public int Id;
 
         //int to track first visit
         //First contact (ProfileCompletion = 1 & 2)
@@ -342,7 +345,7 @@ namespace EA4S.Profile
         /// <returns></returns>
         public PlayerProfileData ToData()
         {
-            PlayerProfileData newProfileData = new PlayerProfileData(this.Key, this.Id, this.AvatarId, this.Age, this.Gender, this.Tint, this.TotalNumberOfBones, ProfileCompletion);
+            PlayerProfileData newProfileData = new PlayerProfileData(this.Guid, this.Key, this.Id, this.AvatarId, this.Age, this.Gender, this.Tint, this.TotalNumberOfBones, ProfileCompletion);
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
             string jsonStringForAnturaCustomization = this.CurrentAnturaCustomizations.GetJsonListOfIds();
@@ -355,8 +358,11 @@ namespace EA4S.Profile
         /// </summary>
         public PlayerProfile FromData(PlayerProfileData _data)
         {
+            Guid = _data.Guid;
+
             Key = _data.PlayerKey;
             Id = _data.PlayerId;
+
             AvatarId = _data.AvatarId;
             Age = _data.Age;
             Gender = _data.Gender;
