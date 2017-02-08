@@ -25,15 +25,5 @@ namespace EA4S.Minigames.ThrowBalls
             float scale = 7f + ballElevation * 0.5f;
             transform.localScale = new Vector3(scale, scale, 12.72f);
         }
-
-        public void Enable()
-        {
-            gameObject.SetActive(true);
-        }
-
-        public void Disable()
-        {
-            gameObject.SetActive(false);
-        }
     }
 }
