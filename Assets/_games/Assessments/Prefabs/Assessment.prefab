@@ -35,7 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013692065684}
   m_Layer: 0
-  m_Name: Placeholders
+  m_Name: QuestionBoxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,8 +67,24 @@ GameObject:
   - component: {fileID: 114000013822948356}
   - component: {fileID: 114000010710646388}
   - component: {fileID: 114000013908833718}
+  - component: {fileID: 114562122774185356}
   m_Layer: 0
   m_Name: Assessment
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1020643729158862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4980040236318274}
+  m_Layer: 0
+  m_Name: Placeholders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,6 +128,7 @@ Transform:
   m_Children:
   - {fileID: 4000011635047100}
   - {fileID: 4000012128482078}
+  - {fileID: 4980040236318274}
   - {fileID: 4000013692065684}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -122,6 +139,19 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011088275054}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4000013022712494}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4980040236318274
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1020643729158862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -153,12 +183,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933b154e60e1a204493651a02102bb0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StillLetterBox: {fileID: 0}
-  DropZonePrefab: {fileID: 1000011656232934, guid: d17661468d7dbb64d9d84de4a665e6e1,
+  StillLetterBox: {fileID: 1942231629936472, guid: 9796690aa4d4ebf418e65146780f0918,
+    type: 2}
+  QuestionBoxPrefab: {fileID: 1213367218611078, guid: 3547cd59ecc08ac4090a0c4473ac9a33,
     type: 2}
   Questions: {fileID: 1000010592757816}
   Answers: {fileID: 1000011233288150}
-  Placeholders: {fileID: 1000011088275054}
+  Placeholders: {fileID: 1020643729158862}
+  QuestionBoxes: {fileID: 1000011088275054}
 --- !u!114 &114000013908833718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,3 +202,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70585e09b49d9d4c93492f8790acc31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114562122774185356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012520946144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ed8f4a0c1a6a143893c8de1f931ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnImageWithQuestion: 0

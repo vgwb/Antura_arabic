@@ -208,9 +208,7 @@ namespace EA4S.Assessment
             wordGO.Label.text = text;
             cacheCompleteWordLL = wordGO;
 
-            var collider = wordGO.GetComponent< BoxCollider>();
-            collider.center = new Vector3( 1.5f, 0, 0);
-            collider.size = new Vector3( 7.5f, 3, 1.5f);
+            wordGO.SetExtendedBoxCollider();
 
             return new ImageQuestion( wordGO, imageData, dialogues);
         }
