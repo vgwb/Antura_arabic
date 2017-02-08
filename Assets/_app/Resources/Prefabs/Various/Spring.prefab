@@ -92,6 +92,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1828170866211776
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4637043075492916}
+  m_Layer: 0
+  m_Name: Slot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1849278724131584
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +192,7 @@ Transform:
   m_LocalScale: {x: 2.238385, y: 2.238385, z: 2.238385}
   m_Children: []
   m_Father: {fileID: 4929326890959378}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4270926896790160
 Transform:
@@ -213,12 +228,25 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1807433301729894}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -7, z: 0}
+  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
   m_Children:
   - {fileID: 4732492215464190}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4637043075492916
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1828170866211776}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0.44, z: 3.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4929326890959378}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4732492215464190
@@ -260,6 +288,7 @@ Transform:
   m_LocalPosition: {x: 0.029863175, y: 0.6894505, z: 1.765407}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4637043075492916}
   - {fileID: 4072455328273224}
   m_Father: {fileID: 4945390971174774}
   m_RootOrder: 0
@@ -380,8 +409,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7533b12c3427e174abf7e9df5cd0fbcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Slot: {fileID: 4637043075492916}
   springAnimation: {fileID: 111918458192077150}
   innerSpring: {fileID: 4732492215464190}
+  angle: 0
   t: 0
   Released: 0
   Elasticity: 400

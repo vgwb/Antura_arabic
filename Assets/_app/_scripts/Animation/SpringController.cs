@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class SpringController : MonoBehaviour
 {
+    public Transform Slot;
     public Animation springAnimation;
-
     public Transform innerSpring;
+
+    [Range(-90, 90)]
+    public float angle;
 
     [Range(-1, 1)]
     public float t;
@@ -49,25 +52,8 @@ public class SpringController : MonoBehaviour
         {
             velocity = 0;
 
-            Transform followElement = null;
-            if (followElement != null)
-            {
-                var direction = followElement.transform.position - transform.position;
+            innerSpring.transform.localRotation = Quaternion.AngleAxis(180 + Mathf.Clamp(angle, -90, 90), Vector3.up);
 
-                Vector2 planarDirection = new Vector2(direction.x, direction.z);
-
-                var forward = transform.forward;
-                Vector2 planarForward = new Vector2(forward.x, forward.z);
-
-                var desiredAngle = MathHelper.AngleCounterClockwise(planarDirection, planarForward) * Mathf.Rad2Deg;
-                if (desiredAngle > 180)
-                    desiredAngle -= 180; // -180 to 180
-
-                if (desiredAngle > 90 || desiredAngle < -90)
-                    desiredAngle += 180;
-
-                innerSpring.transform.localRotation = Quaternion.AngleAxis(180 + desiredAngle, Vector3.up);
-            }
         }
 
         t = Mathf.Clamp(t, -1, 1);
