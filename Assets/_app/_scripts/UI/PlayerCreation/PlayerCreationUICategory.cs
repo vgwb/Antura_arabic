@@ -22,11 +22,11 @@ namespace EA4S.UI
 
         /// <summary>If nothing is selected, returns -1</summary>
         public int SelectedIndex { get; private set; }
-        UIButton[] uiButtons;
+        protected UIButton[] uiButtons;
 
         #region Unity
 
-        void Awake()
+        protected virtual void Awake()
         {
             SelectedIndex = -1;
             uiButtons = this.GetComponentsInChildren<UIButton>();
