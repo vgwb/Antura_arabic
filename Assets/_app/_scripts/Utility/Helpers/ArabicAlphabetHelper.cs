@@ -192,27 +192,45 @@ namespace EA4S.Helpers
         /// Return a string of a word without a character. Warning: the word is already reversed and fixed for rendering.
         /// This is mandatory since PrepareArabicStringForDisplay should be called before adding removedLetterChar.
         /// </summary>
-        public static string GetWordWithMissingLetterText(Database.WordData arabicWord, Database.LetterData letterToRemove, string removedLetterChar = "_")
+        public static string GetWordWithMissingLetterText(out Database.LetterPosition letterShape, Database.WordData arabicWord, Database.LetterData letterToRemove, string removedLetterChar = "_")
         {
+            letterShape = Database.LetterPosition.None;
             var Letters = SplitWordIntoLetters(arabicWord);
             
             int charPosition = 0;
             bool found = false;
+            string text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
+
             for (int index = 0; index < Letters.Count; ++index)
             {
                 if (Letters[index].Id == letterToRemove.Id)
                 {
                     found = true;
+                    // Check shape
+                    //Debug.Log("(" + text + ") pos:" + charPosition + " - len:" + text.Length + " - charlen:" + letterToRemove.GetChar().Length + " char:" + letterToRemove.GetChar());
+                    var character = text.Substring(charPosition, letterToRemove.GetChar().Length);
+
+                    // This test order is important, do not change
+                    if (letterToRemove.GetChar(Database.LetterPosition.Isolated) == character)
+                        letterShape = Database.LetterPosition.Isolated;
+                    else if (letterToRemove.GetChar(Database.LetterPosition.Initial) == character)
+                        letterShape = Database.LetterPosition.Initial;
+                    else if (letterToRemove.GetChar(Database.LetterPosition.Medial) == character)
+                        letterShape = Database.LetterPosition.Medial;
+                    else if (letterToRemove.GetChar(Database.LetterPosition.Final) == character)
+                        letterShape = Database.LetterPosition.Final;
+                    else
+                        letterShape = Database.LetterPosition.Isolated; // fallback to isolated
+
                     break;
                 }
                 else
-                    charPosition += Letters[index].GetChar().Length;
+                    charPosition += Letters[index].GetChar().Trim().Length;
             }
 
             if (!found)
-                return ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
+                return text;
 
-            string text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
             text = text.Substring(0, charPosition) + removedLetterChar + text.Substring(charPosition + letterToRemove.GetChar().Length);
 
             return text;

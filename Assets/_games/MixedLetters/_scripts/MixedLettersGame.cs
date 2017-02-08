@@ -13,6 +13,20 @@ namespace EA4S.Minigames.MixedLetters
     {
         public static MixedLettersGame instance;
 
+        public enum MixedLettersDifficulty
+        {
+            VeryEasy, Easy, Medium, Hard, VeryHard
+        }
+
+        private MixedLettersDifficulty difficulty;
+        public MixedLettersDifficulty Difficulty
+        {
+            get
+            {
+                return difficulty;
+            }
+        }
+
         private readonly int[] ALPHABET_PICKING_ORDER = new int[] { 4, 3, 4, 4, 4, 4, 2, 3 };
 
         public IntroductionGameState IntroductionState { get; private set; }
@@ -22,8 +36,6 @@ namespace EA4S.Minigames.MixedLetters
 
         public DropZoneController[] dropZoneControllers;
 
-        //public LL_WordData wordData;
-        //public Db.WordData wordInPlay;
         private IQuestionPack spellingQuestionPack;
         private ILivingLetterData question;
 
@@ -125,6 +137,38 @@ namespace EA4S.Minigames.MixedLetters
             MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Theme9);
 
             DisableRepeatPromptButton();
+
+            SetDifficulty();
+        }
+
+        private void SetDifficulty()
+        {
+            float difficultyAsFloat = GetConfiguration().Difficulty;
+
+            if (difficultyAsFloat < 0.2f)
+            {
+                difficulty = MixedLettersDifficulty.VeryEasy;
+            }
+
+            else if (difficultyAsFloat < 0.4f)
+            {
+                difficulty = MixedLettersDifficulty.Easy;
+            }
+
+            else if (difficultyAsFloat < 0.6f)
+            {
+                difficulty = MixedLettersDifficulty.Medium;
+            }
+
+            else if (difficultyAsFloat < 0.8f)
+            {
+                difficulty = MixedLettersDifficulty.Hard;
+            }
+
+            else
+            {
+                difficulty = MixedLettersDifficulty.VeryHard;
+            }
         }
 
         protected override IState GetInitialState()

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using EA4S.MinigamesCommon;
+using System;
 
 namespace EA4S.Minigames.ThrowBalls
 {
@@ -16,6 +17,8 @@ namespace EA4S.Minigames.ThrowBalls
         public static BallController instance;
 
         public Rigidbody rigidBody;
+
+        public GameObject shadow;
         private SphereCollider sphereCollider;
 
         private TrailRenderer trailRenderer;
@@ -32,7 +35,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         private float cameraDistance;
 
-        private float yzStretchRange = 3f;
+        //private float yzStretchRange = 3f;
 
         void Awake()
         {
@@ -54,11 +57,6 @@ namespace EA4S.Minigames.ThrowBalls
             cameraDistance = 26;
             INITIAL_BALL_POSITION.y = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height / 3, cameraDistance)).y;
 
-            IInputManager inputManager = ThrowBallsConfiguration.Instance.Context.GetInputManager();
-            inputManager.onPointerDown += OnPointerDown;
-            inputManager.onPointerDrag += OnPointerDrag;
-            inputManager.onPointerUp += OnPointerUp;
-
             //Reset();
 
             SetState(State.Chased);
@@ -67,7 +65,20 @@ namespace EA4S.Minigames.ThrowBalls
             ArrowHeadController.instance.Disable();
         }
 
-        private void OnPointerDown()
+        public bool IsDragging()
+        {
+            return state == State.Dragging;
+        }
+
+        public void CancelDragging()
+        {
+            if (IsDragging())
+            {
+                SetState(State.Anchored);
+            }
+        }
+
+        private void OnMouseDown()
         {
             if (!IsLaunched())
             {
@@ -75,37 +86,7 @@ namespace EA4S.Minigames.ThrowBalls
             }
         }
 
-        private void OnPointerDrag()
-        {
-            if (state == State.Dragging)
-            {
-                Vector2 lastTouch = ThrowBallsConfiguration.Instance.Context.GetInputManager().LastPointerPosition;
-
-                float clampedInputY = lastTouch.y > Screen.height / 3 ? Screen.height / 3 : lastTouch.y;
-
-                Vector3 touchPosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(lastTouch.x, clampedInputY, cameraDistance));
-
-                float yzFactor = 1 - (clampedInputY / Screen.height) * 3;
-                touchPosInWorldUnits.y = INITIAL_BALL_POSITION.y - yzFactor * yzStretchRange;
-                touchPosInWorldUnits.z = INITIAL_BALL_POSITION.z - yzFactor * yzStretchRange;
-
-                transform.position = touchPosInWorldUnits; 
-            }
-        }
-
-        private void OnPointerUp()
-        {
-            if (state == State.Dragging)
-            {
-                Vector3 forceToApply = SlingshotController.instance.GetLaunchForce();
-                rigidBody.isKinematic = false;
-                rigidBody.AddForce(forceToApply, ForceMode.VelocityChange);
-                SetState(State.Launched);
-
-                ArrowBodyController.instance.Disable();
-                ArrowHeadController.instance.Disable();
-            }
-        }
+        
 
         public void OnCollisionEnter()
         {
@@ -123,6 +104,13 @@ namespace EA4S.Minigames.ThrowBalls
             }
         }
 
+        public void Launch(Vector3 forceToApply)
+        {
+            rigidBody.isKinematic = false;
+            rigidBody.AddForceAtPosition(forceToApply, transform.position + Vector3.up * 0.5f, ForceMode.VelocityChange);
+            SetState(State.Launched);
+        }
+
         public void Reset()
         {
             transform.position = INITIAL_BALL_POSITION;
@@ -132,6 +120,7 @@ namespace EA4S.Minigames.ThrowBalls
             rigidBody.velocity = new Vector3(0, 0, 0);
             rigidBody.isKinematic = false;
             rigidBody.useGravity = false;
+            transform.rotation = Quaternion.Euler(new Vector3(-90f, 0f, 0f));
             sphereCollider.enabled = true;
             SetState(State.Anchored);
 
@@ -148,13 +137,13 @@ namespace EA4S.Minigames.ThrowBalls
         public void Enable()
         {
             gameObject.SetActive(true);
-            BallShadowController.instance.Enable();
+            shadow.SetActive(true);
         }
 
         public void Disable()
         {
             gameObject.SetActive(false);
-            BallShadowController.instance.Disable();
+            shadow.SetActive(false);
         }
 
         private void SetState(State state)
@@ -228,6 +217,11 @@ namespace EA4S.Minigames.ThrowBalls
         public bool IsIdle()
         {
             return state == State.Idle;
+        }
+
+        public bool IsAnchored()
+        {
+            return state == State.Anchored;
         }
 
         public void OnIntercepted()

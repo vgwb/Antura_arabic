@@ -1,5 +1,5 @@
 ﻿using System;
-﻿using EA4S.Database;
+using EA4S.Database;
 using System.Collections.Generic;
 using EA4S.Environment;
 using EA4S.Rewards;
@@ -16,6 +16,7 @@ namespace EA4S.Core
         Mood,
         Map,
         Book,
+        ReservedArea,
         Intro,
         GameSelector,
         MiniGame,
@@ -39,7 +40,7 @@ namespace EA4S.Core
         public List<MiniGameData> CurrentPlaySessionMiniGames;
 
         /// <summary>
-        /// Current minigame index in 
+        /// Current minigame index in
         /// </summary>
         public int CurrentMiniGameIndexInPlaySession { get; private set; }
 
@@ -51,18 +52,15 @@ namespace EA4S.Core
         public bool SetNextMinigame()
         {
             int NextIndex = CurrentMiniGameIndexInPlaySession + 1;
-            if (NextIndex < CurrentPlaySessionMiniGames.Count)
-            {
+            if (NextIndex < CurrentPlaySessionMiniGames.Count) {
                 CurrentMiniGameIndexInPlaySession = NextIndex;
                 return true;
             }
             return false;
         }
 
-        public MiniGameData CurrentMiniGameData
-        {
-            get
-            {
+        public MiniGameData CurrentMiniGameData {
+            get {
                 if (CurrentPlaySessionMiniGames == null) return null;
                 if (CurrentPlaySessionMiniGames.Count == 0) return null;
                 return CurrentPlaySessionMiniGames[CurrentMiniGameIndexInPlaySession];
@@ -77,7 +75,7 @@ namespace EA4S.Core
     {
         public NavigationData NavData;
 
-        public bool IsLoadingMinigame { get; private set; } // Daniele mod - SceneTransitioner needs it to know when a minigame is being loaded 
+        public bool IsLoadingMinigame { get; private set; } // Daniele mod - SceneTransitioner needs it to know when a minigame is being loaded
 
         #region API
 
@@ -85,8 +83,9 @@ namespace EA4S.Core
         /// Sets the player navigation data.
         /// </summary>
         /// <param name="_playerProfile">The player profile.</param>
-        public void SetPlayerNavigationData(PlayerProfile _playerProfile) {
-            NavData.CurrentPlayer = _playerProfile ;
+        public void SetPlayerNavigationData(PlayerProfile _playerProfile)
+        {
+            NavData.CurrentPlayer = _playerProfile;
         }
         #endregion
 
@@ -100,8 +99,7 @@ namespace EA4S.Core
         {
             Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToNextScene");
             //var nextScene = GetNextScene();
-            switch (NavData.CurrentScene)
-            {
+            switch (NavData.CurrentScene) {
                 case AppScene.Home:
 
                     if (NavData.CurrentPlayer.IsFirstContact()) {
@@ -136,9 +134,9 @@ namespace EA4S.Core
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.Rewards:
-                    if (NavData.CurrentPlayer.IsFirstContact()) { 
+                    if (NavData.CurrentPlayer.IsFirstContact()) {
                         GoToScene(AppScene.AnturaSpace);
-                    } else { 
+                    } else {
                         MaxJourneyPositionProgress();
                         GoToScene(AppScene.Map);
                     }
@@ -158,7 +156,8 @@ namespace EA4S.Core
         /// <summary>
         /// Apply logic for back button in current scene.
         /// </summary>
-        public void GoBack() {
+        public void GoBack()
+        {
             Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoBack");
             switch (NavData.CurrentScene) {
                 case AppScene.Book:
@@ -248,7 +247,8 @@ namespace EA4S.Core
             GoToScene(AppScene.Book);
         }
 
-        public void GoToAnturaSpace() {
+        public void GoToAnturaSpace()
+        {
             Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToAnturaSpace");
             // no restrictions?
             if (NavData.CurrentPlayer.IsFirstContact())
@@ -260,11 +260,9 @@ namespace EA4S.Core
         public void ExitAndGoHome()
         {
             Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "ExitAndGoHome");
-            if (NavData.CurrentScene == AppScene.Map)
-            {
+            if (NavData.CurrentScene == AppScene.Map) {
                 GoToScene(AppScene.Home);
-            }
-            else {
+            } else {
                 GoToScene(AppScene.Map);
             }
         }
@@ -288,14 +286,11 @@ namespace EA4S.Core
                     break;
             }
 
-            if (canTravel)
-            {
+            if (canTravel) {
                 NavData.PrevScene = NavData.CurrentScene;
                 NavData.CurrentScene = AppScene.MiniGame;
                 GoToScene(NavData.CurrentMiniGameData.Scene);
-            }
-            else
-            {
+            } else {
                 throw new Exception("Cannot go to a minigame from the current scene!");
             }
 
@@ -317,7 +312,7 @@ namespace EA4S.Core
                 case AppScene.Map:
                     return "app_Map";
                 case AppScene.Book:
-                    return "app_PlayerBook";
+                    return "app_Book";
                 case AppScene.Intro:
                     return "app_Intro";
                 case AppScene.GameSelector:
@@ -332,12 +327,14 @@ namespace EA4S.Core
                     return "app_Rewards";
                 case AppScene.PlaySessionResult:
                     return "app_PlaySessionResult";
+                case AppScene.ReservedArea:
+                    return "app_ReservedArea";
                 default:
                     return "";
             }
         }
 
-        // refactor: move this method directly to PlayerProfile 
+        // refactor: move this method directly to PlayerProfile
         public void MaxJourneyPositionProgress()
         {
             AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
@@ -391,12 +388,12 @@ namespace EA4S.Core
             int unlockItemsCount = 0;
             if (EndSessionResults.Count > 0) {
                 float starRatio = totalEarnedStars / EndSessionResults.Count;
-                // Prevent aproximation errors (0.99f must be == 1 but 0.7f must be == 0) 
+                // Prevent aproximation errors (0.99f must be == 1 but 0.7f must be == 0)
                 unlockItemsCount = starRatio - Mathf.CeilToInt(starRatio) < 0.0001f
                     ? Mathf.CeilToInt(starRatio)
                     : Mathf.RoundToInt(starRatio);
             }
-            // decrement because the number of stars needed to unlock the first reward is 2. 
+            // decrement because the number of stars needed to unlock the first reward is 2.
             unlockItemsCount -= 1;
             return unlockItemsCount;
         }
@@ -417,13 +414,11 @@ namespace EA4S.Core
 
         #region Michele
 
-        public MiniGameData CurrentMiniGameData
-        {
+        public MiniGameData CurrentMiniGameData {
             get { return NavData.CurrentMiniGameData; }
         }
 
-        public List<MiniGameData> CurrentPlaySessionMiniGames
-        {
+        public List<MiniGameData> CurrentPlaySessionMiniGames {
             get { return NavData.CurrentPlaySessionMiniGames; }
         }
 
@@ -434,12 +429,9 @@ namespace EA4S.Core
             AppManager.I.Teacher.InitialiseNewPlaySession();
             NavData.SetFirstMinigame();
 
-            if (NavData.RealPlaySession)
-            {
+            if (NavData.RealPlaySession) {
                 NavData.CurrentPlaySessionMiniGames = AppManager.I.Teacher.SelectMiniGames();
-            }
-            else
-            {
+            } else {
                 NavData.CurrentPlaySessionMiniGames = new List<MiniGameData>();
                 NavData.CurrentPlaySessionMiniGames.Add(dataToUse);
             }
@@ -448,16 +440,13 @@ namespace EA4S.Core
         private void GotoPlaysessione()
         {
             // This must be called before any play session is started
-            InitialiseNewPlaySession();  
+            InitialiseNewPlaySession();
 
             // From the map
-            if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
-            {
+            if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
                 // Direct to the current minigame (which is an assessment)
                 InternalLaunchGameScene(NavData.CurrentMiniGameData);
-            }
-            else
-            {
+            } else {
                 // Show the games selector
                 GoToScene(AppScene.GameSelector);
             }
@@ -467,7 +456,7 @@ namespace EA4S.Core
         {
             // Game selector -> go to the first game
             NavData.SetFirstMinigame();
-            // TODO: ??? 
+            // TODO: ???
             WorldManager.I.CurrentWorld = (WorldID)(NavData.CurrentPlayer.CurrentJourneyPosition.Stage - 1);
             InternalLaunchGameScene(NavData.CurrentMiniGameData);
         }
@@ -475,29 +464,20 @@ namespace EA4S.Core
         private void GotoNextGameOfPlaysession()
         {
             // From one game to the next
-            if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
-            {
+            if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
                 // Assessment ended, go to the rewards scene
                 GoToScene(AppScene.Rewards);
-            }
-            else
-            {
+            } else {
                 // Not an assessment. Do we have any more?
-                if (NavData.SetNextMinigame())
-                {
+                if (NavData.SetNextMinigame()) {
                     // Go to the next minigame.
                     InternalLaunchGameScene(NavData.CurrentMiniGameData);
-                }
-                else
-                {
+                } else {
                     // Finished all minigames for the current play session
-                    if (NavData.RealPlaySession)
-                    {
+                    if (NavData.RealPlaySession) {
                         // Go to the reward scene.
                         GoToScene(AppScene.PlaySessionResult);
-                    }
-                    else
-                    {
+                    } else {
                         // Go where you were previously
                         GoBack();
                     }

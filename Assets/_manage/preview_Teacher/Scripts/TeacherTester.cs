@@ -1,4 +1,6 @@
-﻿using EA4S.MinigamesAPI;
+﻿using System.Collections;
+using System.Collections.Generic;
+using EA4S.MinigamesAPI;
 using EA4S.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -83,17 +85,34 @@ namespace EA4S.Teacher.Test
             return builderParams;
         }
 
-        public void SimulateMiniGame(MiniGameCode code)
+        #region Simulation
+
+        public int numberOfSimulations = 50;
+        private int yieldEverySimulations = 20;
+
+        public IEnumerator SimulateMiniGameCO(MiniGameCode code)
         {
-            var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
-            InitialisePlaySession();
-            var builder = config.SetupBuilder();
-            Debug.Log("Simulating minigame: " + code + " with builder " + builder.GetType().Name);
-            builder.CreateAllQuestionPacks();
+            for (int i = 0; i < numberOfSimulations; i++)
+            {
+                var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
+                InitialisePlaySession();
+                var builder = config.SetupBuilder();
+                Debug.Log("SIMULATION " + (i + 1) + " minigame: " + code + " with builder " + builder.GetType().Name);
+                builder.CreateAllQuestionPacks();
+                if (i % yieldEverySimulations == 0)
+                    yield return null;
+            }
         }
 
-        #region  Question Builder testing
+        public void SimulateMiniGame(MiniGameCode code)
+        {
+            StartCoroutine(SimulateMiniGameCO(code));
+        }
 
+        #endregion
+
+
+        #region  Question Builder testing
 
         public void RandomLettersTest()
         {

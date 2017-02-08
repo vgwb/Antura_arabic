@@ -15,9 +15,10 @@ namespace EA4S.Assessment
     /// </summary>
     public class RandomAnswerPlacer : IAnswerPlacer
     {
-        public RandomAnswerPlacer( IAudioManager audio)
+        public RandomAnswerPlacer( IAudioManager audioManager, QuestionPlacerOptions placerOptions)
         {
-            audioManager = audio;
+            this.audioManager = audioManager;
+            this.placerOptions = placerOptions;
         }
 
         private bool isAnimating = false;
@@ -28,6 +29,7 @@ namespace EA4S.Assessment
 
         private Answer[] allAnswers;
         private IAudioManager audioManager;
+        private QuestionPlacerOptions placerOptions;
 
         public void Place(Answer[] answer)
         {
@@ -45,17 +47,16 @@ namespace EA4S.Assessment
         private IEnumerator PlaceCoroutine()
         {
             List<Vector3> positions = new List<Vector3>();
-            WorldBounds bounds = WorldBounds.Instance;
-            float xMin = bounds.ToTheLeftQuestionStart().x;
-            float xMax = bounds.ToTheRightQuestionStart().x;
-            float yMin = bounds.YMin()-0.4f;
-            float z = bounds.DefaultZ();
+            float xMin = placerOptions.LeftX + placerOptions.AnswerSize/2f + 2.0f;
+            float xMax = placerOptions.RightX - placerOptions.AnswerSize/2f - 1.0f;
+            float yMin = placerOptions.BottomY + 1.7f;
+            float z = 5f;
 
 
-            for (float x = xMin; x < xMax; x += 4.2f)
+            for (float x = xMin; x < xMax; x += placerOptions.AnswerSize + 0.2f)
             {
                 int times = 0;
-                for (float y = yMin; times < 3; y += 3.0f, times++)
+                for (float y = yMin; times < 3; y += 3.1f, times++)
                 {
                     float dx = Random.Range(-0.1f, 0.1f);
                     var vec = new Vector3(x + dx, y, z);

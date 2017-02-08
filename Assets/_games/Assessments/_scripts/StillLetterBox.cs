@@ -1,7 +1,8 @@
+using DG.Tweening;
 using EA4S.Helpers;
 using EA4S.MinigamesAPI;
-using DG.Tweening;
 using EA4S.MinigamesCommon;
+using EA4S.Utilities;
 using System;
 using TMPro;
 using UnityEngine;
@@ -19,13 +20,19 @@ namespace EA4S.Assessment
         /// </summary>
         public TMP_Text Label;
         public TextMeshPro Drawing;
-        public GameObject poofPrefab;
+        public ParticleSystem poofPrefab;
 
-        public SpriteRenderer questionSprite;
-        public SpriteRenderer answerSprite;
+        public NineSlicedSprite questionSprite;
+        public NineSlicedSprite answerSprite;
+
+        Vector2 startTextScale;
+
+        public RectTransform textTransform;
+        public RectTransform drawingTransform;
+        public Transform backgroundTransform;
 
         ///################# ANIMATIONS #################
-        
+
         // Local Tween
         Tween tween = null;
 
@@ -37,8 +44,8 @@ namespace EA4S.Assessment
             KillTween();
             answerSprite.enabled = true;
 
-            answerSprite.DOColor( new Color32( 61, 185, 30, 255), 0.5f);
-            questionSprite.DOFade( 0, 1);
+            answerSprite.Material.DOColor( new Color32( 61, 185, 30, 255), 0.5f);
+            questionSprite.Material.DOFade( 0, 1);
             Label.alpha = 0;
             Label.DOFade( 1, 0.6f);
         }
@@ -50,7 +57,7 @@ namespace EA4S.Assessment
         internal void HideHiddenQuestion()
         {
             Label.alpha = 0;
-            answerSprite.color = new Color( 1, 1, 1, 0);
+            answerSprite.Material.color = new Color( 1, 1, 1, 0);
             InstaShrink();
         }
 
@@ -69,7 +76,7 @@ namespace EA4S.Assessment
 
         internal void Grabbed()
         {
-            Scale = 1.3f;
+            Scale = 1.1f;
         }
 
         internal void Dropped()
@@ -96,7 +103,7 @@ namespace EA4S.Assessment
 
         ///############### IMPLEMENTATION ################
 
-        public SpriteRenderer slotSprite;
+        public NineSlicedSprite slotSprite;
 
         /// <summary>
         /// Gets the data.
@@ -120,20 +127,29 @@ namespace EA4S.Assessment
         }
 
 
-        private float Wideness { get; set; }
+        private float Wideness;
 
         private float Scale
         {
             get
             {
-                return transform.localScale.x;
+                return textTransform.sizeDelta.x / (startTextScale.x * Wideness);
             }
             set
             {
-                float effectiveScale = value * Wideness;
-                transform.localScale = new Vector3( effectiveScale, value, 1);
-                GetComponent< BoxCollider>().size =
-                    transform.localScale * 3;
+                float widthScale = value * Wideness;
+
+                foreach (NineSlicedSprite sprite in backgroundTransform.GetComponentsInChildren< NineSlicedSprite>(true))
+                {
+                    sprite.Width = sprite.initialWidth * widthScale;
+                    sprite.Height = sprite.initialHeight * value;
+                }
+
+                textTransform.sizeDelta = new Vector2( startTextScale.x * widthScale, startTextScale.y * value);
+                drawingTransform.sizeDelta = new Vector2( startTextScale.x * widthScale, startTextScale.y * value);
+
+                if(extendedBoxCollider == false)
+                    GetComponent< BoxCollider>().size = textTransform.sizeDelta;
             }
         }
 
@@ -193,11 +209,19 @@ namespace EA4S.Assessment
         }
 
         /// <summary>
-        /// Return size of LL, usefull for determining layout offsets
+        /// Return half width of LL, usefull for determining layout offsets
         /// </summary>
-        public float GetSize()
+        public float GetHalfWidth()
         {
-            return Wideness;
+            return Wideness * 3.0f /2.0f;
+        }
+
+        /// <summary>
+        /// Return half height of LL, usefull for determining layout offsets
+        /// </summary>
+        public float GetHalfHeight()
+        {
+            return 3.0f / 2.0f;
         }
 
         /// <summary>
@@ -230,10 +254,27 @@ namespace EA4S.Assessment
 
         public void Poof()
         {
-            var puffGo = GameObject.Instantiate( poofPrefab);
-            puffGo.AddComponent< AutoDestroy>().duration = 2;
-            puffGo.SetActive( true);
-            puffGo.transform.localScale *= 0.75f;
+            var rotation = Quaternion.Euler( new Vector3( -90, 0, 0));
+            var puffGo = 
+                GameObject.Instantiate( poofPrefab, transform.position, rotation) 
+                    as ParticleSystem;
+
+            puffGo.gameObject.AddComponent< AutoDestroy>().duration = 2;
+            puffGo.gameObject.SetActive( true);
+        }
+
+        void Awake()
+        {
+            startTextScale = textTransform.sizeDelta;
+        }
+
+        bool extendedBoxCollider = false;
+
+        internal void SetExtendedBoxCollider()
+        {
+            extendedBoxCollider = true;
+            GetComponent< BoxCollider>().size = new Vector3( 6.8f, 2.6f, 1);
+            GetComponent< BoxCollider>().center = new Vector3( 1.6f, 0, 0);
         }
     }
 }

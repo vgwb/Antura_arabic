@@ -60,11 +60,14 @@ namespace EA4S.Antura
 
         #region API
 
+        /// <summary>
+        /// Loads the antura customization elements on Antura model.
+        /// </summary>
+        /// <param name="_anturaCustomization">The antura customization.</param>
         public void LoadAnturaCustomization(AnturaCustomization _anturaCustomization) {
             ClearLoadedRewards();
             foreach (RewardPackUnlockData forniture in _anturaCustomization.Fornitures) {
                 LoadRewardPackOnAntura(forniture);
-
                 ModelsManager.SwitchMaterial(LoadRewardPackOnAntura(forniture), forniture.GetMaterialPair());
             }
             LoadRewardPackOnAntura(_anturaCustomization.TileTexture);
@@ -75,16 +78,22 @@ namespace EA4S.Antura
         public AnturaCustomization SaveAnturaCustomization() {
             AnturaCustomization returnCustomization = new AnturaCustomization();
             foreach (LoadedModel loadedModel in LoadedModels) {
-                returnCustomization.Fornitures.Add(new RewardPackUnlockData() { ItemID = loadedModel.Reward.ItemID, ColorId = loadedModel.Reward.ColorId, Type = RewardTypes.reward });
+                RewardPackUnlockData pack = new RewardPackUnlockData() { ItemID = loadedModel.Reward.ItemID, ColorId = loadedModel.Reward.ColorId, Type = RewardTypes.reward };
+                returnCustomization.Fornitures.Add(pack);
+                returnCustomization.FornituresIds.Add(pack.GetIdAccordingToDBRules());
             }
             returnCustomization.TileTexture = LoadedTileTexture;
+            returnCustomization.TileTextureId = LoadedTileTexture.GetIdAccordingToDBRules();
             returnCustomization.DecalTexture = LoadedDecal;
+            returnCustomization.DecalTextureId = LoadedDecal.GetIdAccordingToDBRules();
             AppManager.I.Player.SaveCustomization(returnCustomization);
             return returnCustomization;
         }
 
 
         public GameObject LoadRewardPackOnAntura(RewardPackUnlockData rewardPackUnlockData) {
+            if (rewardPackUnlockData == null)
+                return null;
             switch (rewardPackUnlockData.Type) {
                 case RewardTypes.reward:
                     return LoadRewardOnAntura(rewardPackUnlockData);
@@ -274,6 +283,60 @@ namespace EA4S.Antura
         public RewardPackUnlockData DecalTexture = new RewardPackUnlockData();
         public string DecalTextureId;
 
+        /// <summary>
+        /// Loads all rewards in "this" object instance from list of reward ids.
+        /// </summary>
+        /// <param name="_listOfIdsAsJsonString">The list of ids as json string.</param>
+        public void LoadFromListOfIds(string _listOfIdsAsJsonString) {
+            AnturaCustomization tmp = JsonUtility.FromJson<AnturaCustomization>(_listOfIdsAsJsonString);
+            if(tmp!= null) { 
+                FornituresIds = tmp.FornituresIds;
+                TileTextureId = tmp.TileTextureId;
+                DecalTextureId = tmp.DecalTextureId;
+            }
+            if (TileTextureId == string.Empty) {
+                RewardPackUnlockData defaultTileTexturePack = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
+                TileTextureId = defaultTileTexturePack.GetIdAccordingToDBRules();
+            }
+            if (DecalTextureId == string.Empty) {
+                RewardPackUnlockData defaultDecalTexturePack = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
+                DecalTextureId = defaultDecalTexturePack.GetIdAccordingToDBRules();
+            }
+            Fornitures = new List<RewardPackUnlockData>();
+            foreach (string itemId in FornituresIds) {
+                // Load Fornitures for any id from db
+                Debug.Log(AppManager.I.Player);
+                RewardPackUnlockData pack = AppManager.I.Player.RewardsUnlocked.Find(r => r.Id == itemId);
+                Fornitures.Add(pack);
+            }
+
+            // Load TileTexture from TileTextureId
+            if (TileTextureId != null)
+                TileTexture = AppManager.I.Player.RewardsUnlocked.Find(r => r.Id == TileTextureId);
+
+            // Load DecalTexture from DecalTextureId
+            if (DecalTextureId != null)
+                DecalTexture = AppManager.I.Player.RewardsUnlocked.Find(r => r.Id == DecalTextureId);
+
+        }
+
+        /// <summary>
+        /// Return all rewards objects to json list of ids (to be stored on db).
+        /// </summary>
+        public string GetJsonListOfIds() {
+            ////// Fornitures
+            //FornituresIds = new List<string>();
+            //foreach (RewardPackUnlockData pack in Fornitures) {
+            //    FornituresIds.Add(pack.GetIdAccordingToDBRules());
+            //}
+
+            ////// TileTextureId
+            //TileTextureId = TileTexture.GetIdAccordingToDBRules();
+
+            ////// DecalTextureId
+            //DecalTextureId = DecalTexture.GetIdAccordingToDBRules();
+            return JsonUtility.ToJson(this);
+        }
 
     }
 }

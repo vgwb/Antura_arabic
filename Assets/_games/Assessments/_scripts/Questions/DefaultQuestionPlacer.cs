@@ -1,7 +1,6 @@
 using DG.Tweening;
 using EA4S.MinigamesCommon;
 using Kore.Coroutines;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,17 +10,12 @@ namespace EA4S.Assessment
     public class DefaultQuestionPlacer : IQuestionPlacer
     {
         protected IAudioManager audioManager;
-        protected float questionSize;
-        protected float answerSize;
-        protected bool alsoDrawing;
+        protected QuestionPlacerOptions options;
 
-        public DefaultQuestionPlacer(   IAudioManager audioManager, float questionSize, 
-                                        float answerSize, bool alsoDrawing = false)
+        public DefaultQuestionPlacer(   IAudioManager audioManager, QuestionPlacerOptions options)
         {
             this.audioManager = audioManager;
-            this.questionSize = questionSize;
-            this.answerSize = answerSize;
-            this.alsoDrawing = alsoDrawing;
+            this.options = options;
         }
 
         protected bool isAnimating = false;
@@ -34,6 +28,7 @@ namespace EA4S.Assessment
         protected IQuestion[] allQuestions;
         protected List< IEnumerator> questionSounds;
         private List< StillLetterBox> images;
+        private List< QuestionBox> boxesList;
 
         public void Place( IQuestion[] question, bool playSound)
         {
@@ -41,6 +36,7 @@ namespace EA4S.Assessment
             isAnimating = true;
             images = new List< StillLetterBox>();
             questionSounds = new List< IEnumerator>();
+            boxesList = new List< QuestionBox>();
             Koroutine.Run( PlaceCoroutine( playSound));
         }
 
@@ -62,64 +58,53 @@ namespace EA4S.Assessment
                 placeHoldersNumber += q.PlaceholdersCount();
             }
 
-            var bounds = WorldBounds.Instance;
+            float questionSize = options.QuestionSize;
+            float occupiedSpace = 
+                    placeHoldersNumber * options.SlotSize
+                +   questionsNumber*options.QuestionSize;
 
-            // Text justification "algorithm"
-            var gap = bounds.QuestionGap();
-
-            float occupiedSpace = questionsNumber*questionSize + answerSize*placeHoldersNumber;
-            if (alsoDrawing)
-                occupiedSpace += questionsNumber * 3f;
-
-            float blankSpace = gap - occupiedSpace;
-
-            //  3 words => 4 white zones  (need increment by 1)
-            //  |  O   O   O  |
+            float blankSpace = options.RightX - options.LeftX - occupiedSpace;
             float spaceIncrement = blankSpace / (questionsNumber + 1);
-
-            //Implement Line Break only if needed
-            if ( blankSpace <= bounds.HalfLetterSize()/2f )
-                throw new InvalidOperationException( "Need a line break becase 1 line is not enough for all");
-
+            
             var flow = AssessmentOptions.Instance.LocaleTextFlow;
             float sign;
-            Vector3 currentPos;
+            Vector3 currentPos = new Vector3( 0, options.QuestionY, 5f);
 
             if (flow == TextFlow.RightToLeft)
             {
-                currentPos = bounds.ToTheRightQuestionStart();
+                currentPos.x = options.RightX;
                 sign = -1;
             }
             else
             {
-                currentPos = bounds.ToTheLeftQuestionStart();
-                currentPos.x += answerSize / 2.0f;
+                currentPos.x = options.LeftX;
                 sign = 1;
             }
-
-            currentPos.y -= 1.5f;
             
-            int questionIndex = 0; //TODO: check if this redundant
+            int questionIndex = 0;
 
             for (int i = 0; i < questionsNumber; i++)
             {
                 currentPos.x += (spaceIncrement + questionSize/2) * sign;
-                yield return PlaceQuestion(allQuestions[questionIndex], currentPos, playAudio);
+                yield return PlaceQuestion( allQuestions[ questionIndex], currentPos, playAudio);
                 currentPos.x += (questionSize * sign) / 2;
 
-                if (alsoDrawing)
+                if ( options.SpawnImageWithQuestion)
                 {
-                    currentPos.x += (3f * sign) / 2;
-                    yield return PlaceImage( allQuestions[questionIndex], currentPos);
-                    currentPos.x += (3.3f * sign) / 2;
+                    Debug.Log("Placed Image");
+                    currentPos.x += (sign * options.ImageSize) /1.8f ;
+                    yield return PlaceImage( allQuestions[ questionIndex], currentPos);
+                    currentPos.x += (sign * options.ImageSize) / 1.8f;
                 }
 
                 foreach (var p in allQuestions[ questionIndex].GetPlaceholders())
                 {
-                    currentPos.x += (answerSize * sign)/2;
+                    currentPos.x += sign * options.SlotSize / 2;
                     yield return PlacePlaceholder( p, currentPos);
-                    currentPos.x += (answerSize * sign) / 2;
+                    currentPos.x += sign * options.SlotSize / 2;
                 }
+
+                WrapQuestionInABox( allQuestions[ questionIndex]);
 
                 questionIndex++;
             }
@@ -127,6 +112,30 @@ namespace EA4S.Assessment
             // give time to finish animating elements
             yield return Wait.For( 0.65f);
             isAnimating = false;
+        }
+
+        protected void WrapQuestionInABox( IQuestion q)
+        {
+            var ll = q.gameObject.GetComponent< StillLetterBox>();
+
+            int placeholdersCount = 0;
+
+            foreach (var p in q.GetPlaceholders())
+                placeholdersCount++;
+
+            StillLetterBox[] boxes = new StillLetterBox[ placeholdersCount + 1];
+
+            placeholdersCount = 0;
+            foreach (var p in q.GetPlaceholders())
+                boxes[placeholdersCount++] = p.GetComponent< StillLetterBox>();
+
+            boxes[boxes.Length - 1] = ll;
+
+            var box = LivingLetterFactory.Instance.SpawnQuestionBox( boxes);
+            box.Show();
+            audioManager.PlaySound( Sfx.ChoiceSwipe);
+
+            boxesList.Add( box);
         }
 
         protected IYieldable PlaceImage( IQuestion q, Vector3 imagePos)
@@ -146,11 +155,10 @@ namespace EA4S.Assessment
 
         protected IYieldable PlaceQuestion( IQuestion q, Vector3 position, bool playAudio)
         {
-            //TODO: Bug here. Where is data setted?
             lastPlacedQuestion = q;
             var ll = q.gameObject.GetComponent< StillLetterBox>();
 
-            ll.Poof(); // ll.Data is null. why? <<<<-----
+            ll.Poof();
 
             audioManager.PlaySound( Sfx.Poof);
             ll.transform.localPosition = position;
@@ -180,7 +188,10 @@ namespace EA4S.Assessment
 
         IEnumerator RemoveCoroutine()
         {
-            foreach( var q in allQuestions)
+            foreach (var box in boxesList)
+                box.Hide();
+
+            foreach ( var q in allQuestions)
             {
                 foreach (var p in q.GetPlaceholders())
                     yield return Koroutine.Nested( FadeOutPlaceholder( p));
@@ -236,6 +247,7 @@ namespace EA4S.Assessment
             audioManager.PlaySound( Sfx.Blip);
             var sequence = DOTween.Sequence();
             lastPlacedQuestion.QuestionBehaviour.ReadMeSound();
+            lastPlacedQuestion.gameObject.GetComponent< StillLetterBox>().Poof();
 
             sequence
                 .Append( lastPlacedQuestion.gameObject.transform.DOScale( 0.5f, 0.15f))

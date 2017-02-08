@@ -2,6 +2,7 @@ using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Teacher;
 using System;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -66,6 +67,7 @@ namespace EA4S.Assessment
         /// inside SetupBuilder.
         /// </summary>
         public int Rounds { get { return _rounds; } private set { _rounds = value; } }
+        public int NumberOfRounds { get { return _rounds; }  set { _rounds = value; } }
         private int _rounds = 0;
 
         /////////////////
@@ -147,14 +149,25 @@ namespace EA4S.Assessment
             SimultaneosQuestions = 1;
             Rounds = 3;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
+            var builderParams = new QuestionBuilderParameters();
             builderParams.wordFilters.requireDrawings = true;
-            
+
+            // Maximum number of letters depends on the screen.
+            float screenRatio = Screen.width / Screen.height;
+            int maxLetters = 7;
+
+            if (screenRatio > 1.4999f)
+                maxLetters = 8;
+
+            if (screenRatio > 1.7777f)
+                maxLetters = 9;
+
             return new LettersInWordQuestionBuilder(
                 Rounds,
                 2,
                 useAllCorrectLetters: true,
-                parameters: builderParams
+                parameters: builderParams,
+                maximumWordLength: maxLetters
                 );
         }
 
@@ -163,10 +176,10 @@ namespace EA4S.Assessment
             SimultaneosQuestions = 1;
             Rounds = 3;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
-            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
-            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = true;
             builderParams.wordFilters.requireDrawings = true;
 
@@ -181,10 +194,10 @@ namespace EA4S.Assessment
 
         private IQuestionBuilder Setup_MatchWordToImage_Builder()
         {
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
-            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
-            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
             builderParams.wordFilters.requireDrawings = true;
             SimultaneosQuestions = 1;
@@ -205,8 +218,8 @@ namespace EA4S.Assessment
             SimultaneosQuestions = 2;
             Rounds = 3;
             Answers = 2;
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wordFilters.excludeArticles = false;
 
             return new WordsByArticleQuestionBuilder(
@@ -219,8 +232,8 @@ namespace EA4S.Assessment
             SimultaneosQuestions = 3;
             Rounds = 3;
             Answers = 2;
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wordFilters.excludePluralDual = false;
 
             return new WordsByFormQuestionBuilder(
@@ -230,10 +243,10 @@ namespace EA4S.Assessment
 
         private IQuestionBuilder Setup_SelectPronuncedWord_Builder()
         {
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
-            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
-            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
             SimultaneosQuestions = 1;
             Rounds = 3;
@@ -265,8 +278,8 @@ namespace EA4S.Assessment
             Rounds = 3;
             Answers = 2;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
 
             return new LettersBySunMoonQuestionBuilder( 
                         SimultaneosQuestions * Rounds * 2,
@@ -278,12 +291,12 @@ namespace EA4S.Assessment
         {
             SimultaneosQuestions = 2;
             snag.SetStartingFrom( 0.5f);
-            Rounds = 3;
+            Rounds = 1;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
-            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
-            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
 
             return new WordsWithLetterQuestionBuilder( 
@@ -307,21 +320,22 @@ namespace EA4S.Assessment
 
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
-            SimultaneosQuestions = 1;
-            Rounds = 3;
+            SimultaneosQuestions = 3;
+            Rounds = 1;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
-            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
-            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
 
             return new LettersInWordQuestionBuilder(
 
                 SimultaneosQuestions * Rounds,   // Total Answers
-                snag.Increase( 1, 2),            // CorrectAnswers
-                snag.Increase( 2, 4),            // WrongAnswers
+                1,// snag.Increase( 1, 2),            // CorrectAnswers
+                0,// snag.Increase( 2, 4),            // WrongAnswers
                 useAllCorrectLetters: false,
+                packsUsedTogether: true,
                 parameters: builderParams);
         }
 
@@ -330,10 +344,10 @@ namespace EA4S.Assessment
             SimultaneosQuestions = 1;
             Rounds = 3;
 
-            var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
-            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
-            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
 
             return new RandomLettersQuestionBuilder(

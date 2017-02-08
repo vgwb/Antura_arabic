@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Database;
 
 namespace EA4S.Teacher
 {
@@ -19,12 +20,14 @@ namespace EA4S.Teacher
         private bool useAllCorrectLetters;
         private int nWrong;
         private int maximumWordLength;
-        private Database.WordDataCategory category;
+        private bool packsUsedTogether;
+        private WordDataCategory category;
         private QuestionBuilderParameters parameters;
 
         public LettersInWordQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, 
             bool useAllCorrectLetters = false, Database.WordDataCategory category = Database.WordDataCategory.None,
             int maximumWordLength = 20,
+            bool packsUsedTogether = false,
             QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
@@ -34,14 +37,19 @@ namespace EA4S.Teacher
             this.useAllCorrectLetters = useAllCorrectLetters;
             this.category = category;
             this.maximumWordLength = maximumWordLength;
+            this.packsUsedTogether = packsUsedTogether;
             this.parameters = parameters;
         }
 
-        private List<string> previousPacksIDs = new List<string>();
+        private List<string> previousPacksIDs_words = new List<string>();
+        private List<string> previousPacksIDs_letters = new List<string>();
+        //private List<string> previousWords_letters = new List<string>();
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
-            previousPacksIDs.Clear();
+            previousPacksIDs_words.Clear();
+            previousPacksIDs_letters.Clear();
+            //previousWords_letters.Clear();
             List<QuestionPackData> packs = new List<QuestionPackData>();
             for (int pack_i = 0; pack_i < nPacks; pack_i++)
             {
@@ -55,24 +63,30 @@ namespace EA4S.Teacher
             var teacher = AppManager.I.Teacher;
             var vocabularyHelper = AppManager.I.VocabularyHelper;
 
-            // Get a word
+            // Choose a single eligible word
             var usableWords = teacher.VocabularyAi.SelectData(
-                () => FindEligibleWords(maxWordLength: this.maximumWordLength),
+                () => FindEligibleWords(maxWordLength: maximumWordLength),
                     new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
-                        packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
+                        packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words));
             var question = usableWords[0];
+            //UnityEngine.Debug.LogWarning("Chosen word: " + question);
 
             // Get letters of that word
             var wordLetters = vocabularyHelper.GetLettersInWord(question);
+            //UnityEngine.Debug.LogWarning("Found letters: " + wordLetters.Count);
 
-            bool useJourneyForLetters = parameters.useJourneyForCorrect; 
-            if (useAllCorrectLetters) useJourneyForLetters = false;  // @note: we force journey in this case to be off so that all letters can be found
+            bool useJourneyForLetters = parameters.useJourneyForCorrect;
+            // @note: we force journey in this case to be off so that all letters can be found
+            // @note: we also force the journey if the packs must be used together, as the data filters for journey clash with the new filter
+            if (useAllCorrectLetters || packsUsedTogether) useJourneyForLetters = false;
 
+            // Get some letters (from that word)
             var correctAnswers = teacher.VocabularyAi.SelectData(
-                () => wordLetters,
+                () => FindEligibleLetters(question, wordLetters),
                  new SelectionParameters(parameters.correctSeverity, nCorrect, getMaxData:useAllCorrectLetters, 
-                 useJourney: useJourneyForLetters));  
+                 useJourney: useJourneyForLetters, filteringIds: previousPacksIDs_letters));
 
+            // Get some wrong letters (not from that word)
             var wrongAnswers = teacher.VocabularyAi.SelectData(
                 () => vocabularyHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray()),
                     new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong));
@@ -91,21 +105,79 @@ namespace EA4S.Teacher
             return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
         }
 
-        public List<Database.WordData> FindEligibleWords(int maxWordLength)
+        public List<WordData> FindEligibleWords(int maxWordLength)
         {
             var vocabularyHelper = AppManager.I.VocabularyHelper;
-            List<Database.WordData> eligibleWords = new List<Database.WordData>();
+            List<WordData> eligibleWords = new List<WordData>();
             foreach(var word in vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters))
             {
-                if (word.Letters.Length <= maxWordLength)
-                {
-                    eligibleWords.Add(word);
-                }
+                // Check max length
+                if (word.Letters.Length > maxWordLength) continue;
+
+                // Avoid using words that contain previously chosen letters
+                if (packsUsedTogether && WordContainsAnyLetter(word, previousPacksIDs_letters)) continue;
+
+                // Avoid using words that have ONLY letters that appeared in previous words
+                if (packsUsedTogether && WordHasAllLettersInCommonWith(word, previousPacksIDs_words)) continue;
+
+                eligibleWords.Add(word);
             }
             //UnityEngine.Debug.Log("Eligible words: " + eligibleWords.Count + " out of " + teacher.VocabularyHelper.GetWordsByCategory(category, parameters.wordFilters).Count);
             return eligibleWords;
         }
 
+        public List<LetterData> FindEligibleLetters(WordData selectedWord, List<LetterData> wordLetters)
+        {
+            List<LetterData> eligibleLetters = new List<LetterData>();
+            foreach (var letter in wordLetters)
+            {
+                // Avoid using letters that appeared in previous words
+                if (packsUsedTogether && LetterContainedInAnyWord(selectedWord, letter, previousPacksIDs_words)) continue;
+
+                eligibleLetters.Add(letter);
+            }
+            return eligibleLetters;
+        }
+
+        bool LetterContainedInAnyWord(WordData goodWord, LetterData letter, List<string> word_ids)
+        {
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
+            foreach (var word_id in word_ids)
+            {
+                if (word_id == goodWord.Id) continue;
+                //UnityEngine.Debug.Log("CHECKING: " + word_id);
+                var containedLetters = vocabularyHelper.GetLettersInWord(word_id);
+                if (containedLetters.Contains(letter))
+                    return true;
+            }
+            return false;
+        }
+
+        bool WordContainsAnyLetter(WordData word, List<string> letter_ids)
+        {
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
+            var containedLetters = vocabularyHelper.GetLettersInWord(word).ConvertAll(x => x.Id);
+            foreach (var letter_id in letter_ids)
+            {
+                if (containedLetters.Contains(letter_id))
+                    return true;
+            }
+            return false;
+        }
+
+        bool WordHasAllLettersInCommonWith(WordData word, List<string> word_ids)
+        {
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
+            var containedLetters = vocabularyHelper.GetLettersInWord(word);
+
+           // UnityEngine.Debug.Log(word + " -> "  + word_ids);
+            foreach (var letter in containedLetters)
+            {
+                if (!LetterContainedInAnyWord(word, letter, word_ids))
+                    return false;
+            }
+            return true;
+        }
 
     }
 }
