@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.MinigamesCommon;
+using UnityEngine;
 
 namespace EA4S.Minigames.ThrowBalls
 {
@@ -6,7 +7,8 @@ namespace EA4S.Minigames.ThrowBalls
     {
         public static SlingshotController instance;
 
-        public GameObject ball;
+        public SpringController spring;
+        public BallController ball;
         public GameObject arc;
         public GameObject center;
 
@@ -35,10 +37,85 @@ namespace EA4S.Minigames.ThrowBalls
             pointOfImpact.y = GroundController.instance.transform.position.y;
 
             arc.SetActive(false);
+
+
+            IInputManager inputManager = ThrowBallsConfiguration.Instance.Context.GetInputManager();
+            inputManager.onPointerDrag += OnPointerDrag;
+            inputManager.onPointerUp += OnPointerUp;
+        }
+
+        public Vector3 INITIAL_BALL_POSITION = new Vector3(0, 5.25f, -20f);
+        //private float yzStretchRange = 3f;
+        public bool dragging = false;
+        private void OnPointerDrag()
+        {
+            if (ball.IsDragging())
+            {
+                dragging = true;
+                Vector2 lastTouch = ThrowBallsConfiguration.Instance.Context.GetInputManager().LastPointerPosition;
+
+                float xInput = ((Screen.width * 0.5f - lastTouch.x) / Screen.height) * 2;
+                float yInput = ((lastTouch.y - Camera.main.WorldToScreenPoint(center.transform.position).y) / Screen.height) * 1.8f;
+
+                if (!spring.Released)
+                {
+                    spring.angle = Mathf.Clamp(xInput * 90, -60, 60);
+                    spring.t = Mathf.Clamp(yInput, -1, 0);
+                }
+            }
+        }
+
+        private void OnPointerUp()
+        {
+            dragging = false;
+            if (ball.IsDragging() && IsMinimalInput())
+            {
+                Vector3 forceToApply = GetLaunchForce();
+                ball.Launch(forceToApply);
+            }
+            else
+            {
+                ball.CancelDragging();
+            }
+        }
+
+        bool IsMinimalInput()
+        {
+            return spring.t < -0.085f;
+        }
+
+        void Update()
+        {
+            spring.Released = !(ball.IsAnchored() || ball.IsDragging());
+
+            if (!spring.Released)
+            {
+                if (!dragging && ball.IsAnchored())
+                    spring.t = Mathf.Lerp(spring.t, 0, 6*Time.deltaTime);
+
+                ball.transform.position = spring.Slot.position;
+
+                if (IsMinimalInput())
+                {
+                    ArrowBodyController.instance.Enable();
+                    ArrowHeadController.instance.Enable();
+                }
+                else
+                {
+                    ArrowBodyController.instance.Disable();
+                    ArrowHeadController.instance.Disable();
+                }
+            }
+            else
+            {
+                ArrowBodyController.instance.Disable();
+                ArrowHeadController.instance.Disable();
+            }
         }
 
         void FixedUpdate()
         {
+
             if (!BallController.instance.IsLaunched())
             {
                 UpdateLaunchForce();
