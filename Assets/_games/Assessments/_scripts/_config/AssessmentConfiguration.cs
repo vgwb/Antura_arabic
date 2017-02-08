@@ -320,8 +320,8 @@ namespace EA4S.Assessment
 
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
-            SimultaneosQuestions = 1;
-            Rounds = 3;
+            SimultaneosQuestions = 3;
+            Rounds = 1;
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
@@ -332,9 +332,10 @@ namespace EA4S.Assessment
             return new LettersInWordQuestionBuilder(
 
                 SimultaneosQuestions * Rounds,   // Total Answers
-                snag.Increase( 1, 2),            // CorrectAnswers
-                snag.Increase( 2, 4),            // WrongAnswers
+                1,// snag.Increase( 1, 2),            // CorrectAnswers
+                0,// snag.Increase( 2, 4),            // WrongAnswers
                 useAllCorrectLetters: false,
+                packsUsedTogether: true,
                 parameters: builderParams);
         }
 

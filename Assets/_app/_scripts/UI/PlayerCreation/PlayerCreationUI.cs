@@ -2,6 +2,7 @@
 using DG.DeExtensions;
 using DG.Tweening;
 using EA4S.Core;
+using EA4S.Scenes;
 using UnityEngine;
 
 namespace EA4S.UI
@@ -31,14 +32,14 @@ namespace EA4S.UI
             }
         }
         int selectionStep = 0; // 0: age // 1: gender // 2: avatar // 3: color
-        float selectionStepOffset;
+        float selectionStepOffsetY;
         Tween stepTween;
 
         #region Unity
 
         void Start()
         {
-            selectionStepOffset = StartupOffsetY / 3f;
+            selectionStepOffsetY = StartupOffsetY / 3f;
             CategoriesContainer.SetAnchoredPosY(StartupOffsetY);
             for (int i = 1; i < Categories.Length; ++i) Categories[i].gameObject.SetActive(false);
             BtCreate.gameObject.SetActive(false);
@@ -72,7 +73,7 @@ namespace EA4S.UI
             selectionStep++;
             if (stepTween != null) stepTween.Complete();
             Categories[selectionStep].gameObject.SetActive(true);
-            stepTween = CategoriesContainer.DOAnchorPosY(-selectionStepOffset, 0.4f).SetRelative();
+            stepTween = CategoriesContainer.DOAnchorPosY(StartupOffsetY - selectionStepOffsetY * selectionStep, 0.4f);
         }
 
         void StepBackwards(int toStep)
@@ -87,7 +88,7 @@ namespace EA4S.UI
                 cat.gameObject.SetActive(false);
             }
             selectionStep = toStep;
-            stepTween = CategoriesContainer.DOAnchorPosY(selectionStepOffset * totSteps, 0.4f).SetRelative();
+            stepTween = CategoriesContainer.DOAnchorPosY(StartupOffsetY - selectionStepOffsetY * selectionStep, 0.4f);
         }
 
         void SetGender()
@@ -97,7 +98,12 @@ namespace EA4S.UI
 
         void CreateProfile()
         {
-            throw new System.NotImplementedException();
+            PlayerCreationScene.CreatePlayer(
+                Categories[0].SelectedIndex + 4,
+                Categories[1].SelectedIndex == 0 ? PlayerGender.M : PlayerGender.F,
+                Categories[2].SelectedIndex + 1,
+                (PlayerColor)(Categories[3].SelectedIndex + 1)
+            );
         }
 
         #endregion
