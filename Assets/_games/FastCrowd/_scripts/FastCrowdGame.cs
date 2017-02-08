@@ -139,7 +139,8 @@ namespace EA4S.Minigames.FastCrowd
 
                 if (showAsGoodAnswer)
                 {
-                    popupWidget.SetTitle(Database.LocalizationDataId.Keeper_Good_5);
+                    //popupWidget.SetTitle(Database.LocalizationDataId.Keeper_Good_5);
+                    popupWidget.SetTitle("");
                     popupWidget.SetMark(true, true);
                 }
                 else

@@ -23,6 +23,8 @@ namespace EA4S.Rewards
         }
 
         public static MaterialPair SwitchMaterial(GameObject _gameObject, MaterialPair _materialPair) {
+            if (_materialPair.Material1 == null || _materialPair.Material2 == null)
+                return _materialPair;
             foreach (var color in _gameObject.GetComponentsInChildren<MeshRenderer>()) {
                 if (color.name == "color_1") {
                     color.materials = new Material[] { _materialPair.Material1 };

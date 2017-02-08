@@ -16,21 +16,21 @@ namespace EA4S.Assessment
         private List< ILivingLetterData>[] answersBuckets;
         private ArabicCategoryProvider categoryProvider;
 
-        public CategoryQuestionGenerator( IQuestionProvider questionProvider, 
-                                          ArabicCategoryProvider categoryProvider,
-                                          AssessmentDialogues dialogues,
-                                          int maxAnsw, int rounds)
+        public CategoryQuestionGenerator(   IQuestionProvider questionProvider,
+                                            ArabicCategoryProvider categoryProvider,
+                                            AssessmentDialogues dialogues,
+                                            int maxAnsw, int rounds)
         {
             state = QuestionGeneratorState.Uninitialized;
             numberOfMaxAnswers = maxAnsw;
             numberOfRounds = rounds;
-            answersBuckets = new List< ILivingLetterData>[ 3];
+            answersBuckets = new List< ILivingLetterData>[3];
             this.categoryProvider = categoryProvider;
             this.dialogues = dialogues;
 
             for (int i = 0; i < 3; i++)
                 answersBuckets[i] = new List< ILivingLetterData>();
-                        
+
             ClearCache();
             FillBuckets( questionProvider);
         }
@@ -42,32 +42,32 @@ namespace EA4S.Assessment
         /// </summary>
         private void NumberOfAnswersFromEachBucket()
         {
-            category1ForThisRound = 0;
-            category2ForThisRound = 0;
-            category3ForThisRound = 0;
+            for (int i = 0, count = roundElementsForCategory.Length; i < count; ++i)
+             roundElementsForCategory[i] = 0;
 
             int picksThisRound = numberOfMaxAnswers;
             int totalAnswers = answersBuckets[0].Count + answersBuckets[1].Count + answersBuckets[2].Count;
 
-            while ( picksThisRound > 0 && totalAnswers>0)
+            while (picksThisRound > 0 && totalAnswers > 0)
             {
                 int pickFromBucketN = -1;
 
                 //ok as long as we have 10 or less buckets
                 // try to be fair (but never use infinite loop.)
-                for( int i=0; i<1000000 && pickFromBucketN == -1; i++)
+                for (int i = 0; i < 1000000 && pickFromBucketN == -1; i++)
                 {
                     int temp = UnityEngine.Random.Range( 0, 3);
-                    if ( answersBuckets[ temp].Count > 0)
+
+                    if (answersBuckets[ temp].Count > roundElementsForCategory[ temp])
                         pickFromBucketN = temp;
                 }
 
                 if (pickFromBucketN == -1)
                 {
                     //and use a little bias if computation took to long.
-                    for(int i=0; i<3; i++)
+                    for (int i = 0; i < 3; i++)
                     {
-                        if (answersBuckets[i].Count > 0)
+                        if (answersBuckets[i].Count > roundElementsForCategory[i])
                         {
                             pickFromBucketN = i;
                             break;
@@ -81,20 +81,10 @@ namespace EA4S.Assessment
                 picksThisRound--;
                 totalAnswers--;
 
-                switch (pickFromBucketN)
-                {
-                    case 0: category1ForThisRound++; break;
-                    case 1: category2ForThisRound++; break;
-                    default: category3ForThisRound++; break;
-                }
-
+                roundElementsForCategory[ pickFromBucketN]++;
             }
 
-            Debug.Log(" category1ForThisRound++ "+ category1ForThisRound);
-            Debug.Log(" category2ForThisRound++ "+ category2ForThisRound);
-            Debug.Log(" category3ForThisRound++ "+ category3ForThisRound);
-
-            if ( picksThisRound == numberOfMaxAnswers)
+            if (picksThisRound == numberOfMaxAnswers)
                 throw new InvalidOperationException( "buckets empty");
         }
 
@@ -111,14 +101,15 @@ namespace EA4S.Assessment
             {
                 var pack = questionProvider.GetNextQuestion();
 
-                
+
                 foreach (var answ in pack.GetCorrectAnswers()) //Arabic has different order!
                     for (int j = 0; j < categoryProvider.GetCategories(); j++)
+                    {
                         if (categoryProvider.Compare(j, answ))
                         {
-                            Debug.Log("Filling Bucket: "+ j);
                             answersBuckets[j].Add(pack.GetQuestion());
                         }
+                    }
             }
         }
 
@@ -131,7 +122,7 @@ namespace EA4S.Assessment
         public void InitRound()
         {
             if (state != QuestionGeneratorState.Uninitialized && state != QuestionGeneratorState.Completed)
-                throw new InvalidOperationException( "Cannot initialized");
+                throw new InvalidOperationException("Cannot initialized");
 
             state = QuestionGeneratorState.Initialized;
             ClearCache();
@@ -187,9 +178,7 @@ namespace EA4S.Assessment
         private int currentCategory;
 
         // Categories
-        private int category1ForThisRound;
-        private int category2ForThisRound;
-        private int category3ForThisRound;
+        private int[] roundElementsForCategory = new int[3];
         private AssessmentDialogues dialogues;
 
         public IQuestion GetNextQuestion()
@@ -204,23 +193,14 @@ namespace EA4S.Assessment
             //____________________________________
 
             // Assumption: Here each category have enough elements
-            int amount = 0;
-            switch (currentCategory)
-            {
-                case 0: amount = category1ForThisRound; break;
-                case 1: amount = category2ForThisRound; break;
-                default: amount = category3ForThisRound; break;
-            }
+            int amount = roundElementsForCategory[ currentCategory];
 
-            List< Answer> answers = new List< Answer>();
+            List<Answer> answers = new List< Answer>();
 
             int correctCount = 0;
-            Debug.Log("Amount: " + amount);
-            for (int i=0; i<amount; i++)
+            for (int i = 0; i < amount; i++)
             {
-                Debug.Log("answersBuckets[ currentCategory] lenght: " + answersBuckets[currentCategory].Count);
                 var answer = answersBuckets[ currentCategory].Pull();
-                Debug.Log("Planced answers: " + (i+1));
                 var correctAnsw = GenerateCorrectAnswer( answer);
 
                 correctCount++;
@@ -235,7 +215,7 @@ namespace EA4S.Assessment
             totalQuestions.Add( question);
 
             // Generate placeholders
-            for (int i=0; i<numberOfMaxAnswers; i++)
+            for (int i = 0; i < numberOfMaxAnswers; i++)
                 GeneratePlaceHolder( question, AssessmentOptions.Instance.AnswerType);
 
             currentCategory++;
@@ -248,11 +228,10 @@ namespace EA4S.Assessment
             return new CategoryQuestion( q, correctCount, dialogues);
         }
 
-        private void GeneratePlaceHolder( IQuestion question, LivingLetterDataType dataType)
+        private void GeneratePlaceHolder(IQuestion question, LivingLetterDataType dataType)
         {
-            var placeholder = LivingLetterFactory.Instance.SpawnPlaceholder( dataType).transform;
-            placeholder.localPosition = new Vector3( 0, 5, 0);
-            placeholder.localScale = Vector3.zero;
+            var placeholder = LivingLetterFactory.Instance.SpawnPlaceholder( dataType);
+            placeholder.transform.localPosition = new Vector3( 0, 5, 0);
             question.TrackPlaceholder( placeholder.gameObject);
         }
     }

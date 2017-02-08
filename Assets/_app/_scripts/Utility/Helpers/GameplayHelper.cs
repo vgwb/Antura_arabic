@@ -44,12 +44,12 @@ namespace EA4S.Helpers
             targetDir.Normalize();
             currentDir.Normalize();
 
-            var desiredAngle = MathHelper.AngleCounterClockwise(targetDir, Vector2.down);
-            var currentAngle = MathHelper.AngleCounterClockwise(currentDir, Vector2.up);
+            var desiredAngle = MathHelper.AngleCounterClockwise(targetDir, Vector2.down) * Mathf.Rad2Deg;
+            var currentAngle = MathHelper.AngleCounterClockwise(currentDir, Vector2.up) * Mathf.Rad2Deg;
 
             currentAngle = Mathf.LerpAngle(currentAngle, desiredAngle, t);
 
-            transform.rotation = Quaternion.AngleAxis(currentAngle * Mathf.Rad2Deg, Vector3.up);
+            transform.rotation = Quaternion.AngleAxis(currentAngle, Vector3.up);
         }
     }
 }

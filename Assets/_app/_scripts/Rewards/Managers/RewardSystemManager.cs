@@ -279,6 +279,8 @@ namespace EA4S.Rewards
         public static MaterialPair GetMaterialPairFromRewardIdAndColorId(string _rewardId, string _colorId) {
             Reward reward = RewardSystemManager.GetRewardById(_rewardId);
             RewardColor color = config.RewardsColorPairs.Find(c => c.ID == _colorId);
+            if (color == null || reward == null)
+                return new MaterialPair();
             MaterialPair mp = new MaterialPair(color.Color1Name, reward.Material1, color.Color2Name, reward.Material2);
             return mp;
         }

@@ -16,9 +16,8 @@ namespace EA4S.Assessment
         /// Configuration variables
         /// </summary>
         private static readonly float letterSize = 1f * 3;
-        private static readonly float wordSize = 1.5f * 3;
-        private static readonly float sentenceSize = 2f * 3;
         private static int rounds;
+        private static QuestionPlacerOptions placerOptions;
 
         public enum DragManagerType
         {
@@ -53,6 +52,8 @@ namespace EA4S.Assessment
             // Get references from GameContext (utils)
             Init( context);
             AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Word;
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Word);
+            placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Image);
 
             // Instantiate the correct managers
             CreateManagers( context,
@@ -65,7 +66,7 @@ namespace EA4S.Assessment
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
                                                                         context.DialogueManager,
                                                                         context.Events);
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, letterSize, wordSize);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
 
             // Build the assessment
             return CreateAssessment( context);
@@ -83,7 +84,8 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
-
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Letter);
+            placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Word);
             AssessmentOptions.Instance.ShowFullWordOnAnswered = true;
 
             CreateManagers( context,
@@ -96,7 +98,7 @@ namespace EA4S.Assessment
             context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, false,
                                                                     context.DialogueManager,
                                                                     context.Events);
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
 
             return CreateAssessment( context);
         }
@@ -113,7 +115,9 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
-
+            placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Word);
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Letter);
+            placerOptions.SpawnImageWithQuestion = true;
             AssessmentOptions.Instance.CompleteWordOnAnswered = true;
 
             CreateManagers( context,
@@ -124,7 +128,7 @@ namespace EA4S.Assessment
 
             context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, true,
                                                                     context.DialogueManager, context.Events);
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize, true);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
 
             return CreateAssessment( context);
         }
@@ -141,6 +145,8 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
+            placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Word);
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Letter);
 
             CreateManagers( context,
                             DragManagerType.Default,
@@ -151,7 +157,7 @@ namespace EA4S.Assessment
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
                                                                         context.DialogueManager,
                                                                         context.Events);
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, letterSize);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
 
             return CreateAssessment( context);
         }
@@ -168,8 +174,9 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
             
             Init( context);
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Phrase);
+            placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Phrase);
             AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Phrase;
-
             AssessmentOptions.Instance.WideLL = true;
             AssessmentOptions.Instance.ReadQuestionAndAnswer = true;
 
@@ -183,7 +190,7 @@ namespace EA4S.Assessment
                                                                         context.DialogueManager,
                                                                         context.Events);
 
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, sentenceSize, sentenceSize);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
 
             return CreateAssessment( context);
         }
@@ -200,6 +207,8 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
+            placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Letter);
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Word);
             AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Word;
 
             CreateManagers( context,
@@ -213,7 +222,7 @@ namespace EA4S.Assessment
                                                                         categoryProvider,
                                                                         context.DialogueManager,
                                                                         2, rounds);
-            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, wordSize);
+            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, placerOptions);
 
             return CreateAssessment( context);
         }
@@ -230,6 +239,8 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
+            placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Letter);
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Word);
             AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Word;
 
             CreateManagers( context,
@@ -243,7 +254,7 @@ namespace EA4S.Assessment
                                                                         categoryProvider,
                                                                         context.DialogueManager,
                                                                         2, rounds);
-            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, wordSize);
+            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, placerOptions);
 
             return CreateAssessment( context);
         }
@@ -261,6 +272,8 @@ namespace EA4S.Assessment
 
             Init( context);
             AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Word;
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Word);
+            placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Letter);
 
             CreateManagers( context,
                             DragManagerType.Default,
@@ -273,7 +286,7 @@ namespace EA4S.Assessment
                                                                         categoryProvider,
                                                                         context.DialogueManager,
                                                                         2, rounds);
-            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, wordSize, wordSize);
+            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, placerOptions);
 
             return CreateAssessment( context);
         }
@@ -291,6 +304,8 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
+            placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Letter);
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Letter);
 
             CreateManagers( context,
                             DragManagerType.Default,
@@ -303,7 +318,7 @@ namespace EA4S.Assessment
                                                                        categoryProvider,
                                                                        context.DialogueManager,
                                                                        2, rounds);
-            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, letterSize, letterSize);
+            context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, placerOptions);
 
             return CreateAssessment( context);
         }
@@ -320,6 +335,8 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = true;
 
             Init( context);
+            placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Letter);
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Letter);
 
             CreateManagers( context,
                             DragManagerType.Default,
@@ -330,7 +347,7 @@ namespace EA4S.Assessment
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
                                                                         context.DialogueManager,
                                                                         context.Events);
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, letterSize, letterSize);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
 
             return CreateAssessment( context);
         }
@@ -348,6 +365,8 @@ namespace EA4S.Assessment
 
             Init( context);
             AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Word;
+            placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Word);
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Word);
 
             CreateManagers( context,
                             DragManagerType.Default,
@@ -358,7 +377,7 @@ namespace EA4S.Assessment
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
                                                                         context.DialogueManager,
                                                                         context.Events);
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, wordSize, wordSize);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
 
             return CreateAssessment( context);
         }
@@ -376,6 +395,8 @@ namespace EA4S.Assessment
 
             Init( context);
             AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Word;
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Word);
+            placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Letter);
 
             CreateManagers( context,
                             DragManagerType.Default,
@@ -386,7 +407,7 @@ namespace EA4S.Assessment
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
                                                                         context.DialogueManager,
                                                                         context.Events);
-            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, letterSize, wordSize);
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
 
             return CreateAssessment( context);
         }
@@ -403,6 +424,10 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.ShowFullWordOnAnswered = false;
             AssessmentOptions.Instance.WideLL = false;
             AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Letter;
+
+            placerOptions = QuestionPlacerOptions.Instance;
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Letter);
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Letter);
 
             context.Configuration = AssessmentConfiguration.Instance;
             context.Events = new AssessmentEvents();
@@ -452,7 +477,7 @@ namespace EA4S.Assessment
             if (answerPlacer == AnswerPlacerType.Line)
                 context.AnswerPlacer = new LineAnswerPlacer( context.AudioManager, letterSize);
             else
-                context.AnswerPlacer = new RandomAnswerPlacer( context.AudioManager);
+                context.AnswerPlacer = new RandomAnswerPlacer( context.AudioManager, placerOptions);
         }
     }
 }

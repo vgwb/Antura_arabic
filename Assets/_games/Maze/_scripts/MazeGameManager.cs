@@ -66,6 +66,8 @@ namespace EA4S.Minigames.Maze
         public Color incorrectLineColor;
         public float durationToTweenLineColors;
 
+        public GameObject drawingTool;
+
         void setupIndices()
         {
             allLetters = new Dictionary<string, int>();
@@ -100,6 +102,8 @@ namespace EA4S.Minigames.Maze
         {
             base.Awake();
             instance = this;
+
+            Physics.IgnoreLayerCollision(10, 12);
         }
 
         public void ColorCurrentLinesAsIncorrect()
@@ -148,6 +152,11 @@ namespace EA4S.Minigames.Maze
             });
 
             Context.GetAudioManager().PlayMusic(Music.Theme8);
+        }
+
+        public void OnFruitGotDrawnOver(MazeArrow mazeArrow)
+        {
+            currentMazeLetter.NotifyFruitGotMouseOver(mazeArrow);
         }
 
         public void initUI()
@@ -419,8 +428,6 @@ namespace EA4S.Minigames.Maze
                 index = UnityEngine.Random.Range(0, prefabs.Count);
             }
 
-            //index = 3;
-
             currentLL = ld;
             currentPrefab = (GameObject)Instantiate(prefabs[index]);
 
@@ -580,6 +587,9 @@ namespace EA4S.Minigames.Maze
                 MinigamesUI.Starbar.GotoStar(numberOfStars - 1);
             }
 
+            // Reset physics collisions:
+            Physics.IgnoreLayerCollision(10, 12, false);
+
             EndGame(numberOfStars, correctLetters);
             //StartCoroutine(EndGame_Coroutine());
         }
@@ -619,7 +629,7 @@ namespace EA4S.Minigames.Maze
         public bool isShowingAntura = false;
         public void onIdleTime()
         {
-            if (isShowingAntura) return;
+            if (isShowingAntura || gameEnded) return;
             isShowingAntura = true;
 
             timer.StopTimer();

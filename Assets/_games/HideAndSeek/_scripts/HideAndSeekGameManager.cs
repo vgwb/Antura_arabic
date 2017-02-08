@@ -7,7 +7,7 @@ using EA4S.Antura;
 using EA4S.Audio;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
-
+using EA4S.Helpers;
 
 namespace EA4S.Minigames.HideAndSeek
 {
@@ -50,11 +50,23 @@ namespace EA4S.Minigames.HideAndSeek
             AnturaEnterScene();
         }
 
+        float anturaEnterTimer = 5;
         void Update()
         {
             if (StartNewRound && game.inGame && Time.time > time + timeToWait)
             {
                 NewRound();
+            }
+
+            if (game.inGame && !Antura.IsFollowing)
+            {
+                anturaEnterTimer -= Time.deltaTime;
+
+                if (anturaEnterTimer < 0)
+                {
+                    anturaEnterTimer = Random.Range(5, 10);
+                    AnturaEnterScene();
+                }
             }
         }
 
@@ -306,29 +318,9 @@ namespace EA4S.Minigames.HideAndSeek
 
         void AnturaEnterScene()
         {
-            List<Vector3> AnturaPath = new List<Vector3>();
+            var path = anturaPaths.GetRandom();
 
-            AnturaPath.Add(ArrayTrees[2].transform.position + Vector3.forward * 3);
-            AnturaPath.Add(ArrayTrees[6].transform.position + Vector3.forward * 3);
-            AnturaPath.Add(ArrayTrees[6].transform.position + Vector3.forward * 3 + Vector3.left * 3);
-
-            //AnturaPath.Add(ArrayTrees[0].transform.position + Vector3.back * 3);
-            AnturaPath.Add(ArrayTrees[1].transform.position + Vector3.forward * 3);
-
-            AnturaPath.Add(transform.position + Vector3.left * 40);
-
-            Vector3[] aAnturaPath = AnturaPath.ToArray();
-
-            AnturaAnimationController anturaAC = Antura.GetComponent<AnturaAnimationController>();
-            anturaAC.IsAngry = true;
-            //anturaAC.IsSad = true;
-
-            anturaAC.State = AnturaAnimationStates.walking;
-
-            Antura.transform.DOPath(aAnturaPath, 10, PathType.CatmullRom).OnWaypointChange(delegate (int wayPoint)
-            {
-                Antura.transform.DOLookAt(aAnturaPath[wayPoint], 0.5f);
-            });
+            Antura.FollowPath(path);
         }
 
 
@@ -340,7 +332,7 @@ namespace EA4S.Minigames.HideAndSeek
         private const int MAX_OBJECT = 7;
         private int FreePlaceholder;
 
-        public GameObject Antura;
+        public AnturaPathFollower Antura;
 
         public GameObject[] ArrayTrees;
         private List<GameObject> ActiveTrees;
@@ -364,6 +356,8 @@ namespace EA4S.Minigames.HideAndSeek
         private float time;
 
         public GameObject buttonRepeater;
+
+        public AnturaPath[] anturaPaths;
         #endregion
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using EA4S.MinigamesAPI;
 using EA4S.UI;
+using DG.Tweening;
 
 namespace EA4S.Minigames.ThrowBalls
 {
@@ -46,6 +47,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         public void OnScreenCracked()
         {
+            Camera.main.transform.DOShakePosition(CRACK_FADE_DELAY);
             StartCoroutine(CrackAnimationCoroutine());
         }
 

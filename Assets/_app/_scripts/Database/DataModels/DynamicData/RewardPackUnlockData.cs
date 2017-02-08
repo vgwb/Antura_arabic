@@ -46,10 +46,10 @@ namespace EA4S.Database
 
         public RewardPackUnlockData(string _ItemID, string _ColorId, RewardTypes _Type, string _PlaySessionId)
         {
-            Id = _ItemID + "." + _ColorId + "." + _Type;
             ItemID = _ItemID;
             ColorId = _ColorId;
             Type = _Type;
+            Id = GetIdAccordingToDBRules();
             PlaySessionId = _PlaySessionId;
             Order = 0;
             IsNew = true;
@@ -57,6 +57,9 @@ namespace EA4S.Database
             CreationTimestamp = GenericHelper.GetTimestampForNow();
         }
 
+        public string GetIdAccordingToDBRules() { 
+            return this.ItemID + "." + this.ColorId + "." + this.Type;
+        }
 
         #region Rewards API
 
