@@ -30,7 +30,6 @@ namespace EA4S.UI
         public bool IsToggled { get; private set; }
         public bool IsLocked { get; private set; }
         public Button Bt { get { if (fooBt == null) fooBt = this.GetComponent<Button>(); return fooBt; } }
-        public Image Ico { get { if (fooIco == null) fooIco = this.GetComponent<Image>(); return fooIco; } }
         public RectTransform RectT { get { if (fooRectT == null) fooRectT = this.GetComponent<RectTransform>(); return fooRectT; } }
         public Image BtImg {
             get {
@@ -42,6 +41,19 @@ namespace EA4S.UI
                 return fooBtImg;
             }
         }
+
+        public Image Ico {
+            get {
+                if (!fooIcoSearched)
+                {
+                    fooIcoSearched = true;
+                    Image[] icos = this.GetOnlyComponentsInChildren<Image>(true);
+                    if (icos.Length > 0) fooIco = icos[0];
+                }
+                return fooIco;
+            }
+        }
+
         public CanvasGroup CGroup {
             get {
                 if (fooCGroup == null)
@@ -55,6 +67,7 @@ namespace EA4S.UI
         Button fooBt;
         Image fooBtImg;
         Image fooIco;
+        bool fooIcoSearched;
         RectTransform fooRectT;
         CanvasGroup fooCGroup;
 

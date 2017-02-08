@@ -1,6 +1,7 @@
 ﻿using System;
 using DG.DeExtensions;
 using DG.Tweening;
+using EA4S.Core;
 using UnityEngine;
 
 namespace EA4S.UI
@@ -14,6 +15,7 @@ namespace EA4S.UI
 
         [Tooltip("Startup offset of categories")]
         public int StartupOffsetY = 180;
+        public UIButton BtCreate;
         public RectTransform CategoriesContainer;
         public PlayerCreationUICategory[] Categories; // 0: age // 1: gender // 2: avatar // 3: color
 
@@ -39,8 +41,10 @@ namespace EA4S.UI
             selectionStepOffset = StartupOffsetY / 3f;
             CategoriesContainer.SetAnchoredPosY(StartupOffsetY);
             for (int i = 1; i < Categories.Length; ++i) Categories[i].gameObject.SetActive(false);
+            BtCreate.gameObject.SetActive(false);
 
             // Listeners
+            BtCreate.Bt.onClick.AddListener(CreateProfile);
             foreach (PlayerCreationUICategory cat in Categories)
             {
                 cat.OnSelect += OnSelectCategory;
@@ -50,6 +54,7 @@ namespace EA4S.UI
 
         void OnDestroy()
         {
+            BtCreate.Bt.onClick.RemoveAllListeners();
             foreach (PlayerCreationUICategory cat in Categories)
             {
                 cat.OnSelect -= OnSelectCategory;
@@ -85,6 +90,16 @@ namespace EA4S.UI
             stepTween = CategoriesContainer.DOAnchorPosY(selectionStepOffset * totSteps, 0.4f).SetRelative();
         }
 
+        void SetGender()
+        {
+            Categories[2].AvatarSetIcon(Categories[1].SelectedIndex == 1);
+        }
+
+        void CreateProfile()
+        {
+            throw new System.NotImplementedException();
+        }
+
         #endregion
 
         #region Callbacks
@@ -93,15 +108,23 @@ namespace EA4S.UI
         {
             int catIndex = Array.IndexOf(Categories, category);
             if (selectionStep < Categories.Length - 1 && catIndex == selectionStep) NextStep();
-            else if (catIndex == 3)
+            switch (catIndex)
             {
-                // Color selection
-                Categories[2].SetColor(uiButton.DefaultColor);
+                case 1: // Gender
+                    SetGender();
+                    break;
+                case 3: // Color selection
+                    Categories[2].SetColor(uiButton.DefaultColor);
+                    BtCreate.gameObject.SetActive(true);
+                    BtCreate.Pulse();
+                    break;
             }
         }
 
         void OnDeselectAllInCategory(PlayerCreationUICategory category)
         {
+            BtCreate.StopPulsing();
+            BtCreate.gameObject.SetActive(false);
             int catIndex = Array.IndexOf(Categories, category);
             if (catIndex < selectionStep) StepBackwards(catIndex);
             else if (catIndex == 3) Categories[2].ResetColor();

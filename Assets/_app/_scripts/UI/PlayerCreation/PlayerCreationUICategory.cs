@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.DeExtensions;
+using EA4S.Core;
 using EA4S.UI;
 using UnityEngine;
 
@@ -88,6 +89,14 @@ namespace EA4S.UI
                uiButton.DefaultColor = Color.white;
                uiButton.BtImg.color = new Color(1, 1, 1, uiButton.BtImg.color.a);
             }
+        }
+
+        // Only used by avatars category
+        public void AvatarSetIcon(bool isFemale)
+        {
+            // TODO use different avatars
+            Sprite sprite = Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + (isFemale ? "F1" : "M1"));
+            foreach (UIButton uiButton in uiButtons) uiButton.Ico.sprite = sprite;
         }
 
         #endregion
