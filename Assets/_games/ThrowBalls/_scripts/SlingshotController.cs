@@ -45,7 +45,7 @@ namespace EA4S.Minigames.ThrowBalls
         }
 
         public Vector3 INITIAL_BALL_POSITION = new Vector3(0, 5.25f, -20f);
-        private float yzStretchRange = 3f;
+        //private float yzStretchRange = 3f;
         public bool dragging = false;
         private void OnPointerDrag()
         {
