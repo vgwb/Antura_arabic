@@ -130,7 +130,7 @@ namespace EA4S.Teacher
             return eligibleWords;
         }
 
-        public bool WordContainsLetterWithForm(WordData selectedWord, LetterData letter, LetterPosition forms)
+        public bool WordContainsLetterWithForm(WordData selectedWord, LetterData containedLetter, LetterPosition forms)
         {
             List<LetterData> wordLetters = AppManager.I.VocabularyHelper.GetLettersInWord(selectedWord);
             foreach (var letter in wordLetters)

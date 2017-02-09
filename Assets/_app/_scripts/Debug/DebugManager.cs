@@ -125,7 +125,7 @@ namespace EA4S.Debugging
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = PlaySession;
 
-            AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected, new GameConfiguration(Difficulty), forceNewPlaySession: true);
+            AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected, new MinigameLaunchConfiguration(Difficulty), forceNewPlaySession: true);
         }
 
     }

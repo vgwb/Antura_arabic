@@ -4,19 +4,17 @@
     /// <summary>
     /// Data passed to a minigame to configure it. 
     /// </summary>
-    // refactor: rename this, it is similar to IGameConfiguration but has a different purpose. The purpose here is for the MiniGameAPI to be called with a specific difficulty.
-    public class GameConfiguration
+    public class MinigameLaunchConfiguration
     {
-
-        public float Difficulty = 0;
+        public float Difficulty;
+        public int NumberOfRounds;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GameConfiguration"/> class.
+        /// Initializes a new instance of the <see cref="MinigameLaunchConfiguration"/> class.
         /// </summary>
-        /// <param name="_difficulty">The difficulty.</param>
-        public GameConfiguration(float _difficulty) {
-            Difficulty = _difficulty;
-            
+        public MinigameLaunchConfiguration(float _Difficulty = 0, int _NumberOfRounds = 1) {
+            Difficulty = _Difficulty;
+            NumberOfRounds = _NumberOfRounds;
         }
 
     }

@@ -30,6 +30,7 @@ namespace EA4S.Database.Management
             data.Order = ParseEnum<PlaySessionDataOrder>(data, dict["Order"]);
             data.NumberOfMinigames = ToInt(dict["NumberOfMinigames"]);
             data.Minigames = CustomParseMinigames(data, dict, db.GetMiniGameTable());
+            data.NumberOfRoundsPerMinigame = ToInt(dict["NumberOfRounds"]);
 
             return data;
         }

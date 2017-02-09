@@ -25,6 +25,7 @@ namespace EA4S.Database
         public PlaySessionDataOrder Order;
         public int NumberOfMinigames;
         public List<MiniGameInPlaySession> Minigames;
+        public int NumberOfRoundsPerMinigame;
 
         public string[] Letters;
         public string[] Words;
