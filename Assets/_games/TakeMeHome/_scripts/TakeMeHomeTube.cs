@@ -10,15 +10,22 @@ namespace EA4S.Minigames.TakeMeHome
 
 		Vector3 originalPosition;
         public bool upperTube;
+        public Transform enterance;
         public GameObject aspiration;
         public GameObject winParticles;
         public GameObject cubeInfo;
+        TakeMeHomeTremblingTube trembling;
+        BoxCollider coll;
 
+        Vector3 collStartSize;
         // Use this for initialization
         void Start () {
 			originalPosition = transform.position;
             aspiration.SetActive(false);
             winParticles.SetActive(false);
+            trembling = GetComponent<TakeMeHomeTremblingTube>();
+            coll = GetComponent<BoxCollider>();
+            collStartSize = coll.size;
         }
 
         public void showWinParticles()
@@ -32,13 +39,17 @@ namespace EA4S.Minigames.TakeMeHome
         public void activate()
         {
             aspiration.SetActive(true);
-            shake();
+            //shake();
+            trembling.Trembling = true;
+            coll.size += Vector3.one * 0.9f; 
         }
 
         public void deactivate()
         {
             aspiration.SetActive(false);
-            moveTweener = transform.DOMove(originalPosition, 0.5f);
+            //moveTweener = transform.DOMove(originalPosition, 0.5f);
+            trembling.Trembling = false;
+            coll.size = collStartSize;
         }
 		
 		// Update is called once per frame
