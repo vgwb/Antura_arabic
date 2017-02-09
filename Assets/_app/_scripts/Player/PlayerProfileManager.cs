@@ -13,11 +13,6 @@ namespace EA4S.Profile
 
         #region Properties
 
-        /// <summary>
-        /// Max number of player profiles usable.
-        /// </summary>
-        public int MaxNumberOfPlayerProfiles = 5;
-
         private PlayerProfile currentPlayer;
         /// <summary>
         /// Actual Player.
@@ -41,7 +36,7 @@ namespace EA4S.Profile
                         OnProfileChanged();
                 }
                 currentPlayer = value;
-                
+
 
             }
         }
@@ -60,7 +55,8 @@ namespace EA4S.Profile
         /// <summary>
         /// Reloads the game settings (AppSettings) from PlayerPrefs.
         /// </summary>
-        public void ReloadGameSettings() {
+        public void ReloadGameSettings()
+        {
             AppManager.I.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
             AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
             int lastActivePlayerId = AppManager.I.GameSettings.LastActivePlayerId;
@@ -78,7 +74,7 @@ namespace EA4S.Profile
         public List<int> GetListOfUnusedId()
         {
             List<int> returnList = new List<int>();
-            for (int i = 1; i < MaxNumberOfPlayerProfiles + 1; i++) {
+            for (int i = 1; i < AppConstants.MaxNumberOfPlayerProfiles + 1; i++) {
                 if (AppManager.I.GameSettings.AvailablePlayers[i] == null)
                     returnList.Add(i);
             }
@@ -95,7 +91,7 @@ namespace EA4S.Profile
         {
             PlayerProfile returnProfile;
             PlayerProfileData profileFromDB = AppManager.I.DB.LoadDatabaseForPlayer(GetPlayerIdFromAvatarId(_avatarId));
-            
+
             if (profileFromDB == null) { // not present in db or old db, create new one
                 returnProfile = new PlayerProfile();
                 // create new
@@ -177,7 +173,7 @@ namespace EA4S.Profile
         /// </summary>
         /// <param name="_playerId">The player identifier.</param>
         /// <returns></returns>
-        public string GetAvatarIdFromPlayerId(int _playerId) 
+        public string GetAvatarIdFromPlayerId(int _playerId)
         {
             return AppManager.I.GameSettings.AvailablePlayers[_playerId - 1];
         }
@@ -185,7 +181,8 @@ namespace EA4S.Profile
         /// <summary>
         /// Resets the everything.
         /// </summary>
-        public void ResetEverything() {
+        public void ResetEverything()
+        {
             // Reset all the Databases
             foreach (var playerId in AppManager.I.Modules.PlayerProfile.Options.AvailablePlayers) {
                 UnityEngine.Debug.Log(playerId);
