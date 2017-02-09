@@ -23,7 +23,9 @@ namespace EA4S.Assessment
         public ParticleSystem poofPrefab;
 
         public NineSlicedSprite questionSprite;
+        public NineSlicedSprite hiddenQuestionSprite;
         public NineSlicedSprite answerSprite;
+        public SpriteRenderer MegaphoneIcon;
 
         Vector2 startTextScale;
 
@@ -32,6 +34,8 @@ namespace EA4S.Assessment
         public Transform backgroundTransform;
 
         ///################# ANIMATIONS #################
+
+        private float megaphoneScale = 1.587492f;
 
         // Local Tween
         Tween tween = null;
@@ -45,9 +49,10 @@ namespace EA4S.Assessment
             answerSprite.enabled = true;
 
             answerSprite.Material.DOColor( new Color32( 61, 185, 30, 255), 0.5f);
-            questionSprite.Material.DOFade( 0, 1);
+            hiddenQuestionSprite.Material.DOFade( 0, 1);
             Label.alpha = 0;
             Label.DOFade( 1, 0.6f);
+            MegaphoneIcon.DOFade( 0, 0.3f);
         }
 
 
@@ -57,7 +62,11 @@ namespace EA4S.Assessment
         internal void HideHiddenQuestion()
         {
             Label.alpha = 0;
-            answerSprite.Material.color = new Color( 1, 1, 1, 0);
+            MegaphoneIcon.DOFade( 1, 0);
+            MegaphoneIcon.enabled = true;
+            questionSprite.enabled = false;
+            hiddenQuestionSprite.enabled = true;
+            hiddenQuestionSprite.Material.color = new Color( 1, 1, 1, 1);
             InstaShrink();
         }
 
@@ -147,6 +156,8 @@ namespace EA4S.Assessment
 
                 textTransform.sizeDelta = new Vector2( startTextScale.x * widthScale, startTextScale.y * value);
                 drawingTransform.sizeDelta = new Vector2( startTextScale.x * widthScale, startTextScale.y * value);
+                MegaphoneIcon.transform.localScale =
+                    new Vector3(megaphoneScale * value, megaphoneScale * value, 1);
 
                 if(extendedBoxCollider == false)
                     GetComponent< BoxCollider>().size = textTransform.sizeDelta;
@@ -206,6 +217,8 @@ namespace EA4S.Assessment
             questionSprite.enabled = false;
             answerSprite.enabled = false;
             slotSprite.enabled = false;
+            hiddenQuestionSprite.enabled = false;
+            MegaphoneIcon.enabled = false;
         }
 
         /// <summary>
