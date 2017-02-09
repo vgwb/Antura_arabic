@@ -161,8 +161,8 @@ namespace EA4S.Teacher
         public void LoadCurrentPlaySessionData(string currentPlaySessionId)
         {
             var pos = new JourneyPosition(currentPlaySessionId);
-            currentPlaySessionContents = progressionContents.GetContentsOfPlaySession(pos);
             currentJourneyContents = progressionContents.GetContentsUpToPlaySession(pos);
+            currentPlaySessionContents = progressionContents.GetContentsOfPlaySession(pos);
             currentBlockContents = progressionContents.GetContentsOfLearningBlock(pos);
             currentStageContents = progressionContents.GetContentsOfStage(pos);
 
@@ -170,9 +170,9 @@ namespace EA4S.Teacher
             {
                 string debugString = "";
                 debugString += "--------- TEACHER: play session initialisation (journey " + currentPlaySessionId + ") --------- ";
-                debugString += "\n Current PS:\n" + currentJourneyContents.ToString();
-                debugString += "\n Current LB:\n" + currentJourneyContents.ToString();
-                debugString += "\n Current ST:\n" + currentJourneyContents.ToString();
+                debugString += "\n Current PS:\n" + currentPlaySessionContents.ToString();
+                debugString += "\n Current LB:\n" + currentBlockContents.ToString();
+                debugString += "\n Current ST:\n" + currentStageContents.ToString();
                 debugString += "\n Current journey:\n" + currentJourneyContents.ToString();
                 debugString += "\n Whole contents:\n" + progressionContents.AllContents.ToString();
 

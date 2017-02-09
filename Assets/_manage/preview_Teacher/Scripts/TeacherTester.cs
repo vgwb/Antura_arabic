@@ -87,8 +87,24 @@ namespace EA4S.Teacher.Test
 
         #region Simulation
 
+        [Header("Simulation")]
         public int numberOfSimulations = 50;
-        private int yieldEverySimulations = 20;
+        public int yieldEverySimulations = 20;
+
+
+        public void TestAllMiniGames()
+        {
+            foreach(var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
+            {
+                try {
+                    SimulateMiniGame(code);
+                }
+                catch
+                {
+                    // @todo: draw with a RED button
+                } 
+            }
+        }
 
         public IEnumerator SimulateMiniGameCO(MiniGameCode code)
         {

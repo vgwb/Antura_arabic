@@ -12,7 +12,7 @@
         public const bool DebugPanelEnabled = true;
         public static bool UseUnityAnalytics = false;
         public static bool VerboseLogging = true;
-        public static bool DebugLogInserts = true;
+        public static bool DebugLogInserts = false;
 
         // Application details (used by Teacher and maybe other)
         public const float minimumAge = 7;
