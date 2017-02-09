@@ -12,7 +12,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 		public GameObject plane;
 		public bool isDragged;
 		public bool isMoving;
-        private bool isPanicing;
+        private bool isPanicing, isFallingFromTube;
 		public bool isDraggable;
 
 		public Transform livingLetterTransform;
@@ -246,15 +246,35 @@ public class TakeMeHomeLL : MonoBehaviour {
                     TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Splat);
                     //transform.position = 
                     isPanicing = false;
+  
                     transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
                     transform.position = tubeSpawnPosition;
 					clampPosition = true;
                     transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
                     transform.DOScale(0.8f, 0.5f);
+                    StartCoroutine(playLandinganimation(0.25f));
 
                 }
             }
-		}
+
+            if (isFallingFromTube)
+            {
+                StartCoroutine(playLandinganimation(0.25f));
+                isFallingFromTube = false;
+            }
+        }
+
+        IEnumerator playLandinganimation(float delay) {
+
+            letter.GetComponent<Animator>().Play("LL_fall_down");
+            letter.Falling = true;
+            yield return new WaitForSeconds(delay);
+            letter.Falling = false;
+            letter.OnJumpEnded();
+
+            letter.GetComponent<Animator>().CrossFade("LL_land", 0.3f);
+
+        }
 
 		void Update()
 		{
@@ -331,7 +351,7 @@ public class TakeMeHomeLL : MonoBehaviour {
           
 
             moveTweener = transform.DOLocalMove(targetPosition/*transform.position + lastTube.transform.up*5 + new Vector3(0,0,20)*/, 0.3f).OnComplete(delegate () { 
-				PlayIdleAnimation(); 
+				//PlayIdleAnimation(); 
 				if (endTransformToCallback != null) endTransformToCallback();
 
                 /*if(lastTube != null)
@@ -353,8 +373,9 @@ public class TakeMeHomeLL : MonoBehaviour {
 				transform.position = tubeSpawnPosition;
                 transform.DOScale(0.8f, 0.5f);
                 clampPosition = true;
-				dropLetter = true;
-				isMoving = false;
+                dropLetter = true;
+                isMoving = false;
+                //Drop(Time.deltaTime);
 
             });
 		}
@@ -411,9 +432,11 @@ public class TakeMeHomeLL : MonoBehaviour {
 			isMoving = true;
 			isDraggable = false;
 			dropLetter = false;
+            isFallingFromTube = true;
 
+            moveUp();
 
-            if(win)
+            if (win)
             {
                 //lastTube.showWinParticles();
                 if(collidedTubes.Count > 1)
@@ -422,13 +445,14 @@ public class TakeMeHomeLL : MonoBehaviour {
                 }
             }
 
+            //else
+              //  StartCoroutine(playLandinganimation(.5f));
 
 
 
-		
-			moveUp ();
-		
+            
 
+            
 
 		}
 
