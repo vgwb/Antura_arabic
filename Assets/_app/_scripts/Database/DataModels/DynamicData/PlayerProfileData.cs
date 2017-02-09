@@ -15,11 +15,11 @@ namespace EA4S.Database
         [PrimaryKey]
         public string Id { get; set; }
 
-        public string Uuid { get; set; }
-
+        // refactor: to be deleted after using Uuid only
         public string PlayerKey { get; set; }
         public int PlayerId { get; set; }
 
+        public string Uuid { get; set; }
         public int AvatarId { get; set; }
         public int Age { get; set; }
         public string Name { get; set; }

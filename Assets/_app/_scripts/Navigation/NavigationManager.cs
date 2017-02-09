@@ -10,64 +10,6 @@ using EA4S.Profile;
 namespace EA4S.Core
 {
 
-    public enum AppScene
-    {
-        Home,
-        Mood,
-        Map,
-        Book,
-        ReservedArea,
-        Intro,
-        GameSelector,
-        MiniGame,
-        Assessment,
-        AnturaSpace,
-        Rewards,
-        PlaySessionResult,
-        DebugPanel
-    }
-
-    public struct NavigationData
-    {
-        public PlayerProfile CurrentPlayer;
-        public AppScene PrevScene;
-        public AppScene CurrentScene;
-        public bool RealPlaySession;
-
-        /// <summary>
-        /// List of minigames selected for the current play session
-        /// </summary>
-        public List<MiniGameData> CurrentPlaySessionMiniGames;
-
-        /// <summary>
-        /// Current minigame index in
-        /// </summary>
-        public int CurrentMiniGameIndexInPlaySession { get; private set; }
-
-        public void SetFirstMinigame()
-        {
-            CurrentMiniGameIndexInPlaySession = 0;
-        }
-
-        public bool SetNextMinigame()
-        {
-            int NextIndex = CurrentMiniGameIndexInPlaySession + 1;
-            if (NextIndex < CurrentPlaySessionMiniGames.Count) {
-                CurrentMiniGameIndexInPlaySession = NextIndex;
-                return true;
-            }
-            return false;
-        }
-
-        public MiniGameData CurrentMiniGameData {
-            get {
-                if (CurrentPlaySessionMiniGames == null) return null;
-                if (CurrentPlaySessionMiniGames.Count == 0) return null;
-                return CurrentPlaySessionMiniGames[CurrentMiniGameIndexInPlaySession];
-            }
-        }
-    }
-
     /// <summary>
     /// Controls the transitions between different scenes in the application.
     /// </summary>
@@ -87,6 +29,12 @@ namespace EA4S.Core
         {
             NavData.CurrentPlayer = _playerProfile;
         }
+
+        public void GoToAppScene(AppScene newScene)
+        {
+            GoToScene(newScene);
+        }
+
         #endregion
 
         #region Automatic navigation API
@@ -158,7 +106,7 @@ namespace EA4S.Core
         /// </summary>
         public void GoBack()
         {
-            Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoBack");
+            Debug.LogFormat(" ---- NAV MANAGER ({0}) from scene {1} to {2} ---- ", "GoBack", NavData.CurrentScene, NavData.PrevScene);
             switch (NavData.CurrentScene) {
                 case AppScene.Book:
                 case AppScene.GameSelector:
@@ -208,7 +156,7 @@ namespace EA4S.Core
             NavData.PrevScene = NavData.CurrentScene;
             NavData.CurrentScene = newScene;
 
-            var nextSceneName = GetSceneName(newScene);
+            var nextSceneName = AppSceneHelper.GetSceneName(newScene);
             GoToScene(nextSceneName);
         }
 
@@ -301,50 +249,11 @@ namespace EA4S.Core
 
         #endregion
 
-        // refactor: scene names should match AppScene so that this can be removed
-        public string GetSceneName(AppScene scene, Database.MiniGameData minigameData = null)
-        {
-            switch (scene) {
-                case AppScene.Home:
-                    return "_Start";
-                case AppScene.Mood:
-                    return "app_Mood";
-                case AppScene.Map:
-                    return "app_Map";
-                case AppScene.Book:
-                    return "app_Book";
-                case AppScene.Intro:
-                    return "app_Intro";
-                case AppScene.GameSelector:
-                    return "app_GamesSelector";
-                case AppScene.MiniGame:
-                    return minigameData.Scene;
-                case AppScene.Assessment:
-                    return "app_Assessment";
-                case AppScene.AnturaSpace:
-                    return "app_AnturaSpace";
-                case AppScene.Rewards:
-                    return "app_Rewards";
-                case AppScene.PlaySessionResult:
-                    return "app_PlaySessionResult";
-                case AppScene.ReservedArea:
-                    return "app_ReservedArea";
-                default:
-                    return "";
-            }
-        }
-
         // refactor: move this method directly to PlayerProfile
         public void MaxJourneyPositionProgress()
         {
             AppManager.I.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition));
         }
-
-        // obsolete: unused
-        /*public string GetCurrentScene()
-        {
-            return "";
-        }*/
 
         // refactor: move these a more coherent manager, which handles the state of a play session between minigames
         #region temp for demo
