@@ -249,32 +249,39 @@ namespace EA4S.Teacher
 
             // (4) Priority filtering based on current focus
             List<T> priorityFilteredList = new List<T>();
-            string s = "Priority filtering:";
-            int nBefore = selectionParams.nRequired;
-            int nRemaining = selectionParams.nRequired;
-            FilterListByContents(currentPlaySessionContents, dataList, priorityFilteredList, ref nRemaining);
-            s += "\n" + (nBefore - nRemaining) + " from PS ( " + nRemaining + " remaining of " + nBefore + ")";
-            if (nRemaining > 0)
+            if (!isTest)
             {
-                nBefore = nRemaining;
-                FilterListByContents(currentBlockContents, dataList, priorityFilteredList, ref nRemaining);
-                s += "\n" + (nBefore - nRemaining) + " from LB"; ;
+                string s = "Priority filtering:";
+                int nBefore = selectionParams.nRequired;
+                int nRemaining = selectionParams.nRequired;
+                FilterListByContents(currentPlaySessionContents, dataList, priorityFilteredList, ref nRemaining);
+                s += "\n" + (nBefore - nRemaining) + " from PS ( " + nRemaining + " remaining of " + nBefore + ")";
+                if (nRemaining > 0)
+                {
+                    nBefore = nRemaining;
+                    FilterListByContents(currentBlockContents, dataList, priorityFilteredList, ref nRemaining);
+                    s += "\n" + (nBefore - nRemaining) + " from LB";
+                    ;
+                }
+                if (nRemaining > 0)
+                {
+                    nBefore = nRemaining;
+                    FilterListByContents(currentStageContents, dataList, priorityFilteredList, ref nRemaining);
+                    s += "\n" + (nBefore - nRemaining) + " from ST";
+                }
+                if (nRemaining > 0)
+                {
+                    nBefore = nRemaining;
+                    FilterListByContents(currentJourneyContents, dataList, priorityFilteredList, ref nRemaining);
+                    s += "\n" + (nBefore - nRemaining) + " from the rest of the Journey";
+                }
+                UnityEngine.Debug.Log(s);
+                debugString += (" \tPriority: " + priorityFilteredList.Count);
             }
-            if (nRemaining > 0)
+            else
             {
-                nBefore = nRemaining;
-                FilterListByContents(currentStageContents, dataList, priorityFilteredList, ref nRemaining);
-                s += "\n" + (nBefore - nRemaining) + " from ST";
+                priorityFilteredList = dataList;
             }
-            if (nRemaining > 0)
-            {
-                nBefore = nRemaining;
-                FilterListByContents(currentJourneyContents, dataList, priorityFilteredList, ref nRemaining);
-                s += "\n" + (nBefore - nRemaining) + " from the rest of the Journey";
-            }
-            UnityEngine.Debug.Log(s);
-            debugString += (" \tPriority: " + priorityFilteredList.Count);
-            
 
             // (5) Weighted selection on the remaining number
             List<T> selectedList = null;
