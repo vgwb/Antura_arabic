@@ -71,6 +71,11 @@ namespace EA4S.Teacher
         private Dictionary<JourneyPosition, VocabularyContents> playSessionsContents = new Dictionary<JourneyPosition, VocabularyContents>();
         private VocabularyContents allContents = new VocabularyContents();
 
+        public VocabularyContents AllContents
+        {
+            get { return allContents; }
+        }
+
         #region Get API
 
         public VocabularyContents GetContentsOfPlaySession(JourneyPosition pos)
@@ -165,7 +170,12 @@ namespace EA4S.Teacher
             {
                 string debugString = "";
                 debugString += "--------- TEACHER: play session initialisation (journey " + currentPlaySessionId + ") --------- ";
-                debugString += "\n" + currentJourneyContents.ToString();
+                debugString += "\n Current PS:\n" + currentJourneyContents.ToString();
+                debugString += "\n Current LB:\n" + currentJourneyContents.ToString();
+                debugString += "\n Current ST:\n" + currentJourneyContents.ToString();
+                debugString += "\n Current journey:\n" + currentJourneyContents.ToString();
+                debugString += "\n Whole contents:\n" + progressionContents.AllContents.ToString();
+
                 UnityEngine.Debug.Log(debugString);
             }
         }

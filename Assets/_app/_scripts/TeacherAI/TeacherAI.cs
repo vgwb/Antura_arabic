@@ -77,9 +77,10 @@ namespace EA4S.Teacher
         {
             // Check the number of minigames for the current play session
             var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
-            Database.PlaySessionData playSessionData = dbManager.GetPlaySessionDataById(currentPlaySessionId);
+            var playSessionData = dbManager.GetPlaySessionDataById(currentPlaySessionId);
             int nMinigamesToSelect = playSessionData.NumberOfMinigames;
-            if (nMinigamesToSelect == 0) nMinigamesToSelect = 1; // Force (needed for assessment, since we always need one)
+            if (nMinigamesToSelect == 0) nMinigamesToSelect = 1; // Force at least one minigame (needed for assessment, since we always need one)
+
             return SelectMiniGames(nMinigamesToSelect);
         }
 
@@ -127,11 +128,18 @@ namespace EA4S.Teacher
 
         #endregion
 
-        #region Difficulty
+        #region Difficulty & Minigame Configuration
 
         public float GetCurrentDifficulty(MiniGameCode miniGameCode)
         {
             return difficultySelectionAI.SelectDifficulty(miniGameCode);
+        }
+
+        public int GetCurrentNumberOfRounds(MiniGameCode miniGameCode)
+        {
+            var currentPos = AppManager.I.Player.CurrentJourneyPosition;
+            var psData = dbManager.GetPlaySessionDataById(currentPos.ToStringId());
+            return psData.NumberOfRoundsPerMinigame;
         }
 
         #endregion
