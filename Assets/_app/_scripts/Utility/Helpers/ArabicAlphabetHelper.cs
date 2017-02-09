@@ -192,9 +192,9 @@ namespace EA4S.Helpers
         /// Return a string of a word without a character. Warning: the word is already reversed and fixed for rendering.
         /// This is mandatory since PrepareArabicStringForDisplay should be called before adding removedLetterChar.
         /// </summary>
-        public static string GetWordWithMissingLetterText(out Database.LetterPosition letterShape, Database.WordData arabicWord, Database.LetterData letterToRemove, string removedLetterChar = "_")
+        public static string GetWordWithMissingLetterText(out Database.LetterForm letterShape, Database.WordData arabicWord, Database.LetterData letterToRemove, string removedLetterChar = "_")
         {
-            letterShape = Database.LetterPosition.None;
+            letterShape = Database.LetterForm.None;
             var Letters = SplitWordIntoLetters(arabicWord);
             
             int charPosition = 0;
@@ -211,16 +211,16 @@ namespace EA4S.Helpers
                     var character = text.Substring(charPosition, letterToRemove.GetChar().Length);
 
                     // This test order is important, do not change
-                    if (letterToRemove.GetChar(Database.LetterPosition.Isolated) == character)
-                        letterShape = Database.LetterPosition.Isolated;
-                    else if (letterToRemove.GetChar(Database.LetterPosition.Initial) == character)
-                        letterShape = Database.LetterPosition.Initial;
-                    else if (letterToRemove.GetChar(Database.LetterPosition.Medial) == character)
-                        letterShape = Database.LetterPosition.Medial;
-                    else if (letterToRemove.GetChar(Database.LetterPosition.Final) == character)
-                        letterShape = Database.LetterPosition.Final;
+                    if (letterToRemove.GetChar(Database.LetterForm.Isolated) == character)
+                        letterShape = Database.LetterForm.Isolated;
+                    else if (letterToRemove.GetChar(Database.LetterForm.Initial) == character)
+                        letterShape = Database.LetterForm.Initial;
+                    else if (letterToRemove.GetChar(Database.LetterForm.Medial) == character)
+                        letterShape = Database.LetterForm.Medial;
+                    else if (letterToRemove.GetChar(Database.LetterForm.Final) == character)
+                        letterShape = Database.LetterForm.Final;
                     else
-                        letterShape = Database.LetterPosition.Isolated; // fallback to isolated
+                        letterShape = Database.LetterForm.Isolated; // fallback to isolated
 
                     break;
                 }
@@ -234,6 +234,39 @@ namespace EA4S.Helpers
             text = text.Substring(0, charPosition) + removedLetterChar + text.Substring(charPosition + letterToRemove.GetChar().Length);
 
             return text;
+        }
+
+        public static Database.LetterForm GetLetterShapeInWord(Database.WordData arabicWord, Database.LetterData letter)
+        {
+            var Letters = SplitWordIntoLetters(arabicWord);
+
+            int charPosition = 0;
+            string text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
+
+            for (int index = 0; index < Letters.Count; ++index)
+            {
+                if (Letters[index].Id == letter.Id)
+                {
+                    // Check shape
+                    var character = text.Substring(charPosition, letter.GetChar().Length);
+
+                    // This test order is important, do not change
+                    if (letter.GetChar(Database.LetterForm.Isolated) == character)
+                        return Database.LetterForm.Isolated;
+                    else if (letter.GetChar(Database.LetterForm.Initial) == character)
+                        return Database.LetterForm.Initial;
+                    else if (letter.GetChar(Database.LetterForm.Medial) == character)
+                        return Database.LetterForm.Medial;
+                    else if (letter.GetChar(Database.LetterForm.Final) == character)
+                        return Database.LetterForm.Final;
+                    else
+                        return Database.LetterForm.Isolated; // fallback to isolated
+                }
+                else
+                    charPosition += Letters[index].GetChar().Trim().Length;
+            }
+
+            return Database.LetterForm.None;
         }
 
         /// <summary>
@@ -265,6 +298,33 @@ namespace EA4S.Helpers
 
             string text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
             text = text.Substring(0, charPosition) + 
+                tagStart + text.Substring(charPosition, letterToMark.GetChar().Length) + tagEnd + // Marked letter
+                text.Substring(charPosition + letterToMark.GetChar().Length);
+
+            return text;
+        }
+
+        /// <summary>
+        /// Return a string of a word with the "color" tag enveloping a character. Warning: the word is already reversed and fixed for rendering.
+        /// This is mandatory since PrepareArabicStringForDisplay should be called before adding the tags.
+        /// </summary>
+        public static string GetWordWithMarkedLetterText(Database.WordData arabicWord, int letterPositionToMark, Color color)
+        {
+            var Letters = SplitWordIntoLetters(arabicWord);
+
+            if (letterPositionToMark >= Letters.Count)
+                return ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
+
+            int charPosition = 0;
+            for (int index = 0; index < letterPositionToMark; ++index)
+                charPosition += Letters[index].GetChar().Length;
+
+            string tagStart = "<color=#" + GenericHelper.ColorToHex(color) + ">";
+            string tagEnd = "</color>";
+
+            var letterToMark = Letters[letterPositionToMark];
+            string text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
+            text = text.Substring(0, charPosition) +
                 tagStart + text.Substring(charPosition, letterToMark.GetChar().Length) + tagEnd + // Marked letter
                 text.Substring(charPosition + letterToMark.GetChar().Length);
 

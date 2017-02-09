@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using EA4S.Database;
 using EA4S.Helpers;
-using EA4S.Profile;
-using EA4S.Utilities;
 
 namespace EA4S.Teacher
 {
@@ -116,7 +114,7 @@ namespace EA4S.Teacher
             foreach (var minigame_data in minigame_data_list)
             {
                 float cumulativeWeight = 0;
-                var minigame_scoredata = minigame_score_list.Find(x => x.ElementId == minigame_data.GetId());
+                var minigame_scoredata = minigame_score_list.Find(x => x.MiniGameCode == minigame_data.Code);
                 int daysSinceLastScore = 0;
                 if (minigame_scoredata != null)
                 {

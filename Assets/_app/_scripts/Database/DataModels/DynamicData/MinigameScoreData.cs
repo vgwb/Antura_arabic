@@ -16,7 +16,7 @@ namespace EA4S.Database
 
         [PrimaryKey]
         public string Id { get; set; } 
-        public string ElementId { get; set; }
+        public MiniGameCode MiniGameCode { get; set; }
 
         public int Score { get; set; }  // [0,3]
         public float TotalPlayTime { get; set; } 
@@ -25,13 +25,13 @@ namespace EA4S.Database
         public MinigameScoreData()
         {
         }
-        public MinigameScoreData(string elementId, int score, float totalPlayTime) : this(elementId, score, totalPlayTime, GenericHelper.GetTimestampForNow())
+        public MinigameScoreData(MiniGameCode code, int score, float totalPlayTime) : this(code, score, totalPlayTime, GenericHelper.GetTimestampForNow())
         {
         }
-        public MinigameScoreData(string elementId, int score, float totalPlayTime, int timestamp)
+        public MinigameScoreData(MiniGameCode code, int score, float totalPlayTime, int timestamp)
         {
-            ElementId = elementId;
-            Id = ElementId;
+            MiniGameCode = code;
+            Id = ((int) code).ToString();
             Score = score;
             TotalPlayTime = totalPlayTime;
             LastAccessTimestamp = timestamp;
@@ -44,8 +44,8 @@ namespace EA4S.Database
 
         public override string ToString()
         {
-            return string.Format("E{0},S{1},T{2},TS{3}",
-                ElementId,
+            return string.Format("MG{0},S{1},T{2},TS{3}",
+                MiniGameCode,
                 Score,
                 TotalPlayTime,
                 LastAccessTimestamp

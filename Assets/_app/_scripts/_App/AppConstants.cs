@@ -8,11 +8,11 @@
     public static class AppConstants
     {
         public const string AppVersion = "0.13.dev";
-        public const string DbSchemeVersion = "1.16";
+        public const string DbSchemeVersion = "1.17";
         public const bool DebugPanelEnabled = true;
         public static bool UseUnityAnalytics = false;
         public static bool VerboseLogging = true;
-        public static bool DebugLogInserts = true;
+        public static bool DebugLogInserts = false;
 
         // Urls
         public const string UrlWebsite = "http://www.antura.org";
@@ -27,9 +27,6 @@
 
         public const float minimumStage = 1;
         public const float maximumStage = 6;
-
-        public const float minimumMiniGameScore = -1;
-        public const float maximumMiniGameScore = 1;
 
         public const int minimumMoodValue = 1;
         public const int maximumMoodValue = 5;

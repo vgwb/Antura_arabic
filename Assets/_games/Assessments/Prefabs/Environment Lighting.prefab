@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4771714288561554}
   - component: {fileID: 108014281944213028}
   m_Layer: 0
-  m_Name: Directional Light MOD
+  m_Name: MainLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 4345758531982130}
   - component: {fileID: 108174526346850548}
   m_Layer: 0
-  m_Name: Directional light
+  m_Name: SunsetHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 4043022948000076}
   - component: {fileID: 108275005609665208}
   m_Layer: 0
-  m_Name: Directional light (1)
+  m_Name: GroundReflections
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1048861514890724}
   m_LocalRotation: {x: 0.7069895, y: -0, z: -0, w: 0.707224}
-  m_LocalPosition: {x: 2.9167, y: -12, z: 141.6}
+  m_LocalPosition: {x: 2.9167, y: -12, z: 122.2}
   m_LocalScale: {x: 703.6016, y: 210.70801, z: 118.79657}
   m_Children: []
   m_Father: {fileID: 4044350304187346}

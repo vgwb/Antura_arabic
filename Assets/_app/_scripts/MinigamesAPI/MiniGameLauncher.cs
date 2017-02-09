@@ -1,7 +1,8 @@
 ﻿using EA4S.Core;
- using EA4S.MinigamesCommon;
+using EA4S.MinigamesCommon;
 using EA4S.Teacher;
 using UnityEngine;
+using EA4S.Assessment;
 
 namespace EA4S.MinigamesAPI
 {
@@ -28,7 +29,8 @@ namespace EA4S.MinigamesAPI
         public void LaunchGame(MiniGameCode miniGameCode, bool forceNewPlaySession = false)
         {
             float difficulty = teacher.GetCurrentDifficulty(miniGameCode);
-            GameConfiguration configuration = new GameConfiguration(difficulty);
+            int numberOfRounds = teacher.GetCurrentNumberOfRounds(miniGameCode);
+            MinigameLaunchConfiguration configuration = new MinigameLaunchConfiguration(difficulty, numberOfRounds);
             LaunchGame(miniGameCode, configuration, forceNewPlaySession);
         }
 
@@ -36,9 +38,9 @@ namespace EA4S.MinigamesAPI
         /// Prepare the context and start a minigame.
         /// </summary>
         /// <param name="_gameCode">The minigame code.</param>
-        /// <param name="_gameConfiguration">The minigame configuration.</param>
+        /// <param name="_launchConfiguration">The configuration for launching the minigame.</param>
         /// <param name="forceNewPlaySession">Is this a new play session?</param>
-        public void LaunchGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration, bool forceNewPlaySession = false)
+        public void LaunchGame(MiniGameCode _gameCode, MinigameLaunchConfiguration _launchConfiguration, bool forceNewPlaySession = false)
         {
             Database.MiniGameData miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
 
@@ -53,7 +55,15 @@ namespace EA4S.MinigamesAPI
             // Retrieve the configuration for the given minigame
             string minigameSession = System.DateTime.Now.Ticks.ToString();
             IGameConfiguration currentGameConfig = ConfigureMiniGame(_gameCode, minigameSession);
-            currentGameConfig.Difficulty = _gameConfiguration.Difficulty;
+            currentGameConfig.Difficulty = _launchConfiguration.Difficulty;
+
+            // Set also the number of rounds
+            // @note: only for assessment, for now
+            if (currentGameConfig is IAssessmentConfiguration)
+            {
+                IAssessmentConfiguration assessmentConfig = currentGameConfig as IAssessmentConfiguration;
+                assessmentConfig.NumberOfRounds = _launchConfiguration.NumberOfRounds;
+            }
 
             // Retrieve the packs for the current minigame configuration
             IQuestionBuilder questionBuilder = currentGameConfig.SetupBuilder();

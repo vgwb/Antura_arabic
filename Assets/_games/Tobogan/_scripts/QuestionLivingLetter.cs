@@ -127,6 +127,13 @@ namespace EA4S.Minigames.Tobogan
             letter.Initialize(word, text, 1.3f);
         }
 
+        public void SetQuestionText(LL_WordData word, int letterToMark, Color color)
+        {
+            var text = ArabicAlphabetHelper.GetWordWithMarkedLetterText(word.Data, letterToMark, color);
+
+            letter.Initialize(word, text, 1.3f);
+        }
+
         public void ClearQuestionText()
         {
             letter.Initialize(null);

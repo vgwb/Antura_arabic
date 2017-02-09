@@ -17,7 +17,7 @@ namespace EA4S.Teacher
         private int nPacks;
         private int nCorrect;
         private int nWrong;
-        private bool packsUsedTogether;
+        //private bool packsUsedTogether;
         private QuestionBuilderParameters parameters;
 
         public WordsWithLetterQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0,
@@ -28,7 +28,7 @@ namespace EA4S.Teacher
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
-            this.packsUsedTogether = packsUsedTogether;
+            //this.packsUsedTogether = packsUsedTogether;
             this.parameters = parameters;
         }
 

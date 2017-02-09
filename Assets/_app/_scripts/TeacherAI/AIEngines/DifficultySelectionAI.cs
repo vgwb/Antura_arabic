@@ -17,58 +17,77 @@ namespace EA4S.Teacher
         private PlayerProfile playerProfile;
 
         // Weights
-        private float ageWeight = ConfigAI.difficulty_weight_age;       // Higher age -> higher difficulty
-        private float journeyWeight = ConfigAI.difficulty_weight_journey;     // Higher journey stage -> higher difficulty
-        private float performanceWeight = ConfigAI.difficulty_weight_performance;       // Higher performance -> higher difficulty
+        private float ageWeightContribution = ConfigAI.difficulty_weight_age;                   // Higher age -> higher difficulty
+        private float performanceWeightContribution = ConfigAI.difficulty_weight_performance;   // Higher performance -> higher difficulty
 
         public DifficultySelectionAI(DatabaseManager _dbManager)
         {
-            this.dbManager = _dbManager;
+            dbManager = _dbManager;
         }
 
         public void SetPlayerProfile(PlayerProfile _playerProfile)
         {
-            this.playerProfile = _playerProfile;
+            playerProfile = _playerProfile;
         }
 
         public float SelectDifficulty(MiniGameCode miniGameCode)
         {
-            float totalWeight = ageWeight + journeyWeight + performanceWeight;
-
-            // Journey
-            var currentJourneyPosition = playerProfile.CurrentJourneyPosition;
-            var playerStage = currentJourneyPosition.Stage;
-            float journeyDifficulty = Mathf.Clamp01(Mathf.InverseLerp(AppConstants.minimumStage, AppConstants.maximumStage, playerStage));
-            float weightedJourneyDifficulty = journeyDifficulty * journeyWeight / totalWeight;
+            float totalWeight = ageWeightContribution + performanceWeightContribution;
 
             // Age
             var playerAge = playerProfile.Age;
             float ageDifficulty = Mathf.Clamp01(Mathf.InverseLerp(AppConstants.minimumAge, AppConstants.maximumAge, playerAge));
-            float weightedAgeDifficulty = ageDifficulty * ageWeight / totalWeight;
+            float weightedAgeDifficulty = ageDifficulty * ageWeightContribution / totalWeight;
 
             // Performance
             float playerPerformance;
-            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name + " WHERE ElementId = '{0}'",  (int)miniGameCode);
+            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name + " WHERE MiniGameCode = '{0}'",  (int)miniGameCode);
             List<MinigameScoreData> minigame_scoreData_list = dbManager.FindDataByQuery<MinigameScoreData>(query);
-            if (minigame_scoreData_list.Count == 0) {
+            if (minigame_scoreData_list.Count == 0)
+            {
                 playerPerformance = ConfigAI.startingDifficultyForNewMiniGame;
-            } else {
-                float minigameScore = minigame_scoreData_list[0].Score;
-                playerPerformance = minigameScore;
+                //Debug.Log("No previous scores");
             }
+            else
+            {
+                // We use a custom logic to define the difficulty:
+                // - start from performance = 0
+                // - get last N scores for the minigame
+                // - a score of 0 diminishes the performance
+                // - a score of 1 does not change it 
+                // - a score of 2 or 3 increases it
 
-            float performanceDifficulty = Mathf.Clamp01(Mathf.InverseLerp(AppConstants.minimumMiniGameScore, AppConstants.maximumMiniGameScore, playerPerformance));
-            float weightedPerformanceDifficulty = performanceDifficulty * performanceWeight / totalWeight;
+                // Query on last X minigame logged scores
+                string query2 = "SELECT * FROM " + typeof(LogMinigameScoreData).Name  + " WHERE MiniGameCode = " + (int)miniGameCode + " ORDER BY Timestamp LIMIT " + ConfigAI.lastScoresForPerformanceWindow;
+                List<LogMinigameScoreData> logMinigameScoreDatas = dbManager.FindDataByQuery<LogMinigameScoreData>(query2);
+                List<int> scores = logMinigameScoreDatas.ConvertAll(x => x.Score);
+
+                //Debug.Log("Found " + (scores.Count) + " previous scores");
+
+                // Diminish to create the weights [-1, 0, 1, 2]
+                for (var i = 0; i < scores.Count; i++)
+                    scores[i] -= 1;
+
+                // Compute the performance for these minigames starting from zero and adding values
+                playerPerformance = 0f;
+                for (var i = 0; i < scores.Count; i++)
+                {
+                    playerPerformance += scores[i] * ConfigAI.scoreStarsToDifficultyContribution;
+                    //Debug.LogWarning("Score " + i + " was " + (scores[i] + 1) + " contrib: " + scores[i] * scorePointsContribution + " current " + playerPerformance);
+                }
+                playerPerformance = Mathf.Clamp01(playerPerformance);
+            }
+            float performanceDifficulty = playerPerformance;
+            float weightedPerformanceDifficulty = performanceDifficulty * performanceWeightContribution / totalWeight;
 
             // Total
-            float totalDifficulty = weightedAgeDifficulty + weightedJourneyDifficulty + weightedPerformanceDifficulty;
+            float totalDifficulty = weightedAgeDifficulty + weightedPerformanceDifficulty;
 
             // Debug log
             if (ConfigAI.verboseTeacher) {
                 string debugString = "-----  TEACHER: Selected Difficulty: " + totalDifficulty + " -----";
-                debugString += "\n From Age (W " + ageWeight + "): " + ageDifficulty + " xw(" + weightedAgeDifficulty + ")";
-                debugString += "\n From Stage (W " + journeyWeight + "): " + journeyDifficulty + " xw(" + weightedJourneyDifficulty + ")";
-                debugString += "\n From Performance (W " + performanceWeight + "): " + performanceDifficulty + " xw(" + weightedPerformanceDifficulty + ")";
+                debugString += "\n From Age (C " + ageWeightContribution + "): " + ageDifficulty + " w(" + weightedAgeDifficulty + ")";
+                debugString += "\n From Performance (C " + performanceWeightContribution + "): " + performanceDifficulty + " w(" + weightedPerformanceDifficulty + ")";
                 Debug.Log(debugString);
             }
 

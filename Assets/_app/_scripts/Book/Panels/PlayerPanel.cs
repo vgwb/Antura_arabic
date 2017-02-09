@@ -12,7 +12,6 @@ namespace EA4S.PlayerBook
     {
         public InfoTable InfoTable;
         public GraphJourney journeyGraph;
-        public Image playerAvatar;
 
         void OnEnable()
         {
@@ -75,7 +74,6 @@ namespace EA4S.PlayerBook
 
             journeyGraph.Show(allPlaySessionInfos, unlockedPlaySessionInfos);
 
-            playerAvatar.sprite = AppManager.I.Player.GetAvatar();
         }
 
     }

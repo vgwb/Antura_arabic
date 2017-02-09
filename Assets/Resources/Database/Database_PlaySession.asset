@@ -25,6 +25,7 @@ MonoBehaviour:
         Weight: 2
       - MiniGameCode: 11
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - alef
       - alef_hamza_hi
@@ -53,6 +54,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 3
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - pear
@@ -70,6 +72,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 4
       Letters: []
       Words: []
       Words_previous: []
@@ -95,6 +98,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - beh
       - teh
@@ -135,6 +139,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -150,6 +155,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -177,6 +183,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - jeem
       - hah
@@ -218,6 +225,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -233,6 +241,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -262,6 +271,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - dal
       - thal
@@ -305,6 +315,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -320,6 +331,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 101
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -351,6 +363,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - reh
       - zain
@@ -396,6 +409,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -411,6 +425,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -444,6 +459,7 @@ MonoBehaviour:
         Weight: 100
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - seen
       - sheen
@@ -491,6 +507,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -506,6 +523,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 101
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -541,6 +559,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - sad
       - dad
@@ -590,6 +609,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -605,6 +625,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 102
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -642,6 +663,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - tah
       - zah
@@ -693,6 +715,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -708,6 +731,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 102
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -747,6 +771,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - ain
       - ghain
@@ -800,6 +825,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -815,6 +841,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -854,6 +881,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - feh
       - qaf
@@ -907,6 +935,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -922,6 +951,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 101
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -961,6 +991,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - kaf
       - lam
@@ -1014,6 +1045,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1029,6 +1061,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 102
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1068,6 +1101,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - meem
       - noon
@@ -1122,6 +1156,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1137,6 +1172,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1176,6 +1212,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - yeh
       - waw
@@ -1230,6 +1267,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1245,6 +1283,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 101
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1272,6 +1311,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - alef
       - waw
@@ -1310,6 +1350,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1325,6 +1366,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 102
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1356,6 +1398,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - alef
       Words:
@@ -1400,6 +1443,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1415,6 +1459,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1452,6 +1497,7 @@ MonoBehaviour:
         Weight: 100
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - beh
       Words:
@@ -1498,6 +1544,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1513,6 +1560,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 101
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1552,6 +1600,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - teh
       - teh_marbuta
@@ -1601,6 +1650,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1616,6 +1666,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 102
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1653,6 +1704,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - theh
       Words:
@@ -1703,6 +1755,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1718,6 +1771,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1757,6 +1811,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - jeem
       Words:
@@ -1805,6 +1860,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1820,6 +1876,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 101
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1859,6 +1916,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - hah
       Words:
@@ -1907,6 +1965,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1922,6 +1981,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 102
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -1959,6 +2019,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - khah
       Words:
@@ -2009,6 +2070,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2024,6 +2086,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2063,6 +2126,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - dal
       Words:
@@ -2111,6 +2175,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2126,6 +2191,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 101
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2165,6 +2231,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - thal
       Words:
@@ -2212,6 +2279,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2227,6 +2295,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 102
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2264,6 +2333,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - reh
       Words:
@@ -2314,6 +2384,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2329,6 +2400,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2368,6 +2440,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - zain
       Words:
@@ -2416,6 +2489,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2431,6 +2505,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 101
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2470,6 +2545,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - seen
       Words:
@@ -2518,6 +2594,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2533,6 +2610,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 102
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2570,6 +2648,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - sheen
       Words:
@@ -2620,6 +2699,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2635,6 +2715,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2674,6 +2755,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - sad
       Words:
@@ -2722,6 +2804,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2737,6 +2820,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 101
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2778,6 +2862,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - dad
       Words:
@@ -2827,6 +2912,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2842,6 +2928,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2883,6 +2970,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - tah
       Words:
@@ -2937,6 +3025,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2952,6 +3041,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -2997,6 +3087,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - zah
       Words:
@@ -3049,6 +3140,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3064,6 +3156,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3111,6 +3204,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - ain
       Words:
@@ -3167,6 +3261,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3182,6 +3277,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3227,6 +3323,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - ghain
       Words:
@@ -3285,6 +3382,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3300,6 +3398,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3347,6 +3446,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - feh
       Words:
@@ -3403,6 +3503,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3418,6 +3519,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3465,6 +3567,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - qaf
       Words:
@@ -3521,6 +3624,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3536,6 +3640,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3581,6 +3686,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - kaf
       Words:
@@ -3639,6 +3745,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3654,6 +3761,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3701,6 +3809,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - lam
       Words:
@@ -3757,6 +3866,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3772,6 +3882,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3819,6 +3930,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - meem
       Words:
@@ -3875,6 +3987,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3890,6 +4003,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -3935,6 +4049,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - noon
       Words:
@@ -3993,6 +4108,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4008,6 +4124,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4055,6 +4172,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - heh
       Words:
@@ -4111,6 +4229,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4126,6 +4245,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4173,6 +4293,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - waw
       Words:
@@ -4229,6 +4350,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4244,6 +4366,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4289,6 +4412,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - yeh
       Words:
@@ -4347,6 +4471,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4362,6 +4487,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 100
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4405,6 +4531,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - fathah
       - ain_fathah
@@ -4478,6 +4605,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4493,6 +4621,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 102
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4536,6 +4665,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - dammah
       - beh_dammah
@@ -4594,6 +4724,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4609,6 +4740,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 102
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4654,6 +4786,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 100
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - kasrah
       - ain_kasrah
@@ -4715,6 +4848,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4730,6 +4864,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 102
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4777,6 +4912,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - fathah
       - dammah
@@ -4873,6 +5009,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4888,6 +5025,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 102
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -4935,6 +5073,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - fathah_tanwin
       - alef_fathah_tanwin
@@ -4990,6 +5129,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5005,6 +5145,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 102
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5052,6 +5193,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - dammah_tanwin
       - dal_dammah_tanwin
@@ -5108,6 +5250,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5123,6 +5266,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 102
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5170,6 +5314,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - kasrah_tanwin
       - lam_kasrah_tanwin
@@ -5226,6 +5371,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5241,6 +5387,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 104
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5288,6 +5435,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - fathah
       - dammah
@@ -5386,6 +5534,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5401,6 +5550,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 104
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5448,6 +5598,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5495,6 +5646,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - sky
@@ -5516,6 +5668,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 103
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5563,6 +5716,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - waw_diph
       Words: []
@@ -5617,6 +5771,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5632,6 +5787,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 103
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5679,6 +5835,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - yeh_diph
       Words: []
@@ -5733,6 +5890,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5748,6 +5906,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 107
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5795,6 +5954,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - drank
@@ -5848,6 +6008,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5863,6 +6024,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 107
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5910,6 +6072,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - station
@@ -5963,6 +6126,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -5978,6 +6142,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 107
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6025,6 +6190,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - lentil
@@ -6078,6 +6244,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6093,6 +6260,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 107
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6140,6 +6308,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - table
@@ -6198,6 +6367,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6213,6 +6383,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 103
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6262,6 +6433,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - alef_maqsura
       Words:
@@ -6318,6 +6490,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6333,6 +6506,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 103
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6382,6 +6556,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - lam_alef
       Words: []
@@ -6437,6 +6612,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6452,6 +6628,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 103
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6501,6 +6678,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - maddah
       - alef_maddah
@@ -6557,6 +6735,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6572,6 +6751,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 103
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6621,6 +6801,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - fathah
       - kasrah
@@ -6713,6 +6894,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6728,6 +6910,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 103
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6777,6 +6960,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - fathah_tanwin
       - dammah_tanwin
@@ -6838,6 +7022,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6853,6 +7038,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 103
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6902,6 +7088,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - shaddah
       - hah_shaddah
@@ -6960,6 +7147,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -6975,6 +7163,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 103
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -7024,6 +7213,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - lion
@@ -7082,6 +7272,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -7097,6 +7288,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 109
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -7146,6 +7338,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - scientist
@@ -7201,6 +7394,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -7216,6 +7410,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 109
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -7265,6 +7460,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - river
@@ -7320,6 +7516,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -7335,6 +7532,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 109
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -7384,6 +7582,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - engineer
@@ -7441,6 +7640,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -7456,6 +7656,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 108
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -7507,6 +7708,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - beh
       - jeem
@@ -7589,6 +7791,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -7604,6 +7807,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 110
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -7655,6 +7859,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters:
       - beh
       - jeem
@@ -7737,6 +7942,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -7752,6 +7958,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 107
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -7803,6 +8010,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - happy
@@ -7860,6 +8068,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -7875,6 +8084,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 107
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -7918,6 +8128,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8024,6 +8235,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8039,6 +8251,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 112
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8082,6 +8295,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8129,6 +8343,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8144,6 +8359,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 112
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8187,6 +8403,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8232,6 +8449,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8247,6 +8465,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 112
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8280,6 +8499,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - color_black
@@ -8325,6 +8545,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8340,6 +8561,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 107
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8383,6 +8605,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - beautiful
@@ -8432,6 +8655,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8447,6 +8671,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 103
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8490,6 +8715,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - cold
@@ -8539,6 +8765,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8554,6 +8781,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 101
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8599,6 +8827,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - number_00
@@ -8658,6 +8887,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - number_10
@@ -8685,6 +8915,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 103
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8732,6 +8963,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - number_o01
@@ -8789,6 +9021,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8804,6 +9037,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 101
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8851,6 +9085,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - yesterday
@@ -8904,6 +9139,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8919,6 +9155,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 103
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -8966,6 +9203,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - day_monday
@@ -9020,6 +9258,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -9035,6 +9274,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 101
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -9082,6 +9322,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - month_march
@@ -9141,6 +9382,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -9156,6 +9398,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 102
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -9203,6 +9446,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - year
@@ -9263,6 +9507,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -9278,6 +9523,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 103
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -9325,6 +9571,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - cloud
@@ -9379,6 +9626,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -9394,6 +9642,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 103
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -9441,6 +9690,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words:
       - the_shirt
@@ -9494,6 +9744,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -9509,6 +9760,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 108
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -9556,6 +9808,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -9615,6 +9868,7 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []
@@ -9630,6 +9884,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 112
         Weight: 1
+      NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
       Words_previous: []

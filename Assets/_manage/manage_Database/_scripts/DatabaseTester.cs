@@ -22,7 +22,8 @@ namespace EA4S.Database.Management
     public class DatabaseTester : MonoBehaviour
     {
         private DatabaseLoader dbLoader;
-        private DatabaseManager dbManager;
+        [HideInInspector]
+        public DatabaseManager dbManager;
         private TeacherAI teacherAI;
         private PlayerProfile playerProfile;
 
@@ -38,6 +39,9 @@ namespace EA4S.Database.Management
             dbManager = new DatabaseManager(useTestDatabase);
             var vocabularyHelper = new VocabularyHelper(dbManager);
             teacherAI = new TeacherAI(dbManager, vocabularyHelper);
+
+            // Load the first profile
+            LoadProfile(1);
         }
 
         #region Main Actions
@@ -150,6 +154,11 @@ namespace EA4S.Database.Management
         public void DumpAllJourneyScoreData()
         {
             DumpAllData(dbManager.GetAllDynamicData<JourneyScoreData>());
+        }
+
+        public void DumpAllMinigameScoreData()
+        {
+            DumpAllData(dbManager.GetAllDynamicData<MinigameScoreData>());
         }
 
         public void DumpLetterById(string id)
@@ -372,10 +381,10 @@ namespace EA4S.Database.Management
         /// </summary>
         public void TestInsertMinigameScoreData()
         {
-            string rndId = RandomHelper.GetRandom(dbManager.GetAllMiniGameData()).GetId();
+            var minigameCode = RandomHelper.GetRandomEnum<MiniGameCode>();
             var lastAccessTimestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
             var score = RND.Range(0, 4);
-            dbManager.UpdateMinigameScoreData(rndId, RND.Range(1, 100f), score, lastAccessTimestamp);
+            dbManager.UpdateMinigameScoreData(minigameCode, RND.Range(1,100f), score, lastAccessTimestamp);
             PrintOutput("Inserted (or replaced) minigame score data " + lastAccessTimestamp);
         }
 
@@ -504,18 +513,6 @@ namespace EA4S.Database.Management
             PrintOutput(output);
         }
 
-        // Deprecated
-        public void Teacher_LettersOfWord()
-        {
-            Debug.LogWarning("Deprecated function.");
-            /*var wordDataId = dbManager.GetWordDataByRandom().GetId();
-            var list = teacherAI.GetLettersInWord(wordDataId);
-
-            string output = list.Count + " letters in word " + wordDataId + ":\n";
-            foreach (var data in list) output += data.Id + "\n";
-            PrintOutput(output);*/
-        }
-
         public void Teacher_PerformMiniGameSelection()
         {
             var currentJourneyPositionId = playerProfile.CurrentJourneyPosition.ToString();
@@ -526,24 +523,21 @@ namespace EA4S.Database.Management
             PrintOutput(output);
         }
 
-        public void Teacher_PerformWordSelection()
+        public void DifficultySelectionTest()
         {
-            Debug.LogWarning("Deprecated use, word selection is now built-in with more logic.");
-            /*
-            var currentJourneyPositionId = playerProfile.CurrentJourneyPosition.ToString();
+            var minigameCode = RandomHelper.GetRandomEnum<MiniGameCode>();
 
-            int nTests = 7;
-            int nWordsPerTest = 2;
-            string output = "";
-            output = "Words selected (" + currentJourneyPositionId + "):\n";
-            for (int i = 0; i < nTests; i++) {
-                var list = teacherAI.SelectWordsForPlaySession(currentJourneyPositionId, nWordsPerTest);
-                foreach (var data in list) output += data.Id + " ";
-                output += "\n";
+            for (int i = 0; i < 10; i++)
+            {
+                var score = RND.Range(0, 4);
+                var data = new LogMinigameScoreData("TEST", JourneyPosition.InitialJourneyPosition, minigameCode, score, RND.Range(1, 15f));
+                dbManager.Insert(data);
             }
 
+            var difficulty = teacherAI.GetCurrentDifficulty(minigameCode);
+
+            string output = "Minigame " + minigameCode + " selected difficulty " + difficulty;
             PrintOutput(output);
-            */
         }
 
         #endregion
@@ -619,7 +613,7 @@ namespace EA4S.Database.Management
 
         #region Utilities
 
-        void PrintOutput(string output)
+        public void PrintOutput(string output)
         {
             Debug.Log(output);
             OutputText.text = output.Substring(0, Mathf.Min(1000, output.Length));
