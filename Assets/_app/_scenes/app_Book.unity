@@ -6662,6 +6662,26 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 11448312, guid: cc23888081783e245b0c224012eaf916, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11411806, guid: cc23888081783e245b0c224012eaf916, type: 2}
+      propertyPath: _labelsColor.r
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11411806, guid: cc23888081783e245b0c224012eaf916, type: 2}
+      propertyPath: _labelsColor.g
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11411806, guid: cc23888081783e245b0c224012eaf916, type: 2}
+      propertyPath: _labelsColor.b
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 148304, guid: cc23888081783e245b0c224012eaf916, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc23888081783e245b0c224012eaf916, type: 2}
   m_IsPrefabParent: 0
@@ -7756,7 +7776,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InfoTable: {fileID: 842874919}
   journeyGraph: {fileID: 618853329}
-  playerAvatar: {fileID: 0}
 --- !u!1 &786810663
 GameObject:
   m_ObjectHideFlags: 0
