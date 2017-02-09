@@ -9,7 +9,6 @@ namespace EA4S.Core
     {
         Home,
         AnturaSpace,
-        Assessment,
         Book,
         ReservedArea,
         GameSelector,
@@ -33,8 +32,6 @@ namespace EA4S.Core
                     return "_Start";
                 case AppScene.AnturaSpace:
                     return "app_AnturaSpace";
-                case AppScene.Assessment:
-                    return "app_Assessment";
                 case AppScene.Book:
                     return "app_Book";
                 case AppScene.Map:
