@@ -21,7 +21,7 @@ namespace EA4S.Profile
         public PlayerTint Tint;
         public int Age;
 
-        // refactor: to be deleted after using Guid only
+        // refactor: to be deleted after using Uuid only
         public string Key { get; set; }
         public int Id;
 
