@@ -166,6 +166,13 @@ namespace EA4S.Teacher.Test
             builder.CreateAllQuestionPacks();
         }
 
+        public void LetterShapeInWordTest()
+        {
+            var builderParams = SetupFakeGame();
+            var builder = new LetterShapesInWordQuestionBuilder(nPacks: nPacks, parameters: builderParams);
+            builder.CreateAllQuestionPacks();
+        }
+
         public void CommonLettersInWordTest()
         {
             var builderParams = SetupFakeGame();

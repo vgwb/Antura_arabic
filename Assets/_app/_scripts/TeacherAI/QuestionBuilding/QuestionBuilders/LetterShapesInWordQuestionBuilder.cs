@@ -12,35 +12,26 @@ namespace EA4S.Teacher
     /// * Different packs: same Letter will be in all packs, but with different forms
     /// @note: the use of forms (correct/uncorrect check) is performed by the minigame itself
     /// </summary>
-    public class LetterFormsInWordQuestionBuilder : IQuestionBuilder
+    public class LetterShapesInWordQuestionBuilder : IQuestionBuilder
     {
         // focus: Letters & Words
         // pack history filter: enabled
         // journey: enabled
 
         private int nPacks;
-        private int nCorrect;
-        private bool useAllCorrectLetters;
-        private int nWrong;
         private int maximumWordLength;
-        private bool packsUsedTogether;
         private WordDataCategory category;
         private QuestionBuilderParameters parameters;
 
-        public LetterFormsInWordQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, 
-            bool useAllCorrectLetters = false, WordDataCategory category = WordDataCategory.None,
+        public LetterShapesInWordQuestionBuilder(int nPacks,
+            WordDataCategory category = WordDataCategory.None,
             int maximumWordLength = 20,
-            bool packsUsedTogether = false,
             QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
             this.nPacks = nPacks;
-            this.nCorrect = nCorrect;
-            this.nWrong = nWrong;
-            this.useAllCorrectLetters = useAllCorrectLetters;
             this.category = category;
             this.maximumWordLength = maximumWordLength;
-            this.packsUsedTogether = packsUsedTogether;
             this.parameters = parameters;
         }
 
@@ -87,7 +78,6 @@ namespace EA4S.Teacher
         private QuestionPackData CreateSingleQuestionPackData(LetterData letter, LetterPosition form)
         {
             var teacher = AppManager.I.Teacher;
-            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             // Find a word with the letter in that position
             var usableWords = teacher.VocabularyAi.SelectData(
@@ -135,7 +125,7 @@ namespace EA4S.Teacher
             List<LetterData> wordLetters = AppManager.I.VocabularyHelper.GetLettersInWord(selectedWord);
             foreach (var letter in wordLetters)
             {
-                // @todo: use ArabicHelper to check form / position
+                ArabicAlphabetHelper.ExtractLetterDataFromArabicWord()
                 return true;
             }
             return false;
