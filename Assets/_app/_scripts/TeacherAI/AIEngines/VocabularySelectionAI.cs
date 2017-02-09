@@ -184,7 +184,7 @@ namespace EA4S.Teacher
 
         #region Data Selection logic
 
-        public List<T> SelectData<T>(System.Func<List<T>> builderSelectionFunction, SelectionParameters selectionParams) where T : IVocabularyData
+        public List<T> SelectData<T>(System.Func<List<T>> builderSelectionFunction, SelectionParameters selectionParams, bool isTest = false) where T : IVocabularyData
         {
             // skip if we require 0 values
             if (selectionParams.nRequired == 0 && !selectionParams.getMaxData) return new List<T>();
@@ -253,7 +253,7 @@ namespace EA4S.Teacher
             int nBefore = selectionParams.nRequired;
             int nRemaining = selectionParams.nRequired;
             FilterListByContents(currentPlaySessionContents, dataList, priorityFilteredList, ref nRemaining);
-            s += "\n" + (nBefore - nRemaining) + " from PS";
+            s += "\n" + (nBefore - nRemaining) + " from PS ( " + nRemaining + " remaining of " + nBefore + ")";
             if (nRemaining > 0)
             {
                 nBefore = nRemaining;
@@ -274,6 +274,7 @@ namespace EA4S.Teacher
             }
             UnityEngine.Debug.Log(s);
             debugString += (" \tPriority: " + priorityFilteredList.Count);
+            
 
             // (5) Weighted selection on the remaining number
             List<T> selectedList = null;
@@ -281,7 +282,7 @@ namespace EA4S.Teacher
             else selectedList = WeightedDataSelect(priorityFilteredList, selectionParams.nRequired, selectionParams.severity);
             debugString += (" \tSelection: " + selectedList.Count);
 
-            if (ConfigAI.verboseDataSelection)
+            if (ConfigAI.verboseDataSelection && !isTest)
             {
                 UnityEngine.Debug.Log(debugString);
             }
