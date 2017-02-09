@@ -158,7 +158,7 @@ namespace EA4S.Teacher
             db.Insert(data);
 
             // Score update
-            UpdateMinigameScoreDataWithMaximum(miniGameCode.ToString(), playTime, score);
+            UpdateMinigameScoreDataWithMaximum(miniGameCode, playTime, score);
 
             // We also log play skills related to that minigame, as read from MiniGameData
             var minigameData = db.GetMiniGameDataByCode(miniGameCode);
@@ -193,9 +193,9 @@ namespace EA4S.Teacher
 
         #region Score Utilities
 
-        private void UpdateMinigameScoreDataWithMaximum(string elementId, float playTime, int newScore)
+        private void UpdateMinigameScoreDataWithMaximum(MiniGameCode miniGameCode, float playTime, int newScore)
         {
-            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name + " WHERE ElementId = '{0}'", elementId);
+            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name + " WHERE MiniGameCode = '{0}'", (int)miniGameCode);
             var scoreDataList = db.FindDataByQuery<MinigameScoreData>(query);
             int previousMaxScore = 0;
             float previousTotalPlayTime = 0;
@@ -206,7 +206,7 @@ namespace EA4S.Teacher
             }
             float newTotalPlayTime = previousTotalPlayTime + playTime;
             int newMaxScore = Mathf.Max(previousMaxScore, newScore);
-            db.UpdateMinigameScoreData(elementId, newTotalPlayTime, newMaxScore);
+            db.UpdateMinigameScoreData(miniGameCode, newTotalPlayTime, newMaxScore);
         }
 
         private void UpdateJourneyScoreDataWithMaximum(JourneyDataType dataType, string elementId, int newScore)

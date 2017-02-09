@@ -279,7 +279,7 @@ namespace EA4S.Minigames.MissingLetter
 
             if (onLetterClick != null)
             {
-                StartCoroutine(Utils.LaunchDelay(0.2f, onLetterClick, mLetterData.Id));
+                StartCoroutine(Utils.LaunchDelay(0.2f, onLetterClick, this));
                 mCollider.enabled = false;
             }
         }
@@ -292,31 +292,8 @@ namespace EA4S.Minigames.MissingLetter
         /// <returns></returns>
         private Vector3 CalculatePos(int _idxPos, int _length)
         {
-            float _zeroPosX = mv3CenterPosition.x + 1.0f; // +1.0 beacuse we have some UI Widget at the left
+            Vector3 _GoalPos = mv3CenterPosition + new Vector3(mfDistanceBetweenLetters * (0.5f + _idxPos - _length*0.5f), 0, 0);
 
-            if (_length % 2 == 0)
-            {
-                _zeroPosX += mfDistanceBetweenLetters / 2;
-            }
-
-            Vector3 _GoalPos;
-
-            if (_idxPos == 0)
-            {
-                _GoalPos = new Vector3(_zeroPosX, mv3CenterPosition.y, mv3CenterPosition.z);
-            }
-            else
-            {
-                int _n = ((_idxPos + 1) / 2);
-                if (_idxPos % 2 != 0)
-                {
-                    _GoalPos = new Vector3(_zeroPosX - (_n * mfDistanceBetweenLetters), mv3CenterPosition.y, mv3CenterPosition.z);
-                }
-                else
-                {
-                    _GoalPos = new Vector3(_zeroPosX + (_n * mfDistanceBetweenLetters), mv3CenterPosition.y, mv3CenterPosition.z);
-                }
-            }
             return _GoalPos;
         }
         #endregion
@@ -357,7 +334,7 @@ namespace EA4S.Minigames.MissingLetter
         [HideInInspector]
         public Action onExitScene;
         [HideInInspector]
-        public Action<string> onLetterClick;
+        public Action<LetterBehaviour> onLetterClick;
         [HideInInspector]
         public event Action<GameObject> onLetterBecameInvisible;
 

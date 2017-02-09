@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using EA4S.MinigamesAPI;
 using EA4S.UI;
@@ -25,11 +26,12 @@ namespace EA4S.Teacher.Test
         public Toggle journeybase_in;
         public Toggle journeywrong_in;
 
+        public Dictionary<MiniGameCode, Button> buttonsDict = new Dictionary<MiniGameCode, Button>();
+
         void Start()
         {
             // Setup for testing
-            ConfigAI.verboseDataSelection = true;
-            ConfigAI.verboseTeacher = true;
+            SetVerboseAI(true);
             ConfigAI.forceJourneyIgnore = false;
 
             journey_stage_in.onValueChanged.AddListener(x => { currentJourneyStage = int.Parse(x); });
@@ -52,7 +54,7 @@ namespace EA4S.Teacher.Test
             GlobalUI.ShowPauseMenu(false);
         }
 
-        int currentJourneyStage = 3;
+        int currentJourneyStage = 1;
         int currentJourneyLB = 1;
         int currentJourneyPS = 1;
         int nPacks = 5;
@@ -87,11 +89,42 @@ namespace EA4S.Teacher.Test
 
         #region Simulation
 
+        [Header("Simulation")]
         public int numberOfSimulations = 50;
-        private int yieldEverySimulations = 20;
+        public int yieldEverySimulations = 20;
+
+        void SetVerboseAI(bool choice)
+        {
+            ConfigAI.verboseDataSelection = choice;
+            ConfigAI.verboseTeacher = choice;
+        }
+
+        public void TestAllMiniGames()
+        {
+            SetVerboseAI(false);
+
+            foreach (var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
+            {
+                var colors = buttonsDict[code].colors;
+                colors.normalColor = Color.green;
+                try
+                {
+                    SimulateMiniGame(code);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError(code + ": " + e);
+                    colors.normalColor = Color.red;
+                }
+                buttonsDict[code].colors = colors;
+            }
+
+            SetVerboseAI(true);
+        }
 
         public IEnumerator SimulateMiniGameCO(MiniGameCode code)
         {
+            InitialisePlaySession();
             for (int i = 0; i < numberOfSimulations; i++)
             {
                 var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
@@ -106,7 +139,15 @@ namespace EA4S.Teacher.Test
 
         public void SimulateMiniGame(MiniGameCode code)
         {
-            StartCoroutine(SimulateMiniGameCO(code));
+            InitialisePlaySession();
+            for (int i = 0; i < numberOfSimulations; i++)
+            {
+                var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
+                InitialisePlaySession();
+                var builder = config.SetupBuilder();
+                //Debug.Log("SIMULATION " + (i + 1) + " minigame: " + code + " with builder " + builder.GetType().Name);
+                builder.CreateAllQuestionPacks();
+            }
         }
 
         #endregion
@@ -147,6 +188,13 @@ namespace EA4S.Teacher.Test
         {
             var builderParams = SetupFakeGame();
             var builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
+            builder.CreateAllQuestionPacks();
+        }
+
+        public void LetterFormInWordsTest()
+        {
+            var builderParams = SetupFakeGame();
+            var builder = new LetterFormsInWordsQuestionBuilder(nPacks: nPacks, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 

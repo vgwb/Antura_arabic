@@ -14,7 +14,7 @@ namespace EA4S.Database
     }
 
     [Flags]
-    public enum LetterPosition
+    public enum LetterForm
     {
         None = 0,
         Isolated = 1,
@@ -32,7 +32,7 @@ namespace EA4S.Database
     // refactor: this requires heavy refactoring!
     // refactor: we could make this general in respect to the language
     [Serializable]
-    public class LetterData : IData, IConvertibleToLivingLetterData
+    public class LetterData : IVocabularyData, IConvertibleToLivingLetterData
     {
         public string Id;
         public bool Active;
@@ -67,6 +67,11 @@ namespace EA4S.Database
         public override string ToString()
         {
             return Id + ": " + Isolated;
+        }
+
+        public float GetIntrinsicDifficulty()
+        {
+            return Intrinsic;
         }
 
         public string GetId()
@@ -133,21 +138,21 @@ namespace EA4S.Database
 
         public ILivingLetterData ConvertToLivingLetterData()
         {
-            return new LL_LetterData(GetId(), this);
+            return new LL_LetterData(this);
         }
 
-        public string GetUnicode(LetterPosition position = LetterPosition.Isolated, bool fallback = true)
+        public string GetUnicode(LetterForm form = LetterForm.Isolated, bool fallback = true)
         {
             switch (Kind) {
                 case LetterDataKind.Symbol:
                     return Isolated_Unicode;
                 default:
-                    switch (position) {
-                        case LetterPosition.Initial:
+                    switch (form) {
+                        case LetterForm.Initial:
                             return Initial_Unicode != "" ? Initial_Unicode : (fallback ? Isolated_Unicode : "");
-                        case LetterPosition.Medial:
+                        case LetterForm.Medial:
                             return Medial_Unicode != "" ? Medial_Unicode : (fallback ? Isolated_Unicode : "");
-                        case LetterPosition.Final:
+                        case LetterForm.Final:
                             return Final_Unicode != "" ? Final_Unicode : (fallback ? Isolated_Unicode : "");
                         default:
                             return Isolated_Unicode;
@@ -155,10 +160,10 @@ namespace EA4S.Database
             }
         }
 
-        public string GetChar(LetterPosition position = LetterPosition.Isolated)
+        public string GetChar(LetterForm form = LetterForm.Isolated)
         {
             string output = "";
-            var hexunicode = GetUnicode(position);
+            var hexunicode = GetUnicode(form);
             if (hexunicode != "") {
 
                 // add the "-" to diacritic symbols to indentify better if it's over or below hte mid line
@@ -178,36 +183,36 @@ namespace EA4S.Database
         }
 
         // this jsut adds a - before medial and final single letters! if needed
-        public string GetCharFixedForDisplay(LetterPosition position = LetterPosition.Isolated)
+        public string GetCharFixedForDisplay(LetterForm form = LetterForm.Isolated)
         {
-            if (GetUnicode(position, false) == "")
+            if (GetUnicode(form, false) == "")
                 return "";
 
-            string output = GetChar(position);
+            string output = GetChar(form);
 
-            if ((position == LetterPosition.Final && FinalFix != "") || (position == LetterPosition.Medial && MedialFix != "")) {
+            if ((form == LetterForm.Final && FinalFix != "") || (form == LetterForm.Medial && MedialFix != "")) {
                 output = "\u0640" + output;
             }
 
             return output;
         }
 
-        public LetterPosition GetAvailablePositions()
+        public LetterForm GetAvailablePositions()
         {
-            LetterPosition availablePositions = LetterPosition.None;
+            LetterForm availableForms = LetterForm.None;
             if (Isolated_Unicode != "")
-                availablePositions |= LetterPosition.Isolated;
+                availableForms |= LetterForm.Isolated;
 
             if (Initial_Unicode != "")
-                availablePositions |= LetterPosition.Initial;
+                availableForms |= LetterForm.Initial;
 
             if (Medial_Unicode != "")
-                availablePositions |= LetterPosition.Medial;
+                availableForms |= LetterForm.Medial;
 
             if (Final_Unicode != "")
-                availablePositions |= LetterPosition.Final;
+                availableForms |= LetterForm.Final;
 
-            return availablePositions;
+            return availableForms;
         }
 
     }
