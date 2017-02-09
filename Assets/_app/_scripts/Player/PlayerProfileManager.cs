@@ -96,11 +96,11 @@ namespace EA4S.Profile
                 returnProfile = new PlayerProfile();
                 // create new
                 if (AppManager.I.GameSettings.AvailablePlayers.Contains(_avatarId.ToString())) {
-                    List<string> tmpList = AppManager.I.GameSettings.AvailablePlayers;
                     returnProfile.Id = AppManager.I.GameSettings.AvailablePlayers.FindIndex(s => s == _avatarId.ToString()) + 1;
                 } else {
                     returnProfile.Id = AppManager.I.GameSettings.AvailablePlayers.Count + 1;
                 }
+                returnProfile.Uuid = System.Guid.NewGuid().ToString();
                 returnProfile.AvatarId = _avatarId;
                 returnProfile.Key = returnProfile.Id.ToString();
                 AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
