@@ -231,7 +231,8 @@ namespace EA4S.Teacher
             var availableLetters = VocabularyAi.SelectData(
               () => VocabularyHelper.GetAllLetters(filters),
                 new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
-              );
+                , true
+            );
 
             List<LL_LetterData> list = new List<LL_LetterData>();
             foreach (var letterData in availableLetters)
@@ -257,7 +258,8 @@ namespace EA4S.Teacher
             var availableLetters = VocabularyAi.SelectData(
               () => VocabularyHelper.GetAllLetters(filters),
                 new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
-              );
+              , true
+            );
 
             if (giveWarningOnFake)
             {
@@ -293,6 +295,7 @@ namespace EA4S.Teacher
             var availableWords = VocabularyAi.SelectData(
               () => VocabularyHelper.GetWordsByCategory(WordDataCategory.Animal, filters),
                 new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
+               , true
               );
 
             var data = availableWords.RandomSelectOne();
