@@ -8,7 +8,8 @@ namespace EA4S.Minigames.MissingLetter
     public enum MissingLetterVariation : int
     {
         MissingLetter = 1,
-        MissingWord = 2
+        MissingWord = 2,
+        MissingShape = 3
     }
 
     public class MissingLetterConfiguration : IGameConfiguration
@@ -45,7 +46,8 @@ namespace EA4S.Minigames.MissingLetter
             Context = new MinigamesGameContext(MiniGameCode.MissingLetter, System.DateTime.Now.Ticks.ToString());
 
             Difficulty = 0.5f;
-            Variation = MissingLetterVariation.MissingLetter;
+            //Variation = MissingLetterVariation.MissingLetter;
+            Variation = MissingLetterVariation.MissingShape;
         }
 
         public IQuestionBuilder SetupBuilder() {
@@ -59,6 +61,13 @@ namespace EA4S.Minigames.MissingLetter
 
             switch (Variation)
             {
+                case MissingLetterVariation.MissingShape:
+                    builderParams.letterFilters.excludeDiacritics = true;
+                    builderParams.letterFilters.excludeDiphthongs = true;
+                    builderParams.letterFilters.excludeLetterVariations = true;
+                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
+                    break;
+
                 case MissingLetterVariation.MissingLetter:
                     builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
