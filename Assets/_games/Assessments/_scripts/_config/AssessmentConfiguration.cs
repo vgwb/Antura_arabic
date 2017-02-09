@@ -63,10 +63,8 @@ namespace EA4S.Assessment
         public int Answers { get; private set; } // number of answers in category questions
 
         /// <summary>
-        /// Number of rounds, mostly fixed for each game, this value is setted
-        /// inside SetupBuilder.
+        /// Number of rounds, mostly fixed for each game, this value is provided externally
         /// </summary>
-        public int Rounds { get { return _rounds; } private set { _rounds = value; } }
         public int NumberOfRounds { get { return _rounds; }  set { _rounds = value; } }
         private int _rounds = 0;
 
@@ -147,7 +145,6 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_OrderLettersOfWord_Builder()
         {
             SimultaneosQuestions = 1;
-            Rounds = 3;
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.wordFilters.requireDrawings = true;
@@ -163,7 +160,7 @@ namespace EA4S.Assessment
                 maxLetters = 9;
 
             return new LettersInWordQuestionBuilder(
-                Rounds,
+                NumberOfRounds,
                 2,
                 useAllCorrectLetters: true,
                 parameters: builderParams,
@@ -174,7 +171,6 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_CompleteWord_Builder()
         {
             SimultaneosQuestions = 1;
-            Rounds = 3;
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
@@ -185,7 +181,7 @@ namespace EA4S.Assessment
 
             return new LettersInWordQuestionBuilder(
 
-                SimultaneosQuestions * Rounds,  // Total Answers
+                SimultaneosQuestions * NumberOfRounds,  // Total Answers
                 1,                              // Always one!
                 snag.Increase(3, 5),            // WrongAnswers
                 useAllCorrectLetters: false,
@@ -201,12 +197,12 @@ namespace EA4S.Assessment
             builderParams.useJourneyForWrong = false;
             builderParams.wordFilters.requireDrawings = true;
             SimultaneosQuestions = 1;
-            Rounds = 3;
+
             int nCorrect = 1;
             int nWrong = snag.Increase( 2, 4);
 
             return new RandomWordsQuestionBuilder(
-                SimultaneosQuestions * Rounds,
+                SimultaneosQuestions * NumberOfRounds,
                 nCorrect,
                 nWrong,
                 firstCorrectIsQuestion: true,
@@ -216,28 +212,28 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_WordArticle_Builder()
         {
             SimultaneosQuestions = 2;
-            Rounds = 3;
+
             Answers = 2;
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wordFilters.excludeArticles = false;
 
             return new WordsByArticleQuestionBuilder(
-                Answers * Rounds * 3,
+                Answers * NumberOfRounds * 3,
                 builderParams);
         }
 
         private IQuestionBuilder Setup_SingularDualPlural_Builder()
         {
             SimultaneosQuestions = 3;
-            Rounds = 3;
             Answers = 2;
+
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wordFilters.excludePluralDual = false;
 
             return new WordsByFormQuestionBuilder(
-                SimultaneosQuestions*Rounds*4,
+                SimultaneosQuestions* NumberOfRounds * 4,
                 builderParams);
         }
 
@@ -249,11 +245,10 @@ namespace EA4S.Assessment
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
             SimultaneosQuestions = 1;
-            Rounds = 3;
             int nCorrect = 1;
             int nWrong = snag.Increase(2, 4);
             return new RandomWordsQuestionBuilder(
-                SimultaneosQuestions*Rounds,
+                SimultaneosQuestions* NumberOfRounds,
                 nCorrect,
                 nWrong,
                 firstCorrectIsQuestion: true,
@@ -263,11 +258,10 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_QuestionAnReply_Builder()
         {
             SimultaneosQuestions = 1;
-            Rounds = 3;
             int nWrongs = snag.Increase( 2, 4);
 
             return new  PhraseQuestionsQuestionBuilder(
-                        SimultaneosQuestions * Rounds, // totale questions
+                        SimultaneosQuestions * NumberOfRounds, // totale questions
                         nWrongs     // wrong additional answers
                 );
         }
@@ -275,14 +269,13 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_SunMoonLetter_Builder()
         {
             SimultaneosQuestions = 2;
-            Rounds = 3;
             Answers = 2;
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
 
             return new LettersBySunMoonQuestionBuilder( 
-                        SimultaneosQuestions * Rounds * 2,
+                        SimultaneosQuestions * NumberOfRounds * 2,
                         builderParams
             );
         }
@@ -291,7 +284,6 @@ namespace EA4S.Assessment
         {
             SimultaneosQuestions = 2;
             snag.SetStartingFrom( 0.5f);
-            Rounds = 1;
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
@@ -301,7 +293,7 @@ namespace EA4S.Assessment
 
             return new WordsWithLetterQuestionBuilder( 
 
-                SimultaneosQuestions*Rounds,    // Total Answers
+                SimultaneosQuestions* NumberOfRounds,    // Total Answers
                 1,                              // Correct Answers
                 snag.Increase( 1, 2),           // Wrong Answers
                 parameters: builderParams
@@ -312,16 +304,14 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_SunMoonWords_Builder()
         {
             SimultaneosQuestions = 2;
-            Rounds = 3;
             Answers = 2;
 
-            return new WordsBySunMoonQuestionBuilder( SimultaneosQuestions * Rounds * 2);
+            return new WordsBySunMoonQuestionBuilder( SimultaneosQuestions * NumberOfRounds * 2);
         }
 
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
             SimultaneosQuestions = 3;
-            Rounds = 1;
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
@@ -331,7 +321,7 @@ namespace EA4S.Assessment
 
             return new LettersInWordQuestionBuilder(
 
-                SimultaneosQuestions * Rounds,   // Total Answers
+                SimultaneosQuestions * NumberOfRounds,   // Total Answers
                 1,// snag.Increase( 1, 2),            // CorrectAnswers
                 0,// snag.Increase( 2, 4),            // WrongAnswers
                 useAllCorrectLetters: false,
@@ -342,7 +332,6 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_LetterShape_Builder()
         {
             SimultaneosQuestions = 1;
-            Rounds = 3;
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
@@ -351,7 +340,7 @@ namespace EA4S.Assessment
             builderParams.useJourneyForWrong = false;
 
             return new RandomLettersQuestionBuilder(
-                SimultaneosQuestions * Rounds,  // Total Answers
+                SimultaneosQuestions * NumberOfRounds,  // Total Answers
                 1,                              // CorrectAnswers
                 snag.Increase( 3, 6),           // WrongAnswers
                 firstCorrectIsQuestion:true,

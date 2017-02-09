@@ -29,9 +29,9 @@ namespace EA4S.Assessment
 
         private IEnumerator RoundsCoroutine( KoreCallback gameEndedCallback)
         {
-            int anturaGagRound = Random.Range( 1, Configuration.Rounds);
+            int anturaGagRound = Random.Range( 1, Configuration.NumberOfRounds);
 
-            for (int round = 0; round < Configuration.Rounds; round++)
+            for (int round = 0; round < Configuration.NumberOfRounds; round++)
             {
                 // Show antura only on the elected round.
                 if (anturaGagRound == round)

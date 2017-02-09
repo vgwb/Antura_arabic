@@ -442,7 +442,7 @@ namespace EA4S.Assessment
                                                        context.AudioManager,
                                                        context.DialogueManager);
 
-            rounds = AssessmentConfiguration.Instance.Rounds;
+            rounds = AssessmentConfiguration.Instance.NumberOfRounds;
         }
 
         /// <summary>
