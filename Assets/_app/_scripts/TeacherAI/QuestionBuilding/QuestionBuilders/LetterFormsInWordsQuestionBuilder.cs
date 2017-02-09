@@ -66,10 +66,10 @@ namespace EA4S.Teacher
                 if (form == LetterForm.None) continue;
                 if (letter.GetUnicode(form, false) != "") usableForms.Add(form);
             }
-            Debug.Log("N USABLE FORMS: " + usableForms.Count + " for letter " + letter);
+            //Debug.Log("N USABLE FORMS: " + usableForms.Count + " for letter " + letter);
 
             // Packs are reduced to the number of available forms, if needed
-            nPacks = UnityEngine.Mathf.Min(usableForms.Count,nPacks);
+            nPacks = Mathf.Min(usableForms.Count,nPacks);
 
             // Randomly choose some forms (one per pack) and create packs
             for (int pack_i = 0; pack_i < nPacks; pack_i++)
@@ -117,6 +117,9 @@ namespace EA4S.Teacher
                 // Check max length
                 if (word.Letters.Length > maxWordLength) continue;
 
+                // Check that it contains the letter only once
+                if (WordContainsLetterTimes(word, containedLetter) > 1) continue;
+
                 // Check that it contains a letter in the correct form
                 if (!WordContainsLetterWithForm(word, containedLetter, form)) continue;
 
@@ -126,15 +129,19 @@ namespace EA4S.Teacher
             return eligibleWords;
         }
 
-        public bool WordContainsLetterWithForm(WordData selectedWord, LetterData containedLetter, LetterForm selectedForm)
+        private int WordContainsLetterTimes(WordData selectedWord, LetterData containedLetter)
         {
             List<LetterData> wordLetters = AppManager.I.VocabularyHelper.GetLettersInWord(selectedWord);
+            int count = 0;
             foreach (var letter in wordLetters)
-            {
-                if (ArabicAlphabetHelper.GetLetterShapeInWord(selectedWord, containedLetter) == selectedForm)
-                return true;
-            }
-            return false;
+                if (letter == containedLetter)
+                    count++;
+            return count;
+        }
+
+        private bool WordContainsLetterWithForm(WordData selectedWord, LetterData containedLetter, LetterForm selectedForm)
+        {
+            return ArabicAlphabetHelper.GetLetterShapeInWord(selectedWord, containedLetter) == selectedForm;
         }
 
     }
