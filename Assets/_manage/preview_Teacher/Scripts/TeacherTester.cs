@@ -52,7 +52,7 @@ namespace EA4S.Teacher.Test
             GlobalUI.ShowPauseMenu(false);
         }
 
-        int currentJourneyStage = 3;
+        int currentJourneyStage = 1;
         int currentJourneyLB = 1;
         int currentJourneyPS = 1;
         int nPacks = 5;
@@ -87,8 +87,24 @@ namespace EA4S.Teacher.Test
 
         #region Simulation
 
+        [Header("Simulation")]
         public int numberOfSimulations = 50;
-        private int yieldEverySimulations = 20;
+        public int yieldEverySimulations = 20;
+
+
+        public void TestAllMiniGames()
+        {
+            foreach(var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
+            {
+                try {
+                    SimulateMiniGame(code);
+                }
+                catch
+                {
+                    // @todo: draw with a RED button
+                } 
+            }
+        }
 
         public IEnumerator SimulateMiniGameCO(MiniGameCode code)
         {
@@ -147,6 +163,13 @@ namespace EA4S.Teacher.Test
         {
             var builderParams = SetupFakeGame();
             var builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
+            builder.CreateAllQuestionPacks();
+        }
+
+        public void LetterFormInWordsTest()
+        {
+            var builderParams = SetupFakeGame();
+            var builder = new LetterFormsInWordsQuestionBuilder(nPacks: nPacks, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 
