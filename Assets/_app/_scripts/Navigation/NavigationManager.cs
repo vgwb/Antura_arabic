@@ -131,7 +131,7 @@ namespace EA4S.Core
             Debug.LogFormat(" ==== {0} scene to load ====", sceneName);
             AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(sceneName, new ModularFramework.Modules.SceneTransition() { });
 
-            if (AppConstants.UseUnityAnalytics) {
+            if (AppConstants.UseUnityAnalytics && !Application.isEditor) {
                 UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
             }
         }
