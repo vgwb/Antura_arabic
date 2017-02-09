@@ -1,4 +1,7 @@
-﻿namespace EA4S.Core
+﻿using System.Collections.Generic;
+using EA4S.Profile;
+
+namespace EA4S.Core
 {
     /// <summary>
     /// Game Setting Extension class.
@@ -16,5 +19,7 @@
         public bool CheatSuperDogMode = false;
 
         public bool EnglishSubtitles = false;
+
+        public List<PlayerIcon> PlayerIcons;
     }
 }

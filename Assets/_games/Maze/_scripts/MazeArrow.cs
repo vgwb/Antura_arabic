@@ -12,7 +12,7 @@ namespace EA4S.Minigames.Maze
         private Color unreachedColor;
 
         Renderer _renderer;
-        
+
         private GameObject highlightFX;
         private ParticleSystem.MainModule particleSystemMainModule;
 
@@ -34,6 +34,10 @@ namespace EA4S.Minigames.Maze
                 particleSystemMainModule.loop = isLooping;
                 highlightFX.SetActive(true);
                 _renderer.material.color = highlightedColor;
+                if (!isLooping)
+                {
+                    MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.OK);
+                }
             }
         }
 

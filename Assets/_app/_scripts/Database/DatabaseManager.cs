@@ -25,6 +25,13 @@ namespace EA4S.Database
             }
         }
 
+        public string GetPlayerDbFilename(string player_uuid)
+        {
+            return "EA4S_Database_" + player_uuid + ".sqlite3";
+            // the new one will be
+            // return "Antura_Player_" + player_uuid + ".sqlite3";
+        }
+
         public bool HasLoadedPlayerProfile()
         {
             return dynamicDb != null;
@@ -55,8 +62,7 @@ namespace EA4S.Database
         private void SetPlayerProfile(int playerProfileId)
         {
             // SAFE MODE: we need to make sure that the static db has some entires, otherwise there is something wrong
-            if (staticDb.GetPlaySessionTable().GetDataCount() == 0)
-            {
+            if (staticDb.GetPlaySessionTable().GetDataCount() == 0) {
                 throw new System.Exception("Database is empty, it was probably not setup correctly. Make sure it has been statically loaded by the management scene.");
             }
 
@@ -79,7 +85,7 @@ namespace EA4S.Database
 
         private void LoadDynamicDbForPlayerProfile(int profileId)
         {
-            dynamicDb = new DBService("EA4S_Database" + "_" + profileId + ".sqlite3", profileId);
+            dynamicDb = new DBService(GetPlayerDbFilename(profileId.ToString()), profileId);
         }
 
         public void UnloadCurrentProfile()

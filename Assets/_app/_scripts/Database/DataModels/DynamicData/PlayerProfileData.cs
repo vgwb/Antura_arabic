@@ -15,11 +15,11 @@ namespace EA4S.Database
         [PrimaryKey]
         public string Id { get; set; }
 
-        public string Guid { get; set; }
-
+        // refactor: to be deleted after using Uuid only
         public string PlayerKey { get; set; }
         public int PlayerId { get; set; }
 
+        public string Uuid { get; set; }
         public int AvatarId { get; set; }
         public int Age { get; set; }
         public string Name { get; set; }
@@ -40,10 +40,10 @@ namespace EA4S.Database
         {
         }
 
-        public PlayerProfileData(string _guid, string _PlayerKey, int _PlayerId, int _AvatarId, int _Age, PlayerGender _Gender, PlayerTint _Tint, int _TotalNumberOfBones, int _ProfileCompletion, string _AnturaCustomization = null)
+        public PlayerProfileData(string _uuid, string _PlayerKey, int _PlayerId, int _AvatarId, int _Age, PlayerGender _Gender, PlayerTint _Tint, int _TotalNumberOfBones, int _ProfileCompletion, string _AnturaCustomization = null)
         {
             Id = UNIQUE_ID;  // Only one record
-            Guid = _guid;
+            Uuid = _uuid;
             PlayerKey = _PlayerKey;
             PlayerId = _PlayerId;
             AvatarId = _AvatarId;
