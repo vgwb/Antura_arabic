@@ -25,13 +25,19 @@ namespace EA4S.MinigamesAPI
         {
         }
 
-        public LL_LetterData(string _id, Database.LetterData _data) : this(_data)
-        {
-        }
-
         public LL_LetterData(Database.LetterData _data)
         {
             Data = _data;
+        }
+
+        public LL_LetterData(string _id, Database.LetterPosition _position) : this(AppManager.I.DB.GetLetterDataById(_id), _position)
+        {
+        }
+
+        public LL_LetterData(Database.LetterData _data, Database.LetterPosition _position)
+        {
+            Data = _data;
+            Position = _position;
         }
 
         #region API

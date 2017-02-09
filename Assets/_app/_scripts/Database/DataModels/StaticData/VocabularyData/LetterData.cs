@@ -138,7 +138,7 @@ namespace EA4S.Database
 
         public ILivingLetterData ConvertToLivingLetterData()
         {
-            return new LL_LetterData(GetId(), this);
+            return new LL_LetterData(this);
         }
 
         public string GetUnicode(LetterPosition position = LetterPosition.Isolated, bool fallback = true)
