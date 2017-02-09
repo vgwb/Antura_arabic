@@ -14,6 +14,13 @@
         public static bool VerboseLogging = true;
         public static bool DebugLogInserts = true;
 
+        // Urls
+        public const string UrlWebsite = "http://www.antura.org";
+        public const string UrlPrivacy = "http://www.antura.org/en/privacy-policy/";
+        public const string UrlUploadData = "https://upload.antura.org";
+        public const string UrlStoreiOSApple = "";
+        public const string UrlStoreAndroidGoogle = "";
+
         // Application details (used by Teacher and maybe other)
         public const float minimumAge = 7;
         public const float maximumAge = 15;

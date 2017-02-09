@@ -14,5 +14,15 @@ namespace EA4S.Scenes
             GlobalUI.ShowBackButton(true);
         }
 
+
+        public void BtnOpenUrlWebsite()
+        {
+            Application.OpenURL(AppConstants.UrlWebsite);
+        }
+
+        public void BtnOpenUrlPrivacy()
+        {
+            Application.OpenURL(AppConstants.UrlPrivacy);
+        }
     }
 }
