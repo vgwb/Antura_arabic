@@ -102,7 +102,7 @@ namespace EA4S.Minigames.MissingLetter
                 return;
 
             m_oGame.SetInIdle(false);
-            
+
             //refresh the data (for graphics)
             RestoreQuestion(isCorrectAnswer(clicked.LetterData));
 
@@ -238,7 +238,19 @@ namespace EA4S.Minigames.MissingLetter
                 m_aoCurrentAnswerScene.Add(_wrongAnswerObject);
             }
 
-            m_aoCurrentAnswerScene.Shuffle();
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingShape)
+                m_aoCurrentAnswerScene.Sort((a,b) => 
+                {
+                    var first = (LL_LetterData)a.GetComponent<LetterBehaviour>().LetterData;
+                    var second = (LL_LetterData)b.GetComponent<LetterBehaviour>().LetterData;
+
+                    return Comparer<int>.Default.Compare(
+                        (int)first.Position,
+                        (int)second.Position);
+                    });
+            else
+                m_aoCurrentAnswerScene.Shuffle();
+
             m_oCurrentCorrectAnswer = _correctAnswer;
         }
 
@@ -389,10 +401,12 @@ namespace EA4S.Minigames.MissingLetter
             }
 
             _pos = 0;
-            foreach (GameObject _obj in m_aoCurrentAnswerScene)
+
+            for (int i=0; i< m_aoCurrentAnswerScene.Count; ++i)
             {
-                _obj.GetComponent<LetterBehaviour>().EnterScene(_pos, m_aoCurrentAnswerScene.Count());
-                ++_pos;
+                GameObject _obj = m_aoCurrentAnswerScene[i];
+
+                _obj.GetComponent<LetterBehaviour>().EnterScene(i, m_aoCurrentAnswerScene.Count());
             }
         }
 
