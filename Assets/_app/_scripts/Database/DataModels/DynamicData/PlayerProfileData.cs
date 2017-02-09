@@ -15,12 +15,16 @@ namespace EA4S.Database
         [PrimaryKey]
         public string Id { get; set; }
 
+        // refactor: to be deleted after using Uuid only
         public string PlayerKey { get; set; }
         public int PlayerId { get; set; }
+
+        public string Uuid { get; set; }
         public int AvatarId { get; set; }
         public int Age { get; set; }
         public string Name { get; set; }
-        public string Gender { get; set; }
+        public PlayerGender Gender { get; set; }
+        public PlayerTint Tint { get; set; }
         public int ProfileCompletion { get; set; }
         public int TotalNumberOfBones { get; set; }
         public int CreationTimestamp { get; set; }
@@ -31,21 +35,22 @@ namespace EA4S.Database
         public int CurrentJourneyPosition_LearningBlock { get; set; }
         public int CurrentJourneyPosition_PlaySession { get; set; }
         public string CurrentAnturaCustomization { get; set; }
-        
 
         public PlayerProfileData()
         {
         }
 
-        public PlayerProfileData(string _PlayerKey, int _PlayerId, int _AvatarId, int _Age, string _Name, string _Gender, int _TotalNumberOfBones, int _ProfileCompletion, string _AnturaCustomization = null)
+        public PlayerProfileData(string _uuid, string _PlayerKey, int _PlayerId, int _AvatarId, int _Age, PlayerGender _Gender, PlayerTint _Tint, int _TotalNumberOfBones, int _ProfileCompletion, string _AnturaCustomization = null)
         {
             Id = UNIQUE_ID;  // Only one record
+            Uuid = _uuid;
             PlayerKey = _PlayerKey;
             PlayerId = _PlayerId;
             AvatarId = _AvatarId;
             Age = _Age;
-            Name = _Name;
+            Name = ""; // not compiled at the moment
             Gender = _Gender;
+            Tint = _Tint;
             ProfileCompletion = _ProfileCompletion;
             TotalNumberOfBones = _TotalNumberOfBones;
             SetMaxJourneyPosition(JourneyPosition.InitialJourneyPosition);
@@ -67,7 +72,7 @@ namespace EA4S.Database
         {
             CurrentJourneyPosition_Stage = pos.Stage;
             CurrentJourneyPosition_LearningBlock = pos.LearningBlock;
-            CurrentJourneyPosition_PlaySession = pos.PlaySession; 
+            CurrentJourneyPosition_PlaySession = pos.PlaySession;
         }
 
         public JourneyPosition GetMaxJourneyPosition()
@@ -83,7 +88,7 @@ namespace EA4S.Database
         #endregion
 
         #region Database API
-        
+
         public string GetId()
         {
             return Id;

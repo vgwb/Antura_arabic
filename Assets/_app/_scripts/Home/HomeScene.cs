@@ -54,9 +54,9 @@ namespace EA4S.Scenes
             AppManager.I.NavigationManager.GoToNextScene();
         }
 
-        public void BtnParentsPanel()
+        public void BtnOpenReservedArea()
         {
-
+            AppManager.I.NavigationManager.GoToAppScene(AppScene.ReservedArea);
         }
     }
 }
