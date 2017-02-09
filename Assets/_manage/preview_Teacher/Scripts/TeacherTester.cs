@@ -52,7 +52,7 @@ namespace EA4S.Teacher.Test
             GlobalUI.ShowPauseMenu(false);
         }
 
-        int currentJourneyStage = 3;
+        int currentJourneyStage = 1;
         int currentJourneyLB = 1;
         int currentJourneyPS = 1;
         int nPacks = 5;
