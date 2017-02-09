@@ -30,42 +30,34 @@ namespace EA4S.Audio
         bool musicEnabled = true;
         AudioClip customMusic;
         Music currentMusic;
-        public bool MusicEnabled
-        {
-            get
-            {
+        public bool MusicEnabled {
+            get {
                 return musicEnabled;
             }
 
-            set
-            {
+            set {
                 if (musicEnabled == value)
                     return;
 
                 musicEnabled = value;
 
-                if (musicEnabled && (currentMusic != Music.Silence))
-                {
-                    if (musicGroup != null)
-                    {
+                if (musicEnabled && (currentMusic != Music.Silence)) {
+                    if (musicGroup != null) {
                         musicGroup.Resume();
 
                         bool hasToReset = false;
 
                         if (musicGroup.sources == null)
                             hasToReset = true;
-                        else
-                        {
-                            foreach (var s in musicGroup.sources)
-                            {
+                        else {
+                            foreach (var s in musicGroup.sources) {
                                 if (s.isPlaying)
                                     goto Cont;
                             }
                             hasToReset = true;
                         }
                     Cont:
-                        if (hasToReset)
-                        {
+                        if (hasToReset) {
                             if (currentMusic == Music.Custom)
                                 musicGroup.Play(customMusic, 1, 1, true);
                             else
@@ -73,9 +65,7 @@ namespace EA4S.Audio
                         }
 
                     }
-                }
-                else
-                {
+                } else {
                     if (musicGroup != null)
                         musicGroup.Pause();
                 }
@@ -90,7 +80,7 @@ namespace EA4S.Audio
 
         [SerializeField, HideInInspector]
         List<MusicConfiguration> musicConfs = new List<MusicConfiguration>();
-        
+
         Dictionary<Sfx, SfxConfiguration> sfxConfigurationMap = new Dictionary<Sfx, SfxConfiguration>();
         Dictionary<Music, MusicConfiguration> musicConfigurationMap = new Dictionary<Music, MusicConfiguration>();
 
@@ -165,26 +155,22 @@ namespace EA4S.Audio
             MusicEnabled = !musicEnabled;
         }
 
-        public void PlayMusic(Music music)
+        public void PlayMusic(Music newMusic)
         {
-            currentMusic = music;
-            musicGroup.Stop();
+            if (currentMusic != newMusic) {
+                currentMusic = newMusic;
+                musicGroup.Stop();
 
-            var musicClip = GetAudioClip(music);
+                var musicClip = GetAudioClip(currentMusic);
 
-            if (music == Music.Silence || musicClip == null)
-            {
-                StopMusic();
-            }
-            else
-            {
-                if (musicEnabled)
-                {
-                    musicGroup.Play(musicClip, 1, 1, true);
-                }
-                else
-                {
-                    musicGroup.Stop();
+                if (currentMusic == Music.Silence || musicClip == null) {
+                    StopMusic();
+                } else {
+                    if (musicEnabled) {
+                        musicGroup.Play(musicClip, 1, 1, true);
+                    } else {
+                        musicGroup.Stop();
+                    }
                 }
             }
         }
@@ -208,12 +194,11 @@ namespace EA4S.Audio
 
             var conf = GetConfiguration(sfx);
 
-            if (conf != null)
-            {
+            if (conf != null) {
                 source.Pitch = 1 + ((Random.value - 0.5f) * conf.randomPitchOffset) * 2;
                 source.Volume = conf.volume;
             }
-            
+
             return source;
         }
 
@@ -267,8 +252,7 @@ namespace EA4S.Audio
 
             OnDialogueEnded = null;
 
-            if (!string.IsNullOrEmpty(data.AudioFile))
-            {
+            if (!string.IsNullOrEmpty(data.AudioFile)) {
                 AudioClip clip = GetAudioClip(data);
                 return new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
             }
@@ -292,14 +276,11 @@ namespace EA4S.Audio
 
             OnDialogueEnded = null;
 
-            if (!string.IsNullOrEmpty(data.AudioFile))
-            {
+            if (!string.IsNullOrEmpty(data.AudioFile)) {
                 OnDialogueEnded = callback;
                 AudioClip clip = GetAudioClip(data);
                 return new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
-            }
-            else
-            {
+            } else {
                 if (callback != null)
                     callback();
             }
@@ -327,7 +308,7 @@ namespace EA4S.Audio
         public AudioClip GetAudioClip(LetterData data)
         {
             var res = GetCachedResource("AudioArabic/Letters/" + data.Id);
-            
+
             if (res == null)
                 Debug.Log("Warning: cannot find audio clip for " + data);
 
@@ -358,8 +339,7 @@ namespace EA4S.Audio
         {
             SfxConfiguration conf = GetSfxConfiguration(sfx);
 
-            if (conf == null || conf.clips == null || conf.clips.Count == 0)
-            {
+            if (conf == null || conf.clips == null || conf.clips.Count == 0) {
                 Debug.Log("No Audio clips configured for: " + sfx);
                 return null;
             }
@@ -371,8 +351,7 @@ namespace EA4S.Audio
         {
             SfxConfiguration conf = GetSfxConfiguration(sfx);
 
-            if (conf == null || conf.clips == null || conf.clips.Count == 0)
-            {
+            if (conf == null || conf.clips == null || conf.clips.Count == 0) {
                 Debug.Log("No Audio clips configured for: " + sfx);
                 return null;
             }
@@ -414,11 +393,9 @@ namespace EA4S.Audio
 
         public void Update()
         {
-            for (int i = 0; i < playingAudio.Count; ++i)
-            {
+            for (int i = 0; i < playingAudio.Count; ++i) {
                 var source = playingAudio[i];
-                if (source.Update())
-                {
+                if (source.Update()) {
                     // could be collected
                     playingAudio.RemoveAt(i--);
 
@@ -427,11 +404,9 @@ namespace EA4S.Audio
                 }
             }
 
-            if (hasToNotifyEndDialogue)
-            {
+            if (hasToNotifyEndDialogue) {
                 hasToNotifyEndDialogue = false;
-                if (OnDialogueEnded != null)
-                {
+                if (OnDialogueEnded != null) {
                     var oldCallback = OnDialogueEnded;
                     OnDialogueEnded = null;
                     oldCallback();

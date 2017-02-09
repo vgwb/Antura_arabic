@@ -17,6 +17,8 @@ namespace EA4S.Minigames.ThrowBalls
         public static BallController instance;
 
         public Rigidbody rigidBody;
+
+        public GameObject shadow;
         private SphereCollider sphereCollider;
 
         private TrailRenderer trailRenderer;
@@ -135,13 +137,13 @@ namespace EA4S.Minigames.ThrowBalls
         public void Enable()
         {
             gameObject.SetActive(true);
-            BallShadowController.instance.Enable();
+            shadow.SetActive(true);
         }
 
         public void Disable()
         {
             gameObject.SetActive(false);
-            BallShadowController.instance.Disable();
+            shadow.SetActive(false);
         }
 
         private void SetState(State state)

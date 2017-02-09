@@ -67,7 +67,7 @@ public partial class SROptions
         // refactor: move to DebugManager
         AppManager.I.PlayerProfileManager.ResetEverything();
         SRDebug.Instance.HideDebugPanel();
-        AppManager.I.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.NavigationManager.GetSceneName(AppScene.Home));
+        AppManager.I.Modules.SceneModule.LoadSceneWithTransition(AppSceneHelper.GetSceneName(AppScene.Home));
         UnityEngine.Debug.Log("Reset ALL players and DB.");
     }
 
@@ -523,8 +523,7 @@ public partial class SROptions
             Debug.LogFormat("Pack added: {0}", pack.ToString());
         }
         JourneyPosition next = AppManager.I.Teacher.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
-        if (next != null)
-        {
+        if (next != null) {
             AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(next.Stage, next.LearningBlock, next.PlaySession));
             AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(next.Stage, next.LearningBlock, next.PlaySession));
         }
@@ -532,7 +531,8 @@ public partial class SROptions
 
     [Category("Rewards")]
     [Sort(3)]
-    public void UnlockAllRewards() {
+    public void UnlockAllRewards()
+    {
         RewardSystemManager.UnlockAllRewards();
     }
 }

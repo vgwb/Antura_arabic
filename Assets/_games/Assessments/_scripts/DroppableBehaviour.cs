@@ -52,9 +52,21 @@ namespace EA4S.Assessment
             dragEnabled = true;
         }
 
+        bool canUpdate = false;
+        private void Update()
+        {
+            if (canUpdate)
+            {
+                var pos = transform.localPosition;
+                pos.z = Z;
+                transform.localPosition = pos;
+            }
+        }
+
         Action< IDroppable> OnGoDestroyed = null;
         public void StartDrag( Action< IDroppable> onDestroyed)
         {
+            canUpdate = true;
             OnGoDestroyed = onDestroyed;
             GetComponent< StillLetterBox>().Grabbed();
         }
@@ -69,11 +81,21 @@ namespace EA4S.Assessment
         public void StopDrag()
         {
             OnGoDestroyed = null;
-            GetComponent<StillLetterBox>().TweenScale( 1);
+            GetComponent< StillLetterBox>().TweenScale( 1);
             var v = transform.localPosition;
-            transform.localPosition = new Vector3(v.x, v.y, 5);
+            transform.localPosition = new Vector3( v.x, v.y, Z);
         }
 
+        private float Z = 5f;
+        public void SetZ( float Z)
+        {
+            this.Z = Z;
+        }
+
+        public float GetZ()
+        {
+            return Z;
+        }
 
         PlaceholderBehaviour linkedBehaviour = null;
         public void LinkToPlaceholder( PlaceholderBehaviour behaviour)

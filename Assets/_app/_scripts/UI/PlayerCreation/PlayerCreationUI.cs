@@ -24,8 +24,7 @@ namespace EA4S.UI
 
         bool allCategoriesSelected {
             get {
-                foreach (PlayerCreationUICategory cat in Categories)
-                {
+                foreach (PlayerCreationUICategory cat in Categories) {
                     if (cat.SelectedIndex < 0) return false;
                 }
                 return true;
@@ -46,8 +45,7 @@ namespace EA4S.UI
 
             // Listeners
             BtCreate.Bt.onClick.AddListener(CreateProfile);
-            foreach (PlayerCreationUICategory cat in Categories)
-            {
+            foreach (PlayerCreationUICategory cat in Categories) {
                 cat.OnSelect += OnSelectCategory;
                 cat.OnDeselectAll += OnDeselectAllInCategory;
             }
@@ -56,8 +54,7 @@ namespace EA4S.UI
         void OnDestroy()
         {
             BtCreate.Bt.onClick.RemoveAllListeners();
-            foreach (PlayerCreationUICategory cat in Categories)
-            {
+            foreach (PlayerCreationUICategory cat in Categories) {
                 cat.OnSelect -= OnSelectCategory;
                 cat.OnDeselectAll -= OnDeselectAllInCategory;
             }
@@ -80,8 +77,7 @@ namespace EA4S.UI
         {
             int totSteps = selectionStep - toStep;
             if (stepTween != null) stepTween.Complete();
-            for (int i = toStep + 1; i < selectionStep + 1; ++i)
-            {
+            for (int i = toStep + 1; i < selectionStep + 1; ++i) {
                 PlayerCreationUICategory cat = Categories[i];
                 if (i == 2) cat.ResetColor(); // Reset avatars colors
                 cat.Select(-1);
@@ -102,7 +98,7 @@ namespace EA4S.UI
                 Categories[0].SelectedIndex + 4,
                 Categories[1].SelectedIndex == 0 ? PlayerGender.M : PlayerGender.F,
                 Categories[2].SelectedIndex + 1,
-                (PlayerColor)(Categories[3].SelectedIndex + 1)
+                (PlayerTint)(Categories[3].SelectedIndex + 1)
             );
         }
 
@@ -114,8 +110,7 @@ namespace EA4S.UI
         {
             int catIndex = Array.IndexOf(Categories, category);
             if (selectionStep < Categories.Length - 1 && catIndex == selectionStep) NextStep();
-            switch (catIndex)
-            {
+            switch (catIndex) {
                 case 1: // Gender
                     SetGender();
                     break;
