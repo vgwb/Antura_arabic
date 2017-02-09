@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4771714288561554}
   - component: {fileID: 108014281944213028}
   m_Layer: 0
-  m_Name: Directional Light MOD
+  m_Name: MainLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 4345758531982130}
   - component: {fileID: 108174526346850548}
   m_Layer: 0
-  m_Name: Directional light
+  m_Name: SunsetHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 4043022948000076}
   - component: {fileID: 108275005609665208}
   m_Layer: 0
-  m_Name: Directional light (1)
+  m_Name: GroundReflections
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
