@@ -9,22 +9,54 @@ namespace EA4S.Teacher
 {
     public class VocabularyContents
     {
-        public HashSet<LetterData> letters = new HashSet<LetterData>();
-        public HashSet<WordData> words = new HashSet<WordData>();
-        public HashSet<PhraseData> phrases = new HashSet<PhraseData>();
+        private HashSet<LetterData> letters = new HashSet<LetterData>();
+        private HashSet<WordData> words = new HashSet<WordData>();
+        private HashSet<PhraseData> phrases = new HashSet<PhraseData>();
 
-        public bool Contains(LetterData data)
+        public HashSet<T> GetHashSet<T>()
         {
-            return letters.Contains(data);
+            if (typeof(T) == typeof(LetterData)) return letters as HashSet<T>;
+            if (typeof(T) == typeof(WordData)) return words as HashSet<T>;
+            if (typeof(T) == typeof(PhraseData)) return phrases as HashSet<T>;
+            return null;
         }
-        public bool Contains(WordData data)
+
+        public bool Contains<T>(T data)
         {
-            return words.Contains(data);
+            var set = GetHashSet<T>();
+            return set.Contains(data);
         }
-        public bool Contains(PhraseData data)
+
+        public void UnionWith<T>(IEnumerable<T> dataList)
         {
-            return phrases.Contains(data);
+            var set = GetHashSet<T>();
+            set.UnionWith(dataList);
         }
+
+        public void UnionWith(VocabularyContents otherContents)
+        {
+            UnionWith(otherContents.GetHashSet<LetterData>());
+        }
+
+        public List<T> FilterListByContents<T>(List<T> targetList)
+        {
+            var set = GetHashSet<T>();
+            var newList = new List<T>();
+            foreach (var v in targetList)
+                if (set.Contains(v))
+                    newList.Add(v);
+            return newList;
+        }
+
+        public override string ToString()
+        {
+            string s = "";
+            s += letters.Count + " letters available";
+            s += "\n" + words.Count + " words available";
+            s += "\n" + phrases.Count + " phrases available";
+            return s;
+        }
+
     }
 
     /// <summary>
@@ -40,38 +72,34 @@ namespace EA4S.Teacher
         private VocabularyContents allContents = new VocabularyContents();
 
         #region Get API
-        public VocabularyContents GetContentsOfPlaySession(string psId)
+
+        public VocabularyContents GetContentsOfPlaySession(JourneyPosition pos)
         {
-            var pos = new JourneyPosition(psId);
-            return CreateContentsFromFunc(pair => pair.Key == pos);
+            return CreateContentsFromFunc(pair => pair.Key.Equals(pos));
         }
 
-        public VocabularyContents GetContentsUpToPlaySession(string psId)
+        public VocabularyContents GetContentsUpToPlaySession(JourneyPosition pos)
         {
-            var pos = new JourneyPosition(psId);
-            return CreateContentsFromFunc(pair => pair.Key.IsMinor(pos) || pair.Key == pos);
+            return CreateContentsFromFunc(pair => pair.Key.IsMinor(pos) || pair.Key.Equals(pos));
         }
 
-        public VocabularyContents GetContentsOfLearningBlock(int lbIndex)
+        public VocabularyContents GetContentsOfLearningBlock(JourneyPosition pos)
         {
-            return CreateContentsFromFunc(pair => pair.Key.LearningBlock == lbIndex);
+            return CreateContentsFromFunc(pair => pair.Key.LearningBlock == pos.LearningBlock && pair.Key.Stage == pos.Stage);
         }
 
-        public VocabularyContents GetContentsOfStage(int stageIndex)
+        public VocabularyContents GetContentsOfStage(JourneyPosition pos)
         {
-            return CreateContentsFromFunc(pair => pair.Key.Stage == stageIndex);
+            return CreateContentsFromFunc(pair => pair.Key.Stage == pos.Stage);
         }
+        
         #endregion
 
         private VocabularyContents CreateContentsFromFunc(Func<KeyValuePair<JourneyPosition, VocabularyContents>,bool> function)
         {
             var contents = new VocabularyContents();
             foreach (var pair in playSessionsContents.Where(function))
-            {
-                contents.letters.UnionWith(pair.Value.letters);
-                contents.words.UnionWith(pair.Value.words);
-                contents.phrases.UnionWith(pair.Value.phrases);
-            }
+                contents.UnionWith(pair.Value);
             return contents;
         }
 
@@ -81,14 +109,14 @@ namespace EA4S.Teacher
         public void AddPlaySession(string psId, List<LetterData> letters, List<WordData> words, List<PhraseData> phrases)
         {
             var newContents = new VocabularyContents();
-            newContents.letters.UnionWith(letters);
-            newContents.words.UnionWith(words);
-            newContents.phrases.UnionWith(phrases);
+            newContents.UnionWith(letters);
+            newContents.UnionWith(words);
+            newContents.UnionWith(phrases);
             playSessionsContents[new JourneyPosition(psId)] = newContents;
 
-            allContents.letters.UnionWith(letters);
-            allContents.words.UnionWith(words);
-            allContents.phrases.UnionWith(phrases);
+            allContents.UnionWith(letters);
+            allContents.UnionWith(words);
+            allContents.UnionWith(phrases);
         }
 
         #endregion
@@ -102,16 +130,6 @@ namespace EA4S.Teacher
     {
         // References
         private DatabaseManager dbManager;
-
-        // Data found in the whole journey
-        // private HashSet<LetterData> journeyLetters = new HashSet<LetterData>();
-        //private HashSet<WordData> journeyWords = new HashSet<WordData>();
-        //private HashSet<PhraseData> journeyPhrases = new HashSet<PhraseData>();
-
-        // Data found in the current play session
-        //private HashSet<LetterData> currentPlaySessionLetters = new HashSet<LetterData>();
-        //private HashSet<WordData> currentPlaySessionWords = new HashSet<WordData>();
-        // private HashSet<PhraseData> currentPlaySessionPhrases = new HashSet<PhraseData>();
 
         private ProgressionVocabularyContents progressionContents;
         private VocabularyContents currentPlaySessionContents;
@@ -128,9 +146,9 @@ namespace EA4S.Teacher
             foreach (var psData in dbManager.GetAllPlaySessionData())
             {
                 var psId = psData.Id;
-                var letters = GetLettersInPlaySession(psId, pastSessionsToo: true);
-                var words = GetWordsInPlaySession(psId, previousToo: true, pastSessionsToo: true);
-                var phrases = GetPhrasesInPlaySession(psId, previousToo: true, pastSessionsToo:true);
+                var letters = GetLettersInPlaySession(psId, pastSessionsToo: false);
+                var words = GetWordsInPlaySession(psId, previousToo: true, pastSessionsToo: false);
+                var phrases = GetPhrasesInPlaySession(psId, previousToo: true, pastSessionsToo: false);
                 progressionContents.AddPlaySession(psId, letters, words, phrases);
             }
         }
@@ -138,26 +156,16 @@ namespace EA4S.Teacher
         public void LoadCurrentPlaySessionData(string currentPlaySessionId)
         {
             var pos = new JourneyPosition(currentPlaySessionId);
-            currentPlaySessionContents = progressionContents.GetContentsOfPlaySession(currentPlaySessionId);
-            currentJourneyContents = progressionContents.GetContentsOfPlaySession(currentPlaySessionId);
-            currentBlockContents = progressionContents.GetContentsOfLearningBlock(pos.LearningBlock);
-            currentStageContents = progressionContents.GetContentsOfStage(pos.Stage);
-
-            //currentPlaySessionLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId));
-            // currentPlaySessionWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId));
-            //currentPlaySessionPhrases = new HashSet<PhraseData>(GetPhrasesInPlaySession(currentPlaySessionId, true));
-
-            //journeyLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId, true));
-            //journeyWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId, true, true));
-            //journeyPhrases = new HashSet<PhraseData>(GetPhrasesInPlaySession(currentPlaySessionId, true, true));
+            currentPlaySessionContents = progressionContents.GetContentsOfPlaySession(pos);
+            currentJourneyContents = progressionContents.GetContentsUpToPlaySession(pos);
+            currentBlockContents = progressionContents.GetContentsOfLearningBlock(pos);
+            currentStageContents = progressionContents.GetContentsOfStage(pos);
 
             if (ConfigAI.verboseDataSelection)
             {
                 string debugString = "";
                 debugString += "--------- TEACHER: play session initialisation (journey " + currentPlaySessionId + ") --------- ";
-                debugString += "\n" + currentJourneyContents.letters.Count + " letters available";
-                debugString += "\n" + currentJourneyContents.words.Count + " words available";
-                debugString += "\n" + currentJourneyContents.phrases.Count + " phrases available";
+                debugString += "\n" + currentJourneyContents.ToString();
                 UnityEngine.Debug.Log(debugString);
             }
         }
@@ -172,39 +180,15 @@ namespace EA4S.Teacher
             string debugString = "";
             //debugString += "--------- TEACHER: data selection --------- ";
 
-            // @note: not the best of solutions, but I do not seem to be able to get more generic than this without rewriting most stuff.
-            System.Type typeParameterType = typeof(T);
-            HashSet<T> journeyData = null;
-            //HashSet<T> currentPSData = null;
-            VocabularyDataType dataType = VocabularyDataType.Letter;
-            if (typeParameterType == typeof(LetterData))
-            {
-                dataType = VocabularyDataType.Letter;
-                journeyData = new HashSet<T>(currentJourneyContents.letters.Cast<T>());
-                // currentPSData = new HashSet<T>(currentPlaySessionLetters.Cast<T>());
-            }
-            else if (typeParameterType == typeof(WordData))
-            {
-                dataType = VocabularyDataType.Word;
-                journeyData = new HashSet<T>(currentJourneyContents.words.Cast<T>());
-                // currentPSData = new HashSet<T>(currentPlaySessionWords.Cast<T>());
-            }
-            else if (typeParameterType == typeof(PhraseData))
-            {
-                dataType = VocabularyDataType.Phrase;
-                journeyData = new HashSet<T>(currentJourneyContents.phrases.Cast<T>());
-                // currentPSData = new HashSet<T>(currentPlaySessionPhrases.Cast<T>());
-            }
-
-            // Get unfiltered data based on the builder's logic
+            // (1) Filtering based on the builder's logic
             var dataList = builderSelectionFunction();
             int nAfterBuilder = dataList.Count;
             debugString += ("Builder: " + dataList.Count);
 
-            // Filtering based on journey
+            // (2) Filtering based on journey
             if (selectionParams.useJourney && !ConfigAI.forceJourneyIgnore)
             {
-                dataList = dataList.FindAll(x => journeyData.Contains(x));
+                dataList = dataList.FindAll(x => currentJourneyContents.Contains(x));
             }
             if (selectionParams.severity == SelectionSeverity.AllRequired) 
             {
@@ -216,9 +200,8 @@ namespace EA4S.Teacher
             }
             debugString += (" \tJourney: " + dataList.Count);
 
-            // Filtering based on pack-list history 
-            PackListHistory sev = selectionParams.packListHistory;
-            switch (sev)
+            // (3) Filtering based on pack-list history 
+            switch (selectionParams.packListHistory)
             {
                 case PackListHistory.NoFilter:
                     // we do not care which are picked, in this case
@@ -251,10 +234,32 @@ namespace EA4S.Teacher
             }
             debugString += (" \tHistory: " + dataList.Count);
 
-            // Weighted selection on the remaining number
+
+            // (4) Priority filtering based on current focus
+            string s = "Priority fitlering:";
+            List<T> priorityFilteredList = new List<T>();
+            int nRequiredRemaining = selectionParams.nRequired;
+            FilterListByContents(currentPlaySessionContents, dataList, priorityFilteredList, ref nRequiredRemaining);
+            s += "\n" + nRequiredRemaining + " after PS";
+            if (nRequiredRemaining > 0) {
+                FilterListByContents(currentBlockContents, dataList, priorityFilteredList, ref nRequiredRemaining);
+                s += "\n" + nRequiredRemaining + " after LB";
+            }
+            if (nRequiredRemaining > 0)
+            {
+                FilterListByContents(currentStageContents, dataList, priorityFilteredList, ref nRequiredRemaining);
+                s += "\n" + nRequiredRemaining + " after ST";
+            }
+            if (nRequiredRemaining > 0)
+            {
+                FilterListByContents(currentJourneyContents, dataList, priorityFilteredList, ref nRequiredRemaining);
+                s += "\n" + nRequiredRemaining + " after Journey";
+            }
+
+            // (5) Weighted selection on the remaining number
             List<T> selectedList = null;
-            if (selectionParams.getMaxData) selectedList = dataList;
-            else selectedList = WeightedDataSelect(dataList, selectionParams.nRequired, dataType, selectionParams.severity);
+            if (selectionParams.getMaxData) selectedList = priorityFilteredList;
+            else selectedList = WeightedDataSelect(priorityFilteredList, selectionParams.nRequired, selectionParams.severity);
             debugString += (" \tSelection: " + selectedList.Count);
 
             if (ConfigAI.verboseDataSelection)
@@ -279,15 +284,25 @@ namespace EA4S.Teacher
             return selectedList;
         }
 
+        private void FilterListByContents<T>(VocabularyContents contents, List<T> inputList, List<T> outputList, ref int nRemaining)
+        {
+            int nBefore = outputList.Count;
+            outputList.AddRange(contents.FilterListByContents(inputList));
+            nRemaining -= outputList.Count - nBefore;
+        }
+
         private bool CheckRequiredNumberReached<T>(List<T> dataList, SelectionParameters selectionParams, int nAfterBuilder)
         {
             return (!selectionParams.getMaxData && dataList.Count >= selectionParams.nRequired)
                 || (selectionParams.getMaxData && dataList.Count >= nAfterBuilder);
         }
 
-        private List<T> WeightedDataSelect<T>(List<T> source_data_list, int nToSelect, VocabularyDataType dataType, SelectionSeverity severity) where T : IData
+        private List<T> WeightedDataSelect<T>(List<T> source_data_list, int nToSelect, SelectionSeverity severity) where T : IData
         {
-            // @todo: take from here
+            VocabularyDataType dataType = VocabularyDataType.Letter;
+            if (typeof(T) == typeof(LetterData)) dataType = VocabularyDataType.Letter;
+            else if (typeof(T) == typeof(WordData)) dataType = VocabularyDataType.Word;
+            else if (typeof(T) == typeof(PhraseData)) dataType = VocabularyDataType.Phrase;
 
             // Given a (filtered) list of data, select some using weights
             List<VocabularyScoreData> score_data_list = dbManager.FindDataByQuery<VocabularyScoreData>("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" + (int)dataType + "'");
@@ -324,10 +339,13 @@ namespace EA4S.Teacher
                 cumulativeWeight += recentPlayWeight * ConfigAI.data_recentPlayWeight;
                 debugString += " \tRecent: " + recentPlayWeight * ConfigAI.data_recentPlayWeight + "(" + recentPlayWeight + ")";
 
-                // Current focus weight [1,0]: higher if the data is part of the current play session
-                float currentPlaySessionWeight = 1f;// @todo: readd: currentPlaySessionContents.Contains(sourceData) ? 1 : 0f;
+                // Current focus weight [1,0]: higher if the data is part of the current play session / learning block / stage
+                float currentPlaySessionWeight = 0;
+                if (currentPlaySessionContents.Contains(sourceData)) currentPlaySessionWeight = 1;
+                else if (currentBlockContents.Contains(sourceData)) currentPlaySessionWeight = 0.5f;
+                else if (currentStageContents.Contains(sourceData)) currentPlaySessionWeight = 0.2f;
                 cumulativeWeight += currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight;
-                debugString += " \tCurrentPS: " + currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight + "(" + currentPlaySessionWeight + ")";
+                debugString += " \tFocus: " + currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight + "(" + currentPlaySessionWeight + ")";
 
                 // If the cumulative weight goes to the negatives, we give it a fixed weight
                 if (cumulativeWeight <= 0)

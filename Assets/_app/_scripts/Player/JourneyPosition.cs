@@ -37,6 +37,17 @@
             PlaySession = _ps;
         }
 
+        public override bool Equals(object obj)
+        {
+            var otherPos = (JourneyPosition)obj;
+            return Stage == otherPos.Stage && LearningBlock == otherPos.LearningBlock && PlaySession == otherPos.PlaySession;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         // refactor: this is used by part of the application to convert hourney to an ID for DB purposes. Make this more robust.
         public override string ToString()
         {
