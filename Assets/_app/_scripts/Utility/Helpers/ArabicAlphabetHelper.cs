@@ -192,9 +192,9 @@ namespace EA4S.Helpers
         /// Return a string of a word without a character. Warning: the word is already reversed and fixed for rendering.
         /// This is mandatory since PrepareArabicStringForDisplay should be called before adding removedLetterChar.
         /// </summary>
-        public static string GetWordWithMissingLetterText(out Database.LetterPosition letterShape, Database.WordData arabicWord, Database.LetterData letterToRemove, string removedLetterChar = "_")
+        public static string GetWordWithMissingLetterText(out Database.LetterForm letterShape, Database.WordData arabicWord, Database.LetterData letterToRemove, string removedLetterChar = "_")
         {
-            letterShape = Database.LetterPosition.None;
+            letterShape = Database.LetterForm.None;
             var Letters = SplitWordIntoLetters(arabicWord);
             
             int charPosition = 0;
@@ -211,16 +211,16 @@ namespace EA4S.Helpers
                     var character = text.Substring(charPosition, letterToRemove.GetChar().Length);
 
                     // This test order is important, do not change
-                    if (letterToRemove.GetChar(Database.LetterPosition.Isolated) == character)
-                        letterShape = Database.LetterPosition.Isolated;
-                    else if (letterToRemove.GetChar(Database.LetterPosition.Initial) == character)
-                        letterShape = Database.LetterPosition.Initial;
-                    else if (letterToRemove.GetChar(Database.LetterPosition.Medial) == character)
-                        letterShape = Database.LetterPosition.Medial;
-                    else if (letterToRemove.GetChar(Database.LetterPosition.Final) == character)
-                        letterShape = Database.LetterPosition.Final;
+                    if (letterToRemove.GetChar(Database.LetterForm.Isolated) == character)
+                        letterShape = Database.LetterForm.Isolated;
+                    else if (letterToRemove.GetChar(Database.LetterForm.Initial) == character)
+                        letterShape = Database.LetterForm.Initial;
+                    else if (letterToRemove.GetChar(Database.LetterForm.Medial) == character)
+                        letterShape = Database.LetterForm.Medial;
+                    else if (letterToRemove.GetChar(Database.LetterForm.Final) == character)
+                        letterShape = Database.LetterForm.Final;
                     else
-                        letterShape = Database.LetterPosition.Isolated; // fallback to isolated
+                        letterShape = Database.LetterForm.Isolated; // fallback to isolated
 
                     break;
                 }
@@ -236,7 +236,7 @@ namespace EA4S.Helpers
             return text;
         }
 
-        public static Database.LetterPosition GetLetterShapeInWord(Database.WordData arabicWord, Database.LetterData letter)
+        public static Database.LetterForm GetLetterShapeInWord(Database.WordData arabicWord, Database.LetterData letter)
         {
             var Letters = SplitWordIntoLetters(arabicWord);
 
@@ -251,22 +251,22 @@ namespace EA4S.Helpers
                     var character = text.Substring(charPosition, letter.GetChar().Length);
 
                     // This test order is important, do not change
-                    if (letter.GetChar(Database.LetterPosition.Isolated) == character)
-                        return Database.LetterPosition.Isolated;
-                    else if (letter.GetChar(Database.LetterPosition.Initial) == character)
-                        return Database.LetterPosition.Initial;
-                    else if (letter.GetChar(Database.LetterPosition.Medial) == character)
-                        return Database.LetterPosition.Medial;
-                    else if (letter.GetChar(Database.LetterPosition.Final) == character)
-                        return Database.LetterPosition.Final;
+                    if (letter.GetChar(Database.LetterForm.Isolated) == character)
+                        return Database.LetterForm.Isolated;
+                    else if (letter.GetChar(Database.LetterForm.Initial) == character)
+                        return Database.LetterForm.Initial;
+                    else if (letter.GetChar(Database.LetterForm.Medial) == character)
+                        return Database.LetterForm.Medial;
+                    else if (letter.GetChar(Database.LetterForm.Final) == character)
+                        return Database.LetterForm.Final;
                     else
-                        return Database.LetterPosition.Isolated; // fallback to isolated
+                        return Database.LetterForm.Isolated; // fallback to isolated
                 }
                 else
                     charPosition += Letters[index].GetChar().Trim().Length;
             }
 
-            return Database.LetterPosition.None;
+            return Database.LetterForm.None;
         }
 
         /// <summary>

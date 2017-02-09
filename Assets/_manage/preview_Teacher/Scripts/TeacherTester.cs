@@ -166,10 +166,10 @@ namespace EA4S.Teacher.Test
             builder.CreateAllQuestionPacks();
         }
 
-        public void LetterShapeInWordTest()
+        public void LetterFormInWordsTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new LetterShapesInWordQuestionBuilder(nPacks: nPacks, parameters: builderParams);
+            var builder = new LetterFormsInWordsQuestionBuilder(nPacks: nPacks, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 

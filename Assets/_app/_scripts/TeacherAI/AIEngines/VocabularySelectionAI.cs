@@ -255,13 +255,13 @@ namespace EA4S.Teacher
                 int nBefore = selectionParams.nRequired;
                 int nRemaining = selectionParams.nRequired;
                 FilterListByContents(currentPlaySessionContents, dataList, priorityFilteredList, ref nRemaining);
+               
                 s += "\n" + (nBefore - nRemaining) + " from PS ( " + nRemaining + " remaining of " + nBefore + ")";
                 if (nRemaining > 0)
                 {
                     nBefore = nRemaining;
                     FilterListByContents(currentBlockContents, dataList, priorityFilteredList, ref nRemaining);
                     s += "\n" + (nBefore - nRemaining) + " from LB";
-                    ;
                 }
                 if (nRemaining > 0)
                 {
@@ -316,6 +316,7 @@ namespace EA4S.Teacher
             int nBefore = outputList.Count;
             outputList.AddRange(contents.FilterListByContents(inputList));
             nRemaining -= outputList.Count - nBefore;
+            if (nRemaining < 0) nRemaining = 0;
         }
 
         private bool CheckRequiredNumberReached<T>(List<T> dataList, SelectionParameters selectionParams, int nAfterBuilder)

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using EA4S.Database;
 using EA4S.Helpers;
+using UnityEngine;
 
 namespace EA4S.Teacher
 {
@@ -12,7 +13,7 @@ namespace EA4S.Teacher
     /// * Different packs: same Letter will be in all packs, but with different forms
     /// @note: the use of forms (correct/uncorrect check) is performed by the minigame itself
     /// </summary>
-    public class LetterShapesInWordQuestionBuilder : IQuestionBuilder
+    public class LetterFormsInWordsQuestionBuilder : IQuestionBuilder
     {
         // focus: Letters & Words
         // pack history filter: enabled
@@ -23,7 +24,7 @@ namespace EA4S.Teacher
         private WordDataCategory category;
         private QuestionBuilderParameters parameters;
 
-        public LetterShapesInWordQuestionBuilder(int nPacks,
+        public LetterFormsInWordsQuestionBuilder(int nPacks,
             WordDataCategory category = WordDataCategory.None,
             int maximumWordLength = 20,
             QuestionBuilderParameters parameters = null)
@@ -33,6 +34,10 @@ namespace EA4S.Teacher
             this.category = category;
             this.maximumWordLength = maximumWordLength;
             this.parameters = parameters;
+
+            // Forced parameters
+            this.parameters.letterFilters.excludeDiacritics = true;
+            this.parameters.letterFilters.excludeLetterVariations = true;
         }
 
         private List<string> previousPacksIDs_words = new List<string>();
@@ -55,12 +60,13 @@ namespace EA4S.Teacher
             // @todo: the chosen letter should actually have words that contain it in different forms... VERY HARD FILTER!
 
             // Determine what forms the letter appears in
-            List<LetterPosition> usableForms = new List<LetterPosition>();
-            foreach (var form in GenericHelper.SortEnums<LetterPosition>())
+            List<LetterForm> usableForms = new List<LetterForm>();
+            foreach (var form in GenericHelper.SortEnums<LetterForm>())
             {
-                if (form == LetterPosition.None) continue;
+                if (form == LetterForm.None) continue;
                 if (letter.GetUnicode(form, false) != "") usableForms.Add(form);
             }
+            Debug.Log("N USABLE FORMS: " + usableForms.Count + " for letter " + letter);
 
             // Packs are reduced to the number of available forms, if needed
             nPacks = UnityEngine.Mathf.Min(usableForms.Count,nPacks);
@@ -75,11 +81,11 @@ namespace EA4S.Teacher
             return packs;
         }
 
-        private QuestionPackData CreateSingleQuestionPackData(LetterData letter, LetterPosition form)
+        private QuestionPackData CreateSingleQuestionPackData(LetterData letter, LetterForm form)
         {
             var teacher = AppManager.I.Teacher;
 
-            // Find a word with the letter in that position
+            // Find a word with the letter in that form
             var usableWords = teacher.VocabularyAi.SelectData(
                 () => FindEligibleWords(maximumWordLength, letter, form),
                     new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
@@ -99,10 +105,10 @@ namespace EA4S.Teacher
                 UnityEngine.Debug.Log(debugString);
             }
 
-            return QuestionPackData.Create(question, correctAnswers, null);
+            return QuestionPackData.Create(question, correctAnswers, new List<LetterData>());
         }
 
-        public List<WordData> FindEligibleWords(int maxWordLength, LetterData containedLetter, LetterPosition form)
+        public List<WordData> FindEligibleWords(int maxWordLength, LetterData containedLetter, LetterForm form)
         {
             var vocabularyHelper = AppManager.I.VocabularyHelper;
             List<WordData> eligibleWords = new List<WordData>();
@@ -111,7 +117,7 @@ namespace EA4S.Teacher
                 // Check max length
                 if (word.Letters.Length > maxWordLength) continue;
 
-                // Check that it contains a letter in the correct position
+                // Check that it contains a letter in the correct form
                 if (!WordContainsLetterWithForm(word, containedLetter, form)) continue;
 
                 eligibleWords.Add(word);
@@ -120,12 +126,12 @@ namespace EA4S.Teacher
             return eligibleWords;
         }
 
-        public bool WordContainsLetterWithForm(WordData selectedWord, LetterData containedLetter, LetterPosition forms)
+        public bool WordContainsLetterWithForm(WordData selectedWord, LetterData containedLetter, LetterForm selectedForm)
         {
             List<LetterData> wordLetters = AppManager.I.VocabularyHelper.GetLettersInWord(selectedWord);
             foreach (var letter in wordLetters)
             {
-                ArabicAlphabetHelper.ExtractLetterDataFromArabicWord()
+                if (ArabicAlphabetHelper.GetLetterShapeInWord(selectedWord, containedLetter) == selectedForm)
                 return true;
             }
             return false;
