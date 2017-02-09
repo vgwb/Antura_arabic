@@ -195,7 +195,7 @@ namespace EA4S.Teacher
 
         private void UpdateMinigameScoreDataWithMaximum(MiniGameCode miniGameCode, float playTime, int newScore)
         {
-            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name + " WHERE ElementId = '{0}'", (int)miniGameCode);
+            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name + " WHERE MiniGameCode = '{0}'", (int)miniGameCode);
             var scoreDataList = db.FindDataByQuery<MinigameScoreData>(query);
             int previousMaxScore = 0;
             float previousTotalPlayTime = 0;
