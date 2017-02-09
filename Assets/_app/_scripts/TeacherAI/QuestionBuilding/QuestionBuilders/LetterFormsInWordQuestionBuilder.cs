@@ -61,6 +61,7 @@ namespace EA4S.Teacher
                     new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_letters));
             var letter = usableLetters[0];
+            // @todo: the chosen letter should actually have words that contain it in different forms... VERY HARD FILTER!
 
             // Determine what forms the letter appears in
             List<LetterPosition> usableForms = new List<LetterPosition>();
@@ -70,7 +71,7 @@ namespace EA4S.Teacher
                 if (letter.GetUnicode(form, false) != "") usableForms.Add(form);
             }
 
-            // Packs are reducted to the number of available forms, if needed
+            // Packs are reduced to the number of available forms, if needed
             nPacks = UnityEngine.Mathf.Min(usableForms.Count,nPacks);
 
             // Randomly choose some forms (one per pack) and create packs
@@ -120,7 +121,8 @@ namespace EA4S.Teacher
                 // Check max length
                 if (word.Letters.Length > maxWordLength) continue;
 
-
+                // Check that it contains a letter in the correct position
+                if (!WordContainsLetterWithForm(word, containedLetter, form)) continue;
 
                 eligibleWords.Add(word);
             }
@@ -128,17 +130,15 @@ namespace EA4S.Teacher
             return eligibleWords;
         }
 
-        public List<LetterData> FindEligibleLetters(WordData selectedWord, List<LetterData> wordLetters)
+        public bool WordContainsLetterWithForm(WordData selectedWord, LetterData letter, LetterPosition forms)
         {
-            List<LetterData> eligibleLetters = new List<LetterData>();
+            List<LetterData> wordLetters = AppManager.I.VocabularyHelper.GetLettersInWord(selectedWord);
             foreach (var letter in wordLetters)
             {
-                // Avoid using letters that appeared in previous words
-//                if (packsUsedTogether && LetterContainedInAnyWord(selectedWord, letter, previousPacksIDs_words)) continue;
-
-                eligibleLetters.Add(letter);
+                // @todo: use ArabicHelper to check form / position
+                return true;
             }
-            return eligibleLetters;
+            return false;
         }
 
     }
