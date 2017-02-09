@@ -35,7 +35,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 		bool clampPosition;
 		public bool dragging = false;
 		Vector3 dragOffset = Vector3.zero;
-		Vector3 tubeSpawnPosition;
+        Vector3 tubeSpawnPosition, ContentOffset;
 		public bool respawn;
 
 		public event Action onMouseUpLetter;
@@ -45,7 +45,9 @@ public class TakeMeHomeLL : MonoBehaviour {
 
         public List<TakeMeHomeTube> collidedTubes;
 
-		void Awake()
+        TakeMeHomeTube NearTube;
+
+        void Awake()
 		{
 			normalPosition = transform.localPosition;
 			livingLetterTransform = transform;
@@ -58,6 +60,12 @@ public class TakeMeHomeLL : MonoBehaviour {
             isResetting = false;
             isPanicing = false;
             collidedTubes = new List<TakeMeHomeTube>();
+            
+        }
+
+        void Start()
+        {
+            ContentOffset = letter.contentTransform.position - transform.position;
         }
 
 		public void Initialize(float _maxY, LetterObjectView _letter, Vector3 tubePosition)
@@ -183,17 +191,19 @@ public class TakeMeHomeLL : MonoBehaviour {
 			}
 		}
 
-		public void OnPointerDrag(Vector2 pointerPosition)
+        Vector3 mousePos;
+
+        public void OnPointerDrag(Vector2 pointerPosition)
 		{
 			if (dragging)
 			{
 				dropLetter = false;
 
-				Vector3 mousePosition = new Vector3(pointerPosition.x, pointerPosition.y, cameraDistance);
+                Vector3 mousePosition = new Vector3(pointerPosition.x, pointerPosition.y, cameraDistance);
 
-				transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
+				/*transform.position =*/ mousePos = Camera.main.ScreenToWorldPoint(mousePosition);
 
-				transform.position = ClampPositionToStage(transform.position - dragOffset);
+                /*transform.position =*/ ClampPositionToStage(transform.position - dragOffset);
 			}
 		}
 
@@ -252,7 +262,37 @@ public class TakeMeHomeLL : MonoBehaviour {
 			{
 				Drop(Time.deltaTime);
 			}
-		}
+
+            Vector3 targetScale;
+            Vector3 targetPosition = transform.position;
+
+            if (NearTube != null)
+            {
+                float yScale = 1.3f * (1 + 0.1f * Mathf.Cos(Time.realtimeSinceStartup * 3.14f * 6));
+
+                targetScale = 0.55f * new Vector3(1 / yScale, yScale, 1);
+
+                if (Vector3.Distance(NearTube.transform.position, mousePos) > 4.5f)
+                    targetPosition = mousePos - ContentOffset + Vector3.up * 0.9f;
+                else
+                {
+                    targetPosition = NearTube.enterance.position;
+                    //targetPosition.y = Mathf.Lerp(targetPosition.y, maxY, 2.0f * Mathf.Abs(targetPosition.x - transform.position.x));
+                }
+
+            }
+            else
+            {
+                targetScale = Vector3.one * 0.8f;
+                if(dragging)
+                    targetPosition = mousePos - ContentOffset + Vector3.up * 0.9f;
+            }
+            if (!dragging)
+                return;
+
+            transform.localScale = Vector3.Lerp(transform.localScale, targetScale, 15.0f * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, 25.0f * Time.deltaTime);
+        }
 
 		Vector3 ClampPositionToStage(Vector3 unclampedPosition)
 		{
@@ -437,6 +477,7 @@ public class TakeMeHomeLL : MonoBehaviour {
             if (collidedTubes.Count > 0)
                 collidedTubes[collidedTubes.Count - 1].deactivate();
 
+            NearTube = tube;
             collidedTubes.Add(tube);
             tube.activate();
 
@@ -466,6 +507,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 		{
             TakeMeHomeTube tube = other.gameObject.GetComponent<TakeMeHomeTube>();
             if (!tube) return;
+            NearTube = null;
             popTube(tube);
 
             /*
