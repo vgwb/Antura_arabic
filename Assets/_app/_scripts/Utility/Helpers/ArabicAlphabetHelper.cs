@@ -236,6 +236,39 @@ namespace EA4S.Helpers
             return text;
         }
 
+        public static Database.LetterPosition GetLetterShapeInWord(Database.WordData arabicWord, Database.LetterData letter)
+        {
+            var Letters = SplitWordIntoLetters(arabicWord);
+
+            int charPosition = 0;
+            string text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
+
+            for (int index = 0; index < Letters.Count; ++index)
+            {
+                if (Letters[index].Id == letter.Id)
+                {
+                    // Check shape
+                    var character = text.Substring(charPosition, letter.GetChar().Length);
+
+                    // This test order is important, do not change
+                    if (letter.GetChar(Database.LetterPosition.Isolated) == character)
+                        return Database.LetterPosition.Isolated;
+                    else if (letter.GetChar(Database.LetterPosition.Initial) == character)
+                        return Database.LetterPosition.Initial;
+                    else if (letter.GetChar(Database.LetterPosition.Medial) == character)
+                        return Database.LetterPosition.Medial;
+                    else if (letter.GetChar(Database.LetterPosition.Final) == character)
+                        return Database.LetterPosition.Final;
+                    else
+                        return Database.LetterPosition.Isolated; // fallback to isolated
+                }
+                else
+                    charPosition += Letters[index].GetChar().Trim().Length;
+            }
+
+            return Database.LetterPosition.None;
+        }
+
         /// <summary>
         /// Return a string of a word with the "color" tag enveloping a character. Warning: the word is already reversed and fixed for rendering.
         /// This is mandatory since PrepareArabicStringForDisplay should be called before adding the tags.
