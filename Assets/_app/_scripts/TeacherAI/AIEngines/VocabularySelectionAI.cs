@@ -275,7 +275,7 @@ namespace EA4S.Teacher
                     FilterListByContents(currentJourneyContents, dataList, priorityFilteredList, ref nRemaining);
                     s += "\n" + (nBefore - nRemaining) + " from the rest of the Journey";
                 }
-                UnityEngine.Debug.Log(s);
+                if (ConfigAI.verboseDataSelection && !isTest) UnityEngine.Debug.Log(s);
                 debugString += (" \tPriority: " + priorityFilteredList.Count);
             }
             else
