@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 using TMPro;
+using DG.Tweening;
 
 namespace EA4S.Minigames.SickLetters
 {
     public class SickLettersVase : MonoBehaviour
     {
-
+        public Transform libra;
+        Vector3 libraStartPos;
         public BoxCollider vaseCollider;
         public TextMeshPro _counter;
+        public AnimationCurve bounceCurve;
+        bool isFallingFromTop;
         public int counter
         {
             set
@@ -27,6 +31,7 @@ namespace EA4S.Minigames.SickLetters
         public SickLettersGame game;
 
         Rigidbody vaseRB;
+        Tweener moveTweener;
 
         // Use this for initialization
         void Start()
@@ -34,8 +39,19 @@ namespace EA4S.Minigames.SickLetters
             vaseStartPose = transform.position;
             vaseStartRot = transform.eulerAngles;
             vaseRB = GetComponent<Rigidbody>();
+            libraStartPos = libra.position;
         }
-        
+
+
+        void Update() {
+            if (transform.position.y < 9.2f && isFallingFromTop)
+            {
+                Debug.LogError(123);
+                StartCoroutine(bounceScale(0.95f));
+                isFallingFromTop = false;
+            }
+        }
+
         SickLettersDraggableDD dd;
 
         void OnTriggerEnter(Collider coll)
@@ -82,8 +98,6 @@ namespace EA4S.Minigames.SickLetters
 
         public void addNewDDToVas(SickLettersDraggableDD dd)
         {
-            
-
             if (dd.isCorrect)
             {
                 game.Poof(dd.transform);
@@ -101,7 +115,26 @@ namespace EA4S.Minigames.SickLetters
                 //game.checkForNextRound();
             }
 
-            
+            StartCoroutine(bounceScale());
+        }
+
+        IEnumerator bounceScale(float maxDown = 0.25f)
+        {
+            Vector3 endPos = libraStartPos;
+            if (libra.position.y > 1.17f)
+                endPos = new Vector3(libraStartPos.x, libra.position.y - 0.05f, libraStartPos.z);
+
+            transform.parent = libra;
+
+            libra.DOMoveY(libra.position.y - maxDown, 0.2f).OnComplete(() => {
+                libra.DOJump(endPos, 0.1f, 1, 0.25f).OnComplete(() => {
+                    libra.DOJump(endPos, 0.05f, 1, 0.3f);
+                });
+            });
+
+            yield return new WaitForSeconds(0.9f);
+
+            transform.parent = null;
         }
 
         public IEnumerator onDroppingCorrectDD() {
@@ -165,6 +198,10 @@ namespace EA4S.Minigames.SickLetters
             vaseRB.constraints = RigidbodyConstraints.None;
             vaseRB.isKinematic = false;
 
+            libra.DOMove(libraStartPos, 0.5f).OnComplete(()=> {
+                libra.DOPunchPosition(Vector3.up, 1, 7);
+            });
+
             foreach (SickLettersDraggableDD dd in game.allWrongDDs)
             {
                 if (dd && dd.isInVase)
@@ -189,6 +226,7 @@ namespace EA4S.Minigames.SickLetters
 
             vaseRB.isKinematic = false;
             vaseRB.useGravity = true;
+            isFallingFromTop = true;
         }
 
         public void flyVas(float delay = 0)
@@ -210,6 +248,10 @@ namespace EA4S.Minigames.SickLetters
             }
 
             vaseRB.isKinematic = true;
+
+            libra.DOMove(libraStartPos, 0.2f).OnComplete(() => {
+                libra.DOPunchPosition(Vector3.up, 1, 7);
+            });
 
             while (true)
             {
