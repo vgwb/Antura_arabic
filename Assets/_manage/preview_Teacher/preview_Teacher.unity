@@ -7364,7 +7364,7 @@ MonoBehaviour:
   historywrong_in: {fileID: 2099540120}
   journeybase_in: {fileID: 2114280724}
   journeywrong_in: {fileID: 1531751752}
-  numberOfSimulations: 1000
+  numberOfSimulations: 20
 --- !u!4 &1322033635
 Transform:
   m_ObjectHideFlags: 0

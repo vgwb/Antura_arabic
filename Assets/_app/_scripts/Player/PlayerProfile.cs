@@ -15,13 +15,13 @@ namespace EA4S.Profile
     [Serializable]
     public class PlayerProfile : IPlayerProfile
     {
-        public string Guid;
+        public string Uuid;
         public int AvatarId;
         public PlayerGender Gender;
         public PlayerTint Tint;
         public int Age;
 
-        // refactor: to be deleted after using Guid only
+        // refactor: to be deleted after using Uuid only
         public string Key { get; set; }
         public int Id;
 
@@ -85,6 +85,11 @@ namespace EA4S.Profile
         #endregion
 
         #region properties
+
+        public PlayerIcon GetIcon()
+        {
+            return new PlayerIcon(Uuid, AvatarId, Gender, Tint);
+        }
 
         public Sprite GetAvatar()
         {
@@ -345,7 +350,7 @@ namespace EA4S.Profile
         /// <returns></returns>
         public PlayerProfileData ToData()
         {
-            PlayerProfileData newProfileData = new PlayerProfileData(this.Guid, this.Key, this.Id, this.AvatarId, this.Age, this.Gender, this.Tint, this.TotalNumberOfBones, ProfileCompletion);
+            PlayerProfileData newProfileData = new PlayerProfileData(this.Uuid, this.Key, this.Id, this.AvatarId, this.Age, this.Gender, this.Tint, this.TotalNumberOfBones, ProfileCompletion);
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
             string jsonStringForAnturaCustomization = this.CurrentAnturaCustomizations.GetJsonListOfIds();
@@ -358,7 +363,7 @@ namespace EA4S.Profile
         /// </summary>
         public PlayerProfile FromData(PlayerProfileData _data)
         {
-            Guid = _data.Guid;
+            Uuid = _data.Uuid;
 
             Key = _data.PlayerKey;
             Id = _data.PlayerId;
@@ -376,10 +381,6 @@ namespace EA4S.Profile
 
             return this;
         }
-
-
         #endregion
-
-
     }
 }

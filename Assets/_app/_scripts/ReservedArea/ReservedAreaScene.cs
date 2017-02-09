@@ -1,16 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using EA4S.Audio;
+using EA4S.Core;
+using EA4S.UI;
 using UnityEngine;
 
-public class ReservedAreaScene : MonoBehaviour {
+namespace EA4S.Scenes
+{
+    public class ReservedAreaScene : MonoBehaviour
+    {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        void Start()
+        {
+            GlobalUI.ShowPauseMenu(false);
+            GlobalUI.ShowBackButton(true);
+        }
+
+
+        public void BtnOpenUrlWebsite()
+        {
+            Application.OpenURL(AppConstants.UrlWebsite);
+        }
+
+        public void BtnOpenUrlPrivacy()
+        {
+            Application.OpenURL(AppConstants.UrlPrivacy);
+        }
+    }
 }
