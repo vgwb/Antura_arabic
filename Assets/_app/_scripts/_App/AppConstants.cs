@@ -27,6 +27,11 @@
         public const int minimumMoodValue = 1;
         public const int maximumMoodValue = 5;
 
+        /// <summary>
+        /// Max number of player profiles usable.
+        /// </summary>
+        public const int MaxNumberOfPlayerProfiles = 5;
+
         // Resource Paths
         public const string AvatarsResourcesDir = "Images/Avatars/";
 
