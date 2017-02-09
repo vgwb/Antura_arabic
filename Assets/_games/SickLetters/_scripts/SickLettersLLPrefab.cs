@@ -90,8 +90,8 @@ namespace EA4S.Minigames.SickLetters
             letterView.Falling = true;
             GetComponent<CapsuleCollider>().isTrigger = true;
 
-            yield return new WaitForSeconds(.25f);
-            game.Poof(transform).position += Vector3.up * 8.5f - Vector3.forward;
+            yield return new WaitForSeconds(.475f);
+            game.Poof(transform).position += Vector3.up * 15f - Vector3.forward;
             showLLMesh(false);
             yield return new WaitForSeconds(.75f);
 
