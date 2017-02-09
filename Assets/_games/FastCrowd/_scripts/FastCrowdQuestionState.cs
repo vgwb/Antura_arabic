@@ -33,13 +33,13 @@ namespace EA4S.Minigames.FastCrowd
 
             if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter) {
                 LL_LetterData isolated = new LL_LetterData(question.GetQuestion().Id);
-                isolated.Position = Database.LetterPosition.Isolated;
+                isolated.Form = Database.LetterForm.Isolated;
                 game.CurrentChallenge.Add(isolated);
 
-                string isolatedChar = isolated.Data.GetCharFixedForDisplay(Database.LetterPosition.Isolated);
-                string initialChar = isolated.Data.GetCharFixedForDisplay(Database.LetterPosition.Initial);
-                string medialChar = isolated.Data.GetCharFixedForDisplay(Database.LetterPosition.Medial);
-                string finalChar = isolated.Data.GetCharFixedForDisplay(Database.LetterPosition.Final);
+                string isolatedChar = isolated.Data.GetCharFixedForDisplay(Database.LetterForm.Isolated);
+                string initialChar = isolated.Data.GetCharFixedForDisplay(Database.LetterForm.Initial);
+                string medialChar = isolated.Data.GetCharFixedForDisplay(Database.LetterForm.Medial);
+                string finalChar = isolated.Data.GetCharFixedForDisplay(Database.LetterForm.Final);
 
                 for (int i = 0; i < 3; ++i) {
                     LL_LetterData data = new LL_LetterData(question.GetQuestion().Id);
@@ -49,14 +49,14 @@ namespace EA4S.Minigames.FastCrowd
                             initialChar == isolatedChar)
                             continue;
 
-                        data.Position = Database.LetterPosition.Initial;
+                        data.Form = Database.LetterForm.Initial;
                     } else if (i == 1) {
                         if (string.IsNullOrEmpty(medialChar) || 
                             medialChar == initialChar ||
                             medialChar == isolatedChar)
                             continue;
 
-                        data.Position = Database.LetterPosition.Medial;
+                        data.Form = Database.LetterForm.Medial;
                     } else if (i == 2) {
                         if (string.IsNullOrEmpty(finalChar) ||
                             finalChar == medialChar ||
@@ -64,7 +64,7 @@ namespace EA4S.Minigames.FastCrowd
                             finalChar == isolatedChar)
                             continue;
 
-                        data.Position = Database.LetterPosition.Final;
+                        data.Form = Database.LetterForm.Final;
                     }
 
                     game.CurrentChallenge.Add(data);

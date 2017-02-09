@@ -10,7 +10,7 @@ namespace EA4S.MinigamesAPI
     public class LL_LetterData : ILivingLetterData
     {
         public Database.LetterData Data;
-        public Database.LetterPosition Position = Database.LetterPosition.Isolated; // refactor: this is tied to the Arabic language
+        public Database.LetterForm Form = Database.LetterForm.Isolated; // refactor: this is tied to the Arabic language
 
         public LivingLetterDataType DataType {
             get { return LivingLetterDataType.Letter; }
@@ -30,21 +30,21 @@ namespace EA4S.MinigamesAPI
             Data = _data;
         }
 
-        public LL_LetterData(string _id, Database.LetterPosition _position) : this(AppManager.I.DB.GetLetterDataById(_id), _position)
+        public LL_LetterData(string _id, Database.LetterForm form) : this(AppManager.I.DB.GetLetterDataById(_id), form)
         {
         }
 
-        public LL_LetterData(Database.LetterData _data, Database.LetterPosition _position)
+        public LL_LetterData(Database.LetterData _data, Database.LetterForm form)
         {
             Data = _data;
-            Position = _position;
+            Form = form;
         }
 
         #region API
         public string TextForLivingLetter {
             get
             {
-                return Data.GetCharFixedForDisplay(Position);
+                return Data.GetCharFixedForDisplay(Form);
             }
         }
         
@@ -63,7 +63,7 @@ namespace EA4S.MinigamesAPI
             if (other == null)
                 return false;
 
-            return other.Data.Id == Data.Id && other.Position == Position;
+            return other.Data.Id == Data.Id && other.Form == Form;
         }
         #endregion
     }

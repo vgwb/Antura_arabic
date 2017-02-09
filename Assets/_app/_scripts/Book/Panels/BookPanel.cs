@@ -312,11 +312,11 @@ namespace EA4S.PlayerBook
             ArabicText.text = "";
             ScoreText.text = "Score: " + info.score;
 
-            var isolatedChar = info.data.GetCharFixedForDisplay(LetterPosition.Isolated);
+            var isolatedChar = info.data.GetCharFixedForDisplay(LetterForm.Isolated);
             LL_Isolated.Initialize(new LL_LetterData(info.data));
             LL_Isolated.Label.text = isolatedChar;
 
-            var InitialChar = info.data.GetCharFixedForDisplay(LetterPosition.Initial);
+            var InitialChar = info.data.GetCharFixedForDisplay(LetterForm.Initial);
             if (InitialChar != "") {
                 LL_Initial.gameObject.SetActive(true);
                 LL_Initial.Initialize(new LL_LetterData(info.data));
@@ -325,7 +325,7 @@ namespace EA4S.PlayerBook
                 LL_Initial.gameObject.SetActive(false);
             }
 
-            var MedialChar = info.data.GetCharFixedForDisplay(LetterPosition.Medial);
+            var MedialChar = info.data.GetCharFixedForDisplay(LetterForm.Medial);
             if (MedialChar != "") {
                 LL_Medial.gameObject.SetActive(true);
                 LL_Medial.Initialize(new LL_LetterData(info.data));
@@ -334,7 +334,7 @@ namespace EA4S.PlayerBook
                 LL_Medial.gameObject.SetActive(false);
             }
 
-            var FinalChar = info.data.GetCharFixedForDisplay(LetterPosition.Final);
+            var FinalChar = info.data.GetCharFixedForDisplay(LetterForm.Final);
             if (FinalChar != "") {
                 LL_Final.gameObject.SetActive(true);
                 LL_Final.Initialize(new LL_LetterData(info.data));

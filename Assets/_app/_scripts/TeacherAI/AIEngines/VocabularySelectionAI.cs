@@ -1,60 +1,190 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EA4S.Database;
 using System.Linq;
+using EA4S.Core;
 using EA4S.Helpers;
-using EA4S.Profile;
-using EA4S.Utilities;
 
 namespace EA4S.Teacher
 {
+    public class VocabularyContents
+    {
+        private HashSet<LetterData> letters = new HashSet<LetterData>();
+        private HashSet<WordData> words = new HashSet<WordData>();
+        private HashSet<PhraseData> phrases = new HashSet<PhraseData>();
+
+        public HashSet<T> GetHashSet<T>()
+        {
+            if (typeof(T) == typeof(LetterData)) return letters as HashSet<T>;
+            if (typeof(T) == typeof(WordData)) return words as HashSet<T>;
+            if (typeof(T) == typeof(PhraseData)) return phrases as HashSet<T>;
+            return null;
+        }
+
+        public bool Contains<T>(T data)
+        {
+            var set = GetHashSet<T>();
+            return set.Contains(data);
+        }
+
+        public void UnionWith<T>(IEnumerable<T> dataList)
+        {
+            var set = GetHashSet<T>();
+            set.UnionWith(dataList);
+        }
+
+        public void UnionWith(VocabularyContents otherContents)
+        {
+            UnionWith(otherContents.GetHashSet<LetterData>());
+            UnionWith(otherContents.GetHashSet<WordData>());
+            UnionWith(otherContents.GetHashSet<PhraseData>());
+        }
+
+        public List<T> FilterListByContents<T>(List<T> targetList)
+        {
+            var set = GetHashSet<T>();
+            var newList = new List<T>();
+            foreach (var v in targetList)
+                if (set.Contains(v))
+                    newList.Add(v);
+            return newList;
+        }
+
+        public override string ToString()
+        {
+            string s = "";
+            s += letters.Count + " letters available";
+            s += "\n" + words.Count + " words available";
+            s += "\n" + phrases.Count + " phrases available";
+            return s;
+        }
+
+    }
+
     /// <summary>
-    /// Handles the selection of what dictionary data a minigame should use, given a playsession
+    /// Class that contains all vocabulary contents related to the journey progression.
+    /// Useful for data filtering.
+    /// </summary>
+    public class ProgressionVocabularyContents
+    {
+        /// <summary>
+        /// Play sessions unlocked thus far
+        /// </summary>
+        private Dictionary<JourneyPosition, VocabularyContents> playSessionsContents = new Dictionary<JourneyPosition, VocabularyContents>();
+        private VocabularyContents allContents = new VocabularyContents();
+
+        public VocabularyContents AllContents
+        {
+            get { return allContents; }
+        }
+
+        #region Get API
+
+        public VocabularyContents GetContentsOfPlaySession(JourneyPosition pos)
+        {
+            return CreateContentsFromFunc(pair => pair.Key.Equals(pos));
+        }
+
+        public VocabularyContents GetContentsUpToPlaySession(JourneyPosition pos)
+        {
+            return CreateContentsFromFunc(pair => pair.Key.IsMinor(pos) || pair.Key.Equals(pos));
+        }
+
+        public VocabularyContents GetContentsOfLearningBlock(JourneyPosition pos)
+        {
+            return CreateContentsFromFunc(pair => pair.Key.LearningBlock == pos.LearningBlock && pair.Key.Stage == pos.Stage);
+        }
+
+        public VocabularyContents GetContentsOfStage(JourneyPosition pos)
+        {
+            return CreateContentsFromFunc(pair => pair.Key.Stage == pos.Stage);
+        }
+        
+        #endregion
+
+        private VocabularyContents CreateContentsFromFunc(Func<KeyValuePair<JourneyPosition, VocabularyContents>,bool> function)
+        {
+            var contents = new VocabularyContents();
+            foreach (var pair in playSessionsContents.Where(function))
+                contents.UnionWith(pair.Value);
+            return contents;
+        }
+
+
+        #region Building
+
+        public void AddPlaySession(string psId, List<LetterData> letters, List<WordData> words, List<PhraseData> phrases)
+        {
+            var newContents = new VocabularyContents();
+            newContents.UnionWith(letters);
+            newContents.UnionWith(words);
+            newContents.UnionWith(phrases);
+            playSessionsContents[new JourneyPosition(psId)] = newContents;
+
+            allContents.UnionWith(letters);
+            allContents.UnionWith(words);
+            allContents.UnionWith(phrases);
+        }
+
+        #endregion
+    }
+
+
+    /// <summary>
+    /// Handles the selection of what vocabulary data a minigame should use, given a playsession
     /// </summary>
     public class VocabularySelectionAI 
     {
         // References
         private DatabaseManager dbManager;
-        //private TeacherAI teacher;
-        //private VocabularyHelper VocabularyHelper;
 
-        // Inner state
-        private HashSet<LetterData> journeyLetters = new HashSet<LetterData>();
-        private HashSet<WordData> journeyWords = new HashSet<WordData>();
-        private HashSet<PhraseData> journeyPhrases = new HashSet<PhraseData>();
-
-        private HashSet<LetterData> currentPlaySessionLetters = new HashSet<LetterData>();
-        private HashSet<WordData> currentPlaySessionWords = new HashSet<WordData>();
-        private HashSet<PhraseData> currentPlaySessionPhrases = new HashSet<PhraseData>();
+        private ProgressionVocabularyContents progressionContents;
+        private VocabularyContents currentPlaySessionContents;
+        private VocabularyContents currentBlockContents;
+        private VocabularyContents currentStageContents;
+        private VocabularyContents currentJourneyContents;
 
         public VocabularySelectionAI(DatabaseManager _dbManager)
         {
             this.dbManager = _dbManager;
+
+            // Prepare all contents
+            progressionContents = new ProgressionVocabularyContents();
+            foreach (var psData in dbManager.GetAllPlaySessionData())
+            {
+                var psId = psData.Id;
+                var letters = GetLettersInPlaySession(psId, pastSessionsToo: false);
+                var words = GetWordsInPlaySession(psId, previousToo: true, pastSessionsToo: false);
+                var phrases = GetPhrasesInPlaySession(psId, previousToo: true, pastSessionsToo: false);
+                progressionContents.AddPlaySession(psId, letters, words, phrases);
+            }
         }
 
         public void LoadCurrentPlaySessionData(string currentPlaySessionId)
         {
-            currentPlaySessionLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId));
-            currentPlaySessionWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId));
-            currentPlaySessionPhrases = new HashSet<PhraseData>(GetPhrasesInPlaySession(currentPlaySessionId, true));
-
-            journeyLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId, true));
-            journeyWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId, true, true));
-            journeyPhrases = new HashSet<PhraseData>(GetPhrasesInPlaySession(currentPlaySessionId, true, true));
+            var pos = new JourneyPosition(currentPlaySessionId);
+            currentJourneyContents = progressionContents.GetContentsUpToPlaySession(pos);
+            currentPlaySessionContents = progressionContents.GetContentsOfPlaySession(pos);
+            currentBlockContents = progressionContents.GetContentsOfLearningBlock(pos);
+            currentStageContents = progressionContents.GetContentsOfStage(pos);
 
             if (ConfigAI.verboseDataSelection)
             {
                 string debugString = "";
                 debugString += "--------- TEACHER: play session initialisation (journey " + currentPlaySessionId + ") --------- ";
-                debugString += "\n" + journeyLetters.Count + " letters available";
-                debugString += "\n" + journeyWords.Count + " words available";
-                debugString += "\n" + journeyPhrases.Count + " phrases available";
+                debugString += "\n Current PS:\n" + currentPlaySessionContents;
+                debugString += "\n Current LB:\n" + currentBlockContents;
+                debugString += "\n Current ST:\n" + currentStageContents;
+                debugString += "\n Current journey:\n" + currentJourneyContents;
+                debugString += "\n Whole contents:\n" + progressionContents.AllContents;
+
                 UnityEngine.Debug.Log(debugString);
             }
         }
 
         #region Data Selection logic
 
-        public List<T> SelectData<T>(System.Func<List<T>> builderSelectionFunction, SelectionParameters selectionParams) where T : IData
+        public List<T> SelectData<T>(System.Func<List<T>> builderSelectionFunction, SelectionParameters selectionParams, bool isTest = false) where T : IVocabularyData
         {
             // skip if we require 0 values
             if (selectionParams.nRequired == 0 && !selectionParams.getMaxData) return new List<T>();
@@ -62,40 +192,15 @@ namespace EA4S.Teacher
             string debugString = "";
             //debugString += "--------- TEACHER: data selection --------- ";
 
-            // @note: not the best of solutions, but I do not seem to be able to get more generic than this without rewriting most stuff.
-            System.Type typeParameterType = typeof(T);
-            HashSet<T> journeyData = null;
-            HashSet<T> currentPSData = null;
-            //DbTables table = DbTables.Letters;
-            VocabularyDataType dataType = VocabularyDataType.Letter;
-            if (typeParameterType == typeof(LetterData))
-            {
-                dataType = VocabularyDataType.Letter;
-                journeyData = new HashSet<T>(journeyLetters.Cast<T>());
-                currentPSData = new HashSet<T>(currentPlaySessionLetters.Cast<T>());
-            }
-            else if (typeParameterType == typeof(WordData))
-            {
-                dataType = VocabularyDataType.Word;
-                journeyData = new HashSet<T>(journeyWords.Cast<T>());
-                currentPSData = new HashSet<T>(currentPlaySessionWords.Cast<T>());
-            }
-            else if (typeParameterType == typeof(PhraseData))
-            {
-                dataType = VocabularyDataType.Phrase;
-                journeyData = new HashSet<T>(journeyPhrases.Cast<T>());
-                currentPSData = new HashSet<T>(currentPlaySessionPhrases.Cast<T>());
-            }
-
-            // Get unfiltered data based on the builder's logic
+            // (1) Filtering based on the builder's logic
             var dataList = builderSelectionFunction();
             int nAfterBuilder = dataList.Count;
             debugString += ("Builder: " + dataList.Count);
 
-            // Filtering based on journey
+            // (2) Filtering based on journey
             if (selectionParams.useJourney && !ConfigAI.forceJourneyIgnore)
             {
-                dataList = dataList.FindAll(x => journeyData.Contains(x));
+                dataList = dataList.FindAll(x => currentJourneyContents.Contains(x));
             }
             if (selectionParams.severity == SelectionSeverity.AllRequired) 
             {
@@ -107,9 +212,8 @@ namespace EA4S.Teacher
             }
             debugString += (" \tJourney: " + dataList.Count);
 
-            // Filtering based on pack-list history 
-            PackListHistory sev = selectionParams.packListHistory;
-            switch (sev)
+            // (3) Filtering based on pack-list history 
+            switch (selectionParams.packListHistory)
             {
                 case PackListHistory.NoFilter:
                     // we do not care which are picked, in this case
@@ -142,13 +246,50 @@ namespace EA4S.Teacher
             }
             debugString += (" \tHistory: " + dataList.Count);
 
-            // Weighted selection on the remaining number
+
+            // (4) Priority filtering based on current focus
+            List<T> priorityFilteredList = new List<T>();
+            if (!isTest)
+            {
+                string s = "Priority filtering:";
+                int nBefore = selectionParams.nRequired;
+                int nRemaining = selectionParams.nRequired;
+                FilterListByContents(currentPlaySessionContents, dataList, priorityFilteredList, ref nRemaining);
+               
+                s += "\n" + (nBefore - nRemaining) + " from PS ( " + nRemaining + " remaining of " + nBefore + ")";
+                if (nRemaining > 0)
+                {
+                    nBefore = nRemaining;
+                    FilterListByContents(currentBlockContents, dataList, priorityFilteredList, ref nRemaining);
+                    s += "\n" + (nBefore - nRemaining) + " from LB";
+                }
+                if (nRemaining > 0)
+                {
+                    nBefore = nRemaining;
+                    FilterListByContents(currentStageContents, dataList, priorityFilteredList, ref nRemaining);
+                    s += "\n" + (nBefore - nRemaining) + " from ST";
+                }
+                if (nRemaining > 0)
+                {
+                    nBefore = nRemaining;
+                    FilterListByContents(currentJourneyContents, dataList, priorityFilteredList, ref nRemaining);
+                    s += "\n" + (nBefore - nRemaining) + " from the rest of the Journey";
+                }
+                if (ConfigAI.verboseDataSelection && !isTest) UnityEngine.Debug.Log(s);
+                debugString += (" \tPriority: " + priorityFilteredList.Count);
+            }
+            else
+            {
+                priorityFilteredList = dataList;
+            }
+
+            // (5) Weighted selection on the remaining number
             List<T> selectedList = null;
-            if (selectionParams.getMaxData) selectedList = dataList;
-            else selectedList = WeightedDataSelect(dataList, currentPSData, selectionParams.nRequired, dataType, selectionParams.severity);
+            if (selectionParams.getMaxData) selectedList = priorityFilteredList;
+            else selectedList = WeightedDataSelect(priorityFilteredList, selectionParams.nRequired, selectionParams.severity);
             debugString += (" \tSelection: " + selectedList.Count);
 
-            if (ConfigAI.verboseDataSelection)
+            if (ConfigAI.verboseDataSelection && !isTest)
             {
                 UnityEngine.Debug.Log(debugString);
             }
@@ -164,7 +305,18 @@ namespace EA4S.Teacher
                 selectionParams.filteringIds.AddRange(selectedList.ConvertAll<string>(x => x.GetId()).ToArray());
             }
 
+            // Reorder the data to show based on intrinsic difficulty
+            selectedList.Sort((x, y) => (int)(x.GetIntrinsicDifficulty() - y.GetIntrinsicDifficulty()));
+
             return selectedList;
+        }
+
+        private void FilterListByContents<T>(VocabularyContents contents, List<T> inputList, List<T> outputList, ref int nRemaining)
+        {
+            int nBefore = outputList.Count;
+            outputList.AddRange(contents.FilterListByContents(inputList));
+            nRemaining -= outputList.Count - nBefore;
+            if (nRemaining < 0) nRemaining = 0;
         }
 
         private bool CheckRequiredNumberReached<T>(List<T> dataList, SelectionParameters selectionParams, int nAfterBuilder)
@@ -173,10 +325,15 @@ namespace EA4S.Teacher
                 || (selectionParams.getMaxData && dataList.Count >= nAfterBuilder);
         }
 
-        private List<T> WeightedDataSelect<T>(List<T> source_data_list, HashSet<T> currentPSData, int nToSelect, VocabularyDataType dataType, SelectionSeverity severity) where T : IData
+        private List<T> WeightedDataSelect<T>(List<T> source_data_list, int nToSelect, SelectionSeverity severity) where T : IData
         {
+            VocabularyDataType dataType = VocabularyDataType.Letter;
+            if (typeof(T) == typeof(LetterData)) dataType = VocabularyDataType.Letter;
+            else if (typeof(T) == typeof(WordData)) dataType = VocabularyDataType.Word;
+            else if (typeof(T) == typeof(PhraseData)) dataType = VocabularyDataType.Phrase;
+
             // Given a (filtered) list of data, select some using weights
-            List<VocabularyScoreData> score_data_list = dbManager.FindDataByQuery<VocabularyScoreData>("SELECT * FROM VocabularyScoreData WHERE VocabularyDataType = '" + (int)dataType + "'");
+            List<VocabularyScoreData> score_data_list = dbManager.FindDataByQuery<VocabularyScoreData>("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" + (int)dataType + "'");
 
             string debugString = "-- Teacher Selection Weights";
 
@@ -210,10 +367,13 @@ namespace EA4S.Teacher
                 cumulativeWeight += recentPlayWeight * ConfigAI.data_recentPlayWeight;
                 debugString += " \tRecent: " + recentPlayWeight * ConfigAI.data_recentPlayWeight + "(" + recentPlayWeight + ")";
 
-                // Current focus weight [1,0]: higher if the data is part of the current play session
-                float currentPlaySessionWeight = currentPSData.Contains(sourceData) ? 1 : 0f;
+                // Current focus weight [1,0]: higher if the data is part of the current play session / learning block / stage
+                float currentPlaySessionWeight = 0;
+                if (currentPlaySessionContents.Contains(sourceData)) currentPlaySessionWeight = 1;
+                else if (currentBlockContents.Contains(sourceData)) currentPlaySessionWeight = 0.5f;
+                else if (currentStageContents.Contains(sourceData)) currentPlaySessionWeight = 0.2f;
                 cumulativeWeight += currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight;
-                debugString += " \tCurrentPS: " + currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight + "(" + currentPlaySessionWeight + ")";
+                debugString += " \tFocus: " + currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight + "(" + currentPlaySessionWeight + ")";
 
                 // If the cumulative weight goes to the negatives, we give it a fixed weight
                 if (cumulativeWeight <= 0)
