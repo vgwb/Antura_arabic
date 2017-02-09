@@ -8,22 +8,6 @@ using EA4S.Database;
 
 namespace EA4S.Profile
 {
-    [Serializable]
-    public struct PlayerIcon
-    {
-        public string Uuid;
-        public int AvatarId;
-        public PlayerGender Gender;
-        public PlayerTint Tint;
-
-        public PlayerIcon(string _Uuid, int _AvatarId, PlayerGender _Gender, PlayerTint _Tint)
-        {
-            Uuid = _Uuid;
-            AvatarId = _AvatarId;
-            Gender = _Gender;
-            Tint = _Tint;
-        }
-    }
 
     /// <summary>
     /// A Player Profile contains persistent data on details and on the progression status of a single player.
@@ -32,7 +16,6 @@ namespace EA4S.Profile
     public class PlayerProfile : IPlayerProfile
     {
         public string Uuid;
-        public PlayerIcon Icon;
         public int AvatarId;
         public PlayerGender Gender;
         public PlayerTint Tint;
@@ -102,6 +85,11 @@ namespace EA4S.Profile
         #endregion
 
         #region properties
+
+        public PlayerIcon GetIcon()
+        {
+            return new PlayerIcon(Uuid, AvatarId, Gender, Tint);
+        }
 
         public Sprite GetAvatar()
         {
@@ -384,7 +372,6 @@ namespace EA4S.Profile
             Age = _data.Age;
             Gender = _data.Gender;
             Tint = _data.Tint;
-            Icon = new PlayerIcon(Uuid, AvatarId, Gender, Tint);
             ProfileCompletion = _data.ProfileCompletion;
             TotalNumberOfBones = _data.TotalNumberOfBones;
             this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
@@ -394,10 +381,6 @@ namespace EA4S.Profile
 
             return this;
         }
-
-
         #endregion
-
-
     }
 }
