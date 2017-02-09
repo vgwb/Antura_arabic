@@ -279,7 +279,7 @@ namespace EA4S.Minigames.MissingLetter
 
             if (onLetterClick != null)
             {
-                StartCoroutine(Utils.LaunchDelay(0.2f, onLetterClick, mLetterData.Id));
+                StartCoroutine(Utils.LaunchDelay(0.2f, onLetterClick, this));
                 mCollider.enabled = false;
             }
         }
@@ -357,7 +357,7 @@ namespace EA4S.Minigames.MissingLetter
         [HideInInspector]
         public Action onExitScene;
         [HideInInspector]
-        public Action<string> onLetterClick;
+        public Action<LetterBehaviour> onLetterClick;
         [HideInInspector]
         public event Action<GameObject> onLetterBecameInvisible;
 
