@@ -36,6 +36,8 @@ namespace EA4S.Teacher
         public void UnionWith(VocabularyContents otherContents)
         {
             UnionWith(otherContents.GetHashSet<LetterData>());
+            UnionWith(otherContents.GetHashSet<WordData>());
+            UnionWith(otherContents.GetHashSet<PhraseData>());
         }
 
         public List<T> FilterListByContents<T>(List<T> targetList)
@@ -170,11 +172,11 @@ namespace EA4S.Teacher
             {
                 string debugString = "";
                 debugString += "--------- TEACHER: play session initialisation (journey " + currentPlaySessionId + ") --------- ";
-                debugString += "\n Current PS:\n" + currentPlaySessionContents.ToString();
-                debugString += "\n Current LB:\n" + currentBlockContents.ToString();
-                debugString += "\n Current ST:\n" + currentStageContents.ToString();
-                debugString += "\n Current journey:\n" + currentJourneyContents.ToString();
-                debugString += "\n Whole contents:\n" + progressionContents.AllContents.ToString();
+                debugString += "\n Current PS:\n" + currentPlaySessionContents;
+                debugString += "\n Current LB:\n" + currentBlockContents;
+                debugString += "\n Current ST:\n" + currentStageContents;
+                debugString += "\n Current journey:\n" + currentJourneyContents;
+                debugString += "\n Whole contents:\n" + progressionContents.AllContents;
 
                 UnityEngine.Debug.Log(debugString);
             }
@@ -246,25 +248,32 @@ namespace EA4S.Teacher
 
 
             // (4) Priority filtering based on current focus
-            string s = "Priority fitlering:";
             List<T> priorityFilteredList = new List<T>();
-            int nRequiredRemaining = selectionParams.nRequired;
-            FilterListByContents(currentPlaySessionContents, dataList, priorityFilteredList, ref nRequiredRemaining);
-            s += "\n" + nRequiredRemaining + " after PS";
-            if (nRequiredRemaining > 0) {
-                FilterListByContents(currentBlockContents, dataList, priorityFilteredList, ref nRequiredRemaining);
-                s += "\n" + nRequiredRemaining + " after LB";
-            }
-            if (nRequiredRemaining > 0)
+            string s = "Priority filtering:";
+            int nBefore = selectionParams.nRequired;
+            int nRemaining = selectionParams.nRequired;
+            FilterListByContents(currentPlaySessionContents, dataList, priorityFilteredList, ref nRemaining);
+            s += "\n" + (nBefore - nRemaining) + " from PS";
+            if (nRemaining > 0)
             {
-                FilterListByContents(currentStageContents, dataList, priorityFilteredList, ref nRequiredRemaining);
-                s += "\n" + nRequiredRemaining + " after ST";
+                nBefore = nRemaining;
+                FilterListByContents(currentBlockContents, dataList, priorityFilteredList, ref nRemaining);
+                s += "\n" + (nBefore - nRemaining) + " from LB"; ;
             }
-            if (nRequiredRemaining > 0)
+            if (nRemaining > 0)
             {
-                FilterListByContents(currentJourneyContents, dataList, priorityFilteredList, ref nRequiredRemaining);
-                s += "\n" + nRequiredRemaining + " after Journey";
+                nBefore = nRemaining;
+                FilterListByContents(currentStageContents, dataList, priorityFilteredList, ref nRemaining);
+                s += "\n" + (nBefore - nRemaining) + " from ST";
             }
+            if (nRemaining > 0)
+            {
+                nBefore = nRemaining;
+                FilterListByContents(currentJourneyContents, dataList, priorityFilteredList, ref nRemaining);
+                s += "\n" + (nBefore - nRemaining) + " from the rest of the Journey";
+            }
+            UnityEngine.Debug.Log(s);
+            debugString += (" \tPriority: " + priorityFilteredList.Count);
 
             // (5) Weighted selection on the remaining number
             List<T> selectedList = null;
