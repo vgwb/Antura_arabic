@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using EA4S.MinigamesAPI;
 using EA4S.UI;
@@ -25,11 +26,12 @@ namespace EA4S.Teacher.Test
         public Toggle journeybase_in;
         public Toggle journeywrong_in;
 
+        public Dictionary<MiniGameCode, Button> buttonsDict = new Dictionary<MiniGameCode, Button>();
+
         void Start()
         {
             // Setup for testing
-            ConfigAI.verboseDataSelection = true;
-            ConfigAI.verboseTeacher = true;
+            SetVerboseAI(true);
             ConfigAI.forceJourneyIgnore = false;
 
             journey_stage_in.onValueChanged.AddListener(x => { currentJourneyStage = int.Parse(x); });
@@ -91,23 +93,38 @@ namespace EA4S.Teacher.Test
         public int numberOfSimulations = 50;
         public int yieldEverySimulations = 20;
 
+        void SetVerboseAI(bool choice)
+        {
+            ConfigAI.verboseDataSelection = choice;
+            ConfigAI.verboseTeacher = choice;
+        }
 
         public void TestAllMiniGames()
         {
-            foreach(var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
+            SetVerboseAI(false);
+
+            foreach (var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
             {
-                try {
+                var colors = buttonsDict[code].colors;
+                colors.normalColor = Color.green;
+                try
+                {
                     SimulateMiniGame(code);
                 }
-                catch
+                catch (Exception e)
                 {
-                    // @todo: draw with a RED button
-                } 
+                    Debug.LogError(code + ": " + e);
+                    colors.normalColor = Color.red;
+                }
+                buttonsDict[code].colors = colors;
             }
+
+            SetVerboseAI(true);
         }
 
         public IEnumerator SimulateMiniGameCO(MiniGameCode code)
         {
+            InitialisePlaySession();
             for (int i = 0; i < numberOfSimulations; i++)
             {
                 var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
@@ -122,7 +139,15 @@ namespace EA4S.Teacher.Test
 
         public void SimulateMiniGame(MiniGameCode code)
         {
-            StartCoroutine(SimulateMiniGameCO(code));
+            InitialisePlaySession();
+            for (int i = 0; i < numberOfSimulations; i++)
+            {
+                var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
+                InitialisePlaySession();
+                var builder = config.SetupBuilder();
+                //Debug.Log("SIMULATION " + (i + 1) + " minigame: " + code + " with builder " + builder.GetType().Name);
+                builder.CreateAllQuestionPacks();
+            }
         }
 
         #endregion
