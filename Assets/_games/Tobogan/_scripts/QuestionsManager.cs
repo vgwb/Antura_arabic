@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using EA4S.MinigamesAPI;
+using EA4S.Helpers;
 
 namespace EA4S.Minigames.Tobogan
 {
@@ -95,12 +96,23 @@ namespace EA4S.Minigames.Tobogan
             var correctList = correctAnswers.ToList();
             correctAnswer = correctList[UnityEngine.Random.Range(0, correctList.Count)];
 
-            if (ToboganConfiguration.Instance.Variation == ToboganVariation.LetterInAWord && ToboganConfiguration.Instance.Difficulty <= 0.3f)
+            if (ToboganConfiguration.Instance.Variation == ToboganVariation.SunMoon)
             {
-                questionLivingLetter.SetQuestionText(questionPack.GetQuestion() as LL_WordData, correctAnswer as LL_LetterData, ToboganGame.LETTER_MARK_COLOR);
+                LL_WordData question = questionPack.GetQuestion() as LL_WordData;
+
+                var Letters = ArabicAlphabetHelper.SplitWordIntoLetters(question.Data);
+                
+                questionLivingLetter.SetQuestionText(question, 2, ToboganGame.LETTER_MARK_COLOR);
             }
             else
-                questionLivingLetter.SetQuestionText(questionPack.GetQuestion());
+            {
+                if (ToboganConfiguration.Instance.Difficulty <= 0.3f)
+                {
+                    questionLivingLetter.SetQuestionText(questionPack.GetQuestion() as LL_WordData, correctAnswer as LL_LetterData, ToboganGame.LETTER_MARK_COLOR);
+                }
+                else
+                    questionLivingLetter.SetQuestionText(questionPack.GetQuestion());
+            }
 
             var wrongAnswers = questionPack.GetWrongAnswers().ToList();
 
