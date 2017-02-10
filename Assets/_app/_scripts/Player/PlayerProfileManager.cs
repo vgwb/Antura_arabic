@@ -115,6 +115,27 @@ namespace EA4S.Profile
         }
 
         /// <summary>
+        /// Sets the player as current player profile by UUID.
+        /// </summary>
+        /// <param name="playerUUID">The player UUID.</param>
+        /// <returns></returns>
+        public PlayerProfile SetPlayerAsCurrentByUUID(string playerUUID) {
+            PlayerProfile returnProfile = GetPlayerProfileByUUID(playerUUID);
+            AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile;
+            return returnProfile;
+        }
+
+        /// <summary>
+        /// Gets the player profile by UUID.
+        /// </summary>
+        /// <param name="playerUUID">The player UUID.</param>
+        /// <returns></returns>
+        public PlayerProfile GetPlayerProfileByUUID(string playerUUID) {
+            PlayerProfileData profileFromDB = AppManager.I.DB.LoadDatabaseForPlayer(playerUUID);
+            return new PlayerProfile().FromData(profileFromDB);
+        }
+
+        /// <summary>
         /// Sets the player profile with corresposnding avatarId to current player.
         /// </summary>
         /// <param name="_avatarId">The avatar identifier.</param>
