@@ -105,6 +105,11 @@
             Gets the script execution order of the given MonoBehaviour
             </summary>
         </member>
+        <member name="M:DG.DemiEditor.DeEditorGUIUtils.GetLastControlId">
+            <summary>
+            Precisely returns the last controlId assigned to a GUI element
+            </summary>
+        </member>
         <member name="T:DG.DemiEditor.DeEditorPanelUtils">
             <summary>
             Utilities for Editor Panels.
@@ -143,13 +148,17 @@
         <member name="M:DG.DemiEditor.DeEditorPrefabUtils.BreakPrefabInstances(System.Collections.Generic.List{UnityEngine.GameObject})">
             <summary>
             Completely removes any prefab connection from the given prefab instances.
+            <para>
             Based on RodGreen's method (http://forum.unity3d.com/threads/82883-Breaking-connection-from-gameObject-to-prefab-for-good.?p=726602&amp;viewfull=1#post726602)
+            </para>
             </summary>
         </member>
         <member name="M:DG.DemiEditor.DeEditorPrefabUtils.BreakPrefabInstance(UnityEngine.GameObject)">
             <summary>
             Completely removes any prefab connection from the given prefab instance.
+            <para>
             Based on RodGreen's method (http://forum.unity3d.com/threads/82883-Breaking-connection-from-gameObject-to-prefab-for-good.?p=726602&amp;viewfull=1#post726602)
+            </para>
             </summary>
         </member>
         <member name="M:DG.DemiEditor.DeEditorUtils.DelayedCall(System.Single,System.Action)">
@@ -164,6 +173,13 @@
         <member name="M:DG.DemiEditor.DeEditorUtils.ClearConsole">
             <summary>
             Clears all logs from Unity's console
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeEditorUtils.FindAllComponentsOfType``1">
+            <summary>
+            Returns all components of type T in the currently open scene, or NULL if none could be found.<para/>
+            If you're on Unity 5 or later, and have <code>DeEditorTools</code>, use <code>DeEditorToolsUtils.FindAllComponentsOfType</code>
+            instead, which is more efficient.
             </summary>
         </member>
         <member name="F:DG.DemiEditor.DeDragResultType.NoDrag">
@@ -564,6 +580,9 @@
         <member name="M:DG.DemiEditor.DeGUILayout.ToggleButton(System.Boolean,UnityEngine.GUIContent,UnityEngine.Color,UnityEngine.Color,UnityEngine.GUIStyle,UnityEngine.GUILayoutOption[])">
             <summary>Button that can be toggled on and off</summary>
         </member>
+        <member name="M:DG.DemiEditor.DeGUILayout.ToggleButton(System.Boolean,UnityEngine.GUIContent,UnityEngine.Color,UnityEngine.Color,UnityEngine.Color,UnityEngine.Color,UnityEngine.GUIStyle,UnityEngine.GUILayoutOption[])">
+            <summary>Button that can be toggled on and off</summary>
+        </member>
         <member name="M:DG.DemiEditor.DeGUILayout.BeginToolbar(UnityEngine.GUILayoutOption[])">
             <summary>Begins an horizontal toolbar layout</summary>
         </member>
@@ -762,10 +781,25 @@
         </member>
         <member name="M:DG.DemiEditor.DeGUI.ToggleButton(UnityEngine.Rect,System.Boolean,UnityEngine.GUIContent,DG.DemiLib.DeColorPalette,UnityEngine.GUIStyle)">
             <summary>Button that can be toggled on and off</summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeGUI.ToggleButton(UnityEngine.Rect,System.Boolean,System.String,UnityEngine.Color,UnityEngine.Color,UnityEngine.GUIStyle)">
+            <summary>Button that can be toggled on and off</summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeGUI.ToggleButton(UnityEngine.Rect,System.Boolean,UnityEngine.GUIContent,UnityEngine.Color,UnityEngine.Color,UnityEngine.GUIStyle)">
+            <summary>Button that can be toggled on and off</summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeGUI.ToggleButton(UnityEngine.Rect,System.Boolean,UnityEngine.GUIContent,UnityEngine.Color,UnityEngine.Color,UnityEngine.Color,UnityEngine.Color,UnityEngine.GUIStyle)">
             <summary>Button that can be toggled on and off</summary>
         </member>
         <member name="M:DG.DemiEditor.DeGUI.SceneField(UnityEngine.Rect,System.String,UnityEngine.Object)">
             <summary>Scene field</summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeGUI.DefaultPropertyField(UnityEngine.Rect,UnityEditor.SerializedProperty,UnityEngine.GUIContent)">
+            <summary>
+            Can be used instead of EditorGUI.PropertyField, to draw a serializedProperty without its attributes
+            (very useful in case you want to use this from within a PropertyDrawer for that same property,
+            since otherwise bad infinite loops might happen)
+            </summary>
         </member>
         <member name="M:DG.DemiEditor.DeGUI.Box(UnityEngine.Rect,UnityEngine.Color,UnityEngine.GUIStyle)">
             <summary>Box with style and color options</summary>
@@ -827,6 +861,24 @@
         </member>
         <member name="M:DG.DemiEditor.DeGUI.FlatDivider(UnityEngine.Rect,System.Nullable{UnityEngine.Color})">
             <summary>Divider</summary>
+        </member>
+        <member name="M:DG.DemiEditor.SerializedPropertyExtensions.CastTo``1(UnityEditor.SerializedProperty)">
+            <summary>
+            Returns the value of the given property (works like a cast to type).
+            <para>
+            Improved from HiddenMonk's functions (http://answers.unity3d.com/questions/627090/convert-serializedproperty-to-custom-class.html)
+            </para>
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.SerializedPropertyExtensions.IsArrayElement(UnityEditor.SerializedProperty)">
+            <summary>
+            Returns TRUE if this property is inside an array
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.SerializedPropertyExtensions.GetIndexInArray(UnityEditor.SerializedProperty)">
+            <summary>
+            Returns -1 if the property is not inside an array, otherwise returns its index inside the array
+            </summary>
         </member>
         <member name="T:DG.DemiEditor.StringExtensions">
             <summary>

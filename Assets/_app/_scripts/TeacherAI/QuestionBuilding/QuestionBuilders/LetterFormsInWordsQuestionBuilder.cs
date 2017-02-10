@@ -64,12 +64,7 @@ namespace EA4S.Teacher
                 // @todo: the chosen letter should actually have words that contain it in different forms... VERY HARD FILTER!
 
                 // Determine what forms the letter appears in
-                List<LetterForm> usableForms = new List<LetterForm>();
-                foreach (var form in GenericHelper.SortEnums<LetterForm>())
-                {
-                    if (form == LetterForm.None) continue;
-                    if (letter.GetUnicode(form, false) != "") usableForms.Add(form);
-                }
+                List<LetterForm> usableForms = new List<LetterForm>(letter.GetAvailableForms());
                 //Debug.Log("N USABLE FORMS: " + usableForms.Count + " for letter " + letter);
 
                 // Packs are reduced to the number of available forms, if needed
