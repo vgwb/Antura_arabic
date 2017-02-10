@@ -40,12 +40,7 @@ namespace EA4S.Database
 
         public override string ToString()
         {
-            return string.Format("{0},{1},{2},{3}",
-                Id,
-                Kind,
-                Category,
-                Arabic
-                );
+            return Id + ": " + Arabic;
         }
 
         public ILivingLetterData ConvertToLivingLetterData()

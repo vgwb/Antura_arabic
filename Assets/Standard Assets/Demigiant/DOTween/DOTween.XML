@@ -250,7 +250,13 @@
         </member>
         <member name="F:DG.Tweening.DOTween.useSmoothDeltaTime">
             <summary>If TRUE, DOTween will use Time.smoothDeltaTime instead of Time.deltaTime for UpdateType.Normal and UpdateType.Late tweens
-            (unless they're set as timeScaleIndependent, in which case this setting will be ignored).
+            (unless they're set as timeScaleIndependent, in which case a value between the last timestep
+            and <see cref="F:DG.Tweening.DOTween.maxSmoothUnscaledTime"/> will be used instead).
+            Setting this to TRUE will lead to smoother animations.
+            <para>Default: FALSE</para></summary>
+        </member>
+        <member name="F:DG.Tweening.DOTween.maxSmoothUnscaledTime">
+            <summary>If <see cref="F:DG.Tweening.DOTween.useSmoothDeltaTime"/> is TRUE, this indicates the max timeStep that an independent update call can last.
             Setting this to TRUE will lead to smoother animations.
             <para>Default: FALSE</para></summary>
         </member>
@@ -356,6 +362,7 @@
             <summary>
             Checks all active tweens to find and remove eventually invalid ones (usually because their targets became NULL)
             and returns the total number of invalid tweens found and removed.
+            IMPORTANT: this will cause an error on UWP platform, so don't use it there 
             BEWARE: this is a slightly expensive operation so use it with care
             </summary>
         </member>
@@ -692,14 +699,17 @@
             <summary>Toggles the play state of all tweens with the given ID or target and returns the number of actual tweens toggled
             (meaning the tweens that could be played or paused, depending on the toggle state)</summary>
         </member>
-        <member name="M:DG.Tweening.DOTween.IsTweening(System.Object)">
+        <member name="M:DG.Tweening.DOTween.IsTweening(System.Object,System.Boolean)">
             <summary>
-            Returns TRUE if a tween with the given ID or target is active (regardless if it's playing or not).
+            Returns TRUE if a tween with the given ID or target is active.
             <para>You can also use this to know if a shortcut tween is active for a given target.</para>
             <para>Example:</para>
             <para><code>transform.DOMoveX(45, 1); // transform is automatically added as the tween target</code></para>
             <para><code>DOTween.IsTweening(transform); // Returns true</code></para>
             </summary>
+            <param name="targetOrId">The target or ID to look for</param>
+            <param name="alsoCheckIfIsPlaying">If FALSE (default) returns TRUE as long as a tween for the given target/ID is active,
+            otherwise also requires it to be playing</param>
         </member>
         <member name="M:DG.Tweening.DOTween.TotalPlayingTweens">
             <summary>
@@ -886,6 +896,14 @@
             </summary>
             <param name="perc">The percentage (0 to 1) at which to get the point</param>
             <param name="convertToConstantPerc">If TRUE constant speed is taken into account, otherwise not</param>
+        </member>
+        <member name="T:DG.Tweening.Plugins.Options.IPlugOptions">
+            <summary>
+            Base interface for all tween plugins options
+            </summary>
+        </member>
+        <member name="M:DG.Tweening.Plugins.Options.IPlugOptions.Reset">
+            <summary>Resets the plugin</summary>
         </member>
         <member name="T:DG.Tweening.Plugins.Vector3ArrayPlugin">
             <summary>
@@ -1403,6 +1421,34 @@
             <param name="numJumps">Total number of jumps</param>
             <param name="duration">The duration of the tween</param>
             <param name="snapping">If TRUE the tween will smoothly snap all values to integers</param>
+        </member>
+        <member name="M:DG.Tweening.ShortcutExtensions.DOPath(UnityEngine.Rigidbody,UnityEngine.Vector3[],System.Single,DG.Tweening.PathType,DG.Tweening.PathMode,System.Int32,System.Nullable{UnityEngine.Color})">
+            <summary>Tweens a Rigidbody's position through the given path waypoints, using the chosen path algorithm.
+            Also stores the Rigidbody as the tween's target so it can be used for filtered operations.
+            <para>NOTE: to tween a rigidbody correctly it should be set to kinematic at least while being tweened.</para>
+            <para>BEWARE: doesn't work on Windows Phone store (waiting for Unity to fix their own bug).
+            If you plan to publish there you should use a regular transform.DOPath.</para></summary>
+            <param name="path">The waypoints to go through</param>
+            <param name="duration">The duration of the tween</param>
+            <param name="pathType">The type of path: Linear (straight path) or CatmullRom (curved CatmullRom path)</param>
+            <param name="pathMode">The path mode: 3D, side-scroller 2D, top-down 2D</param>
+            <param name="resolution">The resolution of the path (useless in case of Linear paths): higher resolutions make for more detailed curved paths but are more expensive.
+            Defaults to 10, but a value of 5 is usually enough if you don't have dramatic long curves between waypoints</param>
+            <param name="gizmoColor">The color of the path (shown when gizmos are active in the Play panel and the tween is running)</param>
+        </member>
+        <member name="M:DG.Tweening.ShortcutExtensions.DOLocalPath(UnityEngine.Rigidbody,UnityEngine.Vector3[],System.Single,DG.Tweening.PathType,DG.Tweening.PathMode,System.Int32,System.Nullable{UnityEngine.Color})">
+            <summary>Tweens a Rigidbody's localPosition through the given path waypoints, using the chosen path algorithm.
+            Also stores the Rigidbody as the tween's target so it can be used for filtered operations
+            <para>NOTE: to tween a rigidbody correctly it should be set to kinematic at least while being tweened.</para>
+            <para>BEWARE: doesn't work on Windows Phone store (waiting for Unity to fix their own bug).
+            If you plan to publish there you should use a regular transform.DOLocalPath.</para></summary>
+            <param name="path">The waypoint to go through</param>
+            <param name="duration">The duration of the tween</param>
+            <param name="pathType">The type of path: Linear (straight path) or CatmullRom (curved CatmullRom path)</param>
+            <param name="pathMode">The path mode: 3D, side-scroller 2D, top-down 2D</param>
+            <param name="resolution">The resolution of the path: higher resolutions make for more detailed curved paths but are more expensive.
+            Defaults to 10, but a value of 5 is usually enough if you don't have dramatic long curves between waypoints</param>
+            <param name="gizmoColor">The color of the path (shown when gizmos are active in the Play panel and the tween is running)</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOResize(UnityEngine.TrailRenderer,System.Single,System.Single,System.Single)">
             <summary>Tweens a TrailRenderer's startWidth/endWidth to the given value.

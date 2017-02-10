@@ -4,6 +4,21 @@
         <name>DeExtensions</name>
     </assembly>
     <members>
+        <member name="M:DG.DeExtensions.ColorExtensions.ToHex(UnityEngine.Color32)">
+            <summary>
+            Returns a HEX version of the given Unity Color, without the initial #
+            </summary>
+        </member>
+        <member name="M:DG.DeExtensions.ColorExtensions.ToHex(UnityEngine.Color)">
+            <summary>
+            Returns a HEX version of the given Unity Color, without the initial #
+            </summary>
+        </member>
+        <member name="M:DG.DeExtensions.ColorExtensions.SetAlpha(UnityEngine.Color,System.Single)">
+            <summary>
+            Changes the alpha of this color and returns it
+            </summary>
+        </member>
         <member name="M:DG.DeExtensions.ComponentExtensions.GetOnlyComponentsInChildren``1(UnityEngine.MonoBehaviour,System.Boolean)">
             <summary>
             Returns ONLY the Components in the children, and ignores the parent.
@@ -56,11 +71,62 @@
             <param name="inclusive">If TRUE min/max range values will be valid, otherwise not</param>
             <returns></returns>
         </member>
+        <member name="M:DG.DeExtensions.RectExtensions.Add(UnityEngine.Rect,UnityEngine.Rect)">
+            <summary>
+            Adds one rect into another, and returns the resulting a
+            </summary>
+        </member>
+        <member name="M:DG.DeExtensions.RectExtensions.Fit(UnityEngine.Rect,System.Single,System.Single,System.Boolean)">
+            <summary>
+            Resizes the given Rect so it fits proportionally within the given size limits
+            </summary>
+            <param name="r">Rect target</param>
+            <param name="w">Width to fit</param>
+            <param name="h">Height to fit</param>
+            <param name="shrinkOnly">If TRUE (default) only shrinks the rect if needed, if FALSE also enlarges it to fit</param>
+            <returns></returns>
+        </member>
+        <member name="M:DG.DeExtensions.RectExtensions.Includes(UnityEngine.Rect,UnityEngine.Rect)">
+            <summary>
+            Returns TRUE if the first rect fully includes the second one
+            </summary>
+        </member>
+        <member name="M:DG.DeExtensions.RectExtensions.Shift(UnityEngine.Rect,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Modifies and returns the given Rect, with its values shifted according the the given parameters
+            </summary>
+        </member>
+        <member name="M:DG.DeExtensions.RectExtensions.SetX(UnityEngine.Rect,System.Single)">
+            <summary>
+            Sets the x of this Rect and returns it
+            </summary>
+        </member>
+        <member name="M:DG.DeExtensions.RectExtensions.SetY(UnityEngine.Rect,System.Single)">
+            <summary>
+            Sets the y of this Rect and returns it
+            </summary>
+        </member>
+        <member name="M:DG.DeExtensions.RectExtensions.SetHeight(UnityEngine.Rect,System.Single)">
+            <summary>
+            Sets the height of this Rect and returns it
+            </summary>
+        </member>
+        <member name="M:DG.DeExtensions.RectExtensions.SetWidth(UnityEngine.Rect,System.Single)">
+            <summary>
+            Sets the width of this Rect and returns it
+            </summary>
+        </member>
         <member name="M:DG.DeExtensions.StringExtensions.IsNullOrEmpty(System.String,System.Boolean)">
             <summary>
             Returns TRUE if the string is null or empty
             </summary>
             <param name="trimSpaces">If TRUE (default) and the string contains only spaces, considers it empty</param>
+        </member>
+        <member name="M:DG.DeExtensions.StringExtensions.HexToColor(System.String)">
+            <summary>
+            Converts a HEX color to a Unity Color and returns it
+            </summary>
+            <param name="hex">The HEX color (either with or without the initial #)</param>
         </member>
     </members>
 </doc>

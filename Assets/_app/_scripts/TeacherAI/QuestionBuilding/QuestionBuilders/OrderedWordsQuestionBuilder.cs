@@ -48,11 +48,11 @@ namespace EA4S.Teacher
                 }
             );
 
-            if (ConfigAI.verboseTeacher)
+            if (ConfigAI.verboseQuestionPacks)
             {
                 string debugString = "Words: " + words.Count;
                 foreach (var w in words) debugString += " " + w;
-                UnityEngine.Debug.Log(debugString);
+                ConfigAI.AppendToTeacherReport(debugString);
             }
 
             return QuestionPackData.CreateFromCorrect(null, words);

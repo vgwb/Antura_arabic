@@ -12,7 +12,10 @@ namespace EA4S.Minigames.Tobogan
         bool hurryUpSfx;
 
         float nextQuestionTimer;
-        float nextQuestiontime = 1f;
+
+        const float NEXT_QUESTION_TIME = 1f;
+        const float REVEAL_TIME = 1f;
+
         bool requestNextQueston;
 
         public ToboganPlayState(ToboganGame game)
@@ -64,6 +67,8 @@ namespace EA4S.Minigames.Tobogan
 
         public void Update(float delta)
         {
+            game.questionsManager.Update(delta);
+
             if (game.CurrentScoreRecord >= ToboganGame.MAX_ANSWERS_RECORD)
             {
                 // Maximum tower height reached
@@ -102,9 +107,9 @@ namespace EA4S.Minigames.Tobogan
         void OnAnswered(IQuestionPack pack, bool result)
         {
             requestNextQueston = true;
-            nextQuestionTimer = nextQuestiontime;
+            nextQuestionTimer = NEXT_QUESTION_TIME + REVEAL_TIME;
 
-            game.questionsManager.OnQuestionEnd();
+            game.questionsManager.OnQuestionEnd(REVEAL_TIME);
 
             game.OnResult(result);
 
