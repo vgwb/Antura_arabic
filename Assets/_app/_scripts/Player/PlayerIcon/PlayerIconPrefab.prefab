@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114415977671485386}
   - component: {fileID: 114432051055600732}
   m_Layer: 5
-  m_Name: ProfileAvatarPrefab
+  m_Name: PlayerIconPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
