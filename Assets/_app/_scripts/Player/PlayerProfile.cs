@@ -21,10 +21,6 @@ namespace EA4S.Profile
         public PlayerTint Tint;
         public int Age;
 
-        // refactor: to be deleted after using Uuid only
-        public string Key { get; set; }
-        public int Id;
-
         //int to track first visit
         //First contact (ProfileCompletion = 1 & 2)
         //BookVisited: ProfileCompletion = 3
@@ -212,6 +208,16 @@ namespace EA4S.Profile
             private set { _rewardsUnlocked = value; }
         }
 
+        public string Key {
+            get {
+                throw new NotImplementedException();
+            }
+
+            set {
+                throw new NotImplementedException();
+            }
+        }
+
         /// <summary>
         /// Loads the rewards unlocked from database.
         /// </summary>
@@ -350,7 +356,7 @@ namespace EA4S.Profile
         /// <returns></returns>
         public PlayerProfileData ToData()
         {
-            PlayerProfileData newProfileData = new PlayerProfileData(this.Uuid, this.Key, this.Id, this.AvatarId, this.Age, this.Gender, this.Tint, this.TotalNumberOfBones, ProfileCompletion);
+            PlayerProfileData newProfileData = new PlayerProfileData(this.Uuid, this.AvatarId, this.Age, this.Gender, this.Tint, this.TotalNumberOfBones, ProfileCompletion);
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
             string jsonStringForAnturaCustomization = this.CurrentAnturaCustomizations.GetJsonListOfIds();
@@ -365,9 +371,6 @@ namespace EA4S.Profile
         {
             Uuid = _data.Uuid;
 
-            Key = _data.PlayerKey;
-            Id = _data.PlayerId;
-
             AvatarId = _data.AvatarId;
             Age = _data.Age;
             Gender = _data.Gender;
@@ -380,6 +383,13 @@ namespace EA4S.Profile
             jsonAnturaCustimizationData = _data.CurrentAnturaCustomization;
 
             return this;
+        }
+        #endregion
+
+        #region player icon data
+        public PlayerIconData GetPlayerIconData() {
+            PlayerIconData returnData = new PlayerIconData() { AvatarId = this.AvatarId, Gender = this.Gender, Tint = this.Tint, Uuid = this.Uuid };
+            return returnData;
         }
         #endregion
     }
