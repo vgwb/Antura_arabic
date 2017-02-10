@@ -89,8 +89,7 @@ namespace EA4S.UI
         /// <summary>
         /// Selects the profile.
         /// </summary>
-        /// <param name="uuid">Player UUID.</param>
-        internal void SelectProfile(string uuid)
+        internal void SelectProfile(PlayerIconData playerIconData)
         {
             // PLAYER REFACTORING WITH UUID
             // ProfileManager.SetPlayerAsCurrentByUUID(/* TODO: modify to string UUID */);
@@ -172,7 +171,7 @@ namespace EA4S.UI
         {
             int index = Array.IndexOf(playerIcons, playerIcon);
             PlayerIconData playerData = playerIconDatas[index];
-            SelectProfile(playerData.Uuid);
+            SelectProfile(playerData);
         }
 
         #endregion
