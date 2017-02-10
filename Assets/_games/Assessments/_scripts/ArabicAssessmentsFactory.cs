@@ -37,6 +37,18 @@ namespace EA4S.Assessment
             Random
         }
 
+        public static Assessment CreateCompleteWord_ShapeAssessment( AssessmentContext context)
+        {
+
+            return null;
+        }
+
+        public static Assessment CreateMatchLettersToWord_ShapeAssessment( AssessmentContext context)
+        {
+
+            return null;
+        }
+
         public static Assessment CreateMatchWordToImageAssessment( AssessmentContext context)
         {
             // Assessment Specific configuration.

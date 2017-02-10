@@ -137,9 +137,37 @@ namespace EA4S.Assessment
                 case AssessmentCode.OrderLettersOfWord:
                     return Setup_OrderLettersOfWord_Builder();
 
+                case AssessmentCode.CompleteWord_Shape:
+                    return Setup_CompleteWord_Shape_Builder();
+
+                case AssessmentCode.MatchLettersToWord_Shape:
+                    return Setup_MatchLettersToWord_Shape_Builder();
+
                 default:
                     throw new NotImplementedException( "NotImplemented Yet!");
             }
+        }
+
+        private IQuestionBuilder Setup_CompleteWord_Shape_Builder()
+        {
+            SimultaneosQuestions = 2;
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = PackListHistory.ForceAllDifferent;
+
+            return new LetterFormsInWordsQuestionBuilder(
+                nPacks: SimultaneosQuestions,
+                parameters: builderParams);
+        }
+
+        private IQuestionBuilder Setup_MatchLettersToWord_Shape_Builder()
+        {
+            SimultaneosQuestions = 2;
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = PackListHistory.ForceAllDifferent;
+
+            return new LetterFormsInWordsQuestionBuilder(
+                nPacks: SimultaneosQuestions,
+                parameters: builderParams);
         }
 
         private IQuestionBuilder Setup_OrderLettersOfWord_Builder()
