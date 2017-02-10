@@ -63,22 +63,22 @@ namespace EA4S.Minigames.Tobogan
             if (answersCount > 4)
                 answersCount = 4;
 
-            if(sunMoonQuestion)
+            if (sunMoonQuestion)
             {
                 int correctIndex = 0;
                 int wrongIndex = 1;
 
-                if(correctAnswers.Id == "the_sun")
+                if (correctAnswers.Id == "the_sun")
                 {
                     correctIndex = 1;
                     wrongIndex = 0;
                 }
 
-                pipeAnswers[correctIndex].SetAnswer(correctAnswers, true, game.textMaterial, Color.black);
+                pipeAnswers[correctIndex].SetAnswer(correctAnswers, true, game.drawingMaterial, Color.black);
                 pipeAnswers[correctIndex].active = true;
                 pipeAnswers[correctIndex].ShowSign = true;
 
-                pipeAnswers[wrongIndex].SetAnswer(wrongs[0], false, game.textMaterial, Color.black);
+                pipeAnswers[wrongIndex].SetAnswer(wrongs[0], false, game.drawingMaterial, Color.black);
                 pipeAnswers[wrongIndex].active = true;
                 pipeAnswers[wrongIndex].ShowSign = true;
 
@@ -91,7 +91,7 @@ namespace EA4S.Minigames.Tobogan
                 {
                     if (i == correctPosition)
                     {
-                        pipeAnswers[i].SetAnswer(correctAnswers, true, 
+                        pipeAnswers[i].SetAnswer(correctAnswers, true,
                             ToboganConfiguration.Instance.Difficulty <= 0.1f ? game.markedTextMaterial : game.textMaterial,
                             ToboganConfiguration.Instance.Difficulty <= 0.1f ? (Color)ToboganGame.LETTER_MARK_PIPE_COLOR : Color.black);
                     }
@@ -108,6 +108,20 @@ namespace EA4S.Minigames.Tobogan
                     pipeAnswers[i].ShowSign = true;
                 }
             }
+        }
+
+        public void MarkCorrect()
+        {
+            for (int i = 0; i < pipeAnswers.Length; i++)
+            {
+                if (pipeAnswers[i].IsCorrectAnswer)
+                {
+                    Color color = ToboganGame.LETTER_MARK_PIPE_COLOR;
+
+                    pipeAnswers[i].SetAppearance(game.markedTextMaterial, game.markedDrawingMaterial, color);
+                }
+            }
+
         }
 
         public void HidePipes()
@@ -232,7 +246,7 @@ namespace EA4S.Minigames.Tobogan
                     currentPipeAnswer.StopSelectedAnimation();
                     currentPipeAnswer = null;
                 }
-                
+
                 currentLivingLetter.NearTube = currentPipeAnswer;
 
                 if (currentPipeAnswer == null)

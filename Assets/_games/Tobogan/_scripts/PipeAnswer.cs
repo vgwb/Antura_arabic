@@ -99,46 +99,22 @@ namespace EA4S.Minigames.Tobogan
             }
         }
 
-        public void SetAnswer(ILivingLetterData livingLetterData, bool correct, Material textMaterial, Color color)
+        public void SetAnswer(ILivingLetterData livingLetterData, bool correct, Material fontMaterial, Color color)
         {
             Data = livingLetterData;
-            
-            /*
-            if (livingLetterData.DataType == LivingLetterDataType.Letter)
-            {
-                answerText.gameObject.SetActive(true);
-                //answerImage.gameObject.SetActive(false);
-
-                answerText.text = ArabicAlphabetHelper.GetLetterFromUnicode(((LL_LetterData)livingLetterData).Data.Isolated_Unicode);
-            }
-            else if (livingLetterData.DataType == LivingLetterDataType.Word)
-            {
-                answerText.gameObject.SetActive(true);
-                //answerImage.gameObject.SetActive(true);
-
-                answerText.text = ArabicFixer.Fix(((LL_WordData)livingLetterData).Data.Arabic, false, false);
-                //answerImage.sprite = livingLetterData.DrawForLivingLetter;
-            }
-            */
-            
-            //else
-            //{
-            //    answerImage.gameObject.SetActive(true);
-            //    answerImage.sprite = livingLetterData.DrawForLivingLetter;
-
-            //    answerText.gameObject.SetActive(false);
-            //}
 
             if(livingLetterData.DataType == LivingLetterDataType.Image)
             {
                 answerText.gameObject.SetActive(false);
                 answerWordDrawings.gameObject.SetActive(true);
 
+                answerWordDrawings.fontMaterial = fontMaterial;
+                answerWordDrawings.color = color;
                 answerWordDrawings.text = livingLetterData.DrawingCharForLivingLetter;
             }
             else
             {
-                answerText.fontMaterial = textMaterial;
+                answerText.fontMaterial = fontMaterial;
                 answerText.color = color;
                 answerRender.gameObject.SetActive(true);
                 answerWordDrawings.gameObject.SetActive(false);
@@ -147,6 +123,14 @@ namespace EA4S.Minigames.Tobogan
             }
 
             IsCorrectAnswer = correct;
+        }
+
+        public void SetAppearance(Material textMaterial, Material drawingMaterial, Color color)
+        {
+            answerText.fontMaterial = textMaterial;
+            answerWordDrawings.fontMaterial = drawingMaterial;
+            answerText.color = color;
+            answerWordDrawings.color = color;
         }
 
         public void EnterAnimation()
