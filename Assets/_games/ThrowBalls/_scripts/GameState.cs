@@ -94,7 +94,7 @@ namespace EA4S.Minigames.ThrowBalls
             ThrowBallsGame.instance.letterWithPropsPrefab.SetActive(false);
 
             //ResetScene();
-            
+
             switch (ThrowBallsConfiguration.Instance.Variation)
             {
                 case ThrowBallsVariation.letters:
@@ -137,7 +137,7 @@ namespace EA4S.Minigames.ThrowBalls
                 default:
                     break;
             }
-            
+
         }
 
         public IEnumerator StartNewRound()
@@ -244,7 +244,7 @@ namespace EA4S.Minigames.ThrowBalls
             }
 
             UIController.instance.Enable();
-            
+
             ILivingLetterData firstLetter = letterData[0];
             letterData.RemoveAt(0);
             List<ILivingLetterData> remainingLetters = letterData;
@@ -413,10 +413,6 @@ namespace EA4S.Minigames.ThrowBalls
             }
         }
 
-
-
-
-
         public void OnCorrectLetterHit(LetterController correctLetterCntrl)
         {
             if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword && --numLettersRemaining != 0)
@@ -426,7 +422,15 @@ namespace EA4S.Minigames.ThrowBalls
                 BallController.instance.Reset();
             }
 
-            else if (isRoundOngoing)
+            else
+            {
+                OnRoundWon(correctLetterCntrl);
+            }
+        }
+
+        private void OnRoundWon(LetterController correctLetterCntrl)
+        {
+            if (isRoundOngoing)
             {
                 if (roundNumber > 0)
                 {
@@ -457,6 +461,8 @@ namespace EA4S.Minigames.ThrowBalls
                 BallController.instance.Disable();
 
                 isRoundOngoing = false;
+
+                game.Context.GetLogManager().OnAnswered(question, true);
             }
         }
 
@@ -469,6 +475,8 @@ namespace EA4S.Minigames.ThrowBalls
                 DisableLetters(true);
 
                 game.StartCoroutine(OnRoundLostCoroutine());
+
+                game.Context.GetLogManager().OnAnswered(question, false);
             }
         }
 
