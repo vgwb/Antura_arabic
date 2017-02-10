@@ -29,7 +29,7 @@ namespace EA4S.Minigames.DancingDots
 
 		TextMeshPro fullText;
 
-		ILivingLetterData letterData;
+		public ILivingLetterData letterData { get; private set; }
 
 		void Start()
 		{
