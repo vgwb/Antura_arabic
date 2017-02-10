@@ -13,19 +13,36 @@ namespace EA4S.Teacher.Test
         public GameObject buttonPrefab;
         public TeacherTester tester;
 
+        public bool doAssessments = false;
+
         void Start()
         {
-            foreach (var enumValue in GenericHelper.SortEnums<MiniGameCode>()) {
-                MiniGameCode code = enumValue;
-                var btnGO = Instantiate(buttonPrefab);
-                btnGO.transform.SetParent(this.transform);
-                btnGO.GetComponentInChildren<Text>().text = (enumValue.ToString()).Replace("_", "\n");
-                btnGO.GetComponent<Button>().onClick.AddListener(() => { tester.SimulateMiniGame(code);});
-                tester.buttonsDict[enumValue] = btnGO.GetComponent<Button>();
+            foreach (var enumValue in GenericHelper.SortEnums<MiniGameCode>())
+            {
+                // Skip unused values
+                if (enumValue == MiniGameCode.Invalid) continue;
+                if (enumValue == MiniGameCode.Assessment_VowelOrConsonant) continue;
+
+                // First only assessments
+                bool isAssessment = enumValue.ToString().Contains("Assessment");
+                if (!doAssessments && isAssessment) continue;
+                if (doAssessments && !isAssessment) continue;
+
+                CreateButtonForCode(enumValue);
             }
+
             Destroy(buttonPrefab);
         }
 
+        private void CreateButtonForCode(MiniGameCode enumValue)
+        {
+            MiniGameCode code = enumValue;
+            var btnGO = Instantiate(buttonPrefab);
+            btnGO.transform.SetParent(this.transform);
+            btnGO.GetComponentInChildren<Text>().text = (enumValue.ToString()).Replace("_", "\n");
+            btnGO.GetComponent<Button>().onClick.AddListener(() => { tester.SimulateMiniGame(code); });
+            tester.minigamesButtonsDict[enumValue] = btnGO.GetComponent<Button>();
+        }
     }
 
 }

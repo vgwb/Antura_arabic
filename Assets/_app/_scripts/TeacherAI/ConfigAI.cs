@@ -49,12 +49,12 @@ namespace EA4S.Teacher
 
         public static void AppendToTeacherReport(string s)
         {
-            teacherReportString += "\n\n" + s;
+            if (verboseTeacher) teacherReportString += "\n\n" + s;
         }
 
         public static void PrintTeacherReport()
         {
-            Debug.Log(teacherReportString);   
+            if (verboseTeacher) Debug.Log(teacherReportString);   
         }
 
     }

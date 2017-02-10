@@ -1,18 +1,54 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using EA4S.MinigamesAPI;
 using EA4S.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace EA4S.Teacher.Test
 {
+    public enum QuestionBuilderType
+    {
+        Empty,
+
+        RandomLetters,
+        Alphabet,
+        LettersBySunMoon,
+        LettersByType,
+
+        RandomWords,
+        OrderedWords,
+        WordsByArticle,
+        WordsByForm,
+        WordsBySunMoon,
+
+        LettersInWord,
+        LetterFormsInWords,
+        CommonLettersInWords,
+        WordsWithLetter,
+
+        WordsInPhrase,
+        PhraseQuestions,
+
+        MAX
+    }
+
     /// <summary>
     /// Helper class to test Teacher functionality regardless of minigames.
     /// </summary>
     public class TeacherTester : MonoBehaviour
     {
+        [Header("Reporting")]
+        public bool verboseQuestionPacks = false;
+        public bool verboseDataSelection = false;
+        public bool verboseDataFiltering = false;
+        public bool verbosePlaySessionInitialisation = false;
+
+        [Header("Simulation")]
+        public int numberOfSimulations = 50;
+        public int yieldEverySimulations = 20;
+
+        [Header("UI")]
         public InputField journey_stage_in;
         public InputField journey_learningblock_in;
         public InputField journey_playsession_in;
@@ -26,7 +62,22 @@ namespace EA4S.Teacher.Test
         public Toggle journeybase_in;
         public Toggle journeywrong_in;
 
-        public Dictionary<MiniGameCode, Button> buttonsDict = new Dictionary<MiniGameCode, Button>();
+        // Current options
+        int currentJourneyStage = 1;
+        int currentJourneyLB = 1;
+        int currentJourneyPS = 1;
+        int nPacks = 5;
+        int nCorrect = 1;
+        int nWrong = 1;
+        SelectionSeverity correctSeverity;
+        SelectionSeverity wrongSeverity;
+        PackListHistory correctHistory;
+        PackListHistory wrongHistory;
+        bool journeyEnabledForBase = true;
+        bool journeyEnabledForWrong = true;
+
+        public Dictionary<MiniGameCode, Button> minigamesButtonsDict = new Dictionary<MiniGameCode, Button>();
+        public Dictionary<QuestionBuilderType, Button> qbButtonsDict = new Dictionary<QuestionBuilderType, Button>();
 
         void Start()
         {
@@ -58,43 +109,10 @@ namespace EA4S.Teacher.Test
             GlobalUI.ShowPauseMenu(false);
         }
 
-        int currentJourneyStage = 1;
-        int currentJourneyLB = 1;
-        int currentJourneyPS = 1;
-        int nPacks = 5;
-        int nCorrect = 1;
-        int nWrong = 1;
-        SelectionSeverity correctSeverity;
-        SelectionSeverity wrongSeverity;
-        PackListHistory correctHistory;
-        PackListHistory wrongHistory;
-        bool journeyEnabledForBase = true;
-        bool journeyEnabledForWrong = true;
-
-        [Header("Reporting")]
-        public bool verboseQuestionPacks = false;
-        public bool verboseDataSelection = false;
-        public bool verboseDataFiltering = false;
-        public bool verbosePlaySessionInitialisation = false;
-
         private void InitialisePlaySession()
         {
             AppManager.I.Player.CurrentJourneyPosition.SetPosition(currentJourneyStage, currentJourneyLB, currentJourneyPS);
             AppManager.I.Teacher.InitialiseNewPlaySession();
-        }
-
-        QuestionBuilderParameters SetupFakeGame()
-        {
-            InitialisePlaySession();
-
-            var builderParams = new QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = correctHistory;
-            builderParams.wrongChoicesHistory = wrongHistory;
-            builderParams.correctSeverity = correctSeverity;
-            builderParams.wrongSeverity = wrongSeverity;
-            builderParams.useJourneyForCorrect = journeyEnabledForBase;
-            builderParams.useJourneyForWrong = journeyEnabledForWrong;
-            return builderParams;
         }
 
         void SetVerboseAI(bool choice)
@@ -115,20 +133,25 @@ namespace EA4S.Teacher.Test
             }
         }
 
-        #region Simulation
 
-        [Header("Simulation")]
-        public int numberOfSimulations = 50;
-        public int yieldEverySimulations = 20;
+        #region Testing
 
-
+        public void TestEverything()
+        {
+            TestAllMiniGames();
+            TestAllQuestionBuilders();
+        }
+        
         public void TestAllMiniGames()
         {
             SetVerboseAI(false);
 
             foreach (var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
             {
-                var colors = buttonsDict[code].colors;
+                if (code == MiniGameCode.Invalid) continue;
+                if (code == MiniGameCode.Assessment_VowelOrConsonant) continue;
+
+                var colors = minigamesButtonsDict[code].colors;
                 colors.normalColor = Color.green;
                 try
                 {
@@ -139,11 +162,40 @@ namespace EA4S.Teacher.Test
                     Debug.LogError(code + ": " + e);
                     colors.normalColor = Color.red;
                 }
-                buttonsDict[code].colors = colors;
+                minigamesButtonsDict[code].colors = colors;
             }
 
             SetVerboseAI(true);
         }
+
+
+        public void TestAllQuestionBuilders()
+        {
+            SetVerboseAI(false);
+
+            foreach (var type in Helpers.GenericHelper.SortEnums<QuestionBuilderType>())
+            {
+                var colors = qbButtonsDict[type].colors;
+                colors.normalColor = Color.green;
+                try
+                {
+                    TestQuestionBuilder(type);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError(type + ": " + e);
+                    colors.normalColor = Color.red;
+                }
+                qbButtonsDict[type].colors = colors;
+            }
+
+            SetVerboseAI(true);
+        }
+
+        #endregion
+
+
+        #region Minigames
 
         public IEnumerator SimulateMiniGameCO(MiniGameCode code)
         {
@@ -178,121 +230,82 @@ namespace EA4S.Teacher.Test
 
         #endregion
 
-
         #region  Question Builder testing
 
-        private void TestQuestionBuilder(IQuestionBuilder builder)
+
+        public void TestQuestionBuilder(QuestionBuilderType builderType)
         {
             ConfigAI.StartTeacherReport();
+
+            var builderParams = SetupFakeGame();
+            IQuestionBuilder builder = null;
+            switch (builderType)
+            {
+                case QuestionBuilderType.RandomLetters:
+                    builder = new RandomLettersQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
+                    break;
+                case QuestionBuilderType.Alphabet:
+                    builder = new AlphabetQuestionBuilder(parameters: builderParams);
+                    break;
+                case QuestionBuilderType.LettersBySunMoon:
+                    builder = new LettersBySunMoonQuestionBuilder(nPacks: nPacks, parameters: builderParams);
+                    break;
+                case QuestionBuilderType.LettersByType:
+                    builder = new LettersByTypeQuestionBuilder(nPacks: nPacks, parameters: builderParams);
+                    break;
+                case QuestionBuilderType.LettersInWord:
+                    builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
+                    break;
+                case QuestionBuilderType.LetterFormsInWords:
+                    builder = new LetterFormsInWordsQuestionBuilder(nPacks, 3, parameters: builderParams);
+                    break;
+                case QuestionBuilderType.CommonLettersInWords:
+                    builder = new CommonLettersInWordQuestionBuilder(nPacks: nPacks, nWrong: nWrong, parameters: builderParams);
+                    break;
+                case QuestionBuilderType.RandomWords:
+                    builder = new RandomWordsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
+                    break;
+                case QuestionBuilderType.OrderedWords:
+                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.NumberOrdinal, parameters: builderParams);
+                    break;
+                case QuestionBuilderType.WordsWithLetter:
+                    builder = new WordsWithLetterQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, parameters: builderParams);
+                    break;
+                case QuestionBuilderType.WordsByForm:
+                    builder = new WordsByFormQuestionBuilder(nPacks: nPacks, parameters: builderParams);
+                    break;
+                case QuestionBuilderType.WordsByArticle:
+                    builder = new WordsByArticleQuestionBuilder(nPacks: nPacks, parameters: builderParams);
+                    break;
+                case QuestionBuilderType.WordsBySunMoon:
+                    builder = new WordsBySunMoonQuestionBuilder(nPacks: nPacks, parameters: builderParams);
+                    break;
+                case QuestionBuilderType.WordsInPhrase:
+                    builder = new WordsInPhraseQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, useAllCorrectWords: false, usePhraseAnswersIfFound: true, parameters: builderParams);
+                    break;
+                case QuestionBuilderType.PhraseQuestions:
+                    builder = new PhraseQuestionsQuestionBuilder(nPacks: nPacks, nWrong: nWrong, parameters: builderParams);
+                    break;
+            }
+
             var packs = builder.CreateAllQuestionPacks();
             ReportPacks(packs);
+
             ConfigAI.PrintTeacherReport();
         }
 
-        public void RandomLettersTest()
+        QuestionBuilderParameters SetupFakeGame()
         {
-            var builderParams = SetupFakeGame();
-            var builder = new RandomLettersQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong,
-                firstCorrectIsQuestion: true, parameters: builderParams);
-            TestQuestionBuilder(builder);
-        }
+            InitialisePlaySession();
 
-        public void AlphabetTest()
-        {
-            var builderParams = SetupFakeGame();
-            var builder = new AlphabetQuestionBuilder(parameters: builderParams);
-            TestQuestionBuilder(builder);
-        }
-
-        public void LettersBySunMoonTest()
-        {
-            var builderParams = SetupFakeGame();
-            var builder = new LettersBySunMoonQuestionBuilder(nPacks: nPacks, parameters: builderParams);
-            TestQuestionBuilder(builder);
-        }
-
-        public void LettersByTypeTest()
-        {
-            var builderParams = SetupFakeGame();
-            var builder = new LettersByTypeQuestionBuilder(nPacks: nPacks, parameters: builderParams);
-            TestQuestionBuilder(builder);
-        }
-
-        public void LettersInWordTest()
-        {
-            var builderParams = SetupFakeGame();
-            var builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
-            TestQuestionBuilder(builder);
-        }
-
-        public void LetterFormInWordsTest()
-        {
-            var builderParams = SetupFakeGame();
-            var builder = new LetterFormsInWordsQuestionBuilder(nPacks, 3, parameters: builderParams);
-            TestQuestionBuilder(builder);
-        }
-
-        public void CommonLettersInWordTest()
-        {
-            var builderParams = SetupFakeGame();
-            var builder = new CommonLettersInWordQuestionBuilder(nPacks: nPacks, nMaxCommonLetters: 3, nWords: 2, parameters: builderParams);
-            TestQuestionBuilder(builder);
-        }
-
-        public void RandomWordsTest()
-        {
-            var builderParams = SetupFakeGame();
-            var builder = new RandomWordsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
-            TestQuestionBuilder(builder);
-        }
-
-        public void OrderedWordsTest()
-        {
-            var builderParams = SetupFakeGame();
-            var builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.NumberOrdinal, parameters: builderParams);
-            TestQuestionBuilder(builder);
-        }
-
-        public void WordsWithLetterTest()
-        {
-            var builderParams = SetupFakeGame();
-            var builder = new WordsWithLetterQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, parameters: builderParams);
-            TestQuestionBuilder(builder);
-        }
-
-        public void WordsByFormTest()
-        {
-            var builderParams = SetupFakeGame();
-            var builder = new WordsByFormQuestionBuilder(nPacks: nPacks, parameters: builderParams);
-            TestQuestionBuilder(builder);
-        }
-
-        public void WordsByArticleTest()
-        {
-            var builderParams = SetupFakeGame();
-            var builder = new WordsByArticleQuestionBuilder(nPacks: nPacks, parameters: builderParams);
-            TestQuestionBuilder(builder);
-        }
-
-        public void WordsBySunMoonTest()
-        {
-            var builderParams = SetupFakeGame();
-            var builder = new WordsBySunMoonQuestionBuilder(nPacks: nPacks, parameters: builderParams);
-            TestQuestionBuilder(builder);
-        }
-
-        public void WordsInPhraseTest()
-        {
-            var builderParams = SetupFakeGame();
-            var builder = new WordsInPhraseQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, useAllCorrectWords: false, usePhraseAnswersIfFound: true, parameters: builderParams);
-            TestQuestionBuilder(builder);
-        }
-
-        public void PhraseQuestions()
-        {
-            var builderParams = SetupFakeGame();
-            var builder = new PhraseQuestionsQuestionBuilder(nPacks: nPacks, nWrong: nWrong, parameters: builderParams);
-            TestQuestionBuilder(builder);
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = correctHistory;
+            builderParams.wrongChoicesHistory = wrongHistory;
+            builderParams.correctSeverity = correctSeverity;
+            builderParams.wrongSeverity = wrongSeverity;
+            builderParams.useJourneyForCorrect = journeyEnabledForBase;
+            builderParams.useJourneyForWrong = journeyEnabledForWrong;
+            return builderParams;
         }
 
         #endregion
