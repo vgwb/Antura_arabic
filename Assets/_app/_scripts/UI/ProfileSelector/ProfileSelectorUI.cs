@@ -91,8 +91,7 @@ namespace EA4S.UI
         /// </summary>
         internal void SelectProfile(PlayerIconData playerIconData)
         {
-            // PLAYER REFACTORING WITH UUID
-            // ProfileManager.SetPlayerAsCurrentByUUID(/* TODO: modify to string UUID */);
+            ProfileManager.SetPlayerAsCurrentByUUID(playerIconData.Uuid);
             AudioManager.I.PlaySound(SfxSelectProfile);
             LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
             Setup();
@@ -117,9 +116,7 @@ namespace EA4S.UI
                     PlayerIconData data = playerIconDatas[i];
                     playerIcon.gameObject.SetActive(true);
                     playerIcon.Init(data);
-                    // PLAYER REFACTORING WITH UUID (test for now)
-//                    if (i == AppManager.I.Player.Id - 1) playerIcon.Select();
-//                    else playerIcon.Deselect();
+                    playerIcon.Select(AppManager.I.Player.Uuid);
                 }
             }
 
@@ -162,7 +159,6 @@ namespace EA4S.UI
             if (_bt == BtAdd) {
                 // Bt Add
                 _bt.StopPulsing();
-                // PLAYER REFACTORING WITH UUID
                 AppManager.I.NavigationManager.GotoNewProfileCreation();
             }
         }
