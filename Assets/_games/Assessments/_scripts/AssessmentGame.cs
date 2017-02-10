@@ -28,8 +28,8 @@ namespace EA4S.Assessment
                 case AssessmentCode.MatchLettersToWord:
                     return ArabicAssessmentsFactory.CreateMatchLettersWordAssessment( context);
 
-                case AssessmentCode.LetterShape:
-                    return ArabicAssessmentsFactory.CreateLetterShapeAssessment( context);
+                case AssessmentCode.LetterForm:
+                    return ArabicAssessmentsFactory.CreateLetterFormAssessment( context);
 
                 case AssessmentCode.WordsWithLetter:
                     return ArabicAssessmentsFactory.CreateWordsWithLetterAssessment( context);

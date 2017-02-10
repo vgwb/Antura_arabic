@@ -3,7 +3,7 @@ namespace EA4S.Assessment
     public enum AssessmentCode
     {
         Unsetted,
-        LetterShape,
+        LetterForm,
         MatchLettersToWord,
         WordsWithLetter,
         CompleteWord,
@@ -18,7 +18,7 @@ namespace EA4S.Assessment
         QuestionAndReply,
 
         // brand new Assessmentes
-        CompleteWord_Shape,
-        MatchLettersToWord_Shape
+        CompleteWord_Form,
+        MatchLettersToWord_Form
     }
 }

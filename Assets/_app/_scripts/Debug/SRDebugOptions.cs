@@ -355,9 +355,9 @@ public partial class SROptions
 
 
     [Category("Assessments")]
-    public void LetterShape()
+    public void LetterForm()
     {
-        LaunchMinigame(MiniGameCode.Assessment_LetterShape);
+        LaunchMinigame(MiniGameCode.Assessment_LetterForm);
     }
 
     [Category("Assessments")]

@@ -163,7 +163,7 @@ namespace EA4S.PlayerBook
                     newResult.nCorrect = Random.Range(1,5);
                     newResult.nWrong = Random.Range(1, 5);
                     resultsList.Add(newResult);
-                    logAi.LogLearn(fakeAppSession, maxPlaySession, MiniGameCode.Assessment_LetterShape, resultsList);
+                    logAi.LogLearn(fakeAppSession, maxPlaySession, MiniGameCode.Assessment_LetterForm, resultsList);
                 }
             }
             var allLetterInfo = AppManager.I.Teacher.scoreHelper.GetAllLetterInfo();
@@ -178,7 +178,7 @@ namespace EA4S.PlayerBook
                     newResult.nCorrect = Random.Range(1, 5);
                     newResult.nWrong = Random.Range(1, 5);
                     resultsList.Add(newResult);
-                    logAi.LogLearn(fakeAppSession, maxPlaySession, MiniGameCode.Assessment_LetterShape, resultsList);
+                    logAi.LogLearn(fakeAppSession, maxPlaySession, MiniGameCode.Assessment_LetterForm, resultsList);
                 }
             }*/
 

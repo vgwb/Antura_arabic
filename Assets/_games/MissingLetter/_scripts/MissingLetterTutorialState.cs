@@ -45,7 +45,7 @@ namespace EA4S.Minigames.MissingLetter {
             if(m_fDelayTime < 0 && !m_bSuggested)
             {
                 if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter ||
-                    MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingShape)
+                    MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingForm)
                 {
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.MissingLetter_Tuto);
                 }
