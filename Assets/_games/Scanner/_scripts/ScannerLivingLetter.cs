@@ -75,7 +75,10 @@ namespace EA4S.Minigames.Scanner
 
 				gameObject.GetComponent<SphereCollider>().enabled = true; // enable feet collider
 				bodyCollider.enabled = false; // disable body collider
-			}
+
+                showLLMesh(true);
+
+            }
         }
 
 		public void StartSliding()
@@ -183,9 +186,14 @@ namespace EA4S.Minigames.Scanner
             letterObjectView.Falling = true;
             status = LLStatus.Falling;
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.1f);
 
-			onFallOff(this);
+            letterObjectView.Poof();
+            showLLMesh(false);
+
+            yield return new WaitForSeconds(0.9f);
+            
+            onFallOff(this);
 
 //            Reset();
         }
@@ -273,6 +281,14 @@ namespace EA4S.Minigames.Scanner
                     StartCoroutine(AnimateLL());
                 }
             }
+        }
+
+        public void showLLMesh(bool show)
+        {
+            SkinnedMeshRenderer[] LLMesh = GetComponentsInChildren<SkinnedMeshRenderer>();
+            foreach (SkinnedMeshRenderer sm in LLMesh)
+                sm.enabled = show;
+            letterObjectView.contentTransform.gameObject.SetActive(show);
         }
 
     }
