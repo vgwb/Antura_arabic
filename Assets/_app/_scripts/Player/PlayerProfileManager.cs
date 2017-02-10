@@ -82,6 +82,39 @@ namespace EA4S.Profile
         }
 
         /// <summary>
+        /// Creates the player profile.
+        /// </summary>
+        /// <param name="age">The age.</param>
+        /// <param name="gender">The gender.</param>
+        /// <param name="avatarID">The avatar identifier.</param>
+        /// <param name="color">The color.</param>
+        /// <returns></returns>
+        public string CreatePlayerProfile(int age, PlayerGender gender, int avatarID, PlayerTint color) {
+            PlayerProfile returnProfile = new PlayerProfile();
+            // Data
+            returnProfile.Uuid = System.Guid.NewGuid().ToString();
+            returnProfile.AvatarId = avatarID;
+            // DB Creation
+            AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
+            // Added to list
+            AppManager.I.GameSettings.SavedPlayers.Add(returnProfile.GetPlayerIconData());
+            // Create new antura skin
+            RewardPackUnlockData tileTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
+            returnProfile.AddRewardUnlocked(tileTexture);
+            returnProfile.CurrentAnturaCustomizations.TileTexture = tileTexture;
+            RewardPackUnlockData decalTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
+            returnProfile.AddRewardUnlocked(decalTexture);
+            returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
+            // Set player profile as current player
+            AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
+
+            // Call Event Profile creation
+            OnNewProfileCreated();
+
+            return returnProfile.Uuid;
+        }
+
+        /// <summary>
         /// Sets the player profile with corresposnding avatarId to current player.
         /// </summary>
         /// <param name="_avatarId">The avatar identifier.</param>
