@@ -86,9 +86,9 @@ namespace EA4S.Profile
 
         #region properties
 
-        public PlayerIcon GetIcon()
+        public PlayerIconData GetIcon()
         {
-            return new PlayerIcon(Uuid, AvatarId, Gender, Tint);
+            return new PlayerIconData(Uuid, AvatarId, Gender, Tint);
         }
 
         public Sprite GetAvatar()
