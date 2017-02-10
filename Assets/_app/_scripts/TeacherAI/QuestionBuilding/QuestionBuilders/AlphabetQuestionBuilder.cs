@@ -40,6 +40,8 @@ namespace EA4S.Teacher
             var teacher = AppManager.I.Teacher;
             var vocabularyHelper = AppManager.I.VocabularyHelper;
 
+            ConfigAI.AppendToTeacherReport("New Question Pack");
+
             // Fully ordered alphabet, only 1 pack
             var alphabetLetters = teacher.VocabularyAi.SelectData(
                 () => vocabularyHelper.GetAllLetters(parameters.letterFilters),

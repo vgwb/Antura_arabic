@@ -99,7 +99,7 @@ namespace EA4S.Minigames.Tobogan
             }
         }
 
-        public void SetAnswer(ILivingLetterData livingLetterData, bool correct, Material textMaterial, Color color)
+        public void SetAnswer(ILivingLetterData livingLetterData, bool correct, Material fontMaterial, Color color)
         {
             Data = livingLetterData;
 
@@ -108,11 +108,13 @@ namespace EA4S.Minigames.Tobogan
                 answerText.gameObject.SetActive(false);
                 answerWordDrawings.gameObject.SetActive(true);
 
+                answerWordDrawings.fontMaterial = fontMaterial;
+                answerWordDrawings.color = color;
                 answerWordDrawings.text = livingLetterData.DrawingCharForLivingLetter;
             }
             else
             {
-                answerText.fontMaterial = textMaterial;
+                answerText.fontMaterial = fontMaterial;
                 answerText.color = color;
                 answerRender.gameObject.SetActive(true);
                 answerWordDrawings.gameObject.SetActive(false);
@@ -123,10 +125,12 @@ namespace EA4S.Minigames.Tobogan
             IsCorrectAnswer = correct;
         }
 
-        public void SetAppearance(Material textMaterial, Color color)
+        public void SetAppearance(Material textMaterial, Material drawingMaterial, Color color)
         {
             answerText.fontMaterial = textMaterial;
+            answerWordDrawings.fontMaterial = drawingMaterial;
             answerText.color = color;
+            answerWordDrawings.color = color;
         }
 
         public void EnterAnimation()

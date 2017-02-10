@@ -74,11 +74,11 @@ namespace EA4S.Minigames.Tobogan
                     wrongIndex = 0;
                 }
 
-                pipeAnswers[correctIndex].SetAnswer(correctAnswers, true, game.textMaterial, Color.black);
+                pipeAnswers[correctIndex].SetAnswer(correctAnswers, true, game.drawingMaterial, Color.black);
                 pipeAnswers[correctIndex].active = true;
                 pipeAnswers[correctIndex].ShowSign = true;
 
-                pipeAnswers[wrongIndex].SetAnswer(wrongs[0], false, game.textMaterial, Color.black);
+                pipeAnswers[wrongIndex].SetAnswer(wrongs[0], false, game.drawingMaterial, Color.black);
                 pipeAnswers[wrongIndex].active = true;
                 pipeAnswers[wrongIndex].ShowSign = true;
 
@@ -116,10 +116,9 @@ namespace EA4S.Minigames.Tobogan
             {
                 if (pipeAnswers[i].IsCorrectAnswer)
                 {
-                    Material material = game.markedTextMaterial;
                     Color color = ToboganGame.LETTER_MARK_PIPE_COLOR;
 
-                    pipeAnswers[i].SetAppearance(material, color);
+                    pipeAnswers[i].SetAppearance(game.markedTextMaterial, game.markedDrawingMaterial, color);
                 }
             }
 
