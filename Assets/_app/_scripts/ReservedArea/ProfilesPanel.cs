@@ -16,7 +16,9 @@ namespace EA4S.ReservedArea
         void Start()
         {
             SelectedPlayerId = "";
+            ProfileCommandsContainer.SetActive(false);
             RefreshPlayerIcons();
+            RefreshUI();
         }
 
         void RefreshPlayerIcons()
@@ -31,8 +33,11 @@ namespace EA4S.ReservedArea
             List<PlayerIconData> players = new List<PlayerIconData>();
             players.Add(new PlayerIconData("UUID-test1", 2, PlayerGender.F, PlayerTint.Green, false));
             players.Add(new PlayerIconData("UUID-test2", 3, PlayerGender.M, PlayerTint.Yellow, false));
-            players.Add(new PlayerIconData("UUID-test3", 4, PlayerGender.F, PlayerTint.Green, true));
+            players.Add(new PlayerIconData("UUID-test3", 4, PlayerGender.F, PlayerTint.Red, false));
+            players.Add(new PlayerIconData("UUID-test-DEMO", 1, PlayerGender.F, PlayerTint.Green, true));
 
+            // reverse the list for RIGHT 2 LEFT layout
+            players.Reverse();
             foreach (var player in players) {
                 newIcon = Instantiate(PlayerIconPrefab);
                 newIcon.transform.SetParent(PlayerIconContainer.transform, false);
@@ -42,35 +47,51 @@ namespace EA4S.ReservedArea
 
         }
 
+        void RefreshUI()
+        {
+            ProfileCommandsContainer.SetActive(SelectedPlayerId != "");
+        }
+
         public void OnSelectPlayerProfile(string uuid)
         {
-            SelectedPlayerId = uuid;
             Debug.Log("OnSelectPlayerProfile " + uuid);
+            if (SelectedPlayerId != uuid) {
+                SelectedPlayerId = uuid;
+            } else {
+                SelectedPlayerId = "";
+            }
+            RefreshUI();
         }
 
         public void OnOpenSelectedPlayerProfile()
         {
-
+            Debug.Log("OPEN " + SelectedPlayerId);
         }
 
         public void OnDeleteSelectPlayerProfile()
         {
             // GlobalUI.I.
+            DoDeleteSelectPlayerProfile();
+        }
+
+        void DoDeleteSelectPlayerProfile()
+        {
+            Debug.Log("DELETE " + SelectedPlayerId);
         }
 
         public void OnExportSelectPlayerProfile()
         {
-
+            Debug.Log("EXPORT " + SelectedPlayerId);
         }
 
         public void OnCreateDemoPlayer()
         {
-
+            Debug.Log("DEMO");
         }
 
         public void OnImportProfile()
         {
-
+            Debug.Log("IMPORT");
         }
 
 
