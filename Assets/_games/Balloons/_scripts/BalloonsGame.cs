@@ -1328,6 +1328,8 @@ namespace EA4S.Balloons
                 }
                 roundResultAnimator.ShowWin(roundResultData);
 
+                Context.GetLogManager().OnAnswered(roundResultData, true);
+
                 //var winSpeakWordDelay = 0.75f;
                 //yield return new WaitForSeconds(winSpeakWordDelay);
                 if (question != null)
@@ -1361,6 +1363,8 @@ namespace EA4S.Balloons
                 {
                     roundResultData = question;
                 }
+
+                Context.GetLogManager().OnAnswered(roundResultData, false);
 
                 switch (howDied)
                 {
