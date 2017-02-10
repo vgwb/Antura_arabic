@@ -102,32 +102,6 @@ namespace EA4S.Minigames.Tobogan
         public void SetAnswer(ILivingLetterData livingLetterData, bool correct, Material textMaterial, Color color)
         {
             Data = livingLetterData;
-            
-            /*
-            if (livingLetterData.DataType == LivingLetterDataType.Letter)
-            {
-                answerText.gameObject.SetActive(true);
-                //answerImage.gameObject.SetActive(false);
-
-                answerText.text = ArabicAlphabetHelper.GetLetterFromUnicode(((LL_LetterData)livingLetterData).Data.Isolated_Unicode);
-            }
-            else if (livingLetterData.DataType == LivingLetterDataType.Word)
-            {
-                answerText.gameObject.SetActive(true);
-                //answerImage.gameObject.SetActive(true);
-
-                answerText.text = ArabicFixer.Fix(((LL_WordData)livingLetterData).Data.Arabic, false, false);
-                //answerImage.sprite = livingLetterData.DrawForLivingLetter;
-            }
-            */
-            
-            //else
-            //{
-            //    answerImage.gameObject.SetActive(true);
-            //    answerImage.sprite = livingLetterData.DrawForLivingLetter;
-
-            //    answerText.gameObject.SetActive(false);
-            //}
 
             if(livingLetterData.DataType == LivingLetterDataType.Image)
             {
@@ -147,6 +121,12 @@ namespace EA4S.Minigames.Tobogan
             }
 
             IsCorrectAnswer = correct;
+        }
+
+        public void SetAppearance(Material textMaterial, Color color)
+        {
+            answerText.fontMaterial = textMaterial;
+            answerText.color = color;
         }
 
         public void EnterAnimation()
