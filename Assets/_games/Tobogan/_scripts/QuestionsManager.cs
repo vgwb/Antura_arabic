@@ -31,6 +31,8 @@ namespace EA4S.Minigames.Tobogan
 
         IQuestionPack currentQuestionPack;
 
+        float hidePipesTimer;
+
         public QuestionsManager(ToboganGame game)
         {
             this.game = game;
@@ -55,6 +57,7 @@ namespace EA4S.Minigames.Tobogan
 
         public void StartNewQuestion()
         {
+            hidePipesTimer = 0;
             sunMoonGameVariation = ToboganVariation.SunMoon == ToboganConfiguration.Instance.Variation;
 
             IQuestionPack nextQuestionPack = null;
@@ -84,8 +87,24 @@ namespace EA4S.Minigames.Tobogan
             playWhenEnter = enabled;
         }
 
+        public void Update(float delta)
+        {
+            if (hidePipesTimer > 0)
+            {
+                hidePipesTimer -= delta;
+
+                if (hidePipesTimer <= 0)
+                {
+                    questionLivingLetter.Sucked = false;
+                    questionLivingLetter.GoToFirstPostion();
+                    game.pipesAnswerController.HidePipes();
+                }
+            }
+        }
+
         void UpdateQuestion(IQuestionPack questionPack)
         {
+            hidePipesTimer = 0;
             currentQuestionPack = questionPack;
             ResetLetters();
 
@@ -99,7 +118,7 @@ namespace EA4S.Minigames.Tobogan
             if (ToboganConfiguration.Instance.Variation == ToboganVariation.SunMoon)
             {
                 LL_WordData question = questionPack.GetQuestion() as LL_WordData;
-                
+
                 questionLivingLetter.SetQuestionText(question, 2, ToboganGame.LETTER_MARK_COLOR);
             }
             else
@@ -219,16 +238,25 @@ namespace EA4S.Minigames.Tobogan
             }
         }
 
-        public void OnQuestionEnd()
+        public void OnQuestionEnd(float timeBeforeHide)
         {
-            questionLivingLetter.GoToFirstPostion();
+            if (timeBeforeHide <= 0)
+            {
+                questionLivingLetter.GoToFirstPostion();
+
+                game.pipesAnswerController.HidePipes();
+            }
+            else
+            {
+                questionLivingLetter.Sucked = true;
+                hidePipesTimer = timeBeforeHide;
+                game.pipesAnswerController.MarkCorrect();
+            }
 
             questionLetterIndex--;
 
             if (questionLetterIndex < 0)
                 questionLetterIndex = livingLetters.Count - 1;
-
-            game.pipesAnswerController.HidePipes();
         }
 
         void OnPointerDown()

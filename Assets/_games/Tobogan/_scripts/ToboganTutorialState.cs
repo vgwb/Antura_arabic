@@ -126,7 +126,7 @@ namespace EA4S.Minigames.Tobogan
             {
                 questionCount++;
 
-                game.questionsManager.OnQuestionEnd();
+                game.questionsManager.OnQuestionEnd(0);
 
                 if (!sunMoonGameVariation || (sunMoonGameVariation && questionCount == 2))
                 {
