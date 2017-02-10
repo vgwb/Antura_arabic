@@ -109,7 +109,8 @@ namespace EA4S.Profile
             AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
 
             // Call Event Profile creation
-            OnNewProfileCreated();
+            if(OnNewProfileCreated != null)
+                OnNewProfileCreated();
 
             return returnProfile.Uuid;
         }
