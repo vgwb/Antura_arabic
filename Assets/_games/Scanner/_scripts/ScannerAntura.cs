@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using EA4S.Antura;
 using EA4S.Audio;
+using DG.Tweening;
 
 namespace EA4S.Minigames.Scanner
 {
@@ -13,15 +14,23 @@ namespace EA4S.Minigames.Scanner
 
         public int scaredCounter;
         public ScannerGame game;
+        public Transform sceneCamera;
         public Transform stopPose, chargeEndPose;
         public float movingSpeed = 8, chargeSpeed = 11;
         public int timesCanAppear = 1;
         public List<ScannerLivingLetter> fallenLL = new List<ScannerLivingLetter>();
+        public ParticleSystem stars;
+        public SkinnedMeshRenderer sm;
+        public Texture whiteTex;
 
         private AnturaAnimationController antura;
         private Animator anturaAnimator;
-        
+        Material mat;
+        Color c, c2, c3;
+        Texture startTex;
+        bool canBeScared;
         int thisRound;
+
         void Start () {
 			antura = GetComponent<AnturaAnimationController>();
             anturaAnimator = GetComponent<Animator>();
@@ -33,6 +42,9 @@ namespace EA4S.Minigames.Scanner
             StartCoroutine(handleAnturasEvents());
 
             thisRound = game.roundsManager.numberOfRoundsPlayed;
+
+
+            
         }
 
         
@@ -98,34 +110,34 @@ namespace EA4S.Minigames.Scanner
 
         public IEnumerator bark(float delay = 0)
         {
-
+            canBeScared = true;
             antura.IsExcited = true;
             yield return new WaitForSeconds(0.75f);
             antura.IsExcited = false;
 
             if (scaredCounter != 0)
-            { StartCoroutine(leaveScene(true)); yield break; }
+            { /*StartCoroutine(leaveScene(true));*/ yield break; }
 
             anturaAnimator.SetTrigger("doShout");
             AudioManager.I.PlaySound(Sfx.DogBarking);
             yield return new WaitForSeconds(1f);
 
             if (scaredCounter != 0)
-            { StartCoroutine(leaveScene(true)); yield break; }
+            { /*StartCoroutine(leaveScene(true));*/ yield break; }
 
             yield return new WaitForSeconds(1f);
-            antura.OnJumpStart();
+            //antura.OnJumpStart();
             yield return new WaitForSeconds(0.5f);
-            antura.OnJumpEnded();
+            //antura.OnJumpEnded();
             yield return new WaitForSeconds(1.0f);
 
             if (scaredCounter != 0)
-            {  StartCoroutine(leaveScene(true)); yield break; }
+            {  /*StartCoroutine(leaveScene(true));*/ yield break; }
 
             yield return new WaitForSeconds(1.0f);
 
             if (scaredCounter != 0)
-            { StartCoroutine(leaveScene(true)); yield break; }
+            { /*StartCoroutine(leaveScene(true));*/ yield break; }
 
             yield return new WaitForSeconds(1.0f);
             anturaAnimator.SetTrigger("doShout");
@@ -133,12 +145,12 @@ namespace EA4S.Minigames.Scanner
             yield return new WaitForSeconds(1f);
 
             if (scaredCounter != 0)
-            { StartCoroutine(leaveScene(true)); yield break; }
+            { /*StartCoroutine(leaveScene(true));*/ yield break; }
 
             yield return new WaitForSeconds(1f);
 
             if (scaredCounter != 0)
-            { StartCoroutine(leaveScene(true)); yield break; }
+            { /*StartCoroutine(leaveScene(true));*/ yield break; }
 
             antura.DoBurp();
             AudioManager.I.PlaySound(Sfx.DogBarking);
@@ -147,38 +159,74 @@ namespace EA4S.Minigames.Scanner
             yield return new WaitForSeconds(1f);
 
             if (scaredCounter != 0)
-            { StartCoroutine(leaveScene(true)); yield break; }
+            { /*StartCoroutine(leaveScene(true));*/ yield break; }
 
             yield return new WaitForSeconds(1f);
             if (game.tut.isTutRound && game.tut.tutStep == 0)
                 StartCoroutine(bark());
             else
-                charge();
+                StartCoroutine(charge());
 
             yield return null;
         }
 
 
-        void charge()
+        IEnumerator charge()
         {
+            canBeScared = false;
             antura.IsAngry = false;
             antura.IsExcited = false;
             antura.SetWalkingSpeed(1);
-            antura.DoCharge(() => { StartCoroutine(chargeMove()); });
+            anturaAnimator.CrossFade("dog_charge_start", 0.3f);
+            yield return new WaitForSeconds(0.75f);
+            anturaAnimator.CrossFade("dog_charge_start", 0.2f);
+            yield return new WaitForSeconds(0.75f);
+            //antura.DoCharge(() => { StartCoroutine(chargeMove()); });
+            anturaAnimator.CrossFade("dog_charge_start", 0.2f);
+            yield return new WaitForSeconds(0.75f);
+            StartCoroutine(chargeMove());
+            antura.State = AnturaAnimationStates.walking;
         }
 
         IEnumerator chargeMove()
         {
             AudioManager.I.PlaySound(Sfx.DogBarking);
+            sceneCamera.DOShakePosition(2.5f);
 
             while (transform.position.x > chargeEndPose.position.x + 0.01f)
             {
-                transform.position -= Vector3.right * chargeSpeed * Time.deltaTime;
+                transform.position -= Vector3.right * chargeSpeed * 1.5f * Time.deltaTime;
+                
                 yield return null;
             }
 
             
             StartCoroutine(leaveScene());
+        }
+
+        
+        public IEnumerator beScared()
+        {
+            if (scaredCounter > 0 || !canBeScared)
+                yield break;
+
+            scaredCounter++;
+            antura.IsExcited = false;
+            canBeScared = false;
+            anturaAnimator.SetBool("idle", false);
+            StartCoroutine(flashRed());
+            anturaAnimator.CrossFade("dog_suck_end", 0.3f);
+            AudioManager.I.PlaySound(Sfx.BallHit);
+            yield return new WaitForSeconds(0.3f);
+            anturaAnimator.SetBool("idle", true);
+            anturaAnimator.CrossFade("dog_stand_sad_breath", 0.2f);
+            antura.IsSad = true;
+            stars.Play();
+            yield return new WaitForSeconds(2.5f);
+            stars.Stop(true);
+            yield return new WaitForSeconds(1.5f);
+            StartCoroutine(leaveScene(true));
+            antura.IsSad = false;
         }
 
         public IEnumerator leaveScene(bool wasScared = false, float delay = 0f)
@@ -189,7 +237,7 @@ namespace EA4S.Minigames.Scanner
             if (wasScared)
             {
                 AudioManager.I.PlaySound(Sfx.DogBarking);
-                scaredCounter = 1;
+                scaredCounter = 0;
             }
             yield return new WaitForSeconds(delay);
             
@@ -289,6 +337,40 @@ namespace EA4S.Minigames.Scanner
                 ll.StartSliding();
                 fallenLL[fallenLL.IndexOf(ll)] = null;
             }
+        }
+
+        
+        public IEnumerator flashRed()
+        {
+            if (!mat)
+            {
+                mat = sm.materials[1];
+                c = mat.GetColor("_OverColorR");
+                c2 = mat.GetColor("_OverColorG");
+                c3 = mat.GetColor("_Emission");
+                startTex = mat.GetTexture("_OverTex");
+            }
+            //m.SetColor("_Emission", Color.red);
+            //m2.SetColor("_OverColorR", Color.red);
+            mat.SetTexture("_OverTex", whiteTex);
+            mat.SetColor("_OverColorR", Color.red);
+            mat.SetColor("_OverColorG", Color.red);
+            mat.SetColor("_Emission", Color.red);
+            yield return new WaitForSeconds(0.3f);
+            mat.SetTexture("_OverTex", startTex);
+            mat.SetColor("_OverColorR", c);
+            mat.SetColor("_OverColorG", c2);
+            mat.SetColor("_Emission", c3);
+            /*yield return new WaitForSeconds(0.3f);
+            m2.SetTexture("_OverTex", whiteTex);
+            m2.SetColor("_OverColorR", Color.red);
+            m2.SetColor("_OverColorG", Color.red);
+            m2.SetColor("_Emission", Color.red);
+            yield return new WaitForSeconds(0.3f);
+            m2.SetTexture("_OverTex", t2);
+            m2.SetColor("_OverColorR", c);
+            m2.SetColor("_OverColorG", c2);
+            m2.SetColor("_Emission", c3);*/
         }
 
     }
