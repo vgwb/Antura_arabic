@@ -359,6 +359,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   AvatarImg: {fileID: 1939664402}
@@ -785,6 +786,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   AvatarImg: {fileID: 1644302437}
@@ -971,6 +973,7 @@ MonoBehaviour:
   SfxOpenCreateProfile: 0
   SfxCreateNewProfile: 0
   SfxSelectProfile: 0
+  LLObjectView: {fileID: 0}
 --- !u!1 &610255263
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,6 +1100,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   AvatarImg: {fileID: 617724096}
@@ -1361,6 +1365,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   AvatarImg: {fileID: 1401147641}
@@ -1658,6 +1663,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   AvatarImg: {fileID: 1682354591}
@@ -1829,6 +1835,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   AvatarImg: {fileID: 429774559}
@@ -2016,6 +2023,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   AvatarImg: {fileID: 1130617200}
@@ -2311,6 +2319,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   AvatarImg: {fileID: 1085720114}
@@ -2520,6 +2529,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
 --- !u!114 &1113075884
@@ -2928,6 +2938,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
 --- !u!1 &1401147639
@@ -3120,6 +3131,7 @@ MonoBehaviour:
   LLAnimation: 5
   AnturaAnimController: {fileID: 0}
   LLAnimController: {fileID: 0}
+  DialogReservedArea: {fileID: 0}
 --- !u!4 &1465923915
 Transform:
   m_ObjectHideFlags: 0
@@ -3626,6 +3638,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
 --- !u!1 &1821576558
@@ -4026,6 +4039,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   AvatarImg: {fileID: 57932869}
@@ -4245,6 +4259,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   AvatarImg: {fileID: 1867846103}
