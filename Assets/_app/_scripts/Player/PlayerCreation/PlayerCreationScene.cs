@@ -20,6 +20,7 @@ namespace EA4S.Scenes
         {
             Debug.LogWarning(string.Format("Will create player of age {0}, gender {1}, avatarID {2}, color {3}", age, gender, avatarID, color));
             AppManager.I.PlayerProfileManager.CreatePlayerProfile(age, gender, avatarID, color);
+            AppManager.I.NavigationManager.GoToNextScene();
         }
 
     }
