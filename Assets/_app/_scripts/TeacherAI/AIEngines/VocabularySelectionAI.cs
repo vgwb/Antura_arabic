@@ -171,7 +171,7 @@ namespace EA4S.Teacher
             if (ConfigAI.verbosePlaySessionInitialisation)
             {
                 string debugString = "";
-                debugString += "--------- TEACHER: play session initialisation (journey " + currentPlaySessionId + ") --------- ";
+                debugString += ConfigAI.FormatTeacherHeader("Play Session Initalisation ("+ currentPlaySessionId+")");
                 debugString += "\n Current PS:\n" + currentPlaySessionContents;
                 debugString += "\n Current LB:\n" + currentBlockContents;
                 debugString += "\n Current ST:\n" + currentStageContents;
@@ -189,12 +189,12 @@ namespace EA4S.Teacher
             if (selectionParams.nRequired == 0 && !selectionParams.getMaxData) return new List<T>();
 
             string debugString = "";
-            debugString += "--------- TEACHER: data selection --------- ";
+            debugString += ConfigAI.FormatTeacherHeader("Data Selection");
 
             // (1) Filtering based on the builder's logic
             var dataList = builderSelectionFunction();
             int nAfterBuilder = dataList.Count;
-            debugString += ("Builder: " + dataList.Count);
+            debugString += ("\n  Builder: " + dataList.Count);
 
             // (2) Filtering based on journey
             if (selectionParams.useJourney && !ConfigAI.forceJourneyIgnore)
@@ -209,7 +209,7 @@ namespace EA4S.Teacher
                     throw new System.Exception("The teacher could not find " + selectionParams.nRequired + " data instances after applying the journey logic.");
                 }
             }
-            debugString += (" Journey: " + dataList.Count);
+            debugString += ("\n  Journey: " + dataList.Count);
 
             // (3) Filtering based on pack-list history 
             switch (selectionParams.packListHistory)
@@ -243,14 +243,14 @@ namespace EA4S.Teacher
                     }
                     break;
             }
-            debugString += (" History: " + dataList.Count);
+            debugString += ("\n  History: " + dataList.Count);
 
 
             // (4) Priority filtering based on current focus
             List<T> priorityFilteredList = new List<T>();
             if (!isTest)
             {
-                string s = "Priority filtering:";
+                string s = ConfigAI.FormatTeacherHeader("Priority Filtering");
                 int nBefore = selectionParams.nRequired;
                 int nRemaining = selectionParams.nRequired;
                 FilterListByContents(currentPlaySessionContents, dataList, priorityFilteredList, ref nRemaining);
@@ -275,7 +275,7 @@ namespace EA4S.Teacher
                     s += "\n" + (nBefore - nRemaining) + " from the rest of the Journey";
                 }
                 if (ConfigAI.verboseDataFiltering) ConfigAI.AppendToTeacherReport(s);
-                debugString += (" Priority: " + priorityFilteredList.Count);
+                debugString += ("\n  Priority: " + priorityFilteredList.Count);
             }
             else
             {
@@ -286,7 +286,7 @@ namespace EA4S.Teacher
             List<T> selectedList = null;
             if (selectionParams.getMaxData) selectedList = priorityFilteredList;
             else selectedList = WeightedDataSelect(priorityFilteredList, selectionParams.nRequired, selectionParams.severity);
-            debugString += (" Selection: " + selectedList.Count);
+            debugString += ("\n  Selection: " + selectedList.Count);
 
             if (ConfigAI.verboseDataFiltering && !isTest)
             {
@@ -334,7 +334,8 @@ namespace EA4S.Teacher
             // Given a (filtered) list of data, select some using weights
             List<VocabularyScoreData> score_data_list = dbManager.FindDataByQuery<VocabularyScoreData>("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" + (int)dataType + "'");
 
-            string debugString = "-- Teacher Selection Weights";
+            string debugString = "";
+            debugString += ConfigAI.FormatTeacherHeader("Selection Weights");
 
             List<float> weights_list = new List<float>();
             foreach (var sourceData in source_data_list)

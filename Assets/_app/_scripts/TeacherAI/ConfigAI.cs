@@ -44,17 +44,26 @@ namespace EA4S.Teacher
 
         public static void StartTeacherReport()
         {
-            teacherReportString = "----- TEACHER REPORT " + DateTime.Now + "----";
+            teacherReportString = "";
+        }
+
+        public static string FormatTeacherHeader(string s)
+        {
+            return "[Teacher] - " + s + " --------";
         }
 
         public static void AppendToTeacherReport(string s)
         {
-            teacherReportString += "\n\n" + s;
+            if (verboseTeacher) teacherReportString += "\n\n" + s;
         }
 
         public static void PrintTeacherReport()
         {
-            Debug.Log(teacherReportString);   
+            teacherReportString = "----- TEACHER REPORT " + DateTime.Now + "----" + teacherReportString;
+            if (verboseTeacher) Debug.Log(teacherReportString);
+#if UNITY_EDITOR
+            System.IO.File.WriteAllText(Application.persistentDataPath + "/teacher_report.txt", teacherReportString);
+#endif
         }
 
     }
