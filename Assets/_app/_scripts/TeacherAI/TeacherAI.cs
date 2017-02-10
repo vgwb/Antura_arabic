@@ -91,7 +91,7 @@ namespace EA4S.Teacher
             if (ConfigAI.verboseTeacher)
             {
                 var debugString = "";
-                debugString += "--------- TEACHER: MiniGames selected ---------";
+                debugString += ConfigAI.FormatTeacherHeader("Minigames Selected");
                 foreach (var minigame in newPlaySessionMiniGames)
                 {
                     debugString += "\n" + minigame.Code;
