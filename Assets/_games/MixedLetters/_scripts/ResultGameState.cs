@@ -1,5 +1,7 @@
-﻿using EA4S.MinigamesCommon;
+﻿using EA4S.MinigamesAPI;
+using EA4S.MinigamesCommon;
 using EA4S.UI;
+using UnityEngine;
 
 namespace EA4S.Minigames.MixedLetters
 {
@@ -31,6 +33,7 @@ namespace EA4S.Minigames.MixedLetters
             if (game.roundNumber != 0)
             {
                 MinigamesUI.Timer.Pause();
+                LogRound(game.WasLastRoundWon);
             }
 
             if (!game.WasLastRoundWon)
@@ -119,6 +122,22 @@ namespace EA4S.Minigames.MixedLetters
                     {
                         OnResultAnimationEnded();
                     }
+                }
+            }
+        }
+
+        private void LogRound(bool won)
+        {
+            if (game.IsSpelling)
+            {
+                game.Context.GetLogManager().OnAnswered(game.Question, won);
+            }
+
+            else
+            {
+                foreach (ILivingLetterData letter in game.PromptLettersInOrder)
+                {
+                    game.Context.GetLogManager().OnAnswered(letter, won);
                 }
             }
         }
