@@ -1,7 +1,7 @@
 ﻿using System;
-using DG.DemiLib.Attributes;
 using EA4S.Core;
 using UnityEngine;
+using DG.DeInspektor.Attributes;
 
 namespace EA4S.UI
 {
@@ -9,7 +9,7 @@ namespace EA4S.UI
     /// Global UI created dynamically at runtime,
     /// contains all global UI elements > Pause, SceneTransitioner, ContinueScreen, PopupScreen
     /// </summary>
-    [ScriptExecutionOrder(-100)]
+    [DeScriptExecutionOrder(-100)]
     public class GlobalUI : MonoBehaviour
     {
         public static GlobalUI I { get; private set; }

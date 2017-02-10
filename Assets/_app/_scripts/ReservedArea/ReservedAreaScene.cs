@@ -24,5 +24,6 @@ namespace EA4S.Scenes
         {
             Application.OpenURL(AppConstants.UrlPrivacy);
         }
+
     }
 }
