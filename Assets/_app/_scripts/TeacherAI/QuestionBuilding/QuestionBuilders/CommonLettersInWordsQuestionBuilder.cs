@@ -80,7 +80,7 @@ namespace EA4S.Teacher
                 var nonCommonLetters = vocabularyHelper.GetLettersNotIn(parameters.letterFilters, commonLetters.ToArray()).RandomSelect(nWrong);
 
                 // Debug
-                if (ConfigAI.verboseTeacher)
+                if (ConfigAI.verboseQuestionPacks)
                 { 
                     string debugString = "--------- TEACHER: question pack result ---------";
                     debugString += "\nCommon letters: ";
@@ -90,7 +90,7 @@ namespace EA4S.Teacher
                         debugString += "\nWord: " + word;
                         foreach (var l in word.Letters) debugString += " " + l;
                     }
-                    UnityEngine.Debug.Log(debugString);
+                    ConfigAI.AppendToTeacherReport(debugString);
                 }
 
                 pack = QuestionPackData.Create(wordsToUse, commonLetters, nonCommonLetters);

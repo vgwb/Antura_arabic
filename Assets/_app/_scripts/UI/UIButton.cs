@@ -114,6 +114,12 @@ namespace EA4S.UI
             Bt.interactable = !_doLock;
         }
 
+        public void ChangeDefaultColor(Color _toColor)
+        {
+            BtImg.color = new Color(_toColor.r, _toColor.g, _toColor.b, BtImg.color.a);
+            DefaultColor = _toColor;
+        }
+
         /// <summary>
         /// Pulsing stops automatically when the button is toggled or clicked (via <see cref="AnimateClick"/>)
         /// </summary>
