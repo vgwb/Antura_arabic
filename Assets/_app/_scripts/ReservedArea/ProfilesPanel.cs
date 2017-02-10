@@ -16,7 +16,9 @@ namespace EA4S.ReservedArea
         void Start()
         {
             SelectedPlayerId = "";
+            ProfileCommandsContainer.SetActive(false);
             RefreshPlayerIcons();
+            RefreshUI();
         }
 
         void RefreshPlayerIcons()
@@ -45,35 +47,51 @@ namespace EA4S.ReservedArea
 
         }
 
+        void RefreshUI()
+        {
+            ProfileCommandsContainer.SetActive(SelectedPlayerId != "");
+        }
+
         public void OnSelectPlayerProfile(string uuid)
         {
-            SelectedPlayerId = uuid;
             Debug.Log("OnSelectPlayerProfile " + uuid);
+            if (SelectedPlayerId != uuid) {
+                SelectedPlayerId = uuid;
+            } else {
+                SelectedPlayerId = "";
+            }
+            RefreshUI();
         }
 
         public void OnOpenSelectedPlayerProfile()
         {
-
+            Debug.Log("OPEN " + SelectedPlayerId);
         }
 
         public void OnDeleteSelectPlayerProfile()
         {
             // GlobalUI.I.
+            DoDeleteSelectPlayerProfile();
+        }
+
+        void DoDeleteSelectPlayerProfile()
+        {
+            Debug.Log("DELETE " + SelectedPlayerId);
         }
 
         public void OnExportSelectPlayerProfile()
         {
-
+            Debug.Log("EXPORT " + SelectedPlayerId);
         }
 
         public void OnCreateDemoPlayer()
         {
-
+            Debug.Log("DEMO");
         }
 
         public void OnImportProfile()
         {
-
+            Debug.Log("IMPORT");
         }
 
 
