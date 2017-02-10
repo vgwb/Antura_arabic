@@ -31,8 +31,11 @@ namespace EA4S.ReservedArea
             List<PlayerIconData> players = new List<PlayerIconData>();
             players.Add(new PlayerIconData("UUID-test1", 2, PlayerGender.F, PlayerTint.Green, false));
             players.Add(new PlayerIconData("UUID-test2", 3, PlayerGender.M, PlayerTint.Yellow, false));
-            players.Add(new PlayerIconData("UUID-test3", 4, PlayerGender.F, PlayerTint.Green, true));
+            players.Add(new PlayerIconData("UUID-test3", 4, PlayerGender.F, PlayerTint.Red, false));
+            players.Add(new PlayerIconData("UUID-test-DEMO", 1, PlayerGender.F, PlayerTint.Green, true));
 
+            // reverse the list for RIGHT 2 LEFT layout
+            players.Reverse();
             foreach (var player in players) {
                 newIcon = Instantiate(PlayerIconPrefab);
                 newIcon.transform.SetParent(PlayerIconContainer.transform, false);
