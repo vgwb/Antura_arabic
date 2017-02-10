@@ -162,7 +162,6 @@ namespace EA4S.Core
 
         /// <summary>
         /// Launches the game scene.
-        /// !!! WARNING !!! Direct call is allowed only by NavigationManager internal, Book and debugger.
         /// </summary>
         /// <param name="_miniGame">The mini game.</param>
         private void InternalLaunchGameScene(MiniGameData _miniGame)

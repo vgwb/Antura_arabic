@@ -135,6 +135,15 @@ namespace EA4S.Profile
         }
 
         /// <summary>
+        /// Retirn the list of existing player profiles.
+        /// </summary>
+        /// <returns></returns>
+        public List<PlayerIconData> GetSavedPlayers() {
+            return AppManager.I.GameSettings.SavedPlayers;
+        }
+
+
+        /// <summary>
         /// Sets the player profile with corresposnding avatarId to current player.
         /// </summary>
         /// <param name="_avatarId">The avatar identifier.</param>
