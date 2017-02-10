@@ -78,7 +78,7 @@ namespace EA4S.Teacher
             // Shuffle the packs at the end
             packs.Shuffle();
 
-            if (ConfigAI.verboseTeacher)
+            if (ConfigAI.verboseQuestionPacks)
             {
                 foreach (var pack in packs)
                 {
@@ -88,7 +88,7 @@ namespace EA4S.Teacher
                     foreach (var l in pack.correctAnswers) debugString += " " + l;
                     debugString += "\nWrong Word: " + pack.wrongAnswers.Count;
                     foreach (var l in pack.wrongAnswers) debugString += " " + l;
-                    UnityEngine.Debug.Log(debugString);
+                    ConfigAI.AppendToTeacherReport(debugString);
                 }
             }
 

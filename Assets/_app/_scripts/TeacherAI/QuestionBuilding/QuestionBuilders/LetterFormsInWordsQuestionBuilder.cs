@@ -19,18 +19,20 @@ namespace EA4S.Teacher
         // pack history filter: enabled
         // journey: enabled
 
-        private int nPacks;
+        private int nPacksPerRound;
+        private int nRounds;
         private int maximumWordLength;
         private WordDataCategory category;
         private QuestionBuilderParameters parameters;
 
-        public LetterFormsInWordsQuestionBuilder(int nPacks,
+        public LetterFormsInWordsQuestionBuilder(int nPacksPerRound, int nRounds,
             WordDataCategory category = WordDataCategory.None,
             int maximumWordLength = 20,
             QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
-            this.nPacks = nPacks;
+            this.nPacksPerRound = nPacksPerRound;
+            this.nRounds = nRounds;
             this.category = category;
             this.maximumWordLength = maximumWordLength;
             this.parameters = parameters;
@@ -49,35 +51,40 @@ namespace EA4S.Teacher
             previousPacksIDs_letters.Clear();
             List<QuestionPackData> packs = new List<QuestionPackData>();
 
-            // First, choose a letter
-            var teacher = AppManager.I.Teacher;
-            var vocabulary = AppManager.I.VocabularyHelper;
-            var usableLetters = teacher.VocabularyAi.SelectData(
-                () => vocabulary.GetAllLetters(parameters.letterFilters),
-                    new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
-                        packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_letters));
-            var letter = usableLetters[0];
-            // @todo: the chosen letter should actually have words that contain it in different forms... VERY HARD FILTER!
-
-            // Determine what forms the letter appears in
-            List<LetterForm> usableForms = new List<LetterForm>();
-            foreach (var form in GenericHelper.SortEnums<LetterForm>())
+            for (int round_i = 0; round_i < nRounds; round_i++)
             {
-                if (form == LetterForm.None) continue;
-                if (letter.GetUnicode(form, false) != "") usableForms.Add(form);
-            }
-            Debug.Log("N USABLE FORMS: " + usableForms.Count + " for letter " + letter);
+                // First, choose a letter
+                var teacher = AppManager.I.Teacher;
+                var vocabulary = AppManager.I.VocabularyHelper;
+                var usableLetters = teacher.VocabularyAi.SelectData(
+                    () => vocabulary.GetAllLetters(parameters.letterFilters),
+                        new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
+                            packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_letters));
+                var letter = usableLetters[0];
+                // @todo: the chosen letter should actually have words that contain it in different forms... VERY HARD FILTER!
 
-            // Packs are reduced to the number of available forms, if needed
-            nPacks = UnityEngine.Mathf.Min(usableForms.Count,nPacks);
+                // Determine what forms the letter appears in
+                List<LetterForm> usableForms = new List<LetterForm>();
+                foreach (var form in GenericHelper.SortEnums<LetterForm>())
+                {
+                    if (form == LetterForm.None) continue;
+                    if (letter.GetUnicode(form, false) != "") usableForms.Add(form);
+                }
+                //Debug.Log("N USABLE FORMS: " + usableForms.Count + " for letter " + letter);
 
-            // Randomly choose some forms (one per pack) and create packs
-            for (int pack_i = 0; pack_i < nPacks; pack_i++)
-            {
-                var form = RandomHelper.RandomSelectOne(usableForms);
-                usableForms.Remove(form);
-                packs.Add(CreateSingleQuestionPackData(letter, form));
+                // Packs are reduced to the number of available forms, if needed
+                int nPacksFound = Mathf.Min(usableForms.Count, nPacksPerRound);
+
+                // Randomly choose some forms (one per pack) and create packs
+                for (int pack_i = 0; pack_i < nPacksFound; pack_i++)
+                {
+                    var form = RandomHelper.RandomSelectOne(usableForms);
+                    usableForms.Remove(form);
+                    packs.Add(CreateSingleQuestionPackData(letter, form));
+                }
+
             }
+
             return packs;
         }
 
@@ -96,13 +103,13 @@ namespace EA4S.Teacher
             var correctAnswers = new List<LetterData>();
             correctAnswers.Add(letter);
 
-            if (ConfigAI.verboseTeacher)
+            if (ConfigAI.verboseQuestionPacks)
             {
                 string debugString = "--------- TEACHER: question pack result ---------";
                 debugString += "\nQuestion: " + question;
                 debugString += "\nCorrect Answers: " + correctAnswers.Count;
                 foreach (var l in correctAnswers) debugString += " " + l;
-                UnityEngine.Debug.Log(debugString);
+                ConfigAI.AppendToTeacherReport(debugString);
             }
 
             return QuestionPackData.Create(question, correctAnswers, new List<LetterData>());
@@ -117,6 +124,9 @@ namespace EA4S.Teacher
                 // Check max length
                 if (word.Letters.Length > maxWordLength) continue;
 
+                // Check that it contains the letter only once
+                if (WordContainsLetterTimes(word, containedLetter) > 1) continue;
+
                 // Check that it contains a letter in the correct form
                 if (!WordContainsLetterWithForm(word, containedLetter, form)) continue;
 
@@ -126,15 +136,19 @@ namespace EA4S.Teacher
             return eligibleWords;
         }
 
-        public bool WordContainsLetterWithForm(WordData selectedWord, LetterData containedLetter, LetterForm selectedForm)
+        private int WordContainsLetterTimes(WordData selectedWord, LetterData containedLetter)
         {
             List<LetterData> wordLetters = AppManager.I.VocabularyHelper.GetLettersInWord(selectedWord);
+            int count = 0;
             foreach (var letter in wordLetters)
-            {
-                if (ArabicAlphabetHelper.GetLetterShapeInWord(selectedWord, containedLetter) == selectedForm)
-                return true;
-            }
-            return false;
+                if (letter == containedLetter)
+                    count++;
+            return count;
+        }
+
+        private bool WordContainsLetterWithForm(WordData selectedWord, LetterData containedLetter, LetterForm selectedForm)
+        {
+            return ArabicAlphabetHelper.GetLetterFormInWord(selectedWord, containedLetter) == selectedForm;
         }
 
     }

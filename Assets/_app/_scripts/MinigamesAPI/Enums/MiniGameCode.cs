@@ -40,7 +40,7 @@
         Tobogan_letters = 29,
         Tobogan_words = 30,
         TakeMeHome = 31,
-        Assessment_LetterShape = 100,
+        Assessment_LetterForm = 100,
         Assessment_WordsWithLetter = 101,
         Assessment_MatchLettersToWord = 102,
         Assessment_CompleteWord = 103,

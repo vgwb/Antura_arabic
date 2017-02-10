@@ -101,8 +101,8 @@ namespace EA4S.Assessment
 
             switch (assessmentType)
             {
-                case AssessmentCode.LetterShape:
-                    return Setup_LetterShape_Builder();
+                case AssessmentCode.LetterForm:
+                    return Setup_LetterForm_Builder();
 
                 case AssessmentCode.MatchLettersToWord:
                     return Setup_MatchLettersToWord_Builder();
@@ -329,7 +329,7 @@ namespace EA4S.Assessment
                 parameters: builderParams);
         }
 
-        private IQuestionBuilder Setup_LetterShape_Builder()
+        private IQuestionBuilder Setup_LetterForm_Builder()
         {
             SimultaneosQuestions = 1;
 
@@ -351,8 +351,8 @@ namespace EA4S.Assessment
         {
             switch (assessmentType)
             {
-                case AssessmentCode.LetterShape:
-                    return Setup_LetterShape_LearnRules();
+                case AssessmentCode.LetterForm:
+                    return Setup_LetterForm_LearnRules();
 
                 case AssessmentCode.MatchLettersToWord:
                     return Setup_MatchLettersToWord_LearnRules();
@@ -447,7 +447,7 @@ namespace EA4S.Assessment
             return new MiniGameLearnRules();
         }
 
-        private MiniGameLearnRules Setup_LetterShape_LearnRules()
+        private MiniGameLearnRules Setup_LetterForm_LearnRules()
         {
             return new MiniGameLearnRules();
         }

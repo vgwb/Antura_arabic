@@ -20,6 +20,6 @@ namespace EA4S.Core
 
         public bool EnglishSubtitles = false;
 
-        public List<PlayerIcon> PlayerIcons;
+        public List<PlayerIconData> SavedPlayers;
     }
 }

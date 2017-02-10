@@ -9,7 +9,7 @@ namespace EA4S.Minigames.MissingLetter
     {
         MissingLetter = 1,
         MissingWord = 2,
-        MissingShape = 3
+        MissingForm = 3
     }
 
     public class MissingLetterConfiguration : IGameConfiguration
@@ -47,7 +47,7 @@ namespace EA4S.Minigames.MissingLetter
 
             Difficulty = 0.5f;
             //Variation = MissingLetterVariation.MissingLetter;
-            Variation = MissingLetterVariation.MissingShape;
+            Variation = MissingLetterVariation.MissingForm;
         }
 
         public IQuestionBuilder SetupBuilder() {
@@ -61,7 +61,7 @@ namespace EA4S.Minigames.MissingLetter
 
             switch (Variation)
             {
-                case MissingLetterVariation.MissingShape:
+                case MissingLetterVariation.MissingForm:
                     builderParams.letterFilters.excludeDiacritics = true;
                     builderParams.letterFilters.excludeDiphthongs = true;
                     builderParams.letterFilters.excludeLetterVariations = true;

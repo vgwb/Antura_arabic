@@ -172,24 +172,24 @@ namespace EA4S.Minigames.MissingLetter
             m_oEmoticonsController.init(qstBehaviour.transform);
 
             //after insert in mCurrentQuestionScen
-            Database.LetterForm questionLetterShape = RemoveLetterfromQuestion(_correctAnswer);
+            Database.LetterForm questionLetterForm = RemoveLetterfromQuestion(_correctAnswer);
 
             GameObject _correctAnswerObject = m_oAnswerPool.GetElement();
             LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
             corrAnsBheaviour.Reset();
 
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingShape)
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingForm)
             {
-                LL_LetterData shapeAnswer = new LL_LetterData(_correctAnswer.Id);
-                shapeAnswer.Form = questionLetterShape;
-                _correctAnswer = shapeAnswer;
-                corrAnsBheaviour.LetterData = shapeAnswer;
+                LL_LetterData formAnswer = new LL_LetterData(_correctAnswer.Id);
+                formAnswer.Form = questionLetterForm;
+                _correctAnswer = formAnswer;
+                corrAnsBheaviour.LetterData = formAnswer;
 
-                string correct = shapeAnswer.Data.GetCharFixedForDisplay(questionLetterShape).Trim();
-                string isolated = shapeAnswer.Data.GetCharFixedForDisplay(Database.LetterForm.Isolated).Trim();
-                string initial = shapeAnswer.Data.GetCharFixedForDisplay(Database.LetterForm.Initial).Trim();
-                string medial = shapeAnswer.Data.GetCharFixedForDisplay(Database.LetterForm.Medial).Trim();
-                string final = shapeAnswer.Data.GetCharFixedForDisplay(Database.LetterForm.Final).Trim();
+                string correct = formAnswer.Data.GetCharFixedForDisplay(questionLetterForm).Trim();
+                string isolated = formAnswer.Data.GetCharFixedForDisplay(Database.LetterForm.Isolated).Trim();
+                string initial = formAnswer.Data.GetCharFixedForDisplay(Database.LetterForm.Initial).Trim();
+                string medial = formAnswer.Data.GetCharFixedForDisplay(Database.LetterForm.Medial).Trim();
+                string final = formAnswer.Data.GetCharFixedForDisplay(Database.LetterForm.Final).Trim();
 
                 _wrongAnswers.Clear();
 
@@ -223,7 +223,7 @@ namespace EA4S.Minigames.MissingLetter
 
                 /*
                 if (answer is LL_LetterData)
-                    ((LL_LetterData)answer).Position = questionLetterShape;
+                    ((LL_LetterData)answer).Position = questionLetterForm;
                     */
 
                 wrongAnsBheaviour.LetterData = answer;
@@ -238,7 +238,7 @@ namespace EA4S.Minigames.MissingLetter
                 m_aoCurrentAnswerScene.Add(_wrongAnswerObject);
             }
 
-            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingShape)
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingForm)
                 m_aoCurrentAnswerScene.Sort((a,b) => 
                 {
                     var first = (LL_LetterData)a.GetComponent<LetterBehaviour>().LetterData;
@@ -337,9 +337,9 @@ namespace EA4S.Minigames.MissingLetter
             LL_WordData word = (LL_WordData)m_oCurrQuestionPack.GetQuestion();
 
             LetterObjectView letterView = m_aoCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
-            Database.LetterForm questionLetterShape;
-            letterView.Label.text = ArabicAlphabetHelper.GetWordWithMissingLetterText(out questionLetterShape, word.Data, letter.Data, mk_sRemovedLetterChar);
-            return questionLetterShape;
+            Database.LetterForm questionLetterForm;
+            letterView.Label.text = ArabicAlphabetHelper.GetWordWithMissingLetterText(out questionLetterForm, word.Data, letter.Data, mk_sRemovedLetterChar);
+            return questionLetterForm;
         }
 
 
