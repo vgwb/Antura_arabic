@@ -32,6 +32,10 @@ namespace EA4S.Teacher.Test
         {
             // Setup for testing
             SetVerboseAI(true);
+            ConfigAI.verboseQuestionPacks = verboseQuestionPacks;
+            ConfigAI.verboseDataFiltering = verboseDataFiltering;
+            ConfigAI.verboseDataSelection = verboseDataSelection;
+            ConfigAI.verbosePlaySessionInitialisation = verbosePlaySessionInitialisation;
             ConfigAI.forceJourneyIgnore = false;
 
             journey_stage_in.onValueChanged.AddListener(x => { currentJourneyStage = int.Parse(x); });
@@ -67,6 +71,12 @@ namespace EA4S.Teacher.Test
         bool journeyEnabledForBase = true;
         bool journeyEnabledForWrong = true;
 
+        [Header("Reporting")]
+        public bool verboseQuestionPacks = false;
+        public bool verboseDataSelection = false;
+        public bool verboseDataFiltering = false;
+        public bool verbosePlaySessionInitialisation = false;
+
         private void InitialisePlaySession()
         {
             AppManager.I.Player.CurrentJourneyPosition.SetPosition(currentJourneyStage, currentJourneyLB, currentJourneyPS);
@@ -87,17 +97,30 @@ namespace EA4S.Teacher.Test
             return builderParams;
         }
 
+        void SetVerboseAI(bool choice)
+        {
+            ConfigAI.verboseTeacher = choice;
+        }
+
+        void ReportPacks(List<QuestionPackData> packs)
+        {
+            if (verboseQuestionPacks)
+            {
+                string packsString = "----- GENERATED PACKS ----";
+                foreach (var pack in packs)
+                {
+                    packsString += "\n" + pack.ToString();
+                }
+                ConfigAI.AppendToTeacherReport(packsString);
+            }
+        }
+
         #region Simulation
 
         [Header("Simulation")]
         public int numberOfSimulations = 50;
         public int yieldEverySimulations = 20;
 
-        void SetVerboseAI(bool choice)
-        {
-            ConfigAI.verboseDataSelection = choice;
-            ConfigAI.verboseTeacher = choice;
-        }
 
         public void TestAllMiniGames()
         {
@@ -139,15 +162,18 @@ namespace EA4S.Teacher.Test
 
         public void SimulateMiniGame(MiniGameCode code)
         {
+            ConfigAI.StartTeacherReport();
             InitialisePlaySession();
             for (int i = 0; i < numberOfSimulations; i++)
             {
                 var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
+                ConfigAI.AppendToTeacherReport("SIMULATION " + (i + 1) + " minigame: " + code);
                 InitialisePlaySession();
                 var builder = config.SetupBuilder();
-                //Debug.Log("SIMULATION " + (i + 1) + " minigame: " + code + " with builder " + builder.GetType().Name);
-                builder.CreateAllQuestionPacks();
+                var packs = builder.CreateAllQuestionPacks();
+                ReportPacks(packs);
             }
+            ConfigAI.PrintTeacherReport();
         }
 
         #endregion
@@ -155,110 +181,118 @@ namespace EA4S.Teacher.Test
 
         #region  Question Builder testing
 
+        private void TestQuestionBuilder(IQuestionBuilder builder)
+        {
+            ConfigAI.StartTeacherReport();
+            var packs = builder.CreateAllQuestionPacks();
+            ReportPacks(packs);
+            ConfigAI.PrintTeacherReport();
+        }
+
         public void RandomLettersTest()
         {
             var builderParams = SetupFakeGame();
             var builder = new RandomLettersQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong,
                 firstCorrectIsQuestion: true, parameters: builderParams);
-            builder.CreateAllQuestionPacks();
+            TestQuestionBuilder(builder);
         }
 
         public void AlphabetTest()
         {
             var builderParams = SetupFakeGame();
             var builder = new AlphabetQuestionBuilder(parameters: builderParams);
-            builder.CreateAllQuestionPacks();
+            TestQuestionBuilder(builder);
         }
 
         public void LettersBySunMoonTest()
         {
             var builderParams = SetupFakeGame();
             var builder = new LettersBySunMoonQuestionBuilder(nPacks: nPacks, parameters: builderParams);
-            builder.CreateAllQuestionPacks();
+            TestQuestionBuilder(builder);
         }
 
         public void LettersByTypeTest()
         {
             var builderParams = SetupFakeGame();
             var builder = new LettersByTypeQuestionBuilder(nPacks: nPacks, parameters: builderParams);
-            builder.CreateAllQuestionPacks();
+            TestQuestionBuilder(builder);
         }
 
         public void LettersInWordTest()
         {
             var builderParams = SetupFakeGame();
             var builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, useAllCorrectLetters: true, parameters: builderParams);
-            builder.CreateAllQuestionPacks();
+            TestQuestionBuilder(builder);
         }
 
         public void LetterFormInWordsTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new LetterFormsInWordsQuestionBuilder(nPacks: nPacks, parameters: builderParams);
-            builder.CreateAllQuestionPacks();
+            var builder = new LetterFormsInWordsQuestionBuilder(nPacks, 3, parameters: builderParams);
+            TestQuestionBuilder(builder);
         }
 
         public void CommonLettersInWordTest()
         {
             var builderParams = SetupFakeGame();
             var builder = new CommonLettersInWordQuestionBuilder(nPacks: nPacks, nMaxCommonLetters: 3, nWords: 2, parameters: builderParams);
-            builder.CreateAllQuestionPacks();
+            TestQuestionBuilder(builder);
         }
 
         public void RandomWordsTest()
         {
             var builderParams = SetupFakeGame();
             var builder = new RandomWordsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, firstCorrectIsQuestion: true, parameters: builderParams);
-            builder.CreateAllQuestionPacks();
+            TestQuestionBuilder(builder);
         }
 
         public void OrderedWordsTest()
         {
             var builderParams = SetupFakeGame();
             var builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.NumberOrdinal, parameters: builderParams);
-            builder.CreateAllQuestionPacks();
+            TestQuestionBuilder(builder);
         }
 
         public void WordsWithLetterTest()
         {
             var builderParams = SetupFakeGame();
             var builder = new WordsWithLetterQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, parameters: builderParams);
-            builder.CreateAllQuestionPacks();
+            TestQuestionBuilder(builder);
         }
 
         public void WordsByFormTest()
         {
             var builderParams = SetupFakeGame();
             var builder = new WordsByFormQuestionBuilder(nPacks: nPacks, parameters: builderParams);
-            builder.CreateAllQuestionPacks();
+            TestQuestionBuilder(builder);
         }
 
         public void WordsByArticleTest()
         {
             var builderParams = SetupFakeGame();
             var builder = new WordsByArticleQuestionBuilder(nPacks: nPacks, parameters: builderParams);
-            builder.CreateAllQuestionPacks();
+            TestQuestionBuilder(builder);
         }
 
         public void WordsBySunMoonTest()
         {
             var builderParams = SetupFakeGame();
             var builder = new WordsBySunMoonQuestionBuilder(nPacks: nPacks, parameters: builderParams);
-            builder.CreateAllQuestionPacks();
+            TestQuestionBuilder(builder);
         }
 
         public void WordsInPhraseTest()
         {
             var builderParams = SetupFakeGame();
             var builder = new WordsInPhraseQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, useAllCorrectWords: false, usePhraseAnswersIfFound: true, parameters: builderParams);
-            builder.CreateAllQuestionPacks();
+            TestQuestionBuilder(builder);
         }
 
         public void PhraseQuestions()
         {
             var builderParams = SetupFakeGame();
             var builder = new PhraseQuestionsQuestionBuilder(nPacks: nPacks, nWrong: nWrong, parameters: builderParams);
-            builder.CreateAllQuestionPacks();
+            TestQuestionBuilder(builder);
         }
 
         #endregion

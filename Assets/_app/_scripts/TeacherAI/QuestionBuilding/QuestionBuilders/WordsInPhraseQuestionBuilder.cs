@@ -84,7 +84,7 @@ namespace EA4S.Teacher
                         new SelectionParameters(parameters.correctSeverity, nWrong, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
 
-            if (ConfigAI.verboseTeacher)
+            if (ConfigAI.verboseQuestionPacks)
             {
                 string debugString = "--------- TEACHER: question pack result ---------";
                 debugString += "\nQuestion: " + question;
@@ -92,7 +92,7 @@ namespace EA4S.Teacher
                 foreach (var l in correctWords) debugString += " " + l;
                 debugString += "\nWrong Answers: " + wrongWords.Count;
                 foreach (var l in wrongWords) debugString += " " + l;
-                UnityEngine.Debug.Log(debugString);
+                ConfigAI.AppendToTeacherReport(debugString);
             }
 
             return QuestionPackData.Create(question, correctWords, wrongWords);
