@@ -99,8 +99,6 @@ namespace EA4S.Minigames.Tobogan
             if (ToboganConfiguration.Instance.Variation == ToboganVariation.SunMoon)
             {
                 LL_WordData question = questionPack.GetQuestion() as LL_WordData;
-
-                var Letters = ArabicAlphabetHelper.SplitWordIntoLetters(question.Data);
                 
                 questionLivingLetter.SetQuestionText(question, 2, ToboganGame.LETTER_MARK_COLOR);
             }
