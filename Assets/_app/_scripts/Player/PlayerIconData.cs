@@ -12,15 +12,15 @@ namespace EA4S.Profile
         public int AvatarId;
         public PlayerGender Gender;
         public PlayerTint Tint;
-        public bool isGod;
+        public bool IsDemoUser;
 
-        public PlayerIconData(string _Uuid, int _AvatarId, PlayerGender _Gender, PlayerTint _Tint, bool _isGod)
+        public PlayerIconData(string _Uuid, int _AvatarId, PlayerGender _Gender, PlayerTint _Tint, bool _IsDemoUser)
         {
             Uuid = _Uuid;
             AvatarId = _AvatarId;
             Gender = _Gender;
             Tint = _Tint;
-            isGod = _isGod;
+            IsDemoUser = _IsDemoUser;
         }
     }
 }
