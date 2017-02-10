@@ -232,7 +232,11 @@ namespace EA4S.Minigames.Scanner
 
             ll.slidingTime = slideTime;
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(0.45f);
+            ll.letterObjectView.Poof();
+            ll.showLLMesh(false);
+
+            yield return new WaitForSeconds(1.55f);
             rb.isKinematic = true;
             rb.useGravity = false;
 
