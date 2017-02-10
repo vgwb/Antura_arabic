@@ -41,7 +41,7 @@ namespace EA4S.Database.Management
             teacherAI = new TeacherAI(dbManager, vocabularyHelper);
 
             // Load the first profile
-            LoadProfile(1);
+            LoadProfile("1");
         }
 
         #region Main Actions
@@ -550,7 +550,7 @@ namespace EA4S.Database.Management
             playerProfile = new PlayerProfile();
             playerProfile.CurrentJourneyPosition = new JourneyPosition(1, 2, 2);    // test
             teacherAI.SetPlayerProfile(playerProfile);
-            PrintOutput("Loading profile " + profileId);
+            PrintOutput("Loading profile " + playerUuid);
         }
 
         public void CreateCurrentProfile()
@@ -567,7 +567,7 @@ namespace EA4S.Database.Management
 
         public void TestDynamicProfileData()
         {
-            dbManager.UpdatePlayerProfileData(new PlayerProfileData(new PlayerIconData(Guid.NewGuid().ToString(), 1, PlayerGender.M, PlayerTint.Blue, false), 5, 8, 0));
+            dbManager.UpdatePlayerProfileData(new PlayerProfileData(new PlayerIconData("1", 1, PlayerGender.M, PlayerTint.Blue, false), 5, 8, 0));
             var playerProfileData = dbManager.GetPlayerProfileData();
             PrintOutput(playerProfileData.ToString());
         }
