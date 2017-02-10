@@ -269,7 +269,7 @@ namespace EA4S.Database.Management
             newData.Timestamp = GenericHelper.GetTimestampForNow();
 
             newData.PlaySession = "1.1.1";
-            newData.MiniGame = MiniGameCode.Assessment_LetterShape;
+            newData.MiniGame = MiniGameCode.Assessment_LetterForm;
 
             newData.VocabularyDataType = RandomHelper.GetRandomEnum<VocabularyDataType>();
 
@@ -488,7 +488,7 @@ namespace EA4S.Database.Management
 
         public void Teacher_FailedAssessmentLetters()
         {
-            var list = teacherAI.GetFailedAssessmentLetters(MiniGameCode.Assessment_LetterShape);
+            var list = teacherAI.GetFailedAssessmentLetters(MiniGameCode.Assessment_LetterForm);
 
             string output = "Failed letters for assessment 'Letters':\n";
             foreach (var data in list) output += data.ToString() + "\n";
@@ -497,7 +497,7 @@ namespace EA4S.Database.Management
 
         public void Teacher_FailedAssessmentWords()
         {
-            var list = teacherAI.GetFailedAssessmentWords(MiniGameCode.Assessment_LetterShape);
+            var list = teacherAI.GetFailedAssessmentWords(MiniGameCode.Assessment_LetterForm);
 
             string output = "Failed words for assessment 'Letters':\n";
             foreach (var data in list) output += data.ToString() + "\n";

@@ -115,7 +115,7 @@ namespace EA4S.Assessment
 
             for(int i=0; i < answer.Length; i++)
             {
-                //If sorted version has letter shapes in wrong positions we know we didn't find solution
+                //If sorted version has letter forms in wrong positions we know we didn't find solution
                 if (answer[i].Equals( answerSorted[i]) == false)
                     return false;
             }
