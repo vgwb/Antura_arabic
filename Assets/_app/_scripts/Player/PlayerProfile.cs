@@ -20,6 +20,7 @@ namespace EA4S.Profile
         public PlayerGender Gender;
         public PlayerTint Tint;
         public int Age;
+        public bool IsGod;
 
         // refactor: to be deleted after using Uuid only
         public string Key { get; set; }
@@ -88,7 +89,7 @@ namespace EA4S.Profile
 
         public PlayerIconData GetIcon()
         {
-            return new PlayerIconData(Uuid, AvatarId, Gender, Tint);
+            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsGod);
         }
 
         public Sprite GetAvatar()
