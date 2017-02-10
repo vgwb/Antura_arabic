@@ -94,7 +94,8 @@ namespace EA4S.UI
             AvatarSelector.Hide();
             btAddTween.PlayBackwards();
             PlayerProfileManager ppm = AppManager.I.PlayerProfileManager;
-            ppm.SetPlayerProfile(_avatarId);
+            //ppm.SetPlayerProfile(_avatarId);
+            ProfileManager.CreatePlayerProfile(/* TODO: pass all data for creation */);
             AudioManager.I.PlaySound(SfxCreateNewProfile);
             LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL());
             Setup();
@@ -106,7 +107,7 @@ namespace EA4S.UI
         /// <param name="_id">Player id.</param>
         internal void SelectProfile(int _id)
         {
-            ProfileManager.SetPlayerProfile(int.Parse(AppManager.I.PlayerProfileManager.GetAvatarIdFromPlayerId(_id)));
+            ProfileManager.SetPlayerAsCurrentByUUID(/* TODO: modify to string UUID */);
             AudioManager.I.PlaySound(SfxSelectProfile);
             LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
             Setup();
@@ -128,8 +129,9 @@ namespace EA4S.UI
                 else {
                     bt.gameObject.SetActive(true);
                     bt.SetAvatar(int.Parse(AppManager.I.GameSettings.AvailablePlayers[i]));
-                    if (i == AppManager.I.Player.Id - 1) bt.Toggle(true, true);
-                    else bt.Toggle(false);
+                    // PLAYER REFACTORING WITH UUID
+                    //if (i == AppManager.I.Player.Id - 1) bt.Toggle(true, true);
+                    //else bt.Toggle(false);
                 }
             }
 
@@ -153,7 +155,8 @@ namespace EA4S.UI
             yield return null;
 
             BtPlay.gameObject.SetActive(true);
-            BtPlay.RectT.SetAnchoredPosX(GetAvatarButtonByPlayerId(AppManager.I.Player.Id).RectT.anchoredPosition.x);
+            // PLAYER REFACTORING WITH UUID
+            //BtPlay.RectT.SetAnchoredPosX(GetAvatarButtonByPlayerId(AppManager.I.Player.Id).RectT.anchoredPosition.x);
             btPlayTween.PlayForward();
         }
 
