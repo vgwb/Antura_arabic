@@ -141,7 +141,7 @@ namespace EA4S.Teacher
 
         private bool WordContainsLetterWithForm(WordData selectedWord, LetterData containedLetter, LetterForm selectedForm)
         {
-            return ArabicAlphabetHelper.GetLetterShapeInWord(selectedWord, containedLetter) == selectedForm;
+            return ArabicAlphabetHelper.GetLetterFormInWord(selectedWord, containedLetter) == selectedForm;
         }
 
     }
