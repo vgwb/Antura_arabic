@@ -306,7 +306,10 @@ namespace EA4S.PlayerBook
         public void DetailLetter(LetterInfo info)
         {
             DetailPanel.SetActive(true);
-            Debug.Log("Detail Letter :" + info.data.Id + " [" + info.data.GetAvailablePositions() + "]");
+            string positionsString = "";
+            foreach (var p in info.data.GetAvailablePositions())
+                positionsString = positionsString + " " + p;
+            Debug.Log("Detail Letter :" + info.data.Id + " [" + positionsString + " ]");
             AudioManager.I.PlayLetter(info.data);
             MoreInfoPanel.SetActive(true);
             ArabicText.text = "";
