@@ -38,9 +38,9 @@ namespace EA4S.Database
             UpdatePlayerProfileData(playerProfileData);
         }
 
-        public PlayerProfileData LoadDatabaseForPlayer(int playerId)
+        public PlayerProfileData LoadDatabaseForPlayer(string playerUuid)
         {
-            SetPlayerProfile(playerId);
+            SetPlayerProfile(playerUuid);
             return GetPlayerProfileData();
         }
 
