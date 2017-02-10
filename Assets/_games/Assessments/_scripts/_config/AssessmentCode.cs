@@ -15,6 +15,10 @@ namespace EA4S.Assessment
         SingularDualPlural,
         SunMoonWord,
         SunMoonLetter,
-        QuestionAndReply
+        QuestionAndReply,
+
+        // brand new Assessmentes
+        CompleteWord_Shape,
+        MatchLettersToWord_Shape
     }
 }
