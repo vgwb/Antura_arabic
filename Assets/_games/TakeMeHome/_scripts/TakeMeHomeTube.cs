@@ -15,17 +15,13 @@ namespace EA4S.Minigames.TakeMeHome
         public GameObject winParticles;
         public GameObject cubeInfo;
         TakeMeHomeTremblingTube trembling;
-        BoxCollider coll;
 
-        Vector3 collStartSize;
         // Use this for initialization
         void Start () {
 			originalPosition = transform.position;
             aspiration.SetActive(false);
             winParticles.SetActive(false);
             trembling = GetComponent<TakeMeHomeTremblingTube>();
-            coll = GetComponent<BoxCollider>();
-            collStartSize = coll.size;
         }
 
         public void showWinParticles()

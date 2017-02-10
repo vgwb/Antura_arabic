@@ -45,7 +45,8 @@ public class TakeMeHomeLL : MonoBehaviour {
 
         public List<TakeMeHomeTube> collidedTubes;
 
-        TakeMeHomeTube NearTube;
+        [HideInInspector]
+        public TakeMeHomeTube NearTube;
 
         void Awake()
 		{
