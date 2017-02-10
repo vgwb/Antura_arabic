@@ -70,6 +70,7 @@ namespace EA4S.Profile
         /// Return list of id available for create new player (relate do avatar availble).
         /// </summary>
         /// <returns></returns>
+        [System.Obsolete]
         public List<int> GetListOfUnusedId()
         {
             List<int> returnList = new List<int>();
@@ -135,7 +136,19 @@ namespace EA4S.Profile
         }
 
         /// <summary>
-        /// Retirn the list of existing player profiles.
+        /// Deletes the player profile.
+        /// </summary>
+        /// <param name="playerUUID">The player UUID.</param>
+        /// <returns></returns>
+        public PlayerProfile DeletePlayerProfile(string playerUUID) {
+            PlayerProfile returnProfile = new PlayerProfile();
+            // PLAYER REFACTORING WITH UUID
+            // TODO: call to db to delete
+            return returnProfile;
+        }
+
+        /// <summary>
+        /// Return the list of existing player profiles.
         /// </summary>
         /// <returns></returns>
         public List<PlayerIconData> GetSavedPlayers() {
