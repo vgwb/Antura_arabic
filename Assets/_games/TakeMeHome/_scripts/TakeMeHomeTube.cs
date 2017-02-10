@@ -36,20 +36,22 @@ namespace EA4S.Minigames.TakeMeHome
         {
             //winParticles.SetActive(false);
         }
-        public void activate()
+        public void activate(TakeMeHomeLL ll)
         {
             aspiration.SetActive(true);
             //shake();
             trembling.Trembling = true;
-            coll.size += Vector3.one * 0.9f; 
+            ll.NearTube = this;
+            //coll.size += Vector3.one * 0.9f; 
         }
 
-        public void deactivate()
+        public void deactivate(TakeMeHomeLL ll)
         {
             aspiration.SetActive(false);
             //moveTweener = transform.DOMove(originalPosition, 0.5f);
             trembling.Trembling = false;
-            coll.size = collStartSize;
+            ll.NearTube = null;
+            //coll.size = collStartSize;
         }
 		
 		// Update is called once per frame
