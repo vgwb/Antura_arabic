@@ -143,8 +143,12 @@ namespace EA4S.Profile
         /// <returns></returns>
         public PlayerProfile DeletePlayerProfile(string playerUUID) {
             PlayerProfile returnProfile = new PlayerProfile();
-            // PLAYER REFACTORING WITH UUID
-            // TODO: call to db to delete
+            // TODO: check if is necessary to hard delete DB
+            PlayerIconData playerIconData = GetSavedPlayers().Find(p => p.Uuid == playerUUID);
+            if (playerIconData.Uuid == string.Empty)
+                return null;
+            AppManager.I.GameSettings.SavedPlayers.Remove(playerIconData);
+            SaveGameSettings();
             return returnProfile;
         }
 
