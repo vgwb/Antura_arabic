@@ -17,6 +17,8 @@ namespace EA4S.Teacher.Test
         {
             foreach (var enumValue in GenericHelper.SortEnums<QuestionBuilderType>())
             {
+                if (enumValue == QuestionBuilderType.Empty) continue;
+
                 QuestionBuilderType type = enumValue;
                 var btnGO = Instantiate(buttonPrefab);
                 btnGO.transform.SetParent(this.transform);
