@@ -357,8 +357,7 @@ namespace EA4S.Profile
         /// <returns></returns>
         public PlayerProfileData ToData()
         {
-            PlayerIconData playerIconData = new PlayerIconData() { Uuid = this.Uuid, AvatarId = this.AvatarId, Gender = this.Gender, Tint = this.Tint };
-            PlayerProfileData newProfileData = new PlayerProfileData(playerIconData, Age, TotalNumberOfBones, ProfileCompletion);
+            PlayerProfileData newProfileData = new PlayerProfileData(new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser), Age, TotalNumberOfBones, ProfileCompletion);
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
             string jsonStringForAnturaCustomization = this.CurrentAnturaCustomizations.GetJsonListOfIds();
