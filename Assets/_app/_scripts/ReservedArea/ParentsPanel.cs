@@ -23,8 +23,7 @@ namespace EA4S.PlayerBook
         void OnEnable()
         {
             InitUI();
-            parentLockCounter = 0;
-            lockedParentAreaGo.SetActive(false);
+
         }
 
         void InitUI()
@@ -189,31 +188,5 @@ namespace EA4S.PlayerBook
 
         #endregion
 
-        #region Parent Lock
-
-        private int parentLockCounter;
-
-        public void OnGreenParentUnlock()
-        {
-            parentLockCounter++;
-        }
-
-        public void OnRedParentUnlock()
-        {
-            if (parentLockCounter == 7) {
-                UnlockParentControls();
-            } else {
-                parentLockCounter = 8; // disabling
-            }
-        }
-
-        public GameObject lockedParentAreaGo;
-
-        private void UnlockParentControls()
-        {
-            lockedParentAreaGo.SetActive(true);
-        }
-
-        #endregion
     }
 }

@@ -19,9 +19,11 @@ namespace EA4S.Scenes
         public Music SceneMusic;
         public AnturaAnimationStates AnturaAnimation = AnturaAnimationStates.sitting;
         public LLAnimationStates LLAnimation = LLAnimationStates.LL_dancing;
+
         [Header("References")]
         public AnturaAnimationController AnturaAnimController;
         public LetterObjectView LLAnimController;
+        public GameObject DialogReservedArea;
 
         void Awake()
         {
@@ -56,7 +58,7 @@ namespace EA4S.Scenes
 
         public void BtnOpenReservedArea()
         {
-            AppManager.I.NavigationManager.GoToAppScene(AppScene.ReservedArea);
+            DialogReservedArea.SetActive(true);
         }
     }
 }
