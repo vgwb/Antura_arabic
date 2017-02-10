@@ -23,7 +23,7 @@ namespace EA4S.Teacher.Test
                 var btnGO = Instantiate(buttonPrefab);
                 btnGO.transform.SetParent(this.transform);
                 btnGO.GetComponentInChildren<Text>().text = (enumValue.ToString()).Replace("_", "\n");
-                btnGO.GetComponent<Button>().onClick.AddListener(() => { tester.TestQuestionBuilder(type);});
+                btnGO.GetComponent<Button>().onClick.AddListener(() => { tester.DoTestQuestionBuilder(type);});
                 tester.qbButtonsDict[enumValue] = btnGO.GetComponent<Button>();
             }
             Destroy(buttonPrefab);
