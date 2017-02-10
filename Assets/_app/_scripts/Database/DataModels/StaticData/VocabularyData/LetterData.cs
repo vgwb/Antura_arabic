@@ -197,22 +197,19 @@ namespace EA4S.Database
             return output;
         }
 
-        public LetterForm GetAvailableForms()
+        public System.Collections.Generic.IEnumerable<LetterForm> GetAvailableForms()
         {
-            LetterForm availableForms = LetterForm.None;
             if (Isolated_Unicode != "")
-                availableForms |= LetterForm.Isolated;
+                yield return LetterForm.Isolated;
 
             if (Initial_Unicode != "")
-                availableForms |= LetterForm.Initial;
+                yield return LetterForm.Initial;
 
             if (Medial_Unicode != "")
-                availableForms |= LetterForm.Medial;
+                yield return LetterForm.Medial;
 
             if (Final_Unicode != "")
-                availableForms |= LetterForm.Final;
-
-            return availableForms;
+                yield return LetterForm.Final;
         }
 
     }
