@@ -37,6 +37,7 @@ namespace EA4S.ReservedArea
                 newIcon = Instantiate(PlayerIconPrefab);
                 newIcon.transform.SetParent(PlayerIconContainer.transform, false);
                 newIcon.GetComponent<PlayerIcon>().Init(player);
+                newIcon.GetComponent<UIButton>().Bt.onClick.AddListener(() => OnSelectPlayerProfile(player.Uuid));
             }
 
         }
@@ -44,6 +45,7 @@ namespace EA4S.ReservedArea
         public void OnSelectPlayerProfile(string uuid)
         {
             SelectedPlayerId = uuid;
+            Debug.Log("OnSelectPlayerProfile " + uuid);
         }
 
         public void OnOpenSelectedPlayerProfile()
