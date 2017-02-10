@@ -63,7 +63,7 @@ namespace EA4S.Teacher
                 }
 
                 // Debug
-                if (ConfigAI.verboseTeacher)
+                if (ConfigAI.verboseQuestionPacks)
                 {
                     string debugString = "--------- TEACHER: question pack result ---------";
                     debugString += "\nQuestion: " + wordWithArticle;
@@ -71,7 +71,7 @@ namespace EA4S.Teacher
                     foreach (var l in correctWords) debugString += " " + l;
                     debugString += "\nWrong Word: " + wrongWords.Count;
                     foreach (var l in wrongWords) debugString += " " + l;
-                    UnityEngine.Debug.Log(debugString);
+                    ConfigAI.AppendToTeacherReport(debugString);
                 }
 
                 var pack = QuestionPackData.Create(wordWithArticle, correctWords, wrongWords);

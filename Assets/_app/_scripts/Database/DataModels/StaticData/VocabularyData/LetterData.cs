@@ -197,7 +197,7 @@ namespace EA4S.Database
             return output;
         }
 
-        public LetterForm GetAvailablePositions()
+        public LetterForm GetAvailableForms()
         {
             LetterForm availableForms = LetterForm.None;
             if (Isolated_Unicode != "")

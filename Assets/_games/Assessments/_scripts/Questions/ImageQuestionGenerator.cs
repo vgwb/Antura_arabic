@@ -198,8 +198,8 @@ namespace EA4S.Assessment
 
             cacheCompleteWord = word.TextForLivingLetter;
 
-            Database.LetterForm letterShape;
-            string text = ArabicAlphabetHelper.GetWordWithMissingLetterText(out letterShape, word.Data, letter.Data, RemovedLetterChar);
+            Database.LetterForm letterForm;
+            string text = ArabicAlphabetHelper.GetWordWithMissingLetterText(out letterForm, word.Data, letter.Data, RemovedLetterChar);
 
             //Spawn word, then replace text with text with missing letter
             var wordGO = LivingLetterFactory.Instance.SpawnQuestion( word);

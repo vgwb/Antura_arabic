@@ -168,7 +168,7 @@ namespace EA4S.Teacher
             currentBlockContents = progressionContents.GetContentsOfLearningBlock(pos);
             currentStageContents = progressionContents.GetContentsOfStage(pos);
 
-            if (ConfigAI.verboseDataSelection)
+            if (ConfigAI.verbosePlaySessionInitialisation)
             {
                 string debugString = "";
                 debugString += "--------- TEACHER: play session initialisation (journey " + currentPlaySessionId + ") --------- ";
@@ -177,8 +177,7 @@ namespace EA4S.Teacher
                 debugString += "\n Current ST:\n" + currentStageContents;
                 debugString += "\n Current journey:\n" + currentJourneyContents;
                 debugString += "\n Whole contents:\n" + progressionContents.AllContents;
-
-                UnityEngine.Debug.Log(debugString);
+                ConfigAI.AppendToTeacherReport(debugString);
             }
         }
 
@@ -190,7 +189,7 @@ namespace EA4S.Teacher
             if (selectionParams.nRequired == 0 && !selectionParams.getMaxData) return new List<T>();
 
             string debugString = "";
-            //debugString += "--------- TEACHER: data selection --------- ";
+            debugString += "--------- TEACHER: data selection --------- ";
 
             // (1) Filtering based on the builder's logic
             var dataList = builderSelectionFunction();
@@ -210,7 +209,7 @@ namespace EA4S.Teacher
                     throw new System.Exception("The teacher could not find " + selectionParams.nRequired + " data instances after applying the journey logic.");
                 }
             }
-            debugString += (" \tJourney: " + dataList.Count);
+            debugString += (" Journey: " + dataList.Count);
 
             // (3) Filtering based on pack-list history 
             switch (selectionParams.packListHistory)
@@ -244,7 +243,7 @@ namespace EA4S.Teacher
                     }
                     break;
             }
-            debugString += (" \tHistory: " + dataList.Count);
+            debugString += (" History: " + dataList.Count);
 
 
             // (4) Priority filtering based on current focus
@@ -275,8 +274,8 @@ namespace EA4S.Teacher
                     FilterListByContents(currentJourneyContents, dataList, priorityFilteredList, ref nRemaining);
                     s += "\n" + (nBefore - nRemaining) + " from the rest of the Journey";
                 }
-                if (ConfigAI.verboseDataSelection && !isTest) UnityEngine.Debug.Log(s);
-                debugString += (" \tPriority: " + priorityFilteredList.Count);
+                if (ConfigAI.verboseDataFiltering) ConfigAI.AppendToTeacherReport(s);
+                debugString += (" Priority: " + priorityFilteredList.Count);
             }
             else
             {
@@ -287,11 +286,11 @@ namespace EA4S.Teacher
             List<T> selectedList = null;
             if (selectionParams.getMaxData) selectedList = priorityFilteredList;
             else selectedList = WeightedDataSelect(priorityFilteredList, selectionParams.nRequired, selectionParams.severity);
-            debugString += (" \tSelection: " + selectedList.Count);
+            debugString += (" Selection: " + selectedList.Count);
 
-            if (ConfigAI.verboseDataSelection && !isTest)
+            if (ConfigAI.verboseDataFiltering && !isTest)
             {
-                UnityEngine.Debug.Log(debugString);
+                ConfigAI.AppendToTeacherReport(debugString);
             }
 
             if (selectedList.Count == 0)
@@ -387,10 +386,7 @@ namespace EA4S.Teacher
                 debugString += " TOTw: " + cumulativeWeight;
             }
 
-            if (ConfigAI.verboseDataSelection)
-            {
-                UnityEngine.Debug.Log(debugString);
-            }
+            if (ConfigAI.verboseDataSelection) ConfigAI.AppendToTeacherReport(debugString);
 
             // Select data from the list
             List<T> selected_data_list = new List<T>();
