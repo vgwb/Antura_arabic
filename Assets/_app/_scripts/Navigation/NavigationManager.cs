@@ -61,6 +61,9 @@ namespace EA4S.Core
                     }
 
                     break;
+                case AppScene.PlayerCreation:
+                    GoToScene(AppScene.Intro);
+                    break;
                 case AppScene.Mood:
                     GoToScene(AppScene.Map);
                     break;
