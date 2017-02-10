@@ -20,16 +20,17 @@ namespace EA4S.Database
     {
         SQLiteConnection _connection;
 
-        public DBService(string DatabaseName, int profileId)
+        public DBService(string playerUuid)
         {
-            var dbPath = string.Format(@"{0}/{1}", Application.persistentDataPath, DatabaseName);
+            var databaseName = "Antura_Player_" + playerUuid + ".sqlite3";
+            var dbPath = string.Format(@"{0}/{1}", Application.persistentDataPath, databaseName);
 
             // Try to open an existing DB connection, or create a new DB if it does not exist already
             try {
                 _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
             } catch {
                 _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
-                RegenerateDatabase(profileId);
+                RegenerateDatabase();
             }
 
             // Check that the DB version is correct, otherwise recreate the tables
@@ -37,19 +38,19 @@ namespace EA4S.Database
             var info = _connection.Find<DatabaseInfoData>(1);
             if (info == null || info.Version != AppConstants.DbSchemeVersion) {
                 var lastVersion = info != null ? info.Version : "NONE";
-                Debug.LogWarning("SQL database is outdated. Recreating it (from " + lastVersion + " to " + AppConstants.DbSchemeVersion + ")");
-                RegenerateDatabase(profileId);
+                Debug.LogWarning("SQL database for player " + playerUuid + " is outdated. Recreating it (from " + lastVersion + " to " + AppConstants.DbSchemeVersion + ")");
+                RegenerateDatabase();
             }
             //Debug.Log("Database ready. Version " + dbPath + "v:" +info.Version);
         }
 
         #region Creation
 
-        private void RegenerateDatabase(int profileId)
+        private void RegenerateDatabase()
         {
             RecreateAllTables();
 
-            _connection.Insert(new DatabaseInfoData(AppConstants.DbSchemeVersion, profileId));
+            _connection.Insert(new DatabaseInfoData(AppConstants.DbSchemeVersion));
         }
 
         public void GenerateTables(bool create, bool drop)
