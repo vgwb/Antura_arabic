@@ -171,7 +171,7 @@ namespace EA4S.Core
 
         #endregion
 
-        #region Special request
+        #region Custom routes
 
         /// <summary>
         /// Go to home if is allowed for current scene.
@@ -241,6 +241,17 @@ namespace EA4S.Core
                 throw new Exception("Cannot go to a minigame from the current scene!");
             }
 
+        }
+
+        public void GotoNewProfileCreation() {
+
+            switch (NavData.CurrentScene) {
+                case AppScene.Home:
+                    GoToScene(AppScene.PlayerCreation);
+                    break;
+                default:
+                    break;
+            }
         }
 
         // obsolete: to be implemented?
