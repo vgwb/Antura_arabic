@@ -51,11 +51,16 @@ namespace EA4S.Teacher
         public override string ToString()
         {
             var debugString = "";
-            debugString += "Question: " + (question) + "\n";
-            debugString += "Wrong: " + (wrongAnswers.Count) + "\n";
-            foreach (var ans in wrongAnswers) debugString += (ans) + "\n";
-            debugString += "Correct: " + (correctAnswers.Count) + "\n";
-            foreach (var ans in correctAnswers) debugString += (ans) + "\n";
+            debugString += "Q? [" + (question) + "] ";
+            debugString += " OK(" + (correctAnswers.Count) + ") [";
+            foreach (var ans in correctAnswers) debugString += (ans) + "; ";
+            debugString += "] ";
+            if (wrongAnswers != null)
+            {
+                debugString += " NO(" + wrongAnswers.Count + ") [";
+                foreach (var ans in wrongAnswers) debugString += (ans) + "; ";
+            }
+            debugString += "] ";
             return debugString;
         }
     }
