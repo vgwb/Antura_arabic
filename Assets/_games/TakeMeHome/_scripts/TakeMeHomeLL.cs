@@ -12,7 +12,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 		public GameObject plane;
 		public bool isDragged;
 		public bool isMoving;
-        private bool isPanicing;
+        private bool isPanicing, isFallingFromTube;
 		public bool isDraggable;
 
 		public Transform livingLetterTransform;
@@ -45,7 +45,8 @@ public class TakeMeHomeLL : MonoBehaviour {
 
         public List<TakeMeHomeTube> collidedTubes;
 
-        TakeMeHomeTube NearTube;
+        [HideInInspector]
+        public TakeMeHomeTube NearTube;
 
         void Awake()
 		{
@@ -246,15 +247,35 @@ public class TakeMeHomeLL : MonoBehaviour {
                     TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Splat);
                     //transform.position = 
                     isPanicing = false;
+  
                     transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
                     transform.position = tubeSpawnPosition;
 					clampPosition = true;
                     transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
                     transform.DOScale(0.8f, 0.5f);
+                    StartCoroutine(playLandinganimation(0.25f));
 
                 }
             }
-		}
+
+            if (isFallingFromTube)
+            {
+                StartCoroutine(playLandinganimation(0.25f));
+                isFallingFromTube = false;
+            }
+        }
+
+        IEnumerator playLandinganimation(float delay) {
+
+            letter.GetComponent<Animator>().Play("LL_fall_down");
+            letter.Falling = true;
+            yield return new WaitForSeconds(delay);
+            letter.Falling = false;
+            letter.OnJumpEnded();
+
+            letter.GetComponent<Animator>().CrossFade("LL_land", 0.3f);
+
+        }
 
 		void Update()
 		{
@@ -327,11 +348,11 @@ public class TakeMeHomeLL : MonoBehaviour {
             transform.DOScale(0.1f, 0.1f);
 
             Vector3 targetPosition = collidedTubes[collidedTubes.Count-1].transform.FindChild("Cube").position; ;// lastTube.transform.FindChild("Cube").position;
-            collidedTubes[collidedTubes.Count - 1].deactivate();
+            collidedTubes[collidedTubes.Count - 1].deactivate(this);
           
 
             moveTweener = transform.DOLocalMove(targetPosition/*transform.position + lastTube.transform.up*5 + new Vector3(0,0,20)*/, 0.3f).OnComplete(delegate () { 
-				PlayIdleAnimation(); 
+				//PlayIdleAnimation(); 
 				if (endTransformToCallback != null) endTransformToCallback();
 
                 /*if(lastTube != null)
@@ -344,7 +365,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 
                 foreach(TakeMeHomeTube tube in collidedTubes)
                 {
-                    tube.deactivate();
+                    tube.deactivate(this);
                     tube.hideWinParticles();
                 }
                 collidedTubes.Clear();
@@ -353,8 +374,9 @@ public class TakeMeHomeLL : MonoBehaviour {
 				transform.position = tubeSpawnPosition;
                 transform.DOScale(0.8f, 0.5f);
                 clampPosition = true;
-				dropLetter = true;
-				isMoving = false;
+                dropLetter = true;
+                isMoving = false;
+                //Drop(Time.deltaTime);
 
             });
 		}
@@ -411,9 +433,11 @@ public class TakeMeHomeLL : MonoBehaviour {
 			isMoving = true;
 			isDraggable = false;
 			dropLetter = false;
+            isFallingFromTube = true;
 
+            moveUp();
 
-            if(win)
+            if (win)
             {
                 //lastTube.showWinParticles();
                 if(collidedTubes.Count > 1)
@@ -422,13 +446,14 @@ public class TakeMeHomeLL : MonoBehaviour {
                 }
             }
 
+            //else
+              //  StartCoroutine(playLandinganimation(.5f));
 
 
 
-		
-			moveUp ();
-		
+            
 
+            
 
 		}
 
@@ -475,11 +500,11 @@ public class TakeMeHomeLL : MonoBehaviour {
                 return;
 
             if (collidedTubes.Count > 0)
-                collidedTubes[collidedTubes.Count - 1].deactivate();
+                collidedTubes[collidedTubes.Count - 1].deactivate(this);
 
             NearTube = tube;
             collidedTubes.Add(tube);
-            tube.activate();
+            tube.activate(this);
 
             /*
                         if (!dragging) {
@@ -531,11 +556,11 @@ public class TakeMeHomeLL : MonoBehaviour {
 
         void popTube(TakeMeHomeTube tube)
         {
-            tube.deactivate();
+            tube.deactivate(this);
             collidedTubes.Remove(tube);
 
             if (collidedTubes.Count > 0)
-                collidedTubes[collidedTubes.Count - 1].activate();
+                collidedTubes[collidedTubes.Count - 1].activate(this);
         }
 	}
 

@@ -91,7 +91,7 @@ namespace EA4S.Teacher
                 () => vocabularyHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray()),
                     new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong));
 
-            if (ConfigAI.verboseTeacher)
+            if (ConfigAI.verboseQuestionPacks)
             {
                 string debugString = "--------- TEACHER: question pack result ---------";
                 debugString += "\nQuestion: " + question;
@@ -99,7 +99,7 @@ namespace EA4S.Teacher
                 foreach (var l in correctAnswers) debugString += " " + l;
                 debugString += "\nWrong Answers: " + wrongAnswers.Count;
                 foreach (var l in wrongAnswers) debugString += " " + l;
-                UnityEngine.Debug.Log(debugString);
+                ConfigAI.AppendToTeacherReport(debugString);
             }
 
             return QuestionPackData.Create(question, correctAnswers, wrongAnswers);

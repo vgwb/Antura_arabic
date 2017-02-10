@@ -89,8 +89,8 @@ namespace EA4S.MinigamesAPI
             IGameConfiguration currentGameConfig = null;
             switch (code)
             {
-                case MiniGameCode.Assessment_LetterShape:
-                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.LetterShape;
+                case MiniGameCode.Assessment_LetterForm:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.LetterForm;
                     Assessment.AssessmentConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Assessment.AssessmentConfiguration.Instance;
                     break;

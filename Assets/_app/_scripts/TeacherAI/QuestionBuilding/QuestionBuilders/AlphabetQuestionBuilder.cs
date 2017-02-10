@@ -52,11 +52,11 @@ namespace EA4S.Teacher
                 }
             );
 
-            if (ConfigAI.verboseTeacher)
+            if (ConfigAI.verboseQuestionPacks)
             {
                 string debugString = "Letters: " + alphabetLetters.Count;
                 foreach (var l in alphabetLetters) debugString += " " + l;
-                UnityEngine.Debug.Log(debugString);
+                ConfigAI.AppendToTeacherReport(debugString);
             }
 
             return QuestionPackData.CreateFromCorrect(null, alphabetLetters);

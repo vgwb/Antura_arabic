@@ -31,9 +31,7 @@ namespace EA4S.Map
         [Header("UIButtons")]
         public GameObject leftStageButton;
         public GameObject rightStageButton;
-        public GameObject rightMovementButton;
-        public GameObject leftMovementButton;
-        public GameObject playButton;
+        public GameObject uiButtonMovementPlaySession;
         public GameObject bookButton;
         public GameObject anturaButton;
 
@@ -48,10 +46,10 @@ namespace EA4S.Map
         {
             if (!Application.isEditor) SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
 
-           /* AppManager.I.Player.MaxJourneyPosition.Stage = 6;
+          /*  AppManager.I.Player.MaxJourneyPosition.Stage = 6;
             AppManager.I.Player.MaxJourneyPosition.LearningBlock = 15;
-            AppManager.I.Player.MaxJourneyPosition.PlaySession = 100;
-            AppManager.I.Player.CurrentJourneyPosition.Stage = 1;
+            AppManager.I.Player.MaxJourneyPosition.PlaySession = 100;*/
+         /*   AppManager.I.Player.CurrentJourneyPosition.Stage = 1;
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = 14;
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = 100;*/
 
@@ -186,7 +184,6 @@ namespace EA4S.Map
                 else if (AppManager.I.Player.CurrentJourneyPosition.Stage == numberStage)
                 {
                     lockUI.SetActive(false);
-                    ActivateMovementPlayButtons();
                     letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
                 }
                 StartCoroutine("DesactivateMap");
@@ -194,21 +191,24 @@ namespace EA4S.Map
         }
         void CalculateSettingsStage()
         {
+            DesactiveUIButtonsDuringTransition();
             inTransition = true;
             stages[numberStage].SetActive(true);
             ChangeCamera(cameras[numberStage]);
             ChangeCameraFogColor(numberStage);
             FirstOrLastMap();
             lockUI.SetActive(true);
-            DesactivateMovementPlayButtons();
         }
         void CalculatePosPin()
         {
             letter.GetComponent<LetterMovement>().stageScript = miniMaps[numberStage].GetComponent<Stage>();
             letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
             lockUI.SetActive(false);
-            ActivateMovementPlayButtons();
             letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
+        }
+        void DesactiveUIButtonsDuringTransition()
+        {
+            uiButtonMovementPlaySession.SetActive(!uiButtonMovementPlaySession.activeSelf);
         }
         public void ChangeCamera(GameObject ZoomCameraGO)
         {
@@ -230,7 +230,9 @@ namespace EA4S.Map
         }
         IEnumerator DesactivateMap()
         {
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.5f);
+            DesactiveUIButtonsDuringTransition();
+            yield return new WaitForSeconds(0.3f);
             stages[previousStage].SetActive(false);
             inTransition = false;
         }
@@ -251,9 +253,7 @@ namespace EA4S.Map
         {
             leftStageButton.SetActive(false);
             rightStageButton.SetActive(false);
-            rightMovementButton.SetActive(false);
-            leftMovementButton.SetActive(false);
-            playButton.SetActive(false);
+            uiButtonMovementPlaySession.SetActive(false);
             bookButton.SetActive(false);
             anturaButton.SetActive(false);
         }
@@ -261,23 +261,9 @@ namespace EA4S.Map
         {
             leftStageButton.SetActive(true);
             rightStageButton.SetActive(true);
-            rightMovementButton.SetActive(true);
-            leftMovementButton.SetActive(true);
-            playButton.SetActive(true);
+            uiButtonMovementPlaySession.SetActive(true);
             bookButton.SetActive(true);
             anturaButton.SetActive(true);
-        }
-        void DesactivateMovementPlayButtons()
-        {
-            rightMovementButton.SetActive(false);
-            leftMovementButton.SetActive(false);
-            playButton.SetActive(false);
-        }
-        void ActivateMovementPlayButtons()
-        {
-            rightMovementButton.SetActive(true);
-            leftMovementButton.SetActive(true);
-            playButton.SetActive(true);
         }
     }
 }

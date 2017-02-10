@@ -197,7 +197,7 @@ namespace EA4S.Database
             return output;
         }
 
-        public System.Collections.Generic.IEnumerable<LetterForm> GetAvailablePositions()
+        public System.Collections.Generic.IEnumerable<LetterForm> GetAvailableForms()
         {
             if (Isolated_Unicode != "")
                 yield return LetterForm.Isolated;

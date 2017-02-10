@@ -21,6 +21,7 @@ namespace EA4S.Teacher.Test
                 btnGO.transform.SetParent(this.transform);
                 btnGO.GetComponentInChildren<Text>().text = (enumValue.ToString()).Replace("_", "\n");
                 btnGO.GetComponent<Button>().onClick.AddListener(() => { tester.SimulateMiniGame(code);});
+                tester.buttonsDict[enumValue] = btnGO.GetComponent<Button>();
             }
             Destroy(buttonPrefab);
         }

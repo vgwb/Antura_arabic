@@ -307,7 +307,7 @@ namespace EA4S.PlayerBook
         {
             DetailPanel.SetActive(true);
             string positionsString = "";
-            foreach (var p in info.data.GetAvailablePositions())
+            foreach (var p in info.data.GetAvailableForms())
                 positionsString = positionsString + " " + p;
             Debug.Log("Detail Letter :" + info.data.Id + " [" + positionsString + " ]");
             AudioManager.I.PlayLetter(info.data);
