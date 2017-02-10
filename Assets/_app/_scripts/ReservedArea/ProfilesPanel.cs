@@ -50,6 +50,10 @@ namespace EA4S.ReservedArea
         void RefreshUI()
         {
             ProfileCommandsContainer.SetActive(SelectedPlayerId != "");
+            // highlight selected profile
+            foreach (Transform t in PlayerIconContainer.transform) {
+                t.GetComponent<PlayerIcon>().Select(SelectedPlayerId);
+            }
         }
 
         public void OnSelectPlayerProfile(string uuid)
