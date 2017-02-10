@@ -335,7 +335,7 @@ namespace EA4S.Assessment
             return CreateAssessment( context);
         }
 
-        public static Assessment CreateLetterShapeAssessment( AssessmentContext context)
+        public static Assessment CreateLetterFormAssessment( AssessmentContext context)
         {
             context.GameDescription = Database.LocalizationDataId.Assessment_Select_Letter_Listen;
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;

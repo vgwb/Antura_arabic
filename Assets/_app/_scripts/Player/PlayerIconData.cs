@@ -2,6 +2,9 @@
 
 namespace EA4S.Profile
 {
+    /// <summary>
+    /// this data contains the data to generate a saved player profile
+    /// </summary>
     [Serializable]
     public struct PlayerIconData
     {
