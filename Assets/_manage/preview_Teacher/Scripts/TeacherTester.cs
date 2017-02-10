@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.DeInspektor.Attributes;
 using EA4S.UI;
+using Kore.Coroutines;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -172,7 +173,7 @@ namespace EA4S.Teacher.Test
         }
 
 
-        #region Testing
+        #region Testing API
 
         void ApplyParameters()
         {
@@ -182,116 +183,138 @@ namespace EA4S.Teacher.Test
             ConfigAI.verbosePlaySessionInitialisation = verbosePlaySessionInitialisation;
         }
 
-        [DeMethodButton("Test Everything")]
-        public void TestEverything()
+        [DeMethodButton("Test Minimum Journey")]
+        public void DoTestMinimumJourney()
         {
-            TestAllMiniGames();
-            TestAllQuestionBuilders();
+            // @todo:
+            //DoTestAllMiniGames();
+            //DoTestAllQuestionBuilders();
+        }
+
+        [DeMethodButton("Test Everything")]
+        public void DoTestEverything()
+        {
+            StartCoroutine(DoTest(() => DoTestEverythingCO()));
+        }
+        private IEnumerator DoTestEverythingCO()
+        { 
+            yield return StartCoroutine(DoTestAllMiniGamesCO());
+            yield return StartCoroutine(DoTestAllQuestionBuildersCO());
         }
 
         [DeMethodButton("Test Minigames")]
-        public void TestAllMiniGames()
+        public void DoTestAllMiniGames()
         {
-            //SetVerboseAI(false);
-
+            StartCoroutine(DoTest(() => DoTestAllMiniGamesCO()));
+        }
+        private IEnumerator DoTestAllMiniGamesCO()
+        {
             foreach (var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
             {
                 if (code == MiniGameCode.Invalid) continue;
                 if (code == MiniGameCode.Assessment_VowelOrConsonant) continue;
-
-                var colors = minigamesButtonsDict[code].colors;
-                colors.normalColor = Color.green;
-                try
-                {
-                    SimulateMiniGame(code);
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError(code + ": " + e);
-                    colors.normalColor = Color.red;
-                }
-                minigamesButtonsDict[code].colors = colors;
+                yield return StartCoroutine(DoTestMinigameCO(code));
             }
-
-            //SetVerboseAI(true);
         }
 
         [DeMethodButton("Test QuestionBuilders")]
-        public void TestAllQuestionBuilders()
+        public void DoTestAllQuestionBuilders()
         {
-            ApplyParameters();
-            //SetVerboseAI(false);
-
+            StartCoroutine(DoTest(() => DoTestAllQuestionBuildersCO()));
+        }
+        private IEnumerator DoTestAllQuestionBuildersCO()
+        {
             foreach (var type in Helpers.GenericHelper.SortEnums<QuestionBuilderType>())
             {
-                var colors = qbButtonsDict[type].colors;
-                colors.normalColor = Color.green;
-                try
-                {
-                    TestQuestionBuilder(type);
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError(type + ": " + e);
-                    colors.normalColor = Color.red;
-                }
-                qbButtonsDict[type].colors = colors;
+                yield return StartCoroutine(DoTestQuestionBuilderCO(type));
             }
+        }
 
-            //SetVerboseAI(true);
+        public void DoTestQuestionBuilder(QuestionBuilderType type)
+        {
+            StartCoroutine(DoTest(() => DoTestQuestionBuilderCO(type)));
+        }
+        private IEnumerator DoTestQuestionBuilderCO(QuestionBuilderType type)
+        {
+            SetButtonStatus(qbButtonsDict[type], Color.yellow);
+            yield return new WaitForSeconds(0.1f);
+            var statusColor = Color.green;
+            try
+            {
+                SimulateQuestionBuilder(type);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("!! " + type + "\n " + e.Message);
+                statusColor = Color.red;
+            }
+            SetButtonStatus(qbButtonsDict[type], statusColor);
+            yield return null;
+        }
+
+        public void DoTestMinigame(MiniGameCode code)
+        {
+            StartCoroutine(DoTest(() => DoTestMinigameCO(code)));
+        }
+        private IEnumerator DoTestMinigameCO(MiniGameCode code)
+        {
+            SetButtonStatus(minigamesButtonsDict[code], Color.yellow);
+            yield return new WaitForSeconds(0.1f);
+            var statusColor = Color.green; 
+            try
+            {
+                SimulateMiniGame(code);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("!! " + code + "\n " + e.Message);
+                statusColor = Color.red;
+            }
+            SetButtonStatus(minigamesButtonsDict[code], statusColor);
+            yield return null;
+        }
+
+        private void SetButtonStatus(Button button, Color statusColor)
+        {
+            var colors = button.colors;
+            colors.normalColor = statusColor;
+            colors.highlightedColor = statusColor * 1.2f;
+            button.colors = colors;
+        }
+        private IEnumerator DoTest(Func<IEnumerator> CoroutineFunc)
+        {
+            ConfigAI.StartTeacherReport();
+            ApplyParameters();
+            InitialisePlaySession();
+            for (int i = 1; i <= numberOfSimulations; i++)
+            {
+                ConfigAI.AppendToTeacherReport("************ Simulation " + i + " ************");
+                yield return StartCoroutine(CoroutineFunc());
+            }
+            ConfigAI.PrintTeacherReport();
         }
 
         #endregion
 
 
-        #region Minigames
+        #region Minigames Simulation
 
-        public IEnumerator SimulateMiniGameCO(MiniGameCode code)
+        private void SimulateMiniGame(MiniGameCode code)
         {
-            ApplyParameters();
-            ConfigAI.StartTeacherReport();
-            InitialisePlaySession();
-            for (int i = 0; i < numberOfSimulations; i++)
-            {
-                var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
-                InitialisePlaySession();
-                var builder = config.SetupBuilder();
-                Debug.Log("SIMULATION " + (i + 1) + " minigame: " + code + " with builder " + builder.GetType().Name);
-                builder.CreateAllQuestionPacks();
-                if (i % yieldEverySimulations == 0)
-                    yield return null;
-            }
-            ConfigAI.PrintTeacherReport();
-        }
-
-        public void SimulateMiniGame(MiniGameCode code)
-        {
-            ApplyParameters();
-            ConfigAI.StartTeacherReport();
-            InitialisePlaySession();
-            for (int i = 0; i < numberOfSimulations; i++)
-            {
-                var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
-                ConfigAI.AppendToTeacherReport("SIMULATION " + (i + 1) + " minigame: " + code);
-                InitialisePlaySession();
-                var builder = config.SetupBuilder();
-                var packs = builder.CreateAllQuestionPacks();
-                ReportPacks(packs);
-            }
-            ConfigAI.PrintTeacherReport();
+            var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
+            //InitialisePlaySession();
+            var builder = config.SetupBuilder();
+            var packs = builder.CreateAllQuestionPacks();
+            ReportPacks(packs);
         }
 
         #endregion
 
-        #region  Question Builder testing
+        #region  QuestionBuilder Simulation
 
-
-        public void TestQuestionBuilder(QuestionBuilderType builderType)
+        private void SimulateQuestionBuilder(QuestionBuilderType builderType)
         {
-            ApplyParameters();
-            ConfigAI.StartTeacherReport();
-
-            var builderParams = SetupFakeGame();
+            var builderParams = SetupBuilderParameters();
             IQuestionBuilder builder = null;
             switch (builderType)
             {
@@ -344,14 +367,10 @@ namespace EA4S.Teacher.Test
 
             var packs = builder.CreateAllQuestionPacks();
             ReportPacks(packs);
-
-            ConfigAI.PrintTeacherReport();
         }
 
-        QuestionBuilderParameters SetupFakeGame()
+        QuestionBuilderParameters SetupBuilderParameters()
         {
-            InitialisePlaySession();
-
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = correctHistory;
             builderParams.wrongChoicesHistory = wrongHistory;

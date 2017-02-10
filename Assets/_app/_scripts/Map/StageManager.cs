@@ -46,12 +46,9 @@ namespace EA4S.Map
         {
             if (!Application.isEditor) SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
 
-          /* AppManager.I.Player.MaxJourneyPosition.Stage = 6;
+           /* AppManager.I.Player.MaxJourneyPosition.Stage = 6;
             AppManager.I.Player.MaxJourneyPosition.LearningBlock = 15;
             AppManager.I.Player.MaxJourneyPosition.PlaySession = 100;*/
-         /*   AppManager.I.Player.CurrentJourneyPosition.Stage = 1;
-            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = 14;
-            AppManager.I.Player.CurrentJourneyPosition.PlaySession = 100;*/
 
             numberStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
             s = AppManager.I.Player.MaxJourneyPosition.Stage;
@@ -251,16 +248,12 @@ namespace EA4S.Map
         }
         void DesactivateUI()
         {
-            leftStageButton.SetActive(false);
-            rightStageButton.SetActive(false);
             uiButtonMovementPlaySession.SetActive(false);
             bookButton.SetActive(false);
             anturaButton.SetActive(false);
         }
         void ActivateUI()
         {
-            leftStageButton.SetActive(true);
-            rightStageButton.SetActive(true);
             uiButtonMovementPlaySession.SetActive(true);
             bookButton.SetActive(true);
             anturaButton.SetActive(true);
