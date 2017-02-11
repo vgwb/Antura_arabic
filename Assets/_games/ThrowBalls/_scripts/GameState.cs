@@ -47,6 +47,8 @@ namespace EA4S.Minigames.ThrowBalls
         private IAudioManager audioManager;
         private IInputManager inputManager;
 
+        private GameObject tutorialTarget;
+
         public GameState(ThrowBallsGame game)
         {
             this.game = game;
@@ -184,6 +186,7 @@ namespace EA4S.Minigames.ThrowBalls
                 {
                     letterObj.tag = Constants.TAG_CORRECT_LETTER;
                     letterControllers[i].SetLetter(correctDatum);
+                    tutorialTarget = letterObj;
                 }
 
                 else
@@ -272,6 +275,7 @@ namespace EA4S.Minigames.ThrowBalls
                 {
                     letterObj.tag = Constants.TAG_CORRECT_LETTER;
                     letterControllers[i].SetLetter(firstLetter);
+                    tutorialTarget = letterObj;
                 }
 
                 else
@@ -330,8 +334,7 @@ namespace EA4S.Minigames.ThrowBalls
 
             Vector3 worldToScreen = Camera.main.WorldToScreenPoint(new Vector3(0, 8, -20));
             Vector3 fromPoint = Camera.main.ScreenToWorldPoint(new Vector3(worldToScreen.x, worldToScreen.y, 20f));
-            worldToScreen = Camera.main.WorldToScreenPoint(new Vector3(-1.5f, 4.5f, -22));
-            Vector3 toPoint = Camera.main.ScreenToWorldPoint(new Vector3(worldToScreen.x, worldToScreen.y, 20f));
+            Vector3 toPoint = LetterSpawner.instance.BiLerpForTutorialUI(tutorialTarget.transform.position);
             TutorialUI.DrawLine(fromPoint, toPoint, TutorialUI.DrawLineMode.FingerAndArrow);
             timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
         }
@@ -348,6 +351,7 @@ namespace EA4S.Minigames.ThrowBalls
                 if (letterControllers[i].GetLetter().Id == newCorrectLetter.Id)
                 {
                     letterPool[i].tag = Constants.TAG_CORRECT_LETTER;
+                    tutorialTarget = letterPool[i];
                 }
 
                 else
