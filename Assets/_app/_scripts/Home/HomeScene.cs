@@ -45,7 +45,7 @@ namespace EA4S.Scenes
         /// </summary>
         public void Play()
         {
-            Debug.Log("Play with Player ID: " + AppManager.I.Player.Id);
+            Debug.Log("Play with Player ID: " + AppManager.I.Player.Uuid);
 
             GlobalUI.ShowPauseMenu(true);
 
