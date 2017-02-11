@@ -8,6 +8,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 22470964}
+  - component: {fileID: 22525276}
   m_Layer: 0
   m_Name: dataLabelsParent
   m_TagString: Untagged
@@ -54,6 +55,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 22470958}
+  - component: {fileID: 22559254}
   m_Layer: 0
   m_Name: areaShadingParent
   m_TagString: Untagged
@@ -106,6 +108,7 @@ MonoBehaviour:
   nodeParent: {fileID: 100008}
   legendEntry: {fileID: 0}
   _comboType: 0
+  _useSecondYaxis: 0
   _seriesName: 
   _pointWidthHeight: 10
   _lineScale: 1
@@ -139,6 +142,7 @@ MonoBehaviour:
     a: 1
   _dataLabelsFontStyle: 0
   _dataLabelsFont: {fileID: 0}
+  _dataLabelsAnchoredLeftBot: 0
   _dataLabelsOffset: {x: 0, y: 12}
   _areaShadingType: 0
   _areaShadingUsesComputeShader: 0
@@ -244,6 +248,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &22525276
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!225 &22559254
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

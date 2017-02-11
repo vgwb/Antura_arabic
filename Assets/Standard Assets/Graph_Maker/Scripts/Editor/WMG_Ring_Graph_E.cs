@@ -13,6 +13,7 @@ public class WMG_Ring_Graph_E : WMG_E_Util
 	enum eTabType
 	{
 		Core,
+		Labels,
 		Misc
 	}
 	
@@ -36,6 +37,7 @@ public class WMG_Ring_Graph_E : WMG_E_Util
 		switch (m_tabType)
 		{
 		case eTabType.Core: DrawCore(); break;
+		case eTabType.Labels: DrawLabels(); break;
 		case eTabType.Misc: DrawMisc(); break;
 		}								
 		
@@ -52,6 +54,9 @@ public class WMG_Ring_Graph_E : WMG_E_Util
 		ArrayGUIoc<string> (graph.labels, "Labels", "_labels");
 		ArrayGUIoc<bool> (graph.hideRings, "HideRings", "_hideRings");
 		ExposeProperty (fields ["bandMode"]);
+		ExposeProperty (fields ["pieMode"]);
+		ExposeProperty (fields ["pieModePaddingDegrees"]);
+		ExposeProperty (fields ["pieModeDegreeOffset"]);
 		ExposeProperty (fields ["innerRadiusPercentage"]);
 		ExposeProperty (fields ["degrees"]);
 		ExposeProperty (fields ["minValue"]);
@@ -59,21 +64,43 @@ public class WMG_Ring_Graph_E : WMG_E_Util
 		ExposeProperty (fields ["bandColor"]);
 		ArrayGUIoc<Color> (graph.bandColors, "Band Colors", "_bandColors");
 		ExposeProperty (fields ["autoUpdateBandAlpha"]);
+		ExposeProperty (fields ["autoUpdateBandAlphaReverse"]);
 		ExposeProperty (fields ["ringColor"]);
 		ExposeProperty (fields ["ringWidth"]);
-		ExposeProperty (fields ["ringPointWidthFactor"]);
 		ExposeProperty (fields ["bandPadding"]);
-		ExposeProperty (fields ["labelLinePadding"]);
 		ExposeProperty (fields ["leftRightPadding"]);
 		ExposeProperty (fields ["topBotPadding"]);
 		ExposeProperty (fields ["antiAliasing"]);
 		ExposeProperty (fields ["antiAliasingStrength"]);
 	}
 
+	void DrawLabels() {
+		ExposeProperty (fields ["hideZeroLabelLine"]);
+		ExposeProperty (fields ["labelStartCenteredOnBand"]);
+		ExposeProperty (fields ["labelPointSize"]);
+		ExposeProperty (fields ["labelLinePadding"]);
+		ExposeProperty (fields ["labelTextOffset"]);
+		ExposeProperty (fields ["labelLineColor"]);
+		ExposeProperty (fields ["labelPointColor"]);
+		ExposeProperty (fields ["ringPointWidthFactor"]);
+		ExposeProperty(fields["labelsFontSize"]);
+		ExposeProperty(fields["labelsColor"]);
+		ExposeProperty(fields["labelsFontStyle"]);
+		graph.labelsFont = (Font)EditorGUILayout.ObjectField ("Label Font", graph.labelsFont, typeof(Font), false);
+		ExposeProperty (fields ["showDataLabels"]);
+		ExposeProperty(fields["dataLabelsFontSize"]);
+		ExposeProperty(fields["dataLabelsColor"]);
+		ExposeProperty(fields["dataLabelsFontStyle"]);
+		graph.dataLabelsFont = (Font)EditorGUILayout.ObjectField ("Data Label Font", graph.dataLabelsFont, typeof(Font), false);
+	}
+
 	void DrawMisc() {
+		graph.textureResolution = EditorGUILayout.IntField ("Texture Resolution", graph.textureResolution);
 		graph.animateData = EditorGUILayout.Toggle ("Animate Data", graph.animateData);
 		graph.animEaseType = (Ease)EditorGUILayout.EnumPopup("Anim Ease Type", graph.animEaseType);
 		graph.animDuration = EditorGUILayout.FloatField("Anim Duration", graph.animDuration);
+		ExposeProperty (fields ["useComputeShader"]);
+		graph.computeShader = (ComputeShader)EditorGUILayout.ObjectField ("Compute Shader", graph.computeShader, typeof(ComputeShader), false);
 		ArrayGUIoc<string> (graph.ringIDs, "Ring IDs", "_ringIDs");
 		graph.ringPrefab = EditorGUILayout.ObjectField("Ring Prefab", graph.ringPrefab, typeof(Object), false);
 		graph.contentParent = (GameObject)EditorGUILayout.ObjectField("Content Parent", graph.contentParent, typeof(GameObject), true);

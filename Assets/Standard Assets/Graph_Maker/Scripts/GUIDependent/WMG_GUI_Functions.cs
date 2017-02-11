@@ -43,6 +43,16 @@ public class WMG_GUI_Functions : WMG_Text_Functions {
 		Graphic theSprite = obj.GetComponent<Graphic>();
 		theSprite.color = aColor;
 	}
+
+	public void changeSpriteAlpha(GameObject obj, float alpha) {
+		Graphic theSprite = obj.GetComponent<Graphic>();
+		theSprite.color = new Color (theSprite.color.r, theSprite.color.g, theSprite.color.b, alpha);
+	}
+
+	public float getSpriteAlpha(GameObject obj) {
+		Graphic theSprite = obj.GetComponent<Graphic>();
+		return theSprite.color.a;
+	}
 	
 	public void changeSpriteWidth(GameObject obj, int aWidth) {
 		RectTransform theSprite = obj.GetComponent<RectTransform>();
@@ -87,21 +97,40 @@ public class WMG_GUI_Functions : WMG_Text_Functions {
 	public void changeBarWidthHeight(GameObject obj, int aWidth, int aHeight) {
 		RectTransform theSprite = obj.GetComponent<RectTransform>();
 		if (theSprite == null) return;
-		theSprite.sizeDelta = new Vector2(aWidth, aHeight);
+//		bool isInvisiblePoint = (aWidth == 0 || aHeight == 0);
+//		if (isInvisiblePoint) {
+//			theSprite.sizeDelta = new Vector2 (1, 1);
+//			SetActive (obj, false);
+//		} else {
+		theSprite.sizeDelta = new Vector2 (aWidth, aHeight);
+//		}
 	}
 	
 	public float getSpriteWidth(GameObject obj) {
 		RectTransform theSprite = obj.GetComponent<RectTransform>();
 		return theSprite.rect.width;
 	}
-	
+
 	public float getSpriteHeight(GameObject obj) {
 		RectTransform theSprite = obj.GetComponent<RectTransform>();
 		return theSprite.rect.height;
 	}
 
-	public void forceUpdateUI() {
-		Canvas.ForceUpdateCanvases ();
+	//http://answers.unity3d.com/questions/921726/how-to-get-the-size-of-a-unityengineuitext-for-whi.html
+	public float getTextWidth(GameObject obj) {
+		Text textComp = obj.GetComponent<Text> ();
+		return textComp.cachedTextGeneratorForLayout.GetPreferredWidth (
+			textComp.text, textComp.GetGenerationSettings (textComp.GetComponent<RectTransform> ().rect.size));
+	}
+	//http://answers.unity3d.com/questions/921726/how-to-get-the-size-of-a-unityengineuitext-for-whi.html
+	public float getTextHeight(GameObject obj) {
+		Text textComp = obj.GetComponent<Text> ();
+		return textComp.cachedTextGeneratorForLayout.GetPreferredHeight (
+			textComp.text, textComp.GetGenerationSettings (textComp.GetComponent<RectTransform> ().rect.size));
+	}
+
+	public void forceUpdateText(GameObject obj) {
+		changeSpriteSizeFloat (obj, getTextWidth (obj), getTextHeight (obj));
 	}
 
 	public void setAnchor(GameObject go, Vector2 anchor, Vector2 pivot, Vector2 anchoredPosition) {
@@ -109,6 +138,11 @@ public class WMG_GUI_Functions : WMG_Text_Functions {
 		rt.pivot = pivot;
 		rt.anchorMin = anchor;
 		rt.anchorMax = anchor;
+		rt.anchoredPosition = anchoredPosition;
+	}
+
+	public void setAnchoredPosition(GameObject go, Vector2 anchoredPosition) {
+		RectTransform rt = go.GetComponent<RectTransform> ();
 		rt.anchoredPosition = anchoredPosition;
 	}
 
@@ -148,38 +182,42 @@ public class WMG_GUI_Functions : WMG_Text_Functions {
 		Vector3[] contCorners = new Vector3[4];
 		rtCont.GetWorldCorners (contCorners);
 		
+		Graphic graphic = rtChild.GetComponent<Graphic> ();
+		Canvas canvasRt = graphic.canvas;
+		
+		if (canvasRt != null) {
+			// transform to canvas space
+			for (int i = 0; i < 4; i++) {
+				childCorners [i] = canvasRt.transform.InverseTransformPoint (childCorners [i]);
+				contCorners [i] = canvasRt.transform.InverseTransformPoint (contCorners [i]);
+			}
+		}
+		
 		Vector2 minChild = new Vector2 (Mathf.Infinity, Mathf.Infinity);
 		Vector2 maxChild = new Vector2 (Mathf.NegativeInfinity, Mathf.NegativeInfinity);
 		Vector2 minCont = new Vector2 (Mathf.Infinity, Mathf.Infinity);
 		Vector2 maxCont = new Vector2 (Mathf.NegativeInfinity, Mathf.NegativeInfinity);
 		
-		Graphic graphic = rtChild.GetComponent<Graphic> ();
+		getMinMaxFromCorners (ref minChild, ref maxChild, childCorners);
+		getMinMaxFromCorners (ref minCont, ref maxCont, contCorners);
 		
-		getMinMaxFromCorners (ref minChild, ref maxChild, childCorners, graphic == null ? null : graphic.canvas);
-		getMinMaxFromCorners (ref minCont, ref maxCont, contCorners, graphic == null ? null : graphic.canvas);
-
-		float scaleFactor = graphic == null ? 1 : (graphic.canvas == null ? 1 : graphic.canvas.scaleFactor);
-
-		xDif = new Vector2 ((minChild.x - minCont.x)/scaleFactor, (maxCont.x - maxChild.x)/scaleFactor);
-		yDif = new Vector2 ((minChild.y - minCont.y)/scaleFactor, (maxCont.y - maxChild.y)/scaleFactor);
+		xDif = new Vector2 ((minChild.x - minCont.x), (maxCont.x - maxChild.x));
+		yDif = new Vector2 ((minChild.y - minCont.y), (maxCont.y - maxChild.y));
 	}
 	
-	void getMinMaxFromCorners(ref Vector2 min, ref Vector2 max, Vector3[] corners, Canvas canvas) {
-		Camera cam = canvas == null ? null : canvas.worldCamera;
-		if (canvas != null && canvas.renderMode == RenderMode.ScreenSpaceOverlay) cam = null;
+	void getMinMaxFromCorners(ref Vector2 min, ref Vector2 max, Vector3[] corners) {
 		for (int i = 0; i < 4; i++) {
-			Vector3 screenCoord = RectTransformUtility.WorldToScreenPoint(cam, corners[i]);
-			if (screenCoord.x < min.x) {
-				min = new Vector2 (screenCoord.x, min.y);
+			if (corners[i].x < min.x) {
+				min = new Vector2 (corners[i].x, min.y);
 			}
-			if (screenCoord.y < min.y) {
-				min = new Vector2 (min.x, screenCoord.y);
+			if (corners[i].y < min.y) {
+				min = new Vector2 (min.x, corners[i].y);
 			}
-			if (screenCoord.x > max.x) {
-				max = new Vector2 (screenCoord.x, max.y);
+			if (corners[i].x > max.x) {
+				max = new Vector2 (corners[i].x, max.y);
 			}
-			if (screenCoord.y > max.y) {
-				max = new Vector2 (max.x, screenCoord.y);
+			if (corners[i].y > max.y) {
+				max = new Vector2 (max.x, corners[i].y);
 			}
 		}
 	}
@@ -195,8 +233,8 @@ public class WMG_GUI_Functions : WMG_Text_Functions {
 	public Vector2 getSpritePositionXY(GameObject obj) {
 		return new Vector2(obj.transform.localPosition.x, obj.transform.localPosition.y);
 	}
-	
-	public float getSpriteFactorY2(GameObject obj) {
+
+	public float getSpritePivotTopToBot(GameObject obj) {
 		RectTransform theSprite = obj.GetComponent<RectTransform>();
 		return 1 - theSprite.pivot.y; // Top corresponds to pivot of 1, return 1 for bottom
 	}
@@ -279,70 +317,5 @@ public class WMG_GUI_Functions : WMG_Text_Functions {
 	
 	public void sendSpriteToBack(GameObject obj) {
 		obj.transform.SetAsFirstSibling();
-	}
-	
-	public string getDropdownSelection(GameObject obj) {
-//		UIPopupList dropdown = obj.GetComponent<UIPopupList>();
-//		return dropdown.value;
-		return null;
-	}
-	
-	public void setDropdownSelection(GameObject obj, string newval) {
-//		UIPopupList dropdown = obj.GetComponent<UIPopupList>();
-//		dropdown.value = newval;
-	}
-	
-	public void addDropdownItem(GameObject obj, string item) {
-//		UIPopupList dropdown = obj.GetComponent<UIPopupList>();
-//		dropdown.items.Add(item);
-	}
-	
-	public void deleteDropdownItem(GameObject obj) {
-//		UIPopupList dropdown = obj.GetComponent<UIPopupList>();
-//		dropdown.items.RemoveAt(dropdown.items.Count-1);
-	}
-	
-	public void setDropdownIndex(GameObject obj, int index) {
-//		UIPopupList dropdown = obj.GetComponent<UIPopupList>();
-//		dropdown.value = dropdown.items[index];
-	}
-	
-	public void setButtonColor(Color aColor, GameObject obj) {
-//		UILabel aButton = obj.GetComponent<UILabel>();
-//		aButton.color = aColor;
-	}
-	
-	public bool getToggle(GameObject obj) {
-//		UIToggle theTog = obj.GetComponent<UIToggle>();
-//		return theTog.value;
-		return false;
-	}
-	
-	public void setToggle(GameObject obj, bool state) {
-//		UIToggle theTog = obj.GetComponent<UIToggle>();
-//		theTog.value = state;
-	}
-	
-	public float getSliderVal(GameObject obj) {
-//		UISlider theSlider = obj.GetComponent<UISlider>();
-//		return theSlider.value;
-		return 0;
-	}
-	
-	public void setSliderVal(GameObject obj, float val) {
-//		UISlider theSlider = obj.GetComponent<UISlider>();
-//		theSlider.value = val;
-	}
-	
-	public void showControl(GameObject obj) {
-		SetActive(obj, true);
-	}
-	
-	public void hideControl(GameObject obj) {
-		SetActive(obj, false);
-	}
-	
-	public bool getControlVisibility(GameObject obj) {
-		return activeInHierarchy(obj);
 	}
 }

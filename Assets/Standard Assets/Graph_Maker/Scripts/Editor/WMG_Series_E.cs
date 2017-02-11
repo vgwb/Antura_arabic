@@ -81,6 +81,7 @@ public class WMG_Series_E : WMG_E_Util
 		ExposeProperty(fields["dataLabelsColor"]);
 		ExposeProperty(fields["dataLabelsFontStyle"]);
 		series.dataLabelsFont = (Font)EditorGUILayout.ObjectField ("Data Label Font", series.dataLabelsFont, typeof(Font), false);
+		ExposeProperty(fields["dataLabelsAnchoredLeftBot"]);
 		ExposeProperty(fields["dataLabelsOffset"]);
 		series.dataLabelsParent = (GameObject)EditorGUILayout.ObjectField("Data Labels Parent", series.dataLabelsParent, typeof(GameObject), true);
 	}
@@ -93,6 +94,7 @@ public class WMG_Series_E : WMG_E_Util
 		series.areaShadingParent = (GameObject)EditorGUILayout.ObjectField("Area Shading Parent", series.areaShadingParent, typeof(GameObject), true);
 		series.areaShadingPrefab = EditorGUILayout.ObjectField("Area Shading Prefab", series.areaShadingPrefab, typeof(Object), false);
 		series.areaShadingCSPrefab = EditorGUILayout.ObjectField("Area Shading CS Prefab", series.areaShadingCSPrefab, typeof(Object), false);
+		series.areaShadingTextureResolution = EditorGUILayout.IntField ("Area Shading Tex Res", series.areaShadingTextureResolution);
 		ExposeProperty(fields["areaShadingColor"]);
 		ExposeProperty(fields["areaShadingAxisValue"]);
 	}

@@ -2,23 +2,64 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// The grid class used for creating quadrilateral or hexagonal grids.
+/// </summary>
 public class WMG_Grid : WMG_Graph_Manager {
 
-	public bool autoRefresh = true; // Set to false, and then manually call refreshGrid for performance boost
+	/// <summary>
+	/// Automatically refreshes the grid, if a parameter has changed from its previously cached value.
+	/// </summary>
+	public bool autoRefresh = true;
 	
 	public enum gridTypes {quadrilateral, hexagonal_flat_top, hexagonal_flat_side};
+	/// <summary>
+	/// Determines whether a grid is quadrilateral or hexagonal.
+	/// </summary>
 	public gridTypes gridType;
+	/// <summary>
+	/// The prefab used to instantiate nodes of the grid.
+	/// </summary>
 	public Object nodePrefab;
+	/// <summary>
+	/// The prefab used to instantiate links of the grid.
+	/// </summary>
 	public Object linkPrefab;
-	
+	/// <summary>
+	/// The number of nodes in the x dimension.
+	/// </summary>
 	public int gridNumNodesX;
+	/// <summary>
+	/// The number of nodes in the y dimension.
+	/// </summary>
 	public int gridNumNodesY;
+	/// <summary>
+	/// The amount of space between the nodes in the x direction.
+	/// </summary>
 	public float gridLinkLengthX;
+	/// <summary>
+	/// The amount of space between the nodes in the y direction.
+	/// </summary>
 	public float gridLinkLengthY;
+	/// <summary>
+	/// Whether or not links are created between nodes in the grid.
+	/// </summary>
 	public bool createLinks;
+	/// <summary>
+	/// If #createLinks = true, this determines whether links are only created in the horizontal direction.
+	/// </summary>
 	public bool noVerticalLinks;
+	/// <summary>
+	/// If #createLinks = true, this determines whether links are only created in the vertical direction.
+	/// </summary>
 	public bool noHorizontalLinks;
+	/// <summary>
+	/// The color of the links.
+	/// </summary>
 	public Color linkColor = Color.white;
+	/// <summary>
+	/// The width of the links.
+	/// </summary>
 	public int linkWidth;
 	
 	private List<List<WMG_Node>> gridNodesXY = new List<List<WMG_Node>>();
@@ -45,6 +86,9 @@ public class WMG_Grid : WMG_Graph_Manager {
 		}
 	}
 
+	/// <summary>
+	/// Refreshes this grid, if a grid property has changed from its previously cached value.
+	/// </summary>
 	public void Refresh() {
 		checkCache();
 		if (gridChanged) {
@@ -54,36 +98,51 @@ public class WMG_Grid : WMG_Graph_Manager {
 	}
 	
 	void checkCache() {
-		updateCacheAndFlag<gridTypes>(ref cachedGridType, gridType, ref gridChanged);
-		updateCacheAndFlag<Object>(ref cachedNodePrefab, nodePrefab, ref gridChanged);
-		updateCacheAndFlag<Object>(ref cachedLinkPrefab, linkPrefab, ref gridChanged);
-		updateCacheAndFlag<int>(ref cachedGridNumNodesX, gridNumNodesX, ref gridChanged);
-		updateCacheAndFlag<int>(ref cachedGridNumNodesY, gridNumNodesY, ref gridChanged);
-		updateCacheAndFlag<float>(ref cachedGridLinkLengthX, gridLinkLengthX, ref gridChanged);
-		updateCacheAndFlag<float>(ref cachedGridLinkLengthY, gridLinkLengthY, ref gridChanged);
-		updateCacheAndFlag<bool>(ref cachedCreateLinks, createLinks, ref gridChanged);
-		updateCacheAndFlag<bool>(ref cachedNoVerticalLinks, noVerticalLinks, ref gridChanged);
-		updateCacheAndFlag<bool>(ref cachedNoHorizontalLinks, noHorizontalLinks, ref gridChanged);
-		updateCacheAndFlag<Color>(ref cachedLinkColor, linkColor, ref gridChanged);
-		updateCacheAndFlag<int>(ref cachedLinkWidth, linkWidth, ref gridChanged);
+		WMG_Util.updateCacheAndFlag<gridTypes>(ref cachedGridType, gridType, ref gridChanged);
+		WMG_Util.updateCacheAndFlag<Object>(ref cachedNodePrefab, nodePrefab, ref gridChanged);
+		WMG_Util.updateCacheAndFlag<Object>(ref cachedLinkPrefab, linkPrefab, ref gridChanged);
+		WMG_Util.updateCacheAndFlag<int>(ref cachedGridNumNodesX, gridNumNodesX, ref gridChanged);
+		WMG_Util.updateCacheAndFlag<int>(ref cachedGridNumNodesY, gridNumNodesY, ref gridChanged);
+		WMG_Util.updateCacheAndFlag<float>(ref cachedGridLinkLengthX, gridLinkLengthX, ref gridChanged);
+		WMG_Util.updateCacheAndFlag<float>(ref cachedGridLinkLengthY, gridLinkLengthY, ref gridChanged);
+		WMG_Util.updateCacheAndFlag<bool>(ref cachedCreateLinks, createLinks, ref gridChanged);
+		WMG_Util.updateCacheAndFlag<bool>(ref cachedNoVerticalLinks, noVerticalLinks, ref gridChanged);
+		WMG_Util.updateCacheAndFlag<bool>(ref cachedNoHorizontalLinks, noHorizontalLinks, ref gridChanged);
+		WMG_Util.updateCacheAndFlag<Color>(ref cachedLinkColor, linkColor, ref gridChanged);
+		WMG_Util.updateCacheAndFlag<int>(ref cachedLinkWidth, linkWidth, ref gridChanged);
 	}
 	
 	void setCacheFlags(bool val) {
 		gridChanged = val;
 	}
-	
+
+	/// <summary>
+	/// Gets the specified column of nodes given a column index.
+	/// </summary>
+	/// <returns>The column.</returns>
+	/// <param name="colNum">Col number.</param>
 	public List<WMG_Node> getColumn(int colNum) {
 		if (gridNodesXY.Count <= colNum) return new List<WMG_Node>();
 		return gridNodesXY[colNum];
 	}
-	
+
+	/// <summary>
+	/// Sets active the specified column of nodes given a column index.
+	/// </summary>
+	/// <param name="active">If set to <c>true</c> active.</param>
+	/// <param name="colNum">Col number.</param>
 	public void setActiveColumn(bool active, int colNum) {
 		if (gridNodesXY.Count <= colNum) return;
 		for (int i = 0; i < gridNodesXY[colNum].Count; i++) {
 			SetActive(gridNodesXY[colNum][i].gameObject,active);
 		}
 	}
-	
+
+	/// <summary>
+	/// Gets the specified row of nodes given a row index.
+	/// </summary>
+	/// <returns>The row.</returns>
+	/// <param name="rowNum">Row number.</param>
 	public List<WMG_Node> getRow(int rowNum) {
 		List<WMG_Node> returnResults = new List<WMG_Node>();
 		for (int i = 0; i < gridNodesXY.Count; i++) {
@@ -91,13 +150,22 @@ public class WMG_Grid : WMG_Graph_Manager {
 		}
 		return returnResults;
 	}
-	
+
+	/// <summary>
+	/// Sets active the specified row of nodes given a column index.
+	/// </summary>
+	/// <param name="active">If set to <c>true</c> active.</param>
+	/// <param name="rowNum">Row number.</param>
 	public void setActiveRow(bool active, int rowNum) {
 		for (int i = 0; i < gridNodesXY.Count; i++) {
 			SetActive(gridNodesXY[i][rowNum].gameObject,active);
 		}
 	}
-	
+
+	/// <summary>
+	/// Gets all the nodes and links of this grid.
+	/// </summary>
+	/// <returns>The nodes and links.</returns>
 	public List<GameObject> GetNodesAndLinks() {
 		List<GameObject> returnResults = new List<GameObject>();
 		for (int i = 0; i < gridNodesXY.Count; i++) {

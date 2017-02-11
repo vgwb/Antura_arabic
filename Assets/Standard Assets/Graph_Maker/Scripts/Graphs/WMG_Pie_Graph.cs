@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 
+/// <summary>
+/// Class used for creating pie graphs.
+/// </summary>
 public class WMG_Pie_Graph : WMG_Graph_Manager {
 	
 	public enum sortMethod {None, Largest_First, Smallest_First, Alphabetically, Reverse_Alphabetically};
@@ -18,13 +21,25 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 	}
 
 	[SerializeField] private List<float> _sliceValues;
+	/// <summary>
+	/// The values each pie slice represents.
+	/// </summary>
 	public WMG_List<float> sliceValues = new WMG_List<float>();
 	[SerializeField] private List<string> _sliceLabels;
+	/// <summary>
+	/// The text labels each pie slice represents.
+	/// </summary>
 	public WMG_List<string> sliceLabels = new WMG_List<string>();
 	[SerializeField] private List<Color> _sliceColors;
+	/// <summary>
+	/// The color of each pie slice.
+	/// </summary>
 	public WMG_List<Color> sliceColors = new WMG_List<Color>();
 
-	// public properties
+	/// <summary>
+	/// Determines whether graph content (#resizeProperties) will resize post graph initialization based on the percentage change of the graph's rect transform width / height.
+	/// </summary>
+	/// <value><c>true</c> if resize enabled; otherwise, <c>false</c>.</value>
 	public bool resizeEnabled { get {return _resizeEnabled;} 
 		set {
 			if (_resizeEnabled != value) {
@@ -33,6 +48,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Specifies which graph content is resized when #resizeEnabled = true.
+	/// </summary>
+	/// <value>The resize properties.</value>
 	public ResizeProperties resizeProperties { get {return _resizeProperties;} 
 		set {
 			if (_resizeProperties != value) {
@@ -41,6 +60,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the left right padding.
+	/// </summary>
+	/// <value>The left right padding.</value>
 	public Vector2 leftRightPadding { get {return _leftRightPadding;} 
 		set {
 			if (_leftRightPadding != value) {
@@ -49,6 +72,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the top bot padding.
+	/// </summary>
+	/// <value>The top bot padding.</value>
 	public Vector2 topBotPadding { get {return _topBotPadding;} 
 		set {
 			if (_topBotPadding != value) {
@@ -57,6 +84,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Controls how much space is between the background circle sprite and the pie slice outer edges.
+	/// </summary>
+	/// <value>The background circle offset.</value>
 	public float bgCircleOffset { get {return _bgCircleOffset;} 
 		set {
 			if (_bgCircleOffset != value) {
@@ -65,6 +96,11 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// When enabled, ensures the pie graph and legend both stay in the center of the graph's rect transform. This will automatically adjust the 
+	/// background padding as well, using #autoCenterMinPadding as the minimum for the padding.
+	/// </summary>
+	/// <value><c>true</c> if auto center; otherwise, <c>false</c>.</value>
 	public bool autoCenter { get {return _autoCenter;} 
 		set {
 			if (_autoCenter != value) {
@@ -73,6 +109,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// When #autoCenter = true, controls how much padding there is between the pie graph and its rect transform bounds.
+	/// </summary>
+	/// <value>The auto center minimum padding.</value>
 	public float autoCenterMinPadding { get {return _autoCenterMinPadding;} 
 		set {
 			if (_autoCenterMinPadding != value) {
@@ -81,6 +121,11 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// This controls the order that the pie slices appear. The default is Largest_First, meaning that the slice with the highest value will appear in the top right, 
+	/// and subsequent slices go in clockwise order. For "None" sorting, the slice value corresponding to the 0 index of the Values list appears in the top right corner. 
+	/// </summary>
+	/// <value>The sort by.</value>
 	public sortMethod sortBy { get {return _sortBy;} 
 		set {
 			if (_sortBy != value) {
@@ -89,6 +134,11 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// When set to true, if the 3rd slice is green and the 3rd slice value gets increased so that it becomes the first slice after sorting, 
+	/// then the green color will swap to be in the top right slice. If this is set to false, then the colors remain static, meaning green will always be the third slice. 
+	/// </summary>
+	/// <value><c>true</c> if swap colors during sort; otherwise, <c>false</c>.</value>
 	public bool swapColorsDuringSort { get {return _swapColorsDuringSort;} 
 		set {
 			if (_swapColorsDuringSort != value) {
@@ -97,6 +147,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Controls how the labels on the slices display.
+	/// </summary>
+	/// <value>The type of the slice label.</value>
 	public WMG_Enums.labelTypes sliceLabelType { get {return _sliceLabelType;} 
 		set {
 			if (_sliceLabelType != value) {
@@ -105,6 +159,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// This is the radial distance the  pie slices are from the center. A small value here usually enhances the visual appeal of the graph.
+	/// </summary>
+	/// <value>The length of the explode.</value>
 	public float explodeLength { get {return _explodeLength;} 
 		set {
 			if (_explodeLength != value) {
@@ -113,6 +171,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// When the explode length is > 0, this determines whether the outer edge of the slices align.
+	/// </summary>
+	/// <value><c>true</c> if explode symmetrical; otherwise, <c>false</c>.</value>
 	public bool explodeSymmetrical { get {return _explodeSymmetrical;} 
 		set {
 			if (_explodeSymmetrical != value) {
@@ -121,6 +183,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Whether or not to carve out a center circle to create a doughnut graph.
+	/// </summary>
+	/// <value><c>true</c> if use doughnut; otherwise, <c>false</c>.</value>
 	public bool useDoughnut { get {return _useDoughnut;} 
 		set {
 			if (_useDoughnut != value) {
@@ -129,6 +195,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// When #useDoughnut = true, controls the size of the center circle carved out of the graph.
+	/// </summary>
+	/// <value>The doughnut percentage.</value>
 	public float doughnutPercentage { get {return _doughnutPercentage;} 
 		set {
 			if (_doughnutPercentage != value) {
@@ -137,6 +207,11 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// When enabled, the pie graph will limit the number of slices displayed. 
+	/// So if there are 10 values, and 3 is set #maxNumberSlices, then only 3 of the 10 will be used, the 3 used depends on #sortBy.
+	/// </summary>
+	/// <value><c>true</c> if limit number slices; otherwise, <c>false</c>.</value>
 	public bool limitNumberSlices { get {return _limitNumberSlices;} 
 		set {
 			if (_limitNumberSlices != value) {
@@ -145,6 +220,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// When #limitNumberSlices = true, and has cut out some slices, then this determines whether to lump all of the slices that got excluded into an others slice.
+	/// </summary>
+	/// <value><c>true</c> if include others; otherwise, <c>false</c>.</value>
 	public bool includeOthers { get {return _includeOthers;} 
 		set {
 			if (_includeOthers != value) {
@@ -153,6 +232,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// When #limitNumberSlices = true, this determines the maximum number of slices that are displayed not including the others slice if #includeOthers = true.
+	/// </summary>
+	/// <value>The max number slices.</value>
 	public int maxNumberSlices { get {return _maxNumberSlices;} 
 		set {
 			if (_maxNumberSlices != value) {
@@ -161,6 +244,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// When #includeOthers = true, this is the text label given to the others slice.
+	/// </summary>
+	/// <value>The include others label.</value>
 	public string includeOthersLabel { get {return _includeOthersLabel;} 
 		set {
 			if (_includeOthersLabel != value) {
@@ -169,6 +256,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// When #includeOthers = true, this is the others slice color.
+	/// </summary>
+	/// <value>The color of the include others.</value>
 	public Color includeOthersColor { get {return _includeOthersColor;} 
 		set {
 			if (_includeOthersColor != value) {
@@ -177,6 +268,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the duration of the animation.
+	/// </summary>
+	/// <value>The duration of the animation.</value>
 	public float animationDuration { get {return _animationDuration;} 
 		set {
 			if (_animationDuration != value) {
@@ -185,6 +280,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the duration of the sort animation.
+	/// </summary>
+	/// <value>The duration of the sort animation.</value>
 	public float sortAnimationDuration { get {return _sortAnimationDuration;} 
 		set {
 			if (_sortAnimationDuration != value) {
@@ -193,6 +292,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the length of space the slice labels appear relative to the outer edge of the slices.
+	/// </summary>
+	/// <value>The length of the slice label explode.</value>
 	public float sliceLabelExplodeLength { get {return _sliceLabelExplodeLength;} 
 		set {
 			if (_sliceLabelExplodeLength != value) {
@@ -201,6 +304,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the size of the slice labels.
+	/// </summary>
+	/// <value>The size of the slice label font.</value>
 	public int sliceLabelFontSize { get {return _sliceLabelFontSize;} 
 		set {
 			if (_sliceLabelFontSize != value) {
@@ -209,6 +316,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the number decimals displayed in value labels.
+	/// </summary>
+	/// <value>The number decimals in percents.</value>
 	public int numberDecimalsInPercents { get {return _numberDecimalsInPercents;} 
 		set {
 			if (_numberDecimalsInPercents != value) {
@@ -217,6 +328,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the color of the slice labels.
+	/// </summary>
+	/// <value>The color of the slice label.</value>
 	public Color sliceLabelColor { get {return _sliceLabelColor;} 
 		set {
 			if (_sliceLabelColor != value) {
@@ -225,6 +340,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// If a pie slice has a value of 0, do not show it in the legend.
+	/// </summary>
+	/// <value><c>true</c> if hide zero value legend entry; otherwise, <c>false</c>.</value>
 	public bool hideZeroValueLegendEntry { get {return _hideZeroValueLegendEntry;} 
 		set {
 			if (_hideZeroValueLegendEntry != value) {
@@ -233,6 +352,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Whether to raise mouse click / hover events for this pie graph.
+	/// </summary>
+	/// <value><c>true</c> if interactivity enabled; otherwise, <c>false</c>.</value>
 	public bool interactivityEnabled { get {return _interactivityEnabled;} 
 		set {
 			if (_interactivityEnabled != value) {
@@ -243,14 +366,41 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 	}
 
 	// Public variables without change tracking
+	/// <summary>
+	/// Reference to WMG_Data_Source which can be used to populate #sliceValues.
+	/// </summary>
 	public WMG_Data_Source sliceValuesDataSource;
+	/// <summary>
+	/// Reference to WMG_Data_Source which can be used to populate #sliceLabels.
+	/// </summary>
 	public WMG_Data_Source sliceLabelsDataSource;
+	/// <summary>
+	/// Reference to WMG_Data_Source which can be used to populate #sliceColors.
+	/// </summary>
 	public WMG_Data_Source sliceColorsDataSource;
+	/// <summary>
+	/// The background object.
+	/// </summary>
 	public GameObject background;
+	/// <summary>
+	/// The background circle sprite.
+	/// </summary>
 	public GameObject backgroundCircle;
+	/// <summary>
+	/// The pie slices parent.
+	/// </summary>
 	public GameObject slicesParent;
+	/// <summary>
+	/// The legend.
+	/// </summary>
 	public WMG_Legend legend;
+	/// <summary>
+	/// The prefab used to create each legend entry for each pie slice.
+	/// </summary>
 	public Object legendEntryPrefab;
+	/// <summary>
+	/// The prefab used to create the pie slices.
+	/// </summary>
 	public Object nodePrefab;
 
 	// Private backing variables
@@ -290,6 +440,9 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			                 getSpriteHeight(this.gameObject) - topBotPadding.x - topBotPadding.y + 2*explodeLength);
 		}
 	}
+	/// <summary>
+	/// Mapping of slice labels from #sliceLabels to WMG_Pie_Graph_Slice.
+	/// </summary>
 	public Dictionary<string, WMG_Pie_Graph_Slice> LabelToSliceMap = new Dictionary<string, WMG_Pie_Graph_Slice>();
 
 	// Original property values for use with dynamic resizing
@@ -303,6 +456,13 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 	private float cachedContainerHeight;
 	
 	private List<GameObject> slices = new List<GameObject>();
+	/// <summary>
+	/// Get the pie slices.
+	/// </summary>
+	/// <returns>The slices.</returns>
+	public List<GameObject> getSlices() {
+		return slices;
+	}
 	private int numSlices = 0;
 	private bool isOtherSlice = false;
 	private float otherSliceValue = 0;
@@ -331,6 +491,9 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 		AllChanged();
 	}
 
+	/// <summary>
+	/// Initializes the graph, and should always be done before anything else, called automatically in Start(), but it never hurts to call this manually after instantiating a graph prefab.
+	/// </summary>
 	public void Init() {
 		if (hasInit) return;
 		hasInit = true;
@@ -375,7 +538,7 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 		Texture2D origTex = getTexture(temp.GetComponent<WMG_Pie_Graph_Slice>().objectToColor);
 		colors = origTex.GetPixels();
 		origColors = origTex.GetPixels();
-		pieSprite = WMG_Util.createSprite(origTex);
+		pieSprite = WMG_Util.createSprite(origTex.width, origTex.height);
 		Destroy(temp);
 		for (int i = 0; i < slices.Count; i++) {
 			WMG_Pie_Graph_Slice pieSlice = slices[i].GetComponent<WMG_Pie_Graph_Slice>();
@@ -391,6 +554,10 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 		Refresh();
 	}
 
+	/// <summary>
+	/// Refreshes the graph, and happens automatically in Update(), but sometimes it is useful or necessary to call this manually, note that refresh updates
+	/// only the parts of the graph affected by properties that have changed since a last refresh.
+	/// </summary>
 	public void Refresh() {
 		ResumeCallbacks();
 		PauseCallbacks();
@@ -414,8 +581,8 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 
 	void updateFromResize() {
 		bool resizeChanged = false;
-		updateCacheAndFlag<float>(ref cachedContainerWidth, getSpriteWidth(this.gameObject), ref resizeChanged);
-		updateCacheAndFlag<float>(ref cachedContainerHeight, getSpriteHeight(this.gameObject), ref resizeChanged);
+		WMG_Util.updateCacheAndFlag<float>(ref cachedContainerWidth, getSpriteWidth(this.gameObject), ref resizeChanged);
+		WMG_Util.updateCacheAndFlag<float>(ref cachedContainerHeight, getSpriteHeight(this.gameObject), ref resizeChanged);
 		if (resizeChanged) {
 			resizeC.Changed();
 		}
@@ -572,15 +739,11 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 		changeSpritePositionTo(slicesParent, new Vector3(-offset.x, -offset.y));
 	}
 
-	public Vector2 getPaddingOffset() {
+	Vector2 getPaddingOffset() {
 		Vector2 pivot = getSpritePivot(this.gameObject);
 		float offX = Mathf.RoundToInt(getSpriteWidth(this.gameObject)) * (pivot.x - 0.5f);
 		float offY = Mathf.RoundToInt(getSpriteHeight(this.gameObject)) * (pivot.y - 0.5f);
 		return new Vector2(-leftRightPadding.x * 0.5f + leftRightPadding.y * 0.5f + offX, topBotPadding.x * 0.5f - topBotPadding.y * 0.5f + offY);
-	}
-
-	public List<GameObject> getSlices() {
-		return slices;
 	}
 
 	void UpdateData() {
@@ -775,7 +938,7 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			changeSpriteColor(pieSlice.objectToMask, sliceColor);
 
 			// Update slice labels
-			changeLabelText(pieSlice.objectToLabel, getLabelText(sliceLabel, sliceLabelType, sliceValue, slicePercent, numberDecimalsInPercents));
+			changeLabelText(pieSlice.objectToLabel, WMG_Util.FormatValueLabel(sliceLabel, sliceLabelType, sliceValue, slicePercent, numberDecimalsInPercents));
 			changeLabelFontSize(pieSlice.objectToLabel, sliceLabelFontSize);
 			changeSpriteColor(pieSlice.objectToLabel, sliceLabelColor);
 
@@ -789,7 +952,7 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 
 			// Update legend
 			WMG_Legend_Entry entry = legend.legendEntries[i];
-			changeLabelText(entry.label, getLabelText(sliceLabel, legend.labelType, sliceValue, slicePercent, legend.numDecimals));
+			changeLabelText(entry.label, WMG_Util.FormatValueLabel(sliceLabel, legend.labelType, sliceValue, slicePercent, legend.numDecimals));
 			changeSpriteColor(entry.swatchNode, sliceColor);
 			// Hide legend if 0
 			if (hideZeroValueLegendEntry) {
@@ -805,7 +968,7 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 			}
 
 		}
-		legend.LegendChanged ();
+		legend.updateLegend ();
 
 		updateAutoCenter ();
 
@@ -935,7 +1098,13 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 		pieSprite.texture.Apply();
 	}
 
-
+	/// <summary>
+	/// Given a pie slice (identified by its label string), and floating point amount of space, return a new pie slice position that can be used 
+	/// to animate pie slices outwards during for example a mouse click event.
+	/// </summary>
+	/// <returns>The callout slice position.</returns>
+	/// <param name="label">Label.</param>
+	/// <param name="amt">Amt.</param>
 	public Vector3 getCalloutSlicePosition(string label, float amt) {
 		if (LabelToSliceMap.ContainsKey (label)) {
 			return getPositionFromExplode(LabelToSliceMap[label], amt);
@@ -943,6 +1112,13 @@ public class WMG_Pie_Graph : WMG_Graph_Manager {
 		return Vector3.zero;
 	}
 
+	/// <summary>
+	/// Given a pie slice, and floating point amount of space, return a new pie slice position that can be used 
+	/// to animate pie slices outwards during for example a mouse click event.
+	/// </summary>
+	/// <returns>The position from explode.</returns>
+	/// <param name="slice">Slice.</param>
+	/// <param name="amt">Amt.</param>
 	public Vector3 getPositionFromExplode(WMG_Pie_Graph_Slice slice, float amt) {
 		float angle = Mathf.Deg2Rad * (-slice.slicePercentPosition + 90);
 		return new Vector3(amt * Mathf.Cos(angle), amt * Mathf.Sin(angle), 0);
