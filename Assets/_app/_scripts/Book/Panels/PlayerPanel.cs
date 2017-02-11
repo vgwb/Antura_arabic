@@ -17,7 +17,7 @@ namespace EA4S.PlayerBook
         {
 
             InfoTable.Reset();
-            InfoTable.AddRow("لاعب", AppManager.I.Player.Id.ToString(), "player id");
+            InfoTable.AddRow("لاعب", AppManager.I.Player.Uuid.ToString(), "player UUID");
             InfoTable.AddRow("لاعب", AppManager.I.Player.CurrentJourneyPosition.ToString(), "current LB");
 
             //var str = "";
