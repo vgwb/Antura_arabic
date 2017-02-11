@@ -59,27 +59,13 @@ namespace EA4S.Profile
         {
             AppManager.I.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
             AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
-            ;
-            if (AppManager.I.GameSettings.LastActivePlayerUUID  != string.Empty) {
+
+            if (AppManager.I.GameSettings.LastActivePlayerUUID != string.Empty) {
                 string playerUUID = AppManager.I.GameSettings.LastActivePlayerUUID;
                 SetPlayerAsCurrentByUUID(playerUUID);
             }
         }
 
-        /// <summary>
-        /// Return list of id available for create new player (relate do avatar availble).
-        /// </summary>
-        /// <returns></returns>
-        [System.Obsolete]
-        public List<int> GetListOfUnusedId()
-        {
-            List<int> returnList = new List<int>();
-            for (int i = 1; i < AppConstants.MaxNumberOfPlayerProfiles + 1; i++) {
-                if (AppManager.I.GameSettings.AvailablePlayers[i] == null)
-                    returnList.Add(i);
-            }
-            return returnList;
-        }
 
         /// <summary>
         /// Creates the player profile.
@@ -87,13 +73,17 @@ namespace EA4S.Profile
         /// <param name="age">The age.</param>
         /// <param name="gender">The gender.</param>
         /// <param name="avatarID">The avatar identifier.</param>
-        /// <param name="color">The color.</param>
+        /// <param name="tint">The color.</param>
         /// <returns></returns>
-        public string CreatePlayerProfile(int age, PlayerGender gender, int avatarID, PlayerTint color) {
+        public string CreatePlayerProfile(int age, PlayerGender gender, int avatarID, PlayerTint tint)
+        {
             PlayerProfile returnProfile = new PlayerProfile();
             // Data
             returnProfile.Uuid = System.Guid.NewGuid().ToString();
+            returnProfile.Age = age;
+            returnProfile.Gender = gender;
             returnProfile.AvatarId = avatarID;
+            returnProfile.Tint = tint;
             // DB Creation
             AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
             // Added to list
@@ -109,7 +99,7 @@ namespace EA4S.Profile
             AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
 
             // Call Event Profile creation
-            if(OnNewProfileCreated != null)
+            if (OnNewProfileCreated != null)
                 OnNewProfileCreated();
 
             return returnProfile.Uuid;
@@ -120,7 +110,8 @@ namespace EA4S.Profile
         /// </summary>
         /// <param name="playerUUID">The player UUID.</param>
         /// <returns></returns>
-        public PlayerProfile SetPlayerAsCurrentByUUID(string playerUUID) {
+        public PlayerProfile SetPlayerAsCurrentByUUID(string playerUUID)
+        {
             PlayerProfile returnProfile = GetPlayerProfileByUUID(playerUUID);
             AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile;
             return returnProfile;
@@ -131,7 +122,8 @@ namespace EA4S.Profile
         /// </summary>
         /// <param name="playerUUID">The player UUID.</param>
         /// <returns></returns>
-        public PlayerProfile GetPlayerProfileByUUID(string playerUUID) {
+        public PlayerProfile GetPlayerProfileByUUID(string playerUUID)
+        {
             PlayerProfileData profileFromDB = AppManager.I.DB.LoadDatabaseForPlayer(playerUUID);
             return new PlayerProfile().FromData(profileFromDB);
         }
@@ -141,7 +133,8 @@ namespace EA4S.Profile
         /// </summary>
         /// <param name="playerUUID">The player UUID.</param>
         /// <returns></returns>
-        public PlayerProfile DeletePlayerProfile(string playerUUID) {
+        public PlayerProfile DeletePlayerProfile(string playerUUID)
+        {
             PlayerProfile returnProfile = new PlayerProfile();
             // TODO: check if is necessary to hard delete DB
             PlayerIconData playerIconData = GetSavedPlayers().Find(p => p.Uuid == playerUUID);
@@ -156,7 +149,8 @@ namespace EA4S.Profile
         /// Return the list of existing player profiles.
         /// </summary>
         /// <returns></returns>
-        public List<PlayerIconData> GetSavedPlayers() {
+        public List<PlayerIconData> GetSavedPlayers()
+        {
             return AppManager.I.GameSettings.SavedPlayers;
         }
 

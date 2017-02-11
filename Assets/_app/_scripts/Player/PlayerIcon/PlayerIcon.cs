@@ -20,6 +20,7 @@ namespace EA4S.Profile
         public void Init(PlayerIconData playerIconData)
         {
             uuid = playerIconData.Uuid;
+            //Debug.Log("playerIconData " + uuid + " " + playerIconData.Gender + " " + playerIconData.AvatarId + " " + playerIconData.Tint + " " + playerIconData.IsDemoUser);
             SetAppearance(playerIconData.Gender, playerIconData.AvatarId, playerIconData.Tint, playerIconData.IsDemoUser);
         }
 
