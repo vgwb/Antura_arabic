@@ -8,51 +8,65 @@ public class WMG_Ring : WMG_GUI_Functions {
 	public GameObject label;
 	public GameObject textLine;
 	public GameObject labelText;
+	public GameObject lowerLabelText;
 	public GameObject labelPoint;
 	public GameObject labelBackground;
+	public GameObject lowerLabelBackground;
 	public GameObject line;
+	public GameObject interactibleObj;
 
-	private Sprite ringSprite;
-	private Sprite bandSprite;
-	private WMG_Ring_Graph graph;
-	private int ringTexSize;
-	private int bandTexSize;
+	public WMG_Ring_Graph graph { get; private set; }
+	public int ringIndex { get; private set; }
+
+	public Sprite ringSprite { get; private set; }
+	public Sprite bandSprite { get; private set; }
+	private int texSize;
+
+	float animTimeline;
 
 	public void initialize(WMG_Ring_Graph graph) {
-		ringSprite = WMG_Util.createSprite(getTexture(ring));
-		bandSprite = WMG_Util.createSprite(getTexture(band));
+		this.graph = graph;
+		texSize = graph.textureResolution;
+		ringSprite = WMG_Util.createSprite(texSize, texSize);
+		bandSprite = WMG_Util.createSprite(texSize, texSize);
 		setTexture(ring, ringSprite);
 		setTexture(band, bandSprite);
-		this.graph = graph;
 		changeSpriteParent(label, graph.ringLabelsParent);
+		graph.addRingClickEvent (interactibleObj);
+		graph.addRingMouseEnterEvent (interactibleObj);
+		ringIndex = graph.rings.Count;
 	}
 
-	public void updateRing(int ringNum) {
-		float ringRadius = graph.getRingRadius(ringNum);
+	public void updateRingTexture(int ringNum, float ringFill, float bandFill) {
+		float ringRadius = graph.getRingRadius(graph.pieMode ? 0 : ringNum);
 		// rings
-		graph.textureChanger(ring, ringSprite, (2*ringNum + 1), graph.outerRadius*2, ringRadius - graph.ringWidth, ringRadius, graph.antiAliasing, graph.antiAliasingStrength);
+		graph.textureChanger(ring, ringSprite, (2*ringNum + 1), graph.outerRadius*2, ringRadius - graph.ringWidth, ringRadius, graph.antiAliasing, graph.antiAliasingStrength, ringFill);
 		// bands
 		if (graph.bandMode) {
-			SetActive(band, true);
 			graph.textureChanger(band, bandSprite, (2*ringNum + 1) + 1, graph.outerRadius*2, ringRadius + graph.bandPadding, 
-			                     graph.getRingRadius(ringNum + 1) - graph.ringWidth - graph.bandPadding, graph.antiAliasing, graph.antiAliasingStrength);
+			                     (graph.pieMode ? graph.outerRadius : (graph.getRingRadius(ringNum + 1))) - graph.ringWidth - graph.bandPadding, graph.antiAliasing, graph.antiAliasingStrength, bandFill);
+		}
+	}
+
+	public void animBandFill(int ringNum, float endFill) {
+		if (!graph.bandMode) return;
+		if (!graph.useComputeShader) {
+			WMG_Anim.animFill(band, graph.animDuration, graph.animEaseType, endFill);
 		}
 		else {
-			SetActive(band, false);
+			animTimeline = 0;
+			WMG_Anim.animFloatCallbackU(() => animTimeline, x=> animTimeline = x, graph.animDuration, 1, 
+			                            () => onUpdateAnimateBandFill(ringNum, endFill), graph.animEaseType);
+		}
+		if (graph.pieMode) {
+			WMG_Anim.animFill (interactibleObj, graph.animDuration, graph.animEaseType, endFill);
 		}
 	}
 
-	public void updateRingPoint(int ringNum) {
-		float ringRadius = graph.getRingRadius(ringNum);
-		// label points
-		if (graph.bandMode && graph.ringColor.a == 0) { // center on bands
-			float nextRingRadius = graph.getRingRadius(ringNum+1);
-			changeSpritePositionToY (labelPoint, -(ringRadius + (nextRingRadius - ringRadius) / 2 - graph.RingWidthFactor * graph.ringWidth / 2));
-		} else { // center on rings
-			changeSpritePositionToY (labelPoint, -(ringRadius - graph.RingWidthFactor * graph.ringWidth / 2));
-		}
-		int pointWidthHeight = Mathf.RoundToInt (graph.RingWidthFactor * graph.ringWidth + graph.RingWidthFactor * graph.ringPointWidthFactor);
-		changeSpriteSize (labelPoint, pointWidthHeight, pointWidthHeight);
+	void onUpdateAnimateBandFill(int ringNum, float endFill) {
+		float ringRadius = graph.getRingRadius(graph.pieMode ? 0 : ringNum);
+		float newFill = WMG_Util.RemapFloat(animTimeline, 0, 1, 0, endFill);
+		graph.textureChanger(band, bandSprite, (2*ringNum + 1) + 1, graph.outerRadius*2, ringRadius + graph.bandPadding, 
+		                     (graph.pieMode ? graph.outerRadius : (graph.getRingRadius(ringNum + 1))) - graph.ringWidth - graph.bandPadding, graph.antiAliasing, graph.antiAliasingStrength, newFill);
 	}
-
 }

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Class used for property change tracking management to for example only refresh parts of a graph based on properties that affect only that part of the graph.
+/// </summary>
 public class WMG_Change_Obj {
 
 	public bool changesPaused;

@@ -42,6 +42,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 22424410}
+  - component: {fileID: 22578748}
   m_Layer: 0
   m_Name: ringLabels
   m_TagString: Untagged
@@ -222,6 +223,7 @@ MonoBehaviour:
   - 275
   _labels: []
   _ringIDs: []
+  _hideRings: []
   animateData: 1
   animDuration: 2
   animEaseType: 6
@@ -239,7 +241,12 @@ MonoBehaviour:
   labelLineSprite: {fileID: 21300000, guid: d0f0591a43816e447af99d7cfd535ca2, type: 3}
   botLeftCorners: {fileID: 21300000, guid: d596400697a94d54d8bd00b629663940, type: 3}
   botRightCorners: {fileID: 21300000, guid: ceb490f08dbc3c14b9f383ef6683630b, type: 3}
+  computeShader: {fileID: 7200000, guid: db63b9209b614304b8ead86a9f9de598, type: 3}
+  textureResolution: 512
   _bandMode: 1
+  _pieMode: 0
+  _pieModePaddingDegrees: 0
+  _pieModeDegreeOffset: 0
   _innerRadiusPercentage: 0.1
   _degrees: 90
   _minValue: 0
@@ -250,6 +257,7 @@ MonoBehaviour:
     b: 0.5661765
     a: 1
   _autoUpdateBandAlpha: 1
+  _autoUpdateBandAlphaReverse: 0
   _ringColor:
     r: 1
     g: 1
@@ -258,11 +266,43 @@ MonoBehaviour:
   _ringWidth: 4
   _ringPointWidthFactor: 6
   _bandPadding: -2
+  _hideZeroLabelLine: 0
+  _labelStartCenteredOnBand: 0
+  _labelPointSize: {x: 12, y: 12}
   _labelLinePadding: 20
+  _labelTextOffset: 10
+  _labelLineColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  _labelPointColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  _labelsFontSize: 12
+  _labelsColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  _labelsFontStyle: 0
+  _labelsFont: {fileID: 0}
+  _showDataLabels: 0
+  _dataLabelsFontSize: 12
+  _dataLabelsColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  _dataLabelsFontStyle: 0
+  _dataLabelsFont: {fileID: 0}
   _leftRightPadding: {x: 50, y: 50}
   _topBotPadding: {x: 50, y: 50}
   _antiAliasing: 1
   _antiAliasingStrength: 2
+  _useComputeShader: 0
 --- !u!114 &11472378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -309,7 +349,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 41e8f9821ceaa144c8636d5301d1c0cd, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -511,6 +551,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &22578748
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124410}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -2,15 +2,31 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// Class used for creating a bezier band graph, which is a collection of textures procedurally generated from bezier curves.
+/// </summary>
 public class WMG_Bezier_Band_Graph : WMG_Graph_Manager {
 
 	[SerializeField] private List<float> _values;
+	/// <summary>
+	/// The values associated with each bezier band.
+	/// </summary>
 	public WMG_List<float> values = new WMG_List<float>();
 	[SerializeField] private List<string> _labels;
+	/// <summary>
+	/// The text label for each bezier band.
+	/// </summary>
 	public WMG_List<string> labels = new WMG_List<string>();
 	[SerializeField] private List<Color> _fillColors;
+	/// <summary>
+	/// The color for each bezier band.
+	/// </summary>
 	public WMG_List<Color> fillColors = new WMG_List<Color>();
 
+	/// <summary>
+	/// The color of the lines bordering the bezier bands.
+	/// </summary>
+	/// <value>The color of the band line.</value>
 	public Color bandLineColor { get {return _bandLineColor;} 
 		set {
 			if (_bandLineColor != value) {
@@ -19,6 +35,10 @@ public class WMG_Bezier_Band_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// The starting height of all the bezier bands as a percentage of total height.
+	/// </summary>
+	/// <value>The start height percent.</value>
 	public float startHeightPercent { get {return _startHeightPercent;} 
 		set {
 			if (_startHeightPercent != value) {
@@ -27,6 +47,10 @@ public class WMG_Bezier_Band_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// The amount of spacing between each band.
+	/// </summary>
+	/// <value>The band spacing.</value>
 	public int bandSpacing { get {return _bandSpacing;} 
 		set {
 			if (_bandSpacing != value) {
@@ -35,6 +59,10 @@ public class WMG_Bezier_Band_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// The width of the lines bordering the bezier bands.
+	/// </summary>
+	/// <value>The width of the band line.</value>
 	public int bandLineWidth { get {return _bandLineWidth;} 
 		set {
 			if (_bandLineWidth != value) {
@@ -43,6 +71,10 @@ public class WMG_Bezier_Band_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Bezier point coordinate which controls the overall shape of the graph.
+	/// </summary>
+	/// <value>The cubic bezier p1.</value>
 	public Vector2 cubicBezierP1 { get {return _cubicBezierP1;} 
 		set {
 			if (_cubicBezierP1 != value) {
@@ -51,6 +83,10 @@ public class WMG_Bezier_Band_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Bezier point coordinate which controls the overall shape of the graph.
+	/// </summary>
+	/// <value>The cubic bezier p2.</value>
 	public Vector2 cubicBezierP2 { get {return _cubicBezierP2;} 
 		set {
 			if (_cubicBezierP2 != value) {
@@ -59,6 +95,10 @@ public class WMG_Bezier_Band_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Determines number of decimal used when displaying band text labels.
+	/// </summary>
+	/// <value>The number decimals.</value>
 	public int numDecimals { get {return _numDecimals;} 
 		set {
 			if (_numDecimals != value) {
@@ -67,6 +107,10 @@ public class WMG_Bezier_Band_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// Font size of band text labels.
+	/// </summary>
+	/// <value>The size of the font.</value>
 	public int fontSize { get {return _fontSize;} 
 		set {
 			if (_fontSize != value) {
@@ -75,8 +119,17 @@ public class WMG_Bezier_Band_Graph : WMG_Graph_Manager {
 			}
 		}
 	}
-
+	/// <summary>
+	/// Resolution of the procedurally generated band textures.
+	/// </summary>
+	public int textureResolution = 2048;
+	/// <summary>
+	/// The parent of the bezier bands.
+	/// </summary>
 	public GameObject bandsParent;
+	/// <summary>
+	/// The prefab used to create each bezier band.
+	/// </summary>
 	public Object bandPrefab;
 
 	[SerializeField] private Color _bandLineColor;
@@ -89,7 +142,15 @@ public class WMG_Bezier_Band_Graph : WMG_Graph_Manager {
 	[SerializeField] private int _fontSize;
 
 	// public getter
+	/// <summary>
+	/// Get the bezier bands.
+	/// </summary>
+	/// <value>The bands.</value>
 	public List<WMG_Bezier_Band> bands { get; private set; }
+	/// <summary>
+	/// Get the total value of all the bands.
+	/// </summary>
+	/// <value>The total value.</value>
 	public float TotalVal { get; private set; }
 
 	private List<WMG_Change_Obj> changeObjs = new List<WMG_Change_Obj>();
@@ -107,6 +168,9 @@ public class WMG_Bezier_Band_Graph : WMG_Graph_Manager {
 		AllChanged();
 	}
 
+	/// <summary>
+	/// Initializes the graph, and should always be done before anything else, called automatically in Start(), but it never hurts to call this manually after instantiating a graph prefab.
+	/// </summary>
 	public void Init() {
 		if (hasInit) return;
 		hasInit = true;
@@ -140,7 +204,11 @@ public class WMG_Bezier_Band_Graph : WMG_Graph_Manager {
 	void Update () {
 		Refresh();
 	}
-	
+
+	/// <summary>
+	/// Refreshes the graph, and happens automatically in Update(), but sometimes it is useful or necessary to call this manually, note that refresh updates
+	/// only the parts of the graph affected by properties that have changed since a last refresh.
+	/// </summary>
 	public void Refresh() {
 		ResumeCallbacks();
 		PauseCallbacks();
@@ -183,7 +251,7 @@ public class WMG_Bezier_Band_Graph : WMG_Graph_Manager {
 		UpdateLabels();
 	}
 
-	public void CubicBezierChanged() {
+	void CubicBezierChanged() {
 		UpdateBands();
 	}
 
@@ -254,7 +322,7 @@ public class WMG_Bezier_Band_Graph : WMG_Graph_Manager {
 
 	void UpdateLabels() {
 		for (int i = 0; i < values.Count; i++) {
-			changeLabelText(bands[i].percentLabel, getLabelText("", WMG_Enums.labelTypes.Percents_Only, 0, (bands[i].cumulativePercent - bands[i].prevCumulativePercent), numDecimals));
+			changeLabelText(bands[i].percentLabel, WMG_Util.FormatValueLabel("", WMG_Enums.labelTypes.Percents_Only, 0, (bands[i].cumulativePercent - bands[i].prevCumulativePercent), numDecimals));
 			changeLabelText(bands[i].label, labels[i]);
 		}
 	}
