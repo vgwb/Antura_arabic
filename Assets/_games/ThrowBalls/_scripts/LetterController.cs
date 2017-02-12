@@ -23,6 +23,7 @@ namespace EA4S.Minigames.ThrowBalls
         public const float POPPING_OFFSET = 5f;
         public const float PROP_UP_TIME = 0.2f;
         public const float PROP_UP_DELAY = 0.3f;
+        private const float OBSTRUCTION_TEST_DEPTH = (LetterSpawner.MAX_Z - LetterSpawner.MIN_Z) * 1.25f;
 
         public CratePileController cratePileController;
         public BushController bushController;
@@ -48,7 +49,7 @@ namespace EA4S.Minigames.ThrowBalls
         private bool isStill = false;
 
         private MotionVariation motionVariation;
-        
+
         public GameObject shadow;
 
         [HideInInspector]
@@ -56,7 +57,6 @@ namespace EA4S.Minigames.ThrowBalls
 
         public GameObject victoryRays;
 
-        // Use this for initialization
         void Start()
         {
             letterObjectView = GetComponent<LetterObjectView>();
@@ -134,7 +134,6 @@ namespace EA4S.Minigames.ThrowBalls
             StopAllCoroutines();
         }
 
-        // Update is called once per frame
         void Update()
         {
             Vector3 currentPosition = transform.position;
@@ -176,7 +175,7 @@ namespace EA4S.Minigames.ThrowBalls
         {
             if (collision.gameObject.tag == Constants.TAG_POKEBALL)
             {
-                if (tag == Constants.TAG_CORRECT_LETTER)
+                if (tag == Constants.CORRECT_LETTER_TAG)
                 {
                     GameState.instance.OnCorrectLetterHit(this);
                     ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Poof);
@@ -539,6 +538,21 @@ namespace EA4S.Minigames.ThrowBalls
             {
                 ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
             }
+        }
+
+        public bool IsObstructedByOtherLetter()
+        {
+            Collider[] collidersWithinObstructionTest = Physics.OverlapBox(new Vector3(transform.position.x, transform.position.y, transform.position.z - OBSTRUCTION_TEST_DEPTH / 2), new Vector3(10f, 10f, OBSTRUCTION_TEST_DEPTH / 2));
+
+            foreach (Collider collider in collidersWithinObstructionTest)
+            {
+                if (collider.gameObject.tag == Constants.WRONG_LETTER_TAG && collider.gameObject != gameObject && collider.transform.position.z < transform.position.z)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

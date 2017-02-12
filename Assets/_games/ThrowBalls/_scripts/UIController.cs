@@ -30,9 +30,19 @@ namespace EA4S.Minigames.ThrowBalls
             crackImageColor = crackImage.color;
         }
 
-        public void SetLetterHint(ILivingLetterData _data)
+        public void SetText(ILivingLetterData _data)
         {
             wordFlexibleContainer.SetText(_data);
+        }
+
+        public void SetText(string text)
+        {
+            wordFlexibleContainer.Label.SetText(text);
+        }
+
+        public void WobbleLetterHint()
+        {
+            wordFlexibleContainer.gameObject.transform.DOShakeScale(0.5f);
         }
 
         public void Disable()

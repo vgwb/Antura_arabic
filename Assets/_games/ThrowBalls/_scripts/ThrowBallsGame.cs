@@ -9,6 +9,19 @@ namespace EA4S.Minigames.ThrowBalls
 
         public static ThrowBallsGame instance;
 
+        public enum ThrowBallsDifficulty
+        {
+            VeryEasy, Easy, Normal, Hard, VeryHard
+        }
+        private ThrowBallsDifficulty _difficulty;
+        public ThrowBallsDifficulty Difficulty
+        {
+            get
+            {
+                return _difficulty;
+            }
+        }
+
         public GameObject ball;
         public BallController ballController;
 
@@ -17,12 +30,14 @@ namespace EA4S.Minigames.ThrowBalls
         public GameObject poofPrefab;
 
         public GameObject environment;
-        
+
         protected override void OnInitialize(IGameContext context)
         {
             instance = this;
-            
+
             GameState = new GameState(this);
+
+            SetDifficulty();
         }
 
         protected override IGameConfiguration GetConfiguration()
@@ -33,6 +48,36 @@ namespace EA4S.Minigames.ThrowBalls
         protected override IState GetInitialState()
         {
             return GameState;
+        }
+
+        private void SetDifficulty()
+        {
+            float difficultyAsAFloat = ThrowBallsConfiguration.Instance.Difficulty;
+
+            if (difficultyAsAFloat < 0.2f)
+            {
+                _difficulty = ThrowBallsDifficulty.VeryEasy;
+            }
+
+            else if (difficultyAsAFloat < 0.4f)
+            {
+                _difficulty = ThrowBallsDifficulty.Easy;
+            }
+
+            else if (difficultyAsAFloat < 0.6f)
+            {
+                _difficulty = ThrowBallsDifficulty.Normal;
+            }
+
+            else if (difficultyAsAFloat < 0.8f)
+            {
+                _difficulty = ThrowBallsDifficulty.Hard;
+            }
+
+            else
+            {
+                _difficulty = ThrowBallsDifficulty.VeryHard;
+            }
         }
     }
 }

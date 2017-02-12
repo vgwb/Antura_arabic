@@ -6,14 +6,14 @@ namespace EA4S.Minigames.ThrowBalls
     {
         public static LetterSpawner instance;
 
-        private const float MIN_X = -17f;
-        private const float MAX_X = 17f;
+        public const float MIN_X = -17f;
+        public const float MAX_X = 17f;
 
-        private const float MIN_Y = 0.51f;
-        private const float MAX_Y = 0.51f;
+        public const float MIN_Y = 0.51f;
+        public const float MAX_Y = 0.51f;
 
-        private const float MIN_Z = -8.25f;
-        private const float MAX_Z = 13.25f;
+        public const float MIN_Z = -8.25f;
+        public const float MAX_Z = 13.25f;
 
         private const float MIN_DISTANCE_SQUARED = 450f;
 
