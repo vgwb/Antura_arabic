@@ -239,7 +239,8 @@ namespace EA4S.Minigames.ThrowBalls
             BallController.instance.Enable();
 
             UIController.instance.Enable();
-            UIController.instance.SetText(question);
+            UIController.instance.EnableLetterHint();
+            UIController.instance.SetLivingLetterData(question);
 
             if (IsTutorialLevel())
             {
@@ -289,16 +290,16 @@ namespace EA4S.Minigames.ThrowBalls
                 MinigamesUI.Init(MinigamesUIElement.Lives | MinigamesUIElement.Starbar);
                 MinigamesUI.Lives.Setup(MAX_NUM_BALLS);
             }
-
-            UIController.instance.Enable();
-
+            
             //question = newQuestionPack.GetQuestion();
             question = new LL_WordData("number_04");
-            UIController.instance.SetText(question);
-
             SayQuestion();
 
             yield return new WaitForSeconds(1f);
+
+            UIController.instance.Enable();
+            UIController.instance.EnableLetterHint();
+            UIController.instance.SetLivingLetterData(question);
 
             for (int i = 0; i < currentLettersForLettersInWord.Count; i++)
             {
@@ -533,6 +534,7 @@ namespace EA4S.Minigames.ThrowBalls
 
                 game.StartCoroutine(ShowWinSequence(correctLetterCntrl));
                 BallController.instance.Disable();
+                UIController.instance.DisableLetterHint();
 
                 isRoundOngoing = false;
 
@@ -545,6 +547,7 @@ namespace EA4S.Minigames.ThrowBalls
             if (isRoundOngoing)
             {
                 BallController.instance.Disable();
+                UIController.instance.DisableLetterHint();
                 isRoundOngoing = false;
                 DisableLetters(true);
 
