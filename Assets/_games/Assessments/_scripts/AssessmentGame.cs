@@ -60,6 +60,12 @@ namespace EA4S.Assessment
 
                 case AssessmentCode.OrderLettersOfWord:
                     return ArabicAssessmentsFactory.CreateOrderLettersInWordAssessment( context);
+
+                case AssessmentCode.CompleteWord_Form:
+                    return ArabicAssessmentsFactory.CreateCompleteWord_FormAssessment( context);
+
+                case AssessmentCode.MatchLettersToWord_Form:
+                    return ArabicAssessmentsFactory.CreateMatchLettersToWord_FormAssessment( context);
             }
 
             return null;

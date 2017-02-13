@@ -37,16 +37,68 @@ namespace EA4S.Assessment
             Random
         }
 
-        public static Assessment CreateCompleteWord_ShapeAssessment( AssessmentContext context)
+        public static Assessment CreateCompleteWord_FormAssessment( AssessmentContext context)
         {
+            //TODO: Maybe need a different description?
+            context.GameDescription = Database.LocalizationDataId.Assessment_Match_Letters_Words;
+            AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the complete word
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
+            AssessmentOptions.Instance.ShowQuestionAsImage = false;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = true;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
-            return null;
+            Init( context);
+            placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Word);
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Letter);
+            AssessmentOptions.Instance.CompleteWordOnAnswered = true;
+
+            CreateManagers( context,
+                            DragManagerType.Default,
+                            LogicInjectorType.Default,
+                            AnswerPlacerType.Random
+                            );
+
+            context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
+                                                                        context.DialogueManager,
+                                                                        context.Events,
+                                                                        DefaultQuestionType.MissingForm);
+
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
+
+            return CreateAssessment( context);
         }
 
-        public static Assessment CreateMatchLettersToWord_ShapeAssessment( AssessmentContext context)
+        public static Assessment CreateMatchLettersToWord_FormAssessment( AssessmentContext context)
         {
+            //TODO: Maybe need a different description?
+            context.GameDescription = Database.LocalizationDataId.Assessment_Match_Letters_Words;
+            AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
+            AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
+            AssessmentOptions.Instance.ShowQuestionAsImage = false;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = false;
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
+            AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
-            return null;
+            Init( context);
+            placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Word);
+            placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Letter);
+            CreateManagers( context,
+                            DragManagerType.Default,
+                            LogicInjectorType.Default,
+                            AnswerPlacerType.Random
+                            );
+
+            context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
+                                                                        context.DialogueManager,
+                                                                        context.Events,
+                                                                        DefaultQuestionType.VisibleForm);
+
+            context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
+
+            return CreateAssessment( context);
         }
 
         public static Assessment CreateMatchWordToImageAssessment( AssessmentContext context)
