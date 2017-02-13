@@ -147,6 +147,7 @@ namespace EA4S.Minigames.HideAndSeek
                 LockLetters(true);
                 StartCoroutine(DelayAnimation());
                 script.PlayResultAnimation(true);
+                script.GetComponent<EmoticonsAnimator>().DoCorrect();
                 game.OnResult(GetCorrectAnswer(), true);
                 buttonRepeater.SetActive(false);
                 AudioManager.I.PlaySound(Sfx.Win);
@@ -156,6 +157,7 @@ namespace EA4S.Minigames.HideAndSeek
                 game.OnResult(GetCorrectAnswer(), false);
                 RemoveLife();
                 script.PlayResultAnimation(false);
+                script.GetComponent<EmoticonsAnimator>().DoWrong();
                 if (lifes == 0)
                 {
                     LockTrees();
