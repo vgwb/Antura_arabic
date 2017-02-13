@@ -263,7 +263,7 @@ namespace EA4S.Map
                 }
                 else
                 {
-                    moveRightButton.SetActive(false);
+                    StartCoroutine("DesactivateButtonWithDelay", moveRightButton);
                     moveLeftButton.SetActive(true);
                 }
 
@@ -271,13 +271,18 @@ namespace EA4S.Map
             else if (stageScript.positionPin == stageScript.positionPinMax)
             {
                 moveRightButton.SetActive(true);
-                moveLeftButton.SetActive(false);
+                StartCoroutine("DesactivateButtonWithDelay", moveLeftButton);
             }
             else
             {
                 moveRightButton.SetActive(true);
                 moveLeftButton.SetActive(true);
             }
+        }
+        IEnumerator DesactivateButtonWithDelay(GameObject button)
+        {
+            yield return new WaitForSeconds(0.1f);
+            button.SetActive(false);
         }
     }
 }

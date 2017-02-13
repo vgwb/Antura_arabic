@@ -64,5 +64,6 @@ public class WMG_Bezier_Band_Graph_E : WMG_E_Util
 	void DrawMisc() {
 		graph.bandsParent = (GameObject)EditorGUILayout.ObjectField("Bands Parent", graph.bandsParent, typeof(GameObject), true);
 		graph.bandPrefab = EditorGUILayout.ObjectField("Band Prefab", graph.bandPrefab, typeof(Object), false);
+		graph.textureResolution = EditorGUILayout.IntField ("Texture Resolution", graph.textureResolution);
 	}
 }

@@ -13,18 +13,16 @@ namespace EA4S.Database
         [PrimaryKey]
         public int Id { get; set; }
         public string Version { get; set; }
-        public int PlayerId { get; set; }
         public int CreationTimestamp { get; set; }
 
         public DatabaseInfoData()
         {
         }
 
-        public DatabaseInfoData(string _Version, int _PlayerId)
+        public DatabaseInfoData(string _Version)
         {
             this.Id = 1;  // Only one record
             this.Version = _Version;
-            this.PlayerId = _PlayerId;
             this.CreationTimestamp = GenericHelper.GetTimestampForNow();
         }
 
@@ -35,10 +33,9 @@ namespace EA4S.Database
 
         public override string ToString()
         {
-            return string.Format("ID{0},V{1},P{2},Ts{3}",
+            return string.Format("ID{0},V{1},Ts{3}",
                 Id,
                 Version,
-                PlayerId,
                 CreationTimestamp
             );
         }

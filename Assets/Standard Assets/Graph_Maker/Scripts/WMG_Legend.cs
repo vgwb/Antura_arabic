@@ -2,11 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// The legend used for pie graphs and axis graphs.
+/// </summary>
 public class WMG_Legend : WMG_GUI_Functions {
 
 	public enum legendTypes {Bottom, Right};
 
-	// public properties
+	/// <summary>
+	/// Controls whether the legend is displayed.
+	/// </summary>
+	/// <value><c>true</c> if hide legend; otherwise, <c>false</c>.</value>
 	public bool hideLegend { get {return _hideLegend;} 
 		set {
 			if (_hideLegend != value) {
@@ -16,6 +22,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Controls whether the legend is displayed along top / bottom or right / left.
+	/// </summary>
+	/// <value>The type of the legend.</value>
 	public legendTypes legendType { get {return _legendType;} 
 		set {
 			if (_legendType != value) {
@@ -25,6 +35,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Controls how the labels appear for the legend entries.
+	/// </summary>
+	/// <value>The type of the label.</value>
 	public WMG_Enums.labelTypes labelType { get {return _labelType;} 
 		set {
 			if (_labelType != value) {
@@ -34,6 +48,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Controls whether the legend background sprite appears.
+	/// </summary>
+	/// <value><c>true</c> if show background; otherwise, <c>false</c>.</value>
 	public bool showBackground { get {return _showBackground;} 
 		set {
 			if (_showBackground != value) {
@@ -42,6 +60,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Moves legend to the other side, so from bot to top, or right to left.
+	/// </summary>
+	/// <value><c>true</c> if opposite side legend; otherwise, <c>false</c>.</value>
 	public bool oppositeSideLegend { get {return _oppositeSideLegend;} 
 		set {
 			if (_oppositeSideLegend != value) {
@@ -51,6 +73,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Controls how far the legend is positionally offset from the graph.
+	/// </summary>
+	/// <value>The offset.</value>
 	public float offset { get {return _offset;} 
 		set {
 			if (_offset != value) {
@@ -60,6 +86,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// The width of each legend entry, can be set automatically if #setWidthFromLabels = true.
+	/// </summary>
+	/// <value>The width of the legend entry.</value>
 	public float legendEntryWidth { get {return _legendEntryWidth;} 
 		set {
 			if (_legendEntryWidth != value) {
@@ -69,6 +99,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Automatically update #legendEntryWidth based on the width of legend entry labels.
+	/// </summary>
+	/// <value><c>true</c> if set width from labels; otherwise, <c>false</c>.</value>
 	public bool setWidthFromLabels { get {return _setWidthFromLabels;} 
 		set {
 			if (_setWidthFromLabels != value) {
@@ -77,6 +111,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// The height of legend entries.
+	/// </summary>
+	/// <value>The height of the legend entry.</value>
 	public float legendEntryHeight { get {return _legendEntryHeight;} 
 		set {
 			if (_legendEntryHeight != value) {
@@ -86,15 +124,24 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Controls how many rows will appear for horizontal legends, and how many columns will appear for vertical legends. 
+	/// If the number of series does not divide evenly into the number of rows / columns, then the first row(s) / column(s) will have the extras. 
+	/// For example, for a horizontal legend, if there are 10 series, and this is set to 4, then the first 2 rows will have 3, and the second 2 rows will have 2. 
+	/// </summary>
+	/// <value>The number rows or columns.</value>
 	public int numRowsOrColumns { get {return _numRowsOrColumns;} 
 		set {
 			if (_numRowsOrColumns != value) {
 				_numRowsOrColumns = value;
-//				setGraphCallback();
 				legendC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// The number of decimals used to display in text values for legend entries, used in pie graphs.
+	/// </summary>
+	/// <value>The number decimals.</value>
 	public int numDecimals { get {return _numDecimals;} 
 		set {
 			if (_numDecimals != value) {
@@ -104,6 +151,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// For line series, this is length of each of the lines appearing on the sides of the point in the legend entry.
+	/// </summary>
+	/// <value>The legend entry link spacing.</value>
 	public float legendEntryLinkSpacing { get {return _legendEntryLinkSpacing;} 
 		set {
 			if (_legendEntryLinkSpacing != value) {
@@ -112,6 +163,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// The font size of legend entry text objects.
+	/// </summary>
+	/// <value>The size of the legend entry font.</value>
 	public int legendEntryFontSize { get {return _legendEntryFontSize;} 
 		set {
 			if (_legendEntryFontSize != value) {
@@ -121,6 +176,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Controls the spacing between the swatch and the text for the legend entries.
+	/// </summary>
+	/// <value>The legend entry spacing.</value>
 	public float legendEntrySpacing { get {return _legendEntrySpacing;} 
 		set {
 			if (_legendEntrySpacing != value) {
@@ -130,6 +189,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Controls the size of the colored swatches for pie graph legends.
+	/// </summary>
+	/// <value>The size of the pie swatch.</value>
 	public float pieSwatchSize { get {return _pieSwatchSize;} 
 		set {
 			if (_pieSwatchSize != value) {
@@ -139,6 +202,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// The amount of space padded between the legend entries and the legend background.
+	/// </summary>
+	/// <value>The background padding.</value>
 	public float backgroundPadding { get {return _backgroundPadding;} 
 		set {
 			if (_backgroundPadding != value) {
@@ -148,6 +215,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Automatically updates #numRowsOrColumns to best fit the graph's width / height.
+	/// </summary>
+	/// <value><c>true</c> if autofit enabled; otherwise, <c>false</c>.</value>
 	public bool autofitEnabled { get {return _autofitEnabled;} 
 		set {
 			if (_autofitEnabled != value) {
@@ -157,6 +228,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the color of the labels in the legend entries.
+	/// </summary>
+	/// <value>The color of the label.</value>
 	public Color labelColor { get {return _labelColor;} 
 		set {
 			if (_labelColor != value) {
@@ -165,6 +240,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the legend entry font style.
+	/// </summary>
+	/// <value>The legend entry font style.</value>
 	public FontStyle legendEntryFontStyle { get {return _legendEntryFontStyle;} 
 		set {
 			if (_legendEntryFontStyle != value) {
@@ -173,6 +252,10 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the legend entry font.
+	/// </summary>
+	/// <value>The legend entry font.</value>
 	public Font legendEntryFont { get {return _legendEntryFont;} 
 		set {
 			if (_legendEntryFont != value) {
@@ -181,11 +264,26 @@ public class WMG_Legend : WMG_GUI_Functions {
 			}
 		}
 	}
-	
+
+	/// <summary>
+	/// Reference to the graph of this legend.
+	/// </summary>
 	public WMG_Graph_Manager theGraph;
+	/// <summary>
+	/// The background.
+	/// </summary>
 	public GameObject background;
+	/// <summary>
+	/// The entries parent.
+	/// </summary>
 	public GameObject entriesParent;
+	/// <summary>
+	/// An empty node prefab used to connect lines to nodes in line series legend entries.
+	/// </summary>
 	public Object emptyPrefab;
+	/// <summary>
+	/// The legend entries.
+	/// </summary>
 	public List<WMG_Legend_Entry> legendEntries;
 
 	private WMG_Pie_Graph pieGraph;
@@ -214,20 +312,32 @@ public class WMG_Legend : WMG_GUI_Functions {
 	[SerializeField] private Font _legendEntryFont; 
 
 	// Useful property getters
+	/// <summary>
+	/// Gets the total width of the legend.
+	/// </summary>
+	/// <value>The width of the legend.</value>
 	public int LegendWidth { 
 		get {
 			return Mathf.RoundToInt(2*backgroundPadding + legendEntryLinkSpacing + legendEntryWidth * 
 			                        (legendType == legendTypes.Right ? numRowsOrColumns : MaxInRowOrColumn));
 		}
 	}
-	
+
+	/// <summary>
+	/// Gets the total height of the legend.
+	/// </summary>
+	/// <value>The height of the legend.</value>
 	public int LegendHeight { 
 		get {
 			return Mathf.RoundToInt(2*backgroundPadding + legendEntryHeight * 
 			                        (legendType == legendTypes.Bottom ? numRowsOrColumns : MaxInRowOrColumn));
 		}
 	}
-	
+
+	/// <summary>
+	/// Gets the number entries in the legend.
+	/// </summary>
+	/// <value>The number entries.</value>
 	public int NumEntries {
 		get {
 			int numEntries = legendEntries.Count;
@@ -237,7 +347,11 @@ public class WMG_Legend : WMG_GUI_Functions {
 			return numEntries;
 		}
 	}
-	
+
+	/// <summary>
+	/// Gets the maximum number of legend entries in row or column.
+	/// </summary>
+	/// <value>The max in row or column.</value>
 	public int MaxInRowOrColumn {
 		get {
 			return Mathf.CeilToInt(1f * NumEntries / numRowsOrColumns);
@@ -260,6 +374,9 @@ public class WMG_Legend : WMG_GUI_Functions {
 	private List<WMG_Change_Obj> changeObjs = new List<WMG_Change_Obj>();
 	public WMG_Change_Obj legendC = new WMG_Change_Obj();
 
+	/// <summary>
+	/// Initializes the legend, done during graph initialization.
+	/// </summary>
 	public void Init() {
 		if (hasInit) return;
 		hasInit = true;
@@ -276,13 +393,19 @@ public class WMG_Legend : WMG_GUI_Functions {
 		PauseCallbacks();
 	}
 
+	/// <summary>
+	/// Used during Graph refresh process, should not be called outside of Graph Maker code.
+	/// </summary>
 	public void PauseCallbacks() {
 		for (int i = 0; i < changeObjs.Count; i++) {
 			changeObjs[i].changesPaused = true;
 			changeObjs[i].changePaused = false;
 		}
 	}
-	
+
+	/// <summary>
+	/// Used during Graph refresh process, should not be called outside of Graph Maker code.
+	/// </summary>
 	public void ResumeCallbacks() {
 		for (int i = 0; i < changeObjs.Count; i++) {
 			changeObjs[i].changesPaused = false;
@@ -290,7 +413,7 @@ public class WMG_Legend : WMG_GUI_Functions {
 		}
 	}
 
-	public void LegendChanged() {
+	void LegendChanged() {
 		updateLegend();
 	}
 
@@ -298,8 +421,15 @@ public class WMG_Legend : WMG_GUI_Functions {
 		if (pieGraph != null) {
 			pieGraph.graphC.Changed();
 		}
+		if (axisGraph != null) {
+			axisGraph.graphC.Changed();
+			axisGraph.autoPaddingC.Changed();
+		}
 	}
-	
+
+	/// <summary>
+	/// Sets original property values, used for resizing purposes, called during initialization.
+	/// </summary>
 	public void setOriginalPropertyValues() {
 		origLegendEntryWidth = legendEntryWidth;
 		origLegendEntryHeight = legendEntryHeight;
@@ -311,7 +441,11 @@ public class WMG_Legend : WMG_GUI_Functions {
 		origBackgroundPadding = backgroundPadding;
 	}
 
-	// Used for pie graphs
+	/// <summary>
+	/// Creates a legend entry, used in pie graphs.
+	/// </summary>
+	/// <returns>The legend entry.</returns>
+	/// <param name="prefab">Prefab.</param>
 	public WMG_Legend_Entry createLegendEntry(Object prefab) {
 		GameObject obj = Instantiate(prefab) as GameObject;
 		theGraph.changeSpriteParent(obj, entriesParent);
@@ -321,7 +455,13 @@ public class WMG_Legend : WMG_GUI_Functions {
 		return entry;
 	}
 
-	// Used for other graphs
+	/// <summary>
+	/// Creates a legend entry, used in axis graphs.
+	/// </summary>
+	/// <returns>The legend entry.</returns>
+	/// <param name="prefab">Prefab.</param>
+	/// <param name="series">Series.</param>
+	/// <param name="index">Index.</param>
 	public WMG_Legend_Entry createLegendEntry(Object prefab, WMG_Series series, int index) {
 		GameObject obj = Instantiate(prefab) as GameObject;
 		theGraph.changeSpriteParent(obj, entriesParent);
@@ -330,7 +470,6 @@ public class WMG_Legend : WMG_GUI_Functions {
 		entry.legend = this;
 		entry.nodeLeft = theGraph.CreateNode(emptyPrefab, obj);
 		entry.nodeRight = theGraph.CreateNode(emptyPrefab, obj);
-//		_legendEntrySpacing = theGraph.getSpritePositionX(entry.label);
 		legendEntries.Insert(index, entry);
 		return entry;
 	}
@@ -361,6 +500,9 @@ public class WMG_Legend : WMG_GUI_Functions {
 		return maxLabelWidth;
 	}
 
+	/// <summary>
+	/// Refreshes the legend.
+	/// </summary>
 	public void updateLegend() {
 		if (backgroundEnabled() && !theGraph.activeInHierarchy(background)) theGraph.SetActive(background,true);
 		if (!backgroundEnabled() && theGraph.activeInHierarchy(background)) theGraph.SetActive(background,false);

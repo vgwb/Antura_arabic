@@ -2,15 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// Class used for creating radar graphs.
+/// </summary>
 public class WMG_Radar_Graph : WMG_Axis_Graph {
 
 	[SerializeField] private List<Color> _dataSeriesColors;
+	/// <summary>
+	/// Colors of the series.
+	/// </summary>
 	public WMG_List<Color> dataSeriesColors = new WMG_List<Color>();
 	[SerializeField] private List<string> _labelStrings;
+	/// <summary>
+	/// Labels for each point of the radar grid.
+	/// </summary>
 	public WMG_List<string> labelStrings = new WMG_List<string>();
-
-	public bool randomData; // sets random data for demonstration purposes, set this to false to use your own data
-
+	/// <summary>
+	/// Sets random data for demonstration purposes, should be set to false and set your own data.
+	/// </summary>
+	public bool randomData;
+	/// <summary>
+	/// Controls how many points or edges there are for the radar graph, so setting 5 here will make all the grids be pentagons.
+	/// </summary>
+	/// <value>The number points.</value>
 	public int numPoints { get {return _numPoints;} 
 		set {
 			if (_numPoints != value) {
@@ -19,6 +33,10 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 			}
 		}
 	}
+	/// <summary>
+	/// This can be used for moving around the radar graph without moving the graph as a whole.
+	/// </summary>
+	/// <value>The offset.</value>
 	public Vector2 offset { get {return _offset;} 
 		set {
 			if (_offset != value) {
@@ -27,6 +45,10 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 			}
 		}
 	}
+	/// <summary>
+	/// This allows rotating the content of the radar graph.
+	/// </summary>
+	/// <value>The degree offset.</value>
 	public float degreeOffset { get {return _degreeOffset;} 
 		set {
 			if (_degreeOffset != value) {
@@ -35,6 +57,10 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 			}
 		}
 	}
+	/// <summary>
+	/// Defines the minimum value of the radar graph.
+	/// </summary>
+	/// <value>The radar minimum value.</value>
 	public float radarMinVal { get {return _radarMinVal;} 
 		set {
 			if (_radarMinVal != value) {
@@ -43,6 +69,10 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 			}
 		}
 	}
+	/// <summary>
+	/// Defines the maximum value of the radar graph, which determines what value represents the outer radius of the radar grids.
+	/// </summary>
+	/// <value>The radar max value.</value>
 	public float radarMaxVal { get {return _radarMaxVal;} 
 		set {
 			if (_radarMaxVal != value) {
@@ -51,6 +81,10 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 			}
 		}
 	}
+	/// <summary>
+	/// The number of grids that appear in the background for this radar graph.
+	/// </summary>
+	/// <value>The number grids.</value>
 	public int numGrids { get {return _numGrids;} 
 		set {
 			if (_numGrids != value) {
@@ -59,6 +93,10 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 			}
 		}
 	}
+	/// <summary>
+	/// The line width of the radar grids.
+	/// </summary>
+	/// <value>The width of the grid line.</value>
 	public float gridLineWidth { get {return _gridLineWidth;} 
 		set {
 			if (_gridLineWidth != value) {
@@ -67,6 +105,10 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 			}
 		}
 	}
+	/// <summary>
+	/// The color of the radar grids.
+	/// </summary>
+	/// <value>The color of the grid.</value>
 	public Color gridColor { get {return _gridColor;} 
 		set {
 			if (_gridColor != value) {
@@ -75,6 +117,10 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 			}
 		}
 	}
+	/// <summary>
+	/// The number of data series.
+	/// </summary>
+	/// <value>The number data series.</value>
 	public int numDataSeries { get {return _numDataSeries;} 
 		set {
 			if (_numDataSeries != value) {
@@ -83,6 +129,10 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 			}
 		}
 	}
+	/// <summary>
+	/// The line width of the data series.
+	/// </summary>
+	/// <value>The width of the data series line.</value>
 	public float dataSeriesLineWidth { get {return _dataSeriesLineWidth;} 
 		set {
 			if (_dataSeriesLineWidth != value) {
@@ -91,6 +141,10 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 			}
 		}
 	}
+	/// <summary>
+	/// The color of the text labels.
+	/// </summary>
+	/// <value>The color of the labels.</value>
 	public Color labelsColor { get {return _labelsColor;} 
 		set {
 			if (_labelsColor != value) {
@@ -99,6 +153,10 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 			}
 		}
 	}
+	/// <summary>
+	/// Positional offset of the labels.
+	/// </summary>
+	/// <value>The labels offset.</value>
 	public float labelsOffset { get {return _labelsOffset;} 
 		set {
 			if (_labelsOffset != value) {
@@ -107,6 +165,10 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 			}
 		}
 	}
+	/// <summary>
+	/// Font size of the labels.
+	/// </summary>
+	/// <value>The size of the font.</value>
 	public int fontSize { get {return _fontSize;} 
 		set {
 			if (_fontSize != value) {
@@ -115,6 +177,10 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 			}
 		}
 	}
+	/// <summary>
+	/// Whether to hide the labels.
+	/// </summary>
+	/// <value><c>true</c> if hide labels; otherwise, <c>false</c>.</value>
 	public bool hideLabels { get {return _hideLabels;} 
 		set {
 			if (_hideLabels != value) {
@@ -140,8 +206,17 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 	[SerializeField] private int _fontSize;
 	[SerializeField] private bool _hideLabels;
 
+	/// <summary>
+	/// Reference to the radar grids.
+	/// </summary>
 	public List<WMG_Series> grids;
+	/// <summary>
+	/// Reference to the radar data series.
+	/// </summary>
 	public List<WMG_Series> dataSeries;
+	/// <summary>
+	/// The radar labels.
+	/// </summary>
 	public WMG_Series radarLabels;
 
 	private bool createdLabels;
@@ -160,6 +235,10 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 		radarGraphC.Changed();
 	}
 
+	/// <summary>
+	/// Initializes the graph, and should always be done before anything else, called automatically in Start(), but it
+	/// never hurts to call this manually after instantiating a graph prefab.
+	/// </summary>
 	public new void Init() {
 		if (hasInit2) return;
 		hasInit2 = true;
@@ -187,6 +266,10 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 		Refresh();
 	}
 
+	/// <summary>
+	/// Refreshes the graph, and happens automatically in Update(), but sometimes it is useful or necessary to call this
+	/// manually, note that refresh updates only the parts of the graph affected by properties that have changed since a last refresh.
+	/// </summary>
 	public new void Refresh() {
 		ResumeCallbacks();
 		PauseCallbacks();
@@ -255,7 +338,7 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 		}
 
 		radarLabels.hidePoints = hideLabels;
-		radarLabels.pointValues.SetList(GenCircular2(numPoints, offset.x, offset.y, labelsOffset + (radarMaxVal - radarMinVal), degreeOffset));
+		radarLabels.pointValues.SetList(WMG_Util.GenCircular(numPoints, offset.x, offset.y, labelsOffset + (radarMaxVal - radarMinVal), degreeOffset));
 		List<GameObject> labelGOs = radarLabels.getPoints();
 		for (int i = 0; i < labelGOs.Count; i++) {
 			if (i >= numPoints) break;
@@ -291,7 +374,7 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 		for (int i = 0; i < numDataSeries; i++) {
 			WMG_Series aSeries = lineSeries[i + numGrids].GetComponent<WMG_Series>();
 			if (randomData) {
-				aSeries.pointValues.SetList(GenRadar(GenRandomList(numPoints, radarMinVal, radarMaxVal), offset.x, offset.y, degreeOffset));
+				aSeries.pointValues.SetList(WMG_Util.GenRadar(WMG_Util.GenRandomList(numPoints, radarMinVal, radarMaxVal), offset.x, offset.y, degreeOffset));
 			}
 			aSeries.lineScale = dataSeriesLineWidth;
 			aSeries.linePadding = dataSeriesLineWidth;
@@ -316,7 +399,7 @@ public class WMG_Radar_Graph : WMG_Axis_Graph {
 		}
 		for (int i = 0; i < numGrids; i++) {
 			WMG_Series aGrid = lineSeries[i].GetComponent<WMG_Series>();
-			aGrid.pointValues.SetList(GenCircular2(numPoints, offset.x, offset.y, (i+1f) / numGrids * (radarMaxVal - radarMinVal), degreeOffset));
+			aGrid.pointValues.SetList(WMG_Util.GenCircular(numPoints, offset.x, offset.y, (i+1f) / numGrids * (radarMaxVal - radarMinVal), degreeOffset));
 			aGrid.lineScale = gridLineWidth;
 			aGrid.linePadding = gridLineWidth;
 			aGrid.lineColor = gridColor;

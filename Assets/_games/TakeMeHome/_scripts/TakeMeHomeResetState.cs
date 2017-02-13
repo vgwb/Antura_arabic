@@ -38,6 +38,7 @@ namespace EA4S.Minigames.TakeMeHome
                 TutorialUI.MarkNo(markPosition, TutorialUI.MarkSize.Big);
             }
 
+            game.Context.GetLogManager().OnAnswered(game.currentLetter.letter.Data, win);
 			game.currentLetter.followTube (win);
 		}
 

@@ -447,6 +447,8 @@ namespace EA4S.Minigames.MakeFriends
                 if (!isTutorialRound)
                 {
                     CurrentScore++;
+                    Context.GetLogManager().OnAnswered(wordData1, true);
+                    Context.GetLogManager().OnAnswered(wordData2, true);
                 }
 
                 // Exit
@@ -481,6 +483,9 @@ namespace EA4S.Minigames.MakeFriends
             else
             {
                 Debug.Log("Lose");
+
+                Context.GetLogManager().OnAnswered(wordData1, false);
+                Context.GetLogManager().OnAnswered(wordData2, false);
 
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Lose);
                 yield return new WaitForSeconds(loseDelay);

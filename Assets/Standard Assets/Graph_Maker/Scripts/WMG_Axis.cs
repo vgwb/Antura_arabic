@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// The axis used in WMG_Axis_Chart for X / Y  axes, as well as secondary Y axis in Dual Y axis charts.
+/// </summary>
 public class WMG_Axis : WMG_GUI_Functions {
 
 	public WMG_Axis_Graph graph;
@@ -11,24 +14,39 @@ public class WMG_Axis : WMG_GUI_Functions {
 	[SerializeField] private List<string> _axisLabels;
 	public WMG_List<string> axisLabels = new WMG_List<string>();
 
+	/// <summary>
+	/// Determines where each point / bar in a series gets positioned.
+	/// </summary>
+	/// <value>The axis minimum value.</value>
 	public float AxisMinValue { get {return _AxisMinValue;} 
 		set {
 			if (_AxisMinValue != value) {
 				_AxisMinValue = value;
 				graphC.Changed();
 				seriesC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Determines where each point / bar in a series gets positioned.
+	/// </summary>
+	/// <value>The axis minimum value.</value>
 	public float AxisMaxValue { get {return _AxisMaxValue;} 
 		set {
 			if (_AxisMaxValue != value) {
 				_AxisMaxValue = value;
 				graphC.Changed();
 				seriesC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// This determines the number of ticks that appear on each axis. Each tick can also be associated with a tick label and the gridlines are also aligned with the ticks. 
+	/// This value must be 2 or higher. If there is no need to have ticks for your graph, set #hideTicks = true.
+	/// </summary>
+	/// <value>The axis number ticks.</value>
 	public int AxisNumTicks { get {return _AxisNumTicks;} 
 		set {
 			if (_AxisNumTicks != value) {
@@ -38,109 +56,176 @@ public class WMG_Axis : WMG_GUI_Functions {
 					_AxisNumTicks = 2;
 				}
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Determines whether the absolute value of #AxisMinValue automatically grows based on WMG_Series data, where growth amount is determined by WMG_Axis_Graph::autoGrowAndShrinkByPercent.
+	/// </summary>
+	/// <value><c>true</c> if minimum auto grow; otherwise, <c>false</c>.</value>
 	public bool MinAutoGrow { get {return _MinAutoGrow;} 
 		set {
 			if (_MinAutoGrow != value) {
 				_MinAutoGrow = value;
 				graphC.Changed();
 				seriesC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Determines whether the absolute value of #AxisMaxValue automatically grows based on WMG_Series data, where growth amount is determined by WMG_Axis_Graph::autoGrowAndShrinkByPercent.
+	/// </summary>
+	/// <value><c>true</c> if max auto grow; otherwise, <c>false</c>.</value>
 	public bool MaxAutoGrow { get {return _MaxAutoGrow;} 
 		set {
 			if (_MaxAutoGrow != value) {
 				_MaxAutoGrow = value;
 				graphC.Changed();
 				seriesC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Determines whether the absolute value of #AxisMinValue automatically shrinks based on WMG_Series data, where shrink occurs at WMG_Axis_Graph::autoShrinkAtPercent 
+	/// and shrink amount is determined by WMG_Axis_Graph::autoGrowAndShrinkByPercent.
+	/// </summary>
+	/// <value><c>true</c> if minimum auto shrink; otherwise, <c>false</c>.</value>
 	public bool MinAutoShrink { get {return _MinAutoShrink;} 
 		set {
 			if (_MinAutoShrink != value) {
 				_MinAutoShrink = value;
 				graphC.Changed();
 				seriesC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Determines whether the absolute value of #AxisMaxValue automatically shrinks based on WMG_Series data, where shrink occurs at WMG_Axis_Graph::autoShrinkAtPercent 
+	/// and shrink amount is determined by WMG_Axis_Graph::autoGrowAndShrinkByPercent.
+	/// </summary>
+	/// <value><c>true</c> if max auto shrink; otherwise, <c>false</c>.</value>
 	public bool MaxAutoShrink { get {return _MaxAutoShrink;} 
 		set {
 			if (_MaxAutoShrink != value) {
 				_MaxAutoShrink = value;
 				graphC.Changed();
 				seriesC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Controls how much more space is extended beyond the actual axis length, useful to control how far axis arrows are away from the last tick / gridline.
+	/// </summary>
+	/// <value>The axis line padding.</value>
 	public float AxisLinePadding { get {return _AxisLinePadding;} 
 		set {
 			if (_AxisLinePadding != value) {
 				_AxisLinePadding = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Whether or not axes are positioned based on percentages rather than on fixed grid ticks. This should be enabled when WMG_Axis_Graph::axesType is of an AUTO_ORIGIN type. 
+	/// </summary>
+	/// <value><c>true</c> if axis use non tick percent; otherwise, <c>false</c>.</value>
 	public bool AxisUseNonTickPercent { get {return _AxisUseNonTickPercent;} 
 		set {
 			if (_AxisUseNonTickPercent != value) {
 				_AxisUseNonTickPercent = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// The percentage (0-1) position of this axis.
+	/// </summary>
+	/// <value>The axis non tick percent.</value>
 	public float AxisNonTickPercent { get {return _AxisNonTickPercent;} 
 		set {
 			if (_AxisNonTickPercent != value) {
 				_AxisNonTickPercent = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Whether to hide the top / right axis arrow.
+	/// </summary>
+	/// <value><c>true</c> if hide axis arrow top right; otherwise, <c>false</c>.</value>
 	public bool HideAxisArrowTopRight { get {return _HideAxisArrowTopRight;} 
 		set {
 			if (_HideAxisArrowTopRight != value) {
 				_HideAxisArrowTopRight = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Whether to hide the bot / left axis arrow.
+	/// </summary>
+	/// <value><c>true</c> if hide axis arrow bot left; otherwise, <c>false</c>.</value>
 	public bool HideAxisArrowBotLeft { get {return _HideAxisArrowBotLeft;} 
 		set {
 			if (_HideAxisArrowBotLeft != value) {
 				_HideAxisArrowBotLeft = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Whether the top / right axis arrow is visible, this is automatically controlled by axes types, use #HideAxisArrowTopRight to always hide.
+	/// </summary>
+	/// <value><c>true</c> if axis arrow top right; otherwise, <c>false</c>.</value>
 	public bool AxisArrowTopRight { get {return _AxisArrowTopRight;} 
 		set {
 			if (_AxisArrowTopRight != value) {
 				_AxisArrowTopRight = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Whether the bot / left axis arrow is visible, this is automatically controlled by axes types, use #HideAxisArrowBotLeft to always hide.
+	/// </summary>
+	/// <value><c>true</c> if axis arrow bot left; otherwise, <c>false</c>.</value>
 	public bool AxisArrowBotLeft { get {return _AxisArrowBotLeft;} 
 		set {
 			if (_AxisArrowBotLeft != value) {
 				_AxisArrowBotLeft = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Whether axis ticks are to the right / above the axis line, this is automatically controlled by axes types.
+	/// </summary>
+	/// <value><c>true</c> if axis ticks right above; otherwise, <c>false</c>.</value>
 	public bool AxisTicksRightAbove { get {return _AxisTicksRightAbove;} 
 		set {
 			if (_AxisTicksRightAbove != value) {
 				_AxisTicksRightAbove = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// The tick index at which this axis is placed, this is automatically controlled.
+	/// </summary>
+	/// <value>The axis tick.</value>
 	public int AxisTick { get {return _AxisTick;} 
 		set {
 			if (_AxisTick != value) {
@@ -149,6 +234,10 @@ public class WMG_Axis : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Whether the tick label of #AxisTick is hidden, this is automatically controlled.
+	/// </summary>
+	/// <value><c>true</c> if hide tick; otherwise, <c>false</c>.</value>
 	public bool hideTick { get {return _hideTick;} 
 		set {
 			if (_hideTick != value) {
@@ -157,55 +246,92 @@ public class WMG_Axis : WMG_GUI_Functions {
 			}
 		}
 	}
-
+	/// <summary>
+	/// The label type determines what labels are used and where they are positioned.
+	/// - ticks: There are #AxisNumTicks labels, where each label is positioned next to a tick. The labels come from #axisLabels or automatically if #SetLabelsUsingMaxMin = true.
+	/// - ticks_center: There are #AxisNumTicks - 1 labels, where each label is positioned between 2 ticks. The labels come from #axisLabels or automatically if #SetLabelsUsingMaxMin = true. 
+	/// - groups: The labels come from WMG_Axis_Graph::groups, and are positioned next to the data points / bars.
+	/// - manual: The labels come from #axisLabels and are positioned based on #AxisLabelSpacing and #AxisLabelDistBetween.
+	/// </summary>
 	public labelTypes LabelType { get {return _LabelType;} 
 		set {
 			if (_LabelType != value) {
 				_LabelType = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Determines how often a label is shown on the axes. For example at 0, all labels are shown, at 1, every other label, and at 2 every other 2 labels.
+	/// Useful if you have alot of data (e.g. 365 day strings stored in WMG_Axis_Graph::groups, and only want to display every week or couple weeks worth.
+	/// </summary>
+	/// <value>The axis label skip interval.</value>
 	public int AxisLabelSkipInterval { get {return _AxisLabelSkipInterval;} 
 		set {
 			if (_AxisLabelSkipInterval != value) {
 				_AxisLabelSkipInterval = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Determines how many labels to skip at the start to show on the axis, e.g. a value of 1 will skip the first label.
+	/// </summary>
+	/// <value>The axis label skip start.</value>
 	public int AxisLabelSkipStart { get {return _AxisLabelSkipStart;} 
 		set {
 			if (_AxisLabelSkipStart != value) {
 				_AxisLabelSkipStart = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Rotates all the labels with the specified number of degrees.
+	/// </summary>
+	/// <value>The axis label rotation.</value>
 	public float AxisLabelRotation { get {return _AxisLabelRotation;} 
 		set {
 			if (_AxisLabelRotation != value) {
 				_AxisLabelRotation = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// If this is true, then the #axisLabels get automatically set based on #AxisNumTicks, #AxisMaxValue, #AxisMinValue, and #numDecimalsAxisLabels. 
+	/// </summary>
+	/// <value><c>true</c> if set labels using max minimum; otherwise, <c>false</c>.</value>
 	public bool SetLabelsUsingMaxMin { get {return _SetLabelsUsingMaxMin;} 
 		set {
 			if (_SetLabelsUsingMaxMin != value) {
 				_SetLabelsUsingMaxMin = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the size of the axis labels.
+	/// </summary>
+	/// <value>The size of the axis labels.</value>
 	public int AxisLabelSize { get {return _AxisLabelSize;} 
 		set {
 			if (_AxisLabelSize != value) {
 				_AxisLabelSize = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the color of the axis labels.
+	/// </summary>
+	/// <value>The color of the axis labels.</value>
 	public Color AxisLabelColor { get {return _AxisLabelColor;} 
 		set {
 			if (_AxisLabelColor != value) {
@@ -214,62 +340,75 @@ public class WMG_Axis : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the axis label font style.
+	/// </summary>
+	/// <value>The axis label font style.</value>
 	public FontStyle AxisLabelFontStyle { get {return _AxisLabelFontStyle;} 
 		set {
 			if (_AxisLabelFontStyle != value) {
 				_AxisLabelFontStyle = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the axis label font.
+	/// </summary>
+	/// <value>The axis label font.</value>
 	public Font AxisLabelFont { get {return _AxisLabelFont;} 
 		set {
 			if (_AxisLabelFont != value) {
 				_AxisLabelFont = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the number of decimals used in axis labels, used when #SetLabelsUsingMaxMin = true.
+	/// </summary>
+	/// <value>The number decimals axis labels.</value>
 	public int numDecimalsAxisLabels { get {return _numDecimalsAxisLabels;} 
 		set {
 			if (_numDecimalsAxisLabels != value) {
 				_numDecimalsAxisLabels = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Whether or not all the axes labels for this axis are hidden.
+	/// </summary>
+	/// <value><c>true</c> if hide labels; otherwise, <c>false</c>.</value>
 	public bool hideLabels { get {return _hideLabels;} 
 		set {
 			if (_hideLabels != value) {
 				_hideLabels = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Controls the amount of space between the axis line and the axis labels.
+	/// </summary>
+	/// <value>The axis label space offset.</value>
 	public float AxisLabelSpaceOffset { get {return _AxisLabelSpaceOffset;} 
 		set {
 			if (_AxisLabelSpaceOffset != value) {
 				_AxisLabelSpaceOffset = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
-	public float autoFitRotation { get {return _autoFitRotation;} 
-		set {
-			if (_autoFitRotation != value) {
-				_autoFitRotation = value;
-				graphC.Changed();
-			}
-		}
-	}
-	public float autoFitMaxBorder { get {return _autoFitMaxBorder;} 
-		set {
-			if (_autoFitMaxBorder != value) {
-				_autoFitMaxBorder = value;
-				graphC.Changed();
-			}
-		}
-	}
+	/// <summary>
+	/// Only needs to be set manually for WMG_Axis_Graph::axesType = manual. Controls how much all of the labels are offset in the direction of the axis line. 
+	/// </summary>
+	/// <value>The axis label spacing.</value>
 	public float AxisLabelSpacing { get {return _AxisLabelSpacing;} 
 		set {
 			if (_AxisLabelSpacing != value) {
@@ -278,6 +417,10 @@ public class WMG_Axis : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Only needs to be set manually for WMG_Axis_Graph::axesType = manual. This is the amount of space between each label.
+	/// </summary>
+	/// <value>The axis label dist between.</value>
 	public float AxisLabelDistBetween { get {return _AxisLabelDistBetween;} 
 		set {
 			if (_AxisLabelDistBetween != value) {
@@ -286,6 +429,10 @@ public class WMG_Axis : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Determines whether grid lines for this axis appear.
+	/// </summary>
+	/// <value><c>true</c> if hide grid; otherwise, <c>false</c>.</value>
 	public bool hideGrid { get {return _hideGrid;} 
 		set {
 			if (_hideGrid != value) {
@@ -294,22 +441,49 @@ public class WMG_Axis : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Determines whether tick marks for this axis appear.
+	/// </summary>
+	/// <value><c>true</c> if hide ticks; otherwise, <c>false</c>.</value>
 	public bool hideTicks { get {return _hideTicks;} 
 		set {
 			if (_hideTicks != value) {
 				_hideTicks = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Whether or not the axis line is visible.
+	/// </summary>
+	/// <value><c>true</c> if hide axis line; otherwise, <c>false</c>.</value>
+	public bool hideAxisLine { get {return _hideAxisLine;} 
+		set {
+			if (_hideAxisLine != value) {
+				_hideAxisLine = value;
+				graphC.Changed();
+				graph.autoPaddingC.Changed();
+			}
+		}
+	}
+	/// <summary>
+	/// Gets or sets the axis title string.
+	/// </summary>
+	/// <value>The axis title string.</value>
 	public string AxisTitleString { get {return _AxisTitleString;} 
 		set {
 			if (_AxisTitleString != value) {
 				_AxisTitleString = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the axis title offset position relative to the axis line.
+	/// </summary>
+	/// <value>The axis title offset.</value>
 	public Vector2 AxisTitleOffset { get {return _AxisTitleOffset;} 
 		set {
 			if (_AxisTitleOffset != value) {
@@ -318,11 +492,16 @@ public class WMG_Axis : WMG_GUI_Functions {
 			}
 		}
 	}
+	/// <summary>
+	/// Gets or sets the size of the axis title font.
+	/// </summary>
+	/// <value>The size of the axis title font.</value>
 	public int AxisTitleFontSize { get {return _AxisTitleFontSize;} 
 		set {
 			if (_AxisTitleFontSize != value) {
 				_AxisTitleFontSize = value;
 				graphC.Changed();
+				graph.autoPaddingC.Changed();
 			}
 		}
 	}
@@ -367,12 +546,11 @@ public class WMG_Axis : WMG_GUI_Functions {
 	[SerializeField] private int _numDecimalsAxisLabels;
 	[SerializeField] private bool _hideLabels;
 	[SerializeField] private float _AxisLabelSpaceOffset;
-	[SerializeField] private float _autoFitRotation;
-	[SerializeField] private float _autoFitMaxBorder;
 	[SerializeField] private float _AxisLabelSpacing;
 	[SerializeField] private float _AxisLabelDistBetween;
 	[SerializeField] private bool _hideGrid;
 	[SerializeField] private bool _hideTicks;
+	[SerializeField] private bool _hideAxisLine;
 	[SerializeField] private string _AxisTitleString;
 	[SerializeField] private Vector2 _AxisTitleOffset;
 	[SerializeField] private int _AxisTitleFontSize;
@@ -394,6 +572,7 @@ public class WMG_Axis : WMG_GUI_Functions {
 	public int origAxisLabelSize { get; private set; }
 	public float origAxisLabelSpaceOffset { get; private set; }
 	public int origAxisTitleFontSize { get; private set; }
+	public Vector2 origAxisTitleOffset { get; private set; }
 	public float origAxisLinePadding { get; private set; }
 	public Vector2 origAxisArrowSize { get; private set; }
 
@@ -406,6 +585,13 @@ public class WMG_Axis : WMG_GUI_Functions {
 	public Vector2 anchorVec;
 	
 	public delegate string AxisLabelLabeler(WMG_Axis axis, int labelIndex);
+	/// <summary>
+	/// Use to override the default labeler for axis labels to put for example dollar signs for the labels.
+	/// @code
+	/// graph.yAxis.axisLabelLabeler = customYAxisLabelLabeler;
+	/// string customYAxisLabelLabeler(WMG_Axis axis, int labelIndex) {}
+	/// @endcode
+	/// </summary>
 	public AxisLabelLabeler axisLabelLabeler;
 
 
@@ -462,12 +648,14 @@ public class WMG_Axis : WMG_GUI_Functions {
 	private void axisLabelsChanged(bool editorChange, bool countChanged, bool oneValChanged, int index) {
 		WMG_Util.listChanged (editorChange, ref axisLabels, ref _axisLabels, oneValChanged, index);
 		graphC.Changed();
+		graph.autoPaddingC.Changed();
 	}
 
 	// Set initial property values for use with percentage based dynamic resizing 
 	public void setOriginalPropertyValues() {
 		origAxisLabelSize = AxisLabelSize;
 		origAxisTitleFontSize = AxisTitleFontSize;
+		origAxisTitleOffset = AxisTitleOffset;
 		origAxisLabelSpaceOffset = AxisLabelSpaceOffset;
 		origAxisLinePadding = AxisLinePadding;
 		origAxisArrowSize = getSpriteSize (AxisArrowDL);
@@ -569,13 +757,20 @@ public class WMG_Axis : WMG_GUI_Functions {
 		float tAxisLabelSpacing = AxisLabelSpacing;
 		string tAxisTitleString = AxisTitleString;
 		bool tHideTicks = hideTicks;
-		List<string> tLabels = new List<string>(axisLabels);
-
+		bool tHideGrid = hideGrid;
+		List<string> tLabels = new List<string>(_axisLabels);
+		
+		WMG_Axis otherAxis = this.otherAxis;
+		if (!otherAxis) {
+			otherAxis = graph.xAxis;
+		}
+		
 		LabelType = otherAxis.LabelType;
 		AxisMaxValue = otherAxis.AxisMaxValue;
 		AxisMinValue = otherAxis.AxisMinValue;
 		AxisNumTicks = otherAxis.AxisNumTicks;
 		hideTicks = otherAxis.hideTicks;
+		hideGrid = otherAxis.hideGrid;
 		numDecimalsAxisLabels = otherAxis.numDecimalsAxisLabels;
 		MinAutoGrow = otherAxis.MinAutoGrow;
 		MaxAutoGrow = otherAxis.MaxAutoGrow;
@@ -584,21 +779,26 @@ public class WMG_Axis : WMG_GUI_Functions {
 		SetLabelsUsingMaxMin = otherAxis.SetLabelsUsingMaxMin;
 		AxisLabelSpacing = otherAxis.AxisLabelSpacing;
 		AxisTitleString = otherAxis.AxisTitleString;
-		axisLabels.SetList(otherAxis.axisLabels);
-
+		if (Application.isPlaying) {
+			axisLabels.SetList(otherAxis.axisLabels);
+		}
+		else {
+			axisLabels.SetListNoCb(otherAxis._axisLabels, ref _axisLabels);
+		}
 		otherAxis.ChangeOrientationEnd(tLabelType, tAxisMaxValue, tAxisMinValue, tAxisNumTicks, tnumDecimalsAxisLabels,
 		                               tMinAutoGrow, tMaxAutoGrow, tMinAutoShrink, tMaxAutoShrink,
-		                               tSetLabelsUsingMaxMin, tAxisLabelSpacing, tAxisTitleString, tLabels, tHideTicks);
+		                               tSetLabelsUsingMaxMin, tAxisLabelSpacing, tAxisTitleString, tLabels, tHideTicks, tHideGrid);
 	}
-
+	
 	public void ChangeOrientationEnd(labelTypes tLabelType, float tAxisMaxValue, float tAxisMinValue, int tAxisNumTicks, int tnumDecimalsAxisLabels,
 	                                 bool tMinAutoGrow, bool tMaxAutoGrow, bool tMinAutoShrink, bool tMaxAutoShrink,
-	                                 bool tSetLabelsUsingMaxMin, float tAxisLabelSpacing, string tAxisTitleString, List<string> tLabels, bool tHideTicks) {
+	                                 bool tSetLabelsUsingMaxMin, float tAxisLabelSpacing, string tAxisTitleString, List<string> tLabels, bool tHideTicks, bool tHideGrid) {
 		LabelType = tLabelType;
 		AxisMaxValue = tAxisMaxValue;
 		AxisMinValue = tAxisMinValue;
 		AxisNumTicks = tAxisNumTicks;
 		hideTicks = tHideTicks;
+		hideGrid = tHideGrid;
 		numDecimalsAxisLabels = tnumDecimalsAxisLabels;
 		MinAutoGrow = tMinAutoGrow;
 		MaxAutoGrow = tMaxAutoGrow;
@@ -607,7 +807,12 @@ public class WMG_Axis : WMG_GUI_Functions {
 		SetLabelsUsingMaxMin = tSetLabelsUsingMaxMin;
 		AxisLabelSpacing = tAxisLabelSpacing;
 		AxisTitleString = tAxisTitleString;
-		axisLabels.SetList(tLabels);
+		if (Application.isPlaying) {
+			axisLabels.SetList(tLabels);
+		}
+		else {
+			axisLabels.SetListNoCb(tLabels, ref _axisLabels);
+		}
 	}
 
 	public void updateAxesRelativeToOrigin(float originVal) {
@@ -735,6 +940,9 @@ public class WMG_Axis : WMG_GUI_Functions {
 		// Update Arrows
 		SetActiveAnchoredSprite(AxisArrowUR, HideAxisArrowTopRight ? false : AxisArrowTopRight);
 		SetActiveAnchoredSprite(AxisArrowDL, HideAxisArrowBotLeft ? false : AxisArrowBotLeft);
+
+		// Update axis line
+		changeSpriteAlpha(AxisLine, hideAxisLine ? 0 : 1);
 	}
 
 	public void UpdateTitle() {
@@ -743,21 +951,21 @@ public class WMG_Axis : WMG_GUI_Functions {
 			changeLabelFontSize(AxisTitle, AxisTitleFontSize);
 			// update rotation and position
 			if (isY) {
-				if (anchorVec.x == 1) {
+				if (anchorVec.x == 1) { // right
 					AxisTitle.transform.localEulerAngles = new Vector3 (0, 0, 270);
-					setAnchor(AxisTitle, anchorVec, anchorVec, new Vector2(AxisTitleOffset.x, AxisTitleOffset.y));
+					setAnchor(AxisTitle, anchorVec, new Vector2(0.5f, 0f), new Vector2(AxisTitleOffset.x, AxisTitleOffset.y));
 				}
-				else {
+				else { // left
 					AxisTitle.transform.localEulerAngles = new Vector3 (0, 0, 90);
-					setAnchor(AxisTitle, anchorVec, anchorVec, new Vector2(-AxisTitleOffset.x, AxisTitleOffset.y));
+					setAnchor(AxisTitle, anchorVec, new Vector2(0.5f, 0f), new Vector2(-AxisTitleOffset.x, AxisTitleOffset.y));
 				}
 			}
 			else {
-				if (anchorVec.y == 1) {
-					setAnchor(AxisTitle, anchorVec, anchorVec, new Vector2(AxisTitleOffset.x, AxisTitleOffset.y));
+				if (anchorVec.y == 1) { // top
+					setAnchor(AxisTitle, anchorVec, new Vector2(0.5f, 0f), new Vector2(AxisTitleOffset.x, AxisTitleOffset.y));
 				}
-				else {
-					setAnchor(AxisTitle, anchorVec, anchorVec, new Vector2(AxisTitleOffset.x, -AxisTitleOffset.y));
+				else { // bot
+					setAnchor(AxisTitle, anchorVec, new Vector2(0.5f, 1f), new Vector2(AxisTitleOffset.x, -AxisTitleOffset.y));
 				}
 			}
 		}
@@ -770,6 +978,10 @@ public class WMG_Axis : WMG_GUI_Functions {
 		for (int j = 0; j < graph.lineSeries.Count; j++) {
 			if (!activeInHierarchy(graph.lineSeries[j])) continue;
 			WMG_Series theSeries = graph.lineSeries[j].GetComponent<WMG_Series>();
+			if (graph.axesType == WMG_Axis_Graph.axesTypes.DUAL_Y) {
+				if (isY && isSecondary && !theSeries.useSecondYaxis) continue; // secondary y-axis, but this series is for primary
+				if (isY && !isSecondary && theSeries.useSecondYaxis) continue; // primary y-axis, but this series is for secondary
+			}
 			// Find the current max and min point value data
 			if (graph.orientationType == WMG_Axis_Graph.orientationTypes.vertical) {
 				for (int i = 0; i < theSeries.pointValues.Count; i++) {
@@ -937,22 +1149,11 @@ public class WMG_Axis : WMG_GUI_Functions {
 				_AxisLabelSpacing = 0;
 			}
 			else {
-				_AxisLabelSpacing = distBetween / 2;
-				if (graph.graphType == WMG_Axis_Graph.graphTypes.bar_side) {
-					_AxisLabelSpacing += graph.lineSeries.Count * graph.barWidth / 2;
-				}
-				else if (graph.graphType == WMG_Axis_Graph.graphTypes.bar_stacked) {
-					_AxisLabelSpacing += graph.barWidth / 2;
-				}
-				else if (graph.graphType == WMG_Axis_Graph.graphTypes.bar_stacked_percent) {
-					_AxisLabelSpacing += graph.barWidth / 2;
-				}
-				else if (graph.graphType == WMG_Axis_Graph.graphTypes.combo) {
-					_AxisLabelSpacing += graph.NumComboBarSeries() * graph.barWidth / 2;
-				}
-				if (isY) _AxisLabelSpacing += 2;
+				if (graph.groups.Count == 0) _AxisLabelSpacing = 0;
+				else _AxisLabelSpacing = AxisLength / (graph.groups.Count) / 2;
 			}
 		}
+
 		
 		// Position the label parent objects
 		float tickOffset = 0;
@@ -992,29 +1193,9 @@ public class WMG_Axis : WMG_GUI_Functions {
 			}
 			
 			// Rotate the labels
-			if (!graph._autoFitting) LabelNodes[i].objectToLabel.transform.localEulerAngles = new Vector3(0, 0, AxisLabelRotation);
-			
-			// if x-axis labels are not rotated then pivot to center otherwise right / left
-			if (!isY && !graph.autoFitLabels) {
-				if (AxisLabelRotation > 0) {
-					if (!AxisTicksRightAbove) {
-						changeSpritePivot(LabelNodes[i].objectToLabel, WMG_Graph_Manager.WMGpivotTypes.TopRight);
-					}
-					else {
-						changeSpritePivot(LabelNodes[i].objectToLabel, WMG_Graph_Manager.WMGpivotTypes.BottomLeft);
-					}
-				}
-				else {
-					if (!AxisTicksRightAbove) {
-						changeSpritePivot(LabelNodes[i].objectToLabel, WMG_Graph_Manager.WMGpivotTypes.Top);
-					}
-					else {
-						changeSpritePivot(LabelNodes[i].objectToLabel, WMG_Graph_Manager.WMGpivotTypes.Bottom);
-					}
-				}
-			}
-			
-			// Position the labels
+			LabelNodes[i].objectToLabel.transform.localEulerAngles = new Vector3(0, 0, AxisLabelRotation);
+
+			// Position and pivot the labels
 			if (isY) {
 				if (!AxisTicksRightAbove) {
 					changeSpritePivot(LabelNodes[i].objectToLabel, WMG_Graph_Manager.WMGpivotTypes.Right);
@@ -1027,15 +1208,27 @@ public class WMG_Axis : WMG_GUI_Functions {
 			}
 			else {
 				if (!AxisTicksRightAbove) {
+					if (AxisLabelRotation > 0) {
+						changeSpritePivot(LabelNodes[i].objectToLabel, WMG_Graph_Manager.WMGpivotTypes.TopRight);
+					}
+					else {
+						changeSpritePivot(LabelNodes[i].objectToLabel, WMG_Graph_Manager.WMGpivotTypes.Top);
+					}
 					changeSpritePositionTo(LabelNodes[i].objectToLabel, new Vector3(AxisLabelSpacing, -AxisLabelSpaceOffset, 0));
 				}
 				else {
+					if (AxisLabelRotation > 0) {
+						changeSpritePivot(LabelNodes[i].objectToLabel, WMG_Graph_Manager.WMGpivotTypes.BottomLeft);
+					}
+					else {
+						changeSpritePivot(LabelNodes[i].objectToLabel, WMG_Graph_Manager.WMGpivotTypes.Bottom);
+					}
 					changeSpritePositionTo(LabelNodes[i].objectToLabel, new Vector3(AxisLabelSpacing, AxisLabelSpaceOffset, 0));
 				}
 			}
 			
 			// Fontsize
-			if (!graph._autoFitting) changeLabelFontSize(LabelNodes[i].objectToLabel, AxisLabelSize);
+			changeLabelFontSize(LabelNodes[i].objectToLabel, AxisLabelSize);
 
 			// Font color
 			changeLabelColor(LabelNodes[i].objectToLabel, AxisLabelColor);
@@ -1086,264 +1279,6 @@ public class WMG_Axis : WMG_GUI_Functions {
 			}
 		}
 	}
-
-
-
-	public void AutofitAxesLabels() {
-		if (graph.autoFitLabels && !graph._autoFitting) {
-
-			graph._autoFitting = true;
-			
-			// Get the label objects, change their position, and set their text
-			List<WMG_Node> LabelNodes = GetAxisLabelNodes();
-			
-			// The padding from label edge to graph border
-			float paddingLeft = graph.autoFitPadding;
-			float paddingRight = graph.autoFitPadding;
-			float paddingTop = graph.autoFitPadding;
-			float paddingBot = graph.autoFitPadding;
-			
-			if (!graph.legend.hideLegend && graph.legend.offset >= 0) { // legend showing and inside graph borders
-				if (graph.legend.legendType == WMG_Legend.legendTypes.Bottom) {
-					if (graph.legend.oppositeSideLegend) {
-						paddingTop += graph.legend.LegendHeight + graph.legend.offset;
-					}
-					else {
-						paddingBot += graph.legend.LegendHeight + graph.legend.offset;
-					}
-				}
-				else {
-					if (graph.legend.oppositeSideLegend) {
-						paddingLeft += graph.legend.LegendWidth + graph.legend.offset;
-					}
-					else {
-						paddingRight += graph.legend.LegendWidth + graph.legend.offset;
-					}
-				}
-			}
-
-//			int fontSize = AxisLabelSize;
-			
-			float maxBorderPercentage = autoFitMaxBorder;
-			
-			// For y-axis check if labels are not inside the graph, if not set their rotation
-			// If after setting rotation, the labels are still not inside, then decrease font
-			// For x-axis check if labels overlap one another, if so set their rotation
-			// If after setting rotation, the labels are not inside the graph, then descrease font
-//			forceUpdateUI();
-			Vector2 maxDif = Vector2.zero;
-			if (isY) {
-				
-				maxDif = getLabelsMaxDiff(LabelNodes, AxisTicksRightAbove, AxisTicksRightAbove, paddingLeft, paddingRight, paddingTop, paddingBot);
-
-				if (Mathf.Abs(maxDif.x) > 1 || Mathf.Abs(maxDif.y) > 1) {
-					if (AxisTicksRightAbove) {
-						graph.paddingLeftRight = (new Vector2(graph.paddingLeftRight.x, graph.paddingLeftRight.y - maxDif.x));
-						graph.paddingTopBottom = (new Vector2(graph.paddingTopBottom.x - maxDif.y, graph.paddingTopBottom.y));
-					}
-					else {
-						graph.paddingLeftRight = (new Vector2(graph.paddingLeftRight.x - maxDif.x, graph.paddingLeftRight.y));
-						graph.paddingTopBottom = (new Vector2(graph.paddingTopBottom.x, graph.paddingTopBottom.y - maxDif.y));
-					}
-					
-					Vector2 newMaxPadW = AxisTicksRightAbove ? new Vector2(graph.paddingLeftRight.x, maxBorderPercentage*getSpriteWidth(graph.gameObject) + paddingRight) :
-						new Vector2(maxBorderPercentage*getSpriteWidth(graph.gameObject) + paddingLeft, graph.paddingLeftRight.y);
-					
-					if ((AxisTicksRightAbove && graph.paddingLeftRight.y > newMaxPadW.y) ||
-					    (!AxisTicksRightAbove && graph.paddingLeftRight.x > newMaxPadW.x)) {
-						if (AxisTicksRightAbove) {
-							graph.paddingLeftRight = (new Vector2(graph.paddingLeftRight.x, newMaxPadW.y));
-						}
-						else {
-							graph.paddingLeftRight = (new Vector2(newMaxPadW.x, graph.paddingLeftRight.y));
-						}
-					}
-					
-					Vector2 newMaxPadH = !AxisTicksRightAbove ? new Vector2(graph.paddingTopBottom.x, maxBorderPercentage*getSpriteHeight(graph.gameObject) + paddingBot) :
-						new Vector2(maxBorderPercentage*getSpriteHeight(graph.gameObject) + paddingTop, graph.paddingTopBottom.y);
-					
-					if ((!AxisTicksRightAbove && graph.paddingTopBottom.y > newMaxPadH.y) ||
-					    (AxisTicksRightAbove && graph.paddingTopBottom.x > newMaxPadH.x)) {
-						if (AxisTicksRightAbove) {
-							graph.paddingTopBottom = (new Vector2(newMaxPadH.x, graph.paddingTopBottom.y));
-						}
-						else {
-							graph.paddingTopBottom = (new Vector2(graph.paddingTopBottom.x, newMaxPadH.y));
-						}
-					}
-					
-					graph.UpdateBG();
-//					forceUpdateUI();
-
-//					// Hit the maximum border size
-//					if ((AxisTicksRightAbove && graph.paddingLeftRight.y == newMaxPadW.y) ||
-//					    (!AxisTicksRightAbove && graph.paddingLeftRight.x == newMaxPadW.x)) {
-//
-//						maxDif = getLabelsMaxDiff(LabelNodes, AxisTicksRightAbove, AxisTicksRightAbove, paddingLeft, paddingRight, paddingTop, paddingBot);
-//						
-//						if (maxDif.x < -1 || maxDif.y < -1) { // labels beyond border
-//							setLabelRotations(LabelNodes, autoFitRotation);
-//						}
-//						
-//						maxDif = getLabelsMaxDiff(LabelNodes, AxisTicksRightAbove, AxisTicksRightAbove, paddingLeft, paddingRight, paddingTop, paddingBot);
-//						
-//						while (maxDif.x < -graph.autoFitPadding/2) {
-//							if (fontSize == 2) break;
-//							fontSize--;
-//							setFontSizeLabels(LabelNodes, fontSize);
-//							forceUpdateUI();
-//							maxDif = getLabelsMaxDiff(LabelNodes, AxisTicksRightAbove, AxisTicksRightAbove, paddingLeft, paddingRight, paddingTop, paddingBot);
-//						}
-//					}
-				}
-			}
-			else {
-
-				bool checkYbot = false;
-				bool checkYtop = false;
-				if (otherAxis.AxisTicksRightAbove) {
-					checkYtop = true;
-				}
-				else {
-					checkYbot = true;
-				}
-
-				// Check if labels overlap one another, if so set rotation
-				bool allXLabelsSeparate = true;
-				for (int i = 1; i < LabelNodes.Count; i++) {
-					allXLabelsSeparate = allXLabelsSeparate && !rectIntersectRect(LabelNodes[i-1].objectToLabel, LabelNodes[i].objectToLabel);
-				}
-				
-				if (!allXLabelsSeparate) {
-					setLabelRotations(LabelNodes, autoFitRotation);
-				}
-				
-				WMGpivotTypes newXpivot = WMGpivotTypes.Top;
-				if (LabelNodes.Count > 0 && LabelNodes[0].objectToLabel.transform.localEulerAngles.z > 0) {
-					if (!AxisTicksRightAbove) {
-						newXpivot = WMGpivotTypes.TopRight;
-					}
-					else {
-						newXpivot = WMGpivotTypes.BottomLeft;
-					}
-				}
-				else {
-					if (!AxisTicksRightAbove) {
-						newXpivot = WMGpivotTypes.Top;
-					}
-					else {
-						newXpivot = WMGpivotTypes.Bottom;
-					}
-				}
-				
-				foreach (WMG_Node node in LabelNodes) {
-					changeSpritePivot(node.objectToLabel, newXpivot);
-				}
-//				forceUpdateUI();
-				
-				maxDif = getLabelsMaxDiff(LabelNodes, AxisTicksRightAbove, AxisTicksRightAbove, paddingLeft, paddingRight, paddingTop, paddingBot);
-				
-				if (Mathf.Abs(maxDif.x) > 1 || Mathf.Abs(maxDif.y) > 1) {
-					if (AxisTicksRightAbove) {
-						if (checkYtop) {
-							graph.paddingLeftRight = (new Vector2(graph.paddingLeftRight.x, Mathf.Max(graph.paddingLeftRight.y - maxDif.x, graph.paddingLeftRight.y)));
-							graph.paddingTopBottom = (new Vector2(Mathf.Max(graph.paddingTopBottom.x - maxDif.y, graph.paddingTopBottom.x), graph.paddingTopBottom.y));
-						}
-						else {
-							graph.paddingLeftRight = (new Vector2(graph.paddingLeftRight.x, graph.paddingLeftRight.y - maxDif.x));
-							graph.paddingTopBottom = (new Vector2(graph.paddingTopBottom.x - maxDif.y, graph.paddingTopBottom.y));
-						}
-					}
-					else {
-						if (checkYbot) {
-							graph.paddingLeftRight = (new Vector2(Mathf.Max(graph.paddingLeftRight.x - maxDif.x, graph.paddingLeftRight.x), graph.paddingLeftRight.y));
-							graph.paddingTopBottom = (new Vector2(graph.paddingTopBottom.x, Mathf.Max(graph.paddingTopBottom.y - maxDif.y, graph.paddingTopBottom.y)));
-						}
-						else {
-							graph.paddingLeftRight = (new Vector2(graph.paddingLeftRight.x - maxDif.x, graph.paddingLeftRight.y));
-							graph.paddingTopBottom = (new Vector2(graph.paddingTopBottom.x, graph.paddingTopBottom.y - maxDif.y));
-						}
-					}
-					
-					Vector2 newMaxPadW = AxisTicksRightAbove ? new Vector2(graph.paddingLeftRight.x, maxBorderPercentage*getSpriteWidth(graph.gameObject) + paddingRight) :
-						new Vector2(maxBorderPercentage*getSpriteWidth(graph.gameObject) + paddingLeft, graph.paddingLeftRight.y);
-					
-					if ((AxisTicksRightAbove && graph.paddingLeftRight.y > newMaxPadW.y) ||
-					    (!AxisTicksRightAbove && graph.paddingLeftRight.x > newMaxPadW.x)) {
-						if (AxisTicksRightAbove) {
-							graph.paddingLeftRight = (new Vector2(graph.paddingLeftRight.x, newMaxPadW.y));
-						}
-						else {
-							graph.paddingLeftRight = (new Vector2(newMaxPadW.x, graph.paddingLeftRight.y));
-						}
-					}
-					
-					Vector2 newMaxPadH = !AxisTicksRightAbove ? new Vector2(graph.paddingTopBottom.x, maxBorderPercentage*getSpriteHeight(graph.gameObject) + paddingBot) :
-						new Vector2(maxBorderPercentage*getSpriteHeight(graph.gameObject) + paddingTop, graph.paddingTopBottom.y);
-					
-					if ((!AxisTicksRightAbove && graph.paddingTopBottom.y > newMaxPadH.y) ||
-					    (AxisTicksRightAbove && graph.paddingTopBottom.x > newMaxPadH.x)) {
-						if (AxisTicksRightAbove) {
-							graph.paddingTopBottom = (new Vector2(newMaxPadH.x, graph.paddingTopBottom.y));
-						}
-						else {
-							graph.paddingTopBottom = (new Vector2(graph.paddingTopBottom.x, newMaxPadH.y));
-						}
-					}
-					
-					graph.UpdateBG();
-//					forceUpdateUI();
-
-//					// Hit the maximum border
-//					if ((!AxisTicksRightAbove && graph.paddingTopBottom.y == newMaxPadH.y) ||
-//					    (AxisTicksRightAbove && graph.paddingTopBottom.x == newMaxPadH.x)) {
-//
-//						maxDif = getLabelsMaxDiff(LabelNodes, AxisTicksRightAbove, AxisTicksRightAbove, paddingLeft, paddingRight, paddingTop, paddingBot);
-//						
-//						while (maxDif.y < -graph.autoFitPadding/2) {
-//							if (fontSize == 2) break;
-//							fontSize--;
-//							setFontSizeLabels(LabelNodes, fontSize);
-//							forceUpdateUI();
-//							maxDif = getLabelsMaxDiff(LabelNodes, AxisTicksRightAbove, AxisTicksRightAbove, paddingLeft, paddingRight, paddingTop, paddingBot);
-//						}
-//					}
-				}
-			}
-
-			graph.GraphChanged();
-//			graph.ResizeChanged();
-//			graph.ResumeCallbacks();
-			graph._autoFitting = false;
-
-		}
-	}
-
-
-	Vector2 getLabelsMaxDiff(List<WMG_Node> LabelNodes, bool isRight, bool isTop, 
-	                         float paddingLeft, float paddingRight, float paddingTop, float paddingBot) {
-		float dx = Mathf.Infinity;
-		float dy = Mathf.Infinity;
-		Vector2 xDif = Vector2.zero;
-		Vector2 yDif = Vector2.zero;
-		foreach (WMG_Node node in LabelNodes) {
-			getRectDiffs(node.objectToLabel, graph.gameObject, ref xDif, ref yDif);
-			if (isRight) {
-				if (xDif.y < dx) dx = xDif.y;
-			}
-			else {
-				if (xDif.x < dx) dx = xDif.x;
-			}
-			if (isTop) {
-				if (yDif.y < dy) dy = yDif.y;
-			}
-			else {
-				if (yDif.x < dy) dy = yDif.x;
-			}
-		}
-		return new Vector2(dx - (isRight ? paddingRight : paddingLeft),
-		                   dy - (isTop ? paddingTop : paddingBot));
-	}
 	
 	void setLabelRotations(List<WMG_Node> LabelNodes, float rotation) {
 		foreach (WMG_Node node in LabelNodes) {
@@ -1362,7 +1297,11 @@ public class WMG_Axis : WMG_GUI_Functions {
 			node.objectToLabel.transform.localScale = new Vector3(newScale, newScale, 1);
 		}
 	}
-	
+
+	/// <summary>
+	/// Gets the axis label nodes.
+	/// </summary>
+	/// <returns>The axis label nodes.</returns>
 	public List<WMG_Node> GetAxisLabelNodes() {
 		WMG_Grid labelsGrid = AxisLabelObjs.GetComponent<WMG_Grid>();
 		if (isY) {
@@ -1373,6 +1312,10 @@ public class WMG_Axis : WMG_GUI_Functions {
 		}
 	}
 
+	/// <summary>
+	/// Gets the axis tick nodes.
+	/// </summary>
+	/// <returns>The axis tick nodes.</returns>
 	public List<WMG_Node> GetAxisTickNodes() {
 		WMG_Grid ticksGrid = AxisTicks.GetComponent<WMG_Grid>();
 		if (isY) {

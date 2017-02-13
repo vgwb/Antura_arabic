@@ -22,10 +22,5 @@ namespace EA4S.Minigames.ThrowBalls
         {
             letterController.OnCollisionEnter(collision);
         }
-
-        public void OnCollisionExit(Collision collision)
-        {
-            letterController.OnCollisionExit(collision);
-        }
     }
 }

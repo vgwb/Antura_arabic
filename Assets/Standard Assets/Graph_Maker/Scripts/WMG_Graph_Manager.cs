@@ -2,128 +2,34 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class WMG_Graph_Manager : WMG_Events, IWMG_Data_Generators, IWMG_Caching_Functions, IWMG_Path_Finding {
+/// <summary>
+/// The base graph class from which most graphs are derived.
+/// </summary>
+public class WMG_Graph_Manager : WMG_Events {
 	
 	private List<GameObject> nodesParent = new List<GameObject>(); // Each gameobject in this list is a WMG Node
 	private List<GameObject> linksParent = new List<GameObject>(); // Each gameobject in this list is a WMG Link
-	
-	// Data generation functions
-	private WMG_Data_Generators data_gen = new WMG_Data_Generators();
-	
-	public List<Vector2> GenLinear(int numPoints, float minX, float maxX, float a, float b) {
-		return data_gen.GenLinear(numPoints, minX, maxX, a, b);
-	}
-	
-	public List<Vector2> GenQuadratic(int numPoints, float minX, float maxX, float a, float b, float c) {
-		return data_gen.GenQuadratic(numPoints, minX, maxX, a, b, c);
-	}
-	
-	public List<Vector2> GenExponential(int numPoints, float minX, float maxX, float a, float b, float c) {
-		return data_gen.GenExponential(numPoints, minX, maxX, a, b, c);
-	}
-	
-	public List<Vector2> GenLogarithmic(int numPoints, float minX, float maxX, float a, float b, float c) {
-		return data_gen.GenLogarithmic(numPoints, minX, maxX, a, b, c);
-	}
 
 	/// <summary>
-	/// Generate data of the form c^2 = (X - a)^2 * (Y - b)^2
+	/// The list of GameObjects which are WMG_Nodes for this graph.
 	/// </summary>
-	/// <returns>List of Vector2 forming a circle.</returns>
-	public List<Vector2> GenCircular(int numPoints, float a, float b, float c) {
-		return data_gen.GenCircular(numPoints, a, b, c);
-	}
-
-	public List<Vector2> GenCircular2(int numPoints, float a, float b, float c, float degreeOffset) {
-		return data_gen.GenCircular2(numPoints, a, b, c, degreeOffset);
-	}
-
-	public List<Vector2> GenRadar(List<float> data, float a, float b, float degreeOffset) {
-		return data_gen.GenRadar(data, a, b, degreeOffset);
-	}
-	
-	public List<Vector2> GenRandomXY(int numPoints, float minX, float maxX, float minY, float maxY) {
-		return data_gen.GenRandomXY(numPoints, minX, maxX, minY, maxY);
-	}
-	
-	public List<Vector2> GenRandomY(int numPoints, float minX, float maxX, float minY, float maxY) {
-		return data_gen.GenRandomY(numPoints, minX, maxX, minY, maxY);
-	}
-
-	public List<float> GenRandomList(int numPoints, float min, float max) {
-		return data_gen.GenRandomList(numPoints, min, max);
-	}
-	
-	// Caching functions
-	private WMG_Caching_Functions caching = new WMG_Caching_Functions();
-
-	public void updateCacheAndFlagList<T>(ref List<T> cache, List<T> val, ref bool flag) {
-		caching.updateCacheAndFlagList(ref cache, val, ref flag);
-	}
-
-	public void updateCacheAndFlag<T>(ref T cache, T val, ref bool flag) {
-		caching.updateCacheAndFlag(ref cache, val, ref flag);
-	}
-
-	public void SwapVals<T>(ref T val1, ref T val2) {
-		caching.SwapVals(ref val1, ref val2);
-	}
-
-	public void SwapValsList<T>(ref List<T> val1, ref List<T> val2) {
-		caching.SwapValsList(ref val1, ref val2);
-	}
-	
-	// Path Finding Functions
-	private WMG_Path_Finding path_find = new WMG_Path_Finding();
-	
-	public List<WMG_Link> FindShortestPathBetweenNodes(WMG_Node fromNode, WMG_Node toNode) {
-		path_find.nodesParent = nodesParent;
-		return path_find.FindShortestPathBetweenNodes(fromNode, toNode);
-	}
-	
-	public List<WMG_Link> FindShortestPathBetweenNodesWeighted(WMG_Node fromNode, WMG_Node toNode, bool includeRadii) {
-		path_find.nodesParent = nodesParent;
-		return path_find.FindShortestPathBetweenNodesWeighted(fromNode, toNode, includeRadii);
-	}
-
-	// Graph Manager functions
-
-	public string getLabelText(string text, WMG_Enums.labelTypes labelType, float value, float percent, int numDecimals) {
-		string theText = text;
-		float multiplier = Mathf.Pow(10f, numDecimals+2);
-		
-		if (labelType == WMG_Enums.labelTypes.None) {
-			theText = "";
-		}
-		else if (labelType == WMG_Enums.labelTypes.Labels_Percents) {
-			theText += " (" + (Mathf.Round(percent*multiplier)/multiplier*100).ToString() + "%)";
-		}
-		else if (labelType == WMG_Enums.labelTypes.Labels_Values) {
-			theText += " (" + Mathf.Round(value).ToString() + ")";
-		}
-		else if (labelType == WMG_Enums.labelTypes.Labels_Values_Percents) {
-			theText += " - " + Mathf.Round(value).ToString() + " (" + (Mathf.Round(percent*multiplier)/multiplier*100).ToString() + "%)";
-		}
-		else if (labelType == WMG_Enums.labelTypes.Values_Only) {
-			theText = Mathf.Round(value).ToString();
-		}
-		else if (labelType == WMG_Enums.labelTypes.Percents_Only) {
-			theText = (Mathf.Round(percent*multiplier)/multiplier*100).ToString() + "%";
-		}
-		else if (labelType == WMG_Enums.labelTypes.Values_Percents) {
-			theText = Mathf.Round(value).ToString() + " (" + (Mathf.Round(percent*multiplier)/multiplier*100).ToString() + "%)";
-		}
-		return theText;
-	}
-	
 	public List<GameObject> NodesParent {
 		get { return nodesParent; }
 	}
-	
+
+	/// <summary>
+	/// The list of GameObjects which are WMG_Links for this graph.
+	/// </summary>
 	public List<GameObject> LinksParent {
 		get { return linksParent; }
 	}
-	
+
+	/// <summary>
+	/// Creates a node for this graph.
+	/// </summary>
+	/// <returns>The node.</returns>
+	/// <param name="prefabNode">Prefab node.</param>
+	/// <param name="parent">Parent.</param>
 	public GameObject CreateNode(Object prefabNode, GameObject parent) {
 		// Creates a node from a prefab, gives a default parent to this object, and adds the node to the manager's list
 		GameObject curObj = Instantiate(prefabNode) as GameObject;
@@ -139,19 +45,41 @@ public class WMG_Graph_Manager : WMG_Events, IWMG_Data_Generators, IWMG_Caching_
 		nodesParent.Add(curObj);
 		return curObj;
 	}
-	
+
+	/// <summary>
+	/// Creates a link for this graph, and repositions the link.
+	/// </summary>
+	/// <returns>The link.</returns>
+	/// <param name="fromNode">From node.</param>
+	/// <param name="toNode">To node.</param>
+	/// <param name="prefabLink">Prefab link.</param>
+	/// <param name="parent">Parent.</param>
 	public GameObject CreateLink(WMG_Node fromNode, GameObject toNode, Object prefabLink, GameObject parent) {
 		GameObject createdLink = fromNode.CreateLink(toNode, prefabLink, linksParent.Count, parent, true);
 		linksParent.Add(createdLink);
 		return createdLink;
 	}
-	
+
+	/// <summary>
+	/// Creates a link for this graph, and does not repoisition the link.
+	/// </summary>
+	/// <returns>The link no repos.</returns>
+	/// <param name="fromNode">From node.</param>
+	/// <param name="toNode">To node.</param>
+	/// <param name="prefabLink">Prefab link.</param>
+	/// <param name="parent">Parent.</param>
 	public GameObject CreateLinkNoRepos(WMG_Node fromNode, GameObject toNode, Object prefabLink, GameObject parent) {
 		GameObject createdLink = fromNode.CreateLink(toNode, prefabLink, linksParent.Count, parent, false);
 		linksParent.Add(createdLink);
 		return createdLink;
 	}
-	
+
+	/// <summary>
+	/// Given two nodes, get the link between those nodes for this graph.
+	/// </summary>
+	/// <returns>The link.</returns>
+	/// <param name="fromNode">From node.</param>
+	/// <param name="toNode">To node.</param>
 	public WMG_Link GetLink(WMG_Node fromNode, WMG_Node toNode) {
 		foreach (GameObject link in fromNode.links) {
 			WMG_Link aLink = link.GetComponent<WMG_Link>();
@@ -161,7 +89,13 @@ public class WMG_Graph_Manager : WMG_Events, IWMG_Data_Generators, IWMG_Caching_
 		}
 		return null;
 	}
-	
+
+	/// <summary>
+	/// Given a node, and a prefab, re-instantiate the node using the specified prefab which has a WMG_Node script attached.
+	/// </summary>
+	/// <returns>The node with new prefab.</returns>
+	/// <param name="theNode">The node.</param>
+	/// <param name="prefabNode">Prefab node.</param>
 	public GameObject ReplaceNodeWithNewPrefab(WMG_Node theNode, Object prefabNode) {
 		// Used to swap prefabs of a node
 		GameObject newNode = CreateNode(prefabNode, theNode.transform.parent.gameObject);
@@ -189,7 +123,11 @@ public class WMG_Graph_Manager : WMG_Events, IWMG_Data_Generators, IWMG_Caching_
 		
 		return newNode;
 	}
-	
+
+	/// <summary>
+	/// Deletes a node.
+	/// </summary>
+	/// <param name="theNode">The node.</param>
 	public void DeleteNode(WMG_Node theNode) {
 		// Deleting a node also deletes all of its link and swaps IDs with the largest node ID in the list
 		int idToDelete = theNode.id;
@@ -207,7 +145,11 @@ public class WMG_Graph_Manager : WMG_Events, IWMG_Data_Generators, IWMG_Caching_
 			}
 		}
 	}
-	
+
+	/// <summary>
+	/// Deletes a link.
+	/// </summary>
+	/// <param name="theLink">The link.</param>
 	public void DeleteLink(WMG_Link theLink) {
 		// Deleting a link updates references in the to and from nodes and swaps IDs with the largest link ID in the list
 		WMG_Node fromN = theLink.fromNode.GetComponent<WMG_Node>();
@@ -233,7 +175,7 @@ public class WMG_Graph_Manager : WMG_Events, IWMG_Data_Generators, IWMG_Caching_
 		foreach (GameObject child in linksParent) {
 			WMG_Link aLink = child.GetComponent<WMG_Link>();
 			if (aLink != null && aLink.id == linksParent.Count - 1) {
-				aLink.SetId(idToDelete);
+				aLink.id = idToDelete;
 				linksParent.Remove(theLink.gameObject);
 				DestroyImmediate(theLink.gameObject);
 				fromN.links.RemoveAt(fromN.numLinks);
@@ -243,6 +185,131 @@ public class WMG_Graph_Manager : WMG_Events, IWMG_Data_Generators, IWMG_Caching_
 				return;
 			}
 		}
+	}
+	
+	/// <summary>
+	/// Given two nodes return one or more shortest paths between the nodes based on the number of links (unweighted), using Breadth-first search algorithm.
+	/// </summary>
+	/// <returns>The shortest path between nodes.</returns>
+	/// <param name="fromNode">From node.</param>
+	/// <param name="toNode">To node.</param>
+	public List<WMG_Link> FindShortestPathBetweenNodes(WMG_Node fromNode, WMG_Node toNode) {
+		
+		List<WMG_Link> linksBetweenToAndFrom = new List<WMG_Link>();
+		
+		// Reset BFS data needed for this algorithm
+		foreach (GameObject node in nodesParent) {
+			WMG_Node aNode = node.GetComponent<WMG_Node>();
+			if (aNode != null) {
+				aNode.BFS_mark = false;
+				aNode.BFS_depth = 0;
+			}
+		}
+		
+		Queue<WMG_Node> mapSysQ = new Queue<WMG_Node>();
+		
+		// This calculates and stores the depth of every node between the starting and ending nodes
+		// This is exactly the BFS (Breadth-first search) algorithm
+		mapSysQ.Enqueue(fromNode);
+		fromNode.BFS_mark =  true;
+		while (mapSysQ.Count > 0) {
+			WMG_Node temp = mapSysQ.Dequeue();
+			if (toNode.id == temp.id) break; // Reached the target node so we are done
+			// Add the current node neighbors to the queue if they haven't been added in the past and calculate the depth
+			for (int i = 0; i < temp.numLinks; i++) {
+				WMG_Link aLink = temp.links[i].GetComponent<WMG_Link>();
+				WMG_Node temp2 = aLink.toNode.GetComponent<WMG_Node>();
+				if (temp2.id == temp.id) temp2 = aLink.fromNode.GetComponent<WMG_Node>();
+				if (!temp2.BFS_mark) {
+					temp2.BFS_mark = true;
+					temp2.BFS_depth = temp.BFS_depth + 1;
+					mapSysQ.Enqueue(temp2);
+				}
+			}
+		}
+		
+		// If all we cared about was the shortest distance between the two nodes we could end here, but we might also want the links themselves
+		// This finds the shortest path of links between the starting and ending nodes using the previously calculated depths
+		mapSysQ.Clear();
+		mapSysQ.Enqueue(toNode);
+		while (mapSysQ.Count > 0) {
+			WMG_Node temp = mapSysQ.Dequeue();
+			if (fromNode.id == temp.id) break;
+			for (int i = 0; i < temp.numLinks; i++) {
+				WMG_Link aLink = temp.links[i].GetComponent<WMG_Link>();
+				WMG_Node temp2 = aLink.toNode.GetComponent<WMG_Node>();
+				if (temp2.id == temp.id) temp2 = aLink.fromNode.GetComponent<WMG_Node>();
+				if (temp.BFS_depth == temp2.BFS_depth + 1) {
+					if (temp2.BFS_depth == 0 && temp2.id != fromNode.id) continue;
+					linksBetweenToAndFrom.Add(aLink);
+					if (!mapSysQ.Contains(temp2)) mapSysQ.Enqueue(temp2);
+				}
+			}
+		}
+		return linksBetweenToAndFrom;
+	}
+
+	/// <summary>
+	/// Given two nodes return one or more shortest paths between the nodes based on the link weights (weighted), and also node radii if include radii is true, using Dijkstra's algorithm.
+	/// </summary>
+	/// <returns>The shortest path between nodes weighted.</returns>
+	/// <param name="fromNode">From node.</param>
+	/// <param name="toNode">To node.</param>
+	/// <param name="includeRadii">If set to <c>true</c> include radii.</param>
+	public List<WMG_Link> FindShortestPathBetweenNodesWeighted(WMG_Node fromNode, WMG_Node toNode, bool includeRadii) {
+		
+		List<WMG_Link> linksBetweenToAndFrom = new List<WMG_Link>();
+		List<WMG_Node> Dijkstra_nodes = new List<WMG_Node>();
+		// Reset data needed for this algorithm
+		foreach (GameObject node in nodesParent) {
+			WMG_Node aNode = node.GetComponent<WMG_Node>();
+			if (aNode != null) {
+				if (aNode.id == fromNode.id) aNode.Dijkstra_depth = 0;
+				else aNode.Dijkstra_depth = Mathf.Infinity;
+				Dijkstra_nodes.Add(aNode);
+			}
+		}
+		Dijkstra_nodes.Sort (delegate(WMG_Node x, WMG_Node y) { return x.Dijkstra_depth.CompareTo(y.Dijkstra_depth); });
+		
+		// This is exactly Dijkstra's algorithm
+		while (Dijkstra_nodes.Count > 0) {
+			WMG_Node temp = Dijkstra_nodes[0];
+			Dijkstra_nodes.RemoveAt(0);
+			if (toNode.id == temp.id) break; // Reached the target node so we are done
+			if (temp.Dijkstra_depth == Mathf.Infinity) break;
+			for (int i = 0; i < temp.numLinks; i++) {
+				WMG_Link aLink = temp.links[i].GetComponent<WMG_Link>();
+				WMG_Node temp2 = aLink.toNode.GetComponent<WMG_Node>();
+				if (temp2.id == temp.id) temp2 = aLink.fromNode.GetComponent<WMG_Node>();
+				float alt = temp.Dijkstra_depth + aLink.weight;
+				if (includeRadii) alt += temp.radius + temp2.radius;
+				if (alt < temp2.Dijkstra_depth) {
+					temp2.Dijkstra_depth = alt;
+					Dijkstra_nodes.Sort (delegate(WMG_Node x, WMG_Node y) { return x.Dijkstra_depth.CompareTo(y.Dijkstra_depth); });
+				}
+			}
+		}
+		
+		// If all we cared about was the shortest distance between the two nodes we could end here, but we might also want the links themselves
+		// This finds the shortest path of links between the starting and ending nodes using the previously calculated depths
+		Queue<WMG_Node> mapSysQ = new Queue<WMG_Node>();
+		mapSysQ.Enqueue(toNode);
+		while (mapSysQ.Count > 0) {
+			WMG_Node temp = mapSysQ.Dequeue();
+			if (fromNode.id == temp.id) break;
+			for (int i = 0; i < temp.numLinks; i++) {
+				WMG_Link aLink = temp.links[i].GetComponent<WMG_Link>();
+				WMG_Node temp2 = aLink.toNode.GetComponent<WMG_Node>();
+				if (temp2.id == temp.id) temp2 = aLink.fromNode.GetComponent<WMG_Node>();
+				float alt = temp2.Dijkstra_depth + aLink.weight;
+				if (includeRadii) alt += temp.radius + temp2.radius;
+				if (Mathf.Approximately(temp.Dijkstra_depth, alt)) {
+					linksBetweenToAndFrom.Add(aLink);
+					if (!mapSysQ.Contains(temp2)) mapSysQ.Enqueue(temp2);
+				}
+			}
+		}
+		return linksBetweenToAndFrom;
 	}
 	
 }

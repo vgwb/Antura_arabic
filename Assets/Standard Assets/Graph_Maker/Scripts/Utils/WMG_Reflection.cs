@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-// Need to call different reflection functions for Windows Phone 8
+/// <summary>
+/// Static utility class for using C# reflection functions, used in WMG_Data_Source.
+/// </summary>
 public static class WMG_Reflection {
 
+	// Windows phone 8 platform
 	#if !UNITY_EDITOR && UNITY_WINRT
 	public static bool IsValueType(Type type)
 	{

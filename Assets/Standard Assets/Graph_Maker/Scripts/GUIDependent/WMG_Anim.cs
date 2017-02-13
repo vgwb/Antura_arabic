@@ -4,8 +4,9 @@ using UnityEngine.UI;
 using DG.Tweening;
 using DG.Tweening.Core;
 
-// Contains GUI system dependent functions
-
+/// <summary>
+/// A static utility class for performing animations.
+/// </summary>
 public static class WMG_Anim {
 
 	public static void animFill(GameObject obj, float duration, Ease easeType, float animTo) {
@@ -85,8 +86,8 @@ public static class WMG_Anim {
 		DOTween.To(getter, setter, animTo, duration).SetUpdate(false);
 	}
 
-	public static void animFloatCallbackU(DOGetter<float> getter, DOSetter<float> setter, float duration, float animTo, TweenCallback onUpd) {
-		DOTween.To(getter, setter, animTo, duration).SetUpdate(false).OnUpdate(onUpd);
+	public static void animFloatCallbackU(DOGetter<float> getter, DOSetter<float> setter, float duration, float animTo, TweenCallback onUpd, Ease easeType = Ease.Linear) {
+		DOTween.To(getter, setter, animTo, duration).SetEase(easeType).SetUpdate(false).OnUpdate(onUpd);
 	}
 
 	public static void animFloatCallbacks(DOGetter<float> getter, DOSetter<float> setter, float duration, float animTo, TweenCallback onUpd, TweenCallback onComp, Ease easeType = Ease.Linear) {
