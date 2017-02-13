@@ -246,9 +246,8 @@ namespace EA4S.Teacher
             }
             debugString += ("\n  History: " + dataList.Count);
 
-
             // (4) Priority filtering based on current focus
-            List<T> priorityFilteredList = new List<T>();
+            List < T> priorityFilteredList = new List<T>();
             if (!isTest && !selectionParams.getMaxData)
             {
                 string s = ConfigAI.FormatTeacherHeader("Priority Filtering");
