@@ -291,7 +291,7 @@ namespace EA4S.Minigames.Maze
 
                 if (i == 0)
                 {
-                    mazeArrow.Highlight(true);
+                    mazeArrow.HighlightAsLaunchPosition();
                 }
 
                 _fruits.Add(child);
@@ -578,9 +578,10 @@ namespace EA4S.Minigames.Maze
             }
         }
 
-        public void UnhighlightStartingFX()
+        public void ChangeStartingFXHighlight()
         {
             _fruits[0].GetComponent<MazeArrow>().Unhighlight();
+            _fruits[0].GetComponent<MazeArrow>().HighlightAsReached();
         }
 
         private void OnRocketImpactedWithBorder()
@@ -869,7 +870,6 @@ namespace EA4S.Minigames.Maze
                     tickPosition.x -= 0.5f;
 
                     Tutorial.TutorialUI.MarkYes(tickPosition, Tutorial.TutorialUI.MarkSize.Big);
-                    Debug.Log("Playing sound at " + Time.time);
                     MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.StampOK);
 
                     transform.DOMove(transform.position + new Vector3(-0.5f, 0.5f, -0.5f) * 0.33f, 0.75f).SetEase(Ease.InOutSine).SetLoops(3, LoopType.Yoyo).OnComplete(() =>
