@@ -181,7 +181,7 @@ namespace EA4S.Minigames.HideAndSeek
         [HideInInspector]
         public LetterObjectView view;
 
-        public Tweener moveTweener;
+        Tweener moveTweener;
 
         public float walkDuration = 2f;
 
