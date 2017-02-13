@@ -249,7 +249,7 @@ namespace EA4S.Teacher
 
             // (4) Priority filtering based on current focus
             List<T> priorityFilteredList = new List<T>();
-            if (!isTest)
+            if (!isTest && !selectionParams.getMaxData)
             {
                 string s = ConfigAI.FormatTeacherHeader("Priority Filtering");
                 int nBefore = selectionParams.nRequired;
@@ -305,8 +305,11 @@ namespace EA4S.Teacher
                 selectionParams.filteringIds.AddRange(selectedList.ConvertAll<string>(x => x.GetId()).ToArray());
             }
 
-            // Reorder the data to show based on intrinsic difficulty
-            selectedList.Sort((x, y) => (int)(x.GetIntrinsicDifficulty() - y.GetIntrinsicDifficulty()));
+            // Reorder the selected data based on intrinsic difficulty
+            if (selectionParams.sortDataByDifficulty)
+            {
+                selectedList.Sort((x, y) => (int)(x.GetIntrinsicDifficulty() - y.GetIntrinsicDifficulty()));
+            }
 
             return selectedList;
         }

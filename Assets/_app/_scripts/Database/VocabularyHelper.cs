@@ -329,9 +329,46 @@ namespace EA4S.Database
             return list;
         }
 
-        #endregion
+        public bool WordContainsAnyLetter(WordData word, List<string> letter_ids)
+        {
+            var containedLetters = GetLettersInWord(word).ConvertAll(x => x.Id);
+            foreach (var letter_id in letter_ids)
+                if (containedLetters.Contains(letter_id))
+                    return true;
+            return false;
+        }
 
-        #region Phrase -> Word
+        public bool WordHasAllLettersInCommonWith(WordData word, List<string> word_ids)
+        {
+            var containedLetters = GetLettersInWord(word);
+            foreach (var letter in containedLetters)
+                if (!LetterContainedInAnyWord(letter, word_ids))
+                    return false;
+            return true;
+        }
+
+        public bool LetterContainedInAnyWord(LetterData letter, List<string> word_ids)
+        {
+            foreach (var word_id in word_ids)
+            {
+                var containedLetters = GetLettersInWord(word_id);
+                if (containedLetters.Contains(letter))
+                    return true;
+            }
+            return false;
+        }
+
+        public bool AnyWordContainsLetter(LetterData letter, List<string> word_ids)
+        {
+            foreach (var word_id in word_ids)
+                if (GetLettersInWord(word_id).Contains(letter))
+                    return true;
+            return false;
+        }
+
+    #endregion
+
+    #region Phrase -> Word
 
         /// <summary>
         /// Gets the words in phrase, taken from field Words of data Pharse. these words are set manually in the db
@@ -339,7 +376,6 @@ namespace EA4S.Database
         /// <returns>The words in phrase.</returns>
         /// <param name="phraseId">Phrase identifier.</param>
         /// <param name="wordFilters">Word filters.</param>
-
         public List<WordData> GetWordsInPhrase(string phraseId, WordFilters wordFilters = null)
         {
             if (wordFilters == null) wordFilters = new WordFilters();

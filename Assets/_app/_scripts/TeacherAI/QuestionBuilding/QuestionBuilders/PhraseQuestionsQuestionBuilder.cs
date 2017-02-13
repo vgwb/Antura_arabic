@@ -18,6 +18,11 @@ namespace EA4S.Teacher
         private int nWrong;
         private QuestionBuilderParameters parameters;
 
+        public QuestionBuilderParameters Parameters
+        {
+            get { return this.parameters; }
+        }
+
         public PhraseQuestionsQuestionBuilder(int nPacks, int nWrong = 0,
             QuestionBuilderParameters parameters = null)
         {

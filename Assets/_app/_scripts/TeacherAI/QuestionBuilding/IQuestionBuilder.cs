@@ -8,6 +8,8 @@ namespace EA4S.Teacher
     public interface IQuestionBuilder
     {
         List<QuestionPackData> CreateAllQuestionPacks();
+
+        QuestionBuilderParameters Parameters{ get; }
     }
 
 }

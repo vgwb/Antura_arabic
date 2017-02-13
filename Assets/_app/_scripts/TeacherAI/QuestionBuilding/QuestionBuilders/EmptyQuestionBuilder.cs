@@ -17,5 +17,9 @@ namespace EA4S.Teacher
             return new List<QuestionPackData>();
         }
 
+        public QuestionBuilderParameters Parameters
+        {
+            get { return null; }
+        }
     }
 }

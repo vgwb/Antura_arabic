@@ -24,6 +24,11 @@ namespace EA4S.Teacher
         private WordDataCategory category;
         private QuestionBuilderParameters parameters;
 
+        public QuestionBuilderParameters Parameters
+        {
+            get { return this.parameters; }
+        }
+
         public LettersInWordQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, 
             bool useAllCorrectLetters = false, Database.WordDataCategory category = Database.WordDataCategory.None,
             int maximumWordLength = 20,
@@ -43,13 +48,11 @@ namespace EA4S.Teacher
 
         private List<string> previousPacksIDs_words = new List<string>();
         private List<string> previousPacksIDs_letters = new List<string>();
-        //private List<string> previousWords_letters = new List<string>();
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
             previousPacksIDs_words.Clear();
             previousPacksIDs_letters.Clear();
-            //previousWords_letters.Clear();
             List<QuestionPackData> packs = new List<QuestionPackData>();
             for (int pack_i = 0; pack_i < nPacks; pack_i++)
             {
@@ -115,10 +118,10 @@ namespace EA4S.Teacher
                 if (word.Letters.Length > maxWordLength) continue;
 
                 // Avoid using words that contain previously chosen letters
-                if (packsUsedTogether && WordContainsAnyLetter(word, previousPacksIDs_letters)) continue;
+                if (packsUsedTogether && vocabularyHelper.WordContainsAnyLetter(word, previousPacksIDs_letters)) continue;
 
                 // Avoid using words that have ONLY letters that appeared in previous words
-                if (packsUsedTogether && WordHasAllLettersInCommonWith(word, previousPacksIDs_words)) continue;
+                if (packsUsedTogether && vocabularyHelper.WordHasAllLettersInCommonWith(word, previousPacksIDs_words)) continue;
 
                 eligibleWords.Add(word);
             }
@@ -128,56 +131,20 @@ namespace EA4S.Teacher
 
         public List<LetterData> FindEligibleLetters(WordData selectedWord, List<LetterData> wordLetters)
         {
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
             List<LetterData> eligibleLetters = new List<LetterData>();
+            var bad_words = previousPacksIDs_words;
+            bad_words.Remove(selectedWord.Id);
             foreach (var letter in wordLetters)
             {
                 // Avoid using letters that appeared in previous words
-                if (packsUsedTogether && LetterContainedInAnyWord(selectedWord, letter, previousPacksIDs_words)) continue;
+                if (packsUsedTogether && vocabularyHelper.LetterContainedInAnyWord(letter, bad_words)) continue;
 
                 eligibleLetters.Add(letter);
             }
             return eligibleLetters;
         }
 
-        bool LetterContainedInAnyWord(WordData goodWord, LetterData letter, List<string> word_ids)
-        {
-            var vocabularyHelper = AppManager.I.VocabularyHelper;
-            foreach (var word_id in word_ids)
-            {
-                if (word_id == goodWord.Id) continue;
-                //UnityEngine.Debug.Log("CHECKING: " + word_id);
-                var containedLetters = vocabularyHelper.GetLettersInWord(word_id);
-                if (containedLetters.Contains(letter))
-                    return true;
-            }
-            return false;
-        }
-
-        bool WordContainsAnyLetter(WordData word, List<string> letter_ids)
-        {
-            var vocabularyHelper = AppManager.I.VocabularyHelper;
-            var containedLetters = vocabularyHelper.GetLettersInWord(word).ConvertAll(x => x.Id);
-            foreach (var letter_id in letter_ids)
-            {
-                if (containedLetters.Contains(letter_id))
-                    return true;
-            }
-            return false;
-        }
-
-        bool WordHasAllLettersInCommonWith(WordData word, List<string> word_ids)
-        {
-            var vocabularyHelper = AppManager.I.VocabularyHelper;
-            var containedLetters = vocabularyHelper.GetLettersInWord(word);
-
-           // UnityEngine.Debug.Log(word + " -> "  + word_ids);
-            foreach (var letter in containedLetters)
-            {
-                if (!LetterContainedInAnyWord(word, letter, word_ids))
-                    return false;
-            }
-            return true;
-        }
 
     }
 }
