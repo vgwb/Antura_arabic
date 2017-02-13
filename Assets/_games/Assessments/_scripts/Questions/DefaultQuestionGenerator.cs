@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -174,29 +175,32 @@ namespace EA4S.Assessment
         private IQuestion CustomQuestion()
         {
             var correct = currentPack.GetCorrectAnswers().ToList()[0];
-            var correctAnsw = GenerateCorrectAnswer( correct);
+            
+            // Generate the question (and set form for correct letter)
+            var question = GenerateCustomQuestion( currentPack.GetQuestion(), correct as LL_LetterData);
+            totalQuestions.Add( question);
+            GeneratePlaceHolder( question, AssessmentOptions.Instance.AnswerType);
 
+            // Generate Answer after having setted the correct form
+            var correctAnsw = GenerateCorrectAnswer( correct);
             partialAnswers = new Answer[1];
             partialAnswers[0] = correctAnsw;
             totalAnswers.Add( correctAnsw);
 
-            // Generate the question
-            var question = GenerateCustomQuestion( currentPack.GetQuestion(), correct as LL_LetterData, correctAnsw);
-            totalQuestions.Add( question);
-            GeneratePlaceHolder( question, AssessmentOptions.Instance.AnswerType);
             return question;
         }
 
         private const string RemovedLetterChar = "_";
 
-        private IQuestion GenerateCustomQuestion(ILivingLetterData question, LL_LetterData correctLetter, Answer answer)
+        private IQuestion GenerateCustomQuestion( ILivingLetterData question, LL_LetterData correctLetter)
         {
             Database.LetterForm questionLetterForm;
             LL_WordData word = question as LL_WordData;
-            var wordGO = LivingLetterFactory.Instance.SpawnQuestion(word);
+            var wordGO = LivingLetterFactory.Instance.SpawnQuestion( word);
 
             string text = ArabicAlphabetHelper.GetWordWithMissingLetterText(
-                            out questionLetterForm, word.Data,
+                            out questionLetterForm,  // Set the letter form
+                            word.Data,
                             correctLetter.Data, RemovedLetterChar);
 
             if (config == DefaultQuestionType.MissingForm)
@@ -207,7 +211,7 @@ namespace EA4S.Assessment
             }
             
             wordGO.InstaShrink();
-            (answer.Data() as LL_LetterData).Form = questionLetterForm;
+            correctLetter.Form = questionLetterForm;
 
             return new DefaultQuestion( wordGO, 1, dialogues);
         }
