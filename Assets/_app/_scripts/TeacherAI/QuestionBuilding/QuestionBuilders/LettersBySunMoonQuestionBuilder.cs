@@ -19,6 +19,11 @@ namespace EA4S.Teacher
         private int nPacks;
         private QuestionBuilderParameters parameters;
 
+        public QuestionBuilderParameters Parameters
+        {
+            get { return this.parameters; }
+        }
+
         public LettersBySunMoonQuestionBuilder(int nPacks, QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();

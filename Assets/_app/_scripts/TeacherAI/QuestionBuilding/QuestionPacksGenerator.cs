@@ -10,9 +10,10 @@ namespace EA4S.Teacher
     /// </summary>
     public class QuestionPacksGenerator
     {
-        public List<IQuestionPack> GenerateQuestionPacks(IQuestionBuilder currentConfigurationRules)
+        public List<IQuestionPack> GenerateQuestionPacks(IQuestionBuilder questionBuilder)
         {
-            List<QuestionPackData> questionPackDataList = currentConfigurationRules.CreateAllQuestionPacks();
+            List<QuestionPackData> questionPackDataList = questionBuilder.CreateAllQuestionPacks();
+            if (questionBuilder.Parameters != null && questionBuilder.Parameters.sortPacksByDifficulty) QuestionBuilderHelper.SortPacksByDifficulty(questionPackDataList);
             List<IQuestionPack> questionPackList = ConvertToQuestionPacks(questionPackDataList);
             return questionPackList;
         }

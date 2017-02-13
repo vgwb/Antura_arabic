@@ -25,6 +25,11 @@ namespace EA4S.Teacher
         private WordDataCategory category;
         private QuestionBuilderParameters parameters;
 
+        public QuestionBuilderParameters Parameters
+        {
+            get { return this.parameters; }
+        }
+
         public LetterFormsInWordsQuestionBuilder(int nPacksPerRound, int nRounds,
             WordDataCategory category = WordDataCategory.None,
             int maximumWordLength = 20,
