@@ -117,10 +117,9 @@ namespace EA4S.Debugging
             }
         }
 
-        // refactor: this should be merged with MiniGameAPI and MiniGameLauncher
-        public void LaunchMinigGame(MiniGameCode miniGameCodeSelected)
+        public void LaunchMiniGame(MiniGameCode miniGameCodeSelected)
         {
-            Debug.Log("LaunchMinigGame " + miniGameCodeSelected.ToString());
+            Debug.Log("LaunchMiniGame " + miniGameCodeSelected.ToString());
             AppManager.I.Player.CurrentJourneyPosition.Stage = Stage;
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = PlaySession;
