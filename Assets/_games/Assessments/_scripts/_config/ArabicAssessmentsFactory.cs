@@ -44,7 +44,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.PronunceQuestionWhenClicked = true;
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the complete word
-            AssessmentOptions.Instance.QuestionAnsweredPlaySound = true;
+            AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
             AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = true;
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
@@ -78,7 +78,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
             AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = false;
-            AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = true;
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
