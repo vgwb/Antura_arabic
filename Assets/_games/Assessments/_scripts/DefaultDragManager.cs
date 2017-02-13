@@ -98,7 +98,6 @@ namespace EA4S.Assessment
             float ZMin = 2;
             float ZMax = 4.9f;
             int count = answers.Count;
-            float currentZ = ZMin;
             int i = 0;
 
             foreach (var answer in answers)
