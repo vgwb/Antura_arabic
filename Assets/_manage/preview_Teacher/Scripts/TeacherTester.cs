@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.DeInspektor.Attributes;
 using EA4S.UI;
-using Kore.Coroutines;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -159,20 +158,6 @@ namespace EA4S.Teacher.Test
             ConfigAI.verboseTeacher = choice;
         }
 
-        void ReportPacks(List<QuestionPackData> packs)
-        {
-            if (verboseQuestionPacks)
-            {
-                string packsString = ConfigAI.FormatTeacherHeader("Generated Packs");
-                for (int i = 0; i < packs.Count; i++)
-                {
-                    packsString += "\n" + (i+1) + ": " + packs[i].ToString();
-                }
-                ConfigAI.AppendToTeacherReport(packsString);
-            }
-        }
-
-
         #region Testing API
 
         void ApplyParameters()
@@ -304,8 +289,10 @@ namespace EA4S.Teacher.Test
             var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
             //InitialisePlaySession();
             var builder = config.SetupBuilder();
-            var packs = builder.CreateAllQuestionPacks();
-            ReportPacks(packs);
+            ConfigAI.AppendToTeacherReport("** Minigame " + code + " - " + builder.GetType().Name);
+
+            var questionPacksGenerator = new QuestionPacksGenerator();
+            questionPacksGenerator.GenerateQuestionPacks(builder);
         }
 
         #endregion
@@ -365,8 +352,8 @@ namespace EA4S.Teacher.Test
                     break;
             }
 
-            var packs = builder.CreateAllQuestionPacks();
-            ReportPacks(packs);
+            var questionPacksGenerator = new QuestionPacksGenerator();
+            questionPacksGenerator.GenerateQuestionPacks(builder);
         }
 
         QuestionBuilderParameters SetupBuilderParameters()

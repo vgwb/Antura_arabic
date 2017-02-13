@@ -12,13 +12,12 @@ using EA4S.UI;
 // refactoring: this is tied to SRDebugger, but we have a DebugManager. Move all debug logic there and make this behave only as a wrapping interface.
 public partial class SROptions
 {
-    // refactoring: merge with MiniGameAPI, MiniGameLauncher, DebugManager.LaunchMinigame
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
         //if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
         //{
         WidgetPopupWindow.I.Close();
-        DebugManager.I.LaunchMinigGame(minigameCode);
+        DebugManager.I.LaunchMiniGame(minigameCode);
         SRDebug.Instance.HideDebugPanel();
         //}
         //else

@@ -14,6 +14,8 @@ namespace EA4S.Teacher
         {
             List<QuestionPackData> questionPackDataList = questionBuilder.CreateAllQuestionPacks();
             if (questionBuilder.Parameters != null && questionBuilder.Parameters.sortPacksByDifficulty) QuestionBuilderHelper.SortPacksByDifficulty(questionPackDataList);
+            ConfigAI.ReportPacks(questionPackDataList);
+
             List<IQuestionPack> questionPackList = ConvertToQuestionPacks(questionPackDataList);
             return questionPackList;
         }

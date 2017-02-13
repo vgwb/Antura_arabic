@@ -42,9 +42,12 @@ namespace EA4S.MinigamesAPI
         /// <param name="forceNewPlaySession">Is this a new play session?</param>
         public void LaunchGame(MiniGameCode _gameCode, MinigameLaunchConfiguration _launchConfiguration, bool forceNewPlaySession = false)
         {
-            Database.MiniGameData miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
+            ConfigAI.StartTeacherReport();
 
-            if (forceNewPlaySession) {
+            Database.MiniGameData miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
+            
+            if (forceNewPlaySession)
+            {
                 AppManager.I.NavigationManager.InitialiseNewPlaySession(miniGameData);
             }
 
@@ -71,6 +74,9 @@ namespace EA4S.MinigamesAPI
             // Comunicate to LogManager the start of a new single minigame play session.
             if (AppConstants.DebugLogInserts) Debug.Log("InitGameplayLogSession " + _gameCode.ToString());
             LogManager.I.LogInfo(InfoEvent.GameStart, _gameCode.ToString());
+
+            // Print the teacher's report now
+            ConfigAI.PrintTeacherReport();
 
             // Launch the game
             AppManager.I.NavigationManager.GotoMinigameScene();

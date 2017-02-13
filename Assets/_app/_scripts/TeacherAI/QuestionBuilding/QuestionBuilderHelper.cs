@@ -22,10 +22,14 @@ namespace EA4S.Teacher
             float qWeight = 0.5f;
             float cWeight = 0.5f;
 
-            if (pack.questions.Count > 0)
+            if (pack.questions != null && pack.questions.Count > 0)
             {
                 foreach (var q in pack.questions) qDiff += ((IVocabularyData)q).GetIntrinsicDifficulty();
                 qDiff /= pack.questions.Count;
+            }
+            if (pack.question != null)
+            {
+                qDiff += ((IVocabularyData)pack.question).GetIntrinsicDifficulty();
             }
             else
             {
