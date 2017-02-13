@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using EA4S.MinigamesAPI;
 
 namespace EA4S.Balloons
 {
@@ -278,6 +279,10 @@ namespace EA4S.Balloons
             if (Letter.isRequired)
             {
                 BalloonsGame.instance.OnPoppedRequiredBalloon(Letter.associatedPromptIndex);
+                if (BalloonsConfiguration.Instance.Variation == BalloonsVariation.Letter)
+                {
+                    Letter.FlashLetterInWord(((LL_LetterData)BalloonsGame.instance.question).Data, Color.red);
+                }
             }
             if (BalloonsGame.instance.ActiveGameVariation == BalloonsVariation.Counting)
             {
