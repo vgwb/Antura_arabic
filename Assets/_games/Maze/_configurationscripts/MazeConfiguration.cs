@@ -59,6 +59,7 @@ namespace EA4S.Minigames.Maze
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
             builderParams.wordFilters.excludeDiacritics = true;
+            builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.AllButAlefHamza;
             builder = new RandomLettersQuestionBuilder(7,1, parameters: builderParams);
 
             return builder;
