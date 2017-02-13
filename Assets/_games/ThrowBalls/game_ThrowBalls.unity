@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 0
   m_FogColor: {r: 0.9411765, g: 0.87058824, b: 0.7254902, a: 1}
   m_FogMode: 1
-  m_FogDensity: 1.52
+  m_FogDensity: 1
   m_LinearFogStart: 20
   m_LinearFogEnd: 160
   m_AmbientSkyColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
@@ -4093,6 +4093,8 @@ MonoBehaviour:
   ballController: {fileID: 1034360350}
   letterWithPropsPrefab: {fileID: 940559677}
   poofPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
+  cratePoofPrefab: {fileID: 1238130824175032, guid: dcb9f6aa93dcda149ade26275f92b746,
+    type: 2}
   environment: {fileID: 737431392}
 --- !u!4 &436118478
 Transform:
@@ -4688,6 +4690,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &747133626
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4989302382305374, guid: dcb9f6aa93dcda149ade26275f92b746, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989302382305374, guid: dcb9f6aa93dcda149ade26275f92b746, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989302382305374, guid: dcb9f6aa93dcda149ade26275f92b746, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989302382305374, guid: dcb9f6aa93dcda149ade26275f92b746, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989302382305374, guid: dcb9f6aa93dcda149ade26275f92b746, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989302382305374, guid: dcb9f6aa93dcda149ade26275f92b746, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989302382305374, guid: dcb9f6aa93dcda149ade26275f92b746, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989302382305374, guid: dcb9f6aa93dcda149ade26275f92b746, type: 2}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1238130824175032, guid: dcb9f6aa93dcda149ade26275f92b746, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: dcb9f6aa93dcda149ade26275f92b746, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &750906263
 Prefab:
   m_ObjectHideFlags: 0
@@ -5508,6 +5556,7 @@ GameObject:
   - component: {fileID: 960631860}
   - component: {fileID: 960631864}
   - component: {fileID: 960631865}
+  - component: {fileID: 960631866}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Ground
@@ -5603,6 +5652,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99999994, y: 1, z: 200}
   m_Center: {x: 0, y: 0, z: 98.11}
+--- !u!54 &960631866
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 960631859}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &974389106
 GameObject:
   m_ObjectHideFlags: 0

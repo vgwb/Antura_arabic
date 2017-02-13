@@ -290,7 +290,7 @@ namespace EA4S.Minigames.ThrowBalls
                 MinigamesUI.Init(MinigamesUIElement.Lives | MinigamesUIElement.Starbar);
                 MinigamesUI.Lives.Setup(MAX_NUM_BALLS);
             }
-            
+
             //question = newQuestionPack.GetQuestion();
             question = new LL_WordData("number_04");
             SayQuestion();
@@ -589,7 +589,7 @@ namespace EA4S.Minigames.ThrowBalls
 
             correctLetterCntrl.Show();
             correctLetterCntrl.letterObjectView.DoHorray();
-            
+
             game.Context.GetAudioManager().PlaySound(Sfx.Win);
 
             yield return new WaitForSeconds(3f);
@@ -700,8 +700,16 @@ namespace EA4S.Minigames.ThrowBalls
                     }
                     else
                     {
-                        letterController.SetMotionVariation(LetterController.MotionVariation.Popping);
-                        letterController.SetPropVariation(LetterController.PropVariation.Bush);
+                        if (Random.value <= 0.6f)
+                        {
+                            letterController.SetMotionVariation(LetterController.MotionVariation.Idle);
+                            letterController.SetPropVariation(LetterController.PropVariation.SwervingPileOfCrates);
+                        }
+                        else
+                        {
+                            letterController.SetMotionVariation(LetterController.MotionVariation.Popping);
+                            letterController.SetPropVariation(LetterController.PropVariation.Bush);
+                        }
                     }
                     break;
                 case ThrowBallsGame.ThrowBallsDifficulty.VeryHard:
