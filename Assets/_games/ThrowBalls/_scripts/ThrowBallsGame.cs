@@ -28,6 +28,7 @@ namespace EA4S.Minigames.ThrowBalls
         public GameObject letterWithPropsPrefab;
 
         public GameObject poofPrefab;
+        public GameObject cratePoofPrefab;
 
         public GameObject environment;
 
