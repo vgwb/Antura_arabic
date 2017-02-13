@@ -107,14 +107,14 @@ namespace EA4S.Assessment
         void RemoveFromUpdateAndPlaceholders( IDroppable droppa)
         {
             RemoveFromUpdate();
-            if (placeholders.Remove(droppa.GetLinkedPlaceholder()) == false)
-                throw new InvalidOperationException("Cannote remove the droppale");
+            if (placeholders.Remove( droppa.GetLinkedPlaceholder()) == false)
+                throw new InvalidOperationException( "Cannote remove the droppable");
         }
 
         void RemoveFromUpdate()
         {
-            this.droppable.StopDrag();
-            this.droppable = null;
+            droppable.StopDrag();
+            droppable = null;
         }
 
         public void StopDragging( IDroppable droppable)
