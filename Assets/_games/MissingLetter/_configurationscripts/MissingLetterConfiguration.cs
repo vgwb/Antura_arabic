@@ -62,9 +62,9 @@ namespace EA4S.Minigames.MissingLetter
             switch (Variation)
             {
                 case MissingLetterVariation.MissingForm:
-                    builderParams.letterFilters.excludeDiacritics = true;
+                    builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
                     builderParams.letterFilters.excludeDiphthongs = true;
-                    builderParams.letterFilters.excludeLetterVariations = true;
+                    builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
                     builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
 

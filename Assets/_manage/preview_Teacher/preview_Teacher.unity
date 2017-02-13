@@ -6906,7 +6906,7 @@ MonoBehaviour:
   currentJourneyStage: 3
   currentJourneyLB: 4
   isAssessment: 0
-  nPacks: 2
+  nPacks: 4
   nCorrectAnswers: 1
   correctSeverity: 0
   correctHistory: 2
