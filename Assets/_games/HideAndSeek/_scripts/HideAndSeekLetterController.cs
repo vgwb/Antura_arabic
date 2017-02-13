@@ -149,6 +149,7 @@ namespace EA4S.Minigames.HideAndSeek
         {
             if (isClickable && onLetterTouched != null)
             {
+                HideAndSeekConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Blip);
                 HideAndSeekConfiguration.Instance.Context.GetAudioManager().PlayLetterData(view.Data);
                 isClickable = false;
                 onLetterTouched(id);
