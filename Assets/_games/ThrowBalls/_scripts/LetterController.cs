@@ -67,6 +67,7 @@ namespace EA4S.Minigames.ThrowBalls
             }
 
             SetIsColliderEnabled(true);
+            HideVictoryRays();
         }
 
         public void SetPropVariation(PropVariation propVariation)
@@ -487,16 +488,16 @@ namespace EA4S.Minigames.ThrowBalls
 
         public void Show()
         {
-            GameObject poof = (GameObject)Instantiate(ThrowBallsGame.instance.poofPrefab, transform.position, Quaternion.identity);
+            GameObject poof = Instantiate(ThrowBallsGame.instance.poofPrefab, transform.position, Quaternion.identity);
             Destroy(poof, 10);
             gameObject.SetActive(true);
         }
 
         public void Vanish()
         {
-            GameObject poof = (GameObject)Instantiate(ThrowBallsGame.instance.poofPrefab, transform.position, Quaternion.identity);
+            GameObject poof = Instantiate(ThrowBallsGame.instance.poofPrefab, transform.position, Quaternion.identity);
             Destroy(poof, 10);
-            gameObject.SetActive(false);
+            transform.position = new Vector3(0, 0, -100f);
         }
 
         public void Enable()
@@ -523,13 +524,17 @@ namespace EA4S.Minigames.ThrowBalls
             isStill = false;
             SetIsColliderEnabled(true);
             shadow.SetActive(true);
-            victoryRays.SetActive(false);
             letterObjectView.SetState(LLAnimationStates.LL_idle);
         }
 
         public void ShowVictoryRays()
         {
             victoryRays.SetActive(true);
+        }
+
+        public void HideVictoryRays()
+        {
+            victoryRays.SetActive(false);
         }
 
         void OnMouseDown()

@@ -566,7 +566,9 @@ namespace EA4S.Minigames.ThrowBalls
 
         private IEnumerator ShowWinSequence(LetterController correctLetterCntrl)
         {
-            yield return new WaitForSeconds(0.1f);
+            correctLetterCntrl.ShowVictoryRays();
+
+            yield return new WaitForSeconds(0.33f);
 
             correctLetterCntrl.Vanish();
             correctLetterCntrl.Reset();
@@ -587,11 +589,12 @@ namespace EA4S.Minigames.ThrowBalls
 
             correctLetterCntrl.Show();
             correctLetterCntrl.letterObjectView.DoHorray();
-            correctLetterCntrl.ShowVictoryRays();
-
+            
             game.Context.GetAudioManager().PlaySound(Sfx.Win);
 
             yield return new WaitForSeconds(3f);
+
+            correctLetterCntrl.HideVictoryRays();
 
             OnRoundConcluded();
         }
