@@ -93,8 +93,6 @@ namespace EA4S.Minigames.Maze
 
         public Transform nextPosition;
 
-        int currentCharacterWayPoint;
-
         public Vector3 initialPosition;
         public Quaternion initialRotation;
         Vector3 targetPos;
@@ -142,7 +140,6 @@ namespace EA4S.Minigames.Maze
             isFleeing = false;
             characterIsMoving = false;
             characterWayPoints = new List<Vector3>();
-            currentCharacterWayPoint = 0;
 
             GetComponent<Collider>().enabled = false;
 
@@ -267,7 +264,7 @@ namespace EA4S.Minigames.Maze
                 {
                     Transform child = fruitsList.transform.GetChild(i);
 
-                    MazeArrow mazeArrow = child.gameObject.AddComponent<MazeArrow>();
+                    child.gameObject.AddComponent<MazeArrow>();
 
                     child.gameObject.name = "fruit_" + (i);
                 }
@@ -294,7 +291,7 @@ namespace EA4S.Minigames.Maze
 
                 if (i == 0)
                 {
-                    mazeArrow.Highlight(true);
+                    mazeArrow.HighlightAsLaunchPosition();
                 }
 
                 _fruits.Add(child);
@@ -414,8 +411,7 @@ namespace EA4S.Minigames.Maze
 
             initialRotation = transform.rotation;
             targetRotation = initialRotation;
-
-            currentCharacterWayPoint = 0;
+            
             characterWayPoints = new List<Vector3>();
             characterWayPoints.Add(initialPosition);
 
@@ -453,8 +449,7 @@ namespace EA4S.Minigames.Maze
 
             initialRotation = transform.rotation;
             targetRotation = initialRotation;
-
-            currentCharacterWayPoint = 0;
+            
             characterWayPoints = new List<Vector3>();
             characterWayPoints.Add(initialPosition);
 
@@ -583,9 +578,10 @@ namespace EA4S.Minigames.Maze
             }
         }
 
-        public void UnhighlightStartingFX()
+        public void ChangeStartingFXHighlight()
         {
             _fruits[0].GetComponent<MazeArrow>().Unhighlight();
+            _fruits[0].GetComponent<MazeArrow>().HighlightAsReached();
         }
 
         private void OnRocketImpactedWithBorder()
@@ -874,7 +870,6 @@ namespace EA4S.Minigames.Maze
                     tickPosition.x -= 0.5f;
 
                     Tutorial.TutorialUI.MarkYes(tickPosition, Tutorial.TutorialUI.MarkSize.Big);
-                    Debug.Log("Playing sound at " + Time.time);
                     MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.StampOK);
 
                     transform.DOMove(transform.position + new Vector3(-0.5f, 0.5f, -0.5f) * 0.33f, 0.75f).SetEase(Ease.InOutSine).SetLoops(3, LoopType.Yoyo).OnComplete(() =>

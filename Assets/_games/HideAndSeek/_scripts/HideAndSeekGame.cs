@@ -71,7 +71,6 @@ namespace EA4S.Minigames.HideAndSeek
                 Context.GetOverlayWidget().SetStarsScore(++CurrentScore);
 
             Context.GetLogManager().OnAnswered(data, result);
-            Context.GetCheckmarkWidget().Show(result);
         }
     }
 }

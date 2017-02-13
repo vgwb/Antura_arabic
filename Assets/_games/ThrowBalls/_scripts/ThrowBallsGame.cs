@@ -28,6 +28,7 @@ namespace EA4S.Minigames.ThrowBalls
         public GameObject letterWithPropsPrefab;
 
         public GameObject poofPrefab;
+        public GameObject cratePoofPrefab;
 
         public GameObject environment;
 
@@ -35,9 +36,9 @@ namespace EA4S.Minigames.ThrowBalls
         {
             instance = this;
 
-            GameState = new GameState(this);
-
             SetDifficulty();
+
+            GameState = new GameState(this);
         }
 
         protected override IGameConfiguration GetConfiguration()

@@ -98,7 +98,6 @@ namespace EA4S.Assessment
             float ZMin = 2;
             float ZMax = 4.9f;
             int count = answers.Count;
-            float currentZ = ZMin;
             int i = 0;
 
             foreach (var answer in answers)
@@ -108,14 +107,14 @@ namespace EA4S.Assessment
         void RemoveFromUpdateAndPlaceholders( IDroppable droppa)
         {
             RemoveFromUpdate();
-            if (placeholders.Remove(droppa.GetLinkedPlaceholder()) == false)
-                throw new InvalidOperationException("Cannote remove the droppale");
+            if (placeholders.Remove( droppa.GetLinkedPlaceholder()) == false)
+                throw new InvalidOperationException( "Cannote remove the droppable");
         }
 
         void RemoveFromUpdate()
         {
-            this.droppable.StopDrag();
-            this.droppable = null;
+            droppable.StopDrag();
+            droppable = null;
         }
 
         public void StopDragging( IDroppable droppable)

@@ -44,8 +44,7 @@ namespace EA4S.MinigamesAPI
         {
             Database.MiniGameData miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
 
-            if (forceNewPlaySession)
-            {
+            if (forceNewPlaySession) {
                 AppManager.I.NavigationManager.InitialiseNewPlaySession(miniGameData);
             }
 
@@ -59,8 +58,7 @@ namespace EA4S.MinigamesAPI
 
             // Set also the number of rounds
             // @note: only for assessment, for now
-            if (currentGameConfig is IAssessmentConfiguration)
-            {
+            if (currentGameConfig is IAssessmentConfiguration) {
                 IAssessmentConfiguration assessmentConfig = currentGameConfig as IAssessmentConfiguration;
                 assessmentConfig.NumberOfRounds = _launchConfiguration.NumberOfRounds;
             }
@@ -87,8 +85,7 @@ namespace EA4S.MinigamesAPI
             var defaultContext = new MinigamesGameContext(code, sessionName);
 
             IGameConfiguration currentGameConfig = null;
-            switch (code)
-            {
+            switch (code) {
                 case MiniGameCode.Assessment_LetterForm:
                     Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.LetterForm;
                     Assessment.AssessmentConfiguration.Instance.Context = defaultContext;
@@ -104,8 +101,18 @@ namespace EA4S.MinigamesAPI
                     Assessment.AssessmentConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Assessment.AssessmentConfiguration.Instance;
                     break;
+                case MiniGameCode.Assessment_MatchLettersToWord_Form:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.MatchLettersToWord_Form;
+                    Assessment.AssessmentConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
+                    break;
                 case MiniGameCode.Assessment_CompleteWord:
                     Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.CompleteWord;
+                    Assessment.AssessmentConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Assessment.AssessmentConfiguration.Instance;
+                    break;
+                case MiniGameCode.Assessment_CompleteWord_Form:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.CompleteWord_Form;
                     Assessment.AssessmentConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Assessment.AssessmentConfiguration.Instance;
                     break;
@@ -236,6 +243,11 @@ namespace EA4S.MinigamesAPI
                     break;
                 case MiniGameCode.MissingLetter:
                     Minigames.MissingLetter.MissingLetterConfiguration.Instance.Variation = Minigames.MissingLetter.MissingLetterVariation.MissingLetter;
+                    Minigames.MissingLetter.MissingLetterConfiguration.Instance.Context = defaultContext;
+                    currentGameConfig = Minigames.MissingLetter.MissingLetterConfiguration.Instance;
+                    break;
+                case MiniGameCode.MissingLetter_forms:
+                    Minigames.MissingLetter.MissingLetterConfiguration.Instance.Variation = Minigames.MissingLetter.MissingLetterVariation.MissingForm;
                     Minigames.MissingLetter.MissingLetterConfiguration.Instance.Context = defaultContext;
                     currentGameConfig = Minigames.MissingLetter.MissingLetterConfiguration.Instance;
                     break;

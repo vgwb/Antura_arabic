@@ -81,7 +81,7 @@ namespace EA4S.Minigames.Maze
             MazeGameManager.instance.currentTutorial.stopCurrentTutorial();
             anturaSeconds = 0;
 
-            mazeCharacter.UnhighlightStartingFX();
+            mazeCharacter.ChangeStartingFXHighlight();
 
             // Inform that we are inside the collision:
             isDrawing = true;
@@ -133,7 +133,7 @@ namespace EA4S.Minigames.Maze
         {
             if (isDrawing && fruit.gameObject != mazeCharacter._fruits[0])
             {
-                fruit.Highlight(false);
+                fruit.HighlightAsReached();
             }
         }
     }

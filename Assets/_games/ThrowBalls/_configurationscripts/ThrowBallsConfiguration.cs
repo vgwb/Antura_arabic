@@ -42,7 +42,7 @@ namespace EA4S.Minigames.ThrowBalls
 
             Context = new MinigamesGameContext(MiniGameCode.ThrowBalls_letters, System.DateTime.Now.Ticks.ToString());
             
-            Difficulty = 0.3f;
+            Difficulty = 0.7f;
         }
 
         #region external configuration call

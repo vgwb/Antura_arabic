@@ -376,6 +376,7 @@ namespace EA4S.Profile
             Age = _data.Age;
             Gender = _data.Gender;
             Tint = _data.Tint;
+            IsDemoUser = _data.IsDemoUser;
             ProfileCompletion = _data.ProfileCompletion;
             TotalNumberOfBones = _data.TotalNumberOfBones;
             this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
@@ -388,8 +389,9 @@ namespace EA4S.Profile
         #endregion
 
         #region player icon data
-        public PlayerIconData GetPlayerIconData() {
-            PlayerIconData returnData = new PlayerIconData() { AvatarId = this.AvatarId, Gender = this.Gender, Tint = this.Tint, Uuid = this.Uuid };
+        public PlayerIconData GetPlayerIconData()
+        {
+            PlayerIconData returnData = new PlayerIconData() { Uuid = this.Uuid, AvatarId = this.AvatarId, Gender = this.Gender, Tint = this.Tint, IsDemoUser = this.IsDemoUser };
             return returnData;
         }
         #endregion

@@ -35,7 +35,7 @@ namespace EA4S.LivingLetters
 
 
         // Use this for initialization
-        void Start() {
+        void Awake() {
             transform.DOScale(0, 0);
             SetEmoticon(Icon, false);
 
