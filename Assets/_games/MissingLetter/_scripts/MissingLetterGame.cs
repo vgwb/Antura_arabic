@@ -50,6 +50,13 @@ namespace EA4S.Minigames.MissingLetter
             var question = m_oRoundManager.CurrentQuestion;
             Context.GetLogManager().OnAnswered(question.GetQuestion(), _result);
 
+            Context.GetAudioManager().PlaySound(Sfx.Blip);
+
+            if (_result)
+                Context.GetAudioManager().PlaySound(Sfx.StampOK);
+            else
+                Context.GetAudioManager().PlaySound(Sfx.KO);
+
             Context.GetCheckmarkWidget().Show(_result);
             
             if (_result)
