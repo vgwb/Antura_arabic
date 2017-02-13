@@ -254,13 +254,12 @@ namespace EA4S.Minigames.Maze
             //check if current letter is complete:
             if (currentCharacter.isComplete())
             {
-
-
-
                 if (!isTutorialMode)
                 {
                     correctLetters++;
                     roundNumber++;
+
+                    MazeConfiguration.Instance.Context.GetLogManager().OnAnswered(currentLL, true);
                 }
                 //show message:
                 MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
@@ -328,6 +327,9 @@ namespace EA4S.Minigames.Maze
 
             wrongLetters++;
             roundNumber++;
+
+            MazeConfiguration.Instance.Context.GetLogManager().OnAnswered(currentLL, false);
+
             if (roundNumber == MAX_NUM_ROUNDS)
             {
                 endGame();
@@ -338,6 +340,9 @@ namespace EA4S.Minigames.Maze
                 roundNumberText.text = "#" + (roundNumber + 1);
 
                 MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
+
+                
+
                 restartCurrentLetter();
             }
 

@@ -30,16 +30,6 @@ namespace EA4S {
             refreshActivePlayerList();
         }
 
-        public PlayerProfile CreatePlayer(int _id) {
-            PlayerProfile newPlayer = AppManager.I.PlayerProfile.CreateNewPlayer(
-                new PlayerProfile() {
-                    Key = _id.ToString(),
-                    Id = _id,
-                    AvatarId = _id,
-                }) as PlayerProfile;
-            return newPlayer;
-        }
-
         /// <summary>
         /// Selects the player profile.
         /// </summary>

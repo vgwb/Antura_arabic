@@ -46,7 +46,7 @@ namespace EA4S.Map
         {
             if (!Application.isEditor) SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
 
-           /* AppManager.I.Player.MaxJourneyPosition.Stage = 6;
+          /*  AppManager.I.Player.MaxJourneyPosition.Stage = 6;
             AppManager.I.Player.MaxJourneyPosition.LearningBlock = 15;
             AppManager.I.Player.MaxJourneyPosition.PlaySession = 100;*/
 
@@ -188,7 +188,7 @@ namespace EA4S.Map
         }
         void CalculateSettingsStage()
         {
-            DesactiveUIButtonsDuringTransition();
+            //DesactiveUIButtonsDuringTransition();
             inTransition = true;
             stages[numberStage].SetActive(true);
             ChangeCamera(cameras[numberStage]);
@@ -227,6 +227,8 @@ namespace EA4S.Map
         }
         IEnumerator DesactivateMap()
         {
+            yield return new WaitForSeconds(0.1f);
+            DesactiveUIButtonsDuringTransition();
             yield return new WaitForSeconds(0.5f);
             DesactiveUIButtonsDuringTransition();
             yield return new WaitForSeconds(0.3f);
@@ -235,16 +237,18 @@ namespace EA4S.Map
         }
         void FirstOrLastMap()
         {
-            if (numberStage == 1)
-                rightStageButton.SetActive(false);
-            else if (numberStage == 6)
-                leftStageButton.SetActive(false);
+            if (numberStage == 1) StartCoroutine("DesactivateButtonWithDelay", rightStageButton);
+            else if (numberStage == 6) StartCoroutine("DesactivateButtonWithDelay", leftStageButton);
             else
             {
                 rightStageButton.SetActive(true);
                 leftStageButton.SetActive(true);
             }
-
+        }
+        IEnumerator DesactivateButtonWithDelay(GameObject button)
+        {
+            yield return new WaitForSeconds(0.1f);
+            button.SetActive(false);
         }
         void DesactivateUI()
         {

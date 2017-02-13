@@ -15,8 +15,12 @@ namespace EA4S.ReservedArea
 
         void Start()
         {
+            ResetAll();
+        }
+
+        void ResetAll()
+        {
             SelectedPlayerId = "";
-            ProfileCommandsContainer.SetActive(false);
             RefreshPlayerIcons();
             RefreshUI();
         }
@@ -29,12 +33,12 @@ namespace EA4S.ReservedArea
                 Destroy(t.gameObject);
             }
 
-            //List<PlayerIconData> players = AppManager.I.PlayerProfileManager.getSavedPlayers();
-            List<PlayerIconData> players = new List<PlayerIconData>();
-            players.Add(new PlayerIconData("UUID-test1", 2, PlayerGender.F, PlayerTint.Green, false));
-            players.Add(new PlayerIconData("UUID-test2", 3, PlayerGender.M, PlayerTint.Yellow, false));
-            players.Add(new PlayerIconData("UUID-test3", 4, PlayerGender.F, PlayerTint.Red, false));
-            players.Add(new PlayerIconData("UUID-test-DEMO", 1, PlayerGender.F, PlayerTint.Green, true));
+            List<PlayerIconData> players = AppManager.I.PlayerProfileManager.GetSavedPlayers();
+            //List<PlayerIconData> players = new List<PlayerIconData>();
+            //players.Add(new PlayerIconData("UUID-test1", 2, PlayerGender.F, PlayerTint.Green, false));
+            //players.Add(new PlayerIconData("UUID-test2", 3, PlayerGender.M, PlayerTint.Yellow, false));
+            //players.Add(new PlayerIconData("UUID-test3", 4, PlayerGender.F, PlayerTint.Red, false));
+            //players.Add(new PlayerIconData("UUID-test-DEMO", 1, PlayerGender.F, PlayerTint.Green, true));
 
             // reverse the list for RIGHT 2 LEFT layout
             players.Reverse();
@@ -70,17 +74,20 @@ namespace EA4S.ReservedArea
         public void OnOpenSelectedPlayerProfile()
         {
             Debug.Log("OPEN " + SelectedPlayerId);
+            AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
+            AppManager.I.NavigationManager.GoToPlayerBook();
         }
 
         public void OnDeleteSelectPlayerProfile()
         {
-            // GlobalUI.I.
             DoDeleteSelectPlayerProfile();
         }
 
         void DoDeleteSelectPlayerProfile()
         {
             Debug.Log("DELETE " + SelectedPlayerId);
+            AppManager.I.PlayerProfileManager.DeletePlayerProfile(SelectedPlayerId);
+            ResetAll();
         }
 
         public void OnExportSelectPlayerProfile()
@@ -90,14 +97,15 @@ namespace EA4S.ReservedArea
 
         public void OnCreateDemoPlayer()
         {
-            Debug.Log("DEMO");
+            Debug.Log("creating DEMO USER ");
+            AppManager.I.PlayerProfileManager.CreatePlayerProfile(10, PlayerGender.F, 1, PlayerTint.Red, true);
+            ResetAll();
         }
 
         public void OnImportProfile()
         {
             Debug.Log("IMPORT");
         }
-
 
     }
 }

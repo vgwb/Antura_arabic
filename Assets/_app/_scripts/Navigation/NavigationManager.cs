@@ -61,6 +61,9 @@ namespace EA4S.Core
                     }
 
                     break;
+                case AppScene.PlayerCreation:
+                    GoToScene(AppScene.Intro);
+                    break;
                 case AppScene.Mood:
                     GoToScene(AppScene.Map);
                     break;
@@ -109,6 +112,12 @@ namespace EA4S.Core
             Debug.LogFormat(" ---- NAV MANAGER ({0}) from scene {1} to {2} ---- ", "GoBack", NavData.CurrentScene, NavData.PrevScene);
             switch (NavData.CurrentScene) {
                 case AppScene.Book:
+                    if (NavData.PrevScene == AppScene.ReservedArea) {
+                        GoToScene(NavData.PrevScene);
+                    } else {
+                        GoToScene(AppScene.Map);
+                    }
+                    break;
                 case AppScene.GameSelector:
                 case AppScene.AnturaSpace:
                     GoToScene(AppScene.Map);
@@ -162,7 +171,6 @@ namespace EA4S.Core
 
         /// <summary>
         /// Launches the game scene.
-        /// !!! WARNING !!! Direct call is allowed only by NavigationManager internal, Book and debugger.
         /// </summary>
         /// <param name="_miniGame">The mini game.</param>
         private void InternalLaunchGameScene(MiniGameData _miniGame)
@@ -172,7 +180,7 @@ namespace EA4S.Core
 
         #endregion
 
-        #region Special request
+        #region Custom routes
 
         /// <summary>
         /// Go to home if is allowed for current scene.
@@ -242,6 +250,18 @@ namespace EA4S.Core
                 throw new Exception("Cannot go to a minigame from the current scene!");
             }
 
+        }
+
+        public void GotoNewProfileCreation()
+        {
+
+            switch (NavData.CurrentScene) {
+                case AppScene.Home:
+                    GoToScene(AppScene.PlayerCreation);
+                    break;
+                default:
+                    break;
+            }
         }
 
         // obsolete: to be implemented?

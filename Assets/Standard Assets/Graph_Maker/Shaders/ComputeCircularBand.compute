@@ -1,0 +1,139 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+// Create a RenderTexture with enableRandomWrite flag and set it with cs.SetTexture
+RWTexture2D<float4> Result;
+uint texSize;
+float4 floatArgs[2];
+// 0 = maxSize
+// 1 = inner
+// 2 = outer
+// 3 = antiAliasing
+// 4 = antiAliasingStrength
+// 5 = degreeFill
+// 6 = clockwiseFill
+// 7 = startFill
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+	float texFactor = floatArgs[0].x / texSize;
+	int centerX = id.x - texSize / 2;
+	int centerY = id.y - texSize / 2;
+	float dist = sqrt(centerX * centerX + centerY * centerY);
+	float inner = floatArgs[0].y / texFactor;
+	float outer = floatArgs[0].z / texFactor;
+	
+	float angle = degrees(atan2((float)centerY/texSize, (float)centerX/texSize));
+	if (angle < 0) angle += 360;
+	angle -= floatArgs[1].w; // startFill
+	if (angle < 0) angle += 360;
+	if (floatArgs[1].z) angle = -angle + 360; // clockwise
+
+	if (dist >= inner && dist < outer && angle < floatArgs[1].y) {
+		if (floatArgs[0].w) { // anti aliasing
+			float currentAlpha = 1;
+			if (dist >= inner + floatArgs[1].x && dist < outer - floatArgs[1].x) {
+				Result[id.xy] = float4(1.0, 1.0, 1.0, currentAlpha);
+			}
+			else {
+				if (dist > inner + floatArgs[1].x) {
+					currentAlpha = (outer - dist) / floatArgs[1].x;
+					Result[id.xy] = float4(1.0, 1.0, 1.0, currentAlpha);
+				}
+				else {
+					currentAlpha = (dist - inner) / floatArgs[1].x;
+					Result[id.xy] = float4(1.0, 1.0, 1.0, currentAlpha);
+				}
+			}
+			
+			if (floatArgs[1].y < 360) { // partial ring, add 2 fixed width anti-aliased lines on ends of ring
+				// the point being tested
+				float mx = (float)centerX;
+				float my = (float)centerY;
+				
+				// line on the side that is growing / shrinking
+				float angle1 = floatArgs[1].y;
+				if (floatArgs[1].z) angle1 = -angle1 + 360; // clockwise
+				angle1 = angle1 + floatArgs[1].w;
+				
+				// deal with 0 / infinity slope issues
+				if (fmod(angle1,45) == 0) angle1 = angle1 + (!floatArgs[1].z && (angle1 == 135 || angle1 == 315) ? 0.01 : -0.01);
+				
+				float cos1 = cos(radians(angle1));
+				float sin1 = sin(radians(angle1));
+				
+				// let rectangle ABC with AB and BC perpendicular define the rectangle
+				float ax = inner * cos1;
+				float ay = inner * sin1;
+				float bx = outer * cos1;
+				float by = outer * sin1;
+				
+				float slopeABperp = (ax - bx) / (by - ay); // inverse reciprocal of ab slope
+				float perpLineLength = sqrt(1 + slopeABperp * slopeABperp); // length of vector (1, slopeABperp)
+				
+				float length = floatArgs[1].x * (sin1 < 0 ? -1 : 1);
+				if (floatArgs[1].z) length = -length; // clockwise
+				float cx = bx + length * (1 / perpLineLength);
+				float cy = by + length * (slopeABperp / perpLineLength);
+				
+				float2 ab = float2(bx - ax, by - ay);
+				float2 bc = float2(cx - bx, cy - by);
+				float2 am = float2(mx - ax, my - ay);
+				float2 bm = float2(mx - bx, my - by);
+				
+				if (0 <= dot(ab, am) && dot(ab, am) <= dot(ab, ab) && 0 <= dot(bc, bm) && dot(bc, bm) <= dot(bc, bc)) { // point inside rectangle
+					float pointIntercept = my + 1 / slopeABperp * mx;
+					float startIntercept = by + 1 / slopeABperp * bx;
+					float endIntercept = cy + 1 / slopeABperp * cx;
+					float percentageDist = abs((pointIntercept - startIntercept) / (endIntercept - startIntercept));
+					
+					Result[id.xy] = float4(1.0, 1.0, 1.0, currentAlpha * percentageDist);
+				}
+				
+				// line on the starting side
+				angle1 = floatArgs[1].w;
+				
+				// deal with 0 / infinity slope issues
+				if (fmod(angle1,45) == 0) angle1 = angle1 + (floatArgs[1].z && (angle1 == 135 || angle1 == 315) ? 0.01 : -0.01);
+				
+				cos1 = cos(radians(angle1));
+				sin1 = sin(radians(angle1));
+				
+				// let rectangle ABC with AB and BC perpendicular define the rectangle
+				ax = inner * cos1;
+				ay = inner * sin1;
+				bx = outer * cos1;
+				by = outer * sin1;
+				
+				slopeABperp = (ax - bx) / (by - ay); // inverse reciprocal of ab slope
+				perpLineLength = sqrt(1 + slopeABperp * slopeABperp); // length of vector (1, slopeABperp)
+				
+				length = -floatArgs[1].x * (sin1 < 0 ? -1 : 1);
+				if (floatArgs[1].z) length = -length; // clockwise
+				cx = bx + length * (1 / perpLineLength);
+				cy = by + length * (slopeABperp / perpLineLength);
+				
+				ab = float2(bx - ax, by - ay);
+				bc = float2(cx - bx, cy - by);
+				am = float2(mx - ax, my - ay);
+				bm = float2(mx - bx, my - by);
+				
+				if (0 <= dot(ab, am) && dot(ab, am) <= dot(ab, ab) && 0 <= dot(bc, bm) && dot(bc, bm) <= dot(bc, bc)) { // point inside rectangle
+					float pointIntercept = my + 1 / slopeABperp * mx;
+					float startIntercept = by + 1 / slopeABperp * bx;
+					float endIntercept = cy + 1 / slopeABperp * cx;
+					float percentageDist = abs((pointIntercept - startIntercept) / (endIntercept - startIntercept));
+					
+					Result[id.xy] = float4(1.0, 1.0, 1.0, currentAlpha * percentageDist);
+				}
+			}
+		}
+		else {
+			Result[id.xy] = float4(1.0, 1.0, 1.0, 1.0);
+		}
+	}
+	else {
+		Result[id.xy] = float4(1.0, 1.0, 1.0, 0.0);
+	}
+}

@@ -16,8 +16,6 @@ namespace EA4S.Assessment
         SunMoonWord,
         SunMoonLetter,
         QuestionAndReply,
-
-        // brand new Assessmentes
         CompleteWord_Form,
         MatchLettersToWord_Form
     }

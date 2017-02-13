@@ -72,6 +72,10 @@ namespace EA4S.Minigames.ThrowBalls
             {
                 Vector3 forceToApply = GetLaunchForce();
                 ball.Launch(forceToApply);
+
+                Vector2 lastTouch = ThrowBallsConfiguration.Instance.Context.GetInputManager().LastPointerPosition;
+                var screen2World = Camera.main.ScreenToWorldPoint(new Vector3(lastTouch.x, lastTouch.y, 20f));
+                var hi = screen2World * 2f;
             }
             else
             {

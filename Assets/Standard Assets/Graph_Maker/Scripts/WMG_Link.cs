@@ -2,33 +2,63 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// The link class primarily used for the lines in line series in axis graphs.
+/// </summary>
 public class WMG_Link : WMG_GUI_Functions {
-	public int id;	// Each link has a unique id
-	// Node reference
+
+	/// <summary>
+	/// The unique id of this link per instance of WMG_Graph_Manager.
+	/// </summary>
+	public int id;
+	/// <summary>
+	/// The node from which this link originates.
+	/// </summary>
 	public GameObject fromNode;
+	/// <summary>
+	/// To node to which this link terminates.
+	/// </summary>
 	public GameObject toNode;
-	// References to children of this link that could be interesting to use in scripts
+	/// <summary>
+	/// Reference to the object that should change scale for this link, typically it is the same object to which this link is attached.
+	/// </summary>
 	public GameObject objectToScale;
+	/// <summary>
+	/// Reference to the object that should change color for this link, could be a separate child object of this link.
+	/// </summary>
 	public GameObject objectToColor;
+	/// <summary>
+	/// Reference to the object that should change label for this link, could be a separate child object of this link.
+	/// </summary>
 	public GameObject objectToLabel;
 	public bool weightIsLength;	// Updates the link weight based on its length
 	public bool updateLabelWithLength; // Updates the objectToLabel with the link length
 	public bool isSelected = false;	// Used in the editor when the link is selected
 	public bool wasSelected = false; // Used in the editor for drag select operations
 	public float weight;	// A link's weight, used in find shortest path weighted algorithms
-	
+
+	/// <summary>
+	/// Initializes this link, and sets its nodes.
+	/// </summary>
+	/// <param name="fromNode">From node.</param>
+	/// <param name="toNode">To node.</param>
+	/// <param name="linkId">Link identifier.</param>
+	/// <param name="repos">If set to <c>true</c> repos.</param>
 	public void Setup(GameObject fromNode, GameObject toNode, int linkId, bool repos) {
 		// Setup references and give a default name of the link based on node IDs
 		this.fromNode = fromNode;
 		this.toNode = toNode;
-		SetId(linkId);
+		this.id = linkId;
 		WMG_Node fromN = fromNode.GetComponent<WMG_Node>();
 		WMG_Node toN = toNode.GetComponent<WMG_Node>();
 		this.name = "WMG_Link_" + fromN.id + "_" + toN.id;
 		if (repos) Reposition();	// Update position and scale based on connected nodes
 	}
-	
-	public void Reposition() {
+
+	/// <summary>
+	/// Reposition this link based on the positions of its from and to nodes.
+	/// </summary>
+	public virtual void Reposition() {
 		float posXdif = getSpritePositionX(toNode) - getSpritePositionX(fromNode);
 		float posYdif = getSpritePositionY(toNode) - getSpritePositionY(fromNode);
 		
@@ -39,8 +69,8 @@ public class WMG_Link : WMG_GUI_Functions {
 		
 		SetNodeAngles(angle,fromN,toN);	// Set angles in node references, so they don't need to be calculated in various places
 		
-		float radiuses = fromN.radius + toN.radius;
-		float length = Mathf.Sqrt(Mathf.Pow(posYdif,2) + Mathf.Pow(posXdif,2)) - radiuses;
+		float radii = fromN.radius + toN.radius;
+		float length = Mathf.Sqrt(Mathf.Pow(posYdif,2) + Mathf.Pow(posXdif,2)) - radii;
 		if (length < 0) length = 0;
 		
 		// When the radii are different, need to offset the link position based on the difference of the radii
@@ -63,32 +93,13 @@ public class WMG_Link : WMG_GUI_Functions {
 				objectToLabel.transform.localEulerAngles = new Vector3 (0,0,360-angle);
 			}
 		}
-		
-		// NGUI
-		this.transform.localPosition = new Vector3 (getSpriteFactorY2(this.objectToScale) * posXdif + fromNode.transform.localPosition.x + radiusDifPosX + squareDifPosX, 
-													getSpriteFactorY2(this.objectToScale) * posYdif + fromNode.transform.localPosition.y + radiusDifPosY + squareDifPosY, 
+
+		this.transform.localPosition = new Vector3 (getSpritePivotTopToBot(this.objectToScale) * posXdif + fromNode.transform.localPosition.x + radiusDifPosX + squareDifPosX, 
+		                                            getSpritePivotTopToBot(this.objectToScale) * posYdif + fromNode.transform.localPosition.y + radiusDifPosY + squareDifPosY, 
 													this.transform.localPosition.z);
-		
-		// Daikon
-//		changeSpritePositionRelativeToObjBy(this.gameObject, fromNode, 
-//											new Vector3(getSpriteFactorY(this.gameObject) * posXdif + 
-//														-getSpriteOffsetX(this.gameObject) +
-//														Mathf.Cos(Mathf.Deg2Rad * angle) * 0.5f * getSpriteWidth(this.gameObject) +
-//														Mathf.Cos(Mathf.Deg2Rad * angle) * (getSpriteFactorX(this.gameObject) - 1) * getSpriteWidth(this.gameObject) +
-//														getSpriteOffsetX(fromNode) + radiusDifPosX + squareDifPosX, 
-//														getSpriteFactorY(this.gameObject) * posYdif +
-//														getSpriteOffsetY(this.gameObject) +
-//														-Mathf.Sin(Mathf.Deg2Rad * angle) * 0.5f * getSpriteWidth(this.gameObject) +
-//														Mathf.Sin(Mathf.Deg2Rad * angle) * getSpriteFactorX(this.gameObject) * getSpriteWidth(this.gameObject) +
-//														-getSpriteOffsetY(fromNode) + radiusDifPosY + squareDifPosY, 1));
 		
 		changeSpriteHeight(objectToScale, Mathf.RoundToInt(length));
 		this.transform.localEulerAngles = new Vector3 (0,0,angle);
-		
-	}
-	
-	public void SetId(int linkId) {
-		this.id = linkId;
 	}
 	
 	void SetNodeAngles(float angle, WMG_Node fromN, WMG_Node toN) {
@@ -106,7 +117,7 @@ public class WMG_Link : WMG_GUI_Functions {
 		}
 	}
 	
-	private float getSquareCircleOffsetLength(WMG_Node theNode, float angle, bool isFrom) {
+	float getSquareCircleOffsetLength(WMG_Node theNode, float angle, bool isFrom) {
 		if (theNode.isSquare) {
 			int angleOffset = getSquareCircleOffsetAngle(angle, isFrom);
 			float squareOffsetFromX = theNode.radius - theNode.radius * Mathf.Cos(Mathf.Deg2Rad * angleOffset);
@@ -116,7 +127,7 @@ public class WMG_Link : WMG_GUI_Functions {
 		else return 0;
 	}
 	
-	private int getSquareCircleOffsetAngle(float angle, bool isFrom) {
+	int getSquareCircleOffsetAngle(float angle, bool isFrom) {
 		int returnvalue = 0;
 		if (isFrom) {
 			returnvalue = (Mathf.RoundToInt(angle)-90)%90;

@@ -4,25 +4,29 @@ namespace EA4S.Minigames.ThrowBalls
 {
     public class LetterSpawner
     {
-        private const float MIN_X = -17f;
-        private const float MAX_X = 17f;
+        public static LetterSpawner instance;
 
-        private const float MIN_Y = 0.51f;
-        private const float MAX_Y = 0.51f;
+        public const float MIN_X = -17f;
+        public const float MAX_X = 17f;
 
-        private const float MIN_Z = -8.25f;
-        private const float MAX_Z = 13.25f;
+        public const float MIN_Y = 0.51f;
+        public const float MAX_Y = 0.51f;
+
+        public const float MIN_Z = -8.25f;
+        public const float MAX_Z = 13.25f;
 
         private const float MIN_DISTANCE_SQUARED = 450f;
 
+        public readonly Vector3 TUTORIAL_POSITION = new Vector3((MIN_X + MAX_X) / 2 + (MAX_X - MIN_X) * 0.5f, (MIN_Y + MAX_Y) / 2, (MIN_Z + MAX_Z) / 2);
+
+        private readonly Vector3 V11 = new Vector3(4.826691f, 8.097503f, -25.57817f);
+        private readonly Vector3 V12 = new Vector3(2.457545f, 7.25744f, -25.8511f);
+        private readonly Vector3 V21 = new Vector3(-4.826691f, 8.097503f, -25.57817f);
+        private readonly Vector3 V22 = new Vector3(-2.457545f, 7.25744f, -25.8511f);
+
         public LetterSpawner()
         {
-
-        }
-
-        public Vector3 GetTutorialPosition()
-        {
-            return new Vector3((MIN_X + MAX_X) / 2 + (MAX_X - MIN_X) * 0.5f, (MIN_Y + MAX_Y) / 2, (MIN_Z + MAX_Z) / 2);
+            instance = this;
         }
 
         public Vector3[] GenerateRandomPositions(int numPositions, bool isTutorialLevel)
@@ -41,7 +45,7 @@ namespace EA4S.Minigames.ThrowBalls
                 {
                     if (i == 0 && isTutorialLevel)
                     {
-                        randomPosition = GetTutorialPosition();
+                        randomPosition = TUTORIAL_POSITION;
                     }
 
                     else
@@ -78,6 +82,16 @@ namespace EA4S.Minigames.ThrowBalls
             }
 
             return randomPositions;
+        }
+
+        public Vector3 BiLerpForTutorialUI(Vector3 targetPosition)
+        {
+            var X = targetPosition.x;
+            var Z = targetPosition.z;
+            var VXZ1 = ((MAX_X - X) / (MAX_X - MIN_X)) * V11 + ((X - MIN_X) / (MAX_X - MIN_X)) * V21;
+            var VXZ2 = ((MAX_X - X) / (MAX_X - MIN_X)) * V12 + ((X - MIN_X) / (MAX_X - MIN_X)) * V22;
+
+            return ((MAX_Z - Z) / (MAX_Z - MIN_Z)) * VXZ1 + ((Z - MIN_Z) / (MAX_Z - MIN_Z)) * VXZ2;
         }
     }
 }

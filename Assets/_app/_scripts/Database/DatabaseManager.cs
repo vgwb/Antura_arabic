@@ -25,13 +25,6 @@ namespace EA4S.Database
             }
         }
 
-        public string GetPlayerDbFilename(string player_uuid)
-        {
-            return "EA4S_Database_" + player_uuid + ".sqlite3";
-            // the new one will be
-            // return "Antura_Player_" + player_uuid + ".sqlite3";
-        }
-
         public bool HasLoadedPlayerProfile()
         {
             return dynamicDb != null;
@@ -41,13 +34,13 @@ namespace EA4S.Database
 
         public void CreateDatabaseForPlayer(PlayerProfileData playerProfileData)
         {
-            SetPlayerProfile(playerProfileData.PlayerId);
+            SetPlayerProfile(playerProfileData.Uuid);
             UpdatePlayerProfileData(playerProfileData);
         }
 
-        public PlayerProfileData LoadDatabaseForPlayer(int playerId)
+        public PlayerProfileData LoadDatabaseForPlayer(string playerUuid)
         {
-            SetPlayerProfile(playerId);
+            SetPlayerProfile(playerUuid);
             return GetPlayerProfileData();
         }
 
@@ -59,7 +52,7 @@ namespace EA4S.Database
             LoadStaticDB(useTestDatabase);
         }
 
-        private void SetPlayerProfile(int playerProfileId)
+        private void SetPlayerProfile(string playerUuid)
         {
             // SAFE MODE: we need to make sure that the static db has some entires, otherwise there is something wrong
             if (staticDb.GetPlaySessionTable().GetDataCount() == 0) {
@@ -67,7 +60,7 @@ namespace EA4S.Database
             }
 
             // We load the selected player profile
-            LoadDynamicDbForPlayerProfile(playerProfileId);
+            LoadDynamicDbForPlayerProfile(playerUuid);
         }
 
 
@@ -83,9 +76,9 @@ namespace EA4S.Database
 
         #region Profile
 
-        private void LoadDynamicDbForPlayerProfile(int profileId)
+        private void LoadDynamicDbForPlayerProfile(string playerUuid)
         {
-            dynamicDb = new DBService(GetPlayerDbFilename(profileId.ToString()), profileId);
+            dynamicDb = new DBService(playerUuid);
         }
 
         public void UnloadCurrentProfile()

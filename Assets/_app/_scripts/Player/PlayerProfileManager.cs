@@ -27,7 +27,7 @@ namespace EA4S.Profile
                     if (AppManager.I.DB.HasLoadedPlayerProfile()) {
                         LogManager.I.LogInfo(InfoEvent.AppClosed);
                     }
-                    AppManager.I.GameSettings.LastActivePlayerId = value.Id;
+                    AppManager.I.GameSettings.LastActivePlayerUUID = value.Uuid;
                     SaveGameSettings();
                     LogManager.I.LogInfo(InfoEvent.AppStarted);
                     AppManager.I.NavigationManager.SetPlayerNavigationData(currentPlayer);
@@ -59,27 +59,102 @@ namespace EA4S.Profile
         {
             AppManager.I.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
             AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
-            int lastActivePlayerId = AppManager.I.GameSettings.LastActivePlayerId;
-            if (lastActivePlayerId > 0) {
-                //CurrentPlayer = LoadPlayerProfileById(AppManager.I.GameSettings.LastActivePlayerId);
-                int avatarId = int.Parse(GetAvatarIdFromPlayerId(AppManager.I.GameSettings.LastActivePlayerId));
-                SetPlayerProfile(avatarId);
+
+            if (AppManager.I.GameSettings.LastActivePlayerUUID != string.Empty) {
+                string playerUUID = AppManager.I.GameSettings.LastActivePlayerUUID;
+                SetPlayerAsCurrentByUUID(playerUUID);
             }
         }
 
+
         /// <summary>
-        /// Return list of id available for create new player (relate do avatar availble).
+        /// Creates the player profile.
+        /// </summary>
+        /// <param name="age">The age.</param>
+        /// <param name="gender">The gender.</param>
+        /// <param name="avatarID">The avatar identifier.</param>
+        /// <param name="tint">The color.</param>
+        /// <returns></returns>
+        public string CreatePlayerProfile(int age, PlayerGender gender, int avatarID, PlayerTint tint, bool isDemoUser = false)
+        {
+            PlayerProfile returnProfile = new PlayerProfile();
+            // Data
+            returnProfile.Uuid = System.Guid.NewGuid().ToString();
+            returnProfile.Age = age;
+            returnProfile.Gender = gender;
+            returnProfile.AvatarId = avatarID;
+            returnProfile.Tint = tint;
+            returnProfile.IsDemoUser = isDemoUser;
+            // DB Creation
+            AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
+            // Added to list
+            AppManager.I.GameSettings.SavedPlayers.Add(returnProfile.GetPlayerIconData());
+            // Create new antura skin
+            RewardPackUnlockData tileTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
+            returnProfile.AddRewardUnlocked(tileTexture);
+            returnProfile.CurrentAnturaCustomizations.TileTexture = tileTexture;
+            RewardPackUnlockData decalTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
+            returnProfile.AddRewardUnlocked(decalTexture);
+            returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
+            // Set player profile as current player
+            AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
+
+            // Call Event Profile creation
+            if (OnNewProfileCreated != null)
+                OnNewProfileCreated();
+
+            return returnProfile.Uuid;
+        }
+
+        /// <summary>
+        /// Sets the player as current player profile by UUID.
+        /// </summary>
+        /// <param name="playerUUID">The player UUID.</param>
+        /// <returns></returns>
+        public PlayerProfile SetPlayerAsCurrentByUUID(string playerUUID)
+        {
+            PlayerProfile returnProfile = GetPlayerProfileByUUID(playerUUID);
+            AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile;
+            return returnProfile;
+        }
+
+        /// <summary>
+        /// Gets the player profile by UUID.
+        /// </summary>
+        /// <param name="playerUUID">The player UUID.</param>
+        /// <returns></returns>
+        public PlayerProfile GetPlayerProfileByUUID(string playerUUID)
+        {
+            PlayerProfileData profileFromDB = AppManager.I.DB.LoadDatabaseForPlayer(playerUUID);
+            return new PlayerProfile().FromData(profileFromDB);
+        }
+
+        /// <summary>
+        /// Deletes the player profile.
+        /// </summary>
+        /// <param name="playerUUID">The player UUID.</param>
+        /// <returns></returns>
+        public PlayerProfile DeletePlayerProfile(string playerUUID)
+        {
+            PlayerProfile returnProfile = new PlayerProfile();
+            // TODO: check if is necessary to hard delete DB
+            PlayerIconData playerIconData = GetSavedPlayers().Find(p => p.Uuid == playerUUID);
+            if (playerIconData.Uuid == string.Empty)
+                return null;
+            AppManager.I.GameSettings.SavedPlayers.Remove(playerIconData);
+            SaveGameSettings();
+            return returnProfile;
+        }
+
+        /// <summary>
+        /// Return the list of existing player profiles.
         /// </summary>
         /// <returns></returns>
-        public List<int> GetListOfUnusedId()
+        public List<PlayerIconData> GetSavedPlayers()
         {
-            List<int> returnList = new List<int>();
-            for (int i = 1; i < AppConstants.MaxNumberOfPlayerProfiles + 1; i++) {
-                if (AppManager.I.GameSettings.AvailablePlayers[i] == null)
-                    returnList.Add(i);
-            }
-            return returnList;
+            return AppManager.I.GameSettings.SavedPlayers;
         }
+
 
         /// <summary>
         /// Sets the player profile with corresposnding avatarId to current player.
@@ -87,44 +162,44 @@ namespace EA4S.Profile
         /// <param name="_avatarId">The avatar identifier.</param>
         /// <param name="_isNew">if set to <c>true</c> create new one.</param>
         /// <returns></returns>
-        public PlayerProfile SetPlayerProfile(int _avatarId)
-        {
-            PlayerProfile returnProfile;
-            PlayerProfileData profileFromDB = AppManager.I.DB.LoadDatabaseForPlayer(GetPlayerIdFromAvatarId(_avatarId));
+        //public PlayerProfile SetPlayerProfile(int _avatarId)
+        //{
+        //    PlayerProfile returnProfile;
+        //    PlayerProfileData profileFromDB = AppManager.I.DB.LoadDatabaseForPlayer(GetPlayerIdFromAvatarId(_avatarId));
 
-            if (profileFromDB == null) { // not present in db or old db, create new one
-                returnProfile = new PlayerProfile();
-                // create new
-                if (AppManager.I.GameSettings.AvailablePlayers.Contains(_avatarId.ToString())) {
-                    returnProfile.Id = AppManager.I.GameSettings.AvailablePlayers.FindIndex(s => s == _avatarId.ToString()) + 1;
-                } else {
-                    returnProfile.Id = AppManager.I.GameSettings.AvailablePlayers.Count + 1;
-                }
-                returnProfile.Uuid = System.Guid.NewGuid().ToString();
-                returnProfile.AvatarId = _avatarId;
-                returnProfile.Key = returnProfile.Id.ToString();
-                AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
-                if (!AppManager.I.GameSettings.AvailablePlayers.Exists(p => p == _avatarId.ToString())) {
-                    AppManager.I.GameSettings.AvailablePlayers.Add(_avatarId.ToString());
-                    SaveGameSettings();
-                }
-                // Create new antura skin
-                RewardPackUnlockData tileTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
-                returnProfile.AddRewardUnlocked(tileTexture);
-                returnProfile.CurrentAnturaCustomizations.TileTexture = tileTexture;
-                RewardPackUnlockData decalTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
-                returnProfile.AddRewardUnlocked(decalTexture);
-                returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
-            } else {
-                returnProfile = new PlayerProfile().FromData(profileFromDB);
-            }
-            AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
+        //    if (profileFromDB == null) { // not present in db or old db, create new one
+        //        returnProfile = new PlayerProfile();
+        //        // create new
+        //        if (AppManager.I.GameSettings.AvailablePlayers.Contains(_avatarId.ToString())) {
+        //            returnProfile.Id = AppManager.I.GameSettings.AvailablePlayers.FindIndex(s => s == _avatarId.ToString()) + 1;
+        //        } else {
+        //            returnProfile.Id = AppManager.I.GameSettings.AvailablePlayers.Count + 1;
+        //        }
+        //        returnProfile.Uuid = System.Guid.NewGuid().ToString();
+        //        returnProfile.AvatarId = _avatarId;
+        //        returnProfile.Key = returnProfile.Id.ToString();
+        //        AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
+        //        if (!AppManager.I.GameSettings.AvailablePlayers.Exists(p => p == _avatarId.ToString())) {
+        //            AppManager.I.GameSettings.AvailablePlayers.Add(_avatarId.ToString());
+        //            SaveGameSettings();
+        //        }
+        //        // Create new antura skin
+        //        RewardPackUnlockData tileTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
+        //        returnProfile.AddRewardUnlocked(tileTexture);
+        //        returnProfile.CurrentAnturaCustomizations.TileTexture = tileTexture;
+        //        RewardPackUnlockData decalTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
+        //        returnProfile.AddRewardUnlocked(decalTexture);
+        //        returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
+        //    } else {
+        //        returnProfile = new PlayerProfile().FromData(profileFromDB);
+        //    }
+        //    AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
 
-            if (profileFromDB == null && OnNewProfileCreated != null)
-                OnNewProfileCreated();
+        //    if (profileFromDB == null && OnNewProfileCreated != null)
+        //        OnNewProfileCreated();
 
-            return AppManager.I.PlayerProfileManager.CurrentPlayer;
-        }
+        //    return AppManager.I.PlayerProfileManager.CurrentPlayer;
+        //}
 
         /// <summary>
         /// Saves the player settings.
@@ -184,9 +259,9 @@ namespace EA4S.Profile
         public void ResetEverything()
         {
             // Reset all the Databases
-            foreach (var playerId in AppManager.I.Modules.PlayerProfile.Options.AvailablePlayers) {
-                UnityEngine.Debug.Log(playerId);
-                AppManager.I.DB.LoadDatabaseForPlayer(int.Parse(playerId));
+            foreach (PlayerIconData pp in AppManager.I.GameSettings.SavedPlayers) {
+                UnityEngine.Debug.Log(pp);
+                AppManager.I.DB.LoadDatabaseForPlayer(pp.Uuid);
                 AppManager.I.DB.DropProfile();
             }
 

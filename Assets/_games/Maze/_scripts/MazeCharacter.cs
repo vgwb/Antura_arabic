@@ -617,48 +617,6 @@ namespace EA4S.Minigames.Maze
             State = LLState.Impacted;
         }
 
-        private void moveTweenComplete()
-        {
-            if (currentCharacterWayPoint < characterWayPoints.Count - 1)
-            {
-                currentCharacterWayPoint++;
-                //reached the end:
-                if (currentCharacterWayPoint == characterWayPoints.Count - 1)
-                {
-
-                    transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isDrawing = false;
-
-                    //arrived!
-                    //transform.rotation = initialRotation;
-                    if (currentFruitIndex == _fruits.Count)
-                    {
-
-                        print("Won");
-                        // if (particles) particles.SetActive(false);
-                        foreach (GameObject particle in particles) particle.SetActive(false);
-                        GetComponent<Collider>().enabled = false;
-                        characterIsMoving = false;
-                        transform.DOKill(false);
-                        toggleVisibility(false);
-                        MazeGameManager.instance.moveToNext(true);
-
-                        if (currentFruitList == Fruits.Count - 1)
-                        {
-                            if (dot != null)
-                                dot.GetComponent<BoxCollider>().enabled = true;
-                        }
-                    }
-                    else
-                        waitAndRestartScene();
-                }
-                else
-                    MoveTween();
-
-                //enable collider when we reach the second waypoint
-                //if (currentCharacterWayPoint == 1)
-                //myCollider.SetActive(true);
-            }
-        }
         public void initMovement()
         {
             if (characterIsMoving)
