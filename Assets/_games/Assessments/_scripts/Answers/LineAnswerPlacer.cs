@@ -1,8 +1,8 @@
 using DG.DeExtensions;
 using DG.Tweening;
-using EA4S.MinigamesCommon;
 using Kore.Coroutines;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -12,10 +12,10 @@ namespace EA4S.Assessment
     /// </summary>
     internal class LineAnswerPlacer : IAnswerPlacer
     {
-        private IAudioManager audioManager;
+        private AssessmentAudioManager audioManager;
         private float letterSize;
 
-        public LineAnswerPlacer( IAudioManager audioManager, float letterSize)
+        public LineAnswerPlacer( AssessmentAudioManager audioManager, float letterSize)
         {
             this.audioManager = audioManager;
             this.letterSize = letterSize;
@@ -32,6 +32,8 @@ namespace EA4S.Assessment
         public void Place( Answer[] answer)
         {
             Answer[] original = new Answer[answer.Length];
+            placeholders = new List<StillLetterBox>();
+
             for (int i = 0; i < answer.Length; i++)
                 original[i] = answer[i];
 
@@ -74,9 +76,8 @@ namespace EA4S.Assessment
             var bounds = WorldBounds.Instance;
 
             // Text justification "algorithm"
-            float letterGap = 1.3f;
-            float occupiedSpace = allAnswers.Length * ( letterGap * letterSize);
-            float spaceIncrement = ( letterGap * letterSize);
+            float spaceIncrement = 0.5f + letterSize;
+            float occupiedSpace = allAnswers.Length * spaceIncrement -3.5f;
 
             var flow = AssessmentOptions.Instance.LocaleTextFlow;
             float sign;
@@ -97,25 +98,62 @@ namespace EA4S.Assessment
 
             currentPos.y -= 1.5f;
 
+            // Move answer so we can wrap them in bg.
             foreach (var a in allAnswers)
             {
-                yield return Koroutine.Nested( PlaceAnswer( a, currentPos));
+                MoveAnswer( a, currentPos);
                 currentPos.x += spaceIncrement * sign;
+            }
+
+            // Spawn BG
+            SpawnLettersBG();
+
+            // Spawn Answers.
+            foreach (var a in allAnswers)
+            {
+                yield return Koroutine.Nested( PlaceAnswer( a));
             }
 
             yield return Wait.For( 0.65f);
             isAnimating = false;
         }
 
-        private IEnumerator PlaceAnswer( Answer a, Vector3 currentPos)
+        private void MoveAnswer( Answer a, Vector3 currentPos)
         {
             var go = a.gameObject;
             go.transform.localPosition = currentPos;
+            AddPlaceHolder( currentPos);
+        }
+
+        private IEnumerator PlaceAnswer( Answer a)
+        {
+            var go = a.gameObject;
             go.GetComponent< StillLetterBox>().Poof();
             go.GetComponent< StillLetterBox>().Magnify();
-            audioManager.PlaySound( Sfx.Poof);
-
+            audioManager.PlayPoofSound();
+            
             yield return Wait.For( Random.Range( 0.07f, 0.13f));
+        }
+
+        List< StillLetterBox> placeholders;
+        QuestionBox bgBox;
+
+        private void AddPlaceHolder( Vector3 currentPos)
+        {
+            currentPos.z = 5.5f;
+            var placeholder = LivingLetterFactory.Instance.SpawnPlaceholder( LivingLetterDataType.Letter);
+            placeholder.transform.localPosition = currentPos;
+            placeholder.InstaShrink();
+            placeholders.Add( placeholder);
+        }
+
+        private void SpawnLettersBG()
+        {
+            bgBox = LivingLetterFactory.Instance.SpawnQuestionBox( placeholders);
+            bgBox.Show();
+
+            foreach ( var p in placeholders)
+                p.Magnify();
         }
 
         public void RemoveAnswers()
@@ -129,13 +167,27 @@ namespace EA4S.Assessment
             foreach (var a in allAnswers)
                 yield return Koroutine.Nested( RemoveAnswer( a.gameObject));
 
-            yield return Wait.For( 0.65f);
+            yield return Wait.For( 0.2f);
+
+            bgBox.Hide();
+
+            foreach (var p in placeholders)
+                RemovePlaceholder( p);
+
+            audioManager.PlayPoofSound();
+            yield return Wait.For( 0.3f);
+
             isAnimating = false;
+        }
+
+        private void RemovePlaceholder( StillLetterBox box)
+        {
+            box.transform.DOScale(0, 0.3f).OnComplete(() => GameObject.Destroy( box));
         }
 
         private IEnumerator RemoveAnswer( GameObject answ)
         {
-            audioManager.PlaySound( Sfx.Poof);
+            audioManager.PlayPoofSound();
 
             answ.GetComponent< StillLetterBox>().Poof();
             answ.transform.DOScale( 0, 0.3f).OnComplete(() => GameObject.Destroy( answ));

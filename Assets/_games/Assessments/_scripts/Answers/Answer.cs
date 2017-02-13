@@ -11,10 +11,10 @@ namespace EA4S.Assessment
     public class Answer: MonoBehaviour
     {
         private ILivingLetterData data;
-        private AssessmentDialogues dialogues;
+        private AssessmentAudioManager dialogues;
         private bool isCorrect;
 
-        public Answer Init( bool correct, AssessmentDialogues dialogues, ILivingLetterData data)
+        public Answer Init( bool correct, AssessmentAudioManager dialogues, ILivingLetterData data)
         {
             this.data = data;
             isCorrect = correct;

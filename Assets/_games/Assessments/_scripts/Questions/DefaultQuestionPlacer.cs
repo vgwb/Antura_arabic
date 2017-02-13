@@ -1,5 +1,4 @@
 using DG.Tweening;
-using EA4S.MinigamesCommon;
 using Kore.Coroutines;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,10 +8,10 @@ namespace EA4S.Assessment
 {
     public class DefaultQuestionPlacer : IQuestionPlacer
     {
-        protected IAudioManager audioManager;
+        protected AssessmentAudioManager audioManager;
         protected QuestionPlacerOptions options;
 
-        public DefaultQuestionPlacer(   IAudioManager audioManager, QuestionPlacerOptions options)
+        public DefaultQuestionPlacer(   AssessmentAudioManager audioManager, QuestionPlacerOptions options)
         {
             this.audioManager = audioManager;
             this.options = options;
@@ -91,7 +90,6 @@ namespace EA4S.Assessment
 
                 if ( options.SpawnImageWithQuestion)
                 {
-                    Debug.Log("Placed Image");
                     currentPos.x += (sign * options.ImageSize) /1.8f ;
                     yield return PlaceImage( allQuestions[ questionIndex], currentPos);
                     currentPos.x += (sign * options.ImageSize) / 1.8f;
@@ -133,7 +131,7 @@ namespace EA4S.Assessment
 
             var box = LivingLetterFactory.Instance.SpawnQuestionBox( boxes);
             box.Show();
-            audioManager.PlaySound( Sfx.ChoiceSwipe);
+            audioManager.PlayPoofSound();
 
             boxesList.Add( box);
         }
@@ -146,7 +144,7 @@ namespace EA4S.Assessment
             ll.transform.position = imagePos;
             ll.InstaShrink();
             ll.Poof();
-            audioManager.PlaySound( Sfx.Poof);
+            audioManager.PlayPoofSound();
             ll.Magnify();
             return Wait.For( 1.0f);
         }
@@ -160,7 +158,7 @@ namespace EA4S.Assessment
 
             ll.Poof();
 
-            audioManager.PlaySound( Sfx.Poof);
+            audioManager.PlayPoofSound();
             ll.transform.localPosition = position;
 
             ll.transform.GetComponent< StillLetterBox>().Magnify();
@@ -174,7 +172,7 @@ namespace EA4S.Assessment
         protected IYieldable PlacePlaceholder( GameObject placeholder, Vector3 position)
         {
             var tr = placeholder.transform;
-            audioManager.PlaySound( Sfx.StarFlower);
+            audioManager.PlayPlaceSlot();
             tr.localPosition = position;
             tr.GetComponent< StillLetterBox>().Magnify();
             return Wait.For( 0.4f);
@@ -209,7 +207,7 @@ namespace EA4S.Assessment
 
         IEnumerator FadeOutImage( StillLetterBox image)
         {
-            audioManager.PlaySound( Sfx.Poof);
+            audioManager.PlayPoofSound();
             image.Poof();
 
             image.transform.DOScale( 0, 0.4f).OnComplete( () => GameObject.Destroy( image.gameObject));
@@ -218,7 +216,7 @@ namespace EA4S.Assessment
 
         IEnumerator FadeOutQuestion( IQuestion q)
         {
-            audioManager.PlaySound( Sfx.Poof);
+            audioManager.PlayPoofSound();
             q.gameObject.GetComponent< StillLetterBox>().Poof();
             q.gameObject.transform.DOScale( 0, 0.4f).OnComplete(() => GameObject.Destroy( q.gameObject));
             yield return Wait.For( 0.1f);
@@ -226,7 +224,7 @@ namespace EA4S.Assessment
 
         IEnumerator FadeOutPlaceholder( GameObject go)
         {
-            audioManager.PlaySound( Sfx.BalloonPop);
+            audioManager.PlayRemoveSlot();
 
             go.transform.DOScale( 0, 0.23f).OnComplete(() => GameObject.Destroy( go));
             yield return Wait.For( 0.06f);
@@ -244,7 +242,8 @@ namespace EA4S.Assessment
         /// </summary>
         public IYieldable PlayQuestionSound()
         {
-            audioManager.PlaySound( Sfx.Blip);
+            audioManager.PlayQuestionBlip();
+
             var sequence = DOTween.Sequence();
             lastPlacedQuestion.QuestionBehaviour.ReadMeSound();
             lastPlacedQuestion.gameObject.GetComponent< StillLetterBox>().Poof();

@@ -1,4 +1,3 @@
-using EA4S.MinigamesCommon;
 using Kore.Coroutines;
 using System.Collections;
 using UnityEngine;
@@ -7,7 +6,7 @@ namespace EA4S.Assessment
 {
     internal class CategoryQuestionPlacer : DefaultQuestionPlacer
     {
-        public CategoryQuestionPlacer(  IAudioManager audioManager, QuestionPlacerOptions options)
+        public CategoryQuestionPlacer(  AssessmentAudioManager audioManager, QuestionPlacerOptions options)
             :base( audioManager, options)
         {
 

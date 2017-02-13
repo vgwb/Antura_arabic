@@ -9,10 +9,10 @@ namespace EA4S.Assessment
 {
     internal class SortingDragManager : IDragManager, ITimedUpdate
     {
-        private IAudioManager audioManager;
+        private AssessmentAudioManager audioManager;
         private ICheckmarkWidget widget;
 
-        public SortingDragManager( IAudioManager audioManager, ICheckmarkWidget widget)
+        public SortingDragManager( AssessmentAudioManager audioManager, ICheckmarkWidget widget)
         {
             this.audioManager = audioManager;
             this.widget = widget;
@@ -77,7 +77,7 @@ namespace EA4S.Assessment
 
         IEnumerator AllCorrectCoroutine()
         {
-            audioManager.PlaySound( Sfx.StampOK);
+            audioManager.PlayStampSound();
             yield return Wait.For( 0.4f);
             widget.Show(true);
             yield return Wait.For( 1.0f);
@@ -106,12 +106,6 @@ namespace EA4S.Assessment
 
             // Answers sorted by ticket
             answer = answerSorted.OrderBy( a => a.GetTicket()).ToArray();
-
-            for(int i=0; i<answer.Length; i++)
-            {
-                Debug.Log(  "  answer:" + answer[i].Data().Id +
-                            "  sorted:" + answerSorted[i].Data().Id);
-            }
 
             for(int i=0; i < answer.Length; i++)
             {
@@ -146,7 +140,8 @@ namespace EA4S.Assessment
                 return;
 
             objectFlying = true;
-            audioManager.PlaySound( Sfx.UIPopup);
+            audioManager.PlayUIPopup();
+
             this.droppable = droppable;
             droppable.StartDrag ( x => RemoveFromUpdate());
         }
@@ -162,7 +157,8 @@ namespace EA4S.Assessment
             objectFlying = false;
             if (this.droppable == droppable && droppable != null)
             {
-                audioManager.PlaySound( Sfx.UIPopup);
+                audioManager.PlayUIPopup();
+
                 RemoveFromUpdate();
                 MoveStuffToPosition();
             }

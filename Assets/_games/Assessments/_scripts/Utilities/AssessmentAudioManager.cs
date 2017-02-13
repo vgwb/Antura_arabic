@@ -6,37 +6,46 @@ using System.Collections;
 
 namespace EA4S.Assessment
 {
-    public class AssessmentDialogues
+    public class AssessmentAudioManager
     {
-        public IYieldable PlayStartSound()
+        public void PlayAssessmentMusic()
         {
-            return Dialogue( Localization.Random(
-                                        LocalizationDataId.Assessment_Start_1,
-                                        LocalizationDataId.Assessment_Start_2,
-                                        LocalizationDataId.Assessment_Start_3), true);
+            audioManager.PlayMusic( Music.Theme7);
         }
 
-        public IYieldable PlayAnturaIsComingSound()
+        public void PlayKOSound()
         {
-            return Dialogue( Localization.Random(
-                                        LocalizationDataId.Assessment_Upset_2,
-                                        LocalizationDataId.Assessment_Upset_3), true);
+            audioManager.PlaySound( Sfx.KO);
         }
 
-        public IYieldable PlayPushAnturaSound()
+        public void PlayStampSound()
         {
-            return Dialogue( Localization.Random(
-                                        LocalizationDataId.Assessment_Push_Dog_1,
-                                        LocalizationDataId.Assessment_Push_Dog_2,
-                                        LocalizationDataId.Assessment_Push_Dog_3), true);
+            audioManager.PlaySound( Sfx.StampOK);
         }
 
-        public IYieldable PlayAnturaGoneSound()
+        public void PlayUIPopup()
         {
-            return Dialogue( Localization.Random(
-                                        LocalizationDataId.Assessment_Dog_Gone_1,
-                                        LocalizationDataId.Assessment_Dog_Gone_2,
-                                        LocalizationDataId.Assessment_Dog_Gone_3), true);
+            audioManager.PlaySound( Sfx.UIPopup);
+        }
+
+        public void PlayQuestionBlip()
+        {
+            audioManager.PlaySound( Sfx.Blip);
+        }
+
+        public void PlayPlaceSlot()
+        {
+            audioManager.PlaySound( Sfx.StarFlower);
+        }
+
+        public void PlayRemoveSlot()
+        {
+            audioManager.PlaySound( Sfx.BalloonPop);
+        }
+
+        public void PlayPoofSound()
+        {
+            audioManager.PlaySound( Sfx.Poof);
         }
 
         public IYieldable PlayAssessmentCompleteSound()
@@ -86,7 +95,7 @@ namespace EA4S.Assessment
         private LocalizationDataId gameDescription;
         private PriorityTikets ticket = new PriorityTikets();
 
-        public AssessmentDialogues( IAudioManager audioManager, 
+        public AssessmentAudioManager( IAudioManager audioManager, 
                                     ISubtitlesWidget widget,
                                     LocalizationDataId gameDescription)
         {

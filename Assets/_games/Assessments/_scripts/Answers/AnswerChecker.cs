@@ -8,16 +8,13 @@ namespace EA4S.Assessment
     public class AnswerChecker
     {
         private ICheckmarkWidget checkmarkWidget;
-        private IAudioManager audioManager;
-        private AssessmentDialogues dialogueManager;
+        private AssessmentAudioManager audioManager;
 
         public AnswerChecker(    ICheckmarkWidget checkmarkWidget,
-                                 IAudioManager audioManager,
-                                 AssessmentDialogues dialogueManager)
+                                 AssessmentAudioManager audioManager)
         {
             this.checkmarkWidget = checkmarkWidget;
             this.audioManager = audioManager;
-            this.dialogueManager = dialogueManager;
         }
 
         private bool isAnimating = false;
@@ -114,7 +111,8 @@ namespace EA4S.Assessment
 
             if (allCorrect)
             {
-                audioManager.PlaySound( Sfx.StampOK);
+                audioManager.PlayStampSound();
+
                 yield return Wait.For( 0.4f);
                 checkmarkWidget.Show( true);
                 yield return Wait.For( 1.0f);
@@ -134,14 +132,15 @@ namespace EA4S.Assessment
         private IEnumerator WrongAnswerCoroutine()
         {
             checkmarkWidget.Show( false);
-            audioManager.PlaySound( Sfx.KO);
+            audioManager.PlayKOSound();
+
             yield return PlayAnswerWrong();
             wrongAnswerAnimationPlaying = false;
         }
 
         IYieldable PlayAnswerWrong()
         {
-            return dialogueManager.PlayAnswerWrong();
+            return audioManager.PlayAnswerWrong();
         }
 
         private bool WrongAnswerAnimationPlaying()
