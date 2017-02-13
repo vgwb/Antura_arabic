@@ -36,9 +36,9 @@ namespace EA4S.Minigames.ThrowBalls
         {
             instance = this;
 
-            GameState = new GameState(this);
-
             SetDifficulty();
+
+            GameState = new GameState(this);
         }
 
         protected override IGameConfiguration GetConfiguration()
