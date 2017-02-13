@@ -75,7 +75,7 @@ namespace EA4S.Profile
         /// <param name="avatarID">The avatar identifier.</param>
         /// <param name="tint">The color.</param>
         /// <returns></returns>
-        public string CreatePlayerProfile(int age, PlayerGender gender, int avatarID, PlayerTint tint)
+        public string CreatePlayerProfile(int age, PlayerGender gender, int avatarID, PlayerTint tint, bool isDemoUser = false)
         {
             PlayerProfile returnProfile = new PlayerProfile();
             // Data
@@ -84,6 +84,7 @@ namespace EA4S.Profile
             returnProfile.Gender = gender;
             returnProfile.AvatarId = avatarID;
             returnProfile.Tint = tint;
+            returnProfile.IsDemoUser = isDemoUser;
             // DB Creation
             AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
             // Added to list

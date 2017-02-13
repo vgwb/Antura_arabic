@@ -97,14 +97,15 @@ namespace EA4S.ReservedArea
 
         public void OnCreateDemoPlayer()
         {
-            Debug.Log("DEMO");
+            Debug.Log("creating DEMO USER ");
+            AppManager.I.PlayerProfileManager.CreatePlayerProfile(10, PlayerGender.F, 1, PlayerTint.Red, true);
+            ResetAll();
         }
 
         public void OnImportProfile()
         {
             Debug.Log("IMPORT");
         }
-
 
     }
 }
