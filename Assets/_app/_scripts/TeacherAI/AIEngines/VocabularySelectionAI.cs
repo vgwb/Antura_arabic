@@ -253,25 +253,25 @@ namespace EA4S.Teacher
                 string s = ConfigAI.FormatTeacherHeader("Priority Filtering");
                 int nBefore = selectionParams.nRequired;
                 int nRemaining = selectionParams.nRequired;
-                FilterListByContents(currentPlaySessionContents, dataList, priorityFilteredList, ref nRemaining);
+                AddToListFilteringByContents(currentPlaySessionContents, dataList, priorityFilteredList, ref nRemaining);
                
                 s += "\n" + (nBefore - nRemaining) + " from PS ( " + nRemaining + " remaining of " + nBefore + ")";
                 if (nRemaining > 0)
                 {
                     nBefore = nRemaining;
-                    FilterListByContents(currentBlockContents, dataList, priorityFilteredList, ref nRemaining);
+                    AddToListFilteringByContents(currentBlockContents, dataList, priorityFilteredList, ref nRemaining);
                     s += "\n" + (nBefore - nRemaining) + " from LB";
                 }
                 if (nRemaining > 0)
                 {
                     nBefore = nRemaining;
-                    FilterListByContents(currentStageContents, dataList, priorityFilteredList, ref nRemaining);
+                    AddToListFilteringByContents(currentStageContents, dataList, priorityFilteredList, ref nRemaining);
                     s += "\n" + (nBefore - nRemaining) + " from ST";
                 }
                 if (nRemaining > 0)
                 {
                     nBefore = nRemaining;
-                    FilterListByContents(currentJourneyContents, dataList, priorityFilteredList, ref nRemaining);
+                    AddToListFilteringByContents(currentJourneyContents, dataList, priorityFilteredList, ref nRemaining);
                     s += "\n" + (nBefore - nRemaining) + " from the rest of the Journey";
                 }
                 if (ConfigAI.verboseDataFiltering) ConfigAI.AppendToTeacherReport(s);
@@ -313,10 +313,12 @@ namespace EA4S.Teacher
             return selectedList;
         }
 
-        private void FilterListByContents<T>(VocabularyContents contents, List<T> inputList, List<T> outputList, ref int nRemaining)
+        private void AddToListFilteringByContents<T>(VocabularyContents contents, List<T> inputList, List<T> outputList, ref int nRemaining)
         {
             int nBefore = outputList.Count;
-            outputList.AddRange(contents.FilterListByContents(inputList));
+            foreach (var data in contents.FilterListByContents(inputList))
+                if (!outputList.Contains(data))
+                    outputList.Add(data);
             nRemaining -= outputList.Count - nBefore;
             if (nRemaining < 0) nRemaining = 0;
         }
