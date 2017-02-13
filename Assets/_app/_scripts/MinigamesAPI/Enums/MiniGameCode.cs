@@ -4,6 +4,7 @@
     /// Enumerator specifying a minigame (or minigame variation) that is supported by the core application. 
     /// </summary>
     // refactor: this enum depends on the specific implemented minigames and should be grouped with them 
+    // last is 35 and 114
     public enum MiniGameCode
     {
         Invalid = 0,
@@ -28,6 +29,7 @@
         Maze = 18,
         MissingLetter = 19,
         MissingLetter_phrases = 20,
+        MissingLetter_forms = 35,
         MixedLetters_alphabet = 21,
         MixedLetters_spelling = 22,
         SickLetters = 23,
@@ -43,7 +45,9 @@
         Assessment_LetterForm = 100,
         Assessment_WordsWithLetter = 101,
         Assessment_MatchLettersToWord = 102,
+        Assessment_MatchLettersToWord_Form = 114,
         Assessment_CompleteWord = 103,
+        Assessment_CompleteWord_Form = 113,
         Assessment_OrderLettersOfWord = 104,
         Assessment_VowelOrConsonant = 105,
         Assessment_SelectPronouncedWord = 106,

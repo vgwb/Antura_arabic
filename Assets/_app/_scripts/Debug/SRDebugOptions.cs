@@ -264,6 +264,13 @@ public partial class SROptions
 
     [Category("Minigames")]
     [Sort(19)]
+    public void MissingLetterForms()
+    {
+        LaunchMinigame(MiniGameCode.MissingLetter_forms);
+    }
+
+    [Category("Minigames")]
+    [Sort(19)]
     public void MissingLetterPhrases()
     {
         LaunchMinigame(MiniGameCode.MissingLetter_phrases);
@@ -371,9 +378,19 @@ public partial class SROptions
         LaunchMinigame(MiniGameCode.Assessment_MatchLettersToWord);
     }
     [Category("Assessments")]
+    public void MatchLettersToWordForms()
+    {
+        LaunchMinigame(MiniGameCode.Assessment_MatchLettersToWord_Form);
+    }
+    [Category("Assessments")]
     public void CompleteWord()
     {
         LaunchMinigame(MiniGameCode.Assessment_CompleteWord);
+    }
+    [Category("Assessments")]
+    public void CompleteWordForms()
+    {
+        LaunchMinigame(MiniGameCode.Assessment_CompleteWord_Form);
     }
     [Category("Assessments")]
     public void OrderLettersOfWord()
