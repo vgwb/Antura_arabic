@@ -135,6 +135,8 @@ namespace EA4S.Minigames.ThrowBalls
 
             trailRenderer.Clear();
             trailRenderer.enabled = false;
+
+            Catapult.instance.EnableCollider();
         }
 
         public void Enable()
