@@ -43,8 +43,8 @@ namespace EA4S.Teacher
             this.parameters = parameters;
 
             // Forced parameters
-            this.parameters.letterFilters.excludeDiacritics = true;
-            this.parameters.letterFilters.excludeLetterVariations = true;
+            this.parameters.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
+            this.parameters.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
         }
 
         private List<string> previousPacksIDs_words = new List<string>();

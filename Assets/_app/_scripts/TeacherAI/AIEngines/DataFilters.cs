@@ -7,21 +7,33 @@
     /// </summary>
     public class LetterFilters
     {
-        public bool excludeDiacritics;
-        public bool excludeDiacritics_keepMain; // HACK filter
-        public bool excludeLetterVariations;
+        public ExcludeLetterVariations excludeLetterVariations;
+        public ExcludeDiacritics excludeDiacritics;
         public bool requireDiacritics;
         public bool excludeDiphthongs;
 
+        public enum ExcludeLetterVariations
+        {
+            None,
+            All,
+            AllButAlefHamza
+        }
+
+        public enum ExcludeDiacritics
+        {
+            None,
+            All,
+            AllButMain 
+        }
+
         public LetterFilters(
-            bool excludeDiacritics = false,
-            bool excludeDiacritics_keepMain = false,
-            bool excludeLetterVariations = false,
             bool requireDiacritics = false,
-            bool excludeDiphthongs = false)
+            bool excludeDiphthongs = false,
+            ExcludeDiacritics excludeDiacritics = ExcludeDiacritics.None,
+            ExcludeLetterVariations excludeLetterVariations = ExcludeLetterVariations.None
+            )
         {
             this.excludeDiacritics = excludeDiacritics;
-            this.excludeDiacritics_keepMain = excludeDiacritics_keepMain;
             this.excludeLetterVariations = excludeLetterVariations;
             this.requireDiacritics = requireDiacritics;
             this.excludeDiphthongs = excludeDiphthongs;
