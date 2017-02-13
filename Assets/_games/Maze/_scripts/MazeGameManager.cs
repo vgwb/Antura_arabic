@@ -261,10 +261,13 @@ namespace EA4S.Minigames.Maze
 
                     MazeConfiguration.Instance.Context.GetLogManager().OnAnswered(currentLL, true);
                 }
-                //show message:
+
+                // Show message:
                 MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
 
-                //TutorialUI.MarkYes(currentCharacter.transform.position + new Vector3(2, 2, 2), TutorialUI.MarkSize.Huge);
+                // Hide checkpoints of last path:
+                currentTutorial.HideCheckpointsAndLineOfCurrentPath();
+
                 currentCharacter.Celebrate(() =>
                 {
                     if (roundNumber == MAX_NUM_ROUNDS)
