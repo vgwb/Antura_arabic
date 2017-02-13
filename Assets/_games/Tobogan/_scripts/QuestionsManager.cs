@@ -229,7 +229,10 @@ namespace EA4S.Minigames.Tobogan
                 if (isCorrectAnswer)
                     game.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
                 else
+                {
                     game.Context.GetAudioManager().PlaySound(Sfx.LetterSad);
+                    game.Context.GetAudioManager().PlaySound(Sfx.Lose);
+                }
 
                 if (onAnswered != null)
                     onAnswered(currentQuestionPack, isCorrectAnswer);

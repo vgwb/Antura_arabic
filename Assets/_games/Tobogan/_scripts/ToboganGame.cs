@@ -90,10 +90,23 @@ namespace EA4S.Minigames.Tobogan
             questionsManager = new QuestionsManager(this);
 
             feedbackGraphics.Initialize();
+
+            feedbackGraphics.onTowerHeightIncreased += () =>
+            {
+                Context.GetAudioManager().PlaySound(Sfx.Transition);
+            };
         }
 
         public void OnResult(bool result)
         {
+            if (result)
+                Context.GetAudioManager().PlaySound(Sfx.StampOK);
+            else
+            {
+                Context.GetAudioManager().PlaySound(Sfx.KO);
+                Context.GetAudioManager().PlaySound(Sfx.Lose);
+            }
+
             Context.GetCheckmarkWidget().Show(result);
             feedbackGraphics.OnResult(result);
 
