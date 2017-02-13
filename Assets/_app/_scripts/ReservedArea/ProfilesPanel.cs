@@ -15,8 +15,12 @@ namespace EA4S.ReservedArea
 
         void Start()
         {
+            ResetAll();
+        }
+
+        void ResetAll()
+        {
             SelectedPlayerId = "";
-            ProfileCommandsContainer.SetActive(false);
             RefreshPlayerIcons();
             RefreshUI();
         }
@@ -81,6 +85,8 @@ namespace EA4S.ReservedArea
         void DoDeleteSelectPlayerProfile()
         {
             Debug.Log("DELETE " + SelectedPlayerId);
+            AppManager.I.PlayerProfileManager.DeletePlayerProfile(SelectedPlayerId);
+            ResetAll();
         }
 
         public void OnExportSelectPlayerProfile()
