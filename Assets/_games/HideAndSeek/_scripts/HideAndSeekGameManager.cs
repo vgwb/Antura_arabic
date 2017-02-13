@@ -137,12 +137,11 @@ namespace EA4S.Minigames.HideAndSeek
             if (game.isTimesUp)
                 return;
 
-            isRoundRunning = false;
-
             letterInAnimation = GetIdFromPosition(id);
             HideAndSeekLetterController script = ArrayLetters[letterInAnimation].GetComponent<HideAndSeekLetterController>();
             if (script.view.Data.Id == GetCorrectAnswer().Id)
             {
+                isRoundRunning = false;
                 LockTrees();
                 LockLetters(true);
                 StartCoroutine(DelayAnimation());
@@ -160,6 +159,7 @@ namespace EA4S.Minigames.HideAndSeek
                 script.GetComponent<EmoticonsAnimator>().DoWrong();
                 if (lifes == 0)
                 {
+                    isRoundRunning = false;
                     LockTrees();
                     LockLetters(true);
                     AudioManager.I.PlaySound(Sfx.Lose);
