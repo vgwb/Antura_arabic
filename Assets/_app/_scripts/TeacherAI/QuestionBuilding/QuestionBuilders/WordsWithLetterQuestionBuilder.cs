@@ -57,17 +57,21 @@ namespace EA4S.Teacher
             var teacher = AppManager.I.Teacher;
             var vocabularyHelper = AppManager.I.VocabularyHelper;
 
+            bool useJourneyForLetters = parameters.useJourneyForCorrect;
+            // @note: we also force the journey if the packs must be used together, as the data filters for journey clash with the new filter
+            if (packsUsedTogether) useJourneyForLetters = false;
+
             // Get a letter
             var usableLetters = teacher.VocabularyAi.SelectData(
               () => FindEligibleLetters(atLeastNWords: nCorrect),
-                new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
+                new SelectionParameters(parameters.correctSeverity, 1, useJourney: useJourneyForLetters,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_letters));
             var commonLetter = usableLetters[0];
 
             // Get words with the letter 
             // (but without the previous letters)
             var correctWords = teacher.VocabularyAi.SelectData(
-                () => FindEligibleWords(),
+                () => FindEligibleWords(commonLetter),
                     new SelectionParameters(parameters.correctSeverity, nCorrect, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words));
 

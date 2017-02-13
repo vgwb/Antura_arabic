@@ -331,7 +331,7 @@ namespace EA4S.Teacher.Test
                     builder = new LettersByTypeQuestionBuilder(nPacks: nPacks, parameters: builderParams);
                     break;
                 case QuestionBuilderType.LettersInWord:
-                    builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, useAllCorrectLetters: true, parameters: builderParams);
+                    builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, useAllCorrectLetters: true, packsUsedTogether: true, parameters: builderParams);
                     break;
                 case QuestionBuilderType.LetterFormsInWords:
                     builder = new LetterFormsInWordsQuestionBuilder(nPacks, 3, parameters: builderParams);
@@ -346,7 +346,7 @@ namespace EA4S.Teacher.Test
                     builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.NumberOrdinal, parameters: builderParams);
                     break;
                 case QuestionBuilderType.WordsWithLetter:
-                    builder = new WordsWithLetterQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, parameters: builderParams);
+                    builder = new WordsWithLetterQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, packsUsedTogether: true, parameters: builderParams);
                     break;
                 case QuestionBuilderType.WordsByForm:
                     builder = new WordsByFormQuestionBuilder(nPacks: nPacks, parameters: builderParams);
