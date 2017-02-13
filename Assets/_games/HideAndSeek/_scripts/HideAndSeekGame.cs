@@ -67,10 +67,15 @@ namespace EA4S.Minigames.HideAndSeek
 
         public void OnResult(ILivingLetterData data, bool result)
         {
-            if (result)
-                Context.GetOverlayWidget().SetStarsScore(++CurrentScore);
-
             Context.GetLogManager().OnAnswered(data, result);
+
+            if (result)
+            {
+                Context.GetOverlayWidget().SetStarsScore(++CurrentScore);
+                if (CurrentStars >= 3) // Early end
+                    EndGame(CurrentStars, CurrentScore);
+            }
+
         }
     }
 }

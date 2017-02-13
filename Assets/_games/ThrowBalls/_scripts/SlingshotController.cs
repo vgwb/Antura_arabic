@@ -42,6 +42,11 @@ namespace EA4S.Minigames.ThrowBalls
             IInputManager inputManager = ThrowBallsConfiguration.Instance.Context.GetInputManager();
             inputManager.onPointerDrag += OnPointerDrag;
             inputManager.onPointerUp += OnPointerUp;
+
+            foreach (Collider collider in GetComponentsInChildren<Collider>())
+            {
+                collider.enabled = false;
+            }
         }
 
         public Vector3 INITIAL_BALL_POSITION = new Vector3(0, 5.25f, -20f);
@@ -72,6 +77,7 @@ namespace EA4S.Minigames.ThrowBalls
             {
                 Vector3 forceToApply = GetLaunchForce();
                 ball.Launch(forceToApply);
+                Catapult.instance.DisableCollider();
             }
             else
             {
