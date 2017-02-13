@@ -231,7 +231,6 @@ namespace EA4S.Minigames.Tobogan
                 else
                 {
                     game.Context.GetAudioManager().PlaySound(Sfx.LetterSad);
-                    game.Context.GetAudioManager().PlaySound(Sfx.Lose);
                 }
 
                 if (onAnswered != null)

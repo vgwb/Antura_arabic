@@ -6,7 +6,7 @@
 
         bool goToEndGame;
 
-        float timer = 4;
+        float timer = 2;
         public ToboganResultGameState(ToboganGame game)
         {
             this.game = game;
@@ -14,7 +14,7 @@
 
         public void EnterState()
         {
-            timer = 4;
+            timer = 2;
             goToEndGame = false;
 
             game.Context.GetAudioManager().PlayMusic(Music.Relax);
