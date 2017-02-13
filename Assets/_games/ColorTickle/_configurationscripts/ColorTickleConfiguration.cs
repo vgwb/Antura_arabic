@@ -40,9 +40,9 @@ namespace EA4S.Minigames.ColorTickle
             int nCorrect = 1;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.letterFilters.excludeDiacritics = true;
+            builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
+            builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.AllButAlefHamza;
             builderParams.letterFilters.excludeDiphthongs = true;
-            builderParams.letterFilters.excludeLetterVariations = true;
             builderParams.wordFilters.excludeDiacritics = true;
             builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, parameters: builderParams);
 

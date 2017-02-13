@@ -26,10 +26,8 @@ namespace EA4S.Teacher
             this.parameters = parameters;
 
             // Forced filters
-            this.parameters.letterFilters.excludeLetterVariations = true;
-            this.parameters.letterFilters.excludeDiacritics = true;
-            this.parameters.wordFilters.excludeLetterVariations = true;
-            this.parameters.wordFilters.excludeDiacritics = true;
+            this.parameters.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
+            this.parameters.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
             this.parameters.letterFilters.excludeDiphthongs = true;
         }
 

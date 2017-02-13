@@ -52,8 +52,8 @@ namespace EA4S.Minigames.TakeMeHome
             IQuestionBuilder builder = null;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.letterFilters.excludeDiacritics = true;
-            builderParams.letterFilters.excludeLetterVariations = true;
+            builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.All;
+            builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
             builderParams.wordFilters.excludeDiacritics = true;
             builderParams.wordFilters.excludeLetterVariations = true;
             builder = new RandomLettersQuestionBuilder(1,7, parameters: builderParams);

@@ -84,11 +84,12 @@ namespace EA4S.Teacher
             float totalDifficulty = weightedAgeDifficulty + weightedPerformanceDifficulty;
 
             // Debug log
-            if (ConfigAI.verboseTeacher) {
-                string debugString = "-----  TEACHER: Selected Difficulty: " + totalDifficulty + " -----";
+            if (ConfigAI.verboseDifficultySelection)
+            {
+                string debugString = ConfigAI.FormatTeacherHeader("Selected Difficulty");
                 debugString += "\n From Age (C " + ageWeightContribution + "): " + ageDifficulty + " w(" + weightedAgeDifficulty + ")";
                 debugString += "\n From Performance (C " + performanceWeightContribution + "): " + performanceDifficulty + " w(" + weightedPerformanceDifficulty + ")";
-                Debug.Log(debugString);
+                ConfigAI.AppendToTeacherReport(debugString);
             }
 
             return totalDifficulty;
