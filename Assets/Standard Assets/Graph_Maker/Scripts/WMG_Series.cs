@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
+/// <summary>
+/// Used to display a series of data in WMG_Axis_Graph Charts.
+/// </summary>
 public class WMG_Series : MonoBehaviour {
 
 	public enum comboTypes {line, bar};
@@ -13,7 +16,10 @@ public class WMG_Series : MonoBehaviour {
 	[SerializeField] private List<Color> _pointColors;
 	public WMG_List<Color> pointColors = new WMG_List<Color>();
 
-	// public properties
+	/// <summary>
+	/// When WMG_Axis_Graph::graphType = combo, then this determines whether this series displays as a line or as bars.
+	/// </summary>
+	/// <value>The type of the combo.</value>
 	public comboTypes comboType { get {return _comboType;} 
 		set {
 			if (_comboType != value) {
@@ -22,6 +28,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// When WMG_Axis_Graph::axesType = dual_y, then this determines whether this series will use the second y-axis.
+	/// </summary>
+	/// <value><c>true</c> if use second yaxis; otherwise, <c>false</c>.</value>
 	public bool useSecondYaxis { get {return _useSecondYaxis;} 
 		set {
 			if (_useSecondYaxis != value) {
@@ -34,6 +44,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// The name of this series, which can appear in the graph legend, or in tooltips.
+	/// </summary>
+	/// <value>The name of the series.</value>
 	public string seriesName { get {return _seriesName;} 
 		set {
 			if (_seriesName != value) {
@@ -42,6 +56,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// For line series, this is the width and height of the point image.
+	/// </summary>
+	/// <value>The height of the point width.</value>
 	public float pointWidthHeight { get {return _pointWidthHeight;} 
 		set {
 			if (_pointWidthHeight != value) {
@@ -50,6 +68,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// For line series, this controls the width of the lines.
+	/// </summary>
+	/// <value>The line scale.</value>
 	public float lineScale { get {return _lineScale;} 
 		set {
 			if (_lineScale != value) {
@@ -58,6 +80,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// The color applied to all the points in this series, unless #usePointColors = true.
+	/// </summary>
+	/// <value>The color of the point.</value>
 	public Color pointColor { get {return _pointColor;} 
 		set {
 			if (_pointColor != value) {
@@ -66,6 +92,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// When enabled, then each point color can be individually assigned using #pointColors.
+	/// </summary>
+	/// <value><c>true</c> if use point colors; otherwise, <c>false</c>.</value>
 	public bool usePointColors { get {return _usePointColors;} 
 		set {
 			if (_usePointColors != value) {
@@ -74,6 +104,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// The color applied to all the lines in this series for line series.
+	/// </summary>
+	/// <value>The color of the line.</value>
 	public Color lineColor { get {return _lineColor;} 
 		set {
 			if (_lineColor != value) {
@@ -82,6 +116,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// Enable this to evenly space series data along the x-axis regardless to what data the x values are for #pointValues.
+	/// </summary>
+	/// <value><c>true</c> if use X dist between to space; otherwise, <c>false</c>.</value>
 	public bool UseXDistBetweenToSpace { get {return _UseXDistBetweenToSpace;} 
 		set {
 			if (_UseXDistBetweenToSpace != value) {
@@ -90,6 +128,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// Enable this to manually control #xDistBetweenPoints.
+	/// </summary>
+	/// <value><c>true</c> if manually set X dist between; otherwise, <c>false</c>.</value>
 	public bool ManuallySetXDistBetween { get {return _ManuallySetXDistBetween;} 
 		set {
 			if (_ManuallySetXDistBetween != value) {
@@ -98,6 +140,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// The x distance between each series point when #UseXDistBetweenToSpace = true, controlled automatically unless #ManuallySetXDistBetween = true.
+	/// </summary>
+	/// <value>The x dist between points.</value>
 	public float xDistBetweenPoints { get {return _xDistBetweenPoints;} 
 		set {
 			if (_xDistBetweenPoints != value) {
@@ -106,6 +152,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// When enabled, #extraXSpace can be manually set, otherwise it is set automatically.
+	/// </summary>
+	/// <value><c>true</c> if manually set extra X space; otherwise, <c>false</c>.</value>
 	public bool ManuallySetExtraXSpace { get {return _ManuallySetExtraXSpace;} 
 		set {
 			if (_ManuallySetExtraXSpace != value) {
@@ -114,6 +164,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// The spacing of this series points from the axis, (e.g. for side by side bar charts, the later series will have a higher value here).
+	/// </summary>
+	/// <value>The extra X space.</value>
 	public float extraXSpace { get {return _extraXSpace;} 
 		set {
 			if (_extraXSpace != value) {
@@ -122,6 +176,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// When enabled, hides all of this series data points, useful to show only lines for a line chart.
+	/// </summary>
+	/// <value><c>true</c> if hide points; otherwise, <c>false</c>.</value>
 	public bool hidePoints { get {return _hidePoints;} 
 		set {
 			if (_hidePoints != value) {
@@ -130,6 +188,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// When enabled, hides all of this series lines, useful to show only points for a scatter plot.
+	/// </summary>
+	/// <value><c>true</c> if hide lines; otherwise, <c>false</c>.</value>
 	public bool hideLines { get {return _hideLines;} 
 		set {
 			if (_hideLines != value) {
@@ -138,6 +200,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// Connects a line between the first and last points, useful to create shapes such as triangles / circles.
+	/// </summary>
+	/// <value><c>true</c> if connect first to last; otherwise, <c>false</c>.</value>
 	public bool connectFirstToLast { get {return _connectFirstToLast;} 
 		set {
 			if (_connectFirstToLast != value) {
@@ -150,6 +216,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// For line series, controls the amount of extra space padded onto the end for each individual line segment, can be negative as well to create smaller line segments.
+	/// </summary>
+	/// <value>The line padding.</value>
 	public float linePadding { get {return _linePadding;} 
 		set {
 			if (_linePadding != value) {
@@ -158,6 +228,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// Whether or not to show data labels, which are text objects that can appear above points / bars to display what value that point / bar represents.
+	/// </summary>
+	/// <value><c>true</c> if data labels enabled; otherwise, <c>false</c>.</value>
 	public bool dataLabelsEnabled { get {return _dataLabelsEnabled;} 
 		set {
 			if (_dataLabelsEnabled != value) {
@@ -166,6 +240,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// When #dataLabelsEnabled = true, controls how many decimal points are displayed.
+	/// </summary>
+	/// <value>The data labels number decimals.</value>
 	public int dataLabelsNumDecimals { get {return _dataLabelsNumDecimals;} 
 		set {
 			if (_dataLabelsNumDecimals != value) {
@@ -174,6 +252,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// When #dataLabelsEnabled = true, controls the font size of the text labels.
+	/// </summary>
+	/// <value>The size of the data labels font.</value>
 	public int dataLabelsFontSize { get {return _dataLabelsFontSize;} 
 		set {
 			if (_dataLabelsFontSize != value) {
@@ -182,6 +264,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// When #dataLabelsEnabled = true, controls the color of the text labels.
+	/// </summary>
+	/// <value>The color of the data labels.</value>
 	public Color dataLabelsColor { get {return _dataLabelsColor;} 
 		set {
 			if (_dataLabelsColor != value) {
@@ -190,6 +276,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// When #dataLabelsEnabled = true, controls the font style of the text labels.
+	/// </summary>
+	/// <value>The data labels font style.</value>
 	public FontStyle dataLabelsFontStyle { get {return _dataLabelsFontStyle;} 
 		set {
 			if (_dataLabelsFontStyle != value) {
@@ -198,6 +288,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// When #dataLabelsEnabled = true, controls the font of the text labels.
+	/// </summary>
+	/// <value>The data labels font.</value>
 	public Font dataLabelsFont { get {return _dataLabelsFont;} 
 		set {
 			if (_dataLabelsFont != value) {
@@ -206,6 +300,23 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// When #dataLabelsEnabled = true, controls whether or not the data labels are anchored to the left / bottom of the point / bar. 
+	/// Useful to overlay data labels on top of bars for bar charts.
+	/// </summary>
+	/// <value><c>true</c> if data labels anchored left bot; otherwise, <c>false</c>.</value>
+	public bool dataLabelsAnchoredLeftBot { get {return _dataLabelsAnchoredLeftBot;} 
+		set {
+			if (_dataLabelsAnchoredLeftBot != value) {
+				_dataLabelsAnchoredLeftBot = value;
+				dataLabelsC.Changed();
+			}
+		}
+	}
+	/// <summary>
+	/// When #dataLabelsEnabled = true, this positionally offsets the data labels.
+	/// </summary>
+	/// <value>The data labels offset.</value>
 	public Vector2 dataLabelsOffset { get {return _dataLabelsOffset;} 
 		set {
 			if (_dataLabelsOffset != value) {
@@ -214,6 +325,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// Controls whether or not there is area shading for this series and if it is a gradient or solid color.
+	/// </summary>
+	/// <value>The type of the area shading.</value>
 	public areaShadingTypes areaShadingType { get {return _areaShadingType;} 
 		set {
 			if (_areaShadingType != value) {
@@ -222,6 +337,11 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// When #areaShadingType != None, controls whether or not a compute shader is used to compute the area shading. 
+	/// Compute shader should usually always be used, unless the platform to which you are publishing does not support Compute shaders (refer to Unity documentation on Compute Shader).
+	/// </summary>
+	/// <value><c>true</c> if area shading uses compute shader; otherwise, <c>false</c>.</value>
 	public bool areaShadingUsesComputeShader { get {return _areaShadingUsesComputeShader;} 
 		set {
 			if (_areaShadingUsesComputeShader != value) {
@@ -230,6 +350,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// When #areaShadingType != None, controls the color of the area shading.
+	/// </summary>
+	/// <value>The color of the area shading.</value>
 	public Color areaShadingColor { get {return _areaShadingColor;} 
 		set {
 			if (_areaShadingColor != value) {
@@ -238,6 +362,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// When #areaShadingType != None, controls the ending y-axis value of the area shading.
+	/// </summary>
+	/// <value>The area shading axis value.</value>
 	public float areaShadingAxisValue { get {return _areaShadingAxisValue;} 
 		set {
 			if (_areaShadingAxisValue != value) {
@@ -246,6 +374,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// Specifies the prefab used to create points for line series, and it corresponds with the index of WMG_Axis_Graph::pointPrefabs.
+	/// </summary>
+	/// <value>The point prefab.</value>
 	public int pointPrefab { get {return _pointPrefab;} 
 		set {
 			if (_pointPrefab != value) {
@@ -254,6 +386,10 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// Specifies the prefab used to create lines for line series, and it corresponds with the index of WMG_Axis_Graph::linkPrefabs.
+	/// </summary>
+	/// <value>The link prefab.</value>
 	public int linkPrefab { get {return _linkPrefab;} 
 		set {
 			if (_linkPrefab != value) {
@@ -263,27 +399,69 @@ public class WMG_Series : MonoBehaviour {
 		}
 	}
 
-	[System.Obsolete("This parameter is no longer used. Use ManuallySetXDistBetween if needed.")]
-	public bool AutoUpdateXDistBetween;
-	
 	// Public variables without change tracking
+	/// <summary>
+	/// The prefab used for data labels.
+	/// </summary>
 	public UnityEngine.Object dataLabelPrefab;
+	/// <summary>
+	/// The parent GameObject for data label(s).
+	/// </summary>
 	public GameObject dataLabelsParent;
-
+	/// <summary>
+	/// The material used for area shading, when #areaShadingType == Solid, and #areaShadingUsesComputeShader = false.
+	/// </summary>
 	public Material areaShadingMatSolid;
+	/// <summary>
+	/// The material used for area shading, when #areaShadingType == Gradient, and #areaShadingUsesComputeShader = false.
+	/// </summary>
 	public Material areaShadingMatGradient;
+	/// <summary>
+	/// The parent GameObject for area shading rectangle(s).
+	/// </summary>
 	public GameObject areaShadingParent;
+	/// <summary>
+	/// The area shading prefab when #areaShadingUsesComputeShader = false.
+	/// </summary>
 	public UnityEngine.Object areaShadingPrefab;
+	/// <summary>
+	/// The area shading prefab when #areaShadingUsesComputeShader = true.
+	/// </summary>
 	public UnityEngine.Object areaShadingCSPrefab;
 
+	/// <summary>
+	/// The graph associated with this series.
+	/// </summary>
 	public WMG_Axis_Graph theGraph;
+	/// <summary>
+	/// Reference to WMG_Data_Source, use in conjunction with #StartRealTimeUpdate, #StopRealTimeUpdate, and #ResumeRealTimeUpdate, see X_Dynamic scene code for usage example.
+	/// </summary>
 	public WMG_Data_Source realTimeDataSource;
+	/// <summary>
+	/// Reference to WMG_Data_Source, see X_Dynamic scene code for usage example.
+	/// </summary>
 	public WMG_Data_Source pointValuesDataSource;
+	/// <summary>
+	/// Prefab used to create the legend entry for this series.
+	/// </summary>
 	public UnityEngine.Object legendEntryPrefab;
+	/// <summary>
+	/// The GameObject that is the parent for all lines for line series.
+	/// </summary>
 	public GameObject linkParent;
+	/// <summary>
+	/// The GameObject that is the parent for all points / bars for this series.
+	/// </summary>
 	public GameObject nodeParent;
 
+	/// <summary>
+	/// The legend entry.
+	/// </summary>
 	public WMG_Legend_Entry legendEntry;
+	/// <summary>
+	/// When #areaShadingType != None, and #areaShadingUsesComputeShader = true, then this is the resolution of the texture used to generate the entire area shading rectangle.
+	/// </summary>
+	public int areaShadingTextureResolution = 512;
 
 	// Private backing variables
 	[SerializeField] private comboTypes _comboType;
@@ -309,6 +487,7 @@ public class WMG_Series : MonoBehaviour {
 	[SerializeField] private Color _dataLabelsColor = Color.white;
 	[SerializeField] private FontStyle _dataLabelsFontStyle = FontStyle.Normal;
 	[SerializeField] private Font _dataLabelsFont; 
+	[SerializeField] private bool _dataLabelsAnchoredLeftBot;
 	[SerializeField] private Vector2 _dataLabelsOffset;
 	[SerializeField] private areaShadingTypes _areaShadingType;
 	[SerializeField] private bool _areaShadingUsesComputeShader;
@@ -340,6 +519,31 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
+	public WMG_Axis yAxisOrienInd {
+		get {
+			if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.vertical) {
+				return yAxis;
+			}
+			else {
+				return theGraph.xAxis;
+			}
+		}
+	}
+	public WMG_Axis xAxisOrienInd {
+		get {
+			if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.vertical) {
+				return theGraph.xAxis;
+			}
+			else {
+				return yAxis;
+			}
+		}
+	}
+	public string autoAnimTweenId {
+		get {
+			return this.GetHashCode () + "autoAnim";
+		}
+	}
 
 	// Private vars
 	private UnityEngine.Object nodePrefab;
@@ -365,12 +569,39 @@ public class WMG_Series : MonoBehaviour {
 	private float realTimeOrigMax;
 	
 	// Automatic Animation variables and functions
-	private bool animatingFromPreviousData;
+	private bool beginningToAutoAnimate;
 	public bool currentlyAnimating { get; set; }
+	public float autoAnimationTimeline { get; set; }
 	private List<Vector2> afterPositions = new List<Vector2>();
 	private List<int> afterWidths = new List<int>();
 	private List<int> afterHeights = new List<int>();
-	//private List<Vector2> previousPointValues = new List<Vector2>();
+	private List<Vector2> origPositions = new List<Vector2>();
+	private List<int> origWidths = new List<int>();
+	private List<int> origHeights = new List<int>();
+
+	public List<Vector2> AfterPositions {
+		get { return afterPositions; }
+	}
+	
+	public List<int> AfterHeights {
+		get { return afterHeights; }
+	}
+	
+	public List<int> AfterWidths {
+		get { return afterWidths; }
+	}
+
+	public List<Vector2> OrigPositions {
+		get { return origPositions; }
+	}
+	
+	public List<int> OrigHeights {
+		get { return origHeights; }
+	}
+
+	public List<int> OrigWidths {
+		get { return origWidths; }
+	}
 
 	private List<WMG_Change_Obj> changeObjs = new List<WMG_Change_Obj>();
 	public WMG_Change_Obj pointValuesC = new WMG_Change_Obj();
@@ -392,24 +623,122 @@ public class WMG_Series : MonoBehaviour {
 
 	private bool hasInit;
 
-	public delegate string SeriesDataLabeler(WMG_Series series, float val);
+	public delegate string SeriesDataLabeler(WMG_Series series, float val, int labelIndex);
+	/// <summary>
+	/// Use to override the default labeler for data labels (appear over points when #dataLabelsEnabled = true).
+	/// @code
+	/// series.seriesDataLabeler = customSeriesDataLabeler;
+	/// string customSeriesDataLabeler(WMG_Series series, float val, int labelIndex) {}
+	/// @endcode
+	/// </summary>
 	public SeriesDataLabeler seriesDataLabeler;
-
-	public string formatSeriesDataLabel(WMG_Series series, float val) {
+	public string formatSeriesDataLabel(WMG_Series series, float val, int labelIndex) {
 		float numberToMult = Mathf.Pow(10f, series.dataLabelsNumDecimals);
 		return (Mathf.Round(val * numberToMult) / numberToMult).ToString();
 	}
+
+	public delegate void TooltipPointAnimator(WMG_Series series, WMG_Node aNode, bool state);
+	/// <summary>
+	/// Use to override the default tooltip series point hover animation.
+	/// @code
+	/// series.tooltipPointAnimator = customTooltipPointAnimator;
+	/// void customTooltipPointAnimator(WMG_Series series, WMG_Node aNode, bool state) {}
+	/// @endcode
+	/// </summary>
+	public TooltipPointAnimator tooltipPointAnimator;
+	public void defaultTooltipPointAnimator(WMG_Series series, WMG_Node aNode, bool state) {
+		if (!series.theGraph.tooltipAnimationsEnabled) return;
+		if (state) {
+			Vector3 newVec = new Vector3(2,2,1);
+			if (!series.seriesIsLine) {
+				if (series.theGraph.orientationType == WMG_Axis_Graph.orientationTypes.vertical) {
+					newVec = new Vector3(1,1.1f,1);
+				}
+				else {
+					newVec = new Vector3(1.1f,1,1);
+				}
+			}
+			WMG_Anim.animScale(aNode.gameObject, series.theGraph.tooltipAnimationsDuration, series.theGraph.tooltipAnimationsEasetype, newVec, 0);
+			if (!series.seriesIsLine) {
+				WMG_Anim.animScale(aNode.gameObject, series.theGraph.tooltipAnimationsDuration/2f, DG.Tweening.Ease.OutQuad, Vector3.one, series.theGraph.tooltipAnimationsDuration/2f);
+			}
+		}
+		else {
+			if (series.seriesIsLine) {
+				WMG_Anim.animScale(aNode.gameObject, series.theGraph.tooltipAnimationsDuration, series.theGraph.tooltipAnimationsEasetype, Vector3.one, 0);
+			}
+		}
+	}
+
 	
-	public delegate void SeriesDataChangedHandler(WMG_Series aSeries);
-	public event SeriesDataChangedHandler SeriesDataChanged;
-	
-	protected virtual void OnSeriesDataChanged() {
-		SeriesDataChangedHandler handler = SeriesDataChanged;
+	public delegate void SeriesAutoAnimStartedHandler(WMG_Series series);
+	/// <summary>
+	/// Occurs when this series begins to auto animate (auto animations must be enabled). 
+	/// @code
+	/// series.SeriesAutoAnimStarted += MySeriesAutoAnimStartedFunc;
+	/// void MySeriesAutoAnimStartedFunc(WMG_Series series) {}
+	/// @endcode
+	/// </summary>
+	public event SeriesAutoAnimStartedHandler SeriesAutoAnimStarted;
+	protected virtual void OnSeriesAutoAnimStarted() {
+		SeriesAutoAnimStartedHandler handler = SeriesAutoAnimStarted;
 		if (handler != null) {
 			handler(this);
 		}
 	}
 
+	public delegate void PointCreatedHandler(WMG_Series series, GameObject point, int pointIndex);
+	/// <summary>
+	/// Occurs after a point GameObject is instantiated. Useful to dynamically add custom script to each point as it is created.
+	/// @code
+	/// series.PointCreated += MyPointCreatedFunc;
+	/// void MyPointCreatedFunc(WMG_Series series, GameObject point, int pointIndex) {}
+	/// @endcode
+	/// </summary>
+	public event PointCreatedHandler PointCreated;
+	protected virtual void OnPointCreated(WMG_Series series, GameObject point, int pointIndex) {
+		PointCreatedHandler handler = PointCreated;
+		if (handler != null) {
+			handler(series, point, pointIndex);
+		}
+	}
+
+	public delegate void PointSpriteUpdatedHandler(WMG_Series series, GameObject point, int pointIndex);
+	/// <summary>
+	/// Occurs after a point GameObject visuals change / is repositioned. Useful to dynamically change point appearance such as dimensions or position. Can be used to created more advanced charts like candlestick charts.
+	/// @code
+	/// series.PointSpriteUpdated += MyPointSpriteUpdatedFunc;
+	/// void MyPointSpriteUpdatedFunc(WMG_Series series, GameObject point, int pointIndex) {}
+	/// @endcode
+	/// </summary>
+	public event PointSpriteUpdatedHandler PointSpriteUpdated;
+	protected virtual void OnPointSpriteUpdated(WMG_Series series, GameObject point, int pointIndex) {
+		PointSpriteUpdatedHandler handler = PointSpriteUpdated;
+		if (handler != null) {
+			handler(series, point, pointIndex);
+		}
+	}
+
+	public delegate void PointShadingSpriteUpdatedHandler(WMG_Series series, GameObject shadingRectangle, int pointIndex);
+	/// <summary>
+	/// Occurs after area shading rectangle changes.
+	/// @code
+	/// series.PointShadingSpriteUpdated += MyPointShadingSpriteUpdatedFunc;
+	/// void MyPointShadingSpriteUpdatedFunc(WMG_Series series, GameObject shadingRectangle, int pointIndex) {}
+	/// @endcode
+	/// </summary>
+	public event PointShadingSpriteUpdatedHandler PointShadingSpriteUpdated;
+	protected virtual void OnPointShadingSpriteUpdated(WMG_Series series, GameObject shadingRectangle, int pointIndex) {
+		PointShadingSpriteUpdatedHandler handler = PointShadingSpriteUpdated;
+		if (handler != null) {
+			handler(series, shadingRectangle, pointIndex);
+		}
+	}
+
+	/// <summary>
+	/// Initializes this series, called automatically from WMG_Axis_Graph::addSeries.
+	/// </summary>
+	/// <param name="index">Index.</param>
 	public void Init(int index) {
 		if (hasInit) return;
 		hasInit = true;
@@ -451,6 +780,7 @@ public class WMG_Series : MonoBehaviour {
 		pointValuesCountC.OnChange += PointValuesCountChanged;
 		pointValuesC.OnChange += PointValuesChanged;
 		pointValuesValC.OnChange += PointValuesValChanged;
+		connectFirstToLastC.OnChange += ConnectFirstToLastChanged;
 		lineScaleC.OnChange += LineScaleChanged;
 		pointWidthHeightC.OnChange += PointWidthHeightChanged;
 		dataLabelsC.OnChange += DataLabelsChanged;
@@ -463,20 +793,26 @@ public class WMG_Series : MonoBehaviour {
 		areaShadingTypeC.OnChange += AreaShadingTypeChanged;
 		areaShadingC.OnChange += AreaShadingChanged;
 		prefabC.OnChange += PrefabChanged;
-		connectFirstToLastC.OnChange += ConnectFirstToLastChanged;
 
 		seriesDataLabeler = formatSeriesDataLabel;
+		tooltipPointAnimator = defaultTooltipPointAnimator;
 
 		setOriginalPropertyValues();
 	}
 
+	/// <summary>
+	/// Used during Graph refresh process, should not be called outside of Graph Maker code.
+	/// </summary>
 	public void PauseCallbacks() {
 		for (int i = 0; i < changeObjs.Count; i++) {
 			changeObjs[i].changesPaused = true;
 			changeObjs[i].changePaused = false;
 		}
 	}
-	
+
+	/// <summary>
+	/// Used during Graph refresh process, should not be called outside of Graph Maker code.
+	/// </summary>
 	public void ResumeCallbacks() {
 		for (int i = 0; i < changeObjs.Count; i++) {
 			changeObjs[i].changesPaused = false;
@@ -506,7 +842,7 @@ public class WMG_Series : MonoBehaviour {
 		}
 	}
 
-	public void PrefabChanged() {
+	void PrefabChanged() {
 		UpdatePrefabType();
 		pointValuesCountC.Changed ();
 	}
@@ -531,23 +867,23 @@ public class WMG_Series : MonoBehaviour {
 		UpdateSprites();
 	}
 
-	public void pointValuesValChanged(int index) {
+	void pointValuesValChanged(int index) {
 		theGraph.aSeriesPointsChanged ();
 		UpdateNullVisibility();
 		UpdateSprites();
 	}
 
-	public void PointValuesChanged() {
+	void PointValuesChanged() {
 		if (theGraph.graphType == WMG_Axis_Graph.graphTypes.bar_stacked_percent || (theGraph.IsStacked && !IsLast)) {
 			theGraph.aSeriesPointsChanged ();
-			theGraph.SeriesChanged(false, true);
+			theGraph.SeriesChanged(false, true); // refreshes all the series, not just this series
 		}
 		else {
 			pointValuesChanged();
 		}
 	}
 
-	public void PointValuesCountChanged() {
+	void PointValuesCountChanged() {
 		if (theGraph.graphType == WMG_Axis_Graph.graphTypes.bar_stacked_percent || (theGraph.IsStacked && !IsLast)) {
 			theGraph.aSeriesPointsChanged ();
 			theGraph.SeriesChanged(true, true);
@@ -557,7 +893,7 @@ public class WMG_Series : MonoBehaviour {
 		}
 	}
 
-	public void PointValuesValChanged() {
+	void PointValuesValChanged() {
 		if (changedValIndices.Count != 1) { // multiple single vals changed in a single frame
 			PointValuesChanged();
 		}
@@ -573,58 +909,58 @@ public class WMG_Series : MonoBehaviour {
 		}
 	}
 
-	public void LineColorChanged() {
+	void LineColorChanged() {
 		UpdateLineColor();
 	}
 
-	public void ConnectFirstToLastChanged() {
+	void ConnectFirstToLastChanged() {
 		createOrDeletePoints(pointValues.Count);
 	}
 
-	public void PointColorChanged() {
+	void PointColorChanged() {
 		UpdatePointColor();
 	}
 
-	public void LineScaleChanged() {
+	void LineScaleChanged() {
 		UpdateLineScale();
 	}
 
-	public void PointWidthHeightChanged() {
+	void PointWidthHeightChanged() {
 		UpdatePointWidthHeight();
 	}
 
-	public void HideLinesChanged() {
+	void HideLinesChanged() {
 		UpdateHideLines();
 		UpdateNullVisibility();
 	}
 
-	public void HidePointsChanged() {
+	void HidePointsChanged() {
 		UpdateHidePoints();
 		UpdateNullVisibility();
 	}
 
-	public void SeriesNameChanged() {
+	void SeriesNameChanged() {
 		UpdateSeriesName();
 	}
 
-	public void LinePaddingChanged() {
+	void LinePaddingChanged() {
 		UpdateLinePadding();
 	}
 
-	public void AreaShadingTypeChanged() {
+	void AreaShadingTypeChanged() {
 		createOrDeleteAreaShading(pointValues.Count);
 	}
 
-	public void AreaShadingChanged() {
+	void AreaShadingChanged() {
 		if (areaShadingUsesComputeShader) {
 			UpdateSprites();
 		}
 		else {
-			updateAreaShading(null);
+			updateAreaShading();
 		}
 	}
 
-	public void DataLabelsChanged() {
+	void DataLabelsChanged() {
 		createOrDeleteLabels(pointValues.Count);
 		updateDataLabels();
 	}
@@ -644,65 +980,88 @@ public class WMG_Series : MonoBehaviour {
 			DoRealTimeUpdate();
 		}
 	}
-	
-	public List<Vector2> AfterPositions() {
-		return afterPositions;
-	}
-	
-	public List<int> AfterHeights() {
-		return afterHeights;
-	}
-	
-	public List<int> AfterWidths() {
-		return afterWidths;
-	}
-	
-	public bool AnimatingFromPreviousData() {
-		return animatingFromPreviousData;
-	}
-	
+
 	public void setAnimatingFromPreviousData() {
 		// Automatic animations doesn't work for real time updating or stacked graphs
 		if (realTimeRunning) return;
 		if (theGraph.IsStacked) return;
 		if (theGraph.autoAnimationsEnabled) {
-			animatingFromPreviousData = true;
+			beginningToAutoAnimate = true;
 		}
 	}
 
-	// Set initial property values for use with percentage based dynamic resizing 
+	/// <summary>
+	/// Sets initial property values for use with percentage based dynamic resizing, called automatically during #Init. 
+	/// </summary>
 	public void setOriginalPropertyValues() {
 		origPointWidthHeight = pointWidthHeight;
 		origLineScale = lineScale;
 		origDataLabelsFontSize = dataLabelsFontSize;
 		origDataLabelOffset = dataLabelsOffset;
 	}
-	
+
+	/// <summary>
+	/// Gets the points.
+	/// </summary>
+	/// <returns>The points.</returns>
 	public List<GameObject> getPoints() {
 		return points;
 	}
 
+	/// <summary>
+	/// Gets the last point.
+	/// </summary>
+	/// <returns>The last point.</returns>
 	public GameObject getLastPoint() {
 		return points[points.Count-1];
 	}
 
+	/// <summary>
+	/// Gets the first point.
+	/// </summary>
+	/// <returns>The first point.</returns>
 	public GameObject getFirstPoint() {
 		return points[0];
 	}
-	
+
+	/// <summary>
+	/// Gets the lines.
+	/// </summary>
+	/// <returns>The lines.</returns>
 	public List<GameObject> getLines() {
 		return lines;
 	}
-	
+
+	/// <summary>
+	/// Gets the area shading rects.
+	/// </summary>
+	/// <returns>The area shading rects.</returns>
+	public List<GameObject> getAreaShadingRects() {
+		return areaShadingRects;
+	}
+
+	/// <summary>
+	/// Gets the data labels.
+	/// </summary>
+	/// <returns>The data labels.</returns>
 	public List<GameObject> getDataLabels() {
 		return dataLabels;
 	}
-	
+
+	/// <summary>
+	/// Gets whether bar at specified index is negative (going upside down), based on WMG_Axis_Graph::barAxisValue.
+	/// </summary>
+	/// <returns><c>true</c>, if bar is negative was gotten, <c>false</c> otherwise.</returns>
+	/// <param name="i">The index.</param>
 	public bool getBarIsNegative(int i) {
 		return barIsNegative[i];
 	}
 	
-	// Get Vector2 associated with a node in this series
+	/// <summary>
+	/// Given a WMG_Node, gets the Vector2 from #pointValues for the node.
+	/// </summary>
+	/// <returns>The node value.</returns>
+	/// <param name="aNode">A node.</param>
 	public Vector2 getNodeValue(WMG_Node aNode) {
 		for (int i = 0; i < pointValues.Count; i++) {
 			if (points[i].GetComponent<WMG_Node>() == aNode) return pointValues[i];
@@ -710,7 +1069,7 @@ public class WMG_Series : MonoBehaviour {
 		return Vector2.zero;
 	}
 
-	public void UpdateHidePoints() {
+	void UpdateHidePoints() {
 		// Series points
 		for (int i = 0; i < points.Count; i++) {
 			theGraph.SetActive(points[i],!hidePoints);
@@ -720,7 +1079,7 @@ public class WMG_Series : MonoBehaviour {
 		if (!areaShadingUsesComputeShader) StartCoroutine(SetDelayedAreaShadingChanged ());
 	}
 
-	public void UpdateNullVisibility() {
+	void UpdateNullVisibility() {
 		// For null groups hide the appropriate points
 		if (theGraph.useGroups) {
 			for (int i = 0; i < points.Count; i++) {
@@ -756,7 +1115,7 @@ public class WMG_Series : MonoBehaviour {
 		}
 	}
 	
-	public void UpdateHideLines() {
+	void UpdateHideLines() {
 		// Series lines
 		for (int i = 0; i < lines.Count; i++) {
 			if (hideLines || !seriesIsLine) theGraph.SetActive(lines[i],false);
@@ -772,7 +1131,7 @@ public class WMG_Series : MonoBehaviour {
 		if (!areaShadingUsesComputeShader) StartCoroutine(SetDelayedAreaShadingChanged ());
 	}
 	
-	public void UpdateLineColor() {
+	void UpdateLineColor() {
 		// Series line colors
 		for (int i = 0; i < lines.Count; i++) {
 			WMG_Link theLine = lines[i].GetComponent<WMG_Link>();
@@ -783,7 +1142,7 @@ public class WMG_Series : MonoBehaviour {
 		theGraph.changeSpriteColor(legendLine.objectToColor, lineColor);
 	}
 	
-	public void UpdatePointColor() {
+	void UpdatePointColor() {
 		// Series point colors
 		for (int i = 0; i < points.Count; i++) {
 			WMG_Node thePoint = points[i].GetComponent<WMG_Node>();
@@ -801,7 +1160,7 @@ public class WMG_Series : MonoBehaviour {
 		theGraph.changeSpriteColor(legendPoint.objectToColor, pointColor);
 	}
 	
-	public void UpdateLineScale() {
+	void UpdateLineScale() {
 		// Series line widths
 		for (int i = 0; i < lines.Count; i++) {
 			WMG_Link theLine = lines[i].GetComponent<WMG_Link>();
@@ -812,7 +1171,7 @@ public class WMG_Series : MonoBehaviour {
 		legendLine.objectToScale.transform.localScale = new Vector3(lineScale, legendLine.objectToScale.transform.localScale.y, legendLine.objectToScale.transform.localScale.z);
 	}
 	
-	public void UpdatePointWidthHeight() {
+	void UpdatePointWidthHeight() {
 		// Series line point dimensions
 		if (seriesIsLine) {
 			for (int i = 0; i < points.Count; i++) {
@@ -827,7 +1186,7 @@ public class WMG_Series : MonoBehaviour {
 		theGraph.changeSpriteWidth(legendPoint.objectToColor, Mathf.RoundToInt(pointWidthHeight));
 	}
 	
-	public void UpdatePrefabType() {
+	void UpdatePrefabType() {
 		// Update prefab variable used later in the creating sprites function
 		if (seriesIsLine) {
 			nodePrefab = theGraph.pointPrefabs[pointPrefab];
@@ -854,18 +1213,18 @@ public class WMG_Series : MonoBehaviour {
 		}
 	}
 	
-	public void UpdateSeriesName() {
-		theGraph.legend.LegendChanged();
+	void UpdateSeriesName() {
+		theGraph.legend.updateLegend();
 	}
 	
-	public void UpdateLinePadding() {
+	void UpdateLinePadding() {
 		for (int i = 0; i < points.Count; i++) {
 			points[i].GetComponent<WMG_Node>().radius = -1 * linePadding;
 		}
 		RepositionLines();
 	}
 
-	public void RepositionLines() {
+	void RepositionLines() {
 		for (int i = 0; i < lines.Count; i++) {
 			lines[i].GetComponent<WMG_Link>().Reposition();
 		}
@@ -977,6 +1336,7 @@ public class WMG_Series : MonoBehaviour {
 				theGraph.SetActive(curObj,false);
 				points.Add(curObj);
 				barIsNegative.Add(false);
+				OnPointCreated(this, curObj, i);
 				if (i > 0) {
 					WMG_Node fromNode = points[i-1].GetComponent<WMG_Node>();
 					curObj = theGraph.CreateLink(fromNode, curObj, theGraph.linkPrefabs[linkPrefab], linkParent);
@@ -1121,7 +1481,7 @@ public class WMG_Series : MonoBehaviour {
 					areaShadingRects.Add(curObj);
 					curObj.name = "Area_Shading_CS";
 					WMG_Compute_Shader areaShadingCS = curObj.GetComponent<WMG_Compute_Shader>();
-					areaShadingCS.Init();
+					areaShadingCS.Init(areaShadingTextureResolution);
 					UpdateSprites();
 				}
 			}
@@ -1178,7 +1538,8 @@ public class WMG_Series : MonoBehaviour {
 		AreaShadingChanged();
 	}
 	
-	public void UpdateSprites() {
+	void UpdateSprites() {
+		if (points.Count == 0) return;
 		List<GameObject> prevPoints = null;
 		if (theGraph.IsStacked) {
 			for (int j = 1; j < theGraph.lineSeries.Count; j++) {
@@ -1192,15 +1553,48 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 
-		List<Vector2> newPositions = new List<Vector2>();
-		List<int> newWidths = new List<int>();
-		List<int> newHeights = new List<int>();
-		bool callUpdateShading = true;
-		getNewPointPositionsAndSizes(prevPoints, ref newPositions, ref newWidths, ref newHeights);
-		updatePointSprites(newPositions, newWidths, newHeights, ref callUpdateShading);
+		// if beginning auto animation, set the animation starting positions
+		if (beginningToAutoAnimate) { 
+			if (!currentlyAnimating) { // not already in the middle of another animation
+				origPositions = new List<Vector2>(afterPositions);
+				origWidths = new List<int>(afterWidths);
+				origHeights = new List<int>(afterHeights);
+			}
+			else {
+				// set new original positions based on previous animation timeline that was just now interrupted
+				List<Vector2> newPositions = new List<Vector2>(); 
+				List<int> newWidths = new List<int>(); 
+				List<int> newHeights = new List<int>();
+				
+				for (int i = 0; i < afterPositions.Count; i++) {
+					newPositions.Add(WMG_Util.RemapVec2(autoAnimationTimeline, 0, 1, origPositions[i], afterPositions[i]));
+					newWidths.Add(Mathf.RoundToInt(WMG_Util.RemapFloat(autoAnimationTimeline, 0, 1, origWidths[i], afterWidths[i])));
+					newHeights.Add(Mathf.RoundToInt(WMG_Util.RemapFloat(autoAnimationTimeline, 0, 1, origHeights[i], afterHeights[i])));
+				}
+				
+				origPositions = new List<Vector2>(newPositions);
+				origWidths = new List<int>(newWidths);
+				origHeights = new List<int>(newHeights);
+			}
+		}
+
+		// update new positions / animation end positions
+		getNewPointPositionsAndSizes(prevPoints);
+
+		if (beginningToAutoAnimate) { // if beginning auto animation, trigger the animation to begin
+			OnSeriesAutoAnimStarted ();
+			beginningToAutoAnimate = false;
+		} else {
+			UpdateVisuals ();
+		}
+	}
+
+	public void UpdateVisuals(List<Vector2> newPositions = null, List<int> newWidths = null, List<int> newHeights = null) {
+		updatePointSprites(newPositions, newWidths, newHeights);
 		updateDataLabels();
-		if (callUpdateShading) {
-			updateAreaShading(newPositions);
+		updateAreaShading();
+		for (int i = 0; i < points.Count; i++) {
+			OnPointSpriteUpdated(this, points[i], i);
 		}
 	}
 
@@ -1218,28 +1612,33 @@ public class WMG_Series : MonoBehaviour {
 				if (theGraph.graphType == WMG_Axis_Graph.graphTypes.line || theGraph.graphType == WMG_Axis_Graph.graphTypes.line_stacked) {
 					_extraXSpace = 0;
 				}
-				else {
-					_extraXSpace = xDistBetweenPoints / 2;
+				else if (theGraph.graphType == WMG_Axis_Graph.graphTypes.bar_stacked || theGraph.graphType == WMG_Axis_Graph.graphTypes.bar_stacked_percent) {
+					_extraXSpace = xDistBetweenPoints / 2 - (theGraph.barWidth / 2f + theGraph.axisWidth / 2f);
+				}
+				else if (theGraph.graphType == WMG_Axis_Graph.graphTypes.bar_side) {
+					_extraXSpace = xDistBetweenPoints / 2 - (theGraph.barWidth / 2f * theGraph.lineSeries.Count + theGraph.axisWidth / 2f);
+				}
+				else if (theGraph.graphType == WMG_Axis_Graph.graphTypes.combo) {
+					int totalNumberComboBars = 0;
+					for (int j = 0; j < theGraph.lineSeries.Count; j++) {
+						if (!theGraph.activeInHierarchy(theGraph.lineSeries[j])) continue;
+						WMG_Series theSeries = theGraph.lineSeries[j].GetComponent<WMG_Series>();
+						if (theSeries.comboType == WMG_Series.comboTypes.bar) {
+							totalNumberComboBars++;
+						}
+					}
+
+					_extraXSpace = xDistBetweenPoints / 2 - (theGraph.barWidth / 2f * totalNumberComboBars + theGraph.axisWidth / 2f);
 				}
 			}
 		}
 	}
+	
+	void getNewPointPositionsAndSizes(List<GameObject> prevPoints) {
+		afterWidths.Clear ();
+		afterHeights.Clear ();
+		afterPositions.Clear ();
 
-	void getNewPointPositionsAndSizes(List<GameObject> prevPoints, ref List<Vector2> newPositions, ref List<int> newWidths, ref List<int> newHeights) {
-		if (points.Count == 0) return;
-		float xAxisLength = theGraph.xAxisLength;
-		float yAxisLength = theGraph.yAxisLength;
-		float xAxisMax = theGraph.xAxis.AxisMaxValue;
-		float yAxisMax = yAxis.AxisMaxValue;
-		float xAxisMin = theGraph.xAxis.AxisMinValue;
-		float yAxisMin = yAxis.AxisMinValue;
-		
-		if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.horizontal) {
-			theGraph.SwapVals(ref xAxisLength, ref yAxisLength);
-			theGraph.SwapVals(ref xAxisMax, ref yAxisMax);
-			theGraph.SwapVals(ref xAxisMin, ref yAxisMin);
-		}
-		
 		updateXdistBetween();
 		
 		updateExtraXSpace();
@@ -1248,226 +1647,185 @@ public class WMG_Series : MonoBehaviour {
 			if (i >= pointValues.Count) break;
 			
 			float newX = 0;
-			float newY = (pointValues[i].y - yAxisMin)/(yAxisMax - yAxisMin) * yAxisLength; // new y always based on the pointValues.y
+			float newY = (pointValues[i].y - yAxisOrienInd.AxisMinValue)/(yAxisOrienInd.AxisMaxValue - yAxisOrienInd.AxisMinValue) * theGraph.yAxisLengthOrienInd; // new y always based on the pointValues.y
 			
 			// If using xDistBetween then point positioning based on previous point point position
 			if (!theGraph.useGroups && UseXDistBetweenToSpace) {
 				if (i > 0) { // For points greater than 0, use the previous point position plus xDistBetween
-					float prevPosX = newPositions[i-1].x;
-					float barOffsetX = 0;
-					if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.horizontal) {
-						prevPosX = newPositions[i-1].y;
-						barOffsetX = theGraph.barWidth;
-					}
+					float prevPosX = (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.vertical) ? afterPositions[i-1].x : afterPositions[i-1].y;
 					newX = prevPosX + xDistBetweenPoints;
-					if (!seriesIsLine) {
-						newX += barOffsetX;
-					}
 				}
-				else { // For point 0, one of the positions is just 0
-					newX = extraXSpace;
+				else { // For point 0, set initial x position to extraXSpace
+					newX = extraXSpace - (!seriesIsLine && theGraph.orientationType == WMG_Axis_Graph.orientationTypes.horizontal ? theGraph.barWidth : 0);
 				}
 			}
 			else if (theGraph.useGroups) { // Using groups, x values represent integer index of group
 				newX = extraXSpace + xDistBetweenPoints * (Mathf.Abs(pointValues[i].x) - 1);
+				newX -= (!seriesIsLine && theGraph.orientationType == WMG_Axis_Graph.orientationTypes.horizontal ? theGraph.barWidth : 0);
 			}
 			else { // Not using xDistBetween or groups, so use the actual x values in the Vector2 list
-				newX = (pointValues[i].x - xAxisMin)/(xAxisMax - xAxisMin) * xAxisLength;
+				newX = (pointValues[i].x - xAxisOrienInd.AxisMinValue)/(xAxisOrienInd.AxisMaxValue - xAxisOrienInd.AxisMinValue) * theGraph.xAxisLengthOrienInd;
 			}
-			
-			if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.horizontal) {
-				theGraph.SwapVals(ref newX, ref newY);
-			}
+
+
 			
 			int newWidth = 0;
 			int newHeight = 0;
 			
 			if (seriesIsLine) {
-				// Width and height of points for line graphs - needed because autospace functionality requires height and width of previous point
-				// And previous point widths and heights are not set in this loop because of automatic animations
 				newWidth = Mathf.RoundToInt(pointWidthHeight);
 				newHeight = Mathf.RoundToInt(pointWidthHeight);
 				
 				if (theGraph.graphType == WMG_Axis_Graph.graphTypes.line_stacked) {
-					if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.vertical) {
-						if (prevPoints != null && i < prevPoints.Count) {
-							newY += theGraph.getSpritePositionY(prevPoints[i]);
-						}
-					}
-					else {
-						if (prevPoints != null && i < prevPoints.Count) {
-							newX += theGraph.getSpritePositionX(prevPoints[i]);
-						}
+					if (prevPoints != null && i < prevPoints.Count) {
+						newY += (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.vertical) ? theGraph.getSpritePositionY(prevPoints[i]) 
+							: theGraph.getSpritePositionX(prevPoints[i]);
 					}
 				}
-				
 			}
 			else {
 				// For bar graphs, need to update sprites width and height based on positions
 				// For stacked percentage, need to set a y position based on the percentage of all series values combined
 				if (theGraph.graphType == WMG_Axis_Graph.graphTypes.bar_stacked_percent && theGraph.TotalPointValues.Count > i) {
-					if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.vertical) {
-						newY = (pointValues[i].y - yAxisMin) / theGraph.TotalPointValues[i] * yAxisLength;
-					}
-					else {
-						newX = (pointValues[i].y - yAxisMin) / theGraph.TotalPointValues[i] * yAxisLength;
-					}
+					newY = (pointValues[i].y - yAxisOrienInd.AxisMinValue) / theGraph.TotalPointValues[i] * theGraph.yAxisLengthOrienInd;
 				}
-				
+
+				int barAxisAdjust = 0; // adjustment based on bar axis value
+				if (theGraph.graphType == WMG_Axis_Graph.graphTypes.bar_side || (theGraph.graphType == WMG_Axis_Graph.graphTypes.combo && comboType == comboTypes.bar)) {
+					barAxisAdjust = Mathf.RoundToInt((theGraph.barAxisValue - yAxisOrienInd.AxisMinValue) / (yAxisOrienInd.AxisMaxValue - yAxisOrienInd.AxisMinValue) * theGraph.yAxisLengthOrienInd);
+				}
+
+				float newHeightOrienInd = newY - barAxisAdjust;
+				newY = barAxisAdjust;
+				barIsNegative[i] = false;
+				if (newHeightOrienInd < 0) {
+					newHeightOrienInd *= -1;
+					newY -= newHeightOrienInd;
+					barIsNegative[i] = true;
+				}
+
 				// Update sprite dimensions and increase position using previous point position
+				newWidth = Mathf.RoundToInt(theGraph.barWidth);
+				newHeight = Mathf.RoundToInt(newHeightOrienInd);
+
 				// Previous points is null for side by side bar, but should not be empty for stacked and stacked percentage for series after the first series
-				if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.vertical) {
-					newWidth = Mathf.RoundToInt(theGraph.barWidth);
-					newHeight = Mathf.RoundToInt(newY);
-					// Adjust height based on barAxisValue
-					int heightAdjust = 0;
-					if (theGraph.graphType == WMG_Axis_Graph.graphTypes.bar_side || (theGraph.graphType == WMG_Axis_Graph.graphTypes.combo && comboType == comboTypes.bar)) {
-						heightAdjust = Mathf.RoundToInt((theGraph.barAxisValue - yAxisMin) / (yAxisMax - yAxisMin) * yAxisLength);
-					}
-					newHeight -= heightAdjust;
-					newY -= newHeight;
-					barIsNegative[i] = false;
-					if (newHeight < 0) {
-						newHeight *= -1;
-						newY -= newHeight;
-						barIsNegative[i] = true;
-					}
-					if (prevPoints != null && i < prevPoints.Count) {
-						newY += theGraph.getSpritePositionY(prevPoints[i]) + theGraph.getSpriteHeight(prevPoints[i]);
-					}
+				if (prevPoints != null && i < prevPoints.Count) {
+					newY += (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.vertical) 
+						? theGraph.getSpritePositionY(prevPoints[i]) + theGraph.getSpriteHeight(prevPoints[i])
+							: theGraph.getSpritePositionX(prevPoints[i]) + theGraph.getSpriteWidth(prevPoints[i]);
 				}
-				else {
-					newWidth = Mathf.RoundToInt(newX);
-					newHeight = Mathf.RoundToInt(theGraph.barWidth);
-					// Adjust width based on barAxisValue
-					int widthAdjust = 0;
-					if (theGraph.graphType == WMG_Axis_Graph.graphTypes.bar_side || (theGraph.graphType == WMG_Axis_Graph.graphTypes.combo && comboType == comboTypes.bar)) {
-						widthAdjust = Mathf.RoundToInt((theGraph.barAxisValue - yAxisMin) / (yAxisMax - yAxisMin) * yAxisLength);
-					}
-					newWidth -= widthAdjust;
-					newX = widthAdjust;
-					newY -= theGraph.barWidth;
-					barIsNegative[i] = false;
-					if (newWidth < 0) {
-						newWidth *= -1;
-						newX -= newWidth;
-						barIsNegative[i] = true;
-					}
-					if (prevPoints != null && i < prevPoints.Count) {
-						newX += theGraph.getSpritePositionX(prevPoints[i]) + theGraph.getSpriteWidth(prevPoints[i]);
-					}
-				}
+
 			}
-			newWidths.Add(newWidth);
-			newHeights.Add(newHeight);
-			newPositions.Add(new Vector2(newX, newY));
+			if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.horizontal) {
+				WMG_Util.SwapVals(ref newX, ref newY);
+				WMG_Util.SwapVals(ref newWidth, ref newHeight);
+			}
+			afterWidths.Add(newWidth);
+			afterHeights.Add(newHeight);
+			afterPositions.Add(new Vector2(newX, newY));
 		}
 
 	}
-
-	void updatePointSprites(List<Vector2> newPositions, List<int> newWidths, List<int> newHeights, ref bool callUpdateShading) {
-		if (points.Count == 0) return;
-		if (animatingFromPreviousData) { // For animations, copy over the newly calculated values into lists to be used later in the animation code
-			if (seriesIsLine) {
-				for (int i = 0; i < points.Count; i++) {
-					if (i >= pointValues.Count) break;
-					newPositions[i] = theGraph.getChangeSpritePositionTo(points[i], newPositions[i]);
-				}
+	
+	void updatePointSprites(List<Vector2> newPositions = null, List<int> newWidths = null, List<int> newHeights = null) {
+		for (int i = 0; i < points.Count; i++) {
+			if (i >= pointValues.Count) break;
+			if (!seriesIsLine) {
+				WMG_Node thePoint = points[i].GetComponent<WMG_Node>();
+				theGraph.changeBarWidthHeight(thePoint.objectToColor, 
+				                              newWidths != null ? newWidths[i] : afterWidths[i], 
+				                              newHeights != null ? newHeights[i] : afterHeights[i]); 
 			}
-			afterPositions = new List<Vector2>(newPositions);
-			afterWidths = new List<int>(newWidths);
-			afterHeights = new List<int>(newHeights);
-			OnSeriesDataChanged();
-			animatingFromPreviousData = false;
-			if (areaShadingUsesComputeShader) {
-				callUpdateShading = false;
-			}
+			theGraph.changeSpritePositionTo(points[i], new Vector3(newPositions != null ? newPositions[i].x : afterPositions[i].x, 
+			                                                       newPositions != null ? newPositions[i].y : afterPositions[i].y, 0));
 		}
-		else { // Otherwise update the visuals now
-			for (int i = 0; i < points.Count; i++) {
-				if (i >= pointValues.Count) break;
-				if (!seriesIsLine) {
-					WMG_Node thePoint = points[i].GetComponent<WMG_Node>();
-					theGraph.changeBarWidthHeight(thePoint.objectToColor, newWidths[i], newHeights[i]); 
-				}
-				theGraph.changeSpritePositionTo(points[i], new Vector3(newPositions[i].x, newPositions[i].y, 0));
-			}
-			RepositionLines();
-		}
+		RepositionLines();
 	}
 
 
 	void updateDataLabels() {
 		if (!dataLabelsEnabled) return;
-		for (int i = 0; i < dataLabels.Count; i++) {
-			Vector2 currentPointPosition = new Vector2(theGraph.getSpritePositionX(points[i]), theGraph.getSpritePositionY(points[i]));
-			// Update font size
-			theGraph.changeLabelFontSize(dataLabels[i], dataLabelsFontSize);
-			// Font Color
-			theGraph.changeLabelColor(dataLabels[i], dataLabelsColor);
-			// Font Style
-			theGraph.changeLabelFontStyle(dataLabels[i], dataLabelsFontStyle);
-			// Font
-			if (dataLabelsFont != null) {
-				theGraph.changeLabelFont(dataLabels[i], dataLabelsFont);
-			}
-			// Update text based on y value and number decimals
-			theGraph.changeLabelText(dataLabels[i], seriesDataLabeler(this, pointValues[i].y));
+		for (int i = 0; i < points.Count; i++) {
+			updateADataLabel(i);
+		}
+	}
 
-			// Update pivot
-			if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.horizontal) {
-				theGraph.changeSpritePivot(dataLabels[i], WMG_Graph_Manager.WMGpivotTypes.Left);
+	void updateADataLabel(int i) {
+		if (!dataLabelsEnabled) return;
+		Vector2 currentPointPosition = new Vector2(theGraph.getSpritePositionX(points[i]), theGraph.getSpritePositionY(points[i]));
+		// Update font size
+		theGraph.changeLabelFontSize(dataLabels[i], dataLabelsFontSize);
+		// Font Color
+		theGraph.changeLabelColor(dataLabels[i], dataLabelsColor);
+		// Font Style
+		theGraph.changeLabelFontStyle(dataLabels[i], dataLabelsFontStyle);
+		// Font
+		if (dataLabelsFont != null) {
+			theGraph.changeLabelFont(dataLabels[i], dataLabelsFont);
+		}
+		// Update text based on y value and number decimals
+		theGraph.changeLabelText(dataLabels[i], seriesDataLabeler(this, pointValues[i].y, i));
+		
+		// Update pivot
+		if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.horizontal) {
+			theGraph.changeSpritePivot(dataLabels[i], WMG_Graph_Manager.WMGpivotTypes.Left);
+		}
+		else {
+			theGraph.changeSpritePivot(dataLabels[i], WMG_Graph_Manager.WMGpivotTypes.Bottom);
+		}
+		
+		// Update positions
+		if (seriesIsLine) {
+			if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.vertical) {
+				theGraph.changeSpritePositionTo(dataLabels[i], new Vector3(
+					dataLabelsOffset.x + currentPointPosition.x, 
+					dataLabelsOffset.y + currentPointPosition.y + pointWidthHeight / 2, 
+					0));
 			}
 			else {
-				theGraph.changeSpritePivot(dataLabels[i], WMG_Graph_Manager.WMGpivotTypes.Bottom);
+				theGraph.changeSpritePositionTo(dataLabels[i], new Vector3(
+					dataLabelsOffset.x + currentPointPosition.x + pointWidthHeight / 2, 
+					dataLabelsOffset.y + currentPointPosition.y, 
+					0));
 			}
-
-			// Update positions
-			if (seriesIsLine) {
-				if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.vertical) {
-					theGraph.changeSpritePositionTo(dataLabels[i], new Vector3(
-						dataLabelsOffset.x + currentPointPosition.x, 
-						dataLabelsOffset.y + currentPointPosition.y + pointWidthHeight / 2, 
-						0));
+		}
+		else {
+			if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.vertical) {
+				float newY = dataLabelsOffset.y + currentPointPosition.y + theGraph.getSpriteHeight(points[i]);
+				if (dataLabelsAnchoredLeftBot) {
+					newY -= theGraph.getSpriteHeight(points[i]);
 				}
-				else {
-					theGraph.changeSpritePositionTo(dataLabels[i], new Vector3(
-						dataLabelsOffset.x + currentPointPosition.x + pointWidthHeight / 2, 
-						dataLabelsOffset.y + currentPointPosition.y, 
-						0));
+				if (barIsNegative[i]) {
+					newY = -dataLabelsOffset.y - theGraph.getSpriteHeight(points[i]) + Mathf.RoundToInt((theGraph.barAxisValue - yAxis.AxisMinValue) / (yAxis.AxisMaxValue - yAxis.AxisMinValue) * theGraph.yAxisLength);
 				}
+				theGraph.changeSpritePositionTo(dataLabels[i], new Vector3(
+					dataLabelsOffset.x + currentPointPosition.x + theGraph.barWidth / 2, 
+					newY, 
+					0));
 			}
 			else {
-				if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.vertical) {
-					float newY = dataLabelsOffset.y + currentPointPosition.y + theGraph.getSpriteHeight(points[i]);
-					if (barIsNegative[i]) {
-						newY = -dataLabelsOffset.y - theGraph.getSpriteHeight(points[i]) + Mathf.RoundToInt((theGraph.barAxisValue - yAxis.AxisMinValue) / (yAxis.AxisMaxValue - yAxis.AxisMinValue) * theGraph.yAxisLength);
-					}
-					theGraph.changeSpritePositionTo(dataLabels[i], new Vector3(
-						dataLabelsOffset.x + currentPointPosition.x + theGraph.barWidth / 2, 
-						newY, 
-						0));
+				float newX = dataLabelsOffset.x + currentPointPosition.x + theGraph.getSpriteWidth(points[i]);
+				if (dataLabelsAnchoredLeftBot) {
+					newX -= theGraph.getSpriteWidth(points[i]);
 				}
-				else {
-					float newX = dataLabelsOffset.x + currentPointPosition.x + theGraph.getSpriteWidth(points[i]);
-					if (barIsNegative[i]) {
-						newX = -dataLabelsOffset.x - theGraph.getSpriteWidth(points[i]) + Mathf.RoundToInt((theGraph.barAxisValue - theGraph.xAxis.AxisMinValue) / (theGraph.xAxis.AxisMaxValue - theGraph.xAxis.AxisMinValue) * theGraph.xAxisLength);
-					}
-					theGraph.changeSpritePositionTo(dataLabels[i], new Vector3(
-						newX, 
-						dataLabelsOffset.y + currentPointPosition.y + theGraph.barWidth / 2, 
-						0));
+				if (barIsNegative[i]) {
+					newX = -dataLabelsOffset.x - theGraph.getSpriteWidth(points[i]) + Mathf.RoundToInt((theGraph.barAxisValue - theGraph.xAxis.AxisMinValue) / (theGraph.xAxis.AxisMaxValue - theGraph.xAxis.AxisMinValue) * theGraph.xAxisLength);
 				}
+				theGraph.changeSpritePositionTo(dataLabels[i], new Vector3(
+					newX, 
+					dataLabelsOffset.y + currentPointPosition.y + theGraph.barWidth / 2, 
+					0));
 			}
 		}
 	}
 
 
 	// Update the position, alpha clipping, and other properties of the area shading rectangles
-	public void updateAreaShading(List<Vector2> newPositions) {
+	void updateAreaShading() {
 		if (areaShadingType == areaShadingTypes.None) return;
 		if (areaShadingUsesComputeShader && areaShadingRects.Count == 1) { // all values (min, max, and the points) represent a percentage of graph
 			WMG_Compute_Shader areaShadingCS = areaShadingRects[0].GetComponent<WMG_Compute_Shader>();
+			WMG_ComputeLineGraph_Data areaShadingCSdata = areaShadingRects[0].GetComponent<WMG_ComputeLineGraph_Data>();
 
 			areaShadingCS.computeShader.SetFloats ("color", new float[]{ areaShadingColor.r, areaShadingColor.g, areaShadingColor.b, areaShadingColor.a });
 			areaShadingCS.computeShader.SetInt("numPoints", pointValues.Count);
@@ -1481,22 +1839,23 @@ public class WMG_Series : MonoBehaviour {
 			}
 			float maxVal = 0;
 			for (int i = 0; i < pointValues.Count; i++) {
-				Vector2 pointPos = newPositions == null ? theGraph.getSpritePositionXY(points[i]) : newPositions[i];
+				Vector2 pointPos = theGraph.getSpritePositionXY(points[i]);
 				pointPos = new Vector2(pointPos.x / theGraph.xAxisLength, pointPos.y / theGraph.yAxisLength); 
 				if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.horizontal) {
 					pointPos = new Vector2(pointPos.y, pointPos.x);
 				}
-				areaShadingCS.pointVals[4 * i] = pointPos.x;
-				areaShadingCS.pointVals[4 * i + 1] = pointPos.y;
+				areaShadingCSdata.pointVals[4 * i] = pointPos.x;
+				areaShadingCSdata.pointVals[4 * i + 1] = pointPos.y;
 				if (pointPos.y > maxVal) {
 					maxVal = pointPos.y;
 				}
 			}
 			areaShadingCS.computeShader.SetFloat ("maxVal", maxVal);
-			areaShadingCS.computeShader.SetFloats("pointVals", areaShadingCS.pointVals);
+			areaShadingCS.computeShader.SetFloats("pointVals", areaShadingCSdata.pointVals);
 
 			areaShadingCS.dispatchAndUpdateImage();
 
+			OnPointShadingSpriteUpdated(this, areaShadingRects[0], 0);
 		}
 		else {
 			// Find the maximum area shading height so that we can corectly adjust each sprites transparency based on their height in comparison to the max height
@@ -1515,12 +1874,14 @@ public class WMG_Series : MonoBehaviour {
 				Vector2 nextPointPosition = theGraph.getSpritePositionXY(points[i+1]);
 				float axisMultiplier = theGraph.yAxisLength / (yAxis.AxisMaxValue - yAxis.AxisMinValue);
 				float yPosOfAxisVal = (areaShadingAxisValue - yAxis.AxisMinValue) * axisMultiplier;
+				float yAxisMin = yAxis.AxisMinValue;
 				if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.horizontal) {
 					rotation = 90;
 					currentPointPosition = new Vector2(theGraph.getSpritePositionY(points[i]), theGraph.getSpritePositionX(points[i]));
 					nextPointPosition = new Vector2(theGraph.getSpritePositionY(points[i+1]), theGraph.getSpritePositionX(points[i+1]));
 					axisMultiplier = theGraph.xAxisLength / (theGraph.xAxis.AxisMaxValue - theGraph.xAxis.AxisMinValue);
 					yPosOfAxisVal = (areaShadingAxisValue - theGraph.xAxis.AxisMinValue) * axisMultiplier;
+					yAxisMin = theGraph.xAxis.AxisMinValue;
 				}
 				
 				areaShadingRects[i].transform.localEulerAngles = new Vector3(0, 0, rotation);
@@ -1528,7 +1889,9 @@ public class WMG_Series : MonoBehaviour {
 				float minY = Mathf.Min(nextPointPosition.y, currentPointPosition.y);
 				int newX = Mathf.RoundToInt(currentPointPosition.x);
 				int newWidth = Mathf.RoundToInt(nextPointPosition.x - currentPointPosition.x);
-				float newHeight = maxY - minY + ((Mathf.Min(pointValues[i+1].y, pointValues[i].y) - areaShadingAxisValue) * axisMultiplier ) ;
+				float currentPointValue = currentPointPosition.y / axisMultiplier + yAxisMin;
+				float nextPointValue = nextPointPosition.y / axisMultiplier + yAxisMin;
+				float newHeight = maxY - minY + ((Mathf.Min(nextPointValue, currentPointValue) - areaShadingAxisValue) * axisMultiplier ) ;
 				
 				// If areaShading value goes above a line segment, decrease the width appropriately
 				if (minY < yPosOfAxisVal) {
@@ -1588,7 +1951,7 @@ public class WMG_Series : MonoBehaviour {
 				}
 				
 				// Set custom shader properties to do appropriate alpha clipping, gradient shading, color, etc.
-				Material curMat = theGraph.getTextureMaterial(areaShadingRects[i]);
+				Material curMat = areaShadingRects[i].GetComponent<WMG_Image_Custom_Mat>().GetModifiedMaterial(theGraph.getTextureMaterial(areaShadingRects[i]));
 				if (curMat == null) continue;
 				
 				if (theGraph.orientationType == WMG_Axis_Graph.orientationTypes.horizontal) {
@@ -1602,12 +1965,17 @@ public class WMG_Series : MonoBehaviour {
 				curMat.SetFloat("_Transparency", 1 - areaShadingColor.a );
 				// Set the gradient scale based on current sprite height in comparison to maximum sprite height
 				curMat.SetFloat("_GradientScale", 
-				                (Mathf.Max(pointValues[i+1].y, pointValues[i].y) - areaShadingAxisValue) / (maxVal - areaShadingAxisValue)
+				                (Mathf.Max(nextPointValue, currentPointValue) - areaShadingAxisValue) / (maxVal - areaShadingAxisValue)
 				                );
+
+				OnPointShadingSpriteUpdated(this, areaShadingRects[i], i);
 			}
 		}
 	}
-	
+
+	/// <summary>
+	/// When using realtime updating (#realTimeDataSource != null), begins the real time updating.
+	/// </summary>
 	public void StartRealTimeUpdate() {
 		if (realTimeRunning) return;
 		if (realTimeDataSource != null) {
@@ -1623,16 +1991,22 @@ public class WMG_Series : MonoBehaviour {
 			}
 		}
 	}
-	
+
+	/// <summary>
+	/// When using realtime updating (#realTimeDataSource != null), pauses / stops the data updating after having previously called #StartRealTimeUpdate. 
+	/// </summary>
 	public void StopRealTimeUpdate() {
 		realTimeRunning = false;
 	}
 
+	/// <summary>
+	/// When using realtime updating (#realTimeDataSource != null), resumes real time updating from a paused state from previously calling #StopRealTimeUpdate.
+	/// </summary>
 	public void ResumeRealTimeUpdate() {
 		realTimeRunning = true;
 	}
 	
-	private void DoRealTimeUpdate() {
+	void DoRealTimeUpdate() {
 		/* This "Real Time" update is FPS dependent, so the time axis actually represents a number of frames.
 		 * The waitForSeconds for coroutines does not actually wait for the specified number of seconds, and is also FPS dependent.
 		 * An FPS independent solution only seems possible with fixedUpdate, which may be added later. */
@@ -1696,9 +2070,11 @@ public class WMG_Series : MonoBehaviour {
 			else pointValues[0] = new Vector2(x1 + waitTime, y1 + (y2 - y1) / (x2 - x1) * waitTime);
 		}
 	}
-	
+
+	/// <summary>
+	/// Internal helper function when deleting a series, should not be called outside of Graph Maker code.
+	/// </summary>
 	public void deleteAllNodesFromGraphManager() {
-		// This should not be called manually, only an internal helper function for dynamically deleting series
 		for (int i = points.Count - 1; i >= 0; i--) {
 			theGraph.DeleteNode(points[i].GetComponent<WMG_Node>());
 		}
@@ -1706,4 +2082,10 @@ public class WMG_Series : MonoBehaviour {
 		theGraph.DeleteNode(legendEntry.nodeRight.GetComponent<WMG_Node>());
 		theGraph.DeleteNode(legendEntry.swatchNode.GetComponent<WMG_Node>());
 	}
+
+	[System.Obsolete("This parameter is no longer used. Use ManuallySetXDistBetween if needed.")]
+	/// <summary>
+	/// Obsolete.
+	/// </summary>
+	public bool AutoUpdateXDistBetween;
 }

@@ -92,6 +92,12 @@ namespace EA4S.UI
                 bt.Bt.onClick.RemoveAllListeners();
         }
 
+        void Update()
+        {
+            if (BtMusic.IsToggled != AudioManager.I.MusicEnabled)
+                BtMusic.Toggle(AudioManager.I.MusicEnabled);
+        }
+
         /// <summary>
         /// Opens or closes the pause menu
         /// </summary>

@@ -27,6 +27,7 @@ namespace EA4S.Audio
         System.Action OnDialogueEnded;
         bool hasToNotifyEndDialogue = false;
 
+        bool previousMusicEnabled;
         bool musicEnabled = true;
         AudioClip customMusic;
         Music currentMusic;
@@ -145,7 +146,16 @@ namespace EA4S.Audio
 
         public void OnAppPause(bool pauseStatus)
         {
-            MusicEnabled = !pauseStatus;
+            if (pauseStatus)
+            {
+                previousMusicEnabled = MusicEnabled;
+                MusicEnabled = false;
+            }
+            else
+            {
+                MusicEnabled = previousMusicEnabled;
+            }
+
             IsAppPaused = pauseStatus;
         }
 

@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
+/// <summary>
+/// This defines a data source which can be used with WMG_Series, WMG_Pie_Graph, or WMG_Ring_Graph.
+/// </summary>
 public class WMG_Data_Source : MonoBehaviour {
 
 	/* // DELETE THIS LINE FOR USE WITH PLAYMAKER
@@ -16,9 +19,9 @@ public class WMG_Data_Source : MonoBehaviour {
 	*/ // DELETE THIS LINE FOR USE WITH PLAYMAKER
 
 	public enum WMG_DataSourceTypes {
-		Single_Object_Multiple_Variables, // uses dataProvider, variableNames, and variableTypes
-		Multiple_Objects_Single_Variable, // uses dataProviders, variableName, and variableType
-		Single_Object_Single_Variable // uses dataProvider, variableName, and variableType
+		Single_Object_Multiple_Variables,
+		Multiple_Objects_Single_Variable,
+		Single_Object_Single_Variable
 	}
 
 	public enum WMG_VariableTypes {
@@ -29,24 +32,52 @@ public class WMG_Data_Source : MonoBehaviour {
 		Field_Field // e.g. test.y from public Vector3 test;
 	}
 
+	/// <summary>
+	/// Determines the type of this data source in terms of multi vs single objects and multi vs single variables.
+	/// - Single_Object_Multiple_Variables: Expected data source refers to a single script object and multiple variables (Use #dataProvider, and #variableNames)
+	/// - Multiple_Objects_Single_Variable: Expected data source refers to multiple instanced script objects and a single variable (Use #dataProviders, and #variableName)
+	/// - Single_Object_Single_Variable: Expected data source refers to a single script object and a single variable (Use #dataProvider, and #variableName)
+	/// </summary>
 	public WMG_DataSourceTypes dataSourceType;
 
-	public List<object> dataProviders = new List<object>(); 
+	/// <summary>
+	/// When using #dataSourceType = Multiple_Objects_Single_Variable, this is the reference to the list of instanced script objects from which data will be pulled. 
+	/// </summary>
+	public List<object> dataProviders = new List<object>();
+	/// <summary>
+	/// When using #dataSourceType = Single_Object_Multiple_Variables or Single_Object_Single_Variable, this is the reference to the instanced script object from which data will be pulled.
+	/// </summary>
 	public object dataProvider;
 
+	/// <summary>
+	/// Optionally set the variable type corresponding with #variableNames to slightly improve performance.
+	/// </summary>
 	public List<WMG_VariableTypes> variableTypes = new List<WMG_VariableTypes>();
+	/// <summary>
+	/// Optionally set the variable type corresponding with #variableName to slightly improve performance.
+	/// </summary>
 	public WMG_VariableTypes variableType;
 
+	/// <summary>
+	/// When using #dataSourceType = Single_Object_Multiple_Variables, this is the name of the variables from which data will be pulled.
+	/// Variable can correspond to the field of a property, for example Transform.localPosition.x (Transform is the data provider, and localPosition.x is the variableName).
+	/// Use the #setVariableNames, #addVariableNameToList, or #removeVariableNameFromList functions to change this.
+	/// </summary>
 	public List<string> variableNames;
+	/// <summary>
+	/// When using #dataSourceType = Multiple_Objects_Single_Variable or Single_Object_Single_Variable, this is the name of the variable from which data will be pulled.
+	/// Variable can correspond to the field of a property, for example Transform.localPosition.x (Transform is the data provider, and localPosition.x is the variableName).
+	/// Use the #setVariableName function to change this.
+	/// </summary>
 	public string variableName;
 
 	// first part of the strings split on "."
-	private List<string> varNames1 = new List<string>();
-	private string varName1;
+	List<string> varNames1 = new List<string>();
+	string varName1;
 
 	// second part of the strings split on "."
-	private List<string> varNames2 = new List<string>();
-	private string varName2;
+	List<string> varNames2 = new List<string>();
+	string varName2;
 
 	void Start() {
 		if (variableNames == null)
@@ -76,7 +107,10 @@ public class WMG_Data_Source : MonoBehaviour {
 		stringPart2 = variableNames[1];
 	}
 
-	// Functions to set variable names
+	/// <summary>
+	/// Set entire list of variable names to #variableNames.
+	/// </summary>
+	/// <param name="variableNames">Variable names.</param>
 	public void setVariableNames (List<string> variableNames) {
 		this.variableNames.Clear();
 		foreach (string obj in variableNames) {
@@ -84,23 +118,39 @@ public class WMG_Data_Source : MonoBehaviour {
 		}
 		parseStrings();
 	}
-	
+
+	/// <summary>
+	/// Sets #variableName.
+	/// </summary>
+	/// <param name="variableName">Variable name.</param>
 	public void setVariableName (string variableName) {
 		this.variableName = variableName;
 		parseString(variableName, ref varName1, ref varName2);
 	}
-	
+
+	/// <summary>
+	/// Adds a variable name to #variableNames.
+	/// </summary>
+	/// <param name="variableName">Variable name.</param>
 	public void addVariableNameToList (string variableName) {
 		this.variableNames.Add(variableName);
 		parseStrings();
 	}
-	
+
+	/// <summary>
+	/// Removes the specified variable name from #variableNames.
+	/// </summary>
+	/// <param name="variableName">Variable name.</param>
 	public void removeVariableNameFromList (string variableName) {
 		this.variableNames.Remove(variableName);
 		parseStrings();
 	}
 
-	// Functions to set data providers
+	/// <summary>
+	/// Set entire list of data providers to #dataProviders.
+	/// </summary>
+	/// <param name="dataProviderList">Data provider list.</param>
+	/// <typeparam name="T">The 1st type parameter.</typeparam>
 	public void setDataProviders<T> (List<T> dataProviderList) {
 		this.dataProviders.Clear();
 		foreach (T obj in dataProviderList) {
@@ -108,19 +158,39 @@ public class WMG_Data_Source : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Sets #dataProvider.
+	/// </summary>
+	/// <param name="dataProvider">Data provider.</param>
+	/// <typeparam name="T">The 1st type parameter.</typeparam>
 	public void setDataProvider<T> (T dataProvider) {
 		this.dataProvider = dataProvider as object;
 	}
 
+	/// <summary>
+	/// Adds a data provider to #dataProviders.
+	/// </summary>
+	/// <param name="dataProvider">Data provider.</param>
+	/// <typeparam name="T">The 1st type parameter.</typeparam>
 	public void addDataProviderToList<T> (T dataProvider) {
 		this.dataProviders.Add(dataProvider);
 	}
 
+	/// <summary>
+	/// Removes the specified data provider from #dataProviders.
+	/// </summary>
+	/// <returns><c>true</c>, if data provider from list was removed, <c>false</c> otherwise.</returns>
+	/// <param name="dataProvider">Data provider.</param>
+	/// <typeparam name="T">The 1st type parameter.</typeparam>
 	public bool removeDataProviderFromList<T> (T dataProvider) {
 		return this.dataProviders.Remove(dataProvider);
 	}
 
-	// Function to return a list of data
+	/// <summary>
+	/// Pulls a list of data such as a list of floats, from this data source.
+	/// </summary>
+	/// <returns>The data.</returns>
+	/// <typeparam name="T">The 1st type parameter.</typeparam>
 	public List<T> getData<T>() {
 		if (dataSourceType == WMG_DataSourceTypes.Multiple_Objects_Single_Variable) {
 			List<T> returnVals = new List<T>();
@@ -152,7 +222,11 @@ public class WMG_Data_Source : MonoBehaviour {
 		return new List<T>();
 	}
 
-	// Function to return a single data element
+	/// <summary>
+	/// Pulls a single value such as a float, from this data source.
+	/// </summary>
+	/// <returns>The datum.</returns>
+	/// <typeparam name="T">The 1st type parameter.</typeparam>
 	public T getDatum<T>() {
 		if (dataSourceType == WMG_DataSourceTypes.Single_Object_Single_Variable) {
 			return getDatum<T>(dataProvider, variableName, variableType, varName1, varName2);

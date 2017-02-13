@@ -16,7 +16,9 @@ namespace EA4S.ReservedArea
         void Start()
         {
             SelectedPlayerId = "";
+            ProfileCommandsContainer.SetActive(false);
             RefreshPlayerIcons();
+            RefreshUI();
         }
 
         void RefreshPlayerIcons()
@@ -27,12 +29,12 @@ namespace EA4S.ReservedArea
                 Destroy(t.gameObject);
             }
 
-            //List<PlayerIconData> players = AppManager.I.PlayerProfileManager.getSavedPlayers();
-            List<PlayerIconData> players = new List<PlayerIconData>();
-            players.Add(new PlayerIconData("UUID-test1", 2, PlayerGender.F, PlayerTint.Green, false));
-            players.Add(new PlayerIconData("UUID-test2", 3, PlayerGender.M, PlayerTint.Yellow, false));
-            players.Add(new PlayerIconData("UUID-test3", 4, PlayerGender.F, PlayerTint.Red, false));
-            players.Add(new PlayerIconData("UUID-test-DEMO", 1, PlayerGender.F, PlayerTint.Green, true));
+            List<PlayerIconData> players = AppManager.I.PlayerProfileManager.GetSavedPlayers();
+            //List<PlayerIconData> players = new List<PlayerIconData>();
+            //players.Add(new PlayerIconData("UUID-test1", 2, PlayerGender.F, PlayerTint.Green, false));
+            //players.Add(new PlayerIconData("UUID-test2", 3, PlayerGender.M, PlayerTint.Yellow, false));
+            //players.Add(new PlayerIconData("UUID-test3", 4, PlayerGender.F, PlayerTint.Red, false));
+            //players.Add(new PlayerIconData("UUID-test-DEMO", 1, PlayerGender.F, PlayerTint.Green, true));
 
             // reverse the list for RIGHT 2 LEFT layout
             players.Reverse();
@@ -45,35 +47,55 @@ namespace EA4S.ReservedArea
 
         }
 
+        void RefreshUI()
+        {
+            ProfileCommandsContainer.SetActive(SelectedPlayerId != "");
+            // highlight selected profile
+            foreach (Transform t in PlayerIconContainer.transform) {
+                t.GetComponent<PlayerIcon>().Select(SelectedPlayerId);
+            }
+        }
+
         public void OnSelectPlayerProfile(string uuid)
         {
-            SelectedPlayerId = uuid;
             Debug.Log("OnSelectPlayerProfile " + uuid);
+            if (SelectedPlayerId != uuid) {
+                SelectedPlayerId = uuid;
+            } else {
+                SelectedPlayerId = "";
+            }
+            RefreshUI();
         }
 
         public void OnOpenSelectedPlayerProfile()
         {
-
+            Debug.Log("OPEN " + SelectedPlayerId);
         }
 
         public void OnDeleteSelectPlayerProfile()
         {
             // GlobalUI.I.
+            DoDeleteSelectPlayerProfile();
+        }
+
+        void DoDeleteSelectPlayerProfile()
+        {
+            Debug.Log("DELETE " + SelectedPlayerId);
         }
 
         public void OnExportSelectPlayerProfile()
         {
-
+            Debug.Log("EXPORT " + SelectedPlayerId);
         }
 
         public void OnCreateDemoPlayer()
         {
-
+            Debug.Log("DEMO");
         }
 
         public void OnImportProfile()
         {
-
+            Debug.Log("IMPORT");
         }
 
 

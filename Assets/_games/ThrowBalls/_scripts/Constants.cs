@@ -4,8 +4,8 @@ namespace EA4S.Minigames.ThrowBalls
 {
     public class Constants
     {
-        public const string TAG_CORRECT_LETTER = "CorrectLetter";
-        public const string TAG_WRONG_LETTER = "WrongLetter";
+        public const string CORRECT_LETTER_TAG = "CorrectLetter";
+        public const string WRONG_LETTER_TAG = "WrongLetter";
 
         public const string TAG_POKEBALL = "Pokeball";
         public const string TAG_RAIL = "Rail";

@@ -3,10 +3,12 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
+/// <summary>
+/// Class used in place of GraphicsRaycaster for generating UI mouse events that work with non-squares (using alpha pixel values of textures).
+/// </summary>
 public class WMG_Raycaster : GraphicRaycaster
 {
 	public float AlphaThreshold = .9f;
-	public bool IncludeMaterialAlpha = true;
 
 	List<RaycastResult> exclusions = new List<RaycastResult>();
 
@@ -87,7 +89,7 @@ public class WMG_Raycaster : GraphicRaycaster
 				}
 
 				// exclude based on alpha
-				if (IncludeMaterialAlpha) alpha *= objImage.color.a;
+				if (objAlphaCheck.IncludeMaterialAlpha) alpha *= objImage.color.a;
 				if (alpha < AlphaThreshold) exclusions.Add(result);
 			}
 			catch (UnityException e)

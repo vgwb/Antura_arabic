@@ -466,6 +466,7 @@ namespace EA4S.Minigames.DancingDots
 
         IEnumerator RoundLost()
         {
+            Context.GetLogManager().OnAnswered(dancingDotsLL.letterData, false);
             yield return new WaitForSeconds(0.5f);
             Context.GetAudioManager().PlaySound(Sfx.Lose);
 
@@ -481,7 +482,9 @@ namespace EA4S.Minigames.DancingDots
 
         IEnumerator RoundWon()
         {
-            if (!isTutRound) {
+            if (!isTutRound)
+            {
+                Context.GetLogManager().OnAnswered(dancingDotsLL.letterData, true);
                 numberOfRoundsWon++;
                 currStarsNum = numberOfRoundsWon / 2;
                 Context.GetOverlayWidget().SetStarsScore(numberOfRoundsWon);

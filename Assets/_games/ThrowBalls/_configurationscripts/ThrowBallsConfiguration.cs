@@ -41,9 +41,8 @@ namespace EA4S.Minigames.ThrowBalls
             Variation = ThrowBallsVariation.letters;
 
             Context = new MinigamesGameContext(MiniGameCode.ThrowBalls_letters, System.DateTime.Now.Ticks.ToString());
-
-            // A difficulty of 0.72 will give the traditional progression of difficulty in the game.
-            Difficulty = 0.72f;
+            
+            Difficulty = 0.7f;
         }
 
         #region external configuration call

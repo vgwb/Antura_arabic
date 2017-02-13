@@ -8,6 +8,8 @@ using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using EA4S.UI;
+using EA4S.Helpers;
+using Random = UnityEngine.Random;
 
 namespace EA4S.Minigames.ThrowBalls
 {
@@ -32,8 +34,8 @@ namespace EA4S.Minigames.ThrowBalls
         private bool isIdle = true;
 
         private ILivingLetterData question;
+        private List<LL_LetterData> currentLettersForLettersInWord;
         private int numLettersRemaining;
-        private int numLetters = 3;
 
         private LetterSpawner letterSpawner;
         public GameObject[] letterPool;
@@ -46,6 +48,24 @@ namespace EA4S.Minigames.ThrowBalls
         private bool isVoiceOverDone = false;
         private IAudioManager audioManager;
         private IInputManager inputManager;
+
+        private GameObject tutorialTarget;
+
+        private int NumLettersInCurrentRound
+        {
+            get
+            {
+                if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
+                {
+                    return currentLettersForLettersInWord.Count;
+                }
+
+                else
+                {
+                    return 3;
+                }
+            }
+        }
 
         public GameState(ThrowBallsGame game)
         {
@@ -62,6 +82,8 @@ namespace EA4S.Minigames.ThrowBalls
             audioManager = game.Context.GetAudioManager();
 
             inputManager.Enabled = false;
+
+            currentLettersForLettersInWord = new List<LL_LetterData>();
         }
         public void EnterState()
         {
@@ -94,7 +116,7 @@ namespace EA4S.Minigames.ThrowBalls
             ThrowBallsGame.instance.letterWithPropsPrefab.SetActive(false);
 
             //ResetScene();
-            
+
             switch (ThrowBallsConfiguration.Instance.Variation)
             {
                 case ThrowBallsVariation.letters:
@@ -137,7 +159,7 @@ namespace EA4S.Minigames.ThrowBalls
                 default:
                     break;
             }
-            
+
         }
 
         public IEnumerator StartNewRound()
@@ -170,28 +192,44 @@ namespace EA4S.Minigames.ThrowBalls
 
             yield return new WaitForSeconds(1f);
 
-            for (int i = 0; i < numLetters; i++)
+            int indexOfCorrectLetter = 0;
+
+            if (game.Difficulty <= ThrowBallsGame.ThrowBallsDifficulty.Easy || IsTutorialLevel())
+            {
+                for (int i = 0; i < NumLettersInCurrentRound; i++)
+                {
+                    letterPool[i].SetActive(true);
+                }
+
+                int indexOfUnobstructedLetter = 0;
+
+                while (letterControllers[indexOfUnobstructedLetter].IsObstructedByOtherLetter())
+                {
+                    indexOfUnobstructedLetter++;
+                }
+
+                indexOfCorrectLetter = indexOfUnobstructedLetter;
+            }
+
+            for (int i = 0; i < NumLettersInCurrentRound; i++)
             {
                 GameObject letterObj = letterPool[i];
 
                 letterObj.SetActive(true);
 
-                letterControllers[i].SetMotionVariation(GetMotionOfRound());
+                ConfigureLetterPropAndMotionVariation(letterControllers[i]);
 
-                letterControllers[i].SetPropVariation(GetPropOfRound());
-
-                if (i == 0)
+                if (i == indexOfCorrectLetter)
                 {
-                    letterObj.tag = Constants.TAG_CORRECT_LETTER;
+                    letterObj.tag = Constants.CORRECT_LETTER_TAG;
                     letterControllers[i].SetLetter(correctDatum);
+                    tutorialTarget = letterObj;
                 }
 
                 else
                 {
-                    letterObj.tag = Constants.TAG_WRONG_LETTER;
-
+                    letterObj.tag = Constants.WRONG_LETTER_TAG;
                     letterControllers[i].SetLetter(wrongData[0]);
-
                     wrongData.RemoveAt(0);
                 }
             }
@@ -201,7 +239,8 @@ namespace EA4S.Minigames.ThrowBalls
             BallController.instance.Enable();
 
             UIController.instance.Enable();
-            UIController.instance.SetLetterHint(question);
+            UIController.instance.EnableLetterHint();
+            UIController.instance.SetLivingLetterData(question);
 
             if (IsTutorialLevel())
             {
@@ -228,14 +267,23 @@ namespace EA4S.Minigames.ThrowBalls
 
         public IEnumerator StartNewRound_LettersInWord()
         {
-            IQuestionPack newQuestionPack = ThrowBallsConfiguration.Instance.Questions.GetNextQuestion();
+            //IQuestionPack newQuestionPack = ThrowBallsConfiguration.Instance.Questions.GetNextQuestion();
+            //List<ILivingLetterData> letters = newQuestionPack.GetCorrectAnswers().ToList();
 
-            List<ILivingLetterData> letterData = newQuestionPack.GetCorrectAnswers().ToList();
+            currentLettersForLettersInWord.Clear();
+            currentLettersForLettersInWord.Add(new LL_LetterData("alef_hamza_hi"));
+            currentLettersForLettersInWord.Add(new LL_LetterData("reh"));
+            currentLettersForLettersInWord.Add(new LL_LetterData("beh"));
+            currentLettersForLettersInWord.Add(new LL_LetterData("ain"));
+            currentLettersForLettersInWord.Add(new LL_LetterData("teh_marbuta"));
 
-            numLettersRemaining = letterData.Count;
-            numLetters = numLettersRemaining;
+            //Debug.Log(newQuestionPack.GetQuestion().Id);
+
+            numLettersRemaining = currentLettersForLettersInWord.Count;
 
             ResetScene();
+
+            List<int> sortedIndices = SortLettersByZIndex(currentLettersForLettersInWord.Count);
 
             if (roundNumber == 1)
             {
@@ -243,52 +291,31 @@ namespace EA4S.Minigames.ThrowBalls
                 MinigamesUI.Lives.Setup(MAX_NUM_BALLS);
             }
 
-            UIController.instance.Enable();
-            
-            ILivingLetterData firstLetter = letterData[0];
-            letterData.RemoveAt(0);
-            List<ILivingLetterData> remainingLetters = letterData;
-
-            question = newQuestionPack.GetQuestion();
-            UIController.instance.SetLetterHint(question);
-
+            //question = newQuestionPack.GetQuestion();
+            question = new LL_WordData("number_04");
             SayQuestion();
 
             yield return new WaitForSeconds(1f);
 
-            int numLettersInRound = remainingLetters.Count + 1;
+            UIController.instance.Enable();
+            UIController.instance.EnableLetterHint();
+            UIController.instance.SetLivingLetterData(question);
 
-            for (int i = 0; i < numLettersInRound; i++)
+            for (int i = 0; i < currentLettersForLettersInWord.Count; i++)
             {
-                GameObject letterObj = letterPool[i];
+                int letterObjectIndex = game.Difficulty <= ThrowBallsGame.ThrowBallsDifficulty.Easy ? sortedIndices[i] : i;
+                GameObject letterObj = letterPool[letterObjectIndex];
 
                 letterObj.SetActive(true);
 
-                letterControllers[i].SetMotionVariation(GetMotionOfRound());
+                ConfigureLetterPropAndMotionVariation(letterControllers[letterObjectIndex]);
 
-                letterControllers[i].SetPropVariation(GetPropOfRound());
+                letterControllers[letterObjectIndex].SetLetter(currentLettersForLettersInWord[i]);
+                letterObj.tag = currentLettersForLettersInWord[i].Id == currentLettersForLettersInWord[0].Id ? Constants.CORRECT_LETTER_TAG : Constants.WRONG_LETTER_TAG;
 
                 if (i == 0)
                 {
-                    letterObj.tag = Constants.TAG_CORRECT_LETTER;
-                    letterControllers[i].SetLetter(firstLetter);
-                }
-
-                else
-                {
-                    if (remainingLetters[0].Id == firstLetter.Id)
-                    {
-                        letterObj.tag = Constants.TAG_CORRECT_LETTER;
-                    }
-
-                    else
-                    {
-                        letterObj.tag = Constants.TAG_WRONG_LETTER;
-                    }
-
-                    letterControllers[i].SetLetter(remainingLetters[0]);
-
-                    remainingLetters.RemoveAt(0);
+                    tutorialTarget = letterObj;
                 }
             }
 
@@ -319,6 +346,42 @@ namespace EA4S.Minigames.ThrowBalls
             }
         }
 
+        private List<int> SortLettersByZIndex(int numLetters)
+        {
+            List<float> zIndices = new List<float>();
+            List<int> sortedIndices = new List<int>();
+
+            for (int i = 0; i < numLetters; i++)
+            {
+                sortedIndices.Add(i);
+                zIndices.Add(letterPool[i].transform.position.z);
+            }
+
+            for (int i = 0; i < numLetters - 1; i++)
+            {
+                int j = i + 1;
+
+                while (j > 0)
+                {
+                    if (zIndices[j - 1] > zIndices[j])
+                    {
+                        float temp = zIndices[j - 1];
+                        zIndices[j - 1] = zIndices[j];
+                        zIndices[j] = temp;
+
+                        int tempIndex = sortedIndices[j - 1];
+                        sortedIndices[j - 1] = sortedIndices[j];
+                        sortedIndices[j] = tempIndex;
+
+                    }
+
+                    j--;
+                }
+            }
+
+            return sortedIndices;
+        }
+
         private void SayQuestion()
         {
             game.Context.GetAudioManager().PlayLetterData(question);
@@ -330,8 +393,7 @@ namespace EA4S.Minigames.ThrowBalls
 
             Vector3 worldToScreen = Camera.main.WorldToScreenPoint(new Vector3(0, 8, -20));
             Vector3 fromPoint = Camera.main.ScreenToWorldPoint(new Vector3(worldToScreen.x, worldToScreen.y, 20f));
-            worldToScreen = Camera.main.WorldToScreenPoint(new Vector3(-1.5f, 4.5f, -22));
-            Vector3 toPoint = Camera.main.ScreenToWorldPoint(new Vector3(worldToScreen.x, worldToScreen.y, 20f));
+            Vector3 toPoint = LetterSpawner.instance.BiLerpForTutorialUI(tutorialTarget.transform.position);
             TutorialUI.DrawLine(fromPoint, toPoint, TutorialUI.DrawLineMode.FingerAndArrow);
             timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
         }
@@ -341,18 +403,19 @@ namespace EA4S.Minigames.ThrowBalls
             correctLetterCntrl.Vanish();
             correctLetterCntrl.Reset();
 
-            ILivingLetterData newCorrectLetter = letterControllers[numLetters - numLettersRemaining].GetLetter();
+            ILivingLetterData newCorrectLetter = currentLettersForLettersInWord[currentLettersForLettersInWord.Count - numLettersRemaining];
 
-            for (int i = numLetters - numLettersRemaining; i < numLetters; i++)
+            for (int i = currentLettersForLettersInWord.Count - 1; i >= 0; i--)
             {
-                if (letterControllers[i].GetLetter().Id == newCorrectLetter.Id)
+                if (letterControllers[i].GetLetter().Id == newCorrectLetter.Id && letterPool[i].activeSelf)
                 {
-                    letterPool[i].tag = Constants.TAG_CORRECT_LETTER;
+                    letterPool[i].tag = Constants.CORRECT_LETTER_TAG;
+                    tutorialTarget = letterPool[i];
                 }
 
                 else
                 {
-                    letterPool[i].tag = Constants.TAG_WRONG_LETTER;
+                    letterPool[i].tag = Constants.WRONG_LETTER_TAG;
                 }
             }
         }
@@ -413,20 +476,36 @@ namespace EA4S.Minigames.ThrowBalls
             }
         }
 
-
-
-
-
         public void OnCorrectLetterHit(LetterController correctLetterCntrl)
         {
-            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword && --numLettersRemaining != 0)
+            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
             {
-                UpdateLettersForLettersInWord(correctLetterCntrl);
-                OnBallLost();
-                BallController.instance.Reset();
+                string markedText = ArabicAlphabetHelper.GetWordWithMarkedLetterText(((LL_WordData)question).Data, ((LL_LetterData)correctLetterCntrl.GetLetter()).Data, Color.green, true);
+                UIController.instance.SetText(markedText);
+                UIController.instance.WobbleLetterHint();
+
+                if (--numLettersRemaining != 0)
+                {
+                    UpdateLettersForLettersInWord(correctLetterCntrl);
+                    OnBallLost();
+                    BallController.instance.Reset();
+                }
+
+                else
+                {
+                    OnRoundWon(correctLetterCntrl);
+                }
             }
 
-            else if (isRoundOngoing)
+            else
+            {
+                OnRoundWon(correctLetterCntrl);
+            }
+        }
+
+        private void OnRoundWon(LetterController correctLetterCntrl)
+        {
+            if (isRoundOngoing)
             {
                 if (roundNumber > 0)
                 {
@@ -455,8 +534,11 @@ namespace EA4S.Minigames.ThrowBalls
 
                 game.StartCoroutine(ShowWinSequence(correctLetterCntrl));
                 BallController.instance.Disable();
+                UIController.instance.DisableLetterHint();
 
                 isRoundOngoing = false;
+
+                game.Context.GetLogManager().OnAnswered(question, true);
             }
         }
 
@@ -465,10 +547,13 @@ namespace EA4S.Minigames.ThrowBalls
             if (isRoundOngoing)
             {
                 BallController.instance.Disable();
+                UIController.instance.DisableLetterHint();
                 isRoundOngoing = false;
                 DisableLetters(true);
 
                 game.StartCoroutine(OnRoundLostCoroutine());
+
+                game.Context.GetLogManager().OnAnswered(question, false);
             }
         }
 
@@ -481,7 +566,9 @@ namespace EA4S.Minigames.ThrowBalls
 
         private IEnumerator ShowWinSequence(LetterController correctLetterCntrl)
         {
-            yield return new WaitForSeconds(0.1f);
+            correctLetterCntrl.ShowVictoryRays();
+
+            yield return new WaitForSeconds(0.33f);
 
             correctLetterCntrl.Vanish();
             correctLetterCntrl.Reset();
@@ -502,11 +589,12 @@ namespace EA4S.Minigames.ThrowBalls
 
             correctLetterCntrl.Show();
             correctLetterCntrl.letterObjectView.DoHorray();
-            correctLetterCntrl.ShowVictoryRays();
 
             game.Context.GetAudioManager().PlaySound(Sfx.Win);
 
             yield return new WaitForSeconds(3f);
+
+            correctLetterCntrl.HideVictoryRays();
 
             OnRoundConcluded();
         }
@@ -551,73 +639,91 @@ namespace EA4S.Minigames.ThrowBalls
             game.EndGame(numberOfStars, 0);
         }
 
-        private LetterController.MotionVariation GetMotionOfRound()
+        private void ConfigureLetterPropAndMotionVariation(LetterController letterController)
         {
-            if (roundNumber == 0)
+            if (IsTutorialLevel())
             {
-                return LetterController.MotionVariation.Idle;
+                letterController.SetMotionVariation(LetterController.MotionVariation.Idle);
+                letterController.SetPropVariation(LetterController.PropVariation.Nothing);
+                return;
             }
 
-            float normalizedDifficulty = (numRoundsWon + 1) * 0.8f * ThrowBallsConfiguration.Instance.Difficulty;
-
-            if (normalizedDifficulty <= 0.6f)
+            switch (game.Difficulty)
             {
-                return LetterController.MotionVariation.Idle;
-            }
+                case ThrowBallsGame.ThrowBallsDifficulty.VeryEasy:
+                    letterController.SetMotionVariation(LetterController.MotionVariation.Idle);
+                    letterController.SetPropVariation(LetterController.PropVariation.Nothing);
+                    break;
+                case ThrowBallsGame.ThrowBallsDifficulty.Easy:
+                    if (numRoundsWon < 2)
+                    {
+                        letterController.SetMotionVariation(LetterController.MotionVariation.Idle);
+                        letterController.SetPropVariation(LetterController.PropVariation.Nothing);
+                    }
+                    else
+                    {
+                        letterController.SetMotionVariation(LetterController.MotionVariation.Jumping);
+                        letterController.SetPropVariation(LetterController.PropVariation.Nothing);
+                    }
+                    break;
+                case ThrowBallsGame.ThrowBallsDifficulty.Normal:
+                    if (numRoundsWon < 1)
+                    {
+                        letterController.SetMotionVariation(LetterController.MotionVariation.Jumping);
+                        letterController.SetPropVariation(LetterController.PropVariation.Nothing);
+                    }
+                    else if (numRoundsWon < 3)
+                    {
+                        letterController.SetMotionVariation(LetterController.MotionVariation.Idle);
+                        letterController.SetPropVariation(LetterController.PropVariation.StaticPileOfCrates);
+                    }
+                    else
+                    {
+                        letterController.SetMotionVariation(LetterController.MotionVariation.Jumping);
+                        letterController.SetPropVariation(LetterController.PropVariation.StaticPileOfCrates);
+                    }
+                    break;
+                case ThrowBallsGame.ThrowBallsDifficulty.Hard:
+                    if (roundNumber < 4)
+                    {
+                        if (Random.value <= 0.5f)
+                        {
+                            letterController.SetMotionVariation(LetterController.MotionVariation.Jumping);
+                            letterController.SetPropVariation(LetterController.PropVariation.StaticPileOfCrates);
+                        }
 
-            else if (normalizedDifficulty <= 1.2f)
-            {
-                return LetterController.MotionVariation.Idle;
-            }
-
-            else if (normalizedDifficulty <= 1.8f)
-            {
-                return LetterController.MotionVariation.Popping;
-            }
-
-            else if (normalizedDifficulty <= 2.4f)
-            {
-                return LetterController.MotionVariation.Jumping;
-            }
-
-            else
-            {
-                return LetterController.MotionVariation.Idle;
-            }
-        }
-
-        private LetterController.PropVariation GetPropOfRound()
-        {
-            if (roundNumber == 0)
-            {
-                return LetterController.PropVariation.Nothing;
-            }
-
-            float normalizedDifficulty = (numRoundsWon + 1) * 0.8f * ThrowBallsConfiguration.Instance.Difficulty;
-
-            if (normalizedDifficulty <= 0.6f)
-            {
-                return LetterController.PropVariation.Nothing;
-            }
-
-            else if (normalizedDifficulty <= 1.2f)
-            {
-                return LetterController.PropVariation.StaticPileOfCrates;
-            }
-
-            else if (normalizedDifficulty <= 1.8f)
-            {
-                return LetterController.PropVariation.Bush;
-            }
-
-            else if (normalizedDifficulty <= 2.4f)
-            {
-                return LetterController.PropVariation.StaticPileOfCrates;
-            }
-
-            else
-            {
-                return LetterController.PropVariation.SwervingPileOfCrates;
+                        else
+                        {
+                            letterController.SetMotionVariation(LetterController.MotionVariation.Idle);
+                            letterController.SetPropVariation(LetterController.PropVariation.SwervingPileOfCrates);
+                        }
+                    }
+                    else
+                    {
+                        if (Random.value <= 0.6f)
+                        {
+                            letterController.SetMotionVariation(LetterController.MotionVariation.Idle);
+                            letterController.SetPropVariation(LetterController.PropVariation.SwervingPileOfCrates);
+                        }
+                        else
+                        {
+                            letterController.SetMotionVariation(LetterController.MotionVariation.Popping);
+                            letterController.SetPropVariation(LetterController.PropVariation.Bush);
+                        }
+                    }
+                    break;
+                case ThrowBallsGame.ThrowBallsDifficulty.VeryHard:
+                    if (Random.value <= 0.4f)
+                    {
+                        letterController.SetMotionVariation(LetterController.MotionVariation.Idle);
+                        letterController.SetPropVariation(LetterController.PropVariation.SwervingPileOfCrates);
+                    }
+                    else
+                    {
+                        letterController.SetMotionVariation(LetterController.MotionVariation.Popping);
+                        letterController.SetPropVariation(LetterController.PropVariation.Bush);
+                    }
+                    break;
             }
         }
 
@@ -640,12 +746,13 @@ namespace EA4S.Minigames.ThrowBalls
             for (int i = 0; i < letterPool.Length; i++)
             {
                 GameObject letter = letterPool[i];
+                letter.tag = Constants.WRONG_LETTER_TAG;
                 letter.SetActive(false);
             }
 
-            Vector3[] randomPositions = letterSpawner.GenerateRandomPositions(numLetters, roundNumber == 0);
+            Vector3[] randomPositions = letterSpawner.GenerateRandomPositions(NumLettersInCurrentRound, roundNumber == 0);
 
-            for (int i = 0; i < numLetters; i++)
+            for (int i = 0; i < NumLettersInCurrentRound; i++)
             {
                 GameObject letter = letterPool[i];
                 letter.transform.position = randomPositions[i];

@@ -273,7 +273,7 @@ namespace EA4S.Helpers
         /// Return a string of a word with the "color" tag enveloping a character. Warning: the word is already reversed and fixed for rendering.
         /// This is mandatory since PrepareArabicStringForDisplay should be called before adding the tags.
         /// </summary>
-        public static string GetWordWithMarkedLetterText(Database.WordData arabicWord, Database.LetterData letterToMark, Color color)
+        public static string GetWordWithMarkedLetterText(Database.WordData arabicWord, Database.LetterData letterToMark, Color color, bool markUpToLetter = false)
         {
             var Letters = SplitWordIntoLetters(arabicWord);
 
@@ -297,8 +297,8 @@ namespace EA4S.Helpers
             string tagEnd = "</color>";
 
             string text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
-            text = text.Substring(0, charPosition) + 
-                tagStart + text.Substring(charPosition, letterToMark.GetChar().Length) + tagEnd + // Marked letter
+            text = (markUpToLetter ? tagStart + text.Substring(0, charPosition + letterToMark.GetChar().Length) : text.Substring(0, charPosition) +
+                tagStart + text.Substring(charPosition, letterToMark.GetChar().Length)) + tagEnd + // Marked letter
                 text.Substring(charPosition + letterToMark.GetChar().Length);
 
             return text;

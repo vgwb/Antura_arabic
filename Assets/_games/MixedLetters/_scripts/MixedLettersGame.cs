@@ -39,6 +39,14 @@ namespace EA4S.Minigames.MixedLetters
         private IQuestionPack spellingQuestionPack;
         private ILivingLetterData question;
 
+        public ILivingLetterData Question
+        {
+            get
+            {
+                return question;
+            }
+        }
+
         public List<ILivingLetterData> PromptLettersInOrder
         {
             get
@@ -106,6 +114,13 @@ namespace EA4S.Minigames.MixedLetters
         public int numRoundsWon = 0;
 
         private bool isSpelling = true;
+        public bool IsSpelling
+        {
+            get
+            {
+                return isSpelling;
+            }
+        }
 
         public Button repeatPromptButton;
 
@@ -355,11 +370,11 @@ namespace EA4S.Minigames.MixedLetters
             _wasLastRoundWon = true;
 
             numRoundsWon++;
-
+            
             HideRotationButtons();
             ShowGreenTicks();
         }
-
+        
         public void EnableRepeatPromptButton()
         {
             repeatPromptButton.gameObject.SetActive(true);

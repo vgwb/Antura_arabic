@@ -114,10 +114,11 @@ namespace EA4S.UI
             Bt.interactable = !_doLock;
         }
 
-        public void ChangeDefaultColor(Color _toColor)
+        public void ChangeDefaultColors(Color _defaultColor, Color? _toggleOffColor = null)
         {
-            BtImg.color = new Color(_toColor.r, _toColor.g, _toColor.b, BtImg.color.a);
-            DefaultColor = _toColor;
+            BtImg.color = new Color(_defaultColor.r, _defaultColor.g, _defaultColor.b, BtImg.color.a);
+            DefaultColor = _defaultColor;
+            if (_toggleOffColor != null) BtToggleOffColor = (Color)_toggleOffColor;
         }
 
         /// <summary>

@@ -62,17 +62,12 @@ namespace EA4S.Minigames.ThrowBalls
                 bottomCrate.StopSwerving();
             }
 
-            //letter.PropUp(1.75f);
-
             if (letter.IsJumping())
             {
                 letter.StopJumping();
             }
 
-            letter.MakeSureIsProppedUp(1.5f);
-
-            letter.SetIsKinematic(false);
-            letter.ApplyCustomGravity();
+            letter.JumpOffOfCrate();
 
             if (!hit)
             {
@@ -80,8 +75,6 @@ namespace EA4S.Minigames.ThrowBalls
                 GameState.instance.OnBallLost();
                 hit = true;
             }
-            
-
         }
 
         public void SetSwerving()
