@@ -22,6 +22,11 @@ namespace EA4S.Teacher
         private bool usePhraseAnswersIfFound;
         private QuestionBuilderParameters parameters;
 
+        public QuestionBuilderParameters Parameters
+        {
+            get { return this.parameters; }
+        }
+
         public WordsInPhraseQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0,
             bool useAllCorrectWords = false, bool usePhraseAnswersIfFound = false,
             QuestionBuilderParameters parameters = null)

@@ -21,6 +21,10 @@ namespace EA4S.Teacher
         private Database.WordDataCategory category;
         private QuestionBuilderParameters parameters;
 
+        public QuestionBuilderParameters Parameters
+        {
+            get { return this.parameters; }
+        }
         public RandomWordsQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, 
             bool firstCorrectIsQuestion = false, Database.WordDataCategory category = Database.WordDataCategory.None, QuestionBuilderParameters parameters = null)
         {

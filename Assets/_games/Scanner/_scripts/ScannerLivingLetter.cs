@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using EA4S.LivingLetters;
 using EA4S.Audio;
+using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.Scanner
 {
@@ -21,11 +22,15 @@ namespace EA4S.Minigames.Scanner
         private Vector3 startingPosition;
         private Quaternion startingRotation;
 
+        public Transform collForScan;
         public Transform fallOffPoint;
         public Transform midPoint;
 
         public LetterObjectView letterObjectView;
         public GameObject rainbowJet;
+        public SkinnedMeshRenderer sm;
+        [HideInInspector]
+        public Material mat;
         public float slidingTime;
 
 //		public event Action <ScannerLivingLetter> onReset;
@@ -87,9 +92,22 @@ namespace EA4S.Minigames.Scanner
 			status = LLStatus.Sliding;
 		}
 
+        IAudioSource wordSound;
         // Update is called once per frame
         void Update()
         {
+            if (Input.GetKey(KeyCode.E) && letterObjectView.Data != null)
+            {
+                if(wordSound == null)
+                    wordSound = game.Context.GetAudioManager().PlayLetterData(letterObjectView.Data, true);
+                if (!wordSound.IsPlaying)
+                    wordSound = game.Context.GetAudioManager().PlayLetterData(letterObjectView.Data, true);
+
+                wordSound.Position = 0;
+            }
+            if (wordSound != null)
+                wordSound.Position = Mathf.Clamp( wordSound.Position + Time.deltaTime/10,0, 0.5f);
+
             if (status == LLStatus.Sliding) 
 			{
                 transform.Translate(slideSpeed * Time.deltaTime, -slideSpeed * Time.deltaTime / 2, 0);
@@ -289,6 +307,13 @@ namespace EA4S.Minigames.Scanner
             foreach (SkinnedMeshRenderer sm in LLMesh)
                 sm.enabled = show;
             letterObjectView.contentTransform.gameObject.SetActive(show);
+        }
+
+        public void setColor(Color col)
+        {
+            if (!mat)
+                mat = sm.material;
+            mat.SetColor("_Color", col);
         }
 
     }
