@@ -5,6 +5,8 @@ namespace EA4S.Minigames.Tobogan
 {
     public class ToboganFeedbackGraphics : MonoBehaviour
     {
+        public event System.Action onTowerHeightIncreased;
+
         Queue<bool> answersResults = new Queue<bool>();
 
         public LettersTower tower;
@@ -14,6 +16,8 @@ namespace EA4S.Minigames.Tobogan
 
         bool waitingForTowerRelease = false;
         bool waitingForTowerCrash = false;
+
+        float lastHeight;
 
         public void ShowPoorPlayerPerformanceFeedback()
         {
@@ -73,6 +77,12 @@ namespace EA4S.Minigames.Tobogan
             }
 
             heightMeter.targetHeight = Mathf.Max(heightMeter.targetHeight, tower.TowerFullHeight > 0 ? tower.TowerFullHeight + 0.5f : 0);
+
+            if (lastHeight < heightMeter.targetHeight)
+                if (onTowerHeightIncreased != null)
+                    onTowerHeightIncreased();
+
+            lastHeight = heightMeter.targetHeight;
         }
     }
 }

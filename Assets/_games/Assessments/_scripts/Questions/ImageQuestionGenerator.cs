@@ -5,7 +5,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -14,6 +13,7 @@ namespace EA4S.Assessment
     /// </summary>
     public class ImageQuestionGenerator : IQuestionGenerator
     {
+        
         private IQuestionProvider provider;
         private QuestionGeneratorState state;
         private IQuestionPack currentPack;

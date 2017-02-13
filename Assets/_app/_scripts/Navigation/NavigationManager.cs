@@ -112,6 +112,12 @@ namespace EA4S.Core
             Debug.LogFormat(" ---- NAV MANAGER ({0}) from scene {1} to {2} ---- ", "GoBack", NavData.CurrentScene, NavData.PrevScene);
             switch (NavData.CurrentScene) {
                 case AppScene.Book:
+                    if (NavData.PrevScene == AppScene.ReservedArea) {
+                        GoToScene(NavData.PrevScene);
+                    } else {
+                        GoToScene(AppScene.Map);
+                    }
+                    break;
                 case AppScene.GameSelector:
                 case AppScene.AnturaSpace:
                     GoToScene(AppScene.Map);
@@ -246,7 +252,8 @@ namespace EA4S.Core
 
         }
 
-        public void GotoNewProfileCreation() {
+        public void GotoNewProfileCreation()
+        {
 
             switch (NavData.CurrentScene) {
                 case AppScene.Home:

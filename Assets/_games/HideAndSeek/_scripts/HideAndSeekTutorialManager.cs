@@ -31,11 +31,13 @@ namespace EA4S.Minigames.HideAndSeek
         {
             foreach (var a in ArrayLetters)
             {
-                a.GetComponent<HideAndSeekLetterController>().onLetterTouched -= CheckResult;
+                if (a != null)
+                    a.GetComponent<HideAndSeekLetterController>().onLetterTouched -= CheckResult;
             }
 
             foreach (var a in ArrayTrees)
-                a.GetComponent<HideAndSeekTreeController>().onTreeTouched -= MoveObject;
+                if (a != null)
+                    a.GetComponent<HideAndSeekTreeController>().onTreeTouched -= MoveObject;
         }
 
         void Update()
@@ -125,7 +127,7 @@ namespace EA4S.Minigames.HideAndSeek
                 script.MoveTutorial();
             }
 
-            if(GetIdFromPosition(id) == 0)
+            if (GetIdFromPosition(id) == 0)
             {
                 ArrayTrees[0].GetComponent<SphereCollider>().enabled = false;
                 ArrayTrees[1].GetComponent<SphereCollider>().enabled = true; // skip to phase 2
@@ -133,7 +135,7 @@ namespace EA4S.Minigames.HideAndSeek
                 TutorialUI.Clear(false);
                 timeFinger = Time.time + animDuration + timeToWait;
             }
-                
+
 
             if (GetIdFromPosition(id) == 1)
             {
@@ -142,7 +144,7 @@ namespace EA4S.Minigames.HideAndSeek
                 TutorialUI.Clear(false);
                 timeFinger = Time.time + animDuration + timeToWait;
             }
-                
+
         }
 
         void CheckResult(int id)
@@ -153,7 +155,8 @@ namespace EA4S.Minigames.HideAndSeek
             {
                 script.PlayResultAnimation(true);
                 AudioManager.I.PlaySound(Sfx.Win);
-                game.Context.GetCheckmarkWidget().Show(true);
+                AudioManager.I.PlaySound(Sfx.OK);
+                script.GetComponent<EmoticonsAnimator>().DoCorrect();
                 StartCoroutine(GoToPlay());
                 phase = -1;
                 buttonRepeater.SetActive(false);
@@ -165,7 +168,8 @@ namespace EA4S.Minigames.HideAndSeek
                 phase = 2;
                 TutorialUI.Clear(false);
                 AudioManager.I.PlaySound(Sfx.Lose);
-                game.Context.GetCheckmarkWidget().Show(false);
+                AudioManager.I.PlaySound(Sfx.KO);
+                script.GetComponent<EmoticonsAnimator>().DoWrong();
                 timeFinger = Time.time + animDuration + timeToWait;
             }
 
@@ -176,19 +180,22 @@ namespace EA4S.Minigames.HideAndSeek
             var winInitialDelay = 3f;
             yield return new WaitForSeconds(winInitialDelay);
 
-            foreach(GameObject x in ArrayLetters)
+            foreach (GameObject x in ArrayLetters)
             {
-                x.GetComponent<LetterObjectView>().Poof();
-                AudioManager.I.PlaySound(Sfx.Poof);
-                x.SetActive(false);
-                x.GetComponent<CapsuleCollider>().enabled = true;
+                if (x.activeSelf)
+                {
+                    x.GetComponent<LetterObjectView>().Poof();
+                    AudioManager.I.PlaySound(Sfx.Poof);
+                    x.SetActive(false);
+                    x.GetComponent<CapsuleCollider>().enabled = true;
+                }
             }
 
             var delay = 1f;
             yield return new WaitForSeconds(delay);
 
             game.SetCurrentState(game.PlayState);
-            
+
         }
 
         int GetIdFromPosition(int index)

@@ -85,7 +85,10 @@ namespace EA4S.Minigames.ColorTickle
                 m_Buttons[i].image.color = m_Colors[i];
 
                 int buttonNumber = i;
-                m_Buttons[i].onClick.AddListener(delegate { SelectButton(buttonNumber); });
+                m_Buttons[i].onClick.AddListener(delegate {
+                    ColorTickleConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Blip);
+                    SelectButton(buttonNumber);
+                });
                 m_Buttons[i].GetComponent<RectTransform>().localScale = Vector3.one;
             }
 

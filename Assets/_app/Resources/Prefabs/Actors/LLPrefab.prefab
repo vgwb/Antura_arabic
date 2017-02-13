@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 4000011820159926}
   - component: {fileID: 114000011031556424}
   - component: {fileID: 95000011127266862}
+  - component: {fileID: 114979456825437828}
   m_Layer: 0
   m_Name: LLPrefab
   m_TagString: Untagged
@@ -1834,6 +1835,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_overrideHtmlColors: 0
   m_faceColor:
@@ -1850,7 +1852,9 @@ MonoBehaviour:
   m_fontSizeMax: 60
   m_fontStyle: 0
   m_textAlignment: 17
+  m_isAlignmentEnumConverted: 0
   m_characterSpacing: 0
+  m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
@@ -1859,6 +1863,8 @@ MonoBehaviour:
   m_wordWrappingRatios: 0.4
   m_enableAdaptiveJustification: 0
   m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -1866,9 +1872,12 @@ MonoBehaviour:
   m_parseCtrlCharacters: 0
   m_isOrthographic: 0
   m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
   m_ignoreCulling: 1
   m_horizontalMapping: 0
   m_verticalMapping: 0
+  m_geometrySortingOrder: 0
+  m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
   m_margin: {x: 0, y: 0, z: 0, w: 0}
@@ -1885,6 +1894,7 @@ MonoBehaviour:
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
   m_uvOffset: {x: 0, y: 0}
@@ -2012,6 +2022,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_overrideHtmlColors: 0
   m_faceColor:
@@ -2028,7 +2039,9 @@ MonoBehaviour:
   m_fontSizeMax: 60
   m_fontStyle: 0
   m_textAlignment: 17
+  m_isAlignmentEnumConverted: 0
   m_characterSpacing: 0
+  m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
@@ -2037,6 +2050,8 @@ MonoBehaviour:
   m_wordWrappingRatios: 0.4
   m_enableAdaptiveJustification: 0
   m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
   m_enableKerning: 0
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
@@ -2044,9 +2059,12 @@ MonoBehaviour:
   m_parseCtrlCharacters: 0
   m_isOrthographic: 0
   m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
   m_ignoreCulling: 1
   m_horizontalMapping: 0
   m_verticalMapping: 0
+  m_geometrySortingOrder: 0
+  m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 0
   m_pageToDisplay: 1
   m_margin: {x: 0, y: 0, z: 0, w: 0}
@@ -2063,6 +2081,7 @@ MonoBehaviour:
   m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
   m_uvOffset: {x: 0, y: 0}
@@ -2125,6 +2144,29 @@ MonoBehaviour:
     width: 2.6
     height: 2.6
   m_margins: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114979456825437828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010529980692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4330bf52ff71cb4aa0a29259c202df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emoticonsPrefab: {fileID: 1000013343841312, guid: 7ef544abaa978a44ab4379f6afedf1e7,
+    type: 2}
+  black: {fileID: 2100000, guid: 425862ee040d4ba4a879859c80c5251f, type: 2}
+  blue: {fileID: 2100000, guid: a288996a3896aa5499efc5797bae906d, type: 2}
+  green: {fileID: 2100000, guid: 88a26b665a43d814fb3e51c167a30b6e, type: 2}
+  orange: {fileID: 2100000, guid: ef7714031af79c842b500b7e2d061c2c, type: 2}
+  pink: {fileID: 2100000, guid: c6cffc9fe46a9df4b8d43ad38e10b68b, type: 2}
+  purple: {fileID: 2100000, guid: 077a5e09b76c1384180a82587faa4a0b, type: 2}
+  red: {fileID: 2100000, guid: ec5399ab167b48e499fa5bc55e43fe1d, type: 2}
+  white: {fileID: 2100000, guid: 68b27878f67af3f43a8a6edaf98687eb, type: 2}
+  yellow: {fileID: 2100000, guid: 0f3c0b6ed53618f44bf3d5c0b45f4715, type: 2}
+  yellowDark: {fileID: 2100000, guid: 2bf6472d14bc72c4d8c15d5a628bf4e8, type: 2}
 --- !u!137 &137000010111564634
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

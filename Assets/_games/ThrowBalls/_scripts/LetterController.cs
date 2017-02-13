@@ -3,6 +3,7 @@ using System.Collections;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
+using DG.Tweening;
 
 namespace EA4S.Minigames.ThrowBalls
 {
@@ -31,9 +32,7 @@ namespace EA4S.Minigames.ThrowBalls
         private float yEquilibrium;
 
         private ILivingLetterData letterData;
-
-        private IEnumerator customGravityCoroutine;
-        private IEnumerator propUpCoroutine;
+        
         private IEnumerator jumpCoroutine;
 
         public Rigidbody rigidBody;
@@ -43,10 +42,6 @@ namespace EA4S.Minigames.ThrowBalls
 
         private Vector3 lastPosition;
         private Vector3 lastRotation;
-
-        private bool isGrounded = false;
-        private bool isProppingUp = false;
-        private bool isStill = false;
 
         private MotionVariation motionVariation;
 
@@ -67,6 +62,7 @@ namespace EA4S.Minigames.ThrowBalls
             }
 
             SetIsColliderEnabled(true);
+            HideVictoryRays();
         }
 
         public void SetPropVariation(PropVariation propVariation)
@@ -134,27 +130,6 @@ namespace EA4S.Minigames.ThrowBalls
             StopAllCoroutines();
         }
 
-        void Update()
-        {
-            Vector3 currentPosition = transform.position;
-            Vector3 currentRotation = transform.localRotation.eulerAngles;
-
-            if (AreVectorsApproxEqual(currentPosition, lastPosition, 0.0001f) && AreVectorsApproxEqual(currentRotation, lastRotation, 0.1f))
-            {
-                isStill = true;
-            }
-
-            else
-            {
-                isStill = false;
-            }
-
-            //Debug.Log(currentRotation.x + "," + lastRotation.x);
-
-            lastPosition = currentPosition;
-            lastRotation = currentRotation;
-        }
-
         private bool AreVectorsApproxEqual(Vector3 vector1, Vector3 vector2, float threshold)
         {
             return Mathf.Abs(vector1.x - vector2.x) <= threshold && Mathf.Abs(vector1.y - vector2.y) <= threshold && Mathf.Abs(vector1.z - vector2.z) <= threshold;
@@ -186,35 +161,6 @@ namespace EA4S.Minigames.ThrowBalls
                     letterObjectView.DoTwirl(null);
                     BallController.instance.OnRebounded();
                 }
-            }
-
-            else if (collision.gameObject.tag == Constants.TAG_RAIL)
-            {
-                if (propUpCoroutine == null)
-                {
-                    //SetIsKinematic(true);
-                    //PropUp(PROP_UP_DELAY);
-                }
-
-                isGrounded = true;
-            }
-
-            if (isProppingUp)
-            {
-                isProppingUp = false;
-
-                if (propUpCoroutine != null)
-                {
-                    StopCoroutine(propUpCoroutine);
-                }
-            }
-        }
-
-        public void OnCollisionExit(Collision collision)
-        {
-            if (collision.gameObject.tag == Constants.TAG_RAIL)
-            {
-                isGrounded = false;
             }
         }
 
@@ -308,98 +254,6 @@ namespace EA4S.Minigames.ThrowBalls
             transform.position = new Vector3(transform.position.x, yEquilibrium, transform.position.z);
         }
 
-        public void MakeSureIsProppedUp(float delay)
-        {
-            StartCoroutine(MakeSureIsProppedUpCoroutine(delay));
-        }
-
-        private IEnumerator MakeSureIsProppedUpCoroutine(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-
-            while (true)
-            {
-                //Debug.Log(isGrounded + "," + isStill);
-                if (isGrounded && isStill)
-                {
-                    SetIsKinematic(true);
-
-                    if (transform.rotation.eulerAngles.z != 0 && !isProppingUp)
-                    {
-                        PropUp(0.2f);
-                    }
-
-                    if (Mathf.Approximately(transform.rotation.eulerAngles.z, 0) && !isProppingUp)
-                    {
-                        shadow.SetActive(true);
-                    }
-                }
-
-                else
-                {
-                    yield return new WaitForSeconds(Random.Range(0.25f, 0.5f));
-                }
-
-                yield return new WaitForFixedUpdate();
-            }
-        }
-
-        public void PropUp(float delay)
-        {
-            isProppingUp = true;
-            propUpCoroutine = PropUpCoroutine(delay);
-            StartCoroutine(propUpCoroutine);
-        }
-
-        private IEnumerator PropUpCoroutine(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-
-            StopCustomGravity();
-
-            float initZAngle = transform.rotation.eulerAngles.z;
-
-            if (initZAngle > 180)
-            {
-                initZAngle = 180 - initZAngle;
-            }
-
-            float initZAngleSign = Mathf.Sign(initZAngle);
-            float propUpSpeed = (initZAngle / PROP_UP_TIME) * initZAngleSign * -1;
-
-            //SetIsColliderEnabled(false);
-
-            Vector3 centerOfRotation = boxCollider.transform.position;
-
-            while (true)
-            {
-                transform.RotateAround(centerOfRotation, initZAngleSign > 0 ? Vector3.back : Vector3.forward, propUpSpeed * Time.fixedDeltaTime);
-
-                float currentZAngle = transform.localRotation.eulerAngles.z;
-
-                if (currentZAngle > 180)
-                {
-                    currentZAngle = 180 - currentZAngle;
-                }
-
-                if (Mathf.Sign(currentZAngle) * initZAngleSign <= -1 || Mathf.Abs(currentZAngle) <= 0.05)
-                {
-                    transform.rotation = Quaternion.Euler(0, 180, 0);
-                    SetIsColliderEnabled(true);
-                    isProppingUp = false;
-
-                    if (motionVariation == MotionVariation.Jumping)
-                    {
-                        SetIsJumping();
-                    }
-
-                    break;
-                }
-
-                yield return new WaitForFixedUpdate();
-            }
-        }
-
         public void SetIsKinematic(bool isKinematic)
         {
             rigidBody.isKinematic = isKinematic;
@@ -419,7 +273,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         private void SetIsPoppingUpAndDown()
         {
-            StartCoroutine("PopUpAndDown");
+            StartCoroutine(PopUpAndDown());
         }
 
         private IEnumerator PopUpAndDown()
@@ -464,39 +318,18 @@ namespace EA4S.Minigames.ThrowBalls
             }
         }
 
-        public void ApplyCustomGravity()
-        {
-            customGravityCoroutine = ApplyCustomGravityCoroutine();
-            StartCoroutine(customGravityCoroutine);
-        }
-
-        private IEnumerator ApplyCustomGravityCoroutine()
-        {
-            while (true)
-            {
-                rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
-
-                yield return new WaitForFixedUpdate();
-            }
-        }
-
-        public void StopCustomGravity()
-        {
-            StopCoroutine(customGravityCoroutine);
-        }
-
         public void Show()
         {
-            GameObject poof = (GameObject)Instantiate(ThrowBallsGame.instance.poofPrefab, transform.position, Quaternion.identity);
+            GameObject poof = Instantiate(ThrowBallsGame.instance.poofPrefab, transform.position, Quaternion.identity);
             Destroy(poof, 10);
             gameObject.SetActive(true);
         }
 
         public void Vanish()
         {
-            GameObject poof = (GameObject)Instantiate(ThrowBallsGame.instance.poofPrefab, transform.position, Quaternion.identity);
+            GameObject poof = Instantiate(ThrowBallsGame.instance.poofPrefab, transform.position, Quaternion.identity);
             Destroy(poof, 10);
-            gameObject.SetActive(false);
+            transform.position = new Vector3(0, 0, -100f);
         }
 
         public void Enable()
@@ -516,20 +349,20 @@ namespace EA4S.Minigames.ThrowBalls
             DisableProps();
             yEquilibrium = transform.position.y;
             transform.rotation = Quaternion.Euler(0, 180, 0);
-            propUpCoroutine = null;
             SetIsKinematic(true);
-            isProppingUp = false;
-            isGrounded = false;
-            isStill = false;
             SetIsColliderEnabled(true);
             shadow.SetActive(true);
-            victoryRays.SetActive(false);
             letterObjectView.SetState(LLAnimationStates.LL_idle);
         }
 
         public void ShowVictoryRays()
         {
             victoryRays.SetActive(true);
+        }
+
+        public void HideVictoryRays()
+        {
+            victoryRays.SetActive(false);
         }
 
         void OnMouseDown()
@@ -553,6 +386,37 @@ namespace EA4S.Minigames.ThrowBalls
             }
 
             return false;
+        }
+
+        public void JumpOffOfCrate()
+        {
+            StartCoroutine(JumpOffOfCrateCoroutine());
+        }
+
+        private IEnumerator JumpOffOfCrateCoroutine()
+        {
+            transform.DORotate(new Vector3(0, 180f, 0), 0.33f);
+            letterObjectView.DoTwirl(null);
+
+            rigidBody.isKinematic = true;
+
+            var zAngle = transform.rotation.eulerAngles.z;
+            zAngle = zAngle > 180 ? zAngle - 360 : zAngle;
+
+            var velocity = new Vector3(zAngle * 0.25f, 25f, 0f);
+            var position = transform.position;
+
+            while (transform.position.y > 0.51f)
+            {
+                transform.position = position;
+                velocity.y += GRAVITY * 0.33f * Time.fixedDeltaTime;
+                position += velocity * Time.fixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            position.y = 0.51f;
+            transform.position = position;
+            shadow.SetActive(true);
         }
     }
 }
