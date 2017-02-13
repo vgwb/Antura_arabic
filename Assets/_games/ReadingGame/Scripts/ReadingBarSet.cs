@@ -31,6 +31,8 @@ namespace EA4S.Minigames.ReadingGame
         bool songStarted = false;
         bool barsCompleted = false;
         bool songInsideAWord = false;
+
+        float lastSongTime = 0;
         IAudioSource songSource;
         System.Action onSongCompleted;
 
@@ -317,15 +319,23 @@ namespace EA4S.Minigames.ReadingGame
                 bar.Show(show);
             }
 
+            bool isMenuOpen = UI.PauseMenu.I.IsMenuOpen;
             songInsideAWord = false;
             if (playingSong)
             {
                 if (songSource != null && songSource.IsPlaying)
                 {
                     float currentTime = songSource.Position;
+                    lastSongTime = currentTime;
+
+                    if (isMenuOpen)
+                    {
+                        songSource.Pause();
+                        return;
+                    }
 
                     var songWords = currentBarSong.lines;
-                
+
                     var songStart = songWords[0].start;
                     if (currentTime > songStart - 2)
                     {
@@ -386,6 +396,15 @@ namespace EA4S.Minigames.ReadingGame
 
                     if (onSongCompleted != null)
                         onSongCompleted();
+                }
+                else
+                {
+                    if (songSource != null && !songSource.IsPlaying && !isMenuOpen)
+                    {
+                        songSource.Stop();
+                        songSource.Play();
+                        songSource.Position = lastSongTime;
+                    }
                 }
             }
         }
