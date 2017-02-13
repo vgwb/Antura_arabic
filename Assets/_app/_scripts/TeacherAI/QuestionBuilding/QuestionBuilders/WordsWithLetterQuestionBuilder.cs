@@ -20,6 +20,11 @@ namespace EA4S.Teacher
         //private bool packsUsedTogether;
         private QuestionBuilderParameters parameters;
 
+        public QuestionBuilderParameters Parameters
+        {
+            get { return this.parameters; }
+        }
+
         public WordsWithLetterQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0,
               bool packsUsedTogether = false, 
               QuestionBuilderParameters parameters = null)

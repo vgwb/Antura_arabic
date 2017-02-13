@@ -164,9 +164,9 @@ namespace EA4S.Teacher.Test
             if (verboseQuestionPacks)
             {
                 string packsString = ConfigAI.FormatTeacherHeader("Generated Packs");
-                foreach (var pack in packs)
+                for (int i = 0; i < packs.Count; i++)
                 {
-                    packsString += "\n" + pack.ToString();
+                    packsString += "\n" + (i+1) + ": " + packs[i].ToString();
                 }
                 ConfigAI.AppendToTeacherReport(packsString);
             }

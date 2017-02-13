@@ -306,7 +306,7 @@ namespace EA4S.Teacher
             }
 
             // Reorder the selected data based on intrinsic difficulty
-            if (selectionParams.sortContentsByDifficulty)
+            if (selectionParams.sortDataByDifficulty)
             {
                 selectedList.Sort((x, y) => (int)(x.GetIntrinsicDifficulty() - y.GetIntrinsicDifficulty()));
             }

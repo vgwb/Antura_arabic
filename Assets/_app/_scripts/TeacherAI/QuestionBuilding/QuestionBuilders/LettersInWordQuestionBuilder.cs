@@ -24,6 +24,11 @@ namespace EA4S.Teacher
         private WordDataCategory category;
         private QuestionBuilderParameters parameters;
 
+        public QuestionBuilderParameters Parameters
+        {
+            get { return this.parameters; }
+        }
+
         public LettersInWordQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, 
             bool useAllCorrectLetters = false, Database.WordDataCategory category = Database.WordDataCategory.None,
             int maximumWordLength = 20,

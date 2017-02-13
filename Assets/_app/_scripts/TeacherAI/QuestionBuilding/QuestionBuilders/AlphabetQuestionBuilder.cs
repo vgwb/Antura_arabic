@@ -14,6 +14,11 @@ namespace EA4S.Teacher
 
         private QuestionBuilderParameters parameters;
 
+        public QuestionBuilderParameters Parameters
+        {
+            get { return this.parameters; }
+        }
+
         public AlphabetQuestionBuilder(QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
