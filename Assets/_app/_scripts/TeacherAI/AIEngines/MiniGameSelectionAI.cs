@@ -110,7 +110,7 @@ namespace EA4S.Teacher
             //foreach(var l in minigame_score_list) UnityEngine.Debug.Log(l.ElementId);
 
             // Determine the final weight for each minigame
-            string debugString = "----- TEACHER: MiniGameSelection ----- \n";
+            string debugString = ConfigAI.FormatTeacherHeader("Minigame Selection");
             foreach (var minigame_data in minigame_data_list)
             {
                 float cumulativeWeight = 0;
@@ -140,9 +140,9 @@ namespace EA4S.Teacher
                 debugString += " TOTw: " + cumulativeWeight;
                 debugString += "\n";
             }
-            if (ConfigAI.verboseTeacher)
+            if (ConfigAI.verboseMinigameSelection)
             {
-                UnityEngine.Debug.Log(debugString);
+                ConfigAI.AppendToTeacherReport(debugString);
             }
 
 

@@ -86,7 +86,7 @@ namespace EA4S.Teacher
             // Debug log
             if (ConfigAI.verboseDifficultySelection)
             {
-                string debugString = ConfigAI.FormatTeacherHeader("Selected Difficulty");
+                string debugString = ConfigAI.FormatTeacherHeader("Selected Difficulty : " + totalDifficulty);
                 debugString += "\n From Age (C " + ageWeightContribution + "): " + ageDifficulty + " w(" + weightedAgeDifficulty + ")";
                 debugString += "\n From Performance (C " + performanceWeightContribution + "): " + performanceDifficulty + " w(" + weightedPerformanceDifficulty + ")";
                 ConfigAI.AppendToTeacherReport(debugString);
