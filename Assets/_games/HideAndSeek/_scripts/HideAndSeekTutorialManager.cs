@@ -155,6 +155,7 @@ namespace EA4S.Minigames.HideAndSeek
             {
                 script.PlayResultAnimation(true);
                 AudioManager.I.PlaySound(Sfx.Win);
+                AudioManager.I.PlaySound(Sfx.OK);
                 script.GetComponent<EmoticonsAnimator>().DoCorrect();
                 StartCoroutine(GoToPlay());
                 phase = -1;
@@ -167,6 +168,7 @@ namespace EA4S.Minigames.HideAndSeek
                 phase = 2;
                 TutorialUI.Clear(false);
                 AudioManager.I.PlaySound(Sfx.Lose);
+                AudioManager.I.PlaySound(Sfx.KO);
                 script.GetComponent<EmoticonsAnimator>().DoWrong();
                 timeFinger = Time.time + animDuration + timeToWait;
             }
