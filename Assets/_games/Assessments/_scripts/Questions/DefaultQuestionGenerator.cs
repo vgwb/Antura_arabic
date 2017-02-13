@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace EA4S.Assessment
 {
+
     public enum QuestionGeneratorState
     {
         Uninitialized,
@@ -34,7 +35,11 @@ namespace EA4S.Assessment
         private IQuestionPack currentPack;
         DefaultQuestionType config;
 
-        public DefaultQuestionGenerator(    IQuestionProvider provider, AssessmentDialogues dialogues,
+        // ##################################
+        //             INIT
+        // ##################################
+
+        public DefaultQuestionGenerator(    IQuestionProvider provider, AssessmentAudioManager dialogues,
                                             AssessmentEvents events,
                                             DefaultQuestionType config)
         {
@@ -42,30 +47,22 @@ namespace EA4S.Assessment
             this.dialogues = dialogues;
             this.config = config;
 
-            if( AssessmentOptions.Instance.ReadQuestionAndAnswer)
+            if (config == DefaultQuestionType.MissingForm)
+                events.OnAllQuestionsAnswered = CompleteWordsWithForm;
+
+            if ( AssessmentOptions.Instance.ReadQuestionAndAnswer)
                 events.OnAllQuestionsAnswered = ReadQuestionAndReplyEvent;
 
             state = QuestionGeneratorState.Uninitialized;
             ClearCache();
         }
 
-        public DefaultQuestionGenerator(    IQuestionProvider provider, AssessmentDialogues dialogues,
+        public DefaultQuestionGenerator(    IQuestionProvider provider, AssessmentAudioManager dialogues,
                                             AssessmentEvents events)
 
            : this( provider, dialogues, events, DefaultQuestionType.Default)
         {
 
-        }
-
-        IEnumerator ReadQuestionAndReplyEvent()
-        {
-            yield return Koroutine.Nested( 
-                    dialogues.PlayLetterDataCoroutine( cacheQuestionToRead));
-
-            yield return Wait.For( 0.3f);
-
-            yield return Koroutine.Nested(
-                    dialogues.PlayLetterDataCoroutine( cacheAnswerToRead));
         }
 
         public void InitRound()
@@ -81,8 +78,61 @@ namespace EA4S.Assessment
         {
             totalAnswers = new List< Answer>();
             totalQuestions = new List< IQuestion>();
+            cacheWordsToComplete = new List< StillLetterBox>();
+            cacheCompleteWords = new List< string>();
             partialAnswers = null;
         }
+
+        // ##################################
+        //             EVENTS
+        // ##################################
+
+        List< StillLetterBox> cacheWordsToComplete;
+        List< string> cacheCompleteWords;
+
+        private void AddCompleteWordEvent( string completeText, StillLetterBox target)
+        {
+            cacheWordsToComplete.Add( target);
+            cacheCompleteWords.Add( completeText);
+        }
+
+        private IEnumerator CompleteWordsWithForm()
+        {
+            yield return Wait.For( 0.5f);
+
+            StillLetterBox[] boxes = cacheWordsToComplete.ToArray();
+            string[] words = cacheCompleteWords.ToArray();
+
+            Debug.Assert( boxes.Length == words.Length);
+            
+            for(int i=0; i<boxes.Length; i++)
+            {
+                dialogues.PlayPoofSound();
+                boxes[i].Poof();
+                boxes[i].Label.text = words[i];
+                yield return Wait.For( AssessmentOptions.Instance.TimeToShowCompleteWord);
+            }
+
+            yield return Wait.For( 0.3f);
+        }
+
+        ILivingLetterData cacheQuestionToRead;
+        ILivingLetterData cacheAnswerToRead;
+
+        IEnumerator ReadQuestionAndReplyEvent()
+        {
+            yield return Koroutine.Nested( 
+                    dialogues.PlayLetterDataCoroutine( cacheQuestionToRead));
+
+            yield return Wait.For( 0.3f);
+
+            yield return Koroutine.Nested(
+                    dialogues.PlayLetterDataCoroutine( cacheAnswerToRead));
+        }
+
+        // ##################################
+        //           IMPLEMENTATION
+        // ##################################
 
         public void CompleteRound()
         {
@@ -95,7 +145,7 @@ namespace EA4S.Assessment
         public Answer[] GetAllAnswers()
         {
             if (state != QuestionGeneratorState.Completed)
-                throw new InvalidOperationException("Not Completed");
+                throw new InvalidOperationException( "Not Completed");
 
             return totalAnswers.ToArray();
         }
@@ -103,7 +153,7 @@ namespace EA4S.Assessment
         public IQuestion[] GetAllQuestions()
         {
             if (state != QuestionGeneratorState.Completed)
-                throw new InvalidOperationException("Not Completed");
+                throw new InvalidOperationException( "Not Completed");
 
             return totalQuestions.ToArray();
         }
@@ -111,7 +161,7 @@ namespace EA4S.Assessment
         public Answer[] GetNextAnswers()
         {
             if (state != QuestionGeneratorState.QuestionFeeded)
-                throw new InvalidOperationException("Not Initialized");
+                throw new InvalidOperationException( "Not Initialized");
 
             state = QuestionGeneratorState.Initialized;
             return partialAnswers;
@@ -120,7 +170,7 @@ namespace EA4S.Assessment
         List< Answer> totalAnswers;
         List< IQuestion> totalQuestions;
         Answer[] partialAnswers;
-        private AssessmentDialogues dialogues;
+        private AssessmentAudioManager dialogues;
 
         public IQuestion GetNextQuestion()
         {
@@ -172,6 +222,10 @@ namespace EA4S.Assessment
             return question;
         }
 
+        // ##################################
+        //           AUXILIARY METHODS
+        // ##################################
+
         private IQuestion CustomQuestion()
         {
             var correct = currentPack.GetCorrectAnswers().ToList()[0];
@@ -208,6 +262,7 @@ namespace EA4S.Assessment
                 //TODO save a chain of lambdas to restore original words
                 // The restore coroutine should show poof and restore original text
                 wordGO.Label.text = text;
+                AddCompleteWordEvent( word.TextForLivingLetter, wordGO);
             }
             
             wordGO.InstaShrink();
@@ -216,8 +271,7 @@ namespace EA4S.Assessment
             return new DefaultQuestion( wordGO, 1, dialogues);
         }
 
-        ILivingLetterData cacheQuestionToRead;
-        ILivingLetterData cacheAnswerToRead;
+        
 
         private IQuestion GenerateQuestion( ILivingLetterData data, int correctCount)
         {

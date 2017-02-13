@@ -10,7 +10,7 @@ namespace EA4S.Assessment
         private StillLetterBox view;
         private int placeholdersCount;
 
-        public DefaultQuestion( StillLetterBox letter, int placeholders, AssessmentDialogues dialogues)
+        public DefaultQuestion( StillLetterBox letter, int placeholders, AssessmentAudioManager dialogues)
         {
             view = letter;
             placeholdersCount = placeholders;

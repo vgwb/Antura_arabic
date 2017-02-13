@@ -14,13 +14,12 @@ namespace EA4S.Assessment
         public IGameContext Utils;
         public ICheckmarkWidget CheckmarkWidget;
         public IQuestionGenerator QuestionGenerator;
-        public IAudioManager AudioManager;
         public IDragManager DragManager;
         public ILogicInjector LogicInjector;
         public IQuestionPlacer QuestionPlacer;
         public IAnswerPlacer AnswerPlacer;
         public AnswerChecker AnswerChecker;
-        public AssessmentDialogues DialogueManager;
+        public AssessmentAudioManager AudioManager;
         public LocalizationDataId GameDescription;
         public AssessmentGame Game;
     }

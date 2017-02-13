@@ -1,9 +1,8 @@
 using DG.Tweening;
-using EA4S.MinigamesCommon;
+using EA4S.Helpers;
 using Kore.Coroutines;
 using System.Collections;
 using System.Collections.Generic;
-using EA4S.Helpers;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -15,7 +14,7 @@ namespace EA4S.Assessment
     /// </summary>
     public class RandomAnswerPlacer : IAnswerPlacer
     {
-        public RandomAnswerPlacer( IAudioManager audioManager, QuestionPlacerOptions placerOptions)
+        public RandomAnswerPlacer( AssessmentAudioManager audioManager, QuestionPlacerOptions placerOptions)
         {
             this.audioManager = audioManager;
             this.placerOptions = placerOptions;
@@ -28,7 +27,7 @@ namespace EA4S.Assessment
         }
 
         private Answer[] allAnswers;
-        private IAudioManager audioManager;
+        private AssessmentAudioManager audioManager;
         private QuestionPlacerOptions placerOptions;
 
         public void Place(Answer[] answer)
@@ -79,7 +78,7 @@ namespace EA4S.Assessment
             go.transform.localPosition = positions.Pull();
             go.GetComponent< StillLetterBox>().Poof();
             go.GetComponent< StillLetterBox>().Magnify();
-            audioManager.PlaySound( Sfx.Poof);
+            audioManager.PlayPoofSound();
 
             yield return Wait.For( Random.Range( 0.07f, 0.13f));
         }
@@ -95,7 +94,7 @@ namespace EA4S.Assessment
 
         private IEnumerator RemoveAnswer( GameObject answ)
         {
-            audioManager.PlaySound( Sfx.Poof);
+            audioManager.PlayPoofSound();
 
             answ.GetComponent< StillLetterBox>().Poof();
             answ.transform.DOScale( 0, 0.3f).OnComplete( () => GameObject.Destroy( answ));

@@ -15,7 +15,6 @@ namespace EA4S.Assessment
         /// <summary>
         /// Configuration variables
         /// </summary>
-        private static readonly float letterSize = 1f * 3;
         private static int rounds;
         private static QuestionPlacerOptions placerOptions;
 
@@ -46,7 +45,7 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionSpawnedPlaySound = true; // pronunce the complete word
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
-            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = true;
+            AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = false;
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
@@ -61,7 +60,7 @@ namespace EA4S.Assessment
                             );
 
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
-                                                                        context.DialogueManager,
+                                                                        context.AudioManager,
                                                                         context.Events,
                                                                         DefaultQuestionType.MissingForm);
 
@@ -92,7 +91,7 @@ namespace EA4S.Assessment
                             );
 
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
-                                                                        context.DialogueManager,
+                                                                        context.AudioManager,
                                                                         context.Events,
                                                                         DefaultQuestionType.VisibleForm);
 
@@ -128,7 +127,7 @@ namespace EA4S.Assessment
 
             // Create the custom managers
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
-                                                                        context.DialogueManager,
+                                                                        context.AudioManager,
                                                                         context.Events);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
 
@@ -160,7 +159,7 @@ namespace EA4S.Assessment
 
 
             context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, false,
-                                                                    context.DialogueManager,
+                                                                    context.AudioManager,
                                                                     context.Events);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
 
@@ -191,7 +190,7 @@ namespace EA4S.Assessment
                             );
 
             context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, true,
-                                                                    context.DialogueManager, context.Events);
+                                                                    context.AudioManager, context.Events);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
 
             return CreateAssessment( context);
@@ -219,7 +218,7 @@ namespace EA4S.Assessment
                             );
 
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
-                                                                        context.DialogueManager,
+                                                                        context.AudioManager,
                                                                         context.Events);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
 
@@ -251,7 +250,7 @@ namespace EA4S.Assessment
                             );
 
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
-                                                                        context.DialogueManager,
+                                                                        context.AudioManager,
                                                                         context.Events);
 
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
@@ -284,7 +283,7 @@ namespace EA4S.Assessment
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.SunMoon);
             context.QuestionGenerator = new CategoryQuestionGenerator(  context.Configuration.Questions,
                                                                         categoryProvider,
-                                                                        context.DialogueManager,
+                                                                        context.AudioManager,
                                                                         2, rounds);
             context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, placerOptions);
 
@@ -316,7 +315,7 @@ namespace EA4S.Assessment
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.SingularDualPlural);
             context.QuestionGenerator = new CategoryQuestionGenerator(  context.Configuration.Questions,
                                                                         categoryProvider,
-                                                                        context.DialogueManager,
+                                                                        context.AudioManager,
                                                                         2, rounds);
             context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, placerOptions);
 
@@ -348,7 +347,7 @@ namespace EA4S.Assessment
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.WithOrWithoutArticle);
             context.QuestionGenerator = new CategoryQuestionGenerator(  context.Configuration.Questions,
                                                                         categoryProvider,
-                                                                        context.DialogueManager,
+                                                                        context.AudioManager,
                                                                         2, rounds);
             context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, placerOptions);
 
@@ -380,7 +379,7 @@ namespace EA4S.Assessment
             ArabicCategoryProvider categoryProvider = new ArabicCategoryProvider( CategoryType.SunMoon);
             context.QuestionGenerator = new CategoryQuestionGenerator( context.Configuration.Questions,
                                                                        categoryProvider,
-                                                                       context.DialogueManager,
+                                                                       context.AudioManager,
                                                                        2, rounds);
             context.QuestionPlacer = new CategoryQuestionPlacer( context.AudioManager, placerOptions);
 
@@ -409,7 +408,7 @@ namespace EA4S.Assessment
                             );
 
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
-                                                                        context.DialogueManager,
+                                                                        context.AudioManager,
                                                                         context.Events);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
 
@@ -439,7 +438,7 @@ namespace EA4S.Assessment
                             );
 
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
-                                                                        context.DialogueManager,
+                                                                        context.AudioManager,
                                                                         context.Events);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
 
@@ -469,7 +468,7 @@ namespace EA4S.Assessment
                             );
 
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
-                                                                        context.DialogueManager,
+                                                                        context.AudioManager,
                                                                         context.Events);
             context.QuestionPlacer = new DefaultQuestionPlacer( context.AudioManager, placerOptions);
 
@@ -496,15 +495,13 @@ namespace EA4S.Assessment
             context.Configuration = AssessmentConfiguration.Instance;
             context.Events = new AssessmentEvents();
             context.Utils = AssessmentConfiguration.Instance.Context;
-            context.AudioManager = context.Utils.GetAudioManager();
             context.CheckmarkWidget = context.Utils.GetCheckmarkWidget();
-            context.DialogueManager = new AssessmentDialogues( context.AudioManager,
+            context.AudioManager = new AssessmentAudioManager( context.Utils.GetAudioManager(),
                                                                context.Utils.GetSubtitleWidget(),
                                                                context.GameDescription);
 
             context.AnswerChecker = new AnswerChecker( context.CheckmarkWidget,
-                                                       context.AudioManager,
-                                                       context.DialogueManager);
+                                                       context.AudioManager);
 
             rounds = AssessmentConfiguration.Instance.NumberOfRounds;
         }
@@ -516,7 +513,7 @@ namespace EA4S.Assessment
         private static Assessment CreateAssessment( AssessmentContext context)
         {
             return new Assessment( context.AnswerPlacer, context.QuestionPlacer, context.QuestionGenerator,
-                                   context.LogicInjector, context.Configuration, context.DialogueManager);
+                                   context.LogicInjector, context.Configuration, context.AudioManager);
         }
 
         /// <summary>
@@ -539,7 +536,7 @@ namespace EA4S.Assessment
                 context.LogicInjector = new SortingLogicInjector( context.DragManager, context.Events);
 
             if (answerPlacer == AnswerPlacerType.Line)
-                context.AnswerPlacer = new LineAnswerPlacer( context.AudioManager, letterSize);
+                context.AnswerPlacer = new LineAnswerPlacer( context.AudioManager, 3);
             else
                 context.AnswerPlacer = new RandomAnswerPlacer( context.AudioManager, placerOptions);
         }

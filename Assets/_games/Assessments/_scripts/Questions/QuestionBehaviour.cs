@@ -25,8 +25,8 @@ namespace EA4S.Assessment
             GetComponent< StillLetterBox>().RevealHiddenQuestion();
         }
 
-        AssessmentDialogues dialogues;
-        public void SetQuestion( IQuestion qst, AssessmentDialogues dialogues)
+        AssessmentAudioManager dialogues;
+        public void SetQuestion( IQuestion qst, AssessmentAudioManager dialogues)
         {
             this.dialogues = dialogues;
 

@@ -78,7 +78,7 @@ namespace EA4S.Assessment
             context.Game = this;
             assessment = CreateConfiguredAssessment( context);
 
-            ResultState = new AssessmentResultState( this, context.DialogueManager);
+            ResultState = new AssessmentResultState( this, context.AudioManager);
             GameState = new AssessmentGameState( context.DragManager, assessment, ResultState, this);
             IntroState = new AssessmentIntroState( this, GameState, context.AudioManager);
         }

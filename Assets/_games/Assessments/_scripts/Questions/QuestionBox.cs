@@ -1,5 +1,6 @@
 using DG.Tweening;
 using EA4S.Utilities;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -10,7 +11,7 @@ namespace EA4S.Assessment
 
         private Tween tween = null;
 
-        public void WrapBoxAroundWords( StillLetterBox[] letters)
+        public void WrapBoxAroundWords( IEnumerable< StillLetterBox> letters)
         {
             float ymin = 1000;
             float ymax = -1000;
@@ -39,7 +40,7 @@ namespace EA4S.Assessment
 
             sprite.Width = xmax-xmin+0.8f;
             sprite.Height = ymax-ymin+0.8f;
-            transform.localPosition = new Vector3((xmax + xmin) / 2.0f, (ymax + ymin) / 2.0f, 5.0f);
+            transform.localPosition = new Vector3((xmax + xmin) / 2.0f, (ymax + ymin) / 2.0f, 6.0f);
         }
 
         public void HideInstant()
