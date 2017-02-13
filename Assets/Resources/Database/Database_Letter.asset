@@ -920,7 +920,7 @@ MonoBehaviour:
       BaseLetter: 
       Symbol: 
       Type: 4
-      Tag: 
+      Tag: MainDiacritic
       Notes: short vowel
       SunMoon: 0
       Sound: u
@@ -978,7 +978,7 @@ MonoBehaviour:
       BaseLetter: 
       Symbol: 
       Type: 4
-      Tag: 
+      Tag: MainDiacritic
       Notes: short vowel
       SunMoon: 0
       Sound: a
@@ -1036,7 +1036,7 @@ MonoBehaviour:
       BaseLetter: 
       Symbol: 
       Type: 4
-      Tag: 
+      Tag: MainDiacritic
       Notes: short vowel
       SunMoon: 0
       Sound: i
@@ -1152,7 +1152,7 @@ MonoBehaviour:
       BaseLetter: 
       Symbol: 
       Type: 4
-      Tag: 
+      Tag: MainDiacritic
       Notes: 
       SunMoon: 0
       Sound: mute
@@ -1181,7 +1181,7 @@ MonoBehaviour:
       BaseLetter: alef
       Symbol: hamza
       Type: 1
-      Tag: 
+      Tag: AlefHamzaVariation
       Notes: variation of Alef
       SunMoon: 0
       Sound: Aa
@@ -1210,7 +1210,7 @@ MonoBehaviour:
       BaseLetter: alef
       Symbol: hamza
       Type: 1
-      Tag: 
+      Tag: AlefHamzaVariation
       Notes: variation of Alef
       SunMoon: 0
       Sound: Aa
