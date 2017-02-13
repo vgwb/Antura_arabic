@@ -32,9 +32,7 @@ namespace EA4S.Minigames.ThrowBalls
         private float yEquilibrium;
 
         private ILivingLetterData letterData;
-
-        private IEnumerator customGravityCoroutine;
-        private IEnumerator propUpCoroutine;
+        
         private IEnumerator jumpCoroutine;
 
         public Rigidbody rigidBody;
@@ -320,27 +318,6 @@ namespace EA4S.Minigames.ThrowBalls
             }
         }
 
-        public void ApplyCustomGravity()
-        {
-            customGravityCoroutine = ApplyCustomGravityCoroutine();
-            StartCoroutine(customGravityCoroutine);
-        }
-
-        private IEnumerator ApplyCustomGravityCoroutine()
-        {
-            while (true)
-            {
-                rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
-
-                yield return new WaitForFixedUpdate();
-            }
-        }
-
-        public void StopCustomGravity()
-        {
-            StopCoroutine(customGravityCoroutine);
-        }
-
         public void Show()
         {
             GameObject poof = Instantiate(ThrowBallsGame.instance.poofPrefab, transform.position, Quaternion.identity);
@@ -372,7 +349,6 @@ namespace EA4S.Minigames.ThrowBalls
             DisableProps();
             yEquilibrium = transform.position.y;
             transform.rotation = Quaternion.Euler(0, 180, 0);
-            propUpCoroutine = null;
             SetIsKinematic(true);
             SetIsColliderEnabled(true);
             shadow.SetActive(true);

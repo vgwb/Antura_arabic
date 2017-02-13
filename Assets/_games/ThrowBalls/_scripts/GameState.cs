@@ -17,7 +17,7 @@ namespace EA4S.Minigames.ThrowBalls
     {
         public const int MAX_NUM_ROUNDS = 5;
         public const int NUM_LETTERS_IN_POOL = 7;
-        public static int MAX_NUM_BALLS = 5;
+        public readonly int MAX_NUM_BALLS;
 
         public const float TUTORIAL_UI_PERIOD = 4;
 
@@ -26,7 +26,7 @@ namespace EA4S.Minigames.ThrowBalls
         // Round number is 1-based. (Round 1, round 2,...)
         // Round 0 is the tutorial round.
         private int roundNumber = 0;
-        private int numBalls = MAX_NUM_BALLS;
+        private int numBalls;
 
         private int numRoundsWon = 0;
 
@@ -71,11 +71,6 @@ namespace EA4S.Minigames.ThrowBalls
         {
             this.game = game;
 
-            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
-            {
-                MAX_NUM_BALLS = 10;
-            }
-
             instance = this;
 
             inputManager = ThrowBallsConfiguration.Instance.Context.GetInputManager();
@@ -84,6 +79,32 @@ namespace EA4S.Minigames.ThrowBalls
             inputManager.Enabled = false;
 
             currentLettersForLettersInWord = new List<LL_LetterData>();
+
+            // Configure num balls:
+            if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
+            {
+                MAX_NUM_BALLS = 10;
+            }
+
+            else
+            {
+                var difficulty = game.Difficulty;
+
+                if (difficulty <= ThrowBallsGame.ThrowBallsDifficulty.Normal)
+                {
+                    MAX_NUM_BALLS = 5;
+                }
+
+                else if (difficulty == ThrowBallsGame.ThrowBallsDifficulty.Hard)
+                {
+                    MAX_NUM_BALLS = 4;
+                }
+
+                else
+                {
+                    MAX_NUM_BALLS = 3;
+                }
+            }
         }
         public void EnterState()
         {
@@ -133,6 +154,11 @@ namespace EA4S.Minigames.ThrowBalls
             }
 
             AudioManager.I.PlayMusic(Music.Theme10);
+        }
+
+        private void ConfigureNumBalls()
+        {
+            
         }
 
         private void OnTitleVoiceOverDone()
