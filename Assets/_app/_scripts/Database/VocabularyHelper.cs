@@ -18,15 +18,35 @@ namespace EA4S.Database
 
         #region Letter Utilities
 
-
-        List<string> mainDiacriticsIds = new List<string>() { "fathah", "dammah", "kasrah", "sukun" }; // HACK: this is just for dancing dots, to be removed later on
         private bool CheckFilters(LetterFilters filters, LetterData data)
         {
             if (filters.requireDiacritics && !data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) return false;
-            if (filters.excludeDiacritics && data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) return false;
-            if (filters.excludeDiacritics_keepMain && data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)
-                && !mainDiacriticsIds.Contains(data.Symbol)) return false;
-            if (filters.excludeLetterVariations && data.IsOfKindCategory(LetterKindCategory.LetterVariation)) return false;
+
+            switch (filters.excludeDiacritics)
+            {
+                case LetterFilters.ExcludeDiacritics.All:
+                    if (data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) return false;
+                    break;
+                case LetterFilters.ExcludeDiacritics.AllButMain:
+                    var symbol = GetSymbolOf(data.Id);
+                    if (symbol != null && data.IsOfKindCategory(LetterKindCategory.DiacriticCombo) && symbol.Tag != "MainDiacritic") return false;
+                    break;
+                default:
+                    break;
+            }
+
+            switch (filters.excludeLetterVariations)
+            {
+                case LetterFilters.ExcludeLetterVariations.All:
+                    if (data.IsOfKindCategory(LetterKindCategory.LetterVariation)) return false;
+                    break;
+                case LetterFilters.ExcludeLetterVariations.AllButAlefHamza:
+                    if (data.IsOfKindCategory(LetterKindCategory.LetterVariation) && data.Tag != "AlefHamzaVariation") return false;
+                    break;
+                default:
+                    break;
+            }
+
             if (filters.excludeDiphthongs && data.Kind == LetterDataKind.Diphthong) return false;
             if (data.IsOfKindCategory(LetterKindCategory.Symbol)) return false; // always skip symbols
             return true;
@@ -38,7 +58,7 @@ namespace EA4S.Database
 
         public List<LetterData> GetAllBaseLetters()
         {
-            var p = new LetterFilters(excludeDiacritics: true, excludeLetterVariations: true, excludeDiphthongs:true);
+            var p = new LetterFilters(excludeDiacritics: LetterFilters.ExcludeDiacritics.All, excludeLetterVariations: LetterFilters.ExcludeLetterVariations.All, excludeDiphthongs:true);
             return GetAllLetters(p);
         }
 

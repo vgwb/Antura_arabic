@@ -22,28 +22,20 @@ namespace EA4S.MinigamesAPI
 
         /// <summary>
         /// Prepare the context and start a minigame.
-        /// Uses the configuration chosen by the teacher.
         /// </summary>
         /// <param name="_gameCode">The minigame code.</param>
+        /// <param name="_launchConfiguration">The launch configuration. If null, the Teacher will generate a new one.</param>
         /// <param name="forceNewPlaySession">Is this a new play session?</param>
-        public void LaunchGame(MiniGameCode miniGameCode, bool forceNewPlaySession = false)
-        {
-            float difficulty = teacher.GetCurrentDifficulty(miniGameCode);
-            int numberOfRounds = teacher.GetCurrentNumberOfRounds(miniGameCode);
-            MinigameLaunchConfiguration configuration = new MinigameLaunchConfiguration(difficulty, numberOfRounds);
-            LaunchGame(miniGameCode, configuration, forceNewPlaySession);
-        }
-
-        /// <summary>
-        /// Prepare the context and start a minigame.
-        /// </summary>
-        /// <param name="_gameCode">The minigame code.</param>
-        /// <param name="_launchConfiguration">The configuration for launching the minigame.</param>
-        /// <param name="forceNewPlaySession">Is this a new play session?</param>
-        public void LaunchGame(MiniGameCode _gameCode, MinigameLaunchConfiguration _launchConfiguration, bool forceNewPlaySession = false)
+        public void LaunchGame(MiniGameCode _gameCode, MinigameLaunchConfiguration _launchConfiguration = null, bool forceNewPlaySession = false)
         {
             ConfigAI.StartTeacherReport();
-
+            if (_launchConfiguration == null)
+            {
+                float difficulty = teacher.GetCurrentDifficulty(_gameCode);
+                int numberOfRounds = teacher.GetCurrentNumberOfRounds(_gameCode);
+                _launchConfiguration = new MinigameLaunchConfiguration(difficulty, numberOfRounds);
+            }
+            
             Database.MiniGameData miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
             
             if (forceNewPlaySession)
@@ -52,7 +44,6 @@ namespace EA4S.MinigamesAPI
             }
 
             if (AppConstants.VerboseLogging) Debug.Log("StartGame " + _gameCode.ToString());
-
 
             // Retrieve the configuration for the given minigame
             string minigameSession = System.DateTime.Now.Ticks.ToString();
