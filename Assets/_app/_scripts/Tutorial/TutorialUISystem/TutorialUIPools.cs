@@ -21,7 +21,7 @@ namespace EA4S.Tutorial
 
         #region Unity
 
-        void Start()
+        void Awake()
         {
             TrailGroupPrefab.gameObject.SetActive(false);
             LineGroupPrefab.gameObject.SetActive(false);
