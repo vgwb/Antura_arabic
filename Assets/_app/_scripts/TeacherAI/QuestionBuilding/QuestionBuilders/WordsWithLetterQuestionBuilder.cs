@@ -17,7 +17,7 @@ namespace EA4S.Teacher
         private int nPacks;
         private int nCorrect;
         private int nWrong;
-        //private bool packsUsedTogether;
+        private bool packsUsedTogether;
         private QuestionBuilderParameters parameters;
 
         public QuestionBuilderParameters Parameters
@@ -33,7 +33,7 @@ namespace EA4S.Teacher
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
-            //this.packsUsedTogether = packsUsedTogether;
+            this.packsUsedTogether = packsUsedTogether;
             this.parameters = parameters;
         }
 
@@ -67,7 +67,7 @@ namespace EA4S.Teacher
             // Get words with the letter 
             // (but without the previous letters)
             var correctWords = teacher.VocabularyAi.SelectData(
-                () => vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, commonLetter.Id),
+                () => FindEligibleWords(),
                     new SelectionParameters(parameters.correctSeverity, nCorrect, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words));
 
@@ -99,13 +99,32 @@ namespace EA4S.Teacher
             var allLetters = vocabularyHelper.GetAllLetters(parameters.letterFilters);
             foreach(var letter in allLetters)
             {
+                // Check number of words
                 int nWords = vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, letter.Id).Count;
-                if (nWords >= atLeastNWords)
-                {
-                    eligibleLetters.Add(letter);
-                }
+                if (nWords < atLeastNWords) continue;
+
+                // Avoid using letters that appeared in previous words
+                if (packsUsedTogether && vocabularyHelper.AnyWordContainsLetter(letter, previousPacksIDs_words)) continue;
+
+                eligibleLetters.Add(letter);
             }
             return eligibleLetters;
         }
+
+        private List<Database.WordData> FindEligibleWords(Database.LetterData commonLetter)
+        {
+            List<Database.WordData> eligibleWords = new List<Database.WordData>();
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
+            var words = vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, commonLetter.Id);
+            foreach(var w in words)
+            {
+                // Not words that have one of the previous letters
+                if (packsUsedTogether && vocabularyHelper.WordContainsAnyLetter(w, previousPacksIDs_letters)) continue;
+
+                eligibleWords.Add(w);
+            }
+            return eligibleWords;
+        }
+
     }
 }
