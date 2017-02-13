@@ -18,7 +18,7 @@ namespace EA4S.Assessment
 
         public CategoryQuestionGenerator(   IQuestionProvider questionProvider,
                                             ArabicCategoryProvider categoryProvider,
-                                            AssessmentDialogues dialogues,
+                                            AssessmentAudioManager dialogues,
                                             int maxAnsw, int rounds)
         {
             state = QuestionGeneratorState.Uninitialized;
@@ -179,7 +179,7 @@ namespace EA4S.Assessment
 
         // Categories
         private int[] roundElementsForCategory = new int[3];
-        private AssessmentDialogues dialogues;
+        private AssessmentAudioManager dialogues;
 
         public IQuestion GetNextQuestion()
         {

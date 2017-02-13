@@ -6,11 +6,11 @@ namespace EA4S.Assessment
     {
         private AssessmentGame assessmentGame;
         private AssessmentGameState gameState;
-        private IAudioManager audioManager;
+        private AssessmentAudioManager audioManager;
 
         public AssessmentIntroState(    AssessmentGame assessmentGame, 
                                         AssessmentGameState gameState,
-                                        IAudioManager audioManager)
+                                        AssessmentAudioManager audioManager)
         {
             this.assessmentGame = assessmentGame;
             this.gameState = gameState;
@@ -24,7 +24,7 @@ namespace EA4S.Assessment
 
         public void EnterState()
         {
-            audioManager.PlayMusic( Music.Theme7);
+            audioManager.PlayAssessmentMusic();
         }
 
         public void ExitState()

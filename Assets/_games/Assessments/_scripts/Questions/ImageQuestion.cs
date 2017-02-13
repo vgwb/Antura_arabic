@@ -10,7 +10,7 @@ namespace EA4S.Assessment
         private StillLetterBox view;
         private ILivingLetterData imageData;
 
-        public ImageQuestion( StillLetterBox wordGO, ILivingLetterData image, AssessmentDialogues dialogues)
+        public ImageQuestion( StillLetterBox wordGO, ILivingLetterData image, AssessmentAudioManager dialogues)
         {
             imageData = image;
             view = wordGO;

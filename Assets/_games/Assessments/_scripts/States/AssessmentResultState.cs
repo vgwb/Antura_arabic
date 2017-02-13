@@ -10,9 +10,9 @@ namespace EA4S.Assessment
     public class AssessmentResultState : IState
     {
         private AssessmentGame assessmentGame;
-        private AssessmentDialogues dialogueManager;
+        private AssessmentAudioManager dialogueManager;
 
-        public AssessmentResultState( AssessmentGame assessmentGame, AssessmentDialogues dialogueManager)
+        public AssessmentResultState( AssessmentGame assessmentGame, AssessmentAudioManager dialogueManager)
         {
             this.assessmentGame = assessmentGame;
             this.dialogueManager = dialogueManager;
