@@ -34,7 +34,7 @@ namespace EA4S.Minigames.ThrowBalls
         private bool isIdle = true;
 
         private ILivingLetterData question;
-        private List<LL_LetterData> currentLettersForLettersInWord;
+        private List<ILivingLetterData> currentLettersForLettersInWord;
         private int numLettersRemaining;
 
         private LetterSpawner letterSpawner;
@@ -78,7 +78,7 @@ namespace EA4S.Minigames.ThrowBalls
 
             inputManager.Enabled = false;
 
-            currentLettersForLettersInWord = new List<LL_LetterData>();
+            currentLettersForLettersInWord = new List<ILivingLetterData>();
 
             // Configure num balls:
             if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
@@ -293,17 +293,8 @@ namespace EA4S.Minigames.ThrowBalls
 
         public IEnumerator StartNewRound_LettersInWord()
         {
-            //IQuestionPack newQuestionPack = ThrowBallsConfiguration.Instance.Questions.GetNextQuestion();
-            //List<ILivingLetterData> letters = newQuestionPack.GetCorrectAnswers().ToList();
-
-            currentLettersForLettersInWord.Clear();
-            currentLettersForLettersInWord.Add(new LL_LetterData("alef_hamza_hi"));
-            currentLettersForLettersInWord.Add(new LL_LetterData("reh"));
-            currentLettersForLettersInWord.Add(new LL_LetterData("beh"));
-            currentLettersForLettersInWord.Add(new LL_LetterData("ain"));
-            currentLettersForLettersInWord.Add(new LL_LetterData("teh_marbuta"));
-
-            //Debug.Log(newQuestionPack.GetQuestion().Id);
+            IQuestionPack newQuestionPack = ThrowBallsConfiguration.Instance.Questions.GetNextQuestion();
+            currentLettersForLettersInWord = newQuestionPack.GetCorrectAnswers().ToList();
 
             numLettersRemaining = currentLettersForLettersInWord.Count;
 
@@ -317,8 +308,7 @@ namespace EA4S.Minigames.ThrowBalls
                 MinigamesUI.Lives.Setup(MAX_NUM_BALLS);
             }
 
-            //question = newQuestionPack.GetQuestion();
-            question = new LL_WordData("number_04");
+            question = newQuestionPack.GetQuestion();
             SayQuestion();
 
             yield return new WaitForSeconds(1f);
