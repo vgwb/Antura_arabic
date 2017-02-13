@@ -34,8 +34,10 @@ namespace EA4S.Teacher
         public bool useJourney;
         public PackListHistory packListHistory;
         public List<string> filteringIds;
+        public bool sortContentsByDifficulty;
 
-        public SelectionParameters(SelectionSeverity severity, int nRequired = 0, bool getMaxData = false, bool useJourney = true, PackListHistory packListHistory = PackListHistory.NoFilter, List < string> filteringIds = null)
+        public SelectionParameters(SelectionSeverity severity, int nRequired = 0, bool getMaxData = false, bool useJourney = true, PackListHistory packListHistory = PackListHistory.NoFilter, List < string> filteringIds = null,
+            bool sortContentsByDifficulty = true)
         {
             this.nRequired = nRequired;
             this.getMaxData = getMaxData;
@@ -43,6 +45,7 @@ namespace EA4S.Teacher
             this.useJourney = useJourney;
             this.packListHistory = packListHistory;
             this.filteringIds = filteringIds;
+            this.sortContentsByDifficulty = sortContentsByDifficulty;
         }
     }
 
