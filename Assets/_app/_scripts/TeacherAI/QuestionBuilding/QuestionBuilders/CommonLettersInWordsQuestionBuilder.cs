@@ -22,6 +22,11 @@ namespace EA4S.Teacher
         private int nWords;
         private QuestionBuilderParameters parameters;
 
+        public QuestionBuilderParameters Parameters
+        {
+            get { return this.parameters; }
+        }
+
         public CommonLettersInWordQuestionBuilder(int nPacks, int nMinCommonLetters = 1, int nMaxCommonLetters = 1, int nWrong = 0, int nWords = 1,
             QuestionBuilderParameters parameters = null)
         {

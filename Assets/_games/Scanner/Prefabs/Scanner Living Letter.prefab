@@ -298,7 +298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011375871730
 GameObject:
   m_ObjectHideFlags: 1
@@ -676,7 +676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012748851898
 GameObject:
   m_ObjectHideFlags: 1
@@ -1012,6 +1012,22 @@ GameObject:
   m_Layer: 0
   m_Name: LL__leg_RCalf2
   m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1882995379769674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4236271006558236}
+  - component: {fileID: 65853374006037426}
+  m_Layer: 0
+  m_Name: ScanStart (1)
+  m_TagString: Scanner_ScanStart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1739,6 +1755,7 @@ Transform:
   - {fileID: 4000010598106144}
   - {fileID: 4000013416897826}
   - {fileID: 4000010444704896}
+  - {fileID: 4236271006558236}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1914,6 +1931,19 @@ Transform:
   m_Father: {fileID: 4000013945235502}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4236271006558236
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1882995379769674}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.41, y: 4.25, z: 0}
+  m_LocalScale: {x: 8.161306, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4000013676476686}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23000012392775234
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -2041,6 +2071,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65853374006037426
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1882995379769674}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95000013774417916
 Animator:
   serializedVersion: 3
@@ -2159,8 +2201,8 @@ MonoBehaviour:
   m_fontSizeMin: 1
   m_fontSizeMax: 60
   m_fontStyle: 0
-  m_textAlignment: 17
-  m_isAlignmentEnumConverted: 0
+  m_textAlignment: 4098
+  m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -2283,8 +2325,8 @@ MonoBehaviour:
   m_fontSizeMin: 1
   m_fontSizeMax: 60
   m_fontStyle: 0
-  m_textAlignment: 17
-  m_isAlignmentEnumConverted: 0
+  m_textAlignment: 4098
+  m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -2406,10 +2448,13 @@ MonoBehaviour:
   flightSpeed: 30
   facingCamera: 1
   status: 0
+  collForScan: {fileID: 4236271006558236}
   fallOffPoint: {fileID: 4000012762341688}
   midPoint: {fileID: 4000010346749206}
   letterObjectView: {fileID: 114000010402415976}
   rainbowJet: {fileID: 1000012696403056}
+  sm: {fileID: 137000013722214376}
+  mat: {fileID: 0}
   slidingTime: 0
   bodyCollider: {fileID: 65000011591538456}
   gotSuitcase: 0

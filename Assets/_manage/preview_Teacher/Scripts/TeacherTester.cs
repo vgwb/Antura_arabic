@@ -82,7 +82,7 @@ namespace EA4S.Teacher.Test
         [DeToggleButton()]
         public bool journeyEnabledForBase = true;
 
-        [Range(1, 10)]
+        [Range(0, 10)]
         public int nWrongAnswers = 1;
         public SelectionSeverity wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
         public PackListHistory wrongHistory = PackListHistory.RepeatWhenFull;
@@ -164,9 +164,9 @@ namespace EA4S.Teacher.Test
             if (verboseQuestionPacks)
             {
                 string packsString = ConfigAI.FormatTeacherHeader("Generated Packs");
-                foreach (var pack in packs)
+                for (int i = 0; i < packs.Count; i++)
                 {
-                    packsString += "\n" + pack.ToString();
+                    packsString += "\n" + (i+1) + ": " + packs[i].ToString();
                 }
                 ConfigAI.AppendToTeacherReport(packsString);
             }
@@ -331,7 +331,7 @@ namespace EA4S.Teacher.Test
                     builder = new LettersByTypeQuestionBuilder(nPacks: nPacks, parameters: builderParams);
                     break;
                 case QuestionBuilderType.LettersInWord:
-                    builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, useAllCorrectLetters: true, parameters: builderParams);
+                    builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, useAllCorrectLetters: true, packsUsedTogether: true, parameters: builderParams);
                     break;
                 case QuestionBuilderType.LetterFormsInWords:
                     builder = new LetterFormsInWordsQuestionBuilder(nPacks, 3, parameters: builderParams);
@@ -346,7 +346,7 @@ namespace EA4S.Teacher.Test
                     builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.NumberOrdinal, parameters: builderParams);
                     break;
                 case QuestionBuilderType.WordsWithLetter:
-                    builder = new WordsWithLetterQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, parameters: builderParams);
+                    builder = new WordsWithLetterQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, packsUsedTogether: true, parameters: builderParams);
                     break;
                 case QuestionBuilderType.WordsByForm:
                     builder = new WordsByFormQuestionBuilder(nPacks: nPacks, parameters: builderParams);
