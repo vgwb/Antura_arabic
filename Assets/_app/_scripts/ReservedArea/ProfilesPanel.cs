@@ -74,11 +74,12 @@ namespace EA4S.ReservedArea
         public void OnOpenSelectedPlayerProfile()
         {
             Debug.Log("OPEN " + SelectedPlayerId);
+            AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
+            AppManager.I.NavigationManager.GoToPlayerBook();
         }
 
         public void OnDeleteSelectPlayerProfile()
         {
-            // GlobalUI.I.
             DoDeleteSelectPlayerProfile();
         }
 
