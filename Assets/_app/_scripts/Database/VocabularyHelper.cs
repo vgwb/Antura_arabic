@@ -342,16 +342,15 @@ namespace EA4S.Database
         {
             var containedLetters = GetLettersInWord(word);
             foreach (var letter in containedLetters)
-                if (!LetterContainedInAnyWord(word, letter, word_ids))
+                if (!LetterContainedInAnyWord(letter, word_ids))
                     return false;
             return true;
         }
 
-        public bool LetterContainedInAnyWord(WordData goodWord, LetterData letter, List<string> word_ids)
+        public bool LetterContainedInAnyWord(LetterData letter, List<string> word_ids)
         {
             foreach (var word_id in word_ids)
             {
-                if (word_id == goodWord.Id) continue;
                 var containedLetters = GetLettersInWord(word_id);
                 if (containedLetters.Contains(letter))
                     return true;

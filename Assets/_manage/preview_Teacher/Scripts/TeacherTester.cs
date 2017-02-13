@@ -82,7 +82,7 @@ namespace EA4S.Teacher.Test
         [DeToggleButton()]
         public bool journeyEnabledForBase = true;
 
-        [Range(1, 10)]
+        [Range(0, 10)]
         public int nWrongAnswers = 1;
         public SelectionSeverity wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
         public PackListHistory wrongHistory = PackListHistory.RepeatWhenFull;
