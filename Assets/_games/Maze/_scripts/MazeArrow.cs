@@ -18,26 +18,37 @@ namespace EA4S.Minigames.Maze
 
         private Color greenParticleSystemColor = new Color(0.2549f, 1f, 0f, 0.3765f);
         private Color redParticleSystemColor = new Color(1f, 0f, 0.102f, 0.3765f);
+        private Color yellowParticleSystemColor = new Color(1f, 0.714f, 0f, 0.3765f);
 
-        private bool IsHighlighted
+        private enum HighlightState
         {
-            get
+            None, LaunchPosition, Reached, Unreached
+        }
+        private HighlightState highlightState;
+
+        public void HighlightAsLaunchPosition()
+        {
+            if (highlightState != HighlightState.LaunchPosition)
             {
-                return highlightFX.activeSelf;
+                particleSystemMainModule.loop = true;
+                particleSystemMainModule.startColor = yellowParticleSystemColor;
+                highlightFX.SetActive(true);
+
+                highlightState = HighlightState.LaunchPosition;
             }
         }
 
-        public void Highlight(bool isLooping)
+        public void HighlightAsReached()
         {
-            if (!IsHighlighted)
+            if (highlightState != HighlightState.Reached)
             {
-                particleSystemMainModule.loop = isLooping;
+                particleSystemMainModule.loop = false;
+                particleSystemMainModule.startColor = greenParticleSystemColor;
                 highlightFX.SetActive(true);
                 _renderer.material.color = highlightedColor;
-                if (!isLooping)
-                {
-                    MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.OK);
-                }
+                MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.OK);
+
+                highlightState = HighlightState.Reached;
             }
         }
 
@@ -45,16 +56,23 @@ namespace EA4S.Minigames.Maze
         {
             highlightFX.SetActive(false);
             _renderer.material.color = normalColor;
+
+            highlightState = HighlightState.None;
         }
 
         public void MarkAsUnreached(bool isFirstUnreachedArrow)
         {
-            _renderer.material.color = unreachedColor;
-
-            if (isFirstUnreachedArrow)
+            if (highlightState != HighlightState.Unreached)
             {
-                particleSystemMainModule.startColor = redParticleSystemColor;
-                highlightFX.SetActive(true);
+                _renderer.material.color = unreachedColor;
+
+                if (isFirstUnreachedArrow)
+                {
+                    particleSystemMainModule.startColor = redParticleSystemColor;
+                    highlightFX.SetActive(true);
+                }
+
+                highlightState = HighlightState.Unreached;
             }
         }
 
