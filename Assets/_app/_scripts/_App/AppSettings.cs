@@ -12,7 +12,7 @@ namespace EA4S.Core
         public bool DoLogPlayerBehaviour;
         public bool HighQualityGfx;
 
-        public int LastActivePlayerId;
+        public string LastActivePlayerUUID;
 
         public bool UseTestDatabase;
 

@@ -16,6 +16,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         public GameObject letterHint;
         public WordFlexibleContainer wordFlexibleContainer;
+        private ILivingLetterData livingLetterData;
 
         public GameObject crack;
 
@@ -30,9 +31,40 @@ namespace EA4S.Minigames.ThrowBalls
             crackImageColor = crackImage.color;
         }
 
-        public void SetLetterHint(ILivingLetterData _data)
+        public void SetLivingLetterData(ILivingLetterData _data)
         {
+            livingLetterData = _data;
             wordFlexibleContainer.SetText(_data);
+        }
+
+        public void SetText(string text)
+        {
+            wordFlexibleContainer.Label.SetText(text);
+        }
+
+        public void WobbleLetterHint()
+        {
+            wordFlexibleContainer.gameObject.transform.DOKill(true);
+            wordFlexibleContainer.gameObject.transform.DOShakeScale(0.5f);
+        }
+
+        public void OnLetterHintClicked()
+        {
+            if (livingLetterData != null)
+            {
+                ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(livingLetterData);
+                WobbleLetterHint();
+            }
+        }
+
+        public void EnableLetterHint()
+        {
+            wordFlexibleContainer.gameObject.SetActive(true);
+        }
+
+        public void DisableLetterHint()
+        {
+            wordFlexibleContainer.gameObject.SetActive(false);
         }
 
         public void Disable()
@@ -74,7 +106,7 @@ namespace EA4S.Minigames.ThrowBalls
             crackImageColor.a = 0;
             crackImage.color = crackImageColor;
         }
-        
+
         public void Reset()
         {
             crackImageColor.a = 0;

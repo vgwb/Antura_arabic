@@ -178,7 +178,7 @@ namespace EA4S.Minigames.Scanner
 
             if (other.gameObject.name.Equals("Antura") && isDragging)
             {
-                game.antura.GetComponent<ScannerAntura>().scaredCounter++;
+                StartCoroutine(game.antura.GetComponent<ScannerAntura>().beScared());
             }
 		}
 	}

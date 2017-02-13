@@ -16,6 +16,7 @@ public class WMG_Axis_Graph_E : WMG_E_Util
 	Dictionary<string, WMG_PropertyField> yAxis2fields;
 	Dictionary<string, WMG_PropertyField> xAxisfields;
 	bool nullYaxis2;
+	WMG_Axis_Graph.orientationTypes previousOrientationType;
 
 	enum eTabType
 	{
@@ -116,8 +117,15 @@ public class WMG_Axis_Graph_E : WMG_E_Util
 				EditorUtility.SetDirty( yAxis2SO.targetObject);
 			}
 			EditorUtility.SetDirty( xAxisSO.targetObject);
+
+			if (!Application.isPlaying) {
+				if (previousOrientationType != graph.orientationType) {
+					graph.UpdateOrientation();
+				}
+			}
 		}
-		
+		previousOrientationType = graph.orientationType;
+
 		// Apply changes to the serializedProperty - always do this in the end of OnInspectorGUI.
 		serializedObject.ApplyModifiedProperties();
 		yAxisSO.ApplyModifiedProperties();
@@ -128,20 +136,7 @@ public class WMG_Axis_Graph_E : WMG_E_Util
 	}
 
 	void UpdateSceneView() {
-		Vector2 newSize = graph.getSpriteSize(graph.gameObject);
-		graph.changeSpriteSize(graph.graphBackground, Mathf.RoundToInt(newSize.x), Mathf.RoundToInt(newSize.y));
-		graph.changeSpritePositionToX(graph.graphBackground, -graph.paddingLeftRight.x);
-		graph.changeSpritePositionToY(graph.graphBackground, -graph.paddingTopBottom.y);
-		graph.UpdateBGandSeriesParentPositions(newSize.x, newSize.y);
-		// Update axes lines
-		int newX = Mathf.RoundToInt(newSize.x - graph.paddingLeftRight.x - graph.paddingLeftRight.y + graph.xAxis.AxisLinePadding);
-		if (newX < 0) newX = 0;
-		graph.changeSpriteSize(graph.xAxis.AxisLine, newX, graph.axisWidth);
-		graph.changeSpritePositionToX(graph.xAxis.AxisLine, newX / 2f);
-		int newY = Mathf.RoundToInt(newSize.y - graph.paddingTopBottom.x - graph.paddingTopBottom.y + graph.yAxis.AxisLinePadding);
-		if (newY < 0) newY = 0;
-		graph.changeSpriteSize(graph.yAxis.AxisLine, graph.axisWidth, newY);
-		graph.changeSpritePositionToY(graph.yAxis.AxisLine, newY / 2f);
+		graph.InEditorUpdate ();
 	}
 	
 	void DrawCore() {
@@ -153,18 +148,26 @@ public class WMG_Axis_Graph_E : WMG_E_Util
 		ExposeProperty(fields["useGroups"]);
 		ArrayGUIoc<string> (graph.groups, "Groups", "_groups");
 		ArrayGUI("Series", "lineSeries");
-		ExposeProperty(fields["paddingLeftRight"]);
-		ExposeProperty(fields["paddingTopBottom"]);
-		ExposeProperty(fields["theOrigin"]);
-		ExposeProperty(fields["barWidth"]);
-		ExposeProperty(fields["barAxisValue"]);
-		ExposeProperty(fields["autoUpdateOrigin"]);
-		ExposeProperty(fields["autoUpdateBarWidth"]);
-		ExposeProperty(fields["autoUpdateBarWidthSpacing"]);
+		ExposeProperty(fields["autoPaddingEnabled"]);
+		ExposeEnumMaskProperty(fields["autoPaddingProperties"]);
+		ExposeProperty(fields["autoPaddingAmount"]);
+		if (!graph.autoPaddingEnabled) {
+			ExposeProperty (fields ["paddingLeftRight"]);
+			ExposeProperty (fields ["paddingTopBottom"]);
+		}
+		if (!ExposeAndReturnBool (fields ["autoUpdateOrigin"])) {
+			ExposeProperty(fields["theOrigin"]);
+		}
+		if (!ExposeAndReturnBool (fields ["autoUpdateBarWidth"])) {
+			ExposeProperty (fields ["barWidth"]);
+		} else {
+			ExposeProperty(fields["autoUpdateBarWidthSpacing"]);
+		}
+		if (!ExposeAndReturnBool (fields ["autoUpdateBarAxisValue"])) {
+			ExposeProperty(fields["barAxisValue"]);
+		}
+
 		ExposeProperty(fields["autoUpdateSeriesAxisSpacing"]);
-		ExposeProperty(fields["autoUpdateBarAxisValue"]);
-		ExposeProperty(fields["autoFitLabels"]);
-		ExposeProperty(fields["autoFitPadding"]);
 	}
 
 	void DrawYAxis() {
@@ -180,6 +183,7 @@ public class WMG_Axis_Graph_E : WMG_E_Util
 		ExposeProperty(yAxisfields["HideAxisArrowBotLeft"], "" , "Hide Bot Arrow");
 		ExposeProperty(yAxisfields["hideGrid"]);
 		ExposeProperty(yAxisfields["hideTicks"]);
+		ExposeProperty(yAxisfields["hideAxisLine"]);
 		ExposeProperty(yAxisfields["AxisTitleString"]);
 		ExposeProperty(yAxisfields["AxisTitleOffset"]);
 		ExposeProperty(yAxisfields["AxisTitleFontSize"]);
@@ -188,21 +192,19 @@ public class WMG_Axis_Graph_E : WMG_E_Util
 		EditorGUILayout.Separator();
 		EditorGUILayout.LabelField("Label Parameters", EditorStyles.boldLabel);
 
+		ExposeProperty(yAxisfields["hideLabels"]);
 		ExposeProperty(yAxisfields["LabelType"]);
+		ExposeProperty(yAxisfields["SetLabelsUsingMaxMin"], "Use the axis Min and Max values to automatically set the labels.");
 		ArrayGUIoc<string> (((WMG_Axis)yAxisSO.targetObject).axisLabels, "Labels", "_axisLabels", yAxisSO);
 		ExposeProperty(yAxisfields["AxisLabelSkipInterval"]);
 		ExposeProperty(yAxisfields["AxisLabelSkipStart"]);
 		ExposeProperty(yAxisfields["AxisLabelRotation"]);
-		ExposeProperty(yAxisfields["SetLabelsUsingMaxMin"]);
 		ExposeProperty(yAxisfields["AxisLabelSize"]);
 		ExposeProperty(yAxisfields["AxisLabelColor"]);
 		ExposeProperty(yAxisfields["AxisLabelFontStyle"]);
 		graph.yAxis.AxisLabelFont = (Font)EditorGUILayout.ObjectField ("Axis Label Font", graph.yAxis.AxisLabelFont, typeof(Font), false);
 		ExposeProperty(yAxisfields["numDecimalsAxisLabels"]);
-		ExposeProperty(yAxisfields["hideLabels"]);
 		ExposeProperty(yAxisfields["AxisLabelSpaceOffset"]);
-		ExposeProperty(yAxisfields["autoFitRotation"]);
-		ExposeProperty(yAxisfields["autoFitMaxBorder"]);
 
 		if (graph.axesType == WMG_Axis_Graph.axesTypes.MANUAL) {
 			EditorGUILayout.Separator();
@@ -234,6 +236,7 @@ public class WMG_Axis_Graph_E : WMG_E_Util
 		ExposeProperty(yAxis2fields["HideAxisArrowBotLeft"], "" , "Hide Bot Arrow");
 		ExposeProperty(yAxis2fields["hideGrid"]);
 		ExposeProperty(yAxis2fields["hideTicks"]);
+		ExposeProperty(yAxis2fields["hideAxisLine"]);
 		ExposeProperty(yAxis2fields["AxisTitleString"]);
 		ExposeProperty(yAxis2fields["AxisTitleOffset"]);
 		ExposeProperty(yAxis2fields["AxisTitleFontSize"]);
@@ -241,22 +244,20 @@ public class WMG_Axis_Graph_E : WMG_E_Util
 		
 		EditorGUILayout.Separator();
 		EditorGUILayout.LabelField("Label Parameters", EditorStyles.boldLabel);
-		
+
+		ExposeProperty(yAxis2fields["hideLabels"]);
 		ExposeProperty(yAxis2fields["LabelType"]);
+		ExposeProperty(yAxis2fields["SetLabelsUsingMaxMin"], "Use the axis Min and Max values to automatically set the labels.");
 		ArrayGUIoc<string> (((WMG_Axis)yAxis2SO.targetObject).axisLabels, "Labels", "_axisLabels", yAxis2SO);
 		ExposeProperty(yAxis2fields["AxisLabelSkipInterval"]);
 		ExposeProperty(yAxis2fields["AxisLabelSkipStart"]);
 		ExposeProperty(yAxis2fields["AxisLabelRotation"]);
-		ExposeProperty(yAxis2fields["SetLabelsUsingMaxMin"]);
 		ExposeProperty(yAxis2fields["AxisLabelSize"]);
 		ExposeProperty(yAxis2fields["AxisLabelColor"]);
 		ExposeProperty(yAxis2fields["AxisLabelFontStyle"]);
 		graph.yAxis2.AxisLabelFont = (Font)EditorGUILayout.ObjectField ("Axis Label Font", graph.yAxis2.AxisLabelFont, typeof(Font), false);
 		ExposeProperty(yAxis2fields["numDecimalsAxisLabels"]);
-		ExposeProperty(yAxis2fields["hideLabels"]);
 		ExposeProperty(yAxis2fields["AxisLabelSpaceOffset"]);
-		ExposeProperty(yAxis2fields["autoFitRotation"]);
-		ExposeProperty(yAxis2fields["autoFitMaxBorder"]);
 		
 		if (graph.axesType == WMG_Axis_Graph.axesTypes.MANUAL) {
 			EditorGUILayout.Separator();
@@ -288,6 +289,7 @@ public class WMG_Axis_Graph_E : WMG_E_Util
 		ExposeProperty(xAxisfields["HideAxisArrowBotLeft"], "" , "Hide Left Arrow");
 		ExposeProperty(xAxisfields["hideGrid"]);
 		ExposeProperty(xAxisfields["hideTicks"]);
+		ExposeProperty(xAxisfields["hideAxisLine"]);
 		ExposeProperty(xAxisfields["AxisTitleString"]);
 		ExposeProperty(xAxisfields["AxisTitleOffset"]);
 		ExposeProperty(xAxisfields["AxisTitleFontSize"]);
@@ -295,22 +297,20 @@ public class WMG_Axis_Graph_E : WMG_E_Util
 		
 		EditorGUILayout.Separator();
 		EditorGUILayout.LabelField("Label Parameters", EditorStyles.boldLabel);
-		
+
+		ExposeProperty(xAxisfields["hideLabels"]);
 		ExposeProperty(xAxisfields["LabelType"]);
+		ExposeProperty(xAxisfields["SetLabelsUsingMaxMin"], "Use the axis Min and Max values to automatically set the labels.");
 		ArrayGUIoc<string> (((WMG_Axis)xAxisSO.targetObject).axisLabels, "Labels", "_axisLabels", xAxisSO);
 		ExposeProperty(xAxisfields["AxisLabelSkipInterval"]);
 		ExposeProperty(xAxisfields["AxisLabelSkipStart"]);
 		ExposeProperty(xAxisfields["AxisLabelRotation"]);
-		ExposeProperty(xAxisfields["SetLabelsUsingMaxMin"]);
 		ExposeProperty(xAxisfields["AxisLabelSize"]);
 		ExposeProperty(xAxisfields["AxisLabelColor"]);
 		ExposeProperty(xAxisfields["AxisLabelFontStyle"]);
 		graph.xAxis.AxisLabelFont = (Font)EditorGUILayout.ObjectField ("Axis Label Font", graph.xAxis.AxisLabelFont, typeof(Font), false);
 		ExposeProperty(xAxisfields["numDecimalsAxisLabels"]);
-		ExposeProperty(xAxisfields["hideLabels"]);
 		ExposeProperty(xAxisfields["AxisLabelSpaceOffset"]);
-		ExposeProperty(xAxisfields["autoFitRotation"]);
-		ExposeProperty(xAxisfields["autoFitMaxBorder"]);
 
 		if (graph.axesType == WMG_Axis_Graph.axesTypes.MANUAL) {
 			EditorGUILayout.Separator();
@@ -354,13 +354,18 @@ public class WMG_Axis_Graph_E : WMG_E_Util
 		graph.barPrefab = EditorGUILayout.ObjectField("Bar Prefab", graph.barPrefab, typeof(Object), false);
 		graph.seriesPrefab = EditorGUILayout.ObjectField("Series Prefab", graph.seriesPrefab, typeof(Object), false);
 		ExposeProperty(fields["tickSize"]);
+		graph.resizingChangesFontScaleInsteadOfFontSize = EditorGUILayout.Toggle 
+			(new GUIContent("Resize - Font Scale", "For Resize functionality - If true, label objects resize using localScale, otherwise font size."), 
+			 graph.resizingChangesFontScaleInsteadOfFontSize);
 		ExposeProperty(fields["graphTitleString"]);
 		ExposeProperty(fields["graphTitleOffset"]);
+		ExposeProperty(fields["graphTitleSize"]);
 		graph.yAxis = (WMG_Axis)EditorGUILayout.ObjectField("Y Axis", graph.yAxis, typeof(WMG_Axis), true);
 		graph.yAxis2 = (WMG_Axis)EditorGUILayout.ObjectField("Y Axis 2", graph.yAxis2, typeof(WMG_Axis), true);
 		graph.xAxis = (WMG_Axis)EditorGUILayout.ObjectField("X Axis", graph.xAxis, typeof(WMG_Axis), true);
 		graph.legend = (WMG_Legend)EditorGUILayout.ObjectField("Legend", graph.legend, typeof(WMG_Legend), true);
 		graph.anchoredParent = (GameObject)EditorGUILayout.ObjectField("Anchored Parent", graph.anchoredParent, typeof(GameObject), true);
+		graph.graphAreaBoundsParent = (GameObject)EditorGUILayout.ObjectField("Graph Area Bounds", graph.graphAreaBoundsParent, typeof(GameObject), true);
 		graph.graphBackground = (GameObject)EditorGUILayout.ObjectField("Graph Background", graph.graphBackground, typeof(GameObject), true);
 		graph.seriesParent = (GameObject)EditorGUILayout.ObjectField("Series Parent", graph.seriesParent, typeof(GameObject), true);
 	}

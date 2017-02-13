@@ -2,28 +2,100 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// A class used to create random graphs.
+/// </summary>
 public class WMG_Random_Graph : WMG_Graph_Manager {
 
+	/// <summary>
+	/// The prefab used to create the nodes.
+	/// </summary>
 	public Object nodePrefab;
+	/// <summary>
+	/// The prefab used to create the links.
+	/// </summary>
 	public Object linkPrefab;
-	
+	/// <summary>
+	/// The total number of nodes that can appear in this graph.
+	/// </summary>
 	public int numNodes;
+	/// <summary>
+	/// The minimum possible angle between neighbor nodes. So if this is 15, then there should not exist any 2 neighbors that are less than 15 degrees apart from one another.
+	/// </summary>
 	public float minAngle;
+	/// <summary>
+	/// This can be used to control the direction in which the graph propagates. For example, to create procedural lightning looking graphs you would want 
+	/// to set this to a narrow range like 0 - 45.
+	/// </summary>
 	public float minAngleRange;
+	/// <summary>
+	/// This can be used to control the direction in which the graph propagates. For example, to create procedural lightning looking graphs you would want 
+	/// to set this to a narrow range like 0 - 45.
+	/// </summary>
 	public float maxAngleRange;
+	/// <summary>
+	/// This controls how many neighbors there are for each node.
+	/// </summary>
 	public int minRandomNumberNeighbors;
+	/// <summary>
+	/// This controls how many neighbors there are for each node.
+	/// </summary>
 	public int maxRandomNumberNeighbors;
+	/// <summary>
+	/// Determines the distance between nodes. Setting a high range will create more sporadic looking graphs, while setting the values equal will generate grid like graphs.
+	/// </summary>
 	public float minRandomLinkLength;
+	/// <summary>
+	/// Determines the distance between nodes. Setting a high range will create more sporadic looking graphs, while setting the values equal will generate grid like graphs.
+	/// </summary>
 	public float maxRandomLinkLength;
+	/// <summary>
+	/// Determines how the propagation proceeds. If this is false, then a node is randomly picked from the set of unprocessed nodes to process. 
+	/// Processing a node randomly generates neighbors for that node, marks the node processed, and moves on to another node process. 
+	/// If this is true, then the next node processed will be the oldest one that was created. 
+	/// </summary>
 	public bool centerPropogate;
+	/// <summary>
+	/// This ensures that a randomly generated link does not intersect with any existing links. 
+	/// This should generally always be set to true unless you want to create some strange overlapping graph.
+	/// </summary>
 	public bool noLinkIntersection;
+	/// <summary>
+	/// This ensures that a randomly generated node will not intersect with any existing nodes. Circle intersection checks are done using the radii of the nodes. 
+	/// This should generally always be set to true unless you want nodes to possibly overlap.
+	/// </summary>
 	public bool noNodeIntersection;
+	/// <summary>
+	/// This adds onto the radii used in the circle intersection checks used for the node intersection checks. 
+	/// Increasing this value will ensure that nodes are more spaced apart from one another.
+	/// </summary>
 	public float noNodeIntersectionRadiusPadding;
+	/// <summary>
+	/// Sometimes highly depending on the parameters used, the graph will fail to produce any results, or fail to produce all the nodes specified. 
+	/// If this happens a warning is logged to the console saying how many nodes were produced which was less than the number of nodes you specified. 
+	/// This generally means your parameters were too specific. To help with this, you can increase this number to try and fully complete the graph. 
+	/// The default is 100, meaning while processing a neighbor, up to 100 random angles and link lengths are generated. 
+	/// Failing any of the checks such as the min neighbor angle or intersection checks will increase the attempt number and generate a new possibility.
+	/// </summary>
 	public int maxNeighborAttempts;
+	/// <summary>
+	/// Ensures that creating a new node does not intersect an existing link, or that creating a new link does not intersect an existing node. 
+	/// This performs circle-line intersection checks with the creating link / node with all existing nodes / links.
+	/// </summary>
 	public bool noLinkNodeIntersection;
+	/// <summary>
+	/// Increases the radius of the node used in the circle-line intersection checks. 
+	/// A higher value will ensure a graph that has links and nodes that are more spaced apart from each other.
+	/// </summary>
 	public float noLinkNodeIntersectionRadiusPadding;
-	
+	/// <summary>
+	/// If true, then the #GenerateGraph function is called in Awake(). If you want to change parameters at run-time and 
+	/// then generate the graph yourself then you would set this to false, get a reference to this script and call #GenerateGraph manually.
+	/// </summary>
 	public bool createOnStart;
+	/// <summary>
+	/// This can be useful to troubleshoot what is happening during the random graph generation process.
+	/// </summary>
 	public bool debugRandomGraph;
 
 	// Use this for initialization
@@ -32,13 +104,31 @@ public class WMG_Random_Graph : WMG_Graph_Manager {
 			GenerateGraph();
 		}
 	}
-	
+
+	/// <summary>
+	/// Creates a node, and then calls #GenerateGraphFromNode.
+	/// </summary>
+	/// <returns>The graph.</returns>
 	public List<GameObject> GenerateGraph() {
 		GameObject fromN = CreateNode(nodePrefab, null);
 		WMG_Node fromNode = fromN.GetComponent<WMG_Node>();
 		return GenerateGraphFromNode(fromNode);
 	}
-	
+
+	/// <summary>
+	/// Generates the random graph. Starts from a single node, where each node is processed by attempting to create neighbors and links to neighbors from the node.
+	/// This function ends when all existing nodes have been fully processed (#maxNeighborAttempts reached for each node), or when #numNodes has been created.
+	/// A node is processed if all of its neighbors were successfully created or if not all neighbors were created, but #maxNeighborAttempts was reached.
+	/// #maxNeighborAttempts (a failed neighbor creation attempt) can get incremented for the following reasons:
+	/// - When a randomly generated angle falls between existing neighbors that is less than #minAngle.
+	/// - If #noLinkIntersection is true, a randomly generated angle and length would create a link that would cross an existing link in this graph's links parent.
+	/// - If #noNodeIntersection is true, a randomly generated angle and length would create a node that that would circle interesect an existing node in this graph's nodes parent.
+	/// - The same as above but #noNodeIntersectionRadiusPadding > 0, performs the circle intersections check with the nodes' radii increased by the specified padding.
+	/// - If #noLinkNodeIntersection is true, a randomly generated node would intersect with an existing link or a randomly generated link would intersect with an existing node.
+	/// - The same as above but #noLinkNodeIntersectionRadiusPadding > 0, performs circle - line intersections with the node radius increased by the specified padding.
+	/// </summary>
+	/// <returns>The graph from node.</returns>
+	/// <param name="fromNode">From node.</param>
 	public List<GameObject> GenerateGraphFromNode(WMG_Node fromNode) {
 		// Given a starting node, generate a graph of nodes around the starting node
 		// Returns the list of nodes and links composing the resulting graph
@@ -53,17 +143,7 @@ public class WMG_Random_Graph : WMG_Graph_Manager {
 		int numNodesProcessed = 0;
 		int numNodesStarting = NodesParent.Count - 1;
 		nodes[procNodeNum] = curObj;
-		
-		// Each while loop processes a node by attempting to create neighbors and links to neighbors from the node.
-		// The loop ends when all nodes have been processed or when the number of nodes specified have been created.
-		// A node is processed if all of its neighbors were successfully created or if not all neighbors were created, but maxNeighborAttempts was reached.
-		// maxNeighborAttempts (a failed neighbor creation attempt) can get incremented for the following reasons:
-		// 1. When a randomly generated angle falls between existing neighbors that is less than minAngle.
-		// 2. If noLinkIntersection is true, a randomly generated angle and length would create a link that would cross an existing link in this manager's links parent.
-		// 3. If noNodeIntersection is true, a randomly generated angle and length would create a node that that would circle interesect an existing node in this manager's nodes parent.
-		// 3 cont. The same as above but noNodeIntersectionRadiusPadding > 0, performs the circle intersections check with the nodes' radii increased by the specified padding.
-		// 4. If noLinkNodeIntersection is true, a randomly generated node would intersect with an existing link or a randomly generated link would intersect with an existing node.
-		// 4 cont. The same as above but noLinkNodeIntersectionRadiusPadding > 0, performas the circle - line intersections with the node radius increased by the specified padding.
+
 		while (NodesParent.Count - numNodesStarting < numNodes) {
 			
 			WMG_Node procNode = nodes[procNodeNum].GetComponent<WMG_Node>();

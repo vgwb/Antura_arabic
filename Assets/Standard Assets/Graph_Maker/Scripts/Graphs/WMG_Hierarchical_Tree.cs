@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// A class used for creating hierarchical tree type graphs.
+/// </summary>
 public class WMG_Hierarchical_Tree : WMG_Graph_Manager {
 
 	[System.Flags]
@@ -9,7 +12,10 @@ public class WMG_Hierarchical_Tree : WMG_Graph_Manager {
 		NodeWidthHeight 		= 1 << 0,
 		NodeRadius		 		= 1 << 1
 	}
-
+	/// <summary>
+	/// Specifies which graph content is resized when #resizeEnabled = true.
+	/// </summary>
+	/// <value>The resize properties.</value>
 	public ResizeProperties resizeProperties { get {return _resizeProperties;} 
 		set {
 			if (_resizeProperties != value) {
@@ -18,7 +24,10 @@ public class WMG_Hierarchical_Tree : WMG_Graph_Manager {
 			}
 		}
 	}
-
+	/// <summary>
+	/// Determines whether graph content (#resizeProperties) will resize post graph initialization based on the percentage change of the graph's rect transform width / height.
+	/// </summary>
+	/// <value><c>true</c> if resize enabled; otherwise, <c>false</c>.</value>
 	public bool resizeEnabled { get {return _resizeEnabled;} 
 		set {
 			if (_resizeEnabled != value) {
@@ -27,28 +36,70 @@ public class WMG_Hierarchical_Tree : WMG_Graph_Manager {
 			}
 		}
 	}
-
+	/// <summary>
+	/// The parent of all the nodes.
+	/// </summary>
 	public GameObject nodeParent;
+	/// <summary>
+	/// The parent of all the links.
+	/// </summary>
 	public GameObject linkParent;
-	
+	/// <summary>
+	/// The default node prefab used to create all nodes, which is used unless #nodePrefabs is populated.
+	/// </summary>
 	public Object defaultNodePrefab;
+	/// <summary>
+	/// The prefab used to create all links..
+	/// </summary>
 	public Object linkPrefab;
-	
+	/// <summary>
+	/// The total number of nodes in this tree (excluding invisible nodes).
+	/// </summary>
 	public int numNodes;
+	/// <summary>
+	/// The total number of links in this tree.
+	/// </summary>
 	public int numLinks;
-	
+	/// <summary>
+	/// Can be used to specify individual prefabs for each node.
+	/// </summary>
 	public List<Object> nodePrefabs;
+	/// <summary>
+	/// Each element in this list represents a node (excluding invisible nodes), and this value is the node's column position.
+	/// </summary>
 	public List<int> nodeColumns;
+	/// <summary>
+	/// Each element in this list represents a node (excluding invisible nodes), and this value is the node's row position.
+	/// </summary>
 	public List<int> nodeRows;
+	/// <summary>
+	/// This is the list of links and each link's from node. The ID here corresponds to the element in the #nodeColumns list. 
+	/// For example node column element 0 is node ID 1. This list also applies for invisible nodes, however the node IDs will be denoted by a negative number. 
+	/// </summary>
 	public List<int> linkNodeFromIDs;
+	/// <summary>
+	/// Same as #linkNodeFromIDs, except this is the to node or the ending point for the links.
+	/// </summary>
 	public List<int> linkNodeToIDs;
-	
+	/// <summary>
+	/// The invisible node prefab.
+	/// </summary>
 	public Object invisibleNodePrefab;
+	/// <summary>
+	/// The number of invisible nodes.
+	/// </summary>
 	public int numInvisibleNodes;
+	/// <summary>
+	/// Invisible nodes are used to create angled links where no node appears. This is the invisible node equivalent of #nodeColumns.
+	/// </summary>
 	public List<int> invisibleNodeColumns;
+	/// <summary>
+	/// Invisible nodes are used to create angled links where no node appears. This is the invisible node equivalent of #nodeRows.
+	/// </summary>
 	public List<int> invisibleNodeRows;
-
-	// Determines size of the nodes. The nodeRadius and squareNodes determine how the links connect to the nodes.
+	/// <summary>
+	/// Determines the width and height of all nodes.
+	/// </summary>
 	public int nodeWidthHeight { get {return _nodeWidthHeight;} 
 		set {
 			if (_nodeWidthHeight != value) {
@@ -57,6 +108,10 @@ public class WMG_Hierarchical_Tree : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// This is the radius of all circle nodes or half the width / height of all square nodes. This determine the starting and ending points for the links.
+	/// </summary>
+	/// <value>The node radius.</value>
 	public float nodeRadius { get {return _nodeRadius;} 
 		set {
 			if (_nodeRadius != value) {
@@ -65,6 +120,11 @@ public class WMG_Hierarchical_Tree : WMG_Graph_Manager {
 			}
 		}
 	}
+	/// <summary>
+	/// This sets a boolean on all nodes to tell whether or not the node is represented as a square instead of a circle. 
+	/// Square nodes will have the effect of making the link start and end points be based on the square's edge.
+	/// </summary>
+	/// <value><c>true</c> if square nodes; otherwise, <c>false</c>.</value>
 	public bool squareNodes { get {return _squareNodes;} 
 		set {
 			if (_squareNodes != value) {
@@ -107,10 +167,13 @@ public class WMG_Hierarchical_Tree : WMG_Graph_Manager {
 		Init ();
 		PauseCallbacks();
 		CreateNodes();
-		CreatedLinks();
+		CreateLinks();
 		treeC.Changed();
 	}
 
+	/// <summary>
+	/// Initializes this graph, and should be called before anything else.
+	/// </summary>
 	public void Init() {
 		if (hasInit) return;
 		hasInit = true;
@@ -130,6 +193,9 @@ public class WMG_Hierarchical_Tree : WMG_Graph_Manager {
 		Refresh();
 	}
 
+	/// <summary>
+	/// Caches initial property values that are used as the basis for #resizeEnabled functionality, called automatically during #Init. 
+	/// </summary>
 	public void setOriginalPropertyValues() {
 		cachedContainerWidth = getSpriteWidth(this.gameObject);
 		cachedContainerHeight = getSpriteHeight(this.gameObject);
@@ -157,21 +223,24 @@ public class WMG_Hierarchical_Tree : WMG_Graph_Manager {
 		}
 	}
 
-	private float getNewResizeVariable(float sizeFactor, float variable) {
+	float getNewResizeVariable(float sizeFactor, float variable) {
 		return variable + ((sizeFactor - 1) * variable);
 	}
 
 	void updateFromResize() {
 		bool resizeChanged = false;
-		updateCacheAndFlag<float>(ref cachedContainerWidth, getSpriteWidth(this.gameObject), ref resizeChanged);
-		updateCacheAndFlag<float>(ref cachedContainerHeight, getSpriteHeight(this.gameObject), ref resizeChanged);
+		WMG_Util.updateCacheAndFlag<float>(ref cachedContainerWidth, getSpriteWidth(this.gameObject), ref resizeChanged);
+		WMG_Util.updateCacheAndFlag<float>(ref cachedContainerHeight, getSpriteHeight(this.gameObject), ref resizeChanged);
 		if (resizeChanged) {
 			treeC.Changed();
 			resizeC.Changed();
 		}
 	}
 
-	
+	/// <summary>
+	/// Refreshes the graph, and happens automatically in Update(), but sometimes it is useful or necessary to call this manually, note that refresh updates
+	/// only the parts of the graph affected by properties that have changed since a last refresh.
+	/// </summary>
 	public void Refresh() {
 		ResumeCallbacks();
 		PauseCallbacks();
@@ -191,6 +260,11 @@ public class WMG_Hierarchical_Tree : WMG_Graph_Manager {
 		}
 	}
 
+	/// <summary>
+	/// Gets the nodes in the specified row.
+	/// </summary>
+	/// <returns>The nodes in row.</returns>
+	/// <param name="rowNum">Row number.</param>
 	public List<GameObject> getNodesInRow(int rowNum) {
 		List<GameObject> returnList = new List<GameObject>();
 		for (int i = 0; i < treeNodes.Count; i++) {
@@ -198,7 +272,12 @@ public class WMG_Hierarchical_Tree : WMG_Graph_Manager {
 		}
 		return returnList;
 	}
-	
+
+	/// <summary>
+	/// Gets the nodes in the specified column.
+	/// </summary>
+	/// <returns>The nodes in column.</returns>
+	/// <param name="colNum">Col number.</param>
 	public List<GameObject> getNodesInColumn(int colNum) {
 		List<GameObject> returnList = new List<GameObject>();
 		for (int i = 0; i < treeNodes.Count; i++) {
@@ -240,7 +319,7 @@ public class WMG_Hierarchical_Tree : WMG_Graph_Manager {
 		}
 	}
 	
-	public void CreateNodes() {
+	void CreateNodes() {
 		// Create nodes based on numNodes
 		for (int i = 0; i < numNodes; i++) {
 			if (treeNodes.Count <= i) {
@@ -259,7 +338,7 @@ public class WMG_Hierarchical_Tree : WMG_Graph_Manager {
 		}
 	}
 	
-	public void CreatedLinks() {
+	void CreateLinks() {
 		// Create links based on numLinks
 		for (int i = 0; i < numLinks; i++) {
 			if (treeLinks.Count <= i) {
