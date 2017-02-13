@@ -48,13 +48,13 @@ MonoBehaviour:
       Variation: CompleteWord
       Scene: game_Assessment
       AffectedPlaySkills: []
-    - Title_En: Letter Shapes
+    - Title_En: Complete the Word Shape
       Title_Ar: 
       Code: 0
       Available: 1
       Type: 2
       Main: Assessment
-      Variation: LetterShape
+      Variation: CompleteWord
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Letters & Words
