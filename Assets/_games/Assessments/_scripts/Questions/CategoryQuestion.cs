@@ -9,7 +9,7 @@ namespace EA4S.Assessment
     {
         private GameObject gameObj;
 
-        public CategoryQuestion( GameObject q, int correctAnswers, AssessmentDialogues dialogues)
+        public CategoryQuestion( GameObject q, int correctAnswers, AssessmentAudioManager dialogues)
         {
             gameObj = q;
             placeholdersSet = new List<GameObject>();

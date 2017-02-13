@@ -1,4 +1,3 @@
-using EA4S.MinigamesCommon;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +6,10 @@ namespace EA4S.Assessment
 {
     internal class DefaultDragManager : IDragManager
     {
-        private IAudioManager audioManager;
+        private AssessmentAudioManager audioManager;
         private AnswerChecker checker;
 
-        public DefaultDragManager( IAudioManager audioManager, AnswerChecker checker)
+        public DefaultDragManager( AssessmentAudioManager audioManager, AnswerChecker checker)
         {
             this.audioManager = audioManager;
             this.checker = checker;
@@ -83,7 +82,8 @@ namespace EA4S.Assessment
             if (this.droppable != null)
                 return;
 
-            audioManager.PlaySound( Sfx.UIPopup);
+            audioManager.PlayUIPopup();
+
             this.droppable = droppable;
             PutDroppableOnTopOfList( droppable);
             droppable.StartDrag( x=>RemoveFromUpdateAndPlaceholders(x));
@@ -121,7 +121,8 @@ namespace EA4S.Assessment
         {
             if (this.droppable == droppable && droppable != null)
             {
-                audioManager.PlaySound( Sfx.UIPopup);
+                audioManager.PlayUIPopup();
+
                 if(dragOnly== false)
                     CheckCollidedWithPlaceholder( droppable);
                 RemoveFromUpdate();

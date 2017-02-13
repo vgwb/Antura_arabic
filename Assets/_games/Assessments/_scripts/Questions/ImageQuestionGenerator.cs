@@ -21,12 +21,12 @@ namespace EA4S.Assessment
         private bool missingLetter;
 
         public ImageQuestionGenerator(  IQuestionProvider provider , bool missingLetter, 
-                                        AssessmentDialogues dialogues,
+                                        AssessmentAudioManager audioManager,
                                         AssessmentEvents events)
         {
             this.provider = provider;
             this.missingLetter = missingLetter;
-            this.dialogues = dialogues;
+            this.audioManager = audioManager;
 
             if(AssessmentOptions.Instance.CompleteWordOnAnswered)
                 events.OnAllQuestionsAnswered = CompleteWordCoroutine;
@@ -40,6 +40,7 @@ namespace EA4S.Assessment
 
         private IEnumerator ShowFullWordCoroutine()
         {
+            audioManager.PlayPoofSound();
             cacheFullWordDataLL.Poof();
             cacheFullWordDataLL.Init( cacheFullWordData, false);
             yield return Wait.For( AssessmentOptions.Instance.TimeToShowCompleteWord);
@@ -50,6 +51,7 @@ namespace EA4S.Assessment
 
         private IEnumerator CompleteWordCoroutine()
         {
+            audioManager.PlayPoofSound();
             cacheCompleteWordLL.Poof();
             cacheCompleteWordLL.Label.text = cacheCompleteWord;
             yield return Wait.For( AssessmentOptions.Instance.TimeToShowCompleteWord);
@@ -184,11 +186,11 @@ namespace EA4S.Assessment
                 data = new LL_ImageData( data.Id);
 
             cacheFullWordDataLL = LivingLetterFactory.Instance.SpawnQuestion( data);
-            return new DefaultQuestion( cacheFullWordDataLL, 0, dialogues);
+            return new DefaultQuestion( cacheFullWordDataLL, 0, audioManager);
         }
 
         private const string RemovedLetterChar = "_";
-        private AssessmentDialogues dialogues;
+        private AssessmentAudioManager audioManager;
 
         private IQuestion GenerateMissingLetterQuestion( ILivingLetterData data, ILivingLetterData letterToRemove)
         {
@@ -210,13 +212,13 @@ namespace EA4S.Assessment
 
             wordGO.SetExtendedBoxCollider();
 
-            return new ImageQuestion( wordGO, imageData, dialogues);
+            return new ImageQuestion( wordGO, imageData, audioManager);
         }
 
         private Answer GenerateWrongAnswer( ILivingLetterData wrongAnswer)
         {
             return
-            LivingLetterFactory.Instance.SpawnAnswer( wrongAnswer, false, dialogues);
+            LivingLetterFactory.Instance.SpawnAnswer( wrongAnswer, false, audioManager);
         }
 
         private void GeneratePlaceHolder( IQuestion question, LivingLetterDataType dataType)
@@ -229,7 +231,7 @@ namespace EA4S.Assessment
         private Answer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
         {
             return
-            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer, true, dialogues);
+            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer, true, audioManager);
         }
     }
 }

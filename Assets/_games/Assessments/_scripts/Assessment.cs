@@ -12,7 +12,7 @@ namespace EA4S.Assessment
                             IQuestionGenerator question_generator,
                             ILogicInjector logic_injector,
                             IAssessmentConfiguration game_conf,
-                            AssessmentDialogues dialogues)
+                            AssessmentAudioManager dialogues)
         {
             AnswerPlacer = answ_placer;
             QuestionGenerator = question_generator;
@@ -148,6 +148,6 @@ namespace EA4S.Assessment
 
         public IAssessmentConfiguration Configuration { get; private set; }
 
-        public AssessmentDialogues Dialogues { get; private set; }
+        public AssessmentAudioManager Dialogues { get; private set; }
     }
 }

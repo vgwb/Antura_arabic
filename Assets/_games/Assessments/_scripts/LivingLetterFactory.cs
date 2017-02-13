@@ -1,4 +1,5 @@
 using EA4S.MinigamesAPI;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -26,7 +27,7 @@ namespace EA4S.Assessment
             return letter;
         }
 
-        public Answer SpawnAnswer( ILivingLetterData data, bool correct, AssessmentDialogues dialogues)
+        public Answer SpawnAnswer( ILivingLetterData data, bool correct, AssessmentAudioManager dialogues)
         {
             // Organize LLs in inspector's hierarchy view
             var letter = SpawnStillLetter( Answers);
@@ -60,7 +61,7 @@ namespace EA4S.Assessment
             return letter;
         }
 
-        public QuestionBox SpawnQuestionBox( StillLetterBox[] letterBoxes)
+        public QuestionBox SpawnQuestionBox( IEnumerable< StillLetterBox> letterBoxes)
         {
             counter++;
             var qbox = (Instantiate( QuestionBoxPrefab) as GameObject)
