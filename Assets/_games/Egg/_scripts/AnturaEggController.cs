@@ -60,6 +60,7 @@ namespace EA4S.Minigames.Egg
 
             Move(enterPosition.position, 1f, delegate ()
             {
+                EggConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Dog_Inhale);
                 anturaAnimation.State = AnturaAnimationStates.sucking;
 
                 if (callback != null)
@@ -71,6 +72,7 @@ namespace EA4S.Minigames.Egg
 
         public void DoSpit()
         {
+            EggConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Dog_Exhale);
             anturaAnimation.DoSpit(false);
         }
 

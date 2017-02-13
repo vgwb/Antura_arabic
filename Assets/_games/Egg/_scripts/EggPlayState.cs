@@ -144,6 +144,7 @@ namespace EA4S.Minigames.Egg
             if (repeatInputHasProgressed)
             {
                 PlayPositiveAudioFeedback();
+
                 game.eggController.EmoticonPositive();
                 game.eggController.StartShake();
                 game.eggController.ParticleCorrectEnabled();
@@ -239,6 +240,7 @@ namespace EA4S.Minigames.Egg
 
                     if (!enteredRepeatMode)
                     {
+                        EggConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.OK);
                         enteredRepeatMode = true;
                         Vector3 clickPosition = game.eggButtonBox.GetButtons(false)[0].transform.position;
                         TutorialUI.ClickRepeat(clickPosition, 4);
@@ -332,6 +334,7 @@ namespace EA4S.Minigames.Egg
             }
 
             game.eggController.EmoticonNegative();
+            EggConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
 
             letterOnSequence = 0;
             questionProgress = 0;
