@@ -6897,23 +6897,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a981b414f6d680b44afbbed2226b685d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verboseQuestionPacks: 0
+  verboseQuestionPacks: 1
   verboseDataSelection: 0
-  verboseDataFiltering: 0
-  verbosePlaySessionInitialisation: 1
+  verboseDataFiltering: 1
+  verbosePlaySessionInitialisation: 0
   numberOfSimulations: 1
   yieldEverySimulations: 20
   currentJourneyStage: 3
   currentJourneyLB: 4
   isAssessment: 0
-  nPacks: 5
+  nPacks: 4
   nCorrectAnswers: 1
   correctSeverity: 0
-  correctHistory: 0
+  correctHistory: 2
   journeyEnabledForBase: 1
   nWrongAnswers: 1
   wrongSeverity: 0
-  wrongHistory: 0
+  wrongHistory: 2
   journeyEnabledForWrong: 1
   journey_stage_in: {fileID: 680790662}
   journey_learningblock_in: {fileID: 973709606}

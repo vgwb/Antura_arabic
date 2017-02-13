@@ -367,19 +367,17 @@ namespace EA4S.Database
             return false;
         }
 
-    }
     #endregion
 
     #region Phrase -> Word
 
-    /// <summary>
-    /// Gets the words in phrase, taken from field Words of data Pharse. these words are set manually in the db
-    /// </summary>
-    /// <returns>The words in phrase.</returns>
-    /// <param name="phraseId">Phrase identifier.</param>
-    /// <param name="wordFilters">Word filters.</param>
-
-    public List<WordData> GetWordsInPhrase(string phraseId, WordFilters wordFilters = null)
+        /// <summary>
+        /// Gets the words in phrase, taken from field Words of data Pharse. these words are set manually in the db
+        /// </summary>
+        /// <returns>The words in phrase.</returns>
+        /// <param name="phraseId">Phrase identifier.</param>
+        /// <param name="wordFilters">Word filters.</param>
+        public List<WordData> GetWordsInPhrase(string phraseId, WordFilters wordFilters = null)
         {
             if (wordFilters == null) wordFilters = new WordFilters();
             PhraseData data = dbManager.GetPhraseDataById(phraseId);
