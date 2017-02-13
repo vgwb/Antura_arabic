@@ -80,13 +80,16 @@ namespace EA4S.Minigames.ThrowBalls
 
         private void OnMouseDown()
         {
+            OnBallTugged();
+        }
+
+        public void OnBallTugged()
+        {
             if (!IsLaunched())
             {
                 SetState(State.Dragging);
             }
         }
-
-        
 
         public void OnCollisionEnter()
         {
