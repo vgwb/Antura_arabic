@@ -48,18 +48,36 @@ MonoBehaviour:
       Variation: CompleteWord
       Scene: game_Assessment
       AffectedPlaySkills: []
-    - Title_En: Letter Shapes
+    - Title_En: Complete the Word Forms
       Title_Ar: 
-      Code: 0
+      Code: 113
       Available: 1
       Type: 2
       Main: Assessment
-      Variation: LetterShape
+      Variation: CompleteWord
+      Scene: game_Assessment
+      AffectedPlaySkills: []
+    - Title_En: Letter Forms
+      Title_Ar: 
+      Code: 100
+      Available: 1
+      Type: 2
+      Main: Assessment
+      Variation: LetterForm
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Letters & Words
       Title_Ar: 
       Code: 102
+      Available: 1
+      Type: 2
+      Main: Assessment
+      Variation: MatchLettersToWord
+      Scene: game_Assessment
+      AffectedPlaySkills: []
+    - Title_En: Letters & Words Forms
+      Title_Ar: 
+      Code: 114
       Available: 1
       Type: 2
       Main: Assessment
@@ -391,6 +409,15 @@ MonoBehaviour:
         Weight: 0.6
       - Skill: 4
         Weight: 0.4
+    - Title_En: Missing Form!
+      Title_Ar: 
+      Code: 35
+      Available: 1
+      Type: 1
+      Main: MissingLetter
+      Variation: forms
+      Scene: game_MissingLetter
+      AffectedPlaySkills: []
     - Title_En: Letter Salad!
       Title_Ar: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       Code: 21
