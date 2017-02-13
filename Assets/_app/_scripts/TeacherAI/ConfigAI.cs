@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S.Teacher
@@ -10,10 +11,10 @@ namespace EA4S.Teacher
     {
         // Reporting
         public static bool verboseTeacher = false;
-        public static bool verboseQuestionPacks = false;
-        public static bool verboseDataFiltering = false;
-        public static bool verboseDataSelection = false;
-        public static bool verbosePlaySessionInitialisation = false;
+        public static bool verboseQuestionPacks = true;
+        public static bool verboseDataFiltering = true;
+        public static bool verboseDataSelection = true;
+        public static bool verbosePlaySessionInitialisation = true;
 
         public static bool forceJourneyIgnore = false; // If true, the journey progression logic is turned off, so that all data is usable
 
@@ -64,6 +65,17 @@ namespace EA4S.Teacher
 #if UNITY_EDITOR
             System.IO.File.WriteAllText(Application.persistentDataPath + "/teacher_report.txt", teacherReportString);
 #endif
+        }
+
+        public static void ReportPacks(List<QuestionPackData> packs)
+        {
+            if (verboseQuestionPacks)
+            {
+                string packsString = FormatTeacherHeader("Generated Packs");
+                for (int i = 0; i < packs.Count; i++)
+                    packsString += "\n" + (i + 1) + ": " + packs[i].ToString();
+                AppendToTeacherReport(packsString);
+            }
         }
 
     }

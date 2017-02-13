@@ -12,7 +12,7 @@
         public const bool DebugPanelEnabled = true;
         public static bool UseUnityAnalytics = false;
         public static bool VerboseLogging = true;
-        public static bool DebugLogInserts = true;
+        public static bool DebugLogInserts = false;
 
         // Urls
         public const string UrlWebsite = "http://www.antura.org";
