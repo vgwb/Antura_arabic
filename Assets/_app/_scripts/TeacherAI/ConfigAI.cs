@@ -11,6 +11,7 @@ namespace EA4S.Teacher
     {
         // Reporting
         public static bool verboseTeacher = false;
+        public static bool verboseDifficultySelection = true;
         public static bool verboseQuestionPacks = true;
         public static bool verboseDataFiltering = true;
         public static bool verboseDataSelection = true;
