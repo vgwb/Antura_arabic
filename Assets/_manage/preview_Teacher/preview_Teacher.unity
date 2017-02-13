@@ -6906,12 +6906,12 @@ MonoBehaviour:
   currentJourneyStage: 3
   currentJourneyLB: 4
   isAssessment: 0
-  nPacks: 4
+  nPacks: 2
   nCorrectAnswers: 1
   correctSeverity: 0
   correctHistory: 2
   journeyEnabledForBase: 1
-  nWrongAnswers: 1
+  nWrongAnswers: 0
   wrongSeverity: 0
   wrongHistory: 2
   journeyEnabledForWrong: 1

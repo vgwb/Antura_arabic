@@ -133,10 +133,12 @@ namespace EA4S.Teacher
         {
             var vocabularyHelper = AppManager.I.VocabularyHelper;
             List<LetterData> eligibleLetters = new List<LetterData>();
+            var bad_words = previousPacksIDs_words;
+            bad_words.Remove(selectedWord.Id);
             foreach (var letter in wordLetters)
             {
                 // Avoid using letters that appeared in previous words
-                if (packsUsedTogether && vocabularyHelper.LetterContainedInAnyWord(selectedWord, letter, previousPacksIDs_words)) continue;
+                if (packsUsedTogether && vocabularyHelper.LetterContainedInAnyWord(letter, bad_words)) continue;
 
                 eligibleLetters.Add(letter);
             }

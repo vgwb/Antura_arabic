@@ -120,10 +120,12 @@ namespace EA4S.Teacher
             List<Database.WordData> eligibleWords = new List<Database.WordData>();
             var vocabularyHelper = AppManager.I.VocabularyHelper;
             var words = vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, commonLetter.Id);
-            foreach(var w in words)
+            var bad_letters = new List<string>(previousPacksIDs_letters);
+            bad_letters.Remove(commonLetter.Id);
+            foreach (var w in words)
             {
-                // Not words that have one of the previous letters
-                if (packsUsedTogether && vocabularyHelper.WordContainsAnyLetter(w, previousPacksIDs_letters)) continue;
+                // Not words that have one of the previous letters (but the current one)
+                if (packsUsedTogether && vocabularyHelper.WordContainsAnyLetter(w, bad_letters)) continue;
 
                 eligibleWords.Add(w);
             }
