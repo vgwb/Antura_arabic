@@ -133,7 +133,7 @@ namespace EA4S.Teacher
         {
             var vocabularyHelper = AppManager.I.VocabularyHelper;
             List<LetterData> eligibleLetters = new List<LetterData>();
-            var bad_words = previousPacksIDs_words;
+            var bad_words = new List<string>(previousPacksIDs_words);
             bad_words.Remove(selectedWord.Id);
             foreach (var letter in wordLetters)
             {

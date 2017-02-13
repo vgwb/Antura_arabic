@@ -304,6 +304,7 @@ namespace EA4S.Teacher.Test
             var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
             //InitialisePlaySession();
             var builder = config.SetupBuilder();
+            ConfigAI.AppendToTeacherReport("** Minigame " + code + " - " + builder.GetType().Name);
             var packs = builder.CreateAllQuestionPacks();
             ReportPacks(packs);
         }
