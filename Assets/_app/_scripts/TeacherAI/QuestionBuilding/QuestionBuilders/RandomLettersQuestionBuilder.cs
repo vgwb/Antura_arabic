@@ -20,6 +20,11 @@ namespace EA4S.Teacher
         private bool firstCorrectIsQuestion;
         private QuestionBuilderParameters parameters;
 
+        public QuestionBuilderParameters Parameters
+        {
+            get { return this.parameters; }
+        }
+
         public RandomLettersQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool firstCorrectIsQuestion = false, QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
