@@ -59,6 +59,7 @@ namespace EA4S.Minigames.ColorTickle
                 if (m_fDisappearTimeProgress >= m_fTimeToDisappear)//after the given time is reached
                 {
                     m_LetterObjectView.Poof(); //LL vanishes
+                    game.Context.GetAudioManager().PlaySound(Sfx.Poof);
 
                     //stop win particle
                     foreach (var particles in game.winParticle.GetComponentsInChildren<ParticleSystem>(true))
