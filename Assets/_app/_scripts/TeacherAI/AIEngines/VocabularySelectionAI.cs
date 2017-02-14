@@ -199,7 +199,16 @@ namespace EA4S.Teacher
             // (2) Filtering based on journey
             if (selectionParams.useJourney && !ConfigAI.forceJourneyIgnore)
             {
-                dataList = dataList.FindAll(x => currentJourneyContents.Contains(x));
+                switch (selectionParams.journeyFilter)
+                {
+                    case SelectionParameters.JourneyFilter.CurrentJourney:
+                        dataList = dataList.FindAll(x => currentJourneyContents.Contains(x));
+                        break;
+
+                    case SelectionParameters.JourneyFilter.UpToFullCurrentStage:
+                        dataList.FindAll(x => currentJourneyContents.Contains(x) || currentStageContents.Contains(x));
+                        break;
+                }
             }
             if (selectionParams.severity == SelectionSeverity.AllRequired) 
             {

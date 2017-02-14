@@ -68,7 +68,8 @@ namespace EA4S.Teacher
             var wrongLetters = teacher.VocabularyAi.SelectData(
                 () => vocabularyHelper.GetLettersNotIn(parameters.letterFilters, correctLetters.ToArray()),
                     new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
-                     packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs)
+                     packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs,
+                        journeyFilter: SelectionParameters.JourneyFilter.UpToFullCurrentStage)
                 );
 
             var question = firstCorrectIsQuestion ? correctLetters[0] : null;
