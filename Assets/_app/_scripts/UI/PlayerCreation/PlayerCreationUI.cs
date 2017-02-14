@@ -12,17 +12,39 @@ namespace EA4S.UI
     /// </summary>
     public class PlayerCreationUI : MonoBehaviour
     {
+        public enum UIState
+        {
+            AvatarCreation,
+            AgeSelection
+        }
+
+        public enum CategoryType
+        {
+            Age,
+            Gender,
+            Avatar,
+            Color
+        }
+
+        static class CategoryIndex
+        {
+            public const int Gender = 0;
+            public const int Avatar = 1;
+            public const int Color = 2;
+        }
+
         #region Serialized
 
         [Tooltip("Startup offset of categories")]
-        public int StartupOffsetY = 180;
-        public UIButton BtCreate;
+        public int StartupOffsetY = -160;
+        public UIButton BtContinue;
         public RectTransform CategoriesContainer;
-        public PlayerCreationUICategory[] Categories; // 0: age // 1: gender // 2: avatar // 3: color
+        public PlayerCreationUICategory[] Categories; // 0: gender // 1: avatar // 2: color
+        public PlayerCreationUICategory AgeCategory;
 
         #endregion
 
-        bool allCategoriesSelected {
+        bool allAvatarCategoriesSelected {
             get {
                 foreach (PlayerCreationUICategory cat in Categories) {
                     if (cat.SelectedIndex < 0) return false;
@@ -30,6 +52,7 @@ namespace EA4S.UI
                 return true;
             }
         }
+        public static UIState State { get; private set; }
         int selectionStep = 0; // 0: age // 1: gender // 2: avatar // 3: color
         float selectionStepOffsetY;
         Tween stepTween;
@@ -38,26 +61,31 @@ namespace EA4S.UI
 
         void Start()
         {
-            selectionStepOffsetY = StartupOffsetY / 3f;
+            selectionStepOffsetY = StartupOffsetY / (Categories.Length - 1f);
             CategoriesContainer.SetAnchoredPosY(StartupOffsetY);
-            for (int i = 1; i < Categories.Length; ++i) Categories[i].gameObject.SetActive(false);
-            BtCreate.gameObject.SetActive(false);
+            for (int i = 0; i < Categories.Length; ++i) Categories[i].gameObject.SetActive(i == 0);
+            BtContinue.gameObject.SetActive(false);
+            AgeCategory.gameObject.SetActive(false);
 
             // Listeners
-            BtCreate.Bt.onClick.AddListener(CreateProfile);
+            BtContinue.Bt.onClick.AddListener(OnContinue);
             foreach (PlayerCreationUICategory cat in Categories) {
                 cat.OnSelect += OnSelectCategory;
                 cat.OnDeselectAll += OnDeselectAllInCategory;
             }
+            AgeCategory.OnSelect += OnSelectCategory;
+            AgeCategory.OnDeselectAll += OnDeselectAllInCategory;
         }
 
         void OnDestroy()
         {
-            BtCreate.Bt.onClick.RemoveAllListeners();
+            BtContinue.Bt.onClick.RemoveAllListeners();
             foreach (PlayerCreationUICategory cat in Categories) {
                 cat.OnSelect -= OnSelectCategory;
                 cat.OnDeselectAll -= OnDeselectAllInCategory;
             }
+            AgeCategory.OnSelect -= OnSelectCategory;
+            AgeCategory.OnDeselectAll -= OnDeselectAllInCategory;
             stepTween.Kill();
         }
 
@@ -65,7 +93,35 @@ namespace EA4S.UI
 
         #region Methods
 
-        void NextStep()
+        void SwitchState(UIState toState)
+        {
+            if (State == toState) return;
+
+            State = toState;
+            PlayerCreationUICategory avatarCat = Categories[CategoryIndex.Avatar];
+            switch (toState)
+            {
+                case UIState.AgeSelection:
+                    for (int i = 0; i < avatarCat.UIButtons.Length; i++)
+                    {
+                        avatarCat.UIButtons[i].gameObject.SetActive(i == avatarCat.SelectedIndex);
+                        if (i == avatarCat.SelectedIndex) avatarCat.UIButtons[i].transform.localScale = Vector3.one * 1.65f;
+                    }
+                    foreach (PlayerCreationUICategory cat in Categories) if (cat != avatarCat) cat.gameObject.SetActive(false);
+                    AgeCategory.gameObject.SetActive(true);
+                    BtContinue.StopPulsing();
+                    BtContinue.gameObject.SetActive(false);
+                    break;
+                case UIState.AvatarCreation:
+                    AgeCategory.gameObject.SetActive(false);
+                    foreach (UIButton catBt in avatarCat.UIButtons) catBt.gameObject.SetActive(true);
+                    foreach (PlayerCreationUICategory cat in Categories) if (cat != avatarCat) cat.gameObject.SetActive(true);
+                    OnSelectCategory(avatarCat, avatarCat.UIButtons[avatarCat.SelectedIndex]);
+                    break;
+            }
+        }
+
+        void AvatarCreation_NextStep()
         {
             selectionStep++;
             if (stepTween != null) stepTween.Complete();
@@ -73,13 +129,12 @@ namespace EA4S.UI
             stepTween = CategoriesContainer.DOAnchorPosY(StartupOffsetY - selectionStepOffsetY * selectionStep, 0.4f);
         }
 
-        void StepBackwards(int toStep)
+        void AvatarCreation_StepBackwards(int toStep)
         {
-            int totSteps = selectionStep - toStep;
             if (stepTween != null) stepTween.Complete();
             for (int i = toStep + 1; i < selectionStep + 1; ++i) {
                 PlayerCreationUICategory cat = Categories[i];
-                if (i == 2) cat.ResetColor(); // Reset avatars colors
+                if (i == CategoryIndex.Color) Categories[CategoryIndex.Avatar].ResetColor(); // Reset avatars colors
                 cat.Select(-1);
                 cat.gameObject.SetActive(false);
             }
@@ -87,18 +142,18 @@ namespace EA4S.UI
             stepTween = CategoriesContainer.DOAnchorPosY(StartupOffsetY - selectionStepOffsetY * selectionStep, 0.4f);
         }
 
-        void SetGender()
+        void AvatarCreation_SetGender()
         {
-            Categories[2].AvatarSetIcon(Categories[1].SelectedIndex == 1);
+            Categories[CategoryIndex.Avatar].AvatarSetIcon(Categories[CategoryIndex.Gender].SelectedIndex == 1);
         }
 
         void CreateProfile()
         {
             PlayerCreationScene.CreatePlayer(
-                Categories[0].SelectedIndex + 4,
-                Categories[1].SelectedIndex == 0 ? PlayerGender.M : PlayerGender.F,
-                Categories[2].SelectedIndex + 1,
-                (PlayerTint)(Categories[3].SelectedIndex + 1)
+                AgeCategory.SelectedIndex + 4,
+                Categories[CategoryIndex.Gender].SelectedIndex == 0 ? PlayerGender.M : PlayerGender.F,
+                Categories[CategoryIndex.Avatar].SelectedIndex + 1,
+                (PlayerTint)(Categories[CategoryIndex.Color].SelectedIndex + 1)
             );
         }
 
@@ -108,27 +163,65 @@ namespace EA4S.UI
 
         void OnSelectCategory(PlayerCreationUICategory category, UIButton uiButton)
         {
-            int catIndex = Array.IndexOf(Categories, category);
-            if (selectionStep < Categories.Length - 1 && catIndex == selectionStep) NextStep();
-            switch (catIndex) {
-                case 1: // Gender
-                    SetGender();
+            switch (State)
+            {
+                case UIState.AvatarCreation:
+                    int catIndex = Array.IndexOf(Categories, category);
+                    if (selectionStep < Categories.Length - 1 && catIndex == selectionStep) AvatarCreation_NextStep();
+                    switch (catIndex) {
+                        case CategoryIndex.Gender:
+                            AvatarCreation_SetGender();
+                            break;
+                        case CategoryIndex.Color:
+                            Categories[CategoryIndex.Avatar].SetColor(uiButton.DefaultColor);
+                            break;
+                    }
+                    if (allAvatarCategoriesSelected)
+                    {
+                        BtContinue.gameObject.SetActive(true);
+                        BtContinue.Pulse();
+                    }
                     break;
-                case 3: // Color selection
-                    Categories[2].SetColor(uiButton.DefaultColor);
-                    BtCreate.gameObject.SetActive(true);
-                    BtCreate.Pulse();
+                case UIState.AgeSelection:
+                    switch (category.CategoryType)
+                    {
+                        case CategoryType.Age:
+                            BtContinue.gameObject.SetActive(true);
+                            BtContinue.Pulse();
+                            break;
+                        case CategoryType.Avatar:
+                            SwitchState(UIState.AvatarCreation);
+                            break;
+                    }
                     break;
             }
         }
 
         void OnDeselectAllInCategory(PlayerCreationUICategory category)
         {
-            BtCreate.StopPulsing();
-            BtCreate.gameObject.SetActive(false);
-            int catIndex = Array.IndexOf(Categories, category);
-            if (catIndex < selectionStep) StepBackwards(catIndex);
-            else if (catIndex == 3) Categories[2].ResetColor();
+            BtContinue.StopPulsing();
+            BtContinue.gameObject.SetActive(false);
+            switch (State)
+            {
+                case UIState.AvatarCreation:
+                    int catIndex = Array.IndexOf(Categories, category);
+                    if (catIndex < selectionStep) AvatarCreation_StepBackwards(catIndex);
+                    else if (catIndex == CategoryIndex.Color) Categories[CategoryIndex.Avatar].ResetColor();
+                    break;
+            }
+        }
+
+        void OnContinue()
+        {
+            switch (State)
+            {
+                case UIState.AvatarCreation:
+                    SwitchState(UIState.AgeSelection);
+                    break;
+                case UIState.AgeSelection:
+                    CreateProfile();
+                    break;
+            }
         }
 
         #endregion

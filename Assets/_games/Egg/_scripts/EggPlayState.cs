@@ -301,6 +301,7 @@ namespace EA4S.Minigames.Egg
                 game.eggController.ParticleWinEnabled();
                 DisableAllGameplayInput();
                 tutorialStop = true;
+                TutorialUI.Clear(false);
 
                 OnEggCrackComplete();
             }

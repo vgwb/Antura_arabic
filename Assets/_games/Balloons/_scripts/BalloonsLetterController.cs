@@ -1,13 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using TMPro;
+using EA4S.Helpers;
+using EA4S.Database;
 
 namespace EA4S.Balloons
 {
     public class BalloonsLetterController : MonoBehaviour
     {
+        private const float FLASH_CYCLE_DURATION = 0.2f;
+        private const int NUM_FLASH_CYCLES = 3;
+
         public LetterObjectView LLPrefab;
         public FloatingLetterController parentFloatingLetter;
         public Animator animator;
@@ -21,11 +27,14 @@ namespace EA4S.Balloons
         [Header("Letter Parameters")]
         [Tooltip("e.g: true")]
         public bool spinEnabled;
-        [Range(0, 5)] [Tooltip("e.g.: 1")]
+        [Range(0, 5)]
+        [Tooltip("e.g.: 1")]
         public float spinSpeed;
-        [Range(0, 360)] [Tooltip("e.g.: 90")]
+        [Range(0, 360)]
+        [Tooltip("e.g.: 90")]
         public float spinAngle;
-        [Range(0, 5)] [Tooltip("e.g.: 0.25")]
+        [Range(0, 5)]
+        [Tooltip("e.g.: 0.25")]
         public float spinRandomnessFactor;
 
         [HideInInspector]
@@ -45,6 +54,9 @@ namespace EA4S.Balloons
         private float unfocusProgress;
         private float unfocusProgressPercentage;
 
+        private LetterObjectView letterObjectView;
+        private IEnumerator flashLetterInWordCoroutine;
+
 
         public void Start()
         {
@@ -54,6 +66,8 @@ namespace EA4S.Balloons
             LLPrefab.SetState(LLAnimationStates.LL_hanging);
             RandomizeSpin();
             //RandomizeAnimation();
+
+            letterObjectView = GetComponent<LetterObjectView>();
         }
 
         void Update()
@@ -162,7 +176,7 @@ namespace EA4S.Balloons
                     unfocusProgress += Time.deltaTime;
                     unfocusProgressPercentage = unfocusProgress / unfocusDuration;
                 }
-                var spinRotation = Quaternion.Euler(baseRotation.x, baseRotation.y + spinDirection * spinAngle * Mathf.Sin(spinSpeed * Time.time + randomOffset), baseRotation.z); 
+                var spinRotation = Quaternion.Euler(baseRotation.x, baseRotation.y + spinDirection * spinAngle * Mathf.Sin(spinSpeed * Time.time + randomOffset), baseRotation.z);
                 transform.rotation = Quaternion.Lerp(transform.rotation, spinRotation, unfocusProgressPercentage);
             }
             else
@@ -173,7 +187,7 @@ namespace EA4S.Balloons
 
         public void Drop()
         {
-            StartCoroutine(Drop_Coroutine(BalloonsGame.instance.letterDropDelay)); 
+            StartCoroutine(Drop_Coroutine(BalloonsGame.instance.letterDropDelay));
         }
 
         private IEnumerator Drop_Coroutine(float delay)
@@ -193,6 +207,91 @@ namespace EA4S.Balloons
         public void EnableCollider()
         {
             letterCollider.enabled = true;
+        }
+
+        public void FlashLetterInWord(LetterData letterToFlash, Color color)
+        {
+            if (flashLetterInWordCoroutine != null)
+            {
+                StopCoroutine(flashLetterInWordCoroutine);
+            }
+
+            flashLetterInWordCoroutine = FlashLetterInWordCoroutine(letterToFlash, color);
+            StartCoroutine(flashLetterInWordCoroutine);
+        }
+
+        private IEnumerator FlashLetterInWordCoroutine(LetterData letterToFlash, Color color)
+        {
+            if (letterData is LL_WordData)
+            {
+                var splitLetters = ArabicAlphabetHelper.SplitWordIntoLetters(((LL_WordData)letterData).Data);
+
+                int charPosition = 0;
+                List<int> foundLetterIndices = new List<int>();
+
+                for (int index = 0; index < splitLetters.Count; ++index)
+                {
+                    if (splitLetters[index].Id == letterToFlash.Id)
+                    {
+                        foundLetterIndices.Add(charPosition);
+                    }
+
+                    charPosition += splitLetters[index].GetChar().Length;
+                }
+
+                if (foundLetterIndices.Count != 0)
+                {
+                    string originalText = ((LL_WordData)letterData).TextForLivingLetter;
+
+                    letterObjectView.Label.SetText(originalText);
+
+                    float timeElapsed = 0f;
+                    int numCompletedCycles = 0;
+
+                    float halfDuration = FLASH_CYCLE_DURATION * 0.5f;
+
+                    string preparedText = ArabicAlphabetHelper.PrepareArabicStringForDisplay(originalText);
+                    preparedText = originalText;
+
+                    while (numCompletedCycles < NUM_FLASH_CYCLES)
+                    {
+                        float interpolant = timeElapsed < halfDuration ? timeElapsed / halfDuration : 1 - ((timeElapsed - halfDuration) / halfDuration);
+                        string tagStart = "<color=#" + GenericHelper.ColorToHex(Color.Lerp(Color.black, color, interpolant)) + ">";
+                        string tagEnd = "</color>";
+
+                        string composedString = "";
+
+                        for (int i = 0; i < foundLetterIndices.Count; i++)
+                        {
+                            int startIdx = i == 0 ? 0 : foundLetterIndices[i - 1] + letterToFlash.GetChar().Length;
+                            int endIdx = foundLetterIndices[i] - 1;
+
+                            composedString += preparedText.Substring(startIdx, endIdx - startIdx + 1);
+
+                            composedString += tagStart;
+                            composedString += preparedText.Substring(foundLetterIndices[i], letterToFlash.GetChar().Length);
+                            composedString += tagEnd;
+                        }
+
+                        composedString += preparedText.Substring(foundLetterIndices[foundLetterIndices.Count - 1] + letterToFlash.GetChar().Length);
+
+                        letterObjectView.Label.SetText(composedString);
+
+                        timeElapsed += Time.fixedDeltaTime;
+                        if (timeElapsed >= FLASH_CYCLE_DURATION)
+                        {
+                            numCompletedCycles++;
+                            timeElapsed = 0f;
+                        }
+
+                        yield return new WaitForFixedUpdate();
+                    }
+
+                    letterObjectView.Label.SetText(originalText);
+                }
+            }
+
+            flashLetterInWordCoroutine = null;
         }
     }
 }

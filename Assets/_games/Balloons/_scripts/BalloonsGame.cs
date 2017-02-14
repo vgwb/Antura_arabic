@@ -139,6 +139,13 @@ namespace EA4S.Balloons
 
         How2Die howDied;
 
+        private enum RoundStatus
+        {
+            Over, Started
+        }
+
+        private RoundStatus roundStatus;
+
         private IPopupWidget Popup { get { return GetConfiguration().Context.GetPopupWidget(); } }
 
         private IAudioManager AudioManager { get { return GetConfiguration().Context.GetAudioManager(); } }
@@ -152,7 +159,6 @@ namespace EA4S.Balloons
         public BalloonsPlayState PlayState { get; private set; }
 
         public BalloonsResultState ResultState { get; private set; }
-
 
         protected override void OnInitialize(IGameContext context)
         {
@@ -187,6 +193,8 @@ namespace EA4S.Balloons
             letterDropDelay = balloonPopAnimation.length;
 
             ResetScene();
+
+            roundStatus = RoundStatus.Over;
         }
 
         public void PlayActiveMusic()
@@ -367,83 +375,88 @@ namespace EA4S.Balloons
 
         public void StartNewRound()
         {
-            ResetScene();
-
-            // Get next question
-            questionPack = GetConfiguration().Questions.GetNextQuestion();
-            question = questionPack.GetQuestion();
-            correctAnswers = questionPack.GetCorrectAnswers();
-            wrongAnswers = questionPack.GetWrongAnswers();
-
-            switch (ActiveGameVariation)
+            if (roundStatus != RoundStatus.Started)
             {
-                case BalloonsVariation.Spelling:
-                    var spellingWordData = question as LL_WordData;
-                    var spellingWord = ArabicFixer.Fix(spellingWordData.Data.Arabic);
+                roundStatus = RoundStatus.Started;
 
-                    // Display
-                    wordPrompt.DisplayWord(correctAnswers.Cast<LL_LetterData>().ToList());
+                ResetScene();
 
-                    // Debug
-                    Debug.Log("[New Round] Spelling Word: " + spellingWord);
-                    Debug.Log("Letters (" + correctAnswers.Count() + "): " + string.Join(" / ", correctAnswers.Cast<LL_LetterData>().ToList().Select(x => x.TextForLivingLetter).Reverse().ToArray()));
-                    Debug.Log("Random Letters (" + wrongAnswers.Count() + "): " + string.Join(" / ", wrongAnswers.Cast<LL_LetterData>().ToList().Select(x => x.TextForLivingLetter).Reverse().ToArray()));
+                // Get next question
+                questionPack = GetConfiguration().Questions.GetNextQuestion();
+                question = questionPack.GetQuestion();
+                correctAnswers = questionPack.GetCorrectAnswers();
+                wrongAnswers = questionPack.GetWrongAnswers();
 
-                    // Start round
-                    StartCoroutine(StartNewRound_Coroutine());
-                    break;
+                switch (ActiveGameVariation)
+                {
+                    case BalloonsVariation.Spelling:
+                        var spellingWordData = question as LL_WordData;
+                        var spellingWord = ArabicFixer.Fix(spellingWordData.Data.Arabic);
 
-                case BalloonsVariation.Words:
-                    correctAnswers = new List<ILivingLetterData>() { question };
-                    var wordToKeepData = question as LL_WordData;
-                    var wordToKeep = ArabicFixer.Fix(wordToKeepData.Data.Arabic);
+                        // Display
+                        wordPrompt.DisplayWord(correctAnswers.Cast<LL_LetterData>().ToList());
 
-                    // Display
-                    wordFlexibleContainer.gameObject.SetActive(true);
-                    wordFlexibleContainer.SetText(wordToKeepData);
+                        // Debug
+                        Debug.Log("[New Round] Spelling Word: " + spellingWord);
+                        Debug.Log("Letters (" + correctAnswers.Count() + "): " + string.Join(" / ", correctAnswers.Cast<LL_LetterData>().ToList().Select(x => x.TextForLivingLetter).Reverse().ToArray()));
+                        Debug.Log("Random Letters (" + wrongAnswers.Count() + "): " + string.Join(" / ", wrongAnswers.Cast<LL_LetterData>().ToList().Select(x => x.TextForLivingLetter).Reverse().ToArray()));
 
-                    // Debug
-                    Debug.Log("[New Round] Word To Keep: " + wordToKeep);
-                    Debug.Log(" Matching word: " + ArabicFixer.Fix(correctAnswers.Cast<LL_WordData>().ToList()[0].Data.Arabic));
-                    Debug.Log(" Random words (" + wrongAnswers.Count() + "): " + string.Join(" / ", wrongAnswers.Cast<LL_WordData>().ToList().Select(x => ArabicFixer.Fix(x.Data.Arabic)).ToArray()));
+                        // Start round
+                        StartCoroutine(StartNewRound_Coroutine());
+                        break;
 
-                    // Start round
-                    StartCoroutine(StartNewRound_Coroutine());
-                    break;
+                    case BalloonsVariation.Words:
+                        correctAnswers = new List<ILivingLetterData>() { question };
+                        var wordToKeepData = question as LL_WordData;
+                        var wordToKeep = ArabicFixer.Fix(wordToKeepData.Data.Arabic);
 
-                case BalloonsVariation.Letter:
-                    var letterToKeepData = question as LL_LetterData;
-                    var letterToKeep = letterToKeepData.TextForLivingLetter;
+                        // Display
+                        wordFlexibleContainer.gameObject.SetActive(true);
+                        wordFlexibleContainer.SetText(wordToKeepData);
 
-                    // Display
-                    wordFlexibleContainer.gameObject.SetActive(true);
-                    wordFlexibleContainer.SetText(letterToKeepData);
+                        // Debug
+                        Debug.Log("[New Round] Word To Keep: " + wordToKeep);
+                        Debug.Log(" Matching word: " + ArabicFixer.Fix(correctAnswers.Cast<LL_WordData>().ToList()[0].Data.Arabic));
+                        Debug.Log(" Random words (" + wrongAnswers.Count() + "): " + string.Join(" / ", wrongAnswers.Cast<LL_WordData>().ToList().Select(x => ArabicFixer.Fix(x.Data.Arabic)).ToArray()));
 
-                    // Debug
-                    Debug.Log("[New Round] Letter To Keep: " + letterToKeep);
-                    Debug.Log(" Words with letter (" + correctAnswers.Count() + "): " + string.Join(" / ", correctAnswers.Cast<LL_WordData>().ToList().Select(x => x.TextForLivingLetter).ToArray()));
-                    Debug.Log(" Random words without letter (" + wrongAnswers.Count() + "): " + string.Join(" / ", wrongAnswers.Cast<LL_WordData>().ToList().Select(x => x.TextForLivingLetter).ToArray()));
+                        // Start round
+                        StartCoroutine(StartNewRound_Coroutine());
+                        break;
 
-                    // Start round
-                    StartCoroutine(StartNewRound_Coroutine());
-                    break;
+                    case BalloonsVariation.Letter:
+                        var letterToKeepData = question as LL_LetterData;
+                        var letterToKeep = letterToKeepData.TextForLivingLetter;
 
-                case BalloonsVariation.Counting:
-                    countingIndex = 0;
+                        // Display
+                        wordFlexibleContainer.gameObject.SetActive(true);
+                        wordFlexibleContainer.SetText(letterToKeepData);
 
-                    // Display
-                    DisplayWordFlexibleContainer_Counting();
+                        // Debug
+                        Debug.Log("[New Round] Letter To Keep: " + letterToKeep);
+                        Debug.Log(" Words with letter (" + correctAnswers.Count() + "): " + string.Join(" / ", correctAnswers.Cast<LL_WordData>().ToList().Select(x => x.TextForLivingLetter).ToArray()));
+                        Debug.Log(" Random words without letter (" + wrongAnswers.Count() + "): " + string.Join(" / ", wrongAnswers.Cast<LL_WordData>().ToList().Select(x => x.TextForLivingLetter).ToArray()));
 
-                    // Debug
-                    Debug.Log("[New Round] Correct Answers (" + correctAnswers.Count() + "): " + string.Join(" / ", correctAnswers.ToList().Select(x => x.TextForLivingLetter).ToArray()));
+                        // Start round
+                        StartCoroutine(StartNewRound_Coroutine());
+                        break;
 
-                    // Start round
-                    StartCoroutine(StartNewRound_Coroutine());
-                    break;
-            
-                default:
-                    Debug.LogError("Invalid Balloons Game Variation!");
-                    break;
+                    case BalloonsVariation.Counting:
+                        countingIndex = 0;
+
+                        // Display
+                        DisplayWordFlexibleContainer_Counting();
+
+                        // Debug
+                        Debug.Log("[New Round] Correct Answers (" + correctAnswers.Count() + "): " + string.Join(" / ", correctAnswers.ToList().Select(x => x.TextForLivingLetter).ToArray()));
+
+                        // Start round
+                        StartCoroutine(StartNewRound_Coroutine());
+                        break;
+
+                    default:
+                        Debug.LogError("Invalid Balloons Game Variation!");
+                        break;
+                } 
             }
         }
 
@@ -532,6 +545,8 @@ namespace EA4S.Balloons
             DisableFloatingLetters();
             timer.StopTimer();
             ProcessRoundResult(result);
+
+            roundStatus = RoundStatus.Over;
         }
 
         private void EndGame()

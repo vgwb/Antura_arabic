@@ -21,14 +21,9 @@ namespace EA4S.Minigames.Scanner
         public int timesCanAppear = 1;
         public List<ScannerLivingLetter> fallenLL = new List<ScannerLivingLetter>();
         public ParticleSystem stars;
-        public SkinnedMeshRenderer sm;
-        public Texture whiteTex;
-
+        public Material redMat;
         private AnturaAnimationController antura;
         private Animator anturaAnimator;
-        Material mat;
-        Color c, c2, c3;
-        Texture startTex;
         bool canBeScared;
         int thisRound;
 
@@ -217,7 +212,8 @@ namespace EA4S.Minigames.Scanner
             antura.IsExcited = false;
             canBeScared = false;
             anturaAnimator.SetBool("idle", false);
-            StartCoroutine(flashRed());
+            //StartCoroutine(flashRed(sm));
+            flashRedGO(gameObject);
             anturaAnimator.CrossFade("dog_suck_end", 0.3f);
             AudioManager.I.PlaySound(Sfx.BallHit);
             yield return new WaitForSeconds(0.3f);
@@ -342,38 +338,34 @@ namespace EA4S.Minigames.Scanner
             }
         }
 
-        
-        public IEnumerator flashRed()
+        public void flashRedGO(GameObject go)
         {
-            if (!mat)
+            Renderer[] r = go.GetComponentsInChildren<Renderer>();
+
+            for (int j = 0; j < r.Length; j++)
+                StartCoroutine(flashRed(r[j]));
+        }
+
+        public IEnumerator flashRed(Renderer r)
+        {
+
+            List<Material> newMats = new List<Material>();
+            Material[] startMats;
+
+            startMats = r.materials;
+
+            for (int m = 0; m < startMats.Length; m++)
+                newMats.Add(redMat);
+
+
+            for (int i = 0; i < 2; i++)
             {
-                mat = sm.materials[1];
-                c = mat.GetColor("_OverColorR");
-                c2 = mat.GetColor("_OverColorG");
-                c3 = mat.GetColor("_Emission");
-                startTex = mat.GetTexture("_OverTex");
+                r.materials = newMats.ToArray();
+                yield return new WaitForSeconds(0.15f);
+                r.materials = startMats;
+                yield return new WaitForSeconds(0.15f);
             }
-            //m.SetColor("_Emission", Color.red);
-            //m2.SetColor("_OverColorR", Color.red);
-            mat.SetTexture("_OverTex", whiteTex);
-            mat.SetColor("_OverColorR", Color.red);
-            mat.SetColor("_OverColorG", Color.red);
-            mat.SetColor("_Emission", Color.red);
-            yield return new WaitForSeconds(0.15f);
-            mat.SetTexture("_OverTex", startTex);
-            mat.SetColor("_OverColorR", c);
-            mat.SetColor("_OverColorG", c2);
-            mat.SetColor("_Emission", c3);
-            yield return new WaitForSeconds(0.15f);
-            mat.SetTexture("_OverTex", whiteTex);
-            mat.SetColor("_OverColorR", Color.red);
-            mat.SetColor("_OverColorG", Color.red);
-            mat.SetColor("_Emission", Color.red);
-            yield return new WaitForSeconds(0.15f);
-            mat.SetTexture("_OverTex", startTex);
-            mat.SetColor("_OverColorR", c);
-            mat.SetColor("_OverColorG", c2);
-            mat.SetColor("_Emission", c3);
+
         }
 
     }

@@ -81,6 +81,8 @@ namespace EA4S.UI
             pulseTween = this.transform.DOScale(this.transform.localScale * 1.1f, 0.3f).SetAutoKill(false).SetUpdate(true).Pause()
                 .SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuad);
 
+            clickTween.ForceInit();
+            pulseTween.ForceInit();
             Bt.onClick.AddListener(OnInternalClick);
         }
 
