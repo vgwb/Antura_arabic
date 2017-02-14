@@ -268,26 +268,53 @@ namespace EA4S.Minigames.Maze
                 // Hide checkpoints of last path:
                 currentTutorial.HideCheckpointsAndLineOfCurrentPath();
 
-                currentCharacter.Celebrate(() =>
+                if (roundNumber % 2 ==0)
                 {
-                    if (roundNumber == MAX_NUM_ROUNDS)
+                    currentCharacter.CelebrateStraight(() =>
                     {
-                        endGame();
-                        return;
-                    }
-                    else
-                    {
-                        if (isTutorialMode)
+                        if (roundNumber == MAX_NUM_ROUNDS)
                         {
-                            isTutorialMode = false;
-                            initUI();
+                            endGame();
+                            return;
                         }
+                        else
+                        {
+                            if (isTutorialMode)
+                            {
+                                isTutorialMode = false;
+                                initUI();
+                            }
 
 
-                        roundNumberText.text = "#" + (roundNumber + 1);
-                        restartCurrentLetter(won);
-                    }
-                });
+                            roundNumberText.text = "#" + (roundNumber + 1);
+                            restartCurrentLetter(won);
+                        }
+                    });
+                }
+
+                else
+                {
+                    currentCharacter.Celebrate(() =>
+                    {
+                        if (roundNumber == MAX_NUM_ROUNDS)
+                        {
+                            endGame();
+                            return;
+                        }
+                        else
+                        {
+                            if (isTutorialMode)
+                            {
+                                isTutorialMode = false;
+                                initUI();
+                            }
+
+
+                            roundNumberText.text = "#" + (roundNumber + 1);
+                            restartCurrentLetter(won);
+                        }
+                    });
+                }
 
 
                 //print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);

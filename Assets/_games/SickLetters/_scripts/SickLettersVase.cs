@@ -12,7 +12,7 @@ namespace EA4S.Minigames.SickLetters
         public BoxCollider vaseCollider;
         public TextMeshPro _counter;
         public AnimationCurve bounceCurve;
-        bool isFallingFromTop;
+        bool /*isFallingFromTop,*/ isOnTheGround;
         public int counter
         {
             set
@@ -43,20 +43,25 @@ namespace EA4S.Minigames.SickLetters
         }
 
 
-        void Update() {
+        /*void Update() {
             if (transform.position.y < 9.2f && isFallingFromTop)
             {
-                Debug.LogError(123);
+
                 StartCoroutine(bounceScale(0.95f));
                 isFallingFromTop = false;
             }
-        }
+        }*/
 
         SickLettersDraggableDD dd;
 
         void OnTriggerEnter(Collider coll)
         {
             checkEntry(coll);
+            if (!isOnTheGround && coll.gameObject.name == "Ground")
+            {
+                SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.CrateLandOnground);
+                isOnTheGround = true;
+            }
         }
 
         void OnTriggerExit(Collider coll)
@@ -180,7 +185,7 @@ namespace EA4S.Minigames.SickLetters
             yield return new WaitForSeconds(1.5f);
             game.antura.sleep();
             
-            summonVase();
+            StartCoroutine( summonVase());
 
             yield return new WaitForSeconds(1f);
 
@@ -218,15 +223,29 @@ namespace EA4S.Minigames.SickLetters
                 yield return new WaitForSeconds(0.65f);
                 StartCoroutine(game.slCamera.rotatCamera(20f));
             }
+
+            yield return new WaitForSeconds(1);
+            while (libra.position.y > libraStartPos.y + 0.01f)
+            {
+                libra.position = Vector3.Lerp(libra.position, libraStartPos, Time.deltaTime * 5);
+                yield return null;
+            }
         } 
 
-        public void summonVase()
+        public IEnumerator summonVase()
         {
+            if (game.StateManager.CurrentState != game.PlayState)
+                yield break;
             vaseRB.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
 
             vaseRB.isKinematic = false;
             vaseRB.useGravity = true;
-            isFallingFromTop = true;
+            //isFallingFromTop = true;
+            isOnTheGround = false;
+
+            yield return new WaitForSeconds(0.65f);
+            StartCoroutine(bounceScale(0.95f));
+            SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.OK);
         }
 
         public void flyVas(float delay = 0)

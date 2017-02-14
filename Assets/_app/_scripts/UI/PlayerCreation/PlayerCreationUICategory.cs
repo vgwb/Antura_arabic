@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.DeExtensions;
+using DG.Tweening;
 using EA4S.Core;
 using EA4S.UI;
 using UnityEngine;
@@ -28,15 +29,16 @@ namespace EA4S.UI
 
         /// <summary>If nothing is selected, returns -1</summary>
         public int SelectedIndex { get; private set; }
-        protected UIButton[] uiButtons;
+        [NonSerialized] public UIButton[] UIButtons;
+        Sequence _ageAppearanceTween;
 
         #region Unity
 
-        protected virtual void Awake()
+        void Awake()
         {
             SelectedIndex = -1;
-            uiButtons = this.GetComponentsInChildren<UIButton>();
-            foreach (UIButton uiButton in uiButtons)
+            UIButtons = this.GetComponentsInChildren<UIButton>();
+            foreach (UIButton uiButton in UIButtons)
             {
                 UIButton bt = uiButton;
                 bt.Bt.onClick.AddListener(()=> OnClick(bt));
@@ -46,19 +48,37 @@ namespace EA4S.UI
             {
                 case PlayerCreationUI.CategoryType.Color:
                     // Set colors
-                    for (int i = 0; i < uiButtons.Length; ++i)
+                    for (int i = 0; i < UIButtons.Length; ++i)
                     {
-                        UIButton bt = uiButtons[i];
+                        UIButton bt = UIButtons[i];
                         Color color = PlayerTintConverter.ToColor((PlayerTint)(i + 1));
                         bt.ChangeDefaultColors(color, color);
+                    }
+                    break;
+                case PlayerCreationUI.CategoryType.Age:
+                    _ageAppearanceTween = DOTween.Sequence().SetAutoKill(false).Pause();
+                    for (int i = 0; i < UIButtons.Length; ++i)
+                    {
+                        _ageAppearanceTween.Insert(i * 0.1f, UIButtons[i].CGroup.DOFade(0, 0.4f).From());
                     }
                     break;
             }
         }
 
+        void OnEnable()
+        {
+            if (CategoryType == PlayerCreationUI.CategoryType.Age) _ageAppearanceTween.Restart();
+        }
+
+        void OnDisable()
+        {
+            if (CategoryType == PlayerCreationUI.CategoryType.Age) _ageAppearanceTween.Rewind();
+        }
+
         void OnDestroy()
         {
-            foreach (UIButton uiButton in uiButtons) uiButton.Bt.onClick.RemoveAllListeners();
+            _ageAppearanceTween.Kill();
+            foreach (UIButton uiButton in UIButtons) uiButton.Bt.onClick.RemoveAllListeners();
         }
 
         #endregion
@@ -68,7 +88,7 @@ namespace EA4S.UI
         // If index is less than 0 toggles all
         public void Select(int index)
         {
-            if (index > uiButtons.Length - 1)
+            if (index > UIButtons.Length - 1)
             {
                 Debug.LogWarning("PlayerCreationUICategory.Select > Index out of range (captured)");
                 return;
@@ -80,7 +100,7 @@ namespace EA4S.UI
                 if (SelectedIndex >= 0)
                 {
                     SelectedIndex = -1;
-                    foreach (UIButton uiButton in uiButtons)
+                    foreach (UIButton uiButton in UIButtons)
                     {
                         uiButton.Toggle(true);
                         if (CategoryType == PlayerCreationUI.CategoryType.Color) uiButton.transform.localScale = Vector3.one;
@@ -92,9 +112,9 @@ namespace EA4S.UI
             {
                 // Select index
                 SelectedIndex = index;
-                for (int i = 0; i < uiButtons.Length; ++i)
+                for (int i = 0; i < UIButtons.Length; ++i)
                 {
-                    UIButton bt = uiButtons[i];
+                    UIButton bt = UIButtons[i];
                     bt.Toggle(i == index);
                     if (CategoryType == PlayerCreationUI.CategoryType.Color) bt.transform.localScale = Vector3.one * (i == index ? 1 : 0.75f);
                 }
@@ -103,12 +123,12 @@ namespace EA4S.UI
 
         public void SetColor(Color color)
         {
-            foreach (UIButton uiButton in uiButtons) uiButton.ChangeDefaultColors(color);
+            foreach (UIButton uiButton in UIButtons) uiButton.ChangeDefaultColors(color);
         }
 
         public void ResetColor()
         {
-            foreach (UIButton uiButton in uiButtons) uiButton.ChangeDefaultColors(Color.white);
+            foreach (UIButton uiButton in UIButtons) uiButton.ChangeDefaultColors(Color.white);
         }
 
         // Only used by avatars category
@@ -116,7 +136,7 @@ namespace EA4S.UI
         {
             // TODO use different avatars
             Sprite sprite = Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + (isFemale ? "F1" : "M1"));
-            foreach (UIButton uiButton in uiButtons) uiButton.Ico.sprite = sprite;
+            foreach (UIButton uiButton in UIButtons) uiButton.Ico.sprite = sprite;
         }
 
         #endregion
@@ -125,12 +145,14 @@ namespace EA4S.UI
 
         void OnClick(UIButton bt)
         {
-            if (bt.IsToggled && SelectedIndex >= 0) Select(-1);
+            bool deselect = bt.IsToggled && SelectedIndex >= 0
+                            && (CategoryType != PlayerCreationUI.CategoryType.Avatar || PlayerCreationUI.State == PlayerCreationUI.UIState.AvatarCreation);
+            if (deselect) Select(-1);
             else
             {
-                int index = Array.IndexOf(uiButtons, bt);
+                int index = Array.IndexOf(UIButtons, bt);
                 Select(index);
-                DispatchOnSelect(this, uiButtons[index]);
+                DispatchOnSelect(this, UIButtons[index]);
             }
         }
 
