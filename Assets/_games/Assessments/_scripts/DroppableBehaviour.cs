@@ -113,7 +113,7 @@ namespace EA4S.Assessment
         public void Detach( bool jumpBack = true)
         {
             if(jumpBack)
-                transform.DOLocalMove( origin, 0.7f).SetEase( Ease.OutBounce);
+                transform.DOLocalMove( origin, 0.5f).SetEase( Ease.OutBounce);
 
             if (linkedBehaviour != null)
             {

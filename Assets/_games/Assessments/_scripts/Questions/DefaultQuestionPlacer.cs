@@ -47,6 +47,8 @@ namespace EA4S.Assessment
 
         public virtual IEnumerator GetPlaceCoroutine( bool playAudio)
         {
+            ResetAnimationsQueue();
+
             // Count questions and answers
             int questionsNumber = 0;
             int placeHoldersNumber = 0;
@@ -61,6 +63,11 @@ namespace EA4S.Assessment
             float occupiedSpace = 
                     placeHoldersNumber * options.SlotSize
                 +   questionsNumber*options.QuestionSize;
+
+            if (options.SpawnImageWithQuestion)
+            {
+                occupiedSpace += options.ImageSize;
+            }
 
             float blankSpace = options.RightX - options.LeftX - occupiedSpace;
             float spaceIncrement = blankSpace / (questionsNumber + 1);
@@ -85,24 +92,28 @@ namespace EA4S.Assessment
             for (int i = 0; i < questionsNumber; i++)
             {
                 currentPos.x += (spaceIncrement + questionSize/2) * sign;
-                yield return PlaceQuestion( allQuestions[ questionIndex], currentPos, playAudio);
+                PlaceQuestion( allQuestions[ questionIndex], currentPos, playAudio);
                 currentPos.x += (questionSize * sign) / 2;
 
                 if ( options.SpawnImageWithQuestion)
                 {
                     currentPos.x += (sign * options.ImageSize) /1.8f ;
-                    yield return PlaceImage( allQuestions[ questionIndex], currentPos);
+                    PlaceImage( allQuestions[ questionIndex], currentPos);
                     currentPos.x += (sign * options.ImageSize) / 1.8f;
                 }
 
                 foreach (var p in allQuestions[ questionIndex].GetPlaceholders())
                 {
                     currentPos.x += sign * options.SlotSize / 2;
-                    yield return PlacePlaceholder( p, currentPos);
+                    PlacePlaceholder( p, currentPos);
                     currentPos.x += sign * options.SlotSize / 2;
                 }
 
                 WrapQuestionInABox( allQuestions[ questionIndex]);
+                foreach (var anim in AnimationsQueue)
+                    yield return Koroutine.Nested( anim);
+
+                AnimationsQueue.Clear();
 
                 questionIndex++;
             }
@@ -110,6 +121,13 @@ namespace EA4S.Assessment
             // give time to finish animating elements
             yield return Wait.For( 0.65f);
             isAnimating = false;
+        }
+
+        protected List<IEnumerator> AnimationsQueue { get; private set; }
+
+        protected void ResetAnimationsQueue()
+        {
+            AnimationsQueue = new List< IEnumerator>();
         }
 
         protected void WrapQuestionInABox( IQuestion q)
@@ -136,46 +154,66 @@ namespace EA4S.Assessment
             boxesList.Add( box);
         }
 
-        protected IYieldable PlaceImage( IQuestion q, Vector3 imagePos)
+        protected void PlaceImage( IQuestion q, Vector3 imagePos)
         {
             var ll = LivingLetterFactory.Instance.SpawnQuestion( q.Image());
 
             images.Add( ll);
             ll.transform.position = imagePos;
             ll.InstaShrink();
-            ll.Poof();
+
+            AnimationsQueue.Add( ImageShowAnimation( ll));
+        }
+
+        private IEnumerator ImageShowAnimation( StillLetterBox letter)
+        {
+            letter.Poof();
             audioManager.PlayPoofSound();
-            ll.Magnify();
-            return Wait.For( 1.0f);
+            letter.Magnify();
+            yield return Wait.For( 0.9f);
         }
 
         IQuestion lastPlacedQuestion = null;
 
-        protected IYieldable PlaceQuestion( IQuestion q, Vector3 position, bool playAudio)
+        protected void PlaceQuestion( IQuestion q, Vector3 position, bool playAudio)
         {
             lastPlacedQuestion = q;
+
             var ll = q.gameObject.GetComponent< StillLetterBox>();
-
-            ll.Poof();
-
-            audioManager.PlayPoofSound();
             ll.transform.localPosition = position;
+            ll.InstaShrink();
 
-            ll.transform.GetComponent< StillLetterBox>().Magnify();
-
-            if ( playAudio)
-                q.QuestionBehaviour.ReadMeSound();
-
-            return Wait.For( 1.0f);
+            AnimationsQueue.Add( QuestionShowAnimation( q, playAudio));
         }
 
-        protected IYieldable PlacePlaceholder( GameObject placeholder, Vector3 position)
+        private IEnumerator QuestionShowAnimation( IQuestion q, bool playAudio)
+        {
+            var letter = q.gameObject.GetComponent< StillLetterBox>();
+            letter.Poof();
+            audioManager.PlayPoofSound();
+            letter.transform.GetComponent< StillLetterBox>().Magnify();
+
+            if (playAudio)
+                q.QuestionBehaviour.ReadMeSound();
+
+            yield return Wait.For( 0.9f);
+        }
+
+        protected void PlacePlaceholder( GameObject placeholder, Vector3 position)
         {
             var tr = placeholder.transform;
-            audioManager.PlayPlaceSlot();
             tr.localPosition = position;
-            tr.GetComponent< StillLetterBox>().Magnify();
-            return Wait.For( 0.4f);
+            var box = tr.GetComponent< StillLetterBox>();
+            box.InstaShrink();
+
+            AnimationsQueue.Add( PlaceholderShowAnimation( box));
+        }
+
+        private IEnumerator PlaceholderShowAnimation( StillLetterBox box)
+        {
+            audioManager.PlayPlaceSlot();
+            box.Magnify();
+            yield return Wait.For( 0.2f);
         }
 
         public void RemoveQuestions()
@@ -185,10 +223,7 @@ namespace EA4S.Assessment
         }
 
         IEnumerator RemoveCoroutine()
-        {
-            foreach (var box in boxesList)
-                box.Hide();
-
+        { 
             foreach ( var q in allQuestions)
             {
                 foreach (var p in q.GetPlaceholders())
@@ -199,9 +234,12 @@ namespace EA4S.Assessment
 
                 yield return Koroutine.Nested( FadeOutQuestion( q));
             }
-            
+
+            foreach (var box in boxesList)
+                box.Hide();
+
             // give time to finish animating elements
-            yield return Wait.For( 0.65f);
+            yield return Wait.For( 0.45f);
             isAnimating = false;
         }
 

@@ -495,12 +495,12 @@ namespace EA4S.Assessment
             context.Configuration = AssessmentConfiguration.Instance;
             context.Events = new AssessmentEvents();
             context.Utils = AssessmentConfiguration.Instance.Context;
-            context.CheckmarkWidget = context.Utils.GetCheckmarkWidget();
+            context.MultiCheckMark = Tutorial.TutorialUI.I;
             context.AudioManager = new AssessmentAudioManager( context.Utils.GetAudioManager(),
                                                                context.Utils.GetSubtitleWidget(),
                                                                context.GameDescription);
 
-            context.AnswerChecker = new AnswerChecker( context.CheckmarkWidget,
+            context.AnswerChecker = new AnswerChecker( context.MultiCheckMark,
                                                        context.AudioManager);
 
             rounds = AssessmentConfiguration.Instance.NumberOfRounds;
@@ -528,7 +528,7 @@ namespace EA4S.Assessment
             if (dragManager == DragManagerType.Default)
                 context.DragManager = new DefaultDragManager( context.AudioManager, context.AnswerChecker);
             else
-                context.DragManager = new SortingDragManager( context.AudioManager, context.CheckmarkWidget);
+                context.DragManager = new SortingDragManager( context.AudioManager, context.CheckMarkWidget);
 
             if (logicInjector == LogicInjectorType.Default)
                 context.LogicInjector = new DefaultLogicInjector( context.DragManager, context.Events);

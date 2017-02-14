@@ -1,5 +1,6 @@
 using EA4S.Database;
 using EA4S.MinigamesCommon;
+using EA4S.Tutorial;
 
 namespace EA4S.Assessment
 {
@@ -12,7 +13,8 @@ namespace EA4S.Assessment
         public AssessmentConfiguration Configuration;
         public AssessmentEvents Events;
         public IGameContext Utils;
-        public ICheckmarkWidget CheckmarkWidget;
+        public TutorialUI MultiCheckMark;
+        public ICheckmarkWidget CheckMarkWidget;
         public IQuestionGenerator QuestionGenerator;
         public IDragManager DragManager;
         public ILogicInjector LogicInjector;

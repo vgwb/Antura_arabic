@@ -1,4 +1,4 @@
-using EA4S.MinigamesCommon;
+using EA4S.Tutorial;
 using Kore.Coroutines;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,10 +7,10 @@ namespace EA4S.Assessment
 {
     public class AnswerChecker
     {
-        private ICheckmarkWidget checkmarkWidget;
+        private TutorialUI checkmarkWidget;
         private AssessmentAudioManager audioManager;
 
-        public AnswerChecker(    ICheckmarkWidget checkmarkWidget,
+        public AnswerChecker(    TutorialUI checkmarkWidget,
                                  AssessmentAudioManager audioManager)
         {
             this.checkmarkWidget = checkmarkWidget;
@@ -64,11 +64,34 @@ namespace EA4S.Assessment
             return true;
         }
 
+        private bool CorrectSoundPlayed = false;
+        private bool WrongSoundPlayed = false;
+
+        private void PlayCorrectSound()
+        {
+            if(CorrectSoundPlayed == false)
+            {
+                audioManager.PlayStampSound();
+                CorrectSoundPlayed = true;
+            }
+        }
+
+        private void PlayWrongSound()
+        {
+            if(WrongSoundPlayed == false)
+            {
+                audioManager.PlayKOSound();
+                WrongSoundPlayed = true;
+            }
+        }
+
         private bool coroutineEnded = false;
         private IEnumerator CheckCoroutine( List< PlaceholderBehaviour> placeholders,
                                             List< IQuestion> questions,
                                             IDragManager dragManager)
         {
+            WrongSoundPlayed = false;
+            CorrectSoundPlayed = false;
             dragManager.DisableInput();
 
             bool areAllCorrect = AreQuestionsCorrect( questions);
@@ -81,7 +104,11 @@ namespace EA4S.Assessment
                         var set = p.Placeholder.GetQuestion().GetAnswerSet();
                         var answ = p.LinkedDroppable.GetAnswer();
                         if (set.IsCorrect(answ))
-                            AssessmentConfiguration.Instance.Context.GetLogManager().OnAnswered(answ.Data(), true);
+                            AssessmentConfiguration.Instance.Context.GetLogManager().OnAnswered( answ.Data(), true);
+
+                        var pos = p.gameObject.transform.localPosition;
+                        pos.y -= 3.5f;
+                        TutorialUI.MarkYes(pos, TutorialUI.MarkSize.Normal);
                     }
                 
                 // Just trigger OnQuestionAnswered events if all are correct
@@ -98,23 +125,30 @@ namespace EA4S.Assessment
                         var answ = p.LinkedDroppable.GetAnswer();
                         if (set.IsCorrect( answ) == false) {
                             AssessmentConfiguration.Instance.Context.GetLogManager().OnAnswered( answ.Data(), false);
+                            PlayWrongSound();
                             p.LinkedDroppable.Detach( true);
+                            var pos = p.gameObject.transform.localPosition;
+                            pos.y -= 3.5f;
+                            TutorialUI.MarkNo( pos, TutorialUI.MarkSize.Normal);
+                        }
+                        else
+                        {
+                            PlayCorrectSound();
+                            var pos = p.gameObject.transform.localPosition;
+                            pos.y -= 3.5f;
+                            TutorialUI.MarkYes( pos, TutorialUI.MarkSize.Normal);
                         }
                     }
                 }
             }
 
             allCorrect = areAllCorrect;
-
-            while ( wrongAnswerAnimationPlaying)
-                yield return null; // wait only if previous message has not finished
+            while( wrongAnswerAnimationPlaying)
+                yield return null;
 
             if (allCorrect)
             {
                 audioManager.PlayStampSound();
-
-                yield return Wait.For( 0.4f);
-                checkmarkWidget.Show( true);
                 yield return Wait.For( 1.0f);
             }
             else
@@ -131,21 +165,13 @@ namespace EA4S.Assessment
 
         private IEnumerator WrongAnswerCoroutine()
         {
-            checkmarkWidget.Show( false);
-            audioManager.PlayKOSound();
-
-            yield return PlayAnswerWrong();
+            yield return Wait.For( 0.51f);
             wrongAnswerAnimationPlaying = false;
         }
 
         IYieldable PlayAnswerWrong()
         {
             return audioManager.PlayAnswerWrong();
-        }
-
-        private bool WrongAnswerAnimationPlaying()
-        {
-            return wrongAnswerAnimationPlaying;
         }
 
         public bool IsAnimating()
