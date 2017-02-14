@@ -85,6 +85,7 @@ namespace EA4S.Debugging
         public int Stage = 1;
         public int LearningBlock = 1;
         public int PlaySession = 1;
+        public int NumberOfRounds = 1;
 
         void Awake()
         {
@@ -124,7 +125,7 @@ namespace EA4S.Debugging
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = PlaySession;
 
-            AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected, new MinigameLaunchConfiguration(Difficulty), forceNewPlaySession: true);
+            AppManager.I.GameLauncher.LaunchGame(miniGameCodeSelected, new MinigameLaunchConfiguration(Difficulty, NumberOfRounds), forceNewPlaySession: true);
         }
 
     }
