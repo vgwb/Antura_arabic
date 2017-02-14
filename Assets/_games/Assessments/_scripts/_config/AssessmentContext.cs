@@ -13,7 +13,6 @@ namespace EA4S.Assessment
         public AssessmentConfiguration Configuration;
         public AssessmentEvents Events;
         public IGameContext Utils;
-        public TutorialUI MultiCheckMark;
         public ICheckmarkWidget CheckMarkWidget;
         public IQuestionGenerator QuestionGenerator;
         public IDragManager DragManager;
