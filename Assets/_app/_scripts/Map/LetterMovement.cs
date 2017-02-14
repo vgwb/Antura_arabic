@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using EA4S.Core;
 using EA4S.Map;
+using EA4S.Audio;
 
 namespace EA4S.Map
 {
@@ -17,6 +18,9 @@ namespace EA4S.Map
         [Header("UIButtons")]
         public GameObject moveRightButton;
         public GameObject moveLeftButton;
+
+        [Header("PinState")]
+        public bool inRopeState;
 
         float distanceNextDotToHitPoint;
         float distanceBeforelDotToHitPoint;
@@ -53,52 +57,65 @@ namespace EA4S.Map
 
         void FixedUpdate()
         {
-           /* Debug.Log(AppManager.I.Player.CurrentJourneyPosition.Stage);
-            Debug.Log(AppManager.I.Player.CurrentJourneyPosition.LearningBlock);
-            Debug.Log(AppManager.I.Player.CurrentJourneyPosition.PlaySession);
+            /* Debug.Log(AppManager.I.Player.CurrentJourneyPosition.Stage);
+             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.LearningBlock);
+             Debug.Log(AppManager.I.Player.CurrentJourneyPosition.PlaySession);
 
-            Debug.Log("Max"+AppManager.I.Player.MaxJourneyPosition.Stage);
-            Debug.Log("MaxLB"+AppManager.I.Player.MaxJourneyPosition.LearningBlock);
-            Debug.Log("MaxPS"+AppManager.I.Player.MaxJourneyPosition.PlaySession);  */   
+             Debug.Log("Max"+AppManager.I.Player.MaxJourneyPosition.Stage);
+             Debug.Log("MaxLB"+AppManager.I.Player.MaxJourneyPosition.LearningBlock);
+             Debug.Log("MaxPS"+AppManager.I.Player.MaxJourneyPosition.PlaySession);  */
 
-            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
+            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+            {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 RaycastHit hit;
                 int layerMask = 1 << 15;
-                if (Physics.Raycast(ray, out hit, 500, layerMask)) {
-                    if (hit.collider.tag == "Rope") {
+                if (Physics.Raycast(ray, out hit, 500, layerMask))
+                {
+                    if (hit.collider.tag == "Rope")
+                    {
                         ropeSelected = hit.transform.parent.gameObject.GetComponent<Rope>();
                         int numDotsRope = 0;
-                        for (int r=0;r<ropeSelected.dots.Count;r++)
+                        for (int r = 0; r < ropeSelected.dots.Count; r++)
                         {
                             if (ropeSelected.dots[r].activeInHierarchy) numDotsRope++;
                         }
-                        if (numDotsRope>1)
+                        if (numDotsRope > 1)
                         {
                             float distaceHitToDot = 1000;
                             float distanceHitBefore = 0;
                             dotCloser = 0;
 
-                            for (int i = 0; i < numDotsRope; i++) {
+                            for (int i = 0; i < numDotsRope; i++)
+                            {
                                 distanceHitBefore = Vector3.Distance(hit.point,
                                     ropeSelected.dots[i].transform.position);
-                                if (distanceHitBefore < distaceHitToDot) {
+                                if (distanceHitBefore < distaceHitToDot)
+                                {
                                     distaceHitToDot = distanceHitBefore;
                                     dotCloser = i;
                                 }
                             }
-                        } else {
+                        }
+                        else
+                        {
                             dotCloser = 0;
-                        }                     
+                        }
                         colliderRaycast = hit.collider;
                         MoveToDot();
-                    } else if (hit.collider.tag == "Pin") {
+                    }
+                    else if (hit.collider.tag == "Pin")
+                    {
                         colliderRaycast = hit.collider;
                         MoveToPin();
-                    } else colliderRaycast = null;
-                } else colliderRaycast = null;
-            } 
+                    }
+                    else colliderRaycast = null;
+                }
+                else colliderRaycast = null;
+                inRopeState = true;
+            }
+            else inRopeState = false; 
         }
         void LateUpdate()
         {

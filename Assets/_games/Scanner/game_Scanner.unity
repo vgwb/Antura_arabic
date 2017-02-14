@@ -14520,6 +14520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d842e5f8a6e45ac88ece9d95827483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chargeAnimSpeed: 1.5
+  camShakeSpeed: 2
   isInScene: 0
   scaredCounter: 0
   game: {fileID: 309455391}
@@ -14533,6 +14535,7 @@ MonoBehaviour:
   stars: {fileID: 960105611}
   sm: {fileID: 1663151178}
   whiteTex: {fileID: 2800000, guid: c3540335b307dd047b876022df458464, type: 3}
+  redMat: {fileID: 2100000, guid: c1c9d77de646e1740ba3af39a552e74e, type: 2}
 --- !u!135 &1218517458
 SphereCollider:
   m_ObjectHideFlags: 0

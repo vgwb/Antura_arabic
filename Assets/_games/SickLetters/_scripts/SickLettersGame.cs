@@ -141,7 +141,7 @@ namespace EA4S.Minigames.SickLetters
                 if (lastMoveIsCorrect)
                 {
                     LLPrefab.letterView.DoHorray();
-                    SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
+                    SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
                     Context.GetAudioManager().PlayLetterData(LLPrefab.letterView.Data, true);
                     LLPrefab.jumpOut(1.5f);
                 }
@@ -240,7 +240,7 @@ namespace EA4S.Minigames.SickLetters
             {
                 AudioManager.I.PlayDialogue("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
                 TutorialUI.MarkNo(scale.transform.position - Vector3.forward * 2 + Vector3.up, TutorialUI.MarkSize.Big);
-                Context.GetAudioManager().PlaySound(Sfx.Lose);
+                Context.GetAudioManager().PlaySound(Sfx.KO);
             }
             
         }
