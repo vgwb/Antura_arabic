@@ -135,8 +135,11 @@ namespace EA4S.UI
         public void AvatarSetIcon(bool isFemale)
         {
             // TODO use different avatars
-            Sprite sprite = Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + (isFemale ? "F1" : "M1"));
-            foreach (UIButton uiButton in UIButtons) uiButton.Ico.sprite = sprite;
+            for (int i = 0; i < UIButtons.Length; ++i)
+            {
+                Sprite sprite = Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + (isFemale ? "F" : "M") + (i + 1));
+                UIButtons[i].Ico.sprite = sprite;
+            }
         }
 
         #endregion
