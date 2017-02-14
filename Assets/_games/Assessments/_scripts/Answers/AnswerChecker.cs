@@ -7,13 +7,10 @@ namespace EA4S.Assessment
 {
     public class AnswerChecker
     {
-        private TutorialUI checkmarkWidget;
         private AssessmentAudioManager audioManager;
 
-        public AnswerChecker(    TutorialUI checkmarkWidget,
-                                 AssessmentAudioManager audioManager)
+        public AnswerChecker( AssessmentAudioManager audioManager)
         {
-            this.checkmarkWidget = checkmarkWidget;
             this.audioManager = audioManager;
         }
 
@@ -80,9 +77,18 @@ namespace EA4S.Assessment
         {
             if(WrongSoundPlayed == false)
             {
+                Koroutine.Run( AngryAnturaCoroutine());
                 audioManager.PlayKOSound();
                 WrongSoundPlayed = true;
             }
+        }
+
+        IEnumerator AngryAnturaCoroutine()
+        {
+            var antura = LivingLetterFactory.Instance.GetAntura();
+            antura.IsAngry = true;
+
+            yield return Wait.For( 0.5f);
         }
 
         private bool coroutineEnded = false;
@@ -108,7 +114,7 @@ namespace EA4S.Assessment
 
                         var pos = p.gameObject.transform.localPosition;
                         pos.y -= 3.5f;
-                        TutorialUI.MarkYes(pos, TutorialUI.MarkSize.Normal);
+                        TutorialUI.MarkYes( pos, TutorialUI.MarkSize.Normal);
                     }
                 
                 // Just trigger OnQuestionAnswered events if all are correct

@@ -495,13 +495,11 @@ namespace EA4S.Assessment
             context.Configuration = AssessmentConfiguration.Instance;
             context.Events = new AssessmentEvents();
             context.Utils = AssessmentConfiguration.Instance.Context;
-            context.MultiCheckMark = Tutorial.TutorialUI.I;
             context.AudioManager = new AssessmentAudioManager( context.Utils.GetAudioManager(),
                                                                context.Utils.GetSubtitleWidget(),
                                                                context.GameDescription);
 
-            context.AnswerChecker = new AnswerChecker( context.MultiCheckMark,
-                                                       context.AudioManager);
+            context.AnswerChecker = new AnswerChecker( context.AudioManager);
 
             rounds = AssessmentConfiguration.Instance.NumberOfRounds;
         }

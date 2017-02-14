@@ -1,3 +1,4 @@
+using EA4S.Antura;
 using EA4S.MinigamesAPI;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,15 @@ namespace EA4S.Assessment
         public GameObject Placeholders = null;
         public GameObject QuestionBoxes = null;
 
+        [Header("Scene")]
+        public AnturaAnimationController antura = null;
+
         private int counter = 0;
+
+        public AnturaAnimationController GetAntura()
+        {
+            return antura;
+        }
 
         public StillLetterBox SpawnQuestion( ILivingLetterData data)
         {

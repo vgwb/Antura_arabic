@@ -147,6 +147,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8fcc03a4064752b4482d37c708ca7ca8, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1081718908 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114852718510641180, guid: 8fcc03a4064752b4482d37c708ca7ca8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1081718907}
+  m_Script: {fileID: 11500000, guid: 8886d6a27b893af4cada5d6bfcc4342f, type: 3}
 --- !u!1001 &1214186412
 Prefab:
   m_ObjectHideFlags: 0
@@ -186,6 +192,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013822948356, guid: 998c7211c33aab649a372bdc784b9b87,
+        type: 2}
+      propertyPath: antura
+      value: 
+      objectReference: {fileID: 1081718908}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 998c7211c33aab649a372bdc784b9b87, type: 2}
   m_IsPrefabParent: 0
