@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S.Audio;
+using EA4S.Map;
+
 namespace EA4S
 {
     public class Dot : MonoBehaviour
@@ -15,6 +18,7 @@ namespace EA4S
             if (other.gameObject.tag == "Player")
             {
                 ChangeMaterialPinToRed();
+                if (other.gameObject.GetComponent<LetterMovement>().inRopeState == true) AudioManager.I.PlaySound(Sfx.UIButtonClick);
             }
         }
         void OnTriggerExit(Collider other)
