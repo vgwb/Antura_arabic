@@ -14,6 +14,8 @@ namespace EA4S.Assessment
 
         public override IEnumerator GetPlaceCoroutine( bool playAudio)
         {
+            ResetAnimationsQueue();
+
             if (playAudio)
                 // warn our heirs
                 Debug.LogWarning( "playAudio, parameter not used for Categorization questions");
@@ -63,7 +65,7 @@ namespace EA4S.Assessment
                     if (currentPos.x < min)
                         min = currentPos.x;
 
-                    yield return PlacePlaceholder( p, currentPos);
+                    PlacePlaceholder( p, currentPos);
                     currentPos.x += (options.SlotSize / 2) * sign;
                 }
 
@@ -72,9 +74,13 @@ namespace EA4S.Assessment
                 questionPos.x = (max + min) /2f;
 
                 // Category questions never read the category
-                yield return PlaceQuestion( allQuestions[ questionIndex], questionPos, false);
+                PlaceQuestion( allQuestions[ questionIndex], questionPos, false);
 
                 WrapQuestionInABox( allQuestions[ questionIndex]);
+                foreach (var anim in AnimationsQueue)
+                    yield return Koroutine.Nested(anim);
+
+                AnimationsQueue.Clear();
 
                 questionIndex++;
             }

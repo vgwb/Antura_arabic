@@ -154,6 +154,9 @@ namespace EA4S.Assessment
                     sprite.Height = sprite.initialHeight * value;
                 }
 
+                //transform the parent too because border sprites have offset even with 0 scale
+                transform.localScale = new Vector3(value, value, value);
+
                 textTransform.sizeDelta = new Vector2( startTextScale.x * widthScale, startTextScale.y * value);
                 drawingTransform.sizeDelta = new Vector2( startTextScale.x * widthScale, startTextScale.y * value);
                 MegaphoneIcon.transform.localScale =
@@ -204,6 +207,38 @@ namespace EA4S.Assessment
 
                     SetWidness( data.DataType);
                 }
+            }
+        }
+
+        private Tween colorTween = null;
+        private bool stoppedColor = true;
+
+        public void NearbySlot()
+        {
+            if(stoppedColor)
+            {
+                StopColorTween();
+                colorTween = slotSprite.Material.DOColor( new Color32( 180, 180, 180, 255), 0.3f);
+                stoppedColor = false;
+            }
+        }
+
+        private void StopColorTween()
+        {
+            if(colorTween != null)
+            {
+                colorTween.Kill( false);
+                colorTween = null;
+            }
+        }
+
+        public void FarSlot()
+        {
+            if (stoppedColor == false)
+            {
+                StopColorTween();
+                colorTween = slotSprite.Material.DOColor( new Color32( 255, 255, 255, 255), 0.3f);
+                stoppedColor = true;
             }
         }
 

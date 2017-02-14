@@ -55,7 +55,7 @@ namespace EA4S.Assessment
 
         public bool AllAnswered()
         {            
-            if (!checker.IsAnimating() && checker.AreAllAnswered(placeholders))
+            if (!checker.IsAnimating() && checker.AreAllAnswered( placeholders))
             {
                 checker.Check( placeholders, questions, this);
             }
@@ -119,6 +119,9 @@ namespace EA4S.Assessment
 
         public void StopDragging( IDroppable droppable)
         {
+            foreach (var p in placeholders)
+                p.gameObject.GetComponent< StillLetterBox>().FarSlot();
+
             if (this.droppable == droppable && droppable != null)
             {
                 audioManager.PlayUIPopup();
@@ -160,11 +163,21 @@ namespace EA4S.Assessment
         {
             if (droppable != null)
             {
-                var currentDroppable = (DroppableBehaviour) droppable;
+                var currentDroppable = (DroppableBehaviour)droppable;
 
                 var pos = Camera.main.ScreenToWorldPoint( Input.mousePosition);
                 pos.z = currentDroppable.GetZ();
                 droppable.GetTransform().localPosition = pos;
+
+                foreach (var p in placeholders)
+                    if (NearEnoughToDrop( p.transform))
+                    {
+                        p.gameObject.GetComponent< StillLetterBox>().NearbySlot();
+                    }
+                    else
+                    {
+                        p.gameObject.GetComponent< StillLetterBox>().FarSlot();
+                    }
             }
         }
 
