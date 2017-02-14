@@ -92,7 +92,9 @@ namespace EA4S.Teacher
             // Get some wrong letters (not from that word)
             var wrongAnswers = teacher.VocabularyAi.SelectData(
                 () => vocabularyHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray()),
-                    new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong));
+                    new SelectionParameters(
+                        parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong, 
+                        journeyFilter: SelectionParameters.JourneyFilter.UpToFullCurrentStage));
 
             if (ConfigAI.verboseQuestionPacks)
             {

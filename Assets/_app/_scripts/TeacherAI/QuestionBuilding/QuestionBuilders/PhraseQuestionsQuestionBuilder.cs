@@ -69,7 +69,8 @@ namespace EA4S.Teacher
             var wrongPhrases = teacher.VocabularyAi.SelectData(
                 () => vocabularyHelper.GetPhrasesNotIn(parameters.wordFilters, parameters.phraseFilters, question, reply),
                     new SelectionParameters(parameters.correctSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
-                        packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs));
+                        packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs,
+                        journeyFilter: SelectionParameters.JourneyFilter.UpToFullCurrentStage));
 
             if (ConfigAI.verboseQuestionPacks)
             {

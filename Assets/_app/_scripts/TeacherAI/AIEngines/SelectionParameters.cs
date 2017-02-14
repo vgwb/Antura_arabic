@@ -28,20 +28,29 @@ namespace EA4S.Teacher
     /// </summary>
     public struct SelectionParameters
     {
+        public enum JourneyFilter
+        {
+            CurrentJourney,
+            UpToFullCurrentStage
+        }
+
         public SelectionSeverity severity;
         public int nRequired;
         public bool getMaxData;
         public bool useJourney;
+        public JourneyFilter journeyFilter;
+
         public PackListHistory packListHistory;
         public List<string> filteringIds;
         public bool sortDataByDifficulty;
 
-        public SelectionParameters(SelectionSeverity severity, int nRequired = 0, bool getMaxData = false, bool useJourney = true, PackListHistory packListHistory = PackListHistory.NoFilter, List < string> filteringIds = null, bool sortDataByDifficulty = false)
+        public SelectionParameters(SelectionSeverity severity, int nRequired = 0, bool getMaxData = false, bool useJourney = true, JourneyFilter journeyFilter = JourneyFilter.CurrentJourney, PackListHistory packListHistory = PackListHistory.NoFilter, List < string> filteringIds = null, bool sortDataByDifficulty = false)
         {
             this.nRequired = nRequired;
             this.getMaxData = getMaxData;
             this.severity = severity;
             this.useJourney = useJourney;
+            this.journeyFilter = journeyFilter;
             this.packListHistory = packListHistory;
             this.filteringIds = filteringIds;
             this.sortDataByDifficulty = sortDataByDifficulty;

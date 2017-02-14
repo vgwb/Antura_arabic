@@ -78,7 +78,8 @@ namespace EA4S.Teacher
             // Get words without the letter
             var wrongWords = teacher.VocabularyAi.SelectData(
                 () => vocabularyHelper.GetWordsNotIn(parameters.wordFilters, correctWords.ToArray()),
-                    new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong));
+                    new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
+                        journeyFilter: SelectionParameters.JourneyFilter.UpToFullCurrentStage));
 
             var pack = QuestionPackData.Create(commonLetter, correctWords, wrongWords);
 
