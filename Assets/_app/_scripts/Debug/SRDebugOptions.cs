@@ -11,11 +11,9 @@ using EA4S.UI;
 // refactoring: this is tied to SRDebugger, but we have a DebugManager. Move all debug logic there and make this behave only as a wrapping interface.
 public partial class SROptions
 {
-    const bool STOP_PLAY_AT_WRONG_PLAYSESSIONS = true;
-
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
-        if (!STOP_PLAY_AT_WRONG_PLAYSESSIONS || AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(new JourneyPosition(Stage, LearningBlock, PlaySession), minigameCode))
+        if (!AppConstants.DebugStopPlayAtWrongPlaySessions || AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(new JourneyPosition(Stage, LearningBlock, PlaySession), minigameCode))
         {
             WidgetPopupWindow.I.Close();
             DebugManager.I.LaunchMiniGame(minigameCode);
@@ -23,7 +21,7 @@ public partial class SROptions
         }
         else
         {
-            if (STOP_PLAY_AT_WRONG_PLAYSESSIONS)
+            if (AppConstants.DebugStopPlayAtWrongPlaySessions)
             {
                 JourneyPosition minJ = GetMinimumPlaySessionForMiniGame(minigameCode);
                 if (minJ == null)

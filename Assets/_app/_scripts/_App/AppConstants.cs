@@ -13,6 +13,8 @@
         public static bool UseUnityAnalytics = false;
         public static bool VerboseLogging = true;
         public static bool DebugLogInserts = false;
+        public static bool DebugStopPlayAtWrongPlaySessions = true;
+
 
         // Urls
         public const string UrlWebsite = "http://www.antura.org";
