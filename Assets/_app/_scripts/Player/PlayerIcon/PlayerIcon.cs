@@ -39,11 +39,12 @@ namespace EA4S.Profile
 
         void SetAppearance(PlayerGender gender, int avatarId, PlayerTint tint, bool isDemoUser)
         {
+            if (gender == PlayerGender.None) Debug.LogWarning("Player gender set to NONE");
             Color color = isDemoUser ? new Color(0.4117647f, 0.9254903f, 1f, 1f) : PlayerTintConverter.ToColor(tint);
             UIButton.ChangeDefaultColors(color, color.SetAlpha(0.5f));
             UIButton.Ico.sprite = isDemoUser
                 ? Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + "god")
-                : Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + gender + avatarId);
+                : Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + (gender == PlayerGender.None ? "M" : gender.ToString()) + avatarId);
         }
 
         [DeMethodButton("DEBUG: Randomize Appearance", mode = DeButtonMode.PlayModeOnly)]
