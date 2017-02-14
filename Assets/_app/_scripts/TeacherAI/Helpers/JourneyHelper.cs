@@ -72,6 +72,18 @@ namespace EA4S.Teacher
             }
         }
 
+        public JourneyPosition GetInitialJourneyPosition()
+        {
+            var allPlaySessions = dbManager.GetAllPlaySessionData();
+            return PlaySessionIdToJourneyPosition(allPlaySessions[0].Id);
+        }
+
+        public JourneyPosition GetFinalJourneyPosition()
+        {
+            var allPlaySessions = dbManager.GetAllPlaySessionData();
+            return PlaySessionIdToJourneyPosition(allPlaySessions[allPlaySessions.Count - 1].Id);
+        }
+
         #endregion
 
         #region Info getters

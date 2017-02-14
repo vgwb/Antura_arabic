@@ -12,12 +12,77 @@ namespace EA4S.Teacher
     {
         public List<IQuestionPack> GenerateQuestionPacks(IQuestionBuilder questionBuilder)
         {
+            // Generate packs
             List<QuestionPackData> questionPackDataList = questionBuilder.CreateAllQuestionPacks();
-            if (questionBuilder.Parameters != null && questionBuilder.Parameters.sortPacksByDifficulty) QuestionBuilderHelper.SortPacksByDifficulty(questionPackDataList);
+
+            // Apply ordering
+            if (questionBuilder.Parameters != null && questionBuilder.Parameters.sortPacksByDifficulty)
+            {
+                QuestionBuilderHelper.SortPacksByDifficulty(questionPackDataList);
+            }
+
+            // Fix blatant repetitions
+            if (questionPackDataList.Count > 2) FixRepetitions(questionPackDataList);
+
             ConfigAI.ReportPacks(questionPackDataList);
 
             List<IQuestionPack> questionPackList = ConvertToQuestionPacks(questionPackDataList);
             return questionPackList;
+        }
+
+        private void FixRepetitions(List<QuestionPackData> packs)
+        {
+            //ConfigAI.ReportPacks(packs);
+
+            // Remove repeated packs
+            List<QuestionPackData> repeatedPacks = new List<QuestionPackData>();
+            for (int i = packs.Count-2; i >= 0; i--)
+            {
+                if (IsSamePack(packs[i], packs[i+1]))
+                {
+                    repeatedPacks.Add(packs[i]);
+                    packs.RemoveAt(i);
+                }
+            }
+
+            //UnityEngine.Debug.LogError("FOUND " + repeatedPacks.Count + " REP");
+
+            // Reinsert them
+            repeatedPacks.Reverse();
+            for (int ri = repeatedPacks.Count-1; ri >= 0; ri--)
+            {
+                bool inserted = false;
+
+                if (!IsSamePack(repeatedPacks[ri], packs[packs.Count - 1]))
+                {
+                    packs.Add(repeatedPacks[ri]);
+                    inserted = true;
+                    continue;
+                }
+
+                for (int i = packs.Count - 2; i >= 0; i--)
+                {
+                    if (!IsSamePack(repeatedPacks[ri], packs[i + 1]) && !IsSamePack(repeatedPacks[ri], packs[i]))
+                    {
+                       // UnityEngine.Debug.LogError("Reinserting " + repeatedPacks[ri] + " at " + i);
+                        packs.Insert(i, repeatedPacks[ri]);
+                        inserted = true;
+                        break;
+                    }
+                }
+
+                if (!inserted)
+                {
+                    packs.Insert(0, repeatedPacks[ri]);
+                }
+
+            }
+        }
+
+        private bool IsSamePack(QuestionPackData pack1, QuestionPackData pack2)
+        {
+            return pack1.question != null && pack1.question == pack2.question
+                    && pack1.correctAnswers != null && (pack1.correctAnswers[0] == pack2.correctAnswers[0]);
         }
 
         private List<IQuestionPack> ConvertToQuestionPacks(List<QuestionPackData> questionPackDataList)
