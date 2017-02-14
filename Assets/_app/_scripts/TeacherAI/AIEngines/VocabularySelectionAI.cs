@@ -4,7 +4,6 @@ using EA4S.Database;
 using System.Linq;
 using EA4S.Core;
 using EA4S.Helpers;
-using UnityEngine;
 
 namespace EA4S.Teacher
 {
@@ -190,7 +189,7 @@ namespace EA4S.Teacher
             if (selectionParams.nRequired == 0 && !selectionParams.getMaxData) return new List<T>();
 
             string debugString = "";
-            debugString += ConfigAI.FormatTeacherHeader("Data Selection");
+            debugString += ConfigAI.FormatTeacherHeader("Data Selection: " + typeof(T).Name);
 
             // (1) Filtering based on the builder's logic
             var dataList = builderSelectionFunction();
