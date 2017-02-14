@@ -16,7 +16,7 @@ public partial class SROptions
 
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
-        if (STOP_PLAY_AT_WRONG_PLAYSESSIONS && AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
+        if (!STOP_PLAY_AT_WRONG_PLAYSESSIONS || AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
         {
             WidgetPopupWindow.I.Close();
             DebugManager.I.LaunchMiniGame(minigameCode);
@@ -115,6 +115,11 @@ public partial class SROptions
     [Category("Options")]
     [Sort(40)]
     public DifficultyLevel DifficultyLevel { get { return DebugManager.I.DifficultyLevel; } set { DebugManager.I.DifficultyLevel = value; } }
+
+    [Category("Options")]
+    [NumberRange(1, 6)]
+    [Sort(50)]
+    public int NumberOfRounds { get { return DebugManager.I.NumberOfRounds; } set { DebugManager.I.NumberOfRounds = value; } }
 
     [Category("Options")]
     [Sort(60)]
