@@ -46,7 +46,9 @@ namespace EA4S.Teacher
                 cWeight = 0;
             }
 
-            return (qWeight * qDiff + cWeight * cDiff) / (qWeight + cWeight);
+            float diff = (qWeight * qDiff + cWeight * cDiff) / (qWeight + cWeight);
+            //UnityEngine.Debug.Log("Pack " + pack + " diff: " + diff);
+            return diff;
         }
 
     }
