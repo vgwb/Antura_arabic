@@ -438,6 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd1895f3d5c04d4b9718c3fb769e02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CategoryType: 1
 --- !u!1 &237619587
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,8 +618,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
-  ToggleIconAlpha: 1
-  ToggleCanvasGroupAlpha: 1
+  ToggleIconAlpha: 0
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &304947829
@@ -824,8 +825,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
-  ToggleIconAlpha: 1
-  ToggleCanvasGroupAlpha: 1
+  ToggleIconAlpha: 0
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &429825416
@@ -1393,8 +1394,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
-  ToggleIconAlpha: 1
-  ToggleCanvasGroupAlpha: 1
+  ToggleIconAlpha: 0
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &536872283
@@ -4787,8 +4788,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
-  ToggleIconAlpha: 1
-  ToggleCanvasGroupAlpha: 1
+  ToggleIconAlpha: 0
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &760076513
@@ -5469,8 +5470,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
-  ToggleIconAlpha: 1
-  ToggleCanvasGroupAlpha: 1
+  ToggleIconAlpha: 0
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &1050500462
@@ -5608,8 +5609,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
-  ToggleIconAlpha: 1
-  ToggleCanvasGroupAlpha: 1
+  ToggleIconAlpha: 0
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &1173605222
@@ -5747,8 +5748,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
-  ToggleIconAlpha: 1
-  ToggleCanvasGroupAlpha: 1
+  ToggleIconAlpha: 0
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &1243457325
@@ -6026,8 +6027,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
-  ToggleIconAlpha: 1
-  ToggleCanvasGroupAlpha: 1
+  ToggleIconAlpha: 0
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 1
 --- !u!114 &1267863092
@@ -7147,9 +7148,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1701720328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5d0651a65ce37e4ea4141844a1aac17, type: 3}
+  m_Script: {fileID: 11500000, guid: bcd1895f3d5c04d4b9718c3fb769e02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CategoryType: 3
 --- !u!1 &1724814838
 GameObject:
   m_ObjectHideFlags: 0
@@ -7868,6 +7870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd1895f3d5c04d4b9718c3fb769e02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CategoryType: 2
 --- !u!1 &1865649053
 GameObject:
   m_ObjectHideFlags: 0
@@ -8018,6 +8021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd1895f3d5c04d4b9718c3fb769e02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CategoryType: 0
 --- !u!1 &1887908995
 GameObject:
   m_ObjectHideFlags: 0
