@@ -61,6 +61,7 @@ namespace EA4S.Minigames.SickLetters
             letterView.Falling = true;
             yield return new WaitForSeconds(0.30f);
 
+            
             letterView.OnJumpEnded();
             letterAnimator.SetBool("dancing", game.LLCanDance);
 

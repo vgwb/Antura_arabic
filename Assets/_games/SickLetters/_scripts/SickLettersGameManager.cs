@@ -52,9 +52,16 @@ namespace EA4S.Minigames.SickLetters
             game.hole["Take 001"].wrapMode = WrapMode.PingPong;
             game.hole["Take 001"].speed = speed;
             game.hole.Play("Take 001");
-            yield return new WaitForSeconds(game.hole["Take 001"].length * 2 / game.hole["Take 001"].speed);
+            SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.TrapdoorOpen);
+
+            yield return new WaitForSeconds((game.hole["Take 001"].length / game.hole["Take 001"].speed) + 0.2f);
+
+            SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.TrapdoorClose);
+
+            yield return new WaitForSeconds((game.hole["Take 001"].length / game.hole["Take 001"].speed) - 0.2f);
             //game.hole["Take 001"]
             game.hole.Stop("Take 001");
+            
             game.hole.gameObject.SetActive(false);
         }
     }
