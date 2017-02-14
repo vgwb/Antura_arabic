@@ -119,13 +119,19 @@ namespace EA4S.Minigames.Maze
             if (currentPath < pathsToFollow.Count - 1)
             {
                 isStopped = false;
-                pathsToFollow[currentPath].SetActive(false);
-                visibleArrows[currentPath].SetActive(false);
-                //numbersToShow [currentPath].SetActive (false);
-                linesToShow[currentPath].SetActive(false);
+
+                HideCheckpointsAndLineOfCurrentPath();
+                
                 currentPath++;
                 setWayPoints();
             }
+        }
+
+        public void HideCheckpointsAndLineOfCurrentPath()
+        {
+            pathsToFollow[currentPath].SetActive(false);
+            visibleArrows[currentPath].SetActive(false);
+            linesToShow[currentPath].SetActive(false);
         }
 
         public bool isCurrentTutorialDone()
