@@ -131,7 +131,6 @@ namespace EA4S.UI
 
         void AvatarCreation_StepBackwards(int toStep)
         {
-            int totSteps = selectionStep - toStep;
             if (stepTween != null) stepTween.Complete();
             for (int i = toStep + 1; i < selectionStep + 1; ++i) {
                 PlayerCreationUICategory cat = Categories[i];
