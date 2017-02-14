@@ -22,19 +22,20 @@ namespace EA4S.UI
 
         static class CategoryIndex
         {
-            public const int Age = 0;
-            public const int Gender = 1;
-            public const int Avatar = 2;
-            public const int Color = 3;
+            public const int Gender = 0;
+            public const int Avatar = 1;
+            public const int Color = 2;
+//            public const int Age = 3;
         }
 
         #region Serialized
 
         [Tooltip("Startup offset of categories")]
-        public int StartupOffsetY = 180;
+        public int StartupOffsetY = -160;
         public UIButton BtCreate;
         public RectTransform CategoriesContainer;
-        public PlayerCreationUICategory[] Categories; // 0: age // 1: gender // 2: avatar // 3: color
+        public PlayerCreationUICategory[] Categories; // 0: gender // 1: avatar // 2: color
+        public PlayerCreationUICategory AgeCategory;
 
         #endregion
 
@@ -54,7 +55,7 @@ namespace EA4S.UI
 
         void Start()
         {
-            selectionStepOffsetY = StartupOffsetY / 3f;
+            selectionStepOffsetY = StartupOffsetY / (Categories.Length - 1f);
             CategoriesContainer.SetAnchoredPosY(StartupOffsetY);
             for (int i = 1; i < Categories.Length; ++i) Categories[i].gameObject.SetActive(false);
             BtCreate.gameObject.SetActive(false);
@@ -111,7 +112,7 @@ namespace EA4S.UI
         void CreateProfile()
         {
             PlayerCreationScene.CreatePlayer(
-                Categories[CategoryIndex.Age].SelectedIndex + 4,
+                AgeCategory.SelectedIndex + 4,
                 Categories[CategoryIndex.Gender].SelectedIndex == 0 ? PlayerGender.M : PlayerGender.F,
                 Categories[CategoryIndex.Avatar].SelectedIndex + 1,
                 (PlayerTint)(Categories[CategoryIndex.Color].SelectedIndex + 1)
