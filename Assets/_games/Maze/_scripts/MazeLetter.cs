@@ -110,6 +110,7 @@ namespace EA4S.Minigames.Maze
                                                         Camera.main.transform.position.y - transform.position.y - 2f));
 
                 Tutorial.TutorialUI.MarkNo(pointOfImpact);
+                MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
 
                 LaunchRocket();
             }
@@ -125,6 +126,8 @@ namespace EA4S.Minigames.Maze
             isDrawing = false;
             mazeCharacter.toggleVisibility(true);
             mazeCharacter.initMovement();
+
+            
 
             MazeGameManager.instance.timer.StopTimer();
         }

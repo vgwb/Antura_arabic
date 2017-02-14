@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using EA4S.LivingLetters;
 using EA4S.Minigames.Tobogan;
+using EA4S.MinigamesCommon;
 
 namespace EA4S.Minigames.Maze
 {
@@ -125,6 +126,8 @@ namespace EA4S.Minigames.Maze
         private readonly Vector3 ROCKET_LOCAL_ROTATION = new Vector3(0, -90f, 90f);
 
         public LivingLetterRagdoll ragdoll;
+
+        private IAudioSource rocketMoveSFX;
 
         public void SetMazeLetter(MazeLetter mazeLetter)
         {
@@ -565,6 +568,10 @@ namespace EA4S.Minigames.Maze
                     rotatedVector.y = 2f;
 
                     Tutorial.TutorialUI.MarkNo((_fruits[currentFruitIndex].transform.position + rocket.transform.position) / 2 + rotatedVector, Tutorial.TutorialUI.MarkSize.Normal);
+                    
+                    rocketMoveSFX.Stop();
+
+                    MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
 
                     loseState = LoseState.Incomplete;
                 }
@@ -611,6 +618,10 @@ namespace EA4S.Minigames.Maze
             rocketRigidBody.AddRelativeTorque(new Vector3(Random.Range(-40f, 40f), Random.Range(-40f, 40f), Random.Range(-40f, 40f)) * 100f);
 
             State = LLState.Impacted;
+            
+            rocketMoveSFX.Stop();
+
+            MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.CrateLandOnground);
         }
 
         public void initMovement()
@@ -633,6 +644,8 @@ namespace EA4S.Minigames.Maze
 
             // Test with tweens:
             MoveTween();
+
+            rocketMoveSFX = MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.RocketMove);
         }
 
         public void calculateMovementAndRotation()
@@ -799,6 +812,7 @@ namespace EA4S.Minigames.Maze
                     tickPosition.z -= 1f;
                     tickPosition.y -= 1.5f;
                     Tutorial.TutorialUI.MarkNo(tickPosition, Tutorial.TutorialUI.MarkSize.Big);
+                    MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
 
                 },
                 () =>

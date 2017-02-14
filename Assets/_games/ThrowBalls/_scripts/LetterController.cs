@@ -330,6 +330,8 @@ namespace EA4S.Minigames.ThrowBalls
             GameObject poof = Instantiate(ThrowBallsGame.instance.poofPrefab, transform.position, Quaternion.identity);
             Destroy(poof, 10);
             transform.position = new Vector3(0, 0, -100f);
+            
+            ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Poof);
         }
 
         public void Enable()
