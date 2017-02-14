@@ -34,12 +34,51 @@ namespace EA4S.Core
             AppSession = Random.Range(10000000, 99999999).ToString();
         }
 
+        #region Time Logging
+
+        System.DateTime startPlaySessionDateTime;
+        System.DateTime startMiniGameDateTime;
+        System.DateTime endPlaySessionDateTime;
+        System.DateTime endMiniGameDateTime;
+
+        public void StartPlaySession()
+        {
+            startPlaySessionDateTime = System.DateTime.Now;
+        }
+
+        public void EndPlaySession()
+        {
+            endPlaySessionDateTime = System.DateTime.Now;
+        }
+
+        public void StartMiniGame()
+        {
+            startMiniGameDateTime = System.DateTime.Now;
+        }
+
+        public void EndMiniGame()
+        {
+            endMiniGameDateTime = System.DateTime.Now;
+        }
+
+        #endregion
+
         #region Proxy From Minigame log manager provider To App Log Intellingence
 
         protected internal void LogMinigameScore(string playSession, MiniGameCode miniGameCode, int score)
         {
-            // @todo: the minigame play time should be passed here
-            AppManager.I.Teacher.logAI.LogMiniGameScore(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, score, 0f);
+            EndMiniGame();
+            LogInfo(InfoEvent.GameEnd, JsonUtility.ToJson(new GameResultInfo() { Game = miniGameCode.ToString(), Result = score.ToString() }));
+
+            float duration = (float)(endMiniGameDateTime - startMiniGameDateTime).TotalSeconds;
+            //Debug.LogError("DURATION MG: " + duration);
+            AppManager.I.Teacher.logAI.LogMiniGameScore(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, score, duration);
+        }
+
+        struct GameResultInfo
+        {
+            public string Game;
+            public string Result;
         }
 
         /// @note: deprecated (unless we re-add minigame direct logplay logging)
@@ -63,8 +102,11 @@ namespace EA4S.Core
         /// <param name="score">The score.</param>
         public void LogPlaySessionScore(string playSessionId, int score)
         {
-            // @todo: the complete play session play time should be passed here
-            AppManager.I.Teacher.logAI.LogPlaySessionScore(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, score, 0f);
+            EndPlaySession();
+
+            float duration = (float)(endPlaySessionDateTime - startPlaySessionDateTime).TotalSeconds;
+            //Debug.LogError("DURATION PS: " + duration);
+            AppManager.I.Teacher.logAI.LogPlaySessionScore(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, score, duration);
         }
 
         /// <summary>

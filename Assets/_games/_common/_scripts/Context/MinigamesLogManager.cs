@@ -54,8 +54,7 @@ namespace EA4S.MinigamesCommon
             FlushLogLearn();
             //FlushLogPlay();   // Unless minigames can directly log play skills, this is not needed
             LogManager.I.LogMinigameScore(sessionName, miniGameCode, _valuation);
-            LogManager.I.LogInfo(InfoEvent.GameEnd, JsonUtility.ToJson(new GameResultInfo() { Game = miniGameCode.ToString(), Result = _valuation.ToString() }));
-        }
+       }
 
         /*
         /// <summary>
@@ -174,12 +173,6 @@ namespace EA4S.MinigamesCommon
             public string CachedType { get { return "ILivingLetterAnswerData"; } }
             public ILivingLetterData _data;
             public bool _isPositiveResult;
-        }
-
-        struct GameResultInfo
-        {
-            public string Game;
-            public string Result;
         }
         #endregion
     }
