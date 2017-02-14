@@ -65,6 +65,7 @@ namespace EA4S.MinigamesAPI
             // Comunicate to LogManager the start of a new single minigame play session.
             if (AppConstants.DebugLogInserts) Debug.Log("InitGameplayLogSession " + _gameCode.ToString());
             LogManager.I.LogInfo(InfoEvent.GameStart, _gameCode.ToString());
+            LogManager.I.StartMiniGame();
 
             // Print the teacher's report now
             ConfigAI.PrintTeacherReport();
