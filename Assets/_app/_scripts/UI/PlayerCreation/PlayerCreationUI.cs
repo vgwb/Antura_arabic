@@ -12,6 +12,22 @@ namespace EA4S.UI
     /// </summary>
     public class PlayerCreationUI : MonoBehaviour
     {
+        public enum CategoryType
+        {
+            Age,
+            Gender,
+            Avatar,
+            Color
+        }
+
+        static class CategoryIndex
+        {
+            public const int Age = 0;
+            public const int Gender = 1;
+            public const int Avatar = 2;
+            public const int Color = 3;
+        }
+
         #region Serialized
 
         [Tooltip("Startup offset of categories")]
@@ -79,7 +95,7 @@ namespace EA4S.UI
             if (stepTween != null) stepTween.Complete();
             for (int i = toStep + 1; i < selectionStep + 1; ++i) {
                 PlayerCreationUICategory cat = Categories[i];
-                if (i == 2) cat.ResetColor(); // Reset avatars colors
+                if (i == CategoryIndex.Color) Categories[CategoryIndex.Avatar].ResetColor(); // Reset avatars colors
                 cat.Select(-1);
                 cat.gameObject.SetActive(false);
             }
@@ -89,16 +105,16 @@ namespace EA4S.UI
 
         void SetGender()
         {
-            Categories[2].AvatarSetIcon(Categories[1].SelectedIndex == 1);
+            Categories[CategoryIndex.Avatar].AvatarSetIcon(Categories[CategoryIndex.Gender].SelectedIndex == 1);
         }
 
         void CreateProfile()
         {
             PlayerCreationScene.CreatePlayer(
-                Categories[0].SelectedIndex + 4,
-                Categories[1].SelectedIndex == 0 ? PlayerGender.M : PlayerGender.F,
-                Categories[2].SelectedIndex + 1,
-                (PlayerTint)(Categories[3].SelectedIndex + 1)
+                Categories[CategoryIndex.Age].SelectedIndex + 4,
+                Categories[CategoryIndex.Gender].SelectedIndex == 0 ? PlayerGender.M : PlayerGender.F,
+                Categories[CategoryIndex.Avatar].SelectedIndex + 1,
+                (PlayerTint)(Categories[CategoryIndex.Color].SelectedIndex + 1)
             );
         }
 
@@ -111,11 +127,11 @@ namespace EA4S.UI
             int catIndex = Array.IndexOf(Categories, category);
             if (selectionStep < Categories.Length - 1 && catIndex == selectionStep) NextStep();
             switch (catIndex) {
-                case 1: // Gender
+                case CategoryIndex.Gender:
                     SetGender();
                     break;
-                case 3: // Color selection
-                    Categories[2].SetColor(uiButton.DefaultColor);
+                case CategoryIndex.Color:
+                    Categories[CategoryIndex.Avatar].SetColor(uiButton.DefaultColor);
                     BtCreate.gameObject.SetActive(true);
                     BtCreate.Pulse();
                     break;
@@ -128,7 +144,7 @@ namespace EA4S.UI
             BtCreate.gameObject.SetActive(false);
             int catIndex = Array.IndexOf(Categories, category);
             if (catIndex < selectionStep) StepBackwards(catIndex);
-            else if (catIndex == 3) Categories[2].ResetColor();
+            else if (catIndex == CategoryIndex.Color) Categories[CategoryIndex.Avatar].ResetColor();
         }
 
         #endregion

@@ -20,6 +20,12 @@ namespace EA4S.UI
 
         #endregion
 
+        #region Serialized
+
+        public PlayerCreationUI.CategoryType CategoryType;
+
+        #endregion
+
         /// <summary>If nothing is selected, returns -1</summary>
         public int SelectedIndex { get; private set; }
         protected UIButton[] uiButtons;
@@ -34,6 +40,19 @@ namespace EA4S.UI
             {
                 UIButton bt = uiButton;
                 bt.Bt.onClick.AddListener(()=> OnClick(bt));
+            }
+
+            switch (CategoryType)
+            {
+                case PlayerCreationUI.CategoryType.Color:
+                    // Set colors
+                    for (int i = 0; i < uiButtons.Length; ++i)
+                    {
+                        UIButton bt = uiButtons[i];
+                        Color color = PlayerTintConverter.ToColor((PlayerTint)(i + 1));
+                        bt.ChangeDefaultColors(color, color);
+                    }
+                    break;
             }
         }
 
@@ -61,7 +80,11 @@ namespace EA4S.UI
                 if (SelectedIndex >= 0)
                 {
                     SelectedIndex = -1;
-                    foreach (UIButton uiButton in uiButtons) uiButton.Toggle(true);
+                    foreach (UIButton uiButton in uiButtons)
+                    {
+                        uiButton.Toggle(true);
+                        if (CategoryType == PlayerCreationUI.CategoryType.Color) uiButton.transform.localScale = Vector3.one;
+                    }
                     DispatchOnDeselectAll(this);
                 }
             }
@@ -69,26 +92,23 @@ namespace EA4S.UI
             {
                 // Select index
                 SelectedIndex = index;
-                for (int i = 0; i < uiButtons.Length; ++i) uiButtons[i].Toggle(i == index);
+                for (int i = 0; i < uiButtons.Length; ++i)
+                {
+                    UIButton bt = uiButtons[i];
+                    bt.Toggle(i == index);
+                    if (CategoryType == PlayerCreationUI.CategoryType.Color) bt.transform.localScale = Vector3.one * (i == index ? 1 : 0.75f);
+                }
             }
         }
 
         public void SetColor(Color color)
         {
-            foreach (UIButton uiButton in uiButtons)
-            {
-                uiButton.DefaultColor = color;
-                uiButton.BtImg.color = new Color(color.r, color.g, color.b, uiButton.BtImg.color.a);
-            }
+            foreach (UIButton uiButton in uiButtons) uiButton.ChangeDefaultColors(color);
         }
 
         public void ResetColor()
         {
-            foreach (UIButton uiButton in uiButtons)
-            {
-               uiButton.DefaultColor = Color.white;
-               uiButton.BtImg.color = new Color(1, 1, 1, uiButton.BtImg.color.a);
-            }
+            foreach (UIButton uiButton in uiButtons) uiButton.ChangeDefaultColors(Color.white);
         }
 
         // Only used by avatars category
