@@ -28,13 +28,13 @@ namespace EA4S.Minigames.TakeMeHome
             UnityEngine.Vector3 markPosition = game.currentLetter.collidedTubes[game.currentLetter.collidedTubes.Count - 1].cubeInfo.transform.position + new UnityEngine.Vector3(0, 0, -3);
             win = false;
 			if (tubeIndex == game.currentTube) {
-                TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
+                TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.StampOK);
 				//AudioManager.I.PlaySound (Sfx.Win);
 				win = true;
 				game.IncrementScore ();
                 TutorialUI.MarkYes(markPosition, TutorialUI.MarkSize.Big);
 			} else {
-                TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
+                TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
                 TutorialUI.MarkNo(markPosition, TutorialUI.MarkSize.Big);
             }
 
