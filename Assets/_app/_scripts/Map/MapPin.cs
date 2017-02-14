@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using EA4S;
+using EA4S.Audio;
+using EA4S.Map;
 
 namespace EA4S
 {
@@ -26,6 +28,7 @@ namespace EA4S
             {
                 transform.GetChild(0).gameObject.SetActive(false);
                 ChangeMaterialPinToRed();
+                if(other.gameObject.GetComponent<LetterMovement>().inRopeState== true) AudioManager.I.PlaySound(Sfx.UIButtonClick);
             }
         }
         void OnTriggerExit(Collider other)
