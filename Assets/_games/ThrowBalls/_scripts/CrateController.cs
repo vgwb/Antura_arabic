@@ -16,18 +16,6 @@ namespace EA4S.Minigames.ThrowBalls
         private IEnumerator customGravityCoroutine;
         private IEnumerator swervingCoroutine;
 
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public void SetSwerving(Vector3 leftPivot, Vector3 rightPivot, float factor, float phase)
         {
             swervingCoroutine = SwerveCoroutine(leftPivot, rightPivot, factor, phase);
@@ -75,7 +63,6 @@ namespace EA4S.Minigames.ThrowBalls
 
         public void Reset()
         {
-            //transform.Rotate(0, Random.Range(-20, 20), 0);
             transform.rotation = new Quaternion(0, 0, 0, 0);
             SetIsKinematic(true);
             StopAllCoroutines();
@@ -86,10 +73,6 @@ namespace EA4S.Minigames.ThrowBalls
             if (collision.gameObject.tag == Constants.TAG_POKEBALL)
             {
                 cratePileController.OnCrateHit(this);
-            }
-
-            else if (collision.gameObject.tag == Constants.TAG_RAIL)
-            {
             }
         }
 
@@ -158,6 +141,8 @@ namespace EA4S.Minigames.ThrowBalls
             GameObject poof = Instantiate(ThrowBallsGame.instance.cratePoofPrefab, transform.position, Quaternion.identity);
             Destroy(poof, 10);
             gameObject.SetActive(false);
+            
+            ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Poof);
         }
 
         public void SetIsKinematic(bool isKinematic)

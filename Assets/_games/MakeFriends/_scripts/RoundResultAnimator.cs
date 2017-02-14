@@ -17,6 +17,7 @@ namespace EA4S.Minigames.MakeFriends
         public void ShowLose()
         {
             TutorialUI.MarkNo(wrongMarkPosition, TutorialUI.MarkSize.Huge);
+            MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
         }
 
         public void Hide()

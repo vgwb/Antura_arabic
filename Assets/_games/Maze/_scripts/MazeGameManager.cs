@@ -222,7 +222,8 @@ namespace EA4S.Minigames.Maze
 
             for (int i = 0; i < _cracks.Count; ++i)
                 _cracks[i].SetActive(true);
-            //StartCoroutine (shakeCamera (0.5f, 0.5f));
+
+            MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.ScreenHit);
 
         }
         public void wasHit()
@@ -268,7 +269,7 @@ namespace EA4S.Minigames.Maze
                 // Hide checkpoints of last path:
                 currentTutorial.HideCheckpointsAndLineOfCurrentPath();
 
-                if (roundNumber % 2 ==0)
+                if (roundNumber % 2 == 0)
                 {
                     currentCharacter.CelebrateStraight(() =>
                     {
@@ -371,7 +372,7 @@ namespace EA4S.Minigames.Maze
 
                 MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
 
-                
+
 
                 restartCurrentLetter();
             }

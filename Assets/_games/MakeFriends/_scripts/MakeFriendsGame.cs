@@ -371,6 +371,7 @@ namespace EA4S.Minigames.MakeFriends
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
                 dropZone.AnimateCorrect();
                 TutorialUI.MarkYes(correctChoiceIndicatorPosition, TutorialUI.MarkSize.Normal);
+                MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.StampOK);
 
                 if (!correctChoices.Exists(x => x.Id == letterChoice.letterData.Id))
                 {
@@ -394,6 +395,7 @@ namespace EA4S.Minigames.MakeFriends
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterSad);
                 dropZone.AnimateWrong();
                 TutorialUI.MarkNo(correctChoiceIndicatorPosition, TutorialUI.MarkSize.Normal);
+                MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
                 dropZone.ResetLetter(feedbackDuration);
                 incorrectChoices.Add(letterChoice.letterData);
                 antura.ReactNegatively();

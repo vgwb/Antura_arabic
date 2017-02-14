@@ -43,6 +43,7 @@ namespace EA4S.Balloons
             LLPrefab.DoAngry();
             TutorialUI.MarkNo(wrongMarkPosition1, TutorialUI.MarkSize.Huge);
             TutorialUI.MarkNo(wrongMarkPosition2, TutorialUI.MarkSize.Huge);
+            BalloonsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
 
             StartCoroutine(Move_Coroutine(offscreenPosition, onscreenPosition, moveDuration));
         }
