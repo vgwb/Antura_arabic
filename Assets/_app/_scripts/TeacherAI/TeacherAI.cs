@@ -113,12 +113,11 @@ namespace EA4S.Teacher
             return minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
         }
 
-        // refactor: this is not used for now, could probably be used by the DebugManager
-        public bool CanMiniGameBePlayedAtPlaySession(string playSessionId, MiniGameCode code)
+        public bool CanMiniGameBePlayedAtPlaySession(JourneyPosition journeyPos, MiniGameCode code)
         {
-            if (dbManager.HasPlaySessionDataById(playSessionId))
+            if (dbManager.HasPlaySessionDataById(journeyPos.ToStringId()))
             {
-                var psData = dbManager.GetPlaySessionDataById(playSessionId);
+                var psData = dbManager.GetPlaySessionDataById(journeyPos.ToStringId());
                 foreach (var minigameInPlaySession in psData.Minigames)
                     if (minigameInPlaySession.MiniGameCode == code)
                         return true;

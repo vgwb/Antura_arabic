@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using UnityEngine;
 using EA4S;
 using EA4S.Core;
@@ -16,7 +15,7 @@ public partial class SROptions
 
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
-        if (!STOP_PLAY_AT_WRONG_PLAYSESSIONS || AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
+        if (!STOP_PLAY_AT_WRONG_PLAYSESSIONS || AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(new JourneyPosition(Stage, LearningBlock, PlaySession), minigameCode))
         {
             WidgetPopupWindow.I.Close();
             DebugManager.I.LaunchMiniGame(minigameCode);
@@ -54,11 +53,11 @@ public partial class SROptions
         for (int s = 1; s <= finalPos.Stage; s++) {
             for (int lb = 1; lb <= finalPos.LearningBlock; lb++) {
                 for (int ps = 1; ps <= NBasePlaySession; ps++) {
-                    if(AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + ps, minigameCode))
+                    if(AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(new JourneyPosition(s, lb, ps), minigameCode))
                         return new JourneyPosition(s, lb, ps);
                 }
                 int assessmentCode = 100;
-                if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + assessmentCode, minigameCode))
+                if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession( new JourneyPosition(s, lb, assessmentCode), minigameCode))
                     return new JourneyPosition(s, lb, assessmentCode);
             }
         }
