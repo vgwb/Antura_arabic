@@ -12,48 +12,58 @@ using EA4S.UI;
 // refactoring: this is tied to SRDebugger, but we have a DebugManager. Move all debug logic there and make this behave only as a wrapping interface.
 public partial class SROptions
 {
+    const bool STOP_PLAY_AT_WRONG_PLAYSESSIONS = true;
+
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
-        //if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
-        //{
-        WidgetPopupWindow.I.Close();
-        DebugManager.I.LaunchMiniGame(minigameCode);
-        SRDebug.Instance.HideDebugPanel();
-        //}
-        //else
-        //{
-        //    JourneyPosition minJ = GetMinimumPlaysessionForGame(minigameCode);
-        //    if (minJ == null) {
-        //        Debug.LogErrorFormat("Minigame {0} cannot be played never!!!", minigameCode);
-        //        return;
-        //    }
-        //    Debug.LogErrorFormat("Minigame {0} cannot be played at this playsession. Min: {1}", minigameCode, minJ.ToString());
-        //    Stage = minJ.Stage;
-        //    LearningBlock = minJ.LearningBlock;
-        //    PlaySession = minJ.PlaySession;
-        //    SRDebug.Instance.HideDebugPanel();
-        //    SRDebug.Instance.ShowDebugPanel();
-        //}
+        if (STOP_PLAY_AT_WRONG_PLAYSESSIONS && AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
+        {
+            WidgetPopupWindow.I.Close();
+            DebugManager.I.LaunchMiniGame(minigameCode);
+            SRDebug.Instance.HideDebugPanel();
+        }
+        else
+        {
+            if (STOP_PLAY_AT_WRONG_PLAYSESSIONS)
+            {
+                JourneyPosition minJ = GetMinimumPlaySessionForMiniGame(minigameCode);
+                if (minJ == null)
+                {
+                    Debug.LogErrorFormat("Minigame {0} cannot be played at all!!!", minigameCode);
+                }
+                else
+                {
+                    Debug.LogErrorFormat("Minigame {0} cannot be played at this playsession. Min: {1}", minigameCode, minJ.ToString());
+                }
+
+                //    Stage = minJ.Stage;
+                //    LearningBlock = minJ.LearningBlock;
+                //    PlaySession = minJ.PlaySession;
+                //    SRDebug.Instance.HideDebugPanel();
+                //    SRDebug.Instance.ShowDebugPanel();
+            }
+        }
+
     }
 
-    //public EA4S.JourneyPosition GetMinimumPlaysessionForGame(MiniGameCode minigameCode) {
-    //    int Stages = 6;
-    //    int LearningBlocks = 15;
-    //    int PlaySessions = 3;
+    public JourneyPosition GetMinimumPlaySessionForMiniGame(MiniGameCode minigameCode)
+    {
+        var finalPos = AppManager.I.Teacher.journeyHelper.GetFinalJourneyPosition();
+        int NBasePlaySession = 2;
 
-    //    for (int s = 1; s <= Stages; s++) {
-    //        for (int lb = 1; lb <= LearningBlocks; lb++) {
-    //            for (int ps = 1; ps <= PlaySessions; ps++) {
-    //                if(AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + ps, minigameCode))
-    //                    return new JourneyPosition(s, lb, ps);
-    //            }
-    //            int assessmentCode = 100;
-    //            if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + assessmentCode, minigameCode))
-    //                return new JourneyPosition(s, lb, assessmentCode);
-    //        }
-    //    }
-    //    return null;
-    //}
+        for (int s = 1; s <= finalPos.Stage; s++) {
+            for (int lb = 1; lb <= finalPos.LearningBlock; lb++) {
+                for (int ps = 1; ps <= NBasePlaySession; ps++) {
+                    if(AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + ps, minigameCode))
+                        return new JourneyPosition(s, lb, ps);
+                }
+                int assessmentCode = 100;
+                if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + assessmentCode, minigameCode))
+                    return new JourneyPosition(s, lb, assessmentCode);
+            }
+        }
+        return null;
+    }
 
     [Category("Options")]
     [Sort(1)]
