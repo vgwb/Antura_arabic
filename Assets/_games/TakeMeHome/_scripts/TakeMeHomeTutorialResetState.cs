@@ -31,12 +31,12 @@ namespace EA4S.Minigames.TakeMeHome
             win = false;
             if (tubeIndex == game.currentTube)
             {
-                TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
+                TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.StampOK);
                 win = true;
                 TutorialUI.MarkYes(markPosition, TutorialUI.MarkSize.Big);
             }
             else {
-                TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
+                TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
                 TutorialUI.MarkNo(markPosition, TutorialUI.MarkSize.Big);
             }
 
