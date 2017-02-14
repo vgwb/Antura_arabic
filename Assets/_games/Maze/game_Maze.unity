@@ -4592,6 +4592,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2011846, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11407226, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
     - {fileID: 11433158, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}

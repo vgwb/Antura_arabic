@@ -19,7 +19,7 @@ namespace EA4S.Minigames.Maze
 
         private const float CELEBRATION_PATH_ENDPOINT_X_ANCHOR = -0.5f;
         private const float CELEBRATION_PATH_ENDPOINT_Z_ANCHOR = 0f;
-        private const float CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA = 5.5f;
+        private const float CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA = 6.5f;
         private const float CELEBRATION_PATH_DURATION = 2.5f;
 
         private const float FLEE_PATH_MIDPOINT_X_ANCHOR = -0.6f;
@@ -411,7 +411,7 @@ namespace EA4S.Minigames.Maze
 
             initialRotation = transform.rotation;
             targetRotation = initialRotation;
-            
+
             characterWayPoints = new List<Vector3>();
             characterWayPoints.Add(initialPosition);
 
@@ -449,7 +449,7 @@ namespace EA4S.Minigames.Maze
 
             initialRotation = transform.rotation;
             targetRotation = initialRotation;
-            
+
             characterWayPoints = new List<Vector3>();
             characterWayPoints.Add(initialPosition);
 
@@ -821,8 +821,110 @@ namespace EA4S.Minigames.Maze
                                             cameraPosition.y - CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA,
                                                 cameraPosition.z + (frustumHeight / 2) * CELEBRATION_PATH_ENDPOINT_Z_ANCHOR);
 
-            Vector3 offscreenPoint = new Vector3(endPoint.x, endPoint.y, endPoint.z);
+            Vector3 midPoint = transform.position + endPoint;
+            midPoint *= 0.5f;
+
+            frustumHeight = GetFrustumHeightAtDistance(cameraPosition.y - midPoint.y);
+            frustumWidth = GetFrustumWidth(frustumHeight);
+
+            midPoint = new Vector3(cameraPosition.x + (frustumWidth / 2) * CELEBRATION_PATH_MIDPOINT_X_ANCHOR,
+                                            midPoint.y,
+                                                cameraPosition.z + (frustumHeight / 2) * CELEBRATION_PATH_MIDPOINT_Z_ANCHOR);
+
+
+            celebrationPathPoints.Add(transform.position);
+            celebrationPathPoints.Add(midPoint);
+            celebrationPathPoints.Add(endPoint);
+
+            var turningPoint = endPoint + (endPoint - midPoint).normalized;
+
+            celebrationPathPoints.Add(turningPoint);
+
+            var offscreenPoint = turningPoint;
+            offscreenPoint.y += 2f;
+
+            frustumHeight = GetFrustumHeightAtDistance(cameraPosition.y - offscreenPoint.y);
+            frustumWidth = GetFrustumWidth(frustumHeight);
+
             offscreenPoint.x = cameraPosition.x + ((frustumWidth / 2) + 2f) * Mathf.Sign(CELEBRATION_PATH_ENDPOINT_X_ANCHOR);
+
+            celebrationPathPoints.Add(offscreenPoint);
+
+            LL.Initialize(MazeGameManager.instance.currentLL);
+
+            bool braked = false;
+
+            transform.DOPath(celebrationPathPoints.ToArray(), CELEBRATION_PATH_DURATION, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) =>
+            {
+                if (index < celebrationPathPoints.Count - 3)
+                {
+                    var dir = transform.position - celebrationPathPoints[index + 1];
+
+                    brakeRotation = GetCorrectedRotationOfRocket(dir);
+
+                    transform.DORotate(brakeRotation, 0.33f);
+                }
+
+                else if (index == celebrationPathPoints.Count - 3 && !braked)
+                {
+                    braked = true;
+
+                    transform.DOPause();
+
+                    State = LLState.Braked;
+
+                    winParticleVFX.SetActive(true);
+
+                    var tickPosition = transform.position;
+                    tickPosition.z -= 1.5f;
+                    tickPosition.x -= 0.5f;
+
+                    Tutorial.TutorialUI.MarkYes(tickPosition, Tutorial.TutorialUI.MarkSize.Big);
+                    MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.StampOK);
+
+                    transform.DOMove(transform.position + new Vector3(-0.5f, 0.5f, -0.5f) * 0.33f, 0.75f).SetEase(Ease.InOutSine).SetLoops(3, LoopType.Yoyo).OnComplete(() =>
+                  {
+                      State = LLState.Normal;
+
+                      transform.DOPlay();
+
+                      var dir = transform.position - celebrationPathPoints[index + 1];
+
+                      brakeRotation = GetCorrectedRotationOfRocket(dir);
+
+                      //transform.DORotate(brakeRotation, 0.33f);
+                  });
+                }
+
+                else if (index == celebrationPathPoints.Count - 2)
+                {
+                    var dir = transform.position - celebrationPathPoints[index + 1];
+
+                    brakeRotation = GetCorrectedRotationOfRocket(dir);
+
+                    transform.DORotate(brakeRotation, 0.33f);
+                }
+
+            }).OnComplete(() =>
+            {
+                toggleVisibility(false);
+                gameObject.SetActive(false);
+                OnCelebrationOver();
+            });
+        }
+
+        public void CelebrateStraight(System.Action OnCelebrationOver)
+        {
+            List<Vector3> celebrationPathPoints = new List<Vector3>();
+
+            var cameraPosition = Camera.main.transform.position;
+
+            var frustumHeight = GetFrustumHeightAtDistance(CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA);
+            var frustumWidth = GetFrustumWidth(frustumHeight);
+
+            Vector3 endPoint = new Vector3(cameraPosition.x + (frustumWidth / 2) * CELEBRATION_PATH_ENDPOINT_X_ANCHOR,
+                                            cameraPosition.y - CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA,
+                                                cameraPosition.z + (frustumHeight / 2) * CELEBRATION_PATH_ENDPOINT_Z_ANCHOR);
 
             Vector3 midPoint = transform.position + endPoint;
             midPoint *= 0.5f;
@@ -838,6 +940,9 @@ namespace EA4S.Minigames.Maze
             celebrationPathPoints.Add(transform.position);
             celebrationPathPoints.Add(midPoint);
             celebrationPathPoints.Add(endPoint);
+
+            var offscreenPoint = endPoint + (endPoint - midPoint).normalized * 6f;
+
             celebrationPathPoints.Add(offscreenPoint);
 
             LL.Initialize(MazeGameManager.instance.currentLL);
@@ -873,17 +978,17 @@ namespace EA4S.Minigames.Maze
                     MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.StampOK);
 
                     transform.DOMove(transform.position + new Vector3(-0.5f, 0.5f, -0.5f) * 0.33f, 0.75f).SetEase(Ease.InOutSine).SetLoops(3, LoopType.Yoyo).OnComplete(() =>
-                  {
-                      State = LLState.Normal;
+                    {
+                        State = LLState.Normal;
 
-                      transform.DOPlay();
+                        transform.DOPlay();
 
-                      var dir = transform.position - celebrationPathPoints[index + 1];
+                        var dir = transform.position - celebrationPathPoints[index + 1];
 
-                      brakeRotation = GetCorrectedRotationOfRocket(dir);
+                        brakeRotation = GetCorrectedRotationOfRocket(dir);
 
-                      transform.DORotate(brakeRotation, 0.33f);
-                  });
+                        //transform.DORotate(brakeRotation, 0.33f);
+                    });
                 }
 
             }).OnComplete(() =>
