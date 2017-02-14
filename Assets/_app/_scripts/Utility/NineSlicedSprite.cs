@@ -68,6 +68,24 @@ namespace EA4S.Utilities
             }
         }
 
+        public float initialBorderScale = 1;
+        private float borderScale = 1.0f;
+        public float BorderScale
+        {
+            get
+            {
+                return borderScale;
+            }
+            set
+            {
+                if (borderScale == value)
+                    return;
+
+                borderScale = value;
+                dirty = true;
+            }
+        }
+
         public Sprite initialSprite;
         private Sprite sprite;
         public Sprite Sprite
@@ -142,6 +160,7 @@ namespace EA4S.Utilities
             Sprite = initialSprite;
             Width = initialWidth;
             Height = initialHeight;
+            BorderScale = initialBorderScale;
             Material = initialMaterial;
             CreateSlicedMesh();
         }
@@ -153,6 +172,7 @@ namespace EA4S.Utilities
                 Sprite = initialSprite;
                 Width = initialWidth;
                 Height = initialHeight;
+                BorderScale = initialBorderScale;
                 Material = initialMaterial;
             }
 
@@ -183,10 +203,10 @@ namespace EA4S.Utilities
             float marginRight = sprite.border.z / sprite.rect.size.x;
             float marginTop = sprite.border.w / sprite.rect.size.y;
 
-            float borderLeft = marginLeft;
-            float borderBottom = marginBottom;
-            float borderRight = marginRight;
-            float borderTop = marginTop;
+            float borderLeft = marginLeft*BorderScale;
+            float borderBottom = marginBottom * BorderScale;
+            float borderRight = marginRight * BorderScale;
+            float borderTop = marginTop * BorderScale;
 
             Vector3 centerOffset = new Vector3(width * 0.5f, height * 0.5f, 0);
 
