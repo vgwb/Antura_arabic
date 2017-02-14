@@ -68,7 +68,7 @@ namespace EA4S.Core
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.Map:
-                    GotoPlaysessione();
+                    GotoPlaysession();
                     break;
                 case AppScene.Book:
                     break;
@@ -341,7 +341,7 @@ namespace EA4S.Core
         #endregion
 
 
-        #region Michele
+        #region Minigame Launching
 
         public MiniGameData CurrentMiniGameData {
             get { return NavData.CurrentMiniGameData; }
@@ -366,10 +366,11 @@ namespace EA4S.Core
             }
         }
 
-        private void GotoPlaysessione()
+        private void GotoPlaysession()
         {
             // This must be called before any play session is started
             InitialiseNewPlaySession();
+            LogManager.I.StartPlaySession();
 
             // From the map
             if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
@@ -403,7 +404,8 @@ namespace EA4S.Core
                     InternalLaunchGameScene(NavData.CurrentMiniGameData);
                 } else {
                     // Finished all minigames for the current play session
-                    if (NavData.RealPlaySession) {
+                    if (NavData.RealPlaySession)
+                    {
                         // Go to the reward scene.
                         GoToScene(AppScene.PlaySessionResult);
                     } else {
@@ -413,7 +415,6 @@ namespace EA4S.Core
                 }
             }
         }
-
 
         #endregion
     }

@@ -246,15 +246,25 @@ namespace EA4S.Teacher.Test
             SetButtonStatus(minigamesButtonsDict[code], Color.yellow);
             yield return new WaitForSeconds(0.1f);
             var statusColor = Color.green; 
-            try
+
+            if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(AppManager.I.Player.CurrentJourneyPosition, code))
             {
-                SimulateMiniGame(code);
+                try
+                {
+                    SimulateMiniGame(code);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError("!! " + code + "\n " + e.Message);
+                    statusColor = Color.red;
+                }
             }
-            catch (Exception e)
+            else
             {
-                Debug.LogError("!! " + code + "\n " + e.Message);
-                statusColor = Color.red;
+                Debug.LogError("Cannot play " + code + " at position " + AppManager.I.Player.CurrentJourneyPosition);
+                statusColor = Color.gray;
             }
+
             SetButtonStatus(minigamesButtonsDict[code], statusColor);
             yield return null;
         }
@@ -287,7 +297,6 @@ namespace EA4S.Teacher.Test
         private void SimulateMiniGame(MiniGameCode code)
         {
             var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
-            //InitialisePlaySession();
             var builder = config.SetupBuilder();
             ConfigAI.AppendToTeacherReport("** Minigame " + code + " - " + builder.GetType().Name);
 
