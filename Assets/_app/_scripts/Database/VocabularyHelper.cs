@@ -388,7 +388,7 @@ namespace EA4S.Database
 
     #endregion
 
-    #region Phrase -> Word
+        #region Phrase -> Word
 
         /// <summary>
         /// Gets the words in phrase, taken from field Words of data Pharse. these words are set manually in the db
