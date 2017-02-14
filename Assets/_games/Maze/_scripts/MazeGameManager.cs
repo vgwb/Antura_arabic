@@ -33,7 +33,7 @@ namespace EA4S.Minigames.Maze
         public TextMeshProUGUI roundNumberText;
 
 
-        public int roundNumber;
+        private int roundNumber;
         public GameObject currentPrefab;
         public int health = 4;
         public GameObject cracks;
