@@ -125,14 +125,21 @@ namespace EA4S.Minigames.Tobogan
 
         public void SetQuestionText(LL_WordData word, LL_LetterData markedLetter, Color color)
         {
-            var text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, markedLetter.Data, color);
+            string text = ArabicAlphabetHelper.ProcessArabicString(word.Data.Arabic);
+            var parts = ArabicAlphabetHelper.FindLetter(word.Data, markedLetter.Data);
+            if (parts.Count > 0)
+                text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, parts[0], color, ArabicTextUtilities.MarkType.SingleLetter);
 
             letter.Initialize(word, text, 1.3f);
         }
 
         public void SetQuestionText(LL_WordData word, int letterToMark, Color color)
         {
-            var text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, letterToMark, color);
+            string text = ArabicAlphabetHelper.ProcessArabicString(word.Data.Arabic);
+
+            var parts = ArabicAlphabetHelper.AnalyzeData(word.Data, false, false);
+            if (parts.Count > letterToMark)
+                text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, parts[letterToMark], color, ArabicTextUtilities.MarkType.SingleLetter);
 
             letter.Initialize(word, text, 1.3f);
         }
