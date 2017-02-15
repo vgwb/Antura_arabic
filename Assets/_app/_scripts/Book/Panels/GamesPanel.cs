@@ -26,7 +26,7 @@ namespace EA4S.PlayerBook
         public Button LaunchGameButton;
 
         GameObject btnGO;
-        PlayerBookPanel currentArea = PlayerBookPanel.None;
+        BookArea currentArea = BookArea.None;
         MiniGameData currentMiniGame;
 
         void Start()
@@ -35,20 +35,20 @@ namespace EA4S.PlayerBook
 
         void OnEnable()
         {
-            OpenArea(PlayerBookPanel.MiniGames);
+            OpenArea(BookArea.MiniGames);
         }
 
-        void OpenArea(PlayerBookPanel newArea)
+        void OpenArea(BookArea newArea)
         {
             currentArea = newArea;
             activatePanel(currentArea, true);
         }
 
-        void activatePanel(PlayerBookPanel panel, bool status)
+        void activatePanel(BookArea panel, bool status)
         {
             switch (panel) {
 
-                case PlayerBookPanel.MiniGames:
+                case BookArea.MiniGames:
                     //AudioManager.I.PlayDialog("Book_Games");
                     MinigamesPanel();
                     break;
@@ -76,8 +76,7 @@ namespace EA4S.PlayerBook
 
         public void DetailMiniGame(MiniGameInfo info)
         {
-            if (info == null)
-            {
+            if (info == null) {
                 currentMiniGame = null;
                 ScoreText.text = "";
                 MiniGameLogoImage.enabled = false;
@@ -95,13 +94,10 @@ namespace EA4S.PlayerBook
             ScoreText.text = Output;
 
             // Launch button
-            if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode)
-            {
+            if (info.unlocked || AppManager.I.Player.IsDemoUser) {
                 LaunchGameButton.gameObject.SetActive(true);
                 LaunchGameButton.interactable = true;
-            }
-            else
-            {
+            } else {
                 LaunchGameButton.gameObject.SetActive(false);
                 LaunchGameButton.interactable = false;
             }
@@ -111,12 +107,10 @@ namespace EA4S.PlayerBook
             var badgePath = currentMiniGame.GetBadgeIconResourcePath();
             MiniGameLogoImage.sprite = Resources.Load<Sprite>(icoPath);
             MiniGameLogoImage.enabled = true;
-            if (badgePath != "")
-            {
+            if (badgePath != "") {
                 MiniGameBadgeImage.enabled = true;
                 MiniGameBadgeImage.sprite = Resources.Load<Sprite>(badgePath);
-            } else
-            {
+            } else {
                 MiniGameBadgeImage.enabled = false;
             }
 
@@ -131,7 +125,7 @@ namespace EA4S.PlayerBook
 
             Debug.Log("Playing minigame " + currentMiniGame.Code + " at PS " + AppManager.I.Player.CurrentJourneyPosition);
 
-            AppManager.I.GameLauncher.LaunchGame(currentMiniGame.Code, forceNewPlaySession : true);
+            AppManager.I.GameLauncher.LaunchGame(currentMiniGame.Code, forceNewPlaySession: true);
         }
 
         void emptyListContainers()

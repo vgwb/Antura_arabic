@@ -495,6 +495,7 @@ namespace EA4S.Assessment
             context.Configuration = AssessmentConfiguration.Instance;
             context.Events = new AssessmentEvents();
             context.Utils = AssessmentConfiguration.Instance.Context;
+            context.CheckMarkWidget = context.Utils.GetCheckmarkWidget();
             context.AudioManager = new AssessmentAudioManager( context.Utils.GetAudioManager(),
                                                                context.Utils.GetSubtitleWidget(),
                                                                context.GameDescription);

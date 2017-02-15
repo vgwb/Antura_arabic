@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-
+using EA4S.Tutorial;
 using System;
 using EA4S.Antura;
 using EA4S.Audio;
@@ -379,6 +379,8 @@ namespace EA4S.Minigames.DancingDots
         IEnumerator CorrectMove(bool roundWon)
         {
             //AudioManager.I.PlayDialog("comment_welldone");
+            DancingDotsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.OK);
+            TutorialUI.MarkYes(dancingDotsLL.transform.position + Vector3.up * 19 - Vector3.forward * 4, TutorialUI.MarkSize.Big);
             AudioManager.I.PlayDialogue("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
             dancingDotsLL.ShowRainbow();
             dancingDotsLL.letterObjectView.SetDancingSpeed(1f);
@@ -390,6 +392,7 @@ namespace EA4S.Minigames.DancingDots
                 dancingDotsLL.letterObjectView.DoHorray(); // ("Jump");
                 yield return new WaitForSeconds(1f);
                 dancingDotsLL.HideRainbow();
+                dancingDotsLL.letterObjectView.ToggleDance();
                 //                yield return new WaitForSeconds(1f);
                 tutorial.doTutorial();
                 //startUI();
@@ -428,6 +431,10 @@ namespace EA4S.Minigames.DancingDots
 
         public void WrongMove(Vector3 pos)
         {
+            //DancingDotsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
+
+            //DancingDotsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.StampOK);
+            TutorialUI.MarkNo(dancingDotsLL.transform.position + Vector3.up * 19 - Vector3.forward * 4, TutorialUI.MarkSize.Big);
 
             AudioManager.I.PlayDialogue("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
             numberOfFailedMoves++;

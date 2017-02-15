@@ -13,9 +13,9 @@ namespace EA4S.PlayerBook
         GenericCategoryData data;
         public TextRender Title;
         public TextRender SubTitle;
-        BookPanel manager;
+        IBookPanel manager;
 
-        public void Init(BookPanel _manager, GenericCategoryData _data)
+        public void Init(IBookPanel _manager, GenericCategoryData _data)
         {
             data = _data;
             manager = _manager;

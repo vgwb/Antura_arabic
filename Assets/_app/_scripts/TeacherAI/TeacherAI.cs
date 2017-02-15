@@ -130,7 +130,7 @@ namespace EA4S.Teacher
                     if (CanMiniGameBePlayedAtPlaySession(psData, mgcode))
                     {
                         minimumMiniGameJourneyPositions[mgcode] = psData.GetJourneyPosition();
-                        Debug.Log(mgcode + " min at " + psData.GetJourneyPosition());
+                        //Debug.Log(mgcode + " min at " + psData.GetJourneyPosition());
                         break;
                     }
                 }

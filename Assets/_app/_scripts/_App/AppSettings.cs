@@ -16,8 +16,6 @@ namespace EA4S.Core
 
         public bool UseTestDatabase;
 
-        public bool CheatSuperDogMode = false;
-
         public bool EnglishSubtitles = false;
 
         public List<PlayerIconData> SavedPlayers;
