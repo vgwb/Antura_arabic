@@ -49,6 +49,8 @@ namespace EA4S.Teacher
             minigameSelectionAI = new MiniGameSelectionAI(dbManager);
             VocabularyAi = new VocabularySelectionAI(dbManager);
             difficultySelectionAI = new DifficultySelectionAI(dbManager);
+
+            BuildMinimumMiniGameJourneyPositions();
         }
 
         public void SetPlayerProfile(PlayerProfile _playerProfile)
@@ -113,17 +115,65 @@ namespace EA4S.Teacher
             return minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
         }
 
+        #region MiniGame Validity
+
+        private Dictionary<MiniGameCode, JourneyPosition> minimumMiniGameJourneyPositions = new Dictionary<MiniGameCode, JourneyPosition>();
+
+        private void BuildMinimumMiniGameJourneyPositions()
+        {
+            var allPsData = dbManager.GetAllPlaySessionData();
+            foreach (var mgcode in GenericHelper.SortEnums<MiniGameCode>())
+            {
+                minimumMiniGameJourneyPositions[mgcode] = null;
+                foreach(var psData in allPsData)
+                {
+                    if (CanMiniGameBePlayedAtPlaySession(psData, mgcode))
+                    {
+                        minimumMiniGameJourneyPositions[mgcode] = psData.GetJourneyPosition();
+                        Debug.Log(mgcode + " min at " + psData.GetJourneyPosition());
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Can the given minigame be played at the given play session?
+        /// Strong check: it must be the actual play session
+        /// </summary>
         public bool CanMiniGameBePlayedAtPlaySession(JourneyPosition journeyPos, MiniGameCode code)
         {
-            if (dbManager.HasPlaySessionDataById(journeyPos.ToStringId()))
+            var psData = dbManager.GetPlaySessionDataById(journeyPos.ToStringId());
+            return CanMiniGameBePlayedAtPlaySession(psData, code);
+        }
+
+        public bool CanMiniGameBePlayedAtPlaySession(PlaySessionData psData, MiniGameCode code)
+        {
+            if (psData != null)
             {
-                var psData = dbManager.GetPlaySessionDataById(journeyPos.ToStringId());
-                foreach (var minigameInPlaySession in psData.Minigames)
-                    if (minigameInPlaySession.MiniGameCode == code)
-                        return true;
+                var mgIndex = psData.Minigames.FindIndex(x => x.MiniGameCode == code);
+                if (mgIndex >= 0)
+                {
+                    return true;
+                }
             }
             return false;
         }
+
+        /// <summary>
+        /// Can minigame be played at the given play session?
+        /// Weak check: it just requires that the minimum has been reached.
+        /// </summary>
+        public bool CanMiniGameBePlayedAfterMinPlaySession(JourneyPosition jp, MiniGameCode code)
+        {
+            if (minimumMiniGameJourneyPositions[code] == null)
+                return false;
+            return minimumMiniGameJourneyPositions[code].IsMinor(jp)
+                 || minimumMiniGameJourneyPositions[code].Equals(jp);
+        }
+         
+
+        #endregion
 
         #endregion
 
