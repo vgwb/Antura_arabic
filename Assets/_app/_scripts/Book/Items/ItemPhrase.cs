@@ -23,11 +23,9 @@ namespace EA4S.PlayerBook
             info = _info;
             manager = _manager;
 
-            if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode)
-            {
+            if (info.unlocked || AppManager.I.Player.IsDemoUser) {
                 LockIcon.enabled = false;
-            }
-            else {
+            } else {
                 LockIcon.enabled = true;
             }
 
@@ -38,7 +36,7 @@ namespace EA4S.PlayerBook
 
         public void OnPointerClick(PointerEventData eventData)
         {
-             manager.DetailPhrase(info);
+            manager.DetailPhrase(info);
         }
     }
 }

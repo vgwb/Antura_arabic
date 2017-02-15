@@ -135,9 +135,6 @@ namespace EA4S.ReservedArea
             var logAi = AppManager.I.Teacher.logAI;
             var fakeAppSession = LogManager.I.AppSession;
 
-            // Enable cheat mode
-            AppManager.I.GameSettings.CheatSuperDogMode = true;
-
             // Add some mood data
             int nMoodData = 15;
             for (int i = 0; i < nMoodData; i++) {

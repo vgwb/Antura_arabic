@@ -27,11 +27,9 @@ namespace EA4S.PlayerBook
             Title.text = info.data.Title_Ar;
             SubTitle.text = info.data.Title_En + " " + info.data.Id;
 
-            if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode)
-            {
+            if (info.unlocked || AppManager.I.Player.IsDemoUser) {
                 LockIcon.enabled = false;
-            }
-            else {
+            } else {
                 LockIcon.enabled = true;
             }
 

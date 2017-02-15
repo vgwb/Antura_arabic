@@ -47,9 +47,6 @@ namespace EA4S.PlayerBook
 
         void Start()
         {
-            AppManager.I.GameSettings.CheatSuperDogMode = false;
-            //Debug.Log("Setting super dog mode (by default) to: " + AppManager.I.GameSettings.CheatSuperDogMode);
-
             GlobalUI.ShowPauseMenu(false);
             GlobalUI.ShowBackButton(true, ExitThisScene);
             AudioManager.I.PlayMusic(SceneMusic);
