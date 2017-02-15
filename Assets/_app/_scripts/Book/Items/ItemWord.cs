@@ -20,9 +20,9 @@ namespace EA4S.PlayerBook
         public TextRender Drawing;
         public Image LockIcon;
 
-        BookPanel manager;
+        VocabularyPanel manager;
 
-        public void Init(BookPanel _manager, WordInfo _info)
+        public void Init(VocabularyPanel _manager, WordInfo _info)
         {
             info = _info;
             manager = _manager;

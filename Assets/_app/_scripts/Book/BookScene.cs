@@ -5,16 +5,12 @@ using UnityEngine;
 
 namespace EA4S.PlayerBook
 {
-    public enum PlayerBookPanel
+    public enum BookArea
     {
         None,
-        Book,
-        BookLetters,
-        BookWords,
-        BookPhrases,
-        BookLearningBlocks,
+        Vocabulary,
         Player,
-        Parents,
+        Journey,
         MiniGames
     }
 
@@ -30,20 +26,20 @@ namespace EA4S.PlayerBook
 
         [Header("Scene Setup")]
         public Music SceneMusic;
-        public PlayerBookPanel OpeningPanel;
+        public BookArea OpeningArea;
 
         [Header("References")]
         public GameObject BookPanel;
         public GameObject PlayerPanel;
-        public GameObject ParentsPanel;
+        public GameObject JourneyPanel;
         public GameObject GamesPanel;
 
         public UIButton BtnBook;
         public UIButton BtnPlayer;
-        public UIButton BtnParents;
+        public UIButton BtnJourney;
         public UIButton BtnGames;
 
-        PlayerBookPanel currentPanel = PlayerBookPanel.None;
+        BookArea currentPanel = BookArea.None;
 
         void Start()
         {
@@ -57,10 +53,10 @@ namespace EA4S.PlayerBook
             AudioManager.I.PlayDialogue("Book_Intro");
 
             HideAllPanels();
-            OpenPanel(OpeningPanel);
+            OpenArea(OpeningArea);
         }
 
-        void OpenPanel(PlayerBookPanel newPanel)
+        void OpenArea(BookArea newPanel)
         {
             if (newPanel != currentPanel) {
                 activatePanel(currentPanel, false);
@@ -70,19 +66,19 @@ namespace EA4S.PlayerBook
             }
         }
 
-        void activatePanel(PlayerBookPanel panel, bool status)
+        void activatePanel(BookArea panel, bool status)
         {
             switch (panel) {
-                case PlayerBookPanel.Book:
+                case BookArea.Vocabulary:
                     BookPanel.SetActive(status);
                     break;
-                case PlayerBookPanel.Parents:
-                    ParentsPanel.SetActive(status);
+                case BookArea.Journey:
+                    JourneyPanel.SetActive(status);
                     break;
-                case PlayerBookPanel.Player:
+                case BookArea.Player:
                     PlayerPanel.SetActive(status);
                     break;
-                case PlayerBookPanel.MiniGames:
+                case BookArea.MiniGames:
                     GamesPanel.SetActive(status);
                     break;
             }
@@ -92,36 +88,36 @@ namespace EA4S.PlayerBook
         {
             BookPanel.SetActive(false);
             PlayerPanel.SetActive(false);
-            ParentsPanel.SetActive(false);
+            JourneyPanel.SetActive(false);
             GamesPanel.SetActive(false);
         }
 
         void ResetMenuButtons()
         {
-            BtnBook.Lock(currentPanel == PlayerBookPanel.Book);
-            BtnPlayer.Lock(currentPanel == PlayerBookPanel.Player);
-            BtnParents.Lock(currentPanel == PlayerBookPanel.Parents);
-            BtnGames.Lock(currentPanel == PlayerBookPanel.MiniGames);
+            BtnBook.Lock(currentPanel == BookArea.Vocabulary);
+            BtnPlayer.Lock(currentPanel == BookArea.Player);
+            BtnJourney.Lock(currentPanel == BookArea.Journey);
+            BtnGames.Lock(currentPanel == BookArea.MiniGames);
         }
 
         public void BtnOpenBook()
         {
-            OpenPanel(PlayerBookPanel.Book);
+            OpenArea(BookArea.Vocabulary);
         }
 
         public void BtnOpenPlayer()
         {
-            OpenPanel(PlayerBookPanel.Player);
+            OpenArea(BookArea.Player);
         }
 
-        public void BtnOpenParents()
+        public void BtnOpenJourney()
         {
-            OpenPanel(PlayerBookPanel.Parents);
+            OpenArea(BookArea.Journey);
         }
 
         public void BtnOpenGames()
         {
-            OpenPanel(PlayerBookPanel.MiniGames);
+            OpenArea(BookArea.MiniGames);
         }
 
         public void ExitThisScene()

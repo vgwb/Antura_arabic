@@ -14,25 +14,30 @@ namespace EA4S.PlayerBook
 
     public struct GenericCategoryData
     {
-        public PlayerBookPanel area;
+        public VocabularyChapter area;
         public string Id;
         public string Title;
         public WordDataCategory wordCategory;
     }
 
+    public enum VocabularyChapter
+    {
+        None,
+        Letters,
+        Words,
+        Phrases
+    }
+
     /// <summary>
     /// Displays information on all learning items the player has unlocked.
     /// </summary>
-    // refactor: could be renamed to DictionaryPanel
-    public class BookPanel : MonoBehaviour
+    public class VocabularyPanel : MonoBehaviour, IBookPanel
     {
-
         [Header("Prefabs")]
         public GameObject WordItemPrefab;
         public GameObject LetterItemPrefab;
         public GameObject PhraseItemPrefab;
         public GameObject CategoryItemPrefab;
-        public GameObject LearningBlockItemPrefab;
 
         [Header("References")]
         public GameObject DetailPanel;
@@ -46,7 +51,6 @@ namespace EA4S.PlayerBook
         public UIButton BtnLetters;
         public UIButton BtnWords;
         public UIButton BtnPhrases;
-        public UIButton BtnLearningBlocks;
 
         public GameObject MoreInfoPanel;
         public TextRender ArabicText;
@@ -64,7 +68,7 @@ namespace EA4S.PlayerBook
         public LetterObjectView LL_Medial;
         public LetterObjectView LL_Final;
 
-        PlayerBookPanel currentArea = PlayerBookPanel.None;
+        VocabularyChapter currentChapter = VocabularyChapter.None;
         GameObject btnGO;
         string currentCategory;
         WordDataCategory currentWordCategory;
@@ -75,47 +79,42 @@ namespace EA4S.PlayerBook
 
         void OnEnable()
         {
-            OpenArea(PlayerBookPanel.BookLetters);
+            OpenArea(VocabularyChapter.Letters);
         }
 
-        void OpenArea(PlayerBookPanel newArea)
+        void OpenArea(VocabularyChapter newArea)
         {
-            if (newArea != currentArea) {
-                currentArea = newArea;
-                activatePanel(currentArea, true);
+            if (newArea != currentChapter) {
+                currentChapter = newArea;
+                activatePanel(currentChapter, true);
                 ResetMenuButtons();
             }
         }
 
-        void activatePanel(PlayerBookPanel panel, bool status)
+        void activatePanel(VocabularyChapter panel, bool status)
         {
             DetailPanel.SetActive(false);
             switch (panel) {
-                case PlayerBookPanel.BookLetters:
+                case VocabularyChapter.Letters:
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Letters);
                     LettersPanel();
                     break;
-                case PlayerBookPanel.BookWords:
+                case VocabularyChapter.Words:
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Words);
                     WordsPanel();
                     break;
-                case PlayerBookPanel.BookPhrases:
+                case VocabularyChapter.Phrases:
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Phrases);
                     PhrasesPanel();
-                    break;
-                case PlayerBookPanel.BookLearningBlocks:
-                    //AudioManager.I.PlayDialog(LocalizationDataId.UI);
-                    LearningBlockPanel();
                     break;
             }
         }
 
         void ResetMenuButtons()
         {
-            BtnLetters.Lock(currentArea == PlayerBookPanel.BookLetters);
-            BtnWords.Lock(currentArea == PlayerBookPanel.BookWords);
-            BtnPhrases.Lock(currentArea == PlayerBookPanel.BookPhrases);
-            BtnLearningBlocks.Lock(currentArea == PlayerBookPanel.BookLearningBlocks);
+            BtnLetters.Lock(currentChapter == VocabularyChapter.Letters);
+            BtnWords.Lock(currentChapter == VocabularyChapter.Words);
+            BtnPhrases.Lock(currentChapter == VocabularyChapter.Phrases);
         }
 
         void LettersPanel(string _category = "")
@@ -156,19 +155,19 @@ namespace EA4S.PlayerBook
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
             btnGO.GetComponent<MenuItemCategory>().Init(
                 this,
-                new GenericCategoryData { area = PlayerBookPanel.BookLetters, Id = "letter", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Letters) });
+                new GenericCategoryData { area = VocabularyChapter.Letters, Id = "letter", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Letters) });
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
             btnGO.GetComponent<MenuItemCategory>().Init(
                 this,
-                new GenericCategoryData { area = PlayerBookPanel.BookLetters, Id = "symbol", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Symbols) });
+                new GenericCategoryData { area = VocabularyChapter.Letters, Id = "symbol", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Symbols) });
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
             btnGO.GetComponent<MenuItemCategory>().Init(
                 this,
-                new GenericCategoryData { area = PlayerBookPanel.BookLetters, Id = "combo", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Combinations) });
+                new GenericCategoryData { area = VocabularyChapter.Letters, Id = "combo", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Combinations) });
 
         }
 
@@ -212,7 +211,7 @@ namespace EA4S.PlayerBook
                 btnGO.GetComponent<MenuItemCategory>().Init(
                     this,
                     new GenericCategoryData {
-                        area = PlayerBookPanel.BookWords,
+                        area = VocabularyChapter.Words,
                         wordCategory = cat,
                         Id = cat.ToString(),
                         Title = LocalizationManager.GetWordCategoryTitle(cat)
@@ -235,28 +234,13 @@ namespace EA4S.PlayerBook
             }
         }
 
-        void LearningBlockPanel()
-        {
-            ListPanel.SetActive(false);
-            Submenu.SetActive(false);
-            ListWidePanel.SetActive(true);
-            emptyListContainers();
-
-            List<LearningBlockInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllLearningBlockInfo();
-            foreach (var item_info in info_list) {
-                btnGO = Instantiate(LearningBlockItemPrefab);
-                btnGO.transform.SetParent(ElementsContainerWide.transform, false);
-                btnGO.GetComponent<ItemLearningBlock>().Init(this, item_info);
-            }
-        }
-
         public void SelectSubCategory(GenericCategoryData _category)
         {
             switch (_category.area) {
-                case PlayerBookPanel.BookLetters:
+                case VocabularyChapter.Letters:
                     LettersPanel(_category.Id);
                     break;
-                case PlayerBookPanel.BookWords:
+                case VocabularyChapter.Words:
                     WordsPanel(_category.wordCategory);
                     break;
             }
@@ -368,21 +352,6 @@ namespace EA4S.PlayerBook
             LL_Final.gameObject.SetActive(false);
         }
 
-        public void DetailLearningBlock(LearningBlockInfo info)
-        {
-            DetailPanel.SetActive(true);
-            AudioManager.I.PlayDialogue(info.data.GetTitleSoundFilename());
-            ScoreText.text = "Score: " + info.score;
-            MoreInfoPanel.SetActive(false);
-
-            ArabicText.text = info.data.Title_Ar;
-
-            LL_Isolated.gameObject.SetActive(false);
-            LL_Initial.gameObject.SetActive(false);
-            LL_Medial.gameObject.SetActive(false);
-            LL_Final.gameObject.SetActive(false);
-        }
-
         void emptyListContainers()
         {
             foreach (Transform t in ElementsContainer.transform) {
@@ -398,22 +367,17 @@ namespace EA4S.PlayerBook
 
         public void BtnOpenLetters()
         {
-            OpenArea(PlayerBookPanel.BookLetters);
+            OpenArea(VocabularyChapter.Letters);
         }
 
         public void BtnOpenWords()
         {
-            OpenArea(PlayerBookPanel.BookWords);
+            OpenArea(VocabularyChapter.Words);
         }
 
         public void BtnOpenPhrases()
         {
-            OpenArea(PlayerBookPanel.BookPhrases);
-        }
-
-        public void BtnOpenLearningBlocks()
-        {
-            OpenArea(PlayerBookPanel.BookLearningBlocks);
+            OpenArea(VocabularyChapter.Phrases);
         }
 
         void ResetLL()
