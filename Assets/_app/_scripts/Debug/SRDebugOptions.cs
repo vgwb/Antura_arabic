@@ -27,9 +27,7 @@ public partial class SROptions
                 if (minJ == null)
                 {
                     Debug.LogErrorFormat("Minigame {0} cannot be played at all!!!", minigameCode);
-                }
-                else
-                {
+                } else {
                     Debug.LogErrorFormat("Minigame {0} cannot be played at this playsession. Min: {1}", minigameCode, minJ.ToString());
                 }
 
@@ -42,7 +40,6 @@ public partial class SROptions
         }
 
     }
-
 
     [Category("Options")]
     [Sort(1)]
@@ -57,15 +54,6 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
         AppManager.I.Modules.SceneModule.LoadSceneWithTransition(AppSceneHelper.GetSceneName(AppScene.Home));
         UnityEngine.Debug.Log("Reset ALL players and DB.");
-    }
-
-    [Category("Options")]
-    [Sort(1)]
-    public void ResetPlayer()
-    {
-        // refactor: move to DebugManager
-        AppManager.I.ResetCurrentPlayer();
-        SRDebug.Instance.HideDebugPanel();
     }
 
     [Category("Options")]

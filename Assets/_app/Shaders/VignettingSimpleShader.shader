@@ -8,7 +8,7 @@ Shader "Hidden/VignettingSimple" {
 	#include "UnityCG.cginc"
 	
 	struct v2f {
-		half4 pos : POSITION;
+		float4 pos : POSITION;
 		half2 uv : TEXCOORD0;
 	};
 	

@@ -16,18 +16,16 @@ namespace EA4S.PlayerBook
         public TextRender SubTitle;
         public Image LockIcon;
 
-        BookPanel manager;
+        VocabularyPanel manager;
 
-        public void Init(BookPanel _manager, LetterInfo _info)
+        public void Init(VocabularyPanel _manager, LetterInfo _info)
         {
             info = _info;
             manager = _manager;
 
-            if (info.unlocked || AppManager.I.GameSettings.CheatSuperDogMode)
-            {
+            if (info.unlocked || AppManager.I.Player.IsDemoUser) {
                 LockIcon.enabled = false;
-            }
-            else {
+            } else {
                 LockIcon.enabled = true;
             }
 

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using DG.Tweening;
 using EA4S.Core;
 using EA4S.Map;
-using EA4S.Audio;
 
 namespace EA4S.Map
 {
@@ -121,8 +120,17 @@ namespace EA4S.Map
         {
             if (Input.GetMouseButtonUp(0) && (!EventSystem.current.IsPointerOverGameObject()) && (colliderRaycast != null))
             {
-                if (colliderRaycast.tag == "Rope") MoveToDot();
-                else if (colliderRaycast.tag == "Pin") MoveToPin();
+                if (colliderRaycast.tag == "Rope")
+                {
+                    MoveToDot();
+                    UpdateCurrentJourneyPosition();
+                }
+                else if (colliderRaycast.tag == "Pin")
+                {
+                    MoveToPin();
+                    UpdateCurrentJourneyPosition();
+                }
+
             }
         }
 
@@ -132,7 +140,6 @@ namespace EA4S.Map
             MoveTo(stageScript.positionsPlayerPin[stageScript.positionPin].transform.position);
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = ropeSelected.dots[dotCloser].GetComponent<Dot>().playSessionActual;
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].GetComponent<Dot>().learningBlockActual;        
-            UpdateCurrentJourneyPosition();
             AmIFirstorLastPos();
             transform.LookAt(stageScript.pines[ropeSelected.learningBlockRope].transform);
         }
@@ -151,7 +158,6 @@ namespace EA4S.Map
                     transform.rotation.eulerAngles.y + 180,
                     transform.rotation.eulerAngles.z));
             }
-            UpdateCurrentJourneyPosition();
             AmIFirstorLastPos();
         }
         public void MoveToTheRightDot()
@@ -239,6 +245,7 @@ namespace EA4S.Map
             AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(AppManager.I.Player.CurrentJourneyPosition.Stage,
              AppManager.I.Player.CurrentJourneyPosition.LearningBlock,
               AppManager.I.Player.CurrentJourneyPosition.PlaySession), true);
+            Debug.Log("AAAAAAA");
         }
         void LookAtRightPin()
         {

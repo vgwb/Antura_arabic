@@ -1704,7 +1704,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012163132186
 GameObject:
   m_ObjectHideFlags: 1
@@ -2310,6 +2310,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   Type: 7
@@ -2663,6 +2664,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
 --- !u!114 &114000010472806914
@@ -2707,6 +2709,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
 --- !u!114 &114000010524204010
@@ -2818,6 +2821,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
 --- !u!114 &114000010734850370
@@ -3090,6 +3094,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
 --- !u!114 &114000011331323708
@@ -3991,6 +3996,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
 --- !u!114 &114000013112968372
@@ -4330,6 +4336,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.27058825, g: 0.27058825, b: 0.27058825, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   Type: 4
@@ -4347,6 +4354,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   Type: 2
@@ -4906,6 +4914,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   Type: 1
@@ -4923,6 +4932,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   Type: 3
@@ -4981,6 +4991,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 0.27058825, g: 0.27058825, b: 0.27058825, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
   Type: 5

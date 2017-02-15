@@ -56,7 +56,19 @@ namespace EA4S.Balloons
 
         private LetterObjectView letterObjectView;
         private IEnumerator flashLetterInWordCoroutine;
+        private List<SpringJoint> springJoints;
 
+        private void Awake()
+        {
+            letterObjectView = GetComponent<LetterObjectView>();
+
+            springJoints = new List<SpringJoint>();
+
+            foreach (SpringJoint springJoint in GetComponents<SpringJoint>())
+            {
+                springJoints.Add(springJoint);
+            }
+        }
 
         public void Start()
         {
@@ -66,8 +78,6 @@ namespace EA4S.Balloons
             LLPrefab.SetState(LLAnimationStates.LL_hanging);
             RandomizeSpin();
             //RandomizeAnimation();
-
-            letterObjectView = GetComponent<LetterObjectView>();
         }
 
         void Update()
@@ -89,6 +99,33 @@ namespace EA4S.Balloons
         {
             letterData = _data;
             LLPrefab.Initialize(_data);
+            ConfigureJointAnchors(_data);
+        }
+
+        private void ConfigureJointAnchors(ILivingLetterData _data)
+        {
+            Vector3 anchor;
+
+            switch (_data.DataType)
+            {
+                case LivingLetterDataType.Letter:
+                    anchor = new Vector3(0f, 5.5f, -0.2f);
+                    break;
+                case LivingLetterDataType.Word:
+                    anchor = new Vector3(0.85f, 6.09f, -0.2f);
+                    break;
+                case LivingLetterDataType.Image:
+                    anchor = new Vector3(0f, 5.5f, -0.2f);
+                    break;
+                default:
+                    anchor = new Vector3(0f, 5.5f, -0.2f);
+                    break;
+            }
+
+            foreach (SpringJoint springJoint in springJoints)
+            {
+                springJoint.anchor = anchor;
+            }
         }
 
         void OnMouseDown()
@@ -292,6 +329,19 @@ namespace EA4S.Balloons
             }
 
             flashLetterInWordCoroutine = null;
+        }
+
+        private Transform FindDescendant(Transform parent, string name)
+        {
+            if (parent.name.Equals(name)) return parent;
+
+            foreach (Transform child in parent)
+            {
+                Transform result = FindDescendant(child, name);
+                if (result != null) return result;
+            }
+
+            return null;
         }
     }
 }

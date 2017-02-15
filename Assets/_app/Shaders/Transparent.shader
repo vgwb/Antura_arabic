@@ -23,14 +23,14 @@
 
 			struct appdata
 			{
-				half4 vertex : POSITION;
+				float4 vertex : POSITION;
 				half2 uv : TEXCOORD0;
 			};
 
 			struct v2f
 			{
 				half2 uv : TEXCOORD0;
-				half4 vertex : SV_POSITION;
+				float4 vertex : SV_POSITION;
 			};
 
 			sampler2D _MainTex;
