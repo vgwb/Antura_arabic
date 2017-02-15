@@ -95,12 +95,17 @@ namespace EA4S.Teacher
                 {
                     for (int ps = 1; ps <= NBasePlaySession; ps++)
                     {
-                        if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(new JourneyPosition(s, lb, ps), minigameCode))
-                            return new JourneyPosition(s, lb, ps);
+                        var jp = new JourneyPosition(s, lb, ps);
+                        if (AppManager.I.DB.HasPlaySessionDataById(jp.ToStringId()))
+                            if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(jp, minigameCode))
+                                return new JourneyPosition(s, lb, ps);
                     }
                     int assessmentCode = 100;
-                    if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(new JourneyPosition(s, lb, assessmentCode), minigameCode))
-                        return new JourneyPosition(s, lb, assessmentCode);
+                    var jp_assessment = new JourneyPosition(s, lb, assessmentCode);
+
+                    if (AppManager.I.DB.HasPlaySessionDataById(jp_assessment.ToStringId()))
+                        if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(jp_assessment, minigameCode))
+                            return new JourneyPosition(s, lb, assessmentCode);
                 }
             }
             return null;
