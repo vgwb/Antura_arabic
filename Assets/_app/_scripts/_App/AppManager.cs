@@ -34,7 +34,7 @@ namespace EA4S
         public MiniGameLauncher GameLauncher;
         public LogManager LogManager;
         public NavigationManager NavigationManager;
-        
+
         public bool IsPaused { get; private set; }
 
         private PlayerProfileManager _playerProfileManager;
@@ -95,8 +95,6 @@ namespace EA4S
             RewardSystemManager.Init();
 
             GameSettings.HighQualityGfx = false;
-
-            
         }
 
         #endregion
@@ -121,34 +119,13 @@ namespace EA4S
 
         #endregion
 
-        #region Reset
-
-        public void ResetCurrentPlayer()
-        {
-            var playerId = PlayerProfileManager.CurrentPlayer;
-
-            // Delete DB
-            DB.DropProfile();
-
-            PlayerProfileManager.DeleteCurrentPlayer();
-
-            // AppManager.I.PlayerProfileManager.DeleteAllProfiles();
-            AppManager.I.NavigationManager.GoToHome();
-            Debug.Log("Reset current player: " + playerId);
-        }
-
-
-        #endregion
-
         #region Pause
-
         void OnApplicationPause(bool pauseStatus)
         {
             IsPaused = pauseStatus;
 
             // app is pausing
-            if (IsPaused)
-            {
+            if (IsPaused) {
                 LogManager.I.LogInfo(InfoEvent.AppSuspend);
             }
 

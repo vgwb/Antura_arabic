@@ -13,23 +13,16 @@ public partial class SROptions
 {
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
-        if (!AppConstants.DebugStopPlayAtWrongPlaySessions || AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(new JourneyPosition(Stage, LearningBlock, PlaySession), minigameCode))
-        {
+        if (!AppConstants.DebugStopPlayAtWrongPlaySessions || AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(new JourneyPosition(Stage, LearningBlock, PlaySession), minigameCode)) {
             WidgetPopupWindow.I.Close();
             DebugManager.I.LaunchMiniGame(minigameCode);
             SRDebug.Instance.HideDebugPanel();
-        }
-        else
-        {
-            if (AppConstants.DebugStopPlayAtWrongPlaySessions)
-            {
+        } else {
+            if (AppConstants.DebugStopPlayAtWrongPlaySessions) {
                 JourneyPosition minJ = GetMinimumPlaySessionForMiniGame(minigameCode);
-                if (minJ == null)
-                {
+                if (minJ == null) {
                     Debug.LogErrorFormat("Minigame {0} cannot be played at all!!!", minigameCode);
-                }
-                else
-                {
+                } else {
                     Debug.LogErrorFormat("Minigame {0} cannot be played at this playsession. Min: {1}", minigameCode, minJ.ToString());
                 }
 
@@ -51,11 +44,11 @@ public partial class SROptions
         for (int s = 1; s <= finalPos.Stage; s++) {
             for (int lb = 1; lb <= finalPos.LearningBlock; lb++) {
                 for (int ps = 1; ps <= NBasePlaySession; ps++) {
-                    if(AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(new JourneyPosition(s, lb, ps), minigameCode))
+                    if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(new JourneyPosition(s, lb, ps), minigameCode))
                         return new JourneyPosition(s, lb, ps);
                 }
                 int assessmentCode = 100;
-                if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession( new JourneyPosition(s, lb, assessmentCode), minigameCode))
+                if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(new JourneyPosition(s, lb, assessmentCode), minigameCode))
                     return new JourneyPosition(s, lb, assessmentCode);
             }
         }
@@ -75,15 +68,6 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
         AppManager.I.Modules.SceneModule.LoadSceneWithTransition(AppSceneHelper.GetSceneName(AppScene.Home));
         UnityEngine.Debug.Log("Reset ALL players and DB.");
-    }
-
-    [Category("Options")]
-    [Sort(1)]
-    public void ResetPlayer()
-    {
-        // refactor: move to DebugManager
-        AppManager.I.ResetCurrentPlayer();
-        SRDebug.Instance.HideDebugPanel();
     }
 
     [Category("Options")]
