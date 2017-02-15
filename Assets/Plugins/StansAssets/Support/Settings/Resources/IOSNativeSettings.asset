@@ -14,7 +14,7 @@ MonoBehaviour:
   EnableGameCenterAPI: 0
   EnableInAppsAPI: 0
   EnableCameraAPI: 0
-  EnableSocialSharingAPI: 1
+  EnableSocialSharingAPI: 0
   EnablePickerAPI: 0
   EnableMediaPlayerAPI: 0
   EnableReplayKit: 0
