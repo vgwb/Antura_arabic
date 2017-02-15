@@ -227,32 +227,6 @@ namespace EA4S.Profile
             AppManager.I.Modules.PlayerProfile.DeleteAllPlayerProfiles();
         }
 
-        public void DeleteCurrentPlayer()
-        {
-            AppManager.I.Modules.PlayerProfile.DeletePlayer(CurrentPlayer.Key);
-        }
-
-        /// <summary>
-        /// Gets the player identifier from avatar identifier.
-        /// If == 0 player not found.
-        /// </summary>
-        /// <param name="_avatarId">The avatar identifier.</param>
-        /// <returns></returns>
-        public int GetPlayerIdFromAvatarId(int _avatarId)
-        {
-            return AppManager.I.GameSettings.AvailablePlayers.FindIndex(a => a == _avatarId.ToString()) + 1;
-        }
-
-        /// <summary>
-        /// Gets the avatar identifier from player identifier.
-        /// </summary>
-        /// <param name="_playerId">The player identifier.</param>
-        /// <returns></returns>
-        public string GetAvatarIdFromPlayerId(int _playerId)
-        {
-            return AppManager.I.GameSettings.AvailablePlayers[_playerId - 1];
-        }
-
         /// <summary>
         /// Resets the everything.
         /// </summary>
