@@ -94,6 +94,11 @@ namespace EA4S.ReservedArea
 
         public void OnCreateDemoPlayer()
         {
+            GlobalUI.ShowPrompt(true, "ATTENTION\nReally create a Full Unlocked Demo player?", DoCreateDemoPlayer);
+        }
+
+        void DoCreateDemoPlayer()
+        {
             Debug.Log("creating DEMO USER ");
             var demoUserUiid = AppManager.I.PlayerProfileManager.CreatePlayerProfile(10, PlayerGender.F, 1, PlayerTint.Red, true);
             SelectedPlayerId = demoUserUiid;
@@ -102,13 +107,10 @@ namespace EA4S.ReservedArea
             ResetAll();
         }
 
-
-
         public void OnImportProfile()
         {
             Debug.Log("IMPORT");
         }
-
 
         #region Demo User Helpers
 
