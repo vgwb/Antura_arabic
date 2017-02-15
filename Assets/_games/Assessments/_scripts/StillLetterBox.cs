@@ -46,13 +46,17 @@ namespace EA4S.Assessment
         internal void RevealHiddenQuestion()
         {
             KillTween();
-            answerSprite.enabled = true;
+            SetQuestionGreen();
+        }
 
-            answerSprite.Material.DOColor( new Color32( 61, 185, 30, 255), 0.5f);
-            hiddenQuestionSprite.Material.DOFade( 0, 1);
+        public void SetQuestionGreen()
+        {
+            answerSprite.enabled = true;
+            answerSprite.Material.DOColor(new Color32(61, 185, 30, 255), 0.5f);
+            hiddenQuestionSprite.Material.DOFade(0, 1);
             Label.alpha = 0;
-            Label.DOFade( 1, 0.6f);
-            MegaphoneIcon.DOFade( 0, 0.3f);
+            Label.DOFade(1, 0.6f);
+            MegaphoneIcon.DOFade(0, 0.3f);
         }
 
 
