@@ -13,7 +13,7 @@ public partial class SROptions
 {
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
-        if (!AppConstants.DebugStopPlayAtWrongPlaySessions || AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(new JourneyPosition(Stage, LearningBlock, PlaySession), minigameCode))
+        if (!AppConstants.DebugStopPlayAtWrongPlaySessions || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(new JourneyPosition(Stage, LearningBlock, PlaySession), minigameCode))
         {
             WidgetPopupWindow.I.Close();
             DebugManager.I.LaunchMiniGame(minigameCode);

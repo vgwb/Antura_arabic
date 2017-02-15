@@ -247,7 +247,7 @@ namespace EA4S.Teacher.Test
             yield return new WaitForSeconds(0.1f);
             var statusColor = Color.green; 
 
-            if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(AppManager.I.Player.CurrentJourneyPosition, code))
+            if (AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(AppManager.I.Player.CurrentJourneyPosition, code))
             {
                 try
                 {

@@ -6904,7 +6904,7 @@ MonoBehaviour:
   numberOfSimulations: 1
   yieldEverySimulations: 20
   currentJourneyStage: 3
-  currentJourneyLB: 4
+  currentJourneyLB: 1
   isAssessment: 0
   nPacks: 4
   nCorrectAnswers: 1
