@@ -14,7 +14,7 @@ MonoBehaviour:
   EnableGameCenterAPI: 0
   EnableInAppsAPI: 0
   EnableCameraAPI: 0
-  EnableSocialSharingAPI: 0
+  EnableSocialSharingAPI: 1
   EnablePickerAPI: 0
   EnableMediaPlayerAPI: 0
   EnableReplayKit: 0
@@ -28,7 +28,7 @@ MonoBehaviour:
   ToolbarIndex: 0
   ExpandMoreActionsMenu: 1
   ExpandModulesSettings: 1
-  InAppsEditorTesting: 1
+  InAppsEditorTesting: 0
   CheckInternetBeforeLoadRequest: 0
   TransactionsHandlingMode: 0
   DefaultStoreProductsView: []
