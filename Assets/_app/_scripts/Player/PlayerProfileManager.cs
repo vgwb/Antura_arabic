@@ -66,7 +66,6 @@ namespace EA4S.Profile
             }
         }
 
-
         /// <summary>
         /// Creates the player profile.
         /// </summary>
@@ -85,6 +84,8 @@ namespace EA4S.Profile
             returnProfile.AvatarId = avatarID;
             returnProfile.Tint = tint;
             returnProfile.IsDemoUser = isDemoUser;
+            returnProfile.ProfileCompletion = (isDemoUser ? 3 : 0);
+
             // DB Creation
             AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
             // Added to list
