@@ -199,20 +199,32 @@ namespace EA4S.Teacher.Test
         private IEnumerator DoTestCompleteJourneyCO()
         {
             // Test all minigames at all their available journeys. Stop when we find a wrong one.
-            foreach (var psData in AppManager.I.DB.GetAllPlaySessionData())
+            foreach (var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
             {
-                InitialisePlaySession(psData.GetJourneyPosition());
-                foreach (var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
+                if (code == MiniGameCode.Invalid) continue;
+                if (code == MiniGameCode.Assessment_VowelOrConsonant) continue;
+                bool isCorrect = true;
+                foreach (var psData in AppManager.I.DB.GetAllPlaySessionData())
                 {
-                    if (code == MiniGameCode.Invalid) continue;
-                    if (code == MiniGameCode.Assessment_VowelOrConsonant) continue;
+                    if (!AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(psData.GetJourneyPosition(), code)) continue;
+
+                    InitialisePlaySession(psData.GetJourneyPosition());
 
                     // Skip minigames that found errors
-                    if (minigamesButtonsDict[code].colors.normalColor == Color.red)
-                        continue;
-
                     yield return StartCoroutine(DoTestMinigameCO(code, 0.01f));
+                    if (minigamesButtonsDict[code].colors.normalColor == Color.red)
+                    {
+                        Debug.LogError("Minigame " + code + " first wrong at ps " + psData.GetJourneyPosition());
+                        isCorrect = false;
+                        break;
+                    }
                 }
+
+                if (isCorrect)
+                {
+                    Debug.Log("Minigame " + code + " is always fine");
+                }
+                yield return null;
             }
         }
 
