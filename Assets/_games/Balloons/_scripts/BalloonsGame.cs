@@ -1032,7 +1032,7 @@ namespace EA4S.Balloons
                 instance.transform.localPosition = Vector3.zero;
 
                 var floatingLetter = instance.GetComponent<FloatingLetterController>();
-                floatingLetter.SetActiveVariation(Random.Range(0, floatingLetter.variations.Length));
+                floatingLetter.SetActiveVariation(Random.Range(1, floatingLetter.variations.Length));
                 var balloons = floatingLetter.Balloons;
                 var letter = floatingLetter.Letter;
 
