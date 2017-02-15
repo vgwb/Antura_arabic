@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Name: AndroidNativeSettings
   m_EditorClassIdentifier: 
   EnablePlusAPI: 0
-  EnableGamesAPI: 1
-  EnableAppInviteAPI: 1
+  EnableGamesAPI: 0
+  EnableAppInviteAPI: 0
   EnableDriveAPI: 0
-  LoadProfileIcons: 1
-  LoadProfileImages: 1
-  LoadQuestsImages: 1
-  LoadQuestsIcons: 1
-  LoadEventsIcons: 1
-  ShowConnectingPopup: 1
+  LoadProfileIcons: 0
+  LoadProfileImages: 0
+  LoadQuestsImages: 0
+  LoadQuestsIcons: 0
+  LoadEventsIcons: 0
+  ShowConnectingPopup: 0
   EnableATCSupport: 0
   OneSignalEnabled: 0
   OneSignalAppID: YOUR_ONESIGNAL_APP_ID
