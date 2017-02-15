@@ -59,7 +59,7 @@ namespace EA4S.ReservedArea
 
         public void OnSelectPlayerProfile(string uuid)
         {
-            Debug.Log("OnSelectPlayerProfile " + uuid);
+            //Debug.Log("OnSelectPlayerProfile " + uuid);
             if (SelectedPlayerId != uuid) {
                 SelectedPlayerId = uuid;
             } else {
@@ -70,7 +70,7 @@ namespace EA4S.ReservedArea
 
         public void OnOpenSelectedPlayerProfile()
         {
-            Debug.Log("OPEN " + SelectedPlayerId);
+            //Debug.Log("OPEN " + SelectedPlayerId);
             AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
             AppManager.I.NavigationManager.GoToPlayerBook();
         }
@@ -82,7 +82,7 @@ namespace EA4S.ReservedArea
 
         void DoDeleteSelectPlayerProfile()
         {
-            Debug.Log("DELETE " + SelectedPlayerId);
+            //Debug.Log("DELETE " + SelectedPlayerId);
             AppManager.I.PlayerProfileManager.DeletePlayerProfile(SelectedPlayerId);
             ResetAll();
         }
@@ -99,7 +99,7 @@ namespace EA4S.ReservedArea
 
         void DoCreateDemoPlayer()
         {
-            Debug.Log("creating DEMO USER ");
+            //Debug.Log("creating DEMO USER ");
             var demoUserUiid = AppManager.I.PlayerProfileManager.CreatePlayerProfile(10, PlayerGender.F, 1, PlayerTint.Red, true);
             SelectedPlayerId = demoUserUiid;
             AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
@@ -144,7 +144,6 @@ namespace EA4S.ReservedArea
                 Debug.Log("Add mood " + i);
                 yield return null;
             }
-
 
             // Add scores for all play sessions
             var allPlaySessionInfos = AppManager.I.Teacher.scoreHelper.GetAllPlaySessionInfo();
