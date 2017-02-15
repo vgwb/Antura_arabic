@@ -5133,6 +5133,7 @@ MonoBehaviour:
       - alef
       - lam
       - thal
+      - yeh_hamza
       - beh
       Drawing: FF
       Intrinsic: 1
@@ -5150,6 +5151,7 @@ MonoBehaviour:
       - lam
       - reh
       - alef
+      - yeh_hamza
       - ain
       Drawing: 24
       Intrinsic: 1
@@ -5673,6 +5675,7 @@ MonoBehaviour:
       Value: 
       Letters:
       - thal
+      - yeh_hamza
       - beh
       Drawing: FF
       Intrinsic: 1
@@ -5719,6 +5722,7 @@ MonoBehaviour:
       Letters:
       - reh
       - alef
+      - yeh_hamza
       - ain
       Drawing: 24
       Intrinsic: 1
