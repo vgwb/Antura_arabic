@@ -48,9 +48,8 @@ Local.meta
 -HOToolsData*
 
 
-/Assets/Plugins/StansAssets
-/Assets/Plugins/StansAssets.meta
-/Assets/Plugins/iOS
-/Assets/Plugins/iOS.meta
-/Assets/Plugins/Android
-/Assets/Plugins/Android.meta
+/Assets/Plugins/StansAssets/Modules/AndroidNative/xExamples
+/Assets/Plugins/StansAssets/Modules/AndroidNative/xExamples.meta
+/Assets/Plugins/StansAssets/Modules/IOSNative/xExamples
+/Assets/Plugins/StansAssets/Modules/IOSNative/xExamples.meta
+

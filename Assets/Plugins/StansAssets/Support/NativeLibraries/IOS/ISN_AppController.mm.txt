@@ -1,0 +1,190 @@
+////////////////////////////////////////////////////////////////////////////////
+//  
+// @module IOS Native Plugin
+// @author Osipov Stanislav (Stan's Assets) 
+// @support support@stansassets.com
+// @website https://stansassets.com
+//
+////////////////////////////////////////////////////////////////////////////////
+
+
+#import <Foundation/Foundation.h>
+#import "UnityAppController.h"   //our link to the base class.
+#import "ISN_NativeCore.h"
+
+
+NSString * const UNITY_SPLITTER = @"|";
+NSString * const UNITY_EOF = @"endofline";
+NSString * const ARRAY_SPLITTER = @"%%%";
+
+
+
+
+@interface ISN_AppController : UnityAppController  //extend from UnityAppController.
+
++ (void) subscribe;
+
+@end
+
+
+@implementation ISN_AppController
+
+static bool IsUnitySubscribed = false;
+
+
+
+//--------------------------------------
+//  Static Methods
+//--------------------------------------
+
++ (void) subscribe {
+    IsUnitySubscribed = true;
+}
+
+
++ (void) sendEvent: (NSString* ) event {
+    [self sendEvent:event withParams:@""];
+}
+
+
++ (void) sendEvent: (NSString* ) event withParams:(NSString*) params {
+    if(!IsUnitySubscribed) {
+        return;
+    }
+    
+    UnitySendMessage("SA.IOSNative.Core.AppController", [ISN_DataConvertor NSStringToChar:event], [ISN_DataConvertor NSStringToChar:params]);
+}
+
+
+//--------------------------------------
+//  Unity Events
+//--------------------------------------
+
+-(void) startUnity: (UIApplication*) application {
+    [super startUnity: application];
+}
+
+
+//--------------------------------------
+//  Application State Events
+//--------------------------------------
+
+- (void)applicationDidEnterBackground:(UIApplication*)application {
+    [ISN_AppController sendEvent:@"applicationDidEnterBackground"];
+    [super applicationDidEnterBackground:application];
+}
+
+- (void)applicationWillEnterForeground:(UIApplication*)application {
+    [super applicationWillEnterForeground:application];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication*)application {
+    [ISN_AppController sendEvent:@"applicationDidBecomeActive"];
+    [super applicationDidBecomeActive:application];
+
+}
+
+- (void)applicationWillResignActive:(UIApplication*)application {
+     [ISN_AppController sendEvent:@"applicationWillResignActive"];
+    [super applicationWillResignActive:application];
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication*)application {
+    [ISN_AppController sendEvent:@"applicationDidReceiveMemoryWarning"];
+    [super applicationDidReceiveMemoryWarning:application];
+}
+
+- (void)applicationWillTerminate:(UIApplication*)application {
+    [ISN_AppController sendEvent:@"applicationWillTerminate"];
+    [super applicationWillTerminate:application];
+}
+
+
+//--------------------------------------
+//  Universal Links (Deeplinking)
+//--------------------------------------
+
+static NSString* webpageURL  = @"";
+
+
+
+-(BOOL) application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler {
+    
+    if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
+        webpageURL = userActivity.webpageURL.absoluteString;
+         [ISN_AppController sendEvent:@"continueUserActivity" withParams:webpageURL];
+    }
+    
+    return [super application:application continueUserActivity:userActivity restorationHandler:restorationHandler];
+}
+
+
++ (NSString*) getLunchUniversalLink {
+    return  webpageURL;
+}
+
+
+
+//--------------------------------------
+//  Application URL Sheme
+//--------------------------------------
+
+
+static NSString* appOpenUrl  = @"";
+static NSString* appSourceApplication  = @"";
+
+- (BOOL)application:(UIApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation {
+    appOpenUrl = [url absoluteString];
+    appSourceApplication = sourceApplication;
+    [ISN_AppController sendEvent:@"openURL" withParams:[ISN_AppController getLunchURLData]];
+
+    return [super application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+}
+
++ (NSString*) getLunchURLData {
+    NSMutableString *data = [[NSMutableString alloc] init] ;
+    [data appendString:appOpenUrl];
+    [data appendString:UNITY_SPLITTER];
+    [data appendString:appSourceApplication];
+
+    return  data;
+}
+
+
+@end
+
+IMPL_APP_CONTROLLER_SUBCLASS( ISN_AppController )
+
+
+
+extern "C" {
+    
+    void _ISN_AppController_Subscribe() {
+        [ISN_AppController subscribe];
+    }
+    
+    
+    char* _ISN_GetLunchURLData() {
+        
+        NSString *Data = [ISN_AppController getLunchURLData];
+        
+        const char* string = [ISN_DataConvertor NSStringToChar:Data];
+        char* res = (char*)malloc(strlen(string) + 1);
+        strcpy(res, string);
+        return res;
+    }
+    
+    
+    char* _ISN_GetLunchUniversalLink() {
+        
+        NSString *Data = [ISN_AppController getLunchUniversalLink];
+        
+        const char* string = [ISN_DataConvertor NSStringToChar:Data];
+        char* res = (char*)malloc(strlen(string) + 1);
+        strcpy(res, string);
+        return res;
+    }
+
+    
+
+}
