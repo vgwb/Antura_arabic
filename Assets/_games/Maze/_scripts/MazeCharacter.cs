@@ -573,6 +573,11 @@ namespace EA4S.Minigames.Maze
 
                     MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
 
+                    if (!MazeGameManager.instance.isTutorialMode)
+                    {
+                        MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
+                    }
+
                     loseState = LoseState.Incomplete;
                 }
 
@@ -813,6 +818,11 @@ namespace EA4S.Minigames.Maze
                     tickPosition.y -= 1.5f;
                     Tutorial.TutorialUI.MarkNo(tickPosition, Tutorial.TutorialUI.MarkSize.Big);
                     MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
+
+                    if (!MazeGameManager.instance.isTutorialMode)
+                    {
+                        MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose); 
+                    }
 
                 },
                 () =>
