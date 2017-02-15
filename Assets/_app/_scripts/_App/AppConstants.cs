@@ -7,14 +7,13 @@
     // refactor: reorganize all constants (some are statics, others are consts)
     public static class AppConstants
     {
-        public const string AppVersion = "20170214";
+        public const string AppVersion = "20170215";
         public const string DbSchemeVersion = "1.19";
         public const bool DebugPanelEnabled = true;
         public static bool UseUnityAnalytics = false;
         public static bool VerboseLogging = true;
         public static bool DebugLogInserts = false;
         public static bool DebugStopPlayAtWrongPlaySessions = true;
-
 
         // Urls
         public const string UrlWebsite = "http://www.antura.org";
@@ -24,18 +23,14 @@
         public const string UrlStoreAndroidGoogle = "";
 
         // Application details (used by Teacher and maybe other)
-        public const float minimumAge = 7;
-        public const float maximumAge = 15;
+        public const float minimumAge = 4;
+        public const float maximumAge = 10;
 
         public const float minimumStage = 1;
         public const float maximumStage = 6;
 
         public const int minimumMoodValue = 1;
         public const int maximumMoodValue = 5;
-
-        /// <summary>
-        /// Max number of player profiles usable.
-        /// </summary>
         public const int MaxNumberOfPlayerProfiles = 5;
 
         // Resource Paths
