@@ -278,7 +278,7 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_QuestionAnReply_Builder()
         {
             SimultaneosQuestions = 1;
-            int nWrongs = snag.Increase( 2, 4);
+            int nWrongs = 4;
 
             return new  PhraseQuestionsQuestionBuilder(
                         SimultaneosQuestions * NumberOfRounds, // totale questions
@@ -340,9 +340,9 @@ namespace EA4S.Assessment
 
             return new LettersInWordQuestionBuilder(
 
-                SimultaneosQuestions * NumberOfRounds,   // Total Answers
-                1,// snag.Increase( 1, 2),            // CorrectAnswers
-                0,// snag.Increase( 2, 4),            // WrongAnswers
+                SimultaneosQuestions * NumberOfRounds,  // Total Answers
+                1,                                      // CorrectAnswers
+                0,                                      // WrongAnswers
                 useAllCorrectLetters: false,
                 packsUsedTogether: true,
                 parameters: builderParams);
