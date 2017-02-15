@@ -26,7 +26,7 @@ namespace EA4S.PlayerBook
         public Button LaunchGameButton;
 
         GameObject btnGO;
-        PlayerBookPanel currentArea = PlayerBookPanel.None;
+        BookArea currentArea = BookArea.None;
         MiniGameData currentMiniGame;
 
         void Start()
@@ -35,20 +35,20 @@ namespace EA4S.PlayerBook
 
         void OnEnable()
         {
-            OpenArea(PlayerBookPanel.MiniGames);
+            OpenArea(BookArea.MiniGames);
         }
 
-        void OpenArea(PlayerBookPanel newArea)
+        void OpenArea(BookArea newArea)
         {
             currentArea = newArea;
             activatePanel(currentArea, true);
         }
 
-        void activatePanel(PlayerBookPanel panel, bool status)
+        void activatePanel(BookArea panel, bool status)
         {
             switch (panel) {
 
-                case PlayerBookPanel.MiniGames:
+                case BookArea.MiniGames:
                     //AudioManager.I.PlayDialog("Book_Games");
                     MinigamesPanel();
                     break;

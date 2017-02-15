@@ -17,9 +17,9 @@ namespace EA4S.PlayerBook
         public TextRender SubTitle;
         public Image LockIcon;
 
-        BookPanel manager;
+        JourneyPanel manager;
 
-        public void Init(BookPanel _manager, LearningBlockInfo _info)
+        public void Init(JourneyPanel _manager, LearningBlockInfo _info)
         {
             info = _info;
             manager = _manager;
