@@ -112,6 +112,11 @@ namespace EA4S.Minigames.Maze
                 Tutorial.TutorialUI.MarkNo(pointOfImpact);
                 MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
 
+                if (!MazeGameManager.instance.isTutorialMode)
+                {
+                    MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
+                }
+
                 LaunchRocket();
             }
         }
