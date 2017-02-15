@@ -84,6 +84,27 @@ namespace EA4S.Teacher
             return PlaySessionIdToJourneyPosition(allPlaySessions[allPlaySessions.Count - 1].Id);
         }
 
+        public JourneyPosition GetMinimumJourneyPositionForMiniGame(MiniGameCode minigameCode)
+        {
+            var finalPos = AppManager.I.Teacher.journeyHelper.GetFinalJourneyPosition();
+            int NBasePlaySession = 2;
+
+            for (int s = 1; s <= finalPos.Stage; s++)
+            {
+                for (int lb = 1; lb <= finalPos.LearningBlock; lb++)
+                {
+                    for (int ps = 1; ps <= NBasePlaySession; ps++)
+                    {
+                        if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(new JourneyPosition(s, lb, ps), minigameCode))
+                            return new JourneyPosition(s, lb, ps);
+                    }
+                    int assessmentCode = 100;
+                    if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(new JourneyPosition(s, lb, assessmentCode), minigameCode))
+                        return new JourneyPosition(s, lb, assessmentCode);
+                }
+            }
+            return null;
+        }
         #endregion
 
         #region Info getters

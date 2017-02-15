@@ -23,7 +23,7 @@ public partial class SROptions
         {
             if (AppConstants.DebugStopPlayAtWrongPlaySessions)
             {
-                JourneyPosition minJ = GetMinimumPlaySessionForMiniGame(minigameCode);
+                JourneyPosition minJ = AppManager.I.Teacher.journeyHelper.GetMinimumJourneyPositionForMiniGame(minigameCode);
                 if (minJ == null)
                 {
                     Debug.LogErrorFormat("Minigame {0} cannot be played at all!!!", minigameCode);
@@ -43,24 +43,6 @@ public partial class SROptions
 
     }
 
-    public JourneyPosition GetMinimumPlaySessionForMiniGame(MiniGameCode minigameCode)
-    {
-        var finalPos = AppManager.I.Teacher.journeyHelper.GetFinalJourneyPosition();
-        int NBasePlaySession = 2;
-
-        for (int s = 1; s <= finalPos.Stage; s++) {
-            for (int lb = 1; lb <= finalPos.LearningBlock; lb++) {
-                for (int ps = 1; ps <= NBasePlaySession; ps++) {
-                    if(AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(new JourneyPosition(s, lb, ps), minigameCode))
-                        return new JourneyPosition(s, lb, ps);
-                }
-                int assessmentCode = 100;
-                if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession( new JourneyPosition(s, lb, assessmentCode), minigameCode))
-                    return new JourneyPosition(s, lb, assessmentCode);
-            }
-        }
-        return null;
-    }
 
     [Category("Options")]
     [Sort(1)]

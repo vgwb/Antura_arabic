@@ -147,9 +147,13 @@ namespace EA4S.Teacher.Test
             GlobalUI.ShowPauseMenu(false);
         }
 
-        private void InitialisePlaySession()
+        private void InitialisePlaySession(Core.JourneyPosition jp = null)
         {
-            AppManager.I.Player.CurrentJourneyPosition.SetPosition(currentJourneyStage, currentJourneyLB, isAssessment ? 100 : 1);
+            if (jp == null)
+            {
+                jp = new Core.JourneyPosition(currentJourneyStage, currentJourneyLB, isAssessment ? 100 : 1);
+            }
+            AppManager.I.Player.CurrentJourneyPosition.SetPosition(jp.Stage, jp.LearningBlock, jp.PlaySession);
             AppManager.I.Teacher.InitialiseNewPlaySession();
         }
 
@@ -171,9 +175,44 @@ namespace EA4S.Teacher.Test
         [DeMethodButton("Test Minimum Journey")]
         public void DoTestMinimumJourney()
         {
-            // @todo:
-            //DoTestAllMiniGames();
-            //DoTestAllQuestionBuilders();
+            StartCoroutine(DoTest(() => DoTestMinimumJourneyCO()));
+        }
+        private IEnumerator DoTestMinimumJourneyCO()
+        {
+            // Test all minigames at their minimum journey
+            foreach (var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
+            {
+                if (code == MiniGameCode.Invalid) continue;
+                if (code == MiniGameCode.Assessment_VowelOrConsonant) continue;
+                var jp = AppManager.I.Teacher.journeyHelper.GetMinimumJourneyPositionForMiniGame(code);
+                if (jp != null) InitialisePlaySession(jp);
+                yield return StartCoroutine(DoTestMinigameCO(code));
+            }
+        }
+
+        [DeMethodButton("Test Complete Journey")]
+        public void DoTestCompleteJourney()
+        {
+            StartCoroutine(DoTest(() => DoTestCompleteJourneyCO()));
+        }
+        private IEnumerator DoTestCompleteJourneyCO()
+        {
+            // Test all minigames at all their available journeys. Stop when we find a wrong one.
+            foreach (var psData in AppManager.I.DB.GetAllPlaySessionData())
+            {
+                InitialisePlaySession(psData.GetJourneyPosition());
+                foreach (var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
+                {
+                    if (code == MiniGameCode.Invalid) continue;
+                    if (code == MiniGameCode.Assessment_VowelOrConsonant) continue;
+
+                    // Skip minigames that found errors
+                    if (minigamesButtonsDict[code].colors.normalColor == Color.red)
+                        continue;
+
+                    yield return StartCoroutine(DoTestMinigameCO(code, 0.01f));
+                }
+            }
         }
 
         [DeMethodButton("Test Everything")]
@@ -241,10 +280,10 @@ namespace EA4S.Teacher.Test
         {
             StartCoroutine(DoTest(() => DoTestMinigameCO(code)));
         }
-        private IEnumerator DoTestMinigameCO(MiniGameCode code)
+        private IEnumerator DoTestMinigameCO(MiniGameCode code, float delay = 0.1f)
         {
             SetButtonStatus(minigamesButtonsDict[code], Color.yellow);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(delay);
             var statusColor = Color.green; 
 
             if (AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(AppManager.I.Player.CurrentJourneyPosition, code))
@@ -255,7 +294,7 @@ namespace EA4S.Teacher.Test
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError("!! " + code + "\n " + e.Message);
+                    Debug.LogError("!! " + code + " at PS(" + AppManager.I.Player.CurrentJourneyPosition + ")\n " + e.Message);
                     statusColor = Color.red;
                 }
             }
