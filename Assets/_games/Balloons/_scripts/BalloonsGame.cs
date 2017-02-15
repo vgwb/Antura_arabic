@@ -1121,6 +1121,7 @@ namespace EA4S.Balloons
                     if (countingIndex <= maxCountingIndex)
                     {
                         SayQuestion();
+                        WobbleLetterHint();
                     }
                 }
                 DisplayWordFlexibleContainer_Counting();
