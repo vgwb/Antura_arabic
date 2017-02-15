@@ -496,7 +496,7 @@ namespace EA4S.Minigames.ThrowBalls
         {
             if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
             {
-                string markedText = ArabicAlphabetHelper.GetWordWithMarkedLetterText(((LL_WordData)question).Data, ((LL_LetterData)correctLetterCntrl.GetLetter()).Data, Color.green, true);
+                string markedText = ArabicTextUtilities.GetWordWithMarkedLetterText(((LL_WordData)question).Data, ((LL_LetterData)correctLetterCntrl.GetLetter()).Data, Color.green, true);
                 UIController.instance.SetText(markedText);
                 UIController.instance.WobbleLetterHint();
 

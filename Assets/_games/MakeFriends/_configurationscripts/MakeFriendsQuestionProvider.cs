@@ -19,8 +19,8 @@ namespace EA4S.Minigames.MakeFriends
         {
             currentQuestion = 0;
 
-            List <ILivingLetterData> correctAnswers;
-            List <ILivingLetterData> wrongAnswers;
+            List<ILivingLetterData> correctAnswers;
+            List<ILivingLetterData> wrongAnswers;
 
             LL_WordData newWordData1;
             LL_WordData newWordData2;
@@ -43,9 +43,9 @@ namespace EA4S.Minigames.MakeFriends
                     uncommonLetters.Clear();
 
                     newWordData1 = AppManager.I.Teacher.GetRandomTestWordDataLL();
-                    foreach (var letterData in ArabicAlphabetHelper.ExtractLetterDataFromArabicWord(newWordData1.Data.Arabic))
+                    foreach (var letterData in ArabicAlphabetHelper.AnalyzeData(newWordData1.Data))
                     {
-                        wordLetters1.Add(letterData);
+                        wordLetters1.Add(new LL_LetterData(letterData.letter));
                     }
 
                     int innerLoopAttempts = 50;
@@ -53,15 +53,15 @@ namespace EA4S.Minigames.MakeFriends
                     {
                         newWordData2 = AppManager.I.Teacher.GetRandomTestWordDataLL();
                         innerLoopAttempts--;
-                    } while(newWordData2.Id == newWordData1.Id && innerLoopAttempts > 0);
+                    } while (newWordData2.Id == newWordData1.Id && innerLoopAttempts > 0);
                     if (innerLoopAttempts <= 0)
                     {
                         UnityEngine.Debug.LogError("MakeFriends QuestionProvider Could not find 2 different words!");
                     }
 
-                    foreach (var letterData in ArabicAlphabetHelper.ExtractLetterDataFromArabicWord(newWordData2.Data.Arabic))
+                    foreach (var letterData in ArabicAlphabetHelper.AnalyzeData(newWordData2.Data))
                     {
-                        wordLetters2.Add(letterData);
+                        wordLetters2.Add(new LL_LetterData(letterData.letter));
                     }
 
                     // Find common letter(s) (without repetition)
@@ -109,7 +109,7 @@ namespace EA4S.Minigames.MakeFriends
                         }
                     }
                     outerLoopAttempts--;
-                } while(commonLetters.Count == 0 && outerLoopAttempts > 0);
+                } while (commonLetters.Count == 0 && outerLoopAttempts > 0);
                 if (outerLoopAttempts <= 0)
                 {
                     UnityEngine.Debug.LogError("MakeFriends QuestionProvider Could not find enough data for QuestionPack #" + iteration

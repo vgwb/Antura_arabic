@@ -7,6 +7,7 @@ using EA4S.Helpers;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
+using EA4S.UI;
 
 namespace EA4S.Minigames.MissingLetter
 {
@@ -386,7 +387,7 @@ namespace EA4S.Minigames.MissingLetter
             {
                 LL_WordData word = (LL_WordData)m_oCurrQuestionPack.GetQuestion();
                 LL_LetterData letter = (LL_LetterData)m_oCurrentCorrectAnswer;
-                letterView.Label.text = ArabicAlphabetHelper.GetWordWithMarkedLetterText(word.Data, letter.Data, markColor);
+                letterView.Label.text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, letter.Data, markColor);
             }
 
         }

@@ -32,15 +32,24 @@ namespace EA4S.Database.Management
 
         private string[] CustomParseLetters(WordData wordData, DatabaseObject db)
         {
-            //Debug.Log(wordData.ToString());
-            return ArabicAlphabetHelper.ExtractLettersFromArabicWord(wordData.Arabic, db).ToArray();
+            var parts = ArabicAlphabetHelper.AnalyzeData(wordData, db);
+
+            string[] letters = new string[parts.Count];
+
+            for (int i = 0, count = letters.Length; i < count; ++i)
+                letters[i] = parts[i].letter.Id;
+
+            return letters;
         }
 
         private WordDataForm CustomParseForm(WordData data, object enum_object)
         {
-            if (ToString(enum_object) == "") {
+            if (ToString(enum_object) == "")
+            {
                 return WordDataForm.Singular;
-            } else {
+            }
+            else
+            {
                 return ParseEnum<WordDataForm>(data, enum_object);
             }
         }
@@ -56,8 +65,10 @@ namespace EA4S.Database.Management
         protected override void FinalValidation(WordTable table, DatabaseObject db)
         {
             // Field 'LinkedWord' is validated with a final validation step, since it is based on this same table
-            foreach (var data in table.GetValuesTyped()) {
-                if (data.LinkedWord != "" && table.GetValue(data.LinkedWord) == null) {
+            foreach (var data in table.GetValuesTyped())
+            {
+                if (data.LinkedWord != "" && table.GetValue(data.LinkedWord) == null)
+                {
                     LogValidation(data, "Cannot find id of WordData for Linked value " + data.LinkedWord + " (found in word " + data.Id + ")");
                 }
             }

@@ -287,7 +287,7 @@ namespace EA4S.Balloons
 
                     float halfDuration = FLASH_CYCLE_DURATION * 0.5f;
 
-                    string preparedText = ArabicAlphabetHelper.PrepareArabicStringForDisplay(originalText);
+                    string preparedText = ArabicAlphabetHelper.ProcessArabicString(originalText);
                     preparedText = originalText;
 
                     while (numCompletedCycles < NUM_FLASH_CYCLES)

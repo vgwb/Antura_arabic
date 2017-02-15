@@ -121,7 +121,7 @@ namespace EA4S.Minigames.ReadingGame
 
             for (int i = 0; i < karaokeLines.Count; ++i)
             {
-                words[i] = ArabicAlphabetHelper.PrepareArabicStringForDisplay(karaokeLines[i].text, true);
+                words[i] = ArabicAlphabetHelper.ProcessArabicString(karaokeLines[i].text);
                 lineBreaks[i] = karaokeLines[i].starsWithLineBreak;
             }
 

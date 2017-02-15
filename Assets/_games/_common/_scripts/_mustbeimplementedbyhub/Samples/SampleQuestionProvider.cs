@@ -28,15 +28,15 @@ namespace EA4S.MinigamesAPI.Sample
                 LL_WordData newWordData = AppManager.I.Teacher.GetRandomTestWordDataLL();
                 //LL_WordData newWordData = AppManager.I.Teacher.GetRandomTestWordDataLL(new WordFilters(requireDiacritics: true));
 
-                //LL_WordData newWordData = new LL_WordData(AppManager.I.DB.GetWordDataById("welcome"));
+                //LL_WordData newWordData = new LL_WordData(AppManager.I.DB.GetWordDataById("wolf"));
                 
 
                 if (newWordData == null)
                     return;
 
-                foreach (var letterData in ArabicAlphabetHelper.ExtractLetterDataFromArabicWord(newWordData.Data.Arabic))
+                foreach (var letterData in ArabicAlphabetHelper.AnalyzeData(newWordData.Data))
                 {
-                    correctAnswers.Add(letterData);
+                    correctAnswers.Add(new LL_LetterData(letterData.letter));
                 }
 
                 correctAnswers = correctAnswers.Distinct().ToList();
