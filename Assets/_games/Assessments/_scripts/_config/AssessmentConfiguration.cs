@@ -82,13 +82,6 @@ namespace EA4S.Assessment
         }
         /////////////////
 
-
-        /// <summary>
-        /// This is the "Linear Scaler". It takes a range of parameters and output the value
-        /// "in between" according to the Difficulty.
-        /// </summary>
-        private DifficultyRegulation snag;
-
         /// <summary>
         /// This is called by MiniGameAPI to create QuestionProvider, that means that if I start game
         /// from debug scene, I need a custom test Provider.
@@ -96,9 +89,6 @@ namespace EA4S.Assessment
         /// <returns>Custom question data for the assessment</returns>
         public IQuestionBuilder SetupBuilder()
         {
-            // Testing question builders
-            snag = new DifficultyRegulation( Difficulty);
-
             switch (assessmentType)
             {
                 case AssessmentCode.LetterForm:
@@ -212,8 +202,8 @@ namespace EA4S.Assessment
             return new LettersInWordQuestionBuilder(
 
                 SimultaneosQuestions * NumberOfRounds,  // Total Answers
-                1,                              // Always one!
-                snag.Increase(3, 5),            // WrongAnswers
+                1,            // Always one!
+                4,            // WrongAnswers
                 useAllCorrectLetters: false,
                 parameters: builderParams);
         }
@@ -229,7 +219,7 @@ namespace EA4S.Assessment
             SimultaneosQuestions = 1;
 
             int nCorrect = 1;
-            int nWrong = snag.Increase( 2, 4);
+            int nWrong = 3;
 
             return new RandomWordsQuestionBuilder(
                 SimultaneosQuestions * NumberOfRounds,
@@ -276,7 +266,7 @@ namespace EA4S.Assessment
             builderParams.useJourneyForWrong = false;
             SimultaneosQuestions = 1;
             int nCorrect = 1;
-            int nWrong = snag.Increase(2, 4);
+            int nWrong = 3;
             return new RandomWordsQuestionBuilder(
                 SimultaneosQuestions* NumberOfRounds,
                 nCorrect,
@@ -313,7 +303,6 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_WordsWithLetter_Builder()
         {
             SimultaneosQuestions = 2;
-            snag.SetStartingFrom( 0.5f);
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
@@ -324,8 +313,8 @@ namespace EA4S.Assessment
             return new WordsWithLetterQuestionBuilder( 
 
                 SimultaneosQuestions* NumberOfRounds,    // Total Answers
-                1,                              // Correct Answers
-                snag.Increase( 1, 2),           // Wrong Answers
+                1,           // Correct Answers
+                1,           // Wrong Answers
                 parameters: builderParams
                 );     
 
@@ -372,7 +361,7 @@ namespace EA4S.Assessment
             return new RandomLettersQuestionBuilder(
                 SimultaneosQuestions * NumberOfRounds,  // Total Answers
                 1,                              // CorrectAnswers
-                snag.Increase( 3, 6),           // WrongAnswers
+                4,                              // WrongAnswers
                 firstCorrectIsQuestion:true,
                 parameters:builderParams);
         }
