@@ -8,6 +8,7 @@ using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using EA4S.UI;
 using TMPro;
+using DG.Tweening;
 
 namespace EA4S.Balloons
 {
@@ -62,7 +63,7 @@ namespace EA4S.Balloons
 
         public IQuestionPack questionPack;
         public ILivingLetterData question;
-        public IEnumerable<ILivingLetterData> correctAnswers;
+        public List<ILivingLetterData> correctAnswers;
         public IEnumerable<ILivingLetterData> wrongAnswers;
         public int countingIndex;
         public int maxCountingIndex;
@@ -386,7 +387,7 @@ namespace EA4S.Balloons
                 // Get next question
                 questionPack = GetConfiguration().Questions.GetNextQuestion();
                 question = questionPack.GetQuestion();
-                correctAnswers = questionPack.GetCorrectAnswers();
+                correctAnswers = questionPack.GetCorrectAnswers().ToList();
                 wrongAnswers = questionPack.GetWrongAnswers();
 
                 switch (ActiveGameVariation)
@@ -491,10 +492,11 @@ namespace EA4S.Balloons
             float delay = 0.25f;
             yield return new WaitForSeconds(delay);
 
+            SayQuestion();
+
             switch (ActiveGameVariation)
             {
                 case BalloonsVariation.Spelling:
-                    AudioManager.PlayLetterData(question);
                     //Popup.Show();
                     //Popup.SetButtonCallback(OnRoundStartPressed);
                     //if (question.DataType == LivingLetterDataType.Word)
@@ -506,7 +508,6 @@ namespace EA4S.Balloons
                     break;
 
                 case BalloonsVariation.Words:
-                    AudioManager.PlayLetterData(question);
                     //Popup.Show();
                     //Popup.SetButtonCallback(OnRoundStartPressed);
                     //if (question.DataType == LivingLetterDataType.Word)
@@ -518,7 +519,6 @@ namespace EA4S.Balloons
                     break;
 
                 case BalloonsVariation.Letter:
-                    AudioManager.PlayLetterData(question);
                     //Popup.Show();
                     //Popup.SetButtonCallback(OnRoundStartPressed);
                     //Popup.SetLetterData(question);
@@ -1117,6 +1117,11 @@ namespace EA4S.Balloons
                 else
                 {
                     countingIndex++;
+
+                    if (countingIndex <= maxCountingIndex)
+                    {
+                        SayQuestion();
+                    }
                 }
                 DisplayWordFlexibleContainer_Counting();
             }
@@ -1408,6 +1413,34 @@ namespace EA4S.Balloons
                 yield return new WaitForSeconds(resumePlayingDelay);
                 Play();
             }
+        }
+
+        public void OnLetterHintClicked()
+        {
+            if (roundStatus == RoundStatus.Started)
+            {
+                SayQuestion();
+                WobbleLetterHint();
+            }
+        }
+
+        private void SayQuestion()
+        {
+            if (ActiveGameVariation == BalloonsVariation.Counting)
+            {
+                BalloonsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(correctAnswers[countingIndex]);
+            }
+
+            else
+            {
+                BalloonsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(question);
+            }
+        }
+
+        private void WobbleLetterHint()
+        {
+            wordFlexibleContainer.gameObject.transform.DOKill(true);
+            wordFlexibleContainer.gameObject.transform.DOShakeScale(0.5f);
         }
     }
 }

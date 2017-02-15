@@ -4251,7 +4251,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22477666, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 22477666, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_AnchorMin.x
@@ -4331,7 +4331,7 @@ Prefab:
     - target: {fileID: 224000011722212902, guid: 9957d9cfc035045cb9a389ed852a2e79,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 224000011722212902, guid: 9957d9cfc035045cb9a389ed852a2e79,
         type: 2}
@@ -4341,15 +4341,15 @@ Prefab:
     - target: {fileID: 224000011722212902, guid: 9957d9cfc035045cb9a389ed852a2e79,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -4357,11 +4357,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22418434, guid: 9957d9cfc035045cb9a389ed852a2e79, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 160
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000013858608506, guid: 9957d9cfc035045cb9a389ed852a2e79,
         type: 2}
@@ -4402,6 +4402,36 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &265389554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 265389552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 508411710}
+          m_MethodName: OnLetterHintClicked
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!114 &265389555 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11477340, guid: 9957d9cfc035045cb9a389ed852a2e79,
