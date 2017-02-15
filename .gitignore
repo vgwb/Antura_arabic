@@ -46,3 +46,11 @@ Local.meta
 **/g2uPrefs.bin
 **/g2uPrefs.bin.meta
 -HOToolsData*
+
+
+/Assets/Plugins/StansAssets
+/Assets/Plugins/StansAssets.meta
+/Assets/Plugins/iOS
+/Assets/Plugins/iOS.meta
+/Assets/Plugins/Android
+/Assets/Plugins/Android.meta

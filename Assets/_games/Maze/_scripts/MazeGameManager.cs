@@ -369,14 +369,8 @@ namespace EA4S.Minigames.Maze
             else
             {
                 roundNumberText.text = "#" + (roundNumber + 1);
-
-                MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
-
-
-
                 restartCurrentLetter();
             }
-
         }
 
         public void restartCurrentLetter(bool won = false)
