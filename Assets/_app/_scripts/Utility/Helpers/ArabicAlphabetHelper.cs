@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using System;
-using System.Text;
 using System.Collections.Generic;
 using ArabicSupport;
-using EA4S.MinigamesAPI;
 
 namespace EA4S.Helpers
 {
@@ -11,32 +9,29 @@ namespace EA4S.Helpers
     // refactor: this class needs a large refactoring as it is used for several different purposes
     public static class ArabicAlphabetHelper
     {
-
-        /// <summary>
-        /// Prepares the string for display (say from Arabic into TMPro Text
-        /// </summary>
-        /// <returns>The string for display.</returns>
-        /// <param name="">.</param>
-        public static string PrepareArabicStringForDisplay(string str, bool reversed = true)
+        public struct ArabicStringPart
         {
-            if (reversed)
+            public Database.LetterData letter;
+            public int fromCharacterIndex;
+            public int toCharacterIndex;
+            public Database.LetterForm letterForm;
+
+            public ArabicStringPart(Database.LetterData letter, int fromCharacterIndex, int toCharacterIndex, Database.LetterForm letterForm)
             {
-                // needed to be set in a TMPro RTL text
-                return GenericHelper.ReverseText(ArabicFixer.Fix(str, true, true));
+                this.letter = letter;
+                this.fromCharacterIndex = fromCharacterIndex;
+                this.toCharacterIndex = toCharacterIndex;
+                this.letterForm = letterForm;
             }
-            return ArabicFixer.Fix(str, true, true);
         }
 
-        // refactor: not used?
-        public static void DebugLetter(Database.LetterData letterData)
+        /// <summary>
+        /// Collapses diacritics and letters, collapses multiple words variations (e.g. lam + alef), selects correct forms unicodes, and reverses the string.
+        /// </summary>
+        /// <returns>The string, ready for display or further processing.</returns>
+        public static string ProcessArabicString(string str)
         {
-            byte[] bytesUtf16 = Encoding.Unicode.GetBytes(letterData.Isolated);
-            foreach (var item in bytesUtf16)
-            {
-                Debug.Log("DebugLetter " + letterData.Id + " lenght: " + letterData.Isolated.Length + " - " + item);
-            }
-            // Encoding.Convert(Encoding.UTF8, Encoding.Unicode, encodedBytes);
-            //Debug.Log("DebugLetter " + str + " lenght: " + str.Length);
+            return GenericHelper.ReverseText(ArabicFixer.Fix(str, true, true));
         }
 
         /// <summary>
@@ -69,266 +64,147 @@ namespace EA4S.Helpers
         }
 
         /// <summary>
-        /// Returns the list of letters found in a word string
-        /// </summary>
-        public static List<Database.LetterData> SplitWordIntoLetters(Database.WordData arabicWord, bool reverseOrder = false, bool separateDiacritics = false)
-        {
-            List<Database.LetterData> allLetterData = new List<Database.LetterData>(AppManager.I.DB.StaticDatabase.GetLetterTable().GetValuesTyped());
-
-            var returnList = new List<Database.LetterData>();
-
-            char[] chars = arabicWord.Arabic.ToCharArray();
-            if (reverseOrder)
-                Array.Reverse(chars);
-
-            //Debug.Log(arabicWord);
-            for (int i = 0; i < chars.Length; i++)
-            {
-                char _char = chars[i];
-                string unicodeString = GetHexUnicodeFromChar(_char);
-
-                Database.LetterData letterData = allLetterData.Find(l => l.Isolated_Unicode == unicodeString);
-                if (letterData != null)
-                {
-                    if (!separateDiacritics && letterData.Kind == Database.LetterDataKind.Symbol && letterData.Type == Database.LetterDataType.DiacriticSymbol)
-                    {
-                        var symbolId = letterData.Id;
-                        var lastLetterData = allLetterData.Find(l => l.Id == returnList[returnList.Count - 1].Id);
-                        var baseLetterId = lastLetterData.Id;
-                        //Debug.Log(symbolId);
-                        var diacriticLetterData = allLetterData.Find(l => l.Symbol == symbolId && l.BaseLetter == baseLetterId);
-                        returnList.RemoveAt(returnList.Count - 1);
-                        //Debug.Log(baseLetterId);
-                        //Debug.Log(diacriticLetterData);
-                        if (diacriticLetterData == null)
-                        {
-                            Debug.LogError("NULL " + baseLetterId + " + " + symbolId + ": we remove the diacritic for now.");
-                            // returnList.Add(diacriticLetterData.Id);
-                        }
-                        else
-                        {
-                            returnList.Add(diacriticLetterData);
-                        }
-                    }
-                    else
-                    {
-                        returnList.Add(letterData);
-                    }
-                }
-            }
-
-            return returnList;
-        }
-
-        /// <summary>
-        /// Returns the list of letters found in a word string
-        /// </summary>
-        public static List<string> ExtractLettersFromArabicWord(string arabicWord, Database.DatabaseObject db, bool reverseOrder = false, bool separateDiacritics = false)
-        {
-            List<Database.LetterData> allLetterData = new List<Database.LetterData>(db.GetLetterTable().GetValuesTyped());
-
-            var returnList = new List<string>();
-
-            char[] chars = arabicWord.ToCharArray();
-            if (reverseOrder)
-                Array.Reverse(chars);
-
-            //Debug.Log(arabicWord);
-            for (int i = 0; i < chars.Length; i++)
-            {
-                char _char = chars[i];
-                string unicodeString = GetHexUnicodeFromChar(_char);
-
-                Database.LetterData letterData = allLetterData.Find(l => l.Isolated_Unicode == unicodeString);
-                if (letterData != null)
-                {
-                    if (!separateDiacritics && letterData.Kind == Database.LetterDataKind.Symbol && letterData.Type == Database.LetterDataType.DiacriticSymbol)
-                    {
-                        var symbolId = letterData.Id;
-                        var lastLetterData = allLetterData.Find(l => l.Id == returnList[returnList.Count - 1]);
-                        var baseLetterId = lastLetterData.Id;
-                        //Debug.Log(symbolId);
-                        var diacriticLetterData = allLetterData.Find(l => l.Symbol == symbolId && l.BaseLetter == baseLetterId);
-                        returnList.RemoveAt(returnList.Count - 1);
-                        //Debug.Log(baseLetterId);
-                        //Debug.Log(diacriticLetterData);
-                        if (diacriticLetterData == null)
-                        {
-                            Debug.LogError("NULL " + baseLetterId + " + " + symbolId + ": we remove the diacritic for now.");
-                            // returnList.Add(diacriticLetterData.Id);
-                        }
-                        else
-                        {
-                            returnList.Add(diacriticLetterData.Id);
-                        }
-                    }
-                    else
-                    {
-                        returnList.Add(letterData.Id);
-                    }
-                }
-            }
-
-            return returnList;
-        }
-
-        /// <summary>
-        /// Return list of letter data for any letter of param word.
-        /// </summary>
-        public static List<LL_LetterData> ExtractLetterDataFromArabicWord(string arabicWord)
-        {
-            var db = AppManager.I.DB.StaticDatabase;
-            var lettersIds = ExtractLettersFromArabicWord(arabicWord, db);
-            var returnList = new List<LL_LetterData>();
-            foreach (var id in lettersIds)
-            {
-                var llLetterData = new LL_LetterData((Database.LetterData)db.GetLetterTable().GetValue(id));
-                returnList.Add(llLetterData);
-            }
-            return returnList;
-        }
-
-        /// <summary>
         /// Return a string of a word without a character. Warning: the word is already reversed and fixed for rendering.
         /// This is mandatory since PrepareArabicStringForDisplay should be called before adding removedLetterChar.
         /// </summary>
-        public static string GetWordWithMissingLetterText(out Database.LetterForm letterForm, Database.WordData arabicWord, Database.LetterData letterToRemove, string removedLetterChar = "_")
+        public static string GetWordWithMissingLetterText(Database.WordData arabicWord, ArabicStringPart partToRemove, string removedLetterChar = "_")
         {
-            letterForm = Database.LetterForm.None;
-            var Letters = SplitWordIntoLetters(arabicWord);
-            
-            int charPosition = 0;
-            bool found = false;
-            string text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
+            string text = ProcessArabicString(arabicWord.Arabic);
 
-            for (int index = 0; index < Letters.Count; ++index)
+            int toCharacterIndex = partToRemove.toCharacterIndex + 1;
+            text = text.Substring(0, partToRemove.fromCharacterIndex) + removedLetterChar + (toCharacterIndex >= text.Length - 1 ? "" : text.Substring(partToRemove.toCharacterIndex + 1));
+
+            return text;
+        }
+
+        /// <summary>
+        /// Find all the occurrences of "letterToFind" in "arabicWord"
+        /// </summary>
+        /// <returns>the list of occurrences</returns>
+        public static List<ArabicStringPart> FindLetter(Database.WordData arabicWord, Database.LetterData letterToFind)
+        {
+            List<ArabicStringPart> result = new List<ArabicStringPart>();
+
+            var parts = AnalyzeData(arabicWord);
+
+            for (int i = 0, count = parts.Count; i < count; ++i)
             {
-                if (Letters[index].Id == letterToRemove.Id)
+                if (parts[i].letter.Id == letterToFind.Id)
                 {
-                    found = true;
-                    // Check form
-                    //Debug.Log("(" + text + ") pos:" + charPosition + " - len:" + text.Length + " - charlen:" + letterToRemove.GetChar().Length + " char:" + letterToRemove.GetChar());
-                    var character = text.Substring(charPosition, letterToRemove.GetChar().Length);
+                    result.Add(parts[i]);
+                }
+            }
 
-                    // This test order is important, do not change
-                    if (letterToRemove.GetChar(Database.LetterForm.Isolated) == character)
+            return result;
+        }
+
+        /// <summary>
+        /// Returns the list of letters found in a word string
+        /// </summary>
+        public static List<ArabicStringPart> AnalyzeData(Database.WordData arabicWord, bool separateDiacritics = false, bool separateVariations = true)
+        {
+            // Use ArabicFixer to deal only with combined unicodes
+            return AnalyzeArabicString(ArabicFixer.Fix(arabicWord.Arabic, true, true), separateDiacritics, separateVariations);
+        }
+
+        /// <summary>
+        /// Returns the list of letters found in a word string
+        /// </summary>
+        public static List<ArabicStringPart> AnalyzeData(Database.PhraseData phrase, bool separateDiacritics = false, bool separateVariations = true)
+        {
+            // Use ArabicFixer to deal only with combined unicodes
+            return AnalyzeArabicString(ArabicFixer.Fix(phrase.Arabic, true, true), separateDiacritics, separateVariations);
+        }
+
+        static List<ArabicStringPart> AnalyzeArabicString(string arabicString, bool separateDiacritics = false, bool separateVariations = true)
+        {
+            List<Database.LetterData> allLetterData = new List<Database.LetterData>(AppManager.I.DB.StaticDatabase.GetLetterTable().GetValuesTyped());
+
+            var result = new List<ArabicStringPart>();
+
+            // If we used ArabicFixer, this char array will contain only combined unicodes
+            char[] chars = arabicString.ToCharArray();
+
+            int stringIndex = 0;
+            for (int i = 0; i < chars.Length; i++)
+            {
+                ++stringIndex;
+
+                char character = chars[i];
+
+                // Skip spaces
+                if (character == ' ')
+                    continue;
+
+                string unicodeString = GetHexUnicodeFromChar(character);
+
+                if (unicodeString == "0640") // arabic tatweel
+                {
+                    // just extends previous character
+                    if (result.Count > 0)
+                    {
+                        var previous = result[result.Count - 1];
+                        ++previous.toCharacterIndex;
+                        result[result.Count - 1] = previous;
+                    }
+
+                    continue;
+                }
+
+                // Find the letter, and check its form
+                Database.LetterForm letterForm = Database.LetterForm.None;
+                Database.LetterData letterData = null;
+                for (int l = 0; l < allLetterData.Count; ++l)
+                {
+                    var data = allLetterData[l];
+                    if (data.Isolated_Unicode == unicodeString)
+                    {
                         letterForm = Database.LetterForm.Isolated;
-                    else if (letterToRemove.GetChar(Database.LetterForm.Initial) == character)
+                        letterData = data;
+                        break;
+                    }
+                    else if (data.Initial_Unicode == unicodeString)
+                    {
                         letterForm = Database.LetterForm.Initial;
-                    else if (letterToRemove.GetChar(Database.LetterForm.Medial) == character)
+                        letterData = data;
+                        break;
+                    }
+                    else if (data.Medial_Unicode == unicodeString)
+                    {
                         letterForm = Database.LetterForm.Medial;
-                    else if (letterToRemove.GetChar(Database.LetterForm.Final) == character)
+                        letterData = data;
+                        break;
+                    }
+                    else if (data.Final_Unicode == unicodeString)
+                    {
                         letterForm = Database.LetterForm.Final;
-                    else
-                        letterForm = Database.LetterForm.Isolated; // fallback to isolated
-
-                    break;
+                        letterData = data;
+                        break;
+                    }
                 }
-                else
-                    charPosition += Letters[index].GetChar().Trim().Length;
-            }
 
-            if (!found)
-                return text;
-
-            text = text.Substring(0, charPosition) + removedLetterChar + text.Substring(charPosition + letterToRemove.GetChar().Length);
-
-            return text;
-        }
-
-        public static Database.LetterForm GetLetterFormInWord(Database.WordData arabicWord, Database.LetterData letter)
-        {
-            var Letters = SplitWordIntoLetters(arabicWord);
-
-            int charPosition = 0;
-            string text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
-
-            for (int index = 0; index < Letters.Count; ++index)
-            {
-                if (Letters[index].Id == letter.Id)
+                if (letterData != null)
                 {
-                    // Check form
-                    var character = text.Substring(charPosition, letter.GetChar().Length);
-
-                    // This test order is important, do not change
-                    if (letter.GetChar(Database.LetterForm.Isolated) == character)
-                        return Database.LetterForm.Isolated;
-                    else if (letter.GetChar(Database.LetterForm.Initial) == character)
-                        return Database.LetterForm.Initial;
-                    else if (letter.GetChar(Database.LetterForm.Medial) == character)
-                        return Database.LetterForm.Medial;
-                    else if (letter.GetChar(Database.LetterForm.Final) == character)
-                        return Database.LetterForm.Final;
+                    if (letterData.Kind == Database.LetterDataKind.DiacriticCombo && separateDiacritics)
+                    {
+                        // Separate Letter and Diacritic
+                        result.Add(new ArabicStringPart(AppManager.I.DB.GetLetterDataById(letterData.BaseLetter), stringIndex, stringIndex, letterForm));
+                        result.Add(new ArabicStringPart(AppManager.I.DB.GetLetterDataById(letterData.Symbol), stringIndex, stringIndex, letterForm));
+                    }
+                    else if (letterData.Kind == Database.LetterDataKind.LetterVariation && separateVariations && letterData.BaseLetter == "lam")
+                    {
+                        // Separate Lam and Alef
+                        result.Add(new ArabicStringPart(AppManager.I.DB.GetLetterDataById(letterData.BaseLetter), stringIndex, stringIndex, letterForm));
+                        result.Add(new ArabicStringPart(AppManager.I.DB.GetLetterDataById(letterData.Symbol), stringIndex, stringIndex, letterForm));
+                    }
                     else
-                        return Database.LetterForm.Isolated; // fallback to isolated
+                        result.Add(new ArabicStringPart(letterData, stringIndex, stringIndex, letterForm));
                 }
                 else
-                    charPosition += Letters[index].GetChar().Trim().Length;
+                    Debug.Log("Cannot parse letter " + character + " (" + unicodeString + ") in " + arabicString);
             }
 
-            return Database.LetterForm.None;
-        }
-
-        /// <summary>
-        /// Return a string of a word with the "color" tag enveloping a character. Warning: the word is already reversed and fixed for rendering.
-        /// This is mandatory since PrepareArabicStringForDisplay should be called before adding the tags.
-        /// </summary>
-        public static string GetWordWithMarkedLetterText(Database.WordData arabicWord, Database.LetterData letterToMark, Color color, bool markUpToLetter = false)
-        {
-            var Letters = SplitWordIntoLetters(arabicWord);
-
-            int charPosition = 0;
-            bool found = false;
-            for (int index = 0; index < Letters.Count; ++index)
-            {
-                if (Letters[index].Id == letterToMark.Id)
-                {
-                    found = true;
-                    break;
-                }
-                else
-                    charPosition += Letters[index].GetChar().Length;
-            }
-
-            if (!found)
-                return ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
-
-            string tagStart = "<color=#" + GenericHelper.ColorToHex(color) + ">";
-            string tagEnd = "</color>";
-
-            string text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
-            text = (markUpToLetter ? tagStart + text.Substring(0, charPosition + letterToMark.GetChar().Length) : text.Substring(0, charPosition) +
-                tagStart + text.Substring(charPosition, letterToMark.GetChar().Length)) + tagEnd + // Marked letter
-                text.Substring(charPosition + letterToMark.GetChar().Length);
-
-            return text;
-        }
-
-        /// <summary>
-        /// Return a string of a word with the "color" tag enveloping a character. Warning: the word is already reversed and fixed for rendering.
-        /// This is mandatory since PrepareArabicStringForDisplay should be called before adding the tags.
-        /// </summary>
-        public static string GetWordWithMarkedLetterText(Database.WordData arabicWord, int letterPositionToMark, Color color)
-        {
-            var Letters = SplitWordIntoLetters(arabicWord);
-
-            if (letterPositionToMark >= Letters.Count)
-                return ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
-
-            int charPosition = 0;
-            for (int index = 0; index < letterPositionToMark; ++index)
-                charPosition += Letters[index].GetChar().Length;
-
-            string tagStart = "<color=#" + GenericHelper.ColorToHex(color) + ">";
-            string tagEnd = "</color>";
-
-            var letterToMark = Letters[letterPositionToMark];
-            string text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(arabicWord.Arabic);
-            text = text.Substring(0, charPosition) +
-                tagStart + text.Substring(charPosition, letterToMark.GetChar().Length) + tagEnd + // Marked letter
-                text.Substring(charPosition + letterToMark.GetChar().Length);
-
-            return text;
+            return result;
         }
     }
 }

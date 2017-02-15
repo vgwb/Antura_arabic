@@ -39,7 +39,7 @@ namespace EA4S.MinigamesAPI
         /// Living Letter Text To Display.
         /// </summary>
         public string TextForLivingLetter {
-            get { return ArabicAlphabetHelper.PrepareArabicStringForDisplay(Data.Arabic); }  // refactor: remove reference to the Arabic language
+            get { return ArabicAlphabetHelper.ProcessArabicString(Data.Arabic); }  // refactor: remove reference to the Arabic language
         }
 
         public string DrawingCharForLivingLetter {
