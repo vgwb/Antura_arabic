@@ -185,7 +185,8 @@ namespace EA4S.Teacher.Test
                 if (code == MiniGameCode.Invalid) continue;
                 if (code == MiniGameCode.Assessment_VowelOrConsonant) continue;
                 var jp = AppManager.I.Teacher.journeyHelper.GetMinimumJourneyPositionForMiniGame(code);
-                if (jp != null) InitialisePlaySession(jp);
+                if (jp == null) jp = AppManager.I.Teacher.journeyHelper.GetFinalJourneyPosition();
+                InitialisePlaySession(jp);
                 yield return StartCoroutine(DoTestMinigameCO(code));
             }
         }
@@ -215,7 +216,7 @@ namespace EA4S.Teacher.Test
             }
         }
 
-        [DeMethodButton("Test Everything")]
+        [DeMethodButton("Test Everything (current PS)")]
         public void DoTestEverything()
         {
             StartCoroutine(DoTest(() => DoTestEverythingCO()));
@@ -226,7 +227,7 @@ namespace EA4S.Teacher.Test
             yield return StartCoroutine(DoTestAllQuestionBuildersCO());
         }
 
-        [DeMethodButton("Test Minigames")]
+        [DeMethodButton("Test Minigames (current PS)")]
         public void DoTestAllMiniGames()
         {
             StartCoroutine(DoTest(() => DoTestAllMiniGamesCO()));
@@ -241,7 +242,7 @@ namespace EA4S.Teacher.Test
             }
         }
 
-        [DeMethodButton("Test QuestionBuilders")]
+        [DeMethodButton("Test QuestionBuilders (current PS)")]
         public void DoTestAllQuestionBuilders()
         {
             StartCoroutine(DoTest(() => DoTestAllQuestionBuildersCO()));
@@ -250,6 +251,7 @@ namespace EA4S.Teacher.Test
         {
             foreach (var type in Helpers.GenericHelper.SortEnums<QuestionBuilderType>())
             {
+                if (type == QuestionBuilderType.MAX) continue;
                 yield return StartCoroutine(DoTestQuestionBuilderCO(type));
             }
         }
