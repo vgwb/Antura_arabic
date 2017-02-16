@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using EA4S.Core;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
+using EA4S.Core;
 
 namespace EA4S.Editor
 {
@@ -18,28 +16,36 @@ namespace EA4S.Editor
         void OnGUI()
         {
             this.titleContent.text = "EA4S Antura";
-            EditorGUILayout.LabelField("Hi there! I'm Antura and i'm version " + AppConstants.AppVersion);
+            EditorGUILayout.LabelField("Version " + AppConstants.AppVersion);
 
-            DrawFooterLayout(Screen.width - 15);
+            DrawFooterLayout(Screen.width);
         }
 
 
         public void DrawFooterLayout(float width)
         {
-            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.BeginVertical();
 
             var margin = (EditorStyles.miniButton.padding.left) / 2f;
             width = width - margin * 2;
 
-            if (GUILayout.Button("GitHub", GUILayout.Width(width / 2f - margin))) {
+            if (GUILayout.Button("GitHub project")) {
                 Application.OpenURL(AppConstants.UrlGithubRepository);
-        }
-
-            if (GUILayout.Button("Trello", GUILayout.Width(width / 2f - margin))) {
-                Application.OpenURL(AppConstants.UrlTrello);
             }
 
-            EditorGUILayout.EndHorizontal();
+            if (GUILayout.Button("GitHub issues")) {
+                Application.OpenURL(AppConstants.UrlGithubRepository + "/issues");
+            }
+
+            if (GUILayout.Button("antura.org")) {
+                Application.OpenURL(AppConstants.UrlWebsite);
+            }
+
+            //if (GUILayout.Button("Trello", GUILayout.Width(width / 2f - margin))) {
+            //    Application.OpenURL(AppConstants.UrlTrello);
+            //}
+
+            EditorGUILayout.EndVertical();
         }
     }
 }
