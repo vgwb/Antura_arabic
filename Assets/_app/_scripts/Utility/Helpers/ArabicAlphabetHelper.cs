@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using ArabicSupport;
+using System.Linq;
 
 namespace EA4S.Helpers
 {
@@ -104,7 +105,7 @@ namespace EA4S.Helpers
         public static List<ArabicStringPart> AnalyzeData(Database.WordData arabicWord, bool separateDiacritics = false, bool separateVariations = true)
         {
             // Use ArabicFixer to deal only with combined unicodes
-            return AnalyzeArabicString(ArabicFixer.Fix(arabicWord.Arabic, true, true), separateDiacritics, separateVariations);
+            return AnalyzeArabicString(ProcessArabicString(arabicWord.Arabic), separateDiacritics, separateVariations);
         }
 
         /// <summary>
@@ -113,41 +114,49 @@ namespace EA4S.Helpers
         public static List<ArabicStringPart> AnalyzeData(Database.PhraseData phrase, bool separateDiacritics = false, bool separateVariations = true)
         {
             // Use ArabicFixer to deal only with combined unicodes
-            return AnalyzeArabicString(ArabicFixer.Fix(phrase.Arabic, true, true), separateDiacritics, separateVariations);
+            return AnalyzeArabicString(ProcessArabicString(phrase.Arabic), separateDiacritics, separateVariations);
         }
 
-        static List<ArabicStringPart> AnalyzeArabicString(string arabicString, bool separateDiacritics = false, bool separateVariations = true)
+        static List<ArabicStringPart> AnalyzeArabicString(string processedArabicString, bool separateDiacritics = false, bool separateVariations = true)
         {
             List<Database.LetterData> allLetterData = new List<Database.LetterData>(AppManager.I.DB.StaticDatabase.GetLetterTable().GetValuesTyped());
 
             var result = new List<ArabicStringPart>();
 
             // If we used ArabicFixer, this char array will contain only combined unicodes
-            char[] chars = arabicString.ToCharArray();
+            char[] chars = processedArabicString.ToCharArray();
 
             int stringIndex = 0;
             for (int i = 0; i < chars.Length; i++)
             {
-                ++stringIndex;
-
                 char character = chars[i];
 
                 // Skip spaces
                 if (character == ' ')
+                {
+                    ++stringIndex;
                     continue;
+                }
 
                 string unicodeString = GetHexUnicodeFromChar(character);
 
                 if (unicodeString == "0640") // arabic tatweel
                 {
                     // just extends previous character
-                    if (result.Count > 0)
+                    for (int t = result.Count - 1; t >= 0; --t)
                     {
-                        var previous = result[result.Count - 1];
-                        ++previous.toCharacterIndex;
-                        result[result.Count - 1] = previous;
+                        var previous = result[t];
+
+                        if (previous.toCharacterIndex == stringIndex - 1)
+                        {
+                            ++previous.toCharacterIndex;
+                            result[t] = previous;
+                        }
+                        else
+                            break;
                     }
 
+                    ++stringIndex;
                     continue;
                 }
 
@@ -185,13 +194,35 @@ namespace EA4S.Helpers
 
                 if (letterData != null)
                 {
-                    if (letterData.Kind == Database.LetterDataKind.DiacriticCombo && separateDiacritics)
+                    if (letterData.Kind == Database.LetterDataKind.DiacriticCombo && separateDiacritics) // It's a diacritic combo
                     {
                         // Separate Letter and Diacritic
                         result.Add(new ArabicStringPart(AppManager.I.DB.GetLetterDataById(letterData.BaseLetter), stringIndex, stringIndex, letterForm));
                         result.Add(new ArabicStringPart(AppManager.I.DB.GetLetterDataById(letterData.Symbol), stringIndex, stringIndex, letterForm));
                     }
-                    else if (letterData.Kind == Database.LetterDataKind.LetterVariation && separateVariations && letterData.BaseLetter == "lam")
+                    else if (letterData.Kind == Database.LetterDataKind.Symbol && letterData.Type == Database.LetterDataType.DiacriticSymbol && !separateDiacritics) // It's a diacritic
+                    {
+                        // Merge Letter and Diacritic
+
+                        var symbolId = letterData.Id;
+                        var lastLetterData = result[result.Count - 1];
+                        var baseLetterId = lastLetterData.letter.Id;
+
+                        var diacriticLetterData = allLetterData.Find(l => l.Symbol == symbolId && l.BaseLetter == baseLetterId);
+                       
+                        if (diacriticLetterData == null)
+                        {
+                            Debug.LogError("Cannot find a single character for " + baseLetterId + " + " + symbolId + ". Diacritic removed.");
+                        }
+                        else
+                        {
+                            var previous = result[result.Count - 1];
+                            previous.letter = diacriticLetterData;
+                            ++previous.toCharacterIndex;
+                            result[result.Count - 1] = previous;
+                        }
+                    }
+                    else if (letterData.Kind == Database.LetterDataKind.LetterVariation && separateVariations && letterData.BaseLetter == "lam") // it's a lam-alef combo
                     {
                         // Separate Lam and Alef
                         result.Add(new ArabicStringPart(AppManager.I.DB.GetLetterDataById(letterData.BaseLetter), stringIndex, stringIndex, letterForm));
@@ -201,7 +232,10 @@ namespace EA4S.Helpers
                         result.Add(new ArabicStringPart(letterData, stringIndex, stringIndex, letterForm));
                 }
                 else
-                    Debug.Log("Cannot parse letter " + character + " (" + unicodeString + ") in " + arabicString);
+                    Debug.Log("Cannot parse letter " + character + " (" + unicodeString + ") in " + processedArabicString);
+
+
+                ++stringIndex;
             }
 
             return result;
