@@ -183,5 +183,5 @@ Shader "Antura/Dog" {
 	ENDCG
 	}
 
-	//FallBack "Mobile/VertexLit"
+	FallBack "Mobile/VertexLit"
 }

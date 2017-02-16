@@ -67,5 +67,5 @@ Shader "Antura/Decal" {
 	ENDCG
 	}
 
-			//FallBack "Mobile/VertexLit"
+		FallBack "Mobile/VertexLit"
 }
