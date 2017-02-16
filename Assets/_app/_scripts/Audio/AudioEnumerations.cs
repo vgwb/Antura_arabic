@@ -14,7 +14,7 @@
         Custom = -1
     }
 
-    // last is 69
+    // last is 70
     public enum Sfx
     {
         AlarmClock = 13,
@@ -35,6 +35,7 @@
         Dog_Exhale = 60,
         Dog_Inhale = 61,
         Dog_Noize = 69,
+        Dog_Scared = 70,
         EggBreak = 40,
         EggMove = 41,
         GameTitle = 5,
