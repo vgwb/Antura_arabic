@@ -32,10 +32,10 @@ namespace EA4S.Teacher
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
             this.nRounds = nRounds;
-            this.nPacksPerRound = nPacksPerRound;   // for packs used together
+            this.nPacksPerRound = nPacksPerRound;
+            this.packsUsedTogether = nPacksPerRound > 1;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
-            this.packsUsedTogether = nPacksPerRound > 1;
             this.parameters = parameters;
         }
 
@@ -68,7 +68,6 @@ namespace EA4S.Teacher
         private QuestionPackData CreateSingleQuestionPackData(int inRoundPackIndex)
         {
             var teacher = AppManager.I.Teacher;
-            var vocabularyHelper = AppManager.I.VocabularyHelper;
 
             bool useJourneyForLetters = parameters.useJourneyForCorrect;
             // @note: we also force the journey if the packs must be used together, as the data filters for journey clash with the new filter
