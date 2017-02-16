@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using ArabicSupport;
 using System.Linq;
+using EA4S.Database;
 
 namespace EA4S.Helpers
 {
@@ -82,11 +83,11 @@ namespace EA4S.Helpers
         /// Find all the occurrences of "letterToFind" in "arabicWord"
         /// </summary>
         /// <returns>the list of occurrences</returns>
-        public static List<ArabicStringPart> FindLetter(Database.WordData arabicWord, Database.LetterData letterToFind)
+        public static List<ArabicStringPart> FindLetter(DatabaseManager database, Database.WordData arabicWord, Database.LetterData letterToFind)
         {
             List<ArabicStringPart> result = new List<ArabicStringPart>();
 
-            var parts = AnalyzeData(arabicWord);
+            var parts = AnalyzeData(database, arabicWord);
 
             for (int i = 0, count = parts.Count; i < count; ++i)
             {
@@ -102,24 +103,24 @@ namespace EA4S.Helpers
         /// <summary>
         /// Returns the list of letters found in a word string
         /// </summary>
-        public static List<ArabicStringPart> AnalyzeData(Database.WordData arabicWord, bool separateDiacritics = false, bool separateVariations = true)
+        public static List<ArabicStringPart> AnalyzeData(DatabaseManager database, WordData arabicWord, bool separateDiacritics = false, bool separateVariations = true)
         {
             // Use ArabicFixer to deal only with combined unicodes
-            return AnalyzeArabicString(ProcessArabicString(arabicWord.Arabic), separateDiacritics, separateVariations);
+            return AnalyzeArabicString(database, ProcessArabicString(arabicWord.Arabic), separateDiacritics, separateVariations);
         }
 
         /// <summary>
         /// Returns the list of letters found in a word string
         /// </summary>
-        public static List<ArabicStringPart> AnalyzeData(Database.PhraseData phrase, bool separateDiacritics = false, bool separateVariations = true)
+        public static List<ArabicStringPart> AnalyzeData(DatabaseManager database, PhraseData phrase, bool separateDiacritics = false, bool separateVariations = true)
         {
             // Use ArabicFixer to deal only with combined unicodes
-            return AnalyzeArabicString(ProcessArabicString(phrase.Arabic), separateDiacritics, separateVariations);
+            return AnalyzeArabicString(database, ProcessArabicString(phrase.Arabic), separateDiacritics, separateVariations);
         }
 
-        static List<ArabicStringPart> AnalyzeArabicString(string processedArabicString, bool separateDiacritics = false, bool separateVariations = true)
+        static List<ArabicStringPart> AnalyzeArabicString(DatabaseManager database, string processedArabicString, bool separateDiacritics = false, bool separateVariations = true)
         {
-            List<Database.LetterData> allLetterData = new List<Database.LetterData>(AppManager.I.DB.StaticDatabase.GetLetterTable().GetValuesTyped());
+            List<Database.LetterData> allLetterData = new List<Database.LetterData>(database.StaticDatabase.GetLetterTable().GetValuesTyped());
 
             var result = new List<ArabicStringPart>();
 
@@ -131,8 +132,8 @@ namespace EA4S.Helpers
             {
                 char character = chars[i];
 
-                // Skip spaces
-                if (character == ' ')
+                // Skip spaces and "?"
+                if (character == ' ' || character == '؟')
                 {
                     ++stringIndex;
                     continue;
@@ -212,7 +213,7 @@ namespace EA4S.Helpers
                        
                         if (diacriticLetterData == null)
                         {
-                            Debug.LogError("Cannot find a single character for " + baseLetterId + " + " + symbolId + ". Diacritic removed.");
+                            Debug.LogError("Cannot find a single character for " + baseLetterId + " + " + symbolId + ". Diacritic removed in (" + processedArabicString +").");
                         }
                         else
                         {

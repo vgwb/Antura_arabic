@@ -32,7 +32,7 @@ namespace EA4S.Database.Management
 
         private string[] CustomParseLetters(WordData wordData, DatabaseObject db)
         {
-            var parts = ArabicAlphabetHelper.AnalyzeData(wordData, db);
+            var parts = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, wordData, db);
 
             string[] letters = new string[parts.Count];
 
