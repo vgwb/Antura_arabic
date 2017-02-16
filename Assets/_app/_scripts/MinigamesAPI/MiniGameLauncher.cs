@@ -3,6 +3,7 @@ using EA4S.MinigamesCommon;
 using EA4S.Teacher;
 using UnityEngine;
 using EA4S.Assessment;
+using EA4S.Audio;
 
 namespace EA4S.MinigamesAPI
 {
@@ -69,6 +70,9 @@ namespace EA4S.MinigamesAPI
 
             // Print the teacher's report now
             ConfigAI.PrintTeacherReport();
+
+            // Play the title dialog for the game
+            AudioManager.I.PlayDialogue(_gameCode.ToString()+"_Title");
 
             // Launch the game
             AppManager.I.NavigationManager.GotoMinigameScene();
