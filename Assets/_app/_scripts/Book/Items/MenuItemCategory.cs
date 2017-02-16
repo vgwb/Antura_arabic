@@ -1,8 +1,6 @@
 ﻿using EA4S.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using DG.DeExtensions;
-using DG.DeInspektor.Attributes;
 
 namespace EA4S.PlayerBook
 {
@@ -17,11 +15,12 @@ namespace EA4S.PlayerBook
         public TextRender SubTitle;
         IBookPanel manager;
 
-        public UIButton UIButton { get { if (fooUIButton == null) fooUIButton = this.GetComponent<UIButton>(); return fooUIButton; } }
-        UIButton fooUIButton;
+        UIButton uIButton;
 
         public void Init(IBookPanel _manager, GenericCategoryData _data)
         {
+            uIButton = GetComponent<UIButton>();
+
             data = _data;
             manager = _manager;
 
@@ -32,16 +31,11 @@ namespace EA4S.PlayerBook
         public void OnPointerClick(PointerEventData eventData)
         {
             manager.SelectSubCategory(data);
-
-            Select(data.Id);
         }
 
-        [DeMethodButton("DEBUG: Select", mode = DeButtonMode.PlayModeOnly)]
         public void Select(string code)
         {
-            UIButton.Toggle(code == data.Id);
+            uIButton.Toggle(code == data.Id);
         }
-
-
     }
 }

@@ -18,8 +18,14 @@ namespace EA4S.PlayerBook
 
         VocabularyPanel manager;
 
+        UIButton uIButton;
+
+
         public void Init(VocabularyPanel _manager, LetterInfo _info)
         {
+            uIButton = GetComponent<UIButton>();
+
+
             info = _info;
             manager = _manager;
 
@@ -36,6 +42,11 @@ namespace EA4S.PlayerBook
         public void OnPointerClick(PointerEventData eventData)
         {
             manager.DetailLetter(info);
+        }
+
+        public void Select(string code)
+        {
+            uIButton.Toggle(code == info.data.Id);
         }
     }
 }

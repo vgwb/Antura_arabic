@@ -96,7 +96,7 @@ namespace EA4S.PlayerBook
             switch (panel) {
                 case VocabularyChapter.Letters:
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Letters);
-                    LettersPanel();
+                    LettersPanel("letter");
                     break;
                 case VocabularyChapter.Words:
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Words);
@@ -168,7 +168,25 @@ namespace EA4S.PlayerBook
                 this,
                 new GenericCategoryData { area = VocabularyChapter.Letters, Id = "combo", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Combinations) });
 
+            HighlightMenutCategory(currentCategory);
+            HighlightLetterItem("");
         }
+
+        void HighlightLetterItem(string id)
+        {
+            foreach (Transform t in ElementsContainer.transform) {
+                t.GetComponent<ItemLetter>().Select(id);
+            }
+        }
+
+
+        void HighlightMenutCategory(string id)
+        {
+            foreach (Transform t in SubmenuContainer.transform) {
+                t.GetComponent<MenuItemCategory>().Select(id);
+            }
+        }
+
 
         void WordsPanel(WordDataCategory _category = WordDataCategory.None)
         {
@@ -287,6 +305,8 @@ namespace EA4S.PlayerBook
 
         public void DetailLetter(LetterInfo info)
         {
+            HighlightLetterItem(info.data.Id);
+
             DetailPanel.SetActive(true);
             string positionsString = "";
             foreach (var p in info.data.GetAvailableForms())
