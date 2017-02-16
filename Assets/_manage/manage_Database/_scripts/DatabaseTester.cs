@@ -238,6 +238,26 @@ namespace EA4S.Database.Management
 
         public void TestLettersData()
         {
+            foreach (var l in dbManager.StaticDatabase.GetLetterTable().GetValuesTyped())
+            {
+                if (l.Id == "hamza")
+                {
+                    Debug.Log("Hamza Isolated: " + l.Isolated_Unicode);
+                    Debug.Log("Hamza Initial: " + l.Initial_Unicode);
+                    Debug.Log("Hamza Medial: " + l.Medial_Unicode);
+                    Debug.Log("Hamza Final: " + l.Final_Unicode);
+                }
+
+                if (l.Initial_Unicode == l.Isolated_Unicode)
+                    Debug.Log("Letter " + l + " has same final and isolated unicodes");
+
+                if (l.Medial_Unicode == l.Isolated_Unicode)
+                    Debug.Log("Letter " + l + " has same final and isolated unicodes");
+
+                if (l.Final_Unicode == l.Isolated_Unicode)
+                    Debug.Log("Letter " + l + " has same final and isolated unicodes");
+            }
+
             foreach (var w in dbManager.StaticDatabase.GetWordTable().GetValuesTyped())
             {
                 Helpers.ArabicAlphabetHelper.AnalyzeData(dbManager, w, false, false);
