@@ -371,7 +371,7 @@ namespace EA4S.Minigames.ThrowBalls
         {
             if (GameState.instance.isRoundOngoing)
             {
-                ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
+                ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData, true);
             }
         }
 

@@ -41,7 +41,7 @@ namespace EA4S.MinigamesAPI
         /// </summary>
         public string TextForLivingLetter {
             get {
-                return ArabicAlphabetHelper.PrepareArabicStringForDisplay(Data.Arabic);
+                return ArabicAlphabetHelper.ProcessArabicString(Data.Arabic);
             }
         }
 

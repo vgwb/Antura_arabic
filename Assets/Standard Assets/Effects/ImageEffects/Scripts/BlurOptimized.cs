@@ -14,7 +14,6 @@ namespace UnityStandardAssets.ImageEffects
 
         public enum BlurType {
             StandardGauss = 0,
-            SgxGauss = 1,
         }
 
         [Range(0.0f, 10.0f)]
@@ -64,7 +63,7 @@ namespace UnityStandardAssets.ImageEffects
             rt.filterMode = FilterMode.Bilinear;
             Graphics.Blit (source, rt, blurMaterial, 0);
 
-            var passOffs= blurType == BlurType.StandardGauss ? 0 : 2;
+            var passOffs= 0;
 
             for(int i = 0; i < blurIterations; i++) {
                 float iterationOffs = (i*1.0f);

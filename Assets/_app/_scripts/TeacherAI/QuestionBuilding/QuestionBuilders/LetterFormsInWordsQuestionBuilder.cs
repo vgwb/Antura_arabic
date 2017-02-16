@@ -148,7 +148,10 @@ namespace EA4S.Teacher
 
         private bool WordContainsLetterWithForm(WordData selectedWord, LetterData containedLetter, LetterForm selectedForm)
         {
-            return ArabicAlphabetHelper.GetLetterFormInWord(selectedWord, containedLetter) == selectedForm;
+            foreach (var l in ArabicAlphabetHelper.FindLetter(AppManager.I.DB, selectedWord, containedLetter))
+                if (l.letterForm == selectedForm)
+                    return true;
+            return false;
         }
 
     }

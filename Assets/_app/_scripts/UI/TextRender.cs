@@ -72,9 +72,9 @@ namespace EA4S.UI
             if (isTMPro) {
                 if (isArabic) {
                     if (isUI) {
-                        gameObject.GetComponent<TextMeshProUGUI>().text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(m_text);
+                        gameObject.GetComponent<TextMeshProUGUI>().text = ArabicAlphabetHelper.ProcessArabicString(m_text);
                     } else {
-                        gameObject.GetComponent<TextMeshPro>().text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(m_text);
+                        gameObject.GetComponent<TextMeshPro>().text = ArabicAlphabetHelper.ProcessArabicString(m_text);
                     }
                 } else {
                     if (isUI) {
@@ -86,9 +86,9 @@ namespace EA4S.UI
             } else {
                 if (isArabic) {
                     if (isUI) {
-                        gameObject.GetComponent<Text>().text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(m_text);
+                        gameObject.GetComponent<Text>().text = ArabicAlphabetHelper.ProcessArabicString(m_text);
                     } else {
-                        gameObject.GetComponent<TextMesh>().text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(m_text);
+                        gameObject.GetComponent<TextMesh>().text = ArabicAlphabetHelper.ProcessArabicString(m_text);
                     }
                 } else {
                     if (isUI) {

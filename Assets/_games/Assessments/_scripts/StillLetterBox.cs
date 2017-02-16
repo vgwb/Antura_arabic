@@ -52,7 +52,7 @@ namespace EA4S.Assessment
         public void SetQuestionGreen()
         {
             answerSprite.enabled = true;
-            answerSprite.Material.DOColor(new Color32(61, 185, 30, 255), 0.5f);
+            answerSprite.Material.DOColor( new Color32(45, 246, 38, 255), 0.5f);
             hiddenQuestionSprite.Material.DOFade(0, 1);
             Label.alpha = 0;
             Label.DOFade(1, 0.6f);

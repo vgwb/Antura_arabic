@@ -19,7 +19,7 @@ namespace EA4S.MinigamesCommon
         /// Play sound for letter or word,
         /// if stopAllLetters is true, it will stop any previous letter sound.
         /// </summary>
-        IAudioSource PlayLetterData(ILivingLetterData id, bool stopAllLetters = false);
+        IAudioSource PlayLetterData(ILivingLetterData id, bool stopAllLetters = true);
 
         IAudioSource PlayMusic(AudioClip clip);
         //TODO: IAudioSource PlayMusic(Music music);

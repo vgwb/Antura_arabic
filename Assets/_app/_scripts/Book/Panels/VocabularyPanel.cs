@@ -61,7 +61,6 @@ namespace EA4S.PlayerBook
         public TextRender LetterTextFinal;
 
         public TextRender ScoreText;
-        public TMPro.TextMeshProUGUI Drawing;
 
         public LetterObjectView LL_Isolated;
         public LetterObjectView LL_Initial;
@@ -199,7 +198,6 @@ namespace EA4S.PlayerBook
                     btnGO.GetComponent<ItemWord>().Init(this, info_item);
                 }
             }
-            Drawing.text = "";
 
             //btnGO = Instantiate(CategoryItemPrefab);
             //btnGO.transform.SetParent(SubmenuContainer.transform, false);
@@ -256,9 +254,9 @@ namespace EA4S.PlayerBook
 
             var output = "";
 
-            var splittedLetters = ArabicAlphabetHelper.SplitWordIntoLetters(info.data);
+            var splittedLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, info.data);
             foreach (var letter in splittedLetters) {
-                output += letter.GetChar() + " ";
+                output += letter.letter.GetChar() + " ";
             }
             output += "\n";
             output += info.data.Arabic;
@@ -277,12 +275,12 @@ namespace EA4S.PlayerBook
 
             if (info.data.Drawing != "") {
                 var drawingChar = AppManager.I.VocabularyHelper.GetWordDrawing(info.data);
-                Drawing.text = drawingChar;
+                //Drawing.text = drawingChar;
                 //LL_Medial.gameObject.SetActive(true);
                 LL_Medial.Initialize(new LL_ImageData(info.data));
                 Debug.Log("Drawing: " + info.data.Drawing + " / " + ArabicAlphabetHelper.GetLetterFromUnicode(info.data.Drawing));
             } else {
-                Drawing.text = "";
+                //Drawing.text = "";
                 LL_Medial.gameObject.SetActive(false);
             }
         }
