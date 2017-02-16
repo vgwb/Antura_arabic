@@ -72,7 +72,7 @@ namespace EA4S.MinigamesAPI
             ConfigAI.PrintTeacherReport();
 
             // Play the title dialog for the game
-            AudioManager.I.PlayDialogue(_gameCode.ToString()+"_Title");
+            //AudioManager.I.PlayDialogue(_gameCode.ToString()+"_Title");
 
             // Launch the game
             AppManager.I.NavigationManager.GotoMinigameScene();

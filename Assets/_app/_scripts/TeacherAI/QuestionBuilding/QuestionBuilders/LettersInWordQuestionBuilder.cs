@@ -15,7 +15,8 @@ namespace EA4S.Teacher
         // pack history filter: enabled
         // journey: enabled
 
-        private int nPacks;
+        private int nRounds;
+        private int nPacksPerRound;
         private int nCorrect;
         private bool useAllCorrectLetters;
         private int nWrong;
@@ -29,39 +30,50 @@ namespace EA4S.Teacher
             get { return this.parameters; }
         }
 
-        public LettersInWordQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, 
+        public LettersInWordQuestionBuilder(
+            int nRounds, int nPacksPerRound = 1, int nCorrect = 1, int nWrong = 0,
             bool useAllCorrectLetters = false, Database.WordDataCategory category = Database.WordDataCategory.None,
             int maximumWordLength = 20,
-            bool packsUsedTogether = false,
             QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
-            this.nPacks = nPacks;
+            this.nRounds = nRounds;
+            this.nPacksPerRound = nPacksPerRound;
+            this.packsUsedTogether = nPacksPerRound > 1;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
             this.useAllCorrectLetters = useAllCorrectLetters;
             this.category = category;
             this.maximumWordLength = maximumWordLength;
-            this.packsUsedTogether = packsUsedTogether;
             this.parameters = parameters;
         }
 
         private List<string> previousPacksIDs_words = new List<string>();
         private List<string> previousPacksIDs_letters = new List<string>();
 
+        private List<string> currentRoundIDs_letters = new List<string>();
+        private List<string> currentRoundIDs_words = new List<string>();
+
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
             previousPacksIDs_words.Clear();
             previousPacksIDs_letters.Clear();
             List<QuestionPackData> packs = new List<QuestionPackData>();
-            for (int pack_i = 0; pack_i < nPacks; pack_i++)
+            for (int round_i = 0; round_i < nRounds; round_i++)
             {
-                packs.Add(CreateSingleQuestionPackData());
+                // At each round, we must make sure to not repeat some words / letters
+                currentRoundIDs_letters.Clear();
+                currentRoundIDs_words.Clear();
+
+                for (int pack_i = 0; pack_i < nPacksPerRound; pack_i++)
+                {
+                    packs.Add(CreateSingleQuestionPackData(pack_i));
+                }
             }
             return packs;
         }
 
-        private QuestionPackData CreateSingleQuestionPackData()
+        private QuestionPackData CreateSingleQuestionPackData(int inRoundPackIndex)
         {
             var teacher = AppManager.I.Teacher;
             var vocabularyHelper = AppManager.I.VocabularyHelper;
@@ -71,11 +83,12 @@ namespace EA4S.Teacher
                 () => FindEligibleWords(maxWordLength: maximumWordLength),
                     new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words));
-            var question = usableWords[0];
+            var wordQuestion = usableWords[0];
+            currentRoundIDs_words.Add(wordQuestion.Id);
             //UnityEngine.Debug.LogWarning("Chosen word: " + question);
 
             // Get letters of that word
-            var wordLetters = vocabularyHelper.GetLettersInWord(question);
+            var wordLetters = vocabularyHelper.GetLettersInWord(wordQuestion);
             //UnityEngine.Debug.LogWarning("Found letters: " + wordLetters.Count);
 
             bool useJourneyForLetters = parameters.useJourneyForCorrect;
@@ -84,30 +97,37 @@ namespace EA4S.Teacher
             if (useAllCorrectLetters || packsUsedTogether) useJourneyForLetters = false;
 
             // Get some letters (from that word)
-            var correctAnswers = teacher.VocabularyAi.SelectData(
-                () => FindEligibleLetters(question, wordLetters),
+            var correctLetters = teacher.VocabularyAi.SelectData(
+                () => FindCorrectLetters(wordQuestion, wordLetters),
                  new SelectionParameters(parameters.correctSeverity, nCorrect, getMaxData:useAllCorrectLetters, 
-                 useJourney: useJourneyForLetters, filteringIds: previousPacksIDs_letters));
+                    useJourney: useJourneyForLetters, filteringIds: previousPacksIDs_letters));
+            currentRoundIDs_letters.AddRange(correctLetters.ConvertAll(w => w.Id));
 
-            // Get some wrong letters (not from that word)
-            var wrongAnswers = teacher.VocabularyAi.SelectData(
-                () => vocabularyHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray()),
+            // Get some wrong letters (not from that word, nor other words, nor previous letters)
+            // Only for the first pack of the round
+            List<LetterData> wrongLetters = new List<LetterData>();
+            if (inRoundPackIndex == 0)
+            {
+                wrongLetters = teacher.VocabularyAi.SelectData(
+                () => FindWrongLetters(wordQuestion, wordLetters),
                     new SelectionParameters(
-                        parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong, 
+                        parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
                         journeyFilter: SelectionParameters.JourneyFilter.UpToFullCurrentStage));
+                currentRoundIDs_letters.AddRange(wrongLetters.ConvertAll(w => w.Id));
+            }
 
             if (ConfigAI.verboseQuestionPacks)
             {
                 string debugString = "--------- TEACHER: question pack result ---------";
-                debugString += "\nQuestion: " + question;
-                debugString += "\nCorrect Answers: " + correctAnswers.Count;
-                foreach (var l in correctAnswers) debugString += " " + l;
-                debugString += "\nWrong Answers: " + wrongAnswers.Count;
-                foreach (var l in wrongAnswers) debugString += " " + l;
+                debugString += "\nQuestion: " + wordQuestion;
+                debugString += "\nCorrect Answers: " + correctLetters.Count;
+                foreach (var l in correctLetters) debugString += " " + l;
+                debugString += "\nWrong Answers: " + wrongLetters.Count;
+                foreach (var l in wrongLetters) debugString += " " + l;
                 ConfigAI.AppendToTeacherReport(debugString);
             }
 
-            return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
+            return QuestionPackData.Create(wordQuestion, correctLetters, wrongLetters);
         }
 
         public List<WordData> FindEligibleWords(int maxWordLength)
@@ -120,10 +140,10 @@ namespace EA4S.Teacher
                 if (word.Letters.Length > maxWordLength) continue;
 
                 // Avoid using words that contain previously chosen letters
-                if (packsUsedTogether && vocabularyHelper.WordContainsAnyLetter(word, previousPacksIDs_letters)) continue;
+                if (packsUsedTogether && vocabularyHelper.WordContainsAnyLetter(word, currentRoundIDs_letters)) continue;
 
                 // Avoid using words that have ONLY letters that appeared in previous words
-                if (packsUsedTogether && vocabularyHelper.WordHasAllLettersInCommonWith(word, previousPacksIDs_words)) continue;
+                if (packsUsedTogether && vocabularyHelper.WordHasAllLettersInCommonWith(word, currentRoundIDs_words)) continue;
 
                 eligibleWords.Add(word);
             }
@@ -131,11 +151,11 @@ namespace EA4S.Teacher
             return eligibleWords;
         }
 
-        public List<LetterData> FindEligibleLetters(WordData selectedWord, List<LetterData> wordLetters)
+        public List<LetterData> FindCorrectLetters(WordData selectedWord, List<LetterData> wordLetters)
         {
             var vocabularyHelper = AppManager.I.VocabularyHelper;
             List<LetterData> eligibleLetters = new List<LetterData>();
-            var bad_words = new List<string>(previousPacksIDs_words);
+            var bad_words = new List<string>(currentRoundIDs_words);
             bad_words.Remove(selectedWord.Id);
             foreach (var letter in wordLetters)
             {
@@ -147,6 +167,21 @@ namespace EA4S.Teacher
             return eligibleLetters;
         }
 
+        public List<LetterData> FindWrongLetters(WordData selectedWord, List<LetterData> wordLetters)
+        {
+            var vocabularyHelper = AppManager.I.VocabularyHelper;
+            List<LetterData> eligibleLetters = vocabularyHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray());
+            var bad_words = new List<string>(currentRoundIDs_words);
+            bad_words.Remove(selectedWord.Id);
+            foreach (var letter in wordLetters)
+            {
+                // Avoid using letters that appeared in previous words
+                if (packsUsedTogether && vocabularyHelper.LetterContainedInAnyWord(letter, bad_words)) continue;
+
+                eligibleLetters.Add(letter);
+            }
+            return eligibleLetters;
+        }
 
     }
 }

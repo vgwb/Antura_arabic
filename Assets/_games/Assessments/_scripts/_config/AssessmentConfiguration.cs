@@ -181,7 +181,7 @@ namespace EA4S.Assessment
 
             return new LettersInWordQuestionBuilder(
                 NumberOfRounds,
-                2,
+                nCorrect:2,
                 useAllCorrectLetters: true,
                 parameters: builderParams,
                 maximumWordLength: maxLetters
@@ -202,8 +202,8 @@ namespace EA4S.Assessment
             return new LettersInWordQuestionBuilder(
 
                 SimultaneosQuestions * NumberOfRounds,  // Total Answers
-                1,            // Always one!
-                4,            // WrongAnswers
+                nCorrect:1,            // Always one!
+                nWrong:4,            // WrongAnswers
                 useAllCorrectLetters: false,
                 parameters: builderParams);
         }
@@ -302,19 +302,38 @@ namespace EA4S.Assessment
 
         private IQuestionBuilder Setup_WordsWithLetter_Builder()
         {
-            SimultaneosQuestions = 2;
+            // This assessment changes behaviour based on the current stage
+            var jp = AppManager.I.Player.CurrentJourneyPosition;
+            switch (jp.Stage)
+            {
+                case 1:
+                    SimultaneosQuestions = 1;
+                    break;
+                case 2:
+                case 3:
+                    SimultaneosQuestions = 2;
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                default:
+                    SimultaneosQuestions = 3;
+                    break;
+            }
+            int nWrong = 6 - SimultaneosQuestions;
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
+            builderParams.sortPacksByDifficulty = false;
 
-            return new WordsWithLetterQuestionBuilder( 
-
-                SimultaneosQuestions* NumberOfRounds,    // Total Answers
-                1,           // Correct Answers
-                1,           // Wrong Answers
+            return new WordsWithLetterQuestionBuilder(
+                NumberOfRounds,
+                SimultaneosQuestions,
+                1,                  // Correct Answers
+                nWrong,             // Wrong Answers
                 parameters: builderParams
                 );     
 
@@ -330,7 +349,25 @@ namespace EA4S.Assessment
 
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
-            SimultaneosQuestions = 3;
+            // This assessment changes behaviour based on the current stage
+            var jp = AppManager.I.Player.CurrentJourneyPosition;
+            switch (jp.Stage)
+            {
+                case 1:
+                    SimultaneosQuestions = 1;
+                    break;
+                case 2:
+                case 3:
+                    SimultaneosQuestions = 2;
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                default:
+                    SimultaneosQuestions = 3;
+                    break;
+            }
+            int nWrong = 6 - SimultaneosQuestions;
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
@@ -339,12 +376,11 @@ namespace EA4S.Assessment
             builderParams.useJourneyForWrong = false;
 
             return new LettersInWordQuestionBuilder(
-
-                SimultaneosQuestions * NumberOfRounds,  // Total Answers
-                1,                                      // CorrectAnswers
-                0,                                      // WrongAnswers
+                NumberOfRounds,
+                SimultaneosQuestions,
+                nCorrect:1,   
+                nWrong:nWrong,
                 useAllCorrectLetters: false,
-                packsUsedTogether: true,
                 parameters: builderParams);
         }
 
