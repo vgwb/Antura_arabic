@@ -102,7 +102,7 @@ namespace EA4S.ReservedArea
             if (AppManager.I.PlayerProfileManager.ExistsDemoUser()) {
                 GlobalUI.ShowPrompt(true, "Demo player exists already");
             } else {
-                GlobalUI.ShowPrompt(true, "ATTENTION\nReally create a Full Unlocked Demo player?", DoCreateDemoPlayer);
+                GlobalUI.ShowPrompt(true, "ATTENTION\nReally create a Full Unlocked Demo player?", DoCreateDemoPlayer, DoNothing);
             }
         }
 
