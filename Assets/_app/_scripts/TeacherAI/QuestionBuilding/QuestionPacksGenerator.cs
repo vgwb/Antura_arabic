@@ -64,8 +64,8 @@ namespace EA4S.Teacher
                 {
                     if (!IsSamePack(repeatedPacks[ri], packs[i + 1]) && !IsSamePack(repeatedPacks[ri], packs[i]))
                     {
-                       // UnityEngine.Debug.LogError("Reinserting " + repeatedPacks[ri] + " at " + i);
-                        packs.Insert(i, repeatedPacks[ri]);
+                        //UnityEngine.Debug.LogError("Reinserting " + repeatedPacks[ri] + " at " + (i + 1)   + "\n between " + packs[i] + " and " + packs[i+1]);
+                        packs.Insert(i+1, repeatedPacks[ri]);
                         inserted = true;
                         break;
                     }
@@ -81,8 +81,10 @@ namespace EA4S.Teacher
 
         private bool IsSamePack(QuestionPackData pack1, QuestionPackData pack2)
         {
-            return pack1.question != null && pack1.question == pack2.question
-                    && pack1.correctAnswers != null && (pack1.correctAnswers[0] == pack2.correctAnswers[0]);
+            bool isSame = (pack1.question == null || pack1.question == pack2.question)
+                && (pack1.questions == null || (pack1.questions[0] == pack2.questions[0]))
+                && (pack1.correctAnswers == null || (pack1.correctAnswers[0] == pack2.correctAnswers[0]));
+            return isSame;
         }
 
         private List<IQuestionPack> ConvertToQuestionPacks(List<QuestionPackData> questionPackDataList)
