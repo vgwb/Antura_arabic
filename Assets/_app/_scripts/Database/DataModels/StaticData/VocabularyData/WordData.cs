@@ -40,7 +40,10 @@ namespace EA4S.Database
 
         public override string ToString()
         {
-            return Id + ": " + Arabic;
+            string s = Id + ": " + Arabic;
+            s += "  ";
+            foreach (var letter in Letters) s += letter + ", ";
+            return s;
         }
 
         public ILivingLetterData ConvertToLivingLetterData()

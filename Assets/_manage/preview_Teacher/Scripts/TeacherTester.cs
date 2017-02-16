@@ -5,6 +5,7 @@ using DG.DeInspektor.Attributes;
 using EA4S.UI;
 using UnityEngine;
 using UnityEngine.UI;
+using EA4S.Assessment;
 
 namespace EA4S.Teacher.Test
 {
@@ -73,6 +74,10 @@ namespace EA4S.Teacher.Test
         [Header("Selection Parameters")]
         [Range(1, 10)]
         public int nPacks = 5;
+        [Range(1, 10)]
+        public int nPacksPerRound = 2;
+        [DeToggleButton()]
+        public bool sortPacksByDifficulty = true;
 
         [Range(1, 10)]
         public int nCorrectAnswers = 1;
@@ -350,6 +355,11 @@ namespace EA4S.Teacher.Test
         private void SimulateMiniGame(MiniGameCode code)
         {
             var config = AppManager.I.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
+            if (config is IAssessmentConfiguration)
+            {
+                (config as IAssessmentConfiguration).NumberOfRounds = nPacks;
+            }
+
             var builder = config.SetupBuilder();
             ConfigAI.AppendToTeacherReport("** Minigame " + code + " - " + builder.GetType().Name);
 
@@ -380,10 +390,10 @@ namespace EA4S.Teacher.Test
                     builder = new LettersByTypeQuestionBuilder(nPacks: nPacks, parameters: builderParams);
                     break;
                 case QuestionBuilderType.LettersInWord:
-                    builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, useAllCorrectLetters: true, packsUsedTogether: true, parameters: builderParams);
+                    builder = new LettersInWordQuestionBuilder(nRounds: nPacks, nPacksPerRound: nPacksPerRound, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, useAllCorrectLetters: true, parameters: builderParams);
                     break;
                 case QuestionBuilderType.LetterFormsInWords:
-                    builder = new LetterFormsInWordsQuestionBuilder(nPacks, 3, parameters: builderParams);
+                    builder = new LetterFormsInWordsQuestionBuilder(nPacks, nPacksPerRound, parameters: builderParams);
                     break;
                 case QuestionBuilderType.CommonLettersInWords:
                     builder = new CommonLettersInWordQuestionBuilder(nPacks: nPacks, nWrong: nWrongAnswers, parameters: builderParams);
@@ -395,7 +405,7 @@ namespace EA4S.Teacher.Test
                     builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.NumberOrdinal, parameters: builderParams);
                     break;
                 case QuestionBuilderType.WordsWithLetter:
-                    builder = new WordsWithLetterQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, packsUsedTogether: true, parameters: builderParams);
+                    builder = new WordsWithLetterQuestionBuilder(nRounds: nPacks, nPacksPerRound: nPacksPerRound, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, parameters: builderParams);
                     break;
                 case QuestionBuilderType.WordsByForm:
                     builder = new WordsByFormQuestionBuilder(nPacks: nPacks, parameters: builderParams);
@@ -427,6 +437,7 @@ namespace EA4S.Teacher.Test
             builderParams.wrongSeverity = wrongSeverity;
             builderParams.useJourneyForCorrect = journeyEnabledForBase;
             builderParams.useJourneyForWrong = journeyEnabledForWrong;
+            builderParams.sortPacksByDifficulty = sortPacksByDifficulty;
             return builderParams;
         }
 
