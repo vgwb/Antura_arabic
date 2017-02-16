@@ -23,7 +23,7 @@ namespace EA4S.UI
             string text = ArabicAlphabetHelper.ProcessArabicString(arabicWord.Arabic);
 
             string startText = text.Substring(0, letterToMark.fromCharacterIndex);
-            string letterText = text.Substring(0, letterToMark.fromCharacterIndex);
+            string letterText = text.Substring(letterToMark.fromCharacterIndex, letterToMark.toCharacterIndex - letterToMark.fromCharacterIndex + 1);
             string endText = (letterToMark.toCharacterIndex >= text.Length - 1 ? "" : text.Substring(letterToMark.toCharacterIndex + 1));
 
             if (type == MarkType.SingleLetter)
