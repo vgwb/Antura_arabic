@@ -537,7 +537,7 @@ namespace EA4S.Assessment
             if (answerPlacer == AnswerPlacerType.Line)
                 context.AnswerPlacer = new LineAnswerPlacer( context.AudioManager, 3);
             else
-                context.AnswerPlacer = new RandomAnswerPlacer( context.AudioManager, placerOptions);
+                context.AnswerPlacer = new OrderedAnswerPlacer( context.AudioManager, placerOptions);
         }
     }
 }
