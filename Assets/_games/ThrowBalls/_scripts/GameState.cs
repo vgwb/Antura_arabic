@@ -496,7 +496,11 @@ namespace EA4S.Minigames.ThrowBalls
         {
             if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
             {
-                string markedText = ArabicAlphabetHelper.GetWordWithMarkedLetterText(((LL_WordData)question).Data, ((LL_LetterData)correctLetterCntrl.GetLetter()).Data, Color.green, true);
+                var word = ((LL_WordData)question).Data;
+                var letterDataToMark = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word, ((LL_LetterData)correctLetterCntrl.GetLetter()).Data)[0];
+                // TO FOUAD: change this in order to select to current letter (if there are multiple occurences)
+
+                string markedText = ArabicTextUtilities.GetWordWithMarkedLetterText(word, letterDataToMark, Color.green, ArabicTextUtilities.MarkType.FromStartToLetter);
                 UIController.instance.SetText(markedText);
                 UIController.instance.WobbleLetterHint();
 

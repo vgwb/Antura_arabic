@@ -52,7 +52,7 @@ namespace EA4S.Minigames.ThrowBalls
         {
             if (livingLetterData != null)
             {
-                ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(livingLetterData);
+                ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(livingLetterData, true);
                 WobbleLetterHint();
             }
         }
