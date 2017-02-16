@@ -875,6 +875,7 @@ namespace EA4S.Minigames.Maze
             celebrationPathPoints.Add(offscreenPoint);
 
             LL.Initialize(MazeGameManager.instance.currentLL);
+            LL.Horraying = true;
 
             bool braked = false;
 
@@ -970,6 +971,7 @@ namespace EA4S.Minigames.Maze
             celebrationPathPoints.Add(offscreenPoint);
 
             LL.Initialize(MazeGameManager.instance.currentLL);
+            LL.Horraying = true;
 
             bool braked = false;
 

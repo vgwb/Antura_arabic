@@ -1,0 +1,773 @@
+9.4/17
+Google Play Services updated to version 10.0.1
+
+Fixes:
+Editor warnings fixes
+Plugin's Resources are included in the final app build by default
+
+Overall performance improvements
+Compatibility updates & fixes
+
+9.3
+NEW! AN_Storage features added. APIs set:
+* void Save (string key, string data)
+* void Save (string key, Texture2D texture)
+* void Save (string key, byte[] data)
+* string GetString (string key)
+* Texture2D GetTexture (string key)
+* byte[] GetData (string key)​
+
+Overall performance improvements
+Compatibility updates & fixes.
+
+9.2:
+Google Play Services updated to version 10.0.1
+
+Fixes:
+GP_TBM_Controller UpdateMatchData fix
+Launched Local Notification Id return -1 fix
+
+NEW! Silent push notifications feature
+
+Overall performance improvements
+Compatibility updates & fixes
+
+9.1:
+Google Play Services updated to version 9.6.1
+Facebook SDK compatibility update
+One Signal SDK compatibility update
+
+Fixes:
+GetImage from Gallery image duplicate issue fix
+Real-Time Multiplayer player invitation issue fix
+Instagram native sharing issue fix
+Facebook - OnRequestsLoadComplete Json parsing issue fix
+Facebook - Load player score exception fix
+Facebook - created_time field added to LoadPendingRequests request
+Facebook - ConvertHttpMethod wrong Http Method fix
+
+Overall performance improvements
+Compatibility updates & fixes
+
+9.0:
+!!!Important!!! This version of the plugin is not compatible with the previous one.
+Please, remove the previous version and import the new one after.
+If you will face any kind of issues, please, contact Support Team via support@stansassets.com for assistance.
+
+Overall performance improvements
+Compatibility updates & fixes
+
+Fixes:
+Camera & Gallery APIs issues fix
+Runtime Permission requests issues fix
+FacebookActivity manifest merge conflicts fix
+
+NEW! Google AdMob Rewarded video documentation - https://goo.gl/rLo2BD
+
+7.9:
+Google Play Services updated to version 9.2.1
+Facebook SDK v7.8.0 compatibility update
+Facebook multiple Login Permissions fix
+IInAppBillingService.aidl vulnerability fix
+Native Sharing dialog broken UI fix
+
+NEW! Repeating Local Notifications
+NEW! Twitter GIFs sharing API
+
+7.8:
+Google Play Services updated to version 9.2.0
+NEW! WhatsApp sharing
+NEW! OAuth 2.0 APIs:
+	 - GenerateRefreshToken. Once you have generated the client credentials and refresh token, your servers can access the API without an active login.
+	 - RefreshOAuthToken. Each access token is only valid for a short time. Once the current access token expires, the server will need to use the refresh token to get a new one.
+	 - ObtainUserDeviceCode. You will be able to grant access for the applications that run on devices with limited input capabilities using their 'device code'.
+
+Overall performance improvements
+Compatibility updates & fixes
+
+7.7:
+Core Native Libraries migrated to Android Studio (.aar modules)
+Google Play Services modules separated to different AAR's
+
+New features:
+New GetServerAuthCode API
+Different Native Dialog/Popups Themes for Android platform
+AgeRange & PictureUrl properties added to FB_UserInfo
+Twitter OAuth API v1.1 Login issue fix
+
+Fixes:
+Get Image from Camera return Path issue
+AN_InApp_AndroidClient minor fixes
+Playmaker actions minor fixes
+
+7.6
+New Features:
+Multiple Imageses loading from Gallery
+New GetExternalStoragePublicDirectory API added to AndroidNativeUtility
+Wake Lock Indication for Local Notifications
+Google AdMob Rewarded Video Ads features
+
+Fixes:
+Low Quality Images loaded from Camera FIX
+Facebook GetUserLikes throws NullPointerException FIX
+Get Image From Camera issues FIX
+Native Android JAR-libraries code clean-up
+
+7.5
+New Features:
+Google Play Services update to 8487000 version
+Share with native Intent has the Callback Action Event!
+Push Notifications SetColor API, Editor Settings option added
+AndroidNatificationBuilder.SetColor API
+Steps field for Incremental Achievements
+NEW ResetAchievements Playmaker action
+Launch Push Notification click callback improvements
+
+Fixes:
+GP_Leaderboard GetCurrentPlayerScore return NULL FIX
+Saved Games Conflict detected callback FIX
+Saved Games via byte array FIX
+Twitter sharing with Native Intent FIX
+Facebook User ID equals string.Empty FIX
+Facebook Access Token equals string.Empty FIX
+New OneSignal SDK location FIX
+
+7.4:
+Updates:
+Turn-Based Multiplayer APIs update
+Compatibility update
+
+Fixes:
+Google Play Connection Freeze fix
+Turn-Based Multiplayer fixes
+
+7.3.1:
+Unity 4.7.0f1 compatibility update
+
+7.3:
+New Features:
+Push/Local Notification's Small & Large Icons setup added to Android Native Settings
+Big Picture style added for Push and Local Notifications
+
+Improvements:
+Unity v5.3 compatibility update
+
+Fixes:
+Twitter OAuth Posting NPE fix
+
+7.2:
+New Features:
+Facebook SDK v7.x support added!
+Runtime Permissions. https://goo.gl/ODTXXJ
+Google Play Services update to 8298000 version
+Start third-party Application with Extras API
+
+Refactor:
+All resources from Plugins\Android\res should be moved moved to Plugins\Android\AN_Res\res
+
+Fixes:
+Return Google Play Connection Result fix
+
+Improvements:
+CallPermissionCheck and RevokePermission(FBPermission permission) APIs added to SPFacebook
+GP_Quest has new fields: RewardData, CurrentProgress and TargetProgress
+
+7.1.1:
+Fixes:
+Fecabook SDK remove fix
+
+7.1:
+New Features:
+New Android Native Settings Editor
+
+Refactor:
+GoogleProductTemplate now has LocalizedPrice filed, PriceAmountMicros filed now long type and Price filed is float
+
+7.0.1:
+Fixes:
+In-App billing product price is empty fix
+
+7.0:
+New Features:
+Google Play Services update to 8115000 version
+Invitable friends loading from Facebook
+FacebookUserInfo Birthday property added
+
+Fixes:
+Load Saved Games Snapshots List fix
+Saved Games Sample fix
+
+Refactor:
+All SP_Facebook calbback that was using FBResult not use the FB_APIResult. First migration step to v7 API
+
+6.9:
+New Features:
+Google+ Plus sharing new features
+Real-Time Multiplayer Messages Sent Callbacks added
+Ad Banner support Pause and Resume while application pause
+
+Fixes:
+OnImagePicked events fix
+Google Play Connection events fix
+In-App Purchase time available after consume fix
+
+Improvements:
+Google Play Leaderboards implementation
+Compatibility update
+
+6.8:
+Fixes:
+Facebook connection fix
+Twitter connection fix
+License Checking fix for Android Lollipop target platform (API 21 or higher)
+GP_SnapshotMeta TotalPlayedTime loading fix
+
+New Features:
+Remove Plugin option added
+Facebook post message in background
+Image JPG/PNG Format option added to Camera and Gallery API
+
+6.7:
+Fixes:
+Google+ Sharing fix. AndroidSocialGate.StartShareIntent is deprecated for now, use AndroidSocialGate.StartGooglePlusShare instead
+Real-Time Multiplayer connection lost after Application Pause
+Load Image from Gallery scale to Max Allowed Size fix
+Show Waiting Room UI bug fix
+Camera image capture fail event fixed
+
+
+New Features:
+Leaderboards submitScoreImmediate added
+Google Play Real-Time Multiplayer FindMatch has new availability to create a room with the invited players only
+'Replace old norification with new one' option added to Push Notifications Settings
+GooglePlaySavedGamesManager has options to show 'Add Button' and 'Delete' overflow menu option in Saved Games native UI
+Device applications list API. Read more: https://goo.gl/dRwWOA
+Network Info API. Read more: https://goo.gl/j7TNFc
+Settings Page API. Read more: https://goo.gl/w7IHSO
+
+6.6:
+
+New features:
+Google Play Services updated to 7571000
+New Achievement API - setStepsImmediate
+Create Turn-Based Multiplayer Match with explicit Friends IDs
+
+Fixes:
+clearDefaultAccount API replaced with clearDefaultAccountAndReconnect (reason - API Deprecated)
+
+6.5:
+
+New features:
+Google Play Services updated to 7327000
+Now if you needto use text sharing only SD cart permission will not be added
+
+Fixes:
+'bimagechooser' folder is removed for now
+Remove Camera image from Gallery after transfering to Unity options added
+The IsPurductPurchased method now also check for puchase status (canseled, refunded)
+
+
+6.4:
+New features:
+Twitter OAuth toknes now avaliable directly in Unity Read more: http://goo.gl/h3dBd9
+Google Play Services updated to 7095000
+Android 5.0 startLockTask/stopLockTask API added
+Local info retrivel. Read more: http://goo.gl/d7wNyL
+
+Fixes:
+Freeze Google Play connection fix
+
+6.3:
+New Features:
+ShowWhenAppForedground setting added for Push Notifications
+Lollipop Theme Material Light Dialog added for Android Popups
+FBScore class now can load score holder profile image. Read more:  http://goo.gl/HA7Crk
+FB Invite Friends API added. Read more:  http://goo.gl/pCFtG9
+Android Id. Read more: http://goo.gl/XP7f3M
+ATC support added: http://goo.gl/dokdpv
+
+Fixes:
+Billing issues when relaunching the app fixed
+Billing Issue with pressing home button while purchase flow in action fixed
+
+
+6.2:
+New Features:
+GoogleCloudMessageService.instance.RemoveLastMessageInfo() added
+
+Fixes:
+Google Play TMB issue
+Unity 5 compatibility issues
+
+6.1:
+New Feature:
+Google Play Show connecting popup checkbox added
+GooglePlayRTM.instance.FindMatch variant param added
+Turn-Based multiplayer.  Read more: http://goo.gl/gZCGqY
+
+Fixes:
+com.example.gcm.permission.C2D_MESSAGE permission forse remove added
+Google Play Notifications display fixed
+Immersive mode re-enabled after keyboard is fixed
+
+Refactor:
+GooglePlayManager.ActionSoreSubmited -> GooglePlayManager.ActionScoreSubmited
+
+Playmaker:
+In-App Purchasing with Playmaker. Read more: http://goo.gl/FFH84o
+AN_BillingEventsListener action added
+BillingWithPlaymakerExample scene added
+
+6.0:
+Android Native does not overrides main activity anymore
+
+Fixed:
+Score submitting when not internet connection available  fixed.
+Custom Leaderboard UI scene fixed
+GooglePlayManager.ActionOAuthTokenLoaded action fixed
+
+Refactor:
+SaveImageToGalalry -> SaveImageToGallery
+
+5.5:
+Billing API does not requires main activity anymore
+
+5.4:
+New:
+Package Details API does not requires main activity anymore
+
+
+Fixes:
+Billing issue connected with Android L fixed
+
+
+5.3:
+Fixes:
+Immersive mode enabling without main activity bug fixed
+Local notifications display bug fixed
+LocalNotificationTemplate splitter changed
+Warning: This will break compatibility with notifications created with previous version.
+getToken(String accountName, String scope) method fixed
+Facebook Game Gifting API. Reade more: http://goo.gl/uhxaLf
+Facebook Trun Based Notifications: Read more:http://goo.gl/sZNJDU
+
+
+New:
+GP_Partisipant class updated, new properties added
+Play Service Editor UI Updated
+
+
+5.2:
+Billing:
+time and originalJson properties of GooglePurchaseTemplate not available after inventory retrieved
+GoogleProductTemplate - originalJson property added
+
+More spelling fixes
+
+Following API now does not requires main activity
+Local notifications
+Push notifications
+Native Sharing
+
+New Features:
+Push Notifications, icon, sound and vibration settings added
+Read More:
+https://unionassets.com/android-native-plugin/local-notifications-90
+
+Local Notifications icon, sound and vibration settings added
+Read More:
+https://unionassets.com/android-native-plugin/push-notifications-169
+
+Advertising Id Retrieval
+Read more:
+https://unionassets.com/android-native-plugin/google-play-utilities-273#advertising-id-retrieval
+
+Facebook SDK updated to v 6.1 beta
+
+
+5.1:
+
+New Features:
+Immersive mode does not requires main activity anymore
+Popup now use Holo Android theme
+App Licensing, read more at: http://goo.gl/z7sRoV
+
+Billing:
+Purchase method now accept developer payload as additional parameter.
+Original JSON filed now available with consume Response
+
+Saved Games:
+CreateNewSnapshot - PlayedTime param added
+GP_SnapshotMeta - TotalPlayedTime filed added
+ActionGameSaved - Action Added
+Snapshot Saving issue fixed
+
+Fixes:
+Local notification template saving with UTF8 fixed
+Local notification template loading fixed
+Auto reconnect not starting anymore if user has signed out suing external play service UI.
+AchievementBuffer leak fixed
+Analytics Start Tracking function fixed
+Facebook re auth bug fixed
+Receiving Push Notification when app is closed bug fixed
+GoogleGender constant values fixed
+
+
+
+Refactor:
+Google Play Manager methods name conventions fixed
+
+Spelling Fixes:
+Tocken => Token
+Loeaded => Loaded
+Achivment => Achievement
+Retrive => Retrieve
+Avaliable => Available
+SpanShot => Snapshot
+GooglePlaySavedGmaesManager => GooglePlaySavedGamesManager
+Note: please remove old GooglePlaySavedGmaesManager manually
+
+NotoficationsExample -> NotificationsExample
+Note: please remove old NotoficationsExample manually
+
+
+GoogleGenger -> GoogleGender
+Note: please remove old GoogleGenger manually
+
+5.0:
+New Features:
+Google+ button API added
+Google Saved Games API new methods:
+* LoadAvaliableSavedGames()
+* LoadSpanShotByName(string)
+Links to online documentation added
+
+Auto manifest generation. Read more: http://goo.gl/CqSwFR
+Instagram API added Read more:
+
+
+Fixes:
+Google Ad LoadInterstisial methods fixe
+Google Analytics v4 bugs fixed
+Quest manager fixed
+Event manager fixed
+
+4.9:
+
+New Features:
+Google Play Saved Games API. Read more: http://goo.gl/k0v8zT
+Google Analytics API migrated to v4
+Ability to enable / disable separate APIs
+Editor Setting improvements
+
+
+Updates:
+Android native jar spliced, now you can choose API to include in your project.
+
+Fixes:
+Billing exaction fixed when working with more than 20 products.
+Billing handling ActivityResult fixed
+AndroidCamera class instantiation fixed
+
+PlayMaker:
+AN_GetScore action added
+
+4.8.1:
+Playmaker Action compilation fix
+Notifications Manager minor fix
+Editor setting version parsing fixed
+
+
+4.8:
+Google Play API,
+Native Popups API,
+In-App Purchasing API:
+C# Actions added, now you can choose between using C# Actions or FL event system
+
+Refactor:
+Flash Like event system now use own namespace: UnionAssets.FLE
+
+Fixes:
+Twitter profile background loaded bug fixed
+Max photo size limit fixed
+In apps Fail event fixed
+
+Updates:
+Google Play SDK updated to v 6111000
+
+Read More about update
+http://goo.gl/IrG3Jl
+
+4.7:
+
+New Plus API methods:
+GooglePlusAPI.instance.clearDefaultAccount();
+
+Ad Mob:
+API now supports C# Action
+
+New PlayMaker Actions:
+AN_ISProductPurchased
+AN_ClearDefaultAcc
+
+AN_CancelAllLocalNotifications
+AN_CancelLocalNotification
+AN_ScheduleLocalNotification
+AN_ShowToastNotification
+
+Other:
+Post Proces Script improved
+
+4.6:
+New Features:
+Build Post Processing added
+AndroidNativeUtility.instance.RunPackage(string packageName);
+AndroidNativeUtility.instance.CheckIsPackageInstalled(string packageName);
+You can red more <a href=“http://goo.gl/3nONYI”>here</a> about new AndroidNativeUtility features.
+
+SPFacebook C# Actions Added
+AndroidTwitterManager C# Actions Added
+
+Google Play Leaderboards not accept and return long instead int
+
+Saving To Gallery:
+You now can specify gallery folder for your game
+SaveImageToGalalry - image name param added
+SaveScreenshotToGallery - image name param added
+OnImageSaved Event / Action added + you can retrieve image Uri
+
+Local Notifications:
+Notifications Id Factory added
+Ability To cancel all notifications
+Ability to get pending notifications list
+Now you can find out notification id, which was used to launch the app
+<a href=“http://goo.gl/07Be2r”>Read More</a>
+
+
+
+Fixes:
+Gallery Refresh After Photo added fixes
+
+
+New PlayMaker Actions:
+AN_RunAp
+
+
+4.5:
+
+Updates:
+Documentations updated
+New Play Maker Actions added
+Native Pop ups now can be dismissed by back button
+AndroidNotificationManager API changed
+ScheduleLocalNotification(string title, string message, int seconds)
+to
+ScheduleLocalNotification(string title, string message, int seconds, int id)
+
+CanselLocalNotification(string title, string message)
+to
+CanselLocalNotification(int id)
+
+
+GooglePlayManager:
+currentAccount getter added
+ResetAllAchievements() method added
+UpdatePlayerScore(leaderboardId, span, collection) method added
+SCORE_UPDATED event added
+
+AndroidSocialGate:
+Now if external storage not available
+Local app Cache + FileProvider will be used to share images.
+
+AddressBookController:
+Action OnContactsLoadedAction added
+
+Minor Settings Editor Improvements
+
+
+Fixes:
+Adding FB default Scopes fixed
+resetAchievement fixed
+resetLeaderBoard fixed
+
+
+Refactor:
+GooglePlayManager.SCORE_REQUEST_RECEIVED -> GooglePlayManager.SCORE_UPDATED
+
+4.4:
+PlayService
+Player service version updated to 5089000
+Quest And Events API added
+
+
+Facebook:
+Unity Facebook SDK updated to 6.0.0
+
+SPFacebook.instance.Pay method added
+Metrics API Added. SPFacebookAnalytics methods:
+ActivateApp
+AchievedLevel
+Rated
+UnlockedAchievement
+CompletedRegistration
+CompletedTutorial
+AddedPaymentInfo
+Purchased
+AddedToCart
+AddedToWishlist
+InitiatedCheckout
+Searched
+SpentCredits
+ViewedContent
+
+
+
+
+Updates:
+AN_Share now contains texture
+
+Fixes:
+Play service reconnect fixed
+Plugin update scripts fixed
+Loading player icon image fixed
+
+4.3:
+
+New
+Editor settings improved
+Simple JS use example added. UseAPIFromJSExample scene.
+CustomLeaderborUIExample example scene updated
+CustomLeaderborUIExample_old example scene removed
+AndroidSocialGate.SendMail function now can work with multiple recepients
+
+New Play Maker Actions:
+AN_GetImageFromCamera
+AN_GetImageFromGallery
+AN_SaveImageToGalalry
+AN_SaveScreenshotToGallery
+AN_RetriveProductInfo
+AN_PlayServiceDisconnect
+AN_PlayServiceInit -> Renamed to AN_PlayServiceConnect
+
+Refactor:
+GooglePlayManager: GetAchievementd -> GetAchievement
+
+Fixes:
+Fixed exception when loading empty state from google cloud
+WP8 Build issues caused by RTM_Game_Example fixed
+
+
+4.2:
+New Features
+Twitter Application-only API added
+Facebook Leaderboards API added
+Facebook Likes API added
+
+AndroidSocialGate SendMail method added
+AndroidNotificationManager CanselLocalNotification method added
+
+Billing Example Scene improved
+
+
+Fixes:
+Twitter Auth Fixed
+Play Service auth bug fixed when no Play Service avaliable on device
+Play Service Example scene (Submit Score button) fixed
+
+
+4.1:
+<strong> RTM multiplayer added </strong>
+
+Play Service new features:
+GooglePlayConnection.instance.connect (accountName);
+GooglePlayManager.instance.LoadTocken();
+GooglePlayManager.instance.LoadTocken(accountName, scopes);
+GooglePlayManager.instance.InvalidateToken(token);
+GooglePlayManager.instance.RetriveDeviceGoogleAccounts();
+GooglePlayManager.instance.resetAchievement(achievementId);
+GooglePlayManager.instance.resetLeaderBoard(leaderboardId);
+
+Refactor:
+showAchivmentsUI - > showAchievementsUI
+New PlayMaker actions
+
+4.0:
+New Features:
+Google Play Gifts Implemented
+AndroidNativeUtility.OpenAppRatingPage(url) - added
+
+GoogleMobileAdBanner:
+SetBannerPosition(int x, int y);
+SetBannerPosition(TextAnchor anchor);
+
+AndroidADBanner:
+AddTestDevices(params string[] ids);
+
+Updates:
+AndroidGoogleAnalytics.instance.SetLogLevel -> now takes GPLogLevel as parameter
+
+
+Fixes:
+Test Ad Fixed
+
+Code Refactor:
+Minor Spelling fixes
+GooglePlayResponceCode -> GP_GamesStatusCodes
+GooglePlayResponceCode -> GP_ConnectionResultCode
+Singleton -> SA.Common.Pattern.Singleton
+
+New Classes:
+GP_AppStateStatusCodes
+AdroidActivityResultCodes
+
+Moved:
+Assets/Plugins/Android - > Assets/StansAssets/Plugins/Android
+
+
+3.9:
+New Features:
+Package Info Load API
+PlayMaker Actions Updated
+AndroidInAppPurchaseManager, state flags added
+
+Fixes:
+GooglePurchaseTemplate, originalJson retrieval fixed.
+Manifest comment more clear now
+Leade-board Custom GUI
+
+
+Code Refactor:
+Removed:
+Assets/Extensions/AndroidNative/Other/Twitter
+All Scene under xExample/Scenes Moved to corresponding folder
+only Preview Scene should be under  xExample/Scenes
+
+Added:
+Assets/Extensions/GooglePlayCommon/Social/Twitter/Manage
+
+
+
+
+3.8:
+Code Refactor:
+Singleton - > Singleton
+Methods spelling fixes
+Updates:
+GPLeaderboard class - more functions added
+Documentation Update
+
+3.7:
+Play Service version updated
+Stability improvments
+Google Ad IAP listener added
+Play Maker Actions fix
+New Play Maker Actions
+
+3.6:
+Score load fixed
+Posting with Auth check for twitter and facebook
+Facebook App request added
+Native Preloader Added
+Shared Intent added
+Native UI post to Twitter and Facebook
+Example Scene updated

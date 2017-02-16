@@ -25,6 +25,11 @@ namespace EA4S.Assessment
             GetComponent< StillLetterBox>().RevealHiddenQuestion();
         }
 
+        public void GreenyTintQuestion()
+        {
+            GetComponent< StillLetterBox>().SetQuestionGreen();
+        }
+
         AssessmentAudioManager dialogues;
         public void SetQuestion( IQuestion qst, AssessmentAudioManager dialogues)
         {
@@ -59,6 +64,8 @@ namespace EA4S.Assessment
 
             if (AssessmentOptions.Instance.QuestionAnsweredFlip)
                 TurnFaceUp();
+            else
+                GreenyTintQuestion();
         }
 
         internal void OnSpawned()
