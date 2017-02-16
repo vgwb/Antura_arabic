@@ -96,36 +96,6 @@ namespace EA4S.Minigames.Tobogan
             {
                 Context.GetAudioManager().PlaySound(Sfx.Transition);
             };
-
-            foreach (var w in AppManager.I.DB.StaticDatabase.GetWordTable().GetValuesTyped())
-            {
-                var analysis = Helpers.ArabicAlphabetHelper.AnalyzeData(w, false, false);
-            }
-
-
-
-            /*
-            List<Database.PhraseData> phrases = new List<Database.PhraseData>(AppManager.I.DB.StaticDatabase.GetPhraseTable().GetValuesTyped());
-
-            int idx;
-            foreach (var word in phrases)
-            {
-                if ((idx = word.Arabic.IndexOf((char)int.Parse("0623", System.Globalization.NumberStyles.HexNumber))) >= 0 &&
-                    (idx = word.Arabic.IndexOf((char)int.Parse("0644", System.Globalization.NumberStyles.HexNumber))) >= 0)
-                    Debug.Log("FOUND! " + word);
-            }
-
-            List<Database.WordData> words = new List<Database.WordData>(AppManager.I.DB.StaticDatabase.GetWordTable().GetValuesTyped());
-
-            foreach (var word in words)
-            {
-                if ((idx = word.Arabic.IndexOf((char)int.Parse("0623", System.Globalization.NumberStyles.HexNumber))) >= 0 &&
-                    (idx = word.Arabic.IndexOf((char)int.Parse("0644", System.Globalization.NumberStyles.HexNumber))) >= 0)
-                    Debug.Log("FOUND! " + word);
-            }
-
-            //LL_WordData newWordData = new LL_WordData(AppManager.I.DB.GetWordDataById("wolf"));
-            */
         }
 
         public void OnResult(bool result)

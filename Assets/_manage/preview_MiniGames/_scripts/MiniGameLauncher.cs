@@ -54,7 +54,7 @@ namespace EA4S.Test
         List<LL_LetterData> GetLettersFromWord(LL_WordData _word)
         {
             List<LL_LetterData> letters = new List<LL_LetterData>();
-            foreach (var letterData in ArabicAlphabetHelper.AnalyzeData(_word.Data))
+            foreach (var letterData in ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, _word.Data))
             {
                 letters.Add(new LL_LetterData(letterData.letter));
             }

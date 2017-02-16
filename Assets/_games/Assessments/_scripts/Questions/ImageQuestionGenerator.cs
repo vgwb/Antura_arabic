@@ -200,7 +200,7 @@ namespace EA4S.Assessment
 
             cacheCompleteWord = word.TextForLivingLetter;
 
-            var partsToRemove = ArabicAlphabetHelper.FindLetter(word.Data, letter.Data);
+            var partsToRemove = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word.Data, letter.Data);
             partsToRemove.Shuffle(); //pick a random letter
 
             string text = ArabicAlphabetHelper.GetWordWithMissingLetterText(

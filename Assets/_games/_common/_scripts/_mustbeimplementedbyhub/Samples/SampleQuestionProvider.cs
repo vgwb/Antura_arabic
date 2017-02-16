@@ -34,7 +34,7 @@ namespace EA4S.MinigamesAPI.Sample
                 if (newWordData == null)
                     return;
 
-                foreach (var letterData in ArabicAlphabetHelper.AnalyzeData(newWordData.Data))
+                foreach (var letterData in ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, newWordData.Data))
                 {
                     correctAnswers.Add(new LL_LetterData(letterData.letter));
                 }
