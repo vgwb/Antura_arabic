@@ -77,7 +77,12 @@ namespace EA4S.ReservedArea
 
         public void OnDeleteSelectPlayerProfile()
         {
-            GlobalUI.ShowPrompt(true, "ATTENTION\nReally delete this player?", DoDeleteSelectPlayerProfile);
+            GlobalUI.ShowPrompt(true, "ATTENTION\nReally delete this player?", DoDeleteSelectPlayerProfile, DoNothing);
+        }
+
+        void DoNothing()
+        {
+
         }
 
         void DoDeleteSelectPlayerProfile()
