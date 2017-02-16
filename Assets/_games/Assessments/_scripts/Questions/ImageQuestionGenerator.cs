@@ -192,19 +192,22 @@ namespace EA4S.Assessment
         private const string RemovedLetterChar = "_";
         private AssessmentAudioManager audioManager;
 
-        private IQuestion GenerateMissingLetterQuestion( ILivingLetterData data, ILivingLetterData letterToRemove)
+        private IQuestion GenerateMissingLetterQuestion(ILivingLetterData data, ILivingLetterData letterToRemove)
         {
-            var imageData = new LL_ImageData( data.Id);
+            var imageData = new LL_ImageData(data.Id);
             LL_WordData word = (LL_WordData)data;
             LL_LetterData letter = (LL_LetterData)letterToRemove;
 
             cacheCompleteWord = word.TextForLivingLetter;
 
-            Database.LetterForm letterForm;
-            string text = ArabicAlphabetHelper.GetWordWithMissingLetterText(out letterForm, word.Data, letter.Data, RemovedLetterChar);
+            var partsToRemove = ArabicAlphabetHelper.FindLetter(word.Data, letter.Data);
+            partsToRemove.Shuffle(); //pick a random letter
+
+            string text = ArabicAlphabetHelper.GetWordWithMissingLetterText(
+                word.Data, partsToRemove[0], RemovedLetterChar);
 
             //Spawn word, then replace text with text with missing letter
-            var wordGO = LivingLetterFactory.Instance.SpawnQuestion( word);
+            var wordGO = LivingLetterFactory.Instance.SpawnQuestion(word);
             wordGO.InstaShrink();
 
             wordGO.Label.text = text;
@@ -212,7 +215,7 @@ namespace EA4S.Assessment
 
             wordGO.SetExtendedBoxCollider();
 
-            return new ImageQuestion( wordGO, imageData, audioManager);
+            return new ImageQuestion(wordGO, imageData, audioManager);
         }
 
         private Answer GenerateWrongAnswer( ILivingLetterData wrongAnswer)
