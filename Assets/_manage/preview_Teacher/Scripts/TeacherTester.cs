@@ -390,7 +390,7 @@ namespace EA4S.Teacher.Test
                     builder = new LettersByTypeQuestionBuilder(nPacks: nPacks, parameters: builderParams);
                     break;
                 case QuestionBuilderType.LettersInWord:
-                    builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, useAllCorrectLetters: true, packsUsedTogether: true, parameters: builderParams);
+                    builder = new LettersInWordQuestionBuilder(nRounds: nPacks, nPacksPerRound: nPacksPerRound, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, useAllCorrectLetters: true, parameters: builderParams);
                     break;
                 case QuestionBuilderType.LetterFormsInWords:
                     builder = new LetterFormsInWordsQuestionBuilder(nPacks, nPacksPerRound, parameters: builderParams);
