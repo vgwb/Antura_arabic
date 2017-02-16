@@ -186,22 +186,12 @@ namespace EA4S.Minigames.MissingLetter
                 formAnswer.Form = form;
                 _correctAnswer = formAnswer;
                 corrAnsBheaviour.LetterData = formAnswer;
-                
-                string isolated = formAnswer.Data.GetCharFixedForDisplay(Database.LetterForm.Isolated).Trim();
-                string initial = formAnswer.Data.GetCharFixedForDisplay(Database.LetterForm.Initial).Trim();
-                string medial = formAnswer.Data.GetCharFixedForDisplay(Database.LetterForm.Medial).Trim();
-                string final = formAnswer.Data.GetCharFixedForDisplay(Database.LetterForm.Final).Trim();
-
+               
                 _wrongAnswers.Clear();
 
-                if (form != Database.LetterForm.Isolated && !string.IsNullOrEmpty(isolated))
-                    _wrongAnswers.Insert(0, new LL_LetterData(_correctAnswer.Id, Database.LetterForm.Isolated));
-                if (form != Database.LetterForm.Initial && !string.IsNullOrEmpty(initial))
-                    _wrongAnswers.Insert(0, new LL_LetterData(_correctAnswer.Id, Database.LetterForm.Initial));
-                if (form != Database.LetterForm.Medial && !string.IsNullOrEmpty(medial))
-                    _wrongAnswers.Insert(0, new LL_LetterData(_correctAnswer.Id, Database.LetterForm.Medial));
-                if (form != Database.LetterForm.Final && !string.IsNullOrEmpty(final))
-                    _wrongAnswers.Insert(0, new LL_LetterData(_correctAnswer.Id, Database.LetterForm.Final));
+                foreach (var f in formAnswer.Data.GetAvailableForms())
+                if (form != f )
+                    _wrongAnswers.Insert(0, new LL_LetterData(_correctAnswer.Id, f));
             }
             else
                 corrAnsBheaviour.LetterData = _correctAnswer;
