@@ -69,9 +69,10 @@ namespace EA4S.Test
 
         #region Prompt
 
-        public void Prompt_Show()
+        public void Prompt_Show(bool yesOnly)
         {
-            GlobalUI.ShowPrompt(true, "لعربية");
+            if (yesOnly) GlobalUI.ShowPrompt(true, "لعربية", ()=> Debug.Log("YES"));
+            else GlobalUI.ShowPrompt(true, "لعربية", ()=> Debug.Log("YES"), ()=> Debug.Log("NO"));
         }
 
         #endregion

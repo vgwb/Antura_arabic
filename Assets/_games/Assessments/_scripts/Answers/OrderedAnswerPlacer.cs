@@ -54,9 +54,11 @@ namespace EA4S.Assessment
             float deltaX = placerOptions.RightX - placerOptions.LeftX;
             float occupiedSpace = 0;
 
-            int i = 0;
+            int answerCount = 0;
             foreach (var a in allAnswers)
-                i++;
+                answerCount++;
+
+
 
 
 

@@ -56,6 +56,7 @@ namespace EA4S
                 _playerProfileManager = value;
             }
         }
+
         public PlayerProfile Player {
             get { return PlayerProfileManager != null ? PlayerProfileManager.CurrentPlayer : null; }
             set { PlayerProfileManager.CurrentPlayer = value; }
