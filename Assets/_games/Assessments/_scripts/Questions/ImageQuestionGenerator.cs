@@ -1,3 +1,4 @@
+using DG.Tweening;
 using EA4S.Helpers;
 using EA4S.MinigamesAPI;
 using Kore.Coroutines;
@@ -5,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -40,10 +42,24 @@ namespace EA4S.Assessment
 
         private IEnumerator ShowFullWordCoroutine()
         {
+            Debug.Log( "ShowFullWordCoroutine");
+            var position = new Vector3( 0, 1.5f, 5f);
+            var LL = LivingLetterFactory.Instance.SpawnQuestion( cacheFullWordData);
+            var box = LivingLetterFactory.Instance.SpawnQuestionBox( new StillLetterBox[]{ LL});
+            box.Show();
+            LL.transform.localPosition = position;
+            position.z += 1;
+            box.transform.localPosition = position;
+            LL.InstaShrink();
+            LL.Poof();
             audioManager.PlayPoofSound();
-            cacheFullWordDataLL.Poof();
-            cacheFullWordDataLL.Init( cacheFullWordData, false);
-            yield return Wait.For( AssessmentOptions.Instance.TimeToShowCompleteWord);
+            LL.Magnify();
+            LL.SetQuestionGreen();
+            yield return Wait.For( AssessmentOptions.Instance.TimeToShowCompleteWord+0.5f);
+            LL.gameObject.GetComponent< StillLetterBox>().Poof();
+            box.gameObject.transform.DOScale( 0, 0.4f).OnComplete(() => GameObject.Destroy( box.gameObject));
+            LL.gameObject.transform.DOScale(0, 0.4f).OnComplete(() => GameObject.Destroy(LL.gameObject));
+            yield return Wait.For( 0.41f);
         }
 
         string cacheCompleteWord = null;

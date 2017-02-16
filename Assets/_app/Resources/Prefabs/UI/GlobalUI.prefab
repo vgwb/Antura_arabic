@@ -1401,7 +1401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010654129160
 GameObject:
   m_ObjectHideFlags: 1
@@ -2666,7 +2666,7 @@ MonoBehaviour:
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
-  AutoPlayButtonFx: 0
+  AutoPlayButtonFx: 1
 --- !u!114 &114000010472806914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3306,8 +3306,8 @@ MonoBehaviour:
   m_fontSizeMin: 20
   m_fontSizeMax: 80
   m_fontStyle: 0
-  m_textAlignment: 17
-  m_isAlignmentEnumConverted: 0
+  m_textAlignment: 4098
+  m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -3998,7 +3998,7 @@ MonoBehaviour:
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
-  AutoPlayButtonFx: 0
+  AutoPlayButtonFx: 1
 --- !u!114 &114000013112968372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4215,7 +4215,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 51.6
+  m_fontSize: 50
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4259,7 +4259,7 @@ MonoBehaviour:
     spaceCount: 18
     wordCount: 16
     linkCount: 0
-    lineCount: 2
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 1
