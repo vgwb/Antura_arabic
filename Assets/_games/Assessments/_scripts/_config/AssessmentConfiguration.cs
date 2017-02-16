@@ -302,19 +302,42 @@ namespace EA4S.Assessment
 
         private IQuestionBuilder Setup_WordsWithLetter_Builder()
         {
-            SimultaneosQuestions = 2;
+            // stage 1: 1 letters, 6 words, 1 correct, 5 wrong
+            // stage 2 +: 2 letters, 6 words, 2 correct, 4 wrong
+            // stage 4 +: 3 letters, 6 words, 3 correct,  3 wrong
+
+
+            var jp = AppManager.I.Player.CurrentJourneyPosition;
+            switch (jp.Stage)
+            {
+                case 1:
+                    SimultaneosQuestions = 1;
+                    break;
+                case 2:
+                case 3:
+                    SimultaneosQuestions = 2;
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                default:
+                    SimultaneosQuestions = 3;
+                    break;
+            }
+            int nWrong = 6 - SimultaneosQuestions;
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
+            builderParams.sortPacksByDifficulty = false;
 
-            return new WordsWithLetterQuestionBuilder( 
-
-                SimultaneosQuestions* NumberOfRounds,    // Total Answers
-                1,           // Correct Answers
-                1,           // Wrong Answers
+            return new WordsWithLetterQuestionBuilder(
+                NumberOfRounds,
+                SimultaneosQuestions,
+                1,                  // Correct Answers
+                nWrong,             // Wrong Answers
                 parameters: builderParams
                 );     
 
@@ -330,6 +353,7 @@ namespace EA4S.Assessment
 
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
+            // Fragile! This is using simulanteous questions with non-robust filters.
             SimultaneosQuestions = 3;
 
             var builderParams = new QuestionBuilderParameters();
