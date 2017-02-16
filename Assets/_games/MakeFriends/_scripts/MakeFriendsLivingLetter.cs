@@ -148,7 +148,7 @@ namespace EA4S.Minigames.MakeFriends
         {
             if (wordData != null && wordData.Id != null)
             {
-                MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(wordData);
+                MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(wordData, true);
             }
             //if (container != null)
             //{

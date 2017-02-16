@@ -19,7 +19,7 @@ namespace EA4S.Minigames.ReadingGame
             LL_WordData randomWord = new LL_WordData(answerData.Id, answerData);
 
             StringTestData fakeData = new StringTestData(
-                 ArabicAlphabetHelper.PrepareArabicStringForDisplay(
+                 ArabicAlphabetHelper.ProcessArabicString(
                      "منذ لم نرك منذ مدة " + randomWord.Data.Arabic + " منذ مدة" +
                       "منذ لم نرك منذ مدة " +
                         "منذ لم نرك منذ مدة "));

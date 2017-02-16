@@ -12,7 +12,7 @@ namespace EA4S.MinigamesCommon
             set { AudioManager.I.MusicEnabled = value; }
         }
 
-        public IAudioSource PlayLetterData(ILivingLetterData data, bool exclusive = false)
+        public IAudioSource PlayLetterData(ILivingLetterData data, bool exclusive = true)
         {
             if (exclusive)
                 AudioManager.I.StopLettersWordsPhrases();

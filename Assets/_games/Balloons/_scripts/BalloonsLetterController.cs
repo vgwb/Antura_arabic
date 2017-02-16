@@ -261,19 +261,19 @@ namespace EA4S.Balloons
         {
             if (letterData is LL_WordData)
             {
-                var splitLetters = ArabicAlphabetHelper.SplitWordIntoLetters(((LL_WordData)letterData).Data);
+                var splitLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, ((LL_WordData)letterData).Data);
 
                 int charPosition = 0;
                 List<int> foundLetterIndices = new List<int>();
 
                 for (int index = 0; index < splitLetters.Count; ++index)
                 {
-                    if (splitLetters[index].Id == letterToFlash.Id)
+                    if (splitLetters[index].letter.Id == letterToFlash.Id)
                     {
                         foundLetterIndices.Add(charPosition);
                     }
 
-                    charPosition += splitLetters[index].GetChar().Length;
+                    charPosition += splitLetters[index].letter.GetChar().Length;
                 }
 
                 if (foundLetterIndices.Count != 0)
@@ -287,7 +287,7 @@ namespace EA4S.Balloons
 
                     float halfDuration = FLASH_CYCLE_DURATION * 0.5f;
 
-                    string preparedText = ArabicAlphabetHelper.PrepareArabicStringForDisplay(originalText);
+                    string preparedText = ArabicAlphabetHelper.ProcessArabicString(originalText);
                     preparedText = originalText;
 
                     while (numCompletedCycles < NUM_FLASH_CYCLES)

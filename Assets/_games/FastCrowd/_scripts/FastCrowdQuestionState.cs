@@ -26,55 +26,35 @@ namespace EA4S.Minigames.FastCrowd
             var question = provider.GetNextQuestion();
             game.CurrentQuestion = question;
 
-            if (question == null) {
+            if (question == null)
+            {
                 game.SetCurrentState(game.EndState);
                 return;
             }
 
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter) {
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
+            {
                 LL_LetterData isolated = new LL_LetterData(question.GetQuestion().Id);
                 isolated.Form = Database.LetterForm.Isolated;
                 game.CurrentChallenge.Add(isolated);
 
-                string isolatedChar = isolated.Data.GetCharFixedForDisplay(Database.LetterForm.Isolated);
-                string initialChar = isolated.Data.GetCharFixedForDisplay(Database.LetterForm.Initial);
-                string medialChar = isolated.Data.GetCharFixedForDisplay(Database.LetterForm.Medial);
-                string finalChar = isolated.Data.GetCharFixedForDisplay(Database.LetterForm.Final);
+                LL_LetterData data = new LL_LetterData(question.GetQuestion().Id);
+                foreach (var form in data.Data.GetAvailableForms())
+                {
+                    if (form == Database.LetterForm.Isolated)
+                        continue;
 
-                for (int i = 0; i < 3; ++i) {
-                    LL_LetterData data = new LL_LetterData(question.GetQuestion().Id);
-
-                    if (i == 0) {
-                        if (string.IsNullOrEmpty(initialChar) || 
-                            initialChar == isolatedChar)
-                            continue;
-
-                        data.Form = Database.LetterForm.Initial;
-                    } else if (i == 1) {
-                        if (string.IsNullOrEmpty(medialChar) || 
-                            medialChar == initialChar ||
-                            medialChar == isolatedChar)
-                            continue;
-
-                        data.Form = Database.LetterForm.Medial;
-                    } else if (i == 2) {
-                        if (string.IsNullOrEmpty(finalChar) ||
-                            finalChar == medialChar ||
-                            finalChar == initialChar ||
-                            finalChar == isolatedChar)
-                            continue;
-
-                        data.Form = Database.LetterForm.Final;
-                    }
-
-                    game.CurrentChallenge.Add(data);
+                    game.CurrentChallenge.Add(new LL_LetterData(data.Data, form));
                 }
 
-                if (game.CurrentChallenge.Count < 2) {
+                if (game.CurrentChallenge.Count < 2)
+                {
                     game.SetCurrentState(this);
                     return;
                 }
-            } else {
+            }
+            else
+            {
                 foreach (var l in question.GetCorrectAnswers())
                     game.CurrentChallenge.Add(l);
             }
@@ -89,9 +69,11 @@ namespace EA4S.Minigames.FastCrowd
 
             ++game.QuestionNumber;
 
-            if (game.CurrentChallenge.Count > 0) {
+            if (game.CurrentChallenge.Count > 0)
+            {
                 // Show question
-                if (!game.ShowChallengePopupWidget(false, OnPopupCloseRequested)) {
+                if (!game.ShowChallengePopupWidget(false, OnPopupCloseRequested))
+                {
                     if (game.showTutorial)
                     {
                         game.SetCurrentState(game.TutorialState);
@@ -101,7 +83,9 @@ namespace EA4S.Minigames.FastCrowd
                         game.SetCurrentState(game.PlayState);
                     }
                 }
-            } else {
+            }
+            else
+            {
                 // no more questions
                 game.SetCurrentState(game.EndState);
             }
@@ -111,7 +95,7 @@ namespace EA4S.Minigames.FastCrowd
         {
             if (game.GetCurrentState() == this)
             {
-                if(game.showTutorial)
+                if (game.showTutorial)
                 {
                     game.SetCurrentState(game.TutorialState);
                 }
