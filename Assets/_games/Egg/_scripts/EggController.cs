@@ -300,7 +300,7 @@ namespace EA4S.Minigames.Egg
                 {
                     ILivingLetterData letterData = lLDAudioQuestion[0];
 
-                    audioSource = audioManager.PlayLetterData(letterData);
+                    audioSource = audioManager.PlayLetterData(letterData, false);
 
                     lLDAudioQuestion.RemoveAt(0);
                 }
