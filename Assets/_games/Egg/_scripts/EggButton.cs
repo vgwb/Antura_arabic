@@ -69,7 +69,7 @@ namespace EA4S.Minigames.Egg
             startButtonAudioCallback = startCallback;
             playButtonAudioCallback = callback;
 
-            audioSource = audioManager.PlayLetterData(livingLetterData);
+            audioSource = audioManager.PlayLetterData(livingLetterData, false);
             audioSource.Stop();
 
             float duration = audioSource.Duration;
@@ -93,7 +93,7 @@ namespace EA4S.Minigames.Egg
                     });
                 }).OnStart(delegate ()
                 {
-                    audioSource = audioManager.PlayLetterData(livingLetterData);
+                    audioSource = audioManager.PlayLetterData(livingLetterData, false);
 
                     if (startButtonAudioCallback != null)
                     {
@@ -115,7 +115,7 @@ namespace EA4S.Minigames.Egg
                     });
                 }).OnStart(delegate ()
                 {
-                    audioSource = audioManager.PlayLetterData(livingLetterData);
+                    audioSource = audioManager.PlayLetterData(livingLetterData, false);
 
                     if (startButtonAudioCallback != null)
                     {
