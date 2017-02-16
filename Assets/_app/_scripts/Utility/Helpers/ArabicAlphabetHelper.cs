@@ -74,7 +74,7 @@ namespace EA4S.Helpers
             string text = ProcessArabicString(arabicWord.Arabic);
 
             int toCharacterIndex = partToRemove.toCharacterIndex + 1;
-            text = text.Substring(0, partToRemove.fromCharacterIndex) + removedLetterChar + (toCharacterIndex >= text.Length - 1 ? "" : text.Substring(partToRemove.toCharacterIndex + 1));
+            text = text.Substring(0, partToRemove.fromCharacterIndex) + removedLetterChar + (toCharacterIndex >= text.Length ? "" : text.Substring(toCharacterIndex));
 
             return text;
         }
@@ -132,7 +132,7 @@ namespace EA4S.Helpers
             {
                 char character = chars[i];
 
-                // Skip spaces and "?"
+                // Skip spaces and arabic "?"
                 if (character == ' ' || character == '؟')
                 {
                     ++stringIndex;
