@@ -156,11 +156,11 @@ namespace EA4S.Minigames.MissingLetter
                 mbIsSpeaking = true;
                 if(m_sInPhrase != null)
                 {
-                    MissingLetterConfiguration.Instance.Context.GetAudioManager().PlayLetterData(m_sInPhrase);
+                    MissingLetterConfiguration.Instance.Context.GetAudioManager().PlayLetterData(m_sInPhrase, true);
                 }
                 else
                 {
-                    MissingLetterConfiguration.Instance.Context.GetAudioManager().PlayLetterData(mLetterData);
+                    MissingLetterConfiguration.Instance.Context.GetAudioManager().PlayLetterData(mLetterData, true);
                 }
                 StartCoroutine(Utils.LaunchDelay(0.8f, SetIsSpeaking, false));
             }

@@ -31,7 +31,6 @@ namespace EA4S.Database
         }
 
         #region Player assignment
-
         public void CreateDatabaseForPlayer(PlayerProfileData playerProfileData)
         {
             SetPlayerProfile(playerProfileData.Uuid);

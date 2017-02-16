@@ -46,31 +46,45 @@ namespace EA4S.Assessment
         private IEnumerator PlaceCoroutine()
         {
             List< Vector3> positions = new List< Vector3>();
-            float xMin = placerOptions.LeftX + placerOptions.AnswerSize/2f + 2.0f;
-            float xMax = placerOptions.RightX - placerOptions.AnswerSize/2f - 1.0f;
-            float yMin = placerOptions.BottomY + 2.3f;
+            float xMin = placerOptions.LeftX /*+ placerOptions.AnswerSize/2f*/ + 2.0f;
+            float xMax = placerOptions.RightX /*- placerOptions.AnswerSize/2f*/ - 2.0f;
+            float yMin = placerOptions.BottomY + 2.9f;
             float z = 5f;
 
-            float deltaX = placerOptions.RightX - placerOptions.LeftX;
-            float occupiedSpace = 0;
+            float deltaX = xMax - xMin;
 
             int answerCount = 0;
             foreach (var a in allAnswers)
                 answerCount++;
 
-
-
-
-
-            for (float x = xMin; x < xMax; x += placerOptions.AnswerSize + 0.2f)
+            float answerGap = placerOptions.AnswerSize + 0.5f;
+            var flow = AssessmentOptions.Instance.LocaleTextFlow;
+            while (answerCount > 0)
             {
-                int times = 0;
-                for (float y = yMin; times < 3; y += 3.1f, times++)
+                int answersInThisLine = Mathf.FloorToInt( deltaX / answerGap);
+                if (answersInThisLine > answerCount)
+                    answersInThisLine = answerCount;
+
+                // space occupied by this line
+                float lineSpace = (answersInThisLine -1) * 0.5f + answersInThisLine * placerOptions.AnswerSize;
+                // startin X position for an answer
+                float startX = (lineSpace / 2.0f) + (placerOptions.AnswerSize/2.0f);
+                float direction = -1;
+
+                if (flow == TextFlow.LeftToRight) // Not Arabic
                 {
-                    float dx = Random.Range( -0.1f, 0.1f);
-                    var vec = new Vector3( x + dx, y, z);
-                    positions.Add( vec);
+                    startX = -startX;
+                    direction = 1;
                 }
+
+                for( int i=0; i < answersInThisLine && answerCount > 0; i++, answerCount--)
+                {
+                    startX += direction * ( 0.5f + placerOptions.AnswerSize);
+                    var position = new Vector3( startX, yMin, z);
+                    positions.Add( position);
+                }
+
+                yMin += 3.5f;
             }
 
             positions.Shuffle();
@@ -78,8 +92,8 @@ namespace EA4S.Assessment
             foreach (var a in allAnswers)
                 yield return Koroutine.Nested( PlaceAnswer( a, positions));
 
-            yield return Wait.For( 0.65f);
-            isAnimating = false;
+            yield return Wait.For(0.65f);
+            isAnimating = false;           
         }
 
         private IEnumerator PlaceAnswer( Answer answer, List< Vector3> positions)

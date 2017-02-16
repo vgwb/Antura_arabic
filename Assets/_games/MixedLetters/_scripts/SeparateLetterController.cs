@@ -97,7 +97,7 @@ namespace EA4S.Minigames.MixedLetters
                         droppedZone = null;
                     }
 
-                    MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
+                    MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData, true);
                 }
             }
         }

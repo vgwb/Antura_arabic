@@ -77,7 +77,12 @@ namespace EA4S.ReservedArea
 
         public void OnDeleteSelectPlayerProfile()
         {
-            GlobalUI.ShowPrompt(true, "ATTENTION\nReally delete this player?", DoDeleteSelectPlayerProfile);
+            GlobalUI.ShowPrompt(true, "ATTENTION\nReally delete this player?", DoDeleteSelectPlayerProfile, DoNothing);
+        }
+
+        void DoNothing()
+        {
+
         }
 
         void DoDeleteSelectPlayerProfile()
@@ -97,7 +102,7 @@ namespace EA4S.ReservedArea
             if (AppManager.I.PlayerProfileManager.ExistsDemoUser()) {
                 GlobalUI.ShowPrompt(true, "Demo player exists already");
             } else {
-                GlobalUI.ShowPrompt(true, "ATTENTION\nReally create a Full Unlocked Demo player?", DoCreateDemoPlayer);
+                GlobalUI.ShowPrompt(true, "ATTENTION\nReally create a Full Unlocked Demo player?", DoCreateDemoPlayer, DoNothing);
             }
         }
 

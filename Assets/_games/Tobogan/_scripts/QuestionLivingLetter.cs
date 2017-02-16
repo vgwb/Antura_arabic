@@ -4,6 +4,7 @@ using System;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using EA4S.Helpers;
+using EA4S.UI;
 
 namespace EA4S.Minigames.Tobogan
 {
@@ -124,14 +125,21 @@ namespace EA4S.Minigames.Tobogan
 
         public void SetQuestionText(LL_WordData word, LL_LetterData markedLetter, Color color)
         {
-            var text = ArabicAlphabetHelper.GetWordWithMarkedLetterText(word.Data, markedLetter.Data, color);
+            string text = ArabicAlphabetHelper.ProcessArabicString(word.Data.Arabic);
+            var parts = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word.Data, markedLetter.Data);
+            if (parts.Count > 0)
+                text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, parts[0], color, ArabicTextUtilities.MarkType.SingleLetter);
 
             letter.Initialize(word, text, 1.3f);
         }
 
         public void SetQuestionText(LL_WordData word, int letterToMark, Color color)
         {
-            var text = ArabicAlphabetHelper.GetWordWithMarkedLetterText(word.Data, letterToMark, color);
+            string text = ArabicAlphabetHelper.ProcessArabicString(word.Data.Arabic);
+
+            var parts = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, word.Data, false, false);
+            if (parts.Count > letterToMark)
+                text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, parts[letterToMark], color, ArabicTextUtilities.MarkType.SingleLetter);
 
             letter.Initialize(word, text, 1.3f);
         }

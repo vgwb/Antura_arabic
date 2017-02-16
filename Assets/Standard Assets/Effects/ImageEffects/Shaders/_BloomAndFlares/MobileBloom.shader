@@ -106,13 +106,6 @@ Shader "Hidden/FastBloom" {
 			half4 uv : TEXCOORD0;
 			half2 offs : TEXCOORD1;
 		};	
-		
-		struct v2f_withBlurCoordsSGX 
-		{
-			float4 pos : SV_POSITION;
-			half2 uv : TEXCOORD0;
-			half4 offs[3] : TEXCOORD1;
-		};
 
 		v2f_withBlurCoords8 vertBlurHorizontal (appdata_img v)
 		{
@@ -151,54 +144,7 @@ Shader "Hidden/FastBloom" {
   			}
 			return color;
 		}
-
-
-		v2f_withBlurCoordsSGX vertBlurHorizontalSGX (appdata_img v)
-		{
-			v2f_withBlurCoordsSGX o;
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
-			
-			o.uv = v.texcoord.xy;
-
-			half offsetMagnitude = _MainTex_TexelSize.x * _Parameter.x;
-			o.offs[0] = v.texcoord.xyxy + offsetMagnitude * half4(-3.0h, 0.0h, 3.0h, 0.0h);
-			o.offs[1] = v.texcoord.xyxy + offsetMagnitude * half4(-2.0h, 0.0h, 2.0h, 0.0h);
-			o.offs[2] = v.texcoord.xyxy + offsetMagnitude * half4(-1.0h, 0.0h, 1.0h, 0.0h);
-
-			return o; 
-		}		
-		
-		v2f_withBlurCoordsSGX vertBlurVerticalSGX (appdata_img v)
-		{
-			v2f_withBlurCoordsSGX o;
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
-			
-			o.uv = half4(v.texcoord.xy,1,1);
-
-			half offsetMagnitude = _MainTex_TexelSize.y * _Parameter.x;
-			o.offs[0] = v.texcoord.xyxy + offsetMagnitude * half4(0.0h, -3.0h, 0.0h, 3.0h);
-			o.offs[1] = v.texcoord.xyxy + offsetMagnitude * half4(0.0h, -2.0h, 0.0h, 2.0h);
-			o.offs[2] = v.texcoord.xyxy + offsetMagnitude * half4(0.0h, -1.0h, 0.0h, 1.0h);
-
-			return o; 
-		}	
-
-		half4 fragBlurSGX ( v2f_withBlurCoordsSGX i ) : SV_Target
-		{
-			half2 uv = i.uv.xy;
-			
-			half4 color = tex2D(_MainTex, i.uv) * curve4[3];
-			
-  			for( int l = 0; l < 3; l++ )  
-  			{   
-				half4 tapA = tex2D(_MainTex, i.offs[l].xy);
-				half4 tapB = tex2D(_MainTex, i.offs[l].zw); 
-				color += (tapA + tapB) * curve4[l];
-  			}
-
-			return color;
-
-		}	
+	
 					
 	ENDCG
 	
@@ -250,33 +196,6 @@ Shader "Hidden/FastBloom" {
 		
 		#pragma vertex vertBlurHorizontal
 		#pragma fragment fragBlur8
-		
-		ENDCG
-		}	
-
-	// alternate blur
-	// 4
-	Pass {
-		ZTest Always
-		Cull Off
-		
-		CGPROGRAM 
-		
-		#pragma vertex vertBlurVerticalSGX
-		#pragma fragment fragBlurSGX
-		
-		ENDCG
-		}	
-		
-	// 5
-	Pass {		
-		ZTest Always
-		Cull Off
-				
-		CGPROGRAM
-		
-		#pragma vertex vertBlurHorizontalSGX
-		#pragma fragment fragBlurSGX
 		
 		ENDCG
 		}	
