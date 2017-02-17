@@ -61,8 +61,6 @@ namespace EA4S.Assessment
             becomeHappy.Trigger();
         }
 
-        private bool IsIdle = false;
-
         private float timer = 0;
         private void Update()
         {
@@ -132,15 +130,10 @@ namespace EA4S.Assessment
             {
                 yield return state.EnterState( ()=>
                 {
-                    IsIdle = true;
-                    //antura.enabled = true;
-                    //antura.Mood = ReadingGameAntura.AnturaMood.SAD;
                     controller.State = AnturaAnimationStates.idle;
                     controller.IsAngry = false;
                     controller.State = AnturaAnimationStates.sitting;                    
                 });
-
-                Debug.Log("Happy State");
 
                 if (becomeHappy)
                     yield return state.Change( Happy);
@@ -149,16 +142,16 @@ namespace EA4S.Assessment
                     yield return state.Change( Angry);
 
                 if (becomeExiting)
-                    yield return state.Change( Exiting , () => IsIdle = false);
+                    yield return state.Change( Exiting);
             }
         }
 
         IEnumerator ExitingState()
         {
             yield return state.EnterState();
-            // Exit animation
-
-            yield return Wait.For( 2.5f);
+            
+            // Exit
+            yield return null;
         }
     }
 }
