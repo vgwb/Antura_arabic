@@ -24,7 +24,6 @@ namespace EA4S.Assessment
         [Header("Positions")]
         public Transform AnturaStart = null;
         public Transform AnturaMiddle = null;
-        public Transform AnturaEnd = null;
 
         private AnturaView antura = null;
 

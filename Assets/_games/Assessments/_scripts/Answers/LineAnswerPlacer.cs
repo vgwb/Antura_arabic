@@ -73,8 +73,6 @@ namespace EA4S.Assessment
 
         private IEnumerator PlaceCoroutine()
         {
-            var bounds = WorldBounds.Instance;
-
             // Text justification "algorithm"
             float spaceIncrement = 0.5f + letterSize;
             float occupiedSpace = allAnswers.Length * spaceIncrement -3.5f;
@@ -83,7 +81,7 @@ namespace EA4S.Assessment
             float sign;
             Vector3 currentPos = Vector3.zero;
             currentPos.y = -1;
-            currentPos.z = bounds.DefaultZ();
+            currentPos.z = 5;
 
             if (flow == TextFlow.RightToLeft)
             {

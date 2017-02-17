@@ -66,7 +66,6 @@ GameObject:
   - component: {fileID: 4000013022712494}
   - component: {fileID: 114000013822948356}
   - component: {fileID: 114000010710646388}
-  - component: {fileID: 114000013908833718}
   - component: {fileID: 114562122774185356}
   m_Layer: 0
   m_Name: Assessment
@@ -251,18 +250,6 @@ MonoBehaviour:
   QuestionBoxes: {fileID: 1000011088275054}
   AnturaStart: {fileID: 4973722635664984}
   AnturaMiddle: {fileID: 4916312238927592}
-  AnturaEnd: {fileID: 0}
---- !u!114 &114000013908833718
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012520946144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d70585e09b49d9d4c93492f8790acc31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114562122774185356
 MonoBehaviour:
   m_ObjectHideFlags: 1
