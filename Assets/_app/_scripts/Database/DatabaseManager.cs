@@ -134,6 +134,17 @@ namespace EA4S.Database
         {
             dynamicDb.InsertOrReplace(data);
         }
+
+        public void InsertAll<T>(IEnumerable<T> objects) where T : IData, new()
+        {
+            dynamicDb.InsertAll<T>(objects);
+        }
+
+        public void InsertOrReplaceAll<T>(IEnumerable<T> objects) where T : IData, new()
+        {
+            dynamicDb.InsertOrReplaceAll<T>(objects);
+        }
+
         #endregion
 
         #region Letter
@@ -410,14 +421,6 @@ namespace EA4S.Database
 
 
         #region Score
-
-        public void UpdateVocabularyScoreData(VocabularyDataType dataType, string elementId, float score, int timestamp = -1)
-        {
-            VocabularyScoreData data = null;
-            if (timestamp > 0) data = new VocabularyScoreData(elementId, dataType, score, timestamp);
-            else data = new VocabularyScoreData(elementId, dataType, score);
-            dynamicDb.InsertOrReplace(data);
-        }
 
         public void UpdateJourneyScoreData(JourneyDataType dataType, string elementId, int score, int timestamp = -1)
         {

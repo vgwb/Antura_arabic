@@ -110,9 +110,20 @@ namespace EA4S.Database
             _connection.InsertOrReplace(data);
         }
 
-        public void InsertAll<T>(System.Collections.IEnumerable objects) where T : IData, new()
+        public void InsertAll<T>(IEnumerable<T> objects) where T : IData, new()
         {
+            if (AppConstants.DebugLogInserts)
+                foreach(var obj in objects)
+                    Debug.Log("DB Insert: " + obj);
             _connection.InsertAll(objects);
+        }
+
+        public void InsertOrReplaceAll<T>(IEnumerable<T> objects) where T : IData, new()
+        {
+            if (AppConstants.DebugLogInserts)
+                foreach (var obj in objects)
+                    Debug.Log("DB Insert: " + obj);
+            _connection.InsertAll(objects, "OR REPLACE");
         }
 
         #endregion

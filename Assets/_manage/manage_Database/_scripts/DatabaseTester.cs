@@ -396,7 +396,7 @@ namespace EA4S.Database.Management
             var lastAccessTimestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
 
             float score = RND.Range(-1f, 1f);
-            dbManager.UpdateVocabularyScoreData(vocabularyDataType, rndId, score, lastAccessTimestamp);
+            dbManager.InsertOrReplace(new VocabularyScoreData(rndId, vocabularyDataType, score, lastAccessTimestamp));
 
             PrintOutput("Inserted (or replaced) vocabulary score data " + lastAccessTimestamp);
         }

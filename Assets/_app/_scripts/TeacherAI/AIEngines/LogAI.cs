@@ -102,6 +102,13 @@ namespace EA4S.Teacher
         {
             var learnRules = GetLearnRules(miniGameCode);
 
+            // Retrieve previous scores
+            string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name);// + " WHERE VocabularyDataType = '{0}' AND ElementId = '{1}'", (int)dataType, elementId);
+            List<VocabularyScoreData> previousScoreDataList = db.FindDataByQuery<VocabularyScoreData>(query);
+
+            // Prepare log data
+            var logDataList = new List<LogLearnData>();
+            var scoreDataList = new List<VocabularyScoreData>();
             foreach (var result in resultsList) {
                 float score = 0f;
                 float successRatio = result.nCorrect * 1f / (result.nCorrect + result.nWrong);
@@ -119,13 +126,16 @@ namespace EA4S.Teacher
                 score *= learnRules.minigameImportanceWeight;
                 score += learnRules.minigameVoteSkewOffset;
 
-                var data = new LogLearnData(appSession, pos.ToStringId(), miniGameCode, result.dataType, result.elementId, score);
-                db.Insert(data);
+                var logData = new LogLearnData(appSession, pos.ToStringId(), miniGameCode, result.dataType, result.elementId, score);
+                logDataList.Add(logData);
 
                 // We also update the score for that data element
-                // refactor: the magic number 5 should become a configuration parameter
-                UpdateVocabularyScoreDataWithMovingAverage(result.dataType, result.elementId, score, 5);
+                var scoreData = GetVocabularyScoreDataWithMovingAverage(result.dataType, result.elementId, score, previousScoreDataList, ConfigAI.scoreMovingAverageWindow);
+                scoreDataList.Add(scoreData);
             }
+
+            db.InsertAll(logDataList);
+            db.InsertOrReplaceAll(scoreDataList);
         } 
 
         // refactor: these rules should be moved out of the LogAI and be instead placed in the games' configuration, as they belong to the games 
@@ -221,17 +231,17 @@ namespace EA4S.Teacher
             db.UpdateJourneyScoreData(dataType, elementId, newMaxScore);
         }
 
-        private void UpdateVocabularyScoreDataWithMovingAverage(VocabularyDataType dataType, string elementId, float newScore, int movingAverageSpan)
+        private VocabularyScoreData GetVocabularyScoreDataWithMovingAverage(VocabularyDataType dataType, string elementId, float newScore, List<VocabularyScoreData> scoreDataList, int movingAverageSpan)
         {
-            string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name +  " WHERE VocabularyDataType = '{0}' AND ElementId = '{1}'", (int)dataType, elementId);
-            List<VocabularyScoreData> scoreDataList = db.FindDataByQuery<VocabularyScoreData>(query);
             float previousAverageScore = 0;
-            if (scoreDataList.Count > 0) {
-                previousAverageScore = scoreDataList[0].Score;
+            var scoreData = scoreDataList.Find(x => x.ElementId == elementId && x.VocabularyDataType == dataType);
+            if (scoreData != null) {
+                previousAverageScore = scoreData.Score;
             }
+
             // @note: for the first movingAverageSpan values, this won't be accurate
             float newAverageScore = previousAverageScore - previousAverageScore / movingAverageSpan + newScore / movingAverageSpan;
-            db.UpdateVocabularyScoreData(dataType, elementId, newAverageScore);
+            return new VocabularyScoreData(elementId, dataType, newAverageScore);
         }
 
         #endregion
