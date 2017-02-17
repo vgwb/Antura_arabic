@@ -147,8 +147,18 @@ namespace EA4S.MinigamesCommon
                     actualLearnResult.nWrong++;
             }
 
-            LogManager.I.LogLearn(sessionName, miniGameCode, resultsList);
+            /*TEST: add a lot of logs
+            for (int i = 0; i < 100; i++)
+            {
+                var lp = new LogAI.LearnResultParameters();
+                lp.dataType = resultsList[0].dataType;
+                lp.elementId = resultsList[0].elementId;
+                lp.nCorrect = 5;
+                lp.nWrong = 2;
+                resultsList.Add(lp);
+            }*/
 
+            LogManager.I.LogLearn(sessionName, miniGameCode, resultsList);
         }
         #endregion
 

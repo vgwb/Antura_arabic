@@ -95,7 +95,7 @@ namespace EA4S.Balloons
                     builder = new WordsWithLetterQuestionBuilder(nPacks, nPacksPerRound:1, nCorrect:nCorrect, nWrong:nWrong);
                     break;  
                 case BalloonsVariation.Counting:
-                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.NumberOrdinal); 
+                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.Number); 
                     break;
             }
 

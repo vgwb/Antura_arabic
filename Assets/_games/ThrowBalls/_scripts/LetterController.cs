@@ -32,7 +32,7 @@ namespace EA4S.Minigames.ThrowBalls
         private float yEquilibrium;
 
         private ILivingLetterData letterData;
-        
+
         private IEnumerator jumpCoroutine;
 
         public Rigidbody rigidBody;
@@ -130,11 +130,6 @@ namespace EA4S.Minigames.ThrowBalls
             StopAllCoroutines();
         }
 
-        private bool AreVectorsApproxEqual(Vector3 vector1, Vector3 vector2, float threshold)
-        {
-            return Mathf.Abs(vector1.x - vector2.x) <= threshold && Mathf.Abs(vector1.y - vector2.y) <= threshold && Mathf.Abs(vector1.z - vector2.z) <= threshold;
-        }
-
         public void SetLetter(ILivingLetterData _data)
         {
             letterData = _data;
@@ -164,17 +159,6 @@ namespace EA4S.Minigames.ThrowBalls
             }
         }
 
-        public void MoveBy(float deltaX, float deltaY, float deltaZ)
-        {
-            Vector3 position = transform.position;
-            position.x += deltaX;
-            position.y += deltaY;
-            position.z += deltaZ;
-            transform.position = position;
-
-            yEquilibrium += deltaY;
-        }
-
         public void MoveTo(float x, float y, float z)
         {
             Vector3 position = transform.position;
@@ -196,23 +180,7 @@ namespace EA4S.Minigames.ThrowBalls
 
             for (;;)
             {
-                yEquilibrium = transform.position.y;
-                float yVelocity = JUMP_VELOCITY_IMPULSE;
-
-                float yDelta = 0;
-
-                while (yVelocity > 0 || (yVelocity < 0 && !PassesEquilibriumOnNextFrame(yVelocity, yDelta, yEquilibrium)))
-                {
-                    yVelocity += GRAVITY * Time.fixedDeltaTime;
-                    yDelta = yVelocity * Time.fixedDeltaTime;
-
-                    transform.position = new Vector3(transform.position.x, transform.position.y + yDelta, transform.position.z);
-
-                    yield return new WaitForFixedUpdate();
-                }
-
-                transform.position = new Vector3(transform.position.x, yEquilibrium, transform.position.z);
-
+                letterObjectView.DoSmallJump();
                 yield return new WaitForSeconds(1.5f);
             }
         }
@@ -225,33 +193,6 @@ namespace EA4S.Minigames.ThrowBalls
         public bool IsJumping()
         {
             return motionVariation == MotionVariation.Jumping;
-        }
-
-        public void SetIsDropping()
-        {
-            StartCoroutine("Drop");
-        }
-
-        private IEnumerator Drop()
-        {
-            yEquilibrium -= 4.2f;
-            float yVelocity = -0.001f;
-
-            float yDelta = 0;
-
-            float DROP_GRAVITY = -100;
-
-            while (yVelocity > 0 || (yVelocity < 0 && !PassesEquilibriumOnNextFrame(yVelocity, yDelta, yEquilibrium)))
-            {
-                yVelocity += DROP_GRAVITY * Time.fixedDeltaTime;
-                yDelta = yVelocity * Time.fixedDeltaTime;
-
-                transform.position = new Vector3(transform.position.x, transform.position.y + yDelta, transform.position.z);
-
-                yield return new WaitForFixedUpdate();
-            }
-
-            transform.position = new Vector3(transform.position.x, yEquilibrium, transform.position.z);
         }
 
         public void SetIsKinematic(bool isKinematic)
@@ -330,7 +271,7 @@ namespace EA4S.Minigames.ThrowBalls
             GameObject poof = Instantiate(ThrowBallsGame.instance.poofPrefab, transform.position, Quaternion.identity);
             Destroy(poof, 10);
             transform.position = new Vector3(0, 0, -100f);
-            
+
             ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Poof);
         }
 

@@ -402,7 +402,7 @@ namespace EA4S.Teacher.Test
                     builder = new RandomWordsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, firstCorrectIsQuestion: true, parameters: builderParams);
                     break;
                 case QuestionBuilderType.OrderedWords:
-                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.NumberOrdinal, parameters: builderParams);
+                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.Number, parameters: builderParams);
                     break;
                 case QuestionBuilderType.WordsWithLetter:
                     builder = new WordsWithLetterQuestionBuilder(nRounds: nPacks, nPacksPerRound: nPacksPerRound, nCorrect: nCorrectAnswers, nWrong: nWrongAnswers, parameters: builderParams);

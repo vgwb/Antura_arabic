@@ -85,7 +85,7 @@ namespace EA4S.Minigames.FastCrowd
                     builder = new AlphabetQuestionBuilder();
                     break;
                 case FastCrowdVariation.Counting:
-                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.NumberOrdinal);
+                    builder = new OrderedWordsQuestionBuilder(Database.WordDataCategory.Number);
                     break;
                 case FastCrowdVariation.Letter:
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);

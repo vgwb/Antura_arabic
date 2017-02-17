@@ -77,10 +77,12 @@ namespace EA4S.Teacher
         public void LogPlay(string appSession, JourneyPosition pos, MiniGameCode miniGameCode, List<PlayResultParameters> resultsList)
         {
             // The teacher receives a score for each play skill the minigame deems worthy of analysis
+            List<LogPlayData> logDataList = new List<LogPlayData>();
             foreach (var result in resultsList) {
                 var data = new LogPlayData(appSession, pos.ToStringId(), miniGameCode, result.playEvent, result.skill, result.score);
-                db.Insert(data);
+                logDataList.Add(data);
             }
+            db.InsertAll(logDataList);
         }
 
         #endregion
@@ -102,6 +104,13 @@ namespace EA4S.Teacher
         {
             var learnRules = GetLearnRules(miniGameCode);
 
+            // Retrieve previous scores
+            string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name);
+            List<VocabularyScoreData> previousScoreDataList = db.FindDataByQuery<VocabularyScoreData>(query);
+
+            // Prepare log data
+            var logDataList = new List<LogLearnData>();
+            var scoreDataList = new List<VocabularyScoreData>();
             foreach (var result in resultsList) {
                 float score = 0f;
                 float successRatio = result.nCorrect * 1f / (result.nCorrect + result.nWrong);
@@ -119,13 +128,16 @@ namespace EA4S.Teacher
                 score *= learnRules.minigameImportanceWeight;
                 score += learnRules.minigameVoteSkewOffset;
 
-                var data = new LogLearnData(appSession, pos.ToStringId(), miniGameCode, result.dataType, result.elementId, score);
-                db.Insert(data);
+                var logData = new LogLearnData(appSession, pos.ToStringId(), miniGameCode, result.dataType, result.elementId, score);
+                logDataList.Add(logData);
 
                 // We also update the score for that data element
-                // refactor: the magic number 5 should become a configuration parameter
-                UpdateVocabularyScoreDataWithMovingAverage(result.dataType, result.elementId, score, 5);
+                var scoreData = GetVocabularyScoreDataWithMovingAverage(result.dataType, result.elementId, score, previousScoreDataList, ConfigAI.scoreMovingAverageWindow);
+                scoreDataList.Add(scoreData);
             }
+
+            db.InsertAll(logDataList);
+            db.InsertOrReplaceAll(scoreDataList);
         } 
 
         // refactor: these rules should be moved out of the LogAI and be instead placed in the games' configuration, as they belong to the games 
@@ -133,10 +145,10 @@ namespace EA4S.Teacher
         {
             MiniGameLearnRules rules = new MiniGameLearnRules();
             switch (code) {
-                case MiniGameCode.Balloons_letter:  // @todo: set correct ones per each minigame
-                    rules.voteLogic = MiniGameLearnRules.VoteLogic.Threshold;
-                    rules.logicParameter = 0.5f;
-                    break;
+                //case MiniGameCode.Balloons_letter:  // @todo: set correct ones per each minigame
+                //    rules.voteLogic = MiniGameLearnRules.VoteLogic.Threshold;
+                //    rules.logicParameter = 0.5f;
+                //    break;
 
                 default:
                     rules.voteLogic = MiniGameLearnRules.VoteLogic.SuccessRatio;
@@ -157,8 +169,13 @@ namespace EA4S.Teacher
             var data = new LogMinigameScoreData(appSession, pos, miniGameCode, score, playTime);
             db.Insert(data);
 
+            // Retrieve previous scores
+            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name);
+            List<MinigameScoreData> previousScoreDataList = db.FindDataByQuery<MinigameScoreData>(query);
+
             // Score update
-            UpdateMinigameScoreDataWithMaximum(miniGameCode, playTime, score);
+            var scoreData = GetMinigameScoreDataWithMaximum(miniGameCode, playTime, score, previousScoreDataList);
+            db.InsertOrReplace(scoreData);
 
             // We also log play skills related to that minigame, as read from MiniGameData
             var minigameData = db.GetMiniGameDataByCode(miniGameCode);
@@ -168,6 +185,7 @@ namespace EA4S.Teacher
                 results.Add(new PlayResultParameters(PlayEvent.Skill, weightedPlaySkill.Skill, score));
             }
             LogPlay(appSession, pos, miniGameCode, results);
+
         }
 
         public void LogPlaySessionScore(string appSession, JourneyPosition pos, int score, float playTime)
@@ -178,60 +196,66 @@ namespace EA4S.Teacher
             var data = new LogPlaySessionScoreData(appSession, pos, score, playTime);
             db.Insert(data);
 
+            // Retrieve previous scores
+            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name);
+            List<JourneyScoreData> previousScoreDataList = db.FindDataByQuery<JourneyScoreData>(query);
+
             // Score update
-            UpdateJourneyScoreDataWithMaximum(JourneyDataType.PlaySession, pos.ToStringId(), score);
+            var scoreData = GetJourneyScoreDataWithMaximum(JourneyDataType.PlaySession, pos.ToStringId(), score, previousScoreDataList);
+            db.InsertOrReplace(scoreData);
         }
 
-        // TODO: DEPRECATED PROBABLY, WHAT IS A LEARNING BLOCK SCORE?
         public void LogLearningBlockScore(int learningBlock, int score)
         {
-            if (AppConstants.VerboseLogging) Debug.Log("LogLearningBlockScore " + learningBlock + " / " + score);
-            UpdateJourneyScoreDataWithMaximum(JourneyDataType.LearningBlock, (learningBlock).ToString(), score);
+            throw new System.Exception("Scoring for Learning Block has not been implemented.");
+            //if (AppConstants.VerboseLogging) Debug.Log("LogLearningBlockScore " + learningBlock + " / " + score);
+            //GetJourneyScoreDataWithMaximum(JourneyDataType.LearningBlock, (learningBlock).ToString(), score);
         }
 
         #endregion
 
         #region Score Utilities
 
-        private void UpdateMinigameScoreDataWithMaximum(MiniGameCode miniGameCode, float playTime, int newScore)
+        private MinigameScoreData GetMinigameScoreDataWithMaximum(MiniGameCode miniGameCode, float playTime, int newScore, List<MinigameScoreData> scoreDataList)
         {
-            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name + " WHERE MiniGameCode = '{0}'", (int)miniGameCode);
-            var scoreDataList = db.FindDataByQuery<MinigameScoreData>(query);
             int previousMaxScore = 0;
             float previousTotalPlayTime = 0;
-            if (scoreDataList.Count > 0)
+            var scoreData = scoreDataList.Find(x => x.MiniGameCode == miniGameCode);
+            if (scoreData != null)
             {
-                previousMaxScore = scoreDataList[0].Score;
-                previousTotalPlayTime = scoreDataList[0].TotalPlayTime;
+                previousMaxScore = scoreData.Score;
+                previousTotalPlayTime = scoreData.TotalPlayTime;
             }
+
             float newTotalPlayTime = previousTotalPlayTime + playTime;
             int newMaxScore = Mathf.Max(previousMaxScore, newScore);
-            db.UpdateMinigameScoreData(miniGameCode, newTotalPlayTime, newMaxScore);
+            return new MinigameScoreData(miniGameCode, newMaxScore, newTotalPlayTime);
         }
 
-        private void UpdateJourneyScoreDataWithMaximum(JourneyDataType dataType, string elementId, int newScore)
+        private JourneyScoreData GetJourneyScoreDataWithMaximum(JourneyDataType dataType, string elementId, int newScore, List<JourneyScoreData> scoreDataList)
         {
-            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '{0}' AND ElementId = '{1}'", (int)dataType, elementId);
-            List<JourneyScoreData> scoreDataList = db.FindDataByQuery<JourneyScoreData>(query);
             int previousMaxScore = 0;
-            if (scoreDataList.Count > 0) {
-                previousMaxScore = scoreDataList[0].Score;
+            var scoreData = scoreDataList.Find(x => x.ElementId == elementId && x.JourneyDataType == dataType);
+            if (scoreData != null)
+            {
+                previousMaxScore = scoreData.Score;
             }
+
             int newMaxScore = Mathf.Max(previousMaxScore, newScore);
-            db.UpdateJourneyScoreData(dataType, elementId, newMaxScore);
+            return new JourneyScoreData(elementId, dataType, newMaxScore);
         }
 
-        private void UpdateVocabularyScoreDataWithMovingAverage(VocabularyDataType dataType, string elementId, float newScore, int movingAverageSpan)
+        private VocabularyScoreData GetVocabularyScoreDataWithMovingAverage(VocabularyDataType dataType, string elementId, float newScore, List<VocabularyScoreData> scoreDataList, int movingAverageSpan)
         {
-            string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name +  " WHERE VocabularyDataType = '{0}' AND ElementId = '{1}'", (int)dataType, elementId);
-            List<VocabularyScoreData> scoreDataList = db.FindDataByQuery<VocabularyScoreData>(query);
             float previousAverageScore = 0;
-            if (scoreDataList.Count > 0) {
-                previousAverageScore = scoreDataList[0].Score;
+            var scoreData = scoreDataList.Find(x => x.ElementId == elementId && x.VocabularyDataType == dataType);
+            if (scoreData != null) {
+                previousAverageScore = scoreData.Score;
             }
+
             // @note: for the first movingAverageSpan values, this won't be accurate
             float newAverageScore = previousAverageScore - previousAverageScore / movingAverageSpan + newScore / movingAverageSpan;
-            db.UpdateVocabularyScoreData(dataType, elementId, newAverageScore);
+            return new VocabularyScoreData(elementId, dataType, newAverageScore);
         }
 
         #endregion

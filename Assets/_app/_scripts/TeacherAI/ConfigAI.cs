@@ -42,6 +42,9 @@ namespace EA4S.Teacher
         public const int lastScoresForPerformanceWindow = 10;
         public const float scoreStarsToDifficultyContribution = 0.15f;
 
+        // Logging
+        public const int scoreMovingAverageWindow = 5;
+
 
         private static string teacherReportString;
 
