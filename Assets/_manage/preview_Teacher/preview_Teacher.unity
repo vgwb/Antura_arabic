@@ -6867,16 +6867,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verboseQuestionPacks: 1
-  verboseDataSelection: 0
+  verboseDataSelection: 1
   verboseDataFiltering: 1
-  verbosePlaySessionInitialisation: 0
+  verbosePlaySessionInitialisation: 1
   numberOfSimulations: 1
   yieldEverySimulations: 20
-  currentJourneyStage: 1
+  currentJourneyStage: 3
   currentJourneyLB: 7
   isAssessment: 1
-  nPacks: 4
-  nPacksPerRound: 2
+  nPacks: 1
+  nPacksPerRound: 1
   sortPacksByDifficulty: 0
   nCorrectAnswers: 1
   correctSeverity: 0
