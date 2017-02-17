@@ -10,11 +10,25 @@ namespace EA4S.Assessment
     {
         protected AssessmentAudioManager audioManager;
         protected QuestionPlacerOptions options;
+        protected AssessmentEvents events;
 
-        public DefaultQuestionPlacer(   AssessmentAudioManager audioManager, QuestionPlacerOptions options)
+        public DefaultQuestionPlacer(   AssessmentEvents events, 
+            AssessmentAudioManager audioManager, QuestionPlacerOptions options)
         {
+            this.events = events;
             this.audioManager = audioManager;
             this.options = options;
+
+            if (events != null)
+                this.events.OnAllQuestionsAnsweredPlacer = ColorImageByGreen;
+        }
+
+        private IEnumerator ColorImageByGreen()
+        {
+            yield return null;
+            cacheImage.Poof();
+            cacheImage.SetQuestionGreen();
+            yield return Wait.For( 0.41f);
         }
 
         protected bool isAnimating = false;
@@ -154,9 +168,12 @@ namespace EA4S.Assessment
             boxesList.Add( box);
         }
 
+        protected StillLetterBox cacheImage = null;
+
         protected void PlaceImage( IQuestion q, Vector3 imagePos)
         {
             var ll = ItemFactory.Instance.SpawnQuestion( q.Image());
+            cacheImage = ll;
 
             images.Add( ll);
             ll.transform.position = imagePos;

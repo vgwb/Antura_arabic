@@ -48,8 +48,11 @@ namespace EA4S.Assessment
         const string dualString = "dual";
         const string pluralString = "plural";
 
-        const string sunString_Image = "sun";
-        const string moonString_Image = "moon";
+        /*const string sunString_Image = "sun";
+        const string moonString_Image = "moon";*/
+
+        const string sunString_Image = "the_sun";
+        const string moonString_Image = "the_moon";
 
         const string oneString = "number_01";
         const string twoString = "number_02";
