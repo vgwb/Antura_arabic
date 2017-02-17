@@ -8,9 +8,6 @@ namespace EA4S.Minigames.HideAndSeek
 		HideAndSeekGame game;
 
         public CountdownTimer gameTime = new CountdownTimer(60.0f);
-        IAudioSource timesUpAudioSource;
-
-        bool hurryUpSfx;
 
         const int STARS_1_THRESHOLD = 2;
         const int STARS_2_THRESHOLD = 5;
@@ -32,8 +29,6 @@ namespace EA4S.Minigames.HideAndSeek
 
             gameTime.Reset();
             game.ResetScore();
-            
-            hurryUpSfx = false;
 
             //game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
             AudioManager.I.PlayMusic(Music.MainTheme);
@@ -50,9 +45,6 @@ namespace EA4S.Minigames.HideAndSeek
 
         public void ExitState()
         {
-            if (timesUpAudioSource != null)
-                timesUpAudioSource.Stop();
-
             gameTime.Stop();
 
             AudioManager.I.StopMusic();
@@ -67,15 +59,6 @@ namespace EA4S.Minigames.HideAndSeek
         {
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
-            if (!hurryUpSfx)
-            {
-                if (gameTime.Time < 4f)
-                {
-                    hurryUpSfx = true;
-
-                    timesUpAudioSource = game.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
-                }
-            }
             gameTime.Update(delta);
         }
 
