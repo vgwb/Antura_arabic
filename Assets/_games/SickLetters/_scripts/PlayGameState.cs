@@ -12,7 +12,7 @@ namespace EA4S.Minigames.SickLetters
         float timer = 2;
         int alarmIsTriggered;
 
-        IAudioSource clockSound;
+        //IAudioSource clockSound;
 
         public PlayGameState(SickLettersGame game)
         {
@@ -57,11 +57,13 @@ namespace EA4S.Minigames.SickLetters
             }
             if (timer < 0)
             {
+                /*
                 if (clockSound != null)
                 {
                     clockSound.Stop();
                     clockSound = null;
                 }
+                */
 
                 game.SetCurrentState(game.ResultState);
                 AudioManager.I.PlayDialogue("Keeper_TimeUp");
@@ -75,7 +77,7 @@ namespace EA4S.Minigames.SickLetters
             if (alarmIsTriggered == 1 && timer < 4)
             {
                 alarmIsTriggered = 2;
-                clockSound = SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
+                //clockSound = SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
             }
 
             if (Input.GetKeyDown(KeyCode.A))

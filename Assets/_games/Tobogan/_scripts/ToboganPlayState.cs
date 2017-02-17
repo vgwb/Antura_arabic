@@ -7,9 +7,6 @@ namespace EA4S.Minigames.Tobogan
     {
         CountdownTimer gameTime = new CountdownTimer(90.0f);
         ToboganGame game;
-        IAudioSource timesUpAudioSource;
-
-        bool hurryUpSfx;
 
         float nextQuestionTimer;
 
@@ -40,9 +37,7 @@ namespace EA4S.Minigames.Tobogan
 
             game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
-
-            hurryUpSfx = false;
-
+            
             game.questionsManager.Enabled = true;
 
             nextQuestionTimer = 0f;
@@ -57,9 +52,6 @@ namespace EA4S.Minigames.Tobogan
             game.questionsManager.onAnswered -= OnAnswered;
 
             game.questionsManager.Enabled = false;
-
-            if (timesUpAudioSource != null)
-                timesUpAudioSource.Stop();
 
             gameTime.Stop();
             game.pipesAnswerController.HidePipes();
@@ -77,16 +69,6 @@ namespace EA4S.Minigames.Tobogan
             }
 
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
-
-            if (!hurryUpSfx)
-            {
-                if (gameTime.Time < 4f)
-                {
-                    hurryUpSfx = true;
-
-                    timesUpAudioSource = game.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
-                }
-            }
 
             gameTime.Update(delta);
 
