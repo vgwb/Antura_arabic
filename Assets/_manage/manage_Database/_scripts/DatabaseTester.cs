@@ -396,7 +396,7 @@ namespace EA4S.Database.Management
             var lastAccessTimestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
 
             float score = RND.Range(-1f, 1f);
-            dbManager.UpdateVocabularyScoreData(vocabularyDataType, rndId, score, lastAccessTimestamp);
+            dbManager.InsertOrReplace(new VocabularyScoreData(rndId, vocabularyDataType, score, lastAccessTimestamp));
 
             PrintOutput("Inserted (or replaced) vocabulary score data " + lastAccessTimestamp);
         }
@@ -425,7 +425,7 @@ namespace EA4S.Database.Management
             var lastAccessTimestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
 
             var score = RND.Range(0, 4);
-            dbManager.UpdateJourneyScoreData(journeyDataType, rndId, score, lastAccessTimestamp);
+            dbManager.InsertOrReplace(new JourneyScoreData(rndId, journeyDataType, score, lastAccessTimestamp));
 
             PrintOutput("Inserted (or replaced) journey score data " + lastAccessTimestamp);
         }
@@ -438,7 +438,7 @@ namespace EA4S.Database.Management
             var minigameCode = RandomHelper.GetRandomEnum<MiniGameCode>();
             var lastAccessTimestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
             var score = RND.Range(0, 4);
-            dbManager.UpdateMinigameScoreData(minigameCode, RND.Range(1,100f), score, lastAccessTimestamp);
+            dbManager.InsertOrReplace(new MinigameScoreData(minigameCode, score, RND.Range(1,100f), lastAccessTimestamp));
             PrintOutput("Inserted (or replaced) minigame score data " + lastAccessTimestamp);
         }
 

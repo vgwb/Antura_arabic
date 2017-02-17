@@ -135,6 +135,9 @@ namespace EA4S.Core
         // refactor: GoToScene can be separated for safety reasons in GoToMinigame (with a string code, or minigame code) and GoToAppScene (with an AppScene as the parameter)
         private void GoToScene(string sceneName)
         {
+            // @todo: adda  delegate to the SceneManager.sceneLoaded to block further scene changes when loading 
+            // http://answers.unity3d.com/questions/1174255/since-onlevelwasloaded-is-deprecated-in-540b15-wha.html
+
             IsLoadingMinigame = sceneName.Substring(0, 5) == "game_";
             // TODO: change scenemodule to private for this class
             Debug.LogFormat(" ==== {0} scene to load ====", sceneName);
