@@ -10,8 +10,7 @@ namespace EA4S.Profile
     [RequireComponent(typeof(UIButton))]
     public class PlayerIcon : MonoBehaviour
     {
-        string uuid;
-
+        public string Uuid { get; private set; }
         public UIButton UIButton { get { if (fooUIButton == null) fooUIButton = this.GetComponent<UIButton>(); return fooUIButton; } }
         UIButton fooUIButton;
 
@@ -19,7 +18,7 @@ namespace EA4S.Profile
 
         public void Init(PlayerIconData playerIconData)
         {
-            uuid = playerIconData.Uuid;
+            Uuid = playerIconData.Uuid;
             //Debug.Log("playerIconData " + uuid + " " + playerIconData.Gender + " " + playerIconData.AvatarId + " " + playerIconData.Tint + " " + playerIconData.IsDemoUser);
             SetAppearance(playerIconData.Gender, playerIconData.AvatarId, playerIconData.Tint, playerIconData.IsDemoUser);
         }
@@ -27,7 +26,7 @@ namespace EA4S.Profile
         [DeMethodButton("DEBUG: Select", mode = DeButtonMode.PlayModeOnly)]
         public void Select(string _uuid)
         {
-            UIButton.Toggle(uuid == _uuid);
+            UIButton.Toggle(Uuid == _uuid);
         }
 
         [DeMethodButton("DEBUG: Deselect", mode = DeButtonMode.PlayModeOnly)]

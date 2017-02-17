@@ -141,13 +141,23 @@ namespace EA4S.UI
 
             BtPlay.gameObject.SetActive(true);
             // PLAYER REFACTORING WITH UUID
-            //BtPlay.RectT.SetAnchoredPosX(GetAvatarButtonByPlayerId(AppManager.I.Player.Id).RectT.anchoredPosition.x);
+            PlayerIcon activePlayerIcon = GetPlayerIconByUUID(AppManager.I.Player.Uuid);
+            if (activePlayerIcon != null) BtPlay.RectT.SetAnchoredPosX(activePlayerIcon.UIButton.RectT.anchoredPosition.x);
             btPlayTween.PlayForward();
         }
 
         void ActivatePlayerIcons(bool _activate)
         {
             foreach (PlayerIcon pIcon in playerIcons) pIcon.UIButton.Bt.interactable = _activate;
+        }
+
+        PlayerIcon GetPlayerIconByUUID(string uuid)
+        {
+            foreach (PlayerIcon pIcon in playerIcons)
+            {
+                if (pIcon.Uuid == uuid) return pIcon;
+            }
+            return null;
         }
 
         #endregion
