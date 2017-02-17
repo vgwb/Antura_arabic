@@ -375,6 +375,8 @@ namespace EA4S.Assessment
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
 
+            Debug.Log("QUESTO");
+
             return new LettersInWordQuestionBuilder(
                 NumberOfRounds,
                 SimultaneosQuestions,

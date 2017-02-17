@@ -8,6 +8,8 @@ namespace EA4S.Assessment
 
         public CoroutineEvent OnAllQuestionsAnswered = null;
 
+        public CoroutineEvent OnAllQuestionsAnsweredPlacer = null;
+
         public IEnumerator NoEvent()
         {
             yield return null;

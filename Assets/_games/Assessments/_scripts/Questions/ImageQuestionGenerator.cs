@@ -42,7 +42,6 @@ namespace EA4S.Assessment
 
         private IEnumerator ShowFullWordCoroutine()
         {
-            Debug.Log( "ShowFullWordCoroutine");
             var position = new Vector3( 0, 1.5f, 5f);
             var LL = ItemFactory.Instance.SpawnQuestion( cacheFullWordData);
             var box = ItemFactory.Instance.SpawnQuestionBox( new StillLetterBox[]{ LL});
@@ -58,7 +57,7 @@ namespace EA4S.Assessment
             yield return Wait.For( AssessmentOptions.Instance.TimeToShowCompleteWord+0.5f);
             LL.gameObject.GetComponent< StillLetterBox>().Poof();
             box.gameObject.transform.DOScale( 0, 0.4f).OnComplete(() => GameObject.Destroy( box.gameObject));
-            LL.gameObject.transform.DOScale(0, 0.4f).OnComplete(() => GameObject.Destroy(LL.gameObject));
+            LL.gameObject.transform.DOScale(0, 0.4f).OnComplete(() => GameObject.Destroy( LL.gameObject));
             yield return Wait.For( 0.41f);
         }
 
