@@ -420,25 +420,6 @@ namespace EA4S.Database
         #endregion
 
 
-        #region Score
-
-        public void UpdateJourneyScoreData(JourneyDataType dataType, string elementId, int score, int timestamp = -1)
-        {
-            JourneyScoreData data = null;
-            if (timestamp > 0) data = new JourneyScoreData(elementId, dataType, score, timestamp);
-            else data = new JourneyScoreData(elementId, dataType, score);
-            dynamicDb.InsertOrReplace(data);
-        }
-
-        public void UpdateMinigameScoreData(MiniGameCode miniGameCode, float totalPlayTime, int score, int timestamp = -1)
-        {
-            MinigameScoreData data = null;
-            if (timestamp > 0) data = new MinigameScoreData(miniGameCode, score, totalPlayTime, timestamp);
-            else data = new MinigameScoreData(miniGameCode, score, totalPlayTime);
-            dynamicDb.InsertOrReplace(data);
-        }
-        #endregion
-
         #region Reward Unlock
 
         public List<RewardPackUnlockData> GetAllRewardPackUnlockData()
