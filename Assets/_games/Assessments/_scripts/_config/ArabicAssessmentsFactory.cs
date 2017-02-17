@@ -161,8 +161,7 @@ namespace EA4S.Assessment
             context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, false,
                                                                     context.AudioManager,
                                                                     context.Events);
-            context.QuestionPlacer = new DefaultQuestionPlacer( 
-                context.Events, context.AudioManager, placerOptions);
+            context.QuestionPlacer = new DefaultQuestionPlacer( null, context.AudioManager, placerOptions);
 
             return CreateAssessment( context);
         }
@@ -192,7 +191,8 @@ namespace EA4S.Assessment
 
             context.QuestionGenerator = new ImageQuestionGenerator( context.Configuration.Questions, true,
                                                                     context.AudioManager, context.Events);
-            context.QuestionPlacer = new DefaultQuestionPlacer( null, context.AudioManager, placerOptions);
+            context.QuestionPlacer = new DefaultQuestionPlacer(
+                context.Events, context.AudioManager, placerOptions);
 
             return CreateAssessment( context);
         }
