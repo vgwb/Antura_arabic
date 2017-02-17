@@ -140,7 +140,7 @@ namespace EA4S.Assessment
 
         private GameObject QuestionView( ILivingLetterData data)
         {
-            return LivingLetterFactory.Instance.SpawnQuestion( data).gameObject;
+            return ItemFactory.Instance.SpawnQuestion( data).gameObject;
         }
 
         public GameObject SpawnCustomObject( int currentCategory)

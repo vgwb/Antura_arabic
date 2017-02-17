@@ -116,7 +116,7 @@ namespace EA4S.Assessment
         private Answer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
         {
             return
-            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer, true, dialogues);
+            ItemFactory.Instance.SpawnAnswer( correctAnswer, true, dialogues);
         }
 
         public void InitRound()
@@ -230,7 +230,7 @@ namespace EA4S.Assessment
 
         private void GeneratePlaceHolder(IQuestion question, LivingLetterDataType dataType)
         {
-            var placeholder = LivingLetterFactory.Instance.SpawnPlaceholder( dataType);
+            var placeholder = ItemFactory.Instance.SpawnPlaceholder( dataType);
             placeholder.transform.localPosition = new Vector3( 0, 5, 0);
             question.TrackPlaceholder( placeholder.gameObject);
         }

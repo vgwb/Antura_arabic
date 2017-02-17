@@ -3,6 +3,7 @@ using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
 using Kore.Coroutines;
 using System.Collections;
+using System;
 
 namespace EA4S.Assessment
 {
@@ -26,6 +27,14 @@ namespace EA4S.Assessment
         public void PlayUIPopup()
         {
             audioManager.PlaySound( Sfx.UIPopup);
+        }
+
+        /// <summary>
+        /// Antura is Angry sound (when wrong answers are given)
+        /// </summary>
+        public void AnturaAngrySound()
+        {
+            audioManager.PlaySound( Sfx.DogBarking);
         }
 
         public void PlayQuestionBlip()

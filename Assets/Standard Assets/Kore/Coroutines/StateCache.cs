@@ -34,7 +34,7 @@ namespace Kore.Coroutines
         /// </summary>
         /// <param name="onEnterState"> Callback (Executed immediatly).</param>
         /// <returns> A Yieldable object (you can "yield return" it).</returns>
-        public IYieldable EnterState( KoreCallback onEnterState)
+        public IYieldable EnterState(KoreCallback onEnterState)
         {
             if (executed == false)
             {
@@ -52,7 +52,7 @@ namespace Kore.Coroutines
         /// </summary>
         /// <param name="nextState"> Next coroutine to be runned</param>
         /// <returns> A Yieldable object (you can "yield return" it).</returns>
-        public IYieldable Change( IEnumerator nextState)
+        public IYieldable Change(IEnumerator nextState)
         {
             executed = false;
             change.NextState = nextState;
@@ -75,6 +75,15 @@ namespace Kore.Coroutines
             change.NextState = nextState;
             return change;
         }
+
+        /// <summary>
+        /// A simple notification mechanism that can be polled like a input
+        /// to detect state changes.
+        /// </summary>
+        public StateEvent Event()
+        {
+            return new StateEvent();
+        }
     }
 
     internal class CachedStateChangeYieldable : IYieldable
@@ -84,6 +93,39 @@ namespace Kore.Coroutines
         public void OnYield( ICoroutineEngine engine)
         {
             engine.ReplaceCurrentWith( NextState);
+        }
+    }
+
+    public class StateEvent
+    {
+        private bool triggered = false;
+
+        /// <summary>
+        /// Trigger the event
+        /// </summary>
+        public void Trigger()
+        {
+            triggered = true;
+        }
+
+        /// <summary>
+        /// Check if event is triggered and eat the event.
+        /// </summary>
+        public static bool operator true( StateEvent t)
+        {
+            bool val = t.triggered;
+            t.triggered = false;
+            return val;
+        }
+
+        /// <summary>
+        /// Check if event is triggered and eat the event.
+        /// </summary>
+        public static bool operator false( StateEvent t)
+        {
+            bool val = !t.triggered;
+            t.triggered = false;
+            return val;
         }
     }
 }

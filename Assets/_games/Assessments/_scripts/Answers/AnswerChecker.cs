@@ -2,6 +2,7 @@ using EA4S.Tutorial;
 using Kore.Coroutines;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -73,22 +74,29 @@ namespace EA4S.Assessment
             }
         }
 
+        private void MarkYes( Vector3 position)
+        {
+            PlayCorrectSound();
+            Koroutine.Run( MarkYesCoroutine( position));
+        }
+
+        /// <summary>
+        /// Add some delay to the sound because it is not synchronized with TutorialUI.
+        /// </summary>
+        IEnumerator MarkYesCoroutine( Vector3 position)
+        {
+            yield return Wait.For( 0.3f);
+            TutorialUI.MarkYes( position, TutorialUI.MarkSize.Normal);
+        }
+
         private void PlayWrongSound()
         {
             if(WrongSoundPlayed == false)
             {
-                Koroutine.Run( AngryAnturaCoroutine());
+                ItemFactory.Instance.GetAntura().WrongAssessment( audioManager);
                 audioManager.PlayKOSound();
                 WrongSoundPlayed = true;
             }
-        }
-
-        IEnumerator AngryAnturaCoroutine()
-        {
-            var antura = LivingLetterFactory.Instance.GetAntura();
-            antura.IsAngry = true;
-
-            yield return Wait.For( 0.5f);
         }
 
         private bool coroutineEnded = false;
@@ -114,9 +122,11 @@ namespace EA4S.Assessment
 
                         var pos = p.gameObject.transform.localPosition;
                         pos.y -= 3.5f;
-                        TutorialUI.MarkYes( pos, TutorialUI.MarkSize.Normal);
+                        MarkYes( pos);
                     }
-                
+
+                ItemFactory.Instance.GetAntura().CorrectAssessment( audioManager);
+
                 // Just trigger OnQuestionAnswered events if all are correct
                 foreach (var q in questions)
                 {
@@ -139,10 +149,9 @@ namespace EA4S.Assessment
                         }
                         else
                         {
-                            PlayCorrectSound();
                             var pos = p.gameObject.transform.localPosition;
                             pos.y -= 3.5f;
-                            TutorialUI.MarkYes( pos, TutorialUI.MarkSize.Normal);
+                            MarkYes( pos);
                         }
                     }
                 }
@@ -154,7 +163,6 @@ namespace EA4S.Assessment
 
             if (allCorrect)
             {
-                audioManager.PlayStampSound();
                 yield return Wait.For( 1.0f);
             }
             else

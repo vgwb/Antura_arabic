@@ -49,7 +49,7 @@ namespace Kore.Coroutines
         }
     }
 
-    internal class StateChangeYieldable : IYieldable
+    public class StateChangeYieldable : IYieldable
     {
         public IEnumerator NextState;
 
