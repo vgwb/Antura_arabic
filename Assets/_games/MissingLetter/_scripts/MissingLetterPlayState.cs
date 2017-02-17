@@ -18,8 +18,6 @@ namespace EA4S.Minigames.MissingLetter
             m_oGame.m_bIsTimesUp = false;
             m_oGame.ResetScore();
 
-            m_bHurryUpSfx = false;
-
             M_oGameTime.Reset();
             M_oGameTime.Start();
 
@@ -37,11 +35,7 @@ namespace EA4S.Minigames.MissingLetter
             m_oGame.m_oRoundManager.onAnswered -= OnRoundResult;
 
             AudioManager.I.StopMusic();
-
-            //AudioManager.I.StopSfx(Sfx.DangerClockLong);
-            if (timesUpAudioSource != null)
-                timesUpAudioSource.Stop();
-
+            
             M_oGameTime.Stop();
         }
 
@@ -64,17 +58,7 @@ namespace EA4S.Minigames.MissingLetter
 
             m_oGame.Context.GetOverlayWidget().SetClockTime(M_oGameTime.Time);
 
-
-            if (!m_bHurryUpSfx)
-            {
-                if (M_oGameTime.Time < 4f)
-                {
-                    m_bHurryUpSfx = true;
-                    //AudioManager.I.PlaySound(Sfx.DangerClockLong);
-                    timesUpAudioSource = m_oGame.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
-                }
-            }
-
+            
             M_oGameTime.Update(_delta);
         }
 
@@ -103,8 +87,6 @@ namespace EA4S.Minigames.MissingLetter
 
         CountdownTimer M_oGameTime;
         MissingLetterGame m_oGame;
-        IAudioSource timesUpAudioSource;
-        bool m_bHurryUpSfx;
 
         #endregion
     }

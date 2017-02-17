@@ -7,7 +7,6 @@ namespace EA4S.Minigames.MixedLetters
     {
         MixedLettersGame game;
         
-        bool timerWarningSfxPlayed = false;
         public PlayGameState(MixedLettersGame game)
         {
             this.game = game;
@@ -15,7 +14,6 @@ namespace EA4S.Minigames.MixedLetters
 
         public void EnterState()
         {
-            timerWarningSfxPlayed = false;
             game.OnRoundStarted();
 
             game.EnableRepeatPromptButton();
@@ -33,15 +31,6 @@ namespace EA4S.Minigames.MixedLetters
             if (MinigamesUI.Timer.Elapsed >= MinigamesUI.Timer.Duration || game.WasLastRoundWon)
             {
                 game.SetCurrentState(game.ResultState);
-            }
-
-            else
-            {
-                if (MinigamesUI.Timer.Duration - MinigamesUI.Timer.Elapsed < 5 && !timerWarningSfxPlayed)
-                {
-                    MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
-                    timerWarningSfxPlayed = true;
-                }
             }
         }
 

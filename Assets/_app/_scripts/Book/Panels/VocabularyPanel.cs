@@ -292,7 +292,7 @@ namespace EA4S.PlayerBook
             LL_Final.gameObject.SetActive(false);
 
             if (info.data.Drawing != "") {
-                var drawingChar = AppManager.I.VocabularyHelper.GetWordDrawing(info.data);
+                //var drawingChar = AppManager.I.VocabularyHelper.GetWordDrawing(info.data);
                 //Drawing.text = drawingChar;
                 //LL_Medial.gameObject.SetActive(true);
                 LL_Medial.Initialize(new LL_ImageData(info.data));

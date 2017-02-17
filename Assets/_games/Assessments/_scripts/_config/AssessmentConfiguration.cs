@@ -143,6 +143,7 @@ namespace EA4S.Assessment
             SimultaneosQuestions = 2;
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.ForceAllDifferent;
+            builderParams.sortPacksByDifficulty = false;
 
             return new LetterFormsInWordsQuestionBuilder(
                 nPacksPerRound: SimultaneosQuestions,
@@ -155,6 +156,7 @@ namespace EA4S.Assessment
             SimultaneosQuestions = 2;
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.ForceAllDifferent;
+            builderParams.sortPacksByDifficulty = false;
 
             return new LetterFormsInWordsQuestionBuilder(
                 nPacksPerRound: SimultaneosQuestions,
@@ -168,6 +170,7 @@ namespace EA4S.Assessment
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.wordFilters.requireDrawings = true;
+            builderParams.sortPacksByDifficulty = false;
 
             // Maximum number of letters depends on the screen.
             float screenRatio = Screen.width / Screen.height;
@@ -198,6 +201,7 @@ namespace EA4S.Assessment
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = true;
             builderParams.wordFilters.requireDrawings = true;
+            builderParams.sortPacksByDifficulty = false;
 
             return new LettersInWordQuestionBuilder(
 
@@ -216,6 +220,7 @@ namespace EA4S.Assessment
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
             builderParams.wordFilters.requireDrawings = true;
+            builderParams.sortPacksByDifficulty = false;
             SimultaneosQuestions = 1;
 
             int nCorrect = 1;
@@ -237,6 +242,7 @@ namespace EA4S.Assessment
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wordFilters.excludeArticles = false;
+            builderParams.sortPacksByDifficulty = false;
 
             return new WordsByArticleQuestionBuilder(
                 Answers * NumberOfRounds * 3,
@@ -251,6 +257,7 @@ namespace EA4S.Assessment
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wordFilters.excludePluralDual = false;
+            builderParams.sortPacksByDifficulty = false;
 
             return new WordsByFormQuestionBuilder(
                 SimultaneosQuestions* NumberOfRounds * 4,
@@ -264,6 +271,8 @@ namespace EA4S.Assessment
             builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
+            builderParams.sortPacksByDifficulty = false;
+
             SimultaneosQuestions = 1;
             int nCorrect = 1;
             int nWrong = 3;
@@ -277,13 +286,16 @@ namespace EA4S.Assessment
 
         private IQuestionBuilder Setup_QuestionAnReply_Builder()
         {
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.sortPacksByDifficulty = false;
+
             SimultaneosQuestions = 1;
             int nWrongs = 4;
 
             return new  PhraseQuestionsQuestionBuilder(
                         SimultaneosQuestions * NumberOfRounds, // totale questions
-                        nWrongs     // wrong additional answers
-                );
+                        nWrongs,     // wrong additional answers
+                parameters:builderParams);
         }
 
         private IQuestionBuilder Setup_SunMoonLetter_Builder()
@@ -293,6 +305,7 @@ namespace EA4S.Assessment
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
+            builderParams.sortPacksByDifficulty = false;
 
             return new LettersBySunMoonQuestionBuilder( 
                         SimultaneosQuestions * NumberOfRounds * 2,
@@ -341,10 +354,13 @@ namespace EA4S.Assessment
 
         private IQuestionBuilder Setup_SunMoonWords_Builder()
         {
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.sortPacksByDifficulty = false;
+
             SimultaneosQuestions = 2;
             Answers = 2;
 
-            return new WordsBySunMoonQuestionBuilder( SimultaneosQuestions * NumberOfRounds * 2);
+            return new WordsBySunMoonQuestionBuilder( SimultaneosQuestions * NumberOfRounds * 2, parameters: builderParams);
         }
 
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
@@ -374,6 +390,7 @@ namespace EA4S.Assessment
             builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
+            builderParams.sortPacksByDifficulty = false;
 
             Debug.Log("QUESTO");
 
@@ -395,6 +412,7 @@ namespace EA4S.Assessment
             builderParams.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
+            builderParams.sortPacksByDifficulty = false;
 
             return new RandomLettersQuestionBuilder(
                 SimultaneosQuestions * NumberOfRounds,  // Total Answers

@@ -206,7 +206,7 @@ namespace EA4S.Teacher
                         break;
 
                     case SelectionParameters.JourneyFilter.UpToFullCurrentStage:
-                        dataList.FindAll(x => currentJourneyContents.Contains(x) || currentStageContents.Contains(x));
+                        dataList = dataList.FindAll(x => currentJourneyContents.Contains(x) || currentStageContents.Contains(x));
                         break;
                 }
             }
@@ -263,7 +263,8 @@ namespace EA4S.Teacher
                 int nRemaining = selectionParams.nRequired;
                 AddToListFilteringByContents(currentPlaySessionContents, dataList, priorityFilteredList, ref nRemaining);
                
-                s += "\n" + (nBefore - nRemaining) + " from PS ( " + nRemaining + " remaining of " + nBefore + ")";
+                s += "\n Required:" + nRemaining;
+                s += "\n" + (nBefore - nRemaining) + " from PS";
                 if (nRemaining > 0)
                 {
                     nBefore = nRemaining;
@@ -280,8 +281,16 @@ namespace EA4S.Teacher
                 {
                     nBefore = nRemaining;
                     AddToListFilteringByContents(currentJourneyContents, dataList, priorityFilteredList, ref nRemaining);
-                    s += "\n" + (nBefore - nRemaining) + " from the rest of the Journey";
+                    s += "\n" + (nBefore - nRemaining) + " from the current Journey";
                 }
+                // @note: when journey filtering is disabled, we may still have to get some data from the rest of the journey
+                if (nRemaining > 0 && !selectionParams.useJourney)
+                {
+                    nBefore = nRemaining;
+                    AddToListFilteringByContents(progressionContents.AllContents, dataList, priorityFilteredList, ref nRemaining);
+                    s += "\n" + (nBefore - nRemaining) + " from the complete contents.";
+                }
+
                 if (ConfigAI.verboseDataFiltering) ConfigAI.AppendToTeacherReport(s);
                 debugString += ("\n  Priority: " + priorityFilteredList.Count);
             }
