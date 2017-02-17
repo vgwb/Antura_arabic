@@ -1,4 +1,6 @@
 ﻿using DG.Tweening;
+using EA4S.Audio;
+using EA4S.MinigamesCommon;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +19,8 @@ namespace EA4S.UI
         public float Duration { get; private set; }
         public float Elapsed { get; private set; }
         Sequence timerTween, shakeTween;
+        IAudioSource alarmSfxSource;
+        bool currPauseMenuIsOpenState;
         Tween endTween;
 
         #region Unity
@@ -31,9 +35,19 @@ namespace EA4S.UI
 
         void OnDestroy()
         {
+            if (alarmSfxSource != null) alarmSfxSource.Stop();
             timerTween.Kill();
             shakeTween.Kill();
             endTween.Kill();
+        }
+
+        void Update()
+        {
+            if (currPauseMenuIsOpenState == PauseMenu.I.IsMenuOpen) return;
+
+            currPauseMenuIsOpenState = PauseMenu.I.IsMenuOpen;
+            if (currPauseMenuIsOpenState) Pause();
+            else Play();
         }
 
         #endregion
@@ -60,7 +74,8 @@ namespace EA4S.UI
             TfTimer.text = Duration.ToString();
 
             // Shake tween
-            float duration = Duration * 0.25f;
+            AudioClip alarmSfx = AudioManager.I.GetAudioClip(Sfx.DangerClockLong);
+            float duration = Mathf.Min(Duration, alarmSfx.length);
             shakeTween = DOTween.Sequence().SetAutoKill(false)
                 .Append(this.transform.DOShakeRotation(duration, new Vector3(0, 0, 20f), 20))
                 .Join(this.transform.DOShakeScale(duration, 0.1f, 20));
@@ -77,19 +92,34 @@ namespace EA4S.UI
                 .OnUpdate(() => {
                     Elapsed = timerTween.Elapsed();
                     TfTimer.text = Mathf.CeilToInt(Duration - Elapsed).ToString();
-                    float elapsedPercentage = timerTween.ElapsedPercentage();
-                    float shakePercentage = elapsedPercentage < 0.75f ? 0 : (1 - elapsedPercentage) / 0.25f;
-                    shakeTween.Goto(shakeTween.Duration() * shakePercentage);
+                    float elapsed = timerTween.Elapsed();
+                    float shakeElapsedTarget = elapsed - (timerTween.Duration() - shakeTween.Duration());
+                    if (shakeElapsedTarget > 0)
+                    {
+                        if (shakeTween.fullPosition <= 0)
+                        {
+                            // Start alarm sound
+                            if (alarmSfxSource != null) alarmSfxSource.Stop();
+                            alarmSfxSource = AudioManager.I.PlaySound(alarmSfx);
+                        }
+                        shakeTween.Goto(shakeTween.Duration() - shakeElapsedTarget);
+                    }
+                    else if (shakeTween.fullPosition > 0)
+                    {
+                        shakeTween.Rewind();
+                        if (alarmSfxSource != null) alarmSfxSource.Stop();
+                    }
                 })
                 .OnComplete(() => {
                     shakeTween.Rewind();
                     endTween.Restart();
-                })
-                .OnPause(() => {
-                    if (!timerTween.IsComplete() && shakeTween.IsPlaying()) shakeTween.Pause();
+                    if (alarmSfxSource != null) alarmSfxSource.Stop();
+                    alarmSfxSource = AudioManager.I.PlaySound(Sfx.AlarmClock);
                 });
             if (!_playImmediately) timerTween.Pause();
 
+            timerTween.ForceInit();
+            shakeTween.Rewind();
             IsSetup = true;
         }
 
@@ -98,6 +128,7 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
+            if (alarmSfxSource != null) alarmSfxSource.Play();
             timerTween.Play();
         }
 
@@ -106,6 +137,7 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
+            if (alarmSfxSource != null) alarmSfxSource.Pause();
             timerTween.Pause();
         }
 
@@ -114,6 +146,7 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
+            if (alarmSfxSource != null) alarmSfxSource.Stop();
             endTween.Rewind();
             timerTween.Restart();
         }
@@ -123,7 +156,8 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
-            shakeTween.Complete();
+            if (alarmSfxSource != null) alarmSfxSource.Stop();
+            shakeTween.Rewind();
             endTween.Rewind();
             timerTween.Rewind();
         }
@@ -133,6 +167,8 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
+            if (!shakeTween.IsComplete() && alarmSfxSource != null) alarmSfxSource.Stop();
+            if (!timerTween.IsComplete()) alarmSfxSource = AudioManager.I.PlaySound(Sfx.AlarmClock);
             timerTween.Complete();
         }
 
