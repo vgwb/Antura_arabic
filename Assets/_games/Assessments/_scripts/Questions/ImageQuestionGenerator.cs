@@ -44,8 +44,8 @@ namespace EA4S.Assessment
         {
             Debug.Log( "ShowFullWordCoroutine");
             var position = new Vector3( 0, 1.5f, 5f);
-            var LL = LivingLetterFactory.Instance.SpawnQuestion( cacheFullWordData);
-            var box = LivingLetterFactory.Instance.SpawnQuestionBox( new StillLetterBox[]{ LL});
+            var LL = ItemFactory.Instance.SpawnQuestion( cacheFullWordData);
+            var box = ItemFactory.Instance.SpawnQuestionBox( new StillLetterBox[]{ LL});
             box.Show();
             LL.transform.localPosition = position;
             position.z += 1;
@@ -201,7 +201,7 @@ namespace EA4S.Assessment
             if (AssessmentOptions.Instance.ShowQuestionAsImage)
                 data = new LL_ImageData( data.Id);
 
-            cacheFullWordDataLL = LivingLetterFactory.Instance.SpawnQuestion( data);
+            cacheFullWordDataLL = ItemFactory.Instance.SpawnQuestion( data);
             return new DefaultQuestion( cacheFullWordDataLL, 0, audioManager);
         }
 
@@ -223,7 +223,7 @@ namespace EA4S.Assessment
                 word.Data, partsToRemove[0], RemovedLetterChar);
 
             //Spawn word, then replace text with text with missing letter
-            var wordGO = LivingLetterFactory.Instance.SpawnQuestion(word);
+            var wordGO = ItemFactory.Instance.SpawnQuestion(word);
             wordGO.InstaShrink();
 
             wordGO.Label.text = text;
@@ -237,12 +237,12 @@ namespace EA4S.Assessment
         private Answer GenerateWrongAnswer( ILivingLetterData wrongAnswer)
         {
             return
-            LivingLetterFactory.Instance.SpawnAnswer( wrongAnswer, false, audioManager);
+            ItemFactory.Instance.SpawnAnswer( wrongAnswer, false, audioManager);
         }
 
         private void GeneratePlaceHolder( IQuestion question, LivingLetterDataType dataType)
         {
-            var placeholder = LivingLetterFactory.Instance.SpawnPlaceholder( dataType);
+            var placeholder = ItemFactory.Instance.SpawnPlaceholder( dataType);
             placeholder.InstaShrink();
             question.TrackPlaceholder(placeholder.gameObject);
         }
@@ -250,7 +250,7 @@ namespace EA4S.Assessment
         private Answer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
         {
             return
-            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer, true, audioManager);
+            ItemFactory.Instance.SpawnAnswer( correctAnswer, true, audioManager);
         }
     }
 }

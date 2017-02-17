@@ -147,7 +147,7 @@ namespace EA4S.Assessment
 
             boxes[boxes.Length - 1] = ll;
 
-            var box = LivingLetterFactory.Instance.SpawnQuestionBox( boxes);
+            var box = ItemFactory.Instance.SpawnQuestionBox( boxes);
             box.Show();
             audioManager.PlayPoofSound();
 
@@ -156,7 +156,7 @@ namespace EA4S.Assessment
 
         protected void PlaceImage( IQuestion q, Vector3 imagePos)
         {
-            var ll = LivingLetterFactory.Instance.SpawnQuestion( q.Image());
+            var ll = ItemFactory.Instance.SpawnQuestion( q.Image());
 
             images.Add( ll);
             ll.transform.position = imagePos;

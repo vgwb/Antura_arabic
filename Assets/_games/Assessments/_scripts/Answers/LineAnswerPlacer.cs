@@ -141,7 +141,7 @@ namespace EA4S.Assessment
         private void AddPlaceHolder( Vector3 currentPos)
         {
             currentPos.z = 5.5f;
-            var placeholder = LivingLetterFactory.Instance.SpawnPlaceholder( LivingLetterDataType.Letter);
+            var placeholder = ItemFactory.Instance.SpawnPlaceholder( LivingLetterDataType.Letter);
             placeholder.transform.localPosition = currentPos;
             placeholder.InstaShrink();
             placeholders.Add( placeholder);
@@ -149,7 +149,7 @@ namespace EA4S.Assessment
 
         private void SpawnLettersBG()
         {
-            bgBox = LivingLetterFactory.Instance.SpawnQuestionBox( placeholders);
+            bgBox = ItemFactory.Instance.SpawnQuestionBox( placeholders);
             bgBox.Show();
 
             foreach ( var p in placeholders)

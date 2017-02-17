@@ -1,11 +1,15 @@
-using EA4S.Antura;
 using EA4S.MinigamesAPI;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S.Assessment
 {
-    public class LivingLetterFactory: MonoBehaviour
+    /// <summary>
+    /// This class is used to instantiate Assessment's specific items
+    /// on the map. Those can be both instances already present on the
+    /// map or injected prefabs.
+    /// </summary>
+    public class ItemFactory: MonoBehaviour
     {
         [Header( "Prefabs")]
         public GameObject StillLetterBox = null;
@@ -17,12 +21,16 @@ namespace EA4S.Assessment
         public GameObject Placeholders = null;
         public GameObject QuestionBoxes = null;
 
-        [Header("Scene")]
-        public AnturaAnimationController antura = null;
+        [Header("Positions")]
+        public Transform AnturaStart = null;
+        public Transform AnturaMiddle = null;
+        public Transform AnturaEnd = null;
+
+        private AnturaView antura = null;
 
         private int counter = 0;
 
-        public AnturaAnimationController GetAntura()
+        public AnturaView GetAntura()
         {
             return antura;
         }
@@ -86,10 +94,11 @@ namespace EA4S.Assessment
         void Awake()
         {
             instance = this;
+            antura = FindObjectOfType< AnturaView>();
         }
 
-        static LivingLetterFactory instance;
-        public static LivingLetterFactory Instance
+        static ItemFactory instance;
+        public static ItemFactory Instance
         {
             get
             {

@@ -249,7 +249,7 @@ namespace EA4S.Assessment
         private IQuestion GenerateCustomQuestion(ILivingLetterData question, LL_LetterData correctLetter)
         {
             LL_WordData word = question as LL_WordData;
-            var wordGO = LivingLetterFactory.Instance.SpawnQuestion(word);
+            var wordGO = ItemFactory.Instance.SpawnQuestion(word);
 
             var partsToRemove = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word.Data, correctLetter.Data);
             partsToRemove.Shuffle(); //pick a random letter
@@ -277,7 +277,7 @@ namespace EA4S.Assessment
             if (AssessmentOptions.Instance.ShowQuestionAsImage)
                 data = new LL_ImageData( data.Id);
 
-            var q = LivingLetterFactory.Instance.SpawnQuestion( data);
+            var q = ItemFactory.Instance.SpawnQuestion( data);
 
             if (AssessmentOptions.Instance.QuestionAnsweredFlip)
                 q.GetComponent< StillLetterBox>().HideHiddenQuestion();
@@ -288,12 +288,12 @@ namespace EA4S.Assessment
         private Answer GenerateWrongAnswer( ILivingLetterData wrongAnswer)
         {
             return
-            LivingLetterFactory.Instance.SpawnAnswer( wrongAnswer, false, dialogues);
+            ItemFactory.Instance.SpawnAnswer( wrongAnswer, false, dialogues);
         }
 
         private void GeneratePlaceHolder( IQuestion question, LivingLetterDataType dataType)
         {
-            var placeholder = LivingLetterFactory.Instance.SpawnPlaceholder( dataType);
+            var placeholder = ItemFactory.Instance.SpawnPlaceholder( dataType);
             placeholder.InstaShrink();
             question.TrackPlaceholder( placeholder.gameObject);
         }
@@ -303,7 +303,7 @@ namespace EA4S.Assessment
             cacheAnswerToRead = correctAnswer;
 
             return
-            LivingLetterFactory.Instance.SpawnAnswer( correctAnswer, true, dialogues);
+            ItemFactory.Instance.SpawnAnswer( correctAnswer, true, dialogues);
         }
     }
 }
