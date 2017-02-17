@@ -30,7 +30,7 @@ namespace EA4S.Assessment
         private AssessmentAudioManager audioManager;
         private QuestionPlacerOptions placerOptions;
 
-        public void Place(Answer[] answer)
+        public void Place( Answer[] answer)
         {
             allAnswers = answer;
             isAnimating = true;
@@ -49,7 +49,7 @@ namespace EA4S.Assessment
             float xMin = placerOptions.LeftX + placerOptions.AnswerSize/2f + 2.0f;
             float xMax = placerOptions.RightX - placerOptions.AnswerSize/2f - 1.0f;
             float yMin = placerOptions.BottomY + 1.7f;
-            float z = 5f;
+            float z = placerOptions.DefaultZ;
 
 
             for (float x = xMin; x < xMax; x += placerOptions.AnswerSize + 0.2f)

@@ -20,6 +20,7 @@ namespace EA4S.Assessment
         public float RightX { private set { } get { return TopY * mainCamera.aspect; } }
         public float LeftX { private set { } get { return BottomY * mainCamera.aspect; } }
         public float QuestionY { private set { } get { return TopY - 5.0f; } }
+        public float DefaultZ { private set { } get { return 5; } }
 
         //################################################
         //                  INSTANCE
