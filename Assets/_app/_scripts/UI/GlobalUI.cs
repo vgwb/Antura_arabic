@@ -26,6 +26,7 @@ namespace EA4S.UI
         const string ResourceId = "Prefabs/UI/GlobalUI";
         const string SceneTransitionerResourceId = "Prefabs/UI/SceneTransitionerUI";
         Action onGoBack;
+        bool disableBackButtonOnClick;
 
         public static void Init()
         {
@@ -95,10 +96,15 @@ namespace EA4S.UI
         /// </summary>
         /// <param name="_doShow">If TRUE shows it, otherwise hides it</param>
         /// <param name="_callback">Callback to fire when button is pressed. If left empty, calls <see cref="NavigationManager.GoBack"/></param>
-        public static void ShowBackButton(bool _doShow, Action _callback = null)
+        public static void ShowBackButton(bool _doShow, Action _callback = null, bool _disableOnClick = true)
         {
             I.BackButton.gameObject.SetActive(_doShow);
-            if (_doShow) I.onGoBack = _callback == null ? AppManager.I.NavigationManager.GoBack : _callback;
+            if (_doShow)
+            {
+                I.disableBackButtonOnClick = _disableOnClick;
+                I.BackButton.Bt.interactable = true;
+                I.onGoBack = _callback == null ? AppManager.I.NavigationManager.GoBack : _callback;
+            }
         }
 
         /// <summary>
@@ -119,6 +125,7 @@ namespace EA4S.UI
 
         void OnBack()
         {
+            if (disableBackButtonOnClick) I.BackButton.Bt.interactable = false;
             if (onGoBack != null) onGoBack();
         }
     }
