@@ -246,12 +246,12 @@ namespace EA4S.Assessment
 
         private const string RemovedLetterChar = "_";
 
-        private IQuestion GenerateCustomQuestion(ILivingLetterData question, LL_LetterData correctLetter)
+        private IQuestion GenerateCustomQuestion( ILivingLetterData question, LL_LetterData correctLetter)
         {
             LL_WordData word = question as LL_WordData;
-            var wordGO = ItemFactory.Instance.SpawnQuestion(word);
+            var wordGO = ItemFactory.Instance.SpawnQuestion( word);
 
-            var partsToRemove = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word.Data, correctLetter.Data);
+            var partsToRemove = ArabicAlphabetHelper.FindLetter( AppManager.I.DB, word.Data, correctLetter.Data);
             partsToRemove.Shuffle(); //pick a random letter
 
             string text = ArabicAlphabetHelper.GetWordWithMissingLetterText(
@@ -260,13 +260,13 @@ namespace EA4S.Assessment
             if (config == DefaultQuestionType.MissingForm)
             {
                 wordGO.Label.text = text;
-                AddCompleteWordEvent(word.TextForLivingLetter, wordGO);
+                AddCompleteWordEvent( word.TextForLivingLetter, wordGO);
             }
 
             wordGO.InstaShrink();
             correctLetter.Form = partsToRemove[0].letterForm;
 
-            return new DefaultQuestion(wordGO, 1, dialogues);
+            return new DefaultQuestion( wordGO, 1, dialogues);
         }
 
 
