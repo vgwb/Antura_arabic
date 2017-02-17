@@ -59,10 +59,10 @@ namespace EA4S.Assessment
 
         public IYieldable PlayAssessmentCompleteSound()
         {
-            return Dialogue( Localization.Random(
+            return Speak( Localization.Random(
                                         LocalizationDataId.Assessment_Complete_1,
                                         LocalizationDataId.Assessment_Complete_2,
-                                        LocalizationDataId.Assessment_Complete_3), true);
+                                        LocalizationDataId.Assessment_Complete_3));
         }
 
         public IYieldable PlayAnswerWrong()
