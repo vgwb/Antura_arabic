@@ -74,7 +74,7 @@ namespace EA4S.Assessment
             
             var flow = AssessmentOptions.Instance.LocaleTextFlow;
             float sign;
-            Vector3 currentPos = new Vector3( 0, options.QuestionY, 5f);
+            Vector3 currentPos = new Vector3( 0, options.QuestionY, options.DefaultZ);
 
             if (flow == TextFlow.RightToLeft)
             {
