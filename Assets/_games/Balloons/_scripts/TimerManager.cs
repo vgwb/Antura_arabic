@@ -10,7 +10,6 @@ namespace EA4S.Balloons
         //public TextMeshProUGUI timerText;
 
         private bool isRunning;
-        private bool playedSfx;
         private float timeRemaining;
 
 
@@ -23,11 +22,7 @@ namespace EA4S.Balloons
                     timeRemaining -= Time.deltaTime;
                     DisplayTime();
                 }
-                if (!playedSfx && timeRemaining < 4.5f)
-                {
-                    BalloonsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
-                    playedSfx = true;
-                }
+
                 if (timeRemaining <= 0f)
                 {
                     StopTimer();
@@ -54,7 +49,6 @@ namespace EA4S.Balloons
         public void StopTimer()
         {
             isRunning = false;
-            playedSfx = false;
             if (MinigamesUI.Timer != null)
             {
                 MinigamesUI.Timer.Pause();

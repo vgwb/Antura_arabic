@@ -8,8 +8,7 @@ namespace EA4S.Minigames.DancingDots
         DancingDotsGame game;
 
         float timer;
-        int alarmIsTriggered = 0;
-        IAudioSource alarmSound;
+        bool alarmIsTriggered = false;
 
         public PlayGameState(DancingDotsGame game)
         {
@@ -39,24 +38,14 @@ namespace EA4S.Minigames.DancingDots
 
             if (timer < 0)
             {
-                if (alarmSound != null)
-                {
-                    alarmSound.Stop();
-                    alarmSound = null;
-                }
                 game.SetCurrentState(game.ResultState);
                 AudioManager.I.PlayDialogue("Keeper_TimeUp");
             }
 
-            else if (alarmIsTriggered == 0 && timer < 20)
+            else if (!alarmIsTriggered && timer < 20)
             {
-                alarmIsTriggered = 1;
+                alarmIsTriggered = true;
                 AudioManager.I.PlayDialogue("Keeper_Time_" + UnityEngine.Random.Range(1, 4));
-            }
-            else if (alarmIsTriggered == 1 && timer < 4)
-            {
-                alarmIsTriggered = 2;
-                alarmSound = game.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
             }
         }
 

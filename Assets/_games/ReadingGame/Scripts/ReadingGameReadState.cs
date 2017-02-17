@@ -11,9 +11,6 @@ namespace EA4S.Minigames.ReadingGame
 
         CountdownTimer gameTime = new CountdownTimer(90.0f);
         ReadingGameGame game;
-        IAudioSource timesUpAudioSource;
-
-        bool hurryUpSfx;
 
         bool completedDragging = false;
         ReadingBar dragging;
@@ -54,8 +51,6 @@ namespace EA4S.Minigames.ReadingGame
                     drawTutorialLineTimer = 0;
                 }
             }
-
-            hurryUpSfx = false;
 
             var inputManager = game.Context.GetInputManager();
 
@@ -110,10 +105,7 @@ namespace EA4S.Minigames.ReadingGame
 
             inputManager.onPointerDown -= OnPointerDown;
             inputManager.onPointerUp -= OnPointerUp;
-
-            if (timesUpAudioSource != null)
-                timesUpAudioSource.Stop();
-
+            
             gameTime.Stop();
 
             game.barSet.active = false;
@@ -138,16 +130,6 @@ namespace EA4S.Minigames.ReadingGame
                         drawTutorialLineTimer = 5;
                         TutorialUI.DrawLine(activeBar.start.transform.position, activeBar.endCompleted.transform.position, TutorialUI.DrawLineMode.FingerAndArrow, false, true);
                     }
-                }
-            }
-
-            if (!hurryUpSfx)
-            {
-                if (gameTime.Time < 4f)
-                {
-                    hurryUpSfx = true;
-
-                    timesUpAudioSource = game.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
                 }
             }
 
