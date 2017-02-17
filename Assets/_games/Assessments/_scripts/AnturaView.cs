@@ -81,16 +81,19 @@ namespace EA4S.Assessment
             {
                 yield return state.EnterState();
 
-                bool running = false;
-                controller.DoCharge(() => running = true);
-                while (running == false)
-                    yield return null;
+                controller.State = AnturaAnimationStates.walking;
+                controller.IsExcited = true;
+
+                yield return Wait.For( 0.6f);
 
                 var middlePos = ItemFactory.Instance.AnturaMiddle;
-                transform.DOMove( middlePos.localPosition, 2.2f)
+                transform.DOMove( middlePos.localPosition, 3.0f)
                     .SetEase( Ease.InOutSine);
 
-                yield return Wait.For( 1.9f);
+                yield return Wait.For( 2.4f);
+                transform.DORotateQuaternion( middlePos.localRotation, 0.5f);
+
+                yield return Wait.For( 0.3f);
                 yield return state.Change( Idle);
             }
         }
