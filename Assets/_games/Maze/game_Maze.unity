@@ -3255,6 +3255,7 @@ MonoBehaviour:
   incorrectLineColor: {r: 0.9411765, g: 0.08996537, b: 0.08996537, a: 0.78431374}
   durationToTweenLineColors: 0.33
   drawingTool: {fileID: 1356992599}
+  drawingToolRigidbody: {fileID: 0}
   isShowingAntura: 0
 --- !u!4 &436118478
 Transform:
@@ -4971,7 +4972,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!1 &1190970775
 GameObject:
   m_ObjectHideFlags: 0
@@ -5258,7 +5259,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!1 &1360935980
 GameObject:
   m_ObjectHideFlags: 0
