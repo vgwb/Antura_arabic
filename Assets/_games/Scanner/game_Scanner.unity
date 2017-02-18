@@ -4151,7 +4151,7 @@ GameObject:
   - component: {fileID: 823486185}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14533,8 +14533,6 @@ MonoBehaviour:
   timesCanAppear: 5
   fallenLL: []
   stars: {fileID: 960105611}
-  sm: {fileID: 1663151178}
-  whiteTex: {fileID: 2800000, guid: c3540335b307dd047b876022df458464, type: 3}
   redMat: {fileID: 2100000, guid: c1c9d77de646e1740ba3af39a552e74e, type: 2}
 --- !u!135 &1218517458
 SphereCollider:
@@ -17078,11 +17076,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: e4e52845467fb3641b6e2aceac3aa6ad, type: 3}
   m_PrefabInternal: {fileID: 1795942364}
---- !u!137 &1663151178 stripped
-SkinnedMeshRenderer:
-  m_PrefabParentObject: {fileID: 137000012419263434, guid: b1eab1b3eca314d40b04cff3efb77336,
-    type: 2}
-  m_PrefabInternal: {fileID: 1218517451}
 --- !u!1001 &1663848007
 Prefab:
   m_ObjectHideFlags: 0

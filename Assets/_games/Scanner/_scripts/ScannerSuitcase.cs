@@ -63,12 +63,13 @@ namespace EA4S.Minigames.Scanner
             thisRigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
 
             StartCoroutine(Coroutine_ScaleOverTime(1f));
-
+            
             yield return new WaitForSeconds(1.5f);
             isReady = true;
             thisRigidbody.isKinematic = true;
             thisCollider.size = originalColliderSize;
             thisCollider.center = originalColliderCenter;
+            
         }
 
         IEnumerator resetSuitCasePos()
@@ -107,7 +108,7 @@ namespace EA4S.Minigames.Scanner
 
 		public void Reset(bool newRound = true)
 		{
-            isReady = false;
+            groundHit = isReady = false;
             transform.parent = originalParent;
             
             //transform.position = new Vector3(startX, startY, startZ);
@@ -168,7 +169,19 @@ namespace EA4S.Minigames.Scanner
 		}
 
         private ScannerLivingLetter lastDetectedLL;
-		void OnTriggerEnter(Collider other)
+        bool groundHit;
+
+        void OnCollisionEnter(Collision other )
+        {
+
+            if (!groundHit && other.gameObject.tag == "Obstacle")
+            {
+                groundHit = true;
+                ScannerConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.CrateLandOnground);
+            }
+        }
+
+        void OnTriggerEnter(Collider other)
 		{
             if (other.tag == "Player")
             {
@@ -176,6 +189,8 @@ namespace EA4S.Minigames.Scanner
                 overPlayermarker = true;
 				player = other;
 			}
+
+            
 		}
 
 		void OnTriggerStay(Collider other)

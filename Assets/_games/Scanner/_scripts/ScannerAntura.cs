@@ -215,7 +215,7 @@ namespace EA4S.Minigames.Scanner
             //StartCoroutine(flashRed(sm));
             flashRedGO(gameObject);
             anturaAnimator.CrossFade("dog_suck_end", 0.3f);
-            AudioManager.I.PlaySound(Sfx.BallHit);
+            AudioManager.I.PlaySound(Sfx.Dog_Scared);
             yield return new WaitForSeconds(0.3f);
             anturaAnimator.SetBool("idle", true);
             anturaAnimator.CrossFade("dog_stand_sad_breath", 0.2f);
