@@ -11,37 +11,53 @@ namespace EA4S.Balloons
         public BalloonVariation[] variations;
 
         [Header("Floating Letter Parameters")]
-        [Range(-1, 2)] [Tooltip("Index of default variation (-1 for none)")]
+        [Range(-1, 2)]
+        [Tooltip("Index of default variation (-1 for none)")]
         public int defaultActiveVariation;
-        [Range(0, 10)] [Tooltip("e.g.: 1")]
+        [Range(0, 10)]
+        [Tooltip("e.g.: 1")]
         public float floatSpeed;
-        [Range(0, 10)] [Tooltip("e.g.: 1.5")]
+        [Range(0, 10)]
+        [Tooltip("e.g.: 1.5")]
         public float floatDistance;
-        [Range(0, 1)] [Tooltip("e.g.: 0.25")]
+        [Range(0, 1)]
+        [Tooltip("e.g.: 0.25")]
         public float floatRandomnessFactor;
-        [Range(0, 10)] [Tooltip("e.g.: 2.5")]
+        [Range(0, 10)]
+        [Tooltip("e.g.: 2.5")]
         public float distanceRandomnessMargin;
-        [Range(0, 10)] [Tooltip("e.g.: 1")]
+        [Range(0, 10)]
+        [Tooltip("e.g.: 1")]
         public float waftSpeed;
-        [Range(0, 1)] [Tooltip("e.g.: 0.75")]
+        [Range(0, 1)]
+        [Tooltip("e.g.: 0.75")]
         public float waftRandomnessFactor;
-        [Range(-10, 10)] [Tooltip("e.g.: 2")]
+        [Range(-10, 10)]
+        [Tooltip("e.g.: 2")]
         public float stageMargin;
-        [Range(0, 500)] [Tooltip("e.g.: 50")]
+        [Range(0, 500)]
+        [Tooltip("e.g.: 50")]
         public float initialSwingPush;
-        [Range(0, 1)] [Tooltip("e.g.: 0.5")]
+        [Range(0, 1)]
+        [Tooltip("e.g.: 0.5")]
         public float initialSwingRandomnessFactor;
-        [Range(0, 10)] [Tooltip("e.g.: 2")]
+        [Range(0, 10)]
+        [Tooltip("e.g.: 2")]
         public float stageEntranceDuration;
-        [Range(0, 10)] [Tooltip("e.g.: 2")]
+        [Range(0, 10)]
+        [Tooltip("e.g.: 2")]
         public float dragSpeed;
-        [Range(1, 10)] [Tooltip("e.g.: 1")]
+        [Range(1, 10)]
+        [Tooltip("e.g.: 1")]
         public int tapsNeeded;
-        [Range(0, 100f)] [Tooltip("e.g.: 9.5")]
+        [Range(0, 100f)]
+        [Tooltip("e.g.: 9.5")]
         public float shockwaveRadius;
-        [Range(0, 100f)] [Tooltip("e.g.: 1")]
+        [Range(0, 100f)]
+        [Tooltip("e.g.: 1")]
         public float shockwavePower;
-        [Range(0, -30f)] [Tooltip("e.g.: -15")]
+        [Range(0, -30f)]
+        [Tooltip("e.g.: -15")]
         public float focusZ;
 
         [HideInInspector]
@@ -62,7 +78,7 @@ namespace EA4S.Balloons
         public BalloonVariation ActiveVariation
         {
             get
-            { return _activeVariation; } 
+            { return _activeVariation; }
             private set
             {
                 _activeVariation = value;
@@ -284,12 +300,22 @@ namespace EA4S.Balloons
                     Letter.FlashLetterInWord(((LL_LetterData)BalloonsGame.instance.question).Data, Color.red);
                 }
             }
-            if (BalloonsGame.instance.ActiveGameVariation == BalloonsVariation.Counting)
-            {
 
+            else if (BalloonsGame.instance.ActiveGameVariation != BalloonsVariation.Counting)
+            {
+                BalloonsGame.instance.OnPoppedNonRequiredBalloon();
+            }
+
+            else
+            {
                 if (Letter.letterData.Id != BalloonsGame.instance.correctAnswers.ToList()[BalloonsGame.instance.countingIndex].Id)
                 {
                     BalloonsGame.instance.OnPoppedRequiredBalloon(-1);
+                }
+
+                else
+                {
+                    BalloonsGame.instance.OnPoppedNonRequiredBalloon();
                 }
             }
 
