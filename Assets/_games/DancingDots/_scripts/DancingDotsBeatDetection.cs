@@ -6,10 +6,10 @@ namespace EA4S.Minigames.DancingDots
     public class DancingDotsBeatDetection : MonoBehaviour
     {
 
-        public float pitchThreshold = 200f, RmsThreshold = 0.19f;
+        public float minInterval = 0.3f, pitchThreshold = 2000f, RmsThreshold = 0.19f;
         DancingDotsQuadManager disco;
         DancingDotsGame game;
-
+        bool canBeat = true;
 
         public float RmsValue;
         public float DbValue;
@@ -35,14 +35,32 @@ namespace EA4S.Minigames.DancingDots
             _fSample = AudioSettings.outputSampleRate;
         }
 
+        IEnumerator reset() {
+            yield return new WaitForSeconds(minInterval);
+            canBeat = true;
+              
+        }
+        
         void Update()
         {
             AnalyzeSound();
 
+
             if (PitchValue > pitchThreshold || RmsValue > RmsThreshold)
             {
-                disco.swap();
-                disco.swap(game.DDBackgrounds);
+                if (canBeat)
+                {
+                    canBeat = false;
+                    StartCoroutine(reset());
+                    disco.swap();
+                    disco.swap();
+                    disco.swap();
+                    disco.swap();
+                    disco.swap(game.DDBackgrounds);
+                    disco.swap(game.DDBackgrounds);
+                    disco.swap(game.DDBackgrounds);
+                    disco.swap(game.DDBackgrounds);
+                }
             }
 
             string text = "RMS: " + RmsValue.ToString("F2") +

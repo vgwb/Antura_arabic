@@ -62,8 +62,11 @@ public class DancingDotsQuadManager : MonoBehaviour {
 
     public void swap(SpriteRenderer[] sprts)
     {
-        int Q1 = UnityEngine.Random.Range(0, sprts.Length);
-        int Q2 = -1;
+
+        int Q1, Q2 = -1;
+
+        Q1 = UnityEngine.Random.Range(0, sprts.Length);
+
         do
         {
             Q2 = UnityEngine.Random.Range(0, sprts.Length);
