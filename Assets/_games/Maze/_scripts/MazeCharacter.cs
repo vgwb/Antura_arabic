@@ -330,6 +330,8 @@ namespace EA4S.Minigames.Maze
 
             if (other.gameObject.name.IndexOf("fruit_") == 0)
             {
+                other.enabled = false;
+
                 //we hit a fruit make sure it is in order:
                 int index = int.Parse(other.gameObject.name.Substring(6));
 
