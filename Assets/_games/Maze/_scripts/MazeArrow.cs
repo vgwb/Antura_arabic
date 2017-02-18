@@ -101,6 +101,7 @@ namespace EA4S.Minigames.Maze
             particleSystemMainModule.startColor = greenParticleSystemColor;
             particleSystemMainModule.loop = true;
             Unhighlight();
+            GetComponent<BoxCollider>().enabled = true;
         }
     }
 }
