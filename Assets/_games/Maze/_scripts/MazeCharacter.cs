@@ -31,6 +31,10 @@ namespace EA4S.Minigames.Maze
         private const float FLEE_PATH_ENDPOINT_DISTANCE_FROM_CAMERA = 5f;
         private const float FLEE_PATH_DURATION = 2.5f;
 
+        private const float DELAY_TO_PRONOUNCE_LETTER = 0.1f;
+        private const float DELAY_BETWEEN_LETTER_SOUND_AND_CHECKMARK = 0.2f;
+        private const float DELAY_BETWEEN_CHECKMARK_AND_EXIT = 1.33f;
+
         private enum LLState
         {
             Normal, Braked, Impacted, Ragdolling
@@ -128,6 +132,17 @@ namespace EA4S.Minigames.Maze
         public LivingLetterRagdoll ragdoll;
 
         private IAudioSource rocketMoveSFX;
+
+        private bool showedCheckmarkUponVictory = false;
+
+        private IAudioSource letterPronounciation;
+        private bool pronouncedLetter = false;
+        private Tweener celebrationPathTweener;
+        private Tweener brakeYoyoTweener;
+        private bool markedEndTimeOfLetterPronounciation = false;
+        private float endTimeOfLetterPronounciation;
+
+        private Vector3 raycastCheckTarget;
 
         public void SetMazeLetter(MazeLetter mazeLetter)
         {
@@ -257,6 +272,9 @@ namespace EA4S.Minigames.Maze
             {
                 transform.DOMove(transform.position - transform.TransformVector(Vector3.left), 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
             });
+
+            raycastCheckTarget = transform.position;
+            raycastCheckTarget.y = TrackBounds.instance.transform.position.y;
         }
 
         public void CreateFruits(List<GameObject> fruitsLists)
@@ -317,6 +335,8 @@ namespace EA4S.Minigames.Maze
 
             if (other.gameObject.name.IndexOf("fruit_") == 0)
             {
+                other.enabled = false;
+
                 //we hit a fruit make sure it is in order:
                 int index = int.Parse(other.gameObject.name.Substring(6));
 
@@ -568,7 +588,7 @@ namespace EA4S.Minigames.Maze
                     rotatedVector.y = 2f;
 
                     Tutorial.TutorialUI.MarkNo((_fruits[currentFruitIndex].transform.position + rocket.transform.position) / 2 + rotatedVector, Tutorial.TutorialUI.MarkSize.Normal);
-                    
+
                     rocketMoveSFX.Stop();
 
                     MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
@@ -623,7 +643,7 @@ namespace EA4S.Minigames.Maze
             rocketRigidBody.AddRelativeTorque(new Vector3(Random.Range(-40f, 40f), Random.Range(-40f, 40f), Random.Range(-40f, 40f)) * 100f);
 
             State = LLState.Impacted;
-            
+
             rocketMoveSFX.Stop();
 
             MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.CrateLandOnground);
@@ -668,12 +688,37 @@ namespace EA4S.Minigames.Maze
                 MazeGameManager.instance.appendToLine(targetPos);
             }
 
-
+            var raycastSource = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs(Camera.main.transform.position.y - raycastCheckTarget.y));
+            raycastSource = Camera.main.ScreenToWorldPoint(raycastSource);
 
             if (previousPosition != targetPos)
             {
                 characterWayPoints.Add(targetPos + new Vector3(0, 1, 0));
-                MazeGameManager.instance.drawingTool.transform.position = targetPos + new Vector3(0, 1, 0);
+                var oldDrawingToolPosition = MazeGameManager.instance.drawingTool.transform.position;
+                var newDrawingToolPosition = targetPos + new Vector3(0, 1, 0);
+                MazeGameManager.instance.drawingTool.transform.position = newDrawingToolPosition;
+
+                RaycastHit hitInfo;
+
+                if (Physics.Raycast(raycastSource, raycastCheckTarget - raycastSource, out hitInfo, Vector3.Distance(raycastSource, raycastCheckTarget), LayerMask.GetMask("TrackBounds")))
+                {
+                    var collisionPoint = hitInfo.point;
+
+                    var adjustedLinePoint = Camera.main.WorldToScreenPoint(collisionPoint);
+                    adjustedLinePoint = new Vector3(adjustedLinePoint.x, adjustedLinePoint.y, -distance);
+                    adjustedLinePoint = Camera.main.ScreenToWorldPoint(adjustedLinePoint);
+                    MazeGameManager.instance.AdjustLastPointOfLine(adjustedLinePoint);
+
+                    var pointOfImpact = Camera.main.WorldToScreenPoint(collisionPoint);
+                    pointOfImpact = new Vector3(pointOfImpact.x, pointOfImpact.y, Camera.main.transform.position.y - transform.position.y - 2f);
+                    pointOfImpact = Camera.main.ScreenToWorldPoint(pointOfImpact);
+
+                    mazeLetter.OnPointerOverTrackBounds(pointOfImpact);
+                }
+                else
+                {
+                    Debug.Log("Raycast false!");
+                }
             }
 
             if ((_fruits[_fruits.Count - 1].transform.position - targetPos).sqrMagnitude < 0.1f)
@@ -821,7 +866,7 @@ namespace EA4S.Minigames.Maze
 
                     if (!MazeGameManager.instance.isTutorialMode)
                     {
-                        MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose); 
+                        MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
                     }
 
                 },
@@ -879,7 +924,7 @@ namespace EA4S.Minigames.Maze
 
             bool braked = false;
 
-            transform.DOPath(celebrationPathPoints.ToArray(), CELEBRATION_PATH_DURATION, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) =>
+            celebrationPathTweener = transform.DOPath(celebrationPathPoints.ToArray(), CELEBRATION_PATH_DURATION, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) =>
             {
                 if (index < celebrationPathPoints.Count - 3)
                 {
@@ -894,31 +939,17 @@ namespace EA4S.Minigames.Maze
                 {
                     braked = true;
 
-                    transform.DOPause();
+                    celebrationPathTweener.Pause();
 
                     State = LLState.Braked;
 
                     winParticleVFX.SetActive(true);
 
-                    var tickPosition = transform.position;
-                    tickPosition.z -= 1.5f;
-                    tickPosition.x -= 0.5f;
+                    var dir = transform.position - celebrationPathPoints[index + 1];
 
-                    Tutorial.TutorialUI.MarkYes(tickPosition, Tutorial.TutorialUI.MarkSize.Big);
-                    MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.StampOK);
+                    brakeRotation = GetCorrectedRotationOfRocket(dir);
 
-                    transform.DOMove(transform.position + new Vector3(-0.5f, 0.5f, -0.5f) * 0.33f, 0.75f).SetEase(Ease.InOutSine).SetLoops(3, LoopType.Yoyo).OnComplete(() =>
-                  {
-                      State = LLState.Normal;
-
-                      transform.DOPlay();
-
-                      var dir = transform.position - celebrationPathPoints[index + 1];
-
-                      brakeRotation = GetCorrectedRotationOfRocket(dir);
-
-                      //transform.DORotate(brakeRotation, 0.33f);
-                  });
+                    brakeYoyoTweener = transform.DOMove(transform.position + new Vector3(-0.5f, 0.5f, -0.5f) * 0.33f, 0.75f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
                 }
 
                 else if (index == celebrationPathPoints.Count - 2)
@@ -975,7 +1006,7 @@ namespace EA4S.Minigames.Maze
 
             bool braked = false;
 
-            transform.DOPath(celebrationPathPoints.ToArray(), CELEBRATION_PATH_DURATION, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) =>
+            celebrationPathTweener = transform.DOPath(celebrationPathPoints.ToArray(), CELEBRATION_PATH_DURATION, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) =>
             {
                 if (index < celebrationPathPoints.Count - 2)
                 {
@@ -990,31 +1021,19 @@ namespace EA4S.Minigames.Maze
                 {
                     braked = true;
 
-                    transform.DOPause();
+                    celebrationPathTweener.Pause();
 
                     State = LLState.Braked;
 
                     winParticleVFX.SetActive(true);
 
-                    var tickPosition = transform.position;
-                    tickPosition.z -= 1.5f;
-                    tickPosition.x -= 0.5f;
 
-                    Tutorial.TutorialUI.MarkYes(tickPosition, Tutorial.TutorialUI.MarkSize.Big);
-                    MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.StampOK);
 
-                    transform.DOMove(transform.position + new Vector3(-0.5f, 0.5f, -0.5f) * 0.33f, 0.75f).SetEase(Ease.InOutSine).SetLoops(3, LoopType.Yoyo).OnComplete(() =>
-                    {
-                        State = LLState.Normal;
+                    var dir = transform.position - celebrationPathPoints[index + 1];
 
-                        transform.DOPlay();
+                    brakeRotation = GetCorrectedRotationOfRocket(dir);
 
-                        var dir = transform.position - celebrationPathPoints[index + 1];
-
-                        brakeRotation = GetCorrectedRotationOfRocket(dir);
-
-                        //transform.DORotate(brakeRotation, 0.33f);
-                    });
+                    brakeYoyoTweener = transform.DOMove(transform.position + new Vector3(-0.5f, 0.5f, -0.5f) * 0.33f, 0.75f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
                 }
 
             }).OnComplete(() =>
@@ -1033,6 +1052,42 @@ namespace EA4S.Minigames.Maze
                     break;
                 case LLState.Braked:
                     transform.rotation = Quaternion.Euler(brakeRotation);
+
+                    if (stateTime > DELAY_TO_PRONOUNCE_LETTER && !pronouncedLetter)
+                    {
+                        letterPronounciation = MazeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(MazeGameManager.instance.currentLL);
+                        pronouncedLetter = true;
+                    }
+
+                    else if (pronouncedLetter && !letterPronounciation.IsPlaying)
+                    {
+                        if (!markedEndTimeOfLetterPronounciation)
+                        {
+                            endTimeOfLetterPronounciation = Time.time;
+                            markedEndTimeOfLetterPronounciation = true;
+                        }
+
+                        if (Time.time - endTimeOfLetterPronounciation > DELAY_BETWEEN_LETTER_SOUND_AND_CHECKMARK && !showedCheckmarkUponVictory)
+                        {
+                            var tickPosition = transform.position;
+                            tickPosition.z -= 1.5f;
+                            tickPosition.x -= 0.5f;
+
+                            Tutorial.TutorialUI.MarkYes(tickPosition, Tutorial.TutorialUI.MarkSize.Big);
+                            MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.StampOK);
+
+                            showedCheckmarkUponVictory = true;
+                        }
+
+                        if (Time.time - endTimeOfLetterPronounciation > (DELAY_BETWEEN_LETTER_SOUND_AND_CHECKMARK + DELAY_BETWEEN_CHECKMARK_AND_EXIT))
+                        {
+                            State = LLState.Normal;
+
+                            brakeYoyoTweener.Kill();
+                            celebrationPathTweener.Play();
+                        }
+                    }
+
                     break;
                 case LLState.Impacted:
                     if (stateTime >= 0.33f)

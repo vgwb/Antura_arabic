@@ -6,19 +6,13 @@ namespace EA4S.Minigames.Maze
 {
     public class TrackBounds : MonoBehaviour
     {
+        public static TrackBounds instance;
+
         private MazeLetter mazeLetter;
 
-        void OnTriggerEnter(Collider other)
+        private void Awake()
         {
-            if (other.gameObject.name == "MiniDrawingTool")
-            {
-                mazeLetter.OnPointerOverTrackBounds();
-            }
-        }
-
-        public void SetMazeLetter(MazeLetter mazeLetter)
-        {
-            this.mazeLetter = mazeLetter;
+            instance = this;
         }
     }
 }

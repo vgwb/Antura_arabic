@@ -583,6 +583,11 @@ namespace EA4S.Minigames.Maze
             }
         }
 
+        public void AdjustLastPointOfLine(Vector3 adjustedPoint)
+        {
+            lines[lines.Count - 1].SetPosition(pointsList.Count - 1, adjustedPoint);
+        }
+
         bool gameEnded = false;
         private void endGame()
         {

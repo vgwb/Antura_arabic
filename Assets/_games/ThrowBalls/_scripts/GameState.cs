@@ -113,6 +113,9 @@ namespace EA4S.Minigames.ThrowBalls
             // Layer 8 = Terrain. Layer 12 = Ball.
             Physics.IgnoreLayerCollision(8, 10);
 
+            // Layer 16 = Slingshot; Layer 10 = Player (Antura).
+            Physics.IgnoreLayerCollision(16, 10);
+
             letterSpawner = new LetterSpawner();
 
             foreach (Collider collider in ThrowBallsGame.instance.environment.GetComponentsInChildren<Collider>())
