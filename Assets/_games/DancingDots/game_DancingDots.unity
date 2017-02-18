@@ -764,7 +764,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4e21077ce00d3fe42a8f31f974fa0be6, type: 3}
-  m_Color: {r: 1, g: 0.99, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.6827586, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1001 &166662978
@@ -2640,7 +2640,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4e21077ce00d3fe42a8f31f974fa0be6, type: 3}
-  m_Color: {r: 1, g: 0.99, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.07499999, b: 0.07499999, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!4 &511964082 stripped
@@ -6132,6 +6132,10 @@ Prefab:
     - target: {fileID: 1000011380128364, guid: 380988909aba2462c8a2d2888f035197, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013196652808, guid: 380988909aba2462c8a2d2888f035197, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 380988909aba2462c8a2d2888f035197, type: 2}
@@ -10089,7 +10093,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4e21077ce00d3fe42a8f31f974fa0be6, type: 3}
-  m_Color: {r: 1, g: 0.99, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.403, b: 0.403, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1043797750
@@ -11069,7 +11073,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4e21077ce00d3fe42a8f31f974fa0be6, type: 3}
-  m_Color: {r: 1, g: 0.99, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1198136046
@@ -11542,6 +11546,15 @@ MonoBehaviour:
   - {fileID: 489500345}
   - {fileID: 489500344}
   - {fileID: 1776853323}
+  DDBackgrounds:
+  - {fileID: 490128969}
+  - {fileID: 1422813884}
+  - {fileID: 1169690524}
+  - {fileID: 165222122}
+  - {fileID: 2120538036}
+  - {fileID: 1499000219}
+  - {fileID: 1545207137}
+  - {fileID: 1036951525}
   activeDiacritic: {fileID: 0}
   letterDiacritic: 0
   currentLetter: 
@@ -11703,7 +11716,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4e21077ce00d3fe42a8f31f974fa0be6, type: 3}
-  m_Color: {r: 1, g: 0.99, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.29803923, b: 0.83921576, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!114 &1427352933
@@ -12058,7 +12071,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4e21077ce00d3fe42a8f31f974fa0be6, type: 3}
-  m_Color: {r: 1, g: 0.99, b: 0, a: 1}
+  m_Color: {r: 0.24313727, g: 0.83921576, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &1507208172
@@ -12284,7 +12297,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4e21077ce00d3fe42a8f31f974fa0be6, type: 3}
-  m_Color: {r: 1, g: 0.99, b: 0, a: 1}
+  m_Color: {r: 0.6936082, g: 0.3540079, b: 0.81568635, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!4 &1552952922
@@ -16456,7 +16469,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1935919482}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc12386049eeb477696e71d0572578e6, type: 3}
   m_Name: 
