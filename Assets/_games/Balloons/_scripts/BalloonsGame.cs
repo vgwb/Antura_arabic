@@ -484,7 +484,7 @@ namespace EA4S.Balloons
             //.Replace('9', '\u----');
 
             wordFlexibleContainer.gameObject.SetActive(true);
-            wordFlexibleContainer.SetNumber(numberValue);
+            wordFlexibleContainer.SetNumber(numberValue - 1);
         }
 
         private IEnumerator StartNewRound_Coroutine()
@@ -1162,6 +1162,14 @@ namespace EA4S.Balloons
             if (wordFlexibleContainer.enabled == true)
             {
                 wordFlexibleContainerAnimator.SetTrigger("Flash");
+            }
+        }
+
+        public void OnPoppedNonRequiredBalloon()
+        {
+            if (wordFlexibleContainer.enabled == true)
+            {
+                wordFlexibleContainerAnimator.SetTrigger("FlashCorrect");
             }
         }
 

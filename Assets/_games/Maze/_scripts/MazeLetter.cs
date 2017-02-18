@@ -96,18 +96,13 @@ namespace EA4S.Minigames.Maze
             }
         }
 
-        public void OnPointerOverTrackBounds()
+        public void OnPointerOverTrackBounds(Vector3 pointOfImpact)
         {
             if (CanLaunchRocket())
             {
                 mazeCharacter.loseState = MazeCharacter.LoseState.OutOfBounds;
 
                 MazeGameManager.instance.ColorCurrentLinesAsIncorrect();
-
-                var lastPointerPosition = MazeGameManager.instance.GetLastPointerPosition();
-
-                var pointOfImpact = Camera.main.ScreenToWorldPoint(new Vector3(lastPointerPosition.x, lastPointerPosition.y,
-                                                        Camera.main.transform.position.y - transform.position.y - 2f));
 
                 Tutorial.TutorialUI.MarkNo(pointOfImpact);
                 MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);

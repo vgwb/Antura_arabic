@@ -20,6 +20,8 @@ TagManager:
   - Scanner_ScanEnd
   - Rope
   - Pin
+  - Ground
+  - Bush
   layers:
   - Default
   - TransparentFX
@@ -37,8 +39,8 @@ TagManager:
   - TutorialUI
   - ModelsOverUI
   - Map
-  - 
-  - 
+  - Slingshot
+  - TrackBounds
   - 
   - 
   - 
