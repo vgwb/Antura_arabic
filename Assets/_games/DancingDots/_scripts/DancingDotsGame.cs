@@ -60,6 +60,7 @@ namespace EA4S.Minigames.DancingDots
         public float anturaMinScreenTime = 1f;
         public float anturaMaxScreenTime = 2f;
         public GameObject[] diacritics;
+        public SpriteRenderer[] DDBackgrounds;
         public DancingDotsDiacriticPosition activeDiacritic;
 
         [HideInInspector]
@@ -148,7 +149,9 @@ namespace EA4S.Minigames.DancingDots
             SceneTransitioner.Close();
 
             AudioManager.I.PlayMusic(Music.MainTheme);
-            //			DancingDotsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+            //AudioManager.I.transform.FindChild("Music").gameObject.AddComponent<AudioProcessor>();
+            AudioManager.I.transform.FindChild("Music").gameObject.AddComponent<DancingDotsBeatDetection>();
+            
 
             questionsManager = new DancingDotsQuestionsManager();
 
@@ -162,6 +165,7 @@ namespace EA4S.Minigames.DancingDots
             isPlaying = true;
 
             //			StartCoroutine(AnimateAntura());
+
 
         }
 
@@ -527,5 +531,59 @@ namespace EA4S.Minigames.DancingDots
             Context.GetOverlayWidget().SetStarsScore(0);
         }
 
+        /*IEnumerator queBeats() {
+
+            yield return new WaitForSeconds(4);
+            AudioManager.I.PlayMusic(Music.MainTheme);
+            StartCoroutine(doBeatAt(0.02f));
+            StartCoroutine(doBeatAt(0.11f));
+            StartCoroutine(doBeatAt(0.16f));
+            StartCoroutine(doBeatAt(0.20f));
+            StartCoroutine(doBeatAt(0.29f));
+            StartCoroutine(doBeatAt(1.08f));
+            StartCoroutine(doBeatAt(1.17f));
+            StartCoroutine(doBeatAt(1.21f));
+            StartCoroutine(doBeatAt(1.26f));
+            StartCoroutine(doBeatAt(2.05f));
+            StartCoroutine(doBeatAt(2.14f));
+            StartCoroutine(doBeatAt(2.23f));
+            StartCoroutine(doBeatAt(2.27f));
+            StartCoroutine(doBeatAt(3.02f));
+            StartCoroutine(doBeatAt(3.11f));
+            StartCoroutine(doBeatAt(3.20f));
+            StartCoroutine(doBeatAt(3.28f));
+            StartCoroutine(doBeatAt(4.03f));
+            StartCoroutine(doBeatAt(4.08f));
+            StartCoroutine(doBeatAt(4.17f));
+            StartCoroutine(doBeatAt(4.26f));
+            StartCoroutine(doBeatAt(5.05f));
+            StartCoroutine(doBeatAt(5.09f));
+            StartCoroutine(doBeatAt(5.13f));
+            StartCoroutine(doBeatAt(5.23f));
+            StartCoroutine(doBeatAt(6.02f));
+            StartCoroutine(doBeatAt(6.10f));
+            StartCoroutine(doBeatAt(6.16f));
+            StartCoroutine(doBeatAt(6.20f));
+            StartCoroutine(doBeatAt(6.28f));
+            StartCoroutine(doBeatAt(7.07f));
+            StartCoroutine(doBeatAt(7.16f));
+            StartCoroutine(doBeatAt(7.21f));
+            StartCoroutine(doBeatAt(7.26f));
+            StartCoroutine(doBeatAt(8.04f));
+            StartCoroutine(doBeatAt(8.14f));
+            StartCoroutine(doBeatAt(8.22f));
+            StartCoroutine(doBeatAt(8.24f));
+            StartCoroutine(doBeatAt(8.27f));
+            StartCoroutine(doBeatAt(9.01f));
+            StartCoroutine(doBeatAt(9.10f));
+        }
+        IEnumerator doBeatAt(float s)
+        {
+            yield return new WaitForSeconds(s);
+            floor.swap();
+        }
+        */
     }
+
+    
 }

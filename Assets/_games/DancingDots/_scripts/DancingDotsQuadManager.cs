@@ -9,17 +9,29 @@ public class DancingDotsQuadManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		StartCoroutine(CR_AnimateQuads());
+		//StartCoroutine(CR_AnimateQuads());
 	}
 
 	void SwapQuads (GameObject Quad1, GameObject Quad2)
 	{
-		Vector3 temp = Quad1.transform.position;
-		Quad1.transform.position = Quad2.transform.position;
-		Quad2.transform.position = temp;
+        Transform tempT = Quad1.transform.parent;
+		Vector3 temp = Quad1.transform.localPosition;
+
+        Quad1.transform.parent = Quad2.transform.parent;
+		Quad1.transform.localPosition = Quad2.transform.localPosition;
+        Quad2.transform.parent = tempT;
+		Quad2.transform.localPosition = temp;
 	}
 
-	IEnumerator CR_AnimateQuads()
+    void SwapColor(SpriteRenderer sprt1, SpriteRenderer sprt2)
+    {
+        Color temp = sprt1.color;
+
+        sprt1.color= sprt2.color;
+        sprt2.color = temp;
+    }
+
+    IEnumerator CR_AnimateQuads()
 	{
 		do
 		{
@@ -36,8 +48,27 @@ public class DancingDotsQuadManager : MonoBehaviour {
 
 	}
 
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void swap()
+    {
+        int Q1 = UnityEngine.Random.Range(0, quads.Length);
+        int Q2 = -1;
+        do
+        {
+            Q2 = UnityEngine.Random.Range(0, quads.Length);
+        } while (Q1 == Q2);
+
+        SwapQuads(quads[Q1], quads[Q2]);
+    }
+
+    public void swap(SpriteRenderer[] sprts)
+    {
+        int Q1 = UnityEngine.Random.Range(0, sprts.Length);
+        int Q2 = -1;
+        do
+        {
+            Q2 = UnityEngine.Random.Range(0, sprts.Length);
+        } while (Q1 == Q2);
+
+        SwapColor(sprts[Q1], sprts[Q2]);
+    }
 }
