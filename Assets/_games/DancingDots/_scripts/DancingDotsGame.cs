@@ -151,7 +151,9 @@ namespace EA4S.Minigames.DancingDots
             AudioManager.I.PlayMusic(Music.MainTheme);
             //AudioManager.I.transform.FindChild("Music").gameObject.AddComponent<AudioProcessor>();
             AudioManager.I.transform.FindChild("Music").gameObject.AddComponent<DancingDotsBeatDetection>();
-            
+
+            //disco = GameObject.Find("Quads").GetComponent<DancingDotsQuadManager>();
+            //StartCoroutine(beat());
 
             questionsManager = new DancingDotsQuestionsManager();
 
@@ -530,11 +532,25 @@ namespace EA4S.Minigames.DancingDots
             Context.GetOverlayWidget().SetStarsThresholds(2, 3, 6);
             Context.GetOverlayWidget().SetStarsScore(0);
         }
+        /*
+        DancingDotsQuadManager disco;
+        double time = 0;
+        public float add;
+        IEnumerator doBeatAt(float t)
+        {
+            
+            while (AudioSettings.dspTime < t + time+ add)
+                yield return null;
+            Debug.LogError(AudioSettings.dspTime);
+            disco.swap();
+            disco.swap();
+            disco.swap();
+            disco.swap();
+            //time = AudioSettings.dspTime;
+        }
+        IEnumerator beat() {
+            time = AudioSettings.dspTime;
 
-        /*IEnumerator queBeats() {
-
-            yield return new WaitForSeconds(4);
-            AudioManager.I.PlayMusic(Music.MainTheme);
             StartCoroutine(doBeatAt(0.02f));
             StartCoroutine(doBeatAt(0.11f));
             StartCoroutine(doBeatAt(0.16f));
@@ -576,8 +592,11 @@ namespace EA4S.Minigames.DancingDots
             StartCoroutine(doBeatAt(8.27f));
             StartCoroutine(doBeatAt(9.01f));
             StartCoroutine(doBeatAt(9.10f));
-        }
-        IEnumerator doBeatAt(float s)
+
+            yield return null;
+        }*/
+
+        /*IEnumerator doBeatAt(float s)
         {
             yield return new WaitForSeconds(s);
             floor.swap();
