@@ -285,9 +285,9 @@ namespace EA4S.Minigames.Maze
                 {
                     Transform child = fruitsList.transform.GetChild(i);
 
-                    child.gameObject.AddComponent<MazeArrow>();
-
+                    MazeArrow arrow = child.gameObject.AddComponent<MazeArrow>();
                     child.gameObject.name = "fruit_" + (i);
+                    arrow.arrowOrDotMesh = i != 0 ? child.GetComponent<MeshRenderer>() : child.Find("Dot").GetComponent<MeshRenderer>();
                 }
             }
 
@@ -450,6 +450,7 @@ namespace EA4S.Minigames.Maze
                 toggleVisibility(false);
 
                 var firstArrowRotation = _fruits[0].transform.rotation.eulerAngles;
+
                 firstArrowRotation.x += 90f;
                 firstArrowRotation.y += 180f;
 
@@ -698,26 +699,28 @@ namespace EA4S.Minigames.Maze
                 var newDrawingToolPosition = targetPos + new Vector3(0, 1, 0);
                 MazeGameManager.instance.drawingTool.transform.position = newDrawingToolPosition;
 
-                RaycastHit hitInfo;
-
-                if (Physics.Raycast(raycastSource, raycastCheckTarget - raycastSource, out hitInfo, Vector3.Distance(raycastSource, raycastCheckTarget), LayerMask.GetMask("TrackBounds")))
+                if (MazeGameManager.instance.pointsList.Count >= 2)
                 {
-                    var collisionPoint = hitInfo.point;
+                    RaycastHit hitInfo;
 
-                    var adjustedLinePoint = Camera.main.WorldToScreenPoint(collisionPoint);
-                    adjustedLinePoint = new Vector3(adjustedLinePoint.x, adjustedLinePoint.y, -distance);
-                    adjustedLinePoint = Camera.main.ScreenToWorldPoint(adjustedLinePoint);
-                    MazeGameManager.instance.AdjustLastPointOfLine(adjustedLinePoint);
+                    raycastCheckTarget = MazeGameManager.instance.pointsList[MazeGameManager.instance.pointsList.Count - 2];
+                    raycastCheckTarget.y = TrackBounds.instance.transform.position.y;
 
-                    var pointOfImpact = Camera.main.WorldToScreenPoint(collisionPoint);
-                    pointOfImpact = new Vector3(pointOfImpact.x, pointOfImpact.y, Camera.main.transform.position.y - transform.position.y - 2f);
-                    pointOfImpact = Camera.main.ScreenToWorldPoint(pointOfImpact);
+                    if (Physics.Raycast(raycastSource, raycastCheckTarget - raycastSource, out hitInfo, Vector3.Distance(raycastSource, raycastCheckTarget), LayerMask.GetMask("TrackBounds")))
+                    {
+                        var collisionPoint = hitInfo.point;
 
-                    mazeLetter.OnPointerOverTrackBounds(pointOfImpact);
-                }
-                else
-                {
-                    Debug.Log("Raycast false!");
+                        var adjustedLinePoint = Camera.main.WorldToScreenPoint(collisionPoint);
+                        adjustedLinePoint = new Vector3(adjustedLinePoint.x, adjustedLinePoint.y, -distance);
+                        adjustedLinePoint = Camera.main.ScreenToWorldPoint(adjustedLinePoint);
+                        MazeGameManager.instance.AdjustLastPointOfLine(adjustedLinePoint);
+
+                        var pointOfImpact = Camera.main.WorldToScreenPoint(collisionPoint);
+                        pointOfImpact = new Vector3(pointOfImpact.x, pointOfImpact.y, Camera.main.transform.position.y - transform.position.y - 2f);
+                        pointOfImpact = Camera.main.ScreenToWorldPoint(pointOfImpact);
+
+                        mazeLetter.OnPointerOverTrackBounds(pointOfImpact);
+                    } 
                 }
             }
 
@@ -878,98 +881,6 @@ namespace EA4S.Minigames.Maze
         }
 
         public void Celebrate(System.Action OnCelebrationOver)
-        {
-            List<Vector3> celebrationPathPoints = new List<Vector3>();
-
-            var cameraPosition = Camera.main.transform.position;
-
-            var frustumHeight = GetFrustumHeightAtDistance(CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA);
-            var frustumWidth = GetFrustumWidth(frustumHeight);
-
-            Vector3 endPoint = new Vector3(cameraPosition.x + (frustumWidth / 2) * CELEBRATION_PATH_ENDPOINT_X_ANCHOR,
-                                            cameraPosition.y - CELEBRATION_PATH_ENDPOINT_DISTANCE_FROM_CAMERA,
-                                                cameraPosition.z + (frustumHeight / 2) * CELEBRATION_PATH_ENDPOINT_Z_ANCHOR);
-
-            Vector3 midPoint = transform.position + endPoint;
-            midPoint *= 0.5f;
-
-            frustumHeight = GetFrustumHeightAtDistance(cameraPosition.y - midPoint.y);
-            frustumWidth = GetFrustumWidth(frustumHeight);
-
-            midPoint = new Vector3(cameraPosition.x + (frustumWidth / 2) * CELEBRATION_PATH_MIDPOINT_X_ANCHOR,
-                                            midPoint.y,
-                                                cameraPosition.z + (frustumHeight / 2) * CELEBRATION_PATH_MIDPOINT_Z_ANCHOR);
-
-
-            celebrationPathPoints.Add(transform.position);
-            celebrationPathPoints.Add(midPoint);
-            celebrationPathPoints.Add(endPoint);
-
-            var turningPoint = endPoint + (endPoint - midPoint).normalized;
-
-            celebrationPathPoints.Add(turningPoint);
-
-            var offscreenPoint = turningPoint;
-            offscreenPoint.y += 2f;
-
-            frustumHeight = GetFrustumHeightAtDistance(cameraPosition.y - offscreenPoint.y);
-            frustumWidth = GetFrustumWidth(frustumHeight);
-
-            offscreenPoint.x = cameraPosition.x + ((frustumWidth / 2) + 2f) * Mathf.Sign(CELEBRATION_PATH_ENDPOINT_X_ANCHOR);
-
-            celebrationPathPoints.Add(offscreenPoint);
-
-            LL.Initialize(MazeGameManager.instance.currentLL);
-            LL.Horraying = true;
-
-            bool braked = false;
-
-            celebrationPathTweener = transform.DOPath(celebrationPathPoints.ToArray(), CELEBRATION_PATH_DURATION, PathType.CatmullRom, PathMode.Ignore).OnWaypointChange((int index) =>
-            {
-                if (index < celebrationPathPoints.Count - 3)
-                {
-                    var dir = transform.position - celebrationPathPoints[index + 1];
-
-                    brakeRotation = GetCorrectedRotationOfRocket(dir);
-
-                    transform.DORotate(brakeRotation, 0.33f);
-                }
-
-                else if (index == celebrationPathPoints.Count - 3 && !braked)
-                {
-                    braked = true;
-
-                    celebrationPathTweener.Pause();
-
-                    State = LLState.Braked;
-
-                    winParticleVFX.SetActive(true);
-
-                    var dir = transform.position - celebrationPathPoints[index + 1];
-
-                    brakeRotation = GetCorrectedRotationOfRocket(dir);
-
-                    brakeYoyoTweener = transform.DOMove(transform.position + new Vector3(-0.5f, 0.5f, -0.5f) * 0.33f, 0.75f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
-                }
-
-                else if (index == celebrationPathPoints.Count - 2)
-                {
-                    var dir = transform.position - celebrationPathPoints[index + 1];
-
-                    brakeRotation = GetCorrectedRotationOfRocket(dir);
-
-                    transform.DORotate(brakeRotation, 0.33f);
-                }
-
-            }).OnComplete(() =>
-            {
-                toggleVisibility(false);
-                gameObject.SetActive(false);
-                OnCelebrationOver();
-            });
-        }
-
-        public void CelebrateStraight(System.Action OnCelebrationOver)
         {
             List<Vector3> celebrationPathPoints = new List<Vector3>();
 

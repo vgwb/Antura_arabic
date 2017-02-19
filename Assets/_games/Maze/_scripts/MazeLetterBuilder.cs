@@ -71,6 +71,8 @@ namespace EA4S.Minigames.Maze
                 }
                 if (child.name.IndexOf("arrow") == 0)
                 {
+                    AddDotAndHideArrow(child);
+
                     arrows.Add(child.gameObject);
                     
                     if (arrows.Count == 1)
@@ -78,8 +80,6 @@ namespace EA4S.Minigames.Maze
                         //find the first child in the transform:
                         characterPosition = child.GetChild(0).position;
                     }
-
-                    child.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
 
                     foreach (Transform fruit in child.transform)
                         fruit.gameObject.AddComponent<BoxCollider>();
@@ -116,6 +116,19 @@ namespace EA4S.Minigames.Maze
             //gameObject.GetComponent<MazeShowPrefab>().letterId = letterData;
 
             if (_callback != null) _callback();
+        }
+
+        private void AddDotAndHideArrow(Transform arrowParent)
+        {
+            GameObject firstArrow = arrowParent.GetChild(0).gameObject;
+            GameObject newDot = Instantiate(MazeGameManager.instance.dotPrefab, firstArrow.transform);
+            newDot.name = "Dot";
+            newDot.transform.localPosition = Vector3.zero;
+            newDot.transform.rotation = firstArrow.transform.rotation;
+            newDot.transform.Rotate(Vector3.forward, 180, Space.World);
+            newDot.transform.localScale = newDot.transform.localScale * 0.67f;
+
+            firstArrow.GetComponent<MeshRenderer>().enabled = false;
         }
 
         public void build(System.Action callback)

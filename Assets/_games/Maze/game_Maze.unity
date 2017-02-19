@@ -3204,6 +3204,7 @@ MonoBehaviour:
     type: 2}
   arrowTargetPrefab: {fileID: 1000011506755418, guid: 5ffa89f44f3df1044b582de40816e007,
     type: 2}
+  dotPrefab: {fileID: 1000013482476302, guid: 40fc5aa844c56ac44a25bc53bac5c31e, type: 2}
   currentCharacter: {fileID: 0}
   currentTutorial: {fileID: 0}
   prefabs:
@@ -3255,7 +3256,6 @@ MonoBehaviour:
   incorrectLineColor: {r: 0.9411765, g: 0.08996537, b: 0.08996537, a: 0.78431374}
   durationToTweenLineColors: 0.33
   drawingTool: {fileID: 1356992599}
-  drawingToolRigidbody: {fileID: 0}
   isShowingAntura: 0
 --- !u!4 &436118478
 Transform:

@@ -10,8 +10,9 @@ namespace EA4S.Minigames.Maze
         private Color normalColor;
         private Color highlightedColor;
         private Color unreachedColor;
+        private Color launchPositionColor;
 
-        Renderer _renderer;
+        public Renderer arrowOrDotMesh;
 
         private GameObject highlightFX;
         private ParticleSystem.MainModule particleSystemMainModule;
@@ -32,6 +33,7 @@ namespace EA4S.Minigames.Maze
             {
                 particleSystemMainModule.loop = true;
                 particleSystemMainModule.startColor = yellowParticleSystemColor;
+                arrowOrDotMesh.material.color = launchPositionColor;
                 highlightFX.SetActive(true);
 
                 highlightState = HighlightState.LaunchPosition;
@@ -45,7 +47,7 @@ namespace EA4S.Minigames.Maze
                 particleSystemMainModule.loop = false;
                 particleSystemMainModule.startColor = greenParticleSystemColor;
                 highlightFX.SetActive(true);
-                _renderer.material.color = highlightedColor;
+                arrowOrDotMesh.material.color = highlightedColor;
                 MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.OK);
 
                 highlightState = HighlightState.Reached;
@@ -55,7 +57,7 @@ namespace EA4S.Minigames.Maze
         public void Unhighlight()
         {
             highlightFX.SetActive(false);
-            _renderer.material.color = normalColor;
+            arrowOrDotMesh.material.color = normalColor;
 
             highlightState = HighlightState.None;
         }
@@ -64,7 +66,7 @@ namespace EA4S.Minigames.Maze
         {
             if (highlightState != HighlightState.Unreached)
             {
-                _renderer.material.color = unreachedColor;
+                arrowOrDotMesh.material.color = unreachedColor;
 
                 if (isFirstUnreachedArrow)
                 {
@@ -78,11 +80,11 @@ namespace EA4S.Minigames.Maze
 
         void Awake()
         {
-            _renderer = GetComponent<Renderer>();
-
-            normalColor = _renderer.material.color;
+            normalColor = new Color(0.964f, 0.875f, 0f, 1f);
             highlightedColor = new Color(0.4275f, 1f, 0.4471f, 1f);
             unreachedColor = Color.red;
+            launchPositionColor = Color.Lerp(yellowParticleSystemColor, Color.white, 0.2f);
+            launchPositionColor.a = 1f;
 
             highlightFX = Instantiate(MazeGameManager.instance.arrowTargetPrefab);
             highlightFX.transform.position = transform.position;
