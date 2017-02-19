@@ -35,14 +35,13 @@ namespace EA4S.Balloons
         {
             this.transform.position = offscreenPosition;
             LLPrefab.gameObject.SetActive(true);
-            vfx.gameObject.SetActive(true);
+            vfx.gameObject.SetActive(false);
             if (livingLetterData != null)
             {
                 LLPrefab.Initialize(livingLetterData);
             }
             LLPrefab.DoAngry();
-            TutorialUI.MarkNo(wrongMarkPosition1, TutorialUI.MarkSize.Huge);
-            TutorialUI.MarkNo(wrongMarkPosition2, TutorialUI.MarkSize.Huge);
+            TutorialUI.MarkNo(Random.value <= 0.5f ? wrongMarkPosition1 : wrongMarkPosition2, TutorialUI.MarkSize.Huge);
             BalloonsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
 
             StartCoroutine(Move_Coroutine(offscreenPosition, onscreenPosition, moveDuration));
