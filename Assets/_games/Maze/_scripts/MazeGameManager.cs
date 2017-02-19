@@ -18,6 +18,7 @@ namespace EA4S.Minigames.Maze
 
         public GameObject characterPrefab;
         public GameObject arrowTargetPrefab;
+        public GameObject dotPrefab;
 
         public MazeCharacter currentCharacter;
         public HandTutorial currentTutorial;
@@ -103,7 +104,15 @@ namespace EA4S.Minigames.Maze
             base.Awake();
             instance = this;
 
+            ConfigureDotPrefab();
+
             Physics.IgnoreLayerCollision(10, 12);
+        }
+
+        private void ConfigureDotPrefab()
+        {
+            dotPrefab = Instantiate(dotPrefab);
+            dotPrefab.GetComponent<CapsuleCollider>().enabled = false;
         }
 
         public void ColorCurrentLinesAsIncorrect()
@@ -269,57 +278,27 @@ namespace EA4S.Minigames.Maze
                 // Hide checkpoints of last path:
                 currentTutorial.HideCheckpointsAndLineOfCurrentPath();
 
-                if (roundNumber % 2 == 0)
+                currentCharacter.Celebrate(() =>
                 {
-                    currentCharacter.CelebrateStraight(() =>
+                    if (roundNumber == MAX_NUM_ROUNDS)
                     {
-                        if (roundNumber == MAX_NUM_ROUNDS)
-                        {
-                            endGame();
-                            return;
-                        }
-                        else
-                        {
-                            if (isTutorialMode)
-                            {
-                                isTutorialMode = false;
-                                initUI();
-                            }
+                        endGame();
+                        return;
+                    }
 
-
-                            roundNumberText.text = "#" + (roundNumber + 1);
-                            restartCurrentLetter(won);
-                        }
-                    });
-                }
-
-                else
-                {
-                    currentCharacter.Celebrate(() =>
+                    else
                     {
-                        if (roundNumber == MAX_NUM_ROUNDS)
+                        if (isTutorialMode)
                         {
-                            endGame();
-                            return;
+                            isTutorialMode = false;
+                            initUI();
                         }
-                        else
-                        {
-                            if (isTutorialMode)
-                            {
-                                isTutorialMode = false;
-                                initUI();
-                            }
 
 
-                            roundNumberText.text = "#" + (roundNumber + 1);
-                            restartCurrentLetter(won);
-                        }
-                    });
-                }
-
-
-                //print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);
-
+                        roundNumberText.text = "#" + (roundNumber + 1);
+                        restartCurrentLetter(won);
+                    }
+                });
             }
             else
             {
