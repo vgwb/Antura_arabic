@@ -14,17 +14,20 @@ public class DancingDotsQuadManager : MonoBehaviour {
 
 	void SwapQuads (GameObject Quad1, GameObject Quad2)
 	{
-        Transform tempT = Quad1.transform.parent;
-		Vector3 temp = Quad1.transform.localPosition;
+        if (!Quad1 || !Quad2)
+            return;
 
-        Quad1.transform.parent = Quad2.transform.parent;
-		Quad1.transform.localPosition = Quad2.transform.localPosition;
-        Quad2.transform.parent = tempT;
-		Quad2.transform.localPosition = temp;
+        Vector3 temp = Quad1.transform.localPosition;
+
+        Quad1.transform.localPosition = Quad2.transform.localPosition;
+        Quad2.transform.localPosition = temp;
 	}
 
     void SwapColor(SpriteRenderer sprt1, SpriteRenderer sprt2)
     {
+        if (!sprt1 || !sprt2)
+            return;
+
         Color temp = sprt1.color;
 
         sprt1.color= sprt2.color;
