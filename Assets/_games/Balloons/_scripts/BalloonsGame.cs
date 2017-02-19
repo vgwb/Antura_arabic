@@ -65,6 +65,7 @@ namespace EA4S.Balloons
         public ILivingLetterData question;
         public List<ILivingLetterData> correctAnswers;
         public IEnumerable<ILivingLetterData> wrongAnswers;
+        private ILivingLetterData lastDroppedLivingLetter;
         public int countingIndex;
         public int maxCountingIndex;
         //private LL_WordData wordData;
@@ -581,6 +582,7 @@ namespace EA4S.Balloons
             questionPack = null;
             roundResultAnimator.Hide();
             countingIndex = 0;
+            lastDroppedLivingLetter = null;
         }
 
         private void BeginGameplay()
@@ -1097,6 +1099,7 @@ namespace EA4S.Balloons
                 {
                     letterKey = letter.letterData.Id;
                 }
+                lastDroppedLivingLetter = letter.letterData;
             }
 
             if (isRequired)
@@ -1403,7 +1406,7 @@ namespace EA4S.Balloons
                         //sentence = TextID.TIMES_UP.ToString();
                         //WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, sentence, false, FailTime);
                         //Popup.ShowTimeUp(OnRoundResultPressed);
-                        roundResultAnimator.ShowLose(roundResultData);
+                        roundResultAnimator.ShowLose(lastDroppedLivingLetter == null ? roundResultData : lastDroppedLivingLetter);
                         break;
                     case How2Die.WrongBalloon:
                         //var sentenceOptions = new[]{ "game_balloons_commentA", "game_balloons_commentB" };
@@ -1414,7 +1417,7 @@ namespace EA4S.Balloons
                         //Popup.SetMark(true, false);
                         //Popup.SetImage(FailWrongBalloon);
                         //Popup.SetTitle(TextID.GAME_RESULT_RETRY);
-                        roundResultAnimator.ShowLose(roundResultData);
+                        roundResultAnimator.ShowLose(lastDroppedLivingLetter == null ? roundResultData : lastDroppedLivingLetter);
                         break;
                 }
 
