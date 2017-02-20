@@ -53,9 +53,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         private IEnumerator flashingTextCoroutine;
 
-        private List<LL_LetterData> usedLettersInLiWVariation;
-        private int markedLetterFromIndexInLiWVariation;
-        private int markedLetterToIndexInLiWVariation;
+        private List<LL_LetterData> flashedLettersInLiWVariation;
 
         private int NumLettersInCurrentRound
         {
@@ -112,7 +110,7 @@ namespace EA4S.Minigames.ThrowBalls
                 }
             }
 
-            usedLettersInLiWVariation = new List<LL_LetterData>();
+            flashedLettersInLiWVariation = new List<LL_LetterData>();
         }
         public void EnterState()
         {
@@ -334,7 +332,7 @@ namespace EA4S.Minigames.ThrowBalls
                         UIController.instance.SetText(text);
                     }, Color.green, false);
 
-            usedLettersInLiWVariation.Add((LL_LetterData)currentLettersForLettersInWord[0]);
+            flashedLettersInLiWVariation.Add((LL_LetterData)currentLettersForLettersInWord[0]);
 
             ThrowBallsGame.instance.StartCoroutine(flashingTextCoroutine);
 
@@ -536,9 +534,9 @@ namespace EA4S.Minigames.ThrowBalls
                 else
                 {
                     var letterToFlash = (LL_LetterData)currentLettersForLettersInWord[currentLettersForLettersInWord.Count - numLettersRemaining];
-                    int numTimesLetterHasBeenFlashed = usedLettersInLiWVariation.Count(x => x.Id == letterToFlash.Id);
+                    int numTimesLetterHasBeenFlashed = flashedLettersInLiWVariation.Count(x => x.Id == letterToFlash.Id);
                     var letterDataToFlash = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word, letterToFlash.Data)[numTimesLetterHasBeenFlashed];
-                    usedLettersInLiWVariation.Add(letterToFlash);
+                    flashedLettersInLiWVariation.Add(letterToFlash);
 
                     flashingTextCoroutine = ArabicTextUtilities.GetWordWithFlashingText(word, letterDataToFlash.fromCharacterIndex, Color.green, FLASHING_TEXT_CYCLE_DURATION, int.MaxValue,
                         (string text) =>
@@ -835,9 +833,7 @@ namespace EA4S.Minigames.ThrowBalls
 
             isRoundOngoing = false;
 
-            usedLettersInLiWVariation.Clear();
-            markedLetterToIndexInLiWVariation = -1;
-            markedLetterFromIndexInLiWVariation = -1;
+            flashedLettersInLiWVariation.Clear();
         }
 
         public void ExitState()
