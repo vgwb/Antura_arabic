@@ -50,7 +50,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         public void OnLetterHintClicked()
         {
-            if (livingLetterData != null)
+            if (livingLetterData != null && ThrowBallsGame.instance.GameState.isRoundOngoing)
             {
                 ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(livingLetterData, true);
                 WobbleLetterHint();

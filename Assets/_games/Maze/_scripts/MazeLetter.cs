@@ -8,6 +8,7 @@ namespace EA4S.Minigames.Maze
         public bool isDrawing;
         public float idleSeconds = 0;
         public float anturaSeconds;
+        private bool didAnturaBark = false;
 
         void Start()
         {
@@ -34,6 +35,12 @@ namespace EA4S.Minigames.Maze
                 if (!MazeGameManager.instance.isTutorialMode && MazeGameManager.instance.currentTutorial && MazeGameManager.instance.currentTutorial.isShownOnce && MazeGameManager.instance.isShowingAntura == false)
                 {
                     anturaSeconds += Time.deltaTime;
+
+                    if (anturaSeconds >= 8f && !didAnturaBark)
+                    {
+                        MazeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking);
+                        didAnturaBark = true;
+                    }
 
                     if (anturaSeconds >= 10)
                     {
