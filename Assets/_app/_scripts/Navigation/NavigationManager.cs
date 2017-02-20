@@ -11,7 +11,7 @@ namespace EA4S.Core
 {
 
     /// <summary>
-    /// Controls the transitions between different scenes in the application.
+    /// Controls the navigation among different scenes in the application.
     /// </summary>
     public class NavigationManager : MonoBehaviour
     {
@@ -38,12 +38,8 @@ namespace EA4S.Core
         /// <param name="_playerProfile">The player profile.</param>
         public void SetPlayerNavigationData(PlayerProfile _playerProfile)
         {
+            NavData.PrevSceneStack.Clear();
             NavData.CurrentPlayer = _playerProfile;
-        }
-
-        public void GoToAppScene(AppScene newScene)
-        {
-            GoToScene(newScene);
         }
 
         #endregion
@@ -53,7 +49,6 @@ namespace EA4S.Core
         /// <summary>
         /// Given the current context, selects the scene that should be loaded next and loads it.
         /// </summary>
-        // refactor: the whole NavigationManager could work using just GoToNextScene (and similars, such as GoBack), so that it controls all scene movement
         public void GoToNextScene()
         {
             Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToNextScene");
@@ -143,29 +138,15 @@ namespace EA4S.Core
 
         #region Direct navigation (private)
 
-        // refactor: GoToScene can be separated for safety reasons in GoToMinigame (with a string code, or minigame code) and GoToAppScene (with an AppScene as the parameter)
-        private void GoToScene(string sceneName)
-        {
-            // @todo: adda  delegate to the SceneManager.sceneLoaded to block further scene changes when loading 
-            // http://answers.unity3d.com/questions/1174255/since-onlevelwasloaded-is-deprecated-in-540b15-wha.html
-
-            IsLoadingMinigame = sceneName.Substring(0, 5) == "game_";
-
-            Debug.LogFormat(" ==== {0} scene to load ====", sceneName);
-            SceneTransitionManager.LoadSceneWithTransition(sceneName);
-
-            if (AppConstants.UseUnityAnalytics && !Application.isEditor) {
-                UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
-            }
-        }
-
         private void GoToScene(AppScene newScene)
         {
             // Additional checks for specific scenes
-            switch (newScene) {
+            switch (newScene)
+            {
                 case AppScene.Rewards:
                     // Already rewarded this playsession?
-                    if (RewardSystemManager.RewardAlreadyUnlocked(NavData.CurrentPlayer.CurrentJourneyPosition)) {
+                    if (RewardSystemManager.RewardAlreadyUnlocked(NavData.CurrentPlayer.CurrentJourneyPosition))
+                    {
                         GoToScene(AppScene.Map);
                         return;
                     }
@@ -176,11 +157,45 @@ namespace EA4S.Core
             }
 
             // Scene switch
-            NavData.PrevScene = NavData.CurrentScene;
+            //NavData.PrevScene = NavData.CurrentScene;
+            UpdatePrevSceneStack(newScene);
             NavData.CurrentScene = newScene;
 
             var nextSceneName = AppSceneHelper.GetSceneName(newScene);
-            GoToScene(nextSceneName);
+            GoToSceneByName(nextSceneName);
+        }
+
+        // refactor: GoToScene can be separated for safety reasons in GoToMinigame (with a string code, or minigame code) and GoToAppScene (with an AppScene as the parameter)
+        private void GoToSceneByName(string sceneName)
+        {
+            IsLoadingMinigame = sceneName.Substring(0, 5) == "game_";
+
+            Debug.LogFormat(" ==== {0} scene to load ====", sceneName);
+            SceneTransitionManager.LoadSceneWithTransition(sceneName);
+
+            if (AppConstants.UseUnityAnalytics && !Application.isEditor)
+            {
+                UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
+            }
+        }
+
+        /// <summary>
+        /// Determine which 
+        /// </summary>
+        void UpdatePrevSceneStack(AppScene newScene)
+        {
+            // The stack is updated only for some transitions
+            List<KeyValuePair<AppScene, AppScene>> backableTransitions = new List<KeyValuePair<AppScene, AppScene>>();
+            backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Home, AppScene.ReservedArea));
+            backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.Book));
+            backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.AnturaSpace));
+            backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.ReservedArea, AppScene.Book));
+            backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.GameSelector));
+
+            if (backableTransitions.Contains(new KeyValuePair<AppScene, AppScene>(NavData.CurrentScene, newScene)))
+            {
+                NavData.PrevSceneStack.Push(NavData.CurrentScene);
+            }
         }
 
         /// <summary>
@@ -265,9 +280,9 @@ namespace EA4S.Core
             }
 
             if (canTravel) {
-                NavData.PrevScene = NavData.CurrentScene;
+                UpdatePrevSceneStack(AppScene.MiniGame);
                 NavData.CurrentScene = AppScene.MiniGame;
-                GoToScene(NavData.CurrentMiniGameData.Scene);
+                GoToSceneByName(NavData.CurrentMiniGameData.Scene);
             } else {
                 throw new Exception("Cannot go to a minigame from the current scene!");
             }
@@ -276,15 +291,27 @@ namespace EA4S.Core
 
         public void GotoNewProfileCreation()
         {
-
             switch (NavData.CurrentScene) {
                 case AppScene.Home:
                     GoToScene(AppScene.PlayerCreation);
                     break;
                 default:
-                    break;
+                    throw new Exception("Cannot go to the PlayerCreation scene from scene " + NavData.CurrentScene);
             }
         }
+
+        public void GoToReservedArea()
+        {
+            switch (NavData.CurrentScene)
+            {
+                case AppScene.Home:
+                    GoToScene(AppScene.ReservedArea);
+                    break;
+                default:
+                    throw new Exception("Cannot go to the ReservedArea scene from scene " + NavData.CurrentScene);
+            }
+        }
+
 
         // obsolete: to be implemented?
         public void ExitCurrentGame() { }

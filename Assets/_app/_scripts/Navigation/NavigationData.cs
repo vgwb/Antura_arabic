@@ -64,6 +64,7 @@ namespace EA4S.Core
         public AppScene PrevScene;
         public AppScene CurrentScene;
         public bool RealPlaySession;
+        public Stack<AppScene> PrevSceneStack;
 
         /// <summary>
         /// List of minigames selected for the current play session
