@@ -116,7 +116,6 @@ namespace EA4S.Map
                 AppManager.I.Player.FirstContactPassed(2);
                 KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_First);
                 Debug.Log("First Contact Step2 finished! Good Luck!");
-                anturaButton.GetComponent<OnClickButtonChangeScene>().SceneNameCustom = "app_AnturaSpace";
             }
 
         }
@@ -127,7 +126,6 @@ namespace EA4S.Map
         void ActivateAnturaButton()
         {
             anturaButton.SetActive(true);
-            anturaButton.GetComponent<OnClickButtonChangeScene>().SceneNameCustom = "app_Rewards";
             this.StartCoroutine(CO_Tutorial());
         }
         IEnumerator CO_Tutorial()
