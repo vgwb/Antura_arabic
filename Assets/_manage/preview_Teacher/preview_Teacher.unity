@@ -2759,7 +2759,7 @@ Prefab:
     - target: {fileID: 224000013816624384, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 224000013816624384, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
@@ -5849,7 +5849,7 @@ Prefab:
     - target: {fileID: 224000013816624384, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 224000013816624384, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
@@ -6534,7 +6534,7 @@ Prefab:
     - target: {fileID: 224000013816624384, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 224000013816624384, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
@@ -6875,6 +6875,7 @@ MonoBehaviour:
   currentJourneyStage: 3
   currentJourneyLB: 7
   isAssessment: 1
+  testWholeJourneyAtButtonClick: 0
   nPacks: 1
   nPacksPerRound: 1
   sortPacksByDifficulty: 0
@@ -7905,7 +7906,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 30}
+  m_CellSize: {x: 100, y: 50}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -8364,7 +8365,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 30}
+  m_CellSize: {x: 100, y: 50}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -9119,7 +9120,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 30}
+  m_CellSize: {x: 100, y: 50}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2

@@ -70,6 +70,9 @@ namespace EA4S.Teacher.Test
         public bool isAssessment = false;
         //int currentJourneyPS = 1;
 
+        [DeToggleButton()]
+        public bool testWholeJourneyAtButtonClick = false;
+
         [DeBeginGroup]
         [Header("Selection Parameters")]
         [Range(1, 10)]
@@ -127,6 +130,7 @@ namespace EA4S.Teacher.Test
         void Start()
         {
             // Setup for testing
+            Application.runInBackground = true;
             SetVerboseAI(true);
             ConfigAI.forceJourneyIgnore = false;
 
@@ -177,6 +181,48 @@ namespace EA4S.Teacher.Test
             ConfigAI.verbosePlaySessionInitialisation = verbosePlaySessionInitialisation;
         }
 
+        private bool IsCodeValid(MiniGameCode code)
+        {
+            bool isValid = true;
+            switch (code)
+            {
+                case MiniGameCode.Invalid:
+                case MiniGameCode.Assessment_VowelOrConsonant:
+                    isValid = false;
+                    break;
+            }
+            return isValid;
+        }
+
+        private bool IsCodeValid(QuestionBuilderType code)
+        {
+            bool isValid = true;
+            switch (code)
+            {
+                case QuestionBuilderType.Empty:
+                case QuestionBuilderType.MAX:
+                    isValid = false;
+                    break;
+            }
+            return isValid;
+        }
+
+        [DeMethodButton("Cleanup")]
+        public void DoCleanup()
+        {
+            foreach (var code in Helpers.GenericHelper.SortEnums<QuestionBuilderType>())
+            {
+                if (!IsCodeValid(code)) continue;
+                SetButtonStatus(qbButtonsDict[code], Color.white);
+            }
+
+            foreach (var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
+            {
+                if (!IsCodeValid(code)) continue;
+                SetButtonStatus(minigamesButtonsDict[code], Color.white);
+            }
+        }
+
         [DeMethodButton("Test Minimum Journey")]
         public void DoTestMinimumJourney()
         {
@@ -187,8 +233,7 @@ namespace EA4S.Teacher.Test
             // Test all minigames at their minimum journey
             foreach (var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
             {
-                if (code == MiniGameCode.Invalid) continue;
-                if (code == MiniGameCode.Assessment_VowelOrConsonant) continue;
+                if (!IsCodeValid(code)) continue;
                 var jp = AppManager.I.Teacher.journeyHelper.GetMinimumJourneyPositionForMiniGame(code);
                 if (jp == null) jp = AppManager.I.Teacher.journeyHelper.GetFinalJourneyPosition();
                 InitialisePlaySession(jp);
@@ -206,30 +251,8 @@ namespace EA4S.Teacher.Test
             // Test all minigames at all their available journeys. Stop when we find a wrong one.
             foreach (var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
             {
-                if (code == MiniGameCode.Invalid) continue;
-                if (code == MiniGameCode.Assessment_VowelOrConsonant) continue;
-                bool isCorrect = true;
-                foreach (var psData in AppManager.I.DB.GetAllPlaySessionData())
-                {
-                    if (!AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(psData.GetJourneyPosition(), code)) continue;
-
-                    InitialisePlaySession(psData.GetJourneyPosition());
-
-                    // Skip minigames that found errors
-                    yield return StartCoroutine(DoTestMinigameCO(code, 0.01f));
-                    if (minigamesButtonsDict[code].colors.normalColor == Color.red)
-                    {
-                        Debug.LogError("Minigame " + code + " first wrong at ps " + psData.GetJourneyPosition());
-                        isCorrect = false;
-                        break;
-                    }
-                }
-
-                if (isCorrect)
-                {
-                    Debug.Log("Minigame " + code + " is always fine");
-                }
-                yield return null;
+                if (!IsCodeValid(code)) continue;
+                yield return StartCoroutine(DoTestMinigameWholeJourneyCO(code));
             }
         }
 
@@ -253,8 +276,7 @@ namespace EA4S.Teacher.Test
         {
             foreach (var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
             {
-                if (code == MiniGameCode.Invalid) continue;
-                if (code == MiniGameCode.Assessment_VowelOrConsonant) continue;
+                if (!IsCodeValid(code)) continue;
                 yield return StartCoroutine(DoTestMinigameCO(code));
             }
         }
@@ -268,7 +290,7 @@ namespace EA4S.Teacher.Test
         {
             foreach (var type in Helpers.GenericHelper.SortEnums<QuestionBuilderType>())
             {
-                if (type == QuestionBuilderType.MAX) continue;
+                if (!IsCodeValid(type)) continue;
                 yield return StartCoroutine(DoTestQuestionBuilderCO(type));
             }
         }
@@ -297,30 +319,79 @@ namespace EA4S.Teacher.Test
 
         public void DoTestMinigame(MiniGameCode code)
         {
-            StartCoroutine(DoTest(() => DoTestMinigameCO(code)));
+            if (testWholeJourneyAtButtonClick)
+            {
+                StartCoroutine(DoTest(() => DoTestMinigameWholeJourneyCO(code)));
+            }
+            else
+            {
+                StartCoroutine(DoTest(() => DoTestMinigameCO(code)));
+            }
         }
+
+        private IEnumerator DoTestMinigameWholeJourneyCO(MiniGameCode code)
+        {
+            int lastStage = 0;
+            bool isCorrect = true;
+            foreach (var psData in AppManager.I.DB.GetAllPlaySessionData())
+            {
+                if (!AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(psData.GetJourneyPosition(), code)) continue;
+
+                InitialisePlaySession(psData.GetJourneyPosition());
+
+                // Log
+                Debug.Log("Testing " + code + " at ps " + psData.GetJourneyPosition());
+                if (psData.Stage != lastStage)
+                {
+                    lastStage = psData.Stage;
+                }
+
+                // Skip minigames that found errors
+                yield return StartCoroutine(DoTestMinigameCO(code, 0.01f));
+                if (minigamesButtonsDict[code].colors.normalColor == Color.red)
+                {
+                    Debug.LogError("Minigame " + code + " first wrong at ps " + psData.GetJourneyPosition());
+                    isCorrect = false;
+                    break;
+                }
+            }
+            if (isCorrect)
+            {
+                Debug.Log("Minigame " + code + " is always fine");
+            }
+        }
+
+
         private IEnumerator DoTestMinigameCO(MiniGameCode code, float delay = 0.1f)
         {
             SetButtonStatus(minigamesButtonsDict[code], Color.yellow);
             yield return new WaitForSeconds(delay);
             var statusColor = Color.green; 
 
-            if (AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(AppManager.I.Player.CurrentJourneyPosition, code))
+            if (!AppManager.I.Teacher.CanMiniGameBePlayedAtAnyPlaySession(code))
             {
-                try
-                {
-                    SimulateMiniGame(code);
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError("!! " + code + " at PS(" + AppManager.I.Player.CurrentJourneyPosition + ")\n " + e.Message);
-                    statusColor = Color.red;
-                }
+                Debug.LogError("Cannot play " + code + " at any journey poisition!");
+                statusColor = Color.magenta;
             }
             else
             {
-                Debug.LogError("Cannot play " + code + " at position " + AppManager.I.Player.CurrentJourneyPosition);
-                statusColor = Color.gray;
+                if (AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(AppManager.I.Player.CurrentJourneyPosition, code))
+                {
+                    try
+                    {
+                        SimulateMiniGame(code);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogError("!! " + code + " at PS(" + AppManager.I.Player.CurrentJourneyPosition + ")\n " + e.Message);
+                        statusColor = Color.red;
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Cannot play " + code + " at position " + AppManager.I.Player.CurrentJourneyPosition);
+                    statusColor = Color.gray;
+                }
             }
 
             SetButtonStatus(minigamesButtonsDict[code], statusColor);
@@ -341,6 +412,7 @@ namespace EA4S.Teacher.Test
             InitialisePlaySession();
             for (int i = 1; i <= numberOfSimulations; i++)
             {
+                Debug.Log("************ Simulation " + i + " ************");
                 ConfigAI.AppendToTeacherReport("************ Simulation " + i + " ************");
                 yield return StartCoroutine(CoroutineFunc());
             }
