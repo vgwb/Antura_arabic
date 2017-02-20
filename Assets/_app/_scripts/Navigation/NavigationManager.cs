@@ -190,7 +190,7 @@ namespace EA4S.Core
         {
             IsLoadingMinigame = sceneName.Substring(0, 5) == "game_";
 
-            Debug.LogFormat(" ==== Loading scene {0} ====", sceneName);
+            if(VERBOSE) Debug.LogFormat(" ==== Loading scene {0} ====", sceneName);
             SceneTransitionManager.LoadSceneWithTransition(sceneName);
 
             if (AppConstants.UseUnityAnalytics && !Application.isEditor)
