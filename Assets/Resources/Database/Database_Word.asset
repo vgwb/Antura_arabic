@@ -129,7 +129,7 @@ MonoBehaviour:
       Arabic: "\u0623\u064E\u0643\u064E\u0644\u064E"
       Value: 
       Letters:
-      - alef_hamza_hi
+      - alef_hamza_hi_fathah
       - kaf_fathah
       - lam_fathah
       Drawing: 
@@ -2415,6 +2415,7 @@ MonoBehaviour:
       Value: 
       Letters:
       - kaf
+      - alef_maddah
       - beh
       - teh_marbuta
       Drawing: BB
@@ -2758,6 +2759,7 @@ MonoBehaviour:
       Value: 
       Letters:
       - feh
+      - alef_hamza_hi
       - reh
       Drawing: D8
       Intrinsic: 1
@@ -2880,6 +2882,8 @@ MonoBehaviour:
       Value: 
       Letters:
       - alef
+      - lam
+      - alef_maddah
       - noon
       Drawing: 
       Intrinsic: 1

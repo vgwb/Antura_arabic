@@ -4450,6 +4450,7 @@ MonoBehaviour:
       NumberOfRoundsPerMinigame: 0
       Letters:
       - fathah
+      - alef_hamza_hi_fathah
       - ain_fathah
       - beh_fathah
       - dad_fathah
@@ -4844,6 +4845,7 @@ MonoBehaviour:
       - dammah
       - kasrah
       - sukun
+      - alef_hamza_hi_fathah
       - ain_fathah
       - beh_fathah
       - dad_fathah
@@ -5007,6 +5009,7 @@ MonoBehaviour:
       Letters:
       - fathah_tanwin
       - alef_fathah_tanwin
+      - lam_alef_fathah_tanwin
       Words:
       - of_course
       Words_previous:
@@ -5385,6 +5388,7 @@ MonoBehaviour:
       - fathah_tanwin
       - dammah_tanwin
       - kasrah_tanwin
+      - alef_hamza_hi_fathah
       - ain_fathah
       - beh_fathah
       - dad_fathah
@@ -5420,6 +5424,7 @@ MonoBehaviour:
       - meem_kasrah
       - reh_kasrah
       - alef_fathah_tanwin
+      - lam_alef_fathah_tanwin
       - dal_dammah_tanwin
       - teh_marbuta_dammah_tanwin
       - lam_kasrah_tanwin
@@ -6792,6 +6797,7 @@ MonoBehaviour:
       - fathah
       - kasrah
       - dammah
+      - alef_hamza_hi_fathah
       - ain_fathah
       - beh_fathah
       - dad_fathah
@@ -6956,6 +6962,7 @@ MonoBehaviour:
       - dammah_tanwin
       - kasrah_tanwin
       - alef_fathah_tanwin
+      - lam_alef_fathah_tanwin
       - dal_dammah_tanwin
       - teh_marbuta_dammah_tanwin
       - lam_kasrah_tanwin

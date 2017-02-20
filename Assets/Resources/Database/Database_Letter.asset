@@ -1189,11 +1189,11 @@ MonoBehaviour:
       Isolated: "\u0623"
       Initial: 
       Medial: 
-      Final: 
+      Final: "\uFE84"
       Isolated_Unicode: 0623
       Initial_Unicode: 
       Medial_Unicode: 
-      Final_Unicode: 
+      Final_Unicode: FE84
       Symbol_Unicode: 
       FinalFix: 
       MedialFix: 
@@ -1434,6 +1434,35 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
       Intrinsic: 1
+    - Id: lam_alef_maddah
+      Active: 1
+      Number: 0
+      Title: lam alef_maddah
+      Kind: 4
+      BaseLetter: lam
+      Symbol: alef_maddah
+      Type: 0
+      Tag: 
+      Notes: variation of Lam
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\uFEF5"
+      Initial: 
+      Medial: 
+      Final: "\uFEF6"
+      Isolated_Unicode: FEF5
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEF6
+      Symbol_Unicode: 
+      FinalFix: 
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 0
     - Id: waw_hamza
       Active: 1
       Number: 0
@@ -1492,6 +1521,35 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
       Intrinsic: 1
+    - Id: alef_hamza_hi_fathah
+      Active: 1
+      Number: 0
+      Title: alef_hamza_hi_fathah
+      Kind: 5
+      BaseLetter: alef_hamza_hi
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0623\u064E"
+      Initial: 
+      Medial: 
+      Final: "\uFE84\u064E"
+      Isolated_Unicode: 0623
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FE84
+      Symbol_Unicode: 064E
+      FinalFix: 
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 0
     - Id: alef_maddah
       Active: 1
       Number: 0
@@ -1508,11 +1566,11 @@ MonoBehaviour:
       Isolated: "\u0622"
       Initial: 
       Medial: 
-      Final: 
+      Final: "\uFE82"
       Isolated_Unicode: 0622
       Initial_Unicode: 
       Medial_Unicode: 
-      Final_Unicode: 
+      Final_Unicode: FE82
       Symbol_Unicode: 
       FinalFix: 
       MedialFix: 
@@ -2130,6 +2188,35 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
       Intrinsic: 1
+    - Id: lam_alef_fathah_tanwin
+      Active: 1
+      Number: 0
+      Title: lam_alef_fathah_tanwin
+      Kind: 5
+      BaseLetter: lam_alef
+      Symbol: fathah_tanwin
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\uFEFB\u064B"
+      Initial: 
+      Medial: 
+      Final: "\uFEFC\u064B"
+      Isolated_Unicode: FEFB
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEFC
+      Symbol_Unicode: 064B
+      FinalFix: 
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 0
     - Id: lam_fathah
       Active: 1
       Number: 0
