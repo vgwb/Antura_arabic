@@ -552,8 +552,7 @@ namespace EA4S.Minigames.ThrowBalls
                 if (numLettersRemaining != 0)
                 {
                     UpdateLettersForLettersInWord(correctLetterCntrl);
-                    OnBallLost();
-                    BallController.instance.Reset();
+                    BallController.instance.DampenVelocity();
                 }
 
                 else
@@ -598,7 +597,7 @@ namespace EA4S.Minigames.ThrowBalls
                 }
 
                 game.StartCoroutine(ShowWinSequence(correctLetterCntrl));
-                BallController.instance.Disable();
+                BallController.instance.DampenVelocity();
 
                 isRoundOngoing = false;
 
