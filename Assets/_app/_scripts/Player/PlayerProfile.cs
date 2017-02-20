@@ -261,6 +261,8 @@ namespace EA4S.Profile
             if (_anturaCustomization != null)
                 CurrentAnturaCustomizations = _anturaCustomization;
             Save();
+
+            AppManager.I.LogManager.LogInfo(InfoEvent.AnturaCustomization, CurrentAnturaCustomizations.GetJsonListOfIds());
         }
 
         #endregion
