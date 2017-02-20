@@ -71,8 +71,7 @@ namespace EA4S.Minigames.ThrowBalls
 
                 letter.JumpOffOfCrate();
                 
-                BallController.instance.Reset();
-                GameState.instance.OnBallLost();
+                BallController.instance.DampenVelocity();
                 hit = true;
             }
         }

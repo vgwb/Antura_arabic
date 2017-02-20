@@ -156,8 +156,11 @@ namespace EA4S.Minigames.ThrowBalls
 
                 else
                 {
-                    letterObjectView.DoTwirl(null);
-                    BallController.instance.OnRebounded();
+                    if (ThrowBallsGame.instance.GameState.isRoundOngoing)
+                    {
+                        letterObjectView.DoTwirl(null);
+                        BallController.instance.OnRebounded();
+                    }
                 }
             }
         }
