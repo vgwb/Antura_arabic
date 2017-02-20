@@ -106,7 +106,12 @@ namespace EA4S.Helpers
         public static List<ArabicStringPart> AnalyzeData(DatabaseManager database, WordData arabicWord, bool separateDiacritics = false, bool separateVariations = true)
         {
             // Use ArabicFixer to deal only with combined unicodes
-            return AnalyzeArabicString(database, ProcessArabicString(arabicWord.Arabic), separateDiacritics, separateVariations);
+            return AnalyzeArabicString(database.StaticDatabase, ProcessArabicString(arabicWord.Arabic), separateDiacritics, separateVariations);
+        }
+        public static List<ArabicStringPart> AnalyzeData(DatabaseObject staticDatabase, WordData arabicWord, bool separateDiacritics = false, bool separateVariations = true)
+        {
+            // Use ArabicFixer to deal only with combined unicodes
+            return AnalyzeArabicString(staticDatabase, ProcessArabicString(arabicWord.Arabic), separateDiacritics, separateVariations);
         }
 
         /// <summary>
@@ -115,12 +120,17 @@ namespace EA4S.Helpers
         public static List<ArabicStringPart> AnalyzeData(DatabaseManager database, PhraseData phrase, bool separateDiacritics = false, bool separateVariations = true)
         {
             // Use ArabicFixer to deal only with combined unicodes
-            return AnalyzeArabicString(database, ProcessArabicString(phrase.Arabic), separateDiacritics, separateVariations);
+            return AnalyzeArabicString(database.StaticDatabase, ProcessArabicString(phrase.Arabic), separateDiacritics, separateVariations);
+        }
+        public static List<ArabicStringPart> AnalyzeData(DatabaseObject staticDatabase, PhraseData phrase, bool separateDiacritics = false, bool separateVariations = true)
+        {
+            // Use ArabicFixer to deal only with combined unicodes
+            return AnalyzeArabicString(staticDatabase, ProcessArabicString(phrase.Arabic), separateDiacritics, separateVariations);
         }
 
-        static List<ArabicStringPart> AnalyzeArabicString(DatabaseManager database, string processedArabicString, bool separateDiacritics = false, bool separateVariations = true)
+        static List<ArabicStringPart> AnalyzeArabicString(DatabaseObject staticDatabase, string processedArabicString, bool separateDiacritics = false, bool separateVariations = true)
         {
-            List<Database.LetterData> allLetterData = new List<Database.LetterData>(database.StaticDatabase.GetLetterTable().GetValuesTyped());
+            List<Database.LetterData> allLetterData = new List<Database.LetterData>(staticDatabase.GetLetterTable().GetValuesTyped());
 
             var result = new List<ArabicStringPart>();
 
@@ -226,8 +236,8 @@ namespace EA4S.Helpers
                     else if (letterData.Kind == Database.LetterDataKind.LetterVariation && separateVariations && letterData.BaseLetter == "lam") // it's a lam-alef combo
                     {
                         // Separate Lam and Alef
-                        result.Add(new ArabicStringPart(AppManager.I.DB.GetLetterDataById(letterData.BaseLetter), stringIndex, stringIndex, letterForm));
-                        result.Add(new ArabicStringPart(AppManager.I.DB.GetLetterDataById(letterData.Symbol), stringIndex, stringIndex, letterForm));
+                        result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.BaseLetter), stringIndex, stringIndex, letterForm));
+                        result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.Symbol), stringIndex, stringIndex, letterForm));
                     }
                     else
                         result.Add(new ArabicStringPart(letterData, stringIndex, stringIndex, letterForm));
