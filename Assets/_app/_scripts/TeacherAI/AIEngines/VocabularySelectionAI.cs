@@ -307,12 +307,16 @@ namespace EA4S.Teacher
 
             if (ConfigAI.verboseDataFiltering && !isTest)
             {
+                foreach(var selectedEntry in selectedList)
+                    debugString += "   [" + selectedEntry + "]";
+
                 ConfigAI.AppendToTeacherReport(debugString);
             }
 
             if (selectedList.Count == 0)
             {
-                throw new System.Exception("The teacher could not find any data with the current filters. The game does not seem to be playable at the selected play session.");
+                throw new System.Exception("The teacher could not find any data with the current filters. The game does not seem to be playable at the selected play session."
+                     +"\n" + debugString);
             }
 
             // Update the filtering ids
