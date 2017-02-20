@@ -18,8 +18,8 @@ namespace EA4S.Minigames.ThrowBalls
         public const int MAX_NUM_ROUNDS = 5;
         public const int NUM_LETTERS_IN_POOL = 7;
         public readonly int MAX_NUM_BALLS;
-
         public const float TUTORIAL_UI_PERIOD = 4;
+        private const float FLASHING_TEXT_CYCLE_DURATION = 1f;
 
         public bool isRoundOngoing;
 
@@ -50,6 +50,12 @@ namespace EA4S.Minigames.ThrowBalls
         private IInputManager inputManager;
 
         private GameObject tutorialTarget;
+
+        private IEnumerator flashingTextCoroutine;
+
+        private List<LL_LetterData> usedLettersInLiWVariation;
+        private int markedLetterFromIndexInLiWVariation;
+        private int markedLetterToIndexInLiWVariation;
 
         private int NumLettersInCurrentRound
         {
@@ -105,6 +111,8 @@ namespace EA4S.Minigames.ThrowBalls
                     MAX_NUM_BALLS = 3;
                 }
             }
+
+            usedLettersInLiWVariation = new List<LL_LetterData>();
         }
         public void EnterState()
         {
@@ -161,7 +169,7 @@ namespace EA4S.Minigames.ThrowBalls
 
         private void ConfigureNumBalls()
         {
-            
+
         }
 
         private void OnTitleVoiceOverDone()
@@ -320,6 +328,16 @@ namespace EA4S.Minigames.ThrowBalls
             UIController.instance.EnableLetterHint();
             UIController.instance.SetLivingLetterData(question);
 
+            flashingTextCoroutine = ArabicTextUtilities.GetWordWithFlashingText(((LL_WordData)question).Data, 0, Color.green, FLASHING_TEXT_CYCLE_DURATION, int.MaxValue,
+                    (string text) =>
+                    {
+                        UIController.instance.SetText(text);
+                    }, Color.green, false);
+
+            usedLettersInLiWVariation.Add((LL_LetterData)currentLettersForLettersInWord[0]);
+
+            ThrowBallsGame.instance.StartCoroutine(flashingTextCoroutine);
+
             for (int i = 0; i < currentLettersForLettersInWord.Count; i++)
             {
                 int letterObjectIndex = game.Difficulty <= ThrowBallsGame.ThrowBallsDifficulty.Easy ? sortedIndices[i] : i;
@@ -462,6 +480,8 @@ namespace EA4S.Minigames.ThrowBalls
 
         public void OnRoundConcluded()
         {
+            UIController.instance.DisableLetterHint();
+
             roundNumber++;
 
             if (roundNumber > MAX_NUM_ROUNDS)
@@ -499,15 +519,39 @@ namespace EA4S.Minigames.ThrowBalls
         {
             if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
             {
+                numLettersRemaining--;
                 var word = ((LL_WordData)question).Data;
-                var letterDataToMark = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word, ((LL_LetterData)correctLetterCntrl.GetLetter()).Data)[0];
-                // TO FOUAD: change this in order to select to current letter (if there are multiple occurences)
 
-                string markedText = ArabicTextUtilities.GetWordWithMarkedLetterText(word, letterDataToMark, Color.green, ArabicTextUtilities.MarkType.FromStartToLetter);
-                UIController.instance.SetText(markedText);
+                if (flashingTextCoroutine != null)
+                {
+                    ThrowBallsGame.instance.StopCoroutine(flashingTextCoroutine);
+                }
+
+                if (numLettersRemaining == 0)
+                {
+                    string markedText = ArabicTextUtilities.GetWordWithMarkedText(word, Color.green);
+                    UIController.instance.SetText(markedText);
+                }
+
+                else
+                {
+                    var letterToFlash = (LL_LetterData)currentLettersForLettersInWord[currentLettersForLettersInWord.Count - numLettersRemaining];
+                    int numTimesLetterHasBeenFlashed = usedLettersInLiWVariation.Count(x => x.Id == letterToFlash.Id);
+                    var letterDataToFlash = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word, letterToFlash.Data)[numTimesLetterHasBeenFlashed];
+                    usedLettersInLiWVariation.Add(letterToFlash);
+
+                    flashingTextCoroutine = ArabicTextUtilities.GetWordWithFlashingText(word, letterDataToFlash.fromCharacterIndex, Color.green, FLASHING_TEXT_CYCLE_DURATION, int.MaxValue,
+                        (string text) =>
+                        {
+                            UIController.instance.SetText(text);
+                        }, Color.green, true);
+
+                    ThrowBallsGame.instance.StartCoroutine(flashingTextCoroutine);
+                }
+
                 UIController.instance.WobbleLetterHint();
 
-                if (--numLettersRemaining != 0)
+                if (numLettersRemaining != 0)
                 {
                     UpdateLettersForLettersInWord(correctLetterCntrl);
                     OnBallLost();
@@ -557,7 +601,6 @@ namespace EA4S.Minigames.ThrowBalls
 
                 game.StartCoroutine(ShowWinSequence(correctLetterCntrl));
                 BallController.instance.Disable();
-                UIController.instance.DisableLetterHint();
 
                 isRoundOngoing = false;
 
@@ -791,6 +834,10 @@ namespace EA4S.Minigames.ThrowBalls
             }
 
             isRoundOngoing = false;
+
+            usedLettersInLiWVariation.Clear();
+            markedLetterToIndexInLiWVariation = -1;
+            markedLetterFromIndexInLiWVariation = -1;
         }
 
         public void ExitState()
