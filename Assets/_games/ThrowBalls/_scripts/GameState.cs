@@ -645,6 +645,7 @@ namespace EA4S.Minigames.ThrowBalls
             correctLetterCntrl.SetPropVariation(LetterController.PropVariation.Nothing);
             correctLetterCntrl.MoveTo(0, 13.5f, -33f);
             correctLetterCntrl.transform.rotation = Quaternion.Euler(-Camera.main.transform.rotation.eulerAngles.x, 180, 0);
+            correctLetterCntrl.shadow.SetActive(false);
 
             if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
             {
