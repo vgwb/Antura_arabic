@@ -48,6 +48,8 @@ namespace EA4S.Core
 
         /// <summary>
         /// Given the current context, selects the scene that should be loaded next and loads it.
+        /// This is related to the 'main' flow of the application.
+        /// For 'custom' flows, refer to the custom route methods below.
         /// </summary>
         public void GoToNextScene()
         {
@@ -82,7 +84,7 @@ namespace EA4S.Core
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.GameSelector:
-                    GotoFirsGameOfPlaysession();
+                    GotoFirstGameOfPlaysession();
                     break;
                 case AppScene.MiniGame:
                     GotoNextGameOfPlaysession();
@@ -101,10 +103,10 @@ namespace EA4S.Core
                 case AppScene.PlaySessionResult:
                     GoToScene(AppScene.Map);
                     break;
-                case AppScene.DebugPanel:
-                    NavData.SetFirstMinigame();
-                    InternalLaunchGameScene(NavData.CurrentMiniGameData);
-                    break;
+                //case AppScene.DebugPanel:
+                //    NavData.SetFirstMinigame();
+                //    InternalLaunchGameScene(NavData.CurrentMiniGameData);
+                //    break;
                 default:
                     break;
             }
@@ -115,7 +117,15 @@ namespace EA4S.Core
         /// </summary>
         public void GoBack()
         {
-            Debug.LogFormat(" ---- NAV MANAGER ({0}) from scene {1} to {2} ---- ", "GoBack", NavData.CurrentScene, NavData.PrevScene);
+
+            if (NavData.PrevSceneStack.Count > 0)
+            {
+                var prevScene = NavData.PrevSceneStack.Pop();
+                Debug.LogFormat(" ---- NAV MANAGER ({0}) from scene {1} to {2} ---- ", "GoBack", NavData.CurrentScene, prevScene);
+                GoToScene(prevScene);
+            }
+
+            /*
             switch (NavData.CurrentScene) {
                 case AppScene.Book:
                     if (NavData.PrevScene == AppScene.ReservedArea) {
@@ -131,14 +141,14 @@ namespace EA4S.Core
                 default:
                     GoToScene(NavData.PrevScene);
                     break;
-            }
+            }*/
         }
 
         #endregion
 
         #region Direct navigation (private)
 
-        private void GoToScene(AppScene newScene)
+        private void GoToScene(AppScene newScene, Database.MiniGameData minigameData = null)
         {
             // Additional checks for specific scenes
             switch (newScene)
@@ -161,7 +171,7 @@ namespace EA4S.Core
             UpdatePrevSceneStack(newScene);
             NavData.CurrentScene = newScene;
 
-            var nextSceneName = AppSceneHelper.GetSceneName(newScene);
+            var nextSceneName = AppSceneHelper.GetSceneName(newScene, minigameData);
             GoToSceneByName(nextSceneName);
         }
 
@@ -212,7 +222,7 @@ namespace EA4S.Core
         #region Custom routes
 
         /// <summary>
-        /// Go to home if is allowed for current scene.
+        /// Go to home if allowed for current scene.
         /// </summary>
         public void GoToHome(bool debugMode = false)
         {
@@ -223,10 +233,10 @@ namespace EA4S.Core
             }
             else
             {
+                // @note: home cannot be reached from anywhere!
                 switch (NavData.CurrentScene)
                 {
-                    case AppScene.DebugPanel:
-                        GoToScene(AppScene.Home);
+                    case AppScene.Map:
                         break;
                     default:
                         break;
@@ -250,16 +260,6 @@ namespace EA4S.Core
                 GoToScene(AppScene.AnturaSpace);
         }
 
-        public void ExitAndGoHome()
-        {
-            Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "ExitAndGoHome");
-            if (NavData.CurrentScene == AppScene.Map) {
-                GoToScene(AppScene.Home);
-            } else {
-                GoToScene(AppScene.Map);
-            }
-        }
-
         public void GotoMinigameScene()
         {
             bool canTravel = false;
@@ -279,11 +279,15 @@ namespace EA4S.Core
                     break;
             }
 
-            if (canTravel) {
-                UpdatePrevSceneStack(AppScene.MiniGame);
-                NavData.CurrentScene = AppScene.MiniGame;
-                GoToSceneByName(NavData.CurrentMiniGameData.Scene);
-            } else {
+            if (canTravel)
+            {
+                GoToScene(AppScene.MiniGame, NavData.CurrentMiniGameData);
+                //UpdatePrevSceneStack(AppScene.MiniGame);
+                // NavData.CurrentScene = AppScene.MiniGame;
+                // GoToSceneByName(NavData.CurrentMiniGameData.Scene);
+            }
+            else
+            {
                 throw new Exception("Cannot go to a minigame from the current scene!");
             }
 
@@ -314,7 +318,24 @@ namespace EA4S.Core
 
 
         // obsolete: to be implemented?
-        public void ExitCurrentGame() { }
+        //public void ExitCurrentGame() { }
+
+        /// <summary>
+        /// Exit from the current scene. Called while in pause mode.
+        /// </summary>
+        public void ExitDuringPause()
+        {
+            Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "ExitDuringPause");
+            switch (NavData.CurrentScene)
+            {
+                case AppScene.Map:
+                    GoToScene(AppScene.Home);
+                    break;
+                default:
+                    GoToScene(AppScene.Map);
+                    break;
+            }
+        }
 
         #endregion
 
@@ -431,7 +452,7 @@ namespace EA4S.Core
             }
         }
 
-        private void GotoFirsGameOfPlaysession()
+        private void GotoFirstGameOfPlaysession()
         {
             // Game selector -> go to the first game
             NavData.SetFirstMinigame();
