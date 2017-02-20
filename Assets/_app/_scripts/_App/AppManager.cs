@@ -87,6 +87,8 @@ namespace EA4S
             GameLauncher = new MiniGameLauncher(Teacher);
 
             NavigationManager = gameObject.AddComponent<NavigationManager>();
+            NavigationManager.InitializeAllowedTransitions();
+
             PlayerProfileManager = new PlayerProfileManager();
             gameObject.AddComponent<DebugManager>();
             gameObject.AddComponent<KeeperManager>();

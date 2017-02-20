@@ -75,6 +75,12 @@ namespace EA4S.Core
         /// </summary>
         public int CurrentMiniGameIndexInPlaySession { get; private set; }
 
+        public void Initialize(PlayerProfile _playerProfile)
+        {
+            if (PrevSceneStack == null) PrevSceneStack = new Stack<AppScene>();
+            CurrentPlayer = _playerProfile;
+        }
+
         public void SetFirstMinigame()
         {
             CurrentMiniGameIndexInPlaySession = 0;

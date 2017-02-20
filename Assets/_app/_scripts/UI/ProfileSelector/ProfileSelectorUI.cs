@@ -169,7 +169,7 @@ namespace EA4S.UI
             if (_bt == BtAdd) {
                 // Bt Add
                 _bt.StopPulsing();
-                AppManager.I.NavigationManager.GotoNewProfileCreation();
+                AppManager.I.NavigationManager.GoToPlayerCreation();
             }
         }
 
