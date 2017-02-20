@@ -52,6 +52,9 @@ namespace EA4S.Minigames.ThrowBalls
 
         public GameObject victoryRays;
 
+        private Vector3 velocity;
+        private bool isAirborne;
+
         void Start()
         {
             letterObjectView = GetComponent<LetterObjectView>();
@@ -170,6 +173,8 @@ namespace EA4S.Minigames.ThrowBalls
 
         private void SetIsJumping()
         {
+            letterObjectView.SetState(LLAnimationStates.LL_still);
+            shadow.transform.parent = null;
             jumpCoroutine = Jump();
             StartCoroutine(jumpCoroutine);
         }
@@ -180,7 +185,29 @@ namespace EA4S.Minigames.ThrowBalls
 
             for (;;)
             {
+                velocity = new Vector3(0f, 30f, 0f);
                 letterObjectView.DoSmallJump();
+                var position = transform.position;
+                yEquilibrium = position.y;
+                transform.Translate(velocity * Time.fixedDeltaTime);
+
+                isAirborne = true;
+
+                while (transform.position.y > yEquilibrium)
+                {
+                    velocity.y += GRAVITY * 0.33f * Time.fixedDeltaTime;
+                    transform.Translate(velocity * Time.fixedDeltaTime);
+                    yield return new WaitForFixedUpdate();
+                }
+
+                position.y = yEquilibrium;
+                transform.position = position;
+
+                velocity = Vector3.zero;
+                isAirborne = false;
+
+                letterObjectView.SetState(LLAnimationStates.LL_still);
+
                 yield return new WaitForSeconds(1.5f);
             }
         }
@@ -294,8 +321,12 @@ namespace EA4S.Minigames.ThrowBalls
             transform.rotation = Quaternion.Euler(0, 180, 0);
             SetIsKinematic(true);
             SetIsColliderEnabled(true);
+            shadow.transform.parent = transform;
+            shadow.transform.localPosition = Vector3.zero;
             shadow.SetActive(true);
             letterObjectView.SetState(LLAnimationStates.LL_idle);
+            velocity = Vector3.zero;
+            isAirborne = false;
         }
 
         public void ShowVictoryRays()
@@ -338,15 +369,21 @@ namespace EA4S.Minigames.ThrowBalls
 
         private IEnumerator JumpOffOfCrateCoroutine()
         {
-            transform.DORotate(new Vector3(0, 180f, 0), 0.33f);
-            letterObjectView.DoTwirl(null);
+            if (!isAirborne)
+            {
+                transform.DORotate(new Vector3(0, 180f, 0), 0.33f);
+                letterObjectView.DoTwirl(null);
 
-            rigidBody.isKinematic = true;
+                rigidBody.isKinematic = true;
 
-            var zAngle = transform.rotation.eulerAngles.z;
-            zAngle = zAngle > 180 ? zAngle - 360 : zAngle;
+                var zAngle = transform.rotation.eulerAngles.z;
+                zAngle = zAngle > 180 ? zAngle - 360 : zAngle;
 
-            var velocity = new Vector3(zAngle * 0.25f, 25f, 0f);
+                velocity = new Vector3(zAngle * 0.25f, 25f, 0f);
+
+                isAirborne = true;
+            }
+
             var position = transform.position;
 
             while (transform.position.y > 0.51f)
@@ -357,8 +394,15 @@ namespace EA4S.Minigames.ThrowBalls
                 yield return new WaitForFixedUpdate();
             }
 
+            isAirborne = false;
+
             position.y = 0.51f;
             transform.position = position;
+
+            letterObjectView.SetState(LLAnimationStates.LL_idle);
+
+            shadow.transform.parent = transform;
+            shadow.transform.localPosition = Vector3.zero;
             shadow.SetActive(true);
         }
     }

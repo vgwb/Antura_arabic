@@ -34,43 +34,43 @@ namespace EA4S.Minigames.ThrowBalls
 
         public void OnCrateHit(CrateController crate)
         {
-            ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.CrateLandOnground);
-
-            crate.Launch(new Vector3(0, 0, 1), 30);
-
-            middleCrate.ApplyCustomGravity();
-            middleCrate.SetIsKinematic(false);
-            middleCrate.VanishAfterDelay(0.7f);
-            if (middleCrate.IsSwerving())
-            {
-                middleCrate.StopSwerving();
-            }
-
-            topCrate.ApplyCustomGravity();
-            topCrate.SetIsKinematic(false);
-            topCrate.VanishAfterDelay(0.9f);
-            if (topCrate.IsSwerving())
-            {
-                topCrate.StopSwerving();
-            }
-
-            bottomCrate.ApplyCustomGravity();
-            bottomCrate.SetIsKinematic(false);
-            bottomCrate.VanishAfterDelay(1.1f);
-            if (bottomCrate.IsSwerving())
-            {
-                bottomCrate.StopSwerving();
-            }
-
-            if (letter.IsJumping())
-            {
-                letter.StopJumping();
-            }
-
-            letter.JumpOffOfCrate();
-
             if (!hit)
             {
+                ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.CrateLandOnground);
+
+                crate.Launch(new Vector3(0, 0, 1), 30);
+
+                middleCrate.ApplyCustomGravity();
+                middleCrate.SetIsKinematic(false);
+                middleCrate.VanishAfterDelay(0.7f);
+                if (middleCrate.IsSwerving())
+                {
+                    middleCrate.StopSwerving();
+                }
+
+                topCrate.ApplyCustomGravity();
+                topCrate.SetIsKinematic(false);
+                topCrate.VanishAfterDelay(0.9f);
+                if (topCrate.IsSwerving())
+                {
+                    topCrate.StopSwerving();
+                }
+
+                bottomCrate.ApplyCustomGravity();
+                bottomCrate.SetIsKinematic(false);
+                bottomCrate.VanishAfterDelay(1.1f);
+                if (bottomCrate.IsSwerving())
+                {
+                    bottomCrate.StopSwerving();
+                }
+
+                if (letter.IsJumping())
+                {
+                    letter.StopJumping();
+                }
+
+                letter.JumpOffOfCrate();
+                
                 BallController.instance.Reset();
                 GameState.instance.OnBallLost();
                 hit = true;
