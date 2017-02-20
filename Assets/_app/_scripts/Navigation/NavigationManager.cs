@@ -3,7 +3,6 @@ using EA4S.Database;
 using System.Collections.Generic;
 using EA4S.Environment;
 using EA4S.Rewards;
-using EA4S.Teacher;
 using UnityEngine;
 using EA4S.Profile;
 
@@ -21,10 +20,25 @@ namespace EA4S.Core
 
         public SceneTransitionManager SceneTransitionManager = new SceneTransitionManager();
 
+        private List<KeyValuePair<AppScene, AppScene>> customTransitions = new List<KeyValuePair<AppScene, AppScene>>();
+        private List<KeyValuePair<AppScene, AppScene>> backableTransitions = new List<KeyValuePair<AppScene, AppScene>>();
 
-        List<KeyValuePair<AppScene, AppScene>> customTransitions = new List<KeyValuePair<AppScene, AppScene>>();
-        List<KeyValuePair<AppScene, AppScene>> backableTransitions = new List<KeyValuePair<AppScene, AppScene>>();
+        #region State Checks
 
+        public bool IsLoadingMinigame { get; private set; }
+
+        public bool IsTransitioningScenes
+        {
+            get { return SceneTransitionManager.IsTransitioning; }
+        }
+
+        #endregion
+
+        #region Initialization
+
+        /// <summary>
+        /// Initialize custom and 'back-enabled' transitions.
+        /// </summary>
         public void InitializeAllowedTransitions()
         {
             // Allowed custom transitions
@@ -42,19 +56,6 @@ namespace EA4S.Core
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.ReservedArea, AppScene.Book));
             backableTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Map, AppScene.GameSelector));
         }
-
-        #region State Checks
-
-        public bool IsLoadingMinigame { get; private set; }
-
-        public bool IsTransitioningScenes
-        {
-            get { return SceneTransitionManager.IsTransitioning; }
-        }
-
-        #endregion
-       
-        #region API
 
         /// <summary>
         /// Sets the player navigation data.
@@ -128,10 +129,6 @@ namespace EA4S.Core
                 case AppScene.PlaySessionResult:
                     GoToScene(AppScene.Map);
                     break;
-                //case AppScene.DebugPanel:
-                //    NavData.SetFirstMinigame();
-                //    InternalLaunchGameScene(NavData.CurrentMiniGameData);
-                //    break;
                 default:
                     break;
             }
@@ -276,6 +273,9 @@ namespace EA4S.Core
             }
         }
 
+        /// <summary>
+        /// Internal GoTo to handle custom transitions.
+        /// </summary>
         private void CustomGoTo(AppScene targetScene, bool debugMode = false)
         {
             if (debugMode || HasCustomTransitionTo(targetScene))
@@ -294,6 +294,9 @@ namespace EA4S.Core
             return customTransitions.Contains(new KeyValuePair<AppScene, AppScene>(NavData.CurrentScene, targetScene));
         }
 
+        /// <summary>
+        /// Special GoTo for minigames.
+        /// </summary>
         public void GotoMinigameScene()
         {
             bool canTravel = false;
@@ -316,9 +319,6 @@ namespace EA4S.Core
             if (canTravel)
             {
                 GoToScene(AppScene.MiniGame, NavData.CurrentMiniGameData);
-                //UpdatePrevSceneStack(AppScene.MiniGame);
-                // NavData.CurrentScene = AppScene.MiniGame;
-                // GoToSceneByName(NavData.CurrentMiniGameData.Scene);
             }
             else
             {
