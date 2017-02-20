@@ -170,10 +170,11 @@ namespace EA4S.Teacher
         public List<LetterData> FindWrongLetters(WordData selectedWord, List<LetterData> wordLetters)
         {
             var vocabularyHelper = AppManager.I.VocabularyHelper;
-            List<LetterData> eligibleLetters = vocabularyHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray());
+            List<LetterData> noWordLetters = vocabularyHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray());
+            List<LetterData> eligibleLetters = new List<LetterData>();
             var bad_words = new List<string>(currentRoundIDs_words);
             bad_words.Remove(selectedWord.Id);
-            foreach (var letter in wordLetters)
+            foreach (var letter in noWordLetters)
             {
                 // Avoid using letters that appeared in previous words
                 if (packsUsedTogether && vocabularyHelper.LetterContainedInAnyWord(letter, bad_words)) continue;
