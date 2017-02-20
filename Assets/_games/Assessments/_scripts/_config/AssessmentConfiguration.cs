@@ -392,8 +392,6 @@ namespace EA4S.Assessment
             builderParams.useJourneyForWrong = false;
             builderParams.sortPacksByDifficulty = false;
 
-            Debug.Log("QUESTO");
-
             return new LettersInWordQuestionBuilder(
                 NumberOfRounds,
                 SimultaneosQuestions,
