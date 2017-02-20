@@ -21,7 +21,6 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using System.Collections.Generic;
 using ModularFramework.Modules;
-using UnityEngine.SceneManagement;
 
 namespace ModularFramework.Core
 {
@@ -55,30 +54,6 @@ namespace ModularFramework.Core
         public delegate void GameEvent(IGameplayInfo _gameplayInfo);
 
         //public static event GameEvent LevelSet;
-
-        #endregion
-
-        #region Event Handlers
-        private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
-        {
-            if (IsDuplicatedInstance)
-                return;
-            //Debug.Log("SceneLoaded", this);
-            Modules.SceneModule.SceneLoadedBehaviour();
-        }
-        #endregion
-
-        #region Event Subscription
-
-        void OnEnable()
-        {
-            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-        }
-
-        void OnDisable()
-        {
-            SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
-        }
 
         #endregion
 

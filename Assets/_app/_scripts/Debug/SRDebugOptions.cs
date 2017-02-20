@@ -52,7 +52,7 @@ public partial class SROptions
         // refactor: move to DebugManager
         AppManager.I.PlayerProfileManager.ResetEverything();
         SRDebug.Instance.HideDebugPanel();
-        AppManager.I.Modules.SceneModule.LoadSceneWithTransition(AppSceneHelper.GetSceneName(AppScene.Home));
+        AppManager.I.NavigationManager.GoToHome(debugMode:true);
         UnityEngine.Debug.Log("Reset ALL players and DB.");
     }
 
@@ -94,7 +94,7 @@ public partial class SROptions
     {
         // refactor: move to DebugManager
         WidgetPopupWindow.I.Close();
-        AppManager.I.NavigationManager.GoToHome();
+        AppManager.I.NavigationManager.GoToHome(debugMode: true);
         SRDebug.Instance.HideDebugPanel();
     }
 

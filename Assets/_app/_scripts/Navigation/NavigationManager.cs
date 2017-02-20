@@ -17,8 +17,19 @@ namespace EA4S.Core
     {
         public NavigationData NavData;
 
-        public bool IsLoadingMinigame { get; private set; } // Daniele mod - SceneTransitioner needs it to know when a minigame is being loaded
+        public SceneTransitionManager SceneTransitionManager = new SceneTransitionManager();
 
+        #region State Checks
+
+        public bool IsLoadingMinigame { get; private set; }
+
+        public bool IsTransitioningScenes
+        {
+            get { return SceneTransitionManager.IsTransitioning; }
+        }
+
+        #endregion
+       
         #region API
 
         /// <summary>
@@ -139,9 +150,9 @@ namespace EA4S.Core
             // http://answers.unity3d.com/questions/1174255/since-onlevelwasloaded-is-deprecated-in-540b15-wha.html
 
             IsLoadingMinigame = sceneName.Substring(0, 5) == "game_";
-            // TODO: change scenemodule to private for this class
+
             Debug.LogFormat(" ==== {0} scene to load ====", sceneName);
-            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(sceneName, new ModularFramework.Modules.SceneTransition() { });
+            SceneTransitionManager.LoadSceneWithTransition(sceneName);
 
             if (AppConstants.UseUnityAnalytics && !Application.isEditor) {
                 UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
@@ -188,15 +199,23 @@ namespace EA4S.Core
         /// <summary>
         /// Go to home if is allowed for current scene.
         /// </summary>
-        public void GoToHome()
+        public void GoToHome(bool debugMode = false)
         {
             Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToHome");
-            switch (NavData.CurrentScene) {
-                case AppScene.DebugPanel:
-                    GoToScene(AppScene.Home);
-                    break;
-                default:
-                    break;
+            if (debugMode)
+            {
+                GoToScene(AppScene.Home);
+            }
+            else
+            {
+                switch (NavData.CurrentScene)
+                {
+                    case AppScene.DebugPanel:
+                        GoToScene(AppScene.Home);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -420,5 +439,20 @@ namespace EA4S.Core
         }
 
         #endregion
+
+        #region Scene Transition
+
+        void OnEnable()
+        {
+            SceneTransitionManager.OnEnable();
+        }
+
+        void OnDisable()
+        {
+            SceneTransitionManager.OnDisable();
+        }
+
+        #endregion
+
     }
 }
