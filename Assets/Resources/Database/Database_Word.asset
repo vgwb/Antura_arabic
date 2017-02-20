@@ -302,6 +302,7 @@ MonoBehaviour:
       Arabic: "\u0622\u0645\u064E\u0646\u064E"
       Value: 
       Letters:
+      - alef_maddah
       - meem_fathah
       - noon_fathah
       Drawing: 
@@ -2462,6 +2463,7 @@ MonoBehaviour:
       Arabic: "\u0622\u0628"
       Value: 
       Letters:
+      - alef_maddah
       - beh
       Drawing: B1
       Intrinsic: 1
@@ -2570,6 +2572,7 @@ MonoBehaviour:
       Arabic: "\u0622\u0630\u0627\u0631"
       Value: 
       Letters:
+      - alef_maddah
       - thal
       - alef
       - reh
@@ -3969,6 +3972,7 @@ MonoBehaviour:
       Arabic: "\u0622\u0645\u0650\u0646\u0652"
       Value: 
       Letters:
+      - alef_maddah
       - meem_kasrah
       - noon_sukun
       Drawing: 
