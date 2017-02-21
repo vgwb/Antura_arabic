@@ -18,8 +18,7 @@ namespace EA4S.Core
         Mood,
         PlaySessionResult,
         PlayerCreation,
-        Rewards,
-        DebugPanel
+        Rewards
     }
 
     public static class AppSceneHelper
@@ -61,9 +60,10 @@ namespace EA4S.Core
     public struct NavigationData
     {
         public PlayerProfile CurrentPlayer;
-        public AppScene PrevScene;
+        //public AppScene PrevScene;
         public AppScene CurrentScene;
         public bool RealPlaySession;
+        public Stack<AppScene> PrevSceneStack;
 
         /// <summary>
         /// List of minigames selected for the current play session
@@ -74,6 +74,12 @@ namespace EA4S.Core
         /// Current minigame index in
         /// </summary>
         public int CurrentMiniGameIndexInPlaySession { get; private set; }
+
+        public void Initialize(PlayerProfile _playerProfile)
+        {
+            if (PrevSceneStack == null) PrevSceneStack = new Stack<AppScene>();
+            CurrentPlayer = _playerProfile;
+        }
 
         public void SetFirstMinigame()
         {

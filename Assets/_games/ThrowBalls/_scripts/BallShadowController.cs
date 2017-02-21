@@ -22,7 +22,7 @@ namespace EA4S.Minigames.ThrowBalls
 
             float ballElevation = ballPosition.y - groundPosition.y;
 
-            float scale = 7f + ballElevation * 0.5f;
+            float scale = 6f + ballElevation * 0.5f;
             transform.localScale = new Vector3(scale, scale, 12.72f);
         }
     }

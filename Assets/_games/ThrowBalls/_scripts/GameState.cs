@@ -552,8 +552,7 @@ namespace EA4S.Minigames.ThrowBalls
                 if (numLettersRemaining != 0)
                 {
                     UpdateLettersForLettersInWord(correctLetterCntrl);
-                    OnBallLost();
-                    BallController.instance.Reset();
+                    BallController.instance.DampenVelocity();
                 }
 
                 else
@@ -598,7 +597,7 @@ namespace EA4S.Minigames.ThrowBalls
                 }
 
                 game.StartCoroutine(ShowWinSequence(correctLetterCntrl));
-                BallController.instance.Disable();
+                BallController.instance.DampenVelocity();
 
                 isRoundOngoing = false;
 
@@ -645,6 +644,7 @@ namespace EA4S.Minigames.ThrowBalls
             correctLetterCntrl.SetPropVariation(LetterController.PropVariation.Nothing);
             correctLetterCntrl.MoveTo(0, 13.5f, -33f);
             correctLetterCntrl.transform.rotation = Quaternion.Euler(-Camera.main.transform.rotation.eulerAngles.x, 180, 0);
+            correctLetterCntrl.shadow.SetActive(false);
 
             if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
             {

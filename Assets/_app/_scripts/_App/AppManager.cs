@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using ModularFramework.Core;
+﻿using ModularFramework.Core;
 using ModularFramework.Modules;
 using EA4S.Audio;
 using EA4S.CameraControl;
@@ -9,7 +8,6 @@ using EA4S.Debugging;
 using EA4S.Profile;
 using EA4S.Rewards;
 using EA4S.Teacher;
-using EA4S.UI;
 using EA4S.MinigamesAPI;
 using PlayerProfile = EA4S.Profile.PlayerProfile;
 
@@ -89,6 +87,8 @@ namespace EA4S
             GameLauncher = new MiniGameLauncher(Teacher);
 
             NavigationManager = gameObject.AddComponent<NavigationManager>();
+            NavigationManager.InitializeAllowedTransitions();
+
             PlayerProfileManager = new PlayerProfileManager();
             gameObject.AddComponent<DebugManager>();
             gameObject.AddComponent<KeeperManager>();

@@ -143,6 +143,14 @@ namespace EA4S.Profile
         }
 
         /// <summary>
+        /// Advance the Max journey position based on the next after the Current one.
+        /// </summary>
+        public void AdvanceMaxJourneyPosition()
+        {
+            SetMaxJourneyPosition(AppManager.I.Teacher.journeyHelper.FindNextJourneyPosition(CurrentJourneyPosition));
+        }
+
+        /// <summary>
         /// Sets the maximum journey position and save to profile.
         /// @note: check valid data before insert.
         /// </summary>
@@ -309,6 +317,8 @@ namespace EA4S.Profile
             if (_anturaCustomization != null)
                 CurrentAnturaCustomizations = _anturaCustomization;
             Save();
+
+            AppManager.I.LogManager.LogInfo(InfoEvent.AnturaCustomization, CurrentAnturaCustomizations.GetJsonListOfIds());
         }
 
         #endregion

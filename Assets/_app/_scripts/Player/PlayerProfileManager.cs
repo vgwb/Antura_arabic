@@ -30,7 +30,7 @@ namespace EA4S.Profile
                     AppManager.I.GameSettings.LastActivePlayerUUID = value.Uuid;
                     SaveGameSettings();
                     LogManager.I.LogInfo(InfoEvent.AppStarted);
-                    AppManager.I.NavigationManager.SetPlayerNavigationData(currentPlayer);
+                    AppManager.I.NavigationManager.InitialisePlayerNavigationData(currentPlayer);
                     currentPlayer.LoadRewardsUnlockedFromDB(); // refresh list of unlocked rewards
                     if (OnProfileChanged != null)
                         OnProfileChanged();
