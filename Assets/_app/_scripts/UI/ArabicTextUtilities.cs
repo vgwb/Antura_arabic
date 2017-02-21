@@ -36,13 +36,13 @@ namespace EA4S.UI
         }
 
         /// <summary>
-        /// Returns a coroutine which creates a string with text that flashes over frames, with an option to mark some of the text.
+        /// Returns a coroutine which creates a string with a letter that flashes over frames, with an option to mark the text before it.
         /// </summary>
-        public static IEnumerator GetWordWithFlashingText(Database.WordData arabicWord, int indexToFlash, Color flashColor, float cycleDuration, int numCycles, System.Action<string> callback, Color markColor, bool markPrecedingLetters = false)
+        public static IEnumerator GetWordWithFlashingText(Database.WordData arabicWord, int indexToFlash, Color flashColor, float cycleDuration, int numCycles, System.Action<string> callback, bool markPrecedingLetters = false)
         {
             string text = ArabicAlphabetHelper.ProcessArabicString(arabicWord.Arabic);
 
-            string markTagStart = "<color=#" + GenericHelper.ColorToHex(markColor) + ">";
+            string markTagStart = "<color=#" + GenericHelper.ColorToHex(flashColor) + ">";
             string markTagEnd = "</color>";
 
             float timeElapsed = 0f;
@@ -88,6 +88,9 @@ namespace EA4S.UI
             }
         }
 
+        /// <summary>
+        /// Returns a completely colored string of an Arabic word.
+        /// </summary>
         public static string GetWordWithMarkedText(Database.WordData arabicWord, Color color)
         {
             string tagStart = "<color=#" + GenericHelper.ColorToHex(color) + ">";

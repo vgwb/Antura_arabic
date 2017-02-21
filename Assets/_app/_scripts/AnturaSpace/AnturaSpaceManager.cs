@@ -46,7 +46,12 @@ namespace EA4S.AnturaSpace
         void Start()
         {
             GlobalUI.ShowPauseMenu(false);
-            GlobalUI.ShowBackButton(true, Exit);
+
+            if (!AppManager.I.Player.IsFirstContact())
+            {
+                ShowBackButton();
+            }
+
             AudioManager.I.PlayMusic(m_oBackgroundMusic);
             LogManager.I.LogInfo(InfoEvent.AnturaSpace, "enter");
 
@@ -93,13 +98,19 @@ namespace EA4S.AnturaSpace
         #endregion
 
         #region PUBLIC FUNCTIONS
+
+        public void ShowBackButton()
+        {
+            GlobalUI.ShowBackButton(true, GoBackCustom);
+        }
+
         /// <summary>
         /// Go back to the map.
         /// </summary>
-        public void Exit()
+        public void GoBackCustom()
         {
             LogManager.I.LogInfo(InfoEvent.AnturaSpace, "exit");
-            AppManager.I.NavigationManager.GoToNextScene();
+            AppManager.I.NavigationManager.GoBack();
         }
 
         /// <summary>
@@ -250,7 +261,6 @@ namespace EA4S.AnturaSpace
 
         /// <summary>
         /// Decrease the total number of bones of the player.
-        /// (Compilation is different from Editor to Build)
         /// </summary>
         private void DecreaseBonesNumber()
         {
