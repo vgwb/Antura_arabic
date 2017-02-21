@@ -24,6 +24,7 @@ namespace EA4S.AnturaSpace
         }
 
         #region EXPOSED MEMBERS
+        private AnturaSpaceManager m_sceneManager;
         [SerializeField]
         private Camera m_oCameraUI;
         [SerializeField]
@@ -55,17 +56,12 @@ namespace EA4S.AnturaSpace
                 return;
             }
 
+            m_sceneManager = FindObjectOfType<AnturaSpaceManager>();
+
             TutorialUI.SetCamera(m_oCameraUI);
 
-            //setup first state, disable UI      
+            //setup first state, disable UI    
             m_eTutoState = eAnturaSpaceTutoState.ANTURA_ANIM;
-
-#if UNITY_EDITOR
-
-#else
-            GlobalUI.ShowBackButton(false);
-#endif
-
             m_oCookieButton.gameObject.SetActive(false);
             m_oCustomizationButton.gameObject.SetActive(false);
 
@@ -205,7 +201,7 @@ namespace EA4S.AnturaSpace
                     }*/
                     m_oCustomizationButton.onClick.RemoveListener(AdvanceTutorial);
 
-                    GlobalUI.ShowBackButton(true,delegate() { AppManager.I.NavigationManager.GoBack(); });
+                    m_sceneManager.ShowBackButton();
 
                     AudioManager.I.StopDialogue(false);
 
