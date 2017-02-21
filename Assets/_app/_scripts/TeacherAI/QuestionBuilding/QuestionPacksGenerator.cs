@@ -12,8 +12,29 @@ namespace EA4S.Teacher
     {
         public List<IQuestionPack> GenerateQuestionPacks(IQuestionBuilder questionBuilder)
         {
-            // Generate packs
-            List<QuestionPackData> questionPackDataList = questionBuilder.CreateAllQuestionPacks();
+            // Safety fallback, used for release to avoid crashing the application.
+            // @note: This WILL block the game if an error happens EVERYTIME, so make sure that never happens!
+            List<QuestionPackData> questionPackDataList = null;
+            while (true)
+            {
+                try
+                {
+                    // Generate packs
+                    questionPackDataList = questionBuilder.CreateAllQuestionPacks();
+                    break;
+                }
+                catch (System.Exception e)
+                {
+                    if (!ConfigAI.teacherSafetyFallbackEnabled)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        UnityEngine.Debug.LogError("Teacher fallback triggered: " + e.ToString());
+                    }
+                }
+            }
 
             // Apply ordering
             if (questionBuilder.Parameters != null && questionBuilder.Parameters.sortPacksByDifficulty)
