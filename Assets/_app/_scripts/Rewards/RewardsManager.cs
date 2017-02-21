@@ -86,7 +86,7 @@ namespace EA4S.Rewards
                         break;
                 }
                 AnturaModelManager.Instance.ClearLoadedRewards();
-                RewardPackUnlockData newUnlockedReward = RewardSystemManager.GetNextRewardPack()[0];
+                RewardPackUnlockData newUnlockedReward = RewardSystemManager.GetNextRewardPack(true)[0];
                 AppManager.I.Player.AddRewardUnlocked(newUnlockedReward);
                 AnturaModelManager.Instance.LoadRewardPackOnAntura(newUnlockedReward);
             }

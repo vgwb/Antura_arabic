@@ -23,7 +23,7 @@ namespace EA4S.Rewards
             int itemAlreadyUnlocked = oldRewards.Count;
             for (int i = 0; i < itemsToUnlock - oldRewards.Count; i++) {
                 // if necessary add one new random reward unlocked
-                RewardPackUnlockData newRewardToUnlock = RewardSystemManager.GetNextRewardPack()[0];
+                RewardPackUnlockData newRewardToUnlock = RewardSystemManager.GetNextRewardPack(true)[0];
                 oldRewards.Add(newRewardToUnlock);
                 AppManager.I.Player.AddRewardUnlocked(newRewardToUnlock);
             }
@@ -34,7 +34,7 @@ namespace EA4S.Rewards
 
             for (int i = 0; i < objs.Length - oldRewards.Count; i++) {
                 // if necessary add one new random reward not to be unlocked!
-                oldRewards.Add(RewardSystemManager.GetNextRewardPack()[0]);
+                oldRewards.Add(RewardSystemManager.GetNextRewardPack(true)[0]);
             }
 
             LogManager.I.LogPlaySessionScore(TeacherAI.I.journeyHelper.GetCurrentPlaySessionData().Id, objs.Length);
