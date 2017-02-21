@@ -21,7 +21,7 @@ namespace EA4S.Rewards
 
             List<RewardPackUnlockData> oldRewards = AppManager.I.Player.RewardsUnlocked.FindAll(ru => ru.PlaySessionId == AppManager.I.Player.CurrentJourneyPosition.ToString());
             int itemAlreadyUnlocked = oldRewards.Count;
-            for (int i = 0; i < itemsToUnlock - oldRewards.Count; i++) {
+            for (int i = 0; i < itemsToUnlock - itemAlreadyUnlocked; i++) {
                 // if necessary add one new random reward unlocked
                 RewardPackUnlockData newRewardToUnlock = RewardSystemManager.GetNextRewardPack(true)[0];
                 oldRewards.Add(newRewardToUnlock);
