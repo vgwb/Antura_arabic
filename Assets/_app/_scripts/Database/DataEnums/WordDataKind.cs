@@ -9,8 +9,9 @@ namespace EA4S.Database
       Article = 3,
       Preposition = 4,
       Noun = 5,
-      UI = 6,
-      Adverb = 7,
+      Adverb = 6,
+      UI = 7,
+      Pronoun = 8,
   }
 }
 

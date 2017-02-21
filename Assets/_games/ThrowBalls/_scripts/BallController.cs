@@ -35,8 +35,6 @@ namespace EA4S.Minigames.ThrowBalls
 
         private float cameraDistance;
 
-        //private float yzStretchRange = 3f;
-
         void Awake()
         {
             instance = this;
@@ -261,8 +259,16 @@ namespace EA4S.Minigames.ThrowBalls
 
                 if (transform.position.y < -9 || stateTime > BALL_RESPAWN_TIME)
                 {
-                    GameState.instance.OnBallLost();
-                    Reset();
+                    if (ThrowBallsGame.instance.GameState.isRoundOngoing)
+                    {
+                        GameState.instance.OnBallLost();
+                        Reset();
+                    }
+                    
+                    else
+                    {
+                        Disable();
+                    }
                 }
             }
 
@@ -302,6 +308,14 @@ namespace EA4S.Minigames.ThrowBalls
                     Reset();
                 }
             }
+        }
+
+        public void DampenVelocity()
+        {
+            rigidBody.velocity = rigidBody.velocity * 0.5f;
+            rigidBody.angularVelocity = rigidBody.angularVelocity * 0.5f;
+
+            stateTime = BALL_RESPAWN_TIME - 0.75f;
         }
 
         void Update()

@@ -5,15 +5,14 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 484274}
-  - 114: {fileID: 11431742}
-  - 114: {fileID: 11441512}
-  - 114: {fileID: 11455790}
-  - 114: {fileID: 11444334}
-  - 114: {fileID: 11453334}
-  - 114: {fileID: 11405910}
+  - component: {fileID: 484274}
+  - component: {fileID: 11431742}
+  - component: {fileID: 11441512}
+  - component: {fileID: 11455790}
+  - component: {fileID: 11444334}
+  - component: {fileID: 11453334}
   m_Layer: 0
   m_Name: AppManager
   m_TagString: Untagged
@@ -30,22 +29,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11405910
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 188774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e708d3dbc1c3b014d8056dbc67f7c06d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ModuleActivationState: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11431742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -61,30 +48,14 @@ MonoBehaviour:
   Modules:
     LocalizationDataPath: 
   GameSettings:
-    GameID: Antura
-    GameName: Antura
+    AvailablePlayers: []
     DoLogPlayerBehaviour: 0
     HighQualityGfx: 0
-  ActualGame: 
-  DB: {fileID: 11400000, guid: e7398fb7d95a5470ab6975cb96382e96, type: 2}
-  CurrentGameManagerGO: {fileID: 0}
-  Stage: 2
-  LearningBlock: 4
-  PlaySession: 1
-  PlaySessionGameDone: 0
-  ActualMinigame:
-    Id: 
-    Variation: 
-    Status: 
-    Parent: 
-    Description: 
-    Title_En: 
-    Title_Ar: 
-    Scene: 
-    TitleNew: 
-    Team: 
-    MiniGameCode: 0
-    Available: 0
+    LastActivePlayerUUID: 
+    UseTestDatabase: 0
+    EnglishSubtitles: 0
+    SavedPlayers: []
+  NavigationManager: {fileID: 0}
 --- !u!114 &11441512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -98,7 +69,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioManager: {fileID: 113176, guid: 8d2a6e676863b4658a06be3b5a745eca, type: 2}
   EventsManager: {fileID: 157592, guid: 79a617bc66d4648f8bd1e58c7a6f3213, type: 2}
-  TouchManager: {fileID: 146898, guid: 6a2e78cf593284ef881cad68b7e43060, type: 2}
 --- !u!114 &11444334
 MonoBehaviour:
   m_ObjectHideFlags: 1

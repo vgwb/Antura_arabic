@@ -32,7 +32,7 @@ namespace EA4S.ReservedArea
 
         void UnlockParentControls()
         {
-            AppManager.I.NavigationManager.GoToAppScene(Core.AppScene.ReservedArea);
+            AppManager.I.NavigationManager.GoToReservedArea();
         }
     }
 }

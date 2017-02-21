@@ -171,7 +171,14 @@ namespace EA4S.Teacher
             return minimumMiniGameJourneyPositions[code].IsMinor(jp)
                  || minimumMiniGameJourneyPositions[code].Equals(jp);
         }
-         
+
+        /// <summary>
+        /// Can minigame be played at ANY play session at all?
+        /// </summary>
+        public bool CanMiniGameBePlayedAtAnyPlaySession(MiniGameCode code)
+        {
+            return minimumMiniGameJourneyPositions[code] != null;
+        }
 
         #endregion
 

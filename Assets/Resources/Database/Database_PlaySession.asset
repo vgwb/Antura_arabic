@@ -178,7 +178,7 @@ MonoBehaviour:
       - khah
       Words:
       - leg
-      - delicious
+      - field
       Words_previous:
       - cheese
       - whale
@@ -5551,8 +5551,14 @@ MonoBehaviour:
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - sky
+      - wolf
+      - pearl
+      - slow
+      Words_previous:
+      - parrot
+      - light
       Phrases: []
       Phrases_previous: []
     - Id: 4.9.2
@@ -5601,14 +5607,8 @@ MonoBehaviour:
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
-      Words:
-      - sky
-      - wolf
-      - pearl
-      - slow
-      Words_previous:
-      - parrot
-      - light
+      Words: []
+      Words_previous: []
       Phrases: []
       Phrases_previous: []
     - Id: 4.9.100
@@ -8199,7 +8199,7 @@ MonoBehaviour:
       - yellowflower
       - greywolf
       - greencucumber
-      - thecarpenterwent
+      - thecarpenterwenthome
       - thebirdflew
       - theshopissmall
       - thedoctoropenedthehospital
@@ -8997,7 +8997,7 @@ MonoBehaviour:
       - MiniGameCode: 10
         Weight: 1
       - MiniGameCode: 13
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 22
@@ -9051,7 +9051,7 @@ MonoBehaviour:
       - MiniGameCode: 4
         Weight: 1
       - MiniGameCode: 6
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 8
         Weight: 1
       - MiniGameCode: 10

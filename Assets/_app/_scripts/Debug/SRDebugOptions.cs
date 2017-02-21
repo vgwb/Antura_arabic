@@ -52,7 +52,7 @@ public partial class SROptions
         // refactor: move to DebugManager
         AppManager.I.PlayerProfileManager.ResetEverything();
         SRDebug.Instance.HideDebugPanel();
-        AppManager.I.Modules.SceneModule.LoadSceneWithTransition(AppSceneHelper.GetSceneName(AppScene.Home));
+        AppManager.I.NavigationManager.GoToHome(debugMode:true);
         UnityEngine.Debug.Log("Reset ALL players and DB.");
     }
 
@@ -89,16 +89,6 @@ public partial class SROptions
     public int NumberOfRounds { get { return DebugManager.I.NumberOfRounds; } set { DebugManager.I.NumberOfRounds = value; } }
 
     [Category("Options")]
-    [Sort(60)]
-    public void Home()
-    {
-        // refactor: move to DebugManager
-        WidgetPopupWindow.I.Close();
-        AppManager.I.NavigationManager.GoToHome();
-        SRDebug.Instance.HideDebugPanel();
-    }
-
-    [Category("Options")]
     [Sort(80)]
     public void ToggleQuality()
     {
@@ -107,6 +97,31 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
     }
 
+    [Category("Navigation")]
+    public void GoHome()
+    {
+        // refactor: move to DebugManager
+        WidgetPopupWindow.I.Close();
+        AppManager.I.NavigationManager.GoToHome(debugMode: true);
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Navigation")]
+    public void GoNext()
+    {
+        WidgetPopupWindow.I.Close();
+        AppManager.I.NavigationManager.GoToNextScene();
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+
+    [Category("Navigation")]
+    public void GoToReservedArea()
+    {
+        WidgetPopupWindow.I.Close();
+        AppManager.I.NavigationManager.GoToReservedArea(debugMode:true);
+        SRDebug.Instance.HideDebugPanel();
+    }
     // refactor: we should use a parameterized version for calling minigames so we are not dependant on the existing minigames
 
     [Category("Minigames")]

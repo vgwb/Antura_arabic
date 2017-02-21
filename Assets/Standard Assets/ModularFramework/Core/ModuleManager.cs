@@ -32,7 +32,6 @@ namespace ModularFramework.Core {
         [SerializeField]
         public UIModule UIModule = new UIModule();
         public LocalizationModule LocalizationModule = new LocalizationModule();
-        public SceneModule SceneModule = new SceneModule();
         public PlayerProfileModule PlayerProfile = new PlayerProfileModule() { MultipleProfileSupported = true };
         public DataModule DataModule = new DataModule();
         public GameplayModule GameplayModule = new GameplayModule();
@@ -75,12 +74,6 @@ namespace ModularFramework.Core {
                 IUIModule moduleInstance = _gamemanagerGO.GetComponentInChildren<ModuleInstaller<IUIModule>>().InstallModule();
                 UIModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
-            // SceneModule Install
-            if (_gamemanagerGO.GetComponentInChildren<ModuleInstaller<ISceneModule>>()) {
-                ISceneModule moduleInstance = _gamemanagerGO.GetComponentInChildren<ModuleInstaller<ISceneModule>>().InstallModule();
-                SceneModule.SetupModule(moduleInstance, moduleInstance.Settings);
-            }
-
         }
     }
     
