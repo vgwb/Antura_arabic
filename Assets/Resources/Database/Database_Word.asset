@@ -803,7 +803,7 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: cold
       Active: 1
-      Kind: 1
+      Kind: 5
       Category: 11
       Form: 0
       Article: 0
@@ -1295,12 +1295,13 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u062D\u0644\u0648"
+      Arabic: "\u0644\u0630\u064A\u0630"
       Value: 
       Letters:
-      - hah
       - lam
-      - waw
+      - thal
+      - yeh
+      - thal
       Drawing: 
       Intrinsic: 1
     - Id: doctor
