@@ -46,7 +46,7 @@ public class TakeMeHomeLL : MonoBehaviour {
         public List<TakeMeHomeTube> collidedTubes;
 
         [HideInInspector]
-        public TakeMeHomeTube NearTube;
+        public TakeMeHomeTube lastCollidedTube;
 
         void Awake()
 		{
@@ -71,7 +71,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 		public void Initialize(float _maxY, LetterObjectView _letter, Vector3 tubePosition)
 		{
-			tubeSpawnPosition = tubePosition;
+			tubeSpawnPosition = tubePosition - Vector3.up * 4;
 
 			cameraDistance =  (transform.position.z) - Camera.main.transform.position.z;
 
@@ -287,17 +287,17 @@ public class TakeMeHomeLL : MonoBehaviour {
             Vector3 targetScale;
             Vector3 targetPosition = transform.position;
 
-            if (NearTube != null)
+            if (lastCollidedTube != null)
             {
                 float yScale = 1.3f * (1 + 0.1f * Mathf.Cos(Time.realtimeSinceStartup * 3.14f * 6));
 
                 targetScale = 0.55f * new Vector3(1 / yScale, yScale, 1);
 
-                if (Vector3.Distance(NearTube.transform.position, mousePos) > 4.5f)
+                if (Vector3.Distance(lastCollidedTube.transform.position, mousePos) > 4.5f)
                     targetPosition = mousePos - ContentOffset + Vector3.up * 0.9f;
                 else
                 {
-                    targetPosition = NearTube.enterance.position;
+                    targetPosition = lastCollidedTube.enterance.position;
                     //targetPosition.y = Mathf.Lerp(targetPosition.y, maxY, 2.0f * Mathf.Abs(targetPosition.x - transform.position.x));
                 }
 
@@ -502,7 +502,7 @@ public class TakeMeHomeLL : MonoBehaviour {
             if (collidedTubes.Count > 0)
                 collidedTubes[collidedTubes.Count - 1].deactivate(this);
 
-            NearTube = tube;
+            lastCollidedTube = tube;
             collidedTubes.Add(tube);
             tube.activate(this);
 
@@ -532,7 +532,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 		{
             TakeMeHomeTube tube = other.gameObject.GetComponent<TakeMeHomeTube>();
             if (!tube) return;
-            NearTube = null;
+            lastCollidedTube = null;
             popTube(tube);
 
             /*
