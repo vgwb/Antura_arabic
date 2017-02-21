@@ -13,7 +13,7 @@ namespace EA4S.Minigames.TakeMeHome
 		public TextMeshProUGUI timerText;
 		public TextMeshProUGUI roundText;
 		public GameObject tubes;
-		public GameObject spawnTube;
+		public TakeMeHomeSpwanTube spawnTube;
 		public Transform LLSpawnPosition;
 		public GameObject antura;
 

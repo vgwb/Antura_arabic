@@ -9,7 +9,7 @@ namespace EA4S.Minigames.TakeMeHome
         TakeMeHomeGame game;
         TakeMeHomeTube tube;
         float timer = 3;
-
+        int counter = 0;
         public TakeMeHomeTutorialPlayState(TakeMeHomeGame game)
         {
             this.game = game;
@@ -17,11 +17,16 @@ namespace EA4S.Minigames.TakeMeHome
 
         public void EnterState()
         {
-            
+
             //create a random LL and make it move:
-            TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.TakeMeHome_Tuto, ()=> {
-                game.currentLetter.sayLetter();
-            });
+            if (counter == 0)
+            {
+                counter++;
+                TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.TakeMeHome_Tuto, () => {
+                    game.currentLetter.sayLetter();
+                });
+            }
+
 
             //find which tube belongs to current letter:
             foreach (UnityEngine.GameObject go in this.game.activeTubes)

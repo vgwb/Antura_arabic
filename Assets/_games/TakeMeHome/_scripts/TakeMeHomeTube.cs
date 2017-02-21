@@ -4,11 +4,17 @@ using DG.Tweening;
 namespace EA4S.Minigames.TakeMeHome
 {
 	
+    public enum tubeColor
+    {
+        green, blue, pink, purple
+    }
+
     public class TakeMeHomeTube : MonoBehaviour {
 
 		Tweener moveTweener;
 
 		Vector3 originalPosition;
+        public tubeColor color;
         public bool upperTube;
         public Transform enterance;
         public GameObject aspiration;
@@ -19,9 +25,11 @@ namespace EA4S.Minigames.TakeMeHome
         // Use this for initialization
         void Start () {
 			originalPosition = transform.position;
+
             aspiration.SetActive(false);
             winParticles.SetActive(false);
             trembling = GetComponent<TakeMeHomeTremblingTube>();
+
         }
 
         public void showWinParticles()
@@ -37,7 +45,7 @@ namespace EA4S.Minigames.TakeMeHome
             aspiration.SetActive(true);
             //shake();
             trembling.Trembling = true;
-            ll.NearTube = this;
+            ll.lastCollidedTube = this;
             //coll.size += Vector3.one * 0.9f; 
         }
 
@@ -46,7 +54,7 @@ namespace EA4S.Minigames.TakeMeHome
             aspiration.SetActive(false);
             //moveTweener = transform.DOMove(originalPosition, 0.5f);
             trembling.Trembling = false;
-            ll.NearTube = null;
+            ll.lastCollidedTube = null;
             //coll.size = collStartSize;
         }
 		
@@ -69,5 +77,7 @@ namespace EA4S.Minigames.TakeMeHome
             else
                 moveTweener = transform.DOLocalMoveY(originalPosition.y + 0.25f, 0.35f);
         }
+
+      
 	}
 }
