@@ -835,7 +835,7 @@ MonoBehaviour:
     - Id: color_black
       Active: 1
       Kind: 1
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       LinkedWord: 
@@ -851,7 +851,7 @@ MonoBehaviour:
     - Id: color_blue
       Active: 1
       Kind: 1
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       LinkedWord: 
@@ -867,7 +867,7 @@ MonoBehaviour:
     - Id: color_brown
       Active: 1
       Kind: 1
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       LinkedWord: 
@@ -882,7 +882,7 @@ MonoBehaviour:
     - Id: color_gold
       Active: 1
       Kind: 1
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       LinkedWord: 
@@ -898,7 +898,7 @@ MonoBehaviour:
     - Id: color_green
       Active: 1
       Kind: 1
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       LinkedWord: 
@@ -914,7 +914,7 @@ MonoBehaviour:
     - Id: color_grey
       Active: 1
       Kind: 1
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       LinkedWord: 
@@ -931,7 +931,7 @@ MonoBehaviour:
     - Id: color_orange
       Active: 1
       Kind: 1
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       LinkedWord: 
@@ -950,7 +950,7 @@ MonoBehaviour:
     - Id: color_pink
       Active: 1
       Kind: 1
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       LinkedWord: 
@@ -966,7 +966,7 @@ MonoBehaviour:
     - Id: color_purple
       Active: 1
       Kind: 1
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       LinkedWord: 
@@ -984,7 +984,7 @@ MonoBehaviour:
     - Id: color_red
       Active: 1
       Kind: 1
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       LinkedWord: 
@@ -1000,7 +1000,7 @@ MonoBehaviour:
     - Id: color_silver
       Active: 1
       Kind: 1
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       LinkedWord: 
@@ -1015,7 +1015,7 @@ MonoBehaviour:
     - Id: color_white
       Active: 1
       Kind: 1
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       LinkedWord: 
@@ -1031,7 +1031,7 @@ MonoBehaviour:
     - Id: color_yellow
       Active: 1
       Kind: 1
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       LinkedWord: 
@@ -1046,7 +1046,7 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: consonant
       Active: 1
-      Kind: 6
+      Kind: 7
       Category: 0
       Form: 0
       Article: 0
@@ -1131,7 +1131,7 @@ MonoBehaviour:
     - Id: day
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -1146,7 +1146,7 @@ MonoBehaviour:
     - Id: day_friday
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -1164,7 +1164,7 @@ MonoBehaviour:
     - Id: day_monday
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -1183,7 +1183,7 @@ MonoBehaviour:
     - Id: day_saturday
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -1200,7 +1200,7 @@ MonoBehaviour:
     - Id: day_sunday
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -1217,7 +1217,7 @@ MonoBehaviour:
     - Id: day_thursday
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -1235,7 +1235,7 @@ MonoBehaviour:
     - Id: day_tuesday
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -1255,7 +1255,7 @@ MonoBehaviour:
     - Id: day_wednesday
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -1367,7 +1367,7 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: dual
       Active: 1
-      Kind: 6
+      Kind: 1
       Category: 0
       Form: 0
       Article: 0
@@ -1460,7 +1460,7 @@ MonoBehaviour:
     - Id: evening
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -1506,7 +1506,7 @@ MonoBehaviour:
     - Id: fall
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -1744,7 +1744,7 @@ MonoBehaviour:
     - Id: from
       Active: 1
       Kind: 4
-      Category: 20
+      Category: 23
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2003,7 +2003,7 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: hi
       Active: 1
-      Kind: 7
+      Kind: 6
       Category: 0
       Form: 0
       Article: 0
@@ -2069,7 +2069,7 @@ MonoBehaviour:
     - Id: hour
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2116,7 +2116,7 @@ MonoBehaviour:
     - Id: in
       Active: 1
       Kind: 4
-      Category: 21
+      Category: 25
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2206,7 +2206,7 @@ MonoBehaviour:
     - Id: last
       Active: 1
       Kind: 1
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2425,7 +2425,7 @@ MonoBehaviour:
     - Id: month
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2440,7 +2440,7 @@ MonoBehaviour:
     - Id: month_april
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2457,7 +2457,7 @@ MonoBehaviour:
     - Id: month_august
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2471,7 +2471,7 @@ MonoBehaviour:
     - Id: month_december
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2493,7 +2493,7 @@ MonoBehaviour:
     - Id: month_february
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2509,7 +2509,7 @@ MonoBehaviour:
     - Id: month_january
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2532,7 +2532,7 @@ MonoBehaviour:
     - Id: month_july
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2548,7 +2548,7 @@ MonoBehaviour:
     - Id: month_june
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2566,7 +2566,7 @@ MonoBehaviour:
     - Id: month_march
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2582,7 +2582,7 @@ MonoBehaviour:
     - Id: month_may
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2598,7 +2598,7 @@ MonoBehaviour:
     - Id: month_november
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2621,7 +2621,7 @@ MonoBehaviour:
     - Id: month_october
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2643,7 +2643,7 @@ MonoBehaviour:
     - Id: month_september
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2675,7 +2675,7 @@ MonoBehaviour:
     - Id: morning
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2829,7 +2829,7 @@ MonoBehaviour:
     - Id: next
       Active: 1
       Kind: 1
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2877,8 +2877,8 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: now
       Active: 1
-      Kind: 7
-      Category: 19
+      Kind: 6
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2894,7 +2894,7 @@ MonoBehaviour:
     - Id: number_00
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2909,7 +2909,7 @@ MonoBehaviour:
     - Id: number_01
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2925,7 +2925,7 @@ MonoBehaviour:
     - Id: number_02
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2942,7 +2942,7 @@ MonoBehaviour:
     - Id: number_03
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2959,7 +2959,7 @@ MonoBehaviour:
     - Id: number_04
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2976,7 +2976,7 @@ MonoBehaviour:
     - Id: number_05
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -2992,7 +2992,7 @@ MonoBehaviour:
     - Id: number_06
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3007,7 +3007,7 @@ MonoBehaviour:
     - Id: number_07
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3023,7 +3023,7 @@ MonoBehaviour:
     - Id: number_08
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3041,7 +3041,7 @@ MonoBehaviour:
     - Id: number_09
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3057,7 +3057,7 @@ MonoBehaviour:
     - Id: number_10
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3073,7 +3073,7 @@ MonoBehaviour:
     - Id: number_11
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3091,7 +3091,7 @@ MonoBehaviour:
     - Id: number_12
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3110,7 +3110,7 @@ MonoBehaviour:
     - Id: number_13
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3130,7 +3130,7 @@ MonoBehaviour:
     - Id: number_14
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3150,7 +3150,7 @@ MonoBehaviour:
     - Id: number_15
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3169,7 +3169,7 @@ MonoBehaviour:
     - Id: number_16
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3187,7 +3187,7 @@ MonoBehaviour:
     - Id: number_17
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3206,7 +3206,7 @@ MonoBehaviour:
     - Id: number_18
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3227,7 +3227,7 @@ MonoBehaviour:
     - Id: number_19
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3246,7 +3246,7 @@ MonoBehaviour:
     - Id: number_20
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3263,7 +3263,7 @@ MonoBehaviour:
     - Id: number_2000
       Active: 1
       Kind: 5
-      Category: 22
+      Category: 27
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3280,7 +3280,7 @@ MonoBehaviour:
     - Id: number_o01
       Active: 1
       Kind: 5
-      Category: 23
+      Category: 28
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3297,7 +3297,7 @@ MonoBehaviour:
     - Id: number_o02
       Active: 1
       Kind: 5
-      Category: 23
+      Category: 28
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3315,7 +3315,7 @@ MonoBehaviour:
     - Id: number_o03
       Active: 1
       Kind: 5
-      Category: 23
+      Category: 28
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3333,7 +3333,7 @@ MonoBehaviour:
     - Id: number_o04
       Active: 1
       Kind: 5
-      Category: 23
+      Category: 28
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3351,7 +3351,7 @@ MonoBehaviour:
     - Id: number_o05
       Active: 1
       Kind: 5
-      Category: 23
+      Category: 28
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3369,7 +3369,7 @@ MonoBehaviour:
     - Id: number_o06
       Active: 1
       Kind: 5
-      Category: 23
+      Category: 28
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3387,7 +3387,7 @@ MonoBehaviour:
     - Id: number_o07
       Active: 1
       Kind: 5
-      Category: 23
+      Category: 28
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3405,7 +3405,7 @@ MonoBehaviour:
     - Id: number_o08
       Active: 1
       Kind: 5
-      Category: 23
+      Category: 28
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3423,7 +3423,7 @@ MonoBehaviour:
     - Id: number_o09
       Active: 1
       Kind: 5
-      Category: 23
+      Category: 28
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3441,7 +3441,7 @@ MonoBehaviour:
     - Id: number_o10
       Active: 1
       Kind: 5
-      Category: 23
+      Category: 28
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3459,7 +3459,7 @@ MonoBehaviour:
     - Id: number_o11
       Active: 1
       Kind: 5
-      Category: 23
+      Category: 28
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3479,7 +3479,7 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: of_course
       Active: 1
-      Kind: 7
+      Kind: 6
       Category: 0
       Form: 0
       Article: 0
@@ -3511,7 +3511,7 @@ MonoBehaviour:
     - Id: on
       Active: 1
       Kind: 4
-      Category: 21
+      Category: 25
       Form: 0
       Article: 0
       LinkedWord: 
@@ -3760,7 +3760,7 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: plural
       Active: 1
-      Kind: 6
+      Kind: 7
       Category: 0
       Form: 0
       Article: 0
@@ -4109,7 +4109,7 @@ MonoBehaviour:
     - Id: second
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -4173,7 +4173,7 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: singular
       Active: 1
-      Kind: 6
+      Kind: 7
       Category: 0
       Form: 0
       Article: 0
@@ -4283,7 +4283,7 @@ MonoBehaviour:
     - Id: spring
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -4374,7 +4374,7 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: sure
       Active: 1
-      Kind: 7
+      Kind: 6
       Category: 0
       Form: 0
       Article: 0
@@ -4455,7 +4455,7 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: thankyou
       Active: 1
-      Kind: 7
+      Kind: 6
       Category: 0
       Form: 0
       Article: 0
@@ -4696,6 +4696,82 @@ MonoBehaviour:
       - feh
       Drawing: 66
       Intrinsic: 1
+    - Id: the_color_brown
+      Active: 1
+      Kind: 1
+      Category: 19
+      Form: 0
+      Article: 1
+      LinkedWord: 
+      Arabic: "\u0627\u0644\u0628\u0646\u064A"
+      Value: 
+      Letters:
+      - alef
+      - lam
+      - beh
+      - noon
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: the_color_green
+      Active: 1
+      Kind: 1
+      Category: 19
+      Form: 0
+      Article: 1
+      LinkedWord: 
+      Arabic: "\u0627\u0644\u0623\u062E\u0636\u0631"
+      Value: 
+      Letters:
+      - alef
+      - lam
+      - alef_hamza_hi
+      - khah
+      - dad
+      - reh
+      Drawing: 
+      Intrinsic: 0
+    - Id: the_color_orange
+      Active: 1
+      Kind: 1
+      Category: 19
+      Form: 0
+      Article: 1
+      LinkedWord: 
+      Arabic: "\u0627\u0644\u0628\u0631\u062A\u0642\u0627\u0644\u064A"
+      Value: 
+      Letters:
+      - alef
+      - lam
+      - beh
+      - reh
+      - teh
+      - qaf
+      - alef
+      - lam
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: the_color_purple
+      Active: 1
+      Kind: 1
+      Category: 19
+      Form: 0
+      Article: 1
+      LinkedWord: 
+      Arabic: "\u0627\u0644\u0628\u0646\u0641\u0633\u062C\u064A"
+      Value: 
+      Letters:
+      - alef
+      - lam
+      - beh
+      - noon
+      - feh
+      - seen
+      - jeem
+      - yeh
+      Drawing: 
+      Intrinsic: 0
     - Id: the_engineer
       Active: 1
       Kind: 5
@@ -5193,7 +5269,7 @@ MonoBehaviour:
     - Id: to
       Active: 1
       Kind: 4
-      Category: 20
+      Category: 23
       Form: 0
       Article: 0
       LinkedWord: 
@@ -5207,8 +5283,8 @@ MonoBehaviour:
       Intrinsic: 0
     - Id: today
       Active: 1
-      Kind: 7
-      Category: 19
+      Kind: 6
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -5259,8 +5335,8 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: tomorrow
       Active: 1
-      Kind: 7
-      Category: 19
+      Kind: 6
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -5335,7 +5411,7 @@ MonoBehaviour:
     - Id: triangle
       Active: 1
       Kind: 5
-      Category: 24
+      Category: 30
       Form: 0
       Article: 0
       LinkedWord: 
@@ -5457,7 +5533,7 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: vowel
       Active: 1
-      Kind: 6
+      Kind: 7
       Category: 0
       Form: 0
       Article: 0
@@ -5538,7 +5614,7 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: welcome
       Active: 1
-      Kind: 7
+      Kind: 6
       Category: 0
       Form: 0
       Article: 0
@@ -5602,7 +5678,7 @@ MonoBehaviour:
     - Id: winter
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -5617,7 +5693,7 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: with_article
       Active: 1
-      Kind: 6
+      Kind: 7
       Category: 0
       Form: 0
       Article: 0
@@ -5642,7 +5718,7 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: without_article
       Active: 1
-      Kind: 6
+      Kind: 7
       Category: 0
       Form: 0
       Article: 0
@@ -5811,7 +5887,7 @@ MonoBehaviour:
     - Id: year
       Active: 1
       Kind: 5
-      Category: 19
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -5825,8 +5901,8 @@ MonoBehaviour:
       Intrinsic: 1
     - Id: yesterday
       Active: 1
-      Kind: 7
-      Category: 19
+      Kind: 6
+      Category: 21
       Form: 0
       Article: 0
       LinkedWord: 
@@ -5857,3 +5933,589 @@ MonoBehaviour:
       - noon
       Drawing: 2A
       Intrinsic: 1
+    - Id: are
+      Active: 1
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0647\u0644"
+      Value: 
+      Letters:
+      - heh
+      - lam
+      Drawing: 
+      Intrinsic: 0
+    - Id: congratulations
+      Active: 1
+      Kind: 6
+      Category: 20
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0645\u0628\u0631\u0648\u0643"
+      Value: 
+      Letters:
+      - meem
+      - beh
+      - reh
+      - waw
+      - kaf
+      Drawing: 
+      Intrinsic: 0
+    - Id: fine
+      Active: 1
+      Kind: 5
+      Category: 22
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0628\u062E\u064A\u0631"
+      Value: 
+      Letters:
+      - beh
+      - khah
+      - yeh
+      - reh
+      Drawing: 
+      Intrinsic: 0
+    - Id: go
+      Active: 1
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0646\u0630\u0647\u0628"
+      Value: 
+      Letters:
+      - noon
+      - thal
+      - heh
+      - beh
+      Drawing: 
+      Intrinsic: 0
+    - Id: goodbye
+      Active: 1
+      Kind: 6
+      Category: 22
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0648\u062F\u0627\u0639\u0627\u064B"
+      Value: 
+      Letters:
+      - waw
+      - dal
+      - alef
+      - ain
+      - alef_fathah_tanwin
+      Drawing: 
+      Intrinsic: 0
+    - Id: help
+      Active: 1
+      Kind: 5
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0645\u0633\u0627\u0639\u062F\u0629"
+      Value: 
+      Letters:
+      - meem
+      - seen
+      - alef
+      - ain
+      - dal
+      - teh_marbuta
+      Drawing: 
+      Intrinsic: 0
+    - Id: how
+      Active: 1
+      Kind: 5
+      Category: 24
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0643\u064A\u0641"
+      Value: 
+      Letters:
+      - kaf
+      - yeh
+      - feh
+      Drawing: 
+      Intrinsic: 0
+    - Id: in morning
+      Active: 1
+      Kind: 6
+      Category: 21
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0635\u0628\u0627\u062D\u0627\u064B"
+      Value: 
+      Letters:
+      - sad
+      - beh
+      - alef
+      - hah
+      - alef_fathah_tanwin
+      Drawing: 
+      Intrinsic: 0
+    - Id: is
+      Active: 1
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0647\u0648"
+      Value: 
+      Letters:
+      - heh
+      - waw
+      Drawing: 
+      Intrinsic: 0
+    - Id: it's
+      Active: 1
+      Kind: 8
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0625\u0646\u0647\u0627"
+      Value: 
+      Letters:
+      - alef_hamza_low
+      - noon
+      - heh
+      - alef
+      Drawing: 
+      Intrinsic: 0
+    - Id: let's
+      Active: 1
+      Kind: 2
+      Category: 26
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0647\u064A\u0627"
+      Value: 
+      Letters:
+      - heh
+      - yeh
+      - alef
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_aunt_father
+      Active: 1
+      Kind: 5
+      Category: 5
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0639\u0645\u062A\u064A"
+      Value: 
+      Letters:
+      - ain
+      - meem
+      - teh
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_aunt_mother
+      Active: 1
+      Kind: 5
+      Category: 5
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062E\u0627\u0644\u062A\u064A"
+      Value: 
+      Letters:
+      - khah
+      - alef
+      - lam
+      - teh
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_brother
+      Active: 1
+      Kind: 5
+      Category: 5
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0623\u062E\u064A"
+      Value: 
+      Letters:
+      - alef_hamza_hi
+      - khah
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_face
+      Active: 1
+      Kind: 5
+      Category: 6
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0648\u062C\u0647\u064A"
+      Value: 
+      Letters:
+      - waw
+      - jeem
+      - heh
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_grandfather
+      Active: 1
+      Kind: 5
+      Category: 5
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062C\u062F\u064A"
+      Value: 
+      Letters:
+      - jeem
+      - dal
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_name
+      Active: 1
+      Kind: 5
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0627\u0633\u0645\u064A"
+      Value: 
+      Letters:
+      - alef
+      - seen
+      - meem
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_sister
+      Active: 1
+      Kind: 5
+      Category: 5
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0623\u062E\u062A\u064A"
+      Value: 
+      Letters:
+      - alef_hamza_hi
+      - khah
+      - teh
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_uncle_father
+      Active: 1
+      Kind: 5
+      Category: 5
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0639\u0645\u064A"
+      Value: 
+      Letters:
+      - ain
+      - meem
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_uncle_mother
+      Active: 1
+      Kind: 5
+      Category: 5
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062E\u0627\u0644\u064A"
+      Value: 
+      Letters:
+      - khah
+      - alef
+      - lam
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: need
+      Active: 1
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062A\u062D\u062A\u0627\u062C"
+      Value: 
+      Letters:
+      - teh
+      - hah
+      - teh
+      - alef
+      - jeem
+      Drawing: 
+      Intrinsic: 0
+    - Id: please
+      Active: 1
+      Kind: 6
+      Category: 20
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0631\u062C\u0627\u0621\u064B"
+      Value: 
+      Letters:
+      - reh
+      - jeem
+      - alef
+      - hamza
+      Drawing: 
+      Intrinsic: 0
+    - Id: ready
+      Active: 1
+      Kind: 6
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062C\u0627\u0647\u0632"
+      Value: 
+      Letters:
+      - jeem
+      - alef
+      - heh
+      - zain
+      Drawing: 
+      Intrinsic: 0
+    - Id: remain
+      Active: 1
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062A\u0635\u0628\u062D"
+      Value: 
+      Letters:
+      - teh
+      - sad
+      - beh
+      - hah
+      Drawing: 
+      Intrinsic: 0
+    - Id: samer
+      Active: 1
+      Kind: 5
+      Category: 29
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0633\u0627\u0645\u0631"
+      Value: 
+      Letters:
+      - seen
+      - alef
+      - meem
+      - reh
+      Drawing: 
+      Intrinsic: 0
+    - Id: the_light_v2
+      Active: 1
+      Kind: 5
+      Category: 22
+      Form: 0
+      Article: 1
+      LinkedWord: 
+      Arabic: "\u0627\u0644\u0646\u0648\u0631"
+      Value: 
+      Letters:
+      - alef
+      - lam
+      - noon
+      - waw
+      - reh
+      Drawing: 
+      Intrinsic: 0
+    - Id: the_meeting
+      Active: 1
+      Kind: 5
+      Category: 22
+      Form: 0
+      Article: 1
+      LinkedWord: 
+      Arabic: "\u0627\u0644\u0644\u0642\u0627\u0621"
+      Value: 
+      Letters:
+      - alef
+      - lam
+      - lam
+      - qaf
+      - alef
+      - hamza
+      Drawing: 
+      Intrinsic: 0
+    - Id: the_well_being
+      Active: 1
+      Kind: 5
+      Category: 22
+      Form: 0
+      Article: 1
+      LinkedWord: 
+      Arabic: "\u0627\u0644\u062E\u064A\u0631"
+      Value: 
+      Letters:
+      - alef
+      - lam
+      - khah
+      - yeh
+      - reh
+      Drawing: 
+      Intrinsic: 0
+    - Id: was
+      Active: 1
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0643\u0627\u0646"
+      Value: 
+      Letters:
+      - kaf
+      - alef
+      - noon
+      Drawing: 
+      Intrinsic: 0
+    - Id: welcome_assertion
+      Active: 1
+      Kind: 5
+      Category: 22
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0633\u0647\u0644\u0627\u064B"
+      Value: 
+      Letters:
+      - seen
+      - heh
+      - lam
+      - alef_fathah_tanwin
+      Drawing: 
+      Intrinsic: 0
+    - Id: well-being
+      Active: 1
+      Kind: 5
+      Category: 20
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062E\u064A\u0631"
+      Value: 
+      Letters:
+      - khah
+      - yeh
+      - reh
+      Drawing: 
+      Intrinsic: 0
+    - Id: what
+      Active: 1
+      Kind: 5
+      Category: 24
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0645\u0627"
+      Value: 
+      Letters:
+      - meem
+      - alef
+      Drawing: 
+      Intrinsic: 0
+    - Id: whats
+      Active: 1
+      Kind: 5
+      Category: 24
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0643\u0645"
+      Value: 
+      Letters:
+      - kaf
+      - meem
+      Drawing: 
+      Intrinsic: 0
+    - Id: yes
+      Active: 1
+      Kind: 6
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0646\u0639\u0645"
+      Value: 
+      Letters:
+      - noon
+      - ain
+      - meem
+      Drawing: 
+      Intrinsic: 0
+    - Id: you
+      Active: 1
+      Kind: 8
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0623\u0646\u062A"
+      Value: 
+      Letters:
+      - alef_hamza_hi
+      - noon
+      - teh
+      Drawing: 
+      Intrinsic: 0
+    - Id: your name
+      Active: 1
+      Kind: 5
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0627\u0633\u0645\u0643"
+      Value: 
+      Letters:
+      - alef
+      - seen
+      - meem
+      - kaf
+      Drawing: 
+      Intrinsic: 0
+    - Id: your_situation
+      Active: 1
+      Kind: 5
+      Category: 22
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062D\u0627\u0644\u0643"
+      Value: 
+      Letters:
+      - hah
+      - alef
+      - lam
+      - kaf
+      Drawing: 
+      Intrinsic: 0

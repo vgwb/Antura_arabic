@@ -20,7 +20,7 @@ MonoBehaviour:
       Category: 1
       Linked: goodmorning_R
       Words:
-      - the well-being (one word)
+      - the_well_being
       - morning
       Answers: []
       Intrinsic: 1
@@ -31,7 +31,7 @@ MonoBehaviour:
       Category: 2
       Linked: goodmorning_Q
       Words:
-      - the light
+      - the_light_v2
       - morning
       Answers: []
       Intrinsic: 1
@@ -42,7 +42,7 @@ MonoBehaviour:
       Category: 1
       Linked: goodevening_R
       Words:
-      - the well-being (one word)
+      - the_well_being
       - evening
       Answers: []
       Intrinsic: 1
@@ -53,7 +53,7 @@ MonoBehaviour:
       Category: 2
       Linked: goodevening_Q
       Words:
-      - the light
+      - the_light_v2
       - evening
       Answers: []
       Intrinsic: 1
@@ -63,7 +63,8 @@ MonoBehaviour:
       Arabic: "\u0645\u0631\u062D\u0628\u0627\u064B"
       Category: 3
       Linked: 
-      Words: []
+      Words:
+      - hi
       Answers: []
       Intrinsic: 1
     - Id: yourwelcome
@@ -75,7 +76,7 @@ MonoBehaviour:
       Words:
       - welcome
       - and
-      - welcome
+      - welcome_assertion
       Answers: []
       Intrinsic: 1
     - Id: howareyou
@@ -86,7 +87,7 @@ MonoBehaviour:
       Linked: 
       Words:
       - how
-      - your situation (one word)
+      - your_situation
       Answers: []
       Intrinsic: 1
     - Id: fine
@@ -106,7 +107,7 @@ MonoBehaviour:
       Category: 3
       Linked: 
       Words:
-      - thank you (one word)
+      - thankyou
       Answers: []
       Intrinsic: 1
     - Id: sure
@@ -126,8 +127,8 @@ MonoBehaviour:
       Category: 3
       Linked: 
       Words:
-      - to (preposition)
-      - the meeting
+      - to
+      - the_meeting
       Answers: []
       Intrinsic: 1
     - Id: goodbye
@@ -137,7 +138,7 @@ MonoBehaviour:
       Category: 3
       Linked: 
       Words:
-      - good-bye (one word)
+      - goodbye
       Answers: []
       Intrinsic: 1
     - Id: the_year_2016
