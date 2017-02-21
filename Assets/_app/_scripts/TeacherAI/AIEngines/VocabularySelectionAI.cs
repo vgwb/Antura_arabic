@@ -263,7 +263,7 @@ namespace EA4S.Teacher
                 int nRemaining = selectionParams.nRequired;
                 AddToListFilteringByContents(currentPlaySessionContents, dataList, priorityFilteredList, ref nRemaining);
                
-                s += "\n Required:" + nRemaining;
+                s += "\n Required: " + nRemaining + " " + typeof(T).Name.ToString();
                 s += "\n" + (nBefore - nRemaining) + " from PS";
                 if (nRemaining > 0)
                 {
