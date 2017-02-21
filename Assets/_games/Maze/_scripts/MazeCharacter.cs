@@ -514,7 +514,16 @@ namespace EA4S.Minigames.Maze
 
             float mag = (pos - _fruits[0].transform.position).sqrMagnitude;
 
-            return ((pos - _fruits[0].transform.position).sqrMagnitude) <= 4;
+            if (((pos - _fruits[0].transform.position).sqrMagnitude) <= 1)
+            {
+                MazeGameManager.instance.appendToLine(_fruits[0].transform.position);
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
         }
 
         private void MoveTween()
