@@ -114,7 +114,7 @@ namespace EA4S.Minigames.ThrowBalls
         }
         public void EnterState()
         {
-            UnityEngine.Random.InitState(DateTime.Now.GetHashCode());
+            Random.InitState(DateTime.Now.GetHashCode());
 
             // Layer 8 = Terrain. Layer 12 = Ball.
             Physics.IgnoreLayerCollision(8, 10);
@@ -144,8 +144,6 @@ namespace EA4S.Minigames.ThrowBalls
             }
 
             ThrowBallsGame.instance.letterWithPropsPrefab.SetActive(false);
-
-            //ResetScene();
 
             switch (ThrowBallsConfiguration.Instance.Variation)
             {
@@ -330,7 +328,7 @@ namespace EA4S.Minigames.ThrowBalls
                     (string text) =>
                     {
                         UIController.instance.SetText(text);
-                    }, Color.green, false);
+                    }, false);
 
             flashedLettersInLiWVariation.Add((LL_LetterData)currentLettersForLettersInWord[0]);
 
@@ -542,7 +540,7 @@ namespace EA4S.Minigames.ThrowBalls
                         (string text) =>
                         {
                             UIController.instance.SetText(text);
-                        }, Color.green, true);
+                        }, true);
 
                     ThrowBallsGame.instance.StartCoroutine(flashingTextCoroutine);
                 }

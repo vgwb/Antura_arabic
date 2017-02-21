@@ -107,10 +107,10 @@ namespace EA4S.Core
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.GameSelector:
-                    GotoFirstGameOfPlaysession();
+                    GotoFirstGameOfPlaySession();
                     break;
                 case AppScene.MiniGame:
-                    GotoNextGameOfPlaysession();
+                    GotoNextGameOfPlaySession();
                     break;
                 case AppScene.AnturaSpace:
                     GoToScene(AppScene.Map);
@@ -175,7 +175,6 @@ namespace EA4S.Core
             }
 
             // Scene switch
-            //NavData.PrevScene = NavData.CurrentScene;
             UpdatePrevSceneStack(newScene);
             NavData.CurrentScene = newScene;
 
@@ -247,8 +246,12 @@ namespace EA4S.Core
             switch (NavData.CurrentScene)
             {
                 case AppScene.Map:
+                    // First contact: we go to the Rewards scene instead
                     if (NavData.CurrentPlayer.IsFirstContact())
+                    {
+                        UpdatePrevSceneStack(AppScene.AnturaSpace); // We force the prev scene stack to hold the Map <-> AnturaSpace transition
                         CustomGoTo(AppScene.Rewards);
+                    }
                     else
                         CustomGoTo(AppScene.AnturaSpace);
                     break;
@@ -436,7 +439,7 @@ namespace EA4S.Core
             }
         }
 
-        private void GotoFirstGameOfPlaysession()
+        private void GotoFirstGameOfPlaySession()
         {
             // Game selector -> go to the first game
             NavData.SetFirstMinigame();
@@ -445,7 +448,7 @@ namespace EA4S.Core
             InternalLaunchGameScene(NavData.CurrentMiniGameData);
         }
 
-        private void GotoNextGameOfPlaysession()
+        private void GotoNextGameOfPlaySession()
         {
             // From one game to the next
             if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
