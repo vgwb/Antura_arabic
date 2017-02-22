@@ -27,7 +27,7 @@ namespace EA4S.Teacher
                 {
                     if (!ConfigAI.teacherSafetyFallbackEnabled)
                     {
-                        break;
+                        throw e;
                     }
                     else
                     {
