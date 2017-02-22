@@ -119,6 +119,20 @@ MonoBehaviour:
       - sheen
       Drawing: 43
       Intrinsic: 1
+    - Id: are
+      Active: 1
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0647\u0644"
+      Value: 
+      Letters:
+      - heh
+      - lam
+      Drawing: 
+      Intrinsic: 0
     - Id: ate
       Active: 1
       Kind: 2
@@ -816,10 +830,10 @@ MonoBehaviour:
       - dal
       Drawing: 
       Intrinsic: 1
-    - Id: cold_food
+    - Id: cold_adjective
       Active: 1
       Kind: 1
-      Category: 4
+      Category: 0
       Form: 0
       Article: 0
       LinkedWord: 
@@ -1044,6 +1058,23 @@ MonoBehaviour:
       - reh
       Drawing: 100
       Intrinsic: 1
+    - Id: congratulations
+      Active: 1
+      Kind: 6
+      Category: 20
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0645\u0628\u0631\u0648\u0643"
+      Value: 
+      Letters:
+      - meem
+      - beh
+      - reh
+      - waw
+      - kaf
+      Drawing: 
+      Intrinsic: 0
     - Id: consonant
       Active: 1
       Kind: 7
@@ -1581,6 +1612,22 @@ MonoBehaviour:
       - noon
       Drawing: 74
       Intrinsic: 1
+    - Id: fine
+      Active: 1
+      Kind: 5
+      Category: 22
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0628\u062E\u064A\u0631"
+      Value: 
+      Letters:
+      - beh
+      - khah
+      - yeh
+      - reh
+      Drawing: 
+      Intrinsic: 0
     - Id: finger
       Active: 1
       Kind: 5
@@ -1833,6 +1880,39 @@ MonoBehaviour:
       - ghain
       Drawing: C5
       Intrinsic: 1
+    - Id: go
+      Active: 1
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0646\u0630\u0647\u0628"
+      Value: 
+      Letters:
+      - noon
+      - thal
+      - heh
+      - beh
+      Drawing: 
+      Intrinsic: 0
+    - Id: goodbye
+      Active: 1
+      Kind: 6
+      Category: 22
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0648\u062F\u0627\u0639\u0627\u064B"
+      Value: 
+      Letters:
+      - waw
+      - dal
+      - alef
+      - ain
+      - alef_fathah_tanwin
+      Drawing: 
+      Intrinsic: 0
     - Id: granddaughter
       Active: 1
       Kind: 5
@@ -2001,6 +2081,24 @@ MonoBehaviour:
       - seen
       Drawing: CA
       Intrinsic: 1
+    - Id: help
+      Active: 1
+      Kind: 5
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0645\u0633\u0627\u0639\u062F\u0629"
+      Value: 
+      Letters:
+      - meem
+      - seen
+      - alef
+      - ain
+      - dal
+      - teh_marbuta
+      Drawing: 
+      Intrinsic: 0
     - Id: hi
       Active: 1
       Kind: 6
@@ -2097,6 +2195,21 @@ MonoBehaviour:
       - teh
       Drawing: C8
       Intrinsic: 1
+    - Id: how
+      Active: 1
+      Kind: 5
+      Category: 24
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0643\u064A\u0641"
+      Value: 
+      Letters:
+      - kaf
+      - yeh
+      - feh
+      Drawing: 
+      Intrinsic: 0
     - Id: icecream
       Active: 1
       Kind: 5
@@ -2127,6 +2240,23 @@ MonoBehaviour:
       - yeh
       Drawing: 
       Intrinsic: 0
+    - Id: in morning
+      Active: 1
+      Kind: 6
+      Category: 21
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0635\u0628\u0627\u062D\u0627\u064B"
+      Value: 
+      Letters:
+      - sad
+      - beh
+      - alef
+      - hah
+      - alef_fathah_tanwin
+      Drawing: 
+      Intrinsic: 0
     - Id: insistent
       Active: 1
       Kind: 1
@@ -2142,6 +2272,20 @@ MonoBehaviour:
       - hah_shaddah
       Drawing: 
       Intrinsic: 1
+    - Id: is
+      Active: 1
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0647\u0648"
+      Value: 
+      Letters:
+      - heh
+      - waw
+      Drawing: 
+      Intrinsic: 0
     - Id: islands
       Active: 1
       Kind: 5
@@ -2157,6 +2301,22 @@ MonoBehaviour:
       - reh
       Drawing: CE
       Intrinsic: 1
+    - Id: it's
+      Active: 1
+      Kind: 8
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0625\u0646\u0647\u0627"
+      Value: 
+      Letters:
+      - alef_hamza_low
+      - noon
+      - heh
+      - alef
+      Drawing: 
+      Intrinsic: 0
     - Id: juice
       Active: 1
       Kind: 5
@@ -2282,6 +2442,21 @@ MonoBehaviour:
       - seen
       Drawing: 29
       Intrinsic: 1
+    - Id: let's
+      Active: 1
+      Kind: 2
+      Category: 26
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0647\u064A\u0627"
+      Value: 
+      Letters:
+      - heh
+      - yeh
+      - alef
+      Drawing: 
+      Intrinsic: 0
     - Id: light
       Active: 1
       Kind: 5
@@ -2781,6 +2956,148 @@ MonoBehaviour:
       - meem
       Drawing: D5
       Intrinsic: 1
+    - Id: my_aunt_father
+      Active: 1
+      Kind: 5
+      Category: 5
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0639\u0645\u062A\u064A"
+      Value: 
+      Letters:
+      - ain
+      - meem
+      - teh
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_aunt_mother
+      Active: 1
+      Kind: 5
+      Category: 5
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062E\u0627\u0644\u062A\u064A"
+      Value: 
+      Letters:
+      - khah
+      - alef
+      - lam
+      - teh
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_brother
+      Active: 1
+      Kind: 5
+      Category: 5
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0623\u062E\u064A"
+      Value: 
+      Letters:
+      - alef_hamza_hi
+      - khah
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_face
+      Active: 1
+      Kind: 5
+      Category: 6
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0648\u062C\u0647\u064A"
+      Value: 
+      Letters:
+      - waw
+      - jeem
+      - heh
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_grandfather
+      Active: 1
+      Kind: 5
+      Category: 5
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062C\u062F\u064A"
+      Value: 
+      Letters:
+      - jeem
+      - dal
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_name
+      Active: 1
+      Kind: 5
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0627\u0633\u0645\u064A"
+      Value: 
+      Letters:
+      - alef
+      - seen
+      - meem
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_sister
+      Active: 1
+      Kind: 5
+      Category: 5
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0623\u062E\u062A\u064A"
+      Value: 
+      Letters:
+      - alef_hamza_hi
+      - khah
+      - teh
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_uncle_father
+      Active: 1
+      Kind: 5
+      Category: 5
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0639\u0645\u064A"
+      Value: 
+      Letters:
+      - ain
+      - meem
+      - yeh
+      Drawing: 
+      Intrinsic: 0
+    - Id: my_uncle_mother
+      Active: 1
+      Kind: 5
+      Category: 5
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062E\u0627\u0644\u064A"
+      Value: 
+      Letters:
+      - khah
+      - alef
+      - lam
+      - yeh
+      Drawing: 
+      Intrinsic: 0
     - Id: nail
       Active: 1
       Kind: 5
@@ -2796,6 +3113,23 @@ MonoBehaviour:
       - reh
       Drawing: 152
       Intrinsic: 1
+    - Id: need
+      Active: 1
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062A\u062D\u062A\u0627\u062C"
+      Value: 
+      Letters:
+      - teh
+      - hah
+      - teh
+      - alef
+      - jeem
+      Drawing: 
+      Intrinsic: 0
     - Id: needle
       Active: 1
       Kind: 5
@@ -3743,6 +4077,22 @@ MonoBehaviour:
       - beh
       Drawing: 11A
       Intrinsic: 1
+    - Id: please
+      Active: 1
+      Kind: 6
+      Category: 20
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0631\u062C\u0627\u0621\u064B"
+      Value: 
+      Letters:
+      - reh
+      - jeem
+      - alef
+      - hamza
+      Drawing: 
+      Intrinsic: 0
     - Id: plum
       Active: 1
       Kind: 5
@@ -3837,6 +4187,22 @@ MonoBehaviour:
       - reh
       Drawing: 
       Intrinsic: 1
+    - Id: ready
+      Active: 1
+      Kind: 6
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062C\u0627\u0647\u0632"
+      Value: 
+      Letters:
+      - jeem
+      - alef
+      - heh
+      - zain
+      Drawing: 
+      Intrinsic: 0
     - Id: released
       Active: 1
       Kind: 2
@@ -3852,6 +4218,22 @@ MonoBehaviour:
       - kaf_fathah
       Drawing: 
       Intrinsic: 1
+    - Id: remain
+      Active: 1
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062A\u0635\u0628\u062D"
+      Value: 
+      Letters:
+      - teh
+      - sad
+      - beh
+      - hah
+      Drawing: 
+      Intrinsic: 0
     - Id: restaurant
       Active: 1
       Kind: 5
@@ -3993,6 +4375,22 @@ MonoBehaviour:
       - hah
       Drawing: EB
       Intrinsic: 1
+    - Id: samer
+      Active: 1
+      Kind: 5
+      Category: 29
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0633\u0627\u0645\u0631"
+      Value: 
+      Letters:
+      - seen
+      - alef
+      - meem
+      - reh
+      Drawing: 
+      Intrinsic: 0
     - Id: sat
       Active: 1
       Kind: 2
@@ -4896,6 +5294,41 @@ MonoBehaviour:
       - hamza
       Drawing: B7
       Intrinsic: 1
+    - Id: the_light_v2
+      Active: 1
+      Kind: 5
+      Category: 22
+      Form: 0
+      Article: 1
+      LinkedWord: 
+      Arabic: "\u0627\u0644\u0646\u0648\u0631"
+      Value: 
+      Letters:
+      - alef
+      - lam
+      - noon
+      - waw
+      - reh
+      Drawing: 
+      Intrinsic: 0
+    - Id: the_meeting
+      Active: 1
+      Kind: 5
+      Category: 22
+      Form: 0
+      Article: 1
+      LinkedWord: 
+      Arabic: "\u0627\u0644\u0644\u0642\u0627\u0621"
+      Value: 
+      Letters:
+      - alef
+      - lam
+      - lam
+      - qaf
+      - alef
+      - hamza
+      Drawing: 
+      Intrinsic: 0
     - Id: the_moon
       Active: 1
       Kind: 5
@@ -4984,6 +5417,23 @@ MonoBehaviour:
       - yeh
       Drawing: E6
       Intrinsic: 1
+    - Id: the_river
+      Active: 1
+      Kind: 5
+      Category: 14
+      Form: 0
+      Article: 1
+      LinkedWord: 
+      Arabic: "\u0627\u0644\u0646\u0647\u0631"
+      Value: 
+      Letters:
+      - alef
+      - lam
+      - noon
+      - heh
+      - reh
+      Drawing: 
+      Intrinsic: 0
     - Id: the_room
       Active: 1
       Kind: 5
@@ -5162,6 +5612,23 @@ MonoBehaviour:
       - lam
       Drawing: F8
       Intrinsic: 1
+    - Id: the_well_being
+      Active: 1
+      Kind: 5
+      Category: 22
+      Form: 0
+      Article: 1
+      LinkedWord: 
+      Arabic: "\u0627\u0644\u062E\u064A\u0631"
+      Value: 
+      Letters:
+      - alef
+      - lam
+      - khah
+      - yeh
+      - reh
+      Drawing: 
+      Intrinsic: 0
     - Id: the_whale
       Active: 1
       Kind: 5
@@ -5564,6 +6031,21 @@ MonoBehaviour:
       - alef_maqsura
       Drawing: 
       Intrinsic: 1
+    - Id: was
+      Active: 1
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0643\u0627\u0646"
+      Value: 
+      Letters:
+      - kaf
+      - alef
+      - noon
+      Drawing: 
+      Intrinsic: 0
     - Id: washing_machine
       Active: 1
       Kind: 5
@@ -5628,6 +6110,37 @@ MonoBehaviour:
       - alef_fathah_tanwin
       Drawing: 
       Intrinsic: 1
+    - Id: welcome_assertion
+      Active: 1
+      Kind: 5
+      Category: 22
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0633\u0647\u0644\u0627\u064B"
+      Value: 
+      Letters:
+      - seen
+      - heh
+      - lam
+      - alef_fathah_tanwin
+      Drawing: 
+      Intrinsic: 0
+    - Id: well-being
+      Active: 1
+      Kind: 5
+      Category: 20
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062E\u064A\u0631"
+      Value: 
+      Letters:
+      - khah
+      - yeh
+      - reh
+      Drawing: 
+      Intrinsic: 0
     - Id: went
       Active: 1
       Kind: 2
@@ -5658,6 +6171,34 @@ MonoBehaviour:
       - teh
       Drawing: FD
       Intrinsic: 1
+    - Id: what
+      Active: 1
+      Kind: 5
+      Category: 24
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0645\u0627"
+      Value: 
+      Letters:
+      - meem
+      - alef
+      Drawing: 
+      Intrinsic: 0
+    - Id: whats
+      Active: 1
+      Kind: 5
+      Category: 24
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0643\u0645"
+      Value: 
+      Letters:
+      - kaf
+      - meem
+      Drawing: 
+      Intrinsic: 0
     - Id: window
       Active: 1
       Kind: 5
@@ -5899,6 +6440,21 @@ MonoBehaviour:
       - meem
       Drawing: 201C
       Intrinsic: 1
+    - Id: yes
+      Active: 1
+      Kind: 6
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0646\u0639\u0645"
+      Value: 
+      Letters:
+      - noon
+      - ain
+      - meem
+      Drawing: 
+      Intrinsic: 0
     - Id: yesterday
       Active: 1
       Kind: 6
@@ -5933,545 +6489,6 @@ MonoBehaviour:
       - noon
       Drawing: 2A
       Intrinsic: 1
-    - Id: are
-      Active: 1
-      Kind: 2
-      Category: 0
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0647\u0644"
-      Value: 
-      Letters:
-      - heh
-      - lam
-      Drawing: 
-      Intrinsic: 0
-    - Id: congratulations
-      Active: 1
-      Kind: 6
-      Category: 20
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0645\u0628\u0631\u0648\u0643"
-      Value: 
-      Letters:
-      - meem
-      - beh
-      - reh
-      - waw
-      - kaf
-      Drawing: 
-      Intrinsic: 0
-    - Id: fine
-      Active: 1
-      Kind: 5
-      Category: 22
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0628\u062E\u064A\u0631"
-      Value: 
-      Letters:
-      - beh
-      - khah
-      - yeh
-      - reh
-      Drawing: 
-      Intrinsic: 0
-    - Id: go
-      Active: 1
-      Kind: 2
-      Category: 0
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0646\u0630\u0647\u0628"
-      Value: 
-      Letters:
-      - noon
-      - thal
-      - heh
-      - beh
-      Drawing: 
-      Intrinsic: 0
-    - Id: goodbye
-      Active: 1
-      Kind: 6
-      Category: 22
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0648\u062F\u0627\u0639\u0627\u064B"
-      Value: 
-      Letters:
-      - waw
-      - dal
-      - alef
-      - ain
-      - alef_fathah_tanwin
-      Drawing: 
-      Intrinsic: 0
-    - Id: help
-      Active: 1
-      Kind: 5
-      Category: 0
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0645\u0633\u0627\u0639\u062F\u0629"
-      Value: 
-      Letters:
-      - meem
-      - seen
-      - alef
-      - ain
-      - dal
-      - teh_marbuta
-      Drawing: 
-      Intrinsic: 0
-    - Id: how
-      Active: 1
-      Kind: 5
-      Category: 24
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0643\u064A\u0641"
-      Value: 
-      Letters:
-      - kaf
-      - yeh
-      - feh
-      Drawing: 
-      Intrinsic: 0
-    - Id: in morning
-      Active: 1
-      Kind: 6
-      Category: 21
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0635\u0628\u0627\u062D\u0627\u064B"
-      Value: 
-      Letters:
-      - sad
-      - beh
-      - alef
-      - hah
-      - alef_fathah_tanwin
-      Drawing: 
-      Intrinsic: 0
-    - Id: is
-      Active: 1
-      Kind: 2
-      Category: 0
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0647\u0648"
-      Value: 
-      Letters:
-      - heh
-      - waw
-      Drawing: 
-      Intrinsic: 0
-    - Id: it's
-      Active: 1
-      Kind: 8
-      Category: 0
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0625\u0646\u0647\u0627"
-      Value: 
-      Letters:
-      - alef_hamza_low
-      - noon
-      - heh
-      - alef
-      Drawing: 
-      Intrinsic: 0
-    - Id: let's
-      Active: 1
-      Kind: 2
-      Category: 26
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0647\u064A\u0627"
-      Value: 
-      Letters:
-      - heh
-      - yeh
-      - alef
-      Drawing: 
-      Intrinsic: 0
-    - Id: my_aunt_father
-      Active: 1
-      Kind: 5
-      Category: 5
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0639\u0645\u062A\u064A"
-      Value: 
-      Letters:
-      - ain
-      - meem
-      - teh
-      - yeh
-      Drawing: 
-      Intrinsic: 0
-    - Id: my_aunt_mother
-      Active: 1
-      Kind: 5
-      Category: 5
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u062E\u0627\u0644\u062A\u064A"
-      Value: 
-      Letters:
-      - khah
-      - alef
-      - lam
-      - teh
-      - yeh
-      Drawing: 
-      Intrinsic: 0
-    - Id: my_brother
-      Active: 1
-      Kind: 5
-      Category: 5
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0623\u062E\u064A"
-      Value: 
-      Letters:
-      - alef_hamza_hi
-      - khah
-      - yeh
-      Drawing: 
-      Intrinsic: 0
-    - Id: my_face
-      Active: 1
-      Kind: 5
-      Category: 6
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0648\u062C\u0647\u064A"
-      Value: 
-      Letters:
-      - waw
-      - jeem
-      - heh
-      - yeh
-      Drawing: 
-      Intrinsic: 0
-    - Id: my_grandfather
-      Active: 1
-      Kind: 5
-      Category: 5
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u062C\u062F\u064A"
-      Value: 
-      Letters:
-      - jeem
-      - dal
-      - yeh
-      Drawing: 
-      Intrinsic: 0
-    - Id: my_name
-      Active: 1
-      Kind: 5
-      Category: 0
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0627\u0633\u0645\u064A"
-      Value: 
-      Letters:
-      - alef
-      - seen
-      - meem
-      - yeh
-      Drawing: 
-      Intrinsic: 0
-    - Id: my_sister
-      Active: 1
-      Kind: 5
-      Category: 5
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0623\u062E\u062A\u064A"
-      Value: 
-      Letters:
-      - alef_hamza_hi
-      - khah
-      - teh
-      - yeh
-      Drawing: 
-      Intrinsic: 0
-    - Id: my_uncle_father
-      Active: 1
-      Kind: 5
-      Category: 5
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0639\u0645\u064A"
-      Value: 
-      Letters:
-      - ain
-      - meem
-      - yeh
-      Drawing: 
-      Intrinsic: 0
-    - Id: my_uncle_mother
-      Active: 1
-      Kind: 5
-      Category: 5
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u062E\u0627\u0644\u064A"
-      Value: 
-      Letters:
-      - khah
-      - alef
-      - lam
-      - yeh
-      Drawing: 
-      Intrinsic: 0
-    - Id: need
-      Active: 1
-      Kind: 2
-      Category: 0
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u062A\u062D\u062A\u0627\u062C"
-      Value: 
-      Letters:
-      - teh
-      - hah
-      - teh
-      - alef
-      - jeem
-      Drawing: 
-      Intrinsic: 0
-    - Id: please
-      Active: 1
-      Kind: 6
-      Category: 20
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0631\u062C\u0627\u0621\u064B"
-      Value: 
-      Letters:
-      - reh
-      - jeem
-      - alef
-      - hamza
-      Drawing: 
-      Intrinsic: 0
-    - Id: ready
-      Active: 1
-      Kind: 6
-      Category: 0
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u062C\u0627\u0647\u0632"
-      Value: 
-      Letters:
-      - jeem
-      - alef
-      - heh
-      - zain
-      Drawing: 
-      Intrinsic: 0
-    - Id: remain
-      Active: 1
-      Kind: 2
-      Category: 0
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u062A\u0635\u0628\u062D"
-      Value: 
-      Letters:
-      - teh
-      - sad
-      - beh
-      - hah
-      Drawing: 
-      Intrinsic: 0
-    - Id: samer
-      Active: 1
-      Kind: 5
-      Category: 29
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0633\u0627\u0645\u0631"
-      Value: 
-      Letters:
-      - seen
-      - alef
-      - meem
-      - reh
-      Drawing: 
-      Intrinsic: 0
-    - Id: the_light_v2
-      Active: 1
-      Kind: 5
-      Category: 22
-      Form: 0
-      Article: 1
-      LinkedWord: 
-      Arabic: "\u0627\u0644\u0646\u0648\u0631"
-      Value: 
-      Letters:
-      - alef
-      - lam
-      - noon
-      - waw
-      - reh
-      Drawing: 
-      Intrinsic: 0
-    - Id: the_meeting
-      Active: 1
-      Kind: 5
-      Category: 22
-      Form: 0
-      Article: 1
-      LinkedWord: 
-      Arabic: "\u0627\u0644\u0644\u0642\u0627\u0621"
-      Value: 
-      Letters:
-      - alef
-      - lam
-      - lam
-      - qaf
-      - alef
-      - hamza
-      Drawing: 
-      Intrinsic: 0
-    - Id: the_well_being
-      Active: 1
-      Kind: 5
-      Category: 22
-      Form: 0
-      Article: 1
-      LinkedWord: 
-      Arabic: "\u0627\u0644\u062E\u064A\u0631"
-      Value: 
-      Letters:
-      - alef
-      - lam
-      - khah
-      - yeh
-      - reh
-      Drawing: 
-      Intrinsic: 0
-    - Id: was
-      Active: 1
-      Kind: 2
-      Category: 0
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0643\u0627\u0646"
-      Value: 
-      Letters:
-      - kaf
-      - alef
-      - noon
-      Drawing: 
-      Intrinsic: 0
-    - Id: welcome_assertion
-      Active: 1
-      Kind: 5
-      Category: 22
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0633\u0647\u0644\u0627\u064B"
-      Value: 
-      Letters:
-      - seen
-      - heh
-      - lam
-      - alef_fathah_tanwin
-      Drawing: 
-      Intrinsic: 0
-    - Id: well-being
-      Active: 1
-      Kind: 5
-      Category: 20
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u062E\u064A\u0631"
-      Value: 
-      Letters:
-      - khah
-      - yeh
-      - reh
-      Drawing: 
-      Intrinsic: 0
-    - Id: what
-      Active: 1
-      Kind: 5
-      Category: 24
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0645\u0627"
-      Value: 
-      Letters:
-      - meem
-      - alef
-      Drawing: 
-      Intrinsic: 0
-    - Id: whats
-      Active: 1
-      Kind: 5
-      Category: 24
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0643\u0645"
-      Value: 
-      Letters:
-      - kaf
-      - meem
-      Drawing: 
-      Intrinsic: 0
-    - Id: yes
-      Active: 1
-      Kind: 6
-      Category: 0
-      Form: 0
-      Article: 0
-      LinkedWord: 
-      Arabic: "\u0646\u0639\u0645"
-      Value: 
-      Letters:
-      - noon
-      - ain
-      - meem
-      Drawing: 
-      Intrinsic: 0
     - Id: you
       Active: 1
       Kind: 8
