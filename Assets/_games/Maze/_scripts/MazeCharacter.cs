@@ -144,6 +144,8 @@ namespace EA4S.Minigames.Maze
 
         private Vector3 raycastCheckTarget;
 
+        public bool finishedRound;
+
         public void SetMazeLetter(MazeLetter mazeLetter)
         {
             this.mazeLetter = mazeLetter;
@@ -275,6 +277,9 @@ namespace EA4S.Minigames.Maze
 
             raycastCheckTarget = transform.position;
             raycastCheckTarget.y = TrackBounds.instance.transform.position.y;
+
+            myCollider.enabled = true;
+            finishedRound = false;
         }
 
         public void CreateFruits(List<GameObject> fruitsLists)
@@ -427,7 +432,7 @@ namespace EA4S.Minigames.Maze
             SetFruitsList();
 
 
-            Vector3 initPos = _fruits[0].transform.position + new Vector3(0, 1, 0);
+            Vector3 initPos = _fruits[0].transform.position;
 
             initialPosition = initPos;
             targetPos = initialPosition;
@@ -459,6 +464,9 @@ namespace EA4S.Minigames.Maze
                     transform.DOMove(transform.position - transform.TransformVector(Vector3.left), 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
                 });
             });
+
+            myCollider.enabled = true;
+            finishedRound = false;
         }
 
         public void resetToCurrent()
@@ -466,7 +474,7 @@ namespace EA4S.Minigames.Maze
             transform.DOKill(false);
             donotHandleBorderCollision = false;
             transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isDrawing = false;
-            transform.position = _fruits[0].transform.position + new Vector3(0, 1, 0);
+            transform.position = _fruits[0].transform.position;
 
             initialPosition = transform.position;
             targetPos = initialPosition;
@@ -482,21 +490,17 @@ namespace EA4S.Minigames.Maze
 
             toggleVisibility(false);
 
-            var dir = _fruits[1].transform.position - transform.position;
-            var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+            var firstArrowRotation = _fruits[0].transform.rotation.eulerAngles;
+            firstArrowRotation.x += 90f;
+            firstArrowRotation.y += 180f;
 
-            angle = 360 + angle;
+            transform.DORotate(firstArrowRotation, 0.5f).OnComplete(() =>
+            {
+                transform.DOMove(transform.position - transform.TransformVector(Vector3.left), 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+            });
 
-
-
-            transform.DOLocalRotateQuaternion(Quaternion.AngleAxis(-angle, Vector3.up), 0.5f);
-
-
-            dir.Normalize();
-            dir.x = transform.position.x - dir.x * 1.5f;
-            dir.z = transform.position.z - dir.z * 1.5f;
-            dir.y = 1;
-            transform.DOMove(dir, 1).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+            myCollider.enabled = true;
+            finishedRound = false;
             characterIsMoving = false;
             GetComponent<Collider>().enabled = false;
         }
@@ -541,12 +545,20 @@ namespace EA4S.Minigames.Maze
                 time = 0.33f;
             }
 
-            transform.DOPath(characterWayPoints.ToArray(), time, PathType.Linear, PathMode.Ignore).OnWaypointChange((int index) =>
+            // Set initial angle:
+            var characterWaypointsArray = characterWayPoints.ToArray();
+
+            var dir = transform.position - characterWayPoints[1];
+            var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+
+            transform.rotation = Quaternion.AngleAxis(-angle, Vector3.up);
+
+            transform.DOPath(characterWaypointsArray, time, PathType.Linear, PathMode.Ignore).OnWaypointChange((int index) =>
             {
-                if (index + 3 < characterWayPoints.Count)
+                if (index + 1 < characterWayPoints.Count)
                 {
-                    var dir = transform.position - characterWayPoints[index + 3];
-                    var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+                    dir = transform.position - characterWayPoints[index + 1];
+                    angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
 
                     transform.rotation = Quaternion.AngleAxis(-angle, Vector3.up);
 
@@ -556,6 +568,8 @@ namespace EA4S.Minigames.Maze
 
         private void pathMoveComplete()
         {
+            finishedRound = true;
+
             transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isDrawing = false;
 
             //arrived!
@@ -729,7 +743,7 @@ namespace EA4S.Minigames.Maze
                         pointOfImpact = Camera.main.ScreenToWorldPoint(pointOfImpact);
 
                         mazeLetter.OnPointerOverTrackBounds(pointOfImpact);
-                    } 
+                    }
                 }
             }
 
@@ -806,6 +820,7 @@ namespace EA4S.Minigames.Maze
         {
             yield return new WaitForSeconds(0.25f);
 
+            finishedRound = true;
             isFleeing = true;
 
             List<Vector3> fleePathPoints = new List<Vector3>();
