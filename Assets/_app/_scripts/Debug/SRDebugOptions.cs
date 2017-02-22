@@ -26,9 +26,11 @@ public partial class SROptions
                 JourneyPosition minJ = AppManager.I.Teacher.journeyHelper.GetMinimumJourneyPositionForMiniGame(minigameCode);
                 if (minJ == null)
                 {
-                    Debug.LogErrorFormat("Minigame {0} cannot be played at all!!!", minigameCode);
-                } else {
-                    Debug.LogErrorFormat("Minigame {0} cannot be played at this playsession. Min: {1}", minigameCode, minJ.ToString());
+                    Debug.LogWarningFormat("Minigame {0} could not be selected for any PlaySession. Please check the PlaySession data table.", minigameCode);
+                }
+                else
+                {
+                    Debug.LogErrorFormat("Minigame {0} cannot be selected this PlaySession. Min: {1}", minigameCode, minJ.ToString());
                 }
 
                 //    Stage = minJ.Stage;

@@ -160,14 +160,9 @@ namespace EA4S.Database
 
         public List<LetterData> GetAllLetterData()
         {
-            return FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
+            return new List<LetterData>(staticDb.GetLetterTable().GetValuesTyped());
         }
 
-        //public LetterData GetLetterDataByRandom()
-        //{
-        //    var letterslist = GetAllLetterData();
-        //    return GenericHelper.GetRandom(letterslist);
-        //}
         #endregion
 
         #region Word

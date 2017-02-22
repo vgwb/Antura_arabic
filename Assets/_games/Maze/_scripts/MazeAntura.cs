@@ -10,7 +10,7 @@ namespace EA4S.Minigames.Maze
     {
 
         Vector3 target;
-        public const float ANTURA_SPEED = 15.0f;
+        public const float ANTURA_SPEED = 17.5f;
 
         public bool IsAnturaTime { get; private set; }
 
@@ -37,8 +37,6 @@ namespace EA4S.Minigames.Maze
                 if (nextAnturaBarkTimer <= 0)
                 {
                     PrepareNextAnturaBark();
-
-                    AudioManager.I.PlaySound(Sfx.DogBarking);
                 }
                 else
                     nextAnturaBarkTimer -= Time.deltaTime;
@@ -55,7 +53,7 @@ namespace EA4S.Minigames.Maze
 
                     //SetAnturaTime (false, initialPosition);
                     GetComponent<AnturaAnimationController>().State = AnturaAnimationStates.sitting;
-                    StartCoroutine(waitAndReturn(1));
+                    StartCoroutine(waitAndReturn(2.5f));
                 }
             }
             else
@@ -91,12 +89,15 @@ namespace EA4S.Minigames.Maze
             if (IsAnturaTime)
             {
                 target = position;
-
-
+                
                 PrepareNextAnturaBark();
             }
             else
+            {
                 target = initialPosition;
+            }
+
+            AudioManager.I.PlaySound(Sfx.DogBarking);
         }
 
         void PrepareNextAnturaBark()

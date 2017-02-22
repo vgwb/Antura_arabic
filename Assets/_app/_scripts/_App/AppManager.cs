@@ -9,6 +9,7 @@ using EA4S.Profile;
 using EA4S.Rewards;
 using EA4S.Teacher;
 using EA4S.MinigamesAPI;
+using EA4S.UI;
 using PlayerProfile = EA4S.Profile.PlayerProfile;
 
 namespace EA4S
@@ -94,6 +95,7 @@ namespace EA4S
             gameObject.AddComponent<KeeperManager>();
 
             RewardSystemManager.Init();
+            UIDirector.Init(); // Must be called after NavigationManager has been initialized
 
             GameSettings.HighQualityGfx = false;
         }
