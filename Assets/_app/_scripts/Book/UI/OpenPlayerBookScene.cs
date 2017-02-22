@@ -11,13 +11,6 @@ namespace EA4S.PlayerBook
     // refactor: should be grouped with Map scripts
     public class OpenPlayerBookScene : MonoBehaviour, IPointerClickHandler
     {
-        public Image IcoAvatar;
-
-        void Start()
-        {
-            IcoAvatar.sprite = AppManager.I.Player.GetAvatar();
-        }
-
         public void OnPointerClick(PointerEventData eventData)
         {
             AppManager.I.NavigationManager.GoToPlayerBook();
