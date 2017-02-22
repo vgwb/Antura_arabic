@@ -39,7 +39,7 @@ namespace EA4S.UI
 
         #region Unity
 
-        int bonesCount;
+        int bonesCount = -1;
         public int BonesCount
         {
             get

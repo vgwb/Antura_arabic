@@ -31,7 +31,7 @@ namespace EA4S.AnturaSpace
         {
             base.Update(delta);
 
-            if (controller.DraggingBone != null || controller.LaunchedBone != null)
+            if (controller.DraggingBone != null || controller.NextBoneToCatch != null)
             {
                 controller.CurrentState = controller.Idle;
                 return;

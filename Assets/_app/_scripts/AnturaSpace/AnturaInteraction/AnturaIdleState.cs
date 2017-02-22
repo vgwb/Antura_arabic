@@ -29,7 +29,7 @@ namespace EA4S.AnturaSpace
             {
 
             }
-            else if (controller.LaunchedBone != null)
+            else if (controller.NextBoneToCatch != null)
             {
                 controller.CurrentState = controller.Catching;
                 return;

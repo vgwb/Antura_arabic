@@ -27,7 +27,7 @@ namespace EA4S.AnturaSpace
         public GameObject PoofPrefab;
 
         public Transform DraggingBone { get; private set; }
-        public Transform LaunchedBone
+        public Transform NextBoneToCatch
         {
             get
             {
@@ -121,16 +121,26 @@ namespace EA4S.AnturaSpace
         void Start()
         {
             GlobalUI.ShowPauseMenu(false);
-            GlobalUI.ShowBackButton(true, OnExit);
+
+            if (!AppManager.I.Player.IsFirstContact())
+            {
+                ShowBackButton();
+            }
+
             AudioManager.I.PlayMusic(backgroundMusic);
             LogManager.I.LogInfo(InfoEvent.AnturaSpace, "enter");
 
         }
 
+        public void ShowBackButton()
+        {
+            GlobalUI.ShowBackButton(true, OnExit);
+        }
+        
         void OnExit()
         {
             LogManager.I.LogInfo(InfoEvent.AnturaSpace, "exit");
-            AppManager.I.NavigationManager.GoToNextScene();
+            AppManager.I.NavigationManager.GoBack();
         }
     }
 }

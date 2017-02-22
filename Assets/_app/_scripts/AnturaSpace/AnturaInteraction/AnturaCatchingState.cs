@@ -6,8 +6,9 @@ namespace EA4S.AnturaSpace
     public class AnturaCatchingState : AnturaState
     {
         GameObject bone;
+
         bool boneEaten = false;
-        bool isRunningJump = false;
+        Rigidbody boneRigidBody;
 
         public AnturaCatchingState(AnturaSpaceManager controller) : base(controller)
         {
@@ -17,56 +18,48 @@ namespace EA4S.AnturaSpace
         {
             base.EnterState();
 
-            if (controller.LaunchedBone == null)
+            if (controller.NextBoneToCatch == null)
             {
                 controller.CurrentState = controller.Idle;
                 return;
             }
 
-            bone = controller.LaunchedBone.gameObject;
+            bone = controller.NextBoneToCatch.gameObject;
             boneEaten = false;
 
-            controller.Antura.SetTarget(controller.LaunchedBone, false);
+            controller.Antura.SetTarget(controller.NextBoneToCatch, false);
+            boneRigidBody = controller.NextBoneToCatch.GetComponent<Rigidbody>();
         }
 
         public override void Update(float delta)
         {
             base.Update(delta);
-
-            if (!boneEaten && !isRunningJump && (controller.Antura.HasReachedTarget || controller.Antura.PlanarDistanceFromTarget < 4))
+            
+            if (!boneEaten && !controller.Antura.IsJumping && (controller.Antura.HasReachedTarget || controller.Antura.PlanarDistanceFromTarget < 5))
             {
-                if (controller.Antura.TargetHeight < 4 || controller.Antura.DistanceFromTarget < 3)
+                if ((controller.Antura.TargetHeight >= 2 && boneRigidBody != null && boneRigidBody.velocity.y > 10))
                 {
                     boneEaten = true;
-
-                    if (controller.Antura.IsJumping)
+                    // Jump!
+                    controller.Antura.AnimationController.DoSmallJumpAndGrab(() =>
                     {
-                        isRunningJump = true;
                         controller.EatBone(bone);
-                        controller.Antura.AnimationController.OnJumpGrab();
-                        controller.Antura.AnimationController.OnJumpMaximumHeightReached();
-                        controller.Antura.AnimationController.OnJumpEnded();
-                    }
-                    else
-                    {
-                        controller.Antura.AnimationController.DoShout(() =>
-                        {
-                            controller.EatBone(bone);
-                            controller.CurrentState = controller.Idle;
-                            bone = null;
-                        });
-                    }
+                        controller.CurrentState = controller.Idle;
+                        bone = null;
+                        boneEaten = false;
+                    });
                 }
-                else
+                else if (controller.Antura.TargetHeight <= 4.5f)
                 {
-                    controller.Antura.AnimationController.OnJumpStart();
+                    boneEaten = true;
+                    controller.Antura.AnimationController.DoBite(() =>
+                    {
+                        controller.EatBone(bone);
+                        controller.CurrentState = controller.Idle;
+                        bone = null;
+                        boneEaten = false;
+                    });
                 }
-            }
-
-            if (isRunningJump && !controller.Antura.IsJumping)
-            {
-                isRunningJump = false;
-                controller.CurrentState = controller.Idle;
             }
         }
     }

@@ -34,6 +34,7 @@ namespace EA4S.Antura
         public bool IsJumping { get; private set; }
 
         System.Action onChargeEnded;
+        System.Action onGrabbed;
 
         float walkingSpeed;
 
@@ -133,6 +134,12 @@ namespace EA4S.Antura
             animator.SetTrigger("doBurp");
         }
 
+        public void DoBite(System.Action onGrabbed = null)
+        {
+            this.onGrabbed = onGrabbed;
+            animator.SetTrigger("doBite");
+        }
+
         public void DoSpit(bool openMouth)
         {
             if (State != AnturaAnimationStates.idle)
@@ -147,6 +154,12 @@ namespace EA4S.Antura
                 animator.SetTrigger("doSpitOpen");
             else
                 animator.SetTrigger("doSpitClosed");
+        }
+
+        public void DoSmallJumpAndGrab(System.Action onGrabbed = null)
+        {
+            this.onGrabbed = onGrabbed;
+            animator.SetTrigger("doJumpAndGrab");
         }
 
         public void OnJumpStart()
@@ -327,6 +340,12 @@ namespace EA4S.Antura
         void OnAnimationJumpEnd()
         {
             --jumpRefCount;
+        }
+
+        void OnAnimationJumpGrab()
+        {
+            if (onGrabbed != null)
+                onGrabbed();
         }
 
         void OnEnable()
