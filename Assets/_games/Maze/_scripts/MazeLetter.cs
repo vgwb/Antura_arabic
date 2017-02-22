@@ -75,7 +75,7 @@ namespace EA4S.Minigames.Maze
 
         public void OnPointerDown()
         {
-            if (mazeCharacter.characterIsMoving || !mazeCharacter.canMouseBeDown())
+            if (mazeCharacter.characterIsMoving || !mazeCharacter.canMouseBeDown() || mazeCharacter.finishedRound)
             {
                 return;
             }
