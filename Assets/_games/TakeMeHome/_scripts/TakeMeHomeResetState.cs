@@ -36,6 +36,7 @@ namespace EA4S.Minigames.TakeMeHome
 			} else {
                 TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
                 TutorialUI.MarkNo(markPosition, TutorialUI.MarkSize.Big);
+                game.spawnTube.show(game.currentLetter.lastCollidedTube.color);
             }
 
             game.Context.GetLogManager().OnAnswered(game.currentLetter.letter.Data, win);
