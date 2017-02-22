@@ -217,9 +217,9 @@ MonoBehaviour:
       Category: 5
       Linked: 
       Words:
-      - the boy
+      - the_boy
       - opened
-      - the window
+      - the_window
       Answers: []
       Intrinsic: 1
     - Id: theteacherlaughed
@@ -229,7 +229,7 @@ MonoBehaviour:
       Category: 5
       Linked: 
       Words:
-      - the teacher
+      - the_teacher
       - laughed
       Answers: []
       Intrinsic: 1
@@ -240,9 +240,9 @@ MonoBehaviour:
       Category: 5
       Linked: 
       Words:
-      - the worker
+      - the_worker
       - carried
-      - the box
+      - the_box
       Answers: []
       Intrinsic: 1
     - Id: thegirldrankthejuice
@@ -252,9 +252,9 @@ MonoBehaviour:
       Category: 5
       Linked: 
       Words:
-      - the girl
-      - drank
-      - the juice
+      - drank_feminine
+      - the_girl
+      - the_juice
       Answers: []
       Intrinsic: 1
     - Id: themountainisbig
@@ -264,7 +264,7 @@ MonoBehaviour:
       Category: 5
       Linked: 
       Words:
-      - the mountain
+      - the_mountain
       - big
       Answers: []
       Intrinsic: 1
@@ -275,7 +275,7 @@ MonoBehaviour:
       Category: 5
       Linked: 
       Words:
-      - the restaurant
+      - the_restaurant
       - clean
       Answers: []
       Intrinsic: 1
@@ -286,9 +286,9 @@ MonoBehaviour:
       Category: 5
       Linked: 
       Words:
-      - the tiger
+      - the_tiger
       - ate
-      - the deer
+      - the_deer
       Answers: []
       Intrinsic: 1
     - Id: redberry
@@ -343,10 +343,10 @@ MonoBehaviour:
       Category: 5
       Linked: 
       Words:
-      - the carpenter
+      - the_carpenter
       - went
       - to
-      - the house
+      - the_house
       Answers: []
       Intrinsic: 1
     - Id: thebirdflew
@@ -356,7 +356,7 @@ MonoBehaviour:
       Category: 5
       Linked: 
       Words:
-      - the bird
+      - the_bird
       - flew
       Answers: []
       Intrinsic: 1
@@ -367,7 +367,7 @@ MonoBehaviour:
       Category: 5
       Linked: 
       Words:
-      - the shop
+      - the_shop
       - small
       Answers: []
       Intrinsic: 1
@@ -378,9 +378,9 @@ MonoBehaviour:
       Category: 5
       Linked: 
       Words:
-      - the doctor
+      - the_doctor
       - opened
-      - the hospital
+      - the_hospital
       Answers: []
       Intrinsic: 1
     - Id: eightscientists
@@ -447,7 +447,7 @@ MonoBehaviour:
       Category: 5
       Linked: 
       Words:
-      - the winter
+      - the_winter
       - cold
       Answers: []
       Intrinsic: 1
@@ -462,7 +462,7 @@ MonoBehaviour:
       Words:
       - month_november
       - number_o11
-      - the month
+      - the_month
       Answers: []
       Intrinsic: 1
     - Id: theparrotisbeautiful
@@ -472,7 +472,7 @@ MonoBehaviour:
       Category: 5
       Linked: 
       Words:
-      - the parrot
+      - the_parrot
       - beautiful
       Answers: []
       Intrinsic: 1
@@ -487,7 +487,7 @@ MonoBehaviour:
       - month_may
       - is
       - number_o05
-      - the month
+      - the_month
       Answers: []
       Intrinsic: 1
     - Id: thepolicemanwalked
@@ -497,7 +497,7 @@ MonoBehaviour:
       Category: 5
       Linked: 
       Words:
-      - the policeman
+      - the_policeman
       - walked
       Answers: []
       Intrinsic: 1
@@ -508,7 +508,7 @@ MonoBehaviour:
       Category: 5
       Linked: 
       Words:
-      - the icecream
+      - the_icecream
       - delicious
       Answers: []
       Intrinsic: 1
@@ -520,14 +520,14 @@ MonoBehaviour:
       Linked: 
       Words:
       - number_05
-      - books (plural)
+      - books
       Answers: []
       Intrinsic: 1
     - Id: please
       Active: 1
       English: please
       Arabic: "\u0631\u062C\u0627\u0621"
-      Category: 0
+      Category: 6
       Linked: 
       Words:
       - please
@@ -537,11 +537,11 @@ MonoBehaviour:
       Active: 1
       English: thank you very much
       Arabic: "\u0634\u0643\u0631\u0627\u064B \u062C\u0632\u064A\u0644\u0627\u064B"
-      Category: 0
+      Category: 6
       Linked: 
       Words:
-      - thank you (one word)
-      - very much (one word)
+      - thankyou
+      - verymuch
       Answers: []
       Intrinsic: 1
     - Id: goodnight_Q
@@ -565,14 +565,14 @@ MonoBehaviour:
       Words:
       - and
       - you
-      - with well-being (one word)
+      - with_well-being
       Answers: []
       Intrinsic: 1
     - Id: congratulations
       Active: 1
       English: congratulations
       Arabic: "\u0645\u0628\u0631\u0648\u0643"
-      Category: 0
+      Category: 6
       Linked: 
       Words:
       - congratulations
@@ -585,8 +585,8 @@ MonoBehaviour:
       Category: 1
       Linked: letsgo_R
       Words:
-      - let's
-      - go
+      - lets
+      - go_v2
       Answers: []
       Intrinsic: 1
     - Id: letsgo_R
@@ -596,7 +596,7 @@ MonoBehaviour:
       Category: 2
       Linked: letsgo_Q
       Words:
-      - let's
+      - lets
       - go
       Answers: []
       Intrinsic: 1
@@ -620,7 +620,7 @@ MonoBehaviour:
       Linked: areyouready_Q
       Words:
       - yes
-      - I'm
+      - i_am
       - ready
       Answers: []
       Intrinsic: 1
@@ -631,8 +631,8 @@ MonoBehaviour:
       Category: 1
       Linked: mynameissamer_R
       Words:
-      - what's
-      - your name (one word)
+      - what
+      - your_name
       Answers: []
       Intrinsic: 1
     - Id: mynameissamer_R
@@ -642,7 +642,7 @@ MonoBehaviour:
       Category: 2
       Linked: whatisyourname_Q
       Words:
-      - my name (one word)
+      - my_name
       - samer
       Answers: []
       Intrinsic: 1
@@ -653,8 +653,8 @@ MonoBehaviour:
       Category: 1
       Linked: itis10oclockinthemorning_R
       Words:
-      - what's
-      - the time
+      - whats
+      - the_time
       - now
       Answers: []
       Intrinsic: 1
@@ -666,10 +666,9 @@ MonoBehaviour:
       Category: 2
       Linked: whatisthetimenow_Q
       Words:
-      - it's
-      - 10 (not number
-      - order with taa marbuta at the end) o'clock
-      - in the morning (one word)
+      - it_is
+      - the_ten_oclock
+      - in_morning
       Answers: []
       Intrinsic: 1
     - Id: doyouneedhelp_Q
@@ -679,7 +678,7 @@ MonoBehaviour:
       Category: 1
       Linked: yesplease_R
       Words:
-      - do you (one word)
+      - do_need
       - need
       - help
       Answers: []
@@ -693,5 +692,262 @@ MonoBehaviour:
       Words:
       - yes
       - please
+      Answers: []
+      Intrinsic: 1
+    - Id: myfatherisabraveman
+      Active: 1
+      English: my father is a brave man
+      Arabic: "\u0628\u0627\u0628\u0627 \u0631\u062C\u0644\u064C \u0634\u062C\u0627\u0639\u064C"
+      Category: 5
+      Linked: 
+      Words:
+      - father
+      - brave
+      - man
+      Answers: []
+      Intrinsic: 1
+    - Id: avirtuouspoliceman
+      Active: 1
+      English: a virtuous policeman
+      Arabic: "\u0634\u0631\u0637\u064A\u064C \u0646\u0632\u064A\u0647\u064C"
+      Category: 5
+      Linked: 
+      Words:
+      - virtuous
+      - policeman
+      Answers: []
+      Intrinsic: 1
+    - Id: thescientistwenttothestation
+      Active: 1
+      English: the scientist went to the station
+      Arabic: "\u0630\u0647\u0628 \u0627\u0644\u0639\u0627\u0644\u0645 \u0625\u0644\u0649
+        \u0627\u0644\u0645\u062D\u0637\u0629"
+      Category: 5
+      Linked: 
+      Words:
+      - the_scientist
+      - went
+      - to
+      - the_station
+      Answers: []
+      Intrinsic: 1
+    - Id: thegirlwonaball
+      Active: 1
+      English: the girl won a ball
+      Arabic: "\u0631\u0628\u062D\u062A \u0627\u0644\u0628\u0646\u062A \u0643\u0631\u0629\u064B"
+      Category: 5
+      Linked: 
+      Words:
+      - the_girl
+      - won_feminine
+      - ball
+      Answers: []
+      Intrinsic: 1
+    - Id: abigwhale
+      Active: 1
+      English: a big whale
+      Arabic: "\u062D\u0648\u062A\u064C \u0643\u0628\u064A\u0631\u064C"
+      Category: 5
+      Linked: 
+      Words:
+      - big
+      - whale
+      Answers: []
+      Intrinsic: 1
+    - Id: mybrotheropenedtheoragebox
+      Active: 1
+      English: my brother opened the orange box
+      Arabic: "\u0641\u062A\u062D\u064E \u0623\u062E\u064A \u0627\u0644\u0635\u0646\u062F\u0648\u0642
+        \u0627\u0644\u0628\u0631\u062A\u0642\u0627\u0644\u064A"
+      Category: 5
+      Linked: 
+      Words:
+      - my_brother
+      - opened
+      - the_color_orange
+      - the_box
+      Answers: []
+      Intrinsic: 1
+    - Id: myauntsatonthechair
+      Active: 1
+      English: my aunt sat on the chair
+      Arabic: "\u062C\u0644\u0633\u062A \u062E\u0627\u0644\u062A\u064A \u0639\u0644\u0649
+        \u0627\u0644\u0643\u0631\u0633\u064A"
+      Category: 5
+      Linked: 
+      Words:
+      - my_aunt_mother
+      - sat_feminine
+      - on
+      - the_chair
+      Answers: []
+      Intrinsic: 1
+    - Id: thankyouforthepurpleflower
+      Active: 1
+      English: thank you for the purple flower
+      Arabic: "\u0634\u0643\u0631\u0627\u064B \u0639\u0644\u0649 \u0627\u0644\u0648\u0631\u062F
+        \u0627\u0644\u0628\u0646\u0641\u0633\u062C\u064A"
+      Category: 5
+      Linked: 
+      Words:
+      - thankyou
+      - on
+      - the_color_purple
+      - the_flower
+      Answers: []
+      Intrinsic: 1
+    - Id: congrats_forthebedandthecupboard
+      Active: 1
+      English: congratulations for the bed and the cupboard
+      Arabic: "\u0645\u0628\u0631\u0648\u0643 \u0627\u0644\u0641\u0631\u0627\u0634
+        \u0648\u0627\u0644\u062E\u0632\u0627\u0646\u0629"
+      Category: 5
+      Linked: 
+      Words:
+      - congratulations
+      - the_bed
+      - and
+      - the_cupboard
+      Answers: []
+      Intrinsic: 1
+    - Id: congrats_for_the_fridge_and_the_oven
+      Active: 1
+      English: congratulations for the fridge and the oven
+      Arabic: "\u0645\u0628\u0631\u0648\u0643 \u0627\u0644\u062B\u0644\u0627\u062C\u0629
+        \u0648\u0627\u0644\u0641\u0631\u0646"
+      Category: 5
+      Linked: 
+      Words:
+      - congratulations
+      - the_fridge
+      - and
+      - the_oven
+      Answers: []
+      Intrinsic: 1
+    - Id: theparrotishappyandactive
+      Active: 1
+      English: the parrot is happy and active
+      Arabic: "\u0627\u0644\u0628\u0628\u063A\u0627\u0621 \u0633\u0639\u064A\u062F\u064C
+        \u0648\u0646\u0634\u064A\u0637\u064C"
+      Category: 5
+      Linked: 
+      Words:
+      - the_parrot
+      - happy
+      - active
+      Answers: []
+      Intrinsic: 1
+    - Id: thetigerwasintheforest
+      Active: 1
+      English: the tiger was in the forest
+      Arabic: "\u0643\u0627\u0646 \u0627\u0644\u0646\u0645\u0631 \u0641\u064A \u0627\u0644\u063A\u0627\u0628\u0629"
+      Category: 5
+      Linked: 
+      Words:
+      - the_tiger
+      - was
+      - in
+      - the_forest
+      Answers: []
+      Intrinsic: 1
+    - Id: myauntissad
+      Active: 1
+      English: my aunt is sad
+      Arabic: "\u0639\u0645\u062A\u064A \u062D\u0632\u064A\u0646\u0629"
+      Category: 5
+      Linked: 
+      Words:
+      - my_aunt_father
+      - sad_feminine
+      Answers: []
+      Intrinsic: 1
+    - Id: thegreenappleisdelicious
+      Active: 1
+      English: the green apple is delicious
+      Arabic: "\u0627\u0644\u062A\u0641\u0627\u062D \u0627\u0644\u0623\u062E\u0636\u0631
+        \u0644\u0630\u064A\u0630"
+      Category: 5
+      Linked: 
+      Words:
+      - the_color_green
+      - the_apple
+      - delicious
+      Answers: []
+      Intrinsic: 1
+    - Id: myfaceisbluefromthecold
+      Active: 1
+      English: my face is blue from the cold
+      Arabic: "\u0648\u062C\u0647\u064A \u0623\u0632\u0631\u0642 \u0645\u0646 \u0627\u0644\u0628\u0631\u062F"
+      Category: 5
+      Linked: 
+      Words:
+      - my_face
+      - color_blue
+      - from
+      - the_cold
+      Answers: []
+      Intrinsic: 1
+    - Id: mysisterwenttotheclub
+      Active: 1
+      English: my sister went to the club
+      Arabic: "\u0630\u0647\u0628\u062A \u0623\u062E\u062A\u064A \u0625\u0644\u0649
+        \u0627\u0644\u0645\u0646\u062A\u062F\u0649"
+      Category: 5
+      Linked: 
+      Words:
+      - sister
+      - went_feminine
+      - to
+      - the_club
+      Answers: []
+      Intrinsic: 1
+    - Id: mygrandfathercaughtthebird
+      Active: 1
+      English: my grandfather caught the bird
+      Arabic: "\u0645\u0633\u0643 \u062C\u062F\u064A \u0627\u0644\u0639\u0635\u0641\u0648\u0631"
+      Category: 5
+      Linked: 
+      Words:
+      - my_grandfather
+      - caught
+      - the_bird
+      Answers: []
+      Intrinsic: 1
+    - Id: myuncleworethebrownshirt
+      Active: 1
+      English: my uncle wore the brown shirt
+      Arabic: "\u0644\u0628\u0633 \u062E\u0627\u0644\u064A \u0627\u0644\u0642\u0645\u064A\u0635
+        \u0627\u0644\u0628\u0646\u064A"
+      Category: 5
+      Linked: 
+      Words:
+      - my_uncle_mother
+      - wore
+      - the_color_brown
+      - the_shirt
+      Answers: []
+      Intrinsic: 1
+    - Id: myuncleisabraveman
+      Active: 1
+      English: my uncle is a brave man
+      Arabic: "\u0639\u0645\u064A \u0631\u062C\u0644 \u0634\u062C\u0627\u0639"
+      Category: 5
+      Linked: 
+      Words:
+      - my_uncle_father
+      - brave
+      - man
+      Answers: []
+      Intrinsic: 1
+    - Id: the_river_water_is_cold
+      Active: 1
+      English: the river's water is cold
+      Arabic: "\u0645\u0627\u0621 \u0627\u0644\u0646\u0647\u0631 \u0628\u0627\u0631\u062F"
+      Category: 5
+      Linked: 
+      Words:
+      - the_river
+      - water
+      - cold_adjective
       Answers: []
       Intrinsic: 1
