@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4000012279158442}
   - component: {fileID: 33000013411626064}
   - component: {fileID: 23000010826831090}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: rocket_wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4000010497737932}
   - component: {fileID: 33000012538118764}
   - component: {fileID: 23000011656218588}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: rocket_wing 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 33000013540352114}
   - component: {fileID: 64000012023203032}
   - component: {fileID: 23000013760513398}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: shadow-line (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 4000013481655064}
   - component: {fileID: 33000010207165016}
   - component: {fileID: 23000013044454164}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 4000012281207910}
   - component: {fileID: 198000011384226184}
   - component: {fileID: 199000010479882752}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: vfx_particle_rocket_pixel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010565001432}
   - component: {fileID: 96000013929738922}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 4000011974756070}
   - component: {fileID: 33000010030147268}
   - component: {fileID: 23000012554006402}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: rocket_wing 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4000010557999360}
   - component: {fileID: 198000011862301138}
   - component: {fileID: 199000012247180132}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: vfx_particle_rocket_fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 4000010697446914}
   - component: {fileID: 198000010636219680}
   - component: {fileID: 199000013630578170}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: vfx_particle_rocket_rainbow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -566,7 +566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1420784186862978
 GameObject:
   m_ObjectHideFlags: 1
@@ -1320,7 +1320,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010509039930}
-  m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.20930572, y: 0.20930581, z: 0.20930585}
   m_Children:
@@ -1335,7 +1335,7 @@ Transform:
   - {fileID: 4000011948055386}
   m_Father: {fileID: 4000012692881754}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 90.00001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000011948055386
 Transform:
   m_ObjectHideFlags: 1
@@ -1394,14 +1394,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013500482376}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000011445498092}
   m_Father: {fileID: 4000010259303742}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000013481655064
 Transform:
   m_ObjectHideFlags: 1
@@ -2937,6 +2937,7 @@ MonoBehaviour:
   rocket: {fileID: 1000010509039930}
   winParticleVFX: {fileID: 1963368782749294}
   ragdoll: {fileID: 114976846229429224}
+  finishedRound: 0
 --- !u!114 &114412774514909040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3175,7 +3176,7 @@ MonoBehaviour:
   headTransform: {fileID: 4871602227315660}
   pelvisTransform: {fileID: 4285870565098338}
   puffPrefab: {fileID: 1169679431488036}
-  maxPoofCountdownAfterHit: 0.25
+  maxPoofCountdownAfterHit: 0
   deleteOnRagdollHit: 0
   doRagdoll: 0
 --- !u!114 &114993252678703474
@@ -3764,7 +3765,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.7780628, y: -0.00000046938595, z: 0.0000005364418}
+  m_ConnectedAnchor: {x: -0.77806234, y: -0.0000005140892, z: 0.0000007748604}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -3806,7 +3807,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.08479647, y: 0.19703895, z: 0.51308805}
+  m_ConnectedAnchor: {x: -0.084796235, y: 0.19703907, z: 0.5130881}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3848,7 +3849,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.20491661, y: 0.07838865, z: -1.2875893}
+  m_ConnectedAnchor: {x: 0.20491707, y: 0.07838877, z: -1.287589}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3890,7 +3891,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.08479647, y: 0.19703895, z: -0.51308835}
+  m_ConnectedAnchor: {x: -0.084796235, y: 0.19703898, z: -0.51308805}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3932,7 +3933,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.20491669, y: 0.07838877, z: 1.2875887}
+  m_ConnectedAnchor: {x: 0.20491712, y: 0.078388825, z: 1.2875888}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3974,7 +3975,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.9665441, y: 0.16449797, z: -0.00000025331974}
+  m_ConnectedAnchor: {x: -0.9665436, y: 0.16449803, z: -0.00000013411045}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -4016,7 +4017,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.7780628, y: 0.00000038742928, z: 0.0000010728836}
+  m_ConnectedAnchor: {x: -0.77806234, y: 0.0000003278251, z: 0.00000059604645}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
