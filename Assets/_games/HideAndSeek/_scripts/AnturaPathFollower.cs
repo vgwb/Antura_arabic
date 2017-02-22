@@ -69,6 +69,7 @@ namespace EA4S.Minigames.HideAndSeek
                         isSniffing = true;
                         speed = 0;
                         animationController.DoSniff(() => { isSniffing = false; });
+                        Audio.AudioManager.I.PlaySound(Sfx.DogSnorting);
                     }
                     else
                     {

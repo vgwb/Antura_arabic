@@ -463,6 +463,12 @@ MonoBehaviour:
     - {fileID: 8300000, guid: e7def2d450a1e44ab9ddddb65fea1fc1, type: 3}
     volume: 1
     randomPitchOffset: 0
+  - sfx: 70
+    clips:
+    - {fileID: 8300000, guid: 1d812a09c449a3c4884c4026e65f516a, type: 3}
+    - {fileID: 8300000, guid: 296344978701a0f4ea954a70e5d504d7, type: 3}
+    volume: 1
+    randomPitchOffset: 0
   musicConfs:
   - music: 1
     clip: {fileID: 8300000, guid: 462e9bd13f32041098fe186f5e58d7dd, type: 3}
@@ -529,4 +535,5 @@ MonoBehaviour:
     recycle: 1
     fooVolume: 1
   fooGlobalVolume: 1
+  fadeEase: 1
   inspectorUpdater: 0

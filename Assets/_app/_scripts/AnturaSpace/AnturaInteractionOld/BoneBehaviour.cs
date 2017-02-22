@@ -128,12 +128,13 @@ namespace EA4S.AnturaSpace
                 
 
                 //set the bone position on the pointer(x,y) at it's current distance from the camera
-                float _fCameraDistance = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
-                transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _fCameraDistance));
-                   
-                //now keep it on an imaginary plane inclined to 45 degree by setting z equal to y
-                transform.position=new Vector3(transform.position.x, transform.position.y, transform.position.y);
+                float _fCameraDistance = 6 + 4*(Input.mousePosition.y/Screen.height);
+                var newPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _fCameraDistance));
 
+                if (newPos.y < 1)
+                    newPos.y = 1;
+
+                transform.position = newPos;
             }
 
         }

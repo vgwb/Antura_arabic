@@ -28,5 +28,10 @@ namespace EA4S.AnturaSpace
         public virtual void UpdatePhysics(float delta)
         {
         }
+
+        public virtual void OnTouched()
+        {
+
+        }
     }
 }

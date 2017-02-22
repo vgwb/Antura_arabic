@@ -63,7 +63,7 @@ namespace EA4S.Minigames.ReadingGame
             else if (actionTimer <= 0)
             {
                 actionTimer = Random.Range(2.5f, 4.0f);
-                
+
                 if (Random.value < 0.5f && antura.Mood != ReadingGameAntura.AnturaMood.SAD &&
                     antura.AllowSitting)
                     antura.animator.State = AnturaAnimationStates.sitting;
@@ -74,7 +74,9 @@ namespace EA4S.Minigames.ReadingGame
                     if (antura.Mood == ReadingGameAntura.AnturaMood.HAPPY)
                     {
                         if (Random.value < 0.25f)
+                        {
                             antura.animator.DoSniff();
+                        }
                     }
                     else if (antura.Mood == ReadingGameAntura.AnturaMood.ANGRY)
                     {

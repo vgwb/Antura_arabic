@@ -13,6 +13,8 @@ namespace EA4S.AnturaSpace
         const float WALK_SPEED = 5.0f;
         const float RUN_SPEED = 15.0f;
 
+        public event System.Action onTouched;
+
         [NonSerialized]
         public AnturaAnimationController AnimationController;
 
@@ -66,7 +68,9 @@ namespace EA4S.AnturaSpace
             }
         }
 
-        public float PlanarDistanceFromTarget { get
+        public float PlanarDistanceFromTarget
+        {
+            get
             {
                 if (target == null)
                     return 0;
@@ -75,7 +79,8 @@ namespace EA4S.AnturaSpace
                 distance.y = 0;
 
                 return distance.magnitude;
-            } }
+            }
+        }
 
         public float DistanceFromTarget
         {
@@ -141,7 +146,7 @@ namespace EA4S.AnturaSpace
                         var steeringMovement = transform.forward * speed * Time.deltaTime;
                         var normalMovement = distance * Mathf.Abs(Vector3.Dot(distance, transform.forward)) * speed * Time.deltaTime;
 
-                        transform.position += Vector3.Lerp(steeringMovement, normalMovement, 10.0f*Vector3.Dot(transform.forward.normalized, distance.normalized));
+                        transform.position += Vector3.Lerp(steeringMovement, normalMovement, 10.0f * Vector3.Dot(transform.forward.normalized, distance.normalized));
 
                         GameplayHelper.LerpLookAtPlanar(transform, target.position, Time.deltaTime * 2);
                     }
@@ -151,12 +156,18 @@ namespace EA4S.AnturaSpace
                     var dot = Mathf.Max(0, Vector3.Dot(target.forward.normalized, transform.forward.normalized));
 
                     if (rotateAsTarget)
-                        transform.rotation = Quaternion.Slerp(transform.rotation, target.rotation, Time.deltaTime * 4 * (0.2f + 0.8f*dot));
+                        transform.rotation = Quaternion.Slerp(transform.rotation, target.rotation, Time.deltaTime * 4 * (0.2f + 0.8f * dot));
 
                     if ((!rotateAsTarget || dot > 0.9f) && AnimationController.State == AnturaAnimationStates.walking)
                         AnimationController.State = AnturaAnimationStates.idle;
                 }
             }
+        }
+
+        void OnMouseDown()
+        {
+            if (onTouched != null)
+                onTouched();
         }
     }
 }
