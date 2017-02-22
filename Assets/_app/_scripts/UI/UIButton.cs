@@ -75,6 +75,12 @@ namespace EA4S.UI
 
         #region Unity + INIT
 
+        void OnEnable()
+        { if (Application.isPlaying) UIDirector.Add(this); }
+
+        void OnDisable()
+        { if (Application.isPlaying) UIDirector.Remove(this); }
+
         protected virtual void Awake()
         {
             clickTween = this.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.35f).SetAutoKill(false).SetUpdate(true).Pause();
