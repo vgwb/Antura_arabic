@@ -22,6 +22,7 @@ namespace EA4S.Test
         public bool doCharge;
 
         public bool doBurp;
+        public bool doBite;
         public bool doShout;
         public bool doSniff;
 
@@ -54,6 +55,11 @@ namespace EA4S.Test
                 antura.DoBurp();
             }
 
+            if (doBite)
+            {
+                doBite = false;
+                antura.DoBite();
+            }
 
             if (doShout)
             {
