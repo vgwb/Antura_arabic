@@ -10,9 +10,7 @@ namespace EA4S.Database
       Greetings = 3,
       Year = 4,
       Sentence = 5,
-      phrase = 6,
-      expression = 7,
-      sentence = 8,
+      Expression = 6,
   }
 }
 

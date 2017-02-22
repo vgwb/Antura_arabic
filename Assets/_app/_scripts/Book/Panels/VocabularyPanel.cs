@@ -71,6 +71,7 @@ namespace EA4S.PlayerBook
         GameObject btnGO;
         string currentCategory;
         WordDataCategory currentWordCategory;
+        LetterInfo currentLetter;
 
         void Start()
         {
@@ -142,7 +143,7 @@ namespace EA4S.PlayerBook
                 if (list.Contains(info_item.data)) {
                     btnGO = Instantiate(LetterItemPrefab);
                     btnGO.transform.SetParent(ElementsContainer.transform, false);
-                    btnGO.GetComponent<ItemLetter>().Init(this, info_item);
+                    btnGO.GetComponent<ItemLetter>().Init(this, info_item, false);
                 }
             }
 
@@ -154,22 +155,28 @@ namespace EA4S.PlayerBook
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
             btnGO.GetComponent<MenuItemCategory>().Init(
                 this,
-                new GenericCategoryData { area = VocabularyChapter.Letters, Id = "letter", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Letters) });
+                new GenericCategoryData { area = VocabularyChapter.Letters, Id = "letter", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Letters) },
+                currentCategory == "letter"
+            );
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
             btnGO.GetComponent<MenuItemCategory>().Init(
                 this,
-                new GenericCategoryData { area = VocabularyChapter.Letters, Id = "symbol", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Symbols) });
+                new GenericCategoryData { area = VocabularyChapter.Letters, Id = "symbol", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Symbols) },
+                currentCategory == "symbol"
+            );
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
             btnGO.GetComponent<MenuItemCategory>().Init(
                 this,
-                new GenericCategoryData { area = VocabularyChapter.Letters, Id = "combo", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Combinations) });
+                new GenericCategoryData { area = VocabularyChapter.Letters, Id = "combo", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Combinations) },
+                currentCategory == "combo"
+            );
 
-            HighlightMenutCategory(currentCategory);
-            HighlightLetterItem("");
+            //HighlightMenutCategory(currentCategory);
+            // HighlightLetterItem("");
         }
 
         void HighlightLetterItem(string id)
@@ -231,7 +238,9 @@ namespace EA4S.PlayerBook
                         wordCategory = cat,
                         Id = cat.ToString(),
                         Title = LocalizationManager.GetWordCategoryTitle(cat)
-                    });
+                    },
+                    currentWordCategory == cat
+                );
             }
         }
 
@@ -305,12 +314,14 @@ namespace EA4S.PlayerBook
 
         public void DetailLetter(LetterInfo info)
         {
+            currentLetter = info;
             HighlightLetterItem(info.data.Id);
 
             DetailPanel.SetActive(true);
             string positionsString = "";
-            foreach (var p in info.data.GetAvailableForms())
+            foreach (var p in info.data.GetAvailableForms()) {
                 positionsString = positionsString + " " + p;
+            }
             Debug.Log("Detail Letter :" + info.data.Id + " [" + positionsString + " ]");
             AudioManager.I.PlayLetter(info.data);
             MoreInfoPanel.SetActive(true);

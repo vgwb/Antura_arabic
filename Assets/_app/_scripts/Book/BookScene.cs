@@ -44,7 +44,7 @@ namespace EA4S.PlayerBook
         void Start()
         {
             GlobalUI.ShowPauseMenu(false);
-            GlobalUI.ShowBackButton(true, ExitThisScene);
+            GlobalUI.ShowBackButton(true, GoBackCustom);
             AudioManager.I.PlayMusic(SceneMusic);
             LogManager.I.LogInfo(InfoEvent.Book, "enter");
 
@@ -120,7 +120,7 @@ namespace EA4S.PlayerBook
             OpenArea(BookArea.MiniGames);
         }
 
-        public void ExitThisScene()
+        public void GoBackCustom()
         {
             LogManager.I.LogInfo(InfoEvent.Book, "exit");
             AppManager.I.NavigationManager.GoBack();

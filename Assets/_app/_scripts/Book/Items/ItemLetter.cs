@@ -21,7 +21,7 @@ namespace EA4S.PlayerBook
         UIButton uIButton;
 
 
-        public void Init(VocabularyPanel _manager, LetterInfo _info)
+        public void Init(VocabularyPanel _manager, LetterInfo _info, bool _selected)
         {
             uIButton = GetComponent<UIButton>();
 
@@ -37,6 +37,8 @@ namespace EA4S.PlayerBook
 
             Title.text = info.data.GetChar();
             SubTitle.text = info.data.Id;
+
+            hightlight(_selected);
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -46,7 +48,12 @@ namespace EA4S.PlayerBook
 
         public void Select(string code)
         {
-            uIButton.Toggle(code == info.data.Id);
+            hightlight(code == info.data.Id);
+        }
+
+        void hightlight(bool _status)
+        {
+            uIButton.Toggle(_status);
         }
     }
 }

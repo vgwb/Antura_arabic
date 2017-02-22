@@ -108,12 +108,7 @@ namespace EA4S.ReservedArea
 
         void DoCreateDemoPlayer()
         {
-            //Debug.Log("creating DEMO USER ");
-            var demoUserUiid = AppManager.I.PlayerProfileManager.CreatePlayerProfile(10, PlayerGender.F, 1, PlayerTint.Red, true);
-            SelectedPlayerId = demoUserUiid;
-            AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
-            PopupateDemouser();
-            ResetAll();
+            StartCoroutine(CreateDemoPlayer());
         }
 
         public void OnImportProfile()
@@ -123,14 +118,25 @@ namespace EA4S.ReservedArea
 
         #region Demo User Helpers
 
-        void PopupateDemouser()
+        IEnumerator CreateDemoPlayer()
         {
+            //Debug.Log("creating DEMO USER ");
+            yield return null;
             activateWaitingScreen(true);
+            yield return null;
+            //yield return new WaitForEndOfFrame();
+            var demoUserUiid = AppManager.I.PlayerProfileManager.CreatePlayerProfile(10, PlayerGender.F, 1, PlayerTint.Red, true);
+            SelectedPlayerId = demoUserUiid;
+            AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
+
+            // populate with fake data
             Debug.Log("Cheat Mode enabled: unlocking all game data");
             var maxJourneyPos = AppManager.I.Teacher.journeyHelper.GetFinalJourneyPosition();
             AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true);
-            StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos));
+            yield return StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos));
             Rewards.RewardSystemManager.UnlockAllRewards();
+
+            ResetAll();
             activateWaitingScreen(false);
         }
 
@@ -142,7 +148,6 @@ namespace EA4S.ReservedArea
 
         IEnumerator PopulateDatabaseWithUsefulDataCO(JourneyPosition targetPosition)
         {
-
             var logAi = AppManager.I.Teacher.logAI;
             var fakeAppSession = LogManager.I.AppSession;
 
