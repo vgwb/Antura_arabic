@@ -20,7 +20,7 @@ MonoBehaviour:
       Category: 1
       Linked: goodmorning_R
       Words:
-      - the_well_being
+      - the_well-being
       - morning
       Answers: []
       Intrinsic: 1
@@ -42,7 +42,7 @@ MonoBehaviour:
       Category: 1
       Linked: goodevening_R
       Words:
-      - the_well_being
+      - the_well-being
       - evening
       Answers: []
       Intrinsic: 1
