@@ -11,7 +11,7 @@
         public const string DbSchemeVersion = "1.19";
         public const bool DebugPanelEnabled = true;
         public static bool UseUnityAnalytics = false;
-        public static bool VerboseLogging = true;
+        public static bool VerboseLogging = false;
         public static bool DebugLogInserts = false;
         public static bool DebugStopPlayAtWrongPlaySessions = true;
 
