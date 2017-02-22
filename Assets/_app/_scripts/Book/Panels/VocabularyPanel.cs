@@ -133,7 +133,7 @@ namespace EA4S.PlayerBook
                     list = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
                     break;
                 default:
-                    list = AppManager.I.DB.GetAllLetterData();
+                    list = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
                     break;
             }
             emptyListContainers();
