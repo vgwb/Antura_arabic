@@ -10,9 +10,26 @@ namespace EA4S.Profile
     [RequireComponent(typeof(UIButton))]
     public class PlayerIcon : MonoBehaviour
     {
+    [Tooltip("If TRUE automatically initializes to the current player")]
+    [DeToggleButton]
+        public bool AutoInit;
         public string Uuid { get; private set; }
         public UIButton UIButton { get { if (fooUIButton == null) fooUIButton = this.GetComponent<UIButton>(); return fooUIButton; } }
         UIButton fooUIButton;
+
+        #region Unity
+
+        void Start()
+        {
+            if (!AutoInit) return;
+
+            if (AppManager.I.PlayerProfileManager.CurrentPlayer != null)
+            {
+                Init(AppManager.I.PlayerProfileManager.CurrentPlayer.GetPlayerIconData());
+            }
+        }
+
+        #endregion
 
         #region Public
 
