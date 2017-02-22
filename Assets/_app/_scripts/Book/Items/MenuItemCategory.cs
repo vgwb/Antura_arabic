@@ -17,7 +17,7 @@ namespace EA4S.PlayerBook
 
         UIButton uIButton;
 
-        public void Init(IBookPanel _manager, GenericCategoryData _data)
+        public void Init(IBookPanel _manager, GenericCategoryData _data, bool _selected)
         {
             uIButton = GetComponent<UIButton>();
 
@@ -26,6 +26,8 @@ namespace EA4S.PlayerBook
 
             Title.text = data.Title;
             SubTitle.text = data.Id;
+
+            hightlight(_selected);
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -35,7 +37,12 @@ namespace EA4S.PlayerBook
 
         public void Select(string code)
         {
-            uIButton.Toggle(code == data.Id);
+            hightlight(code == data.Id);
+        }
+
+        void hightlight(bool _status)
+        {
+            uIButton.Toggle(_status);
         }
     }
 }
