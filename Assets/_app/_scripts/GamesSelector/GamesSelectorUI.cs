@@ -1,7 +1,9 @@
-﻿using EA4S.Core;
+﻿using DG.DeExtensions;
+using EA4S.Core;
 using EA4S.Rewards;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace EA4S.GamesSelector
 {
@@ -37,8 +39,12 @@ namespace EA4S.GamesSelector
         void SetStars(int _tot)
         {
             if (_tot > 3) _tot = 3;
-            foreach (GameObject star in Stars) star.SetActive(false);
-            for (int i = 0; i < _tot; ++i) Stars[i].SetActive(true);
+            for (int i = 0; i < Stars.Length; ++i)
+            {
+                GameObject star = Stars[i];
+                star.SetActive(i < _tot);
+                star.transform.parent.GetComponent<Image>().SetAlpha(i < _tot ? 1f : 0.3f);
+            }
         }
 
         #endregion

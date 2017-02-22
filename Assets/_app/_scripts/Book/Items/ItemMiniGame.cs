@@ -14,6 +14,9 @@ namespace EA4S.PlayerBook
     {
         MiniGameInfo info;
 
+        public GameObject VariationsContainer;
+        public GameObject ItemMiniGameVariationPrefab;
+
         public TextRender Title;
         public Image Icon;
         public Image BadgeIcon;
@@ -53,11 +56,21 @@ namespace EA4S.PlayerBook
                 BadgeIcon.sprite = Resources.Load<Sprite>(badgePath);
             }
 
+            emptyContainers();
+
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
             manager.DetailMiniGame(info);
+        }
+
+        void emptyContainers()
+        {
+            foreach (Transform t in VariationsContainer.transform) {
+                Destroy(t.gameObject);
+            }
+
         }
     }
 }

@@ -136,5 +136,37 @@ namespace EA4S.PlayerBook
 
         }
 
+
+        class MiniGameWithVariations
+        {
+            public string mainMinigame;
+            public List<MiniGameData> variations;
+        }
+
+        List<MiniGameWithVariations> CreateMiniGameStructsList()
+        {
+            Dictionary<string, MiniGameWithVariations> dictionary = new Dictionary < string, MiniGameWithVariations> ();
+            List<MiniGameData> minigameDataList = AppManager.I.DB.GetAllMiniGameData();
+            foreach (var minigameData in minigameDataList)
+            {
+                if (!dictionary.ContainsKey(minigameData.Main))
+                {
+                    dictionary[minigameData.Main] = new MiniGameWithVariations();
+                    dictionary[minigameData.Main].mainMinigame = minigameData.Main;
+                    dictionary[minigameData.Main].variations = new List<MiniGameData>();
+                }
+                dictionary[minigameData.Main].variations.Add(minigameData);
+            }
+
+            List<MiniGameWithVariations> outputList = new List<MiniGameWithVariations>();
+            foreach (var k in dictionary.Keys)
+            {
+                outputList.Add(dictionary[k]);
+            }
+
+            return outputList;
+        }
+
+
     }
 }

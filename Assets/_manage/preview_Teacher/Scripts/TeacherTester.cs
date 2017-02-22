@@ -61,6 +61,8 @@ namespace EA4S.Teacher.Test
         // Current options
         [DeBeginGroup]
         [Header("Journey")]
+        [DeToggleButton()]
+        public bool ignoreJourneyPlaySessionSelection = false;
         [Range(1, 6)]
         public int currentJourneyStage = 1;
         [Range(1, 15)]
@@ -368,14 +370,14 @@ namespace EA4S.Teacher.Test
             yield return new WaitForSeconds(delay);
             var statusColor = Color.green; 
 
-            if (!AppManager.I.Teacher.CanMiniGameBePlayedAtAnyPlaySession(code))
+            if (!ignoreJourneyPlaySessionSelection && !AppManager.I.Teacher.CanMiniGameBePlayedAtAnyPlaySession(code))
             {
-                Debug.LogError("Cannot play " + code + " at any journey poisition!");
+                Debug.LogError("Cannot select " + code + " for any journey position!");
                 statusColor = Color.magenta;
             }
             else
             {
-                if (AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(AppManager.I.Player.CurrentJourneyPosition, code))
+                if (ignoreJourneyPlaySessionSelection || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(AppManager.I.Player.CurrentJourneyPosition, code))
                 {
                     try
                     {
@@ -389,7 +391,7 @@ namespace EA4S.Teacher.Test
                 }
                 else
                 {
-                    Debug.LogError("Cannot play " + code + " at position " + AppManager.I.Player.CurrentJourneyPosition);
+                    Debug.LogError("Cannot select " + code + " for position " + AppManager.I.Player.CurrentJourneyPosition);
                     statusColor = Color.gray;
                 }
             }

@@ -31,6 +31,18 @@ namespace EA4S.Core
             get { return SceneTransitionManager.IsTransitioning; }
         }
 
+        public Action OnSceneStartTransition
+        {
+            get { return SceneTransitionManager.OnSceneStartTransition; }
+            set { SceneTransitionManager.OnSceneStartTransition = value; }
+        }
+
+        public Action OnSceneEndTransition
+        {
+            get { return SceneTransitionManager.OnSceneEndTransition; }
+            set { SceneTransitionManager.OnSceneEndTransition = value; }
+        }
+
         #endregion
 
         #region Initialization
