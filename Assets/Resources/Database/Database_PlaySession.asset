@@ -931,6 +931,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
+      - MiniGameCode: 29
+        Weight: 100
       - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 34
@@ -983,6 +985,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
       - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 34
@@ -1029,6 +1033,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 16
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 100
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
@@ -1038,6 +1044,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
@@ -1082,6 +1090,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 16
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
@@ -1091,6 +1101,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
@@ -1138,6 +1150,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 16
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
@@ -1147,6 +1161,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
@@ -1191,6 +1207,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 16
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
@@ -1200,6 +1218,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
@@ -1241,9 +1261,11 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 16
         Weight: 1
-      - MiniGameCode: 19
+      - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
@@ -1280,9 +1302,11 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 16
         Weight: 1
-      - MiniGameCode: 19
+      - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 31
         Weight: 1
@@ -1328,13 +1352,21 @@ MonoBehaviour:
         Weight: 100
       - MiniGameCode: 16
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -1371,14 +1403,22 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 16
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
+      - MiniGameCode: 29
+        Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -1420,18 +1460,24 @@ MonoBehaviour:
       - MiniGameCode: 12
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 29
-        Weight: 100
+        Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -1470,7 +1516,11 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 16
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -1480,6 +1530,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -1519,12 +1571,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
-        Weight: 100
+        Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 21
         Weight: 1
@@ -1535,6 +1589,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -1576,6 +1632,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 23
@@ -1586,6 +1644,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -1625,12 +1685,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -1639,6 +1701,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -1681,6 +1745,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
@@ -1689,6 +1755,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -1730,12 +1798,14 @@ MonoBehaviour:
       - MiniGameCode: 12
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -1744,6 +1814,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -1786,6 +1858,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
@@ -1794,6 +1868,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -1833,12 +1909,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 21
         Weight: 1
@@ -1849,6 +1927,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -1889,6 +1969,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 23
@@ -1899,6 +1981,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -1938,12 +2022,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -1952,6 +2038,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -1994,6 +2082,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
@@ -2002,6 +2092,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -2043,12 +2135,14 @@ MonoBehaviour:
       - MiniGameCode: 12
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -2057,6 +2151,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -2099,6 +2195,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
@@ -2107,6 +2205,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -2146,12 +2246,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 21
         Weight: 1
@@ -2162,6 +2264,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -2201,6 +2305,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 23
@@ -2211,6 +2317,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -2250,12 +2358,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -2264,6 +2374,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -2306,6 +2418,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
@@ -2314,6 +2428,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -2355,12 +2471,14 @@ MonoBehaviour:
       - MiniGameCode: 12
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -2369,6 +2487,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -2411,6 +2531,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
@@ -2419,6 +2541,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -2458,12 +2582,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 21
         Weight: 1
@@ -2474,6 +2600,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -2514,6 +2642,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 23
@@ -2524,6 +2654,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -2563,12 +2695,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -2577,6 +2711,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -2619,6 +2755,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
@@ -2627,6 +2765,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -2668,12 +2808,14 @@ MonoBehaviour:
       - MiniGameCode: 12
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -2682,6 +2824,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -2724,6 +2868,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
@@ -2732,6 +2878,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -2773,12 +2921,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 21
         Weight: 1
@@ -2789,6 +2939,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -2830,6 +2982,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 23
@@ -2840,6 +2994,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -2881,12 +3037,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -2897,6 +3055,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -2941,6 +3101,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 25
@@ -2951,6 +3113,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -2994,12 +3158,14 @@ MonoBehaviour:
       - MiniGameCode: 12
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 22
         Weight: 100
@@ -3012,6 +3178,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -3054,6 +3222,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -3066,6 +3236,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -3107,12 +3279,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 21
         Weight: 1
@@ -3129,6 +3303,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -3171,6 +3347,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 22
@@ -3187,6 +3365,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -3228,12 +3408,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -3248,6 +3430,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -3292,6 +3476,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -3306,6 +3492,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -3349,12 +3537,14 @@ MonoBehaviour:
       - MiniGameCode: 12
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -3369,6 +3559,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -3413,6 +3605,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -3427,6 +3621,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -3468,12 +3664,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 21
         Weight: 1
@@ -3490,6 +3688,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -3532,6 +3732,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 22
@@ -3548,6 +3750,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -3589,12 +3793,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -3609,6 +3815,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -3653,6 +3861,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -3667,6 +3877,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -3710,12 +3922,14 @@ MonoBehaviour:
       - MiniGameCode: 12
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -3730,6 +3944,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -3774,6 +3990,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -3788,6 +4006,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -3829,12 +4049,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 21
         Weight: 1
@@ -3851,6 +4073,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -3893,6 +4117,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 22
@@ -3909,6 +4135,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -3950,12 +4178,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -3970,6 +4200,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -4014,6 +4246,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -4028,6 +4262,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -4071,12 +4307,14 @@ MonoBehaviour:
       - MiniGameCode: 12
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -4091,6 +4329,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -4135,6 +4375,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -4149,6 +4391,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -4190,12 +4434,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 21
         Weight: 1
@@ -4212,6 +4458,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -4254,6 +4502,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 22
@@ -4270,6 +4520,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -4311,12 +4563,14 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
+        Weight: 1
+      - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -4331,6 +4585,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 34
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -4375,6 +4631,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -4389,6 +4647,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 34
         Weight: 1
+      - MiniGameCode: 35
+        Weight: 100
       NumberOfRoundsPerMinigame: 0
       Letters: []
       Words: []
@@ -4431,6 +4691,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -4447,6 +4709,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 33
         Weight: 100
+      - MiniGameCode: 35
+        Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
       - fathah
@@ -4506,6 +4770,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -4521,6 +4787,8 @@ MonoBehaviour:
       - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -4568,6 +4836,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -4583,6 +4853,8 @@ MonoBehaviour:
       - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -4629,6 +4901,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -4644,6 +4918,8 @@ MonoBehaviour:
       - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -4691,6 +4967,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -4708,6 +4986,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 100
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -4755,6 +5035,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -4772,6 +5054,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -4821,6 +5105,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -4838,6 +5124,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -4921,6 +5209,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -4938,6 +5228,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -4987,6 +5279,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5004,6 +5298,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -5046,6 +5342,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5063,6 +5361,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -5112,6 +5412,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5129,6 +5431,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -5171,6 +5475,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5188,6 +5494,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -5237,6 +5545,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5254,6 +5564,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -5296,6 +5608,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5313,6 +5627,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -5362,6 +5678,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5379,6 +5697,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -5465,6 +5785,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5482,6 +5804,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -5531,6 +5855,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5548,6 +5874,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -5587,6 +5915,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5604,6 +5934,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -5653,6 +5985,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5670,6 +6004,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -5710,6 +6046,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5727,6 +6065,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -5776,6 +6116,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5793,6 +6135,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -5833,6 +6177,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5850,6 +6196,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -5899,6 +6247,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5916,6 +6266,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -5955,6 +6307,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -5972,6 +6326,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -6021,6 +6377,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -6038,6 +6396,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -6077,6 +6437,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -6094,6 +6456,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -6143,6 +6507,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -6160,6 +6526,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -6199,6 +6567,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -6216,6 +6586,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -6265,6 +6637,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -6282,6 +6656,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -6326,6 +6702,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -6343,6 +6721,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -6392,6 +6772,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -6411,6 +6793,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -6451,6 +6835,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -6470,6 +6856,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -6519,6 +6907,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -6538,6 +6928,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -6577,6 +6969,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -6596,6 +6990,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -6645,6 +7041,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -6664,6 +7062,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -6704,6 +7104,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -6723,6 +7125,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -6772,6 +7176,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -6791,6 +7197,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -6868,6 +7276,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -6887,6 +7297,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -6936,6 +7348,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -6955,6 +7369,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -7001,6 +7417,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -7020,6 +7438,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -7069,6 +7489,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -7088,6 +7510,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -7130,6 +7554,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -7149,6 +7575,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -7198,6 +7626,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -7217,6 +7647,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -7259,6 +7691,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -7278,6 +7712,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -7327,6 +7763,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -7346,6 +7784,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -7385,6 +7825,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -7404,6 +7846,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -7453,6 +7897,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -7472,6 +7918,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -7511,6 +7959,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -7530,6 +7980,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -7579,6 +8031,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -7598,6 +8052,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -7639,6 +8095,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -7658,6 +8116,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -7707,6 +8167,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -7728,6 +8190,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -7792,6 +8256,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -7813,6 +8279,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -7862,6 +8330,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -7883,6 +8353,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
@@ -7947,6 +8419,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -7968,6 +8442,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -8017,6 +8493,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -8038,6 +8516,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -8077,6 +8557,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -8098,6 +8580,8 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       - MiniGameCode: 33
+        Weight: 1
+      - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters: []
@@ -8141,12 +8625,14 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 100
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
-      - MiniGameCode: 24
-        Weight: 100
       - MiniGameCode: 25
         Weight: 1
       - MiniGameCode: 26
@@ -8250,11 +8736,13 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
-        Weight: 1
-      - MiniGameCode: 24
         Weight: 1
       - MiniGameCode: 25
         Weight: 1
@@ -8312,12 +8800,16 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 24
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 25
         Weight: 1
       - MiniGameCode: 26
@@ -8361,6 +8853,10 @@ MonoBehaviour:
       - MiniGameCode: 10
         Weight: 1
       - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -8424,6 +8920,10 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -8471,6 +8971,10 @@ MonoBehaviour:
       - MiniGameCode: 10
         Weight: 1
       - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -8526,6 +9030,10 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -8571,6 +9079,10 @@ MonoBehaviour:
       - MiniGameCode: 10
         Weight: 1
       - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -8630,6 +9142,10 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -8681,6 +9197,10 @@ MonoBehaviour:
       - MiniGameCode: 10
         Weight: 1
       - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -8744,6 +9264,10 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -8795,6 +9319,10 @@ MonoBehaviour:
       - MiniGameCode: 10
         Weight: 1
       - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -8860,6 +9388,10 @@ MonoBehaviour:
         Weight: 100
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -8921,6 +9453,10 @@ MonoBehaviour:
       - MiniGameCode: 13
         Weight: 1
       - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -9000,6 +9536,10 @@ MonoBehaviour:
         Weight: 100
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -9059,6 +9599,10 @@ MonoBehaviour:
       - MiniGameCode: 13
         Weight: 1
       - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -9126,6 +9670,10 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -9181,6 +9729,10 @@ MonoBehaviour:
       - MiniGameCode: 13
         Weight: 1
       - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -9248,6 +9800,10 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -9304,6 +9860,10 @@ MonoBehaviour:
       - MiniGameCode: 13
         Weight: 1
       - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -9371,6 +9931,10 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -9432,6 +9996,10 @@ MonoBehaviour:
       - MiniGameCode: 13
         Weight: 1
       - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -9499,6 +10067,10 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -9561,6 +10133,10 @@ MonoBehaviour:
       - MiniGameCode: 13
         Weight: 1
       - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -9628,6 +10204,10 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -9684,6 +10264,10 @@ MonoBehaviour:
       - MiniGameCode: 13
         Weight: 1
       - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -9751,6 +10335,10 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -9806,6 +10394,10 @@ MonoBehaviour:
       - MiniGameCode: 13
         Weight: 1
       - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
@@ -9873,6 +10465,10 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 17
         Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
+        Weight: 1
       - MiniGameCode: 22
         Weight: 1
       - MiniGameCode: 23
@@ -9934,6 +10530,10 @@ MonoBehaviour:
       - MiniGameCode: 13
         Weight: 1
       - MiniGameCode: 17
+        Weight: 1
+      - MiniGameCode: 19
+        Weight: 1
+      - MiniGameCode: 20
         Weight: 1
       - MiniGameCode: 22
         Weight: 1
