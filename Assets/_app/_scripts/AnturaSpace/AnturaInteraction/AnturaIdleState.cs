@@ -27,7 +27,7 @@ namespace EA4S.AnturaSpace
 
             if (controller.DraggingBone != null)
             {
-
+                controller.CurrentState = controller.WaitingThrow;
             }
             else if (controller.NextBoneToCatch != null)
             {
@@ -56,6 +56,16 @@ namespace EA4S.AnturaSpace
             controller.Antura.SetTarget(null, false);
             controller.UI.ShowBonesButton(false);
             base.ExitState();
+        }
+
+        public override void OnTouched()
+        {
+            base.OnTouched();
+
+            if (controller.Antura.HasReachedTarget)
+            {
+                controller.Antura.AnimationController.DoShout(() => { Audio.AudioManager.I.PlaySound(Sfx.DogBarking); });
+            }
         }
     }
 }

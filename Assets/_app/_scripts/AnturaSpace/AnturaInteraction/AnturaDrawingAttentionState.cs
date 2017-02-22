@@ -45,7 +45,14 @@ namespace EA4S.AnturaSpace
                 if (shoutTimer <= 0)
                 {
                     shoutTimer = UnityEngine.Random.Range(1.5f, 4);
-                    controller.Antura.AnimationController.DoShout(() => { Audio.AudioManager.I.PlaySound(Sfx.DogBarking); });
+
+                    if (UnityEngine.Random.value < 0.3f)
+                    {
+                        controller.Antura.AnimationController.DoSniff();
+                        Audio.AudioManager.I.PlaySound(Sfx.DogSnorting);
+                    }
+                    else
+                        controller.Antura.AnimationController.DoShout(() => { Audio.AudioManager.I.PlaySound(Sfx.DogBarking); });
                 }
             }
 

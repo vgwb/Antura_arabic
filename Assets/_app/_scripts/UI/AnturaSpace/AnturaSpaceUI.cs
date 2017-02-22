@@ -25,6 +25,9 @@ namespace EA4S.UI
         public UIButton BtBones;
         public TMPro.TextMeshProUGUI bonesNumber;
 
+        public event System.Action onEnterCustomization;
+        public event System.Action onExitCustomization;
+
         bool isModsPanelOpen;
         AnturaSpaceCategoryButton[] btsCategories;
         AnturaSpaceItemButton[] btsItems;
@@ -144,12 +147,17 @@ namespace EA4S.UI
             if (isModsPanelOpen) {
                 CategoriesContainer.gameObject.SetActive(true);
                 showCategoriesTween.PlayForward();
+
+                if (onEnterCustomization != null)
+                    onEnterCustomization();
             } else {
                 SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
                 showCategoriesTween.PlayBackwards();
                 showItemsTween.PlayBackwards();
                 showSwatchesTween.PlayBackwards();
-                
+
+                if (onExitCustomization != null)
+                    onExitCustomization();
             }
         }
 

@@ -34,6 +34,7 @@ namespace EA4S.Minigames.MakeFriends
         public void ReactPositively()
         {
             animationController.DoSniff();
+            Audio.AudioManager.I.PlaySound(Sfx.DogSnorting);
         }
     }
 }

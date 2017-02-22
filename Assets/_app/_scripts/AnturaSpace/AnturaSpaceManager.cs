@@ -6,6 +6,7 @@ using UnityEngine;
 using TMPro;
 using EA4S.Antura;
 using System.Collections.Generic;
+using EA4S.MinigamesCommon;
 
 namespace EA4S.AnturaSpace
 {
@@ -39,6 +40,7 @@ namespace EA4S.AnturaSpace
         List<GameObject> bones = new List<GameObject>();
 
         public readonly AnturaIdleState Idle;
+        public readonly AnturaCustomizationState Customization;
         public readonly AnturaDrawingAttentionState DrawingAttention;
         public readonly AnturaSleepingState Sleeping;
         public readonly AnturaWaitingThrowState WaitingThrow;
@@ -69,6 +71,9 @@ namespace EA4S.AnturaSpace
 
         public void ThrowBone()
         {
+            if (DraggingBone != null)
+                return;
+
             if (bones.Count < MaxBonesInScene && AppManager.I.Player.TotalNumberOfBones > 0)
             {
                 var bone = Instantiate(BonePrefab);
@@ -80,11 +85,43 @@ namespace EA4S.AnturaSpace
             }
         }
 
+        /// <summary>
+        /// Drag a bone around.
+        /// </summary>
+        public void DragBone()
+        {
+            if (DraggingBone != null)
+                return;
+
+            if (bones.Count < MaxBonesInScene && AppManager.I.Player.TotalNumberOfBones > 0)
+            {
+                var bone = Instantiate(BonePrefab);
+                bone.SetActive(true);
+                bone.transform.position = BoneSpawnPosition.position;
+                DraggingBone = bone.transform;
+                bones.Add(bone);
+                --AppManager.I.Player.TotalNumberOfBones;
+                bone.GetComponent<BoneBehaviour>().Drag();
+            }
+        }
+
         public void EatBone(GameObject bone)
         {
             if (bones.Remove(bone))
             {
-                Instantiate(PoofPrefab).transform.position = bone.transform.position;
+                AudioManager.I.PlaySound(Sfx.EggMove);
+                var poof = Instantiate(PoofPrefab).transform;
+                poof.position = bone.transform.position;
+
+                foreach (var ps in poof.GetComponentsInChildren<ParticleSystem>())
+                {
+                    var main = ps.main;
+                    main.scalingMode = ParticleSystemScalingMode.Hierarchy;
+                }
+
+                poof.localScale = poof.localScale * 0.5f;
+                poof.gameObject.AddComponent<AutoDestroy>().duration = 2;
+                AudioManager.I.PlaySound(Sfx.Poof);
                 Destroy(bone);
             }
         }
@@ -92,6 +129,7 @@ namespace EA4S.AnturaSpace
         public AnturaSpaceManager()
         {
             Idle = new AnturaIdleState(this);
+            Customization = new AnturaCustomizationState(this);
             DrawingAttention = new AnturaDrawingAttentionState(this);
             Sleeping = new AnturaSleepingState(this);
             WaitingThrow = new AnturaWaitingThrowState(this);
@@ -101,6 +139,11 @@ namespace EA4S.AnturaSpace
         void Awake()
         {
             CurrentState = Idle;
+
+            UI.onEnterCustomization += OnEnterCustomization;
+            UI.onExitCustomization += OnExitCustomization;
+
+            Antura.onTouched += () => { if (CurrentState != null) CurrentState.OnTouched(); };
         }
 
         public void Update()
@@ -109,6 +152,12 @@ namespace EA4S.AnturaSpace
 
             UI.ShowBonesButton(bones.Count < MaxBonesInScene);
             UI.BonesCount = AppManager.I.Player.GetTotalNumberOfBones();
+
+            if (DraggingBone != null && !Input.GetMouseButton(0))
+            {
+                DraggingBone.GetComponent<BoneBehaviour>().LetGo();
+                DraggingBone = null;
+            }
         }
 
         public void FixedUpdate()
@@ -136,11 +185,21 @@ namespace EA4S.AnturaSpace
         {
             GlobalUI.ShowBackButton(true, OnExit);
         }
-        
+
         void OnExit()
         {
             LogManager.I.LogInfo(InfoEvent.AnturaSpace, "exit");
             AppManager.I.NavigationManager.GoBack();
+        }
+
+        void OnEnterCustomization()
+        {
+            CurrentState = Customization;
+        }
+
+        void OnExitCustomization()
+        {
+            CurrentState = Idle;
         }
     }
 }
