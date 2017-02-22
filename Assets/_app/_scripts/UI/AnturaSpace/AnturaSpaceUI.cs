@@ -23,6 +23,7 @@ namespace EA4S.UI
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
         public AnturaSpaceItemButton BtItemMain;
         public UIButton BtBones;
+        public TMPro.TextMeshProUGUI bonesNumber;
 
         bool isModsPanelOpen;
         AnturaSpaceCategoryButton[] btsCategories;
@@ -37,6 +38,23 @@ namespace EA4S.UI
         Tween showCategoriesTween, showItemsTween, showSwatchesTween;
 
         #region Unity
+
+        int bonesCount;
+        public int BonesCount
+        {
+            get
+            {
+                return bonesCount;
+            }
+            set
+            {
+                if (value == bonesCount)
+                    return;
+
+                bonesCount = value;
+                bonesNumber.text = value.ToString();
+            }
+        }
 
         void Start()
         {
@@ -115,6 +133,10 @@ namespace EA4S.UI
         #endregion
 
         #region Methods
+        public void ShowBonesButton(bool show)
+        {
+            BtBones.gameObject.SetActive(show);
+        }
 
         void ToggleModsPanel()
         {

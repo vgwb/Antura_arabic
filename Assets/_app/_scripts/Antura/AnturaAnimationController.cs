@@ -31,6 +31,8 @@ namespace EA4S.Antura
             }
         }
 
+        public bool IsJumping { get; private set; }
+
         System.Action onChargeEnded;
 
         float walkingSpeed;
@@ -80,10 +82,16 @@ namespace EA4S.Antura
 
         // Check if animation is actually moving legs
         int walkRefCount = 0;
+        int jumpRefCount = 0;
 
         public bool IsAnimationActuallyWalking
         {
             get { return walkRefCount > 0; }
+        }
+
+        public bool IsAnimationActuallyJumping
+        {
+            get { return jumpRefCount > 0; }
         }
 
         System.Action onSniffStartedCallback;
@@ -154,6 +162,7 @@ namespace EA4S.Antura
 
             animator.SetBool("jumping", true);
             animator.SetBool("falling", true);
+            IsJumping = true;
         }
 
         // when Antura grabs something in the air
@@ -172,6 +181,7 @@ namespace EA4S.Antura
         {
             animator.SetBool("jumping", false);
             animator.SetBool("falling", false);
+            IsJumping = false;
         }
 
         /// <summary>
@@ -307,6 +317,16 @@ namespace EA4S.Antura
         void OnAnimationWalkEnd()
         {
             --walkRefCount;
+        }
+
+        void OnAnimationJumpStart()
+        {
+            ++jumpRefCount;
+        }
+
+        void OnAnimationJumpEnd()
+        {
+            --jumpRefCount;
         }
 
         void OnEnable()
