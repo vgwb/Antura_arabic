@@ -27,8 +27,7 @@ namespace EA4S.Core
 
         public bool IsLoadingMinigame { get; private set; }
 
-        public bool IsTransitioningScenes
-        {
+        public bool IsTransitioningScenes {
             get { return SceneTransitionManager.IsTransitioning; }
         }
 
@@ -116,12 +115,9 @@ namespace EA4S.Core
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.Rewards:
-                    if (NavData.CurrentPlayer.IsFirstContact())
-                    {
+                    if (NavData.CurrentPlayer.IsFirstContact()) {
                         GoToScene(AppScene.AnturaSpace);
-                    }
-                    else
-                    {
+                    } else {
                         AppManager.I.Player.AdvanceMaxJourneyPosition();
                         GoToScene(AppScene.Map);
                     }
@@ -144,8 +140,7 @@ namespace EA4S.Core
                 Debug.LogError(i + ": " + NavData.PrevSceneStack.ToArray()[i]);
             */
 
-            if (NavData.PrevSceneStack.Count > 0)
-            {
+            if (NavData.PrevSceneStack.Count > 0) {
                 var prevScene = NavData.PrevSceneStack.Pop();
                 if (VERBOSE) Debug.LogFormat(" ---- NAV MANAGER ({0}) from scene {1} to {2} ---- ", "GoBack", NavData.CurrentScene, prevScene);
                 GoToScene(prevScene);
@@ -159,12 +154,10 @@ namespace EA4S.Core
         private void GoToScene(AppScene newScene, Database.MiniGameData minigameData = null)
         {
             // Additional checks for specific scenes
-            switch (newScene)
-            {
+            switch (newScene) {
                 case AppScene.Rewards:
                     // Already rewarded this playsession?
-                    if (RewardSystemManager.RewardAlreadyUnlocked(NavData.CurrentPlayer.CurrentJourneyPosition))
-                    {
+                    if (RewardSystemManager.RewardAlreadyUnlocked(NavData.CurrentPlayer.CurrentJourneyPosition)) {
                         GoToScene(AppScene.Map);
                         return;
                     }
@@ -186,22 +179,19 @@ namespace EA4S.Core
         {
             IsLoadingMinigame = sceneName.Substring(0, 5) == "game_";
 
-            if(VERBOSE) Debug.LogFormat(" ==== Loading scene {0} ====", sceneName);
+            if (VERBOSE) Debug.LogFormat(" ==== Loading scene {0} ====", sceneName);
             SceneTransitionManager.LoadSceneWithTransition(sceneName);
 
-            if (AppConstants.UseUnityAnalytics && !Application.isEditor)
-            {
+            if (AppConstants.UseUnityAnalytics && !Application.isEditor) {
                 UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
             }
         }
-        
+
         private void UpdatePrevSceneStack(AppScene newScene)
         {
             // The stack is updated only for some transitions
-            if (backableTransitions.Contains(new KeyValuePair<AppScene, AppScene>(NavData.CurrentScene, newScene)))
-            {
-                if (NavData.PrevSceneStack.Count == 0 || NavData.PrevSceneStack.Peek() != NavData.CurrentScene)
-                {
+            if (backableTransitions.Contains(new KeyValuePair<AppScene, AppScene>(NavData.CurrentScene, newScene))) {
+                if (NavData.PrevSceneStack.Count == 0 || NavData.PrevSceneStack.Peek() != NavData.CurrentScene) {
                     if (VERBOSE) Debug.LogError("Added BACKABLE transition " + NavData.CurrentScene + " to " + newScene);
                     NavData.PrevSceneStack.Push(NavData.CurrentScene);
                 }
@@ -243,16 +233,13 @@ namespace EA4S.Core
 
         public void GoToAnturaSpace()
         {
-            switch (NavData.CurrentScene)
-            {
+            switch (NavData.CurrentScene) {
                 case AppScene.Map:
                     // First contact: we go to the Rewards scene instead
-                    if (NavData.CurrentPlayer.IsFirstContact())
-                    {
+                    if (NavData.CurrentPlayer.IsFirstContact()) {
                         UpdatePrevSceneStack(AppScene.AnturaSpace); // We force the prev scene stack to hold the Map <-> AnturaSpace transition
                         CustomGoTo(AppScene.Rewards);
-                    }
-                    else
+                    } else
                         CustomGoTo(AppScene.AnturaSpace);
                     break;
             }
@@ -264,9 +251,9 @@ namespace EA4S.Core
         public void ExitDuringPause()
         {
             Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "ExitDuringPause");
-            switch (NavData.CurrentScene)
-            {
+            switch (NavData.CurrentScene) {
                 case AppScene.Map:
+                case AppScene.PlayerCreation:
                     NavData.PrevSceneStack.Clear(); // We also clear the navigation data
                     GoToScene(AppScene.Home);
                     break;
@@ -281,13 +268,10 @@ namespace EA4S.Core
         /// </summary>
         private void CustomGoTo(AppScene targetScene, bool debugMode = false)
         {
-            if (debugMode || HasCustomTransitionTo(targetScene))
-            {
+            if (debugMode || HasCustomTransitionTo(targetScene)) {
                 Debug.LogFormat(" ---- NAV MANAGER ({0}) scene {1} to {2} ---- ", "CustomGoTo", NavData.CurrentScene, targetScene);
                 GoToScene(targetScene);
-            }
-            else
-            {
+            } else {
                 throw new Exception("Cannot go to " + targetScene + " from " + NavData.CurrentScene);
             }
         }
@@ -304,8 +288,7 @@ namespace EA4S.Core
         {
             bool canTravel = false;
 
-            switch (NavData.CurrentScene)
-            {
+            switch (NavData.CurrentScene) {
                 // Normal flow
                 case AppScene.MiniGame:
                 case AppScene.GameSelector:
@@ -319,17 +302,14 @@ namespace EA4S.Core
                     break;
             }
 
-            if (canTravel)
-            {
+            if (canTravel) {
                 GoToScene(AppScene.MiniGame, NavData.CurrentMiniGameData);
-            }
-            else
-            {
+            } else {
                 throw new Exception("Cannot go to a minigame from the current scene!");
             }
 
         }
-        
+
         #endregion
 
         // refactor: move these a more coherent manager, which handles the state of a play session between minigames
@@ -461,8 +441,7 @@ namespace EA4S.Core
                     InternalLaunchGameScene(NavData.CurrentMiniGameData);
                 } else {
                     // Finished all minigames for the current play session
-                    if (NavData.RealPlaySession)
-                    {
+                    if (NavData.RealPlaySession) {
                         // Go to the reward scene.
                         GoToScene(AppScene.PlaySessionResult);
                     } else {
