@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using EA4S.UI;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,9 @@ namespace EA4S.Core
     {
         // Parameters
         private float transitionCloseTime = 0.15f;
+
+        public Action OnSceneStartTransition;
+        public Action OnSceneEndTransition;
 
         #region Loading State
 
@@ -75,6 +79,7 @@ namespace EA4S.Core
         public void LoadSceneWithTransition(string _sceneToLoad, SceneTransitionSettings _transitionSettings)
         {
             _isTransitioning = true;
+            if (OnSceneStartTransition != null) OnSceneStartTransition();
 
             SceneTransitioner.Show(true, delegate {
                 OnSceneTransitionComplete(_sceneToLoad);
@@ -104,6 +109,7 @@ namespace EA4S.Core
             SceneTransitioner.Show(false);
 
             _isTransitioning = false;
+            if (OnSceneEndTransition != null) OnSceneEndTransition();
         }
 
         #endregion
