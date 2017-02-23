@@ -27,6 +27,14 @@ namespace EA4S.AnturaSpace
             controller.UI.ShowBonesButton(false);
         }
 
+        public override void OnTouched()
+        {
+            base.OnTouched();
+
+            // Don't bother me
+            controller.CurrentState = controller.Idle;
+        }
+
         public override void Update(float delta)
         {
             base.Update(delta);
