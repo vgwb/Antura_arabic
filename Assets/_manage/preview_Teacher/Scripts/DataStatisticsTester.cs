@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using EA4S.Assessment;
 using EA4S.Audio;
 using EA4S.Database;
+using System.Linq;
 
 namespace EA4S.Teacher.Test
 {
@@ -18,7 +19,7 @@ namespace EA4S.Teacher.Test
     {
         private VocabularyHelper _vocabularyHelper;
         private DatabaseManager _databaseManager;
-        //private List<PlaySessionData> _playSessionDatas;
+        private List<PlaySessionData> _playSessionDatas;
         private List<LetterData> _letterDatas;
         private List<WordData> _wordDatas;
         private List<PhraseData> _phraseDatas;
@@ -31,7 +32,7 @@ namespace EA4S.Teacher.Test
             _databaseManager = AppManager.I.DB;
             _vocabularyHelper = AppManager.I.VocabularyHelper;
 
-            //_playSessionDatas = _databaseManager.GetAllPlaySessionData();
+            _playSessionDatas = _databaseManager.GetAllPlaySessionData();
             _letterDatas = _databaseManager.GetAllLetterData();
             _wordDatas = _databaseManager.GetAllWordData();
             _phraseDatas = _databaseManager.GetAllPhraseData();
@@ -81,6 +82,56 @@ namespace EA4S.Teacher.Test
             DoStatsList("Phrases with audio", _phraseDatas,
                 data => AudioManager.I.GetAudioClip(data) == null,
                 data => AudioManager.I.GetAudioClip(data) == null ? "NO" : "ok");
+        }
+
+        [DeMethodButton("Data matching in PS")]
+        public void DoCheckWordsByPS()
+        {
+            string final_s = "Word & Letters matching in PS";
+
+            List<WordData> observedWords = new List<WordData>();
+            List<LetterData> observedLetters = new List<LetterData>();
+
+            final_s += "\n\n Words without matching letters in their PS:";
+            foreach (var playSessionData in _playSessionDatas)
+            {
+                // Get the letters & words in this PS
+                var contents = AppManager.I.Teacher.VocabularyAi.GetContentsUpToJourneyPosition(playSessionData.GetJourneyPosition());
+                var letters = contents.GetHashSet<LetterData>();
+                var letterIds = letters.ToList().ConvertAll(x => x.Id);
+                var words = contents.GetHashSet<WordData>();
+                var wordIds = words.ToList().ConvertAll(x => x.Id);
+
+                // Check whether there are words with letters that are not in the PS
+                bool somethingWrong = false;
+                string ps_s = "\n\nPS " + playSessionData.GetJourneyPosition();
+                foreach (var word in words)
+                {
+                    if (observedWords.Contains(word)) continue;
+
+                    if (!_vocabularyHelper.WordContainsAnyLetter(word, letterIds))
+                    {
+                        observedWords.Add(word);
+                        ps_s += "\n" + word.Id + " has no matching letters!";
+                        somethingWrong = true;
+                    }
+                }
+                foreach (var letter in letters)
+                {
+                    if (observedLetters.Contains(letter)) continue;
+
+                    if (!_vocabularyHelper.AnyWordContainsLetter(letter, wordIds))
+                    {
+                        observedLetters.Add(letter);
+                        ps_s += "\n" + letter.Id + " has no matching words!";
+                        somethingWrong = true;
+                    }
+                }
+                if (somethingWrong)
+                    final_s += ps_s;
+            }
+
+            Debug.Log(final_s);
         }
 
         #region Internals
