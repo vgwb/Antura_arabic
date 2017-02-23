@@ -6,7 +6,7 @@ using EA4S.Helpers;
 using EA4S.UI;
 using EA4S.Utilities;
 
-namespace EA4S.PlayerBook
+namespace EA4S.Book
 {
 
     /// <summary>

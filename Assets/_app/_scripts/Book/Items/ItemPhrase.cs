@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using EA4S.Database;
 using EA4S.UI;
 
-namespace EA4S.PlayerBook
+namespace EA4S.Book
 {
     /// <summary>
     /// Displays a Phrase item in the Dictionary page of the Player Book.
