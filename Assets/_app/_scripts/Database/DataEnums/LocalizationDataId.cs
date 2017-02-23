@@ -353,6 +353,8 @@ namespace EA4S.Database
       UI_Conjunctions = 346,
       UI_Shapes = 347,
       UI_NumbersOrdinal = 348,
+      Egg_Alphabet_Title = 349,
+      UI_ReservedArea = 350,
   }
 }
 
