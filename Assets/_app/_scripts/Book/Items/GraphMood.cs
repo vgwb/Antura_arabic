@@ -1,7 +1,7 @@
 ﻿using EA4S.Core;
 using UnityEngine;
 
-namespace EA4S.PlayerBook
+namespace EA4S.Book
 {
     /// <summary>
     /// Shows a graph with the history of moods of the player. 

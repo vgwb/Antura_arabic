@@ -9,7 +9,7 @@ using EA4S.MinigamesAPI;
 using EA4S.UI;
 using EA4S.Utilities;
 
-namespace EA4S.PlayerBook
+namespace EA4S.Book
 {
 
     public struct GenericCategoryData

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-namespace EA4S.PlayerBook
+namespace EA4S.Book
 {
     /// <summary>
     /// Button that allows access to the PlayerBook.
