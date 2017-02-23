@@ -7,7 +7,7 @@
     // refactor: reorganize all constants (some are statics, others are consts)
     public static class AppConstants
     {
-        public const string AppVersion = "20170222";
+        public const string AppVersion = "20170223";
         public const string DbSchemeVersion = "1.19";
         public const bool DebugPanelEnabled = true;
         public static bool UseUnityAnalytics = false;
@@ -21,6 +21,8 @@
         public const string UrlUploadData = "https://upload.antura.org";
         public const string UrlStoreiOSApple = "";
         public const string UrlStoreAndroidGoogle = "";
+        public const string UrlCommunityTelegram = "https://t.me/antura";
+        public const string UrlCommunityFacebook = "https://www.facebook.com/antura.initiative";
 
         // Application details (used by Teacher and maybe other)
         public const float minimumAge = 4;
