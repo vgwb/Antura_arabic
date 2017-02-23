@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using DG.DeExtensions;
 using EA4S.Core;
+using EA4S.Audio;
 using EA4S.UI;
 using EA4S.Database;
 using EA4S.Rewards;
@@ -28,7 +29,13 @@ namespace EA4S.GamesSelector
             TitleArabic.text = learningBlock.Title_Ar;
             TitleEnglish.text = learningBlock.Title_En;
 
-            KeeperManager.I.PlayDialog(learningBlock.GetTitleSoundFilename(), false, true, PlayTutorialAudio);
+            // play the tutorial only if in LB 1.1
+            if (journeyPos.Stage == 1 && journeyPos.LearningBlock == 1) {
+                AudioManager.I.PlayDialogue(learningBlock.GetTitleSoundFilename(), PlayTutorialAudio);
+                //KeeperManager.I.PlayDialog(learningBlock.GetTitleSoundFilename(), false, true, PlayTutorialAudio);
+            } else {
+                AudioManager.I.PlayDialogue(learningBlock.GetTitleSoundFilename());
+            }
 
             if (!journeyPos.IsMinor(AppManager.I.Player.MaxJourneyPosition)) {
                 // First time playing this session: 0 stars
@@ -42,7 +49,8 @@ namespace EA4S.GamesSelector
 
         void PlayTutorialAudio()
         {
-            KeeperManager.I.PlayDialog(LocalizationDataId.SelectGame_Tuto_2, false);
+            AudioManager.I.PlayDialogue(LocalizationDataId.SelectGame_Tuto_2);
+            //KeeperManager.I.PlayDialog(LocalizationDataId.SelectGame_Tuto_2, false, true);
         }
 
         void SetStars(int _tot)
