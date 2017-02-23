@@ -85,6 +85,8 @@ namespace EA4S.AnturaSpace
             }
         }
 
+        public bool InCustomizationMode { get; private set; }
+
         /// <summary>
         /// Drag a bone around.
         /// </summary>
@@ -194,11 +196,13 @@ namespace EA4S.AnturaSpace
 
         void OnEnterCustomization()
         {
+            InCustomizationMode = true;
             CurrentState = Customization;
         }
 
         void OnExitCustomization()
         {
+            InCustomizationMode = false;
             CurrentState = Idle;
         }
     }

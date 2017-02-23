@@ -34,6 +34,11 @@ namespace EA4S.AnturaSpace
                 controller.CurrentState = controller.Catching;
                 return;
             }
+            else if (controller.InCustomizationMode)
+            {
+                controller.CurrentState = controller.Customization;
+                return;
+            }
 
             if (controller.Antura.HasReachedTarget)
             {
