@@ -23,10 +23,12 @@ namespace EA4S.AnturaSpace
 
             waitForLaunchPoint = new GameObject("WaitForLaunch");
             controller.Antura.SetTarget(waitForLaunchPoint.transform, true);
+            controller.Antura.Excited = true;
         }
 
         public override void ExitState()
         {
+            controller.Antura.Excited = false;
             GameObject.Destroy(waitForLaunchPoint);
             base.ExitState();
             controller.UI.ShowBonesButton(false);

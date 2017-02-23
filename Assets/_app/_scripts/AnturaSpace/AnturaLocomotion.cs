@@ -10,6 +10,9 @@ namespace EA4S.AnturaSpace
         Transform target;
         bool rotateAsTarget;
 
+        float runningTime;
+        bool isSliping;
+
         const float WALK_SPEED = 5.0f;
         const float RUN_SPEED = 15.0f;
 
@@ -18,11 +21,14 @@ namespace EA4S.AnturaSpace
         [NonSerialized]
         public AnturaAnimationController AnimationController;
 
+        Vector3 lastVelocity;
+        Vector3 lastPosition;
+
         public bool HasReachedTarget
         {
             get
             {
-                return IsNearTargetPosition && IsNearTargetRotation;
+                return !isSliping && IsNearTargetPosition && IsNearTargetRotation;
             }
         }
 
@@ -67,6 +73,8 @@ namespace EA4S.AnturaSpace
                 return AnimationController.IsJumping || AnimationController.IsAnimationActuallyJumping;
             }
         }
+
+        public bool Excited = false;
 
         public float PlanarDistanceFromTarget
         {
@@ -120,6 +128,27 @@ namespace EA4S.AnturaSpace
 
         void Update()
         {
+            if (isSliping)
+            {
+                transform.position += lastVelocity * Time.deltaTime;
+
+                var velMagnitude = lastVelocity.magnitude;
+
+                if (velMagnitude > 1)
+                    lastVelocity -= 10*lastVelocity.normalized*Time.deltaTime;
+                else
+                    lastVelocity = Vector3.Lerp(lastVelocity, Vector3.zero, 4*Time.deltaTime);
+
+                if (lastVelocity.magnitude < 0.2f)
+                {
+                    isSliping = false;
+                    runningTime = 0;
+                    AnimationController.OnSlipEnded();
+                }
+
+                return;
+            }
+
             if (!IsSleeping && !IsJumping && target != null)
             {
                 var distance = target.position - transform.position;
@@ -133,6 +162,25 @@ namespace EA4S.AnturaSpace
                     float speedFactor = Mathf.Lerp(0, 1, distMagnitude / 10);
                     speed = Mathf.Lerp(WALK_SPEED, RUN_SPEED, speedFactor) * Mathf.Lerp(0, 1, distMagnitude);
                     AnimationController.SetWalkingSpeed(speedFactor);
+
+                    if (speedFactor > 0.75f)
+                    {
+                        runningTime += Time.deltaTime;
+                    }
+                    else
+                    {
+                        if (runningTime > 1.3f && Excited)
+                        {
+                            // Slip!
+                            runningTime = 0;
+                            isSliping = true;
+                            AnimationController.OnSlipStarted();
+                            Update();
+                            return;
+                        }
+
+                        runningTime = 0;
+                    }
                 }
 
                 if (speed > 0.05f)
@@ -162,6 +210,8 @@ namespace EA4S.AnturaSpace
                         AnimationController.State = AnturaAnimationStates.idle;
                 }
             }
+            lastVelocity = (transform.position - lastPosition) / Time.deltaTime;
+            lastPosition = transform.position;
         }
 
         void OnMouseDown()

@@ -29,6 +29,15 @@ namespace EA4S.AnturaSpace
 
             controller.Antura.SetTarget(controller.NextBoneToCatch, false);
             boneRigidBody = controller.NextBoneToCatch.GetComponent<Rigidbody>();
+            controller.Antura.Excited = true;
+        }
+
+        public override void ExitState()
+        {
+            base.ExitState();
+
+            controller.Antura.Excited = false;
+            controller.LastTimeCatching = Time.realtimeSinceStartup;
         }
 
         public override void Update(float delta)

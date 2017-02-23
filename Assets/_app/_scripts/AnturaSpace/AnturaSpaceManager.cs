@@ -86,6 +86,7 @@ namespace EA4S.AnturaSpace
         }
 
         public bool InCustomizationMode { get; private set; }
+        public float LastTimeCatching { get; set; }
 
         /// <summary>
         /// Drag a bone around.
@@ -145,8 +146,6 @@ namespace EA4S.AnturaSpace
 
         void Awake()
         {
-            CurrentState = Idle;
-
             UI.onEnterCustomization += OnEnterCustomization;
             UI.onExitCustomization += OnExitCustomization;
 
@@ -190,6 +189,7 @@ namespace EA4S.AnturaSpace
             AudioManager.I.PlayMusic(backgroundMusic);
             LogManager.I.LogInfo(InfoEvent.AnturaSpace, "enter");
 
+            CurrentState = Idle;
         }
 
         public void ShowBackButton()
