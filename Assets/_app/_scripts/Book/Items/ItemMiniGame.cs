@@ -12,7 +12,7 @@ namespace EA4S.PlayerBook
     /// </summary>
     public class ItemMiniGame : MonoBehaviour, IPointerClickHandler
     {
-        MiniGameInfo info;
+        MainMiniGame info;
 
         public GameObject VariationsContainer;
         public GameObject ItemMiniGameVariationPrefab;
@@ -24,37 +24,37 @@ namespace EA4S.PlayerBook
 
         GamesPanel manager;
 
-        public void Init(GamesPanel _manager, MiniGameInfo _info)
+        public void Init(GamesPanel _manager, MainMiniGame _MainMiniGame)
         {
-            info = _info;
+            info = _MainMiniGame;
             manager = _manager;
 
-            if (info.unlocked || AppManager.I.Player.IsDemoUser) {
-                LockIcon.enabled = false;
-            } else {
-                LockIcon.enabled = true;
-            }
+            //if (info.unlocked || AppManager.I.Player.IsDemoUser) {
+            //    LockIcon.enabled = false;
+            //} else {
+            //    LockIcon.enabled = true;
+            //}
 
-            //Title.text = data.Title_Ar;
+            ////Title.text = data.Title_Ar;
 
-            var icoPath = info.data.GetIconResourcePath();
-            var badgePath = info.data.GetBadgeIconResourcePath();
+            //var icoPath = info.data.GetIconResourcePath();
+            //var badgePath = info.data.GetBadgeIconResourcePath();
 
-            // @note: we get the minigame saved score, which should be the maximum score achieved
-            // @note: I'm leaving the average-based method commented if we want to return to that logic
-            var score = info.score;
+            //// @note: we get the minigame saved score, which should be the maximum score achieved
+            //// @note: I'm leaving the average-based method commented if we want to return to that logic
+            //var score = info.score;
             //var score = GenericHelper.GetAverage(TeacherAI.I.scoreHelper.GetLatestScoresForMiniGame(info.data.Code, -1));
 
-            if (score < 0.1f) {
-                // disabled
-                //GetComponent<Button>().interactable = false;
-                //GetComponent<Image>().color = Color.grey;
-            }
+            //if (score < 0.1f) {
+            //    // disabled
+            //    //GetComponent<Button>().interactable = false;
+            //    //GetComponent<Image>().color = Color.grey;
+            //}
 
-            Icon.sprite = Resources.Load<Sprite>(icoPath);
-            if (badgePath != "") {
-                BadgeIcon.sprite = Resources.Load<Sprite>(badgePath);
-            }
+            //Icon.sprite = Resources.Load<Sprite>(icoPath);
+            //if (badgePath != "") {
+            //    BadgeIcon.sprite = Resources.Load<Sprite>(badgePath);
+            //}
 
             emptyContainers();
 
@@ -62,7 +62,7 @@ namespace EA4S.PlayerBook
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailMiniGame(info);
+            //manager.DetailMiniGame(info.variations[0].Code);
         }
 
         void emptyContainers()
