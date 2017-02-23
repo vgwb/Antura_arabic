@@ -10,9 +10,9 @@ namespace EA4S.Book
     /// <summary>
     /// Displays a MiniGame item in the MiniGames panel of the Player Book.
     /// </summary>
-    public class ItemMiniGame : MonoBehaviour, IPointerClickHandler
+    public class ItemMainMiniGame : MonoBehaviour, IPointerClickHandler
     {
-        MainMiniGame info;
+        MainMiniGame mainGameInfo;
 
         public GameObject VariationsContainer;
         public GameObject ItemMiniGameVariationPrefab;
@@ -22,12 +22,13 @@ namespace EA4S.Book
         public Image BadgeIcon;
         public Image LockIcon;
 
-        GamesPanel manager;
+        GamesPanel panelManager;
+        GameObject btnGO;
 
         public void Init(GamesPanel _manager, MainMiniGame _MainMiniGame)
         {
-            info = _MainMiniGame;
-            manager = _manager;
+            mainGameInfo = _MainMiniGame;
+            panelManager = _manager;
 
             //if (info.unlocked || AppManager.I.Player.IsDemoUser) {
             //    LockIcon.enabled = false;
@@ -37,7 +38,7 @@ namespace EA4S.Book
 
             ////Title.text = data.Title_Ar;
 
-            //var icoPath = info.data.GetIconResourcePath();
+            var icoPath = mainGameInfo.GetIconResourcePath();
             //var badgePath = info.data.GetBadgeIconResourcePath();
 
             //// @note: we get the minigame saved score, which should be the maximum score achieved
@@ -51,13 +52,17 @@ namespace EA4S.Book
             //    //GetComponent<Image>().color = Color.grey;
             //}
 
-            //Icon.sprite = Resources.Load<Sprite>(icoPath);
+            Icon.sprite = Resources.Load<Sprite>(icoPath);
             //if (badgePath != "") {
             //    BadgeIcon.sprite = Resources.Load<Sprite>(badgePath);
             //}
 
             emptyContainers();
-
+            foreach (var game in mainGameInfo.variations) {
+                btnGO = Instantiate(ItemMiniGameVariationPrefab);
+                btnGO.transform.SetParent(VariationsContainer.transform, false);
+                btnGO.GetComponent<ItemMiniGameVariation>().Init(panelManager, game);
+            }
         }
 
         public void OnPointerClick(PointerEventData eventData)

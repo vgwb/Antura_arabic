@@ -37,9 +37,9 @@ GameObject:
   m_Component:
   - component: {fileID: 224892287341357838}
   - component: {fileID: 222190649387782748}
+  - component: {fileID: 114691857318487548}
   - component: {fileID: 114380107914171336}
   - component: {fileID: 114498041351676272}
-  - component: {fileID: 114691857318487548}
   m_Layer: 5
   m_Name: ItemMiniGameVariation
   m_TagString: Untagged
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -197,6 +197,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cdf5569e09d8426c80a8ecd79cca6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VariationsContainer: {fileID: 0}
+  ItemMiniGameVariationPrefab: {fileID: 0}
+  Title: {fileID: 0}
+  Icon: {fileID: 0}
+  BadgeIcon: {fileID: 114649361223684322}
+  LockIcon: {fileID: 114551893338951414}
 --- !u!222 &222183629836696972
 CanvasRenderer:
   m_ObjectHideFlags: 1
