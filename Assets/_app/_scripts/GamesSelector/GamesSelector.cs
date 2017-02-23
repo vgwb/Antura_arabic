@@ -63,7 +63,6 @@ namespace EA4S.GamesSelector
 
         void Start()
         {
-            KeeperManager.I.PlayDialog(Database.LocalizationDataId.SelectGame_Tuto_2, false);
 
             if (mainBubble == null) {
                 mainBubble = this.GetComponentInChildren<GamesSelectorBubble>();
