@@ -1,7 +1,7 @@
 ﻿using EA4S.UI;
 using UnityEngine;
 
-namespace EA4S.PlayerBook
+namespace EA4S.Book
 {
     public class TableRow : MonoBehaviour
     {
