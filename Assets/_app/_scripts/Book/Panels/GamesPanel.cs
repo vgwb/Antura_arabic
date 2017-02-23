@@ -5,7 +5,7 @@ using EA4S.Audio;
 using EA4S.Database;
 using EA4S.UI;
 
-namespace EA4S.PlayerBook
+namespace EA4S.Book
 {
     public class MainMiniGame
     {
@@ -159,8 +159,7 @@ namespace EA4S.PlayerBook
             List<MiniGameInfo> minigameInfoList = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
             foreach (var minigameInfo in minigameInfoList) {
                 if (!dictionary.ContainsKey(minigameInfo.data.Main)) {
-                    dictionary[minigameInfo.data.Main] = new MainMiniGame
-                    {
+                    dictionary[minigameInfo.data.Main] = new MainMiniGame {
                         mainMinigame = minigameInfo.data.Main,
                         variations = new List<MiniGameInfo>()
                     };

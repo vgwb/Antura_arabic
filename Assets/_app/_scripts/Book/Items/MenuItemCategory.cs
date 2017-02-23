@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace EA4S.PlayerBook
+namespace EA4S.Book
 {
 
     /// <summary>

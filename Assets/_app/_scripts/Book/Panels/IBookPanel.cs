@@ -1,5 +1,5 @@
 ﻿
-namespace EA4S.PlayerBook
+namespace EA4S.Book
 {
     public interface IBookPanel
     {
