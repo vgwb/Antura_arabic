@@ -22,7 +22,7 @@
         public const string UrlStoreiOSApple = "";
         public const string UrlStoreAndroidGoogle = "";
         public const string UrlCommunityTelegram = "https://t.me/antura";
-        public const string UrlCommunityFacebook = "https://t.me/antura";
+        public const string UrlCommunityFacebook = "https://www.facebook.com/antura.initiative";
 
         // Application details (used by Teacher and maybe other)
         public const float minimumAge = 4;
