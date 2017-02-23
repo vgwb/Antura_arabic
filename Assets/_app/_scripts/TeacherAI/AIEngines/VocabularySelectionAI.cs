@@ -447,6 +447,21 @@ namespace EA4S.Teacher
 
         #endregion
 
+        #region Contents Helpers
+
+        public VocabularyContents GetContentsAtJourneyPosition(JourneyPosition jp)
+        {
+            return progressionContents.GetContentsOfPlaySession(jp);
+        }
+
+        public VocabularyContents GetContentsUpToJourneyPosition(JourneyPosition jp)
+        {
+            return progressionContents.GetContentsUpToPlaySession(jp);
+        }
+
+        #endregion
+
+
         // @todo: move these to JourneyHelper instead?
         #region LearningBlock / PlaySession -> Letter
 
