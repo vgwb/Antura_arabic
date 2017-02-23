@@ -1,10 +1,7 @@
 ﻿using EA4S.Audio;
 using EA4S.Core;
 using EA4S.UI;
-using EA4S.Utilities;
 using UnityEngine;
-using TMPro;
-using EA4S.Antura;
 using System.Collections.Generic;
 using EA4S.MinigamesCommon;
 
@@ -42,6 +39,7 @@ namespace EA4S.AnturaSpace
         public readonly AnturaIdleState Idle;
         public readonly AnturaCustomizationState Customization;
         public readonly AnturaDrawingAttentionState DrawingAttention;
+        public readonly AnturaAnimateState Animate;
         public readonly AnturaSleepingState Sleeping;
         public readonly AnturaWaitingThrowState WaitingThrow;
         public readonly AnturaCatchingState Catching;
@@ -68,6 +66,8 @@ namespace EA4S.AnturaSpace
                 return totalBones > 0;
             }
         }
+
+        public float AnturaHappiness { get; private set; }
 
         public void ThrowBone()
         {
@@ -124,6 +124,10 @@ namespace EA4S.AnturaSpace
                 poof.localScale = poof.localScale * 0.5f;
                 poof.gameObject.AddComponent<AutoDestroy>().duration = 2;
                 AudioManager.I.PlaySound(Sfx.Poof);
+                AnturaHappiness += 0.2f;
+                if (AnturaHappiness > 1)
+                    AnturaHappiness = 1;
+
                 Destroy(bone);
             }
         }
@@ -136,6 +140,7 @@ namespace EA4S.AnturaSpace
             Sleeping = new AnturaSleepingState(this);
             WaitingThrow = new AnturaWaitingThrowState(this);
             Catching = new AnturaCatchingState(this);
+            Animate = new AnturaAnimateState(this);
         }
 
         void Awake()
@@ -150,6 +155,10 @@ namespace EA4S.AnturaSpace
 
         public void Update()
         {
+            AnturaHappiness -= Time.deltaTime/40.0f;
+            if (AnturaHappiness < 0)
+                AnturaHappiness = 0;
+
             stateManager.Update(Time.deltaTime);
 
             UI.ShowBonesButton(bones.Count < MaxBonesInScene);
