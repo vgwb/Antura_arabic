@@ -8984,7 +8984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_oCameraUI: {fileID: 1920108683}
-  m_oAnturaBehaviour: {fileID: 0}
+  m_oAnturaBehaviour: {fileID: 2091012743}
   m_oCookieButton: {fileID: 2079677548}
   m_oCustomizationButton: {fileID: 1965254905}
 --- !u!1 &1490895012
@@ -16166,6 +16166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ae06f44a09d084b83028c9e75e8be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Excited: 0
 --- !u!54 &2091012746
 Rigidbody:
   m_ObjectHideFlags: 0
