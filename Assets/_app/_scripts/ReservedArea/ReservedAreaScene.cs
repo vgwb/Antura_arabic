@@ -15,14 +15,39 @@ namespace EA4S.Scenes
         }
 
 
-        public void BtnOpenUrlWebsite()
+        public void OnOpenUrlWebsite()
         {
             Application.OpenURL(AppConstants.UrlWebsite);
         }
 
-        public void BtnOpenUrlPrivacy()
+        public void OnOpenUrlPrivacy()
         {
             Application.OpenURL(AppConstants.UrlPrivacy);
+        }
+
+        public void OnOpenCommunityTelegram()
+        {
+            Application.OpenURL(AppConstants.UrlCommunityTelegram);
+        }
+
+        public void OnOpenCommunityFacebook()
+        {
+            Application.OpenURL(AppConstants.UrlCommunityFacebook);
+        }
+
+        public void OnOpenInstallInstructions()
+        {
+            GlobalUI.ShowPrompt(true, "Install instructions");
+        }
+
+        public void OnOpenRateApp()
+        {
+            GlobalUI.ShowPrompt(true, "Rate app");
+        }
+
+        public void OnOpenRecomment()
+        {
+            GlobalUI.ShowPrompt(true, "How to Recommend Antura");
         }
 
     }
