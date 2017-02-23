@@ -5,6 +5,7 @@ namespace EA4S.AnturaSpace
     public class AnturaIdleState : AnturaState
     {
         float sitTimer;
+        float animateTimer;
 
         float timeToStayInThisState;
 
@@ -17,6 +18,7 @@ namespace EA4S.AnturaSpace
             base.EnterState();
             sitTimer = 0.5f;
             timeToStayInThisState = 4 + UnityEngine.Random.value * 2;
+            animateTimer = UnityEngine.Random.Range(4, 8) - 2 * controller.AnturaHappiness;
             controller.UI.ShowBonesButton(true);
             controller.Antura.SetTarget(controller.SceneCenter, true);
         }
@@ -50,9 +52,18 @@ namespace EA4S.AnturaSpace
                     controller.Antura.AnimationController.State = AnturaAnimationStates.sitting;
             }
 
-            if (timeToStayInThisState <= 0 && controller.HasPlayerBones)
+            if (timeToStayInThisState <= 0 && controller.HasPlayerBones && controller.AnturaHappiness < 0.1f)
             {
                 controller.CurrentState = controller.DrawingAttention;
+            }
+            else if (controller.AnturaHappiness > 0.2f)
+            {
+                animateTimer -= delta;
+
+                if (animateTimer <= 0)
+                {
+                    controller.CurrentState = controller.Animate;
+                }
             }
         }
 
