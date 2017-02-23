@@ -9,8 +9,13 @@ namespace EA4S.Book
 {
     public class MainMiniGame
     {
-        public string mainMinigame;
+        public string id;
         public List<MiniGameInfo> variations;
+
+        public string GetIconResourcePath()
+        {
+            return variations[0].data.GetIconResourcePath();
+        }
     }
 
     /// <summary>
@@ -68,22 +73,9 @@ namespace EA4S.Book
             foreach (var game in MainGameList) {
                 btnGO = Instantiate(MinigameItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponent<ItemMiniGame>().Init(this, game);
+                btnGO.GetComponent<ItemMainMiniGame>().Init(this, game);
 
             }
-            //var minigame_list = AppManager.I.DB.GetActiveMinigames();
-
-            //List<MiniGameInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
-            //foreach (var item_info in info_list) {
-            //    if (minigame_list.Contains(item_info.data)) {
-            //        btnGO = Instantiate(MinigameItemPrefab);
-            //        btnGO.transform.SetParent(ElementsContainer.transform, false);
-            //        btnGO.GetComponent<ItemMiniGame>().Init(this, item_info);
-            //    }
-            //}
-
-
-
             DetailMiniGame(null);
         }
 
@@ -150,9 +142,6 @@ namespace EA4S.Book
 
         }
 
-
-
-
         List<MainMiniGame> GetMainMiniGameList()
         {
             Dictionary<string, MainMiniGame> dictionary = new Dictionary<string, MainMiniGame>();
@@ -160,7 +149,7 @@ namespace EA4S.Book
             foreach (var minigameInfo in minigameInfoList) {
                 if (!dictionary.ContainsKey(minigameInfo.data.Main)) {
                     dictionary[minigameInfo.data.Main] = new MainMiniGame {
-                        mainMinigame = minigameInfo.data.Main,
+                        id = minigameInfo.data.Main,
                         variations = new List<MiniGameInfo>()
                     };
                 }
@@ -169,12 +158,13 @@ namespace EA4S.Book
 
             List<MainMiniGame> outputList = new List<MainMiniGame>();
             foreach (var k in dictionary.Keys) {
-                outputList.Add(dictionary[k]);
+                if (dictionary[k].id != "Assessment") {
+                    outputList.Add(dictionary[k]);
+                }
             }
 
             return outputList;
         }
-
 
     }
 }
