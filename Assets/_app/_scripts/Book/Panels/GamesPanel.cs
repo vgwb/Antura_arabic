@@ -10,8 +10,7 @@ namespace EA4S.PlayerBook
     public class MainMiniGame
     {
         public string mainMinigame;
-        public List<MiniGameData> variations;
-        public List<MiniGameInfo> variationsInfo;
+        public List<MiniGameInfo> variations;
     }
 
     /// <summary>
@@ -72,8 +71,6 @@ namespace EA4S.PlayerBook
                 btnGO.GetComponent<ItemMiniGame>().Init(this, game);
 
             }
-
-
             //var minigame_list = AppManager.I.DB.GetActiveMinigames();
 
             //List<MiniGameInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
@@ -159,14 +156,16 @@ namespace EA4S.PlayerBook
         List<MainMiniGame> GetMainMiniGameList()
         {
             Dictionary<string, MainMiniGame> dictionary = new Dictionary<string, MainMiniGame>();
-            List<MiniGameData> minigameDataList = AppManager.I.DB.GetAllMiniGameData();
-            foreach (var minigameData in minigameDataList) {
-                if (!dictionary.ContainsKey(minigameData.Main)) {
-                    dictionary[minigameData.Main] = new MainMiniGame();
-                    dictionary[minigameData.Main].mainMinigame = minigameData.Main;
-                    dictionary[minigameData.Main].variations = new List<MiniGameData>();
+            List<MiniGameInfo> minigameInfoList = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
+            foreach (var minigameInfo in minigameInfoList) {
+                if (!dictionary.ContainsKey(minigameInfo.data.Main)) {
+                    dictionary[minigameInfo.data.Main] = new MainMiniGame
+                    {
+                        mainMinigame = minigameInfo.data.Main,
+                        variations = new List<MiniGameInfo>()
+                    };
                 }
-                dictionary[minigameData.Main].variations.Add(minigameData);
+                dictionary[minigameInfo.data.Main].variations.Add(minigameInfo);
             }
 
             List<MainMiniGame> outputList = new List<MainMiniGame>();
