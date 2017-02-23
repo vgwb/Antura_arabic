@@ -32,7 +32,7 @@ namespace EA4S.Minigames.ColorTickle
         bool m_bLLVanishing = false;
         float m_fTimeToDisappear = 3f;
         float m_fDisappearTimeProgress = 0;
-
+        bool tickled = false;
         #endregion
 
         public PlayGameState(ColorTickleGame game)
@@ -42,6 +42,7 @@ namespace EA4S.Minigames.ColorTickle
 
         public void EnterState()
         {
+            tickled = false;
             m_Rounds = game.rounds;
 			m_MaxLives = game.lives; //max number of lives is already setted in the game according to difficulty
             m_iRoundsSuccessfull = 0;
@@ -99,6 +100,12 @@ namespace EA4S.Minigames.ColorTickle
                         EnableLetterComponents();
 
                         m_CurrentLetter.SetActive(false);
+                        var controller = m_CurrentLetter.GetComponent<HitStateLLController>();
+                        if (controller != null)
+                        {
+                            controller.onTickled -= OnTickled;
+                            controller.EnableAntura -= EnableAntura;
+                        }
 
                         --m_Rounds;
                         if (m_Rounds > 0) //activate next LL
@@ -152,6 +159,11 @@ namespace EA4S.Minigames.ColorTickle
                         game.Context.GetLogManager().OnAnswered(m_LetterObjectView.Data, false);
                         game.Context.GetAudioManager().PlaySound(Sfx.LetterAngry);
                         game.Context.GetAudioManager().PlaySound(Sfx.Lose);
+                    }
+                    else if (tickled)
+                    {
+                        tickled = false;
+                        LoseLife();
                     }                   
                 }
             }
@@ -183,6 +195,11 @@ namespace EA4S.Minigames.ColorTickle
             m_ColorsUIManager.SetBrushColor += SetBrushColor;
 		}
 
+        void OnTickled()
+        {
+            tickled = true;
+        }
+
 		private void InitLetter()
 		{
             m_LetterObjectView = m_CurrentLetter.GetComponent<LetterObjectView>();
@@ -194,7 +211,7 @@ namespace EA4S.Minigames.ColorTickle
             m_LLController.movingToDestination = true;
 
             m_HitStateLLController = m_CurrentLetter.GetComponent<HitStateLLController>();
-            m_HitStateLLController.LoseLife += LoseLife;
+            m_HitStateLLController.onTickled += OnTickled;
 
             m_LLController.OnDestinationReached += delegate () { game.Context.GetAudioManager().PlayLetterData(m_LetterObjectView.Data); };//play audio on destination
 

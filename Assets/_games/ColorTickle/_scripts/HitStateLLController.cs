@@ -23,7 +23,7 @@ namespace EA4S.Minigames.ColorTickle
         #endregion
 
         #region EVENTS
-        public event System.Action LoseLife;
+        public event System.Action onTickled;
         public event System.Action EnableAntura;
         public event System.Action EnableTutorial;
         #endregion
@@ -105,9 +105,9 @@ namespace EA4S.Minigames.ColorTickle
 
             ColorTickleConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.LL_Laugh);
 
-            if (LoseLife != null)
+            if (onTickled != null)
             {
-                LoseLife();
+                onTickled();
             }
         }
 
