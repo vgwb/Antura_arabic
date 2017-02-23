@@ -27,6 +27,9 @@ namespace EA4S.GamesSelector
             TitleCode.text = journeyPos.ToString();
             TitleArabic.text = learningBlock.Title_Ar;
             TitleEnglish.text = learningBlock.Title_En;
+
+            KeeperManager.I.PlayDialog(learningBlock.GetTitleSoundFilename(), false, true, PlayTutorialAudio);
+
             if (!journeyPos.IsMinor(AppManager.I.Player.MaxJourneyPosition)) {
                 // First time playing this session: 0 stars
                 SetStars(0);
@@ -35,6 +38,11 @@ namespace EA4S.GamesSelector
                 SetStars(unlockedRewards + 1);
             }
             //            PlaySessionData playSessionData = AppManager.I.DB.GetPlaySessionDataById(journeyPos.PlaySession);
+        }
+
+        void PlayTutorialAudio()
+        {
+            KeeperManager.I.PlayDialog(LocalizationDataId.SelectGame_Tuto_2, false);
         }
 
         void SetStars(int _tot)
