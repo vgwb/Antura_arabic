@@ -16,17 +16,23 @@ namespace EA4S.AnturaSpace
             base.EnterState();
             timer = 4.0f;
 
-            float p = UnityEngine.Random.value * controller.AnturaHappiness;
-
-            if (p < 0.25f)
-                state = AnturaAnimationStates.digging;
-            else if (p < 0.45f)
-                state = AnturaAnimationStates.sheeping;
-            else if (p < 0.7f)
-                state = AnturaAnimationStates.bellyUp;
-            else
+            if (controller.AnturaHappiness > 0.95f)
+            {
                 state = AnturaAnimationStates.dancing;
+            }
+            else
+            {
+                float p = UnityEngine.Random.value * controller.AnturaHappiness;
 
+                if (p < 0.25f)
+                    state = AnturaAnimationStates.digging;
+                else if (p < 0.45f)
+                    state = AnturaAnimationStates.sheeping;
+                else if (p < 0.7f)
+                    state = AnturaAnimationStates.bellyUp;
+                else
+                    state = AnturaAnimationStates.dancing;
+            }
         }
 
         public override void Update(float delta)

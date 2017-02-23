@@ -27,8 +27,8 @@ namespace EA4S.AnturaSpace
         private AnturaSpaceManager m_sceneManager;
         [SerializeField]
         private Camera m_oCameraUI;
-        [SerializeField]
-        private AnturaBehaviour m_oAnturaBehaviour;
+        
+        public AnturaLocomotion m_oAnturaBehaviour;
         //[SerializeField]
         //private GameObject m_oItemsParentUI;
         [SerializeField]
@@ -51,12 +51,14 @@ namespace EA4S.AnturaSpace
         {
             if(AppManager.I.Player.IsFirstContact()==false) //if this isn't the first contact disable yourself and return
             {
-               
                 gameObject.SetActive(false);
                 return;
             }
 
             m_sceneManager = FindObjectOfType<AnturaSpaceManager>();
+            m_sceneManager.Antura.transform.position = m_sceneManager.SceneCenter.position;
+            m_sceneManager.Antura.AnimationController.State = AnturaAnimationStates.sleeping;
+            m_sceneManager.CurrentState = m_sceneManager.Sleeping;
 
             TutorialUI.SetCamera(m_oCameraUI);
 
@@ -67,7 +69,7 @@ namespace EA4S.AnturaSpace
 
             AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro, delegate() //dialogue try touch Antura
             {
-                m_oAnturaBehaviour.onAnimationByClick += AdvanceTutorial;
+                m_oAnturaBehaviour.onTouched += AdvanceTutorial;
                 TutorialUI.ClickRepeat(m_oAnturaBehaviour.gameObject.transform.position+(Vector3.forward*-2) + (Vector3.up), float.MaxValue, 1);
             });
 
@@ -102,7 +104,7 @@ namespace EA4S.AnturaSpace
 
                     TutorialUI.Clear(false);
 
-                    m_oAnturaBehaviour.onAnimationByClick -= AdvanceTutorial;
+                    m_oAnturaBehaviour.onTouched -= AdvanceTutorial;
 
                     AudioManager.I.StopDialogue(false);
 

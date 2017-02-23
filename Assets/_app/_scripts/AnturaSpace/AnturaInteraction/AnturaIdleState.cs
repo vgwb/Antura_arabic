@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace EA4S.AnturaSpace
 {
@@ -16,6 +17,7 @@ namespace EA4S.AnturaSpace
         public override void EnterState()
         {
             base.EnterState();
+            controller.Antura.AnimationController.State = AnturaAnimationStates.idle;
             sitTimer = 0.5f;
             timeToStayInThisState = 4 + UnityEngine.Random.value * 2;
             animateTimer = UnityEngine.Random.Range(4, 8) - 2 * controller.AnturaHappiness;
@@ -49,7 +51,15 @@ namespace EA4S.AnturaSpace
                 sitTimer -= delta;
 
                 if (sitTimer <= 0)
+                {
+                    if (Time.realtimeSinceStartup - controller.LastTimeCatching > 30.0f)
+                    {
+                        controller.CurrentState = controller.Sleeping;
+                        return;
+                    }
+
                     controller.Antura.AnimationController.State = AnturaAnimationStates.sitting;
+                }
             }
 
             if (timeToStayInThisState <= 0 && controller.HasPlayerBones && controller.AnturaHappiness < 0.1f)

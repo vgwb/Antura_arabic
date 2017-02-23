@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace EA4S.AnturaSpace
 {
@@ -16,6 +17,12 @@ namespace EA4S.AnturaSpace
 
             controller.Antura.SetTarget(controller.SceneCenter, true);
             timer = 0.5f;
+        }
+
+        public override void OnTouched()
+        {
+            base.OnTouched();
+            controller.CurrentState = controller.Idle;
         }
 
         public override void Update(float delta)
@@ -36,7 +43,7 @@ namespace EA4S.AnturaSpace
         public override void ExitState()
         {
             base.ExitState();
-
+            controller.LastTimeCatching = Time.realtimeSinceStartup;
             controller.Antura.SetTarget(null, false);
         }
     }
