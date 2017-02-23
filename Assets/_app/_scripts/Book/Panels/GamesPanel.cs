@@ -7,6 +7,12 @@ using EA4S.UI;
 
 namespace EA4S.PlayerBook
 {
+    public class MainMiniGame
+    {
+        public string mainMinigame;
+        public List<MiniGameData> variations;
+        public List<MiniGameInfo> variationsInfo;
+    }
 
     /// <summary>
     /// Displays information on minigames that the player has unlocked.
@@ -59,16 +65,27 @@ namespace EA4S.PlayerBook
         {
             emptyListContainers();
 
-            var minigame_list = AppManager.I.DB.GetActiveMinigames();
+            var MainGameList = GetMainMiniGameList();
+            foreach (var game in MainGameList) {
+                btnGO = Instantiate(MinigameItemPrefab);
+                btnGO.transform.SetParent(ElementsContainer.transform, false);
+                btnGO.GetComponent<ItemMiniGame>().Init(this, game);
 
-            List<MiniGameInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
-            foreach (var item_info in info_list) {
-                if (minigame_list.Contains(item_info.data)) {
-                    btnGO = Instantiate(MinigameItemPrefab);
-                    btnGO.transform.SetParent(ElementsContainer.transform, false);
-                    btnGO.GetComponent<ItemMiniGame>().Init(this, item_info);
-                }
             }
+
+
+            //var minigame_list = AppManager.I.DB.GetActiveMinigames();
+
+            //List<MiniGameInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
+            //foreach (var item_info in info_list) {
+            //    if (minigame_list.Contains(item_info.data)) {
+            //        btnGO = Instantiate(MinigameItemPrefab);
+            //        btnGO.transform.SetParent(ElementsContainer.transform, false);
+            //        btnGO.GetComponent<ItemMiniGame>().Init(this, item_info);
+            //    }
+            //}
+
+
 
             DetailMiniGame(null);
         }
@@ -137,30 +154,23 @@ namespace EA4S.PlayerBook
         }
 
 
-        class MiniGameWithVariations
-        {
-            public string mainMinigame;
-            public List<MiniGameData> variations;
-        }
 
-        List<MiniGameWithVariations> CreateMiniGameStructsList()
+
+        List<MainMiniGame> GetMainMiniGameList()
         {
-            Dictionary<string, MiniGameWithVariations> dictionary = new Dictionary < string, MiniGameWithVariations> ();
+            Dictionary<string, MainMiniGame> dictionary = new Dictionary<string, MainMiniGame>();
             List<MiniGameData> minigameDataList = AppManager.I.DB.GetAllMiniGameData();
-            foreach (var minigameData in minigameDataList)
-            {
-                if (!dictionary.ContainsKey(minigameData.Main))
-                {
-                    dictionary[minigameData.Main] = new MiniGameWithVariations();
+            foreach (var minigameData in minigameDataList) {
+                if (!dictionary.ContainsKey(minigameData.Main)) {
+                    dictionary[minigameData.Main] = new MainMiniGame();
                     dictionary[minigameData.Main].mainMinigame = minigameData.Main;
                     dictionary[minigameData.Main].variations = new List<MiniGameData>();
                 }
                 dictionary[minigameData.Main].variations.Add(minigameData);
             }
 
-            List<MiniGameWithVariations> outputList = new List<MiniGameWithVariations>();
-            foreach (var k in dictionary.Keys)
-            {
+            List<MainMiniGame> outputList = new List<MainMiniGame>();
+            foreach (var k in dictionary.Keys) {
                 outputList.Add(dictionary[k]);
             }
 
