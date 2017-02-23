@@ -5878,7 +5878,14 @@ MonoBehaviour:
       - MiniGameCode: 35
         Weight: 1
       NumberOfRoundsPerMinigame: 0
-      Letters: []
+      Letters:
+      - waw_hamza
+      - yeh_hamza
+      - yeh
+      - waw
+      - alef
+      - alef_hamza_hi
+      - alef_hamza_low
       Words:
       - sky
       - wolf

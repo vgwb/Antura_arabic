@@ -4,13 +4,13 @@ namespace EA4S.Database
 {
   public enum WordDataKind
   {
-      Noun = 1,
-      Adjective = 2,
-      Verb = 3,
-      Article = 4,
-      UI = 5,
+      Adjective = 1,
+      Verb = 2,
+      Article = 3,
+      Preposition = 4,
+      Noun = 5,
       Adverb = 6,
-      Preposition = 7,
+      UI = 7,
       Pronoun = 8,
   }
 }
