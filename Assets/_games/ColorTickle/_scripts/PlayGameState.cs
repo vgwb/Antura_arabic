@@ -42,7 +42,6 @@ namespace EA4S.Minigames.ColorTickle
 
         public void EnterState()
         {
-            tickled = false;
             m_Rounds = game.rounds;
 			m_MaxLives = game.lives; //max number of lives is already setted in the game according to difficulty
             m_iRoundsSuccessfull = 0;
@@ -53,8 +52,9 @@ namespace EA4S.Minigames.ColorTickle
 			ResetState ();
 
             game.anturaController.OnStateChanged += AnturaInteractions;
-            
+
             //Init the first letter
+            tickled = false;
             m_CurrentLetter = game.myLetters[m_Rounds - 1];
 			m_CurrentLetter.gameObject.SetActive (true);         
             InitLetter();
@@ -103,7 +103,7 @@ namespace EA4S.Minigames.ColorTickle
                         var controller = m_CurrentLetter.GetComponent<HitStateLLController>();
                         if (controller != null)
                         {
-                            controller.onTickled -= OnTickled;
+                            controller.OnTouchedOutside -= OnTickled;
                             controller.EnableAntura -= EnableAntura;
                         }
 
@@ -112,6 +112,7 @@ namespace EA4S.Minigames.ColorTickle
                         {
                             ResetState();
                             m_ColorsUIManager.ChangeButtonsColor();
+                            tickled = false;
                             m_CurrentLetter = game.myLetters[m_Rounds - 1];
                             m_CurrentLetter.gameObject.SetActive(true);
                             // Initialize the next letter
@@ -160,11 +161,13 @@ namespace EA4S.Minigames.ColorTickle
                         game.Context.GetAudioManager().PlaySound(Sfx.LetterAngry);
                         game.Context.GetAudioManager().PlaySound(Sfx.Lose);
                     }
-                    else if (tickled)
-                    {
-                        tickled = false;
-                        LoseLife();
-                    }                   
+                }
+                else if (tickled)
+                {
+                    tickled = false;
+                    if (m_CurrentLetter != null)
+                        m_CurrentLetter.GetComponent<HitStateLLController>().TicklesLetter();
+                    LoseLife();
                 }
             }
         }
@@ -211,7 +214,7 @@ namespace EA4S.Minigames.ColorTickle
             m_LLController.movingToDestination = true;
 
             m_HitStateLLController = m_CurrentLetter.GetComponent<HitStateLLController>();
-            m_HitStateLLController.onTickled += OnTickled;
+            m_HitStateLLController.OnTouchedOutside += OnTickled;
 
             m_LLController.OnDestinationReached += delegate () { game.Context.GetAudioManager().PlayLetterData(m_LetterObjectView.Data); };//play audio on destination
 

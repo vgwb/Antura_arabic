@@ -128,7 +128,7 @@ namespace EA4S.Minigames.ColorTickle
             m_LLController.movingToDestination = true;
 
             m_HitStateLLController = m_TutorialLetter.GetComponent<HitStateLLController>();
-            m_HitStateLLController.onTickled += LoseLife;
+            m_HitStateLLController.OnTouchedOutside += LoseLife;
             m_HitStateLLController.EnableTutorial += EnableTutorialAnimation;
 
             SetBrushColor(new Color(255, 0, 0, 255));
@@ -183,6 +183,8 @@ namespace EA4S.Minigames.ColorTickle
 
         private void LoseLife()
         {
+            if (m_HitStateLLController != null)
+                m_HitStateLLController.TicklesLetter();
             game.tutorialUIManager.StartTutorial = false;
         }
 

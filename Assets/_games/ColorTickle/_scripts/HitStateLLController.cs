@@ -23,7 +23,7 @@ namespace EA4S.Minigames.ColorTickle
         #endregion
 
         #region EVENTS
-        public event System.Action onTickled;
+        public event System.Action OnTouchedOutside;
         public event System.Action EnableAntura;
         public event System.Action EnableTutorial;
         #endregion
@@ -70,7 +70,8 @@ namespace EA4S.Minigames.ColorTickle
                 m_HitState = eHitState.HIT_LETTEROUTSIDE;
                 if (!m_Tickle)
                 {
-                    TicklesLetter();
+                    if (OnTouchedOutside != null)
+                        OnTouchedOutside();
                 }
             }
         }
@@ -84,7 +85,8 @@ namespace EA4S.Minigames.ColorTickle
                     m_HitState = eHitState.HIT_LETTEROUTSIDE;
                     if (!m_Tickle)
                     {
-                        TicklesLetter();
+                        if (OnTouchedOutside != null)
+                            OnTouchedOutside();
                     }
                 }
                 else
@@ -98,17 +100,12 @@ namespace EA4S.Minigames.ColorTickle
             }
         }
 
-        private void TicklesLetter()
+        public void TicklesLetter()
         {
             m_Tickle = true;
             m_LetterObjectView.SetState(LLAnimationStates.LL_tickling);
 
             ColorTickleConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.LL_Laugh);
-
-            if (onTickled != null)
-            {
-                onTickled();
-            }
         }
 
         private void TickleController()
