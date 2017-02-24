@@ -37,7 +37,7 @@ namespace EA4S.Rewards
                 oldRewards.Add(RewardSystemManager.GetNextRewardPack(true)[0]);
             }
 
-            LogManager.I.LogPlaySessionScore(TeacherAI.I.journeyHelper.GetCurrentPlaySessionData().Id, objs.Length);
+            LogManager.I.LogPlaySessionScore(AppManager.I.JourneyHelper.GetCurrentPlaySessionData().Id, objs.Length);
             // save max progression (internal check if necessary)
             AppManager.I.Player.AdvanceMaxJourneyPosition();
 

@@ -148,7 +148,7 @@ namespace EA4S.Book
         List<MainMiniGame> GetMainMiniGameList()
         {
             Dictionary<string, MainMiniGame> dictionary = new Dictionary<string, MainMiniGame>();
-            List<MiniGameInfo> minigameInfoList = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
+            List<MiniGameInfo> minigameInfoList = AppManager.I.ScoreHelper.GetAllMiniGameInfo();
             foreach (var minigameInfo in minigameInfoList) {
                 if (!dictionary.ContainsKey(minigameInfo.data.Main)) {
                     dictionary[minigameInfo.data.Main] = new MainMiniGame {

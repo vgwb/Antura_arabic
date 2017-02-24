@@ -236,8 +236,8 @@ namespace EA4S.Teacher.Test
             foreach (var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
             {
                 if (!IsCodeValid(code)) continue;
-                var jp = AppManager.I.Teacher.journeyHelper.GetMinimumJourneyPositionForMiniGame(code);
-                if (jp == null) jp = AppManager.I.Teacher.journeyHelper.GetFinalJourneyPosition();
+                var jp = AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(code);
+                if (jp == null) jp = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
                 InitialisePlaySession(jp);
                 yield return StartCoroutine(DoTestMinigameCO(code));
             }
