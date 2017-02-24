@@ -11,7 +11,6 @@ using EA4S.Rewards;
 using EA4S.Teacher;
 using EA4S.MinigamesAPI;
 using EA4S.UI;
-using UnityEngine;
 using PlayerProfile = EA4S.Profile.PlayerProfile;
 
 namespace EA4S
@@ -79,7 +78,6 @@ namespace EA4S
             if (AppConstants.DebugPanelEnabled) {
                 SRDebug.Init();
             }
-            Debug.logger.logEnabled = AppConstants.VerboseLogging;
 
             // GameplayModule
             if (GetComponentInChildren<ModuleInstaller<IGameplayModule>>()) {
