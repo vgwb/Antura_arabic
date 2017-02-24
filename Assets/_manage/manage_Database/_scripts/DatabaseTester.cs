@@ -32,13 +32,17 @@ namespace EA4S.Database.Management
 
         public bool useTestDatabase;
 
+        private ScoreHelper scoreHelper;
+
         void Awake()
         {
             this.dbLoader = GetComponentInChildren<DatabaseLoader>();
 
             dbManager = new DatabaseManager(useTestDatabase);
             var vocabularyHelper = new VocabularyHelper(dbManager);
-            teacherAI = new TeacherAI(dbManager, vocabularyHelper);
+            var journeyHelper = new JourneyHelper(dbManager);
+            scoreHelper = new ScoreHelper(dbManager);
+            teacherAI = new TeacherAI(dbManager, vocabularyHelper, journeyHelper, scoreHelper);
 
             // Load the first profile
             LoadProfile("1");
@@ -524,7 +528,7 @@ namespace EA4S.Database.Management
 
         public void Teacher_LatestScores()
         {
-            var scores = teacherAI.scoreHelper.GetLatestScoresForMiniGame(MiniGameCode.Balloons_counting, 3);
+            var scores = scoreHelper.GetLatestScoresForMiniGame(MiniGameCode.Balloons_counting, 3);
 
             string output = "Scores:\n";
             foreach (var score in scores) output += score.ToString() + "\n";
@@ -533,7 +537,7 @@ namespace EA4S.Database.Management
 
         public void Teacher_AllPlaySessionScores()
         {
-            var list = teacherAI.scoreHelper.GetCurrentScoreForAllPlaySessions();
+            var list = scoreHelper.GetCurrentScoreForAllPlaySessions();
 
             string output = "All play session scores:\n";
             foreach (var data in list) output += data.ElementId + ": " + data.Score + "\n";

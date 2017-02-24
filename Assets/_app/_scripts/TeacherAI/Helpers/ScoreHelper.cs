@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using EA4S.Database;
 using EA4S.Helpers;
-using EA4S.Utilities;
 
 // @todo: refactor this to separate JourneyInfo from VocabularyInfo (different rules)
 namespace EA4S.Database
@@ -122,6 +121,37 @@ namespace EA4S.Teacher
         }
 
         #endregion
+
+        #region Latest Info getters
+
+        public LetterInfo GetLastLearnedLetterInfo()
+        {
+            return GetLastLearnedDataInfo<LetterData, LetterInfo>(VocabularyDataType.Letter, AppManager.I.ScoreHelper.GetAllLetterInfo());
+        }
+
+        public WordInfo GetLastLearnedWordInfo()
+        {
+            return GetLastLearnedDataInfo<WordData, WordInfo>(VocabularyDataType.Word, AppManager.I.ScoreHelper.GetAllWordInfo());
+        }
+
+        public PhraseInfo GetLastLearnedPhraseInfo()
+        {
+            return GetLastLearnedDataInfo<PhraseData, PhraseInfo>(VocabularyDataType.Phrase, AppManager.I.ScoreHelper.GetAllPhraseInfo());
+        }
+
+        private IT GetLastLearnedDataInfo<T, IT>(VocabularyDataType dataType, List<IT> allInfos) where T : IVocabularyData where IT : DataInfo<T>
+        {
+            string query = "select * from \"" + typeof(LogLearnData).Name + "\"" + " where VocabularyDataType = '" + (int)dataType + "' " + " order by Timestamp limit 1";
+            List<LogLearnData> list = AppManager.I.DB.FindDataByQuery<LogLearnData>(query);
+            if (list.Count > 0 && list[0] != null)
+            {
+                return allInfos.Find(x => x.data.GetId() == list[0].ElementId);
+            }
+            return null;
+        }
+
+        #endregion
+
 
         #region Score getters
 

@@ -131,7 +131,7 @@ namespace EA4S.ReservedArea
 
             // populate with fake data
             Debug.Log("Cheat Mode enabled: unlocking all game data");
-            var maxJourneyPos = AppManager.I.Teacher.journeyHelper.GetFinalJourneyPosition();
+            var maxJourneyPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
             AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true);
             yield return StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos));
             Rewards.RewardSystemManager.UnlockAllRewards();
@@ -160,7 +160,7 @@ namespace EA4S.ReservedArea
             }
 
             // Add scores for all play sessions
-            var allPlaySessionInfos = AppManager.I.Teacher.scoreHelper.GetAllPlaySessionInfo();
+            var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
             for (int i = 0; i < allPlaySessionInfos.Count; i++) {
                 if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage) {
                     logAi.LogPlaySessionScore("XXX", allPlaySessionInfos[i].data.GetJourneyPosition(), Random.Range(1, 4), 12f);
@@ -170,7 +170,7 @@ namespace EA4S.ReservedArea
             }
 
             // Add scores for all minigames
-            var allMiniGameInfo = AppManager.I.Teacher.scoreHelper.GetAllMiniGameInfo();
+            var allMiniGameInfo = AppManager.I.ScoreHelper.GetAllMiniGameInfo();
             for (int i = 0; i < allMiniGameInfo.Count; i++) {
                 logAi.LogMiniGameScore("XXX", JourneyPosition.InitialJourneyPosition, allMiniGameInfo[i].data.Code, Random.Range(1, 4), 12f);
                 Debug.Log("Add minigame score " + i);
@@ -179,7 +179,7 @@ namespace EA4S.ReservedArea
 
             // Add scores for some learning data (words/letters/phrases)
             /*var maxPlaySession = AppManager.I.Player.MaxJourneyPosition.ToString();
-            var allWordInfo = AppManager.I.Teacher.scoreHelper.GetAllWordInfo();
+            var allWordInfo = AppManager.I.Teacher.ScoreHelper.GetAllWordInfo();
             for (int i = 0; i < allWordInfo.Count; i++)
             {
                 if (Random.value < 0.3f)
@@ -194,7 +194,7 @@ namespace EA4S.ReservedArea
                     logAi.LogLearn(fakeAppSession, maxPlaySession, MiniGameCode.Assessment_LetterForm, resultsList);
                 }
             }
-            var allLetterInfo = AppManager.I.Teacher.scoreHelper.GetAllLetterInfo();
+            var allLetterInfo = AppManager.I.Teacher.ScoreHelper.GetAllLetterInfo();
             for (int i = 0; i < allLetterInfo.Count; i++)
             {
                 if (Random.value < 0.3f)

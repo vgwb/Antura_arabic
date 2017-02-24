@@ -422,7 +422,7 @@ namespace EA4S.Core
             LogManager.I.StartPlaySession();
 
             // From the map
-            if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
+            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
                 // Direct to the current minigame (which is an assessment)
                 InternalLaunchGameScene(NavData.CurrentMiniGameData);
             } else {
@@ -443,7 +443,7 @@ namespace EA4S.Core
         private void GotoNextGameOfPlaySession()
         {
             // From one game to the next
-            if (AppManager.I.Teacher.journeyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
+            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
                 // Assessment ended, go to the rewards scene
                 GoToScene(AppScene.Rewards);
             } else {
