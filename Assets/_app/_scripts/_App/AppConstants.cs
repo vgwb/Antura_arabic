@@ -8,7 +8,7 @@
     public static class AppConstants
     {
         public const string AppVersion = "20170223";
-        public const string DbSchemeVersion = "1.19";
+        public const string DbSchemeVersion = "1.20";
         public const bool DebugPanelEnabled = true;
         public static bool UseUnityAnalytics = false;
         public static bool VerboseLogging = false;

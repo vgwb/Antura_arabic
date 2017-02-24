@@ -274,9 +274,9 @@ namespace EA4S.Audio
             return PlayDialogue(LocalizationManager.GetLocalizationData(localizationData_id), callback);
         }
 
-        public IAudioSource PlayDialogue(Database.LocalizationDataId id, System.Action callback)
+        public IAudioSource PlayDialogue(Database.LocalizationDataId id, System.Action callback, bool clearPreviousCallback = false)
         {
-            return PlayDialogue(LocalizationManager.GetLocalizationData(id), callback);
+            return PlayDialogue(LocalizationManager.GetLocalizationData(id), callback, clearPreviousCallback);
         }
 
         public IAudioSource PlayDialogue(Database.LocalizationData data, System.Action callback, bool clearPreviousCallback = false)
