@@ -52,9 +52,9 @@ namespace EA4S.Book
 
             journeyGraph.Show(allPlaySessionInfos, unlockedPlaySessionInfos);
 
-            Debug.Log("LAST LETTER: " + AppManager.I.ScoreHelper.GetLastLearnedLetterInfo().data);
-            Debug.Log("Total play times: " + GetMiniGamesTotalPlayTime().ToDebugString());
-            Debug.Log("Number of plays: " + GetMiniGamesNumberOfPlays().ToDebugString());
+            //Debug.Log("LAST LETTER: " + AppManager.I.ScoreHelper.GetLastLearnedLetterInfo().data);
+            //Debug.Log("Total play times: " + GetMiniGamesTotalPlayTime().ToDebugString());
+            //Debug.Log("Number of plays: " + GetMiniGamesNumberOfPlays().ToDebugString());
         }
 
         #region Time Queries
