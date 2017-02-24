@@ -40,6 +40,8 @@ namespace EA4S.Book
 
             // Number of play sessions
             var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
+            //Debug.Log(allPlaySessionInfos.ToDebugString());
+
             var unlockedPlaySessionInfos = allPlaySessionInfos.FindAll(x => x.unlocked);
             //str += "Play sessions unlocked: " + unlockedPlaySessionInfos.Count + "\n";
             InfoTable.AddRow("لاعب", unlockedPlaySessionInfos.Count.ToString(), "Play sessions unlocked");
