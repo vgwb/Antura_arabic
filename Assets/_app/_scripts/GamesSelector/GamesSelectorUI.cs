@@ -49,7 +49,7 @@ namespace EA4S.GamesSelector
 
         void PlayTutorialAudio()
         {
-            AudioManager.I.PlayDialogue(LocalizationDataId.SelectGame_Tuto_2);
+            AudioManager.I.PlayDialogue(LocalizationDataId.SelectGame_Tuto_2, null, true);
             //KeeperManager.I.PlayDialog(LocalizationDataId.SelectGame_Tuto_2, false, true);
         }
 
