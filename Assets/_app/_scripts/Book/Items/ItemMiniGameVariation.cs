@@ -15,15 +15,18 @@ namespace EA4S.Book
         MiniGameInfo miniGameInfo;
 
         //public Image Icon;
+        Image BackgroundImage;
         public Image BadgeIcon;
         public Image LockIcon;
 
-        GamesPanel panelManager;
+        bool isSelected;
+        ItemMainMiniGame myManager;
 
-        public void Init(GamesPanel _manager, MiniGameInfo _MiniGameInfo)
+        public void Init(ItemMainMiniGame _manager, MiniGameInfo _MiniGameInfo)
         {
             miniGameInfo = _MiniGameInfo;
-            panelManager = _manager;
+            myManager = _manager;
+            BackgroundImage = GetComponent<Image>();
 
             if (miniGameInfo.unlocked || AppManager.I.Player.IsDemoUser) {
                 LockIcon.enabled = false;
@@ -44,7 +47,7 @@ namespace EA4S.Book
 
             if (score < 0.1f) {
                 // disabled
-                GetComponent<Button>().interactable = false;
+                // GetComponent<Button>().interactable = false;
                 //GetComponent<Image>().color = Color.grey;
             }
 
@@ -57,8 +60,28 @@ namespace EA4S.Book
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            panelManager.DetailMiniGame(miniGameInfo);
+            //Select(miniGameInfo.data.GetId());
+            myManager.DetailMiniGame(miniGameInfo);
         }
 
+        public void Select(MiniGameInfo gameInfo = null)
+        {
+            if (gameInfo != null) {
+                isSelected = (gameInfo.data.GetId() == miniGameInfo.data.GetId());
+            } else {
+                isSelected = false;
+            }
+            hightlight(isSelected);
+
+        }
+
+        void hightlight(bool _status)
+        {
+            if (_status) {
+                BackgroundImage.color = Color.yellow;
+            } else {
+                BackgroundImage.color = Color.white;
+            }
+        }
     }
 }
