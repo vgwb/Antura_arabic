@@ -650,11 +650,6 @@
       "ID" : "color6",
       "Color1Name" : "",
       "Color1RGB" : "FFBA00FF"
-    },
-    {
-      "ID" : "color7",
-      "Color1Name" : "",
-      "Color1RGB" : "85C300FF"
     }
   ],
   "PlaySessionRewardsUnlock" : [
