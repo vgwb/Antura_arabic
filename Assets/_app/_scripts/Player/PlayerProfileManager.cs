@@ -55,14 +55,42 @@ namespace EA4S.Profile
         /// <summary>
         /// Reloads the game settings (AppSettings) from PlayerPrefs.
         /// </summary>
-        public void ReloadGameSettings()
+        public void ReloadGameSettings(bool alsoLoadCurrentPlayer = true)
         {
             AppManager.I.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
             AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
 
-            if (AppManager.I.GameSettings.LastActivePlayerUUID != string.Empty) {
-                string playerUUID = AppManager.I.GameSettings.LastActivePlayerUUID;
-                SetPlayerAsCurrentByUUID(playerUUID);
+            if (alsoLoadCurrentPlayer)
+            {
+                // No last active? Get the first one.
+                if (AppManager.I.GameSettings.LastActivePlayerUUID == string.Empty && AppManager.I.GameSettings.SavedPlayers.Count > 0)
+                {
+                    //UnityEngine.Debug.Log("No last! Get the first.");
+                    AppManager.I.GameSettings.LastActivePlayerUUID = AppManager.I.GameSettings.SavedPlayers[0].Uuid;
+                }
+
+                // Load the last active, or reset everything if no data can be found.
+                if (AppManager.I.GameSettings.LastActivePlayerUUID != string.Empty)
+                {
+                    string playerUUID = AppManager.I.GameSettings.LastActivePlayerUUID;
+
+                    // Check whether the SQL DB is in-sync first
+                    PlayerProfileData profileFromDB = AppManager.I.DB.LoadDatabaseForPlayer(playerUUID);
+
+                    // If null, the player does not actually exist.
+                    // The DB got desyinced. Do not load it!
+                    if (profileFromDB != null)
+                    {
+                        //UnityEngine.Debug.Log("DB in sync! OK!");
+                        SetPlayerAsCurrentByUUID(playerUUID);
+                    }
+                    else
+                    {
+                        //UnityEngine.Debug.Log("DB OUT OF SYNC. RESET");
+                        ResetEverything();
+                        ReloadGameSettings();
+                    }
+                }
             }
         }
 
@@ -139,6 +167,14 @@ namespace EA4S.Profile
         public PlayerProfile GetPlayerProfileByUUID(string playerUUID)
         {
             PlayerProfileData profileFromDB = AppManager.I.DB.LoadDatabaseForPlayer(playerUUID);
+
+            // If null, the player does not exist.
+            // The DB got desyinced. Remove this player!
+            if (profileFromDB == null)
+            {
+                UnityEngine.Debug.LogError("ERROR: no profile data for player UUID " + playerUUID);
+            }
+
             return new PlayerProfile().FromData(profileFromDB);
         }
 
@@ -200,18 +236,21 @@ namespace EA4S.Profile
         public void ResetEverything()
         {
             // Reset all the Databases
-            foreach (PlayerIconData pp in AppManager.I.GameSettings.SavedPlayers) {
-                UnityEngine.Debug.Log(pp);
-                AppManager.I.DB.LoadDatabaseForPlayer(pp.Uuid);
-                AppManager.I.DB.DropProfile();
+            if (AppManager.I.GameSettings.SavedPlayers != null)
+            {
+                foreach (PlayerIconData pp in AppManager.I.GameSettings.SavedPlayers)
+                {
+                    //UnityEngine.Debug.Log(pp);
+                    AppManager.I.DB.LoadDatabaseForPlayer(pp.Uuid);
+                    AppManager.I.DB.DropProfile();
+                }
             }
+            AppManager.I.DB.UnloadCurrentProfile();
 
-            // Reset all profiles (from SRDebugOptions)
+            // Reset all settings too
             UnityEngine.PlayerPrefs.DeleteAll();
-            AppManager.I.PlayerProfileManager.ReloadGameSettings();
-            AppManager.I.GameSettings.AvailablePlayers = new System.Collections.Generic.List<string>();
-            AppManager.I.PlayerProfileManager.SaveGameSettings();
-
+            ReloadGameSettings(alsoLoadCurrentPlayer:false);
+            SaveGameSettings();
         }
 
         #endregion
