@@ -569,17 +569,17 @@
     {
       "ID" : "color1",
       "Color1Name" : "",
-      "Color1RGB" : "FFFFFFFF"
+      "Color1RGB" : "d98a36FF"
     },
     {
       "ID" : "color2",
       "Color1Name" : "",
-      "Color1RGB" : "000000FF"
+      "Color1RGB" : "262626FF"
     },
     {
       "ID" : "color3",
       "Color1Name" : "",
-      "Color1RGB" : "FF00BAFF"
+      "Color1RGB" : "960078FF"
     }
   ],
   "RewardsTile" : [
