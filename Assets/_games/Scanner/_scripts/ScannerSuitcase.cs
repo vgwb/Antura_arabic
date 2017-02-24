@@ -57,7 +57,7 @@ namespace EA4S.Minigames.Scanner
             shadow.transform.position = shadowStartPos;
             transform.position = new Vector3(startX, 20, startZ);
 
-            yield return new WaitForSeconds(UnityEngine.Random.value / 2);
+            //yield return new WaitForSeconds(UnityEngine.Random.value / 5);
             thisRigidbody.isKinematic = false;
             thisRigidbody.useGravity = true;
             thisRigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
@@ -177,7 +177,11 @@ namespace EA4S.Minigames.Scanner
             if (!groundHit && other.gameObject.tag == "Obstacle")
             {
                 groundHit = true;
-                ScannerConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.CrateLandOnground);
+                //ScannerConfiguration.Instance.Context.GetAudioManager().StopSounds();
+                if (gameObject.name.Contains("1"))
+                {
+                    ScannerConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.CrateLandOnground);
+                }
             }
         }
 

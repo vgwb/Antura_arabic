@@ -1,4 +1,5 @@
-﻿using ModularFramework.Core;
+﻿using UnityEngine;
+using ModularFramework.Core;
 using ModularFramework.Modules;
 using EA4S.Audio;
 using EA4S.CameraControl;
@@ -73,6 +74,8 @@ namespace EA4S
         {
             base.GameSetup();
 
+            // Debugger setup
+            Debug.logger.logEnabled = AppConstants.VerboseLogging;
             if (AppConstants.DebugPanelEnabled) {
                 SRDebug.Init();
             }
