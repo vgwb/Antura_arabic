@@ -58,7 +58,7 @@ namespace EA4S.AnturaSpace
             }
         }
 
-        bool IsSleeping
+        public bool IsSleeping
         {
             get
             {
