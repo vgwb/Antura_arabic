@@ -123,7 +123,6 @@ namespace EA4S.Teacher
                     Debug.LogError("LogAI: Logging a result with no correct nor wrong hits. Skipped.");
                     continue;
                 }
-                Debug.Log("Logging result for element ID " + result.elementId);
 
                 float score = 0f;
                 float successRatio = result.nCorrect * 1f / (result.nCorrect + result.nWrong);
