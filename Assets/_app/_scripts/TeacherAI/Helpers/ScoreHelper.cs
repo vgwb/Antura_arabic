@@ -52,41 +52,150 @@ namespace EA4S.Teacher
 
         public List<MiniGameInfo> GetAllMiniGameInfo()
         {
-            return GetAllInfo<MiniGameData,MiniGameInfo>(DbTables.MiniGames);
+            return GetAllMiniGameDataInfo<MiniGameData, MiniGameInfo>(DbTables.MiniGames);
         }
 
         public List<PlaySessionInfo> GetAllPlaySessionInfo()
         {
-            return GetAllInfo<PlaySessionData, PlaySessionInfo>(DbTables.PlaySessions);
+            return GetAllJourneyDataInfo<PlaySessionData, PlaySessionInfo>(DbTables.PlaySessions, JourneyDataType.PlaySession);
         }
 
         public List<LearningBlockInfo> GetAllLearningBlockInfo()
         {
-            return GetAllInfo<LearningBlockData, LearningBlockInfo>(DbTables.LearningBlocks);
+            return GetAllJourneyDataInfo<LearningBlockData, LearningBlockInfo>(DbTables.LearningBlocks, JourneyDataType.LearningBlock);
         }
 
         public List<LetterInfo> GetAllLetterInfo()
         {
-            return GetAllInfo<LetterData, LetterInfo>(DbTables.Letters);
+            return GetAllVocabularyDataInfo<LetterData, LetterInfo>(DbTables.Letters, VocabularyDataType.Letter);
         }
 
         public List<WordInfo> GetAllWordInfo()
         {
-            return GetAllInfo<WordData, WordInfo>(DbTables.Words);
+            return GetAllVocabularyDataInfo<WordData, WordInfo>(DbTables.Words, VocabularyDataType.Word);
         }
 
         public List<PhraseInfo> GetAllPhraseInfo()
         {
-            return GetAllInfo<PhraseData, PhraseInfo>(DbTables.Phrases);
+            return GetAllVocabularyDataInfo<PhraseData, PhraseInfo>(DbTables.Phrases, VocabularyDataType.Phrase);
         }
 
-        public List<I> GetAllInfo<D,I>(DbTables table) where I : DataInfo<D>, new() where D : IData
+        /*public List<I> GetAllInfo<D,I>(DbTables table) where I : DataInfo<D>, new() where D : IData
         {
             // Retrieve all data
             List<D> data_list = dbManager.GetAllData<D>(table);
             return GetAllInfo<D,I>(data_list, table);
+        }*/
+
+        public List<I> GetAllMiniGameDataInfo<D, I>(DbTables table) where I : DataInfo<D>, new()
+         where D : IData
+        {
+            List<D> data_list = dbManager.GetAllData<D>(table);
+            var info_list = new List<I>();
+
+            // Build info instances for the given data
+            foreach (var data in data_list)
+            {
+                var info = new I();
+                info.data = data;
+                info_list.Add(info);
+            }
+
+            // Find available scores
+            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name);
+            List<MinigameScoreData> scoredata_list = dbManager.FindDataByQuery<MinigameScoreData>(query);
+            for (int i = 0; i < info_list.Count; i++)
+            {
+                var info = info_list[i];
+                var scoredata = scoredata_list.Find(x => x.GetId() == info.data.GetId());
+                if (scoredata != null)
+                {
+                    info.score = scoredata.Score;
+                    info.unlocked = true;
+                }
+                else
+                {
+                    info.score = 0; // 0 until unlocked
+                    info.unlocked = false;
+                }
+            }
+
+            return info_list;
         }
 
+        public List<I> GetAllJourneyDataInfo<D, I>(DbTables table, JourneyDataType dataType) where I : DataInfo<D>, new()
+            where D : IData
+        {
+            List<D> data_list = dbManager.GetAllData<D>(table);
+            var info_list = new List<I>();
+
+            // Build info instances for the given data
+            foreach (var data in data_list)
+            {
+                var info = new I();
+                info.data = data;
+                info_list.Add(info);
+            }
+
+            // Find available scores
+            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '" + (int)dataType + "' ORDER BY ElementId ");
+            List<JourneyScoreData> scoredata_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
+            for (int i = 0; i < info_list.Count; i++)
+            {
+                var info = info_list[i];
+                var scoredata = scoredata_list.Find(x => x.ElementId == info.data.GetId());
+                if (scoredata != null)
+                {
+                    info.score = scoredata.Score;
+                    info.unlocked = true;
+                }
+                else
+                {
+                    info.score = 0; // 0 until unlocked
+                    info.unlocked = false;
+                }
+            }
+
+            return info_list;
+        }
+
+        public List<I> GetAllVocabularyDataInfo<D, I>(DbTables table, VocabularyDataType dataType) where I : DataInfo<D>, new()
+            where D : IData
+        {
+            List<D> data_list = dbManager.GetAllData<D>(table);
+            var info_list = new List<I>();
+
+            // Build info instances for the given data
+            foreach (var data in data_list)
+            {
+                var info = new I();
+                info.data = data;
+                info_list.Add(info);
+            }
+
+            // Find available scores
+            string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" + (int)dataType + "' ORDER BY ElementId ");
+            List<JourneyScoreData> scoredata_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
+            for (int i = 0; i < info_list.Count; i++)
+            {
+                var info = info_list[i];
+                var scoredata = scoredata_list.Find(x => x.ElementId == info.data.GetId());
+                if (scoredata != null)
+                {
+                    info.score = scoredata.Score;
+                    info.unlocked = true;
+                }
+                else
+                {
+                    info.score = 0; // 0 until unlocked
+                    info.unlocked = false;
+                }
+            }
+
+            return info_list;
+        }
+
+        /*
         public List<I> GetAllInfo<D, I>(List<D> data_list, DbTables table) where I : DataInfo<D>, new() where D : IData
         {
             var info_list = new List<I>();
@@ -100,7 +209,16 @@ namespace EA4S.Teacher
             }
 
             // Find available scores
-            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '" + table.ToString() + "' ORDER BY ElementId ");
+            string query = "";
+            if (typeof(D) is IVocabularyData)
+            {
+
+            }
+            else
+            {
+                query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '" + JourneyDataType.PlaySession + "' ORDER BY ElementId ");
+            }
+
             List<JourneyScoreData> scoredata_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
             for (int i = 0; i < info_list.Count; i++)
             {
@@ -118,7 +236,7 @@ namespace EA4S.Teacher
             }
 
             return info_list;
-        }
+        }*/
 
         #endregion
 
