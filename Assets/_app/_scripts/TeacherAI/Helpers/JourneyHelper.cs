@@ -8,12 +8,10 @@ namespace EA4S.Teacher
     public class JourneyHelper
     {
         private DatabaseManager dbManager;
-        private TeacherAI teacher;
 
-        public JourneyHelper(DatabaseManager _dbManager, TeacherAI _teacher)
+        public JourneyHelper(DatabaseManager _dbManager)
         {
             this.dbManager = _dbManager;
-            this.teacher = _teacher;
         }
 
         #region Utilities
@@ -26,7 +24,7 @@ namespace EA4S.Teacher
         public PlaySessionData GetCurrentPlaySessionData()
         {
             var currentJourneyPosition = AppManager.I.Player.CurrentJourneyPosition;
-            var currentPlaySessionId = AppManager.I.Teacher.journeyHelper.JourneyPositionToPlaySessionId(currentJourneyPosition);
+            var currentPlaySessionId = AppManager.I.JourneyHelper.JourneyPositionToPlaySessionId(currentJourneyPosition);
             var playSessionData = AppManager.I.DB.GetPlaySessionDataById(currentPlaySessionId);
             return playSessionData;
         }
@@ -86,7 +84,7 @@ namespace EA4S.Teacher
 
         public JourneyPosition GetMinimumJourneyPositionForMiniGame(MiniGameCode minigameCode)
         {
-            var finalPos = AppManager.I.Teacher.journeyHelper.GetFinalJourneyPosition();
+            var finalPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
             int NBasePlaySession = 2;
 
             for (int s = 1; s <= finalPos.Stage; s++)
@@ -129,7 +127,7 @@ namespace EA4S.Teacher
             }
 
             // Find all previous scores
-            List<JourneyScoreData> scoreData_list = teacher.scoreHelper.GetCurrentScoreForLearningBlocksOfStage(targetStage);
+            List<JourneyScoreData> scoreData_list = AppManager.I.ScoreHelper.GetCurrentScoreForLearningBlocksOfStage(targetStage);
             for (int i = 0; i < learningBlockInfo_list.Count; i++) {
                 var info = learningBlockInfo_list[i];
                 var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.LearningBlock && x.ElementId == info.data.Id);
@@ -159,7 +157,7 @@ namespace EA4S.Teacher
             }
 
             // Find all previous scores
-            List<JourneyScoreData> scoreData_list = teacher.scoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(targetStage, targetLearningBlock);
+            List<JourneyScoreData> scoreData_list = AppManager.I.ScoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(targetStage, targetLearningBlock);
             for (int i = 0; i < playSessionInfo_list.Count; i++) {
                 var info = playSessionInfo_list[i];
                 var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.PlaySession && x.ElementId == info.data.Id);

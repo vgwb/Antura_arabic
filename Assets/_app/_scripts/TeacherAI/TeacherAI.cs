@@ -31,19 +31,19 @@ namespace EA4S.Teacher
         // Helpers
         // refactor: these helpers should be separated from the TeacherAI.
         private VocabularyHelper VocabularyHelper;
-        public JourneyHelper journeyHelper;
-        public ScoreHelper scoreHelper;
+        private JourneyHelper JourneyHelper;
+        private ScoreHelper ScoreHelper;
         
         #region Setup
 
-        public TeacherAI(DatabaseManager _dbManager, VocabularyHelper _vocabularyHelper)
+        public TeacherAI(DatabaseManager _dbManager, VocabularyHelper _vocabularyHelper, JourneyHelper _journeyHelper, ScoreHelper _scoreHelper)
         {
             I = this;
             dbManager = _dbManager;
 
             VocabularyHelper = _vocabularyHelper;
-            journeyHelper = new JourneyHelper(_dbManager, this);
-            scoreHelper = new ScoreHelper(_dbManager);
+            JourneyHelper = _journeyHelper;
+            ScoreHelper = _scoreHelper;
 
             logAI = new LogAI(_dbManager);
             minigameSelectionAI = new MiniGameSelectionAI(dbManager);
@@ -61,7 +61,7 @@ namespace EA4S.Teacher
 
         private void ResetPlaySession()
         {
-            var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
+            var currentPlaySessionId = JourneyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
             minigameSelectionAI.InitialiseNewPlaySession();
             VocabularyAi.LoadCurrentPlaySessionData(currentPlaySessionId);
         }
@@ -78,7 +78,7 @@ namespace EA4S.Teacher
         public List<MiniGameData> SelectMiniGames()
         {
             // Check the number of minigames for the current play session
-            var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
+            var currentPlaySessionId = JourneyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
             var playSessionData = dbManager.GetPlaySessionDataById(currentPlaySessionId);
             int nMinigamesToSelect = playSessionData.NumberOfMinigames;
             if (nMinigamesToSelect == 0) nMinigamesToSelect = 1; // Force at least one minigame (needed for assessment, since we always need one)
@@ -106,7 +106,7 @@ namespace EA4S.Teacher
 
         private List<MiniGameData> SelectMiniGamesForCurrentPlaySession(int nMinigamesToSelect)
         {
-            var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
+            var currentPlaySessionId = JourneyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
             return SelectMiniGamesForPlaySession(currentPlaySessionId, nMinigamesToSelect);
         }
 
@@ -205,8 +205,8 @@ namespace EA4S.Teacher
         // refactor: Not used. 
         public float GetLearningBlockScore(LearningBlockData lb)
         {
-            var allScores = scoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(lb.Stage, lb.LearningBlock);
-            return scoreHelper.GetAverageScore(allScores);
+            var allScores = ScoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(lb.Stage, lb.LearningBlock);
+            return ScoreHelper.GetAverageScore(allScores);
         }
 
         #endregion

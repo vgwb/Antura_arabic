@@ -311,7 +311,7 @@ namespace EA4S.Rewards
             AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal));
             AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture));
             var actualCurrentJourneyPosition = AppManager.I.Player.CurrentJourneyPosition;
-            var allPlaySessionInfos = AppManager.I.Teacher.scoreHelper.GetAllPlaySessionInfo();
+            var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
             // Test
             
             for (int i = 0; i < allPlaySessionInfos.Count; i++) {
@@ -319,7 +319,7 @@ namespace EA4S.Rewards
                 JourneyPosition journeyPosition = allPlaySessionInfos[i].data.GetJourneyPosition();
                 if (RewardAlreadyUnlocked(journeyPosition))
                     continue;
-                AppManager.I.Player.SetCurrentJourneyPosition(AppManager.I.Teacher.journeyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id));
+                AppManager.I.Player.SetCurrentJourneyPosition(AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id));
                 foreach (RewardPackUnlockData pack in RewardSystemManager.GetNextRewardPack()) {
                     AppManager.I.Player.AddRewardUnlocked(pack);
                     switch (pack.Type) {

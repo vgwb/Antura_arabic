@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using EA4S.Database;
-using EA4S.UI;
 
 namespace EA4S.Book
 {
@@ -43,7 +42,7 @@ namespace EA4S.Book
             //// @note: we get the minigame saved score, which should be the maximum score achieved
             //// @note: I'm leaving the average-based method commented if we want to return to that logic
             var score = miniGameInfo.score;
-            //var score = GenericHelper.GetAverage(TeacherAI.I.scoreHelper.GetLatestScoresForMiniGame(miniGameInfo.data.Code, -1));
+            //var score = GenericHelper.GetAverage(TeacherAI.I.ScoreHelper.GetLatestScoresForMiniGame(miniGameInfo.data.Code, -1));
 
             if (score < 0.1f) {
                 // disabled

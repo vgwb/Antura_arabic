@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using EA4S.Database;
 using System.Collections.Generic;
@@ -36,27 +37,46 @@ namespace EA4S.Book
             //if (AppManager.I.Player.Sight != 0f) { str += "Sight " + AppManager.I.Player.Sight + "\n"; }
 
             // Number of play sessions
-            var allPlaySessionInfos = AppManager.I.Teacher.scoreHelper.GetAllPlaySessionInfo();
+            var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
             var unlockedPlaySessionInfos = allPlaySessionInfos.FindAll(x => x.unlocked);
             //str += "Play sessions unlocked: " + unlockedPlaySessionInfos.Count + "\n";
             InfoTable.AddRow("لاعب", unlockedPlaySessionInfos.Count.ToString(), "Play sessions unlocked");
 
             // Total elapsed time
-            var db = AppManager.I.DB;
-            var tableName = db.GetTableName<LogInfoData>();
-            string query = "select * from \"" + tableName + "\"";
-            List<LogInfoData> list = db.FindLogInfoDataByQuery(query);
+            var totalTimespan = GetTotalElapsedTime();
+            var timeElapsed = totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m " + totalTimespan.Seconds + "s";
+            InfoTable.AddRow("لاعب", timeElapsed, "Total time elapsed");
+
+            //AppManager.I.DB.GetLocalizationDataById("Game_Title").Arabic;
+            //output.text += "\n" + AppManager.I.DB.GetLocalizationDataById("Game_Title2").Arabic;
+
+            journeyGraph.Show(allPlaySessionInfos, unlockedPlaySessionInfos);
+
+            Debug.Log("LAST LETTER: " + AppManager.I.ScoreHelper.GetLastLearnedLetterInfo().data);
+            Debug.Log("Total play times: " + GetMiniGamesTotalPlayTime().ToDebugString());
+            Debug.Log("Number of plays: " + GetMiniGamesNumberOfPlays().ToDebugString());
+        }
+
+        #region Time Queries
+
+        TimeSpan GetTotalElapsedTime()
+        {
+            string query = "select * from \"" + typeof(LogInfoData).Name + "\"";
+            var list = AppManager.I.DB.FindDataByQuery<LogInfoData>(query);
 
             System.TimeSpan totalTimespan = new System.TimeSpan(0);
             bool foundStart = false;
             int startTimestamp = 0;
-            int endTimestamp = 0;
-            foreach (var infoData in list) {
-                if (!foundStart && infoData.Event == InfoEvent.AppStarted) {
+            foreach (var infoData in list)
+            {
+                if (!foundStart && infoData.Event == InfoEvent.AppStarted)
+                {
                     startTimestamp = infoData.Timestamp;
                     foundStart = true;
-                } else if (foundStart && infoData.Event == InfoEvent.AppClosed) {
-                    endTimestamp = infoData.Timestamp;
+                }
+                else if (foundStart && infoData.Event == InfoEvent.AppClosed)
+                {
+                    var endTimestamp = infoData.Timestamp;
                     foundStart = false;
 
                     var deltaTimespan = GenericHelper.FromTimestamp(endTimestamp) - GenericHelper.FromTimestamp(startTimestamp);
@@ -64,17 +84,40 @@ namespace EA4S.Book
                     //Debug.Log("TIME FOUND:"  + deltaTimespan.Days + " days " + deltaTimespan.Hours + " hours " + deltaTimespan.Minutes + " minutes " + deltaTimespan.Seconds + " seconds");
                 }
             }
-            var timeElapsed = totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m " + totalTimespan.Seconds + "s";
-
-            InfoTable.AddRow("لاعب", timeElapsed, "Total time elapsed");
-
-
-            //AppManager.I.DB.GetLocalizationDataById("Game_Title").Arabic;
-            //output.text += "\n" + AppManager.I.DB.GetLocalizationDataById("Game_Title2").Arabic;
-
-            journeyGraph.Show(allPlaySessionInfos, unlockedPlaySessionInfos);
-
+            return totalTimespan;
         }
+
+        Dictionary<MiniGameCode, float> GetMiniGamesTotalPlayTime()
+        {
+            Dictionary<MiniGameCode, float> dict = new Dictionary<MiniGameCode, float>();
+            string query = "select * from " + typeof(MinigameScoreData).Name;
+            var list = AppManager.I.DB.FindDataByQuery<MinigameScoreData>(query);
+
+            foreach (var data in list)
+            {
+                dict[data.MiniGameCode] = data.TotalPlayTime;
+            }
+            return dict;
+        }
+
+        Dictionary<MiniGameCode, int> GetMiniGamesNumberOfPlays()
+        {
+            Dictionary<MiniGameCode, int> dict = new Dictionary<MiniGameCode, int>();
+            string query = "select * from " + typeof(LogMinigameScoreData).Name;
+            var list = AppManager.I.DB.FindDataByQuery<LogMinigameScoreData>(query);
+
+            foreach (var data in list)
+            {
+                if (!dict.ContainsKey(data.MiniGameCode))
+                {
+                    dict[data.MiniGameCode] = 0;
+                }
+                dict[data.MiniGameCode]++;
+            }
+            return dict;
+        }
+
+        #endregion
 
     }
 }

@@ -138,7 +138,7 @@ namespace EA4S.Book
             }
             emptyListContainers();
 
-            List<LetterInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllLetterInfo();
+            List<LetterInfo> info_list = AppManager.I.ScoreHelper.GetAllLetterInfo();
             foreach (var info_item in info_list) {
                 if (list.Contains(info_item.data)) {
                     btnGO = Instantiate(LetterItemPrefab);
@@ -215,7 +215,7 @@ namespace EA4S.Book
             }
             emptyListContainers();
 
-            List<WordInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllWordInfo();
+            List<WordInfo> info_list = AppManager.I.ScoreHelper.GetAllWordInfo();
             foreach (var info_item in info_list) {
                 if (list.Contains(info_item.data)) {
                     btnGO = Instantiate(WordItemPrefab);
@@ -251,7 +251,7 @@ namespace EA4S.Book
             ListWidePanel.SetActive(true);
             emptyListContainers();
 
-            List<PhraseInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllPhraseInfo();
+            List<PhraseInfo> info_list = AppManager.I.ScoreHelper.GetAllPhraseInfo();
             foreach (var info_item in info_list) {
                 btnGO = Instantiate(PhraseItemPrefab);
                 btnGO.transform.SetParent(ElementsContainerWide.transform, false);

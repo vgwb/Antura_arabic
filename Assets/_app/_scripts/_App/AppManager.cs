@@ -10,6 +10,7 @@ using EA4S.Rewards;
 using EA4S.Teacher;
 using EA4S.MinigamesAPI;
 using EA4S.UI;
+using UnityEngine;
 using PlayerProfile = EA4S.Profile.PlayerProfile;
 
 namespace EA4S
@@ -29,6 +30,8 @@ namespace EA4S
 
         public TeacherAI Teacher;
         public VocabularyHelper VocabularyHelper;
+        public ScoreHelper ScoreHelper;
+        public JourneyHelper JourneyHelper;
         public DatabaseManager DB;
         public MiniGameLauncher GameLauncher;
         public LogManager LogManager;
@@ -73,6 +76,7 @@ namespace EA4S
             if (AppConstants.DebugPanelEnabled) {
                 SRDebug.Init();
             }
+            Debug.logger.logEnabled = AppConstants.VerboseLogging;
 
             // GameplayModule
             if (GetComponentInChildren<ModuleInstaller<IGameplayModule>>()) {
@@ -84,7 +88,9 @@ namespace EA4S
             // refactor: standardize initialisation of managers
             LogManager = new LogManager();
             VocabularyHelper = new VocabularyHelper(DB);
-            Teacher = new TeacherAI(DB, VocabularyHelper);
+            JourneyHelper = new JourneyHelper(DB);
+            ScoreHelper = new ScoreHelper(DB);
+            Teacher = new TeacherAI(DB, VocabularyHelper, JourneyHelper, ScoreHelper);
             GameLauncher = new MiniGameLauncher(Teacher);
 
             NavigationManager = gameObject.AddComponent<NavigationManager>();
