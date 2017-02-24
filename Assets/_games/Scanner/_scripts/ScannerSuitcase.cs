@@ -33,8 +33,7 @@ namespace EA4S.Minigames.Scanner
 
 		bool overPlayermarker = false;
 
-
-		public event Action <GameObject, ScannerLivingLetter> onCorrectDrop;
+        public event Action <GameObject, ScannerLivingLetter> onCorrectDrop;
 		public event Action <GameObject, ScannerLivingLetter> onWrongDrop;
 
 		IEnumerator Coroutine_ScaleOverTime(float time)
@@ -51,13 +50,16 @@ namespace EA4S.Minigames.Scanner
 			} while (currentTime <= time);
 		}
 
+       
         IEnumerator dropSuitcase()
         {
             shadow.transform.localScale = Vector3.zero;
             shadow.transform.position = shadowStartPos;
             transform.position = new Vector3(startX, 20, startZ);
 
-            //yield return new WaitForSeconds(UnityEngine.Random.value / 5);
+            float r = (UnityEngine.Random.value / 2f) + (UnityEngine.Random.value / 2f);
+
+            yield return new WaitForSeconds(r);
             thisRigidbody.isKinematic = false;
             thisRigidbody.useGravity = true;
             thisRigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
@@ -173,13 +175,13 @@ namespace EA4S.Minigames.Scanner
 
         void OnCollisionEnter(Collision other )
         {
-
-            if (!groundHit && other.gameObject.tag == "Obstacle")
+            if (game.roundsManager.playSuitcaseSound)
             {
-                groundHit = true;
-                //ScannerConfiguration.Instance.Context.GetAudioManager().StopSounds();
-                if (gameObject.name.Contains("1"))
+                if (!groundHit && other.gameObject.tag == "Obstacle")
                 {
+                    game.roundsManager.playSuitcaseSound = false;
+                    groundHit = true;
+                    //ScannerConfiguration.Instance.Context.GetAudioManager().StopSounds();
                     ScannerConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.CrateLandOnground);
                 }
             }
