@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Antura_decalmap02_color2
+  m_Name: Antura_decalmap02_color3
   m_Shader: {fileID: 4800000, guid: 097570be3382d0d479a0d2df9949bb77, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -145,19 +145,19 @@ Material:
       second: {r: 0.85294116, g: 0.2634083, b: 0.2634083, a: 1}
     - first:
         name: _Emission
-      second: {r: 0.30147058, g: 0.12902696, b: 0.035467125, a: 0}
+      second: {r: 0.08823532, g: 0.037764, b: 0.010380625, a: 0}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _OverColorB
-      second: {r: 0.41911763, g: 0.51926976, b: 1, a: 1}
+      second: {r: 0.46064016, g: 0.52205884, b: 0.4915613, a: 1}
     - first:
         name: _OverColorG
-      second: {r: 0.056228384, g: 0.7353895, b: 0.7647059, a: 1}
+      second: {r: 0.31179717, g: 0.4157477, b: 0.53676474, a: 1}
     - first:
         name: _OverColorR
-      second: {r: 0.891, g: 0.14013846, b: 0.62172556, a: 1}
+      second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _SpecularColor
       second: {r: 0, g: 0, b: 0, a: 0}
