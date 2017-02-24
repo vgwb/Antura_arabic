@@ -33,8 +33,7 @@ namespace EA4S.Book
 
         public TextRender ScoreText;
 
-
-        int currentChapter = 0;
+        int currentStage;
         GameObject btnGO;
 
         void Start()
@@ -49,40 +48,50 @@ namespace EA4S.Book
         void OpenArea()
         {
             AudioManager.I.PlayDialogue(LocalizationDataId.UI_LearningBlock);
-            LearningBlockPanel();
+            LearningBlockPanel(1);
         }
 
-        void LearningBlockPanel()
+        void LearningBlockPanel(int _stage = 1)
         {
+            currentStage = _stage;
+
             ListPanel.SetActive(false);
-            Submenu.SetActive(false);
+            Submenu.SetActive(true);
             ListPanel.SetActive(true);
             emptyListContainers();
 
+            List<LearningBlockData> list = AppManager.I.DB.FindLearningBlockData((x) => (x.Stage == currentStage));
+
             List<LearningBlockInfo> info_list = AppManager.I.ScoreHelper.GetAllLearningBlockInfo();
-            foreach (var item_info in info_list) {
-                btnGO = Instantiate(LearningBlockItemPrefab);
-                btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponent<ItemLearningBlock>().Init(this, item_info);
+            foreach (var info_item in info_list) {
+                if (list.Contains(info_item.data)) {
+                    btnGO = Instantiate(LearningBlockItemPrefab);
+                    btnGO.transform.SetParent(ElementsContainer.transform, false);
+                    btnGO.GetComponent<ItemLearningBlock>().Init(this, info_item);
+                }
             }
 
-            //foreach (WordDataCategory cat in GenericHelper.SortEnums<WordDataCategory>()) {
-            //    btnGO = Instantiate(CategoryItemPrefab);
-            //    btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            //    btnGO.GetComponent<MenuItemCategory>().Init(
-            //        this,
-            //        new GenericCategoryData {
-            //            area = VocabularyChapter.Words,
-            //            wordCategory = cat,
-            //            Id = cat.ToString(),
-            //            Title = LocalizationManager.GetWordCategoryTitle(cat)
-            //        });
-            //}
+            var listStages = AppManager.I.DB.GetAllStageData();
+
+            foreach (var stage in listStages) {
+                btnGO = Instantiate(CategoryItemPrefab);
+                btnGO.transform.SetParent(SubmenuContainer.transform, false);
+                btnGO.GetComponent<MenuItemCategory>().Init(
+                    this,
+                    new GenericCategoryData {
+                        area = VocabularyChapter.LearningBlock,
+                        Id = stage.Id,
+                        Title = stage.Title_Ar
+                    },
+                    int.Parse(stage.Id) == currentStage
+                );
+            }
+
         }
 
-        public void SelectSubCategory(GenericCategoryData _category)
+        public void SelectSubCategory(GenericCategoryData _stage)
         {
-
+            LearningBlockPanel(int.Parse(_stage.Id));
         }
 
         public void DetailLearningBlock(LearningBlockInfo info)
