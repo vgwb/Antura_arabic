@@ -30,6 +30,7 @@ namespace EA4S.Book
         [Header("References")]
         public GameObject ElementsContainer;
         public TextRender ArabicText;
+        public TextRender EnglishText;
         public TextRender ScoreText;
         public Image MiniGameLogoImage;
         public Image MiniGameBadgeImage;
@@ -75,33 +76,36 @@ namespace EA4S.Book
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
                 btnGO.GetComponent<ItemMainMiniGame>().Init(this, game);
             }
-            // DetailMiniGame(null);
+            DetailMiniGame(null);
         }
-
 
         public void DetailMiniGame(MiniGameInfo selectedGameInfo)
         {
-            ElementsContainer.BroadcastMessage("Select", selectedGameInfo, SendMessageOptions.DontRequireReceiver);
             //foreach (Transform t in ElementsContainer.transform) {
             //    t.GetComponent<ItemMainMiniGame>().Select(selectedGameInfo);
             //}
 
             if (selectedGameInfo == null) {
                 currentMiniGame = null;
+                ArabicText.text = "";
+                EnglishText.text = "";
                 ScoreText.text = "";
                 MiniGameLogoImage.enabled = false;
                 MiniGameBadgeImage.enabled = false;
                 LaunchGameButton.gameObject.SetActive(false);
                 return;
             }
-
             currentMiniGame = selectedGameInfo.data;
+            ElementsContainer.BroadcastMessage("Select", selectedGameInfo, SendMessageOptions.DontRequireReceiver);
             AudioManager.I.PlayDialogue(selectedGameInfo.data.GetTitleSoundFilename());
 
-            var Output = "";
-            Output += "Score: " + selectedGameInfo.score;
-            Output += "\nPlayed: ";
-            ScoreText.text = Output;
+            ArabicText.text = selectedGameInfo.data.Title_Ar;
+            EnglishText.text = selectedGameInfo.data.Title_En;
+
+            //var Output = "";
+            //Output += "Score: " + selectedGameInfo.score;
+            //Output += "\nPlayed: ";
+            //ScoreText.text = Output;
 
             // Launch button
             if (selectedGameInfo.unlocked || AppManager.I.Player.IsDemoUser) {
