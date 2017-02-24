@@ -7,7 +7,7 @@
     // refactor: reorganize all constants (some are statics, others are consts)
     public static class AppConstants
     {
-        public const string AppVersion = "20170223";
+        public const string AppVersion = "20170224";
         public const string DbSchemeVersion = "1.20";
         public const bool DebugPanelEnabled = true;
         public static bool UseUnityAnalytics = false;
