@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
@@ -145,6 +146,21 @@ namespace EA4S.Helpers
 
             }
             return drawingColor;
+        }
+
+        #endregion
+
+
+        #region Debug Extensions
+
+        public static string ToDebugString<T>(this IEnumerable<T> list)
+        {
+            return "{" + string.Join(",", list.ToList().ConvertAll(x => x.ToString()).ToArray()) + "}";
+        }
+
+        public static string ToDebugString<TKey, TValue>(this IDictionary<TKey, TValue> dictionary)
+        {
+            return "{" + string.Join(",", dictionary.Select(kv => kv.Key + "=" + kv.Value).ToArray()) + "}";
         }
 
         #endregion

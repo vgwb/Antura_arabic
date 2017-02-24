@@ -59,7 +59,7 @@ namespace EA4S.Book
             ListPanel.SetActive(true);
             emptyListContainers();
 
-            List<LearningBlockInfo> info_list = AppManager.I.Teacher.scoreHelper.GetAllLearningBlockInfo();
+            List<LearningBlockInfo> info_list = AppManager.I.ScoreHelper.GetAllLearningBlockInfo();
             foreach (var item_info in info_list) {
                 btnGO = Instantiate(LearningBlockItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);

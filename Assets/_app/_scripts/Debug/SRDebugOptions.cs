@@ -23,7 +23,7 @@ public partial class SROptions
         {
             if (AppConstants.DebugStopPlayAtWrongPlaySessions)
             {
-                JourneyPosition minJ = AppManager.I.Teacher.journeyHelper.GetMinimumJourneyPositionForMiniGame(minigameCode);
+                JourneyPosition minJ = AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(minigameCode);
                 if (minJ == null)
                 {
                     Debug.LogWarningFormat("Minigame {0} could not be selected for any PlaySession. Please check the PlaySession data table.", minigameCode);
@@ -490,7 +490,7 @@ public partial class SROptions
     public void ForwardMaxPosition()
     {
         // refactor: move to DebugManager
-        JourneyPosition newPos = TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.MaxJourneyPosition);
+        JourneyPosition newPos = AppManager.I.JourneyHelper.FindNextJourneyPosition(AppManager.I.Player.MaxJourneyPosition);
         if (newPos != null) {
             AppManager.I.Player.SetMaxJourneyPosition(newPos, true);
         }
@@ -537,7 +537,7 @@ public partial class SROptions
             AppManager.I.Player.AddRewardUnlocked(pack);
             Debug.LogFormat("Pack added: {0}", pack.ToString());
         }
-        JourneyPosition next = AppManager.I.Teacher.journeyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
+        JourneyPosition next = AppManager.I.JourneyHelper.FindNextJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
         if (next != null) {
             AppManager.I.Player.SetMaxJourneyPosition(new JourneyPosition(next.Stage, next.LearningBlock, next.PlaySession));
             AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(next.Stage, next.LearningBlock, next.PlaySession));

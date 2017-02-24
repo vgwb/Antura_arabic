@@ -147,7 +147,7 @@ namespace EA4S.Profile
         /// </summary>
         public void AdvanceMaxJourneyPosition()
         {
-            SetMaxJourneyPosition(AppManager.I.Teacher.journeyHelper.FindNextJourneyPosition(CurrentJourneyPosition));
+            SetMaxJourneyPosition(AppManager.I.JourneyHelper.FindNextJourneyPosition(CurrentJourneyPosition));
         }
 
         /// <summary>
