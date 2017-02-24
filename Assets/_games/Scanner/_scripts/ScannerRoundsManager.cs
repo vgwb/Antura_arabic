@@ -152,19 +152,24 @@ namespace EA4S.Minigames.Scanner
 			fromList.Remove(ans);
 		}
 
+        [HideInInspector]
+        public bool playSuitcaseSound;
 		private void SetupSuitCases()
 		{
 
 			Debug.Log("Number of suitcases: " + game.suitcases.Count);
-
-			List <ILivingLetterData> tempCorrect = correctAnswers.ToList();
+            playSuitcaseSound = true;
+            List <ILivingLetterData> tempCorrect = correctAnswers.ToList();
 
 			for (int i = 0; i < game.suitcases.Count; i++)
 			{
-				ScannerSuitcase ss = game.suitcases[i];
-				ss.Reset();
+                
+                ScannerSuitcase ss = game.suitcases[i];
+                ss.Reset(true);
 
-				if (tempCorrect.Count > 0 && wrongAnswers.Count > 0)
+
+
+                if (tempCorrect.Count > 0 && wrongAnswers.Count > 0)
 				{
 					int coinFlip = UnityEngine.Random.Range(1,5);
 					if (coinFlip == 1)
