@@ -73,7 +73,7 @@ public class DancingDotsQuadManager : MonoBehaviour {
         do
         {
             Q2 = UnityEngine.Random.Range(0, sprts.Length);
-        } while (Q1 == Q2);
+        } while (Q1 == Q2 || sprts[Q1].color.Equals(sprts[Q2].color));
 
         SwapColor(sprts[Q1], sprts[Q2]);
     }

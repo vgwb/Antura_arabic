@@ -20,6 +20,7 @@ namespace EA4S.Database
         public MiniGameDataType Type;
         public string Main;
         public string Variation;
+        public string Badge;
         public string Scene;
         public List<WeightedPlaySkill> AffectedPlaySkills;
 
@@ -45,7 +46,7 @@ namespace EA4S.Database
 
         public string GetBadgeIconResourcePath()
         {
-            return "Images/GameIcons/minigame_BadgeIco_" + Variation;
+            return "Images/GameIcons/minigame_BadgeIco_" + Badge;
         }
     }
 
