@@ -20,7 +20,8 @@ namespace EA4S.Book
             InfoTable.Reset();
             InfoTable.AddRow("لاعب", AppManager.I.Player.Uuid.ToString(), "player UUID");
             InfoTable.AddRow("لاعب", AppManager.I.Player.CurrentJourneyPosition.ToString(), "current LB");
-            //            InfoTable.AddRow("لاعب", AppManager.I.ScoreHelper.GetLastLearnedLetterInfo().data.ToString(), "Last Letter");
+            var lastLetterLearned = AppManager.I.ScoreHelper.GetLastLearnedLetterInfo();
+            InfoTable.AddRow("لاعب", (lastLetterLearned != null ? lastLetterLearned.data.ToString() : ""), "Last Letter");
 
             //var str = "";
 
