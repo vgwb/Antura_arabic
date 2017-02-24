@@ -28,6 +28,7 @@ namespace EA4S.Antura
 
         [Header("Materials Owner")]
         public SkinnedMeshRenderer SkinnedMesh;
+        public SkinnedMeshRenderer[] SkinnedMeshsTextureOnly;
 
         /// <summary>
         /// Pointer to transform used as parent for add reward model (and remove if already mounted yet).
@@ -98,15 +99,31 @@ namespace EA4S.Antura
                 case RewardTypes.reward:
                     return LoadRewardOnAntura(rewardPackUnlockData);
                 case RewardTypes.texture:
+                    Material newMaterial = MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemID, rewardPackUnlockData.ColorId);
+                    // Main mesh
                     Material[] mats = SkinnedMesh.sharedMaterials;
-                    mats[0] = MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemID, rewardPackUnlockData.ColorId);
+                    mats[0] = newMaterial;
                     SkinnedMesh.sharedMaterials = mats;
                     LoadedTileTexture = rewardPackUnlockData;
+                    // Sup mesh for texture
+                    foreach (SkinnedMeshRenderer renderer in SkinnedMeshsTextureOnly) {
+                        Material[] materials = renderer.sharedMaterials;
+                        materials[0] = newMaterial;
+                        renderer.sharedMaterials = materials;
+                    }
                     break;
                 case RewardTypes.decal:
+                    Material newDecalMaterial = MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemID, rewardPackUnlockData.ColorId);
+                    // Main mesh
                     Material[] decalMats = SkinnedMesh.sharedMaterials;
-                    decalMats[1] = MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemID, rewardPackUnlockData.ColorId);
+                    decalMats[1] = newDecalMaterial;
                     SkinnedMesh.sharedMaterials = decalMats;
+                    // Sup mesh for texture
+                    foreach (SkinnedMeshRenderer renderer in SkinnedMeshsTextureOnly) {
+                        Material[] materials = renderer.sharedMaterials;
+                        materials[1] = newDecalMaterial;
+                        renderer.sharedMaterials = materials;
+                    }
                     LoadedDecal = rewardPackUnlockData;
                     break;
                 default:

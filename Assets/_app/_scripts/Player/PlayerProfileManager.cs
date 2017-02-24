@@ -54,6 +54,7 @@ namespace EA4S.Profile
 
         /// <summary>
         /// Reloads the game settings (AppSettings) from PlayerPrefs.
+        /// TODO: rebuild database only for desynchronized profile
         /// </summary>
         public void ReloadGameSettings(bool alsoLoadCurrentPlayer = true)
         {
