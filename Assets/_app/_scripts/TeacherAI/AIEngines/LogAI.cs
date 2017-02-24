@@ -111,7 +111,19 @@ namespace EA4S.Teacher
             // Prepare log data
             var logDataList = new List<LogLearnData>();
             var scoreDataList = new List<VocabularyScoreData>();
-            foreach (var result in resultsList) {
+            foreach (var result in resultsList)
+            {
+                if (result.elementId == null)
+                {
+                    Debug.LogError("LogAI: Logging a result with a NULL elementId. Skipped.");
+                    continue;
+                }
+                if (result.nCorrect == 0 && result.nWrong == 0)
+                {
+                    Debug.LogError("LogAI: Logging a result with no correct nor wrong hits. Skipped.");
+                    continue;
+                }
+
                 float score = 0f;
                 float successRatio = result.nCorrect * 1f / (result.nCorrect + result.nWrong);
                 switch (learnRules.voteLogic) {
