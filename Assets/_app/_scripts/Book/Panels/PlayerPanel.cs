@@ -14,12 +14,13 @@ namespace EA4S.Book
         public InfoTable InfoTable;
         public GraphJourney journeyGraph;
 
-        void OnEnable()
+        void Start()
         {
 
             InfoTable.Reset();
             InfoTable.AddRow("لاعب", AppManager.I.Player.Uuid.ToString(), "player UUID");
             InfoTable.AddRow("لاعب", AppManager.I.Player.CurrentJourneyPosition.ToString(), "current LB");
+            //            InfoTable.AddRow("لاعب", AppManager.I.ScoreHelper.GetLastLearnedLetterInfo().data.ToString(), "Last Letter");
 
             //var str = "";
 
@@ -67,15 +68,11 @@ namespace EA4S.Book
             System.TimeSpan totalTimespan = new System.TimeSpan(0);
             bool foundStart = false;
             int startTimestamp = 0;
-            foreach (var infoData in list)
-            {
-                if (!foundStart && infoData.Event == InfoEvent.AppStarted)
-                {
+            foreach (var infoData in list) {
+                if (!foundStart && infoData.Event == InfoEvent.AppStarted) {
                     startTimestamp = infoData.Timestamp;
                     foundStart = true;
-                }
-                else if (foundStart && infoData.Event == InfoEvent.AppClosed)
-                {
+                } else if (foundStart && infoData.Event == InfoEvent.AppClosed) {
                     var endTimestamp = infoData.Timestamp;
                     foundStart = false;
 
@@ -93,8 +90,7 @@ namespace EA4S.Book
             string query = "select * from " + typeof(MinigameScoreData).Name;
             var list = AppManager.I.DB.FindDataByQuery<MinigameScoreData>(query);
 
-            foreach (var data in list)
-            {
+            foreach (var data in list) {
                 dict[data.MiniGameCode] = data.TotalPlayTime;
             }
             return dict;
@@ -106,10 +102,8 @@ namespace EA4S.Book
             string query = "select * from " + typeof(LogMinigameScoreData).Name;
             var list = AppManager.I.DB.FindDataByQuery<LogMinigameScoreData>(query);
 
-            foreach (var data in list)
-            {
-                if (!dict.ContainsKey(data.MiniGameCode))
-                {
+            foreach (var data in list) {
+                if (!dict.ContainsKey(data.MiniGameCode)) {
                     dict[data.MiniGameCode] = 0;
                 }
                 dict[data.MiniGameCode]++;
