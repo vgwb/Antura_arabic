@@ -60,7 +60,6 @@ namespace EA4S.Core
     public struct NavigationData
     {
         public PlayerProfile CurrentPlayer;
-        //public AppScene PrevScene;
         public AppScene CurrentScene;
         public bool RealPlaySession;
         public Stack<AppScene> PrevSceneStack;
@@ -75,9 +74,13 @@ namespace EA4S.Core
         /// </summary>
         public int CurrentMiniGameIndexInPlaySession { get; private set; }
 
+        public void Setup()
+        {
+            PrevSceneStack = new Stack<AppScene>();
+        }
+
         public void Initialize(PlayerProfile _playerProfile)
         {
-            if (PrevSceneStack == null) PrevSceneStack = new Stack<AppScene>();
             CurrentPlayer = _playerProfile;
         }
 

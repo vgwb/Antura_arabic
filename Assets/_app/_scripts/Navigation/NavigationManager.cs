@@ -48,9 +48,18 @@ namespace EA4S.Core
         #region Initialization
 
         /// <summary>
+        /// Initialize the NavigationManager and its data.
+        /// </summary>
+        public void Initialize()
+        {
+            NavData.Setup();
+            InitializeAllowedTransitions();
+        }
+
+        /// <summary>
         /// Initialize custom and 'back-enabled' transitions.
         /// </summary>
-        public void InitializeAllowedTransitions()
+        private void InitializeAllowedTransitions()
         {
             // Allowed custom transitions
             customTransitions.Add(new KeyValuePair<AppScene, AppScene>(AppScene.Home, AppScene.PlayerCreation));
