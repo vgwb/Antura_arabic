@@ -10,18 +10,20 @@ namespace EA4S.Book
     /// <summary>
     /// Displays a MiniGame item in the MiniGames panel of the Player Book.
     /// </summary>
-    public class ItemMainMiniGame : MonoBehaviour, IPointerClickHandler
+    public class ItemMainMiniGame : MonoBehaviour
     {
         MainMiniGame mainGameInfo;
 
         public GameObject VariationsContainer;
         public GameObject ItemMiniGameVariationPrefab;
 
+        public Image BackgroundImage;
         public TextRender Title;
         public Image Icon;
         public Image BadgeIcon;
         public Image LockIcon;
 
+        bool isSelected;
         GamesPanel panelManager;
         GameObject btnGO;
 
@@ -61,13 +63,37 @@ namespace EA4S.Book
             foreach (var game in mainGameInfo.variations) {
                 btnGO = Instantiate(ItemMiniGameVariationPrefab);
                 btnGO.transform.SetParent(VariationsContainer.transform, false);
-                btnGO.GetComponent<ItemMiniGameVariation>().Init(panelManager, game);
+                btnGO.GetComponent<ItemMiniGameVariation>().Init(this, game);
             }
         }
 
-        public void OnPointerClick(PointerEventData eventData)
+        public void OnClicked()
         {
-            //manager.DetailMiniGame(info.variations[0].Code);
+            DetailMiniGame(mainGameInfo.variations[0]);
+        }
+
+        public void DetailMiniGame(MiniGameInfo miniGameInfo)
+        {
+            panelManager.DetailMiniGame(miniGameInfo);
+        }
+
+        public void Select(MiniGameInfo gameInfo = null)
+        {
+            if (gameInfo != null) {
+                isSelected = (gameInfo.data.Main == mainGameInfo.id);
+            } else {
+                isSelected = false;
+            }
+            hightlight(isSelected);
+        }
+
+        void hightlight(bool _status)
+        {
+            if (_status) {
+                BackgroundImage.color = Color.yellow;
+            } else {
+                BackgroundImage.color = Color.white;
+            }
         }
 
         void emptyContainers()
