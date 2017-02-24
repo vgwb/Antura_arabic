@@ -150,6 +150,8 @@ namespace EA4S.AnturaSpace
             UI.onExitCustomization += OnExitCustomization;
 
             Antura.onTouched += () => { if (CurrentState != null) CurrentState.OnTouched(); };
+
+            LastTimeCatching = Time.realtimeSinceStartup;
         }
 
         public void Update()
