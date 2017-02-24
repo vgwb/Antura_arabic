@@ -15,6 +15,7 @@ namespace EA4S.Database.Management
             data.Code = ParseEnum<MiniGameCode>(data, dict["Id"]);
             data.Main = ToString(dict["Main"]);
             data.Variation = ToString(dict["Variation"]);
+            data.Badge = ToString(dict["Badge"]);
             data.Type = ParseEnum<MiniGameDataType>(data, dict["Type"]);
             data.Title_En = ToString(dict["Title_En"]);
             data.Title_Ar = ToString(dict["Title_Ar"]);
@@ -37,19 +38,14 @@ namespace EA4S.Database.Management
         {
             var list = new List<WeightedPlaySkill>();
 
-            foreach (var playSkill in GenericHelper.SortEnums<PlaySkill>())
-            {
+            foreach (var playSkill in GenericHelper.SortEnums<PlaySkill>()) {
                 if (playSkill == PlaySkill.None) continue;
 
                 var key = "Skill" + playSkill;
-                if (!dict.ContainsKey(key))
-                {
+                if (!dict.ContainsKey(key)) {
                     UnityEngine.Debug.LogError("Could not find key " + key + " as a play skill for minigame " + data.Code);
-                }
-                else
-                {
-                    if (ToString(dict[key]) != "")
-                    {
+                } else {
+                    if (ToString(dict[key]) != "") {
                         list.Add(new WeightedPlaySkill(playSkill, ToFloat(dict[key])));
                     }
                 }
