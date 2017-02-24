@@ -25,7 +25,8 @@ namespace EA4S.Book
         None,
         Letters,
         Words,
-        Phrases
+        Phrases,
+        LearningBlock
     }
 
     /// <summary>
