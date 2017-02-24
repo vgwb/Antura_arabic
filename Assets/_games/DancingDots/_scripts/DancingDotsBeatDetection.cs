@@ -56,10 +56,10 @@ namespace EA4S.Minigames.DancingDots
                     disco.swap();
                     disco.swap();
                     disco.swap();
+                    /*disco.swap(game.DDBackgrounds);
                     disco.swap(game.DDBackgrounds);
                     disco.swap(game.DDBackgrounds);
-                    disco.swap(game.DDBackgrounds);
-                    disco.swap(game.DDBackgrounds);
+                    disco.swap(game.DDBackgrounds);*/
                 }
             }
 
@@ -103,91 +103,5 @@ namespace EA4S.Minigames.DancingDots
             }
             PitchValue = freqN * (_fSample / 2) / QSamples; // convert index to frequency
         }
-
-        /*
-        public float sensitivity = 9;
-        public float loudness = 0;
-        private AudioSource _audio;
-
-        void Start()
-        {
-            floor = GameObject.Find("Quads").GetComponent<DancingDotsQuadManager>();
-            _audio = GetComponent<AudioSource>();
-            //_audio.clip = Microphone.Start(null, true, 10, 44100);
-            //_audio.loop = true;
-            //_audio.mute = false;
-            //while (!(Microphone.GetPosition(null) > 0)) { }
-            //_audio.Play();
-        }
-        void Update()
-        {
-
-            loudness = GetAveragedVolume() * sensitivity;
-            if (loudness > 1)
-            {
-                Debug.LogWarning("Beat!" + Time.deltaTime);
-                if (canSwap)
-                {
-                    floor.swap();
-                    //canSwap = false;
-                    //StartCoroutine(reset());
-                }
-            }
-            else
-                Debug.LogError("sdasd");
-        }
-        float GetAveragedVolume()
-        {
-            float[] data = new float[256];
-            float a = 0;
-            _audio.GetOutputData(data, 0);
-            foreach (float s in data)
-            {
-                a += Mathf.Abs(s);
-            }
-            return a / 256;
-        }*/
-
-        /*    
-        int qSamples = 1024;  // array size
-     float refValue = 0.1f; // RMS value for 0 dB
-     float rmsValue;   // sound level - RMS
-     float dbValue;    // sound level - dB
-     float volume = 2; // set how much the scale will vary
-
-     private float[] samples; // audio samples
-
-     void Start()
-        {
-            samples = new float[qSamples];
-            GetComponent<AudioSource>().Play();
-        }
-
-        void GetVolume()
-        {
-            GetComponent<AudioSource>().GetOutputData(samples, 0); // fill array with samples
-            int i;
-            float sum = 0;
-            for (i = 0; i < qSamples; i++)
-            {
-                sum += samples[i] * samples[i]; // sum squared samples
-            }
-            rmsValue = Mathf.Sqrt(sum / qSamples); // rms = square root of average
-            dbValue = 20 * Mathf.Log10(rmsValue / refValue); // calculate dB
-            if (dbValue < -160) dbValue = -160; // clamp it to -160dB min
-        }
-        public Transform t;
-        public float threshold = 0.15f, modefier = 1;
-        void Update()
-        {
-            GetVolume();
-            if (volume * rmsValue > threshold)
-                Debug.LogError("!!!");
-            else
-                Debug.LogWarning("__");
-            //t = GameObject.Find("Cube (1)").transform;
-            //t.localScale = new Vector3(t.localScale.x, volume * rmsValue * modefier, t.localScale.z);
-        }
-        */
     }
 }

@@ -99,14 +99,17 @@ namespace EA4S.Minigames.DancingDots
 		float startX;
 		float startY;
 		float startZ;
+        Vector3 originalScale;
 
-		void Start()
+
+        void Start()
 		{
-
-			startX = transform.position.x;
+            originalScale = transform.localScale;
+            startX = transform.position.x;
 			startY = transform.position.y;
 			startZ = transform.position.z;
-			Reset();
+            
+            Reset();
 		}
 
 		public void Reset()
@@ -117,20 +120,20 @@ namespace EA4S.Minigames.DancingDots
 			}
 			transform.position = new Vector3(startX, startY, startZ);
 			isDragging = false;
-			transform.localScale = Vector3.one;
+			transform.localScale = Vector3.zero;
 			gameObject.SetActive(true);
 			StartCoroutine(Coroutine_ScaleOverTime(1f));
 		}
 
 		IEnumerator Coroutine_ScaleOverTime(float time)
 		{
-			Vector3 originalScale = transform.localScale;
-			Vector3 destinationScale = new Vector3(4.0f, 1.0f, 4.0f);
+			//originalScale = transform.localScale;
+			Vector3 destinationScale = originalScale;
 
 			float currentTime = 0.0f;
 			do
 			{
-				transform.localScale = Vector3.Lerp(originalScale, destinationScale, currentTime / time);
+				transform.localScale = Vector3.Lerp(Vector3.zero, destinationScale, currentTime / time);
 				currentTime += Time.deltaTime;
 				yield return null;
 			} while (currentTime <= time);

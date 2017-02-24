@@ -59,6 +59,11 @@ namespace EA4S.UI
 
         #region Unity
 
+        void Awake()
+        {
+            State = UIState.AvatarCreation;
+        }
+
         void Start()
         {
             selectionStepOffsetY = StartupOffsetY / (Categories.Length - 1f);

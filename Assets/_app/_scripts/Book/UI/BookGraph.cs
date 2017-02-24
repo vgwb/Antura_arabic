@@ -27,6 +27,7 @@ namespace EA4S.Book
                 var barImage = barGo.GetComponentInChildren<Image>();
                 var barText = barGo.GetComponentInChildren<Text>();
                 barGo.transform.SetParent(this.transform);
+                barGo.transform.localScale = Vector3.one;
                 barImage.rectTransform.anchorMax = new Vector2(1, values[i] / maxValue);
 
                 if (labels != null) {
