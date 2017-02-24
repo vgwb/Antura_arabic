@@ -20,6 +20,7 @@ MonoBehaviour:
       Type: 1
       Main: AlphabetSong
       Variation: alphabet
+      Badge: alphabet
       Scene: game_ReadingGame
       AffectedPlaySkills:
       - Skill: 6
@@ -33,6 +34,7 @@ MonoBehaviour:
       Type: 1
       Main: AlphabetSong
       Variation: letters
+      Badge: letters
       Scene: game_ReadingGame
       AffectedPlaySkills:
       - Skill: 6
@@ -46,6 +48,7 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: CompleteWord
+      Badge: 
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Complete the Word Forms
@@ -55,6 +58,7 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: CompleteWord
+      Badge: 
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Letter Forms
@@ -64,6 +68,7 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: LetterForm
+      Badge: 
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Letters & Words
@@ -73,6 +78,7 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: MatchLettersToWord
+      Badge: 
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Letters & Words Forms
@@ -82,6 +88,7 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: MatchLettersToWord
+      Badge: 
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Match Word To Image
@@ -91,6 +98,7 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: MatchWordToImage
+      Badge: 
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Order Letters Of Word
@@ -100,6 +108,7 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: OrderLettersOfWord
+      Badge: 
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Question And Reply
@@ -109,6 +118,7 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: QuestionAndReply
+      Badge: 
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Select Pronounced Word
@@ -118,6 +128,7 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: SelectPronouncedWord
+      Badge: 
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Singular, Dual, Plural
@@ -127,6 +138,7 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: SingularDualPlural
+      Badge: 
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Sun/Moon Letters
@@ -136,6 +148,7 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: SunMoonLetter
+      Badge: 
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Sun/Moon Words
@@ -145,6 +158,7 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: SunMoonWord
+      Badge: 
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Vowel Or Consonant
@@ -154,6 +168,7 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: VowelOrConsonant
+      Badge: 
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Word Articles
@@ -163,6 +178,7 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: WordArticle
+      Badge: 
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Words with Letter
@@ -172,6 +188,7 @@ MonoBehaviour:
       Type: 2
       Main: Assessment
       Variation: WordsWithLetter
+      Badge: 
       Scene: game_Assessment
       AffectedPlaySkills: []
     - Title_En: Balloons & Numbers!
@@ -181,6 +198,7 @@ MonoBehaviour:
       Type: 1
       Main: Balloons
       Variation: counting
+      Badge: counting
       Scene: game_Balloons
       AffectedPlaySkills:
       - Skill: 5
@@ -195,6 +213,7 @@ MonoBehaviour:
       Type: 1
       Main: Balloons
       Variation: letters
+      Badge: letters
       Scene: game_Balloons
       AffectedPlaySkills:
       - Skill: 5
@@ -209,6 +228,7 @@ MonoBehaviour:
       Type: 1
       Main: Balloons
       Variation: spelling
+      Badge: spelling
       Scene: game_Balloons
       AffectedPlaySkills:
       - Skill: 4
@@ -224,6 +244,7 @@ MonoBehaviour:
       Type: 1
       Main: Balloons
       Variation: images
+      Badge: images
       Scene: game_Balloons
       AffectedPlaySkills:
       - Skill: 4
@@ -239,6 +260,7 @@ MonoBehaviour:
       Type: 1
       Main: ColorTickle
       Variation: letters
+      Badge: letters
       Scene: game_ColorTickle
       AffectedPlaySkills:
       - Skill: 2
@@ -250,6 +272,7 @@ MonoBehaviour:
       Type: 1
       Main: DancingDots
       Variation: letters
+      Badge: letters
       Scene: game_DancingDots
       AffectedPlaySkills:
       - Skill: 6
@@ -265,6 +288,7 @@ MonoBehaviour:
       Type: 1
       Main: Egg
       Variation: letters
+      Badge: alphabet
       Scene: game_Egg
       AffectedPlaySkills:
       - Skill: 6
@@ -278,6 +302,7 @@ MonoBehaviour:
       Type: 1
       Main: Egg
       Variation: sequence
+      Badge: letters
       Scene: game_Egg
       AffectedPlaySkills:
       - Skill: 6
@@ -293,6 +318,7 @@ MonoBehaviour:
       Type: 1
       Main: FastCrowd
       Variation: alphabet
+      Badge: alphabet
       Scene: game_FastCrowd
       AffectedPlaySkills:
       - Skill: 5
@@ -304,6 +330,7 @@ MonoBehaviour:
       Type: 1
       Main: FastCrowd
       Variation: counting
+      Badge: counting
       Scene: game_FastCrowd
       AffectedPlaySkills:
       - Skill: 5
@@ -315,6 +342,7 @@ MonoBehaviour:
       Type: 1
       Main: FastCrowd
       Variation: letters
+      Badge: letters
       Scene: game_FastCrowd
       AffectedPlaySkills:
       - Skill: 5
@@ -327,6 +355,7 @@ MonoBehaviour:
       Type: 1
       Main: FastCrowd
       Variation: spelling
+      Badge: spelling
       Scene: game_FastCrowd
       AffectedPlaySkills:
       - Skill: 5
@@ -338,6 +367,7 @@ MonoBehaviour:
       Type: 1
       Main: FastCrowd
       Variation: images
+      Badge: images
       Scene: game_FastCrowd
       AffectedPlaySkills:
       - Skill: 4
@@ -351,6 +381,7 @@ MonoBehaviour:
       Type: 1
       Main: HideSeek
       Variation: letters
+      Badge: letters
       Scene: game_HideAndSeek
       AffectedPlaySkills:
       - Skill: 6
@@ -366,6 +397,7 @@ MonoBehaviour:
       Type: 1
       Main: MakeFriends
       Variation: words
+      Badge: words
       Scene: game_MakeFriends
       AffectedPlaySkills:
       - Skill: 6
@@ -379,6 +411,7 @@ MonoBehaviour:
       Type: 1
       Main: Maze
       Variation: letters
+      Badge: letters
       Scene: game_Maze
       AffectedPlaySkills:
       - Skill: 2
@@ -390,6 +423,7 @@ MonoBehaviour:
       Type: 1
       Main: MissingLetter
       Variation: letters
+      Badge: letters
       Scene: game_MissingLetter
       AffectedPlaySkills:
       - Skill: 6
@@ -403,6 +437,7 @@ MonoBehaviour:
       Type: 1
       Main: MissingLetter
       Variation: words
+      Badge: words
       Scene: game_MissingLetter
       AffectedPlaySkills:
       - Skill: 6
@@ -416,6 +451,7 @@ MonoBehaviour:
       Type: 1
       Main: MissingLetter
       Variation: forms
+      Badge: alphabet
       Scene: game_MissingLetter
       AffectedPlaySkills: []
     - Title_En: Letter Salad!
@@ -425,6 +461,7 @@ MonoBehaviour:
       Type: 1
       Main: MixedLetters
       Variation: alphabet
+      Badge: alphabet
       Scene: game_MixedLetters
       AffectedPlaySkills:
       - Skill: 6
@@ -440,6 +477,7 @@ MonoBehaviour:
       Type: 1
       Main: MixedLetters
       Variation: spelling
+      Badge: spelling
       Scene: game_MixedLetters
       AffectedPlaySkills:
       - Skill: 6
@@ -455,6 +493,7 @@ MonoBehaviour:
       Type: 1
       Main: ReadingGame
       Variation: words
+      Badge: words
       Scene: game_ReadingGame
       AffectedPlaySkills:
       - Skill: 4
@@ -468,6 +507,7 @@ MonoBehaviour:
       Type: 1
       Main: Scanner
       Variation: images
+      Badge: images
       Scene: game_Scanner
       AffectedPlaySkills:
       - Skill: 4
@@ -483,6 +523,7 @@ MonoBehaviour:
       Type: 1
       Main: Scanner
       Variation: words
+      Badge: words
       Scene: game_Scanner
       AffectedPlaySkills:
       - Skill: 4
@@ -498,6 +539,7 @@ MonoBehaviour:
       Type: 1
       Main: SickLetters
       Variation: letters
+      Badge: letters
       Scene: game_SickLetters
       AffectedPlaySkills:
       - Skill: 6
@@ -513,6 +555,7 @@ MonoBehaviour:
       Type: 1
       Main: TakeMeHome
       Variation: letters
+      Badge: letters
       Scene: game_TakeMeHome
       AffectedPlaySkills:
       - Skill: 6
@@ -525,6 +568,7 @@ MonoBehaviour:
       Type: 1
       Main: ThrowBalls
       Variation: spelling
+      Badge: spelling
       Scene: game_ThrowBalls
       AffectedPlaySkills:
       - Skill: 4
@@ -542,6 +586,7 @@ MonoBehaviour:
       Type: 1
       Main: ThrowBalls
       Variation: letters
+      Badge: letters
       Scene: game_ThrowBalls
       AffectedPlaySkills:
       - Skill: 5
@@ -556,6 +601,7 @@ MonoBehaviour:
       Type: 1
       Main: ThrowBalls
       Variation: words
+      Badge: words
       Scene: game_ThrowBalls
       AffectedPlaySkills:
       - Skill: 4
@@ -571,6 +617,7 @@ MonoBehaviour:
       Type: 1
       Main: Tobogan
       Variation: letters
+      Badge: letters
       Scene: game_Tobogan
       AffectedPlaySkills:
       - Skill: 4
@@ -585,6 +632,7 @@ MonoBehaviour:
       Type: 1
       Main: Tobogan
       Variation: sunmoon
+      Badge: sunmoon
       Scene: game_Tobogan
       AffectedPlaySkills:
       - Skill: 6
