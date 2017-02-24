@@ -84,6 +84,12 @@ namespace EA4S.Profile
 
         #region properties
 
+        public string GetShortUuid()
+        {
+            string[] tokens = Uuid.Split('-');
+            return tokens[0];
+        }
+
         public PlayerIconData GetIcon()
         {
             return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser);
@@ -242,7 +248,8 @@ namespace EA4S.Profile
         /// </summary>
         /// <param name="_rewardType">Type of the reward.</param>
         /// <returns></returns>
-        public int GetNotYetUnlockedRewardCountForType(EA4S.Rewards.RewardTypes _rewardType) {
+        public int GetNotYetUnlockedRewardCountForType(EA4S.Rewards.RewardTypes _rewardType)
+        {
             int counter = 0;
             //foreach (PlaySessionRewardUnlock plsRew in RewardSystemManager.GetConfig().PlaySessionRewardsUnlock) {
             //    // Check if PlaySessionRewardUnlock contain requested type.
@@ -288,7 +295,8 @@ namespace EA4S.Profile
         /// </summary>
         /// <param name="_rewardType">Type of the reward.</param>
         /// <returns></returns>
-        public bool RewardForTypeAvailableYet(EA4S.Rewards.RewardTypes _rewardType) {
+        public bool RewardForTypeAvailableYet(EA4S.Rewards.RewardTypes _rewardType)
+        {
             return GetNotYetUnlockedRewardCountForType(_rewardType) <= 0 ? false : true;
         }
 

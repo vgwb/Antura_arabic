@@ -30,8 +30,8 @@ namespace EA4S.Book
 
         public GameObject MoreInfoPanel;
         public TextRender ArabicText;
-
         public TextRender ScoreText;
+        public TextRender DescriptionText;
 
         int currentStage;
         GameObject btnGO;
@@ -48,6 +48,7 @@ namespace EA4S.Book
         void OpenArea()
         {
             AudioManager.I.PlayDialogue(LocalizationDataId.UI_LearningBlock);
+            DetailPanel.SetActive(false);
             LearningBlockPanel(1);
         }
 
@@ -55,7 +56,6 @@ namespace EA4S.Book
         {
             currentStage = _stage;
 
-            ListPanel.SetActive(false);
             Submenu.SetActive(true);
             ListPanel.SetActive(true);
             emptyListContainers();
@@ -81,7 +81,7 @@ namespace EA4S.Book
                     new GenericCategoryData {
                         area = VocabularyChapter.LearningBlock,
                         Id = stage.Id,
-                        Title = stage.Title_Ar
+                        Title = "Stage " + stage.Id
                     },
                     int.Parse(stage.Id) == currentStage
                 );
@@ -99,10 +99,10 @@ namespace EA4S.Book
             DetailPanel.SetActive(true);
             AudioManager.I.PlayDialogue(info.data.GetTitleSoundFilename());
             ScoreText.text = "Score: " + info.score;
-            MoreInfoPanel.SetActive(false);
+            MoreInfoPanel.SetActive(true);
 
             ArabicText.text = info.data.Title_Ar;
-
+            DescriptionText.text = info.data.Description;
         }
 
         void emptyListContainers()

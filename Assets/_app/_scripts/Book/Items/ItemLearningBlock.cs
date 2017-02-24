@@ -11,7 +11,7 @@ namespace EA4S.Book
     /// </summary>
     public class ItemLearningBlock : MonoBehaviour, IPointerClickHandler
     {
-        LearningBlockInfo info;
+        LearningBlockInfo learningBlockInfo;
         public TextRender Title;
         public TextRender Info;
         public TextRender SubTitle;
@@ -21,28 +21,29 @@ namespace EA4S.Book
 
         public void Init(JourneyPanel _manager, LearningBlockInfo _info)
         {
-            info = _info;
+            learningBlockInfo = _info;
             manager = _manager;
 
-            Title.text = info.data.Title_Ar;
-            SubTitle.text = info.data.Title_En + " " + info.data.Id;
+            Info.text = learningBlockInfo.data.Id;
+            Title.text = learningBlockInfo.data.Title_Ar;
+            SubTitle.text = learningBlockInfo.data.Title_En + " " + learningBlockInfo.data.Id;
 
-            if (info.unlocked || AppManager.I.Player.IsDemoUser) {
+            if (learningBlockInfo.unlocked || AppManager.I.Player.IsDemoUser) {
                 LockIcon.enabled = false;
             } else {
                 LockIcon.enabled = true;
             }
 
-            var score = info.score;
+            //var score = learningBlockInfo.score;
             // @note: we should already save the score when a block is finished, and not compute it when showing it
             //var score = TeacherAI.I.GetLearningBlockScore(info.data);
 
-            Info.text = "Score: " + score;
+            //Info.text = "Score: " + score;
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailLearningBlock(info);
+            manager.DetailLearningBlock(learningBlockInfo);
         }
     }
 }
