@@ -19,12 +19,15 @@ namespace EA4S.Rewards
         public RectTransform Bottom;
         public RectTransform Godray0, Godray1;
         public RectTransform LockClosed, LockOpen;
+        public ParticleSystem PoofParticle; 
 
         public bool IsComplete { get; private set; }
 
-        Transform pedestalObject;
         Sequence showTween, godraysTween;
         Tween pedestalTween;
+
+        Database.RewardPackUnlockData rewardPackUnlockData = null;
+        float rotationAngleView = 0;
 
         IAudioSource alarmClockSound;
 
@@ -61,8 +64,10 @@ namespace EA4S.Rewards
                 .Join(LockOpen.DORotate(new Vector3(0, 0, 360), 0.6f, RotateMode.FastBeyond360).SetRelative().SetEase(Ease.InCubic))
                 .Join(Godray1.DOScale(0.00001f, 0.6f).SetEase(Ease.InCubic))
                 .Join(Pedestal.DOScale(0.00001f, 1f).From().SetDelay(0.5f).SetEase(Ease.OutBack))
+                .Append(Pedestal.DORotate(new Vector3(0, rotationAngleView, 0), 0.3f, RotateMode.LocalAxisAdd).SetEase(Ease.InExpo))
                 .OnComplete(() => {
                     IsComplete = true;
+                    PoofParticle.Emit(1);
                     pedestalTween.Play();
                 });
 
@@ -86,5 +91,23 @@ namespace EA4S.Rewards
             godraysTween.Kill();
             pedestalTween.Kill();
         }
+
+        #region events
+        private void OnEnable() {
+            RewardSystemManager.OnNewRewardUnlocked += RewardSystemManager_OnRewardChanged;
+        }
+
+        private void RewardSystemManager_OnRewardChanged(Database.RewardPackUnlockData _rewardPackUnlockData) {
+            rewardPackUnlockData = _rewardPackUnlockData;
+            if (rewardPackUnlockData.Type == RewardTypes.reward) {
+                Reward r = rewardPackUnlockData.GetReward();
+                rotationAngleView = RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(r.Category);
+            }
+        }
+
+        private void OnDisable() {
+            RewardSystemManager.OnNewRewardUnlocked += RewardSystemManager_OnRewardChanged;
+        }
+        #endregion
     }
 }
