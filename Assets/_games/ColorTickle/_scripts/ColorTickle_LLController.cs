@@ -29,7 +29,7 @@ namespace EA4S.Minigames.ColorTickle
 
         #region PRIVATE MEMBERS
         private LetterObjectView m_oLetter;
-		private Vector3 m_v3Destination;
+        private Vector3 m_v3Destination;
         #endregion
 
         #region EVENTS
@@ -76,7 +76,7 @@ namespace EA4S.Minigames.ColorTickle
             get { return m_eAnimationOnDestReached; }
             set { m_eAnimationOnDestReached = value; }
         }
-    
+
         #endregion
 
         #region INTERNALS
@@ -90,8 +90,8 @@ namespace EA4S.Minigames.ColorTickle
             else
             {
                 m_oLetter.gameObject.transform.position = m_v3StartPosition;
-            }			
-			m_v3Destination = m_Destination.position;
+            }
+            m_v3Destination = m_Destination.position;
         }
 
         void Update()
@@ -150,7 +150,7 @@ namespace EA4S.Minigames.ColorTickle
                 m_oLetter.SetState(m_eAnimationOnDestReached);
                 //AudioManager.I.PlayLetter(m_oLetter.Data.Id);
 
-                if(OnDestinationReached!=null) //launch event
+                if (OnDestinationReached != null) //launch event
                 {
                     OnDestinationReached();
                 }
@@ -158,10 +158,14 @@ namespace EA4S.Minigames.ColorTickle
             else //make the progress for this frame
             {
                 m_oLetter.SetWalkingSpeed(1);
-                
+
                 m_oLetter.SetState(m_eAnimationOnMoving);
                 gameObject.transform.Translate(_v3PartialMovement, Space.World);
-                gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, Quaternion.LookRotation(_v3MaxMovement), m_fRotationSpeed * Time.deltaTime);
+
+                if (_v3MaxMovement.sqrMagnitude == 0)
+                    gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, Quaternion.LookRotation(Vector3.back), m_fRotationSpeed * Time.deltaTime);
+                else
+                    gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, Quaternion.LookRotation(_v3MaxMovement), m_fRotationSpeed * Time.deltaTime);
 
                 //gameObject.transform.position += _v3PartialMovement;
                 //m_bMovingToDestination = true;

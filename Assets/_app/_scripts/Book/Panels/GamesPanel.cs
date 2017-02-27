@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 using EA4S.Audio;
+using EA4S.Core;
 using EA4S.Database;
 using EA4S.UI;
 
@@ -167,8 +168,37 @@ namespace EA4S.Book
             foreach (var k in dictionary.Keys) {
                 if (dictionary[k].id != "Assessment") {
                     outputList.Add(dictionary[k]);
+
                 }
             }
+
+            // Sort minigames and variations based on their minimum journey position
+            Dictionary<MiniGameCode, JourneyPosition> minimumJourneyPositions = new Dictionary<MiniGameCode, JourneyPosition>();
+            foreach (var mainMiniGame in outputList)
+            {
+                foreach (var miniGameInfo in mainMiniGame.variations)
+                {
+                    var miniGameCode = miniGameInfo.data.Code;
+                    minimumJourneyPositions[miniGameCode] = AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(miniGameCode);
+                }
+            }
+
+            // First sort variations (so the first variation is in front)
+            foreach (var mainMiniGame in outputList)
+            {
+                mainMiniGame.variations.Sort((g1, g2) => minimumJourneyPositions[g1.data.Code].IsMinor(
+                        minimumJourneyPositions[g2.data.Code])
+                        ? -1
+                        : 1);
+            }
+
+            // Then sort minigames by their first variation
+            outputList.Sort(
+                (g1, g2) =>
+                    minimumJourneyPositions[g1.variations[0].data.Code].IsMinor(
+                        minimumJourneyPositions[g2.variations[0].data.Code])
+                        ? -1
+                        : 1);
 
             return outputList;
         }
