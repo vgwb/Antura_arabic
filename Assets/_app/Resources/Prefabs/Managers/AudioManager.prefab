@@ -518,7 +518,7 @@ MonoBehaviour:
     fooVolume: 1
   - mixerGroup: {fileID: 24331624, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
     id: 7
-    maxSources: 1
+    maxSources: 8
     preallocate: 0
     recycle: 1
     fooVolume: 1
