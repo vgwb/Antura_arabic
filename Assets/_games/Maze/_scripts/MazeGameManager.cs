@@ -80,7 +80,7 @@ namespace EA4S.Minigames.Maze
 
         private void OnPointerDown()
         {
-            if (currentMazeLetter != null)
+            if (currentMazeLetter != null && !gameEnded)
             {
                 currentMazeLetter.OnPointerDown();
             }
@@ -88,7 +88,7 @@ namespace EA4S.Minigames.Maze
 
         private void OnPointerUp()
         {
-            if (currentMazeLetter != null)
+            if (currentMazeLetter != null && !gameEnded)
             {
                 currentMazeLetter.OnPointerUp();
             }
@@ -416,6 +416,11 @@ namespace EA4S.Minigames.Maze
         public LL_LetterData currentLL = null;
         void initCurrentLetter()
         {
+            if (gameEnded)
+            {
+                return;
+            }
+
             currentCharacter = null;
             currentTutorial = null;
 
@@ -567,7 +572,7 @@ namespace EA4S.Minigames.Maze
             lines[lines.Count - 1].SetPosition(pointsList.Count - 1, adjustedPoint);
         }
 
-        bool gameEnded = false;
+        public bool gameEnded = false;
         private void endGame()
         {
             if (gameEnded)
@@ -638,6 +643,21 @@ namespace EA4S.Minigames.Maze
         public void onTimeUp()
         {
             endGame();
+
+            if (currentTutorial != null)
+            {
+                currentTutorial.HideAllCheckpointsAndLines();
+            }
+
+            if (currentCharacter != null)
+            {
+                currentCharacter.gameObject.SetActive(false);
+            }
+
+            foreach (var line in lines)
+            {
+                line.enabled = false;
+            }
         }
 
         public bool isShowingAntura = false;
