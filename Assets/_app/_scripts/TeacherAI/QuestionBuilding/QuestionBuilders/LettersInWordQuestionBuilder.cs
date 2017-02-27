@@ -144,10 +144,10 @@ namespace EA4S.Teacher
                 if (word.Letters.Length > maxWordLength) continue;
 
                 // Avoid using words that contain previously chosen letters
-                if (packsUsedTogether && vocabularyHelper.WordContainsAnyLetter(word, currentRoundIDs_letters)) continue;
+                if (vocabularyHelper.WordContainsAnyLetter(word, currentRoundIDs_letters)) continue;
 
                 // Avoid using words that have ONLY letters that appeared in previous words
-                if (packsUsedTogether && vocabularyHelper.WordHasAllLettersInCommonWith(word, currentRoundIDs_words)) continue;
+                if (vocabularyHelper.WordHasAllLettersInCommonWith(word, currentRoundIDs_words)) continue;
 
                 eligibleWords.Add(word);
             }
@@ -164,7 +164,7 @@ namespace EA4S.Teacher
             foreach (var letter in wordLetters)
             {
                 // Avoid using letters that appeared in previous words
-                if (packsUsedTogether && vocabularyHelper.LetterContainedInAnyWord(letter, bad_words)) continue;
+                if (vocabularyHelper.LetterContainedInAnyWord(letter, bad_words)) continue;
 
                 eligibleLetters.Add(letter);
             }
@@ -181,7 +181,7 @@ namespace EA4S.Teacher
             foreach (var letter in noWordLetters)
             {
                 // Avoid using letters that appeared in previous words
-                if (packsUsedTogether && vocabularyHelper.LetterContainedInAnyWord(letter, bad_words)) continue;
+                if (vocabularyHelper.LetterContainedInAnyWord(letter, bad_words)) continue;
 
                 eligibleLetters.Add(letter);
             }

@@ -145,7 +145,7 @@ namespace EA4S.Teacher
             foreach (var w in words)
             {
                 // Not words that have one of the previous letters (but the current one)
-                if (packsUsedTogether && vocabularyHelper.WordContainsAnyLetter(w, bad_letters)) continue;
+                if (vocabularyHelper.WordContainsAnyLetter(w, bad_letters)) continue;
 
                 eligibleWords.Add(w);
             }
@@ -161,14 +161,12 @@ namespace EA4S.Teacher
             foreach (var w in words)
             {
                 // Not words that have one of the previous letters
-                if (packsUsedTogether && vocabularyHelper.WordContainsAnyLetter(w, bad_letters)) continue;
+                if (vocabularyHelper.WordContainsAnyLetter(w, bad_letters)) continue;
 
                 eligibleWords.Add(w);
             }
             return eligibleWords;
         }
-
-        //
 
     }
 }
