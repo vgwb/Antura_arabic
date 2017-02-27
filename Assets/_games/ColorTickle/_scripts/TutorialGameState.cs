@@ -194,11 +194,6 @@ namespace EA4S.Minigames.ColorTickle
             m_PercentageLetterColored = Mathf.Min(100, ((m_TMPTextColoringLetter.GetRachedCoverage() * 100.0f) / percentageRequiredToWin) * 100.0f);
         }
 
-        private void EnableAntura()
-        {
-            game.anturaController.TryLaunchAnturaDisruption();
-        }
-
         private void AnturaReachedLetter()
         {
             m_LetterObjectView.SetState(LLAnimationStates.LL_still);

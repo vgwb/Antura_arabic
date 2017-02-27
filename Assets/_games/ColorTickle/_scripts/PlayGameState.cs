@@ -28,6 +28,8 @@ namespace EA4S.Minigames.ColorTickle
         ColorTickle_LLController m_LLController;
         HitStateLLController m_HitStateLLController;
 
+        float tryAnturaTimer;
+
         // LL vanishing vars
         bool m_bLLVanishing = false;
         float m_fTimeToDisappear = 3f;
@@ -58,14 +60,27 @@ namespace EA4S.Minigames.ColorTickle
             m_CurrentLetter = game.myLetters[m_Rounds - 1];
 			m_CurrentLetter.gameObject.SetActive (true);         
             InitLetter();
+
+            ResetLaunchTimer(true);
         }
 
         public void ExitState()
         {
         }
 
+        void ResetLaunchTimer(bool firstTime)
+        {
+            float difficultyFactor = 1 - ColorTickleConfiguration.Instance.Difficulty;
+            tryAnturaTimer = Mathf.Lerp(4, 15, difficultyFactor) + Random.value*4;
+
+            if (firstTime)
+                tryAnturaTimer *= 0.5f;
+        }
+
         public void Update(float delta)
         {
+            tryAnturaTimer -= delta;
+
             if (m_Rounds <= 0)
             {               
                 game.SetCurrentState(game.ResultState);
@@ -104,7 +119,7 @@ namespace EA4S.Minigames.ColorTickle
                         if (controller != null)
                         {
                             controller.OnTouchedOutside -= OnTickled;
-                            controller.EnableAntura -= EnableAntura;
+                            controller.OnTouchedShape -= TryEnableAntura;
                         }
 
                         --m_Rounds;
@@ -219,10 +234,12 @@ namespace EA4S.Minigames.ColorTickle
             m_LLController.OnDestinationReached += delegate () { game.Context.GetAudioManager().PlayLetterData(m_LetterObjectView.Data); };//play audio on destination
 
 
-            m_HitStateLLController.EnableAntura += EnableAntura;
+            m_HitStateLLController.OnTouchedShape += TryEnableAntura;
             //game.anturaController.targetToLook = m_CurrentLetter.transform; //make antura look at the LL on rotations
 
-            SetBrushColor(m_ColorsUIManager.defaultColor);     
+            SetBrushColor(m_ColorsUIManager.defaultColor);
+
+            ResetLaunchTimer(true);
         }
 
         private void EnableLetterComponents()
@@ -280,9 +297,17 @@ namespace EA4S.Minigames.ColorTickle
             }
         }
 
-        private void EnableAntura()
+        private void TryEnableAntura()
         { 
-            game.anturaController.TryLaunchAnturaDisruption();
+            if (tryAnturaTimer < 0)
+            { 
+                if (ColorTickleConfiguration.Instance.Difficulty >= 0.2f)
+                {
+                    game.anturaController.LaunchAnturaDisruption();
+                }
+
+                ResetLaunchTimer(false);
+            }
         }
 
         private void AnturaReachedLetter()

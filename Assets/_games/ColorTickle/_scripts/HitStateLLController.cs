@@ -24,7 +24,7 @@ namespace EA4S.Minigames.ColorTickle
 
         #region EVENTS
         public event System.Action OnTouchedOutside;
-        public event System.Action EnableAntura;
+        public event System.Action OnTouchedShape;
         public event System.Action EnableTutorial;
         #endregion
 
@@ -59,9 +59,9 @@ namespace EA4S.Minigames.ColorTickle
             {
                 // Call this function before we set m_HitState = HIT_LETTERINSIDE 
                 m_HitState = eHitState.HIT_LETTERINSIDE;
-                if (EnableAntura != null)
+                if (OnTouchedShape != null)
                 {
-                    EnableAntura();
+                    OnTouchedShape();
                 }
             }
             //when the hit is outside
