@@ -8723,6 +8723,27 @@ MonoBehaviour:
       - itis10oclockinthemorning_R
       - doyouneedhelp_Q
       - yesplease_R
+      - myfatherisabraveman
+      - avirtuouspoliceman
+      - thescientistwenttothestation
+      - thegirlwonaball
+      - abigwhale
+      - mybrotheropenedtheoragebox
+      - myauntsatonthechair
+      - thankyouforthepurpleflower
+      - congrats_forthebedandthecupboard
+      - congrats_for_the_fridge_and_the_oven
+      - theparrotishappyandactive
+      - thetigerwasintheforest
+      - myauntissad
+      - thegreenappleisdelicious
+      - myfaceisbluefromthecold
+      - mysisterwenttotheclub
+      - mygrandfathercaughtthebird
+      - myuncleworethebrownshirt
+      - myuncleisabraveman
+      - the_river_water_is_cold
+      - thecarpenterleft
     - Id: 6.1.2
       Stage: 6
       LearningBlock: 1
@@ -9709,10 +9730,10 @@ MonoBehaviour:
       - tomorrow
       Words_previous:
       - now
-      Phrases: []
-      Phrases_previous:
+      Phrases:
       - seeyou
       - goodbye
+      Phrases_previous: []
     - Id: 6.9.2
       Stage: 6
       LearningBlock: 9
@@ -10500,8 +10521,7 @@ MonoBehaviour:
       Letters: []
       Words: []
       Words_previous: []
-      Phrases: []
-      Phrases_previous:
+      Phrases:
       - goodmorning_Q
       - goodmorning_R
       - goodevening_Q
@@ -10514,6 +10534,7 @@ MonoBehaviour:
       - sure
       - seeyou
       - goodbye
+      Phrases_previous: []
     - Id: 6.15.2
       Stage: 6
       LearningBlock: 15
