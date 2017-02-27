@@ -218,20 +218,29 @@ namespace EA4S.Audio
         #endregion
 
         #region Letters, Words and Phrases
-        public IAudioSource PlayLetter(LetterData data)
+        public IAudioSource PlayLetter(LetterData data, bool exclusive = true)
         {
+            if (exclusive)
+                AudioManager.I.StopLettersWordsPhrases();
+
             AudioClip clip = GetAudioClip(data);
             return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), wordsLettersPhrasesGroup, this);
         }
 
-        public IAudioSource PlayWord(WordData data)
+        public IAudioSource PlayWord(WordData data, bool exclusive = true)
         {
+            if (exclusive)
+                AudioManager.I.StopLettersWordsPhrases();
+
             AudioClip clip = GetAudioClip(data);
             return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), wordsLettersPhrasesGroup, this);
         }
 
-        public IAudioSource PlayPhrase(PhraseData data)
+        public IAudioSource PlayPhrase(PhraseData data, bool exclusive = true)
         {
+            if (exclusive)
+                AudioManager.I.StopLettersWordsPhrases();
+
             AudioClip clip = GetAudioClip(data);
             return new AudioSourceWrapper(wordsLettersPhrasesGroup.Play(clip), wordsLettersPhrasesGroup, this);
         }
