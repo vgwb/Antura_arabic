@@ -19,6 +19,7 @@ namespace EA4S.AnturaSpace
         public AnturaSpaceUI UI;
 
         public Transform SceneCenter;
+        public Pedestal RotatingBase;
         public Transform AttentionPosition;
         public Transform BoneSpawnPosition;
         public GameObject BonePrefab;

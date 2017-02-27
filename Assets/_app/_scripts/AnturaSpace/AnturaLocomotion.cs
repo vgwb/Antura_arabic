@@ -9,6 +9,7 @@ namespace EA4S.AnturaSpace
     {
         Transform target;
         bool rotateAsTarget;
+        Transform rotatingBase;
 
         float runningTime;
         bool isSliping;
@@ -32,6 +33,7 @@ namespace EA4S.AnturaSpace
             }
         }
 
+        bool wasNearPosition;
         bool IsNearTargetPosition
         {
             get
@@ -42,7 +44,7 @@ namespace EA4S.AnturaSpace
                 var distance = target.position - transform.position;
                 distance.y = 0;
 
-                return distance.magnitude < 0.5f;
+                return distance.magnitude < (wasNearPosition ? 1.0f : 0.5f);
             }
         }
 
@@ -114,10 +116,14 @@ namespace EA4S.AnturaSpace
             }
         }
 
-        public void SetTarget(Transform target, bool rotateAsTarget)
+        public void SetTarget(Transform target, bool rotateAsTarget, Transform rotatingBase = null)
         {
             this.target = target;
             this.rotateAsTarget = rotateAsTarget;
+            this.rotatingBase = rotatingBase;
+
+            if (rotatingBase == null)
+                transform.SetParent(null);
         }
 
 
@@ -135,9 +141,9 @@ namespace EA4S.AnturaSpace
                 var velMagnitude = lastVelocity.magnitude;
 
                 if (velMagnitude > 1)
-                    lastVelocity -= 10*lastVelocity.normalized*Time.deltaTime;
+                    lastVelocity -= 10 * lastVelocity.normalized * Time.deltaTime;
                 else
-                    lastVelocity = Vector3.Lerp(lastVelocity, Vector3.zero, 4*Time.deltaTime);
+                    lastVelocity = Vector3.Lerp(lastVelocity, Vector3.zero, 4 * Time.deltaTime);
 
                 if (lastVelocity.magnitude < 0.2f)
                 {
@@ -159,6 +165,7 @@ namespace EA4S.AnturaSpace
 
                 if (!IsNearTargetPosition)
                 {
+                    wasNearPosition = false;
                     float speedFactor = Mathf.Lerp(0, 1, distMagnitude / 10);
                     speed = Mathf.Lerp(WALK_SPEED, RUN_SPEED, speedFactor) * Mathf.Lerp(0, 1, distMagnitude);
                     AnimationController.SetWalkingSpeed(speedFactor);
@@ -182,6 +189,8 @@ namespace EA4S.AnturaSpace
                         runningTime = 0;
                     }
                 }
+                else
+                    wasNearPosition = true;
 
                 if (speed > 0.05f)
                 {
@@ -203,11 +212,28 @@ namespace EA4S.AnturaSpace
                 {
                     var dot = Mathf.Max(0, Vector3.Dot(target.forward.normalized, transform.forward.normalized));
 
-                    if (rotateAsTarget)
-                        transform.rotation = Quaternion.Slerp(transform.rotation, target.rotation, Time.deltaTime * 4 * (0.2f + 0.8f * dot));
+                    if (rotatingBase)
+                    {
+                        Quaternion targetRotation;
 
-                    if ((!rotateAsTarget || dot > 0.9f) && AnimationController.State == AnturaAnimationStates.walking)
-                        AnimationController.State = AnturaAnimationStates.idle;
+                        transform.SetParent(rotatingBase);
+
+                        if (rotateAsTarget)
+                            targetRotation = target.rotation * rotatingBase.rotation;
+                        else
+                            targetRotation = rotatingBase.rotation;
+
+                        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4);
+                    }
+                    else
+                    {
+
+                        if (rotateAsTarget)
+                            transform.rotation = Quaternion.Slerp(transform.rotation, target.rotation, Time.deltaTime * 4 * (0.2f + 0.8f * dot));
+
+                        if ((!rotateAsTarget || dot > 0.9f) && AnimationController.State == AnturaAnimationStates.walking)
+                            AnimationController.State = AnturaAnimationStates.idle;
+                    }
                 }
             }
             lastVelocity = (transform.position - lastPosition) / Time.deltaTime;
