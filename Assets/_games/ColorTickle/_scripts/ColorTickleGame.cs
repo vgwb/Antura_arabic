@@ -123,20 +123,8 @@ namespace EA4S.Minigames.ColorTickle
             var difficulty = GetConfiguration().Difficulty;
 
             //Adjust parameters accordingly:
-            //- max lives: 1 on hard, full lives on easy, mean of the two on medium
-            //- Antura's probability to scare LL: linear with the difficulty, the base value is the minimum
-            if (difficulty>0.666f) //hard
-            {
-                m_MaxLives = 1;
-            }
-            else if(difficulty > 0.333f) //medium
-            {
-                m_MaxLives = (m_MaxLives + 1) / 2;
-            }
-            else //easy
-            {
-                //on easy use the base value of max lives
-            }
+            //- max lives: 2 on hard, 5 on very easy
+            m_MaxLives = 2 + Mathf.RoundToInt(3 * (1 - difficulty));
 
         }
 
