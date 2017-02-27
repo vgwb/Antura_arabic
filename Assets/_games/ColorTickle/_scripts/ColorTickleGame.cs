@@ -31,7 +31,6 @@ namespace EA4S.Minigames.ColorTickle
         #endregion
 
         #region PRIVATE MEMBERS
-        private float m_fDifficulty = 0;
         private int m_Stars = 0;
         GameObject[] m_MyLetters;
         GameObject m_TutorialLetter;
@@ -87,12 +86,6 @@ namespace EA4S.Minigames.ColorTickle
             set { m_Rounds = value; }
         }
 
-        public float difficulty
-        {
-            get { return m_fDifficulty; }
-            set { m_fDifficulty = value; }
-        }
-
         public IOverlayWidget gameUI
         {
             get { return m_GameUI; }
@@ -127,16 +120,16 @@ namespace EA4S.Minigames.ColorTickle
             ResultState = new ResultGameState(this);
 
             //Difficulty is decided like this: 0 <= easy <= 0.333 < medium <= 0.666 < hard <=1
-            m_fDifficulty = GetConfiguration().Difficulty;
+            var difficulty = GetConfiguration().Difficulty;
 
             //Adjust parameters accordingly:
             //- max lives: 1 on hard, full lives on easy, mean of the two on medium
             //- Antura's probability to scare LL: linear with the difficulty, the base value is the minimum
-            if (m_fDifficulty>0.666f) //hard
+            if (difficulty>0.666f) //hard
             {
                 m_MaxLives = 1;
             }
-            else if(m_fDifficulty > 0.333f) //medium
+            else if(difficulty > 0.333f) //medium
             {
                 m_MaxLives = (m_MaxLives + 1) / 2;
             }
@@ -144,7 +137,6 @@ namespace EA4S.Minigames.ColorTickle
             {
                 //on easy use the base value of max lives
             }
-            m_AnturaController.probabilityToScareLL = Mathf.Max(m_AnturaController.probabilityToScareLL, m_fDifficulty * 100); //at least the base value
 
         }
 
