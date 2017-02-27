@@ -4,40 +4,41 @@ using TMPro;
 
 namespace EA4S.Minigames.Maze
 {
-	public class MazeTimer : MonoBehaviour {
+    public class MazeTimer : MonoBehaviour
+    {
 
-		[HideInInspector]
-		public float time;
-		public TextMeshProUGUI timerText;
+        [HideInInspector]
+        public float time;
+        public TextMeshProUGUI timerText;
 
-		private bool isRunning;
-		private bool playedSfx;
-		private float timeRemaining;
+        private bool isRunning;
+        private bool playedSfx;
+        private float timeRemaining;
 
 
-		public void initTimer()
-		{
+        public void initTimer()
+        {
             /*time = MazeGameManager.Instance.gameTime;
 			timeRemaining = time;
 			DisplayTime ();*/
 
             // this.StopAllCoroutines();
             if (!MazeGameManager.instance.isTutorialMode)
-                MinigamesUI.Timer.Setup( MazeGameManager.instance.gameTime);
+                MinigamesUI.Timer.Setup(MazeGameManager.instance.gameTime);
 
 
         }
 
-		public void Update()
-		{
+        public void Update()
+        {
 
-            if(!MazeGameManager.instance.isTutorialMode &&  MinigamesUI.Timer.Duration == MinigamesUI.Timer.Elapsed)
+            if (!MazeGameManager.instance.isTutorialMode && MinigamesUI.Timer.Duration == MinigamesUI.Timer.Elapsed)
             {
                 StopTimer();
                 MazeGameManager.instance.onTimeUp();
             }
 
-			/*if (isRunning) {
+            /*if (isRunning) {
 				if (timeRemaining > 0f) {
 					timeRemaining -= Time.deltaTime;
 					DisplayTime();
@@ -52,10 +53,10 @@ namespace EA4S.Minigames.Maze
 				}
 			}*/
 
-		}
+        }
 
-		public void StartTimer()
-		{
+        public void StartTimer()
+        {
             //isRunning = true;
             //   this.StopAllCoroutines();
             if (!MazeGameManager.instance.isTutorialMode)
@@ -63,8 +64,8 @@ namespace EA4S.Minigames.Maze
 
         }
 
-		public void StopTimer()
-		{
+        public void StopTimer()
+        {
             // this.StopAllCoroutines();
             if (!MazeGameManager.instance.isTutorialMode)
                 MinigamesUI.Timer.Pause();
@@ -75,10 +76,10 @@ namespace EA4S.Minigames.Maze
 
 
 
-		public void DisplayTime()
-		{
-			/*var text = Mathf.Floor(timeRemaining).ToString();
+        public void DisplayTime()
+        {
+            /*var text = Mathf.Floor(timeRemaining).ToString();
 			timerText.text = text;*/
-		}
-	}
+        }
+    }
 }

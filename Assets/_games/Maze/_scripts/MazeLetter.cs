@@ -20,6 +20,11 @@ namespace EA4S.Minigames.Maze
 
         void Update()
         {
+            if (MazeGameManager.instance.gameEnded)
+            {
+                return;
+            }
+
             if (mazeCharacter.characterIsMoving)
             {
                 anturaSeconds = 0;

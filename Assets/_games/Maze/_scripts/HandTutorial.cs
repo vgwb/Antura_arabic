@@ -134,6 +134,24 @@ namespace EA4S.Minigames.Maze
             linesToShow[currentPath].SetActive(false);
         }
 
+        public void HideAllCheckpointsAndLines()
+        {
+            foreach (var path in pathsToFollow)
+            {
+                path.SetActive(false);
+            }
+
+            foreach (var arrow in visibleArrows)
+            {
+                arrow.SetActive(false);
+            }
+
+            foreach (var line in linesToShow)
+            {
+                line.SetActive(false);
+            }
+        }
+
         public bool isCurrentTutorialDone()
         {
             return true; //!isMovingOnPath;
