@@ -11,7 +11,6 @@ using EA4S.Rewards;
 using EA4S.Teacher;
 using EA4S.MinigamesAPI;
 using EA4S.UI;
-using PlayerProfile = EA4S.Profile.PlayerProfile;
 
 namespace EA4S
 {
@@ -59,7 +58,7 @@ namespace EA4S
             }
         }
 
-        public PlayerProfile Player {
+        public Profile.PlayerProfile Player {
             get { return PlayerProfileManager != null ? PlayerProfileManager.CurrentPlayer : null; }
             set { PlayerProfileManager.CurrentPlayer = value; }
         }
