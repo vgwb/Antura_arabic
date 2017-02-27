@@ -65,7 +65,7 @@ namespace EA4S.Minigames.Maze
 
                     mazeCharacter.myCollider = child.gameObject.AddComponent<MeshCollider>();
                     
-                    TrackBounds trackBounds = child.gameObject.AddComponent<TrackBounds>();
+                    child.gameObject.AddComponent<TrackBounds>();
 
                     child.gameObject.layer = 17;
                 }

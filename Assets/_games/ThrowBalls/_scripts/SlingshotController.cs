@@ -248,5 +248,15 @@ namespace EA4S.Minigames.ThrowBalls
         {
             return launchForce;
         }
+
+        public void Enable()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Disable()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
