@@ -24,8 +24,7 @@ namespace EA4S.Audio
         DeAudioGroup keeperGroup;
         DeAudioGroup sfxGroup;
 
-        System.Action OnDialogueEnded;
-        bool hasToNotifyEndDialogue = false;
+        Dictionary<IAudioSource, System.Action> dialogueEndedCallbacks = new Dictionary<IAudioSource, System.Action>();
 
         bool previousMusicEnabled = true;
         bool musicEnabled = true;
@@ -257,10 +256,8 @@ namespace EA4S.Audio
 
         public IAudioSource PlayDialogue(Database.LocalizationData data, bool clearPreviousCallback = false)
         {
-            if (!clearPreviousCallback && OnDialogueEnded != null)
-                OnDialogueEnded();
-
-            OnDialogueEnded = null;
+            if (clearPreviousCallback)
+                dialogueEndedCallbacks.Clear();
 
             if (!string.IsNullOrEmpty(data.AudioFile)) {
                 AudioClip clip = GetAudioClip(data);
@@ -281,15 +278,15 @@ namespace EA4S.Audio
 
         public IAudioSource PlayDialogue(Database.LocalizationData data, System.Action callback, bool clearPreviousCallback = false)
         {
-            if (!clearPreviousCallback && OnDialogueEnded != null)
-                OnDialogueEnded();
-
-            OnDialogueEnded = null;
+            if (clearPreviousCallback)
+                dialogueEndedCallbacks.Clear();
 
             if (!string.IsNullOrEmpty(data.AudioFile)) {
-                OnDialogueEnded = callback;
                 AudioClip clip = GetAudioClip(data);
-                return new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
+                var wrapper = new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
+                if (callback != null)
+                    dialogueEndedCallbacks[wrapper] = callback;
+                return wrapper;
             } else {
                 if (callback != null)
                     callback();
@@ -299,10 +296,8 @@ namespace EA4S.Audio
 
         public void StopDialogue(bool clearPreviousCallback)
         {
-            if (!clearPreviousCallback && OnDialogueEnded != null)
-                OnDialogueEnded();
-
-            OnDialogueEnded = null;
+            if (clearPreviousCallback)
+                dialogueEndedCallbacks.Clear();
 
             keeperGroup.Stop();
         }
@@ -400,7 +395,7 @@ namespace EA4S.Audio
         }
         #endregion
 
-
+        List<KeyValuePair<AudioSourceWrapper, System.Action>> pendingCallbacks = new List<KeyValuePair<AudioSourceWrapper, System.Action>>();
         public void Update()
         {
             for (int i = 0; i < playingAudio.Count; ++i) {
@@ -409,19 +404,21 @@ namespace EA4S.Audio
                     // could be collected
                     playingAudio.RemoveAt(i--);
 
-                    if (source.Group == keeperGroup)
-                        hasToNotifyEndDialogue = true;
+                    System.Action callback;
+                    if (source.Group == keeperGroup && dialogueEndedCallbacks.TryGetValue(source, out callback))
+                    {
+                        pendingCallbacks.Add(new KeyValuePair<AudioSourceWrapper, System.Action>(source, callback));
+                    }
                 }
             }
 
-            if (hasToNotifyEndDialogue) {
-                hasToNotifyEndDialogue = false;
-                if (OnDialogueEnded != null) {
-                    var oldCallback = OnDialogueEnded;
-                    OnDialogueEnded = null;
-                    oldCallback();
-                }
+            for (int i = 0; i < pendingCallbacks.Count; ++i)
+            {
+                pendingCallbacks[i].Value();
+                dialogueEndedCallbacks.Remove(pendingCallbacks[i].Key);
             }
+
+            pendingCallbacks.Clear();
         }
 
         public void OnAfterDeserialize()
