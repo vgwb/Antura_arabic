@@ -34,9 +34,6 @@ namespace EA4S.Minigames.ColorTickle
         [Header("Behaviour")]
         [SerializeField]
         private float m_fBarkTime = 0.5f; //Time spent by barking at the LL
-        [Range(0f, 100f)]
-        [SerializeField]
-        private float m_fProbabilityToScareLL = 100f; //Percentage to scare LL each second
 
         [SerializeField]
         private AnturaAnimationStates m_eAnimationOnStandby = AnturaAnimationStates.idle; //Animation to execute on reaching destination
@@ -97,12 +94,6 @@ namespace EA4S.Minigames.ColorTickle
         {
             get { return m_fBarkTime; }
             set { m_fBarkTime = value; }
-        }
-
-        public float probabilityToScareLL
-        {
-            get { return m_fProbabilityToScareLL; }
-            set { m_fProbabilityToScareLL = value; }
         }
 
         public AnturaAnimationStates animationOnMoving
@@ -201,9 +192,9 @@ namespace EA4S.Minigames.ColorTickle
         /// Using the given probability to launch antura action in the scene. 
         /// </summary>
         /// <returns>True when the action has succeed, false otherwise</returns>
-        public bool TryLaunchAnturaDisruption()
+        public bool LaunchAnturaDisruption()
         {
-            if (m_eAnturaState == AnturaContollerState.SLEEPING && UnityEngine.Random.Range(0f, 100f) < Mathf.Clamp(m_fProbabilityToScareLL, 0, 100) * Time.deltaTime) //check for success
+            if (m_eAnturaState == AnturaContollerState.SLEEPING) //check for success
             {
                 AnturaNextTransition();
 
