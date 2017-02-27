@@ -27,8 +27,8 @@ MonoBehaviour:
         Weight: 0.2
       - Skill: 1
         Weight: 0.8
-    - Title_En: Alphabet Song letters
-      Title_Ar: 
+    - Title_En: Diacritic Song
+      Title_Ar: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u062D\u0631\u0643\u0627\u062A"
       Code: 33
       Available: 1
       Type: 1
@@ -281,7 +281,7 @@ MonoBehaviour:
         Weight: 0.2
       - Skill: 2
         Weight: 0.2
-    - Title_En: The Egg! letters
+    - Title_En: 'The Egg: Letters!'
       Title_Ar: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
       Code: 11
       Available: 1
@@ -295,7 +295,7 @@ MonoBehaviour:
         Weight: 0.8
       - Skill: 1
         Weight: 0.2
-    - Title_En: The Egg! sequence
+    - Title_En: 'The Egg: Sequence!'
       Title_Ar: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       Code: 34
       Available: 1
@@ -445,7 +445,7 @@ MonoBehaviour:
       - Skill: 4
         Weight: 0.4
     - Title_En: Missing Form!
-      Title_Ar: 
+      Title_Ar: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
       Code: 35
       Available: 1
       Type: 1
@@ -516,7 +516,7 @@ MonoBehaviour:
         Weight: 0.6
       - Skill: 1
         Weight: 0.2
-    - Title_En: Phrase Scanner!
+    - Title_En: 'Word Scanner: Sequence!'
       Title_Ar: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0639\u0650\u0628\u0627\u0631\u0627\u062A!"
       Code: 26
       Available: 1
@@ -560,7 +560,7 @@ MonoBehaviour:
       AffectedPlaySkills:
       - Skill: 6
         Weight: 1
-    - Title_En: 'Dodge Ball: Form a Word!'
+    - Title_En: 'Slingshot: Form a Word!'
       Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
         \u0627\u0644\u062D\u0631\u0648\u0641!"
       Code: 32
@@ -577,7 +577,7 @@ MonoBehaviour:
         Weight: 0.3
       - Skill: 2
         Weight: 0.5
-    - Title_En: 'Dodge Ball: Letters!'
+    - Title_En: 'Slingshot: Letters!'
       Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
         \u0627\u0644\u062D\u0631\u0648\u0641\u0650 \u0644\u062A\u0643\u0648\u064A\u0646
         \u0627\u0644\u0643\u0644\u0645\u0629!"
@@ -593,7 +593,7 @@ MonoBehaviour:
         Weight: 0.4
       - Skill: 2
         Weight: 0.6
-    - Title_En: 'Dodge Ball: Words!'
+    - Title_En: 'Slingshot: Words!'
       Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
         \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       Code: 28
