@@ -62,7 +62,7 @@ namespace EA4S.Rewards
             //RewardsAnimator animator = this.GetComponent<RewardsAnimator>();
             //while (!animator.IsComplete)
             //    yield return null;
-            yield return new WaitForSeconds(3.5f);
+            //yield return new WaitForSeconds(3.5f);
 
             /* FIRST CONTACT FEATURE */
             if (AppManager.I.Player.IsFirstContact()) {
@@ -91,6 +91,8 @@ namespace EA4S.Rewards
                 AnturaModelManager.Instance.LoadRewardPackOnAntura(newUnlockedReward);
             }
             /* --------------------- */
+            // Wait animation ending before show continue button
+            yield return new WaitForSeconds(4.4f);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
             yield return null;
         }
@@ -99,5 +101,6 @@ namespace EA4S.Rewards
         {
             AppManager.I.NavigationManager.GoToNextScene();
         }
+
     }
 }

@@ -369,6 +369,34 @@ namespace EA4S.Rewards
             else
                 return false;
         }
+
+        /// <summary>
+        /// Gets the antura rotation angle view for reward category.
+        /// </summary>
+        /// <param name="_categoryId">The category identifier.</param>
+        /// <returns></returns>
+        public static float GetAnturaRotationAngleViewForRewardCategory(string _categoryId) {
+            switch (_categoryId) {
+                case "HEAD":
+                    return 20;
+                case "NOSE":
+                    return -20;
+                case "BACK":
+                    return 200;
+                case "NECK":
+                    return 80;
+                case "JAW":
+                    return 30;
+                case "TAIL":
+                    return 160;
+                case "EAR_R":
+                    return -40;
+                case "EAR_L":
+                    return 40;
+                default:
+                    return 0;
+            }
+        }
         #endregion
 
         #endregion
@@ -397,7 +425,10 @@ namespace EA4S.Rewards
                 }
             } else if (unlock.Reward != string.Empty) {
                 // Get new reward item with random color
-                returnList.Add(GetRewardPack(playSessionId, RewardTypes.reward, true));
+                RewardPackUnlockData newItemReward = GetRewardPack(playSessionId, RewardTypes.reward, true);
+                if (OnNewRewardUnlocked != null)
+                    OnNewRewardUnlocked(newItemReward);
+                returnList.Add(newItemReward);
             } else if (unlock.Texture != string.Empty) {
                 // Get new texture
                 returnList.Add(GetRewardPack(playSessionId, RewardTypes.texture, true));
@@ -512,8 +543,8 @@ namespace EA4S.Rewards
         /// Occurs when [on reward item changed].
         /// </summary>
         public static event RewardSystemEventHandler OnRewardChanged;
-        
 
+        public static event RewardSystemEventHandler OnNewRewardUnlocked;
         #endregion
     }
 
