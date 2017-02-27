@@ -21,6 +21,10 @@ namespace EA4S.Minigames.ThrowBalls
         public const float TUTORIAL_UI_PERIOD = 4;
         private const float FLASHING_TEXT_CYCLE_DURATION = 1f;
 
+        private const float SHOW_BALL_AND_SLINGSHOT_START_DELAY = 0.5f;
+        private const float SHOW_BALL_AND_SLINGSHOT_DELAY_FOR_SLINGSHOT = 0.5f;
+        private const float SHOW_BALL_AND_SLINGSHOT_END_DELAY = 0.67f;
+
         public bool isRoundOngoing;
 
         // Round number is 1-based. (Round 1, round 2,...)
@@ -161,11 +165,14 @@ namespace EA4S.Minigames.ThrowBalls
             }
 
             AudioManager.I.PlayMusic(Music.Theme10);
-        }
 
-        private void ConfigureNumBalls()
-        {
-
+            BallController.instance.Reset();
+            Catapult.instance.DisableCollider();
+            BallController.instance.Disable();
+            SlingshotController.instance.Disable();
+            AnturaController.instance.Disable();
+            ArrowHeadController.instance.Disable();
+            ArrowBodyController.instance.Disable();
         }
 
         private void OnTitleVoiceOverDone()
@@ -177,6 +184,30 @@ namespace EA4S.Minigames.ThrowBalls
         {
             AnturaController.instance.DoneChasing();
             AnturaController.instance.Disable();
+
+            ThrowBallsGame.instance.StartCoroutine(ShowBallAndSlingshotCoroutine());
+        }
+
+        private IEnumerator ShowBallAndSlingshotCoroutine()
+        {
+            yield return new WaitForSeconds(SHOW_BALL_AND_SLINGSHOT_START_DELAY);
+
+            SlingshotController.instance.Enable();
+
+            GameObject poof = UnityEngine.Object.Instantiate(ThrowBallsGame.instance.poofPrefab, SlingshotController.instance.transform.position + new Vector3(0f, -5f, -2f), Quaternion.identity);
+            UnityEngine.Object.Destroy(poof, 10);
+            ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Poof);
+
+            yield return new WaitForSeconds(SHOW_BALL_AND_SLINGSHOT_DELAY_FOR_SLINGSHOT);
+
+            BallController.instance.Enable();
+            Catapult.instance.EnableCollider();
+
+            poof = UnityEngine.Object.Instantiate(ThrowBallsGame.instance.cratePoofPrefab, BallController.instance.transform.position + Vector3.back * 1.75f, Quaternion.identity);
+            UnityEngine.Object.Destroy(poof, 10);
+            ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Poof);
+
+            yield return new WaitForSeconds(SHOW_BALL_AND_SLINGSHOT_END_DELAY);
 
             switch (ThrowBallsConfiguration.Instance.Variation)
             {
@@ -192,7 +223,6 @@ namespace EA4S.Minigames.ThrowBalls
                 default:
                     break;
             }
-
         }
 
         public IEnumerator StartNewRound()
