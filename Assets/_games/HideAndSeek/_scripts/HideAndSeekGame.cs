@@ -73,7 +73,10 @@ namespace EA4S.Minigames.HideAndSeek
             {
                 Context.GetOverlayWidget().SetStarsScore(++CurrentScore);
                 if (CurrentStars >= 3) // Early end
-                    EndGame(CurrentStars, CurrentScore);
+                {
+                    this.SetCurrentState(ResultState);
+                    //EndGame(CurrentStars, CurrentScore);
+                }
             }
 
         }

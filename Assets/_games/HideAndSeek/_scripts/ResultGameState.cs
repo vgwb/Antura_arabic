@@ -23,7 +23,7 @@ namespace EA4S.Minigames.HideAndSeek
            if (game.isTimesUp)
             {
                 game.Context.GetPopupWidget().Hide();
-                timer = 1;
+                timer = 2;
                 goToEndGame = true;
             }
         }
