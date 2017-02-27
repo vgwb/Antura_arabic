@@ -14,8 +14,10 @@
         /// </summary>
         public const string AppVersion = "0.227";
 
-        // this is used to track changes in the sqlite db scheme.. CHANGE WITH CAUTION!
-        // because the db gets wiped when changed
+        /// <summary>
+        /// Version of the MySQL Database Scheme.
+        /// @note: Change with EXTREME CAUTION, as the MySQL databases are regenerated (and thus the data is removed) when a change is detected.
+        /// </summary>
         public const string DbSchemeVersion = "1.21";
 
         // public Urls
@@ -48,14 +50,34 @@
 
         #region Debug Options
 
-        // PRODUCTION: FALSE (enables the advanced Debug Panel)
+        /// <summary>
+        /// Enabled the Advanced Debug Panel.
+        /// Set to FALSE for production.
+        /// </summary>
         public const bool DebugPanelEnabled = true;
-        // PRODUCTION: TRUE (tracks common events with Unity Analytics)
+
+        /// <summary>
+        /// Tracks common events using Unity Analytics.
+        /// Set to TRUE for production.
+        /// </summary>
         public static bool UseUnityAnalytics = false;
-        // PRODUCTION: FALSE (switches off all Debug.Log)
+
+        /// <summary>
+        /// Switches on all Debug.Log calls for performance.
+        /// Set to FALSE for production.
+        /// </summary>
         public static bool VerboseLogging = true;
 
+        /// <summary>
+        /// Logs all MySQL database inserts.
+        /// Set to FALSE for production.
+        /// </summary>
         public static bool DebugLogInserts = false;
+
+        /// <summary>
+        /// Stops a MiniGame from playing if the PlaySession database does not allow that MiniGame to be played at a given position.
+        /// Used only for debug purposes (with the Debug Panel)
+        /// </summary>
         public static bool DebugStopPlayAtWrongPlaySessions = true;
 
         #endregion
