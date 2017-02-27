@@ -26,14 +26,45 @@ namespace EA4S.Helpers
 
         #region Text
 
-        public static string ReverseText(string text)
+        public static string ReverseText(string _source)
         {
-            var cArray = text.ToCharArray();
+            if (_source.Contains('\n')) {
+                return ReverseMultiParagraphText(_source);
+            } else {
+                return ReverseSingleParagraphText(_source);
+            }
+        }
+
+        /// <summary>
+        /// Reverses the text of a single paragraph
+        /// </summary>
+        /// <returns>The text reversed.</returns>
+        /// <param name="_source">Source.</param>
+        static string ReverseSingleParagraphText(string _source)
+        {
+            var cArray = _source.ToCharArray();
             var reverse = String.Empty;
             for (var i = cArray.Length - 1; i > -1; i--) {
                 reverse += cArray[i];
             }
             return reverse;
+        }
+
+        /// <summary>
+        /// Reverses the text but keeps the paragraphs order.
+        /// </summary>
+        /// <returns>The text with all paragraphs reversed.</returns>
+        /// <param name="_source">Source.</param>
+        static string ReverseMultiParagraphText(string _source)
+        {
+            char[] split = { '\n' };
+            string[] paragraphs = _source.Split(split);
+            string result = "";
+            foreach (string paragraph in paragraphs) {
+                result += ReverseSingleParagraphText(paragraph);
+                result += "\n";
+            }
+            return result;
         }
 
         #endregion
@@ -68,7 +99,7 @@ namespace EA4S.Helpers
         {
             int layerIndex = 0;
             int layer = _mask.value;
-            while(layer > 1) {
+            while (layer > 1) {
                 layer = layer >> 1;
                 layerIndex++;
             }
@@ -82,22 +113,22 @@ namespace EA4S.Helpers
         // Taken from here: http://answers.unity3d.com/questions/812240/convert-hex-int-to-colorcolor32.html
         public static Color HexToColor(string _hex)
         {
-            _hex = _hex.Replace ("0x", "");
-            _hex = _hex.Replace ("#", "");
+            _hex = _hex.Replace("0x", "");
+            _hex = _hex.Replace("#", "");
             byte a = 255;
-            byte r = Byte.Parse(_hex.Substring(0,2), NumberStyles.HexNumber);
-            byte g = Byte.Parse(_hex.Substring(2,2), NumberStyles.HexNumber);
-            byte b = Byte.Parse(_hex.Substring(4,2), NumberStyles.HexNumber);
+            byte r = Byte.Parse(_hex.Substring(0, 2), NumberStyles.HexNumber);
+            byte g = Byte.Parse(_hex.Substring(2, 2), NumberStyles.HexNumber);
+            byte b = Byte.Parse(_hex.Substring(4, 2), NumberStyles.HexNumber);
             // Only use alpha if the string has enough characters
-            if(_hex.Length == 8) a = Byte.Parse(_hex.Substring(4,2), NumberStyles.HexNumber);
-            return new Color32(r,g,b,a);
+            if (_hex.Length == 8) a = Byte.Parse(_hex.Substring(4, 2), NumberStyles.HexNumber);
+            return new Color32(r, g, b, a);
         }
 
         // Taken from here: http://wiki.unity3d.com/index.php?title=HexConverter
         public static string ColorToHex(Color32 _color, bool _addHashPrefix = false)
         {
-	        string hex = _color.r.ToString("X2") + _color.g.ToString("X2") + _color.b.ToString("X2");
-	        return _addHashPrefix ? "#" + hex : hex;
+            string hex = _color.r.ToString("X2") + _color.g.ToString("X2") + _color.b.ToString("X2");
+            return _addHashPrefix ? "#" + hex : hex;
         }
 
         public static Color GetColorFromString(string color)

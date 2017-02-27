@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using DG.DeExtensions;
+﻿using UnityEngine;
+using System.Collections.Generic;
+using EA4S.UI;
 using EA4S.Helpers;
-using TMPro;
-using UnityEngine;
 
 namespace EA4S.ReservedArea
 {
@@ -11,8 +10,8 @@ namespace EA4S.ReservedArea
     /// </summary>
     public class ReservedAreaDialog : MonoBehaviour
     {
-        public TextMeshProUGUI englishTextUI;
-        public TextMeshProUGUI arabicTextUI;
+        public TextRender englishTextUI;
+        public TextRender arabicTextUI;
 
         private int firstButtonClickCounter;
 
@@ -40,11 +39,11 @@ namespace EA4S.ReservedArea
             firstButtonClicksTarget = Random.Range(min_number, max_number);
 
             // Update text
-            string[] numberWords = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+            string[] numberWords = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
             string[] buttonWords = { "green", "red", "blue", "yellow" };
-            string[] buttonWordsArabic = {"الأخضر", "الأحمر", "الأزرق", "الأصفر" };
+            string[] buttonWordsArabic = { "الأخضر", "الأحمر", "الأزرق", "الأصفر" };
 
-            string numberWord = numberWords[firstButtonClicksTarget-1];
+            string numberWord = numberWords[firstButtonClicksTarget - 1];
             string firstButtonWord = buttonWords[firstButtonIndex];
             string secondButtonWord = buttonWords[secondButtonIndex];
 
@@ -55,13 +54,16 @@ namespace EA4S.ReservedArea
 
             string numberWordArabic = AppManager.I.DB.GetWordDataById("number_0" + firstButtonClicksTarget).Arabic;
             string firstButtonWordArabic = buttonWordsArabic[firstButtonIndex];
-            string secondButtonWordArabic = buttonWordsArabic[secondButtonIndex]; 
+            string secondButtonWordArabic = buttonWordsArabic[secondButtonIndex];
 
-            arabicTextUI.text = "المحجوز\n\n";
-            arabicTextUI.text += string.Format("لفتح الباب، اضغط {1} مرات على الزر {0}.", firstButtonWordArabic, numberWordArabic);
-            arabicTextUI.text += string.Format("\nثم، اضغط على الزر {0} مرة واحدة.", secondButtonWordArabic);
-           // arabicTextUI.text += string.Format("\nثم، اضغط حمراء واحدة مرة واحدة.", secondButtonWordArabic);
-            arabicTextUI.text += "\n\n إذا قمت بإجراء خطأ، إعادة المحاولة من خلال إعادة الوصول إلى هذا الفريق";
+            string arabicIntroduction = "";
+            arabicIntroduction += "المحجوز\n\n";
+            arabicIntroduction += string.Format("لفتح الباب، اضغط {1} مرات على الزر {0}.", firstButtonWordArabic, numberWordArabic);
+            arabicIntroduction += string.Format("\nثم، اضغط على الزر {0} مرة واحدة.", secondButtonWordArabic);
+            arabicIntroduction += "\n\n إذا قمت بإجراء خطأ، إعادة المحاولة من خلال إعادة الوصول إلى هذا الفريق";
+
+            Debug.Log(arabicIntroduction);
+            arabicTextUI.text = arabicIntroduction;
 
             /*              + numberWordArabic + "اضغط\n\n" +
                           " مرات على الزر "
@@ -78,19 +80,13 @@ namespace EA4S.ReservedArea
 
         public void OnButtonClick(int buttonIndex)
         {
-            if (buttonIndex == firstButtonIndex)
-            {
+            if (buttonIndex == firstButtonIndex) {
                 firstButtonClickCounter++;
-            }
-            else if (buttonIndex == secondButtonIndex)
-            {
-                if (firstButtonClickCounter == firstButtonClicksTarget)
-                {
+            } else if (buttonIndex == secondButtonIndex) {
+                if (firstButtonClickCounter == firstButtonClicksTarget) {
                     UnlockReservedArea();
-                }
-                else
-                {
-                    firstButtonClickCounter = firstButtonClicksTarget+1; // disabling
+                } else {
+                    firstButtonClickCounter = firstButtonClicksTarget + 1; // disabling
                 }
             }
         }
