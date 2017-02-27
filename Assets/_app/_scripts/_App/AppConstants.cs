@@ -7,21 +7,16 @@
     // refactor: reorganize all constants (some are statics, others are consts)
     public static class AppConstants
     {
-        // the diplayed version in home page
+        #region Application Constants
+
+        /// <summary>
+        /// Version of the application. Displayed in the Home scene.
+        /// </summary>
         public const string AppVersion = "0.227";
+
         // this is used to track changes in the sqlite db scheme.. CHANGE WITH CAUTION!
         // because the db gets wiped when changed
         public const string DbSchemeVersion = "1.21";
-
-        // PRODUCTION: FALSE (enables the advanced Debug Panel)
-        public const bool DebugPanelEnabled = true;
-        // PRODUCTION: TRUE (tracks common events with Unity Analytics)
-        public static bool UseUnityAnalytics = false;
-        // PRODUCTION: FALSE (switches off all Debug.Log)
-        public static bool VerboseLogging = true;
-
-        public static bool DebugLogInserts = false;
-        public static bool DebugStopPlayAtWrongPlaySessions = true;
 
         // public Urls
         public const string UrlWebsite = "http://www.antura.org";
@@ -47,5 +42,23 @@
 
         // Resource Paths
         public const string AvatarsResourcesDir = "Images/Avatars/";
+
+        #endregion
+
+
+        #region Debug Options
+
+        // PRODUCTION: FALSE (enables the advanced Debug Panel)
+        public const bool DebugPanelEnabled = true;
+        // PRODUCTION: TRUE (tracks common events with Unity Analytics)
+        public static bool UseUnityAnalytics = false;
+        // PRODUCTION: FALSE (switches off all Debug.Log)
+        public static bool VerboseLogging = true;
+
+        public static bool DebugLogInserts = false;
+        public static bool DebugStopPlayAtWrongPlaySessions = true;
+
+        #endregion
+
     }
 }
