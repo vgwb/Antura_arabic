@@ -12,6 +12,7 @@ namespace EA4S.AnturaSpace
         public override void EnterState()
         {
             base.EnterState();
+            UI.AnturaSpaceUI.onRewardCategorySelectedInCustomization += AnturaSpaceUI_onRewardCategorySelectedInCustomization;
             controller.UI.ShowBonesButton(false);
             controller.Antura.SetTarget(controller.SceneCenter, true, controller.RotatingBase.transform);
             controller.RotatingBase.Activated = true;
@@ -26,10 +27,21 @@ namespace EA4S.AnturaSpace
 
         public override void ExitState()
         {
+            UI.AnturaSpaceUI.onRewardCategorySelectedInCustomization -= AnturaSpaceUI_onRewardCategorySelectedInCustomization;
             controller.RotatingBase.Activated = false;
             controller.Antura.AnimationController.State = AnturaAnimationStates.idle;
             controller.Antura.SetTarget(null, false);
             base.ExitState();
+        }
+
+        /// <summary>
+        /// Happens when category selected in antura space customization mode.
+        /// </summary>
+        /// <param name="_category">The category.</param>
+        private void AnturaSpaceUI_onRewardCategorySelectedInCustomization(string _category) {
+            float rotation = Rewards.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(_category);
+            float offSet = rotation == 0 ? 0 : 40;
+            controller.RotatingBase.Angle = rotation + offSet;
         }
     }
 }
