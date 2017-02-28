@@ -65,11 +65,6 @@ namespace EA4S.ReservedArea
             arabicTextUI.text = arabicIntroduction;
         }
 
-        public void Close()
-        {
-            gameObject.SetActive(false);
-        }
-
         public void OnButtonClick(int buttonIndex)
         {
             if (buttonIndex == firstButtonIndex) {
