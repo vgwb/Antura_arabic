@@ -49,6 +49,7 @@ namespace EA4S.Rewards
         public static void ShowEndgameResult(int _numStars)
         {
             Init();
+            GlobalUI.ShowPauseMenu(false);
             AppManager.I.Player.AddBones(_numStars);
             I.BonesCounter.GetComponent<RectTransform>().anchoredPosition = I.BonesCounterEndgamePos;
             I.BonesCounter.Hide();
@@ -66,6 +67,7 @@ namespace EA4S.Rewards
         public static GameObject[] ShowEndsessionResult(List<EndsessionResultData> _sessionData, int _alreadyUnlockedRewards, bool _immediate = false)
         {
             Init();
+            GlobalUI.ShowPauseMenu(false);
             I.BonesCounter.GetComponent<RectTransform>().anchoredPosition = I.BonesCounterEndsessionPos;
             I.BonesCounter.Hide();
             I.EndsessionResultPanel.Show(_sessionData, _alreadyUnlockedRewards, _immediate);
@@ -78,7 +80,7 @@ namespace EA4S.Rewards
         public static void HideEndgameResult(bool _immediate = false)
         {
             if (I == null) return;
-            
+            GlobalUI.ShowPauseMenu(true);
             I.BonesCounter.Hide();
             I.EndgameResultPanel.Hide(_immediate);
         }
@@ -89,7 +91,7 @@ namespace EA4S.Rewards
         public static void HideEndsessionResult(bool _immediate = false)
         {
             if (I == null) return;
-
+            GlobalUI.ShowPauseMenu(true);
             I.BonesCounter.Hide();
             I.EndsessionResultPanel.Hide(_immediate);
         }
