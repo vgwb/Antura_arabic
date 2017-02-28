@@ -57,25 +57,12 @@ namespace EA4S.ReservedArea
             string secondButtonWordArabic = buttonWordsArabic[secondButtonIndex];
 
             string arabicIntroduction = "";
-            arabicIntroduction += "المحجوز\n\n";
-            arabicIntroduction += string.Format("لفتح الباب، اضغط {1} مرات على الزر {0}.", firstButtonWordArabic, numberWordArabic);
-            arabicIntroduction += string.Format("\nثم، اضغط على الزر {0} مرة واحدة.", secondButtonWordArabic);
-            arabicIntroduction += "\n\n إذا قمت بإجراء خطأ، إعادة المحاولة من خلال إعادة الوصول إلى هذا الفريق";
+            arabicIntroduction += "مكان مخصص\n\n";
+            arabicIntroduction += string.Format("لفتح القفل، اضغط الزر {0} {2} مرات، ثم الزر {1} مرة واحدة", firstButtonWordArabic, secondButtonWordArabic, numberWordArabic);
+            arabicIntroduction += "\n\n في حال أخطأت، أعد المحاولة باستعمال هذه اللوحة";
 
-            Debug.Log(arabicIntroduction);
+            //Debug.Log(arabicIntroduction);
             arabicTextUI.text = arabicIntroduction;
-
-            /*              + numberWordArabic + "اضغط\n\n" +
-                          " مرات على الزر "
-                          + firstButtonWordArabic +
-                          "، ثم اضغط على واحد "+ secondButtonWordArabic +" مرة واحدة.";
-     // arabicTextUI.text += "\n \n إذا جعل خطأ، إعادة المحاولة خلال إعادة - الوصول إلى هذا الفريق";
-     */
-        }
-
-        public void Close()
-        {
-            gameObject.SetActive(false);
         }
 
         public void OnButtonClick(int buttonIndex)
