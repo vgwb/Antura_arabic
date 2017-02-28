@@ -88,7 +88,7 @@ namespace EA4S.Teacher
         }*/
 
         public List<I> GetAllMiniGameDataInfo<D, I>(DbTables table) where I : DataInfo<D>, new()
-         where D : IData
+         where D : MiniGameData
         {
             List<D> data_list = dbManager.GetAllData<D>(table);
             var info_list = new List<I>();
@@ -107,7 +107,7 @@ namespace EA4S.Teacher
             for (int i = 0; i < info_list.Count; i++)
             {
                 var info = info_list[i];
-                var scoredata = scoredata_list.Find(x => x.GetId() == info.data.GetId());
+                var scoredata = scoredata_list.Find(x => x.MiniGameCode == info.data.Code);
                 if (scoredata != null)
                 {
                     info.score = scoredata.Score;
@@ -175,7 +175,7 @@ namespace EA4S.Teacher
 
             // Find available scores
             string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" + (int)dataType + "' ORDER BY ElementId ");
-            List<JourneyScoreData> scoredata_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
+            List<VocabularyScoreData> scoredata_list = dbManager.FindDataByQuery<VocabularyScoreData>(query);
             for (int i = 0; i < info_list.Count; i++)
             {
                 var info = info_list[i];

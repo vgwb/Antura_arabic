@@ -128,7 +128,6 @@ namespace EA4S.Book
             } else {
                 MiniGameBadgeImage.enabled = false;
             }
-
         }
 
         public void OnLaunchMinigame()
@@ -190,6 +189,7 @@ namespace EA4S.Book
                         minimumJourneyPositions[g2.data.Code])
                         ? -1
                         : 1);
+
             }
 
             // Then sort minigames by their first variation
