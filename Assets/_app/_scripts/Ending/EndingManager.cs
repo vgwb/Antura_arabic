@@ -20,13 +20,12 @@ namespace EA4S.Intro
         [Header("Scene Setup")]
         public Music SceneMusic;
 
-        CountdownTimer countDown;
-
         public LetterObjectView[] Letters;
         public Antura.AnturaAnimationController Antura;
 
         public float m_StateDelay = 1.0f;
         public float m_EndDelay = 2.0f;
+        const float FadeTime = 5;
 
         bool m_Start = true;
         bool m_End = false;
@@ -52,8 +51,7 @@ namespace EA4S.Intro
         {
             GlobalUI.ShowPauseMenu(false);
             AudioManager.I.PlayMusic(SceneMusic);
-
-            countDown = new CountdownTimer(m_EndDelay);
+            
             m_CameraEndPosition = Camera.main.transform.position;
             m_CameraStartPosition = m_CameraEndPosition + cameraOffset;
             autoMoveObjects = environment.GetComponentsInChildren<AutoMove>();
@@ -73,20 +71,9 @@ namespace EA4S.Intro
             Debugging.DebugManager.OnSkipCurrentScene += SkipScene;
         }
 
-        private void CountDown_onTimesUp()
-        {
-            AppManager.I.NavigationManager.GoToNextScene();
-        }
-
         void OnDisable()
         {
             Debugging.DebugManager.OnSkipCurrentScene -= SkipScene;
-
-            if (countDown != null)
-            {
-                countDown.onTimesUp -= CountDown_onTimesUp;
-            }
-            Debug.Log("OnDisable() Ending scene");
         }
 
         void SkipScene()
@@ -108,7 +95,7 @@ namespace EA4S.Intro
             else
             {
                 fadeOutTime += Time.deltaTime;
-                vignetting.fadeOut = Mathf.Lerp(0, 1, 0.2f*fadeOutTime);
+                vignetting.fadeOut = Mathf.Lerp(0, 1, fadeOutTime/FadeTime);
             }
 
             for (int i = 0; i < autoMoveObjects.Length; ++i)
@@ -125,7 +112,9 @@ namespace EA4S.Intro
             {
                 if (m_End)
                 {
-                    countDown.Update(Time.deltaTime);
+                    AppManager.I.NavigationManager.GoToNextScene();
+                    m_End = false;
+                    return;
                 }
             }
 
@@ -162,6 +151,7 @@ namespace EA4S.Intro
             yield return new WaitForSeconds(3);
 
             fadeIn = false;
+            yield return new WaitForSeconds(FadeTime);
             m_End = true;
 
         }
