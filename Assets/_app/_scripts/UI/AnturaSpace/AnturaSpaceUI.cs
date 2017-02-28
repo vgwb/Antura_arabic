@@ -28,6 +28,9 @@ namespace EA4S.UI
         public event System.Action onEnterCustomization;
         public event System.Action onExitCustomization;
 
+        public delegate void AnturaSpaceUIEvent(string _category);
+        public static event AnturaSpaceUIEvent onRewardCategorySelectedInCustomization;
+
         bool isModsPanelOpen;
         AnturaSpaceCategoryButton[] btsCategories;
         AnturaSpaceItemButton[] btsItems;
@@ -305,11 +308,18 @@ namespace EA4S.UI
         void OnClickCategory(AnturaSpaceCategoryButton _bt)
         {
             SelectCategory(_bt.Category);
+            if (onRewardCategorySelectedInCustomization != null)
+                onRewardCategorySelectedInCustomization(_bt.Category.ToString());
         }
 
         void OnClickItem(AnturaSpaceItemButton _bt)
         {
             SelectReward(_bt.Data);
+            Reward reward = RewardSystemManager.GetRewardById(_bt.Data.ID);
+            if (reward != null
+                    && (reward.Category == "EAR_R" || reward.Category == "EAR_L")
+                    && onRewardCategorySelectedInCustomization != null)
+                onRewardCategorySelectedInCustomization(reward.Category.ToString());
         }
 
         void OnClickSwatch(AnturaSpaceSwatchButton _bt)
