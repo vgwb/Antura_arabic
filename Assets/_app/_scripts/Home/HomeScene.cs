@@ -56,9 +56,18 @@ namespace EA4S.Scenes
             AppManager.I.NavigationManager.GoToNextScene();
         }
 
-        public void BtnOpenReservedArea()
+        public void OnOpenReservedArea()
         {
+            // HACK: hide LL since it convers the Arabic TMpro (incredible but true!)
+            LLAnimController.gameObject.SetActive(false);
             DialogReservedArea.SetActive(true);
+        }
+
+        public void OnCloseReservedArea()
+        {
+            // HACK: hide LL since it convers the Arabic TMpro (incredible but true!)
+            LLAnimController.gameObject.SetActive(true);
+            DialogReservedArea.SetActive(false);
         }
     }
 }
