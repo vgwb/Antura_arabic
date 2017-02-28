@@ -11,7 +11,7 @@
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "0.227b";
+        public const string AppVersion = "1.0 b1";
 
         #region Debug Options
 
@@ -59,7 +59,7 @@
         public const string UrlWebsite = "http://www.antura.org";
         public const string UrlPrivacy = "http://www.antura.org/en/privacy-policy/";
         public const string UrlUploadData = "https://upload.antura.org";
-        public const string UrlStoreiOSApple = "";
+        public const string UrlStoreiOSApple = "https://itunes.apple.com/us/app/antura-and-the-letters/id1210334699?ls=1&mt=8";
         public const string UrlStoreAndroidGoogle = "";
         public const string UrlCommunityTelegram = "https://t.me/antura";
         public const string UrlCommunityFacebook = "https://www.facebook.com/antura.initiative";
