@@ -136,11 +136,22 @@ namespace EA4S.Core
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.Rewards:
-                    if (NavData.CurrentPlayer.IsFirstContact()) {
+                    if (NavData.CurrentPlayer.IsFirstContact())
+                    {
                         GoToScene(AppScene.AnturaSpace);
-                    } else {
+                    }
+                    else
+                    {
                         AppManager.I.Player.AdvanceMaxJourneyPosition();
-                        GoToScene(AppScene.Map);
+
+                        if (AppManager.I.Player.HasFinishedTheGame())
+                        {
+                            GoToScene(AppScene.Ending);
+                        }
+                        else
+                        {
+                            GoToScene(AppScene.Map);
+                        }
                     }
                     break;
                 case AppScene.PlaySessionResult:

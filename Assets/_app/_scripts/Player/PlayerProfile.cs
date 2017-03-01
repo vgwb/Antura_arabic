@@ -483,5 +483,10 @@ namespace EA4S.Profile
         }
         #endregion
 
+        public bool HasFinishedTheGame()
+        {
+            // @todo: this should use a local bool instead
+            return GetPlayerIconData().HasFinishedTheGame();
+        }
     }
 }
