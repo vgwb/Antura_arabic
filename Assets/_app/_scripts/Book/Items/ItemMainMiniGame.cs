@@ -59,11 +59,16 @@ namespace EA4S.Book
             //}
 
             emptyContainers();
-            foreach (var game in mainGameInfo.variations) {
+            var isLocked = false;
+            foreach (var gameVariation in mainGameInfo.variations) {
                 btnGO = Instantiate(ItemMiniGameVariationPrefab);
                 btnGO.transform.SetParent(VariationsContainer.transform, false);
-                btnGO.GetComponent<ItemMiniGameVariation>().Init(this, game);
+                btnGO.GetComponent<ItemMiniGameVariation>().Init(this, gameVariation);
+                if (!gameVariation.unlocked) {
+                    isLocked = true;
+                }
             }
+            LockIcon.gameObject.SetActive(isLocked);
         }
 
         public void OnClicked()
