@@ -76,6 +76,8 @@
         public const int minimumMoodValue = 1;
         public const int maximumMoodValue = 5;
         public const int MaxNumberOfPlayerProfiles = 5;
+        public const int minimumMinigameScore = 0;
+        public const int maximumMinigameScore = 3;
 
         // Resource Paths
         public const string AvatarsResourcesDir = "Images/Avatars/";

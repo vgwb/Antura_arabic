@@ -7,6 +7,36 @@ using EA4S.Helpers;
 
 namespace EA4S.Teacher
 {
+    public class LogPlaySessionScoreParams
+    {
+        public LogPlaySessionScoreParams(JourneyPosition pos, int score, float playTime)
+        {
+            Pos = pos;
+            Score = score;
+            PlayTime = playTime;
+        }
+
+        public JourneyPosition Pos { get; private set; }
+        public int Score { get; private set; }
+        public float PlayTime { get; private set; }
+    }
+
+    public class LogMiniGameScoreParams
+    {
+        public LogMiniGameScoreParams(JourneyPosition pos, MiniGameCode miniGameCode, int score, float playTime)
+        {
+            Pos = pos;
+            MiniGameCode = miniGameCode;
+            Score = score;
+            PlayTime = playTime;
+        }
+
+        public JourneyPosition Pos { get; private set; }
+        public MiniGameCode MiniGameCode { get; private set; }
+        public int Score { get; private set; }
+        public float PlayTime { get; private set; }
+    }
+
     /// <summary>
     /// Entry point for logging information on play at runtime, filtered by the Teacher System.
     /// </summary>
@@ -197,7 +227,40 @@ namespace EA4S.Teacher
                 results.Add(new PlayResultParameters(PlayEvent.Skill, weightedPlaySkill.Skill, score));
             }
             LogPlay(appSession, pos, miniGameCode, results);
+        }
 
+        public void LogMiniGameScores(string appSession, List<LogMiniGameScoreParams> logMiniGameScoreParams)
+        {
+            //if (AppConstants.VerboseLogging) Debug.Log("LogMiniGameScore " + logMiniGameScoreParams.MiniGameCode + " / " + logMiniGameScoreParams.Score);
+
+            // Retrieve previous scores
+            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name);
+            List<MinigameScoreData> previousScoreDataList = db.FindDataByQuery<MinigameScoreData>(query);
+
+            var logDataList = new List<LogMinigameScoreData>();
+            var scoreDataList = new List<MinigameScoreData>();
+            foreach (var parameters in logMiniGameScoreParams)
+            {
+                // Log for history
+                var logData = new LogMinigameScoreData(appSession, parameters.Pos, parameters.MiniGameCode, parameters.Score, parameters.PlayTime);
+                logDataList.Add(logData);
+
+                // Score update
+                var scoreData = GetMinigameScoreDataWithMaximum(parameters.MiniGameCode, parameters.PlayTime, parameters.Score, previousScoreDataList);
+                scoreDataList.Add(scoreData);
+
+                // We also log play skills related to that minigame, as read from MiniGameData
+                var minigameData = db.GetMiniGameDataByCode(parameters.MiniGameCode);
+                List<PlayResultParameters> results = new List<PlayResultParameters>();
+                foreach (var weightedPlaySkill in minigameData.AffectedPlaySkills)
+                {
+                    results.Add(new PlayResultParameters(PlayEvent.Skill, weightedPlaySkill.Skill, parameters.Score));
+                }
+                LogPlay(appSession, parameters.Pos, parameters.MiniGameCode, results);
+            }
+
+            db.InsertAll(logDataList);
+            db.InsertOrReplaceAll(scoreDataList);
         }
 
         public void LogPlaySessionScore(string appSession, JourneyPosition pos, int score, float playTime)
@@ -215,6 +278,29 @@ namespace EA4S.Teacher
             // Score update
             var scoreData = GetJourneyScoreDataWithMaximum(JourneyDataType.PlaySession, pos.ToStringId(), score, previousScoreDataList);
             db.InsertOrReplace(scoreData);
+        }
+
+        public void LogPlaySessionScores(string appSession, List<LogPlaySessionScoreParams> logPlaySessionScoreParamsList)
+        {
+            // Retrieve previous scores
+            string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name);
+            List<JourneyScoreData> previousScoreDataList = db.FindDataByQuery<JourneyScoreData>(query);
+
+            var logDataList = new List<LogPlaySessionScoreData>();
+            var scoreDataList = new List<JourneyScoreData>();
+            foreach (var parameters in logPlaySessionScoreParamsList)
+            {
+                // Log for history
+                var logData = new LogPlaySessionScoreData(appSession, parameters.Pos, parameters.Score, parameters.PlayTime);
+                logDataList.Add(logData);
+
+                // Score update
+                var scoreData = GetJourneyScoreDataWithMaximum(JourneyDataType.PlaySession, parameters.Pos.ToStringId(), parameters.Score, previousScoreDataList);
+                scoreDataList.Add(scoreData);
+            }
+
+            db.InsertAll(logDataList);
+            db.InsertOrReplaceAll(scoreDataList);
         }
 
         public void LogLearningBlockScore(int learningBlock, int score)
