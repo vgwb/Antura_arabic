@@ -41,7 +41,6 @@ namespace EA4S.Book
                 if (info.data.Category == Database.WordDataCategory.Color) {
                     Drawing.SetColor(GenericHelper.GetColorFromString(info.data.Value));
                 }
-                //GetComponent<Image>().color = Color.green;
             } else {
                 Drawing.text = "";
             }
