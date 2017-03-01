@@ -18,6 +18,7 @@ namespace EA4S.Book
         public string Id;
         public string Title;
         public WordDataCategory wordCategory;
+        public PhraseDataCategory phraseCategory;
     }
 
     public enum VocabularyChapter
@@ -46,32 +47,28 @@ namespace EA4S.Book
         public GameObject SubmenuContainer;
         public GameObject ListPanel;
         public GameObject ElementsContainer;
-        public GameObject ListWidePanel;
-        public GameObject ElementsContainerWide;
 
         public UIButton BtnLetters;
         public UIButton BtnWords;
         public UIButton BtnPhrases;
 
-        public GameObject MoreInfoPanel;
+        public GameObject MoreInfoLetterPanel;
+        public GameObject MoreInfoWordPanel;
         public TextRender ArabicText;
 
         public TextRender LetterTextIsolated;
         public TextRender LetterTextInitial;
         public TextRender LetterTextMedial;
         public TextRender LetterTextFinal;
+        public TextRender WordDrawingText;
 
         public TextRender ScoreText;
-
-        public LetterObjectView LL_Isolated;
-        public LetterObjectView LL_Initial;
-        public LetterObjectView LL_Medial;
-        public LetterObjectView LL_Final;
 
         VocabularyChapter currentChapter = VocabularyChapter.None;
         GameObject btnGO;
         string currentCategory;
         WordDataCategory currentWordCategory;
+        PhraseDataCategory currentPhraseCategory;
         LetterInfo currentLetter;
 
         void Start()
@@ -122,7 +119,6 @@ namespace EA4S.Book
         {
             ListPanel.SetActive(true);
             Submenu.SetActive(true);
-            ListWidePanel.SetActive(false);
 
             currentCategory = _category;
             List<LetterData> list;
@@ -200,7 +196,6 @@ namespace EA4S.Book
         {
             ListPanel.SetActive(true);
             Submenu.SetActive(true);
-            ListWidePanel.SetActive(false);
             currentWordCategory = _category;
 
             List<WordData> list;
@@ -225,10 +220,6 @@ namespace EA4S.Book
                 }
             }
 
-            //btnGO = Instantiate(CategoryItemPrefab);
-            //btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            //btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { Id = WordDataCategory.None.ToString(), Title = "All" });
-
             foreach (WordDataCategory cat in GenericHelper.SortEnums<WordDataCategory>()) {
                 btnGO = Instantiate(CategoryItemPrefab);
                 btnGO.transform.SetParent(SubmenuContainer.transform, false);
@@ -245,18 +236,48 @@ namespace EA4S.Book
             }
         }
 
-        void PhrasesPanel()
+        void PhrasesPanel(PhraseDataCategory _category = PhraseDataCategory.None)
         {
-            ListPanel.SetActive(false);
-            Submenu.SetActive(false);
-            ListWidePanel.SetActive(true);
+            ListPanel.SetActive(true);
+            Submenu.SetActive(true);
+            currentPhraseCategory = _category;
+
+            List<PhraseData> list;
+            switch (currentPhraseCategory) {
+
+                case PhraseDataCategory.None:
+                    list = new List<PhraseData>();
+                    break;
+                default:
+                    list = AppManager.I.DB.FindPhraseData((x) => (x.Category == currentPhraseCategory));
+                    break;
+            }
             emptyListContainers();
 
             List<PhraseInfo> info_list = AppManager.I.ScoreHelper.GetAllPhraseInfo();
             foreach (var info_item in info_list) {
-                btnGO = Instantiate(PhraseItemPrefab);
-                btnGO.transform.SetParent(ElementsContainerWide.transform, false);
-                btnGO.GetComponent<ItemPhrase>().Init(this, info_item);
+                if (list.Contains(info_item.data)) {
+                    btnGO = Instantiate(PhraseItemPrefab);
+                    btnGO.transform.SetParent(ElementsContainer.transform, false);
+                    btnGO.GetComponent<ItemPhrase>().Init(this, info_item);
+                }
+            }
+
+            foreach (PhraseDataCategory cat in GenericHelper.SortEnums<PhraseDataCategory>()) {
+                if (cat != PhraseDataCategory.None) {
+                    btnGO = Instantiate(CategoryItemPrefab);
+                    btnGO.transform.SetParent(SubmenuContainer.transform, false);
+                    btnGO.GetComponent<MenuItemCategory>().Init(
+                        this,
+                        new GenericCategoryData {
+                            area = VocabularyChapter.Phrases,
+                            phraseCategory = cat,
+                            Id = cat.ToString(),
+                            Title = cat.ToString()
+                        },
+                        currentPhraseCategory == cat
+                    );
+                }
             }
         }
 
@@ -269,16 +290,21 @@ namespace EA4S.Book
                 case VocabularyChapter.Words:
                     WordsPanel(_category.wordCategory);
                     break;
+                case VocabularyChapter.Phrases:
+                    PhrasesPanel(_category.phraseCategory);
+                    break;
             }
         }
 
         public void DetailWord(WordInfo info)
         {
             DetailPanel.SetActive(true);
+            MoreInfoLetterPanel.SetActive(false);
+            MoreInfoWordPanel.SetActive(true);
             Debug.Log("Detail Word :" + info.data.Id);
             AudioManager.I.PlayWord(info.data);
-            MoreInfoPanel.SetActive(false);
-            ScoreText.text = "Score: " + info.score;
+
+            // ScoreText.text = "Score: " + info.score;
 
             var output = "";
 
@@ -289,28 +315,16 @@ namespace EA4S.Book
             output += "\n";
             output += info.data.Arabic;
 
-            //output += "\n";
-
-            //foreach (var letter in splittedLetters) {
-            //    output += letter.GetChar();
-            //}
-
             ArabicText.text = output;
-
-            LL_Isolated.Initialize(new LL_WordData(info.data));
-            LL_Initial.gameObject.SetActive(false);
-            LL_Final.gameObject.SetActive(false);
-
             if (info.data.Drawing != "") {
-                //var drawingChar = AppManager.I.VocabularyHelper.GetWordDrawing(info.data);
-                //Drawing.text = drawingChar;
-                //LL_Medial.gameObject.SetActive(true);
-                LL_Medial.Initialize(new LL_ImageData(info.data));
-                Debug.Log("Drawing: " + info.data.Drawing + " / " + ArabicAlphabetHelper.GetLetterFromUnicode(info.data.Drawing));
+                WordDrawingText.text = AppManager.I.VocabularyHelper.GetWordDrawing(info.data);
+                if (info.data.Category == Database.WordDataCategory.Color) {
+                    WordDrawingText.SetColor(GenericHelper.GetColorFromString(info.data.Value));
+                }
             } else {
-                //Drawing.text = "";
-                LL_Medial.gameObject.SetActive(false);
+                WordDrawingText.text = "";
             }
+
         }
 
         public void DetailLetter(LetterInfo info)
@@ -319,46 +333,23 @@ namespace EA4S.Book
             HighlightLetterItem(info.data.Id);
 
             DetailPanel.SetActive(true);
+            MoreInfoLetterPanel.SetActive(true);
+            MoreInfoWordPanel.SetActive(false);
+
             string positionsString = "";
             foreach (var p in info.data.GetAvailableForms()) {
                 positionsString = positionsString + " " + p;
             }
             Debug.Log("Detail Letter :" + info.data.Id + " [" + positionsString + " ]");
             AudioManager.I.PlayLetter(info.data);
-            MoreInfoPanel.SetActive(true);
+
             ArabicText.text = "";
-            ScoreText.text = "Score: " + info.score;
+            // ScoreText.text = "Score: " + info.score;
 
             var isolatedChar = info.data.GetCharFixedForDisplay(LetterForm.Isolated);
-            LL_Isolated.Initialize(new LL_LetterData(info.data));
-            LL_Isolated.Label.text = isolatedChar;
-
             var InitialChar = info.data.GetCharFixedForDisplay(LetterForm.Initial);
-            if (InitialChar != "") {
-                LL_Initial.gameObject.SetActive(true);
-                LL_Initial.Initialize(new LL_LetterData(info.data));
-                LL_Initial.Label.text = InitialChar;
-            } else {
-                LL_Initial.gameObject.SetActive(false);
-            }
-
             var MedialChar = info.data.GetCharFixedForDisplay(LetterForm.Medial);
-            if (MedialChar != "") {
-                LL_Medial.gameObject.SetActive(true);
-                LL_Medial.Initialize(new LL_LetterData(info.data));
-                LL_Medial.Label.text = MedialChar;
-            } else {
-                LL_Medial.gameObject.SetActive(false);
-            }
-
             var FinalChar = info.data.GetCharFixedForDisplay(LetterForm.Final);
-            if (FinalChar != "") {
-                LL_Final.gameObject.SetActive(true);
-                LL_Final.Initialize(new LL_LetterData(info.data));
-                LL_Final.Label.text = FinalChar;
-            } else {
-                LL_Final.gameObject.SetActive(false);
-            }
 
             LetterTextIsolated.SetTextUnfiltered(isolatedChar);
             LetterTextInitial.SetTextUnfiltered(InitialChar);
@@ -369,17 +360,14 @@ namespace EA4S.Book
         public void DetailPhrase(PhraseInfo info)
         {
             DetailPanel.SetActive(true);
+            MoreInfoLetterPanel.SetActive(false);
+            MoreInfoWordPanel.SetActive(false);
+
             Debug.Log("Detail Phrase :" + info.data.Id);
             AudioManager.I.PlayPhrase(info.data);
-            MoreInfoPanel.SetActive(false);
-            ScoreText.text = "Score: " + info.score;
+            //ScoreText.text = "Score: " + info.score;
 
             ArabicText.text = info.data.Arabic;
-
-            LL_Isolated.gameObject.SetActive(false);
-            LL_Initial.gameObject.SetActive(false);
-            LL_Medial.gameObject.SetActive(false);
-            LL_Final.gameObject.SetActive(false);
         }
 
         void emptyListContainers()
@@ -387,9 +375,9 @@ namespace EA4S.Book
             foreach (Transform t in ElementsContainer.transform) {
                 Destroy(t.gameObject);
             }
-            foreach (Transform t in ElementsContainerWide.transform) {
-                Destroy(t.gameObject);
-            }
+            // reset vertical position
+            ListPanel.GetComponent<UnityEngine.UI.ScrollRect>().verticalNormalizedPosition = 1.0f;
+
             foreach (Transform t in SubmenuContainer.transform) {
                 Destroy(t.gameObject);
             }
