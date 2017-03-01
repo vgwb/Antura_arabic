@@ -18,7 +18,8 @@ namespace EA4S.Core
         Mood,
         PlaySessionResult,
         PlayerCreation,
-        Rewards
+        Rewards,
+        Ending
     }
 
     public static class AppSceneHelper
@@ -51,6 +52,8 @@ namespace EA4S.Core
                     return "app_Rewards";
                 case AppScene.ReservedArea:
                     return "app_ReservedArea";
+                case AppScene.Ending:
+                    return "app_Ending";
                 default:
                     return "";
             }

@@ -10,9 +10,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_app/_scenes/app_AnturaSpace.unity
   - enabled: 1
-    path: Assets/_app/_scenes/app_GamesSelector.unity
-  - enabled: 1
     path: Assets/_app/_scenes/app_Book.unity
+  - enabled: 1
+    path: Assets/_app/_scenes/app_Ending.unity
+  - enabled: 1
+    path: Assets/_app/_scenes/app_GamesSelector.unity
   - enabled: 1
     path: Assets/_app/_scenes/app_Intro.unity
   - enabled: 1
@@ -22,9 +24,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_app/_scenes/app_Rewards.unity
   - enabled: 1
-    path: Assets/_app/_scenes/app_PlaySessionResult.unity
-  - enabled: 1
     path: Assets/_app/_scenes/app_PlayerCreation.unity
+  - enabled: 1
+    path: Assets/_app/_scenes/app_PlaySessionResult.unity
   - enabled: 1
     path: Assets/_app/_scenes/app_ReservedArea.unity
   - enabled: 1
