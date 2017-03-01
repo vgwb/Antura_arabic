@@ -61,9 +61,10 @@ namespace EA4S.UI
 
         RectTransform btRT;
         ContinueScreenMode currMode;
+        bool pulseLoop;
         Action onContinueCallback;
         bool clicked;
-        Tween showTween, showBgTween, btClickTween, btIdleTween;
+        Tween showTween, showBgTween, btClickTween, btIdleTween, btPulseTween;
 
         // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         // ■■■ PUBLIC METHODS
@@ -73,24 +74,27 @@ namespace EA4S.UI
         /// </summary>
         /// <param name="_onContinue">Eventual callback to call when the user clicks to continue</param>
         /// <param name="_mode">Mode</param>
-        public static void Show(Action _onContinue, ContinueScreenMode _mode = ContinueScreenMode.ButtonWithBg)
+        public static void Show(Action _onContinue, ContinueScreenMode _mode = ContinueScreenMode.ButtonWithBg, bool _pulseLoop = false)
         {
             GlobalUI.Init();
-            GlobalUI.ContinueScreen.DoShow(_onContinue, _mode);
+            GlobalUI.ContinueScreen.DoShow(_onContinue, _mode, _pulseLoop);
         }
 
-        void DoShow(Action _onContinue, ContinueScreenMode _mode = ContinueScreenMode.ButtonWithBg)
+        void DoShow(Action _onContinue, ContinueScreenMode _mode = ContinueScreenMode.ButtonWithBg, bool _pulseLoop = false)
         {
             Debug.Log("ContinueScreen DoShow " + _onContinue);
             IsShown = true;
             clicked = false;
             currMode = _mode;
+            pulseLoop = _pulseLoop;
             onContinueCallback = _onContinue;
             Bg.gameObject.SetActive(_mode != ContinueScreenMode.Button);
             BtContinue.gameObject.SetActive(_mode != ContinueScreenMode.FullscreenBg);
             if (btIdleTween != null) btIdleTween.Rewind();
             btIdleTween = btRT.DOAnchorPosX(10, 0.5f).SetRelative().SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo)
                 .SetUpdate(true).SetAutoKill(false).Pause();
+            btPulseTween = btRT.DOScale(Vector3.one * 0.1f, 0.3f).SetRelative().SetAutoKill(false).SetUpdate(true).Pause()
+                .SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuad);
             if (_mode == ContinueScreenMode.ButtonFullscreen) {
                 SideSnapshot.Apply(btRT, IcoContinue);
             } else {
@@ -144,10 +148,11 @@ namespace EA4S.UI
                 .OnRewind(() => {
                     this.gameObject.SetActive(false);
                     btIdleTween.Rewind();
+                    if (btPulseTween.IsPlaying()) btPulseTween.Rewind();
                 })
                 .OnComplete(() => {
-                    if (currMode == ContinueScreenMode.ButtonFullscreen)
-                        btIdleTween.Restart();
+                    if (currMode == ContinueScreenMode.ButtonFullscreen) btIdleTween.Restart();
+                    if (pulseLoop) btPulseTween.Restart();
                 });
 
             showBgTween = Bg.image.DOFade(0, duration).From().SetEase(Ease.InSine)
@@ -173,6 +178,7 @@ namespace EA4S.UI
             showBgTween.Kill();
             btClickTween.Kill();
             btIdleTween.Kill();
+            btPulseTween.Kill();
             BtContinue.onClick.RemoveAllListeners();
             Bg.onClick.RemoveAllListeners();
         }

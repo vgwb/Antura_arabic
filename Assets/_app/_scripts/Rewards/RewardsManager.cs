@@ -93,7 +93,7 @@ namespace EA4S.Rewards
             /* --------------------- */
             // Wait animation ending before show continue button
             yield return new WaitForSeconds(4.4f);
-            ContinueScreen.Show(Continue, ContinueScreenMode.Button);
+            ContinueScreen.Show(Continue, ContinueScreenMode.Button, true);
             yield return null;
         }
 
