@@ -5306,6 +5306,7 @@ MonoBehaviour:
       - fathah_tanwin
       - alef_fathah_tanwin
       - lam_alef_fathah_tanwin
+      - teh_marbuta_fathah_tanwin
       Words:
       - of_course
       Words_previous:
@@ -5437,8 +5438,15 @@ MonoBehaviour:
       NumberOfRoundsPerMinigame: 0
       Letters:
       - dammah_tanwin
+      - ain_dammah_tanwin
       - dal_dammah_tanwin
+      - heh_dammah_tanwin
+      - lam_dammah_tanwin
+      - reh_dammah_tanwin
+      - tah_dammah_tanwin
+      - teh_dammah_tanwin
       - teh_marbuta_dammah_tanwin
+      - yeh_dammah_tanwin
       Words:
       - forest
       Words_previous:
@@ -5745,8 +5753,16 @@ MonoBehaviour:
       - reh_kasrah
       - alef_fathah_tanwin
       - lam_alef_fathah_tanwin
+      - teh_marbuta_fathah_tanwin
+      - ain_dammah_tanwin
       - dal_dammah_tanwin
+      - heh_dammah_tanwin
+      - lam_dammah_tanwin
+      - reh_dammah_tanwin
+      - tah_dammah_tanwin
+      - teh_dammah_tanwin
       - teh_marbuta_dammah_tanwin
+      - yeh_dammah_tanwin
       - lam_kasrah_tanwin
       - noon_kasrah_tanwin
       Words:
@@ -7386,8 +7402,16 @@ MonoBehaviour:
       - kasrah_tanwin
       - alef_fathah_tanwin
       - lam_alef_fathah_tanwin
+      - teh_marbuta_fathah_tanwin
+      - ain_dammah_tanwin
       - dal_dammah_tanwin
+      - heh_dammah_tanwin
+      - lam_dammah_tanwin
+      - reh_dammah_tanwin
+      - tah_dammah_tanwin
+      - teh_dammah_tanwin
       - teh_marbuta_dammah_tanwin
+      - yeh_dammah_tanwin
       - lam_kasrah_tanwin
       - noon_kasrah_tanwin
       Words:
