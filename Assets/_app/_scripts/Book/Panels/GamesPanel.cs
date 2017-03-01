@@ -17,6 +17,11 @@ namespace EA4S.Book
         {
             return variations[0].data.GetIconResourcePath();
         }
+
+        public MiniGameCode GetFirstVariationMiniGameCode()
+        {
+            return variations[0].data.Code;
+        }
     }
 
     /// <summary>
@@ -189,18 +194,40 @@ namespace EA4S.Book
                         minimumJourneyPositions[g2.data.Code])
                         ? -1
                         : 1);
-
             }
 
             // Then sort minigames by their first variation
-            outputList.Sort(
-                (g1, g2) =>
-                    minimumJourneyPositions[g1.variations[0].data.Code].IsMinor(
-                        minimumJourneyPositions[g2.variations[0].data.Code])
-                        ? -1
-                        : 1);
+            outputList.Sort((g1, g2) => SortMiniGames(minimumJourneyPositions, g1, g2));
 
             return outputList;
+        }
+
+        private int SortMiniGames(Dictionary<MiniGameCode, JourneyPosition> minimumJourneyPositions, MainMiniGame g1, MainMiniGame g2)
+        {
+            // MiniGames are sorted based on minimum play session
+            var minPos1 = minimumJourneyPositions[g1.GetFirstVariationMiniGameCode()];
+            var minPos2 = minimumJourneyPositions[g2.GetFirstVariationMiniGameCode()];
+
+            if (minPos1.IsMinor(minPos2)) return -1;
+            if (minPos2.IsMinor(minPos1)) return 1;
+
+            // Check play session order
+            var sharedPlaySessionData = AppManager.I.DB.GetPlaySessionDataById(minPos1.ToStringId());
+            int ret = 0;
+            switch (sharedPlaySessionData.Order)
+            {
+                case PlaySessionDataOrder.Random:
+                    // No specific sorting
+                    ret = 0; 
+                    break;;
+                case PlaySessionDataOrder.Sequence:
+                    // In case of a Sequence PS, two minigames with the same minimum play session are sorted based on the sequence order
+                    var miniGameInPlaySession1 = sharedPlaySessionData.Minigames.Find(x => x.MiniGameCode == g1.GetFirstVariationMiniGameCode());
+                    var miniGameInPlaySession2 = sharedPlaySessionData.Minigames.Find(x => x.MiniGameCode == g2.GetFirstVariationMiniGameCode());
+                    ret = miniGameInPlaySession1.Weight - miniGameInPlaySession2.Weight;
+                    break;
+            }
+            return ret;
         }
 
     }
