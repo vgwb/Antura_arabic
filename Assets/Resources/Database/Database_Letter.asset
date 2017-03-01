@@ -644,7 +644,7 @@ MonoBehaviour:
       Medial_Unicode: FEDC
       Final_Unicode: FEDA
       Symbol_Unicode: 
-      FinalFix: 
+      FinalFix: 1
       MedialFix: 1
       Old_Isolated: 
       Old_Initial: "\u0643\u0640\u200E"
