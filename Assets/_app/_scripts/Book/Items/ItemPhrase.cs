@@ -30,7 +30,7 @@ namespace EA4S.Book
             }
 
             Title.text = info.data.Arabic;
-            SubTitle.text = info.data.Id;
+            SubTitle.text = info.data.English;
 
         }
 
