@@ -26,7 +26,7 @@ namespace EA4S.Book
 
             Info.text = learningBlockInfo.data.Id;
             Title.text = learningBlockInfo.data.Title_Ar;
-            SubTitle.text = learningBlockInfo.data.Title_En + " " + learningBlockInfo.data.Id;
+            SubTitle.text = learningBlockInfo.data.Title_En;
 
             if (learningBlockInfo.unlocked || AppManager.I.Player.IsDemoUser) {
                 LockIcon.enabled = false;
