@@ -58,6 +58,7 @@ namespace EA4S.Database
         public string Symbol_Unicode;
         public string FinalFix;
         public string MedialFix;
+        public string InitialFix;
         public string Old_Isolated;
         public string Old_Initial;
         public string Old_Medial;
@@ -182,7 +183,7 @@ namespace EA4S.Database
             return output;
         }
 
-        // this jsut adds a - before medial and final single letters! if needed
+        // this just adds a "-" before medial and final single letters! if needed
         public string GetCharFixedForDisplay(LetterForm form = LetterForm.Isolated)
         {
             if (GetUnicode(form, false) == "")
