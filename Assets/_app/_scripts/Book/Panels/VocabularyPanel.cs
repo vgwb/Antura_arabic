@@ -206,7 +206,8 @@ namespace EA4S.Book
                     list = new List<WordData>();
                     break;
                 default:
-                    list = AppManager.I.DB.FindWordData((x) => (x.Category == currentWordCategory && x.Article == WordDataArticle.None && x.Kind == WordDataKind.Noun));
+                    //list = AppManager.I.DB.FindWordData((x) => (x.Category == currentWordCategory && x.Article == WordDataArticle.None && x.Kind == WordDataKind.Noun));
+                    list = AppManager.I.DB.FindWordData((x) => (x.Category == currentWordCategory));
                     break;
             }
             emptyListContainers();
