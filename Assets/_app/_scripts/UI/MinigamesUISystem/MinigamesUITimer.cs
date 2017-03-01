@@ -69,6 +69,11 @@ namespace EA4S.UI
                 timerTween.Kill();
                 shakeTween.Kill(true);
                 endTween.Kill(true);
+                if (alarmSfxSource != null)
+                {
+                    alarmSfxSource.Stop();
+                    alarmSfxSource = null;
+                }
             }
 
             TfTimer.text = Duration.ToString();
