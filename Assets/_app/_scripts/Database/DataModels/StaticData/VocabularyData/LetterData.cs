@@ -56,6 +56,7 @@ namespace EA4S.Database
         public string Medial_Unicode;
         public string Final_Unicode;
         public string Symbol_Unicode;
+        public string InitialFix;
         public string FinalFix;
         public string MedialFix;
         public string Old_Isolated;
@@ -192,6 +193,11 @@ namespace EA4S.Database
 
             if ((form == LetterForm.Final && FinalFix != "") || (form == LetterForm.Medial && MedialFix != "")) {
                 output = "\u0640" + output;
+            }
+
+            if ((form == LetterForm.Initial && InitialFix != "") || (form == LetterForm.Medial && InitialFix != ""))
+            {
+                output = output + "\u0640";
             }
 
             return output;
