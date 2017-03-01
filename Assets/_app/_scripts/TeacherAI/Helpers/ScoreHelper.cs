@@ -2,36 +2,6 @@
 using EA4S.Database;
 using EA4S.Helpers;
 
-// @todo: refactor this to separate JourneyInfo from VocabularyInfo (different rules)
-namespace EA4S.Database
-{
-    #region Info Wrappers
-
-    /// <summary>
-    /// Pairs the data related to a specific type T with its score and unlock state.
-    /// </summary>
-    public class DataInfo<T> where T : IData
-    {
-        public T data = default(T);
-        public float score = 0f;
-        public bool unlocked = false;
-    }
-
-    public class LearningBlockInfo : DataInfo<LearningBlockData>
-    {
-        public List<PlaySessionInfo> playSessions = new List<PlaySessionInfo>();
-    }
-
-    public class PlaySessionInfo : DataInfo<PlaySessionData> { }
-    public class MiniGameInfo : DataInfo<MiniGameData> { }
-
-    public class WordInfo : DataInfo<WordData> { }
-    public class LetterInfo : DataInfo<LetterData> { }
-    public class PhraseInfo : DataInfo<PhraseData> { }
-
-    #endregion
-}
-
 namespace EA4S.Teacher
 {
 
@@ -94,8 +64,7 @@ namespace EA4S.Teacher
             var info_list = new List<I>();
 
             // Build info instances for the given data
-            foreach (var data in data_list)
-            {
+            foreach (var data in data_list) {
                 var info = new I();
                 info.data = data;
                 info_list.Add(info);
@@ -104,17 +73,13 @@ namespace EA4S.Teacher
             // Find available scores
             string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name);
             List<MinigameScoreData> scoredata_list = dbManager.FindDataByQuery<MinigameScoreData>(query);
-            for (int i = 0; i < info_list.Count; i++)
-            {
+            for (int i = 0; i < info_list.Count; i++) {
                 var info = info_list[i];
                 var scoredata = scoredata_list.Find(x => x.MiniGameCode == info.data.Code);
-                if (scoredata != null)
-                {
+                if (scoredata != null) {
                     info.score = scoredata.Score;
                     info.unlocked = true;
-                }
-                else
-                {
+                } else {
                     info.score = 0; // 0 until unlocked
                     info.unlocked = false;
                 }
@@ -130,8 +95,7 @@ namespace EA4S.Teacher
             var info_list = new List<I>();
 
             // Build info instances for the given data
-            foreach (var data in data_list)
-            {
+            foreach (var data in data_list) {
                 var info = new I();
                 info.data = data;
                 info_list.Add(info);
@@ -140,17 +104,13 @@ namespace EA4S.Teacher
             // Find available scores
             string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '" + (int)dataType + "' ORDER BY ElementId ");
             List<JourneyScoreData> scoredata_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
-            for (int i = 0; i < info_list.Count; i++)
-            {
+            for (int i = 0; i < info_list.Count; i++) {
                 var info = info_list[i];
                 var scoredata = scoredata_list.Find(x => x.ElementId == info.data.GetId());
-                if (scoredata != null)
-                {
+                if (scoredata != null) {
                     info.score = scoredata.Score;
                     info.unlocked = true;
-                }
-                else
-                {
+                } else {
                     info.score = 0; // 0 until unlocked
                     info.unlocked = false;
                 }
@@ -166,8 +126,7 @@ namespace EA4S.Teacher
             var info_list = new List<I>();
 
             // Build info instances for the given data
-            foreach (var data in data_list)
-            {
+            foreach (var data in data_list) {
                 var info = new I();
                 info.data = data;
                 info_list.Add(info);
@@ -176,17 +135,13 @@ namespace EA4S.Teacher
             // Find available scores
             string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" + (int)dataType + "' ORDER BY ElementId ");
             List<VocabularyScoreData> scoredata_list = dbManager.FindDataByQuery<VocabularyScoreData>(query);
-            for (int i = 0; i < info_list.Count; i++)
-            {
+            for (int i = 0; i < info_list.Count; i++) {
                 var info = info_list[i];
                 var scoredata = scoredata_list.Find(x => x.ElementId == info.data.GetId());
-                if (scoredata != null)
-                {
+                if (scoredata != null) {
                     info.score = scoredata.Score;
                     info.unlocked = true;
-                }
-                else
-                {
+                } else {
                     info.score = 0; // 0 until unlocked
                     info.unlocked = false;
                 }
@@ -261,8 +216,7 @@ namespace EA4S.Teacher
         {
             string query = "select * from \"" + typeof(LogLearnData).Name + "\"" + " where VocabularyDataType = '" + (int)dataType + "' " + " order by Timestamp limit 1";
             List<LogLearnData> list = AppManager.I.DB.FindDataByQuery<LogLearnData>(query);
-            if (list.Count > 0 && list[0] != null)
-            {
+            if (list.Count > 0 && list[0] != null) {
                 return allInfos.Find(x => x.data.GetId() == list[0].ElementId);
             }
             return null;
@@ -298,7 +252,7 @@ namespace EA4S.Teacher
 
             // Then, get all scores
             string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + "  WHERE JourneyDataType = '{0}'", JourneyDataType.PlaySession);
-            List <JourneyScoreData> all_score_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
+            List<JourneyScoreData> all_score_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
 
             // At last, filter by the given stage
             List<JourneyScoreData> filtered_score_list = all_score_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
@@ -350,8 +304,7 @@ namespace EA4S.Teacher
         {
             var average = 0f;
 
-            foreach (var item in _scoreList)
-            {
+            foreach (var item in _scoreList) {
                 average += item.Score;
             }
 
