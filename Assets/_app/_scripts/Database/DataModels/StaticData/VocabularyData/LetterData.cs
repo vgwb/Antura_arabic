@@ -59,7 +59,6 @@ namespace EA4S.Database
         public string InitialFix;
         public string FinalFix;
         public string MedialFix;
-        public string InitialFix;
         public string Old_Isolated;
         public string Old_Initial;
         public string Old_Medial;
