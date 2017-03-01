@@ -193,5 +193,10 @@ namespace EA4S.Teacher
 
         #endregion
 
+        public bool HasFinishedTheGame()
+        {
+            var currentPos = AppManager.I.Player.CurrentJourneyPosition;
+            return currentPos.Equals(GetFinalJourneyPosition());
+        }
     }
 }
