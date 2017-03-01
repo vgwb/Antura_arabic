@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.Database;
 using EA4S.Helpers;
 
@@ -313,5 +314,20 @@ namespace EA4S.Teacher
 
         #endregion
 
+        public bool HasFinishedTheGameWithAllStars()
+        {
+            bool hasFinishedTheGame = AppManager.I.JourneyHelper.HasFinishedTheGame();
+            if (!hasFinishedTheGame) return false;
+
+            var allMiniGameInfo = GetAllMiniGameInfo();
+            foreach (var miniGameInfo in allMiniGameInfo)
+            {
+                if (miniGameInfo.score != AppConstants.maximumMinigameScore)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

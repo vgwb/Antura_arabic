@@ -154,6 +154,11 @@ namespace EA4S.Profile
         public void AdvanceMaxJourneyPosition()
         {
             SetMaxJourneyPosition(AppManager.I.JourneyHelper.FindNextJourneyPosition(CurrentJourneyPosition));
+
+            bool hasFinished = AppManager.I.JourneyHelper.HasFinishedTheGame();
+            Debug.Log("Has finished? " + hasFinished);
+            bool hasFinishedWithAllStars = AppManager.I.ScoreHelper.HasFinishedTheGameWithAllStars();
+            Debug.Log("Has finished with all the stars? " + hasFinishedWithAllStars);
         }
 
         /// <summary>
