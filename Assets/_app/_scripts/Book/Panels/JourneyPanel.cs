@@ -28,10 +28,10 @@ namespace EA4S.Book
         public GameObject ListPanel;
         public GameObject ElementsContainer;
 
-        public GameObject MoreInfoPanel;
-        public TextRender ArabicText;
+        public TextRender DetailCodeText;
+        public TextRender DetailTitleText;
+        public TextRender DetailDescriptionText;
         public TextRender ScoreText;
-        public TextRender DescriptionText;
 
         int currentStage;
         GameObject btnGO;
@@ -72,7 +72,7 @@ namespace EA4S.Book
             }
 
             var listStages = AppManager.I.DB.GetAllStageData();
-
+            listStages.Reverse();
             foreach (var stage in listStages) {
                 btnGO = Instantiate(CategoryItemPrefab);
                 btnGO.transform.SetParent(SubmenuContainer.transform, false);
@@ -81,7 +81,7 @@ namespace EA4S.Book
                     new GenericCategoryData {
                         area = VocabularyChapter.LearningBlock,
                         Id = stage.Id,
-                        Title = "Stage " + stage.Id
+                        Title = stage.Id
                     },
                     int.Parse(stage.Id) == currentStage
                 );
@@ -99,10 +99,10 @@ namespace EA4S.Book
             DetailPanel.SetActive(true);
             AudioManager.I.PlayDialogue(info.data.GetTitleSoundFilename());
             ScoreText.text = "Score: " + info.score;
-            MoreInfoPanel.SetActive(true);
 
-            ArabicText.text = info.data.Title_Ar;
-            DescriptionText.text = info.data.Description;
+            DetailCodeText.text = info.data.Id;
+            DetailTitleText.text = info.data.Title_Ar;
+            DetailDescriptionText.text = info.data.Description;
         }
 
         void emptyListContainers()
@@ -110,6 +110,9 @@ namespace EA4S.Book
             foreach (Transform t in ElementsContainer.transform) {
                 Destroy(t.gameObject);
             }
+            // reset vertical position
+            ListPanel.GetComponent<UnityEngine.UI.ScrollRect>().verticalNormalizedPosition = 1.0f;
+
             foreach (Transform t in SubmenuContainer.transform) {
                 Destroy(t.gameObject);
             }
