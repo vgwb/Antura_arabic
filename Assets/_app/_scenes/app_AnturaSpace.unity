@@ -3533,8 +3533,8 @@ MonoBehaviour:
   m_fRotationMinMagnitude: -100
   m_fRotationMaxMagnitude: 100
   m_eRotationForceMode: 1
-  m_fDragThrowMagnitudeScaling: 2
-  m_fTimeSampling: 0.333
+  m_fDragThrowMagnitudeScaling: 0.5
+  m_fTimeSampling: 0.1
   m_eReleaseForceMode: 1
 --- !u!54 &624599007
 Rigidbody:
