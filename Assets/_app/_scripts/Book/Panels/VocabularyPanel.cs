@@ -327,29 +327,29 @@ namespace EA4S.Book
 
         }
 
-        public void DetailLetter(LetterInfo info)
+        public void DetailLetter(LetterInfo _currentLetter)
         {
-            currentLetter = info;
-            HighlightLetterItem(info.data.Id);
+            currentLetter = _currentLetter;
+            HighlightLetterItem(currentLetter.data.Id);
 
             DetailPanel.SetActive(true);
             MoreInfoLetterPanel.SetActive(true);
             MoreInfoWordPanel.SetActive(false);
 
             string positionsString = "";
-            foreach (var p in info.data.GetAvailableForms()) {
+            foreach (var p in currentLetter.data.GetAvailableForms()) {
                 positionsString = positionsString + " " + p;
             }
-            Debug.Log("Detail Letter :" + info.data.Id + " [" + positionsString + " ]");
-            AudioManager.I.PlayLetter(info.data);
+            Debug.Log("Detail Letter :" + currentLetter.data.Id + " [" + positionsString + " ]");
+            AudioManager.I.PlayLetter(currentLetter.data);
 
             ArabicText.text = "";
             // ScoreText.text = "Score: " + info.score;
 
-            var isolatedChar = info.data.GetCharFixedForDisplay(LetterForm.Isolated);
-            var InitialChar = info.data.GetCharFixedForDisplay(LetterForm.Initial);
-            var MedialChar = info.data.GetCharFixedForDisplay(LetterForm.Medial);
-            var FinalChar = info.data.GetCharFixedForDisplay(LetterForm.Final);
+            var isolatedChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Isolated);
+            var InitialChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Initial);
+            var MedialChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Medial);
+            var FinalChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Final);
 
             LetterTextIsolated.SetTextUnfiltered(isolatedChar);
             LetterTextInitial.SetTextUnfiltered(InitialChar);
