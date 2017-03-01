@@ -427,6 +427,11 @@ namespace EA4S.Database
             dynamicDb.InsertOrReplace(updatedData);
         }
 
+        public void UpdateRewardPackUnlockDataAll(List<RewardPackUnlockData> updatedDataList)
+        {
+            dynamicDb.InsertOrReplaceAll(updatedDataList);
+        }
+
         #endregion
     }
 }

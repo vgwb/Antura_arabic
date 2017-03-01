@@ -322,6 +322,14 @@ namespace EA4S.Profile
         }
 
         /// <summary>
+        /// Adds or update a list of unlocked rewards and persist it.
+        /// </summary>
+        public void AddRewardUnlockedAll(List<RewardPackUnlockData> rewardPackUnlockDatas)
+        {
+            AppManager.I.DB.UpdateRewardPackUnlockDataAll(rewardPackUnlockDatas);
+        }
+
+        /// <summary>
         /// Saves the customization on db.
         /// </summary>
         /// <param name="_anturaCustomization">The antura customization. If null save only on db.</param>
@@ -474,5 +482,6 @@ namespace EA4S.Profile
             return returnData;
         }
         #endregion
+
     }
 }

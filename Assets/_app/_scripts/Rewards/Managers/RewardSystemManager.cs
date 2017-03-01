@@ -305,23 +305,36 @@ namespace EA4S.Rewards
         public static void UnlockAllRewards() {
 
             int RewardCount = 0; int TextureCount = 0; int DecalCount = 0; int OtherCount = 0;
-            
+
+            // @todo: this should be used to make reward unlock faster
+            //List<RewardPackUnlockData> rewardPackUnlockDatas = new List<RewardPackUnlockData>();
+            //rewardPackUnlockDatas.Add(GetFirstAnturaReward(RewardTypes.reward));
+            //rewardPackUnlockDatas.Add(GetFirstAnturaReward(RewardTypes.decal));
+            //rewardPackUnlockDatas.Add(GetFirstAnturaReward(RewardTypes.texture));
+
             // First reward manual add
             AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward));
             AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal));
             AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture));
+
             var actualCurrentJourneyPosition = AppManager.I.Player.CurrentJourneyPosition;
             var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
+
             // Test
-            
-            for (int i = 0; i < allPlaySessionInfos.Count; i++) {
+            for (int i = 0; i < allPlaySessionInfos.Count; i++)
+            {
                 // Check if already unlocked reward for this playSession.
                 JourneyPosition journeyPosition = allPlaySessionInfos[i].data.GetJourneyPosition();
                 if (RewardAlreadyUnlocked(journeyPosition))
                     continue;
+
                 AppManager.I.Player.SetCurrentJourneyPosition(AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id));
-                foreach (RewardPackUnlockData pack in RewardSystemManager.GetNextRewardPack()) {
+                foreach (RewardPackUnlockData pack in GetNextRewardPack())
+                {
+                    // @todo: this should be used to make reward unlock faster
+                    //rewardPackUnlockDatas.Add(pack);
                     AppManager.I.Player.AddRewardUnlocked(pack);
+
                     switch (pack.Type) {
                         case RewardTypes.reward:
                             RewardCount++;
@@ -339,6 +352,10 @@ namespace EA4S.Rewards
                     Debug.LogFormat("Unlocked reward for playsession {0} : {1}", journeyPosition, pack);
                 }
             }
+
+            // @todo: this should be used to make reward unlock faster
+            //AppManager.I.Player.AddRewardUnlockedAll(rewardPackUnlockDatas);
+
             AppManager.I.Player.SetCurrentJourneyPosition(actualCurrentJourneyPosition);
             Debug.LogFormat("Bulk unlocking rewards result: rewards: {0} | texture: {1} | decal: {2} | other: {3}", RewardCount, TextureCount, DecalCount, OtherCount);
         }
