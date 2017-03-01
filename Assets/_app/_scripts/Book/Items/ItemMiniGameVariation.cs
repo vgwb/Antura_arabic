@@ -5,9 +5,8 @@ using EA4S.Database;
 
 namespace EA4S.Book
 {
-
     /// <summary>
-    /// Displays a MiniGame item in the MiniGames panel of the Player Book.
+    /// Displays a MiniGame variation item in the MiniGames panel of the Player Book.
     /// </summary>
     public class ItemMiniGameVariation : MonoBehaviour, IPointerClickHandler
     {
@@ -19,6 +18,7 @@ namespace EA4S.Book
         public Image LockIcon;
 
         bool isSelected;
+        bool isLocked;
         ItemMainMiniGame myManager;
 
         public void Init(ItemMainMiniGame _manager, MiniGameInfo _MiniGameInfo)
@@ -28,11 +28,11 @@ namespace EA4S.Book
             BackgroundImage = GetComponent<Image>();
 
             if (miniGameInfo.unlocked || AppManager.I.Player.IsDemoUser) {
-                LockIcon.enabled = false;
+                isLocked = false;
             } else {
-                LockIcon.enabled = true;
+                isLocked = true;
             }
-
+            LockIcon.enabled = isLocked;
             ////Title.text = data.Title_Ar;
 
             //var icoPath = miniGameInfo.data.GetIconResourcePath();
@@ -59,8 +59,9 @@ namespace EA4S.Book
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            //Select(miniGameInfo.data.GetId());
-            myManager.DetailMiniGame(miniGameInfo);
+            if (!isLocked) {
+                myManager.DetailMiniGame(miniGameInfo);
+            }
         }
 
         public void Select(MiniGameInfo gameInfo = null)

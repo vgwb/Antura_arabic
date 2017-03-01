@@ -7,7 +7,7 @@ namespace EA4S.Book
 {
 
     /// <summary>
-    /// Displays a MiniGame item in the MiniGames panel of the Player Book.
+    /// Displays a main MiniGame item in the MiniGames panel of the Player Book.
     /// </summary>
     public class ItemMainMiniGame : MonoBehaviour
     {
@@ -23,6 +23,7 @@ namespace EA4S.Book
         public Image LockIcon;
 
         bool isSelected;
+        bool isLocked;
         GamesPanel panelManager;
         GameObject btnGO;
 
@@ -31,16 +32,7 @@ namespace EA4S.Book
             mainGameInfo = _MainMiniGame;
             panelManager = _manager;
 
-            //if (info.unlocked || AppManager.I.Player.IsDemoUser) {
-            //    LockIcon.enabled = false;
-            //} else {
-            //    LockIcon.enabled = true;
-            //}
-
-            ////Title.text = data.Title_Ar;
-
             var icoPath = mainGameInfo.GetIconResourcePath();
-            //var badgePath = info.data.GetBadgeIconResourcePath();
 
             //// @note: we get the minigame saved score, which should be the maximum score achieved
             //// @note: I'm leaving the average-based method commented if we want to return to that logic
@@ -54,26 +46,25 @@ namespace EA4S.Book
             //}
 
             Icon.sprite = Resources.Load<Sprite>(icoPath);
-            //if (badgePath != "") {
-            //    BadgeIcon.sprite = Resources.Load<Sprite>(badgePath);
-            //}
 
             emptyContainers();
-            var isLocked = false;
+            isLocked = true;
             foreach (var gameVariation in mainGameInfo.variations) {
                 btnGO = Instantiate(ItemMiniGameVariationPrefab);
                 btnGO.transform.SetParent(VariationsContainer.transform, false);
                 btnGO.GetComponent<ItemMiniGameVariation>().Init(this, gameVariation);
-                if (!gameVariation.unlocked) {
-                    isLocked = true;
+                if (gameVariation.unlocked) {
+                    isLocked = false;
                 }
             }
-            LockIcon.gameObject.SetActive(isLocked);
+            LockIcon.enabled = isLocked;
         }
 
         public void OnClicked()
         {
-            DetailMiniGame(mainGameInfo.variations[0]);
+            if (!isLocked) {
+                DetailMiniGame(mainGameInfo.variations[0]);
+            }
         }
 
         public void DetailMiniGame(MiniGameInfo miniGameInfo)
