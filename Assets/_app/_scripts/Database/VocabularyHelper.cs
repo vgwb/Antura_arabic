@@ -406,8 +406,10 @@ namespace EA4S.Database
         public List<WordData> GetWordsInPhrase(PhraseData phraseData, WordFilters wordFilters)
         {
             var words_ids_list = new List<string>(phraseData.Words);
-            List<WordData> list = dbManager.FindWordData(x => words_ids_list.Contains(x.Id) && CheckFilters(wordFilters, x));
-            return list;
+            List<WordData> inputList = dbManager.FindWordData(x => words_ids_list.Contains(x.Id) && CheckFilters(wordFilters, x));
+            List<WordData> outputList = new List<WordData>();
+            words_ids_list.ForEach(id => outputList.Add(inputList.Find(x => x.Id == id)));
+            return outputList;
         }
 
         public List<WordData> GetAnswersToPhrase(PhraseData phraseData, WordFilters wordFilters)
