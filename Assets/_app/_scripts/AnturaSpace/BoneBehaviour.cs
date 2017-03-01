@@ -43,11 +43,9 @@ namespace EA4S.AnturaSpace
         private ForceMode m_eRotationForceMode;
 
         [Header("Drag")]
-
-        [SerializeField]
-        private float m_fDragThrowMagnitudeScaling = 1f;
-        [SerializeField]
-        private float m_fTimeSampling = 0.0333f;
+        
+        public float m_fDragThrowMagnitudeScaling = 0.1f;
+        public float m_fTimeSampling = 0.0333f;
         [SerializeField]
         private ForceMode m_eReleaseForceMode;
         #endregion
@@ -56,6 +54,7 @@ namespace EA4S.AnturaSpace
         private GameObject m_oParticleInstance;
         bool m_bIsDragged = false;
         private Vector3 m_v3LastPosition;
+        float m_lastPositionTime = 0;
         private float m_fTimeProgression=0;
         #endregion
 
@@ -111,6 +110,9 @@ namespace EA4S.AnturaSpace
                 s_oParticleRootContainer.transform.position = Vector3.zero;
             }
 
+            m_v3LastPosition = transform.position;//Store dragging data to prepare for the releasing throw
+            m_fTimeProgression = 0;
+            m_lastPositionTime = Time.realtimeSinceStartup;
         }
 
         void Update()
@@ -123,7 +125,8 @@ namespace EA4S.AnturaSpace
                 if(m_fTimeProgression>=m_fTimeSampling)
                 {
                     m_v3LastPosition = transform.position;//Store dragging data to prepare for the releasing throw
-                    m_fTimeProgression -= m_fTimeSampling;
+                    m_fTimeProgression = 0;
+                    m_lastPositionTime = Time.realtimeSinceStartup;
                 }
                 
 
@@ -187,9 +190,11 @@ namespace EA4S.AnturaSpace
 
             m_bIsDragged = true;
 
-            m_fTimeProgression = 0;
+            Update();
 
+            m_fTimeProgression = 0;
             m_v3LastPosition = transform.position;
+            m_lastPositionTime = Time.realtimeSinceStartup;
         }
 
         public void LetGo()
@@ -285,7 +290,7 @@ namespace EA4S.AnturaSpace
             //Add rotation with random magnitude
             m_oBoneRigidbody.AddTorque(Random.insideUnitSphere.normalized * Random.Range(m_fRotationMinMagnitude, m_fRotationMaxMagnitude), m_eRotationForceMode);
             //Add translation
-            m_oBoneRigidbody.AddForce((transform.position-m_v3LastPosition) * m_fDragThrowMagnitudeScaling, m_eReleaseForceMode);
+            m_oBoneRigidbody.AddForce((transform.position-m_v3LastPosition)/(Time.realtimeSinceStartup - m_lastPositionTime) * m_fDragThrowMagnitudeScaling, m_eReleaseForceMode);
         }
 
         #endregion
