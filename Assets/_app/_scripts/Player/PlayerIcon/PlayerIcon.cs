@@ -45,9 +45,9 @@ namespace EA4S.Profile
         public void Init(PlayerIconData playerIconData)
         {
             Uuid = playerIconData.Uuid;
-            //Debug.Log("playerIconData " + uuid + " " + playerIconData.Gender + " " + playerIconData.AvatarId + " " + playerIconData.Tint + " " + playerIconData.IsDemoUser);
-            EndgameState endgameState = playerIconData.HasFinishedWithAllStars() ? EndgameState.FinishedWAllStars
-                : playerIconData.HasFinishedTheGame() ? EndgameState.Finished : EndgameState.Unfinished;
+            //Debug.Log("playerIconData " + playerIconData.Uuid + " " + playerIconData.Gender + " " + playerIconData.AvatarId + " " + playerIconData.Tint + " " + playerIconData.IsDemoUser);
+            EndgameState endgameState = playerIconData.HasFinishedTheGameWithAllStars ? EndgameState.FinishedWAllStars
+                : playerIconData.HasFinishedTheGame ? EndgameState.Finished : EndgameState.Unfinished;
             SetAppearance(playerIconData.Gender, playerIconData.AvatarId, playerIconData.Tint, playerIconData.IsDemoUser, endgameState);
         }
 
@@ -74,6 +74,7 @@ namespace EA4S.Profile
                 ? Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + "god")
                 : Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + (gender == PlayerGender.None ? "M" : gender.ToString()) + avatarId);
             HatImage.gameObject.SetActive(endgameState != EndgameState.Unfinished);
+
             switch (endgameState)
             {
                 case EndgameState.Finished:
