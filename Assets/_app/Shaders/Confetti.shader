@@ -36,12 +36,12 @@
 	
 	void surf(Input IN, inout SurfaceOutputSpecularAntura o) {
 		fixed4 tex = _Color*IN.color;
-		o.Albedo = texCUBE(_Reflections, IN.worldRefl).rgb*tex.rgb;
+		o.Albedo = tex.rgb;
 		o.Gloss = _Specular;
 		o.Alpha = tex.a;
 		o.Specular = _Shininess;
 		o.SpecularColor = texCUBE(_Reflections, IN.worldRefl).rgb;
-		o.Emission = _Emission;
+		o.Emission = _Emission*IN.color;
 	}
 
 	ENDCG
