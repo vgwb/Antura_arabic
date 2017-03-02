@@ -29,7 +29,7 @@ namespace EA4S.UI
         public bool typeSet;
         Sprite defPauseIconSprite;
         MenuButton[] menuBts;
-        float timeScaleAtMenuOpen = 1;
+        //float timeScaleAtMenuOpen = 1;
         Sequence openMenuTween;
         Tween logoBobTween;
 
@@ -111,12 +111,14 @@ namespace EA4S.UI
             BtFx.Toggle(AppManager.I.GameSettings.HighQualityGfx);
 
             if (_open) {
-                timeScaleAtMenuOpen = Time.timeScale;
+                //timeScaleAtMenuOpen = Time.timeScale;
                 Time.timeScale = 0;
                 openMenuTween.timeScale = 1;
                 openMenuTween.PlayForward();
                 AudioManager.I.PlaySound(Sfx.UIPauseIn);
-            } else {
+            }
+            else
+            {
                 //Time.timeScale = timeScaleAtMenuOpen;
                 Time.timeScale = 1;
                 logoBobTween.Pause();
