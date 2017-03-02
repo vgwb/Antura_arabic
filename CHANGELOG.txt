@@ -2,9 +2,823 @@ EA4S - Antura and the Letters
 DEV CHANGELOG
 =============
 to generate git log:
-git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
+git log --since='last month' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 =============
 
+2017-03-02 - wrong meta
+2017-03-02 - Adding ending meta
+2017-03-02 - [AUDIO] Add audio file teh_marbuta_fathah_tanwin
+2017-03-02 - [build] back to dev mode
+
+# Version 1.0b2
+
+2017-03-02 - [build] preparing 1.0b2
+2017-03-02 - minor
+2017-03-02 - [clean] unused assets into Trash!
+2017-03-02 - new (final?) app icon
+2017-03-01 - [DB] new ComboDiacritic: - ain_dammah_tanwin - heh_dammah_tanwin - lam_dammah_tanwin - reh_dammah_tanwin - tah_dammah_tanwin - teh_dammah_tanwin (misses audio) - teh_marbuta_fathah_tanwin (misses audio) - yeh_dammah_tanwin
+2017-03-01 - Added navigation to the Ending scene.
+2017-03-01 - [DB] simplified “please” word
+2017-03-01 - Missed commit
+2017-03-01 - Updated RewardSystemManager with (potential) code to make DemoUser unlock faster.
+2017-03-01 - InitialFix support
+2017-03-01 - [DB] added InitialFix to LetterData
+2017-03-01 - [book] imprving Vocabulary UI
+2017-03-01 - Fixed ordering for Sequence-based minigames in the book.
+2017-03-01 - Adding Final alef hamza low
+2017-03-01 - [plugin] removed unused
+2017-03-01 - Fixing some letter forms
+2017-03-01 - Fixing Kaf final form
+2017-03-01 - Made Demo player unlock faster (for MiniGames and PlaySession data, still slow for Unlocks)
+2017-03-01 - Added  HasFinishedTheGameWithAllStars() and HasFinishedTheGame(), to be used in the PlayerProfile.
+2017-03-01 - [book] show all words fixes #332
+2017-03-01 - [book] games locks
+2017-03-01 - [PlayerAvatar] Implemented different hats if player has finished game with or without all stars
+2017-03-01 - [book] fixed MiniGames main lock
+2017-03-01 - [book] removed compilation waring and optimized
+2017-03-01 - [db] separated DataInfo
+2017-03-01 - Fixed bug with words in phrase not using the correct order. #226
+2017-03-01 - [Rewards] Continue button now bounces up and down + [ContinueScreen] Added optional bounceLoop parameter to Show method
+2017-03-01 - [MinigamesUI] Fixed Timer shake sound behaving weirdly when resetting timer a second time
+2017-03-01 - [Navigation] app_Ending scene added to build and enums
+2017-03-01 - [Home] New parents icon
+2017-03-01 - [MissingLetter] Reversed sentence order (still needs correct DB order)
+2017-03-01 - version 1.0 B1 (1 == 1 march)
+2017-03-01 - [book] starts from player profile
+2017-03-01 - [book] updated UI Vocabulary
+2017-03-01 - [PlayerAvatar] All males avatars added + Centered all avatars so they can accept graduation hat
+2017-03-01 - [AnturaSpace] Better Input handling
+2017-03-01 - [book] updated Journey Panel UI
+2017-02-28 - [book] game titles size fix #327
+2017-02-28 - [home] hide LL when opening Reaserved Area prompt (fix TMPro font bug)
+2017-02-28 - empty dir
+2017-02-28 - Fixed bug with MiniGame and Vocabulary data unlock not working.
+2017-02-28 - [EndingScene] Better Quitting
+2017-02-28 - Updated translations for the ReservedAreaDialog.
+2017-02-28 - Ending Scene
+2017-02-28 - renealbe debiug and log
+
+# Version 1.0b1
+
+2017-02-28 - setting v 1.0 b1 for preliminary app store tests
+2017-02-28 - [Android] antura.keystore
+2017-02-28 - iTunes Store publis app url
+2017-02-28 - - Fix #297 for all tail items.
+2017-02-28 - - fix #317. Inhibited the ability to call pause during EndsessionResult and EndgameResult.
+2017-02-28 - - Antura customization with camera rotation based on reward bone.
+2017-02-27 - [home & Arabic] now GenericHelper.ReverseText() doesn’t reorder multi paragraphs! this is needed in the home page where a long text was bottom up otehrwise (nad not parsed by ArabicHelper at all)
+2017-02-27 - [AnturaSpace] Pedestal
+2017-02-27 - - Added antura reward rotation camera view.
+2017-02-27 - [HideAndSeek] Wait before showing bones
+2017-02-27 - [ColorTickle] 2 lives very hard, 5 lives very easy
+2017-02-27 - [ColorTickle] Difficulty
+2017-02-27 - Added minigame/variation sorting to the Book
+2017-02-27 - [app] moved debug consts for easiness
+2017-02-27 - - #321 API contract definition.
+2017-02-27 - Updated comments for AppConsants.
+2017-02-27 - [Maze] Remove warning.
+2017-02-27 - Revised reserved area dialog panel. It is now randomized.
+2017-02-27 - [ThrowBalls] Fix intro (#216).
+2017-02-27 - useful comments to AppConstants to be set in production
+2017-02-27 - MaxSources for letters > 1
+2017-02-27 - [AudioManager] Exclusive Audio on Letters Phrases Words as default even outside minigames
+2017-02-27 - [Maze] Stop game when timer runs out (#306).
+2017-02-27 - [db+book] corrected minigames titles
+2017-02-27 - [book] fame play button bettered ( fixes #334 )
+2017-02-27 - [db] imported 30 new phrases from 6.1.1
+2017-02-27 - [AudioManager] First attempt to fix Keeper Ended Callback
+2017-02-27 - Fixed bug with assessment 1.4.100
+2017-02-27 - Added list of problematic words to LEttersInWordQuestionBuilder. Removed incoherent 'using' directive from AppManager.
+2017-02-27 - [Audio] Keeper and Letters are now monophonic (solves #336 and maybe other)
+2017-02-27 - today we buidl v 0.227
+2017-02-26 - [Map] Disable swipe
+2017-02-25 - enable loggin
+2017-02-25 - preparing build
+2017-02-25 - [DancingDots] Added a shadow for Antura
+2017-02-25 - - Fixed wrong scale Antura prefab.
+2017-02-24 - fix some materials
+2017-02-24 - [book] journey list refinements
+2017-02-24 - [book] stage selector in JourneyPanel
+2017-02-24 - - Decal variation of antura extended to eyes.
+2017-02-24 - Fixed bug with info getters getting wrong info.
+2017-02-24 - [book] full large graph
+2017-02-24 - [book] profiel fix possibile null last learned letter
+2017-02-24 - [book] profile
+2017-02-24 - [book] game launcher titles
+2017-02-24 - material fix
+2017-02-24 - [DB & Book] minigame use now the Badge field for their variation icon
+2017-02-24 - cleanup
+2017-02-24 - [PlayerCreation] Fixed bug when creating 2nd player
+2017-02-24 - [DancingDots] UI enhancements
+2017-02-24 - Commented test getters in PlayerPanel.
+2017-02-24 - - Button Color antura decal fixed #202
+2017-02-24 - [AnturaSpace] Fixed TutorialUI while sleeping
+2017-02-24 - Fixed exit bug with player creation scene. Issue #319
+2017-02-24 - [Scanner] Fixed suitcases timing and sound
+2017-02-24 - Separated ScoreHelper and JourneyHelper from TeacherAI. Added book queries for total play time / number of plays for minigame, getting of latest data.
+2017-02-24 - debug: reenabled VerboseLogging
+2017-02-24 - [debug] filter debug.Log by AppConstants.VerboseLogging;
+2017-02-24 - [Scanner] Make all suitcases fall at the same time and play CrateLandOnground sfx only once,
+2017-02-24 - new app version 20170224
+2017-02-24 - Fixed bug with PlayerProfile and resetting (issue 314). All profiles will be reset when we detect a desync.
+2017-02-24 - Fixed bug with GamesSelectorUI tutorial going in an infinite loop. Increased DB version to force a reset.
+2017-02-24 - [map] fix #309 (book button not ssigned
+2017-02-24 - Closed #197
+2017-02-24 - Added guard to avoid logging null result values in LogAI.
+2017-02-24 - Added guard to avoid logging null result values in LogAI.
+2017-02-24 - [book] games highlight selected
+2017-02-24 - [UI] english subtitles component
+2017-02-23 - [book] game lanucher colums
+2017-02-23 - official bundle id is: org.eduapp4syria.antura
+2017-02-23 - [Book] games lanuacher with variations
+2017-02-23 - [ColorTickle] No Feedback for issue 302
+2017-02-23 - [ColorTickle] Do not lose a life when you completed
+2017-02-23 - [Book] updated namespace
+2017-02-23 - [AnturaSpace] Updated scene
+2017-02-23 - [AnturaSpace] Slipping..
+2017-02-23 - Added statistics tester for journey data. Added MiniGameInfo loading to GamesPanel.
+2017-02-23 - [DB] reordered words ids in phrases
+2017-02-23 - [DB] update dlocalizations
+2017-02-23 - [GamesSelector] Minor UI changes
+2017-02-23 - [AnturaSpace] Happiness Management
+2017-02-23 - [map] added (hidded) LB code label
+2017-02-23 - [gameSelector] play LB audio only on LB 1.1
+2017-02-23 - [gameSelector] play LB title audio and then tutorial intro
+2017-02-23 - [GameSelector] LeaningBlock title (in arabic & english) + separated code
+2017-02-23 - [AnturaSpace]DrawingAttention to Customization
+2017-02-23 - Facebook Antura link
+2017-02-23 - [AnturaSpace] WaitForLaunch State
+2017-02-23 - [R.Area] social share icons (draft)
+2017-02-23 - [book] games lanucher
+2017-02-23 - [res area] social links
+2017-02-22 - new v
+2017-02-22 - Advances in Antura Space
+2017-02-22 - Teacher tester update. Added GamesPanel.CreateMiniGameStructsList()
+2017-02-22 - Fixed bug with GetAllLetterData. Added DataStatisticsTester (for now used in the Teacher Tester)
+2017-02-22 - [AUDIO] Rename audio file
+2017-02-22 - [GamesSelector] Stars are now also faded out when unlit
+2017-02-22 - [Map] Moved next/prev map buttons slightly higher
+2017-02-22 - [Map] Added new UI icon for next/prev map + made prev/next buttons fit in 4:3 screen
+2017-02-22 - [GlobalUI] Changed Back button icon to X + Sound FX added automatically
+2017-02-22 - [DB] playsession table
+2017-02-22 - [book & area] minigames launchers
+2017-02-22 - [Teacher] added testing without play sessions to teacher tester.
+2017-02-22 - [Map] Replaced old avatar button with new PlayerIconPrefab + Implemented AutoInit option (disable by default) on PlayerIconPrefab
+2017-02-22 - [UI] UIButtons are now automatically disabled when a scene transition starts
+2017-02-22 - [Maze] Fix issue #286.
+2017-02-22 - Specified play session data table issue in the SRDebugger minigame launching.
+2017-02-22 - Added OnSceneStartTransition and OnSceneEndTransition to the NavigationManager.
+2017-02-22 - [HideAndSeek] LL Shadows
+2017-02-22 - Advances in Antura Space
+2017-02-22 - AnturaSpace Stub
+2017-02-22 - [reserved Area] wait screen for Demo user
+2017-02-22 - [reserved Area] double language buttons
+2017-02-22 - [home] reserved area window UI
+2017-02-22 - [db] updated words and phrases
+2017-02-22 - [Map] [Test] Swipe touch
+2017-02-22 - [Nav] fixed exit from playerCreation
+2017-02-22 - [Maze] Bug fixes.
+2017-02-22 - app v 20170222
+2017-02-22 - [Book] UI
+2017-02-22 - [DB] finished all new phrases and words
+2017-02-22 - [db] updated wortds and phrases
+2017-02-22 - remove verbose logging for build
+2017-02-22 - [r.Area] UI
+2017-02-22 - [TakeMeHome] Added animation for the spwan pipe
+2017-02-21 - [Maze] Fix letters (#247, #285).
+2017-02-21 - Fix bulk reward unlock according to static database for decals and textures.
+2017-02-21 - [Teacher] small verbosity update.
+2017-02-21 - Fix reward with 2 colors.
+2017-02-21 - Fixed bug with first contact and antura space GoBack. Removed editor-only logic from AnturaSpace.
+2017-02-21 - Added 'safe fallback' to teacher when a play session is not configured correctly. *Left to false due to the possiblity for hanging*
+2017-02-21 - [ThrowBalls] Slight refactoring.
+2017-02-21 - Right number of reward unlocked in a bulk mode but not for a 2 colors reward.
+2017-02-21 - #229 fixed wrong number of rewards unlocked during playsessions.
+2017-02-21 - [db] started importing and optimizing new words for new sentences
+2017-02-21 - [DB] updated from Sheets and added MissingLetter_forms minigame
+2017-02-20 - [ThrowBalls] Don't disable ball at certain moments (#291).
+2017-02-20 - [ThrowBalls] Fix LL jump (#290).
+2017-02-20 - Updated play session data table.
+2017-02-20 - Testing the teacher for edge cases.
+2017-02-20 - Updated PlaySession DB.
+2017-02-20 - Updated PhraseData.
+2017-02-20 - Regenerated DB with latest letter fixes.
+2017-02-20 - Added customization LogInfo event. Removed unused log.
+2017-02-20 - NavigationManager cleanup.
+2017-02-20 - Small fixes for navigation.
+2017-02-20 - Refactored NavigationManager. Added debug options to go home or skip scenes. Fixed bugs with previous scenes.
+2017-02-20 - Adding PrevScene stack.
+2017-02-20 - Updating scene navigation.
+2017-02-20 - Replaced bugged ArabicFixer library with the up-to-date open source version
+2017-02-20 - Refactored scene transitioning. Now everything passes through a SceneTransitionManager. Added IsTransitioningScenes to NavigationManager.
+2017-02-20 - Updated LetterData.
+2017-02-20 - [ThrowBalls] Remove warnings.
+2017-02-20 - [ThrowBalls] Fixes for word highlighting for LiW (#155).
+2017-02-20 - Updated words database (has some issues)
+2017-02-20 - Removed dependencvy of the ArabicAlphabetHelper from AppManager.I.DB
+2017-02-20 - Fixed bug with wrong letters for LettersInWord.
+2017-02-19 - [Maze] Fix issues #284, #254, #243.
+2017-02-19 - [DancingDots] Removed an error when game is started from the debugger menu
+2017-02-19 - [Balloons] Fix round fail animations (#167).
+2017-02-18 - [DancingDots] Adjusted the colors swaping behaviour for the floor and DD
+2017-02-18 - [Maze] Fix bug where quick mouse movement causes collision to not be detected (#260).
+2017-02-18 - [ThrowBalls] Fix Antura behavior (#263).
+2017-02-18 - [Maze] Prevent incorrect drawing order counting as a win (#261).
+2017-02-18 - [Maze] Pronounce letter when completed correctly (#264).
+2017-02-18 - [Balloons] Positive feedback (Issue #163).
+2017-02-18 - [Scanner] Implementation of missing sounds
+2017-02-18 - [DancingDots] The  floor and DDs change color following the music beat
+2017-02-17 - Fixed Green image. Added Shaow
+2017-02-17 - Image in Complete Word turn green when completed. Sun & Moon pronunciati correttamente
+2017-02-17 - Fixed bug with wrong data not being correctly selected after priority filtering. Fixed bug with assessments ordering packs by difficulty.
+2017-02-17 - [AUDIO] Add title sound file for Scanner image
+2017-02-17 - Removing Timer Audio from minigames
+2017-02-17 - [Assessment] Better intro animation
+2017-02-17 - [Assessment] Now default Z coordinate plane is provided by Placer Options
+2017-02-17 - [Assessment] Antura View cleanup
+2017-02-17 - [Assessment] Removed WorldBounds and Unused Antura's End position
+2017-02-17 - [MinigamesUI - Timer] Shake and alarm ring audio sfxs are now fired directly by the UI
+2017-02-17 - [assessment] Removed Subtitles at the end of the game. (they were cutted anyway but reward screen)
+2017-02-17 - [Assessments] BUGIFX: - Checkmark sound not synchronized with TutorialUI - Checkmark sound played twice
+2017-02-17 - Set number category to Cardinal instead of Ordinal.
+2017-02-17 - [PauseMenu] Changed logo
+2017-02-17 - [PlayerCreation] Added 11+ to ages
+2017-02-17 - Fixed DB Button prefab
+2017-02-17 - [GlobalUI] Exit button in Pause Menu flipped
+2017-02-17 - [GlobalUI] Back button is now automatically disabled after being clicked (GlobalUI.ShowBackButton has a parameter to change this behaviour)
+2017-02-17 - More performant insertion for minigame & journey score too.
+2017-02-17 - More performant learn score logging.
+2017-02-17 - [HOME] Play button now moves under selected avatar
+2017-02-17 - Adedd NavigationManager @todo for transitions.
+2017-02-17 - [book] icon game
+2017-02-17 - [book] item highlights
+2017-02-16 - [book] item highlights
+2017-02-16 - [AUDIO] Add minigame title voice file "Egg alphabet"
+2017-02-17 - [ThrowBalls] Use LL jump animation.
+2017-02-16 - LettersInWordQuestionBuilder updated to better support multiple packs with wrong answers.
+2017-02-16 - Changed WordsWIthLetter to better handle multiple rounds.
+2017-02-16 - [TestAudio] Find missing audio for letters in DB
+2017-02-16 - [book] menu buttons
+2017-02-16 - Removed a lot of garbage
+2017-02-16 - Added title dialog at scene switch when entering a minigame.
+2017-02-16 - Fixed bug with packs reordering to avoid repetitions.
+2017-02-16 - Fixed comment
+2017-02-16 - [Assessment] New Ordered Layout Answer Placer + Cooler slimy green for correct questions.
+2017-02-16 - [book] Ui texts improvments
+2017-02-16 - [book] better font sizes
+2017-02-16 - MissingLetters RoundManager using AvailableForms
+2017-02-16 - Removed SGX from mobile blur
+2017-02-16 - Switch to Available forms
+2017-02-16 - [Audio] Dog Scared
+2017-02-16 - Fixed Missing Letter
+2017-02-16 - R.Areaa: fix prompt callback
+2017-02-16 - editor Info window with common dev url
+2017-02-16 - Added Letters Test button in manage_Database
+2017-02-16 - [AUDIO] Add Antura scared sound
+2017-02-16 - Use of exclusive letters play by default
+2017-02-16 - Fixing ArabicHelper
+2017-02-16 - [assessment] Refactored to use the new arabic helper
+2017-02-16 - [GloblaUI - Prompt] Allows single button of onNo parameter is NULL + Callbacks are now called when the popup closes (instead of on click)
+2017-02-16 - [build] fix Android Manifest
+2017-02-15 - [ios native[ remove social
+2017-02-15 - Temp fixes for new method
+2017-02-15 - [Maze] Rodeoing.
+2017-02-15 - AnalyzeData method; Separated View from ArabicAlphabetHelper; Clean of some ArabicAlphabetHelper methods.
+2017-02-15 - [book] UI improvements
+2017-02-15 - [plugin] enable social share
+2017-02-15 - [plugin] added Stan’s Native Plugins for iOS and Android v 9.4
+2017-02-15 - Complete joiurney testing.
+2017-02-15 - TeacherTester updates
+2017-02-15 - [res area] don’t create more than 1 Demo Player
+2017-02-15 - [Assessment] Layout improvements
+2017-02-15 - [DB] added letters lam_alef_hamza_hi and lam_alef_hamza_low
+2017-02-15 - New testing methods.
+2017-02-15 - [db] yeh_hamza
+2017-02-15 - [Map] Frame rate fixed
+2017-02-15 - [DancingDots] Added error/success checkmarks
+2017-02-15 - [Maze] Fix timing of Lose SFX.
+2017-02-15 - tempo remove Stans plugisn from build
+2017-02-15 - app icon
+2017-02-15 - DB yeh_hamza new
+2017-02-15 - [Assessment]  fixed #252
+2017-02-15 - Removed difficulty regulation
+2017-02-15 - switching position to float4 in shaders
+2017-02-15 - [map] disabled GI auto baking
+2017-02-15 - uncompressed app icon
+2017-02-15 - [UI] hidden toggle HiQ GFX button
+2017-02-15 - Added minigame minimum journey position validity checks. More useful checks added to debug launcher and teacher tester
+2017-02-15 - set age limkits from 4 to 10 (used to calibrate difficulty)
+2017-02-15 - [book] refactor
+2017-02-15 - demo user: set ProfileCompletion to completed
+2017-02-15 - [PlahyerManager] removed obsolete method to delete current player
+2017-02-15 - [res.area] confirm creation of demo user
+2017-02-15 - [book] removed obsolete Parents Panel
+2017-02-15 - removed CheatSuperDogMode (we have player.IsDemoUser now)
+2017-02-15 - [res:Area] popupate Demo User
+2017-02-15 - [Balloons] Wobble the letter hint when changing numbers.
+2017-02-15 - [Balloons] Say the numbers as they change in the counting variation; repeat the question when the UI hint is clicked in all the variations.
+2017-02-15 - [Balloons] Force at least two balloons for the counting variation.
+2017-02-15 - [Balloons] Fix LL's snapping to balloon cords.
+2017-02-14 - [Assessment] WIP ordered answer placer + Angry animation when some dragged answers are not correct.
+2017-02-14 - Moved StopPlay to AppConstants.
+2017-02-14 - Improved Teacher Tester.
+2017-02-14 - Added new filter for wrong answers.
+2017-02-14 - Added Logging of time for minigames and play sessions.
+2017-02-14 - [PlayerCreation] Implemented different female avatars (males still missing)
+2017-02-14 - [Avatars] Female avatars update
+2017-02-14 - [MakeFriends] Add shadows for LL's and Antura.
+2017-02-14 - [Assessments] Fixed issue #224,  #186 , #181 and possibly issue #33
+2017-02-14 - [B, M, MF, TB] SFX.
+2017-02-14 - Added NumberOfRounds to DebugManager.
+2017-02-14 - [AudioManager] Start with default music on
+2017-02-14 - Re-added error catching for launching a minigame (can be toggled on/off)
+2017-02-14 - Updated NineSlicedSprite for border scale
+2017-02-14 - [Maze] Connect paths for tah and zah.
+2017-02-14 - [Maze] Try out different rocket exits.
+2017-02-14 - [TakeMeHome] Implementation of missing sounds
+2017-02-14 - [PlayerCreation] minor
+2017-02-14 - [PlayerCreation] New separate Age selection implemented
+2017-02-14 - [PlayerCreation] Refactoring for separate age selection (still incomplete)
+2017-02-14 - [SickLetters] Implementation of missing sounds
+2017-02-14 - [Scanner] Fixed Antura and its item dont turn red properly
+2017-02-14 - [Balloons] Fix bug where letters may spawn twice.
+2017-02-14 - [PlayerCreation] Code optimizations + Better color choice
+2017-02-14 - [Map] no sound FX is played when touching the rope to move Antura over the Map #195
+2017-02-14 - [PlayerSelector] Now "gender is none" error is captured, and uses an M gender by default
+2017-02-14 - Clear Tutorial in Egg after answer
+2017-02-14 - Added GetInitialJourneyPosition and GetFinalJourneyPosition to JourneyHelper.
+2017-02-14 - [Teacher] added additional step to avoid repetitions in the packs order.
+2017-02-14 - [Maze] Hide checkpoints and line of last path drawn.
+2017-02-14 - [Balloons] Highlight letter upon error in the Letter variation.
+2017-02-13 - [Res.Area] confirm delete player
+2017-02-13 - [TutorialUI] Fixing bugs by changing code randomly
+2017-02-13 - Reduced dependencies and coupling on IAudioManager, minor refactoring, fixed OrderLettersOfWord ( issue #87) some minor layout stuff ( issue #224) and complete words in CompleteWordForm when correct answers are selected (issue #237). Question Box now works with a IEnumerable.
+2017-02-13 - [Audio] Adding missing audio
+2017-02-13 - Excluding letter variations (apart from alef_hamza variations)
+2017-02-13 - Fixed bug with contents being wrongly repeated.
+2017-02-13 - [Egg] Suck/Spit audio
+2017-02-13 - Added Minigame selection to teacher reporting
+2017-02-13 - Added difficulty selection to the teacher's report.
+2017-02-13 - Added new filter for separating letter variations from alef_hamza variations
+2017-02-13 - [ThrowBalls] Stop forcing the word in the LiW variation.
+2017-02-13 - DB: letters tags
+2017-02-13 - [MissingLetter] Added missing sounds
+2017-02-13 - [Scanner] Adjusted some parameters for Antura's behaviour
+2017-02-13 - [Song] Stop audio when pause menu is opened fix
+2017-02-13 - Applied new teacher reporting to minigames.
+2017-02-13 - Fixed bug with LetterInWordQuestionBuilder using always the same word. (issue 236). Fixed nullref bug with intrinsic difficulty.
+2017-02-13 - [ColorTickle] Antura shadow
+2017-02-13 - [HideAndSeek] Auto-end game if maximum score is reached
+2017-02-13 - [HideAndSeek] Blip!
+2017-02-13 - [ThrowBalls] Disable collision between ball and catapult.
+2017-02-13 - [Tobogan] Duplicated audio fix
+2017-02-13 - [Scanner] Better playback controle
+2017-02-13 - [Tobogan] Audio modified according to hamza requests [Tobogan] fixed poof
+2017-02-13 - [Maze] Change starting FX behavior.
+2017-02-13 - Fixed bugs with LetterInWord QB.
+2017-02-13 - Fixed bug with WordsWithLetter
+2017-02-13 - [ColorTickle] Remaining audio clips
+2017-02-13 - Added new 'packs used together' filter to LettersInWord QB
+2017-02-13 - [CompleteWordForm] [MathLettersToWordForm] Now the correct shape is selected correctly.
+2017-02-13 - Added pack ordering to all builders.
+2017-02-13 - [ThrowBalls] Drag ball by clicking on the catapult.
+2017-02-13 - [HideAndSeek] Emoticons audio
+2017-02-13 - [ThrowBalls] Variable number of balls.
+2017-02-13 - fixed warning
+2017-02-13 - building v 20170213
+2017-02-13 - [HideAndSeek] Fixing return bug
+2017-02-13 - fixed buidl scenes
+2017-02-13 - [db] added MissingLetter_forms (Minigame) + Assessment_CompleteWord_Form (Assessment) + Assessment_MatchLettersToWord_Form (Assessment)
+2017-02-13 - db• added MissingShape + CompleteWord_Shape + MatchLettersToWord_Shape
+2017-02-13 - [HideAndSeek] Emoticons instead of Checkmarks
+2017-02-13 - [Assessment] Added 2 more assessment types (need testing, actually not teste through debugger menu)
+2017-02-13 - [book] back to Reserved Area if coming from there
+2017-02-13 - [db] updated playsession data
+2017-02-13 - [reserved area] add demo user
+2017-02-13 - [reserved area] open selectred profile in Book
+2017-02-13 - [reserved area] do delete profiles
+2017-02-13 - HOME Ui in overlay
+2017-02-13 - [Map] UI button are active during the transition, but they do nothing #194
+2017-02-13 - Fixed bug with teacher wrongly filtering out some data. Fixed issue with some games not wanting the intrinsic difficulty ordering.
+2017-02-13 - [ThrowBalls] Updates.
+2017-02-13 - [ThrowBalls] Better feedback.
+2017-02-13 - [ThrowBalls] Clicking on the hint says the question.
+2017-02-12 - [ThrowBalls] Bunch of updates.
+2017-02-11 - [ThrowBalls] Correct tutorialUI path.
+2017-02-11 - PlayerProfile saves correctly data
+2017-02-11 - RsservedArea loads from new profiles
+2017-02-11 - update GraphMaker
+2017-02-10 - [MixedLetters] Log answer.
+2017-02-10 - [Scanner] New Antura's behaviour
+2017-02-10 - - Added delete player profile functionality.
+2017-02-10 - [Maze] Log answer.
+2017-02-10 - [Fix] Audiomanager - PopupMenu bug
+2017-02-10 - - Modified DB schema version.
+2017-02-10 - [Map] UI button are active during the transition, but they do nothing #194
+2017-02-10 - Updated TeacherTester with more testing utilities.
+2017-02-10 - [ThrowBalls] Log answer.
+2017-02-10 - - Linked new player selection to app flow.
+2017-02-10 - - Enabled Buttons to create Profiles.
+2017-02-10 - [ProfileSelector] Now using PlayerIconData instead of UUID directly
+2017-02-10 - - Added delete player method (to be connected to db functionality).
+2017-02-10 - [ProfileSelector] Adapted _Start scene and relative UI code to new PlayerIconData system
+2017-02-10 - [profiles] highlight selected profile
+2017-02-10 - [TakeMeHome] OnAnswered Event Logged
+2017-02-10 - res area imporv
+2017-02-10 - [MakeFriends] Log OnAnswered event
+2017-02-10 - [DancingDots] Log Answered Event
+2017-02-10 - Commented new call for profile creation
+2017-02-10 - [Balloons] OnAnswer event
+2017-02-10 - [PlayerIcon] Added Select + Deselect method
+2017-02-10 - Better teacher reporting.
+2017-02-10 - NavigationManager : Added custom route profile creation from home.
+2017-02-10 - [r.area] player selection
+2017-02-10 - [Tobogan] Drawing Marking
+2017-02-10 - avatars in RTL layout
+2017-02-10 - [R.Area] select profile with new Avatars
+2017-02-10 - Added GetSavedPlayers to retrive all profiles available.
+2017-02-10 - [Tobogan] Right Word Feedback
+2017-02-10 - Improved TeacherTester.
+2017-02-10 - New player profile creatione (step 3, not stable)
+2017-02-10 - [Map] UI button are active during the transition, but they do nothing #194
+2017-02-10 - Updated DemiLib and DOTween
+2017-02-10 - [PlayerCreation/PlayerIcon] Slight change in avatars graphics + demo avatar + PlayerIconPrefab mod (still not complete)
+2017-02-10 - Updated use of the new PlayerProfileData constructor. Increased DB version.
+2017-02-10 - LetterForms QB using the new GetAvailableForms method
+2017-02-10 - ReservedArea: profiels panel and init buttons
+2017-02-10 - Fixed Warning in Tobogan
+2017-02-10 - [Letter Forms] Changed GetAvailablePositions to an IEnumerable
+2017-02-10 - Fixes to DatabaseTester
+2017-02-10 - Changed DatabaseManager & Tester with new UUID
+2017-02-10 - New player profile creatione (step 2, not stable)
+2017-02-10 - Updated PlayerProfileData and DBService with the new UUID.
+2017-02-10 - New player profile creatione (step 1, not stable)
+2017-02-10 - Updated player profile data with new data structure.
+2017-02-10 - IsGod -> IsDemoUser
+2017-02-10 - fix
+2017-02-10 - Redone teacher reporting for easier testing. Improved LetterForms QB.
+2017-02-10 - PlayerIcon isGod
+2017-02-10 - Prepare merge with Michele's changes
+2017-02-10 - new plysession db
+2017-02-10 - Finished refactoring 'Shape' into 'Form' everywhere.
+2017-02-10 - fix
+2017-02-10 - summry
+2017-02-10 - playerIcon prefab
+2017-02-10 - game_Assessment scene name
+2017-02-10 - renamed Assessment Scene to better name.
+2017-02-10 - PlayerIconsData & prefab
+2017-02-10 - [Assessments] Added assessment code for new Assessments
+2017-02-10 - ReservedArea filter dialog in Home Page
+2017-02-10 - [clean] removed oboslete UI flowers
+2017-02-10 - [TakeMeHome] Removed warnings
+2017-02-10 - [TakeMeHome] Improved LL detection
+2017-02-10 - [Scanner] Added a poof when the LL falls
+2017-02-09 - [Map][fixed] UI button are active during the transition, but they do nothing #194
+2017-02-09 - [TakeMeHome] added landing animation to LL
+2017-02-09 - Updated TeacherTester with some utilities.
+2017-02-09 - Fixed LetterForms builder.
+2017-02-09 - [Tobogan] Highlight ToboganWords letter
+2017-02-09 - Integrated NumberOfRounds into assessments, from now on, the relative table should be compiled otherwise we get 1 round only
+2017-02-09 - Moved Extension Methods to a better Folder.
+2017-02-09 - [Assessment] [PronouncedWord] [LetterShape] Now questions that are hidden, are Teal, and with a megaphone on them to suggest clicking. (Also it no longer looks buggy likes if the letter was missing accidentally)
+2017-02-09 - Changed DB version.
+2017-02-09 - Renamed LetterPosition to LetterForm (correct name). Fixed LetterForms QB
+2017-02-09 - Suppressed warnings.
+2017-02-09 - Letter Shaper In Word utility
+2017-02-09 - Even less verbose testing.
+2017-02-09 - Fixed SQL bug. Less verbose testing.
+2017-02-09 - Updated PlaySession table. Fixed a few bugs with VocabularySelectionAI.
+2017-02-09 - [MissingLetter] Fixed weird implementation of letters positioning
+2017-02-09 - Fixed bug with VocabularySelectionAI priority filtering.
+2017-02-09 - PlaySessioNData JSON with  NumberOfRounds field
+2017-02-09 - [MissingLetter] Shape Variation
+2017-02-09 - Working on TeacherTester
+2017-02-09 - book & reserved Area buttons
+2017-02-09 - [Book] start graphs
+2017-02-09 - [SickLetters] Added feedback and bouncing effect to the scale
+2017-02-09 - Added NumberOfRounds to game configuration. Renamed GameConfiguration to MinigameLaunchConfiguration.
+2017-02-09 - Working on LetterFormsInWordQuestionBuilder.
+2017-02-09 - Updated VocabularySelectionAI with better block-focus filtering.
+2017-02-09 - [Maze] SFX.
+2017-02-09 - [AUDIO] Add danger clock looping sound (End)
+2017-02-09 - [SickLetter] Adjusted the LL falling down and the poof  timing
+2017-02-09 - [TakeMeHome] Changed tubes and LL behaviour to match Tobogan
+2017-02-09 - [AUDIO] Update SFX : Bush rustle
+2017-02-09 - [Assessments] Final cleanup of  scene. Unless major changes there's no longer need to change the scene.
+2017-02-09 - List<PlayerIcon> in App Settings and generate UUID to new PlayerProfiles
+2017-02-09 - GetPlayerIcon method
+2017-02-09 - [db] moved PlayerDB filename generator to method
+2017-02-09 - PlayerIcon struct
+2017-02-09 - LetterFormsInWordQuestionBuilder
+2017-02-09 - [ReservedArea] Url buttons + Btn UI prefab
+2017-02-09 - [font] Amatic font uses mobile shader
+2017-02-09 - [AUdioManager] start new music only if current is !=, otherwise continue…
+2017-02-09 - reservedArea areas
+2017-02-09 - removed app_Assessment (it’s a minigame!)
+2017-02-09 - Unity Analytics only if !isEditor
+2017-02-09 - moved MaxNumberOfPlayerProfiles to AppConstants
+2017-02-09 - [navigation] added ReservedArea and PlayerCreation scenes, separated enums from class
+2017-02-09 - [player] Guid > Uuid and increased db schemeVersion
+2017-02-08 - LettersInWordQuestionBuilder: revised the new filter (fixed some bugs, made more robust).
+2017-02-08 - Attemp to fix a bug I can't reproduce. Increase distance between sprites. Removed unused GameObjects.
+2017-02-08 - [Player] introducing PlayerProfile.Guid
+2017-02-08 - [Assessment] Fixed issue #188, answers no longer mix badly when overlapped.
+2017-02-08 - PlayerTint and PlayerGender in PlayerProfile and PlayerProfileData (+ relative enums reorganizations)
+2017-02-08 - [ThrowBalls] Fix ball shadow bug.
+2017-02-08 - Updated 'preview_TEacher' scene.
+2017-02-08 - [Fix] Trimming GetChar() to avoid spaces
+2017-02-08 - Updated TeacherTester with simulation capabilities. Added "packsUsedTogether" filter to LettersInWordQuestionBuilder.
+2017-02-08 - Fixed Issues: 178, 177, 176, 111, 98, 97.
+2017-02-08 - [PlayerCreation] Minor UI tweening fixes
+2017-02-08 - Removed Warnings
+2017-02-08 - [PlayerCreation] UI coding complete, with stubs for actual player creation in DB
+2017-02-08 - EnglishSubtitles global options
+2017-02-08 - [ThrowBalls] Fixed spring Reset issue
+2017-02-08 - [ThrowBalls] Faster Spring reset
+2017-02-08 - adde ReservedArea to NavigationManager
+2017-02-08 - [PlayerCreation] UI complete
+2017-02-08 - [PlayerCreation] Implemented all buttons and initial logic (still incomplete)
+2017-02-08 - [ThrowBalls] Revamped Slingshot
+2017-02-08 - Spring for ThrowBalls
+2017-02-08 - [Map] [fixed] Antura looks in the wrong direction when entering the Map on the last Pin of a Stage #196
+2017-02-08 - [Map] Refactoring
+2017-02-08 - [HideAndSeek] Re-fixing LerpLookAtPlanar
+2017-02-08 - [HideAndSeek] Don't Lerp Antura
+2017-02-08 - Preparing code to identify shape of a letter in a word
+2017-02-08 - [ThrowBalls] Make camera shake when hit.
+2017-02-07 - [ThrowBalls] Only drag ball when you click on it.
+2017-02-07 - - code cleanup
+2017-02-07 - [ThrowBalls] Realistic ball physics.
+2017-02-07 - - Fix: database auto rebuild for different DB schema.
+2017-02-07 - [MixedLetters] Difficulty variations.
+2017-02-07 - - Switched robot lower and upper jaw with new beard_curls and big_nose rewards. - Fix: list of unlocked rewards not updated after player switch. (2)
+2017-02-07 - - Switched robot lower and upper jaw with new beard_curls and big_nose rewards. - Fix: list of unlocked rewards not updated after player switch.
+2017-02-07 - Fixed wrong position and rotation for prefab reward_hook_tail.
+2017-02-07 - [MakeFriends] Make game work again.
+2017-02-07 - Removed MathUtils (now use MathHelper)
+2017-02-07 - added MathUtils meta
+2017-02-07 - - Db schema updated to 1.2.
+2017-02-07 - [HideAndSeek] Better Antura walk animation
+2017-02-07 - - Added 2 new reward prefabs.
+2017-02-07 - Fixed issue with assessment number of minigames not specified.
+2017-02-07 - [HideAndSeek] New Antura animations [Antura] Fixed LookAt
+2017-02-07 - [Scanner] Fixed score calculation
+2017-02-07 - [Maze] Fix arrows on some letters.
+2017-02-07 - - converted profile gender to string.
+2017-02-07 - - Added gender to playerprofile.
+2017-02-07 - Init Reserved Area scene (former Parents screen)
+2017-02-07 - Fixed position reward prefab reward_collar_diamond.
+2017-02-07 - Fixed wrong texture when switching between profiles-
+2017-02-07 - Some Fixs in customization flow.
+2017-02-07 - [FastCrowd] Removed title from popup
+2017-02-07 - [book] start refactoring
+2017-02-07 - Default decal and texture for Antura customization.
+2017-02-07 - [plugin] GraphMaker
+2017-02-07 - added player creation scene in Build, and renamed app_PlayerBook -> app_Book
+2017-02-07 - moved Mood and Home scenes, added Parents Panel Btn (init)
+2017-02-07 - - Antura customization serializable and deserializable from/to DB.
+2017-02-07 - gfx settings restored
+2017-02-07 - audio meta files
+2017-02-07 - [Maze] Feedback updates.
+2017-02-06 - [Maze] Similar rocket and drawing collision detection.
+2017-02-06 - Temporary Restore deprecated members in IAssessmentConfiguration-
+2017-02-06 - [Assessments] Fixing Exception bug
+2017-02-06 - Interface for custom Assessment configuration from teacher.
+2017-02-06 - [Maze] Stop Antura from entering if the game is over.
+2017-02-06 - [Maze] Move rocket celebration pose more to the left to keep letter unobstructed.
+2017-02-06 - PlayerCreation scene (init)
+2017-02-06 - PlayerBook -> Book
+2017-02-06 - [Maze] Turn off first FX when the player starts drawing.
+2017-02-06 - [Maze] Correct initial rocket orientation.
+2017-02-06 - [Assessment] 9sliced sprite in 3d [Assessment] Auto-adapt text on sprite size
+2017-02-06 - [Maze] More circular entry for the rocket.
+2017-02-06 - [Maze] Ignore first fruit when verifying path.
+2017-02-06 - [Maze] Better out of bounds fail state.
+2017-02-06 - Parameterization for difficulty selection move to ConfigAI
+2017-02-06 - Removed unused SQL database
+2017-02-06 - Added QueriesTester.
+2017-02-06 - Updated database test scene
+2017-02-06 - Updated vocabulary selection with IntrinsicDifficulty.
+2017-02-06 - [AUDIO] Updated "waw" and "yeh" diphtongs PH files
+2017-02-06 - [AUDIO] Update "Assessment_Wrong_X" files
+2017-02-06 - [Assessment][BugFix] Poof FX also for questions
+2017-02-06 - Updated WordHelper to reflect data table changes.
+2017-02-06 - [assessment][bug_Fix]PoofFX was not playing
+2017-02-06 - More robust MinigameScoreData. Finished Difficulty Selection based on performance. Updated database tester.
+2017-02-06 - [Assessment][Fixed Bug] Order letters cannot be dragged.
+2017-02-06 - More robust queries. Added query for minigames latest scores.
+2017-02-06 - [bugfix] On 4:3 screens there can be 7 letters at most (max available screen space). Changed the filter settings to reflect that. Simplified Access to namespace
+2017-02-06 - - AnturaModelManager manage current customization from and to DB.
+2017-02-05 - [Map][bug fixed] Antura looks back on the last Pin of every Stage #175
+2017-02-05 - [MapScene][bug fixed] When MaxJourneyPosition is at the beginning of a stage (X.1.1) the first Pin is wrongly displayed #152
+2017-02-04 - [Scanner] Fixed the Letter sound when touched, Fixed  Antura's run away animation
+2017-02-04 - [TakeMeHome] Solved The pipes are too close, Solved The collision zone of the pipes is not clear
+2017-02-03 - Assessment dialogues now stop previous letter sound
+2017-02-03 - Removed bleeding edge from LightStage
+2017-02-03 - [Egg] Different animation in Sequence and Single [Egg] In Sequence, if you spam the same already pressed button, it does nothing (to avoid error on confusion between 2 variations), before it gave error
+2017-02-03 - - Right flow for managers initialization.
+2017-02-03 - [Map][bug fixed] Antura disappears when MaxJourneyPosition reaches a Pin #148
+2017-02-03 - Fixed texture to CLAMP, at step angles LightState was showing a line over the orizon
+2017-02-03 - - Refactored to use custom graphics (now easier to change graphics) - Reduced coupling and dependecies in Assessments - Minor cleanups - Simplified code - Now characters of LL do not overlap when a LL is above another - Fixed bug (tutorial playing letter when round completed before tutorial => causing exception due to missing LL.
+2017-02-03 - Removed unused bool.
+2017-02-03 - Cleaned logs.
+2017-02-03 - Fixed bug with game settings reset.
+2017-02-03 - Logs for debugging SQL.
+2017-02-03 - [Broken] - Automatic playsession for log .
+2017-02-03 - [ColorTickle] Excluding Variations and Diphtongs
+2017-02-03 - Revised LogLearnData. Standardized 'AppSession'. Added more robust journey position logging.
+2017-02-03 - Fixed bug with reset all. Added LogPlaySessionSocre and LogMinigameScore
+2017-02-03 - Added LogMinigameScoreData and LogPlaySessionScoreData
+2017-02-03 - [ColorTickle] Wait for user input end before replying result
+2017-02-03 - Suppressed errors (temporary)
+2017-02-03 - Fixed WHERE clause.
+2017-02-03 - Updating difficulty selection with custom logic.
+2017-02-03 - Difficulty selection based only on past minigame performance.
+2017-02-03 - Query bug.
+2017-02-03 - [Egg] Faster Egg animation
+2017-02-03 - Added MiniGameScoreData to the dynamic DB
+2017-02-03 - - Reset all profiles now reset profiles and DBs. - Fix mood answer daily check.
+2017-02-03 - [Fix] Deadlock on Transition
+2017-02-03 - Private DB load.
+2017-02-03 - Fixed bug with some queries. Improved query robustness.
+2017-02-03 - [AUDIO] change of voice dialog audio file
+2017-02-03 - - Mood last answered.
+2017-02-03 - Added SecondsFromLastMoodLog to LogAI
+2017-02-03 - - Refactorized access to PlayerProfileManager and Current player. - fix issue #153.
+2017-02-02 - [General] Fixed Stuck bug when pausing application
+2017-02-02 - [Tobogan] Fixed distance check
+2017-02-02 - [Debug][Audio] moved the file "teh_dammah_tanwin" from the (not_used) folder to (letters)
+2017-02-02 - [db] udpated
+2017-02-02 - [Tobogan] LL Animation near tubes
+2017-02-02 - Reverted PlaySkill to WeightedPlaySkill.
+2017-02-02 - Added MinigameScoreData with playtime.
+2017-02-02 - Removed GenericHelper meta.
+2017-02-02 - Updated DB.
+2017-02-02 - Fixed bug with ParentsPanel
+2017-02-02 - Added automatic logging of PlaySkills.
+2017-02-02 - [global] call Pause Menu on App Suspend
+2017-02-02 - [intro] added Skip scene with SPACE key
+2017-02-02 - Updating VocabularySelectionData with retrieval.
+2017-02-02 - [Minigames] Removed unused gameplay timer
+2017-02-02 - [Diacritic Song] Added Diacritic Song support
+2017-02-02 - [Missing Letter] Disable prefab
+2017-02-02 - [Minigames] Commented OnGameplayEvent in minigames API
+2017-02-02 - [db] added PlaySkills to MiniGameData
+2017-02-02 - [MissingLetter] Fixing timeout event
+2017-02-02 - [MissingLetter] Shadow under LL
+2017-02-01 - [HideAndSeek] Fixed Input and LL return behaviour
+2017-02-01 - [HideAndSeek] Lock letters after lose/win
+2017-02-01 - [HideAndSeek] Checkmark
+2017-02-01 - Updated Teacher vocabulary selection with more flexible filters.
+2017-02-01 - missing .meta
+2017-02-01 - [MapScene][bug] MaxJourneyPosition
+2017-02-01 - [Maze] Suppress warnings.
+2017-02-01 - Added excludeDipthong letter filters.
+2017-02-01 - Fix warning and add new LetterBox with new graphics.
+2017-02-01 - [db] added new Diphthong letter.kind to the two waw_diph and yeh_diph (+ fixed a but generating db enums)
+2017-02-01 - [docs] to GetWordsInPhrase method
+2017-02-01 - Add diacritic song files (Audio + .akr)
+2017-02-01 - Hotfix on the fly for Davide, missed a flag
+2017-02-01 - [Maze] Lose state updates.
+2017-02-01 - [Maze] More updates.
+2017-01-31 - [Maze] Updates.
+2017-01-31 - [ColorTickle] Swapped Outline with Underlay
+2017-01-31 - [Teacher] Number of minigames to select for a play session now driven by data.
+2017-01-31 - [Tobogan] Use additional material instead of additional asset
+2017-01-31 - Fixed bug with current mini game data being null.
+2017-01-31 - Merged LL edits
+2017-01-31 - [Tobogan] Help user by marking Letter/Pipe
+2017-01-31 - Added custom text/scale to LL
+2017-01-31 - Fixed bug with play session saving. Added logging for updating profiles.
+2017-01-31 - - updated profile
+2017-01-31 - Improved ToString of PlayerProfileData
+2017-01-31 - [Maze] Better celebration.
+2017-01-31 - Adding _diph alternative audio
+2017-01-31 - - Profile system now write and load from and to db. - Fix: profile selection by avatar id.
+2017-01-31 - [AudioManager] Give a warning when it does not find the audioclip
+2017-01-31 - [MapScene] fixed bug dos per LB
+2017-01-31 - [Map Scene] Play Function in MapManager script
+2017-01-31 - [Map Scene] Fixed Rope Bug
+2017-01-31 - Removed unused script from Assessments
+2017-01-31 - - Fix missing prefab in app_Rewards scene.
+2017-01-31 - Removed Old Antura GAG snap points
+2017-01-31 - Better Scene for Assessments, improved StillLetterBox
+2017-01-31 - Unity default GraphicSettings (not used anyway)
+2017-01-31 - [Maze] Better rocket entrance.
+2017-01-30 - [SickLetters] Disable input on specific events
+2017-01-30 - [MissingLetter] Fixed audio events
+2017-01-30 - [db] added Instrisic property to Vocabulary tables and NumberOfMinigames to PlaySession table
+2017-01-30 - [MissingLetter] Fix text marking
+2017-01-30 - Profile refactoring (step 3)
+2017-01-30 - Profile refactoring (step 2)
+2017-01-30 - Moved VocabularyHelper (ex WordHelper) to AppManager. Fixed bug with Logging.
+2017-01-30 - Initial letter now shows data unrelated to profiles.
+2017-01-30 - Updated database tester to test new teacher / profile changes
+2017-01-30 - Fixed LogAI check on DB
+2017-01-30 - Profile refactoring (step 1)
+2017-01-30 - Separated static and dynamic DB use. Better initialisation of teacher and DB.
+2017-01-30 - [Intro] Changed Rocketing Animation
+2017-01-30 - [SickLetters] Tweaked the dots shader
+2017-01-30 - [HideAndSeek] Enter-Exit animation based on difficulty
+2017-01-30 - Moved database generation out of AppManager. Separated database / teacher creation logic.
+2017-01-30 - - RewardSystem on DB.
+2017-01-30 - [Map Scene] Prefab Dot with materials
+2017-01-30 - [Map Scene] First refactoring
+2017-01-30 - - Unlock reward saved on db.
+2017-01-30 - Fixed bug with player profile data saving.
+2017-01-30 - Added new database test methods.
+2017-01-30 - Standardized all helpers.
+2017-01-30 - Fixed bug with WordSelectionAI
+2017-01-30 - Test repo Map Scene
+2017-01-30 - Test repo
+2017-01-30 - Disable Custom LL for now
+2017-01-30 - Custom LL for assessments, allow custom graphics, necessary to simplify code in more than one place.
+2017-01-30 - Reduced dependencies over Answer class. More to be done
+2017-01-29 - [Maze] Drawing updates.
+2017-01-29 - Minor cleanup found during refactoring attemps
+2017-01-29 - Removed unused stuff.
+2017-01-29 - [SickLetters] Solved some dots appear as if they are outside the vase
+2017-01-29 - [Maze] Drawing updates.
+2017-01-29 - [Scanner] Solved the Word playback speed is very hard to control, Solved Antura behaviour is not very clear
+2017-01-28 - [Maze] Disallow drawing outside the track.
+2017-01-28 - [Tobogan] Removed Timer panel
+2017-01-28 - [ColorTickle] Colors UI rewritten to adapt using Unity UI layouts and not by custom code
+2017-01-28 - [Egg] Added Egg sequence to debugger options [General] Refactored Game state machine
+2017-01-28 - [Maze] Save scene.
+2017-01-28 - [Maze] Merge continuous paths into one.
+2017-01-28 - [db] splitted Egg adn AlphabetSong into 2 variations, and added waw_diph and Yeh_diph new letters variations
+2017-01-27 - [Assessments] Now, diacritics + underscore substitution works
+2017-01-27 - Bugfix with RewardPackUnlockData
+2017-01-27 - Sorting Letters, full word showed when completed the correct word.
+2017-01-27 - Added Id to RewardPackUnlockData. Added PlayerProfile retrieval.
+2017-01-27 - Added profile data and reward pack unlock data to teh SQLite DB.
+2017-01-27 - Separated ScoreData into VocabularyScoreData and JourneyScoreData.
+2017-01-27 - Longer Time. Before going to next word.
+2017-01-27 - Complete Word when answered to Complete Word Assessment
+2017-01-27 - Removed docs (moved to a new repository)
+2017-01-27 - Added new data models.
+2017-01-27 - [Maze] Better input.
+2017-01-27 - REading question and replies when answer is correct
+2017-01-27 - Added possibility to get to the minigames directly from the Map
+2017-01-27 - Moved reward managers.
+2017-01-27 - Removed NavigationManager warning
+2017-01-27 - Added "going back" to the fake minigame launching
+2017-01-27 - Set minigames to be launched also from the Debug Panel.
+2017-01-27 - [Scanner] Solved you can drag suitecases to the LL after a round is over
+2017-01-27 - Fixed bug with GamesPanel
+2017-01-27 - Mod
+2017-01-27 - Fixed launching of minigames from book and debug
+2017-01-27 - Event injection question placers.
+2017-01-27 - Private call laungh game from Navigation manager
+2017-01-27 - Navigation refactory endend
+2017-01-27 - [Maze] Fix tutorial path for other letters.
+2017-01-27 - Update README.md
+2017-01-27 - Missing script.Updating home scene.
+2017-01-27 - Namespace cleanup
+2017-01-27 - Added random known letter to Home scene.
+2017-01-27 - Assessment Events (On All Questions answered), calling code added
+2017-01-27 - Namespace refactoring (cont.). Folders reorganization.
+2017-01-27 - - Navigation flow refactored (game launch to be completed)
+2017-01-27 - Save scene.
+2017-01-27 - [Scanner] Added visual feedback #110, Tweaked The Fly away animation #99
+2017-01-26 - [MixedLetters] Hide victory rays when the big LL shows its back.
+2017-01-26 - [Maze] Fix tutorial waypoints for some letters.
+2017-01-26 - [HideAndSeek] Fixing scene positions on the same plane, and "popup" animation from the ground (legs were visible)
+2017-01-26 - Questions moved to question folder
+2017-01-26 - Minor Improvements, removed unused stuff
+2017-01-26 - Removed unused member in AssessmentFactory
+2017-01-26 - With new dialogue manager no need to wait for audio description
+2017-01-26 - Removed unused member in Assessment
+2017-01-26 - Cleaunp Dialouge Manager
+2017-01-26 - [Maze] Use dark orange color when drawing line.
+2017-01-26 - [Scanner Phrases] Solved Intro is too long #107, Solved the Tutorial cannot be completed #108
+2017-01-26 - [HideAndSeek] Tutorial avoid wrong selection now
+2017-01-26 - [HideAndSeek] More time and bush audio
+2017-01-26 - [Assessment_CompleteWord] Image not pronunced when clicked.
+2017-01-26 - - Recommitting scene manage_Audio
+2017-01-26 - Stop Dialogue in Manage_audio scene
+2017-01-26 - Refactored Dialogue Manager, moved LetterAudio data play here, fixed issue #80
+2017-01-26 - [Fix] Keeper/Letters audio played on wrong channel
+2017-01-25 - [MissingLetter] Answer Log remaining classes
+2017-01-25 - [MissingLetter] Answer log
+2017-01-25 - [HideAndSeek] Answer log
+2017-01-25 - [ColorTickle] Answer log
+2017-01-25 - [docs] optimization
+2017-01-25 - [MixedLetters] Correct alphabet sequence for the alphabet version.
+2017-01-25 - [ReadingGame] Answers logs
+2017-01-25 - Log for FastCrowd/Egg/Tobogan
+2017-01-25 - [docs] TOCs everywhere
+2017-01-25 - [docs] test TOC
+2017-01-25 - [docs] fixed links
+2017-01-25 - [docs] fixed links
+2017-01-25 - [docs] reorganization
+2017-01-25 - [docs]
+2017-01-25 - [docs] fix
+2017-01-25 - [docs] index list
+2017-01-25 - [docs] title and description
+2017-01-25 - [docs] new index.md
+2017-01-25 - [docs] removed index
+2017-01-25 - [docs] index
 2017-01-25 - [MixedLetters] Bigger LL for the Alphabet variation.
 2017-01-25 - [docs] title and description
 2017-01-25 - [docs] new index.md
