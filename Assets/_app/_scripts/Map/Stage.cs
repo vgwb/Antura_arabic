@@ -28,14 +28,14 @@ namespace EA4S.Map
         [Header("PlayerPin")]
         public List<GameObject> positionsPlayerPin = new List<GameObject>(); //All positions Pin can take over the map: dots and pins
         public int positionPin; //position of the PlayerPin in the map
-        public int positionPinMax;//Max position PlayerPin can take 
+        public int positionPinMax;//Max position PlayerPin can take
         int nPos=0;
 
-        Quaternion rot;
+        Quaternion rot = Quaternion.identity;
         int i;
 
         List<Database.PlaySessionData> psData = new List<Database.PlaySessionData>();
-  
+
         public void CalculateStepsStage()
         {
             NumberPlaySessionsPerLEB();
@@ -71,7 +71,7 @@ namespace EA4S.Map
                 rot.eulerAngles = new Vector3(90, 0, 0);
                 GameObject dotGo;
                 dotGo = Instantiate(dot, v, rot) as GameObject;
-                dotGo.GetComponent<Dot>().learningBlockActual = i + 1;              
+                dotGo.GetComponent<Dot>().learningBlockActual = i + 1;
                 dotGo.GetComponent<Dot>().playSessionActual = p;
                 dotGo.GetComponent<Dot>().pos = nPos;
 
@@ -205,7 +205,7 @@ namespace EA4S.Map
                             break;
 
                     }
-                }           
+                }
             }
         }
 
@@ -253,6 +253,6 @@ namespace EA4S.Map
         {
             return AppManager.I.DB.FindPlaySessionData(x => x.Stage == _stage);
         }
-  
+
     }
 }
