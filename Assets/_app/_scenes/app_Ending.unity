@@ -6849,7 +6849,7 @@ ParticleSystemRenderer:
   m_Pivot: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
   m_VertexStreamMask: 27
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300002, guid: b6b660e87231cee4791e03808a812a88, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -6908,7 +6908,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -172829389
+  randomSeed: 284551155
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -17571,7 +17571,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1267473337
+  randomSeed: 1873894080
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -20350,7 +20350,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1096598827
+  randomSeed: -299953219
   InitialModule:
     serializedVersion: 3
     enabled: 1

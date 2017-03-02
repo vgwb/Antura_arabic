@@ -117,7 +117,7 @@ Material:
       second: 0
     - first:
         name: _Specular
-      second: 1
+      second: 0
     - first:
         name: _SpecularHighlights
       second: 1
@@ -136,7 +136,7 @@ Material:
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _Emission
-      second: {r: 0.625, g: 0.625, b: 0.625, a: 1}
+      second: {r: 0.44117647, g: 0.44117647, b: 0.44117647, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
