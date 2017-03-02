@@ -22,6 +22,8 @@ namespace EA4S.Profile
         public PlayerTint Tint;
         public int Age;
         public bool IsDemoUser;
+        public bool HasFinishedTheGame;
+        public bool HasFinishedTheGameWithAllStars;
 
         //int to track first visit
         //First contact (ProfileCompletion = 1 & 2)
@@ -92,7 +94,7 @@ namespace EA4S.Profile
 
         public PlayerIconData GetIcon()
         {
-            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser);
+            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars);
         }
 
         public Sprite GetAvatar()
@@ -155,10 +157,17 @@ namespace EA4S.Profile
         {
             SetMaxJourneyPosition(AppManager.I.JourneyHelper.FindNextJourneyPosition(CurrentJourneyPosition));
 
-            bool hasFinished = AppManager.I.JourneyHelper.HasFinishedTheGame();
-            Debug.Log("Has finished? " + hasFinished);
-            bool hasFinishedWithAllStars = AppManager.I.ScoreHelper.HasFinishedTheGameWithAllStars();
-            Debug.Log("Has finished with all the stars? " + hasFinishedWithAllStars);
+            if (!HasFinishedTheGame)
+            {
+                HasFinishedTheGame = AppManager.I.JourneyHelper.HasFinishedTheGame();
+            }
+            Debug.Log("Has finished? " + HasFinishedTheGame);
+
+            if (HasFinishedTheGame && !HasFinishedTheGameWithAllStars)
+            {
+                HasFinishedTheGameWithAllStars = AppManager.I.ScoreHelper.HasFinishedTheGameWithAllStars();
+            }
+            Debug.Log("Has finished with all the stars? " + HasFinishedTheGameWithAllStars);
         }
 
         /// <summary>
@@ -444,7 +453,7 @@ namespace EA4S.Profile
         /// <returns></returns>
         public PlayerProfileData ToData()
         {
-            PlayerProfileData newProfileData = new PlayerProfileData(new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser), Age, TotalNumberOfBones, ProfileCompletion);
+            PlayerProfileData newProfileData = new PlayerProfileData(new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars), Age, TotalNumberOfBones, ProfileCompletion);
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
             string jsonStringForAnturaCustomization = this.CurrentAnturaCustomizations.GetJsonListOfIds();
@@ -464,6 +473,8 @@ namespace EA4S.Profile
             Gender = _data.Gender;
             Tint = _data.Tint;
             IsDemoUser = _data.IsDemoUser;
+            HasFinishedTheGame = _data.HasFinishedTheGame;
+            HasFinishedTheGameWithAllStars = _data.HasFinishedTheGameWithAllStars;
             ProfileCompletion = _data.ProfileCompletion;
             TotalNumberOfBones = _data.TotalNumberOfBones;
             this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
@@ -483,10 +494,5 @@ namespace EA4S.Profile
         }
         #endregion
 
-        public bool HasFinishedTheGame()
-        {
-            // @todo: this should use a local bool instead
-            return GetPlayerIconData().HasFinishedTheGame();
-        }
     }
 }

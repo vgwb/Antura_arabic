@@ -22,6 +22,8 @@ namespace EA4S.Database
         public PlayerGender Gender { get; set; }
         public PlayerTint Tint { get; set; }
         public bool IsDemoUser { get; set; }
+        public bool HasFinishedTheGame { get; set; }
+        public bool HasFinishedTheGameWithAllStars { get; set; }
 
         // Player Profile additional data
         public int Age { get; set; }
@@ -67,11 +69,13 @@ namespace EA4S.Database
             Gender = data.Gender;
             Tint = data.Tint;
             IsDemoUser = data.IsDemoUser;
+            HasFinishedTheGame = data.HasFinishedTheGame;
+            HasFinishedTheGameWithAllStars = data.HasFinishedTheGameWithAllStars;
         }
         
         public PlayerIconData GetPlayerIconData()
         {
-            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser);
+            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars);
         }
 
         #region Journey Position

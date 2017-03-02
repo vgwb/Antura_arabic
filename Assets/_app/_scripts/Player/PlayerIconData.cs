@@ -12,31 +12,18 @@ namespace EA4S.Profile
         public PlayerGender Gender;
         public PlayerTint Tint;
         public bool IsDemoUser;
+        public bool HasFinishedTheGame;
+        public bool HasFinishedTheGameWithAllStars;
 
-        public PlayerIconData(string _Uuid, int _AvatarId, PlayerGender _Gender, PlayerTint _Tint, bool _IsDemoUser) {
+        public PlayerIconData(string _Uuid, int _AvatarId, PlayerGender _Gender, PlayerTint _Tint, bool _IsDemoUser, bool _HasFinishedTheGame, bool _HasFinishedTheGameWithAllStars) {
             Uuid = _Uuid;
             AvatarId = _AvatarId;
             Gender = _Gender;
             Tint = _Tint;
             IsDemoUser = _IsDemoUser;
+            HasFinishedTheGame = _HasFinishedTheGame;
+            HasFinishedTheGameWithAllStars = _HasFinishedTheGameWithAllStars;
         }
 
-        /// <summary>
-        /// Player has the finished the game.
-        /// </summary>
-        /// <param name="_simulate">Only for testing.</param>
-        /// <returns></returns>
-        public bool HasFinishedTheGame(bool _simulate = false) {
-            return _simulate;
-        }
-
-        /// <summary>
-        /// Determines whether has finished with all stars.
-        /// </summary>
-        /// <param name="_simulate">Only for testing.</param>
-        /// <returns></returns>
-        public bool HasFinishedWithAllStars(bool _simulate = false) {
-            return _simulate;
-        }
     }
 }
