@@ -144,8 +144,9 @@ namespace EA4S.Core
                     {
                         AppManager.I.Player.AdvanceMaxJourneyPosition();
 
-                        if (AppManager.I.Player.HasFinishedTheGame())
+                        if (AppManager.I.Player.HasFinishedTheGame)
                         {
+                            // @note: this works as this will be pass through here only once, when finishing the last play session.
                             GoToScene(AppScene.Ending);
                         }
                         else
