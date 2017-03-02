@@ -63,10 +63,9 @@ namespace EA4S.Minigames.DancingDots
                 }
             }
 
-            string text = "RMS: " + RmsValue.ToString("F2") +
-            " (" + DbValue.ToString("F1") + " dB)" +
-            "Pitch: " + PitchValue.ToString("F0") + " Hz";
-
+            // string text = "RMS: " + RmsValue.ToString("F2") +
+            // " (" + DbValue.ToString("F1") + " dB)" +
+            // "Pitch: " + PitchValue.ToString("F0") + " Hz";
             //Debug.LogWarning(text);
         }
 
