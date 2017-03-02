@@ -38,6 +38,8 @@ namespace EA4S.Minigames.ReadingGame
 
             if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
                 game.Context.GetAudioManager().PlayMusic(Music.Theme8);
+            else
+                game.Context.GetAudioManager().StopMusic();
         }
 
 
