@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Confetti
-  m_Shader: {fileID: 4800000, guid: 07cc4a46520b2cd49b22b7ce9ae87e85, type: 3}
+  m_Name: Glitters
+  m_Shader: {fileID: 4800000, guid: 0ce63d91d8a529644ab5e90e7b5a7daf, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: cb3a0ad9589051c4fb6f65c396a02e5d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -67,12 +67,6 @@ Material:
         name: _ParallaxMap
       second:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Reflections
-      second:
-        m_Texture: {fileID: 8900000, guid: 9103e742df1028a47be3b82f2fb6476f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -98,6 +92,9 @@ Material:
         name: _GlossyReflections
       second: 1
     - first:
+        name: _InvFade
+      second: 1
+    - first:
         name: _Metallic
       second: 0
     - first:
@@ -110,14 +107,8 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
-        name: _Shininess
-      second: 0.049
-    - first:
         name: _SmoothnessTextureChannel
       second: 0
-    - first:
-        name: _Specular
-      second: 1
     - first:
         name: _SpecularHighlights
       second: 1
@@ -135,11 +126,8 @@ Material:
         name: _Color
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
-        name: _Emission
-      second: {r: 0.625, g: 0.625, b: 0.625, a: 1}
-    - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
-        name: _SpecularColor
-      second: {r: 1, g: 1, b: 1, a: 1}
+        name: _TintColor
+      second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
