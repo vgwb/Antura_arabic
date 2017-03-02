@@ -22,24 +22,47 @@ namespace EA4S.Database
         public PlayerGender Gender { get; set; }
         public PlayerTint Tint { get; set; }
         public bool IsDemoUser { get; set; }
+
+        /// <summary>
+        /// Has the player completed the whole game?
+        /// Used only for the player icons in the Home scene.
+        /// </summary>
         public bool HasFinishedTheGame { get; set; }
+
+        /// <summary>
+        /// Has the player completed the whole game AND earned full score in all play sessions?
+        /// Used only for the player icons in the Home scene.
+        /// </summary>
         public bool HasFinishedTheGameWithAllStars { get; set; }
 
-        // Player Profile additional data
         public int Age { get; set; }
-        //public string Name { get; set; }
 
+        /// <summary>
+        /// State of completion for the player profile.
+        /// Can be 0,1,2,3. See PlayerProfile for further details.
+        /// </summary>
         public int ProfileCompletion { get; set; }
 
-        public int MaxJourneyPosition_Stage { get; set; }
-        public int MaxJourneyPosition_LearningBlock { get; set; }
-        public int MaxJourneyPosition_PlaySession { get; set; }
-        public int CurrentJourneyPosition_Stage { get; set; }
-        public int CurrentJourneyPosition_LearningBlock { get; set; }
-        public int CurrentJourneyPosition_PlaySession { get; set; }
+        public int MaxStage { get; set; }
+        public int MaxLearningBlock { get; set; }
+        public int MaxPlaySession { get; set; }
 
-        public int TotalNumberOfBones { get; set; }
+        public int CurrentStage { get; set; }
+        public int CurrentLearningBlock { get; set; }
+        public int CurrentPlaySession { get; set; }
+
+        public int TotalBones { get; set; }
+
+
+        /// <summary>
+        /// JSON data for the current customization set on Antura.
+        /// </summary>
         public string CurrentAnturaCustomization { get; set; }
+
+        /// <summary>
+        /// JSON-serialized additional data, may be added as needed.
+        /// </summary>
+        public string AdditionalJsonData { get; set; }  
 
         public int CreationTimestamp { get; set; }
 
@@ -47,14 +70,14 @@ namespace EA4S.Database
         {
         }
 
-        public PlayerProfileData(PlayerIconData _IconData, int _Age, int _TotalNumberOfBones, int _ProfileCompletion, string _AnturaCustomization = null)
+        public PlayerProfileData(PlayerIconData _IconData, int _Age, int totalBones, int _ProfileCompletion, string _AnturaCustomization = null)
         {
             Id = UNIQUE_ID;  // Only one record
             Age = _Age;
             //Name = ""; // not requested at the moment
             SetPlayerIconData(_IconData);
             ProfileCompletion = _ProfileCompletion;
-            TotalNumberOfBones = _TotalNumberOfBones;
+            TotalBones = totalBones;
             SetMaxJourneyPosition(JourneyPosition.InitialJourneyPosition);
             SetCurrentJourneyPosition(JourneyPosition.InitialJourneyPosition);
             CreationTimestamp = GenericHelper.GetTimestampForNow();
@@ -82,26 +105,26 @@ namespace EA4S.Database
 
         public void SetMaxJourneyPosition(JourneyPosition pos)
         {
-            MaxJourneyPosition_Stage = pos.Stage;
-            MaxJourneyPosition_LearningBlock = pos.LearningBlock;
-            MaxJourneyPosition_PlaySession = pos.PlaySession;
+            MaxStage = pos.Stage;
+            MaxLearningBlock = pos.LearningBlock;
+            MaxPlaySession = pos.PlaySession;
         }
 
         public void SetCurrentJourneyPosition(JourneyPosition pos)
         {
-            CurrentJourneyPosition_Stage = pos.Stage;
-            CurrentJourneyPosition_LearningBlock = pos.LearningBlock;
-            CurrentJourneyPosition_PlaySession = pos.PlaySession;
+            CurrentStage = pos.Stage;
+            CurrentLearningBlock = pos.LearningBlock;
+            CurrentPlaySession = pos.PlaySession;
         }
 
         public JourneyPosition GetMaxJourneyPosition()
         {
-            return new JourneyPosition(MaxJourneyPosition_Stage, MaxJourneyPosition_LearningBlock, MaxJourneyPosition_PlaySession);
+            return new JourneyPosition(MaxStage, MaxLearningBlock, MaxPlaySession);
         }
 
         public JourneyPosition GetCurrentJourneyPosition()
         {
-            return new JourneyPosition(CurrentJourneyPosition_Stage, CurrentJourneyPosition_LearningBlock, CurrentJourneyPosition_PlaySession);
+            return new JourneyPosition(CurrentStage, CurrentLearningBlock, CurrentPlaySession);
         }
 
         #endregion
@@ -120,13 +143,13 @@ namespace EA4S.Database
                 Uuid,
                 CreationTimestamp,
 
-                MaxJourneyPosition_Stage,
-                MaxJourneyPosition_LearningBlock,
-                MaxJourneyPosition_PlaySession,
+                MaxStage,
+                MaxLearningBlock,
+                MaxPlaySession,
 
-                CurrentJourneyPosition_Stage,
-                CurrentJourneyPosition_LearningBlock,
-                CurrentJourneyPosition_PlaySession,
+                CurrentStage,
+                CurrentLearningBlock,
+                CurrentPlaySession,
 
                 ProfileCompletion
             );
