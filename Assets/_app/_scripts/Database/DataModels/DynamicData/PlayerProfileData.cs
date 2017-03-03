@@ -61,18 +61,18 @@ namespace EA4S.Database
         public bool IsDemoUser { get; set; }
 
         /// <summary>
-        /// Has the player completed the whole game?
+        /// Has the player completed the whole journey
         /// Used only for the player icons in the Home scene.
         /// Part of PlayerIconData.
         /// </summary>
-        public bool HasCompleteTheJourney { get; set; }
+        public bool JourneyCompleted { get; set; }
 
         /// <summary>
-        /// Has the player completed the whole game AND earned full score in all play sessions?
+        /// general total final overall score
         /// Used only for the player icons in the Home scene.
         /// Part of PlayerIconData.
         /// </summary>
-        public float FinalScore { get; set; }
+        public float TotalScore { get; set; }
 
         #endregion
 
@@ -91,7 +91,7 @@ namespace EA4S.Database
         /// State of completion for the player profile.
         /// Can be 0,1,2,3. See PlayerProfile for further details.
         /// </summary>
-        public ProfileCompletionStates ProfileCompletion { get; set; }
+        public ProfileCompletionState ProfileCompletion { get; set; }
 
         /// <summary>
         /// Maximum journey position: stage reached.
@@ -154,7 +154,7 @@ namespace EA4S.Database
         {
         }
 
-        public PlayerProfileData(PlayerIconData iconData, int age, int totalBones, ProfileCompletionStates profileCompletion, string currentAnturaCustomization = null)
+        public PlayerProfileData(PlayerIconData iconData, int age, int totalBones, ProfileCompletionState profileCompletion, string currentAnturaCustomization = null)
         {
             Id = UNIQUE_ID;  // Only one record
             Age = age;
@@ -169,7 +169,7 @@ namespace EA4S.Database
 
         public bool HasFinishedTheGameWithAllStars()
         {
-            return (FinalScore >= 0.999f);
+            return (TotalScore >= 0.999f);
         }
 
         public void SetPlayerIconData(PlayerIconData data)
@@ -179,13 +179,13 @@ namespace EA4S.Database
             Gender = data.Gender;
             Tint = data.Tint;
             IsDemoUser = data.IsDemoUser;
-            HasCompleteTheJourney = data.HasFinishedTheGame;
-            FinalScore = (data.HasFinishedTheGameWithAllStars ? 1f : 0f);
+            JourneyCompleted = data.HasFinishedTheGame;
+            TotalScore = (data.HasFinishedTheGameWithAllStars ? 1f : 0f);
         }
 
         public PlayerIconData GetPlayerIconData()
         {
-            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasCompleteTheJourney, HasFinishedTheGameWithAllStars());
+            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, JourneyCompleted, HasFinishedTheGameWithAllStars());
         }
 
         #region Journey Position
