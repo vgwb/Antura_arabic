@@ -18,7 +18,7 @@ namespace EA4S.Database
         /// <summary>
         /// Identifier of the application session.
         /// </summary>
-        public string AppSession { get; set; }
+        public int AppSession { get; set; }
 
         /// <summary>
         /// Timestamp of creation of this entry.
@@ -41,7 +41,7 @@ namespace EA4S.Database
         /// </summary>
         public LogInfoData() { }
 
-        public LogInfoData(string appSession, InfoEvent _event, string additionalData)
+        public LogInfoData(int appSession, InfoEvent _event, string additionalData)
         {
             AppSession = appSession;
             Event = _event;

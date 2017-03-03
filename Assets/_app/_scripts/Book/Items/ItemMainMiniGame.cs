@@ -85,9 +85,9 @@ namespace EA4S.Book
         void hightlight(bool _status)
         {
             if (_status) {
-                BackgroundImage.color = Color.yellow;
+                BackgroundImage.color = new Color(0.9490197f, 0.7215686f, 0.1882353f, 1f);
             } else {
-                BackgroundImage.color = Color.white;
+                BackgroundImage.color = new Color(0.8862746f, 0.8862746f, 0.8862746f, 1f);
             }
         }
 

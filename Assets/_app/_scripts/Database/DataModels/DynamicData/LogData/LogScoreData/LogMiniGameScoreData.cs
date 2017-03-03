@@ -19,7 +19,7 @@ namespace EA4S.Database
         /// <summary>
         /// Identifier of the application session.
         /// </summary>
-        public string AppSession { get; set; }
+        public int AppSession { get; set; }
 
         /// <summary>
         /// Timestamp of creation of this entry.
@@ -60,9 +60,9 @@ namespace EA4S.Database
         /// <summary>
         /// Empty constructor required by MySQL.
         /// </summary>
-        public LogMiniGameScoreData(){}
+        public LogMiniGameScoreData() { }
 
-        public LogMiniGameScoreData(string appSession, JourneyPosition journeyPosition, MiniGameCode miniGameCode, int stars, float playTime)
+        public LogMiniGameScoreData(int appSession, JourneyPosition journeyPosition, MiniGameCode miniGameCode, int stars, float playTime)
         {
             AppSession = appSession;
             Stage = journeyPosition.Stage;
