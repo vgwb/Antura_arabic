@@ -49,7 +49,7 @@ namespace EA4S.ReservedArea
             string firstColorWord = colorsWords[firstButtonIndex];
             string secondColorWord = colorsWords[secondButtonIndex];
 
-            var titleLoc = LocalizationManager.GetLocalizationData("ReservedArea_Title>");
+            var titleLoc = LocalizationManager.GetLocalizationData("ReservedArea_Title");
             var sectionIntroLoc = LocalizationManager.GetLocalizationData("ReservedArea_SectionDescription_Intro");
             var sectionErrorLoc= LocalizationManager.GetLocalizationData("ReservedArea_SectionDescription_Error");
 
