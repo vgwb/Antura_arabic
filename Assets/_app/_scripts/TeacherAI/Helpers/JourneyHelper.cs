@@ -195,6 +195,7 @@ namespace EA4S.Teacher
 
         public bool HasFinishedTheGame()
         {
+            Profile.PlayerProfile p = AppManager.I.Player;
             var currentPos = AppManager.I.Player.CurrentJourneyPosition;
             return currentPos.Equals(GetFinalJourneyPosition());
         }
