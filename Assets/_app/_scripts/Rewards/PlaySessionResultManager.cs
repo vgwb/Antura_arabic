@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using EA4S.Core;
 using EA4S.Database;
-using EA4S.Teacher;
 
 namespace EA4S.Rewards
 {
@@ -19,7 +18,7 @@ namespace EA4S.Rewards
             // Calculate items to unlock count
             int itemsToUnlock = AppManager.I.NavigationManager.CalculateUnlockItemCount();
 
-            List<RewardPackUnlockData> oldRewards = AppManager.I.Player.RewardsUnlocked.FindAll(ru => ru.PlaySessionId == AppManager.I.Player.CurrentJourneyPosition.ToString());
+            List<RewardPackUnlockData> oldRewards = AppManager.I.Player.RewardsUnlocked.FindAll(ru => ru.GetJourneyPosition().Equals(AppManager.I.Player.CurrentJourneyPosition));
             int itemAlreadyUnlocked = oldRewards.Count;
             for (int i = 0; i < itemsToUnlock - itemAlreadyUnlocked; i++) {
                 // if necessary add one new random reward unlocked
@@ -44,7 +43,7 @@ namespace EA4S.Rewards
             // for any rewards mount them model on parent transform object (objs)
             for (int i = 0; i < oldRewards.Count && i < objs.Length; i++) {
                 ModelsManager.MountModel(
-                    oldRewards[i].ItemID,
+                    oldRewards[i].ItemId,
                     objs[i].transform,
                     oldRewards[i].GetMaterialPair()
                     );

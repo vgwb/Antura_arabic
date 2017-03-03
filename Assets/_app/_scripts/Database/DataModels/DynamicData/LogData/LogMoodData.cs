@@ -10,21 +10,36 @@ namespace EA4S.Database
     [System.Serializable]
     public class LogMoodData : IData
     {
+        /// <summary>
+        /// Primary key for the database.
+        /// </summary>
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+
+        /// <summary>
+        /// Identifier of the application session.
+        /// </summary>
         public string AppSession { get; set; }
+
+        /// <summary>
+        /// Timestamp of creation of this entry.
+        /// </summary>
         public int Timestamp { get; set; }
 
+        /// <summary>
+        /// Normalized mood value recorded. [0,1]
+        /// </summary>
         public float MoodValue { get; set; }
 
-        public LogMoodData() : this("XXX", 0)
-        {
-        }
+        /// <summary>
+        /// Empty constructor required by MySQL.
+        /// </summary>
+        public LogMoodData(){}
 
-        public LogMoodData(string _AppSession, float _mood)
+        public LogMoodData(string appSession, float moodValue)
         {
-            AppSession = _AppSession;
-            MoodValue = _mood;
+            AppSession = appSession;
+            MoodValue = moodValue;
             Timestamp = GenericHelper.GetTimestampForNow();
         }
 

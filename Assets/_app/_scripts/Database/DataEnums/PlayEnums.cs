@@ -1,6 +1,27 @@
 ﻿namespace EA4S
 {
+    /// <summary>
+    /// Defines a type of app-wide event that may happen.
+    /// Used for logging.
+    /// </summary>
+    public enum InfoEvent
+    {
+        ProfileCreated = 1,
 
+        AppStarted = 20,
+        AppClosed = 21,
+        AppPlay = 22,
+        AppSuspend = 23,
+        AppResume = 24,
+        Book = 30,
+        GameStart = 40,
+        GameEnd = 41,
+        AnturaSpace = 60,
+        Map = 70,
+
+        Reward = 50,
+        AnturaCustomization = 51,
+    }
     /// <summary>
     /// Defines a type of play-related skill that may be measured.
     /// Used for logging.
@@ -16,14 +37,8 @@
         Listening = 6
     }
 
-    /// <summary>
-    /// Defines a type of app-wide event that may happen.
-    /// Used for logging.
-    /// </summary>
     public enum PlayEvent
     {
-        GameStarted = 0,
-        GameFinished = 1,
-        Skill = 2
+        Skill = 0
     }
 }

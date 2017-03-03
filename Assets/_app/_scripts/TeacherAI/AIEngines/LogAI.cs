@@ -109,7 +109,7 @@ namespace EA4S.Teacher
             // The teacher receives a score for each play skill the minigame deems worthy of analysis
             List<LogPlayData> logDataList = new List<LogPlayData>();
             foreach (var result in resultsList) {
-                var data = new LogPlayData(appSession, pos.ToStringId(), miniGameCode, result.playEvent, result.skill, result.score);
+                var data = new LogPlayData(appSession, pos, miniGameCode, result.playEvent, result.skill, result.score);
                 logDataList.Add(data);
             }
             db.InsertAll(logDataList);
@@ -132,6 +132,8 @@ namespace EA4S.Teacher
 
         public void LogLearn(string appSession, JourneyPosition pos, MiniGameCode miniGameCode, List<LearnResultParameters> resultsList)
         {
+            var currentJourneyContents = AppManager.I.Teacher.VocabularyAi.CurrentJourneyContents;
+
             var learnRules = GetLearnRules(miniGameCode);
 
             // Retrieve previous scores
@@ -139,7 +141,7 @@ namespace EA4S.Teacher
             List<VocabularyScoreData> previousScoreDataList = db.FindDataByQuery<VocabularyScoreData>(query);
 
             // Prepare log data
-            var logDataList = new List<LogLearnData>();
+            var logDataList = new List<LogVocabularyScoreData>();
             var scoreDataList = new List<VocabularyScoreData>();
             foreach (var result in resultsList)
             {
@@ -170,12 +172,41 @@ namespace EA4S.Teacher
                 score *= learnRules.minigameImportanceWeight;
                 score += learnRules.minigameVoteSkewOffset;
 
-                var logData = new LogLearnData(appSession, pos.ToStringId(), miniGameCode, result.dataType, result.elementId, score);
+                var logData = new LogVocabularyScoreData(appSession, pos, miniGameCode, result.dataType, result.elementId, score);
                 logDataList.Add(logData);
 
                 // We also update the score for that data element
                 var scoreData = GetVocabularyScoreDataWithMovingAverage(result.dataType, result.elementId, score, previousScoreDataList, ConfigAI.scoreMovingAverageWindow);
                 scoreDataList.Add(scoreData);
+
+                // Check whether the vocabulary data was in the journey (and can thus be unlocked)
+                if (!scoreData.Unlocked)
+                {
+                    IVocabularyData data = null;
+                    bool containedInJourney = false;
+                    switch (result.dataType)
+                    {
+                        case VocabularyDataType.Letter:
+                            data = AppManager.I.DB.GetLetterDataById(result.elementId);
+                            containedInJourney = currentJourneyContents.Contains(data as LetterData);
+                            break;
+                        case VocabularyDataType.Word:
+                            data = AppManager.I.DB.GetLetterDataById(result.elementId);
+                            containedInJourney = currentJourneyContents.Contains(data as WordData);
+                            break;
+                        case VocabularyDataType.Phrase:
+                            data = AppManager.I.DB.GetLetterDataById(result.elementId);
+                            containedInJourney = currentJourneyContents.Contains(data as PhraseData);
+                            break;
+                    }
+
+                    if (containedInJourney)
+                    {
+                        Debug.Log("UNLOCKING " + data.GetId());
+                        scoreData.Unlocked = true;
+                    }
+                    
+                }
             }
 
             db.InsertAll(logDataList);
@@ -208,12 +239,12 @@ namespace EA4S.Teacher
             if (AppConstants.VerboseLogging) Debug.Log("LogMiniGameScore " + miniGameCode + " / " + score);
 
             // Log for history
-            var data = new LogMinigameScoreData(appSession, pos, miniGameCode, score, playTime);
+            var data = new LogMiniGameScoreData(appSession, pos, miniGameCode, score, playTime);
             db.Insert(data);
 
             // Retrieve previous scores
-            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name);
-            List<MinigameScoreData> previousScoreDataList = db.FindDataByQuery<MinigameScoreData>(query);
+            string query = string.Format("SELECT * FROM " + typeof(MiniGameScoreData).Name);
+            List<MiniGameScoreData> previousScoreDataList = db.FindDataByQuery<MiniGameScoreData>(query);
 
             // Score update
             var scoreData = GetMinigameScoreDataWithMaximum(miniGameCode, playTime, score, previousScoreDataList);
@@ -222,9 +253,10 @@ namespace EA4S.Teacher
             // We also log play skills related to that minigame, as read from MiniGameData
             var minigameData = db.GetMiniGameDataByCode(miniGameCode);
             List<PlayResultParameters> results = new List<PlayResultParameters>();
+            float normalizedScore = Mathf.InverseLerp(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore, score);
             foreach (var weightedPlaySkill in minigameData.AffectedPlaySkills)
             {
-                results.Add(new PlayResultParameters(PlayEvent.Skill, weightedPlaySkill.Skill, score));
+                results.Add(new PlayResultParameters(PlayEvent.Skill, weightedPlaySkill.Skill, normalizedScore));
             }
             LogPlay(appSession, pos, miniGameCode, results);
         }
@@ -234,15 +266,15 @@ namespace EA4S.Teacher
             //if (AppConstants.VerboseLogging) Debug.Log("LogMiniGameScore " + logMiniGameScoreParams.MiniGameCode + " / " + logMiniGameScoreParams.Score);
 
             // Retrieve previous scores
-            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name);
-            List<MinigameScoreData> previousScoreDataList = db.FindDataByQuery<MinigameScoreData>(query);
+            string query = string.Format("SELECT * FROM " + typeof(MiniGameScoreData).Name);
+            List<MiniGameScoreData> previousScoreDataList = db.FindDataByQuery<MiniGameScoreData>(query);
 
-            var logDataList = new List<LogMinigameScoreData>();
-            var scoreDataList = new List<MinigameScoreData>();
+            var logDataList = new List<LogMiniGameScoreData>();
+            var scoreDataList = new List<MiniGameScoreData>();
             foreach (var parameters in logMiniGameScoreParams)
             {
                 // Log for history
-                var logData = new LogMinigameScoreData(appSession, parameters.Pos, parameters.MiniGameCode, parameters.Score, parameters.PlayTime);
+                var logData = new LogMiniGameScoreData(appSession, parameters.Pos, parameters.MiniGameCode, parameters.Score, parameters.PlayTime);
                 logDataList.Add(logData);
 
                 // Score update
@@ -314,46 +346,49 @@ namespace EA4S.Teacher
 
         #region Score Utilities
 
-        private MinigameScoreData GetMinigameScoreDataWithMaximum(MiniGameCode miniGameCode, float playTime, int newScore, List<MinigameScoreData> scoreDataList)
+        private MiniGameScoreData GetMinigameScoreDataWithMaximum(MiniGameCode miniGameCode, float playTime, int newStars, List<MiniGameScoreData> scoreDataList)
         {
-            int previousMaxScore = 0;
+            int previousMaxStars = 0;
             float previousTotalPlayTime = 0;
             var scoreData = scoreDataList.Find(x => x.MiniGameCode == miniGameCode);
             if (scoreData != null)
             {
-                previousMaxScore = scoreData.Score;
+                previousMaxStars = scoreData.Stars;
                 previousTotalPlayTime = scoreData.TotalPlayTime;
             }
 
             float newTotalPlayTime = previousTotalPlayTime + playTime;
-            int newMaxScore = Mathf.Max(previousMaxScore, newScore);
-            return new MinigameScoreData(miniGameCode, newMaxScore, newTotalPlayTime);
+            int newMaxStars = Mathf.Max(previousMaxStars, newStars);
+            return new MiniGameScoreData(miniGameCode, newMaxStars, newTotalPlayTime);
         }
 
-        private JourneyScoreData GetJourneyScoreDataWithMaximum(JourneyDataType dataType, string elementId, int newScore, List<JourneyScoreData> scoreDataList)
+        private JourneyScoreData GetJourneyScoreDataWithMaximum(JourneyDataType dataType, string elementId, int newStars, List<JourneyScoreData> scoreDataList)
         {
-            int previousMaxScore = 0;
+            int previousMaxStars = 0;
             var scoreData = scoreDataList.Find(x => x.ElementId == elementId && x.JourneyDataType == dataType);
             if (scoreData != null)
             {
-                previousMaxScore = scoreData.Score;
+                previousMaxStars = scoreData.Stars;
             }
 
-            int newMaxScore = Mathf.Max(previousMaxScore, newScore);
-            return new JourneyScoreData(elementId, dataType, newMaxScore);
+            int newMaxStars = Mathf.Max(previousMaxStars, newStars);
+            return new JourneyScoreData(elementId, dataType, newMaxStars);
         }
 
         private VocabularyScoreData GetVocabularyScoreDataWithMovingAverage(VocabularyDataType dataType, string elementId, float newScore, List<VocabularyScoreData> scoreDataList, int movingAverageSpan)
         {
             float previousAverageScore = 0;
+            bool previousUnlocked = false;
             var scoreData = scoreDataList.Find(x => x.ElementId == elementId && x.VocabularyDataType == dataType);
-            if (scoreData != null) {
+            if (scoreData != null)
+            {
                 previousAverageScore = scoreData.Score;
+                previousUnlocked = scoreData.Unlocked;
             }
 
             // @note: for the first movingAverageSpan values, this won't be accurate
             float newAverageScore = previousAverageScore - previousAverageScore / movingAverageSpan + newScore / movingAverageSpan;
-            return new VocabularyScoreData(elementId, dataType, newAverageScore);
+            return new VocabularyScoreData(elementId, dataType, newAverageScore, previousUnlocked);
         }
 
         #endregion

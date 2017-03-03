@@ -285,7 +285,7 @@ namespace EA4S.Profile
             //            break;
             //    }
 
-            //    RewardPackUnlockData unlockedRewardData = RewardsUnlocked.Find(r => r.Type == _rewardType && r.PlaySessionId == plsRew.PlaySession);
+            //    RewardPackUnlockData unlockedRewardData = RewardsUnlocked.Find(r => r.Type == _rewardType && r.JourneyPosition == plsRew.PlaySession);
             //    if (unlockedRewardData == null)
             //        counter++;
             //}
@@ -476,7 +476,7 @@ namespace EA4S.Profile
             HasFinishedTheGame = _data.HasFinishedTheGame;
             HasFinishedTheGameWithAllStars = _data.HasFinishedTheGameWithAllStars;
             ProfileCompletion = _data.ProfileCompletion;
-            TotalNumberOfBones = _data.TotalNumberOfBones;
+            TotalNumberOfBones = _data.TotalBones;
             this.SetCurrentJourneyPosition(_data.GetCurrentJourneyPosition(), false);
             this.SetMaxJourneyPosition(_data.GetMaxJourneyPosition(), false);
             // Antura customization save only customization data

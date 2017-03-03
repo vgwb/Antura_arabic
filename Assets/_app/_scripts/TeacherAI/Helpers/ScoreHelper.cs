@@ -72,13 +72,13 @@ namespace EA4S.Teacher
             }
 
             // Find available scores
-            string query = string.Format("SELECT * FROM " + typeof(MinigameScoreData).Name);
-            List<MinigameScoreData> scoredata_list = dbManager.FindDataByQuery<MinigameScoreData>(query);
+            string query = string.Format("SELECT * FROM " + typeof(MiniGameScoreData).Name);
+            List<MiniGameScoreData> scoredata_list = dbManager.FindDataByQuery<MiniGameScoreData>(query);
             for (int i = 0; i < info_list.Count; i++) {
                 var info = info_list[i];
                 var scoredata = scoredata_list.Find(x => x.MiniGameCode == info.data.Code);
                 if (scoredata != null) {
-                    info.score = scoredata.Score;
+                    info.score = scoredata.GetScore();
                     info.unlocked = true;
                 } else {
                     info.score = 0; // 0 until unlocked
@@ -109,7 +109,7 @@ namespace EA4S.Teacher
                 var info = info_list[i];
                 var scoredata = scoredata_list.Find(x => x.ElementId == info.data.GetId());
                 if (scoredata != null) {
-                    info.score = scoredata.Score;
+                    info.score = scoredata.GetScore();
                     info.unlocked = true;
                 } else {
                     info.score = 0; // 0 until unlocked
@@ -141,7 +141,7 @@ namespace EA4S.Teacher
                 var scoredata = scoredata_list.Find(x => x.ElementId == info.data.GetId());
                 if (scoredata != null) {
                     info.score = scoredata.Score;
-                    info.unlocked = true;
+                    info.unlocked = scoredata.Unlocked;
                 } else {
                     info.score = 0; // 0 until unlocked
                     info.unlocked = false;
@@ -150,49 +150,6 @@ namespace EA4S.Teacher
 
             return info_list;
         }
-
-        /*
-        public List<I> GetAllInfo<D, I>(List<D> data_list, DbTables table) where I : DataInfo<D>, new() where D : IData
-        {
-            var info_list = new List<I>();
-
-            // Build info instances for the given data
-            foreach (var data in data_list)
-            {
-                var info = new I();
-                info.data = data;
-                info_list.Add(info);
-            }
-
-            // Find available scores
-            string query = "";
-            if (typeof(D) is IVocabularyData)
-            {
-
-            }
-            else
-            {
-                query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '" + JourneyDataType.PlaySession + "' ORDER BY ElementId ");
-            }
-
-            List<JourneyScoreData> scoredata_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
-            for (int i = 0; i < info_list.Count; i++)
-            {
-                var info = info_list[i];
-                var scoredata = scoredata_list.Find(x => x.ElementId == info.data.GetId());
-                if (scoredata != null)
-                {
-                    info.score = scoredata.Score;
-                    info.unlocked = true;
-                } else
-                {
-                    info.score = 0; // 0 until unlocked
-                    info.unlocked = false;
-                }
-            }
-
-            return info_list;
-        }*/
 
         #endregion
 
@@ -215,8 +172,8 @@ namespace EA4S.Teacher
 
         private IT GetLastLearnedDataInfo<T, IT>(VocabularyDataType dataType, List<IT> allInfos) where T : IVocabularyData where IT : DataInfo<T>
         {
-            string query = "select * from \"" + typeof(LogLearnData).Name + "\"" + " where VocabularyDataType = '" + (int)dataType + "' " + " order by Timestamp limit 1";
-            List<LogLearnData> list = AppManager.I.DB.FindDataByQuery<LogLearnData>(query);
+            string query = "select * from \"" + typeof(LogVocabularyScoreData).Name + "\"" + " where VocabularyDataType = '" + (int)dataType + "' " + " order by Timestamp limit 1";
+            List<LogVocabularyScoreData> list = AppManager.I.DB.FindDataByQuery<LogVocabularyScoreData>(query);
             if (list.Count > 0 && list[0] != null) {
                 return allInfos.Find(x => x.data.GetId() == list[0].ElementId);
             }
@@ -231,7 +188,7 @@ namespace EA4S.Teacher
         public List<float> GetLatestScoresForMiniGame(MiniGameCode minigameCode, int nLastDays)
         {
             int fromTimestamp = GenericHelper.GetRelativeTimestampFromNow(-nLastDays);
-            string query = string.Format("SELECT * FROM  " + typeof(LogMinigameScoreData).Name + " WHERE MiniGameCode = '{0}' AND Timestamp < {1}",
+            string query = string.Format("SELECT * FROM  " + typeof(LogMiniGameScoreData).Name + " WHERE MiniGameCode = '{0}' AND Timestamp < {1}",
                 (int)minigameCode, fromTimestamp);
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             List<float> scores = list.ConvertAll(x => x.Score);
@@ -306,7 +263,7 @@ namespace EA4S.Teacher
             var average = 0f;
 
             foreach (var item in _scoreList) {
-                average += item.Score;
+                average += item.GetScore();
             }
 
             return (average / _scoreList.Count);

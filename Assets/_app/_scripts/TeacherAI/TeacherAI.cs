@@ -219,9 +219,9 @@ namespace EA4S.Teacher
             // @note: this code shows how to work on the dynamic and static db together
             string query =
                 string.Format(
-                    "SELECT * FROM " + typeof(LogLearnData).Name + " WHERE TableName = 'LetterData' AND Score < 0 and MiniGame = {0}",
+                    "SELECT * FROM " + typeof(LogVocabularyScoreData).Name + " WHERE TableName = 'LetterData' AND Score < 0 and MiniGame = {0}",
                     (int)assessmentCode);
-            List<LogLearnData> logLearnData_list = dbManager.FindLogLearnDataByQuery(query);
+            List<LogVocabularyScoreData> logLearnData_list = dbManager.FindLogVocabularyScoreDataByQuery(query);
             List<string> letter_ids_list = logLearnData_list.ConvertAll(x => x.ElementId);
             List<LetterData> letters = dbManager.FindLetterData(x => letter_ids_list.Contains(x.Id));
             return letters;
@@ -232,9 +232,9 @@ namespace EA4S.Teacher
         {
             string query =
                 string.Format(
-                    "SELECT * FROM " + typeof(LogLearnData).Name + " WHERE TableName = 'WordData' AND Score < 0 and MiniGame = {0}",
+                    "SELECT * FROM " + typeof(LogVocabularyScoreData).Name + " WHERE TableName = 'WordData' AND Score < 0 and MiniGame = {0}",
                     (int)assessmentCode);
-            List<LogLearnData> logLearnData_list = dbManager.FindLogLearnDataByQuery(query);
+            List<LogVocabularyScoreData> logLearnData_list = dbManager.FindLogVocabularyScoreDataByQuery(query);
             List<string> words_ids_list = logLearnData_list.ConvertAll(x => x.ElementId);
             List<WordData> words = dbManager.FindWordData(x => words_ids_list.Contains(x.Id));
             return words;
@@ -250,7 +250,7 @@ namespace EA4S.Teacher
             // @note: shows how to work with playerprofile as well as the database
             JourneyPosition currentJourneyPosition = playerProfile.CurrentJourneyPosition;
             string query = string.Format("SELECT * FROM " + typeof(LogPlayData).Name + " WHERE PlayEvent = {0} AND PlaySession = '{1}'",
-                (int)PlayEvent.GameFinished, currentJourneyPosition.ToString());
+                (int)PlayEvent.Skill, currentJourneyPosition.ToString());
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             return list;
         }
