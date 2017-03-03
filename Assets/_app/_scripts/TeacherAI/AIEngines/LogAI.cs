@@ -52,7 +52,7 @@ namespace EA4S.Teacher
 
         #region Mood
 
-        public void LogMood(string appSession, int mood)
+        public void LogMood(int appSession, int mood)
         {
             // refactor: this should have a session like the rest of the logging methods
             float realMood = Mathf.InverseLerp(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue, mood);
@@ -73,7 +73,7 @@ namespace EA4S.Teacher
 
         #region Info
 
-        public void LogInfo(string appSession, InfoEvent infoEvent, string parametersString = "")
+        public void LogInfo(int appSession, InfoEvent infoEvent, string parametersString = "")
         {
             if (!AppManager.I.DB.HasLoadedPlayerProfile()) {
                 Debug.Log("No player profile DB to log to. Player profile is probably not set");
@@ -104,7 +104,7 @@ namespace EA4S.Teacher
             }
         }
 
-        public void LogPlay(string appSession, JourneyPosition pos, MiniGameCode miniGameCode, List<PlayResultParameters> resultsList)
+        public void LogPlay(int appSession, JourneyPosition pos, MiniGameCode miniGameCode, List<PlayResultParameters> resultsList)
         {
             // The teacher receives a score for each play skill the minigame deems worthy of analysis
             List<LogPlayData> logDataList = new List<LogPlayData>();
@@ -130,7 +130,7 @@ namespace EA4S.Teacher
             public int nWrong;
         }
 
-        public void LogLearn(string appSession, JourneyPosition pos, MiniGameCode miniGameCode, List<LearnResultParameters> resultsList)
+        public void LogLearn(int appSession, JourneyPosition pos, MiniGameCode miniGameCode, List<LearnResultParameters> resultsList)
         {
             var currentJourneyContents = AppManager.I.Teacher.VocabularyAi.CurrentJourneyContents;
 
@@ -143,15 +143,12 @@ namespace EA4S.Teacher
             // Prepare log data
             var logDataList = new List<LogVocabularyScoreData>();
             var scoreDataList = new List<VocabularyScoreData>();
-            foreach (var result in resultsList)
-            {
-                if (result.elementId == null)
-                {
+            foreach (var result in resultsList) {
+                if (result.elementId == null) {
                     Debug.LogError("LogAI: Logging a result with a NULL elementId. Skipped.");
                     continue;
                 }
-                if (result.nCorrect == 0 && result.nWrong == 0)
-                {
+                if (result.nCorrect == 0 && result.nWrong == 0) {
                     Debug.LogError("LogAI: Logging a result with no correct nor wrong hits. Skipped.");
                     continue;
                 }
@@ -180,12 +177,10 @@ namespace EA4S.Teacher
                 scoreDataList.Add(scoreData);
 
                 // Check whether the vocabulary data was in the journey (and can thus be unlocked)
-                if (!scoreData.Unlocked)
-                {
+                if (!scoreData.Unlocked) {
                     IVocabularyData data = null;
                     bool containedInJourney = false;
-                    switch (result.dataType)
-                    {
+                    switch (result.dataType) {
                         case VocabularyDataType.Letter:
                             data = AppManager.I.DB.GetLetterDataById(result.elementId);
                             containedInJourney = currentJourneyContents.Contains(data as LetterData);
@@ -200,17 +195,16 @@ namespace EA4S.Teacher
                             break;
                     }
 
-                    if (containedInJourney)
-                    {
+                    if (containedInJourney) {
                         scoreData.Unlocked = true;
                     }
-                    
+
                 }
             }
 
             db.InsertAll(logDataList);
             db.InsertOrReplaceAll(scoreDataList);
-        } 
+        }
 
         // refactor: these rules should be moved out of the LogAI and be instead placed in the games' configuration, as they belong to the games 
         private MiniGameLearnRules GetLearnRules(MiniGameCode code)
@@ -233,7 +227,7 @@ namespace EA4S.Teacher
 
         #region Journey Scores
 
-        public void LogMiniGameScore(string appSession, JourneyPosition pos, MiniGameCode miniGameCode, int score, float playTime)
+        public void LogMiniGameScore(int appSession, JourneyPosition pos, MiniGameCode miniGameCode, int score, float playTime)
         {
             if (AppConstants.VerboseLogging) Debug.Log("LogMiniGameScore " + miniGameCode + " / " + score);
 
@@ -253,14 +247,13 @@ namespace EA4S.Teacher
             var minigameData = db.GetMiniGameDataByCode(miniGameCode);
             List<PlayResultParameters> results = new List<PlayResultParameters>();
             float normalizedScore = Mathf.InverseLerp(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore, score);
-            foreach (var weightedPlaySkill in minigameData.AffectedPlaySkills)
-            {
+            foreach (var weightedPlaySkill in minigameData.AffectedPlaySkills) {
                 results.Add(new PlayResultParameters(PlayEvent.Skill, weightedPlaySkill.Skill, normalizedScore));
             }
             LogPlay(appSession, pos, miniGameCode, results);
         }
 
-        public void LogMiniGameScores(string appSession, List<LogMiniGameScoreParams> logMiniGameScoreParams)
+        public void LogMiniGameScores(int appSession, List<LogMiniGameScoreParams> logMiniGameScoreParams)
         {
             //if (AppConstants.VerboseLogging) Debug.Log("LogMiniGameScore " + logMiniGameScoreParams.MiniGameCode + " / " + logMiniGameScoreParams.Score);
 
@@ -270,8 +263,7 @@ namespace EA4S.Teacher
 
             var logDataList = new List<LogMiniGameScoreData>();
             var scoreDataList = new List<MiniGameScoreData>();
-            foreach (var parameters in logMiniGameScoreParams)
-            {
+            foreach (var parameters in logMiniGameScoreParams) {
                 // Log for history
                 var logData = new LogMiniGameScoreData(appSession, parameters.Pos, parameters.MiniGameCode, parameters.Score, parameters.PlayTime);
                 logDataList.Add(logData);
@@ -283,8 +275,7 @@ namespace EA4S.Teacher
                 // We also log play skills related to that minigame, as read from MiniGameData
                 var minigameData = db.GetMiniGameDataByCode(parameters.MiniGameCode);
                 List<PlayResultParameters> results = new List<PlayResultParameters>();
-                foreach (var weightedPlaySkill in minigameData.AffectedPlaySkills)
-                {
+                foreach (var weightedPlaySkill in minigameData.AffectedPlaySkills) {
                     results.Add(new PlayResultParameters(PlayEvent.Skill, weightedPlaySkill.Skill, parameters.Score));
                 }
                 LogPlay(appSession, parameters.Pos, parameters.MiniGameCode, results);
@@ -294,7 +285,7 @@ namespace EA4S.Teacher
             db.InsertOrReplaceAll(scoreDataList);
         }
 
-        public void LogPlaySessionScore(string appSession, JourneyPosition pos, int score, float playTime)
+        public void LogPlaySessionScore(int appSession, JourneyPosition pos, int score, float playTime)
         {
             if (AppConstants.VerboseLogging) Debug.Log("LogPlaySessionScore " + pos.ToStringId() + " / " + score);
 
@@ -311,7 +302,7 @@ namespace EA4S.Teacher
             db.InsertOrReplace(scoreData);
         }
 
-        public void LogPlaySessionScores(string appSession, List<LogPlaySessionScoreParams> logPlaySessionScoreParamsList)
+        public void LogPlaySessionScores(int appSession, List<LogPlaySessionScoreParams> logPlaySessionScoreParamsList)
         {
             // Retrieve previous scores
             string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name);
@@ -319,8 +310,7 @@ namespace EA4S.Teacher
 
             var logDataList = new List<LogPlaySessionScoreData>();
             var scoreDataList = new List<JourneyScoreData>();
-            foreach (var parameters in logPlaySessionScoreParamsList)
-            {
+            foreach (var parameters in logPlaySessionScoreParamsList) {
                 // Log for history
                 var logData = new LogPlaySessionScoreData(appSession, parameters.Pos, parameters.Score, parameters.PlayTime);
                 logDataList.Add(logData);
@@ -350,8 +340,7 @@ namespace EA4S.Teacher
             int previousMaxStars = 0;
             float previousTotalPlayTime = 0;
             var scoreData = scoreDataList.Find(x => x.MiniGameCode == miniGameCode);
-            if (scoreData != null)
-            {
+            if (scoreData != null) {
                 previousMaxStars = scoreData.Stars;
                 previousTotalPlayTime = scoreData.TotalPlayTime;
             }
@@ -365,8 +354,7 @@ namespace EA4S.Teacher
         {
             int previousMaxStars = 0;
             var scoreData = scoreDataList.Find(x => x.ElementId == elementId && x.JourneyDataType == dataType);
-            if (scoreData != null)
-            {
+            if (scoreData != null) {
                 previousMaxStars = scoreData.Stars;
             }
 
@@ -379,8 +367,7 @@ namespace EA4S.Teacher
             float previousAverageScore = 0;
             bool previousUnlocked = false;
             var scoreData = scoreDataList.Find(x => x.ElementId == elementId && x.VocabularyDataType == dataType);
-            if (scoreData != null)
-            {
+            if (scoreData != null) {
                 previousAverageScore = scoreData.Score;
                 previousUnlocked = scoreData.Unlocked;
             }

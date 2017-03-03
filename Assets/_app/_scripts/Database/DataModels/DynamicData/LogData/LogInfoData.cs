@@ -18,7 +18,7 @@ namespace EA4S.Database
         /// <summary>
         /// Identifier of the application session.
         /// </summary>
-        public string AppSession { get; set; }
+        public int AppSession { get; set; }
 
         /// <summary>
         /// Timestamp of creation of this entry.
@@ -34,14 +34,14 @@ namespace EA4S.Database
         /// Additional raw JSON data saved alongside the event to record more details.
         /// Example: "{playerId:0, rewardType:2}"
         /// </summary>
-        public string AdditionalJsonData { get; set; } 
+        public string AdditionalJsonData { get; set; }
 
         /// <summary>
         /// Empty constructor required by MySQL.
         /// </summary>
         public LogInfoData() { }
 
-        public LogInfoData(string appSession, InfoEvent _event, string additionalJsonData)
+        public LogInfoData(int appSession, InfoEvent _event, string additionalJsonData)
         {
             AppSession = appSession;
             Event = _event;
