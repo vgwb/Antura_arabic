@@ -37,9 +37,19 @@ namespace EA4S.Database
         #endregion
 
         /// <summary>
-        /// The play session at which this reward is assigned.
+        /// Stage at which the reward data has been unlocked.
         /// </summary>
-        public string JourneyPositionId { get; set; }
+        public int Stage { get; set; }
+
+        /// <summary>
+        /// LearningBlock at which the reward data has been unlocked.
+        /// </summary>
+        public int LearningBlock { get; set; }
+
+        /// <summary>
+        /// PlaySession at which the reward data has been unlocked.
+        /// </summary>
+        public int PlaySession { get; set; }
 
         /// <summary>
         /// The order of playsession rewards in case of multi reward for same playsession.
@@ -74,7 +84,9 @@ namespace EA4S.Database
             ColorId = colorId;
             Type = type;
             Id = GetIdAccordingToDBRules();
-            JourneyPositionId = journeyPosition.ToStringId();
+            Stage = journeyPosition.Stage;
+            LearningBlock = journeyPosition.LearningBlock;
+            PlaySession = journeyPosition.PlaySession;
             Order = 0;
             IsNew = true;
             IsLocked = true;
@@ -112,7 +124,7 @@ namespace EA4S.Database
 
         public JourneyPosition GetJourneyPosition()
         {
-            return new JourneyPosition(JourneyPositionId);
+            return new JourneyPosition(Stage, LearningBlock, PlaySession);
         }
 
         #endregion
@@ -126,7 +138,7 @@ namespace EA4S.Database
 
         public override string ToString()
         {
-            return string.Format("{0} : {1} [{2}] [{3}]", ItemId, ColorId, Type, JourneyPositionId);
+            return string.Format("{0} : {1} [{2}] [{3}]", ItemId, ColorId, Type, PlaySession);
         }
 
         #endregion
