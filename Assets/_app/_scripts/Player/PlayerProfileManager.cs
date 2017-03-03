@@ -107,7 +107,7 @@ namespace EA4S.Profile
             returnProfile.AvatarId = avatarID;
             returnProfile.Tint = tint;
             returnProfile.IsDemoUser = isDemoUser;
-            returnProfile.ProfileCompletion = (isDemoUser ? ProfileCompletionStates.GameCompleted : ProfileCompletionStates.New);
+            returnProfile.ProfileCompletion = (isDemoUser ? ProfileCompletionState.GameCompleted : ProfileCompletionState.New);
 
             // DB Creation
             AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());

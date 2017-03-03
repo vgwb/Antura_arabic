@@ -9,7 +9,7 @@ using EA4S.Rewards;
 
 namespace EA4S.Profile
 {
-    public enum ProfileCompletionStates
+    public enum ProfileCompletionState
     {
         New = 0,
         FirstContact1 = 1,
@@ -36,7 +36,7 @@ namespace EA4S.Profile
         //int to track first visit
         //First contact (ProfileCompletion = 1 & 2)
         //BookVisited: ProfileCompletion = 3
-        public ProfileCompletionStates ProfileCompletion = ProfileCompletionStates.New;
+        public ProfileCompletionState ProfileCompletion = ProfileCompletionState.New;
 
         public string MoodLastVisit;
 
@@ -372,7 +372,7 @@ namespace EA4S.Profile
         /// </returns>
         public bool IsFirstContact()
         {
-            return ((int)ProfileCompletion < (int)ProfileCompletionStates.FirstContact2);
+            return ((int)ProfileCompletion < (int)ProfileCompletionState.FirstContact2);
         }
 
         /// <summary>
@@ -403,10 +403,10 @@ namespace EA4S.Profile
         {
             switch (_step) {
                 case 1:
-                    ProfileCompletion = ProfileCompletionStates.FirstContact1;
+                    ProfileCompletion = ProfileCompletionState.FirstContact1;
                     break;
                 case 2:
-                    ProfileCompletion = ProfileCompletionStates.FirstContact2;
+                    ProfileCompletion = ProfileCompletionState.FirstContact2;
                     break;
             }
             Save();
@@ -417,7 +417,7 @@ namespace EA4S.Profile
         /// </summary>
         public void ResetPlayerProfileCompletion()
         {
-            ProfileCompletion = ProfileCompletionStates.New;
+            ProfileCompletion = ProfileCompletionState.New;
             Save();
         }
         #endregion
@@ -431,7 +431,7 @@ namespace EA4S.Profile
         /// </returns>
         public bool IsBookVisited()
         {
-            return ((int)ProfileCompletion < (int)ProfileCompletionStates.BookVisited);
+            return ((int)ProfileCompletion < (int)ProfileCompletionState.BookVisited);
         }
 
         /// <summary>
@@ -439,7 +439,7 @@ namespace EA4S.Profile
         /// </summary>
         public void SetBookVisited()
         {
-            ProfileCompletion = ProfileCompletionStates.BookVisited;
+            ProfileCompletion = ProfileCompletionState.BookVisited;
             Save();
         }
         #endregion
@@ -475,7 +475,7 @@ namespace EA4S.Profile
             Gender = _data.Gender;
             Tint = _data.Tint;
             IsDemoUser = _data.IsDemoUser;
-            HasFinishedTheGame = _data.HasCompleteTheJourney;
+            HasFinishedTheGame = _data.JourneyCompleted;
             HasFinishedTheGameWithAllStars = _data.HasFinishedTheGameWithAllStars();
             ProfileCompletion = _data.ProfileCompletion;
             TotalNumberOfBones = _data.TotalBones;
