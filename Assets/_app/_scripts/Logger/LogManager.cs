@@ -26,8 +26,8 @@ namespace EA4S.Core
 
         public LogManager()
         {
-
             I = this;
+            InitNewSession();
         }
 
         public void InitNewSession()
