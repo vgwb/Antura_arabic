@@ -4,24 +4,6 @@ using EA4S.Profile;
 
 namespace EA4S.Core
 {
-
-    public enum AppScene
-    {
-        Home,
-        AnturaSpace,
-        Book,
-        ReservedArea,
-        GameSelector,
-        Intro,
-        MiniGame,
-        Map,
-        Mood,
-        PlaySessionResult,
-        PlayerCreation,
-        Rewards,
-        Ending
-    }
-
     public static class AppSceneHelper
     {
         // refactor: scene names should match AppScene so that this can be removed

@@ -7,6 +7,7 @@
     public enum InfoEvent
     {
         ProfileCreated = 1,
+        EnterScene = 10,
 
         AppSessionStart = 20,
         AppSessionEnd = 21,
