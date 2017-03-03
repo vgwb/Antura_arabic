@@ -72,10 +72,10 @@ namespace EA4S.Book
             bool foundStart = false;
             int startTimestamp = 0;
             foreach (var infoData in list) {
-                if (!foundStart && infoData.Event == InfoEvent.AppStarted) {
+                if (!foundStart && infoData.Event == InfoEvent.AppSessionStart) {
                     startTimestamp = infoData.Timestamp;
                     foundStart = true;
-                } else if (foundStart && infoData.Event == InfoEvent.AppClosed) {
+                } else if (foundStart && infoData.Event == InfoEvent.AppSessionEnd) {
                     var endTimestamp = infoData.Timestamp;
                     foundStart = false;
 

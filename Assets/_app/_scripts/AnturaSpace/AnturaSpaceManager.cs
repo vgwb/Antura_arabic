@@ -17,6 +17,7 @@ namespace EA4S.AnturaSpace
 
         public AnturaLocomotion Antura;
         public AnturaSpaceUI UI;
+        public AnturaSpaceTutorial Tutorial;
 
         public Transform SceneCenter;
         public Pedestal RotatingBase;
@@ -163,7 +164,9 @@ namespace EA4S.AnturaSpace
 
             stateManager.Update(Time.deltaTime);
 
-            UI.ShowBonesButton(bones.Count < MaxBonesInScene);
+            if (!Tutorial.IsRunning)
+                UI.ShowBonesButton(bones.Count < MaxBonesInScene);
+
             UI.BonesCount = AppManager.I.Player.GetTotalNumberOfBones();
 
             if (DraggingBone != null && !Input.GetMouseButton(0))

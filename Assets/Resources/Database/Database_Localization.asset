@@ -3192,3 +3192,113 @@ MonoBehaviour:
       English: 
       Arabic: "\u0644\u0648\u062D\u0629 \u0627\u0644\u062A\u062D\u0643\u0645"
       AudioFile: 
+    - Id: ReservedArea_DeleteProfile
+      Character: UI
+      Area: reserved
+      When: 
+      Context: 
+      English: Delete
+      Arabic: "\u062D\u0630\u0641"
+      AudioFile: 
+    - Id: ReservedArea_ExportProfile
+      Character: UI
+      Area: reserved
+      When: 
+      Context: 
+      English: Export
+      Arabic: "\u062A\u0635\u062F\u064A\u0631"
+      AudioFile: 
+    - Id: ReservedArea_ReviewProfile
+      Character: UI
+      Area: reserved
+      When: 
+      Context: 
+      English: Review
+      Arabic: "\u0645\u062A\u0627\u0628\u0639\u0629"
+      AudioFile: 
+    - Id: ReservedArea_CreateDemoUser
+      Character: UI
+      Area: reserved
+      When: 
+      Context: 
+      English: Create demo player
+      Arabic: "\u0625\u0646\u0634\u0627\u0621 \u062A\u062C\u0631\u064A\u0628\u064A
+        \u0644\u0627\u0639\u0628"
+      AudioFile: 
+    - Id: ReservedArea_Website
+      Character: UI
+      Area: reserved
+      When: 
+      Context: 
+      English: Website
+      Arabic: "\u0645\u0648\u0642\u0639 \u0627\u0644\u0643\u062A\u0631\u0648\u0646\u064A"
+      AudioFile: 
+    - Id: ReservedArea_Privacy
+      Character: UI
+      Area: reserved
+      When: 
+      Context: 
+      English: Privacy
+      Arabic: "\u0627\u0644\u0625\u062C\u0645\u0627\u0644\u064A\u0629"
+      AudioFile: 
+    - Id: ReservedArea_InstallInstructions
+      Character: UI
+      Area: reserved
+      When: 
+      Context: 
+      English: Install instructions
+      Arabic: "\u062A\u062B\u0628\u064A\u062A \u062A\u0639\u0644\u064A\u0645\u0627\u062A"
+      AudioFile: 
+    - Id: ReservedArea_Rate
+      Character: UI
+      Area: reserved
+      When: 
+      Context: 
+      English: Rate
+      Arabic: "\u0645\u0639\u062F\u0644"
+      AudioFile: 
+    - Id: ReservedArea_Recommend
+      Character: UI
+      Area: reserved
+      When: 
+      Context: 
+      English: Recommend
+      Arabic: "\u0646\u0648\u0635\u064A"
+      AudioFile: 
+    - Id: ReservedArea_UnlockingWaring
+      Character: UI
+      Area: reserved
+      When: 
+      Context: 
+      English: UNLOCKING... please wait
+      Arabic: "\u062C\u0627\u0631\u064A \u0627\u0644\u0641\u062A\u062D! \u064A\u0631\u062C\u0649
+        \u0627\u0644\u0625\u0646\u062A\u0638\u0627\u0631"
+      AudioFile: 
+    - Id: ReservedArea_Title
+      Character: UI
+      Area: reserved
+      When: 
+      Context: 
+      English: RESERVED AREA
+      Arabic: "\u0645\u0646\u0637\u0642\u0629 \u0627\u0644\u0622\u0628\u0627\u0621"
+      AudioFile: 
+    - Id: ReservedArea_SectionDescription_Intro
+      Character: UI
+      Area: reserved
+      When: 
+      Context: 
+      English: This section is reserved for parents and guardians.
+      Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0645\u0633\u0627\u062D\u0629 \u0645\u062E\u0635\u0635\u0629
+        \u0644\u0644\u0622\u0628\u0627\u0621 \u0648\u0623\u0648\u0644\u064A\u0627\u0621
+        \u0627\u0644\u0623\u0645\u0648\u0631"
+      AudioFile: 
+    - Id: ReservedArea_SectionDescription_Error
+      Character: UI
+      Area: reserved
+      When: 
+      Context: 
+      English: If you make an error, retry by re - accessing this panel
+      Arabic: "\u0641\u064A \u062D\u0627\u0644 \u0623\u062E\u0637\u0623\u062A\u060C
+        \u0623\u0639\u062F \u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629 \u0628\u0627\u0633\u062A\u0639\u0645\u0627\u0644
+        \u0647\u0630\u0647 \u0627\u0644\u0644\u0648\u062D\u0629"
+      AudioFile: 

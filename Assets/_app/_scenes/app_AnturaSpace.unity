@@ -1812,6 +1812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Antura: {fileID: 2091012743}
   UI: {fileID: 1668913316}
+  Tutorial: {fileID: 1472273670}
   SceneCenter: {fileID: 544084193}
   RotatingBase: {fileID: 1279549900}
   AttentionPosition: {fileID: 1083569782}
@@ -9028,6 +9029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_oCameraUI: {fileID: 1920108683}
   m_oAnturaBehaviour: {fileID: 2091012743}
+  UI: {fileID: 1668913316}
   m_oCookieButton: {fileID: 2079677548}
   m_oCustomizationButton: {fileID: 1965254905}
 --- !u!1 &1490895012

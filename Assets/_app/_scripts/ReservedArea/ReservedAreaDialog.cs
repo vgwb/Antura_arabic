@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using EA4S.Core;
+using EA4S.Database;
 using EA4S.UI;
 using EA4S.Helpers;
 
@@ -47,19 +49,25 @@ namespace EA4S.ReservedArea
             string firstColorWord = colorsWords[firstButtonIndex];
             string secondColorWord = colorsWords[secondButtonIndex];
 
+            var titleLoc = LocalizationManager.GetLocalizationData("ReservedArea_Title>");
+            var sectionIntroLoc = LocalizationManager.GetLocalizationData("ReservedArea_SectionDescription_Intro");
+            var sectionErrorLoc= LocalizationManager.GetLocalizationData("ReservedArea_SectionDescription_Error");
+
             englishTextUI.text =
-                "<b>RESERVED AREA</b>" +
-                "\n\nTo unlock the section, press " + numberWord + " times the " + firstColorWord + " button, then press the " + secondColorWord + " one once." +
-                "\n\nIf you make an error, retry by re - accessing this panel";
+                "<b>" + titleLoc.English + "</b>" +
+                "\n" + sectionIntroLoc.English +  //"This section is reserved for parents and guardians." +
+                "\n\nPress " + numberWord + " times the " + firstColorWord + " button, then press the " + secondColorWord + " one once." +
+                "\n\n" + sectionErrorLoc.English; //"If you make an error, retry by re - accessing this panel");
 
             string numberWordArabic = AppManager.I.DB.GetWordDataById("number_0" + firstButtonClicksTarget).Arabic;
             string firstColorWordArabic = colorsWordsArabic[firstButtonIndex];
             string secondColorWordArabic = colorsWordsArabic[secondButtonIndex];
 
             string arabicIntroduction = "";
-            arabicIntroduction += "مكان مخصص\n\n";
+            arabicIntroduction += titleLoc.Arabic + "\n\n"; 
+            arabicIntroduction += sectionIntroLoc.Arabic + "\n\n"; 
             arabicIntroduction += string.Format("لفتح القفل، اضغط الزر {0} {2} مرات، ثم الزر {1} مرة واحدة", firstColorWordArabic, secondColorWordArabic, numberWordArabic);
-            arabicIntroduction += "\n\n في حال أخطأت، أعد المحاولة باستعمال هذه اللوحة";
+            arabicIntroduction += "\n\n" + sectionErrorLoc.Arabic; // "\n\n في حال أخطأت، أعد المحاولة باستعمال هذه اللوحة";
 
             //Debug.Log(arabicIntroduction);
             arabicTextUI.text = arabicIntroduction;

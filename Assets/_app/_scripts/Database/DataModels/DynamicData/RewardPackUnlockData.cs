@@ -59,7 +59,9 @@ namespace EA4S.Database
         /// <summary>
         /// Timestamp of creation of the reward.
         /// </summary>
-        public int CreationTimestamp { get; set; }
+        public int Timestamp { get; set; }
+
+        public string AdditionalData { get; set; }
 
 
         public RewardPackUnlockData()
@@ -76,11 +78,11 @@ namespace EA4S.Database
             Order = 0;
             IsNew = true;
             IsLocked = true;
-            CreationTimestamp = GenericHelper.GetTimestampForNow();
+            Timestamp = GenericHelper.GetTimestampForNow();
         }
 
         public string GetIdAccordingToDBRules()
-        { 
+        {
             return ItemId + "." + ColorId + "." + Type;
         }
 
