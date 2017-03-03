@@ -15,7 +15,8 @@ namespace EA4S.Profile
         FirstContact1 = 1,
         FirstContact2 = 5,
         BookVisited = 10,
-        GameCompleted = 100
+        GameCompleted = 100,
+        GameCompletedAndFinalShowed = 101,
     }
 
     /// <summary>
@@ -372,7 +373,7 @@ namespace EA4S.Profile
         /// </returns>
         public bool IsFirstContact()
         {
-            return ((int)ProfileCompletion < (int)ProfileCompletionStates.FirstContact2);
+            return (ProfileCompletion < ProfileCompletionStates.FirstContact2);
         }
 
         /// <summary>
@@ -384,9 +385,8 @@ namespace EA4S.Profile
         /// </returns>
         public bool IsFirstContact(int _step)
         {
-            if (_step < 0) return true;
-            if (_step > 2) return false;
-
+            if (_step < (int)ProfileCompletionStates.FirstContact1) return true;
+            if (_step >= (int)ProfileCompletionStates.FirstContact2) return false;
 
             if ((int)ProfileCompletion == _step - 1) {
                 return true;
@@ -431,7 +431,7 @@ namespace EA4S.Profile
         /// </returns>
         public bool IsBookVisited()
         {
-            return ((int)ProfileCompletion < (int)ProfileCompletionStates.BookVisited);
+            return (ProfileCompletion < ProfileCompletionStates.BookVisited);
         }
 
         /// <summary>
@@ -444,6 +444,26 @@ namespace EA4S.Profile
         }
         #endregion
 
+        #region GameEnded
+        public bool IsGameCompleted() {
+            if (ProfileCompletion < ProfileCompletionStates.GameCompleted)
+                return false;
+            return true;
+        }
+
+        public void SetGameCompleted() {
+            ProfileCompletion = ProfileCompletionStates.GameCompleted;
+        }
+
+        public bool IsFinalShowed() {
+            if (ProfileCompletion < ProfileCompletionStates.GameCompletedAndFinalShowed)
+                return false;
+            return true;
+        }
+
+        public void SetFinalShowed() {
+            ProfileCompletion = ProfileCompletionStates.GameCompletedAndFinalShowed;
+        }
         #endregion
 
         #endregion
@@ -494,6 +514,8 @@ namespace EA4S.Profile
             PlayerIconData returnData = new PlayerIconData() { Uuid = this.Uuid, AvatarId = this.AvatarId, Gender = this.Gender, Tint = this.Tint, IsDemoUser = this.IsDemoUser, HasFinishedTheGame = this.HasFinishedTheGame, HasFinishedTheGameWithAllStars = this.HasFinishedTheGameWithAllStars };
             return returnData;
         }
+        #endregion
+
         #endregion
 
     }
