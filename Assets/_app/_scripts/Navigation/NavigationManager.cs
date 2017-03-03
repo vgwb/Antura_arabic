@@ -108,6 +108,11 @@ namespace EA4S.Core
         /// </summary>
         public void GoToNextScene()
         {
+            if (GetCurrentScene() == AppScene.None)
+            {
+                throw new Exception("Current scene is none! Make sure to call SetStartingScene() from the initial scene.");
+            }
+
             if (VERBOSE) Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToNextScene");
             switch (NavData.CurrentScene) {
                 case AppScene.Home:
