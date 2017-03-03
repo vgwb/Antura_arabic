@@ -25,11 +25,11 @@ namespace EA4S.Profile
                     AppManager.I.Teacher.SetPlayerProfile(value);
                     // refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
                     if (AppManager.I.DB.HasLoadedPlayerProfile()) {
-                        LogManager.I.LogInfo(InfoEvent.AppClosed);
+                        LogManager.I.LogInfo(InfoEvent.AppSessionEnd);
                     }
                     AppManager.I.GameSettings.LastActivePlayerUUID = value.Uuid;
                     SaveGameSettings();
-                    LogManager.I.LogInfo(InfoEvent.AppStarted);
+                    LogManager.I.LogInfo(InfoEvent.AppSessionStart);
                     AppManager.I.NavigationManager.InitialisePlayerNavigationData(currentPlayer);
                     currentPlayer.LoadRewardsUnlockedFromDB(); // refresh list of unlocked rewards
                     if (OnProfileChanged != null)
