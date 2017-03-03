@@ -141,6 +141,7 @@ namespace EA4S
             //app is resuming
             if (!IsPaused) {
                 LogManager.I.LogInfo(InfoEvent.AppResume);
+                LogManager.I.InitNewSession();
             }
             AudioManager.I.OnAppPause(IsPaused);
         }

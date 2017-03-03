@@ -241,8 +241,7 @@ namespace EA4S.Database.Management
 
         public void TestLettersData()
         {
-            foreach (var l in dbManager.StaticDatabase.GetLetterTable().GetValuesTyped())
-            {
+            foreach (var l in dbManager.StaticDatabase.GetLetterTable().GetValuesTyped()) {
                 if (l.Initial_Unicode == l.Isolated_Unicode)
                     Debug.LogError("Letter " + l + " has same initial and isolated unicodes");
 
@@ -253,14 +252,12 @@ namespace EA4S.Database.Management
                     Debug.LogError("Letter " + l + " has same final and isolated unicodes");
             }
 
-            foreach (var w in dbManager.StaticDatabase.GetWordTable().GetValuesTyped())
-            {
+            foreach (var w in dbManager.StaticDatabase.GetWordTable().GetValuesTyped()) {
                 Helpers.ArabicAlphabetHelper.AnalyzeData(dbManager, w, false, false);
             }
 
 
-            foreach (var w in dbManager.StaticDatabase.GetPhraseTable().GetValuesTyped())
-            {
+            foreach (var w in dbManager.StaticDatabase.GetPhraseTable().GetValuesTyped()) {
                 Helpers.ArabicAlphabetHelper.AnalyzeData(dbManager, w, false, false);
             }
 
@@ -309,7 +306,7 @@ namespace EA4S.Database.Management
         public void TestInsertLogInfoData()
         {
             var newData = new LogInfoData();
-            newData.AppSession = UnityEngine.Random.Range(0, 10).ToString();
+            newData.AppSession = GenericHelper.GetTimestampForNow();
             newData.Timestamp = GenericHelper.GetTimestampForNow();
 
             newData.Event = InfoEvent.Book;
@@ -322,7 +319,7 @@ namespace EA4S.Database.Management
         public void TestInsertLogLearnData()
         {
             var newData = new LogVocabularyScoreData();
-            newData.AppSession = UnityEngine.Random.Range(0, 10).ToString();
+            newData.AppSession = GenericHelper.GetTimestampForNow();
             newData.Timestamp = GenericHelper.GetTimestampForNow();
             newData.Stage = 1;
             newData.LearningBlock = 1;
@@ -352,7 +349,7 @@ namespace EA4S.Database.Management
         public void TestInsertLogMoodData()
         {
             var newData = new LogMoodData();
-            newData.AppSession = UnityEngine.Random.Range(0, 10).ToString();
+            newData.AppSession = GenericHelper.GetTimestampForNow();
             newData.Timestamp = GenericHelper.GetTimestampForNow();
 
             newData.MoodValue = RND.Range(0, 20);
@@ -364,10 +361,10 @@ namespace EA4S.Database.Management
         public void TestInsertLogPlayData()
         {
             var newData = new LogPlayData();
-            newData.AppSession = UnityEngine.Random.Range(0, 10).ToString();
+            newData.AppSession = GenericHelper.GetTimestampForNow();
             newData.Timestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
 
-            newData.JourneyPositionId = new JourneyPosition(1,1,1).ToStringId();
+            newData.JourneyPositionId = new JourneyPosition(1, 1, 1).ToStringId();
             newData.MiniGameCode = MiniGameCode.Balloons_counting;
             newData.Score = RND.Range(0, 1f);
             newData.PlayEvent = PlayEvent.Skill;
@@ -443,7 +440,7 @@ namespace EA4S.Database.Management
             var minigameCode = RandomHelper.GetRandomEnum<MiniGameCode>();
             var lastAccessTimestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
             var score = RND.Range(0, 4);
-            dbManager.InsertOrReplace(new MiniGameScoreData(minigameCode, score, RND.Range(1,100f), lastAccessTimestamp));
+            dbManager.InsertOrReplace(new MiniGameScoreData(minigameCode, score, RND.Range(1, 100f), lastAccessTimestamp));
             PrintOutput("Inserted (or replaced) minigame score data " + lastAccessTimestamp);
         }
 
@@ -586,10 +583,9 @@ namespace EA4S.Database.Management
         {
             var minigameCode = RandomHelper.GetRandomEnum<MiniGameCode>();
 
-            for (int i = 0; i < 10; i++)
-            {
+            for (int i = 0; i < 10; i++) {
                 var score = RND.Range(0, 4);
-                var data = new LogMiniGameScoreData("TEST", JourneyPosition.InitialJourneyPosition, minigameCode, score, RND.Range(1, 15f));
+                var data = new LogMiniGameScoreData(0, JourneyPosition.InitialJourneyPosition, minigameCode, score, RND.Range(1, 15f));
                 dbManager.Insert(data);
             }
 
@@ -637,7 +633,7 @@ namespace EA4S.Database.Management
 
         public void TestRewardUnlocks()
         {
-            var jp = new JourneyPosition(1,1,2);
+            var jp = new JourneyPosition(1, 1, 2);
             dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData("aaa", "black", RewardTypes.decal, jp));
             dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData("bbb", "black", RewardTypes.decal, jp));
             dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData("ccc", "black", RewardTypes.decal, jp));

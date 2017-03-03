@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using EA4S.Utilities;
+using EA4S.Helpers;
 using System.Collections.Generic;
 
 namespace EA4S.Core
@@ -10,28 +12,28 @@ namespace EA4S.Core
     {
         public static LogManager I;
 
-        private string _session = "";
+        int _appSession;
         /// <summary>
         /// Gets or sets the session.
         /// </summary>
         /// <value>
         /// The session.
         /// </value>
-        public string AppSession {
-            get { return _session; }
-            private set { _session = value; }
+        public int AppSession {
+            get { return _appSession; }
+            private set { _appSession = value; }
         }
 
         public LogManager()
         {
-
             I = this;
+            InitNewSession();
         }
 
         public void InitNewSession()
         {
-            // refactor: should be a sequential number
-            AppSession = Random.Range(10000000, 99999999).ToString();
+            AppSession = GenericHelper.GetTimestampForNow();
+            //Random.Range(10000000, 99999999).ToString();
         }
 
         #region Time Logging
