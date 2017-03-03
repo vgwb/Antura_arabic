@@ -157,7 +157,7 @@ namespace EA4S.ReservedArea
             // Add some mood data
             int nMoodData = 15;
             for (int i = 0; i < nMoodData; i++) {
-                logAi.LogMood("XXX", Random.Range(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue + 1));
+                logAi.LogMood(0, Random.Range(AppConstants.minimumMoodValue, AppConstants.maximumMoodValue + 1));
                 Debug.Log("Add mood " + i);
                 yield return null;
             }
@@ -166,17 +166,15 @@ namespace EA4S.ReservedArea
             Debug.Log("Start adding PS scores");
             List<LogPlaySessionScoreParams> logPlaySessionScoreParamsList = new List<LogPlaySessionScoreParams>();
             var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
-            for (int i = 0; i < allPlaySessionInfos.Count; i++)
-            {
-                if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage)
-                {
+            for (int i = 0; i < allPlaySessionInfos.Count; i++) {
+                if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage) {
                     int score = useBestScores ? AppConstants.maximumMinigameScore : Random.Range(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore);
                     logPlaySessionScoreParamsList.Add(new LogPlaySessionScoreParams(allPlaySessionInfos[i].data.GetJourneyPosition(), score, 12f));
                     //logAi.LogPlaySessionScore("XXX", allPlaySessionInfos[i].data.GetJourneyPosition(), score, 12f);
                     //Debug.Log("Add play session score for " + allPlaySessionInfos[i].data.Id);
                 }
             }
-            logAi.LogPlaySessionScores("XXX", logPlaySessionScoreParamsList);
+            logAi.LogPlaySessionScores(0, logPlaySessionScoreParamsList);
             Debug.Log("Finish adding PS scores");
             yield return null;
 
@@ -184,14 +182,13 @@ namespace EA4S.ReservedArea
             Debug.Log("Start adding MiniGame scores");
             List<LogMiniGameScoreParams> logMiniGameScoreParamses = new List<LogMiniGameScoreParams>();
             var allMiniGameInfo = AppManager.I.ScoreHelper.GetAllMiniGameInfo();
-            for (int i = 0; i < allMiniGameInfo.Count; i++)
-            {
+            for (int i = 0; i < allMiniGameInfo.Count; i++) {
                 int score = useBestScores ? AppConstants.maximumMinigameScore : Random.Range(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore);
-                logMiniGameScoreParamses.Add( new LogMiniGameScoreParams(JourneyPosition.InitialJourneyPosition, allMiniGameInfo[i].data.Code, score, 12f));
+                logMiniGameScoreParamses.Add(new LogMiniGameScoreParams(JourneyPosition.InitialJourneyPosition, allMiniGameInfo[i].data.Code, score, 12f));
                 //logAi.LogMiniGameScore("XXX", JourneyPosition.InitialJourneyPosition, allMiniGameInfo[i].data.Code, score, 12f); 
                 //Debug.Log("Add minigame score " + i);
             }
-            logAi.LogMiniGameScores("XXX", logMiniGameScoreParamses);
+            logAi.LogMiniGameScores(0, logMiniGameScoreParamses);
             Debug.Log("Finish adding MiniGame scores");
             yield return null;
 

@@ -53,7 +53,13 @@
         /// Version of the MySQL Database Scheme.
         /// @note: Change with EXTREME CAUTION, as the MySQL databases are regenerated (and thus the data is removed) when a change is detected.
         /// </summary>
-        public const string DbSchemeVersion = "1.22";
+        public const string StaticDatabaseSchemeVersion = "2017_03_03";
+
+        /// <summary>
+        /// Version of the MySQL Database Scheme.
+        /// @note: Change with EXTREME CAUTION, as the MySQL databases are regenerated (and thus the data is removed) when a change is detected.
+        /// </summary>
+        public const string MySqlDatabaseSchemeVersion = "2017_03_03";
 
         // public Urls
         public const string UrlWebsite = "http://www.antura.org";

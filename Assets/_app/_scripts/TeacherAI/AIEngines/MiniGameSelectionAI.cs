@@ -104,7 +104,7 @@ namespace EA4S.Teacher
             List<float> weights_list = new List<float>(minigame_data_list.Count);
 
             // Retrieve the current score data (state) for each minigame (from the dynamic DB)
-            var minigame_score_list = dbManager.FindDataByQuery<MinigameScoreData>("SELECT * FROM " + typeof(MinigameScoreData).Name);
+            var minigame_score_list = dbManager.FindDataByQuery<MiniGameScoreData>("SELECT * FROM " + typeof(MiniGameScoreData).Name);
 
             //UnityEngine.Debug.Log("M GAME SCORE LIST: " + minigame_score_list.Count);
             //foreach(var l in minigame_score_list) UnityEngine.Debug.Log(l.ElementId);
@@ -118,7 +118,7 @@ namespace EA4S.Teacher
                 int daysSinceLastScore = 0;
                 if (minigame_scoredata != null)
                 {
-                    var timespanFromLastScoreToNow = GenericHelper.GetTimeSpanBetween(minigame_scoredata.LastAccessTimestamp, GenericHelper.GetTimestampForNow());
+                    var timespanFromLastScoreToNow = GenericHelper.GetTimeSpanBetween(minigame_scoredata.UpdateTimestamp, GenericHelper.GetTimestampForNow());
                     daysSinceLastScore = timespanFromLastScoreToNow.Days;
                 }
                 debugString += minigame_data.Code + " --- \t";
