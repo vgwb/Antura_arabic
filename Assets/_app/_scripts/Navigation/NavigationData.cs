@@ -61,7 +61,7 @@ namespace EA4S.Core
 
         public void Setup()
         {
-            CurrentScene = AppScene.None;
+            CurrentScene = NavigationManager.INITIAL_SCENE;
             PrevSceneStack = new Stack<AppScene>();
         }
 

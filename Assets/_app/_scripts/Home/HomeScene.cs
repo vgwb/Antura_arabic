@@ -39,8 +39,6 @@ namespace EA4S.Scenes
 
             AnturaAnimController.State = AnturaAnimation;
             LLAnimController.State = LLAnimation;
-
-            AppManager.I.NavigationManager.SetStartingScene(AppScene.Home);
         }
 
         /// <summary>
