@@ -71,8 +71,10 @@ namespace EA4S.Database
         /// </summary>
         public int Timestamp { get; set; }
 
+        /// <summary>
+        /// JSON-serialized additional data, may be added as needed.
+        /// </summary>
         public string AdditionalData { get; set; }
-
 
         public RewardPackUnlockData()
         {
