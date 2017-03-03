@@ -16,6 +16,8 @@ namespace EA4S.Core
     {
         private static bool VERBOSE = false;
 
+        public const AppScene INITIAL_SCENE = AppScene.Home;
+
         public NavigationData NavData;
 
         public SceneTransitionManager SceneTransitionManager = new SceneTransitionManager();
@@ -88,14 +90,6 @@ namespace EA4S.Core
 
         #region Automatic navigation API
 
-        public void SetStartingScene(AppScene _scene)
-        {
-            if (NavData.CurrentScene == AppScene.None)
-            {
-                NavData.CurrentScene = _scene;
-            }
-        }
-
         public AppScene GetCurrentScene()
         {
             return NavData.CurrentScene;
@@ -108,11 +102,6 @@ namespace EA4S.Core
         /// </summary>
         public void GoToNextScene()
         {
-            if (GetCurrentScene() == AppScene.None)
-            {
-                throw new Exception("Current scene is none! Make sure to call SetStartingScene() from the initial scene.");
-            }
-
             if (VERBOSE) Debug.LogFormat(" ---- NAV MANAGER ({1}) scene {0} ---- ", NavData.CurrentScene, "GoToNextScene");
             switch (NavData.CurrentScene) {
                 case AppScene.Home:

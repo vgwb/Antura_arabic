@@ -2,7 +2,6 @@
 {
     public enum AppScene
     {
-        None = 0,
         Home = 1,
         AnturaSpace = 2,
         Book = 3,
