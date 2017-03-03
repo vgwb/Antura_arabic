@@ -72,10 +72,10 @@ namespace EA4S.Book
             bool foundStart = false;
             int startTimestamp = 0;
             foreach (var infoData in list) {
-                if (!foundStart && infoData.Event == InfoEvent.AppStarted) {
+                if (!foundStart && infoData.Event == InfoEvent.AppSessionStart) {
                     startTimestamp = infoData.Timestamp;
                     foundStart = true;
-                } else if (foundStart && infoData.Event == InfoEvent.AppClosed) {
+                } else if (foundStart && infoData.Event == InfoEvent.AppSessionEnd) {
                     var endTimestamp = infoData.Timestamp;
                     foundStart = false;
 
@@ -90,8 +90,8 @@ namespace EA4S.Book
         Dictionary<MiniGameCode, float> GetMiniGamesTotalPlayTime()
         {
             Dictionary<MiniGameCode, float> dict = new Dictionary<MiniGameCode, float>();
-            string query = "select * from " + typeof(MinigameScoreData).Name;
-            var list = AppManager.I.DB.FindDataByQuery<MinigameScoreData>(query);
+            string query = "select * from " + typeof(MiniGameScoreData).Name;
+            var list = AppManager.I.DB.FindDataByQuery<MiniGameScoreData>(query);
 
             foreach (var data in list) {
                 dict[data.MiniGameCode] = data.TotalPlayTime;
@@ -102,8 +102,8 @@ namespace EA4S.Book
         Dictionary<MiniGameCode, int> GetMiniGamesNumberOfPlays()
         {
             Dictionary<MiniGameCode, int> dict = new Dictionary<MiniGameCode, int>();
-            string query = "select * from " + typeof(LogMinigameScoreData).Name;
-            var list = AppManager.I.DB.FindDataByQuery<LogMinigameScoreData>(query);
+            string query = "select * from " + typeof(LogMiniGameScoreData).Name;
+            var list = AppManager.I.DB.FindDataByQuery<LogMiniGameScoreData>(query);
 
             foreach (var data in list) {
                 if (!dict.ContainsKey(data.MiniGameCode)) {

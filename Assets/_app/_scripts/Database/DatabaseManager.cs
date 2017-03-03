@@ -355,9 +355,9 @@ namespace EA4S.Database
             return dynamicDb.FindAll<LogMoodData>();
         }
 
-        public List<LogLearnData> GetAllLogLearnData()
+        public List<LogVocabularyScoreData> GetAllVocabularyScoreData()
         {
-            return dynamicDb.FindAll<LogLearnData>();
+            return dynamicDb.FindAll<LogVocabularyScoreData>();
         }
 
         public List<LogPlayData> GetAllLogPlayData()
@@ -388,9 +388,9 @@ namespace EA4S.Database
             return dynamicDb.FindByQuery<LogInfoData>(query);
         }
 
-        public List<LogLearnData> FindLogLearnDataByQuery(string query)
+        public List<LogVocabularyScoreData> FindLogVocabularyScoreDataByQuery(string query)
         {
-            return dynamicDb.FindByQuery<LogLearnData>(query);
+            return dynamicDb.FindByQuery<LogVocabularyScoreData>(query);
         }
 
         public List<LogMoodData> FindLogMoodDataByQuery(string query)

@@ -375,7 +375,7 @@ namespace EA4S.Teacher
                 int daysSinceLastScore = 0;
                 if (score_data != null)
                 {
-                    var timespanFromLastScoreToNow = GenericHelper.GetTimeSpanBetween(score_data.LastAccessTimestamp, GenericHelper.GetTimestampForNow());
+                    var timespanFromLastScoreToNow = GenericHelper.GetTimeSpanBetween(score_data.UpdateTimestamp, GenericHelper.GetTimestampForNow());
                     daysSinceLastScore = timespanFromLastScoreToNow.Days;
                     currentScore = score_data.Score;
                 }
@@ -458,6 +458,8 @@ namespace EA4S.Teacher
         {
             return progressionContents.GetContentsUpToPlaySession(jp);
         }
+
+        public VocabularyContents CurrentJourneyContents {  get { return currentJourneyContents; } }
 
         #endregion
 

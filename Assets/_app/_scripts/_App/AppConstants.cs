@@ -50,10 +50,15 @@
         #region Application Constants
 
         /// <summary>
+        /// Version of the Static Database Scheme.
+        /// </summary>
+        public const string StaticDbSchemeVersion = "20170303";
+
+        /// <summary>
         /// Version of the MySQL Database Scheme.
         /// @note: Change with EXTREME CAUTION, as the MySQL databases are regenerated (and thus the data is removed) when a change is detected.
         /// </summary>
-        public const string DbSchemeVersion = "1.22";
+        public const string DynamicDbSchemeVersion = "20170303b";
 
         // public Urls
         public const string UrlWebsite = "http://www.antura.org";

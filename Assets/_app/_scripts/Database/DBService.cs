@@ -36,9 +36,9 @@ namespace EA4S.Database
             // Check that the DB version is correct, otherwise recreate the tables
             GenerateTable<DatabaseInfoData>(true, false); // Makes sure that the database info data table exists
             var info = _connection.Find<DatabaseInfoData>(1);
-            if (info == null || info.Version != AppConstants.DbSchemeVersion) {
-                var lastVersion = info != null ? info.Version : "NONE";
-                Debug.LogWarning("SQL database for player " + playerUuid + " is outdated. Recreating it (from " + lastVersion + " to " + AppConstants.DbSchemeVersion + ")");
+            if (info == null || info.DynamicDbVersion != AppConstants.DynamicDbSchemeVersion) {
+                var lastVersion = info != null ? info.DynamicDbVersion : "NONE";
+                Debug.LogWarning("SQL database for player " + playerUuid + " is outdated. Recreating it (from " + lastVersion + " to " + AppConstants.DynamicDbSchemeVersion + ")");
                 RegenerateDatabase();
             }
             //Debug.Log("Database ready. Version " + dbPath + "v:" +info.Version);
@@ -50,7 +50,7 @@ namespace EA4S.Database
         {
             RecreateAllTables();
 
-            _connection.Insert(new DatabaseInfoData(AppConstants.DbSchemeVersion));
+            _connection.Insert(new DatabaseInfoData(AppConstants.DynamicDbSchemeVersion, AppConstants.StaticDbSchemeVersion));
         }
 
         public void GenerateTables(bool create, bool drop)
@@ -61,15 +61,15 @@ namespace EA4S.Database
             GenerateTable<DatabaseInfoData>(create, drop);
             GenerateTable<PlayerProfileData>(create, drop);
             GenerateTable<VocabularyScoreData>(create, drop);
-            GenerateTable<MinigameScoreData>(create, drop);
+            GenerateTable<MiniGameScoreData>(create, drop);
             GenerateTable<JourneyScoreData>(create, drop);
             GenerateTable<RewardPackUnlockData>(create, drop);
 
             GenerateTable<LogInfoData>(create, drop);
-            GenerateTable<LogLearnData>(create, drop);
+            GenerateTable<LogVocabularyScoreData>(create, drop);
             GenerateTable<LogMoodData>(create, drop);
             GenerateTable<LogPlayData>(create, drop);
-            GenerateTable<LogMinigameScoreData>(create, drop);
+            GenerateTable<LogMiniGameScoreData>(create, drop);
             GenerateTable<LogPlaySessionScoreData>(create, drop);
         }
 
