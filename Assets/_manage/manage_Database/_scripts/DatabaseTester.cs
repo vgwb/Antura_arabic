@@ -2,7 +2,6 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 using System.Collections.Generic;
 using EA4S.Core;
 using EA4S.Helpers;
@@ -137,7 +136,7 @@ namespace EA4S.Database.Management
 
         public void DumpAllLogLearnData()
         {
-            DumpAllData(dbManager.GetAllLogLearnData());
+            DumpAllData(dbManager.GetAllVocabularyScoreData());
         }
 
         public void DumpAllLogMoodData()
@@ -162,7 +161,7 @@ namespace EA4S.Database.Management
 
         public void DumpAllMinigameScoreData()
         {
-            DumpAllData(dbManager.GetAllDynamicData<MinigameScoreData>());
+            DumpAllData(dbManager.GetAllDynamicData<MiniGameScoreData>());
         }
 
         public void DumpLetterById(string id)
@@ -314,7 +313,7 @@ namespace EA4S.Database.Management
             newData.Timestamp = GenericHelper.GetTimestampForNow();
 
             newData.Event = InfoEvent.Book;
-            newData.Parameters = "test:1";
+            newData.AdditionalJsonData = "test:1";
 
             this.dbManager.Insert(newData);
             PrintOutput("Inserted new LogInfoData: " + newData.ToString());
@@ -322,12 +321,13 @@ namespace EA4S.Database.Management
 
         public void TestInsertLogLearnData()
         {
-            var newData = new LogLearnData();
+            var newData = new LogVocabularyScoreData();
             newData.AppSession = UnityEngine.Random.Range(0, 10).ToString();
             newData.Timestamp = GenericHelper.GetTimestampForNow();
-
-            newData.PlaySession = "1.1.1";
-            newData.MiniGame = MiniGameCode.Assessment_LetterForm;
+            newData.Stage = 1;
+            newData.LearningBlock = 1;
+            newData.PlaySession = 1;
+            newData.MiniGameCode = MiniGameCode.Assessment_LetterForm;
 
             newData.VocabularyDataType = RandomHelper.GetRandomEnum<VocabularyDataType>();
 
@@ -346,7 +346,7 @@ namespace EA4S.Database.Management
             newData.Score = RND.Range(-1f, 1f);
 
             this.dbManager.Insert(newData);
-            PrintOutput("Inserted new LogLearnData: " + newData.ToString());
+            PrintOutput("Inserted new LogVocabularyScoreData: " + newData.ToString());
         }
 
         public void TestInsertLogMoodData()
@@ -367,12 +367,12 @@ namespace EA4S.Database.Management
             newData.AppSession = UnityEngine.Random.Range(0, 10).ToString();
             newData.Timestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
 
-            newData.PlaySession = "1.1.1";
-            newData.MiniGame = MiniGameCode.Balloons_counting;
+            newData.JourneyPositionId = new JourneyPosition(1,1,1).ToStringId();
+            newData.MiniGameCode = MiniGameCode.Balloons_counting;
             newData.Score = RND.Range(0, 1f);
-            newData.PlayEvent = RND.value > 0.5f ? PlayEvent.GameFinished : PlayEvent.Skill;
+            newData.PlayEvent = PlayEvent.Skill;
             newData.PlaySkill = PlaySkill.Logic;
-            newData.RawData = "TEST";
+            newData.AdditionalJsonData = "TEST";
 
             this.dbManager.Insert(newData);
             PrintOutput("Inserted new LogPlayData: " + newData.ToString());
@@ -400,7 +400,8 @@ namespace EA4S.Database.Management
             var lastAccessTimestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
 
             float score = RND.Range(-1f, 1f);
-            dbManager.InsertOrReplace(new VocabularyScoreData(rndId, vocabularyDataType, score, lastAccessTimestamp));
+            bool unlocked = RND.value > 0.5f;
+            dbManager.InsertOrReplace(new VocabularyScoreData(rndId, vocabularyDataType, score, unlocked, lastAccessTimestamp));
 
             PrintOutput("Inserted (or replaced) vocabulary score data " + lastAccessTimestamp);
         }
@@ -442,7 +443,7 @@ namespace EA4S.Database.Management
             var minigameCode = RandomHelper.GetRandomEnum<MiniGameCode>();
             var lastAccessTimestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
             var score = RND.Range(0, 4);
-            dbManager.InsertOrReplace(new MinigameScoreData(minigameCode, score, RND.Range(1,100f), lastAccessTimestamp));
+            dbManager.InsertOrReplace(new MiniGameScoreData(minigameCode, score, RND.Range(1,100f), lastAccessTimestamp));
             PrintOutput("Inserted (or replaced) minigame score data " + lastAccessTimestamp);
         }
 
@@ -540,7 +541,7 @@ namespace EA4S.Database.Management
             var list = scoreHelper.GetCurrentScoreForAllPlaySessions();
 
             string output = "All play session scores:\n";
-            foreach (var data in list) output += data.ElementId + ": " + data.Score + "\n";
+            foreach (var data in list) output += data.ElementId + ": " + data.GetScore() + "\n";
             PrintOutput(output);
         }
 
@@ -588,7 +589,7 @@ namespace EA4S.Database.Management
             for (int i = 0; i < 10; i++)
             {
                 var score = RND.Range(0, 4);
-                var data = new LogMinigameScoreData("TEST", JourneyPosition.InitialJourneyPosition, minigameCode, score, RND.Range(1, 15f));
+                var data = new LogMiniGameScoreData("TEST", JourneyPosition.InitialJourneyPosition, minigameCode, score, RND.Range(1, 15f));
                 dbManager.Insert(data);
             }
 
@@ -636,9 +637,10 @@ namespace EA4S.Database.Management
 
         public void TestRewardUnlocks()
         {
-            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData("aaa", "black", RewardTypes.decal, "1.1.2"));
-            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData("bbb", "black", RewardTypes.decal, "1.1.2"));
-            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData("ccc", "black", RewardTypes.decal, "1.1.2"));
+            var jp = new JourneyPosition(1,1,2);
+            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData("aaa", "black", RewardTypes.decal, jp));
+            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData("bbb", "black", RewardTypes.decal, jp));
+            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData("ccc", "black", RewardTypes.decal, jp));
             var rewardPackUnlockDatas = dbManager.GetAllRewardPackUnlockData();
             DumpAllData(rewardPackUnlockDatas);
         }

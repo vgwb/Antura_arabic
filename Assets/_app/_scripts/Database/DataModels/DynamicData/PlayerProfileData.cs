@@ -13,29 +13,79 @@ namespace EA4S.Database
     {
         public const string UNIQUE_ID = "1";
 
+        /// <summary>
+        /// Primary key for the database.
+        /// Unique, as there is only one row for this table.
+        /// </summary>
         [PrimaryKey]
         public string Id { get; set; }
 
-        // Player Icon Data
+        /// <summary>
+        /// Timestamp of creation of the profile data.
+        /// </summary>
+        public int CreationTimestamp { get; set; }
+
+
+        #region PlayerIconData
+
+        /// <summary>
+        /// Unique identifier for the player.
+        /// Also used as the name of the database file.
+        /// Part of PlayerIconData.
+        /// </summary>
         public string Uuid { get; set; }
+
+        /// <summary>
+        /// ID of the avatar icon for this player.
+        /// Part of PlayerIconData.
+        /// </summary>
         public int AvatarId { get; set; }
+
+        /// <summary>
+        /// Gender of the player.
+        /// Part of PlayerIconData.
+        /// </summary>
         public PlayerGender Gender { get; set; }
+
+        /// <summary>
+        /// Tint of the player icon.
+        /// Part of PlayerIconData.
+        /// </summary>
         public PlayerTint Tint { get; set; }
+
+        /// <summary>
+        /// Is this player a demo user?
+        /// Demo users have all the game unlocked.
+        /// Part of PlayerIconData.
+        /// </summary>
         public bool IsDemoUser { get; set; }
 
         /// <summary>
         /// Has the player completed the whole game?
         /// Used only for the player icons in the Home scene.
+        /// Part of PlayerIconData.
         /// </summary>
         public bool HasFinishedTheGame { get; set; }
 
         /// <summary>
         /// Has the player completed the whole game AND earned full score in all play sessions?
         /// Used only for the player icons in the Home scene.
+        /// Part of PlayerIconData.
         /// </summary>
         public bool HasFinishedTheGameWithAllStars { get; set; }
 
+        #endregion
+
+        #region Details
+
+        /// <summary>
+        /// Age of the player, as selected during profile creation.
+        /// </summary>
         public int Age { get; set; }
+
+        #endregion
+
+        #region Progression
 
         /// <summary>
         /// State of completion for the player profile.
@@ -43,45 +93,78 @@ namespace EA4S.Database
         /// </summary>
         public int ProfileCompletion { get; set; }
 
+        /// <summary>
+        /// Maximum journey position: stage reached.
+        /// </summary>
         public int MaxStage { get; set; }
+
+        /// <summary>
+        /// Maximum journey position: learning block reached.
+        /// </summary>
         public int MaxLearningBlock { get; set; }
+
+        /// <summary>
+        /// Maximum journey position: play session reached.
+        /// </summary>
         public int MaxPlaySession { get; set; }
 
+
+        /// <summary>
+        /// Current journey position: play session reached.
+        /// </summary>
         public int CurrentStage { get; set; }
+
+        /// <summary>
+        /// Current journey position: learning block reached.
+        /// </summary>
         public int CurrentLearningBlock { get; set; }
+
+        /// <summary>
+        /// Current journey position: play session reached.
+        /// </summary>
         public int CurrentPlaySession { get; set; }
 
-        public int TotalBones { get; set; }
+        #endregion
 
+        #region Rewards
+
+        /// <summary>
+        /// Total bones collected.
+        /// </summary>
+        public int TotalBones { get; set; }
 
         /// <summary>
         /// JSON data for the current customization set on Antura.
         /// </summary>
         public string CurrentAnturaCustomization { get; set; }
 
+        #endregion
+
+        #region Additional Data
+
         /// <summary>
         /// JSON-serialized additional data, may be added as needed.
         /// </summary>
-        public string AdditionalJsonData { get; set; }  
+        public string AdditionalJsonData { get; set; }
 
-        public int CreationTimestamp { get; set; }
+        #endregion
+
 
         public PlayerProfileData()
         {
         }
 
-        public PlayerProfileData(PlayerIconData _IconData, int _Age, int totalBones, int _ProfileCompletion, string _AnturaCustomization = null)
+        public PlayerProfileData(PlayerIconData iconData, int age, int totalBones, int profileCompletion, string currentAnturaCustomization = null)
         {
             Id = UNIQUE_ID;  // Only one record
-            Age = _Age;
-            //Name = ""; // not requested at the moment
-            SetPlayerIconData(_IconData);
-            ProfileCompletion = _ProfileCompletion;
+            Age = age;
+            SetPlayerIconData(iconData);
+            ProfileCompletion = profileCompletion;
             TotalBones = totalBones;
             SetMaxJourneyPosition(JourneyPosition.InitialJourneyPosition);
             SetCurrentJourneyPosition(JourneyPosition.InitialJourneyPosition);
             CreationTimestamp = GenericHelper.GetTimestampForNow();
-            CurrentAnturaCustomization = _AnturaCustomization;
+            CurrentAnturaCustomization = currentAnturaCustomization;
         }
 
         
@@ -133,7 +216,7 @@ namespace EA4S.Database
 
         public string GetId()
         {
-            return Id;
+            return Id.ToString();
         }
 
         public override string ToString()

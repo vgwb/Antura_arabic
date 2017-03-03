@@ -151,7 +151,7 @@ namespace EA4S.Map
             List<PlaySessionState> playSessionState_list = new List<PlaySessionState>();
             for (int i = 0; i < scoreData_list.Count; i++) {
                 var data = AppManager.I.DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
-                playSessionState_list.Add(new PlaySessionState(data, scoreData_list[i].Score));
+                playSessionState_list.Add(new PlaySessionState(data, scoreData_list[i].Stars));
             }
 
             return playSessionState_list;
