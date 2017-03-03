@@ -20,7 +20,7 @@ namespace EA4S.Database
         /// <summary>
         /// Identifier of the application session.
         /// </summary>
-        public string AppSession { get; set; }
+        public int AppSession { get; set; }
 
         /// <summary>
         /// Timestamp of creation of this entry.
@@ -61,14 +61,14 @@ namespace EA4S.Database
         /// <summary>
         /// Empty constructor required by MySQL.
         /// </summary>
-        public LogPlayData() {}
+        public LogPlayData() { }
 
-        public LogPlayData(string appSession, JourneyPosition journeyPosition, MiniGameCode miniGameCode, PlayEvent playEvent, PlaySkill playSkill, float score)
+        public LogPlayData(int appSession, JourneyPosition journeyPosition, MiniGameCode miniGameCode, PlayEvent playEvent, PlaySkill playSkill, float score)
             : this(appSession, journeyPosition, miniGameCode, playEvent, playSkill, score, "")
         {
         }
 
-        public LogPlayData(string appSession, JourneyPosition journeyPosition, MiniGameCode miniGameCode, PlayEvent playEvent, PlaySkill playSkill, float score, string additionalJsonData)
+        public LogPlayData(int appSession, JourneyPosition journeyPosition, MiniGameCode miniGameCode, PlayEvent playEvent, PlaySkill playSkill, float score, string additionalJsonData)
         {
             AppSession = appSession;
             JourneyPositionId = journeyPosition.ToStringId();
