@@ -140,7 +140,7 @@ namespace EA4S.Core
 
         public void StartApp()
         {
-            LogInfo(InfoEvent.AppStarted);
+            LogInfo(InfoEvent.AppSessionStart);
         }
         #endregion
     }

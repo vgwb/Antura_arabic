@@ -23,7 +23,7 @@ namespace EA4S.Database
         /// <summary>
         /// Timestamp of creation of the profile data.
         /// </summary>
-        public int CreationTimestamp { get; set; }
+        public int Timestamp { get; set; }
 
 
         #region PlayerIconData
@@ -145,7 +145,7 @@ namespace EA4S.Database
         /// <summary>
         /// JSON-serialized additional data, may be added as needed.
         /// </summary>
-        public string AdditionalJsonData { get; set; }
+        public string AdditionalData { get; set; }
 
         #endregion
 
@@ -163,7 +163,7 @@ namespace EA4S.Database
             TotalBones = totalBones;
             SetMaxJourneyPosition(JourneyPosition.InitialJourneyPosition);
             SetCurrentJourneyPosition(JourneyPosition.InitialJourneyPosition);
-            CreationTimestamp = GenericHelper.GetTimestampForNow();
+            Timestamp = GenericHelper.GetTimestampForNow();
             CurrentAnturaCustomization = currentAnturaCustomization;
         }
 
@@ -224,7 +224,7 @@ namespace EA4S.Database
             return string.Format("ID{0},U{1},Ts{2}, MaxJ({3}.{4}.{5}), CurrentJ({6}.{7}.{8}), ProfCompl{9},",
                 Id,
                 Uuid,
-                CreationTimestamp,
+                Timestamp,
 
                 MaxStage,
                 MaxLearningBlock,

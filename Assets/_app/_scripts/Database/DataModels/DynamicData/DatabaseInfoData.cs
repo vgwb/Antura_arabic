@@ -21,30 +21,30 @@ namespace EA4S.Database
         /// <summary>
         /// Timestamp of creation of the database.
         /// </summary>
-        public int CreationTimestamp { get; set; }
+        public int Timestamp { get; set; }
 
         /// <summary>
         /// Version of the MySQL database.
         /// Different versions cannot be compared.
         /// </summary>
-        public string MySqlDatabaseVersion { get; set; }
+        public string DynamicDbVersion { get; set; }
 
         /// <summary>
         /// Version of the Static database.
         /// Different versions cannot be compared.
         /// </summary>
-        public string StaticDatabaseVersion { get; set; }  
+        public string StaticDbVersion { get; set; }  
 
         public DatabaseInfoData()
         {
         }
 
-        public DatabaseInfoData(string mySqlDatabaseVersion, string staticDatabaseVersion)
+        public DatabaseInfoData(string dynamicDbVersion, string staticDbVersion)
         {
             this.Id = UNIQUE_ID;  // Only one record
-            this.MySqlDatabaseVersion = mySqlDatabaseVersion;
-            this.StaticDatabaseVersion = staticDatabaseVersion;
-            this.CreationTimestamp = GenericHelper.GetTimestampForNow();
+            this.DynamicDbVersion = dynamicDbVersion;
+            this.StaticDbVersion = staticDbVersion;
+            this.Timestamp = GenericHelper.GetTimestampForNow();
         }
 
         public string GetId()
@@ -56,9 +56,9 @@ namespace EA4S.Database
         {
             return string.Format("ID{0},sqlV{1},statV{2},Ts{3}",
                 Id,
-                MySqlDatabaseVersion,
-                StaticDatabaseVersion,
-                CreationTimestamp
+                DynamicDbVersion,
+                StaticDbVersion,
+                Timestamp
             );
         }
 

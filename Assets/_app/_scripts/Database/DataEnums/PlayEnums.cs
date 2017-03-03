@@ -8,8 +8,8 @@
     {
         ProfileCreated = 1,
 
-        AppStarted = 20,
-        AppClosed = 21,
+        AppSessionStart = 20,
+        AppSessionEnd = 21,
         AppPlay = 22,
         AppSuspend = 23,
         AppResume = 24,

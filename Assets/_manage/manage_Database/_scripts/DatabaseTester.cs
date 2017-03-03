@@ -313,7 +313,7 @@ namespace EA4S.Database.Management
             newData.Timestamp = GenericHelper.GetTimestampForNow();
 
             newData.Event = InfoEvent.Book;
-            newData.AdditionalJsonData = "test:1";
+            newData.AdditionalData = "test:1";
 
             this.dbManager.Insert(newData);
             PrintOutput("Inserted new LogInfoData: " + newData.ToString());
@@ -372,7 +372,7 @@ namespace EA4S.Database.Management
             newData.Score = RND.Range(0, 1f);
             newData.PlayEvent = PlayEvent.Skill;
             newData.PlaySkill = PlaySkill.Logic;
-            newData.AdditionalJsonData = "TEST";
+            newData.AdditionalData = "TEST";
 
             this.dbManager.Insert(newData);
             PrintOutput("Inserted new LogPlayData: " + newData.ToString());

@@ -56,7 +56,7 @@ namespace EA4S.Database
         /// Additional raw JSON data saved alongside the event to record more details.
         /// Example: "{playerId:0, rewardType:2}"
         /// </summary>
-        public string AdditionalJsonData { get; set; }
+        public string AdditionalData { get; set; }
 
         /// <summary>
         /// Empty constructor required by MySQL.
@@ -68,7 +68,7 @@ namespace EA4S.Database
         {
         }
 
-        public LogPlayData(string appSession, JourneyPosition journeyPosition, MiniGameCode miniGameCode, PlayEvent playEvent, PlaySkill playSkill, float score, string additionalJsonData)
+        public LogPlayData(string appSession, JourneyPosition journeyPosition, MiniGameCode miniGameCode, PlayEvent playEvent, PlaySkill playSkill, float score, string additionalData)
         {
             AppSession = appSession;
             JourneyPositionId = journeyPosition.ToStringId();
@@ -76,7 +76,7 @@ namespace EA4S.Database
             PlayEvent = playEvent;
             PlaySkill = playSkill;
             Score = score;
-            AdditionalJsonData = additionalJsonData;
+            AdditionalData = additionalData;
             Timestamp = GenericHelper.GetTimestampForNow();
         }
 
@@ -95,7 +95,7 @@ namespace EA4S.Database
                 PlayEvent,
                 PlaySkill,
                 Score,
-                AdditionalJsonData
+                AdditionalData
                 );
         }
 
