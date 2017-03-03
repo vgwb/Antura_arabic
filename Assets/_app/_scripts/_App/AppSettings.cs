@@ -9,7 +9,6 @@ namespace EA4S.Core
     [System.Serializable]
     public class AppSettings : ModularFramework.Modules.GlobalOptions
     {
-        public bool DoLogPlayerBehaviour;
         public bool HighQualityGfx;
 
         public string LastActivePlayerUUID;
