@@ -68,7 +68,6 @@ namespace EA4S.Database
         {
         }
 
-        public LogPlayData(string appSession, JourneyPosition journeyPosition, MiniGameCode miniGameCode, PlayEvent playEvent, PlaySkill playSkill, float score, string additionalData)
         public LogPlayData(int appSession, JourneyPosition journeyPosition, MiniGameCode miniGameCode, PlayEvent playEvent, PlaySkill playSkill, float score, string additionalData)
         {
             AppSession = appSession;
