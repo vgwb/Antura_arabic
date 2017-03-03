@@ -167,6 +167,9 @@ namespace EA4S.UI
         void SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
         {
             this.StopAllCoroutines();
+            // Save configuration
+            AnturaModelManager.Instance.SaveAnturaCustomization();
+
             // Toggle buttons
             foreach (AnturaSpaceCategoryButton bt in btsCategories) {
                 if (bt.Category == _category) bt.Toggle(true, true);
