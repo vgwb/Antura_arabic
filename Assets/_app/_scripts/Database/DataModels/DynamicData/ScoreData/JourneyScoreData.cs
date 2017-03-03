@@ -1,4 +1,5 @@
-﻿using EA4S.Helpers;
+﻿using EA4S.Core;
+using EA4S.Helpers;
 using SQLite;
 
 namespace EA4S.Database
@@ -28,6 +29,21 @@ namespace EA4S.Database
         public string ElementId { get; set; }
 
         /// <summary>
+        /// Stage of the journey position at which this score was recorded.
+        /// </summary>
+        public int Stage { get; set; }
+
+        /// <summary>
+        /// LearningBlock of the journey position at which this score was recorded.
+        /// </summary>
+        public int LearningBlock { get; set; }
+
+        /// <summary>
+        /// PlaySession of the journey position at which this score was recorded.
+        /// </summary>
+        public int PlaySession { get; set; }
+
+        /// <summary>
         /// Stars obtained during this play session.
         /// Integer in the [0,3] range
         /// </summary>
@@ -52,6 +68,12 @@ namespace EA4S.Database
             ElementId = elementId;
             JourneyDataType = dataType;
             Id = JourneyDataType + "." + ElementId;
+
+            var jp = new JourneyPosition(elementId);
+            Stage = jp.Stage;
+            LearningBlock = jp.LearningBlock;
+            PlaySession = jp.PlaySession;
+
             Stars = stars;
             UpdateTimestamp = timestamp;
         }
