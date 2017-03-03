@@ -125,7 +125,6 @@ namespace EA4S.ReservedArea
             yield return null;
             activateWaitingScreen(true);
             yield return null;
-            //yield return new WaitForEndOfFrame();
             var demoUserUiid = AppManager.I.PlayerProfileManager.CreatePlayerProfile(10, PlayerGender.F, 1, PlayerTint.Red, true);
             SelectedPlayerId = demoUserUiid;
             AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);

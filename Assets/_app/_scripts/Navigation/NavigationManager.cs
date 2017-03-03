@@ -31,14 +31,12 @@ namespace EA4S.Core
             get { return SceneTransitionManager.IsTransitioning; }
         }
 
-        public Action OnSceneStartTransition
-        {
+        public Action OnSceneStartTransition {
             get { return SceneTransitionManager.OnSceneStartTransition; }
             set { SceneTransitionManager.OnSceneStartTransition = value; }
         }
 
-        public Action OnSceneEndTransition
-        {
+        public Action OnSceneEndTransition {
             get { return SceneTransitionManager.OnSceneEndTransition; }
             set { SceneTransitionManager.OnSceneEndTransition = value; }
         }
@@ -136,21 +134,15 @@ namespace EA4S.Core
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.Rewards:
-                    if (NavData.CurrentPlayer.IsFirstContact())
-                    {
+                    if (NavData.CurrentPlayer.IsFirstContact()) {
                         GoToScene(AppScene.AnturaSpace);
-                    }
-                    else
-                    {
+                    } else {
                         AppManager.I.Player.AdvanceMaxJourneyPosition();
 
-                        if (AppManager.I.Player.HasFinishedTheGame)
-                        {
+                        if (AppManager.I.Player.HasFinishedTheGame) {
                             // @note: this works as this will be pass through here only once, when finishing the last play session.
                             GoToScene(AppScene.Ending);
-                        }
-                        else
-                        {
+                        } else {
                             GoToScene(AppScene.Map);
                         }
                     }
@@ -204,8 +196,7 @@ namespace EA4S.Core
             UpdatePrevSceneStack(newScene);
             NavData.CurrentScene = newScene;
 
-            var nextSceneName = AppSceneHelper.GetSceneName(newScene, minigameData);
-            GoToSceneByName(nextSceneName);
+            GoToSceneByName(AppSceneHelper.GetSceneName(newScene, minigameData));
         }
 
         private void GoToSceneByName(string sceneName)
@@ -252,6 +243,11 @@ namespace EA4S.Core
         public void GoToPlayerBook()
         {
             CustomGoTo(AppScene.Book);
+        }
+
+        public bool PrevSceneIsReservedArea()
+        {
+            return NavData.PrevSceneStack.Peek() == AppScene.ReservedArea;
         }
 
         public void GoToPlayerCreation()
