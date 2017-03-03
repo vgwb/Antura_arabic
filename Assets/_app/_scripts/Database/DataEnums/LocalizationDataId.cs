@@ -355,6 +355,19 @@ namespace EA4S.Database
       UI_NumbersOrdinal = 348,
       Egg_Alphabet_Title = 349,
       UI_ReservedArea = 350,
+      ReservedArea_DeleteProfile = 351,
+      ReservedArea_ExportProfile = 352,
+      ReservedArea_ReviewProfile = 353,
+      ReservedArea_CreateDemoUser = 354,
+      ReservedArea_Website = 355,
+      ReservedArea_Privacy = 356,
+      ReservedArea_InstallInstructions = 357,
+      ReservedArea_Rate = 358,
+      ReservedArea_Recommend = 359,
+      ReservedArea_UnlockingWaring = 360,
+      ReservedArea_Title = 361,
+      ReservedArea_SectionDescription_Intro = 362,
+      ReservedArea_SectionDescription_Error = 363,
   }
 }
 
