@@ -147,7 +147,7 @@ namespace EA4S.Core
                     if (NavData.CurrentPlayer.IsFirstContact()) {
                         GoToScene(AppScene.AnturaSpace);
                     } else {
-                        if (AppManager.I.Player.HasFinishedTheGame && !AppManager.I.Player.IsFinalShowed()) { 
+                        if (AppManager.I.Player.HasFinishedTheGame && !AppManager.I.Player.IsFinalShowed()) {
                             AppManager.I.Player.SetFinalShowed();
                             GoToScene(AppScene.Ending);
                         } else {
@@ -218,7 +218,7 @@ namespace EA4S.Core
             if (AppConstants.UseUnityAnalytics && !Application.isEditor) {
                 UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
             }
-            //LogManager.I.LogInfo(InfoEvent.EnterScene);
+            LogManager.I.LogInfo(InfoEvent.EnterScene);
         }
 
         private void UpdatePrevSceneStack(AppScene newScene)
