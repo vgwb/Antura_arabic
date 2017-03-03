@@ -54,6 +54,8 @@ namespace EA4S.Book
 
             HideAllPanels();
             OpenArea(OpeningArea);
+
+            // Debug.Log("PREV SCENE IS RESERVED AREA: " + AppManager.I.NavigationManager.PrevSceneIsReservedArea());
         }
 
         void OpenArea(BookArea newPanel)
