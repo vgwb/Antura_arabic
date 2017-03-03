@@ -58,9 +58,9 @@ GameObject:
   - component: {fileID: 222111634248748990}
   - component: {fileID: 114596194916047328}
   - component: {fileID: 114930604597748890}
+  - component: {fileID: 114909458942650156}
   - component: {fileID: 114817026643323218}
   - component: {fileID: 114540570321201504}
-  - component: {fileID: 114909458942650156}
   m_Layer: 5
   m_Name: MenuItemCategoryLB
   m_TagString: Untagged
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 56
+  m_fontSizeBase: 56
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 12
@@ -305,8 +305,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282530102
-  m_fontColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+    rgba: 3355443199
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.784}
   m_enableVertexGradient: 0
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -403,9 +403,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.43529415, g: 0.21176472, b: 0.8235295, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
-  ToggleIconAlpha: 1
+  ToggleIconAlpha: 0
   ToggleCanvasGroupAlpha: 0
-  AutoAnimateClick: 1
+  AutoAnimateClick: 0
   AutoPlayButtonFx: 1
 --- !u!114 &114917408991650986
 MonoBehaviour:
@@ -435,14 +435,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.32156864, g: 0.16862746, b: 0.5921569, a: 1}
+  m_Color: {r: 0.8000001, g: 0, b: 0.6431373, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8d86d5ebb57c30646ae1b37ab463601d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f7b5eb8cec23e446ad57d1bd785bacd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -483,8 +483,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -2, y: 2}
-  m_SizeDelta: {x: -4, y: 10}
+  m_AnchoredPosition: {x: 10.9, y: 2}
+  m_SizeDelta: {x: -29.9, y: 10}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &224646412687468876
 RectTransform:
@@ -521,6 +521,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.5}
-  m_SizeDelta: {x: -20, y: -9}
+  m_AnchoredPosition: {x: 9, y: 2.7}
+  m_SizeDelta: {x: -26, y: -18.5}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -131,7 +131,7 @@ namespace EA4S.Teacher
             for (int i = 0; i < learningBlockInfo_list.Count; i++) {
                 var info = learningBlockInfo_list[i];
                 var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.LearningBlock && x.ElementId == info.data.Id);
-                info.score = scoreData.Score;
+                info.score = scoreData.GetScore();
             }
 
             return learningBlockInfo_list;
@@ -161,7 +161,7 @@ namespace EA4S.Teacher
             for (int i = 0; i < playSessionInfo_list.Count; i++) {
                 var info = playSessionInfo_list[i];
                 var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.PlaySession && x.ElementId == info.data.Id);
-                info.score = scoreData.Score;
+                info.score = scoreData.GetScore();
             }
 
             return playSessionInfo_list;

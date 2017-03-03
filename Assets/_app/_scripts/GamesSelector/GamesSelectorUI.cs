@@ -41,7 +41,7 @@ namespace EA4S.GamesSelector
                 // First time playing this session: 0 stars
                 SetStars(0);
             } else {
-                int unlockedRewards = RewardSystemManager.GetUnlockedRewardForPlaysession(AppManager.I.Player.CurrentJourneyPosition.ToString());
+                int unlockedRewards = RewardSystemManager.GetUnlockedRewardForPlaysession(AppManager.I.Player.CurrentJourneyPosition);
                 SetStars(unlockedRewards + 1);
             }
             //            PlaySessionData playSessionData = AppManager.I.DB.GetPlaySessionDataById(journeyPos.PlaySession);
