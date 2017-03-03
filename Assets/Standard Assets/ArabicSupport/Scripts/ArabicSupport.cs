@@ -700,7 +700,8 @@ internal class ArabicFixerTool
 				&& letters[index] != (int)IsolatedArabicLetters.AlefMad
 				&& letters[index] != (int)IsolatedArabicLetters.WawHamza
 				&& letters[index] != (int)IsolatedArabicLetters.Waw
-				&& letters[index] != (int)IsolatedArabicLetters.Hamza;
+				&& letters[index] != (int)IsolatedArabicLetters.Hamza
+                && letters[index] != (int)IsolatedArabicLetters.TaMarboota;
 
 		bool lettersThatCannotBeAfterLeadingLetter = index < letters.Length - 1 
 			&& letters[index + 1] != ' '
