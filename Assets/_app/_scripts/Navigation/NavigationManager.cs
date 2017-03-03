@@ -90,7 +90,10 @@ namespace EA4S.Core
 
         public void SetStartingScene(AppScene _scene)
         {
-            NavData.CurrentScene = _scene;
+            if (NavData.CurrentScene == AppScene.None)
+            {
+                NavData.CurrentScene = _scene;
+            }
         }
 
         public AppScene GetCurrentScene()
