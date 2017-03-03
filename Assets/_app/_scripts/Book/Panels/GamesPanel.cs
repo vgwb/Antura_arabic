@@ -114,7 +114,7 @@ namespace EA4S.Book
             //ScoreText.text = Output;
 
             // Launch button
-            if (selectedGameInfo.unlocked || AppManager.I.Player.IsDemoUser) {
+            if (!AppManager.I.NavigationManager.PrevSceneIsReservedArea() && (selectedGameInfo.unlocked || AppManager.I.Player.IsDemoUser)) {
                 LaunchGameButton.gameObject.SetActive(true);
                 LaunchGameButton.interactable = true;
             } else {
@@ -178,18 +178,15 @@ namespace EA4S.Book
 
             // Sort minigames and variations based on their minimum journey position
             Dictionary<MiniGameCode, JourneyPosition> minimumJourneyPositions = new Dictionary<MiniGameCode, JourneyPosition>();
-            foreach (var mainMiniGame in outputList)
-            {
-                foreach (var miniGameInfo in mainMiniGame.variations)
-                {
+            foreach (var mainMiniGame in outputList) {
+                foreach (var miniGameInfo in mainMiniGame.variations) {
                     var miniGameCode = miniGameInfo.data.Code;
                     minimumJourneyPositions[miniGameCode] = AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(miniGameCode);
                 }
             }
 
             // First sort variations (so the first variation is in front)
-            foreach (var mainMiniGame in outputList)
-            {
+            foreach (var mainMiniGame in outputList) {
                 mainMiniGame.variations.Sort((g1, g2) => minimumJourneyPositions[g1.data.Code].IsMinor(
                         minimumJourneyPositions[g2.data.Code])
                         ? -1
@@ -214,12 +211,11 @@ namespace EA4S.Book
             // Check play session order
             var sharedPlaySessionData = AppManager.I.DB.GetPlaySessionDataById(minPos1.ToStringId());
             int ret = 0;
-            switch (sharedPlaySessionData.Order)
-            {
+            switch (sharedPlaySessionData.Order) {
                 case PlaySessionDataOrder.Random:
                     // No specific sorting
-                    ret = 0; 
-                    break;;
+                    ret = 0;
+                    break; ;
                 case PlaySessionDataOrder.Sequence:
                     // In case of a Sequence PS, two minigames with the same minimum play session are sorted based on the sequence order
                     var miniGameInPlaySession1 = sharedPlaySessionData.Minigames.Find(x => x.MiniGameCode == g1.GetFirstVariationMiniGameCode());
