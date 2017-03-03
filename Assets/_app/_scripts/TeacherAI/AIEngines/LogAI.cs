@@ -79,7 +79,7 @@ namespace EA4S.Teacher
                 Debug.Log("No player profile DB to log to. Player profile is probably not set");
                 return;
             }
-            var data = new LogInfoData(appSession, infoEvent, parametersString);
+            var data = new LogInfoData(appSession, infoEvent, AppManager.I.NavigationManager.GetCurrentScene(), parametersString);
             db.Insert(data);
         }
 

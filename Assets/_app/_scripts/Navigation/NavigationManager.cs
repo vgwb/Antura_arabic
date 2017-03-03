@@ -88,6 +88,16 @@ namespace EA4S.Core
 
         #region Automatic navigation API
 
+        public void SetStartingScene(AppScene _scene)
+        {
+            NavData.CurrentScene = _scene;
+        }
+
+        public AppScene GetCurrentScene()
+        {
+            return NavData.CurrentScene;
+        }
+
         /// <summary>
         /// Given the current context, selects the scene that should be loaded next and loads it.
         /// This is related to the 'main' flow of the application.
@@ -208,6 +218,7 @@ namespace EA4S.Core
             if (AppConstants.UseUnityAnalytics && !Application.isEditor) {
                 UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
             }
+            //LogManager.I.LogInfo(InfoEvent.EnterScene);
         }
 
         private void UpdatePrevSceneStack(AppScene newScene)

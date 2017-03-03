@@ -17,6 +17,11 @@ namespace EA4S.Database
         [PrimaryKey]
         public string Id { get; set; }
 
+        /// <summary>
+        /// Identifier of the application session.
+        /// </summary>
+        public int AppSession { get; set; }
+
         #region Reward Keys
 
         /// <summary>
@@ -80,8 +85,9 @@ namespace EA4S.Database
         {
         }
 
-        public RewardPackUnlockData(string itemId, string colorId, RewardTypes type, JourneyPosition journeyPosition)
+        public RewardPackUnlockData(int appSession, string itemId, string colorId, RewardTypes type, JourneyPosition journeyPosition)
         {
+            AppSession = appSession;
             ItemId = itemId;
             ColorId = colorId;
             Type = type;
