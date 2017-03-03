@@ -24,6 +24,7 @@ namespace EA4S.Scenes
         public AnturaAnimationController AnturaAnimController;
         public LetterObjectView LLAnimController;
         public GameObject DialogReservedArea;
+        public GameObject ProfileSelectorUI;
 
         void Awake()
         {
@@ -56,11 +57,27 @@ namespace EA4S.Scenes
             AppManager.I.NavigationManager.GoToNextScene();
         }
 
+        private bool reservedAreaIsOpen = false;
+        public void OnClickReservedAreaButton()
+        {
+            if (reservedAreaIsOpen)
+            {
+                OnCloseReservedArea();
+            }
+            else
+            {
+                OnOpenReservedArea();
+            }
+        }
+
         public void OnOpenReservedArea()
         {
             // HACK: hide LL since it covers the Arabic TMpro (incredible but true!)
             LLAnimController.gameObject.SetActive(false);
             DialogReservedArea.SetActive(true);
+            ProfileSelectorUI.SetActive(false);
+            GlobalUI.ShowPauseMenu(false);
+            reservedAreaIsOpen = true;
         }
 
         public void OnCloseReservedArea()
@@ -68,6 +85,9 @@ namespace EA4S.Scenes
             // HACK: show LL since it covers the Arabic TMpro (incredible but true!)
             LLAnimController.gameObject.SetActive(true);
             DialogReservedArea.SetActive(false);
+            ProfileSelectorUI.SetActive(true);
+            GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
+            reservedAreaIsOpen = false;
         }
     }
 }
