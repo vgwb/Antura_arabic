@@ -202,7 +202,6 @@ namespace EA4S.Teacher
 
                     if (containedInJourney)
                     {
-                        Debug.Log("UNLOCKING " + data.GetId());
                         scoreData.Unlocked = true;
                     }
                     
