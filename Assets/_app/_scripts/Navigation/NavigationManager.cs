@@ -137,10 +137,8 @@ namespace EA4S.Core
                     if (NavData.CurrentPlayer.IsFirstContact()) {
                         GoToScene(AppScene.AnturaSpace);
                     } else {
-                        if (AppManager.I.Player.HasFinishedTheGame) { 
-                            if(!AppManager.I.Player.IsGameCompleted()) { 
-                                AppManager.I.Player.SetGameCompleted();
-                            }
+                        if (AppManager.I.Player.HasFinishedTheGame && !AppManager.I.Player.IsFinalShowed()) { 
+                            AppManager.I.Player.SetFinalShowed();
                             GoToScene(AppScene.Ending);
                         } else {
                             AppManager.I.Player.AdvanceMaxJourneyPosition();
