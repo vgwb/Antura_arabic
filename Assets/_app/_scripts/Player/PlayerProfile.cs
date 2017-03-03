@@ -9,7 +9,7 @@ using EA4S.Rewards;
 
 namespace EA4S.Profile
 {
-    public enum ProfileCompletionStates
+    public enum ProfileCompletionState
     {
         New = 0,
         FirstContact1 = 1,
@@ -37,7 +37,7 @@ namespace EA4S.Profile
         //int to track first visit
         //First contact (ProfileCompletion = 1 & 2)
         //BookVisited: ProfileCompletion = 3
-        public ProfileCompletionStates ProfileCompletion = ProfileCompletionStates.New;
+        public ProfileCompletionState ProfileCompletion = ProfileCompletionState.New;
 
         public string MoodLastVisit;
 
@@ -164,17 +164,10 @@ namespace EA4S.Profile
         /// </summary>
         public void AdvanceMaxJourneyPosition()
         {
-            SetMaxJourneyPosition(AppManager.I.JourneyHelper.FindNextJourneyPosition(CurrentJourneyPosition));
+            JourneyPosition p = AppManager.I.JourneyHelper.FindNextJourneyPosition(CurrentJourneyPosition);
+            SetMaxJourneyPosition(p);
 
-            if (!HasFinishedTheGame) {
-                HasFinishedTheGame = AppManager.I.JourneyHelper.HasFinishedTheGame();
-            }
-            Debug.Log("Has finished? " + HasFinishedTheGame);
 
-            if (HasFinishedTheGame && !HasFinishedTheGameWithAllStars) {
-                HasFinishedTheGameWithAllStars = AppManager.I.ScoreHelper.HasFinishedTheGameWithAllStars();
-            }
-            Debug.Log("Has finished with all the stars? " + HasFinishedTheGameWithAllStars);
         }
 
         /// <summary>
@@ -188,6 +181,24 @@ namespace EA4S.Profile
             if (MaxJourneyPosition.IsMinor(newJourneyPosition)) {
                 MaxJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
                 CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
+                if (AppManager.I.Player != null) {
+                    // Finished
+                    if (!HasFinishedTheGame) {
+                        HasFinishedTheGame = AppManager.I.JourneyHelper.HasFinishedTheGame();
+                        if (HasFinishedTheGame && !AppManager.I.Player.IsGameCompleted()) {
+                            SetGameCompleted();
+                            Save();
+                        }
+                    }
+                    // With all stars
+                    if (HasFinishedTheGame && !HasFinishedTheGameWithAllStars) {
+                        bool oldValue_HasFinishedTheGameWithAllStars = HasFinishedTheGameWithAllStars;
+                        HasFinishedTheGameWithAllStars = AppManager.I.ScoreHelper.HasFinishedTheGameWithAllStars();
+                        if(oldValue_HasFinishedTheGameWithAllStars != HasFinishedTheGameWithAllStars)
+                            Save();
+                    }
+                }
+
                 if (_save) {
                     Save();
                 }
@@ -373,7 +384,7 @@ namespace EA4S.Profile
         /// </returns>
         public bool IsFirstContact()
         {
-            return (ProfileCompletion < ProfileCompletionStates.FirstContact2);
+            return (ProfileCompletion < ProfileCompletionState.FirstContact2);
         }
 
         /// <summary>
@@ -385,8 +396,8 @@ namespace EA4S.Profile
         /// </returns>
         public bool IsFirstContact(int _step)
         {
-            if (_step < (int)ProfileCompletionStates.FirstContact1) return true;
-            if (_step >= (int)ProfileCompletionStates.FirstContact2) return false;
+            if (_step < (int)ProfileCompletionState.FirstContact1) return true;
+            if (_step >= (int)ProfileCompletionState.FirstContact2) return false;
 
             if ((int)ProfileCompletion == _step - 1) {
                 return true;
@@ -403,10 +414,10 @@ namespace EA4S.Profile
         {
             switch (_step) {
                 case 1:
-                    ProfileCompletion = ProfileCompletionStates.FirstContact1;
+                    ProfileCompletion = ProfileCompletionState.FirstContact1;
                     break;
                 case 2:
-                    ProfileCompletion = ProfileCompletionStates.FirstContact2;
+                    ProfileCompletion = ProfileCompletionState.FirstContact2;
                     break;
             }
             Save();
@@ -417,7 +428,7 @@ namespace EA4S.Profile
         /// </summary>
         public void ResetPlayerProfileCompletion()
         {
-            ProfileCompletion = ProfileCompletionStates.New;
+            ProfileCompletion = ProfileCompletionState.New;
             Save();
         }
         #endregion
@@ -431,7 +442,7 @@ namespace EA4S.Profile
         /// </returns>
         public bool IsBookVisited()
         {
-            return (ProfileCompletion < ProfileCompletionStates.BookVisited);
+            return (ProfileCompletion < ProfileCompletionState.BookVisited);
         }
 
         /// <summary>
@@ -439,30 +450,31 @@ namespace EA4S.Profile
         /// </summary>
         public void SetBookVisited()
         {
-            ProfileCompletion = ProfileCompletionStates.BookVisited;
+            ProfileCompletion = ProfileCompletionState.BookVisited;
             Save();
         }
         #endregion
 
         #region GameEnded
         public bool IsGameCompleted() {
-            if (ProfileCompletion < ProfileCompletionStates.GameCompleted)
+            if (ProfileCompletion < ProfileCompletionState.GameCompleted)
                 return false;
             return true;
         }
 
         public void SetGameCompleted() {
-            ProfileCompletion = ProfileCompletionStates.GameCompleted;
+            ProfileCompletion = ProfileCompletionState.GameCompleted;
+            AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
         }
 
         public bool IsFinalShowed() {
-            if (ProfileCompletion < ProfileCompletionStates.GameCompletedAndFinalShowed)
+            if (ProfileCompletion < ProfileCompletionState.GameCompletedAndFinalShowed)
                 return false;
             return true;
         }
 
         public void SetFinalShowed() {
-            ProfileCompletion = ProfileCompletionStates.GameCompletedAndFinalShowed;
+            ProfileCompletion = ProfileCompletionState.GameCompletedAndFinalShowed;
         }
         #endregion
 
@@ -495,7 +507,7 @@ namespace EA4S.Profile
             Gender = _data.Gender;
             Tint = _data.Tint;
             IsDemoUser = _data.IsDemoUser;
-            HasFinishedTheGame = _data.HasCompleteTheJourney;
+            HasFinishedTheGame = _data.JourneyCompleted;
             HasFinishedTheGameWithAllStars = _data.HasFinishedTheGameWithAllStars();
             ProfileCompletion = _data.ProfileCompletion;
             TotalNumberOfBones = _data.TotalBones;
