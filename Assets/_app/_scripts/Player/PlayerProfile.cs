@@ -156,18 +156,6 @@ namespace EA4S.Profile
         public void AdvanceMaxJourneyPosition()
         {
             SetMaxJourneyPosition(AppManager.I.JourneyHelper.FindNextJourneyPosition(CurrentJourneyPosition));
-
-            if (!HasFinishedTheGame)
-            {
-                HasFinishedTheGame = AppManager.I.JourneyHelper.HasFinishedTheGame();
-            }
-            Debug.Log("Has finished? " + HasFinishedTheGame);
-
-            if (HasFinishedTheGame && !HasFinishedTheGameWithAllStars)
-            {
-                HasFinishedTheGameWithAllStars = AppManager.I.ScoreHelper.HasFinishedTheGameWithAllStars();
-            }
-            Debug.Log("Has finished with all the stars? " + HasFinishedTheGameWithAllStars);
         }
 
         /// <summary>
@@ -181,6 +169,16 @@ namespace EA4S.Profile
             if (MaxJourneyPosition.IsMinor(newJourneyPosition)) {
                 MaxJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
                 CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
+                // TODO: check if is correct AppManager.I.Player not null check is correct
+                if (AppManager.I.Player != null && !HasFinishedTheGame) {
+                    HasFinishedTheGame = AppManager.I.JourneyHelper.HasFinishedTheGame();
+                    if (HasFinishedTheGame)
+                        Debug.Log("Finished!");
+                }
+                if (AppManager.I.Player != null && HasFinishedTheGame && !HasFinishedTheGameWithAllStars) {
+                    HasFinishedTheGameWithAllStars = AppManager.I.ScoreHelper.HasFinishedTheGameWithAllStars();
+                }
+
                 if (_save) {
                     Save();
                 }
@@ -442,6 +440,32 @@ namespace EA4S.Profile
         }
         #endregion
 
+        #region Game Finished (ProfileCompletion = 5)
+        // ProfileCompletion = 5 -> Game Finished and final scene already showed
+        int FinalShowedValue = 5;
+
+        /// <summary>
+        /// Determines whether [is final already showed].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [is final already showed]; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsFinalAlreadyShowed() {
+            if (ProfileCompletion >= FinalShowedValue)
+                return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Sets final showed (if needed).
+        /// </summary>
+        public void SetFinalShowed() {
+            if (ProfileCompletion < FinalShowedValue) { 
+                ProfileCompletion = FinalShowedValue;
+                
+            }
+        }
+
         #endregion
 
         #endregion
@@ -489,9 +513,19 @@ namespace EA4S.Profile
         #region player icon data
         public PlayerIconData GetPlayerIconData()
         {
-            PlayerIconData returnData = new PlayerIconData() { Uuid = this.Uuid, AvatarId = this.AvatarId, Gender = this.Gender, Tint = this.Tint, IsDemoUser = this.IsDemoUser, HasFinishedTheGame = this.HasFinishedTheGame, HasFinishedTheGameWithAllStars = this.HasFinishedTheGameWithAllStars};
+            PlayerIconData returnData = new PlayerIconData() {
+                Uuid = this.Uuid,
+                AvatarId = this.AvatarId,
+                Gender = this.Gender,
+                Tint = this.Tint,
+                IsDemoUser = this.IsDemoUser,
+                HasFinishedTheGame = this.HasFinishedTheGame,
+                HasFinishedTheGameWithAllStars = this.HasFinishedTheGameWithAllStars
+            };
             return returnData;
         }
+        #endregion
+
         #endregion
 
     }

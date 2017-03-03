@@ -130,6 +130,7 @@ namespace EA4S.Intro
                 {
                     // Reset it
                     completed = false;
+                    AppManager.I.Player.SetFinalShowed();
                     return true;
                 }
                 return false;
