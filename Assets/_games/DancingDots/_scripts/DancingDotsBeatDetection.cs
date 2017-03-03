@@ -8,7 +8,7 @@ namespace EA4S.Minigames.DancingDots
 
         public float minInterval = 0.3f, pitchThreshold = 2000f, RmsThreshold = 0.19f;
         DancingDotsQuadManager disco;
-        DancingDotsGame game;
+        //DancingDotsGame game;
         bool canBeat = true;
 
         public float RmsValue;
@@ -29,7 +29,7 @@ namespace EA4S.Minigames.DancingDots
             //processor.addAudioCallback(this);
 
             disco = GameObject.Find("Quads").GetComponent<DancingDotsQuadManager>();
-            game = GameObject.Find("Dancing Dots Game Manager").GetComponent<DancingDotsGame>();
+            //game = GameObject.Find("Dancing Dots Game Manager").GetComponent<DancingDotsGame>();
             _samples = new float[QSamples];
             _spectrum = new float[QSamples];
             _fSample = AudioSettings.outputSampleRate;

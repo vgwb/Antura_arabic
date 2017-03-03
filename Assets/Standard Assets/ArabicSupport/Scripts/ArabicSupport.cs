@@ -749,7 +749,7 @@ internal class ArabicFixerTool
 	/// <returns>True if the character at index is a finishing character, else, returns false</returns>
 	internal static bool IsFinishingLetter(char[] letters, int index)
 	{
-		bool indexZero = index != 0;
+		//bool indexZero = index != 0;
 		bool lettersThatCannotBeBeforeAFinishingLetter = (index == 0) ? false : 
 				letters[index - 1] != ' '
 //				&& char.IsDigit(letters[index-1])
