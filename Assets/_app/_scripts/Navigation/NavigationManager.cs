@@ -137,12 +137,13 @@ namespace EA4S.Core
                     if (NavData.CurrentPlayer.IsFirstContact()) {
                         GoToScene(AppScene.AnturaSpace);
                     } else {
-                        AppManager.I.Player.AdvanceMaxJourneyPosition();
-
-                        if (AppManager.I.Player.HasFinishedTheGame) {
-                            // @note: this works as this will be pass through here only once, when finishing the last play session.
+                        if (AppManager.I.Player.HasFinishedTheGame) { 
+                            if(!AppManager.I.Player.IsGameCompleted()) { 
+                                AppManager.I.Player.SetGameCompleted();
+                            }
                             GoToScene(AppScene.Ending);
                         } else {
+                            AppManager.I.Player.AdvanceMaxJourneyPosition();
                             GoToScene(AppScene.Map);
                         }
                     }
