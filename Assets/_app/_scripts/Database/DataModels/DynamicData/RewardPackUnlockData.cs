@@ -61,6 +61,8 @@ namespace EA4S.Database
         /// </summary>
         public int Timestamp { get; set; }
 
+        public string AdditionalData { get; set; }
+
 
         public RewardPackUnlockData()
         {
@@ -80,7 +82,7 @@ namespace EA4S.Database
         }
 
         public string GetIdAccordingToDBRules()
-        { 
+        {
             return ItemId + "." + ColorId + "." + Type;
         }
 

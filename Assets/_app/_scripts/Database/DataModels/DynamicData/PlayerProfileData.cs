@@ -65,14 +65,14 @@ namespace EA4S.Database
         /// Used only for the player icons in the Home scene.
         /// Part of PlayerIconData.
         /// </summary>
-        public bool HasFinishedTheGame { get; set; }
+        public bool HasCompleteTheJourney { get; set; }
 
         /// <summary>
         /// Has the player completed the whole game AND earned full score in all play sessions?
         /// Used only for the player icons in the Home scene.
         /// Part of PlayerIconData.
         /// </summary>
-        public bool HasFinishedTheGameWithAllStars { get; set; }
+        public float FinalScore { get; set; }
 
         #endregion
 
@@ -91,7 +91,7 @@ namespace EA4S.Database
         /// State of completion for the player profile.
         /// Can be 0,1,2,3. See PlayerProfile for further details.
         /// </summary>
-        public int ProfileCompletion { get; set; }
+        public ProfileCompletionStates ProfileCompletion { get; set; }
 
         /// <summary>
         /// Maximum journey position: stage reached.
@@ -154,7 +154,7 @@ namespace EA4S.Database
         {
         }
 
-        public PlayerProfileData(PlayerIconData iconData, int age, int totalBones, int profileCompletion, string currentAnturaCustomization = null)
+        public PlayerProfileData(PlayerIconData iconData, int age, int totalBones, ProfileCompletionStates profileCompletion, string currentAnturaCustomization = null)
         {
             Id = UNIQUE_ID;  // Only one record
             Age = age;
@@ -167,7 +167,11 @@ namespace EA4S.Database
             CurrentAnturaCustomization = currentAnturaCustomization;
         }
 
-        
+        public bool HasFinishedTheGameWithAllStars()
+        {
+            return (FinalScore >= 0.999f);
+        }
+
         public void SetPlayerIconData(PlayerIconData data)
         {
             Uuid = data.Uuid;
@@ -175,13 +179,13 @@ namespace EA4S.Database
             Gender = data.Gender;
             Tint = data.Tint;
             IsDemoUser = data.IsDemoUser;
-            HasFinishedTheGame = data.HasFinishedTheGame;
-            HasFinishedTheGameWithAllStars = data.HasFinishedTheGameWithAllStars;
+            HasCompleteTheJourney = data.HasFinishedTheGame;
+            FinalScore = (data.HasFinishedTheGameWithAllStars ? 1f : 0f);
         }
-        
+
         public PlayerIconData GetPlayerIconData()
         {
-            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars);
+            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasCompleteTheJourney, HasFinishedTheGameWithAllStars());
         }
 
         #region Journey Position
