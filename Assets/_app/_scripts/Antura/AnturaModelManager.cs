@@ -79,7 +79,7 @@ namespace EA4S.Antura
         public AnturaCustomization SaveAnturaCustomization() {
             AnturaCustomization returnCustomization = new AnturaCustomization();
             foreach (LoadedModel loadedModel in LoadedModels) {
-                RewardPackUnlockData pack = new RewardPackUnlockData() { ItemID = loadedModel.Reward.ItemID, ColorId = loadedModel.Reward.ColorId, Type = RewardTypes.reward };
+                RewardPackUnlockData pack = new RewardPackUnlockData() { ItemId = loadedModel.Reward.ItemId, ColorId = loadedModel.Reward.ColorId, Type = RewardTypes.reward };
                 returnCustomization.Fornitures.Add(pack);
                 returnCustomization.FornituresIds.Add(pack.GetIdAccordingToDBRules());
             }
@@ -99,7 +99,7 @@ namespace EA4S.Antura
                 case RewardTypes.reward:
                     return LoadRewardOnAntura(rewardPackUnlockData);
                 case RewardTypes.texture:
-                    Material newMaterial = MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemID, rewardPackUnlockData.ColorId);
+                    Material newMaterial = MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemId, rewardPackUnlockData.ColorId);
                     // Main mesh
                     Material[] mats = SkinnedMesh.sharedMaterials;
                     mats[0] = newMaterial;
@@ -113,7 +113,7 @@ namespace EA4S.Antura
                     }
                     break;
                 case RewardTypes.decal:
-                    Material newDecalMaterial = MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemID, rewardPackUnlockData.ColorId);
+                    Material newDecalMaterial = MaterialManager.LoadTextureMaterial(rewardPackUnlockData.ItemId, rewardPackUnlockData.ColorId);
                     // Main mesh
                     Material[] decalMats = SkinnedMesh.sharedMaterials;
                     decalMats[1] = newDecalMaterial;
@@ -170,9 +170,9 @@ namespace EA4S.Antura
         /// <param name="_id">The identifier.</param>
         /// <returns></returns>
         public GameObject LoadRewardOnAntura(RewardPackUnlockData rewardPackUnlockData) {
-            Reward reward = RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == rewardPackUnlockData.ItemID);
+            Reward reward = RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == rewardPackUnlockData.ItemId);
             if (reward == null) {
-                Debug.LogFormat("Reward {0} not found!", rewardPackUnlockData.ItemID);
+                Debug.LogFormat("Reward {0} not found!", rewardPackUnlockData.ItemId);
                 return null;
             }
             // Check if already charged reward of this category

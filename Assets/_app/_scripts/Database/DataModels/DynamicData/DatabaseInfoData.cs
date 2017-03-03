@@ -1,5 +1,4 @@
 ﻿using EA4S.Helpers;
-using EA4S.Utilities;
 using SQLite;
 
 namespace EA4S.Database
@@ -10,19 +9,41 @@ namespace EA4S.Database
     [System.Serializable]
     public class DatabaseInfoData : IData
     {
+        public const string UNIQUE_ID = "1";
+
+        /// <summary>
+        /// Primary key for the database.
+        /// Unique, as there will be only one row for this table.
+        /// </summary>
         [PrimaryKey]
-        public int Id { get; set; }
-        public string Version { get; set; }
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Timestamp of creation of the database.
+        /// </summary>
         public int CreationTimestamp { get; set; }
+
+        /// <summary>
+        /// Version of the MySQL database.
+        /// Different versions cannot be compared.
+        /// </summary>
+        public string MySqlDatabaseVersion { get; set; }
+
+        /// <summary>
+        /// Version of the Static database.
+        /// Different versions cannot be compared.
+        /// </summary>
+        public string StaticDatabaseVersion { get; set; }  
 
         public DatabaseInfoData()
         {
         }
 
-        public DatabaseInfoData(string _Version)
+        public DatabaseInfoData(string mySqlDatabaseVersion, string staticDatabaseVersion)
         {
-            this.Id = 1;  // Only one record
-            this.Version = _Version;
+            this.Id = UNIQUE_ID;  // Only one record
+            this.MySqlDatabaseVersion = mySqlDatabaseVersion;
+            this.StaticDatabaseVersion = staticDatabaseVersion;
             this.CreationTimestamp = GenericHelper.GetTimestampForNow();
         }
 
@@ -33,9 +54,10 @@ namespace EA4S.Database
 
         public override string ToString()
         {
-            return string.Format("ID{0},V{1},Ts{3}",
+            return string.Format("ID{0},sqlV{1},statV{2},Ts{3}",
                 Id,
-                Version,
+                MySqlDatabaseVersion,
+                StaticDatabaseVersion,
                 CreationTimestamp
             );
         }

@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 114000012926629132}
   - component: {fileID: 222000013527735106}
   - component: {fileID: 114000012038373116}
+  - component: {fileID: 114427156830922300}
   - component: {fileID: 114000011309851310}
   - component: {fileID: 114000011381685672}
   m_Layer: 5
@@ -554,6 +555,23 @@ MonoBehaviour:
   isUI: 1
   isArabic: 1
   LocalizationId: 0
+--- !u!114 &114427156830922300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011736865112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7245d715fbd49e4aa8b19cd51700179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
+  ToggleIconAlpha: 0
+  ToggleCanvasGroupAlpha: 0
+  AutoAnimateClick: 0
+  AutoPlayButtonFx: 1
 --- !u!222 &222000011645098272
 CanvasRenderer:
   m_ObjectHideFlags: 1

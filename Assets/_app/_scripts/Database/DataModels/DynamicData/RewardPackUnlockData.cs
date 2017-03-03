@@ -11,17 +11,35 @@ namespace EA4S.Database
     [System.Serializable]
     public class RewardPackUnlockData : IData
     {
+        /// <summary>
+        /// Primary key for the database.
+        /// </summary>
         [PrimaryKey]
         public string Id { get; set; }
 
-        public string ItemID { get; set; }
-        public string ColorId { get; set; }
-        public RewardTypes Type { get; set; }
+        #region Reward Keys
 
         /// <summary>
-        /// The play session id where this reward is assigned.
+        /// Part of the keys used to define the complete reward.
         /// </summary>
-        public string PlaySessionId { get; set; }
+        public string ItemId { get; set; }
+
+        /// <summary>
+        /// Part of the keys used to define the complete reward.
+        /// </summary>
+        public string ColorId { get; set; }
+
+        /// <summary>
+        /// Part of the keys used to define the complete reward.
+        /// </summary>
+        public RewardTypes Type { get; set; }
+
+        #endregion
+
+        /// <summary>
+        /// The play session at which this reward is assigned.
+        /// </summary>
+        public string JourneyPositionId { get; set; }
 
         /// <summary>
         /// The order of playsession rewards in case of multi reward for same playsession.
@@ -38,51 +56,61 @@ namespace EA4S.Database
         /// </summary>
         public bool IsLocked { get; set; }
 
+        /// <summary>
+        /// Timestamp of creation of the reward.
+        /// </summary>
         public int CreationTimestamp { get; set; }
+
 
         public RewardPackUnlockData()
         {
         }
 
-        public RewardPackUnlockData(string _ItemID, string _ColorId, RewardTypes _Type, string _PlaySessionId)
+        public RewardPackUnlockData(string itemId, string colorId, RewardTypes type, JourneyPosition journeyPosition)
         {
-            ItemID = _ItemID;
-            ColorId = _ColorId;
-            Type = _Type;
+            ItemId = itemId;
+            ColorId = colorId;
+            Type = type;
             Id = GetIdAccordingToDBRules();
-            PlaySessionId = _PlaySessionId;
+            JourneyPositionId = journeyPosition.ToStringId();
             Order = 0;
             IsNew = true;
             IsLocked = true;
             CreationTimestamp = GenericHelper.GetTimestampForNow();
         }
 
-        public string GetIdAccordingToDBRules() { 
-            return this.ItemID + "." + this.ColorId + "." + this.Type;
+        public string GetIdAccordingToDBRules()
+        { 
+            return ItemId + "." + ColorId + "." + Type;
         }
 
         #region Rewards API
 
         public MaterialPair GetMaterialPair()
         {
-            return RewardSystemManager.GetMaterialPairFromRewardIdAndColorId(ItemID, ColorId);
+            return RewardSystemManager.GetMaterialPairFromRewardIdAndColorId(ItemId, ColorId);
         }
 
         public Reward GetReward()
         {
             if (Type != RewardTypes.reward)
                 return null;
-            return RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemID);
+            return RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemId);
         }
 
         public string GetRewardCategory()
         {
             if (Type != RewardTypes.reward)
                 return string.Empty;
-            Reward reward = RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemID);
+            Reward reward = RewardSystemManager.GetConfig().Rewards.Find(r => r.ID == ItemId);
             if (reward != null)
                 return reward.Category;
             return string.Empty;
+        }
+
+        public JourneyPosition GetJourneyPosition()
+        {
+            return new JourneyPosition(JourneyPositionId);
         }
 
         #endregion
@@ -96,7 +124,7 @@ namespace EA4S.Database
 
         public override string ToString()
         {
-            return string.Format("{0} : {1} [{2}] [{3}]", ItemID, ColorId, Type, PlaySessionId);
+            return string.Format("{0} : {1} [{2}] [{3}]", ItemId, ColorId, Type, JourneyPositionId);
         }
 
         #endregion
