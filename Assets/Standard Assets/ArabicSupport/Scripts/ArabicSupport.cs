@@ -700,7 +700,8 @@ internal class ArabicFixerTool
 				&& letters[index] != (int)IsolatedArabicLetters.AlefMad
 				&& letters[index] != (int)IsolatedArabicLetters.WawHamza
 				&& letters[index] != (int)IsolatedArabicLetters.Waw
-				&& letters[index] != (int)IsolatedArabicLetters.Hamza;
+				&& letters[index] != (int)IsolatedArabicLetters.Hamza
+                && letters[index] != (int)IsolatedArabicLetters.TaMarboota;
 
 		bool lettersThatCannotBeAfterLeadingLetter = index < letters.Length - 1 
 			&& letters[index + 1] != ' '
@@ -749,7 +750,7 @@ internal class ArabicFixerTool
 	/// <returns>True if the character at index is a finishing character, else, returns false</returns>
 	internal static bool IsFinishingLetter(char[] letters, int index)
 	{
-		bool indexZero = index != 0;
+		//bool indexZero = index != 0;
 		bool lettersThatCannotBeBeforeAFinishingLetter = (index == 0) ? false : 
 				letters[index - 1] != ' '
 //				&& char.IsDigit(letters[index-1])

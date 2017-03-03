@@ -26,8 +26,8 @@ namespace EA4S.Core
 
         public LogManager()
         {
-
             I = this;
+            InitNewSession();
         }
 
         public void InitNewSession()
@@ -142,7 +142,7 @@ namespace EA4S.Core
 
         public void StartApp()
         {
-            LogInfo(InfoEvent.AppStarted);
+            LogInfo(InfoEvent.AppSessionStart);
         }
         #endregion
     }

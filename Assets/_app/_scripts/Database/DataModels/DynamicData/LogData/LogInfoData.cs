@@ -34,18 +34,18 @@ namespace EA4S.Database
         /// Additional raw JSON data saved alongside the event to record more details.
         /// Example: "{playerId:0, rewardType:2}"
         /// </summary>
-        public string AdditionalJsonData { get; set; }
+        public string AdditionalData { get; set; } 
 
         /// <summary>
         /// Empty constructor required by MySQL.
         /// </summary>
         public LogInfoData() { }
 
-        public LogInfoData(int appSession, InfoEvent _event, string additionalJsonData)
+        public LogInfoData(int appSession, InfoEvent _event, string additionalData)
         {
             AppSession = appSession;
             Event = _event;
-            AdditionalJsonData = additionalJsonData;
+            AdditionalData = additionalData;
             Timestamp = GenericHelper.GetTimestampForNow();
         }
 
@@ -60,7 +60,7 @@ namespace EA4S.Database
                 AppSession,
                 Timestamp,
                 Event,
-                AdditionalJsonData
+                AdditionalData
             );
         }
 

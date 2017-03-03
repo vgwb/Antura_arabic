@@ -78,7 +78,7 @@ namespace EA4S.ReservedArea
 
         public void OnDeleteSelectPlayerProfile()
         {
-            GlobalUI.ShowPrompt(true, "ATTENTION\nReally delete this player?", DoDeleteSelectPlayerProfile, DoNothing);
+            GlobalUI.ShowPrompt(true, "WARNING\n Are you sure?", DoDeleteSelectPlayerProfile, DoNothing);
         }
 
         void DoNothing()
@@ -101,9 +101,9 @@ namespace EA4S.ReservedArea
         public void OnCreateDemoPlayer()
         {
             if (AppManager.I.PlayerProfileManager.ExistsDemoUser()) {
-                GlobalUI.ShowPrompt(true, "Demo player exists already");
+                GlobalUI.ShowPrompt(true, "Demo player already exists");
             } else {
-                GlobalUI.ShowPrompt(true, "ATTENTION\nReally create a Full Unlocked Demo player?", DoCreateDemoPlayer, DoNothing);
+                GlobalUI.ShowPrompt(true, "WARNING\n Are you sure?", DoCreateDemoPlayer, DoNothing);
             }
         }
 
@@ -125,7 +125,6 @@ namespace EA4S.ReservedArea
             yield return null;
             activateWaitingScreen(true);
             yield return null;
-            //yield return new WaitForEndOfFrame();
             var demoUserUiid = AppManager.I.PlayerProfileManager.CreatePlayerProfile(10, PlayerGender.F, 1, PlayerTint.Red, true);
             SelectedPlayerId = demoUserUiid;
             AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);

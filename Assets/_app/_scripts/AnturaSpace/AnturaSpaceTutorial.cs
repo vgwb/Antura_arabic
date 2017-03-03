@@ -31,8 +31,9 @@ namespace EA4S.AnturaSpace
         public AnturaLocomotion m_oAnturaBehaviour;
         //[SerializeField]
         //private GameObject m_oItemsParentUI;
-        [SerializeField]
-        private UnityEngine.UI.Button m_oCookieButton;
+
+        public AnturaSpaceUI UI;
+        public UnityEngine.UI.Button m_oCookieButton;
         [SerializeField]
         private UnityEngine.UI.Button m_oCustomizationButton;
         #endregion
@@ -40,18 +41,27 @@ namespace EA4S.AnturaSpace
         #region PRIVATE MEMBERS
         private eAnturaSpaceTutoState m_eTutoState = eAnturaSpaceTutoState.ANTURA_ANIM;
         private bool m_bIsDragAnimPlaying = false;
+
+        public bool IsRunning { get; private set; }
         #endregion
 
         #region GETTER/SETTER
-        
+
         #endregion
+
+        void Awake()
+        {
+            IsRunning = true;
+        }
 
         #region INTERNALS
         void Start()
         {
+
             if(AppManager.I.Player.IsFirstContact()==false) //if this isn't the first contact disable yourself and return
             {
                 gameObject.SetActive(false);
+                IsRunning = false;
                 return;
             }
 
@@ -64,18 +74,14 @@ namespace EA4S.AnturaSpace
 
             //setup first state, disable UI    
             m_eTutoState = eAnturaSpaceTutoState.ANTURA_ANIM;
-            m_oCookieButton.gameObject.SetActive(false);
+            UI.ShowBonesButton(false);
             m_oCustomizationButton.gameObject.SetActive(false);
 
-            AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro, delegate() //dialogue try touch Antura
-            {
-                m_oAnturaBehaviour.onTouched += AdvanceTutorial;
+            AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro, null);
 
-                Vector3 clickOffset = m_oAnturaBehaviour.IsSleeping ? Vector3.down * 2 : Vector3.zero;
-
-                TutorialUI.ClickRepeat(m_oAnturaBehaviour.gameObject.transform.position+ clickOffset + (Vector3.forward*-2) + (Vector3.up), float.MaxValue, 1);
-            });
-
+            m_oAnturaBehaviour.onTouched += AdvanceTutorial;
+            Vector3 clickOffset = m_oAnturaBehaviour.IsSleeping ? Vector3.down * 2 : Vector3.zero;
+            TutorialUI.ClickRepeat(m_oAnturaBehaviour.gameObject.transform.position + clickOffset + (Vector3.forward * -2) + (Vector3.up), float.MaxValue, 1);
         }
 
         void Update()
@@ -118,8 +124,7 @@ namespace EA4S.AnturaSpace
                         {
                             AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_1, delegate () //dialog tap for cookies
                             {
-
-                                m_oCookieButton.gameObject.SetActive(true); //after the dialog make appear the cookie button
+                                UI.ShowBonesButton(true); //after the dialog make appear the cookie button
                                 m_oCookieButton.onClick.AddListener(AdvanceTutorial);//the button can call AdvanceTutorial on click
 
                                 //RectTransform _oRectCookieB = m_oCookieButton.gameObject.GetComponent<RectTransform>();
@@ -149,7 +154,7 @@ namespace EA4S.AnturaSpace
 
                     //Register delegate to disable draw line after done
                     UnityEngine.EventSystems.EventTrigger.Entry _oEntry = new UnityEngine.EventSystems.EventTrigger.Entry();
-                    _oEntry.eventID = UnityEngine.EventSystems.EventTriggerType.EndDrag;
+                    _oEntry.eventID = UnityEngine.EventSystems.EventTriggerType.BeginDrag;
                     _oEntry.callback.AddListener((data) => { m_bIsDragAnimPlaying = false; });
 
                     m_oCookieButton.GetComponent<UnityEngine.EventSystems.EventTrigger>().triggers.Add(_oEntry);
@@ -194,7 +199,7 @@ namespace EA4S.AnturaSpace
                     break;
 
                 case eAnturaSpaceTutoState.CUSTOMIZE:
-
+                    IsRunning = false;
                     m_eTutoState = eAnturaSpaceTutoState.FINISH;
 
                     TutorialUI.Clear(false);
@@ -244,7 +249,7 @@ namespace EA4S.AnturaSpace
             _av3Path[2].z = _av3Path[1].z;
 
             TutorialUIAnimation _oDLAnim = TutorialUI.DrawLine(_av3Path, TutorialUI.DrawLineMode.Finger, false, true);
-            _oDLAnim.MainTween.timeScale = 0.3f;
+            _oDLAnim.MainTween.timeScale = 0.8f;
             _oDLAnim.OnComplete(delegate()
             {
                 if(m_eTutoState!=eAnturaSpaceTutoState.CUSTOMIZE)
