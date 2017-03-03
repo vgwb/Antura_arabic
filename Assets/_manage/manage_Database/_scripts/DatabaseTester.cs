@@ -364,7 +364,9 @@ namespace EA4S.Database.Management
             newData.AppSession = GenericHelper.GetTimestampForNow();
             newData.Timestamp = GenericHelper.GetRelativeTimestampFromNow(-RND.Range(0, 5));
 
-            newData.JourneyPositionId = new JourneyPosition(1, 1, 1).ToStringId();
+            newData.Stage = 1;
+            newData.LearningBlock = 1;
+            newData.PlaySession = 1;
             newData.MiniGameCode = MiniGameCode.Balloons_counting;
             newData.Score = RND.Range(0, 1f);
             newData.PlayEvent = PlayEvent.Skill;

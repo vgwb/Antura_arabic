@@ -28,9 +28,19 @@ namespace EA4S.Database
         public int Timestamp { get; set; }
 
         /// <summary>
-        /// Journey position at which the play data has been recorded.
+        /// Stage at which the play data has been recorded.
         /// </summary>
-        public string JourneyPositionId { get; set; }
+        public int Stage { get; set; }
+
+        /// <summary>
+        /// LearningBlock at which the play data has been recorded.
+        /// </summary>
+        public int LearningBlock { get; set; }
+
+        /// <summary>
+        /// PlaySession at which the play data has been recorded.
+        /// </summary>
+        public int PlaySession { get; set; }
 
         /// <summary>
         /// MiniGame during which the play data has been recorded.
@@ -71,7 +81,9 @@ namespace EA4S.Database
         public LogPlayData(int appSession, JourneyPosition journeyPosition, MiniGameCode miniGameCode, PlayEvent playEvent, PlaySkill playSkill, float score, string additionalData)
         {
             AppSession = appSession;
-            JourneyPositionId = journeyPosition.ToStringId();
+            Stage = journeyPosition.Stage;
+            LearningBlock = journeyPosition.LearningBlock;
+            PlaySession = journeyPosition.PlaySession;
             MiniGameCode = miniGameCode;
             PlayEvent = playEvent;
             PlaySkill = playSkill;
@@ -90,7 +102,7 @@ namespace EA4S.Database
             return string.Format("AS{0},T{1},PS{2},MG{3},PE{4},SK{5},S{6},RD{7}",
                 AppSession,
                 Timestamp,
-                JourneyPositionId,
+                Stage,
                 MiniGameCode,
                 PlayEvent,
                 PlaySkill,
