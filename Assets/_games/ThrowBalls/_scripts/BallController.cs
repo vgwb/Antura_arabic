@@ -89,7 +89,7 @@ namespace EA4S.Minigames.ThrowBalls
             }
         }
 
-        public void OnCollisionEnter()
+        public void OnCollisionEnter(Collision collision)
         {
             if (state != State.Chased)
             {
