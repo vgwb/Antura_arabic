@@ -349,9 +349,11 @@ namespace EA4S.Rewards
             //rewardPackUnlockDatas.Add(GetFirstAnturaReward(RewardTypes.texture));
 
             // First reward manual add
-            AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward));
-            AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal));
-            AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture));
+            if(AppManager.I.Player.RewardsUnlocked.Count == 0) { 
+                AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward));
+                AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal));
+                AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture));
+            }
 
             var actualCurrentJourneyPosition = AppManager.I.Player.CurrentJourneyPosition;
             var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
