@@ -1872,6 +1872,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011410575750, guid: 793a56ee08bf1094196209e7145d9e19,
+        type: 2}
+      propertyPath: boxCollider
+      value: 
+      objectReference: {fileID: 759925348}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 793a56ee08bf1094196209e7145d9e19, type: 2}
   m_IsPrefabParent: 0
@@ -5593,6 +5598,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4000011712591740, guid: 91727f27dfee44f40aa713ea5e5ef1ce,
     type: 2}
   m_PrefabInternal: {fileID: 384806444}
+--- !u!65 &414147224 stripped
+BoxCollider:
+  m_PrefabParentObject: {fileID: 65000012708210400, guid: 793a56ee08bf1094196209e7145d9e19,
+    type: 2}
+  m_PrefabInternal: {fileID: 593659077}
 --- !u!1001 &422480922
 Prefab:
   m_ObjectHideFlags: 0
@@ -6363,6 +6373,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011410575750, guid: 793a56ee08bf1094196209e7145d9e19,
+        type: 2}
+      propertyPath: boxCollider
+      value: 
+      objectReference: {fileID: 1551837876}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 793a56ee08bf1094196209e7145d9e19, type: 2}
   m_IsPrefabParent: 0
@@ -6440,6 +6455,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 499891283}
   m_Script: {fileID: 11500000, guid: f0d6ff024c0c95c4ab61083290e0a407, type: 3}
+--- !u!65 &504695997 stripped
+BoxCollider:
+  m_PrefabParentObject: {fileID: 65000012708210400, guid: 793a56ee08bf1094196209e7145d9e19,
+    type: 2}
+  m_PrefabInternal: {fileID: 1535150558}
 --- !u!1 &504700368
 GameObject:
   m_ObjectHideFlags: 0
@@ -6856,6 +6876,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
   m_IsPrefabParent: 0
+--- !u!65 &589899825 stripped
+BoxCollider:
+  m_PrefabParentObject: {fileID: 65000012708210400, guid: 793a56ee08bf1094196209e7145d9e19,
+    type: 2}
+  m_PrefabInternal: {fileID: 1756588231}
 --- !u!1001 &593659077
 Prefab:
   m_ObjectHideFlags: 0
@@ -6916,6 +6941,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011410575750, guid: 793a56ee08bf1094196209e7145d9e19,
+        type: 2}
+      propertyPath: boxCollider
+      value: 
+      objectReference: {fileID: 414147224}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 793a56ee08bf1094196209e7145d9e19, type: 2}
   m_IsPrefabParent: 0
@@ -8580,6 +8610,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &759925348 stripped
+BoxCollider:
+  m_PrefabParentObject: {fileID: 65000012708210400, guid: 793a56ee08bf1094196209e7145d9e19,
+    type: 2}
+  m_PrefabInternal: {fileID: 212333795}
 --- !u!4 &765101729 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010729615368, guid: c50d89ee61f6e41448d352919186fec7,
@@ -9965,7 +10000,6 @@ MonoBehaviour:
   - {fileID: 689475480}
   - {fileID: 1511924036}
   - {fileID: 23003274}
-  victimLL: {fileID: 0}
   roundNumber: 0
   numRoundsWon: 0
   repeatPromptButton: {fileID: 1203294978}
@@ -20462,6 +20496,7 @@ MonoBehaviour:
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
   BtLockedColor: {r: 1, g: 0, b: 0, a: 1}
   ToggleIconAlpha: 1
+  ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
   AutoPlayButtonFx: 0
 --- !u!114 &1203294980
@@ -21253,6 +21288,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1313789294 stripped
+BoxCollider:
+  m_PrefabParentObject: {fileID: 65000012708210400, guid: 793a56ee08bf1094196209e7145d9e19,
+    type: 2}
+  m_PrefabInternal: {fileID: 1598069574}
 --- !u!1 &1392681863
 GameObject:
   m_ObjectHideFlags: 0
@@ -21716,9 +21756,19 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011410575750, guid: 793a56ee08bf1094196209e7145d9e19,
+        type: 2}
+      propertyPath: boxCollider
+      value: 
+      objectReference: {fileID: 504695997}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 793a56ee08bf1094196209e7145d9e19, type: 2}
   m_IsPrefabParent: 0
+--- !u!65 &1551837876 stripped
+BoxCollider:
+  m_PrefabParentObject: {fileID: 65000012708210400, guid: 793a56ee08bf1094196209e7145d9e19,
+    type: 2}
+  m_PrefabInternal: {fileID: 498661294}
 --- !u!1001 &1560971608
 Prefab:
   m_ObjectHideFlags: 0
@@ -22039,6 +22089,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011410575750, guid: 793a56ee08bf1094196209e7145d9e19,
+        type: 2}
+      propertyPath: boxCollider
+      value: 
+      objectReference: {fileID: 1313789294}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 793a56ee08bf1094196209e7145d9e19, type: 2}
   m_IsPrefabParent: 0
@@ -22593,6 +22648,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011410575750, guid: 793a56ee08bf1094196209e7145d9e19,
+        type: 2}
+      propertyPath: boxCollider
+      value: 
+      objectReference: {fileID: 589899825}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 793a56ee08bf1094196209e7145d9e19, type: 2}
   m_IsPrefabParent: 0

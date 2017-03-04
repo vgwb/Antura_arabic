@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using EA4S.MinigamesAPI;
 using Random = UnityEngine.Random;
+using DG.Tweening;
 
 namespace EA4S.Minigames.MixedLetters
 {
@@ -12,7 +13,7 @@ namespace EA4S.Minigames.MixedLetters
         public static SeparateLettersSpawnerController instance;
 
         // The delay to start dropping the letters, in seconds:
-        private const float LOSE_ANIMATION_DROP_DELAY = 0.5f;
+        private const float LOSE_ANIMATION_DROP_DELAY = 0.75f;
 
         // The time offset between each letter drop, in seconds:
         private const float LOSE_ANIMATION_DROP_OFFSET = 0.1f;
@@ -25,6 +26,8 @@ namespace EA4S.Minigames.MixedLetters
 
         // The delay to announce the end of the animation, in seconds:
         private const float LOSE_ANIMATION_END_DELAY = 1.5f;
+
+        private const float LOSE_ANIMATION_TWEEN_DURATION = 1f;
 
         // The delay to start vanishing the letters (for the win animation), in seconds:
         private const float WIN_ANIMATION_POOF_DELAY = 1f;
@@ -149,71 +152,53 @@ namespace EA4S.Minigames.MixedLetters
 
         private IEnumerator LoseAnimationCoroutine(Action OnAnimationEnded)
         {
-            int numLettersToDrop = 0;
+            int numLettersActiveInRound = MixedLettersGame.instance.PromptLettersInOrder.Count;
 
-            foreach (DropZoneController dropZoneController in MixedLettersGame.instance.dropZoneControllers)
+            List<int> correctOrderOfLetters = new List<int>(numLettersActiveInRound);
+            List<int> unassignedLetters = new List<int>();
+
+            for (int i = 0; i < numLettersActiveInRound; i++)
             {
-                if (dropZoneController.isActiveAndEnabled && dropZoneController.droppedLetter != null)
-                {
-                    numLettersToDrop++;
-                }
+                unassignedLetters.Add(i);
             }
 
-            MixedLettersGame.instance.HideDropZones();
-
-            if (numLettersToDrop != 0)
+            for (int i = 0; i < numLettersActiveInRound; i++)
             {
-                yield return new WaitForSeconds(LOSE_ANIMATION_DROP_DELAY);
+                var requiredLetter = MixedLettersGame.instance.dropZoneControllers[i].correctLetter.GetLetter();
 
-                foreach (DropZoneController dropZoneController in MixedLettersGame.instance.dropZoneControllers)
+                for (int j = 0; j < unassignedLetters.Count; j++)
                 {
-                    if (dropZoneController.droppedLetter != null)
+                    if (separateLetterControllers[unassignedLetters[j]].GetLetter().Id == requiredLetter.Id)
                     {
-                        dropZoneController.droppedLetter.SetIsKinematic(false);
-                        numLettersToDrop--;
-
-                        if (numLettersToDrop == 0)
-                        {
-                            break;
-                        }
-
-                        else
-                        {
-                            yield return new WaitForSeconds(LOSE_ANIMATION_DROP_OFFSET);
-                        }
+                        correctOrderOfLetters.Add(unassignedLetters[j]);
+                        unassignedLetters.RemoveAt(j);
                     }
                 }
             }
 
-            yield return new WaitForSeconds(LOSE_ANIMATION_POOF_DELAY);
-
-            List<int> letterIndicesList = new List<int>();
-            List<float> letterAbscissasList = new List<float>();
-
-            for (int i = 0; i < separateLetterControllers.Length; i++)
+            for (int i = 0; i < numLettersActiveInRound; i++)
             {
-                SeparateLetterController letterController = separateLetterControllers[i];
-
-                if (letterController.isActiveAndEnabled)
-                {
-                    letterIndicesList.Add(i);
-                    letterAbscissasList.Add(letterController.transform.position.x);
-                }
+                MixedLettersGame.instance.dropZoneControllers[i].HideRotationButton();
+                MixedLettersGame.instance.dropZoneControllers[i].DisableCollider();
+                separateLetterControllers[correctOrderOfLetters[i]].SetIsKinematic(true);
+                separateLetterControllers[correctOrderOfLetters[i]].transform.DOMove(MixedLettersGame.instance.dropZoneControllers[i].transform.position, LOSE_ANIMATION_TWEEN_DURATION);
+                separateLetterControllers[correctOrderOfLetters[i]].transform.DORotate(Vector3.zero, LOSE_ANIMATION_TWEEN_DURATION);
             }
 
-            int[] letterIndicesArray = letterIndicesList.ToArray();
-            float[] letterAbscissasArray = letterAbscissasList.ToArray();
+            yield return new WaitForSeconds(LOSE_ANIMATION_TWEEN_DURATION + LOSE_ANIMATION_DROP_DELAY);
 
-            Array.Sort(letterAbscissasArray, letterIndicesArray);
-
-            for (int i = letterIndicesArray.Length - 1; i >= 0; i--)
+            for (int i = 0; i < numLettersActiveInRound; i++)
             {
-                separateLetterControllers[letterIndicesArray[i]].Vanish();
+                separateLetterControllers[correctOrderOfLetters[i]].SetIsKinematic(false);
+                yield return new WaitForSeconds(LOSE_ANIMATION_DROP_OFFSET);
+            }
 
-                if (i != 0)
-                {
-                    yield return new WaitForSeconds(LOSE_ANIMATION_POOF_OFFSET);
-                }
+            yield return new WaitForSeconds(LOSE_ANIMATION_POOF_DELAY);
+
+            for (int i = 0; i < numLettersActiveInRound; i++)
+            {
+                separateLetterControllers[correctOrderOfLetters[i]].Vanish();
+                yield return new WaitForSeconds(LOSE_ANIMATION_POOF_OFFSET);
             }
 
             yield return new WaitForSeconds(LOSE_ANIMATION_END_DELAY);
