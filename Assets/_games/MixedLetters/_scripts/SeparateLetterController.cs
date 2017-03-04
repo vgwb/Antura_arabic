@@ -182,7 +182,7 @@ namespace EA4S.Minigames.MixedLetters
                     TutorialUI.DrawLine(transform.position, correctDropZone.transform.position, TutorialUI.DrawLineMode.FingerAndArrow);
                 }
 
-                else if ((transform.rotation.z) > 0.1f)
+                else if (Mathf.Abs(transform.rotation.z) > 0.1f)
                 {
                     Vector3 rotateButtonPosition = droppedZone.rotateButtonController.transform.position;
                     TutorialUI.Click(new Vector3(rotateButtonPosition.x, rotateButtonPosition.y, rotateButtonPosition.z - 1f));

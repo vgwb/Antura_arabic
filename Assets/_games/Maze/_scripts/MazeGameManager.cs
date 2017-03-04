@@ -152,7 +152,7 @@ namespace EA4S.Minigames.Maze
             roundNumber = 0;
             roundNumberText.text = "#" + (roundNumber + 1);
 
-            gameTime = maxGameTime / (1 + MazeConfiguration.Instance.Difficulty);
+            ConfigureTimer();
 
             //init first letter
             MazeConfiguration.Instance.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Maze_Title, () =>
@@ -161,6 +161,36 @@ namespace EA4S.Minigames.Maze
             });
 
             Context.GetAudioManager().PlayMusic(Music.Theme8);
+        }
+
+        private void ConfigureTimer()
+        {
+            float difficulty = MazeConfiguration.Instance.Difficulty;
+
+            if (difficulty < 0.2f)
+            {
+                gameTime = 120f;
+            }
+
+            else if (difficulty < 0.4f)
+            {
+                gameTime = 110f;
+            }
+
+            else if (difficulty < 0.6f)
+            {
+                gameTime = 100f;
+            }
+
+            else if (difficulty < 0.8f)
+            {
+                gameTime = 90f;
+            }
+
+            else
+            {
+                gameTime = 70f;
+            }
         }
 
         public void OnFruitGotDrawnOver(MazeArrow mazeArrow)
