@@ -116,15 +116,15 @@ namespace EA4S.Minigames.DancingDots
 			string lettersWithTwoDots = "ة ق ي ت";
 			string lettersWithThreeDots = "ث ش";
 
-			if (lettersWithThreeDots.Contains(game.currentLetter))
+			if (lettersWithThreeDots.Contains(game.removeDiacritics(game.currentLetter)))
 			{
                 game.dotsCount = 3;
 			}
-			else if (lettersWithTwoDots.Contains(game.currentLetter))
+			else if (lettersWithTwoDots.Contains(game.removeDiacritics(game.currentLetter)))
 			{
                 game.dotsCount = 2;
 			}
-			else if (lettersWithOneDot.Contains(game.currentLetter))
+			else if (lettersWithOneDot.Contains(game.removeDiacritics(game.currentLetter)))
 			{
                 game.dotsCount = 1;
 			}

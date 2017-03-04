@@ -6,7 +6,7 @@ namespace EA4S.Minigames.DancingDots
     {
         DancingDotsGame game;
 
-        float timer = 2;
+        float timer = 1.5f;
 
         public ResultGameState(DancingDotsGame game)
         {
