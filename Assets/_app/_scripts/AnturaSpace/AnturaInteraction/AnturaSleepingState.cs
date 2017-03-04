@@ -17,6 +17,7 @@ namespace EA4S.AnturaSpace
 
             controller.Antura.SetTarget(controller.SceneCenter, true);
             timer = 0.5f;
+            controller.MustShowBonesButton = false;
         }
 
         public override void OnTouched()
