@@ -348,6 +348,7 @@ namespace EA4S.Minigames.MixedLetters
             for (int i = 0; i < PromptLettersInOrder.Count; i++)
             {
                 DropZoneController dropZone = dropZoneControllers[i];
+                
                 if (dropZone.droppedLetter == null
                     || dropZone.droppedLetter.GetLetter().Id != PromptLettersInOrder[i].Id
                       || Mathf.Abs(dropZone.droppedLetter.transform.rotation.z) > 0.1f)
