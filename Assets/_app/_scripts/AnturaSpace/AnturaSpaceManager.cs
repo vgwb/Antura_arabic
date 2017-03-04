@@ -86,6 +86,8 @@ namespace EA4S.AnturaSpace
                 bones.Add(bone);
                 --AppManager.I.Player.TotalNumberOfBones;
             }
+            else
+                AudioManager.I.PlaySound(Sfx.KO);
         }
 
         public bool InCustomizationMode { get; private set; }
@@ -99,7 +101,7 @@ namespace EA4S.AnturaSpace
             if (DraggingBone != null)
                 return;
 
-            if (bones.Count < MaxBonesInScene && AppManager.I.Player.TotalNumberOfBones > 0)
+            if (bones.Count <= MaxBonesInScene && AppManager.I.Player.TotalNumberOfBones > 0)
             {
                 var bone = Instantiate(BonePrefab);
                 bone.SetActive(true);
@@ -108,6 +110,10 @@ namespace EA4S.AnturaSpace
                 bones.Add(bone);
                 --AppManager.I.Player.TotalNumberOfBones;
                 bone.GetComponent<BoneBehaviour>().Drag();
+            }
+            else
+            {
+                AudioManager.I.PlaySound(Sfx.KO);
             }
         }
 
