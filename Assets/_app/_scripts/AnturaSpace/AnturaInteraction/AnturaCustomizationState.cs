@@ -13,7 +13,7 @@ namespace EA4S.AnturaSpace
         {
             base.EnterState();
             UI.AnturaSpaceUI.onRewardCategorySelectedInCustomization += AnturaSpaceUI_onRewardCategorySelectedInCustomization;
-            controller.UI.ShowBonesButton(false);
+            controller.MustShowBonesButton = false;
             controller.Antura.SetTarget(controller.SceneCenter, true, controller.RotatingBase.transform);
             controller.RotatingBase.Activated = true;
         }

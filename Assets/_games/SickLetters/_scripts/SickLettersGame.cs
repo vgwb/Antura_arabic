@@ -225,9 +225,9 @@ namespace EA4S.Minigames.SickLetters
             if (diff < 0.333f)
                 setDifficulty(diff, 70, 18, 5.20906f, false, false);
             else if (diff < 0.666f)
-                setDifficulty(diff, 90, 30, 4.0f, false, true);
+                setDifficulty(diff, 80, 30, 4.0f, false, true);
             else
-                setDifficulty(diff, 120, 42, 3.0f, true, true);
+                setDifficulty(diff, 100, 42, 3.0f, false, true);
         }
 
         public void onWrongMove(bool isDDCorrect = false)
