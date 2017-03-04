@@ -198,6 +198,11 @@ namespace EA4S.Minigames.Maze
             currentMazeLetter.NotifyFruitGotMouseOver(mazeArrow);
         }
 
+        public void OnDrawnLetterWrongly()
+        {
+            currentMazeLetter.NotifyDrawnLetterWrongly();
+        }
+
         public void initUI()
         {
             //ui:
