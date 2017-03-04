@@ -83,12 +83,29 @@ namespace EA4S.Map
             }
             /* --------------------- */
             FirstOrLastMap();
+
+            if((AppManager.I.Player.CurrentJourneyPosition.Stage == AppManager.I.Player.MaxJourneyPosition.Stage) &&
+                (AppManager.I.Player.CurrentJourneyPosition.LearningBlock == AppManager.I.Player.MaxJourneyPosition.LearningBlock) &&
+                (AppManager.I.Player.CurrentJourneyPosition.PlaySession == AppManager.I.Player.MaxJourneyPosition.PlaySession))
+                PlayDialogRandomly();
         }
 
         void OnDestroy()
         {
             this.StopAllCoroutines();
         }
+
+        #region Dialogs
+        void PlayDialogRandomly()
+        {
+            Database.LocalizationDataId[] data = new Database.LocalizationDataId[3];
+            data[0]= Database.LocalizationDataId.Assessment_Start_1;
+            data[1] = Database.LocalizationDataId.Assessment_Start_2;
+            data[2] = Database.LocalizationDataId.Assessment_Start_3;
+            int n = Random.Range(0, data.Length);
+            KeeperManager.I.PlayDialog(data[n], true, true);
+        }
+        #endregion
 
         #region First Contact Session        
         /// <summary>
@@ -230,9 +247,7 @@ namespace EA4S.Map
         }
         public void ChangeCamera(GameObject ZoomCameraGO)
         {
-
             CameraGameplayController.I.MoveToPosition(ZoomCameraGO.transform.position, ZoomCameraGO.transform.rotation, 0.6f);
-
         }
         IEnumerator ResetPosLetter()
         {
@@ -250,13 +265,13 @@ namespace EA4S.Map
         {
             //yield return new WaitForSeconds(0.1f);
             DesactiveUIButtonsDuringTransition();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.8f);
             if(!isStageAvailable)
             {
                 playButton.SetActive(true);              
             }
             DesactiveUIButtonsDuringTransition();
-            yield return new WaitForSeconds(0.3f);
+            //yield return new WaitForSeconds(0.3f);
             stages[previousStage].SetActive(false);
             inTransition = false;
         }
