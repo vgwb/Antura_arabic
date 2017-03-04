@@ -1,4 +1,5 @@
-﻿using EA4S.Helpers;
+﻿using EA4S.Core;
+using EA4S.Helpers;
 using SQLite;
 
 namespace EA4S.Database
@@ -31,20 +32,26 @@ namespace EA4S.Database
         public InfoEvent Event { get; set; }
 
         /// <summary>
+        /// the current scene
+        /// </summary>
+        public AppScene Scene { get; set; }
+
+        /// <summary>
         /// Additional raw JSON data saved alongside the event to record more details.
         /// Example: "{playerId:0, rewardType:2}"
         /// </summary>
-        public string AdditionalData { get; set; } 
+        public string AdditionalData { get; set; }
 
         /// <summary>
         /// Empty constructor required by MySQL.
         /// </summary>
         public LogInfoData() { }
 
-        public LogInfoData(int appSession, InfoEvent _event, string additionalData)
+        public LogInfoData(int appSession, InfoEvent _event, AppScene _scene, string additionalData)
         {
             AppSession = appSession;
             Event = _event;
+            Scene = _scene;
             AdditionalData = additionalData;
             Timestamp = GenericHelper.GetTimestampForNow();
         }

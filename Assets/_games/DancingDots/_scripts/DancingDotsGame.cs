@@ -132,7 +132,7 @@ namespace EA4S.Minigames.DancingDots
         private Level currentLevel = Level.Level4;
         private List<DancingDotsSplat> splats;
         private bool isPlaying = false;
-
+        //private bool wonLastRound = false;
 
         protected override void Awake()
         {
@@ -477,8 +477,10 @@ namespace EA4S.Minigames.DancingDots
             }
         }
 
+       
         IEnumerator RoundLost()
         {
+            //wonLastRound = false;
             Context.GetLogManager().OnAnswered(dancingDotsLL.letterData, false);
             yield return new WaitForSeconds(0.5f);
             Context.GetAudioManager().PlaySound(Sfx.Lose);
@@ -503,6 +505,7 @@ namespace EA4S.Minigames.DancingDots
                 Context.GetOverlayWidget().SetStarsScore(numberOfRoundsWon);
             }
 
+            //wonLastRound = true;
             yield return new WaitForSeconds(0.25f);
             Context.GetAudioManager().PlaySound(Sfx.Win);
             yield return new WaitForSeconds(1f);
@@ -512,13 +515,21 @@ namespace EA4S.Minigames.DancingDots
 
         public void DancingDotsEndGame()
         {
-            dancingDotsLL.letterObjectView.DoDancingWin();
+            //dancingDotsLL.letterObjectView.DoDancingWin();
             isPlaying = false;
-            dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_idle);
+            //dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_idle);
+
+            dancingDotsLL.letterObjectView.DoDancingWin();
+
             // Stop danger clock if rounds finish and it is running
             Context.GetAudioManager().StopSounds();
             this.SetCurrentState(this.ResultState);
             //StartCoroutine(EndGame_Coroutine());
+        }
+
+        IEnumerator setIdle() {
+            yield return new WaitForSeconds(2.5f);
+            dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_still);
         }
 
         void startUI()
@@ -532,6 +543,57 @@ namespace EA4S.Minigames.DancingDots
             Context.GetOverlayWidget().SetStarsThresholds(2, 3, 6);
             Context.GetOverlayWidget().SetStarsScore(0);
         }
+
+
+        public string removeDiacritics(string letter)
+        {
+            //nasb
+            if (letter.Contains("ً"))
+            {
+                return letter.Replace("ً", string.Empty);
+            }
+            //jarr
+            else if (letter.Contains("ٍ"))
+            {
+                return letter.Replace("ٍ", string.Empty);
+            }
+            //damm
+            else if (letter.Contains("ٌ"))
+            {
+                return letter.Replace("ٌ", string.Empty);
+            }
+            //kasra
+            else if (letter.Contains("ِ"))
+            {
+                return letter.Replace("ِ", string.Empty);
+            }
+            //fatha
+            else if (letter.Contains("َ"))
+            {
+                return letter.Replace("َ", string.Empty);
+            }
+            //damma
+            else if (letter.Contains("ُ"))
+            {
+                return letter.Replace("ُ", string.Empty);
+            }
+            //shadda
+            else if (letter.Contains("ّ"))
+            {
+                return letter.Replace("ّ", string.Empty);
+
+            }
+            //sukon
+            else if (letter.Contains("ْ"))
+            {
+                return letter.Replace("ْ", string.Empty);
+            }
+            else
+            {
+                return letter;
+            }
+        }
+
         /*
         DancingDotsQuadManager disco;
         double time = 0;

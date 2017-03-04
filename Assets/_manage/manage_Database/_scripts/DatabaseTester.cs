@@ -636,9 +636,9 @@ namespace EA4S.Database.Management
         public void TestRewardUnlocks()
         {
             var jp = new JourneyPosition(1, 1, 2);
-            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData("aaa", "black", RewardTypes.decal, jp));
-            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData("bbb", "black", RewardTypes.decal, jp));
-            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData("ccc", "black", RewardTypes.decal, jp));
+            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData(0, "aaa", "black", RewardTypes.decal, jp));
+            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData(0, "bbb", "black", RewardTypes.decal, jp));
+            dbManager.UpdateRewardPackUnlockData(new RewardPackUnlockData(0, "ccc", "black", RewardTypes.decal, jp));
             var rewardPackUnlockDatas = dbManager.GetAllRewardPackUnlockData();
             DumpAllData(rewardPackUnlockDatas);
         }

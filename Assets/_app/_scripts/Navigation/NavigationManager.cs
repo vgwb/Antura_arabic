@@ -16,6 +16,8 @@ namespace EA4S.Core
     {
         private static bool VERBOSE = false;
 
+        public const AppScene INITIAL_SCENE = AppScene.Home;
+
         public NavigationData NavData;
 
         public SceneTransitionManager SceneTransitionManager = new SceneTransitionManager();
@@ -88,6 +90,11 @@ namespace EA4S.Core
 
         #region Automatic navigation API
 
+        public AppScene GetCurrentScene()
+        {
+            return NavData.CurrentScene;
+        }
+
         /// <summary>
         /// Given the current context, selects the scene that should be loaded next and loads it.
         /// This is related to the 'main' flow of the application.
@@ -137,7 +144,7 @@ namespace EA4S.Core
                     if (NavData.CurrentPlayer.IsFirstContact()) {
                         GoToScene(AppScene.AnturaSpace);
                     } else {
-                        if (AppManager.I.Player.HasFinishedTheGame && !AppManager.I.Player.IsFinalShowed()) { 
+                        if (AppManager.I.Player.HasFinishedTheGame && !AppManager.I.Player.IsFinalShowed()) {
                             AppManager.I.Player.SetFinalShowed();
                             GoToScene(AppScene.Ending);
                         } else {
@@ -208,6 +215,7 @@ namespace EA4S.Core
             if (AppConstants.UseUnityAnalytics && !Application.isEditor) {
                 UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
             }
+            LogManager.I.LogInfo(InfoEvent.EnterScene);
         }
 
         private void UpdatePrevSceneStack(AppScene newScene)
