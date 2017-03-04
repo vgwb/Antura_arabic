@@ -16,7 +16,7 @@ namespace EA4S.AnturaSpace
             base.EnterState();
             shoutTimer = UnityEngine.Random.Range(1, 3);
             timeInThisState = 0;
-            controller.UI.ShowBonesButton(true);
+            controller.MustShowBonesButton = true;
             controller.Antura.AnimationController.State = AnturaAnimationStates.idle;
             controller.Antura.SetTarget(controller.AttentionPosition, true);
         }
@@ -24,7 +24,6 @@ namespace EA4S.AnturaSpace
         public override void ExitState()
         {
             base.ExitState();
-            controller.UI.ShowBonesButton(false);
         }
 
         public override void OnTouched()

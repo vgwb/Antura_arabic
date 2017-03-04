@@ -26,6 +26,7 @@ namespace EA4S.AnturaSpace
         public GameObject BonePrefab;
         public GameObject PoofPrefab;
 
+        public bool MustShowBonesButton { get; set; }
         public Transform DraggingBone { get; private set; }
         public Transform NextBoneToCatch
         {
@@ -165,7 +166,7 @@ namespace EA4S.AnturaSpace
             stateManager.Update(Time.deltaTime);
 
             if (!Tutorial.IsRunning)
-                UI.ShowBonesButton(bones.Count < MaxBonesInScene);
+                UI.ShowBonesButton(MustShowBonesButton && (bones.Count < MaxBonesInScene));
 
             UI.BonesCount = AppManager.I.Player.GetTotalNumberOfBones();
 

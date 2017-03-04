@@ -21,7 +21,7 @@ namespace EA4S.AnturaSpace
             sitTimer = 0.5f;
             timeToStayInThisState = 4 + UnityEngine.Random.value * 2;
             animateTimer = UnityEngine.Random.Range(4, 8) - 2 * controller.AnturaHappiness;
-            controller.UI.ShowBonesButton(true);
+            controller.MustShowBonesButton = true;
             controller.Antura.SetTarget(controller.SceneCenter, true);
         }
 
@@ -70,7 +70,7 @@ namespace EA4S.AnturaSpace
             {
                 animateTimer -= delta;
 
-                if (animateTimer <= 0)
+                if (animateTimer <= 0 && Vector3.Distance(controller.Antura.transform.position, controller.SceneCenter.position) < 6)
                 {
                     controller.CurrentState = controller.Animate;
                 }
@@ -80,7 +80,6 @@ namespace EA4S.AnturaSpace
         public override void ExitState()
         {
             controller.Antura.SetTarget(null, false);
-            controller.UI.ShowBonesButton(false);
             base.ExitState();
         }
 
