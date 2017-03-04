@@ -76,6 +76,10 @@ namespace EA4S.Antura
             /// - decal
         }
 
+        /// <summary>
+        /// Saves the antura customization using the current model customization.
+        /// </summary>
+        /// <returns></returns>
         public AnturaCustomization SaveAnturaCustomization() {
             AnturaCustomization returnCustomization = new AnturaCustomization();
             foreach (LoadedModel loadedModel in LoadedModels) {
@@ -274,6 +278,7 @@ namespace EA4S.Antura
 
         private void RewardSystemManager_OnRewardItemChanged(RewardPackUnlockData rewardPackUnlockData) {
             LoadRewardPackOnAntura(rewardPackUnlockData);
+            SaveAnturaCustomization();
         }
 
         void OnDisable() {

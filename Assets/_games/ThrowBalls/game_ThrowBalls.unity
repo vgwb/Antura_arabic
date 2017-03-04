@@ -7785,7 +7785,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1563765487}
   - component: {fileID: 1563765486}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Slingshot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8294,6 +8294,46 @@ Prefab:
     - target: {fileID: 4637043075492916, guid: 7c3b9ccf551f9704990e2b1937796eb4, type: 2}
       propertyPath: m_LocalPosition.z
       value: 3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807433301729894, guid: 7c3b9ccf551f9704990e2b1937796eb4, type: 2}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828170866211776, guid: 7c3b9ccf551f9704990e2b1937796eb4, type: 2}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936132180571708, guid: 7c3b9ccf551f9704990e2b1937796eb4, type: 2}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680301984224438, guid: 7c3b9ccf551f9704990e2b1937796eb4, type: 2}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618912309192978, guid: 7c3b9ccf551f9704990e2b1937796eb4, type: 2}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858286666210944, guid: 7c3b9ccf551f9704990e2b1937796eb4, type: 2}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360323503935510, guid: 7c3b9ccf551f9704990e2b1937796eb4, type: 2}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537274193745088, guid: 7c3b9ccf551f9704990e2b1937796eb4, type: 2}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849278724131584, guid: 7c3b9ccf551f9704990e2b1937796eb4, type: 2}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911242070717374, guid: 7c3b9ccf551f9704990e2b1937796eb4, type: 2}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c3b9ccf551f9704990e2b1937796eb4, type: 2}
@@ -8886,7 +8926,7 @@ GameObject:
   - component: {fileID: 1895825791}
   - component: {fileID: 1895825790}
   - component: {fileID: 1895825789}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}

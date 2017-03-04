@@ -253,7 +253,9 @@ namespace EA4S.Profile
                 return _rewardsUnlocked;
             }
 
-            private set { _rewardsUnlocked = value; }
+            private set {
+                _rewardsUnlocked = value;
+            }
         }
 
         public string Key {

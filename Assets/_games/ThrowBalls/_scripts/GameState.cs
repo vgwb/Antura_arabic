@@ -21,9 +21,8 @@ namespace EA4S.Minigames.ThrowBalls
         public const float TUTORIAL_UI_PERIOD = 4;
         private const float FLASHING_TEXT_CYCLE_DURATION = 1f;
 
-        private const float SHOW_BALL_AND_SLINGSHOT_START_DELAY = 0.5f;
-        private const float SHOW_BALL_AND_SLINGSHOT_DELAY_FOR_SLINGSHOT = 0.5f;
-        private const float SHOW_BALL_AND_SLINGSHOT_END_DELAY = 0.67f;
+        private const float SHOW_BALL_START_DELAY = 0.33f;
+        private const float SHOW_BALL_END_DELAY = 0.67f;
 
         public bool isRoundOngoing;
 
@@ -126,6 +125,9 @@ namespace EA4S.Minigames.ThrowBalls
             // Layer 16 = Slingshot; Layer 10 = Player (Antura).
             Physics.IgnoreLayerCollision(16, 10);
 
+            // Layer 16 = Slingshot; Layer 12 = Ball.
+            Physics.IgnoreLayerCollision(16, 12);
+
             letterSpawner = new LetterSpawner();
 
             foreach (Collider collider in ThrowBallsGame.instance.environment.GetComponentsInChildren<Collider>())
@@ -177,6 +179,12 @@ namespace EA4S.Minigames.ThrowBalls
 
         private void OnTitleVoiceOverDone()
         {
+            SlingshotController.instance.Enable();
+
+            GameObject poof = UnityEngine.Object.Instantiate(ThrowBallsGame.instance.poofPrefab, SlingshotController.instance.transform.position + new Vector3(0f, -5f, -2f), Quaternion.identity);
+            UnityEngine.Object.Destroy(poof, 10);
+            ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Poof);
+
             audioManager.PlayDialogue(Database.LocalizationDataId.ThrowBalls_letters_Intro, OnIntroVoiceOverDone);
         }
 
@@ -185,29 +193,21 @@ namespace EA4S.Minigames.ThrowBalls
             AnturaController.instance.DoneChasing();
             AnturaController.instance.Disable();
 
-            ThrowBallsGame.instance.StartCoroutine(ShowBallAndSlingshotCoroutine());
+            ThrowBallsGame.instance.StartCoroutine(ShowBallCoroutine());
         }
 
-        private IEnumerator ShowBallAndSlingshotCoroutine()
+        private IEnumerator ShowBallCoroutine()
         {
-            yield return new WaitForSeconds(SHOW_BALL_AND_SLINGSHOT_START_DELAY);
-
-            SlingshotController.instance.Enable();
-
-            GameObject poof = UnityEngine.Object.Instantiate(ThrowBallsGame.instance.poofPrefab, SlingshotController.instance.transform.position + new Vector3(0f, -5f, -2f), Quaternion.identity);
-            UnityEngine.Object.Destroy(poof, 10);
-            ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Poof);
-
-            yield return new WaitForSeconds(SHOW_BALL_AND_SLINGSHOT_DELAY_FOR_SLINGSHOT);
+            yield return new WaitForSeconds(SHOW_BALL_START_DELAY);
 
             BallController.instance.Enable();
             Catapult.instance.EnableCollider();
 
-            poof = UnityEngine.Object.Instantiate(ThrowBallsGame.instance.cratePoofPrefab, BallController.instance.transform.position + Vector3.back * 1.75f, Quaternion.identity);
+            GameObject poof = UnityEngine.Object.Instantiate(ThrowBallsGame.instance.cratePoofPrefab, BallController.instance.transform.position + Vector3.back * 1.75f, Quaternion.identity);
             UnityEngine.Object.Destroy(poof, 10);
             ThrowBallsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Poof);
 
-            yield return new WaitForSeconds(SHOW_BALL_AND_SLINGSHOT_END_DELAY);
+            yield return new WaitForSeconds(SHOW_BALL_END_DELAY);
 
             switch (ThrowBallsConfiguration.Instance.Variation)
             {
