@@ -200,15 +200,38 @@ namespace EA4S.Rewards
                     Debug.LogWarningFormat("Reward typology requested {0} not found", _rewardType);
                     break;
             }
-            // check if there is a selected item, if no one select the first.
-            if (returnList.Count > 0 && !returnList.Exists(c => c != null && c.IsSelected == true)) {
+
+            // Color selection
+            RewardPackUnlockData alreadySelectedReward;
+            switch (_rewardType) {
+                case RewardTypes.reward:
+                    List<RewardPackUnlockData> fornitures = AppManager.I.Player.CurrentAnturaCustomizations.Fornitures;
+                    alreadySelectedReward = fornitures.Find(r => r.ItemId == _rewardItemId && r.Type == _rewardType);
+                    break;
+                case RewardTypes.texture:
+                    alreadySelectedReward = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture;
+                    break;
+                case RewardTypes.decal:
+                    alreadySelectedReward = AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture;
+                    break;
+                default:
+                    Debug.LogErrorFormat("Reward type {0} not found!", _rewardType);
+                    return returnList;
+            }
+            
+            if (alreadySelectedReward != null) {
+                // if previous selected this reward use previous color...
+                returnList.Find(color => color != null && color.ID == alreadySelectedReward.ColorId).IsSelected = true;
+            } else {
+                // ...else selecting first available color
                 foreach (var firstItem in returnList) {
-                    if(firstItem != null) { 
+                    if (firstItem != null) {
                         firstItem.IsSelected = true;
                         return returnList;
                     }
                 }
             }
+
             return returnList;
         }
 
