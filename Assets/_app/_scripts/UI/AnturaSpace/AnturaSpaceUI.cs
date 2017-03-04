@@ -168,7 +168,7 @@ namespace EA4S.UI
         {
             this.StopAllCoroutines();
             // Save configuration
-            AnturaModelManager.Instance.SaveAnturaCustomization();
+            //AnturaModelManager.Instance.SaveAnturaCustomization();
 
             // Toggle buttons
             foreach (AnturaSpaceCategoryButton bt in btsCategories) {
@@ -277,9 +277,12 @@ namespace EA4S.UI
 
         void SelectSwatch(RewardColorItem _colorData)
         {
-            foreach (AnturaSpaceSwatchButton item in btsSwatches) item.Toggle(item.Data == _colorData);
-            if (_colorData != null) RewardSystemManager.SelectRewardColorItem(_colorData.ID, currRewardType);
-            else Debug.Log("SelectSwatch > _colorData is NULL!");
+            foreach (AnturaSpaceSwatchButton item in btsSwatches)
+                item.Toggle(item.Data == _colorData);
+            if (_colorData != null)
+                RewardSystemManager.SelectRewardColorItem(_colorData.ID, currRewardType);
+            else
+                Debug.Log("SelectSwatch > _colorData is NULL!");
         }
 
         #endregion
