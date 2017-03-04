@@ -30,6 +30,7 @@ namespace EA4S.AnturaSpace
             controller.Antura.SetTarget(controller.NextBoneToCatch, false);
             boneRigidBody = controller.NextBoneToCatch.GetComponent<Rigidbody>();
             controller.Antura.Excited = true;
+            controller.MustShowBonesButton = true;
         }
 
         public override void ExitState()

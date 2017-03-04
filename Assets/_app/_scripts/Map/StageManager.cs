@@ -24,6 +24,7 @@ namespace EA4S.Map
         public GameObject[] cameras;
         public GameObject[] miniMaps;
         public GameObject letter;
+        bool isStageAvailable;
 
         [Header("LockUI")]
         public GameObject lockUI;
@@ -32,6 +33,9 @@ namespace EA4S.Map
         public GameObject leftStageButton;
         public GameObject rightStageButton;
         public GameObject uiButtonMovementPlaySession;
+        public GameObject nextPlaySessionButton;
+        public GameObject beforePlaySessionButton;
+        public GameObject playButton;
         public GameObject bookButton;
         public GameObject anturaButton;
 
@@ -46,8 +50,8 @@ namespace EA4S.Map
         {
             if (!Application.isEditor) SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
 
-          /*  AppManager.I.Player.MaxJourneyPosition.Stage = 6;
-            AppManager.I.Player.MaxJourneyPosition.LearningBlock = 15;
+          /*  AppManager.I.Player.MaxJourneyPosition.Stage = 3;
+            AppManager.I.Player.MaxJourneyPosition.LearningBlock = 10;
             AppManager.I.Player.MaxJourneyPosition.PlaySession = 100;*/
 
             numberStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
@@ -156,6 +160,10 @@ namespace EA4S.Map
                     AppManager.I.Player.CurrentJourneyPosition.Stage++;
                     CalculatePosPin();
                 }
+                else
+                {
+                    StageNotAvailable();
+                }
                 StartCoroutine("DesactivateMap");
             }
         }
@@ -167,6 +175,7 @@ namespace EA4S.Map
         {
             if ((numberStage >= 1) && (!inTransition))
             {
+       
                 previousStage = numberStage;
                 numberStage--;
                 CalculateSettingsStage();
@@ -180,6 +189,11 @@ namespace EA4S.Map
                 {
                     lockUI.SetActive(false);
                     letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
+                    isStageAvailable = false;
+                }
+                else
+                {
+                    StageNotAvailable();
                 }
                 StartCoroutine("DesactivateMap");
             }
@@ -196,6 +210,7 @@ namespace EA4S.Map
         }
         void CalculatePosPin()
         {
+            isStageAvailable = false;
             letter.GetComponent<LetterMovement>().stageScript = miniMaps[numberStage].GetComponent<Stage>();
             letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
             lockUI.SetActive(false);
@@ -204,6 +219,14 @@ namespace EA4S.Map
         void DesactiveUIButtonsDuringTransition()
         {
             uiButtonMovementPlaySession.SetActive(!uiButtonMovementPlaySession.activeSelf);
+        }
+        void StageNotAvailable()
+        {
+            isStageAvailable = true;
+
+            playButton.SetActive(false);
+            nextPlaySessionButton.SetActive(false);
+            beforePlaySessionButton.SetActive(false);
         }
         public void ChangeCamera(GameObject ZoomCameraGO)
         {
@@ -225,9 +248,13 @@ namespace EA4S.Map
         }
         IEnumerator DesactivateMap()
         {
-            yield return new WaitForSeconds(0.1f);
+            //yield return new WaitForSeconds(0.1f);
             DesactiveUIButtonsDuringTransition();
             yield return new WaitForSeconds(0.5f);
+            if(!isStageAvailable)
+            {
+                playButton.SetActive(true);              
+            }
             DesactiveUIButtonsDuringTransition();
             yield return new WaitForSeconds(0.3f);
             stages[previousStage].SetActive(false);

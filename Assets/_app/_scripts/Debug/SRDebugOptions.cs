@@ -479,6 +479,13 @@ public partial class SROptions
         ResetAll();
     }
 
+    [Category("Player Profile")]
+    [Sort(2)]
+    public void GiveBones()
+    {
+        AppManager.I.Player.AddBones(10);
+    }
+
     [Category("Max Journey Position")]
     [Sort(5)]
     public string CurrentMaxJouneryPosition {

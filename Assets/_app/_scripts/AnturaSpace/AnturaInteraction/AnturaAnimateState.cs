@@ -15,6 +15,7 @@ namespace EA4S.AnturaSpace
         {
             base.EnterState();
             timer = 4.0f;
+            controller.MustShowBonesButton = true;
 
             if (controller.AnturaHappiness > 0.95f)
             {

@@ -18,7 +18,7 @@ namespace EA4S.AnturaSpace
             base.EnterState();
             shoutTimer = UnityEngine.Random.Range(1, 3);
             timeInThisState = 0;
-            controller.UI.ShowBonesButton(true);
+            controller.MustShowBonesButton = true;
             controller.Antura.AnimationController.State = AnturaAnimationStates.idle;
 
             waitForLaunchPoint = new GameObject("WaitForLaunch");
@@ -31,7 +31,6 @@ namespace EA4S.AnturaSpace
             controller.Antura.Excited = false;
             GameObject.Destroy(waitForLaunchPoint);
             base.ExitState();
-            controller.UI.ShowBonesButton(false);
         }
 
         public override void Update(float delta)
