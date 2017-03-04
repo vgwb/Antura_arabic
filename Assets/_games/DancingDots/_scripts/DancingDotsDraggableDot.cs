@@ -162,7 +162,9 @@ namespace EA4S.Minigames.DancingDots
 			{
 				if (other.tag == DancingDotsGame.DANCING_DOTS)
 				{
-					if (other.GetComponent<DancingDotsDropZone>().letters.Contains(game.currentLetter) 
+                    //Debug.Log(game.removeDiacritics(game.currentLetter));
+
+					if (other.GetComponent<DancingDotsDropZone>().letters.Contains(game.removeDiacritics(game.currentLetter))
 						&& game.dotsCount == dots)
 					{
 						overDestinationMarker = markerStatus;
@@ -196,7 +198,8 @@ namespace EA4S.Minigames.DancingDots
 			Setmarker(other, false);
 		}
 
+        
 
-	}
+    }
 
 }

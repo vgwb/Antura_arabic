@@ -29,7 +29,10 @@ namespace EA4S.Minigames.Egg
 
             if (firstQuestion)
             {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_Title);
+                if (EggConfiguration.Instance.Variation == EggConfiguration.EggVariation.Single)
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_Alphabet_Title);
+                else
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_Title);
             }
 
             EggEnter();
