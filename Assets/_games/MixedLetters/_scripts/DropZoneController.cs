@@ -34,6 +34,8 @@ namespace EA4S.Minigames.MixedLetters
 
         public RotateButtonController rotateButtonController;
 
+        public BoxCollider boxCollider;
+
         void Start()
         {
             THROB_INIT_SCALE = transform.localScale.x;
@@ -178,6 +180,8 @@ namespace EA4S.Minigames.MixedLetters
             isChosen = false;
 
             rotateButtonController.Disable();
+
+            boxCollider.enabled = true;
         }
 
         public void Enable()
@@ -189,6 +193,11 @@ namespace EA4S.Minigames.MixedLetters
         {
             gameObject.SetActive(false);
             rotateButtonController.Disable();
+        }
+
+        public void DisableCollider()
+        {
+            boxCollider.enabled = false;
         }
     }
 }
