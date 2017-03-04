@@ -151,5 +151,13 @@ namespace EA4S.Minigames.Maze
                 fruit.HighlightAsReached();
             }
         }
+
+        public void NotifyDrawnLetterWrongly()
+        {
+            if (CanLaunchRocket())
+            {
+                LaunchRocket();
+            }
+        }
     }
 }

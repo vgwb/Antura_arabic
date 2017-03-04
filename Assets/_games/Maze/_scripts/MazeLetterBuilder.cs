@@ -53,6 +53,7 @@ namespace EA4S.Minigames.Maze
                     letter = child.gameObject.AddComponent<MazeLetter>();
 
                     child.gameObject.AddComponent<BoxCollider>();
+                    child.gameObject.AddComponent<MeshCollider>();
                 }
 
                 if (child.name.IndexOf("_coll") != -1)
