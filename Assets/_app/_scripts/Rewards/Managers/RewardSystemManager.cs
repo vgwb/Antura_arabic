@@ -207,17 +207,19 @@ namespace EA4S.Rewards
             }
 
             // Color selection
-            RewardPackUnlockData alreadySelectedReward;
+            RewardPackUnlockData alreadySelectedReward = null;
             switch (_rewardType) {
                 case RewardTypes.reward:
                     List<RewardPackUnlockData> fornitures = AppManager.I.Player.CurrentAnturaCustomizations.Fornitures;
                     alreadySelectedReward = fornitures.Find(r => r.ItemId == _rewardItemId && r.Type == _rewardType);
                     break;
                 case RewardTypes.texture:
-                    alreadySelectedReward = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture;
+                    if(AppManager.I.Player.CurrentAnturaCustomizations.TileTextureId == _rewardItemId)
+                        alreadySelectedReward = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture;
                     break;
                 case RewardTypes.decal:
-                    alreadySelectedReward = AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture;
+                    if (AppManager.I.Player.CurrentAnturaCustomizations.DecalTextureId == _rewardItemId)
+                        alreadySelectedReward = AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture;
                     break;
                 default:
                     Debug.LogErrorFormat("Reward type {0} not found!", _rewardType);
@@ -512,6 +514,7 @@ namespace EA4S.Rewards
             string itemId;
             RewardColor color = null;
             bool alreadyUnlocked = false;
+            List<RewardPackUnlockData> alreadyUnlockedRewardOfType = AppManager.I.Player.RewardsUnlocked.FindAll(r => r.Type == _rewardType);
             switch (_rewardType) {
                 case RewardTypes.reward:
                     int countAvoidInfiniteLoop = 300;
@@ -521,13 +524,19 @@ namespace EA4S.Rewards
                         bool duplicated = false;
                         do {
                             //int count = AppManager.I.Player.GetNotYetUnlockedRewardCountForType(_rewardType);
-                            itemId = config.Rewards.GetRandom().ID;
+                            List<Reward> availableItems = config.GetClone().Rewards;
+                            availableItems.RemoveAll(r => alreadyUnlockedRewardOfType.Exists(ur => ur.ItemId == r.ID));
+                            //itemId = config.Rewards.Where(r => alreadyUnlockedRewardOfType.Any(aur => aur  r.ID    .GetRandom().ID;
+
+                            itemId = availableItems.GetRandom().ID;
                             color = config.RewardsColorPairs.GetRandom();
                             List<RewardPackUnlockData> unlocked = AppManager.I.Player.RewardsUnlocked;
                             duplicated = unlocked.Find(r => r.ItemId == itemId) != null;
                             if (duplicated)
                                 Debug.LogFormat("Reward {0} already unlocked! Retry!", itemId);
                             countAvoidInfiniteLoop--;
+                            if(countAvoidInfiniteLoop == 0)
+                                Debug.LogFormat("-------------- Reward {0} infinite loop!!!!", itemId);
                         } while (duplicated && countAvoidInfiniteLoop > 0);
                         //} while (duplicated && AppManager.I.Player.RewardForTypeAvailableYet(_rewardType) || countAvoidInfiniteLoop < 1) ;
                     } else { // need only to create new color pair for one of already unlocked reward
@@ -622,6 +631,10 @@ namespace EA4S.Rewards
         public List<RewardTile> RewardsTile;
         public List<RewardColor> RewardsTileColor;
         public List<PlaySessionRewardUnlock> PlaySessionRewardsUnlock;
+
+        public RewardConfig GetClone() {
+            return MemberwiseClone() as RewardConfig;
+        }
     }
 
     [Serializable]
