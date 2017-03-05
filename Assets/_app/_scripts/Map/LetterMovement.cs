@@ -13,13 +13,14 @@ namespace EA4S.Map
     {
         [Header("Stage")]
         public Stage stageScript;
+        public FingerStage swipeScript;
 
         [Header("UIButtons")]
         public GameObject moveRightButton;
         public GameObject moveLeftButton;
 
         [Header("PinState")]
-        public bool inRopeState;
+        public bool playerOverDotPin;
 
         float distanceNextDotToHitPoint;
         float distanceBeforelDotToHitPoint;
@@ -64,7 +65,7 @@ namespace EA4S.Map
              Debug.Log("MaxLB"+AppManager.I.Player.MaxJourneyPosition.LearningBlock);
              Debug.Log("MaxPS"+AppManager.I.Player.MaxJourneyPosition.PlaySession);  */
 
-            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject() && (!swipeScript.swipe))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -74,6 +75,7 @@ namespace EA4S.Map
                 {
                     if (hit.collider.tag == "Rope")
                     {
+                        playerOverDotPin = true;
                         ropeSelected = hit.transform.parent.gameObject.GetComponent<Rope>();
                         int numDotsRope = 0;
                         for (int r = 0; r < ropeSelected.dots.Count; r++)
@@ -106,15 +108,20 @@ namespace EA4S.Map
                     }
                     else if (hit.collider.tag == "Pin")
                     {
+                        playerOverDotPin = true;
                         colliderRaycast = hit.collider;
                         MoveToPin();
                     }
                     else colliderRaycast = null;
                 }
                 else colliderRaycast = null;
-                inRopeState = true;
             }
-            else inRopeState = false; 
+            else StartCoroutine("PlayerOverDotPinToFalse");
+        }
+        IEnumerator PlayerOverDotPinToFalse()
+        {
+            yield return new WaitForSeconds(0.3f);
+            playerOverDotPin = false;
         }
         void LateUpdate()
         {
@@ -130,7 +137,6 @@ namespace EA4S.Map
                     MoveToPin();
                     UpdateCurrentJourneyPosition();
                 }
-
             }
         }
 

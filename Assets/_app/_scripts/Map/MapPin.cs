@@ -28,7 +28,7 @@ namespace EA4S
             {
                 transform.GetChild(0).gameObject.SetActive(false);
                 ChangeMaterialPinToRed();
-                if(other.gameObject.GetComponent<LetterMovement>().inRopeState== true) AudioManager.I.PlaySound(Sfx.UIButtonClick);
+                if(other.gameObject.GetComponent<LetterMovement>().playerOverDotPin== true) AudioManager.I.PlaySound(Sfx.UIButtonClick);
             }
         }
         void OnTriggerExit(Collider other)
