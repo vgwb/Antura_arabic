@@ -50,7 +50,7 @@ namespace EA4S.Map
         {
             if (!Application.isEditor) SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
 
-          /*  AppManager.I.Player.MaxJourneyPosition.Stage = 3;
+           /* AppManager.I.Player.MaxJourneyPosition.Stage = 3;
             AppManager.I.Player.MaxJourneyPosition.LearningBlock = 10;
             AppManager.I.Player.MaxJourneyPosition.PlaySession = 100;*/
 
@@ -135,7 +135,7 @@ namespace EA4S.Map
                 // ..and set first contact done.             
                 ActivateUI();
                 AppManager.I.Player.FirstContactPassed(2);
-                KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_First);
+                KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_First, true, true, PlayDialogFirstStage);
                 Debug.Log("First Contact Step2 finished! Good Luck!");
             }
 
@@ -143,6 +143,14 @@ namespace EA4S.Map
         void AnturaText()
         {
             KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_Intro_AnturaSpace, true, true, ActivateAnturaButton);
+        }
+        void PlayDialogFirstStage()
+        {
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_Intro_Map1);
+        }
+        void PlayDialogStages(Database.LocalizationDataId data)
+        {
+            KeeperManager.I.PlayDialog(data);
         }
         void ActivateAnturaButton()
         {
