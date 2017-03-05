@@ -28,6 +28,7 @@ namespace EA4S.AnturaSpace
         public override void ExitState()
         {
             UI.AnturaSpaceUI.onRewardCategorySelectedInCustomization -= AnturaSpaceUI_onRewardCategorySelectedInCustomization;
+            controller.RotatingBase.Angle = 0;
             controller.RotatingBase.Activated = false;
             controller.Antura.AnimationController.State = AnturaAnimationStates.idle;
             controller.Antura.SetTarget(null, false);
