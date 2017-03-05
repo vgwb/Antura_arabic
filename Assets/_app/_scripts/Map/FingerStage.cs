@@ -5,6 +5,8 @@ namespace EA4S.Map
 {
     public class FingerStage : MonoBehaviour
     {
+        public LetterMovement player;
+        public bool swipe;
         public GameObject left;
         public GameObject right;
         /*void Update () {
@@ -30,8 +32,9 @@ namespace EA4S.Map
         void Update()
         {
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && (!player.playerOverDotPin))
             {
+                swipe = true;
                 xDown = Input.mousePosition.x;
                 yDown = Input.mousePosition.y;
             }
@@ -50,15 +53,20 @@ namespace EA4S.Map
                 float height = Screen.height;
 
 
-                if ((Mathf.Abs(x) > width * 0.4f) && (Mathf.Abs(y) < height * 0.1f))
+                if ((Mathf.Abs(x) > width * 0.3f) && (Mathf.Abs(y) < height * 0.1f))
                 {
                     if (x < 0) GetComponent<StageManager>().StageLeft();
                     if (x > 0) GetComponent<StageManager>().StageRight();
                 }
+                StartCoroutine("SwipeToFalse");
             }
 
             // Debug.Log(x);
         }
-
+        IEnumerator SwipeToFalse()
+        {
+            yield return new WaitForSeconds(0.3f);
+            swipe = false;
+        }
     }
 }
