@@ -24,6 +24,7 @@ namespace EA4S.Map
         [Header("Stage")]
         public bool isAvailableTheWholeMap;
         public int numberStage;
+        public bool isTheBeginningNewStage;
 
         [Header("PlayerPin")]
         public List<GameObject> positionsPlayerPin = new List<GameObject>(); //All positions Pin can take over the map: dots and pins
@@ -86,6 +87,12 @@ namespace EA4S.Map
                 dotGo.transform.parent = stepsParent;
                 if (!isAvailableTheWholeMap) dotGo.SetActive(false);
                 nPos++;
+
+                if ((i==0) && (p==1))//first playsession of the map
+                {
+                    dotGo.AddComponent<Dialogues>();
+                    dotGo.GetComponent<Dialogues>().numberStage = numberStage;
+                }
             }
         }
         void CalculatePlaySessionAvailables()
