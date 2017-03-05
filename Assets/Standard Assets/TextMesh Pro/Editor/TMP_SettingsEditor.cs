@@ -28,8 +28,11 @@ namespace TMPro.EditorUtilities
         private SerializedProperty prop_FontAsset;
         private SerializedProperty prop_DefaultFontAssetPath;
         private SerializedProperty prop_DefaultFontSize;
-        private SerializedProperty prop_DefaultTextContainerWidth;
-        private SerializedProperty prop_DefaultTextContainerHeight;
+        private SerializedProperty prop_DefaultAutoSizeMinRatio;
+        private SerializedProperty prop_DefaultAutoSizeMaxRatio;
+        private SerializedProperty prop_DefaultTextMeshProTextContainerSize;
+        private SerializedProperty prop_DefaultTextMeshProUITextContainerSize;
+        private SerializedProperty prop_AutoSizeTextContainer;
 
         private SerializedProperty prop_SpriteAsset;
         private SerializedProperty prop_SpriteAssetPath;
@@ -58,8 +61,11 @@ namespace TMPro.EditorUtilities
             prop_FontAsset = serializedObject.FindProperty("m_defaultFontAsset");
             prop_DefaultFontAssetPath = serializedObject.FindProperty("m_defaultFontAssetPath");
             prop_DefaultFontSize = serializedObject.FindProperty("m_defaultFontSize");
-            prop_DefaultTextContainerWidth = serializedObject.FindProperty("m_defaultTextContainerWidth");
-            prop_DefaultTextContainerHeight = serializedObject.FindProperty("m_defaultTextContainerHeight");
+            prop_DefaultAutoSizeMinRatio = serializedObject.FindProperty("m_defaultAutoSizeMinRatio");
+            prop_DefaultAutoSizeMaxRatio = serializedObject.FindProperty("m_defaultAutoSizeMaxRatio");
+            prop_DefaultTextMeshProTextContainerSize = serializedObject.FindProperty("m_defaultTextMeshProTextContainerSize");
+            prop_DefaultTextMeshProUITextContainerSize = serializedObject.FindProperty("m_defaultTextMeshProUITextContainerSize");
+            prop_AutoSizeTextContainer = serializedObject.FindProperty("m_autoSizeTextContainer");
 
             prop_SpriteAsset = serializedObject.FindProperty("m_defaultSpriteAsset");
             prop_SpriteAssetPath = serializedObject.FindProperty("m_defaultSpriteAssetPath");
@@ -141,20 +147,31 @@ namespace TMPro.EditorUtilities
             EditorGUILayout.BeginVertical(TMP_UIStyleManager.SquareAreaBox85G);
             GUILayout.Label("<b>New Text Object Default Settings</b>", TMP_UIStyleManager.Label);
             GUILayout.Label("Default settings used by all new text objects.", TMP_UIStyleManager.Label);
-            GUILayout.Space(5f);
+            GUILayout.Space(10f);
             EditorGUI.BeginChangeCheck();
 
-            //Debug.Log(EditorGUIUtility.currentViewWidth);
-
-            //EditorGUIUtility.labelWidth = 150;
-            //EditorGUILayout.BeginHorizontal();
-            //EditorGUILayout.PropertyField(prop_DefaultTextContainerWidth, new GUIContent("RectTransform Width"), GUILayout.MinWidth(180), GUILayout.MaxWidth(200));
-            //EditorGUIUtility.labelWidth = 50;
-            //EditorGUILayout.PropertyField(prop_DefaultTextContainerHeight, new GUIContent("Height"), GUILayout.MinWidth(80), GUILayout.MaxWidth(100));
-            //EditorGUILayout.EndHorizontal();
+            GUILayout.Label("<b>Text Container Default Settings</b>", TMP_UIStyleManager.Label);
 
             EditorGUIUtility.labelWidth = 150;
+            EditorGUILayout.PropertyField(prop_DefaultTextMeshProTextContainerSize, new GUIContent("TextMeshPro")); //, GUILayout.MinWidth(180), GUILayout.MaxWidth(200));
+            EditorGUILayout.PropertyField(prop_DefaultTextMeshProUITextContainerSize, new GUIContent("TextMeshPro UI")); //, GUILayout.MinWidth(80), GUILayout.MaxWidth(100));
+            EditorGUILayout.PropertyField(prop_AutoSizeTextContainer, new GUIContent("Auto Size Text Container", "Set the size of the text container to match the text."));
+
+            GUILayout.Space(10f);
+            GUILayout.Label("<b>Text Component Default Settings</b>", TMP_UIStyleManager.Label);
+            EditorGUIUtility.labelWidth = 150;
             EditorGUILayout.PropertyField(prop_DefaultFontSize, new GUIContent("Default Font Size"), GUILayout.MinWidth(200), GUILayout.MaxWidth(200));
+
+            EditorGUILayout.BeginHorizontal();
+            {
+                EditorGUILayout.PrefixLabel(new GUIContent("Text Auto Size Ratios"));
+                EditorGUIUtility.labelWidth = 35;
+                EditorGUILayout.PropertyField(prop_DefaultAutoSizeMinRatio, new GUIContent("Min:"));
+                EditorGUILayout.PropertyField(prop_DefaultAutoSizeMaxRatio, new GUIContent("Max:"));
+            }
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUIUtility.labelWidth = 150;
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PropertyField(prop_WordWrapping); //, GUILayout.MaxWidth(200));

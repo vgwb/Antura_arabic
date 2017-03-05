@@ -1,11 +1,12 @@
 ﻿// Copyright (C) 2014 - 2016 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
-// Release 1.0.55.52 Beta 3
+// Release 1.0.55.52.0b5
 
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using System;
 using System.Text;
@@ -30,43 +31,42 @@ namespace TMPro
         TopRight = _HorizontalAlignmentOptions.Right | _VerticalAlignmentOptions.Top,
         TopJustified = _HorizontalAlignmentOptions.Justified | _VerticalAlignmentOptions.Top,
         TopFlush = _HorizontalAlignmentOptions.Flush | _VerticalAlignmentOptions.Top,
-        
+        TopGeoAligned = _HorizontalAlignmentOptions.Geometry | _VerticalAlignmentOptions.Top,
+
         Left = _HorizontalAlignmentOptions.Left | _VerticalAlignmentOptions.Middle,
         Center = _HorizontalAlignmentOptions.Center | _VerticalAlignmentOptions.Middle,
         Right = _HorizontalAlignmentOptions.Right | _VerticalAlignmentOptions.Middle,
         Justified = _HorizontalAlignmentOptions.Justified | _VerticalAlignmentOptions.Middle,
         Flush = _HorizontalAlignmentOptions.Flush | _VerticalAlignmentOptions.Middle,
+        CenterGeoAligned = _HorizontalAlignmentOptions.Geometry | _VerticalAlignmentOptions.Middle,
 
         BottomLeft = _HorizontalAlignmentOptions.Left | _VerticalAlignmentOptions.Bottom,
         Bottom = _HorizontalAlignmentOptions.Center | _VerticalAlignmentOptions.Bottom,
         BottomRight = _HorizontalAlignmentOptions.Right | _VerticalAlignmentOptions.Bottom,
         BottomJustified = _HorizontalAlignmentOptions.Justified | _VerticalAlignmentOptions.Bottom,
         BottomFlush = _HorizontalAlignmentOptions.Flush | _VerticalAlignmentOptions.Bottom,
+        BottomGeoAligned = _HorizontalAlignmentOptions.Geometry | _VerticalAlignmentOptions.Bottom,
 
         BaselineLeft = _HorizontalAlignmentOptions.Left | _VerticalAlignmentOptions.Baseline,
         Baseline = _HorizontalAlignmentOptions.Center | _VerticalAlignmentOptions.Baseline,
         BaselineRight = _HorizontalAlignmentOptions.Right | _VerticalAlignmentOptions.Baseline,
         BaselineJustified = _HorizontalAlignmentOptions.Justified | _VerticalAlignmentOptions.Baseline,
         BaselineFlush = _HorizontalAlignmentOptions.Flush | _VerticalAlignmentOptions.Baseline,
+        BaselineGeoAligned = _HorizontalAlignmentOptions.Geometry | _VerticalAlignmentOptions.Baseline,
 
         MidlineLeft = _HorizontalAlignmentOptions.Left | _VerticalAlignmentOptions.Geometry,
         Midline = _HorizontalAlignmentOptions.Center | _VerticalAlignmentOptions.Geometry,
         MidlineRight = _HorizontalAlignmentOptions.Right | _VerticalAlignmentOptions.Geometry,
         MidlineJustified = _HorizontalAlignmentOptions.Justified | _VerticalAlignmentOptions.Geometry,
         MidlineFlush = _HorizontalAlignmentOptions.Flush | _VerticalAlignmentOptions.Geometry,
+        MidlineGeoAligned = _HorizontalAlignmentOptions.Geometry | _VerticalAlignmentOptions.Geometry,
 
         CaplineLeft = _HorizontalAlignmentOptions.Left | _VerticalAlignmentOptions.Capline,
         Capline = _HorizontalAlignmentOptions.Center | _VerticalAlignmentOptions.Capline,
         CaplineRight = _HorizontalAlignmentOptions.Right | _VerticalAlignmentOptions.Capline,
         CaplineJustified = _HorizontalAlignmentOptions.Justified | _VerticalAlignmentOptions.Capline,
         CaplineFlush = _HorizontalAlignmentOptions.Flush | _VerticalAlignmentOptions.Capline,
-
-        //TopLeft = 0, Top = 1, TopRight = 2, TopJustified = 3,
-        //Left = 4, Center = 5, Right = 6, Justified = 7,
-        //BottomLeft = 8, Bottom = 9, BottomRight = 10, BottomJustified = 11,
-        //BaselineLeft = 12, Baseline = 13, BaselineRight = 14, BaselineJustified = 15,
-        //MidlineLeft = 16, Midline = 17, MidlineRight = 18, MidlineJustified = 19,
-        //CaplineLeft = 20, Capline = 21, CaplineRight = 22, CaplineJustified = 23
+        CaplineGeoAligned = _HorizontalAlignmentOptions.Geometry | _VerticalAlignmentOptions.Capline
     };
 
     /// <summary>
@@ -83,7 +83,8 @@ namespace TMPro
     public enum _VerticalAlignmentOptions
     {
         Top = 0x100, Middle = 0x200, Bottom = 0x400, Baseline = 0x800, Geometry = 0x1000, Capline = 0x2000,
-    };
+    }
+
 
     /// <summary>
     /// Flags controlling what vertex data gets pushed to the mesh.
@@ -298,7 +299,7 @@ namespace TMPro
         public TMP_SpriteAsset spriteAsset
         {
             get { return m_spriteAsset; }
-            set { m_spriteAsset = value; }
+            set { m_spriteAsset = value; m_havePropertiesChanged = true; m_isInputParsingRequired = true; m_isCalculateSizeRequired = true; SetVerticesDirty(); SetLayoutDirty(); }
         }
         [SerializeField]
         protected TMP_SpriteAsset m_spriteAsset;
@@ -469,6 +470,7 @@ namespace TMPro
         [SerializeField]
         protected float m_fontSizeMin = 0; // Text Auto Sizing Min Font Size.
 
+
         /// <summary>
         /// Maximum point size of the font when text auto-sizing is enabled.
         /// </summary>
@@ -492,7 +494,7 @@ namespace TMPro
         [SerializeField]
         protected FontStyles m_fontStyle = FontStyles.Normal;
         protected FontStyles m_style = FontStyles.Normal;
-
+        protected TMP_BasicXmlTagStack m_fontStyleStack;
 
         /// <summary>
         /// Property used in conjunction with padding calculation for the geometry.
@@ -517,6 +519,18 @@ namespace TMPro
         protected Vector3[] m_textContainerLocalCorners = new Vector3[4];
         [SerializeField]
         protected bool m_isAlignmentEnumConverted;
+
+        /// <summary>
+        /// Use the extents of the text geometry for alignment instead of font metrics.
+        /// </summary>
+        //public bool alignByGeometry
+        //{
+        //    get { return m_alignByGeometry; }
+        //    set { if (m_alignByGeometry == value) return; m_havePropertiesChanged = true; m_alignByGeometry = value; SetVerticesDirty(); }
+        //}
+        //[SerializeField]
+        //protected bool m_alignByGeometry;
+
 
         /// <summary>
         /// The amount of additional spacing between characters.
@@ -554,9 +568,19 @@ namespace TMPro
         protected float m_lineSpacing = 0;
         protected float m_lineSpacingDelta = 0; // Used with Text Auto Sizing feature
         protected float m_lineHeight = TMP_Math.FLOAT_UNSET; // Used with the <line-height=xx.x> tag.
+
+
+        /// <summary>
+        /// The amount of potential line spacing adjustment before text auto sizing kicks in.
+        /// </summary>
+        public float lineSpacingAdjustment
+        {
+            get { return m_lineSpacingMax; }
+            set { if (m_lineSpacingMax == value) return; m_havePropertiesChanged = true; m_isCalculateSizeRequired = true; SetVerticesDirty(); SetLayoutDirty(); m_lineSpacingMax = value; }
+        }
         [SerializeField]
         protected float m_lineSpacingMax = 0; // Text Auto Sizing Max Line spacing reduction.
-        protected bool m_forceLineBreak;
+        //protected bool m_forceLineBreak;
 
         /// <summary>
         /// The amount of additional spacing to add between each lines of text.
@@ -612,20 +636,20 @@ namespace TMPro
         /// <summary>
         /// 
         /// </summary>
-        public bool enableAdaptiveJustification
-        {
-            get { return m_enableAdaptiveJustification; }
-            set { if (m_enableAdaptiveJustification == value) return;  m_enableAdaptiveJustification = value;  m_havePropertiesChanged = true;  m_isCalculateSizeRequired = true;  SetVerticesDirty(); SetLayoutDirty(); }
-        }
-        [SerializeField]
-        protected bool m_enableAdaptiveJustification;
-        protected float m_adaptiveJustificationThreshold = 10.0f;
+        //public bool enableAdaptiveJustification
+        //{
+        //    get { return m_enableAdaptiveJustification; }
+        //    set { if (m_enableAdaptiveJustification == value) return;  m_enableAdaptiveJustification = value;  m_havePropertiesChanged = true;  m_isCalculateSizeRequired = true;  SetVerticesDirty(); SetLayoutDirty(); }
+        //}
+        //[SerializeField]
+        //protected bool m_enableAdaptiveJustification;
+        //protected float m_adaptiveJustificationThreshold = 10.0f;
 
 
         /// <summary>
         /// Controls the Text Overflow Mode
         /// </summary>
-        public TextOverflowModes OverflowMode
+        public TextOverflowModes overflowMode
         {
             get { return m_overflowMode; }
             set { if (m_overflowMode == value) return; m_overflowMode = value; m_havePropertiesChanged = true; m_isCalculateSizeRequired = true; SetVerticesDirty(); SetLayoutDirty(); }
@@ -633,23 +657,50 @@ namespace TMPro
         [SerializeField]
         protected TextOverflowModes m_overflowMode = TextOverflowModes.Overflow;
 
+
+        /// <summary>
+        /// Indicates if the text exceeds the vertical bounds of its text container.
+        /// </summary>
+        public bool isTextOverflowing
+        {
+            get { if (m_firstOverflowCharacterIndex != -1) return true; return false; }
+        }
+
+
+        /// <summary>
+        /// The first character which exceeds the vertical bounds of its text container.
+        /// </summary>
+        public int firstOverflowCharacterIndex
+        {
+            get { return m_firstOverflowCharacterIndex; }
+        }
+        [SerializeField]
+        protected int m_firstOverflowCharacterIndex = -1;
+
+
         /// <summary>
         /// The linked text component used for flowing the text from one text component to another.
         /// </summary>
         public TMP_Text linkedTextComponent
         {
             get { return m_linkedTextComponent; }
+
             set
             {
-                if (value == null && m_linkedTextComponent != null)
+                if (m_linkedTextComponent != value)
                 {
-                    m_linkedTextComponent.isLinkedTextComponent = false;
+                    // Release previously linked text component.
+                    if (m_linkedTextComponent != null)
+                    {
+                        m_linkedTextComponent.overflowMode = TextOverflowModes.Overflow;
+                        m_linkedTextComponent.linkedTextComponent = null;
+                        m_linkedTextComponent.isLinkedTextComponent = false;
+                    }
+
                     m_linkedTextComponent = value;
-                }
-                else
-                {
-                    m_linkedTextComponent = value;
-                    m_linkedTextComponent.isLinkedTextComponent = true;
+
+                    if (m_linkedTextComponent != null)
+                        m_linkedTextComponent.isLinkedTextComponent = true;
                 }
 
                 m_havePropertiesChanged = true;
@@ -661,22 +712,37 @@ namespace TMPro
         [SerializeField]
         protected TMP_Text m_linkedTextComponent;
 
+
         /// <summary>
         /// Indicates whether this text component is linked to another.
         /// </summary>
         public bool isLinkedTextComponent
         {
             get { return m_isLinkedTextComponent; }
-            set { m_isLinkedTextComponent = value; m_havePropertiesChanged = true; m_isCalculateSizeRequired = true; SetVerticesDirty(); SetLayoutDirty(); }
+
+            set
+            {
+                m_isLinkedTextComponent = value;
+
+                if (m_isLinkedTextComponent == false)
+                    m_firstVisibleCharacter = 0;
+
+                m_havePropertiesChanged = true;
+                m_isCalculateSizeRequired = true;
+                SetVerticesDirty();
+                SetLayoutDirty();
+            }
         }
         [SerializeField]
         protected bool m_isLinkedTextComponent;
+
 
         /// <summary>
         /// Property indicating whether the text is Truncated or using Ellipsis.
         /// </summary>
         public bool isTextTruncated { get { return m_isTextTruncated; } }
         protected bool m_isTextTruncated;
+
 
         /// <summary>
         /// Determines if kerning is enabled or disabled.
@@ -808,6 +874,30 @@ namespace TMPro
         }
         [SerializeField]
         protected TextureMappingOptions m_verticalMapping = TextureMappingOptions.Character;
+
+
+        /// <summary>
+        /// Controls the UV Offset for the various texture mapping mode on the text object.
+        /// </summary>
+        //public Vector2 mappingUvOffset
+        //{
+        //    get { return m_uvOffset; }
+        //    set { if (m_uvOffset == value) return; m_havePropertiesChanged = true; m_uvOffset = value; SetVerticesDirty(); }
+        //}
+        //[SerializeField]
+        //protected Vector2 m_uvOffset = Vector2.zero; // Used to offset UV on Texturing
+
+
+        /// <summary>
+        /// Controls the horizontal offset of the UV of the texture mapping mode for each line of the text object.
+        /// </summary>
+        public float mappingUvLineOffset
+        {
+            get { return m_uvLineOffset; }
+            set { if (m_uvLineOffset == value) return; m_havePropertiesChanged = true; m_uvLineOffset = value; SetVerticesDirty(); }
+        }
+        [SerializeField]
+        protected float m_uvLineOffset = 0.0f; // Used for UV line offset per line
 
 
         /// <summary>
@@ -991,6 +1081,7 @@ namespace TMPro
             get;
             set;
         }
+        protected bool m_autoSizeTextContainer;
 
 
         /// <summary>
@@ -1039,6 +1130,28 @@ namespace TMPro
                 return GetTextBounds();
             }
         }
+
+        // *** Unity Event Handling ***
+
+        //[Serializable]
+        //public class TextChangedEvent : UnityEvent { }
+
+        ///// <summary>
+        ///// Event delegate triggered when text has changed and been rendered.
+        ///// </summary>
+        //public TextChangedEvent onTextChanged
+        //{
+        //    get { return m_OnTextChanged; }
+        //    set { m_OnTextChanged = value; }
+        //}
+        //[SerializeField]
+        //private TextChangedEvent m_OnTextChanged = new TextChangedEvent();
+
+        //protected void SendOnTextChanged()
+        //{
+        //    if (onTextChanged != null)
+        //        onTextChanged.Invoke();
+        //}
 
 
         // *** SPECIAL COMPONENTS ***
@@ -1234,7 +1347,7 @@ namespace TMPro
         // Structures used to save the state of the text layout in conjunction with line breaking / word wrapping.
         protected WordWrapState m_SavedWordWrapState = new WordWrapState();
         protected WordWrapState m_SavedLineState = new WordWrapState();
-		protected WordWrapState m_SavedAlignment = new WordWrapState ();
+		//protected WordWrapState m_SavedAlignment = new WordWrapState ();
 
 
         // Fields whose state is saved in conjunction with text parsing and word wrapping.
@@ -1599,6 +1712,16 @@ namespace TMPro
         /// <param name="text"></param>
         public void SetText(string text)
         {
+            SetText(text, true);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        public void SetText(string text, bool syncTextInputBox)
+        {
             m_inputSource = TextInputSources.SetCharArray;
 
             StringToCharArray(text, ref m_char_buffer);
@@ -1606,7 +1729,8 @@ namespace TMPro
             #if UNITY_EDITOR
             // Set the text in the Text Input Box in the Unity Editor only.
             // TODO: Could revise to convert to string literal
-            m_text = text;
+            if (syncTextInputBox)
+                m_text = text;
             #endif
 
             m_isInputParsingRequired = true;
@@ -1754,49 +1878,82 @@ namespace TMPro
         /// <summary>
         /// Character array containing the text to be displayed.
         /// </summary>
-        /// <param name="charArray"></param>
-        public void SetCharArray(char[] charArray)
+        /// <param name="sourceText"></param>
+        public void SetCharArray(char[] sourceText)
         {
-            if (charArray == null || charArray.Length == 0)
+            if (sourceText == null || sourceText.Length == 0)
                 return;
 
+            // Clear the Style stack.
+            m_styleStack.Clear();
+
             // Check to make sure chars_buffer is large enough to hold the content of the string.
-            if (m_char_buffer.Length <= charArray.Length)
+            if (m_char_buffer.Length <= sourceText.Length)
             {
-                int newSize = Mathf.NextPowerOfTwo(charArray.Length + 1);
+                int newSize = Mathf.NextPowerOfTwo(sourceText.Length + 1);
                 m_char_buffer = new int[newSize];
             }
 
-            int index = 0;
+            int writeIndex = 0;
 
-            for (int i = 0; i < charArray.Length; i++)
+            for (int i = 0; i < sourceText.Length; i++)
             {
-                if (charArray[i] == 92 && i < charArray.Length - 1)
+                if (sourceText[i] == 92 && i < sourceText.Length - 1)
                 {
-                    switch ((int)charArray[i + 1])
+                    switch ((int)sourceText[i + 1])
                     {
                         case 110: // \n LineFeed
-                            m_char_buffer[index] = (char)10;
+                            m_char_buffer[writeIndex] = (char)10;
                             i += 1;
-                            index += 1;
+                            writeIndex += 1;
                             continue;
                         case 114: // \r LineFeed
-                            m_char_buffer[index] = (char)13;
+                            m_char_buffer[writeIndex] = (char)13;
                             i += 1;
-                            index += 1;
+                            writeIndex += 1;
                             continue;
                         case 116: // \t Tab
-                            m_char_buffer[index] = (char)9;
+                            m_char_buffer[writeIndex] = (char)9;
                             i += 1;
-                            index += 1;
+                            writeIndex += 1;
                             continue;
                     }
                 }
 
-                m_char_buffer[index] = charArray[i];
-                index += 1;
+                // Handle inline replacement of <stlye> and <br> tags.
+                if (sourceText[i] == 60)
+                {
+                    if (IsTagName(ref sourceText, "<BR>", i))
+                    {
+                        m_char_buffer[writeIndex] = 10; ;
+                        writeIndex += 1;
+                        i += 3;
+
+                        continue;
+                    }
+                    else if (IsTagName(ref sourceText, "<STYLE=", i))
+                    {
+                        int srcOffset = 0;
+                        if (ReplaceOpeningStyleTag(ref sourceText, i, out srcOffset, ref m_char_buffer, ref writeIndex))
+                        {
+                            i = srcOffset;
+                            continue;
+                        }
+                    }
+                    else if (IsTagName(ref sourceText, "</STYLE>", i))
+                    {
+                        ReplaceClosingStyleTag(ref sourceText, i, ref m_char_buffer, ref writeIndex);
+
+                        // Strip </style> even if style is invalid.
+                        i += 7;
+                        continue;
+                    }
+                }
+
+                m_char_buffer[writeIndex] = sourceText[i];
+                writeIndex += 1;
             }
-            m_char_buffer[index] = (char)0;
+            m_char_buffer[writeIndex] = (char)0;
 
             m_inputSource = TextInputSources.SetCharArray;
             m_havePropertiesChanged = true;
@@ -1807,11 +1964,14 @@ namespace TMPro
         /// <summary>
         /// Character array containing the text to be displayed.
         /// </summary>
-        /// <param name="charArray"></param>
-        public void SetCharArray(int[] charArray, int start, int length)
+        /// <param name="sourceText"></param>
+        public void SetCharArray(int[] sourceText, int start, int length)
         {
-            if (charArray == null || charArray.Length == 0 || length == 0)
+            if (sourceText == null || sourceText.Length == 0 || length == 0)
                 return;
+
+            // Clear the Style stack.
+            m_styleStack.Clear();
 
             // Check to make sure chars_buffer is large enough to hold the content of the string.
             if (m_char_buffer.Length <= length)
@@ -1820,36 +1980,66 @@ namespace TMPro
                 m_char_buffer = new int[newSize];
             }
 
-            int index = 0;
+            int writeIndex = 0;
 
             for (int i = 0; i < length; i++)
             {
-                if (charArray[start + i] == 92 && i < length - 1)
+                if (sourceText[start + i] == 92 && i < length - 1)
                 {
-                    switch ((int)charArray[start + i + 1])
+                    switch ((int)sourceText[start + i + 1])
                     {
                         case 110: // \n LineFeed
-                            m_char_buffer[index] = (char)10;
+                            m_char_buffer[writeIndex] = (char)10;
                             i += 1;
-                            index += 1;
+                            writeIndex += 1;
                             continue;
                         case 114: // \r LineFeed
-                            m_char_buffer[index] = (char)13;
+                            m_char_buffer[writeIndex] = (char)13;
                             i += 1;
-                            index += 1;
+                            writeIndex += 1;
                             continue;
                         case 116: // \t Tab
-                            m_char_buffer[index] = (char)9;
+                            m_char_buffer[writeIndex] = (char)9;
                             i += 1;
-                            index += 1;
+                            writeIndex += 1;
                             continue;
                     }
                 }
 
-                m_char_buffer[index] = charArray[start + i];
-                index += 1;
+                // Handle inline replacement of <stlye> and <br> tags.
+                if (sourceText[i] == 60)
+                {
+                    if (IsTagName(ref sourceText, "<BR>", i))
+                    {
+                        m_char_buffer[writeIndex] = 10; ;
+                        writeIndex += 1;
+                        i += 3;
+
+                        continue;
+                    }
+                    else if (IsTagName(ref sourceText, "<STYLE=", i))
+                    {
+                        int srcOffset = 0;
+                        if (ReplaceOpeningStyleTag(ref sourceText, i, out srcOffset, ref m_char_buffer, ref writeIndex))
+                        {
+                            i = srcOffset;
+                            continue;
+                        }
+                    }
+                    else if (IsTagName(ref sourceText, "</STYLE>", i))
+                    {
+                        ReplaceClosingStyleTag(ref sourceText, i, ref m_char_buffer, ref writeIndex);
+
+                        // Strip </style> even if style is invalid.
+                        i += 7;
+                        continue;
+                    }
+                }
+
+                m_char_buffer[writeIndex] = sourceText[start + i];
+                writeIndex += 1;
             }
-            m_char_buffer[index] = (char)0;
+            m_char_buffer[writeIndex] = (char)0;
 
             m_inputSource = TextInputSources.SetCharArray;
             m_havePropertiesChanged = true;
@@ -1865,13 +2055,16 @@ namespace TMPro
         /// <summary>
         /// Copies Content of formatted SetText() to charBuffer.
         /// </summary>
-        /// <param name="charArray"></param>
+        /// <param name="sourceText"></param>
         /// <param name="charBuffer"></param>
-        protected void SetTextArrayToCharArray(char[] charArray, ref int[] charBuffer)
+        protected void SetTextArrayToCharArray(char[] sourceText, ref int[] charBuffer)
         {
             //Debug.Log("SetText Array to Char called.");
-            if (charArray == null || m_charArray_Length == 0)
+            if (sourceText == null || m_charArray_Length == 0)
                 return;
+
+            // Clear the Style stack.
+            m_styleStack.Clear();
 
             // Check to make sure chars_buffer is large enough to hold the content of the string.
             if (charBuffer.Length <= m_charArray_Length)
@@ -1880,99 +2073,132 @@ namespace TMPro
                 charBuffer = new int[newSize];
             }
 
-            int index = 0;
+            int writeIndex = 0;
 
             for (int i = 0; i < m_charArray_Length; i++)
             {
                 // Handle UTF-32 in the input text (string).
-                if (char.IsHighSurrogate(charArray[i]) && char.IsLowSurrogate(charArray[i + 1]))
+                if (char.IsHighSurrogate(sourceText[i]) && char.IsLowSurrogate(sourceText[i + 1]))
                 {
-                    charBuffer[index] = char.ConvertToUtf32(charArray[i], charArray[i + 1]);
+                    charBuffer[writeIndex] = char.ConvertToUtf32(sourceText[i], sourceText[i + 1]);
                     i += 1;
-                    index += 1;
+                    writeIndex += 1;
                     continue;
                 }
 
-                charBuffer[index] = charArray[i];
-                index += 1;
+                // Handle inline replacement of <stlye> and <br> tags.
+                if (sourceText[i] == 60)
+                {
+                    if (IsTagName(ref sourceText, "<BR>", i))
+                    {
+                        charBuffer[writeIndex] = 10; ;
+                        writeIndex += 1;
+                        i += 3;
+
+                        continue;
+                    }
+                    else if (IsTagName(ref sourceText, "<STYLE=", i))
+                    {
+                        int srcOffset = 0;
+                        if (ReplaceOpeningStyleTag(ref sourceText, i, out srcOffset, ref charBuffer, ref writeIndex))
+                        {
+                            i = srcOffset;
+                            continue;
+                        }
+                    }
+                    else if (IsTagName(ref sourceText, "</STYLE>", i))
+                    {
+                        ReplaceClosingStyleTag(ref sourceText, i, ref charBuffer, ref writeIndex);
+
+                        // Strip </style> even if style is invalid.
+                        i += 7;
+                        continue;
+                    }
+                }
+
+                charBuffer[writeIndex] = sourceText[i];
+                writeIndex += 1;
             }
-            charBuffer[index] = 0;
+            charBuffer[writeIndex] = 0;
         }
 
 
         /// <summary>
         /// Method to store the content of a string into an integer array.
         /// </summary>
-        /// <param name="text"></param>
-        /// <param name="chars"></param>
-        protected void StringToCharArray(string text, ref int[] chars)
+        /// <param name="sourceText"></param>
+        /// <param name="charBuffer"></param>
+        protected void StringToCharArray(string sourceText, ref int[] charBuffer)
         {
-            if (text == null)
+            if (sourceText == null)
             {
-                chars[0] = 0;
+                charBuffer[0] = 0;
                 return;
             }
 
+            // Clear the Style stack.
+            m_styleStack.SetDefault(0);
+
             // Check to make sure chars_buffer is large enough to hold the content of the string.
-            if (chars == null || chars.Length <= text.Length)
+            if (charBuffer == null || charBuffer.Length <= sourceText.Length)
             {
-                int newSize = text.Length > 1024 ? text.Length + 256 : Mathf.NextPowerOfTwo(text.Length + 1);
-                chars = new int[newSize];
+                int newSize = sourceText.Length > 1024 ? sourceText.Length + 256 : Mathf.NextPowerOfTwo(sourceText.Length + 1);
+                charBuffer = new int[newSize];
             }
 
-            int index = 0;
+            int writeIndex = 0;
 
-            for (int i = 0; i < text.Length; i++)
+            for (int i = 0; i < sourceText.Length; i++)
             {
-                if (m_inputSource == TextInputSources.Text && text[i] == 92 && text.Length > i + 1)
+                if (m_inputSource == TextInputSources.Text && sourceText[i] == 92 && sourceText.Length > i + 1)
                 {
-                    switch ((int)text[i + 1])
+                    switch ((int)sourceText[i + 1])
                     {
                         case 85: // \U00000000 for UTF-32 Unicode
-                            if (text.Length > i + 9)
+                            if (sourceText.Length > i + 9)
                             {
-                                chars[index] = GetUTF32(i + 2);
+                                charBuffer[writeIndex] = GetUTF32(i + 2);
                                 i += 9;
-                                index += 1;
+                                writeIndex += 1;
                                 continue;
                             }
                             break;
                         case 92: // \ escape
                             if (!m_parseCtrlCharacters) break;
 
-                            if (text.Length <= i + 2) break;
-                            chars[index] = text[i + 1];
-                            chars[index + 1] = text[i + 2];
+                            if (sourceText.Length <= i + 2) break;
+                            charBuffer[writeIndex] = sourceText[i + 1];
+                            charBuffer[writeIndex + 1] = sourceText[i + 2];
                             i += 2;
-                            index += 2;
+                            writeIndex += 2;
                             continue;
                         case 110: // \n LineFeed
                             if (!m_parseCtrlCharacters) break;
 
-                            chars[index] = (char)10;
+                            charBuffer[writeIndex] = (char)10;
                             i += 1;
-                            index += 1;
+                            writeIndex += 1;
                             continue;
                         case 114: // \r
                             if (!m_parseCtrlCharacters) break;
 
-                            chars[index] = (char)13;
+                            charBuffer[writeIndex] = (char)13;
                             i += 1;
-                            index += 1;
+                            writeIndex += 1;
                             continue;
                         case 116: // \t Tab
                             if (!m_parseCtrlCharacters) break;
 
-                            chars[index] = (char)9;
+                            charBuffer[writeIndex] = (char)9;
                             i += 1;
-                            index += 1;
+                            writeIndex += 1;
                             continue;
                         case 117: // \u0000 for UTF-16 Unicode
-                            if (text.Length > i + 5)
+                            if (sourceText.Length > i + 5)
                             {
-                                chars[index] = (char)GetUTF16(i + 2);
+                                charBuffer[writeIndex] = (char)GetUTF16(i + 2);
                                 i += 5;
-                                index += 1;
+                                writeIndex += 1;
                                 continue;
                             }
                             break;
@@ -1980,93 +2206,125 @@ namespace TMPro
                 }
 
                 // Handle UTF-32 in the input text (string). // Not sure this is needed //
-                if (char.IsHighSurrogate(text[i]) && char.IsLowSurrogate(text[i + 1]))
+                if (char.IsHighSurrogate(sourceText[i]) && char.IsLowSurrogate(sourceText[i + 1]))
                 {
-                    chars[index] = char.ConvertToUtf32(text[i], text[i + 1]);
+                    charBuffer[writeIndex] = char.ConvertToUtf32(sourceText[i], sourceText[i + 1]);
                     i += 1;
-                    index += 1;
+                    writeIndex += 1;
                     continue;
                 }
 
-                chars[index] = text[i];
-                index += 1;
+                //// Handle inline replacement of <stlye> and <br> tags.
+                if (sourceText[i] == 60)
+                {
+                    if (IsTagName(ref sourceText, "<BR>", i))
+                    {
+                        charBuffer[writeIndex] = 10; ;
+                        writeIndex += 1;
+                        i += 3;
+
+                        continue;
+                    }
+                    else if (IsTagName(ref sourceText, "<STYLE=", i))
+                    {
+                        int srcOffset = 0;
+                        if (ReplaceOpeningStyleTag(ref sourceText, i, out srcOffset, ref charBuffer, ref writeIndex))
+                        {
+                            i = srcOffset;
+                            continue;
+                        }
+                    }
+                    else if (IsTagName(ref sourceText, "</STYLE>", i))
+                    {
+                        ReplaceClosingStyleTag(ref sourceText, i, ref charBuffer, ref writeIndex);
+
+                        // Strip </style> even if style is invalid.
+                        i += 7;
+                        continue;
+                    }
+                }
+
+                charBuffer[writeIndex] = sourceText[i];
+                writeIndex += 1;
             }
-            chars[index] = (char)0;
+            charBuffer[writeIndex] = (char)0;
         }
 
 
         /// <summary>
         /// Copy contents of StringBuilder into int array.
         /// </summary>
-        /// <param name="text">Text to copy.</param>
-        /// <param name="chars">Array to store contents.</param>
-        protected void StringBuilderToIntArray(StringBuilder text, ref int[] chars)
+        /// <param name="sourceText">Text to copy.</param>
+        /// <param name="charBuffer">Array to store contents.</param>
+        protected void StringBuilderToIntArray(StringBuilder sourceText, ref int[] charBuffer)
         {
-            if (text == null)
+            if (sourceText == null)
             {
-                chars[0] = 0;
+                charBuffer[0] = 0;
                 return;
             }
 
+            // Clear the Style stack.
+            m_styleStack.Clear();
+
             // Check to make sure chars_buffer is large enough to hold the content of the string.
-            if (chars == null || chars.Length <= text.Length)
+            if (charBuffer == null || charBuffer.Length <= sourceText.Length)
             {
-                int newSize = text.Length > 1024 ? text.Length + 256 : Mathf.NextPowerOfTwo(text.Length + 1);
+                int newSize = sourceText.Length > 1024 ? sourceText.Length + 256 : Mathf.NextPowerOfTwo(sourceText.Length + 1);
                 //Debug.Log("Resizing the chars_buffer[" + chars.Length + "] to chars_buffer[" + newSize + "].");
-                chars = new int[newSize];
+                charBuffer = new int[newSize];
             }
 
             #if UNITY_EDITOR
             // Create new string to be displayed in the Input Text Box of the Editor Panel.
-            m_text = text.ToString();
+            m_text = sourceText.ToString();
             #endif
 
+            int writeIndex = 0;
 
-            int index = 0;
-
-            for (int i = 0; i < text.Length; i++)
+            for (int i = 0; i < sourceText.Length; i++)
             {
-                if (m_parseCtrlCharacters && text[i] == 92 && text.Length > i + 1)
+                if (m_parseCtrlCharacters && sourceText[i] == 92 && sourceText.Length > i + 1)
                 {
-                    switch ((int)text[i + 1])
+                    switch ((int)sourceText[i + 1])
                     {
                         case 85: // \U00000000 for UTF-32 Unicode
-                            if (text.Length > i + 9)
+                            if (sourceText.Length > i + 9)
                             {
-                                chars[index] = GetUTF32(i + 2);
+                                charBuffer[writeIndex] = GetUTF32(i + 2);
                                 i += 9;
-                                index += 1;
+                                writeIndex += 1;
                                 continue;
                             }
                             break;
                         case 92: // \ escape
-                            if (text.Length <= i + 2) break;
-                            chars[index] = text[i + 1];
-                            chars[index + 1] = text[i + 2];
+                            if (sourceText.Length <= i + 2) break;
+                            charBuffer[writeIndex] = sourceText[i + 1];
+                            charBuffer[writeIndex + 1] = sourceText[i + 2];
                             i += 2;
-                            index += 2;
+                            writeIndex += 2;
                             continue;
                         case 110: // \n LineFeed
-                            chars[index] = (char)10;
+                            charBuffer[writeIndex] = (char)10;
                             i += 1;
-                            index += 1;
+                            writeIndex += 1;
                             continue;
                         case 114: // \r
-                            chars[index] = (char)13;
+                            charBuffer[writeIndex] = (char)13;
                             i += 1;
-                            index += 1;
+                            writeIndex += 1;
                             continue;
                         case 116: // \t Tab
-                            chars[index] = (char)9;
+                            charBuffer[writeIndex] = (char)9;
                             i += 1;
-                            index += 1;
+                            writeIndex += 1;
                             continue;
                         case 117: // \u0000 for UTF-16 Unicode
-                            if (text.Length > i + 5)
+                            if (sourceText.Length > i + 5)
                             {
-                                chars[index] = (char)GetUTF16(i + 2);
+                                charBuffer[writeIndex] = (char)GetUTF16(i + 2);
                                 i += 5;
-                                index += 1;
+                                writeIndex += 1;
                                 continue;
                             }
                             break;
@@ -2074,20 +2332,812 @@ namespace TMPro
                 }
 
                 // Handle UTF-32 in the input text (string).
-                if (char.IsHighSurrogate(text[i]) && char.IsLowSurrogate(text[i + 1]))
+                if (char.IsHighSurrogate(sourceText[i]) && char.IsLowSurrogate(sourceText[i + 1]))
                 {
-                    chars[index] = char.ConvertToUtf32(text[i], text[i + 1]);
+                    charBuffer[writeIndex] = char.ConvertToUtf32(sourceText[i], sourceText[i + 1]);
                     i += 1;
-                    index += 1;
+                    writeIndex += 1;
                     continue;
                 }
 
-                chars[index] = text[i];
-                index += 1;
+                // Handle inline replacement of <stlye> and <br> tags.
+                if (sourceText[i] == 60)
+                {
+                    if (IsTagName(ref sourceText, "<BR>", i))
+                    {
+                        charBuffer[writeIndex] = 10; ;
+                        writeIndex += 1;
+                        i += 3;
+
+                        continue;
+                    }
+                    else if (IsTagName(ref sourceText, "<STYLE=", i))
+                    {
+                        int srcOffset = 0;
+                        if (ReplaceOpeningStyleTag(ref sourceText, i, out srcOffset, ref charBuffer, ref writeIndex))
+                        {
+                            i = srcOffset;
+                            continue;
+                        }
+                    }
+                    else if (IsTagName(ref sourceText, "</STYLE>", i))
+                    {
+                        ReplaceClosingStyleTag(ref sourceText, i, ref charBuffer, ref writeIndex);
+
+                        // Strip </style> even if style is invalid.
+                        i += 7;
+                        continue;
+                    }
+                }
+
+                charBuffer[writeIndex] = sourceText[i];
+                writeIndex += 1;
             }
-            chars[index] = (char)0;
+            charBuffer[writeIndex] = (char)0;
         }
 
+
+        /// <summary>
+        /// Method to handle inline replacement of style tag by opening style definition.
+        /// </summary>
+        /// <param name="sourceText"></param>
+        /// <param name="srcIndex"></param>
+        /// <param name="srcOffset"></param>
+        /// <param name="charBuffer"></param>
+        /// <param name="writeIndex"></param>
+        /// <returns></returns>
+        bool ReplaceOpeningStyleTag(ref string sourceText, int srcIndex, out int srcOffset, ref int[] charBuffer, ref int writeIndex)
+        {
+            // Validate <style> tag.
+            int hashCode = GetTagHashCode(ref sourceText, srcIndex + 7, out srcOffset);
+
+            TMP_Style style = TMP_StyleSheet.GetStyle(hashCode);
+
+            // Return if we don't have a valid style.
+            if (style == null || srcOffset == 0) return false;
+
+            m_styleStack.Add(style.hashCode);
+
+            int length = style.styleOpeningTagArray.Length;
+
+            // Make sure chars array can hold tag definition
+            if (writeIndex + length >= charBuffer.Length - 1)
+            {
+                int newSize = charBuffer.Length > 1024 ? charBuffer.Length + 256 : Mathf.NextPowerOfTwo(writeIndex + length + 2);
+                Array.Resize(ref charBuffer, newSize);
+            }
+
+            // Replace <style> tag with opening definition
+            int[] openingTagArray = style.styleOpeningTagArray;
+
+            for (int i = 0; i < length; i++)
+            {
+                int c = openingTagArray[i];
+
+                if (c == 60)
+                {
+                    if (IsTagName(ref openingTagArray, "<BR>", i))
+                    {
+                        charBuffer[writeIndex] = 10;
+                        writeIndex += 1;
+                        i += 3;
+
+                        continue;
+                    }
+                    else if (IsTagName(ref openingTagArray, "<STYLE=", i))
+                    {
+                        int offset = 0;
+                        if (ReplaceOpeningStyleTag(ref openingTagArray, i, out offset, ref charBuffer, ref writeIndex))
+                        {
+                            i = offset;
+                            continue;
+                        }
+                    }
+                    else if (IsTagName(ref openingTagArray, "</STYLE>", i))
+                    {
+                        ReplaceClosingStyleTag(ref openingTagArray, i, ref charBuffer, ref writeIndex);
+                        
+                        // Strip </style> even if style is invalid.
+                        i += 7;
+                        continue;
+                    }
+                }
+
+                charBuffer[writeIndex] = c;
+                writeIndex += 1;
+            }
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// Method to handle inline replacement of style tag by opening style definition.
+        /// </summary>
+        /// <param name="sourceText"></param>
+        /// <param name="srcIndex"></param>
+        /// <param name="srcOffset"></param>
+        /// <param name="charBuffer"></param>
+        /// <param name="writeIndex"></param>
+        /// <returns></returns>
+        bool ReplaceOpeningStyleTag(ref int[] sourceText, int srcIndex, out int srcOffset, ref int[] charBuffer, ref int writeIndex)
+        {
+            // Validate <style> tag.
+            int hashCode = GetTagHashCode(ref sourceText, srcIndex + 7, out srcOffset);
+
+            TMP_Style style = TMP_StyleSheet.GetStyle(hashCode);
+
+            // Return if we don't have a valid style.
+            if (style == null || srcOffset == 0) return false;
+
+            m_styleStack.Add(style.hashCode);
+
+            int length = style.styleOpeningTagArray.Length;
+
+            // Make sure chars array can hold tag definition
+            if (writeIndex + length >= charBuffer.Length - 1)
+            {
+                int newSize = charBuffer.Length > 1024 ? charBuffer.Length + 256 : Mathf.NextPowerOfTwo(writeIndex + length + 2);
+                Array.Resize(ref charBuffer, newSize);
+            }
+
+            // Replace <style> tag with opening definition
+            int[] openingTagArray = style.styleOpeningTagArray;
+
+            for (int i = 0; i < length; i++)
+            {
+                int c = openingTagArray[i];
+
+                if (c == 60)
+                {
+                    if (IsTagName(ref openingTagArray, "<BR>", i))
+                    {
+                        charBuffer[writeIndex] = 10;
+                        writeIndex += 1;
+                        i += 3;
+
+                        continue;
+                    }
+                    else if (IsTagName(ref openingTagArray, "<STYLE=", i))
+                    {
+                        int offset = 0;
+                        if (ReplaceOpeningStyleTag(ref openingTagArray, i, out offset, ref charBuffer, ref writeIndex))
+                        {
+                            i = offset;
+                            continue;
+                        }
+                    }
+                    else if (IsTagName(ref openingTagArray, "</STYLE>", i))
+                    {
+                        ReplaceClosingStyleTag(ref openingTagArray, i, ref charBuffer, ref writeIndex);
+                        
+                        // Strip </style> even if style is invalid.
+                        i += 7;
+                        continue;
+                    }
+                }
+
+                charBuffer[writeIndex] = c;
+                writeIndex += 1;
+            }
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// Method to handle inline replacement of style tag by opening style definition.
+        /// </summary>
+        /// <param name="sourceText"></param>
+        /// <param name="srcIndex"></param>
+        /// <param name="srcOffset"></param>
+        /// <param name="charBuffer"></param>
+        /// <param name="writeIndex"></param>
+        /// <returns></returns>
+        bool ReplaceOpeningStyleTag(ref char[] sourceText, int srcIndex, out int srcOffset, ref int[] charBuffer, ref int writeIndex)
+        {
+            // Validate <style> tag.
+            int hashCode = GetTagHashCode(ref sourceText, srcIndex + 7, out srcOffset);
+
+            TMP_Style style = TMP_StyleSheet.GetStyle(hashCode);
+
+            // Return if we don't have a valid style.
+            if (style == null || srcOffset == 0) return false;
+
+            m_styleStack.Add(style.hashCode);
+
+            int length = style.styleOpeningTagArray.Length;
+
+            // Make sure chars array can hold tag definition
+            if (writeIndex + length >= charBuffer.Length - 1)
+            {
+                int newSize = charBuffer.Length > 1024 ? charBuffer.Length + 256 : Mathf.NextPowerOfTwo(writeIndex + length + 2);
+                Array.Resize(ref charBuffer, newSize);
+            }
+
+            // Replace <style> tag with opening definition
+            int[] openingTagArray = style.styleOpeningTagArray;
+
+            for (int i = 0; i < length; i++)
+            {
+                int c = openingTagArray[i];
+
+                if (c == 60)
+                {
+                    if (IsTagName(ref openingTagArray, "<BR>", i))
+                    {
+                        charBuffer[writeIndex] = 10;
+                        writeIndex += 1;
+                        i += 3;
+
+                        continue;
+                    }
+                    else if (IsTagName(ref openingTagArray, "<STYLE=", i))
+                    {
+                        int offset = 0;
+                        if (ReplaceOpeningStyleTag(ref openingTagArray, i, out offset, ref charBuffer, ref writeIndex))
+                        {
+                            i = offset;
+                            continue;
+                        }
+                    }
+                    else if (IsTagName(ref openingTagArray, "</STYLE>", i))
+                    {
+                        ReplaceClosingStyleTag(ref openingTagArray, i, ref charBuffer, ref writeIndex);
+
+                        // Strip </style> even if style is invalid.
+                        i += 7;
+                        continue;
+                    }
+                }
+
+                charBuffer[writeIndex] = c;
+                writeIndex += 1;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Method to handle inline replacement of style tag by opening style definition.
+        /// </summary>
+        /// <param name="sourceText"></param>
+        /// <param name="srcIndex"></param>
+        /// <param name="srcOffset"></param>
+        /// <param name="charBuffer"></param>
+        /// <param name="writeIndex"></param>
+        /// <returns></returns>
+        bool ReplaceOpeningStyleTag(ref StringBuilder sourceText, int srcIndex, out int srcOffset, ref int[] charBuffer, ref int writeIndex)
+        {
+            // Validate <style> tag.
+            int hashCode = GetTagHashCode(ref sourceText, srcIndex + 7, out srcOffset);
+
+            TMP_Style style = TMP_StyleSheet.GetStyle(hashCode);
+
+            // Return if we don't have a valid style.
+            if (style == null || srcOffset == 0) return false;
+
+            m_styleStack.Add(style.hashCode);
+
+            int length = style.styleOpeningTagArray.Length;
+
+            // Make sure chars array can hold tag definition
+            if (writeIndex + length >= charBuffer.Length - 1)
+            {
+                int newSize = charBuffer.Length > 1024 ? charBuffer.Length + 256 : Mathf.NextPowerOfTwo(writeIndex + length + 2);
+                Array.Resize(ref charBuffer, newSize);
+            }
+
+            // Replace <style> tag with opening definition
+            int[] openingTagArray = style.styleOpeningTagArray;
+
+            for (int i = 0; i < length; i++)
+            {
+                int c = openingTagArray[i];
+
+                if (c == 60)
+                {
+                    if (IsTagName(ref openingTagArray, "<BR>", i))
+                    {
+                        charBuffer[writeIndex] = 10;
+                        writeIndex += 1;
+                        i += 3;
+
+                        continue;
+                    }
+                    else if (IsTagName(ref openingTagArray, "<STYLE=", i))
+                    {
+                        int offset = 0;
+                        if (ReplaceOpeningStyleTag(ref openingTagArray, i, out offset, ref charBuffer, ref writeIndex))
+                        {
+                            i = offset;
+                            continue;
+                        }
+                    }
+                    else if (IsTagName(ref openingTagArray, "</STYLE>", i))
+                    {
+                        ReplaceClosingStyleTag(ref openingTagArray, i, ref charBuffer, ref writeIndex);
+
+                        // Strip </style> even if style is invalid.
+                        i += 7;
+                        continue;
+                    }
+                }
+
+                charBuffer[writeIndex] = c;
+                writeIndex += 1;
+            }
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// Method to handle inline replacement of style tag by closing style definition.
+        /// </summary>
+        /// <param name="sourceText"></param>
+        /// <param name="srcIndex"></param>
+        /// <param name="charBuffer"></param>
+        /// <param name="writeIndex"></param>
+        /// <returns></returns>
+        bool ReplaceClosingStyleTag(ref string sourceText, int srcIndex, ref int[] charBuffer, ref int writeIndex)
+        {
+            // Get style from the Style Stack
+            int hashCode = m_styleStack.CurrentItem();
+            TMP_Style style = TMP_StyleSheet.GetStyle(hashCode);
+
+            m_styleStack.Remove();
+
+            // Return if we don't have a valid style.
+            if (style == null) return false;
+
+            int length = style.styleClosingTagArray.Length;
+
+            // Make sure chars array can hold tag definition
+            if (writeIndex + length >= charBuffer.Length - 1)
+            {
+                int newSize = charBuffer.Length > 1024 ? charBuffer.Length + 256 : Mathf.NextPowerOfTwo(writeIndex + length + 2);
+                Array.Resize(ref charBuffer, newSize);
+            }
+
+            // Replace <style> tag with opening definition
+            int[] closingTagArray = style.styleClosingTagArray;
+
+            for (int i = 0; i < length; i++)
+            {
+                int c = closingTagArray[i];
+
+                if (c == 60)
+                {
+                    if (IsTagName(ref closingTagArray, "<BR>", i))
+                    {
+                        charBuffer[writeIndex] = 10;
+                        writeIndex += 1;
+                        i += 3;
+
+                        continue;
+                    }
+                    else if (IsTagName(ref closingTagArray, "<STYLE=", i))
+                    {
+                        int offset = 0;
+                        if (ReplaceOpeningStyleTag(ref closingTagArray, i, out offset, ref charBuffer, ref writeIndex))
+                        {
+                            i = offset;
+                            continue;
+                        }
+                    }
+                    else if (IsTagName(ref closingTagArray, "</STYLE>", i))
+                    {
+                        ReplaceClosingStyleTag(ref closingTagArray, i, ref charBuffer, ref writeIndex);
+
+                        // Strip </style> even if style is invalid.
+                        i += 7;
+                        continue;
+                    }
+                }
+
+                charBuffer[writeIndex] = c;
+                writeIndex += 1;
+            }
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// Method to handle inline replacement of style tag by closing style definition.
+        /// </summary>
+        /// <param name="sourceText"></param>
+        /// <param name="srcIndex"></param>
+        /// <param name="charBuffer"></param>
+        /// <param name="writeIndex"></param>
+        /// <returns></returns>
+        bool ReplaceClosingStyleTag(ref int[] sourceText, int srcIndex, ref int[] charBuffer, ref int writeIndex)
+        {
+            // Get style from the Style Stack
+            int hashCode = m_styleStack.CurrentItem();
+            TMP_Style style = TMP_StyleSheet.GetStyle(hashCode);
+
+            m_styleStack.Remove();
+
+            // Return if we don't have a valid style.
+            if (style == null) return false;
+
+            int length = style.styleClosingTagArray.Length;
+
+            // Make sure chars array can hold tag definition
+            if (writeIndex + length >= charBuffer.Length - 1)
+            {
+                int newSize = charBuffer.Length > 1024 ? charBuffer.Length + 256 : Mathf.NextPowerOfTwo(writeIndex + length + 2);
+                Array.Resize(ref charBuffer, newSize);
+            }
+
+            // Replace <style> tag with opening definition
+            int[] closingTagArray = style.styleClosingTagArray;
+
+            for (int i = 0; i < length; i++)
+            {
+                int c = closingTagArray[i];
+
+                if (c == 60)
+                {
+                    if (IsTagName(ref closingTagArray, "<BR>", i))
+                    {
+                        charBuffer[writeIndex] = 10;
+                        writeIndex += 1;
+                        i += 3;
+
+                        continue;
+                    }
+                    else if (IsTagName(ref closingTagArray, "<STYLE=", i))
+                    {
+                        int offset = 0;
+                        if (ReplaceOpeningStyleTag(ref closingTagArray, i, out offset, ref charBuffer, ref writeIndex))
+                        {
+                            i = offset;
+                            continue;
+                        }
+                    }
+                    else if (IsTagName(ref closingTagArray, "</STYLE>", i))
+                    {
+                        ReplaceClosingStyleTag(ref closingTagArray, i, ref charBuffer, ref writeIndex);
+
+                        // Strip </style> even if style is invalid.
+                        i += 7;
+                        continue;
+                    }
+                }
+
+                charBuffer[writeIndex] = c;
+                writeIndex += 1;
+            }
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// Method to handle inline replacement of style tag by closing style definition.
+        /// </summary>
+        /// <param name="sourceText"></param>
+        /// <param name="srcIndex"></param>
+        /// <param name="charBuffer"></param>
+        /// <param name="writeIndex"></param>
+        /// <returns></returns>
+        bool ReplaceClosingStyleTag(ref char[] sourceText, int srcIndex, ref int[] charBuffer, ref int writeIndex)
+        {
+            // Get style from the Style Stack
+            int hashCode = m_styleStack.CurrentItem();
+            TMP_Style style = TMP_StyleSheet.GetStyle(hashCode);
+
+            m_styleStack.Remove();
+
+            // Return if we don't have a valid style.
+            if (style == null) return false;
+
+            int length = style.styleClosingTagArray.Length;
+
+            // Make sure chars array can hold tag definition
+            if (writeIndex + length >= charBuffer.Length - 1)
+            {
+                int newSize = charBuffer.Length > 1024 ? charBuffer.Length + 256 : Mathf.NextPowerOfTwo(writeIndex + length + 2);
+                Array.Resize(ref charBuffer, newSize);
+            }
+
+            // Replace <style> tag with opening definition
+            int[] closingTagArray = style.styleClosingTagArray;
+
+            for (int i = 0; i < length; i++)
+            {
+                int c = closingTagArray[i];
+
+                if (c == 60)
+                {
+                    if (IsTagName(ref closingTagArray, "<BR>", i))
+                    {
+                        charBuffer[writeIndex] = 10;
+                        writeIndex += 1;
+                        i += 3;
+
+                        continue;
+                    }
+                    else if (IsTagName(ref closingTagArray, "<STYLE=", i))
+                    {
+                        int offset = 0;
+                        if (ReplaceOpeningStyleTag(ref closingTagArray, i, out offset, ref charBuffer, ref writeIndex))
+                        {
+                            i = offset;
+                            continue;
+                        }
+                    }
+                    else if (IsTagName(ref closingTagArray, "</STYLE>", i))
+                    {
+                        ReplaceClosingStyleTag(ref closingTagArray, i, ref charBuffer, ref writeIndex);
+
+                        // Strip </style> even if style is invalid.
+                        i += 7;
+                        continue;
+                    }
+                }
+
+                charBuffer[writeIndex] = c;
+                writeIndex += 1;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Method to handle inline replacement of style tag by closing style definition.
+        /// </summary>
+        /// <param name="sourceText"></param>
+        /// <param name="srcIndex"></param>
+        /// <param name="charBuffer"></param>
+        /// <param name="writeIndex"></param>
+        /// <returns></returns>
+        bool ReplaceClosingStyleTag(ref StringBuilder sourceText, int srcIndex, ref int[] charBuffer, ref int writeIndex)
+        {
+            // Get style from the Style Stack
+            int hashCode = m_styleStack.CurrentItem();
+            TMP_Style style = TMP_StyleSheet.GetStyle(hashCode);
+
+            m_styleStack.Remove();
+
+            // Return if we don't have a valid style.
+            if (style == null) return false;
+
+            int length = style.styleClosingTagArray.Length;
+
+            // Make sure chars array can hold tag definition
+            if (writeIndex + length >= charBuffer.Length - 1)
+            {
+                int newSize = charBuffer.Length > 1024 ? charBuffer.Length + 256 : Mathf.NextPowerOfTwo(writeIndex + length + 2);
+                Array.Resize(ref charBuffer, newSize);
+            }
+
+            // Replace <style> tag with opening definition
+            int[] closingTagArray = style.styleClosingTagArray;
+
+            for (int i = 0; i < length; i++)
+            {
+                int c = closingTagArray[i];
+
+                if (c == 60)
+                {
+                    if (IsTagName(ref closingTagArray, "<BR>", i))
+                    {
+                        charBuffer[writeIndex] = 10;
+                        writeIndex += 1;
+                        i += 3;
+
+                        continue;
+                    }
+                    else if (IsTagName(ref closingTagArray, "<STYLE=", i))
+                    {
+                        int offset = 0;
+                        if (ReplaceOpeningStyleTag(ref closingTagArray, i, out offset, ref charBuffer, ref writeIndex))
+                        {
+                            i = offset;
+                            continue;
+                        }
+                    }
+                    else if (IsTagName(ref closingTagArray, "</STYLE>", i))
+                    {
+                        ReplaceClosingStyleTag(ref closingTagArray, i, ref charBuffer, ref writeIndex);
+
+                        // Strip </style> even if style is invalid.
+                        i += 7;
+                        continue;
+                    }
+                }
+
+                charBuffer[writeIndex] = c;
+                writeIndex += 1;
+            }
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// Method to check for a matching rich text tag.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="tag"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        bool IsTagName (ref string text, string tag, int index)
+        {
+            if (text.Length < index + tag.Length) return false;
+            
+            for (int i = 0; i < tag.Length; i++)
+            {
+                if (TMP_TextUtilities.ToUpperFast(text[index + i]) != tag[i]) return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Method to check for a matching rich text tag.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="tag"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        bool IsTagName(ref char[] text, string tag, int index)
+        {
+            if (text.Length < index + tag.Length) return false;
+
+            for (int i = 0; i < tag.Length; i++)
+            {
+                if (TMP_TextUtilities.ToUpperFast(text[index + i]) != tag[i]) return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Method to check for a matching rich text tag.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="tag"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        bool IsTagName(ref int[] text, string tag, int index)
+        {
+            if (text.Length < index + tag.Length) return false;
+
+            for (int i = 0; i < tag.Length; i++)
+            {
+                if (TMP_TextUtilities.ToUpperFast((char)text[index + i]) != tag[i]) return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Method to check for a matching rich text tag.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="tag"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        bool IsTagName(ref StringBuilder text, string tag, int index)
+        {
+            if (text.Length < index + tag.Length) return false;
+
+            for (int i = 0; i < tag.Length; i++)
+            {
+                if (TMP_TextUtilities.ToUpperFast(text[index + i]) != tag[i]) return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Get Hashcode for a given tag.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="index"></param>
+        /// <param name="closeIndex"></param>
+        /// <returns></returns>
+        int GetTagHashCode(ref string text, int index, out int closeIndex)
+        {
+            int hashCode = 0;
+            closeIndex = 0;
+
+            for (int i = index; i < text.Length; i++)
+            {
+                // Skip quote '"' character
+                if (text[i] == 34) continue;
+
+                // Break at '>'
+                if (text[i] == 62) { closeIndex = i; break; }
+
+                hashCode = (hashCode << 5) + hashCode ^ text[i];
+            }
+
+            return hashCode;
+        }
+
+        /// <summary>
+        /// Get Hashcode for a given tag.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="index"></param>
+        /// <param name="closeIndex"></param>
+        /// <returns></returns>
+        int GetTagHashCode(ref char[] text, int index, out int closeIndex)
+        {
+            int hashCode = 0;
+            closeIndex = 0;
+
+            for (int i = index; i < text.Length; i++)
+            {
+                // Skip quote '"' character
+                if (text[i] == 34) continue;
+
+                // Break at '>'
+                if (text[i] == 62) { closeIndex = i; break; }
+
+                hashCode = (hashCode << 5) + hashCode ^ text[i];
+            }
+
+            return hashCode;
+        }
+
+        /// <summary>
+        /// Get Hashcode for a given tag.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="index"></param>
+        /// <param name="closeIndex"></param>
+        /// <returns></returns>
+        int GetTagHashCode(ref int[] text, int index, out int closeIndex)
+        {
+            int hashCode = 0;
+            closeIndex = 0;
+
+            for (int i = index; i < text.Length; i++)
+            {
+                // Skip quote '"' character
+                if (text[i] == 34) continue;
+
+                // Break at '>'
+                if (text[i] == 62) { closeIndex = i; break; }
+
+                hashCode = (hashCode << 5) + hashCode ^ text[i];
+            }
+
+            return hashCode;
+        }
+
+        /// <summary>
+        ///  Get Hashcode for a given tag.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="index"></param>
+        /// <param name="closeIndex"></param>
+        /// <returns></returns>
+        int GetTagHashCode(ref StringBuilder text, int index, out int closeIndex)
+        {
+            int hashCode = 0;
+            closeIndex = 0;
+
+            for (int i = index; i < text.Length; i++)
+            {
+                // Skip quote '"' character
+                if (text[i] == 34) continue;
+
+                // Break at '>'
+                if (text[i] == 62) { closeIndex = i; break; }
+
+                hashCode = (hashCode << 5) + hashCode ^ text[i];
+            }
+
+            return hashCode;
+        }
 
 
         private readonly float[] k_Power = { 5e-1f, 5e-2f, 5e-3f, 5e-4f, 5e-5f, 5e-6f, 5e-7f, 5e-8f, 5e-9f, 5e-10f }; // Used by FormatText to enable rounding and avoid using Mathf.Pow.
@@ -2431,7 +3481,7 @@ namespace TMPro
 
             ////Profiler.BeginSample("TMP Generate Text - Phase I");
 
-            // Early exit if no font asset was assigned. This should not be needed since Arial SDF will be assigned by default.
+            // Early exit if no font asset was assigned. This should not be needed since NotoSans SDF will be assigned by default.
             if (m_fontAsset == null || m_fontAsset.characterDictionary == null)
             {
                 Debug.LogWarning("Can't Generate Mesh! No Font Asset has been assigned to Object ID: " + this.GetInstanceID());
@@ -2516,7 +3566,7 @@ namespace TMPro
             float renderedWidth = 0;
             float renderedHeight = 0;
             float linebreakingWidth = 0;
-            //m_isCalculatingPreferredValues = true;
+            m_isCalculatingPreferredValues = true;
 
             // Tracking of the highest Ascender
             m_maxAscender = 0;
@@ -3117,6 +4167,7 @@ namespace TMPro
 
 
             m_isCharacterWrappingEnabled = false;
+            m_isCalculatingPreferredValues = false;
 
             // Adjust Preferred Width and Height to account for Margins.
             renderedWidth += m_margin.x > 0 ? m_margin.x : 0;
@@ -3268,50 +4319,50 @@ namespace TMPro
         /// </summary>
         /// <param name="chars"></param>
         /// <returns></returns>
-        protected int GetArraySizes(int[] chars)
-        {
-            //Debug.Log("Set Array Size called.");
+        //protected int GetArraySizes(int[] chars)
+        //{
+        //    //Debug.Log("Set Array Size called.");
 
-            //int visibleCount = 0;
-            //int totalCount = 0;
-            int tagEnd = 0;
+        //    //int visibleCount = 0;
+        //    //int totalCount = 0;
+        //    int tagEnd = 0;
 
-            m_totalCharacterCount = 0;
-            m_isUsingBold = false;
-            m_isParsingText = false;
+        //    m_totalCharacterCount = 0;
+        //    m_isUsingBold = false;
+        //    m_isParsingText = false;
 
 
-            //m_VisibleCharacters.Clear();
+        //    //m_VisibleCharacters.Clear();
 
-            for (int i = 0; chars[i] != 0; i++)
-            {
-                int c = chars[i];
+        //    for (int i = 0; chars[i] != 0; i++)
+        //    {
+        //        int c = chars[i];
 
-                if (m_isRichText && c == 60) // if Char '<'
-                {
-                    // Check if Tag is Valid
-                    if (ValidateHtmlTag(chars, i + 1, out tagEnd))
-                    {
-                        i = tagEnd;
-                        //if ((m_style & FontStyles.Underline) == FontStyles.Underline) visibleCount += 3;
+        //        if (m_isRichText && c == 60) // if Char '<'
+        //        {
+        //            // Check if Tag is Valid
+        //            if (ValidateHtmlTag(chars, i + 1, out tagEnd))
+        //            {
+        //                i = tagEnd;
+        //                //if ((m_style & FontStyles.Underline) == FontStyles.Underline) visibleCount += 3;
 
-                        if ((m_style & FontStyles.Bold) == FontStyles.Bold) m_isUsingBold = true;
+        //                if ((m_style & FontStyles.Bold) == FontStyles.Bold) m_isUsingBold = true;
 
-                        continue;
-                    }
-                }
+        //                continue;
+        //            }
+        //        }
 
-                //if (!char.IsWhiteSpace((char)c) && c != 0x200B)
-                //{
-                    //visibleCount += 1;
-                //}
+        //        //if (!char.IsWhiteSpace((char)c) && c != 0x200B)
+        //        //{
+        //            //visibleCount += 1;
+        //        //}
 
-                //m_VisibleCharacters.Add((char)c);
-                m_totalCharacterCount += 1;
-            }
+        //        //m_VisibleCharacters.Add((char)c);
+        //        m_totalCharacterCount += 1;
+        //    }
 
-            return m_totalCharacterCount;
-        }
+        //    return m_totalCharacterCount;
+        //}
 
 
         /// <summary>
@@ -3365,6 +4416,7 @@ namespace TMPro
             state.tagNoParsing = tag_NoParsing;
 
             // XML Tag Stack
+            state.basicStyleStack = m_fontStyleStack;
             state.colorStack = m_colorStack;
             state.highlightColorStack = m_highlightColorStack;
             state.sizeStack = m_sizeStack;
@@ -3434,6 +4486,7 @@ namespace TMPro
             tag_NoParsing = state.tagNoParsing;
 
             // XML Tag Stack
+            m_fontStyleStack = state.basicStyleStack;
             m_colorStack = state.colorStack;
             m_highlightColorStack = state.highlightColorStack;
             m_sizeStack = state.sizeStack;
@@ -4077,6 +5130,42 @@ namespace TMPro
 
 
         /// <summary>
+        /// Internal function used to load the default settings of text objects.
+        /// </summary>
+        protected void LoadDefaultSettings()
+        {
+            if (m_text == null)
+            {
+                if (TMP_Settings.autoSizeTextContainer)
+                    autoSizeTextContainer = true;
+                else
+                {
+                    if (GetType() == typeof(TextMeshPro))
+                        m_rectTransform.sizeDelta = TMP_Settings.defaultTextMeshProTextContainerSize;
+                    else
+                        m_rectTransform.sizeDelta = TMP_Settings.defaultTextMeshProUITextContainerSize;
+                }
+
+                m_enableWordWrapping = TMP_Settings.enableWordWrapping;
+                m_enableKerning = TMP_Settings.enableKerning;
+                m_enableExtraPadding = TMP_Settings.enableExtraPadding;
+                m_tintAllSprites = TMP_Settings.enableTintAllSprites;
+                m_parseCtrlCharacters = TMP_Settings.enableParseEscapeCharacters;
+                m_fontSize = m_fontSizeBase = TMP_Settings.defaultFontSize;
+                m_fontSizeMin = m_fontSize * TMP_Settings.defaultTextAutoSizingMinRatio;
+                m_fontSizeMax = m_fontSize * TMP_Settings.defaultTextAutoSizingMaxRatio;
+                m_isAlignmentEnumConverted = true;
+            }
+            else if (m_isAlignmentEnumConverted == false)
+            {
+                // Convert TextAlignmentOptions enumerations.
+                m_isAlignmentEnumConverted = true;
+                m_textAlignment = TMP_Compatibility.ConvertTextAlignmentEnumValues(m_textAlignment);
+            }
+        }
+
+
+        /// <summary>
         /// Method used to find and cache references to the Underline and Ellipsis characters.
         /// </summary>
         /// <param name=""></param>
@@ -4174,6 +5263,29 @@ namespace TMPro
         /// Function to clear the geometry of the Primary and Sub Text objects.
         /// </summary>
         public virtual void ClearMesh(bool uploadGeometry) { }
+
+
+        /// <summary>
+        /// Function which returns the text after it has been parsed and rich text tags removed.
+        /// </summary>
+        /// <returns></returns>
+        public virtual string GetParsedText()
+        {
+            if (m_textInfo == null)
+                return string.Empty;
+
+            int characterCount = m_textInfo.characterCount;
+
+            // TODO - Could implement some static buffer pool shared by all instances of TMP objects.
+            char[] buffer = new char[characterCount];
+
+            for (int i = 0; i < characterCount && i < m_textInfo.characterInfo.Length; i++)
+            {
+                buffer[i] = m_textInfo.characterInfo[i].character;
+            }
+
+            return new string(buffer);
+        }
 
 
         /// <summary>
@@ -4794,6 +5906,8 @@ namespace TMPro
                     case 98: // <b>
                     case 66: // <B>
                         m_style |= FontStyles.Bold;
+                        m_fontStyleStack.Add(FontStyles.Bold);
+
                         m_fontWeightInternal = 700;
                         m_fontWeightStack.Add(700);
                         return true;
@@ -4801,35 +5915,48 @@ namespace TMPro
                     case 395: // </B>
                         if ((m_fontStyle & FontStyles.Bold) != FontStyles.Bold)
                         {
-                            m_style &= ~FontStyles.Bold;
                             m_fontWeightInternal = m_fontWeightStack.Remove();
+
+                            if (m_fontStyleStack.Remove(FontStyles.Bold) == 0)
+                                m_style &= ~FontStyles.Bold;
                         }
                         return true;
                     case 105: // <i>
                     case 73: // <I>
                         m_style |= FontStyles.Italic;
+                        m_fontStyleStack.Add(FontStyles.Italic);
                         return true;
                     case 434: // </i>
                     case 402: // </I>
-                        m_style &= ~FontStyles.Italic;
+                        if (m_fontStyleStack.Remove(FontStyles.Italic) == 0)
+                            m_style &= ~FontStyles.Italic;
+
                         return true;
                     case 115: // <s>
                     case 83: // <S>
                         m_style |= FontStyles.Strikethrough;
+                        m_fontStyleStack.Add(FontStyles.Strikethrough);
                         return true;
                     case 444: // </s>
                     case 412: // </S>
                         if ((m_fontStyle & FontStyles.Strikethrough) != FontStyles.Strikethrough)
-                            m_style &= ~FontStyles.Strikethrough;
+                        {
+                            if (m_fontStyleStack.Remove(FontStyles.Strikethrough) == 0)
+                                m_style &= ~FontStyles.Strikethrough;
+                        }
                         return true;
                     case 117: // <u>
                     case 85: // <U>
                         m_style |= FontStyles.Underline;
+                        m_fontStyleStack.Add(FontStyles.Underline);
                         return true;
                     case 446: // </u>
                     case 414: // </U>
                         if ((m_fontStyle & FontStyles.Underline) != FontStyles.Underline)
-                            m_style &= ~FontStyles.Underline;
+                        {
+                            if (m_fontStyleStack.Remove(FontStyles.Underline) == 0)
+                                m_style &= ~FontStyles.Underline;
+                        }
                         return true;
                     case 43045: // <mark=#FF00FF80>
                     case 30245: // <MARK>
@@ -4841,58 +5968,54 @@ namespace TMPro
                     case 143092: // </MARK>
                         if ((m_fontStyle & FontStyles.Highlight) != FontStyles.Highlight)
                         {
-                            m_style &= ~FontStyles.Highlight;
                             m_highlightColor = m_highlightColorStack.Remove();
+
+                            if (m_highlightColorStack.index == 1)
+                                m_style &= ~FontStyles.Highlight;
                         }
                         return true;
                     case 6552: // <sub>
                     case 4728: // <SUB>
-                        m_fontScaleMultiplier = m_currentFontAsset.fontInfo.SubSize > 0 ? m_currentFontAsset.fontInfo.SubSize : 1;
-                        m_baselineOffset = m_currentFontAsset.fontInfo.SubscriptOffset * m_fontScale * m_fontScaleMultiplier;
+                        m_fontScaleMultiplier *= m_currentFontAsset.fontInfo.SubSize > 0 ? m_currentFontAsset.fontInfo.SubSize : 1;
+                        m_baselineOffset += m_currentFontAsset.fontInfo.SubscriptOffset * m_fontScale * m_fontScaleMultiplier;
+
+                        m_fontStyleStack.Add(FontStyles.Subscript);
                         m_style |= FontStyles.Subscript;
                         return true;
                     case 22673: // </sub>
                     case 20849: // </SUB>
                         if ((m_style & FontStyles.Subscript) == FontStyles.Subscript)
                         {
-                            // Check to make sure we are not also using Superscript
-                            if ((m_style & FontStyles.Superscript) == FontStyles.Superscript)
+                            if (m_fontScaleMultiplier < 1)
                             {
-                                m_fontScaleMultiplier = m_currentFontAsset.fontInfo.SubSize > 0 ? m_currentFontAsset.fontInfo.SubSize : 1;
-                                m_baselineOffset = m_currentFontAsset.fontInfo.SuperscriptOffset * m_fontScale * m_fontScaleMultiplier;
-                            }
-                            else
-                            {
-                                m_baselineOffset = 0;
-                                m_fontScaleMultiplier = 1;
+                                m_baselineOffset -= m_currentFontAsset.fontInfo.SubscriptOffset * m_fontScale * m_fontScaleMultiplier;
+                                m_fontScaleMultiplier /= m_currentFontAsset.fontInfo.SubSize > 0 ? m_currentFontAsset.fontInfo.SubSize : 1;
                             }
 
-                            m_style &= ~FontStyles.Subscript;
+                            if (m_fontStyleStack.Remove(FontStyles.Subscript) == 0)
+                                m_style &= ~FontStyles.Subscript;
                         }
                         return true;
                     case 6566: // <sup>
                     case 4742: // <SUP>
-                        m_fontScaleMultiplier = m_currentFontAsset.fontInfo.SubSize > 0 ? m_currentFontAsset.fontInfo.SubSize : 1;
-                        m_baselineOffset = m_currentFontAsset.fontInfo.SuperscriptOffset * m_fontScale * m_fontScaleMultiplier;
+                        m_fontScaleMultiplier *= m_currentFontAsset.fontInfo.SubSize > 0 ? m_currentFontAsset.fontInfo.SubSize : 1;
+                        m_baselineOffset += m_currentFontAsset.fontInfo.SuperscriptOffset * m_fontScale * m_fontScaleMultiplier;
+
+                        m_fontStyleStack.Add(FontStyles.Superscript);
                         m_style |= FontStyles.Superscript;
                         return true;
                     case 22687: // </sup>
                     case 20863: // </SUP>
                         if ((m_style & FontStyles.Superscript) == FontStyles.Superscript)
                         {
-                            // Check to make sure we are not also using Superscript
-                            if ((m_style & FontStyles.Subscript) == FontStyles.Subscript)
+                            if (m_fontScaleMultiplier < 1)
                             {
-                                m_fontScaleMultiplier = m_currentFontAsset.fontInfo.SubSize > 0 ? m_currentFontAsset.fontInfo.SubSize : 1;
-                                m_baselineOffset = m_currentFontAsset.fontInfo.SubscriptOffset * m_fontScale * m_fontScaleMultiplier;
-                            }
-                            else
-                            {
-                                m_baselineOffset = 0;
-                                m_fontScaleMultiplier = 1;
+                                m_baselineOffset -= m_currentFontAsset.fontInfo.SuperscriptOffset * m_fontScale * m_fontScaleMultiplier;
+                                m_fontScaleMultiplier /= m_currentFontAsset.fontInfo.SubSize > 0 ? m_currentFontAsset.fontInfo.SubSize : 1;
                             }
 
-                            m_style &= ~FontStyles.Superscript;
+                            if (m_fontStyleStack.Remove(FontStyles.Superscript) == 0)
+                                m_style &= ~FontStyles.Superscript;
                         }
                         return true;
                     case -330774850: // <font-weight>
@@ -5043,16 +6166,16 @@ namespace TMPro
                         if (m_overflowMode == TextOverflowModes.Page)
                         {
                             m_xAdvance = 0 + tag_LineIndent + tag_Indent;
-                            //m_textInfo.lineInfo[m_lineNumber].marginLeft = m_xAdvance;
                             m_lineOffset = 0;
                             m_pageNumber += 1;
                             m_isNewPage = true;
                         }
                         return true;
-                    case 544: // <BR>
-                    case 800: // <br>
-                        m_forceLineBreak = true;
-                        return true;
+                    // <BR> tag is now handled inline where it is replaced by a linefeed or \n.
+                    //case 544: // <BR>
+                    //case 800: // <br>
+                    //    m_forceLineBreak = true;
+                    //    return true;
                     case 43969: // <nobr>
                     case 31169: // <NOBR>
                         m_isNonBreakingSpace = true;
@@ -5310,7 +6433,7 @@ namespace TMPro
                         return true;
                     case 43066: // <link="name">
                     case 30266: // <LINK>
-                        if (m_isParsingText)
+                        if (m_isParsingText && !m_isCalculatingPreferredValues)
                         {
                             int index = m_textInfo.linkCount;
 
@@ -5328,12 +6451,11 @@ namespace TMPro
                         return true;
                     case 155913: // </link>
                     case 143113: // </LINK>
-                        if (m_isParsingText)
+                        if (m_isParsingText && !m_isCalculatingPreferredValues)
                         {
                             m_textInfo.linkInfo[m_textInfo.linkCount].linkTextLength = m_characterCount - m_textInfo.linkInfo[m_textInfo.linkCount].linkTextfirstCharacterIndex;
 
                             m_textInfo.linkCount += 1;
-
                         }
                         return true;
                     case 275917: // <align=>
@@ -5388,45 +6510,46 @@ namespace TMPro
                     case 1027847: // </WIDTH>
                         m_width = -1;
                         return true;
-                    case 322689: // <style="name">
-                    case 233057: // <STYLE>
-                        TMP_Style style = TMP_StyleSheet.GetStyle(m_xmlAttribute[0].valueHashCode);
+                    // STYLE tag is now handled inline and replaced by its definition.
+                    //case 322689: // <style="name">
+                    //case 233057: // <STYLE>
+                    //    TMP_Style style = TMP_StyleSheet.GetStyle(m_xmlAttribute[0].valueHashCode);
 
-                        if (style == null) return false;
+                    //    if (style == null) return false;
 
-                        m_styleStack.Add(style.hashCode);
+                    //    m_styleStack.Add(style.hashCode);
 
-                        //// Parse Style Macro
-                        for (int i = 0; i < style.styleOpeningTagArray.Length; i++)
-                        {
-                            if (style.styleOpeningTagArray[i] == 60)
-                            {
-                                if (ValidateHtmlTag(style.styleOpeningTagArray, i + 1, out i) == false) return false;
-                            }
-                        }
-                        return true;
-                    case 1112618: // </style>
-                    case 1022986: // </STYLE>
-                        style = TMP_StyleSheet.GetStyle(m_xmlAttribute[0].valueHashCode);
+                    //    // Parse Style Macro
+                    //    for (int i = 0; i < style.styleOpeningTagArray.Length; i++)
+                    //    {
+                    //        if (style.styleOpeningTagArray[i] == 60)
+                    //        {
+                    //            if (ValidateHtmlTag(style.styleOpeningTagArray, i + 1, out i) == false) return false;
+                    //        }
+                    //    }
+                    //    return true;
+                    //case 1112618: // </style>
+                    //case 1022986: // </STYLE>
+                    //    style = TMP_StyleSheet.GetStyle(m_xmlAttribute[0].valueHashCode);
 
-                        if (style == null)
-                        {
-                            // Get style from the Style Stack
-                            int styleHashCode = m_styleStack.CurrentItem();
-                            style = TMP_StyleSheet.GetStyle(styleHashCode);
+                    //    if (style == null)
+                    //    {
+                    //        // Get style from the Style Stack
+                    //        int styleHashCode = m_styleStack.CurrentItem();
+                    //        style = TMP_StyleSheet.GetStyle(styleHashCode);
 
-                            m_styleStack.Remove();
-                        }
+                    //        m_styleStack.Remove();
+                    //    }
 
-                        if (style == null) return false;
-                        //// Parse Style Macro
-                        for (int i = 0; i < style.styleClosingTagArray.Length; i++)
-                        {
-                            if (style.styleClosingTagArray[i] == 60)
-                                ValidateHtmlTag(style.styleClosingTagArray, i + 1, out i);
-                        }
-                        return true;
-                    case 281955: // <color=#FF00FF> or <color=#FF00FF00>
+                    //    if (style == null) return false;
+                    //    //// Parse Style Macro
+                    //    for (int i = 0; i < style.styleClosingTagArray.Length; i++)
+                    //    {
+                    //        if (style.styleClosingTagArray[i] == 60)
+                    //            ValidateHtmlTag(style.styleClosingTagArray, i + 1, out i);
+                    //    }
+                    //    return true;
+                    case 281955: // <color> <color=#FF00FF> or <color=#FF00FF00>
                     case 192323: // <COLOR=#FF00FF>
                         // <color=#FFF> 3 Hex (short hand)
                         if (m_htmlTag[6] == 35 && tagCharCount == 10)
@@ -5744,30 +6867,36 @@ namespace TMPro
                     case 730022849: // <lowercase>
                     case 514803617: // <LOWERCASE>
                         m_style |= FontStyles.LowerCase;
+                        m_fontStyleStack.Add(FontStyles.LowerCase);
                         return true;
                     case -1668324918: // </lowercase>
                     case -1883544150: // </LOWERCASE>
-                        m_style &= ~FontStyles.LowerCase;
+                        if (m_fontStyleStack.Remove(FontStyles.LowerCase) == 0)
+                            m_style &= ~FontStyles.LowerCase;
                         return true;
                     case 13526026: // <allcaps>
                     case 9133802: // <ALLCAPS>
                     case 781906058: // <uppercase>
                     case 566686826: // <UPPERCASE>
                         m_style |= FontStyles.UpperCase;
+                        m_fontStyleStack.Add(FontStyles.UpperCase);
                         return true;
                     case 52232547: // </allcaps>
                     case 47840323: // </ALLCAPS>
                     case -1616441709: // </uppercase>
                     case -1831660941: // </UPPERCASE>
-                        m_style &= ~FontStyles.UpperCase;
+                        if (m_fontStyleStack.Remove(FontStyles.UpperCase) == 0)
+                            m_style &= ~FontStyles.UpperCase;
                         return true;
                     case 766244328: // <smallcaps>
                     case 551025096: // <SMALLCAPS>
                         m_style |= FontStyles.SmallCaps;
+                        m_fontStyleStack.Add(FontStyles.SmallCaps);
                         return true;
                     case -1632103439: // </smallcaps>
                     case -1847322671: // </SMALLCAPS>
-                        m_style &= ~FontStyles.SmallCaps;
+                        if (m_fontStyleStack.Remove(FontStyles.SmallCaps) == 0)
+                            m_style &= ~FontStyles.SmallCaps;
                         return true;
                     case 2109854: // <margin=00.0> <margin=00em> <margin=50%>
                     case 1482398: // <MARGIN>

@@ -3,13 +3,117 @@
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
 
 
-using UnityEngine;
-using System.Collections;
-
-
 namespace TMPro
 {
+    /// <summary>
+    /// Structure used to track basic XML tags which are binary (on / off)
+    /// </summary>
+    public struct TMP_BasicXmlTagStack
+    {
+        public byte bold;
+        public byte italic;
+        public byte underline;
+        public byte strikethrough;
+        public byte superscript;
+        public byte subscript;
+        public byte uppercase;
+        public byte lowercase;
+        public byte smallcaps;
 
+        /// <summary>
+        /// Clear the basic XML tag stack.
+        /// </summary>
+        public void Clear()
+        {
+            bold = 0;
+            italic = 0;
+            underline = 0;
+            strikethrough = 0;
+            superscript = 0;
+            subscript = 0;
+            uppercase = 0;
+            lowercase = 0;
+            smallcaps = 0;
+        }
+
+        public byte Add(FontStyles style)
+        {
+            switch (style)
+            {
+                case FontStyles.Bold:
+                    bold += 1;
+                    return bold;
+                case FontStyles.Italic:
+                    italic += 1;
+                    return italic;
+                case FontStyles.Strikethrough:
+                    strikethrough += 1;
+                    return strikethrough;
+                case FontStyles.Underline:
+                    underline += 1;
+                    return underline;
+                case FontStyles.Superscript:
+                    superscript += 1;
+                    return superscript;
+                case FontStyles.Subscript:
+                    subscript += 1;
+                    return subscript;
+            }
+
+            return 0;
+        }
+
+        public byte Remove(FontStyles style)
+        {
+            switch (style)
+            {
+                case FontStyles.Bold:
+                    if (bold > 1)
+                        bold -= 1;
+                    else
+                        bold = 0;
+                    return bold;
+                case FontStyles.Italic:
+                    if (italic > 1)
+                        italic -= 1;
+                    else
+                        italic = 0;
+                    return italic;
+                case FontStyles.Strikethrough:
+                    if (strikethrough > 1)
+                        strikethrough -= 1;
+                    else
+                        strikethrough = 0;
+                    return strikethrough;
+                case FontStyles.Underline:
+                    if (underline > 1)
+                        underline -= 1;
+                    else
+                        underline = 0;
+                    return underline;
+                case FontStyles.Superscript:
+                    if (superscript > 1)
+                        superscript -= 1;
+                    else
+                        superscript = 0;
+                    return superscript;
+                case FontStyles.Subscript:
+                    if (subscript > 1)
+                        subscript -= 1;
+                    else
+                        subscript = 0;
+                    return subscript;
+            }
+
+            return 0;
+        }
+    }
+
+
+    /// <summary>
+    /// Structure used to track XML tags of various types.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public struct TMP_XmlTagStack<T>
     {
         public T[] itemStack;
@@ -70,8 +174,9 @@ namespace TMPro
 
             if (index <= 0)
             {
-                index = 0;
+                index = 1;
                 return itemStack[0];
+
             }
 
             return itemStack[index - 1];

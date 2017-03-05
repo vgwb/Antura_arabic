@@ -95,10 +95,15 @@ namespace TMPro.EditorUtilities
                 string materialPath = AssetDatabase.GUIDToAssetPath(materialAssetGUIDs[i]);
                 Material targetMaterial = AssetDatabase.LoadAssetAtPath<Material>(materialPath);
 
-                if (targetMaterial.HasProperty(ShaderUtilities.ID_MainTex) && targetMaterial.mainTexture != null && mat.mainTexture != null && targetMaterial.mainTexture.GetInstanceID() == mat.mainTexture.GetInstanceID())
+                if (targetMaterial.HasProperty(ShaderUtilities.ID_MainTex) && targetMaterial.GetTexture(ShaderUtilities.ID_MainTex) != null && mat.GetTexture(ShaderUtilities.ID_MainTex) != null && targetMaterial.GetTexture(ShaderUtilities.ID_MainTex).GetInstanceID() == mat.GetTexture(ShaderUtilities.ID_MainTex).GetInstanceID())
                 {
                     if (!refs.Contains(targetMaterial))
                         refs.Add(targetMaterial);
+                }
+                else
+                {
+                    // TODO: Find a more efficient method to unload resources.
+                    //Resources.UnloadAsset(targetMaterial.GetTexture(ShaderUtilities.ID_MainTex));
                 }
             }
 
@@ -109,7 +114,7 @@ namespace TMPro.EditorUtilities
         // Function used to find the Font Asset which matches the given Material Preset and Font Atlas Texture.
         public static TMP_FontAsset FindMatchingFontAsset(Material mat)
         {
-            if (mat.mainTexture == null) return null;
+            if (mat.GetTexture(ShaderUtilities.ID_MainTex) == null) return null;
 
             // Find the dependent assets of this material.
             #if UNITY_5_3_OR_NEWER

@@ -11,7 +11,6 @@ using System.Collections.Generic;
 
 namespace TMPro
 {
-
     public static class TMPro_ExtensionMethods
     {
 
@@ -121,33 +120,65 @@ namespace TMPro
         /// <param name="array"></param>
         /// <param name="index"></param>
         /// <param name="item"></param>
-        public static void Insert<T>(this T[] array, int index, T item)
-        {
-            if (index > array.Length - 1) return;
+        //public static void Insert<T>(this T[] array, int index, T item)
+        //{
+        //    if (index > array.Length - 1) return;
 
-            T savedItem = item;
+        //    T savedItem = item;
 
-            for (int i = index; i < array.Length; i++)
-            {
-                savedItem = array[i];
+        //    for (int i = index; i < array.Length; i++)
+        //    {
+        //        savedItem = array[i];
 
-                array[i] = item;
+        //        array[i] = item;
 
-                item = savedItem;
-            }
-        }
+        //        item = savedItem;
+        //    }
+        //}
+
+        /// <summary>
+        /// Insert item into array at index.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="index"></param>
+        /// <param name="item"></param>
+        //public static void Insert<T>(this T[] array, int index, T[] items)
+        //{
+        //    if (index > array.Length - 1) return;
+
+        //    System.Array.Resize(ref array, array.Length + items.Length);
+
+        //    int sourceIndex = 0;
+
+        //    T savedItem = items[sourceIndex];
+
+        //    for (int i = index; i < array.Length; i++)
+        //    {
+        //        savedItem = array[i];
+
+        //        array[i] = items[sourceIndex];
+
+        //        items[sourceIndex] = savedItem;
+
+        //        if (sourceIndex < items.Length - 1)
+        //            sourceIndex += 1;
+        //        else
+        //            sourceIndex = 0;
+        //    }
+        //}
 
     }
 
     public static class TMP_Math
     {
-        public const float FLOAT_MAX = 32768;
-        public const float FLOAT_MIN = -32768;
+        public const float FLOAT_MAX = 32767;
+        public const float FLOAT_MIN = -32767;
         public const int INT_MAX = 2147483647;
         public const int INT_MIN = -2147483647;
 
-        public const float FLOAT_UNSET = -32768;
-        public const int INT_UNSET = -32768;
+        public const float FLOAT_UNSET = -32767;
+        public const int INT_UNSET = -32767;
 
         public static Vector2 MAX_16BIT = new Vector2(FLOAT_MAX, FLOAT_MAX);
         public static Vector2 MIN_16BIT = new Vector2(FLOAT_MIN, FLOAT_MIN);

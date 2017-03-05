@@ -1,7 +1,7 @@
 // Copyright (C) 2014 - 2016 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
-// Release 1.0.55.52 Beta 3
+// Release 1.0.55.52.0b5
 
 
 using UnityEngine;
@@ -44,13 +44,13 @@ namespace TMPro
         /// <summary>
         /// Determines if the size of the text container will be adjusted to fit the text object when it is first created.
         /// </summary>
-        //public override bool autoSizeTextContainer
-        //{
-        //    get { return m_autoSizeTextContainer; }
+        public override bool autoSizeTextContainer
+        {
+            get { return m_autoSizeTextContainer; }
 
-        //    set { m_autoSizeTextContainer = value; if (m_autoSizeTextContainer) { m_isCalculateSizeRequired = true; SetVerticesDirty(); SetLayoutDirty(); } }
-        //}
-        //private bool m_autoSizeTextContainer;
+            set { if (m_autoSizeTextContainer == value) return; m_autoSizeTextContainer = value; if (m_autoSizeTextContainer) { CanvasUpdateRegistry.RegisterCanvasElementForLayoutRebuild(this); SetLayoutDirty(); } }
+        }
+
 
 
         /// <summary>
@@ -215,7 +215,14 @@ namespace TMPro
         {
             if (this == null) return;
 
-            if (update == CanvasUpdate.PreRender)
+            if (update == CanvasUpdate.Prelayout)
+            {
+                if (m_autoSizeTextContainer)
+                {
+                    m_rectTransform.sizeDelta = GetPreferredValues(Mathf.Infinity, Mathf.Infinity);
+                }
+            }
+            else if (update == CanvasUpdate.PreRender)
             {
                 OnPreRenderCanvas();
 
@@ -292,7 +299,7 @@ namespace TMPro
             if (m_canvasRenderer == null) m_canvasRenderer = this.canvasRenderer;
 
             m_canvasRenderer.materialCount = 1;
-            m_canvasRenderer.SetMaterial(materialForRendering, m_sharedMaterial.mainTexture);
+            m_canvasRenderer.SetMaterial(materialForRendering, m_sharedMaterial.GetTexture(ShaderUtilities.ID_MainTex));
         }
 
 

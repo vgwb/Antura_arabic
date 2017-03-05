@@ -87,7 +87,7 @@ MonoBehaviour:
     scale: 1.25
     name: Smiley
     hashCode: -992563897
-    unicode: 128512
+    unicode: 0
     pivot: {x: -64, y: 64}
     sprite: {fileID: 0}
   - id: 1
@@ -115,7 +115,7 @@ MonoBehaviour:
     scale: 1.25
     name: Wink
     hashCode: 3171611
-    unicode: 128521
+    unicode: 0
     pivot: {x: -64, y: 64}
     sprite: {fileID: 0}
   - id: 3
@@ -199,7 +199,7 @@ MonoBehaviour:
     scale: 1.25
     name: Default Sprite Asset_8
     hashCode: -1731209675
-    unicode: 937
+    unicode: 0
     pivot: {x: -64, y: 64}
     sprite: {fileID: 0}
   - id: 9
@@ -272,3 +272,5 @@ MonoBehaviour:
     unicode: 0
     pivot: {x: -64, y: 64}
     sprite: {fileID: 0}
+  fallbackSpriteAssets:
+  - {fileID: 11400000, guid: 9a952e2781ef26940ae089f1053ef4ef, type: 2}

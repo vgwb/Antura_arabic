@@ -21,6 +21,7 @@ namespace TMPro.EditorUtilities
         private struct UI_PanelState
         {
             public static bool spriteAssetInfoPanel = true;
+            public static bool fallbackSpriteAssetPanel = true;
             public static bool spriteInfoPanel = false;
         }
 
@@ -37,6 +38,7 @@ namespace TMPro.EditorUtilities
         private SerializedProperty m_spriteAtlas_prop;
         private SerializedProperty m_material_prop;
         private SerializedProperty m_spriteInfoList_prop;
+        private ReorderableList m_fallbackSpriteAssetList;
 
         private bool isAssetDirty = false;
       
@@ -57,9 +59,23 @@ namespace TMPro.EditorUtilities
             m_material_prop = serializedObject.FindProperty("material");
             m_spriteInfoList_prop = serializedObject.FindProperty("spriteInfoList");
 
+            // Fallback TMP Sprite Asset list
+            m_fallbackSpriteAssetList = new ReorderableList(serializedObject, serializedObject.FindProperty("fallbackSpriteAssets"), true, true, true, true);
+
+            m_fallbackSpriteAssetList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
+            {
+                var element = m_fallbackSpriteAssetList.serializedProperty.GetArrayElementAtIndex(index);
+                rect.y += 2;
+                EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), element, GUIContent.none);
+            };
+
+            m_fallbackSpriteAssetList.drawHeaderCallback = rect =>
+            {
+                EditorGUI.LabelField(rect, "<b>Fallback Sprite Asset List</b>", TMP_UIStyleManager.Label);
+            };
+
             // Get the UI Skin and Styles for the various Editors
             TMP_UIStyleManager.GetUIStyles();
-        
         }
 
 
@@ -87,6 +103,27 @@ namespace TMPro.EditorUtilities
             EditorGUILayout.PropertyField(m_spriteAtlas_prop , new GUIContent("Sprite Atlas"));
             GUI.enabled = true;
             EditorGUILayout.PropertyField(m_material_prop, new GUIContent("Default Material"));
+
+
+            // FALLBACK SPRITE ASSETS
+            EditorGUI.indentLevel = 0;
+            if (GUILayout.Button("Fallback Sprite Assets\t" + (UI_PanelState.fallbackSpriteAssetPanel ? uiStateLabel[1] : uiStateLabel[0]), TMP_UIStyleManager.Section_Label))
+                UI_PanelState.fallbackSpriteAssetPanel = !UI_PanelState.fallbackSpriteAssetPanel;
+
+
+            if (UI_PanelState.fallbackSpriteAssetPanel)
+            {
+                EditorGUIUtility.labelWidth = 120;
+                EditorGUILayout.BeginVertical(TMP_UIStyleManager.SquareAreaBox85G);
+                EditorGUI.indentLevel = 0;
+                GUILayout.Label("Select the Sprite Assets that will be searched and used as fallback when a given sprite is missing from this sprite asset.", TMP_UIStyleManager.Label);
+                GUILayout.Space(10f);
+
+                m_fallbackSpriteAssetList.DoLayoutList();
+
+                EditorGUILayout.EndVertical();
+            }
+
 
             // SPRITE LIST
             GUI.enabled = true; // Unlock UI 

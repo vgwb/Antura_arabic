@@ -47,9 +47,9 @@ namespace TMPro
         {
             get
             {
-                //Debug.Log("get.mainTexture");
                 if (this.sharedMaterial != null)
-                    return this.sharedMaterial.mainTexture;
+                    return this.sharedMaterial.GetTexture(ShaderUtilities.ID_MainTex);
+
 
                 return null;
             }
@@ -606,6 +606,17 @@ namespace TMPro
 
             this.rectTransform.pivot = m_TextComponent.rectTransform.pivot;
         }
+
+
+        /// <summary>
+        /// Override to Cull function of MaskableGraphic to prevent Culling.
+        /// </summary>
+        /// <param name="clipRect"></param>
+        /// <param name="validRect"></param>
+        public override void Cull(Rect clipRect, bool validRect) { }
+        //{
+            //base.Cull(clipRect, validRect);
+        //}
 
 
         /// <summary>

@@ -10,7 +10,6 @@ using System.Collections;
 
 namespace TMPro
 {
-
     public static class ShaderUtilities
     {
         // Shader Property IDs
@@ -93,7 +92,17 @@ namespace TMPro
         public static bool isInitialized = false;
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        static ShaderUtilities()
+        {
+            GetShaderPropertyIDs();
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static void GetShaderPropertyIDs()
         {
             if (isInitialized == false)

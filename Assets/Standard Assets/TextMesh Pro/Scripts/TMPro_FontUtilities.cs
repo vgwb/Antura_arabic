@@ -38,6 +38,9 @@ namespace TMPro
         public float Underline;
         public float UnderlineThickness;
 
+        public float strikethrough;
+        public float strikethroughThickness;
+
         public float TabWidth;
 
         public float Padding;

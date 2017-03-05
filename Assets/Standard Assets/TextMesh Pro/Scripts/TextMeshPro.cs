@@ -1,7 +1,7 @@
 // Copyright (C) 2014 - 2016 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
-// Release 1.0.55.52 Beta 3
+// Release 1.0.55.52.0b5
 
 
 using UnityEngine;
@@ -14,7 +14,7 @@ namespace TMPro
 {
     [ExecuteInEditMode]
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(TextContainer))]
+    //[RequireComponent(typeof(TextContainer))]
     [RequireComponent(typeof(MeshRenderer))]
     [RequireComponent(typeof(MeshFilter))] 
     [AddComponentMenu("Mesh/TextMeshPro - Text")]
@@ -22,43 +22,6 @@ namespace TMPro
     public partial class TextMeshPro : TMP_Text, ILayoutElement
     {
         // Public Properties and Serializable Properties  
-
-        /// <summary>
-        /// Determines where word wrap will occur.
-        /// </summary>
-        [Obsolete("The length of the line is now controlled by the size of the text container and margins.")]
-        public float lineLength
-        {
-            get { return m_lineLength; }
-            set { Debug.Log("lineLength set called.");  }
-        }
-        #pragma warning disable 0649
-        [SerializeField]
-        private float m_lineLength;
-
-
-        /// <summary>
-        /// Determines the anchor position of the text object.  
-        /// </summary>
-        [Obsolete("The length of the line is now controlled by the size of the text container and margins.")]
-        public TMP_Compatibility.AnchorPositions anchor
-        {
-            get { return m_anchor; }
-            set { m_anchor = value; }
-        }
-        [SerializeField]
-        private TMP_Compatibility.AnchorPositions m_anchor = TMP_Compatibility.AnchorPositions.None;
-
-
-        /// <summary>
-        /// The margins of the text object.
-        /// </summary>
-        public override Vector4 margin
-        {
-            get { return m_margin; }
-            set { if (m_margin == value) return; m_margin = value; this.textContainer.margins = m_margin; ComputeMarginSize(); m_havePropertiesChanged = true; SetVerticesDirty(); }
-        }
-
 
         /// <summary>
         /// Sets the Renderer's sorting Layer ID
@@ -89,20 +52,18 @@ namespace TMPro
 
             set { if (m_autoSizeTextContainer == value) return; m_autoSizeTextContainer = value; if (m_autoSizeTextContainer) { TMP_UpdateManager.RegisterTextElementForLayoutRebuild(this); SetLayoutDirty(); } }
         }
-        private bool m_autoSizeTextContainer;
 
 
         /// <summary>
         /// Returns a reference to the Text Container
         /// </summary>
+        [Obsolete("The TextContainer is now obsolete. Use the RectTransform instead.")]
         public TextContainer textContainer
         {
             get
             {
-                if (m_textContainer == null)
-                    m_textContainer = GetComponent<TextContainer>();
-                
-                return m_textContainer; }
+                return null;
+            }
         }
 
 
@@ -279,19 +240,7 @@ namespace TMPro
             {
                 if (m_autoSizeTextContainer)
                 {
-                    CalculateLayoutInputHorizontal();
-
-                    if (m_textContainer.isDefaultWidth)
-                    {
-                        m_textContainer.width = m_preferredWidth;
-                    }
-
-                    CalculateLayoutInputVertical();
-
-                    if (m_textContainer.isDefaultHeight)
-                    {
-                        m_textContainer.height = m_preferredHeight;
-                    }
+                    m_rectTransform.sizeDelta = GetPreferredValues(Mathf.Infinity, Mathf.Infinity);
                 }
             }
             else if (update == CanvasUpdate.PreRender)
