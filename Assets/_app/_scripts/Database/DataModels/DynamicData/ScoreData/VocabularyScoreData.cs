@@ -17,6 +17,11 @@ namespace EA4S.Database
         public string Id { get; set; }
 
         /// <summary>
+        /// Unique identifier for the player. empty during game. compiled at export/import
+        /// </summary>
+        public string Uuid { get; set; }
+
+        /// <summary>
         /// Type of vocabulary data recorded.
         /// </summary>
         public VocabularyDataType VocabularyDataType { get; set; }
@@ -46,9 +51,9 @@ namespace EA4S.Database
         /// <summary>
         /// Empty constructor required by MySQL.
         /// </summary>
-        public VocabularyScoreData() {}
+        public VocabularyScoreData() { }
 
-        public VocabularyScoreData(string elementId, VocabularyDataType dataType, float score, bool unlocked) :  this(elementId, dataType, score, unlocked, GenericHelper.GetTimestampForNow())
+        public VocabularyScoreData(string elementId, VocabularyDataType dataType, float score, bool unlocked) : this(elementId, dataType, score, unlocked, GenericHelper.GetTimestampForNow())
         {
         }
 

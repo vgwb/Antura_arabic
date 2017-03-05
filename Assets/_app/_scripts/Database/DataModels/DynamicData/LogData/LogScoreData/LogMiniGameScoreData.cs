@@ -17,6 +17,11 @@ namespace EA4S.Database
         public int Id { get; set; }
 
         /// <summary>
+        /// Unique identifier for the player. empty during game. compiled at export/import
+        /// </summary>
+        public string Uuid { get; set; }
+
+        /// <summary>
         /// Identifier of the application session.
         /// </summary>
         public int AppSession { get; set; }
