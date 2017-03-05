@@ -134,7 +134,8 @@ namespace EA4S.ReservedArea
             var maxJourneyPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
             AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true);
             yield return StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos));
-            Rewards.RewardSystemManager.UnlockAllRewards();
+            // FIX BUG in this
+            ///Rewards.RewardSystemManager.UnlockAllRewards();
 
             ResetAll();
             activateWaitingScreen(false);
