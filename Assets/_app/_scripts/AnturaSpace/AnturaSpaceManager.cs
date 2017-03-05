@@ -79,6 +79,7 @@ namespace EA4S.AnturaSpace
 
             if (bones.Count < MaxBonesInScene && AppManager.I.Player.TotalNumberOfBones > 0)
             {
+                AudioManager.I.PlaySound(Sfx.ThrowObj);
                 var bone = Instantiate(BonePrefab);
                 bone.SetActive(true);
                 bone.transform.position = BoneSpawnPosition.position;
@@ -178,6 +179,7 @@ namespace EA4S.AnturaSpace
 
             if (DraggingBone != null && !Input.GetMouseButton(0))
             {
+                AudioManager.I.PlaySound(Sfx.ThrowObj);
                 DraggingBone.GetComponent<BoneBehaviour>().LetGo();
                 DraggingBone = null;
             }
