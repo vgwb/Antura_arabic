@@ -57,5 +57,18 @@ namespace EA4S.Core
             return GetTranslation(loc);
         }
 
+        public static string GetPhraseCategoryTitle(Database.PhraseDataCategory cat)
+        {
+            Database.LocalizationDataId loc = Database.LocalizationDataId.UI_None;
+            switch (cat) {
+                case Database.PhraseDataCategory.Question: loc = Database.LocalizationDataId.UI_Phrases_Questions; break;
+                case Database.PhraseDataCategory.Reply: loc = Database.LocalizationDataId.UI_Phrases_Replies; break;
+                case Database.PhraseDataCategory.Greetings: loc = Database.LocalizationDataId.UI_Phrases_Greetings; break;
+                case Database.PhraseDataCategory.Year: loc = Database.LocalizationDataId.UI_Phrases_Years; break;
+                case Database.PhraseDataCategory.Sentence: loc = Database.LocalizationDataId.UI_Phrases_Sentences; break;
+                case Database.PhraseDataCategory.Expression: loc = Database.LocalizationDataId.UI_Phrases_Expressions; break;
+            }
+            return GetTranslation(loc);
+        }
     }
 }

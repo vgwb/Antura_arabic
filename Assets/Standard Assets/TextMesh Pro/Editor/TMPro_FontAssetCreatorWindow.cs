@@ -1012,7 +1012,7 @@ namespace TMPro.EditorUtilities
                 AssetDatabase.AddObjectToAsset(m_font_Atlas, font_asset);
 
                 // Assign new font atlas texture to the existing material.
-                font_asset.material.mainTexture = font_asset.atlas;
+                font_asset.material.SetTexture(ShaderUtilities.ID_MainTex, font_asset.atlas);
 
                 // Update the Texture reference on the Material
                 for (int i = 0; i < material_references.Length; i++)
@@ -1178,7 +1178,7 @@ namespace TMPro.EditorUtilities
                 AssetDatabase.AddObjectToAsset(m_font_Atlas, font_asset);
 
                 // Assign new font atlas texture to the existing material.
-                font_asset.material.mainTexture = font_asset.atlas;
+                font_asset.material.SetTexture(ShaderUtilities.ID_MainTex, font_asset.atlas);
 
                 // Update the Texture reference on the Material
                 for (int i = 0; i < material_references.Length; i++)
@@ -1295,6 +1295,8 @@ namespace TMPro.EditorUtilities
             face.CenterLine = ft_face.centerLine / scaleFactor;
             face.Underline = ft_face.underline / scaleFactor;
             face.UnderlineThickness = ft_face.underlineThickness == 0 ? 5 : ft_face.underlineThickness / scaleFactor; // Set Thickness to 5 if TTF value is Zero.
+            face.strikethrough = (face.Ascender + face.Descender) / 2.75f;
+            face.strikethroughThickness = face.UnderlineThickness;
             face.SuperscriptOffset = face.Ascender;
             face.SubscriptOffset = face.Underline;
             face.SubSize = 0.5f;

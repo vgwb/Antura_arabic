@@ -3,6 +3,10 @@
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
 
 
+// When enabled, allows setting the material by dropping a material onto the MeshRenderer inspector component. 
+// The drawback is that the MeshRenderer inspector will not have properties for light probes, so if you need light probe support, do not enable this.
+//#define ALLOW_MESHRENDERER_MATERIAL_DRAG_N_DROP
+
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
@@ -11,7 +15,7 @@ using System.Collections;
 namespace TMPro.EditorUtilities
 {
     // Disabled for compatibility reason as lightprobe setup isn't supported due to inability to inherit from MeshRendererEditor class
-    /*
+#if ALLOW_MESHRENDERER_MATERIAL_DRAG_N_DROP
     [CanEditMultipleObjects]
     [CustomEditor(typeof(MeshRenderer))]
     public class TMP_MeshRendererEditor : Editor
@@ -73,5 +77,5 @@ namespace TMPro.EditorUtilities
             }
         }
     }
-    */
+#endif
 }

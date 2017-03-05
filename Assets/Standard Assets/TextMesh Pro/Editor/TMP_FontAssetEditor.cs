@@ -194,8 +194,8 @@ namespace TMPro.EditorUtilities
             EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("CapHeight"));
             EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("Baseline"));
             EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("Descender"));
-            EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("Underline"));
-            //EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("UnderlineThickness"));
+            EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("Underline"), new GUIContent("Underline Offset"));
+            EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("strikethrough"), new GUIContent("Strikethrough Offset"));
             EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("SuperscriptOffset"));
             EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("SubscriptOffset"));
             
@@ -367,7 +367,7 @@ namespace TMPro.EditorUtilities
                             if (string.IsNullOrEmpty(searchPattern) == false)
                             {
                                 //GUIUtility.keyboardControl = 0;
-                                m_searchPattern = searchPattern.ToLower(System.Globalization.CultureInfo.InvariantCulture).Trim();
+                                m_searchPattern = searchPattern; //.ToLower(System.Globalization.CultureInfo.InvariantCulture).Trim();
                                 
                                 // Search Glyph Table for potential matches
                                 SearchGlyphTable(m_searchPattern, ref m_searchList);
@@ -753,6 +753,8 @@ namespace TMPro.EditorUtilities
 
             serializedObject.ApplyModifiedProperties();
 
+            m_fontAsset.SortGlyphs();
+
             m_fontAsset.ReadFontDefinition();
 
             return true;
@@ -824,6 +826,7 @@ namespace TMPro.EditorUtilities
         void SearchGlyphTable (string searchPattern, ref List<int> searchResults)
         {
             if (searchResults == null) searchResults = new List<int>();
+
             searchResults.Clear();
 
             int arraySize = m_glyphInfoList_prop.arraySize;
@@ -834,11 +837,18 @@ namespace TMPro.EditorUtilities
 
                 int id = sourceGlyph.FindPropertyRelative("id").intValue;
 
+                // Check for potential match against a character.
+                if (searchPattern.Length == 1 && id == searchPattern[0])
+                    searchResults.Add(i);
+
                 // Check for potential match against decimal id
                 if (id.ToString().Contains(searchPattern))
                     searchResults.Add(i);
 
                 if (id.ToString("x").Contains(searchPattern))
+                    searchResults.Add(i);
+
+                if (id.ToString("X").Contains(searchPattern))
                     searchResults.Add(i);
             }
         }

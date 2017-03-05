@@ -45,6 +45,13 @@ namespace TMPro
         private Dictionary<int, int> m_SpriteUnicodeLookup;
 
 
+        /// <summary>
+        /// List which contains the Fallback font assets for this font.
+        /// </summary>
+        [SerializeField]
+        public List<TMP_SpriteAsset> fallbackSpriteAssets;
+
+
         //private bool isEditingAsset;
 
         void OnEnable()
@@ -153,66 +160,136 @@ namespace TMPro
         }
 
 
-/*
-#if UNITY_EDITOR
         /// <summary>
-        /// 
+        /// Returns the index of the sprite for the given name.
         /// </summary>
-        public void LoadSprites()
-        {
-            if (m_sprites != null && m_sprites.Count > 0)
-                return;
-
-            Debug.Log("Loading Sprite List");
-            
-            string filePath = UnityEditor.AssetDatabase.GetAssetPath(spriteSheet);
-
-            Object[] objects = UnityEditor.AssetDatabase.LoadAllAssetsAtPath(filePath);
-
-            m_sprites = new List<Sprite>();
-
-            foreach (Object obj in objects)
-            {
-                if (obj.GetType() == typeof(Sprite))
-                {
-                    Sprite sprite = obj as Sprite;
-                    Debug.Log("Sprite # " + m_sprites.Count + " Rect: " + sprite.rect);
-                    m_sprites.Add(sprite);
-                }
-            }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <param name="name"></param>
         /// <returns></returns>
-        public List<Sprite> GetSprites()
+        public int GetSpriteIndexFromName (string name)
         {
-            if (m_sprites != null && m_sprites.Count > 0)
-                return m_sprites;
+            if (m_NameLookup == null)
+                UpdateLookupTables();
 
-            //Debug.Log("Loading Sprite List");
+            int hashCode = TMP_TextUtilities.GetSimpleHashCode(name);
 
-            string filePath = UnityEditor.AssetDatabase.GetAssetPath(spriteSheet);
+            return GetSpriteIndexFromHashcode(hashCode);
+        }
 
-            Object[] objects = UnityEditor.AssetDatabase.LoadAllAssetsAtPath(filePath);
 
-            m_sprites = new List<Sprite>();
+        /// <summary>
+        /// Search through the given sprite asset and its fallbacks for the specified sprite matching the given unicode character.
+        /// </summary>
+        /// <param name="spriteAsset">The font asset to search for the given character.</param>
+        /// <param name="unicode">The character to find.</param>
+        /// <param name="glyph">out parameter containing the glyph for the specified character (if found).</param>
+        /// <returns></returns>
+        public static TMP_SpriteAsset SearchFallbackForSprite(TMP_SpriteAsset spriteAsset, int unicode, out int spriteIndex)
+        {
+            spriteIndex = -1;
+            if (spriteAsset == null) return null;
 
-            foreach (Object obj in objects)
+            spriteIndex = spriteAsset.GetSpriteIndexFromUnicode(unicode);
+            if (spriteIndex != -1)
+                return spriteAsset;
+            else if (spriteAsset.fallbackSpriteAssets != null && spriteAsset.fallbackSpriteAssets.Count > 0)
             {
-                if (obj.GetType() == typeof(Sprite))
+                for (int i = 0; i < spriteAsset.fallbackSpriteAssets.Count && spriteIndex == -1; i++)
                 {
-                    Sprite sprite = obj as Sprite;
-                    //Debug.Log("Sprite # " + m_sprites.Count + " Rect: " + sprite.rect);
-                    m_sprites.Add(sprite);
+                    TMP_SpriteAsset temp = SearchFallbackForSprite(spriteAsset.fallbackSpriteAssets[i], unicode, out spriteIndex);
+
+                    if (temp != null)
+                        return temp;
+                }
+            }
+            return null;
+        }
+
+
+        /// <summary>
+        /// Search through the given list of sprite assets and their possible fallbacks for the specified sprite matching the given unicode character.
+        /// </summary>
+        /// <param name="spriteAssets"></param>
+        /// <param name="unicode"></param>
+        /// <param name="spriteIndex"></param>
+        /// <returns></returns>
+        public static TMP_SpriteAsset SearchFallbackForSprite(List<TMP_SpriteAsset> spriteAssets, int unicode, out int spriteIndex)
+        {
+            spriteIndex = -1;
+
+            if (spriteAssets != null && spriteAssets.Count > 0)
+            {
+                for (int i = 0; i < spriteAssets.Count; i++)
+                {
+                    TMP_SpriteAsset spriteAsset = SearchFallbackForSprite(spriteAssets[i], unicode, out spriteIndex);
+
+                    if (spriteAsset != null)
+                        return spriteAsset;
                 }
             }
 
-            return m_sprites;
+            return null;
         }
-#endif
-*/      
+
+        /*
+        #if UNITY_EDITOR
+                /// <summary>
+                /// 
+                /// </summary>
+                public void LoadSprites()
+                {
+                    if (m_sprites != null && m_sprites.Count > 0)
+                        return;
+
+                    Debug.Log("Loading Sprite List");
+
+                    string filePath = UnityEditor.AssetDatabase.GetAssetPath(spriteSheet);
+
+                    Object[] objects = UnityEditor.AssetDatabase.LoadAllAssetsAtPath(filePath);
+
+                    m_sprites = new List<Sprite>();
+
+                    foreach (Object obj in objects)
+                    {
+                        if (obj.GetType() == typeof(Sprite))
+                        {
+                            Sprite sprite = obj as Sprite;
+                            Debug.Log("Sprite # " + m_sprites.Count + " Rect: " + sprite.rect);
+                            m_sprites.Add(sprite);
+                        }
+                    }
+                }
+
+
+                /// <summary>
+                /// 
+                /// </summary>
+                /// <returns></returns>
+                public List<Sprite> GetSprites()
+                {
+                    if (m_sprites != null && m_sprites.Count > 0)
+                        return m_sprites;
+
+                    //Debug.Log("Loading Sprite List");
+
+                    string filePath = UnityEditor.AssetDatabase.GetAssetPath(spriteSheet);
+
+                    Object[] objects = UnityEditor.AssetDatabase.LoadAllAssetsAtPath(filePath);
+
+                    m_sprites = new List<Sprite>();
+
+                    foreach (Object obj in objects)
+                    {
+                        if (obj.GetType() == typeof(Sprite))
+                        {
+                            Sprite sprite = obj as Sprite;
+                            //Debug.Log("Sprite # " + m_sprites.Count + " Rect: " + sprite.rect);
+                            m_sprites.Add(sprite);
+                        }
+                    }
+
+                    return m_sprites;
+                }
+        #endif
+        */
     }
 }

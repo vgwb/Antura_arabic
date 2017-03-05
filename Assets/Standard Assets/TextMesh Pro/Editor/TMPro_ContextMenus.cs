@@ -216,7 +216,7 @@ namespace TMPro.EditorUtilities
                 Undo.RecordObject(mat, "Paste Texture");
 
                 ShaderUtilities.GetShaderPropertyIDs(); // Make sure we have valid Property IDs
-                mat.mainTexture = m_copiedAtlasProperties.mainTexture;
+                mat.SetTexture(ShaderUtilities.ID_MainTex, m_copiedAtlasProperties.GetTexture(ShaderUtilities.ID_MainTex));
                 mat.SetFloat(ShaderUtilities.ID_GradientScale, m_copiedAtlasProperties.GetFloat(ShaderUtilities.ID_GradientScale));
                 mat.SetFloat(ShaderUtilities.ID_TextureWidth, m_copiedAtlasProperties.GetFloat(ShaderUtilities.ID_TextureWidth));
                 mat.SetFloat(ShaderUtilities.ID_TextureHeight, m_copiedAtlasProperties.GetFloat(ShaderUtilities.ID_TextureHeight));
@@ -225,7 +225,7 @@ namespace TMPro.EditorUtilities
             {
                 Undo.RecordObject(mat, "Paste Texture");
 
-                mat.mainTexture = m_copiedTexture;
+                mat.SetTexture(ShaderUtilities.ID_MainTex, m_copiedTexture);
             }
 
             //DestroyImmediate(m_copiedAtlasProperties);
@@ -243,12 +243,12 @@ namespace TMPro.EditorUtilities
             string texPath = Path.GetDirectoryName(fontPath) + "/" + Path.GetFileNameWithoutExtension(fontPath) + " Atlas.png";
 
             // Create a Serialized Object of the texture to allow us to make it readable.
-            SerializedObject texprop = new SerializedObject(font.material.mainTexture);
+            SerializedObject texprop = new SerializedObject(font.material.GetTexture(ShaderUtilities.ID_MainTex));
             texprop.FindProperty("m_IsReadable").boolValue = true;
             texprop.ApplyModifiedProperties();
 
             // Create a copy of the texture.
-            Texture2D tex = Instantiate(font.material.mainTexture) as Texture2D;
+            Texture2D tex = Instantiate(font.material.GetTexture(ShaderUtilities.ID_MainTex)) as Texture2D;
 
             // Set the texture to not readable again.
             texprop.FindProperty("m_IsReadable").boolValue = false;

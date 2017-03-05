@@ -113,10 +113,20 @@ namespace TMPro
         [SerializeField]
         protected Scrollbar m_VerticalScrollbar;
 
+        [SerializeField]
+        protected TMP_ScrollbarEventHandler m_VerticalScrollbarEventHandler;
+        //private bool m_ForceDeactivation;
+
         /// <summary>
         /// Used to keep track of scroll position
         /// </summary>
         private float m_ScrollPosition;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [SerializeField]
+        protected float m_ScrollSensitivity = 1.0f;
 
         //[SerializeField]
         //protected TMP_Text m_PlaceholderTextComponent;
@@ -259,10 +269,12 @@ namespace TMPro
         protected int m_StringSelectPosition = 0;
         protected int m_CaretPosition = 0;
         protected int m_CaretSelectPosition = 0;
+
         private RectTransform caretRectTrans = null;
         protected UIVertex[] m_CursorVerts = null;
         private CanvasRenderer m_CachedInputRenderer;
         private Vector2 m_DefaultTransformPosition;
+        private Vector2 m_LastPosition;
 
         [NonSerialized]
         protected Mesh m_Mesh;
@@ -282,8 +294,11 @@ namespace TMPro
         private bool m_HasDoneFocusTransition = false;
 
         private bool m_IsScrollbarUpdateRequired = false;
+        private bool m_IsUpdatingScrollbarValues = false;
 
         private bool m_isLastKeyBackspace = false;
+        private float m_ClickStartTime;
+        private float m_DoubleClickDelay = 0.5f;
 
         // Doesn't include dot and @ on purpose! See usage for details.
         const string kEmailSpecialCharacters = "!#$%&'*+-/=?^_`{|}~";
@@ -422,17 +437,19 @@ namespace TMPro
             set
             {
                 if (m_VerticalScrollbar != null)
-                    m_VerticalScrollbar.onValueChanged.RemoveListener(SetTextScrollPosition);
+                    m_VerticalScrollbar.onValueChanged.RemoveListener(OnScrollbarValueChange);
 
                 SetPropertyUtility.SetClass(ref m_VerticalScrollbar, value);
 
                 if (m_VerticalScrollbar)
                 {
-                    m_VerticalScrollbar.onValueChanged.AddListener(SetTextScrollPosition);
-                    //m_VerticalScrollbarRect = m_VerticalScrollbar.GetComponent<RectTransform>();
+                    m_VerticalScrollbar.onValueChanged.AddListener(OnScrollbarValueChange);
+                    
                 }
             }
         }
+
+        public float scrollSensitivity { get { return m_ScrollSensitivity; } set { if (SetPropertyUtility.SetStruct(ref m_ScrollSensitivity, value)) MarkGeometryAsDirty(); } }
 
         public Color caretColor { get { return customCaretColor ? m_CaretColor : textComponent.color; } set { if (SetPropertyUtility.SetColor(ref m_CaretColor, value)) MarkGeometryAsDirty(); } }
 
@@ -457,6 +474,8 @@ namespace TMPro
         public OnValidateInput onValidateInput { get { return m_OnValidateInput; } set { SetPropertyUtility.SetClass(ref m_OnValidateInput, value); } }
 
         public int characterLimit { get { return m_CharacterLimit; } set { if (SetPropertyUtility.SetStruct(ref m_CharacterLimit, Math.Max(0, value))) UpdateLabel(); } }
+
+        //public bool isInteractableControl { set { if ( } }
 
         /// <summary>
         /// Set the point size on both Placeholder and Input text object.
@@ -606,10 +625,9 @@ namespace TMPro
         /// Get: Returns the focus position as thats the position that moves around even during selection.
         /// Set: Set both the anchor and focus position such that a selection doesn't happen
         /// </summary>
-
         public int caretPosition
         {
-            get { return m_StringSelectPosition + Input.compositionString.Length; }
+            get { return caretSelectPositionInternal; }
             set { selectionAnchorPosition = value; selectionFocusPosition = value; isStringPositionDirty = true; }
         }
 
@@ -617,23 +635,19 @@ namespace TMPro
         /// Get: Returns the fixed position of selection
         /// Set: If Input.compositionString is 0 set the fixed position
         /// </summary>
-
         public int selectionAnchorPosition
         {
             get
             {
-                m_StringPosition = GetStringIndexFromCaretPosition(m_CaretPosition);
-
-                return m_StringPosition + Input.compositionString.Length;
+                return caretPositionInternal;
             }
+
             set
             {
                 if (Input.compositionString.Length != 0)
                     return;
 
-                // TODO: This should set m_StringPosition and be clamped.
-                m_CaretPosition = value;
-                ClampStringPos(ref m_CaretPosition);
+                caretPositionInternal = value;
                 isStringPositionDirty = true;
             }
         }
@@ -642,26 +656,73 @@ namespace TMPro
         /// Get: Returns the variable position of selection
         /// Set: If Input.compositionString is 0 set the variable position
         /// </summary>
-
         public int selectionFocusPosition
         {
             get
             {
-                m_StringSelectPosition = GetStringIndexFromCaretPosition(m_CaretSelectPosition);
-
-                return m_StringSelectPosition + Input.compositionString.Length;
+                return caretSelectPositionInternal;
             }
             set
             {
                 if (Input.compositionString.Length != 0)
                     return;
 
-                // TODO: This should set m_StringSelectPosition and be clamped.
-                m_CaretSelectPosition = value;
-                ClampStringPos(ref m_CaretSelectPosition);
+                caretSelectPositionInternal = value;
                 isStringPositionDirty = true;
             }
         }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int stringPosition
+        {
+            get { return stringSelectPositionInternal; }
+            set { selectionStringAnchorPosition = value; selectionStringFocusPosition = value; }
+        }
+
+
+        /// <summary>
+        /// The fixed position of the selection in the raw string which may contains rich text.
+        /// </summary>
+        public int selectionStringAnchorPosition
+        {
+            get
+            {
+                return stringPositionInternal;
+            }
+
+            set
+            {
+                if (Input.compositionString.Length != 0)
+                    return;
+
+                stringPositionInternal = value;
+                //isStringPositionDirty = true;
+            }
+        }
+
+
+        /// <summary>
+        /// The variable position of the selection in the raw string which may contains rich text.
+        /// </summary>
+        public int selectionStringFocusPosition
+        {
+            get
+            {
+                return stringSelectPositionInternal;
+            }
+            set
+            {
+                if (Input.compositionString.Length != 0)
+                    return;
+
+                stringSelectPositionInternal = value;
+                //isStringPositionDirty = true;
+            }
+        }
+
 
 #if UNITY_EDITOR
         // Remember: This is NOT related to text validation!
@@ -702,7 +763,8 @@ namespace TMPro
                     GameObject go = new GameObject(transform.name + " Input Caret");
 
                     // Add MaskableGraphic Component
-                    go.AddComponent<TMP_SelectionCaret>();
+                    TMP_SelectionCaret caret = go.AddComponent<TMP_SelectionCaret>();
+                    caret.color = Color.clear;
 
                     go.hideFlags = HideFlags.DontSave;
                     go.transform.SetParent(m_TextComponent.transform.parent);
@@ -735,8 +797,12 @@ namespace TMPro
                 // Cache reference to Vertical Scrollbar RectTransform and add listener.
                 if (m_VerticalScrollbar != null)
                 {
-                    //m_VerticalScrollbarRect = m_VerticalScrollbar.GetComponent<RectTransform>();
-                    m_VerticalScrollbar.onValueChanged.AddListener(SetTextScrollPosition);
+                    m_VerticalScrollbar.onValueChanged.AddListener(OnScrollbarValueChange);
+                    //m_VerticalScrollbar.onSelect.AddListener(SetTextScrollPosition);
+
+                    //if (m_VerticalScrollbarEventHandler == null)
+                    //    m_VerticalScrollbarEventHandler = m_VerticalScrollbar.gameObject.AddComponent<TMP_ScrollbarEventHandler>();
+
                 }
 
                 UpdateLabel();
@@ -758,7 +824,7 @@ namespace TMPro
                 m_TextComponent.UnregisterDirtyVerticesCallback(UpdateLabel);
 
                 if (m_VerticalScrollbar != null)
-                    m_VerticalScrollbar.onValueChanged.RemoveListener(SetTextScrollPosition);
+                    m_VerticalScrollbar.onValueChanged.RemoveListener(OnScrollbarValueChange);
 
             }
             CanvasUpdateRegistry.UnRegisterCanvasElementForRebuild(this);
@@ -939,6 +1005,62 @@ namespace TMPro
             UpdateLabel();
         }
 
+
+        /// <summary>
+        /// Move to the end of the current line of text.
+        /// </summary>
+        /// <param name="shift"></param>
+        public void MoveToEndOfLine(bool shift, bool ctrl)
+        {
+            // Get the line the caret is currently located on.
+            int currentLine = m_TextComponent.textInfo.characterInfo[caretPositionInternal].lineNumber;
+
+            // Get the last character of the given line.
+            int position = ctrl == true ? m_TextComponent.textInfo.characterCount - 1 : m_TextComponent.textInfo.lineInfo[currentLine].lastCharacterIndex;
+
+            position = GetStringIndexFromCaretPosition(position);
+
+            if (shift)
+            {
+                stringSelectPositionInternal = position;
+            }
+            else
+            {
+                stringPositionInternal = position;
+                stringSelectPositionInternal = stringPositionInternal;
+            }
+
+            UpdateLabel();
+        }
+
+        /// <summary>
+        /// Move to the start of the current line of text.
+        /// </summary>
+        /// <param name="shift"></param>
+        public void MoveToStartOfLine(bool shift, bool ctrl)
+        {
+            // Get the line the caret is currently located on.
+            int currentLine = m_TextComponent.textInfo.characterInfo[caretPositionInternal].lineNumber;
+
+            // Get the last character of the given line.
+            int position = ctrl == true ? 0 : m_TextComponent.textInfo.lineInfo[currentLine].firstCharacterIndex;
+
+            position = GetStringIndexFromCaretPosition(position);
+
+            if (shift)
+            {
+                stringSelectPositionInternal = position;
+            }
+            else
+            {
+                stringPositionInternal = position;
+                stringSelectPositionInternal = stringPositionInternal;
+            }
+
+            UpdateLabel();
+        }
+
+
         static string clipboard
         {
             get
@@ -983,8 +1105,29 @@ namespace TMPro
                 m_IsScrollbarUpdateRequired = false;
             }
 
+            //if (!isFocused && !m_VerticalScrollbarEventHandler.isSelected)
+            //{
+            //    m_ForceDeactivation = true;
+            //    DeactivateInputField();
+
+            //    return;
+            //}
+
+            //if (!isFocused)
+            //{
+            //    GameObject currentSelection = EventSystem.current == null ? null : EventSystem.current.currentSelectedGameObject;
+
+            //    if (currentSelection != null)
+            //        Debug.Log("Current Selection is: " + EventSystem.current.currentSelectedGameObject);
+            //    else
+            //        Debug.Log("No GameObject is selected...");
+            //}
+
+
             if (InPlaceEditing() || !isFocused)
                 return;
+
+            //Debug.Log(this + " has focus...");
 
             AssignPositioningIfNeeded();
 
@@ -1168,6 +1311,17 @@ namespace TMPro
                 }
             }
 
+            bool shift = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+
+            // Check for Double Click
+            bool isDoubleClick = false;
+            float timeStamp = Time.unscaledTime;
+
+            if (m_ClickStartTime + m_DoubleClickDelay > timeStamp)
+                isDoubleClick = true;   
+
+            m_ClickStartTime = timeStamp;
+
             // Only set caret position if we didn't just get focus now.
             // Otherwise it will overwrite the select all on focus.
             if (hadFocusBefore || !m_OnFocusSelectAll)
@@ -1175,14 +1329,51 @@ namespace TMPro
                 CaretPosition insertionSide;
                 int insertionIndex = TMP_TextUtilities.GetCursorIndexFromPosition(m_TextComponent, eventData.position, eventData.pressEventCamera, out insertionSide);
 
-                if (insertionSide == CaretPosition.Left)
-                    stringPositionInternal = stringSelectPositionInternal = GetStringIndexFromCaretPosition(insertionIndex);
-                else if (insertionSide == CaretPosition.Right)
-                    stringPositionInternal = stringSelectPositionInternal = GetStringIndexFromCaretPosition(insertionIndex) + 1;
+                if (shift)
+                {
+                    if (insertionSide == CaretPosition.Left)
+                        stringSelectPositionInternal = GetStringIndexFromCaretPosition(insertionIndex);
+                    else if (insertionSide == CaretPosition.Right)
+                        stringSelectPositionInternal = GetStringIndexFromCaretPosition(insertionIndex) + 1;
+                }
+                else
+                {
+                    if (insertionSide == CaretPosition.Left)
+                        stringPositionInternal = stringSelectPositionInternal = GetStringIndexFromCaretPosition(insertionIndex);
+                    else if (insertionSide == CaretPosition.Right)
+                        stringPositionInternal = stringSelectPositionInternal = GetStringIndexFromCaretPosition(insertionIndex) + 1;
+                }
 
-                caretPositionInternal = caretSelectPositionInternal = GetCaretPositionFromStringIndex(stringPositionInternal);
 
+                if (isDoubleClick)
+                {
+                    int wordIndex = TMP_TextUtilities.FindIntersectingWord(m_TextComponent, eventData.position, eventData.pressEventCamera);
+
+                    if (wordIndex != -1)
+                    {
+                        // Select current word
+                        caretPositionInternal = m_TextComponent.textInfo.wordInfo[wordIndex].firstCharacterIndex;
+                        caretSelectPositionInternal = m_TextComponent.textInfo.wordInfo[wordIndex].lastCharacterIndex + 1;
+
+                        stringPositionInternal = GetStringIndexFromCaretPosition(caretPositionInternal);
+                        stringSelectPositionInternal = GetStringIndexFromCaretPosition(caretSelectPositionInternal);
+                    }
+                    else
+                    {
+                        // Select current character
+                        caretPositionInternal = GetCaretPositionFromStringIndex(stringPositionInternal);
+
+                        stringSelectPositionInternal += 1;
+                        caretSelectPositionInternal = caretPositionInternal + 1;
+                        caretSelectPositionInternal = GetCaretPositionFromStringIndex(stringSelectPositionInternal);
+                    }
+                }
+                else
+                {
+                    caretPositionInternal = caretSelectPositionInternal = GetCaretPositionFromStringIndex(stringPositionInternal);
+                }
             }
+
             UpdateLabel();
             eventData.Use();
         }
@@ -1223,13 +1414,13 @@ namespace TMPro
 
                 case KeyCode.Home:
                     {
-                        MoveTextStart(shift);
+                        MoveToStartOfLine(shift, ctrl);
                         return EditState.Continue;
                     }
 
                 case KeyCode.End:
                     {
-                        MoveTextEnd(shift);
+                        MoveToEndOfLine(shift, ctrl);
                         return EditState.Continue;
                     }
 
@@ -1429,18 +1620,23 @@ namespace TMPro
         {
             float scrollDirection = -eventData.scrollDelta.y;
 
-            m_ScrollPosition = m_ScrollPosition + (1f / m_TextComponent.textInfo.lineCount) * scrollDirection;
+            m_ScrollPosition = m_ScrollPosition + (1f / m_TextComponent.textInfo.lineCount) * scrollDirection * m_ScrollSensitivity;
 
             m_ScrollPosition = Mathf.Clamp01(m_ScrollPosition);
 
-            SetTextScrollPosition(m_ScrollPosition);
+            AdjustTextPositionRelativeToViewport(m_ScrollPosition);
 
             // Disable focus until user re-selected the input field.
             m_AllowInput = false;
 
             if (m_VerticalScrollbar)
+            {
+                m_IsUpdatingScrollbarValues = true;
                 m_VerticalScrollbar.value = m_ScrollPosition;
+                //m_VerticalScrollbar.numberOfSteps = (int)(m_TextComponent.textInfo.lineCount / scrollSensitivity);
+            }
 
+            //Debug.Log("Scroll Position:" + m_ScrollPosition);
         }
 
 
@@ -1519,11 +1715,11 @@ namespace TMPro
             else
             {
                 stringSelectPositionInternal = stringPositionInternal = position;
-                caretSelectPositionInternal = caretPositionInternal = caretPositionInternal + 1;
+                caretSelectPositionInternal = caretPositionInternal = GetCaretPositionFromStringIndex(stringSelectPositionInternal);
             }
 
             #if DEBUG_MODE
-            Debug.Log("Caret Position: " + caretPositionInternal + " Selection Position: " + caretSelectPositionInternal + "  String Position: " + stringPositionInternal + " String Select Position: " + stringSelectPositionInternal);
+            Debug.Log("Caret Position: " + caretPositionInternal + "  Selection Position: " + caretSelectPositionInternal + "  String Position: " + stringPositionInternal + "  String Select Position: " + stringSelectPositionInternal);
             #endif
         }
 
@@ -1541,7 +1737,6 @@ namespace TMPro
 
             return spaceLoc;
         }
-
 
         private void MoveLeft(bool shift, bool ctrl)
         {
@@ -1567,8 +1762,6 @@ namespace TMPro
                     position = stringSelectPositionInternal - 1;
                 else
                     position = GetStringIndexFromCaretPosition(caretSelectPositionInternal - 1);
-
-
             }
 
             if (shift)
@@ -1580,15 +1773,13 @@ namespace TMPro
             {
 
                 stringSelectPositionInternal = stringPositionInternal = position;
-                caretSelectPositionInternal = caretPositionInternal = caretPositionInternal - 1;
+                caretSelectPositionInternal = caretPositionInternal = GetCaretPositionFromStringIndex(stringSelectPositionInternal);
             }
 
             #if DEBUG_MODE
-            Debug.Log("Caret Position: " + caretPositionInternal + " Selection Position: " + caretSelectPositionInternal + "  String Position: " + stringPositionInternal + " String Select Position: " + stringSelectPositionInternal);
+            Debug.Log("Caret Position: " + caretPositionInternal + "  Selection Position: " + caretSelectPositionInternal + "  String Position: " + stringPositionInternal + "  String Select Position: " + stringSelectPositionInternal);
             #endif
         }
-
-
 
 
         private int LineUpCharacterPosition(int originalPos, bool goToFirstChar)
@@ -1757,6 +1948,7 @@ namespace TMPro
                 stringSelectPositionInternal = stringPositionInternal = GetStringIndexFromCaretPosition(caretSelectPositionInternal);
             }
         }
+
 
         private void Delete()
         {
@@ -2125,38 +2317,20 @@ namespace TMPro
 
         void UpdateScrollbar()
         {
-            //Debug.Log("*** Updating Scrollbar ***");
-
             // Update Scrollbar
-            if (m_VerticalScrollbar != null)
+            if (m_VerticalScrollbar)
             {
                 float size = m_TextViewport.rect.height / m_TextComponent.preferredHeight;
+
+                m_IsUpdatingScrollbarValues = true;
+
                 m_VerticalScrollbar.size = size;
 
-                int firstIndex = 0;
-                int lastIndex = m_TextComponent.textInfo.characterCount - 2;
+                m_VerticalScrollbar.value = m_TextComponent.rectTransform.anchoredPosition.y / (m_TextComponent.preferredHeight - m_TextViewport.rect.height);
 
-                if (lastIndex > 0 && lastIndex < m_TextComponent.textInfo.characterInfo.Length)
-                {
-                    float originBaseline = m_TextComponent.textInfo.characterInfo[firstIndex].baseLine;
-                    float finalBaseline = m_TextComponent.textInfo.characterInfo[lastIndex].baseLine;
-                    float caretBaseline = m_TextComponent.textInfo.characterInfo[m_CaretSelectPosition].baseLine;
+                //m_VerticalScrollbar.numberOfSteps = (int)(m_TextComponent.textInfo.lineCount / 0.25f); // Replace by scroll sensitivity.
 
-                    if (finalBaseline - originBaseline == 0)
-                    {
-                        m_VerticalScrollbar.value = 0;
-                    }
-                    else
-                    {
-                        float handlePosition = (caretBaseline - originBaseline) / (finalBaseline - originBaseline);
-                        m_VerticalScrollbar.value = handlePosition;
-                    }
-
-                    m_VerticalScrollbar.numberOfSteps = m_TextComponent.textInfo.lineCount;
-
-                    //m_ScrollPosition = m_VerticalScrollbar.value;
-                    //Debug.Log("Caret Position: " + m_CaretPosition + "  CaretSelectPosition: "  + m_CaretSelectPosition);
-                }
+                //Debug.Log("Updating Scrollbar... Value: " + m_VerticalScrollbar.value);
             }
         }
 
@@ -2165,18 +2339,17 @@ namespace TMPro
         /// Function to update the vertical position of the text container when OnValueChanged event is received from the Scrollbar.
         /// </summary>
         /// <param name="value"></param>
-        void SetTextScrollPosition(float value)
+        void OnScrollbarValueChange(float value)
         {
-            //Debug.Log("Set text scroll position to " + value);
-
-            if (m_IsScrollbarUpdateRequired) return;
+            if (m_IsUpdatingScrollbarValues) { m_IsUpdatingScrollbarValues = false; return; }
 
             if (value < 0 || value > 1) return;
 
             AdjustTextPositionRelativeToViewport(value);
 
             m_ScrollPosition = value;
-            //Debug.Log("Scrollbar value is: " + value + "  which should be line: " + line + "  Transform POS: " + m_TextComponent.rectTransform.anchoredPosition);
+
+            //Debug.Log("Scrollbar value is: " + value + "  Transform POS: " + m_TextComponent.rectTransform.anchoredPosition);
         }
 
         /// <summary>
@@ -2192,20 +2365,9 @@ namespace TMPro
             // Check to make sure we have valid data and lines to query.
             if (textInfo == null || textInfo.lineInfo == null || textInfo.lineCount == 0 || textInfo.lineCount > textInfo.lineInfo.Length) return;
 
-            float viewportMin = m_TextViewport.rect.yMin;
-            float viewportMax = m_TextViewport.rect.yMax;
+            //m_TextComponent.rectTransform.anchoredPosition = new Vector2(m_TextComponent.rectTransform.anchoredPosition.x, (textHeight - viewportHeight) * relativePosition);
+            m_TextComponent.rectTransform.anchoredPosition = new Vector2(m_TextComponent.rectTransform.anchoredPosition.x, (m_TextComponent.preferredHeight - m_TextViewport.rect.height) * relativePosition);
 
-            // Calculate the viewport height
-            float viewportHeight = viewportMax - viewportMin;
-
-            int numberOfLines = textInfo.lineCount;
-            float textTopAscender = textInfo.lineInfo[0].ascender;
-            float textBottomDescender = textInfo.lineInfo[numberOfLines - 1].descender;
-
-            // Calculate the body of text's height.
-            float textHeight = textTopAscender - textBottomDescender; 
-
-            m_TextComponent.rectTransform.anchoredPosition = new Vector2(m_TextComponent.rectTransform.anchoredPosition.x, (textHeight - viewportHeight) * relativePosition);
             AssignPositioningIfNeeded();
 
             //Debug.Log("Text height: " + textHeight + "  Viewport height: " + viewportHeight + "  Adjusted RectTransform anchordedPosition:" + m_TextComponent.rectTransform.anchoredPosition + "  Text Bounds: " + m_TextComponent.bounds.ToString("f3"));
@@ -2415,9 +2577,10 @@ namespace TMPro
             //Debug.Log("String Char [" + m_Text[m_StringPosition] + "] at Index:" + m_StringPosition + "  Caret Char [" + currentCharacter.character + "] at Index:" + caretPositionInternal);
 
             // Adjust the position of the RectTransform based on the caret position in the viewport (only if we have focus).
-            if (isFocused)
+            if (isFocused && startPosition != m_LastPosition)
                 AdjustRectTransformRelativeToViewport(startPosition, height, currentCharacter.isVisible);
 
+            m_LastPosition = startPosition;
 
             // Clamp Caret height
             float top = startPosition.y + height;
@@ -2484,6 +2647,8 @@ namespace TMPro
                 height = textInfo.characterInfo[caretSelectPositionInternal - 1].ascender - textInfo.characterInfo[caretSelectPositionInternal - 1].descender;
             }
 
+            // TODO: Don't adjust the position of the RectTransform if Reset On Deactivation is disabled
+            // and we just selected the Input Field again.
             AdjustRectTransformRelativeToViewport(caretPosition, height, true);
 
             int startChar = Mathf.Max(0, caretPositionInternal);
@@ -2521,53 +2686,24 @@ namespace TMPro
                     if (endCharInfo.character == 10 && textInfo.characterInfo[currentChar - 1].character == 13 && currentChar > 0)
                         endCharInfo = textInfo.characterInfo[currentChar - 1];
 
-                    Vector2 startPosition = new Vector2(startCharInfo.origin, startCharInfo.ascender);
-                    Vector2 endPosition = new Vector2(endCharInfo.xAdvance, endCharInfo.descender);
+                    Vector2 startPosition = new Vector2(startCharInfo.origin, textInfo.lineInfo[currentLineIndex].ascender);
+                    Vector2 endPosition = new Vector2(endCharInfo.xAdvance, textInfo.lineInfo[currentLineIndex].descender);
 
+                    var startIndex = vbo.currentVertCount;
+                    vert.position = new Vector3(startPosition.x, endPosition.y, 0.0f);
+                    vbo.AddVert(vert);
 
-                    // Limit Highlight within the viewport.
-                    //Vector2 viewportBL = m_TextViewport.rect.min;
-                    //Vector2 viewportTR = m_TextViewport.rect.max;
+                    vert.position = new Vector3(endPosition.x, endPosition.y, 0.0f);
+                    vbo.AddVert(vert);
 
-                    //float minDeltaX = (m_TextComponent.rectTransform.anchoredPosition.x + startPosition.x) - viewportBL.x;
-                    //if (minDeltaX < 0)
-                    //    startPosition.x -= minDeltaX;
+                    vert.position = new Vector3(endPosition.x, startPosition.y, 0.0f);
+                    vbo.AddVert(vert);
 
-                    //float minDeltaY = (m_TextComponent.rectTransform.anchoredPosition.y + endPosition.y) - viewportBL.y;
-                    //if (minDeltaY < 0)
-                    //    endPosition.y -= minDeltaY;
+                    vert.position = new Vector3(startPosition.x, startPosition.y, 0.0f);
+                    vbo.AddVert(vert);
 
-                    //float maxDeltaX = viewportTR.x - (m_TextComponent.rectTransform.anchoredPosition.x + endPosition.x);
-                    //if (maxDeltaX < 0)
-                    //    endPosition.x += maxDeltaX;
-
-                    //float maxDeltaY = viewportTR.y - (m_TextComponent.rectTransform.anchoredPosition.y + startPosition.y);
-                    //if (maxDeltaY < 0)
-                    //    startPosition.y += maxDeltaY;
-
-
-                    //if (m_TextComponent.rectTransform.anchoredPosition.y + startPosition.y < viewportBL.y || m_TextComponent.rectTransform.anchoredPosition.y + endPosition.y > viewportTR.y)
-                    //{
-
-                    //}
-                    //else
-                    //{
-                        var startIndex = vbo.currentVertCount;
-                        vert.position = new Vector3(startPosition.x, endPosition.y, 0.0f);
-                        vbo.AddVert(vert);
-
-                        vert.position = new Vector3(endPosition.x, endPosition.y, 0.0f);
-                        vbo.AddVert(vert);
-
-                        vert.position = new Vector3(endPosition.x, startPosition.y, 0.0f);
-                        vbo.AddVert(vert);
-
-                        vert.position = new Vector3(startPosition.x, startPosition.y, 0.0f);
-                        vbo.AddVert(vert);
-
-                        vbo.AddTriangle(startIndex, startIndex + 1, startIndex + 2);
-                        vbo.AddTriangle(startIndex + 2, startIndex + 3, startIndex + 0);
-                    //}
+                    vbo.AddTriangle(startIndex, startIndex + 1, startIndex + 2);
+                    vbo.AddTriangle(startIndex + 2, startIndex + 3, startIndex + 0);
 
                     startChar = currentChar + 1;
                     currentLineIndex++;
@@ -2591,6 +2727,8 @@ namespace TMPro
         /// <param name="isCharVisible"></param>
         private void AdjustRectTransformRelativeToViewport(Vector2 startPosition, float height, bool isCharVisible)
         {
+            //Debug.Log("Adjusting transform position relative to viewport.");
+
             float viewportMin = m_TextViewport.rect.xMin;
             float viewportMax = m_TextViewport.rect.xMax;
 
@@ -2625,6 +2763,7 @@ namespace TMPro
                 {
                     m_TextComponent.rectTransform.anchoredPosition += new Vector2(0, topOffset);
                     AssignPositioningIfNeeded();
+                    m_IsScrollbarUpdateRequired = true;
                 }
 
                 float bottomOffset = (m_TextComponent.rectTransform.anchoredPosition.y + startPosition.y) - m_TextViewport.rect.yMin;
@@ -2632,6 +2771,7 @@ namespace TMPro
                 {
                     m_TextComponent.rectTransform.anchoredPosition -= new Vector2(0, bottomOffset);
                     AssignPositioningIfNeeded();
+                    m_IsScrollbarUpdateRequired = true;
                 }
             }
 
@@ -2784,7 +2924,6 @@ namespace TMPro
                 }
             }
 
-            //m_HasLostFocus = false;
             m_ShouldActivateNextUpdate = true;
         }
 
@@ -2845,8 +2984,15 @@ namespace TMPro
             ActivateInputField();
         }
 
+        public void OnControlClick()
+        {
+            //Debug.Log("Input Field control click...");
+        }
+
         public void DeactivateInputField()
         {
+            //Debug.Log("Deactivate Input Field...");
+
             // Not activated do nothing.
             if (!m_AllowInput)
                 return;
@@ -2876,6 +3022,8 @@ namespace TMPro
 
                     if (caretRectTrans != null)
                         caretRectTrans.localPosition = Vector3.zero;
+
+                    //m_ForceDeactivation = false;
                 }
 
                 SendOnEndEdit();
@@ -2892,9 +3040,7 @@ namespace TMPro
 
         public override void OnDeselect(BaseEventData eventData)
         {
-            //Debug.Log("OnDeselect()");
-
-            //m_HasLostFocus = true;
+            //return;
 
             DeactivateInputField();
 

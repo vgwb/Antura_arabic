@@ -117,25 +117,54 @@ namespace TMPro
         private float m_defaultFontSize;
 
         /// <summary>
-        /// The Default Width of the Rect Transform or Text Container.
+        /// The multiplier used to computer the default Min point size when Text Auto Sizing is used.
         /// </summary>
-        public static float defaultTextContainerWidth
+        public static float defaultTextAutoSizingMinRatio
         {
-            get { return instance.m_defaultTextContainerWidth; }
+            get { return instance.m_defaultAutoSizeMinRatio; }
         }
         [SerializeField]
-        private float m_defaultTextContainerWidth;
+        private float m_defaultAutoSizeMinRatio;
 
         /// <summary>
-        /// The Default Height of the Rect Transform or Text Container.
+        /// The multiplier used to computer the default Max point size when Text Auto Sizing is used.
         /// </summary>
-        public static float defaultTextContainerHeight
+        public static float defaultTextAutoSizingMaxRatio
         {
-            get { return instance.m_defaultTextContainerHeight; }
+            get { return instance.m_defaultAutoSizeMaxRatio; }
         }
         [SerializeField]
-        private float m_defaultTextContainerHeight;
+        private float m_defaultAutoSizeMaxRatio;
 
+        /// <summary>
+        /// The Default Size of the Text Container of a TextMeshPro object.
+        /// </summary>
+        public static Vector2 defaultTextMeshProTextContainerSize
+        {
+            get { return instance.m_defaultTextMeshProTextContainerSize; }
+        }
+        [SerializeField]
+        private Vector2 m_defaultTextMeshProTextContainerSize;
+
+        /// <summary>
+        /// The Default Width of the Text Container of a TextMeshProUI object.
+        /// </summary>
+        public static Vector2 defaultTextMeshProUITextContainerSize
+        {
+            get { return instance.m_defaultTextMeshProUITextContainerSize; }
+        }
+        [SerializeField]
+        private Vector2 m_defaultTextMeshProUITextContainerSize;
+
+        /// <summary>
+        /// Set the size of the text container of newly created text objects to match the size of the text.
+        /// </summary>
+        public static bool autoSizeTextContainer
+        {
+            get { return instance.m_autoSizeTextContainer; }
+        }
+        [SerializeField]
+        private bool m_autoSizeTextContainer;
 
         /// <summary>
         /// Returns the list of Fallback Fonts defined in the TMP Settings file.

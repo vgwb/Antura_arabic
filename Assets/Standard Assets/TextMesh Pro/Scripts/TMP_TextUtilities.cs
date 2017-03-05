@@ -1339,7 +1339,7 @@ namespace TMPro
                     int currentLine = currentCharInfo.lineNumber;
 
                     // Check if Link characters are on the current page
-                    if (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) continue;
+                    if (text.overflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) continue;
 
                     if (isBeginRegion == false)
                     {
@@ -1635,7 +1635,7 @@ namespace TMPro
                     int currentLine = currentCharInfo.lineNumber;
 
                     // Check if Link characters are on the current page
-                    if (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) continue;
+                    if (text.overflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) continue;
 
                     if (isBeginRegion == false)
                     {

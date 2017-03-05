@@ -172,79 +172,9 @@ namespace TMPro
 
         protected override void Awake()
         {
-            //Debug.Log("TextContainer Awake() called.");
+            Debug.LogWarning("The Text Container component is now Obsolete and can safely be removed from [" + gameObject.name + "].", this);
 
-            m_rectTransform = this.rectTransform;
-            if (m_rectTransform == null)
-            {
-                Vector2 oldPivot = m_pivot;
-                m_rectTransform = gameObject.AddComponent<RectTransform>();
-                m_pivot = oldPivot;
-            }
-
-            m_textMeshPro = GetComponent(typeof(TextMeshPro)) as TextMeshPro;
-
-            if (m_rect.width == 0 || m_rect.height == 0)
-            {
-                // Handling of Legacy lineLength property
-                if (m_textMeshPro != null && m_textMeshPro.anchor != TMP_Compatibility.AnchorPositions.None)
-                {
-                    Debug.LogWarning("Converting from using anchor and lineLength properties to Text Container.", this);
-                    m_isDefaultHeight = true;
-
-                    int anchor = (int)m_textMeshPro.anchor;
-                    
-                    // Clear the old anchor setting.
-                    m_textMeshPro.anchor = TMP_Compatibility.AnchorPositions.None;
-
-                    // Special Handling if Baseline Anchor was used on the old object.
-                    if (anchor == 9)
-                    {
-                        switch (m_textMeshPro.alignment)
-                        {
-                            case TextAlignmentOptions.TopLeft: // Left
-                                m_textMeshPro.alignment = TextAlignmentOptions.BaselineLeft;
-                                break;
-                            case TextAlignmentOptions.Top: // Center
-                                m_textMeshPro.alignment = TextAlignmentOptions.Baseline;
-                                break;
-                            case TextAlignmentOptions.TopRight: // Right
-                                m_textMeshPro.alignment = TextAlignmentOptions.BaselineRight;
-                                break;
-                            case TextAlignmentOptions.TopJustified: // Left
-                                m_textMeshPro.alignment = TextAlignmentOptions.BaselineJustified;
-                                break;
-                        }
-
-                        anchor = 3; // left
-                    }
-
-                    m_anchorPosition = (TextContainerAnchors)anchor;
-                    m_pivot = GetPivot(m_anchorPosition);
-
-                    if (m_textMeshPro.lineLength == 72)
-                    {
-                        m_rect.size = m_textMeshPro.GetPreferredValues(m_textMeshPro.text);
-                    }
-                    else
-                    {
-                        m_rect.width = m_textMeshPro.lineLength;
-                        m_rect.height = m_textMeshPro.GetPreferredValues(m_rect.width, Mathf.Infinity).y;
-                    }
-                }
-                else // if (m_rectTransform.sizeDelta == new Vector2(100, 100))
-                {
-                    m_isDefaultWidth = true;
-                    m_isDefaultHeight = true;
-                    m_pivot = GetPivot(m_anchorPosition);
-                    m_rect.width = 20;
-                    m_rect.height = 5;
-                    m_rectTransform.sizeDelta = this.size;
-                }
-
-                m_margins = new Vector4(0, 0, 0, 0);
-                UpdateCorners();
-            }           
+            return;
         }
 
 
