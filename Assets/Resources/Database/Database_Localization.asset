@@ -3186,12 +3186,12 @@ MonoBehaviour:
       AudioFile: Egg_Alphabet_Title
     - Id: UI_ReservedArea
       Character: UI
-      Area: 
+      Area: reserved
       When: 
       Context: 
-      English: 
-      Arabic: "\u0644\u0648\u062D\u0629 \u0627\u0644\u062A\u062D\u0643\u0645"
-      AudioFile: 
+      English: Parents Area
+      Arabic: "\u0645\u0646\u0637\u0642\u0629 \u0627\u0644\u0622\u0628\u0627\u0621"
+      AudioFile: UI_ReservedArea
     - Id: ReservedArea_DeleteProfile
       Character: UI
       Area: reserved
@@ -3301,4 +3301,232 @@ MonoBehaviour:
       Arabic: "\u0641\u064A \u062D\u0627\u0644 \u0623\u062E\u0637\u0623\u062A\u060C
         \u0623\u0639\u062F \u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629 \u0628\u0627\u0633\u062A\u0639\u0645\u0627\u0644
         \u0647\u0630\u0647 \u0627\u0644\u0644\u0648\u062D\u0629"
+      AudioFile: 
+    - Id: Profile_Gender
+      Character: Ibtissam
+      Area: home
+      When: 
+      Context: 
+      English: Are you a girl or a boy?
+      Arabic: "\u0647\u0644 \u0623\u0646\u062A\u064E \u0648\u0644\u062F \u0623\u0645
+        \u0628\u0646\u062A\u061F"
+      AudioFile: Profile_Gender
+    - Id: Profile_Avatar
+      Character: Ibtissam
+      Area: home
+      When: 
+      Context: 
+      English: Select a face
+      Arabic: "\u0627\u062E\u062A\u064E\u0631 \u0648\u062C\u0647\u0627\u064B."
+      AudioFile: Profile_Avatar
+    - Id: Profile_Color
+      Character: Ibtissam
+      Area: home
+      When: 
+      Context: 
+      English: Select a color
+      Arabic: "\u0627\u062E\u062A\u064E\u064E\u0631 \u0644\u0648\u0646\u0627\u064B."
+      AudioFile: Profile_Color
+    - Id: Profile_Age
+      Character: Ibtissam
+      Area: home
+      When: 
+      Context: 
+      English: How old are you?
+      Arabic: "\u0643\u0645 \u0639\u064F\u0645\u0652\u0631\u064F\u0643\u061F"
+      AudioFile: Profile_Age
+    - Id: Profile_Years_4
+      Character: Ibtissam
+      Area: home
+      When: 
+      Context: 
+      English: 4 years
+      Arabic: "\u0623\u0631\u0628\u0639\u064F \u0633\u0646\u0648\u0627\u062A"
+      AudioFile: Profile_Years_4
+    - Id: Profile_Years_5
+      Character: Ibtissam
+      Area: home
+      When: 
+      Context: 
+      English: 5 years
+      Arabic: "\u062E\u0645\u0633\u064F \u0633\u0646\u0648\u0627\u062A"
+      AudioFile: Profile_Years_5
+    - Id: Profile_Years_6
+      Character: Ibtissam
+      Area: home
+      When: 
+      Context: 
+      English: 6 years
+      Arabic: "\u0633\u062A\u0651\u064F \u0633\u0646\u0648\u0627\u062A"
+      AudioFile: Profile_Years_6
+    - Id: Profile_Years_7
+      Character: Ibtissam
+      Area: home
+      When: 
+      Context: 
+      English: 7 years
+      Arabic: "\u0633\u0628\u0639\u064F \u0633\u0646\u0648\u0627\u062A"
+      AudioFile: Profile_Years_7
+    - Id: Profile_Years_8
+      Character: Ibtissam
+      Area: home
+      When: 
+      Context: 
+      English: 8 years
+      Arabic: "\u062B\u0645\u0627\u0646\u064A\u0652 \u0633\u0646\u0648\u0627\u062A"
+      AudioFile: Profile_Years_8
+    - Id: Profile_Years_9
+      Character: Ibtissam
+      Area: home
+      When: 
+      Context: 
+      English: 9 years
+      Arabic: "\u062A\u0633\u0639\u064F \u0633\u0646\u0648\u0627\u062A"
+      AudioFile: Profile_Years_9
+    - Id: Profile_Years_10
+      Character: Ibtissam
+      Area: home
+      When: 
+      Context: 
+      English: 10 years
+      Arabic: "\u0639\u0634\u0631\u064F \u0633\u0646\u0648\u0627\u062A"
+      AudioFile: Profile_Years_10
+    - Id: Profile_Years_11
+      Character: Ibtissam
+      Area: home
+      When: 
+      Context: 
+      English: 11 or more years
+      Arabic: "\u0625\u062D\u062F\u0649 \u0639\u0634\u0631\u0629 \u0633\u0646\u0629\u064B
+        \u0623\u0648 \u0623\u0643\u062B\u0631"
+      AudioFile: Profile_Years_11
+    - Id: UI_AreYouSure
+      Character: Ibtissam
+      Area: home
+      When: 
+      Context: 
+      English: Are you sure?
+      Arabic: "\u0647\u0644 \u0623\u0646\u062A\u064E \u0645\u062A\u0623\u0643\u062F\u061F"
+      AudioFile: UI_AreYouSure
+    - Id: UI_Yes
+      Character: Ibtissam
+      Area: home
+      When: 
+      Context: 
+      English: Yes
+      Arabic: "\u0646\u0639\u0645"
+      AudioFile: UI_Yes
+    - Id: UI_No
+      Character: Ibtissam
+      Area: home
+      When: 
+      Context: 
+      English: No
+      Arabic: "\u0644\u0627"
+      AudioFile: UI_No
+    - Id: Scanner_Tuto_Antura
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: 
+      English: Drag the scanner over Antura to push him away
+      Arabic: "\u0627\u0633\u062D\u0628\u0652 \u062C\u0647\u0627\u0632\u064E \u0627\u0644\u0645\u0633\u062D\u0650
+        \u0641\u0648\u0642\u064E \u0639\u0646\u062A\u0648\u0631\u0629 \u0644\u062A\u062F\u0641\u0639\u064E\u0647
+        \u0628\u0639\u064A\u062F\u0627\u064B."
+      AudioFile: Scanner_Tuto_Antura
+    - Id: Parental_Gate
+      Character: Ibtissam
+      Area: reserved
+      When: 
+      Context: 
+      English: This section is reserved to Parents and Guardians.
+      Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0645\u0633\u0627\u062D\u0629 \u0645\u062E\u0635\u0635\u0629
+        \u0644\u0644\u0622\u0628\u0627\u0621 \u0648\u0623\u0648\u0644\u064A\u0627\u0621
+        \u0627\u0644\u0623\u0645\u0648\u0631"
+      AudioFile: Parental_Gate
+    - Id: End_Scene_1
+      Character: Ibtissam
+      Area: end game
+      When: 
+      Context: end game
+      English: "Superb! Your prize for finishing your journey is superpowers in real
+        life! You have now the power to read this\u2026"
+      Arabic: "\u0631\u0627\u0626\u0639! \u062C\u0627\u0626\u0632\u0629\u064F \u0625\u0643\u0645\u0627\u0644\u0650\u0643\u064E
+        \u0627\u0644\u0631\u062D\u0644\u0629\u064E \u0647\u064A \u0642\u0648\u0649\u064B
+        \u062E\u0627\u0631\u0642\u0629\u064C \u062D\u0642\u064A\u0642\u064A\u0629!
+        \u0627\u0643\u062A\u0633\u0628\u062A\u064E \u0627\u0644\u0622\u0646 \u0642\u0648\u0629\u064E
+        \u0627\u0644\u0642\u062F\u0631\u0629\u0650 \u0639\u0644\u0649 \u0642\u0631\u0627\u0621\u0629\u0650
+        \u0647\u0630\u0627 \u0627\u0644\u0643\u0644\u0627\u0645\u0650..."
+      AudioFile: End_Scene_1
+    - Id: End_Scene_2
+      Character: Ibtissam
+      Area: end game
+      When: 
+      Context: end game
+      English: You are awesome!
+      Arabic: "\u0623\u0646\u062A\u064E \u0631\u0627\u0626\u0639!"
+      AudioFile: End_Scene_2
+    - Id: End_Scene_3
+      Character: Ibtissam
+      Area: end game
+      When: 
+      Context: end game
+      English: Now go, leave your mark in the world! But don't forget that superpowers
+        need to be trained, come back to visit! We'll miss you!
+      Arabic: "\u0627\u0646\u0637\u0644\u0642\u0650 \u0627\u0644\u0622\u0646 \u0648\u0627\u062A\u0631\u0643\u0652
+        \u0623\u062B\u0631\u0627\u064B \u0641\u064A \u0627\u0644\u0639\u0627\u0644\u0645!
+        \u0644\u0643\u0646 \u062A\u0630\u0643\u0651\u064E\u0631\u0652 \u0623\u0646\u0651\u064E
+        \u0627\u0644\u0642\u0648\u0649 \u0627\u0644\u062E\u0627\u0631\u0642\u0629\u064E
+        \u062A\u062D\u062A\u0627\u062C\u064F \u0625\u0644\u0649 \u0627\u0644\u062A\u0645\u0631\u064A\u0646
+        \u062F\u0627\u0626\u0645\u0627\u064B. \u0639\u062F \u0644\u0632\u064A\u0627\u0631\u062A\u0650\u0646\u0627
+        \u0642\u0631\u064A\u0628\u0627\u064B! \u0633\u0646\u0634\u062A\u0627\u0642\u064F
+        \u0625\u0644\u064A\u0643!"
+      AudioFile: End_Scene_3
+    - Id: UI_Phrases_Questions
+      Character: UI
+      Area: book
+      When: 
+      Context: 
+      English: Questions
+      Arabic: "\u0623\u0633\u0626\u0644\u0629"
+      AudioFile: 
+    - Id: UI_Phrases_Replies
+      Character: UI
+      Area: book
+      When: 
+      Context: 
+      English: Replies
+      Arabic: "\u0623\u062C\u0648\u0628\u0629"
+      AudioFile: 
+    - Id: UI_Phrases_Greetings
+      Character: UI
+      Area: book
+      When: 
+      Context: 
+      English: Greetings
+      Arabic: "\u062A\u062D\u064A\u0629 \u0637\u064A\u0628\u0629"
+      AudioFile: 
+    - Id: UI_Phrases_Years
+      Character: UI
+      Area: book
+      When: 
+      Context: 
+      English: Years
+      Arabic: "\u0633\u0646\u0648\u0627\u062A"
+      AudioFile: 
+    - Id: UI_Phrases_Sentences
+      Character: UI
+      Area: book
+      When: 
+      Context: 
+      English: Sentences
+      Arabic: "\u0639\u0628\u0627\u0631\u0627\u0629"
+      AudioFile: 
+    - Id: UI_Phrases_Expressions
+      Character: UI
+      Area: book
+      When: 
+      Context: 
+      English: Expressions
+      Arabic: "\u0627\u0644\u062A\u0639\u0628\u064A\u0631\u0627\u062A"
       AudioFile: 

@@ -274,7 +274,7 @@ namespace EA4S.Book
                             area = VocabularyChapter.Phrases,
                             phraseCategory = cat,
                             Id = cat.ToString(),
-                            Title = cat.ToString()
+                            Title = LocalizationManager.GetPhraseCategoryTitle(cat)
                         },
                         currentPhraseCategory == cat
                     );
