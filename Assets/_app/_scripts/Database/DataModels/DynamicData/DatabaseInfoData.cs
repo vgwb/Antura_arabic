@@ -19,6 +19,11 @@ namespace EA4S.Database
         public string Id { get; set; }
 
         /// <summary>
+        /// Unique identifier for the player. empty during game. compiled at export/import
+        /// </summary>
+        public string Uuid { get; set; }
+
+        /// <summary>
         /// Timestamp of creation of the database.
         /// </summary>
         public int Timestamp { get; set; }
@@ -33,7 +38,7 @@ namespace EA4S.Database
         /// Version of the Static database.
         /// Different versions cannot be compared.
         /// </summary>
-        public string StaticDbVersion { get; set; }  
+        public string StaticDbVersion { get; set; }
 
         public DatabaseInfoData()
         {

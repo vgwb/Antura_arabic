@@ -18,6 +18,11 @@ namespace EA4S.Database
         public string Id { get; set; }
 
         /// <summary>
+        /// Unique identifier for the player. empty during game. compiled at export/import
+        /// </summary>
+        public string Uuid { get; set; }
+
+        /// <summary>
         /// Type of journey data recorded.
         /// </summary>
         public JourneyDataType JourneyDataType { get; set; }
@@ -57,7 +62,7 @@ namespace EA4S.Database
         /// <summary>
         /// Empty constructor required by MySQL.
         /// </summary>
-        public JourneyScoreData(){}
+        public JourneyScoreData() { }
 
         public JourneyScoreData(string elementId, JourneyDataType dataType, int stars) : this(elementId, dataType, stars, GenericHelper.GetTimestampForNow())
         {

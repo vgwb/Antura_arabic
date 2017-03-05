@@ -16,6 +16,11 @@ namespace EA4S.Database
         public string Id { get; set; }
 
         /// <summary>
+        /// Unique identifier for the player. empty during game. compiled at export/import
+        /// </summary>
+        public string Uuid { get; set; }
+
+        /// <summary>
         /// Related MiniGame
         /// </summary>
         public MiniGameCode MiniGameCode { get; set; }
@@ -39,7 +44,7 @@ namespace EA4S.Database
         /// <summary>
         /// Empty constructor required by MySQL.
         /// </summary>
-        public MiniGameScoreData(){}
+        public MiniGameScoreData() { }
 
         public MiniGameScoreData(MiniGameCode code, int stars, float totalPlayTime) : this(code, stars, totalPlayTime, GenericHelper.GetTimestampForNow())
         {
@@ -48,7 +53,7 @@ namespace EA4S.Database
         public MiniGameScoreData(MiniGameCode code, int stars, float totalPlayTime, int timestamp)
         {
             MiniGameCode = code;
-            Id = ((int) code).ToString();
+            Id = ((int)code).ToString();
             Stars = stars;
             TotalPlayTime = totalPlayTime;
             UpdateTimestamp = timestamp;
