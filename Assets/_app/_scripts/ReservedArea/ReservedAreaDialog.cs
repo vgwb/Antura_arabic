@@ -65,7 +65,7 @@ namespace EA4S.ReservedArea
             string secondColorWordArabic = colorsWordsArabic[secondButtonIndex];
 
             string arabicIntroduction = "";
-            arabicIntroduction += titleLoc.Arabic + "\n\n"; 
+            arabicIntroduction += "<b>" + titleLoc.Arabic + "<b/> \n"; 
             arabicIntroduction += sectionIntroLoc.Arabic + "\n\n"; 
             arabicIntroduction += string.Format("لفتح القفل، اضغط الزر {0} {2} مرات، ثم الزر {1} مرة واحدة", firstColorWordArabic, secondColorWordArabic, numberWordArabic);
             arabicIntroduction += "\n\n" + sectionErrorLoc.Arabic; // "\n\n في حال أخطأت، أعد المحاولة باستعمال هذه اللوحة";
