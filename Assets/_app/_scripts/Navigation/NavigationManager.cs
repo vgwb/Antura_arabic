@@ -254,7 +254,11 @@ namespace EA4S.Core
 
         public bool PrevSceneIsReservedArea()
         {
-            return NavData.PrevSceneStack.Peek() == AppScene.ReservedArea;
+            if (NavData.PrevSceneStack != null && NavData.PrevSceneStack.Count > 0) {
+                return NavData.PrevSceneStack.Peek() == AppScene.ReservedArea;
+            } else {
+                return true;
+            }
         }
 
         public void GoToPlayerCreation()
