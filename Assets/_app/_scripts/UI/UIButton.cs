@@ -148,6 +148,11 @@ namespace EA4S.UI
             if (AutoAnimateClick || _force) clickTween.Restart();
         }
 
+        public void PlayClickFx()
+        {
+            AudioManager.I.PlaySound(Sfx.UIButtonClick);
+        }
+
         #endregion
 
         #region Callbacks
@@ -155,7 +160,7 @@ namespace EA4S.UI
         void OnInternalClick()
         {
             AnimateClick();
-            if (AutoPlayButtonFx) AudioManager.I.PlaySound(Sfx.UIButtonClick);
+            if (AutoPlayButtonFx) PlayClickFx();
         }
 
         #endregion
