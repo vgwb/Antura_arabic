@@ -202,37 +202,10 @@ namespace EA4S.UI
             currRewardType = CategoryToRewardType(_category);
             bool useImages = _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture || _category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
             foreach (AnturaSpaceItemButton item in btsItems) item.SetImage(!useImages);
-            if (_category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears) {
-                currRewardDatas = RewardSystemManager.GetRewardItemsByRewardType(currRewardType, rewardsContainers, "EAR_L");
-                List<Transform> altRewardContainers = new List<Transform>(rewardsContainers);
-                altRewardContainers.RemoveRange(0, currRewardDatas.Count);
-                currRewardDatas.AddRange(RewardSystemManager.GetRewardItemsByRewardType(currRewardType, altRewardContainers, "EAR_R"));
-            } else {
-                currRewardDatas = RewardSystemManager.GetRewardItemsByRewardType(currRewardType, useImages ? rewardsImagesContainers : rewardsContainers, _category.ToString());
-            }
+            ReloadRewardsDatas();
             yield return null;
 
-            // Hide non-existent items
-            for (int i = currRewardDatas.Count - 1; i < btsItems.Length; ++i) btsItems[i].gameObject.SetActive(false);
-            // Setup and show items
-            RewardItem selectedRewardData = null;
-            for (int i = 0; i < currRewardDatas.Count; ++i) {
-                RewardItem rewardData = currRewardDatas[i];
-                AnturaSpaceItemButton item = btsItems[i];
-                item.gameObject.SetActive(true);
-                item.Data = rewardData;
-                if (rewardData != null) {
-                    if (!useImages) {
-                        item.RewardContainer.gameObject.SetLayerRecursive(GenericHelper.LayerMaskToIndex(RewardsLayer));
-                        CameraHelper.FitRewardToUICamera(item.RewardContainer.GetChild(0), item.RewardCamera, FlipRewards);
-                    }
-                    item.SetAsNew(rewardData.IsNew);
-                    item.Toggle(rewardData.IsSelected);
-                    if (rewardData.IsSelected) selectedRewardData = rewardData;
-                } else item.Toggle(false);
-                item.Lock(rewardData == null);
-            }
-
+            RewardItem selectedRewardData = RefreshItems();
             ItemsContainer.gameObject.SetActive(true);
             showItemsTween.PlayForward();
 
@@ -256,8 +229,14 @@ namespace EA4S.UI
                 return;
             }
 
-            foreach (AnturaSpaceItemButton item in btsItems) item.Toggle(item.Data == _rewardData);
             currSwatchesDatas = RewardSystemManager.SelectRewardItem(_rewardData.ID, currRewardType);
+//            foreach (AnturaSpaceItemButton item in btsItems)
+//            {
+//                if (item.Data != null) Debug.Log(item.Data.ID + " > " + item.Data.IsSelected);
+//                item.Toggle(item.Data == _rewardData || item.Data != null && item.Data.IsSelected);
+//            }
+//            ReloadRewardsDatas();
+//            RefreshItems(true);
             if (currSwatchesDatas.Count == 0) {
                 Debug.Log("No color swatches for the selected reward!");
                 return;
@@ -286,6 +265,9 @@ namespace EA4S.UI
 
             // Select eventual color
             if (selectedSwatchData != null) SelectSwatch(selectedSwatchData);
+
+            ReloadRewardsDatas();
+            RefreshItems(true);
         }
 
         void SelectSwatch(RewardColorItem _colorData)
@@ -296,6 +278,46 @@ namespace EA4S.UI
                 RewardSystemManager.SelectRewardColorItem(_colorData.ID, currRewardType);
             else
                 Debug.Log("SelectSwatch > _colorData is NULL!");
+        }
+
+        void ReloadRewardsDatas()
+        {
+            bool useImages = currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture || currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
+            if (currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears) {
+                currRewardDatas = RewardSystemManager.GetRewardItemsByRewardType(currRewardType, rewardsContainers, "EAR_L");
+                List<Transform> altRewardContainers = new List<Transform>(rewardsContainers);
+                altRewardContainers.RemoveRange(0, currRewardDatas.Count);
+                currRewardDatas.AddRange(RewardSystemManager.GetRewardItemsByRewardType(currRewardType, altRewardContainers, "EAR_R"));
+            } else {
+                currRewardDatas = RewardSystemManager.GetRewardItemsByRewardType(currRewardType, useImages ? rewardsImagesContainers : rewardsContainers, currCategory.ToString());
+            }
+        }
+
+        // Returns eventual selected reward item
+        RewardItem RefreshItems(bool toggleOnly = false)
+        {
+            bool useImages = currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture || currCategory == AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal;
+            // Hide non-existent items
+            for (int i = currRewardDatas.Count - 1; i < btsItems.Length; ++i) btsItems[i].gameObject.SetActive(false);
+            // Setup and show items
+            RewardItem selectedRewardData = null;
+            for (int i = 0; i < currRewardDatas.Count; ++i) {
+                RewardItem rewardData = currRewardDatas[i];
+                AnturaSpaceItemButton item = btsItems[i];
+                item.gameObject.SetActive(true);
+                item.Data = rewardData;
+                if (rewardData != null) {
+                    if (!useImages && !toggleOnly) {
+                        item.RewardContainer.gameObject.SetLayerRecursive(GenericHelper.LayerMaskToIndex(RewardsLayer));
+                        CameraHelper.FitRewardToUICamera(item.RewardContainer.GetChild(0), item.RewardCamera, FlipRewards);
+                    }
+                    item.SetAsNew(rewardData.IsNew);
+                    item.Toggle(rewardData.IsSelected);
+                    if (rewardData.IsSelected) selectedRewardData = rewardData;
+                } else item.Toggle(false);
+                item.Lock(rewardData == null);
+            }
+            return selectedRewardData;
         }
 
         #endregion
