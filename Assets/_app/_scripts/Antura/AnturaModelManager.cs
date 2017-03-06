@@ -44,8 +44,10 @@ namespace EA4S.Antura
         }
 
         void Start() {
-            if (AppManager.I.Player != null)
-                AnturaModelManager.Instance.LoadAnturaCustomization(AppManager.I.Player.CurrentAnturaCustomizations);
+            if (AppManager.I.Player != null) {
+                AnturaCustomization c = AppManager.I.Player.CurrentAnturaCustomizations;
+                AnturaModelManager.Instance.LoadAnturaCustomization(c);
+            }
         }
 
         #endregion
@@ -317,11 +319,11 @@ namespace EA4S.Antura
                 DecalTextureId = tmp.DecalTextureId;
             }
             if (TileTextureId == string.Empty) {
-                RewardPackUnlockData defaultTileTexturePack = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
+                RewardPackUnlockData defaultTileTexturePack = AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.texture);
                 TileTextureId = defaultTileTexturePack.GetIdAccordingToDBRules();
             }
             if (DecalTextureId == string.Empty) {
-                RewardPackUnlockData defaultDecalTexturePack = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
+                RewardPackUnlockData defaultDecalTexturePack = AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.decal);
                 DecalTextureId = defaultDecalTexturePack.GetIdAccordingToDBRules();
             }
             Fornitures = new List<RewardPackUnlockData>();

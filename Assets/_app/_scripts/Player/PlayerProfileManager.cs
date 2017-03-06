@@ -2,6 +2,7 @@
 using EA4S.Core;
 using EA4S.Database;
 using EA4S.Rewards;
+using UnityEngine;
 
 namespace EA4S.Profile
 {
@@ -63,13 +64,15 @@ namespace EA4S.Profile
 
             if (alsoLoadCurrentPlayer) {
                 // No last active? Get the first one.
-                if (AppManager.I.GameSettings.LastActivePlayerUUID == string.Empty && AppManager.I.GameSettings.SavedPlayers.Count > 0) {
-                    //UnityEngine.Debug.Log("No last! Get the first.");
-                    AppManager.I.GameSettings.LastActivePlayerUUID = AppManager.I.GameSettings.SavedPlayers[0].Uuid;
-                }
-
-                // Load the last active, or reset everything if no data can be found.
-                if (AppManager.I.GameSettings.LastActivePlayerUUID != string.Empty) {
+                if (AppManager.I.GameSettings.LastActivePlayerUUID == string.Empty) {
+                    if(AppManager.I.GameSettings.SavedPlayers.Count > 0) { 
+                        //UnityEngine.Debug.Log("No last! Get the first.");
+                        AppManager.I.GameSettings.LastActivePlayerUUID = AppManager.I.GameSettings.SavedPlayers[0].Uuid;
+                    } else {
+                        AppManager.I.Player = null;
+                        Debug.Log("Actual Player == null!!");
+                    }
+                } else{
                     string playerUUID = AppManager.I.GameSettings.LastActivePlayerUUID;
 
                     // Check whether the SQL DB is in-sync first
@@ -113,15 +116,10 @@ namespace EA4S.Profile
             AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
             // Added to list
             AppManager.I.GameSettings.SavedPlayers.Add(returnProfile.GetPlayerIconData());
-            // Create new antura skin
-            RewardPackUnlockData tileTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture);
-            returnProfile.AddRewardUnlocked(tileTexture);
-            returnProfile.CurrentAnturaCustomizations.TileTexture = tileTexture;
-            RewardPackUnlockData decalTexture = RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal);
-            returnProfile.AddRewardUnlocked(decalTexture);
-            returnProfile.CurrentAnturaCustomizations.DecalTexture = decalTexture;
             // Set player profile as current player
             AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile as PlayerProfile;
+            // Create new antura skin
+            RewardSystemManager.UnlockFirstSetOfRewards();
 
             // Call Event Profile creation
             if (OnNewProfileCreated != null)
