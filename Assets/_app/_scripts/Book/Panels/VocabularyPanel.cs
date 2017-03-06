@@ -212,7 +212,7 @@ namespace EA4S.Book
             LetterTextFinal.gameObject.SetActive(FinalChar != isolatedChar);
 
             // Debug
-            // LetterTextIsolated.gameObject.GetComponent<TextRenderUtility>().ShowInfo();
+            LetterTextIsolated.gameObject.GetComponent<TextRenderUtility>().ShowInfo();
         }
 
         #endregion
