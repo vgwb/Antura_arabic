@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using EA4S.Database;
+using EA4S.Helpers;
 
 namespace EA4S.Teacher
 {
@@ -23,6 +24,7 @@ namespace EA4S.Teacher
         private int maximumWordLength;
         private bool packsUsedTogether;
         private WordDataCategory category;
+        private bool forceUnseparatedLetters;
         private QuestionBuilderParameters parameters;
 
         public QuestionBuilderParameters Parameters
@@ -33,7 +35,7 @@ namespace EA4S.Teacher
         public LettersInWordQuestionBuilder(
             int nRounds, int nPacksPerRound = 1, int nCorrect = 1, int nWrong = 0,
             bool useAllCorrectLetters = false, Database.WordDataCategory category = Database.WordDataCategory.None,
-            int maximumWordLength = 20,
+            int maximumWordLength = 20, bool forceUnseparatedLetters = true,
             QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
@@ -45,6 +47,7 @@ namespace EA4S.Teacher
             this.useAllCorrectLetters = useAllCorrectLetters;
             this.category = category;
             this.maximumWordLength = maximumWordLength;
+            this.forceUnseparatedLetters = forceUnseparatedLetters;
             this.parameters = parameters;
         }
 
@@ -57,6 +60,9 @@ namespace EA4S.Teacher
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
+            // HACK: the game may need unseparated letters
+            if (forceUnseparatedLetters) AppManager.I.VocabularyHelper.ForceUnseparatedLetters = true;
+
             previousPacksIDs_words.Clear();
             previousPacksIDs_letters.Clear();
             List<QuestionPackData> packs = new List<QuestionPackData>();
@@ -90,7 +96,7 @@ namespace EA4S.Teacher
 
             // Get letters of that word
             var wordLetters = vocabularyHelper.GetLettersInWord(wordQuestion);
-            //UnityEngine.Debug.LogWarning("Found letters: " + wordLetters.Count);
+            //UnityEngine.Debug.LogWarning("Found letters: " + wordLetters.ToArray().ToDebugString());
 
             bool useJourneyForLetters = parameters.useJourneyForCorrect;
             // @note: we force journey in this case to be off so that all letters can be found

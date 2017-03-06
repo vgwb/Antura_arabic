@@ -209,6 +209,7 @@ namespace EA4S.Assessment
                 nCorrect:1,            // Always one!
                 nWrong:4,            // WrongAnswers
                 useAllCorrectLetters: false,
+                forceUnseparatedLetters: true,
                 parameters: builderParams);
         }
 
@@ -398,6 +399,7 @@ namespace EA4S.Assessment
                 nCorrect:1,   
                 nWrong:nWrong,
                 useAllCorrectLetters: false,
+                forceUnseparatedLetters: true,
                 parameters: builderParams);
         }
 

@@ -68,6 +68,7 @@ namespace EA4S.Minigames.Tobogan
             switch (Variation)
             {
                 case ToboganVariation.LetterInAWord:
+                    builderParams.wordFilters.excludeLetterVariations = true;
                     builder = new LettersInWordQuestionBuilder(nPacks, nCorrect: nCorrect, nWrong: nWrong, parameters: builderParams);
                     break;
                 case ToboganVariation.SunMoon:
