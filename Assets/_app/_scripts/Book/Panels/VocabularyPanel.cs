@@ -115,6 +115,8 @@ namespace EA4S.Book
             BtnPhrases.Lock(currentChapter == VocabularyChapter.Phrases);
         }
 
+        #region Letters
+
         void LettersPanel(string _category = "")
         {
             ListPanel.SetActive(true);
@@ -176,21 +178,43 @@ namespace EA4S.Book
             // HighlightLetterItem("");
         }
 
-        void HighlightLetterItem(string id)
+        public void DetailLetter(LetterInfo _currentLetter)
         {
-            foreach (Transform t in ElementsContainer.transform) {
-                t.GetComponent<ItemLetter>().Select(id);
+            currentLetter = _currentLetter;
+            HighlightLetterItem(currentLetter.data.Id);
+
+            DetailPanel.SetActive(true);
+            MoreInfoLetterPanel.SetActive(true);
+            MoreInfoWordPanel.SetActive(false);
+
+            string positionsString = "";
+            foreach (var p in currentLetter.data.GetAvailableForms()) {
+                positionsString = positionsString + " " + p;
             }
+            Debug.Log("Detail Letter :" + currentLetter.data.Id + " [" + positionsString + " ]");
+            AudioManager.I.PlayLetter(currentLetter.data);
+
+            ArabicText.text = "";
+            // ScoreText.text = "Score: " + info.score;
+
+            var isolatedChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Isolated);
+            var InitialChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Initial);
+            var MedialChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Medial);
+            var FinalChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Final);
+
+            LetterTextIsolated.SetTextUnfiltered(isolatedChar);
+            LetterTextInitial.SetTextUnfiltered(InitialChar);
+            LetterTextMedial.SetTextUnfiltered(MedialChar);
+            LetterTextFinal.SetTextUnfiltered(FinalChar);
+
+            LetterTextInitial.gameObject.SetActive(InitialChar != isolatedChar);
+            LetterTextMedial.gameObject.SetActive(MedialChar != isolatedChar);
+            LetterTextFinal.gameObject.SetActive(FinalChar != isolatedChar);
         }
 
+        #endregion
 
-        void HighlightMenutCategory(string id)
-        {
-            foreach (Transform t in SubmenuContainer.transform) {
-                t.GetComponent<MenuItemCategory>().Select(id);
-            }
-        }
-
+        #region Words
 
         void WordsPanel(WordDataCategory _category = WordDataCategory.None)
         {
@@ -237,6 +261,41 @@ namespace EA4S.Book
             }
         }
 
+        public void DetailWord(WordInfo info)
+        {
+            DetailPanel.SetActive(true);
+            MoreInfoLetterPanel.SetActive(false);
+            MoreInfoWordPanel.SetActive(true);
+            Debug.Log("Detail Word :" + info.data.Id);
+            AudioManager.I.PlayWord(info.data);
+
+            // ScoreText.text = "Score: " + info.score;
+
+            var output = "";
+
+            var splittedLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, info.data);
+            foreach (var letter in splittedLetters) {
+                output += letter.letter.GetChar() + " ";
+            }
+            output += "\n";
+            output += info.data.Arabic;
+
+            ArabicText.text = output;
+            if (info.data.Drawing != "") {
+                WordDrawingText.text = AppManager.I.VocabularyHelper.GetWordDrawing(info.data);
+                if (info.data.Category == Database.WordDataCategory.Color) {
+                    WordDrawingText.SetColor(GenericHelper.GetColorFromString(info.data.Value));
+                }
+            } else {
+                WordDrawingText.text = "";
+            }
+
+        }
+
+        #endregion
+
+        #region Phrases
+
         void PhrasesPanel(PhraseDataCategory _category = PhraseDataCategory.None)
         {
             ListPanel.SetActive(true);
@@ -282,6 +341,21 @@ namespace EA4S.Book
             }
         }
 
+        public void DetailPhrase(PhraseInfo info)
+        {
+            DetailPanel.SetActive(true);
+            MoreInfoLetterPanel.SetActive(false);
+            MoreInfoWordPanel.SetActive(false);
+
+            Debug.Log("Detail Phrase :" + info.data.Id);
+            AudioManager.I.PlayPhrase(info.data);
+            //ScoreText.text = "Score: " + info.score;
+
+            ArabicText.text = info.data.Arabic;
+        }
+
+        #endregion
+
         public void SelectSubCategory(GenericCategoryData _category)
         {
             switch (_category.area) {
@@ -297,78 +371,19 @@ namespace EA4S.Book
             }
         }
 
-        public void DetailWord(WordInfo info)
+        void HighlightLetterItem(string id)
         {
-            DetailPanel.SetActive(true);
-            MoreInfoLetterPanel.SetActive(false);
-            MoreInfoWordPanel.SetActive(true);
-            Debug.Log("Detail Word :" + info.data.Id);
-            AudioManager.I.PlayWord(info.data);
-
-            // ScoreText.text = "Score: " + info.score;
-
-            var output = "";
-
-            var splittedLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, info.data);
-            foreach (var letter in splittedLetters) {
-                output += letter.letter.GetChar() + " ";
+            foreach (Transform t in ElementsContainer.transform) {
+                t.GetComponent<ItemLetter>().Select(id);
             }
-            output += "\n";
-            output += info.data.Arabic;
-
-            ArabicText.text = output;
-            if (info.data.Drawing != "") {
-                WordDrawingText.text = AppManager.I.VocabularyHelper.GetWordDrawing(info.data);
-                if (info.data.Category == Database.WordDataCategory.Color) {
-                    WordDrawingText.SetColor(GenericHelper.GetColorFromString(info.data.Value));
-                }
-            } else {
-                WordDrawingText.text = "";
-            }
-
         }
 
-        public void DetailLetter(LetterInfo _currentLetter)
+
+        void HighlightMenutCategory(string id)
         {
-            currentLetter = _currentLetter;
-            HighlightLetterItem(currentLetter.data.Id);
-
-            DetailPanel.SetActive(true);
-            MoreInfoLetterPanel.SetActive(true);
-            MoreInfoWordPanel.SetActive(false);
-
-            string positionsString = "";
-            foreach (var p in currentLetter.data.GetAvailableForms()) {
-                positionsString = positionsString + " " + p;
+            foreach (Transform t in SubmenuContainer.transform) {
+                t.GetComponent<MenuItemCategory>().Select(id);
             }
-            Debug.Log("Detail Letter :" + currentLetter.data.Id + " [" + positionsString + " ]");
-            AudioManager.I.PlayLetter(currentLetter.data);
-
-            ArabicText.text = "";
-            // ScoreText.text = "Score: " + info.score;
-
-            var isolatedChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Isolated);
-            var InitialChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Initial);
-            var MedialChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Medial);
-            var FinalChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Final);
-
-            LetterTextIsolated.SetTextUnfiltered(isolatedChar);
-            LetterTextInitial.SetTextUnfiltered(InitialChar);
-            LetterTextMedial.SetTextUnfiltered(MedialChar);
-            LetterTextFinal.SetTextUnfiltered(FinalChar);
-        }
-
-        public void DetailPhrase(PhraseInfo info)
-        {
-            DetailPanel.SetActive(true);
-            MoreInfoLetterPanel.SetActive(false);
-            MoreInfoWordPanel.SetActive(false);
-
-            Debug.Log("Detail Phrase :" + info.data.Id);
-            AudioManager.I.PlayPhrase(info.data);
-            //ScoreText.text = "Score: " + info.score;
-
-            ArabicText.text = info.data.Arabic;
         }
 
         void emptyListContainers()

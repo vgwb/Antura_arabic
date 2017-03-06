@@ -326,6 +326,10 @@ namespace EA4S.UI
 
         void OnClickCategory(AnturaSpaceCategoryButton _bt)
         {
+            if (showItemsTween.IsPlaying()) return;
+
+            _bt.AnimateClick();
+            _bt.PlayClickFx();
             SelectCategory(_bt.Category);
             if (onRewardCategorySelectedInCustomization != null)
                 onRewardCategorySelectedInCustomization(_bt.Category.ToString());
