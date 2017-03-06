@@ -20,7 +20,7 @@ namespace EA4S.Database
         public string Description;
         public string Title_En;
         public string Title_Ar;
-        public string Reward;
+        //public string Reward;
         public LearningBlockDataFocus Focus;
         //        public string AssessmentData;
 
