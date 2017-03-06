@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
+using EA4S.Helpers;
 using EA4S.Teacher;
 
 namespace EA4S.Database
@@ -15,6 +16,9 @@ namespace EA4S.Database
         {
             this.dbManager = _dbManager;
         }
+
+        // HACK: this is needed for some games where LamAlef behaves differently
+        public bool ForceUnseparatedLetters { get; set; }
 
         #region Letter Utilities
 
@@ -127,9 +131,24 @@ namespace EA4S.Database
 
         #region Word -> Letter
 
+        private List<string> GetLetterIdsInWordData(WordData wordData)
+        {
+            List<string> letter_ids_list = null;
+            if (ForceUnseparatedLetters)
+            {
+                var parts = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB.StaticDatabase, wordData, separateVariations: false);
+                letter_ids_list = parts.ConvertAll(p => p.letter.Id);
+            }
+            else
+            {
+                letter_ids_list = new List<string>(wordData.Letters);
+            }
+            return letter_ids_list;
+        }
+
         public List<LetterData> GetLettersInWord(WordData wordData)
         {
-            var letter_ids_list = new List<string>(wordData.Letters);
+            List<string> letter_ids_list = GetLetterIdsInWordData(wordData);
             List<LetterData> list = new List<LetterData>();
             foreach (var letter_id in letter_ids_list) list.Add(dbManager.GetLetterDataById(letter_id));
             return list;
@@ -147,8 +166,10 @@ namespace EA4S.Database
         public List<LetterData> GetLettersNotInWords(LetterKindCategory category = LetterKindCategory.Real, params WordData[] tabooArray)
         {
             var letter_ids_list = new HashSet<string>();
-            foreach (var tabooWordData in tabooArray) {
-                letter_ids_list.UnionWith(tabooWordData.Letters);
+            foreach (var tabooWordData in tabooArray)
+            {
+                var tabooWordDataLetterIds = GetLetterIdsInWordData(tabooWordData);
+                letter_ids_list.UnionWith(tabooWordDataLetterIds);
             }
             List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsOfKindCategory(category));
             return list;
@@ -157,7 +178,7 @@ namespace EA4S.Database
         public List<LetterData> GetLettersNotInWord(string wordId, LetterKindCategory category = LetterKindCategory.Real)
         {
             WordData wordData = dbManager.GetWordDataById(wordId);
-            var letter_ids_list = new List<string>(wordData.Letters);
+            var letter_ids_list = GetLetterIdsInWordData(wordData);
             List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsOfKindCategory(category));
             return list;
         }
@@ -317,8 +338,10 @@ namespace EA4S.Database
 
                 if (!CheckFilters(filters, x)) return false;
 
+                var letter_ids = GetLetterIdsInWordData(x);
+
                 if (tabooLetters.Count > 0) {
-                    foreach (var letter_id in x.Letters) {
+                    foreach (var letter_id in letter_ids) {
                         if (tabooLetters.Contains(letter_id)) {
                             return false;
                         }
@@ -329,7 +352,7 @@ namespace EA4S.Database
                     bool hasAllOkLetters = true;
                     foreach (var okLetter in okLetters) {
                         bool hasThisLetter = false;
-                        foreach (var letter_id in x.Letters) {
+                        foreach (var letter_id in letter_ids) {
                             if (letter_id == okLetter) {
                                 hasThisLetter = true;
                                 break;
