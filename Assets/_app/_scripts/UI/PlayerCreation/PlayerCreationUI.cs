@@ -204,6 +204,7 @@ namespace EA4S.UI
                     if (allAvatarCategoriesSelected) {
                         BtContinue.gameObject.SetActive(true);
                         BtContinue.Pulse();
+                        AudioManager.I.PlayDialogue(Database.LocalizationDataId.Action_PressPlay);
                     }
                     break;
                 case UIState.AgeSelection:
