@@ -78,7 +78,7 @@ namespace EA4S.ReservedArea
 
         public void OnDeleteSelectPlayerProfile()
         {
-            GlobalUI.ShowPrompt(true, "WARNING\n Are you sure?", DoDeleteSelectPlayerProfile, DoNothing);
+            GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, DoDeleteSelectPlayerProfile, DoNothing);
         }
 
         void DoNothing()
@@ -101,9 +101,9 @@ namespace EA4S.ReservedArea
         public void OnCreateDemoPlayer()
         {
             if (AppManager.I.PlayerProfileManager.ExistsDemoUser()) {
-                GlobalUI.ShowPrompt(true, "Demo player already exists");
+                GlobalUI.ShowPrompt("", "Demo player already exists");
             } else {
-                GlobalUI.ShowPrompt(true, "WARNING\n Are you sure?", DoCreateDemoPlayer, DoNothing);
+                GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, DoCreateDemoPlayer, DoNothing);
             }
         }
 
