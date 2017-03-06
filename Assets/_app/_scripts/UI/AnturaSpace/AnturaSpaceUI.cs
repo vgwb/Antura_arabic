@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.DeInspektor.Attributes;
 using DG.Tweening;
 using EA4S.Antura;
 using EA4S.Helpers;
@@ -16,7 +17,10 @@ namespace EA4S.UI
     {
         public int MaxItems = 10;
         public LayerMask RewardsLayer;
+    [DeToggleButton]
         public bool FlipRewards = true;
+    [DeToggleButton]
+        public bool HideLockedSwatchesColors;
         [Header("References")]
         public UIButton BtOpenModsPanel;
         public UIButton BTRemoveMods;
@@ -25,11 +29,14 @@ namespace EA4S.UI
         public UIButton BtBones;
         public TMPro.TextMeshProUGUI bonesNumber;
 
+
         public event System.Action onEnterCustomization;
         public event System.Action onExitCustomization;
 
         public delegate void AnturaSpaceUIEvent(string _category);
         public static event AnturaSpaceUIEvent onRewardCategorySelectedInCustomization;
+
+        public static AnturaSpaceUI I { get; private set; }
 
         bool isModsPanelOpen;
         AnturaSpaceCategoryButton[] btsCategories;
@@ -60,6 +67,11 @@ namespace EA4S.UI
                 bonesCount = value;
                 bonesNumber.text = value.ToString();
             }
+        }
+
+        void Awake()
+        {
+            I = this;
         }
 
         void Start()
@@ -123,6 +135,7 @@ namespace EA4S.UI
 
         void OnDestroy()
         {
+            if (I == this) I = null;
             // TODO: is better move this in "exit scene" method?
             AnturaModelManager.Instance.SaveAnturaCustomization();
             this.StopAllCoroutines();
