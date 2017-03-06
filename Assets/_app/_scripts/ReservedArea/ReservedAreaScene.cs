@@ -35,17 +35,17 @@ namespace EA4S.Scenes
 
         public void OnOpenInstallInstructions()
         {
-            GlobalUI.ShowPrompt(true, "Install instructions");
+            GlobalUI.ShowPrompt("", "Install instructions");
         }
 
         public void OnOpenRateApp()
         {
-            GlobalUI.ShowPrompt(true, "Rate app");
+            GlobalUI.ShowPrompt("", "Rate app");
         }
 
         public void OnOpenRecomment()
         {
-            GlobalUI.ShowPrompt(true, "How to Recommend Antura");
+            GlobalUI.ShowPrompt("", "How to Recommend Antura");
         }
 
     }
