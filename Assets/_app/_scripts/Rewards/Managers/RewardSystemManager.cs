@@ -377,7 +377,7 @@ namespace EA4S.Rewards
                 }
             }
 
-            AppManager.I.Player.AddRewardUnlockedAll(newUnlocked);
+            AppManager.I.Player.AddRewardUnlockedRange(newUnlocked);
             AppManager.I.Player.SetCurrentJourneyPosition(actualCurrentJourneyPosition);
             Debug.LogFormat("Bulk unlocking rewards result: rewards: {0} | texture: {1} | decal: {2} | other: {3}", RewardCount, TextureCount, DecalCount, OtherCount);
         }
@@ -577,17 +577,19 @@ namespace EA4S.Rewards
             _player.ResetRewardsUnlockedData();
             _player.AddRewardUnlocked(GetFirstAnturaReward(RewardTypes.reward));
             // decal
-            _player.AddRewardUnlocked(GetFirstAnturaReward(RewardTypes.decal));
+            RewardPackUnlockData defaultDecal = GetFirstAnturaReward(RewardTypes.decal);
+            _player.AddRewardUnlocked(defaultDecal);
             // force to to wear decal
-            _player.CurrentAnturaCustomizations.DecalTexture = GetFirstAnturaReward(RewardTypes.decal);
-            _player.CurrentAnturaCustomizations.DecalTextureId = GetFirstAnturaReward(RewardTypes.decal).Id;
+            _player.CurrentAnturaCustomizations.DecalTexture = defaultDecal;
+            _player.CurrentAnturaCustomizations.DecalTextureId = defaultDecal.GetIdAccordingToDBRules();
             // texture
-            _player.AddRewardUnlocked(GetFirstAnturaReward(RewardTypes.texture));
+            RewardPackUnlockData defaultTexture = GetFirstAnturaReward(RewardTypes.texture);
+            _player.AddRewardUnlocked(defaultTexture);
             // force to to wear texture
-            _player.CurrentAnturaCustomizations.TileTexture = GetFirstAnturaReward(RewardTypes.texture);
-            _player.CurrentAnturaCustomizations.TileTexture.Id = GetFirstAnturaReward(RewardTypes.texture).Id;
+            _player.CurrentAnturaCustomizations.TileTexture = defaultTexture;
+            _player.CurrentAnturaCustomizations.TileTexture.Id = defaultTexture.GetIdAccordingToDBRules();
             // Add all 3 rewards
-            _player.AddRewardUnlockedAll();
+            //_player.AddRewardUnlockedAll();
             // Save actual customization
             _player.SaveCustomization();
         }
