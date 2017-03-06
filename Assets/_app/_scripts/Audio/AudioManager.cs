@@ -145,13 +145,10 @@ namespace EA4S.Audio
 
         public void OnAppPause(bool pauseStatus)
         {
-            if (pauseStatus)
-            {
+            if (pauseStatus) {
                 previousMusicEnabled = MusicEnabled;
                 MusicEnabled = false;
-            }
-            else
-            {
+            } else {
                 MusicEnabled = previousMusicEnabled;
             }
 
@@ -265,6 +262,8 @@ namespace EA4S.Audio
 
         public IAudioSource PlayDialogue(Database.LocalizationData data, bool clearPreviousCallback = false)
         {
+            Debug.Log("PlayDialogue " + data.Id);
+
             if (clearPreviousCallback)
                 dialogueEndedCallbacks.Clear();
 
@@ -414,15 +413,13 @@ namespace EA4S.Audio
                     playingAudio.RemoveAt(i--);
 
                     System.Action callback;
-                    if (source.Group == keeperGroup && dialogueEndedCallbacks.TryGetValue(source, out callback))
-                    {
+                    if (source.Group == keeperGroup && dialogueEndedCallbacks.TryGetValue(source, out callback)) {
                         pendingCallbacks.Add(new KeyValuePair<AudioSourceWrapper, System.Action>(source, callback));
                     }
                 }
             }
 
-            for (int i = 0; i < pendingCallbacks.Count; ++i)
-            {
+            for (int i = 0; i < pendingCallbacks.Count; ++i) {
                 pendingCallbacks[i].Value();
                 dialogueEndedCallbacks.Remove(pendingCallbacks[i].Key);
             }
