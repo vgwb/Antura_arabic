@@ -4750,10 +4750,10 @@ MonoBehaviour:
       Form: 1
       Article: 0
       LinkedWord: 
-      Arabic: "\u062A\u0644\u062C"
+      Arabic: "\u062B\u0644\u062C"
       Value: 
       Letters:
-      - teh
+      - theh
       - lam
       - jeem
       Drawing: EF
