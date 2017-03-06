@@ -157,6 +157,9 @@ namespace EA4S.Core
                 case AppScene.PlaySessionResult:
                     GoToScene(AppScene.Map);
                     break;
+                case AppScene.Ending:
+                    GoToScene(AppScene.Map);
+                    break;
                 default:
                     break;
             }
