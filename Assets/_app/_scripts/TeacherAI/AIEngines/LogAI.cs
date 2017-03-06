@@ -186,11 +186,11 @@ namespace EA4S.Teacher
                             containedInJourney = currentJourneyContents.Contains(data as LetterData);
                             break;
                         case VocabularyDataType.Word:
-                            data = AppManager.I.DB.GetLetterDataById(result.elementId);
+                            data = AppManager.I.DB.GetWordDataById(result.elementId);
                             containedInJourney = currentJourneyContents.Contains(data as WordData);
                             break;
                         case VocabularyDataType.Phrase:
-                            data = AppManager.I.DB.GetLetterDataById(result.elementId);
+                            data = AppManager.I.DB.GetPhraseDataById(result.elementId);
                             containedInJourney = currentJourneyContents.Contains(data as PhraseData);
                             break;
                     }
