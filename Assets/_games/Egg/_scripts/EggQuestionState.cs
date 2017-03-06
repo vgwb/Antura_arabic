@@ -27,12 +27,11 @@ namespace EA4S.Minigames.Egg
             game.CurrentQuestion = new EggChallenge(game.GameDifficulty, onlyLetter);
             game.eggController.Reset();
 
-            if (firstQuestion)
-            {
+            if (firstQuestion) {
                 if (EggConfiguration.Instance.Variation == EggConfiguration.EggVariation.Single)
-                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_Alphabet_Title);
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_letters_Title);
                 else
-                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_Title);
+                    game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_sequence_Title);
             }
 
             EggEnter();
@@ -56,12 +55,9 @@ namespace EA4S.Minigames.Egg
 
         void OnEggEnterComplete()
         {
-            if (firstQuestion)
-            {
-                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_Intro, delegate () { SetAndShowEggButtons(); });
-            }
-            else
-            {
+            if (firstQuestion) {
+                game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.Egg_sequence_Intro, delegate () { SetAndShowEggButtons(); });
+            } else {
                 SetAndShowEggButtons();
             }
         }
@@ -70,8 +66,7 @@ namespace EA4S.Minigames.Egg
         {
             List<ILivingLetterData> lLetterDataSequence = game.CurrentQuestion.Letters;
 
-            for (int i = 0; i < lLetterDataSequence.Count; i++)
-            {
+            for (int i = 0; i < lLetterDataSequence.Count; i++) {
                 game.eggButtonBox.AddButton(lLetterDataSequence[i]);
             }
 
@@ -90,25 +85,18 @@ namespace EA4S.Minigames.Egg
 
             game.eggController.EmoticonInterrogative();
 
-            if (isSequence)
-            {
+            if (isSequence) {
                 game.eggController.SetQuestion(game.CurrentQuestion.Letters);
                 game.eggButtonBox.PlayButtonsAudio(lightUpButtons, false, 0f, OnQuestionAudioComplete);
-            }
-            else
-            {
+            } else {
                 game.eggController.SetQuestion(game.CurrentQuestion.Letters[0]);
 
-                if (lightUpButtons)
-                {
-                    game.eggController.PlayAudioQuestion(delegate ()
-                       {
-                           EnableEggButtonsInput();
-                           game.eggButtonBox.PlayButtonsAudio(true, true, 0.5f, OnQuestionAudioComplete);
-                       });
-                }
-                else
-                {
+                if (lightUpButtons) {
+                    game.eggController.PlayAudioQuestion(delegate () {
+                        EnableEggButtonsInput();
+                        game.eggButtonBox.PlayButtonsAudio(true, true, 0.5f, OnQuestionAudioComplete);
+                    });
+                } else {
                     game.eggController.PlayAudioQuestion(OnQuestionAudioComplete);
                 }
             }
@@ -116,8 +104,7 @@ namespace EA4S.Minigames.Egg
 
         void OnEggButtonPressed(ILivingLetterData letterData)
         {
-            if (!game.CurrentQuestion.IsSequence())
-            {
+            if (!game.CurrentQuestion.IsSequence()) {
                 game.eggButtonBox.StopButtonsAudio();
             }
 

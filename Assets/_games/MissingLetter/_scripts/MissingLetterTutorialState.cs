@@ -4,15 +4,19 @@ using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
 using UnityEngine;
 
-namespace EA4S.Minigames.MissingLetter {
+namespace EA4S.Minigames.MissingLetter
+{
 
-    public class MissingLetterTutorialState : IState {
+    public class MissingLetterTutorialState : IState
+    {
 
-        public MissingLetterTutorialState(MissingLetterGame _game) {
+        public MissingLetterTutorialState(MissingLetterGame _game)
+        {
             this.m_oGame = _game;
         }
 
-        public void EnterState() {
+        public void EnterState()
+        {
             AudioManager.I.PlayMusic(Music.Theme6);
             m_oGame.m_oRoundManager.SetTutorial(true);
             m_oGame.m_oRoundManager.NewRound();
@@ -20,7 +24,8 @@ namespace EA4S.Minigames.MissingLetter {
         }
 
 
-        public void ExitState() {
+        public void ExitState()
+        {
             TutorialUI.Clear(true);
             m_oGame.m_oRoundManager.SetTutorial(false);
             m_oGame.m_oRoundManager.onAnswered -= OnRoundResult;
@@ -28,29 +33,23 @@ namespace EA4S.Minigames.MissingLetter {
 
         void OnRoundResult(bool _result)
         {
-            if (_result)
-            {
+            if (_result) {
                 //TODO: tutorial finito ... mostrare qualcosa a livello di UI ?
                 m_oGame.SetCurrentState(m_oGame.PlayState);
-            }
-            else
-            {
+            } else {
                 var _LL = m_oGame.m_oRoundManager.GetCorrectLLObject();
                 _LL.GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
             }
         }
 
-        public void Update(float delta) {
+        public void Update(float delta)
+        {
             m_fDelayTime -= delta;
-            if(m_fDelayTime < 0 && !m_bSuggested)
-            {
+            if (m_fDelayTime < 0 && !m_bSuggested) {
                 if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter ||
-                    MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingForm)
-                {
+                    MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingForm) {
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.MissingLetter_Tuto);
-                }
-                else
-                {
+                } else {
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.MissingLetter_phrases_Tuto);
                 }
 
@@ -61,7 +60,8 @@ namespace EA4S.Minigames.MissingLetter {
             }
         }
 
-        public void UpdatePhysics(float delta) {
+        public void UpdatePhysics(float delta)
+        {
 
         }
 
