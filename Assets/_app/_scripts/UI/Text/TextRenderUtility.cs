@@ -19,11 +19,6 @@ namespace EA4S.UI
 
             int characterCount = textInfo.characterCount;
 
-            //var ObjectStats = "Characters: " + characterCount + "   Words: " + textInfo.wordCount + "   Spaces: " + textInfo.spaceCount + "   Sprites: " + textInfo.spriteCount + "   Links: " + textInfo.linkCount
-            //          + "\nLines: " + textInfo.lineCount + "   Pages: " + textInfo.pageCount;
-
-            //Debug.Log("Text Info: " + ObjectStats);
-
             if (characterCount > 1) {
                 for (int i = 0; i < characterCount; i++) {
                     //Debug.Log("CAHR " + characterCount + ": " + TMPro.TMP_TextUtilities.StringToInt(textInfo.characterInfo[characterCount].character.ToString()));

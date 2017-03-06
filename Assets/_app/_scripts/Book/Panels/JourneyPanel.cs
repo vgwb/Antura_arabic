@@ -30,7 +30,8 @@ namespace EA4S.Book
 
         public TextRender DetailCodeText;
         public TextRender DetailTitleText;
-        public TextRender DetailDescriptionText;
+        public TextRender DetailDescriptionEn;
+        public TextRender DetailDescriptionAr;
         public TextRender ScoreText;
 
         int currentStage;
@@ -102,7 +103,8 @@ namespace EA4S.Book
 
             DetailCodeText.text = info.data.Id;
             DetailTitleText.text = info.data.Title_Ar;
-            DetailDescriptionText.text = info.data.Description;
+            DetailDescriptionEn.text = info.data.Description_En;
+            DetailDescriptionAr.text = info.data.Description_Ar;
         }
 
         void emptyListContainers()
