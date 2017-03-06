@@ -6,10 +6,8 @@ using EA4S.UI;
 using EA4S.Profile;
 using EA4S.Teacher;
 
-namespace EA4S.ReservedArea
-{
-    public class ProfilesPanel : MonoBehaviour
-    {
+namespace EA4S.ReservedArea {
+    public class ProfilesPanel : MonoBehaviour {
         public GameObject PlayerIconContainer;
         public GameObject PlayerIconPrefab;
         public GameObject ProfileCommandsContainer;
@@ -17,20 +15,17 @@ namespace EA4S.ReservedArea
 
         string SelectedPlayerId;
 
-        void Start()
-        {
+        void Start() {
             ResetAll();
         }
 
-        void ResetAll()
-        {
+        void ResetAll() {
             SelectedPlayerId = "";
             RefreshPlayerIcons();
             RefreshUI();
         }
 
-        void RefreshPlayerIcons()
-        {
+        void RefreshPlayerIcons() {
             GameObject newIcon;
 
             foreach (Transform t in PlayerIconContainer.transform) {
@@ -49,8 +44,7 @@ namespace EA4S.ReservedArea
             }
         }
 
-        void RefreshUI()
-        {
+        void RefreshUI() {
             // highlight selected profile
             ProfileCommandsContainer.SetActive(SelectedPlayerId != "");
             foreach (Transform t in PlayerIconContainer.transform) {
@@ -58,8 +52,7 @@ namespace EA4S.ReservedArea
             }
         }
 
-        public void OnSelectPlayerProfile(string uuid)
-        {
+        public void OnSelectPlayerProfile(string uuid) {
             //Debug.Log("OnSelectPlayerProfile " + uuid);
             if (SelectedPlayerId != uuid) {
                 SelectedPlayerId = uuid;
@@ -69,58 +62,49 @@ namespace EA4S.ReservedArea
             RefreshUI();
         }
 
-        public void OnOpenSelectedPlayerProfile()
-        {
+        public void OnOpenSelectedPlayerProfile() {
             //Debug.Log("OPEN " + SelectedPlayerId);
             AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
             AppManager.I.NavigationManager.GoToPlayerBook();
         }
 
-        public void OnDeleteSelectPlayerProfile()
-        {
-            GlobalUI.ShowPrompt(true, "WARNING\n Are you sure?", DoDeleteSelectPlayerProfile, DoNothing);
+        public void OnDeleteSelectPlayerProfile() {
+            GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, DoDeleteSelectPlayerProfile, DoNothing);
         }
 
-        void DoNothing()
-        {
+        void DoNothing() {
 
         }
 
-        void DoDeleteSelectPlayerProfile()
-        {
+        void DoDeleteSelectPlayerProfile() {
             //Debug.Log("DELETE " + SelectedPlayerId);
             AppManager.I.PlayerProfileManager.DeletePlayerProfile(SelectedPlayerId);
             ResetAll();
         }
 
-        public void OnExportSelectPlayerProfile()
-        {
+        public void OnExportSelectPlayerProfile() {
             Debug.Log("EXPORT " + SelectedPlayerId);
         }
 
-        public void OnCreateDemoPlayer()
-        {
+        public void OnCreateDemoPlayer() {
             if (AppManager.I.PlayerProfileManager.ExistsDemoUser()) {
-                GlobalUI.ShowPrompt(true, "Demo player already exists");
+                GlobalUI.ShowPrompt("", "Demo player already exists");
             } else {
-                GlobalUI.ShowPrompt(true, "WARNING\n Are you sure?", DoCreateDemoPlayer, DoNothing);
+                GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, DoCreateDemoPlayer, DoNothing);
             }
         }
 
-        void DoCreateDemoPlayer()
-        {
+        void DoCreateDemoPlayer() {
             StartCoroutine(CreateDemoPlayer());
         }
 
-        public void OnImportProfile()
-        {
+        public void OnImportProfile() {
             Debug.Log("IMPORT");
         }
 
         #region Demo User Helpers
 
-        IEnumerator CreateDemoPlayer()
-        {
+        IEnumerator CreateDemoPlayer() {
             //Debug.Log("creating DEMO USER ");
             yield return null;
             activateWaitingScreen(true);
@@ -131,13 +115,8 @@ namespace EA4S.ReservedArea
             // populate with fake data
             Debug.Log("Cheat Mode enabled: unlocking all game data");
             var maxJourneyPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
-            AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true);
             yield return StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos));
-
-
-            // AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
-            yield return null;
-
+            AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true);
             // FIX BUG in this
             Rewards.RewardSystemManager.UnlockAllRewards();
 
@@ -145,14 +124,12 @@ namespace EA4S.ReservedArea
             activateWaitingScreen(false);
         }
 
-        void activateWaitingScreen(bool status)
-        {
+        void activateWaitingScreen(bool status) {
             pleaseWaitPanel.gameObject.SetActive(status);
             GlobalUI.I.BackButton.gameObject.SetActive(!status);
         }
 
-        IEnumerator PopulateDatabaseWithUsefulDataCO(JourneyPosition targetPosition)
-        {
+        IEnumerator PopulateDatabaseWithUsefulDataCO(JourneyPosition targetPosition) {
             bool useBestScores = true;
 
             var logAi = AppManager.I.Teacher.logAI;
@@ -174,7 +151,6 @@ namespace EA4S.ReservedArea
                 if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage) {
                     int score = useBestScores ? AppConstants.maximumMinigameScore : Random.Range(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore);
                     logPlaySessionScoreParamsList.Add(new LogPlaySessionScoreParams(allPlaySessionInfos[i].data.GetJourneyPosition(), score, 12f));
-                    //logAi.LogPlaySessionScore("XXX", allPlaySessionInfos[i].data.GetJourneyPosition(), score, 12f);
                     //Debug.Log("Add play session score for " + allPlaySessionInfos[i].data.Id);
                 }
             }
@@ -189,7 +165,6 @@ namespace EA4S.ReservedArea
             for (int i = 0; i < allMiniGameInfo.Count; i++) {
                 int score = useBestScores ? AppConstants.maximumMinigameScore : Random.Range(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore);
                 logMiniGameScoreParamses.Add(new LogMiniGameScoreParams(JourneyPosition.InitialJourneyPosition, allMiniGameInfo[i].data.Code, score, 12f));
-                //logAi.LogMiniGameScore("XXX", JourneyPosition.InitialJourneyPosition, allMiniGameInfo[i].data.Code, score, 12f); 
                 //Debug.Log("Add minigame score " + i);
             }
             logAi.LogMiniGameScores(0, logMiniGameScoreParamses);

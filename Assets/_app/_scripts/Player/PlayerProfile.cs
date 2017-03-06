@@ -181,21 +181,24 @@ namespace EA4S.Profile
             if (MaxJourneyPosition.IsMinor(newJourneyPosition)) {
                 MaxJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
                 CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
-                if (AppManager.I.Player != null) {
+                if (AppManager.I.Player != null)   // @todo: why this check? should never be null here
+                {
                     // Finished
                     if (!HasFinishedTheGame) {
                         HasFinishedTheGame = AppManager.I.JourneyHelper.HasFinishedTheGame();
-                        if (HasFinishedTheGame && !AppManager.I.Player.IsGameCompleted()) {
+                        if (HasFinishedTheGame) {
                             SetGameCompleted();
                             Save();
                         }
                     }
                     // With all stars
                     if (HasFinishedTheGame && !HasFinishedTheGameWithAllStars) {
-                        bool oldValue_HasFinishedTheGameWithAllStars = HasFinishedTheGameWithAllStars;
                         HasFinishedTheGameWithAllStars = AppManager.I.ScoreHelper.HasFinishedTheGameWithAllStars();
-                        if(oldValue_HasFinishedTheGameWithAllStars != HasFinishedTheGameWithAllStars)
+                        if (HasFinishedTheGameWithAllStars)
+                        {
+                            AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
                             Save();
+                        }
                     }
                 }
 
@@ -346,6 +349,14 @@ namespace EA4S.Profile
         /// </summary>
         string jsonAnturaCustimizationData = string.Empty;
 
+        /// <summary>
+        /// Delete all reward unlocks from the Dynamic DB.
+        /// </summary>
+        private void DeleteAllRewardUnlocks()
+        {
+            AppManager.I.DB.DeleteAll<RewardPackUnlockData>();
+        }
+
         #region API
 
         /// <summary>
@@ -487,13 +498,13 @@ namespace EA4S.Profile
             AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
         }
 
-        public bool IsFinalShowed() {
+        public bool HasFinalBeenShown() {
             if (ProfileCompletion < ProfileCompletionState.GameCompletedAndFinalShowed)
                 return false;
             return true;
         }
 
-        public void SetFinalShowed() {
+        public void SetFinalShown() {
             ProfileCompletion = ProfileCompletionState.GameCompletedAndFinalShowed;
         }
         #endregion

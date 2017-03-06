@@ -104,11 +104,8 @@ namespace EA4S.Assessment
 
         public IEnumerator AllAnsweredEvent()
         {
-            if(events.OnAllQuestionsAnsweredPlacer != null)
-            {
+            if(events.OnAllQuestionsAnsweredPlacer!=null)
                 Koroutine.Run( events.OnAllQuestionsAnsweredPlacer());
-                events.OnAllQuestionsAnsweredPlacer = null;
-            }
 
             if(events.OnAllQuestionsAnswered != null)
                 return events.OnAllQuestionsAnswered();

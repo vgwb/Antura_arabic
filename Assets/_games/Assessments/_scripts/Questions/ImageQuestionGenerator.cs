@@ -42,6 +42,7 @@ namespace EA4S.Assessment
 
         private IEnumerator ShowFullWordCoroutine()
         {
+            Debug.Log("CALLED");
             var position = new Vector3( 0, 1.5f, 5f);
             var LL = ItemFactory.Instance.SpawnQuestion( cacheFullWordData);
             var box = ItemFactory.Instance.SpawnQuestionBox( new StillLetterBox[]{ LL});

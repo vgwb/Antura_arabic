@@ -23,6 +23,11 @@ namespace EA4S.UI
 
             IcoLock.SetActive(_doLock);
             if (_doLock) IcoNew.SetActive(false);
+            if (AnturaSpaceUI.I.HideLockedSwatchesColors)
+            {
+                ColorImgs[0].gameObject.SetActive(!_doLock);
+                ColorImgs[1].gameObject.SetActive(!_doLock);
+            }
         }
 
         public void SetAsNew(bool _isNew)

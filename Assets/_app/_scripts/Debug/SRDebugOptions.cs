@@ -470,11 +470,7 @@ public partial class SROptions
 
     [Category("Player Profile")]
     [Sort(1)]
-    public bool FirstContactPassed {
-        get { return DebugManager.I.FirstContactPassed; }
-        set { DebugManager.I.FirstContactPassed = value;
-        }
-    }
+    public bool FirstContactPassed { get { return DebugManager.I.FirstContactPassed; } set { DebugManager.I.FirstContactPassed = value; UnlockFirstReward(); } }
 
     [Category("Player Profile")]
     [Sort(2)]
@@ -510,6 +506,20 @@ public partial class SROptions
     }
 
     [Category("Max Journey Position")]
+    [Sort(6)]
+    public void SecondToLastJourneyPos()
+    {
+        JourneyPosition newPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
+        newPos.LearningBlock = 2;
+        if (newPos != null)
+        {
+            AppManager.I.Player.SetMaxJourneyPosition(newPos, true);
+        }
+        SRDebug.Instance.HideDebugPanel();
+        SRDebug.Instance.ShowDebugPanel();
+    }
+
+    [Category("Max Journey Position")]
     [Sort(7)]
     public void UnlockAll()
     {
@@ -533,7 +543,8 @@ public partial class SROptions
     [Sort(1)]
     public void UnlockFirstReward()
     {
-        RewardSystemManager.UnlockFirstSetOfRewards();
+        // refactor: move to DebugManager
+        AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward));
     }
 
     [Category("Rewards")]
