@@ -470,7 +470,11 @@ public partial class SROptions
 
     [Category("Player Profile")]
     [Sort(1)]
-    public bool FirstContactPassed { get { return DebugManager.I.FirstContactPassed; } set { DebugManager.I.FirstContactPassed = value; UnlockFirstReward(); } }
+    public bool FirstContactPassed {
+        get { return DebugManager.I.FirstContactPassed; }
+        set { DebugManager.I.FirstContactPassed = value;
+        }
+    }
 
     [Category("Player Profile")]
     [Sort(2)]
@@ -529,8 +533,7 @@ public partial class SROptions
     [Sort(1)]
     public void UnlockFirstReward()
     {
-        // refactor: move to DebugManager
-        AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward));
+        RewardSystemManager.UnlockFirstSetOfRewards();
     }
 
     [Category("Rewards")]

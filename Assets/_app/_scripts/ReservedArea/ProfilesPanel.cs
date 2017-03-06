@@ -127,15 +127,19 @@ namespace EA4S.ReservedArea
             yield return null;
             var demoUserUiid = AppManager.I.PlayerProfileManager.CreatePlayerProfile(10, PlayerGender.F, 1, PlayerTint.Red, true);
             SelectedPlayerId = demoUserUiid;
-            AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
 
             // populate with fake data
             Debug.Log("Cheat Mode enabled: unlocking all game data");
             var maxJourneyPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
             AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true);
             yield return StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos));
+
+
+            // AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
+            yield return null;
+
             // FIX BUG in this
-            ///Rewards.RewardSystemManager.UnlockAllRewards();
+            Rewards.RewardSystemManager.UnlockAllRewards();
 
             ResetAll();
             activateWaitingScreen(false);

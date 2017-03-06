@@ -344,23 +344,11 @@ namespace EA4S.Rewards
 
             int RewardCount = 0; int TextureCount = 0; int DecalCount = 0; int OtherCount = 0;
 
-            // @todo: this should be used to make reward unlock faster
-            //List<RewardPackUnlockData> rewardPackUnlockDatas = new List<RewardPackUnlockData>();
-            //rewardPackUnlockDatas.Add(GetFirstAnturaReward(RewardTypes.reward));
-            //rewardPackUnlockDatas.Add(GetFirstAnturaReward(RewardTypes.decal));
-            //rewardPackUnlockDatas.Add(GetFirstAnturaReward(RewardTypes.texture));
-
-            // First reward manual add
-            if(AppManager.I.Player.RewardsUnlocked.Count == 0) { 
-                AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward));
-                AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.decal));
-                AppManager.I.Player.AddRewardUnlocked(RewardSystemManager.GetFirstAnturaReward(RewardTypes.texture));
-            }
-
             var actualCurrentJourneyPosition = AppManager.I.Player.CurrentJourneyPosition;
             var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
 
-            // Test
+            List<RewardPackUnlockData> newUnlocked = new List<RewardPackUnlockData>();
+
             for (int i = 0; i < allPlaySessionInfos.Count; i++) {
                 // Check if already unlocked reward for this playSession.
                 JourneyPosition journeyPosition = allPlaySessionInfos[i].data.GetJourneyPosition();
@@ -369,9 +357,7 @@ namespace EA4S.Rewards
 
                 AppManager.I.Player.SetCurrentJourneyPosition(AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id));
                 foreach (RewardPackUnlockData pack in GetNextRewardPack()) {
-                    // @todo: this should be used to make reward unlock faster
-                    //rewardPackUnlockDatas.Add(pack);
-                    AppManager.I.Player.AddRewardUnlocked(pack);
+                    newUnlocked.Add(pack);
 
                     switch (pack.Type) {
                         case RewardTypes.reward:
@@ -391,9 +377,7 @@ namespace EA4S.Rewards
                 }
             }
 
-            // @todo: this should be used to make reward unlock faster
-            //AppManager.I.Player.AddRewardUnlockedAll(rewardPackUnlockDatas);
-
+            AppManager.I.Player.AddRewardUnlockedAll(newUnlocked);
             AppManager.I.Player.SetCurrentJourneyPosition(actualCurrentJourneyPosition);
             Debug.LogFormat("Bulk unlocking rewards result: rewards: {0} | texture: {1} | decal: {2} | other: {3}", RewardCount, TextureCount, DecalCount, OtherCount);
         }
@@ -576,6 +560,36 @@ namespace EA4S.Rewards
                     break;
             }
             return rp;
+        }
+
+        /// <summary>
+        /// Unlocks the first set of rewards for current player.
+        /// </summary>
+        public static void UnlockFirstSetOfRewards(Profile.PlayerProfile _player = null) {
+            if (_player == null) {
+                if (AppManager.I.Player == null) {
+                    Debug.LogError("No current player available!");
+                    return;
+                }
+            }
+            _player = AppManager.I.Player;
+
+            _player.ResetRewardsUnlockedData();
+            _player.AddRewardUnlocked(GetFirstAnturaReward(RewardTypes.reward));
+            // decal
+            _player.AddRewardUnlocked(GetFirstAnturaReward(RewardTypes.decal));
+            // force to to wear decal
+            _player.CurrentAnturaCustomizations.DecalTexture = GetFirstAnturaReward(RewardTypes.decal);
+            _player.CurrentAnturaCustomizations.DecalTextureId = GetFirstAnturaReward(RewardTypes.decal).Id;
+            // texture
+            _player.AddRewardUnlocked(GetFirstAnturaReward(RewardTypes.texture));
+            // force to to wear texture
+            _player.CurrentAnturaCustomizations.TileTexture = GetFirstAnturaReward(RewardTypes.texture);
+            _player.CurrentAnturaCustomizations.TileTexture.Id = GetFirstAnturaReward(RewardTypes.texture).Id;
+            // Add all 3 rewards
+            _player.AddRewardUnlockedAll();
+            // Save actual customization
+            _player.SaveCustomization();
         }
 
         /// <summary>

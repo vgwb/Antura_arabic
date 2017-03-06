@@ -239,7 +239,7 @@ namespace EA4S.Profile
             }
         }
 
-        private List<RewardPackUnlockData> _rewardsUnlocked;
+        private List<RewardPackUnlockData> _rewardsUnlocked = new List<RewardPackUnlockData>();
         /// <summary>
         /// Gets or sets the rewards unlocked.
         /// </summary>
@@ -249,13 +249,20 @@ namespace EA4S.Profile
         public List<RewardPackUnlockData> RewardsUnlocked {
             get {
                 if (_rewardsUnlocked == null)
-                    return LoadRewardsUnlockedFromDB();
+                    _rewardsUnlocked = LoadRewardsUnlockedFromDB();
                 return _rewardsUnlocked;
             }
 
             private set {
                 _rewardsUnlocked = value;
             }
+        }
+
+        /// <summary>
+        /// Resets the rewards unlocked data.
+        /// </summary>
+        public void ResetRewardsUnlockedData() {
+            RewardsUnlocked = new List<RewardPackUnlockData>();
         }
 
         public string Key {
@@ -347,7 +354,15 @@ namespace EA4S.Profile
         /// <param name="rewardPackUnlockData">The reward pack.</param>
         public void AddRewardUnlocked(RewardPackUnlockData rewardPackUnlockData)
         {
+            AppManager.I.Player.RewardsUnlocked.Add(rewardPackUnlockData);
             AppManager.I.DB.UpdateRewardPackUnlockData(rewardPackUnlockData);
+        }
+
+        /// <summary>
+        /// Add update to db all 'this' reward unlocked.
+        /// </summary>
+        public void AddRewardUnlockedAll() {
+            AddRewardUnlockedAll(this.RewardsUnlocked);
         }
 
         /// <summary>
@@ -355,6 +370,7 @@ namespace EA4S.Profile
         /// </summary>
         public void AddRewardUnlockedAll(List<RewardPackUnlockData> rewardPackUnlockDatas)
         {
+            this.RewardsUnlocked = rewardPackUnlockDatas;
             AppManager.I.DB.UpdateRewardPackUnlockDataAll(rewardPackUnlockDatas);
         }
 
@@ -364,8 +380,10 @@ namespace EA4S.Profile
         /// <param name="_anturaCustomization">The antura customization. If null save only on db.</param>
         public void SaveCustomization(AnturaCustomization _anturaCustomization = null)
         {
-            if (_anturaCustomization != null)
+            if (_anturaCustomization != null) { 
                 CurrentAnturaCustomizations = _anturaCustomization;
+            }
+            jsonAnturaCustimizationData = CurrentAnturaCustomizations.GetJsonListOfIds();
             Save();
 
             AppManager.I.LogManager.LogInfo(InfoEvent.AnturaCustomization, CurrentAnturaCustomizations.GetJsonListOfIds());
