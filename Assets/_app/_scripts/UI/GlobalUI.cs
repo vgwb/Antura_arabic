@@ -34,7 +34,7 @@ namespace EA4S.UI
 
             I = Instantiate(Resources.Load<GlobalUI>(ResourceId));
             I.gameObject.name = "[GlobalUI]";
-//            DontDestroyOnLoad(go);
+            //            DontDestroyOnLoad(go);
         }
 
         void Awake()
@@ -99,8 +99,7 @@ namespace EA4S.UI
         public static void ShowBackButton(bool _doShow, Action _callback = null, bool _disableOnClick = true)
         {
             I.BackButton.gameObject.SetActive(_doShow);
-            if (_doShow)
-            {
+            if (_doShow) {
                 I.disableBackButtonOnClick = _disableOnClick;
                 I.BackButton.Bt.interactable = true;
                 I.onGoBack = _callback == null ? AppManager.I.NavigationManager.GoBack : _callback;
@@ -110,10 +109,20 @@ namespace EA4S.UI
         /// <summary>
         /// Shows a popup with a YES/NO button and relative callbacks
         /// </summary>
-        public static void ShowPrompt(bool _doShow, string _message = null, Action _onYesCallback = null, Action _onNoCallback = null)
+
+        public static void ShowPrompt(Database.LocalizationDataId id, Action _onYesCallback = null, Action _onNoCallback = null)
         {
-            if (_doShow) Prompt.Show(_message, _onYesCallback, _onNoCallback);
-            else Prompt.Close();
+            Prompt.Show(id, _onYesCallback, _onNoCallback);
+        }
+
+        public static void ShowPrompt(string _messageAr, string _messageEn, Action _onYesCallback = null, Action _onNoCallback = null)
+        {
+            Prompt.Show(_messageAr, _messageEn, _onYesCallback, _onNoCallback);
+        }
+
+        public static void ClosePrompt()
+        {
+            Prompt.Close();
         }
 
         T StoreAndAwake<T>() where T : Component

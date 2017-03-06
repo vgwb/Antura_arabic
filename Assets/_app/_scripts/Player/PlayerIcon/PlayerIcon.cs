@@ -45,7 +45,7 @@ namespace EA4S.Profile
         public void Init(PlayerIconData playerIconData)
         {
             Uuid = playerIconData.Uuid;
-            //Debug.Log("playerIconData " + playerIconData.Uuid + " " + playerIconData.Gender + " " + playerIconData.AvatarId + " " + playerIconData.Tint + " " + playerIconData.IsDemoUser);
+            Debug.Log("playerIconData " + playerIconData.Uuid + " " + playerIconData.Gender + " " + playerIconData.AvatarId + " " + playerIconData.Tint + " " + playerIconData.IsDemoUser + " > " + playerIconData.HasFinishedTheGame + "/" + playerIconData.HasFinishedTheGameWithAllStars);
             EndgameState endgameState = playerIconData.HasFinishedTheGameWithAllStars ? EndgameState.FinishedWAllStars
                 : playerIconData.HasFinishedTheGame ? EndgameState.Finished : EndgameState.Unfinished;
             SetAppearance(playerIconData.Gender, playerIconData.AvatarId, playerIconData.Tint, playerIconData.IsDemoUser, endgameState);

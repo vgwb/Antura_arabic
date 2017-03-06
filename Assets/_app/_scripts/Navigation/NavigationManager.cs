@@ -141,19 +141,20 @@ namespace EA4S.Core
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.Rewards:
-                    if (NavData.CurrentPlayer.IsFirstContact()) {
+                    if (NavData.CurrentPlayer.IsFirstContact())
+                    {
                         GoToScene(AppScene.AnturaSpace);
-                    } else {
-                        if (AppManager.I.Player.HasFinishedTheGame && !AppManager.I.Player.IsFinalShowed()) {
-                            AppManager.I.Player.SetFinalShowed();
-                            GoToScene(AppScene.Ending);
-                        } else {
-                            AppManager.I.Player.AdvanceMaxJourneyPosition();
-                            GoToScene(AppScene.Map);
-                        }
+                    }
+                    else
+                    {
+                        AppManager.I.Player.AdvanceMaxJourneyPosition();
+                        GoToScene(AppScene.Map);
                     }
                     break;
                 case AppScene.PlaySessionResult:
+                    GoToScene(AppScene.Map);
+                    break;
+                case AppScene.Ending:
                     GoToScene(AppScene.Map);
                     break;
                 default:
@@ -471,20 +472,39 @@ namespace EA4S.Core
         private void GotoNextGameOfPlaySession()
         {
             // From one game to the next
-            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
-                // Assessment ended, go to the rewards scene
-                GoToScene(AppScene.Rewards);
-            } else {
+            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
+            {
+                // Full game end: no reward, direct to the end scene instead
+                if (AppManager.I.JourneyHelper.PlayerIsAtFinalJourneyPosition() &&
+                    !AppManager.I.Player.HasFinalBeenShown())
+                {
+                    AppManager.I.Player.SetFinalShown();
+                    GoToScene(AppScene.Ending);
+                }
+                else
+                {
+                    // Assessment ended, go to the rewards scene
+                    GoToScene(AppScene.Rewards);
+                }
+            }
+            else
+            {
                 // Not an assessment. Do we have any more?
-                if (NavData.SetNextMinigame()) {
+                if (NavData.SetNextMinigame())
+                {
                     // Go to the next minigame.
                     InternalLaunchGameScene(NavData.CurrentMiniGameData);
-                } else {
+                }
+                else
+                {
                     // Finished all minigames for the current play session
-                    if (NavData.RealPlaySession) {
+                    if (NavData.RealPlaySession)
+                    {
                         // Go to the reward scene.
                         GoToScene(AppScene.PlaySessionResult);
-                    } else {
+                    }
+                    else
+                    {
                         // Go where you were previously
                         GoBack();
                     }
