@@ -480,7 +480,7 @@ namespace EA4S.Profile
             AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
         }
 
-        public bool IsFinalShown() {
+        public bool HasFinalBeenShown() {
             if (ProfileCompletion < ProfileCompletionState.GameCompletedAndFinalShowed)
                 return false;
             return true;
