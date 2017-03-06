@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using EA4S.Audio;
 using EA4S.Core;
 using EA4S.Database;
 using EA4S.UI;
@@ -75,6 +76,7 @@ namespace EA4S.ReservedArea
 
         public void OnButtonClick(int buttonIndex)
         {
+            AudioManager.I.PlaySound(Sfx.UIButtonClick);
             if (buttonIndex == firstButtonIndex) {
                 firstButtonClickCounter++;
             } else if (buttonIndex == secondButtonIndex) {
