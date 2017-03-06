@@ -126,6 +126,11 @@ namespace EA4S.Database
             _connection.InsertAll(objects, "OR REPLACE");
         }
 
+        public void DeleteAll<T>() where T : IData, new()
+        {
+            _connection.DeleteAll<T>();
+        }
+
         #endregion
 
         #region Find (simple queries)
