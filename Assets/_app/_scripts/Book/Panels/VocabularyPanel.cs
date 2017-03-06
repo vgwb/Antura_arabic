@@ -210,6 +210,9 @@ namespace EA4S.Book
             LetterTextInitial.gameObject.SetActive(InitialChar != isolatedChar);
             LetterTextMedial.gameObject.SetActive(MedialChar != isolatedChar);
             LetterTextFinal.gameObject.SetActive(FinalChar != isolatedChar);
+
+            // Debug
+            // LetterTextIsolated.gameObject.GetComponent<TextRenderUtility>().ShowInfo();
         }
 
         #endregion
