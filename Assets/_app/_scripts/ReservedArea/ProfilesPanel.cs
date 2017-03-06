@@ -132,8 +132,8 @@ namespace EA4S.ReservedArea
             // populate with fake data
             Debug.Log("Cheat Mode enabled: unlocking all game data");
             var maxJourneyPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
-            AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true);
             yield return StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos));
+            AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true);
             // FIX BUG in this
             ///Rewards.RewardSystemManager.UnlockAllRewards();
 
@@ -170,7 +170,6 @@ namespace EA4S.ReservedArea
                 if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage) {
                     int score = useBestScores ? AppConstants.maximumMinigameScore : Random.Range(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore);
                     logPlaySessionScoreParamsList.Add(new LogPlaySessionScoreParams(allPlaySessionInfos[i].data.GetJourneyPosition(), score, 12f));
-                    //logAi.LogPlaySessionScore("XXX", allPlaySessionInfos[i].data.GetJourneyPosition(), score, 12f);
                     //Debug.Log("Add play session score for " + allPlaySessionInfos[i].data.Id);
                 }
             }
@@ -185,7 +184,6 @@ namespace EA4S.ReservedArea
             for (int i = 0; i < allMiniGameInfo.Count; i++) {
                 int score = useBestScores ? AppConstants.maximumMinigameScore : Random.Range(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore);
                 logMiniGameScoreParamses.Add(new LogMiniGameScoreParams(JourneyPosition.InitialJourneyPosition, allMiniGameInfo[i].data.Code, score, 12f));
-                //logAi.LogMiniGameScore("XXX", JourneyPosition.InitialJourneyPosition, allMiniGameInfo[i].data.Code, score, 12f); 
                 //Debug.Log("Add minigame score " + i);
             }
             logAi.LogMiniGameScores(0, logMiniGameScoreParamses);

@@ -225,7 +225,7 @@ namespace EA4S.Database
 
         public override string ToString()
         {
-            return string.Format("ID{0},U{1},Ts{2}, MaxJ({3}.{4}.{5}), CurrentJ({6}.{7}.{8}), ProfCompl{9},",
+            return string.Format("ID{0},U{1},Ts{2}, MaxJ({3}.{4}.{5}), CurrentJ({6}.{7}.{8}), ProfCompl{9}, JourneyCompleted{10}, Score{11}",
                 Id,
                 Uuid,
                 Timestamp,
@@ -238,7 +238,9 @@ namespace EA4S.Database
                 CurrentLearningBlock,
                 CurrentPlaySession,
 
-                ProfileCompletion
+                ProfileCompletion,
+                JourneyCompleted,
+                TotalScore
             );
         }
 
