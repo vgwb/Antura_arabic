@@ -1,9 +1,10 @@
 ﻿using System;
-using DG.DeExtensions;
-using DG.Tweening;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using EA4S.Core;
+using EA4S.Audio;
+using DG.DeExtensions;
+using DG.Tweening;
 
 namespace EA4S.UI
 {
@@ -14,7 +15,8 @@ namespace EA4S.UI
     public class PromptPanel : MonoBehaviour
     {
         public RectTransform Content;
-        public TextMeshProUGUI TfMessage;
+        public TextRender TfMessageArabic;
+        public TextRender TfMessageEnglish;
         public UIButton BtYes, BtNo;
 
         Action onYes, onNo;
@@ -37,8 +39,8 @@ namespace EA4S.UI
                     OnClose();
                 });
 
-            BtYes.Bt.onClick.AddListener(()=> OnClick(BtYes));
-            BtNo.Bt.onClick.AddListener(()=> OnClick(BtNo));
+            BtYes.Bt.onClick.AddListener(() => OnClick(BtYes));
+            BtNo.Bt.onClick.AddListener(() => OnClick(BtNo));
 
             this.gameObject.SetActive(false);
         }
@@ -54,10 +56,23 @@ namespace EA4S.UI
 
         #region Public Methods
 
-        public void Show(string _message, Action _onYes, Action _onNo)
+        public void Show(Database.LocalizationDataId id, Action _onYes, Action _onNo)
+        {
+            var localizationData = LocalizationManager.GetLocalizationData(id);
+            AudioManager.I.PlayDialogue(localizationData);
+            Show(localizationData.Arabic, localizationData.English, _onYes, _onNo);
+        }
+
+        public void Show(string _messageAr, Action _onYes, Action _onNo)
+        {
+            Show(_messageAr, "", _onYes, _onNo);
+        }
+
+        public void Show(string _messageAr, string _messageEn, Action _onYes, Action _onNo)
         {
             onCloseAction = null;
-            TfMessage.text = _message.IsNullOrEmpty() ? "" : _message;
+            TfMessageArabic.text = _messageAr.IsNullOrEmpty() ? "" : _messageAr;
+            TfMessageEnglish.text = _messageEn.IsNullOrEmpty() ? "" : _messageEn;
             onYes = _onYes;
             onNo = _onNo;
             btYesRT.SetAnchoredPosX(_onNo == null ? 0 : defYesX);
