@@ -145,6 +145,11 @@ namespace EA4S.Database
             dynamicDb.InsertOrReplaceAll<T>(objects);
         }
 
+        public void DeleteAll<T>() where T : IData, new()
+        {
+            dynamicDb.DeleteAll<T>();
+        }
+
         #endregion
 
         #region Letter

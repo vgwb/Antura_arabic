@@ -339,6 +339,14 @@ namespace EA4S.Profile
         /// </summary>
         string jsonAnturaCustimizationData = string.Empty;
 
+        /// <summary>
+        /// Delete all reward unlocks from the Dynamic DB.
+        /// </summary>
+        private void DeleteAllRewardUnlocks()
+        {
+            AppManager.I.DB.DeleteAll<RewardPackUnlockData>();
+        }
+
         #region API
 
         /// <summary>
