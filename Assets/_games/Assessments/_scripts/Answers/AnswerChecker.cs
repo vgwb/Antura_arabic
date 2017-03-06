@@ -130,6 +130,7 @@ namespace EA4S.Assessment
                 // Just trigger OnQuestionAnswered events if all are correct
                 foreach (var q in questions)
                 {
+                    yield return Wait.For( q.QuestionBehaviour.TimeToWait());
                     q.QuestionBehaviour.OnQuestionAnswered();
                     yield return Wait.For( q.QuestionBehaviour.TimeToWait());
                 }
