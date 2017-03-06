@@ -141,7 +141,7 @@ namespace EA4S.Profile
         }
 
         /// <summary>
-        /// Sets the player as current player profile by UUID.
+        /// Sets the player as current player profile loading from db by UUID.
         /// </summary>
         /// <param name="playerUUID">The player UUID.</param>
         /// <returns></returns>
@@ -153,7 +153,7 @@ namespace EA4S.Profile
         }
 
         /// <summary>
-        /// Gets the player profile by UUID.
+        /// Gets the player profile from db by UUID.
         /// </summary>
         /// <param name="playerUUID">The player UUID.</param>
         /// <returns></returns>
