@@ -86,7 +86,7 @@ namespace EA4S.Helpers
         {
             List<ArabicStringPart> result = new List<ArabicStringPart>();
 
-            var parts = AnalyzeData(database, arabicWord);
+            var parts = AnalyzeData(database, arabicWord, false, letterToFind.Kind != LetterDataKind.LetterVariation);
 
             for (int i = 0, count = parts.Count; i < count; ++i) {
                 if (parts[i].letter.Id == letterToFind.Id) {
