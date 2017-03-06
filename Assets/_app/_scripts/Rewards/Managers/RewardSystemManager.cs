@@ -357,6 +357,7 @@ namespace EA4S.Rewards
 
                 AppManager.I.Player.SetCurrentJourneyPosition(AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id));
                 foreach (RewardPackUnlockData pack in GetNextRewardPack()) {
+                    pack.IsLocked = false;
                     newUnlocked.Add(pack);
 
                     switch (pack.Type) {
