@@ -88,7 +88,7 @@ namespace EA4S.ReservedArea {
 
         public void OnCreateDemoPlayer() {
             if (AppManager.I.PlayerProfileManager.ExistsDemoUser()) {
-                GlobalUI.ShowPrompt("", "Demo player already exists");
+                GlobalUI.ShowPrompt(Database.LocalizationDataId.ReservedArea_DemoUserAlreadyExists);
             } else {
                 GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, DoCreateDemoPlayer, DoNothing);
             }
