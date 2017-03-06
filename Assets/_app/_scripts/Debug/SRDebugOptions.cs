@@ -506,6 +506,20 @@ public partial class SROptions
     }
 
     [Category("Max Journey Position")]
+    [Sort(6)]
+    public void SecondToLastJourneyPos()
+    {
+        JourneyPosition newPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
+        newPos.LearningBlock = 2;
+        if (newPos != null)
+        {
+            AppManager.I.Player.SetMaxJourneyPosition(newPos, true);
+        }
+        SRDebug.Instance.HideDebugPanel();
+        SRDebug.Instance.ShowDebugPanel();
+    }
+
+    [Category("Max Journey Position")]
     [Sort(7)]
     public void UnlockAll()
     {
