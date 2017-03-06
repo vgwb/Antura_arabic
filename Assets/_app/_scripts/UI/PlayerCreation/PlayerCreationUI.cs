@@ -1,7 +1,7 @@
 ﻿using System;
 using DG.DeExtensions;
 using DG.Tweening;
-using EA4S.Core;
+using EA4S.Audio;
 using EA4S.Scenes;
 using UnityEngine;
 
@@ -80,6 +80,9 @@ namespace EA4S.UI
             }
             AgeCategory.OnSelect += OnSelectCategory;
             AgeCategory.OnDeselectAll += OnDeselectAllInCategory;
+
+            playAudioDescription(0);
+
         }
 
         void OnDestroy()
@@ -104,11 +107,9 @@ namespace EA4S.UI
 
             State = toState;
             PlayerCreationUICategory avatarCat = Categories[CategoryIndex.Avatar];
-            switch (toState)
-            {
+            switch (toState) {
                 case UIState.AgeSelection:
-                    for (int i = 0; i < avatarCat.UIButtons.Length; i++)
-                    {
+                    for (int i = 0; i < avatarCat.UIButtons.Length; i++) {
                         avatarCat.UIButtons[i].gameObject.SetActive(i == avatarCat.SelectedIndex);
                         if (i == avatarCat.SelectedIndex) avatarCat.UIButtons[i].transform.localScale = Vector3.one * 1.65f;
                     }
@@ -116,6 +117,7 @@ namespace EA4S.UI
                     AgeCategory.gameObject.SetActive(true);
                     BtContinue.StopPulsing();
                     BtContinue.gameObject.SetActive(false);
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.Profile_Age);
                     break;
                 case UIState.AvatarCreation:
                     AgeCategory.gameObject.SetActive(false);
@@ -126,12 +128,30 @@ namespace EA4S.UI
             }
         }
 
+        void playAudioDescription(int SelectedIndex)
+        {
+            Debug.Log("SelectedIndex: " + SelectedIndex);
+            switch (SelectedIndex) {
+                case 0:
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.Profile_Gender);
+                    break;
+                case 1:
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.Profile_Avatar);
+                    break;
+                case 2:
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.Profile_Color);
+                    break;
+            }
+        }
+
         void AvatarCreation_NextStep()
         {
             selectionStep++;
             if (stepTween != null) stepTween.Complete();
             Categories[selectionStep].gameObject.SetActive(true);
             stepTween = CategoriesContainer.DOAnchorPosY(StartupOffsetY - selectionStepOffsetY * selectionStep, 0.4f);
+
+            playAudioDescription(selectionStep);
         }
 
         void AvatarCreation_StepBackwards(int toStep)
@@ -145,6 +165,7 @@ namespace EA4S.UI
             }
             selectionStep = toStep;
             stepTween = CategoriesContainer.DOAnchorPosY(StartupOffsetY - selectionStepOffsetY * selectionStep, 0.4f);
+            playAudioDescription(selectionStep);
         }
 
         void AvatarCreation_SetGender()
@@ -168,8 +189,7 @@ namespace EA4S.UI
 
         void OnSelectCategory(PlayerCreationUICategory category, UIButton uiButton)
         {
-            switch (State)
-            {
+            switch (State) {
                 case UIState.AvatarCreation:
                     int catIndex = Array.IndexOf(Categories, category);
                     if (selectionStep < Categories.Length - 1 && catIndex == selectionStep) AvatarCreation_NextStep();
@@ -181,18 +201,18 @@ namespace EA4S.UI
                             Categories[CategoryIndex.Avatar].SetColor(uiButton.DefaultColor);
                             break;
                     }
-                    if (allAvatarCategoriesSelected)
-                    {
+                    if (allAvatarCategoriesSelected) {
                         BtContinue.gameObject.SetActive(true);
                         BtContinue.Pulse();
                     }
                     break;
                 case UIState.AgeSelection:
-                    switch (category.CategoryType)
-                    {
+                    switch (category.CategoryType) {
                         case CategoryType.Age:
                             BtContinue.gameObject.SetActive(true);
                             BtContinue.Pulse();
+                            int age_selected = AgeCategory.SelectedIndex + 4;
+                            AudioManager.I.PlayDialogue("Profile_Years_" + age_selected.ToString());
                             break;
                         case CategoryType.Avatar:
                             SwitchState(UIState.AvatarCreation);
@@ -206,8 +226,7 @@ namespace EA4S.UI
         {
             BtContinue.StopPulsing();
             BtContinue.gameObject.SetActive(false);
-            switch (State)
-            {
+            switch (State) {
                 case UIState.AvatarCreation:
                     int catIndex = Array.IndexOf(Categories, category);
                     if (catIndex < selectionStep) AvatarCreation_StepBackwards(catIndex);
@@ -218,8 +237,7 @@ namespace EA4S.UI
 
         void OnContinue()
         {
-            switch (State)
-            {
+            switch (State) {
                 case UIState.AvatarCreation:
                     SwitchState(UIState.AgeSelection);
                     break;
