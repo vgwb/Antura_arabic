@@ -64,14 +64,14 @@ namespace EA4S.Minigames.ReadingGame
                 else
                 {
                     var introDialogue = ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong ?
-                        Database.LocalizationDataId.AlphabetSong_Intro : Database.LocalizationDataId.Diacritic_Song_Intro;
+                        Database.LocalizationDataId.AlphabetSong_alphabet_Intro : Database.LocalizationDataId.AlphabetSong_letters_Intro;
 
                     game.Context.GetAudioManager().PlayDialogue(introDialogue, () =>
                     {
                         var firstBar = game.barSet.GetNextBar();
                         TutorialUI.DrawLine(firstBar.start.transform.position, firstBar.endCompleted.transform.position, TutorialUI.DrawLineMode.FingerAndArrow, false, true);
 
-                        game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.AlphabetSong_Tuto, () =>
+                        game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.AlphabetSong_alphabet_Tuto, () =>
                         {
                             completed = true;
                         });
