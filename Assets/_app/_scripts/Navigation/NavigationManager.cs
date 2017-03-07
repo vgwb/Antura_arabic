@@ -253,6 +253,11 @@ namespace EA4S.Core
             CustomGoTo(AppScene.Map, debugMode);
         }
 
+        public void GoToEnding(bool debugMode = false)
+        {
+            CustomGoTo(AppScene.Ending, debugMode);
+        }
+
         public void GoToPlayerBook()
         {
             CustomGoTo(AppScene.Book);
