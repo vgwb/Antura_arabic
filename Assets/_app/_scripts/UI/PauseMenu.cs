@@ -148,8 +148,20 @@ namespace EA4S.UI
             } else if (!openMenuTween.IsPlaying()) { // Ignores pause menu clicks when opening/closing menu
                 switch (_bt.Type) {
                     case MenuButtonType.Back: // Exit
-                        OpenMenu(false);
-                        AppManager.I.NavigationManager.ExitDuringPause();
+                        if (AppManager.I.NavigationManager.NavData.CurrentScene == AppScene.MiniGame)
+                        {
+                            // Prompt
+                            GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
+                                OpenMenu(false);
+                                AppManager.I.NavigationManager.ExitDuringPause();
+                            }, ()=> {});
+                        }
+                        else
+                        {
+                            // No prompt
+                            OpenMenu(false);
+                            AppManager.I.NavigationManager.ExitDuringPause();
+                        }
                         break;
                     case MenuButtonType.MusicToggle: // Music on/off
                         AudioManager.I.ToggleMusic();
