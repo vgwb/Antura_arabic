@@ -13,7 +13,7 @@ namespace EA4S.Map
         {
             bool isMaxPosition = IsMaxJourneyPosition();
             IsBeginningNewStage = PlayerPrefs.GetInt("IsNewStage"+numberStage);
-            if ((other.gameObject.tag == "Player") && (isMaxPosition))
+            if ((other.gameObject.tag == "Player") && (isMaxPosition) && (numberStage > 1))
             {
                 Database.LocalizationDataId[] data = new Database.LocalizationDataId[7];
                 data[2] = Database.LocalizationDataId.Map_Intro_Map2;

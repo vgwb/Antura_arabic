@@ -85,7 +85,8 @@ namespace EA4S.Map
             /* --------------------- */
             FirstOrLastMap();
 
-            if((AppManager.I.Player.CurrentJourneyPosition.Stage == AppManager.I.Player.MaxJourneyPosition.Stage) &&
+            bool isGameCompleted = AppManager.I.Player.HasFinalBeenShown();
+            if ((!isGameCompleted) && (AppManager.I.Player.CurrentJourneyPosition.Stage == AppManager.I.Player.MaxJourneyPosition.Stage) &&
                 (AppManager.I.Player.CurrentJourneyPosition.LearningBlock == AppManager.I.Player.MaxJourneyPosition.LearningBlock) &&
                 (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100))
                 PlayDialogRandomly();
