@@ -20,8 +20,9 @@ MonoBehaviour:
       Description_En: "The trio-alif (\u0627 - \u0623 - \u0625): Same shape, different
         location of alif, absence & different location of hamza (\u0621), in different
         position in the word (just prononciation)"
-      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0645\u0648\u0627\u0642\u0639
-        \u0627\u0644\u0623\u0644\u0641 \u0627\u0644\u0645\u062E\u062A\u0644\u0641\u0629\u060C
+      Description_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0627\u0644\u0623\u0644\u0641
+        (\u0627 - \u0623 - \u0623): \u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C
+        \u0645\u0648\u0627\u0642\u0639 \u0627\u0644\u0623\u0644\u0641 \u0627\u0644\u0645\u062E\u062A\u0644\u0641\u0629\u060C
         \u0639\u062F\u0645 \u0648\u062C\u0648\u062F \u0627\u0644\u0647\u0645\u0632\u0629
         \u0645\u0639 \u0627\u062E\u062A\u0644\u0627\u0641 \u0645\u0648\u0627\u0642\u0639\u0647\u0627
         \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629"
@@ -34,8 +35,11 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The trio beh, teh, theh (\u0628 - \u062A \u2013 \u062B): Same
         shape, different number & location of dots"
-      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0627\u062E\u062A\u0644\u0627\u0641
-        \u0645\u0648\u0627\u0642\u0639 \u0648\u0623\u0639\u062F\u0627\u062F \u0627\u0644\u0646\u0642\u0627\u0637"
+      Description_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0627\u0644\u0628\u0627\u0621
+        \u0648\u0627\u0644\u062A\u0627\u0621 \u0648\u0627\u0644\u062B\u0627\u0621
+        (\u0628 - \u062A - \u062B): \u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C
+        \u0627\u062E\u062A\u0644\u0627\u0641 \u0645\u0648\u0627\u0642\u0639 \u0648\u0623\u0639\u062F\u0627\u062F
+        \u0627\u0644\u0646\u0642\u0627\u0637"
       Title_En: The trio baa, taa and thaa
       Title_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0628 - \u062A - \u062B"
       Focus: 1
@@ -45,8 +49,10 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The trio jeem, hah, khah (\u062C - \u062D \u2013 \u062E): Same
         shape, different location of a dot"
-      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0627\u062E\u062A\u0644\u0627\u0641
-        \u0645\u0648\u0642\u0639 \u0627\u0644\u0646\u0642\u0637\u0629"
+      Description_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0627\u0644\u062C\u064A\u0645
+        \u0648\u0627\u0644\u062D\u0627\u0621 \u0648\u0627\u0644\u062E\u0627\u0621
+        (\u062C - \u062D - \u062E): \u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C
+        \u0627\u062E\u062A\u0644\u0627\u0641 \u0645\u0648\u0642\u0639 \u0627\u0644\u0646\u0642\u0637\u0629"
       Title_En: The trio jiim, haa and khaa
       Title_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u062C - \u062D - \u062E"
       Focus: 1
@@ -56,8 +62,10 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The duo dal and thal (\u062F \u2013 \u0630): Same shape, absence
         of a dot"
-      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
-        \u0648\u062C\u0648\u062F \u0627\u0644\u0646\u0642\u0637\u0629"
+      Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u062F\u0627\u0644
+        \u0648\u0627\u0644\u0630\u0627\u0644 (\u062F - \u0630): \u0646\u0641\u0633
+        \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645 \u0648\u062C\u0648\u062F
+        \u0627\u0644\u0646\u0642\u0637\u0629"
       Title_En: The duo daal and dhaal
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u062F - \u0630"
       Focus: 1
@@ -67,8 +75,10 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The duo reh and zain (\u0631 \u2013 \u0632): Same shape, absence
         of a dot"
-      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
-        \u0648\u062C\u0648\u062F \u0627\u0644\u0646\u0642\u0637\u0629"
+      Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0631\u0627\u0621
+        \u0648\u0627\u0644\u0632\u0627\u064A (\u0631 - \u0632): \u0646\u0641\u0633
+        \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645 \u0648\u062C\u0648\u062F
+        \u0627\u0644\u0646\u0642\u0637\u0629"
       Title_En: The duo raa and zaay
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0631 - \u0632"
       Focus: 1
@@ -78,8 +88,10 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The duo seen and sheen (\u0633 \u2013 \u0634): Same shape,
         absence of three dots"
-      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
-        \u0648\u062C\u0648\u062F \u0627\u0644\u0646\u0642\u0627\u0637 \u0627\u0644\u062B\u0644\u0627\u062B"
+      Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0633\u064A\u0646
+        \u0648\u0627\u0644\u0634\u064A\u0646 (\u0633 - \u0634): \u0646\u0641\u0633
+        \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645 \u0648\u062C\u0648\u062F
+        \u0627\u0644\u0646\u0642\u0627\u0637 \u0627\u0644\u062B\u0644\u0627\u062B"
       Title_En: The duo siin and shiin
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0633 - \u0634"
       Focus: 1
@@ -89,8 +101,10 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The sad and dad (\u0635 \u2013 \u0636): Same shape, absence
         of a dot"
-      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
-        \u0648\u062C\u0648\u062F \u0627\u0644\u0646\u0642\u0637\u0629"
+      Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0635\u0627\u062F
+        \u0648\u0627\u0644\u0636\u0627\u062F (\u0635 - \u0636): \u0646\u0641\u0633
+        \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645 \u0648\u062C\u0648\u062F
+        \u0627\u0644\u0646\u0642\u0637\u0629"
       Title_En: The Saad and Daad
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0635 - \u0636"
       Focus: 1
@@ -100,8 +114,10 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The tah and zah (\u0637 \u2013 \u0638): Same shape, absence
         of a dot"
-      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
-        \u0648\u062C\u0648\u062F \u0627\u0644\u0646\u0642\u0637\u0629"
+      Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0637\u0627\u0621
+        \u0648\u0627\u0644\u0638\u0627\u0621 (\u0637 - \u0638): \u0646\u0641\u0633
+        \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645 \u0648\u062C\u0648\u062F
+        \u0627\u0644\u0646\u0642\u0637\u0629"
       Title_En: The Taa and DHaa
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0637 - \u0638"
       Focus: 1
@@ -111,8 +127,10 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The duo ain and ghain (\u0639 \u2013 \u063A): Same shape, absence
         of a dot"
-      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
-        \u0648\u062C\u0648\u062F \u0627\u0644\u0646\u0642\u0637\u0629"
+      Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0639\u064A\u0646
+        \u0648\u0627\u0644\u063A\u064A\u0646 (\u0639 - \u063A): \u0646\u0641\u0633
+        \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645 \u0648\u062C\u0648\u062F
+        \u0627\u0644\u0646\u0642\u0637\u0629"
       Title_En: The duo ayn and ghayn
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0639 - \u063A"
       Focus: 1
@@ -120,9 +138,11 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 10
       NumberOfPlaySessions: 3
-      Description_En: "The duo feh and qaf (\u0641 \u2013 \u0642): Same shape, different
-        number of dots"
-      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0627\u062E\u062A\u0644\u0627\u0641
+      Description_En: "The duo feh and qaf (\u0641 \u2013 \u0642): Almost same shape,
+        different number of dots"
+      Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0641\u0627\u0621
+        \u0648\u0627\u0644\u0642\u0627\u0641 (\u0641 - \u0642): \u062A\u0642\u0631\u064A\u0628\u0627\u064B
+        \u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0627\u062E\u062A\u0644\u0627\u0641
         \u0639\u062F\u062F \u0627\u0644\u0646\u0642\u0627\u0637"
       Title_En: The duo faa and qaaf
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0641 - \u0642"
@@ -131,9 +151,11 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 11
       NumberOfPlaySessions: 3
-      Description_En: "The duo kaf and lam (\u0643 \u2013 \u0644): Same shape, absence
-        of hamza (\u0621)"
-      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
+      Description_En: "The duo kaf and lam (\u0643 \u2013 \u0644): Almost same shape,
+        absence of hamza (\u0621)"
+      Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0643\u0627\u0641
+        \u0648\u0627\u0644\u0644\u0627\u0645 (\u0643 - \u0644): \u062A\u0642\u0631\u064A\u0628\u0627\u064B
+        \u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
         \u0648\u062C\u0648\u062F \u0627\u0644\u0647\u0645\u0632\u0629"
       Title_En: The duo kaaf and laam
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0643 - \u0644"
@@ -144,9 +166,10 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The duo meem and noon (\u0645 \u2013 \u0646): No specific criterion,
         just different letters"
-      Description_Ar: "\u0639\u062F\u0645 \u0648\u062C\u0648\u062F \u0645\u0639\u064A\u0627\u0631
-        \u0645\u062D\u062F\u062F\u060C \u0641\u0642\u0637 \u062D\u0631\u0648\u0641
-        \u0645\u062E\u062A\u0644\u0641\u0629"
+      Description_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0645\u064A\u0645
+        \u0648\u0627\u0644\u0646\u0648\u0646 (\u0645 - \u0646): \u0639\u062F\u0645
+        \u0648\u062C\u0648\u062F \u0645\u0639\u064A\u0627\u0631 \u0645\u062D\u062F\u062F\u060C
+        \u0641\u0642\u0637 \u062D\u0631\u0648\u0641 \u0645\u062E\u062A\u0644\u0641\u0629"
       Title_En: The duo miim and nuun
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0645 - \u0646"
       Focus: 1
@@ -156,7 +179,9 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The trio heh waw yeh (\u0647 - \u0648 - \u064A): No specific
         criterion, jusy different letters"
-      Description_Ar: "\u0639\u062F\u0645 \u0648\u062C\u0648\u062F \u0645\u0639\u064A\u0627\u0631
+      Description_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0627\u0644\u0647\u0627\u0621
+        \u0648\u0627\u0644\u0648\u0627\u0648 \u0648\u0627\u0644\u064A\u0627\u0621
+        (\u0647 - \u0648 - \u064A): \u0639\u062F\u0645 \u0648\u062C\u0648\u062F \u0645\u0639\u064A\u0627\u0631
         \u0645\u062D\u062F\u062F\u060C \u0641\u0642\u0637 \u062D\u0631\u0648\u0641
         \u0645\u062E\u062A\u0644\u0641\u0629"
       Title_En: The trio haa, waaw and yaa
@@ -169,7 +194,9 @@ MonoBehaviour:
       Description_En: "The long-vowels \u201Calif\u201D (\u0623), \u201Cwaw\u201D
         (\u0648), \u201Cyeh\u201D (\u064A)"
       Description_Ar: "\u062D\u0631\u0648\u0641 \u0627\u0644\u0639\u0644\u0651\u0629
-        \u0627\u0644\u0637\u0648\u064A\u0644\u0629"
+        \u0627\u0644\u0637\u0648\u064A\u0644\u0629: \u0627\u0644\u0623\u0644\u0641
+        \u0648\u0627\u0644\u0648\u0627\u0648 \u0648\u0627\u0644\u064A\u0627\u0621
+        (\u0623 - \u0648 - \u064A)"
       Title_En: The vowels alif, waaw and yaa
       Title_Ar: "\u062D\u0631\u0648\u0641 \u0627\u0644\u0639\u0644\u0629 \u0623 -
         \u0648 - \u064A"
@@ -179,7 +206,8 @@ MonoBehaviour:
       LearningBlock: 1
       NumberOfPlaySessions: 3
       Description_En: "The two shapes of the letter \u201Calef\u201D (\u0627 \u0640\u0627)"
-      Description_Ar: 
+      Description_Ar: "\u0634\u0643\u0644\u064A \u0627\u0644\u0623\u0644\u0641 (\u0627
+        \u0640\u0627)"
       Title_En: The shapes of alif
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0623\u0644\u0641"
       Focus: 1
@@ -190,7 +218,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \"beh\" (\u0628   \u0640\u0628
         \  \u0640\u0628\u0640  \u0628\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0628\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0628   \u0640\u0628   \u0640\u0628\u0640
+        \ \u0628\u0640)"
       Title_En: The shapes of baa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0628\u0627\u0621"
       Focus: 1
@@ -201,7 +230,8 @@ MonoBehaviour:
       Description_En: "\"The six shapes of the letter \u201Cteh\u201D (\u062A \u0640\u062A
         \ \u0629  \u0640\u0629  \u0640\u062A\u0640  \u062A\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062A\u0627\u0621
-        \u0627\u0644\u0633\u062A\u0629"
+        \u0627\u0644\u0633\u062A\u0629 (\u062A \u0640\u062A  \u0629  \u0640\u0629
+        \ \u0640\u062A\u0640  \u062A\u0640)"
       Title_En: The shapes of taa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062A\u0627\u0621"
       Focus: 1
@@ -212,7 +242,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Ctheh\u201D (\u062B \u0640\u062B
         \  \u0640\u062B\u0640  \u062B\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062B\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u062B \u0640\u062B   \u0640\u062B\u0640
+        \ \u062B\u0640)"
       Title_En: The shapes of thaa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062B\u0627\u0621"
       Focus: 1
@@ -223,7 +254,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Cjeem\u201D (\u062C   \u0640\u062C
         \  \u0640\u062C\u0640   \u062C\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062C\u064A\u0645
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u062C   \u0640\u062C   \u0640\u062C\u0640
+        \  \u062C\u0640)"
       Title_En: The shapes of jiim
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062C\u064A\u0645"
       Focus: 1
@@ -234,7 +266,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Chah\u201D (\u062D  \u0640\u062D
         \ \u0640\u062D\u0640  \u062D\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062D\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u062D  \u0640\u062D  \u0640\u062D\u0640
+        \ \u062D\u0640)"
       Title_En: The shapes of haa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062D\u0627\u0621"
       Focus: 1
@@ -245,7 +278,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Ckhah\u201D (\u062E  \u0640\u062E
         \u0640\u062E\u0640  \u062E\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062E\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u062E  \u0640\u062E \u0640\u062E\u0640
+        \ \u062E\u0640)"
       Title_En: The shapes of khaa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062E\u0627\u0621"
       Focus: 1
@@ -255,7 +289,8 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The two shapes of the letter \u201Cdal\u201D ( \u0640\u062F
         \ \u062F)"
-      Description_Ar: 
+      Description_Ar: "\u0634\u0643\u0644\u064A \u0627\u0644\u062F\u0627\u0644 ( \u0640\u062F
+        \ \u062F)"
       Title_En: The shapes of daal
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062F\u0627\u0644"
       Focus: 1
@@ -265,7 +300,8 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The two shapes of the letter \u201Cthal\u201D (\u0640\u0630
         \ \u0630)"
-      Description_Ar: 
+      Description_Ar: "\u0634\u0643\u0644\u064A \u0627\u0644\u0630\u0627\u0644 (\u0640\u0630
+        \ \u0630)"
       Title_En: The shapes of dhaal
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0630\u0627\u0644"
       Focus: 1
@@ -275,7 +311,8 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The two shapes of the letter \u201Creh\u201D ( \u0640\u0631
         \ \u0631)"
-      Description_Ar: 
+      Description_Ar: "\u0634\u0643\u0644\u064A \u0627\u0644\u0631\u0627\u0621 ( \u0640\u0631
+        \ \u0631)"
       Title_En: The shapes of raa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0631\u0627\u0621"
       Focus: 1
@@ -285,7 +322,8 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The two shapes of the letter \u201Czain\u201D ( \u0640\u0632
         \ \u0632)"
-      Description_Ar: 
+      Description_Ar: "\u0634\u0643\u0644\u064A \u0627\u0644\u0632\u0627\u064A ( \u0640\u0632
+        \ \u0632)"
       Title_En: The shapes of zay
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0632\u0627\u064A"
       Focus: 1
@@ -296,7 +334,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Cseen\u201D (\u0633  \u0640\u0633
         \ \u0640\u0633\u0640  \u0633\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0633\u064A\u0646
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0633  \u0640\u0633  \u0640\u0633\u0640
+        \ \u0633\u0640)"
       Title_En: The shapes of siin
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0633\u064A\u0646"
       Focus: 1
@@ -307,7 +346,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Csheen\u201D (\u0634 \u0640\u0634
         \u0640\u0634\u0640 \u0634\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0634\u064A\u0646
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0634 \u0640\u0634 \u0640\u0634\u0640
+        \u0634\u0640)"
       Title_En: The shapes of shiin
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0634\u064A\u0646"
       Focus: 1
@@ -318,7 +358,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Csad\u201D (\u0635 \u0640\u0635
         \u0640\u0635\u0640 \u0635\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0635\u0627\u062F
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0635 \u0640\u0635 \u0640\u0635\u0640
+        \u0635\u0640)"
       Title_En: The shapes of Saad
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0635\u0627\u062F"
       Focus: 1
@@ -329,7 +370,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Cdad\u201D (\u0636 \u0640\u0636
         \u0640\u0636\u0640 \u0636\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0636\u0627\u062F
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0636 \u0640\u0636 \u0640\u0636\u0640
+        \u0636\u0640)"
       Title_En: The shapes of Daad
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0636\u0627\u062F"
       Focus: 1
@@ -340,7 +382,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Ctah\u201D (\u0637  \u0640\u0637
         \u0640\u0637\u0640 \u0637\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0637\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0637  \u0640\u0637 \u0640\u0637\u0640
+        \u0637\u0640)"
       Title_En: The shapes of Taa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0637\u0627\u0621"
       Focus: 1
@@ -351,7 +394,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Czah\u201D (\u0638 \u0640\u0638
         \u0640\u0638\u0640 \u0638\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0638\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0638 \u0640\u0638 \u0640\u0638\u0640
+        \u0638\u0640)"
       Title_En: The shapes of DHaa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0638\u0627\u0621"
       Focus: 1
@@ -362,7 +406,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Cain\u201D (\u0639  \u0640\u0639
         \u0640\u0639\u0640 \u0639\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0639\u064A\u0646
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0639  \u0640\u0639 \u0640\u0639\u0640
+        \u0639\u0640)"
       Title_En: The shapes of ayn
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0639\u064A\u0646"
       Focus: 1
@@ -373,7 +418,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Cghain\u201D (\u063A \u0640\u063A
         \u0640\u063A\u0640 \u063A\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u063A\u064A\u0646
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u063A \u0640\u063A \u0640\u063A\u0640
+        \u063A\u0640)"
       Title_En: The shapes of ghayn
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u063A\u064A\u0646"
       Focus: 1
@@ -384,7 +430,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Cfeh\u201D (\u0641 \u0640\u0641
         \u0640\u0641\u0640 \u0641\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0641\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0641 \u0640\u0641 \u0640\u0641\u0640
+        \u0641\u0640)"
       Title_En: The shapes of faa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0641\u0627\u0621"
       Focus: 1
@@ -395,7 +442,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Cqaf\u201D (\u0642 \u0640\u0642
         \u0640\u0642\u0640 \u0642\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0642\u0627\u0641
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0642 \u0640\u0642 \u0640\u0642\u0640
+        \u0642\u0640)"
       Title_En: The shapes of qaaf
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0642\u0627\u0641"
       Focus: 1
@@ -406,7 +454,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Ckaf\u201D ( \u0643 \u0640\u0643
         \u0640\u0643\u0640 \u0643\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0643\u0627\u0641
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 ( \u0643 \u0640\u0643 \u0640\u0643\u0640
+        \u0643\u0640)"
       Title_En: The shapes of kaaf
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0643\u0627\u0641"
       Focus: 1
@@ -417,7 +466,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Clam\u201D (\u0644 \u0640\u0644
         \ \u0640\u0644\u0640 \u0644\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0644\u0627\u0645
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0644 \u0640\u0644  \u0640\u0644\u0640
+        \u0644\u0640)"
       Title_En: The shapes of laam
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0644\u0627\u0645"
       Focus: 1
@@ -428,7 +478,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Cmeem\u201D ( \u0645 \u0640\u0645
         \u0640\u0645\u0640 \u0645\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0645\u064A\u0645
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 ( \u0645 \u0640\u0645 \u0640\u0645\u0640
+        \u0645\u0640)"
       Title_En: The shapes of miim
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0645\u064A\u0645"
       Focus: 1
@@ -439,7 +490,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Cnoon\u201D (\u0646 \u0640\u0646
         \u0640\u0646\u0640 \u0646\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0646\u0648\u0646
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0646 \u0640\u0646 \u0640\u0646\u0640
+        \u0646\u0640)"
       Title_En: The shapes of nuun
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0646\u0648\u0646"
       Focus: 1
@@ -450,7 +502,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Cheh\u201D (\u0647  \u0640\u0647
         \u0640\u0647\u0640 \u0647\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0647\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u0647  \u0640\u0647 \u0640\u0647\u0640
+        \u0647\u0640)"
       Title_En: The shapes of haa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0647\u0627\u0621"
       Focus: 1
@@ -460,7 +513,8 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The two shapes of the letter \u201Cwaw\u201D ( \u0640\u0648
         \ \u0648)"
-      Description_Ar: 
+      Description_Ar: "\u0634\u0643\u0644\u064A \u0627\u0644\u0648\u0627\u0648 ( \u0640\u0648
+        \ \u0648)"
       Title_En: The shapes of waaw
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0648\u0627\u0648"
       Focus: 1
@@ -471,7 +525,8 @@ MonoBehaviour:
       Description_En: "The four shapes of the letter \u201Cyeh\u201D (\u064A \u0640\u064A
         \u0640\u064A\u0640 \u064A\u0640)"
       Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u064A\u0627\u0621
-        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629 (\u064A \u0640\u064A \u0640\u064A\u0640
+        \u064A\u0640)"
       Title_En: The shapes of yaa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u064A\u0627\u0621"
       Focus: 1
@@ -567,7 +622,11 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The different sound variations of hamza (\u0621) on a vowel
         (different with/without), separate. waw hamza (\u0624) and yeh hamza (\u0626)"
-      Description_Ar: 
+      Description_Ar: "\u0623\u0646\u0648\u0627\u0639 \u0627\u0644\u0647\u0645\u0632\u0629
+        \u0627\u0644\u0645\u062E\u062A\u0644\u0641\u0629\u060C \u0639\u0644\u0649
+        \u062D\u0631\u0648\u0641 \u0627\u0644\u0639\u0644\u0629 \u0645\u062B\u0644
+        \u0627\u0644\u0648\u0627\u0648 (\u0624) \u0648\u0627\u0644\u064A\u0627\u0621
+        (\u0626)\u060C \u0639\u0644\u0649 \u0627\u0644\u0633\u0637\u0631 (\u0621)"
       Title_En: Hamza variations
       Title_Ar: "\u0623\u0646\u0648\u0627\u0639 \u0627\u0644\u0647\u0645\u0632\u0629"
       Focus: 2
@@ -577,7 +636,9 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The diphthong \u201Cwaw\u201D (\u0648): different sound than
         short and long vowel"
-      Description_Ar: 
+      Description_Ar: "\u0648\u0627\u0648 \u0627\u0644\u0625\u062F\u063A\u0627\u0645
+        \u0627\u0644\u062A\u064A \u062A\u062E\u062A\u0644\u0641 \u0639\u0646 \u0627\u0644\u0648\u0627\u0648
+        \u0643\u062D\u0631\u0641 \u0639\u0644\u0629"
       Title_En: The diphthong waaw
       Title_Ar: "\u0648\u0627\u0648 \u0627\u0644\u0625\u062F\u063A\u0627\u0645"
       Focus: 3
@@ -587,7 +648,9 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The diphthong \u201Cyeh\u201D (\u064A): different sound than
         short and long vowel"
-      Description_Ar: 
+      Description_Ar: "\u064A\u0627\u0621 \u0627\u0644\u0625\u062F\u063A\u0627\u0645
+        \u0627\u0644\u062A\u064A \u062A\u062E\u062A\u0644\u0641 \u0639\u0646 \u0627\u0644\u064A\u0627\u0621
+        \u0643\u062D\u0631\u0641 \u0639\u0644\u0629"
       Title_En: The diphthong yaa
       Title_Ar: "\u064A\u0627\u0621 \u0627\u0644\u0625\u062F\u063A\u0627\u0645"
       Focus: 3
@@ -595,8 +658,9 @@ MonoBehaviour:
       Stage: 4
       LearningBlock: 12
       NumberOfPlaySessions: 3
-      Description_En: Verbs
-      Description_Ar: 
+      Description_En: Verbs (past simple)
+      Description_Ar: "\u0623\u0641\u0639\u0627\u0644 \u0628\u0632\u0645\u0646 \u0627\u0644\u0645\u0627\u0636\u064A
+        \u0627\u0644\u0628\u0633\u064A\u0637"
       Title_En: 'Words: Verbs'
       Title_Ar: "\u0627\u0644\u0623\u0641\u0639\u0627\u0644"
       Focus: 4
@@ -605,7 +669,7 @@ MonoBehaviour:
       LearningBlock: 13
       NumberOfPlaySessions: 3
       Description_En: Places
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0623\u0645\u0627\u0643\u0646"
       Title_En: 'Words: Places'
       Title_Ar: "\u0627\u0644\u0623\u0645\u0627\u0643\u0646"
       Focus: 4
@@ -614,7 +678,7 @@ MonoBehaviour:
       LearningBlock: 14
       NumberOfPlaySessions: 3
       Description_En: Grains (food)
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0623\u0637\u0639\u0645\u0629 (\u0627\u0644\u062D\u0628\u0648\u0628)"
       Title_En: 'Words: grains food'
       Title_Ar: "\u0627\u0644\u0623\u0637\u0639\u0645\u0629 (\u0627\u0644\u062D\u0628\u0648\u0628)"
       Focus: 4
@@ -623,7 +687,7 @@ MonoBehaviour:
       LearningBlock: 15
       NumberOfPlaySessions: 3
       Description_En: Furniture
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0645\u0641\u0631\u0648\u0634\u0627\u062A"
       Title_En: 'Words: Furniture'
       Title_Ar: "\u0627\u0644\u0645\u0641\u0631\u0648\u0634\u0627\u062A"
       Focus: 4
@@ -632,7 +696,8 @@ MonoBehaviour:
       LearningBlock: 1
       NumberOfPlaySessions: 3
       Description_En: "The \u201Calef maqSura\u201D"
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0623\u0644\u0641 \u0627\u0644\u0645\u0642\u0635\u0648\u0631\u0629
+        (\u0649)"
       Title_En: the alif maqSura
       Title_Ar: "\u0627\u0644\u0623\u0644\u0641 \u0627\u0644\u0645\u0642\u0635\u0648\u0631\u0629"
       Focus: 1
@@ -641,7 +706,7 @@ MonoBehaviour:
       LearningBlock: 2
       NumberOfPlaySessions: 3
       Description_En: "The special combination letter \u201Clam-alef\u201D (\u0644\u0627)"
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0644\u0627\u0645 \u0627\u0644\u0641 (\u0644\u0627)"
       Title_En: lam-alif combination
       Title_Ar: "\u0644\u0627"
       Focus: 1
@@ -650,7 +715,7 @@ MonoBehaviour:
       LearningBlock: 3
       NumberOfPlaySessions: 3
       Description_En: The maddah (~)
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0645\u062F\u0651"
       Title_En: the madd symbol
       Title_Ar: "\u0627\u0644\u0645\u062F"
       Focus: 2
@@ -659,7 +724,7 @@ MonoBehaviour:
       LearningBlock: 4
       NumberOfPlaySessions: 3
       Description_En: The 3 diacritic signs
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062B\u0644\u0627\u062B"
       Title_En: The 3 diacritic signs
       Title_Ar: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A"
       Focus: 2
@@ -668,7 +733,8 @@ MonoBehaviour:
       LearningBlock: 5
       NumberOfPlaySessions: 3
       Description_En: The 3 double diacritic signs (Tanwin)
-      Description_Ar: 
+      Description_Ar: "\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062A\u0646\u0648\u064A\u0646
+        \u0627\u0644\u062B\u0644\u0627\u062B"
       Title_En: The 3 double diacritic signs
       Title_Ar: "\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062A\u0646\u0648\u064A\u0646"
       Focus: 2
@@ -678,7 +744,7 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: "The diacritic sign \u201Cshadda\u201D (\u0651) as a double
         consonant"
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0634\u062F\u0651\u0629 (\u0627\u0644\u062A\u0636\u0639\u064A\u0641)"
       Title_En: the shadda symbol
       Title_Ar: "\u0627\u0644\u0634\u062F\u0629"
       Focus: 2
@@ -687,7 +753,8 @@ MonoBehaviour:
       LearningBlock: 7
       NumberOfPlaySessions: 3
       Description_En: Singular, dual, and plural forms of nouns
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0645\u0641\u0631\u062F \u0648\u0627\u0644\u0645\u062B\u0646\u0649
+        \u0648\u0627\u0644\u062C\u0645\u0639 (\u0627\u0644\u0623\u0633\u0645\u0627\u0621)"
       Title_En: 'Words: plurals'
       Title_Ar: "\u0627\u0644\u0645\u0641\u0631\u062F \u0648\u0627\u0644\u0645\u062B\u0646\u0649
         \u0648\u0627\u0644\u062C\u0645\u0639"
@@ -697,7 +764,9 @@ MonoBehaviour:
       LearningBlock: 8
       NumberOfPlaySessions: 3
       Description_En: Professions (emphasis singular, dual, plural)
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0645\u0647\u0646 (\u0645\u0639 \u0627\u0644\u062A\u0623\u0643\u064A\u062F
+        \u0639\u0644\u0649 \u0627\u0644\u0645\u0641\u0631\u062F \u0648\u0627\u0644\u0645\u062B\u0646\u0649
+        \u0648\u0627\u0644\u062C\u0645\u0639)"
       Title_En: 'words: professions'
       Title_Ar: "\u0627\u0644\u0645\u0647\u0646"
       Focus: 4
@@ -706,7 +775,9 @@ MonoBehaviour:
       LearningBlock: 9
       NumberOfPlaySessions: 3
       Description_En: Nature (emphasis singular, dual, plural)
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0637\u0628\u064A\u0639\u0629 (\u0645\u0639 \u0627\u0644\u062A\u0623\u0643\u064A\u062F
+        \u0639\u0644\u0649 \u0627\u0644\u0645\u0641\u0631\u062F \u0648\u0627\u0644\u0645\u062B\u0646\u0649
+        \u0648\u0627\u0644\u062C\u0645\u0639)"
       Title_En: 'words: nature'
       Title_Ar: "\u0627\u0644\u0637\u0628\u064A\u0639\u0629"
       Focus: 4
@@ -715,7 +786,7 @@ MonoBehaviour:
       LearningBlock: 10
       NumberOfPlaySessions: 3
       Description_En: "The definite article \u201Cal\u201D (\u0627\u0644\u0640)"
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
       Title_En: the article "al"
       Title_Ar: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
       Focus: 4
@@ -729,7 +800,15 @@ MonoBehaviour:
         \u0645 - \u0647 \nsun consonants: \u062A - \u062B - \u062F - \u0630 - \u0631
         - \u0632 - \u0633 - \u0634 - \u0635 - \u0636 - \u0637 - \u0638 - \u0644 -
         \u0646"
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u062A\u0645\u064A\u064A\u0632 \u0641\u064A \u0644\u0641\u0638
+        \u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0634\u0645\u0633\u064A\u0629
+        \u0648\u0627\u0644\u0642\u0645\u0631\u064A\u0629 \u0645\u0639 \u0627\u0644
+        \u0627\u0644\u062A\u0639\u0631\u064A\u0641 \u0627\u0644\u062D\u0631\u0648\u0641
+        \u0627\u0644\u0642\u0645\u0631\u064A\u0629 (\u0628 - \u062C - \u062D - \u062E
+        - \u0639 - \u063A - \u0641 - \u0642 - \u0643 - \u0645 - \u0647)\u060C \u0627\u0644\u062D\u0631\u0648\u0641
+        \u0627\u0644\u0634\u0645\u0633\u064A\u0629 (\u062A - \u062B - \u062F - \u0630
+        - \u0631 - \u0632 - \u0633 - \u0634 - \u0635 - \u0636 - \u0637 - \u0638 -
+        \u0644 - \u0646)"
       Title_En: sun and moon consonants
       Title_Ar: "\u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0634\u0645\u0633\u064A\u0629
         \u0648\u0627\u0644\u0642\u0645\u0631\u064A\u0629"
@@ -740,7 +819,11 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: Sports (emphasis moon & sun consonant) the red color of the
         sun&moon letter means it is not pronounced which means it proceeds a sun consonant
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0631\u064A\u0627\u0636\u0629 (\u0645\u0639 \u0627\u0644\u062A\u0623\u0643\u064A\u062F
+        \u0639\u0644\u0649 \u0627\u0644\u062A\u0645\u064A\u064A\u0632 \u0641\u064A
+        \u0644\u0641\u0638 \u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0634\u0645\u0633\u064A\u0629
+        \u0648\u0627\u0644\u0642\u0645\u0631\u064A\u0629 \u0645\u0639 \u0627\u0644
+        \u0627\u0644\u062A\u0639\u0631\u064A\u0641)"
       Title_En: Sports
       Title_Ar: "\u0627\u0644\u0631\u064A\u0627\u0636\u0629"
       Focus: 1
@@ -749,7 +832,7 @@ MonoBehaviour:
       LearningBlock: 13
       NumberOfPlaySessions: 3
       Description_En: Adjectives of feelings
-      Description_Ar: 
+      Description_Ar: "\u0635\u0641\u0627\u062A \u0627\u0644\u0645\u0634\u0627\u0639\u0631"
       Title_En: 'Adjectives: feelings'
       Title_Ar: "\u0635\u0641\u0627\u062A \u0627\u0644\u0645\u0634\u0627\u0639\u0631"
       Focus: 4
@@ -758,7 +841,8 @@ MonoBehaviour:
       LearningBlock: 1
       NumberOfPlaySessions: 3
       Description_En: Greeting phrase
-      Description_Ar: 
+      Description_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u062D\u064A\u0629
+        \u0645\u062B\u0644 \"\u0635\u0628\u0627\u062D \u0627\u0644\u062E\u064A\u0631\""
       Title_En: Greetings
       Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u062D\u064A\u0629"
       Focus: 5
@@ -767,7 +851,8 @@ MonoBehaviour:
       LearningBlock: 2
       NumberOfPlaySessions: 3
       Description_En: '"Hello" and "Hi" phrases'
-      Description_Ar: 
+      Description_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u0631\u062D\u064A\u0628
+        \u0645\u062B\u0644 \"\u0645\u0631\u062D\u0628\u0627\u064B\""
       Title_En: Hello phrases
       Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u0631\u062D\u064A\u0628"
       Focus: 5
@@ -776,7 +861,9 @@ MonoBehaviour:
       LearningBlock: 3
       NumberOfPlaySessions: 3
       Description_En: '"How are you" and "Goodbye" phrases'
-      Description_Ar: 
+      Description_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u0633\u0624\u0627\u0644
+        \u0639\u0646 \u0627\u0644\u062D\u0627\u0644 \u0645\u062B\u0644 \"\u0643\u064A\u0641
+        \u062D\u0627\u0644\u0643\u061F\"\u060C \"\u0648\u062F\u0627\u0639\u0627\u064B\""
       Title_En: How are you phrases
       Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u0633\u0624\u0627\u0644
         \u0639\u0646 \u0627\u0644\u062D\u0627\u0644"
@@ -786,7 +873,7 @@ MonoBehaviour:
       LearningBlock: 4
       NumberOfPlaySessions: 3
       Description_En: 'Adjectives: colors'
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
       Title_En: 'Adjectives: colors'
       Title_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
       Focus: 4
@@ -795,7 +882,7 @@ MonoBehaviour:
       LearningBlock: 5
       NumberOfPlaySessions: 3
       Description_En: 'Adjectives: describing nature'
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0628\u064A\u0639\u0629"
       Title_En: nature adjectives
       Title_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0628\u064A\u0639\u0629"
       Focus: 4
@@ -804,7 +891,7 @@ MonoBehaviour:
       LearningBlock: 6
       NumberOfPlaySessions: 3
       Description_En: 'Adjectives: describing weather'
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0642\u0633"
       Title_En: weather adjectives
       Title_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0642\u0633"
       Focus: 4
@@ -813,7 +900,8 @@ MonoBehaviour:
       LearningBlock: 7
       NumberOfPlaySessions: 3
       Description_En: Cardinal numbers 0 to 20
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u0631\u0626\u064A\u0633\u064A\u0629
+        (\u0645\u0646 \u0627\u0644\u0635\u0641\u0631 \u0625\u0644\u0649 \u0627\u0644\u0639\u0634\u0631\u0648\u0646)"
       Title_En: cardinal numbers
       Title_Ar: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u0631\u0626\u064A\u0633\u064A\u0629"
       Focus: 4
@@ -822,7 +910,8 @@ MonoBehaviour:
       LearningBlock: 8
       NumberOfPlaySessions: 3
       Description_En: Ordinal numbers 1 to 10 (with the definite article "al")
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u064A\u0629
+        (\u0645\u0646 \u0627\u0644\u0623\u0648\u0644 \u0625\u0644\u0649 \u0627\u0644\u0639\u0627\u0634\u0631)"
       Title_En: ordinal numbers
       Title_Ar: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u064A\u0629"
       Focus: 4
@@ -831,7 +920,8 @@ MonoBehaviour:
       LearningBlock: 9
       NumberOfPlaySessions: 3
       Description_En: Time expressions such as "today" "yesterday"
-      Description_Ar: 
+      Description_Ar: "\u0638\u0631\u0648\u0641 \u0627\u0644\u0632\u0645\u0627\u0646
+        \u0645\u062B\u0644 \"\u0627\u0644\u064A\u0648\u0645\"\u060C \"\u0627\u0644\u0628\u0627\u0631\u062D\u0629\""
       Title_En: Time adverbs
       Title_Ar: "\u0638\u0631\u0648\u0641 \u0627\u0644\u0632\u0645\u0627\u0646"
       Focus: 4
@@ -840,7 +930,7 @@ MonoBehaviour:
       LearningBlock: 10
       NumberOfPlaySessions: 3
       Description_En: Days of the week
-      Description_Ar: 
+      Description_Ar: "\u0623\u064A\u0627\u0645 \u0627\u0644\u0627\u0633\u0628\u0648\u0639"
       Title_En: Days of the week
       Title_Ar: "\u0623\u064A\u0627\u0645 \u0627\u0644\u0627\u0633\u0628\u0648\u0639"
       Focus: 4
@@ -849,7 +939,7 @@ MonoBehaviour:
       LearningBlock: 11
       NumberOfPlaySessions: 3
       Description_En: The months
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0623\u0634\u0647\u0631"
       Title_En: The months
       Title_Ar: "\u0627\u0644\u0623\u0634\u0647\u0631"
       Focus: 4
@@ -858,7 +948,7 @@ MonoBehaviour:
       LearningBlock: 12
       NumberOfPlaySessions: 3
       Description_En: The years (in numbers)
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0633\u0646\u0629 \u0628\u0627\u0644\u0623\u0631\u0642\u0627\u0645"
       Title_En: the years in numbers
       Title_Ar: "\u0627\u0644\u0633\u0646\u0629 \u0628\u0627\u0644\u0623\u0631\u0642\u0627\u0645"
       Focus: 0
@@ -868,7 +958,10 @@ MonoBehaviour:
       NumberOfPlaySessions: 3
       Description_En: 'Nature: Feminine and masculine: adding teh marbuta to any noun
         makes it feminine'
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0637\u0628\u064A\u0639\u0629 (\u0627\u0644\u0623\u0633\u0645\u0627\u0621
+        \u0627\u0644\u0645\u0630\u0643\u0631\u0629 \u0648\u0627\u0644\u0645\u0624\u0646\u062B\u0629):
+        \u0625\u0636\u0627\u0641\u0629 \u0627\u0644\u062A\u0627\u0621 \u0627\u0644\u0645\u0631\u0628\u0648\u0637\u0629
+        \u0643\u0639\u0644\u0627\u0645\u0629 \u0627\u0644\u062A\u0623\u0646\u064A\u062B"
       Title_En: faminine and masculine nouns
       Title_Ar: "\u0627\u0644\u0623\u0633\u0645\u0627\u0621 \u0627\u0644\u0645\u0630\u0643\u0631\u0629
         \u0648\u0627\u0644\u0645\u0624\u0646\u062B\u0629"
@@ -878,7 +971,8 @@ MonoBehaviour:
       LearningBlock: 14
       NumberOfPlaySessions: 3
       Description_En: Clothes with the definite article "al"
-      Description_Ar: 
+      Description_Ar: "\u0627\u0644\u0645\u0644\u0627\u0628\u0633 (\u0645\u0639 \u0627\u0644
+        \u0627\u0644\u062A\u0639\u0631\u064A\u0641)"
       Title_En: the article "al"
       Title_Ar: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
       Focus: 4
@@ -886,8 +980,9 @@ MonoBehaviour:
       Stage: 6
       LearningBlock: 15
       NumberOfPlaySessions: 3
-      Description_En: Simple phrases
-      Description_Ar: 
+      Description_En: Simple phrases and sentences
+      Description_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0648\u062C\u0645\u0644
+        \u0628\u0633\u064A\u0637\u0629"
       Title_En: Some phrases
       Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0628\u0633\u064A\u0637\u0629"
       Focus: 5
