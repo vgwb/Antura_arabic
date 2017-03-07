@@ -48,8 +48,8 @@ namespace EA4S.Assessment
             allAnswers.Shuffle();
 
             List< Vector3> positions = new List< Vector3>();
-            float xMin = placerOptions.LeftX /*+ placerOptions.AnswerSize/2f*/ + 2.0f;
-            float xMax = placerOptions.RightX /*- placerOptions.AnswerSize/2f*/ - 2.0f;
+            float xMin = placerOptions.LeftX + 2.0f;
+            float xMax = placerOptions.RightX - 2.0f;
             float yMin = placerOptions.BottomY + 2.9f;
             float z = placerOptions.DefaultZ;
 

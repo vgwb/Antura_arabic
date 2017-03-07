@@ -470,7 +470,8 @@ namespace EA4S.Assessment
 
             context.QuestionGenerator = new DefaultQuestionGenerator(   context.Configuration.Questions,
                                                                         context.AudioManager,
-                                                                        context.Events);
+                                                                        context.Events,
+                                                                        DefaultQuestionType.WordsWithLetter);
             context.QuestionPlacer = new DefaultQuestionPlacer( null, context.AudioManager, placerOptions);
 
             return CreateAssessment( context);
@@ -501,7 +502,7 @@ namespace EA4S.Assessment
                                                                context.Utils.GetSubtitleWidget(),
                                                                context.GameDescription);
 
-            context.AnswerChecker = new AnswerChecker( context.AudioManager);
+            context.AnswerChecker = new AnswerChecker( context.AudioManager, context.Events);
 
             rounds = AssessmentConfiguration.Instance.NumberOfRounds;
         }
