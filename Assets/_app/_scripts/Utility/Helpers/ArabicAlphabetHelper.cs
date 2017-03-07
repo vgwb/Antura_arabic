@@ -191,8 +191,8 @@ namespace EA4S.Helpers
                     if (letterData.Kind == Database.LetterDataKind.DiacriticCombo && separateDiacritics) // It's a diacritic combo
                     {
                         // Separate Letter and Diacritic
-                        result.Add(new ArabicStringPart(AppManager.I.DB.GetLetterDataById(letterData.BaseLetter), stringIndex, stringIndex, letterForm));
-                        result.Add(new ArabicStringPart(AppManager.I.DB.GetLetterDataById(letterData.Symbol), stringIndex, stringIndex, letterForm));
+                        result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.BaseLetter), stringIndex, stringIndex, letterForm));
+                        result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.Symbol), stringIndex, stringIndex, letterForm));
                     } else if (letterData.Kind == Database.LetterDataKind.Symbol && letterData.Type == Database.LetterDataType.DiacriticSymbol && !separateDiacritics) // It's a diacritic
                       {
                         // Merge Letter and Diacritic
@@ -215,7 +215,18 @@ namespace EA4S.Helpers
                       {
                         // Separate Lam and Alef
                         result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.BaseLetter), stringIndex, stringIndex, letterForm));
-                        result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.Symbol), stringIndex, stringIndex, letterForm));
+
+                        var secondPart = staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.Symbol);
+                        
+                        if (secondPart.Kind == Database.LetterDataKind.DiacriticCombo && separateDiacritics) // It's a diacritic combo
+                        {
+                            // Separate Letter and Diacritic
+                            result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), secondPart.BaseLetter), stringIndex, stringIndex, letterForm));
+                            result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), secondPart.Symbol), stringIndex, stringIndex, letterForm));
+                        }
+                        else
+                            result.Add(new ArabicStringPart(secondPart, stringIndex, stringIndex, letterForm));
+
                     } else
                         result.Add(new ArabicStringPart(letterData, stringIndex, stringIndex, letterForm));
                 } else

@@ -395,6 +395,7 @@ namespace EA4S.Database
         UI_Phrases_Sentences = 388,
         UI_Phrases_Expressions = 389,
         MissingLetter_forms_Title = 390,
+        ReservedArea_DemoUserAlreadyExists = 391,
     }
 }
 

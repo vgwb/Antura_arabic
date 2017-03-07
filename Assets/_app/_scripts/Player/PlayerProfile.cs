@@ -237,8 +237,8 @@ namespace EA4S.Profile
             }
             private set {
                 _currentAnturaCustomizations = value;
-                jsonAnturaCustimizationData = _currentAnturaCustomizations.GetJsonListOfIds();
-                //SaveCustomization();
+                //jsonAnturaCustimizationData = _currentAnturaCustomizations.GetJsonListOfIds();
+                SaveCustomization();
             }
         }
 
@@ -252,13 +252,20 @@ namespace EA4S.Profile
         public List<RewardPackUnlockData> RewardsUnlocked {
             get {
                 if (_rewardsUnlocked == null)
-                    return LoadRewardsUnlockedFromDB();
+                    _rewardsUnlocked = LoadRewardsUnlockedFromDB();
                 return _rewardsUnlocked;
             }
 
             private set {
                 _rewardsUnlocked = value;
             }
+        }
+
+        /// <summary>
+        /// Resets the rewards unlocked data.
+        /// </summary>
+        public void ResetRewardsUnlockedData() {
+            RewardsUnlocked = new List<RewardPackUnlockData>();
         }
 
         public string Key {
@@ -358,14 +365,26 @@ namespace EA4S.Profile
         /// <param name="rewardPackUnlockData">The reward pack.</param>
         public void AddRewardUnlocked(RewardPackUnlockData rewardPackUnlockData)
         {
+            AppManager.I.Player.RewardsUnlocked.Add(rewardPackUnlockData);
             AppManager.I.DB.UpdateRewardPackUnlockData(rewardPackUnlockData);
+        }
+
+        /// <summary>
+        /// Add update to db all 'this' reward unlocked.
+        /// </summary>
+        public void AddRewardUnlockedAll(RewardPackUnlockData _rewardPackUnlockData) {
+            List<RewardPackUnlockData> rewards = new List<RewardPackUnlockData>();
+            rewards.Add(_rewardPackUnlockData);
+            AppManager.I.DB.UpdateRewardPackUnlockDataAll(rewards);
         }
 
         /// <summary>
         /// Adds or update a list of unlocked rewards and persist it.
         /// </summary>
-        public void AddRewardUnlockedAll(List<RewardPackUnlockData> rewardPackUnlockDatas)
+        public void AddRewardUnlockedRange(List<RewardPackUnlockData> rewardPackUnlockDatas)
         {
+            Debug.Log(this.RewardsUnlocked); 
+            AppManager.I.Player.RewardsUnlocked.AddRange(rewardPackUnlockDatas);
             AppManager.I.DB.UpdateRewardPackUnlockDataAll(rewardPackUnlockDatas);
         }
 
@@ -375,8 +394,10 @@ namespace EA4S.Profile
         /// <param name="_anturaCustomization">The antura customization. If null save only on db.</param>
         public void SaveCustomization(AnturaCustomization _anturaCustomization = null)
         {
-            if (_anturaCustomization != null)
+            if (_anturaCustomization != null) { 
                 CurrentAnturaCustomizations = _anturaCustomization;
+            }
+            jsonAnturaCustimizationData = CurrentAnturaCustomizations.GetJsonListOfIds();
             Save();
 
             AppManager.I.LogManager.LogInfo(InfoEvent.AnturaCustomization, CurrentAnturaCustomizations.GetJsonListOfIds());

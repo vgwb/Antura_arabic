@@ -9,6 +9,7 @@ using EA4S.Assessment;
 using EA4S.Audio;
 using EA4S.Database;
 using System.Linq;
+using EA4S.Helpers;
 
 namespace EA4S.Teacher.Test
 {
@@ -51,6 +52,7 @@ namespace EA4S.Teacher.Test
                 data => _vocabularyHelper.GetWordsWithLetter(_wordFilters, data.Id).Count < threshold,
                 data => _vocabularyHelper.GetWordsWithLetter(_wordFilters, data.Id).Count.ToString());
         }
+        
 
         [DeMethodButton("Word Length")]
         public void DoWordLength()
@@ -133,6 +135,67 @@ namespace EA4S.Teacher.Test
 
             Debug.Log(final_s);
         }
+
+        [DeMethodButton("Data frequency in PS")]
+        public void DoCheckDataFrequencyByPS()
+        {
+            string final_s = "Data frequency in PS";
+
+            Dictionary<LetterData, int> observedLetters = new Dictionary<LetterData, int>();
+            Dictionary<WordData, int> observedWords = new Dictionary<WordData, int>();
+            Dictionary<PhraseData, int> observedPhrases = new Dictionary<PhraseData, int>();
+
+            foreach (var d in AppManager.I.DB.GetAllLetterData())  observedLetters[d] = 0;
+            foreach (var d in AppManager.I.DB.GetAllWordData()) observedWords[d] = 0;
+            foreach (var d in AppManager.I.DB.GetAllPhraseData())  observedPhrases[d] = 0;
+
+            foreach (var playSessionData in _playSessionDatas)
+            {
+                // Get the letters & words in this PS
+                var contents = AppManager.I.Teacher.VocabularyAi.GetContentsUpToJourneyPosition(playSessionData.GetJourneyPosition());
+                var letters = contents.GetHashSet<LetterData>();
+                var words = contents.GetHashSet<WordData>();
+                var phrases = contents.GetHashSet<PhraseData>();
+
+                // Check whether there are words with letters that are not in the PS
+                //string ps_s = "\n\nPS " + playSessionData.GetJourneyPosition();
+                foreach (var d in words)
+                    observedWords[d]++;
+                foreach (var d in letters)
+                    observedLetters[d]++;
+                foreach (var d in phrases)
+                    observedPhrases[d]++;
+            }
+
+            final_s += "\n\n Letters:";
+            foreach (var d in AppManager.I.DB.GetAllLetterData()) if (observedLetters[d] == 0) final_s +=  "\n" + d.Id + ": " +  observedLetters[d];
+
+            final_s += "\n\n Words:";
+            foreach (var d in AppManager.I.DB.GetAllWordData()) if (observedWords[d] == 0) final_s += "\n" + d.Id + ": " + observedWords[d];
+
+            final_s += "\n\n Phrases:";
+            foreach (var d in AppManager.I.DB.GetAllPhraseData()) if (observedPhrases[d] == 0) final_s += "\n" + d.Id + ": " + observedPhrases[d];
+
+            Debug.Log(final_s);
+        }
+
+        [DeMethodButton("Letters and words")]
+        public void DoLettersAndWords()
+        {
+            DoStatsList("Letters & words", _letterDatas,
+                data => true,
+                data =>
+                {
+                    string s = "";
+                    var words = _vocabularyHelper.GetWordsWithLetter(_wordFilters, data.Id);
+                    foreach (var word in words)
+                    {
+                        s += word.Id +", ";
+                    }
+                    return s;
+                });
+        }
+
 
         #region Internals
 
