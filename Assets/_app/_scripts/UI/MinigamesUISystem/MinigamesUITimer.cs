@@ -19,7 +19,7 @@ namespace EA4S.UI
         public float Duration { get; private set; }
         public float Elapsed { get; private set; }
         Sequence timerTween, shakeTween;
-        IAudioSource alarmSfxSource;
+        IAudioSource alarmSfxSource; // Can be shake or alarm sound. NULL when not playing anything
         bool currPauseMenuIsOpenState;
         bool wasPlayingBeforePauseMenuWasOpened;
         Tween endTween;
@@ -132,9 +132,12 @@ namespace EA4S.UI
                 .OnComplete(() => {
                     shakeTween.Rewind();
                     endTween.Restart();
-                    if (alarmSfxSource != null) alarmSfxSource.Stop();
-                    alarmSfxSource = AudioManager.I.PlaySound(Sfx.AlarmClock);
-                    alarmSfxSource.Loop = false;
+                    if (alarmSfxSource != null)
+                    {
+                        alarmSfxSource.Stop();
+                        alarmSfxSource = null;
+                    }
+                    AudioManager.I.PlaySound(Sfx.AlarmClock);
                 });
             if (!_playImmediately) timerTween.Pause();
 
@@ -176,7 +179,11 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
-            if (alarmSfxSource != null) alarmSfxSource.Stop();
+            if (alarmSfxSource != null)
+            {
+                alarmSfxSource.Stop();
+                alarmSfxSource = null;
+            }
             shakeTween.Rewind();
             endTween.Rewind();
             timerTween.Rewind();

@@ -188,7 +188,7 @@ namespace EA4S.Profile
             if (playerIconData.Uuid == AppManager.I.GameSettings.LastActivePlayerUUID) {
                 // if possible set the first available player...
                 PlayerIconData newActivePlayer = GetSavedPlayers().Find(p => p.Uuid != playerUUID);
-                if (newActivePlayer.Uuid != string.Empty) {
+                if (newActivePlayer.Uuid != null) {
                     AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(newActivePlayer.Uuid);
                 } else {
                     // ...else set to null
