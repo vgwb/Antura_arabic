@@ -18,6 +18,7 @@ namespace EA4S.Teacher
             // Safety fallback, used for release to avoid crashing the application.
             // @note: This WILL block the game if an error happens EVERYTIME, so make sure that never happens!
             List<QuestionPackData> questionPackDataList = null;
+            int safetyCounter = 10;
             while (true)
             {
                 try
@@ -34,7 +35,13 @@ namespace EA4S.Teacher
                     }
                     else
                     {
-                        UnityEngine.Debug.LogError("Teacher fallback triggered: " + e.ToString());
+                        safetyCounter--;
+                        UnityEngine.Debug.LogError("Teacher fallback triggered (" + safetyCounter + "): " + e.ToString());
+
+                        if (safetyCounter <= 0)
+                        {
+                            break;
+                        }
                     }
                 }
             }
