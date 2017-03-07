@@ -43,7 +43,7 @@ namespace EA4S.UI
         public bool isTMPro = true;
         public bool isUI;
         public bool isArabic;
-        public bool AdjustDiacriticPos;
+        bool AdjustDiacriticPos;
 
         public Database.LocalizationDataId LocalizationId;
 
@@ -53,7 +53,7 @@ namespace EA4S.UI
         void Awake()
         {
             m_TextComponent = gameObject.GetComponent<TMP_Text>();
-
+            AdjustDiacriticPos = true;
             checkConfiguration();
 
             if (LocalizationId != Database.LocalizationDataId.None) {
@@ -178,25 +178,25 @@ namespace EA4S.UI
 
             if (characterCount > 1) {
 
-                for (int i = 0; i < characterCount; i++) {
-                    //Debug.Log("CAHR " + characterCount + ": " + TMPro.TMP_TextUtilities.StringToInt(textInfo.characterInfo[characterCount].character.ToString()));
-                    Debug.Log("DIACRITIC: " + i
-                              //+ "index: " + textInfo.characterInfo[i].index
-                              + " char: " + textInfo.characterInfo[i].character.ToString()
-                              + " UNICODE: " + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[i].character)
-                             );
-                }
+                //for (int i = 0; i < characterCount; i++) {
+                //    //Debug.Log("CAHR " + characterCount + ": " + TMPro.TMP_TextUtilities.StringToInt(textInfo.characterInfo[characterCount].character.ToString()));
+                //    Debug.Log("DIACRITIC: " + i
+                //              //+ "index: " + textInfo.characterInfo[i].index
+                //              + " char: " + textInfo.characterInfo[i].character.ToString()
+                //              + " UNICODE: " + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[i].character)
+                //             );
+                //}
 
-                Vector2 newDelta = new Vector2(0, 0);
+                Vector2 modificationDelta = new Vector2(0, 0);
                 bool changed = false;
 
                 for (int charPosition = 0; charPosition < characterCount - 1; charPosition++) {
-                    newDelta = AppManager.I.VocabularyHelper.FindDiacriticCombo2Fix(
+                    modificationDelta = AppManager.I.VocabularyHelper.FindDiacriticCombo2Fix(
                         ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition].character),
                         ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character)
                     );
 
-                    if (newDelta.sqrMagnitude > 0f) {
+                    if (modificationDelta.sqrMagnitude > 0f) {
                         changed = true;
                         //TMP_CharacterInfo charInfo = textInfo.characterInfo[charPosition];
 
@@ -212,8 +212,8 @@ namespace EA4S.UI
                         Vector3[] sourceVertices = textInfo.meshInfo[materialIndex].vertices;
 
                         float charsize = (sourceVertices[vertexIndex + 2].y - sourceVertices[vertexIndex + 0].y);
-                        float dx = charsize * newDelta.x / 100f;
-                        float dy = charsize * newDelta.y / 100f;
+                        float dx = charsize * modificationDelta.x / 100f;
+                        float dy = charsize * modificationDelta.y / 100f;
                         Vector3 offset = new Vector3(dx, dy, 0f);
 
                         Vector3[] destinationVertices = textInfo.meshInfo[materialIndex].vertices;
@@ -222,7 +222,7 @@ namespace EA4S.UI
                         destinationVertices[vertexIndex + 2] = sourceVertices[vertexIndex + 2] + offset;
                         destinationVertices[vertexIndex + 3] = sourceVertices[vertexIndex + 3] + offset;
 
-                        Debug.Log("DIACRITIC: pos fixed for " + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[1].character) + " by " + newDelta);
+                        Debug.Log("DIACRITIC: pos fixed for " + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character) + " by " + modificationDelta);
                     }
 
                 }
