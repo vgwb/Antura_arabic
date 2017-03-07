@@ -42,7 +42,8 @@ namespace EA4S.Map
         [Header("Other")]
         public Camera UICamera;
 
-        int s, i, previousStage, numberStage;
+        public int numberStage;
+        int s, i, previousStage;
         bool inTransition;
         static int firstContactSimulationStep;
 
