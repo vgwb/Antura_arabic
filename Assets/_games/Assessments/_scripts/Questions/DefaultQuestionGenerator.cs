@@ -201,7 +201,8 @@ namespace EA4S.Assessment
 
             currentPack = provider.GetNextQuestion();
 
-            if (config != DefaultQuestionType.Default)
+            if (    config == DefaultQuestionType.MissingForm
+                ||  config == DefaultQuestionType.VisibleForm)
                 return CustomQuestion();
 
             List< Answer> answers = new List< Answer>();

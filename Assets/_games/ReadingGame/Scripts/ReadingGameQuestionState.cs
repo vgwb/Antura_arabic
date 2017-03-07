@@ -46,8 +46,8 @@ namespace EA4S.Minigames.ReadingGame
             }
             else
             {
-                game.barSet.SetShowTargets(ReadingGameConfiguration.Instance.Difficulty < 0.3f);
-                game.barSet.SetShowArrows(ReadingGameConfiguration.Instance.Difficulty < 0.6f);
+                game.barSet.SetShowTargets(ReadingGameConfiguration.Instance.Difficulty < 0.5f);
+                game.barSet.SetShowArrows(ReadingGameConfiguration.Instance.Difficulty < 0.8f);
 
                 game.barSet.SetData(game.songToPlay);
             }

@@ -213,7 +213,7 @@ namespace EA4S.Assessment
             if (playAudio)
                 q.QuestionBehaviour.ReadMeSound();
 
-            yield return Wait.For( 0.9f);
+            yield return Wait.For( 1.6f);
         }
 
         protected void PlacePlaceholder( GameObject placeholder, Vector3 position)

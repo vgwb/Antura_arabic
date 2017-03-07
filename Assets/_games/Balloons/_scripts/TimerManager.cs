@@ -25,7 +25,7 @@ namespace EA4S.Balloons
 
                 if (timeRemaining <= 0f)
                 {
-                    StopTimer();
+                    StopTimer(true);
                     BalloonsGame.instance.OnTimeUp();
                 }
             }
@@ -46,12 +46,13 @@ namespace EA4S.Balloons
             MinigamesUI.Timer.Play();
         }
 
-        public void StopTimer()
+        public void StopTimer(bool forceCompletion = false)
         {
             isRunning = false;
             if (MinigamesUI.Timer != null)
             {
-                MinigamesUI.Timer.Pause();
+                if (forceCompletion) MinigamesUI.Timer.Complete();
+                else MinigamesUI.Timer.Pause();
             }
             //AudioManager.I.StopSfx(Sfx.DangerClockLong);
         }
