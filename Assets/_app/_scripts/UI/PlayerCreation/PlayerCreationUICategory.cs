@@ -148,6 +148,8 @@ namespace EA4S.UI
 
         void OnClick(UIButton bt)
         {
+            if (_ageAppearanceTween != null && _ageAppearanceTween.IsPlaying()) return;
+
             bool deselect = bt.IsToggled && SelectedIndex >= 0
                             && (CategoryType != PlayerCreationUI.CategoryType.Avatar || PlayerCreationUI.State == PlayerCreationUI.UIState.AvatarCreation);
             if (deselect) Select(-1);
