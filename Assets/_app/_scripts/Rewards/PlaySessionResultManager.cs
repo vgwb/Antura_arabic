@@ -37,6 +37,7 @@ namespace EA4S.Rewards
             }
 
             LogManager.I.LogPlaySessionScore(AppManager.I.JourneyHelper.GetCurrentPlaySessionData().Id, objs.Length);
+            AppManager.I.Teacher.logAI.UnlockVocabularyDataForJourneyPosition(AppManager.I.Player.CurrentJourneyPosition);
             // save max progression (internal check if necessary)
             AppManager.I.Player.AdvanceMaxJourneyPosition();
 
