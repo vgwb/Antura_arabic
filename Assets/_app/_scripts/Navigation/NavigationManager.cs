@@ -124,7 +124,7 @@ namespace EA4S.Core
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.Map:
-                    GotoPlaysession();
+                    GoToPlaySession();
                     break;
                 case AppScene.Book:
                     break;
@@ -132,10 +132,10 @@ namespace EA4S.Core
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.GameSelector:
-                    GotoFirstGameOfPlaySession();
+                    GoToFirstGameOfPlaySession();
                     break;
                 case AppScene.MiniGame:
-                    GotoNextGameOfPlaySession();
+                    GoToNextGameOfPlaySession();
                     break;
                 case AppScene.AnturaSpace:
                     GoToScene(AppScene.Map);
@@ -246,6 +246,11 @@ namespace EA4S.Core
         public void GoToHome(bool debugMode = false)
         {
             CustomGoTo(AppScene.Home, debugMode);
+        }
+
+        public void GoToMap(bool debugMode = false)
+        {
+            CustomGoTo(AppScene.Map, debugMode);
         }
 
         public void GoToPlayerBook()
@@ -444,7 +449,7 @@ namespace EA4S.Core
             }
         }
 
-        private void GotoPlaysession()
+        private void GoToPlaySession()
         {
             // This must be called before any play session is started
             InitialiseNewPlaySession();
@@ -460,7 +465,7 @@ namespace EA4S.Core
             }
         }
 
-        private void GotoFirstGameOfPlaySession()
+        private void GoToFirstGameOfPlaySession()
         {
             // Game selector -> go to the first game
             NavData.SetFirstMinigame();
@@ -469,21 +474,29 @@ namespace EA4S.Core
             InternalLaunchGameScene(NavData.CurrentMiniGameData);
         }
 
-        private void GotoNextGameOfPlaySession()
+        private void GoToNextGameOfPlaySession()
         {
             // From one game to the next
             if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
             {
-                // Full game end: no reward, direct to the end scene instead
-                if (AppManager.I.JourneyHelper.PlayerIsAtFinalJourneyPosition() &&
-                    !AppManager.I.Player.HasFinalBeenShown())
+                // We finished the whole game: no reward, go directly to the end scene instead
+                if (AppManager.I.JourneyHelper.PlayerIsAtFinalJourneyPosition())
                 {
-                    AppManager.I.Player.SetFinalShown();
-                    GoToScene(AppScene.Ending);
+                    if (!AppManager.I.Player.HasFinalBeenShown())
+                    {
+                        AppManager.I.Player.SetGameCompleted();
+                        AppManager.I.Player.SetFinalShown();
+                        GoToScene(AppScene.Ending);
+                    }
+                    else
+                    {
+                        GoToScene(AppScene.Map);
+                    }
                 }
                 else
                 {
                     // Assessment ended, go to the rewards scene
+                    // @todo: what if we REPLAY?
                     GoToScene(AppScene.Rewards);
                 }
             }
@@ -500,6 +513,8 @@ namespace EA4S.Core
                     // Finished all minigames for the current play session
                     if (NavData.RealPlaySession)
                     {
+                        AppManager.I.Player.CheckGameFinishedWithAllStars();
+
                         // Go to the reward scene.
                         GoToScene(AppScene.PlaySessionResult);
                     }

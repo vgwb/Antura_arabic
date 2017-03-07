@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -22,7 +23,8 @@ namespace EA4S.Assessment
     {
         Default = 0,
         MissingForm,
-        VisibleForm
+        VisibleForm,
+        WordsWithLetter
     }
 
     /// <summary>
@@ -49,6 +51,9 @@ namespace EA4S.Assessment
 
             if (config == DefaultQuestionType.MissingForm)
                 events.OnAllQuestionsAnswered = CompleteWordsWithForm;
+
+            if (config == DefaultQuestionType.WordsWithLetter)
+                events.OnPreQuestionsAnswered = ShowGreenLetterInWord;
 
             if ( AssessmentOptions.Instance.ReadQuestionAndAnswer)
                 events.OnAllQuestionsAnswered = ReadQuestionAndReplyEvent;
@@ -114,6 +119,20 @@ namespace EA4S.Assessment
             }
 
             yield return Wait.For( 0.3f);
+        }
+
+        List<Tuple<IQuestion, Answer>> greenHighlightList = new List< Tuple< IQuestion, Answer>>();
+
+        private IEnumerator ShowGreenLetterInWord()
+        {
+            foreach(var tuple in greenHighlightList)
+            {
+                var q = tuple.Item1;
+                var a = tuple.Item2;
+                a.GetComponent< StillLetterBox>().SetGreenLetter( a.Data(), q.LetterData());
+            }
+
+            yield return Wait.For( 2.0f);
         }
 
         ILivingLetterData cacheQuestionToRead;
@@ -229,7 +248,7 @@ namespace EA4S.Assessment
         private IQuestion CustomQuestion()
         {
             var correct = currentPack.GetCorrectAnswers().ToList()[0];
-            
+
             // Generate the question (and set form for correct letter)
             var question = GenerateCustomQuestion( currentPack.GetQuestion(), correct as LL_LetterData);
             totalQuestions.Add( question);
@@ -241,6 +260,8 @@ namespace EA4S.Assessment
             partialAnswers[0] = correctAnsw;
             totalAnswers.Add( correctAnsw);
 
+            greenHighlightList.Add( new Tuple< IQuestion, Answer>( question, correctAnsw));
+
             return question;
         }
 
@@ -248,6 +269,12 @@ namespace EA4S.Assessment
 
         private IQuestion GenerateCustomQuestion( ILivingLetterData question, LL_LetterData correctLetter)
         {
+            if (question == null)
+                throw new ArgumentNullException("Question Null");
+
+            if (correctLetter == null)
+                throw new ArgumentNullException("correct Letter");
+
             LL_WordData word = question as LL_WordData;
             var wordGO = ItemFactory.Instance.SpawnQuestion( word);
 
