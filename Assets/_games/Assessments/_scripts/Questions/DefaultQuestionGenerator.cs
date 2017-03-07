@@ -222,9 +222,13 @@ namespace EA4S.Assessment
             }
 
             int correctCount = 0;
+            Answer greenAnswerLetter = null;
             foreach (var correct in currentPack.GetCorrectAnswers())
             {
                 var correctAnsw = GenerateCorrectAnswer( correct);
+                if (correctCount == 0)
+                    greenAnswerLetter = correctAnsw;
+
                 correctCount++;
                 answers.Add( correctAnsw);
                 totalAnswers.Add( correctAnsw);
@@ -235,6 +239,7 @@ namespace EA4S.Assessment
             // Generate the question
             var question = GenerateQuestion( questionData, correctCount);
             totalQuestions.Add( question);
+            greenHighlightList.Add(new Tuple<IQuestion, Answer>( question, greenAnswerLetter));
 
             // Generate placeholders
             foreach (var correct in currentPack.GetCorrectAnswers())
@@ -261,8 +266,6 @@ namespace EA4S.Assessment
             partialAnswers = new Answer[1];
             partialAnswers[0] = correctAnsw;
             totalAnswers.Add( correctAnsw);
-
-            greenHighlightList.Add( new Tuple< IQuestion, Answer>( question, correctAnsw));
 
             return question;
         }
