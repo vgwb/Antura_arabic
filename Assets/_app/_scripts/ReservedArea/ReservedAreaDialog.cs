@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using EA4S.Audio;
 using EA4S.Core;
 using EA4S.Database;
 using EA4S.UI;
@@ -64,7 +65,7 @@ namespace EA4S.ReservedArea
             string secondColorWordArabic = colorsWordsArabic[secondButtonIndex];
 
             string arabicIntroduction = "";
-            arabicIntroduction += titleLoc.Arabic + "\n\n"; 
+            arabicIntroduction += "<b>" + titleLoc.Arabic + "<b/> \n"; 
             arabicIntroduction += sectionIntroLoc.Arabic + "\n\n"; 
             arabicIntroduction += string.Format("لفتح القفل، اضغط الزر {0} {2} مرات، ثم الزر {1} مرة واحدة", firstColorWordArabic, secondColorWordArabic, numberWordArabic);
             arabicIntroduction += "\n\n" + sectionErrorLoc.Arabic; // "\n\n في حال أخطأت، أعد المحاولة باستعمال هذه اللوحة";
@@ -75,6 +76,7 @@ namespace EA4S.ReservedArea
 
         public void OnButtonClick(int buttonIndex)
         {
+            AudioManager.I.PlaySound(Sfx.UIButtonClick);
             if (buttonIndex == firstButtonIndex) {
                 firstButtonClickCounter++;
             } else if (buttonIndex == secondButtonIndex) {

@@ -17,821 +17,877 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 1
       NumberOfPlaySessions: 3
-      Description: "The trio-alif (\u0627 - \u0623 - \u0625): Same shape, different
+      Description_En: "The trio-alif (\u0627 - \u0623 - \u0625): Same shape, different
         location of alif, absence & different location of hamza (\u0621), in different
         position in the word (just prononciation)"
+      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0645\u0648\u0627\u0642\u0639
+        \u0627\u0644\u0623\u0644\u0641 \u0627\u0644\u0645\u062E\u062A\u0644\u0641\u0629\u060C
+        \u0639\u062F\u0645 \u0648\u062C\u0648\u062F \u0627\u0644\u0647\u0645\u0632\u0629
+        \u0645\u0639 \u0627\u062E\u062A\u0644\u0627\u0641 \u0645\u0648\u0627\u0642\u0639\u0647\u0627
+        \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629"
       Title_En: The trio Alif
       Title_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0627 - \u0623 - \u0625"
-      Reward: DogCollarLarge
       Focus: 1
     - Id: 1.2
       Stage: 1
       LearningBlock: 2
       NumberOfPlaySessions: 3
-      Description: "The trio beh, teh, theh (\u0628 - \u062A \u2013 \u062B): Same
+      Description_En: "The trio beh, teh, theh (\u0628 - \u062A \u2013 \u062B): Same
         shape, different number & location of dots"
+      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0627\u062E\u062A\u0644\u0627\u0641
+        \u0645\u0648\u0627\u0642\u0639 \u0648\u0623\u0639\u062F\u0627\u062F \u0627\u0644\u0646\u0642\u0627\u0637"
       Title_En: The trio baa, taa and thaa
       Title_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0628 - \u062A - \u062B"
-      Reward: 
       Focus: 1
     - Id: 1.3
       Stage: 1
       LearningBlock: 3
       NumberOfPlaySessions: 3
-      Description: "The trio jeem, hah, khah (\u062C - \u062D \u2013 \u062E): Same
+      Description_En: "The trio jeem, hah, khah (\u062C - \u062D \u2013 \u062E): Same
         shape, different location of a dot"
+      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0627\u062E\u062A\u0644\u0627\u0641
+        \u0645\u0648\u0642\u0639 \u0627\u0644\u0646\u0642\u0637\u0629"
       Title_En: The trio jiim, haa and khaa
       Title_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u062C - \u062D - \u062E"
-      Reward: 
       Focus: 1
     - Id: 1.4
       Stage: 1
       LearningBlock: 4
       NumberOfPlaySessions: 3
-      Description: "The duo dal and thal (\u062F \u2013 \u0630): Same shape, absence
+      Description_En: "The duo dal and thal (\u062F \u2013 \u0630): Same shape, absence
         of a dot"
+      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
+        \u0648\u062C\u0648\u062F \u0627\u0644\u0646\u0642\u0637\u0629"
       Title_En: The duo daal and dhaal
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u062F - \u0630"
-      Reward: 
       Focus: 1
     - Id: 1.5
       Stage: 1
       LearningBlock: 5
       NumberOfPlaySessions: 3
-      Description: "The duo reh and zain (\u0631 \u2013 \u0632): Same shape, absence
+      Description_En: "The duo reh and zain (\u0631 \u2013 \u0632): Same shape, absence
         of a dot"
+      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
+        \u0648\u062C\u0648\u062F \u0627\u0644\u0646\u0642\u0637\u0629"
       Title_En: The duo raa and zaay
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0631 - \u0632"
-      Reward: 
       Focus: 1
     - Id: 1.6
       Stage: 1
       LearningBlock: 6
       NumberOfPlaySessions: 3
-      Description: "The duo seen and sheen (\u0633 \u2013 \u0634): Same shape, absence
-        of three dots"
+      Description_En: "The duo seen and sheen (\u0633 \u2013 \u0634): Same shape,
+        absence of three dots"
+      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
+        \u0648\u062C\u0648\u062F \u0627\u0644\u0646\u0642\u0627\u0637 \u0627\u0644\u062B\u0644\u0627\u062B"
       Title_En: The duo siin and shiin
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0633 - \u0634"
-      Reward: 
       Focus: 1
     - Id: 1.7
       Stage: 1
       LearningBlock: 7
       NumberOfPlaySessions: 3
-      Description: "The sad and dad (\u0635 \u2013 \u0636): Same shape, absence of
-        a dot"
+      Description_En: "The sad and dad (\u0635 \u2013 \u0636): Same shape, absence
+        of a dot"
+      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
+        \u0648\u062C\u0648\u062F \u0627\u0644\u0646\u0642\u0637\u0629"
       Title_En: The Saad and Daad
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0635 - \u0636"
-      Reward: 
       Focus: 1
     - Id: 1.8
       Stage: 1
       LearningBlock: 8
       NumberOfPlaySessions: 3
-      Description: "The tah and zah (\u0637 \u2013 \u0638): Same shape, absence of
-        a dot"
+      Description_En: "The tah and zah (\u0637 \u2013 \u0638): Same shape, absence
+        of a dot"
+      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
+        \u0648\u062C\u0648\u062F \u0627\u0644\u0646\u0642\u0637\u0629"
       Title_En: The Taa and DHaa
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0637 - \u0638"
-      Reward: 
       Focus: 1
     - Id: 1.9
       Stage: 1
       LearningBlock: 9
       NumberOfPlaySessions: 3
-      Description: "The duo ain and ghain (\u0639 \u2013 \u063A): Same shape, absence
+      Description_En: "The duo ain and ghain (\u0639 \u2013 \u063A): Same shape, absence
         of a dot"
+      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
+        \u0648\u062C\u0648\u062F \u0627\u0644\u0646\u0642\u0637\u0629"
       Title_En: The duo ayn and ghayn
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0639 - \u063A"
-      Reward: 
       Focus: 1
     - Id: 1.10
       Stage: 1
       LearningBlock: 10
       NumberOfPlaySessions: 3
-      Description: "The duo feh and qaf (\u0641 \u2013 \u0642): Same shape, different
+      Description_En: "The duo feh and qaf (\u0641 \u2013 \u0642): Same shape, different
         number of dots"
+      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0627\u062E\u062A\u0644\u0627\u0641
+        \u0639\u062F\u062F \u0627\u0644\u0646\u0642\u0627\u0637"
       Title_En: The duo faa and qaaf
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0641 - \u0642"
-      Reward: 
       Focus: 1
     - Id: 1.11
       Stage: 1
       LearningBlock: 11
       NumberOfPlaySessions: 3
-      Description: "The duo kaf and lam (\u0643 \u2013 \u0644): Same shape, absence
+      Description_En: "The duo kaf and lam (\u0643 \u2013 \u0644): Same shape, absence
         of hamza (\u0621)"
+      Description_Ar: "\u0646\u0641\u0633 \u0627\u0644\u0634\u0643\u0644\u060C \u0639\u062F\u0645
+        \u0648\u062C\u0648\u062F \u0627\u0644\u0647\u0645\u0632\u0629"
       Title_En: The duo kaaf and laam
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0643 - \u0644"
-      Reward: 
       Focus: 1
     - Id: 1.12
       Stage: 1
       LearningBlock: 12
       NumberOfPlaySessions: 3
-      Description: "The duo meem and noon (\u0645 \u2013 \u0646): No specific criterion,
+      Description_En: "The duo meem and noon (\u0645 \u2013 \u0646): No specific criterion,
         just different letters"
+      Description_Ar: "\u0639\u062F\u0645 \u0648\u062C\u0648\u062F \u0645\u0639\u064A\u0627\u0631
+        \u0645\u062D\u062F\u062F\u060C \u0641\u0642\u0637 \u062D\u0631\u0648\u0641
+        \u0645\u062E\u062A\u0644\u0641\u0629"
       Title_En: The duo miim and nuun
       Title_Ar: "\u0627\u0644\u062B\u0646\u0627\u0626\u064A \u0645 - \u0646"
-      Reward: 
       Focus: 1
     - Id: 1.13
       Stage: 1
       LearningBlock: 13
       NumberOfPlaySessions: 3
-      Description: "The trio heh waw yeh (\u0647 - \u0648 - \u064A): No specific criterion,
-        jusy different letters"
+      Description_En: "The trio heh waw yeh (\u0647 - \u0648 - \u064A): No specific
+        criterion, jusy different letters"
+      Description_Ar: "\u0639\u062F\u0645 \u0648\u062C\u0648\u062F \u0645\u0639\u064A\u0627\u0631
+        \u0645\u062D\u062F\u062F\u060C \u0641\u0642\u0637 \u062D\u0631\u0648\u0641
+        \u0645\u062E\u062A\u0644\u0641\u0629"
       Title_En: The trio haa, waaw and yaa
       Title_Ar: "\u0627\u0644\u062B\u0644\u0627\u062B\u064A \u0647 - \u0648 - \u064A"
-      Reward: 
       Focus: 1
     - Id: 1.14
       Stage: 1
       LearningBlock: 14
       NumberOfPlaySessions: 3
-      Description: "The long-vowels \u201Calif\u201D (\u0623), \u201Cwaw\u201D (\u0648),
-        \u201Cyeh\u201D (\u064A)"
+      Description_En: "The long-vowels \u201Calif\u201D (\u0623), \u201Cwaw\u201D
+        (\u0648), \u201Cyeh\u201D (\u064A)"
+      Description_Ar: "\u062D\u0631\u0648\u0641 \u0627\u0644\u0639\u0644\u0651\u0629
+        \u0627\u0644\u0637\u0648\u064A\u0644\u0629"
       Title_En: The vowels alif, waaw and yaa
       Title_Ar: "\u062D\u0631\u0648\u0641 \u0627\u0644\u0639\u0644\u0629 \u0623 -
         \u0648 - \u064A"
-      Reward: 
       Focus: 1
     - Id: 2.1
       Stage: 2
       LearningBlock: 1
       NumberOfPlaySessions: 3
-      Description: "The two shapes of the letter \u201Calef\u201D (\u0627 \u0640\u0627)"
+      Description_En: "The two shapes of the letter \u201Calef\u201D (\u0627 \u0640\u0627)"
+      Description_Ar: 
       Title_En: The shapes of alif
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0623\u0644\u0641"
-      Reward: 
       Focus: 1
     - Id: 2.2
       Stage: 2
       LearningBlock: 2
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \"beh\" (\u0628   \u0640\u0628   \u0640\u0628\u0640
-        \ \u0628\u0640)"
+      Description_En: "The four shapes of the letter \"beh\" (\u0628   \u0640\u0628
+        \  \u0640\u0628\u0640  \u0628\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0628\u0627\u0621
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of baa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0628\u0627\u0621"
-      Reward: 
       Focus: 1
     - Id: 2.3
       Stage: 2
       LearningBlock: 3
       NumberOfPlaySessions: 3
-      Description: "\"The six shapes of the letter \u201Cteh\u201D (\u062A \u0640\u062A
+      Description_En: "\"The six shapes of the letter \u201Cteh\u201D (\u062A \u0640\u062A
         \ \u0629  \u0640\u0629  \u0640\u062A\u0640  \u062A\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062A\u0627\u0621
+        \u0627\u0644\u0633\u062A\u0629"
       Title_En: The shapes of taa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062A\u0627\u0621"
-      Reward: 
       Focus: 1
     - Id: 2.4
       Stage: 2
       LearningBlock: 4
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Ctheh\u201D (\u062B \u0640\u062B
+      Description_En: "The four shapes of the letter \u201Ctheh\u201D (\u062B \u0640\u062B
         \  \u0640\u062B\u0640  \u062B\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062B\u0627\u0621
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of thaa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062B\u0627\u0621"
-      Reward: 
       Focus: 1
     - Id: 2.5
       Stage: 2
       LearningBlock: 5
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Cjeem\u201D (\u062C   \u0640\u062C
+      Description_En: "The four shapes of the letter \u201Cjeem\u201D (\u062C   \u0640\u062C
         \  \u0640\u062C\u0640   \u062C\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062C\u064A\u0645
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of jiim
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062C\u064A\u0645"
-      Reward: 
       Focus: 1
     - Id: 2.6
       Stage: 2
       LearningBlock: 6
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Chah\u201D (\u062D  \u0640\u062D
+      Description_En: "The four shapes of the letter \u201Chah\u201D (\u062D  \u0640\u062D
         \ \u0640\u062D\u0640  \u062D\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062D\u0627\u0621
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of haa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062D\u0627\u0621"
-      Reward: 
       Focus: 1
     - Id: 2.7
       Stage: 2
       LearningBlock: 7
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Ckhah\u201D (\u062E  \u0640\u062E
+      Description_En: "The four shapes of the letter \u201Ckhah\u201D (\u062E  \u0640\u062E
         \u0640\u062E\u0640  \u062E\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062E\u0627\u0621
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of khaa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062E\u0627\u0621"
-      Reward: 
       Focus: 1
     - Id: 2.8
       Stage: 2
       LearningBlock: 8
       NumberOfPlaySessions: 3
-      Description: "The two shapes of the letter \u201Cdal\u201D ( \u0640\u062F  \u062F)"
+      Description_En: "The two shapes of the letter \u201Cdal\u201D ( \u0640\u062F
+        \ \u062F)"
+      Description_Ar: 
       Title_En: The shapes of daal
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u062F\u0627\u0644"
-      Reward: 
       Focus: 1
     - Id: 2.9
       Stage: 2
       LearningBlock: 9
       NumberOfPlaySessions: 3
-      Description: "The two shapes of the letter \u201Cthal\u201D (\u0640\u0630  \u0630)"
+      Description_En: "The two shapes of the letter \u201Cthal\u201D (\u0640\u0630
+        \ \u0630)"
+      Description_Ar: 
       Title_En: The shapes of dhaal
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0630\u0627\u0644"
-      Reward: 
       Focus: 1
     - Id: 2.10
       Stage: 2
       LearningBlock: 10
       NumberOfPlaySessions: 3
-      Description: "The two shapes of the letter \u201Creh\u201D ( \u0640\u0631  \u0631)"
+      Description_En: "The two shapes of the letter \u201Creh\u201D ( \u0640\u0631
+        \ \u0631)"
+      Description_Ar: 
       Title_En: The shapes of raa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0631\u0627\u0621"
-      Reward: 
       Focus: 1
     - Id: 2.11
       Stage: 2
       LearningBlock: 11
       NumberOfPlaySessions: 3
-      Description: "The two shapes of the letter \u201Czain\u201D ( \u0640\u0632  \u0632)"
+      Description_En: "The two shapes of the letter \u201Czain\u201D ( \u0640\u0632
+        \ \u0632)"
+      Description_Ar: 
       Title_En: The shapes of zay
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0632\u0627\u064A"
-      Reward: 
       Focus: 1
     - Id: 2.12
       Stage: 2
       LearningBlock: 12
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Cseen\u201D (\u0633  \u0640\u0633
+      Description_En: "The four shapes of the letter \u201Cseen\u201D (\u0633  \u0640\u0633
         \ \u0640\u0633\u0640  \u0633\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0633\u064A\u0646
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of siin
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0633\u064A\u0646"
-      Reward: 
       Focus: 1
     - Id: 2.13
       Stage: 2
       LearningBlock: 13
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Csheen\u201D (\u0634 \u0640\u0634
+      Description_En: "The four shapes of the letter \u201Csheen\u201D (\u0634 \u0640\u0634
         \u0640\u0634\u0640 \u0634\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0634\u064A\u0646
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of shiin
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0634\u064A\u0646"
-      Reward: 
       Focus: 1
     - Id: 2.14
       Stage: 2
       LearningBlock: 14
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Csad\u201D (\u0635 \u0640\u0635
+      Description_En: "The four shapes of the letter \u201Csad\u201D (\u0635 \u0640\u0635
         \u0640\u0635\u0640 \u0635\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0635\u0627\u062F
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of Saad
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0635\u0627\u062F"
-      Reward: 
       Focus: 1
     - Id: 3.1
       Stage: 3
       LearningBlock: 1
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Cdad\u201D (\u0636 \u0640\u0636
+      Description_En: "The four shapes of the letter \u201Cdad\u201D (\u0636 \u0640\u0636
         \u0640\u0636\u0640 \u0636\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0636\u0627\u062F
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of Daad
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0636\u0627\u062F"
-      Reward: 
       Focus: 1
     - Id: 3.2
       Stage: 3
       LearningBlock: 2
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Ctah\u201D (\u0637  \u0640\u0637
+      Description_En: "The four shapes of the letter \u201Ctah\u201D (\u0637  \u0640\u0637
         \u0640\u0637\u0640 \u0637\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0637\u0627\u0621
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of Taa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0637\u0627\u0621"
-      Reward: 
       Focus: 1
     - Id: 3.3
       Stage: 3
       LearningBlock: 3
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Czah\u201D (\u0638 \u0640\u0638
+      Description_En: "The four shapes of the letter \u201Czah\u201D (\u0638 \u0640\u0638
         \u0640\u0638\u0640 \u0638\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0638\u0627\u0621
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of DHaa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0638\u0627\u0621"
-      Reward: 
       Focus: 1
     - Id: 3.4
       Stage: 3
       LearningBlock: 4
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Cain\u201D (\u0639  \u0640\u0639
+      Description_En: "The four shapes of the letter \u201Cain\u201D (\u0639  \u0640\u0639
         \u0640\u0639\u0640 \u0639\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0639\u064A\u0646
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of ayn
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0639\u064A\u0646"
-      Reward: 
       Focus: 1
     - Id: 3.5
       Stage: 3
       LearningBlock: 5
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Cghain\u201D (\u063A \u0640\u063A
+      Description_En: "The four shapes of the letter \u201Cghain\u201D (\u063A \u0640\u063A
         \u0640\u063A\u0640 \u063A\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u063A\u064A\u0646
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of ghayn
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u063A\u064A\u0646"
-      Reward: 
       Focus: 1
     - Id: 3.6
       Stage: 3
       LearningBlock: 6
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Cfeh\u201D (\u0641 \u0640\u0641
+      Description_En: "The four shapes of the letter \u201Cfeh\u201D (\u0641 \u0640\u0641
         \u0640\u0641\u0640 \u0641\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0641\u0627\u0621
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of faa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0641\u0627\u0621"
-      Reward: 
       Focus: 1
     - Id: 3.7
       Stage: 3
       LearningBlock: 7
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Cqaf\u201D (\u0642 \u0640\u0642
+      Description_En: "The four shapes of the letter \u201Cqaf\u201D (\u0642 \u0640\u0642
         \u0640\u0642\u0640 \u0642\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0642\u0627\u0641
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of qaaf
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0642\u0627\u0641"
-      Reward: 
       Focus: 1
     - Id: 3.8
       Stage: 3
       LearningBlock: 8
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Ckaf\u201D ( \u0643 \u0640\u0643
+      Description_En: "The four shapes of the letter \u201Ckaf\u201D ( \u0643 \u0640\u0643
         \u0640\u0643\u0640 \u0643\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0643\u0627\u0641
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of kaaf
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0643\u0627\u0641"
-      Reward: 
       Focus: 1
     - Id: 3.9
       Stage: 3
       LearningBlock: 9
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Clam\u201D (\u0644 \u0640\u0644
+      Description_En: "The four shapes of the letter \u201Clam\u201D (\u0644 \u0640\u0644
         \ \u0640\u0644\u0640 \u0644\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0644\u0627\u0645
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of laam
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0644\u0627\u0645"
-      Reward: 
       Focus: 1
     - Id: 3.10
       Stage: 3
       LearningBlock: 10
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Cmeem\u201D ( \u0645 \u0640\u0645
+      Description_En: "The four shapes of the letter \u201Cmeem\u201D ( \u0645 \u0640\u0645
         \u0640\u0645\u0640 \u0645\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0645\u064A\u0645
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of miim
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0645\u064A\u0645"
-      Reward: 
       Focus: 1
     - Id: 3.11
       Stage: 3
       LearningBlock: 11
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Cnoon\u201D (\u0646 \u0640\u0646
+      Description_En: "The four shapes of the letter \u201Cnoon\u201D (\u0646 \u0640\u0646
         \u0640\u0646\u0640 \u0646\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0646\u0648\u0646
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of nuun
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0646\u0648\u0646"
-      Reward: 
       Focus: 1
     - Id: 3.12
       Stage: 3
       LearningBlock: 12
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Cheh\u201D (\u0647  \u0640\u0647
+      Description_En: "The four shapes of the letter \u201Cheh\u201D (\u0647  \u0640\u0647
         \u0640\u0647\u0640 \u0647\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0647\u0627\u0621
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of haa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0647\u0627\u0621"
-      Reward: 
       Focus: 1
     - Id: 3.13
       Stage: 3
       LearningBlock: 13
       NumberOfPlaySessions: 3
-      Description: "The two shapes of the letter \u201Cwaw\u201D ( \u0640\u0648  \u0648)"
+      Description_En: "The two shapes of the letter \u201Cwaw\u201D ( \u0640\u0648
+        \ \u0648)"
+      Description_Ar: 
       Title_En: The shapes of waaw
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u0648\u0627\u0648"
-      Reward: 
       Focus: 1
     - Id: 3.14
       Stage: 3
       LearningBlock: 14
       NumberOfPlaySessions: 3
-      Description: "The four shapes of the letter \u201Cyeh\u201D (\u064A \u0640\u064A
+      Description_En: "The four shapes of the letter \u201Cyeh\u201D (\u064A \u0640\u064A
         \u0640\u064A\u0640 \u064A\u0640)"
+      Description_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u064A\u0627\u0621
+        \u0627\u0644\u0623\u0631\u0628\u0639\u0629"
       Title_En: The shapes of yaa
       Title_Ar: "\u0623\u0634\u0643\u0627\u0644 \u0627\u0644\u064A\u0627\u0621"
-      Reward: 
       Focus: 1
     - Id: 4.1
       Stage: 4
       LearningBlock: 1
       NumberOfPlaySessions: 3
-      Description: "The sound of Fathah (\u064E) as a short vowel, Fatha on letters,
+      Description_En: "The sound of Fathah (\u064E) as a short vowel, Fatha on letters,
         and vocabulary,"
+      Description_Ar: "\u0627\u0644\u0641\u062A\u062D\u0629 \u0643\u0639\u0644\u0627\u0645\u0629
+        \u0642\u0635\u064A\u0631\u0629 \u0641\u0648\u0642 \u0627\u0644\u062D\u0631\u0648\u0641"
       Title_En: The symbol Fathah
       Title_Ar: "\u0627\u0644\u0641\u062A\u062D\u0629"
-      Reward: 
       Focus: 2
     - Id: 4.2
       Stage: 4
       LearningBlock: 2
       NumberOfPlaySessions: 3
-      Description: "The sound of Dammah (\u064F) as a short vowel, Dammah on letters,
+      Description_En: "The sound of Dammah (\u064F) as a short vowel, Dammah on letters,
         and vocabulary"
+      Description_Ar: "\u0627\u0644\u0636\u0645\u0629 \u0643\u0639\u0644\u0627\u0645\u0629
+        \u0642\u0635\u064A\u0631\u0629 \u0641\u0648\u0642 \u0627\u0644\u062D\u0631\u0648\u0641"
       Title_En: The symbol Dammah
       Title_Ar: "\u0627\u0644\u0636\u0645\u0629"
-      Reward: 
       Focus: 2
     - Id: 4.3
       Stage: 4
       LearningBlock: 3
       NumberOfPlaySessions: 3
-      Description: "The sound of Kasrah (\u0650) as a short vowel,  Kasrah on letters,
-        and vocabulary"
+      Description_En: "The sound of Kasrah (\u0650) as a short vowel,  Kasrah under
+        letters, and vocabulary"
+      Description_Ar: "\u0627\u0644\u0643\u0633\u0631\u0629 \u0643\u0639\u0644\u0627\u0645\u0629
+        \u0642\u0635\u064A\u0631\u0629 \u062A\u062D\u062A \u0627\u0644\u062D\u0631\u0648\u0641"
       Title_En: The symbol Kasrah
       Title_Ar: "\u0627\u0644\u0643\u0633\u0631\u0629"
-      Reward: 
       Focus: 2
     - Id: 4.4
       Stage: 4
       LearningBlock: 4
       NumberOfPlaySessions: 3
-      Description: "Revision of the 3 previous + The the non sound of the mute Sukun
-        (\u0652)"
+      Description_En: "Revision of the 3 previous + The the non sound of the mute
+        Sukun (\u0652)"
+      Description_Ar: "\u0645\u0631\u0627\u062C\u0639\u0629 \u0627\u0644\u062D\u0631\u0643\u0627\u062A
+        \u0627\u0644\u062B\u0644\u0627\u062B \u0648\u0639\u0644\u0627\u0645\u0629
+        \u0627\u0644\u0633\u0643\u0648\u0646"
       Title_En: Symbols and Sukun
       Title_Ar: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0648\u0627\u0644\u0633\u0643\u0648\u0646"
-      Reward: 
       Focus: 2
     - Id: 4.5
       Stage: 4
       LearningBlock: 5
       NumberOfPlaySessions: 3
-      Description: "Same as 4.1 with Fathah tanwin (\u064B) (double Fathah)"
+      Description_En: "Same as 4.1 with Fathah tanwin (\u064B) (double Fathah)"
+      Description_Ar: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0641\u062A\u062D
+        (\u0641\u062A\u062D\u062A\u0627\u0646)"
       Title_En: the double Fathah
       Title_Ar: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0641\u062A\u062D"
-      Reward: 
       Focus: 2
     - Id: 4.6
       Stage: 4
       LearningBlock: 6
       NumberOfPlaySessions: 3
-      Description: "Same as 4.2 The sound of Dammah tanwin (\u064C) (double Dammah)"
+      Description_En: "Same as 4.2 The sound of Dammah tanwin (\u064C) (double Dammah)"
+      Description_Ar: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0636\u0645 (\u0636\u0645\u062A\u0627\u0646)"
       Title_En: the double Dammah
       Title_Ar: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0636\u0645"
-      Reward: 
       Focus: 2
     - Id: 4.7
       Stage: 4
       LearningBlock: 7
       NumberOfPlaySessions: 3
-      Description: "Same than 3 The sound of Kasrah tanwin (\u064D) (double Kasrah)"
+      Description_En: "Same than 3 The sound of Kasrah tanwin (\u064D) (double Kasrah)"
+      Description_Ar: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0643\u0633\u0631
+        (\u0643\u0633\u0631\u062A\u0627\u0646)"
       Title_En: the double Kasrah
       Title_Ar: "\u062A\u0646\u0648\u064A\u0646 \u0627\u0644\u0643\u0633\u0631"
-      Reward: 
       Focus: 2
     - Id: 4.8
       Stage: 4
       LearningBlock: 8
       NumberOfPlaySessions: 3
-      Description: The 3 diacritic + double diacritic signs.
+      Description_En: The 3 diacritic + double diacritic signs.
+      Description_Ar: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062B\u0644\u0627\u062B
+        \u0648\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062A\u0646\u0648\u064A\u0646
+        \u0627\u0644\u062B\u0644\u0627\u062B"
       Title_En: single and double symbols
       Title_Ar: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0648\u062D\u0631\u0643\u0627\u062A
         \u0627\u0644\u062A\u0646\u0648\u064A\u0646"
-      Reward: 
       Focus: 2
     - Id: 4.9
       Stage: 4
       LearningBlock: 9
       NumberOfPlaySessions: 3
-      Description: "The different sound variations of hamza (\u0621) on a vowel (different
-        with/without), separate. waw hamza (\u0624) and yeh hamza (\u0626)"
+      Description_En: "The different sound variations of hamza (\u0621) on a vowel
+        (different with/without), separate. waw hamza (\u0624) and yeh hamza (\u0626)"
+      Description_Ar: 
       Title_En: Hamza variations
       Title_Ar: "\u0623\u0646\u0648\u0627\u0639 \u0627\u0644\u0647\u0645\u0632\u0629"
-      Reward: 
       Focus: 2
     - Id: 4.10
       Stage: 4
       LearningBlock: 10
       NumberOfPlaySessions: 3
-      Description: "The diphthong \u201Cwaw\u201D (\u0648): different sound than short
-        and long vowel"
+      Description_En: "The diphthong \u201Cwaw\u201D (\u0648): different sound than
+        short and long vowel"
+      Description_Ar: 
       Title_En: The diphthong waaw
       Title_Ar: "\u0648\u0627\u0648 \u0627\u0644\u0625\u062F\u063A\u0627\u0645"
-      Reward: 
       Focus: 3
     - Id: 4.11
       Stage: 4
       LearningBlock: 11
       NumberOfPlaySessions: 3
-      Description: "The diphthong \u201Cyeh\u201D (\u064A): different sound than short
-        and long vowel"
+      Description_En: "The diphthong \u201Cyeh\u201D (\u064A): different sound than
+        short and long vowel"
+      Description_Ar: 
       Title_En: The diphthong yaa
       Title_Ar: "\u064A\u0627\u0621 \u0627\u0644\u0625\u062F\u063A\u0627\u0645"
-      Reward: 
       Focus: 3
     - Id: 4.12
       Stage: 4
       LearningBlock: 12
       NumberOfPlaySessions: 3
-      Description: Verbs
+      Description_En: Verbs
+      Description_Ar: 
       Title_En: 'Words: Verbs'
       Title_Ar: "\u0627\u0644\u0623\u0641\u0639\u0627\u0644"
-      Reward: 
       Focus: 4
     - Id: 4.13
       Stage: 4
       LearningBlock: 13
       NumberOfPlaySessions: 3
-      Description: Places
+      Description_En: Places
+      Description_Ar: 
       Title_En: 'Words: Places'
       Title_Ar: "\u0627\u0644\u0623\u0645\u0627\u0643\u0646"
-      Reward: 
       Focus: 4
     - Id: 4.14
       Stage: 4
       LearningBlock: 14
       NumberOfPlaySessions: 3
-      Description: Grains (food)
+      Description_En: Grains (food)
+      Description_Ar: 
       Title_En: 'Words: grains food'
       Title_Ar: "\u0627\u0644\u0623\u0637\u0639\u0645\u0629 (\u0627\u0644\u062D\u0628\u0648\u0628)"
-      Reward: 
       Focus: 4
     - Id: 4.15
       Stage: 4
       LearningBlock: 15
       NumberOfPlaySessions: 3
-      Description: Furniture
+      Description_En: Furniture
+      Description_Ar: 
       Title_En: 'Words: Furniture'
       Title_Ar: "\u0627\u0644\u0645\u0641\u0631\u0648\u0634\u0627\u062A"
-      Reward: 
       Focus: 4
     - Id: 5.1
       Stage: 5
       LearningBlock: 1
       NumberOfPlaySessions: 3
-      Description: "The \u201Calef maqSura\u201D"
+      Description_En: "The \u201Calef maqSura\u201D"
+      Description_Ar: 
       Title_En: the alif maqSura
       Title_Ar: "\u0627\u0644\u0623\u0644\u0641 \u0627\u0644\u0645\u0642\u0635\u0648\u0631\u0629"
-      Reward: 
       Focus: 1
     - Id: 5.2
       Stage: 5
       LearningBlock: 2
       NumberOfPlaySessions: 3
-      Description: "The special combination letter \u201Clam-alef\u201D (\u0644\u0627)"
+      Description_En: "The special combination letter \u201Clam-alef\u201D (\u0644\u0627)"
+      Description_Ar: 
       Title_En: lam-alif combination
       Title_Ar: "\u0644\u0627"
-      Reward: 
       Focus: 1
     - Id: 5.3
       Stage: 5
       LearningBlock: 3
       NumberOfPlaySessions: 3
-      Description: The maddah (~)
+      Description_En: The maddah (~)
+      Description_Ar: 
       Title_En: the madd symbol
       Title_Ar: "\u0627\u0644\u0645\u062F"
-      Reward: 
       Focus: 2
     - Id: 5.4
       Stage: 5
       LearningBlock: 4
       NumberOfPlaySessions: 3
-      Description: The 3 diacritic signs
+      Description_En: The 3 diacritic signs
+      Description_Ar: 
       Title_En: The 3 diacritic signs
       Title_Ar: "\u0627\u0644\u062D\u0631\u0643\u0627\u062A"
-      Reward: 
       Focus: 2
     - Id: 5.5
       Stage: 5
       LearningBlock: 5
       NumberOfPlaySessions: 3
-      Description: The 3 double diacritic signs (Tanwin)
+      Description_En: The 3 double diacritic signs (Tanwin)
+      Description_Ar: 
       Title_En: The 3 double diacritic signs
       Title_Ar: "\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062A\u0646\u0648\u064A\u0646"
-      Reward: 
       Focus: 2
     - Id: 5.6
       Stage: 5
       LearningBlock: 6
       NumberOfPlaySessions: 3
-      Description: "The diacritic sign \u201Cshadda\u201D (\u0651) as a double consonant"
+      Description_En: "The diacritic sign \u201Cshadda\u201D (\u0651) as a double
+        consonant"
+      Description_Ar: 
       Title_En: the shadda symbol
       Title_Ar: "\u0627\u0644\u0634\u062F\u0629"
-      Reward: 
       Focus: 2
     - Id: 5.7
       Stage: 5
       LearningBlock: 7
       NumberOfPlaySessions: 3
-      Description: Singular, dual, and plural forms of nouns
+      Description_En: Singular, dual, and plural forms of nouns
+      Description_Ar: 
       Title_En: 'Words: plurals'
       Title_Ar: "\u0627\u0644\u0645\u0641\u0631\u062F \u0648\u0627\u0644\u0645\u062B\u0646\u0649
         \u0648\u0627\u0644\u062C\u0645\u0639"
-      Reward: 
       Focus: 4
     - Id: 5.8
       Stage: 5
       LearningBlock: 8
       NumberOfPlaySessions: 3
-      Description: Professions (emphasis singular, dual, plural)
+      Description_En: Professions (emphasis singular, dual, plural)
+      Description_Ar: 
       Title_En: 'words: professions'
       Title_Ar: "\u0627\u0644\u0645\u0647\u0646"
-      Reward: 
       Focus: 4
     - Id: 5.9
       Stage: 5
       LearningBlock: 9
       NumberOfPlaySessions: 3
-      Description: Nature (emphasis singular, dual, plural)
+      Description_En: Nature (emphasis singular, dual, plural)
+      Description_Ar: 
       Title_En: 'words: nature'
       Title_Ar: "\u0627\u0644\u0637\u0628\u064A\u0639\u0629"
-      Reward: 
       Focus: 4
     - Id: 5.10
       Stage: 5
       LearningBlock: 10
       NumberOfPlaySessions: 3
-      Description: "The definite article \u201Cal\u201D (\u0627\u0644\u0640)"
+      Description_En: "The definite article \u201Cal\u201D (\u0627\u0644\u0640)"
+      Description_Ar: 
       Title_En: the article "al"
       Title_Ar: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
-      Reward: 
       Focus: 4
     - Id: 5.11
       Stage: 5
       LearningBlock: 11
       NumberOfPlaySessions: 3
-      Description: "Principle (the different pronounciation of the consonant following
+      Description_En: "Principle (the different pronounciation of the consonant following
         the definite article \"al\" (\u0627\u0644\u0640) \n\nmoon consonants: \u0628
         - \u062C - \u062D - \u062E - \u0639 - \u063A - \u0641 - \u0642 - \u0643 -
         \u0645 - \u0647 \nsun consonants: \u062A - \u062B - \u062F - \u0630 - \u0631
         - \u0632 - \u0633 - \u0634 - \u0635 - \u0636 - \u0637 - \u0638 - \u0644 -
         \u0646"
+      Description_Ar: 
       Title_En: sun and moon consonants
       Title_Ar: "\u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0634\u0645\u0633\u064A\u0629
         \u0648\u0627\u0644\u0642\u0645\u0631\u064A\u0629"
-      Reward: 
       Focus: 1
     - Id: 5.12
       Stage: 5
       LearningBlock: 12
       NumberOfPlaySessions: 3
-      Description: Sports (emphasis moon & sun consonant) the red color of the sun&moon
-        letter means it is not pronounced which means it proceeds a sun consonant
+      Description_En: Sports (emphasis moon & sun consonant) the red color of the
+        sun&moon letter means it is not pronounced which means it proceeds a sun consonant
+      Description_Ar: 
       Title_En: Sports
       Title_Ar: "\u0627\u0644\u0631\u064A\u0627\u0636\u0629"
-      Reward: 
       Focus: 1
     - Id: 5.13
       Stage: 5
       LearningBlock: 13
       NumberOfPlaySessions: 3
-      Description: Adjectives of feelings
+      Description_En: Adjectives of feelings
+      Description_Ar: 
       Title_En: 'Adjectives: feelings'
       Title_Ar: "\u0635\u0641\u0627\u062A \u0627\u0644\u0645\u0634\u0627\u0639\u0631"
-      Reward: 
       Focus: 4
     - Id: 6.1
       Stage: 6
       LearningBlock: 1
       NumberOfPlaySessions: 3
-      Description: Greeting phrase
+      Description_En: Greeting phrase
+      Description_Ar: 
       Title_En: Greetings
       Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u062D\u064A\u0629"
-      Reward: 
       Focus: 5
     - Id: 6.2
       Stage: 6
       LearningBlock: 2
       NumberOfPlaySessions: 3
-      Description: '"Hello" and "Hi" phrases'
+      Description_En: '"Hello" and "Hi" phrases'
+      Description_Ar: 
       Title_En: Hello phrases
       Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u0631\u062D\u064A\u0628"
-      Reward: 
       Focus: 5
     - Id: 6.3
       Stage: 6
       LearningBlock: 3
       NumberOfPlaySessions: 3
-      Description: '"How are you" and "Goodbye" phrases'
+      Description_En: '"How are you" and "Goodbye" phrases'
+      Description_Ar: 
       Title_En: How are you phrases
       Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0627\u0644\u0633\u0624\u0627\u0644
         \u0639\u0646 \u0627\u0644\u062D\u0627\u0644"
-      Reward: 
       Focus: 5
     - Id: 6.4
       Stage: 6
       LearningBlock: 4
       NumberOfPlaySessions: 3
-      Description: 'Adjectives: colors'
+      Description_En: 'Adjectives: colors'
+      Description_Ar: 
       Title_En: 'Adjectives: colors'
       Title_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
-      Reward: 
       Focus: 4
     - Id: 6.5
       Stage: 6
       LearningBlock: 5
       NumberOfPlaySessions: 3
-      Description: 'Adjectives: describing nature'
+      Description_En: 'Adjectives: describing nature'
+      Description_Ar: 
       Title_En: nature adjectives
       Title_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0628\u064A\u0639\u0629"
-      Reward: 
       Focus: 4
     - Id: 6.6
       Stage: 6
       LearningBlock: 6
       NumberOfPlaySessions: 3
-      Description: 'Adjectives: describing weather'
+      Description_En: 'Adjectives: describing weather'
+      Description_Ar: 
       Title_En: weather adjectives
       Title_Ar: "\u0627\u0644\u0635\u0641\u0627\u062A: \u0627\u0644\u0637\u0642\u0633"
-      Reward: 
       Focus: 4
     - Id: 6.7
       Stage: 6
       LearningBlock: 7
       NumberOfPlaySessions: 3
-      Description: Cardinal numbers 0 to 20
+      Description_En: Cardinal numbers 0 to 20
+      Description_Ar: 
       Title_En: cardinal numbers
       Title_Ar: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u0631\u0626\u064A\u0633\u064A\u0629"
-      Reward: 
       Focus: 4
     - Id: 6.8
       Stage: 6
       LearningBlock: 8
       NumberOfPlaySessions: 3
-      Description: Ordinal numbers 1 to 10 (with the definite article "al")
+      Description_En: Ordinal numbers 1 to 10 (with the definite article "al")
+      Description_Ar: 
       Title_En: ordinal numbers
       Title_Ar: "\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u064A\u0629"
-      Reward: 
       Focus: 4
     - Id: 6.9
       Stage: 6
       LearningBlock: 9
       NumberOfPlaySessions: 3
-      Description: Time expressions such as "today" "yesterday"
+      Description_En: Time expressions such as "today" "yesterday"
+      Description_Ar: 
       Title_En: Time adverbs
       Title_Ar: "\u0638\u0631\u0648\u0641 \u0627\u0644\u0632\u0645\u0627\u0646"
-      Reward: 
       Focus: 4
     - Id: 6.10
       Stage: 6
       LearningBlock: 10
       NumberOfPlaySessions: 3
-      Description: Days of the week
+      Description_En: Days of the week
+      Description_Ar: 
       Title_En: Days of the week
       Title_Ar: "\u0623\u064A\u0627\u0645 \u0627\u0644\u0627\u0633\u0628\u0648\u0639"
-      Reward: 
       Focus: 4
     - Id: 6.11
       Stage: 6
       LearningBlock: 11
       NumberOfPlaySessions: 3
-      Description: The months
+      Description_En: The months
+      Description_Ar: 
       Title_En: The months
       Title_Ar: "\u0627\u0644\u0623\u0634\u0647\u0631"
-      Reward: 
       Focus: 4
     - Id: 6.12
       Stage: 6
       LearningBlock: 12
       NumberOfPlaySessions: 3
-      Description: The years (in numbers)
+      Description_En: The years (in numbers)
+      Description_Ar: 
       Title_En: the years in numbers
       Title_Ar: "\u0627\u0644\u0633\u0646\u0629 \u0628\u0627\u0644\u0623\u0631\u0642\u0627\u0645"
-      Reward: 
       Focus: 0
     - Id: 6.13
       Stage: 6
       LearningBlock: 13
       NumberOfPlaySessions: 3
-      Description: 'Nature: Feminine and masculine: adding teh marbuta to any noun
+      Description_En: 'Nature: Feminine and masculine: adding teh marbuta to any noun
         makes it feminine'
+      Description_Ar: 
       Title_En: faminine and masculine nouns
       Title_Ar: "\u0627\u0644\u0623\u0633\u0645\u0627\u0621 \u0627\u0644\u0645\u0630\u0643\u0631\u0629
         \u0648\u0627\u0644\u0645\u0624\u0646\u062B\u0629"
-      Reward: 
       Focus: 4
     - Id: 6.14
       Stage: 6
       LearningBlock: 14
       NumberOfPlaySessions: 3
-      Description: Clothes with the definite article "al"
+      Description_En: Clothes with the definite article "al"
+      Description_Ar: 
       Title_En: the article "al"
       Title_Ar: "\u0627\u0644 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
-      Reward: 
       Focus: 4
     - Id: 6.15
       Stage: 6
       LearningBlock: 15
       NumberOfPlaySessions: 3
-      Description: Simple phrases
+      Description_En: Simple phrases
+      Description_Ar: 
       Title_En: Some phrases
       Title_Ar: "\u0639\u0628\u0627\u0631\u0627\u062A \u0628\u0633\u064A\u0637\u0629"
-      Reward: 
       Focus: 5

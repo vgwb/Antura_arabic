@@ -133,6 +133,7 @@ namespace EA4S.Teacher
         public void LogLearn(int appSession, JourneyPosition pos, MiniGameCode miniGameCode, List<LearnResultParameters> resultsList)
         {
             var currentJourneyContents = AppManager.I.Teacher.VocabularyAi.CurrentJourneyContents;
+            if (currentJourneyContents == null) return; // No logging if we do not have contents (for example through a direct Play)
 
             var learnRules = GetLearnRules(miniGameCode);
 

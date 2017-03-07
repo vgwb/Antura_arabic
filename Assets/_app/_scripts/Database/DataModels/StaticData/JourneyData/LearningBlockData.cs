@@ -17,10 +17,11 @@ namespace EA4S.Database
         public int Stage;
         public int LearningBlock;
         public int NumberOfPlaySessions;
-        public string Description;
+        public string Description_En;
+        public string Description_Ar;
         public string Title_En;
         public string Title_Ar;
-        public string Reward;
+        //public string Reward;
         public LearningBlockDataFocus Focus;
         //        public string AssessmentData;
 
@@ -32,7 +33,7 @@ namespace EA4S.Database
         public override string ToString()
         {
             string output = "";
-            output += string.Format("[LearningBlock: S={0}, LB={1}, description={2}]", Stage, LearningBlock, Description);
+            output += string.Format("[LearningBlock: S={0}, LB={1}, description={2}]", Stage, LearningBlock, Description_En);
             return output;
         }
 

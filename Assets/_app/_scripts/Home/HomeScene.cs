@@ -72,6 +72,7 @@ namespace EA4S.Scenes
 
         public void OnOpenReservedArea()
         {
+            AudioManager.I.PlaySound(Sfx.UIButtonClick);
             // HACK: hide LL since it covers the Arabic TMpro (incredible but true!)
             LLAnimController.gameObject.SetActive(false);
             DialogReservedArea.SetActive(true);
@@ -82,6 +83,7 @@ namespace EA4S.Scenes
 
         public void OnCloseReservedArea()
         {
+            AudioManager.I.PlaySound(Sfx.UIButtonClick);
             // HACK: show LL since it covers the Arabic TMpro (incredible but true!)
             LLAnimController.gameObject.SetActive(true);
             DialogReservedArea.SetActive(false);
