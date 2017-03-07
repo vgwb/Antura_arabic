@@ -56,7 +56,7 @@ namespace EA4S.Database
         public string Medial_Unicode;
         public string Final_Unicode;
         public string Symbol_Unicode;
-        public float Symbol_DeltaY;
+        public int Symbol_DeltaY;
         public string InitialFix;
         public string FinalFix;
         public string MedialFix;
