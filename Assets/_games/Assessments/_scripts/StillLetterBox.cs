@@ -141,6 +141,10 @@ namespace EA4S.Assessment
                 data = value;
 
                 OnModelChanged();
+
+                if(data!=null)
+                    if (data.Id == "with_article" || data.Id == "without_article")
+                        Wideness = 2.3f;
             }
         }
 
