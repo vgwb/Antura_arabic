@@ -537,7 +537,7 @@ namespace EA4S.Rewards
                         foreach (var reward in alreadyUnlockeds.FindAll(r => r.Type == RewardTypes.reward)) {
                             if (!availableRewardIds.Contains(reward.ItemId)) {
                                 int alreadyUnlockedsCount = alreadyUnlockeds.FindAll(r => r.ItemId == reward.ItemId).Count;
-                                if (alreadyUnlockedsCount < 19) {//RewardSystemManager.GetConfig().RewardsColorPairs.Count) { TODO: quick fix
+                                if (alreadyUnlockedsCount < 19) {//RewardSystemManager.GetConfig().RewardsColorPairs.Count) {// TODO: quick fix
                                     availableRewardIds.Add(reward.ItemId);
                                 }
                             }
