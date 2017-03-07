@@ -124,6 +124,13 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
     }
 
+    [Category("Navigation")]
+    public void GoEnd()
+    {
+        WidgetPopupWindow.I.Close();
+        AppManager.I.NavigationManager.GoToEnding(debugMode: true);
+        SRDebug.Instance.HideDebugPanel();
+    }
 
     [Category("Navigation")]
     public void GoToReservedArea()
@@ -132,8 +139,8 @@ public partial class SROptions
         AppManager.I.NavigationManager.GoToReservedArea(debugMode:true);
         SRDebug.Instance.HideDebugPanel();
     }
-    // refactor: we should use a parameterized version for calling minigames so we are not dependant on the existing minigames
 
+    // refactor: we should use a parameterized version for calling minigames so we are not dependant on the existing minigames
     [Category("Minigames")]
     [Sort(10)]
     public void AlphabetSong()
