@@ -211,9 +211,8 @@ namespace EA4S.Book
             LetterTextMedial.gameObject.SetActive(MedialChar != isolatedChar);
             LetterTextFinal.gameObject.SetActive(FinalChar != isolatedChar);
 
-            // Debug
-            LetterTextIsolated.ForceUpdate();
-            LetterTextIsolated.gameObject.GetComponent<TextRenderUtility>().AdjustDiacriticPositions();
+            // AdjustDiacriticPositions
+            // LetterTextIsolated.gameObject.GetComponent<TextRenderUtility>().AdjustDiacriticPositions();
         }
 
         #endregion
