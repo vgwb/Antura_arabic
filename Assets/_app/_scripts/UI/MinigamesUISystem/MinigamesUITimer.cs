@@ -151,7 +151,6 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
-            Debug.Log("PLAY");
             if (alarmSfxSource != null) alarmSfxSource.Play();
             timerTween.Play();
         }
@@ -161,7 +160,6 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
-            Debug.Log("PAUSE");
             if (alarmSfxSource != null) alarmSfxSource.Pause();
             timerTween.Pause();
         }
@@ -171,7 +169,6 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
-            Debug.Log("RESTART");
             if (alarmSfxSource != null) alarmSfxSource.Stop();
             endTween.Rewind();
             timerTween.Restart();
@@ -182,7 +179,6 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
-            Debug.Log("REWIND");
             if (alarmSfxSource != null)
             {
                 alarmSfxSource.Stop();
@@ -198,7 +194,6 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
-            Debug.Log("COMPLETE");
             if (!shakeTween.IsComplete() && alarmSfxSource != null) alarmSfxSource.Stop();
             if (!timerTween.IsComplete()) alarmSfxSource = AudioManager.I.PlaySound(Sfx.AlarmClock);
             timerTween.Complete();
@@ -213,7 +208,6 @@ namespace EA4S.UI
             if (_time > timerTween.Duration()) _time = timerTween.Duration();
             if (Mathf.Approximately(_time, timerTween.Elapsed())) return;
 
-            Debug.Log("GOTO " + _time);
             endTween.Rewind();
             timerTween.Goto(_time, _andPlay);
         }
@@ -227,7 +221,6 @@ namespace EA4S.UI
             if (_percentage > 1) _percentage = 1;
             if (Mathf.Approximately(_percentage, timerTween.ElapsedPercentage())) return;
 
-            Debug.Log("GOTO % " + _percentage);
             endTween.Rewind();
             timerTween.Goto(timerTween.Duration() * _percentage, _andPlay);
         }
