@@ -30,6 +30,9 @@ MonoBehaviour:
       - alef
       - alef_hamza_hi
       - alef_hamza_low
+      - hamza
+      - yeh_hamza
+      - waw_hamza
       Words:
       - father
       - brother
@@ -5895,6 +5898,7 @@ MonoBehaviour:
         Weight: 1
       NumberOfRoundsPerMinigame: 0
       Letters:
+      - hamza
       - waw_hamza
       - yeh_hamza
       - yeh
@@ -6957,6 +6961,9 @@ MonoBehaviour:
       NumberOfRoundsPerMinigame: 0
       Letters:
       - lam_alef
+      - lam_alef_hamza_hi
+      - lam_alef_hamza_low
+      - lam_alef_maddah
       Words: []
       Words_previous:
       - mountain_dual
@@ -9999,8 +10006,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 28
         Weight: 1
-      - MiniGameCode: 29
-        Weight: 1
       - MiniGameCode: 30
         Weight: 1
       - MiniGameCode: 32
@@ -10064,8 +10069,6 @@ MonoBehaviour:
       - MiniGameCode: 26
         Weight: 1
       - MiniGameCode: 28
-        Weight: 1
-      - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
         Weight: 1
@@ -10135,8 +10138,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 28
         Weight: 1
-      - MiniGameCode: 29
-        Weight: 1
       - MiniGameCode: 30
         Weight: 1
       - MiniGameCode: 32
@@ -10201,8 +10202,6 @@ MonoBehaviour:
       - MiniGameCode: 26
         Weight: 1
       - MiniGameCode: 28
-        Weight: 1
-      - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
         Weight: 1
@@ -10281,7 +10280,10 @@ MonoBehaviour:
       - MiniGameCode: 33
         Weight: 1
       NumberOfRoundsPerMinigame: 0
-      Letters: []
+      Letters:
+      - teh_marbuta
+      - teh_marbuta_dammah_tanwin
+      - teh_marbuta_fathah_tanwin
       Words:
       - cloud
       - spring
@@ -10420,7 +10422,12 @@ MonoBehaviour:
       - the_coat
       - the_trousers
       Words_previous:
+      - coat
       - costume
+      - hat
+      - shirt
+      - shoe
+      - trousers
       Phrases: []
       Phrases_previous: []
     - Id: 6.14.2
@@ -10558,6 +10565,74 @@ MonoBehaviour:
       - sure
       - seeyou
       - goodbye
+      - the_year_2016
+      - the_year_2017
+      - the_year_2018
+      - the_year_2015
+      - the_year_2009
+      - theboyopenedthewindow
+      - theteacherlaughed
+      - theworkercarriedthebox
+      - thegirldrankthejuice
+      - themountainisbig
+      - therestaurantisclean
+      - thetigeratethedeer
+      - redberry
+      - yellowflower
+      - greywolf
+      - greencucumber
+      - thecarpenterwenthome
+      - thebirdflew
+      - theshopissmall
+      - thedoctoropenedthehospital
+      - eightscientists
+      - theengineerworethecoat
+      - theplayerwon
+      - theshirtisclean
+      - yesterdaywassunday
+      - thewinteriscold
+      - novemberistheeleventhmonth
+      - theparrotisbeautiful
+      - mayisthefifthmonth
+      - thepolicemanwalked
+      - theicecreamisdelicious
+      - fivebooks
+      - please
+      - thankyouverymuch
+      - goodnight_Q
+      - goodnight_R
+      - congratulations
+      - letsgo_Q
+      - letsgo_R
+      - areyouready_Q
+      - yesiamready_R
+      - whatisyourname_Q
+      - mynameissamer_R
+      - whatisthetimenow_Q
+      - itis10oclockinthemorning_R
+      - doyouneedhelp_Q
+      - yesplease_R
+      - myfatherisabraveman
+      - avirtuouspoliceman
+      - thescientistwenttothestation
+      - thegirlwonaball
+      - abigwhale
+      - mybrotheropenedtheoragebox
+      - myauntsatonthechair
+      - thankyouforthepurpleflower
+      - congrats_forthebedandthecupboard
+      - congrats_for_the_fridge_and_the_oven
+      - theparrotishappyandactive
+      - thetigerwasintheforest
+      - myauntissad
+      - thegreenappleisdelicious
+      - myfaceisbluefromthecold
+      - mysisterwenttotheclub
+      - mygrandfathercaughtthebird
+      - myuncleworethebrownshirt
+      - myuncleisabraveman
+      - the_river_water_is_cold
+      - thecarpenterleft
       Phrases_previous: []
     - Id: 6.15.2
       Stage: 6

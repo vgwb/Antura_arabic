@@ -17,6 +17,6 @@ namespace EA4S.Core
 
         public bool EnglishSubtitles = false;
 
-        public List<PlayerIconData> SavedPlayers;
+        public List<PlayerIconData> SavedPlayers = new List<PlayerIconData>();
     }
 }

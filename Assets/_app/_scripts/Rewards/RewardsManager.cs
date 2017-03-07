@@ -69,8 +69,9 @@ namespace EA4S.Rewards
                 KeeperManager.I.PlayDialog(Database.LocalizationDataId.Reward_Intro);
                 // Clean and Charge antura reward.
                 AnturaModelManager.Instance.ClearLoadedRewards();
-                RewardPackUnlockData firstUnlockedReward = RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward);
-                AppManager.I.Player.AddRewardUnlocked(firstUnlockedReward);
+                RewardPackUnlockData firstUnlockedReward = AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.reward);
+                //RewardPackUnlockData firstUnlockedReward = RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward);
+                //AppManager.I.Player.AddRewardUnlocked(firstUnlockedReward);
                 AnturaModelManager.Instance.LoadRewardPackOnAntura(firstUnlockedReward);
             } else {
                 int rnd = Random.Range(1, 3);
