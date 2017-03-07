@@ -6086,15 +6086,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
       propertyPath: m_LocalScale.x
-      value: 17.535213
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
       propertyPath: m_LocalScale.y
-      value: 10.790902
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
       propertyPath: m_LocalScale.z
-      value: 17.342508
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4000013294749856, guid: 49c7aeeb3c5d5d441b0c1108d739355c, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
