@@ -3,6 +3,7 @@ using EA4S.Core;
 using EA4S.Database;
 using EA4S.Rewards;
 using UnityEngine;
+using System.Linq;
 
 namespace EA4S.Profile
 {
@@ -183,7 +184,19 @@ namespace EA4S.Profile
             PlayerIconData playerIconData = GetSavedPlayers().Find(p => p.Uuid == playerUUID);
             if (playerIconData.Uuid == string.Empty)
                 return null;
+            // if setted as active player in gamesettings remove from it
+            if (playerIconData.Uuid == AppManager.I.GameSettings.LastActivePlayerUUID) {
+                // if possible set the first available player...
+                PlayerIconData newActivePlayer = GetSavedPlayers().Find(p => p.Uuid != playerUUID);
+                if (newActivePlayer.Uuid != string.Empty) {
+                    AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(newActivePlayer.Uuid);
+                } else {
+                    // ...else set to null
+                    AppManager.I.PlayerProfileManager.currentPlayer = null;
+                }
+            }
             AppManager.I.GameSettings.SavedPlayers.Remove(playerIconData);
+            
             SaveGameSettings();
             return returnProfile;
         }
