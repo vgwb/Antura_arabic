@@ -109,6 +109,14 @@ public partial class SROptions
     }
 
     [Category("Navigation")]
+    public void GoMap()
+    {
+        WidgetPopupWindow.I.Close();
+        AppManager.I.NavigationManager.GoToMap(debugMode: true);
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Navigation")]
     public void GoNext()
     {
         WidgetPopupWindow.I.Close();
@@ -510,13 +518,15 @@ public partial class SROptions
     public void SecondToLastJourneyPos()
     {
         JourneyPosition newPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
-        newPos.LearningBlock = 2;
+        newPos.PlaySession = 2;
         if (newPos != null)
         {
             AppManager.I.Player.SetMaxJourneyPosition(newPos, true);
+            FirstContactPassed = true;
         }
         SRDebug.Instance.HideDebugPanel();
         SRDebug.Instance.ShowDebugPanel();
+        GoMap();
     }
 
     [Category("Max Journey Position")]
