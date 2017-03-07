@@ -12,8 +12,11 @@ namespace EA4S.Minigames.MissingLetter
 
         public void EnterState()
         {
-            if(MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter ||
-                MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingForm)
+            if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingLetter)
+            {
+                AudioManager.I.PlayDialogue(Database.LocalizationDataId.MissingLetter_Title);
+            }
+            else if (MissingLetterConfiguration.Instance.Variation == MissingLetterVariation.MissingForm)
             {
                 AudioManager.I.PlayDialogue(Database.LocalizationDataId.MissingLetter_forms_Title);
             }
