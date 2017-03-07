@@ -86,6 +86,7 @@ namespace EA4S.Assessment
             cacheWordsToComplete = new List< StillLetterBox>();
             cacheCompleteWords = new List< string>();
             partialAnswers = null;
+            greenHighlightList = new List<Tuple<IQuestion, Answer>>();
         }
 
         // ##################################
