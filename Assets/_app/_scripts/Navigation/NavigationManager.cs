@@ -395,24 +395,29 @@ namespace EA4S.Core
         /// Calculates the unlock item count in accord to gameplay result information.
         /// </summary>
         /// <returns></returns>
-        public int CalculateUnlockItemCount()
-        {
+        public int CalculateUnlockItemCount() {
+            // decrement because the number of stars needed to unlock the first reward is 2.
+            return CalculateStarsCount() - 1;
+        }
+
+        /// <summary>
+        /// Calculates earned stars in accord to gameplay result information.
+        /// </summary>
+        /// <returns></returns>
+        public int CalculateStarsCount() {
             int totalEarnedStars = 0;
             for (int i = 0; i < EndSessionResults.Count; i++) {
                 totalEarnedStars += EndSessionResults[i].Stars;
             }
-            // Add bones to player
-            int unlockItemsCount = 0;
+            int earnedStarsCount = 0;
             if (EndSessionResults.Count > 0) {
                 float starRatio = totalEarnedStars / EndSessionResults.Count;
                 // Prevent aproximation errors (0.99f must be == 1 but 0.7f must be == 0)
-                unlockItemsCount = starRatio - Mathf.CeilToInt(starRatio) < 0.0001f
+                earnedStarsCount = starRatio - Mathf.CeilToInt(starRatio) < 0.0001f
                     ? Mathf.CeilToInt(starRatio)
                     : Mathf.RoundToInt(starRatio);
             }
-            // decrement because the number of stars needed to unlock the first reward is 2.
-            unlockItemsCount -= 1;
-            return unlockItemsCount;
+            return earnedStarsCount;
         }
 
         /// <summary>
