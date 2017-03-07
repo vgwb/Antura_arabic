@@ -46,6 +46,11 @@ namespace EA4S.Intro
         float fadeOutTime;
 
         bool fadeIn = true;
+        bool showText = false;
+        float lastAlpha = 0;
+
+        public TextRender text;
+        public CanvasRenderer panel;
 
         void Start()
         {
@@ -64,6 +69,10 @@ namespace EA4S.Intro
             }
 
             Antura.State = AnturaAnimationStates.dancing;
+            
+            text.SetSentence(Database.LocalizationDataId.End_Scene_2);
+            text.Alpha = 0;
+            panel.SetAlpha(0);
         }
 
         void OnEnable()
@@ -104,7 +113,7 @@ namespace EA4S.Intro
             if (m_Start)
             {
                 m_Start = false;
-                Debug.Log("Start Introduction");
+                Debug.Log("Start Ending");
                
                 StartCoroutine(DoEnding());
             }
@@ -119,6 +128,15 @@ namespace EA4S.Intro
             }
 
             Camera.main.transform.position = Vector3.Lerp(m_CameraStartPosition, m_CameraEndPosition, t);
+
+            var newAlpha = Mathf.Lerp(lastAlpha, showText ? 1 : 0, Time.deltaTime);
+
+            if (lastAlpha != newAlpha)
+            {
+                text.Alpha = newAlpha;
+                panel.SetAlpha(newAlpha);
+                lastAlpha = newAlpha;
+            }
         }
 
 
@@ -130,7 +148,6 @@ namespace EA4S.Intro
                 {
                     // Reset it
                     completed = false;
-                    AppManager.I.Player.SetFinalShown();
                     return true;
                 }
                 return false;
@@ -144,17 +161,35 @@ namespace EA4S.Intro
 
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
+            
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.End_Scene_1_1, true, true, OnCompleted);
+            yield return new WaitUntil(CheckIfCompleted);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.End_Scene_1_2, true, true, OnCompleted);
 
+            yield return new WaitForSeconds(m_StateDelay);
+            yield return new WaitUntil(CheckIfCompleted);
 
-            KeeperManager.I.PlayDialog(Database.LocalizationDataId.Assessment_Complete_2, true, true, OnCompleted);
+            // Show Text
+            showText = true;
+
+            yield return new WaitForSeconds(5);
+
+            showText = false;
+
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.End_Scene_3_1, true, true, OnCompleted);
+            yield return new WaitUntil(CheckIfCompleted);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.End_Scene_3_2, true, true, OnCompleted);
+            yield return new WaitUntil(CheckIfCompleted);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.End_Scene_3_3, true, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1);
 
             fadeIn = false;
             yield return new WaitForSeconds(FadeTime);
             m_End = true;
 
+            AppManager.I.Player.SetFinalShown();
         }
     }
 }

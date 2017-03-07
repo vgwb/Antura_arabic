@@ -14,6 +14,39 @@ namespace EA4S.UI
             get { return m_text; }
             set { if (m_text == value) return; m_text = value; updateText(); }
         }
+
+        public float Alpha {
+            get
+            {
+                if (isTMPro)
+                {
+                    if (isUI)
+                    {
+                        return gameObject.GetComponent<TextMeshProUGUI>().alpha;
+                    }
+                    else
+                    {
+                        return gameObject.GetComponent<TextMeshPro>().alpha;
+                    }
+                }
+                return 0;
+            }
+            set
+            {
+                if (isTMPro)
+                {
+                    if (isUI)
+                    {
+                        gameObject.GetComponent<TextMeshProUGUI>().alpha = value;
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<TextMeshPro>().alpha = value;
+                    }
+                }
+            }
+        }
+
         [SerializeField]
         protected string m_text;
 
