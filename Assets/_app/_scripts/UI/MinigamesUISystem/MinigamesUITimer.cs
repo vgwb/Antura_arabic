@@ -106,6 +106,7 @@ namespace EA4S.UI
                             // Start alarm sound
                             if (alarmSfxSource != null) alarmSfxSource.Stop();
                             alarmSfxSource = AudioManager.I.PlaySound(alarmSfx);
+                            alarmSfxSource.Loop = true;
                         }
                         shakeTween.Goto(shakeTween.Duration() - shakeElapsedTarget);
                     }
@@ -120,6 +121,7 @@ namespace EA4S.UI
                     endTween.Restart();
                     if (alarmSfxSource != null) alarmSfxSource.Stop();
                     alarmSfxSource = AudioManager.I.PlaySound(Sfx.AlarmClock);
+                    alarmSfxSource.Loop = false;
                 });
             if (!_playImmediately) timerTween.Pause();
 

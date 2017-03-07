@@ -136,6 +136,12 @@ namespace EA4S.Test
             MinigamesUI.Timer.Goto(_time, true);
         }
 
+        public void Timer_GotoAdvance(float _elapsed)
+        {
+            this.StopAllCoroutines();
+            MinigamesUI.Timer.Goto(MinigamesUI.Timer.Elapsed + _elapsed, false);
+        }
+
         public void Timer_GotoPercentage(float _percentage)
         {
             this.StopAllCoroutines();
