@@ -21,6 +21,7 @@ namespace EA4S.UI
         Sequence timerTween, shakeTween;
         IAudioSource alarmSfxSource;
         bool currPauseMenuIsOpenState;
+        bool wasPlayingBeforePauseMenuWasOpened;
         Tween endTween;
 
         #region Unity
@@ -46,8 +47,20 @@ namespace EA4S.UI
             if (currPauseMenuIsOpenState == PauseMenu.I.IsMenuOpen) return;
 
             currPauseMenuIsOpenState = PauseMenu.I.IsMenuOpen;
-            if (currPauseMenuIsOpenState) Pause();
-            else Play();
+            if (currPauseMenuIsOpenState)
+            {
+                wasPlayingBeforePauseMenuWasOpened = timerTween.IsPlaying();
+                Pause();
+            }
+            else
+            {
+                if (wasPlayingBeforePauseMenuWasOpened) Play();
+                else
+                {
+                    // Just continue playing the audio
+                    if (alarmSfxSource != null) alarmSfxSource.Play();
+                }
+            }
         }
 
         #endregion
