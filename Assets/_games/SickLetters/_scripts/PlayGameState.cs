@@ -65,6 +65,7 @@ namespace EA4S.Minigames.SickLetters
                 }
                 */
 
+                game.Context.GetOverlayWidget().OnClockCompleted();
                 game.SetCurrentState(game.ResultState);
                 AudioManager.I.PlayDialogue("Keeper_TimeUp");
             }

@@ -38,6 +38,7 @@ namespace EA4S.Minigames.DancingDots
 
             if (timer < 0)
             {
+                game.Context.GetOverlayWidget().OnClockCompleted();
                 game.SetCurrentState(game.ResultState);
                 AudioManager.I.PlayDialogue("Keeper_TimeUp");
             }
