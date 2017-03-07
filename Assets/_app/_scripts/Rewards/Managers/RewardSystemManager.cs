@@ -36,7 +36,7 @@ namespace EA4S.Rewards
         /// <returns></returns>
         public static RewardConfig GetConfig()
         {
-            if (config == null)
+            if (config.Rewards == null)
                 LoadFromConfig();
             return config.GetClone();
         }
@@ -516,10 +516,10 @@ namespace EA4S.Rewards
                         do {
                             //int count = AppManager.I.Player.GetNotYetUnlockedRewardCountForType(_rewardType);
                             List<Reward> availableItems = GetConfig().Rewards;
-                            availableItems.RemoveAll(r => alreadyUnlockedRewardOfType.Exists(ur => ur.ItemId == r.ID));
+                            //availableItems.Where(r => alreadyUnlockedRewardOfType.Exists(ur => ur.ItemId == r.ID)).ToList();
                             //itemId = config.Rewards.Where(r => alreadyUnlockedRewardOfType.Any(aur => aur  r.ID    .GetRandom().ID;
                             
-                            itemId = availableItems.GetRandomAlternative().ID;
+                            itemId = availableItems.Where(r => !alreadyUnlockedRewardOfType.Exists(ur => ur.ItemId == r.ID)).ToList().GetRandomAlternative().ID;
                             color = GetConfig().RewardsColorPairs.GetRandomAlternative();
                             List<RewardPackUnlockData> unlocked = AppManager.I.Player.RewardsUnlocked;
                             duplicated = unlocked.Find(r => r.ItemId == itemId) != null;
@@ -532,12 +532,12 @@ namespace EA4S.Rewards
                         //} while (duplicated && AppManager.I.Player.RewardForTypeAvailableYet(_rewardType) || countAvoidInfiniteLoop < 1) ;
                     } else { // need only to create new color pair for one of already unlocked reward
                         color = null;
-                        List<RewardPackUnlockData> alreadyUnlockeds = AppManager.I.Player.RewardsUnlocked;
+                        List<RewardPackUnlockData> alreadyUnlockeds = AppManager.I.Player.RewardsUnlocked.Where(r => r.Type == RewardTypes.reward).ToList();
                         List<string> availableRewardIds = new List<string>();
-                        foreach (var reward in alreadyUnlockeds.FindAll(r => r.Type == RewardTypes.reward)) {
+                        foreach (var reward in alreadyUnlockeds) {
                             if (!availableRewardIds.Contains(reward.ItemId)) {
-                                int alreadyUnlockedsCount = alreadyUnlockeds.FindAll(r => r.ItemId == reward.ItemId).Count;
-                                if (alreadyUnlockedsCount < 19) {//RewardSystemManager.GetConfig().RewardsColorPairs.Count) {// TODO: quick fix
+                                int alreadyUnlockedsCount = alreadyUnlockeds.Where(r => r.ItemId == reward.ItemId).ToList().Count;
+                                if (alreadyUnlockedsCount < RewardSystemManager.GetConfig().RewardsColorPairs.Count) {// TODO: quick fix
                                     availableRewardIds.Add(reward.ItemId);
                                 }
                             }
@@ -548,8 +548,8 @@ namespace EA4S.Rewards
                         }
                         itemId = availableRewardIds.GetRandomAlternative();
                         List<RewardColor> availableColors = GetConfig().RewardsColorPairs;
-                        //availableColors.RemoveAll(r => alreadyUnlockeds.Exists(ur => ur.ItemId == itemId && ur.ColorId == r.ID));
-                        color = availableColors.GetRandomAlternative();
+                        //availableColors.Where(r => !alreadyUnlockeds.Exists(ur => ur.ItemId == itemId && ur.ColorId == r.ID));
+                        color = availableColors.Where(r => !alreadyUnlockeds.Exists(ur => ur.ItemId == itemId && ur.ColorId == r.ID)).ToList().GetRandomAlternative();
                     }
                     rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, itemId, color.ID, _rewardType, journeyPosition);
                     break;
