@@ -162,7 +162,9 @@ namespace EA4S.Intro
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(m_StateDelay);
             
-            KeeperManager.I.PlayDialog(Database.LocalizationDataId.End_Scene_1, true, true, OnCompleted);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.End_Scene_1_1, true, true, OnCompleted);
+            yield return new WaitUntil(CheckIfCompleted);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.End_Scene_1_2, true, true, OnCompleted);
 
             yield return new WaitForSeconds(m_StateDelay);
             yield return new WaitUntil(CheckIfCompleted);
@@ -174,8 +176,12 @@ namespace EA4S.Intro
 
             showText = false;
 
-            KeeperManager.I.PlayDialog(Database.LocalizationDataId.End_Scene_3, true, true, OnCompleted);
-            
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.End_Scene_3_1, true, true, OnCompleted);
+            yield return new WaitUntil(CheckIfCompleted);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.End_Scene_3_2, true, true, OnCompleted);
+            yield return new WaitUntil(CheckIfCompleted);
+            KeeperManager.I.PlayDialog(Database.LocalizationDataId.End_Scene_3_3, true, true, OnCompleted);
+
             yield return new WaitUntil(CheckIfCompleted);
             yield return new WaitForSeconds(1);
 
