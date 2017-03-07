@@ -70,7 +70,7 @@ namespace EA4S.UI
         bool fooIcoSearched;
         RectTransform fooRectT;
         CanvasGroup fooCGroup;
-
+        bool tweensInitialized;
         Tween clickTween, pulseTween;
 
         #region Unity + INIT
@@ -87,8 +87,6 @@ namespace EA4S.UI
             pulseTween = this.transform.DOScale(this.transform.localScale * 1.1f, 0.3f).SetAutoKill(false).SetUpdate(true).Pause()
                 .SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuad);
 
-            clickTween.ForceInit();
-            pulseTween.ForceInit();
             Bt.onClick.AddListener(OnInternalClick);
         }
 
@@ -107,7 +105,7 @@ namespace EA4S.UI
         {
             IsToggled = _activate;
 
-            pulseTween.Rewind();
+            if (pulseTween != null && pulseTween.Elapsed() > 0) pulseTween.Rewind();
             BtImg.color = _activate ? DefaultColor : IsLocked ? BtLockedColor : BtToggleOffColor;
             if (ToggleIconAlpha && Ico != null) Ico.SetAlpha(_activate ? 1 : 0.4f);
             if (ToggleCanvasGroupAlpha) CGroup.alpha = _activate ? 1 : 0.4f;
@@ -134,16 +132,19 @@ namespace EA4S.UI
         /// </summary>
         public void Pulse()
         {
+            InitTweens();
             pulseTween.PlayForward();
         }
 
         public void StopPulsing()
         {
+            InitTweens();
             pulseTween.Rewind();
         }
 
         public void AnimateClick(bool _force = false)
         {
+            InitTweens();
             pulseTween.Rewind();
             if (AutoAnimateClick || _force) clickTween.Restart();
         }
@@ -151,6 +152,19 @@ namespace EA4S.UI
         public void PlayClickFx()
         {
             AudioManager.I.PlaySound(Sfx.UIButtonClick);
+        }
+
+        #endregion
+
+        #region Methods
+
+        void InitTweens()
+        {
+            if (tweensInitialized) return;
+
+            tweensInitialized = true;
+            clickTween.ForceInit();
+            pulseTween.ForceInit();
         }
 
         #endregion
