@@ -158,15 +158,15 @@ namespace EA4S.Database
 
         public Vector2 FindDiacriticCombo2Fix(string Unicode1, string Unicode2)
         {
-            Vector2 newDeltaY = new Vector2(0, 0);
+            Vector2 newDelta = new Vector2(0, 0);
             foreach (var combo in DiacriticCombos2Fix) {
                 if (combo.Unicode1 == Unicode1 && combo.Unicode2 == Unicode2) {
-                    newDeltaY.x = combo.DeltaX;
-                    newDeltaY.y = combo.DeltaY;
+                    newDelta.x = combo.DeltaX;
+                    newDelta.y = combo.DeltaY;
                     break;
                 }
             }
-            return newDeltaY;
+            return newDelta;
         }
 
         #region Letter Utilities
