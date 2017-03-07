@@ -9,10 +9,12 @@ namespace EA4S.Assessment
     public class AnswerChecker
     {
         private AssessmentAudioManager audioManager;
+        private AssessmentEvents events = null;
 
-        public AnswerChecker( AssessmentAudioManager audioManager)
+        public AnswerChecker( AssessmentAudioManager audioManager, AssessmentEvents events = null)
         {
             this.audioManager = audioManager;
+            this.events = events;
         }
 
         private bool isAnimating = false;
@@ -164,6 +166,9 @@ namespace EA4S.Assessment
 
             if (allCorrect)
             {
+                if(events!=null && events.OnPreQuestionsAnswered != null)
+                    yield return new WaitCoroutine( events.OnPreQuestionsAnswered());
+
                 yield return Wait.For( 1.0f);
             }
             else

@@ -31,8 +31,8 @@ namespace EA4S.Assessment
 
         public void Place( Answer[] answer)
         {
-            Answer[] original = new Answer[answer.Length];
-            placeholders = new List<StillLetterBox>();
+            Answer[] original = new Answer[ answer.Length];
+            placeholders = new List< StillLetterBox>();
 
             for (int i = 0; i < answer.Length; i++)
                 original[i] = answer[i];
@@ -57,13 +57,13 @@ namespace EA4S.Assessment
         {
             for (int i = 0; i < answer.Length; i++)
                 // if there is one element out of place.. GOOD!
-                if( answer[i].Equals(original[i]) == false)
+                if( answer[i].Equals( original[i]) == false)
                     return;
 
             // Otherwise we swap the first 2 elements that are different
             // (we force at least 1 out of place to prevent automatic victory!)
             for (int i = 0; i < answer.Length; i++)
-                if (answer[i].Equals(answer[0]) == false)
+                if (answer[i].Equals( answer[0]) == false)
                 {
                     Answer first = answer[0];
                     answer[0] = answer[i];

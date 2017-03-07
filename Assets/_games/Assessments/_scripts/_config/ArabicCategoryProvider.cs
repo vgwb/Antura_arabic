@@ -164,9 +164,9 @@ namespace EA4S.Assessment
 
                 case CategoryType.WithOrWithoutArticle:
                     if (currentCategory == 0)
-                        return QuestionView( singular);
+                        return QuestionView( article);
                     else
-                        return QuestionView( dual);
+                        return QuestionView( noArticle);
 
                 default:
                     throw new NotImplementedException();

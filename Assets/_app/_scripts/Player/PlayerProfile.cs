@@ -166,8 +166,6 @@ namespace EA4S.Profile
         {
             JourneyPosition p = AppManager.I.JourneyHelper.FindNextJourneyPosition(CurrentJourneyPosition);
             SetMaxJourneyPosition(p);
-
-
         }
 
         /// <summary>
@@ -181,28 +179,44 @@ namespace EA4S.Profile
             if (MaxJourneyPosition.IsMinor(newJourneyPosition)) {
                 MaxJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
                 CurrentJourneyPosition = new JourneyPosition(newJourneyPosition.Stage, newJourneyPosition.LearningBlock, newJourneyPosition.PlaySession);
-                if (AppManager.I.Player != null)   // @todo: why this check? should never be null here
-                {
-                    // Finished
-                    if (!HasFinishedTheGame) {
-                        HasFinishedTheGame = AppManager.I.JourneyHelper.HasFinishedTheGame();
-                        if (HasFinishedTheGame) {
-                            SetGameCompleted();
-                            Save();
-                        }
-                    }
-                    // With all stars
-                    if (HasFinishedTheGame && !HasFinishedTheGameWithAllStars) {
-                        HasFinishedTheGameWithAllStars = AppManager.I.ScoreHelper.HasFinishedTheGameWithAllStars();
-                        if (HasFinishedTheGameWithAllStars)
-                        {
-                            AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
-                            Save();
-                        }
-                    }
-                }
 
                 if (_save) {
+                    Save();
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Check whether the game has finished and update the player icon.
+        /// Called only when we actually finish the game.
+        /// </summary>
+        public void CheckGameFinished()
+        {
+            if (!HasFinishedTheGame)
+            {
+                HasFinishedTheGame = AppManager.I.JourneyHelper.HasFinishedTheGame();
+                if (HasFinishedTheGame)
+                {
+                    AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
+                    Save();
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Check whether the game has finished with all starts and update the player icon.
+        /// Called at each end of play session.
+        /// </summary>
+        public void CheckGameFinishedWithAllStars()
+        {
+            if (HasFinishedTheGame && !HasFinishedTheGameWithAllStars)
+            {
+                HasFinishedTheGameWithAllStars = AppManager.I.ScoreHelper.HasFinishedTheGameWithAllStars();
+                if (HasFinishedTheGameWithAllStars)
+                {
+                    AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
                     Save();
                 }
             }
@@ -499,6 +513,7 @@ namespace EA4S.Profile
         public void SetGameCompleted() {
             ProfileCompletion = ProfileCompletionState.GameCompleted;
             AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
+            CheckGameFinished();
         }
 
         public bool HasFinalBeenShown() {
