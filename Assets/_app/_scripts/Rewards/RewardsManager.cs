@@ -72,7 +72,7 @@ namespace EA4S.Rewards
                 RewardPackUnlockData firstUnlockedReward = AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.reward);
                 //RewardPackUnlockData firstUnlockedReward = RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward);
                 //AppManager.I.Player.AddRewardUnlocked(firstUnlockedReward);
-                //AnturaModelManager.Instance.LoadRewardPackOnAntura(firstUnlockedReward);
+                AnturaModelManager.Instance.LoadRewardPackOnAntura(firstUnlockedReward);
             } else {
                 int rnd = Random.Range(1, 3);
                 switch (rnd) {

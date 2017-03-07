@@ -32,6 +32,7 @@ namespace EA4S.Profile
                     SaveGameSettings();
                     LogManager.I.LogInfo(InfoEvent.AppSessionStart);
                     AppManager.I.NavigationManager.InitialisePlayerNavigationData(currentPlayer);
+                    
                     currentPlayer.LoadRewardsUnlockedFromDB(); // refresh list of unlocked rewards
                     if (OnProfileChanged != null)
                         OnProfileChanged();
