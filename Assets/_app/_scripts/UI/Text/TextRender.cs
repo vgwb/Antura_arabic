@@ -175,5 +175,6 @@ namespace EA4S.UI
             isArabic = true;
             text = row.Arabic;
         }
+
     }
 }

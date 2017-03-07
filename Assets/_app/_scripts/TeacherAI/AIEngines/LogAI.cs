@@ -64,7 +64,7 @@ namespace EA4S.Teacher
         {
             string query = string.Format("SELECT * FROM " + typeof(LogMoodData).Name);
             var logMoodData = db.FindDataByQuery<LogMoodData>(query).LastOrDefault();
-            if (logMoodData != null) Debug.Log(GenericHelper.GetTimeSpanBetween(logMoodData.Timestamp, GenericHelper.GetTimestampForNow()));
+            //if (logMoodData != null) Debug.Log(GenericHelper.GetTimeSpanBetween(logMoodData.Timestamp, GenericHelper.GetTimestampForNow()));
             if (logMoodData != null) return (int)GenericHelper.GetTimeSpanBetween(logMoodData.Timestamp, GenericHelper.GetTimestampForNow()).TotalSeconds;
             return int.MaxValue;
         }
