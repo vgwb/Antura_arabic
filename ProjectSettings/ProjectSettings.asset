@@ -222,44 +222,6 @@ PlayerSettings:
       m_Icon: {fileID: 2800000, guid: 5a71076b1c3d54ddfb10fafde3b01a30, type: 3}
       m_Width: 128
       m_Height: 128
-  - m_BuildTarget: iPhone
-    m_Icons:
-    - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 145cce35974224039ac33d5dfc1063ea, type: 3}
-      m_Width: 180
-      m_Height: 180
-    - serializedVersion: 2
-      m_Icon: {fileID: 0}
-      m_Width: 167
-      m_Height: 167
-    - serializedVersion: 2
-      m_Icon: {fileID: 0}
-      m_Width: 152
-      m_Height: 152
-    - serializedVersion: 2
-      m_Icon: {fileID: 0}
-      m_Width: 144
-      m_Height: 144
-    - serializedVersion: 2
-      m_Icon: {fileID: 0}
-      m_Width: 120
-      m_Height: 120
-    - serializedVersion: 2
-      m_Icon: {fileID: 0}
-      m_Width: 114
-      m_Height: 114
-    - serializedVersion: 2
-      m_Icon: {fileID: 0}
-      m_Width: 76
-      m_Height: 76
-    - serializedVersion: 2
-      m_Icon: {fileID: 0}
-      m_Width: 72
-      m_Height: 72
-    - serializedVersion: 2
-      m_Icon: {fileID: 0}
-      m_Width: 57
-      m_Height: 57
   - m_BuildTarget: Android
     m_Icons:
     - serializedVersion: 2
