@@ -138,6 +138,7 @@ namespace EA4S.UI
 
         void OnComplete()
         {
+            Time.timeScale = 1;
             GlobalUI.Clear(false);
             if (onCompleteCallback != null)
                 onCompleteCallback();
