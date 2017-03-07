@@ -1,10 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Globalization;
 using EA4S.Helpers;
 using EA4S.Teacher;
 
 namespace EA4S.Database
 {
+    public struct DiacriticComboFix
+    {
+        public string Unicode1;
+        public string Unicode2;
+        public float DeltaY;
+        public float DeltaX;
+
+        public DiacriticComboFix(string _unicode1, string _unicode2, float _deltay, float _deltaX)
+        {
+            Unicode1 = _unicode1;
+            Unicode2 = _unicode2;
+            DeltaY = _deltay;
+            DeltaX = _deltaX;
+        }
+    }
+
     /// <summary>
     /// Provides helpers to get correct letter/word/phrase data according to the teacher's logic and based on the player's progression
     /// </summary>
@@ -12,13 +29,145 @@ namespace EA4S.Database
     {
         private DatabaseManager dbManager;
 
-        public VocabularyHelper(DatabaseManager _dbManager)
-        {
-            this.dbManager = _dbManager;
-        }
-
         // HACK: this is needed for some games where LamAlef behaves differently
         public bool ForceUnseparatedLetters { get; set; }
+
+        public List<DiacriticComboFix> DiacriticCombos2Fix = new List<DiacriticComboFix>();
+
+        public VocabularyHelper(DatabaseManager _dbManager)
+        {
+            dbManager = _dbManager;
+            buildDiacriticCombos2Fix();
+        }
+
+        void buildDiacriticCombos2Fix()
+        {
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0627", "064B", 70, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE8E", "064B", 80, -10));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0623", "064E", 200, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE84", "064E", 200, -10));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0639", "0650", -400, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FECA", "0650", -400, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0628", "0650", -120, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE91", "0650", -120, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE92", "0650", -120, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE90", "0650", -120, 70));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0630", "064E", 80, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEAC", "064E", 80, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED3", "064E", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED4", "064E", 50, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED3", "0652", 60, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED4", "0652", 60, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEEC", "0650", -120, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("062D", "0650", -350, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEA2", "0650", -350, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDB", "064F", 70, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDC", "064F", 70, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEFB", "064B", 70, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEFC", "064B", 70, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "064C", 70, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "064C", 70, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "064E", 70, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "064E", 70, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0644", "0650", -100, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDE", "0650", -100, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0644", "064D", -100, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDE", "064D", -100, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "0652", 100, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "0652", 100, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0645", "0650", -100, 40));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE2", "0650", -100, 40));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0646", "064D", -160, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE6", "064D", -160, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE7", "0652", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE8", "0652", 50, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0642", "064E", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED7", "064E", 40, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED8", "064E", 40, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED6", "064E", 0, 50));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0631", "0650", -200, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEAE", "0650", -200, 50));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0637", "064C", 100, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC3", "064C", 100, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC4", "064C", 100, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC2", "064C", 100, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0637", "064E", 100, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC3", "064E", 100, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC4", "064E", 100, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC2", "064E", 100, 0));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064F", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064F", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064F", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064F", 0, 50));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064C", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064C", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064C", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064C", 0, 50));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064E", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064E", 0, 50));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0629", "064C", 60, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064C", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064C", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064C", 0, 50));
+
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0629", "064B", 60, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064B", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064B", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064B", 0, 50));
+
+            //List<LetterData> list = AppManager.I.DB.FindLetterData((x) => (x.Symbol_DeltaY != 0));
+            //foreach (var letter in list) {
+            //    DiacriticCombos2Fix.Add(new DiacriticComboFix(letter.Isolated_Unicode + letter.Symbol_Unicode, letter.Symbol_DeltaY));
+            //    if (letter.Initial_Unicode != "") {
+            //        DiacriticCombos2Fix.Add(new DiacriticComboFix(letter.Initial_Unicode + letter.Symbol_Unicode, letter.Symbol_DeltaY));
+            //    }
+            //    if (letter.Medial_Unicode != "") {
+            //        DiacriticCombos2Fix.Add(new DiacriticComboFix(letter.Medial_Unicode + letter.Symbol_Unicode, letter.Symbol_DeltaY));
+            //    }
+            //    if (letter.Final_Unicode != "") {
+            //        DiacriticCombos2Fix.Add(new DiacriticComboFix(letter.Final_Unicode + letter.Symbol_Unicode, letter.Symbol_DeltaY));
+            //    }
+            //}
+        }
+
+        public Vector2 FindDiacriticCombo2Fix(string Unicode1, string Unicode2)
+        {
+            Vector2 newDeltaY = new Vector2(0, 0);
+            foreach (var combo in DiacriticCombos2Fix) {
+                if (combo.Unicode1 == Unicode1 && combo.Unicode2 == Unicode2) {
+                    newDeltaY.x = combo.DeltaX;
+                    newDeltaY.y = combo.DeltaY;
+                    break;
+                }
+            }
+            return newDeltaY;
+        }
 
         #region Letter Utilities
 
@@ -26,8 +175,7 @@ namespace EA4S.Database
         {
             if (filters.requireDiacritics && !data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) return false;
 
-            switch (filters.excludeDiacritics)
-            {
+            switch (filters.excludeDiacritics) {
                 case LetterFilters.ExcludeDiacritics.All:
                     if (data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) return false;
                     break;
@@ -39,8 +187,7 @@ namespace EA4S.Database
                     break;
             }
 
-            switch (filters.excludeLetterVariations)
-            {
+            switch (filters.excludeLetterVariations) {
                 case LetterFilters.ExcludeLetterVariations.All:
                     if (data.IsOfKindCategory(LetterKindCategory.LetterVariation)) return false;
                     break;
@@ -62,7 +209,7 @@ namespace EA4S.Database
 
         public List<LetterData> GetAllBaseLetters()
         {
-            var p = new LetterFilters(excludeDiacritics: LetterFilters.ExcludeDiacritics.All, excludeLetterVariations: LetterFilters.ExcludeLetterVariations.All, excludeDiphthongs:true);
+            var p = new LetterFilters(excludeDiacritics: LetterFilters.ExcludeDiacritics.All, excludeLetterVariations: LetterFilters.ExcludeLetterVariations.All, excludeDiphthongs: true);
             return GetAllLetters(p);
         }
 
@@ -134,13 +281,10 @@ namespace EA4S.Database
         private List<string> GetLetterIdsInWordData(WordData wordData)
         {
             List<string> letter_ids_list = null;
-            if (ForceUnseparatedLetters)
-            {
+            if (ForceUnseparatedLetters) {
                 var parts = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB.StaticDatabase, wordData, separateVariations: false);
                 letter_ids_list = parts.ConvertAll(p => p.letter.Id);
-            }
-            else
-            {
+            } else {
                 letter_ids_list = new List<string>(wordData.Letters);
             }
             return letter_ids_list;
@@ -166,8 +310,7 @@ namespace EA4S.Database
         public List<LetterData> GetLettersNotInWords(LetterKindCategory category = LetterKindCategory.Real, params WordData[] tabooArray)
         {
             var letter_ids_list = new HashSet<string>();
-            foreach (var tabooWordData in tabooArray)
-            {
+            foreach (var tabooWordData in tabooArray) {
                 var tabooWordDataLetterIds = GetLetterIdsInWordData(tabooWordData);
                 letter_ids_list.UnionWith(tabooWordDataLetterIds);
             }
@@ -392,8 +535,7 @@ namespace EA4S.Database
 
         public bool LetterContainedInAnyWord(LetterData letter, List<string> word_ids)
         {
-            foreach (var word_id in word_ids)
-            {
+            foreach (var word_id in word_ids) {
                 var containedLetters = GetLettersInWord(word_id);
                 if (containedLetters.Contains(letter))
                     return true;
@@ -409,7 +551,7 @@ namespace EA4S.Database
             return false;
         }
 
-    #endregion
+        #endregion
 
         #region Phrase -> Word
 
@@ -431,8 +573,7 @@ namespace EA4S.Database
             var words_ids_list = new List<string>(phraseData.Words);
             List<WordData> inputList = dbManager.FindWordData(x => words_ids_list.Contains(x.Id) && CheckFilters(wordFilters, x));
             List<WordData> orderedOutputList = new List<WordData>();
-            words_ids_list.ForEach(id =>
-            {
+            words_ids_list.ForEach(id => {
                 var word = inputList.Find(x => x.Id.Equals(id));
                 if (word != null) orderedOutputList.Add(word);
             });

@@ -47,8 +47,13 @@ namespace EA4S.UI
 
         public Database.LocalizationDataId LocalizationId;
 
+        TMP_Text m_TextComponent;
+        TMP_TextInfo textInfo;
+
         void Awake()
         {
+            m_TextComponent = gameObject.GetComponent<TMP_Text>();
+
             checkConfiguration();
 
             if (LocalizationId != Database.LocalizationDataId.None) {
@@ -168,13 +173,10 @@ namespace EA4S.UI
         /// The m text component.
         /// </summary>
 
-        TMP_Text m_TextComponent;
-        TMP_TextInfo textInfo;
         public int DeltaYPerc;
 
         void AdjustDiacriticPositions()
         {
-            m_TextComponent = gameObject.GetComponent<TMP_Text>();
             m_TextComponent.ForceMeshUpdate();
             textInfo = m_TextComponent.textInfo;
 
@@ -191,53 +193,54 @@ namespace EA4S.UI
                              );
                 }
 
-                int newDeltaY = 0;
-                int charPosition = 1;
+                Vector2 newDelta = new Vector2(0, 0);
+                bool changed = false;
 
-                if ((ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[0].character) == "0627"
-                    && ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[1].character) == "064B") ||
-                    (ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[0].character) == "FE8E"
-                     && ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[1].character) == "064B")) {
-                    newDeltaY = 70;
+                for (int charPosition = 0; charPosition < characterCount - 1; charPosition++) {
+                    newDelta = AppManager.I.VocabularyHelper.FindDiacriticCombo2Fix(
+                        ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition].character),
+                        ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character)
+                    );
+
+                    if (newDelta.sqrMagnitude > 0f) {
+                        changed = true;
+                        //TMP_CharacterInfo charInfo = textInfo.characterInfo[charPosition];
+
+                        // Cache the vertex data of the text object as the shift is applied to the original position of the characters.
+                        //TMP_MeshInfo[] cachedMeshInfo = textInfo.CopyMeshInfoVertexData();
+                        // Get the index of the material used by the current character.
+                        int materialIndex = textInfo.characterInfo[charPosition + 1].materialReferenceIndex;
+                        // Get the index of the first vertex used by this text element.
+                        int vertexIndex = textInfo.characterInfo[charPosition + 1].vertexIndex;
+
+                        // Get the cached vertices of the mesh used by this text element (character or sprite).
+                        //Vector3[] sourceVertices = cachedMeshInfo[materialIndex].vertices;
+                        Vector3[] sourceVertices = textInfo.meshInfo[materialIndex].vertices;
+
+                        float charsize = (sourceVertices[vertexIndex + 2].y - sourceVertices[vertexIndex + 0].y);
+                        float dx = charsize * newDelta.x / 100f;
+                        float dy = charsize * newDelta.y / 100f;
+                        Vector3 offset = new Vector3(dx, dy, 0f);
+
+                        Vector3[] destinationVertices = textInfo.meshInfo[materialIndex].vertices;
+                        destinationVertices[vertexIndex + 0] = sourceVertices[vertexIndex + 0] + offset;
+                        destinationVertices[vertexIndex + 1] = sourceVertices[vertexIndex + 1] + offset;
+                        destinationVertices[vertexIndex + 2] = sourceVertices[vertexIndex + 2] + offset;
+                        destinationVertices[vertexIndex + 3] = sourceVertices[vertexIndex + 3] + offset;
+
+                        Debug.Log("DIACRITIC: pos fixed for " + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[1].character) + " by " + newDelta);
+                    }
+
                 }
-
-                if ((ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[0].character) == "0623"
-                   && ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[1].character) == "064E") ||
-                   (ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[0].character) == "FE84"
-                    && ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[1].character) == "064E")) {
-                    newDeltaY = 200;
-                }
-
-                if (ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[0].character) == "0639"
-                    && ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[1].character) == "0650") {
-                    newDeltaY = DeltaYPerc;
-                }
-
-                if (newDeltaY != 0) {
-                    //TMP_CharacterInfo charInfo = textInfo.characterInfo[charPosition];
-
-                    // Cache the vertex data of the text object as the shift is applied to the original position of the characters.
-                    TMP_MeshInfo[] cachedMeshInfo = textInfo.CopyMeshInfoVertexData();
-                    // Get the index of the material used by the current character.
-                    int materialIndex = textInfo.characterInfo[charPosition].materialReferenceIndex;
-                    // Get the index of the first vertex used by this text element.
-                    int vertexIndex = textInfo.characterInfo[charPosition].vertexIndex;
-
-                    // Get the cached vertices of the mesh used by this text element (character or sprite).
-                    Vector3[] sourceVertices = cachedMeshInfo[materialIndex].vertices;
-                    float dy = (sourceVertices[vertexIndex + 2].y - sourceVertices[vertexIndex + 0].y) * newDeltaY / 100f;
-                    Vector3 offset = new Vector3(0f, dy, 0f);
-
-                    Vector3[] destinationVertices = textInfo.meshInfo[materialIndex].vertices;
-                    destinationVertices[vertexIndex + 0] = sourceVertices[vertexIndex + 0] + offset;
-                    destinationVertices[vertexIndex + 1] = sourceVertices[vertexIndex + 1] + offset;
-                    destinationVertices[vertexIndex + 2] = sourceVertices[vertexIndex + 2] + offset;
-                    destinationVertices[vertexIndex + 3] = sourceVertices[vertexIndex + 3] + offset;
-
+                if (changed) {
+                    // Push changes into meshes
+                    //for (int i = 0; i < textInfo.meshInfo.Length; i++) {
+                    //    textInfo.meshInfo[i].mesh.vertices = copyOfVertices[i];
+                    //    m_TextComponent.UpdateGeometry(textInfo.meshInfo[i].mesh, i);
+                    //}
                     m_TextComponent.UpdateVertexData();
-
-                    Debug.Log("DIACRITIC: pos fixed for " + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[1].character) + " by " + newDeltaY + " / " + dy);
                 }
+
             }
 
         }
