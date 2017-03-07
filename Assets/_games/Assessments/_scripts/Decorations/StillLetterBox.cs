@@ -2,6 +2,7 @@ using DG.Tweening;
 using EA4S.Helpers;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesCommon;
+using EA4S.UI;
 using EA4S.Utilities;
 using System;
 using TMPro;
@@ -49,11 +50,13 @@ namespace EA4S.Assessment
             SetQuestionGreen();
         }
 
+        private Color32 SpecialGreen = new Color32(45, 246, 38, 255);
+
         public void SetQuestionGreen()
         {
             answerSprite.enabled = true;
-            answerSprite.Material.DOColor( new Color32( 45, 246, 38, 255), 0.5f);
-            hiddenQuestionSprite.Material.DOFade(0, 1);
+            answerSprite.Material.DOColor( SpecialGreen, 0.5f);
+            hiddenQuestionSprite.Material.DOFade( 0, 1);
             Label.alpha = 0;
             Label.DOFade( 1, 0.6f);
             MegaphoneIcon.DOFade( 0, 0.3f);
@@ -61,8 +64,17 @@ namespace EA4S.Assessment
 
         public void SetGreenLetter( ILivingLetterData word, ILivingLetterData letter)
         {
-            //Label.color = Color.green;
-            // And now check TextMesh docs..
+            Debug.Log("Greening Called!");
+            var wordInner = word as LL_WordData;
+            var letterInner = letter as LL_LetterData;
+
+            var parts = ArabicAlphabetHelper.FindLetter( AppManager.I.DB, wordInner.Data, letterInner.Data);
+
+            var partToRemove = parts[0];
+
+            // .. and voil�! Thank you Davide! :)
+            Label.text = ArabicTextUtilities.GetWordWithMarkedLetterText(
+                wordInner.Data, partToRemove, SpecialGreen, ArabicTextUtilities.MarkType.SingleLetter);
         }
 
         /// <summary>

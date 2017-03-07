@@ -19,7 +19,10 @@ namespace EA4S.Minigames.ReadingGame
         public Transform barsStart;
         public float distanceBetweenBars = 3;
         int completedBars = 0;
-        public const float MAX_BAR_SIZE = 10;
+
+        float maxBarSize = 10;
+        const float MAX_BAR_SIZE = 10f;
+        const float MAX_BAR_SIZE_SONG = 14f;
 
         ReadingBar activeBar;
         Vector3 barsStartInitialPosition;
@@ -100,6 +103,7 @@ namespace EA4S.Minigames.ReadingGame
 
         public void SetData(ILivingLetterData data)
         {
+            maxBarSize = MAX_BAR_SIZE;
             string text = data.TextForLivingLetter;
 
             var splitText = text.Split(' ');
@@ -115,6 +119,7 @@ namespace EA4S.Minigames.ReadingGame
 
         public void SetData(KaraokeSong data)
         {
+            maxBarSize = MAX_BAR_SIZE_SONG;
             var karaokeLines = data.lines;
             string[] words = new string[karaokeLines.Count];
             bool[] lineBreaks = new bool[karaokeLines.Count];
@@ -208,7 +213,7 @@ namespace EA4S.Minigames.ReadingGame
                 barWords[i].barId = barWords[i - 1].barId;
 
                 // Evaluate split
-                if (currentBarSize >= MAX_BAR_SIZE || (forceLineBreaks != null && forceLineBreaks[i]))
+                if (currentBarSize >= maxBarSize || (forceLineBreaks != null && forceLineBreaks[i]))
                 {
                     currentReadingBar.text.text = previousText;
 

@@ -430,9 +430,13 @@ namespace EA4S.Database
         {
             var words_ids_list = new List<string>(phraseData.Words);
             List<WordData> inputList = dbManager.FindWordData(x => words_ids_list.Contains(x.Id) && CheckFilters(wordFilters, x));
-            List<WordData> outputList = new List<WordData>();
-            words_ids_list.ForEach(id => outputList.Add(inputList.Find(x => x.Id == id)));
-            return outputList;
+            List<WordData> orderedOutputList = new List<WordData>();
+            words_ids_list.ForEach(id =>
+            {
+                var word = inputList.Find(x => x.Id.Equals(id));
+                if (word != null) orderedOutputList.Add(word);
+            });
+            return orderedOutputList;
         }
 
         public List<WordData> GetAnswersToPhrase(PhraseData phraseData, WordFilters wordFilters)
