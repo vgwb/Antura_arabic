@@ -42,10 +42,18 @@ namespace EA4S.UI
 
         void checkConfiguration()
         {
-            if (isTMPro && isUI && isArabic)
-            {  
+            if (isTMPro && isUI && isArabic) {
                 if (!gameObject.GetComponent<TextMeshProUGUI>().isRightToLeftText) {
                     Debug.LogWarning("TextMeshPro on component " + gameObject.name + " isn't RTL");
+                }
+            }
+        }
+
+        public void ForceUpdate()
+        {
+            if (isTMPro) {
+                if (isUI) {
+                    gameObject.GetComponent<TextMeshProUGUI>().ForceMeshUpdate();
                 }
             }
         }
