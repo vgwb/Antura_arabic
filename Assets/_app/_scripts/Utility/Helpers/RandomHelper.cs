@@ -42,7 +42,7 @@ namespace EA4S.Helpers
         }
 
         /// <summary>
-        /// Gets the random alternative.
+        /// Gets the random alternative. USE ONLY IN LOOP SCENARIO.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list">The list.</param>
