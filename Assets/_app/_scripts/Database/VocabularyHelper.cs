@@ -10,15 +10,15 @@ namespace EA4S.Database
     {
         public string Unicode1;
         public string Unicode2;
-        public float DeltaY;
         public float DeltaX;
+        public float DeltaY;
 
-        public DiacriticComboFix(string _unicode1, string _unicode2, float _deltay, float _deltaX)
+        public DiacriticComboFix(string _unicode1, string _unicode2, float _deltaX, float _deltaY)
         {
             Unicode1 = _unicode1;
             Unicode2 = _unicode2;
-            DeltaY = _deltay;
             DeltaX = _deltaX;
+            DeltaY = _deltaY;
         }
     }
 
@@ -42,104 +42,104 @@ namespace EA4S.Database
 
         void buildDiacriticCombos2Fix()
         {
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0627", "064B", 70, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE8E", "064B", 80, -10));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0627", "064B", 0, 70));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE8E", "064B", -10, 80));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0623", "064E", 200, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE84", "064E", 200, -10));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0623", "064E", 0, 200));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE84", "064E", -10, 200));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0639", "0650", -400, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FECA", "0650", -400, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0639", "0650", 0, -400));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FECA", "0650", 0, -400));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0628", "0650", -120, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE91", "0650", -120, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE92", "0650", -120, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE90", "0650", -120, 70));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0628", "0650", 100, -120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE91", "0650", 0, -120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE92", "0650", 0, -120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE90", "0650", 100, -120));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0630", "064E", 80, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEAC", "064E", 80, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0630", "064E", 0, 80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEAC", "064E", 0, 80));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED3", "064E", 50, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED4", "064E", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED3", "064E", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED4", "064E", 0, 50));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED3", "0652", 60, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED4", "0652", 60, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED3", "0652", 0, 60));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED4", "0652", 0, 60));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEEC", "0650", -120, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEEC", "0650", 0, -120));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("062D", "0650", -350, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEA2", "0650", -350, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("062D", "0650", 0, -350));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEA2", "0650", 0, -350));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDB", "064F", 70, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDC", "064F", 70, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDB", "064F", 0, 70));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDC", "064F", 0, 70));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEFB", "064B", 70, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEFC", "064B", 70, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEFB", "064B", 0, 70));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEFC", "064B", 0, 70));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "064C", 70, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "064C", 70, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "064C", 0, 70));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "064C", 0, 70));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "064E", 70, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "064E", 70, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "064E", 0, 70));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "064E", 0, 70));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0644", "0650", -100, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDE", "0650", -100, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0644", "0650", 0, -100));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDE", "0650", 0, -100));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0644", "064D", -100, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDE", "064D", -100, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0644", "064D", 0, -100));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDE", "064D", 0, -100));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "0652", 100, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "0652", 100, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "0652", 0, 100));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "0652", 0, 100));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0645", "0650", -100, 40));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE2", "0650", -100, 40));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0645", "0650", 40, -100));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE2", "0650", 40, -100));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0646", "064D", -160, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE6", "064D", -160, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0646", "064D", 0, -160));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE6", "064D", 0, -160));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE7", "0652", 50, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE8", "0652", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE7", "0652", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE8", "0652", 0, 50));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0642", "064E", 0, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED7", "064E", 40, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED8", "064E", 40, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED6", "064E", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0642", "064E", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED7", "064E", 0, 40));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED8", "064E", 0, 40));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED6", "064E", 50, 0));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0631", "0650", -200, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEAE", "0650", -200, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0631", "0650", 50, -200));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEAE", "0650", 50, -200));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0637", "064C", 100, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC3", "064C", 100, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC4", "064C", 100, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC2", "064C", 100, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0637", "064C", 0, 100));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC3", "064C", 0, 100));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC4", "064C", 0, 100));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC2", "064C", 0, 100));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0637", "064E", 100, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC3", "064E", 100, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC4", "064E", 100, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC2", "064E", 100, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0637", "064E", 0, 100));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC3", "064E", 0, 100));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC4", "064E", 0, 100));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC2", "064E", 0, 100));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064F", 0, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064F", 50, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064F", 50, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064F", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064F", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064F", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064F", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064F", 50, 0));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064C", 0, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064C", 50, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064C", 50, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064C", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064C", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064C", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064C", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064C", 50, 0));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064E", 0, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064E", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064E", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064E", 50, 0));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0629", "064C", 60, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064C", 50, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064C", 50, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064C", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0629", "064C", 0, 60));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064C", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064C", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064C", 50, 0));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0629", "064B", 60, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064B", 50, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064B", 50, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064B", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0629", "064B", 0, 60));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064B", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064B", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064B", 50, 0));
 
             //List<LetterData> list = AppManager.I.DB.FindLetterData((x) => (x.Symbol_DeltaY != 0));
             //foreach (var letter in list) {
