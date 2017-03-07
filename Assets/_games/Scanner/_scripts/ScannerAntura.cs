@@ -202,30 +202,34 @@ namespace EA4S.Minigames.Scanner
             StartCoroutine(leaveScene());
         }
 
-        
-        public IEnumerator beScared()
-        {
-            if (scaredCounter > 0 || !canBeScared)
-                yield break;
 
-            scaredCounter++;
-            antura.IsExcited = false;
-            canBeScared = false;
-            anturaAnimator.SetBool("idle", false);
-            //StartCoroutine(flashRed(sm));
-            flashRedGO(gameObject);
-            anturaAnimator.CrossFade("dog_suck_end", 0.3f);
-            AudioManager.I.PlaySound(Sfx.Dog_Scared);
-            yield return new WaitForSeconds(0.3f);
-            anturaAnimator.SetBool("idle", true);
-            anturaAnimator.CrossFade("dog_stand_sad_breath", 0.2f);
-            antura.IsSad = true;
-            stars.Play();
-            yield return new WaitForSeconds(2.5f);
-            stars.Stop(true);
-            yield return new WaitForSeconds(1.5f);
-            StartCoroutine(leaveScene(true));
-            antura.IsSad = false;
+        public void beScared() {
+            StartCoroutine(co_beScared());
+        }
+         IEnumerator co_beScared()
+        {
+            if (scaredCounter == 0 && canBeScared)
+            {
+
+                scaredCounter=1;
+                antura.IsExcited = false;
+                canBeScared = false;
+                anturaAnimator.SetBool("idle", false);
+                //StartCoroutine(flashRed(sm));
+                flashRedGO(gameObject);
+                anturaAnimator.CrossFade("dog_suck_end", 0.3f);
+                AudioManager.I.PlaySound(Sfx.Dog_Scared);
+                yield return new WaitForSeconds(0.3f);
+                anturaAnimator.SetBool("idle", true);
+                anturaAnimator.CrossFade("dog_stand_sad_breath", 0.2f);
+                antura.IsSad = true;
+                stars.Play();
+                yield return new WaitForSeconds(2.5f);
+                stars.Stop(true);
+                yield return new WaitForSeconds(1.5f);
+                StartCoroutine(leaveScene(true));
+                antura.IsSad = false;
+            }
         }
 
         public IEnumerator leaveScene(bool wasScared = false, float delay = 0f)
@@ -239,7 +243,6 @@ namespace EA4S.Minigames.Scanner
                 scaredCounter = 0;
             }
             yield return new WaitForSeconds(delay);
-            
             //anturaAnimator.Play("dog_turn180", 1);
             if (wasScared)
             {
@@ -252,13 +255,11 @@ namespace EA4S.Minigames.Scanner
 
             antura.SetWalkingSpeed(1);
             antura.State = AnturaAnimationStates.walking;
-
             while (transform.position.x < stopPose.position.x + 20)
             {
                 transform.position += Vector3.right * chargeSpeed * Time.deltaTime;
                 yield return null;
             }
-
             game.trapDoor.SetBool("TrapUp", false);
             game.trapDoor.SetBool("TrapDown", true);
             
