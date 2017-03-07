@@ -4,9 +4,9 @@ namespace EA4S.Rewards
 {
     public enum RewardTypes
     {
-        reward = 0,
-        texture = 1,
-        decal = 2,
+        reward = 1,
+        texture = 2,
+        decal = 3,
     }
 }
 
