@@ -211,9 +211,12 @@ namespace EA4S.Profile
         /// Updates the PlayerIconData for current player in list of SavedPlayers in GameSettings.
         /// </summary>
         public void UpdateCurrentPlayerIconDataInSettings() {
-            for (int i = 0; i < AppManager.I.GameSettings.SavedPlayers.Count; i++) {
+            for (int i = 0; i < AppManager.I.GameSettings.SavedPlayers.Count; i++)
+            {
                 if(AppManager.I.GameSettings.SavedPlayers[i].Uuid == currentPlayer.Uuid)
+                {
                     AppManager.I.GameSettings.SavedPlayers[i] = CurrentPlayer.GetPlayerIconData();
+                }
             }
             SaveGameSettings();
         }
