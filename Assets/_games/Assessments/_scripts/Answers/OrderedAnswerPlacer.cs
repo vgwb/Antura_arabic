@@ -45,6 +45,8 @@ namespace EA4S.Assessment
 
         private IEnumerator PlaceCoroutine()
         {
+            allAnswers.Shuffle();
+
             List< Vector3> positions = new List< Vector3>();
             float xMin = placerOptions.LeftX /*+ placerOptions.AnswerSize/2f*/ + 2.0f;
             float xMax = placerOptions.RightX /*- placerOptions.AnswerSize/2f*/ - 2.0f;
