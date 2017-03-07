@@ -66,6 +66,7 @@ namespace EA4S.Minigames.HideAndSeek
 
         void OnTimesUp()
         {
+            game.Context.GetOverlayWidget().OnClockCompleted();
             game.isTimesUp = true;
             game.SetCurrentState(game.ResultState);
         }
