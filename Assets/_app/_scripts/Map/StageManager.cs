@@ -51,8 +51,8 @@ namespace EA4S.Map
         {
             if (!Application.isEditor) SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
 
-           /* AppManager.I.Player.MaxJourneyPosition.Stage = 6;
-            AppManager.I.Player.MaxJourneyPosition.LearningBlock = 10;
+           /* AppManager.I.Player.MaxJourneyPosition.Stage = 2;
+            AppManager.I.Player.MaxJourneyPosition.LearningBlock = 1;
             AppManager.I.Player.MaxJourneyPosition.PlaySession = 100;*/
 
             numberStage = AppManager.I.Player.CurrentJourneyPosition.Stage;
@@ -87,7 +87,7 @@ namespace EA4S.Map
 
             if((AppManager.I.Player.CurrentJourneyPosition.Stage == AppManager.I.Player.MaxJourneyPosition.Stage) &&
                 (AppManager.I.Player.CurrentJourneyPosition.LearningBlock == AppManager.I.Player.MaxJourneyPosition.LearningBlock) &&
-                (AppManager.I.Player.CurrentJourneyPosition.PlaySession == AppManager.I.Player.MaxJourneyPosition.PlaySession))
+                (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100))
                 PlayDialogRandomly();
         }
 
