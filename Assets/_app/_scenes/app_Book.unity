@@ -1515,7 +1515,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!1 &288887262
 GameObject:
   m_ObjectHideFlags: 0
@@ -2455,7 +2457,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!1001 &483910214
 Prefab:
   m_ObjectHideFlags: 0
@@ -2852,7 +2856,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!222 &551001688
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4493,7 +4499,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!1 &670956277
 GameObject:
   m_ObjectHideFlags: 0
@@ -5087,7 +5095,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!222 &770554219
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5582,7 +5592,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!1 &837350655
 GameObject:
   m_ObjectHideFlags: 0
@@ -5766,7 +5778,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!1001 &841988902
 Prefab:
   m_ObjectHideFlags: 0
@@ -6424,7 +6438,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!222 &871755615
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7258,7 +7274,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!1 &960667334
 GameObject:
   m_ObjectHideFlags: 0
@@ -8049,7 +8067,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!1 &1108172556
 GameObject:
   m_ObjectHideFlags: 0
@@ -10150,7 +10170,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!222 &1506133770
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10350,7 +10372,6 @@ GameObject:
   - component: {fileID: 1574514326}
   - component: {fileID: 1574514328}
   - component: {fileID: 1574514329}
-  - component: {fileID: 1574514331}
   - component: {fileID: 1574514327}
   m_Layer: 5
   m_Name: OutputTextArabicIsolated
@@ -10523,19 +10544,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  AdjustDiacriticPos: 1
   LocalizationId: 0
---- !u!114 &1574514331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1574514325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd7f0a4a2e1dd44d09a692be3d35dc04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  yOffset: 60
+  DeltaYPerc: 0
 --- !u!1 &1575018413
 GameObject:
   m_ObjectHideFlags: 0
@@ -11245,7 +11256,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!1 &1637716380
 GameObject:
   m_ObjectHideFlags: 0
@@ -12778,7 +12791,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!1001 &1888653039
 Prefab:
   m_ObjectHideFlags: 0
@@ -13096,7 +13111,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!1 &1890591098
 GameObject:
   m_ObjectHideFlags: 0
@@ -14321,7 +14338,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!222 &2057613446
 CanvasRenderer:
   m_ObjectHideFlags: 0
