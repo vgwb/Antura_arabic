@@ -19,7 +19,7 @@ namespace EA4S.UI
         public float Duration { get; private set; }
         public float Elapsed { get; private set; }
         Sequence timerTween, shakeTween;
-        IAudioSource alarmSfxSource;
+        IAudioSource alarmSfxSource; // Can be shake or alarm sound. NULL when not playing anything
         bool currPauseMenuIsOpenState;
         bool wasPlayingBeforePauseMenuWasOpened;
         Tween endTween;
@@ -132,9 +132,12 @@ namespace EA4S.UI
                 .OnComplete(() => {
                     shakeTween.Rewind();
                     endTween.Restart();
-                    if (alarmSfxSource != null) alarmSfxSource.Stop();
-                    alarmSfxSource = AudioManager.I.PlaySound(Sfx.AlarmClock);
-                    alarmSfxSource.Loop = false;
+                    if (alarmSfxSource != null)
+                    {
+                        alarmSfxSource.Stop();
+                        alarmSfxSource = null;
+                    }
+                    AudioManager.I.PlaySound(Sfx.AlarmClock);
                 });
             if (!_playImmediately) timerTween.Pause();
 
@@ -148,6 +151,7 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
+            Debug.Log("PLAY");
             if (alarmSfxSource != null) alarmSfxSource.Play();
             timerTween.Play();
         }
@@ -157,6 +161,7 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
+            Debug.Log("PAUSE");
             if (alarmSfxSource != null) alarmSfxSource.Pause();
             timerTween.Pause();
         }
@@ -166,6 +171,7 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
+            Debug.Log("RESTART");
             if (alarmSfxSource != null) alarmSfxSource.Stop();
             endTween.Rewind();
             timerTween.Restart();
@@ -176,7 +182,12 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
-            if (alarmSfxSource != null) alarmSfxSource.Stop();
+            Debug.Log("REWIND");
+            if (alarmSfxSource != null)
+            {
+                alarmSfxSource.Stop();
+                alarmSfxSource = null;
+            }
             shakeTween.Rewind();
             endTween.Rewind();
             timerTween.Rewind();
@@ -187,6 +198,7 @@ namespace EA4S.UI
         {
             if (!Validate("MinigamesUITimer")) return;
 
+            Debug.Log("COMPLETE");
             if (!shakeTween.IsComplete() && alarmSfxSource != null) alarmSfxSource.Stop();
             if (!timerTween.IsComplete()) alarmSfxSource = AudioManager.I.PlaySound(Sfx.AlarmClock);
             timerTween.Complete();
@@ -201,6 +213,7 @@ namespace EA4S.UI
             if (_time > timerTween.Duration()) _time = timerTween.Duration();
             if (Mathf.Approximately(_time, timerTween.Elapsed())) return;
 
+            Debug.Log("GOTO " + _time);
             endTween.Rewind();
             timerTween.Goto(_time, _andPlay);
         }
@@ -214,6 +227,7 @@ namespace EA4S.UI
             if (_percentage > 1) _percentage = 1;
             if (Mathf.Approximately(_percentage, timerTween.ElapsedPercentage())) return;
 
+            Debug.Log("GOTO % " + _percentage);
             endTween.Rewind();
             timerTween.Goto(timerTween.Duration() * _percentage, _andPlay);
         }
