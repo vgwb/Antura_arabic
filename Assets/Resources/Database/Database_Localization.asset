@@ -76,6 +76,23 @@ MonoBehaviour:
       Arabic: "\u062A\u062A\u0628\u0651\u0639\u0650 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
         \u0628\u0625\u0635\u0628\u0639\u0643."
       AudioFile: AlphabetSong_alphabet_Tuto
+    - Id: AlphabetSong_letters_Intro
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Introduction
+      English: It's time to sing all the letters
+      Arabic: "\u0648\u0642\u062A\u064F \u063A\u0646\u0627\u0621\u0650 \u062C\u0645\u064A\u0639\u0650
+        \u0627\u0644\u062D\u0631\u0648\u0641."
+      AudioFile: AlphabetSong_letters_Intro
+    - Id: AlphabetSong_letters_Title
+      Character: Keeper
+      Area: minigame
+      When: At start
+      Context: Title
+      English: Diacritic Song!
+      Arabic: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u062D\u0631\u0643\u0627\u062A"
+      AudioFile: AlphabetSong_letters_Title
     - Id: AnturaSpace_Custom_1
       Character: Keeper
       Area: space
@@ -464,23 +481,6 @@ MonoBehaviour:
       English: Not yet... one more time...
       Arabic: "\u0644\u064A\u0633 \u0628\u0639\u062F. \u0645\u0631\u0629\u064B \u0623\u062E\u0631\u0649!"
       AudioFile: Assessment_Wrong_3
-    - Id: AlphabetSong_letters_Intro
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Introduction
-      English: It's time to sing all the letters
-      Arabic: "\u0648\u0642\u062A\u064F \u063A\u0646\u0627\u0621\u0650 \u062C\u0645\u064A\u0639\u0650
-        \u0627\u0644\u062D\u0631\u0648\u0641."
-      AudioFile: AlphabetSong_letters_Intro
-    - Id: AlphabetSong_letters_Title
-      Character: Keeper
-      Area: minigame
-      When: At start
-      Context: Title
-      English: Diacritic Song!
-      Arabic: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u062D\u0631\u0643\u0627\u062A"
-      AudioFile: AlphabetSong_letters_Title
     - Id: Balloons_counting_Intro
       Character: Keeper
       Area: minigame
@@ -579,6 +579,24 @@ MonoBehaviour:
         \u0639\u0646 \u062A\u0644\u0643\u064E \u0627\u0644\u0643\u0644\u0645\u0629\u0650
         \u0627\u0644\u0648\u062D\u064A\u062F\u0629."
       AudioFile: Balloons_words_Intro
+    - Id: Balloons_words_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Balloons & Images!
+      Arabic: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0635\u0648\u0631!"
+      AudioFile: Balloons_words_Title
+    - Id: Balloons_words_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Pop the balloons and LEAVE ONLY the right Image
+      Arabic: "\u0627\u0641\u0642\u0639\u0650 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
+        \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u0635\u0648\u0631\u0629\u064E
+        \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
+      AudioFile: Balloons_words_Tuto
     - Id: Book_Games
       Character: Ibtissam
       Area: book
@@ -632,24 +650,6 @@ MonoBehaviour:
       English: Words
       Arabic: "\u0643\u0644\u0645\u0627\u062A"
       AudioFile: Book_Words
-    - Id: Balloons_words_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Balloons & Images!
-      Arabic: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0635\u0648\u0631!"
-      AudioFile: Balloons_words_Title
-    - Id: Balloons_words_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Pop the balloons and LEAVE ONLY the right Image
-      Arabic: "\u0627\u0641\u0642\u0639\u0650 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u0650
-        \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u0635\u0648\u0631\u0629\u064E
-        \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
-      AudioFile: Balloons_words_Tuto
     - Id: ColorTickle_Intro
       Character: Keeper
       Area: minigame
@@ -716,6 +716,17 @@ MonoBehaviour:
       English: The Egg of the Alphabet!
       Arabic: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
       AudioFile: Egg_letters_Title
+    - Id: Egg_letters_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Listen carefully, then bash the correct button.
+      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646\u064D
+        \u062B\u0645 \u0627\u0636\u063A\u0637\u0650 \u0627\u0644\u0632\u0631\u0651\u064E
+        \u0627\u0644\u0635\u062D\u064A\u062D\u064E \u0628\u0634\u0643\u0644\u064D
+        \u0645\u062A\u0643\u0631\u0631."
+      AudioFile: Egg_letters_Tuto
     - Id: Egg_sequence_Intro
       Character: Keeper
       Area: minigame
@@ -734,17 +745,6 @@ MonoBehaviour:
       English: The Egg!
       Arabic: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
       AudioFile: Egg_sequence_Title
-    - Id: Egg_letters_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Listen carefully, then bash the correct button.
-      Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646\u064D
-        \u062B\u0645 \u0627\u0636\u063A\u0637\u0650 \u0627\u0644\u0632\u0631\u0651\u064E
-        \u0627\u0644\u0635\u062D\u064A\u062D\u064E \u0628\u0634\u0643\u0644\u064D
-        \u0645\u062A\u0643\u0631\u0631."
-      AudioFile: Egg_letters_Tuto
     - Id: Egg_sequence_Tuto
       Character: Ibtissam
       Area: minigame
@@ -758,20 +758,27 @@ MonoBehaviour:
         \u0644\u0643\u064A \u062A\u0643\u0631\u0651\u0650\u0631\u064E \u0645\u0627
         \u0633\u0645\u0639\u062A\u064E\u0647."
       AudioFile: Egg_Tuto_Sequence
-    - Id: End_Scene_1
+    - Id: End_Scene_1_1
       Character: Ibtissam
       Area: end game
       When: 
       Context: end game
-      English: "Superb! Your prize for finishing your journey is superpowers in real
-        life! You have now the power to read this\u2026"
+      English: Superb! Your prize for finishing your journey is superpowers in real
+        life!
       Arabic: "\u0631\u0627\u0626\u0639! \u062C\u0627\u0626\u0632\u0629\u064F \u0625\u0643\u0645\u0627\u0644\u0650\u0643\u064E
         \u0627\u0644\u0631\u062D\u0644\u0629\u064E \u0647\u064A \u0642\u0648\u0649\u064B
-        \u062E\u0627\u0631\u0642\u0629\u064C \u062D\u0642\u064A\u0642\u064A\u0629!
-        \u0627\u0643\u062A\u0633\u0628\u062A\u064E \u0627\u0644\u0622\u0646 \u0642\u0648\u0629\u064E
-        \u0627\u0644\u0642\u062F\u0631\u0629\u0650 \u0639\u0644\u0649 \u0642\u0631\u0627\u0621\u0629\u0650
-        \u0647\u0630\u0627 \u0627\u0644\u0643\u0644\u0627\u0645\u0650..."
-      AudioFile: End_Scene_1
+        \u062E\u0627\u0631\u0642\u0629\u064C \u062D\u0642\u064A\u0642\u064A\u0629!"
+      AudioFile: End_Scene_1_1
+    - Id: End_Scene_1_2
+      Character: Ibtissam
+      Area: end game
+      When: 
+      Context: end game
+      English: "You have now the power to read this\u2026"
+      Arabic: "\u0627\u0643\u062A\u0633\u0628\u062A\u064E \u0627\u0644\u0622\u0646
+        \u0642\u0648\u0629\u064E \u0627\u0644\u0642\u062F\u0631\u0629\u0650 \u0639\u0644\u0649
+        \u0642\u0631\u0627\u0621\u0629\u0650 \u0647\u0630\u0627 \u0627\u0644\u0643\u0644\u0627\u0645\u0650..."
+      AudioFile: End_Scene_1_2
     - Id: End_Scene_2
       Character: Ibtissam
       Area: end game
@@ -780,22 +787,36 @@ MonoBehaviour:
       English: You are awesome!
       Arabic: "\u0623\u0646\u062A\u064E \u0631\u0627\u0626\u0639!"
       AudioFile: End_Scene_2
-    - Id: End_Scene_3
+    - Id: End_Scene_3_1
       Character: Ibtissam
       Area: end game
       When: 
       Context: end game
-      English: Now go, leave your mark in the world! But don't forget that superpowers
-        need to be trained, come back to visit! We'll miss you!
+      English: Now go, leave your mark in the world!
       Arabic: "\u0627\u0646\u0637\u0644\u0642\u0650 \u0627\u0644\u0622\u0646 \u0648\u0627\u062A\u0631\u0643\u0652
-        \u0623\u062B\u0631\u0627\u064B \u0641\u064A \u0627\u0644\u0639\u0627\u0644\u0645!
-        \u0644\u0643\u0646 \u062A\u0630\u0643\u0651\u064E\u0631\u0652 \u0623\u0646\u0651\u064E
+        \u0623\u062B\u0631\u0627\u064B \u0641\u064A \u0627\u0644\u0639\u0627\u0644\u0645!"
+      AudioFile: End_Scene_3_1
+    - Id: End_Scene_3_2
+      Character: Ibtissam
+      Area: end game
+      When: 
+      Context: end game
+      English: But don't forget that superpowers need to be trained.
+      Arabic: "\u0644\u0643\u0646 \u062A\u0630\u0643\u0651\u064E\u0631\u0652 \u0623\u0646\u0651\u064E
         \u0627\u0644\u0642\u0648\u0649 \u0627\u0644\u062E\u0627\u0631\u0642\u0629\u064E
         \u062A\u062D\u062A\u0627\u062C\u064F \u0625\u0644\u0649 \u0627\u0644\u062A\u0645\u0631\u064A\u0646
-        \u062F\u0627\u0626\u0645\u0627\u064B. \u0639\u062F \u0644\u0632\u064A\u0627\u0631\u062A\u0650\u0646\u0627
+        \u062F\u0627\u0626\u0645\u0627\u064B."
+      AudioFile: End_Scene_3_2
+    - Id: End_Scene_3_3
+      Character: Ibtissam
+      Area: end game
+      When: 
+      Context: end game
+      English: Come back to visit! We'll miss you!
+      Arabic: "\u0639\u062F \u0644\u0632\u064A\u0627\u0631\u062A\u0650\u0646\u0627
         \u0642\u0631\u064A\u0628\u0627\u064B! \u0633\u0646\u0634\u062A\u0627\u0642\u064F
         \u0625\u0644\u064A\u0643!"
-      AudioFile: End_Scene_3
+      AudioFile: End_Scene_3_3
     - Id: FastCrowd_alphabet_Intro
       Character: Keeper
       Area: minigame
@@ -2240,14 +2261,6 @@ MonoBehaviour:
         \u0644\u0627 \u062A\u0636\u064A\u0639\u0652 \u0648\u0642\u062A\u0627\u064B
         \u0648\u0644\u0627 \u062A\u062E\u0631\u062C\u0652 \u0639\u0646 \u0627\u0644\u0645\u0633\u0627\u0631."
       AudioFile: Maze_Tuto
-    - Id: MissingLetter_Title
-      Character: Keeper
-      Area: minigame
-      When: 
-      Context: Title
-      English: Missing Letter!
-      Arabic: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
-      AudioFile: MissingLetter_Title
     - Id: MissingLetter_forms_Title
       Character: Keeper
       Area: minigame
@@ -2256,15 +2269,6 @@ MonoBehaviour:
       English: Missing Letter!
       Arabic: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
       AudioFile: MissingLetter_Title
-    - Id: MissingLetter_Tuto
-      Character: Ibtissam
-      Area: minigame
-      When: 
-      Context: Tutorial
-      English: Spot the missing LETTER and touch it.
-      Arabic: "\u0627\u0639\u062B\u0631\u0652 \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641\u0650
-        \u0627\u0644\u0646\u0627\u0642\u0635\u0650 \u0648\u0627\u0644\u0645\u0633\u0652\u0647."
-      AudioFile: MissingLetter_Tuto
     - Id: MissingLetter_Intro
       Character: Keeper
       Area: minigame
@@ -2304,6 +2308,23 @@ MonoBehaviour:
       Arabic: "\u0627\u0639\u062B\u0631\u0652 \u0639\u0644\u0649 \u0627\u0644\u0643\u0644\u0645\u0629\u0650
         \u0627\u0644\u0646\u0627\u0642\u0635\u0629\u0650 \u0648\u0627\u0644\u0645\u0633\u0652\u0647\u0627."
       AudioFile: MissingLetter_phrases_Tuto
+    - Id: MissingLetter_Title
+      Character: Keeper
+      Area: minigame
+      When: 
+      Context: Title
+      English: Missing Letter!
+      Arabic: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
+      AudioFile: MissingLetter_Title
+    - Id: MissingLetter_Tuto
+      Character: Ibtissam
+      Area: minigame
+      When: 
+      Context: Tutorial
+      English: Spot the missing LETTER and touch it.
+      Arabic: "\u0627\u0639\u062B\u0631\u0652 \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641\u0650
+        \u0627\u0644\u0646\u0627\u0642\u0635\u0650 \u0648\u0627\u0644\u0645\u0633\u0652\u0647."
+      AudioFile: MissingLetter_Tuto
     - Id: MixedLetters_alphabet_Intro
       Character: Keeper
       Area: minigame
@@ -2551,6 +2572,15 @@ MonoBehaviour:
       Context: 
       English: Delete
       Arabic: "\u062D\u0630\u0641"
+      AudioFile: 
+    - Id: ReservedArea_DemoUserAlreadyExists
+      Character: UI
+      Area: reserved
+      When: 
+      Context: 
+      English: Demo user already exists
+      Arabic: "\u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u062A\u062C\u0631\u064A\u0628\u064A
+        \u0645\u0648\u062C\u0648\u062F \u0623\u0635\u0644\u0627\u064B"
       AudioFile: 
     - Id: ReservedArea_ExportProfile
       Character: UI
