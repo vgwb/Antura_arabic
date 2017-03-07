@@ -6,8 +6,10 @@ using EA4S.UI;
 using EA4S.Profile;
 using EA4S.Teacher;
 
-namespace EA4S.ReservedArea {
-    public class ProfilesPanel : MonoBehaviour {
+namespace EA4S.ReservedArea
+{
+    public class ProfilesPanel : MonoBehaviour
+    {
         public GameObject PlayerIconContainer;
         public GameObject PlayerIconPrefab;
         public GameObject ProfileCommandsContainer;
@@ -15,17 +17,20 @@ namespace EA4S.ReservedArea {
 
         string SelectedPlayerId;
 
-        void Start() {
+        void Start()
+        {
             ResetAll();
         }
 
-        void ResetAll() {
+        void ResetAll()
+        {
             SelectedPlayerId = "";
             RefreshPlayerIcons();
             RefreshUI();
         }
 
-        void RefreshPlayerIcons() {
+        void RefreshPlayerIcons()
+        {
             GameObject newIcon;
 
             foreach (Transform t in PlayerIconContainer.transform) {
@@ -44,7 +49,8 @@ namespace EA4S.ReservedArea {
             }
         }
 
-        void RefreshUI() {
+        void RefreshUI()
+        {
             // highlight selected profile
             ProfileCommandsContainer.SetActive(SelectedPlayerId != "");
             foreach (Transform t in PlayerIconContainer.transform) {
@@ -52,7 +58,8 @@ namespace EA4S.ReservedArea {
             }
         }
 
-        public void OnSelectPlayerProfile(string uuid) {
+        public void OnSelectPlayerProfile(string uuid)
+        {
             //Debug.Log("OnSelectPlayerProfile " + uuid);
             if (SelectedPlayerId != uuid) {
                 SelectedPlayerId = uuid;
@@ -62,31 +69,37 @@ namespace EA4S.ReservedArea {
             RefreshUI();
         }
 
-        public void OnOpenSelectedPlayerProfile() {
+        public void OnOpenSelectedPlayerProfile()
+        {
             //Debug.Log("OPEN " + SelectedPlayerId);
             AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
             AppManager.I.NavigationManager.GoToPlayerBook();
         }
 
-        public void OnDeleteSelectPlayerProfile() {
+        public void OnDeleteSelectPlayerProfile()
+        {
             GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, DoDeleteSelectPlayerProfile, DoNothing);
         }
 
-        void DoNothing() {
+        void DoNothing()
+        {
 
         }
 
-        void DoDeleteSelectPlayerProfile() {
+        void DoDeleteSelectPlayerProfile()
+        {
             //Debug.Log("DELETE " + SelectedPlayerId);
             AppManager.I.PlayerProfileManager.DeletePlayerProfile(SelectedPlayerId);
             ResetAll();
         }
 
-        public void OnExportSelectPlayerProfile() {
+        public void OnExportSelectPlayerProfile()
+        {
             Debug.Log("EXPORT " + SelectedPlayerId);
         }
 
-        public void OnCreateDemoPlayer() {
+        public void OnCreateDemoPlayer()
+        {
             if (AppManager.I.PlayerProfileManager.ExistsDemoUser()) {
                 GlobalUI.ShowPrompt(Database.LocalizationDataId.ReservedArea_DemoUserAlreadyExists);
             } else {
@@ -94,17 +107,20 @@ namespace EA4S.ReservedArea {
             }
         }
 
-        void DoCreateDemoPlayer() {
+        void DoCreateDemoPlayer()
+        {
             StartCoroutine(CreateDemoPlayer());
         }
 
-        public void OnImportProfile() {
+        public void OnImportProfile()
+        {
             Debug.Log("IMPORT");
         }
 
         #region Demo User Helpers
 
-        IEnumerator CreateDemoPlayer() {
+        IEnumerator CreateDemoPlayer()
+        {
             //Debug.Log("creating DEMO USER ");
             yield return null;
             activateWaitingScreen(true);
@@ -113,23 +129,25 @@ namespace EA4S.ReservedArea {
             SelectedPlayerId = demoUserUiid;
 
             // populate with fake data
-            Debug.Log("Cheat Mode enabled: unlocking all game data");
             var maxJourneyPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
             yield return StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos));
             AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true);
-            // FIX BUG in this
+            AppManager.I.Player.CheckGameFinished();                // force check
+            AppManager.I.Player.CheckGameFinishedWithAllStars();    // force check
             Rewards.RewardSystemManager.UnlockAllRewards();
 
             ResetAll();
             activateWaitingScreen(false);
         }
 
-        void activateWaitingScreen(bool status) {
+        void activateWaitingScreen(bool status)
+        {
             pleaseWaitPanel.gameObject.SetActive(status);
             GlobalUI.I.BackButton.gameObject.SetActive(!status);
         }
 
-        IEnumerator PopulateDatabaseWithUsefulDataCO(JourneyPosition targetPosition) {
+        IEnumerator PopulateDatabaseWithUsefulDataCO(JourneyPosition targetPosition)
+        {
             bool useBestScores = true;
 
             var logAi = AppManager.I.Teacher.logAI;
