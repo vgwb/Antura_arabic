@@ -42,6 +42,8 @@ namespace EA4S.Teacher
     /// </summary>
     public class LogAI
     {
+        public const bool UNLOCK_AT_PLAYSESSION_END = true;
+
         // References
         DatabaseManager db;
 
@@ -130,6 +132,50 @@ namespace EA4S.Teacher
             public int nWrong;
         }
 
+        public void UnlockVocabularyDataForJourneyPosition(JourneyPosition pos)
+        {
+            if (!UNLOCK_AT_PLAYSESSION_END) return;
+
+            string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name);
+            List<VocabularyScoreData> scoreDataList = db.FindDataByQuery<VocabularyScoreData>(query);
+
+            var currentPSContents = AppManager.I.Teacher.VocabularyAi.GetContentsAtJourneyPosition(pos);
+            var letters = currentPSContents.GetHashSet<LetterData>();
+            var words = currentPSContents.GetHashSet<WordData>();
+            var phrases = currentPSContents.GetHashSet<PhraseData>();
+
+            foreach (var d in letters) {
+                var scoreData = scoreDataList.Find(x => x.ElementId == d.Id && x.VocabularyDataType == VocabularyDataType.Letter);
+                if (scoreData == null) {
+                    scoreData = new VocabularyScoreData(d.Id, VocabularyDataType.Letter, 0, false);
+                    scoreDataList.Add(scoreData);
+                }
+                scoreData.Unlocked = true;
+            }
+
+            foreach (var d in words)
+            {
+                var scoreData = scoreDataList.Find(x => x.ElementId == d.Id && x.VocabularyDataType == VocabularyDataType.Word);
+                if (scoreData == null) {
+                    scoreData = new VocabularyScoreData(d.Id, VocabularyDataType.Word, 0, false);
+                    scoreDataList.Add(scoreData);
+                }
+                scoreData.Unlocked = true;
+            }
+
+            foreach (var d in phrases)
+            {
+                var scoreData = scoreDataList.Find(x => x.ElementId == d.Id && x.VocabularyDataType == VocabularyDataType.Phrase);
+                if (scoreData == null) {
+                    scoreData = new VocabularyScoreData(d.Id, VocabularyDataType.Phrase, 0, false);
+                    scoreDataList.Add(scoreData);
+                }
+                scoreData.Unlocked = true;
+            }
+
+            db.InsertOrReplaceAll(scoreDataList);
+        }
+
         public void LogLearn(int appSession, JourneyPosition pos, MiniGameCode miniGameCode, List<LearnResultParameters> resultsList)
         {
             var currentJourneyContents = AppManager.I.Teacher.VocabularyAi.CurrentJourneyContents;
@@ -178,28 +224,33 @@ namespace EA4S.Teacher
                 scoreDataList.Add(scoreData);
 
                 // Check whether the vocabulary data was in the journey (and can thus be unlocked)
-                if (!scoreData.Unlocked) {
-                    IVocabularyData data = null;
-                    bool containedInJourney = false;
-                    switch (result.dataType) {
-                        case VocabularyDataType.Letter:
-                            data = AppManager.I.DB.GetLetterDataById(result.elementId);
-                            containedInJourney = currentJourneyContents.Contains(data as LetterData);
-                            break;
-                        case VocabularyDataType.Word:
-                            data = AppManager.I.DB.GetWordDataById(result.elementId);
-                            containedInJourney = currentJourneyContents.Contains(data as WordData);
-                            break;
-                        case VocabularyDataType.Phrase:
-                            data = AppManager.I.DB.GetPhraseDataById(result.elementId);
-                            containedInJourney = currentJourneyContents.Contains(data as PhraseData);
-                            break;
-                    }
+                if (!UNLOCK_AT_PLAYSESSION_END)
+                {
+                    if (!scoreData.Unlocked)
+                    {
+                        IVocabularyData data = null;
+                        bool containedInJourney = false;
+                        switch (result.dataType)
+                        {
+                            case VocabularyDataType.Letter:
+                                data = AppManager.I.DB.GetLetterDataById(result.elementId);
+                                containedInJourney = currentJourneyContents.Contains(data as LetterData);
+                                break;
+                            case VocabularyDataType.Word:
+                                data = AppManager.I.DB.GetWordDataById(result.elementId);
+                                containedInJourney = currentJourneyContents.Contains(data as WordData);
+                                break;
+                            case VocabularyDataType.Phrase:
+                                data = AppManager.I.DB.GetPhraseDataById(result.elementId);
+                                containedInJourney = currentJourneyContents.Contains(data as PhraseData);
+                                break;
+                        }
 
-                    if (containedInJourney) {
-                        scoreData.Unlocked = true;
+                        if (containedInJourney)
+                        {
+                            scoreData.Unlocked = true;
+                        }
                     }
-
                 }
             }
 

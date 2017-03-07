@@ -11,8 +11,9 @@ namespace EA4S.Map
         int IsBeginningNewStage;
         void OnTriggerEnter(Collider other)
         {
+            bool isMaxPosition = IsMaxJourneyPosition();
             IsBeginningNewStage = PlayerPrefs.GetInt("IsNewStage"+numberStage);
-            if ((other.gameObject.tag == "Player") && (IsBeginningNewStage==0))
+            if ((other.gameObject.tag == "Player") && (isMaxPosition) && (numberStage > 1))
             {
                 Database.LocalizationDataId[] data = new Database.LocalizationDataId[7];
                 data[2] = Database.LocalizationDataId.Map_Intro_Map2;
@@ -23,6 +24,15 @@ namespace EA4S.Map
                 KeeperManager.I.PlayDialog(data[numberStage], true, true);
                 PlayerPrefs.SetInt("IsNewStage"+numberStage, 1);
             }
+        }
+
+        bool IsMaxJourneyPosition()
+        {
+            if ((AppManager.I.Player.CurrentJourneyPosition.Stage == AppManager.I.Player.MaxJourneyPosition.Stage) &&
+                (AppManager.I.Player.CurrentJourneyPosition.LearningBlock == AppManager.I.Player.MaxJourneyPosition.LearningBlock) &&
+                (AppManager.I.Player.CurrentJourneyPosition.PlaySession == AppManager.I.Player.MaxJourneyPosition.PlaySession))
+                return true;
+            else return false;
         }
     }
 }
