@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4682315059152622}
   - component: {fileID: 114526265007275798}
+  - component: {fileID: 114217237752140474}
   m_Layer: 0
   m_Name: Foreground1_SX
   m_TagString: Untagged
@@ -52,6 +53,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4382643287527258}
   - component: {fileID: 114534907814936036}
+  - component: {fileID: 114451882284320780}
   m_Layer: 0
   m_Name: Foreground2_DX
   m_TagString: Untagged
@@ -97,8 +99,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1780838489332606}
   m_LocalRotation: {x: -4.656613e-10, y: 1, z: 1.1641532e-10, w: -0.00000014901161}
-  m_LocalPosition: {x: 26, y: 16, z: 65}
-  m_LocalScale: {x: 1.8056598, y: 1.80566, z: 1.8056599}
+  m_LocalPosition: {x: 26, y: 9, z: 83.3}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 4090444113769934}
   m_RootOrder: 1
@@ -110,8 +112,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1315766545734630}
   m_LocalRotation: {x: -4.656613e-10, y: 1, z: 1.1641532e-10, w: -0.00000014901161}
-  m_LocalPosition: {x: -26, y: 16, z: 65.1}
-  m_LocalScale: {x: 1.8056598, y: 1.80566, z: 1.8056599}
+  m_LocalPosition: {x: -26, y: 9, z: 83.3}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 4090444113769934}
   m_RootOrder: 0
@@ -163,6 +165,32 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!114 &114217237752140474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1315766545734630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57448949cd4cd314d9cdb4f7708fbb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minX: -26
+  maxX: -34
+--- !u!114 &114451882284320780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1780838489332606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57448949cd4cd314d9cdb4f7708fbb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minX: 26
+  maxX: 34
 --- !u!114 &114526265007275798
 MonoBehaviour:
   m_ObjectHideFlags: 1
