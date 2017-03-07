@@ -83,11 +83,11 @@ namespace EA4S.UI
             if (isTMPro) {
                 if (isUI) {
                     gameObject.GetComponent<TextMeshProUGUI>().text = text;
-                    if (AdjustDiacriticPos) {
-                        AdjustDiacriticPositions();
-                    }
                 } else {
                     gameObject.GetComponent<TextMeshPro>().text = text;
+                }
+                if (AdjustDiacriticPos) {
+                    AdjustDiacriticPositions();
                 }
             } else {
                 if (isUI) {
@@ -104,11 +104,11 @@ namespace EA4S.UI
                 if (isArabic) {
                     if (isUI) {
                         gameObject.GetComponent<TextMeshProUGUI>().text = ArabicAlphabetHelper.ProcessArabicString(m_text);
-                        if (AdjustDiacriticPos) {
-                            AdjustDiacriticPositions();
-                        }
                     } else {
                         gameObject.GetComponent<TextMeshPro>().text = ArabicAlphabetHelper.ProcessArabicString(m_text);
+                    }
+                    if (AdjustDiacriticPos) {
+                        AdjustDiacriticPositions();
                     }
                 } else {
                     if (isUI) {
@@ -168,12 +168,6 @@ namespace EA4S.UI
             isArabic = true;
             text = row.Arabic;
         }
-
-        /// <summary>
-        /// The m text component.
-        /// </summary>
-
-        public int DeltaYPerc;
 
         void AdjustDiacriticPositions()
         {
