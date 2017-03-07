@@ -338,6 +338,44 @@ namespace EA4S.Rewards
 
         #region Helpers
 
+        public static void UnlockExtraRewards() {
+            JourneyPosition extraRewardJourney = new JourneyPosition(100,100,100);
+            List<RewardPackUnlockData> alreadyUnlocked = AppManager.I.Player.RewardsUnlocked;
+            for (int i = 0; i < GetConfig().Rewards.Count; i++) {
+                for (int y = 0; y < GetConfig().RewardsColorPairs.Count; y++) {
+                    if (!alreadyUnlocked.Exists(ur => ur.ItemId == GetConfig().Rewards[i].ID && ur.ColorId == GetConfig().RewardsColorPairs[y].ID)) {
+                        AppManager.I.Player.AddRewardUnlocked(
+                            new RewardPackUnlockData(
+                                AppManager.I.LogManager.AppSession,
+                                GetConfig().Rewards[i].ID,
+                                GetConfig().RewardsColorPairs[y].ID, RewardTypes.reward, extraRewardJourney));
+                    }
+                }
+            }
+            for (int i = 0; i < GetConfig().RewardsDecal.Count; i++) {
+                for (int y = 0; y < GetConfig().RewardsDecalColor.Count; y++) {
+                    if (!alreadyUnlocked.Exists(ur => ur.ItemId == GetConfig().RewardsDecal[i].ID && ur.ColorId == GetConfig().RewardsDecalColor[y].ID)) {
+                        AppManager.I.Player.AddRewardUnlocked(
+                            new RewardPackUnlockData(
+                                AppManager.I.LogManager.AppSession,
+                                GetConfig().RewardsDecal[i].ID,
+                                GetConfig().RewardsDecalColor[y].ID, RewardTypes.decal, extraRewardJourney));
+                    }
+                }
+            }
+            for (int i = 0; i < GetConfig().RewardsTile.Count; i++) {
+                for (int y = 0; y < GetConfig().RewardsTileColor.Count; y++) {
+                    if (!alreadyUnlocked.Exists(ur => ur.ItemId == GetConfig().RewardsTile[i].ID && ur.ColorId == GetConfig().RewardsTileColor[y].ID)) {
+                        AppManager.I.Player.AddRewardUnlocked(
+                            new RewardPackUnlockData(
+                                AppManager.I.LogManager.AppSession,
+                                GetConfig().RewardsTile[i].ID,
+                                GetConfig().RewardsTileColor[y].ID, RewardTypes.texture, extraRewardJourney));
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Unlocks all rewards.
         /// </summary>
@@ -386,6 +424,9 @@ namespace EA4S.Rewards
             
             AppManager.I.Player.SetCurrentJourneyPosition(actualCurrentJourneyPosition);
             Debug.LogFormat("Bulk unlocking rewards result: rewards: {0} | texture: {1} | decal: {2} | other: {3}", RewardCount, TextureCount, DecalCount, OtherCount);
+
+            UnlockExtraRewards();
+            Debug.LogFormat("Unlock also all extra rewards!");
             RewardSystemManager.Init();
         }
 
