@@ -392,6 +392,13 @@ namespace EA4S.Core
         }
 
         /// <summary>
+        /// Resets the end session results.
+        /// </summary>
+        public void ResetEndSessionResults() {
+            EndSessionResults = new List<EndsessionResultData>();
+        } 
+
+        /// <summary>
         /// Calculates the unlock item count in accord to gameplay result information.
         /// </summary>
         /// <returns></returns>
@@ -446,6 +453,7 @@ namespace EA4S.Core
 
         public void InitialiseNewPlaySession(MiniGameData dataToUse = null)
         {
+            ResetEndSessionResults();
             NavData.RealPlaySession = (dataToUse == null);
 
             AppManager.I.Teacher.InitialiseNewPlaySession();
