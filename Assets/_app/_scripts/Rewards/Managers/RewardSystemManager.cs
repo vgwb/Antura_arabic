@@ -338,7 +338,7 @@ namespace EA4S.Rewards
 
         #region Helpers
 
-        public static void UnlockExtraRewards() {
+        public static IEnumerator UnlockExtraRewards() {
             JourneyPosition extraRewardJourney = new JourneyPosition(100,100,100);
             List<RewardPackUnlockData> alreadyUnlocked = AppManager.I.Player.RewardsUnlocked;
             for (int i = 0; i < GetConfig().Rewards.Count; i++) {
@@ -349,6 +349,7 @@ namespace EA4S.Rewards
                                 AppManager.I.LogManager.AppSession,
                                 GetConfig().Rewards[i].ID,
                                 GetConfig().RewardsColorPairs[y].ID, RewardTypes.reward, extraRewardJourney));
+                        yield return null;
                     }
                 }
             }
@@ -360,6 +361,7 @@ namespace EA4S.Rewards
                                 AppManager.I.LogManager.AppSession,
                                 GetConfig().RewardsDecal[i].ID,
                                 GetConfig().RewardsDecalColor[y].ID, RewardTypes.decal, extraRewardJourney));
+                        yield return null;
                     }
                 }
             }
@@ -371,9 +373,11 @@ namespace EA4S.Rewards
                                 AppManager.I.LogManager.AppSession,
                                 GetConfig().RewardsTile[i].ID,
                                 GetConfig().RewardsTileColor[y].ID, RewardTypes.texture, extraRewardJourney));
+                        yield return null;
                     }
                 }
             }
+            yield return null;
         }
 
         /// <summary>
@@ -425,7 +429,7 @@ namespace EA4S.Rewards
             AppManager.I.Player.SetCurrentJourneyPosition(actualCurrentJourneyPosition);
             Debug.LogFormat("Bulk unlocking rewards result: rewards: {0} | texture: {1} | decal: {2} | other: {3}", RewardCount, TextureCount, DecalCount, OtherCount);
 
-            UnlockExtraRewards();
+            AppManager.I.StartCoroutine(RewardSystemManager.UnlockExtraRewards());
             Debug.LogFormat("Unlock also all extra rewards!");
             RewardSystemManager.Init();
         }

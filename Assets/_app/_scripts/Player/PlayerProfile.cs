@@ -512,6 +512,7 @@ namespace EA4S.Profile
 
         public void SetGameCompleted() {
             ProfileCompletion = ProfileCompletionState.GameCompleted;
+            AppManager.I.StartCoroutine(RewardSystemManager.UnlockExtraRewards());
             AppManager.I.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
             CheckGameFinished();
         }
