@@ -14,7 +14,6 @@ namespace EA4S.Assessment
             float maxRatio = 16.0f / 9.0f;
             float currentRatio = Screen.width / (float)Screen.height;
             float t = (currentRatio - minRatio) / (maxRatio - minRatio);
-            Debug.Log( "t::::: "+t);
             Vector3 pos = transform.localPosition;
             pos.x = Mathf.Lerp( minX, maxX, t);
             transform.localPosition = pos;
