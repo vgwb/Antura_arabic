@@ -372,18 +372,19 @@ namespace EA4S.Profile
         /// <summary>
         /// Add update to db all 'this' reward unlocked.
         /// </summary>
-        //public void AddRewardUnlockedAll() {
-        //    this.RewardsUnlocked.Add()
-        //    AddRewardUnlockedRange(this.RewardsUnlocked);
-        //}
+        public void AddRewardUnlockedAll(RewardPackUnlockData _rewardPackUnlockData) {
+            List<RewardPackUnlockData> rewards = new List<RewardPackUnlockData>();
+            rewards.Add(_rewardPackUnlockData);
+            AppManager.I.DB.UpdateRewardPackUnlockDataAll(rewards);
+        }
 
         /// <summary>
         /// Adds or update a list of unlocked rewards and persist it.
         /// </summary>
         public void AddRewardUnlockedRange(List<RewardPackUnlockData> rewardPackUnlockDatas)
         {
-            Debug.Log(this.RewardsUnlocked);
-            this.RewardsUnlocked.AddRange(rewardPackUnlockDatas);
+            Debug.Log(this.RewardsUnlocked); 
+            AppManager.I.Player.RewardsUnlocked.AddRange(rewardPackUnlockDatas);
             AppManager.I.DB.UpdateRewardPackUnlockDataAll(rewardPackUnlockDatas);
         }
 
