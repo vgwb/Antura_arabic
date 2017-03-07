@@ -77,7 +77,7 @@ namespace EA4S.Minigames.Scanner
 		{
 			get
 			{
-                return (int)Mathf.Ceil(roundsManager.numberOfRoundsWon / 2f);
+                return (int)Mathf.Floor(roundsManager.numberOfRoundsWon / 2f);
 
                 /*if (CurrentScoreRecord < STARS_1_THRESHOLD)
 					return 0;

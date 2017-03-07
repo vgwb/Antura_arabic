@@ -243,7 +243,8 @@ namespace EA4S.Minigames.Scanner
         }
         IEnumerator sayTut(float delay)
         {
-            
+
+            AudioManager.I.PlayDialogue(Database.LocalizationDataId.Scanner_Tuto_Antura);
             while (tutStep == 0)
                 yield return null;
 
