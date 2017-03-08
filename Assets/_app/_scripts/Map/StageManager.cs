@@ -102,7 +102,7 @@ namespace EA4S.Map
         void updateStageIndicator()
         {
             Debug.Log("updateStageIndicator " + currentStageNumber + "/" + maxNumberOfStages);
-            mapStageIndicator.Init(currentStageNumber, maxNumberOfStages);
+            mapStageIndicator.Init(currentStageNumber - 1, maxNumberOfStages);
         }
 
         #region Dialogs
