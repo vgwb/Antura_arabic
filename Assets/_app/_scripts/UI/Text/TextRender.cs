@@ -53,7 +53,7 @@ namespace EA4S.UI
         void Awake()
         {
             m_TextComponent = gameObject.GetComponent<TMP_Text>();
-            AdjustDiacriticPos = true;
+            AdjustDiacriticPos = false;
             checkConfiguration();
 
             if (LocalizationId != Database.LocalizationDataId.None) {
