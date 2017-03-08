@@ -39,6 +39,16 @@ namespace EA4S.Scenes
 
             AnturaAnimController.State = AnturaAnimation;
             LLAnimController.State = LLAnimation;
+
+            // after 2 seconds (after the game title audio) invite palyer to create a profile
+            Invoke("TutorCreateProfile", 2.3f);
+        }
+
+        void TutorCreateProfile()
+        {
+            if (AppManager.I.PlayerProfileManager.GetSavedPlayers().Count < 1) {
+                AudioManager.I.PlayDialogue(Database.LocalizationDataId.Action_Createprofile);
+            }
         }
 
         /// <summary>
@@ -60,12 +70,9 @@ namespace EA4S.Scenes
         private bool reservedAreaIsOpen = false;
         public void OnClickReservedAreaButton()
         {
-            if (reservedAreaIsOpen)
-            {
+            if (reservedAreaIsOpen) {
                 OnCloseReservedArea();
-            }
-            else
-            {
+            } else {
                 OnOpenReservedArea();
             }
         }

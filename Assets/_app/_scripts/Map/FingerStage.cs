@@ -27,6 +27,11 @@ namespace EA4S.Map
                 }
             }
         }*/
+        StageManager stageManager;
+        void Start()
+        {
+            stageManager = GetComponent<StageManager>();
+        }
         float xDown, xUp, x;
         float yDown, yUp, y;
         void Update()
@@ -55,8 +60,8 @@ namespace EA4S.Map
 
                 if ((Mathf.Abs(x) > width * 0.3f) && (Mathf.Abs(y) < height * 0.1f))
                 {
-                    if (x < 0) GetComponent<StageManager>().StageLeft();
-                    if (x > 0) GetComponent<StageManager>().StageRight();
+                    if ((x < 0)&&(stageManager.currentStageNumber<6)) stageManager.StageLeft();
+                    if ((x > 0)&&(stageManager.currentStageNumber>1)) stageManager.StageRight();
                 }
                 StartCoroutine("SwipeToFalse");
             }
