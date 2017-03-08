@@ -496,6 +496,15 @@ public partial class SROptions
 
     [Category("Player Profile")]
     [Sort(2)]
+    public void CreateTestProfile()
+    {
+        AppManager.I.PlayerProfileManager.CreatePlayerProfile(4, PlayerGender.F, 1, PlayerTint.Blue);
+        AppManager.I.NavigationManager.GoToHome(debugMode: true);
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Player Profile")]
+    [Sort(2)]
     public void GiveBones()
     {
         AppManager.I.Player.AddBones(10);
