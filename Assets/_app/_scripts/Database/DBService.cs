@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using SQLite;
 using System.Linq.Expressions;
 using System;
+using System.IO;
 using EA4S.Core;
 
 namespace EA4S.Database
@@ -23,7 +24,13 @@ namespace EA4S.Database
         public DBService(string playerUuid)
         {
             var databaseName = "Antura_Player_" + playerUuid + ".sqlite3";
-            var dbPath = string.Format(@"{0}/{1}", Application.persistentDataPath, databaseName);
+            var dirPath = string.Format(@"{0}/{1}", Application.persistentDataPath, "db");
+            var dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, "db", databaseName);
+
+            if (!Directory.Exists(dirPath))
+            {
+                Directory.CreateDirectory(dirPath);
+            }
 
             // Try to open an existing DB connection, or create a new DB if it does not exist already
             try {
@@ -41,7 +48,13 @@ namespace EA4S.Database
                 Debug.LogWarning("SQL database for player " + playerUuid + " is outdated. Recreating it (from " + lastVersion + " to " + AppConstants.DynamicDbSchemeVersion + ")");
                 RegenerateDatabase();
             }
-            //Debug.Log("Database ready. Version " + dbPath + "v:" +info.Version);
+
+            //Debug.Log("Database ready with UUID " + playerUuid + "   Version: " + (info != null ? info.DynamicDbVersion : "NONE"));
+        }
+
+        public void ForceFileDeletion()
+        {
+            Debug.LogError("MySQL File deletion not yet implemented.");
         }
 
         #region Creation
