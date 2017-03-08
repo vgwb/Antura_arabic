@@ -229,18 +229,23 @@ namespace TMPro
                 this.OnPreRenderObject();
                 m_verticesAlreadyDirty = false;
                 m_layoutAlreadyDirty = false;
-
-                /// HACK to fix AdjustDiacriticPositions
-                if (EA4S.AppManager.I != null) {
-                    if (EA4S.AppManager.I.VocabularyHelper.AdjustDiacriticPositions(textInfo)) {
-                        UpdateVertexData();
-                    }
-                }
-
+                
                 if (!m_isMaterialDirty) return;
 
                 UpdateMaterial();
                 m_isMaterialDirty = false;
+            }
+        }
+
+        protected override void OnMeshRegenerated()
+        {
+            /// HACK to fix AdjustDiacriticPositions
+            if (EA4S.AppManager.I != null)
+            {
+                if (EA4S.AppManager.I.VocabularyHelper.AdjustDiacriticPositions(textInfo))
+                {
+                    UpdateVertexData();
+                }
             }
         }
 

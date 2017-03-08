@@ -222,13 +222,18 @@ namespace TMPro
                 m_isMaterialDirty = false;
             }
 
+        }
+
+        protected override void OnMeshRegenerated()
+        {
             /// HACK to fix AdjustDiacriticPositions
-            if (EA4S.AppManager.I != null) {
-                if (EA4S.AppManager.I.VocabularyHelper.AdjustDiacriticPositions(textInfo)) {
+            if (EA4S.AppManager.I != null)
+            {
+                if (EA4S.AppManager.I.VocabularyHelper.AdjustDiacriticPositions(textInfo))
+                {
                     UpdateVertexData();
                 }
             }
-
         }
 
 
