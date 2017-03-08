@@ -245,7 +245,7 @@ namespace EA4S.Minigames.Scanner
         {
 
             AudioManager.I.PlayDialogue(Database.LocalizationDataId.Scanner_Tuto_Antura);
-            while (tutStep == 0)
+            while (tutStep == 0 || pauseTut())
                 yield return null;
 
             yield return new WaitForSeconds(delay);
@@ -254,7 +254,7 @@ namespace EA4S.Minigames.Scanner
 
         bool pauseTut()
         {
-            if (llCounter > game.scannerLL.Count||
+            if (tutStep == -1 || llCounter > game.scannerLL.Count||
                 !isScannerReady ||
                 /*(currentLL && currentLL.status != ScannerLivingLetter.LLStatus.StandingOnBelt) ||*/ 
                 !target || 

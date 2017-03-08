@@ -210,6 +210,8 @@ namespace EA4S.Minigames.Scanner
         {
             if (scaredCounter == 0 && canBeScared)
             {
+                if(game.tut.tutStep == 0)
+                    game.tut.tutStep = -1;
 
                 scaredCounter=1;
                 antura.IsExcited = false;
@@ -234,7 +236,7 @@ namespace EA4S.Minigames.Scanner
 
         public IEnumerator leaveScene(bool wasScared = false, float delay = 0f)
         {
-            if (game.tut.isTutRound && game.tut.tutStep == 0)
+            if (game.tut.isTutRound && game.tut.tutStep == -1)
                 game.tut.setupTutorial(1);
 
             if (wasScared)
