@@ -1524,6 +1524,7 @@ namespace TMPro
 
                 // Event indicating the text has been regenerated.
                 TMPro_EventManager.ON_TEXT_CHANGED(this);
+                OnMeshRegenerated();
 
                 return;
             }
@@ -2798,6 +2799,7 @@ namespace TMPro
 
                 // Event indicating the text has been regenerated.
                 TMPro_EventManager.ON_TEXT_CHANGED(this);
+                OnMeshRegenerated();
                 return;
             }
 
@@ -3722,6 +3724,7 @@ namespace TMPro
 
             // Event indicating the text has been regenerated.
             TMPro_EventManager.ON_TEXT_CHANGED(this);
+            OnMeshRegenerated();
 
             ////Profiler.EndSample();
             //Debug.Log("Done Rendering Text.");
