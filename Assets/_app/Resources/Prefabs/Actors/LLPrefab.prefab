@@ -1958,7 +1958,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 0
   isArabic: 1
+  AdjustDiacriticPos: 1
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!114 &114000013927319314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2095,7 +2097,9 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 0
   isArabic: 0
+  AdjustDiacriticPos: 0
   LocalizationId: 0
+  DeltaYPerc: 0
 --- !u!114 &114979456825437828
 MonoBehaviour:
   m_ObjectHideFlags: 1

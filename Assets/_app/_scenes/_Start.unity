@@ -1533,7 +1533,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -26.112099}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 153, y: -32}
+  m_AnchoredPosition: {x: 153, y: -31.99997}
   m_SizeDelta: {x: 165, y: 278}
   m_Pivot: {x: 0.5, y: 0.2}
 --- !u!114 &723588311
@@ -6039,7 +6039,7 @@ MonoBehaviour:
   ToggleIconAlpha: 1
   ToggleCanvasGroupAlpha: 0
   AutoAnimateClick: 1
-  AutoPlayButtonFx: 0
+  AutoPlayButtonFx: 1
 --- !u!1001 &1526284553
 Prefab:
   m_ObjectHideFlags: 0

@@ -35,7 +35,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE8E
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -66,7 +65,6 @@ MonoBehaviour:
       Medial_Unicode: FE92
       Final_Unicode: FE90
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -97,7 +95,6 @@ MonoBehaviour:
       Medial_Unicode: FE98
       Final_Unicode: FE96
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -128,7 +125,6 @@ MonoBehaviour:
       Medial_Unicode: FE9C
       Final_Unicode: FE9A
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -159,7 +155,6 @@ MonoBehaviour:
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 1
@@ -190,7 +185,6 @@ MonoBehaviour:
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 1
@@ -221,7 +215,6 @@ MonoBehaviour:
       Medial_Unicode: FEA8
       Final_Unicode: FEA6
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 1
@@ -252,7 +245,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAA
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 
@@ -283,7 +275,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAC
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 
@@ -314,7 +305,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAE
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 
@@ -345,7 +335,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEB0
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 
@@ -376,7 +365,6 @@ MonoBehaviour:
       Medial_Unicode: FEB4
       Final_Unicode: FEB2
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -407,7 +395,6 @@ MonoBehaviour:
       Medial_Unicode: FEB8
       Final_Unicode: FEB6
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -438,7 +425,6 @@ MonoBehaviour:
       Medial_Unicode: FEBC
       Final_Unicode: FEBA
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -469,7 +455,6 @@ MonoBehaviour:
       Medial_Unicode: FEC0
       Final_Unicode: FEBE
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -500,7 +485,6 @@ MonoBehaviour:
       Medial_Unicode: FEC4
       Final_Unicode: FEC2
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 1
       FinalFix: 1
       MedialFix: 1
@@ -531,7 +515,6 @@ MonoBehaviour:
       Medial_Unicode: FEC8
       Final_Unicode: FEC6
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 1
       FinalFix: 1
       MedialFix: 1
@@ -562,7 +545,6 @@ MonoBehaviour:
       Medial_Unicode: FECC
       Final_Unicode: FECA
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -593,7 +575,6 @@ MonoBehaviour:
       Medial_Unicode: FED0
       Final_Unicode: FECE
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -624,7 +605,6 @@ MonoBehaviour:
       Medial_Unicode: FED4
       Final_Unicode: FED2
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -655,7 +635,6 @@ MonoBehaviour:
       Medial_Unicode: FED8
       Final_Unicode: FED6
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -686,7 +665,6 @@ MonoBehaviour:
       Medial_Unicode: FEDC
       Final_Unicode: FEDA
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -717,7 +695,6 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -748,7 +725,6 @@ MonoBehaviour:
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -779,7 +755,6 @@ MonoBehaviour:
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -810,7 +785,6 @@ MonoBehaviour:
       Medial_Unicode: FEEC
       Final_Unicode: FEEA
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -841,7 +815,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEEE
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 
@@ -872,7 +845,6 @@ MonoBehaviour:
       Medial_Unicode: FEF4
       Final_Unicode: FEF2
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 1
@@ -903,7 +875,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEEE
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 
@@ -934,7 +905,6 @@ MonoBehaviour:
       Medial_Unicode: FEF4
       Final_Unicode: FEF2
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 1
@@ -965,7 +935,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -996,7 +965,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1027,7 +995,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1058,7 +1025,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1089,7 +1055,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1120,7 +1085,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1151,7 +1115,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1182,7 +1145,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1213,7 +1175,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1244,7 +1205,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1275,7 +1235,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE84
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1306,7 +1265,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE88
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1337,7 +1295,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEF0
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1368,7 +1325,6 @@ MonoBehaviour:
       Medial_Unicode: FE8C
       Final_Unicode: FE8A
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 1
@@ -1399,7 +1355,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE94
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1430,7 +1385,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEFC
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1461,7 +1415,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEF8
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1492,7 +1445,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEFA
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1523,7 +1475,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEF6
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1554,7 +1505,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE86
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 
@@ -1585,7 +1535,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE8E
       Symbol_Unicode: 064B
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1616,7 +1565,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE84
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 60
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1647,7 +1595,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE82
       Symbol_Unicode: 
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1678,7 +1625,6 @@ MonoBehaviour:
       Medial_Unicode: FECC
       Final_Unicode: FECA
       Symbol_Unicode: 064C
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1709,7 +1655,6 @@ MonoBehaviour:
       Medial_Unicode: FECC
       Final_Unicode: FECA
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1740,7 +1685,6 @@ MonoBehaviour:
       Medial_Unicode: FECC
       Final_Unicode: FECA
       Symbol_Unicode: 0650
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -1771,7 +1715,6 @@ MonoBehaviour:
       Medial_Unicode: FE92
       Final_Unicode: FE90
       Symbol_Unicode: 064F
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -1802,7 +1745,6 @@ MonoBehaviour:
       Medial_Unicode: FE92
       Final_Unicode: FE90
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -1833,7 +1775,6 @@ MonoBehaviour:
       Medial_Unicode: FE92
       Final_Unicode: FE90
       Symbol_Unicode: 0650
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -1864,7 +1805,6 @@ MonoBehaviour:
       Medial_Unicode: FEC0
       Final_Unicode: FEBE
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -1895,7 +1835,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAA
       Symbol_Unicode: 064C
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 
@@ -1926,7 +1865,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAA
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 
@@ -1957,7 +1895,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAC
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 
@@ -1988,7 +1925,6 @@ MonoBehaviour:
       Medial_Unicode: FED4
       Final_Unicode: FED2
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2019,7 +1955,6 @@ MonoBehaviour:
       Medial_Unicode: FED4
       Final_Unicode: FED2
       Symbol_Unicode: 0652
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2050,7 +1985,6 @@ MonoBehaviour:
       Medial_Unicode: FEEC
       Final_Unicode: FEEA
       Symbol_Unicode: 064C
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -2081,7 +2015,6 @@ MonoBehaviour:
       Medial_Unicode: FEEC
       Final_Unicode: FEEA
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -2112,7 +2045,6 @@ MonoBehaviour:
       Medial_Unicode: FEEC
       Final_Unicode: FEEA
       Symbol_Unicode: 0650
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -2143,7 +2075,6 @@ MonoBehaviour:
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 1
@@ -2174,7 +2105,6 @@ MonoBehaviour:
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
       Symbol_Unicode: 0650
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 1
@@ -2205,7 +2135,6 @@ MonoBehaviour:
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
       Symbol_Unicode: 0651
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 1
@@ -2236,7 +2165,6 @@ MonoBehaviour:
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
       Symbol_Unicode: 064F
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 1
@@ -2267,7 +2195,6 @@ MonoBehaviour:
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 1
@@ -2298,7 +2225,6 @@ MonoBehaviour:
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
       Symbol_Unicode: 0651
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 1
@@ -2329,7 +2255,6 @@ MonoBehaviour:
       Medial_Unicode: FEDC
       Final_Unicode: FEDA
       Symbol_Unicode: 064F
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2360,7 +2285,6 @@ MonoBehaviour:
       Medial_Unicode: FEDC
       Final_Unicode: FEDA
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2391,7 +2315,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEFC
       Symbol_Unicode: 064B
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 
@@ -2422,7 +2345,6 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 064C
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2453,7 +2375,6 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2484,7 +2405,6 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 0650
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2515,7 +2435,6 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 064D
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2546,7 +2465,6 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 0652
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2577,7 +2495,6 @@ MonoBehaviour:
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
       Symbol_Unicode: 064F
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2608,7 +2525,6 @@ MonoBehaviour:
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2639,7 +2555,6 @@ MonoBehaviour:
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
       Symbol_Unicode: 0650
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2670,7 +2585,6 @@ MonoBehaviour:
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2701,7 +2615,6 @@ MonoBehaviour:
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
       Symbol_Unicode: 064D
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2732,7 +2645,6 @@ MonoBehaviour:
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
       Symbol_Unicode: 0652
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2763,7 +2675,6 @@ MonoBehaviour:
       Medial_Unicode: FED8
       Final_Unicode: FED6
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2794,7 +2705,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAE
       Symbol_Unicode: 064C
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 
@@ -2825,7 +2735,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAE
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 
@@ -2856,7 +2765,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAE
       Symbol_Unicode: 0650
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 
@@ -2887,7 +2795,6 @@ MonoBehaviour:
       Medial_Unicode: FEBC
       Final_Unicode: FEBA
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2918,7 +2825,6 @@ MonoBehaviour:
       Medial_Unicode: FEB4
       Final_Unicode: FEB2
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2949,7 +2855,6 @@ MonoBehaviour:
       Medial_Unicode: FEB8
       Final_Unicode: FEB6
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -2980,7 +2885,6 @@ MonoBehaviour:
       Medial_Unicode: FEC4
       Final_Unicode: FEC2
       Symbol_Unicode: 064C
-      Symbol_DeltaY: 0
       InitialFix: 1
       FinalFix: 1
       MedialFix: 1
@@ -3011,7 +2915,6 @@ MonoBehaviour:
       Medial_Unicode: FEC4
       Final_Unicode: FEC2
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 1
       FinalFix: 1
       MedialFix: 1
@@ -3042,7 +2945,6 @@ MonoBehaviour:
       Medial_Unicode: FE98
       Final_Unicode: FE96
       Symbol_Unicode: 064F
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -3073,7 +2975,6 @@ MonoBehaviour:
       Medial_Unicode: FE98
       Final_Unicode: FE96
       Symbol_Unicode: 064C
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -3104,7 +3005,6 @@ MonoBehaviour:
       Medial_Unicode: FE98
       Final_Unicode: FE96
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -3135,7 +3035,6 @@ MonoBehaviour:
       Medial_Unicode: FE98
       Final_Unicode: FE96
       Symbol_Unicode: 064C
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -3166,7 +3065,6 @@ MonoBehaviour:
       Medial_Unicode: FE98
       Final_Unicode: FE96
       Symbol_Unicode: 064B
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 1
@@ -3197,7 +3095,6 @@ MonoBehaviour:
       Medial_Unicode: FEF4
       Final_Unicode: FEF2
       Symbol_Unicode: 064C
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 
       MedialFix: 1
@@ -3228,7 +3125,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEB0
       Symbol_Unicode: 064E
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 
@@ -3259,7 +3155,6 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEB0
       Symbol_Unicode: 064F
-      Symbol_DeltaY: 0
       InitialFix: 
       FinalFix: 1
       MedialFix: 
