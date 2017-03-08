@@ -26,6 +26,10 @@ namespace EA4S.Map
         public GameObject letter;
         bool isStageAvailable;
 
+        [Header("References")]
+        public MapStageIndicator mapStageIndicator;
+        public Camera UICamera;
+
         [Header("LockUI")]
         public GameObject lockUI;
 
@@ -39,10 +43,8 @@ namespace EA4S.Map
         public GameObject bookButton;
         public GameObject anturaButton;
 
-        [Header("Other")]
-        public Camera UICamera;
-
         public int currentStageNumber;
+        public int maxNumberOfStages;
         int maxStageUnlocked, i, previousStageNumber;
         bool inTransition;
         static int firstContactSimulationStep;
@@ -51,16 +53,17 @@ namespace EA4S.Map
         {
             if (!Application.isEditor) SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
 
+            maxNumberOfStages = 6;
             currentStageNumber = AppManager.I.Player.CurrentJourneyPosition.Stage;
             maxStageUnlocked = AppManager.I.Player.MaxJourneyPosition.Stage;
             int nStage;
-            if (maxStageUnlocked == 6) { nStage = 6; } else { nStage = maxStageUnlocked - 1; }
+            if (maxStageUnlocked == maxNumberOfStages) { nStage = maxNumberOfStages; } else { nStage = maxStageUnlocked - 1; }
             for (i = 1; i <= nStage; i++) {
                 stages[i].SetActive(false);
                 miniMaps[i].GetComponent<Stage>().isAvailableTheWholeMap = true;
                 miniMaps[i].GetComponent<Stage>().CalculateStepsStage();
             }
-            if (maxStageUnlocked < 6) {
+            if (maxStageUnlocked < maxNumberOfStages) {
                 miniMaps[i].GetComponent<Stage>().CalculateStepsStage();
             }
 
@@ -70,6 +73,8 @@ namespace EA4S.Map
             letter.GetComponent<LetterMovement>().stageScript = miniMaps[AppManager.I.Player.CurrentJourneyPosition.Stage].GetComponent<Stage>();
 
             StartCoroutine("ResetPosLetter");
+
+            updateStageIndicator();
         }
 
         void Start()
@@ -84,13 +89,20 @@ namespace EA4S.Map
             bool isGameCompleted = AppManager.I.Player.HasFinalBeenShown();
             if ((!isGameCompleted) && (AppManager.I.Player.CurrentJourneyPosition.Stage == AppManager.I.Player.MaxJourneyPosition.Stage) &&
                 (AppManager.I.Player.CurrentJourneyPosition.LearningBlock == AppManager.I.Player.MaxJourneyPosition.LearningBlock) &&
-                (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100))
+                (AppManager.I.Player.CurrentJourneyPosition.PlaySession == 100)) {
                 PlayDialogRandomly();
+            }
         }
 
         void OnDestroy()
         {
             this.StopAllCoroutines();
+        }
+
+        void updateStageIndicator()
+        {
+            Debug.Log("updateStageIndicator " + currentStageNumber + "/" + maxNumberOfStages);
+            mapStageIndicator.Init(currentStageNumber, maxNumberOfStages);
         }
 
         #region Dialogs
@@ -173,7 +185,7 @@ namespace EA4S.Map
         /// </summary>
         public void StageLeft()
         {
-            if ((currentStageNumber < 6) && (!inTransition)) {
+            if ((currentStageNumber < maxNumberOfStages) && (!inTransition)) {
                 previousStageNumber = currentStageNumber;
                 currentStageNumber++;
                 CalculateSettingsStage();
@@ -184,6 +196,7 @@ namespace EA4S.Map
                 } else {
                     StageNotAvailable();
                 }
+                updateStageIndicator();
                 StartCoroutine("DesactivateMap");
             }
         }
@@ -209,6 +222,7 @@ namespace EA4S.Map
                 } else {
                     StageNotAvailable();
                 }
+                updateStageIndicator();
                 StartCoroutine("DesactivateMap");
             }
         }
@@ -282,9 +296,11 @@ namespace EA4S.Map
 
         void FirstOrLastMap()
         {
-            if (currentStageNumber == 1) StartCoroutine("DesactivateButtonWithDelay", rightStageButton);
-            else if (currentStageNumber == 6) StartCoroutine("DesactivateButtonWithDelay", leftStageButton);
-            else {
+            if (currentStageNumber == 1) {
+                StartCoroutine("DesactivateButtonWithDelay", rightStageButton);
+            } else if (currentStageNumber == maxNumberOfStages) {
+                StartCoroutine("DesactivateButtonWithDelay", leftStageButton);
+            } else {
                 rightStageButton.SetActive(true);
                 leftStageButton.SetActive(true);
             }
