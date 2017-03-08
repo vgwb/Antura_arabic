@@ -72,7 +72,7 @@ namespace EA4S.Teacher
             teacherReportString = "----- TEACHER REPORT " + DateTime.Now + "----" + teacherReportString;
             if (verboseTeacher) Debug.Log(teacherReportString);
 #if UNITY_EDITOR
-            System.IO.File.WriteAllText(Application.persistentDataPath + "/teacher_report.txt", teacherReportString);
+            if (verboseTeacher) System.IO.File.WriteAllText(Application.persistentDataPath + "/teacher_report.txt", teacherReportString);
 #endif
         }
 
