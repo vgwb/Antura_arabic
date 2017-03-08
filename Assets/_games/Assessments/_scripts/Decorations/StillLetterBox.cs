@@ -160,7 +160,6 @@ namespace EA4S.Assessment
             }
         }
 
-
         private float Wideness;
 
         private float Scale
@@ -180,12 +179,13 @@ namespace EA4S.Assessment
                 }
 
                 //transform the parent too because border sprites have offset even with 0 scale
-                transform.localScale = new Vector3(value, value, value);
+                transform.localScale = new Vector3( value, value, value);
 
                 //Allow space for diacritics.
-                float correctionValue = 0.92f;
-                textTransform.sizeDelta = new Vector2( correctionValue * startTextScale.x * widthScale, 
-                                                        correctionValue * startTextScale.y * value);
+                textTransform.sizeDelta = new Vector2(  startTextScale.x * widthScale, 
+                                                        startTextScale.y * value);
+
+
                 drawingTransform.sizeDelta = new Vector2( startTextScale.x * widthScale, startTextScale.y * value);
                 MegaphoneIcon.transform.localScale =
                     new Vector3(megaphoneScale * value, megaphoneScale * value, 1);
