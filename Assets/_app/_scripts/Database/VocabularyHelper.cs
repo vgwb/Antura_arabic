@@ -49,13 +49,13 @@ namespace EA4S.Database
             DiacriticCombos2Fix.Add(new DiacriticComboFix("0623", "064E", 0, 200));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE84", "064E", -20, 200));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0639", "0650", 20, -350));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FECA", "0650", 20, -350));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0639", "0650", 20, -300));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FECA", "0650", 20, -300));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0628", "0650", 120, -120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0628", "0650", 130, -120));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE91", "0650", 0, -120));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE92", "0650", 0, -120));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE90", "0650", 120, -120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE90", "0650", 130, -120));
 
             DiacriticCombos2Fix.Add(new DiacriticComboFix("0630", "064E", 0, 80));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FEAC", "064E", 0, 80));
@@ -142,6 +142,11 @@ namespace EA4S.Database
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064B", 0, 50));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064B", 60, 0));
 
+
+            // Diacritic Song
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0623", "064F", -20, 140));
+
+
             //List<LetterData> list = AppManager.I.DB.FindLetterData((x) => (x.Symbol_DeltaY != 0));
             //foreach (var letter in list) {
             //    DiacriticCombos2Fix.Add(new DiacriticComboFix(letter.Isolated_Unicode + letter.Symbol_Unicode, letter.Symbol_DeltaY));
@@ -182,6 +187,15 @@ namespace EA4S.Database
             bool changed = false;
 
             if (characterCount > 1) {
+
+                //for (int i = 0; i < characterCount; i++) {
+                //    //Debug.Log("CAHR " + characterCount + ": " + TMPro.TMP_TextUtilities.StringToInt(textInfo.characterInfo[characterCount].character.ToString()));
+                //    Debug.Log("DIACRITIC COMBO: " + i
+                //              //+ "index: " + textInfo.characterInfo[i].index
+                //              + " char: " + textInfo.characterInfo[i].character.ToString()
+                //              + " UNICODE: " + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[i].character)
+                //             );
+                //}
 
                 Vector2 modificationDelta = new Vector2(0, 0);
                 for (int charPosition = 0; charPosition < characterCount - 1; charPosition++) {
