@@ -85,6 +85,12 @@ namespace EA4S.Database
             dynamicDb = null;
         }
 
+        public void DeleteCurrentProfile()
+        {
+            dynamicDb.ForceFileDeletion();
+            dynamicDb = null;
+        }
+
         public void CreateProfile()
         {
             dynamicDb.CreateAllTables();

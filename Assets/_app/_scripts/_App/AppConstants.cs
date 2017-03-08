@@ -58,7 +58,7 @@
         /// Version of the MySQL Database Scheme.
         /// @note: Change with EXTREME CAUTION, as the MySQL databases are regenerated (and thus the data is removed) when a change is detected.
         /// </summary>
-        public const string DynamicDbSchemeVersion = "1.0.0b7";
+        public const string DynamicDbSchemeVersion = "1.0.0b8";
 
         // public Urls
         public const string UrlWebsite = "http://www.antura.org";
