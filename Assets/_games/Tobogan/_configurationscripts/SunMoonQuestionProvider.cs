@@ -12,7 +12,7 @@ namespace EA4S.Minigames.Tobogan
 
         public SunMoonQuestionProvider()
         {
-            currentQuestion = 0;
+            currentQuestion = -1;
 
             // 10 QuestionPacks
             for (int i = 0; i < 32; i++)

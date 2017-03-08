@@ -15,7 +15,7 @@ namespace EA4S.MinigamesAPI.Sample
 
         public SampleQuestionWithWordsProvider ()
         {
-            currentQuestion = 0;
+            currentQuestion = -1;
 
             for (int i = 0; i < 32; i++)
             {
