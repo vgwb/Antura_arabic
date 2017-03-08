@@ -30,10 +30,8 @@ namespace TMPro
         /// <summary>
         /// Get the material that will be used for rendering.
         /// </summary>
-        public override Material materialForRendering
-        {
-            get
-            {
+        public override Material materialForRendering {
+            get {
                 if (m_sharedMaterial == null) return null;
 
                 return GetModifiedMaterial(m_sharedMaterial);
@@ -44,8 +42,7 @@ namespace TMPro
         /// <summary>
         /// Determines if the size of the text container will be adjusted to fit the text object when it is first created.
         /// </summary>
-        public override bool autoSizeTextContainer
-        {
+        public override bool autoSizeTextContainer {
             get { return m_autoSizeTextContainer; }
 
             set { if (m_autoSizeTextContainer == value) return; m_autoSizeTextContainer = value; if (m_autoSizeTextContainer) { CanvasUpdateRegistry.RegisterCanvasElementForLayoutRebuild(this); SetLayoutDirty(); } }
@@ -56,8 +53,7 @@ namespace TMPro
         /// <summary>
         /// Reference to the Mesh used by the text object.
         /// </summary>
-        public override Mesh mesh
-        {
+        public override Mesh mesh {
             get { return m_mesh; }
         }
 
@@ -65,10 +61,8 @@ namespace TMPro
         /// <summary>
         /// Reference to the CanvasRenderer used by the text object.
         /// </summary>
-        public new CanvasRenderer canvasRenderer
-        {
-            get
-            {
+        public new CanvasRenderer canvasRenderer {
+            get {
                 if (m_canvasRenderer == null) m_canvasRenderer = GetComponent<CanvasRenderer>();
 
                 return m_canvasRenderer;
@@ -79,8 +73,7 @@ namespace TMPro
         /// <summary>
         /// 
         /// </summary>
-        public InlineGraphicManager inlineGraphicManager
-        {
+        public InlineGraphicManager inlineGraphicManager {
             get { return m_inlineGraphics; }
         }
 
@@ -105,14 +98,13 @@ namespace TMPro
         public void CalculateLayoutInputHorizontal()
         {
             //Debug.Log("*** CalculateLayoutHorizontal() ***"); // at Frame: " + Time.frameCount); // called on Object ID " + GetInstanceID());
-            
+
             //// Check if object is active
             if (!this.gameObject.activeInHierarchy)
                 return;
 
-            if (m_isCalculateSizeRequired || m_rectTransform.hasChanged)
-            {
-                
+            if (m_isCalculateSizeRequired || m_rectTransform.hasChanged) {
+
 
                 m_preferredWidth = GetPreferredWidth();
 
@@ -129,13 +121,12 @@ namespace TMPro
         public void CalculateLayoutInputVertical()
         {
             //Debug.Log("*** CalculateLayoutInputVertical() ***"); // at Frame: " + Time.frameCount); // called on Object ID " + GetInstanceID());
-            
+
             //// Check if object is active
             if (!this.gameObject.activeInHierarchy) // || IsRectTransformDriven == false)
                 return;
 
-            if (m_isCalculateSizeRequired || m_rectTransform.hasChanged)
-            {
+            if (m_isCalculateSizeRequired || m_rectTransform.hasChanged) {
                 m_preferredHeight = GetPreferredHeight();
 
                 ComputeMarginSize();
@@ -168,7 +159,7 @@ namespace TMPro
             m_isPreferredWidthDirty = true;
             m_isPreferredHeightDirty = true;
 
-            if ( m_layoutAlreadyDirty || this == null || !this.IsActive())
+            if (m_layoutAlreadyDirty || this == null || !this.IsActive())
                 return;
 
             m_layoutAlreadyDirty = true;
@@ -215,15 +206,11 @@ namespace TMPro
         {
             if (this == null) return;
 
-            if (update == CanvasUpdate.Prelayout)
-            {
-                if (m_autoSizeTextContainer)
-                {
+            if (update == CanvasUpdate.Prelayout) {
+                if (m_autoSizeTextContainer) {
                     m_rectTransform.sizeDelta = GetPreferredValues(Mathf.Infinity, Mathf.Infinity);
                 }
-            }
-            else if (update == CanvasUpdate.PreRender)
-            {
+            } else if (update == CanvasUpdate.PreRender) {
                 OnPreRenderCanvas();
 
                 m_verticesAlreadyDirty = false;
@@ -234,6 +221,14 @@ namespace TMPro
                 UpdateMaterial();
                 m_isMaterialDirty = false;
             }
+
+            /// HACK to fix AdjustDiacriticPositions
+            if (EA4S.AppManager.I != null) {
+                if (EA4S.AppManager.I.VocabularyHelper.AdjustDiacriticPositions(textInfo)) {
+                    UpdateVertexData();
+                }
+            }
+
         }
 
 
@@ -244,8 +239,7 @@ namespace TMPro
         {
             if (m_textInfo == null) return;
 
-            for (int i = 1; i < m_subTextObjects.Length && m_subTextObjects[i] != null; i++)
-            {
+            for (int i = 1; i < m_subTextObjects.Length && m_subTextObjects[i] != null; i++) {
                 m_subTextObjects[i].SetPivotDirty();
             }
             //m_isPivotDirty = false;
@@ -261,8 +255,7 @@ namespace TMPro
         {
             Material mat = baseMaterial;
 
-            if (m_ShouldRecalculateStencil)
-            {
+            if (m_ShouldRecalculateStencil) {
                 m_stencilID = TMP_MaterialManager.GetStencilID(gameObject);
                 m_ShouldRecalculateStencil = false;
             }
@@ -271,8 +264,7 @@ namespace TMPro
             //if (m_MaskMaterial != null)
             //    MaterialManager.ReleaseStencilMaterial(m_MaskMaterial);
 
-            if (m_stencilID > 0)
-            {
+            if (m_stencilID > 0) {
                 mat = TMP_MaterialManager.GetStencilMaterial(baseMaterial, m_stencilID);
                 if (m_MaskMaterial != null)
                     TMP_MaterialManager.ReleaseStencilMaterial(m_MaskMaterial);
@@ -323,8 +315,7 @@ namespace TMPro
         /// <summary>
         /// Sets the masking offset from the bounds of the object
         /// </summary>
-        public Vector4 maskOffset
-        {
+        public Vector4 maskOffset {
             get { return m_maskOffset; }
             set { m_maskOffset = value; UpdateMask(); m_havePropertiesChanged = true; }
         }
@@ -466,8 +457,7 @@ namespace TMPro
         {
             int materialCount = m_textInfo.materialCount;
 
-            for (int i = 1; i < materialCount; i++)
-            {
+            for (int i = 1; i < materialCount; i++) {
                 m_subTextObjects[i].CrossFadeColor(targetColor, duration, ignoreTimeScale, useAlpha);
             }
         }
@@ -483,8 +473,7 @@ namespace TMPro
         {
             int materialCount = m_textInfo.materialCount;
 
-            for (int i = 1; i < materialCount; i++)
-            {
+            for (int i = 1; i < materialCount; i++) {
                 m_subTextObjects[i].CrossFadeAlpha(alpha, duration, ignoreTimeScale);
             }
         }
@@ -569,12 +558,9 @@ namespace TMPro
         {
             mesh.RecalculateBounds();
 
-            if (index == 0)
-            {
+            if (index == 0) {
                 m_canvasRenderer.SetMesh(mesh);
-            }
-            else
-            {
+            } else {
                 m_subTextObjects[index].canvasRenderer.SetMesh(mesh);
             }
         }
@@ -585,10 +571,10 @@ namespace TMPro
         /// </summary>
         public override void UpdateVertexData(TMP_VertexDataUpdateFlags flags)
         {
+
             int materialCount = m_textInfo.materialCount;
 
-            for (int i = 0; i < materialCount; i++)
-            {
+            for (int i = 0; i < materialCount; i++) {
                 Mesh mesh;
 
                 if (i == 0)
@@ -626,10 +612,10 @@ namespace TMPro
         /// </summary>
         public override void UpdateVertexData()
         {
+
             int materialCount = m_textInfo.materialCount;
 
-            for (int i = 0; i < materialCount; i++)
-            {
+            for (int i = 0; i < materialCount; i++) {
                 Mesh mesh;
 
                 if (i == 0)
@@ -655,7 +641,7 @@ namespace TMPro
 
 
         public void UpdateFontAsset()
-        {        
+        {
             LoadFontAsset();
         }
 
