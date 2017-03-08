@@ -44,27 +44,27 @@ namespace EA4S.Database
         void buildDiacriticCombos2Fix()
         {
             DiacriticCombos2Fix.Add(new DiacriticComboFix("0627", "064B", 0, 70));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE8E", "064B", -10, 80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE8E", "064B", -20, 80));
 
             DiacriticCombos2Fix.Add(new DiacriticComboFix("0623", "064E", 0, 200));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE84", "064E", -10, 200));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE84", "064E", -20, 200));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0639", "0650", 0, -400));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FECA", "0650", 0, -400));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0639", "0650", 20, -350));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FECA", "0650", 20, -350));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0628", "0650", 100, -120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0628", "0650", 120, -120));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE91", "0650", 0, -120));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE92", "0650", 0, -120));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE90", "0650", 100, -120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE90", "0650", 120, -120));
 
             DiacriticCombos2Fix.Add(new DiacriticComboFix("0630", "064E", 0, 80));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FEAC", "064E", 0, 80));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED3", "064E", 0, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED4", "064E", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED3", "064E", 200, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED4", "064E", 200, 50));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED3", "0652", 0, 60));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED4", "0652", 0, 60));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED3", "0652", 200, 60));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED4", "0652", 200, 60));
 
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FEEC", "0650", 0, -120));
 
@@ -77,29 +77,29 @@ namespace EA4S.Database
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FEFB", "064B", 0, 70));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FEFC", "064B", 0, 70));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "064C", 0, 70));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "064C", 0, 70));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "064C", 40, 120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "064C", 40, 120));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "064E", 0, 70));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "064E", 0, 70));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "064E", 40, 120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "064E", 40, 120));
 
             DiacriticCombos2Fix.Add(new DiacriticComboFix("0644", "0650", 0, -100));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDE", "0650", 0, -100));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0644", "064D", 0, -100));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDE", "064D", 0, -100));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0644", "064D", 30, -90));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDE", "064D", 30, -90));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "0652", 0, 100));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "0652", 0, 100));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "0652", 60, 140));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "0652", 60, 140));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0645", "0650", 40, -100));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE2", "0650", 40, -100));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0645", "0650", 60, -100));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE2", "0650", 60, -100));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0646", "064D", 0, -160));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE6", "064D", 0, -160));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0646", "064D", 40, -130));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE6", "064D", 40, -130));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE7", "0652", 0, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE8", "0652", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE7", "0652", 30, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE8", "0652", 30, 50));
 
             DiacriticCombos2Fix.Add(new DiacriticComboFix("0642", "064E", 50, 0));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FED7", "064E", 0, 40));
@@ -119,28 +119,28 @@ namespace EA4S.Database
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC4", "064E", 0, 100));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC2", "064E", 0, 100));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064F", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064F", 60, 0));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064F", 0, 50));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064F", 0, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064F", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064F", 60, 0));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064C", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064C", 60, 0));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064C", 0, 50));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064C", 0, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064C", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064C", 60, 0));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064E", 50, 0));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064E", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064E", 70, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064E", 70, 0));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0629", "064C", 0, 60));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0629", "064C", -10, 50));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064C", 0, 50));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064C", 0, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064C", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064C", 60, 0));
 
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0629", "064B", 0, 60));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0629", "064B", -10, 60));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064B", 0, 50));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064B", 0, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064B", 50, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064B", 60, 0));
 
             //List<LetterData> list = AppManager.I.DB.FindLetterData((x) => (x.Symbol_DeltaY != 0));
             //foreach (var letter in list) {
@@ -175,10 +175,9 @@ namespace EA4S.Database
         /// </summary>
         /// <returns><c>true</c>, if diacritic positions was adjusted, <c>false</c> otherwise.</returns>
         /// <param name="textInfo">Text info.</param>
-        public bool AdjustDiacriticPositions(TMPro.TMP_TextInfo textInfo)
+        public bool FixDiacriticPositions(TMPro.TMP_TextInfo textInfo)
         {
-            //Debug.Log("AdjustDiacriticPositions " + textInfo.characterCount);
-
+            //Debug.Log("FixDiacriticPositions " + textInfo.characterCount);
             int characterCount = textInfo.characterCount;
             bool changed = false;
 
@@ -208,9 +207,12 @@ namespace EA4S.Database
                         destinationVertices[vertexIndex + 2] = sourceVertices[vertexIndex + 2] + offset;
                         destinationVertices[vertexIndex + 3] = sourceVertices[vertexIndex + 3] + offset;
 
-                        Debug.Log("DIACRITIC: fixed for " + EA4S.Helpers.ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character) + " by " + modificationDelta);
+                        Debug.Log("DIACRITIC FIX: "
+                                  + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition].character)
+                                  + " + "
+                                  + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character)
+                                  + " by " + modificationDelta);
                     }
-
                 }
 
             }
