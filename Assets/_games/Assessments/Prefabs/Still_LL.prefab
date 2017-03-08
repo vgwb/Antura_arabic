@@ -385,6 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialWidth: 1.4
   initialHeight: 1.3
+  initialBorderScale: 1
   initialSprite: {fileID: 21300000, guid: cc3c0465039dc2042bf1b66e484d3a09, type: 3}
   initialMaterial: {fileID: 2100000, guid: 61965d8e8b8372c4fbb0f4f523bf6fd3, type: 2}
 --- !u!114 &114079058053152912
@@ -450,7 +451,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 23.25
+  m_fontSize: 16
   m_fontSizeBase: 37.35
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -467,8 +468,8 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
-  m_enableAdaptiveJustification: 0
   m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_enableKerning: 1
@@ -482,6 +483,7 @@ MonoBehaviour:
   m_ignoreCulling: 1
   m_horizontalMapping: 0
   m_verticalMapping: 0
+  m_uvLineOffset: 0
   m_geometrySortingOrder: 0
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
@@ -503,8 +505,6 @@ MonoBehaviour:
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
-  m_uvOffset: {x: 0, y: 0}
-  m_uvLineOffset: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 23502499622904408}
   m_subTextObjects:
@@ -525,8 +525,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
-  m_lineLength: 0
-  m_anchor: 10
 --- !u!114 &114248540064393972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -544,8 +542,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 2.6
-    height: 2.6
+    width: 2.78
+    height: 1.79
   m_margins: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &114268060219682956
 MonoBehaviour:
@@ -560,6 +558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialWidth: 1.4
   initialHeight: 1.3
+  initialBorderScale: 1
   initialSprite: {fileID: 21300000, guid: f4d991f1b0706ce4c9e28480d747f3de, type: 3}
   initialMaterial: {fileID: 2100000, guid: 61965d8e8b8372c4fbb0f4f523bf6fd3, type: 2}
 --- !u!114 &114550090747345322
@@ -575,6 +574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialWidth: 1.4
   initialHeight: 1.3
+  initialBorderScale: 1
   initialSprite: {fileID: 21300000, guid: e89aad2abc848314c81d63a8edd7fca7, type: 3}
   initialMaterial: {fileID: 2100000, guid: 61965d8e8b8372c4fbb0f4f523bf6fd3, type: 2}
 --- !u!114 &114663253525562922
@@ -606,6 +606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialWidth: 1.4
   initialHeight: 1.3
+  initialBorderScale: 1
   initialSprite: {fileID: 21300000, guid: 8c1ec0121bb50b849940e77bbdc24972, type: 3}
   initialMaterial: {fileID: 2100000, guid: 61965d8e8b8372c4fbb0f4f523bf6fd3, type: 2}
 --- !u!114 &114748560329468034
@@ -631,6 +632,7 @@ MonoBehaviour:
   drawingTransform: {fileID: 224517010780152638}
   backgroundTransform: {fileID: 4294716866208878}
   slotSprite: {fileID: 114268060219682956}
+  maxH: 1
 --- !u!114 &114807908430855550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -695,8 +697,8 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
-  m_enableAdaptiveJustification: 0
   m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_enableKerning: 0
@@ -710,6 +712,7 @@ MonoBehaviour:
   m_ignoreCulling: 1
   m_horizontalMapping: 0
   m_verticalMapping: 0
+  m_uvLineOffset: 0
   m_geometrySortingOrder: 0
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 0
@@ -731,8 +734,6 @@ MonoBehaviour:
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 1
   m_inputSource: 0
-  m_uvOffset: {x: 0, y: 0}
-  m_uvLineOffset: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 23410636627074824}
   m_subTextObjects:
@@ -753,8 +754,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
-  m_lineLength: 0
-  m_anchor: 10
 --- !u!212 &212001014652146444
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -835,6 +834,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2.6, y: 2.6}
+  m_AnchoredPosition: {x: 0.018, y: 0.04}
+  m_SizeDelta: {x: 2.78, y: 1.79}
   m_Pivot: {x: 0.5, y: 0.5}
