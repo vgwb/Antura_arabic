@@ -1,9 +1,7 @@
-﻿
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace _app._scripts.Map
+namespace EA4S.Map
 {
     public class MapStageIndicatorIcon : MonoBehaviour
     {
@@ -21,8 +19,7 @@ namespace _app._scripts.Map
 
         public void Select(bool doSelect)
         {
-            if (!initialized)
-            {
+            if (!initialized) {
                 initialized = true;
                 defColor = ColorizedImage.color;
             }
