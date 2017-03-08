@@ -15,7 +15,7 @@ namespace EA4S.Minigames.FastCrowd
 
         public SampleQuestionWordsVariationProvider()
         {
-            currentQuestion = 0;
+            currentQuestion = -1;
 
             for (int i = 0; i < 32; i++)
             {
