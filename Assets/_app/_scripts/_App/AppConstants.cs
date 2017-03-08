@@ -52,7 +52,7 @@
         /// <summary>
         /// Version of the Static Database Scheme.
         /// </summary>
-        public const string StaticDbSchemeVersion = "1.0.0b7";
+        public const string StaticDbSchemeVersion = "1.0.0b8b";
 
         /// <summary>
         /// Version of the MySQL Database Scheme.
