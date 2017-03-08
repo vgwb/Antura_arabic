@@ -121,10 +121,15 @@ namespace EA4S.Teacher
             List<Database.LetterData> eligibleLetters = new List<Database.LetterData>();
             var vocabularyHelper = AppManager.I.VocabularyHelper;
             var allLetters = vocabularyHelper.GetAllLetters(parameters.letterFilters);
-            foreach(var letter in allLetters)
+            var bad_words = new List<string>(currentRoundIDs_words);
+            foreach (var letter in allLetters)
             {
                 // Check number of words
-                int nWords = vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, letter.Id).Count;
+                var wordsWithLetter = vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, letter.Id);
+                wordsWithLetter.RemoveAll(x => bad_words.Contains(x.Id));  // Remove the already used words
+                wordsWithLetter.RemoveAll(x => vocabularyHelper.ProblematicWordIds.Contains(x.Id));  // HACK: Skip the problematic words (for now)
+
+                int nWords = wordsWithLetter.Count;
                 if (nWords < atLeastNWords) continue;
 
                 // Avoid using letters that already appeared in the current round's words
@@ -144,6 +149,8 @@ namespace EA4S.Teacher
             bad_letters.Remove(commonLetter.Id);
             foreach (var w in words)
             {
+                if (vocabularyHelper.ProblematicWordIds.Contains(w.Id)) continue;  // HACK: Skip the problematic words (for now)
+
                 // Not words that have one of the previous letters (but the current one)
                 if (vocabularyHelper.WordContainsAnyLetter(w, bad_letters)) continue;
 

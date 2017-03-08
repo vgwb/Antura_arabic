@@ -37,6 +37,7 @@ namespace EA4S.Teacher
                     {
                         safetyCounter--;
                         UnityEngine.Debug.LogError("Teacher fallback triggered (" + safetyCounter + "): " + e.ToString());
+                        ConfigAI.PrintTeacherReport(logOnly:true);
 
                         if (safetyCounter <= 0)
                         {

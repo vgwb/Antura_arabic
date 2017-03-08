@@ -6913,8 +6913,8 @@ MonoBehaviour:
   numberOfSimulations: 1
   yieldEverySimulations: 20
   ignoreJourneyPlaySessionSelection: 1
-  currentJourneyStage: 4
-  currentJourneyLB: 15
+  currentJourneyStage: 6
+  currentJourneyLB: 6
   isAssessment: 1
   testWholeJourneyAtButtonClick: 0
   nPacks: 1
