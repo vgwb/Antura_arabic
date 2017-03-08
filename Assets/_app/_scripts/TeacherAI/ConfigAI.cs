@@ -67,12 +67,12 @@ namespace EA4S.Teacher
             if (verboseTeacher) teacherReportString += "\n\n" + s;
         }
 
-        public static void PrintTeacherReport()
+        public static void PrintTeacherReport(bool logOnly = false)
         {
             teacherReportString = "----- TEACHER REPORT " + DateTime.Now + "----" + teacherReportString;
             if (verboseTeacher) Debug.Log(teacherReportString);
 #if UNITY_EDITOR
-            if (verboseTeacher) System.IO.File.WriteAllText(Application.persistentDataPath + "/teacher_report.txt", teacherReportString);
+            if (verboseTeacher && !logOnly) System.IO.File.WriteAllText(Application.persistentDataPath + "/teacher_report.txt", teacherReportString);
 #endif
         }
 

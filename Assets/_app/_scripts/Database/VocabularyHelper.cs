@@ -31,6 +31,7 @@ namespace EA4S.Database
 
         // HACK: this is needed for some games where LamAlef behaves differently
         public bool ForceUnseparatedLetters { get; set; }
+        public List<string> ProblematicWordIds = new List<string>() { "won", "went", "sat", "studied", "laughed", "played", "flapped", "caught", "released", "carried", "understood" };
 
         public List<DiacriticComboFix> DiacriticCombos2Fix = new List<DiacriticComboFix>();
 

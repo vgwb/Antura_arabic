@@ -56,7 +56,6 @@ namespace EA4S.Teacher
 
         private List<string> currentRoundIDs_letters = new List<string>();
         private List<string> currentRoundIDs_words = new List<string>();
-        private List<string> problematicWordIds = new List<string>() {"won", "went", "sat", "studied", "laughed", "played", "flapped", "caught", "released", "carried", "understood"};
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
@@ -144,7 +143,7 @@ namespace EA4S.Teacher
             foreach(var word in vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters))
             {
                 // HACK: Skip the problematic words (for now)
-                if (problematicWordIds.Contains(word.Id)) continue;
+                if (vocabularyHelper.ProblematicWordIds.Contains(word.Id)) continue;
 
                 // Check max length
                 if (word.Letters.Length > maxWordLength) continue;
