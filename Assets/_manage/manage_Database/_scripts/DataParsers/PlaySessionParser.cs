@@ -42,7 +42,7 @@ namespace EA4S.Database.Management
             newLetters.UnionWith(psData.Letters);
             foreach (var letterId in psData.Letters) {
                 var letterData = db.GetById(db.GetLetterTable(), letterId);
-                if (letterData.Kind == LetterDataKind.Symbol) {
+                if (letterData.Kind == LetterDataKind.Symbol && letterData.Type == LetterDataType.DiacriticSymbol) {
                     // this is a symbol
                     var symbolId = letterId;
                     var allDiacriticCombos = db.FindAll(db.GetLetterTable(), x => x.Symbol == symbolId);
