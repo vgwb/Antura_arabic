@@ -19,6 +19,7 @@ namespace EA4S.Teacher
         private int nCorrect;
         private int nWrong;
         private bool packsUsedTogether;
+        private bool forceUnseparatedLetters;
         private QuestionBuilderParameters parameters;
 
         public QuestionBuilderParameters Parameters
@@ -28,6 +29,7 @@ namespace EA4S.Teacher
 
         public WordsWithLetterQuestionBuilder(
             int nRounds, int nPacksPerRound = 1, int nCorrect = 1, int nWrong = 0,
+            bool forceUnseparatedLetters = true,
               QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
@@ -36,6 +38,7 @@ namespace EA4S.Teacher
             this.packsUsedTogether = nPacksPerRound > 1;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
+            this.forceUnseparatedLetters = forceUnseparatedLetters;
             this.parameters = parameters;
         }
 
@@ -47,6 +50,9 @@ namespace EA4S.Teacher
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
+            // HACK: the game may need unseparated letters
+            if (forceUnseparatedLetters) AppManager.I.VocabularyHelper.ForceUnseparatedLetters = true;
+
             previousPacksIDs_letters.Clear();
             previousPacksIDs_words.Clear();
             List<QuestionPackData> packs = new List<QuestionPackData>();
