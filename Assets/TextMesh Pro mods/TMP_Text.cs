@@ -1616,6 +1616,8 @@ namespace TMPro
         /// </summary>
         public virtual void UpdateMeshPadding() { }
 
+        protected virtual void OnMeshRegenerated() { }
+
 
         /// <summary>
         /// 
@@ -1630,7 +1632,7 @@ namespace TMPro
         /// <param name="duration">Tween duration.</param>
         /// <param name="ignoreTimeScale">Should ignore Time.scale?</param>
         /// <param name="useAlpha">Should also Tween the alpha channel?</param>
-        #if UNITY_5_4_OR_NEWER
+#if UNITY_5_4_OR_NEWER
         public override void CrossFadeColor(Color targetColor, float duration, bool ignoreTimeScale, bool useAlpha)
         #else
         public new void CrossFadeColor(Color targetColor, float duration, bool ignoreTimeScale, bool useAlpha)

@@ -1564,6 +1564,7 @@ namespace TMPro
 
                 // Event indicating the text has been regenerated.
                 TMPro_EventManager.ON_TEXT_CHANGED(this);
+                OnMeshRegenerated();
 
                 return;
             }
@@ -2909,6 +2910,7 @@ namespace TMPro
 
                 // Event indicating the text has been regenerated.
                 TMPro_EventManager.ON_TEXT_CHANGED(this);
+                OnMeshRegenerated();
                 return;
             }
 
@@ -3891,11 +3893,12 @@ namespace TMPro
 
             // Event indicating the text has been regenerated.
             TMPro_EventManager.ON_TEXT_CHANGED(this);
+            OnMeshRegenerated();
             //SendOnTextChanged();
 
-            #if PROFILE_PHASES_ON
+#if PROFILE_PHASES_ON
                 Profiler.EndSample();
-            #endif
+#endif
 
             //Debug.Log("Done Rendering Text.");
         }
