@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace EA4S.MinigamesAPI
 {
@@ -16,7 +16,7 @@ namespace EA4S.MinigamesAPI
         #endregion
 
         public SequentialQuestionPackProvider(List<IQuestionPack> _questionsPack) {
-            currentQuestion = 0;
+            currentQuestion = -1;
 
             questions.AddRange(_questionsPack);
         }

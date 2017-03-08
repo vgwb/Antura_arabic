@@ -17,7 +17,7 @@ namespace EA4S.Minigames.MakeFriends
 
         public MakeFriendsQuestionProvider()
         {
-            currentQuestion = 0;
+            currentQuestion = -1;
 
             List<ILivingLetterData> correctAnswers;
             List<ILivingLetterData> wrongAnswers;
