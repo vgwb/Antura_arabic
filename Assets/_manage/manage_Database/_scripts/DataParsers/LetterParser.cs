@@ -35,7 +35,6 @@ namespace EA4S.Database.Management
             data.Medial_Unicode = ToString(dict["Medial_Unicode"]);
             data.Final_Unicode = ToString(dict["Final_Unicode"]);
             data.Symbol_Unicode = ToString(dict["Symbol_Unicode"]);
-            data.Symbol_DeltaY = ToInt(dict["Symbol_DeltaY"]);
             data.InitialFix = ToString(dict["InitialFix"]);
             data.MedialFix = ToString(dict["MedialFix"]);
             data.FinalFix = ToString(dict["FinalFix"]);
