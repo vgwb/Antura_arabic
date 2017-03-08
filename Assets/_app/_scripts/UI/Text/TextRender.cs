@@ -169,7 +169,10 @@ namespace EA4S.UI
             text = row.Arabic;
         }
 
-        void AdjustDiacriticPositions()
+        /// <summary>
+        /// Adjusts the diacritic positions of some symbols.
+        /// </summary>
+        public void AdjustDiacriticPositions()
         {
             m_TextComponent.ForceMeshUpdate();
             textInfo = m_TextComponent.textInfo;
