@@ -169,6 +169,52 @@ namespace EA4S.Database
             return newDelta;
         }
 
+        /// <summary>
+        /// Adjusts the diacritic positions.
+        /// </summary>
+        /// <returns><c>true</c>, if diacritic positions was adjusted, <c>false</c> otherwise.</returns>
+        /// <param name="textInfo">Text info.</param>
+        public bool AdjustDiacriticPositions(TMPro.TMP_TextInfo textInfo)
+        {
+            //Debug.Log("AdjustDiacriticPositions " + textInfo.characterCount);
+
+            int characterCount = textInfo.characterCount;
+            bool changed = false;
+
+            if (characterCount > 1) {
+
+                Vector2 modificationDelta = new Vector2(0, 0);
+                for (int charPosition = 0; charPosition < characterCount - 1; charPosition++) {
+                    modificationDelta = FindDiacriticCombo2Fix(
+                        ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition].character),
+                        ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character)
+                    );
+
+                    if (modificationDelta.sqrMagnitude > 0f) {
+                        changed = true;
+                        int materialIndex = textInfo.characterInfo[charPosition + 1].materialReferenceIndex;
+                        int vertexIndex = textInfo.characterInfo[charPosition + 1].vertexIndex;
+                        Vector3[] sourceVertices = textInfo.meshInfo[materialIndex].vertices;
+
+                        float charsize = (sourceVertices[vertexIndex + 2].y - sourceVertices[vertexIndex + 0].y);
+                        float dx = charsize * modificationDelta.x / 100f;
+                        float dy = charsize * modificationDelta.y / 100f;
+                        Vector3 offset = new Vector3(dx, dy, 0f);
+
+                        Vector3[] destinationVertices = textInfo.meshInfo[materialIndex].vertices;
+                        destinationVertices[vertexIndex + 0] = sourceVertices[vertexIndex + 0] + offset;
+                        destinationVertices[vertexIndex + 1] = sourceVertices[vertexIndex + 1] + offset;
+                        destinationVertices[vertexIndex + 2] = sourceVertices[vertexIndex + 2] + offset;
+                        destinationVertices[vertexIndex + 3] = sourceVertices[vertexIndex + 3] + offset;
+
+                        Debug.Log("DIACRITIC: fixed for " + EA4S.Helpers.ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character) + " by " + modificationDelta);
+                    }
+
+                }
+
+            }
+            return changed;
+        }
         #region Letter Utilities
 
         private bool CheckFilters(LetterFilters filters, LetterData data)

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using ArabicSupport;
-using System.Linq;
 using EA4S.Database;
 
 namespace EA4S.Helpers
@@ -217,21 +216,20 @@ namespace EA4S.Helpers
                         result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.BaseLetter), stringIndex, stringIndex, letterForm));
 
                         var secondPart = staticDatabase.GetById(staticDatabase.GetLetterTable(), letterData.Symbol);
-                        
+
                         if (secondPart.Kind == Database.LetterDataKind.DiacriticCombo && separateDiacritics) // It's a diacritic combo
                         {
                             // Separate Letter and Diacritic
                             result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), secondPart.BaseLetter), stringIndex, stringIndex, letterForm));
                             result.Add(new ArabicStringPart(staticDatabase.GetById(staticDatabase.GetLetterTable(), secondPart.Symbol), stringIndex, stringIndex, letterForm));
-                        }
-                        else
+                        } else
                             result.Add(new ArabicStringPart(secondPart, stringIndex, stringIndex, letterForm));
 
                     } else
                         result.Add(new ArabicStringPart(letterData, stringIndex, stringIndex, letterForm));
-                } else
+                } else {
                     Debug.Log("Cannot parse letter " + character + " (" + unicodeString + ") in " + processedArabicString);
-
+                }
 
                 ++stringIndex;
             }

@@ -43,6 +43,7 @@ namespace EA4S.UI
 
             // By default, the letter shows a truly random letter
             LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL());
+            //LLObjectView.Initialize(new EA4S.MinigamesAPI.LL_LetterData("alef_fathah_tanwin"));
         }
 
         void Start()
@@ -108,8 +109,7 @@ namespace EA4S.UI
             if (playerIconDatas == null) playerIconDatas = ProfileManager.GetSavedPlayers();
             int totProfiles = playerIconDatas == null ? 0 : playerIconDatas.Count;
             int len = playerIcons.Length;
-            for (int i = 0; i < len; ++i)
-            {
+            for (int i = 0; i < len; ++i) {
                 PlayerIcon playerIcon = playerIcons[i];
                 if (i >= totProfiles) playerIcon.gameObject.SetActive(false);
                 else {
@@ -153,8 +153,7 @@ namespace EA4S.UI
 
         PlayerIcon GetPlayerIconByUUID(string uuid)
         {
-            foreach (PlayerIcon pIcon in playerIcons)
-            {
+            foreach (PlayerIcon pIcon in playerIcons) {
                 if (pIcon.Uuid == uuid) return pIcon;
             }
             return null;
