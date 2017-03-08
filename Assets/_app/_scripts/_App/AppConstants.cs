@@ -11,7 +11,7 @@
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.0.0b8a";
+        public const string AppVersion = "1.0.0b8b";
 
         #region Debug Options
 
@@ -31,7 +31,7 @@
         /// Switches on all Debug.Log calls for performance.
         /// Set to FALSE for production.
         /// </summary>
-        public static bool VerboseLogging = false;
+        public static bool VerboseLogging = true;
 
         /// <summary>
         /// Logs all MySQL database inserts.
