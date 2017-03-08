@@ -1,10 +1,8 @@
-﻿
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DG.DeInspektor.Attributes;
 using UnityEngine;
 
-namespace _app._scripts.Map
+namespace EA4S.Map
 {
     public class MapStageIndicator : MonoBehaviour
     {
@@ -28,21 +26,16 @@ namespace _app._scripts.Map
         public void Init(int currStage, int totStages)
         {
             // Create correct number of stages
-            if (icons.Count == 0) icons.Add(Icon);
+            if (icons.Count == 0) { icons.Add(Icon); }
             int len = icons.Count;
-            if (len < totStages)
-            {
-                for (int i = len; i < totStages; ++i)
-                {
+            if (len < totStages) {
+                for (int i = len; i < totStages; ++i) {
                     MapStageIndicatorIcon ico = Instantiate(Icon);
                     ico.transform.SetParent(Icon.transform.parent, false);
                     icons.Add(ico);
                 }
-            }
-            else if (len > totStages)
-            {
-                for (int i = len - 1; i > totStages - 1; --i)
-                {
+            } else if (len > totStages) {
+                for (int i = len - 1; i > totStages - 1; --i) {
                     MapStageIndicatorIcon ico = icons[i];
                     icons.RemoveAt(i);
                     Destroy(ico.gameObject);
@@ -51,7 +44,7 @@ namespace _app._scripts.Map
 
             // Set current stage
             len = icons.Count;
-            for (int i = 0; i < len; ++i) icons[i].Select(i == len - currStage - 1);
+            for (int i = 0; i < len; ++i) { icons[i].Select(i == len - currStage - 1); }
         }
 
         #endregion
