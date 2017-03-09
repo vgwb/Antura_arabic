@@ -43,6 +43,7 @@ namespace EA4S.Minigames.ReadingGame
         Color[] startColors;
         Color startTextColor;
 
+        Vector2 lastSize = Vector2.one;
         bool active;
 
         public int Id;
@@ -105,7 +106,10 @@ namespace EA4S.Minigames.ReadingGame
 
         void Update()
         {
-            var size = text.GetPreferredValues();
+            Vector2 size = lastSize;
+
+            if (alpha > 0)
+                size = lastSize = text.GetPreferredValues();
 
             var oldStartPos = start.localPosition;
             oldStartPos.x = size.x * 0.5f + startOffset;
