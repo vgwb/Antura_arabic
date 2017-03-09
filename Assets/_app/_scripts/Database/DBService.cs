@@ -24,11 +24,10 @@ namespace EA4S.Database
         public DBService(string playerUuid)
         {
             var databaseName = "Antura_Player_" + playerUuid + ".sqlite3";
-            var dirPath = string.Format(@"{0}/{1}", Application.persistentDataPath, "db");
-            var dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, "db", databaseName);
+            var dirPath = string.Format(@"{0}/{1}", Application.persistentDataPath, "players");
+            var dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, "players", databaseName);
 
-            if (!Directory.Exists(dirPath))
-            {
+            if (!Directory.Exists(dirPath)) {
                 Directory.CreateDirectory(dirPath);
             }
 
@@ -126,7 +125,7 @@ namespace EA4S.Database
         public void InsertAll<T>(IEnumerable<T> objects) where T : IData, new()
         {
             if (AppConstants.DebugLogInserts)
-                foreach(var obj in objects)
+                foreach (var obj in objects)
                     Debug.Log("DB Insert: " + obj);
             _connection.InsertAll(objects);
         }
