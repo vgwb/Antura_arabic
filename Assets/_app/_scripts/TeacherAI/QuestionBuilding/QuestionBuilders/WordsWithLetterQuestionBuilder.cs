@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace EA4S.Teacher
 {
@@ -29,7 +30,7 @@ namespace EA4S.Teacher
 
         public WordsWithLetterQuestionBuilder(
             int nRounds, int nPacksPerRound = 1, int nCorrect = 1, int nWrong = 0,
-            bool forceUnseparatedLetters = true,
+            bool forceUnseparatedLetters = false,
               QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();

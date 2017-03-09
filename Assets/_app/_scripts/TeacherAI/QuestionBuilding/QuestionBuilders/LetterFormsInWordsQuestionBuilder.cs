@@ -33,7 +33,7 @@ namespace EA4S.Teacher
 
         public LetterFormsInWordsQuestionBuilder(int nPacksPerRound, int nRounds,
             WordDataCategory category = WordDataCategory.None,
-            int maximumWordLength = 20, bool forceUnseparatedLetters = true,
+            int maximumWordLength = 20, bool forceUnseparatedLetters = false,
             QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
