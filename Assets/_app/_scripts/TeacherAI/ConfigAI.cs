@@ -20,7 +20,7 @@ namespace EA4S.Teacher
 
         // If true, the teacher will keep retrying if it encounters a selection error, to avoid blocking the game
         // @note: this may HANG the game if an error keeps appearing, so use it only for extreme cases!
-        public static bool teacherSafetyFallbackEnabled = true;    
+        public static bool teacherSafetyFallbackEnabled = false;    
 
         public static bool forceJourneyIgnore = false; // If true, the journey progression logic is turned off, so that all data is usable
 

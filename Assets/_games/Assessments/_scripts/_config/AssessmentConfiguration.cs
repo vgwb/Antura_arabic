@@ -142,12 +142,13 @@ namespace EA4S.Assessment
         {
             SimultaneosQuestions = 2;
             var builderParams = new QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = PackListHistory.ForceAllDifferent;
+            builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.sortPacksByDifficulty = false;
 
             return new LetterFormsInWordsQuestionBuilder(
                 nPacksPerRound: SimultaneosQuestions,
                 nRounds: NumberOfRounds,
+                forceUnseparatedLetters: true,
                 parameters: builderParams);
         }
 
@@ -155,12 +156,13 @@ namespace EA4S.Assessment
         {
             SimultaneosQuestions = 2;
             var builderParams = new QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = PackListHistory.ForceAllDifferent;
+            builderParams.correctChoicesHistory = PackListHistory.RepeatWhenFull;
             builderParams.sortPacksByDifficulty = false;
 
             return new LetterFormsInWordsQuestionBuilder(
                 nPacksPerRound: SimultaneosQuestions,
                 nRounds: NumberOfRounds,
+                forceUnseparatedLetters: true,
                 parameters: builderParams);
         }
 
