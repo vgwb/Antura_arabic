@@ -64,7 +64,6 @@ namespace EA4S.Teacher
             {
                 // First, choose a letter
                 var teacher = AppManager.I.Teacher;
-                var vocabulary = AppManager.I.VocabularyHelper;
                 var usableLetters = teacher.VocabularyAi.SelectData(
                     () => FindEligibleLettersAndForms(minFormsAppearing:2, maxWordLength: maximumWordLength),  
                         new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
