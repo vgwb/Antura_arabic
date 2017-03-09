@@ -275,11 +275,11 @@ namespace EA4S.Database
             if (characterCount > 1) {
 
                 // output unicodes for DiacriticCombos2Fix
-                string combo = "";
-                for (int i = 0; i < characterCount; i++) {
-                    combo += '"' + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[i].character) + '"' + ',';
-                }
-                Debug.Log("DiacriticCombos2Fix.Add(new DiacriticComboFix(" + combo + " 0, 0));");
+                //string combo = "";
+                //for (int i = 0; i < characterCount; i++) {
+                //    combo += '"' + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[i].character) + '"' + ',';
+                //}
+                //Debug.Log("DiacriticCombos2Fix.Add(new DiacriticComboFix(" + combo + " 0, 0));");
 
                 Vector2 modificationDelta = new Vector2(0, 0);
                 for (int charPosition = 0; charPosition < characterCount - 1; charPosition++) {
@@ -305,13 +305,11 @@ namespace EA4S.Database
                         destinationVertices[vertexIndex + 2] = sourceVertices[vertexIndex + 2] + offset;
                         destinationVertices[vertexIndex + 3] = sourceVertices[vertexIndex + 3] + offset;
 
-#if UNITY_EDITOR
-                        Debug.Log("DIACRITIC FIX: "
-                                  + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition].character)
-                                  + " + "
-                                  + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character)
-                                  + " by " + modificationDelta);
-#endif
+                        //Debug.Log("DIACRITIC FIX: "
+                        //          + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition].character)
+                        //          + " + "
+                        //          + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character)
+                        //          + " by " + modificationDelta);
                     }
                 }
 
