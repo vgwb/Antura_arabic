@@ -11,7 +11,7 @@
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.0.0b9b";
+        public const string AppVersion = "1.0.0b9c";
 
         #region Debug Options
 
@@ -52,7 +52,7 @@
         /// <summary>
         /// Version of the Static Database Scheme.
         /// </summary>
-        public const string StaticDbSchemeVersion = "1.0.0b9";
+        public const string StaticDbSchemeVersion = "1.0.0";
 
         /// <summary>
         /// Version of the MySQL Database Scheme.
