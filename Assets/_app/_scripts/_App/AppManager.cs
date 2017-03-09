@@ -104,6 +104,11 @@ namespace EA4S
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
 
             GameSettings.HighQualityGfx = false;
+
+            // Update settings
+            //Debug.Log(GameSettings.ApplicationVersion);
+            GameSettings.ApplicationVersion = AppConstants.AppVersion;
+            PlayerProfileManager.SaveGameSettings();
         }
 
         #endregion
