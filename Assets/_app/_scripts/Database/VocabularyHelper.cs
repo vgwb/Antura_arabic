@@ -415,13 +415,21 @@ namespace EA4S.Database
 
         #region Word -> Letter
 
+        private Dictionary<string, List<string>> unseparatedWordsToLetterCache = new   Dictionary<string, List<string>>();
+
         private List<string> GetLetterIdsInWordData(WordData wordData)
         {
             List<string> letter_ids_list = null;
             if (ForceUnseparatedLetters) {
-                var parts = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB.StaticDatabase, wordData, separateVariations: false);
-                letter_ids_list = parts.ConvertAll(p => p.letter.Id);
-            } else {
+                if (!unseparatedWordsToLetterCache.ContainsKey(wordData.Id))
+                {
+                    var parts = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB.StaticDatabase, wordData, separateVariations: false);
+                    letter_ids_list = parts.ConvertAll(p => p.letter.Id);
+                    unseparatedWordsToLetterCache[wordData.Id] = letter_ids_list;
+                }
+                letter_ids_list = unseparatedWordsToLetterCache[wordData.Id];
+            } else
+            {
                 letter_ids_list = new List<string>(wordData.Letters);
             }
             return letter_ids_list;
