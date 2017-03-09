@@ -42,7 +42,7 @@ namespace EA4S.Teacher
     /// </summary>
     public class LogAI
     {
-        public const bool UNLOCK_AT_PLAYSESSION_END = true;
+        public static bool UNLOCK_AT_PLAYSESSION_END = true;
 
         // References
         DatabaseManager db;
@@ -134,7 +134,7 @@ namespace EA4S.Teacher
 
         public void UnlockVocabularyDataForJourneyPosition(JourneyPosition pos)
         {
-            if (!UNLOCK_AT_PLAYSESSION_END) return;
+            if (UNLOCK_AT_PLAYSESSION_END) return;
 
             string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name);
             List<VocabularyScoreData> scoreDataList = db.FindDataByQuery<VocabularyScoreData>(query);
