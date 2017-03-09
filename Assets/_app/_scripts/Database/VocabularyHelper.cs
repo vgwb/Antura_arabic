@@ -221,11 +221,13 @@ namespace EA4S.Database
                         destinationVertices[vertexIndex + 2] = sourceVertices[vertexIndex + 2] + offset;
                         destinationVertices[vertexIndex + 3] = sourceVertices[vertexIndex + 3] + offset;
 
+#if UNITY_EDITOR
                         Debug.Log("DIACRITIC FIX: "
                                   + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition].character)
                                   + " + "
                                   + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character)
                                   + " by " + modificationDelta);
+#endif                  
                     }
                 }
 
