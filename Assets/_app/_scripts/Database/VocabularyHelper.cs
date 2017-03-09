@@ -133,21 +133,17 @@ namespace EA4S.Database
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064E", 70, 0));
             // teh_marbuta_dammah_tanwin
             DiacriticCombos2Fix.Add(new DiacriticComboFix("0629", "064C", -10, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064C", 0, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064C", 0, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064C", 60, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE94", "064C", 0, 80));
             // teh_marbuta_fathah_tanwin
             DiacriticCombos2Fix.Add(new DiacriticComboFix("0629", "064B", -10, 60));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064B", 0, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064B", 0, 50));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064B", 60, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE94", "064B", 0, 80));
             // Diacritic Song
             // alef_hamza_hi_dammah
             DiacriticCombos2Fix.Add(new DiacriticComboFix("0623", "064F", -20, 130));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE84", "064F", 0, 130));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE84", "064F", -20, 130));
             // alef_hamza_low_kasrah
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0625", "0650", 0, -80));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE88", "0650", 0, -80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0625", "0650", 0, -120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE88", "0650", 0, -120));
             // theh_fathah
             DiacriticCombos2Fix.Add(new DiacriticComboFix("062B", "064E", 60, 40));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE9B", "064E", 0, 60));
@@ -231,7 +227,9 @@ namespace EA4S.Database
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FEEE", "0650", 50, -120));
             // yeh_kasrah 
             DiacriticCombos2Fix.Add(new DiacriticComboFix("064A", "0650", 120, -230));
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEF2", "0650", 100, -230));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEF2", "0650", 100, -260));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEF3", "0650", 0, -120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEF4", "0650", 0, -120));
 
             //List<LetterData> list = AppManager.I.DB.FindLetterData((x) => (x.Symbol_DeltaY != 0));
             //foreach (var letter in list) {
