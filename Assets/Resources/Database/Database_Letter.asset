@@ -3163,3 +3163,1473 @@ MonoBehaviour:
       Old_Medial: 
       Old_Final: 
       Intrinsic: 1
+    - Id: alef_hamza_hi_dammah
+      Active: 1
+      Number: 0
+      Title: alef_hamza_hi_dammah
+      Kind: 5
+      BaseLetter: alef_hamza_hi
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0623\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0623
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FE84
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: alef_hamza_low_kasrah
+      Active: 1
+      Number: 0
+      Title: alef_hamza_low_kasrah
+      Kind: 5
+      BaseLetter: alef_hamza_low
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0625\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0625
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FE88
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: teh_kasrah
+      Active: 1
+      Number: 0
+      Title: teh_kasrah
+      Kind: 5
+      BaseLetter: teh
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062A\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062A
+      Initial_Unicode: FE97
+      Medial_Unicode: FE98
+      Final_Unicode: FE96
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: theh_fathah
+      Active: 1
+      Number: 0
+      Title: theh_fathah
+      Kind: 5
+      BaseLetter: theh
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062B\u064E"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062B
+      Initial_Unicode: FE9B
+      Medial_Unicode: FE9C
+      Final_Unicode: FE9A
+      Symbol_Unicode: 064E
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: theh_dammah
+      Active: 1
+      Number: 0
+      Title: theh_dammah
+      Kind: 5
+      BaseLetter: theh
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062B\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062B
+      Initial_Unicode: FE9B
+      Medial_Unicode: FE9C
+      Final_Unicode: FE9A
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: theh_kasrah
+      Active: 1
+      Number: 0
+      Title: theh_kasrah
+      Kind: 5
+      BaseLetter: theh
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062B\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062B
+      Initial_Unicode: FE9B
+      Medial_Unicode: FE9C
+      Final_Unicode: FE9A
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: jeem_kasrah
+      Active: 1
+      Number: 0
+      Title: jeem_kasrah
+      Kind: 5
+      BaseLetter: jeem
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062C\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062C
+      Initial_Unicode: FE9F
+      Medial_Unicode: FEA0
+      Final_Unicode: FE9E
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: hah_dammah
+      Active: 1
+      Number: 0
+      Title: hah_dammah
+      Kind: 5
+      BaseLetter: hah
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062D\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062D
+      Initial_Unicode: FEA3
+      Medial_Unicode: FEA4
+      Final_Unicode: FEA2
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: khah_fathah
+      Active: 1
+      Number: 0
+      Title: khah_fathah
+      Kind: 5
+      BaseLetter: khah
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062E\u064E"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062E
+      Initial_Unicode: FEA7
+      Medial_Unicode: FEA8
+      Final_Unicode: FEA6
+      Symbol_Unicode: 064E
+      InitialFix: 
+      FinalFix: 
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: khah_dammah
+      Active: 1
+      Number: 0
+      Title: khah_dammah
+      Kind: 5
+      BaseLetter: khah
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062E\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062E
+      Initial_Unicode: FEA7
+      Medial_Unicode: FEA8
+      Final_Unicode: FEA6
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: khah_kasrah
+      Active: 1
+      Number: 0
+      Title: khah_kasrah
+      Kind: 5
+      BaseLetter: khah
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062E\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062E
+      Initial_Unicode: FEA7
+      Medial_Unicode: FEA8
+      Final_Unicode: FEA6
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: dal_dammah
+      Active: 1
+      Number: 0
+      Title: dal_dammah
+      Kind: 5
+      BaseLetter: dal
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062F\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062F
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEAA
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: dal_kasrah
+      Active: 1
+      Number: 0
+      Title: dal_kasrah
+      Kind: 5
+      BaseLetter: dal
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u062F\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 062F
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEAA
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: thal_dammah
+      Active: 1
+      Number: 0
+      Title: thal_dammah
+      Kind: 5
+      BaseLetter: thal
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0630\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0630
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEAC
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: thal_kasrah
+      Active: 1
+      Number: 0
+      Title: thal_kasrah
+      Kind: 5
+      BaseLetter: thal
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0630\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0630
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEAC
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: reh_dammah
+      Active: 1
+      Number: 0
+      Title: reh_dammah
+      Kind: 5
+      BaseLetter: reh
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0631\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0631
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEAE
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: zain_kasrah
+      Active: 1
+      Number: 0
+      Title: zain_kasrah
+      Kind: 5
+      BaseLetter: zain
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0632\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0632
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEB0
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: seen_dammah
+      Active: 1
+      Number: 0
+      Title: seen_dammah
+      Kind: 5
+      BaseLetter: seen
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0633\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0633
+      Initial_Unicode: FEB3
+      Medial_Unicode: FEB4
+      Final_Unicode: FEB2
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: seen_kasrah
+      Active: 1
+      Number: 0
+      Title: seen_kasrah
+      Kind: 5
+      BaseLetter: seen
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0633\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0633
+      Initial_Unicode: FEB3
+      Medial_Unicode: FEB4
+      Final_Unicode: FEB2
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: sheen_dammah
+      Active: 1
+      Number: 0
+      Title: sheen_dammah
+      Kind: 5
+      BaseLetter: sheen
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0634\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0634
+      Initial_Unicode: FEB7
+      Medial_Unicode: FEB8
+      Final_Unicode: FEB6
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: sheen_kasrah
+      Active: 1
+      Number: 0
+      Title: sheen_kasrah
+      Kind: 5
+      BaseLetter: sheen
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0634\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0634
+      Initial_Unicode: FEB7
+      Medial_Unicode: FEB8
+      Final_Unicode: FEB6
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: sad_dammah
+      Active: 1
+      Number: 0
+      Title: sad_dammah
+      Kind: 5
+      BaseLetter: sad
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0635\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0635
+      Initial_Unicode: FEBB
+      Medial_Unicode: FEBC
+      Final_Unicode: FEBA
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: sad_kasrah
+      Active: 1
+      Number: 0
+      Title: sad_kasrah
+      Kind: 5
+      BaseLetter: sad
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0635\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0635
+      Initial_Unicode: FEBB
+      Medial_Unicode: FEBC
+      Final_Unicode: FEBA
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: dad_dammah
+      Active: 1
+      Number: 0
+      Title: dad_dammah
+      Kind: 5
+      BaseLetter: dad
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0636\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0636
+      Initial_Unicode: FEBF
+      Medial_Unicode: FEC0
+      Final_Unicode: FEBE
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: dad_kasrah
+      Active: 1
+      Number: 0
+      Title: dad_kasrah
+      Kind: 5
+      BaseLetter: dad
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0636\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0636
+      Initial_Unicode: FEBF
+      Medial_Unicode: FEC0
+      Final_Unicode: FEBE
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: tah_dammah
+      Active: 1
+      Number: 0
+      Title: tah_dammah
+      Kind: 5
+      BaseLetter: tah
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0637\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0637
+      Initial_Unicode: FEC3
+      Medial_Unicode: FEC4
+      Final_Unicode: FEC2
+      Symbol_Unicode: 064F
+      InitialFix: 1
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: tah_kasrah
+      Active: 1
+      Number: 0
+      Title: tah_kasrah
+      Kind: 5
+      BaseLetter: tah
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0637\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0637
+      Initial_Unicode: FEC3
+      Medial_Unicode: FEC4
+      Final_Unicode: FEC2
+      Symbol_Unicode: 0650
+      InitialFix: 1
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: zah_fathah
+      Active: 1
+      Number: 0
+      Title: zah_fathah
+      Kind: 5
+      BaseLetter: zah
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0638\u064E"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0638
+      Initial_Unicode: FEC7
+      Medial_Unicode: FEC8
+      Final_Unicode: FEC6
+      Symbol_Unicode: 064E
+      InitialFix: 1
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: zah_dammah
+      Active: 1
+      Number: 0
+      Title: zah_dammah
+      Kind: 5
+      BaseLetter: zah
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0638\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0638
+      Initial_Unicode: FEC7
+      Medial_Unicode: FEC8
+      Final_Unicode: FEC6
+      Symbol_Unicode: 064F
+      InitialFix: 1
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: zah_kasrah
+      Active: 1
+      Number: 0
+      Title: zah_kasrah
+      Kind: 5
+      BaseLetter: zah
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0638\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0638
+      Initial_Unicode: FEC7
+      Medial_Unicode: FEC8
+      Final_Unicode: FEC6
+      Symbol_Unicode: 0650
+      InitialFix: 1
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: ain_dammah
+      Active: 1
+      Number: 0
+      Title: ain_dammah
+      Kind: 5
+      BaseLetter: ain
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0639\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0639
+      Initial_Unicode: FECB
+      Medial_Unicode: FECC
+      Final_Unicode: FECA
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: ghain_fathah
+      Active: 1
+      Number: 0
+      Title: ghain_fathah
+      Kind: 5
+      BaseLetter: ghain
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u063A\u064E"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 063A
+      Initial_Unicode: FECF
+      Medial_Unicode: FED0
+      Final_Unicode: FECE
+      Symbol_Unicode: 064E
+      InitialFix: 
+      FinalFix: 
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: ghain_dammah
+      Active: 1
+      Number: 0
+      Title: ghain_dammah
+      Kind: 5
+      BaseLetter: ghain
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u063A\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 063A
+      Initial_Unicode: FECF
+      Medial_Unicode: FED0
+      Final_Unicode: FECE
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: ghain_kasrah
+      Active: 1
+      Number: 0
+      Title: ghain_kasrah
+      Kind: 5
+      BaseLetter: ghain
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u063A\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 063A
+      Initial_Unicode: FECF
+      Medial_Unicode: FED0
+      Final_Unicode: FECE
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: feh_dammah
+      Active: 1
+      Number: 0
+      Title: feh_dammah
+      Kind: 5
+      BaseLetter: feh
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0641\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0641
+      Initial_Unicode: FED3
+      Medial_Unicode: FED4
+      Final_Unicode: FED2
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: feh_kasrah
+      Active: 1
+      Number: 0
+      Title: feh_kasrah
+      Kind: 5
+      BaseLetter: feh
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0641\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0641
+      Initial_Unicode: FED3
+      Medial_Unicode: FED4
+      Final_Unicode: FED2
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: qaf_dammah
+      Active: 1
+      Number: 0
+      Title: qaf_dammah
+      Kind: 5
+      BaseLetter: qaf
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0642\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0642
+      Initial_Unicode: FED7
+      Medial_Unicode: FED8
+      Final_Unicode: FED6
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: qaf_kasrah
+      Active: 1
+      Number: 0
+      Title: qaf_kasrah
+      Kind: 5
+      BaseLetter: qaf
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0642\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0642
+      Initial_Unicode: FED7
+      Medial_Unicode: FED8
+      Final_Unicode: FED6
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: kaf_kasrah
+      Active: 1
+      Number: 0
+      Title: kaf_kasrah
+      Kind: 5
+      BaseLetter: kaf
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0643\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0643
+      Initial_Unicode: FEDB
+      Medial_Unicode: FEDC
+      Final_Unicode: FEDA
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: lam_dammah
+      Active: 1
+      Number: 0
+      Title: lam_dammah
+      Kind: 5
+      BaseLetter: lam
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0644\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0644
+      Initial_Unicode: FEDF
+      Medial_Unicode: FEE0
+      Final_Unicode: FEDE
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: noon_dammah
+      Active: 1
+      Number: 0
+      Title: noon_dammah
+      Kind: 5
+      BaseLetter: noon
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0646\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0646
+      Initial_Unicode: FEE7
+      Medial_Unicode: FEE8
+      Final_Unicode: FEE6
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: noon_kasrah
+      Active: 1
+      Number: 0
+      Title: noon_kasrah
+      Kind: 5
+      BaseLetter: noon
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0646\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0646
+      Initial_Unicode: FEE7
+      Medial_Unicode: FEE8
+      Final_Unicode: FEE6
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: heh_dammah
+      Active: 1
+      Number: 0
+      Title: heh_dammah
+      Kind: 5
+      BaseLetter: heh
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0647\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0647
+      Initial_Unicode: FEEB
+      Medial_Unicode: FEEC
+      Final_Unicode: FEEA
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: waw_fathah
+      Active: 1
+      Number: 0
+      Title: waw_fathah
+      Kind: 5
+      BaseLetter: waw
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0648\u064E"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0648
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEEE
+      Symbol_Unicode: 064E
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: waw_dammah
+      Active: 1
+      Number: 0
+      Title: waw_dammah
+      Kind: 5
+      BaseLetter: waw
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0648\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0648
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEEE
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: waw_kasrah
+      Active: 1
+      Number: 0
+      Title: waw_kasrah
+      Kind: 5
+      BaseLetter: waw
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u0648\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0648
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FEEE
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 1
+      MedialFix: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: yeh_fathah
+      Active: 1
+      Number: 0
+      Title: yeh_fathah
+      Kind: 5
+      BaseLetter: yeh
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u064A\u064E"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 064A
+      Initial_Unicode: FEF3
+      Medial_Unicode: FEF4
+      Final_Unicode: FEF2
+      Symbol_Unicode: 064E
+      InitialFix: 
+      FinalFix: 
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: yeh_dammah
+      Active: 1
+      Number: 0
+      Title: yeh_dammah
+      Kind: 5
+      BaseLetter: yeh
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u064A\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 064A
+      Initial_Unicode: FEF3
+      Medial_Unicode: FEF4
+      Final_Unicode: FEF2
+      Symbol_Unicode: 064F
+      InitialFix: 
+      FinalFix: 
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
+    - Id: yeh_kasrah
+      Active: 1
+      Number: 0
+      Title: yeh_kasrah
+      Kind: 5
+      BaseLetter: yeh
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: from diacritic song
+      SunMoon: 0
+      Sound: 
+      SoundZone: 
+      Isolated: "\u064A\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 064A
+      Initial_Unicode: FEF3
+      Medial_Unicode: FEF4
+      Final_Unicode: FEF2
+      Symbol_Unicode: 0650
+      InitialFix: 
+      FinalFix: 
+      MedialFix: 1
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
+      Intrinsic: 1
