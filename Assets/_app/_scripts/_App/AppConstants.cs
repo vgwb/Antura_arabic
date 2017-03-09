@@ -11,7 +11,7 @@
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.0.0b8b";
+        public const string AppVersion = "1.0.0b9b";
 
         #region Debug Options
 
@@ -52,13 +52,13 @@
         /// <summary>
         /// Version of the Static Database Scheme.
         /// </summary>
-        public const string StaticDbSchemeVersion = "1.0.0b8b";
+        public const string StaticDbSchemeVersion = "1.0.0b9";
 
         /// <summary>
         /// Version of the MySQL Database Scheme.
         /// @note: Change with EXTREME CAUTION, as the MySQL databases are regenerated (and thus the data is removed) when a change is detected.
         /// </summary>
-        public const string DynamicDbSchemeVersion = "1.0.0b8";
+        public const string DynamicDbSchemeVersion = "1.0.0";
 
         // public Urls
         public const string UrlWebsite = "http://www.antura.org";
