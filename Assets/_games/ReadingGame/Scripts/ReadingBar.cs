@@ -136,8 +136,18 @@ namespace EA4S.Minigames.ReadingGame
             const float ALPHA_LERP_SPEED = 5.0f;
 
             var textColor = text.color;
-            textColor.a = Mathf.Lerp(textColor.a, startTextColor.a * alpha, ALPHA_LERP_SPEED * Time.deltaTime);
-            text.color = textColor;
+
+            var srcAlpha = textColor.a;
+            var destAlpha = startTextColor.a * alpha;
+
+
+            if (Mathf.Abs(srcAlpha - destAlpha) < 0.01f)
+                textColor.a = destAlpha;
+            else
+                textColor.a = Mathf.Lerp(srcAlpha, destAlpha, ALPHA_LERP_SPEED * Time.deltaTime);
+
+            if (text.color != textColor)
+                text.color = textColor;
 
             if (shineWhenNearTarget)
             {
