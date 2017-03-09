@@ -6906,18 +6906,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a981b414f6d680b44afbbed2226b685d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verboseQuestionPacks: 0
+  verboseQuestionPacks: 1
   verboseDataSelection: 0
   verboseDataFiltering: 0
   verbosePlaySessionInitialisation: 0
   numberOfSimulations: 1
   yieldEverySimulations: 20
   ignoreJourneyPlaySessionSelection: 1
-  currentJourneyStage: 6
-  currentJourneyLB: 6
+  currentJourneyStage: 2
+  currentJourneyLB: 2
   isAssessment: 1
-  testWholeJourneyAtButtonClick: 1
-  nPacks: 1
+  testWholeJourneyAtButtonClick: 0
+  nPacks: 6
   nPacksPerRound: 1
   sortPacksByDifficulty: 0
   nCorrectAnswers: 1
