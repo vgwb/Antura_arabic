@@ -4737,6 +4737,12 @@ MonoBehaviour:
       - tah_fathah
       - teh_fathah
       - zain_fathah
+      - theh_fathah
+      - khah_fathah
+      - zah_fathah
+      - ghain_fathah
+      - waw_fathah
+      - yeh_fathah
       Words:
       - doctor
       Words_previous:
@@ -4866,6 +4872,28 @@ MonoBehaviour:
       - meem_dammah
       - teh_dammah
       - zain_dammah
+      - alef_hamza_hi_dammah
+      - theh_dammah
+      - hah_dammah
+      - khah_dammah
+      - dal_dammah
+      - thal_dammah
+      - reh_dammah
+      - seen_dammah
+      - sheen_dammah
+      - sad_dammah
+      - dad_dammah
+      - tah_dammah
+      - zah_dammah
+      - ain_dammah
+      - ghain_dammah
+      - feh_dammah
+      - qaf_dammah
+      - lam_dammah
+      - noon_dammah
+      - heh_dammah
+      - waw_dammah
+      - yeh_dammah
       Words:
       - garden
       Words_previous:
@@ -5000,6 +5028,27 @@ MonoBehaviour:
       - lam_kasrah
       - meem_kasrah
       - reh_kasrah
+      - alef_hamza_low_kasrah
+      - teh_kasrah
+      - theh_kasrah
+      - jeem_kasrah
+      - khah_kasrah
+      - dal_kasrah
+      - thal_kasrah
+      - zain_kasrah
+      - seen_kasrah
+      - sheen_kasrah
+      - sad_kasrah
+      - dad_kasrah
+      - tah_kasrah
+      - zah_kasrah
+      - ghain_kasrah
+      - feh_kasrah
+      - qaf_kasrah
+      - kaf_kasrah
+      - noon_kasrah
+      - waw_kasrah
+      - yeh_kasrah
       Words:
       - number_06
       Words_previous:
@@ -5156,12 +5205,40 @@ MonoBehaviour:
       - tah_fathah
       - teh_fathah
       - zain_fathah
+      - theh_fathah
+      - khah_fathah
+      - zah_fathah
+      - ghain_fathah
+      - waw_fathah
+      - yeh_fathah
       - beh_dammah
       - jeem_dammah
       - kaf_dammah
       - meem_dammah
       - teh_dammah
       - zain_dammah
+      - alef_hamza_hi_dammah
+      - theh_dammah
+      - hah_dammah
+      - khah_dammah
+      - dal_dammah
+      - thal_dammah
+      - reh_dammah
+      - seen_dammah
+      - sheen_dammah
+      - sad_dammah
+      - dad_dammah
+      - tah_dammah
+      - zah_dammah
+      - ain_dammah
+      - ghain_dammah
+      - feh_dammah
+      - qaf_dammah
+      - lam_dammah
+      - noon_dammah
+      - heh_dammah
+      - waw_dammah
+      - yeh_dammah
       - ain_kasrah
       - beh_kasrah
       - heh_kasrah
@@ -5169,6 +5246,27 @@ MonoBehaviour:
       - lam_kasrah
       - meem_kasrah
       - reh_kasrah
+      - alef_hamza_low_kasrah
+      - teh_kasrah
+      - theh_kasrah
+      - jeem_kasrah
+      - khah_kasrah
+      - dal_kasrah
+      - thal_kasrah
+      - zain_kasrah
+      - seen_kasrah
+      - sheen_kasrah
+      - sad_kasrah
+      - dad_kasrah
+      - tah_kasrah
+      - zah_kasrah
+      - ghain_kasrah
+      - feh_kasrah
+      - qaf_kasrah
+      - kaf_kasrah
+      - noon_kasrah
+      - waw_kasrah
+      - yeh_kasrah
       - feh_sukun
       - lam_sukun
       - noon_sukun
@@ -5739,12 +5837,40 @@ MonoBehaviour:
       - tah_fathah
       - teh_fathah
       - zain_fathah
+      - theh_fathah
+      - khah_fathah
+      - zah_fathah
+      - ghain_fathah
+      - waw_fathah
+      - yeh_fathah
       - beh_dammah
       - jeem_dammah
       - kaf_dammah
       - meem_dammah
       - teh_dammah
       - zain_dammah
+      - alef_hamza_hi_dammah
+      - theh_dammah
+      - hah_dammah
+      - khah_dammah
+      - dal_dammah
+      - thal_dammah
+      - reh_dammah
+      - seen_dammah
+      - sheen_dammah
+      - sad_dammah
+      - dad_dammah
+      - tah_dammah
+      - zah_dammah
+      - ain_dammah
+      - ghain_dammah
+      - feh_dammah
+      - qaf_dammah
+      - lam_dammah
+      - noon_dammah
+      - heh_dammah
+      - waw_dammah
+      - yeh_dammah
       - ain_kasrah
       - beh_kasrah
       - heh_kasrah
@@ -5752,6 +5878,27 @@ MonoBehaviour:
       - lam_kasrah
       - meem_kasrah
       - reh_kasrah
+      - alef_hamza_low_kasrah
+      - teh_kasrah
+      - theh_kasrah
+      - jeem_kasrah
+      - khah_kasrah
+      - dal_kasrah
+      - thal_kasrah
+      - zain_kasrah
+      - seen_kasrah
+      - sheen_kasrah
+      - sad_kasrah
+      - dad_kasrah
+      - tah_kasrah
+      - zah_kasrah
+      - ghain_kasrah
+      - feh_kasrah
+      - qaf_kasrah
+      - kaf_kasrah
+      - noon_kasrah
+      - waw_kasrah
+      - yeh_kasrah
       - alef_fathah_tanwin
       - lam_alef_fathah_tanwin
       - teh_marbuta_fathah_tanwin
@@ -7255,6 +7402,12 @@ MonoBehaviour:
       - tah_fathah
       - teh_fathah
       - zain_fathah
+      - theh_fathah
+      - khah_fathah
+      - zah_fathah
+      - ghain_fathah
+      - waw_fathah
+      - yeh_fathah
       - ain_kasrah
       - beh_kasrah
       - heh_kasrah
@@ -7262,12 +7415,55 @@ MonoBehaviour:
       - lam_kasrah
       - meem_kasrah
       - reh_kasrah
+      - alef_hamza_low_kasrah
+      - teh_kasrah
+      - theh_kasrah
+      - jeem_kasrah
+      - khah_kasrah
+      - dal_kasrah
+      - thal_kasrah
+      - zain_kasrah
+      - seen_kasrah
+      - sheen_kasrah
+      - sad_kasrah
+      - dad_kasrah
+      - tah_kasrah
+      - zah_kasrah
+      - ghain_kasrah
+      - feh_kasrah
+      - qaf_kasrah
+      - kaf_kasrah
+      - noon_kasrah
+      - waw_kasrah
+      - yeh_kasrah
       - beh_dammah
       - jeem_dammah
       - kaf_dammah
       - meem_dammah
       - teh_dammah
       - zain_dammah
+      - alef_hamza_hi_dammah
+      - theh_dammah
+      - hah_dammah
+      - khah_dammah
+      - dal_dammah
+      - thal_dammah
+      - reh_dammah
+      - seen_dammah
+      - sheen_dammah
+      - sad_dammah
+      - dad_dammah
+      - tah_dammah
+      - zah_dammah
+      - ain_dammah
+      - ghain_dammah
+      - feh_dammah
+      - qaf_dammah
+      - lam_dammah
+      - noon_dammah
+      - heh_dammah
+      - waw_dammah
+      - yeh_dammah
       Words:
       - carrot
       - islands

@@ -123,29 +123,115 @@ namespace EA4S.Database
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064F", 0, 50));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064F", 0, 50));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064F", 60, 0));
-
+            // teh_dammah_tanwin
             DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064C", 60, 0));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064C", 0, 50));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064C", 0, 50));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064C", 60, 0));
-
+            // teh_fathah
             DiacriticCombos2Fix.Add(new DiacriticComboFix("062A", "064E", 70, 0));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064E", 70, 0));
-
+            // teh_marbuta_dammah_tanwin
             DiacriticCombos2Fix.Add(new DiacriticComboFix("0629", "064C", -10, 50));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064C", 0, 50));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064C", 0, 50));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064C", 60, 0));
-
+            // teh_marbuta_fathah_tanwin
             DiacriticCombos2Fix.Add(new DiacriticComboFix("0629", "064B", -10, 60));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE97", "064B", 0, 50));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE98", "064B", 0, 50));
             DiacriticCombos2Fix.Add(new DiacriticComboFix("FE96", "064B", 60, 0));
-
-
             // Diacritic Song
-            DiacriticCombos2Fix.Add(new DiacriticComboFix("0623", "064F", -20, 140));
-
+            // alef_hamza_hi_dammah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0623", "064F", -20, 130));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE84", "064F", 0, 130));
+            // alef_hamza_low_kasrah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0625", "0650", 0, -80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE88", "0650", 0, -80));
+            // theh_fathah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("062B", "064E", 60, 40));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE9B", "064E", 0, 60));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE9C", "064E", 0, 60));
+            // theh_dammah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("062B", "064F", 60, 40));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE9B", "064F", 0, 60));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE9C", "064F", 0, 60));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE9A", "064F", 60, 40));
+            // jeem_kasrah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("062C", "0650", 50, -200));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE9F", "0650", 20, -90));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEA0", "0650", 20, -90));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FE9E", "0650", 50, -200));
+            // khah_kasrah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("062E", "0650", 50, -200));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEA6", "0650", 50, -200));
+            // thal_dammah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0630", "064F", 0, 80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEAC", "064F", 0, 80));
+            // zain_kasrah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0632", "0650", 70, -180));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEB0", "0650", 70, -180));
+            // seen_kasrah 
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0633", "0650", 50, -120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEB2", "0650", 50, -120));
+            // sheen_kasrah 
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0634", "0650", 50, -120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEB6", "0650", 50, -120));
+            // sad_kasrah 
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0635", "0650", 50, -120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEBA", "0650", 50, -120));
+            // dad_kasrah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0636", "0650", 50, -120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEBE", "0650", 50, -120));
+            // tah_dammah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0637", "064F", 0, 80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC3", "064F", 0, 80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC4", "064F", 0, 80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC2", "064F", 0, 80));
+            // zah_fathah 
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0638", "064E", 0, 80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC7", "064E", 0, 80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC8", "064E", 0, 80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC6", "064E", 0, 80));
+            // zah_dammah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0638", "064F", 0, 80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC7", "064F", 0, 80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC8", "064F", 0, 80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEC6", "064F", 0, 80));
+            // ghain_fathah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("063A", "064E", 0, 50));
+            // ghain_dammah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("063A", "064F", 0, 50));
+            // ghain_kasrah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("063A", "0650", 0, -200));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FECE", "0650", 0, -200));
+            // feh_dammah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0641", "064F", 100, 0));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED3", "064F", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED4", "064F", 0, 50));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED2", "064F", 100, 0));
+            // qaf_dammah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0642", "064F", 80, 20));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED7", "064F", 0, 40));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED8", "064F", 0, 40));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED6", "064F", 80, 20));
+            // qaf_kasrah 
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0642", "0650", 50, -140));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FED6", "0650", 50, -140));
+            // lam_dammah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0644", "064F", 80, 40));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDF", "064F", 0, 80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE0", "064F", 0, 80));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEDE", "064F", 80, 40));
+            // noon_kasrah
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0646", "0650", 50, -120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEE6", "0650", 50, -120));
+            // waw_kasrah 
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("0648", "0650", 50, -120));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEEE", "0650", 50, -120));
+            // yeh_kasrah 
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("064A", "0650", 120, -230));
+            DiacriticCombos2Fix.Add(new DiacriticComboFix("FEF2", "0650", 100, -230));
 
             //List<LetterData> list = AppManager.I.DB.FindLetterData((x) => (x.Symbol_DeltaY != 0));
             //foreach (var letter in list) {
@@ -188,14 +274,12 @@ namespace EA4S.Database
 
             if (characterCount > 1) {
 
+                // output unicodes for DiacriticCombos2Fix
+                //string combo = "";
                 //for (int i = 0; i < characterCount; i++) {
-                //    //Debug.Log("CAHR " + characterCount + ": " + TMPro.TMP_TextUtilities.StringToInt(textInfo.characterInfo[characterCount].character.ToString()));
-                //    Debug.Log("DIACRITIC COMBO: " + i
-                //              //+ "index: " + textInfo.characterInfo[i].index
-                //              + " char: " + textInfo.characterInfo[i].character.ToString()
-                //              + " UNICODE: " + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[i].character)
-                //             );
+                //    combo += '"' + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[i].character) + '"' + ',';
                 //}
+                //Debug.Log("DiacriticCombos2Fix.Add(new DiacriticComboFix(" + combo + " 0, 0));");
 
                 Vector2 modificationDelta = new Vector2(0, 0);
                 for (int charPosition = 0; charPosition < characterCount - 1; charPosition++) {
@@ -221,11 +305,11 @@ namespace EA4S.Database
                         destinationVertices[vertexIndex + 2] = sourceVertices[vertexIndex + 2] + offset;
                         destinationVertices[vertexIndex + 3] = sourceVertices[vertexIndex + 3] + offset;
 
-                        Debug.Log("DIACRITIC FIX: "
-                                  + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition].character)
-                                  + " + "
-                                  + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character)
-                                  + " by " + modificationDelta);
+                        //Debug.Log("DIACRITIC FIX: "
+                        //          + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition].character)
+                        //          + " + "
+                        //          + ArabicAlphabetHelper.GetHexUnicodeFromChar(textInfo.characterInfo[charPosition + 1].character)
+                        //          + " by " + modificationDelta);
                     }
                 }
 
