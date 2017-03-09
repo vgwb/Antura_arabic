@@ -1621,8 +1621,8 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 0639
-      Initial_Unicode: FECB
-      Medial_Unicode: FECC
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FECA
       Symbol_Unicode: 064C
       InitialFix: 
@@ -1981,8 +1981,8 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 0647
-      Initial_Unicode: FEEB
-      Medial_Unicode: FEEC
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEEA
       Symbol_Unicode: 064C
       InitialFix: 
@@ -2341,8 +2341,8 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 0644
-      Initial_Unicode: FEDF
-      Medial_Unicode: FEE0
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEDE
       Symbol_Unicode: 064C
       InitialFix: 
@@ -2431,8 +2431,8 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 0644
-      Initial_Unicode: FEDF
-      Medial_Unicode: FEE0
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEDE
       Symbol_Unicode: 064D
       InitialFix: 
@@ -2611,8 +2611,8 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 0646
-      Initial_Unicode: FEE7
-      Medial_Unicode: FEE8
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEE6
       Symbol_Unicode: 064D
       InitialFix: 
@@ -2881,8 +2881,8 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 0637
-      Initial_Unicode: FEC3
-      Medial_Unicode: FEC4
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEC2
       Symbol_Unicode: 064C
       InitialFix: 1
@@ -2971,8 +2971,8 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 062A
-      Initial_Unicode: FE97
-      Medial_Unicode: FE98
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FE96
       Symbol_Unicode: 064C
       InitialFix: 
@@ -3031,9 +3031,9 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 0629
-      Initial_Unicode: FE97
-      Medial_Unicode: FE98
-      Final_Unicode: FE96
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FE94
       Symbol_Unicode: 064C
       InitialFix: 
       FinalFix: 1
@@ -3061,9 +3061,9 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 0629
-      Initial_Unicode: FE97
-      Medial_Unicode: FE98
-      Final_Unicode: FE96
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: FE94
       Symbol_Unicode: 064B
       InitialFix: 
       FinalFix: 1
@@ -3091,8 +3091,8 @@ MonoBehaviour:
       Medial: 
       Final: 
       Isolated_Unicode: 064A
-      Initial_Unicode: FEF3
-      Medial_Unicode: FEF4
+      Initial_Unicode: 
+      Medial_Unicode: 
       Final_Unicode: FEF2
       Symbol_Unicode: 064C
       InitialFix: 
