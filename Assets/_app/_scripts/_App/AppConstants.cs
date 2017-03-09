@@ -11,7 +11,7 @@
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.0.0b9b";
+        public const string AppVersion = "1.0.0b9c";
 
         #region Debug Options
 
@@ -19,7 +19,7 @@
         /// Enabled the Advanced Debug Panel.
         /// Set to FALSE for production.
         /// </summary>
-        public const bool DebugPanelEnabled = true;
+        public const bool DebugPanelEnabled = false;
 
         /// <summary>
         /// Tracks common events using Unity Analytics.
@@ -31,7 +31,7 @@
         /// Switches on all Debug.Log calls for performance.
         /// Set to FALSE for production.
         /// </summary>
-        public static bool VerboseLogging = true;
+        public static bool VerboseLogging = false;
 
         /// <summary>
         /// Logs all MySQL database inserts.
@@ -52,7 +52,7 @@
         /// <summary>
         /// Version of the Static Database Scheme.
         /// </summary>
-        public const string StaticDbSchemeVersion = "1.0.0b9";
+        public const string StaticDbSchemeVersion = "1.0.0";
 
         /// <summary>
         /// Version of the MySQL Database Scheme.
