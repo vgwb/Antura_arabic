@@ -35,7 +35,7 @@ namespace EA4S.Teacher
         public LettersInWordQuestionBuilder(
             int nRounds, int nPacksPerRound = 1, int nCorrect = 1, int nWrong = 0,
             bool useAllCorrectLetters = false, Database.WordDataCategory category = Database.WordDataCategory.None,
-            int maximumWordLength = 20, bool forceUnseparatedLetters = true,
+            int maximumWordLength = 20, bool forceUnseparatedLetters = false,
             QuestionBuilderParameters parameters = null)
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
