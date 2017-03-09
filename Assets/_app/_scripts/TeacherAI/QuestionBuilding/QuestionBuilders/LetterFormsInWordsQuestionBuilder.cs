@@ -66,14 +66,14 @@ namespace EA4S.Teacher
                 var teacher = AppManager.I.Teacher;
                 var vocabulary = AppManager.I.VocabularyHelper;
                 var usableLetters = teacher.VocabularyAi.SelectData(
-                    () => FindEligibleLetters(minFormsAppearing:2, maxWordLength: maximumWordLength),  
+                    () => FindEligibleLettersAndForms(minFormsAppearing:2, maxWordLength: maximumWordLength),  
                         new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
                             packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_letters));
                 var letter = usableLetters[0];
 
                 // Determine what forms the letter appears in
-                List<LetterForm> usableForms = new List<LetterForm>(letter.GetAvailableForms());
-                Debug.Log("N USABLE FORMS: " + usableForms.Count + " for letter " + letter);
+                List<LetterForm> usableForms = lettersAndForms[letter];
+                //Debug.Log("N USABLE FORMS: " + usableForms.Count + " for letter " + letter);
 
                 // Packs are reduced to the number of available forms, if needed
                 int nPacksFound = Mathf.Min(usableForms.Count, nPacksPerRound);
@@ -85,7 +85,6 @@ namespace EA4S.Teacher
                     usableForms.Remove(form);
                     packs.Add(CreateSingleQuestionPackData(letter, form));
                 }
-
             }
 
             return packs;
@@ -119,37 +118,44 @@ namespace EA4S.Teacher
         }
 
         List<LetterData> lettersWithManyForms = new List<LetterData>();
+        Dictionary<LetterData, List<LetterForm>> lettersAndForms = new Dictionary<LetterData, List<LetterForm>>();
 
-        List<LetterData> FindEligibleLetters(int minFormsAppearing, int maxWordLength)
+        List<LetterData> FindEligibleLettersAndForms(int minFormsAppearing, int maxWordLength)
         {
             var vocabularyHelper = AppManager.I.VocabularyHelper;
-            var allLetters = vocabularyHelper.GetAllLetters(parameters.letterFilters);
             List<LetterData> eligibleLetters = new List<LetterData>();
 
-            if (lettersWithManyForms.Count == 0)
+            if (lettersAndForms.Count == 0)
             {
-                var allWords = vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters);
+                var allWords = AppManager.I.Teacher.VocabularyAi.SelectData(
+                    () => vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters),
+                        new SelectionParameters(parameters.correctSeverity, getMaxData:true, useJourney: parameters.useJourneyForCorrect,
+                            packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words));
 
                 // The chosen letter should actually have words that contain it in different forms.
                 // This can be quite slow, so we do this only at the start.
+                var allLetters = vocabularyHelper.GetAllLetters(parameters.letterFilters);
                 foreach (var letterData in allLetters)
                 {
                     int nFormsAppearing = 0;
+                    var availableForms = new List<LetterForm>();
                     foreach (var form in letterData.GetAvailableForms())
                     {
                         foreach (var wordData in allWords)
                         {
-                            if (WordIsFine(wordData, letterData, form, maxWordLength)) continue;
+                            if (WordIsFine(wordData, letterData, form, maxWordLength))
                             {
                                 nFormsAppearing++;
+                                availableForms.Add(form);
                                 break;
                             }
                         }
                     }
                     if (nFormsAppearing >= minFormsAppearing)
                     {
-                        Debug.Log("Letter " + letterData + " is cool as it appears " + nFormsAppearing);
                         lettersWithManyForms.Add(letterData);
+                        lettersAndForms[letterData] = availableForms;
+                        //Debug.Log("Letter " + letterData + " is cool as it appears " + nFormsAppearing);
                     }
                 }
             }
@@ -159,18 +165,27 @@ namespace EA4S.Teacher
             return eligibleLetters;
         }
 
+        Dictionary<KeyValuePair<LetterData,LetterForm>, List<WordData>> eligibleWordsForLetters = new Dictionary<KeyValuePair<LetterData, LetterForm>, List<WordData>>();
+
         public List<WordData> FindEligibleWords(int maxWordLength, LetterData containedLetter, LetterForm form)
         {
             var vocabularyHelper = AppManager.I.VocabularyHelper;
             List<WordData> eligibleWords = new List<WordData>();
-            foreach(var word in vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters))
-            {
-                if (!WordIsFine(word, containedLetter, form, maxWordLength)) continue;
 
-                eligibleWords.Add(word);
-                Debug.Log("Word: " + word);
+            var pair = new KeyValuePair<LetterData, LetterForm>(containedLetter, form);
+            if (!eligibleWordsForLetters.ContainsKey(pair))
+            {
+                foreach (var word in vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters))
+                {
+                    if (!WordIsFine(word, containedLetter, form, maxWordLength)) continue;
+                    eligibleWords.Add(word);
+                    //Debug.Log("Letter: " + containedLetter + " form: " + form + " Word: " + word);
+                }
+                eligibleWordsForLetters[pair] = eligibleWords;
             }
-            //UnityEngine.Debug.Log("Eligible words: " + eligibleWords.Count + " out of " + teacher.VocabularyHelper.GetWordsByCategory(category, parameters.wordFilters).Count);
+            eligibleWords = eligibleWordsForLetters[pair];
+
+            //Debug.LogWarning("Eligible words: " + eligibleWords.Count + " out of " + vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters).Count);
             return eligibleWords;
         }
 
