@@ -561,10 +561,14 @@ namespace EA4S.Rewards
                         do {
                             //int count = AppManager.I.Player.GetNotYetUnlockedRewardCountForType(_rewardType);
                             List<Reward> availableItems = GetConfig().Rewards;
-                            //availableItems.Where(r => alreadyUnlockedRewardOfType.Exists(ur => ur.ItemId == r.ID)).ToList();
-                            //itemId = config.Rewards.Where(r => alreadyUnlockedRewardOfType.Any(aur => aur  r.ID    .GetRandom().ID;
-                            
-                            itemId = availableItems.Where(r => !alreadyUnlockedRewardOfType.Exists(ur => ur.ItemId == r.ID)).ToList().GetRandomAlternative().ID;
+                            // Try fix for #421
+                            List<Reward> itemsForRandomSelection = availableItems.Where(r => !alreadyUnlockedRewardOfType.Exists(ur => ur.ItemId == r.ID)).ToList();
+                            if (itemsForRandomSelection.Count == 0) {
+                                duplicated = true;
+                                continue;
+                            }
+                            // ----------------
+                            itemId = itemsForRandomSelection.GetRandomAlternative().ID;
                             color = GetConfig().RewardsColorPairs.GetRandomAlternative();
                             List<RewardPackUnlockData> unlocked = AppManager.I.Player.RewardsUnlocked;
                             duplicated = unlocked.Find(r => r.ItemId == itemId) != null;
