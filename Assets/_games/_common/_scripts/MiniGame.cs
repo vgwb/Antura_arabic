@@ -12,6 +12,8 @@ namespace EA4S.MinigamesCommon
     // refactor: this could be better organized to signal what the minigame needs to access, and what the core needs
     public abstract class MiniGame : MiniGameBase, IGame
     {
+        bool hasToPause;
+
         /// <summary>
         /// State reached when the minigame ends. 
         /// Exists regardless of the specific minigame.
@@ -119,8 +121,9 @@ namespace EA4S.MinigamesCommon
             // TODO: move this outside this method (actually it is useless with the current implementation of PauseMenu)
             inputManager.Enabled = !(GlobalUI.PauseMenu.IsMenuOpen);
 
-            if (AppManager.I.IsPaused && !SceneTransitioner.IsShown && this.GetCurrentState() != OutcomeState)
+            if ((AppManager.I.IsPaused || hasToPause) && !SceneTransitioner.IsShown && this.GetCurrentState() != OutcomeState)
                 GlobalUI.PauseMenu.OpenMenu(true);
+            hasToPause = false;
 
             inputManager.Update(Time.deltaTime);
             audioManager.Update();
@@ -152,6 +155,13 @@ namespace EA4S.MinigamesCommon
         public virtual Vector3 GetGravity()
         {
             return Vector3.up * (-80);
+        }
+
+        void OnApplicationPause(bool pause)
+        {
+            if (pause)
+                hasToPause = true;
+
         }
     }
 }
