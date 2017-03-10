@@ -1,4 +1,7 @@
-﻿namespace EA4S.UI
+﻿using EA4S.Rewards;
+using UnityEngine;
+
+namespace EA4S.UI
 {
     /// <summary>
     /// Button for a category in the Antura Space scene.
@@ -20,5 +23,13 @@
         }
 
         public AnturaSpaceCategory Category;
+
+        GameObject icoNew;
+
+        public void SetAsNew(bool _isNew)
+        {
+            if (icoNew == null) icoNew = this.GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
+            icoNew.SetActive(_isNew);
+        }
     }
 }

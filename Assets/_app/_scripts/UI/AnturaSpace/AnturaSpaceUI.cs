@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.DeInspektor.Attributes;
 using DG.Tweening;
@@ -165,6 +166,7 @@ namespace EA4S.UI
             if (isModsPanelOpen) {
                 CategoriesContainer.gameObject.SetActive(true);
                 showCategoriesTween.PlayForward();
+                RefreshCategories();
 
                 if (onEnterCustomization != null)
                     onEnterCustomization();
@@ -232,13 +234,6 @@ namespace EA4S.UI
             }
 
             currSwatchesDatas = RewardSystemManager.SelectRewardItem(_rewardData.ID, currRewardType);
-//            foreach (AnturaSpaceItemButton item in btsItems)
-//            {
-//                if (item.Data != null) Debug.Log(item.Data.ID + " > " + item.Data.IsSelected);
-//                item.Toggle(item.Data == _rewardData || item.Data != null && item.Data.IsSelected);
-//            }
-//            ReloadRewardsDatas();
-//            RefreshItems(true);
             if (currSwatchesDatas.Count == 0) {
                 Debug.Log("No color swatches for the selected reward!");
                 return;
@@ -269,6 +264,7 @@ namespace EA4S.UI
             if (selectedSwatchData != null) SelectSwatch(selectedSwatchData);
 
             ReloadRewardsDatas();
+            RefreshCategories();
             RefreshItems(true);
         }
 
@@ -292,6 +288,25 @@ namespace EA4S.UI
                 currRewardDatas.AddRange(RewardSystemManager.GetRewardItemsByRewardType(currRewardType, altRewardContainers, "EAR_R"));
             } else {
                 currRewardDatas = RewardSystemManager.GetRewardItemsByRewardType(currRewardType, useImages ? rewardsImagesContainers : rewardsContainers, currCategory.ToString());
+            }
+        }
+
+        void RefreshCategories()
+        {
+            foreach (AnturaSpaceCategoryButton btCat in btsCategories)
+            {
+                bool isNew = false;
+                switch (btCat.Category)
+                {
+                    case AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears:
+                        isNew = AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_L")
+                            || AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_R");
+                        break;
+                    default:
+                        isNew = AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), btCat.Category.ToString());
+                        break;
+                }
+                btCat.SetAsNew(isNew);
             }
         }
 
@@ -375,6 +390,15 @@ namespace EA4S.UI
         void OnClickSwatch(AnturaSpaceSwatchButton _bt)
         {
             SelectSwatch(_bt.Data);
+
+            // Is new check
+            if (_bt.IcoNew.activeSelf)
+            {
+                _bt.SetAsNew(false);
+                ReloadRewardsDatas();
+                RefreshCategories();
+                RefreshItems(true);
+            }
         }
 
         #endregion
