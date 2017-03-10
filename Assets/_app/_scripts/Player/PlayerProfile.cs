@@ -70,11 +70,6 @@ namespace EA4S.Profile
 
         }
 
-        public void DeleteThisProfile()
-        {
-
-        }
-
         /// <summary>
         /// Saves this instance.
         /// </summary>
