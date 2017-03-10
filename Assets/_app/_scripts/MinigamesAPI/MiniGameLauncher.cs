@@ -30,17 +30,15 @@ namespace EA4S.MinigamesAPI
         public void LaunchGame(MiniGameCode _gameCode, MinigameLaunchConfiguration _launchConfiguration = null, bool forceNewPlaySession = false)
         {
             ConfigAI.StartTeacherReport();
-            if (_launchConfiguration == null)
-            {
+            if (_launchConfiguration == null) {
                 float difficulty = teacher.GetCurrentDifficulty(_gameCode);
                 int numberOfRounds = teacher.GetCurrentNumberOfRounds(_gameCode);
                 _launchConfiguration = new MinigameLaunchConfiguration(difficulty, numberOfRounds);
             }
-            
+
             Database.MiniGameData miniGameData = AppManager.I.DB.GetMiniGameDataByCode(_gameCode);
-            
-            if (forceNewPlaySession)
-            {
+
+            if (forceNewPlaySession) {
                 AppManager.I.NavigationManager.InitialiseNewPlaySession(miniGameData);
             }
 
@@ -65,7 +63,7 @@ namespace EA4S.MinigamesAPI
 
             // Comunicate to LogManager the start of a new single minigame play session.
             if (AppConstants.DebugLogInserts) Debug.Log("InitGameplayLogSession " + _gameCode.ToString());
-            LogManager.I.LogInfo(InfoEvent.GameStart, _gameCode.ToString());
+            LogManager.I.LogInfo(InfoEvent.GameStart, "{\"minigame\":\"" + _gameCode.ToString() + "\"}");
             LogManager.I.StartMiniGame();
 
             // Print the teacher's report now
