@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using EA4S.Core;
+using EA4S.Database;
 using EA4S.MinigamesAPI;
 using EA4S.Teacher;
 
@@ -110,54 +112,53 @@ namespace EA4S.MinigamesCommon
         /// </summary>
         void FlushLogLearn()
         {
-            List<LogAI.LearnResultParameters> resultsList = new List<LogAI.LearnResultParameters>();
-            ILivingLetterData actualData = null;
-            LogAI.LearnResultParameters actualLearnResult = new LogAI.LearnResultParameters();
+            Dictionary<string, LogAI.LearnResultParameters> resultsDict = new Dictionary<string, LogAI.LearnResultParameters>();
 
-            foreach (var l in logLearnBuffer) {
-                if (actualData != l._data) {
-                    // Is a different learn objective 
-                    actualData = l._data;
-                    if (actualData != null) {
-                        // save actualLearnResult to data log list to send, if exist...
-                        resultsList.Add(actualLearnResult);
-                        // ...and reset actualLearnResult for new learn objective with new properties
-                        actualLearnResult = new LogAI.LearnResultParameters();
-                        switch (l._data.DataType) {
-                            case LivingLetterDataType.Letter:
-                                actualLearnResult.dataType = Database.VocabularyDataType.Letter;
-                                break;
-                            case LivingLetterDataType.Word:
-                                actualLearnResult.dataType = Database.VocabularyDataType.Word;
-                                break;
-                            case LivingLetterDataType.Image:
-                                actualLearnResult.dataType = Database.VocabularyDataType.Word;
-                                break;
-                            default:
-                                // data type not found. Make soft exception.
-                                break;
-                        }
-                        actualLearnResult.elementId = l._data.Id;
-                    }
-                }
-                // update learn objective log...
-                if (l._isPositiveResult)
-                    actualLearnResult.nCorrect++;
-                else
-                    actualLearnResult.nWrong++;
-            }
-
-            /*TEST: add a lot of logs
+            /* Testing addition
             for (int i = 0; i < 100; i++)
             {
-                var lp = new LogAI.LearnResultParameters();
-                lp.dataType = resultsList[0].dataType;
-                lp.elementId = resultsList[0].elementId;
-                lp.nCorrect = 5;
-                lp.nWrong = 2;
-                resultsList.Add(lp);
+                var lp = new ILivingLetterAnswerData();
+                lp._data = Random.value > 0.5f ? new LL_LetterData("alef") : new LL_LetterData("teh");
+                lp._isPositiveResult = Random.value > 0.5f;
+                logLearnBuffer.Add(lp);
             }*/
 
+            foreach (var l in logLearnBuffer)
+            {
+                if (l._data == null) continue;
+
+                LogAI.LearnResultParameters resultsData = null;
+                if (!resultsDict.ContainsKey(l._data.Id))
+                {
+                    resultsData = new LogAI.LearnResultParameters();
+                    resultsData.elementId = l._data.Id;
+                    resultsDict[l._data.Id] = resultsData;
+
+                    switch (l._data.DataType)
+                    {
+                        case LivingLetterDataType.Letter:
+                            resultsData.dataType = Database.VocabularyDataType.Letter;
+                            break;
+                        case LivingLetterDataType.Word:
+                            resultsData.dataType = Database.VocabularyDataType.Word;
+                            break;
+                        case LivingLetterDataType.Image:
+                            resultsData.dataType = Database.VocabularyDataType.Word;
+                            break;
+                        default:
+                            // data type not found. Make soft exception.
+                            break;
+                    }
+                }
+                resultsData = resultsDict[l._data.Id];
+
+                if (l._isPositiveResult)
+                    resultsData.nCorrect++;
+                else
+                    resultsData.nWrong++;
+            }
+
+            var resultsList = resultsDict.Values.ToList();
             LogManager.I.LogLearn(sessionName, miniGameCode, resultsList);
         }
         #endregion
