@@ -6,12 +6,38 @@ namespace EA4S.Core
     {
         public string AppVersion;
         public string Platform;
-        public string User;
+        public string operatingSystem;
+        public string operatingSystemFamily;
+        public string deviceModel;
+        public string deviceName;
+        public string deviceType;
+        public string deviceUniqueIdentifier;
+        public int systemMemorySize;
+        public int graphicsMemorySize;
+        public string graphicsDeviceVersion;
+        public int ScreenWidth;
+        public int ScreenHeight;
+        public bool supportsGyroscope;
+        public bool supportsVibration;
+        public bool supportsAccelerometer;
 
         public AppInfoParameters()
         {
             AppVersion = AppConstants.AppVersion;
-            Platform = string.Format("{0} | (sys mem) {1} | (video mem) {2} | {3} |", SystemInfo.operatingSystem, SystemInfo.systemMemorySize, SystemInfo.graphicsMemorySize, Screen.width + "x" + Screen.height);
+            deviceModel = SystemInfo.deviceModel;
+            deviceName = SystemInfo.deviceName;
+            deviceUniqueIdentifier = SystemInfo.deviceUniqueIdentifier;
+            deviceType = SystemInfo.deviceType.ToString();
+            operatingSystem = SystemInfo.operatingSystem;
+            operatingSystemFamily = SystemInfo.operatingSystemFamily.ToString();
+            systemMemorySize = SystemInfo.systemMemorySize;
+            graphicsMemorySize = SystemInfo.graphicsMemorySize;
+            graphicsDeviceVersion = SystemInfo.graphicsDeviceVersion;
+            ScreenWidth = Screen.width;
+            ScreenHeight = Screen.height;
+            supportsGyroscope = SystemInfo.supportsGyroscope;
+            supportsVibration = SystemInfo.supportsVibration;
+            supportsAccelerometer = SystemInfo.supportsAccelerometer;
         }
     }
 }
