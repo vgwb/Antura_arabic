@@ -34,6 +34,7 @@ namespace EA4S.Book
         public GameObject MinigameItemPrefab;
 
         [Header("References")]
+        public GameObject DetailPanel;
         public GameObject ElementsContainer;
         public TextRender ArabicText;
         public TextRender EnglishText;
@@ -99,8 +100,10 @@ namespace EA4S.Book
                 MiniGameLogoImage.enabled = false;
                 MiniGameBadgeImage.enabled = false;
                 LaunchGameButton.gameObject.SetActive(false);
+                DetailPanel.SetActive(false);
                 return;
             }
+            DetailPanel.SetActive(true);
             currentMiniGame = selectedGameInfo.data;
             ElementsContainer.BroadcastMessage("Select", selectedGameInfo, SendMessageOptions.DontRequireReceiver);
             AudioManager.I.PlayDialogue(selectedGameInfo.data.GetTitleSoundFilename());
