@@ -129,7 +129,6 @@ namespace EA4S.Teacher
             var vocabularyHelper = AppManager.I.VocabularyHelper;
             var allLetters = vocabularyHelper.GetAllLetters(parameters.letterFilters);
             var bad_words = new List<string>(currentRoundIDs_words);
-            var bad_letters = new List<string>(currentRoundIDs_letters);
             foreach (var letter in allLetters)
             {
                 // Check number of words
@@ -141,7 +140,6 @@ namespace EA4S.Teacher
                 var wordsWithLetter = AppManager.I.Teacher.VocabularyAi.SelectData(
                     () => wordsWithLetterFull,
                         new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: true), canReturnZero: true);
-                //wordsWithLetter.RemoveAll(x => vocabularyHelper.WordContainsAnyLetter(x, bad_letters));   // Not words that have one of the previous letters (but the current one)
 
                 int nWords = wordsWithLetter.Count;
                 if (nWords < atLeastNWords) continue;
