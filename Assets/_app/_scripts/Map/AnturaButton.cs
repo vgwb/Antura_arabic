@@ -1,6 +1,4 @@
-﻿
-
-using EA4S;
+﻿using EA4S;
 using EA4S.UI;
 using UnityEngine;
 
