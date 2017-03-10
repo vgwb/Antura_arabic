@@ -87,7 +87,7 @@ namespace EA4S.Rewards
                         if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.GetRewardCategory() == _categoryRewardId).Exists(ur => ur.ItemId == item.ID)) {
                             returnList.Add(new RewardItem() {
                                 ID = item.ID,
-                                IsNew = false,
+                                IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
                                 IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.Fornitures.Exists(f => f.ItemId == item.ID) });
                         } else {
                             returnList.Add(null);
@@ -106,7 +106,7 @@ namespace EA4S.Rewards
                         if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.texture).Exists(ur => ur.ItemId == item.ID)) {
                             returnList.Add(new RewardItem() {
                                 ID = item.ID,
-                                IsNew = false,
+                                IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
                                 IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture.ItemId == item.ID
                             });
                         } else {
@@ -128,7 +128,7 @@ namespace EA4S.Rewards
                         if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.decal).Exists(ur => ur.ItemId == item.ID)) {
                             returnList.Add(new RewardItem() {
                                 ID = item.ID,
-                                IsNew = false,
+                                IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
                                 IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture.ItemId == item.ID });
                         } else {
                             returnList.Add(null);
@@ -174,6 +174,7 @@ namespace EA4S.Rewards
                     foreach (RewardColor color in GetConfig().GetClone().RewardsColorPairs) {
                         if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID)) {
                             RewardColorItem rci = new RewardColorItem(color);
+                            rci.IsNew = AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
                             returnList.Add(rci);
                         } else {
                             returnList.Add(null);
@@ -186,6 +187,7 @@ namespace EA4S.Rewards
                     foreach (RewardColor color in GetConfig().RewardsTileColor) {
                         if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID)) {
                             RewardColorItem rci = new RewardColorItem(color);
+                            rci.IsNew = AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
                             rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
                             returnList.Add(rci);
                         } else {
@@ -199,6 +201,7 @@ namespace EA4S.Rewards
                     foreach (RewardColor color in GetConfig().RewardsDecalColor) {
                         if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID)) {
                             RewardColorItem rci = new RewardColorItem(color);
+                            rci.IsNew = AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
                             rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
                             returnList.Add(rci);
                         } else {
@@ -843,7 +846,7 @@ namespace EA4S.Rewards
     public class RewardColorItem : RewardColor
     {
         public bool IsSelected;
-        public bool IsNew;
+        public bool IsNew = true;
         public RewardColorItem() { }
         public RewardColorItem(RewardColor _color)
         {
