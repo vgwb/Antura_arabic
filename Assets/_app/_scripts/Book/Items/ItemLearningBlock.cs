@@ -19,8 +19,12 @@ namespace EA4S.Book
 
         JourneyPanel manager;
 
+        UIButton uIButton;
+
         public void Init(JourneyPanel _manager, LearningBlockInfo _info)
         {
+            uIButton = GetComponent<UIButton>();
+
             learningBlockInfo = _info;
             manager = _manager;
 
@@ -39,11 +43,22 @@ namespace EA4S.Book
             //var score = TeacherAI.I.GetLearningBlockScore(info.data);
 
             //Info.text = "Score: " + score;
+            Highlight(false);
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
             manager.DetailLearningBlock(learningBlockInfo);
+        }
+
+        public void Select(string code)
+        {
+            Highlight(code == learningBlockInfo.data.Id);
+        }
+
+        void Highlight(bool _status)
+        {
+            uIButton.Toggle(_status);
         }
     }
 }
