@@ -6,6 +6,7 @@ using EA4S.MinigamesCommon;
 
 namespace EA4S.Rewards
 {
+    [RequireComponent(typeof(RewardsManager))]
     /// <summary>
     /// Animates the appearance of the reward scene
     /// </summary>
@@ -37,6 +38,9 @@ namespace EA4S.Rewards
             LockOpen.gameObject.SetActive(false);
             Pedestal.gameObject.SetActive(true);
 
+            RewardsManager rewardManager = GetComponent<RewardsManager>();
+            rewardManager.ClearLoadedRewardsOnAntura();
+
             showTween = DOTween.Sequence().Pause()
                 .Append(LockClosed.DOScale(0.0001f, 0.45f).From().SetEase(Ease.OutBack))
                 .AppendInterval(0.3f)
@@ -67,7 +71,19 @@ namespace EA4S.Rewards
                 .Append(Pedestal.DORotate(new Vector3(0, rotationAngleView, 0), 0.3f, RotateMode.LocalAxisAdd).SetEase(Ease.InExpo))
                 .OnComplete(() => {
                     IsComplete = true;
-                    PoofParticle.Emit(1);
+                })
+                .AppendInterval(0.2f)
+                .AppendCallback(() => playParticle())
+                .AppendInterval(0.2f)
+                .AppendCallback(() => playParticle())
+                .AppendInterval(0.1f)
+                .AppendCallback(() => playParticle())
+                .AppendInterval(0.25f)
+                .AppendCallback(() => {
+                    rewardManager.InstantiateCorrectReward();
+                })
+                .AppendInterval(0.3f)
+                .AppendCallback(() => {
                     pedestalTween.Play();
                 });
 
@@ -79,10 +95,14 @@ namespace EA4S.Rewards
                 .SetEase(Ease.Linear).SetLoops(-1).Pause();
 
             // Wait a couple frames to allow Unity to load correctly
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
 
             LockClosed.gameObject.SetActive(true);
             showTween.Play();
+        }
+
+        void playParticle() {
+            PoofParticle.Play();
         }
 
         void OnDestroy()
