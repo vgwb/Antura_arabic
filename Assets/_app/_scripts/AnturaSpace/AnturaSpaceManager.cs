@@ -220,12 +220,14 @@ namespace EA4S.AnturaSpace
 
         void OnEnterCustomization()
         {
+            AudioManager.I.PlaySound(Sfx.UIButtonClick);
             InCustomizationMode = true;
             CurrentState = Customization;
         }
 
         void OnExitCustomization()
         {
+            AudioManager.I.PlaySound(Sfx.UIButtonClick);
             InCustomizationMode = false;
             CurrentState = Idle;
         }
