@@ -167,7 +167,7 @@ namespace EA4S.Teacher
             {
                 throw new System.Exception("Cannot find even a single minigame for play session " + playSessionData.Id);
             }
-            if (numberToSelect > minigame_data_list.Count)
+            if (actualNumberToSelect > minigame_data_list.Count)
             {
                 UnityEngine.Debug.LogWarning("Could not select the requested number of " + numberToSelect + " minigames for play session " + playSessionData.Id + " (only " + minigame_data_list.Count + " are available)");
             }
