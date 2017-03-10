@@ -26,6 +26,8 @@ namespace EA4S.ReservedArea
 
         void OnEnable()
         {
+            AudioManager.I.PlayDialogue("Parental_Gate");
+
             firstButtonClickCounter = 0;
 
             // Selecting two buttons at random
@@ -76,7 +78,7 @@ namespace EA4S.ReservedArea
 
         public void OnButtonClick(int buttonIndex)
         {
-            AudioManager.I.PlaySound(Sfx.UIButtonClick);
+            AudioManager.I.PlaySound(Sfx.Blip);
             if (buttonIndex == firstButtonIndex) {
                 firstButtonClickCounter++;
             } else if (buttonIndex == secondButtonIndex) {

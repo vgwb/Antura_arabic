@@ -1770,7 +1770,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1368591772275834, guid: 22ed7cba3f8d948d0a2a7a94606f6ddd, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114216445290474298, guid: 22ed7cba3f8d948d0a2a7a94606f6ddd,
+        type: 2}
+      propertyPath: m_textInfo.spaceCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114216445290474298, guid: 22ed7cba3f8d948d0a2a7a94606f6ddd,
+        type: 2}
+      propertyPath: m_textInfo.wordCount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22ed7cba3f8d948d0a2a7a94606f6ddd, type: 2}
@@ -4672,6 +4682,10 @@ Prefab:
         type: 2}
       propertyPath: LocalizationId
       value: 359
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368591772275834, guid: 22ed7cba3f8d948d0a2a7a94606f6ddd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22ed7cba3f8d948d0a2a7a94606f6ddd, type: 2}
