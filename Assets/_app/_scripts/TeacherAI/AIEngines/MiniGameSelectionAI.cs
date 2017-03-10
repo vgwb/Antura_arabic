@@ -110,6 +110,8 @@ namespace EA4S.Teacher
             //foreach(var l in minigame_score_list) UnityEngine.Debug.Log(l.ElementId);
 
             // Determine the final weight for each minigame
+            List<MiniGameData> required_minigames = new List<MiniGameData>();
+
             string debugString = ConfigAI.FormatTeacherHeader("Minigame Selection");
             foreach (var minigame_data in minigame_data_list)
             {
@@ -128,6 +130,15 @@ namespace EA4S.Teacher
                 cumulativeWeight += playSessionWeight * ConfigAI.minigame_playSessionWeight;
                 debugString += " PSw: " + playSessionWeight * ConfigAI.minigame_playSessionWeight + "("+playSessionWeight+")";
 
+                // Some minigames are required to appear (weight 100+)
+                if (playsession_weights_dict[minigame_data.Code] >= 100)
+                {
+                    required_minigames.Add(minigame_data);
+                    debugString += " REQUIRED! ";
+                    debugString += "\n";
+                    continue;
+                }
+
                 // RecentPlay Weight  [1,0]
                 const float dayLinerWeightDecrease = 1f/ConfigAI.daysForMaximumRecentPlayMalus;
                 float weightMalus = daysSinceLastScore * dayLinerWeightDecrease;
@@ -145,10 +156,14 @@ namespace EA4S.Teacher
                 ConfigAI.AppendToTeacherReport(debugString);
             }
 
-
             // Number checks
             int actualNumberToSelect = UnityEngine.Mathf.Min(numberToSelect, minigame_data_list.Count);
-            if (minigame_data_list.Count == 0)
+
+            // Remove the required ones
+            actualNumberToSelect -= required_minigames.Count;
+            foreach (var requiredMinigame in required_minigames) minigame_data_list.Remove(requiredMinigame);
+
+            if (actualNumberToSelect > 0 && minigame_data_list.Count == 0)
             {
                 throw new System.Exception("Cannot find even a single minigame for play session " + playSessionData.Id);
             }
@@ -160,7 +175,12 @@ namespace EA4S.Teacher
             // Choose N minigames based on these weights
             var selectedMiniGameData = RandomHelper.RouletteSelectNonRepeating(minigame_data_list, weights_list, actualNumberToSelect);
 
-            return selectedMiniGameData;
+            // Output
+            List<MiniGameData> finalList = new List<MiniGameData>();
+            finalList.AddRange(required_minigames);
+            finalList.AddRange(selectedMiniGameData);
+
+            return finalList;
         }
 
     }
