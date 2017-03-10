@@ -96,17 +96,27 @@ namespace EA4S.Rewards
             AnturaModelManager.Instance.ClearLoadedRewards();
         }
 
-        public void InstantiateCorrectReward() {
+        /// <summary>
+        /// Gets the reward to instantiate.
+        /// </summary>
+        /// <returns></returns>
+        public RewardPackUnlockData GetRewardToInstantiate() {
             if (AppManager.I.Player.IsFirstContact()) {
-                RewardPackUnlockData firstUnlockedReward = AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.reward);
-                //RewardPackUnlockData firstUnlockedReward = RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward);
-                //AppManager.I.Player.AddRewardUnlocked(firstUnlockedReward);
-                AnturaModelManager.Instance.LoadRewardPackOnAntura(firstUnlockedReward);
+                return AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.reward);
             } else {
-                RewardPackUnlockData newUnlockedReward = RewardSystemManager.GetNextRewardPack(true)[0];
-                AppManager.I.Player.AddRewardUnlocked(newUnlockedReward);
-                AnturaModelManager.Instance.LoadRewardPackOnAntura(newUnlockedReward);
+                RewardPackUnlockData newRewardToInstantiate = RewardSystemManager.GetNextRewardPack(true)[0];
+                AppManager.I.Player.AddRewardUnlocked(newRewardToInstantiate);
+                return newRewardToInstantiate;
             }
+        }
+
+        /// <summary>
+        /// Instantiates the reward, mount on antura and return gameobject.
+        /// </summary>
+        /// <param name="_rewardToInstantiate">The reward to instantiate.</param>
+        /// <returns></returns>
+        public GameObject InstantiateReward(RewardPackUnlockData _rewardToInstantiate) {
+            return AnturaModelManager.Instance.LoadRewardPackOnAntura(_rewardToInstantiate);
         }
 
         #endregion
