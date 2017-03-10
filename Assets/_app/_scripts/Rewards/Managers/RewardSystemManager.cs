@@ -683,9 +683,11 @@ namespace EA4S.Rewards
                     break;
                 case RewardTypes.texture:
                     rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, "Antura_wool_tilemat", "color1", _rewardType, new JourneyPosition(0, 0, 0));
+                    rp.IsNew = false; // Because is automatically selected
                     break;
                 case RewardTypes.decal:
                     rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, "Antura_decalmap01", "color1", _rewardType, new JourneyPosition(0, 0, 0));
+                    rp.IsNew = false; // Because is automatically selected
                     break;
                 default:
                     break;
