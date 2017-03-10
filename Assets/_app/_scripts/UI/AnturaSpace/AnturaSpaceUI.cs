@@ -302,6 +302,10 @@ namespace EA4S.UI
                         isNew = AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_L")
                             || AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_R");
                         break;
+                    case AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal:
+                    case AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture:
+                        isNew = AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category));
+                        break;
                     default:
                         isNew = AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), btCat.Category.ToString());
                         break;
