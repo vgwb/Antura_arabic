@@ -334,7 +334,6 @@ namespace EA4S.Antura
             Fornitures = new List<RewardPackUnlockData>();
             foreach (string itemId in FornituresIds) {
                 // Load Fornitures for any id from db
-                Debug.Log(AppManager.I.Player);
                 RewardPackUnlockData pack = unlocked.Find(r => r.Id == itemId);
                 Fornitures.Add(pack);
             }

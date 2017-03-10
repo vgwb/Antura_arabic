@@ -85,7 +85,10 @@ namespace EA4S.Rewards
                     List<Reward> rewards = GetConfig().GetClone().Rewards;
                     foreach (var item in rewards.FindAll(r => r.Category == _categoryRewardId)) {
                         if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.GetRewardCategory() == _categoryRewardId).Exists(ur => ur.ItemId == item.ID)) {
-                            returnList.Add(new RewardItem() { ID = item.ID, IsNew = false, IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.Fornitures.Exists(f => f.ItemId == item.ID) });
+                            returnList.Add(new RewardItem() {
+                                ID = item.ID,
+                                IsNew = false,
+                                IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.Fornitures.Exists(f => f.ItemId == item.ID) });
                         } else {
                             returnList.Add(null);
                         }
@@ -101,7 +104,11 @@ namespace EA4S.Rewards
                     // Filter from unlocked elements (only one for itemID)
                     foreach (var item in GetConfig().RewardsTile) {
                         if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.texture).Exists(ur => ur.ItemId == item.ID)) {
-                            returnList.Add(new RewardItem() { ID = item.ID, IsNew = false, IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture.ItemId == item.ID });
+                            returnList.Add(new RewardItem() {
+                                ID = item.ID,
+                                IsNew = false,
+                                IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture.ItemId == item.ID
+                            });
                         } else {
                             returnList.Add(null);
                         }
@@ -119,7 +126,10 @@ namespace EA4S.Rewards
                     // Filter from unlocked elements (only one for itemID)
                     foreach (var item in GetConfig().RewardsDecal) {
                         if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.decal).Exists(ur => ur.ItemId == item.ID)) {
-                            returnList.Add(new RewardItem() { ID = item.ID, IsNew = false, IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture.ItemId == item.ID });
+                            returnList.Add(new RewardItem() {
+                                ID = item.ID,
+                                IsNew = false,
+                                IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture.ItemId == item.ID });
                         } else {
                             returnList.Add(null);
                         }
@@ -216,11 +226,11 @@ namespace EA4S.Rewards
                     alreadySelectedReward = fornitures.Find(r => r.ItemId == _rewardItemId && r.Type == _rewardType);
                     break;
                 case RewardTypes.texture:
-                    if(AppManager.I.Player.CurrentAnturaCustomizations.TileTextureId == _rewardItemId)
+                    if (AppManager.I.Player.CurrentAnturaCustomizations.TileTexture.ItemId == _rewardItemId)
                         alreadySelectedReward = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture;
                     break;
                 case RewardTypes.decal:
-                    if (AppManager.I.Player.CurrentAnturaCustomizations.DecalTextureId == _rewardItemId)
+                    if (AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture.ItemId == _rewardItemId)
                         alreadySelectedReward = AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture;
                     break;
                 default:
