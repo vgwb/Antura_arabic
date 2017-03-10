@@ -99,11 +99,11 @@ namespace EA4S.Book
                     break;
                 case VocabularyChapter.Words:
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Words);
-                    WordsPanel();
+                    WordsPanel(WordDataCategory.Animal);
                     break;
                 case VocabularyChapter.Phrases:
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Phrases);
-                    PhrasesPanel();
+                    PhrasesPanel(PhraseDataCategory.Expression);
                     break;
             }
         }
