@@ -124,12 +124,17 @@ namespace EA4S.Teacher
         /// <summary>
         /// General parameters used to define the learning result for each minigame instance
         /// </summary>
-        public struct LearnResultParameters
+        public class LearnResultParameters
         {
             public VocabularyDataType dataType;
             public string elementId;
             public int nCorrect;
             public int nWrong;
+
+            public override string ToString()
+            {
+                return dataType + " - " + elementId + " " + nCorrect + "/" + nWrong;
+            }
         }
 
         public void UnlockVocabularyDataForJourneyPosition(JourneyPosition pos)

@@ -251,6 +251,8 @@ namespace EA4S.Profile
             }
         }
 
+        #region Already unlocked rewards
+
         private List<RewardPackUnlockData> _rewardsUnlocked;
         /// <summary>
         /// Gets or sets the rewards unlocked.
@@ -269,6 +271,10 @@ namespace EA4S.Profile
                 _rewardsUnlocked = value;
             }
         }
+
+ 
+
+        #endregion
 
         /// <summary>
         /// Resets the rewards unlocked data.
@@ -358,15 +364,72 @@ namespace EA4S.Profile
         /// </summary>
         string jsonAnturaCustimizationData = string.Empty;
 
+        #region API
+
+        /// <summary>
+        /// True if there is at least one new reward for this player.
+        /// </summary>
+        /// <returns></returns>
+        public bool ThereIsSomeNewReward() {
+            if (RewardsUnlocked.Exists(r => r.IsNew == true)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool RewardColorIsNew(string _itemId, string _colorId) {
+            if (RewardsUnlocked.Exists(r => r.ItemId == _itemId && r.ColorId == _colorId && r.IsNew == true)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Return true if Reward is never used by player.
+        /// </summary>
+        /// <returns></returns>
+        public bool RewardItemIsNew(string _itemId) {
+            if (RewardsUnlocked.Exists(r => r.ItemId == _itemId && r.IsNew == true)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Return true if Reward category container at least one reward never used by player.
+        /// </summary>
+        /// <returns></returns>
+        public bool RewardCategoryContainsNewElements(RewardTypes _rewardType, string _rewardCategory = "") {
+            if (RewardsUnlocked.Exists(r => r.Type == _rewardType && r.GetRewardCategory() == _rewardCategory && r.IsNew == true)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Mark RewardPackUnlockData as not new and update db entry.
+        /// </summary>
+        public void SetRewardPackUnlockedToNotNew(string _rewardPackId) {
+            RewardPackUnlockData rewardPackToUpdate = RewardsUnlocked.Find(r => r.Id == _rewardPackId && r.IsNew == true);
+            if (rewardPackToUpdate != null)
+                rewardPackToUpdate.IsNew = false;
+            AppManager.I.DB.UpdateRewardPackUnlockData(rewardPackToUpdate);
+        }
+
         /// <summary>
         /// Delete all reward unlocks from the Dynamic DB.
         /// </summary>
-        private void DeleteAllRewardUnlocks()
-        {
+        private void DeleteAllRewardUnlocks() {
             AppManager.I.DB.DeleteAll<RewardPackUnlockData>();
         }
-
-        #region API
 
         /// <summary>
         /// Adds or update the reward unlocked and persist it.

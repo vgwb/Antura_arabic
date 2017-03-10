@@ -280,6 +280,7 @@ namespace EA4S.Antura
 
         private void RewardSystemManager_OnRewardItemChanged(RewardPackUnlockData rewardPackUnlockData) {
             LoadRewardPackOnAntura(rewardPackUnlockData);
+            AppManager.I.Player.SetRewardPackUnlockedToNotNew(rewardPackUnlockData.GetIdAccordingToDBRules());
             SaveAnturaCustomization();
         }
 

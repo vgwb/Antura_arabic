@@ -33,8 +33,10 @@ namespace EA4S.UI
         public event System.Action onEnterCustomization;
         public event System.Action onExitCustomization;
 
-        public delegate void AnturaSpaceUIEvent(string _category);
+        public delegate void AnturaSpaceUIEvent(string _id);
         public static event AnturaSpaceUIEvent onRewardCategorySelectedInCustomization;
+        public static event AnturaSpaceUIEvent onRewardSelectedInCustomization;
+        public static event AnturaSpaceUIEvent onRewardColorSelectedInCustomization;
 
         public static AnturaSpaceUI I { get; private set; }
 
@@ -274,9 +276,9 @@ namespace EA4S.UI
         {
             foreach (AnturaSpaceSwatchButton item in btsSwatches)
                 item.Toggle(item.Data == _colorData);
-            if (_colorData != null)
+            if (_colorData != null) { 
                 RewardSystemManager.SelectRewardColorItem(_colorData.ID, currRewardType);
-            else
+            } else
                 Debug.Log("SelectSwatch > _colorData is NULL!");
         }
 
@@ -361,6 +363,9 @@ namespace EA4S.UI
         {
             SelectReward(_bt.Data);
             Reward reward = RewardSystemManager.GetRewardById(_bt.Data.ID);
+            if (reward != null && onRewardSelectedInCustomization != null)
+                onRewardSelectedInCustomization(reward.ID);
+                
             if (reward != null
                     && (reward.Category == "EAR_R" || reward.Category == "EAR_L")
                     && onRewardCategorySelectedInCustomization != null)
