@@ -67,12 +67,7 @@ namespace EA4S.Rewards
             /* FIRST CONTACT FEATURE */
             if (AppManager.I.Player.IsFirstContact()) {
                 KeeperManager.I.PlayDialog(Database.LocalizationDataId.Reward_Intro);
-                // Clean and Charge antura reward.
-                AnturaModelManager.Instance.ClearLoadedRewards();
-                RewardPackUnlockData firstUnlockedReward = AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.reward);
-                //RewardPackUnlockData firstUnlockedReward = RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward);
-                //AppManager.I.Player.AddRewardUnlocked(firstUnlockedReward);
-                AnturaModelManager.Instance.LoadRewardPackOnAntura(firstUnlockedReward);
+
             } else {
                 int rnd = Random.Range(1, 3);
                 switch (rnd) {
@@ -86,10 +81,6 @@ namespace EA4S.Rewards
                         KeeperManager.I.PlayDialog(Database.LocalizationDataId.Reward_Big_3);
                         break;
                 }
-                AnturaModelManager.Instance.ClearLoadedRewards();
-                RewardPackUnlockData newUnlockedReward = RewardSystemManager.GetNextRewardPack(true)[0];
-                AppManager.I.Player.AddRewardUnlocked(newUnlockedReward);
-                AnturaModelManager.Instance.LoadRewardPackOnAntura(newUnlockedReward);
             }
             /* --------------------- */
             // Wait animation ending before show continue button
@@ -97,6 +88,28 @@ namespace EA4S.Rewards
             ContinueScreen.Show(Continue, ContinueScreenMode.Button, true);
             yield return null;
         }
+
+        #region API for animation driven
+
+        public void ClearLoadedRewardsOnAntura() {
+            // Clean and Charge antura reward.
+            AnturaModelManager.Instance.ClearLoadedRewards();
+        }
+
+        public void InstantiateCorrectReward() {
+            if (AppManager.I.Player.IsFirstContact()) {
+                RewardPackUnlockData firstUnlockedReward = AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.reward);
+                //RewardPackUnlockData firstUnlockedReward = RewardSystemManager.GetFirstAnturaReward(RewardTypes.reward);
+                //AppManager.I.Player.AddRewardUnlocked(firstUnlockedReward);
+                AnturaModelManager.Instance.LoadRewardPackOnAntura(firstUnlockedReward);
+            } else {
+                RewardPackUnlockData newUnlockedReward = RewardSystemManager.GetNextRewardPack(true)[0];
+                AppManager.I.Player.AddRewardUnlocked(newUnlockedReward);
+                AnturaModelManager.Instance.LoadRewardPackOnAntura(newUnlockedReward);
+            }
+        }
+
+        #endregion
 
         public void Continue()
         {
