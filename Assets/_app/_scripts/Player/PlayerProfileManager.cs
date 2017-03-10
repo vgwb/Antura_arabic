@@ -180,6 +180,8 @@ namespace EA4S.Profile
         public PlayerProfile DeletePlayerProfile(string playerUUID)
         {
             PlayerProfile returnProfile = new PlayerProfile();
+            // it prevents errors if rewards unlock coroutine is still running
+            AppManager.I.StopAllCoroutines();
             // TODO: check if is necessary to hard delete DB
             PlayerIconData playerIconData = GetSavedPlayers().Find(p => p.Uuid == playerUUID);
             if (playerIconData.Uuid == string.Empty)
