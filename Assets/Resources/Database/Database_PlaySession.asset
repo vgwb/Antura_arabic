@@ -5671,7 +5671,7 @@ MonoBehaviour:
       Order: 1
       NumberOfMinigames: 0
       Minigames:
-      - MiniGameCode: 103
+      - MiniGameCode: 107
         Weight: 1
       NumberOfRoundsPerMinigame: 6
       Letters: []
@@ -5876,7 +5876,7 @@ MonoBehaviour:
       Order: 1
       NumberOfMinigames: 0
       Minigames:
-      - MiniGameCode: 107
+      - MiniGameCode: 103
         Weight: 1
       NumberOfRoundsPerMinigame: 6
       Letters: []
