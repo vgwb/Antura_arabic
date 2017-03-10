@@ -40,16 +40,17 @@ namespace EA4S.Scenes
 
         public void OnOpenRateApp()
         {
-            //GlobalUI.ShowPrompt("", "Rate app");
-        }
-
-        public void OnOpenRecomment()
-        {
+            Debug.Log("On DEVICE it will open the app page on the proper store");
             if (Application.platform == RuntimePlatform.IPhonePlayer) {
                 Application.OpenURL(AppConstants.UrlStoreiOSApple);
             } else if (Application.platform == RuntimePlatform.Android) {
                 Application.OpenURL(AppConstants.UrlStoreAndroidGoogle);
             }
+            //GlobalUI.ShowPrompt("", "Rate app");
+        }
+
+        public void OnOpenRecomment()
+        {
             // GlobalUI.ShowPrompt("", "How to Recommend Antura");
         }
 
