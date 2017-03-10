@@ -272,13 +272,12 @@ namespace EA4S.Book
             // ScoreText.text = "Score: " + info.score;
 
             var output = "";
-
+            output += info.data.Arabic;
+            output += "\n";
             var splittedLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, info.data);
             foreach (var letter in splittedLetters) {
                 output += letter.letter.GetChar() + " ";
             }
-            output += "\n";
-            output += info.data.Arabic;
 
             ArabicText.text = output;
             if (info.data.Drawing != "") {
