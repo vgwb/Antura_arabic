@@ -26,6 +26,8 @@ namespace EA4S.ReservedArea
 
         void OnEnable()
         {
+            AudioManager.I.PlayDialogue("Parental_Gate");
+
             firstButtonClickCounter = 0;
 
             // Selecting two buttons at random
