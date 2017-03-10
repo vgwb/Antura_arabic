@@ -129,18 +129,27 @@ namespace EA4S.Teacher
             var vocabularyHelper = AppManager.I.VocabularyHelper;
             var allLetters = vocabularyHelper.GetAllLetters(parameters.letterFilters);
             var bad_words = new List<string>(currentRoundIDs_words);
+            var bad_letters = new List<string>(currentRoundIDs_letters);
             foreach (var letter in allLetters)
             {
                 // Check number of words
-                var wordsWithLetter = vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, letter.Id);
-                wordsWithLetter.RemoveAll(x => bad_words.Contains(x.Id));  // Remove the already used words
-                wordsWithLetter.RemoveAll(x => vocabularyHelper.ProblematicWordIds.Contains(x.Id));  // HACK: Skip the problematic words (for now)
+                var id = letter.Id;
+                var wordsWithLetterFull = vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, id);
+                wordsWithLetterFull.RemoveAll(x => bad_words.Contains(x.Id));  // Remove the already used words
+                wordsWithLetterFull.RemoveAll(x => vocabularyHelper.ProblematicWordIds.Contains(x.Id));  // HACK: Skip the problematic words (for now)
+                if (wordsWithLetterFull.Count == 0) continue;
+                var wordsWithLetter = AppManager.I.Teacher.VocabularyAi.SelectData(
+                    () => wordsWithLetterFull,
+                        new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: true), canReturnZero: true);
+                //wordsWithLetter.RemoveAll(x => vocabularyHelper.WordContainsAnyLetter(x, bad_letters));   // Not words that have one of the previous letters (but the current one)
 
                 int nWords = wordsWithLetter.Count;
                 if (nWords < atLeastNWords) continue;
 
                 // Avoid using letters that already appeared in the current round's words
                 if (packsUsedTogether && vocabularyHelper.AnyWordContainsLetter(letter, currentRoundIDs_words)) continue;
+
+                //UnityEngine.Debug.Log("OK letter: " + letter + " with nwords: "  + wordsWithLetter.Count);
 
                 eligibleLetters.Add(letter);
             }
