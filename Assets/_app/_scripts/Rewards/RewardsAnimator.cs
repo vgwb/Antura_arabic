@@ -28,6 +28,8 @@ namespace EA4S.Rewards
         Tween pedestalTween;
 
         Database.RewardPackUnlockData rewardPackUnlockData = null;
+        GameObject newRewardInstantiatedGO;
+        RewardsManager rewardManager;
         float rotationAngleView = 0;
 
         IAudioSource alarmClockSound;
@@ -38,8 +40,14 @@ namespace EA4S.Rewards
             LockOpen.gameObject.SetActive(false);
             Pedestal.gameObject.SetActive(true);
 
-            RewardsManager rewardManager = GetComponent<RewardsManager>();
+            // Reward 
+            rewardManager = GetComponent<RewardsManager>();
             rewardManager.ClearLoadedRewardsOnAntura();
+            rewardPackUnlockData = rewardManager.GetRewardToInstantiate();
+            rotationAngleView = RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(rewardPackUnlockData.GetRewardCategory());
+            newRewardInstantiatedGO = rewardManager.InstantiateReward(rewardPackUnlockData);
+            newRewardInstantiatedGO.transform.DOScale(0.00001f, 0f).SetEase(Ease.OutBack);
+            /////////
 
             showTween = DOTween.Sequence().Pause()
                 .Append(LockClosed.DOScale(0.0001f, 0.45f).From().SetEase(Ease.OutBack))
@@ -72,16 +80,9 @@ namespace EA4S.Rewards
                 .OnComplete(() => {
                     IsComplete = true;
                 })
-                .AppendInterval(0.2f)
-                .AppendCallback(() => playParticle())
-                .AppendInterval(0.2f)
-                .AppendCallback(() => playParticle())
                 .AppendInterval(0.1f)
                 .AppendCallback(() => playParticle())
-                .AppendInterval(0.25f)
-                .AppendCallback(() => {
-                    rewardManager.InstantiateCorrectReward();
-                })
+                .Append(newRewardInstantiatedGO.transform.DOScale(1f, 0.8f).SetEase(Ease.OutElastic))
                 .AppendInterval(0.3f)
                 .AppendCallback(() => {
                     pedestalTween.Play();
@@ -101,7 +102,12 @@ namespace EA4S.Rewards
             showTween.Play();
         }
 
+        void InstantiateReward() {
+            newRewardInstantiatedGO = rewardManager.InstantiateReward(rewardPackUnlockData);
+        }
+
         void playParticle() {
+            PoofParticle.transform.position = newRewardInstantiatedGO.transform.position;
             PoofParticle.Play();
         }
 
