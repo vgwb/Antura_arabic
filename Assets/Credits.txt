@@ -23,10 +23,13 @@ Davide Barbieri
 [1]MUSIC AND SOUND DESIGNER[1E]
 Hamza Chioua
 
-[1]ADDITIONAL DESIGN AND DEVELOPMENT[1E]
+[1]R&D AND PRODUCTION SUPPORT[1E]
 Stefano Cecere
 
-[1]PRODUCER[1E]
+[1]ASSOCIATE PRODUCER AND ADDITIONAL GAME DESIGN[1E]
+Ziad Feghali
+
+[1]PRODUCER AND ADDITIONAL GAME DESIGN[1E]
 Francesco Cavallari
 
 
@@ -50,10 +53,25 @@ Lubna Odeh
 [1]ADMINISTRATION COORDINATION[1E]
 Katharina Tillmanns
 
+[1]LEAD MARKETING STRATEGIST[1E]
+Odile Limpach
+
+[1]COMMUNICATION COORDINATOR[1E]
+Imaad Manzar
+
+[1]PR COORDINATOR[1E]
+Judith Neumann
+
+[1]DIGITAL MARKETING COORDINATOR[1E]
+Pierre Schlömp
+
+[1]PROMOTIONAL ART AND DESIGN[1E]
+Karen Barbosa
+
 
 [0]Video Games Without Borders[0E]
 
-[1]PRODUCER[1E]
+[1]PRODUCER AND ADDITIONAL GAME DESIGN[1E]
 Francesco Cavallari
 
 [1]ART DIRECTOR AND LEAD ARTIST[1E]
@@ -69,7 +87,7 @@ Davide Barbieri
 [1]MUSIC AND SOUND DESIGNER[1E]
 Hamza Chioua
 
-[1]ADDITIONAL DESIGN AND DEVELOPMENT [1E]
+[1]R&D AND PRODUCTION SUPPORT[1E]
 Stefano Cecere
 
 [1]PROGRAMMERS[1E]
@@ -90,10 +108,16 @@ Dmitriy Tunik
 [1]2D ILLUSTRATOR[1E]
 Ksenia Glebova
 
+[1]PR & COMMUNICATION[1E]
+Mar Mas
+
+[1]ADMINISTRATION[1E]
+Montse Villar
+
 
 [0]Wixel Studios[0E]
 
-[1]PRODUCER AND ADDITIONAL GAME DESIGN[1E]
+[1]ASSOCIATE PRODUCER AND ADDITIONAL GAME DESIGN[1E]
 Ziad Feghali
 
 [1]PROGRAMMERS[1E]
@@ -102,6 +126,16 @@ Hussam Kazah
 Joseph Saade
 Fouad Tabsh
 Modar Dergham
+
+[1]ARABIC COPYRIGHTING[1E]
+Sary Al-Assad
+
+[1]TESTERS[1E]
+Sleiman Hammoud
+Ali Mzahem
+Remi Abdel Rassoul
+Pamela Al Alam
+Rami Bordokani
 
 
 [0]University of Verona[0E]
@@ -129,6 +163,31 @@ Fares Al-Helou
 
 [1]VOCABULARY, TUTORIAL & SONGS[1E]
 Ibtissam Shakar
+
+
+[0]MARKETING AND COMMUNICATION CONTRIBUTORS[0E]
+
+[1]SENIOR MARKETING AND PR SPECIALIST (ELECTRONIC ARTS)[1E]
+Martin Lorber
+
+[1]MARKETING AND PR SPECIALIST (ELECTRONIC ARTS)[1E]
+Ana Corina Arredondo
+
+[1]COMMUNICATION SPECIALISTS (UBISOFT BLUE BYTE)[1E]
+Stefan Böhne
+Nils Ehlert
+
+[1]DIGITAL VISIBILITY SPECIALIST (UBISOFT BLUE BYTE)[1E]
+Henning Wasserfuhr
+
+[1]DIGITAL MARKETING AND VISIBILITY EXPERT (UBISOFT SAN FRANCISCO)[1E]
+Rachel Alves
+
+[1]POLICY CONTRIBUTOR (OSBORNE CLARKE)[1E]
+Konstantin Ewald
+
+[1]MENA MARKETING AND PR SPECIALIST  (ABDULLAH AND EBTISAM’S CHARITABLE ASSOCIATION)[1E]
+Zaina Alyemni
 
 
 [0]OTHER CONTRIBUTORS[0E]
@@ -170,31 +229,26 @@ Dr. Juho Hamari
 Gaby Gehlen (Wiku Köln)
 Sultana Denise Marquardt (Wiku Köln)
 Till Lupertz (German Red Cross)
+Liv Marte Kristiansen Nordhaug (Norad)
+Alf Inge Wang (Norwegian University of Science)
 Leila Chihab
 Roberto Mangiafico
 Miriam Lozano
 Curtis Maughan
-Judith Neumann
-Mar Mas
 Mai Saki
 Fabio Cecere
 
 
 [1]PRODUCED WITH THE GENEROUS SUPPORT OF[1E]
-Audio Powered by Fabric
+Unity
 TextMesh Pro
 Slack
+Abdullah & Ebtisam's Charitable Association
 
 [1]AND THE SUPPORT OF[1E]
 DOTween (C# library)
 Arabic Support (C# library)
-Unity
 GitHub
 
 
-The EduApp4Syria competition is funded by the Norwegian government and coordinated by the Norwegian Agency for Development Cooperation (Norad) in cooperation with
-the Norwegian University of Science and Technology (NTNU),
-All Children Reading: A Grand Challenge for Development, a partnership including the United States Agency of International Development (USAID), World Vision and the Australian Department of Foreign Affairs and Trade.
-the mobile operator Orange,
-the Inter-Agency Network for Education in Emergencies (INEE).
-NOTE: Unicef Innovation has recently joined the partnership.
+This project was funded by the Norwegian Ministry of Foreign Affairs as part of EduApp4Syria innovation competition.
