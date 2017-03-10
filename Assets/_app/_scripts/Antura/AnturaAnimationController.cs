@@ -105,9 +105,10 @@ namespace EA4S.Antura
             walkingSpeed = speed;
         }
 
-        public void DoSniff(System.Action onSniffEnded = null)
+        public void DoSniff(System.Action onSniffEnded = null, System.Action onSniffStarted = null)
         {
             onSniffEndedCallback = onSniffEnded;
+            onSniffStartedCallback = onSniffStarted;
             if (State != AnturaAnimationStates.idle)
             {
                 if (!hasToGoBackState)
@@ -258,6 +259,12 @@ namespace EA4S.Antura
         {
             if (onShoutStartedCallback != null)
                 onShoutStartedCallback();
+        }
+
+        void OnSniffStart()
+        {
+            if (onSniffStartedCallback != null)
+                onSniffStartedCallback();
         }
 
         void OnSniffEnd()

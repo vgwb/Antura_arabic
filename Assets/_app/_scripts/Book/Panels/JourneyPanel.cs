@@ -105,6 +105,8 @@ namespace EA4S.Book
             DetailTitleText.text = info.data.Title_Ar;
             DetailDescriptionEn.text = info.data.Description_En;
             DetailDescriptionAr.text = info.data.Description_Ar;
+
+            HighlightItem(info.data.Id);
         }
 
         void emptyListContainers()
@@ -117,6 +119,14 @@ namespace EA4S.Book
 
             foreach (Transform t in SubmenuContainer.transform) {
                 Destroy(t.gameObject);
+            }
+        }
+
+        void HighlightItem(string id)
+        {
+            foreach (Transform t in ElementsContainer.transform)
+            {
+                t.GetComponent<ItemLearningBlock>().Select(id);
             }
         }
 
