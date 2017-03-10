@@ -183,7 +183,7 @@ namespace EA4S.Teacher
 
         #region Data Selection logic
 
-        public List<T> SelectData<T>(System.Func<List<T>> builderSelectionFunction, SelectionParameters selectionParams, bool isTest = false) where T : IVocabularyData
+        public List<T> SelectData<T>(System.Func<List<T>> builderSelectionFunction, SelectionParameters selectionParams, bool isTest = false, bool canReturnZero = false) where T : IVocabularyData
         {
             // skip if we require 0 values
             if (selectionParams.nRequired == 0 && !selectionParams.getMaxData) return new List<T>();
@@ -315,6 +315,11 @@ namespace EA4S.Teacher
 
             if (selectedList.Count == 0)
             {
+                if (canReturnZero)
+                {
+                    return selectedList;
+                }
+
                 throw new System.Exception("The teacher could not find any data with the current filters. The game does not seem to be playable at the selected play session."
                      +"\n" + debugString);
             }
