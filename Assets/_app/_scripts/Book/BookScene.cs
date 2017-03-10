@@ -46,7 +46,6 @@ namespace EA4S.Book
             GlobalUI.ShowPauseMenu(false);
             GlobalUI.ShowBackButton(true, GoBackCustom);
             AudioManager.I.PlayMusic(SceneMusic);
-            LogManager.I.LogInfo(InfoEvent.Book, "enter");
 
             SceneTransitioner.Close();
 
@@ -124,7 +123,6 @@ namespace EA4S.Book
 
         public void GoBackCustom()
         {
-            LogManager.I.LogInfo(InfoEvent.Book, "exit");
             AppManager.I.NavigationManager.GoBack();
         }
     }
