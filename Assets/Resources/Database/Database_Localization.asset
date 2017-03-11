@@ -3180,7 +3180,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: All
       Arabic: "\u062C\u0645\u064A\u0639"
       AudioFile: UI_All
     - Id: UI_Animals
@@ -3188,7 +3188,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Animals
       Arabic: "\u062D\u064A\u0648\u0627\u0646\u0627\u062A"
       AudioFile: UI_Animals
     - Id: UI_AreYouSure
@@ -3204,7 +3204,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Body Parts
       Arabic: "\u0623\u0639\u0636\u0627\u0621 \u0627\u0644\u062C\u0633\u0645"
       AudioFile: UI_Body Parts
     - Id: UI_Clothes
@@ -3212,7 +3212,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Clothes
       Arabic: "\u0645\u0644\u0627\u0628\u0633"
       AudioFile: UI_Clothes
     - Id: UI_Colors
@@ -3220,7 +3220,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Colors
       Arabic: "\u0623\u0644\u0648\u0627\u0646"
       AudioFile: UI_Colors
     - Id: UI_Combinations
@@ -3228,7 +3228,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Combinations
       Arabic: "\u062A\u0631\u0643\u064A\u0628\u0627\u062A"
       AudioFile: UI_Combinations
     - Id: UI_Conjunctions
@@ -3236,7 +3236,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Conjunctions
       Arabic: "\u0627\u0644\u0639\u0637\u0641/\u0627\u0644\u0631\u0628\u0637"
       AudioFile: 
     - Id: UI_Directions
@@ -3244,7 +3244,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Directions
       Arabic: "\u0627\u062A\u062C\u0627\u0647\u0627\u062A"
       AudioFile: UI_Directions
     - Id: UI_FamilyMembers
@@ -3252,7 +3252,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Family Members
       Arabic: "\u0623\u0641\u0631\u0627\u062F \u0627\u0644\u0623\u0633\u0631\u0629"
       AudioFile: UI_Family Members
     - Id: UI_Feelings
@@ -3260,7 +3260,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Feelings
       Arabic: "\u0645\u0634\u0627\u0639\u0631"
       AudioFile: UI_Feelings
     - Id: UI_Food
@@ -3268,7 +3268,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Food
       Arabic: "\u0637\u0639\u0627\u0645"
       AudioFile: UI_Food
     - Id: UI_Furniture
@@ -3276,7 +3276,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Furniture
       Arabic: "\u0623\u062B\u0627\u062B"
       AudioFile: UI_Furniture
     - Id: UI_Games
@@ -3284,7 +3284,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Games
       Arabic: "\u0623\u0644\u0639\u0627\u0628"
       AudioFile: UI_Games
     - Id: UI_General
@@ -3292,7 +3292,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Year
       Arabic: "\u0639\u0627\u0645"
       AudioFile: 
     - Id: UI_Jobs
@@ -3300,7 +3300,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Jobs
       Arabic: "\u0648\u0638\u0627\u0626\u0641"
       AudioFile: UI_Jobs
     - Id: UI_LearningBlock
@@ -3308,7 +3308,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Learning Block
       Arabic: "\u0645\u0642\u0637\u0639 \u062A\u0639\u0644\u064A\u0645\u064A"
       AudioFile: 
     - Id: UI_Letters
@@ -3316,7 +3316,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Letters
       Arabic: "\u062D\u0631\u0648\u0641"
       AudioFile: UI_Letters
     - Id: UI_Nature
@@ -3324,7 +3324,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Nature
       Arabic: "\u0637\u0628\u064A\u0639\u0629"
       AudioFile: UI_Nature
     - Id: UI_No
@@ -3340,7 +3340,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Nothing
       Arabic: "\u0644\u0627 \u0634\u064A\u0621"
       AudioFile: 
     - Id: UI_Noun
@@ -3348,7 +3348,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Noun
       Arabic: "\u0627\u0633\u0645"
       AudioFile: UI_Noun
     - Id: UI_Numbers
@@ -3356,7 +3356,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Numbers
       Arabic: "\u0623\u0631\u0642\u0627\u0645"
       AudioFile: UI_Numbers
     - Id: UI_NumbersOrdinal
@@ -3364,7 +3364,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Ordinal Numbers
       Arabic: "\u0627\u0644\u0623\u0639\u062F\u0627\u062F \u0627\u0644\u062A\u0631\u062A\u064A\u0628\u064A\u0629"
       AudioFile: 
     - Id: UI_People
@@ -3372,7 +3372,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: People
       Arabic: "\u0627\u0644\u0646\u0627\u0633"
       AudioFile: UI_People
     - Id: UI_Phrases
@@ -3380,7 +3380,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Phrases
       Arabic: "\u0639\u0628\u0627\u0631\u0627\u062A"
       AudioFile: UI_Phrases
     - Id: UI_Phrases_Expressions
@@ -3421,7 +3421,7 @@ MonoBehaviour:
       When: 
       Context: 
       English: Sentences
-      Arabic: "\u0639\u0628\u0627\u0631\u0627\u0629"
+      Arabic: "\u062C\u0645\u0644"
       AudioFile: 
     - Id: UI_Phrases_Years
       Character: UI
@@ -3436,7 +3436,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Places
       Arabic: "\u0623\u0645\u0627\u0643\u0646"
       AudioFile: UI_Places
     - Id: UI_Player
@@ -3452,7 +3452,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Positions
       Arabic: "\u0645\u0648\u0627\u0642\u0639"
       AudioFile: UI_Positions
     - Id: UI_Preposition
@@ -3460,7 +3460,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Preposition
       Arabic: "\u062D\u0631\u0641 \u062C\u0631"
       AudioFile: UI_Preposition
     - Id: UI_ReservedArea
@@ -3476,7 +3476,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Shapes
       Arabic: "\u0623\u0634\u0643\u0627\u0644"
       AudioFile: 
     - Id: UI_Size
@@ -3484,7 +3484,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Volume
       Arabic: "\u062D\u062C\u0645"
       AudioFile: 
     - Id: UI_Special
@@ -3492,7 +3492,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Special
       Arabic: "\u062E\u0627\u0635"
       AudioFile: UI_Special
     - Id: UI_Sports
@@ -3500,7 +3500,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Sports
       Arabic: "\u0631\u064A\u0627\u0636\u0629"
       AudioFile: UI_Sports
     - Id: UI_Symbols
@@ -3508,7 +3508,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Symbols
       Arabic: "\u0631\u0645\u0648\u0632"
       AudioFile: UI_Symbols
     - Id: UI_Things
@@ -3516,7 +3516,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Things
       Arabic: "\u0623\u0634\u064A\u0627\u0621"
       AudioFile: UI_Things
     - Id: UI_Time
@@ -3524,7 +3524,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Time
       Arabic: "\u0627\u0644\u0632\u0645\u0646"
       AudioFile: UI_Time
     - Id: UI_TimeSpent
@@ -3532,7 +3532,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: Time spent playing
+      English: Playing Time
       Arabic: "\u0632\u0645\u0646 \u0627\u0644\u0644\u0639\u0628"
       AudioFile: 
     - Id: UI_Vehicles
@@ -3540,7 +3540,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Vehicles
       Arabic: "\u0627\u0644\u0645\u0631\u0643\u0628\u0627\u062A"
       AudioFile: UI_Vehicles
     - Id: UI_Verb
@@ -3548,7 +3548,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Verb
       Arabic: "\u0641\u0639\u0644"
       AudioFile: UI_Verb
     - Id: UI_Words
@@ -3556,7 +3556,7 @@ MonoBehaviour:
       Area: ui
       When: 
       Context: 
-      English: 
+      English: Words
       Arabic: "\u0643\u0644\u0645\u0627\u062A"
       AudioFile: UI_Words
     - Id: UI_Yes
