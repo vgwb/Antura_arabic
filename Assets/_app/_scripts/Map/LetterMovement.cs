@@ -41,8 +41,8 @@ namespace EA4S.Map
             /* --------------------- */
 
 
-        //    stageScript.positionPin++;
-          //  MoveTo(stageScript.positionsPlayerPin[1].transform.position, true);
+            //    stageScript.positionPin++;
+            //  MoveTo(stageScript.positionsPlayerPin[1].transform.position, true);
         }
         void Floating()
         {
@@ -65,75 +65,65 @@ namespace EA4S.Map
              Debug.Log("MaxLB"+AppManager.I.Player.MaxJourneyPosition.LearningBlock);
              Debug.Log("MaxPS"+AppManager.I.Player.MaxJourneyPosition.PlaySession);  */
 
-            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject() && (!swipeScript.swipe))
-            {
+            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject() && (!swipeScript.swipe)) {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 RaycastHit hit;
                 int layerMask = 1 << 15;
-                if (Physics.Raycast(ray, out hit, 500, layerMask))
-                {
-                    if (hit.collider.tag == "Rope")
-                    {
+                if (Physics.Raycast(ray, out hit, 500, layerMask)) {
+                    if (hit.collider.tag == "Rope") {
                         playerOverDotPin = true;
                         ropeSelected = hit.transform.parent.gameObject.GetComponent<Rope>();
                         int numDotsRope = 0;
-                        for (int r = 0; r < ropeSelected.dots.Count; r++)
-                        {
+                        for (int r = 0; r < ropeSelected.dots.Count; r++) {
                             if (ropeSelected.dots[r].activeInHierarchy) numDotsRope++;
                         }
-                        if (numDotsRope > 1)
-                        {
+                        if (numDotsRope > 1) {
                             float distaceHitToDot = 1000;
                             float distanceHitBefore = 0;
                             dotCloser = 0;
 
-                            for (int i = 0; i < numDotsRope; i++)
-                            {
+                            for (int i = 0; i < numDotsRope; i++) {
                                 distanceHitBefore = Vector3.Distance(hit.point,
                                     ropeSelected.dots[i].transform.position);
-                                if (distanceHitBefore < distaceHitToDot)
-                                {
+                                if (distanceHitBefore < distaceHitToDot) {
                                     distaceHitToDot = distanceHitBefore;
                                     dotCloser = i;
                                 }
                             }
-                        }
-                        else
-                        {
+                        } else {
                             dotCloser = 0;
                         }
                         colliderRaycast = hit.collider;
                         MoveToDot();
-                    }
-                    else if (hit.collider.tag == "Pin")
-                    {
+                    } else if (hit.collider.tag == "Pin") {
                         playerOverDotPin = true;
                         colliderRaycast = hit.collider;
                         MoveToPin();
+                    } else {
+                        colliderRaycast = null;
                     }
-                    else colliderRaycast = null;
+                } else {
+                    colliderRaycast = null;
                 }
-                else colliderRaycast = null;
+            } else {
+                StartCoroutine("PlayerOverDotPinToFalse");
             }
-            else StartCoroutine("PlayerOverDotPinToFalse");
         }
+
         IEnumerator PlayerOverDotPinToFalse()
         {
             yield return new WaitForSeconds(0.3f);
             playerOverDotPin = false;
         }
+
         void LateUpdate()
         {
-            if (Input.GetMouseButtonUp(0) && (!EventSystem.current.IsPointerOverGameObject()) && (colliderRaycast != null))
-            {
-                if (colliderRaycast.tag == "Rope")
-                {
+            if (Input.GetMouseButtonUp(0) && (!EventSystem.current.IsPointerOverGameObject()) && (colliderRaycast != null)) {
+                if (colliderRaycast.tag == "Rope") {
                     MoveToDot();
                     UpdateCurrentJourneyPosition();
-                }
-                else if (colliderRaycast.tag == "Pin")
-                {
+                } else if (colliderRaycast.tag == "Pin") {
                     MoveToPin();
                     UpdateCurrentJourneyPosition();
                 }
@@ -145,44 +135,46 @@ namespace EA4S.Map
             stageScript.positionPin = ropeSelected.dots[dotCloser].GetComponent<Dot>().pos;
             MoveTo(stageScript.positionsPlayerPin[stageScript.positionPin].transform.position);
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = ropeSelected.dots[dotCloser].GetComponent<Dot>().playSessionActual;
-            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].GetComponent<Dot>().learningBlockActual;        
+            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].GetComponent<Dot>().learningBlockActual;
             AmIFirstorLastPos();
             transform.LookAt(stageScript.pines[ropeSelected.learningBlockRope].transform);
         }
+
         void MoveToPin()
         {
             MoveTo(colliderRaycast.transform.position);
             stageScript.positionPin = colliderRaycast.transform.gameObject.GetComponent<MapPin>().pos;
             AppManager.I.Player.CurrentJourneyPosition.PlaySession = 100;
             AppManager.I.Player.CurrentJourneyPosition.LearningBlock = colliderRaycast.transform.gameObject.GetComponent<MapPin>().learningBlockPin;
-            if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock < stageScript.numberLearningBlocks)
+            if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock < stageScript.numberLearningBlocks) {
                 transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1].transform);
-            else
-            {
-                transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock-1].transform);
-                transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x,
+            } else {
+                transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].transform);
+                transform.rotation = Quaternion.Euler(
+                    new Vector3(transform.rotation.eulerAngles.x,
                     transform.rotation.eulerAngles.y + 180,
-                    transform.rotation.eulerAngles.z));
+                    transform.rotation.eulerAngles.z)
+                );
             }
             AmIFirstorLastPos();
         }
+
         public void MoveToTheRightDot()
         {
-            if((stageScript.positionPin < (stageScript.positionsPlayerPin.Count-1)) && (stageScript.positionPin!=stageScript.positionPinMax))
-            {
+            if ((stageScript.positionPin < (stageScript.positionsPlayerPin.Count - 1)) && (stageScript.positionPin != stageScript.positionPinMax)) {
                 stageScript.positionPin++;
                 MoveTo(stageScript.positionsPlayerPin[stageScript.positionPin].transform.position, true);
 
                 SetJourneyPosition();
                 LookAtRightPin();
             }
-            
+
             AmIFirstorLastPos();
         }
+
         public void MoveToTheLeftDot()
-        {            
-            if (stageScript.positionPin > 1)
-            {
+        {
+            if (stageScript.positionPin > 1) {
                 stageScript.positionPin--;
                 MoveTo(stageScript.positionsPlayerPin[stageScript.positionPin].transform.position, true);
 
@@ -198,17 +190,18 @@ namespace EA4S.Map
             {
                 MoveTo(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].transform.position);
                 stageScript.positionPin = stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>().pos;
-                if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock < stageScript.ropes.Length)
+                if (AppManager.I.Player.CurrentJourneyPosition.LearningBlock < stageScript.ropes.Length) {
                     transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock + 1].transform);
-                else
-                {
-                    transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock-1].transform);
-                    transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x,
-                            transform.rotation.eulerAngles.y + 180,
-                            transform.rotation.eulerAngles.z));
+                } else {
+                    transform.LookAt(stageScript.pines[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].transform);
+                    transform.rotation = Quaternion.Euler(
+                        new Vector3(transform.rotation.eulerAngles.x,
+                                    transform.rotation.eulerAngles.y + 180,
+                                    transform.rotation.eulerAngles.z)
+                    );
                 }
-            } else  //Letter is on a dot
-              {
+            } else {
+                //Letter is on a dot
                 MoveTo(stageScript.ropes[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
                     [AppManager.I.Player.CurrentJourneyPosition.PlaySession - 1].transform.position);
                 stageScript.positionPin = stageScript.ropes[AppManager.I.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
@@ -217,6 +210,7 @@ namespace EA4S.Map
             }
             //AmIFirstorLastPos();
         }
+
         public void ResetPosLetterAfterChangeStage()
         {
             stageScript.positionPin = 1;
@@ -226,18 +220,16 @@ namespace EA4S.Map
             LookAtRightPin();
             UpdateCurrentJourneyPosition();
         }
+
         void SetJourneyPosition()
         {
-            if (stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<Dot>() != null)
-            {
+            if (stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<Dot>() != null) {
                 AppManager.I.Player.CurrentJourneyPosition.PlaySession =
                     stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<Dot>().playSessionActual;
                 AppManager.I.Player.CurrentJourneyPosition.LearningBlock =
                     stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<Dot>().learningBlockActual;
 
-            }
-            else
-            {
+            } else {
                 AppManager.I.Player.CurrentJourneyPosition.PlaySession =
                stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<MapPin>().playSessionPin;
                 AppManager.I.Player.CurrentJourneyPosition.LearningBlock =
@@ -246,16 +238,22 @@ namespace EA4S.Map
             }
             UpdateCurrentJourneyPosition();
         }
+
         void UpdateCurrentJourneyPosition()
         {
-            AppManager.I.Player.SetCurrentJourneyPosition(new JourneyPosition(AppManager.I.Player.CurrentJourneyPosition.Stage,
-             AppManager.I.Player.CurrentJourneyPosition.LearningBlock,
-              AppManager.I.Player.CurrentJourneyPosition.PlaySession), true);
+            AppManager.I.Player.SetCurrentJourneyPosition(
+                new JourneyPosition(AppManager.I.Player.CurrentJourneyPosition.Stage,
+                                    AppManager.I.Player.CurrentJourneyPosition.LearningBlock,
+                                    AppManager.I.Player.CurrentJourneyPosition.PlaySession),
+                true
+            );
         }
+
         void LookAtRightPin()
         {
             LookAt(false);
         }
+
         void LookAtLeftPin()
         {
             LookAt(true);
@@ -273,41 +271,34 @@ namespace EA4S.Map
             this.transform.rotation = currRotation;
             rotateTween = this.transform.DORotate(toRotation.eulerAngles, 0.3f).SetEase(Ease.InOutQuad);
         }
+
         // If animate is TRUE, animates the movement, otherwise applies the movement immediately
         void MoveTo(Vector3 position, bool animate = false)
         {
-            if (moveTween != null) moveTween.Complete();
-            if (animate) moveTween = this.transform.DOMove(position, 0.25f);
-            else this.transform.position = position;
+            if (moveTween != null) { moveTween.Complete(); }
+            if (animate) { moveTween = this.transform.DOMove(position, 0.25f); } else { this.transform.position = position; }
         }
 
         public void AmIFirstorLastPos()
         {
-            if (stageScript.positionPin == 1)
-            {
-                if (stageScript.positionPinMax == 1)
-                {
+            if (stageScript.positionPin == 1) {
+                if (stageScript.positionPinMax == 1) {
                     moveRightButton.SetActive(false);
                     moveLeftButton.SetActive(false);
-                }
-                else
-                {
+                } else {
                     StartCoroutine("DesactivateButtonWithDelay", moveRightButton);
                     moveLeftButton.SetActive(true);
                 }
 
-            }
-            else if (stageScript.positionPin == stageScript.positionPinMax)
-            {
+            } else if (stageScript.positionPin == stageScript.positionPinMax) {
                 moveRightButton.SetActive(true);
                 StartCoroutine("DesactivateButtonWithDelay", moveLeftButton);
-            }
-            else
-            {
+            } else {
                 moveRightButton.SetActive(true);
                 moveLeftButton.SetActive(true);
             }
         }
+
         IEnumerator DesactivateButtonWithDelay(GameObject button)
         {
             yield return new WaitForSeconds(0.1f);

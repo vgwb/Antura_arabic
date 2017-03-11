@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using EA4S.Core;
-using EA4S.Map;
 
 namespace EA4S.Map
 {
@@ -30,7 +27,7 @@ namespace EA4S.Map
         public List<GameObject> positionsPlayerPin = new List<GameObject>(); //All positions Pin can take over the map: dots and pins
         public int positionPin; //position of the PlayerPin in the map
         public int positionPinMax;//Max position PlayerPin can take
-        int nPos=0;
+        int nPos = 0;
 
         Quaternion rot = Quaternion.identity;
         int i;
@@ -41,10 +38,9 @@ namespace EA4S.Map
         {
             NumberPlaySessionsPerLEB();
             Vector3 pinRight, pinLeft;
-            for (i = 0; i < numberLearningBlocks; i++)
-            {
+            for (i = 0; i < numberLearningBlocks; i++) {
                 pinRight = pines[i].transform.position;
-                pinLeft = pines[i+1].transform.position;
+                pinLeft = pines[i + 1].transform.position;
                 positionsPlayerPin.Add(pines[i]);
                 pines[i].GetComponent<MapPin>().pos = nPos;
                 nPos++;
@@ -52,20 +48,21 @@ namespace EA4S.Map
             }
             positionsPlayerPin.Add(pines[i]);
             pines[i].GetComponent<MapPin>().pos = nPos;
-            if (!isAvailableTheWholeMap) CalculatePlaySessionAvailables();
+            if (!isAvailableTheWholeMap) {
+                CalculatePlaySessionAvailables();
+            }
             CalculatePin_RopeAvailable();
         }
 
         void CalculateStepsBetweenPines(Vector3 p1, Vector3 p2, int steps)
         {
-            int p,z;
+            int p, z;
             Vector3 v;
 
             z = 1;
             float d = Vector3.Distance(p1, p2);
-            float x = (((d - 5) - (2*0.5f*steps))) / (steps+1);
-            for (p = 1; p <= steps; p++)
-            {
+            float x = (((d - 5) - (2 * 0.5f * steps))) / (steps + 1);
+            for (p = 1; p <= steps; p++) {
                 v = (p * x + (0.5f * z) + 2.5f) * Vector3.Normalize(p1 - p2) + p2;
                 z += 2;
 
@@ -76,8 +73,7 @@ namespace EA4S.Map
                 dotGo.GetComponent<Dot>().playSessionActual = p;
                 dotGo.GetComponent<Dot>().pos = nPos;
 
-                if (i < pines.Length - 1)
-                {
+                if (i < pines.Length - 1) {
                     ropes[i].GetComponent<Rope>().dots.Add(dotGo);
                     ropes[i].GetComponent<Rope>().learningBlockRope = i + 1;
                 }
@@ -85,11 +81,13 @@ namespace EA4S.Map
                 positionsPlayerPin.Add(dotGo);
 
                 dotGo.transform.parent = stepsParent;
-                if (!isAvailableTheWholeMap) dotGo.SetActive(false);
+                if (!isAvailableTheWholeMap) {
+                    dotGo.SetActive(false);
+                }
                 nPos++;
 
-                if ((i==0) && (p==1))//first playsession of the map
-                {
+                //if first playsession of the map
+                if ((i == 0) && (p == 1)) {
                     dotGo.AddComponent<Dialogues>();
                     dotGo.GetComponent<Dialogues>().numberStage = numberStage;
                 }
@@ -99,21 +97,17 @@ namespace EA4S.Map
         {
             int l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
             int p = AppManager.I.Player.MaxJourneyPosition.PlaySession;
-            for (int i=0;i<l;i++)
-            {
-                if (ropes[i].GetComponent<Rope>().learningBlockRope == l)
-                {
-                    if (p == 100) p = ropes[i].GetComponent<Rope>().dots.Count;
-                    for (int j=0;j<p;j++)
-                    {
+            for (int i = 0; i < l; i++) {
+                if (ropes[i].GetComponent<Rope>().learningBlockRope == l) {
+                    if (p == 100) {
+                        p = ropes[i].GetComponent<Rope>().dots.Count;
+                    }
+                    for (int j = 0; j < p; j++) {
                         ropes[i].GetComponent<Rope>().dots[j].SetActive(true);
                         positionPinMax = ropes[i].GetComponent<Rope>().dots[j].GetComponent<Dot>().pos;
                     }
-                }
-                else
-                {
-                    for(int m=0;m < ropes[i].GetComponent<Rope>().dots.Count;m++)
-                    {
+                } else {
+                    for (int m = 0; m < ropes[i].GetComponent<Rope>().dots.Count; m++) {
                         ropes[i].GetComponent<Rope>().dots[m].SetActive(true);
                     }
                 }
@@ -122,30 +116,24 @@ namespace EA4S.Map
         }
         void CalculatePin_RopeAvailable()
         {
-            if (isAvailableTheWholeMap)
-            {
-                positionPinMax = positionsPlayerPin.Count-1;
-                for (int i = 1; i < (pines.Length - 1); i++)
-                {
+            if (isAvailableTheWholeMap) {
+                positionPinMax = positionsPlayerPin.Count - 1;
+                for (int i = 1; i < (pines.Length - 1); i++) {
                     pines[i].tag = "Pin";
                     pines[i].GetComponent<MapPin>().unlocked = true;
                     ropes[i].transform.GetChild(0).tag = "Rope";
                 }
                 pines[pines.Length - 1].tag = "Pin";
                 pines[pines.Length - 1].GetComponent<MapPin>().unlocked = true;
-            }
-            else
-            {
+            } else {
                 int l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
                 int p = AppManager.I.Player.MaxJourneyPosition.PlaySession;
-                for (int i = 1; i < l; i++)
-                {
+                for (int i = 1; i < l; i++) {
                     pines[i].tag = "Pin";
                     pines[i].GetComponent<MapPin>().unlocked = true;
                     ropes[i].transform.GetChild(0).tag = "Rope";
                 }
-                if (p == 100)
-                {
+                if (p == 100) {
                     positionPinMax = pines[l].GetComponent<MapPin>().pos;
                     pines[l].tag = "Pin";
                     pines[l].GetComponent<MapPin>().unlocked = true;
@@ -153,16 +141,12 @@ namespace EA4S.Map
             }
         }
 
-
         void NumberPlaySessionsPerLEB()
         {
             psData = GetAllPlaySessionDataForStage(numberStage);
-            for (int d = 0; d < psData.Count; d++)
-            {
-                if(psData[d].PlaySession!=100)
-                {
-                    switch (psData[d].LearningBlock)
-                    {
+            for (int d = 0; d < psData.Count; d++) {
+                if (psData[d].PlaySession != 100) {
+                    switch (psData[d].LearningBlock) {
                         case 1:
                             numberStepsPerLB[0]++;
                             break;
@@ -242,8 +226,7 @@ namespace EA4S.Map
 
             // For each score entry, get its play session data and build a structure containing both
             List<PlaySessionState> playSessionState_list = new List<PlaySessionState>();
-            for (int i = 0; i < scoreData_list.Count; i++)
-            {
+            for (int i = 0; i < scoreData_list.Count; i++) {
                 var data = AppManager.I.DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
                 playSessionState_list.Add(new PlaySessionState(data, scoreData_list[i].Stars));
             }

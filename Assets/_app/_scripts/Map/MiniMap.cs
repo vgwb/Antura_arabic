@@ -35,7 +35,6 @@ namespace EA4S.Map
 
         public void CalculateSettingsStageMap()
         {
-            //  posDots = new GameObject[28];
             for (numLearningBlock = 0; numLearningBlock < (posPines.Length - 1); numLearningBlock++) {
                 pinLeft = posPines[numLearningBlock].transform.position;
                 pinRight = posPines[numLearningBlock + 1].transform.position;
@@ -44,11 +43,15 @@ namespace EA4S.Map
             pinLeft = posPines[0].position;
             pinRight = posPines[1].position;
 
-            if (!isAvailableTheWholeMap) CalculatePlaySessionAvailables();
+            if (!isAvailableTheWholeMap) {
+                CalculatePlaySessionAvailables();
+            }
             CalculatePin_RopeAvailable();
         }
+
         int p;
         Vector3 v;
+
         void CalculateStepsBetweenPines(Vector3 p1, Vector3 p2)
         {
             // Debug.Log("DISTANCE "+Vector3.Distance(p1, p2));
@@ -60,8 +63,9 @@ namespace EA4S.Map
             for (p = 1; p < 3; p++) {
                 if (p == 1) {
                     v = (x + 0.5f + 2.5f) * Vector3.Normalize(p2 - p1) + p1;
-                } else v = (2 * x + 1.5f + 2.5f) * Vector3.Normalize(p2 - p1) + p1;
-
+                } else {
+                    v = (2 * x + 1.5f + 2.5f) * Vector3.Normalize(p2 - p1) + p1;
+                }
 
                 var rot = Quaternion.Euler(90, 0, 0);
                 GameObject dotGo;
@@ -73,28 +77,37 @@ namespace EA4S.Map
                     ropes[numLearningBlock].GetComponent<Rope>().learningBlockRope = numLearningBlock + 1;
                 }
 
-                if (numDot % 2 == 0)
+                if (numDot % 2 == 0) {
                     dotGo.GetComponent<Dot>().playSessionActual = 1;
-                else
+                } else {
                     dotGo.GetComponent<Dot>().playSessionActual = 2;
+                }
                 dotGo.transform.parent = stepsParent.transform;
-                if (!isAvailableTheWholeMap) dotGo.SetActive(false);
+                if (!isAvailableTheWholeMap) {
+                    dotGo.SetActive(false);
+                }
                 posDots[numDot] = dotGo;
                 numDot++;
             }
         }
+
         void CalculatePlaySessionAvailables()
         {
             int l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
             int p = AppManager.I.Player.MaxJourneyPosition.PlaySession;
             int m;
-            if (p == 1) m = (l * 2) - 1;
-            else m = l * 2;
+
+            if (p == 1) {
+                m = (l * 2) - 1;
+            } else {
+                m = l * 2;
+            }
             posMax = m;
             for (int i = 0; i < m; i++) {
                 posDots[i].SetActive(true);
             }
         }
+
         void CalculatePin_RopeAvailable()
         {
             if (isAvailableTheWholeMap) {
@@ -110,15 +123,21 @@ namespace EA4S.Map
                 int l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
                 int p = AppManager.I.Player.MaxJourneyPosition.PlaySession;
                 int m;
-                if (p == 100) m = l;
-                else m = l - 1;
+
+                if (p == 100) {
+                    m = l;
+                } else {
+                    m = l - 1;
+                }
+
                 for (int i = 1; i < (m + 1); i++) {
                     posPines[i].tag = "Pin";
                     posPines[i].GetComponent<MapPin>().unlocked = true;
-                    if ((i == m) && (p == 100))
+                    if ((i == m) && (p == 100)) {
                         return;
-                    else
+                    } else {
                         ropes[i].transform.GetChild(0).tag = "Rope";
+                    }
                 }
             }
         }

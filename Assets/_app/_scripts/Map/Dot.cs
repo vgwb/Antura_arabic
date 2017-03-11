@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using EA4S.Audio;
 using EA4S.Map;
 
@@ -15,16 +14,14 @@ namespace EA4S
 
         void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "Player")
-            {
+            if (other.gameObject.tag == "Player") {
                 ChangeMaterialPinToRed();
                 if (other.gameObject.GetComponent<LetterMovement>().playerOverDotPin == true) AudioManager.I.PlaySound(Sfx.UIButtonClick);
             }
         }
         void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.tag == "Player")
-            {
+            if (other.gameObject.tag == "Player") {
                 ChangeMaterialPinToBlack();
             }
         }
