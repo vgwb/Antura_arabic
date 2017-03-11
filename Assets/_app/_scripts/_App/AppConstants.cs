@@ -11,7 +11,7 @@
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.0.0rc2";
+        public const string AppVersion = "1.0.1 (0)";
 
         #region Debug Options
 

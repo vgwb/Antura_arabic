@@ -141,12 +141,9 @@ namespace EA4S.Core
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.Rewards:
-                    if (NavData.CurrentPlayer.IsFirstContact())
-                    {
+                    if (NavData.CurrentPlayer.IsFirstContact()) {
                         GoToScene(AppScene.AnturaSpace);
-                    }
-                    else
-                    {
+                    } else {
                         AppManager.I.Player.AdvanceMaxJourneyPosition();
                         GoToScene(AppScene.Map);
                     }
@@ -216,7 +213,7 @@ namespace EA4S.Core
             if (AppConstants.UseUnityAnalytics && !Application.isEditor) {
                 UnityEngine.Analytics.Analytics.CustomEvent("changeScene", new Dictionary<string, object> { { "scene", sceneName } });
             }
-            LogManager.I.LogInfo(InfoEvent.EnterScene);
+            LogManager.I.LogInfo(InfoEvent.EnterScene, "{\"Scene\":\"" + sceneName + "\"}");
         }
 
         private void UpdatePrevSceneStack(AppScene newScene)
@@ -394,15 +391,17 @@ namespace EA4S.Core
         /// <summary>
         /// Resets the end session results.
         /// </summary>
-        public void ResetEndSessionResults() {
+        public void ResetEndSessionResults()
+        {
             EndSessionResults = new List<EndsessionResultData>();
-        } 
+        }
 
         /// <summary>
         /// Calculates the unlock item count in accord to gameplay result information.
         /// </summary>
         /// <returns></returns>
-        public int CalculateUnlockItemCount() {
+        public int CalculateUnlockItemCount()
+        {
             // decrement because the number of stars needed to unlock the first reward is 2.
             return CalculateStarsCount() - 1;
         }
@@ -411,7 +410,8 @@ namespace EA4S.Core
         /// Calculates earned stars in accord to gameplay result information.
         /// </summary>
         /// <returns></returns>
-        public int CalculateStarsCount() {
+        public int CalculateStarsCount()
+        {
             int totalEarnedStars = 0;
             for (int i = 0; i < EndSessionResults.Count; i++) {
                 totalEarnedStars += EndSessionResults[i].Stars;
@@ -495,49 +495,34 @@ namespace EA4S.Core
         private void GoToNextGameOfPlaySession()
         {
             // From one game to the next
-            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition))
-            {
+            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
                 // We finished the whole game: no reward, go directly to the end scene instead
-                if (AppManager.I.JourneyHelper.PlayerIsAtFinalJourneyPosition())
-                {
-                    if (!AppManager.I.Player.HasFinalBeenShown())
-                    {
+                if (AppManager.I.JourneyHelper.PlayerIsAtFinalJourneyPosition()) {
+                    if (!AppManager.I.Player.HasFinalBeenShown()) {
                         AppManager.I.Player.SetGameCompleted();
                         AppManager.I.Player.SetFinalShown();
                         GoToScene(AppScene.Ending);
-                    }
-                    else
-                    {
+                    } else {
                         GoToScene(AppScene.Map);
                     }
-                }
-                else
-                {
+                } else {
                     // Assessment ended, go to the rewards scene
                     // @todo: what if we REPLAY?
                     GoToScene(AppScene.Rewards);
                 }
-            }
-            else
-            {
+            } else {
                 // Not an assessment. Do we have any more?
-                if (NavData.SetNextMinigame())
-                {
+                if (NavData.SetNextMinigame()) {
                     // Go to the next minigame.
                     InternalLaunchGameScene(NavData.CurrentMiniGameData);
-                }
-                else
-                {
+                } else {
                     // Finished all minigames for the current play session
-                    if (NavData.RealPlaySession)
-                    {
+                    if (NavData.RealPlaySession) {
                         AppManager.I.Player.CheckGameFinishedWithAllStars();
 
                         // Go to the reward scene.
                         GoToScene(AppScene.PlaySessionResult);
-                    }
-                    else
-                    {
+                    } else {
                         // Go where you were previously
                         GoBack();
                     }
