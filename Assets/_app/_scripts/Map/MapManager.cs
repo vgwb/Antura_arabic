@@ -14,16 +14,14 @@ namespace EA4S.Map
 
         void Start()
         {
-            // Navigation manager 
             AudioManager.I.PlayMusic(SceneMusic);
-
             //KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro);
         }
 
-        public void GoToAnturaSpace() {
+        public void GoToAnturaSpace()
+        {
             AppManager.I.NavigationManager.GoToAnturaSpace();
         }
-
 
         public void Play()
         {

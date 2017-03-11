@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 namespace EA4S.Map
 {
@@ -28,23 +27,23 @@ namespace EA4S.Map
             }
         }*/
         StageManager stageManager;
+        float xDown, xUp, x;
+        float yDown, yUp, y;
+
         void Start()
         {
             stageManager = GetComponent<StageManager>();
         }
-        float xDown, xUp, x;
-        float yDown, yUp, y;
+
         void Update()
         {
 
-            if (Input.GetMouseButtonDown(0) && (!player.playerOverDotPin))
-            {
+            if (Input.GetMouseButtonDown(0) && (!player.playerOverDotPin)) {
                 swipe = true;
                 xDown = Input.mousePosition.x;
                 yDown = Input.mousePosition.y;
             }
-            if (Input.GetMouseButtonUp(0))
-            {
+            if (Input.GetMouseButtonUp(0)) {
                 xUp = Input.mousePosition.x;
                 yUp = Input.mousePosition.y;
                 x = xDown - xUp;
@@ -58,16 +57,16 @@ namespace EA4S.Map
                 float height = Screen.height;
 
 
-                if ((Mathf.Abs(x) > width * 0.3f) && (Mathf.Abs(y) < height * 0.1f))
-                {
-                    if ((x < 0)&&(stageManager.currentStageNumber<6)) stageManager.StageLeft();
-                    if ((x > 0)&&(stageManager.currentStageNumber>1)) stageManager.StageRight();
+                if ((Mathf.Abs(x) > width * 0.3f) && (Mathf.Abs(y) < height * 0.1f)) {
+                    if ((x < 0) && (stageManager.currentStageNumber < 6)) { stageManager.StageLeft(); }
+                    if ((x > 0) && (stageManager.currentStageNumber > 1)) { stageManager.StageRight(); }
                 }
                 StartCoroutine("SwipeToFalse");
             }
 
             // Debug.Log(x);
         }
+
         IEnumerator SwipeToFalse()
         {
             yield return new WaitForSeconds(0.3f);
