@@ -5,6 +5,319 @@ to generate git log:
 git log --since='last month' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 =============
 
+2017-03-11 - preaprign 1.0.1 (1)
+2017-03-11 - [map] some CGL and readibility improvement
+2017-03-11 - [Book & DB] udpated and refactored Words categories and english titles
+2017-03-11 - [DB] updated Localization data
+2017-03-11 - Fix animation for skin reward in reward scene.
+2017-03-11 - next version will be 1.0.1
+
+# Version 1.0.0 (first app store version)
+
+2017-03-10 - [log] improved loggin of  InfoEvent.GameStart
+2017-03-10 - preparign relelease 1.0.0
+2017-03-10 - [loggin] improved logging of SystemInfo at every session start and and additional parameters to PlayInfo logs
+2017-03-10 - cleanup: removed warning about unused var (and PlayerPrefs!!)
+2017-03-10 - Fix rotation #417 and enanched visual effects.
+2017-03-10 - [DB] updated PS data
+2017-03-10 - Suppressed warning.
+2017-03-10 - [DB] updated PS data
+2017-03-10 - [AnturaSpace] Fix for decals and textures not showing NEW icon on category
+2017-03-10 - reenabling debug mode
+2017-03-10 - preparing 1.0.0rc1
+2017-03-10 - Fixed wrong warning.
+2017-03-10 - Fixes to WordsWithLetter and PS 5.2
+2017-03-10 - Default skin rewards of Antura are automatically setted as "not new".
+2017-03-10 - [Map] Implemented NEW icon on Antura
+2017-03-10 - [AnturaSpace] NEW icon implemented correctly
+2017-03-10 - [Reward Screen] Some items are not very visible in the reward screen #383.
+2017-03-10 - [Credits] Updated
+2017-03-10 - Pause Fixed on mobile
+2017-03-10 - Added automatic selection for Phrases and Words panels in the book.
+2017-03-10 - Fixed bugs with MinigamesLogManager handling LogLearn requests.
+2017-03-10 - Implemented needed data for #417.
+2017-03-10 - [DB] updated PlaySession data
+2017-03-10 - Antura Touch to Animate, also on Rewards
+2017-03-10 - [rserved area] inverted Rate and Recommend buttons (fixes #326 )
+2017-03-10 - [rserved area] inverted Rate and Recommend buttons
+2017-03-10 - [AnturaSpace] Missing Audio
+2017-03-10 - Fixed detail panel for minigames not being hidden when no minigame is selected.
+2017-03-10 - Changed SFX for buttons of the reserved area dialog.
+2017-03-10 - Added forced minigame selection when value is >= 100
+2017-03-10 - [Home] Interactive Antura and LL
+2017-03-10 - Fixed issues with highlighting items in the book scene.
+2017-03-10 - Added parental gate dialogue when opening the reserved area.
+2017-03-10 - Fix : [AnturaSpace] Textures and Decals colors are not saved #392.
+2017-03-10 - Fix : [Rewards] Demo unlock may crash #421
+2017-03-10 - [DB] updated trasnlations ( fixes #424 )
+2017-03-10 - [reserve area] recomment button opens the app store page ( fixes #326 )
+2017-03-09 - [book] inverted words and speleld words lines
+2017-03-09 - [audio] readded corrected audio files
+2017-03-09 - removed wrong named audio
+2017-03-09 - [audio] optimized sample rates for all vocabulary
+2017-03-09 - [Audio] optimized sample rate and trimming
+2017-03-09 - static intro splash screen on Android ( fix #12)
+2017-03-09 - updated Privacy Policy arabic text
+2017-03-09 - [Songs] Less GetPreferredValues() calls
+2017-03-09 - Songs optimized
+2017-03-09 - Added cache to speed up GetLettersInWord for the special ForceUnseparatedLetters option.
+2017-03-09 - reenabled logs
+2017-03-09 - [build] preparing 1.0.0b9c release
+2017-03-09 - [book & reserved area) some restyling
+2017-03-09 - Added AppVersion saving to PlayerPrefs.
+2017-03-09 - Optimizing AnalyzeData
+2017-03-09 - Removed default LamAlef-true from the builders.
+2017-03-09 - Optimized TMPRO diacritics hack
+2017-03-09 - Testing LamAlef in LetterFormsInWords.
+2017-03-09 - Fixed some Diacritics positions
+2017-03-09 - Removed warning.
+2017-03-09 - removed unuseful loggin
+2017-03-09 - [diacritics] positions for new ones
+2017-03-09 - [diacritics] positions for new ones
+2017-03-09 - [Book] New background
+2017-03-09 - Log is lagging on devices
+2017-03-09 - [DB] imported new DiacriticCombos letters (from DiacriticSong)
+2017-03-09 - [AUDIO]add letters "alef_hamza_hi_dammah" and "alef_hamza_low_kasrah"
+2017-03-09 - [Audio] Moved New DiacriticCombos
+2017-03-09 - Fixed LetterFormsInWordQuestionBuilder.
+2017-03-09 - enabled debug.log
+2017-03-09 - disabeld debug.log
+2017-03-09 - [DB] final db location /players and getting ready for 1.0.0b9
+2017-03-09 - [DB] letters with dammah tanwin and fathah tanwin and kasrah tanwin have just isolated + final forms (fixes #422 )
+2017-03-09 - removed LogAI warnings
+2017-03-08 - Initial Forms Fix (to be completed).
+2017-03-08 - [Assessment Diacritics] Fixed
+2017-03-08 - [AUDIO] update SFX files
+2017-03-08 - [DIacriticSong] fixed first combo
+2017-03-08 - [diacritics rendering] some optimization to deltas
+2017-03-08 - [TMPro] reapplied Davide’s patch to hack the core
+2017-03-08 - [TMPro] moved core fiels to be modificed in our custom folder
+2017-03-08 - [TMPro] resetted to original versions
+2017-03-08 - Set the DataParser to avoid considering 'hamza' when expanding diacritics.
+2017-03-08 - [book] some polishing
+2017-03-08 - Improved filtering for WordsWithLetter, avoiding problematic words.
+2017-03-08 - [TMPro] Moved hack to fix diacritics positions
+2017-03-08 - Added SRDebug option to create a fast test profile for debugging
+2017-03-08 - Added DB deletion interfaces (not yet implemented, for the future). Added subfolder to db path).
+2017-03-08 - [Assessment] Fixed all questions providers to respect their contract, this allows Michele's Filters to place data in indipendent 2by2 or 3by3 slots correctly.
+2017-03-08 - Teacher report file set to be saved only on VerboseTeacher.
+2017-03-08 - [Egg] Smaller font to allow diacritics
+2017-03-08 - [Assessments] Fix diacritics on assessments, gives 8% more space so they fit inside LetterBoxes.
+2017-03-08 - [Map] stage indicator (fixed)
+2017-03-08 - [Map] stage indicator
+2017-03-08 - [map] some code polishing
+2017-03-08 - [RservedArea] reordered buttons
+2017-03-08 - [Map] Added StageIndicator (indicates map current stage / total stages)
+2017-03-08 - [RservedArea] open app store url on Rate Button (temp. until we make a proper rating popup)
+2017-03-08 - Google Play app URL
+2017-03-08 - [DB] updated letters and PS
+2017-03-08 - [db] removed unused field
+2017-03-08 - getting ready for next 1.0.0b8b
+2017-03-08 - disabling verbse loggin for build
+2017-03-08 - [Scanner] Make the tut finger disappear when the scanner hits Antura
+2017-03-08 - TextMesh Pro: hack to adjust diacritics globally
+2017-03-08 - moving the two TextMesh Pro scripts we are  going to customize
+2017-03-08 - moving TextMesh Pro out of Starndard Assets (changing compilation order)
+2017-03-08 - [diacritics] preparing adjustment method in standalone VocabularyHelper
+2017-03-08 - [text] AdjustDiacriticPositions() is now public
+2017-03-08 - [Home] audio to invite player ot create new profile ( fixes #17 )
+2017-03-08 - preparing next version 1.0.0b8a
+2017-03-08 - [book] tempory disabled Profile panel
+2017-03-08 - preapring  v1.0.0b8
+2017-03-08 - enabled ComboDiacritic fix everywhere (in TextRender)
+2017-03-07 - LL with single diacritic Combo could have symbol in the right position
+2017-03-07 - [Book] LearningBlocks arabic descriptions
+2017-03-07 - [DB arabic] DIacritic symbols are now correct in Book Letters (tuning)
+2017-03-07 - [DB arabic] DIacritic symbols are now correct in Book Letters
+2017-03-07 - [Scanner] Fixed final score calculation, Added Antura tut dialog
+2017-03-07 - Fix : [PlaySession Result] a minigame can appear twice in some conditions #317.
+2017-03-07 - [Map] fixed bug dialogues
+2017-03-07 - Added teacher fallback recovery up to 10 times to avoid play sessions not starting at all.
+2017-03-07 - [Map] when reaching a Pin we could play a dialog introducing the Assessment #307
+2017-03-07 - [Book & DIacritics] some letter diacritics start being correct now
+2017-03-07 - [Map] Swiping left (prev Stage) in Stage 1 makes impossible to switch Stage #405
+2017-03-07 - Fix : [Progression] Even if you don't get any star you progress to the next PS #316
+2017-03-07 - Added unlocking of Vocabulary data at end of play session.
+2017-03-07 - Removed Walkie Talkie from girl's speech
+2017-03-07 - Fixed bug with words without drawings messing up ReadingGame.
+2017-03-07 - Added "GoEnd" to SRDebugOptions
+2017-03-07 - Fixing some application pause deadlocks
+2017-03-07 - [Assessment_WordsWithLetter] Fixed issue #356 (show missing letter in green when word is completed)
+2017-03-07 - [Diacritic Song] Modified timing and spacing
+2017-03-07 - [Application - Android] Pressing the device's back button now opens a popup which, if confirmed, quits the application
+2017-03-07 - Fix [Reserved Area] The Demo Profile cannot be deleted #415
+2017-03-07 - [PlayerCreation] Fixed error when an Age button is selected while the enter animation is playing
+2017-03-07 - [MinigamesUI - Timer] Fixed erroneous logs left in the timer, I repent!
+2017-03-07 - [assessments] Fixed issue #414 : (some letter sounds were cutted).
+2017-03-07 - [MinigamesUI - Timer] Additional fix for minigames that don't use Timer interface correctly
+2017-03-07 - [Assessments] Fixed Issue #413 (Z fighting on scene decorations and elements placing changing with screen ratio)
+2017-03-07 - [MinigamesUI - Timer] Alarm FX now can't be paused, so it works with minigames that don't implement minigames interface correctly
+2017-03-07 - Android App Icon: rounded with japan background
+2017-03-07 - fixed iOS app icon ( fixes #411 )
+2017-03-07 - [HideAndSeek] Fixed Antura shadow scale
+2017-03-07 - Fixed #412  (articles category have wider questions now)
+2017-03-07 - Missing OnClockCompleted
+2017-03-07 - [MinigamesUI - Timer] Sounds pause and play correctly when the PauseMenu opens, even with the GOTO hacky way
+2017-03-07 - [ReadingGame] Thresholds 0.5 and 0.8
+2017-03-07 - [MinigamesUI - Timer] Hacked final shake sound so it works with Widget's goto behaviour
+2017-03-07 - [DB] enums aren’t generated automatically anymore
+2017-03-07 - fixed issue #410
+2017-03-07 - Updated Ending Scene with new sentences!
+2017-03-07 - [DB] updated Localiztions
+2017-03-07 - preparing new version
+2017-03-07 - [Credits] Fixed Credits button disappearing after being pressed once + [UIButton] Fixed minor issues
+2017-03-07 - [AUDIO] Split End_Scene dialogs 1 and 2
+2017-03-07 - [PauseMenu] Pressing BACK from a game session now requires an ulterior confirmation
+2017-03-07 - [Ending] Fixed wrong position for end game event [Ending] Added multiple sentences and text
+2017-03-07 - MissingShape Title
+2017-03-07 - Resetting linked Q/A for letter highlighting
+2017-03-07 - cleanup
+2017-03-07 - The Unlock All happen when the full game is completed! #229
+2017-03-07 - bundle version is 1.0.0 (preparing for public release)
+2017-03-07 - appversion (and db schemes) set to 1.0.0b7 (this will erase all previous profiles)
+2017-03-07 - [Arabic] advancement in repositioning diacritics (disabled for now)
+2017-03-07 - All (really all!) reward unlocked for demo player and with cheat. fix #229 and #315.
+2017-03-07 - Progress on highlighting green letter. Still checking text mesh documentation.
+2017-03-07 - Fixed issue #402??
+2017-03-07 - Fixed Issue #398 (correct answer spawn always as last)
+2017-03-07 - Fix #380: avoid zombie player profile as "last active player" after any profile deletion.
+2017-03-07 - Fixed query on rewards to prevent static data list modification #408.
+2017-03-07 - Fixed issues with player icon data saving when finishing the game: added correct navigation, added correct use of GameFinished and GameFinishedWithAllStars.
+2017-03-07 - RewardTypes with original enumeration.
+2017-03-07 - Unlock routine need game restart, fixed.
+2017-03-07 - [letters + arabic] first fices to diacritic symbols
+2017-03-06 - [DB] PlaySessions reimported with new data and added LB Arabic Descriptions to Book Journey
+2017-03-06 - [DB] reimported Words
+2017-03-06 - [DB] removed unused Reward in LearningBLockData
+2017-03-06 - Added DataStatitics to get all words with letter
+2017-03-06 - Fix : indicate right unlocked proprerty for space ui.
+2017-03-06 - Added DataStatistics: frequency of data in PS
+2017-03-06 - Added "Demo player already exists" localization ID
+2017-03-06 - Fix #360 + fix save customization
+2017-03-06 - [ArabicAlphabetHelper] Fix when parsing a DiacriticCombo
+2017-03-06 - Updated ReservedAreaDialog text.
+2017-03-06 - Animating the reserved area panel.
+2017-03-06 - [Book] New lock icon
+2017-03-06 - [DB] LetterData symbol Maddah is now a DiacriticSymbol type
+2017-03-06 - [Text] adavnedment in DIacritic positioning
+2017-03-06 - Added guard to avoid logging when on direct play.
+2017-03-06 - Fixed bug with LogAI getting wrong words and phrases.
+2017-03-06 - Fixed FindLetter when letterToFind is a letterVariation
+2017-03-06 - Removed Tobogan from using LamAlef.
+2017-03-06 - TextRender: init diacritic Utility
+2017-03-06 - [DB] LetterData: Symbol_DeltaY (to manage custom diacritic dY)
+2017-03-06 - Removed Tobogan from the list of LamAlef hacks..
+2017-03-06 - Added LamAlef hack that skips the .Letters of a worddata.
+2017-03-06 - Fix exceptions during bulk unlock rewards.
+2017-03-06 - A lot of stability improvements for profile, rewards and cheats. Bulk unlock of rewards it's not correct in the number of unlocked rewards. Customization unstable.
+2017-03-06 - The end scene is now triggered when the last play session ends, not after a reward scene.
+2017-03-06 - Added navigation back to the map when the end scene ends.
+2017-03-06 - Fixed bugs with demo user not correctly showing the hat. Added correct check to end the game.
+2017-03-06 - [AnturaSpace] Left/Right ear rewards are now selected separately
+2017-03-06 - [MissingLetter] Simplified difficulty configuration
+2017-03-06 - [PlayerCreation] PRESS PLAY audio ( solves #17 )
+2017-03-06 - [book] do nopt show letter duplicates ( solves #371 )
+2017-03-06 - Added DeleteAll for reward unlocks to the PlayerProfile.
+2017-03-06 - [AnturaSpace] Now Categories don't open while another is opening (possible bugfix) + Added audio FX to all buttons
+2017-03-06 - [PlayerCreation] play audio dialog to guide creation ( solves #17 )
+2017-03-06 - [AnturaSpace] Added option to hide locked swatches colors (unused for now)
+2017-03-06 - Fixed #281 : Pronunced Letter sound gets cutted.
+2017-03-06 - [AnturaSpace] Better lock icons and system + [PlayerIcon] Hat modified so it fits nicely on god avatar too
+2017-03-06 - Fixed "turn image Green" Issue #273
+2017-03-06 - [UI] Prompt allows Er/En trasnlations (vis string and LocalizationId) ( solves #362 )
+2017-03-06 - [Db & Games] fixed audio titles for new games variants (and renamed audio filenames)
+2017-03-06 - [book] fix debug launch
+2017-03-06 - [DB] added Uuid field to all tables, to easy later multiple db queries. this shoudl be the FINAL DB SCHEME
+2017-03-06 - [ReadingGame prefab] removed TMPro obsolete component
+2017-03-06 - [LL] removed TMPro obsolete component
+2017-03-06 - [map] removed TMPro obsolete component
+2017-03-06 - [AnturaSpace] Throw Sfx
+2017-03-05 - [Plugin] updated TextMeshjPro to release version
+2017-03-05 - [book] phrases categories localized
+2017-03-05 - [DB] imported new localizations
+2017-03-05 - [DB] fixed teh_marbuta main code
+2017-03-05 - [AnturaSpace] Changed bone dialog order
+2017-03-05 - [audio] set new vocies sampel rate at 22K
+2017-03-05 - [Map] Changes in Map Scene
+2017-03-05 - [AnturaSpace] Reset Antura angle
+2017-03-05 - [Map] Remove debug lines
+2017-03-05 - [Map] the swipe gesture to change Stage is not working well #305
+2017-03-05 - [AUDIO] Update audio file name (Lam_alef_hamza_low)
+2017-03-05 - [Map] We could play a dialog to introduce each Stage in the Map #295
+2017-03-05 - [BUG] current UnlockAllRewards() doesn’t work anymore (gives error) when creating a demo user.. disabling it temporarily
+2017-03-05 - [AUDIO] add missing audio files
+2017-03-04 - [Map] when reaching a Pin we could play a dialog introducing the Assessment #307
+2017-03-04 - [Maze] Fix for #260.
+2017-03-04 - [MixedLetters] Enhanced lose state (#63).
+2017-03-04 - Pre-filtered list of available reward for getnextreward in rewatd system. More efficient #311 and stable.
+2017-03-04 - [AnturaSpace] KO on can't spawn bones
+2017-03-04 - [Map] Remove debug lines
+2017-03-04 - [Map][And#61] Confusing UX #343
+2017-03-04 - [SickLetters] Removed LL dance
+2017-03-04 - [AnturaSpace] Fixed some conflicts with old code
+2017-03-04 - UnlockAllRewards check if default set of rewards already selected.
+2017-03-04 - [ThrowBalls] Enhance intro (#216).
+2017-03-04 - [MixedLetters] Fix bug where sometimes the tutorial doesn't click on the rotate buttons (#354).
+2017-03-04 - Fix #347 and #353
+2017-03-04 - [ThrowBalls] Ignore collision between ball and spring (#367).
+2017-03-04 - [Maze] Fix timer (#374).
+2017-03-04 - [Egg] Title Dialog
+2017-03-04 - [SickLetters] Shorter timer
+2017-03-04 - [DancingDots] Play LL winning anime when game ends
+2017-03-04 - [AUDIO] [GameSelector] correct letters order for LB1.1
+2017-03-03 - [db] refresh version
+2017-03-03 - Added JourneyPosition components to JourneyScoreData.
+2017-03-03 - Reverted to static initial scene set.
+2017-03-03 - Added safety exception if the current scene is none.
+2017-03-03 - [DB] updated WordForm enum
+2017-03-03 - Added guard to avoid updating CurrentScene if it has already been set once.
+2017-03-03 - [Log] log _all_ scenes changes
+2017-03-03 - [DB] field AppSession in RewardsData and field Scene in LogInfoData
+2017-03-03 - not necessary awarning for this info
+2017-03-03 - Fix call Final scene after last reward #321.
+2017-03-03 - Avatar with different ovelayes if A) player finished game, B) player got all stars #321
+2017-03-03 - Updated reserved area access from Home.
+2017-03-03 - Game Ending (step 2)
+2017-03-03 - Separated JourneyPosition into its components for LogPlayData and RewardPackUnlockData
+2017-03-03 - [db] updated schemes
+2017-03-03 - Game Ending (step1)
+2017-03-03 - [playerProfile] finalized completion states and soem rewards db
+2017-03-03 - Updated Letter Data DB
+2017-03-03 - Fixing bug in ArabicSupport
+2017-03-03 - Added localizations to ReservedArea.
+2017-03-03 - Reserved area now using localized keys (part 1)
+2017-03-03 - [DB] udpated localizations
+2017-03-03 - [book] lock minigames if coming from Reserved Area ( fixes #359 )
+2017-03-03 - removed unused global setting
+2017-03-03 - [AnturaSpace] Fixed Finger on start
+2017-03-03 - Fixed last 2 warnings..
+2017-03-03 - [AnturaSpace] Fixed some bugs
+2017-03-03 - Small bugfix.
+2017-03-03 - Renamed database names in AppConstants and small DB refactorings.
+2017-03-03 - [Book] Player Panel skinned (as much as possible)
+2017-03-03 - [Book] Games panel skinned + changes to other panels
+2017-03-03 - LogManager: reset AppSession when resuming app
+2017-03-03 - LogManager: init AppSession at Init
+2017-03-03 - [DB] AppSession is now an int (timestamp)
+2017-03-03 - [Book] Journey area skinning complete
+2017-03-03 - Antura Space save customization on category.
+2017-03-03 - Removing unused logs.
+2017-03-03 - Added new vocabulary data unlock logic. Complete refactoring for the database data scheme. Added new versioning mode.
+2017-03-03 - Android app icon: trasnparent bg
+2017-03-02 - Fixed Particle Mesh in Ending Scene
+2017-03-02 - Ending Glitters
+2017-03-02 - Updated PlayerProfileData. Refactored a bit.
+2017-03-02 - [Book] Vocabulary area skin complete
+2017-03-02 - [map] clean compilatio nwarning
+2017-03-02 - Removed Warning from PauseMenu
+2017-03-02 - clean compilation warning
+2017-03-02 - Updated PlayerProfile GetPlayerIconData to use the new booleans too (not enough, tho)
+2017-03-02 - Fixed bug with NavigationManager not calling the correct method for finishing the game.
+2017-03-02 - [AlphabetSong] Force stop Music from previous scenes
+2017-03-02 - Updated reserved area "Unlocking... please wait" panel.
+2017-03-02 - Added game completion data to PlayerProfileData and connecting it to the PlayerProfile. Triggering a DB reset.
+2017-03-02 - [code cleanup]
+2017-03-02 - updated CHANGELOG
 2017-03-02 - wrong meta
 2017-03-02 - Adding ending meta
 2017-03-02 - [AUDIO] Add audio file teh_marbuta_fathah_tanwin
