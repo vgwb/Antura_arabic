@@ -27,13 +27,13 @@ namespace EA4S.Profile
                     AppManager.I.Teacher.SetPlayerProfile(value);
                     // refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
                     if (AppManager.I.DB.HasLoadedPlayerProfile()) {
-                        LogManager.I.LogInfo(InfoEvent.AppSessionEnd);
+                        LogManager.I.LogInfo(InfoEvent.AppSessionEnd, "{\"AppSession\":\"" + LogManager.I.AppSession + "\"}");
                     }
                     AppManager.I.GameSettings.LastActivePlayerUUID = value.Uuid;
                     SaveGameSettings();
-                    LogManager.I.LogInfo(InfoEvent.AppSessionStart);
+                    LogManager.I.LogInfo(InfoEvent.AppSessionStart, "{\"AppSession\":\"" + LogManager.I.AppSession + "\"}");
                     AppManager.I.NavigationManager.InitialisePlayerNavigationData(currentPlayer);
-                    
+
                     currentPlayer.LoadRewardsUnlockedFromDB(); // refresh list of unlocked rewards
                     if (OnProfileChanged != null)
                         OnProfileChanged();
@@ -67,14 +67,14 @@ namespace EA4S.Profile
             if (alsoLoadCurrentPlayer) {
                 // No last active? Get the first one.
                 if (AppManager.I.GameSettings.LastActivePlayerUUID == string.Empty) {
-                    if(AppManager.I.GameSettings.SavedPlayers.Count > 0) { 
+                    if (AppManager.I.GameSettings.SavedPlayers.Count > 0) {
                         //UnityEngine.Debug.Log("No last! Get the first.");
                         AppManager.I.GameSettings.LastActivePlayerUUID = AppManager.I.GameSettings.SavedPlayers[0].Uuid;
                     } else {
                         AppManager.I.Player = null;
                         Debug.Log("Actual Player == null!!");
                     }
-                } else{
+                } else {
                     string playerUUID = AppManager.I.GameSettings.LastActivePlayerUUID;
 
                     // Check whether the SQL DB is in-sync first
@@ -198,7 +198,7 @@ namespace EA4S.Profile
                 }
             }
             AppManager.I.GameSettings.SavedPlayers.Remove(playerIconData);
-            
+
             SaveGameSettings();
             return returnProfile;
         }
@@ -224,11 +224,10 @@ namespace EA4S.Profile
         /// <summary>
         /// Updates the PlayerIconData for current player in list of SavedPlayers in GameSettings.
         /// </summary>
-        public void UpdateCurrentPlayerIconDataInSettings() {
-            for (int i = 0; i < AppManager.I.GameSettings.SavedPlayers.Count; i++)
-            {
-                if(AppManager.I.GameSettings.SavedPlayers[i].Uuid == currentPlayer.Uuid)
-                {
+        public void UpdateCurrentPlayerIconDataInSettings()
+        {
+            for (int i = 0; i < AppManager.I.GameSettings.SavedPlayers.Count; i++) {
+                if (AppManager.I.GameSettings.SavedPlayers[i].Uuid == currentPlayer.Uuid) {
                     AppManager.I.GameSettings.SavedPlayers[i] = CurrentPlayer.GetPlayerIconData();
                 }
             }

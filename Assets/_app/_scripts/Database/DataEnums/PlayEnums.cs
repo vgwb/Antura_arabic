@@ -17,11 +17,9 @@
         Book = 30,
         GameStart = 40,
         GameEnd = 41,
-        AnturaSpace = 60,
-        Map = 70,
-
         Reward = 50,
         AnturaCustomization = 51,
+        AnturaSpace = 60,
     }
     /// <summary>
     /// Defines a type of play-related skill that may be measured.

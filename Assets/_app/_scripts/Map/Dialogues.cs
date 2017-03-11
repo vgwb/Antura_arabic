@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using EA4S.Core;
 
 namespace EA4S.Map
@@ -8,13 +6,12 @@ namespace EA4S.Map
     public class Dialogues : MonoBehaviour
     {
         public int numberStage;
-        int IsBeginningNewStage;
+        // int IsBeginningNewStage;
         void OnTriggerEnter(Collider other)
         {
             bool isMaxPosition = IsMaxJourneyPosition();
-            IsBeginningNewStage = PlayerPrefs.GetInt("IsNewStage"+numberStage);
-            if ((other.gameObject.tag == "Player") && (isMaxPosition) && (numberStage > 1))
-            {
+            //IsBeginningNewStage = PlayerPrefs.GetInt("IsNewStage" + numberStage);
+            if ((other.gameObject.tag == "Player") && (isMaxPosition) && (numberStage > 1)) {
                 Database.LocalizationDataId[] data = new Database.LocalizationDataId[7];
                 data[2] = Database.LocalizationDataId.Map_Intro_Map2;
                 data[3] = Database.LocalizationDataId.Map_Intro_Map3;
@@ -22,7 +19,7 @@ namespace EA4S.Map
                 data[5] = Database.LocalizationDataId.Map_Intro_Map5;
                 data[6] = Database.LocalizationDataId.Map_Intro_Map6;
                 KeeperManager.I.PlayDialog(data[numberStage], true, true);
-                PlayerPrefs.SetInt("IsNewStage"+numberStage, 1);
+                //PlayerPrefs.SetInt("IsNewStage" + numberStage, 1);
             }
         }
 
@@ -30,9 +27,11 @@ namespace EA4S.Map
         {
             if ((AppManager.I.Player.CurrentJourneyPosition.Stage == AppManager.I.Player.MaxJourneyPosition.Stage) &&
                 (AppManager.I.Player.CurrentJourneyPosition.LearningBlock == AppManager.I.Player.MaxJourneyPosition.LearningBlock) &&
-                (AppManager.I.Player.CurrentJourneyPosition.PlaySession == AppManager.I.Player.MaxJourneyPosition.PlaySession))
+                (AppManager.I.Player.CurrentJourneyPosition.PlaySession == AppManager.I.Player.MaxJourneyPosition.PlaySession)) {
                 return true;
-            else return false;
+            } else {
+                return false;
+            }
         }
     }
 }
