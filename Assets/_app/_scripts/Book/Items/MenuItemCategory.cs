@@ -25,7 +25,7 @@ namespace EA4S.Book
             manager = _manager;
 
             Title.text = data.Title;
-            SubTitle.text = data.Id;
+            SubTitle.text = data.TitleEn;
 
             hightlight(_selected);
         }

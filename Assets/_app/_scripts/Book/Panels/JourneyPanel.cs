@@ -82,7 +82,8 @@ namespace EA4S.Book
                     new GenericCategoryData {
                         area = VocabularyChapter.LearningBlock,
                         Id = stage.Id,
-                        Title = stage.Id
+                        Title = stage.Id,
+                        TitleEn = stage.Id
                     },
                     int.Parse(stage.Id) == currentStage
                 );
@@ -124,8 +125,7 @@ namespace EA4S.Book
 
         void HighlightItem(string id)
         {
-            foreach (Transform t in ElementsContainer.transform)
-            {
+            foreach (Transform t in ElementsContainer.transform) {
                 t.GetComponent<ItemLearningBlock>().Select(id);
             }
         }
