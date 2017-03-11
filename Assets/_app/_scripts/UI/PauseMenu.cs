@@ -88,25 +88,15 @@ namespace EA4S.UI
             openMenuTween.Kill();
             logoBobTween.Kill();
             BtPause.Bt.onClick.RemoveAllListeners();
-            foreach (MenuButton bt in menuBts)
+            foreach (MenuButton bt in menuBts) {
                 bt.Bt.onClick.RemoveAllListeners();
+            }
         }
 
         void Update()
         {
-            if (BtMusic.IsToggled != AudioManager.I.MusicEnabled)
+            if (BtMusic.IsToggled != AudioManager.I.MusicEnabled) {
                 BtMusic.Toggle(AudioManager.I.MusicEnabled);
-
-            // Exit with Android back button
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (Application.platform == RuntimePlatform.Android)
-                {
-                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
-                        Debug.Log("Application Quit");
-                        Application.Quit();
-                    }, ()=> {});
-                }
             }
         }
 

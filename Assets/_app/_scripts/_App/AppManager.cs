@@ -113,6 +113,20 @@ namespace EA4S
 
         #endregion
 
+
+        void Update()
+        {
+            // Exit with Android back button
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                if (Application.platform == RuntimePlatform.Android) {
+                    GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
+                        Debug.Log("Application Quit");
+                        Application.Quit();
+                    }, () => { });
+                }
+            }
+        }
+
         #region Settings behaviours
 
         // refactor: should be moved to AppManager
