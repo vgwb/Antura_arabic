@@ -3551,6 +3551,54 @@ MonoBehaviour:
       English: Verb
       Arabic: "\u0641\u0639\u0644"
       AudioFile: UI_Verb
+    - Id: UI_WordCat_Adjectives
+      Character: UI
+      Area: book
+      When: 
+      Context: 
+      English: Adjectives
+      Arabic: "\u0627\u0644\u0635\u0641\u0627\u062A"
+      AudioFile: 
+    - Id: UI_WordCat_Expressions
+      Character: UI
+      Area: book
+      When: 
+      Context: 
+      English: Expressions
+      Arabic: "\u0645\u0635\u0637\u0644\u062D\u0627\u062A"
+      AudioFile: 
+    - Id: UI_WordCat_Greetings
+      Character: UI
+      Area: book
+      When: 
+      Context: 
+      English: Greetings
+      Arabic: "\u062A\u062D\u064A\u0629 \u0637\u064A\u0628\u0629"
+      AudioFile: 
+    - Id: UI_WordCat_Names
+      Character: UI
+      Area: book
+      When: 
+      Context: 
+      English: Names
+      Arabic: "\u0623\u0633\u0645\u0627\u0621"
+      AudioFile: 
+    - Id: UI_WordCat_Verbs
+      Character: UI
+      Area: book
+      When: 
+      Context: 
+      English: Verbs
+      Arabic: "\u0641\u0639\u0644"
+      AudioFile: 
+    - Id: UI_WordCat_Weather
+      Character: UI
+      Area: book
+      When: 
+      Context: 
+      English: Weather
+      Arabic: "\u0627\u0644\u0637\u0642\u0633"
+      AudioFile: 
     - Id: UI_Words
       Character: UI
       Area: ui

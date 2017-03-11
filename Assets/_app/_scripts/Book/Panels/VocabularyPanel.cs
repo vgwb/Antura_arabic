@@ -17,6 +17,7 @@ namespace EA4S.Book
         public VocabularyChapter area;
         public string Id;
         public string Title;
+        public string TitleEn;
         public WordDataCategory wordCategory;
         public PhraseDataCategory phraseCategory;
     }
@@ -67,6 +68,7 @@ namespace EA4S.Book
         VocabularyChapter currentChapter = VocabularyChapter.None;
         GameObject btnGO;
         string currentCategory;
+        LocalizationData CategoryData;
         WordDataCategory currentWordCategory;
         PhraseDataCategory currentPhraseCategory;
         LetterInfo currentLetter;
@@ -95,11 +97,11 @@ namespace EA4S.Book
             switch (panel) {
                 case VocabularyChapter.Letters:
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Letters);
-                    LettersPanel("letter");
+                    LettersPanel("letters");
                     break;
                 case VocabularyChapter.Words:
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Words);
-                    WordsPanel(WordDataCategory.Animal);
+                    WordsPanel(WordDataCategory.Adjectives);
                     break;
                 case VocabularyChapter.Phrases:
                     AudioManager.I.PlayDialogue(LocalizationDataId.UI_Phrases);
@@ -125,10 +127,10 @@ namespace EA4S.Book
             currentCategory = _category;
             List<LetterData> list;
             switch (currentCategory) {
-                case "combo":
+                case "combinations":
                     list = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation));
                     break;
-                case "symbol":
+                case "symbols":
                     list = AppManager.I.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
                     break;
                 default:
@@ -152,26 +154,44 @@ namespace EA4S.Book
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
+            CategoryData = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Letters);
             btnGO.GetComponent<MenuItemCategory>().Init(
                 this,
-                new GenericCategoryData { area = VocabularyChapter.Letters, Id = "letter", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Letters) },
-                currentCategory == "letter"
+                new GenericCategoryData {
+                    area = VocabularyChapter.Letters,
+                    Id = "letters",
+                    Title = CategoryData.Arabic,
+                    TitleEn = CategoryData.English
+                },
+                currentCategory == "letters"
             );
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
+            CategoryData = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Symbols);
             btnGO.GetComponent<MenuItemCategory>().Init(
                 this,
-                new GenericCategoryData { area = VocabularyChapter.Letters, Id = "symbol", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Symbols) },
-                currentCategory == "symbol"
+                new GenericCategoryData {
+                    area = VocabularyChapter.Letters,
+                    Id = "symbols",
+                    Title = CategoryData.Arabic,
+                    TitleEn = CategoryData.English
+                },
+                currentCategory == "symbols"
             );
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
+            CategoryData = LocalizationManager.GetLocalizationData(LocalizationDataId.UI_Combinations);
             btnGO.GetComponent<MenuItemCategory>().Init(
                 this,
-                new GenericCategoryData { area = VocabularyChapter.Letters, Id = "combo", Title = LocalizationManager.GetTranslation(LocalizationDataId.UI_Combinations) },
-                currentCategory == "combo"
+                new GenericCategoryData {
+                    area = VocabularyChapter.Letters,
+                    Id = "combinations",
+                    Title = CategoryData.Arabic,
+                    TitleEn = CategoryData.English
+                },
+                currentCategory == "combinations"
             );
 
             //HighlightMenutCategory(currentCategory);
@@ -222,6 +242,9 @@ namespace EA4S.Book
             Submenu.SetActive(true);
             currentWordCategory = _category;
 
+            Debug.Log("current wor cat: " + _category);
+
+
             List<WordData> list;
             switch (currentWordCategory) {
 
@@ -246,15 +269,18 @@ namespace EA4S.Book
             }
 
             foreach (WordDataCategory cat in GenericHelper.SortEnums<WordDataCategory>()) {
+                if (cat == WordDataCategory.None) continue;
                 btnGO = Instantiate(CategoryItemPrefab);
                 btnGO.transform.SetParent(SubmenuContainer.transform, false);
+                CategoryData = LocalizationManager.GetWordCategoryData(cat);
                 btnGO.GetComponent<MenuItemCategory>().Init(
                     this,
                     new GenericCategoryData {
                         area = VocabularyChapter.Words,
                         wordCategory = cat,
                         Id = cat.ToString(),
-                        Title = LocalizationManager.GetWordCategoryTitle(cat)
+                        Title = CategoryData.Arabic,
+                        TitleEn = CategoryData.English
                     },
                     currentWordCategory == cat
                 );
@@ -323,20 +349,22 @@ namespace EA4S.Book
             }
 
             foreach (PhraseDataCategory cat in GenericHelper.SortEnums<PhraseDataCategory>()) {
-                if (cat != PhraseDataCategory.None) {
-                    btnGO = Instantiate(CategoryItemPrefab);
-                    btnGO.transform.SetParent(SubmenuContainer.transform, false);
-                    btnGO.GetComponent<MenuItemCategory>().Init(
-                        this,
-                        new GenericCategoryData {
-                            area = VocabularyChapter.Phrases,
-                            phraseCategory = cat,
-                            Id = cat.ToString(),
-                            Title = LocalizationManager.GetPhraseCategoryTitle(cat)
-                        },
-                        currentPhraseCategory == cat
-                    );
-                }
+                if (cat == PhraseDataCategory.None) continue;
+                btnGO = Instantiate(CategoryItemPrefab);
+                btnGO.transform.SetParent(SubmenuContainer.transform, false);
+                CategoryData = LocalizationManager.GetPhraseCategoryData(cat);
+                btnGO.GetComponent<MenuItemCategory>().Init(
+                    this,
+                    new GenericCategoryData {
+                        area = VocabularyChapter.Phrases,
+                        phraseCategory = cat,
+                        Id = cat.ToString(),
+                        Title = CategoryData.Arabic,
+                        TitleEn = CategoryData.English
+                    },
+                    currentPhraseCategory == cat
+                );
+
             }
         }
 

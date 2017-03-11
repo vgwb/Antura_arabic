@@ -397,5 +397,11 @@ namespace EA4S.Database
         UI_Phrases_Expressions = 389,
         MissingLetter_forms_Title = 390,
         ReservedArea_DemoUserAlreadyExists = 391,
+        UI_WordCat_Expressions = 395,
+        UI_WordCat_Names = 396,
+        UI_WordCat_Greetings = 397,
+        UI_WordCat_Verbs = 398,
+        UI_WordCat_Weather = 399,
+        UI_WordCat_Adjectives = 400,
     }
 }
