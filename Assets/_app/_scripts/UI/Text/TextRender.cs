@@ -43,6 +43,7 @@ namespace EA4S.UI
         public bool isTMPro = true;
         public bool isUI;
         public bool isArabic;
+        public bool isEnglishSubtitle;
         bool AdjustDiacriticPos;
 
         public Database.LocalizationDataId LocalizationId;
@@ -52,6 +53,10 @@ namespace EA4S.UI
 
         void Awake()
         {
+            if (isEnglishSubtitle) {
+                gameObject.SetActive(AppManager.I.GameSettings.EnglishSubtitles);
+            }
+
             m_TextComponent = gameObject.GetComponent<TMP_Text>();
             AdjustDiacriticPos = false;
             checkConfiguration();

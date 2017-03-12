@@ -3721,26 +3721,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013473030810, guid: 3d922b2da2d236d44bcb0f013f528c72,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013473030810, guid: 3d922b2da2d236d44bcb0f013f528c72,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010258784262, guid: 3d922b2da2d236d44bcb0f013f528c72,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010258784262, guid: 3d922b2da2d236d44bcb0f013f528c72,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114000013778831334, guid: 3d922b2da2d236d44bcb0f013f528c72,
         type: 2}
       propertyPath: m_havePropertiesChanged
@@ -3757,6 +3737,26 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000010209445030, guid: 3d922b2da2d236d44bcb0f013f528c72,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010258784262, guid: 3d922b2da2d236d44bcb0f013f528c72,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010258784262, guid: 3d922b2da2d236d44bcb0f013f528c72,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013473030810, guid: 3d922b2da2d236d44bcb0f013f528c72,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013473030810, guid: 3d922b2da2d236d44bcb0f013f528c72,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
