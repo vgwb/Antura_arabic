@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 222929897446095320}
   - component: {fileID: 114466475638208198}
   m_Layer: 5
-  m_Name: Subtitle
+  m_Name: Title English
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!114 &114000010134634106
 MonoBehaviour:
@@ -363,6 +364,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  isEnglishSubtitle: 1
   LocalizationId: 0
 --- !u!114 &114466475638208198
 MonoBehaviour:

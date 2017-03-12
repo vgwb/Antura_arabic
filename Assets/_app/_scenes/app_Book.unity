@@ -687,7 +687,7 @@ Prefab:
     - target: {fileID: 224000012882503880, guid: 28622836b635c457fa94a71ea205ba03,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -25.25
       objectReference: {fileID: 0}
     - target: {fileID: 224000012882503880, guid: 28622836b635c457fa94a71ea205ba03,
         type: 2}
@@ -697,7 +697,7 @@ Prefab:
     - target: {fileID: 224000012882503880, guid: 28622836b635c457fa94a71ea205ba03,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 50.5
       objectReference: {fileID: 0}
     - target: {fileID: 224000012882503880, guid: 28622836b635c457fa94a71ea205ba03,
         type: 2}
@@ -1629,6 +1629,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!1 &288887262
 GameObject:
@@ -2072,22 +2073,22 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013378492810, guid: ab4d9f0042ebb45369eb18504769e09b,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013378492810, guid: ab4d9f0042ebb45369eb18504769e09b,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 114466475638208198, guid: ab4d9f0042ebb45369eb18504769e09b,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114466475638208198, guid: ab4d9f0042ebb45369eb18504769e09b,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013378492810, guid: ab4d9f0042ebb45369eb18504769e09b,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013378492810, guid: ab4d9f0042ebb45369eb18504769e09b,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -2267,12 +2268,12 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011622674202, guid: 3c41894378c6544f2816e27573504110,
+    - target: {fileID: 114322897831960756, guid: 3c41894378c6544f2816e27573504110,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011622674202, guid: 3c41894378c6544f2816e27573504110,
+    - target: {fileID: 114322897831960756, guid: 3c41894378c6544f2816e27573504110,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -2287,12 +2288,12 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114322897831960756, guid: 3c41894378c6544f2816e27573504110,
+    - target: {fileID: 114000011622674202, guid: 3c41894378c6544f2816e27573504110,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114322897831960756, guid: 3c41894378c6544f2816e27573504110,
+    - target: {fileID: 114000011622674202, guid: 3c41894378c6544f2816e27573504110,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -2569,6 +2570,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!1001 &483910214
 Prefab:
@@ -2966,6 +2968,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!222 &551001688
 CanvasRenderer:
@@ -3405,16 +3408,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000014291021558, guid: 2b8d2efddd19e45d286aac0cdfd0534e,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014291021558, guid: 2b8d2efddd19e45d286aac0cdfd0534e,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 114354831764530170, guid: 2b8d2efddd19e45d286aac0cdfd0534e,
         type: 2}
       propertyPath: m_havePropertiesChanged
@@ -3425,10 +3418,15 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013451292474, guid: 2b8d2efddd19e45d286aac0cdfd0534e,
+    - target: {fileID: 114000014291021558, guid: 2b8d2efddd19e45d286aac0cdfd0534e,
         type: 2}
-      propertyPath: AdjustDiacriticPos
-      value: 0
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000014291021558, guid: 2b8d2efddd19e45d286aac0cdfd0534e,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b8d2efddd19e45d286aac0cdfd0534e, type: 2}
@@ -4611,6 +4609,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!1 &670956277
 GameObject:
@@ -5207,6 +5206,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!222 &770554219
 CanvasRenderer:
@@ -5702,6 +5702,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!1 &837350655
 GameObject:
@@ -5886,6 +5887,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!1001 &841988902
 Prefab:
@@ -5942,7 +5944,7 @@ Prefab:
     - target: {fileID: 224000012882503880, guid: 28622836b635c457fa94a71ea205ba03,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -25.25
       objectReference: {fileID: 0}
     - target: {fileID: 224000012882503880, guid: 28622836b635c457fa94a71ea205ba03,
         type: 2}
@@ -5952,7 +5954,7 @@ Prefab:
     - target: {fileID: 224000012882503880, guid: 28622836b635c457fa94a71ea205ba03,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 50.5
       objectReference: {fileID: 0}
     - target: {fileID: 224000012882503880, guid: 28622836b635c457fa94a71ea205ba03,
         type: 2}
@@ -6590,6 +6592,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!222 &871755615
 CanvasRenderer:
@@ -7424,6 +7427,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!1 &960667334
 GameObject:
@@ -8215,6 +8219,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!1 &1108172556
 GameObject:
@@ -8712,6 +8717,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!222 &1203580382
 CanvasRenderer:
@@ -9593,7 +9599,7 @@ Prefab:
     - target: {fileID: 224000012882503880, guid: 28622836b635c457fa94a71ea205ba03,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -25.25
       objectReference: {fileID: 0}
     - target: {fileID: 224000012882503880, guid: 28622836b635c457fa94a71ea205ba03,
         type: 2}
@@ -9603,7 +9609,7 @@ Prefab:
     - target: {fileID: 224000012882503880, guid: 28622836b635c457fa94a71ea205ba03,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 50.5
       objectReference: {fileID: 0}
     - target: {fileID: 224000012882503880, guid: 28622836b635c457fa94a71ea205ba03,
         type: 2}
@@ -10546,6 +10552,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!222 &1506133770
 CanvasRenderer:
@@ -10918,6 +10925,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!1 &1575018413
 GameObject:
@@ -11629,6 +11637,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!1 &1637716380
 GameObject:
@@ -13234,6 +13243,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!1001 &1888653039
 Prefab:
@@ -13552,6 +13562,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!1 &1890591098
 GameObject:
@@ -14347,25 +14358,25 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114627999577425542, guid: ea1b31b97282c4399b68b71dcb4c0d56,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114627999577425542, guid: ea1b31b97282c4399b68b71dcb4c0d56,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 114000014004391554, guid: ea1b31b97282c4399b68b71dcb4c0d56,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000014004391554, guid: ea1b31b97282c4399b68b71dcb4c0d56,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114627999577425542, guid: ea1b31b97282c4399b68b71dcb4c0d56,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114627999577425542, guid: ea1b31b97282c4399b68b71dcb4c0d56,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea1b31b97282c4399b68b71dcb4c0d56, type: 2}
@@ -14777,6 +14788,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 0
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!222 &2057613446
 CanvasRenderer:
