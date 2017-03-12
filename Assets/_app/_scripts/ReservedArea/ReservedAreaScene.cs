@@ -56,5 +56,9 @@ namespace EA4S.Scenes
             // GlobalUI.ShowPrompt("", "How to Recommend Antura");
         }
 
+        public void OnOpenSupportForm()
+        {
+            AppManager.I.OpenSupportForm();
+        }
     }
 }

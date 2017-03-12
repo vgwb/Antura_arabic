@@ -5,7 +5,6 @@ using EA4S.Core;
 using EA4S.Database;
 using EA4S.Debugging;
 using EA4S.Rewards;
-using EA4S.Teacher;
 using EA4S.UI;
 
 // refactoring: this is tied to SRDebugger, but we have a DebugManager. Move all debug logic there and make this behave only as a wrapping interface.
@@ -13,34 +12,27 @@ public partial class SROptions
 {
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
-        if (!AppConstants.DebugStopPlayAtWrongPlaySessions || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(new JourneyPosition(Stage, LearningBlock, PlaySession), minigameCode))
-        {
+        if (!AppConstants.DebugStopPlayAtWrongPlaySessions || AppManager.I.Teacher.CanMiniGameBePlayedAfterMinPlaySession(new JourneyPosition(Stage, LearningBlock, PlaySession), minigameCode)) {
             WidgetPopupWindow.I.Close();
             DebugManager.I.LaunchMiniGame(minigameCode);
             SRDebug.Instance.HideDebugPanel();
-        }
-        else
-        {
-            if (AppConstants.DebugStopPlayAtWrongPlaySessions)
-            {
+        } else {
+            if (AppConstants.DebugStopPlayAtWrongPlaySessions) {
                 JourneyPosition minJ = AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(minigameCode);
-                if (minJ == null)
-                {
+                if (minJ == null) {
                     Debug.LogWarningFormat("Minigame {0} could not be selected for any PlaySession. Please check the PlaySession data table.", minigameCode);
-                }
-                else
-                {
+                } else {
                     Debug.LogErrorFormat("Minigame {0} cannot be selected this PlaySession. Min: {1}", minigameCode, minJ.ToString());
                 }
-
-                //    Stage = minJ.Stage;
-                //    LearningBlock = minJ.LearningBlock;
-                //    PlaySession = minJ.PlaySession;
-                //    SRDebug.Instance.HideDebugPanel();
-                //    SRDebug.Instance.ShowDebugPanel();
             }
         }
+    }
 
+    [Category("Report Bug")]
+    [Sort(1)]
+    public void ReportBug()
+    {
+        AppManager.I.OpenSupportForm();
     }
 
     [Category("Options")]
@@ -54,8 +46,8 @@ public partial class SROptions
         // refactor: move to DebugManager
         AppManager.I.PlayerProfileManager.ResetEverything();
         SRDebug.Instance.HideDebugPanel();
-        AppManager.I.NavigationManager.GoToHome(debugMode:true);
-        UnityEngine.Debug.Log("Reset ALL players and DB.");
+        AppManager.I.NavigationManager.GoToHome(debugMode: true);
+        Debug.Log("Reset ALL players and DB.");
     }
 
     [Category("Options")]
@@ -136,7 +128,7 @@ public partial class SROptions
     public void GoToReservedArea()
     {
         WidgetPopupWindow.I.Close();
-        AppManager.I.NavigationManager.GoToReservedArea(debugMode:true);
+        AppManager.I.NavigationManager.GoToReservedArea(debugMode: true);
         SRDebug.Instance.HideDebugPanel();
     }
 
@@ -485,7 +477,7 @@ public partial class SROptions
 
     [Category("Player Profile")]
     [Sort(1)]
-    public bool FirstContactPassed { get { return DebugManager.I.FirstContactPassed; } set { DebugManager.I.FirstContactPassed = value;  } }
+    public bool FirstContactPassed { get { return DebugManager.I.FirstContactPassed; } set { DebugManager.I.FirstContactPassed = value; } }
 
     [Category("Player Profile")]
     [Sort(2)]
@@ -535,8 +527,7 @@ public partial class SROptions
     {
         JourneyPosition newPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
         newPos.PlaySession = 2;
-        if (newPos != null)
-        {
+        if (newPos != null) {
             AppManager.I.Player.SetMaxJourneyPosition(newPos, true);
             FirstContactPassed = true;
         }
