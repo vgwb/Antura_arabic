@@ -43,8 +43,10 @@ namespace EA4S.Scenes
             Debug.Log("On DEVICE it will open the app page on the proper store");
             if (Application.platform == RuntimePlatform.IPhonePlayer) {
                 Application.OpenURL(AppConstants.UrlStoreiOSApple);
+                // IOSNativeUtility.RedirectToAppStoreRatingPage();
             } else if (Application.platform == RuntimePlatform.Android) {
                 Application.OpenURL(AppConstants.UrlStoreAndroidGoogle);
+                // AndroidNativeUtility.OpenAppRatingPage("");
             }
             //GlobalUI.ShowPrompt("", "Rate app");
         }
