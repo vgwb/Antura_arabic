@@ -60,7 +60,7 @@
         /// </summary>
         public const string DynamicDbSchemeVersion = "1.0.0";
 
-        // public Urls
+        // public URLs
         public const string UrlWebsite = "http://www.antura.org";
         public const string UrlPrivacy = "http://www.antura.org/en/privacy-policy/";
         public const string UrlUploadData = "https://upload.antura.org";
@@ -68,6 +68,9 @@
         public const string UrlStoreAndroidGoogle = "https://play.google.com/store/apps/details?id=org.eduapp4syria.antura";
         public const string UrlCommunityTelegram = "https://t.me/antura";
         public const string UrlCommunityFacebook = "https://www.facebook.com/antura.initiative";
+
+        public const string UrlSupportForm = "https://docs.google.com/forms/d/e/1FAIpQLScWxs5I0w-k8GlIgPFKoWBitMVJ9gxxJlKvGKOXzZsnAA0qNw/viewform";
+
 #if UNITY_EDITOR
         public const string UrlGithubRepository = "https://github.com/vgwb/EA4S_Antura_U3D";
         public const string UrlTrello = "https://trello.com/b/ltLndaQI/ea4s-beta";
