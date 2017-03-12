@@ -15,7 +15,7 @@ namespace EA4S.Core
 
         public bool UseTestDatabase;
 
-        public bool EnglishSubtitles = false;
+        public bool EnglishSubtitles;
 
         public string ApplicationVersion;
 

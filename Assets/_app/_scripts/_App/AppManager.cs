@@ -103,10 +103,10 @@ namespace EA4S
             RewardSystemManager.Init();
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
 
-            GameSettings.HighQualityGfx = false;
-
             // Update settings
             //Debug.Log(GameSettings.ApplicationVersion);
+            GameSettings.HighQualityGfx = false;
+            GameSettings.EnglishSubtitles = true;
             GameSettings.ApplicationVersion = AppConstants.AppVersion;
             PlayerProfileManager.SaveGameSettings();
         }
