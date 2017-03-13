@@ -2,6 +2,10 @@
 
 namespace EA4S.Core
 {
+    /// <summary>
+    /// the DeviceInfo class is used to collect all technical details to be included in any debug report.
+    /// this class can be easily encoded into JSON by JsonUtility.ToJson(new DeviceInfo())
+    /// </summary>
     public class DeviceInfo
     {
         public string AppVersion;
