@@ -306,16 +306,25 @@ namespace EA4S.Teacher
         {
             if (filters == null) filters = new LetterFilters();
 
-            if (useMaxJourneyData)
-            {
-               VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
-            }
+            List<LetterData> availableLetters = null;
 
-            var availableLetters = VocabularyAi.SelectData(
-              () => VocabularyHelper.GetAllLetters(filters),
-                new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
-              , true
-            );
+            if (AppManager.I.Player == null)
+            {
+                availableLetters = VocabularyHelper.GetAllLetters(filters);
+            }
+            else
+            {
+                if (useMaxJourneyData)
+                {
+                    VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+                }
+
+                availableLetters = VocabularyAi.SelectData(
+                  () => VocabularyHelper.GetAllLetters(filters),
+                    new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: useMaxJourneyData)
+                  , true
+                );
+            }
 
             if (giveWarningOnFake)
             {
