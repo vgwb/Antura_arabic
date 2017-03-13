@@ -37,7 +37,7 @@ namespace EA4S.UI
         public delegate void AnturaSpaceUIEvent(string _id);
         public static event AnturaSpaceUIEvent onRewardCategorySelectedInCustomization;
         public static event AnturaSpaceUIEvent onRewardSelectedInCustomization;
-        public static event AnturaSpaceUIEvent onRewardColorSelectedInCustomization;
+//        public static event AnturaSpaceUIEvent onRewardColorSelectedInCustomization;
 
         public static AnturaSpaceUI I { get; private set; }
 
