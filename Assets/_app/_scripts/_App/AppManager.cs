@@ -169,7 +169,7 @@ namespace EA4S
         public void OpenSupportForm()
         {
             var parameters = "";
-            parameters += "?entry.346861357=" + WWW.EscapeURL(JsonUtility.ToJson(new AppInfoParameters()));
+            parameters += "?entry.346861357=" + WWW.EscapeURL(JsonUtility.ToJson(new DeviceInfo()));
             parameters += "&entry.1999287882=" + WWW.EscapeURL(JsonUtility.ToJson(Player));
 
             Application.OpenURL(AppConstants.UrlSupportForm + parameters);

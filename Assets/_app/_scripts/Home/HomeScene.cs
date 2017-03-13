@@ -62,7 +62,7 @@ namespace EA4S.Scenes
 
             // refactor: move this initialisation logic to the AppManager
             LogManager.I.InitNewSession();
-            LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new AppInfoParameters()));
+            LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new DeviceInfo()));
 
             AppManager.I.NavigationManager.GoToNextScene();
         }
