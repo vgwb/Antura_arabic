@@ -41,7 +41,7 @@ namespace EA4S.Scenes
         #region RATE
         public void OnOpenRateApp()
         {
-            GlobalUI.ShowPrompt("", "If you like this app, please write a review on the store. It can help reaching more kids!", DoOpenRateApp, DoNothing);
+            GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_Prompt_rate, DoOpenRateApp, DoNothing);
         }
 
         void DoOpenRateApp()
@@ -61,7 +61,7 @@ namespace EA4S.Scenes
         #region SUPPORT FORM
         public void OnOpenSupportForm()
         {
-            GlobalUI.ShowPrompt("", "If you found a problem or have a suggestion, please tell us using this web page", DoOpenSupportForm, DoNothing);
+            GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_Prompt_bugreport, DoOpenSupportForm, DoNothing);
         }
 
         void DoOpenSupportForm()

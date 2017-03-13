@@ -403,5 +403,7 @@ namespace EA4S.Database
         UI_WordCat_Verbs = 398,
         UI_WordCat_Weather = 399,
         UI_WordCat_Adjectives = 400,
+        UI_Prompt_rate = 401,
+        UI_Prompt_bugreport = 402,
     }
 }
