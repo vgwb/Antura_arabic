@@ -40,14 +40,14 @@ namespace EA4S.UI
         {
             playerIcons = ProfilesPanel.GetComponentsInChildren<PlayerIcon>(true);
             maxProfiles = playerIcons.Length;
-
-            // By default, the letter shows a truly random letter
-            LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL());
-            //LLObjectView.Initialize(new EA4S.MinigamesAPI.LL_LetterData("alef_fathah_tanwin"));
         }
 
         void Start()
         {
+            // By default, the letter shows a truly random letter
+            LLObjectView.Initialize(AppManager.I.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true));
+            //LLObjectView.Initialize(new EA4S.MinigamesAPI.LL_LetterData("alef_fathah_tanwin"));
+
             Setup();
 
             btAddTween = BtAdd.transform.DORotate(new Vector3(0, 0, -45), 0.3f).SetAutoKill(false).Pause()
