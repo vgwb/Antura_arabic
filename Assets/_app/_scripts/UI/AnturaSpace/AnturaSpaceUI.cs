@@ -40,8 +40,8 @@ namespace EA4S.UI
 //        public static event AnturaSpaceUIEvent onRewardColorSelectedInCustomization;
 
         public static AnturaSpaceUI I { get; private set; }
+        public bool IsModsPanelOpen { get; private set; }
 
-        bool isModsPanelOpen;
         AnturaSpaceCategoryButton[] btsCategories;
         AnturaSpaceItemButton[] btsItems;
         AnturaSpaceSwatchButton[] btsSwatches;
@@ -154,16 +154,12 @@ namespace EA4S.UI
 
         #endregion
 
-        #region Methods
-        public void ShowBonesButton(bool show)
-        {
-            BtBones.gameObject.SetActive(show);
-        }
+        #region Public Methods
 
-        void ToggleModsPanel()
+        public void ToggleModsPanel()
         {
-            isModsPanelOpen = !isModsPanelOpen;
-            if (isModsPanelOpen) {
+            IsModsPanelOpen = !IsModsPanelOpen;
+            if (IsModsPanelOpen) {
                 CategoriesContainer.gameObject.SetActive(true);
                 showCategoriesTween.PlayForward();
                 RefreshCategories();
@@ -179,6 +175,15 @@ namespace EA4S.UI
                 if (onExitCustomization != null)
                     onExitCustomization();
             }
+        }
+
+        #endregion
+
+        #region Methods
+
+        public void ShowBonesButton(bool show)
+        {
+            BtBones.gameObject.SetActive(show);
         }
 
         void SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)

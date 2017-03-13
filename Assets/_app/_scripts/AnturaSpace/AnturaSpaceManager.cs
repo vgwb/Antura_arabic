@@ -1,4 +1,5 @@
-﻿using EA4S.Audio;
+﻿using System;
+using EA4S.Audio;
 using EA4S.Core;
 using EA4S.UI;
 using UnityEngine;
@@ -196,11 +197,14 @@ namespace EA4S.AnturaSpace
 
         void OnExit()
         {
-            AppManager.I.NavigationManager.GoBack();
+            if (AnturaSpaceUI.I.IsModsPanelOpen) AnturaSpaceUI.I.ToggleModsPanel();
+            else AppManager.I.NavigationManager.GoBack();
         }
 
         void OnEnterCustomization()
         {
+            GlobalUI.ShowBackButton(false);
+            ShowBackButton();
             AudioManager.I.PlaySound(Sfx.UIButtonClick);
             InCustomizationMode = true;
             CurrentState = Customization;
@@ -208,6 +212,8 @@ namespace EA4S.AnturaSpace
 
         void OnExitCustomization()
         {
+            GlobalUI.ShowBackButton(false);
+            ShowBackButton();
             AudioManager.I.PlaySound(Sfx.UIButtonClick);
             InCustomizationMode = false;
             CurrentState = Idle;
