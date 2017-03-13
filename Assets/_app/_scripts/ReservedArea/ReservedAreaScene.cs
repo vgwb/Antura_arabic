@@ -38,7 +38,13 @@ namespace EA4S.Scenes
             GlobalUI.ShowPrompt("", "Install instructions");
         }
 
+        #region RATE
         public void OnOpenRateApp()
+        {
+            GlobalUI.ShowPrompt("", "If you like this app, please write a review on the store. It can help reaching more kids!", DoOpenRateApp, DoNothing);
+        }
+
+        void DoOpenRateApp()
         {
             Debug.Log("On DEVICE it will open the app page on the proper store");
             if (Application.platform == RuntimePlatform.IPhonePlayer) {
@@ -50,15 +56,28 @@ namespace EA4S.Scenes
             }
             //GlobalUI.ShowPrompt("", "Rate app");
         }
+        #endregion
+
+        #region SUPPORT FORM
+        public void OnOpenSupportForm()
+        {
+            GlobalUI.ShowPrompt("", "If you found a problem or have a suggestion, please tell us using this web page", DoOpenSupportForm, DoNothing);
+        }
+
+        void DoOpenSupportForm()
+        {
+            AppManager.I.OpenSupportForm();
+        }
+        #endregion
 
         public void OnOpenRecomment()
         {
             // GlobalUI.ShowPrompt("", "How to Recommend Antura");
         }
 
-        public void OnOpenSupportForm()
+        void DoNothing()
         {
-            AppManager.I.OpenSupportForm();
+
         }
     }
 }
