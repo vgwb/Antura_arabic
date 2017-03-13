@@ -13,13 +13,23 @@ namespace EA4S.Core
         public string deviceType;
         public string deviceUniqueIdentifier;
         public int systemMemorySize;
-        public int graphicsMemorySize;
+
+        public int graphicsDeviceID;
+        public string graphicsDeviceName;
+        public string graphicsDeviceType;
+        public string graphicsDeviceVendor;
+        public int graphicsDeviceVendorID;
         public string graphicsDeviceVersion;
+        public int graphicsMemorySize;
+        public bool graphicsMultiThreaded;
+        public int graphicsShaderLevel;
+
         public int ScreenWidth;
         public int ScreenHeight;
         public bool supportsGyroscope;
         public bool supportsVibration;
         public bool supportsAccelerometer;
+        public bool supportsLocationService;
 
         public AppInfoParameters()
         {
@@ -31,13 +41,23 @@ namespace EA4S.Core
             operatingSystem = SystemInfo.operatingSystem;
             operatingSystemFamily = SystemInfo.operatingSystemFamily.ToString();
             systemMemorySize = SystemInfo.systemMemorySize;
-            graphicsMemorySize = SystemInfo.graphicsMemorySize;
+
+            graphicsDeviceID = SystemInfo.graphicsDeviceID;
+            graphicsDeviceName = SystemInfo.graphicsDeviceName;
+            graphicsDeviceType = SystemInfo.graphicsDeviceType.ToString();
+            graphicsDeviceVendor = SystemInfo.graphicsDeviceVendor;
+            graphicsDeviceVendorID = SystemInfo.graphicsDeviceVendorID;
             graphicsDeviceVersion = SystemInfo.graphicsDeviceVersion;
+            graphicsMemorySize = SystemInfo.graphicsMemorySize;
+            graphicsMultiThreaded = SystemInfo.graphicsMultiThreaded;
+            graphicsShaderLevel = SystemInfo.graphicsShaderLevel;
+
             ScreenWidth = Screen.width;
             ScreenHeight = Screen.height;
             supportsGyroscope = SystemInfo.supportsGyroscope;
             supportsVibration = SystemInfo.supportsVibration;
             supportsAccelerometer = SystemInfo.supportsAccelerometer;
+            supportsLocationService = SystemInfo.supportsLocationService;
         }
     }
 }
