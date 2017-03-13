@@ -5,13 +5,20 @@ namespace EA4S.Core
     public class DeviceInfo
     {
         public string AppVersion;
-        public string Platform;
+        public string platform;
+        public string systemLanguage;
+        public string internetReachability;
+
         public string operatingSystem;
         public string operatingSystemFamily;
         public string deviceModel;
         public string deviceName;
         public string deviceType;
         public int systemMemorySize;
+
+        public int screenWidth;
+        public int screenHeight;
+        public int screenDpi;
 
         public int graphicsDeviceID;
         public string graphicsDeviceName;
@@ -23,25 +30,30 @@ namespace EA4S.Core
         public bool graphicsMultiThreaded;
         public int graphicsShaderLevel;
 
-        public int ScreenWidth;
-        public int ScreenHeight;
         public bool supportsGyroscope;
         public bool supportsVibration;
         public bool supportsAccelerometer;
         public bool supportsLocationService;
-
         public bool supportsARGB32RenderTexture;
         public bool supportsAlpha8Texture;
 
         public DeviceInfo()
         {
             AppVersion = AppConstants.AppVersion;
+            platform = Application.platform.ToString();
+            systemLanguage = Application.systemLanguage.ToString();
+            internetReachability = Application.internetReachability.ToString();
+
+            operatingSystem = SystemInfo.operatingSystem;
+            operatingSystemFamily = SystemInfo.operatingSystemFamily.ToString();
             deviceModel = SystemInfo.deviceModel;
             deviceName = SystemInfo.deviceName;
             deviceType = SystemInfo.deviceType.ToString();
-            operatingSystem = SystemInfo.operatingSystem;
-            operatingSystemFamily = SystemInfo.operatingSystemFamily.ToString();
             systemMemorySize = SystemInfo.systemMemorySize;
+
+            screenWidth = Screen.width;
+            screenHeight = Screen.height;
+            screenDpi = Mathf.RoundToInt(Screen.dpi);
 
             graphicsDeviceID = SystemInfo.graphicsDeviceID;
             graphicsDeviceName = SystemInfo.graphicsDeviceName;
@@ -53,13 +65,10 @@ namespace EA4S.Core
             graphicsMultiThreaded = SystemInfo.graphicsMultiThreaded;
             graphicsShaderLevel = SystemInfo.graphicsShaderLevel;
 
-            ScreenWidth = Screen.width;
-            ScreenHeight = Screen.height;
             supportsGyroscope = SystemInfo.supportsGyroscope;
             supportsVibration = SystemInfo.supportsVibration;
             supportsAccelerometer = SystemInfo.supportsAccelerometer;
             supportsLocationService = SystemInfo.supportsLocationService;
-
             supportsARGB32RenderTexture = SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.ARGB32);
             supportsAlpha8Texture = SystemInfo.SupportsTextureFormat(TextureFormat.Alpha8);
         }
