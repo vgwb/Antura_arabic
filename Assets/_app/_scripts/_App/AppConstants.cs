@@ -31,7 +31,7 @@
         /// Switches on all Debug.Log calls for performance.
         /// Set to FALSE for production.
         /// </summary>
-        public static bool VerboseLogging = false;
+        public static bool VerboseLogging = true;
 
         /// <summary>
         /// Logs all MySQL database inserts.
