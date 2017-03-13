@@ -21,7 +21,7 @@ namespace EA4S.Scenes
         {
             Debug.Log(string.Format("Will create player of age {0}, gender {1}, avatarID {2}, color {3}", age, gender, avatarID, color));
             AppManager.I.PlayerProfileManager.CreatePlayerProfile(age, gender, avatarID, color);
-            LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new AppInfoParameters()));
+            LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new DeviceInfo()));
             AppManager.I.NavigationManager.GoToNextScene();
         }
 

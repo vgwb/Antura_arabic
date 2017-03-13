@@ -2,7 +2,7 @@
 
 namespace EA4S.Core
 {
-    public class AppInfoParameters
+    public class DeviceInfo
     {
         public string AppVersion;
         public string Platform;
@@ -31,7 +31,7 @@ namespace EA4S.Core
         public bool supportsAccelerometer;
         public bool supportsLocationService;
 
-        public AppInfoParameters()
+        public DeviceInfo()
         {
             AppVersion = AppConstants.AppVersion;
             deviceModel = SystemInfo.deviceModel;
