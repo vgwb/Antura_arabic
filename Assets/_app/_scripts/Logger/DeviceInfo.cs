@@ -31,6 +31,9 @@ namespace EA4S.Core
         public bool supportsAccelerometer;
         public bool supportsLocationService;
 
+        public bool supportsARGB32RenderTexture;
+        public bool supportsAlpha8Texture;
+
         public DeviceInfo()
         {
             AppVersion = AppConstants.AppVersion;
@@ -58,6 +61,9 @@ namespace EA4S.Core
             supportsVibration = SystemInfo.supportsVibration;
             supportsAccelerometer = SystemInfo.supportsAccelerometer;
             supportsLocationService = SystemInfo.supportsLocationService;
+
+            supportsARGB32RenderTexture = SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.ARGB32);
+            supportsAlpha8Texture = SystemInfo.SupportsTextureFormat(TextureFormat.Alpha8);
         }
     }
 }
