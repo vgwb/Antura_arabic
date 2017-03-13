@@ -11,7 +11,6 @@ namespace EA4S.Core
         public string deviceModel;
         public string deviceName;
         public string deviceType;
-        public string deviceUniqueIdentifier;
         public int systemMemorySize;
 
         public int graphicsDeviceID;
@@ -39,7 +38,6 @@ namespace EA4S.Core
             AppVersion = AppConstants.AppVersion;
             deviceModel = SystemInfo.deviceModel;
             deviceName = SystemInfo.deviceName;
-            deviceUniqueIdentifier = SystemInfo.deviceUniqueIdentifier;
             deviceType = SystemInfo.deviceType.ToString();
             operatingSystem = SystemInfo.operatingSystem;
             operatingSystemFamily = SystemInfo.operatingSystemFamily.ToString();
