@@ -32,7 +32,7 @@ namespace EA4S.UI
 
         public void SetAsNew(bool _isNew)
         {
-            IcoNew.SetActive(_isNew);
+            IcoNew.SetActive(!AppManager.I.Player.IsFirstContact() && _isNew);
         }
 
         public void SetColors(Color _color0, Color _color1)

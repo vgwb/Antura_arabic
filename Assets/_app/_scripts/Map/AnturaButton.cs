@@ -11,7 +11,7 @@ namespace _app._scripts.Map
         void Start()
         {
             GameObject icoNew = this.GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
-            icoNew.SetActive(AppManager.I.Player.ThereIsSomeNewReward());
+            icoNew.SetActive(!AppManager.I.Player.IsFirstContact() && AppManager.I.Player.ThereIsSomeNewReward());
         }
 
         #endregion
