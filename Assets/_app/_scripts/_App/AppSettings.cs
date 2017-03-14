@@ -10,13 +10,13 @@ namespace EA4S.Core
     public class AppSettings : ModularFramework.Modules.GlobalOptions
     {
         // not used anymore.. but could be useful in the future
-        public bool HighQualityGfx;
+        public bool HighQualityGfx = false;
 
         // the uuid of currently active player
         public string LastActivePlayerUUID;
 
         // to enable english subtitles (especially in the Book)
-        public bool EnglishSubtitles;
+        public bool EnglishSubtitles = true;
 
         // we save the current AppVersion maybe we shhould compare when installing updated versions
         public string ApplicationVersion;

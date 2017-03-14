@@ -104,9 +104,6 @@ namespace EA4S
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
 
             // Update settings
-            //Debug.Log(GameSettings.ApplicationVersion);
-            GameSettings.HighQualityGfx = false;
-            GameSettings.EnglishSubtitles = true;
             GameSettings.ApplicationVersion = AppConstants.AppVersion;
             PlayerProfileManager.SaveGameSettings();
         }
