@@ -136,6 +136,12 @@ namespace EA4S
             CameraGameplayController.I.EnableFX(GameSettings.HighQualityGfx);
         }
 
+        public void ToggleEnglishSubtitles()
+        {
+            GameSettings.EnglishSubtitles = !GameSettings.EnglishSubtitles;
+            PlayerProfileManager.SaveGameSettings();
+        }
+
         #endregion
 
         #region event delegate
