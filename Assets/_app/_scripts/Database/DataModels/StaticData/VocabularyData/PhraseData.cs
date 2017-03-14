@@ -20,11 +20,11 @@ namespace EA4S.Database
         public string Linked;
         public string[] Words;
         public string[] Answers;
-        public float Intrinsic;
+        public float Complexity;
 
         public float GetIntrinsicDifficulty()
         {
-            return Intrinsic;
+            return Complexity;
         }
 
         public override string ToString()

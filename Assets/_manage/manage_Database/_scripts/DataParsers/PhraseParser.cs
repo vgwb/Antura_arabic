@@ -21,7 +21,7 @@ namespace EA4S.Database.Management
             data.Linked = ToString(dict["Linked"]);
             data.Words = ParseIDArray<WordData, WordTable>(data, (string)dict["Words"], db.GetWordTable());
             data.Answers = ParseIDArray<WordData, WordTable>(data, (string)dict["Answers"], db.GetWordTable());
-            data.Intrinsic = ToFloat(dict["Intrinsic"]);
+            data.Complexity = ToFloat(dict["Complexity"]);
 
             return data;
         }

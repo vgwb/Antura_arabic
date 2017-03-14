@@ -23,7 +23,7 @@ MonoBehaviour:
       - morning
       - the_well-being
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: goodmorning_R
       Active: 1
       English: good morning - reply
@@ -34,7 +34,7 @@ MonoBehaviour:
       - morning
       - the_light_v2
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: goodevening_Q
       Active: 1
       English: good evening - question
@@ -45,7 +45,7 @@ MonoBehaviour:
       - evening
       - the_well-being
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: goodevening_R
       Active: 1
       English: good evening - reply
@@ -56,7 +56,7 @@ MonoBehaviour:
       - evening
       - the_light_v2
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: hi
       Active: 1
       English: Hi
@@ -66,7 +66,7 @@ MonoBehaviour:
       Words:
       - hi
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: yourwelcome
       Active: 1
       English: you are welcome
@@ -78,7 +78,7 @@ MonoBehaviour:
       - and
       - welcome_assertion
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: howareyou
       Active: 1
       English: how are you doing?
@@ -89,7 +89,7 @@ MonoBehaviour:
       - how
       - your_situation
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: fine
       Active: 1
       English: fine
@@ -99,7 +99,7 @@ MonoBehaviour:
       Words:
       - fine
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: thankyou
       Active: 1
       English: thank you
@@ -109,7 +109,7 @@ MonoBehaviour:
       Words:
       - thankyou
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: sure
       Active: 1
       English: sure
@@ -119,7 +119,7 @@ MonoBehaviour:
       Words:
       - sure
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: seeyou
       Active: 1
       English: see you
@@ -130,7 +130,7 @@ MonoBehaviour:
       - to
       - the_meeting
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: goodbye
       Active: 1
       English: good-bye
@@ -140,7 +140,7 @@ MonoBehaviour:
       Words:
       - goodbye
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: the_year_2016
       Active: 1
       English: the year two thousand and sixteen
@@ -154,7 +154,7 @@ MonoBehaviour:
       - and
       - number_16
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: the_year_2017
       Active: 1
       English: the year two thousand and seventeen
@@ -168,7 +168,7 @@ MonoBehaviour:
       - and
       - number_17
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: the_year_2018
       Active: 1
       English: the year twothousand and eighteen
@@ -182,7 +182,7 @@ MonoBehaviour:
       - and
       - number_18
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: the_year_2015
       Active: 1
       English: the year two thousand and fifteen
@@ -196,7 +196,7 @@ MonoBehaviour:
       - and
       - number_15
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: the_year_2009
       Active: 1
       English: the year two thousand and nine
@@ -209,7 +209,7 @@ MonoBehaviour:
       - and
       - number_09
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: theboyopenedthewindow
       Active: 1
       English: the boy opened the window
@@ -221,7 +221,7 @@ MonoBehaviour:
       - opened
       - the_window
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: theteacherlaughed
       Active: 1
       English: the teacher laughed
@@ -232,7 +232,7 @@ MonoBehaviour:
       - the_teacher
       - laughed
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: theworkercarriedthebox
       Active: 1
       English: the worker carried the box
@@ -244,7 +244,7 @@ MonoBehaviour:
       - carried
       - the_box
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: thegirldrankthejuice
       Active: 1
       English: the girl drank the juice
@@ -256,7 +256,7 @@ MonoBehaviour:
       - the_girl
       - the_juice
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: themountainisbig
       Active: 1
       English: the mountain is big
@@ -267,7 +267,7 @@ MonoBehaviour:
       - the_mountain
       - big
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: therestaurantisclean
       Active: 1
       English: the restaurant is clean
@@ -278,7 +278,7 @@ MonoBehaviour:
       - the_restaurant
       - clean
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: thetigeratethedeer
       Active: 1
       English: the tiger ate the deer
@@ -290,7 +290,7 @@ MonoBehaviour:
       - ate
       - the_deer
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: redberry
       Active: 1
       English: red berry
@@ -301,7 +301,7 @@ MonoBehaviour:
       - color_red
       - berry
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: yellowflower
       Active: 1
       English: yellowe flower
@@ -312,7 +312,7 @@ MonoBehaviour:
       - color_yellow
       - flower
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: greywolf
       Active: 1
       English: grey wolf
@@ -323,7 +323,7 @@ MonoBehaviour:
       - color_grey
       - wolf
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: greencucumber
       Active: 1
       English: green cucumber
@@ -334,7 +334,7 @@ MonoBehaviour:
       - color_green
       - cucumber
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: thecarpenterwenthome
       Active: 1
       English: the carpenter went (left) home
@@ -348,7 +348,7 @@ MonoBehaviour:
       - to
       - the_house
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: thebirdflew
       Active: 1
       English: the bird flew
@@ -359,7 +359,7 @@ MonoBehaviour:
       - the_bird
       - flew
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: theshopissmall
       Active: 1
       English: the shop is small
@@ -370,7 +370,7 @@ MonoBehaviour:
       - the_shop
       - small
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: thedoctoropenedthehospital
       Active: 1
       English: the doctor opened the hospital
@@ -382,7 +382,7 @@ MonoBehaviour:
       - opened
       - the_hospital
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: eightscientists
       Active: 1
       English: eight scientists
@@ -393,7 +393,7 @@ MonoBehaviour:
       - number_08
       - scientist_plural
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: theengineerworethecoat
       Active: 1
       English: the engineer wore the coat
@@ -405,7 +405,7 @@ MonoBehaviour:
       - wore
       - the_coat
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: theplayerwon
       Active: 1
       English: the player won
@@ -416,7 +416,7 @@ MonoBehaviour:
       - the_player
       - won
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: theshirtisclean
       Active: 1
       English: the shirt is clean
@@ -427,7 +427,7 @@ MonoBehaviour:
       - the_shirt
       - clean
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: yesterdaywassunday
       Active: 1
       English: yesterday was Sunday
@@ -439,7 +439,7 @@ MonoBehaviour:
       - was
       - day_sunday
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: thewinteriscold
       Active: 1
       English: the winter is cold
@@ -450,7 +450,7 @@ MonoBehaviour:
       - the_winter
       - cold
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: novemberistheeleventhmonth
       Active: 1
       English: November is the eleventh month
@@ -465,7 +465,7 @@ MonoBehaviour:
       - the_month
       - number_o11
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: theparrotisbeautiful
       Active: 1
       English: the parrot is beautiful
@@ -476,7 +476,7 @@ MonoBehaviour:
       - the_parrot
       - beautiful
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: mayisthefifthmonth
       Active: 1
       English: May is the fifth month
@@ -490,7 +490,7 @@ MonoBehaviour:
       - the_month
       - number_o05
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: thepolicemanwalked
       Active: 1
       English: the policeman walked
@@ -501,7 +501,7 @@ MonoBehaviour:
       - the_policeman
       - walked
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: theicecreamisdelicious
       Active: 1
       English: the ice-cream is delicious
@@ -512,7 +512,7 @@ MonoBehaviour:
       - the_icecream
       - delicious
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: fivebooks
       Active: 1
       English: five books
@@ -523,7 +523,7 @@ MonoBehaviour:
       - number_05
       - books
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: please
       Active: 1
       English: please
@@ -533,7 +533,7 @@ MonoBehaviour:
       Words:
       - please
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: thankyouverymuch
       Active: 1
       English: thank you very much
@@ -544,7 +544,7 @@ MonoBehaviour:
       - thankyou
       - verymuch
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: goodnight_Q
       Active: 1
       English: good night - question
@@ -556,7 +556,7 @@ MonoBehaviour:
       - on
       - well-being
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: goodnight_R
       Active: 1
       English: good night - reply
@@ -568,7 +568,7 @@ MonoBehaviour:
       - you
       - with_well-being
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: congratulations
       Active: 1
       English: congratulations
@@ -578,7 +578,7 @@ MonoBehaviour:
       Words:
       - congratulations
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: letsgo_Q
       Active: 1
       English: let's go - question
@@ -589,7 +589,7 @@ MonoBehaviour:
       - lets
       - go_v2
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: letsgo_R
       Active: 1
       English: let's go - reply
@@ -600,7 +600,7 @@ MonoBehaviour:
       - lets
       - go
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: areyouready_Q
       Active: 1
       English: are you ready - question
@@ -612,7 +612,7 @@ MonoBehaviour:
       - you
       - ready
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: yesiamready_R
       Active: 1
       English: yes I am ready - reply
@@ -624,7 +624,7 @@ MonoBehaviour:
       - i_am
       - ready
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: whatisyourname_Q
       Active: 1
       English: what is your name - question
@@ -635,7 +635,7 @@ MonoBehaviour:
       - what
       - your_name
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: mynameissamer_R
       Active: 1
       English: my name is samer - reply
@@ -646,7 +646,7 @@ MonoBehaviour:
       - my_name
       - samer
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: whatisthetimenow_Q
       Active: 1
       English: what is the time now - question
@@ -658,7 +658,7 @@ MonoBehaviour:
       - the_time
       - now
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: itis10oclockinthemorning_R
       Active: 1
       English: it is 10 o'clock in the morning - reply
@@ -671,7 +671,7 @@ MonoBehaviour:
       - the_ten_oclock
       - in_morning
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: doyouneedhelp_Q
       Active: 1
       English: do you need help - question
@@ -683,7 +683,7 @@ MonoBehaviour:
       - need
       - help
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: yesplease_R
       Active: 1
       English: yes please - reply
@@ -694,7 +694,7 @@ MonoBehaviour:
       - yes
       - please
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: myfatherisabraveman
       Active: 1
       English: my father is a brave man
@@ -706,7 +706,7 @@ MonoBehaviour:
       - brave
       - man
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: avirtuouspoliceman
       Active: 1
       English: a virtuous policeman
@@ -717,7 +717,7 @@ MonoBehaviour:
       - virtuous
       - policeman
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: thescientistwenttothestation
       Active: 1
       English: the scientist went to the station
@@ -731,7 +731,7 @@ MonoBehaviour:
       - to
       - the_station
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: thegirlwonaball
       Active: 1
       English: the girl won a ball
@@ -743,7 +743,7 @@ MonoBehaviour:
       - won_feminine
       - ball
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: abigwhale
       Active: 1
       English: a big whale
@@ -754,7 +754,7 @@ MonoBehaviour:
       - big
       - whale
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: mybrotheropenedtheoragebox
       Active: 1
       English: my brother opened the orange box
@@ -768,7 +768,7 @@ MonoBehaviour:
       - the_color_orange
       - the_box
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: myauntsatonthechair
       Active: 1
       English: my aunt sat on the chair
@@ -782,7 +782,7 @@ MonoBehaviour:
       - on
       - the_chair
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: thankyouforthepurpleflower
       Active: 1
       English: thank you for the purple flower
@@ -796,7 +796,7 @@ MonoBehaviour:
       - the_color_purple
       - the_flower
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: congrats_forthebedandthecupboard
       Active: 1
       English: congratulations for the bed and the cupboard
@@ -810,7 +810,7 @@ MonoBehaviour:
       - and
       - the_cupboard
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: congrats_for_the_fridge_and_the_oven
       Active: 1
       English: congratulations for the fridge and the oven
@@ -824,7 +824,7 @@ MonoBehaviour:
       - and
       - the_oven
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: theparrotishappyandactive
       Active: 1
       English: the parrot is happy and active
@@ -837,7 +837,7 @@ MonoBehaviour:
       - happy
       - active
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: thetigerwasintheforest
       Active: 1
       English: the tiger was in the forest
@@ -850,7 +850,7 @@ MonoBehaviour:
       - in
       - the_forest
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: myauntissad
       Active: 1
       English: my aunt is sad
@@ -861,7 +861,7 @@ MonoBehaviour:
       - my_aunt_father
       - sad_feminine
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: thegreenappleisdelicious
       Active: 1
       English: the green apple is delicious
@@ -874,7 +874,7 @@ MonoBehaviour:
       - the_apple
       - delicious
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: myfaceisbluefromthecold
       Active: 1
       English: my face is blue from the cold
@@ -887,7 +887,7 @@ MonoBehaviour:
       - from
       - the_cold
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: mysisterwenttotheclub
       Active: 1
       English: my sister went to the club
@@ -901,7 +901,7 @@ MonoBehaviour:
       - to
       - the_club
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: mygrandfathercaughtthebird
       Active: 1
       English: my grandfather caught the bird
@@ -913,7 +913,7 @@ MonoBehaviour:
       - caught
       - the_bird
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: myuncleworethebrownshirt
       Active: 1
       English: my uncle wore the brown shirt
@@ -927,7 +927,7 @@ MonoBehaviour:
       - the_color_brown
       - the_shirt
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: myuncleisabraveman
       Active: 1
       English: my uncle is a brave man
@@ -939,7 +939,7 @@ MonoBehaviour:
       - brave
       - man
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: the_river_water_is_cold
       Active: 1
       English: the river's water is cold
@@ -951,7 +951,7 @@ MonoBehaviour:
       - water
       - cold_adjective
       Answers: []
-      Intrinsic: 1
+      Complexity: 1
     - Id: thecarpenterleft
       Active: 1
       English: the carpenter left
@@ -962,4 +962,4 @@ MonoBehaviour:
       - the_carpenter
       - went
       Answers: []
-      Intrinsic: 1
+      Complexity: 1

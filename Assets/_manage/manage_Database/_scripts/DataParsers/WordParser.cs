@@ -20,12 +20,13 @@ namespace EA4S.Database.Management
             data.Category = ParseEnum<WordDataCategory>(data, dict["Category"]);
             data.Form = CustomParseForm(data, dict["Form"]);
             data.Article = ParseEnum<WordDataArticle>(data, dict["Article"]);
+            data.Gender = CustomParseGender(data, dict["Gender"]);
             data.LinkedWord = ToString(dict["LinkedWord"]);
             data.Arabic = ToString(dict["Arabic"]);
             data.Value = ToString(dict["Value"]);
             data.Letters = CustomParseLetters(data, db);
             data.Drawing = ToString(dict["Drawing"]);
-            data.Intrinsic = ToFloat(dict["Intrinsic"]);
+            data.Complexity = ToFloat(dict["Complexity"]);
 
             return data;
         }
@@ -44,13 +45,19 @@ namespace EA4S.Database.Management
 
         private WordDataForm CustomParseForm(WordData data, object enum_object)
         {
-            if (ToString(enum_object) == "")
-            {
+            if (ToString(enum_object) == "") {
                 return WordDataForm.Singular;
-            }
-            else
-            {
+            } else {
                 return ParseEnum<WordDataForm>(data, enum_object);
+            }
+        }
+
+        private VocabularyDataGender CustomParseGender(WordData data, object enum_object)
+        {
+            if (ToString(enum_object) == "") {
+                return VocabularyDataGender.None;
+            } else {
+                return ParseEnum<VocabularyDataGender>(data, enum_object);
             }
         }
 
@@ -65,10 +72,8 @@ namespace EA4S.Database.Management
         protected override void FinalValidation(WordTable table, DatabaseObject db)
         {
             // Field 'LinkedWord' is validated with a final validation step, since it is based on this same table
-            foreach (var data in table.GetValuesTyped())
-            {
-                if (data.LinkedWord != "" && table.GetValue(data.LinkedWord) == null)
-                {
+            foreach (var data in table.GetValuesTyped()) {
+                if (data.LinkedWord != "" && table.GetValue(data.LinkedWord) == null) {
                     LogValidation(data, "Cannot find id of WordData for Linked value " + data.LinkedWord + " (found in word " + data.Id + ")");
                 }
             }
