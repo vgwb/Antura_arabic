@@ -21,7 +21,7 @@ namespace EA4S.Book
             InfoTable.Reset();
 
             // Level reached
-            InfoTable.AddRow("Level", "", AppManager.I.Player.MaxJourneyPosition.GetShortTitle());
+            InfoTable.AddRow("Stage and Level", "", AppManager.I.Player.MaxJourneyPosition.GetShortTitle());
 
             // Unlocked / total PlaySessions
             var totalPlaySessions = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
@@ -30,26 +30,26 @@ namespace EA4S.Book
 
             // Total elapsed time
             var totalTimespan = GetTotalApplicationTime();
-            InfoTable.AddRow("Total application time", "", totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m");
+            InfoTable.AddRow("Journey duration", "", totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m");
 
             // total play time
             var totalPlayTime = GetTotalMiniGamePlayTime();
-            InfoTable.AddRow("Total minigame time", "", totalPlayTime.Days + "d " + totalPlayTime.Hours + "h " + totalPlayTime.Minutes + "m");
+            InfoTable.AddRow("Playing time", "", totalPlayTime.Days + "d " + totalPlayTime.Hours + "h " + totalPlayTime.Minutes + "m");
 
             // Played Games
-            InfoTable.AddRow("Number of games played", "", GetTotalMiniGamePlayInstances().ToString());
+            InfoTable.AddRow("Games played", "", GetTotalMiniGamePlayInstances().ToString());
 
             // Total bones
-            InfoTable.AddRow("Total bones collected", "", AppManager.I.Player.GetTotalNumberOfBones().ToString());
+            InfoTable.AddRow("Bones", "", AppManager.I.Player.GetTotalNumberOfBones().ToString());
 
             // Total stars
             var totalStars = GetTotalMiniGameStars();
-            InfoTable.AddRow("Total stars earned", "", totalStars.ToString());
+            InfoTable.AddRow("Stars", "", totalStars.ToString());
 
             // unlocked / total REWARDS
             var totalRewards = GetTotalRewards();
             var totalRewardsUnlocked = GetTotalUnlockedRewards();
-            InfoTable.AddRow("Antura rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);
+            InfoTable.AddRow("Antura Rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);
 
             // unlocked / total Letters
             var totalLetters = GetTotalVocabularyData(VocabularyDataType.Letter);
@@ -119,8 +119,7 @@ namespace EA4S.Book
             }
 
             // Time up to now
-            if (foundStart)
-            {
+            if (foundStart) {
                 var deltaTimespan = GenericHelper.GetTimeSpanBetween(startTimestamp, GenericHelper.GetTimestampForNow());
                 totalTimespan += deltaTimespan;
                 //Debug.Log("TIME UP TO NOW:" + deltaTimespan.Days + " days " + deltaTimespan.Hours + " hours " + deltaTimespan.Minutes + " minutes " + deltaTimespan.Seconds + " seconds");
@@ -176,8 +175,7 @@ namespace EA4S.Book
         int GetTotalVocabularyData(VocabularyDataType dataType)
         {
             int count = 0;
-            switch (dataType)
-            {
+            switch (dataType) {
                 case VocabularyDataType.Letter:
                     count = AppManager.I.DB.GetAllLetterData().Count;
                     break;
