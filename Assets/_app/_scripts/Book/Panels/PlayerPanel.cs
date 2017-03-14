@@ -13,17 +13,17 @@ namespace EA4S.Book
         public InfoTable InfoTable;
         public GraphJourney journeyGraph;
 
-        //Total Stars
-        //Perfects(3-Bones)
-        //Gifts for Antura
-
-
         void Start()
         {
             InfoTable.Reset();
 
             // Stage reached
             InfoTable.AddRow("Stage reached", "", AppManager.I.Player.MaxJourneyPosition.GetShortTitle());
+
+            // unlocked / total PlaySessions
+            var totalPlaySessions = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
+            var totalPlaySessionsUnlocked = totalPlaySessions.FindAll(x => x.unlocked);
+            InfoTable.AddRow("Levels Unlocked", "", totalPlaySessionsUnlocked.Count.ToString() + " / " + totalPlaySessions.Count.ToString());
 
             // Total elapsed time
             var totalTimespan = GetTotalElapsedTime();
@@ -40,12 +40,28 @@ namespace EA4S.Book
             InfoTable.AddRow("Total bones", "", AppManager.I.Player.GetTotalNumberOfBones().ToString());
 
             // Total stars
-            var totalStarsEarned = 0;
-            InfoTable.AddRow("Total stars", "", totalStarsEarned.ToString());
+            var totalStars = 0;
+            InfoTable.AddRow("Total stars", "", totalStars.ToString());
 
-            // Total Rewards
-            var totalRewardsEarned = 0;
-            InfoTable.AddRow("Antura Rewards", "", totalRewardsEarned.ToString());
+            // unlocked / total REWARDS
+            var totalRewards = 200;
+            var totalRewardsUnlocked = 0;
+            InfoTable.AddRow("Antura Rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);
+
+            // unlocked / total Letters
+            var totalLetters = 100;
+            var totalLettersUnlocked = 0;
+            InfoTable.AddRow("Letters Unlocked", "", totalLettersUnlocked.ToString() + " / " + totalLetters);
+
+            // unlocked / total Words
+            var totalWords = 100;
+            var totalWordsUnlocked = 0;
+            InfoTable.AddRow("Words Unlocked", "", totalWordsUnlocked.ToString() + " / " + totalWords);
+
+            // unlocked / total Phrases
+            var totalPhrases = 100;
+            var totalPhrasesUnlocked = 0;
+            InfoTable.AddRow("Phrases Unlocked", "", totalPhrasesUnlocked.ToString() + " / " + totalPhrases);
 
             // player UUID
             InfoTable.AddRow("Player Code", "", AppManager.I.Player.GetShortUuid());
@@ -63,12 +79,6 @@ namespace EA4S.Book
             //if (AppManager.I.Player.Rhythm != 0f) { str += "Rhythm " + AppManager.I.Player.Rhythm + "\n"; }
             //if (AppManager.I.Player.Musicality != 0f) { str += "Musicality " + AppManager.I.Player.Musicality + "\n"; }
             //if (AppManager.I.Player.Sight != 0f) { str += "Sight " + AppManager.I.Player.Sight + "\n"; }
-
-            // Number of play sessions
-            //var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
-            //var unlockedPlaySessionInfos = allPlaySessionInfos.FindAll(x => x.unlocked);
-            //InfoTable.AddRow("Play sessions unlocked", "", unlockedPlaySessionInfos.Count.ToString());
-
 
 
             //Debug.Log("LAST LETTER: " + AppManager.I.ScoreHelper.GetLastLearnedLetterInfo().data);
