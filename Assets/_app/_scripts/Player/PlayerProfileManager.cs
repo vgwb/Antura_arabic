@@ -61,7 +61,7 @@ namespace EA4S.Profile
         /// </summary>
         public void ReloadGameSettings(bool alsoLoadCurrentPlayer = true)
         {
-            AppManager.I.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
+            AppManager.I.GameSettings = new AppSettings() { };
             AppManager.I.GameSettings = AppManager.I.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
 
             if (alsoLoadCurrentPlayer) {
