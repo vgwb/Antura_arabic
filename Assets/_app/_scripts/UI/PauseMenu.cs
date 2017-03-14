@@ -111,7 +111,7 @@ namespace EA4S.UI
             // Set toggles
             BtMusic.Toggle(AudioManager.I.MusicEnabled);
             BtFx.Toggle(AppManager.I.GameSettings.HighQualityGfx);
-            BtFx.Toggle(AppManager.I.GameSettings.EnglishSubtitles);
+            BtEnglish.Toggle(AppManager.I.GameSettings.EnglishSubtitles);
 
             if (_open) {
                 //timeScaleAtMenuOpen = Time.timeScale;
