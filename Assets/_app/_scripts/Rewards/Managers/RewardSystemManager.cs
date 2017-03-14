@@ -41,6 +41,29 @@ namespace EA4S.Rewards
             return config.GetClone();
         }
 
+        /// <summary>
+        /// Gets the total rewars count. Any type with any color variation available in game.
+        /// </summary>
+        /// <returns></returns>
+        public static int GetTotalRewarsCount() {
+            int returnInt = 0;
+            returnInt += GetConfig().Rewards.Count * GetConfig().RewardsColorPairs.Count;
+            returnInt += GetConfig().RewardsDecal.Count * GetConfig().RewardsDecalColor.Count;
+            returnInt += GetConfig().RewardsTile.Count * GetConfig().RewardsTileColor.Count;
+            return returnInt;
+        }
+
+        /// <summary>
+        /// Gets the unlocked reward count for actual player. 0 if acutal player is null.
+        /// </summary>
+        /// <returns></returns>
+        public static int GetUnlockedRewardCount() {
+            if (AppManager.I.Player != null)
+                return AppManager.I.Player.RewardsUnlocked.Count;
+            else
+                return 0;
+        }
+
         public static RewardPackUnlockData CurrentReward = new RewardPackUnlockData();
 
         /// <summary>
