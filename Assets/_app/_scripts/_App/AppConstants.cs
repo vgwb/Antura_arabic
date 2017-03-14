@@ -79,8 +79,8 @@
         // Application details (used by Teacher and maybe other)
         public const float minimumAge = 4;
         public const float maximumAge = 10;
-        public const float minimumStage = 1;
-        public const float maximumStage = 6;
+        public const int minimumStage = 1;
+        public const int maximumStage = 6;
         public const int minimumMoodValue = 1;
         public const int maximumMoodValue = 5;
         public const int MaxNumberOfPlayerProfiles = 5;

@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
+using EA4S.Core;
+
 namespace EA4S.Map
 {
     public class FingerStage : MonoBehaviour
@@ -58,7 +60,7 @@ namespace EA4S.Map
 
 
                 if ((Mathf.Abs(x) > width * 0.3f) && (Mathf.Abs(y) < height * 0.1f)) {
-                    if ((x < 0) && (stageManager.currentStageNumber < 6)) { stageManager.StageLeft(); }
+                    if ((x < 0) && (stageManager.currentStageNumber < AppConstants.maximumStage)) { stageManager.StageLeft(); }
                     if ((x > 0) && (stageManager.currentStageNumber > 1)) { stageManager.StageRight(); }
                 }
                 StartCoroutine("SwipeToFalse");
