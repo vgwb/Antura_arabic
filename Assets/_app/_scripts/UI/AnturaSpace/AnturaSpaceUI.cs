@@ -254,7 +254,7 @@ namespace EA4S.UI
                 swatch.gameObject.SetActive(true);
                 swatch.Data = swatchData;
                 if (swatchData != null) {
-                    swatch.SetAsNew(swatchData.IsNew);
+                    swatch.SetAsNew(!swatchData.IsSelected && swatchData.IsNew);
                     swatch.Toggle(swatchData.IsSelected);
                     swatch.SetColors(GenericHelper.HexToColor(swatchData.Color1RGB), GenericHelper.HexToColor(swatchData.Color2RGB));
                     if (swatchData.IsSelected) selectedSwatchData = swatchData;
