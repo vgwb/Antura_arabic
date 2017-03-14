@@ -64,11 +64,7 @@ namespace ModularFramework.Modules
         /// <param name="_extProfile"></param>
         /// <returns></returns>
         public IPlayerProfile CreateNewPlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null) {
-            if (!Options.AvailablePlayers.Exists(p => p == _newPlayer.Key)) {
-                Options.AvailablePlayers.Add(_newPlayer.Key);
-                SaveAllOptions();
-            }
-            return _newPlayer;
+            return null;
         }
 
         /// <summary>
@@ -76,8 +72,6 @@ namespace ModularFramework.Modules
         /// </summary>
         /// <param name="_playerId"></param>
         public void DeletePlayer(string _playerId) {
-            PlayerPrefs.DeleteKey(GetStoreKeyForPlayer(_playerId));
-            Options.AvailablePlayers.Remove(_playerId);
         }
 
         /// <summary>
@@ -117,8 +111,6 @@ namespace ModularFramework.Modules
         /// </summary>
         /// <param name="_playerId"></param>
         public void SetActivePlayer<T>(string _playerId) where T : IPlayerProfile {
-            if (!Options.AvailablePlayers.Exists(p => p == _playerId)) // If player is not in active players list...
-                return;
             IPlayerProfile pp = LoadPlayerSettings<T>(_playerId);
             if (pp == null) {
                 Debug.LogError("Player not found");
