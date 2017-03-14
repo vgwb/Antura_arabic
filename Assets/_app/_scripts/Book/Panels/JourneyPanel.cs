@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using EA4S.Audio;
 using EA4S.Core;
 using EA4S.Database;
-using EA4S.Helpers;
-using EA4S.LivingLetters;
-using EA4S.MinigamesAPI;
 using EA4S.UI;
-using EA4S.Utilities;
 
 namespace EA4S.Book
 {
@@ -130,10 +126,5 @@ namespace EA4S.Book
             }
         }
 
-
-        void ResetLL()
-        {
-
-        }
     }
 }

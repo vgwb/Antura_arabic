@@ -8,7 +8,6 @@ using EA4S.Rewards;
 
 namespace EA4S.Book
 {
-
     public class PlayerPanel : MonoBehaviour
     {
         public InfoTable InfoTable;
@@ -45,8 +44,8 @@ namespace EA4S.Book
             InfoTable.AddRow("Stars", "", totalStars.ToString());
 
             // unlocked / total REWARDS
-            var totalRewards = GetTotalRewards();
-            var totalRewardsUnlocked = GetTotalUnlockedRewards();
+            var totalRewards = RewardSystemManager.GetTotalRewardsCount();
+            var totalRewardsUnlocked = RewardSystemManager.GetUnlockedRewardsCount();
             InfoTable.AddRow("Antura Rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);
 
             // unlocked / total Letters
@@ -193,16 +192,6 @@ namespace EA4S.Book
             string query = "select * from " + typeof(VocabularyScoreData).Name + " where VocabularyDataType='" + (int)dataType + "'";
             var list = AppManager.I.DB.FindDataByQuery<VocabularyScoreData>(query);
             return list.Count(data => data.Unlocked);
-        }
-
-        int GetTotalRewards()
-        {
-            return RewardSystemManager.GetTotalRewardsCount();
-        }
-
-        int GetTotalUnlockedRewards()
-        {
-            return RewardSystemManager.GetUnlockedRewardsCount();
         }
 
         Dictionary<MiniGameCode, int> GetNumberOfPlaysByMiniGame()
