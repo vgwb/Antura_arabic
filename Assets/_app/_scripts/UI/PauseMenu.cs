@@ -16,7 +16,7 @@ namespace EA4S.UI
 
         [Header("Buttons")]
         public MenuButton BtPause;
-        public MenuButton BtExit, BtMusic, BtFx, BtCredits, BtResume;
+        public MenuButton BtExit, BtMusic, BtFx, BtCredits, BtResume, BtEnglish;
         [Header("Other")]
         public GameObject PauseMenuContainer;
         public Sprite AltPauseIconSprite;
@@ -111,6 +111,7 @@ namespace EA4S.UI
             // Set toggles
             BtMusic.Toggle(AudioManager.I.MusicEnabled);
             BtFx.Toggle(AppManager.I.GameSettings.HighQualityGfx);
+            BtFx.Toggle(AppManager.I.GameSettings.EnglishSubtitles);
 
             if (_open) {
                 //timeScaleAtMenuOpen = Time.timeScale;
@@ -118,9 +119,7 @@ namespace EA4S.UI
                 openMenuTween.timeScale = 1;
                 openMenuTween.PlayForward();
                 AudioManager.I.PlaySound(Sfx.UIPauseIn);
-            }
-            else
-            {
+            } else {
                 //Time.timeScale = timeScaleAtMenuOpen;
                 Time.timeScale = 1;
                 logoBobTween.Pause();
@@ -150,16 +149,13 @@ namespace EA4S.UI
             } else if (!openMenuTween.IsPlaying()) { // Ignores pause menu clicks when opening/closing menu
                 switch (_bt.Type) {
                     case MenuButtonType.Back: // Exit
-                        if (AppManager.I.NavigationManager.NavData.CurrentScene == AppScene.MiniGame)
-                        {
+                        if (AppManager.I.NavigationManager.NavData.CurrentScene == AppScene.MiniGame) {
                             // Prompt
                             GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
                                 OpenMenu(false);
                                 AppManager.I.NavigationManager.ExitDuringPause();
-                            }, ()=> {});
-                        }
-                        else
-                        {
+                            }, () => { });
+                        } else {
                             // No prompt
                             OpenMenu(false);
                             AppManager.I.NavigationManager.ExitDuringPause();
@@ -172,6 +168,10 @@ namespace EA4S.UI
                     case MenuButtonType.FxToggle: // FX on/off
                         AppManager.I.ToggleQualitygfx();
                         BtFx.Toggle(AppManager.I.GameSettings.HighQualityGfx);
+                        break;
+                    case MenuButtonType.EnglishToggle:
+                        AppManager.I.ToggleEnglishSubtitles();
+                        BtEnglish.Toggle(AppManager.I.GameSettings.EnglishSubtitles);
                         break;
                     case MenuButtonType.Credits:
                         Credits.Show(true);
