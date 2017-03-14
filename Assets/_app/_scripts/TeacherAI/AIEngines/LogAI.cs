@@ -139,7 +139,7 @@ namespace EA4S.Teacher
 
         public void UnlockVocabularyDataForJourneyPosition(JourneyPosition pos)
         {
-            if (UNLOCK_AT_PLAYSESSION_END) return;
+            if (!UNLOCK_AT_PLAYSESSION_END) return;
 
             string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name);
             List<VocabularyScoreData> scoreDataList = db.FindDataByQuery<VocabularyScoreData>(query);

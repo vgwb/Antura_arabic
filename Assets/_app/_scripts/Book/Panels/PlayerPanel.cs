@@ -2,8 +2,11 @@
 using UnityEngine;
 using EA4S.Database;
 using System.Collections.Generic;
+using System.Linq;
 using EA4S.Helpers;
+using EA4S.Rewards;
 using EA4S.Utilities;
+using UniRx;
 
 namespace EA4S.Book
 {
@@ -17,51 +20,51 @@ namespace EA4S.Book
         {
             InfoTable.Reset();
 
-            // Stage reached
-            InfoTable.AddRow("Stage reached", "", AppManager.I.Player.MaxJourneyPosition.GetShortTitle());
+            // Level reached
+            InfoTable.AddRow("Level", "", AppManager.I.Player.MaxJourneyPosition.GetShortTitle());
 
-            // unlocked / total PlaySessions
+            // Unlocked / total PlaySessions
             var totalPlaySessions = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
             var totalPlaySessionsUnlocked = totalPlaySessions.FindAll(x => x.unlocked);
-            InfoTable.AddRow("Levels Unlocked", "", totalPlaySessionsUnlocked.Count.ToString() + " / " + totalPlaySessions.Count.ToString());
+            InfoTable.AddRow("Unlocked Levels", "", totalPlaySessionsUnlocked.Count.ToString() + " / " + totalPlaySessions.Count.ToString());
 
             // Total elapsed time
-            var totalTimespan = GetTotalElapsedTime();
-            InfoTable.AddRow("Started playing", "", totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m");
+            var totalTimespan = GetTotalApplicationTime();
+            InfoTable.AddRow("Total application time", "", totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m");
 
             // total play time
-            var totalPlayTime = GetTotalPlayTime();
-            InfoTable.AddRow("Total Playtime playing", "", totalPlayTime.Days + "d " + totalPlayTime.Hours + "h " + totalPlayTime.Minutes + "m");
+            var totalPlayTime = GetTotalMiniGamePlayTime();
+            InfoTable.AddRow("Total minigame time", "", totalPlayTime.Days + "d " + totalPlayTime.Hours + "h " + totalPlayTime.Minutes + "m");
 
             // Played Games
-            InfoTable.AddRow("Played Games", "", GetTotalNumberOfPlays().ToString());
+            InfoTable.AddRow("Number of games played", "", GetTotalMiniGamePlayInstances().ToString());
 
             // Total bones
-            InfoTable.AddRow("Total bones", "", AppManager.I.Player.GetTotalNumberOfBones().ToString());
+            InfoTable.AddRow("Total bones collected", "", AppManager.I.Player.GetTotalNumberOfBones().ToString());
 
             // Total stars
-            var totalStars = 0;
-            InfoTable.AddRow("Total stars", "", totalStars.ToString());
+            var totalStars = GetTotalMiniGameStars();
+            InfoTable.AddRow("Total stars earned", "", totalStars.ToString());
 
             // unlocked / total REWARDS
-            var totalRewards = 200;
-            var totalRewardsUnlocked = 0;
-            InfoTable.AddRow("Antura Rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);
+            var totalRewards = GetTotalRewards();
+            var totalRewardsUnlocked = GetTotalUnlockedRewards();
+            InfoTable.AddRow("Antura rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);
 
             // unlocked / total Letters
-            var totalLetters = 100;
-            var totalLettersUnlocked = 0;
-            InfoTable.AddRow("Letters Unlocked", "", totalLettersUnlocked.ToString() + " / " + totalLetters);
+            var totalLetters = GetTotalVocabularyData(VocabularyDataType.Letter);
+            var totalLettersUnlocked = GetTotalVocabularyDataUnlocked(VocabularyDataType.Letter);
+            InfoTable.AddRow("Unlocked Letters", "", totalLettersUnlocked.ToString() + " / " + totalLetters);
 
             // unlocked / total Words
-            var totalWords = 100;
-            var totalWordsUnlocked = 0;
-            InfoTable.AddRow("Words Unlocked", "", totalWordsUnlocked.ToString() + " / " + totalWords);
+            var totalWords = GetTotalVocabularyData(VocabularyDataType.Word);
+            var totalWordsUnlocked = GetTotalVocabularyDataUnlocked(VocabularyDataType.Word);
+            InfoTable.AddRow("Unlocked Words", "", totalWordsUnlocked.ToString() + " / " + totalWords);
 
             // unlocked / total Phrases
-            var totalPhrases = 100;
-            var totalPhrasesUnlocked = 0;
-            InfoTable.AddRow("Phrases Unlocked", "", totalPhrasesUnlocked.ToString() + " / " + totalPhrases);
+            var totalPhrases = GetTotalVocabularyData(VocabularyDataType.Phrase);
+            var totalPhrasesUnlocked = GetTotalVocabularyDataUnlocked(VocabularyDataType.Phrase);
+            InfoTable.AddRow("Unlocked Phrases", "", totalPhrasesUnlocked.ToString() + " / " + totalPhrases);
 
             // player UUID
             InfoTable.AddRow("Player Code", "", AppManager.I.Player.GetShortUuid());
@@ -91,7 +94,7 @@ namespace EA4S.Book
 
         #region Queries
 
-        TimeSpan GetTotalElapsedTime()
+        TimeSpan GetTotalApplicationTime()
         {
             string query = "select * from \"" + typeof(LogInfoData).Name + "\"";
             var list = AppManager.I.DB.FindDataByQuery<LogInfoData>(query);
@@ -102,20 +105,30 @@ namespace EA4S.Book
             foreach (var infoData in list) {
                 if (!foundStart && infoData.Event == InfoEvent.AppSessionStart) {
                     startTimestamp = infoData.Timestamp;
+                    //Debug.Log("START: " + infoData.Timestamp);
                     foundStart = true;
                 } else if (foundStart && infoData.Event == InfoEvent.AppSessionEnd) {
                     var endTimestamp = infoData.Timestamp;
                     foundStart = false;
+                    //Debug.Log("END: " + infoData.Timestamp);
 
-                    var deltaTimespan = GenericHelper.FromTimestamp(endTimestamp) - GenericHelper.FromTimestamp(startTimestamp);
+                    var deltaTimespan = GenericHelper.GetTimeSpanBetween(startTimestamp, endTimestamp);
                     totalTimespan += deltaTimespan;
                     //Debug.Log("TIME FOUND:"  + deltaTimespan.Days + " days " + deltaTimespan.Hours + " hours " + deltaTimespan.Minutes + " minutes " + deltaTimespan.Seconds + " seconds");
                 }
             }
+
+            // Time up to now
+            if (foundStart)
+            {
+                var deltaTimespan = GenericHelper.GetTimeSpanBetween(startTimestamp, GenericHelper.GetTimestampForNow());
+                totalTimespan += deltaTimespan;
+                //Debug.Log("TIME UP TO NOW:" + deltaTimespan.Days + " days " + deltaTimespan.Hours + " hours " + deltaTimespan.Minutes + " minutes " + deltaTimespan.Seconds + " seconds");
+            }
             return totalTimespan;
         }
 
-        TimeSpan GetTotalPlayTime()
+        TimeSpan GetTotalMiniGamePlayTime()
         {
             float totalSeconds = 0f;
             string query = "select * from " + typeof(MiniGameScoreData).Name;
@@ -140,7 +153,7 @@ namespace EA4S.Book
             return dict;
         }
 
-        int GetTotalNumberOfPlays()
+        int GetTotalMiniGamePlayInstances()
         {
             int total = 0;
             string query = "select * from " + typeof(LogMiniGameScoreData).Name;
@@ -152,7 +165,51 @@ namespace EA4S.Book
             return total;
         }
 
-        Dictionary<MiniGameCode, int> GetMiniGamesNumberOfPlays()
+        int GetTotalMiniGameStars()
+        {
+            string query = "select * from " + typeof(MiniGameScoreData).Name;
+            var list = AppManager.I.DB.FindDataByQuery<MiniGameScoreData>(query);
+            var totalStars = list.Sum(data => data.Stars);
+            return totalStars;
+        }
+
+        int GetTotalVocabularyData(VocabularyDataType dataType)
+        {
+            int count = 0;
+            switch (dataType)
+            {
+                case VocabularyDataType.Letter:
+                    count = AppManager.I.DB.GetAllLetterData().Count;
+                    break;
+                case VocabularyDataType.Word:
+                    count = AppManager.I.DB.GetAllWordData().Count;
+                    break;
+                case VocabularyDataType.Phrase:
+                    count = AppManager.I.DB.GetAllPhraseData().Count;
+                    break;
+            }
+            return count;
+        }
+
+        int GetTotalVocabularyDataUnlocked(VocabularyDataType dataType)
+        {
+            if (AppManager.I.Player.IsDemoUser) return GetTotalVocabularyData(dataType);
+            string query = "select * from " + typeof(VocabularyScoreData).Name + " where VocabularyDataType='" + (int)dataType + "'";
+            var list = AppManager.I.DB.FindDataByQuery<VocabularyScoreData>(query);
+            return list.Count(data => data.Unlocked);
+        }
+
+        int GetTotalRewards()
+        {
+            return RewardSystemManager.GetTotalRewardsCount();
+        }
+
+        int GetTotalUnlockedRewards()
+        {
+            return RewardSystemManager.GetUnlockedRewardsCount();
+        }
+
+        Dictionary<MiniGameCode, int> GetNumberOfPlaysByMiniGame()
         {
             Dictionary<MiniGameCode, int> dict = new Dictionary<MiniGameCode, int>();
             string query = "select * from " + typeof(LogMiniGameScoreData).Name;
