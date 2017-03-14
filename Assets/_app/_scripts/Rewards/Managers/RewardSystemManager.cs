@@ -583,7 +583,7 @@ namespace EA4S.Rewards
             /// - Filter without already unlocked items
             /// - Automatic select reward type by situation
             RewardPackUnlockData rp = new RewardPackUnlockData();
-            string itemId;
+            string itemId = string.Empty;
             RewardColor color = null;
             bool alreadyUnlocked = false;
             List<RewardPackUnlockData> alreadyUnlockedRewardOfType = AppManager.I.Player.RewardsUnlocked.FindAll(r => r.Type == _rewardType);
