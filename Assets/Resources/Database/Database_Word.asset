@@ -29,7 +29,7 @@ MonoBehaviour:
       - yeh
       - tah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: agreed
       Active: 1
       Kind: 2
@@ -61,7 +61,7 @@ MonoBehaviour:
       - alef
       - lam
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: and
       Active: 1
       Kind: 4
@@ -75,7 +75,7 @@ MonoBehaviour:
       Letters:
       - waw
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: anger
       Active: 1
       Kind: 5
@@ -108,7 +108,7 @@ MonoBehaviour:
       - alef
       - hah
       Drawing: 42
-      Complexity: 1
+      Complexity: 0.6
     - Id: apricot
       Active: 1
       Kind: 5
@@ -125,7 +125,7 @@ MonoBehaviour:
       - meem
       - sheen
       Drawing: 43
-      Complexity: 1
+      Complexity: 0.6
     - Id: are
       Active: 1
       Kind: 2
@@ -140,7 +140,7 @@ MonoBehaviour:
       - heh
       - lam
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: ate
       Active: 1
       Kind: 2
@@ -156,7 +156,7 @@ MonoBehaviour:
       - kaf_fathah
       - lam_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: aunt_father
       Active: 1
       Kind: 5
@@ -172,7 +172,7 @@ MonoBehaviour:
       - meem
       - teh_marbuta
       Drawing: A1
-      Complexity: 1
+      Complexity: 0.3
     - Id: aunt_mother
       Active: 1
       Kind: 5
@@ -189,7 +189,7 @@ MonoBehaviour:
       - lam
       - teh_marbuta
       Drawing: 3B
-      Complexity: 1
+      Complexity: 0.3
     - Id: back
       Active: 1
       Kind: 5
@@ -205,7 +205,7 @@ MonoBehaviour:
       - heh
       - reh
       Drawing: 45
-      Complexity: 1
+      Complexity: 0.6
     - Id: ball
       Active: 1
       Kind: 5
@@ -221,7 +221,7 @@ MonoBehaviour:
       - reh
       - teh_marbuta
       Drawing: A3
-      Complexity: 1
+      Complexity: 0.3
     - Id: banana
       Active: 1
       Kind: 5
@@ -237,7 +237,7 @@ MonoBehaviour:
       - waw
       - zain
       Drawing: 46
-      Complexity: 1
+      Complexity: 0.3
     - Id: bank
       Active: 1
       Kind: 5
@@ -290,7 +290,7 @@ MonoBehaviour:
       - dal
       - beh
       Drawing: 49
-      Complexity: 1
+      Complexity: 0.3
     - Id: beautiful
       Active: 1
       Kind: 1
@@ -307,7 +307,7 @@ MonoBehaviour:
       - yeh
       - lam
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: bed
       Active: 1
       Kind: 5
@@ -324,7 +324,7 @@ MonoBehaviour:
       - alef
       - sheen
       Drawing: 4A
-      Complexity: 1
+      Complexity: 0.6
     - Id: believed
       Active: 1
       Kind: 2
@@ -340,7 +340,7 @@ MonoBehaviour:
       - meem_fathah
       - noon_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: belly
       Active: 1
       Kind: 5
@@ -356,7 +356,7 @@ MonoBehaviour:
       - tah
       - noon
       Drawing: 4B
-      Complexity: 1
+      Complexity: 0.6
     - Id: berry
       Active: 1
       Kind: 5
@@ -372,7 +372,7 @@ MonoBehaviour:
       - waw
       - teh
       Drawing: 4C
-      Complexity: 1
+      Complexity: 0.3
     - Id: big
       Active: 1
       Kind: 1
@@ -389,7 +389,7 @@ MonoBehaviour:
       - yeh
       - reh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: bird
       Active: 1
       Kind: 5
@@ -424,7 +424,7 @@ MonoBehaviour:
       - alef
       - beh
       Drawing: 4E
-      Complexity: 1
+      Complexity: 0.6
     - Id: books
       Active: 1
       Kind: 5
@@ -440,7 +440,7 @@ MonoBehaviour:
       - teh_dammah
       - beh
       Drawing: 4F
-      Complexity: 1
+      Complexity: 0.6
     - Id: box
       Active: 1
       Kind: 5
@@ -524,7 +524,7 @@ MonoBehaviour:
       - beh
       - zain
       Drawing: 53
-      Complexity: 1
+      Complexity: 0.6
     - Id: breeze
       Active: 1
       Kind: 5
@@ -541,7 +541,7 @@ MonoBehaviour:
       - meem
       - teh_marbuta
       Drawing: 54
-      Complexity: 1
+      Complexity: 0.6
     - Id: broad_bean
       Active: 1
       Kind: 5
@@ -557,7 +557,7 @@ MonoBehaviour:
       - waw
       - lam
       Drawing: 55
-      Complexity: 1
+      Complexity: 0.3
     - Id: brother
       Active: 1
       Kind: 5
@@ -572,7 +572,7 @@ MonoBehaviour:
       - alef_hamza_hi
       - khah
       Drawing: 2F
-      Complexity: 1
+      Complexity: 0.3
     - Id: bulgar
       Active: 1
       Kind: 5
@@ -589,7 +589,7 @@ MonoBehaviour:
       - ghain
       - lam
       Drawing: 5F
-      Complexity: 1
+      Complexity: 0.6
     - Id: bus
       Active: 1
       Kind: 5
@@ -605,7 +605,7 @@ MonoBehaviour:
       - alef
       - sad
       Drawing: 44
-      Complexity: 1
+      Complexity: 0.3
     - Id: camel
       Active: 1
       Kind: 5
@@ -621,7 +621,7 @@ MonoBehaviour:
       - meem
       - lam_kasrah_tanwin
       Drawing: 56
-      Complexity: 1
+      Complexity: 0.3
     - Id: carpenter
       Active: 1
       Kind: 5
@@ -638,7 +638,7 @@ MonoBehaviour:
       - alef
       - reh
       Drawing: 57
-      Complexity: 1
+      Complexity: 0.6
     - Id: carried
       Active: 1
       Kind: 2
@@ -654,7 +654,7 @@ MonoBehaviour:
       - meem_fathah
       - lam_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: carrot
       Active: 1
       Kind: 5
@@ -670,7 +670,7 @@ MonoBehaviour:
       - zain_fathah
       - reh
       Drawing: 58
-      Complexity: 1
+      Complexity: 0.6
     - Id: cat
       Active: 1
       Kind: 5
@@ -685,7 +685,7 @@ MonoBehaviour:
       - heh
       - reh
       Drawing: 59
-      Complexity: 1
+      Complexity: 0.3
     - Id: caught
       Active: 1
       Kind: 2
@@ -701,7 +701,7 @@ MonoBehaviour:
       - seen_fathah
       - kaf_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: chair
       Active: 1
       Kind: 5
@@ -718,7 +718,7 @@ MonoBehaviour:
       - seen
       - yeh
       Drawing: 5A
-      Complexity: 1
+      Complexity: 0.6
     - Id: cheese
       Active: 1
       Kind: 5
@@ -734,7 +734,7 @@ MonoBehaviour:
       - beh
       - noon
       Drawing: 61
-      Complexity: 1
+      Complexity: 0.3
     - Id: cherry
       Active: 1
       Kind: 5
@@ -750,7 +750,7 @@ MonoBehaviour:
       - reh
       - zain
       Drawing: 62
-      Complexity: 1
+      Complexity: 0.3
     - Id: chest
       Active: 1
       Kind: 5
@@ -766,7 +766,7 @@ MonoBehaviour:
       - dal
       - reh
       Drawing: 63
-      Complexity: 1
+      Complexity: 0.6
     - Id: chickpea
       Active: 1
       Kind: 5
@@ -782,7 +782,7 @@ MonoBehaviour:
       - meem
       - sad
       Drawing: 64
-      Complexity: 1
+      Complexity: 0.6
     - Id: classroom
       Active: 1
       Kind: 5
@@ -797,7 +797,7 @@ MonoBehaviour:
       - sad
       - feh
       Drawing: 30
-      Complexity: 1
+      Complexity: 0.3
     - Id: clean
       Active: 1
       Kind: 1
@@ -882,7 +882,7 @@ MonoBehaviour:
       - reh
       - dal
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: cold_adjective
       Active: 1
       Kind: 1
@@ -899,7 +899,7 @@ MonoBehaviour:
       - reh
       - dal
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: color_black
       Active: 1
       Kind: 1
@@ -916,7 +916,7 @@ MonoBehaviour:
       - waw
       - dal
       Drawing: 100
-      Complexity: 1
+      Complexity: 0.6
     - Id: color_blue
       Active: 1
       Kind: 1
@@ -933,7 +933,7 @@ MonoBehaviour:
       - reh
       - qaf
       Drawing: 100
-      Complexity: 1
+      Complexity: 0.6
     - Id: color_brown
       Active: 1
       Kind: 1
@@ -949,7 +949,7 @@ MonoBehaviour:
       - noon
       - yeh
       Drawing: 100
-      Complexity: 1
+      Complexity: 0.3
     - Id: color_gold
       Active: 1
       Kind: 1
@@ -966,7 +966,7 @@ MonoBehaviour:
       - beh
       - yeh
       Drawing: 100
-      Complexity: 1
+      Complexity: 0.6
     - Id: color_green
       Active: 1
       Kind: 1
@@ -1038,7 +1038,7 @@ MonoBehaviour:
       - dal
       - yeh
       Drawing: 100
-      Complexity: 1
+      Complexity: 0.6
     - Id: color_purple
       Active: 1
       Kind: 1
@@ -1074,7 +1074,7 @@ MonoBehaviour:
       - meem
       - reh
       Drawing: 100
-      Complexity: 1
+      Complexity: 0.6
     - Id: color_silver
       Active: 1
       Kind: 1
@@ -1090,7 +1090,7 @@ MonoBehaviour:
       - dad
       - yeh
       Drawing: 100
-      Complexity: 1
+      Complexity: 0.6
     - Id: color_white
       Active: 1
       Kind: 1
@@ -1107,7 +1107,7 @@ MonoBehaviour:
       - yeh
       - dad
       Drawing: 100
-      Complexity: 1
+      Complexity: 0.6
     - Id: color_yellow
       Active: 1
       Kind: 1
@@ -1124,7 +1124,7 @@ MonoBehaviour:
       - feh
       - reh
       Drawing: 100
-      Complexity: 1
+      Complexity: 0.6
     - Id: congratulations
       Active: 1
       Kind: 6
@@ -1142,7 +1142,7 @@ MonoBehaviour:
       - waw
       - kaf
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: consonant
       Active: 1
       Kind: 7
@@ -1162,7 +1162,7 @@ MonoBehaviour:
       - kaf
       - noon
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: costume
       Active: 1
       Kind: 5
@@ -1196,7 +1196,7 @@ MonoBehaviour:
       - kaf
       - alef_maqsura
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: cucumber
       Active: 1
       Kind: 5
@@ -1213,7 +1213,7 @@ MonoBehaviour:
       - alef
       - reh
       Drawing: 68
-      Complexity: 1
+      Complexity: 0.6
     - Id: cupboard
       Active: 1
       Kind: 5
@@ -1247,7 +1247,7 @@ MonoBehaviour:
       - waw
       - meem
       Drawing: 2B
-      Complexity: 1
+      Complexity: 0.3
     - Id: day_friday
       Active: 1
       Kind: 5
@@ -1304,7 +1304,7 @@ MonoBehaviour:
       - beh
       - teh
       Drawing: F7
-      Complexity: 1
+      Complexity: 0.6
     - Id: day_sunday
       Active: 1
       Kind: 5
@@ -1400,7 +1400,7 @@ MonoBehaviour:
       - alef
       - lam
       Drawing: 69
-      Complexity: 1
+      Complexity: 0.6
     - Id: delicious
       Active: 1
       Kind: 1
@@ -1417,7 +1417,7 @@ MonoBehaviour:
       - yeh
       - thal
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: do_need
       Active: 1
       Kind: 2
@@ -1432,7 +1432,7 @@ MonoBehaviour:
       - heh
       - lam
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: doctor
       Active: 1
       Kind: 5
@@ -1449,7 +1449,7 @@ MonoBehaviour:
       - yeh
       - beh
       Drawing: 6A
-      Complexity: 1
+      Complexity: 0.6
     - Id: dog
       Active: 1
       Kind: 5
@@ -1465,7 +1465,7 @@ MonoBehaviour:
       - lam
       - beh
       Drawing: 6B
-      Complexity: 1
+      Complexity: 0.3
     - Id: door
       Active: 1
       Kind: 5
@@ -1481,7 +1481,7 @@ MonoBehaviour:
       - alef
       - beh
       Drawing: 6C
-      Complexity: 1
+      Complexity: 0.3
     - Id: drank
       Active: 1
       Kind: 2
@@ -1497,7 +1497,7 @@ MonoBehaviour:
       - reh_kasrah
       - beh_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: drank_feminine
       Active: 1
       Kind: 2
@@ -1514,7 +1514,7 @@ MonoBehaviour:
       - beh
       - teh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: dual
       Active: 1
       Kind: 1
@@ -1531,7 +1531,7 @@ MonoBehaviour:
       - noon
       - alef_maqsura
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: ducks
       Active: 1
       Kind: 5
@@ -1546,7 +1546,7 @@ MonoBehaviour:
       - beh
       - tah
       Drawing: 31
-      Complexity: 1
+      Complexity: 0.3
     - Id: eagle
       Active: 1
       Kind: 5
@@ -1562,7 +1562,7 @@ MonoBehaviour:
       - seen
       - reh
       Drawing: 6D
-      Complexity: 1
+      Complexity: 0.3
     - Id: ear
       Active: 1
       Kind: 5
@@ -1578,7 +1578,7 @@ MonoBehaviour:
       - thal
       - noon
       Drawing: 6E
-      Complexity: 1
+      Complexity: 0.6
     - Id: elephant
       Active: 1
       Kind: 5
@@ -1594,7 +1594,7 @@ MonoBehaviour:
       - yeh
       - lam
       Drawing: 6F
-      Complexity: 1
+      Complexity: 0.3
     - Id: engineer
       Active: 1
       Kind: 5
@@ -1629,7 +1629,7 @@ MonoBehaviour:
       - alef
       - hamza
       Drawing: 7D
-      Complexity: 1
+      Complexity: 0.6
     - Id: eye
       Active: 1
       Kind: 5
@@ -1645,7 +1645,7 @@ MonoBehaviour:
       - yeh
       - noon
       Drawing: 70
-      Complexity: 1
+      Complexity: 0.3
     - Id: face
       Active: 1
       Kind: 5
@@ -1661,7 +1661,7 @@ MonoBehaviour:
       - jeem
       - heh
       Drawing: 71
-      Complexity: 1
+      Complexity: 0.6
     - Id: fall
       Active: 1
       Kind: 5
@@ -1678,7 +1678,7 @@ MonoBehaviour:
       - yeh
       - feh
       Drawing: 7B
-      Complexity: 1
+      Complexity: 0.6
     - Id: farmer
       Active: 1
       Kind: 5
@@ -1695,7 +1695,7 @@ MonoBehaviour:
       - alef
       - hah
       Drawing: 72
-      Complexity: 1
+      Complexity: 0.6
     - Id: father
       Active: 1
       Kind: 5
@@ -1728,7 +1728,7 @@ MonoBehaviour:
       - qaf
       - lam
       Drawing: 73
-      Complexity: 1
+      Complexity: 0.6
     - Id: fig
       Active: 1
       Kind: 5
@@ -1744,7 +1744,7 @@ MonoBehaviour:
       - yeh
       - noon
       Drawing: 74
-      Complexity: 1
+      Complexity: 0.3
     - Id: fine
       Active: 1
       Kind: 5
@@ -1761,7 +1761,7 @@ MonoBehaviour:
       - yeh
       - reh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: finger
       Active: 1
       Kind: 5
@@ -1794,7 +1794,7 @@ MonoBehaviour:
       - lam_fathah
       - meem
       Drawing: 76
-      Complexity: 1
+      Complexity: 0.6
     - Id: flapped
       Active: 1
       Kind: 2
@@ -1827,7 +1827,7 @@ MonoBehaviour:
       - alef
       - reh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: flower
       Active: 1
       Kind: 5
@@ -1843,7 +1843,7 @@ MonoBehaviour:
       - reh
       - dal
       Drawing: 77
-      Complexity: 1
+      Complexity: 0.3
     - Id: food
       Active: 1
       Kind: 5
@@ -1859,7 +1859,7 @@ MonoBehaviour:
       - kaf
       - lam
       Drawing: 5D
-      Complexity: 1
+      Complexity: 0.6
     - Id: foot
       Active: 1
       Kind: 5
@@ -1875,7 +1875,7 @@ MonoBehaviour:
       - dal
       - meem
       Drawing: CC
-      Complexity: 1
+      Complexity: 0.3
     - Id: football
       Active: 1
       Kind: 5
@@ -1913,7 +1913,7 @@ MonoBehaviour:
       - beh
       - teh_marbuta_dammah_tanwin
       Drawing: 79
-      Complexity: 1
+      Complexity: 0.6
     - Id: fridge
       Active: 1
       Kind: 5
@@ -1946,7 +1946,7 @@ MonoBehaviour:
       - meem
       - noon
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: furniture
       Active: 1
       Kind: 5
@@ -1997,7 +1997,7 @@ MonoBehaviour:
       - waw
       - meem
       Drawing: C4
-      Complexity: 1
+      Complexity: 0.6
     - Id: girl
       Active: 1
       Kind: 5
@@ -2013,7 +2013,7 @@ MonoBehaviour:
       - noon
       - teh
       Drawing: C0
-      Complexity: 1
+      Complexity: 0.3
     - Id: glue
       Active: 1
       Kind: 5
@@ -2046,7 +2046,7 @@ MonoBehaviour:
       - heh
       - beh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: go_v2
       Active: 1
       Kind: 2
@@ -2082,7 +2082,7 @@ MonoBehaviour:
       - ain
       - alef_fathah_tanwin
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: granddaughter
       Active: 1
       Kind: 5
@@ -2115,7 +2115,7 @@ MonoBehaviour:
       - jeem
       - dal
       Drawing: 34
-      Complexity: 0.5
+      Complexity: 0.3
     - Id: grandmother
       Active: 1
       Kind: 5
@@ -2131,7 +2131,7 @@ MonoBehaviour:
       - dal
       - teh_marbuta
       Drawing: 35
-      Complexity: 1
+      Complexity: 0.3
     - Id: grandson
       Active: 1
       Kind: 5
@@ -2148,7 +2148,7 @@ MonoBehaviour:
       - yeh
       - dal
       Drawing: 36
-      Complexity: 1
+      Complexity: 0.6
     - Id: grapes
       Active: 1
       Kind: 5
@@ -2164,7 +2164,7 @@ MonoBehaviour:
       - noon
       - beh
       Drawing: C6
-      Complexity: 1
+      Complexity: 0.3
     - Id: ground
       Active: 1
       Kind: 5
@@ -2180,7 +2180,7 @@ MonoBehaviour:
       - reh
       - dad
       Drawing: 37
-      Complexity: 1
+      Complexity: 0.6
     - Id: hair
       Active: 1
       Kind: 5
@@ -2196,7 +2196,7 @@ MonoBehaviour:
       - ain
       - reh
       Drawing: C7
-      Complexity: 1
+      Complexity: 0.3
     - Id: hand
       Active: 1
       Kind: 5
@@ -2211,7 +2211,7 @@ MonoBehaviour:
       - yeh
       - dal
       Drawing: D0
-      Complexity: 1
+      Complexity: 0.3
     - Id: happy
       Active: 1
       Kind: 1
@@ -2228,7 +2228,7 @@ MonoBehaviour:
       - yeh
       - dal
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: hat
       Active: 1
       Kind: 5
@@ -2245,7 +2245,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Drawing: C9
-      Complexity: 1
+      Complexity: 0.6
     - Id: head
       Active: 1
       Kind: 5
@@ -2261,7 +2261,7 @@ MonoBehaviour:
       - alef_hamza_hi
       - seen
       Drawing: CA
-      Complexity: 1
+      Complexity: 0.6
     - Id: help
       Active: 1
       Kind: 5
@@ -2334,7 +2334,7 @@ MonoBehaviour:
       - khah
       - noon
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: hot_weather
       Active: 1
       Kind: 1
@@ -2350,7 +2350,7 @@ MonoBehaviour:
       - alef
       - reh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: hour
       Active: 1
       Kind: 5
@@ -2367,7 +2367,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Drawing: 38
-      Complexity: 1
+      Complexity: 0.6
     - Id: house
       Active: 1
       Kind: 5
@@ -2383,7 +2383,7 @@ MonoBehaviour:
       - yeh
       - teh
       Drawing: C8
-      Complexity: 1
+      Complexity: 0.3
     - Id: how
       Active: 1
       Kind: 5
@@ -2399,7 +2399,7 @@ MonoBehaviour:
       - yeh
       - feh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: i_am
       Active: 1
       Kind: 2
@@ -2415,7 +2415,7 @@ MonoBehaviour:
       - noon
       - alef
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: icecream
       Active: 1
       Kind: 5
@@ -2447,7 +2447,7 @@ MonoBehaviour:
       - feh
       - yeh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: in_morning
       Active: 1
       Kind: 6
@@ -2481,7 +2481,7 @@ MonoBehaviour:
       - lam_kasrah
       - hah_shaddah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: is
       Active: 1
       Kind: 2
@@ -2496,7 +2496,7 @@ MonoBehaviour:
       - heh
       - waw
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: islands
       Active: 1
       Kind: 5
@@ -2512,7 +2512,7 @@ MonoBehaviour:
       - zain_dammah
       - reh
       Drawing: CE
-      Complexity: 1
+      Complexity: 0.6
     - Id: it_is
       Active: 1
       Kind: 2
@@ -2529,7 +2529,7 @@ MonoBehaviour:
       - heh
       - alef
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: juice
       Active: 1
       Kind: 5
@@ -2562,7 +2562,7 @@ MonoBehaviour:
       - lam
       - dal
       Drawing: 28
-      Complexity: 1
+      Complexity: 0.3
     - Id: knowledge
       Active: 1
       Kind: 5
@@ -2613,7 +2613,7 @@ MonoBehaviour:
       - hah_kasrah
       - kaf_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: lazy
       Active: 1
       Kind: 1
@@ -2630,7 +2630,7 @@ MonoBehaviour:
       - waw
       - lam
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: leg
       Active: 1
       Kind: 5
@@ -2646,7 +2646,7 @@ MonoBehaviour:
       - jeem
       - lam
       Drawing: CF
-      Complexity: 1
+      Complexity: 0.3
     - Id: lentil
       Active: 1
       Kind: 5
@@ -2662,7 +2662,7 @@ MonoBehaviour:
       - dal
       - seen
       Drawing: 29
-      Complexity: 1
+      Complexity: 0.3
     - Id: lets
       Active: 1
       Kind: 2
@@ -2678,7 +2678,7 @@ MonoBehaviour:
       - yeh
       - alef
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: light
       Active: 1
       Kind: 5
@@ -2694,7 +2694,7 @@ MonoBehaviour:
       - waw
       - hamza
       Drawing: B7
-      Complexity: 1
+      Complexity: 0.6
     - Id: lion
       Active: 1
       Kind: 5
@@ -2710,7 +2710,7 @@ MonoBehaviour:
       - seen
       - dal
       Drawing: D1
-      Complexity: 1
+      Complexity: 0.6
     - Id: lion_dual
       Active: 1
       Kind: 5
@@ -2762,7 +2762,7 @@ MonoBehaviour:
       - alef
       - heh
       Drawing: 2022
-      Complexity: 1
+      Complexity: 0.6
     - Id: man
       Active: 1
       Kind: 5
@@ -2778,7 +2778,7 @@ MonoBehaviour:
       - jeem_dammah
       - lam_kasrah_tanwin
       Drawing: 2D
-      Complexity: 1
+      Complexity: 0.3
     - Id: market
       Active: 1
       Kind: 5
@@ -2794,7 +2794,7 @@ MonoBehaviour:
       - waw
       - qaf
       Drawing: AB
-      Complexity: 1
+      Complexity: 0.3
     - Id: meat
       Active: 1
       Kind: 5
@@ -2810,7 +2810,7 @@ MonoBehaviour:
       - hah
       - meem
       Drawing: D3
-      Complexity: 1
+      Complexity: 0.3
     - Id: melancholy
       Active: 1
       Kind: 5
@@ -2843,7 +2843,7 @@ MonoBehaviour:
       - heh
       - reh
       Drawing: 2265
-      Complexity: 1
+      Complexity: 0.3
     - Id: month_april
       Active: 1
       Kind: 5
@@ -2861,7 +2861,7 @@ MonoBehaviour:
       - alef
       - noon
       Drawing: 2264
-      Complexity: 1
+      Complexity: 0.6
     - Id: month_august
       Active: 1
       Kind: 5
@@ -2876,7 +2876,7 @@ MonoBehaviour:
       - alef_maddah
       - beh
       Drawing: B1
-      Complexity: 1
+      Complexity: 0.6
     - Id: month_december
       Active: 1
       Kind: 5
@@ -3091,7 +3091,7 @@ MonoBehaviour:
       - meem
       - reh
       Drawing: D4
-      Complexity: 1
+      Complexity: 0.6
     - Id: morning
       Active: 1
       Kind: 5
@@ -3108,7 +3108,7 @@ MonoBehaviour:
       - alef
       - hah
       Drawing: 25
-      Complexity: 1
+      Complexity: 0.6
     - Id: mother
       Active: 1
       Kind: 5
@@ -3125,7 +3125,7 @@ MonoBehaviour:
       - meem
       - alef
       Drawing: D6
-      Complexity: 1
+      Complexity: 0.3
     - Id: mountain
       Active: 1
       Kind: 5
@@ -3141,7 +3141,7 @@ MonoBehaviour:
       - beh
       - lam
       Drawing: D2
-      Complexity: 1
+      Complexity: 0.6
     - Id: mountain_dual
       Active: 1
       Kind: 5
@@ -3192,7 +3192,7 @@ MonoBehaviour:
       - alef_hamza_hi
       - reh
       Drawing: D8
-      Complexity: 1
+      Complexity: 0.6
     - Id: mouth
       Active: 1
       Kind: 5
@@ -3207,7 +3207,7 @@ MonoBehaviour:
       - feh
       - meem
       Drawing: D5
-      Complexity: 1
+      Complexity: 0.3
     - Id: my_aunt_father
       Active: 1
       Kind: 5
@@ -3258,7 +3258,7 @@ MonoBehaviour:
       - khah
       - yeh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: my_face
       Active: 1
       Kind: 5
@@ -3291,7 +3291,7 @@ MonoBehaviour:
       - dal
       - yeh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: my_name
       Active: 1
       Kind: 5
@@ -3308,7 +3308,7 @@ MonoBehaviour:
       - meem
       - yeh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: my_sister
       Active: 1
       Kind: 5
@@ -3325,7 +3325,7 @@ MonoBehaviour:
       - teh
       - yeh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: my_uncle_father
       Active: 1
       Kind: 5
@@ -3341,7 +3341,7 @@ MonoBehaviour:
       - meem
       - yeh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: my_uncle_mother
       Active: 1
       Kind: 5
@@ -3358,7 +3358,7 @@ MonoBehaviour:
       - lam
       - yeh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: nail
       Active: 1
       Kind: 5
@@ -3374,14 +3374,14 @@ MonoBehaviour:
       - feh
       - reh
       Drawing: 152
-      Complexity: 1
+      Complexity: 0.6
     - Id: need
       Active: 1
       Kind: 2
       Category: 31
       Form: 1
       Article: 0
-      Gender: 2
+      Gender: 1
       LinkedWord: 
       Arabic: "\u062A\u062D\u062A\u0627\u062C"
       Value: 
@@ -3409,7 +3409,7 @@ MonoBehaviour:
       - reh
       - teh_marbuta
       Drawing: DE
-      Complexity: 1
+      Complexity: 0.6
     - Id: nest
       Active: 1
       Kind: 5
@@ -3424,7 +3424,7 @@ MonoBehaviour:
       - ain
       - sheen
       Drawing: DA
-      Complexity: 1
+      Complexity: 0.3
     - Id: next
       Active: 1
       Kind: 1
@@ -3443,7 +3443,7 @@ MonoBehaviour:
       - dal
       - meem
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: nose
       Active: 1
       Kind: 5
@@ -3459,7 +3459,7 @@ MonoBehaviour:
       - noon
       - feh
       Drawing: DB
-      Complexity: 1
+      Complexity: 0.3
     - Id: notebook
       Active: 1
       Kind: 5
@@ -3476,7 +3476,7 @@ MonoBehaviour:
       - teh_fathah
       - reh
       Drawing: DC
-      Complexity: 1
+      Complexity: 0.6
     - Id: now
       Active: 1
       Kind: 6
@@ -3493,7 +3493,7 @@ MonoBehaviour:
       - alef_maddah
       - noon
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: number_00
       Active: 1
       Kind: 5
@@ -3509,7 +3509,7 @@ MonoBehaviour:
       - feh
       - reh
       Drawing: 2669
-      Complexity: 1
+      Complexity: 0.6
     - Id: number_01
       Active: 1
       Kind: 5
@@ -3526,7 +3526,7 @@ MonoBehaviour:
       - hah
       - dal
       Drawing: 266A
-      Complexity: 1
+      Complexity: 0.6
     - Id: number_02
       Active: 1
       Kind: 5
@@ -3544,7 +3544,7 @@ MonoBehaviour:
       - alef
       - noon
       Drawing: 266B
-      Complexity: 1
+      Complexity: 0.6
     - Id: number_03
       Active: 1
       Kind: 5
@@ -3562,7 +3562,7 @@ MonoBehaviour:
       - theh
       - teh_marbuta
       Drawing: 266C
-      Complexity: 1
+      Complexity: 0.6
     - Id: number_04
       Active: 1
       Kind: 5
@@ -3580,7 +3580,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Drawing: 266D
-      Complexity: 1
+      Complexity: 0.6
     - Id: number_05
       Active: 1
       Kind: 5
@@ -3597,7 +3597,7 @@ MonoBehaviour:
       - seen
       - teh_marbuta
       Drawing: 266E
-      Complexity: 1
+      Complexity: 0.6
     - Id: number_06
       Active: 1
       Kind: 5
@@ -3613,7 +3613,7 @@ MonoBehaviour:
       - teh
       - teh_marbuta
       Drawing: 266F
-      Complexity: 1
+      Complexity: 0.3
     - Id: number_07
       Active: 1
       Kind: 5
@@ -3630,7 +3630,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta_dammah_tanwin
       Drawing: 10E
-      Complexity: 1
+      Complexity: 0.6
     - Id: number_08
       Active: 1
       Kind: 5
@@ -3649,7 +3649,7 @@ MonoBehaviour:
       - yeh
       - teh_marbuta
       Drawing: 122
-      Complexity: 1
+      Complexity: 0.6
     - Id: number_09
       Active: 1
       Kind: 5
@@ -3666,7 +3666,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Drawing: 12A
-      Complexity: 1
+      Complexity: 0.3
     - Id: number_10
       Active: 1
       Kind: 5
@@ -3683,7 +3683,7 @@ MonoBehaviour:
       - reh
       - teh_marbuta
       Drawing: 12E
-      Complexity: 1
+      Complexity: 0.3
     - Id: number_11
       Active: 1
       Kind: 5
@@ -4129,7 +4129,7 @@ MonoBehaviour:
       - ain
       - alef_fathah_tanwin
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: oil
       Active: 1
       Kind: 5
@@ -4145,7 +4145,7 @@ MonoBehaviour:
       - yeh
       - teh
       Drawing: D9
-      Complexity: 1
+      Complexity: 0.3
     - Id: on
       Active: 1
       Kind: 4
@@ -4161,7 +4161,7 @@ MonoBehaviour:
       - lam
       - alef_maqsura
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: onion
       Active: 1
       Kind: 5
@@ -4177,7 +4177,7 @@ MonoBehaviour:
       - sad
       - lam
       Drawing: DD
-      Complexity: 1
+      Complexity: 0.6
     - Id: OokaDH
       Active: 1
       Kind: 5
@@ -4210,7 +4210,7 @@ MonoBehaviour:
       - teh_fathah
       - hah_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: oven
       Active: 1
       Kind: 5
@@ -4226,7 +4226,7 @@ MonoBehaviour:
       - reh
       - noon
       Drawing: A7
-      Complexity: 1
+      Complexity: 0.3
     - Id: paper
       Active: 1
       Kind: 5
@@ -4242,7 +4242,7 @@ MonoBehaviour:
       - reh
       - qaf
       Drawing: E1
-      Complexity: 1
+      Complexity: 0.3
     - Id: parrot
       Active: 1
       Kind: 5
@@ -4260,7 +4260,7 @@ MonoBehaviour:
       - alef
       - hamza
       Drawing: E2
-      Complexity: 1
+      Complexity: 0.6
     - Id: peace
       Active: 1
       Kind: 5
@@ -4277,7 +4277,7 @@ MonoBehaviour:
       - alef
       - meem
       Drawing: 40
-      Complexity: 1
+      Complexity: 0.6
     - Id: pear
       Active: 1
       Kind: 5
@@ -4345,7 +4345,7 @@ MonoBehaviour:
       - lam
       - meem
       Drawing: E5
-      Complexity: 1
+      Complexity: 0.6
     - Id: played
       Active: 1
       Kind: 2
@@ -4361,7 +4361,7 @@ MonoBehaviour:
       - ain_kasrah
       - beh_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: player
       Active: 1
       Kind: 5
@@ -4378,7 +4378,7 @@ MonoBehaviour:
       - ain
       - beh
       Drawing: 20AC
-      Complexity: 1
+      Complexity: 0.6
     - Id: playground
       Active: 1
       Kind: 5
@@ -4395,7 +4395,7 @@ MonoBehaviour:
       - ain
       - beh
       Drawing: 11A
-      Complexity: 1
+      Complexity: 0.6
     - Id: please
       Active: 1
       Kind: 6
@@ -4412,7 +4412,7 @@ MonoBehaviour:
       - alef
       - hamza
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: plum
       Active: 1
       Kind: 5
@@ -4428,7 +4428,7 @@ MonoBehaviour:
       - waw
       - khah
       Drawing: E3
-      Complexity: 1
+      Complexity: 0.3
     - Id: plural
       Active: 1
       Kind: 7
@@ -4444,7 +4444,7 @@ MonoBehaviour:
       - meem
       - ain
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: policeman
       Active: 1
       Kind: 5
@@ -4461,7 +4461,7 @@ MonoBehaviour:
       - tah
       - yeh
       Drawing: E6
-      Complexity: 1
+      Complexity: 0.6
     - Id: potato
       Active: 1
       Kind: 5
@@ -4495,7 +4495,7 @@ MonoBehaviour:
       - tah_fathah
       - reh
       Drawing: F0
-      Complexity: 1
+      Complexity: 0.6
     - Id: rainy
       Active: 1
       Kind: 1
@@ -4512,7 +4512,7 @@ MonoBehaviour:
       - tah
       - reh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: ready
       Active: 1
       Kind: 6
@@ -4529,7 +4529,7 @@ MonoBehaviour:
       - heh
       - zain
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: released
       Active: 1
       Kind: 2
@@ -4545,7 +4545,7 @@ MonoBehaviour:
       - reh_fathah
       - kaf_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: remain
       Active: 1
       Kind: 2
@@ -4562,7 +4562,7 @@ MonoBehaviour:
       - beh
       - hah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: restaurant
       Active: 1
       Kind: 5
@@ -4579,7 +4579,7 @@ MonoBehaviour:
       - ain_fathah
       - meem
       Drawing: 26
-      Complexity: 1
+      Complexity: 0.6
     - Id: rice
       Active: 1
       Kind: 5
@@ -4594,7 +4594,7 @@ MonoBehaviour:
       - reh
       - zain
       Drawing: E9
-      Complexity: 1
+      Complexity: 0.3
     - Id: river
       Active: 1
       Kind: 5
@@ -4610,7 +4610,7 @@ MonoBehaviour:
       - heh
       - reh
       Drawing: EA
-      Complexity: 1
+      Complexity: 0.3
     - Id: river_dual
       Active: 1
       Kind: 5
@@ -4628,7 +4628,7 @@ MonoBehaviour:
       - alef
       - noon
       Drawing: 2195
-      Complexity: 1
+      Complexity: 0.6
     - Id: river_plural
       Active: 1
       Kind: 5
@@ -4646,7 +4646,7 @@ MonoBehaviour:
       - alef
       - reh
       Drawing: 2194
-      Complexity: 1
+      Complexity: 0.6
     - Id: room
       Active: 1
       Kind: 5
@@ -4663,7 +4663,7 @@ MonoBehaviour:
       - feh
       - teh_marbuta
       Drawing: 3A
-      Complexity: 1
+      Complexity: 0.6
     - Id: sad
       Active: 1
       Kind: 1
@@ -4680,7 +4680,7 @@ MonoBehaviour:
       - yeh
       - noon
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: sad_feminine
       Active: 1
       Kind: 1
@@ -4698,7 +4698,7 @@ MonoBehaviour:
       - noon
       - teh_marbuta
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: safe
       Active: 1
       Kind: 1
@@ -4730,7 +4730,7 @@ MonoBehaviour:
       - lam_sukun
       - hah
       Drawing: EB
-      Complexity: 1
+      Complexity: 0.3
     - Id: samer
       Active: 1
       Kind: 5
@@ -4747,7 +4747,7 @@ MonoBehaviour:
       - meem
       - reh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: sat
       Active: 1
       Kind: 2
@@ -4763,7 +4763,7 @@ MonoBehaviour:
       - lam_fathah
       - seen_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: sat_feminine
       Active: 1
       Kind: 2
@@ -4780,7 +4780,7 @@ MonoBehaviour:
       - seen
       - teh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: saw
       Active: 1
       Kind: 2
@@ -4796,7 +4796,7 @@ MonoBehaviour:
       - alef_hamza_hi
       - alef_maqsura
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: school
       Active: 1
       Kind: 5
@@ -4831,7 +4831,7 @@ MonoBehaviour:
       - lam
       - meem
       Drawing: 2C
-      Complexity: 1
+      Complexity: 0.6
     - Id: scientist_dual
       Active: 1
       Kind: 5
@@ -4884,7 +4884,7 @@ MonoBehaviour:
       - qaf
       - sad
       Drawing: E8
-      Complexity: 1
+      Complexity: 0.6
     - Id: second
       Active: 1
       Kind: 5
@@ -4902,7 +4902,7 @@ MonoBehaviour:
       - yeh
       - teh_marbuta
       Drawing: 2193
-      Complexity: 1
+      Complexity: 0.6
     - Id: shirt
       Active: 1
       Kind: 5
@@ -4919,7 +4919,7 @@ MonoBehaviour:
       - yeh
       - sad
       Drawing: ED
-      Complexity: 1
+      Complexity: 0.6
     - Id: shoe
       Active: 1
       Kind: 5
@@ -4936,7 +4936,7 @@ MonoBehaviour:
       - alef
       - hamza
       Drawing: 112
-      Complexity: 1
+      Complexity: 0.6
     - Id: shop
       Active: 1
       Kind: 5
@@ -4953,7 +4953,7 @@ MonoBehaviour:
       - alef
       - noon_kasrah_tanwin
       Drawing: 2198
-      Complexity: 1
+      Complexity: 0.6
     - Id: singular
       Active: 1
       Kind: 7
@@ -4970,7 +4970,7 @@ MonoBehaviour:
       - reh
       - dal
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: sister
       Active: 1
       Kind: 5
@@ -4986,7 +4986,7 @@ MonoBehaviour:
       - khah
       - teh
       Drawing: EE
-      Complexity: 1
+      Complexity: 0.3
     - Id: sky
       Active: 1
       Kind: 5
@@ -5003,7 +5003,7 @@ MonoBehaviour:
       - alef
       - hamza
       Drawing: 2026
-      Complexity: 1
+      Complexity: 0.6
     - Id: slow
       Active: 1
       Kind: 1
@@ -5053,7 +5053,7 @@ MonoBehaviour:
       - lam
       - jeem
       Drawing: EF
-      Complexity: 1
+      Complexity: 0.6
     - Id: sound
       Active: 1
       Kind: 5
@@ -5069,7 +5069,7 @@ MonoBehaviour:
       - waw
       - teh
       Drawing: EC
-      Complexity: 1
+      Complexity: 0.6
     - Id: spring
       Active: 1
       Kind: 5
@@ -5086,7 +5086,7 @@ MonoBehaviour:
       - yeh
       - ain
       Drawing: 2192
-      Complexity: 1
+      Complexity: 0.3
     - Id: station
       Active: 1
       Kind: 5
@@ -5103,7 +5103,7 @@ MonoBehaviour:
       - tah
       - teh_marbuta
       Drawing: 2197
-      Complexity: 1
+      Complexity: 0.6
     - Id: studied
       Active: 1
       Kind: 2
@@ -5119,7 +5119,7 @@ MonoBehaviour:
       - reh_fathah
       - seen_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: sugar
       Active: 1
       Kind: 5
@@ -5135,7 +5135,7 @@ MonoBehaviour:
       - kaf
       - reh
       Drawing: 2191
-      Complexity: 1
+      Complexity: 0.3
     - Id: summer
       Active: 1
       Kind: 5
@@ -5151,7 +5151,7 @@ MonoBehaviour:
       - yeh
       - feh
       Drawing: 2030
-      Complexity: 1
+      Complexity: 0.3
     - Id: sun
       Active: 1
       Kind: 5
@@ -5167,7 +5167,7 @@ MonoBehaviour:
       - meem
       - seen
       Drawing: F1
-      Complexity: 1
+      Complexity: 0.3
     - Id: sure
       Active: 1
       Kind: 6
@@ -5184,7 +5184,7 @@ MonoBehaviour:
       - waw
       - alef_fathah_tanwin
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: table
       Active: 1
       Kind: 5
@@ -5218,7 +5218,7 @@ MonoBehaviour:
       - alef
       - yeh
       Drawing: F4
-      Complexity: 1
+      Complexity: 0.3
     - Id: teacher
       Active: 1
       Kind: 5
@@ -5235,7 +5235,7 @@ MonoBehaviour:
       - lam
       - meem
       Drawing: F6
-      Complexity: 1
+      Complexity: 0.6
     - Id: television
       Active: 1
       Kind: 5
@@ -5270,7 +5270,7 @@ MonoBehaviour:
       - reh
       - alef_fathah_tanwin
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_active
       Active: 1
       Kind: 1
@@ -5289,7 +5289,7 @@ MonoBehaviour:
       - yeh
       - tah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_apple
       Active: 1
       Kind: 5
@@ -5308,7 +5308,7 @@ MonoBehaviour:
       - alef
       - hah
       Drawing: 42
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_back
       Active: 1
       Kind: 5
@@ -5326,7 +5326,7 @@ MonoBehaviour:
       - heh
       - reh
       Drawing: 45
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_ball
       Active: 1
       Kind: 5
@@ -5344,7 +5344,7 @@ MonoBehaviour:
       - reh
       - teh_marbuta
       Drawing: A3
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_bear
       Active: 1
       Kind: 5
@@ -5361,7 +5361,7 @@ MonoBehaviour:
       - dal
       - beh
       Drawing: 49
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_beautiful
       Active: 1
       Kind: 1
@@ -5380,7 +5380,7 @@ MonoBehaviour:
       - yeh
       - lam
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_bed
       Active: 1
       Kind: 5
@@ -5399,7 +5399,7 @@ MonoBehaviour:
       - alef
       - sheen
       Drawing: 4A
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_berry
       Active: 1
       Kind: 5
@@ -5417,7 +5417,7 @@ MonoBehaviour:
       - waw
       - teh
       Drawing: 4C
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_bird
       Active: 1
       Kind: 5
@@ -5456,7 +5456,7 @@ MonoBehaviour:
       - alef
       - beh
       Drawing: 4E
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_box
       Active: 1
       Kind: 5
@@ -5494,7 +5494,7 @@ MonoBehaviour:
       - beh
       - yeh
       Drawing: 51
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_bread
       Active: 1
       Kind: 5
@@ -5512,7 +5512,7 @@ MonoBehaviour:
       - beh
       - zain
       Drawing: 53
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_bus
       Active: 1
       Kind: 5
@@ -5530,7 +5530,7 @@ MonoBehaviour:
       - alef
       - sad
       Drawing: 44
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_carpenter
       Active: 1
       Kind: 5
@@ -5549,7 +5549,7 @@ MonoBehaviour:
       - alef
       - reh
       Drawing: 57
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_carrot
       Active: 1
       Kind: 5
@@ -5567,7 +5567,7 @@ MonoBehaviour:
       - zain
       - reh
       Drawing: 58
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_chair
       Active: 1
       Kind: 5
@@ -5586,7 +5586,7 @@ MonoBehaviour:
       - seen
       - yeh
       Drawing: 5A
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_club
       Active: 1
       Kind: 5
@@ -5625,7 +5625,7 @@ MonoBehaviour:
       - tah
       - feh
       Drawing: 66
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_cold
       Active: 1
       Kind: 5
@@ -5643,7 +5643,7 @@ MonoBehaviour:
       - reh
       - dal
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_color_brown
       Active: 1
       Kind: 1
@@ -5661,7 +5661,7 @@ MonoBehaviour:
       - noon
       - yeh
       Drawing: 100
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_color_green
       Active: 1
       Kind: 1
@@ -5762,7 +5762,7 @@ MonoBehaviour:
       - alef
       - lam
       Drawing: 69
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_doctor
       Active: 1
       Kind: 5
@@ -5781,7 +5781,7 @@ MonoBehaviour:
       - yeh
       - beh
       Drawing: 6A
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_engineer
       Active: 1
       Kind: 5
@@ -5819,7 +5819,7 @@ MonoBehaviour:
       - yeh
       - noon
       Drawing: 70
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_flower
       Active: 1
       Kind: 5
@@ -5837,7 +5837,7 @@ MonoBehaviour:
       - reh
       - dal
       Drawing: 77
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_forest
       Active: 1
       Kind: 5
@@ -5856,7 +5856,7 @@ MonoBehaviour:
       - beh
       - teh_marbuta
       Drawing: 79
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_fridge
       Active: 1
       Kind: 5
@@ -5894,7 +5894,7 @@ MonoBehaviour:
       - noon
       - teh
       Drawing: C0
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_happy
       Active: 1
       Kind: 1
@@ -5913,7 +5913,7 @@ MonoBehaviour:
       - yeh
       - dal
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_hat
       Active: 1
       Kind: 5
@@ -5932,7 +5932,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Drawing: C9
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_hospital
       Active: 1
       Kind: 5
@@ -5971,7 +5971,7 @@ MonoBehaviour:
       - yeh
       - teh
       Drawing: C8
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_icecream
       Active: 1
       Kind: 5
@@ -5990,7 +5990,7 @@ MonoBehaviour:
       - zah
       - teh_marbuta
       Drawing: CD
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_juice
       Active: 1
       Kind: 5
@@ -6009,7 +6009,7 @@ MonoBehaviour:
       - yeh
       - reh
       Drawing: 39
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_lazy
       Active: 1
       Kind: 1
@@ -6028,7 +6028,7 @@ MonoBehaviour:
       - waw
       - lam
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_leg
       Active: 1
       Kind: 5
@@ -6046,7 +6046,7 @@ MonoBehaviour:
       - jeem
       - lam
       Drawing: CF
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_light
       Active: 1
       Kind: 5
@@ -6064,7 +6064,7 @@ MonoBehaviour:
       - waw
       - hamza
       Drawing: B7
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_light_v2
       Active: 1
       Kind: 5
@@ -6082,7 +6082,7 @@ MonoBehaviour:
       - waw
       - reh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_meeting
       Active: 1
       Kind: 5
@@ -6101,7 +6101,7 @@ MonoBehaviour:
       - alef
       - hamza
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_month
       Active: 1
       Kind: 5
@@ -6119,7 +6119,7 @@ MonoBehaviour:
       - heh
       - reh
       Drawing: 2265
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_moon
       Active: 1
       Kind: 5
@@ -6137,7 +6137,7 @@ MonoBehaviour:
       - meem
       - reh
       Drawing: D4
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_mountain
       Active: 1
       Kind: 5
@@ -6155,7 +6155,7 @@ MonoBehaviour:
       - beh
       - lam
       Drawing: D2
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_oil
       Active: 1
       Kind: 5
@@ -6173,7 +6173,7 @@ MonoBehaviour:
       - yeh
       - teh
       Drawing: D9
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_oven
       Active: 1
       Kind: 5
@@ -6191,7 +6191,7 @@ MonoBehaviour:
       - reh
       - noon
       Drawing: A7
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_parrot
       Active: 1
       Kind: 5
@@ -6249,7 +6249,7 @@ MonoBehaviour:
       - ain
       - beh
       Drawing: 11A
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_policeman
       Active: 1
       Kind: 5
@@ -6305,7 +6305,7 @@ MonoBehaviour:
       - heh
       - reh
       Drawing: EA
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_room
       Active: 1
       Kind: 5
@@ -6324,7 +6324,7 @@ MonoBehaviour:
       - feh
       - teh_marbuta
       Drawing: 3A
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_sad
       Active: 1
       Kind: 1
@@ -6343,7 +6343,7 @@ MonoBehaviour:
       - yeh
       - noon
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_scientist
       Active: 1
       Kind: 5
@@ -6362,7 +6362,7 @@ MonoBehaviour:
       - lam
       - meem
       Drawing: 2C
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_shirt
       Active: 1
       Kind: 5
@@ -6419,7 +6419,7 @@ MonoBehaviour:
       - alef
       - noon
       Drawing: 2198
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_snow
       Active: 1
       Kind: 5
@@ -6437,7 +6437,7 @@ MonoBehaviour:
       - lam
       - jeem
       Drawing: EF
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_station
       Active: 1
       Kind: 5
@@ -6474,7 +6474,7 @@ MonoBehaviour:
       - meem
       - seen
       Drawing: F1
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_table
       Active: 1
       Kind: 5
@@ -6513,7 +6513,7 @@ MonoBehaviour:
       - lam
       - meem
       Drawing: F6
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_ten_oclock
       Active: 1
       Kind: 1
@@ -6551,7 +6551,7 @@ MonoBehaviour:
       - meem
       - reh
       Drawing: F5
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_time
       Active: 1
       Kind: 5
@@ -6570,7 +6570,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_tooth
       Active: 1
       Kind: 5
@@ -6587,7 +6587,7 @@ MonoBehaviour:
       - seen
       - noon
       Drawing: DF
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_trousers
       Active: 1
       Kind: 5
@@ -6625,7 +6625,7 @@ MonoBehaviour:
       - yeh
       - reh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_whale
       Active: 1
       Kind: 5
@@ -6643,7 +6643,7 @@ MonoBehaviour:
       - waw
       - teh
       Drawing: FD
-      Complexity: 1
+      Complexity: 0.3
     - Id: the_window
       Active: 1
       Kind: 5
@@ -6682,7 +6682,7 @@ MonoBehaviour:
       - alef
       - hamza
       Drawing: BF
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_wolf
       Active: 1
       Kind: 5
@@ -6719,7 +6719,7 @@ MonoBehaviour:
       - yeh_hamza
       - ain
       Drawing: 24
-      Complexity: 1
+      Complexity: 0.6
     - Id: the_worker
       Active: 1
       Kind: 5
@@ -6738,7 +6738,7 @@ MonoBehaviour:
       - meem
       - lam
       Drawing: 27
-      Complexity: 1
+      Complexity: 0.6
     - Id: tiger
       Active: 1
       Kind: 5
@@ -6754,7 +6754,7 @@ MonoBehaviour:
       - meem
       - reh
       Drawing: F5
-      Complexity: 1
+      Complexity: 0.3
     - Id: to
       Active: 1
       Kind: 4
@@ -6770,7 +6770,7 @@ MonoBehaviour:
       - lam
       - alef_maqsura
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: today
       Active: 1
       Kind: 6
@@ -6788,7 +6788,7 @@ MonoBehaviour:
       - waw
       - meem
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: toilet
       Active: 1
       Kind: 5
@@ -6825,7 +6825,7 @@ MonoBehaviour:
       - reh
       - teh_marbuta
       Drawing: FE
-      Complexity: 1
+      Complexity: 0.6
     - Id: tomorrow
       Active: 1
       Kind: 6
@@ -6841,7 +6841,7 @@ MonoBehaviour:
       - dal
       - alef_fathah_tanwin
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: tongue
       Active: 1
       Kind: 5
@@ -6858,7 +6858,7 @@ MonoBehaviour:
       - alef
       - noon
       Drawing: 118
-      Complexity: 1
+      Complexity: 0.6
     - Id: tooth
       Active: 1
       Kind: 5
@@ -6873,7 +6873,7 @@ MonoBehaviour:
       - seen
       - noon
       Drawing: DF
-      Complexity: 1
+      Complexity: 0.3
     - Id: tower
       Active: 1
       Kind: 5
@@ -6889,7 +6889,7 @@ MonoBehaviour:
       - reh
       - jeem
       Drawing: FA
-      Complexity: 1
+      Complexity: 0.3
     - Id: tree
       Active: 1
       Kind: 5
@@ -6905,7 +6905,7 @@ MonoBehaviour:
       - jeem
       - reh
       Drawing: FB
-      Complexity: 1
+      Complexity: 0.3
     - Id: triangle
       Active: 1
       Kind: 5
@@ -6940,7 +6940,7 @@ MonoBehaviour:
       - alef
       - lam
       Drawing: F8
-      Complexity: 1
+      Complexity: 0.6
     - Id: uncle_father
       Active: 1
       Kind: 5
@@ -6955,7 +6955,7 @@ MonoBehaviour:
       - ain
       - meem
       Drawing: A4
-      Complexity: 1
+      Complexity: 0.3
     - Id: uncle_mother
       Active: 1
       Kind: 5
@@ -6971,7 +6971,7 @@ MonoBehaviour:
       - alef
       - lam
       Drawing: A2
-      Complexity: 1
+      Complexity: 0.3
     - Id: understood
       Active: 1
       Kind: 2
@@ -6987,7 +6987,7 @@ MonoBehaviour:
       - heh_kasrah
       - meem_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: vegetables
       Active: 1
       Kind: 5
@@ -7003,7 +7003,7 @@ MonoBehaviour:
       - dad
       - reh
       Drawing: 2E
-      Complexity: 1
+      Complexity: 0.3
     - Id: verymuch
       Active: 1
       Kind: 6
@@ -7021,7 +7021,7 @@ MonoBehaviour:
       - lam
       - alef_fathah_tanwin
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: virtuous
       Active: 1
       Kind: 1
@@ -7038,7 +7038,7 @@ MonoBehaviour:
       - yeh
       - heh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: voice
       Active: 1
       Kind: 5
@@ -7054,7 +7054,7 @@ MonoBehaviour:
       - waw
       - teh
       Drawing: F9
-      Complexity: 1
+      Complexity: 0.3
     - Id: vowel
       Active: 1
       Kind: 7
@@ -7089,7 +7089,7 @@ MonoBehaviour:
       - sheen
       - alef_maqsura
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: was
       Active: 1
       Kind: 2
@@ -7105,7 +7105,7 @@ MonoBehaviour:
       - alef
       - noon
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: washing_machine
       Active: 1
       Kind: 5
@@ -7123,7 +7123,7 @@ MonoBehaviour:
       - lam
       - teh_marbuta
       Drawing: 175
-      Complexity: 1
+      Complexity: 0.6
     - Id: water
       Active: 1
       Kind: 5
@@ -7139,7 +7139,7 @@ MonoBehaviour:
       - alef
       - hamza
       Drawing: 2019
-      Complexity: 1
+      Complexity: 0.6
     - Id: watermelon
       Active: 1
       Kind: 5
@@ -7156,7 +7156,7 @@ MonoBehaviour:
       - yeh
       - khah
       Drawing: 3F
-      Complexity: 1
+      Complexity: 0.6
     - Id: welcome
       Active: 1
       Kind: 6
@@ -7173,7 +7173,7 @@ MonoBehaviour:
       - lam
       - alef_fathah_tanwin
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: welcome_assertion
       Active: 1
       Kind: 5
@@ -7190,7 +7190,7 @@ MonoBehaviour:
       - lam
       - alef_fathah_tanwin
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: well-being
       Active: 1
       Kind: 5
@@ -7206,7 +7206,7 @@ MonoBehaviour:
       - yeh
       - reh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: went
       Active: 1
       Kind: 2
@@ -7222,7 +7222,7 @@ MonoBehaviour:
       - heh_fathah
       - beh_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: went_feminine
       Active: 1
       Kind: 2
@@ -7239,7 +7239,7 @@ MonoBehaviour:
       - beh
       - teh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: whale
       Active: 1
       Kind: 5
@@ -7255,7 +7255,7 @@ MonoBehaviour:
       - waw
       - teh
       Drawing: FD
-      Complexity: 1
+      Complexity: 0.3
     - Id: what
       Active: 1
       Kind: 4
@@ -7270,7 +7270,7 @@ MonoBehaviour:
       - meem
       - alef
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: whats
       Active: 1
       Kind: 4
@@ -7285,7 +7285,7 @@ MonoBehaviour:
       - kaf
       - meem
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: window
       Active: 1
       Kind: 5
@@ -7303,7 +7303,7 @@ MonoBehaviour:
       - thal
       - teh_marbuta
       Drawing: 177
-      Complexity: 1
+      Complexity: 0.6
     - Id: winter
       Active: 1
       Kind: 5
@@ -7320,7 +7320,7 @@ MonoBehaviour:
       - alef
       - hamza
       Drawing: BF
-      Complexity: 1
+      Complexity: 0.6
     - Id: with_article
       Active: 1
       Kind: 7
@@ -7346,7 +7346,7 @@ MonoBehaviour:
       - yeh
       - feh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: with_well-being
       Active: 1
       Kind: 5
@@ -7363,7 +7363,7 @@ MonoBehaviour:
       - yeh
       - reh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: without_article
       Active: 1
       Kind: 7
@@ -7390,7 +7390,7 @@ MonoBehaviour:
       - yeh
       - feh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: wolf
       Active: 1
       Kind: 5
@@ -7440,7 +7440,7 @@ MonoBehaviour:
       - beh_kasrah
       - hah_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: won_feminine
       Active: 1
       Kind: 2
@@ -7457,7 +7457,7 @@ MonoBehaviour:
       - hah
       - teh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: wonderful
       Active: 1
       Kind: 1
@@ -7474,7 +7474,7 @@ MonoBehaviour:
       - yeh_hamza
       - ain
       Drawing: 24
-      Complexity: 1
+      Complexity: 0.6
     - Id: wore
       Active: 1
       Kind: 2
@@ -7490,7 +7490,7 @@ MonoBehaviour:
       - beh_kasrah
       - seen_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: worker
       Active: 1
       Kind: 5
@@ -7507,7 +7507,7 @@ MonoBehaviour:
       - meem
       - lam
       Drawing: 27
-      Complexity: 1
+      Complexity: 0.6
     - Id: worker_dual
       Active: 1
       Kind: 5
@@ -7526,7 +7526,7 @@ MonoBehaviour:
       - alef
       - noon
       Drawing: 201D
-      Complexity: 1
+      Complexity: 0.6
     - Id: worker_plural
       Active: 1
       Kind: 5
@@ -7543,7 +7543,7 @@ MonoBehaviour:
       - alef
       - lam
       Drawing: 2018
-      Complexity: 1
+      Complexity: 0.6
     - Id: wrote
       Active: 1
       Kind: 2
@@ -7559,7 +7559,7 @@ MonoBehaviour:
       - teh_fathah
       - beh_fathah
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: year
       Active: 1
       Kind: 5
@@ -7575,7 +7575,7 @@ MonoBehaviour:
       - alef
       - meem
       Drawing: 201C
-      Complexity: 1
+      Complexity: 0.3
     - Id: yes
       Active: 1
       Kind: 6
@@ -7591,7 +7591,7 @@ MonoBehaviour:
       - ain
       - meem
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: yesterday
       Active: 1
       Kind: 6
@@ -7611,7 +7611,7 @@ MonoBehaviour:
       - hah
       - teh_marbuta
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: yogurt
       Active: 1
       Kind: 5
@@ -7627,7 +7627,7 @@ MonoBehaviour:
       - beh
       - noon
       Drawing: 2A
-      Complexity: 1
+      Complexity: 0.3
     - Id: you
       Active: 1
       Kind: 8
@@ -7643,7 +7643,7 @@ MonoBehaviour:
       - noon
       - teh
       Drawing: 
-      Complexity: 1
+      Complexity: 0.3
     - Id: your_name
       Active: 1
       Kind: 5
@@ -7660,7 +7660,7 @@ MonoBehaviour:
       - meem
       - kaf
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6
     - Id: your_situation
       Active: 1
       Kind: 5
@@ -7677,4 +7677,4 @@ MonoBehaviour:
       - lam
       - kaf
       Drawing: 
-      Complexity: 1
+      Complexity: 0.6

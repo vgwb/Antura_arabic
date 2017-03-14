@@ -72,7 +72,7 @@ MonoBehaviour:
       Old_Initial: "\u0628\u0640\u200E"
       Old_Medial: "\u0640\u0628\u0640\u200E"
       Old_Final: "\u0640\u0628\u200E"
-      Complexity: 1
+      Complexity: 0.3
     - Id: teh
       Active: 1
       Number: 3
@@ -102,7 +102,7 @@ MonoBehaviour:
       Old_Initial: "\u062A\u0640\u200E"
       Old_Medial: "\u0640\u062A\u0640\u200E"
       Old_Final: "\u0640\u062A\u200E"
-      Complexity: 1
+      Complexity: 0.3
     - Id: theh
       Active: 1
       Number: 4
@@ -132,7 +132,7 @@ MonoBehaviour:
       Old_Initial: "\u062B\u0640\u200E"
       Old_Medial: "\u0640\u062B\u0640\u200E"
       Old_Final: "\u0640\u062B\u200E"
-      Complexity: 1
+      Complexity: 0.6
     - Id: jeem
       Active: 1
       Number: 5
@@ -162,7 +162,7 @@ MonoBehaviour:
       Old_Initial: "\u062C\u0640\u200E"
       Old_Medial: "\u0640\u062C\u0640\u200E"
       Old_Final: "\u0640\u062C\u200E"
-      Complexity: 1
+      Complexity: 0.3
     - Id: hah
       Active: 1
       Number: 6
@@ -192,7 +192,7 @@ MonoBehaviour:
       Old_Initial: "\u062D\u0640\u200E"
       Old_Medial: "\u0640\u062D\u0640\u200E"
       Old_Final: "\u0640\u062D\u200E"
-      Complexity: 1
+      Complexity: 0.6
     - Id: khah
       Active: 1
       Number: 7
@@ -222,7 +222,7 @@ MonoBehaviour:
       Old_Initial: "\u062E\u0640\u200E"
       Old_Medial: "\u0640\u062E\u0640\u200E"
       Old_Final: "\u0640\u062E\u200E"
-      Complexity: 1
+      Complexity: 0.6
     - Id: dal
       Active: 1
       Number: 8
@@ -252,7 +252,7 @@ MonoBehaviour:
       Old_Initial: "\u062F\u200E"
       Old_Medial: "\u0640\u062F\u200E"
       Old_Final: "\u0640\u062F\u200E"
-      Complexity: 1
+      Complexity: 0.3
     - Id: thal
       Active: 1
       Number: 9
@@ -312,7 +312,7 @@ MonoBehaviour:
       Old_Initial: "\u0631\u200E"
       Old_Medial: "\u0640\u0631\u200E"
       Old_Final: "\u0640\u0631\u200E"
-      Complexity: 1
+      Complexity: 0.3
     - Id: zain
       Active: 1
       Number: 11
@@ -342,7 +342,7 @@ MonoBehaviour:
       Old_Initial: "\u0632\u200E"
       Old_Medial: "\u0640\u0632\u200E"
       Old_Final: "\u0640\u0632\u200E"
-      Complexity: 1
+      Complexity: 0.3
     - Id: seen
       Active: 1
       Number: 12
@@ -372,7 +372,7 @@ MonoBehaviour:
       Old_Initial: "\u0633\u0640\u200E"
       Old_Medial: "\u0640\u0633\u0640\u200E"
       Old_Final: "\u0640\u0633\u200E"
-      Complexity: 1
+      Complexity: 0.3
     - Id: sheen
       Active: 1
       Number: 13
@@ -402,7 +402,7 @@ MonoBehaviour:
       Old_Initial: "\u0634\u0640\u200E"
       Old_Medial: "\u0640\u0634\u0640\u200E"
       Old_Final: "\u0640\u0634\u200E"
-      Complexity: 1
+      Complexity: 0.6
     - Id: sad
       Active: 1
       Number: 14
@@ -432,7 +432,7 @@ MonoBehaviour:
       Old_Initial: "\u0635\u0640\u200E"
       Old_Medial: "\u0640\u0635\u0640\u200E"
       Old_Final: "\u0640\u0635\u200E"
-      Complexity: 0.5
+      Complexity: 1
     - Id: dad
       Active: 1
       Number: 15
@@ -462,7 +462,7 @@ MonoBehaviour:
       Old_Initial: "\u0636\u0640\u200E"
       Old_Medial: "\u0640\u0636\u0640\u200E"
       Old_Final: "\u0640\u0636\u200E"
-      Complexity: 0.5
+      Complexity: 1
     - Id: tah
       Active: 1
       Number: 16
@@ -492,7 +492,7 @@ MonoBehaviour:
       Old_Initial: "\u0637\u0640\u200E"
       Old_Medial: "\u0640\u0637\u0640\u200E"
       Old_Final: "\u0640\u0637\u200E"
-      Complexity: 0.5
+      Complexity: 1
     - Id: zah
       Active: 1
       Number: 17
@@ -522,7 +522,7 @@ MonoBehaviour:
       Old_Initial: "\u0638\u0640\u200E"
       Old_Medial: "\u0640\u0638\u0640\u200E"
       Old_Final: "\u0640\u0638\u200E"
-      Complexity: 0.5
+      Complexity: 1
     - Id: ain
       Active: 1
       Number: 18
@@ -552,7 +552,7 @@ MonoBehaviour:
       Old_Initial: "\u0639\u0640\u200E"
       Old_Medial: "\u0640\u0639\u0640\u200E"
       Old_Final: "\u0640\u0639\u200E"
-      Complexity: 1
+      Complexity: 0.6
     - Id: ghain
       Active: 1
       Number: 19
@@ -582,7 +582,7 @@ MonoBehaviour:
       Old_Initial: "\u063A\u0640\u200E"
       Old_Medial: "\u0640\u063A\u0640\u200E"
       Old_Final: "\u0640\u063A\u200E"
-      Complexity: 1
+      Complexity: 0.6
     - Id: feh
       Active: 1
       Number: 20
@@ -612,7 +612,7 @@ MonoBehaviour:
       Old_Initial: "\u0641\u0640\u200E"
       Old_Medial: "\u0640\u0641\u0640\u200E"
       Old_Final: "\u0640\u0641\u200E"
-      Complexity: 1
+      Complexity: 0.3
     - Id: qaf
       Active: 1
       Number: 21
@@ -672,7 +672,7 @@ MonoBehaviour:
       Old_Initial: "\u0643\u0640\u200E"
       Old_Medial: "\u0640\u0643\u0640\u200E"
       Old_Final: "\u0640\u0643\u200E"
-      Complexity: 1
+      Complexity: 0.3
     - Id: lam
       Active: 1
       Number: 23
@@ -702,7 +702,7 @@ MonoBehaviour:
       Old_Initial: "\u0644\u0640\u200E"
       Old_Medial: "\u0640\u0644\u0640\u200E"
       Old_Final: "\u0640\u0644\u200E"
-      Complexity: 1
+      Complexity: 0.3
     - Id: meem
       Active: 1
       Number: 24
@@ -732,7 +732,7 @@ MonoBehaviour:
       Old_Initial: "\u0645\u0640\u200E"
       Old_Medial: "\u0640\u0645\u0640\u200E"
       Old_Final: "\u0640\u0645\u200E"
-      Complexity: 1
+      Complexity: 0.3
     - Id: noon
       Active: 1
       Number: 25
@@ -762,7 +762,7 @@ MonoBehaviour:
       Old_Initial: "\u0646\u0640\u200E"
       Old_Medial: "\u0640\u0646\u0640\u200E"
       Old_Final: "\u0640\u0646\u200E"
-      Complexity: 1
+      Complexity: 0.3
     - Id: heh
       Active: 1
       Number: 26
@@ -792,7 +792,7 @@ MonoBehaviour:
       Old_Initial: "\u0647\u0640\u200E"
       Old_Medial: "\u0640\u0647\u0640\u200E"
       Old_Final: "\u0640\u0647\u200E"
-      Complexity: 1
+      Complexity: 0.6
     - Id: waw
       Active: 1
       Number: 27
@@ -822,7 +822,7 @@ MonoBehaviour:
       Old_Initial: "\u0648\u200E"
       Old_Medial: "\u0640\u0648\u200E"
       Old_Final: "\u0640\u0648\u200E"
-      Complexity: 1
+      Complexity: 0.6
     - Id: yeh
       Active: 1
       Number: 28
@@ -852,7 +852,7 @@ MonoBehaviour:
       Old_Initial: "\u064A\u0640\u200E"
       Old_Medial: "\u0640\u064A\u0640\u200E"
       Old_Final: "\u0640\u064A"
-      Complexity: 1
+      Complexity: 0.6
     - Id: waw_diph
       Active: 1
       Number: 0
