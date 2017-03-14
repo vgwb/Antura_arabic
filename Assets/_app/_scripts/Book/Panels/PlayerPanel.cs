@@ -1,12 +1,10 @@
-﻿using System;
-using UnityEngine;
-using EA4S.Database;
+﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using EA4S.Database;
 using EA4S.Helpers;
 using EA4S.Rewards;
-using EA4S.Utilities;
-using UniRx;
 
 namespace EA4S.Book
 {
