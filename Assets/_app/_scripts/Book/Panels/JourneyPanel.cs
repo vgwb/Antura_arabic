@@ -50,7 +50,7 @@ namespace EA4S.Book
         {
             AudioManager.I.PlayDialogue(LocalizationDataId.UI_LearningBlock);
             DetailPanel.SetActive(false);
-            LearningBlockPanel(1);
+            LearningBlockPanel(AppManager.I.Player.CurrentJourneyPosition.Stage);
         }
 
         void LearningBlockPanel(int _stage = 1)
