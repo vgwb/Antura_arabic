@@ -53,7 +53,7 @@ namespace EA4S.UI
             btAddTween = BtAdd.transform.DORotate(new Vector3(0, 0, -45), 0.3f).SetAutoKill(false).Pause()
                 .SetEase(Ease.OutBack)
                 .OnRewind(() => {
-                    if (AppManager.I.GameSettings.AvailablePlayers == null || AppManager.I.GameSettings.AvailablePlayers.Count == 0) BtAdd.Pulse();
+                    if (AppManager.I.GameSettings.SavedPlayers == null || AppManager.I.GameSettings.SavedPlayers.Count == 0) BtAdd.Pulse();
                 });
             btPlayTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(BtPlay.RectT.DOAnchorPosY(-210, 0.2f).From(true))
