@@ -63,7 +63,7 @@ namespace EA4S.Database
         public string Old_Initial;
         public string Old_Medial;
         public string Old_Final;
-        public float Intrinsic;
+        public float Complexity;
 
         public override string ToString()
         {
@@ -72,7 +72,7 @@ namespace EA4S.Database
 
         public float GetIntrinsicDifficulty()
         {
-            return Intrinsic;
+            return Complexity;
         }
 
         public string GetId()

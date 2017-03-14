@@ -18,13 +18,14 @@ namespace EA4S.Database
         public WordDataCategory Category;
         public WordDataForm Form;
         public WordDataArticle Article;
+        public VocabularyDataGender Gender;
         public string LinkedWord;
         public string Arabic;
         public string Value;
         public string[] Letters;
         //public LetterSymbol[] Symbols; //TODO
         public string Drawing;
-        public float Intrinsic;
+        public float Complexity;
 
         public int NumberOfLetters { get { return Letters.Length; } }
 
@@ -35,7 +36,7 @@ namespace EA4S.Database
 
         public float GetIntrinsicDifficulty()
         {
-            return Intrinsic;
+            return Complexity;
         }
 
         public override string ToString()

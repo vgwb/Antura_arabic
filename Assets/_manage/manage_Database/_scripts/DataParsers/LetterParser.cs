@@ -38,7 +38,7 @@ namespace EA4S.Database.Management
             data.InitialFix = ToString(dict["InitialFix"]);
             data.MedialFix = ToString(dict["MedialFix"]);
             data.FinalFix = ToString(dict["FinalFix"]);
-            data.Intrinsic = ToFloat(dict["Intrinsic"]);
+            data.Complexity = ToFloat(dict["Complexity"]);
 
             data.Old_Isolated = ToString(dict["Old_Isolated"]);
             data.Old_Initial = ToString(dict["Old_Initial"]);
