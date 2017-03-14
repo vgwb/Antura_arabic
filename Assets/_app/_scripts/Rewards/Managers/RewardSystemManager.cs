@@ -45,7 +45,7 @@ namespace EA4S.Rewards
         /// Gets the total rewars count. Any type with any color variation available in game.
         /// </summary>
         /// <returns></returns>
-        public static int GetTotalRewarsCount() {
+        public static int GetTotalRewardsCount() {
             int returnInt = 0;
             returnInt += GetConfig().Rewards.Count * GetConfig().RewardsColorPairs.Count;
             returnInt += GetConfig().RewardsDecal.Count * GetConfig().RewardsDecalColor.Count;
@@ -57,7 +57,7 @@ namespace EA4S.Rewards
         /// Gets the unlocked reward count for actual player. 0 if acutal player is null.
         /// </summary>
         /// <returns></returns>
-        public static int GetUnlockedRewardCount() {
+        public static int GetUnlockedRewardsCount() {
             if (AppManager.I.Player != null)
                 return AppManager.I.Player.RewardsUnlocked.Count;
             else
