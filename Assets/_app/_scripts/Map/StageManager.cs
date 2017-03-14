@@ -82,6 +82,7 @@ namespace EA4S.Map
             /* FIRST CONTACT FEATURE */
             if (AppManager.I.Player.IsFirstContact() || SimulateFirstContact) {
                 FirstContactBehaviour();
+                mapStageIndicator.gameObject.SetActive(false);
             }
             /* --------------------- */
             FirstOrLastMap();
@@ -101,7 +102,7 @@ namespace EA4S.Map
 
         void updateStageIndicator()
         {
-            Debug.Log("updateStageIndicator " + currentStageNumber + "/" + maxNumberOfStages);
+            // Debug.Log("updateStageIndicator " + currentStageNumber + "/" + maxNumberOfStages);
             mapStageIndicator.Init(currentStageNumber - 1, maxNumberOfStages);
         }
 
