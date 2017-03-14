@@ -6,13 +6,13 @@ namespace EA4S.Book
     public class TableRow : MonoBehaviour
     {
         public TextRender TxTitle;
-        public TextRender TxSubtitle;
+        public TextRender TxTitleEn;
         public TextRender TxValue;
 
-        public void Init(string _title, string _value, string _subtitle = "")
+        public void Init(string _titleEn, string _title, string _value)
         {
             TxTitle.SetText(_title);
-            TxSubtitle.SetText(_subtitle);
+            TxTitleEn.SetText(_titleEn);
             TxValue.SetText(_value);
         }
     }

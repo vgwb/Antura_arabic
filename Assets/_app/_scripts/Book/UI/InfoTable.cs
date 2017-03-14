@@ -13,11 +13,11 @@ namespace EA4S.Book
             emptyListContainers();
         }
 
-        public void AddRow(string _title, string _value, string _subtitle = "")
+        public void AddRow(string _titleEn, string _title, string _value)
         {
             rowGO = Instantiate(RowPrefab);
             rowGO.transform.SetParent(transform, false);
-            rowGO.GetComponent<TableRow>().Init(_title, _value, _subtitle);
+            rowGO.GetComponent<TableRow>().Init(_titleEn, _title, _value);
         }
 
         void emptyListContainers()

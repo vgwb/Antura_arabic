@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
 using EA4S.Database;
 using System.Collections.Generic;
 using EA4S.Helpers;
@@ -14,21 +13,48 @@ namespace EA4S.Book
         public InfoTable InfoTable;
         public GraphJourney journeyGraph;
 
+        //Total Stars
+        //Perfects(3-Bones)
+        //Gifts for Antura
+
+
         void Start()
         {
-
             InfoTable.Reset();
-            InfoTable.AddRow("لاعب", AppManager.I.Player.GetShortUuid(), "player UUID");
-            InfoTable.AddRow("لاعب", AppManager.I.Player.CurrentJourneyPosition.ToString(), "current LB");
-            var lastLetterLearned = AppManager.I.ScoreHelper.GetLastLearnedLetterInfo();
-            InfoTable.AddRow("لاعب", (lastLetterLearned != null ? lastLetterLearned.data.ToString() : ""), "Last Letter");
 
-            //var str = "";
+            // Stage reached
+            InfoTable.AddRow("Stage reached", "", AppManager.I.Player.MaxJourneyPosition.GetShortTitle());
 
-            //str = "hello player (ID: " + AppManager.I.Player.Id + ")\n";
-            //str += "you're now in LB " + AppManager.I.Player.CurrentJourneyPosition + "\n";
-            //str += "your max LB is " + AppManager.I.Player.MaxJourneyPosition + "\n";
-            //str += "Mood " + AppManager.I.Player.MainMood + "\n";
+            // Total elapsed time
+            var totalTimespan = GetTotalElapsedTime();
+            InfoTable.AddRow("Started playing", "", totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m");
+
+            // total play time
+            var totalPlayTime = GetTotalPlayTime();
+            InfoTable.AddRow("Total Playtime playing", "", totalPlayTime.Days + "d " + totalPlayTime.Hours + "h " + totalPlayTime.Minutes + "m");
+
+            // Played Games
+            InfoTable.AddRow("Played Games", "", GetTotalNumberOfPlays().ToString());
+
+            // Total bones
+            InfoTable.AddRow("Total bones", "", AppManager.I.Player.GetTotalNumberOfBones().ToString());
+
+            // Total stars
+            var totalStarsEarned = 0;
+            InfoTable.AddRow("Total stars", "", totalStarsEarned.ToString());
+
+            // Total Rewards
+            var totalRewardsEarned = 0;
+            InfoTable.AddRow("Antura Rewards", "", totalRewardsEarned.ToString());
+
+            // player UUID
+            InfoTable.AddRow("Player Code", "", AppManager.I.Player.GetShortUuid());
+
+            ////////////////////////////////////
+            /// 
+            // last lettert learnd
+            //var lastLetterLearned = AppManager.I.ScoreHelper.GetLastLearnedLetterInfo();
+            //InfoTable.AddRow("Last Letter", "", (lastLetterLearned != null ? lastLetterLearned.data.ToString() : ""));
 
             //if (AppManager.I.Player.Precision != 0f) { str += "Precision " + AppManager.I.Player.Precision + "\n"; }
             //if (AppManager.I.Player.Reaction != 0f) { str += "Reaction " + AppManager.I.Player.Reaction + "\n"; }
@@ -39,29 +65,21 @@ namespace EA4S.Book
             //if (AppManager.I.Player.Sight != 0f) { str += "Sight " + AppManager.I.Player.Sight + "\n"; }
 
             // Number of play sessions
-            var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
-            //Debug.Log(allPlaySessionInfos.ToDebugString());
+            //var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
+            //var unlockedPlaySessionInfos = allPlaySessionInfos.FindAll(x => x.unlocked);
+            //InfoTable.AddRow("Play sessions unlocked", "", unlockedPlaySessionInfos.Count.ToString());
 
-            var unlockedPlaySessionInfos = allPlaySessionInfos.FindAll(x => x.unlocked);
-            //str += "Play sessions unlocked: " + unlockedPlaySessionInfos.Count + "\n";
-            InfoTable.AddRow("لاعب", unlockedPlaySessionInfos.Count.ToString(), "Play sessions unlocked");
 
-            // Total elapsed time
-            var totalTimespan = GetTotalElapsedTime();
-            var timeElapsed = totalTimespan.Days + "d " + totalTimespan.Hours + "h " + totalTimespan.Minutes + "m " + totalTimespan.Seconds + "s";
-            InfoTable.AddRow("لاعب", timeElapsed, "Total time elapsed");
-
-            //AppManager.I.DB.GetLocalizationDataById("Game_Title").Arabic;
-            //output.text += "\n" + AppManager.I.DB.GetLocalizationDataById("Game_Title2").Arabic;
-
-            journeyGraph.Show(allPlaySessionInfos, unlockedPlaySessionInfos);
 
             //Debug.Log("LAST LETTER: " + AppManager.I.ScoreHelper.GetLastLearnedLetterInfo().data);
             //Debug.Log("Total play times: " + GetMiniGamesTotalPlayTime().ToDebugString());
             //Debug.Log("Number of plays: " + GetMiniGamesNumberOfPlays().ToDebugString());
+
+            // GRAPH
+            //journeyGraph.Show(allPlaySessionInfos, unlockedPlaySessionInfos);
         }
 
-        #region Time Queries
+        #region Queries
 
         TimeSpan GetTotalElapsedTime()
         {
@@ -87,6 +105,19 @@ namespace EA4S.Book
             return totalTimespan;
         }
 
+        TimeSpan GetTotalPlayTime()
+        {
+            float totalSeconds = 0f;
+            string query = "select * from " + typeof(MiniGameScoreData).Name;
+            var list = AppManager.I.DB.FindDataByQuery<MiniGameScoreData>(query);
+
+            foreach (var data in list) {
+                totalSeconds += data.TotalPlayTime;
+            }
+            TimeSpan t = TimeSpan.FromSeconds(totalSeconds);
+            return t;
+        }
+
         Dictionary<MiniGameCode, float> GetMiniGamesTotalPlayTime()
         {
             Dictionary<MiniGameCode, float> dict = new Dictionary<MiniGameCode, float>();
@@ -97,6 +128,18 @@ namespace EA4S.Book
                 dict[data.MiniGameCode] = data.TotalPlayTime;
             }
             return dict;
+        }
+
+        int GetTotalNumberOfPlays()
+        {
+            int total = 0;
+            string query = "select * from " + typeof(LogMiniGameScoreData).Name;
+            var list = AppManager.I.DB.FindDataByQuery<LogMiniGameScoreData>(query);
+
+            foreach (var data in list) {
+                total++;
+            }
+            return total;
         }
 
         Dictionary<MiniGameCode, int> GetMiniGamesNumberOfPlays()
