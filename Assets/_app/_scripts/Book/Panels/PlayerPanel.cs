@@ -23,7 +23,8 @@ namespace EA4S.Book
             // Unlocked / total PlaySessions
             var totalPlaySessions = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
             var totalPlaySessionsUnlocked = totalPlaySessions.FindAll(x => x.unlocked);
-            InfoTable.AddRow("Unlocked Levels", "", totalPlaySessionsUnlocked.Count.ToString() + " / " + totalPlaySessions.Count.ToString());
+            //InfoTable.AddRow("Unlocked Levels", "", totalPlaySessionsUnlocked.Count.ToString() + " / " + totalPlaySessions.Count.ToString());
+            InfoTable.AddSliderRow("Unlocked Levels", "", totalPlaySessionsUnlocked.Count, totalPlaySessions.Count);
 
             // Total elapsed time
             var totalTimespan = GetTotalApplicationTime();
@@ -46,22 +47,26 @@ namespace EA4S.Book
             // unlocked / total REWARDS
             var totalRewards = RewardSystemManager.GetTotalRewardsCount();
             var totalRewardsUnlocked = RewardSystemManager.GetUnlockedRewardsCount();
-            InfoTable.AddRow("Antura Rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);
+            //InfoTable.AddRow("Antura Rewards", "", totalRewardsUnlocked.ToString() + " / " + totalRewards);
+            InfoTable.AddSliderRow("Antura Rewards", "", 49, 120);
 
             // unlocked / total Letters
             var totalLetters = GetTotalVocabularyData(VocabularyDataType.Letter);
             var totalLettersUnlocked = GetTotalVocabularyDataUnlocked(VocabularyDataType.Letter);
-            InfoTable.AddRow("Unlocked Letters", "", totalLettersUnlocked.ToString() + " / " + totalLetters);
+            //InfoTable.AddRow("Unlocked Letters", "", totalLettersUnlocked.ToString() + " / " + totalLetters);
+            InfoTable.AddSliderRow("Unlocked Letters", "", totalLettersUnlocked, totalLetters);
 
             // unlocked / total Words
             var totalWords = GetTotalVocabularyData(VocabularyDataType.Word);
             var totalWordsUnlocked = GetTotalVocabularyDataUnlocked(VocabularyDataType.Word);
-            InfoTable.AddRow("Unlocked Words", "", totalWordsUnlocked.ToString() + " / " + totalWords);
+            //InfoTable.AddRow("Unlocked Words", "", totalWordsUnlocked.ToString() + " / " + totalWords);
+            InfoTable.AddSliderRow("Unlocked Words", "", totalWordsUnlocked, totalWords);
 
             // unlocked / total Phrases
             var totalPhrases = GetTotalVocabularyData(VocabularyDataType.Phrase);
             var totalPhrasesUnlocked = GetTotalVocabularyDataUnlocked(VocabularyDataType.Phrase);
-            InfoTable.AddRow("Unlocked Phrases", "", totalPhrasesUnlocked.ToString() + " / " + totalPhrases);
+            //InfoTable.AddRow("Unlocked Phrases", "", totalPhrasesUnlocked.ToString() + " / " + totalPhrases);
+            InfoTable.AddSliderRow("Unlocked Phrases", "", totalPhrasesUnlocked, totalPhrases);
 
             // player UUID
             //InfoTable.AddRow("Player Code", "", AppManager.I.Player.GetShortUuid());
