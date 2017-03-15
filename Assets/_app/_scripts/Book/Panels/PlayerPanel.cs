@@ -64,7 +64,7 @@ namespace EA4S.Book
             InfoTable.AddRow("Unlocked Phrases", "", totalPhrasesUnlocked.ToString() + " / " + totalPhrases);
 
             // player UUID
-            InfoTable.AddRow("Player Code", "", AppManager.I.Player.GetShortUuid());
+            //InfoTable.AddRow("Player Code", "", AppManager.I.Player.GetShortUuid());
 
             ////////////////////////////////////
             /// 
