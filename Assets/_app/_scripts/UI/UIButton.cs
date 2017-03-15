@@ -101,7 +101,7 @@ namespace EA4S.UI
 
         #region Public Methods
 
-        public void Toggle(bool _activate, bool _animateClick = false)
+        public virtual void Toggle(bool _activate, bool _animateClick = false)
         {
             IsToggled = _activate;
 

@@ -23,7 +23,7 @@ namespace EA4S.UI
     [DeToggleButton]
         public bool HideLockedSwatchesColors;
         [Header("References")]
-        public UIButton BtOpenModsPanel;
+        public AnturaSpaceModsButton BtOpenModsPanel;
         public UIButton BTRemoveMods;
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
         public AnturaSpaceItemButton BtItemMain;
@@ -82,6 +82,8 @@ namespace EA4S.UI
             btsCategories = CategoriesContainer.GetComponentsInChildren<AnturaSpaceCategoryButton>(true);
             btsSwatches = SwatchesContainer.GetComponentsInChildren<AnturaSpaceSwatchButton>(true);
             SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
+            BtOpenModsPanel.SetAsNew(AppManager.I.Player.ThereIsSomeNewReward());
+
             // Create items
             rewardsContainers = new List<Transform>();
             rewardsImagesContainers = new List<Transform>();
@@ -160,6 +162,7 @@ namespace EA4S.UI
         {
             IsModsPanelOpen = !IsModsPanelOpen;
             if (IsModsPanelOpen) {
+                BtOpenModsPanel.SetAsNew(false);
                 CategoriesContainer.gameObject.SetActive(true);
                 showCategoriesTween.PlayForward();
                 RefreshCategories();
@@ -167,6 +170,7 @@ namespace EA4S.UI
                 if (onEnterCustomization != null)
                     onEnterCustomization();
             } else {
+                BtOpenModsPanel.SetAsNew(AppManager.I.Player.ThereIsSomeNewReward());
                 SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
                 showCategoriesTween.PlayBackwards();
                 showItemsTween.PlayBackwards();

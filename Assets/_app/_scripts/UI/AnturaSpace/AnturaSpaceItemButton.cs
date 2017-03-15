@@ -17,6 +17,7 @@ namespace EA4S.UI
 
         [System.NonSerialized] public RewardItem Data;
         RenderTexture renderTexture;
+        bool isNew, isNewForceHidden;
 
         #region Unity
 
@@ -54,12 +55,25 @@ namespace EA4S.UI
 
         public void SetAsNew(bool _isNew)
         {
-            IcoNew.SetActive(_isNew);
+            isNew = _isNew;
+            if (!isNewForceHidden) IcoNew.SetActive(_isNew);
         }
 
         public void SetImage(bool _isRenderTexture)
         {
             RewardImage.texture = _isRenderTexture ? renderTexture : null;
+        }
+
+        public override void Toggle(bool _activate, bool _animateClick = false)
+        {
+            base.Toggle(_activate, _animateClick);
+            ForceHideNewIcon(_activate);
+        }
+
+        void ForceHideNewIcon(bool _forceHide)
+        {
+            isNewForceHidden = _forceHide;
+            IcoNew.SetActive(!_forceHide && isNew);
         }
 
         #endregion

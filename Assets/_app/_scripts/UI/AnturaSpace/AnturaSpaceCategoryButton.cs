@@ -25,11 +25,26 @@ namespace EA4S.UI
         public AnturaSpaceCategory Category;
 
         GameObject icoNew;
+        bool isNew, isNewForceHidden;
 
         public void SetAsNew(bool _isNew)
         {
+            isNew = _isNew;
             if (icoNew == null) icoNew = this.GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
-            icoNew.SetActive(_isNew);
+            if (!isNewForceHidden) icoNew.SetActive(_isNew);
+        }
+
+        public override void Toggle(bool _activate, bool _animateClick = false)
+        {
+            base.Toggle(_activate, _animateClick);
+            ForceHideNewIcon(_activate);
+        }
+
+        void ForceHideNewIcon(bool _forceHide)
+        {
+            isNewForceHidden = _forceHide;
+            if (icoNew == null) icoNew = this.GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
+            icoNew.SetActive(!_forceHide && isNew);
         }
     }
 }
