@@ -10,6 +10,8 @@ namespace EA4S.ReservedArea
 {
     public class ProfilesPanel : MonoBehaviour
     {
+        [Header("References")]
+        public TextRender PlayerInfoText;
         public GameObject PlayerIconContainer;
         public GameObject PlayerIconPrefab;
         public GameObject ProfileCommandsContainer;
@@ -63,8 +65,10 @@ namespace EA4S.ReservedArea
             //Debug.Log("OnSelectPlayerProfile " + uuid);
             if (SelectedPlayerId != uuid) {
                 SelectedPlayerId = uuid;
+                PlayerInfoText.text = "player id: " + SelectedPlayerId;
             } else {
                 SelectedPlayerId = "";
+                PlayerInfoText.text = "";
             }
             RefreshUI();
         }
