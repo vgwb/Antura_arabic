@@ -6,11 +6,15 @@ namespace EA4S.Scenes
 {
     public class ReservedAreaScene : MonoBehaviour
     {
+        [Header("References")]
+        public TextRender SupportText;
 
         void Start()
         {
             GlobalUI.ShowPauseMenu(false);
             GlobalUI.ShowBackButton(true);
+
+            SupportText.text = AppConstants.AppVersion + "\n" + "OPEN BETA";
         }
 
         public void OnOpenUrlWebsite()
