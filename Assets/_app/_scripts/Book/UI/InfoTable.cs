@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using EA4S.Core;
 
 namespace EA4S.Book
 {
@@ -14,18 +15,20 @@ namespace EA4S.Book
             emptyListContainers();
         }
 
-        public void AddRow(string _titleEn, string _title, string _value)
+        public void AddRow(Database.LocalizationDataId _locaData, string _value)
         {
+            var loc = LocalizationManager.GetLocalizationData(_locaData);
             rowGO = Instantiate(RowPrefab);
             rowGO.transform.SetParent(transform, false);
-            rowGO.GetComponent<TableRow>().Init(_titleEn, _title, _value);
+            rowGO.GetComponent<TableRow>().Init(loc.English, loc.Arabic, _value);
         }
 
-        public void AddSliderRow(string _titleEn, string _title, float _value, float _valueMax)
+        public void AddSliderRow(Database.LocalizationDataId _locaData, float _value, float _valueMax)
         {
+            var loc = LocalizationManager.GetLocalizationData(_locaData);
             rowGO = Instantiate(RowSliderPrefab);
             rowGO.transform.SetParent(transform, false);
-            rowGO.GetComponent<TableRow>().InitSlider(_titleEn, _title, _value, _valueMax);
+            rowGO.GetComponent<TableRow>().InitSlider(loc.English, loc.Arabic, _value, _valueMax);
         }
 
         void emptyListContainers()

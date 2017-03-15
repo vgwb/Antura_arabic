@@ -12,15 +12,15 @@ namespace EA4S.Book
 
         public void Init(string _titleEn, string _title, string _value)
         {
-            TxTitle.SetText(_title);
-            TxTitleEn.SetText(_titleEn);
+            TxTitle.text = _title;
+            TxTitleEn.text = _titleEn;
             TxValue.SetText(_value);
         }
 
         public void InitSlider(string _titleEn, string _title, float _value, float _valueMax)
         {
-            TxTitle.SetText(_title);
-            TxTitleEn.SetText(_titleEn);
+            TxTitle.text = _title;
+            TxTitleEn.text = _titleEn;
             slider.SetValue(_value, _valueMax);
             //TxValue.SetText(_value);
         }
