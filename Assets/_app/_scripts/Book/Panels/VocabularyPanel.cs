@@ -70,6 +70,8 @@ namespace EA4S.Book
         WordDataCategory currentWordCategory;
         PhraseDataCategory currentPhraseCategory;
         LetterInfo currentLetter;
+        WordInfo currentWord;
+        PhraseInfo currentPhrase;
 
         void Start()
         {
@@ -213,7 +215,6 @@ namespace EA4S.Book
             AudioManager.I.PlayLetter(currentLetter.data);
 
             ArabicText.text = "";
-            // ScoreText.text = "Score: " + info.score;
 
             var isolatedChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Isolated);
             var InitialChar = currentLetter.data.GetCharFixedForDisplay(LetterForm.Initial);
@@ -228,6 +229,8 @@ namespace EA4S.Book
             LetterTextInitial.gameObject.SetActive(InitialChar != isolatedChar);
             LetterTextMedial.gameObject.SetActive(MedialChar != isolatedChar);
             LetterTextFinal.gameObject.SetActive(FinalChar != isolatedChar);
+
+            ScoreText.text = "Score: " + currentLetter.score;
         }
 
         #endregion
@@ -285,34 +288,34 @@ namespace EA4S.Book
             }
         }
 
-        public void DetailWord(WordInfo info)
+        public void DetailWord(WordInfo _currentWord)
         {
+            currentWord = _currentWord;
             DetailPanel.SetActive(true);
             MoreInfoLetterPanel.SetActive(false);
             MoreInfoWordPanel.SetActive(true);
-            Debug.Log("Detail Word :" + info.data.Id);
-            AudioManager.I.PlayWord(info.data);
-
-            // ScoreText.text = "Score: " + info.score;
+            Debug.Log("Detail Word :" + currentWord.data.Id);
+            AudioManager.I.PlayWord(currentWord.data);
 
             var output = "";
-            output += info.data.Arabic;
+            output += currentWord.data.Arabic;
             output += "\n";
-            var splittedLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, info.data);
+            var splittedLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, currentWord.data);
             foreach (var letter in splittedLetters) {
                 output += letter.letter.GetChar() + " ";
             }
 
             ArabicText.text = output;
-            if (info.data.Drawing != "") {
-                WordDrawingText.text = AppManager.I.VocabularyHelper.GetWordDrawing(info.data);
-                if (info.data.Category == Database.WordDataCategory.Color) {
-                    WordDrawingText.SetColor(GenericHelper.GetColorFromString(info.data.Value));
+            if (currentWord.data.Drawing != "") {
+                WordDrawingText.text = AppManager.I.VocabularyHelper.GetWordDrawing(currentWord.data);
+                if (currentWord.data.Category == Database.WordDataCategory.Color) {
+                    WordDrawingText.SetColor(GenericHelper.GetColorFromString(currentWord.data.Value));
                 }
             } else {
                 WordDrawingText.text = "";
             }
 
+            ScoreText.text = "Score: " + currentWord.score;
         }
 
         #endregion
@@ -366,17 +369,18 @@ namespace EA4S.Book
             }
         }
 
-        public void DetailPhrase(PhraseInfo info)
+        public void DetailPhrase(PhraseInfo _currentPhrase)
         {
+            currentPhrase = _currentPhrase;
             DetailPanel.SetActive(true);
             MoreInfoLetterPanel.SetActive(false);
             MoreInfoWordPanel.SetActive(false);
 
-            Debug.Log("Detail Phrase :" + info.data.Id);
-            AudioManager.I.PlayPhrase(info.data);
-            //ScoreText.text = "Score: " + info.score;
+            Debug.Log("Detail Phrase :" + currentPhrase.data.Id);
+            AudioManager.I.PlayPhrase(currentPhrase.data);
 
-            ArabicText.text = info.data.Arabic;
+            ArabicText.text = currentPhrase.data.Arabic;
+            ScoreText.text = "Score: " + currentPhrase.score;
         }
 
         #endregion

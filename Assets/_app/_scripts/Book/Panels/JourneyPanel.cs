@@ -32,6 +32,7 @@ namespace EA4S.Book
 
         int currentStage;
         GameObject btnGO;
+        LearningBlockInfo currentLearningBlock;
 
         void Start()
         {
@@ -92,18 +93,19 @@ namespace EA4S.Book
             LearningBlockPanel(int.Parse(_stage.Id));
         }
 
-        public void DetailLearningBlock(LearningBlockInfo info)
+        public void DetailLearningBlock(LearningBlockInfo _currentLearningBlock)
         {
+            currentLearningBlock = _currentLearningBlock;
             DetailPanel.SetActive(true);
-            AudioManager.I.PlayDialogue(info.data.GetTitleSoundFilename());
-            ScoreText.text = "Score: " + info.score;
+            AudioManager.I.PlayDialogue(currentLearningBlock.data.GetTitleSoundFilename());
 
-            DetailCodeText.text = info.data.Id;
-            DetailTitleText.text = info.data.Title_Ar;
-            DetailDescriptionEn.text = info.data.Description_En;
-            DetailDescriptionAr.text = info.data.Description_Ar;
+            DetailCodeText.text = currentLearningBlock.data.Id;
+            DetailTitleText.text = currentLearningBlock.data.Title_Ar;
+            DetailDescriptionEn.text = currentLearningBlock.data.Description_En;
+            DetailDescriptionAr.text = currentLearningBlock.data.Description_Ar;
 
-            HighlightItem(info.data.Id);
+            HighlightItem(currentLearningBlock.data.Id);
+            ScoreText.text = "Score: " + currentLearningBlock.score;
         }
 
         void emptyListContainers()
