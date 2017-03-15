@@ -54,7 +54,7 @@ namespace EA4S.UI
 
         public void SetAsNew(bool _isNew)
         {
-            IcoNew.SetActive(!AppManager.I.Player.IsFirstContact() && _isNew);
+            IcoNew.SetActive(_isNew);
         }
 
         public void SetImage(bool _isRenderTexture)
