@@ -55,6 +55,7 @@ namespace EA4S.ReservedArea
         {
             // highlight selected profile
             ProfileCommandsContainer.SetActive(SelectedPlayerId != "");
+            SetPlayerInfoText();
             foreach (Transform t in PlayerIconContainer.transform) {
                 t.GetComponent<PlayerIcon>().Select(SelectedPlayerId);
             }
@@ -65,12 +66,19 @@ namespace EA4S.ReservedArea
             //Debug.Log("OnSelectPlayerProfile " + uuid);
             if (SelectedPlayerId != uuid) {
                 SelectedPlayerId = uuid;
-                PlayerInfoText.text = "player id: " + SelectedPlayerId;
             } else {
                 SelectedPlayerId = "";
-                PlayerInfoText.text = "";
             }
             RefreshUI();
+        }
+
+        void SetPlayerInfoText()
+        {
+            if (SelectedPlayerId != "") {
+                PlayerInfoText.text = "player id: " + SelectedPlayerId;
+            } else {
+                PlayerInfoText.text = "";
+            }
         }
 
         public void OnOpenSelectedPlayerProfile()
