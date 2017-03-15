@@ -29,7 +29,7 @@ namespace EA4S.UI
         public void SetAsNew(bool _isNew)
         {
             if (icoNew == null) icoNew = this.GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
-            icoNew.SetActive(!AppManager.I.Player.IsFirstContact() && _isNew);
+            icoNew.SetActive(_isNew);
         }
     }
 }
