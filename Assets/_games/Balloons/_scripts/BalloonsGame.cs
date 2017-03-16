@@ -37,9 +37,9 @@ namespace EA4S.Balloons
         public float minY;
         public float maxY;
 
-        [Header("Images")]
-        public Sprite FailWrongBalloon;
-        public Sprite FailTime;
+        //[Header("Images")]
+        //public Sprite FailWrongBalloon;
+        //public Sprite FailTime;
 
         [Header("Game Parameters")]
         [Tooltip("e.g.: 6")]
