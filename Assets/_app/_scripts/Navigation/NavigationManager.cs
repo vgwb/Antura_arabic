@@ -200,6 +200,9 @@ namespace EA4S.Core
             UpdatePrevSceneStack(newScene);
             NavData.CurrentScene = newScene;
 
+            // check to have closed any possibile Keeper Dialog
+            KeeperManager.I.CloseDialog();
+
             GoToSceneByName(AppSceneHelper.GetSceneName(newScene, minigameData));
         }
 
