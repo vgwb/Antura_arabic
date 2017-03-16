@@ -19,15 +19,11 @@ namespace EA4S.Minigames.MakeFriends
 
         public float Difficulty { get; set; }
 
-        public MakeFriendsVariation Variation
-        {
-            get
-            {
+        public MakeFriendsVariation Variation {
+            get {
                 // GameManager Override
-                if (MakeFriendsGame.Instance.overrideDifficulty)
-                {
-                    switch (MakeFriendsGame.Instance.difficultySetting)
-                    {
+                if (MakeFriendsGame.Instance.overrideDifficulty) {
+                    switch (MakeFriendsGame.Instance.difficultySetting) {
                         case MakeFriendsVariation.EASY:
                             Difficulty = EASY_THRESHOLD;
                             break;
@@ -43,6 +39,7 @@ namespace EA4S.Minigames.MakeFriends
                 }
 
                 // SRDebugger Override
+#if SRDebuggerEnabled
                 if (SROptions.Current.MakeFriendsUseDifficulty)
                 {
                     switch (SROptions.Current.MakeFriendsDifficulty)
@@ -60,20 +57,15 @@ namespace EA4S.Minigames.MakeFriends
                             break;
                     }
                 }
-
+#endif
                 // Get Variation based on Difficulty
                 var variation = default(MakeFriendsVariation);
 
-                if (Difficulty < MEDIUM_THRESHOLD)
-                {
+                if (Difficulty < MEDIUM_THRESHOLD) {
                     variation = MakeFriendsVariation.EASY;
-                }
-                else if (Difficulty < HARD_THRESHOLD)
-                {
+                } else if (Difficulty < HARD_THRESHOLD) {
                     variation = MakeFriendsVariation.MEDIUM;
-                }
-                else
-                {
+                } else {
                     variation = MakeFriendsVariation.HARD;
                 }
 
@@ -85,15 +77,13 @@ namespace EA4S.Minigames.MakeFriends
         public const float MEDIUM_THRESHOLD = 0.3f;
         public const float HARD_THRESHOLD = 0.7f;
 
-           
+
         /////////////////
         // Singleton Pattern
         static MakeFriendsConfiguration instance;
 
-        public static MakeFriendsConfiguration Instance
-        {
-            get
-            {
+        public static MakeFriendsConfiguration Instance {
+            get {
                 if (instance == null)
                     instance = new MakeFriendsConfiguration();
                 return instance;
@@ -111,7 +101,8 @@ namespace EA4S.Minigames.MakeFriends
             Difficulty = 0f;
         }
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
