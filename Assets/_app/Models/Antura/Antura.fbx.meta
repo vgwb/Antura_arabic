@@ -229,8 +229,8 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 0
-    animationRotationError: 0.5
+    animationCompression: 1
+    animationRotationError: 0.025
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
