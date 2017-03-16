@@ -10,6 +10,7 @@ namespace EA4S.Core
     public class KeeperManager : MonoBehaviour
     {
         public static KeeperManager I;
+        System.Action currentCallback;
 
         void Start()
         {
@@ -44,11 +45,11 @@ namespace EA4S.Core
         {
             if (autoClose) {
                 WidgetSubtitles.I.DisplaySentence(data, 2, isKeeper, null);
-                var callback = _callback;
+                currentCallback = _callback;
                 AudioManager.I.PlayDialogue(data, () => {
                     CloseDialog();
-                    if (callback != null)
-                        callback();
+                    if (currentCallback != null)
+                        currentCallback();
                 });
             } else {
                 WidgetSubtitles.I.DisplaySentence(data, 2, true, null);
@@ -61,5 +62,11 @@ namespace EA4S.Core
             WidgetSubtitles.I.Close(_immediate);
         }
 
+        public void ResetKeeper()
+        {
+            currentCallback = null;
+            WidgetSubtitles.I.Close(true);
+            AudioManager.I.StopDialogue(true);
+        }
     }
 }
