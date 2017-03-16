@@ -201,7 +201,7 @@ namespace EA4S.Core
             NavData.CurrentScene = newScene;
 
             // check to have closed any possibile Keeper Dialog
-            KeeperManager.I.CloseDialog(true);
+            KeeperManager.I.ResetKeeper();
 
             GoToSceneByName(AppSceneHelper.GetSceneName(newScene, minigameData));
         }
