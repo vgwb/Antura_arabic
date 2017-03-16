@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using EA4S.Database;
 using EA4S.UI;
 
 namespace EA4S.Book
@@ -12,18 +10,17 @@ namespace EA4S.Book
     public class CompletionSlider : MonoBehaviour
     {
         public TextRender Percent;
+        public TextRender Current;
+        public TextRender Total;
         public Slider Slider;
-
-        /*void Update()
-        {
-            SetValue(Mathf.Repeat(Time.time, 1f), 1);
-        }*/
 
         public void SetValue(float current, float max)
         {
             float ratio = current / max;
             Slider.value = ratio;
             Percent.text = string.Format("{0:P0}", ratio);
+            Current.text = Mathf.RoundToInt(current).ToString();
+            Total.text = Mathf.RoundToInt(max).ToString();
         }
 
     }
