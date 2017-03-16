@@ -56,9 +56,9 @@ namespace EA4S.Core
             }
         }
 
-        public void CloseDialog()
+        public void CloseDialog(bool _immediate = false)
         {
-            WidgetSubtitles.I.Close();
+            WidgetSubtitles.I.Close(_immediate);
         }
 
     }
