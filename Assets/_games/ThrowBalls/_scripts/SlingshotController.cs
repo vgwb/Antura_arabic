@@ -43,8 +43,7 @@ namespace EA4S.Minigames.ThrowBalls
             inputManager.onPointerDrag += OnPointerDrag;
             inputManager.onPointerUp += OnPointerUp;
 
-            foreach (Collider collider in GetComponentsInChildren<Collider>())
-            {
+            foreach (Collider collider in GetComponentsInChildren<Collider>()) {
                 collider.enabled = false;
             }
         }
@@ -54,16 +53,14 @@ namespace EA4S.Minigames.ThrowBalls
         public bool dragging = false;
         private void OnPointerDrag()
         {
-            if (ball.IsDragging())
-            {
+            if (ball.IsDragging()) {
                 dragging = true;
                 Vector2 lastTouch = ThrowBallsConfiguration.Instance.Context.GetInputManager().LastPointerPosition;
 
                 float xInput = ((Screen.width * 0.5f - lastTouch.x) / Screen.height) * 2;
                 float yInput = ((lastTouch.y - Camera.main.WorldToScreenPoint(center.transform.position).y) / Screen.height) * 1.8f;
 
-                if (!spring.Released)
-                {
+                if (!spring.Released) {
                     spring.angle = Mathf.Clamp(xInput * 90, -60, 60);
                     spring.t = Mathf.Clamp(yInput, -1, 0);
                 }
@@ -73,14 +70,11 @@ namespace EA4S.Minigames.ThrowBalls
         private void OnPointerUp()
         {
             dragging = false;
-            if (ball.IsDragging() && IsMinimalInput())
-            {
+            if (ball.IsDragging() && IsMinimalInput()) {
                 Vector3 forceToApply = GetLaunchForce();
                 ball.Launch(forceToApply);
                 Catapult.instance.DisableCollider();
-            }
-            else
-            {
+            } else {
                 ball.CancelDragging();
             }
         }
@@ -94,26 +88,20 @@ namespace EA4S.Minigames.ThrowBalls
         {
             spring.Released = !(ball.IsAnchored() || ball.IsDragging());
 
-            if (!spring.Released)
-            {
+            if (!spring.Released) {
                 if (!dragging && ball.IsAnchored())
-                    spring.t = Mathf.Lerp(spring.t, 0, 6*Time.deltaTime);
+                    spring.t = Mathf.Lerp(spring.t, 0, 6 * Time.deltaTime);
 
                 ball.transform.position = spring.Slot.position;
 
-                if (IsMinimalInput())
-                {
+                if (IsMinimalInput()) {
                     ArrowBodyController.instance.Enable();
                     ArrowHeadController.instance.Enable();
-                }
-                else
-                {
+                } else {
                     ArrowBodyController.instance.Disable();
                     ArrowHeadController.instance.Disable();
                 }
-            }
-            else
-            {
+            } else {
                 ArrowBodyController.instance.Disable();
                 ArrowHeadController.instance.Disable();
             }
@@ -122,8 +110,7 @@ namespace EA4S.Minigames.ThrowBalls
         void FixedUpdate()
         {
 
-            if (!BallController.instance.IsLaunched())
-            {
+            if (!BallController.instance.IsLaunched()) {
                 UpdateLaunchForce();
                 UpdatePointOfImpact();
                 UpdateArrow();
@@ -146,7 +133,9 @@ namespace EA4S.Minigames.ThrowBalls
             Vector3 ballPosition = ball.transform.position;
 
             launchForce = center.transform.position - ballPosition;
-            launchForce *= SROptions.Current.Elasticity;
+            //launchForce *= SROptions.Current.Elasticity;
+            // FIX updated with fixed value because we can't refer to SRdebugger options in runtime!
+            launchForce *= 19f;
         }
 
         private void UpdatePointOfImpact()
@@ -170,13 +159,9 @@ namespace EA4S.Minigames.ThrowBalls
 
         private void UpdateArc()
         {
-            if (BallController.instance.transform.position == BallController.instance.INITIAL_BALL_POSITION)
-            {
+            if (BallController.instance.transform.position == BallController.instance.INITIAL_BALL_POSITION) {
                 arc.SetActive(false);
-            }
-
-            else
-            {
+            } else {
                 arc.SetActive(true);
 
                 Vector3 ballPosition = ball.transform.position;

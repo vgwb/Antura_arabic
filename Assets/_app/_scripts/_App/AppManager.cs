@@ -74,10 +74,11 @@ namespace EA4S
 
             // Debugger setup
             Debug.logger.logEnabled = AppConstants.VerboseLogging;
+#if SRDebuggerEnabled
             if (AppConstants.DebugPanelEnabled) {
                 SRDebug.Init();
             }
-
+#endif
             // GameplayModule
             if (GetComponentInChildren<ModuleInstaller<IGameplayModule>>()) {
                 IGameplayModule moduleInstance = GetComponentInChildren<ModuleInstaller<IGameplayModule>>().InstallModule();
