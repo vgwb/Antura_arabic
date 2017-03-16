@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿#if SRDebuggerEnabled
+using System.ComponentModel;
 using UnityEngine;
 using EA4S;
 using EA4S.Core;
@@ -588,3 +589,4 @@ public partial class SROptions
         RewardSystemManager.UnlockAllRewards();
     }
 }
+#endif
