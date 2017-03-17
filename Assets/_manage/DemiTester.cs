@@ -4,9 +4,10 @@ using UnityEngine;
 namespace EA4S
 {
     /// <summary>
-    /// Just used to test stuff here and there. Not to be included in final build
+    /// Created by Daniele (demigiant) for internal testing. Please don't remove.
+    /// In the build it will be just an empty MonoBehaviour so no strings attached.
     /// </summary>
-    public class DTester : MonoBehaviour
+    public class DemiTester : MonoBehaviour
     {
         #if UNITY_EDITOR
         void Update()
