@@ -5,6 +5,91 @@ to generate git log:
 git log --since='last month' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 =============
 
+# Version 1.0.1 released
+
+2017-03-16 - preparing new 1.0.1 build
+2017-03-16 - [KeeperManager] reset everything at every scene change
+2017-03-16 - [navigation] let’s close those Dialogs immediatly
+2017-03-16 - [ios build] slow and safe exceptions
+2017-03-16 - reenablig dev config
+2017-03-16 - SRDebuggerEnabled compilation flag
+2017-03-16 - preparing config for release
+2017-03-16 - Some optimizations and removed unused textures
+2017-03-16 - SRdebugger optiosn are now enabled by SRDebuggerEnabled compilation flag
+2017-03-16 - [audio] set sample rate to 22K for ANtura and Letters
+2017-03-16 - reneabled logging
+2017-03-16 - [build] 1.0.1 rc
+2017-03-16 - [TMPro] restored default Arial SDF (we’ll remove later)
+2017-03-16 - [Avatars] Moved old avatar icons from Resources to Trash
+2017-03-16 - [navigation maanger] force close subtitles at change scene
+2017-03-16 - [optimization] texture compression
+2017-03-16 - [clean] moved unused textures from Resources to Trash
+2017-03-16 - [iOS optimization]  Set the script call optimization level to Fast but no exceptions
+2017-03-16 - [build] next beta is 1.0.1 beta4
+2017-03-16 - [clean] removed TMPro ARIAL SDF folder
+2017-03-16 - [clean] removed TMPro ARIAL SDF
+2017-03-16 - [clean] remove native plugins
+2017-03-16 - [clean] removed unused Database_Test
+2017-03-16 - [reserved area] made intro text a bit little more easier
+2017-03-16 - [book] improved PlayerProfile panel
+2017-03-15 - [BOok] arabic titles to Player Profile variables
+2017-03-15 - [book] playerPanel init slider values
+2017-03-15 - Added CompletionSlider prefab.
+2017-03-15 - [reserverd area] fixed uuid string
+2017-03-15 - [AnturaSpace] NEW icon is now always hidden on selected elements of all levels
+2017-03-15 - player uuid shown in Reserved Area (and not in PlayerProfile panel)
+2017-03-15 - [Antura Space] Fixed NEW icon erroneously being disabled during first contact
+2017-03-15 - [reserved area] added app version + OPEN BETA
+2017-03-15 - [book] we don’t need camera vignette fx!
+2017-03-15 - [book] add scores to vocabulary and journey details
+2017-03-15 - [Balloons] Add Antura shadow (#433).
+2017-03-14 - [book] cleanup
+2017-03-14 - [book] JourneyPanel opens in current stage
+2017-03-14 - [db] complexity value set for all Vocubulary
+2017-03-14 - [playerProfile] please no UniRx here ;)
+2017-03-14 - next version is 1.0.1 beta3
+2017-03-14 - [player profile] some variables renaming
+2017-03-14 - [db] words have now gender property
+2017-03-14 - Updated PlayerPanel with general data queries. Fixing start/end time evaluation. Fixed bug with unlocking.
+2017-03-14 - SavedPlayers vs AvailablePlayers #432 - deleted any reference to AvailablePlayers.
+2017-03-14 - Fix warning "unassigned variable" in RewardSystemManager.
+2017-03-14 - #436 added GetTotalRewarsCount() and GetUnlockedRewardCount() API.
+2017-03-14 - preparing 1.0.1 beta2
+2017-03-14 - [book] some UI tweaks
+2017-03-14 - [Book] added more PlayerProfile data
+2017-03-14 - [Book] added cleaned PlayerProfile with first useful data
+2017-03-14 - [PauseMenu] Added English icon
+2017-03-14 - [ProfileSelectorUI] Replaced AppManager.I.GameSettings.AvailablePlayers with SavedPlayers
+2017-03-14 - [Antura Space] FIxed NEW Icon appearing on swatches even when they're automatically selected
+2017-03-14 - [Antura Space] NEW icon now doesn't appear anymore during FIRST CONTACT
+2017-03-14 - [UI] wrong EnglishButton toggle status
+2017-03-14 - [AppSettings] defautl values
+2017-03-14 - [settigns] added English Subtitles option to pause menu / home options.. just misses the english flag @demigian
+2017-03-14 - [Map] hide indicator during First Contact ( fixes #419 )
+2017-03-14 - [Map] use constant for maxNumberOfStages
+2017-03-14 - [DB] Instrinsic renamed Complexity and added Words Genre
+2017-03-13 - Tuend teacher safe callback on.
+2017-03-13 - Fixed bugs with initial letter in home.
+2017-03-13 - [Reserved Area] added arabic trasnltions to prompts (and enlarged a bit the Prompt wirdonw to accomodate longer texts)
+2017-03-13 - reenable debug.log
+2017-03-13 - disable debug.log
+2017-03-13 - preparing to build 1.0.1 beta1
+2017-03-13 - [Reserved Area] added prompts to rate and support form buttons
+2017-03-13 - project set to v 1.0.1
+2017-03-13 - [AnturaSpace] If the Back button is pressed while customization is open, it now simply closes the customization
+2017-03-13 - [DeviceInfo] improved with language, platform and internetReachability
+2017-03-13 - [AnturaSpace] Fixed leftover warning
+2017-03-13 - [DeviceInfo] we don’t want to collect deviceUniqueIdentifier
+2017-03-13 - Added potentially useful rendertexture info
+2017-03-13 - [Log] DeviceInfo class
+2017-03-13 - [logging] improved device gfx info collected
+2017-03-12 - [English Subtitles] activate global variable to all english subtitles. now we just miss a UI button to set it true/false
+2017-03-12 - [Debug] added the SUpport form / report a bug form (accessible from the Reserved Area andthe DebugPanel)
+2017-03-12 - soem comments to AppSettings
+2017-03-12 - start using the EnglishSubtitles option in the book (it’s a global setting)
+2017-03-12 - preparing for App Rating actions
+2017-03-11 - moved Exit app prompt (on Android) in AppManager ( fixes #215 )
+2017-03-11 - updated CHANGELOG
 2017-03-11 - preaprign 1.0.1 (1)
 2017-03-11 - [map] some CGL and readibility improvement
 2017-03-11 - [Book & DB] udpated and refactored Words categories and english titles
