@@ -1,0 +1,5 @@
+title: EA4S Antura Docs
+description: the full documentation
+theme: jekyll-theme-architect
+gems:
+  - jekyll-sitemap
