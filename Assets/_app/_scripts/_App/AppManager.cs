@@ -192,8 +192,8 @@ namespace EA4S
 
         void On_TMPro_Text_Changed(Object obj)
         {
-            TMPro.TMP_Text _tmp_text = (TMPro.TMP_Text)obj;
-            if (VocabularyHelper.FixDiacriticPositions(_tmp_text.textInfo)) {
+            TMPro.TMP_Text _tmp_text = obj as TMPro.TMP_Text;
+            if (_tmp_text != null && VocabularyHelper.FixDiacriticPositions(_tmp_text.textInfo)) {
                 _tmp_text.UpdateVertexData();
             }
         }
