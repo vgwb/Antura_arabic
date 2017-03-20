@@ -16,7 +16,7 @@ namespace TMPro
     [DisallowMultipleComponent]
     //[RequireComponent(typeof(TextContainer))]
     [RequireComponent(typeof(MeshRenderer))]
-    [RequireComponent(typeof(MeshFilter))]
+    [RequireComponent(typeof(MeshFilter))] 
     [AddComponentMenu("Mesh/TextMeshPro - Text")]
     [SelectionBase]
     public partial class TextMeshPro : TMP_Text, ILayoutElement
@@ -26,7 +26,8 @@ namespace TMPro
         /// <summary>
         /// Sets the Renderer's sorting Layer ID
         /// </summary>
-        public int sortingLayerID {
+        public int sortingLayerID
+        {
             get { return m_renderer.sortingLayerID; }
             set { m_renderer.sortingLayerID = value; }
         }
@@ -35,7 +36,8 @@ namespace TMPro
         /// <summary>
         /// Sets the Renderer's sorting order within the assigned layer.
         /// </summary>
-        public int sortingOrder {
+        public int sortingOrder
+        {
             get { return m_renderer.sortingOrder; }
             set { m_renderer.sortingOrder = value; }
         }
@@ -44,7 +46,8 @@ namespace TMPro
         /// <summary>
         /// Determines if the size of the text container will be adjusted to fit the text object when it is first created.
         /// </summary>
-        public override bool autoSizeTextContainer {
+        public override bool autoSizeTextContainer
+        {
             get { return m_autoSizeTextContainer; }
 
             set { if (m_autoSizeTextContainer == value) return; m_autoSizeTextContainer = value; if (m_autoSizeTextContainer) { TMP_UpdateManager.RegisterTextElementForLayoutRebuild(this); SetLayoutDirty(); } }
@@ -55,8 +58,10 @@ namespace TMPro
         /// Returns a reference to the Text Container
         /// </summary>
         [Obsolete("The TextContainer is now obsolete. Use the RectTransform instead.")]
-        public TextContainer textContainer {
-            get {
+        public TextContainer textContainer
+        {
+            get
+            {
                 return null;
             }
         }
@@ -65,22 +70,26 @@ namespace TMPro
         /// <summary>
         /// Returns a reference to the Transform
         /// </summary>
-        public new Transform transform {
-            get {
+        public new Transform transform
+        {
+            get
+            {
                 if (m_transform == null)
                     m_transform = GetComponent<Transform>();
-
+                
                 return m_transform;
             }
         }
 
 
-#pragma warning disable 0108
+        #pragma warning disable 0108
         /// <summary>
         /// Returns the rendered assigned to the text object.
         /// </summary>
-        public Renderer renderer {
-            get {
+        public Renderer renderer
+        {
+            get
+            {
                 if (m_renderer == null)
                     m_renderer = GetComponent<Renderer>();
 
@@ -92,9 +101,12 @@ namespace TMPro
         /// <summary>
         /// Returns the mesh assigned to the text object.
         /// </summary>
-        public override Mesh mesh {
-            get {
-                if (m_mesh == null) {
+        public override Mesh mesh
+        {
+            get
+            {
+                if (m_mesh == null)
+                {
                     m_mesh = new Mesh();
                     m_mesh.hideFlags = HideFlags.HideAndDontSave;
                     this.meshFilter.mesh = m_mesh;
@@ -107,8 +119,10 @@ namespace TMPro
         /// <summary>
         /// Returns the Mesh Filter of the text object.
         /// </summary>
-        public MeshFilter meshFilter {
-            get {
+        public MeshFilter meshFilter
+        {
+            get
+            {
                 if (m_meshFilter == null)
                     m_meshFilter = GetComponent<MeshFilter>();
 
@@ -120,7 +134,8 @@ namespace TMPro
         /// <summary>
         /// Sets the mask type 
         /// </summary>
-        public MaskingTypes maskType {
+        public MaskingTypes maskType
+        {
             get { return m_maskType; }
             set { m_maskType = value; SetMask(m_maskType); }
         }
@@ -221,31 +236,23 @@ namespace TMPro
         {
             if (this == null) return;
 
-            if (update == CanvasUpdate.Prelayout) {
-                if (m_autoSizeTextContainer) {
+            if (update == CanvasUpdate.Prelayout)
+            {
+                if (m_autoSizeTextContainer)
+                {
                     m_rectTransform.sizeDelta = GetPreferredValues(Mathf.Infinity, Mathf.Infinity);
                 }
-            } else if (update == CanvasUpdate.PreRender) {
+            }
+            else if (update == CanvasUpdate.PreRender)
+            {
                 this.OnPreRenderObject();
                 m_verticesAlreadyDirty = false;
                 m_layoutAlreadyDirty = false;
-                
+
                 if (!m_isMaterialDirty) return;
 
                 UpdateMaterial();
                 m_isMaterialDirty = false;
-            }
-        }
-
-        protected override void OnMeshRegenerated()
-        {
-            /// HACK to fix AdjustDiacriticPositions
-            if (EA4S.AppManager.I != null)
-            {
-                if (EA4S.AppManager.I.VocabularyHelper.FixDiacriticPositions(textInfo))
-                {
-                    UpdateVertexData();
-                }
             }
         }
 
@@ -371,7 +378,8 @@ namespace TMPro
         {
             int materialCount = m_textInfo.materialCount;
 
-            for (int i = 0; i < materialCount; i++) {
+            for (int i = 0; i < materialCount; i++)
+            {
                 Mesh mesh;
 
                 if (i == 0)
@@ -408,7 +416,8 @@ namespace TMPro
         {
             int materialCount = m_textInfo.materialCount;
 
-            for (int i = 0; i < materialCount; i++) {
+            for (int i = 0; i < materialCount; i++)
+            {
                 Mesh mesh;
 
                 if (i == 0)
@@ -447,7 +456,8 @@ namespace TMPro
 
             m_currentAutoSizeMode = m_enableAutoSizing;
 
-            if (m_isCalculateSizeRequired || m_rectTransform.hasChanged) {
+            if (m_isCalculateSizeRequired || m_rectTransform.hasChanged)
+            {
                 //Debug.Log("Calculating Layout Horizontal");
 
                 //m_LayoutPhase = AutoLayoutPhase.Horizontal;
@@ -458,7 +468,8 @@ namespace TMPro
 
                 //m_renderMode = TextRenderFlags.GetPreferredSizes; // Set Text to not Render and exit early once we have new width values.
 
-                if (m_enableAutoSizing) {
+                if (m_enableAutoSizing)
+                {
                     m_fontSize = m_fontSizeMax;
                 }
 
@@ -494,7 +505,8 @@ namespace TMPro
 
             //IsRectTransformDriven = true;
 
-            if (m_isCalculateSizeRequired || m_rectTransform.hasChanged) {
+            if (m_isCalculateSizeRequired || m_rectTransform.hasChanged)
+            {
                 //Debug.Log("Calculating Layout InputVertical");
 
                 //m_LayoutPhase = AutoLayoutPhase.Vertical;
@@ -505,7 +517,8 @@ namespace TMPro
 
                 //m_renderMode = TextRenderFlags.GetPreferredSizes;
 
-                if (m_enableAutoSizing) {
+                if (m_enableAutoSizing)
+                {
                     m_currentAutoSizeMode = true;
                     m_enableAutoSizing = false;
                 }
