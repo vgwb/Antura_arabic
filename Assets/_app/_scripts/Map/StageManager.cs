@@ -5,7 +5,6 @@ using EA4S.CameraControl;
 using EA4S.Core;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
-using ModularFramework.Components;
 
 namespace EA4S.Map
 {
