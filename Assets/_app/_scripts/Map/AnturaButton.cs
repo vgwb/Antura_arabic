@@ -2,7 +2,7 @@
 using EA4S.UI;
 using UnityEngine;
 
-namespace _app._scripts.Map
+namespace EA4S.Map
 {
     public class AnturaButton : UIButton
     {
