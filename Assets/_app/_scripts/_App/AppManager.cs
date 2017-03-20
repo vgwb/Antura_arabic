@@ -177,7 +177,26 @@ namespace EA4S
             parameters += "&entry.1999287882=" + WWW.EscapeURL(JsonUtility.ToJson(Player));
 
             Application.OpenURL(AppConstants.UrlSupportForm + parameters);
-
         }
+
+        void OnEnable()
+        {
+            // Subscribe to event fired when text object has been regenerated.
+            TMPro.TMPro_EventManager.TEXT_CHANGED_EVENT.Add(On_TMPro_Text_Changed);
+        }
+
+        void OnDisable()
+        {
+            TMPro.TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(On_TMPro_Text_Changed);
+        }
+
+        void On_TMPro_Text_Changed(Object obj)
+        {
+            TMPro.TMP_Text _tmp_text = (TMPro.TMP_Text)obj;
+            if (VocabularyHelper.FixDiacriticPositions(_tmp_text.textInfo)) {
+                _tmp_text.UpdateVertexData();
+            }
+        }
+
     }
 }
