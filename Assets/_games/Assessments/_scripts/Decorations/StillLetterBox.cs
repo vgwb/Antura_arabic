@@ -64,7 +64,6 @@ namespace EA4S.Assessment
 
         public void SetGreenLetter( ILivingLetterData word, ILivingLetterData letter)
         {
-            Debug.Log("Greening Called!");
             var wordInner = word as LL_WordData;
             var letterInner = letter as LL_LetterData;
 
