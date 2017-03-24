@@ -60,6 +60,10 @@ public partial class SROptions
     public bool VerboseTeacher { get { return EA4S.Teacher.ConfigAI.verboseTeacher; } set { EA4S.Teacher.ConfigAI.verboseTeacher = value; } }
 
     [Category("Options")]
+    [Sort(1)]
+    public bool SafeLaunch { get { return AppConstants.DebugStopPlayAtWrongPlaySessions; } set { AppConstants.DebugStopPlayAtWrongPlaySessions = value; } }
+
+    [Category("Options")]
     [NumberRange(1, 6)]
     [Sort(10)]
     public int Stage { get { return DebugManager.I.Stage; } set { DebugManager.I.Stage = value; } }
