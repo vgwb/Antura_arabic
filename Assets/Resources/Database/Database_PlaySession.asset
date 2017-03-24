@@ -764,14 +764,16 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 10
         Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
       - MiniGameCode: 16
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 100
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
         Weight: 1
-      - MiniGameCode: 21
-        Weight: 100
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
@@ -864,13 +866,15 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 10
         Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
       - MiniGameCode: 16
+        Weight: 1
+      - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
-        Weight: 1
-      - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -920,6 +924,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 16
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
@@ -968,15 +974,15 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 10
         Weight: 1
+      - MiniGameCode: 12
+        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
-        Weight: 100
+        Weight: 1
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
-        Weight: 1
-      - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -1027,6 +1033,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 16
         Weight: 1
+      - MiniGameCode: 17
+        Weight: 1
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
@@ -1075,6 +1083,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 10
         Weight: 1
+      - MiniGameCode: 12
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -1082,8 +1092,6 @@ MonoBehaviour:
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
-        Weight: 1
-      - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 23
         Weight: 1
@@ -1130,8 +1138,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 11
         Weight: 1
-      - MiniGameCode: 12
-        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -1225,8 +1231,6 @@ MonoBehaviour:
       Order: 2
       NumberOfMinigames: 3
       Minigames:
-      - MiniGameCode: 5
-        Weight: 100
       - MiniGameCode: 7
         Weight: 1
       - MiniGameCode: 9
@@ -1234,7 +1238,7 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 12
-        Weight: 1
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
