@@ -51,6 +51,7 @@ namespace EA4S.Minigames.MixedLetters
             switch (Variation)
             {
                 case MixedLettersVariation.Alphabet:
+                    builderParams.useJourneyForCorrect = false; // Force no journey, or the minigame will block
                     builder = new AlphabetQuestionBuilder(parameters: builderParams);
                     break;
                 case MixedLettersVariation.Spelling:
