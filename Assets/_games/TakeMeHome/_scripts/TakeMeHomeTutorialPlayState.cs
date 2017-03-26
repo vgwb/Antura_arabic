@@ -1,5 +1,6 @@
 ﻿using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
+using UnityEngine;
 
 namespace EA4S.Minigames.TakeMeHome
 {
@@ -49,7 +50,7 @@ namespace EA4S.Minigames.TakeMeHome
         private void showTutorial()
         {
             TutorialUI.Clear(false);
-            TutorialUI.DrawLine(this.game.currentLetter.transform.position - new UnityEngine.Vector3(0,-2.5f,0), tube.cubeInfo.transform.position, TutorialUI.DrawLineMode.FingerAndArrow,false,true);
+            TutorialUI.DrawLine(this.game.currentLetter.transform.position - new Vector3(0,-2.5f,0), tube.cubeInfo.transform.position - Vector3.forward * 1.5f, TutorialUI.DrawLineMode.FingerAndArrow,false,true);
            
         }
 

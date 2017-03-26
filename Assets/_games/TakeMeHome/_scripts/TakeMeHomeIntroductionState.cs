@@ -20,7 +20,7 @@ namespace EA4S.Minigames.TakeMeHome
 
 			if (game.currentRound > 6) {
 				game.SetCurrentState(game.EndState);
-			}
+            }
 		}
 
 		public void ExitState()

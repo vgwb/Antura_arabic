@@ -4,7 +4,7 @@
 
 		TakeMeHomeGame game;
 
-		float timer = 2;
+		float timer = 0.5f;
 		public TakeMeHomeEndState(TakeMeHomeGame game)
 		{
 			this.game = game;
@@ -12,7 +12,7 @@
 
 		public void EnterState()
 		{
-			game.Context.GetAudioManager().PlayMusic(Music.Relax);
+			
 		}
 
 		public void ExitState()
@@ -26,7 +26,9 @@
 			if (timer < 0)
 			{
 				game.EndGame(game.CurrentStars, game.CurrentScore);
-			}
+                game.Context.GetOverlayWidget().Initialize(false, false, false);
+                game.Context.GetAudioManager().PlayMusic(Music.Relax);
+            }
 		}
 
 		public void UpdatePhysics(float delta)
