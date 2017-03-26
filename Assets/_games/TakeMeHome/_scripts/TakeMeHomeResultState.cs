@@ -1,21 +1,27 @@
-﻿namespace EA4S.Minigames.TakeMeHome
+﻿using EA4S.Audio;
+using UnityEngine;
+
+namespace EA4S.Minigames.TakeMeHome
 {
 
     public class TakeMeHomeResultState : IState {
 
-		
-		public TakeMeHomeResultState(TakeMeHomeGame game)
+        TakeMeHomeGame game;
+
+        public TakeMeHomeResultState(TakeMeHomeGame game)
 		{
+            this.game = game;
 		}
 
 		public void EnterState()
 		{
-
-		}
+            
+        }
 
 		public void ExitState()
 		{
-		}
+            //game.SetCurrentState(game.EndState);
+        }
 
 		public void Update(float delta)
 		{

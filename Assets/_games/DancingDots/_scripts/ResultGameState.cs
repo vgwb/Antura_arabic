@@ -15,11 +15,14 @@ namespace EA4S.Minigames.DancingDots
 
         public void EnterState()
         {
-			AudioManager.I.PlayMusic(Music.Relax);
+            
+            //AudioManager.I.PlayMusic(Music.Relax);
         }
 
         public void ExitState()
         {
+            AudioManager.I.PlayMusic(Music.Relax);
+            game.Context.GetOverlayWidget().Initialize(false, false, false);
         }
 
         public void Update(float delta)

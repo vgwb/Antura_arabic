@@ -16,8 +16,6 @@ namespace EA4S.Minigames.TakeMeHome
 
 		public void EnterState()
 		{
-           
-
             if (game.currentLetter.collidedTubes.Count == 0) {
 				win = false;
 				game.currentLetter.respawn = true;
@@ -31,9 +29,13 @@ namespace EA4S.Minigames.TakeMeHome
                 TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.StampOK);
 				//AudioManager.I.PlaySound (Sfx.Win);
 				win = true;
-				game.IncrementScore ();
+                game.IncrementScore ();
+                
+
                 TutorialUI.MarkYes(markPosition, TutorialUI.MarkSize.Big);
-			} else {
+			}
+            else
+            {
                 TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.KO);
                 TutorialUI.MarkNo(markPosition, TutorialUI.MarkSize.Big);
                 game.spawnTube.show(game.currentLetter.lastCollidedTube.color);
@@ -50,7 +52,8 @@ namespace EA4S.Minigames.TakeMeHome
 
 		public void Update(float delta)
 		{
-			if (!game.currentLetter.isMoving) {
+			if (!game.currentLetter.isMoving)
+            {
 				if(!win)
 					game.SetCurrentState (game.PlayState);
 				else
