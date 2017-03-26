@@ -47,6 +47,16 @@ namespace EA4S.ReservedArea
             string[] numberWords = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
             string[] colorsWords = { "green", "red", "blue", "yellow" };
             string[] colorsWordsArabic = { "الأخضر", "الأحمر", "الأزرق", "الأصفر" };
+            string[] timesWordsArabic = {
+                "مرة واحدة",
+                "مرتين",
+                "ثلاث مرات",
+                "أربع مرات",
+                "خمس مرات",
+                "ست مرات",
+                "سبع مرات",
+                "ثماني مرات",
+                "تسع مرات" };
 
             string numberWord = numberWords[firstButtonClicksTarget - 1];
             string firstColorWord = colorsWords[firstButtonIndex];
@@ -62,7 +72,8 @@ namespace EA4S.ReservedArea
                 "\n\nPress <b>" + numberWord + "</b> times the <b>" + firstColorWord + "</b> button, then press the <b>" + secondColorWord + "</b> one once." +
                 "\n\n" + sectionErrorLoc.English; //"If you make an error, retry by re - accessing this panel");
 
-            string numberWordArabic = AppManager.I.DB.GetWordDataById("number_0" + firstButtonClicksTarget).Arabic;
+            string numberWordArabic = timesWordsArabic[firstButtonClicksTarget - 1];
+            //string numberWordArabic = AppManager.I.DB.GetWordDataById("number_0" + firstButtonClicksTarget).Arabic;
             string firstColorWordArabic = colorsWordsArabic[firstButtonIndex];
             string secondColorWordArabic = colorsWordsArabic[secondButtonIndex];
 
