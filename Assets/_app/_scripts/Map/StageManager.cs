@@ -5,6 +5,7 @@ using EA4S.CameraControl;
 using EA4S.Core;
 using EA4S.MinigamesCommon;
 using EA4S.Tutorial;
+using EA4S.UI;
 
 namespace EA4S.Map
 {
@@ -317,6 +318,7 @@ namespace EA4S.Map
             uiButtonMovementPlaySession.SetActive(false);
             bookButton.SetActive(false);
             anturaButton.SetActive(false);
+            GlobalUI.ShowPauseMenu(false);
         }
 
         void ActivateUI()
@@ -324,6 +326,7 @@ namespace EA4S.Map
             uiButtonMovementPlaySession.SetActive(true);
             bookButton.SetActive(true);
             anturaButton.SetActive(true);
+            GlobalUI.ShowPauseMenu(true);
         }
     }
 }
