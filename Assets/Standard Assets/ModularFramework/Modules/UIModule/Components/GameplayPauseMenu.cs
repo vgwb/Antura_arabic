@@ -20,7 +20,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
 using ModularFramework.Core;
 using ModularFramework.Modules;
 
@@ -31,9 +30,6 @@ namespace ModularFramework.Components {
 
         public override void OnEnable() {
             base.OnEnable();
-            //this.ObserveEveryValueChanged(x => x.xx).Subscribe(_ => {
-            //    Callback();
-            //});
         }
 
     }

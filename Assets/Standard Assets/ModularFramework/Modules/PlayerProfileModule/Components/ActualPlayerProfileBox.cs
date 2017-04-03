@@ -19,7 +19,6 @@
 * -------------------------------------------------------------- */
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
 using ModularFramework.Core;
 
 namespace ModularFramework.Components {
@@ -31,16 +30,17 @@ namespace ModularFramework.Components {
         #endregion
 
         void OnEnable() {
-            // Bind with text
-            GameManager.Instance.Modules.PlayerProfile.ObserveEveryValueChanged(x => x.ActivePlayer).Subscribe(_ => {
-                if(GameManager.Instance != null && GameManager.Instance.Modules.PlayerProfile.ActivePlayer != null) { 
-                    UsernameLable.text = GameManager.Instance.Modules.PlayerProfile.ActivePlayer.Key;
-
-                    Modules.PlayerProfile profile = GameManager.Instance.Modules.PlayerProfile.ActivePlayer as Modules.PlayerProfile;
-                    ProgressionLevelLable.text = profile.ProgressionRate.ToString();
-                }
-            }).AddTo(this);
+            // Remove UniRx refactoring request: now OnActivePlayerChanged must be called manually.
         }
-        
+
+        public void OnActivePlayerChanged() {
+            if (GameManager.Instance != null && GameManager.Instance.Modules.PlayerProfile.ActivePlayer != null) {
+                UsernameLable.text = GameManager.Instance.Modules.PlayerProfile.ActivePlayer.Key;
+
+                Modules.PlayerProfile profile = GameManager.Instance.Modules.PlayerProfile.ActivePlayer as Modules.PlayerProfile;
+                ProgressionLevelLable.text = profile.ProgressionRate.ToString();
+            }
+        }
+
     }
 }

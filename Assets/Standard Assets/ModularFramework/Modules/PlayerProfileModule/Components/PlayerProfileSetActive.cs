@@ -20,7 +20,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UniRx;
 using ModularFramework.Core;
 using ModularFramework.Modules;
 
@@ -47,19 +46,7 @@ namespace ModularFramework.Components {
         /// Subscribe for click event.
         /// </summary>
         void OnEnable() {
-            // Active profile button
-            if(SetActiveProfileButton)
-                SetActiveProfileButton.onClick.AsObservable()
-                    .Subscribe(_ =>
-                        GameManager.Instance.Modules.PlayerProfile.SetActivePlayer<PlayerProfile>(Player.Key)
-                    ).AddTo(this);
-
-            // Delete profile button
-            if (DeleteProfileButton)
-                DeleteProfileButton.onClick.AsObservable()
-                    .Subscribe(_ =>
-                        GameManager.Instance.Modules.PlayerProfile.DeletePlayer(Player.Key)
-                    ).AddTo(this);
+            // Remove UniRx refactoring request: any reactive interaction within this class must be called manually.
         }
 
         /// <summary>

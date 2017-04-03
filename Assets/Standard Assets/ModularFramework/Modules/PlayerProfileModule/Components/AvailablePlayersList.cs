@@ -20,7 +20,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
 using ModularFramework.Core;
 using ModularFramework.Modules;
 
@@ -57,34 +56,7 @@ namespace ModularFramework.Components {
 
         public override void OnEnable() {
             base.OnEnable();
-            // React to change number of element with list refresh
-            this.ObserveEveryValueChanged(x => x.PlayersIds.Count).Subscribe(_ => {
-                RefreshList();
-            });
-            // React to change number of element with list refresh
-            GameManager.Instance.PlayerProfile.ObserveEveryValueChanged(x => x.ActivePlayer).Subscribe(_ => {
-                RefreshList();
-            });
-            // Refresh click
-            if (RefreshListButton)
-                RefreshListButton.onClick.AsObservable().Subscribe(_ => {
-                    RefreshList();
-                }).AddTo(this);
-            // Create profile open window click
-            if (AddNewButton)
-                AddNewButton.onClick.AsObservable().Subscribe(_ => {
-                    OpenCreatePlayerProfileWindow();
-                }).AddTo(this);
-            // Remove button click
-            if (RemoveButton)
-                RemoveButton.onClick.AsObservable().Subscribe(_ => {
-                    // TODO
-                }).AddTo(this);
-            // Delete all profile button click
-            if (DeleteAllProfilesButton)
-                DeleteAllProfilesButton.onClick.AsObservable().Subscribe(_ => {
-                    DeleteAllProfiles();
-                }).AddTo(this);
+            // Remove UniRx refactoring request: any reactive interaction within this class must be called manually.
         }
 
         #region component API

@@ -19,7 +19,6 @@
 * -------------------------------------------------------------- */
 using UnityEngine;
 using System.Collections;
-using UniRx;
 using ModularFramework.Core;
 
 namespace ModularFramework.Core {
