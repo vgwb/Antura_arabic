@@ -2,20 +2,12 @@
 using UnityEngine.UI;
 using System.Collections;
 using ModularFramework.Core;
-using UniRx;
 
 namespace ModularFramework.Modules {
     public class OnClickCloseUIContainer : MonoBehaviour {
 
-        //public string UIContainerName;
-        OpenUIContainerSettings Settings;
-
         void OnEnable() {
-            Button button = gameObject.GetComponent<Button>();
-            if (button)
-                button.onClick.AsObservable().Subscribe(_ => {
-                    OnMouseDown();
-                }).AddTo(this);
+            // Remove UniRx refactoring request: any reactive interaction within this class must be called manually.
         }
 
         public void OnMouseDown() {

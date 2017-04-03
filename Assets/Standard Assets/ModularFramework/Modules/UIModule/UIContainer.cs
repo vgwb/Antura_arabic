@@ -21,7 +21,6 @@ using ModularFramework.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using UniRx;
 
 namespace ModularFramework.Modules {
 
@@ -69,12 +68,7 @@ namespace ModularFramework.Modules {
         }
 
         public virtual void OnEnable() {
-            // Close Button
-            if (CloseContainerButton)
-                CloseContainerButton.onClick.AsObservable().Subscribe(_ => {
-                    UIContainer container = transform.GetComponentInParent<UIContainer>();
-                    GameManager.Instance.UIModule.HideUIContainer(container.Key);
-                }).AddTo(this);
+            // Remove UniRx refactoring request: any reactive interaction within this class must be called manually.
         }
 
 

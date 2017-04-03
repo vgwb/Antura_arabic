@@ -21,7 +21,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using ModularFramework.Core;
-using UniRx;
 
 namespace ModularFramework.Components {
 
@@ -33,12 +32,7 @@ namespace ModularFramework.Components {
 
         void OnEnable() {
             LocalizedText = GetComponent<Text>();
-            /// <summary>
-            /// Monitoring property value changes.
-            /// </summary>
-            GameManager.Instance.Localization.ObserveEveryValueChanged(x => x.ActualLanguage).Subscribe(_ => {
-                UpdateLable(GameManager.Instance.Localization.GetLocalizedString(LocalizedText_ID));
-            }).AddTo(this);
+            // Remove UniRx refactoring request: now UpdateLable must be called manually.
         }
 
         /// <summary>

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using ModularFramework.Core;
-using UniRx;
 
 namespace ModularFramework.Modules {
     public class ProgressionRateUnlock : MonoBehaviour {
@@ -12,11 +11,7 @@ namespace ModularFramework.Modules {
         public Material UnlockMaterial;
 
         void OnEnable() {
-            PlayerProfile pp = GameManager.Instance.PlayerProfile.ActivePlayer as PlayerProfile;
-            pp.ObserveEveryValueChanged(p => p.ProgressionRate).Subscribe(_ => {
-                if (pp.ProgressionRate >= UnlockThreshold)
-                    Unlock(true);
-            }).AddTo(this);
+            // Remove UniRx refactoring request: any reactive interaction within this class must be called manually.
         }
 
         void Unlock(bool _unlock) {

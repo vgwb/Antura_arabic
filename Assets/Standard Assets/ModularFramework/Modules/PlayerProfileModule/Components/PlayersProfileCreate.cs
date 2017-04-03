@@ -23,7 +23,6 @@ using System;
 using System.Collections;
 using ModularFramework.Core;
 using ModularFramework.Modules;
-using UniRx;
 
 namespace ModularFramework.Components {
 
@@ -34,10 +33,7 @@ namespace ModularFramework.Components {
 
         public override void OnEnable() {
             base.OnEnable();
-            if(CreateButton)
-                CreateButton.onClick.AsObservable().Subscribe(_ => {
-                    CreateNewPlayerProfile(true);
-                }).AddTo(this);
+            // Remove UniRx refactoring request: any reactive interaction within this class must be called manually.
         }
 
         #region API
