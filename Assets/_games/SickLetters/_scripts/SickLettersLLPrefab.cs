@@ -64,6 +64,7 @@ namespace EA4S.Minigames.SickLetters
             
             letterView.OnJumpEnded();
             letterAnimator.SetBool("dancing", game.LLCanDance);
+            
 
             if (game.roundsCount > 0)
                 game.disableInput = false;
@@ -110,7 +111,7 @@ namespace EA4S.Minigames.SickLetters
             letterView.Initialize(newLetter);
             letterView.Label.GetComponent<TextRender>().SetLetterData(newLetter);
 
-            
+
             //game.LLPrefab.dotlessLetter.text = newLetter.TextForLivingLetter;
 
             string letterWithoutDiac = removeDiacritics(newLetter.TextForLivingLetter);
@@ -231,6 +232,7 @@ namespace EA4S.Minigames.SickLetters
         {
             i = 0;
             string letter = "x";
+            thisLLWrongDDs.Clear();
 
             if (isSimpleLetter)
                letter = game.LLPrefab.dotlessLetter.text;

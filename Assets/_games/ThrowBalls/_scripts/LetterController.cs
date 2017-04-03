@@ -55,7 +55,7 @@ namespace EA4S.Minigames.ThrowBalls
         private Vector3 velocity;
         private bool isAirborne;
 
-        void Start()
+        void Awake()
         {
             letterObjectView = GetComponent<LetterObjectView>();
 

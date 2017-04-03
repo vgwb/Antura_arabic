@@ -40,6 +40,8 @@ namespace EA4S.Minigames.SickLetters
             if (timer < 0)
             {
                 game.EndGame(game.currentStars, game.maxWieght);
+                game.Context.GetOverlayWidget().Initialize(false, false, false);
+                game.buttonRepeater.SetActive(false);
 
                 if (game.currentStars == 0)
                 {
