@@ -123,7 +123,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleIdentifier: org.eduapp4syria.antura
-  bundleVersion: 1.0.2
+  bundleVersion: 1.0.4
   preloadedAssets: []
   metroInputSource: 0
   m_HolographicPauseOnTrackingLoss: 1

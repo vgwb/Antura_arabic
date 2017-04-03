@@ -15,7 +15,7 @@ namespace EA4S.Minigames.Scanner
 
 		public void EnterState()
 		{
-			AudioManager.I.PlayMusic(Music.Relax);
+			
 		}
 
 		public void ExitState()
@@ -29,6 +29,8 @@ namespace EA4S.Minigames.Scanner
 			if (timer < 0)
             {
 				game.EndGame(game.CurrentStars, game.CurrentScoreRecord);
+                game.Context.GetOverlayWidget().Initialize(false, false, false);
+                AudioManager.I.PlayMusic(Music.Relax);
 
                 if (game.CurrentStars == 0)
                     AudioManager.I.PlayDialogue("Reward_0Star");
