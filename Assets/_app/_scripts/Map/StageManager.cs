@@ -48,6 +48,7 @@ namespace EA4S.Map
         int maxStageUnlocked, i, previousStageNumber;
         bool inTransition;
         static int firstContactSimulationStep;
+        GameObject tutorial;
 
         void Awake()
         {
@@ -191,6 +192,21 @@ namespace EA4S.Map
                 yield return new WaitForSeconds(0.85f);
             }
         }
+        void HideTutorial()
+        {
+            tutorial = GameObject.Find("[TutorialUI]");
+            if (tutorial!=null)
+            {
+                tutorial.transform.localScale = new Vector3(0, 0, 0);
+            }   
+        }
+        void ShowTutorial()
+        {
+            if (tutorial!=null)
+            {
+                tutorial.transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
         #endregion
 
         /// <summary>
@@ -211,6 +227,7 @@ namespace EA4S.Map
                 }
                 updateStageIndicator();
                 StartCoroutine("DesactivateMap");
+                HideTutorial();
             }
         }
 
@@ -237,6 +254,7 @@ namespace EA4S.Map
                 }
                 updateStageIndicator();
                 StartCoroutine("DesactivateMap");
+                if (currentStageNumber == 1) ShowTutorial();
             }
         }
 
