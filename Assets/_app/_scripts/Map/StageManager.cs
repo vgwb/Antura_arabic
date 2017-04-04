@@ -145,9 +145,10 @@ namespace EA4S.Map
                 AppManager.I.Player.FirstContactPassed(2);
                 KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_First, true, true, PlayDialogFirstStage);
                 Debug.Log("First Contact Step2 finished! Good Luck!");
+                //tuto anim on the play button
+                this.StartCoroutine(CO_Tutorial_PlayButton());
             }
         }
-
         void AnturaText()
         {
             KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_Intro_AnturaSpace, true, true, ActivateAnturaButton);
@@ -176,6 +177,17 @@ namespace EA4S.Map
             anturaBtPos.z -= 1;
             while (true) {
                 TutorialUI.Click(anturaButton.transform.position);
+                yield return new WaitForSeconds(0.85f);
+            }
+        }
+        IEnumerator CO_Tutorial_PlayButton()
+        {
+            TutorialUI.SetCamera(UICamera);
+            Vector3 pos = playButton.transform.position;
+            pos.y += 2;
+            while (true)
+            {
+                TutorialUI.Click(pos);
                 yield return new WaitForSeconds(0.85f);
             }
         }
