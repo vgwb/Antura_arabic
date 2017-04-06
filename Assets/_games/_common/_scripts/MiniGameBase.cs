@@ -23,7 +23,6 @@ namespace EA4S.MinigamesCommon
             } else { // manual set on framework for test session
                 AppManager.I.Modules.GameplayModule.ActualGameplayInfo = GameplayInfo;
             }
-            AppManager.I.OnMinigameStart();
             ReadyForGameplay();
         }
 
