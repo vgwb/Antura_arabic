@@ -1,5 +1,7 @@
 // Author: Dario Oliveri ( https://github.com/Darelbi )
 
+using UnityEngine;
+
 namespace EA4S.Assessment
 {
     /// <summary>
@@ -458,6 +460,11 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
+            
+            if( context.Configuration.SimultaneosQuestions == 1) 
+                AssessmentOptions.Instance.PlayCorrectAnswer = true;
+            AssessmentOptions.Instance.PlayAllCorrectAnswers = true;
+
             AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Word;
             placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Word);
             placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Letter);
@@ -489,6 +496,8 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.ShowFullWordOnAnswered = false;
             AssessmentOptions.Instance.WideLL = false;
             AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Letter;
+            AssessmentOptions.Instance.PlayCorrectAnswer = false;
+            AssessmentOptions.Instance.PlayAllCorrectAnswers = false;
 
             placerOptions = QuestionPlacerOptions.Instance;
             placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Letter);

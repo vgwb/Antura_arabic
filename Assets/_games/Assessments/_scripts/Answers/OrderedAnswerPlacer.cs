@@ -91,12 +91,17 @@ namespace EA4S.Assessment
 
             positions.Shuffle();
 
+            playbackAnswers = new List< Answer>();
             foreach (var a in allAnswers)
                 yield return Koroutine.Nested( PlaceAnswer( a, positions));
 
-            yield return Wait.For(0.65f);
+            yield return Koroutine.Nested( PlayBackCorrectAnswers());
+
+            yield return Wait.For( 0.65f);
             isAnimating = false;           
         }
+
+        List<Answer> playbackAnswers = null;
 
         private IEnumerator PlaceAnswer( Answer answer, List< Vector3> positions)
         {
@@ -106,8 +111,26 @@ namespace EA4S.Assessment
             go.GetComponent< StillLetterBox>().Poof();
             go.GetComponent< StillLetterBox>().Magnify();
             audioManager.PlayPoofSound();
+            if (answer.IsCorrect())
+            {
+                if (playbackAnswers.Count == 0 && AssessmentOptions.Instance.PlayCorrectAnswer)
+                    playbackAnswers.Add( answer);
+                else if (AssessmentOptions.Instance.PlayAllCorrectAnswers)
+                    playbackAnswers.Add( answer);
+            }
 
             yield return Wait.For( Random.Range( 0.07f, 0.13f));
+        }
+
+        private IEnumerator PlayBackCorrectAnswers()
+        {
+            playbackAnswers.Shuffle();
+            foreach (var a in playbackAnswers)
+            {
+                yield return Koroutine.Nested( a.PlayLetter());
+                yield return Wait.For( 0.3f);
+            }
+            playbackAnswers = null;
         }
 
         private IEnumerator RemoveCoroutine()

@@ -1,4 +1,5 @@
 using EA4S.MinigamesAPI;
+using System.Collections;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -74,8 +75,13 @@ namespace EA4S.Assessment
         /// </summary>
         void OnMouseDown()
         {
-            if ( AssessmentOptions.Instance.PronunceAnswerWhenClicked)
+            if (AssessmentOptions.Instance.PronunceAnswerWhenClicked)
                 dialogues.PlayLetterData( Data());
+        }
+
+        public IEnumerator PlayLetter()
+        {
+            return dialogues.PlayLetterDataCoroutine( Data());
         }
     }
 }

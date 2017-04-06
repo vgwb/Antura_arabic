@@ -71,6 +71,8 @@ namespace EA4S.Assessment
                 }
         }
 
+        List<Answer> playbackAnswers = null;
+
         private IEnumerator PlaceCoroutine()
         {
             // Text justification "algorithm"
@@ -107,10 +109,13 @@ namespace EA4S.Assessment
             SpawnLettersBG();
 
             // Spawn Answers.
+            playbackAnswers = new List< Answer>();
             foreach (var a in allAnswers)
             {
                 yield return Koroutine.Nested( PlaceAnswer( a));
             }
+
+            yield return Koroutine.Nested( PlayBackCorrectAnswers());
 
             yield return Wait.For( 0.65f);
             isAnimating = false;
@@ -123,13 +128,31 @@ namespace EA4S.Assessment
             AddPlaceHolder( currentPos);
         }
 
+        private IEnumerator PlayBackCorrectAnswers()
+        {
+            playbackAnswers.Shuffle();
+            foreach (var a in playbackAnswers)
+            {
+                yield return Koroutine.Nested(a.PlayLetter());
+                yield return Wait.For(0.3f);
+            }
+            playbackAnswers = null;
+        }
+
         private IEnumerator PlaceAnswer( Answer a)
         {
             var go = a.gameObject;
             go.GetComponent< StillLetterBox>().Poof();
             go.GetComponent< StillLetterBox>().Magnify();
             audioManager.PlayPoofSound();
-            
+            if (a.IsCorrect())
+            {
+                if (playbackAnswers.Count == 0 && AssessmentOptions.Instance.PlayCorrectAnswer)
+                    playbackAnswers.Add( a);
+                else if (AssessmentOptions.Instance.PlayAllCorrectAnswers)
+                    playbackAnswers.Add( a);
+            }
+
             yield return Wait.For( Random.Range( 0.07f, 0.13f));
         }
 
