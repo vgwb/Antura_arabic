@@ -18,10 +18,11 @@ namespace EA4S.MinigamesCommon
 
         protected virtual void Start()
         {
-            if (!UseTestGameplayInfo)
+            if (!UseTestGameplayInfo) {
                 GameplayInfo = AppManager.I.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
-            else // manual set on framework for test session
+            } else { // manual set on framework for test session
                 AppManager.I.Modules.GameplayModule.ActualGameplayInfo = GameplayInfo;
+            }
             AppManager.I.OnMinigameStart();
             ReadyForGameplay();
         }

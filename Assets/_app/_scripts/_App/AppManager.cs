@@ -179,6 +179,11 @@ namespace EA4S
             Application.OpenURL(AppConstants.UrlSupportForm + parameters);
         }
 
+
+        #region TMPro hack
+        /// <summary>
+        /// TextMesh Pro hack to manage Diacritic Symbols correct positioning
+        /// </summary>
         void OnEnable()
         {
             // Subscribe to event fired when text object has been regenerated.
@@ -197,6 +202,6 @@ namespace EA4S
                 _tmp_text.UpdateVertexData();
             }
         }
-
+        #endregion
     }
 }
