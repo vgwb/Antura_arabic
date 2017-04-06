@@ -206,11 +206,12 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.PronunceAnswerWhenClicked = true;
             AssessmentOptions.Instance.ShowQuestionAsImage = false;
             AssessmentOptions.Instance.PlayQuestionAlsoAfterTutorial = false;
-            AssessmentOptions.Instance.QuestionSpawnedPlaySound = false;
+            AssessmentOptions.Instance.QuestionSpawnedPlaySound = true;
             AssessmentOptions.Instance.QuestionAnsweredPlaySound = false;
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
+
             placerOptions.QuestionWideness = ElementsSize.Get( LivingLetterDataType.Word);
             placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Letter);
 
@@ -460,10 +461,6 @@ namespace EA4S.Assessment
             AssessmentOptions.Instance.QuestionAnsweredFlip = false;
 
             Init( context);
-            
-            if( context.Configuration.SimultaneosQuestions == 1) 
-                AssessmentOptions.Instance.PlayCorrectAnswer = true;
-            AssessmentOptions.Instance.PlayAllCorrectAnswers = true;
 
             AssessmentOptions.Instance.AnswerType = LivingLetterDataType.Word;
             placerOptions.AnswerWideness = ElementsSize.Get( LivingLetterDataType.Word);
