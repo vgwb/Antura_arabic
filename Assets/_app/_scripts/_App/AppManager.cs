@@ -142,15 +142,6 @@ namespace EA4S
 
         #endregion
 
-        #region event delegate
-
-        // obsolete: unused
-        public void OnMinigameStart()
-        {
-        }
-
-        #endregion
-
         #region Pause
         void OnApplicationPause(bool pauseStatus)
         {
@@ -178,7 +169,6 @@ namespace EA4S
 
             Application.OpenURL(AppConstants.UrlSupportForm + parameters);
         }
-
 
         #region TMPro hack
         /// <summary>
