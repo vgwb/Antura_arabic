@@ -1,6 +1,7 @@
 ﻿using EA4S.Core;
 using EA4S.UI;
 using UnityEngine;
+using System.IO;
 
 namespace EA4S.Scenes
 {
@@ -14,7 +15,7 @@ namespace EA4S.Scenes
             GlobalUI.ShowPauseMenu(false);
             GlobalUI.ShowBackButton(true);
 
-            SupportText.text = AppConstants.AppVersion + "\n" + "OPEN BETA";
+            SupportText.text = AppConstants.AppVersion + " " + "OPEN BETA";
         }
 
         public void OnOpenUrlWebsite()
@@ -39,7 +40,7 @@ namespace EA4S.Scenes
 
         public void OnOpenInstallInstructions()
         {
-            GlobalUI.ShowPrompt("", "Install instructions");
+            OpenPDF("TestPDF");
         }
 
         #region RATE
@@ -83,5 +84,15 @@ namespace EA4S.Scenes
         {
 
         }
+
+        public void OpenPDF(string filename)
+        {
+            //string sourcePath = System.IO.Path.Combine(Application.streamingAssetsPath, filename);
+            string destPath = System.IO.Path.Combine(Application.persistentDataPath, filename + ".pdf");
+            TextAsset pdfTemp = Resources.Load("Pdf/" + filename, typeof(TextAsset)) as TextAsset;
+            File.WriteAllBytes(destPath, pdfTemp.bytes);
+            Application.OpenURL(destPath);
+        }
+
     }
 }
