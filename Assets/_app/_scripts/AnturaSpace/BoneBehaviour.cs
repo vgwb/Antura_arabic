@@ -1,5 +1,6 @@
 ﻿using EA4S.Audio;
 using EA4S.MinigamesCommon;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S.AnturaSpace
@@ -43,7 +44,7 @@ namespace EA4S.AnturaSpace
         private ForceMode m_eRotationForceMode;
 
         [Header("Drag")]
-        
+
         public float m_fDragThrowMagnitudeScaling = 0.1f;
         public float m_fTimeSampling = 0.0333f;
         [SerializeField]
@@ -55,10 +56,12 @@ namespace EA4S.AnturaSpace
         bool m_bIsDragged = false;
         private Vector3 m_v3LastPosition;
         float m_lastPositionTime = 0;
-        private float m_fTimeProgression=0;
+        private float m_fTimeProgression = 0;
         #endregion
 
         private static GameObject s_oParticleRootContainer;
+
+        List<Plane> planes = new List<Plane>();
 
         #region GETTER/SETTER
 
@@ -75,7 +78,7 @@ namespace EA4S.AnturaSpace
         }
 
         public Rigidbody boneRigidbody
-        { get;set; }
+        { get; set; }
 
         public bool isDragging()
         {
@@ -89,18 +92,22 @@ namespace EA4S.AnturaSpace
 
         void Start()
         {
+            planes.AddRange(GeometryUtility.CalculateFrustumPlanes(Camera.main));
+
+            planes.Add(new Plane(Vector3.up, 0));
+            planes.Add(new Plane(Vector3.back, 40));
 
             if (m_fRotationMaxMagnitude < m_fRotationMinMagnitude ||
                 m_fThrowMaxMagnitude < m_fThrowMinMagnitude ||
                 m_v3DirectionMinValues.x > m_v3DirectionMaxValues.x ||
                 m_v3DirectionMinValues.y > m_v3DirectionMaxValues.y ||
-                m_v3DirectionMinValues.z > m_v3DirectionMaxValues.z )
+                m_v3DirectionMinValues.z > m_v3DirectionMaxValues.z)
             {
                 Debug.Log("Warning, unvalid min/max values");
             }
 
             //build root for cookies particles
-            if(s_oParticleRootContainer==null)
+            if (s_oParticleRootContainer == null)
             {
                 GameObject _oTempBase = new GameObject();
                 s_oParticleRootContainer = Instantiate(_oTempBase);
@@ -118,20 +125,20 @@ namespace EA4S.AnturaSpace
         void Update()
         {
 
-            if(m_bIsDragged) //if this bone is being dragged
+            if (m_bIsDragged) //if this bone is being dragged
             {
                 m_fTimeProgression += Time.deltaTime;
 
-                if(m_fTimeProgression>=m_fTimeSampling)
+                if (m_fTimeProgression >= m_fTimeSampling)
                 {
                     m_v3LastPosition = transform.position;//Store dragging data to prepare for the releasing throw
                     m_fTimeProgression = 0;
                     m_lastPositionTime = Time.realtimeSinceStartup;
                 }
-                
+
 
                 //set the bone position on the pointer(x,y) at it's current distance from the camera
-                float _fCameraDistance = 6 + 4*(Input.mousePosition.y/Screen.height);
+                float _fCameraDistance = 6 + 4 * (Input.mousePosition.y / Screen.height);
                 var newPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _fCameraDistance));
 
                 if (newPos.y < 1)
@@ -139,7 +146,24 @@ namespace EA4S.AnturaSpace
 
                 transform.position = newPos;
             }
+            else
+            {
+                // Limit inside view frustum
+                var newPos = m_oBoneRigidbody.position;
+                for (int i = 0, count = planes.Count; i < count; ++i)
+                {
+                    var distance = planes[i].GetDistanceToPoint(newPos);
+                    if (distance < 0)
+                    {
+                        var planeNormal = planes[i].normal;
 
+                        m_oBoneRigidbody.velocity -= 1.2f * Vector3.Dot(m_oBoneRigidbody.velocity, planeNormal) * planeNormal;
+
+                        newPos = newPos - distance * planeNormal;
+                    }
+                }
+                m_oBoneRigidbody.position = newPos;
+            }
         }
 
         //private void OnDisable()
@@ -171,7 +195,7 @@ namespace EA4S.AnturaSpace
 
             //disable collision and enabled after 0.5 sec for avoid that Antura collision shot bone away
             m_oBoneRigidbody.GetComponentInChildren<Collider>().enabled = false;
-            StartCoroutine(Minigames.MissingLetter.Utils.LaunchDelay(0.5f, 
+            StartCoroutine(Minigames.MissingLetter.Utils.LaunchDelay(0.5f,
                 delegate
                 {
                     m_oBoneRigidbody.GetComponentInChildren<Collider>().enabled = true;
@@ -183,7 +207,7 @@ namespace EA4S.AnturaSpace
 
         public void Drag()
         {
-           
+
             m_oBoneRigidbody.isKinematic = true; //resets actives forces
 
             gameObject.GetComponentInChildren<Collider>().isTrigger = true; //this way Antura won't eat it since collision won't happen
@@ -199,7 +223,7 @@ namespace EA4S.AnturaSpace
 
         public void LetGo()
         {
-            
+
             m_oBoneRigidbody.isKinematic = false;
 
             gameObject.GetComponentInChildren<Collider>().isTrigger = false;
@@ -217,8 +241,8 @@ namespace EA4S.AnturaSpace
         /// </summary>
         /// <param name="fDuration"></param>
         public void Poof()
-        {      
-            if (m_oParticleInstance==null)
+        {
+            if (m_oParticleInstance == null)
             {
                 m_oParticleInstance = Instantiate<GameObject>(m_oParticle);
 
@@ -228,7 +252,7 @@ namespace EA4S.AnturaSpace
                     m_oParticleInstance.transform.SetParent(s_oParticleRootContainer.transform);
                 }
 
-                
+
             }
 
             m_oParticleInstance.transform.position = transform.position;//put particle on cookie
@@ -251,7 +275,7 @@ namespace EA4S.AnturaSpace
         /// </summary>
         private void StopPoof()
         {
-            if(m_oParticleInstance)
+            if (m_oParticleInstance)
             {
                 foreach (var particles in m_oParticleInstance.GetComponentsInChildren<ParticleSystem>(true))
                 {
@@ -260,7 +284,7 @@ namespace EA4S.AnturaSpace
 
                 m_oParticleInstance.SetActive(false);
             }
-            
+
         }
 
         #region PRIVATE FUNCTIONS
@@ -290,7 +314,7 @@ namespace EA4S.AnturaSpace
             //Add rotation with random magnitude
             m_oBoneRigidbody.AddTorque(Random.insideUnitSphere.normalized * Random.Range(m_fRotationMinMagnitude, m_fRotationMaxMagnitude), m_eRotationForceMode);
             //Add translation
-            m_oBoneRigidbody.AddForce((transform.position-m_v3LastPosition)/(Time.realtimeSinceStartup - m_lastPositionTime) * m_fDragThrowMagnitudeScaling, m_eReleaseForceMode);
+            m_oBoneRigidbody.AddForce((transform.position - m_v3LastPosition) / (Time.realtimeSinceStartup - m_lastPositionTime) * m_fDragThrowMagnitudeScaling, m_eReleaseForceMode);
         }
 
         #endregion
