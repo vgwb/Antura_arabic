@@ -8,7 +8,7 @@ namespace EA4S.Minigames.HideAndSeek
 
         bool goToEndGame;
 
-        float timer = 4;
+        float timer = 2;
 		public ResultGameState(HideAndSeekGame game)
         {
             this.game = game;
@@ -17,20 +17,17 @@ namespace EA4S.Minigames.HideAndSeek
         public void EnterState()
         {
             goToEndGame = false;
-            
-            AudioManager.I.PlayMusic(Music.Lullaby);
 
            if (game.isTimesUp)
             {
                 game.Context.GetPopupWidget().Hide();
-                timer = 2;
+                timer = 0;
                 goToEndGame = true;
             }
         }
 
         public void ExitState()
         {
-            AudioManager.I.StopMusic();
         }
 
         public void Update(float delta)

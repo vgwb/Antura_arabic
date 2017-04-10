@@ -8,6 +8,9 @@
     {
         MiniGame game;
 
+        bool outcomeStarted = false;
+        float timer = 0;
+
         public OutcomeGameState(MiniGame game)
         {
             this.game = game;
@@ -15,6 +18,22 @@
 
         public void EnterState()
         {
+            timer = 2.0f;
+            game.Context.GetAudioManager().PlayMusic(Music.Relax);
+        }
+
+        public void ExitState()
+        {
+            game.Context.GetStarsWidget().Hide();
+        }
+
+        void Complete()
+        {
+            if (outcomeStarted)
+                return;
+
+            outcomeStarted = true;
+
             int starsScore = game.StarsScore;
             if (starsScore > 3)
                 starsScore = 3;
@@ -31,18 +50,22 @@
                 text = (Database.LocalizationDataId.Keeper_Good_2);
             else
                 text = (Database.LocalizationDataId.Keeper_Good_1);
-            
+
             //game.Context.GetSubtitleWidget().DisplaySentence(text);
             game.Context.GetAudioManager().PlayDialogue(text);
-        }
-
-        public void ExitState()
-        {
-            game.Context.GetStarsWidget().Hide();
+            
+            game.Context.GetOverlayWidget().Initialize(false, false, false);
         }
 
         public void Update(float delta)
         {
+            if (timer > 0)
+            {
+                timer -= delta;
+
+                if (timer <= 0)
+                    Complete();
+            }
         }
 
         public void UpdatePhysics(float delta)

@@ -47,12 +47,8 @@ namespace EA4S.Minigames.HideAndSeek
         {
             gameTime.Stop();
 
-            AudioManager.I.StopMusic();
-
             game.inGame = false;
             game.GameManager.enabled = false;
-            //disable UI
-            game.Context.GetOverlayWidget().Initialize(false, false, false);
         }
 
         public void Update(float delta)
