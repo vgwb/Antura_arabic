@@ -12,6 +12,7 @@
 
         public void EnterState()
         {
+            game.QuestionManager.wordComposer.gameObject.SetActive(false);
         }
 
         public void ExitState()
