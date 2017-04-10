@@ -23,14 +23,26 @@ namespace EA4S.Minigames.Egg
 
             sequence = EggConfiguration.Instance.Variation == EggConfiguration.EggVariation.Sequence;
 
-            int numberOfLetters = 2;
+            int numberOfLetters = 3;
 
-            numberOfLetters += ((int)(difficulty * 5) + 1);
-
-            if (numberOfLetters > 8)
+            if (sequence)
             {
-                numberOfLetters = 8;
+                if (difficulty < 0.5f)
+                    numberOfLetters += UnityEngine.Mathf.RoundToInt(difficulty * 6);
+                else
+                    numberOfLetters += UnityEngine.Mathf.RoundToInt((difficulty-0.5f) * 4f);
+
+                if (numberOfLetters > 6)
+                    numberOfLetters = 6;
             }
+            else
+            {
+                numberOfLetters += (int)(difficulty * 5);
+
+                if (numberOfLetters > 8)
+                    numberOfLetters = 8;
+            }
+
 
             if (!sequence)
             {
