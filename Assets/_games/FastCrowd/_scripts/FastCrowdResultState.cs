@@ -16,14 +16,16 @@ namespace EA4S.Minigames.FastCrowd
             if (game.CurrentChallenge != null)
             {
                 if (!game.ShowChallengePopupWidget(true, OnPopupCloseRequested))
-                    game.SetCurrentState(game.QuestionState);
+                    OnPopupCloseRequested();
             }
         }
 
-
         void OnPopupCloseRequested()
         {
-            game.SetCurrentState(game.QuestionState);
+            if (game.CurrentStars == 3)
+                game.SetCurrentState(game.EndState);
+            else
+                game.SetCurrentState(game.QuestionState);
         }
 
         public void ExitState()

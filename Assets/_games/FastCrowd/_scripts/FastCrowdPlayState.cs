@@ -44,7 +44,18 @@ namespace EA4S.Minigames.FastCrowd
 
 
             if (game.CurrentChallenge != null)
+            {
                 game.QuestionManager.StartQuestion(game.CurrentChallenge, game.NoiseData);
+
+                if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet)
+                {
+                    if (gameTime != null)
+                        gameTime.onTimesUp -= OnTimesUp;
+
+                    gameTime = new CountdownTimer(game.CurrentChallenge.Count * 4f);
+                    gameTime.onTimesUp += OnTimesUp;
+                }
+            }
             else
                 game.QuestionManager.Clean();
 
@@ -112,6 +123,9 @@ namespace EA4S.Minigames.FastCrowd
             }
 
             game.Context.GetAudioManager().PlaySound(result ? Sfx.OK : Sfx.KO);
+
+            if (game.CurrentStars == 3)
+                game.SetCurrentState(game.EndState);
         }
 
         void StopAntura()

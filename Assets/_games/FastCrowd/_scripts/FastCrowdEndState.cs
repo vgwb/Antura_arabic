@@ -4,7 +4,7 @@
     {
         FastCrowdGame game;
 
-        float timer = 2;
+        float timer = 0;
         public FastCrowdEndState(FastCrowdGame game)
         {
             this.game = game;
@@ -12,7 +12,6 @@
 
         public void EnterState()
         {
-            game.Context.GetAudioManager().PlayMusic(Music.Relax);
         }
 
         public void ExitState()
