@@ -146,7 +146,12 @@ namespace EA4S.AnturaSpace
             UI.onEnterCustomization += OnEnterCustomization;
             UI.onExitCustomization += OnExitCustomization;
 
-            Antura.onTouched += () => { if (CurrentState != null) CurrentState.OnTouched(); };
+            Antura.onTouched += () => {
+                if (CurrentState != null) CurrentState.OnTouched();
+
+                if (CurrentState == Customization)
+                    UI.ToggleModsPanel();
+            };
 
             LastTimeCatching = Time.realtimeSinceStartup;
         }
@@ -197,8 +202,9 @@ namespace EA4S.AnturaSpace
 
         void OnExit()
         {
-            if (AnturaSpaceUI.I.IsModsPanelOpen) AnturaSpaceUI.I.ToggleModsPanel();
-            else AppManager.I.NavigationManager.GoBack();
+            //if (AnturaSpaceUI.I.IsModsPanelOpen) AnturaSpaceUI.I.ToggleModsPanel();
+            //else AppManager.I.NavigationManager.GoBack();
+            AppManager.I.NavigationManager.GoBack();
         }
 
         void OnEnterCustomization()
