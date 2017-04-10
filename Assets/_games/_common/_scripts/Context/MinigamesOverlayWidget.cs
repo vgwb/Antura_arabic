@@ -1,4 +1,5 @@
-﻿using EA4S.UI;
+﻿using System;
+using EA4S.UI;
 
 namespace EA4S.MinigamesCommon
 {

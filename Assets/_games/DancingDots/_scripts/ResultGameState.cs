@@ -21,8 +21,6 @@ namespace EA4S.Minigames.DancingDots
 
         public void ExitState()
         {
-            AudioManager.I.PlayMusic(Music.Relax);
-            game.Context.GetOverlayWidget().Initialize(false, false, false);
         }
 
         public void Update(float delta)

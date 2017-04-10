@@ -15,9 +15,6 @@
             m_fTimer = 1;
             m_bGoToEndGame = true;
 
-            m_oGame.Context.GetAudioManager().PlayMusic(Music.Relax);
-            m_oGame.Context.GetOverlayWidget().Initialize(false, false, false);
-
         }
 
         public void ExitState()

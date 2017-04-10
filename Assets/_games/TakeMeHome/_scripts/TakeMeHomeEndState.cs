@@ -26,8 +26,6 @@
 			if (timer < 0)
 			{
 				game.EndGame(game.CurrentStars, game.CurrentScore);
-                game.Context.GetOverlayWidget().Initialize(false, false, false);
-                game.Context.GetAudioManager().PlayMusic(Music.Relax);
             }
 		}
 
