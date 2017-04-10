@@ -44,6 +44,8 @@ namespace EA4S.Minigames.FastCrowd
                 {
                     case FastCrowdVariation.Words:
                         return 8;
+                    case FastCrowdVariation.Alphabet:
+                        return (int)(CurrentChallenge.Count * 0.333f);
                     default:
                         return 5;
                 }
@@ -54,7 +56,13 @@ namespace EA4S.Minigames.FastCrowd
         {
             get
             {
-                return 10;
+                switch (FastCrowdConfiguration.Instance.Variation)
+                {
+                    case FastCrowdVariation.Alphabet:
+                        return (int)(CurrentChallenge.Count * 0.666f);
+                    default:
+                        return 10;
+                }
             }
         }
 
@@ -62,7 +70,13 @@ namespace EA4S.Minigames.FastCrowd
         {
             get
             {
-                return 15;
+                switch (FastCrowdConfiguration.Instance.Variation)
+                {
+                    case FastCrowdVariation.Alphabet:
+                        return CurrentChallenge.Count;
+                    default:
+                        return 15;
+                }
             }
         }
 
