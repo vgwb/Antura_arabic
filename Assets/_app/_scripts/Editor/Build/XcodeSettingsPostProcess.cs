@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_IOS
+using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEditor.iOS.Xcode;
 using System.Collections;
@@ -66,3 +67,4 @@ public class XcodeSettingsPostProcess
         plist.WriteToFile(plistPath);
     }
 }
+#endif
