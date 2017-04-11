@@ -14,6 +14,7 @@ namespace EA4S.Minigames.FastCrowd
         public Transform innerTransform;
         WordFlexibleContainer WordLabel;
         List<LL_LetterData> CompletedLetters = new List<LL_LetterData>();
+        public bool splitMode = false;
 
         void Awake()
         {
@@ -30,10 +31,16 @@ namespace EA4S.Minigames.FastCrowd
 
             for (int i = 0; i < CompletedLetters.Count; ++i) {
                 LL_LetterData letter = CompletedLetters[i];
-                word += letter.Data.GetChar();
+
+                if (splitMode)
+                {
+                    word += (splitMode && i > 0 ? " " : "") + letter.Data.GetCharFixedForDisplay(letter.Form);
+                }
+                else
+                    word += letter.Data.GetChar();
             }
             
-            WordLabel.SetText(word, true);
+            WordLabel.SetText(word, !splitMode);
         }
 
         public void AddLetter(ILivingLetterData data)
