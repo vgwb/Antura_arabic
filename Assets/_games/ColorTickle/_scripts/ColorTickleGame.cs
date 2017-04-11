@@ -31,7 +31,6 @@ namespace EA4S.Minigames.ColorTickle
         #endregion
 
         #region PRIVATE MEMBERS
-        private int m_Stars = 0;
         GameObject[] m_MyLetters;
         GameObject m_TutorialLetter;
         IOverlayWidget m_GameUI;
@@ -74,10 +73,11 @@ namespace EA4S.Minigames.ColorTickle
             get { return m_MaxLives; }
         }
 
+        public int score { get; set; }
+
         public int starsAwarded
         {
-            get { return m_Stars; }
-            set { m_Stars = value; }
+            get { return Mathf.CeilToInt(score / 2f); }
         }
 
         public int rounds

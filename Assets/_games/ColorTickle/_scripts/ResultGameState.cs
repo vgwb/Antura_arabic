@@ -28,7 +28,7 @@ namespace EA4S.Minigames.ColorTickle
             if (timer < 0)
             {
                 //AudioManager.I.PlayDialog(TextID.GetTextIDFromStars(game.starsAwarded).ToString());
-                game.EndGame(game.starsAwarded,0);
+                game.EndGame(game.starsAwarded, game.score);
             }
         }
 

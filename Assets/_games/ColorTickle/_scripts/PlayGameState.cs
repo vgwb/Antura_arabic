@@ -151,8 +151,8 @@ namespace EA4S.Minigames.ColorTickle
                     if(m_PercentageLetterColored >= 100)
                     {
                         m_iRoundsSuccessfull += 1;
-                        game.starsAwarded = Mathf.CeilToInt(m_iRoundsSuccessfull / 2f);
-                        game.gameUI.SetStarsScore(game.starsAwarded);
+                        game.score = m_iRoundsSuccessfull;
+                        game.gameUI.SetStarsScore(game.score);
 
                         m_LetterObjectView.DoHorray();
                         ColorTickleConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
@@ -205,7 +205,7 @@ namespace EA4S.Minigames.ColorTickle
             game.gameUI = game.Context.GetOverlayWidget();
             game.gameUI.Initialize(true, false, true);
             game.gameUI.SetMaxLives(game.lives);
-            game.gameUI.SetStarsThresholds(1,2,3);
+            game.gameUI.SetStarsThresholds(1,3,5);
             game.gameUI.SetStarsScore(0);
 
             game.colorsCanvas.gameObject.SetActive(true);
