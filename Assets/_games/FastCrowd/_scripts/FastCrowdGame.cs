@@ -138,8 +138,11 @@ namespace EA4S.Minigames.FastCrowd
             TutorialState = new FastCrowdTutorialState(this);
 
             QuestionManager.wordComposer.gameObject.SetActive(
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling
+                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling ||
+                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter
                 );
+
+            QuestionManager.wordComposer.splitMode = FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter;
         }
 
 
