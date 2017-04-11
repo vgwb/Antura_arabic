@@ -41,10 +41,11 @@ namespace EA4S.Minigames.HideAndSeek
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
-            int nCorrect = 5;
+            int nCorrect = 1;
+            int nWrong = 6;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, parameters: builderParams);
+            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
 
             return builder;
         }
