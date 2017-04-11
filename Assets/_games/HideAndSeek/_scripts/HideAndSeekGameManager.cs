@@ -248,6 +248,15 @@ namespace EA4S.Minigames.HideAndSeek
                 letterList.Add(letter);
             }
 
+            int numWrong = Mathf.RoundToInt(2 + HideAndSeekConfiguration.Instance.Difficulty * 4);
+            foreach (LL_LetterData letter in currentQuestion.GetWrongAnswers())
+            {
+                if (numWrong-- == 0)
+                    break;
+                
+                letterList.Add(letter);
+            }
+
             ActiveLetters = letterList.Count;
 
             for (int i = 0; i < ActiveLetters; ++i)

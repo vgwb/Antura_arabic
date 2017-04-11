@@ -57,7 +57,7 @@ namespace EA4S.Minigames.HideAndSeek
             List<ILivingLetterData> letterList = new List<ILivingLetterData>();
 
             ILivingLetterData right = currentQuestion.GetCorrectAnswers().ToList()[0];
-            ILivingLetterData wrong = currentQuestion.GetCorrectAnswers().ToList()[1];
+            ILivingLetterData wrong = currentQuestion.GetWrongAnswers().ToList()[0];
             letterList.Add(right);
             letterList.Add(wrong);
 
