@@ -128,7 +128,9 @@ namespace EA4S.Minigames.ReadingGame
                     if (activeBar != null)
                     {
                         drawTutorialLineTimer = 5;
-                        TutorialUI.DrawLine(activeBar.start.transform.position, activeBar.endCompleted.transform.position, TutorialUI.DrawLineMode.FingerAndArrow, false, true);
+
+                        var handleOffset = activeBar.glass.handleOffset.position - activeBar.glass.transform.position;
+                        TutorialUI.DrawLine(activeBar.start.transform.position + handleOffset, activeBar.endCompleted.transform.position + handleOffset, TutorialUI.DrawLineMode.FingerAndArrow, false, true);
                     }
                 }
             }

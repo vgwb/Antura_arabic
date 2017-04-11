@@ -23,6 +23,8 @@ namespace EA4S.Minigames.ReadingGame
         public float[] leftArrowsAlpha;
         public float[] rightArrowsAlpha;
 
+        public Transform handleOffset;
+
         float arrowAnimation = 0;
 
         public bool ShowArrows { get; internal set; }

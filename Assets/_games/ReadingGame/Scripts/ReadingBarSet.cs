@@ -344,7 +344,7 @@ namespace EA4S.Minigames.ReadingGame
                     var songStart = songWords[0].start;
                     if (currentTime > songStart - 2)
                     {
-                        if (!songStarted)
+                        if (!songStarted && activeBar == null)
                             SetActiveBar(bars[0]);
 
                         songStarted = true;
