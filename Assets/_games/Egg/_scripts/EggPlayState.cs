@@ -117,7 +117,7 @@ namespace EA4S.Minigames.Egg
                             game.runLettersBox.AddRunLetter(runLetterData);
                         }
 
-                        game.Context.GetOverlayWidget().SetStarsScore(game.CurrentStars);
+                        game.Context.GetOverlayWidget().SetStarsScore(game.correctStages);
                         game.currentStage++;
                         game.antura.NextStage();
                     }
