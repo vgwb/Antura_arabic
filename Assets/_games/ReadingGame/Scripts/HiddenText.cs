@@ -1,4 +1,6 @@
 ﻿using EA4S.CameraEffects;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace EA4S.Minigames.ReadingGame
@@ -24,10 +26,54 @@ namespace EA4S.Minigames.ReadingGame
         bool hasElements = false;
         bool needsRender = false;
 
+        Dictionary<TextMeshPro, float> previousAlpha = new Dictionary<TextMeshPro, float>();
+        Dictionary<TextMeshPro, string> previousString = new Dictionary<TextMeshPro, string>();
+
+        List<MeshRenderer> renderers = new List<MeshRenderer>();
+        List<TextMeshPro> texts = new List<TextMeshPro>();
+
         public void UpdateTarget()
         {
             hasElements = true;
-            var renderers = target.GetComponentsInChildren<MeshRenderer>(true);
+
+            renderers.Clear();
+            texts.Clear();
+
+            target.GetComponentsInChildren<MeshRenderer>(true, renderers);
+            target.GetComponentsInChildren<TextMeshPro>(true, texts);
+
+            bool textChanged = false;
+            for (int i = 0, count = texts.Count; i < count; ++i)
+            {
+                var textMesh = texts[i];
+                var currentAlpha = textMesh.alpha;
+                var currentString = textMesh.text;
+                float previousAlpha;
+
+                if (this.previousAlpha.TryGetValue(textMesh, out previousAlpha))
+                {
+                    textChanged = textChanged || (previousAlpha != currentAlpha);
+                }
+                else
+                {
+                    textChanged = true;
+                }
+
+                this.previousAlpha[textMesh] = currentAlpha;
+
+                string previousString;
+
+                if (this.previousString.TryGetValue(textMesh, out previousString))
+                {
+                    textChanged = textChanged || (previousString != currentString);
+                }
+                else
+                {
+                    textChanged = true;
+                }
+
+                this.previousString[textMesh] = currentString;
+            }
 
             Vector3 min = new Vector3(Screen.width, Screen.height, 0);
             Vector3 max = Vector3.zero;
@@ -35,8 +81,8 @@ namespace EA4S.Minigames.ReadingGame
             boundsMin = new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
             boundsMax = new Vector3(-float.PositiveInfinity, -float.PositiveInfinity, -float.PositiveInfinity);
 
-            hasElements = renderers.Length > 0;
-            for (int i = 0, count = renderers.Length; i < count; ++i)
+            hasElements = renderers.Count > 0;
+            for (int i = 0, count = renderers.Count; i < count; ++i)
             {
                 if (!renderers[i].enabled || !renderers[i].gameObject.activeInHierarchy)
                     continue; // skip
@@ -62,7 +108,7 @@ namespace EA4S.Minigames.ReadingGame
 
             }
 
-            if ((Vector2)min == lastMin && (Vector2)max == lastMax)
+            if ((Vector2)min == lastMin && (Vector2)max == lastMax && !textChanged)
                 return;
 
             lastMin = (Vector2)min;
@@ -128,7 +174,7 @@ namespace EA4S.Minigames.ReadingGame
                 transform.position = boundsMin + 0.5f * Vector3.forward;
                 transform.localScale = new Vector3(boundsMax.x - boundsMin.x, boundsMax.y - boundsMin.y, 1);
                 textCamera.Render();
-                //needsRender = false;
+                needsRender = false;
             }
         }
 
