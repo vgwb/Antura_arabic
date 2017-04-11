@@ -69,7 +69,10 @@ namespace EA4S.Minigames.ReadingGame
                     game.Context.GetAudioManager().PlayDialogue(introDialogue, () =>
                     {
                         var firstBar = game.barSet.GetNextBar();
-                        TutorialUI.DrawLine(firstBar.start.transform.position, firstBar.endCompleted.transform.position, TutorialUI.DrawLineMode.FingerAndArrow, false, true);
+                        var handleOffset = firstBar.glass.handleOffset.position - firstBar.glass.transform.position;
+
+                        TutorialUI.DrawLine(firstBar.start.transform.position + handleOffset, firstBar.endCompleted.transform.position + handleOffset, TutorialUI.DrawLineMode.FingerAndArrow, false, true);
+                        game.barSet.SwitchToNextBar();
 
                         game.Context.GetAudioManager().PlayDialogue(Database.LocalizationDataId.AlphabetSong_alphabet_Tuto, () =>
                         {
