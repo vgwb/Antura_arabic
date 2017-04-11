@@ -94,7 +94,7 @@ namespace EA4S.Minigames.Egg
             {
                 overlayWidgetInitialized = true;
                 Context.GetOverlayWidget().Initialize(true, false, false);
-                Context.GetOverlayWidget().SetStarsThresholds(1, 2, 3);
+                Context.GetOverlayWidget().SetStarsThresholds(1, 2, 4);
             }
         }
     }
