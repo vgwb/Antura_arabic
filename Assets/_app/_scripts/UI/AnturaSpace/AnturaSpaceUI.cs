@@ -208,7 +208,6 @@ namespace EA4S.UI
             }
             foreach (AnturaSpaceCategoryButton bt in btsCategories)
             {
-                //return bt;
                 if (bt.IsNew) return bt;
             }
             return null;
@@ -227,7 +226,6 @@ namespace EA4S.UI
             }
             foreach (AnturaSpaceItemButton bt in btsItems)
             {
-                //return bt;
                 if (bt.IsNew) return bt;
             }
             return null;
