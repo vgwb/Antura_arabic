@@ -173,7 +173,7 @@ namespace EA4S.UI
 
         void OnInternalClick()
         {
-            AnimateClick();
+            if (AutoAnimateClick) AnimateClick();
             if (AutoPlayButtonFx) PlayClickFx();
         }
 

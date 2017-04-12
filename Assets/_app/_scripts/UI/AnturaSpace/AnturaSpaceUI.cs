@@ -43,6 +43,7 @@ namespace EA4S.UI
         public static AnturaSpaceUI I { get; private set; }
         public bool IsModsPanelOpen { get; private set; }
 
+        bool isTutorialMode;
         AnturaSpaceCategoryButton[] btsCategories;
         AnturaSpaceItemButton[] btsItems;
         AnturaSpaceSwatchButton[] btsSwatches;
@@ -161,6 +162,8 @@ namespace EA4S.UI
 
         public void ToggleModsPanel()
         {
+            if (IsModsPanelOpen && isTutorialMode) return;
+
             IsModsPanelOpen = !IsModsPanelOpen;
             if (IsModsPanelOpen) {
                 BtOpenModsPanel.SetAsNew(false);
@@ -180,6 +183,16 @@ namespace EA4S.UI
                 if (onExitCustomization != null)
                     onExitCustomization();
             }
+        }
+
+        /// <summary>
+        /// Activates or deactivates the tutorial mode for the customization UI.
+        /// If active, only the first new category and the first new item will be selectable.
+        /// </summary>
+        public void SetTutorialMode(bool activate)
+        {
+            isTutorialMode = activate;
+            BtOpenModsPanel.AutoAnimateClick = !activate;
         }
 
         /// <summary>
@@ -415,7 +428,7 @@ namespace EA4S.UI
 
         void OnClickCategory(AnturaSpaceCategoryButton _bt)
         {
-            if (showItemsTween.IsPlaying()) return;
+            if (showItemsTween.IsPlaying() || isTutorialMode && GetNewCategoryButton() != _bt.Bt) return;
 
             _bt.AnimateClick();
             _bt.PlayClickFx();
@@ -426,6 +439,8 @@ namespace EA4S.UI
 
         void OnClickItem(AnturaSpaceItemButton _bt)
         {
+            if (isTutorialMode && GetNewItemButton() != _bt.Bt) return;
+
             SelectReward(_bt.Data);
             Reward reward = RewardSystemManager.GetRewardById(_bt.Data.ID);
             if (reward != null && onRewardSelectedInCustomization != null)
