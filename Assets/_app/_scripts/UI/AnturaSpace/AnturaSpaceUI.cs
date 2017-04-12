@@ -199,7 +199,7 @@ namespace EA4S.UI
         /// Returns the first category button marked as NEW (meaning it has new content).
         /// Return NULL if the mods panel is not open.
         /// </summary>
-        public Button GetNewCategoryButton()
+        public AnturaSpaceCategoryButton GetNewCategoryButton()
         {
             if (!IsModsPanelOpen)
             {
@@ -208,7 +208,8 @@ namespace EA4S.UI
             }
             foreach (AnturaSpaceCategoryButton bt in btsCategories)
             {
-                if (bt.IsNew) return bt.Bt;
+                //return bt;
+                if (bt.IsNew) return bt;
             }
             return null;
         }
@@ -217,7 +218,7 @@ namespace EA4S.UI
         /// Returns the first item button marked as NEW (meaning it has new content).
         /// Return NULL if the mods panel is not open or a category is not selected.
         /// </summary>
-        public Button GetNewItemButton()
+        public AnturaSpaceItemButton GetNewItemButton()
         {
             if (!IsModsPanelOpen || !ItemsContainer.gameObject.activeSelf)
             {
@@ -226,7 +227,8 @@ namespace EA4S.UI
             }
             foreach (AnturaSpaceItemButton bt in btsItems)
             {
-                if (bt.IsNew) return bt.Bt;
+                //return bt;
+                if (bt.IsNew) return bt;
             }
             return null;
         }

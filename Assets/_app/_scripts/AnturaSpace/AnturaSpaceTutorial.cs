@@ -2,11 +2,12 @@
 using EA4S.Core;
 using EA4S.Tutorial;
 using EA4S.UI;
+using System.Collections;
 using UnityEngine;
 
 namespace EA4S.AnturaSpace
 {
- 
+
     /// <summary>
     /// Implements a tutorial for the AnturaSpace scene.
     /// </summary>
@@ -16,10 +17,13 @@ namespace EA4S.AnturaSpace
         //note that the tutorial is totally sequentially
         enum eAnturaSpaceTutoState
         {
-            ANTURA_ANIM=0, //touch antura
+            ANTURA_ANIM = 0, //touch antura
             COOKIE_BUTTON, //touch cookie button
             USE_ALL_COOKIES, //finish cookies
-            CUSTOMIZE, //item set onto Antura
+            OPEN_CUSTOMIZE, //open customization
+            SELECT_CATEGORY,
+            SELECT_ITEM,
+            TOUCH_ANTURA,
             FINISH //go to the map
         }
 
@@ -27,7 +31,7 @@ namespace EA4S.AnturaSpace
         private AnturaSpaceManager m_sceneManager;
         [SerializeField]
         private Camera m_oCameraUI;
-        
+
         public AnturaLocomotion m_oAnturaBehaviour;
         //[SerializeField]
         //private GameObject m_oItemsParentUI;
@@ -36,6 +40,9 @@ namespace EA4S.AnturaSpace
         public UnityEngine.UI.Button m_oCookieButton;
         [SerializeField]
         private UnityEngine.UI.Button m_oCustomizationButton;
+
+        AnturaSpaceCategoryButton m_oCategoryButton;
+        AnturaSpaceItemButton m_oItemButton;
         #endregion
 
         #region PRIVATE MEMBERS
@@ -58,7 +65,7 @@ namespace EA4S.AnturaSpace
         void Start()
         {
 
-            if(AppManager.I.Player.IsFirstContact()==false) //if this isn't the first contact disable yourself and return
+            if (AppManager.I.Player.IsFirstContact() == false) //if this isn't the first contact disable yourself and return
             {
                 gameObject.SetActive(false);
                 IsRunning = false;
@@ -86,7 +93,7 @@ namespace EA4S.AnturaSpace
 
         void Update()
         {
-            if(m_eTutoState==eAnturaSpaceTutoState.USE_ALL_COOKIES && AppManager.I.Player.GetTotalNumberOfBones()<=0)
+            if (m_eTutoState == eAnturaSpaceTutoState.USE_ALL_COOKIES && AppManager.I.Player.GetTotalNumberOfBones() <= 0)
             {
                 AdvanceTutorial();
             }
@@ -100,12 +107,12 @@ namespace EA4S.AnturaSpace
         /// </summary>
         public void AdvanceTutorial()
         {
-            if(!gameObject.activeSelf) //block any attempt to advance if tutorial isn't active
+            if (!gameObject.activeSelf) //block any attempt to advance if tutorial isn't active
             {
                 return;
             }
 
-            switch(m_eTutoState)
+            switch (m_eTutoState)
             {
                 case eAnturaSpaceTutoState.ANTURA_ANIM:
 
@@ -122,12 +129,12 @@ namespace EA4S.AnturaSpace
 
                         AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Intro_Cookie, delegate () //dialog cookies
                         {
-							UI.ShowBonesButton(true); //after the dialog make appear the cookie button
+                            UI.ShowBonesButton(true); //after the dialog make appear the cookie button
                             m_oCookieButton.onClick.AddListener(AdvanceTutorial);//the button can call AdvanceTutorial on click
 
                             //RectTransform _oRectCookieB = m_oCookieButton.gameObject.GetComponent<RectTransform>();
                             TutorialUI.ClickRepeat(m_oCookieButton.transform.position/*m_oCameraUI.ScreenToWorldPoint(new Vector3(_oRectCookieB.position.x,_oRectCookieB.position.y, m_oCameraUI.nearClipPlane))*/, float.MaxValue, 1);
-								
+
                             AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_1, null);
 
                         });
@@ -160,54 +167,105 @@ namespace EA4S.AnturaSpace
 
                 case eAnturaSpaceTutoState.USE_ALL_COOKIES:
 
-                        m_eTutoState = eAnturaSpaceTutoState.CUSTOMIZE;
+                    m_eTutoState = eAnturaSpaceTutoState.OPEN_CUSTOMIZE;
 
-                        TutorialUI.Clear(false);
+                    TutorialUI.Clear(false);
 
-                        AudioManager.I.StopDialogue(false);
+                    AudioManager.I.StopDialogue(false);
 
-                        AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_3, delegate () //dialog get more cookies
+                    AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Tuto_Cookie_3, delegate () //dialog get more cookies
+                    {
+
+                        AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Custom_1, delegate () //dialog customize
                         {
-                            
-                            AudioManager.I.PlayDialogue(Database.LocalizationDataId.AnturaSpace_Custom_1, delegate () //dialog customize
-                            {
-                                m_oCustomizationButton.gameObject.SetActive(true); //after the dialog make appear the customization button
-                                m_oCustomizationButton.onClick.AddListener(AdvanceTutorial);
+                            m_oCustomizationButton.gameObject.SetActive(true); //after the dialog make appear the customization button
+                            m_oCustomizationButton.onClick.AddListener(AdvanceTutorial);
 
-                                /*AudioManager.I.PlayDialog(Db.LocalizationDataId.AnturaSpace_Custom_2, delegate() //dialog click customize
-                                {
-                                    //Not knowing how many object there are, register to all buttons
-                                    //foreach (var it in m_oItemsParentUI.GetComponentsInChildren<UnityEngine.UI.Button>())
-                                    //{
-                                    //   it.onClick.AddListener(AdvanceTutorial);
-                                    //}
-                                    m_oCustomizationButton.onClick.AddListener(AdvanceTutorial);
-                                });
-                                */
+                            TutorialUI.ClickRepeat(m_oCustomizationButton.transform.position, float.MaxValue, 1);
 
-                                /*RectTransform _oRectCustomB = m_oCustomizationButton.gameObject.GetComponent<RectTransform>();
-                                TutorialUI.ClickRepeat(m_oCameraUI.ScreenToWorldPoint(new Vector3(_oRectCustomB.position.x, _oRectCustomB.position.y, m_oCameraUI.nearClipPlane)), float.MaxValue, 1);
-                                */
-                                TutorialUI.ClickRepeat(m_oCustomizationButton.transform.position, float.MaxValue, 1);
-
-                            });
                         });
-                    
-                    
+                    });
+
+
                     break;
 
-                case eAnturaSpaceTutoState.CUSTOMIZE:
+                case eAnturaSpaceTutoState.OPEN_CUSTOMIZE:
+                    m_eTutoState = eAnturaSpaceTutoState.SELECT_CATEGORY;
+
+                    TutorialUI.Clear(false);
+
+                    m_oCustomizationButton.onClick.RemoveListener(AdvanceTutorial);
+                    m_sceneManager.UI.SetTutorialMode(true);
+
+                    StartCoroutine(WaitAndSpawn(
+                        () =>
+                        {
+                            m_oCategoryButton = m_sceneManager.UI.GetNewCategoryButton();
+                            if (m_oCategoryButton == null)
+                            {
+                                AdvanceTutorial();
+                                return;
+                            }
+
+                            m_oCategoryButton.Bt.onClick.AddListener(AdvanceTutorial);
+                            
+                            TutorialUI.ClickRepeat(m_oCategoryButton.transform.position, float.MaxValue, 1);
+                        }));
+                    break;
+                case eAnturaSpaceTutoState.SELECT_CATEGORY:
+                    m_eTutoState = eAnturaSpaceTutoState.SELECT_ITEM;
+
+                    TutorialUI.Clear(false);
+
+                    //Unregister from category button
+                    if (m_oCategoryButton != null)
+                        m_oCategoryButton.Bt.onClick.RemoveListener(AdvanceTutorial);
+                    else
+                    {
+                        AdvanceTutorial();
+                        break;
+                    }
+
+                    StartCoroutine(WaitAndSpawn(
+                       () =>
+                       {
+                           // Register on item button
+                           m_oItemButton = m_sceneManager.UI.GetNewItemButton();
+
+                           if (m_oItemButton == null)
+                           {
+                               AdvanceTutorial();
+                               return;
+                           }
+
+                           m_oItemButton.Bt.onClick.AddListener(AdvanceTutorial);
+                           
+                           TutorialUI.ClickRepeat(m_oItemButton.transform.position, float.MaxValue, 1);
+
+                       }));
+                    break;
+                case eAnturaSpaceTutoState.SELECT_ITEM:
+                    m_eTutoState = eAnturaSpaceTutoState.TOUCH_ANTURA;
+                    TutorialUI.Clear(false);
+                    m_sceneManager.UI.SetTutorialMode(false);
+
+                    //Unregister from Item button
+                    if (m_oItemButton != null)
+                        m_oItemButton.Bt.onClick.RemoveListener(AdvanceTutorial);
+
+                    // Register on Antura touch
+                    m_oAnturaBehaviour.onTouched += AdvanceTutorial;
+
+                    Vector3 clickOffset = m_oAnturaBehaviour.IsSleeping ? Vector3.down * 2 : Vector3.zero;
+                    TutorialUI.ClickRepeat(m_oAnturaBehaviour.gameObject.transform.position + clickOffset + (Vector3.forward * -2) + (Vector3.up), float.MaxValue, 1);
+                    break;
+                case eAnturaSpaceTutoState.TOUCH_ANTURA:
                     IsRunning = false;
                     m_eTutoState = eAnturaSpaceTutoState.FINISH;
 
                     TutorialUI.Clear(false);
 
-                    /*//Unregister from object buttons
-                    foreach (var it in m_oItemsParentUI.GetComponentsInChildren<UnityEngine.UI.Button>())
-                    {
-                        it.onClick.RemoveListener(AdvanceTutorial);
-                    }*/
-                    m_oCustomizationButton.onClick.RemoveListener(AdvanceTutorial);
+                    m_oAnturaBehaviour.onTouched -= AdvanceTutorial;
 
                     m_sceneManager.ShowBackButton();
 
@@ -215,25 +273,32 @@ namespace EA4S.AnturaSpace
 
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.Map_Intro_AnturaSpace, delegate () //dialog go to map
                     {
-                        //TutorialUI.ClickRepeat(m_oCameraUI.ScreenToWorldPoint(new Vector3(GlobalUI.I.BackButton.RectT.position.x, GlobalUI.I.BackButton.RectT.position.y, m_oCameraUI.nearClipPlane)), float.MaxValue, 1);
+                        TutorialUI.ClickRepeat(m_oCameraUI.ScreenToWorldPoint(new Vector3(GlobalUI.I.BackButton.RectT.position.x, GlobalUI.I.BackButton.RectT.position.y, m_oCameraUI.nearClipPlane)), float.MaxValue, 1);
                     });
-                   
-                    break;
 
+                    break;
                 default:
                     break;
             }
 
-            
+
         }
         #endregion
 
         #region PRIVATE FUNCTIONS
+        IEnumerator WaitAndSpawn(System.Action callback)
+        {
+            yield return new WaitForSeconds(0.6f);
+
+            if (callback != null)
+                callback();
+        }
+
         private void DrawRepeatLineOnCookieButton()
         {
             TutorialUI.Clear(false);
 
-            if(!m_bIsDragAnimPlaying) //stop 
+            if (!m_bIsDragAnimPlaying) //stop 
             {
                 return;
             }
@@ -248,9 +313,9 @@ namespace EA4S.AnturaSpace
 
             TutorialUIAnimation _oDLAnim = TutorialUI.DrawLine(_av3Path, TutorialUI.DrawLineMode.Finger, false, true);
             _oDLAnim.MainTween.timeScale = 0.8f;
-            _oDLAnim.OnComplete(delegate()
+            _oDLAnim.OnComplete(delegate ()
             {
-                if(m_eTutoState!=eAnturaSpaceTutoState.CUSTOMIZE)
+                if (m_eTutoState != eAnturaSpaceTutoState.OPEN_CUSTOMIZE)
                 {
                     DrawRepeatLineOnCookieButton();
                 }
