@@ -428,7 +428,7 @@ namespace EA4S.UI
 
         void OnClickCategory(AnturaSpaceCategoryButton _bt)
         {
-            if (showItemsTween.IsPlaying() || isTutorialMode && GetNewCategoryButton() != _bt.Bt) return;
+            if (showItemsTween.IsPlaying() || isTutorialMode && GetNewCategoryButton() != _bt) return;
 
             _bt.AnimateClick();
             _bt.PlayClickFx();
@@ -439,7 +439,7 @@ namespace EA4S.UI
 
         void OnClickItem(AnturaSpaceItemButton _bt)
         {
-            if (isTutorialMode && GetNewItemButton() != _bt.Bt) return;
+            if (isTutorialMode && GetNewItemButton() != _bt) return;
 
             SelectReward(_bt.Data);
             Reward reward = RewardSystemManager.GetRewardById(_bt.Data.ID);
