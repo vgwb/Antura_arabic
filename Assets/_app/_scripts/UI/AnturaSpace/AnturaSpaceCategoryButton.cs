@@ -24,6 +24,7 @@ namespace EA4S.UI
 
         public AnturaSpaceCategory Category;
 
+        public bool IsNew { get { return isNew && !isNewForceHidden; } }
         GameObject icoNew;
         bool isNew, isNewForceHidden;
 

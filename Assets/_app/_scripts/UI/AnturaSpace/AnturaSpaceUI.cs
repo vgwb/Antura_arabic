@@ -8,6 +8,7 @@ using EA4S.Helpers;
 using EA4S.Rewards;
 using EA4S.Utilities;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace EA4S.UI
 {
@@ -179,6 +180,42 @@ namespace EA4S.UI
                 if (onExitCustomization != null)
                     onExitCustomization();
             }
+        }
+
+        /// <summary>
+        /// Returns the first category button marked as NEW (meaning it has new content).
+        /// Return NULL if the mods panel is not open.
+        /// </summary>
+        public Button GetNewCategoryButton()
+        {
+            if (!IsModsPanelOpen)
+            {
+                Debug.LogWarning("AnturaSpaceUI.GetNewCategoryButton > Mods Panel is not open");
+                return null;
+            }
+            foreach (AnturaSpaceCategoryButton bt in btsCategories)
+            {
+                if (bt.IsNew) return bt.Bt;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Returns the first item button marked as NEW (meaning it has new content).
+        /// Return NULL if the mods panel is not open or a category is not selected.
+        /// </summary>
+        public Button GetNewItemButton()
+        {
+            if (!IsModsPanelOpen || !ItemsContainer.gameObject.activeSelf)
+            {
+                Debug.LogWarning("AnturaSpaceUI.GetNewItemButton > Mods Panel is not open or category is not selected");
+                return null;
+            }
+            foreach (AnturaSpaceItemButton bt in btsItems)
+            {
+                if (bt.IsNew) return bt.Bt;
+            }
+            return null;
         }
 
         #endregion

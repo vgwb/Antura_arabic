@@ -16,6 +16,7 @@ namespace EA4S.UI
         public Transform RewardContainer;
 
         [System.NonSerialized] public RewardItem Data;
+        public bool IsNew { get { return isNew && !isNewForceHidden; } }
         RenderTexture renderTexture;
         bool isNew, isNewForceHidden;
 
