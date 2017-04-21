@@ -305,7 +305,7 @@ namespace EA4S.AnturaSpace
 
         IEnumerator WaitAnturaInCenter(System.Action callback)
         {
-            while(!m_sceneManager.Antura.HasReachedTarget)
+            while(!m_sceneManager.Antura.IsNearTargetPosition || m_sceneManager.Antura.IsSliping)
                 yield return null;
 
             if (callback != null)
