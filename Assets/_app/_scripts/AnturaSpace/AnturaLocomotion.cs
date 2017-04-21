@@ -34,7 +34,7 @@ namespace EA4S.AnturaSpace
         }
 
         bool wasNearPosition;
-        bool IsNearTargetPosition
+        public bool IsNearTargetPosition
         {
             get
             {
@@ -57,6 +57,14 @@ namespace EA4S.AnturaSpace
 
                 var dot = Mathf.Max(0, Vector3.Dot(target.forward.normalized, transform.forward.normalized));
                 return dot > 0.9f;
+            }
+        }
+
+        public bool IsSliping
+        {
+            get
+            {
+                return isSliping;
             }
         }
 
