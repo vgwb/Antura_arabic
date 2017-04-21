@@ -253,11 +253,17 @@ namespace EA4S.AnturaSpace
                     if (m_oItemButton != null)
                         m_oItemButton.Bt.onClick.RemoveListener(AdvanceTutorial);
 
-                    // Register on Antura touch
-                    m_oAnturaBehaviour.onTouched += AdvanceTutorial;
 
-                    Vector3 clickOffset = m_oAnturaBehaviour.IsSleeping ? Vector3.down * 2 : Vector3.down * 1.5f;
-                    TutorialUI.ClickRepeat(m_oAnturaBehaviour.gameObject.transform.position + clickOffset + (Vector3.forward * -2) + (Vector3.up), float.MaxValue, 1);
+                    StartCoroutine(WaitAnturaInCenter(
+                      () =>
+                      {
+                          // Register on Antura touch
+                          m_oAnturaBehaviour.onTouched += AdvanceTutorial;
+
+                          Vector3 clickOffset = m_oAnturaBehaviour.IsSleeping ? Vector3.down * 2 : Vector3.down * 1.5f;
+                          TutorialUI.ClickRepeat(m_oAnturaBehaviour.gameObject.transform.position + clickOffset + (Vector3.forward * -2) + (Vector3.up), float.MaxValue, 1);
+                      }));
+
                     break;
                 case eAnturaSpaceTutoState.TOUCH_ANTURA:
                     IsRunning = false;
@@ -297,6 +303,16 @@ namespace EA4S.AnturaSpace
                 callback();
         }
 
+        IEnumerator WaitAnturaInCenter(System.Action callback)
+        {
+            while(!m_sceneManager.Antura.HasReachedTarget)
+                yield return new WaitForSeconds(0.1f);
+
+            if (callback != null)
+                callback();
+        }
+
+        
         private void DrawRepeatLineOnCookieButton()
         {
             TutorialUI.Clear(false);
