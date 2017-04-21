@@ -256,7 +256,7 @@ namespace EA4S.AnturaSpace
                     // Register on Antura touch
                     m_oAnturaBehaviour.onTouched += AdvanceTutorial;
 
-                    Vector3 clickOffset = m_oAnturaBehaviour.IsSleeping ? Vector3.down * 2 : Vector3.zero;
+                    Vector3 clickOffset = m_oAnturaBehaviour.IsSleeping ? Vector3.down * 2 : Vector3.down * 1.5f;
                     TutorialUI.ClickRepeat(m_oAnturaBehaviour.gameObject.transform.position + clickOffset + (Vector3.forward * -2) + (Vector3.up), float.MaxValue, 1);
                     break;
                 case eAnturaSpaceTutoState.TOUCH_ANTURA:
@@ -273,7 +273,7 @@ namespace EA4S.AnturaSpace
 
                     AudioManager.I.PlayDialogue(Database.LocalizationDataId.Map_Intro_AnturaSpace, delegate () //dialog go to map
                     {
-                        TutorialUI.ClickRepeat(m_oCameraUI.ScreenToWorldPoint(Vector3.down * 100 + new Vector3(GlobalUI.I.BackButton.RectT.position.x, GlobalUI.I.BackButton.RectT.position.y, m_oCameraUI.nearClipPlane)), float.MaxValue, 1);
+                        TutorialUI.ClickRepeat(Vector3.down * 0.025f + m_oCameraUI.ScreenToWorldPoint(new Vector3(GlobalUI.I.BackButton.RectT.position.x, GlobalUI.I.BackButton.RectT.position.y, m_oCameraUI.nearClipPlane)), float.MaxValue, 1);
                     });
 
                     break;
