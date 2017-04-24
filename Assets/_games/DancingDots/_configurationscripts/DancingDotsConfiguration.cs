@@ -60,9 +60,9 @@ namespace EA4S.Minigames.DancingDots {
 
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.letterFilters.excludeDiacritics = LetterFilters.ExcludeDiacritics.AllButMain;
-            builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.None;
+            builderParams.letterFilters.excludeLetterVariations = LetterFilters.ExcludeLetterVariations.All;
             builderParams.wordFilters.excludeDiacritics = false;
-            builderParams.wordFilters.excludeLetterVariations = false;
+            builderParams.wordFilters.excludeLetterVariations = true;
             builderParams.letterFilters.excludeDiphthongs = true;
             builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters:builderParams);
 
