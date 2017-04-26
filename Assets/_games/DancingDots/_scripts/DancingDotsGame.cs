@@ -501,7 +501,8 @@ namespace EA4S.Minigames.DancingDots
             {
                 Context.GetLogManager().OnAnswered(dancingDotsLL.letterData, true);
                 numberOfRoundsWon++;
-                currStarsNum = numberOfRoundsWon / 2;
+                currStarsNum = Mathf.FloorToInt( numberOfRoundsWon / 2f);
+                Context.GetOverlayWidget().SetStarsThresholds(2, 4, 6);
                 Context.GetOverlayWidget().SetStarsScore(numberOfRoundsWon);
             }
 
@@ -522,11 +523,15 @@ namespace EA4S.Minigames.DancingDots
             dancingDotsLL.letterObjectView.DoDancingWin();
 
             // Stop danger clock if rounds finish and it is running
-            Context.GetAudioManager().StopSounds();
-            this.SetCurrentState(this.ResultState);
-            //StartCoroutine(EndGame_Coroutine());
+            //Context.GetAudioManager().StopSounds();
+            //this.SetCurrentState(this.ResultState);
+            StartCoroutine(EndGame_Coroutine());
         }
 
+        IEnumerator EndGame_Coroutine() {
+            yield return new WaitForSeconds(2f);
+            this.SetCurrentState(this.ResultState);
+        }
         IEnumerator setIdle() {
             yield return new WaitForSeconds(2.5f);
             dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_still);
