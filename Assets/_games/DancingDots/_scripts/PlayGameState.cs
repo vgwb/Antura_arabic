@@ -25,7 +25,8 @@ namespace EA4S.Minigames.DancingDots
 
         public void ExitState()
         {
-            game.DancingDotsEndGame();
+            //UnityEngine.Debug.Log(1111111);
+            //game.DancingDotsEndGame();
         }
 
         public void Update(float delta)

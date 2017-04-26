@@ -6,7 +6,7 @@ namespace EA4S.Minigames.DancingDots
     {
         DancingDotsGame game;
 
-        float timer = 1.5f;
+        float timer = 0;//1.5f;
 
         public ResultGameState(DancingDotsGame game)
         {
@@ -15,7 +15,7 @@ namespace EA4S.Minigames.DancingDots
 
         public void EnterState()
         {
-            
+            game.EndGame(game.currStarsNum, game.numberOfRoundsWon);
             //AudioManager.I.PlayMusic(Music.Relax);
         }
 
@@ -29,12 +29,13 @@ namespace EA4S.Minigames.DancingDots
 
             if (timer < 0)
             {
-				game.EndGame(game.currStarsNum, game.numberOfRoundsWon);
+				//game.EndGame(game.currStarsNum, game.numberOfRoundsWon);
 
-                if (game.currStarsNum == 0)
+                /*if (game.currStarsNum == 0)
                     AudioManager.I.PlayDialogue("Reward_0Star");
                 else
                     AudioManager.I.PlayDialogue("Reward_" + game.currStarsNum + "Star_" + UnityEngine.Random.Range(1, 4));
+                    */
             }
         }
 
