@@ -1,6 +1,7 @@
 ﻿using EA4S.Core;
 using EA4S.UI;
 using UnityEngine;
+using System;
 using System.IO;
 
 namespace EA4S.Scenes
@@ -40,7 +41,7 @@ namespace EA4S.Scenes
 
         public void OnOpenInstallInstructions()
         {
-            OpenPDF("TestPDF");
+            OpenPDF(AppConstants.PdfAndroidInstall);
         }
 
         #region RATE
@@ -88,11 +89,20 @@ namespace EA4S.Scenes
         public void OpenPDF(string filename)
         {
             //string sourcePath = System.IO.Path.Combine(Application.streamingAssetsPath, filename);
-            string destPath = System.IO.Path.Combine(Application.persistentDataPath, filename + ".pdf");
+            string destPath = System.IO.Path.Combine(Application.persistentDataPath, filename);
             TextAsset pdfTemp = Resources.Load("Pdf/" + filename, typeof(TextAsset)) as TextAsset;
             File.WriteAllBytes(destPath, pdfTemp.bytes);
+            Debug.Log("Copied " + pdfTemp.name + " to " + destPath + " , File size : " + pdfTemp.bytes.Length);
             Application.OpenURL(destPath);
-        }
 
+            //var sourceFilename = System.IO.Path.Combine(Application.streamingAssetsPath, filename);
+            //var savePath = System.IO.Path.Combine(Application.persistentDataPath, filename);
+
+            //var myPDF = File.ReadAllBytes(sourceFilename);
+            //File.WriteAllBytes(savePath, myPDF);
+            //Debug.Log("Copied " + sourceFilename + " to " + savePath + " , bytes downloaded, File size : " + myPDF.Length);
+
+            //Application.OpenURL(savePath);
+        }
     }
 }

@@ -70,6 +70,9 @@
         public const string UrlCommunityFacebook = "https://www.facebook.com/antura.initiative";
         public const string UrlSupportForm = "https://docs.google.com/forms/d/e/1FAIpQLScWxs5I0w-k8GlIgPFKoWBitMVJ9gxxJlKvGKOXzZsnAA0qNw/viewform";
 
+        // files
+        public const string PdfAndroidInstall = "AndroidInstallHelp.pdf";
+
 #if UNITY_EDITOR
         public const string UrlGithubRepository = "https://github.com/vgwb/EA4S_Antura_U3D";
         public const string UrlTrello = "https://trello.com/b/ltLndaQI/ea4s-beta";
