@@ -41,6 +41,7 @@ namespace EA4S.Scenes
 
         public void OnOpenInstallInstructions()
         {
+            GlobalUI.ShowPrompt("", "Opening a PDF with the Install instructions.\nIf the document doesn't open, please install a PDF viewer app and retry!");
             OpenPDF(AppConstants.PdfAndroidInstall);
         }
 
@@ -89,8 +90,16 @@ namespace EA4S.Scenes
         public void OpenPDF(string filename)
         {
             //string sourcePath = System.IO.Path.Combine(Application.streamingAssetsPath, filename);
-            string destPath = System.IO.Path.Combine(Application.persistentDataPath, filename);
+            string destPath;
             TextAsset pdfTemp = Resources.Load("Pdf/" + filename, typeof(TextAsset)) as TextAsset;
+            if (Application.platform == RuntimePlatform.Android) {
+                //destPath = Application.persistentDataPath + "/Data/" + filename;
+                destPath = Application.persistentDataPath + "/" + filename;
+            } else {
+                destPath = Application.persistentDataPath + "/" + filename;
+                //destPath =  System.IO.Path.Combine(Application.persistentDataPath, filename);
+            }
+
             File.WriteAllBytes(destPath, pdfTemp.bytes);
             Debug.Log("Copied " + pdfTemp.name + " to " + destPath + " , File size : " + pdfTemp.bytes.Length);
             Application.OpenURL(destPath);
