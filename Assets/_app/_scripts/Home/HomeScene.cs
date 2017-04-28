@@ -80,8 +80,10 @@ namespace EA4S.Scenes
         public void OnOpenReservedArea()
         {
             AudioManager.I.PlaySound(Sfx.UIButtonClick);
-            // HACK: hide LL since it covers the Arabic TMpro (incredible but true!)
+            // HACK: hide LL And Antura since they cover the Arabic TMpro (incredible but true!)
             LLAnimController.gameObject.SetActive(false);
+            AnturaAnimController.gameObject.SetActive(false);
+
             DialogReservedArea.SetActive(true);
             ProfileSelectorUI.SetActive(false);
             GlobalUI.ShowPauseMenu(false);
@@ -91,8 +93,10 @@ namespace EA4S.Scenes
         public void OnCloseReservedArea()
         {
             AudioManager.I.PlaySound(Sfx.UIButtonClick);
-            // HACK: show LL since it covers the Arabic TMpro (incredible but true!)
+            // HACK: show LL And Antura since they cover the Arabic TMpro (incredible but true!)
             LLAnimController.gameObject.SetActive(true);
+            AnturaAnimController.gameObject.SetActive(true);
+
             DialogReservedArea.SetActive(false);
             ProfileSelectorUI.SetActive(true);
             GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
