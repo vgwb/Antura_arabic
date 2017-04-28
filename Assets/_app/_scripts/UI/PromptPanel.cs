@@ -17,6 +17,7 @@ namespace EA4S.UI
         public RectTransform Content;
         public TextRender TfMessageArabic;
         public TextRender TfMessageEnglish;
+        public TextRender TfMessageEnglishFull;
         public UIButton BtYes, BtNo;
 
         Action onYes, onNo;
@@ -71,8 +72,13 @@ namespace EA4S.UI
         public void Show(string _messageAr, string _messageEn, Action _onYes, Action _onNo)
         {
             onCloseAction = null;
-            TfMessageArabic.text = _messageAr.IsNullOrEmpty() ? "" : _messageAr;
-            TfMessageEnglish.text = _messageEn.IsNullOrEmpty() ? "" : _messageEn;
+            if (_messageAr.IsNullOrEmpty()) {
+                TfMessageEnglishFull.text = _messageEn;
+            } else {
+                TfMessageArabic.text = _messageAr.IsNullOrEmpty() ? "" : _messageAr;
+                TfMessageEnglish.text = _messageEn.IsNullOrEmpty() ? "" : _messageEn;
+                TfMessageEnglishFull.text = "";
+            }
             onYes = _onYes;
             onNo = _onNo;
             btYesRT.SetAnchoredPosX(_onNo == null ? 0 : defYesX);
