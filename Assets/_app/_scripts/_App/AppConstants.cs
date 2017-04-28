@@ -93,5 +93,10 @@
         public const string AvatarsResourcesDir = "Images/Avatars/";
 
         #endregion
+
+        public static string GetPlayerDatabaseFilename(string playerUuid)
+        {
+            return "Antura_Player_" + playerUuid + ".sqlite3";
+        }
     }
 }

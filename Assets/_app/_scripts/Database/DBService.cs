@@ -23,7 +23,7 @@ namespace EA4S.Database
 
         public DBService(string playerUuid)
         {
-            var databaseName = "Antura_Player_" + playerUuid + ".sqlite3";
+            var databaseName = AppConstants.GetPlayerDatabaseFilename(playerUuid);
             var dirPath = string.Format(@"{0}/{1}", Application.persistentDataPath, "players");
             var dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, "players", databaseName);
 
