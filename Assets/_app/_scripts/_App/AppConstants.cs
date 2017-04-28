@@ -11,7 +11,7 @@
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.0.4 (BETA)";
+        public const string AppVersion = "1.0.4";
 
         #region Debug Options
 
