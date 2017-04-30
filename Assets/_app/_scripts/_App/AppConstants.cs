@@ -11,7 +11,7 @@
         /// <summary>
         /// Version of the application. Displayed in the Home scene.
         /// </summary>
-        public const string AppVersion = "1.0.4";
+        public const string AppVersion = "1.0.5 BETA";
 
         #region Debug Options
 
@@ -25,13 +25,13 @@
         /// Tracks common events using Unity Analytics.
         /// Set to TRUE for production.
         /// </summary>
-        public static bool UseUnityAnalytics = true;
+        public static bool UseUnityAnalytics = false;
 
         /// <summary>
         /// Switches on all Debug.Log calls for performance.
         /// Set to FALSE for production.
         /// </summary>
-        public static bool VerboseLogging = false;
+        public static bool VerboseLogging = true;
 
         /// <summary>
         /// Logs all MySQL database inserts.
