@@ -3,12 +3,10 @@
 the full Unity3D project documentation  
 by TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
 
-## Install
-this project requires Unity 5.5.1f1
-and the commercial plugin Text Mesh Pro 1.0.55
+## Install, Configure adn Build the project
 
-- [Install](HowTo/INSTALL.md) how to install and run the Unity project
-- [Build](HowTo/Build.md) how to build the project
+- [Install](HowTo/INSTALL.md) how to install and configure the Unity project
+- [Build](HowTo/Build.md) how to build the app for mobile devices
 
 ## Developer Guidelines
 
