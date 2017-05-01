@@ -47,9 +47,6 @@ Local.meta
 **/g2uPrefs.bin.meta
 -HOToolsData*
 
-
-/Assets/Plugins/StansAssets/Modules/AndroidNative/xExamples
-/Assets/Plugins/StansAssets/Modules/AndroidNative/xExamples.meta
-/Assets/Plugins/StansAssets/Modules/IOSNative/xExamples
-/Assets/Plugins/StansAssets/Modules/IOSNative/xExamples.meta
-
+# optional plugins
+/Assets/StompyRobot
+/Assets/StompyRobot.meta
