@@ -2634,7 +2634,7 @@ MonoBehaviour:
       Area: reserved
       When: 
       Context: 
-      English: If you make an error, retry by re - accessing this panel
+      English: If you make an error, retry by re-accessing this panel
       Arabic: "\u0641\u064A \u062D\u0627\u0644 \u0623\u062E\u0637\u0623\u062A\u060C
         \u0623\u0639\u062F \u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629 \u0628\u0627\u0633\u062A\u0639\u0645\u0627\u0644
         \u0647\u0630\u0647 \u0627\u0644\u0644\u0648\u062D\u0629"
