@@ -473,9 +473,9 @@ PlayerSettings:
   webGLUseWasm: 0
   webGLCompressionFormat: 1
   scriptingDefineSymbols:
-    1: SRDebuggerEnabled
+    1: SRDebuggerEnabledNO
     4: SRDebuggerEnabledNO
-    7: SRDebuggerEnabled
+    7: SRDebuggerEnabledNO
   platformArchitecture:
     iOS: 2
     tvOS: 1
