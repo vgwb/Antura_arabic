@@ -39,7 +39,8 @@ namespace EA4S.AnturaSpace
         /// Happens when category selected in antura space customization mode.
         /// </summary>
         /// <param name="_category">The category.</param>
-        private void AnturaSpaceUI_onRewardCategorySelectedInCustomization(string _category) {
+        private void AnturaSpaceUI_onRewardCategorySelectedInCustomization(string _category)
+        {
             float rotation = Rewards.RewardSystemManager.GetAnturaRotationAngleViewForRewardCategory(_category);
             float offSet = rotation == 0 ? 0 : 40;
             controller.RotatingBase.Angle = rotation + offSet;
