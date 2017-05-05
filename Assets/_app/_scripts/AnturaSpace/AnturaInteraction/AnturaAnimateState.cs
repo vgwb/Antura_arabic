@@ -17,12 +17,9 @@ namespace EA4S.AnturaSpace
             timer = 4.0f;
             controller.MustShowBonesButton = true;
 
-            if (controller.AnturaHappiness > 0.95f)
-            {
+            if (controller.AnturaHappiness > 0.95f) {
                 state = AnturaAnimationStates.dancing;
-            }
-            else
-            {
+            } else {
                 float p = UnityEngine.Random.value * controller.AnturaHappiness;
 
                 if (p < 0.25f)
@@ -44,8 +41,7 @@ namespace EA4S.AnturaSpace
 
             timer -= delta;
 
-            if (timer <= 0)
-            {
+            if (timer <= 0) {
                 controller.CurrentState = controller.Idle;
             }
         }
