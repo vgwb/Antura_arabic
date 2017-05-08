@@ -1,9 +1,9 @@
-﻿using System;
-using EA4S.Database;
+﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
+using EA4S.Database;
 using EA4S.Environment;
 using EA4S.Rewards;
-using UnityEngine;
 using EA4S.Profile;
 
 namespace EA4S.Core
@@ -115,7 +115,6 @@ namespace EA4S.Core
                             GoToScene(AppScene.Mood);
                         }
                     }
-
                     break;
                 case AppScene.PlayerCreation:
                     GoToScene(AppScene.Intro);
@@ -144,8 +143,6 @@ namespace EA4S.Core
                     if (NavData.CurrentPlayer.IsFirstContact()) {
                         GoToScene(AppScene.AnturaSpace);
                     } else {
-                        // issue #475
-                        // AppManager.I.Player.AdvanceMaxJourneyPosition();
                         GoToScene(AppScene.Map);
                     }
                     break;
@@ -188,16 +185,18 @@ namespace EA4S.Core
                 case AppScene.Rewards:
                     // Already rewarded this playsession?
                     if (RewardSystemManager.RewardAlreadyUnlocked(NavData.CurrentPlayer.CurrentJourneyPosition)) {
-                        // issue #475
-                        if (NavData.CurrentPlayer.CurrentJourneyPosition.Equals(NavData.CurrentPlayer.MaxJourneyPosition))
+                        // Security Check (issue #475): if the reward for the current PS has already been unlocked 
+                        // we must be sure that the player is not on the most advanced PS, otherwise he/she would be stuck
+                        // so we Increment MaxJourneyPosition to let him/her progress
+                        if (NavData.CurrentPlayer.CurrentJourneyPosition.Equals(NavData.CurrentPlayer.MaxJourneyPosition)) {
                             // wrong MaxJourneyPosition...
                             AppManager.I.Player.AdvanceMaxJourneyPosition();
+                        }
                         GoToScene(AppScene.Map);
                         return;
                     }
                     break;
                 default:
-                    // Do nothing
                     break;
             }
 
