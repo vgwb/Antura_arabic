@@ -95,7 +95,6 @@ namespace EA4S.ReservedArea
 
         void DoNothing()
         {
-
         }
 
         void DoDeleteSelectPlayerProfile()
@@ -113,7 +112,7 @@ namespace EA4S.ReservedArea
                 dbPath = string.Format(@"{0}/{1}", "players", AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
                 GlobalUI.ShowPrompt("", "Get the DB from iTunes app:\n" + dbPath);
             } else {
-                // Andoird or desktop
+                // Android or Desktop
                 dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, "players", AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
                 GlobalUI.ShowPrompt("", "The DB is here:\n" + dbPath);
             }

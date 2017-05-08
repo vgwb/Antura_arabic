@@ -3,20 +3,19 @@ using System;
 
 namespace EA4S.Utilities
 {
-    public class OnActiveBehaviour : MonoBehaviour {
+    public class OnActiveBehaviour : MonoBehaviour
+    {
 
         void OnEnable()
         {
-            if(OnEnableAction != null)
-            {
+            if (OnEnableAction != null) {
                 OnEnableAction();
             }
         }
 
         void OnDisable()
         {
-            if(OnDisableAction != null)
-            {
+            if (OnDisableAction != null) {
                 OnDisableAction();
             }
         }
