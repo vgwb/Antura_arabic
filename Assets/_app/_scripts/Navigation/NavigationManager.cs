@@ -188,6 +188,10 @@ namespace EA4S.Core
                 case AppScene.Rewards:
                     // Already rewarded this playsession?
                     if (RewardSystemManager.RewardAlreadyUnlocked(NavData.CurrentPlayer.CurrentJourneyPosition)) {
+                        // issue #475
+                        if (NavData.CurrentPlayer.CurrentJourneyPosition.Equals(NavData.CurrentPlayer.MaxJourneyPosition))
+                            // wrong MaxJourneyPosition...
+                            AppManager.I.Player.AdvanceMaxJourneyPosition();
                         GoToScene(AppScene.Map);
                         return;
                     }
