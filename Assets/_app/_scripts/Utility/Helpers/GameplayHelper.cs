@@ -35,8 +35,9 @@ namespace EA4S.Helpers
         public static void LerpLookAtPlanar(Transform transform, Vector3 position, float t)
         {
             Vector3 targetDir3D = (transform.position - position);
-            if (targetDir3D.sqrMagnitude < 0.001f)
+            if (targetDir3D.sqrMagnitude < 0.001f) {
                 return;
+            }
 
             Vector2 targetDir = new Vector2(targetDir3D.x, targetDir3D.z);
             Vector2 currentDir = new Vector2(transform.forward.x, transform.forward.z);

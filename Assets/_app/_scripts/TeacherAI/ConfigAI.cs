@@ -20,7 +20,7 @@ namespace EA4S.Teacher
 
         // If true, the teacher will keep retrying if it encounters a selection error, to avoid blocking the game
         // @note: this may HANG the game if an error keeps appearing, so use it only for extreme cases!
-        public static bool teacherSafetyFallbackEnabled = true;    
+        public static bool teacherSafetyFallbackEnabled = true;
 
         public static bool forceJourneyIgnore = false; // If true, the journey progression logic is turned off, so that all data is usable
 
@@ -64,25 +64,25 @@ namespace EA4S.Teacher
 
         public static void AppendToTeacherReport(string s)
         {
-            if (verboseTeacher) teacherReportString += "\n\n" + s;
+            if (verboseTeacher) { teacherReportString += "\n\n" + s; }
         }
 
         public static void PrintTeacherReport(bool logOnly = false)
         {
             teacherReportString = "----- TEACHER REPORT " + DateTime.Now + "----" + teacherReportString;
-            if (verboseTeacher) Debug.Log(teacherReportString);
+            if (verboseTeacher) { Debug.Log(teacherReportString); }
 #if UNITY_EDITOR
-            if (verboseTeacher && !logOnly) System.IO.File.WriteAllText(Application.persistentDataPath + "/teacher_report.txt", teacherReportString);
+            if (verboseTeacher && !logOnly) { System.IO.File.WriteAllText(Application.persistentDataPath + "/teacher_report.txt", teacherReportString); }
 #endif
         }
 
         public static void ReportPacks(List<QuestionPackData> packs)
         {
-            if (verboseQuestionPacks)
-            {
+            if (verboseQuestionPacks) {
                 string packsString = FormatTeacherHeader("Generated Packs");
-                for (int i = 0; i < packs.Count; i++)
+                for (int i = 0; i < packs.Count; i++) {
                     packsString += "\n" + (i + 1) + ": " + packs[i].ToString();
+                }
                 AppendToTeacherReport(packsString);
             }
         }

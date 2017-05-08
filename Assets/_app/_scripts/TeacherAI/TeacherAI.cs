@@ -33,7 +33,7 @@ namespace EA4S.Teacher
         private VocabularyHelper VocabularyHelper;
         private JourneyHelper JourneyHelper;
         private ScoreHelper ScoreHelper;
-        
+
         #region Setup
 
         public TeacherAI(DatabaseManager _dbManager, VocabularyHelper _vocabularyHelper, JourneyHelper _journeyHelper, ScoreHelper _scoreHelper)
@@ -81,7 +81,10 @@ namespace EA4S.Teacher
             var currentPlaySessionId = JourneyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
             var playSessionData = dbManager.GetPlaySessionDataById(currentPlaySessionId);
             int nMinigamesToSelect = playSessionData.NumberOfMinigames;
-            if (nMinigamesToSelect == 0) nMinigamesToSelect = 1; // Force at least one minigame (needed for assessment, since we always need one)
+            if (nMinigamesToSelect == 0) {
+                // Force at least one minigame (needed for assessment, since we always need one)
+                nMinigamesToSelect = 1;
+            }
 
             return SelectMiniGames(nMinigamesToSelect);
         }
@@ -90,12 +93,10 @@ namespace EA4S.Teacher
         {
             List<MiniGameData> newPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
 
-            if (ConfigAI.verboseTeacher)
-            {
+            if (ConfigAI.verboseTeacher) {
                 var debugString = "";
                 debugString += ConfigAI.FormatTeacherHeader("Minigames Selected");
-                foreach (var minigame in newPlaySessionMiniGames)
-                {
+                foreach (var minigame in newPlaySessionMiniGames) {
                     debugString += "\n" + minigame.Code;
                 }
                 Debug.Log(debugString);
@@ -122,13 +123,10 @@ namespace EA4S.Teacher
         private void BuildMinimumMiniGameJourneyPositions()
         {
             var allPsData = dbManager.GetAllPlaySessionData();
-            foreach (var mgcode in GenericHelper.SortEnums<MiniGameCode>())
-            {
+            foreach (var mgcode in GenericHelper.SortEnums<MiniGameCode>()) {
                 minimumMiniGameJourneyPositions[mgcode] = null;
-                foreach(var psData in allPsData)
-                {
-                    if (CanMiniGameBePlayedAtPlaySession(psData, mgcode))
-                    {
+                foreach (var psData in allPsData) {
+                    if (CanMiniGameBePlayedAtPlaySession(psData, mgcode)) {
                         minimumMiniGameJourneyPositions[mgcode] = psData.GetJourneyPosition();
                         //Debug.Log(mgcode + " min at " + psData.GetJourneyPosition());
                         break;
@@ -149,11 +147,9 @@ namespace EA4S.Teacher
 
         public bool CanMiniGameBePlayedAtPlaySession(PlaySessionData psData, MiniGameCode code)
         {
-            if (psData != null)
-            {
+            if (psData != null) {
                 var mgIndex = psData.Minigames.FindIndex(x => x.MiniGameCode == code);
-                if (mgIndex >= 0)
-                {
+                if (mgIndex >= 0) {
                     return true;
                 }
             }
@@ -166,8 +162,9 @@ namespace EA4S.Teacher
         /// </summary>
         public bool CanMiniGameBePlayedAfterMinPlaySession(JourneyPosition jp, MiniGameCode code)
         {
-            if (minimumMiniGameJourneyPositions[code] == null)
+            if (minimumMiniGameJourneyPositions[code] == null) {
                 return false;
+            }
             return minimumMiniGameJourneyPositions[code].IsMinor(jp)
                  || minimumMiniGameJourneyPositions[code].Equals(jp);
         }
@@ -277,11 +274,10 @@ namespace EA4S.Teacher
 
         public List<LL_LetterData> GetAllTestLetterDataLL(LetterFilters filters = null, bool useMaxJourneyData = false)
         {
-            if (filters == null) filters = new LetterFilters();
+            if (filters == null) { filters = new LetterFilters(); }
 
-            if (useMaxJourneyData)
-            {
-               VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+            if (useMaxJourneyData) {
+                VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
             }
 
             var availableLetters = VocabularyAi.SelectData(
@@ -291,9 +287,9 @@ namespace EA4S.Teacher
             );
 
             List<LL_LetterData> list = new List<LL_LetterData>();
-            foreach (var letterData in availableLetters)
+            foreach (var letterData in availableLetters) {
                 list.Add(BuildLetterData_LL(letterData));
-
+            }
             /*if (ConfigAI.verboseTeacher)
             {
                 Debug.Log("All test letter data requested to teacher.");
@@ -304,18 +300,14 @@ namespace EA4S.Teacher
 
         public LL_LetterData GetRandomTestLetterLL(LetterFilters filters = null, bool useMaxJourneyData = false)
         {
-            if (filters == null) filters = new LetterFilters();
+            if (filters == null) { filters = new LetterFilters(); }
 
             List<LetterData> availableLetters = null;
 
-            if (AppManager.I.Player == null)
-            {
+            if (AppManager.I.Player == null) {
                 availableLetters = VocabularyHelper.GetAllLetters(filters);
-            }
-            else
-            {
-                if (useMaxJourneyData)
-                {
+            } else {
+                if (useMaxJourneyData) {
                     VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
                 }
 
@@ -326,8 +318,7 @@ namespace EA4S.Teacher
                 );
             }
 
-            if (giveWarningOnFake)
-            {
+            if (giveWarningOnFake) {
                 Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
                 giveWarningOnFake = false;
             }
@@ -344,15 +335,13 @@ namespace EA4S.Teacher
 
         public LL_WordData GetRandomTestWordDataLL(WordFilters filters = null, bool useMaxJourneyData = false)
         {
-            if (filters == null) filters = new WordFilters();
+            if (filters == null) { filters = new WordFilters(); }
 
-            if (useMaxJourneyData)
-            {
+            if (useMaxJourneyData) {
                 VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
             }
 
-            if (giveWarningOnFake)
-            {
+            if (giveWarningOnFake) {
                 Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
                 giveWarningOnFake = false;
             }
@@ -394,7 +383,5 @@ namespace EA4S.Teacher
         }
 
         #endregion
-
-
     }
 }

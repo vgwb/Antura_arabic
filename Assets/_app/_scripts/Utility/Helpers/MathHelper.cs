@@ -13,8 +13,9 @@ namespace EA4S.Helpers
             float dot = Vector2.Dot(a.normalized, b.normalized);
             dot = Mathf.Clamp(dot, -1.0f, 1.0f);
 
-            if (Cross(a, b) >= 0)
+            if (Cross(a, b) >= 0) {
                 return Mathf.Acos(dot);
+            }
             return Mathf.PI * 2 - Mathf.Acos(dot);
         }
 
@@ -25,8 +26,9 @@ namespace EA4S.Helpers
 
         public static float GetAverage(List<float> floatsList)
         {
-            if (floatsList.Count < 1)
+            if (floatsList.Count < 1) {
                 return 0f;
+            }
 
             var average = 0f;
 
