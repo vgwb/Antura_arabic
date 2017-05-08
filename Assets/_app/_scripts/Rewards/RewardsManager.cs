@@ -21,8 +21,9 @@ namespace EA4S.Rewards
 
         void Start()
         {
-            if (AppManager.I.Player.IsFirstContact())
-                GlobalUI.ShowPauseMenu(false);
+            // issue #475
+            // if (AppManager.I.Player.IsFirstContact()) 
+            GlobalUI.ShowPauseMenu(false);
 
             AudioManager.I.PlayMusic(Music.Theme10);
             Debug.Log("RewardsManager playsession: " + AppManager.I.Player.CurrentJourneyPosition.PlaySession);
