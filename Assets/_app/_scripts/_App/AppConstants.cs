@@ -25,13 +25,13 @@
         /// Tracks common events using Unity Analytics.
         /// Set to TRUE for production.
         /// </summary>
-        public static bool UseUnityAnalytics = false;
+        public static bool UseUnityAnalytics = true;
 
         /// <summary>
         /// Switches on all Debug.Log calls for performance.
         /// Set to FALSE for production.
         /// </summary>
-        public static bool VerboseLogging = true;
+        public static bool VerboseLogging = false;
 
         /// <summary>
         /// Logs all MySQL database inserts.
