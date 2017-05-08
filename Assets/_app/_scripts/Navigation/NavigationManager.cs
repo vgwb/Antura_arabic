@@ -144,7 +144,8 @@ namespace EA4S.Core
                     if (NavData.CurrentPlayer.IsFirstContact()) {
                         GoToScene(AppScene.AnturaSpace);
                     } else {
-                        AppManager.I.Player.AdvanceMaxJourneyPosition();
+                        // issue #475
+                        // AppManager.I.Player.AdvanceMaxJourneyPosition();
                         GoToScene(AppScene.Map);
                     }
                     break;

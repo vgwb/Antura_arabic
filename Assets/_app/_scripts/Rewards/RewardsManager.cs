@@ -106,6 +106,8 @@ namespace EA4S.Rewards
             } else {
                 RewardPackUnlockData newRewardToInstantiate = RewardSystemManager.GetNextRewardPack(true)[0];
                 AppManager.I.Player.AddRewardUnlocked(newRewardToInstantiate);
+                // issue #475
+                AppManager.I.Player.AdvanceMaxJourneyPosition();
                 return newRewardToInstantiate;
             }
         }
