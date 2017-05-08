@@ -21,31 +21,9 @@ namespace EA4S.Rewards
 
         void Start()
         {
-            // issue #475
-            // if (AppManager.I.Player.IsFirstContact()) 
             GlobalUI.ShowPauseMenu(false);
-
             AudioManager.I.PlayMusic(Music.Theme10);
             Debug.Log("RewardsManager playsession: " + AppManager.I.Player.CurrentJourneyPosition.PlaySession);
-
-            // here we set the Rewards base on current progression level (playsession -1 because Rewards appear when playsession is already incremented)
-            //if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession - 1) == 1) {
-            //    AppManager.I.Player.AnturaCurrentPreset = 1;
-
-            //    tutorialIndex = 10;
-            //    //LoggerEA4S.Log("app", "Reward", "get_reward", "1");
-            //    LogManager.I.LogInfo(InfoEvent.Reward, "reward:1");
-            //} else if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession - 1) == 2) {
-            //    AppManager.I.Player.AnturaCurrentPreset = 2;
-            //    tutorialIndex = 20;
-            //    //LoggerEA4S.Log("app", "Reward", "get_reward", "2");
-            //    LogManager.I.LogInfo(InfoEvent.Reward, "reward:2");
-            //} else if ((AppManager.I.Player.CurrentJourneyPosition.PlaySession - 1) > 2) {
-            //    AppManager.I.Player.AnturaCurrentPreset = 3;
-            //    tutorialIndex = 30;
-            //    //LoggerEA4S.Log("app", "Reward", "get_reward", "3");
-            //    LogManager.I.LogInfo(InfoEvent.Reward, "reward:3");
-            //}
 
             AnturaAnimController.State = AnturaAnimation;
             SceneTransitioner.Close();
@@ -59,16 +37,8 @@ namespace EA4S.Rewards
 
         IEnumerator StartReward()
         {
-            // Wait for animation to complete
-            //RewardsAnimator animator = this.GetComponent<RewardsAnimator>();
-            //while (!animator.IsComplete)
-            //    yield return null;
-            //yield return new WaitForSeconds(3.5f);
-
-            /* FIRST CONTACT FEATURE */
             if (AppManager.I.Player.IsFirstContact()) {
                 KeeperManager.I.PlayDialog(Database.LocalizationDataId.Reward_Intro);
-
             } else {
                 int rnd = Random.Range(1, 3);
                 switch (rnd) {
@@ -83,7 +53,6 @@ namespace EA4S.Rewards
                         break;
                 }
             }
-            /* --------------------- */
             // Wait animation ending before show continue button
             yield return new WaitForSeconds(4.4f);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button, true);
@@ -92,7 +61,8 @@ namespace EA4S.Rewards
 
         #region API for animation driven
 
-        public void ClearLoadedRewardsOnAntura() {
+        public void ClearLoadedRewardsOnAntura()
+        {
             // Clean and Charge antura reward.
             AnturaModelManager.Instance.ClearLoadedRewards();
         }
@@ -101,13 +71,13 @@ namespace EA4S.Rewards
         /// Gets the reward to instantiate.
         /// </summary>
         /// <returns></returns>
-        public RewardPackUnlockData GetRewardToInstantiate() {
+        public RewardPackUnlockData GetRewardToInstantiate()
+        {
             if (AppManager.I.Player.IsFirstContact()) {
                 return AppManager.I.Player.RewardsUnlocked.Find(r => r.Type == RewardTypes.reward);
             } else {
                 RewardPackUnlockData newRewardToInstantiate = RewardSystemManager.GetNextRewardPack(true)[0];
                 AppManager.I.Player.AddRewardUnlocked(newRewardToInstantiate);
-                // issue #475
                 AppManager.I.Player.AdvanceMaxJourneyPosition();
                 return newRewardToInstantiate;
             }
@@ -118,7 +88,8 @@ namespace EA4S.Rewards
         /// </summary>
         /// <param name="_rewardToInstantiate">The reward to instantiate.</param>
         /// <returns></returns>
-        public GameObject InstantiateReward(RewardPackUnlockData _rewardToInstantiate) {
+        public GameObject InstantiateReward(RewardPackUnlockData _rewardToInstantiate)
+        {
             return AnturaModelManager.Instance.LoadRewardPackOnAntura(_rewardToInstantiate);
         }
 
