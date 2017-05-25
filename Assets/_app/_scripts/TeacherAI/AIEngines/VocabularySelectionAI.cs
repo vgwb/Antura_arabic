@@ -363,7 +363,7 @@ namespace EA4S.Teacher
             else if (typeof(T) == typeof(PhraseData)) dataType = VocabularyDataType.Phrase;
 
             // Given a (filtered) list of data, select some using weights
-            List<VocabularyScoreData> score_data_list = dbManager.FindDataByQuery<VocabularyScoreData>("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" + (int)dataType + "'");
+            List<VocabularyScoreData> score_data_list = dbManager.Query<VocabularyScoreData>("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" + (int)dataType + "'");
 
             string debugString = "";
             debugString += ConfigAI.FormatTeacherHeader("Selection Weights");
