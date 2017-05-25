@@ -106,7 +106,7 @@ namespace EA4S.ReservedArea
 
         public void OnExportSelectPlayerProfile()
         {
-            if (AppManager.I.DB.ExportCurrentDatabase())
+            if (AppManager.I.DB.ExportDatabaseOfPlayer(SelectedPlayerId))
             {
                 string dbPath;
                 if (Application.platform == RuntimePlatform.IPhonePlayer)

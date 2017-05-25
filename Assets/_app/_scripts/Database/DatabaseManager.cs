@@ -478,9 +478,9 @@ namespace EA4S.Database
 
         #endregion
 
-        public bool ExportCurrentDatabase()
+        public bool ExportDatabaseOfPlayer(string selectedPlayerId)
         {
-            string playerUuid = AppManager.I.Player.Uuid;
+            string playerUuid = selectedPlayerId;
 
             // Create a new service for the copied database
             // This will copy the current database
