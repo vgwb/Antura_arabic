@@ -130,12 +130,12 @@ namespace EA4S.Minigames.TakeMeHome
             TakeMeHomeConfiguration.Instance.Context.GetOverlayWidget().SetStarsScore(CurrentScore);
 
             return;
-            int stars = CurrentStars;
-            if (stars > 0)
-                MinigamesUI.Starbar.GotoStar(stars - 1);
+            //int stars = CurrentStars;
+            //if (stars > 0)
+            //MinigamesUI.Starbar.GotoStar(stars - 1);
         }
 
-		public void IncrementRound()
+        public void IncrementRound()
 		{
 			currentLetter = null;
 			++currentRound;

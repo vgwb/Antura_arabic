@@ -6,11 +6,11 @@ namespace EA4S.Minigames.TakeMeHome
 
     public class TakeMeHomeResultState : IState {
 
-        TakeMeHomeGame game;
+        //TakeMeHomeGame game;
 
         public TakeMeHomeResultState(TakeMeHomeGame game)
 		{
-            this.game = game;
+        //    this.game = game;
 		}
 
 		public void EnterState()
