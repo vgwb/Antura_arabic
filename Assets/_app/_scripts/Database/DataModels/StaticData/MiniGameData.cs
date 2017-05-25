@@ -21,14 +21,16 @@ namespace EA4S.Database
             get { return _Title_En; }
             set { _Title_En = value; }
         }
-        [SerializeField] private string _Title_En;
+        [SerializeField]
+        private string _Title_En;
 
         public string Title_Ar
         {
             get { return _Title_Ar; }
             set { _Title_Ar = value; }
         }
-        [SerializeField] private string _Title_Ar;
+        [SerializeField]
+        private string _Title_Ar;
 
         [PrimaryKey]
         public MiniGameCode Code
@@ -36,49 +38,64 @@ namespace EA4S.Database
             get { return _Code; }
             set { _Code = value; }
         }
-        [SerializeField] private MiniGameCode _Code;
+        [SerializeField]
+        private MiniGameCode _Code;
 
         public bool Available
         {
             get { return _Available; }
             set { _Available = value; }
         }
-        [SerializeField] private bool _Available;
+        [SerializeField]
+        private bool _Available;
 
+        /// <summary>
+        /// a Minigame can be a normal game or an assessment
+        /// </summary>
+        /// <value>The type.</value>
         public MiniGameDataType Type
         {
             get { return _Type; }
             set { _Type = value; }
         }
-        [SerializeField] private MiniGameDataType _Type;
+        [SerializeField]
+        private MiniGameDataType _Type;
 
+        /// <summary>
+        /// the main is the game name
+        /// </summary>
+        /// <value>The main.</value>
         public string Main
         {
             get { return _Main; }
             set { _Main = value; }
         }
-        [SerializeField] private string _Main;
+        [SerializeField]
+        private string _Main;
 
         public string Variation
         {
             get { return _Variation; }
             set { _Variation = value; }
         }
-        [SerializeField] private string _Variation;
+        [SerializeField]
+        private string _Variation;
 
         public string Badge
         {
             get { return _Badge; }
             set { _Badge = value; }
         }
-        [SerializeField] private string _Badge;
+        [SerializeField]
+        private string _Badge;
 
         public string Scene
         {
             get { return _Scene; }
             set { _Scene = value; }
         }
-        [SerializeField] private string _Scene;
+        [SerializeField]
+        private string _Scene;
 
         [Ignore]
         public WeightedPlaySkill[] AffectedPlaySkills
@@ -86,7 +103,8 @@ namespace EA4S.Database
             get { return _AffectedPlaySkills; }
             set { _AffectedPlaySkills = value; }
         }
-        [SerializeField] private WeightedPlaySkill[] _AffectedPlaySkills;
+        [SerializeField]
+        private WeightedPlaySkill[] _AffectedPlaySkills;
         public string AffectedPlaySkills_list
         {
             get { return _AffectedPlaySkills.ToJoinedString(); }
