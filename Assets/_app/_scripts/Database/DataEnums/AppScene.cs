@@ -1,5 +1,9 @@
 ﻿namespace EA4S.Core
 {
+    /// <summary>
+    /// we refer to app scenes by these anums, and not by scene names, that could change anytime
+    /// </summary>
+
     public enum AppScene
     {
         Home = 1,
