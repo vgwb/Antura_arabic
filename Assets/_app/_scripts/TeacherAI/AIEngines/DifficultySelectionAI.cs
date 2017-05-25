@@ -42,7 +42,7 @@ namespace EA4S.Teacher
             // Performance
             float playerPerformance;
             string query = string.Format("SELECT * FROM " + typeof(MiniGameScoreData).Name + " WHERE MiniGameCode = '{0}'",  (int)miniGameCode);
-            List<MiniGameScoreData> minigame_scoreData_list = dbManager.FindDataByQuery<MiniGameScoreData>(query);
+            List<MiniGameScoreData> minigame_scoreData_list = dbManager.Query<MiniGameScoreData>(query);
             if (minigame_scoreData_list.Count == 0)
             {
                 playerPerformance = ConfigAI.startingDifficultyForNewMiniGame;
@@ -59,7 +59,7 @@ namespace EA4S.Teacher
 
                 // Query on last X minigame logged scores
                 string query2 = "SELECT * FROM " + typeof(LogMiniGameScoreData).Name  + " WHERE MiniGameCode = " + (int)miniGameCode + " ORDER BY Timestamp LIMIT " + ConfigAI.lastScoresForPerformanceWindow;
-                List<LogMiniGameScoreData> logMinigameScoreDatas = dbManager.FindDataByQuery<LogMiniGameScoreData>(query2);
+                List<LogMiniGameScoreData> logMinigameScoreDatas = dbManager.Query<LogMiniGameScoreData>(query2);
                 List<int> scores = logMinigameScoreDatas.ConvertAll(x => x.Stars);
 
                 //Debug.Log("Found " + (scores.Count) + " previous scores");

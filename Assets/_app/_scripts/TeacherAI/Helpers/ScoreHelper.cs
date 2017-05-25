@@ -73,7 +73,7 @@ namespace EA4S.Teacher
 
             // Find available scores
             string query = string.Format("SELECT * FROM " + typeof(MiniGameScoreData).Name);
-            List<MiniGameScoreData> scoredata_list = dbManager.FindDataByQuery<MiniGameScoreData>(query);
+            List<MiniGameScoreData> scoredata_list = dbManager.Query<MiniGameScoreData>(query);
             for (int i = 0; i < info_list.Count; i++) {
                 var info = info_list[i];
                 var scoredata = scoredata_list.Find(x => x.MiniGameCode == info.data.Code);
@@ -104,7 +104,7 @@ namespace EA4S.Teacher
 
             // Find available scores
             string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '" + (int)dataType + "' ORDER BY ElementId ");
-            List<JourneyScoreData> scoredata_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
+            List<JourneyScoreData> scoredata_list = dbManager.Query<JourneyScoreData>(query);
             for (int i = 0; i < info_list.Count; i++) {
                 var info = info_list[i];
                 var scoredata = scoredata_list.Find(x => x.ElementId == info.data.GetId());
@@ -135,7 +135,7 @@ namespace EA4S.Teacher
 
             // Find available scores
             string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name + " WHERE VocabularyDataType = '" + (int)dataType + "' ORDER BY ElementId ");
-            List<VocabularyScoreData> scoredata_list = dbManager.FindDataByQuery<VocabularyScoreData>(query);
+            List<VocabularyScoreData> scoredata_list = dbManager.Query<VocabularyScoreData>(query);
             for (int i = 0; i < info_list.Count; i++) {
                 var info = info_list[i];
                 var scoredata = scoredata_list.Find(x => x.ElementId == info.data.GetId());
@@ -173,7 +173,7 @@ namespace EA4S.Teacher
         private IT GetLastLearnedDataInfo<T, IT>(VocabularyDataType dataType, List<IT> allInfos) where T : IVocabularyData where IT : DataInfo<T>
         {
             string query = "select * from \"" + typeof(LogVocabularyScoreData).Name + "\"" + " where VocabularyDataType = '" + (int)dataType + "' " + " order by Timestamp limit 1";
-            List<LogVocabularyScoreData> list = AppManager.I.DB.FindDataByQuery<LogVocabularyScoreData>(query);
+            List<LogVocabularyScoreData> list = AppManager.I.DB.Query<LogVocabularyScoreData>(query);
             if (list.Count > 0 && list[0] != null) {
                 return allInfos.Find(x => x.data.GetId() == list[0].ElementId);
             }
@@ -198,7 +198,7 @@ namespace EA4S.Teacher
         public List<JourneyScoreData> GetCurrentScoreForAllPlaySessions()
         {
             string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + " WHERE JourneyDataType = '{0}'  ORDER BY ElementId", JourneyDataType.PlaySession);
-            List<JourneyScoreData> list = dbManager.FindDataByQuery<JourneyScoreData>(query);
+            List<JourneyScoreData> list = dbManager.Query<JourneyScoreData>(query);
             return list;
         }
 
@@ -210,7 +210,7 @@ namespace EA4S.Teacher
 
             // Then, get all scores
             string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + "  WHERE JourneyDataType = '{0}'", JourneyDataType.PlaySession);
-            List<JourneyScoreData> all_score_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
+            List<JourneyScoreData> all_score_list = dbManager.Query<JourneyScoreData>(query);
 
             // At last, filter by the given stage
             List<JourneyScoreData> filtered_score_list = all_score_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
@@ -225,7 +225,7 @@ namespace EA4S.Teacher
 
             // Then, get all scores
             string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + "  WHERE JourneyDataType = '{0}'", JourneyDataType.PlaySession);
-            List<JourneyScoreData> all_score_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
+            List<JourneyScoreData> all_score_list = dbManager.Query<JourneyScoreData>(query);
 
             // At last, filter
             List<JourneyScoreData> filtered_score_list = all_score_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
@@ -240,7 +240,7 @@ namespace EA4S.Teacher
 
             // Then, get all scores
             string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name + "  WHERE JourneyDataType= '{0}'", JourneyDataType.LearningBlock);
-            List<JourneyScoreData> all_score_list = dbManager.FindDataByQuery<JourneyScoreData>(query);
+            List<JourneyScoreData> all_score_list = dbManager.Query<JourneyScoreData>(query);
 
             // At last, filter by the given stage
             List<JourneyScoreData> filtered_score_list = all_score_list.FindAll(x => eligibleLearningBlockData_id_list.Contains(x.ElementId));

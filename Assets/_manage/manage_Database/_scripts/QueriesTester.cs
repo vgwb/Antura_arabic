@@ -25,7 +25,7 @@ namespace EA4S.Database.Management
             string query = "SELECT * FROM " + typeof(T).Name;
             if (orderBy != "") query += " ORDER BY " + orderBy;
             if (limit > 0) query += " LIMIT " + limit;
-            return dbManager.FindDataByQuery<T>(query);
+            return dbManager.Query<T>(query);
         }
 
 

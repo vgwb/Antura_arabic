@@ -206,9 +206,14 @@ namespace EA4S.Database
         }
 
         // (query) from (Ttable)
-        public List<T> FindByQuery<T>(string customQuery) where T : IData, new()
+        public List<T> Query<T>(string customQuery) where T : IData, new()
         {
             return _connection.Query<T>(customQuery);
+        }
+
+        public List<object> Query(Type t, string customQuery)
+        {
+            return _connection.Query(_connection.GetMapping(t), customQuery);
         }
 
         public string GetTableName<T>()

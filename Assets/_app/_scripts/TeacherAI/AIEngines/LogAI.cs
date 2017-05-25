@@ -65,7 +65,7 @@ namespace EA4S.Teacher
         public int SecondsFromLastMoodLog()
         {
             string query = string.Format("SELECT * FROM " + typeof(LogMoodData).Name);
-            var logMoodData = db.FindDataByQuery<LogMoodData>(query).LastOrDefault();
+            var logMoodData = db.Query<LogMoodData>(query).LastOrDefault();
             //if (logMoodData != null) Debug.Log(GenericHelper.GetTimeSpanBetween(logMoodData.Timestamp, GenericHelper.GetTimestampForNow()));
             if (logMoodData != null) return (int)GenericHelper.GetTimeSpanBetween(logMoodData.Timestamp, GenericHelper.GetTimestampForNow()).TotalSeconds;
             return int.MaxValue;
@@ -142,7 +142,7 @@ namespace EA4S.Teacher
             if (!UNLOCK_AT_PLAYSESSION_END) return;
 
             string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name);
-            List<VocabularyScoreData> scoreDataList = db.FindDataByQuery<VocabularyScoreData>(query);
+            List<VocabularyScoreData> scoreDataList = db.Query<VocabularyScoreData>(query);
 
             var currentPSContents = AppManager.I.Teacher.VocabularyAi.GetContentsAtJourneyPosition(pos);
             var letters = currentPSContents.GetHashSet<LetterData>();
@@ -190,7 +190,7 @@ namespace EA4S.Teacher
 
             // Retrieve previous scores
             string query = string.Format("SELECT * FROM " + typeof(VocabularyScoreData).Name);
-            List<VocabularyScoreData> previousScoreDataList = db.FindDataByQuery<VocabularyScoreData>(query);
+            List<VocabularyScoreData> previousScoreDataList = db.Query<VocabularyScoreData>(query);
 
             // Prepare log data
             var logDataList = new List<LogVocabularyScoreData>();
@@ -294,7 +294,7 @@ namespace EA4S.Teacher
 
             // Retrieve previous scores
             string query = string.Format("SELECT * FROM " + typeof(MiniGameScoreData).Name);
-            List<MiniGameScoreData> previousScoreDataList = db.FindDataByQuery<MiniGameScoreData>(query);
+            List<MiniGameScoreData> previousScoreDataList = db.Query<MiniGameScoreData>(query);
 
             // Score update
             var scoreData = GetMinigameScoreDataWithMaximum(miniGameCode, playTime, score, previousScoreDataList);
@@ -316,7 +316,7 @@ namespace EA4S.Teacher
 
             // Retrieve previous scores
             string query = string.Format("SELECT * FROM " + typeof(MiniGameScoreData).Name);
-            List<MiniGameScoreData> previousScoreDataList = db.FindDataByQuery<MiniGameScoreData>(query);
+            List<MiniGameScoreData> previousScoreDataList = db.Query<MiniGameScoreData>(query);
 
             var logDataList = new List<LogMiniGameScoreData>();
             var scoreDataList = new List<MiniGameScoreData>();
@@ -352,7 +352,7 @@ namespace EA4S.Teacher
 
             // Retrieve previous scores
             string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name);
-            List<JourneyScoreData> previousScoreDataList = db.FindDataByQuery<JourneyScoreData>(query);
+            List<JourneyScoreData> previousScoreDataList = db.Query<JourneyScoreData>(query);
 
             // Score update
             var scoreData = GetJourneyScoreDataWithMaximum(JourneyDataType.PlaySession, pos.ToStringId(), score, previousScoreDataList);
@@ -363,7 +363,7 @@ namespace EA4S.Teacher
         {
             // Retrieve previous scores
             string query = string.Format("SELECT * FROM " + typeof(JourneyScoreData).Name);
-            List<JourneyScoreData> previousScoreDataList = db.FindDataByQuery<JourneyScoreData>(query);
+            List<JourneyScoreData> previousScoreDataList = db.Query<JourneyScoreData>(query);
 
             var logDataList = new List<LogPlaySessionScoreData>();
             var scoreDataList = new List<JourneyScoreData>();

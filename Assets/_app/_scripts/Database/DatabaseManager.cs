@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using EA4S.Core;
 using EA4S.Helpers;
+using EA4S.Teacher;
 
 namespace EA4S.Database
 {
@@ -18,6 +19,34 @@ namespace EA4S.Database
         // DB references
         private DatabaseObject staticDb;
         private DBService dynamicDb;
+
+        public List<Type> staticDataTypes = new List<Type>()
+        {
+            typeof(StageData),
+            typeof(PlaySessionData),
+            typeof(LearningBlockData),
+            typeof(MiniGameData),
+            typeof(LetterData),
+            typeof(WordData),
+            typeof(PhraseData),
+            typeof(LocalizationData),
+            typeof(RewardData)
+        };
+
+        public List<Type> dynamicDataTypes = new List<Type>()
+        {
+            typeof(VocabularyScoreData),
+            typeof(JourneyScoreData),
+            typeof(MiniGameScoreData),
+            typeof(LogInfoData),
+            typeof(LogMoodData),
+            typeof(LogMiniGameScoreData),
+            typeof(LogPlaySessionScoreData),
+            typeof(LogVocabularyScoreData),
+            typeof(DatabaseInfoData),
+            typeof(PlayerProfileData),
+            typeof(RewardPackUnlockData)
+        };
 
         public DatabaseObject StaticDatabase {
             get {
@@ -396,27 +425,31 @@ namespace EA4S.Database
         // Query
         public List<LogInfoData> FindLogInfoDataByQuery(string query)
         {
-            return dynamicDb.FindByQuery<LogInfoData>(query);
+            return dynamicDb.Query<LogInfoData>(query);
         }
 
         public List<LogVocabularyScoreData> FindLogVocabularyScoreDataByQuery(string query)
         {
-            return dynamicDb.FindByQuery<LogVocabularyScoreData>(query);
+            return dynamicDb.Query<LogVocabularyScoreData>(query);
         }
 
         public List<LogMoodData> FindLogMoodDataByQuery(string query)
         {
-            return dynamicDb.FindByQuery<LogMoodData>(query);
+            return dynamicDb.Query<LogMoodData>(query);
         }
 
         public List<LogPlayData> FindLogPlayDataByQuery(string query)
         {
-            return dynamicDb.FindByQuery<LogPlayData>(query);
+            return dynamicDb.Query<LogPlayData>(query);
         }
 
-        public List<T> FindDataByQuery<T>(string query) where T : IData, new()
+        public List<T> Query<T>(string query) where T : IData, new()
         {
-            return dynamicDb.FindByQuery<T>(query);
+            return dynamicDb.Query<T>(query);
+        }
+        public List<object> Query(Type t, string query)
+        {
+            return dynamicDb.Query(t, query);
         }
 
         public List<object> FindCustomDataByQuery(SQLite.TableMapping mapping, string query)
@@ -447,10 +480,17 @@ namespace EA4S.Database
 
         public bool ExportCurrentDatabase()
         {
+            string playerUuid = AppManager.I.Player.Uuid;
+
             // Create a new service for the copied database
             // This will copy the current database
-            var exportDbService = new DBService(AppManager.I.Player.Uuid, true);
+            var exportDbService = new DBService(playerUuid, true);
             exportDbService.GenerateStaticExportTables();
+
+            foreach (var type in dynamicDataTypes)
+            {
+                PopulateUUID(type, playerUuid);
+            }
 
             // Copy in the Static DB contents
             exportDbService.InsertAll(StaticDatabase.GetStageTable().GetValuesTyped());
@@ -488,6 +528,12 @@ namespace EA4S.Database
             return true;
         }
 
+        void PopulateUUID(Type t, string playerUuid)
+        {
+            string query = "UPDATE " + t.Name + " SET Uuid = \"" + playerUuid + "\"";
+            Debug.Log(query);
+            Query(t, query);
+        }
 
     }
 }

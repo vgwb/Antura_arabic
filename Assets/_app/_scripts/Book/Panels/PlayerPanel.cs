@@ -99,7 +99,7 @@ namespace EA4S.Book
         TimeSpan GetTotalApplicationTime()
         {
             string query = "select * from \"" + typeof(LogInfoData).Name + "\"";
-            var list = AppManager.I.DB.FindDataByQuery<LogInfoData>(query);
+            var list = AppManager.I.DB.Query<LogInfoData>(query);
 
             System.TimeSpan totalTimespan = new System.TimeSpan(0);
             bool foundStart = false;
@@ -133,7 +133,7 @@ namespace EA4S.Book
         {
             float totalSeconds = 0f;
             string query = "select * from " + typeof(MiniGameScoreData).Name;
-            var list = AppManager.I.DB.FindDataByQuery<MiniGameScoreData>(query);
+            var list = AppManager.I.DB.Query<MiniGameScoreData>(query);
 
             foreach (var data in list) {
                 totalSeconds += data.TotalPlayTime;
@@ -146,7 +146,7 @@ namespace EA4S.Book
         {
             Dictionary<MiniGameCode, float> dict = new Dictionary<MiniGameCode, float>();
             string query = "select * from " + typeof(MiniGameScoreData).Name;
-            var list = AppManager.I.DB.FindDataByQuery<MiniGameScoreData>(query);
+            var list = AppManager.I.DB.Query<MiniGameScoreData>(query);
 
             foreach (var data in list) {
                 dict[data.MiniGameCode] = data.TotalPlayTime;
@@ -158,7 +158,7 @@ namespace EA4S.Book
         {
             int total = 0;
             string query = "select * from " + typeof(LogMiniGameScoreData).Name;
-            var list = AppManager.I.DB.FindDataByQuery<LogMiniGameScoreData>(query);
+            var list = AppManager.I.DB.Query<LogMiniGameScoreData>(query);
 
             foreach (var data in list) {
                 total++;
@@ -169,7 +169,7 @@ namespace EA4S.Book
         int GetTotalMiniGameStars()
         {
             string query = "select * from " + typeof(MiniGameScoreData).Name;
-            var list = AppManager.I.DB.FindDataByQuery<MiniGameScoreData>(query);
+            var list = AppManager.I.DB.Query<MiniGameScoreData>(query);
             var totalStars = list.Sum(data => data.Stars);
             return totalStars;
         }
@@ -195,7 +195,7 @@ namespace EA4S.Book
         {
             if (AppManager.I.Player.IsDemoUser) return GetTotalVocabularyData(dataType);
             string query = "select * from " + typeof(VocabularyScoreData).Name + " where VocabularyDataType='" + (int)dataType + "'";
-            var list = AppManager.I.DB.FindDataByQuery<VocabularyScoreData>(query);
+            var list = AppManager.I.DB.Query<VocabularyScoreData>(query);
             return list.Count(data => data.Unlocked);
         }
 
@@ -203,7 +203,7 @@ namespace EA4S.Book
         {
             Dictionary<MiniGameCode, int> dict = new Dictionary<MiniGameCode, int>();
             string query = "select * from " + typeof(LogMiniGameScoreData).Name;
-            var list = AppManager.I.DB.FindDataByQuery<LogMiniGameScoreData>(query);
+            var list = AppManager.I.DB.Query<LogMiniGameScoreData>(query);
 
             foreach (var data in list) {
                 if (!dict.ContainsKey(data.MiniGameCode)) {
