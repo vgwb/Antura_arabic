@@ -13,628 +13,628 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   table:
     innerList:
-    - Title_En: Alphabet Song
-      Title_Ar: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629"
-      Code: 5
-      Available: 1
-      Type: 1
-      Main: AlphabetSong
-      Variation: alphabet
-      Badge: alphabet
-      Scene: game_ReadingGame
-      AffectedPlaySkills:
+    - _Title_En: Alphabet Song
+      _Title_Ar: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629"
+      _Code: 5
+      _Available: 1
+      _Type: 1
+      _Main: AlphabetSong
+      _Variation: alphabet
+      _Badge: alphabet
+      _Scene: game_ReadingGame
+      _AffectedPlaySkills:
       - Skill: 6
         Weight: 0.2
       - Skill: 1
         Weight: 0.8
-    - Title_En: Diacritic Song
-      Title_Ar: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u062D\u0631\u0643\u0627\u062A"
-      Code: 33
-      Available: 1
-      Type: 1
-      Main: AlphabetSong
-      Variation: letters
-      Badge: letters
-      Scene: game_ReadingGame
-      AffectedPlaySkills:
+    - _Title_En: Diacritic Song
+      _Title_Ar: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u062D\u0631\u0643\u0627\u062A"
+      _Code: 33
+      _Available: 1
+      _Type: 1
+      _Main: AlphabetSong
+      _Variation: letters
+      _Badge: letters
+      _Scene: game_ReadingGame
+      _AffectedPlaySkills:
       - Skill: 6
         Weight: 0.2
       - Skill: 1
         Weight: 0.8
-    - Title_En: Complete the Word
-      Title_Ar: 
-      Code: 103
-      Available: 1
-      Type: 2
-      Main: Assessment
-      Variation: CompleteWord
-      Badge: 
-      Scene: game_Assessment
-      AffectedPlaySkills: []
-    - Title_En: Complete the Word Forms
-      Title_Ar: 
-      Code: 113
-      Available: 1
-      Type: 2
-      Main: Assessment
-      Variation: CompleteWord
-      Badge: 
-      Scene: game_Assessment
-      AffectedPlaySkills: []
-    - Title_En: Letter Forms
-      Title_Ar: 
-      Code: 100
-      Available: 1
-      Type: 2
-      Main: Assessment
-      Variation: LetterForm
-      Badge: 
-      Scene: game_Assessment
-      AffectedPlaySkills: []
-    - Title_En: Letters & Words
-      Title_Ar: 
-      Code: 102
-      Available: 1
-      Type: 2
-      Main: Assessment
-      Variation: MatchLettersToWord
-      Badge: 
-      Scene: game_Assessment
-      AffectedPlaySkills: []
-    - Title_En: Letters & Words Forms
-      Title_Ar: 
-      Code: 114
-      Available: 1
-      Type: 2
-      Main: Assessment
-      Variation: MatchLettersToWord
-      Badge: 
-      Scene: game_Assessment
-      AffectedPlaySkills: []
-    - Title_En: Match Word To Image
-      Title_Ar: 
-      Code: 107
-      Available: 1
-      Type: 2
-      Main: Assessment
-      Variation: MatchWordToImage
-      Badge: 
-      Scene: game_Assessment
-      AffectedPlaySkills: []
-    - Title_En: Order Letters Of Word
-      Title_Ar: 
-      Code: 104
-      Available: 1
-      Type: 2
-      Main: Assessment
-      Variation: OrderLettersOfWord
-      Badge: 
-      Scene: game_Assessment
-      AffectedPlaySkills: []
-    - Title_En: Question And Reply
-      Title_Ar: 
-      Code: 112
-      Available: 1
-      Type: 2
-      Main: Assessment
-      Variation: QuestionAndReply
-      Badge: 
-      Scene: game_Assessment
-      AffectedPlaySkills: []
-    - Title_En: Select Pronounced Word
-      Title_Ar: 
-      Code: 106
-      Available: 1
-      Type: 2
-      Main: Assessment
-      Variation: SelectPronouncedWord
-      Badge: 
-      Scene: game_Assessment
-      AffectedPlaySkills: []
-    - Title_En: Singular, Dual, Plural
-      Title_Ar: 
-      Code: 109
-      Available: 1
-      Type: 2
-      Main: Assessment
-      Variation: SingularDualPlural
-      Badge: 
-      Scene: game_Assessment
-      AffectedPlaySkills: []
-    - Title_En: Sun/Moon Letters
-      Title_Ar: 
-      Code: 111
-      Available: 1
-      Type: 2
-      Main: Assessment
-      Variation: SunMoonLetter
-      Badge: 
-      Scene: game_Assessment
-      AffectedPlaySkills: []
-    - Title_En: Sun/Moon Words
-      Title_Ar: 
-      Code: 110
-      Available: 1
-      Type: 2
-      Main: Assessment
-      Variation: SunMoonWord
-      Badge: 
-      Scene: game_Assessment
-      AffectedPlaySkills: []
-    - Title_En: Vowel Or Consonant
-      Title_Ar: 
-      Code: 105
-      Available: 0
-      Type: 2
-      Main: Assessment
-      Variation: VowelOrConsonant
-      Badge: 
-      Scene: game_Assessment
-      AffectedPlaySkills: []
-    - Title_En: Word Articles
-      Title_Ar: 
-      Code: 108
-      Available: 1
-      Type: 2
-      Main: Assessment
-      Variation: WordArticle
-      Badge: 
-      Scene: game_Assessment
-      AffectedPlaySkills: []
-    - Title_En: Words with Letter
-      Title_Ar: 
-      Code: 101
-      Available: 1
-      Type: 2
-      Main: Assessment
-      Variation: WordsWithLetter
-      Badge: 
-      Scene: game_Assessment
-      AffectedPlaySkills: []
-    - Title_En: Balloons & Numbers!
-      Title_Ar: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0623\u0631\u0642\u0627\u0645!"
-      Code: 6
-      Available: 1
-      Type: 1
-      Main: Balloons
-      Variation: counting
-      Badge: counting
-      Scene: game_Balloons
-      AffectedPlaySkills:
+    - _Title_En: Complete the Word
+      _Title_Ar: 
+      _Code: 103
+      _Available: 1
+      _Type: 2
+      _Main: Assessment
+      _Variation: CompleteWord
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
+    - _Title_En: Complete the Word Forms
+      _Title_Ar: 
+      _Code: 113
+      _Available: 1
+      _Type: 2
+      _Main: Assessment
+      _Variation: CompleteWord
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
+    - _Title_En: Letter Forms
+      _Title_Ar: 
+      _Code: 100
+      _Available: 1
+      _Type: 2
+      _Main: Assessment
+      _Variation: LetterForm
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
+    - _Title_En: Letters & Words
+      _Title_Ar: 
+      _Code: 102
+      _Available: 1
+      _Type: 2
+      _Main: Assessment
+      _Variation: MatchLettersToWord
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
+    - _Title_En: Letters & Words Forms
+      _Title_Ar: 
+      _Code: 114
+      _Available: 1
+      _Type: 2
+      _Main: Assessment
+      _Variation: MatchLettersToWord
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
+    - _Title_En: Match Word To Image
+      _Title_Ar: 
+      _Code: 107
+      _Available: 1
+      _Type: 2
+      _Main: Assessment
+      _Variation: MatchWordToImage
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
+    - _Title_En: Order Letters Of Word
+      _Title_Ar: 
+      _Code: 104
+      _Available: 1
+      _Type: 2
+      _Main: Assessment
+      _Variation: OrderLettersOfWord
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
+    - _Title_En: Question And Reply
+      _Title_Ar: 
+      _Code: 112
+      _Available: 1
+      _Type: 2
+      _Main: Assessment
+      _Variation: QuestionAndReply
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
+    - _Title_En: Select Pronounced Word
+      _Title_Ar: 
+      _Code: 106
+      _Available: 1
+      _Type: 2
+      _Main: Assessment
+      _Variation: SelectPronouncedWord
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
+    - _Title_En: Singular, Dual, Plural
+      _Title_Ar: 
+      _Code: 109
+      _Available: 1
+      _Type: 2
+      _Main: Assessment
+      _Variation: SingularDualPlural
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
+    - _Title_En: Sun/Moon Letters
+      _Title_Ar: 
+      _Code: 111
+      _Available: 1
+      _Type: 2
+      _Main: Assessment
+      _Variation: SunMoonLetter
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
+    - _Title_En: Sun/Moon Words
+      _Title_Ar: 
+      _Code: 110
+      _Available: 1
+      _Type: 2
+      _Main: Assessment
+      _Variation: SunMoonWord
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
+    - _Title_En: Vowel Or Consonant
+      _Title_Ar: 
+      _Code: 105
+      _Available: 0
+      _Type: 2
+      _Main: Assessment
+      _Variation: VowelOrConsonant
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
+    - _Title_En: Word Articles
+      _Title_Ar: 
+      _Code: 108
+      _Available: 1
+      _Type: 2
+      _Main: Assessment
+      _Variation: WordArticle
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
+    - _Title_En: Words with Letter
+      _Title_Ar: 
+      _Code: 101
+      _Available: 1
+      _Type: 2
+      _Main: Assessment
+      _Variation: WordsWithLetter
+      _Badge: 
+      _Scene: game_Assessment
+      _AffectedPlaySkills: []
+    - _Title_En: Balloons & Numbers!
+      _Title_Ar: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0623\u0631\u0642\u0627\u0645!"
+      _Code: 6
+      _Available: 1
+      _Type: 1
+      _Main: Balloons
+      _Variation: counting
+      _Badge: counting
+      _Scene: game_Balloons
+      _AffectedPlaySkills:
       - Skill: 5
         Weight: 0.6
       - Skill: 2
         Weight: 0.4
-    - Title_En: Balloons & the Shared Letter!
-      Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u062D\u0631\u0641
+    - _Title_En: Balloons & the Shared Letter!
+      _Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u062D\u0631\u0641
         \u0627\u0644\u0645\u0634\u062A\u0631\u0643!"
-      Code: 7
-      Available: 1
-      Type: 1
-      Main: Balloons
-      Variation: letters
-      Badge: letters
-      Scene: game_Balloons
-      AffectedPlaySkills:
+      _Code: 7
+      _Available: 1
+      _Type: 1
+      _Main: Balloons
+      _Variation: letters
+      _Badge: letters
+      _Scene: game_Balloons
+      _AffectedPlaySkills:
       - Skill: 5
         Weight: 0.6
       - Skill: 2
         Weight: 0.4
-    - Title_En: Balloons & the Hidden Word!
-      Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064F \u0648\u0627\u0644\u0643\u0644\u0645\u0629\u064F
+    - _Title_En: Balloons & the Hidden Word!
+      _Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064F \u0648\u0627\u0644\u0643\u0644\u0645\u0629\u064F
         \u0627\u0644\u062E\u0641\u064A\u0629!"
-      Code: 3
-      Available: 1
-      Type: 1
-      Main: Balloons
-      Variation: spelling
-      Badge: spelling
-      Scene: game_Balloons
-      AffectedPlaySkills:
+      _Code: 3
+      _Available: 1
+      _Type: 1
+      _Main: Balloons
+      _Variation: spelling
+      _Badge: spelling
+      _Scene: game_Balloons
+      _AffectedPlaySkills:
       - Skill: 4
         Weight: 0.5
       - Skill: 5
         Weight: 0.3
       - Skill: 2
         Weight: 0.2
-    - Title_En: Balloons & Images!
-      Title_Ar: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0635\u0648\u0631!"
-      Code: 8
-      Available: 1
-      Type: 1
-      Main: Balloons
-      Variation: images
-      Badge: images
-      Scene: game_Balloons
-      AffectedPlaySkills:
+    - _Title_En: Balloons & Images!
+      _Title_Ar: "\u0628\u0627\u0644\u0648\u0646\u0627\u062A\u064C \u0648\u0635\u0648\u0631!"
+      _Code: 8
+      _Available: 1
+      _Type: 1
+      _Main: Balloons
+      _Variation: images
+      _Badge: images
+      _Scene: game_Balloons
+      _AffectedPlaySkills:
       - Skill: 4
         Weight: 0.5
       - Skill: 5
         Weight: 0.3
       - Skill: 2
         Weight: 0.2
-    - Title_En: Color Tickle
-      Title_Ar: "\u062F\u063A\u062F\u063A\u0629\u064F \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
-      Code: 9
-      Available: 1
-      Type: 1
-      Main: ColorTickle
-      Variation: letters
-      Badge: letters
-      Scene: game_ColorTickle
-      AffectedPlaySkills:
+    - _Title_En: Color Tickle
+      _Title_Ar: "\u062F\u063A\u062F\u063A\u0629\u064F \u0627\u0644\u0623\u0644\u0648\u0627\u0646"
+      _Code: 9
+      _Available: 1
+      _Type: 1
+      _Main: ColorTickle
+      _Variation: letters
+      _Badge: letters
+      _Scene: game_ColorTickle
+      _AffectedPlaySkills:
       - Skill: 2
         Weight: 1
-    - Title_En: Dancing Star!
-      Title_Ar: "\u0646\u062C\u0648\u0645\u064F \u0627\u0644\u0631\u0642\u0635!"
-      Code: 10
-      Available: 1
-      Type: 1
-      Main: DancingDots
-      Variation: letters
-      Badge: letters
-      Scene: game_DancingDots
-      AffectedPlaySkills:
+    - _Title_En: Dancing Star!
+      _Title_Ar: "\u0646\u062C\u0648\u0645\u064F \u0627\u0644\u0631\u0642\u0635!"
+      _Code: 10
+      _Available: 1
+      _Type: 1
+      _Main: DancingDots
+      _Variation: letters
+      _Badge: letters
+      _Scene: game_DancingDots
+      _AffectedPlaySkills:
       - Skill: 6
         Weight: 0.6
       - Skill: 3
         Weight: 0.2
       - Skill: 2
         Weight: 0.2
-    - Title_En: 'The Egg: Letters!'
-      Title_Ar: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
-      Code: 11
-      Available: 1
-      Type: 1
-      Main: Egg
-      Variation: letters
-      Badge: alphabet
-      Scene: game_Egg
-      AffectedPlaySkills:
+    - _Title_En: 'The Egg: Letters!'
+      _Title_Ar: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
+      _Code: 11
+      _Available: 1
+      _Type: 1
+      _Main: Egg
+      _Variation: letters
+      _Badge: alphabet
+      _Scene: game_Egg
+      _AffectedPlaySkills:
       - Skill: 6
         Weight: 0.8
       - Skill: 1
         Weight: 0.2
-    - Title_En: 'The Egg: Sequence!'
-      Title_Ar: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
-      Code: 34
-      Available: 1
-      Type: 1
-      Main: Egg
-      Variation: sequence
-      Badge: letters
-      Scene: game_Egg
-      AffectedPlaySkills:
+    - _Title_En: 'The Egg: Sequence!'
+      _Title_Ar: "\u0628\u064A\u0636\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
+      _Code: 34
+      _Available: 1
+      _Type: 1
+      _Main: Egg
+      _Variation: sequence
+      _Badge: letters
+      _Scene: game_Egg
+      _AffectedPlaySkills:
       - Skill: 6
         Weight: 0.2
       - Skill: 3
         Weight: 0.6
       - Skill: 1
         Weight: 0.2
-    - Title_En: Alphabet Crowd!
-      Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
-      Code: 12
-      Available: 1
-      Type: 1
-      Main: FastCrowd
-      Variation: alphabet
-      Badge: alphabet
-      Scene: game_FastCrowd
-      AffectedPlaySkills:
+    - _Title_En: Alphabet Crowd!
+      _Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629!"
+      _Code: 12
+      _Available: 1
+      _Type: 1
+      _Main: FastCrowd
+      _Variation: alphabet
+      _Badge: alphabet
+      _Scene: game_FastCrowd
+      _AffectedPlaySkills:
       - Skill: 5
         Weight: 1
-    - Title_En: Number Crowd!
-      Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0631\u0642\u0627\u0645!"
-      Code: 13
-      Available: 1
-      Type: 1
-      Main: FastCrowd
-      Variation: counting
-      Badge: counting
-      Scene: game_FastCrowd
-      AffectedPlaySkills:
+    - _Title_En: Number Crowd!
+      _Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0623\u0631\u0642\u0627\u0645!"
+      _Code: 13
+      _Available: 1
+      _Type: 1
+      _Main: FastCrowd
+      _Variation: counting
+      _Badge: counting
+      _Scene: game_FastCrowd
+      _AffectedPlaySkills:
       - Skill: 5
         Weight: 1
-    - Title_En: Letter Crowd!
-      Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
-      Code: 14
-      Available: 1
-      Type: 1
-      Main: FastCrowd
-      Variation: letters
-      Badge: letters
-      Scene: game_FastCrowd
-      AffectedPlaySkills:
+    - _Title_En: Letter Crowd!
+      _Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
+      _Code: 14
+      _Available: 1
+      _Type: 1
+      _Main: FastCrowd
+      _Variation: letters
+      _Badge: letters
+      _Scene: game_FastCrowd
+      _AffectedPlaySkills:
       - Skill: 5
         Weight: 1
-    - Title_En: 'Letter Crowd: Form a Word!'
-      Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641:
+    - _Title_En: 'Letter Crowd: Form a Word!'
+      _Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u062D\u0631\u0648\u0641:
         \u062A\u0643\u0648\u064A\u0646\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
-      Code: 1
-      Available: 1
-      Type: 1
-      Main: FastCrowd
-      Variation: spelling
-      Badge: spelling
-      Scene: game_FastCrowd
-      AffectedPlaySkills:
+      _Code: 1
+      _Available: 1
+      _Type: 1
+      _Main: FastCrowd
+      _Variation: spelling
+      _Badge: spelling
+      _Scene: game_FastCrowd
+      _AffectedPlaySkills:
       - Skill: 5
         Weight: 1
-    - Title_En: Word Crowd!
-      Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
-      Code: 4
-      Available: 1
-      Type: 1
-      Main: FastCrowd
-      Variation: images
-      Badge: images
-      Scene: game_FastCrowd
-      AffectedPlaySkills:
+    - _Title_En: Word Crowd!
+      _Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      _Code: 4
+      _Available: 1
+      _Type: 1
+      _Main: FastCrowd
+      _Variation: images
+      _Badge: images
+      _Scene: game_FastCrowd
+      _AffectedPlaySkills:
       - Skill: 4
         Weight: 0.4
       - Skill: 5
         Weight: 0.6
-    - Title_En: Hidden Letters!
-      Title_Ar: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u062E\u0641\u064A\u0629!"
-      Code: 16
-      Available: 1
-      Type: 1
-      Main: HideSeek
-      Variation: letters
-      Badge: letters
-      Scene: game_HideAndSeek
-      AffectedPlaySkills:
+    - _Title_En: Hidden Letters!
+      _Title_Ar: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u062E\u0641\u064A\u0629!"
+      _Code: 16
+      _Available: 1
+      _Type: 1
+      _Main: HideSeek
+      _Variation: letters
+      _Badge: letters
+      _Scene: game_HideAndSeek
+      _AffectedPlaySkills:
       - Skill: 6
         Weight: 0.4
       - Skill: 5
         Weight: 0.3
       - Skill: 1
         Weight: 0.3
-    - Title_En: Friendship Spark!
-      Title_Ar: "\u0634\u0631\u0627\u0631\u0629\u064F \u0627\u0644\u0635\u062F\u0627\u0642\u0629!"
-      Code: 17
-      Available: 1
-      Type: 1
-      Main: MakeFriends
-      Variation: words
-      Badge: words
-      Scene: game_MakeFriends
-      AffectedPlaySkills:
+    - _Title_En: Friendship Spark!
+      _Title_Ar: "\u0634\u0631\u0627\u0631\u0629\u064F \u0627\u0644\u0635\u062F\u0627\u0642\u0629!"
+      _Code: 17
+      _Available: 1
+      _Type: 1
+      _Main: MakeFriends
+      _Variation: words
+      _Badge: words
+      _Scene: game_MakeFriends
+      _AffectedPlaySkills:
       - Skill: 6
         Weight: 0.6
       - Skill: 4
         Weight: 0.4
-    - Title_En: Rocket Race!
-      Title_Ar: "\u0633\u0628\u0627\u0642\u064F \u0627\u0644\u0635\u0627\u0631\u0648\u062E!"
-      Code: 18
-      Available: 1
-      Type: 1
-      Main: Maze
-      Variation: letters
-      Badge: letters
-      Scene: game_Maze
-      AffectedPlaySkills:
+    - _Title_En: Rocket Race!
+      _Title_Ar: "\u0633\u0628\u0627\u0642\u064F \u0627\u0644\u0635\u0627\u0631\u0648\u062E!"
+      _Code: 18
+      _Available: 1
+      _Type: 1
+      _Main: Maze
+      _Variation: letters
+      _Badge: letters
+      _Scene: game_Maze
+      _AffectedPlaySkills:
       - Skill: 2
         Weight: 1
-    - Title_En: Missing Letter!
-      Title_Ar: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
-      Code: 19
-      Available: 1
-      Type: 1
-      Main: MissingLetter
-      Variation: letters
-      Badge: letters
-      Scene: game_MissingLetter
-      AffectedPlaySkills:
+    - _Title_En: Missing Letter!
+      _Title_Ar: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
+      _Code: 19
+      _Available: 1
+      _Type: 1
+      _Main: MissingLetter
+      _Variation: letters
+      _Badge: letters
+      _Scene: game_MissingLetter
+      _AffectedPlaySkills:
       - Skill: 6
         Weight: 0.6
       - Skill: 4
         Weight: 0.4
-    - Title_En: Missing Word!
-      Title_Ar: "\u0627\u0644\u0643\u0644\u0645\u0629\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F\u0629!"
-      Code: 20
-      Available: 1
-      Type: 1
-      Main: MissingLetter
-      Variation: words
-      Badge: words
-      Scene: game_MissingLetter
-      AffectedPlaySkills:
+    - _Title_En: Missing Word!
+      _Title_Ar: "\u0627\u0644\u0643\u0644\u0645\u0629\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F\u0629!"
+      _Code: 20
+      _Available: 1
+      _Type: 1
+      _Main: MissingLetter
+      _Variation: words
+      _Badge: words
+      _Scene: game_MissingLetter
+      _AffectedPlaySkills:
       - Skill: 6
         Weight: 0.6
       - Skill: 4
         Weight: 0.4
-    - Title_En: Missing Form!
-      Title_Ar: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
-      Code: 35
-      Available: 1
-      Type: 1
-      Main: MissingLetter
-      Variation: forms
-      Badge: alphabet
-      Scene: game_MissingLetter
-      AffectedPlaySkills: []
-    - Title_En: Letter Salad!
-      Title_Ar: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
-      Code: 21
-      Available: 1
-      Type: 1
-      Main: MixedLetters
-      Variation: alphabet
-      Badge: alphabet
-      Scene: game_MixedLetters
-      AffectedPlaySkills:
+    - _Title_En: Missing Form!
+      _Title_Ar: "\u0627\u0644\u062D\u0631\u0641\u064F \u0627\u0644\u0645\u0641\u0642\u0648\u062F!"
+      _Code: 35
+      _Available: 1
+      _Type: 1
+      _Main: MissingLetter
+      _Variation: forms
+      _Badge: alphabet
+      _Scene: game_MissingLetter
+      _AffectedPlaySkills: []
+    - _Title_En: Letter Salad!
+      _Title_Ar: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
+      _Code: 21
+      _Available: 1
+      _Type: 1
+      _Main: MixedLetters
+      _Variation: alphabet
+      _Badge: alphabet
+      _Scene: game_MixedLetters
+      _AffectedPlaySkills:
       - Skill: 6
         Weight: 0.4
       - Skill: 4
         Weight: 0.4
       - Skill: 3
         Weight: 0.2
-    - Title_En: Word Salad!
-      Title_Ar: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
-      Code: 22
-      Available: 1
-      Type: 1
-      Main: MixedLetters
-      Variation: spelling
-      Badge: spelling
-      Scene: game_MixedLetters
-      AffectedPlaySkills:
+    - _Title_En: Word Salad!
+      _Title_Ar: "\u0633\u0644\u0637\u0629\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      _Code: 22
+      _Available: 1
+      _Type: 1
+      _Main: MixedLetters
+      _Variation: spelling
+      _Badge: spelling
+      _Scene: game_MixedLetters
+      _AffectedPlaySkills:
       - Skill: 6
         Weight: 0.4
       - Skill: 4
         Weight: 0.4
       - Skill: 3
         Weight: 0.2
-    - Title_En: Reading Discovery!
-      Title_Ar: "\u0627\u0642\u0631\u0623 \u0648\u0627\u0633\u062A\u0643\u0634\u0641!"
-      Code: 24
-      Available: 1
-      Type: 1
-      Main: ReadingGame
-      Variation: words
-      Badge: words
-      Scene: game_ReadingGame
-      AffectedPlaySkills:
+    - _Title_En: Reading Discovery!
+      _Title_Ar: "\u0627\u0642\u0631\u0623 \u0648\u0627\u0633\u062A\u0643\u0634\u0641!"
+      _Code: 24
+      _Available: 1
+      _Type: 1
+      _Main: ReadingGame
+      _Variation: words
+      _Badge: words
+      _Scene: game_ReadingGame
+      _AffectedPlaySkills:
       - Skill: 4
         Weight: 0.2
       - Skill: 5
         Weight: 0.8
-    - Title_En: Word Scanner!
-      Title_Ar: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
-      Code: 25
-      Available: 1
-      Type: 1
-      Main: Scanner
-      Variation: images
-      Badge: images
-      Scene: game_Scanner
-      AffectedPlaySkills:
+    - _Title_En: Word Scanner!
+      _Title_Ar: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
+      _Code: 25
+      _Available: 1
+      _Type: 1
+      _Main: Scanner
+      _Variation: images
+      _Badge: images
+      _Scene: game_Scanner
+      _AffectedPlaySkills:
       - Skill: 4
         Weight: 0.2
       - Skill: 5
         Weight: 0.6
       - Skill: 1
         Weight: 0.2
-    - Title_En: 'Word Scanner: Sequence!'
-      Title_Ar: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0639\u0650\u0628\u0627\u0631\u0627\u062A!"
-      Code: 26
-      Available: 1
-      Type: 1
-      Main: Scanner
-      Variation: words
-      Badge: words
-      Scene: game_Scanner
-      AffectedPlaySkills:
+    - _Title_En: 'Word Scanner: Sequence!'
+      _Title_Ar: "\u0645\u0627\u0633\u062D\u064F \u0627\u0644\u0639\u0650\u0628\u0627\u0631\u0627\u062A!"
+      _Code: 26
+      _Available: 1
+      _Type: 1
+      _Main: Scanner
+      _Variation: words
+      _Badge: words
+      _Scene: game_Scanner
+      _AffectedPlaySkills:
       - Skill: 4
         Weight: 0.2
       - Skill: 5
         Weight: 0.6
       - Skill: 1
         Weight: 0.2
-    - Title_En: Sick Letters!
-      Title_Ar: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u0645\u0631\u064A\u0636\u0629!"
-      Code: 23
-      Available: 1
-      Type: 1
-      Main: SickLetters
-      Variation: letters
-      Badge: letters
-      Scene: game_SickLetters
-      AffectedPlaySkills:
+    - _Title_En: Sick Letters!
+      _Title_Ar: "\u0627\u0644\u062D\u0631\u0648\u0641\u064F \u0627\u0644\u0645\u0631\u064A\u0636\u0629!"
+      _Code: 23
+      _Available: 1
+      _Type: 1
+      _Main: SickLetters
+      _Variation: letters
+      _Badge: letters
+      _Scene: game_SickLetters
+      _AffectedPlaySkills:
       - Skill: 6
         Weight: 0.3
       - Skill: 5
         Weight: 0.4
       - Skill: 2
         Weight: 0.3
-    - Title_En: Take Me Home!
-      Title_Ar: "\u062E\u0630\u0646\u064A \u0625\u0644\u0649 \u0627\u0644\u0628\u064A\u062A!"
-      Code: 31
-      Available: 1
-      Type: 1
-      Main: TakeMeHome
-      Variation: letters
-      Badge: letters
-      Scene: game_TakeMeHome
-      AffectedPlaySkills:
+    - _Title_En: Take Me Home!
+      _Title_Ar: "\u062E\u0630\u0646\u064A \u0625\u0644\u0649 \u0627\u0644\u0628\u064A\u062A!"
+      _Code: 31
+      _Available: 1
+      _Type: 1
+      _Main: TakeMeHome
+      _Variation: letters
+      _Badge: letters
+      _Scene: game_TakeMeHome
+      _AffectedPlaySkills:
       - Skill: 6
         Weight: 1
-    - Title_En: 'Slingshot: Form a Word!'
-      Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
+    - _Title_En: 'Slingshot: Form a Word!'
+      _Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
         \u0627\u0644\u062D\u0631\u0648\u0641!"
-      Code: 32
-      Available: 1
-      Type: 1
-      Main: ThrowBalls
-      Variation: spelling
-      Badge: spelling
-      Scene: game_ThrowBalls
-      AffectedPlaySkills:
+      _Code: 32
+      _Available: 1
+      _Type: 1
+      _Main: ThrowBalls
+      _Variation: spelling
+      _Badge: spelling
+      _Scene: game_ThrowBalls
+      _AffectedPlaySkills:
       - Skill: 4
         Weight: 0.2
       - Skill: 5
         Weight: 0.3
       - Skill: 2
         Weight: 0.5
-    - Title_En: 'Slingshot: Letters!'
-      Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
+    - _Title_En: 'Slingshot: Letters!'
+      _Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
         \u0627\u0644\u062D\u0631\u0648\u0641\u0650 \u0644\u062A\u0643\u0648\u064A\u0646
         \u0627\u0644\u0643\u0644\u0645\u0629!"
-      Code: 27
-      Available: 1
-      Type: 1
-      Main: ThrowBalls
-      Variation: letters
-      Badge: letters
-      Scene: game_ThrowBalls
-      AffectedPlaySkills:
+      _Code: 27
+      _Available: 1
+      _Type: 1
+      _Main: ThrowBalls
+      _Variation: letters
+      _Badge: letters
+      _Scene: game_ThrowBalls
+      _AffectedPlaySkills:
       - Skill: 5
         Weight: 0.4
       - Skill: 2
         Weight: 0.6
-    - Title_En: 'Slingshot: Words!'
-      Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
+    - _Title_En: 'Slingshot: Words!'
+      _Title_Ar: "\u0627\u0644\u0646\u0642\u064A\u0641\u0629: \u0627\u0635\u0637\u064A\u0627\u062F\u064F
         \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
-      Code: 28
-      Available: 1
-      Type: 1
-      Main: ThrowBalls
-      Variation: words
-      Badge: words
-      Scene: game_ThrowBalls
-      AffectedPlaySkills:
+      _Code: 28
+      _Available: 1
+      _Type: 1
+      _Main: ThrowBalls
+      _Variation: words
+      _Badge: words
+      _Scene: game_ThrowBalls
+      _AffectedPlaySkills:
       - Skill: 4
         Weight: 0.2
       - Skill: 5
         Weight: 0.3
       - Skill: 2
         Weight: 0.5
-    - Title_En: The Tower!
-      Title_Ar: "\u0628\u0631\u062C\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
-      Code: 29
-      Available: 1
-      Type: 1
-      Main: Tobogan
-      Variation: letters
-      Badge: letters
-      Scene: game_Tobogan
-      AffectedPlaySkills:
+    - _Title_En: The Tower!
+      _Title_Ar: "\u0628\u0631\u062C\u064F \u0627\u0644\u062D\u0631\u0648\u0641!"
+      _Code: 29
+      _Available: 1
+      _Type: 1
+      _Main: Tobogan
+      _Variation: letters
+      _Badge: letters
+      _Scene: game_Tobogan
+      _AffectedPlaySkills:
       - Skill: 4
         Weight: 0.2
       - Skill: 5
         Weight: 0.8
-    - Title_En: Sun & Moon Tower!
-      Title_Ar: "\u0623\u0628\u0631\u0627\u062C\u064F \u0627\u0644\u0634\u0645\u0633\u0650
+    - _Title_En: Sun & Moon Tower!
+      _Title_Ar: "\u0623\u0628\u0631\u0627\u062C\u064F \u0627\u0644\u0634\u0645\u0633\u0650
         \u0648 \u0627\u0644\u0642\u0645\u0631!"
-      Code: 30
-      Available: 1
-      Type: 1
-      Main: Tobogan
-      Variation: sunmoon
-      Badge: sunmoon
-      Scene: game_Tobogan
-      AffectedPlaySkills:
+      _Code: 30
+      _Available: 1
+      _Type: 1
+      _Main: Tobogan
+      _Variation: sunmoon
+      _Badge: sunmoon
+      _Scene: game_Tobogan
+      _AffectedPlaySkills:
       - Skill: 6
         Weight: 0.8
       - Skill: 4

@@ -19,6 +19,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
+// - 2017-05-27
+// - Modified for Antura & The Letters
+//    - Added possibility for specifying a custom table name
+
+
 #if WINDOWS_PHONE && !USE_WP8_NATIVE_SQLITE
 #define USE_CSHARP_SQLITE
 #endif
@@ -323,14 +328,14 @@ namespace SQLite
         /// The mapping represents the schema of the columns of the database and contains 
         /// methods to set and get properties of objects.
         /// </returns>
-        public TableMapping GetMapping(Type type, CreateFlags createFlags = CreateFlags.None)
+        public TableMapping GetMapping(Type type, CreateFlags createFlags = CreateFlags.None, string customTableName = "")
         {
             if (_mappings == null) {
                 _mappings = new Dictionary<string, TableMapping>();
             }
             TableMapping map;
             if (!_mappings.TryGetValue(type.FullName, out map)) {
-                map = new TableMapping(type, createFlags);
+                map = new TableMapping(type, createFlags, customTableName);
                 _mappings[type.FullName] = map;
             }
             return map;
@@ -383,9 +388,9 @@ namespace SQLite
         /// <returns>
         /// The number of entries added to the database schema.
         /// </returns>
-        public int CreateTable<T>(CreateFlags createFlags = CreateFlags.None)
+        public int CreateTable<T>(CreateFlags createFlags = CreateFlags.None, string customTableName = "")
         {
-            return CreateTable(typeof(T), createFlags);
+            return CreateTable(typeof(T), createFlags, customTableName);
         }
 
         /// <summary>
@@ -399,16 +404,17 @@ namespace SQLite
         /// <returns>
         /// The number of entries added to the database schema.
         /// </returns>
-        public int CreateTable(Type ty, CreateFlags createFlags = CreateFlags.None)
+        public int CreateTable(Type ty, CreateFlags createFlags = CreateFlags.None, string customTableName = "")
         {
             if (_tables == null) {
                 _tables = new Dictionary<string, TableMapping>();
             }
             TableMapping map;
             if (!_tables.TryGetValue(ty.FullName, out map)) {
-                map = GetMapping(ty, createFlags);
+                map = GetMapping(ty, createFlags, customTableName);
                 _tables.Add(ty.FullName, map);
             }
+
             var query = "create table if not exists \"" + map.TableName + "\"(\n";
 
             var decls = map.Columns.Select(p => Orm.SqlDecl(p, StoreDateTimeAsTicks));
@@ -1686,7 +1692,7 @@ namespace SQLite
         Column[] _insertColumns;
         Column[] _insertOrReplaceColumns;
 
-        public TableMapping(Type type, CreateFlags createFlags = CreateFlags.None)
+        public TableMapping(Type type, CreateFlags createFlags = CreateFlags.None, string customTableName = "")
         {
             MappedType = type;
 
@@ -1698,6 +1704,7 @@ namespace SQLite
 #endif
 
             TableName = tableAttr != null ? tableAttr.Name : MappedType.Name;
+            if (customTableName != "") TableName = customTableName;
 
 #if !NETFX_CORE
             var props = MappedType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty);

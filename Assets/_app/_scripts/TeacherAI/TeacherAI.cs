@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using EA4S.Core;
 using EA4S.Database;
 using EA4S.Helpers;
@@ -148,7 +149,7 @@ namespace EA4S.Teacher
         public bool CanMiniGameBePlayedAtPlaySession(PlaySessionData psData, MiniGameCode code)
         {
             if (psData != null) {
-                var mgIndex = psData.Minigames.FindIndex(x => x.MiniGameCode == code);
+                var mgIndex = psData.Minigames.ToList().FindIndex(x => x.MiniGameCode == code);
                 if (mgIndex >= 0) {
                     return true;
                 }

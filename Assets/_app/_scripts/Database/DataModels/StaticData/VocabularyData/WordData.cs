@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Linq;
+using EA4S.Helpers;
 using EA4S.MinigamesAPI;
+using SQLite;
+using UnityEngine;
 
 namespace EA4S.Database
 {
@@ -12,20 +16,107 @@ namespace EA4S.Database
     [Serializable]
     public class WordData : IVocabularyData, IConvertibleToLivingLetterData
     {
-        public string Id;
-        public bool Active;
-        public WordDataKind Kind;
-        public WordDataCategory Category;
-        public WordDataForm Form;
-        public WordDataArticle Article;
-        public VocabularyDataGender Gender;
-        public string LinkedWord;
-        public string Arabic;
-        public string Value;
-        public string[] Letters;
+        [PrimaryKey]
+        public string Id
+        {
+            get { return _Id; }
+            set { _Id = value; }
+        }
+        [SerializeField] private string _Id;
+
+        public bool Active
+        {
+            get { return _Active; }
+            set { _Active = value; }
+        }
+        [SerializeField] private bool _Active;
+
+        public WordDataKind Kind
+        {
+            get { return _Kind; }
+            set { _Kind = value; }
+        }
+        [SerializeField] private WordDataKind _Kind;
+
+        public WordDataCategory Category
+        {
+            get { return _Category; }
+            set { _Category = value; }
+        }
+        [SerializeField] private WordDataCategory _Category;
+
+        public WordDataForm Form
+        {
+            get { return _Form; }
+            set { _Form = value; }
+        }
+        [SerializeField] private WordDataForm _Form;
+
+        public WordDataArticle Article
+        {
+            get { return _Article; }
+            set { _Article = value; }
+        }
+        [SerializeField] private WordDataArticle _Article;
+
+        public VocabularyDataGender Gender
+        {
+            get { return _Gender; }
+            set { _Gender = value; }
+        }
+        [SerializeField] private VocabularyDataGender _Gender;
+
+        public string LinkedWord
+        {
+            get { return _LinkedWord; }
+            set { _LinkedWord = value; }
+        }
+        [SerializeField] private string _LinkedWord;
+
+        public string Arabic
+        {
+            get { return _Arabic; }
+            set { _Arabic = value; }
+        }
+        [SerializeField] private string _Arabic;
+
+        public string Value
+        {
+            get { return _Value; }
+            set { _Value = value; }
+        }
+        [SerializeField] private string _Value;
+
+        [Ignore]
+        public string[] Letters
+        {
+            get { return _Letters; }
+            set { _Letters = value; }
+        }
+        [SerializeField]
+        private string[] _Letters;
+        public string Letters_list
+        {
+            get { return _Letters.ToJoinedString(); }
+            set { }
+        }
+
+        public string Drawing
+        {
+            get { return _Drawing; }
+            set { _Drawing = value; }
+        }
+        [SerializeField] private string _Drawing;
+
+        public float Complexity
+        {
+            get { return _Complexity; }
+            set { _Complexity = value; }
+        }
+        [SerializeField]
+        private float _Complexity;
+
         //public LetterSymbol[] Symbols; //TODO
-        public string Drawing;
-        public float Complexity;
 
         public int NumberOfLetters { get { return Letters.Length; } }
 

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using EA4S.Helpers;
+using SQLite;
+using UnityEngine;
 
 namespace EA4S.Database
 {
@@ -12,17 +15,83 @@ namespace EA4S.Database
     [Serializable]
     public class MiniGameData : IData
     {
-        // Source
-        public string Title_En;
-        public string Title_Ar;
-        public MiniGameCode Code;
-        public bool Available;
-        public MiniGameDataType Type;
-        public string Main;
-        public string Variation;
-        public string Badge;
-        public string Scene;
-        public List<WeightedPlaySkill> AffectedPlaySkills;
+
+        public string Title_En
+        {
+            get { return _Title_En; }
+            set { _Title_En = value; }
+        }
+        [SerializeField] private string _Title_En;
+
+        public string Title_Ar
+        {
+            get { return _Title_Ar; }
+            set { _Title_Ar = value; }
+        }
+        [SerializeField] private string _Title_Ar;
+
+        [PrimaryKey]
+        public MiniGameCode Code
+        {
+            get { return _Code; }
+            set { _Code = value; }
+        }
+        [SerializeField] private MiniGameCode _Code;
+
+        public bool Available
+        {
+            get { return _Available; }
+            set { _Available = value; }
+        }
+        [SerializeField] private bool _Available;
+
+        public MiniGameDataType Type
+        {
+            get { return _Type; }
+            set { _Type = value; }
+        }
+        [SerializeField] private MiniGameDataType _Type;
+
+        public string Main
+        {
+            get { return _Main; }
+            set { _Main = value; }
+        }
+        [SerializeField] private string _Main;
+
+        public string Variation
+        {
+            get { return _Variation; }
+            set { _Variation = value; }
+        }
+        [SerializeField] private string _Variation;
+
+        public string Badge
+        {
+            get { return _Badge; }
+            set { _Badge = value; }
+        }
+        [SerializeField] private string _Badge;
+
+        public string Scene
+        {
+            get { return _Scene; }
+            set { _Scene = value; }
+        }
+        [SerializeField] private string _Scene;
+
+        [Ignore]
+        public WeightedPlaySkill[] AffectedPlaySkills
+        {
+            get { return _AffectedPlaySkills; }
+            set { _AffectedPlaySkills = value; }
+        }
+        [SerializeField] private WeightedPlaySkill[] _AffectedPlaySkills;
+        public string AffectedPlaySkills_list
+        {
+            get { return _AffectedPlaySkills.ToJoinedString(); }
+            set { }
+        }
 
         public string GetId()
         {
@@ -60,6 +129,11 @@ namespace EA4S.Database
         {
             Skill = skill;
             Weight = weight;
+        }
+
+        override public string ToString()
+        {
+            return Skill.ToString() + ":" + Weight;
         }
     }
 

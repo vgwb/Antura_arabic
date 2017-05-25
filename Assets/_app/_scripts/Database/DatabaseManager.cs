@@ -444,5 +444,50 @@ namespace EA4S.Database
         }
 
         #endregion
+
+        public bool ExportCurrentDatabase()
+        {
+            // Create a new service for the copied database
+            // This will copy the current database
+            var exportDbService = new DBService(AppManager.I.Player.Uuid, true);
+            exportDbService.GenerateStaticExportTables();
+
+            // Copy in the Static DB contents
+            exportDbService.InsertAll(StaticDatabase.GetStageTable().GetValuesTyped());
+            exportDbService.InsertAll(StaticDatabase.GetPlaySessionTable().GetValuesTyped());
+            exportDbService.InsertAll(StaticDatabase.GetLearningBlockTable().GetValuesTyped());
+            exportDbService.InsertAll(StaticDatabase.GetMiniGameTable().GetValuesTyped());
+            exportDbService.InsertAll(StaticDatabase.GetLetterTable().GetValuesTyped());
+            exportDbService.InsertAll(StaticDatabase.GetWordTable().GetValuesTyped());
+            exportDbService.InsertAll(StaticDatabase.GetPhraseTable().GetValuesTyped());
+            exportDbService.InsertAll(StaticDatabase.GetLocalizationTable().GetValuesTyped());
+            exportDbService.InsertAll(StaticDatabase.GetRewardTable().GetValuesTyped());
+
+            // Copy enums in too
+            exportDbService.ExportEnum<AppScene>();
+            exportDbService.ExportEnum<JourneyDataType>();
+            exportDbService.ExportEnum<LearningBlockDataFocus>();
+            exportDbService.ExportEnum<LetterDataKind>();
+            exportDbService.ExportEnum<LetterDataSunMoon>();
+            exportDbService.ExportEnum<LetterDataType>();
+            exportDbService.ExportEnum<LocalizationDataId>();
+            exportDbService.ExportEnum<MiniGameDataType>();
+            exportDbService.ExportEnum<PhraseDataCategory>();
+            exportDbService.ExportEnum<InfoEvent>();
+            exportDbService.ExportEnum<PlaySkill>();
+            exportDbService.ExportEnum<PlayEvent>();
+            exportDbService.ExportEnum<PlaySessionDataOrder>();
+            exportDbService.ExportEnum<RewardDataCategory>();
+            exportDbService.ExportEnum<VocabularyDataGender>();
+            exportDbService.ExportEnum<VocabularyDataType>();
+            exportDbService.ExportEnum<WordDataArticle>();
+            exportDbService.ExportEnum<WordDataCategory>();
+            exportDbService.ExportEnum<WordDataForm>();
+            exportDbService.ExportEnum<WordDataKind>();
+
+            return true;
+        }
+
+
     }
 }

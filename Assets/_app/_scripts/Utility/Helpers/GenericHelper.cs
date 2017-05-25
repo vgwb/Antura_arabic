@@ -184,6 +184,11 @@ namespace EA4S.Helpers
 
         #region Debug Extensions
 
+        public static string ToJoinedString<T>(this IEnumerable<T> list)
+        {
+            return string.Join(",", list.ToList().ConvertAll(x => x.ToString()).ToArray());
+        }
+
         public static string ToDebugString<T>(this IEnumerable<T> list)
         {
             return "{" + string.Join(",", list.ToList().ConvertAll(x => x.ToString()).ToArray()) + "}";

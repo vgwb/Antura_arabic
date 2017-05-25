@@ -1,5 +1,8 @@
 ﻿using System;
+using EA4S.Helpers;
 using EA4S.MinigamesAPI;
+using SQLite;
+using UnityEngine;
 
 namespace EA4S.Database
 {
@@ -12,15 +15,82 @@ namespace EA4S.Database
     [Serializable]
     public class PhraseData : IVocabularyData, IConvertibleToLivingLetterData
     {
-        public string Id;
-        public bool Active;
-        public string English;
-        public string Arabic;
-        public PhraseDataCategory Category;
-        public string Linked;
-        public string[] Words;
-        public string[] Answers;
-        public float Complexity;
+        [PrimaryKey]
+        public string Id
+        {
+            get { return _Id; }
+            set { _Id = value; }
+        }
+        [SerializeField] private string _Id;
+
+        public bool Active
+        {
+            get { return _Active; }
+            set { _Active = value; }
+        }
+        [SerializeField] private bool _Active;
+
+        public string English
+        {
+            get { return _English; }
+            set { _English = value; }
+        }
+        [SerializeField] private string _English;
+
+        public string Arabic
+        {
+            get { return _Arabic; }
+            set { _Arabic = value; }
+        }
+        [SerializeField] private string _Arabic;
+
+        public PhraseDataCategory Category
+        {
+            get { return _Category; }
+            set { _Category = value; }
+        }
+        [SerializeField] private PhraseDataCategory _Category;
+
+        public string Linked
+        {
+            get { return _Linked; }
+            set { _Linked = value; }
+        }
+        [SerializeField] private string _Linked;
+
+        [Ignore]
+        public string[] Words
+        {
+            get { return _Words; }
+            set { _Words = value; }
+        }
+        [SerializeField] private string[] _Words;
+        public string Words_list
+        {
+            get { return _Words.ToJoinedString(); }
+            set { }
+        }
+
+        [Ignore]
+        public string[] Answers
+        {
+            get { return _Answers; }
+            set { _Answers = value; }
+        }
+        [SerializeField]
+        private string[] _Answers;
+        public string Answers_list
+        {
+            get { return _Answers.ToJoinedString(); }
+            set { }
+        }
+
+        public float Complexity
+        {
+            get { return _Complexity; }
+            set { _Complexity = value; }
+        }
+        [SerializeField] private float _Complexity;
 
         public float GetIntrinsicDifficulty()
         {

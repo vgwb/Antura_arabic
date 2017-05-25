@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using EA4S.MinigamesAPI;
+using SQLite;
+using UnityEngine;
 
 namespace EA4S.Database
 {
     public enum LetterKindCategory
     {
-        Real = 0,   // default: Base + Combo
+        Real = 0, // default: Base + Combo
         DiacriticCombo,
         Base,
         LetterVariation,
@@ -24,46 +28,240 @@ namespace EA4S.Database
     }
 
     /// <summary>
-    /// Data defining a Letter.
-    /// This is one of the fundamental dictionary (i.e. learning content) elements.
-    /// <seealso cref="PhraseData"/>
-    /// <seealso cref="WordData"/>
+    ///     Data defining a Letter.
+    ///     This is one of the fundamental dictionary (i.e. learning content) elements.
+    ///     <seealso cref="PhraseData" />
+    ///     <seealso cref="WordData" />
     /// </summary>
     // refactor: this requires heavy refactoring!
     // refactor: we could make this general in respect to the language
     [Serializable]
     public class LetterData : IVocabularyData, IConvertibleToLivingLetterData
     {
-        public string Id;
-        public bool Active;
-        public int Number;
-        public string Title;
-        public LetterDataKind Kind;
-        public string BaseLetter;
-        public string Symbol;
-        public LetterDataType Type;
-        public string Tag;
-        public string Notes;
-        public LetterDataSunMoon SunMoon;
-        public string Sound;
-        public string SoundZone;
-        public string Isolated;
-        public string Initial;
-        public string Medial;
-        public string Final;
-        public string Isolated_Unicode;
-        public string Initial_Unicode;
-        public string Medial_Unicode;
-        public string Final_Unicode;
-        public string Symbol_Unicode;
-        public string InitialFix;
-        public string FinalFix;
-        public string MedialFix;
-        public string Old_Isolated;
-        public string Old_Initial;
-        public string Old_Medial;
-        public string Old_Final;
-        public float Complexity;
+        [PrimaryKey]
+        public string Id
+        {
+            get { return _Id; }
+            set { _Id = value; }
+        }
+        [SerializeField] private string _Id;
+
+        public bool Active
+        {
+            get { return _Active; }
+            set { _Active = value; }
+        }
+        [SerializeField] private bool _Active;
+
+        public int Number
+        {
+            get { return _Number; }
+            set { _Number = value; }
+        }
+        [SerializeField] private int _Number;
+
+        public string Title
+        {
+            get { return _Title; }
+            set { _Title = value; }
+        }
+        [SerializeField] private string _Title;
+
+        public LetterDataKind Kind
+        {
+            get { return _Kind; }
+            set { _Kind = value; }
+        }
+        [SerializeField] private LetterDataKind _Kind;
+
+        public string BaseLetter
+        {
+            get { return _BaseLetter; }
+            set { _BaseLetter = value; }
+        }
+        [SerializeField] private string _BaseLetter;
+
+        public string Symbol
+        {
+            get { return _Symbol; }
+            set { _Symbol = value; }
+        }
+        [SerializeField] private string _Symbol;
+
+        public LetterDataType Type
+        {
+            get { return _Type; }
+            set { _Type = value; }
+        }
+        [SerializeField] private LetterDataType _Type;
+
+        public string Tag
+        {
+            get { return _Tag; }
+            set { _Tag = value; }
+        }
+        [SerializeField] private string _Tag;
+
+        public string Notes
+        {
+            get { return _Notes; }
+            set { _Notes = value; }
+        }
+        [SerializeField] private string _Notes;
+
+        public LetterDataSunMoon SunMoon
+        {
+            get { return _SunMoon; }
+            set { _SunMoon = value; }
+        }
+        [SerializeField] private LetterDataSunMoon _SunMoon;
+
+        public string Sound
+        {
+            get { return _Sound; }
+            set { _Sound = value; }
+        }
+        [SerializeField] private string _Sound;
+
+        public string SoundZone
+        {
+            get { return _SoundZone; }
+            set { _SoundZone = value; }
+        }
+        [SerializeField] private string _SoundZone;
+
+        public string Isolated
+        {
+            get { return _Isolated; }
+            set { _Isolated = value; }
+        }
+        [SerializeField] private string _Isolated;
+
+        public string Initial
+        {
+            get { return _Initial; }
+            set { _Initial = value; }
+        }
+        [SerializeField] private string _Initial;
+
+        public string Medial
+        {
+            get { return _Medial; }
+            set { _Medial = value; }
+        }
+        [SerializeField] private string _Medial;
+
+        public string Final
+        {
+            get { return _Final; }
+            set { _Final = value; }
+        }
+
+        [SerializeField] private string _Final;
+
+        public string Isolated_Unicode
+        {
+            get { return _Isolated_Unicode; }
+            set { _Isolated_Unicode = value; }
+        }
+
+        [SerializeField] private string _Isolated_Unicode;
+
+        public string Initial_Unicode
+        {
+            get { return _Initial_Unicode; }
+            set { _Initial_Unicode = value; }
+        }
+
+        [SerializeField] private string _Initial_Unicode;
+
+        public string Medial_Unicode
+        {
+            get { return _Medial_Unicode; }
+            set { _Medial_Unicode = value; }
+        }
+
+        [SerializeField] private string _Medial_Unicode;
+
+        public string Final_Unicode
+        {
+            get { return _Final_Unicode; }
+            set { _Final_Unicode = value; }
+        }
+
+        [SerializeField] private string _Final_Unicode;
+
+        public string Symbol_Unicode
+        {
+            get { return _Symbol_Unicode; }
+            set { _Symbol_Unicode = value; }
+        }
+
+        [SerializeField] private string _Symbol_Unicode;
+
+        public string InitialFix
+        {
+            get { return _InitialFix; }
+            set { _InitialFix = value; }
+        }
+
+        [SerializeField] private string _InitialFix;
+
+        public string FinalFix
+        {
+            get { return _FinalFix; }
+            set { _FinalFix = value; }
+        }
+
+        [SerializeField] private string _FinalFix;
+
+        public string MedialFix
+        {
+            get { return _MedialFix; }
+            set { _MedialFix = value; }
+        }
+
+        [SerializeField] private string _MedialFix;
+
+        public string Old_Isolated
+        {
+            get { return _Old_Isolated; }
+            set { _Old_Isolated = value; }
+        }
+
+        [SerializeField] private string _Old_Isolated;
+
+        public string Old_Initial
+        {
+            get { return _Old_Initial; }
+            set { _Old_Initial = value; }
+        }
+
+        [SerializeField] private string _Old_Initial;
+
+        public string Old_Medial
+        {
+            get { return _Old_Medial; }
+            set { _Old_Medial = value; }
+        }
+
+        [SerializeField] private string _Old_Medial;
+
+        public string Old_Final
+        {
+            get { return _Old_Final; }
+            set { _Old_Final = value; }
+        }
+
+        [SerializeField] private string _Old_Final;
+
+        public float Complexity
+        {
+            get { return _Complexity; }
+            set { _Complexity = value; }
+        }
+        [SerializeField] private float _Complexity;
+
 
         public override string ToString()
         {
@@ -83,8 +281,9 @@ namespace EA4S.Database
 
         public bool IsOfKindCategory(LetterKindCategory category)
         {
-            bool isIt = false;
-            switch (category) {
+            var isIt = false;
+            switch (category)
+            {
                 case LetterKindCategory.Base:
                     isIt = IsBaseLetter();
                     break;
@@ -109,32 +308,32 @@ namespace EA4S.Database
 
         private bool IsRealLetter()
         {
-            return this.IsBaseLetter() || this.IsDiacriticComboLetter();
+            return IsBaseLetter() || IsDiacriticComboLetter();
         }
 
         private bool IsBaseLetter()
         {
-            return this.Kind == LetterDataKind.Letter;
+            return Kind == LetterDataKind.Letter;
         }
 
         private bool IsVariationLetter()
         {
-            return this.Kind == LetterDataKind.LetterVariation;
+            return Kind == LetterDataKind.LetterVariation;
         }
 
         private bool IsSymbolLetter()
         {
-            return this.Kind == LetterDataKind.Symbol;
+            return Kind == LetterDataKind.Symbol;
         }
 
         private bool IsDiacriticComboLetter()
         {
-            return this.Kind == LetterDataKind.DiacriticCombo;
+            return Kind == LetterDataKind.DiacriticCombo;
         }
 
         private bool IsBaseOrVariationLetter()
         {
-            return this.Kind == LetterDataKind.Letter || this.Kind == LetterDataKind.LetterVariation;
+            return Kind == LetterDataKind.Letter || Kind == LetterDataKind.LetterVariation;
         }
 
         public ILivingLetterData ConvertToLivingLetterData()
@@ -144,11 +343,13 @@ namespace EA4S.Database
 
         public string GetUnicode(LetterForm form = LetterForm.Isolated, bool fallback = true)
         {
-            switch (Kind) {
+            switch (Kind)
+            {
                 case LetterDataKind.Symbol:
                     return Isolated_Unicode;
                 default:
-                    switch (form) {
+                    switch (form)
+                    {
                         case LetterForm.Initial:
                             return Initial_Unicode != "" ? Initial_Unicode : (fallback ? Isolated_Unicode : "");
                         case LetterForm.Medial:
@@ -163,21 +364,20 @@ namespace EA4S.Database
 
         public string GetChar(LetterForm form = LetterForm.Isolated)
         {
-            string output = "";
+            var output = "";
             var hexunicode = GetUnicode(form);
-            if (hexunicode != "") {
-
+            if (hexunicode != "")
+            {
                 // add the "-" to diacritic symbols to indentify better if it's over or below hte mid line
-                if (Type == LetterDataType.DiacriticSymbol) {
-                    output = "\u0640";
-                }
+                if (Type == LetterDataType.DiacriticSymbol) output = "\u0640";
 
-                int unicode = int.Parse(hexunicode, System.Globalization.NumberStyles.HexNumber);
-                output += ((char)unicode).ToString();
+                var unicode = int.Parse(hexunicode, NumberStyles.HexNumber);
+                output += ((char) unicode).ToString();
 
-                if (Symbol_Unicode != "") {
-                    int unicode_added = int.Parse(Symbol_Unicode, System.Globalization.NumberStyles.HexNumber);
-                    output += ((char)unicode_added).ToString();
+                if (Symbol_Unicode != "")
+                {
+                    var unicode_added = int.Parse(Symbol_Unicode, NumberStyles.HexNumber);
+                    output += ((char) unicode_added).ToString();
                 }
             }
             return output;
@@ -189,20 +389,18 @@ namespace EA4S.Database
             if (GetUnicode(form, false) == "")
                 return "";
 
-            string output = GetChar(form);
+            var output = GetChar(form);
 
-            if ((form == LetterForm.Final && FinalFix != "") || (form == LetterForm.Medial && MedialFix != "")) {
+            if (form == LetterForm.Final && FinalFix != "" || form == LetterForm.Medial && MedialFix != "")
                 output = "\u0640" + output;
-            }
 
-            if ((form == LetterForm.Initial && InitialFix != "") || (form == LetterForm.Medial && InitialFix != "")) {
+            if (form == LetterForm.Initial && InitialFix != "" || form == LetterForm.Medial && InitialFix != "")
                 output = output + "\u0640";
-            }
 
             return output;
         }
 
-        public System.Collections.Generic.IEnumerable<LetterForm> GetAvailableForms()
+        public IEnumerable<LetterForm> GetAvailableForms()
         {
             if (Isolated_Unicode != "")
                 yield return LetterForm.Isolated;
@@ -216,6 +414,5 @@ namespace EA4S.Database
             if (Final_Unicode != "")
                 yield return LetterForm.Final;
         }
-
     }
 }

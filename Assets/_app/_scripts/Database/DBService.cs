@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using SQLite;
 using System.Linq.Expressions;
 using System;
+using System.Globalization;
 using System.IO;
 using EA4S.Core;
 
@@ -21,14 +22,41 @@ namespace EA4S.Database
     {
         SQLiteConnection _connection;
 
-        public DBService(string playerUuid)
+        public DBService(string playerUuid, bool isForExport = false)
         {
+            var folderName = "players";
             var databaseName = AppConstants.GetPlayerDatabaseFilename(playerUuid);
-            var dirPath = string.Format(@"{0}/{1}", Application.persistentDataPath, "players");
-            var dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, "players", databaseName);
+            var dirPath = string.Format(@"{0}/{1}", Application.persistentDataPath, folderName);
+            var dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, folderName, databaseName);
 
-            if (!Directory.Exists(dirPath)) {
-                Directory.CreateDirectory(dirPath);
+            if (isForExport)
+            {
+                var exportFolderName = "export";
+                var exportSubfix = "_export_" + DateTime.Now.ToString("yyyy-MM-dd-HHmmss");
+                var dirExportPath = string.Format(@"{0}/{1}", Application.persistentDataPath, exportFolderName);
+                var dbExportPath = string.Format(@"{0}/{1}/{2}{3}", Application.persistentDataPath, exportFolderName, databaseName, exportSubfix);
+
+                // Copy the real DB
+                if (File.Exists(dbPath))
+                {
+                    if (!Directory.Exists(dirExportPath))
+                    {
+                        Directory.CreateDirectory(dirExportPath);
+                    }
+
+                    File.Copy(dbPath, dbExportPath);
+
+                } else {
+                    Debug.LogError("Could not find database for export.");
+                }
+
+                dirPath = dirExportPath;
+                dbPath = dbExportPath;
+
+            } else { 
+                if (!Directory.Exists(dirPath)) {
+                    Directory.CreateDirectory(dirPath);
+                }
             }
 
             // Try to open an existing DB connection, or create a new DB if it does not exist already
@@ -85,10 +113,10 @@ namespace EA4S.Database
             GenerateTable<LogPlaySessionScoreData>(create, drop);
         }
 
-        private void GenerateTable<T>(bool create, bool drop)
+        private void GenerateTable<T>(bool create, bool drop, string customTableName = "")
         {
             if (drop) _connection.DropTable<T>();
-            if (create) _connection.CreateTable<T>();
+            if (create) _connection.CreateTable<T>(customTableName:customTableName);
         }
 
         public void CreateAllTables()
@@ -209,5 +237,71 @@ namespace EA4S.Database
 
         #endregion
 
+        #region Export
+
+        public void GenerateStaticExportTables()
+        {
+            // Static DB data
+            GenerateTable<StageData>(true, false);
+            GenerateTable<PlaySessionData>(true, false);
+            GenerateTable<LearningBlockData>(true, false);
+            GenerateTable<MiniGameData>(true, false);
+            GenerateTable<LetterData>(true, false);
+            GenerateTable<WordData>(true, false);
+            GenerateTable<PhraseData>(true, false);
+            GenerateTable<LocalizationData>(true, false);
+            GenerateTable<RewardData>(true, false);
+        }
+
+        public void ExportEnum<T>() where T : struct, IConvertible
+        {
+            this.GenerateTable<EnumContainerData<T>>(true, false, customTableName: typeof(T).Name);
+            this.InsertAll(CreateEnumContainerData<T>());
+        }
+
+        private IEnumerable<EnumContainerData<T>> CreateEnumContainerData<T>() where T : struct, IConvertible
+        {
+            foreach (T value in Enum.GetValues(typeof(T)))
+            {
+                var data = new EnumContainerData<T>();
+                data.Set(value);
+                yield return data;
+            }
+        }
+
+        public class EnumContainerData<T> : IData where T : struct, IConvertible
+        {
+            [PrimaryKey]
+            public int Value
+            {
+                get;
+                set;
+            }
+
+            public string Name { get; set; }
+
+            public EnumContainerData()
+            {
+
+            }
+
+            public void Set(T enumValue)
+            {
+                if (!typeof(T).IsEnum)
+                {
+                    throw new ArgumentException("T must be an enumerated type");
+                }
+
+                Name = enumValue.ToString(CultureInfo.InvariantCulture);
+                Value = Convert.ToInt32(enumValue);
+            }
+
+            public string GetId()
+            {
+                return Value.ToString();
+            }
+        }
+        #endregion
     }
+
 }
