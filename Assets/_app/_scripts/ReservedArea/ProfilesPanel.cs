@@ -106,16 +106,25 @@ namespace EA4S.ReservedArea
 
         public void OnExportSelectPlayerProfile()
         {
-            string dbPath;
-
-            if (Application.platform == RuntimePlatform.IPhonePlayer) {
-                dbPath = string.Format(@"{0}/{1}", "players", AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
-                GlobalUI.ShowPrompt("", "Get the DB from iTunes app:\n" + dbPath);
-            } else {
-                // Android or Desktop
-                dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, "players", AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
-                GlobalUI.ShowPrompt("", "The DB is here:\n" + dbPath);
+            if (AppManager.I.DB.ExportCurrentDatabase())
+            {
+                string dbPath;
+                if (Application.platform == RuntimePlatform.IPhonePlayer)
+                {
+                    dbPath = string.Format(@"{0}/{1}", "export", AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
+                    GlobalUI.ShowPrompt("", "Get the DB from iTunes app:\n" + dbPath);
+                }
+                else {
+                    // Android or Desktop
+                    dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, "export", AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
+                    GlobalUI.ShowPrompt("", "The DB is here:\n" + dbPath);
+                }
             }
+            else
+            {
+                GlobalUI.ShowPrompt("", "Could not export the database.\n");
+            }
+
         }
 
         public void OnCreateDemoPlayer()

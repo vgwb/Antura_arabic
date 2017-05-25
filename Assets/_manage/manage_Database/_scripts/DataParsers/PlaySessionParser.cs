@@ -53,7 +53,7 @@ namespace EA4S.Database.Management
             newLetters.CopyTo(psData.Letters);
         }
 
-        public List<MiniGameInPlaySession> CustomParseMinigames(PlaySessionData data, Dictionary<string, object> dict, MiniGameTable table)
+        public MiniGameInPlaySession[] CustomParseMinigames(PlaySessionData data, Dictionary<string, object> dict, MiniGameTable table)
         {
             var list = new List<MiniGameInPlaySession>();
 
@@ -63,7 +63,7 @@ namespace EA4S.Database.Management
                 var assessmentType = ToString(dict["AssessmentType"]);
                 if (assessmentType == "") {
                     Debug.LogWarning(data.GetType().ToString() + " could not find AssessmentType for assessment " + data.Id);
-                    return list; // this means that no assessment type has been selected
+                    return list.ToArray(); // this means that no assessment type has been selected
                 }
                 minigameStruct.MiniGameCode = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), assessmentType);
                 minigameStruct.Weight = 1;  // weight is forced to be 1
@@ -96,7 +96,7 @@ namespace EA4S.Database.Management
             }
 
 
-            return list;
+            return list.ToArray();
         }
 
         protected override void RegenerateEnums(List<Dictionary<string, object>> rowdicts_list)

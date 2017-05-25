@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using EA4S.Core;
+using EA4S.Helpers;
+using SQLite;
+using UnityEngine;
 
 namespace EA4S.Database
 {
@@ -17,21 +21,148 @@ namespace EA4S.Database
     [Serializable]
     public class PlaySessionData : IData
     {
-        public string Id;
-        public int Stage;
-        public int LearningBlock;
-        public int PlaySession;
-        public string Type;
-        public PlaySessionDataOrder Order;
-        public int NumberOfMinigames;
-        public List<MiniGameInPlaySession> Minigames;
-        public int NumberOfRoundsPerMinigame;
+        [PrimaryKey]
+        public string Id
+        {
+            get { return _Id; }
+            set { _Id = value; }
+        }
+        [SerializeField] private string _Id;
 
-        public string[] Letters;
-        public string[] Words;
-        public string[] Words_previous;
-        public string[] Phrases;
-        public string[] Phrases_previous;
+        public int Stage
+        {
+            get { return _Stage; }
+            set { _Stage = value; }
+        }
+        [SerializeField] private int _Stage;
+
+        public int LearningBlock
+        {
+            get { return _LearningBlock; }
+            set { _LearningBlock = value; }
+        }
+        [SerializeField] private int _LearningBlock;
+
+        public int PlaySession
+        {
+            get { return _PlaySession; }
+            set { _PlaySession = value; }
+        }
+        [SerializeField] private int _PlaySession;
+
+        public string Type
+        {
+            get { return _Type; }
+            set { _Type = value; }
+        }
+        [SerializeField] private string _Type;
+
+        public PlaySessionDataOrder Order
+        {
+            get { return _Order; }
+            set { _Order = value; }
+        }
+        [SerializeField] private PlaySessionDataOrder _Order;
+
+        public int NumberOfMinigames
+        {
+            get { return _NumberOfMinigames; }
+            set { _NumberOfMinigames = value; }
+        }
+        [SerializeField] private int _NumberOfMinigames;
+
+        [Ignore]
+        public MiniGameInPlaySession[] Minigames
+        {
+            get { return _Minigames; }
+            set { _Minigames = value; }
+        }
+        [SerializeField]
+        private MiniGameInPlaySession[] _Minigames;
+        public string Minigames_list
+        {
+            get { return Minigames.ToJoinedString(); }
+            set { }
+        }
+
+        public int NumberOfRoundsPerMinigame
+        {
+            get { return _NumberOfRoundsPerMinigame; }
+            set { _NumberOfRoundsPerMinigame = value; }
+        }
+        [SerializeField] private int _NumberOfRoundsPerMinigame;
+
+
+        [Ignore]
+        public string[] Letters
+        {
+            get { return _Letters; }
+            set { _Letters = value; }
+        }
+        [SerializeField]
+        private string[] _Letters;
+        public string Letters_list
+        {
+            get { return Letters.ToJoinedString(); }
+            set { }
+        }
+        
+        [Ignore]
+        public string[] Words
+        {
+            get { return _Words; }
+            set { _Words = value; }
+        }
+        [SerializeField]
+        private string[] _Words;
+        public string Words_list
+        {
+            get { return Words.ToJoinedString(); }
+            set { }
+        }
+
+
+        [Ignore]
+        public string[] Words_previous
+        {
+            get { return _Words_previous; }
+            set { _Words_previous = value; }
+        }
+        [SerializeField]
+        private string[] _Words_previous;
+        public string Words_previous_list
+        {
+            get { return Words_previous.ToJoinedString(); }
+            set { }
+        }
+
+        [Ignore]
+        public string[] Phrases
+        {
+            get { return _Phrases; }
+            set { _Phrases = value; }
+        }
+        [SerializeField]
+        private string[] _Phrases;
+        public string Phrases_list
+        {
+            get { return Phrases.ToJoinedString(); }
+            set { }
+        }
+
+        [Ignore]
+        public string[] Phrases_previous
+        {
+            get { return _Phrases_previous; }
+            set { _Phrases_previous = value; }
+        }
+        [SerializeField]
+        private string[] _Phrases_previous;
+        public string Phrases_previous_list
+        {
+            get { return Phrases_previous.ToJoinedString(); }
+            set { }
+        }
 
         public string GetId()
         {
@@ -61,6 +192,11 @@ namespace EA4S.Database
     {
         public MiniGameCode MiniGameCode;
         public int Weight;
+
+        public override string ToString()
+        {
+            return MiniGameCode + ":" + Weight;
+        }
     }
 
 

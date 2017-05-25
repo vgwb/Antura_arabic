@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using UnityEngine;
 
 namespace EA4S.Database
 {
@@ -13,17 +14,71 @@ namespace EA4S.Database
     [Serializable]
     public class LearningBlockData : IData
     {
-        public string Id;
-        public int Stage;
-        public int LearningBlock;
-        public int NumberOfPlaySessions;
-        public string Description_En;
-        public string Description_Ar;
-        public string Title_En;
-        public string Title_Ar;
+        public string Id
+        {
+            get { return _Id; }
+            set { _Id = value; }
+        }
+        [SerializeField] private string _Id;
+
+        public int Stage
+        {
+            get { return _Stage; }
+            set { _Stage = value; }
+        }
+        [SerializeField] private int _Stage;
+
+        public int LearningBlock
+        {
+            get { return _LearningBlock; }
+            set { _LearningBlock = value; }
+        }
+        [SerializeField] private int _LearningBlock;
+
+        public int NumberOfPlaySessions
+        {
+            get { return _NumberOfPlaySessions; }
+            set { _NumberOfPlaySessions = value; }
+        }
+        [SerializeField] private int _NumberOfPlaySessions;
+
+        public string Description_En
+        {
+            get { return _Description_En; }
+            set { _Description_En = value; }
+        }
+        [SerializeField] private string _Description_En;
+
+        public string Description_Ar
+        {
+            get { return _Description_Ar; }
+            set { _Description_Ar = value; }
+        }
+        [SerializeField] private string _Description_Ar;
+
+        public string Title_En
+        {
+            get { return _Title_En; }
+            set { _Title_En = value; }
+        }
+        [SerializeField] private string _Title_En;
+
+        public string Title_Ar
+        {
+            get { return _Title_Ar; }
+            set { _Title_Ar = value; }
+        }
+        [SerializeField] private string _Title_Ar;
+
+        public LearningBlockDataFocus Focus
+        {
+            get { return _Focus; }
+            set { _Focus = value; }
+        }
+        [SerializeField] private LearningBlockDataFocus _Focus;
+
         //public string Reward;
-        public LearningBlockDataFocus Focus;
-        //        public string AssessmentData;
+        //public string AssessmentData;
 
         public string GetId()
         {

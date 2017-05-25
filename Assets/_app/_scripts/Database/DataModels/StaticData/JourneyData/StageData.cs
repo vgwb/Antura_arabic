@@ -1,4 +1,6 @@
 ﻿using System;
+using SQLite;
+using UnityEngine;
 
 namespace EA4S.Database
 {
@@ -12,10 +14,34 @@ namespace EA4S.Database
     [Serializable]
     public class StageData : IData
     {
-        public string Id;
-        public string Title_En;
-        public string Title_Ar;
-        public string Description;
+        [PrimaryKey]
+        public string Id
+        {
+            get { return _Id; }
+            set { _Id = value; }
+        }
+        [SerializeField] private string _Id;
+
+        public string Title_En
+        {
+            get { return _Title_En; }
+            set { _Title_En = value; }
+        }
+        [SerializeField] private string _Title_En;
+
+        public string Title_Ar
+        {
+            get { return _Title_Ar; }
+            set { _Title_Ar = value; }
+        }
+        [SerializeField] private string _Title_Ar;
+
+        public string Description
+        {
+            get { return _Description; }
+            set { _Description = value; }
+        }
+        [SerializeField] private string _Description;
 
         public override string ToString()
         {

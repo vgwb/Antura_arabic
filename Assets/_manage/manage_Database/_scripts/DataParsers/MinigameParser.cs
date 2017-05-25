@@ -34,7 +34,7 @@ namespace EA4S.Database.Management
         }
 
 
-        List<WeightedPlaySkill> CustomParsePlaySkills(MiniGameData data, Dictionary<string, object> dict)
+        WeightedPlaySkill[] CustomParsePlaySkills(MiniGameData data, Dictionary<string, object> dict)
         {
             var list = new List<WeightedPlaySkill>();
 
@@ -51,7 +51,7 @@ namespace EA4S.Database.Management
                 }
             }
 
-            return list;
+            return list.ToArray();
         }
     }
 }

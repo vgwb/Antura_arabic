@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Linq;
 using EA4S.Audio;
 using EA4S.Core;
 using EA4S.Database;
@@ -221,8 +222,8 @@ namespace EA4S.Book
                     break; ;
                 case PlaySessionDataOrder.Sequence:
                     // In case of a Sequence PS, two minigames with the same minimum play session are sorted based on the sequence order
-                    var miniGameInPlaySession1 = sharedPlaySessionData.Minigames.Find(x => x.MiniGameCode == g1.GetFirstVariationMiniGameCode());
-                    var miniGameInPlaySession2 = sharedPlaySessionData.Minigames.Find(x => x.MiniGameCode == g2.GetFirstVariationMiniGameCode());
+                    var miniGameInPlaySession1 = sharedPlaySessionData.Minigames.ToList().Find(x => x.MiniGameCode == g1.GetFirstVariationMiniGameCode());
+                    var miniGameInPlaySession2 = sharedPlaySessionData.Minigames.ToList().Find(x => x.MiniGameCode == g2.GetFirstVariationMiniGameCode());
                     ret = miniGameInPlaySession1.Weight - miniGameInPlaySession2.Weight;
                     break;
             }

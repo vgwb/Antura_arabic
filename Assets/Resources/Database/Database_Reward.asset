@@ -13,171 +13,171 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   table:
     innerList:
-    - Id: DogCollarLarge
-      Title: 
-      Category: 1
-      Weight: 0
-    - Id: DogCollarMedium
-      Title: 
-      Category: 1
-      Weight: 0
-    - Id: DogCollarSmall
-      Title: 
-      Category: 1
-      Weight: 0
-    - Id: DogPirateHat
-      Title: 
-      Category: 1
-      Weight: 0
-    - Id: DogPirateHook
-      Title: 
-      Category: 1
-      Weight: 0
-    - Id: DogSkinRed
-      Title: 
-      Category: 2
-      Weight: 0
-    - Id: DogSkinYellow
-      Title: 
-      Category: 2
-      Weight: 0
-    - Id: DogAnimation1
-      Title: 
-      Category: 3
-      Weight: 0
-    - Id: reward_tube_hat
-      Title: Tube hat
-      Category: 1
-      Weight: 0
-    - Id: reward_punk_hair
-      Title: Punk hair
-      Category: 1
-      Weight: 0
-    - Id: reward_viking_helm
-      Title: Viking helm
-      Category: 1
-      Weight: 0
-    - Id: reward_robot_helm
-      Title: Robot helm
-      Category: 1
-      Weight: 0
-    - Id: reward_glass_punk
-      Title: Glass punk
-      Category: 1
-      Weight: 0
-    - Id: reward_glass_mustache
-      Title: Glass + mustache
-      Category: 1
-      Weight: 0
-    - Id: reward_robot_upper_jaw
-      Title: Robot upper jaw
-      Category: 1
-      Weight: 0
-    - Id: reward_monocle
-      Title: Monocle
-      Category: 1
-      Weight: 0
-    - Id: reward_backpack
-      Title: Backpack
-      Category: 1
-      Weight: 0
-    - Id: reward_mobile_console
-      Title: Mobile console
-      Category: 1
-      Weight: 0
-    - Id: reward_shovel
-      Title: Shovel
-      Category: 1
-      Weight: 0
-    - Id: reward_guitar
-      Title: Guitar
-      Category: 1
-      Weight: 0
-    - Id: reward_collar_spike
-      Title: Collar spike
-      Category: 1
-      Weight: 0
-    - Id: reward_collar_bow
-      Title: Collar bow
-      Category: 1
-      Weight: 0
-    - Id: reward_collar_medal
-      Title: Collar bicolor with a medal
-      Category: 1
-      Weight: 0
-    - Id: reward_collar_diamond
-      Title: collar with diamond
-      Category: 1
-      Weight: 0
-    - Id: reward_robot_lower_jaw
-      Title: Robot Lower Jaw
-      Category: 1
-      Weight: 0
-    - Id: reward_papillon
-      Title: Papillon
-      Category: 1
-      Weight: 0
-    - Id: reward_beard_1
-      Title: Beard 1
-      Category: 1
-      Weight: 0
-    - Id: reward_beard_2
-      Title: Beard 2
-      Category: 1
-      Weight: 0
-    - Id: reward_star_tail
-      Title: Star Tail
-      Category: 1
-      Weight: 0
-    - Id: reward_umbrella
-      Title: Umbrella
-      Category: 1
-      Weight: 0
-    - Id: reward_mailbox
-      Title: Mailbox
-      Category: 1
-      Weight: 0
-    - Id: reward_bow_tail
-      Title: bow
-      Category: 1
-      Weight: 0
-    - Id: reward_hook_tail
-      Title: Hook
-      Category: 1
-      Weight: 0
-    - Id: reward_candy_stick
-      Title: Candy stick
-      Category: 1
-      Weight: 0
-    - Id: reward_bow_R
-      Title: Bow R
-      Category: 1
-      Weight: 0
-    - Id: reward_earring_1_R
-      Title: Earring 1 R
-      Category: 1
-      Weight: 0
-    - Id: reward_earring_2_R
-      Title: Earring 2 R
-      Category: 1
-      Weight: 0
-    - Id: reward_earring_3_R
-      Title: Earring 3 R
-      Category: 1
-      Weight: 0
-    - Id: reward_bow_L
-      Title: Bow L
-      Category: 1
-      Weight: 0
-    - Id: reward_earring_1_L
-      Title: Earring 1 L
-      Category: 1
-      Weight: 0
-    - Id: reward_earring_2_L
-      Title: Earring 2 L
-      Category: 1
-      Weight: 0
-    - Id: reward_earring_3_L
-      Title: Earring 3 L
-      Category: 1
-      Weight: 0
+    - _Id: DogCollarLarge
+      _Title: 
+      _Category: 1
+      _Weight: 0
+    - _Id: DogCollarMedium
+      _Title: 
+      _Category: 1
+      _Weight: 0
+    - _Id: DogCollarSmall
+      _Title: 
+      _Category: 1
+      _Weight: 0
+    - _Id: DogPirateHat
+      _Title: 
+      _Category: 1
+      _Weight: 0
+    - _Id: DogPirateHook
+      _Title: 
+      _Category: 1
+      _Weight: 0
+    - _Id: DogSkinRed
+      _Title: 
+      _Category: 2
+      _Weight: 0
+    - _Id: DogSkinYellow
+      _Title: 
+      _Category: 2
+      _Weight: 0
+    - _Id: DogAnimation1
+      _Title: 
+      _Category: 3
+      _Weight: 0
+    - _Id: reward_tube_hat
+      _Title: Tube hat
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_punk_hair
+      _Title: Punk hair
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_viking_helm
+      _Title: Viking helm
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_robot_helm
+      _Title: Robot helm
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_glass_punk
+      _Title: Glass punk
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_glass_mustache
+      _Title: Glass + mustache
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_robot_upper_jaw
+      _Title: Robot upper jaw
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_monocle
+      _Title: Monocle
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_backpack
+      _Title: Backpack
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_mobile_console
+      _Title: Mobile console
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_shovel
+      _Title: Shovel
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_guitar
+      _Title: Guitar
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_collar_spike
+      _Title: Collar spike
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_collar_bow
+      _Title: Collar bow
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_collar_medal
+      _Title: Collar bicolor with a medal
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_collar_diamond
+      _Title: collar with diamond
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_robot_lower_jaw
+      _Title: Robot Lower Jaw
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_papillon
+      _Title: Papillon
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_beard_1
+      _Title: Beard 1
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_beard_2
+      _Title: Beard 2
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_star_tail
+      _Title: Star Tail
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_umbrella
+      _Title: Umbrella
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_mailbox
+      _Title: Mailbox
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_bow_tail
+      _Title: bow
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_hook_tail
+      _Title: Hook
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_candy_stick
+      _Title: Candy stick
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_bow_R
+      _Title: Bow R
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_earring_1_R
+      _Title: Earring 1 R
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_earring_2_R
+      _Title: Earring 2 R
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_earring_3_R
+      _Title: Earring 3 R
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_bow_L
+      _Title: Bow L
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_earring_1_L
+      _Title: Earring 1 L
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_earring_2_L
+      _Title: Earring 2 L
+      _Category: 1
+      _Weight: 0
+    - _Id: reward_earring_3_L
+      _Title: Earring 3 L
+      _Category: 1
+      _Weight: 0
