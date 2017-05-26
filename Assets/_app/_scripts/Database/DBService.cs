@@ -32,9 +32,9 @@ namespace EA4S.Database
             if (isForExport)
             {
                 var exportFolderName = "export";
-                var exportSubfix = "_export_" + DateTime.Now.ToString("yyyy-MM-dd-HHmmss");
+                var exportPrefix = "export_" + DateTime.Now.ToString("yyyy-MM-dd-HHmmss") + "_";
                 var dirExportPath = string.Format(@"{0}/{1}", Application.persistentDataPath, exportFolderName);
-                var dbExportPath = string.Format(@"{0}/{1}/{2}{3}", Application.persistentDataPath, exportFolderName, databaseName, exportSubfix);
+                var dbExportPath = string.Format(@"{0}/{1}/{2}{3}", Application.persistentDataPath, exportFolderName, exportPrefix, databaseName);
 
                 // Copy the real DB
                 if (File.Exists(dbPath))
