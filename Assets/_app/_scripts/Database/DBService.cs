@@ -240,6 +240,11 @@ namespace EA4S.Database
         var query = string.Format("drop table if exists \"{0}\"", map.TableName);
         */
 
+        public void CloseConnection()
+        {
+            _connection.Close();
+        }
+
         #endregion
 
         #region Export

@@ -40,6 +40,7 @@ namespace EA4S.Database
             typeof(MiniGameScoreData),
             typeof(LogInfoData),
             typeof(LogMoodData),
+            typeof(LogPlayData),
             typeof(LogMiniGameScoreData),
             typeof(LogPlaySessionScoreData),
             typeof(LogVocabularyScoreData),
@@ -485,14 +486,15 @@ namespace EA4S.Database
             // Create a new service for the copied database
             // This will copy the current database
             var exportDbService = new DBService(playerUuid, true);
-            exportDbService.GenerateStaticExportTables();
 
+            // Inject UUID
             foreach (var type in dynamicDataTypes)
             {
-                PopulateUUID(type, playerUuid);
+                PopulateUUID(type, playerUuid, exportDbService);
             }
 
             // Copy in the Static DB contents
+            exportDbService.GenerateStaticExportTables();
             exportDbService.InsertAll(StaticDatabase.GetStageTable().GetValuesTyped());
             exportDbService.InsertAll(StaticDatabase.GetPlaySessionTable().GetValuesTyped());
             exportDbService.InsertAll(StaticDatabase.GetLearningBlockTable().GetValuesTyped());
@@ -525,14 +527,15 @@ namespace EA4S.Database
             exportDbService.ExportEnum<WordDataForm>();
             exportDbService.ExportEnum<WordDataKind>();
 
+            exportDbService.CloseConnection();
+
             return true;
         }
 
-        void PopulateUUID(Type t, string playerUuid)
+        void PopulateUUID(Type t, string playerUuid, DBService exportDbService)
         {
             string query = "UPDATE " + t.Name + " SET Uuid = \"" + playerUuid + "\"";
-            Debug.Log(query);
-            Query(t, query);
+            exportDbService.Query(t, query);
         }
 
     }
