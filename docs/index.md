@@ -8,6 +8,9 @@ by TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
 - [Install](HowTo/INSTALL.md) how to install and configure the Unity project
 - [Build](HowTo/Build.md) how to build the app for mobile devices
 
+## Debug and Shortcuts
+- [Refactoring Guidelines](HowTo/DebugShortcuts.md)
+
 ## Developer Guidelines
 
 - [DeveloperGuidelines](Guidelines/DeveloperGuidelines.md) describes general guidelines for developers that want to contribute to the project.

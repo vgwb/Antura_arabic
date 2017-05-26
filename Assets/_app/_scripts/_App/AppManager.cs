@@ -23,7 +23,8 @@ namespace EA4S
         public new AppSettings GameSettings = new AppSettings();
 
         // refactor: AppManager.Instance should be the only entry point to the singleton
-        public static AppManager I {
+        public static AppManager I
+        {
             get { return GameManager.Instance as AppManager; }
         }
 
@@ -46,7 +47,8 @@ namespace EA4S
         /// <value>
         /// The player profile manager.
         /// </value>
-        public PlayerProfileManager PlayerProfileManager {
+        public PlayerProfileManager PlayerProfileManager
+        {
             get { return _playerProfileManager; }
             set {
                 if (_playerProfileManager != value) {
@@ -58,7 +60,8 @@ namespace EA4S
             }
         }
 
-        public Profile.PlayerProfile Player {
+        public Profile.PlayerProfile Player
+        {
             get { return PlayerProfileManager != null ? PlayerProfileManager.CurrentPlayer : null; }
             set { PlayerProfileManager.CurrentPlayer = value; }
         }
@@ -122,6 +125,11 @@ namespace EA4S
                         Application.Quit();
                     }, () => { });
                 }
+            }
+
+            // shortcut to Reserved Area
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R)) {
+                NavigationManager.GoToReservedArea();
             }
         }
 
