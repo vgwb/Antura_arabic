@@ -29,18 +29,15 @@ namespace EA4S.Database
             var dirPath = string.Format(@"{0}/{1}", Application.persistentDataPath, folderName);
             var dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, folderName, databaseName);
 
-            if (isForExport)
-            {
+            if (isForExport) {
                 var exportFolderName = "export";
                 var exportPrefix = "export_" + DateTime.Now.ToString("yyyy-MM-dd-HHmmss") + "_";
                 var dirExportPath = string.Format(@"{0}/{1}", Application.persistentDataPath, exportFolderName);
                 var dbExportPath = string.Format(@"{0}/{1}/{2}{3}", Application.persistentDataPath, exportFolderName, exportPrefix, databaseName);
 
                 // Copy the real DB
-                if (File.Exists(dbPath))
-                {
-                    if (!Directory.Exists(dirExportPath))
-                    {
+                if (File.Exists(dbPath)) {
+                    if (!Directory.Exists(dirExportPath)) {
                         Directory.CreateDirectory(dirExportPath);
                     }
 
@@ -53,7 +50,7 @@ namespace EA4S.Database
                 dirPath = dirExportPath;
                 dbPath = dbExportPath;
 
-            } else { 
+            } else {
                 if (!Directory.Exists(dirPath)) {
                     Directory.CreateDirectory(dirPath);
                 }
@@ -116,7 +113,7 @@ namespace EA4S.Database
         private void GenerateTable<T>(bool create, bool drop, string customTableName = "")
         {
             if (drop) _connection.DropTable<T>();
-            if (create) _connection.CreateTable<T>(customTableName:customTableName);
+            if (create) _connection.CreateTable<T>(customTableName: customTableName);
         }
 
         public void CreateAllTables()
@@ -252,27 +249,26 @@ namespace EA4S.Database
         public void GenerateStaticExportTables()
         {
             // Static DB data
-            GenerateTable<StageData>(true, false);
-            GenerateTable<PlaySessionData>(true, false);
-            GenerateTable<LearningBlockData>(true, false);
-            GenerateTable<MiniGameData>(true, false);
-            GenerateTable<LetterData>(true, false);
-            GenerateTable<WordData>(true, false);
-            GenerateTable<PhraseData>(true, false);
-            GenerateTable<LocalizationData>(true, false);
-            GenerateTable<RewardData>(true, false);
+            GenerateTable<StageData>(true, false, customTableName: "static_" + typeof(StageData).Name);
+            GenerateTable<PlaySessionData>(true, false, customTableName: "static_" + typeof(PlaySessionData).Name);
+            GenerateTable<LearningBlockData>(true, false, customTableName: "static_" + typeof(LearningBlockData).Name);
+            GenerateTable<MiniGameData>(true, false, customTableName: "static_" + typeof(MiniGameData).Name);
+            GenerateTable<LetterData>(true, false, customTableName: "static_" + typeof(LetterData).Name);
+            GenerateTable<WordData>(true, false, customTableName: "static_" + typeof(WordData).Name);
+            GenerateTable<PhraseData>(true, false, customTableName: "static_" + typeof(PhraseData).Name);
+            GenerateTable<LocalizationData>(true, false, customTableName: "static_" + typeof(LocalizationData).Name);
+            GenerateTable<RewardData>(true, false, customTableName: "static_" + typeof(RewardData).Name);
         }
 
         public void ExportEnum<T>() where T : struct, IConvertible
         {
-            this.GenerateTable<EnumContainerData<T>>(true, false, customTableName: "enum_"+ typeof(T).Name);
+            this.GenerateTable<EnumContainerData<T>>(true, false, customTableName: "enum_" + typeof(T).Name);
             this.InsertAll(CreateEnumContainerData<T>());
         }
 
         private IEnumerable<EnumContainerData<T>> CreateEnumContainerData<T>() where T : struct, IConvertible
         {
-            foreach (T value in Enum.GetValues(typeof(T)))
-            {
+            foreach (T value in Enum.GetValues(typeof(T))) {
                 var data = new EnumContainerData<T>();
                 data.Set(value);
                 yield return data;
@@ -297,8 +293,7 @@ namespace EA4S.Database
 
             public void Set(T enumValue)
             {
-                if (!typeof(T).IsEnum)
-                {
+                if (!typeof(T).IsEnum) {
                     throw new ArgumentException("T must be an enumerated type");
                 }
 
