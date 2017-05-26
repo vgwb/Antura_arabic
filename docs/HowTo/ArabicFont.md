@@ -12,7 +12,7 @@ open TextMesh Pro Font Asset Creator using these parameters:
 
     Font Render Mode: Distance Field 16
 
-    Save as Antura Arabic SDF.asset
+    Save as EA4S_Arabic SDF.asset
 
 ## Notes
 
