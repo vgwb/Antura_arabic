@@ -265,7 +265,7 @@ namespace EA4S.Database
 
         public void ExportEnum<T>() where T : struct, IConvertible
         {
-            this.GenerateTable<EnumContainerData<T>>(true, false, customTableName: typeof(T).Name);
+            this.GenerateTable<EnumContainerData<T>>(true, false, customTableName: "enum_"+ typeof(T).Name);
             this.InsertAll(CreateEnumContainerData<T>());
         }
 
