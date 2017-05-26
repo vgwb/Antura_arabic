@@ -30,25 +30,25 @@ namespace EA4S.Database
             var dbPath = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, folderName, databaseName);
 
             if (isForExport) {
-                var exportFolderName = "export";
-                var exportPrefix = "export_" + DateTime.Now.ToString("yyyy-MM-dd-HHmmss") + "_";
-                var dirExportPath = string.Format(@"{0}/{1}", Application.persistentDataPath, exportFolderName);
-                var dbExportPath = string.Format(@"{0}/{1}/{2}{3}", Application.persistentDataPath, exportFolderName, exportPrefix, databaseName);
+                var folderNameExport = "export";
+                var databaseNameExport = AppConstants.GetPlayerDatabaseFilenameForExport(playerUuid);
+                var dirPathExport = string.Format(@"{0}/{1}", Application.persistentDataPath, folderNameExport);
+                var dbPathExport = string.Format(@"{0}/{1}/{2}", Application.persistentDataPath, folderNameExport, databaseNameExport);
 
                 // Copy the real DB
                 if (File.Exists(dbPath)) {
-                    if (!Directory.Exists(dirExportPath)) {
-                        Directory.CreateDirectory(dirExportPath);
+                    if (!Directory.Exists(dirPathExport)) {
+                        Directory.CreateDirectory(dirPathExport);
                     }
 
-                    File.Copy(dbPath, dbExportPath);
+                    File.Copy(dbPath, dbPathExport);
 
                 } else {
                     Debug.LogError("Could not find database for export.");
                 }
 
-                dirPath = dirExportPath;
-                dbPath = dbExportPath;
+                dirPath = dirPathExport;
+                dbPath = dbPathExport;
 
             } else {
                 if (!Directory.Exists(dirPath)) {

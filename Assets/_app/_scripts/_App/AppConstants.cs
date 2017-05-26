@@ -98,5 +98,10 @@
         {
             return "Antura_Player_" + playerUuid + ".sqlite3";
         }
+
+        public static string GetPlayerDatabaseFilenameForExport(string playerUuid)
+        {
+            return "export_Antura_Player_" + playerUuid + "_" + System.DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".sqlite3";
+        }
     }
 }
