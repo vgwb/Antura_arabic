@@ -5,7 +5,7 @@ by [TH Köln / Cologne Game Lab](http://www.colognegamelab.de/), [Video Games Wi
 
 ## Documentation
 
-The developer docs are [here](/docs/) or at the public pages [vgwb.github.io/EA4S_Antura_U3D/](https://vgwb.github.io/EA4S_Antura_U3D/)
+The project docs are here: [vgwb.github.io/EA4S_Antura_Docs/](https://vgwb.github.io/EA4S_Antura_Docs/)
 
 ## Licensing
 
