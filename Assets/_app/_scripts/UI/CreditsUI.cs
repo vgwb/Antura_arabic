@@ -23,7 +23,7 @@ namespace EA4S.UI
         public TextAsset CreditsTxt;
         public RectTransform CreditsContainer;
         public UIButton BtBack;
-        public TMPro.TextMeshProUGUI TfCredits;
+        public TMPro.TextMeshProUGUI_OLD TfCredits;
 
         public bool HasAwoken { get; private set; }
         RectTransform rectT;

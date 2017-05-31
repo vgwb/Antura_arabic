@@ -20,7 +20,7 @@ namespace EA4S.Assessment
         /// Injected properties
         /// </summary>
         public TMP_Text Label;
-        public TextMeshPro Drawing;
+        public TextMeshPro_OLD Drawing;
         public ParticleSystem poofPrefab;
 
         public NineSlicedSprite questionSprite;

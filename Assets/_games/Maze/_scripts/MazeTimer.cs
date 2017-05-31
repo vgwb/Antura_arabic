@@ -9,7 +9,7 @@ namespace EA4S.Minigames.Maze
 
         [HideInInspector]
         public float time;
-        public TextMeshProUGUI timerText;
+        public TextMeshProUGUI_OLD timerText;
 
         private bool isRunning;
         private bool playedSfx;

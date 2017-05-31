@@ -24,7 +24,7 @@ namespace EA4S.Minigames.Scanner
         public Vector3 fingerOffset;
 		public float scale = 0.5f;
 		public bool isCorrectAnswer = false;
-		public TextMeshPro drawing;
+		public TextMeshPro_OLD drawing;
 		public GameObject shadow;
 
 		[HideInInspector]

@@ -26,11 +26,11 @@ namespace EA4S.Minigames.ReadingGame
         bool hasElements = false;
         bool needsRender = false;
 
-        Dictionary<TextMeshPro, float> previousAlpha = new Dictionary<TextMeshPro, float>();
-        Dictionary<TextMeshPro, string> previousString = new Dictionary<TextMeshPro, string>();
+        Dictionary<TextMeshPro_OLD, float> previousAlpha = new Dictionary<TextMeshPro_OLD, float>();
+        Dictionary<TextMeshPro_OLD, string> previousString = new Dictionary<TextMeshPro_OLD, string>();
 
         List<MeshRenderer> renderers = new List<MeshRenderer>();
-        List<TextMeshPro> texts = new List<TextMeshPro>();
+        List<TextMeshPro_OLD> texts = new List<TextMeshPro_OLD>();
 
         public void UpdateTarget()
         {
@@ -40,7 +40,7 @@ namespace EA4S.Minigames.ReadingGame
             texts.Clear();
 
             target.GetComponentsInChildren<MeshRenderer>(true, renderers);
-            target.GetComponentsInChildren<TextMeshPro>(true, texts);
+            target.GetComponentsInChildren<TextMeshPro_OLD>(true, texts);
 
             bool textChanged = false;
             for (int i = 0, count = texts.Count; i < count; ++i)

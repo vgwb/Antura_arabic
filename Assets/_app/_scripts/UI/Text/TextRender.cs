@@ -19,9 +19,9 @@ namespace EA4S.UI
             get {
                 if (isTMPro) {
                     if (isUI) {
-                        return gameObject.GetComponent<TextMeshProUGUI>().alpha;
+                        return gameObject.GetComponent<TextMeshProUGUI_OLD>().alpha;
                     } else {
-                        return gameObject.GetComponent<TextMeshPro>().alpha;
+                        return gameObject.GetComponent<TextMeshPro_OLD>().alpha;
                     }
                 }
                 return 0;
@@ -29,9 +29,9 @@ namespace EA4S.UI
             set {
                 if (isTMPro) {
                     if (isUI) {
-                        gameObject.GetComponent<TextMeshProUGUI>().alpha = value;
+                        gameObject.GetComponent<TextMeshProUGUI_OLD>().alpha = value;
                     } else {
-                        gameObject.GetComponent<TextMeshPro>().alpha = value;
+                        gameObject.GetComponent<TextMeshPro_OLD>().alpha = value;
                     }
                 }
             }
@@ -77,7 +77,7 @@ namespace EA4S.UI
         void checkConfiguration()
         {
             if (isTMPro && isUI && isArabic) {
-                if (!gameObject.GetComponent<TextMeshProUGUI>().isRightToLeftText) {
+                if (!gameObject.GetComponent<TextMeshProUGUI_OLD>().isRightToLeftText) {
                     Debug.LogWarning("TextMeshPro on component " + gameObject.name + " isn't RTL");
                 }
             }
@@ -87,9 +87,9 @@ namespace EA4S.UI
         {
             if (isTMPro) {
                 if (isUI) {
-                    gameObject.GetComponent<TextMeshProUGUI>().text = text;
+                    gameObject.GetComponent<TextMeshProUGUI_OLD>().text = text;
                 } else {
-                    gameObject.GetComponent<TextMeshPro>().text = text;
+                    gameObject.GetComponent<TextMeshPro_OLD>().text = text;
                 }
                 if (AdjustDiacriticPos) {
                     AdjustDiacriticPositions();
@@ -108,18 +108,18 @@ namespace EA4S.UI
             if (isTMPro) {
                 if (isArabic) {
                     if (isUI) {
-                        gameObject.GetComponent<TextMeshProUGUI>().text = ArabicAlphabetHelper.ProcessArabicString(m_text);
+                        gameObject.GetComponent<TextMeshProUGUI_OLD>().text = ArabicAlphabetHelper.ProcessArabicString(m_text);
                     } else {
-                        gameObject.GetComponent<TextMeshPro>().text = ArabicAlphabetHelper.ProcessArabicString(m_text);
+                        gameObject.GetComponent<TextMeshPro_OLD>().text = ArabicAlphabetHelper.ProcessArabicString(m_text);
                     }
                     if (AdjustDiacriticPos) {
                         AdjustDiacriticPositions();
                     }
                 } else {
                     if (isUI) {
-                        gameObject.GetComponent<TextMeshProUGUI>().text = m_text;
+                        gameObject.GetComponent<TextMeshProUGUI_OLD>().text = m_text;
                     } else {
-                        gameObject.GetComponent<TextMeshPro>().text = m_text;
+                        gameObject.GetComponent<TextMeshPro_OLD>().text = m_text;
                     }
                 }
             } else {
@@ -143,9 +143,9 @@ namespace EA4S.UI
         {
             if (isTMPro) {
                 if (isUI) {
-                    gameObject.GetComponent<TextMeshProUGUI>().color = color;
+                    gameObject.GetComponent<TextMeshProUGUI_OLD>().color = color;
                 } else {
-                    gameObject.GetComponent<TextMeshPro>().color = color;
+                    gameObject.GetComponent<TextMeshPro_OLD>().color = color;
                 }
             }
         }
@@ -155,9 +155,9 @@ namespace EA4S.UI
             isArabic = false;
 
             if (isUI) {
-                gameObject.GetComponent<TextMeshProUGUI>().isRightToLeftText = true;
+                gameObject.GetComponent<TextMeshProUGUI_OLD>().isRightToLeftText = true;
             } else {
-                gameObject.GetComponent<TextMeshPro>().isRightToLeftText = true;
+                gameObject.GetComponent<TextMeshPro_OLD>().isRightToLeftText = true;
             }
             if (livingLetterData.DataType == LivingLetterDataType.Letter) {
                 text = livingLetterData.TextForLivingLetter;

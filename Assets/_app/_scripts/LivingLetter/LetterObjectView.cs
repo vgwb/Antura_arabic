@@ -41,7 +41,7 @@ namespace EA4S.LivingLetters
         public Transform boneToScaleTransform;
 
         public TMP_Text Label;
-        public TextMeshPro Drawing;
+        public TextMeshPro_OLD Drawing;
         public SpriteRenderer ImageSprite;
 
         Vector3 startScale;
