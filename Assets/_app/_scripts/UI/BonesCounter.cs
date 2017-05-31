@@ -10,7 +10,7 @@ namespace EA4S.UI
     /// </summary>
     public class BonesCounter : MonoBehaviour
     {
-        public TextMeshProUGUI_OLD TfCount;
+        public TextMeshProUGUI TfCount;
         public RectTransform BoneImg;
 
         int totBones {

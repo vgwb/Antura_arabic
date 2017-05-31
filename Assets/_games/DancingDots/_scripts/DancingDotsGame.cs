@@ -430,7 +430,7 @@ namespace EA4S.Minigames.DancingDots
         public void CorrectDiacritic()
         {
             isCorrectDiacritic = true;
-            activeDiacritic.GetComponent<TextMeshPro_OLD>().color = new Color32(0, 0, 0, 255);
+            activeDiacritic.GetComponent<TextMeshPro>().color = new Color32(0, 0, 0, 255);
             StartCoroutine(PoofOthers(dragableDiacritics));
             StartCoroutine(CorrectMove(isCorrectDot));
         }

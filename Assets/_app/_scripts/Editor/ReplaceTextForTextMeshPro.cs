@@ -24,12 +24,12 @@ class ReplaceTextForTextMeshPro : EditorWindow
     public static void TextMeshTransmorphSingle(MenuCommand command) {
         Text currentUIText = Selection.activeGameObject.GetComponent<Text>();
 
-        TMP_FontAsset_OLD newFont = Resources.Load("Fonts/AmaticSC-Bold SDF", typeof(TMP_FontAsset_OLD)) as TMP_FontAsset_OLD;
+        TMP_FontAsset newFont = Resources.Load("Fonts/AmaticSC-Bold SDF", typeof(TMP_FontAsset)) as TMP_FontAsset;
         if (newFont == null) {
             Debug.Log("Not so awesome...");
             return;
         }
-        Dictionary<string, TMP_FontAsset_OLD> fontMap = new Dictionary<string, TMP_FontAsset_OLD>();
+        Dictionary<string, TMP_FontAsset> fontMap = new Dictionary<string, TMP_FontAsset>();
         fontMap.Add("Bangers", newFont);
 
 
@@ -56,7 +56,7 @@ class ReplaceTextForTextMeshPro : EditorWindow
 
         DestroyImmediate(currentUIText);
 
-        TextMeshProUGUI_OLD textMesh = gameObject.AddComponent<TextMeshProUGUI_OLD>();
+        TextMeshProUGUI textMesh = gameObject.AddComponent<TextMeshProUGUI>();
         if (fontMap.ContainsKey(font.fontNames[0])) {
             textMesh.font = fontMap[font.fontNames[0]];
         }          
@@ -78,12 +78,12 @@ class ReplaceTextForTextMeshPro : EditorWindow
     public static void TextMeshTransmorphAll(MenuCommand command) {
         Text[] texts = FindObjectsOfType<Text>();
 
-        TMP_FontAsset_OLD newFont = Resources.Load("Fonts/Arial Latin SDF", typeof(TMP_FontAsset_OLD)) as TMP_FontAsset_OLD;
+        TMP_FontAsset newFont = Resources.Load("Fonts/Arial Latin SDF", typeof(TMP_FontAsset)) as TMP_FontAsset;
         if (newFont == null) {
             Debug.Log("Not so awesome...");
             return;
         }
-        Dictionary<string, TMP_FontAsset_OLD> fontMap = new Dictionary<string, TMP_FontAsset_OLD>();
+        Dictionary<string, TMP_FontAsset> fontMap = new Dictionary<string, TMP_FontAsset>();
         fontMap.Add("Arial", newFont);
 
         foreach (Text text in texts) {
@@ -110,7 +110,7 @@ class ReplaceTextForTextMeshPro : EditorWindow
 
             DestroyImmediate(text);
 
-            TextMeshProUGUI_OLD textMesh = gameObject.AddComponent<TextMeshProUGUI_OLD>();
+            TextMeshProUGUI textMesh = gameObject.AddComponent<TextMeshProUGUI>();
             if (fontMap.ContainsKey(font.fontNames[0])) {
                 textMesh.font = fontMap[font.fontNames[0]];
             }          
@@ -170,7 +170,7 @@ class ReplaceTextForTextMeshPro : EditorWindow
 
     [MenuItem("Tools/TMPro Utils/Log Text Properties")]
     public static void LogTextFontProperties(MenuCommand command) {
-        TMP_FontAsset_OLD newFont = Resources.Load("Fonts/Arial Latin SDF", typeof(TMP_FontAsset_OLD)) as TMP_FontAsset_OLD;
+        TMP_FontAsset newFont = Resources.Load("Fonts/Arial Latin SDF", typeof(TMP_FontAsset)) as TMP_FontAsset;
         if (newFont == null)
             Debug.Log("Not so awesome...");
 

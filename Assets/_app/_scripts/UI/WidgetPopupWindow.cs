@@ -287,7 +287,7 @@ namespace EA4S.UI
             if (!imageId.IsNullOrEmpty())
             {
                 DrawingImageGO.SetActive(true);
-                DrawingImageGO.GetComponent<TextMeshProUGUI_OLD>().text = imageId;
+                DrawingImageGO.GetComponent<TextMeshProUGUI>().text = imageId;
             }
             else
             {

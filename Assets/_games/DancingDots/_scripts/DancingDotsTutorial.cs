@@ -9,7 +9,7 @@ namespace EA4S.Minigames.DancingDots
     public class DancingDotsTutorial : MonoBehaviour
     {
 
-        public TextMeshPro_OLD hintDot;
+        public TextMeshPro hintDot;
         public DancingDotsDiacriticPosition[] targetDDs;
         //public Vector3[] path;
         public float startDelay,repeatDelay = 3;
