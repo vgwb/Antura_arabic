@@ -52,5 +52,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fonts:
-  - from: {fileID: 11400000, guid: 038d46a2f118a6b4daa580331d55bcea, type: 2}
-    to: {fileID: 11400000, guid: 3464220bab61aa84aad5f9bd37959df3, type: 2}
+  - from: {fileID: 11400000, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
+    to: {fileID: 11400000, guid: 0d827034b014b4640927c615454b5955, type: 2}
+  - from: {fileID: 11400000, guid: 1553d9b8c7e44483fac8acc30002074b, type: 2}
+    to: {fileID: 11400000, guid: c4a570dd0a50c463eb3930d5ee5f3a05, type: 2}
+  - from: {fileID: 11400000, guid: ec76213212ac2438986d3d12b10f0625, type: 2}
+    to: {fileID: 11400000, guid: 30344d57d55de4ec6acfb84117110925, type: 2}
+  - from: {fileID: 11400000, guid: 580240945c07f4dc68410a893281aebb, type: 2}
+    to: {fileID: 11400000, guid: 19b6204822022490d88948a36701cc8c, type: 2}
