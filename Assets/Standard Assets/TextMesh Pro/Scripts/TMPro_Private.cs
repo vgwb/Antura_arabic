@@ -17,7 +17,7 @@ using System.Collections.Generic;
 namespace TMPro
 {  
 
-    public partial class TextMeshPro
+    public partial class TextMeshPro_OLD
     {
         [SerializeField]
         private bool m_hasFontAssetChanged = false; // Used to track when font properties have changed.
@@ -333,7 +333,7 @@ namespace TMPro
 
 
         // Event received when font asset properties are changed in Font Inspector
-        void ON_FONT_PROPERTY_CHANGED(bool isChanged, TMP_FontAsset font)
+        void ON_FONT_PROPERTY_CHANGED(bool isChanged, TMP_FontAsset_OLD font)
         {
             if (MaterialReference.Contains(m_materialReferences, font))
             {
@@ -348,7 +348,7 @@ namespace TMPro
 
      
         // Event received when UNDO / REDO Event alters the properties of the object.
-        void ON_TEXTMESHPRO_PROPERTY_CHANGED(bool isChanged, TextMeshPro obj)
+        void ON_TEXTMESHPRO_PROPERTY_CHANGED(bool isChanged, TextMeshPro_OLD obj)
         {
             if (obj == this)
             {
@@ -431,7 +431,7 @@ namespace TMPro
                 if (TMP_Settings.defaultFontAsset != null)
                     m_fontAsset =TMP_Settings.defaultFontAsset;
                 else
-                    m_fontAsset = Resources.Load("Fonts & Materials/NotoSans SDF", typeof(TMP_FontAsset)) as TMP_FontAsset;
+                    m_fontAsset = Resources.Load("Fonts & Materials/NotoSans SDF", typeof(TMP_FontAsset_OLD)) as TMP_FontAsset_OLD;
 
                 if (m_fontAsset == null)
                 {
@@ -1017,8 +1017,8 @@ namespace TMPro
                 bool isUsingAlternativeTypeface = false;
 
                 TMP_Glyph glyph;
-                TMP_FontAsset tempFontAsset;
-                TMP_FontAsset prev_fontAsset = m_currentFontAsset;
+                TMP_FontAsset_OLD tempFontAsset;
+                TMP_FontAsset_OLD prev_fontAsset = m_currentFontAsset;
                 Material prev_material = m_currentMaterial;
                 int prev_materialIndex = m_currentMaterialIndex;
 

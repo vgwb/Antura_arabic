@@ -9,11 +9,11 @@ namespace EA4S.Minigames.FastCrowd
 {
     public class DropSingleArea : MonoBehaviour
     {
-        public TMP_FontAsset normalFont;
-        public TMP_FontAsset numbersFont;
+        public TMP_FontAsset_OLD normalFont;
+        public TMP_FontAsset_OLD numbersFont;
 
         public TMP_Text LetterLable;
-        public TextMeshPro DrawText;
+        public TextMeshPro_OLD DrawText;
         public ILivingLetterData Data;
         public DropContainer DropContain;
 

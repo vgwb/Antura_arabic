@@ -20,13 +20,13 @@ namespace TMPro
         /// <summary>
         /// The TMP Font Asset assigned to this sub text object.
         /// </summary>
-        public TMP_FontAsset fontAsset
+        public TMP_FontAsset_OLD fontAsset
         {
             get { return m_fontAsset; }
             set { m_fontAsset = value; }
         }
         [SerializeField]
-        private TMP_FontAsset m_fontAsset;
+        private TMP_FontAsset_OLD m_fontAsset;
 
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace TMPro
         private BoxCollider m_boxCollider;
 
         [SerializeField]
-        private TextMeshPro m_TextComponent;
+        private TextMeshPro_OLD m_TextComponent;
 
         [NonSerialized]
         private bool m_isRegisteredForEvents;
@@ -301,7 +301,7 @@ namespace TMPro
                     return;
             }
 
-            if (m_TextComponent == null) m_TextComponent = GetComponentInParent<TextMeshPro>();
+            if (m_TextComponent == null) m_TextComponent = GetComponentInParent<TextMeshPro_OLD>();
 
             m_padding = GetPaddingForMaterial();
 
@@ -345,7 +345,7 @@ namespace TMPro
         }
 
         // Event received when font asset properties are changed in Font Inspector
-        void ON_FONT_PROPERTY_CHANGED(bool isChanged, TMP_FontAsset font)
+        void ON_FONT_PROPERTY_CHANGED(bool isChanged, TMP_FontAsset_OLD font)
         {
             if (font.GetInstanceID() == m_fontAsset.GetInstanceID())
             {
@@ -371,7 +371,7 @@ namespace TMPro
 
 
 
-        public static TMP_SubMesh AddSubTextObject(TextMeshPro textComponent, MaterialReference materialReference)
+        public static TMP_SubMesh AddSubTextObject(TextMeshPro_OLD textComponent, MaterialReference materialReference)
         {
             GameObject go = new GameObject("TMP SubMesh [" + materialReference.material.name + "]");
             TMP_SubMesh subMesh = go.AddComponent<TMP_SubMesh>();

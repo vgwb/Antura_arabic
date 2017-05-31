@@ -89,12 +89,12 @@ namespace TMPro
         /// <summary>
         /// Returns the Default Font Asset to be used by newly created text objects.
         /// </summary>
-        public static TMP_FontAsset defaultFontAsset
+        public static TMP_FontAsset_OLD defaultFontAsset
         {
             get { return instance.m_defaultFontAsset; }
         }
         [SerializeField]
-        private TMP_FontAsset m_defaultFontAsset;
+        private TMP_FontAsset_OLD m_defaultFontAsset;
 
         /// <summary>
         /// The relative path to a Resources folder in the project.
@@ -169,12 +169,12 @@ namespace TMPro
         /// <summary>
         /// Returns the list of Fallback Fonts defined in the TMP Settings file.
         /// </summary>
-        public static List<TMP_FontAsset> fallbackFontAssets
+        public static List<TMP_FontAsset_OLD> fallbackFontAssets
         {
             get { return instance.m_fallbackFontAssets; }
         }
         [SerializeField]
-        private List<TMP_FontAsset> m_fallbackFontAssets;
+        private List<TMP_FontAsset_OLD> m_fallbackFontAssets;
 
         /// <summary>
         /// Controls whether or not TMP will create a matching material preset or use the default material of the fallback font asset.
@@ -314,7 +314,7 @@ namespace TMPro
         /// Returns the Font Asset defined in the TMP Settings file.
         /// </summary>
         /// <returns></returns>
-        public static TMP_FontAsset GetFontAsset()
+        public static TMP_FontAsset_OLD GetFontAsset()
         {
             if (TMP_Settings.instance == null) return null;
 

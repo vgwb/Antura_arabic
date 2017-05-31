@@ -25,8 +25,8 @@ namespace EA4S.MinigamesCommon
         }
 
         public UnityEngine.UI.Image button;
-        public TMPro.TextMeshProUGUI text;
-        public TMPro.TextMeshProUGUI textImage;
+        public TMPro.TextMeshProUGUI_OLD text;
+        public TMPro.TextMeshProUGUI_OLD textImage;
 
         public System.Action<CircleButton> onClicked;
 

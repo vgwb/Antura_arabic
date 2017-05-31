@@ -159,15 +159,15 @@ namespace TMPro
         /// <summary>
         /// 
         /// </summary>
-        public TextMeshPro textMeshPro
+        public TextMeshPro_OLD textMeshPro
         {
             get
             {
-                if (m_textMeshPro == null) m_textMeshPro = GetComponent<TextMeshPro>();
+                if (m_textMeshPro == null) m_textMeshPro = GetComponent<TextMeshPro_OLD>();
                 return m_textMeshPro;
             }
         }
-        private TextMeshPro m_textMeshPro;
+        private TextMeshPro_OLD m_textMeshPro;
 
 
         protected override void Awake()

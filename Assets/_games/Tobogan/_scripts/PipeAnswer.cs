@@ -10,7 +10,7 @@ namespace EA4S.Minigames.Tobogan
     {
         public TMP_Text answerText;
         public TextRender answerRender;
-        public TextMeshPro answerWordDrawings;
+        public TextMeshPro_OLD answerWordDrawings;
 
         public GameObject aspirationParticle;
         public GameObject graphics;

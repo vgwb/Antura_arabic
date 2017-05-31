@@ -23,7 +23,7 @@ namespace TMPro.EditorUtilities
         {
             GameObject go = new GameObject("TextMeshPro");
 
-            TextMeshPro textMeshPro = go.AddComponent<TextMeshPro>();
+            TextMeshPro_OLD textMeshPro = go.AddComponent<TextMeshPro_OLD>();
             textMeshPro.text = "Sample text";
             textMeshPro.alignment = TextAlignmentOptions.TopLeft;
             //textMeshPro.rectTransform.sizeDelta = new Vector2(20, 5);
@@ -78,7 +78,7 @@ namespace TMPro.EditorUtilities
                 //goRectTransform.sizeDelta = new Vector2(200f, 50f);
                 GameObjectUtility.SetParentAndAlign(go, canvas.gameObject);
 
-                TextMeshProUGUI textMeshPro = go.AddComponent<TextMeshProUGUI>();
+                TextMeshProUGUI_OLD textMeshPro = go.AddComponent<TextMeshProUGUI_OLD>();
                 textMeshPro.text = "New Text";
                 textMeshPro.alignment = TextAlignmentOptions.TopLeft;
             }
@@ -92,7 +92,7 @@ namespace TMPro.EditorUtilities
 
                     GameObjectUtility.SetParentAndAlign(go, contextObject);
 
-                    TextMeshProUGUI textMeshPro = go.AddComponent<TextMeshProUGUI>();
+                    TextMeshProUGUI_OLD textMeshPro = go.AddComponent<TextMeshProUGUI_OLD>();
                     textMeshPro.text = "Button";
                     textMeshPro.fontSize = 24;
                     textMeshPro.alignment = TextAlignmentOptions.Center;
@@ -103,7 +103,7 @@ namespace TMPro.EditorUtilities
 
                     GameObjectUtility.SetParentAndAlign(go, contextObject);
 
-                    TextMeshProUGUI textMeshPro = go.AddComponent<TextMeshProUGUI>();
+                    TextMeshProUGUI_OLD textMeshPro = go.AddComponent<TextMeshProUGUI_OLD>();
                     textMeshPro.text = "New Text";
                     textMeshPro.alignment = TextAlignmentOptions.TopLeft;
                 }

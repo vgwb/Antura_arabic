@@ -17,7 +17,7 @@ namespace TMPro
 
         // Dictionaries used to track Asset references.
         private Dictionary<int, Material> m_FontMaterialReferenceLookup = new Dictionary<int, Material>();
-        private Dictionary<int, TMP_FontAsset> m_FontAssetReferenceLookup = new Dictionary<int, TMP_FontAsset>();
+        private Dictionary<int, TMP_FontAsset_OLD> m_FontAssetReferenceLookup = new Dictionary<int, TMP_FontAsset_OLD>();
         private Dictionary<int, TMP_SpriteAsset> m_SpriteAssetReferenceLookup = new Dictionary<int, TMP_SpriteAsset>();
 
 
@@ -41,7 +41,7 @@ namespace TMPro
         /// Add new font asset reference to dictionary.
         /// </summary>
         /// <param name="fontAsset"></param>
-        public static void AddFontAsset(TMP_FontAsset fontAsset)
+        public static void AddFontAsset(TMP_FontAsset_OLD fontAsset)
         {
             MaterialReferenceManager.instance.AddFontAssetInternal(fontAsset);
         }
@@ -50,7 +50,7 @@ namespace TMPro
         ///  Add new Font Asset reference to dictionary.
         /// </summary>
         /// <param name="fontAsset"></param>
-        private void AddFontAssetInternal(TMP_FontAsset fontAsset)
+        private void AddFontAssetInternal(TMP_FontAsset_OLD fontAsset)
         {
             if (m_FontAssetReferenceLookup.ContainsKey(fontAsset.hashCode)) return;
 
@@ -224,7 +224,7 @@ namespace TMPro
         /// </summary>
         /// <param name="font"></param>
         /// <returns></returns>
-        public bool Contains(TMP_FontAsset font)
+        public bool Contains(TMP_FontAsset_OLD font)
         {
             if (m_FontAssetReferenceLookup.ContainsKey(font.hashCode))
                 return true;
@@ -254,7 +254,7 @@ namespace TMPro
         /// <param name="hashCode"></param>
         /// <param name="fontAsset"></param>
         /// <returns></returns>
-        public static bool TryGetFontAsset(int hashCode, out TMP_FontAsset fontAsset)
+        public static bool TryGetFontAsset(int hashCode, out TMP_FontAsset_OLD fontAsset)
         {
             return MaterialReferenceManager.instance.TryGetFontAssetInternal(hashCode, out fontAsset);
         }
@@ -265,7 +265,7 @@ namespace TMPro
         /// <param name="hashCode"></param>
         /// <param name="fontAsset"></param>
         /// <returns></returns>
-        private bool TryGetFontAssetInternal(int hashCode, out TMP_FontAsset fontAsset)
+        private bool TryGetFontAssetInternal(int hashCode, out TMP_FontAsset_OLD fontAsset)
         {
             fontAsset = null;
 
@@ -473,7 +473,7 @@ namespace TMPro
     {
 
         public int index;
-        public TMP_FontAsset fontAsset;
+        public TMP_FontAsset_OLD fontAsset;
         public TMP_SpriteAsset spriteAsset;
         public Material material;
         public bool isDefaultMaterial;
@@ -491,7 +491,7 @@ namespace TMPro
         /// <param name="spriteAsset"></param>
         /// <param name="material"></param>
         /// <param name="padding"></param>
-        public MaterialReference(int index, TMP_FontAsset fontAsset, TMP_SpriteAsset spriteAsset, Material material, float padding)
+        public MaterialReference(int index, TMP_FontAsset_OLD fontAsset, TMP_SpriteAsset spriteAsset, Material material, float padding)
         {
             this.index = index;
             this.fontAsset = fontAsset;
@@ -511,7 +511,7 @@ namespace TMPro
         /// <param name="materialReferences"></param>
         /// <param name="fontAsset"></param>
         /// <returns></returns>
-        public static bool Contains(MaterialReference[] materialReferences, TMP_FontAsset fontAsset)
+        public static bool Contains(MaterialReference[] materialReferences, TMP_FontAsset_OLD fontAsset)
         {
             int id = fontAsset.GetInstanceID();
 
@@ -533,7 +533,7 @@ namespace TMPro
         /// <param name="materialReferences"></param>
         /// <param name="materialReferenceIndexLookup"></param>
         /// <returns></returns>
-        public static int AddMaterialReference(Material material, TMP_FontAsset fontAsset, MaterialReference[] materialReferences, Dictionary<int, int> materialReferenceIndexLookup)
+        public static int AddMaterialReference(Material material, TMP_FontAsset_OLD fontAsset, MaterialReference[] materialReferences, Dictionary<int, int> materialReferenceIndexLookup)
         {
             int materialID = material.GetInstanceID();
             int index = 0;

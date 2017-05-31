@@ -718,7 +718,7 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
 
                     Material newMaterial = DragAndDrop.objectReferences[0] as Material;
                     Texture newMainTex = newMaterial.GetTexture(ShaderUtilities.ID_MainTex);
-                    TMP_FontAsset newFontAsset = null;
+                    TMP_FontAsset_OLD newFontAsset = null;
 
 
                     // Check to make sure we have a valid material

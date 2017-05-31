@@ -140,14 +140,14 @@ namespace TMPro
         /// <summary>
         /// The Font Asset to be assigned to this text object.
         /// </summary>
-        public TMP_FontAsset font
+        public TMP_FontAsset_OLD font
         {
             get { return m_fontAsset; }
             set { if (m_fontAsset == value) return; m_fontAsset = value; LoadFontAsset(); m_havePropertiesChanged = true; m_isCalculateSizeRequired = true; m_isInputParsingRequired = true; SetVerticesDirty(); SetLayoutDirty(); }
         }
         [SerializeField]
-        protected TMP_FontAsset m_fontAsset;
-        protected TMP_FontAsset m_currentFontAsset;
+        protected TMP_FontAsset_OLD m_fontAsset;
+        protected TMP_FontAsset_OLD m_currentFontAsset;
         protected bool m_isSDFShader;
 
 
@@ -5140,7 +5140,7 @@ namespace TMPro
                     autoSizeTextContainer = true;
                 else
                 {
-                    if (GetType() == typeof(TextMeshPro))
+                    if (GetType() == typeof(TextMeshPro_OLD))
                         m_rectTransform.sizeDelta = TMP_Settings.defaultTextMeshProTextContainerSize;
                     else
                         m_rectTransform.sizeDelta = TMP_Settings.defaultTextMeshProUITextContainerSize;
@@ -5169,7 +5169,7 @@ namespace TMPro
         /// Method used to find and cache references to the Underline and Ellipsis characters.
         /// </summary>
         /// <param name=""></param>
-        protected void GetSpecialCharacters(TMP_FontAsset fontAsset)
+        protected void GetSpecialCharacters(TMP_FontAsset_OLD fontAsset)
         {
             // Check & Assign Underline Character for use with the Underline tag.
             if (!fontAsset.characterDictionary.TryGetValue(95, out m_cached_Underline_GlyphInfo)) //95
@@ -5223,11 +5223,11 @@ namespace TMPro
         /// 
         /// </summary>
         /// <returns></returns>
-        protected TMP_FontAsset GetFontAssetForWeight(int fontWeight)
+        protected TMP_FontAsset_OLD GetFontAssetForWeight(int fontWeight)
         {
             bool isItalic = (m_style & FontStyles.Italic) == FontStyles.Italic || (m_fontStyle & FontStyles.Italic) == FontStyles.Italic;
 
-            TMP_FontAsset fontAsset = null;
+            TMP_FontAsset_OLD fontAsset = null;
 
             int weightIndex = fontWeight / 100;
 
@@ -6253,7 +6253,7 @@ namespace TMPro
                             return true;
                         }
 
-                        TMP_FontAsset tempFont;
+                        TMP_FontAsset_OLD tempFont;
                         Material tempMaterial;
 
                         // HANDLE NEW FONT ASSET
@@ -6269,7 +6269,7 @@ namespace TMPro
                         else
                         {
                             // Load Font Asset
-                            tempFont = Resources.Load<TMP_FontAsset>(TMP_Settings.defaultFontAssetPath + new string(m_htmlTag, m_xmlAttribute[0].valueStartIndex, m_xmlAttribute[0].valueLength));
+                            tempFont = Resources.Load<TMP_FontAsset_OLD>(TMP_Settings.defaultFontAssetPath + new string(m_htmlTag, m_xmlAttribute[0].valueStartIndex, m_xmlAttribute[0].valueLength));
 
                             if (tempFont == null)
                                 return false;

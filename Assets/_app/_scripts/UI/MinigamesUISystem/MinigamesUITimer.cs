@@ -13,7 +13,7 @@ namespace EA4S.UI
     public class MinigamesUITimer : ABSMinigamesUIComponent
     {
         public Image Radial;
-        public TextMeshProUGUI TfTimer;
+        public TextMeshProUGUI_OLD TfTimer;
         public Color EndColor = Color.red;
 
         public float Duration { get; private set; }

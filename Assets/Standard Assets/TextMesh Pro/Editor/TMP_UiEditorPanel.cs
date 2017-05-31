@@ -12,7 +12,7 @@ using System.Collections;
 namespace TMPro.EditorUtilities
 {
 
-    [CustomEditor(typeof(TextMeshProUGUI)), CanEditMultipleObjects]
+    [CustomEditor(typeof(TextMeshProUGUI_OLD)), CanEditMultipleObjects]
     public class TMP_UiEditorPanel : Editor
     {
 
@@ -125,7 +125,7 @@ namespace TMPro.EditorUtilities
         private bool havePropertiesChanged = false;
 
 
-        private TextMeshProUGUI m_textComponent;
+        private TextMeshProUGUI_OLD m_textComponent;
         private RectTransform m_rectTransform;
         //private CanvasRenderer m_canvasRenderer;
         private Editor m_materialEditor;
@@ -222,7 +222,7 @@ namespace TMPro.EditorUtilities
             // Get the UI Skin and Styles for the various Editors
             TMP_UIStyleManager.GetUIStyles();
 
-            m_textComponent = target as TextMeshProUGUI;
+            m_textComponent = target as TextMeshProUGUI_OLD;
             m_rectTransform = m_textComponent.rectTransform;
 
             // Create new Material Editor if one does not exists
@@ -867,7 +867,7 @@ namespace TMPro.EditorUtilities
         /// </summary>
         private string[] GetMaterialPresets()
         {
-            TMP_FontAsset fontAsset = fontAsset_prop.objectReferenceValue as TMP_FontAsset;
+            TMP_FontAsset_OLD fontAsset = fontAsset_prop.objectReferenceValue as TMP_FontAsset_OLD;
             if (fontAsset == null) return null;
 
             m_materialPresets = TMP_EditorUtility.FindMaterialReferences(fontAsset);
@@ -1112,7 +1112,7 @@ namespace TMPro.EditorUtilities
                 //m_isMultiSelection = true;
                 for (int i = 0; i < objects.Length; i++)
                 {
-					if (((GameObject)objects[i]).GetComponent<TextMeshProUGUI>() == null)
+					if (((GameObject)objects[i]).GetComponent<TextMeshProUGUI_OLD>() == null)
                         return true;
                 }
             }

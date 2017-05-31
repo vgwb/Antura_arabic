@@ -495,7 +495,7 @@ namespace TMPro
         /// <summary>
         /// Sets the Font Asset on both Placeholder and Input child objects.
         /// </summary>
-        public TMP_FontAsset fontAsset
+        public TMP_FontAsset_OLD fontAsset
         {
             get { return m_GlobalFontAsset; }
             set
@@ -508,7 +508,7 @@ namespace TMPro
             }
         }
         [SerializeField]
-        protected TMP_FontAsset m_GlobalFontAsset;
+        protected TMP_FontAsset_OLD m_GlobalFontAsset;
 
         /// <summary>
         /// Determines if the whole text will be selected when focused.
@@ -3238,7 +3238,7 @@ namespace TMPro
         /// Function to conveniently set the Font Asset of both Placeholder and Input Field text object.
         /// </summary>
         /// <param name="fontAsset"></param>
-        public void SetGlobalFontAsset(TMP_FontAsset fontAsset)
+        public void SetGlobalFontAsset(TMP_FontAsset_OLD fontAsset)
         {
             TMP_Text placeholderTextComponent = m_Placeholder as TMP_Text;
 

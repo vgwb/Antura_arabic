@@ -11,7 +11,7 @@ namespace EA4S.UI
     {
         void Start()
         {
-            gameObject.GetComponent<TextMeshProUGUI>().text = "v " + AppConstants.AppVersion;
+            gameObject.GetComponent<TextMeshProUGUI_OLD>().text = "v " + AppConstants.AppVersion;
         }
     }
 }

@@ -80,7 +80,7 @@ namespace TMPro.EditorUtilities
 
 
         // Function used to find all materials which reference a font atlas so we can update all their references.
-        public static Material[] FindMaterialReferences(TMP_FontAsset fontAsset)
+        public static Material[] FindMaterialReferences(TMP_FontAsset_OLD fontAsset)
         {
             List<Material> refs = new List<Material>();
             Material mat = fontAsset.material;
@@ -112,7 +112,7 @@ namespace TMPro.EditorUtilities
 
 
         // Function used to find the Font Asset which matches the given Material Preset and Font Atlas Texture.
-        public static TMP_FontAsset FindMatchingFontAsset(Material mat)
+        public static TMP_FontAsset_OLD FindMatchingFontAsset(Material mat)
         {
             if (mat.GetTexture(ShaderUtilities.ID_MainTex) == null) return null;
 
@@ -124,7 +124,7 @@ namespace TMPro.EditorUtilities
             #endif
             for (int i = 0; i < dependentAssets.Length; i++)
             {
-                TMP_FontAsset fontAsset = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(dependentAssets[i]);
+                TMP_FontAsset_OLD fontAsset = AssetDatabase.LoadAssetAtPath<TMP_FontAsset_OLD>(dependentAssets[i]);
                 if (fontAsset != null)
                     return fontAsset;
             }

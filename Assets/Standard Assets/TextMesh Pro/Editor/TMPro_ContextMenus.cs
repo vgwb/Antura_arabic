@@ -237,7 +237,7 @@ namespace TMPro.EditorUtilities
         [MenuItem("CONTEXT/TMP_FontAsset/Extract Atlas", false, 2000)]
         static void ExtractAtlas(MenuCommand command)
         {
-            TMP_FontAsset font = command.context as TMP_FontAsset;
+            TMP_FontAsset_OLD font = command.context as TMP_FontAsset_OLD;
 
             string fontPath = AssetDatabase.GetAssetPath(font);
             string texPath = Path.GetDirectoryName(fontPath) + "/" + Path.GetFileNameWithoutExtension(fontPath) + " Atlas.png";

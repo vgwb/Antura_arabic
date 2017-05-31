@@ -149,14 +149,14 @@ namespace TMPro
             textAreaRectTransform.offsetMax = new Vector2(-10, -7);
 
 
-            TextMeshProUGUI text = childText.AddComponent<TextMeshProUGUI>();
+            TextMeshProUGUI_OLD text = childText.AddComponent<TextMeshProUGUI_OLD>();
             text.text = "";
             text.enableWordWrapping = false;
             text.extraPadding = true;
             text.richText = true;
             SetDefaultTextValues(text);
 
-            TextMeshProUGUI placeholder = childPlaceholder.AddComponent<TextMeshProUGUI>();
+            TextMeshProUGUI_OLD placeholder = childPlaceholder.AddComponent<TextMeshProUGUI_OLD>();
             placeholder.text = "Enter text...";
             placeholder.fontSize = 14;
             placeholder.fontStyle = FontStyles.Italic;
@@ -221,7 +221,7 @@ namespace TMPro
 
             // Setup item UI components.
 
-            TextMeshProUGUI itemLabelText = itemLabel.AddComponent<TextMeshProUGUI>();
+            TextMeshProUGUI_OLD itemLabelText = itemLabel.AddComponent<TextMeshProUGUI_OLD>();
             SetDefaultTextValues(itemLabelText);
             itemLabelText.alignment = TextAlignmentOptions.Left;
 
@@ -260,7 +260,7 @@ namespace TMPro
 
             // Setup dropdown UI components.
 
-            TextMeshProUGUI labelText = label.AddComponent<TextMeshProUGUI>();
+            TextMeshProUGUI_OLD labelText = label.AddComponent<TextMeshProUGUI_OLD>();
             SetDefaultTextValues(labelText);
             labelText.alignment = TextAlignmentOptions.Left;
 

@@ -20,11 +20,11 @@ namespace TMPro
         // Event & Delegate used to notify TextMesh Pro objects that Material properties have been changed.
         public static readonly FastAction<bool, Material> MATERIAL_PROPERTY_EVENT = new FastAction<bool, Material>();
 
-        public static readonly FastAction<bool, TMP_FontAsset> FONT_PROPERTY_EVENT = new FastAction<bool, TMP_FontAsset>();
+        public static readonly FastAction<bool, TMP_FontAsset_OLD> FONT_PROPERTY_EVENT = new FastAction<bool, TMP_FontAsset_OLD>();
 
         public static readonly FastAction<bool, Object> SPRITE_ASSET_PROPERTY_EVENT = new FastAction<bool, Object>();
 
-        public static readonly FastAction<bool, TextMeshPro> TEXTMESHPRO_PROPERTY_EVENT = new FastAction<bool, TextMeshPro>();
+        public static readonly FastAction<bool, TextMeshPro_OLD> TEXTMESHPRO_PROPERTY_EVENT = new FastAction<bool, TextMeshPro_OLD>();
 
         public static readonly FastAction<GameObject, Material, Material> DRAG_AND_DROP_MATERIAL_EVENT = new FastAction<GameObject, Material, Material>();
 
@@ -34,7 +34,7 @@ namespace TMPro
 
         public static readonly FastAction TMP_SETTINGS_PROPERTY_EVENT = new FastAction();
 
-        public static readonly FastAction<bool, TextMeshProUGUI> TEXTMESHPRO_UGUI_PROPERTY_EVENT = new FastAction<bool, TextMeshProUGUI>();
+        public static readonly FastAction<bool, TextMeshProUGUI_OLD> TEXTMESHPRO_UGUI_PROPERTY_EVENT = new FastAction<bool, TextMeshProUGUI_OLD>();
 
         public static readonly FastAction OnPreRenderObject_Event = new FastAction();
 
@@ -61,7 +61,7 @@ namespace TMPro
             MATERIAL_PROPERTY_EVENT.Call(isChanged, mat);
         }
 
-        public static void ON_FONT_PROPERTY_CHANGED(bool isChanged, TMP_FontAsset font)
+        public static void ON_FONT_PROPERTY_CHANGED(bool isChanged, TMP_FontAsset_OLD font)
         {
             FONT_PROPERTY_EVENT.Call(isChanged, font);
         }
@@ -71,7 +71,7 @@ namespace TMPro
             SPRITE_ASSET_PROPERTY_EVENT.Call(isChanged, obj);
         }
 
-        public static void ON_TEXTMESHPRO_PROPERTY_CHANGED(bool isChanged, TextMeshPro obj)
+        public static void ON_TEXTMESHPRO_PROPERTY_CHANGED(bool isChanged, TextMeshPro_OLD obj)
         {
             TEXTMESHPRO_PROPERTY_EVENT.Call(isChanged, obj);
         }
@@ -102,7 +102,7 @@ namespace TMPro
             TMP_SETTINGS_PROPERTY_EVENT.Call();
         }
 
-        public static void ON_TEXTMESHPRO_UGUI_PROPERTY_CHANGED(bool isChanged, TextMeshProUGUI obj)
+        public static void ON_TEXTMESHPRO_UGUI_PROPERTY_CHANGED(bool isChanged, TextMeshProUGUI_OLD obj)
         {
             TEXTMESHPRO_UGUI_PROPERTY_EVENT.Call(isChanged, obj);
         }

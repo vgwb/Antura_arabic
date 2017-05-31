@@ -18,7 +18,7 @@ namespace EA4S.Minigames.DancingDots
 		public DiacriticEnum diacritic;
 
 		public Vector3 fingerOffset;
-		public TextMeshPro draggableText;
+		public TextMeshPro_OLD draggableText;
 
 		public bool isNeeded = false;
 

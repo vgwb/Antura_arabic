@@ -222,7 +222,7 @@ namespace TMPro
         /// <param name="character">The character to find.</param>
         /// <param name="glyph">out parameter containing the glyph for the specified character (if found).</param>
         /// <returns></returns>
-        public static TMP_FontAsset SearchForGlyph (TMP_FontAsset font, int character, out TMP_Glyph glyph)
+        public static TMP_FontAsset_OLD SearchForGlyph (TMP_FontAsset_OLD font, int character, out TMP_Glyph glyph)
         {
             glyph = null;
             if (font == null) return null;
@@ -235,7 +235,7 @@ namespace TMPro
             {
                 for (int i = 0; i < font.fallbackFontAssets.Count && glyph == null; i++)
                 {
-                    TMP_FontAsset temp = SearchForGlyph(font.fallbackFontAssets[i], character, out glyph);
+                    TMP_FontAsset_OLD temp = SearchForGlyph(font.fallbackFontAssets[i], character, out glyph);
 
                     if (temp != null)
                         return temp;
@@ -252,7 +252,7 @@ namespace TMPro
         /// <param name="character"></param>
         /// <param name="glyph"></param>
         /// <returns></returns>
-        public static TMP_FontAsset SearchForGlyph(List<TMP_FontAsset> fonts, int character, out TMP_Glyph glyph)
+        public static TMP_FontAsset_OLD SearchForGlyph(List<TMP_FontAsset_OLD> fonts, int character, out TMP_Glyph glyph)
         {
             glyph = null;
 
@@ -260,7 +260,7 @@ namespace TMPro
             {
                 for (int i = 0; i < fonts.Count; i++)
                 {
-                    TMP_FontAsset fontAsset = SearchForGlyph(fonts[i], character, out glyph);
+                    TMP_FontAsset_OLD fontAsset = SearchForGlyph(fonts[i], character, out glyph);
 
                     if (fontAsset != null)
                         return fontAsset;

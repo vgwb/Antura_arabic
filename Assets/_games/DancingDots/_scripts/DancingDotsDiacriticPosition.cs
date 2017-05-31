@@ -14,11 +14,11 @@ namespace EA4S.Minigames.DancingDots
 		public float offSetY = 0.0f;
 
 		private MeshRenderer diacriticMesh;
-		private TextMeshPro diacriticText;
+		private TextMeshPro_OLD diacriticText;
 
 		void Awake () {
 			diacriticMesh = GetComponent<MeshRenderer>();
-			diacriticText = GetComponent<TextMeshPro>();
+			diacriticText = GetComponent<TextMeshPro_OLD>();
 		}
 
 		// Use this for initialization

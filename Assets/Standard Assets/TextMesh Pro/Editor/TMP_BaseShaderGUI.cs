@@ -461,7 +461,7 @@ namespace TMPro.EditorUtilities
             { return; }
 
             Texture currentTex = material.GetTexture(ShaderUtilities.ID_MainTex);
-            TMP_FontAsset requiredFontAsset = null;
+            TMP_FontAsset_OLD requiredFontAsset = null;
             if (droppedTex != currentTex)
             {
                 requiredFontAsset = TMP_EditorUtility.FindMatchingFontAsset(droppedMaterial);

@@ -10,7 +10,7 @@ namespace EA4S.Minigames.SickLetters
         public Transform libra;
         Vector3 libraStartPos;
         public BoxCollider vaseCollider;
-        public TextMeshPro _counter;
+        public TextMeshPro_OLD _counter;
         public AnimationCurve bounceCurve;
         bool /*isFallingFromTop,*/ isOnTheGround;
         public int counter

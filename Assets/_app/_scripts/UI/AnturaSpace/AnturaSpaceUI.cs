@@ -29,7 +29,7 @@ namespace EA4S.UI
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
         public AnturaSpaceItemButton BtItemMain;
         public UIButton BtBones;
-        public TMPro.TextMeshProUGUI bonesNumber;
+        public TMPro.TextMeshProUGUI_OLD bonesNumber;
 
 
         public event System.Action onEnterCustomization;

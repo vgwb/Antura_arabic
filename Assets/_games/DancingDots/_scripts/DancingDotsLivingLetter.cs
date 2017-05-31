@@ -20,21 +20,21 @@ namespace EA4S.Minigames.DancingDots
 
 		[Header("References")]
 		public LetterObjectView letterObjectView;
-		public TextMeshPro hintText;
-		public TextMeshPro dotlessText;
+		public TextMeshPro_OLD hintText;
+		public TextMeshPro_OLD dotlessText;
 		public GameObject fullTextGO, contentGO;
 
 		public GameObject rainbow;
 		public DancingDotsGame game;
 
-		TextMeshPro fullText;
+		TextMeshPro_OLD fullText;
 
 		public ILivingLetterData letterData { get; private set; }
 
 		void Start()
 		{
 
-			fullText = fullTextGO.GetComponent<TextMeshPro>();
+			fullText = fullTextGO.GetComponent<TextMeshPro_OLD>();
 			HideRainbow();
 			PlayAnimation();
 		}
@@ -141,12 +141,12 @@ namespace EA4S.Minigames.DancingDots
 
 		}
 
-		public void HideText(TextMeshPro tmp)
+		public void HideText(TextMeshPro_OLD tmp)
 		{
 			tmp.color = game.SetAlpha(tmp.color,0);
 		}
 
-		public void ShowText(TextMeshPro tmp, byte alpha)
+		public void ShowText(TextMeshPro_OLD tmp, byte alpha)
 		{
 			tmp.color = game.SetAlpha(tmp.color, alpha);
 		}

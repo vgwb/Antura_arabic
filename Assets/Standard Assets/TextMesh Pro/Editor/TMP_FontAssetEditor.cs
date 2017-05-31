@@ -42,7 +42,7 @@ namespace TMPro.EditorUtilities
 
 
 
-    [CustomEditor(typeof(TMP_FontAsset))]
+    [CustomEditor(typeof(TMP_FontAsset_OLD))]
     public class TMP_FontAssetEditor : Editor
     {
         private struct UI_PanelState
@@ -103,7 +103,7 @@ namespace TMPro.EditorUtilities
 
         private SerializedProperty m_kerningPair_prop;
 
-        private TMP_FontAsset m_fontAsset;
+        private TMP_FontAsset_OLD m_fontAsset;
 
         private Material[] m_materialPresets;
 
@@ -150,7 +150,7 @@ namespace TMPro.EditorUtilities
             m_kerningInfo_prop = serializedObject.FindProperty("m_kerningInfo");
             m_kerningPair_prop = serializedObject.FindProperty("m_kerningPair");
 
-            m_fontAsset = target as TMP_FontAsset;
+            m_fontAsset = target as TMP_FontAsset_OLD;
             m_kerningTable = m_fontAsset.kerningInfo;
 
             m_materialPresets = TMP_EditorUtility.FindMaterialReferences(m_fontAsset);

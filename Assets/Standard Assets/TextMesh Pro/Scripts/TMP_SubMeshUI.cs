@@ -19,13 +19,13 @@ namespace TMPro
         /// <summary>
         /// The TMP Font Asset assigned to this sub text object.
         /// </summary>
-        public TMP_FontAsset fontAsset
+        public TMP_FontAsset_OLD fontAsset
         {
             get { return m_fontAsset; }
             set { m_fontAsset = value; }
         }
         [SerializeField]
-        private TMP_FontAsset m_fontAsset;
+        private TMP_FontAsset_OLD m_fontAsset;
 
 
         /// <summary>
@@ -200,7 +200,7 @@ namespace TMPro
 
 
         [SerializeField]
-        private TextMeshProUGUI m_TextComponent;
+        private TextMeshProUGUI_OLD m_TextComponent;
 
 
         [System.NonSerialized]
@@ -217,7 +217,7 @@ namespace TMPro
         /// <param name="textComponent"></param>
         /// <param name="materialReference"></param>
         /// <returns></returns>
-        public static TMP_SubMeshUI AddSubTextObject(TextMeshProUGUI textComponent, MaterialReference materialReference)
+        public static TMP_SubMeshUI AddSubTextObject(TextMeshProUGUI_OLD textComponent, MaterialReference materialReference)
         {
             GameObject go = new GameObject("TMP UI SubObject [" + materialReference.material.name + "]");
 
@@ -353,7 +353,7 @@ namespace TMPro
             if (m_fallbackMaterial != null && fallbackSourceMaterialID == targetMaterialID)
                 TMP_MaterialManager.CopyMaterialPresetProperties(mat, m_fallbackMaterial);
 
-            if (m_TextComponent == null) m_TextComponent = GetComponentInParent<TextMeshProUGUI>();
+            if (m_TextComponent == null) m_TextComponent = GetComponentInParent<TextMeshProUGUI_OLD>();
 
             // Make sure material properties are synchronized between the assigned material and masking material.
             if (m_MaskMaterial != null)
@@ -437,7 +437,7 @@ namespace TMPro
         }
 
         // Event received when font asset properties are changed in Font Inspector
-        void ON_FONT_PROPERTY_CHANGED(bool isChanged, TMP_FontAsset font)
+        void ON_FONT_PROPERTY_CHANGED(bool isChanged, TMP_FontAsset_OLD font)
         {
             if (font.GetInstanceID() == m_fontAsset.GetInstanceID())
             {

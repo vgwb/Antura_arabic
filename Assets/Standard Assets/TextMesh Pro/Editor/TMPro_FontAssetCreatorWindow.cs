@@ -80,7 +80,7 @@ namespace TMPro.EditorUtilities
         private bool isProcessing = false;
 
         private Object font_TTF;
-        private TMP_FontAsset m_fontAssetSelection;
+        private TMP_FontAsset_OLD m_fontAssetSelection;
         private TextAsset characterList;
         private int font_size;
 
@@ -463,11 +463,11 @@ namespace TMPro.EditorUtilities
                     GUILayout.Space(10f);
 
                     EditorGUI.BeginChangeCheck();
-                    m_fontAssetSelection = EditorGUILayout.ObjectField("Select Font Asset", m_fontAssetSelection, typeof(TMP_FontAsset), false, GUILayout.Width(290)) as TMP_FontAsset;
+                    m_fontAssetSelection = EditorGUILayout.ObjectField("Select Font Asset", m_fontAssetSelection, typeof(TMP_FontAsset_OLD), false, GUILayout.Width(290)) as TMP_FontAsset_OLD;
                     if (EditorGUI.EndChangeCheck() || hasSelectionChanged)
                     {
                         if (m_fontAssetSelection != null)
-                            characterSequence = TMP_EditorUtility.GetDecimalCharacterSequence(TMP_FontAsset.GetCharactersArray(m_fontAssetSelection));
+                            characterSequence = TMP_EditorUtility.GetDecimalCharacterSequence(TMP_FontAsset_OLD.GetCharactersArray(m_fontAssetSelection));
                     }
 
                     EditorGUIUtility.labelWidth = 120;
@@ -491,11 +491,11 @@ namespace TMPro.EditorUtilities
                     GUILayout.Space(10f);
 
                     EditorGUI.BeginChangeCheck();
-                    m_fontAssetSelection = EditorGUILayout.ObjectField("Select Font Asset", m_fontAssetSelection, typeof(TMP_FontAsset), false, GUILayout.Width(290)) as TMP_FontAsset;
+                    m_fontAssetSelection = EditorGUILayout.ObjectField("Select Font Asset", m_fontAssetSelection, typeof(TMP_FontAsset_OLD), false, GUILayout.Width(290)) as TMP_FontAsset_OLD;
                     if (EditorGUI.EndChangeCheck() || hasSelectionChanged)
                     {
                         if (m_fontAssetSelection != null)
-                            characterSequence = TMP_EditorUtility.GetUnicodeCharacterSequence(TMP_FontAsset.GetCharactersArray(m_fontAssetSelection));
+                            characterSequence = TMP_EditorUtility.GetUnicodeCharacterSequence(TMP_FontAsset_OLD.GetCharactersArray(m_fontAssetSelection));
                     }
 
                     EditorGUIUtility.labelWidth = 120;
@@ -519,11 +519,11 @@ namespace TMPro.EditorUtilities
                     GUILayout.Space(10f);
 
                     EditorGUI.BeginChangeCheck();
-                    m_fontAssetSelection = EditorGUILayout.ObjectField("Select Font Asset", m_fontAssetSelection, typeof(TMP_FontAsset), false, GUILayout.Width(290)) as TMP_FontAsset;
+                    m_fontAssetSelection = EditorGUILayout.ObjectField("Select Font Asset", m_fontAssetSelection, typeof(TMP_FontAsset_OLD), false, GUILayout.Width(290)) as TMP_FontAsset_OLD;
                     if (EditorGUI.EndChangeCheck() || hasSelectionChanged)
                     {
                         if (m_fontAssetSelection != null)
-                            characterSequence = TMP_FontAsset.GetCharacters(m_fontAssetSelection);
+                            characterSequence = TMP_FontAsset_OLD.GetCharacters(m_fontAssetSelection);
                     }
 
                     EditorGUIUtility.labelWidth = 120;
@@ -910,15 +910,15 @@ namespace TMPro.EditorUtilities
             string tex_Path_NoExt = tex_DirName + "/" + tex_FileName;
 
             // Check if TextMeshPro font asset already exists. If not, create a new one. Otherwise update the existing one.
-            TMP_FontAsset font_asset = AssetDatabase.LoadAssetAtPath(tex_Path_NoExt + ".asset", typeof(TMP_FontAsset)) as TMP_FontAsset;
+            TMP_FontAsset_OLD font_asset = AssetDatabase.LoadAssetAtPath(tex_Path_NoExt + ".asset", typeof(TMP_FontAsset_OLD)) as TMP_FontAsset_OLD;
             if (font_asset == null)
             {
                 //Debug.Log("Creating TextMeshPro font asset!");
-                font_asset = ScriptableObject.CreateInstance<TMP_FontAsset>(); // Create new TextMeshPro Font Asset.
+                font_asset = ScriptableObject.CreateInstance<TMP_FontAsset_OLD>(); // Create new TextMeshPro Font Asset.
                 AssetDatabase.CreateAsset(font_asset, tex_Path_NoExt + ".asset");
 
                 //Set Font Asset Type
-                font_asset.fontAssetType = TMP_FontAsset.FontAssetTypes.Bitmap;
+                font_asset.fontAssetType = TMP_FontAsset_OLD.FontAssetTypes.Bitmap;
 
                 // Reference to the source font file
                 //font_asset.sourceFontFile = font_TTF as Font;
@@ -979,7 +979,7 @@ namespace TMPro.EditorUtilities
                 DestroyImmediate(font_asset.atlas, true);
 
                 //Set Font Asset Type
-                font_asset.fontAssetType = TMP_FontAsset.FontAssetTypes.Bitmap;
+                font_asset.fontAssetType = TMP_FontAsset_OLD.FontAssetTypes.Bitmap;
 
                 // Add FaceInfo to Font Asset
                 FaceInfo face = GetFaceInfo(m_font_faceInfo, 1);
@@ -1056,18 +1056,18 @@ namespace TMPro.EditorUtilities
 
 
             // Check if TextMeshPro font asset already exists. If not, create a new one. Otherwise update the existing one.
-            TMP_FontAsset font_asset = AssetDatabase.LoadAssetAtPath(tex_Path_NoExt + ".asset", typeof(TMP_FontAsset)) as TMP_FontAsset;
+            TMP_FontAsset_OLD font_asset = AssetDatabase.LoadAssetAtPath(tex_Path_NoExt + ".asset", typeof(TMP_FontAsset_OLD)) as TMP_FontAsset_OLD;
             if (font_asset == null)
             {
                 //Debug.Log("Creating TextMeshPro font asset!");
-                font_asset = ScriptableObject.CreateInstance<TMP_FontAsset>(); // Create new TextMeshPro Font Asset.
+                font_asset = ScriptableObject.CreateInstance<TMP_FontAsset_OLD>(); // Create new TextMeshPro Font Asset.
                 AssetDatabase.CreateAsset(font_asset, tex_Path_NoExt + ".asset");
 
                 // Reference to the source font file
                 //font_asset.sourceFontFile = font_TTF as Font;
 
                 //Set Font Asset Type
-                font_asset.fontAssetType = TMP_FontAsset.FontAssetTypes.SDF;
+                font_asset.fontAssetType = TMP_FontAsset_OLD.FontAssetTypes.SDF;
 
                 //if (m_destination_Atlas != null)
                 //    m_font_Atlas = m_destination_Atlas;
@@ -1144,7 +1144,7 @@ namespace TMPro.EditorUtilities
                 DestroyImmediate(font_asset.atlas, true);
 
                 //Set Font Asset Type
-                font_asset.fontAssetType = TMP_FontAsset.FontAssetTypes.SDF;
+                font_asset.fontAssetType = TMP_FontAsset_OLD.FontAssetTypes.SDF;
 
                 int scaleDownFactor = font_renderMode >= RenderModes.DistanceField16 ? 1 : font_scaledownFactor;
                 // Add FaceInfo to Font Asset  

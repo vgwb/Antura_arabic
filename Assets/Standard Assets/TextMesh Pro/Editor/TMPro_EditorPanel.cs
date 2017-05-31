@@ -11,7 +11,7 @@ using System.Collections;
 namespace TMPro.EditorUtilities
 {
 
-    [CustomEditor(typeof(TextMeshPro)), CanEditMultipleObjects]
+    [CustomEditor(typeof(TextMeshPro_OLD)), CanEditMultipleObjects]
     public class TMPro_EditorPanel : Editor
     {
 
@@ -127,7 +127,7 @@ namespace TMPro.EditorUtilities
         private bool havePropertiesChanged = false;
 
 
-        private TextMeshPro m_textComponent;
+        private TextMeshPro_OLD m_textComponent;
         //private Transform m_transform;
 
         //private Renderer m_renderer;
@@ -222,7 +222,7 @@ namespace TMPro.EditorUtilities
             // Get the UI Skin and Styles for the various Editors
             TMP_UIStyleManager.GetUIStyles();
             
-            m_textComponent = target as TextMeshPro;
+            m_textComponent = target as TextMeshPro_OLD;
             //m_renderer = m_textComponent.renderer;
             m_targetMaterial = m_textComponent.fontSharedMaterial;
 
@@ -827,7 +827,7 @@ namespace TMPro.EditorUtilities
         /// </summary>
         private string[] GetMaterialPresets()
         {
-            TMP_FontAsset fontAsset = fontAsset_prop.objectReferenceValue as TMP_FontAsset;
+            TMP_FontAsset_OLD fontAsset = fontAsset_prop.objectReferenceValue as TMP_FontAsset_OLD;
             if (fontAsset == null) return null;
 
             m_materialPresets = TMP_EditorUtility.FindMaterialReferences(fontAsset);
@@ -967,7 +967,7 @@ namespace TMPro.EditorUtilities
                 for (int i = 0; i < targets.Length; i++)
                 {
                     //Debug.Log("Undo & Redo Performed detected in Editor Panel. Event ID:" + Undo.GetCurrentGroup());
-                    TMPro_EventManager.ON_TEXTMESHPRO_PROPERTY_CHANGED(true, targets[i] as TextMeshPro);
+                    TMPro_EventManager.ON_TEXTMESHPRO_PROPERTY_CHANGED(true, targets[i] as TextMeshPro_OLD);
                     m_eventID = undoEventID;
                 }
             }

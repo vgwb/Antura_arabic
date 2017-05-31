@@ -78,7 +78,7 @@ namespace TMPro
         public TMP_TextElementType elementType;
 
         public TMP_TextElement textElement;
-        public TMP_FontAsset fontAsset;
+        public TMP_FontAsset_OLD fontAsset;
         public TMP_SpriteAsset spriteAsset;
         public int spriteIndex;
         public Material material;
@@ -386,7 +386,7 @@ namespace TMPro
         //public TMP_XmlTagStack<int> spriteAnimationStack;
         public int spriteAnimationID;
 
-        public TMP_FontAsset currentFontAsset;
+        public TMP_FontAsset_OLD currentFontAsset;
         public TMP_SpriteAsset currentSpriteAsset;
         public Material currentMaterial;
         public int currentMaterialIndex;

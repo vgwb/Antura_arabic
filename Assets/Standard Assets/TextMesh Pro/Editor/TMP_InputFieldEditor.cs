@@ -131,10 +131,10 @@ namespace TMPro.EditorUtilities
 
             EditorGUILayout.PropertyField(m_TextComponent);
 
-            TextMeshProUGUI text = null;
+            TextMeshProUGUI_OLD text = null;
             if (m_TextComponent != null && m_TextComponent.objectReferenceValue != null)
             {
-                text = m_TextComponent.objectReferenceValue as TextMeshProUGUI;
+                text = m_TextComponent.objectReferenceValue as TextMeshProUGUI_OLD;
                 //if (text.supportRichText)
                 //{
                 //    EditorGUILayout.HelpBox("Using Rich Text with input is unsupported.", MessageType.Warning);
@@ -175,7 +175,7 @@ namespace TMPro.EditorUtilities
                 if (EditorGUI.EndChangeCheck())
                 {
                     TMP_InputField inputField = target as TMP_InputField;
-                    inputField.SetGlobalFontAsset(m_GlobalFontAsset.objectReferenceValue as TMP_FontAsset);
+                    inputField.SetGlobalFontAsset(m_GlobalFontAsset.objectReferenceValue as TMP_FontAsset_OLD);
                 }
 
 

@@ -10,8 +10,8 @@ namespace EA4S.UI
     public class PopupMissionComponent : MonoBehaviour
     {
         public Image CompletedCheck;
-        public TextMeshProUGUI TitleLable;
-        public TextMeshProUGUI MainLable;
+        public TextMeshProUGUI_OLD TitleLable;
+        public TextMeshProUGUI_OLD MainLable;
         public Image Draw;
         public Button ContinueButton;
 
