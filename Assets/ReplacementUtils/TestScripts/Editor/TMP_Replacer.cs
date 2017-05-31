@@ -15,7 +15,7 @@ public class TMP_Replacer : MonoBehaviour
     }
 
     private static TMP_Replacer_Referencer referencer;
-    private static bool saveModifications = false;
+    private static bool testModifications = false;
 
     [MenuItem("Tools/Replace Text Mesh Pro")]
     public static void ReplaceTextMeshPro(MenuCommand command)
@@ -53,7 +53,7 @@ public class TMP_Replacer : MonoBehaviour
         PerformFullReplacement<TextMeshPro_OLD, TextMeshPro>(referencer);
         PerformFullReplacement<TextMeshProUGUI_OLD, TextMeshProUGUI>(referencer);
 
-        if (saveModifications)
+        if (!testModifications)
         {
             if (!EditorSceneManager.MarkSceneDirty(scene)) Debug.Log("Not set as dirty!");
             if (!EditorSceneManager.SaveScene(scene)) Debug.Log("Not saved!");
