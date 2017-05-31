@@ -1,0 +1,3 @@
+[submodule "docs"]
+	path = docs
+	url = https://StefanoCecere@github.com/vgwb/EA4S_Antura_Docs.git
