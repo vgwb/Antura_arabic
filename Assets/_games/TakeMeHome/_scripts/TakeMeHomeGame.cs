@@ -10,8 +10,8 @@ namespace EA4S.Minigames.TakeMeHome
     public class TakeMeHomeGame : MiniGame
 	{
 		
-		public TextMeshProUGUI_OLD timerText;
-		public TextMeshProUGUI_OLD roundText;
+		public TextMeshProUGUI timerText;
+		public TextMeshProUGUI roundText;
 		public GameObject tubes;
 		public TakeMeHomeSpwanTube spawnTube;
 		public Transform LLSpawnPosition;

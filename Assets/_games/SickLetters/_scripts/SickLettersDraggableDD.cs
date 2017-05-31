@@ -16,7 +16,7 @@ namespace EA4S.Minigames.SickLetters
 		public Diacritic diacritic;
 
 		public Vector3 fingerOffset;
-		public TextMeshPro_OLD draggableText;
+		public TextMeshPro draggableText;
 
         public bool isCorrect;
         public bool isNeeded = false, isInVase = false, touchedVase = false, collidedWithVase;

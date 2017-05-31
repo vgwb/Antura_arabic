@@ -5,7 +5,7 @@ namespace EA4S.Minigames.ReadingGame
 {
     public class ReadingBar : MonoBehaviour
     {
-        public TMPro.TextMeshPro_OLD text;
+        public TMPro.TextMeshPro text;
 
         public RectTransform start;
         public RectTransform target;

@@ -25,7 +25,7 @@ namespace EA4S.Balloons
         public GameObject runningAntura;
         public Canvas uiCanvas;
         public Canvas endGameCanvas;
-        public TextMeshProUGUI_OLD roundNumberText;
+        public TextMeshProUGUI roundNumberText;
         public TimerManager timer;
         public Animator countdownAnimator;
         public GameObject FxParticlesPoof;
@@ -661,7 +661,7 @@ namespace EA4S.Balloons
 
         private void AnimateCountdown(string text)
         {
-            countdownAnimator.gameObject.GetComponent<TextMeshProUGUI_OLD>().text = text;
+            countdownAnimator.gameObject.GetComponent<TextMeshProUGUI>().text = text;
             countdownAnimator.SetTrigger("Count");
         }
 

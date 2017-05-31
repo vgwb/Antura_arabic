@@ -14,7 +14,7 @@ namespace EA4S.Minigames.SickLetters
     public class SickLettersLLPrefab : MonoBehaviour
     {
         public Transform shadow;
-        public TextMeshPro_OLD dotlessLetter, correctDot, correctDiac;
+        public TextMeshPro dotlessLetter, correctDot, correctDiac;
         public SickLettersDraggableDD correctDotCollider, correctDiacCollider;
         public SickLettersGame game;
         public LetterObjectView letterView;

@@ -18,7 +18,7 @@ namespace EA4S.UI
         public Color BgNoKeeperColor = Color.white;
         [Header("References")]
         public GameObject Background;
-        public TextMeshProUGUI_OLD TextUI;
+        public TextMeshProUGUI TextUI;
         public WalkieTalkie WalkieTalkie;
 
         public static WidgetSubtitles I;

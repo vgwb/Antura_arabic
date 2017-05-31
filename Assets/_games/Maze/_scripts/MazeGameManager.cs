@@ -31,7 +31,7 @@ namespace EA4S.Minigames.Maze
 
 
         public float idleTime = 7;
-        public TextMeshProUGUI_OLD roundNumberText;
+        public TextMeshProUGUI roundNumberText;
 
 
         private int roundNumber;
