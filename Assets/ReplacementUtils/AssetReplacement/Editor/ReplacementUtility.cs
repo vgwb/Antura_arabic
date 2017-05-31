@@ -165,7 +165,7 @@ namespace Replacement
         public static bool FieldReferencesComponent<T>(Component objWithField, FieldInfo fieldInfo, T component)
             where T : Component
         {
-            Debug.Log("TYPE " + fieldInfo.FieldType);
+            //Debug.Log("TYPE " + fieldInfo.FieldType);
             if (fieldInfo.FieldType.IsArray)
             {
                 var arr = fieldInfo.GetValue(objWithField) as Array;
@@ -403,7 +403,7 @@ namespace Replacement
 
         public static bool FieldMatchesType(FieldInfo fieldInfo, object c)
         {
-            return c.GetType() == fieldInfo.FieldType || c.GetType().IsSubclassOf(fieldInfo.FieldType);
+            return c != null && (c.GetType() == fieldInfo.FieldType || c.GetType().IsSubclassOf(fieldInfo.FieldType));
         }
 
         public static string ToS(Object o)
