@@ -165,10 +165,11 @@ namespace Replacement
         public static bool FieldReferencesComponent<T>(Component objWithField, FieldInfo fieldInfo, T component)
             where T : Component
         {
-            //Debug.Log("TYPE " + fieldInfo.FieldType);
+            Debug.Log("TYPE " + fieldInfo.FieldType);
             if (fieldInfo.FieldType.IsArray)
             {
                 var arr = fieldInfo.GetValue(objWithField) as Array;
+                if (arr == null) return false;
                 foreach (var elem in arr)
                 {
                     if (elem == null) continue;

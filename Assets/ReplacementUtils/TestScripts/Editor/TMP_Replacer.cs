@@ -8,40 +8,59 @@ using Replacement;
 
 public class TMP_Replacer : MonoBehaviour
 {
-	
+    public enum SceneChoice
+    {
+        CurrentScene,
+        AllScenes
+    }
+
+    private static TMP_Replacer_Referencer referencer;
+    private static bool saveModifications = false;
+
     [MenuItem("Tools/Replace Text Mesh Pro")]
     public static void ReplaceTextMeshPro(MenuCommand command)
     {
-        bool saveModifications = false;
+        SceneChoice sceneChoice = SceneChoice.CurrentScene;
 
-        // Find the prefab with the data we want
-        var referencer = Resources.Load<TMP_Replacer_Referencer>("TMP_Replacer_Referencer");
+        // Find the referencer prefab with the data we want to swap
+        referencer = Resources.Load<TMP_Replacer_Referencer>("TMP_Replacer_Referencer");
 
-        var editorSceneInfos = EditorBuildSettings.scenes;
-        foreach (var editorSceneInfo in editorSceneInfos)
+        switch (sceneChoice)
         {
-            if (!editorSceneInfo.enabled) continue;
+            case SceneChoice.AllScenes:
+                var editorSceneInfos = EditorBuildSettings.scenes;
+                foreach (var editorSceneInfo in editorSceneInfos)
+                {
+                    if (!editorSceneInfo.enabled) continue;
 
-            Debug.Log("Checking scene: " + editorSceneInfo.path);
-            var scene = EditorSceneManager.OpenScene(editorSceneInfo.path);
-            if (!scene.isLoaded) continue;
-            if (!scene.IsValid()) continue;
-
-            PerformFullReplacement<TextMeshPro_OLD, TextMeshPro>(referencer);
-            PerformFullReplacement<TextMeshProUGUI_OLD, TextMeshProUGUI>(referencer);
-
-            if (saveModifications)
-            {
-                if (!EditorSceneManager.MarkSceneDirty(scene)) Debug.Log("Not set as dirty!");
-                if (!EditorSceneManager.SaveScene(scene)) Debug.Log("Not saved!");
-
-                // Reopen and close the scene to fix references
-                EditorSceneManager.OpenScene(editorSceneInfo.path);
-            }
-
-            // ReplaceAllComponentsOfType<TextMeshProUGUI_OLD, TextMeshProUGUI>();
+                    ReplaceInScene(editorSceneInfo.path);
+                }
+                break;
+            case SceneChoice.CurrentScene:
+                ReplaceInScene(EditorSceneManager.GetActiveScene().path);
+                break;
         }
 
+    }
+
+    static void ReplaceInScene(string path)
+    {
+        Debug.Log("Checking scene: " + path);
+        var scene = EditorSceneManager.OpenScene(path);
+        if (!scene.isLoaded) return;
+        if (!scene.IsValid()) return;
+
+        PerformFullReplacement<TextMeshPro_OLD, TextMeshPro>(referencer);
+        PerformFullReplacement<TextMeshProUGUI_OLD, TextMeshProUGUI>(referencer);
+
+        if (saveModifications)
+        {
+            if (!EditorSceneManager.MarkSceneDirty(scene)) Debug.Log("Not set as dirty!");
+            if (!EditorSceneManager.SaveScene(scene)) Debug.Log("Not saved!");
+
+            // Reopen and close the scene to fix references
+            EditorSceneManager.OpenScene(path);
+        }
     }
 
     static void PerformFullReplacement<TFrom, TTo>(TMP_Replacer_Referencer referencer)    
