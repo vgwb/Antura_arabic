@@ -11,6 +11,12 @@ using Object = UnityEngine.Object;
 namespace Replacement
 {
 
+    /// <summary>
+    /// Known issues:
+    /// - won't work with prefabs
+    /// - multiple references to different components inside the same component are treated as the same (gets references wrong)
+    /// - rect transforms react weirdly
+    /// </summary>
     public class ReplacementUtility
     {
         public static bool VERBOSE = false;
@@ -249,8 +255,11 @@ namespace Replacement
                 try
                 {
                     if (VERBOSE) Debug.Log("Replacement of " + ToS(foundComponent) + " with its base " + typeof(TTo).Name);
-                    replacementDictionary[foundComponent] = ReplaceComponentWithBase<TFrom, TTo>(foundComponent, foundComponent.gameObject);
-                    //Debug.LogWarning("ADDED NEW " + ToS(replacementDictionary[foundComponent]));
+                    var newComponent = ReplaceComponentWithBase<TFrom, TTo>(foundComponent, foundComponent.gameObject);
+                    if (newComponent != null)
+                    {
+                        replacementDictionary[foundComponent] = newComponent;
+                    }
                 }
                 catch (Exception e)
                 {
@@ -260,13 +269,28 @@ namespace Replacement
             return replacementDictionary;
         }
 
-        /// <summary>
         ///     Replace a component of type T1 in the object with a new component of type T2.
         ///     All fields are kept, where possible.
         ///     T2 should be a base type of T1
         private static T2 ReplaceComponentWithBase<T1, T2>(T1 originalComponent, GameObject targetGo) where T2 : Component
             where T1 : Component, T2
         {
+            // Prefab instances must be disconnected
+            GameObject currentPrefab = null;
+            if (PrefabUtility.GetPrefabType(targetGo) == PrefabType.PrefabInstance)
+            {
+                currentPrefab = PrefabUtility.GetPrefabParent(targetGo) as GameObject;
+                PrefabUtility.DisconnectPrefabInstance(targetGo);
+                Debug.Log("Disconnecting " + ToS(targetGo) + " from its prefab.");
+            } else 
+            // Won't work with prefab types
+            if (PrefabUtility.GetPrefabType(targetGo) == PrefabType.Prefab)
+            {
+                Debug.LogWarning("Replacing won't work with prefabs! Skipping " + ToS(targetGo));
+                return null;
+            }
+
+
             // Create a temporary gameobject that will keep the field values, needed because T1 and T2 may not coexist
             var tmpNewGo = new GameObject("TempReplacingGO");
 
@@ -278,6 +302,7 @@ namespace Replacement
             var fields = fromType.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic);
             foreach (var field in fields)
                 field.SetValue(tmpNewComponent, field.GetValue(originalComponent));
+
             Object.DestroyImmediate(originalComponent);
 
             // Copy to the final component
@@ -285,6 +310,11 @@ namespace Replacement
             foreach (var field in fields)
                 field.SetValue(finalNewComponent, field.GetValue(tmpNewComponent));
             Object.DestroyImmediate(tmpNewGo);
+
+            if (currentPrefab != null)
+            {
+                PrefabUtility.ConnectGameObjectToPrefab(targetGo, currentPrefab);
+            }
 
             EditorUtility.SetDirty(targetGo);
             EditorUtility.SetDirty(finalNewComponent);
@@ -334,6 +364,7 @@ namespace Replacement
             foreach (var pair in dependencyDictFrom)
             {
                 var comp1 = pair.Key;
+                if (!componentReplacementDict.ContainsKey( pair.Key)) continue;
                 var comp2 = componentReplacementDict[comp1];
                 var list1 = pair.Value;
                 dependencyDictTo[comp2] = new List<TTo>();
@@ -388,7 +419,9 @@ namespace Replacement
             foreach (var referencePair in referencesDict)
             {
                 var referenceFrom = referencePair.Key;
+                if (!componentReplacementDict.ContainsKey(referenceFrom)) continue;
                 var referenceTo = componentReplacementDict[referenceFrom];
+
                 foreach (var referencingObject in referencePair.Value)
                 {
                     //if(VERBOSE)
