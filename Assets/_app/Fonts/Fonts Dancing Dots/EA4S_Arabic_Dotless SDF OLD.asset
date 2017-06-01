@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74dfce233ddb29b4294c3e23c1d3650d, type: 3}
-  m_Name: EA4S_Arabic_Dotless SDF
+  m_Name: EA4S_Arabic_Dotless SDF OLD
   m_EditorClassIdentifier: 
   hashCode: -708741058
   material: {fileID: 21000013468211058}
@@ -31,6 +31,8 @@ MonoBehaviour:
     SubSize: 0.5
     Underline: -7.984375
     UnderlineThickness: 4.1015625
+    strikethrough: 16.05
+    strikethroughThickness: 0
     TabWidth: 155.625
     Padding: 5
     AtlasWidth: 1024
