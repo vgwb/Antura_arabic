@@ -111,26 +111,32 @@ namespace Replacement
             return dict;
         }
 
-        public static Dictionary<Object, List<T>> CollectObjectsWithComponentsOfType<T>() where T : Component
+        public static Dictionary<Object, List<Component>> CollectObjectsWithComponentsOfType<T>() where T : Component
         {
-            var dict = new Dictionary<Object, List<T>>();
+            return CollectObjectsWithComponentsOfType(typeof(T));
+        }
+        public static Dictionary<Object, List<Component>> CollectObjectsWithComponentsOfType(Type t)
+        {
+            var dict = new Dictionary<Object, List<Component>>();
             string ss;
-            ss = "Components...";
+            ss = "Components of type " + t.Name;
             foreach (var go in FindAll<GameObject>())
             {
-                dict[go] = new List<T>();
+                var list = new List<Component>();
                 var tmpS = "";
-                var count = 0;
-                foreach (var component in go.GetComponents<T>())
+                foreach (var component in go.GetComponents(t))
                 {
                     tmpS += "\n :> " + ToS((Object) component);
-                    count++;
-                    dict[go].Add(component);
+                    list.Add(component);
                 }
-                if (count > 0)
-                    ss += "\n" + count + ": " + ToS(go) + tmpS;
+                if (list.Count > 0)
+                {
+                    dict[go] = list;
+                    ss += "\n" + list.Count + ": " + ToS(go) + tmpS;
+                }
             }
-            if (VERBOSE) Debug.Log(ss);
+            //if (VERBOSE)
+                Debug.Log(ss);
             return dict;
         }
 
