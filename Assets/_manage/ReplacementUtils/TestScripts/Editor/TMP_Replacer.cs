@@ -7,6 +7,9 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using Replacement;
 
+// @note: this script was used to convert TextMeshPro from the OLD to the NEW version
+
+/*
 public class TMP_Replacer : MonoBehaviour
 {
     public enum SceneChoice
@@ -103,5 +106,5 @@ public class TMP_Replacer : MonoBehaviour
         ReplacementUtility.ReplaceAllComponentReferences(replacementDict, referencesDict);
     }
 }
-
+*/
 #endif
