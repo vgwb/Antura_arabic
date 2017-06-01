@@ -209,7 +209,7 @@ namespace Replacement
         public static void PlaceAllReferencesInObject<TTo>(Object o, TTo to) where TTo : Object
         {
             var oType = o.GetType();
-            var fields = oType.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic);
+            var fields = oType.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic );
             foreach (var field in fields)
             {
                 if (FieldMatchesType(field, to))
@@ -252,22 +252,16 @@ namespace Replacement
             if (VERBOSE) Debug.Log("Found " + foundComponents.Length + " of type " + typeof(TFrom).Name);
             foreach (var foundComponent in foundComponents)
             {
-                try
+                if (VERBOSE) Debug.Log("Replacement of " + ToS(foundComponent) + " with its base " + typeof(TTo).Name);
+                var newComponent = ReplaceComponentWithBase<TFrom, TTo>(foundComponent, foundComponent.gameObject);
+                if (newComponent != null)
                 {
-                    if (VERBOSE) Debug.Log("Replacement of " + ToS(foundComponent) + " with its base " + typeof(TTo).Name);
-                    var newComponent = ReplaceComponentWithBase<TFrom, TTo>(foundComponent, foundComponent.gameObject);
-                    if (newComponent != null)
-                    {
-                        replacementDictionary[foundComponent] = newComponent;
-                    }
-                }
-                catch (Exception e)
-                {
-                    if (VERBOSE) Debug.Log("Internal EXC " + e.Message);
+                    replacementDictionary[foundComponent] = newComponent;
                 }
             }
             return replacementDictionary;
         }
+
 
         ///     Replace a component of type T1 in the object with a new component of type T2.
         ///     All fields are kept, where possible.
@@ -276,6 +270,10 @@ namespace Replacement
             where T1 : Component, T2
         {
             // Rect transforms get messed up, so let's save their values
+            ObjectState rectTransformState = null;
+            var rectTransformComponent = targetGo.GetComponent<RectTransform>();
+            if (rectTransformComponent != null) 
+                SaveObjectState(rectTransformComponent, out rectTransformState);
 
             // Prefab instances must be disconnected
             GameObject currentPrefab = null;
@@ -314,6 +312,11 @@ namespace Replacement
                 field.SetValue(finalNewComponent, field.GetValue(tmpNewComponent));
             Object.DestroyImmediate(tmpNewGo);
 
+            // At last, copy the rect transform values back in
+            if (rectTransformComponent != null) { }
+                LoadObjectState(rectTransformComponent, rectTransformState);
+
+            // If we have a prefab, reconnect to it
             if (currentPrefab != null)
             {
                 PrefabUtility.ConnectGameObjectToPrefab(targetGo, currentPrefab);
@@ -433,8 +436,53 @@ namespace Replacement
                 }
             }
         }
-        
+
         #endregion
+
+
+        #region Object State
+
+        public class ObjectState
+        {
+            public Dictionary<FieldInfo, object> fieldInfoDict = new Dictionary<FieldInfo, object>();
+            public Dictionary<PropertyInfo, object> propertyInfoDict = new Dictionary<PropertyInfo, object>();
+        }
+
+        private static void SaveObjectState<T>(T obj, out ObjectState state) where T : Object
+        {
+            state = new ObjectState();
+            var objType = typeof(T);
+            var objFields = objType.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
+            var objProperties = objType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
+            //Debug.LogError("WE GOT A RECT! " + rectFields.Length + " + " + rectProperties.Length);
+            foreach (var field in objFields)
+            {
+                state.fieldInfoDict[field] = field.GetValue(obj);
+            }
+            foreach (var property in objProperties)
+            {
+                state.propertyInfoDict[property] = property.GetValue(obj, null);
+            }
+        }
+
+        private static void LoadObjectState<T>(T obj, ObjectState state) where T : Object
+        {
+            var objType = typeof(T);
+            var objFields = objType.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
+            var objProperties = objType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
+            foreach (var field in objFields)
+            {
+                field.SetValue(obj, state.fieldInfoDict[field]);
+            }
+            foreach (var property in objProperties)
+            {
+                if (property.CanWrite)
+                    property.SetValue(obj, state.propertyInfoDict[property], null);
+            }
+        }
+
+        #endregion
+
 
         #region Utilities
 
