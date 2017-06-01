@@ -3825,13 +3825,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_havePropertiesChanged
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_isInputParsingRequired
       value: 0
       objectReference: {fileID: 0}
@@ -3839,13 +3837,11 @@ Prefab:
       propertyPath: m_Name
       value: LetterChoice_2
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_textAlignment
       value: 514
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_isAlignmentEnumConverted
       value: 1
       objectReference: {fileID: 0}
@@ -5372,13 +5368,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_havePropertiesChanged
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_isInputParsingRequired
       value: 0
       objectReference: {fileID: 0}
@@ -5386,13 +5380,11 @@ Prefab:
       propertyPath: m_Name
       value: LetterChoice_4
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_textAlignment
       value: 514
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_isAlignmentEnumConverted
       value: 1
       objectReference: {fileID: 0}
@@ -5938,10 +5930,10 @@ GameObject:
   m_PrefabInternal: {fileID: 1421847198}
 --- !u!114 &1421847200 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000013927319314, guid: d5826ab7f51b7c549919cf0b6fe83693,
+  m_PrefabParentObject: {fileID: 114344112969343602, guid: d5826ab7f51b7c549919cf0b6fe83693,
     type: 2}
   m_PrefabInternal: {fileID: 1421847198}
-  m_Script: {fileID: 11500000, guid: 1a1578b9753d2604f98d608cb4239e2f, type: 3}
+  m_Script: {fileID: -806885394, guid: b5bd0d848a86e48409fe56688d66ecb5, type: 3}
 --- !u!95 &1421847201 stripped
 Animator:
   m_PrefabParentObject: {fileID: 95000011127266862, guid: d5826ab7f51b7c549919cf0b6fe83693,
@@ -6245,13 +6237,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_havePropertiesChanged
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_isInputParsingRequired
       value: 0
       objectReference: {fileID: 0}
@@ -6259,13 +6249,11 @@ Prefab:
       propertyPath: m_Name
       value: LetterChoice_6
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_textAlignment
       value: 514
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_isAlignmentEnumConverted
       value: 1
       objectReference: {fileID: 0}
@@ -10048,13 +10036,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_havePropertiesChanged
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_isInputParsingRequired
       value: 0
       objectReference: {fileID: 0}
@@ -10062,13 +10048,11 @@ Prefab:
       propertyPath: m_Name
       value: LetterChoice_5
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_textAlignment
       value: 514
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_isAlignmentEnumConverted
       value: 1
       objectReference: {fileID: 0}
@@ -10488,13 +10472,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_havePropertiesChanged
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_isInputParsingRequired
       value: 0
       objectReference: {fileID: 0}
@@ -10502,13 +10484,11 @@ Prefab:
       propertyPath: m_Name
       value: LetterChoice_1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_textAlignment
       value: 514
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_isAlignmentEnumConverted
       value: 1
       objectReference: {fileID: 0}
@@ -10885,13 +10865,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_havePropertiesChanged
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_isInputParsingRequired
       value: 0
       objectReference: {fileID: 0}
@@ -10899,13 +10877,11 @@ Prefab:
       propertyPath: m_Name
       value: LetterChoice_3
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_textAlignment
       value: 514
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_isAlignmentEnumConverted
       value: 1
       objectReference: {fileID: 0}
@@ -11704,18 +11680,17 @@ RectTransform:
 --- !u!114 &1935660623
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012846904250, guid: 447d40d4a2c05435794c49ba566cc3c4,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1935660621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
+  m_Script: {fileID: 1453722849, guid: b5bd0d848a86e48409fe56688d66ecb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11723,8 +11698,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\u0627"
   m_isRightToLeft: 1
-  m_fontAsset: {fileID: 11400000, guid: ec76213212ac2438986d3d12b10f0625, type: 2}
-  m_sharedMaterial: {fileID: 21000011752393256, guid: ec76213212ac2438986d3d12b10f0625,
+  m_fontAsset: {fileID: 11400000, guid: 30344d57d55de4ec6acfb84117110925, type: 2}
+  m_sharedMaterial: {fileID: 21863560639530978, guid: 30344d57d55de4ec6acfb84117110925,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -11766,8 +11741,8 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
-  m_enableAdaptiveJustification: 0
   m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_enableKerning: 0
@@ -11781,6 +11756,7 @@ MonoBehaviour:
   m_ignoreCulling: 1
   m_horizontalMapping: 0
   m_verticalMapping: 0
+  m_uvLineOffset: 0
   m_geometrySortingOrder: 0
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 0
@@ -11802,8 +11778,6 @@ MonoBehaviour:
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
-  m_uvOffset: {x: 0, y: 0}
-  m_uvLineOffset: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
