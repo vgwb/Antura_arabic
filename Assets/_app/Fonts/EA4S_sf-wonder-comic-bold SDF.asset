@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: -667331979, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
   m_Name: EA4S_sf-wonder-comic-bold SDF
   m_EditorClassIdentifier: 
-  hashCode: -773379679
+  hashCode: -1762895458
   material: {fileID: 21961851585545576}
   materialHashCode: 1703678730
   fontAssetType: 1
@@ -1088,13 +1088,13 @@ Material:
       second: 10
     - first:
         name: _ScaleRatioA
-      second: 1
+      second: 0.8333333
     - first:
         name: _ScaleRatioB
-      second: 1
+      second: 0.6770833
     - first:
         name: _ScaleRatioC
-      second: 1
+      second: 0.6770833
     - first:
         name: _ScaleX
       second: 1

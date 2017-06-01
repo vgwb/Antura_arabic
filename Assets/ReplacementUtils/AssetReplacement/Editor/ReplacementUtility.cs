@@ -15,7 +15,6 @@ namespace Replacement
     /// Known issues:
     /// - won't work with prefabs
     /// - multiple references to different components inside the same component are treated as the same (gets references wrong)
-    /// - rect transforms react weirdly
     /// </summary>
     public class ReplacementUtility
     {
