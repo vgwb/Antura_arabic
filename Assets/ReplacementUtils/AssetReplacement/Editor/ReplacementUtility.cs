@@ -14,6 +14,7 @@ namespace Replacement
     public class ReplacementUtility
     {
         public static bool VERBOSE = false;
+        public static bool findInactiveObjectsToo = true;
 
         #region Reference Analysis
 
@@ -26,7 +27,7 @@ namespace Replacement
         {
             string ss;
             ss = "Objects that depend on " + typeof(T).Name + "...";
-            foreach (var component in Object.FindObjectsOfType<Component>())
+            foreach (var component in FindAll<Component>())
             {
                 var tmpS = "";
                 var count = 0;
@@ -63,7 +64,7 @@ namespace Replacement
         {
             var dict = new Dictionary<T, List<Object>>();
             var ss = "" + typeof(T).Name + " depends on...";
-            foreach (var component in Object.FindObjectsOfType<T>())
+            foreach (var component in FindAll<T>())
             {
                 dict[component] = new List<Object>();
                 var tmpS = "";
@@ -86,7 +87,7 @@ namespace Replacement
             var dict = new Dictionary<Object, List<T>>();
             string ss;
             ss = "Components...";
-            foreach (var go in Object.FindObjectsOfType<GameObject>())
+            foreach (var go in FindAll<GameObject>())
             {
                 dict[go] = new List<T>();
                 var tmpS = "";
@@ -113,7 +114,7 @@ namespace Replacement
             string ss;
             ss = "References to " + typeof(T).Name + ":";
             var none_ss = " - NONE - ";
-            foreach (var wantedComponent in Object.FindObjectsOfType<T>())
+            foreach (var wantedComponent in FindAll<T>())
             {
                 dict[wantedComponent] = new List<Object>();
                 var tmpS = "";
@@ -145,7 +146,7 @@ namespace Replacement
         {
             var referencers = new List<Object>();
 
-            var objs = Object.FindObjectsOfType<Component>();
+            var objs = FindAll<Component>();
             if (objs == null) return referencers;
             foreach (var obj in objs)
             {
@@ -241,7 +242,7 @@ namespace Replacement
             where TTo : Component where TFrom : Component, TTo
         {
             Dictionary<TFrom, TTo> replacementDictionary = new Dictionary<TFrom, TTo>();
-            var foundComponents = Object.FindObjectsOfType<TFrom>();
+            var foundComponents = FindAll<TFrom>();
             if (VERBOSE) Debug.Log("Found " + foundComponents.Length + " of type " + typeof(TFrom).Name);
             foreach (var foundComponent in foundComponents)
             {
@@ -404,6 +405,18 @@ namespace Replacement
         public static bool FieldMatchesType(FieldInfo fieldInfo, object c)
         {
             return c != null && (c.GetType() == fieldInfo.FieldType || c.GetType().IsSubclassOf(fieldInfo.FieldType));
+        }
+
+        private static T[] FindAll<T>() where T : Object
+        {
+            if (findInactiveObjectsToo)
+            {
+                return Resources.FindObjectsOfTypeAll(typeof(T)) as T[];
+            }
+            else
+            {
+                return Object.FindObjectsOfType<T>();
+            }
         }
 
         public static string ToS(Object o)
