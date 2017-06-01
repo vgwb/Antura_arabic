@@ -49,6 +49,29 @@ namespace Replacement
             if (VERBOSE) Debug.Log(ss);
         }
 
+        public static Dictionary<TC, List<TO>> CollectObjectsOfTypeTheComponentReferencesInFields<TC, TO>() where TC : Component where TO : Object
+        {
+            var outDict = new Dictionary<TC, List<TO>>();
+
+            var componentType = typeof(TC);
+            var fields = componentType.GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
+
+            foreach (var component in FindAll<TC>())
+            {
+                outDict[component] = new List<TO>();
+                foreach (var fieldInfo in fields)
+                {
+                    if (FieldMatchesType(fieldInfo, typeof(TO)))
+                    {
+                        var referenced = fieldInfo.GetValue(component) as TO;
+                        if (referenced != null)
+                            outDict[component].Add(referenced);
+                    }
+                }
+            }
+            return outDict;
+        }
+
 
         public static Dictionary<TC, List<TO>> CollectObjectsOfTypeTheComponentDependsOn<TC, TO>() where TC : Component where TO : Object
         {
@@ -60,6 +83,7 @@ namespace Replacement
             }
             return outDict;
         }
+
 
         /// <summary>
         ///     All objects that the component depends on.
@@ -215,7 +239,7 @@ namespace Replacement
                 if (FieldMatchesType(field, to))
                 {
                     field.SetValue(o, to);
-                    Debug.Log("Placed object reference to " + ToS(to) + " in " + ToS(o));
+                    //Debug.Log("Placed object reference to " + ToS(to) + " in " + ToS(o));
                 }
             }
         }
@@ -372,12 +396,16 @@ namespace Replacement
                 var comp1 = pair.Key;
                 if (!componentReplacementDict.ContainsKey( pair.Key)) continue;
                 var comp2 = componentReplacementDict[comp1];
+
+                Debug.Log("COMP " + ToS(comp1) + " was switched with " + ToS(comp2));
+
                 var list1 = pair.Value;
                 dependencyDictTo[comp2] = new List<TTo>();
                 foreach (var el1 in list1)
                 {
                     var el2 = GetReplacementFor<TFrom, TTo, TRL>(replacementList, el1);
                     dependencyDictTo[comp2].Add(el2);
+                    Debug.Log("SWITCHING " + ToS(el1) + " TO " + ToS(el2));
                 }
             }
             PlaceAllAssetReferences(dependencyDictTo);
@@ -395,11 +423,9 @@ namespace Replacement
         /// <summary>
         /// Set all references of the asset of type TTo in all components of type TComp2.
         /// </summary>
-        public static void PlaceAllAssetReferences<TComp, TTo>(//List<TRL> replacementList,
+        public static void PlaceAllAssetReferences<TComp, TTo>(
             Dictionary<TComp, List<TTo>> dependencyDictTo)
-            //where TRL : ReplacementPair<TFrom, TTo>
             where TComp : Component
-            //where TFrom : Object, TTo
             where TTo : Object
         {
             foreach (var dependencyPair in dependencyDictTo)
@@ -489,6 +515,11 @@ namespace Replacement
         public static bool FieldMatchesType(FieldInfo fieldInfo, object c)
         {
             return c != null && (c.GetType() == fieldInfo.FieldType || c.GetType().IsSubclassOf(fieldInfo.FieldType));
+        }
+
+        public static bool FieldMatchesType(FieldInfo fieldInfo, Type t)
+        {
+            return  (t == fieldInfo.FieldType || t.IsSubclassOf(fieldInfo.FieldType));
         }
 
         private static T[] FindAll<T>() where T : Object

@@ -73,16 +73,22 @@ public class TMP_Replacer : MonoBehaviour
         var referencesDict = ReplacementUtility.CollectObjectsReferencingComponent<TFrom>();
         foreach (var pair in referencesDict)
         {
-            Debug.Log("Found " + pair.Value.Count + " references of " + ReplacementUtility.ToS(pair.Key), pair.Key);
-            Debug.Log(pair.Value.ToDebugString());
+            if (pair.Value.Count > 0)
+            {
+                Debug.Log("Found " + pair.Value.Count + " references of " + ReplacementUtility.ToS(pair.Key), pair.Key);
+                Debug.Log(pair.Value.ToDebugString());
+            }
         }
         
         // Get all references of old assets from From
-        var dependencyDict = ReplacementUtility.CollectObjectsOfTypeTheComponentDependsOn<TFrom, TMP_FontAsset_OLD>();
+        var dependencyDict = ReplacementUtility.CollectObjectsOfTypeTheComponentReferencesInFields<TFrom, TMP_FontAsset_OLD>();
         foreach (var pair in dependencyDict)
         {
-            Debug.Log("Found " + pair.Value.Count + " dependencies for " + ReplacementUtility.ToS(pair.Key), pair.Key);
-            Debug.Log(pair.Value.ToDebugString());
+            if (pair.Value.Count > 0)
+            {
+                Debug.Log("Found " + pair.Value.Count + " dependencies for " + ReplacementUtility.ToS(pair.Key), pair.Key);
+                Debug.Log(pair.Value.ToDebugString());
+            }
         }
 
         // Replace all references with To
