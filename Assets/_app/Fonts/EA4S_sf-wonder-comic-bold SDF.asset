@@ -9,21 +9,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -667331979, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
-  m_Name: EA4S sf-wonder-comic-bold SDF
+  m_Name: EA4S_sf-wonder-comic-bold SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -773379679
   material: {fileID: 21961851585545576}
-  materialHashCode: 0
+  materialHashCode: 1703678730
   fontAssetType: 1
   m_fontInfo:
     Name: SF Wonder Comic
     PointSize: 69
-    Scale: 0
+    Scale: 1
     CharacterCount: 97
     LineHeight: 84.5625
     Baseline: 0
     Ascender: 68.125
-    CapHeight: 0
+    CapHeight: 47.4375
     Descender: -14.375
     CenterLine: 0
     SuperscriptOffset: 68.125
@@ -33,7 +33,7 @@ MonoBehaviour:
     UnderlineThickness: 0.6738281
     strikethrough: 19.545454
     strikethroughThickness: 0.6738281
-    TabWidth: 0
+    TabWidth: 226.25
     Padding: 5
     AtlasWidth: 512
     AtlasHeight: 512
@@ -42,10 +42,10 @@ MonoBehaviour:
   - id: 32
     x: 6
     y: 517
-    width: 0
-    height: 0
+    width: 22.625
+    height: 82.5
     xOffset: 0
-    yOffset: 0
+    yOffset: 68.125
     xAdvance: 22.625
     scale: 1
   - id: 33
