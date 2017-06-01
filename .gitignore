@@ -50,3 +50,5 @@ Local.meta
 # optional plugins
 /Assets/StompyRobot
 /Assets/StompyRobot.meta
+ProjectSettings/APlusBlacklist.asset
+ProjectSettings/MaintainerSettings.asset
