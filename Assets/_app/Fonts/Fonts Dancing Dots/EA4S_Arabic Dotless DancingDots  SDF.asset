@@ -9,21 +9,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -667331979, guid: b5bd0d848a86e48409fe56688d66ecb5, type: 3}
-  m_Name: EA4S_Arabic_Dotless SDF
+  m_Name: EA4S_Arabic Dotless DancingDots  SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -708741058
   material: {fileID: 21216925211105356}
-  materialHashCode: 0
+  materialHashCode: 1072550645
   fontAssetType: 2
   m_fontInfo:
     Name: EA4S_Arabic_Dotless
     PointSize: 57
-    Scale: 0
+    Scale: 1
     CharacterCount: 616
     LineHeight: 66
     Baseline: 0
     Ascender: 52
-    CapHeight: 0
+    CapHeight: 41
     Descender: -12
     CenterLine: 0
     SuperscriptOffset: 52
@@ -33,7 +33,7 @@ MonoBehaviour:
     UnderlineThickness: 4.1748047
     strikethrough: 14.545455
     strikethroughThickness: 4.1748047
-    TabWidth: 0
+    TabWidth: 160
     Padding: 5
     AtlasWidth: 1024
     AtlasHeight: 1024
@@ -42,10 +42,10 @@ MonoBehaviour:
   - id: 32
     x: 5
     y: 1019
-    width: 0
-    height: 0
+    width: 16
+    height: 64
     xOffset: 0
-    yOffset: 0
+    yOffset: 52
     xAdvance: 16
     scale: 1
   - id: 33
@@ -5637,7 +5637,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: EA4S_Arabic_Dotless SDF Material
-  m_Shader: {fileID: 4800000, guid: edfcf888cd11d9245b91d2883049a57e, type: 3}
+  m_Shader: {fileID: 4800000, guid: cafd18099dfc0114896e0a8b277b81b6, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -5662,10 +5662,43 @@ Material:
         name: _ColorMask
       second: 15
     - first:
+        name: _FaceDilate
+      second: 0
+    - first:
+        name: _GradientScale
+      second: 5
+    - first:
         name: _MaskSoftnessX
       second: 0
     - first:
         name: _MaskSoftnessY
+      second: 0
+    - first:
+        name: _OutlineSoftness
+      second: 0
+    - first:
+        name: _OutlineWidth
+      second: 0
+    - first:
+        name: _PerspectiveFilter
+      second: 0.875
+    - first:
+        name: _ScaleRatioA
+      second: 1
+    - first:
+        name: _ScaleRatioB
+      second: 1
+    - first:
+        name: _ScaleRatioC
+      second: 1
+    - first:
+        name: _ScaleX
+      second: 1
+    - first:
+        name: _ScaleY
+      second: 1
+    - first:
+        name: _ShaderFlags
       second: 0
     - first:
         name: _Stencil
@@ -5683,10 +5716,34 @@ Material:
         name: _StencilWriteMask
       second: 255
     - first:
+        name: _TextureHeight
+      second: 512
+    - first:
+        name: _TextureWidth
+      second: 512
+    - first:
+        name: _UnderlayDilate
+      second: 0
+    - first:
+        name: _UnderlayOffsetX
+      second: 0
+    - first:
+        name: _UnderlayOffsetY
+      second: 0
+    - first:
+        name: _UnderlaySoftness
+      second: 0
+    - first:
         name: _VertexOffsetX
       second: 0
     - first:
         name: _VertexOffsetY
+      second: 0
+    - first:
+        name: _WeightBold
+      second: 0.5
+    - first:
+        name: _WeightNormal
       second: 0
     m_Colors:
     - first:
@@ -5695,6 +5752,12 @@ Material:
     - first:
         name: _FaceColor
       second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _OutlineColor
+      second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _UnderlayColor
+      second: {r: 0, g: 0, b: 0, a: 0.5}
 --- !u!28 &28491756436929662
 Texture2D:
   m_ObjectHideFlags: 0

@@ -9,21 +9,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -667331979, guid: b5bd0d848a86e48409fe56688d66ecb5, type: 3}
-  m_Name: EA4S_Arabic_Dots_Only SDF 1
+  m_Name: EA4S_Arabic DotsOnly SickLetters SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -1232872674
   material: {fileID: 21500844861084518}
-  materialHashCode: 0
+  materialHashCode: -871622443
   fontAssetType: 2
   m_fontInfo:
     Name: EA4S_Arabic_Dots_Only
     PointSize: 61
-    Scale: 0
+    Scale: 1
     CharacterCount: 616
     LineHeight: 70
     Baseline: 0
     Ascender: 55
-    CapHeight: 0
+    CapHeight: 44
     Descender: -13
     CenterLine: 0
     SuperscriptOffset: 55
@@ -33,7 +33,7 @@ MonoBehaviour:
     UnderlineThickness: 4.4677734
     strikethrough: 15.272727
     strikethroughThickness: 4.4677734
-    TabWidth: 0
+    TabWidth: 170
     Padding: 5
     AtlasWidth: 1024
     AtlasHeight: 1024
@@ -42,10 +42,10 @@ MonoBehaviour:
   - id: 32
     x: 5
     y: 1019
-    width: 0
-    height: 0
+    width: 17
+    height: 68
     xOffset: 0
-    yOffset: 0
+    yOffset: 55
     xAdvance: 17
     scale: 1
   - id: 33
