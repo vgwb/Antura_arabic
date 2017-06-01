@@ -275,14 +275,19 @@ namespace Replacement
         private static T2 ReplaceComponentWithBase<T1, T2>(T1 originalComponent, GameObject targetGo) where T2 : Component
             where T1 : Component, T2
         {
+            // Rect transforms get messed up, so let's save their values
+
             // Prefab instances must be disconnected
             GameObject currentPrefab = null;
             if (PrefabUtility.GetPrefabType(targetGo) == PrefabType.PrefabInstance)
             {
-                currentPrefab = PrefabUtility.GetPrefabParent(targetGo) as GameObject;
-                PrefabUtility.DisconnectPrefabInstance(targetGo);
-                Debug.Log("Disconnecting " + ToS(targetGo) + " from its prefab.");
-            } else 
+                //currentPrefab = PrefabUtility.GetPrefabParent(targetGo) as GameObject;
+                //PrefabUtility.DisconnectPrefabInstance(targetGo);
+                //Debug.Log("Disconnecting " + ToS(targetGo) + " from its prefab.");
+                Debug.LogWarning("Replacing won't work with prefab instances! First disconnect them. Skipping " + ToS(targetGo));
+                return null;
+            }
+            else 
             // Won't work with prefab types
             if (PrefabUtility.GetPrefabType(targetGo) == PrefabType.Prefab)
             {
@@ -290,19 +295,17 @@ namespace Replacement
                 return null;
             }
 
-
             // Create a temporary gameobject that will keep the field values, needed because T1 and T2 may not coexist
             var tmpNewGo = new GameObject("TempReplacingGO");
-
-            var fromType = typeof(T1);
-            //Debug.Log("Replacing " + fromType.Name + " with " + toType.Name);
-
-            // Create a temporary component
+            //tmpNewGo.transform.SetParent(targetGo.transform.parent);
+            //Object.DestroyImmediate(tmpNewGo.GetComponent<T1>());
             var tmpNewComponent = tmpNewGo.AddComponent<T2>();
+
+            // Copy to the temporary component
+            var fromType = typeof(T1);
             var fields = fromType.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic);
             foreach (var field in fields)
                 field.SetValue(tmpNewComponent, field.GetValue(originalComponent));
-
             Object.DestroyImmediate(originalComponent);
 
             // Copy to the final component
