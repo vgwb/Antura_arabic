@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: -667331979, guid: b5bd0d848a86e48409fe56688d66ecb5, type: 3}
   m_Name: EA4S_Amatic SDF
   m_EditorClassIdentifier: 
-  hashCode: 262060207
+  hashCode: -1129561250
   material: {fileID: 21046578420867230}
   materialHashCode: -1831104188
   fontAssetType: 1
@@ -2060,13 +2060,13 @@ Material:
       second: 10
     - first:
         name: _ScaleRatioA
-      second: 1
+      second: 0.8333333
     - first:
         name: _ScaleRatioB
-      second: 1
+      second: 0.6770833
     - first:
         name: _ScaleRatioC
-      second: 1
+      second: 0.6770833
     - first:
         name: _ScaleX
       second: 1

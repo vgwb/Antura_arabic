@@ -5759,13 +5759,13 @@ Material:
       second: 10
     - first:
         name: _ScaleRatioA
-      second: 1
+      second: 0.8333333
     - first:
         name: _ScaleRatioB
-      second: 1
+      second: 0.6770833
     - first:
         name: _ScaleRatioC
-      second: 1
+      second: 0.6770833
     - first:
         name: _ScaleX
       second: 1
