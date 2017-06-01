@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   letterObjectView: {fileID: 1988355393}
   hintText: {fileID: 2116801979}
-  dotlessText: {fileID: 2116801979}
+  dotlessText: {fileID: 1198136048}
   fullTextGO: {fileID: 1761681170}
   contentGO: {fileID: 1725073163}
   rainbow: {fileID: 1439934404}

@@ -18,12 +18,12 @@ MonoBehaviour:
   m_fontInfo:
     Name: EA4S_Arabic_Dots_Only
     PointSize: 59
-    Scale: 0
+    Scale: 1
     CharacterCount: 616
     LineHeight: 67.875
     Baseline: 0
     Ascender: 53.4375
-    CapHeight: 0
+    CapHeight: 42.25
     Descender: -12.5
     CenterLine: 0
     SuperscriptOffset: 53.4375
@@ -33,7 +33,7 @@ MonoBehaviour:
     UnderlineThickness: 4.321289
     strikethrough: 14.886364
     strikethroughThickness: 4.321289
-    TabWidth: 0
+    TabWidth: 163.75
     Padding: 5
     AtlasWidth: 1024
     AtlasHeight: 1024
@@ -42,10 +42,10 @@ MonoBehaviour:
   - id: 32
     x: 6
     y: 1029
-    width: 0
-    height: 0
+    width: 16.375
+    height: 65.9375
     xOffset: 0
-    yOffset: 0
+    yOffset: 53.4375
     xAdvance: 16.375
     scale: 1
   - id: 33
@@ -5684,13 +5684,13 @@ Material:
       second: 0.875
     - first:
         name: _ScaleRatioA
-      second: 1
+      second: 0.8333333
     - first:
         name: _ScaleRatioB
       second: 1
     - first:
         name: _ScaleRatioC
-      second: 1
+      second: 0.6770833
     - first:
         name: _ScaleX
       second: 1
