@@ -999,6 +999,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21561593201977922, guid: 19b6204822022490d88948a36701cc8c,
         type: 2}
+    - target: {fileID: 23000013882772776, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b6a8c7163c16e44158bd94fe6cee6924, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 83dc25c8719051e4184214377d8dd1bf, type: 2}
   m_IsPrefabParent: 0
@@ -15242,12 +15247,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
-  textMaterial: {fileID: 21000011752393256, guid: ec76213212ac2438986d3d12b10f0625,
+  textMaterial: {fileID: 21863560639530978, guid: 30344d57d55de4ec6acfb84117110925,
     type: 2}
-  drawingMaterial: {fileID: 21000011289753572, guid: 580240945c07f4dc68410a893281aebb,
+  drawingMaterial: {fileID: 21561593201977922, guid: 19b6204822022490d88948a36701cc8c,
     type: 2}
-  markedTextMaterial: {fileID: 2100000, guid: 4411a18e622c31a43a94c7a825d07b14, type: 2}
-  markedDrawingMaterial: {fileID: 2100000, guid: 40441934810e20743acb31c7d9688606,
+  markedTextMaterial: {fileID: 2100000, guid: d2c7c70a60d81479aa1eedf2f2f0f5c4, type: 2}
+  markedDrawingMaterial: {fileID: 2100000, guid: b6a8c7163c16e44158bd94fe6cee6924,
     type: 2}
   pipesAnswerController: {fileID: 630206917}
   questionLivingLetterPrefab: {fileID: 1279241928}
