@@ -191,7 +191,7 @@ namespace EA4S.Helpers
 
         public static string ToDebugString<T>(this IEnumerable<T> list)
         {
-            return "{" + string.Join(",", list.ToList().ConvertAll(x => x.ToString()).ToArray()) + "}";
+            return "{" + string.Join(",", list.ToList().ConvertAll(x => x == null ? "NONE" : x.ToString()).ToArray()) + "}";
         }
 
         public static string ToDebugString<TKey, TValue>(this IDictionary<TKey, TValue> dictionary)

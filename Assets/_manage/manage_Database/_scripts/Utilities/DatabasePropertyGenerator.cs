@@ -14,7 +14,7 @@ namespace EA4S.Database.Management
     /// </summary>
     public static class DatabasePropertyGenerator
     {
-        [MenuItem("Assets/Generate Database Properties")]
+        //[MenuItem("Assets/Generate Database Properties")]
         public static void GenerateDatabaseProperties()
         {
             var selectedGUIDs = Selection.assetGUIDs;

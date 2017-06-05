@@ -8,11 +8,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74dfce233ddb29b4294c3e23c1d3650d, type: 3}
+  m_Script: {fileID: -667331979, guid: b5bd0d848a86e48409fe56688d66ecb5, type: 3}
   m_Name: EA4S_Arabic SDF
   m_EditorClassIdentifier: 
   hashCode: 1221361303
-  material: {fileID: 21000011752393256}
+  material: {fileID: 21863560639530978}
   materialHashCode: -424761924
   fontAssetType: 1
   m_fontInfo:
@@ -31,11 +31,13 @@ MonoBehaviour:
     SubSize: 0.5
     Underline: -7.841797
     UnderlineThickness: 4.0283203
+    strikethrough: 13.886364
+    strikethroughThickness: 4.0283203
     TabWidth: 153.125
     Padding: 5
     AtlasWidth: 1024
     AtlasHeight: 1024
-  atlas: {fileID: 28000010948364288}
+  atlas: {fileID: 28387705860345464}
   m_glyphInfoList:
   - id: 32
     x: 6
@@ -5628,7 +5630,7 @@ MonoBehaviour:
   boldSpacing: 7
   italicStyle: 35
   tabSize: 10
---- !u!21 &21000011752393256
+--- !u!21 &21863560639530978
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -5664,7 +5666,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 28000010948364288}
+        m_Texture: {fileID: 28387705860345464}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -5676,7 +5678,7 @@ Material:
     m_Floats:
     - first:
         name: _Ambient
-      second: 0.554
+      second: 0.5
     - first:
         name: _Bevel
       second: 0.5
@@ -5703,7 +5705,7 @@ Material:
       second: 15
     - first:
         name: _Diffuse
-      second: 0.517
+      second: 0.5
     - first:
         name: _FaceDilate
       second: 0
@@ -5718,13 +5720,13 @@ Material:
       second: 0.05
     - first:
         name: _GlowOffset
-      second: -0.283
+      second: 0
     - first:
         name: _GlowOuter
       second: 0.05
     - first:
         name: _GlowPower
-      second: 0
+      second: 0.75
     - first:
         name: _GradientScale
       second: 6
@@ -5754,7 +5756,7 @@ Material:
       second: 0.875
     - first:
         name: _Reflectivity
-      second: 13.12
+      second: 10
     - first:
         name: _ScaleRatioA
       second: 0.8333333
@@ -5799,7 +5801,7 @@ Material:
       second: 1024
     - first:
         name: _UnderlayDilate
-      second: 0.288
+      second: 0
     - first:
         name: _UnderlayOffsetX
       second: 0
@@ -5808,7 +5810,7 @@ Material:
       second: 0
     - first:
         name: _UnderlaySoftness
-      second: 0.166
+      second: 0
     - first:
         name: _VertexOffsetX
       second: 0
@@ -5824,7 +5826,7 @@ Material:
     m_Colors:
     - first:
         name: _ClipRect
-      second: {r: -10000, g: -10000, b: 10000, a: 10000}
+      second: {r: -32767, g: -32767, b: 32767, a: 32767}
     - first:
         name: _EnvMatrixRotation
       second: {r: 0, g: 0, b: 0, a: 0}
@@ -5836,7 +5838,7 @@ Material:
       second: {r: 0, g: 1, b: 0, a: 0.5}
     - first:
         name: _MaskCoord
-      second: {r: 0, g: 0, b: 10000, a: 10000}
+      second: {r: 0, g: 0, b: 32767, a: 32767}
     - first:
         name: _OutlineColor
       second: {r: 0, g: 0, b: 0, a: 1}
@@ -5851,8 +5853,8 @@ Material:
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _UnderlayColor
-      second: {r: 0, g: 0, b: 0, a: 1}
---- !u!28 &28000010948364288
+      second: {r: 0, g: 0, b: 0, a: 0.5}
+--- !u!28 &28387705860345464
 Texture2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}

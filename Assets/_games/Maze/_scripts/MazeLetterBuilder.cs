@@ -127,7 +127,7 @@ namespace EA4S.Minigames.Maze
             newDot.transform.localPosition = Vector3.zero;
             newDot.transform.rotation = firstArrow.transform.rotation;
             newDot.transform.Rotate(Vector3.forward, 180, Space.World);
-            newDot.transform.localScale = newDot.transform.localScale * 0.67f;
+            newDot.transform.localScale = Vector3.one * 0.1f;
 
             firstArrow.GetComponent<MeshRenderer>().enabled = false;
         }

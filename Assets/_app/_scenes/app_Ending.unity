@@ -2553,8 +2553,8 @@ GameObject:
   m_Component:
   - component: {fileID: 353912034}
   - component: {fileID: 353912037}
-  - component: {fileID: 353912036}
   - component: {fileID: 353912035}
+  - component: {fileID: 353912036}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -2595,6 +2595,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 1
   isArabic: 1
+  isEnglishSubtitle: 0
   LocalizationId: 0
 --- !u!114 &353912036
 MonoBehaviour:
@@ -2604,12 +2605,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 353912033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
+  m_Script: {fileID: 1453722849, guid: b5bd0d848a86e48409fe56688d66ecb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2617,7 +2618,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: txeT
   m_isRightToLeft: 1
-  m_fontAsset: {fileID: 11400000, guid: ec76213212ac2438986d3d12b10f0625, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30344d57d55de4ec6acfb84117110925, type: 2}
   m_sharedMaterial: {fileID: 21000011752393256, guid: ec76213212ac2438986d3d12b10f0625,
     type: 2}
   m_fontSharedMaterials: []
@@ -2682,7 +2683,7 @@ MonoBehaviour:
   m_pageToDisplay: 1
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
-    textComponent: {fileID: 353912036}
+    textComponent: {fileID: 0}
     characterCount: 4
     spriteCount: 0
     spaceCount: 0
@@ -2691,11 +2692,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

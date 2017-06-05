@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: EA4S_Arabic SDF Outline
-  m_Shader: {fileID: 4800000, guid: dca26082f9cb439469295791d9f76fe5, type: 3}
+  m_Name: EA4S_Arabic MarkedFont SDF
+  m_Shader: {fileID: 4800000, guid: cafd18099dfc0114896e0a8b277b81b6, type: 3}
   m_ShaderKeywords: UNDERLAY_ON
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -36,7 +36,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 28000010948364288, guid: ec76213212ac2438986d3d12b10f0625,
+        m_Texture: {fileID: 28387705860345464, guid: 30344d57d55de4ec6acfb84117110925,
           type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -172,16 +172,16 @@ Material:
       second: 1024
     - first:
         name: _UnderlayDilate
-      second: 0.1
+      second: 0.288
     - first:
         name: _UnderlayOffsetX
-      second: 0
+      second: -0.09
     - first:
         name: _UnderlayOffsetY
       second: 0
     - first:
         name: _UnderlaySoftness
-      second: 0
+      second: 0.166
     - first:
         name: _VertexOffsetX
       second: 0
@@ -197,7 +197,7 @@ Material:
     m_Colors:
     - first:
         name: _ClipRect
-      second: {r: -10000, g: -10000, b: 10000, a: 10000}
+      second: {r: -32767, g: -32767, b: 32767, a: 32767}
     - first:
         name: _EnvMatrixRotation
       second: {r: 0, g: 0, b: 0, a: 0}
@@ -209,7 +209,7 @@ Material:
       second: {r: 0, g: 1, b: 0, a: 0.5}
     - first:
         name: _MaskCoord
-      second: {r: 0, g: 0, b: 10000, a: 10000}
+      second: {r: 0, g: 0, b: 32767, a: 32767}
     - first:
         name: _OutlineColor
       second: {r: 0, g: 0, b: 0, a: 1}
