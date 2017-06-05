@@ -178,7 +178,7 @@ Material:
       second: -0.09
     - first:
         name: _UnderlayOffsetY
-      second: 0.47
+      second: 0
     - first:
         name: _UnderlaySoftness
       second: 0.166
