@@ -18,12 +18,12 @@ MonoBehaviour:
   m_fontInfo:
     Name: EA4S_Arabic_Dots_Only
     PointSize: 59
-    Scale: 0
+    Scale: 1
     CharacterCount: 616
     LineHeight: 67.875
     Baseline: 0
     Ascender: 53.4375
-    CapHeight: 0
+    CapHeight: 42.25
     Descender: -12.5
     CenterLine: 0
     SuperscriptOffset: 53.4375
@@ -33,7 +33,7 @@ MonoBehaviour:
     UnderlineThickness: 4.321289
     strikethrough: 14.886364
     strikethroughThickness: 4.321289
-    TabWidth: 0
+    TabWidth: 163.75
     Padding: 5
     AtlasWidth: 1024
     AtlasHeight: 1024
@@ -42,10 +42,10 @@ MonoBehaviour:
   - id: 32
     x: 6
     y: 1029
-    width: 0
-    height: 0
+    width: 16.375
+    height: 65.9375
     xOffset: 0
-    yOffset: 0
+    yOffset: 53.4375
     xAdvance: 16.375
     scale: 1
   - id: 33
@@ -5637,7 +5637,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: EA4S_Arabic_Dots_Only SDF 1 Material
-  m_Shader: {fileID: 4800000, guid: edfcf888cd11d9245b91d2883049a57e, type: 3}
+  m_Shader: {fileID: 4800000, guid: cafd18099dfc0114896e0a8b277b81b6, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -5645,6 +5645,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
+    - first:
+        name: _BumpMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Cube
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - first:
         name: _FaceTex
       second:
@@ -5657,16 +5669,115 @@ Material:
         m_Texture: {fileID: 28728523420102666}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - first:
+        name: _OutlineTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - first:
+        name: _Ambient
+      second: 0.5
+    - first:
+        name: _Bevel
+      second: 0.5
+    - first:
+        name: _BevelClamp
+      second: 0
+    - first:
+        name: _BevelOffset
+      second: 0
+    - first:
+        name: _BevelRoundness
+      second: 0
+    - first:
+        name: _BevelWidth
+      second: 0
+    - first:
+        name: _BumpFace
+      second: 0
+    - first:
+        name: _BumpOutline
+      second: 0
     - first:
         name: _ColorMask
       second: 15
+    - first:
+        name: _Diffuse
+      second: 0.5
+    - first:
+        name: _FaceDilate
+      second: 0
+    - first:
+        name: _FaceUVSpeedX
+      second: 0
+    - first:
+        name: _FaceUVSpeedY
+      second: 0
+    - first:
+        name: _GlowInner
+      second: 0.05
+    - first:
+        name: _GlowOffset
+      second: 0
+    - first:
+        name: _GlowOuter
+      second: 0.05
+    - first:
+        name: _GlowPower
+      second: 0.75
+    - first:
+        name: _GradientScale
+      second: 5
+    - first:
+        name: _LightAngle
+      second: 3.1416
     - first:
         name: _MaskSoftnessX
       second: 0
     - first:
         name: _MaskSoftnessY
       second: 0
+    - first:
+        name: _OutlineSoftness
+      second: 0
+    - first:
+        name: _OutlineUVSpeedX
+      second: 0
+    - first:
+        name: _OutlineUVSpeedY
+      second: 0
+    - first:
+        name: _OutlineWidth
+      second: 0
+    - first:
+        name: _PerspectiveFilter
+      second: 0.875
+    - first:
+        name: _Reflectivity
+      second: 10
+    - first:
+        name: _ScaleRatioA
+      second: 0.8
+    - first:
+        name: _ScaleRatioB
+      second: 0.7
+    - first:
+        name: _ScaleRatioC
+      second: 0.7
+    - first:
+        name: _ScaleX
+      second: 1
+    - first:
+        name: _ScaleY
+      second: 1
+    - first:
+        name: _ShaderFlags
+      second: 0
+    - first:
+        name: _SpecularPower
+      second: 2
     - first:
         name: _Stencil
       second: 0
@@ -5683,18 +5794,66 @@ Material:
         name: _StencilWriteMask
       second: 255
     - first:
+        name: _TextureHeight
+      second: 512
+    - first:
+        name: _TextureWidth
+      second: 512
+    - first:
+        name: _UnderlayDilate
+      second: 0
+    - first:
+        name: _UnderlayOffsetX
+      second: 0
+    - first:
+        name: _UnderlayOffsetY
+      second: 0
+    - first:
+        name: _UnderlaySoftness
+      second: 0
+    - first:
         name: _VertexOffsetX
       second: 0
     - first:
         name: _VertexOffsetY
+      second: 0
+    - first:
+        name: _WeightBold
+      second: 0.5
+    - first:
+        name: _WeightNormal
       second: 0
     m_Colors:
     - first:
         name: _ClipRect
       second: {r: -32767, g: -32767, b: 32767, a: 32767}
     - first:
+        name: _EnvMatrixRotation
+      second: {r: 0, g: 0, b: 0, a: 0}
+    - first:
         name: _FaceColor
       second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _GlowColor
+      second: {r: 0, g: 1, b: 0, a: 0.5}
+    - first:
+        name: _MaskCoord
+      second: {r: 0, g: 0, b: 32767, a: 32767}
+    - first:
+        name: _OutlineColor
+      second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _ReflectFaceColor
+      second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _ReflectOutlineColor
+      second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _SpecularColor
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _UnderlayColor
+      second: {r: 0, g: 0, b: 0, a: 0.5}
 --- !u!28 &28728523420102666
 Texture2D:
   m_ObjectHideFlags: 0
