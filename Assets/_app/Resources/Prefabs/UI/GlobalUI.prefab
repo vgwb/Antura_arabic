@@ -4593,11 +4593,11 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 1
-  m_isAlignmentEnumConverted: 0
+  m_textAlignment: 258
+  m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: -30
+  m_lineSpacing: -10
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -6454,7 +6454,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 8.5, y: 0.000061035156}
-  m_SizeDelta: {x: -131, y: 642.18}
+  m_SizeDelta: {x: -131, y: 651.31}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224000013431732186
 RectTransform:
