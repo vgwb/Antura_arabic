@@ -5,6 +5,239 @@ to generate git log:
 git log --since='last month' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 =============
 
+2017-06-05 - TextMeshPro free 1.0.55.55.0b9
+2017-06-05 - TMPro fix
+2017-06-05 - fix .meta
+2017-06-05 - removed TMPro
+2017-06-05 - moved TMPro to /Plugins
+2017-06-05 - fix AreaDropmarker fonts references
+2017-06-05 - standard material for TMPro SickLetters fonts
+2017-06-05 - standard materials for TMPro fonts
+2017-06-05 - standard materials for TMPro fonts
+2017-06-05 - tag CORE to ColorTIcke scene
+2017-06-05 - [Togoban] fixed marked fonts references and materials
+2017-06-05 - [Togoban] fixed marked fonts references and materials
+2017-06-05 - fixed credits interline
+2017-06-05 - moved Credits into Resources
+2017-06-01 - fix DancigDots LLPrefab reference and updated fontAtlases
+2017-06-01 - rebuilt game custon arabic font atlases
+2017-06-01 - Updated gitignore. Commented context menu item for Generate Database Properties to avoid clutter.
+2017-06-01 - Added ParseAssetAsText and FindAllComponentsOfType to Replacement utilities.
+2017-06-01 - TMPro fonts atlas: remade Drawings and set all shaders to mobile/Distance Field
+2017-06-01 - renamed custom arabic fonts
+2017-06-01 - [DancingDots] remade png alpha channels in dots textures
+2017-06-01 - Added TMP_Replacement_README
+2017-06-01 - Renamed TestScripts to TMP_replacement
+2017-06-01 - Updated _Start and app_Map scene's materials.
+2017-06-01 - Missing meta to be removed.
+2017-06-01 - Removed OLD assets.
+2017-06-01 - Fixed TMP in TakeMeHome, ThrowBalls and Tobogan.
+2017-06-01 - Updated ReadingGame, Scanner, SickLetters with new TMP
+2017-06-01 - Fixed MissingLetter & MixedLetter TMP
+2017-06-01 - Updated Maze with new TMP. Fixed warnings with rocket LLs.
+2017-06-01 - FastCrowd, MakeFriends & Hide&Seek updated to TMPRO
+2017-06-01 - Fixed DancingDots and Egg
+2017-06-01 - Fixed ColorTickle for TMP and added correct new material.
+2017-06-01 - Fixed TMP references for Balloons and Assessments
+2017-06-01 - Replaced all APP scenes and prefabs.
+2017-06-01 - Replaced all LLPrefabs
+2017-06-01 - Fixed bug with replacement utility getting too many dependencies.
+2017-06-01 - Saved font modifications
+2017-06-01 - GlobalUI replacement complete.
+2017-06-01 - Added missing fonts to the Referencer
+2017-06-01 - Updated ReplacementUtility to work with RectTransforms.
+2017-06-01 - new custom Fonts by new TMPro
+2017-06-01 - name OLD font
+2017-06-01 - Reverted prefab handling in ReplacementUtility (was acting weird)
+2017-06-01 - Replacer now works with prefab instances, disconnecting them. Replacer now warns on trying to change prefabs directly.
+2017-06-01 - Replacement utility now works with inactive objects.
+2017-05-31 - custom game fonts into global Font folder
+2017-05-31 - SickeLetter font into its folder
+2017-05-31 - Removed TextContainer from Scale prefab in SickLetters.
+2017-05-31 - moved new donts and created new EA4S_sf-wonder-comic-bold SDF
+2017-05-31 - moved TMPro into Standard Assets
+2017-05-31 - Updated TMP_Replacer_Referencer with fonts.
+2017-05-31 - TMP_Replacer test mode is now more clear.
+2017-05-31 - Added new TMPRO Fonts.
+2017-05-31 - Fixed nullref bug with ReplacementUtility.
+2017-05-31 - TMP_Replacer now can work with a single scene or all loaded scenes.
+2017-05-31 - Added replacement utility
+2017-05-31 - Removed TMP examples.
+2017-05-31 - Replaced all references from OLD versions to NEW versions of the components.
+2017-05-31 - Switched TMP library from commercial to free
+2017-05-31 - Prepared all assets for the switch by making all the used components have a suffix "_OLD"
+2017-05-31 - removed docs )again)
+2017-05-31 - removed docs
+2017-05-31 - removed docs submodule
+2017-05-31 - Testing pushing docs submodule
+2017-05-31 - dont 0need VR splashscreen
+2017-05-31 - keep alive the Trash folder meta
+2017-05-31 - keep alive the Trash folder
+2017-05-31 - udpated urls
+2017-05-31 - added docs as submodule
+2017-05-31 - [docs] update docs url
+2017-05-31 - [docs] removed docs (will be submodules from another repo)
+2017-05-26 - font docs
+2017-05-26 - DB export: renamed exported db filename
+2017-05-26 - deubg: added SHIFT + R shortcut to bypass parental gate -> reserved area
+2017-05-26 - export db: add “static_” prefix to static tables
+2017-05-26 - Exported enums have an "enum_" prefix
+2017-05-26 - Renamed export DB file.
+2017-05-26 - Fixed bugs with db export. Fixed a typo.
+2017-05-25 - some data comments
+2017-05-25 - Fixed bug with
+2017-05-25 - Added injection of player UUID
+2017-05-25 - Added DB export with dynamic, static and enum data. All static data now has properties. Switched List<T> with arrays in all static data. Modified SQLite to allow custom table names. Updated static DB with the new changes.
+2017-05-25 - Commented unreachable code in TakeMeHome to avoid compilation warnings.
+2017-05-23 - Unity 5.5.3f1
+2017-05-08 - preparing for next 1.0.7
+2017-05-08 - default graphics settings
+2017-05-08 - CGL
+2017-05-08 - CGL
+2017-05-08 - disable Rate Button on Desktop build
+
+# Version 1.0.6
+
+2017-05-08 - preparing master 1.0.6
+2017-05-08 - improved comments about previous patch and CGL
+2017-05-08 - CGL
+2017-05-08 - issue #475 (2)
+2017-05-08 - Removed pause button in reward scene.
+2017-05-08 - issue #475
+2017-05-05 - fixed line endings (from Windows to Linux format)
+2017-05-05 - settings for Desktop monitor
+2017-05-05 - next version will be 1.0.6. setting dev mode
+
+# Version 1.0.5
+
+2017-05-03 - build 1.0.5
+2017-05-03 - [docs] update db management
+2017-05-03 - updated Install PDF (fixing broken last page)
+2017-05-02 - [typo] re-accessing string
+2017-05-02 - disabled Debugger in Android, too
+2017-05-02 - preparing 1.0.5 (android master)
+2017-05-02 - update Install Instruction PDF (ar + en)
+2017-05-01 - [docs] install updates
+2017-05-01 - updated .gitignore
+2017-05-01 - preparing for 1.0.5 BETA
+
+# Version 1.0.4
+
+2017-05-01 - disabled debugger
+2017-04-28 - optimized UI under iPad resolution
+2017-04-28 - preparing master build
+2017-04-28 - preparing 1.0.4
+2017-04-28 - [home] hide Antura under the Reserved Area prompt (becasue of a shader bug it was covering the texts)
+2017-04-28 - [home] arial and larger font in Reserved Area prompt
+2017-04-28 - [reserved area] improved fonts and buttons
+2017-04-28 - [Global UI] added generic english only big arial prompt
+2017-04-28 - [reserved area] prompt about PDF viewer to isntall on Android devices
+2017-04-28 - [DB & Reserved Area] method to get db filename and alert about its location
+2017-04-28 - [Reserved Area] Install Inastructions button enabled only for Android Devices
+2017-04-27 - [reserved Area] buttons with Arial font
+2017-04-27 - [reserved Area] open install PDF
+2017-04-26 - [DancingDots] Fixed music stops immediately when you drop the last DD
+2017-04-24 - Removed all variations from DancingDots.
+2017-04-21 - [AnturaSpace] Do not wait for Antura correct rotation before showing finger
+2017-04-21 - [AnturaSpace] Continous check for reaching target
+2017-04-21 - [AnturaSpace] Tutorial waits for Antura
+2017-04-21 - [AnturaSpace] Removed final dialogue
+2017-04-21 - [AnturaSpace] Fixed finger position (issue 1 and 3)
+2017-04-14 - [docs] index
+2017-04-14 - [docs] imporvements and DbManagement
+2017-04-14 - Excluding Diphtongs from Dancing Dots.
+2017-04-12 - [AnturaSpace] Fixed Tutorial
+2017-04-12 - Removed Test code
+2017-04-12 - [AnturaSpace] Modified Tutorial
+2017-04-12 - [AnturaSpace] Added AnturaSpaceUI.SetTutorialMode
+2017-04-12 - [AnturaSpace] Added GetNewCategory/ItemButton methods to AnturaSpaceUI
+2017-04-11 - [HideAndSeek] Difficulty implemented and multiple wrong letters are selected
+2017-04-11 - [Egg] Fixed bones bar
+2017-04-11 - [ColorTickle] Fixed Bones bar
+2017-04-11 - [ReadingGame] Optimized ReadingGame
+2017-04-11 - [Songs] Tutorial starting from handle
+2017-04-11 - ifdef for iOS postprocessor
+2017-04-11 - [FastCrowd] Composer on Letter Variation
+2017-04-11 - [build] automatically set XCode params: BITCODE = NO and enable file sharing throught iTunes
+2017-04-10 - [AnturaSpace] Touch to close customization, X always go back
+2017-04-10 - [FastCrowd] Hide WordComposer on EndGame
+2017-04-10 - [AnturaSpace] Using math instead of colliders to confine boundaries to current view frustum
+2017-04-10 - [Egg Sequence] Easy Up
+2017-04-10 - [FastCrowd] Changed ending behaviour, time and score
+2017-04-10 - [Minigames] Same End Music + Delay + UI Management for each minigame
+2017-04-09 - [reserved area] improiving TestPDF open
+2017-04-07 - [reserved area] bigger info texts and init TestPDF open
+2017-04-06 - [clean up] deleted obsolete and unused assets from trash
+2017-04-06 - moved TextmeshPro back into Standard Assets (speeds up compilation and maybe fixes #470 )
+2017-04-06 - Assessment changed was wrong. Now correct.
+2017-04-06 - [clenaup] removed unused method
+2017-04-06 - code cleanup
+2017-04-06 - [Parental Gate] The Text is too small/difficult to read (fixes #469 )
+2017-04-06 - Now for all assessment types it is possible to play back the audio of correct answers, (those sounds are sorted). To do that just set the correct flag in assessment factory. Look ad diff to get a idea of how to configure each single assessment (in example in case you want play audio only when there is answer you do:
+2017-04-04 - [Map] at the end of the First Contact we should have a tutorial anim on the PLAY button #453
+2017-04-04 - [Map] We could play a dialog to introduce each Stage in the Map #295
+2017-04-04 - [Map] at the end of the First Contact we should have a tutorial anim on the PLAY button #453
+2017-04-03 - [First Contact] You can start playing without having entered the Antura Space #454
+2017-04-03 - [Code] Remove UniRX #466
+2017-03-28 - [audio] optimization
+2017-03-28 - [audio] feminine dialogs (not used yet, but prepared)
+2017-03-26 - [SL, DD, TMH, Scanner] Hide UI on EndGame screen, [TMH] fix arrow visibility
+2017-03-26 - Fixed number texts for the reserved area dialog.
+2017-03-26 - next version will be 1.0.4
+
+# Version 1.0.3
+
+2017-03-26 - building 1.0.3
+2017-03-25 - [ThrowBalls] Fix glitching bug.
+2017-03-25 - next version will be 1.0.3
+2017-03-25 - preparing build 1.0.2
+2017-03-21 - [docs] subtitle
+2017-03-24 - Updated PS data table.
+2017-03-24 - Added SafeLaunch debug option. MixedLetters_Alphabet now ignores journey (blocking bug fix)
+2017-03-22 - Removed dependency on UniRX from assessments, removed a useless debug log. Added temporary custom tuple.
+2017-03-21 - TMPro] opti,zopyopm
+2017-03-20 - [clean] Map
+2017-03-20 - TMPro: removed custom hack but use native TMPro.Events (so we migrate to the free dll version)
+2017-03-20 - [docs] Build notes
+2017-03-19 - [book] fixed arabic typo in menu (fixes #446 )
+2017-03-19 - CC license in README (as addon to BSD)
+2017-03-19 - don’t impot materials for this
+2017-03-19 - updated LICENSE for automatic meta description on GitHub
+2017-03-19 - updated LICENSE for automatic meta description on GitHub
+
+# Version 1.0.2
+
+2017-03-18 - building 1.0.2 (BETA 2)
+2017-03-18 - [clean] really put into trash not used anymore & deprecated assets
+2017-03-18 - gfx settings restored
+2017-03-17 - Removed DangerMeter
+2017-03-17 - [data] added current databases as ODS spreasheets
+2017-03-17 - building 1.0.2 (BETA 1)
+2017-03-17 - [clean] removed obsolete StarFlowers
+2017-03-17 - [clean] finally removed ref to obsolete Antura prefab
+2017-03-17 - [clean] unused assets in Trash deleted
+2017-03-17 - [clean] game_MissingLetter removed unused obsolete DangerMeter prefab
+2017-03-17 - [clean] scenes tags
+2017-03-17 - [clean] removed old preview_MiniGames
+2017-03-17 - [clean] removed refs to old images
+2017-03-17 - [clean] removed _test folder
+2017-03-17 - [clean] Maze game assets
+2017-03-17 - [clean] Bomne Biscuit model
+2017-03-17 - [clean] TakeMeHome model
+2017-03-17 - [clean] ThrowBall material
+2017-03-17 - Removed _tests/Daniele folder and moved DTester into _manage (as DemiTester)
+2017-03-17 - [clean] removed lots of unused assets
+2017-03-17 - scene label
+2017-03-17 - [Audio] Update music file InGame4 - Reduce size
+2017-03-17 - Text_area_white is used somewhere, shrink to 112 KB
+2017-03-17 - Removed from wheel atlas
+2017-03-17 - some docs polishing
+2017-03-17 - updated
+2017-03-17 - new docs links
+2017-03-17 - [Docs] moved dev docs back to main repo
+2017-03-16 - going 1.0.2
+2017-03-16 - next version will be 1.0.2 beta0!
+
 # Version 1.0.1 released
 
 2017-03-16 - preparing new 1.0.1 build

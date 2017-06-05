@@ -1,6 +1,6 @@
 # EA4S - Antura and the Letters
 
-the Unity 3D project  
+the Unity 3D open source project  
 by [TH Köln / Cologne Game Lab](http://www.colognegamelab.de/), [Video Games Without Borders](http://vgwb.org) & [Wixel Studios](www.wixelstudios.com)
 
 # Docs and Websites
