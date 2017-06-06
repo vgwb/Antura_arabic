@@ -12,7 +12,7 @@ the open source project for game "Antura and the Letters", part of the [EduApp4S
 Anybody is invited to collaborate to this open source project:
 please check the [collaborator docs](https://vgwb.github.io/EA4S_Antura_U3D/Guidelines/Collaborator.html).
 
-## Tecnology
+## Technology
 this repository is a Unity 5.5.x project ([download it here](https://unity3d.com/get-unity/download/archive))
 
 ## Licensing
