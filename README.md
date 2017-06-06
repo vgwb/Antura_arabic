@@ -4,7 +4,7 @@ the Unity open source project for game "Antura and the Letters", part of the Edu
 
 ## Docs and links
 
-the Antura **Developer Docs** are [vgwb.github.io/EA4S_Antura_Docs](https://vgwb.github.io/EA4S_Antura_Docs/)
+the Antura **Developer Docs** are [vgwb.github.io/EA4S_Antura_U3D](https://vgwb.github.io/EA4S_Antura_U3D/)
 
 the Antura **Unity Project** is [github.com/vgwb/EA4S_Antura_U3D](https://github.com/vgwb/EA4S_Antura_U3D/)
 

@@ -1,0 +1,5 @@
+title: Antura and the Letters - Developer Docs
+description: project documentation
+theme: jekyll-theme-dinky
+gems:
+  - jekyll-sitemap
