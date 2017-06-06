@@ -1,8 +1,12 @@
 # releases
 
-## future versions
-- export db
-- full OpenSource
+## 1.0.7 - future
+- export db from reserved area
+- full OpenSource and public source codes
+- free TextMesh Pro asset
+- integrated docs
+
+---
 
 ## 1.0.6 - 9 may 2017
 - bug fixing

@@ -14,6 +14,7 @@ the Antura **public website** is [www.antura.org](http://www.antura.org)
 ## Developer Guidelines
 - [Install](HowTo/INSTALL.md) how to install and configure the Unity project
 - [Build](HowTo/Build.md) how to build the app for mobile devices
+- [Collaborator](Guidelines/Collaborator.md) how to collaborate
 - [Debug Shortcuts](HowTo/DebugShortcuts.md) cheats and keyboard shortcuts to fast the tests
 - [Developer Guidelines and Tips](Guidelines/DeveloperGuidelines.md) general guidelines for developers that want to contribute to the project
 - [Refactoring Guidelines](Guidelines/RefactoringGuidelines.md)

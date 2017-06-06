@@ -1,6 +1,6 @@
 # Antura and the Letters
 
-the Unity open source project for game "Antura and the Letters", part of the EduApp4Syria (EA4S) initiative.
+the open source project for game "Antura and the Letters", part of the [EduApp4Syria](https://www.norad.no/eduapp4syria) (EA4S) initiative.
 
 ## Docs and links
 
@@ -10,10 +10,13 @@ the Antura **Unity Project** is [github.com/vgwb/EA4S_Antura_U3D](https://github
 
 the Antura **public website** is [www.antura.org](http://www.antura.org)
 
+## Tecnology
+this repository is a Unity 5.5.x project ([download it here](https://unity3d.com/get-unity/download/archive))
+
 ## Collaborate
 
-anybody is invited to colalborate to this open source project.
-please check the docs
+anybody is invited to collaborate to this open source project.
+please check the [collaborator docs](https://vgwb.github.io/EA4S_Antura_U3D/Guidelines/Collaborator.md)
 
 ## Licensing
 
