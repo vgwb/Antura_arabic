@@ -313,7 +313,7 @@ namespace EA4S.Audio
 
         #region Audio clip management
 
-        private AudioClip GetAudioClip(LocalizationData data)
+        public AudioClip GetAudioClip(LocalizationData data)
         {
             var localizedAudioFileName = data.GetLocalizedAudioFileName(AppManager.I.Player.Gender);
             var res = GetCachedResource("AudioArabic/Dialogs/" + localizedAudioFileName);
