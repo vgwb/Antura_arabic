@@ -76,7 +76,6 @@
 
 #if UNITY_EDITOR
         public const string UrlGithubRepository = "https://github.com/vgwb/Antura_arabic";
-        public const string UrlTrello = "https://trello.com/b/ltLndaQI/ea4s-beta";
 #endif
 
         // Application details (used by Teacher and maybe other)

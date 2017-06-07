@@ -262,8 +262,9 @@ namespace EA4S.Profile
         /// </value>
         public List<RewardPackUnlockData> RewardsUnlocked {
             get {
-                if (_rewardsUnlocked == null)
+                if (_rewardsUnlocked == null) {
                     _rewardsUnlocked = LoadRewardsUnlockedFromDB();
+                }
                 return _rewardsUnlocked;
             }
 
