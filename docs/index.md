@@ -30,6 +30,25 @@ by TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
 - [Player Profile](Modules/PlayerProfile.md) how the Player Profile Manager works, a subsystem that allows the use of several profiles on the same device.
 - [Teacher](Modules/Teacher.md) how the Teacher System works. This subsystem is responsible for providing learning content data to the minigames.
 
+### Minigames details
+- [Assessments](Minigames/Assessments.md)
+- [Balloons](Minigames/Balloons.md)
+- [ColorTickle](Minigames/ColorTickle.md)
+- [DancingDots](Minigames/DancingDots.md)
+- [Egg](Minigames/Egg.md)
+- [FastCrowd](Minigames/FastCrowd.md)
+- [HideAndSeek](Minigames/HideAndSeek.md)
+- [MakeFriends](Minigames/MakeFriends.md)
+- [Maze](Minigames/Maze.md)
+- [MissingLetter](Minigames/MissingLetter.md)
+- [MixedLetters](Minigames/MixedLetters.md)
+- [ReadingGame](Minigames/ReadingGame.md)
+- [Scanner](Minigames/Scanner.md)
+- [SickLetters](Minigames/SickLetters.md)
+- [TakeMeHome](Minigames/TakeMeHome.md)
+- [ThrowBalls](Minigames/ThrowBalls.md)
+- [Tobogan](Minigames/Tobogan.md)
+
 ###  Database
 - [Database](Modules/Database.md) the datasets used everywhere.
 - [Database Schemas](Modules/DatabaseSchemas.md) details on db tables and schemas
