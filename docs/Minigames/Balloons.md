@@ -14,3 +14,8 @@
 - [Warning] [BalloonsGame] [OnPoppedNonRequiredBalloon] Animator has not been initialized.
 - [MakeWordPromptGreen] Animator has not been initialized.
 - [Warning] [LetterPromptController] [OnStateChanged] Animator
+
+## Optimization
+
+there are many deactivate GameObjects.
+some are very big, like `Environment_old` can they be deleted?

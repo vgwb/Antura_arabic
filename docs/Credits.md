@@ -1,8 +1,6 @@
 # Produced by
 
-# [TH Köln / Cologne Game Lab](http://www.colognegamelab.de)
-# [Video Games Without Borders](http://vgwb.org)
-# & [Wixel Studios](www.wixelstudios.com)
+# [TH Köln / Cologne Game Lab](http://www.colognegamelab.de), [Video Games Without Borders](http://vgwb.org) & [Wixel Studios](www.wixelstudios.com)
 
 ## CORE TEAM
 
@@ -223,32 +221,31 @@ Prof. Stephane Natkin
 ### UNIVERSITY OF TAMPERE
 Dr. Juho Hamari
 
-
 ## SPECIAL THANKS TO
 
-Gaby Gehlen (Wiku Köln)
-Sultana Denise Marquardt (Wiku Köln)
-Till Lupertz (German Red Cross)
-Liv Marte Kristiansen Nordhaug (Norad)
-Alf Inge Wang (Norwegian University of Science)
-Leila Chihab
-Roberto Mangiafico
-Miriam Lozano
-Curtis Maughan
-Mai Saki
-Fabio Cecere
+- Gaby Gehlen (Wiku Köln)
+- Sultana Denise Marquardt (Wiku Köln)
+- Till Lupertz (German Red Cross)
+- Liv Marte Kristiansen Nordhaug (Norad)
+- Alf Inge Wang (Norwegian University of Science)
+- Leila Chihab
+- Roberto Mangiafico
+- Miriam Lozano
+- Curtis Maughan
+- Mai Saki
+- Fabio Cecere
 
 
 ### PRODUCED WITH THE GENEROUS SUPPORT OF
-Unity
-TextMesh Pro
-Slack
-Abdullah & Ebtisam's Charitable Association
+- Unity
+- TextMesh Pro
+- Slack
+- Abdullah & Ebtisam's Charitable Association
 
 ### AND THE SUPPORT OF
-DOTween (C# library)
-Arabic Support (C# library)
-GitHub
+- DOTween (C# library)
+- Arabic Support (C# library)
+- GitHub
 
 
 This project was funded by the Norwegian Ministry of Foreign Affairs as part of EduApp4Syria innovation competition.
