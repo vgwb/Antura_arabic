@@ -3,8 +3,8 @@
 the open source project for game "Antura and the Letters", part of the [EduApp4Syria (EA4S) initiative](https://www.norad.no/eduapp4syria), produced by [TH Köln / Cologne Game Lab](http://www.colognegamelab.de/), [Video Games Without Borders](http://vgwb.org) & [Wixel Studios](www.wixelstudios.com).
 
 ## Project references
-- **Developer Docs:** [vgwb.github.io/EA4S_Antura_U3D](https://vgwb.github.io/EA4S_Antura_U3D/)
-- **Source Code:** [github.com/vgwb/EA4S_Antura_U3D](https://github.com/vgwb/EA4S_Antura_U3D/)
+- **Developer Docs:** [vgwb.github.io/Antura_arabic](https://vgwb.github.io/Antura_arabic)
+- **Source Code:** [github.com/vgwb/Antura_arabic](https://github.com/vgwb/Antura_arabic)
 - **Public Website:** [www.antura.org](http://www.antura.org)
 
 ## Collaborate
