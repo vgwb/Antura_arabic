@@ -86,8 +86,7 @@ namespace EA4S.Database
 
         public string GetLocalizedAudioFileName(PlayerGender playerGender)
         {
-            // TODO: Add this when female audio is ready
-            // if (playerGender == PlayerGender.F && ArabicFemale != string.Empty) return AudioFile + "_F";
+            if (playerGender == PlayerGender.F && ArabicFemale != string.Empty && AudioFile != string.Empty) return AudioFile + "_F";
             return AudioFile;
         }
 

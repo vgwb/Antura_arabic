@@ -313,9 +313,23 @@ namespace EA4S.Audio
 
         #region Audio clip management
 
-        public AudioClip GetAudioClip(Database.LocalizationData data)
+        private AudioClip GetAudioClip(LocalizationData data)
         {
-            return GetCachedResource("AudioArabic/Dialogs/" + data.GetLocalizedAudioFileName(AppManager.I.Player.Gender));
+            var localizedAudioFileName = data.GetLocalizedAudioFileName(AppManager.I.Player.Gender);
+            var res = GetCachedResource("AudioArabic/Dialogs/" + localizedAudioFileName);
+            
+            // Fallback to neutral version if not found
+            if (res == null)
+            {
+                var neutralAudioFileName = data.GetLocalizedAudioFileName(PlayerGender.M);
+                if (localizedAudioFileName != neutralAudioFileName)
+                {
+                    Debug.LogWarning("Female audio file expected for localization ID " + data.Id + " was not found");
+                    res = GetCachedResource("AudioArabic/Dialogs/" + neutralAudioFileName);
+                }
+            }
+
+            return res;
         }
 
         public AudioClip GetAudioClip(LetterData data)
