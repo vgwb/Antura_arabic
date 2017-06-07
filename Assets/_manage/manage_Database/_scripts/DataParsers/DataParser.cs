@@ -5,7 +5,7 @@ using UnityEngine;
 namespace EA4S.Database.Management
 {
     /// <summary>
-    /// Allows the parsing of a set of data contained in a JSON string and converst it 
+    /// Allows the parsing of a set of data contained in a JSON string and converts it 
     /// Provides support for custom validation and automatic generation of enumerators.
     /// </summary>
     /// <typeparam name="D">Data type to parse for each row of the JSON content</typeparam>
@@ -16,24 +16,34 @@ namespace EA4S.Database.Management
         {
             table.Clear();  // we re-generate the whole table
 
-            var list = Json.Deserialize(json) as List<object>;
-            foreach (var row in list) {
-                var dict = row as Dictionary<string, object>;
-                var data = CreateData(dict, db);
+            var rootDict = Json.Deserialize(json) as Dictionary<string, object>;
+            foreach (var rootPair in rootDict)
+            {
+                var list = rootPair.Value as List<object>;
+                foreach (var row in list)
+                {
+                    var dict = row as Dictionary<string, object>;
 
-                if (data == null) {
-                    continue;
-                }
+                    var data = CreateData(dict, db);
 
-                var value = table.GetValue(data.GetId());
-                if (value != null) {
-                    if (!CanHaveSameKeyMultipleTimes) {
-                        LogValidation(data, "found multiple ID.");
+                    if (data == null)
+                    {
+                        continue;
                     }
-                    continue;
+
+                    var value = table.GetValue(data.GetId());
+                    if (value != null)
+                    {
+                        if (!CanHaveSameKeyMultipleTimes)
+                        {
+                            LogValidation(data, "found multiple ID.");
+                        }
+                        continue;
+                    }
+
+                    table.Add(data);
                 }
 
-                table.Add(data);
             }
 
             FinalValidation(table, db);
