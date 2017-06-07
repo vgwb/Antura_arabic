@@ -1,6 +1,7 @@
 # releases
 
 ## 1.0.7 - future
+- switching JSON format to match Export Sheet Data from Google Sheets
 - export db from reserved area
 - full OpenSource and public source codes
 - free TextMesh Pro asset
