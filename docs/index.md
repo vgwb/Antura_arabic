@@ -18,6 +18,7 @@ by TH Köln / Cologne Game Lab, Video Games Without Borders & Wixel Studios
 - [Debug Shortcuts](HowTo/DebugShortcuts.md) cheats and keyboard shortcuts to fast the tests
 - [Developer Guidelines and Tips](Guidelines/DeveloperGuidelines.md) general guidelines for developers that want to contribute to the project
 - [Refactoring Guidelines](Guidelines/RefactoringGuidelines.md)
+- [Export Google Sheet Data](HowTo/ExportGoogleSheetData.md) as JSON files
 - [Arabic Font](HowTo/ArabicFont.md) how to create the arabic Atlas with TextMeshPro
 - [Drawing Font](HowTo/DrawingsFont.md) how to create the drawings font Atlas with TextMeshPro
 
