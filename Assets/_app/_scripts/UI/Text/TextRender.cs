@@ -1,6 +1,7 @@
 ﻿using EA4S.Core;
 using EA4S.Helpers;
 using EA4S.MinigamesAPI;
+using EA4S.Profile;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -171,7 +172,7 @@ namespace EA4S.UI
             // Debug.Log("SetSentence " + sentenceId);
             Database.LocalizationData row = LocalizationManager.GetLocalizationData(sentenceId);
             isArabic = true;
-            text = row.Arabic;
+            text = row.GetLocalizedText(AppManager.I.Player.Gender);
         }
 
         /// <summary>

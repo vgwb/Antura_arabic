@@ -267,7 +267,7 @@ namespace EA4S.Audio
             if (clearPreviousCallback)
                 dialogueEndedCallbacks.Clear();
 
-            if (!string.IsNullOrEmpty(data.AudioFile)) {
+            if (!string.IsNullOrEmpty(data.GetLocalizedAudioFileName(AppManager.I.Player.Gender))) {
                 AudioClip clip = GetAudioClip(data);
                 return new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
             }
@@ -289,7 +289,7 @@ namespace EA4S.Audio
             if (clearPreviousCallback)
                 dialogueEndedCallbacks.Clear();
 
-            if (!string.IsNullOrEmpty(data.AudioFile)) {
+            if (!string.IsNullOrEmpty(data.GetLocalizedAudioFileName(AppManager.I.Player.Gender))) {
                 AudioClip clip = GetAudioClip(data);
                 var wrapper = new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
                 if (callback != null)
@@ -313,9 +313,23 @@ namespace EA4S.Audio
 
         #region Audio clip management
 
-        public AudioClip GetAudioClip(Database.LocalizationData data)
+        public AudioClip GetAudioClip(LocalizationData data)
         {
-            return GetCachedResource("AudioArabic/Dialogs/" + data.AudioFile);
+            var localizedAudioFileName = data.GetLocalizedAudioFileName(AppManager.I.Player.Gender);
+            var res = GetCachedResource("AudioArabic/Dialogs/" + localizedAudioFileName);
+            
+            // Fallback to neutral version if not found
+            if (res == null)
+            {
+                var neutralAudioFileName = data.GetLocalizedAudioFileName(PlayerGender.M);
+                if (localizedAudioFileName != neutralAudioFileName)
+                {
+                    Debug.LogWarning("Female audio file expected for localization ID " + data.Id + " was not found");
+                    res = GetCachedResource("AudioArabic/Dialogs/" + neutralAudioFileName);
+                }
+            }
+
+            return res;
         }
 
         public AudioClip GetAudioClip(LetterData data)

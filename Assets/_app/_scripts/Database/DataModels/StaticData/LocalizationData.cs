@@ -60,6 +60,13 @@ namespace EA4S.Database
         }
         [SerializeField] private string _Arabic;
 
+        public string ArabicFemale
+        {
+            get { return _ArabicFemale; }
+            set { _ArabicFemale = value; }
+        }
+        [SerializeField] private string _ArabicFemale;
+
         public string AudioFile
         {
             get { return _AudioFile; }
@@ -75,6 +82,18 @@ namespace EA4S.Database
         public string GetId()
         {
             return Id;
+        }
+
+        public string GetLocalizedAudioFileName(PlayerGender playerGender)
+        {
+            if (playerGender == PlayerGender.F && ArabicFemale != string.Empty && AudioFile != string.Empty) return AudioFile + "_F";
+            return AudioFile;
+        }
+
+        public string GetLocalizedText(PlayerGender playerGender)
+        {
+            if (playerGender == PlayerGender.F && ArabicFemale != string.Empty) return ArabicFemale;
+            return Arabic;
         }
     }
 }

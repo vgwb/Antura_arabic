@@ -51,8 +51,9 @@
 
         /// <summary>
         /// Version of the Static Database Scheme.
+        /// v1.0.7 - added ArabicFemale to LocalizationData
         /// </summary>
-        public const string StaticDbSchemeVersion = "1.0.2";
+        public const string StaticDbSchemeVersion = "1.0.7";
 
         /// <summary>
         /// Version of the MySQL Database Scheme.

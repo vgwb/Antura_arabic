@@ -18,6 +18,7 @@ namespace EA4S.Database.Management
             data.Context = ToString(dict["Context"]);
             data.English = ToString(dict["English"]);
             data.Arabic = ToString(dict["Arabic"]);
+            data.ArabicFemale = ToString(dict["ArabicFemale"]);
             data.AudioFile = ToString(dict["AudioFile"]);
 
             return data;

@@ -7,12 +7,12 @@ namespace EA4S.Core
     {
         public static string GetTranslation(Database.LocalizationDataId id)
         {
-            return GetLocalizationData(id).Arabic; // refactor: remove reference to the Arabic language
+            return GetLocalizationData(id).GetLocalizedText(AppManager.I.Player.Gender);
         }
 
         public static string GetTranslation(string id)
         {
-            return GetLocalizationData(id).Arabic;  // refactor: remove reference to the Arabic language
+            return GetLocalizationData(id).GetLocalizedText(AppManager.I.Player.Gender); 
         }
 
         public static Database.LocalizationData GetLocalizationData(Database.LocalizationDataId id)
