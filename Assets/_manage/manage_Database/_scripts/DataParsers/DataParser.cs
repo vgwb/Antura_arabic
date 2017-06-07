@@ -19,23 +19,31 @@ namespace EA4S.Database.Management
             var rootDict = Json.Deserialize(json) as Dictionary<string, object>;
             foreach (var rootPair in rootDict)
             {
-                var dict = rootPair.Value as Dictionary<string, object>;
-                   
-                var data = CreateData(dict, db);
+                var list = rootPair.Value as List<object>;
+                foreach (var row in list)
+                {
+                    var dict = row as Dictionary<string, object>;
 
-                if (data == null) {
-                    continue;
-                }
+                    var data = CreateData(dict, db);
 
-                var value = table.GetValue(data.GetId());
-                if (value != null) {
-                    if (!CanHaveSameKeyMultipleTimes) {
-                        LogValidation(data, "found multiple ID.");
+                    if (data == null)
+                    {
+                        continue;
                     }
-                    continue;
+
+                    var value = table.GetValue(data.GetId());
+                    if (value != null)
+                    {
+                        if (!CanHaveSameKeyMultipleTimes)
+                        {
+                            LogValidation(data, "found multiple ID.");
+                        }
+                        continue;
+                    }
+
+                    table.Add(data);
                 }
 
-                table.Add(data);
             }
 
             FinalValidation(table, db);

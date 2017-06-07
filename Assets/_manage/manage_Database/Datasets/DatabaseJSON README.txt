@@ -10,5 +10,6 @@ Once you have the add on:
 - keep everything at the default settings, but:
 	- select "Current sheet only" for "Select Sheet(s)" under "Format"
 	- tick "Force string values" under "JSON Options"
+	- tick "Export sheet arrays" under "JSON Options"
 - click the Export button
 - download the file

@@ -2396,7 +2396,7 @@ MonoBehaviour:
       _Area: mood
       _When: Once a day
       _Context: One dialog "How do you feel?"
-      _English: '"Welcome back! How do you feel today?"'
+      _English: Welcome back! How do you feel today?
       _Arabic: "\u0623\u0647\u0644\u0627\u064B \u0628\u0639\u0648\u062F\u062A\u0650\u0643!
         \u0643\u064A\u0641 \u062A\u0634\u0639\u0631\u064F \u0627\u0644\u064A\u0648\u0645\u061F"
       _AudioFile: Mood_Question_1
@@ -2405,7 +2405,7 @@ MonoBehaviour:
       _Area: mood
       _When: 
       _Context: 
-      _English: '"Hello! How are you today?"'
+      _English: Hello! How are you today?
       _Arabic: "\u0645\u0631\u062D\u0628\u0627\u064B\u060C \u0643\u064A\u0641 \u062D\u0627\u0644\u064F\u0643
         \u0627\u0644\u064A\u0648\u0645\u061F"
       _AudioFile: Mood_Question_2
@@ -2414,7 +2414,7 @@ MonoBehaviour:
       _Area: mood
       _When: 
       _Context: 
-      _English: '"Welcome back! How''s going?"'
+      _English: Welcome back! How's going?
       _Arabic: "\u0623\u0647\u0644\u0627\u064B\u064B \u0628\u0639\u0648\u062F\u062A\u0650\u0643!
         \u0643\u064A\u0641 \u062A\u0634\u0639\u0631\u064F \u0627\u0644\u064A\u0648\u0645\u061F"
       _AudioFile: Mood_Question_3
