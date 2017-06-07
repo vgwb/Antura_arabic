@@ -147,7 +147,7 @@ namespace EA4S.UI
 
             Database.LocalizationData row = LocalizationManager.GetLocalizationData(sentenceId);
             TitleGO.GetComponent<TextRender>().isArabic = true;
-            TitleGO.GetComponent<TextRender>().text = row.Arabic;
+            TitleGO.GetComponent<TextRender>().text = row.GetLocalizedText(AppManager.I.Player.Gender);
 
             AudioManager.I.PlayDialogue(sentenceId);
 
