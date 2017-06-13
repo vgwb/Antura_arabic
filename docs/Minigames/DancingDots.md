@@ -1,7 +1,5 @@
 # Minigame Dancing Dots
 
-## Developer notes
-
 ## Testing procedure
 
 Total tests: 1
@@ -9,15 +7,13 @@ Total tests: 1
 - Difficulty Levels: ininfluent
 
 ### Shortcuts
-TODO
-
+_none_
 
 ## Variations
 
 ### Dancing Dots
-#### Description
 Player must add the correct dots.
- 
+
 #### Configuration Notes
 
 #### Difficulty
@@ -33,9 +29,9 @@ Player must add the correct dots.
 - 2 stars if...
 - 1 star if...
 
-
+---
 ## Warnings to be fixed
 
 ## Open Questions
-two new custom Fonts Atlas are used: `EA4S_Arabic Dotless DancingDots  SDF` and `EA4S_Arabic DotsOnly DancingDots SDF`. are they really needed? can't they be integrated into the main arabic atlas?
+two new custom Fonts Atlas are used: `EA4S_Arabic Dotless DancingDots SDF` and `EA4S_Arabic DotsOnly DancingDots SDF`. are they really needed? can't they be integrated into the main arabic atlas?
 how to correctly generate them?

@@ -1,24 +1,22 @@
 # Minigame Balloons
 
-## Developer notes
-
-
 ## Testing procedure
-
 Total tests: 4
-- Variations: 4
+- Variations
+    1. Balloons_letter
+    2. Balloons_spelling
+    3. Balloons_words
+    4. Balloons_counting
 - Difficulty Levels: not used
 
 ### Shortcuts
-TODO
-
+_none_
 
 ## Variations
 
-### Balloons_letter
-#### Description
+### 1. Balloons_letter
 Player must find the correct letter.
- 
+
 #### Configuration Notes
 
 #### Difficulty
@@ -28,12 +26,10 @@ Ignored
 - 3 stars if...
 - 2 stars if...
 - 1 star if...
-
-
-### Balloons_spelling
-#### Description
+---
+### 2. Balloons_spelling
 Player must find the correct letters in order.
- 
+
 #### Configuration Notes
 
 #### Difficulty
@@ -43,13 +39,10 @@ Ignored
 - 3 stars if...
 - 2 stars if...
 - 1 star if...
-
-
-
-### Balloons_words
-#### Description
+---
+### 3. Balloons_words
 Player must find the correct word.
- 
+
 #### Configuration Notes
 
 #### Difficulty
@@ -59,13 +52,10 @@ Ignored
 - 3 stars if...
 - 2 stars if...
 - 1 star if...
-
-
-
-### Balloons_counting
-#### Description
+---
+### 4. Balloons_counting
 Player must find the correct words in order.
- 
+
 #### Configuration Notes
 
 #### Difficulty
@@ -75,9 +65,7 @@ Ignored
 - 3 stars if...
 - 2 stars if...
 - 1 star if...
-
-
-
+---
 ## Warnings to be fixed
 
 **tons of**:
@@ -85,9 +73,7 @@ Ignored
 - [MakeWordPromptGreen] Animator has not been initialized.
 - [Warning] [LetterPromptController] [OnStateChanged] Animator
 
-
 ## Optimization
 
 there are many deactivate GameObjects.
 some are very big, like `Environment_old` can they be deleted?
-
