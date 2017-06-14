@@ -6,22 +6,11 @@ namespace EA4S.MinigamesCommon
     /// Base class for an in-scene manager of a minigame.
     /// To be derived by specific game scene managers.
     /// </summary>
-    // refactor: the dependency on ModularFramework.Core.SubGame is unclear
     // refactor: this should be moved to _minigames/_common 
     public abstract class MiniGameBase : Singleton<MiniGameBase>
     {
-        public bool UseTestGameplayInfo;
-
-        // refactor: it is not clear how the GameplayInfo is used, as the core does not mention it
-        public AnturaGameplayInfo GameplayInfo = new AnturaGameplayInfo();
-
         protected virtual void Start()
         {
-            if (!UseTestGameplayInfo) {
-                GameplayInfo = AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
-            } else { // manual set on framework for test session
-                AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo = GameplayInfo;
-            }
             ReadyForGameplay();
         }
 

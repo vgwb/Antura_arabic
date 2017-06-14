@@ -1,28 +1,19 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using System;
-using System.Collections.Generic;
+
 namespace EA4S.Core
 {
     [Serializable]
     public class ModuleManager {
-
-        public string LocalizationDataPath;
 
         [SerializeField]
         public UIModule UIModule = new UIModule();
         public LocalizationModule LocalizationModule = new LocalizationModule();
         public PlayerProfileModule PlayerProfile = new PlayerProfileModule() { MultipleProfileSupported = true };
         public DataModule DataModule = new DataModule();
-        public GameplayModule GameplayModule = new GameplayModule();
 
         public void ModulesSetup() {
             UIModule.SetupModule(new UIModuleDefault());
-            //LocalizationModule.SetupModule(new LocalizationModuleGoogle2U());
-            //SceneModule.SetupModule(new SceneModuleDefault());
-            //PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
-            // For Test 
-            //DummyModule.SetupModule(new DummyModuleDefault());
         }
 
         /// <summary>

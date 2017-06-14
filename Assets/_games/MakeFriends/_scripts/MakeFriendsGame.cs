@@ -40,8 +40,6 @@ namespace EA4S.Minigames.MakeFriends
         public bool overrideDifficulty;
         public MakeFriendsVariation difficultySetting;
         new public static MakeFriendsGame Instance;
-        [Header("Gameplay Info")]
-        new public MakeFriendsGameplayInfo GameplayInfo;
 
         [HideInInspector]
         public MakeFriendsConfiguration Configuration { get { return MakeFriendsConfiguration.Instance; } }
@@ -581,11 +579,4 @@ namespace EA4S.Minigames.MakeFriends
         }
     }
 
-
-    [Serializable]
-    public class MakeFriendsGameplayInfo : AnturaGameplayInfo
-    {
-        [Tooltip("Play session duration in seconds.")]
-        public float PlayTime = 0f;
-    }
 }

@@ -120,10 +120,10 @@ namespace EA4S
             }
 #endif
             // GameplayModule
-            if (GetComponentInChildren<ModuleInstaller<IGameplayModule>>()) {
+            /*if (GetComponentInChildren<ModuleInstaller<IGameplayModule>>()) {
                 IGameplayModule moduleInstance = GetComponentInChildren<ModuleInstaller<IGameplayModule>>().InstallModule();
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
-            }
+            }*/
 
             DB = new DatabaseManager(AppSettings.UseTestDatabase);
             // refactor: standardize initialisation of managers
