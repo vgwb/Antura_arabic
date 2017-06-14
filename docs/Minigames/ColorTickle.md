@@ -6,6 +6,10 @@ Total tests: 1
     1. ColorTickle
 - Difficulty Levels: ininfluent
 
+### Shared Difficulty
+- Available lives decrease
+- Antura activation time decreases
+
 ### Shortcuts
 _none_
 
@@ -14,18 +18,15 @@ _none_
 ### 1. ColorTickle
 Player must color the letter.
 
-#### Configuration Notes
-
-##### Difficulty Level
-Lvl 1: 5 lives
-Lvl 2: 4 lives
-Lvl 3: 3 lives
-
-Antura activation time decreases with difficulty.
-
 #### Scoring
 - 3 stars if...
 - 2 stars if...
 - 1 star if...
 ---
+## Developer notes
+
+## Issues
+
 ## Warnings to be fixed
+
+## Optimization

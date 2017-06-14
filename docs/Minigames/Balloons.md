@@ -9,6 +9,9 @@ Total tests: 4
     4. Balloons_counting
 - Difficulty Levels: not used
 
+#### Shared Difficulty
+Ignored
+
 ### Shortcuts
 _none_
 
@@ -17,11 +20,6 @@ _none_
 ### 1. Balloons_letter
 Player must find the correct letter.
 
-#### Configuration Notes
-
-#### Difficulty
-Ignored
-
 #### Scoring
 - 3 stars if...
 - 2 stars if...
@@ -29,8 +27,6 @@ Ignored
 ---
 ### 2. Balloons_spelling
 Player must find the correct letters in order.
-
-#### Configuration Notes
 
 #### Difficulty
 Ignored
@@ -43,11 +39,6 @@ Ignored
 ### 3. Balloons_words
 Player must find the correct word.
 
-#### Configuration Notes
-
-#### Difficulty
-Ignored
-
 #### Scoring
 - 3 stars if...
 - 2 stars if...
@@ -56,16 +47,15 @@ Ignored
 ### 4. Balloons_counting
 Player must find the correct words in order.
 
-#### Configuration Notes
-
-#### Difficulty
-Ignored
-
 #### Scoring
 - 3 stars if...
 - 2 stars if...
 - 1 star if...
 ---
+## Developer notes
+
+## Issues
+
 ## Warnings to be fixed
 
 **tons of**:

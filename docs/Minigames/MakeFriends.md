@@ -24,12 +24,11 @@ Player must find the correct letter.
 - 2 stars if...
 - 1 star if...
 ---
+## Developer notes
+
 ## Issues
 - The expected difficulty goes from 0 to 2, but the core system will only provide a varying difficulty between 0 and 1
-
-## Developer notes
 
 ## Warnings to be fixed
 
 ## Optimization
-

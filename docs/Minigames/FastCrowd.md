@@ -60,6 +60,10 @@ Player must find the correct letters in order.
 - 2 stars if...
 - 1 star if...
 ---
+## Developer notes
+
+## Issues
+
 ## Warnings to be fixed
 
 ## Optimization

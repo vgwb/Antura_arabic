@@ -23,6 +23,10 @@ Player must find the correct letter.
 - 2 stars if...
 - 1 star if...
 ---
+## Developer notes
+
+## Issues
+
 ## Warnings to be fixed
 
 ## Optimization

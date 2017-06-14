@@ -7,6 +7,10 @@ Total tests: 4
     2. Egg_sequence
 - Difficulty Levels: ininfluent
 
+#### Shared Difficulty
+- Higher difficulty hides visual hints
+- The number of letters shown increases with difficulty
+
 
 ### Shortcuts
 _none_
@@ -16,12 +20,6 @@ _none_
 ### 1. Egg_letters
 Player must find the correct letter.
 
-#### Configuration Notes
-
-#### Difficulty
-- Higher difficulty hides visual hints
-- The number of letters shown increases with difficulty
-
 #### Scoring
 - 3 stars if...
 - 2 stars if...
@@ -30,25 +28,15 @@ Player must find the correct letter.
 ### 2. Egg_sequence
 Player must find the correct letters in order.
 
-#### Configuration Notes
-
-#### Difficulty
-- Higher difficulty hides visual hints
-- The number of letters shown increases with difficulty
-
 #### Scoring
 - 3 stars if...
 - 2 stars if...
 - 1 star if...
 ---
+## Developer notes
+
+## Issues
+
 ## Warnings to be fixed
 
-**tons of**:
-- [Warning] [BalloonsGame] [OnPoppedNonRequiredBalloon] Animator has not been initialized.
-- [MakeWordPromptGreen] Animator has not been initialized.
-- [Warning] [LetterPromptController] [OnStateChanged] Animator
-
 ## Optimization
-
-there are many deactivate GameObjects.
-some are very big, like `Environment_old` can they be deleted?
