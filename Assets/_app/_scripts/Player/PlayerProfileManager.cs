@@ -14,24 +14,24 @@ namespace EA4S.Profile
     {
         #region Global Options
 
-        const string OPTIONS_PREFS_KEY = "OPTIONS";
+        const string SETTINGS_PREFS_KEY = "OPTIONS";
 
-        private GlobalOptions options;
+        private AppSettings _settings;
 
-        public GlobalOptions Options
+        private AppSettings Settings
         {
-            get { return options; }
+            get { return _settings; }
             set
             {
-                if (value != options)
+                if (value != _settings)
                 {
-                    options = value;
+                    _settings = value;
                     // Auto save at any change
-                    SaveAllOptions();
+                    SaveSettings();
                 }
                 else
                 {
-                    options = value;
+                    _settings = value;
                 }
             }
         }
@@ -39,59 +39,49 @@ namespace EA4S.Profile
         /// <summary>
         /// Loads the global options with default fallback value.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="_defaultOptions">The default options.</param>
-        /// <returns></returns>
-        public GlobalOptions LoadGlobalOptions<T>(T _defaultOptions) where T : GlobalOptions
+        private AppSettings LoadSettings(AppSettings _defaultSettings) 
         {
-            if (PlayerPrefs.HasKey(OPTIONS_PREFS_KEY))
+            if (PlayerPrefs.HasKey(SETTINGS_PREFS_KEY))
             {
-                var serializedObjs = PlayerPrefs.GetString(OPTIONS_PREFS_KEY);
-                Options = JsonUtility.FromJson<T>(serializedObjs);
-                return options;
+                var serializedObjs = PlayerPrefs.GetString(SETTINGS_PREFS_KEY);
+                Settings = JsonUtility.FromJson<AppSettings>(serializedObjs);
+                return _settings;
             }
             else
             {
                 // Players list not created yet.
-                Options = _defaultOptions;
-                LoadGlobalOptions<T>(_defaultOptions);
-                SaveAllOptions();
-                return _defaultOptions;
+                Settings = _defaultSettings;
+                LoadSettings(_defaultSettings);
+                SaveSettings();
+                return _defaultSettings;
             }
         }
 
         /// <summary>
         /// Save all player profiles.
         /// </summary>
-        public void SaveAllOptions()
+        private void SaveSettings()
         {
-            string serializedObjs = JsonUtility.ToJson(Options);
-            PlayerPrefs.SetString(OPTIONS_PREFS_KEY, serializedObjs);
+            string serializedObjs = JsonUtility.ToJson(Settings);
+            PlayerPrefs.SetString(SETTINGS_PREFS_KEY, serializedObjs);
             PlayerPrefs.Save();
-        }
-
-        /// <summary>
-        /// WARNING! Delete all stored profiles and set actual profile to null.
-        /// </summary>
-        public void DeleteAllPlayerProfiles()
-        {
-            SaveAllOptions();
         }
 
         #endregion
 
 
-        #region Properties
+        #region Current Player
 
-        private PlayerProfile currentPlayer;
+        private PlayerProfile _currentPlayer;
         /// <summary>
         /// Actual Player.
         /// </summary>
         public PlayerProfile CurrentPlayer {
-            get { return currentPlayer; }
+            get { return _currentPlayer; }
             set {
-                if (currentPlayer != value) {
-                    AppManager.I.Player = currentPlayer = value;
+                if (_currentPlayer != value)
+                {
+                    AppManager.I.Player = _currentPlayer = value;
                     AppManager.I.Teacher.SetPlayerProfile(value);
                     // refactor: make this part more clear, better create a SetCurrentPlayer() method for this!
                     if (AppManager.I.DB.HasLoadedPlayerProfile()) {
@@ -100,15 +90,13 @@ namespace EA4S.Profile
                     AppManager.I.AppSettings.LastActivePlayerUUID = value.Uuid;
                     SaveGameSettings();
                     LogManager.I.LogInfo(InfoEvent.AppSessionStart, "{\"AppSession\":\"" + LogManager.I.AppSession + "\"}");
-                    AppManager.I.NavigationManager.InitialisePlayerNavigationData(currentPlayer);
+                    AppManager.I.NavigationManager.InitialisePlayerNavigationData(_currentPlayer);
 
-                    currentPlayer.LoadRewardsUnlockedFromDB(); // refresh list of unlocked rewards
+                    _currentPlayer.LoadRewardsUnlockedFromDB(); // refresh list of unlocked rewards
                     if (OnProfileChanged != null)
                         OnProfileChanged();
                 }
-                currentPlayer = value;
-
-
+                _currentPlayer = value;
             }
         }
 
@@ -130,7 +118,7 @@ namespace EA4S.Profile
         public void ReloadGameSettings(bool alsoLoadCurrentPlayer = true)
         {
             AppManager.I.AppSettings = new AppSettings() { };
-            AppManager.I.AppSettings = LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
+            AppManager.I.AppSettings = LoadSettings(new AppSettings()) as AppSettings;
 
             if (alsoLoadCurrentPlayer) {
                 // No last active? Get the first one.
@@ -234,7 +222,7 @@ namespace EA4S.Profile
             // If null, the player does not exist.
             // The DB got desyinced. Remove this player!
             if (profileFromDB == null) {
-                UnityEngine.Debug.LogError("ERROR: no profile data for player UUID " + playerUUID);
+                Debug.LogError("ERROR: no profile data for player UUID " + playerUUID);
             }
 
             return new PlayerProfile().FromData(profileFromDB);
@@ -262,7 +250,7 @@ namespace EA4S.Profile
                     AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(newActivePlayer.Uuid);
                 } else {
                     // ...else set to null
-                    AppManager.I.PlayerProfileManager.currentPlayer = null;
+                    AppManager.I.PlayerProfileManager._currentPlayer = null;
                 }
             }
             AppManager.I.AppSettings.SavedPlayers.Remove(playerIconData);
@@ -270,6 +258,8 @@ namespace EA4S.Profile
             SaveGameSettings();
             return returnProfile;
         }
+
+        #region Saved Player Profiles
 
         /// <summary>
         /// Return the list of existing player profiles.
@@ -295,20 +285,22 @@ namespace EA4S.Profile
         public void UpdateCurrentPlayerIconDataInSettings()
         {
             for (int i = 0; i < AppManager.I.AppSettings.SavedPlayers.Count; i++) {
-                if (AppManager.I.AppSettings.SavedPlayers[i].Uuid == currentPlayer.Uuid) {
+                if (AppManager.I.AppSettings.SavedPlayers[i].Uuid == _currentPlayer.Uuid) {
                     AppManager.I.AppSettings.SavedPlayers[i] = CurrentPlayer.GetPlayerIconData();
                 }
             }
             SaveGameSettings();
         }
 
+        #endregion
+
         /// <summary>
         /// Saves the game settings.
         /// </summary>
         public void SaveGameSettings()
         {
-            Options = AppManager.I.AppSettings;
-            SaveAllOptions();
+            Settings = AppManager.I.AppSettings;
+            SaveSettings();
         }
 
         /// <summary>
@@ -316,11 +308,11 @@ namespace EA4S.Profile
         /// </summary>
         public void DeleteAllProfiles()
         {
-            DeleteAllPlayerProfiles();
+            SaveSettings();
         }
 
         /// <summary>
-        /// Resets the everything.
+        /// Resets everything.
         /// </summary>
         public void ResetEverything()
         {
@@ -335,14 +327,14 @@ namespace EA4S.Profile
             AppManager.I.DB.UnloadCurrentProfile();
 
             // Reset all settings too
-            UnityEngine.PlayerPrefs.DeleteAll();
+            PlayerPrefs.DeleteAll();
             ReloadGameSettings(alsoLoadCurrentPlayer: false);
             SaveGameSettings();
         }
 
         #endregion
 
-        #region events
+        #region Events
         public delegate void ProfileEventHandler();
 
         /// <summary>

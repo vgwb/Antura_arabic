@@ -7,7 +7,7 @@ namespace EA4S.Core
     /// Game Setting Extension class.
     /// </summary>
     [System.Serializable]
-    public class AppSettings : GlobalOptions
+    public class AppSettings 
     {
         // not used anymore.. but could be useful in the future
         public bool HighQualityGfx = false;
