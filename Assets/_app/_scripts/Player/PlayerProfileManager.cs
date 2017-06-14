@@ -121,7 +121,7 @@ namespace EA4S.Profile
 
         #endregion
 
-        #region Saved Players
+        #region Players Icon Data
 
         /// <summary>
         /// Return the list of existing player profiles.
