@@ -267,7 +267,7 @@ namespace EA4S.Audio
             if (clearPreviousCallback)
                 dialogueEndedCallbacks.Clear();
 
-            if (!string.IsNullOrEmpty(data.GetLocalizedAudioFileName((AppManager.Instance as AppManager).Player.Gender))) {
+            if (!string.IsNullOrEmpty(data.GetLocalizedAudioFileName(AppManager.Instance.Player.Gender))) {
                 AudioClip clip = GetAudioClip(data);
                 return new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
             }
@@ -289,7 +289,7 @@ namespace EA4S.Audio
             if (clearPreviousCallback)
                 dialogueEndedCallbacks.Clear();
 
-            if (!string.IsNullOrEmpty(data.GetLocalizedAudioFileName((AppManager.Instance as AppManager).Player.Gender))) {
+            if (!string.IsNullOrEmpty(data.GetLocalizedAudioFileName(AppManager.Instance.Player.Gender))) {
                 AudioClip clip = GetAudioClip(data);
                 var wrapper = new AudioSourceWrapper(keeperGroup.Play(clip), keeperGroup, this);
                 if (callback != null)
@@ -315,7 +315,7 @@ namespace EA4S.Audio
 
         public AudioClip GetAudioClip(LocalizationData data)
         {
-            var localizedAudioFileName = data.GetLocalizedAudioFileName((AppManager.Instance as AppManager).Player.Gender);
+            var localizedAudioFileName = data.GetLocalizedAudioFileName(AppManager.Instance.Player.Gender);
             var res = GetCachedResource("AudioArabic/Dialogs/" + localizedAudioFileName);
             
             // Fallback to neutral version if not found

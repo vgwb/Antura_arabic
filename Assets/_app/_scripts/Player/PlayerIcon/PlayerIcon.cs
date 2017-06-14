@@ -32,9 +32,9 @@ namespace EA4S.Profile
         {
             if (!AutoInit) return;
 
-            if ((AppManager.Instance as AppManager).PlayerProfileManager.CurrentPlayer != null)
+            if (AppManager.Instance.PlayerProfileManager.CurrentPlayer != null)
             {
-                Init((AppManager.Instance as AppManager).PlayerProfileManager.CurrentPlayer.GetPlayerIconData());
+                Init(AppManager.Instance.PlayerProfileManager.CurrentPlayer.GetPlayerIconData());
             }
         }
 

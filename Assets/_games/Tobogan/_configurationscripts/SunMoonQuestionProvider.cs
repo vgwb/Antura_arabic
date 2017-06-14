@@ -21,14 +21,14 @@ namespace EA4S.Minigames.Tobogan
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-                var data = (AppManager.Instance as AppManager).Teacher.GetRandomTestLetterLL();
+                var data = AppManager.Instance.Teacher.GetRandomTestLetterLL();
 
                 if (data == null)
                     return;
 
                 // sun
-                var sunData = (AppManager.Instance as AppManager).DB.GetWordDataById("the_sun");
-                var moonData = (AppManager.Instance as AppManager).DB.GetWordDataById("the_moon");
+                var sunData = AppManager.Instance.DB.GetWordDataById("the_sun");
+                var moonData = AppManager.Instance.DB.GetWordDataById("the_moon");
 
                 ILivingLetterData sunWord = new LL_ImageData(sunData.GetId(), sunData);
                 ILivingLetterData moonWord = new LL_ImageData(moonData.GetId(), moonData);

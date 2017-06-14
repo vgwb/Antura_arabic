@@ -18,7 +18,7 @@ namespace EA4S.Scenes
             AudioManager.I.PlayMusic(SceneMusic);
             GlobalUI.ShowPauseMenu(false);
 
-            if (((AppManager.Instance as AppManager).Player.CurrentJourneyPosition.PlaySession) < 2) {
+            if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) < 2) {
                 KeeperManager.I.PlayDialog(Database.LocalizationDataId.Mood_Question_2);
             } else {
                 int rnd = Random.Range(1, 3);
@@ -49,9 +49,9 @@ namespace EA4S.Scenes
 
         void exitScene()
         {
-            (AppManager.Instance as AppManager).Player.MoodLastVisit = System.DateTime.Today.ToString();
-            (AppManager.Instance as AppManager).Player.Save();
-            (AppManager.Instance as AppManager).NavigationManager.GoToNextScene();
+            AppManager.Instance.Player.MoodLastVisit = System.DateTime.Today.ToString();
+            AppManager.Instance.Player.Save();
+            AppManager.Instance.NavigationManager.GoToNextScene();
         }
     }
 }

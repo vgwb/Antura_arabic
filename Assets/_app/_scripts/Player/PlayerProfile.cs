@@ -74,7 +74,7 @@ namespace EA4S.Profile
         /// </summary>
         public void Save()
         {
-            (AppManager.Instance as AppManager).PlayerProfileManager.SavePlayerSettings(this);
+            AppManager.Instance.PlayerProfileManager.SavePlayerSettings(this);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace EA4S.Profile
         /// </summary>
         public void SaveGameSettings()
         {
-            (AppManager.Instance as AppManager).PlayerProfileManager.SaveGameSettings();
+            AppManager.Instance.PlayerProfileManager.SaveGameSettings();
         }
         #endregion
 
@@ -113,7 +113,7 @@ namespace EA4S.Profile
         /// </value>
         public bool MoodAlreadyAnswered {
             get {
-                int secondAmount = (AppManager.Instance as AppManager).Teacher.logAI.SecondsFromLastMoodLog();
+                int secondAmount = AppManager.Instance.Teacher.logAI.SecondsFromLastMoodLog();
                 if (secondAmount > 86400)
                     return false;
                 else
@@ -158,7 +158,7 @@ namespace EA4S.Profile
         /// </summary>
         public void AdvanceMaxJourneyPosition()
         {
-            JourneyPosition p = (AppManager.Instance as AppManager).JourneyHelper.FindNextJourneyPosition(CurrentJourneyPosition);
+            JourneyPosition p = AppManager.Instance.JourneyHelper.FindNextJourneyPosition(CurrentJourneyPosition);
             SetMaxJourneyPosition(p);
         }
 
@@ -189,10 +189,10 @@ namespace EA4S.Profile
         {
             if (!HasFinishedTheGame)
             {
-                HasFinishedTheGame = (AppManager.Instance as AppManager).JourneyHelper.HasFinishedTheGame();
+                HasFinishedTheGame = AppManager.Instance.JourneyHelper.HasFinishedTheGame();
                 if (HasFinishedTheGame)
                 {
-                    (AppManager.Instance as AppManager).PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
+                    AppManager.Instance.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
                     Save();
                 }
             }
@@ -207,10 +207,10 @@ namespace EA4S.Profile
         {
             if (HasFinishedTheGame && !HasFinishedTheGameWithAllStars)
             {
-                HasFinishedTheGameWithAllStars = (AppManager.Instance as AppManager).ScoreHelper.HasFinishedTheGameWithAllStars();
+                HasFinishedTheGameWithAllStars = AppManager.Instance.ScoreHelper.HasFinishedTheGameWithAllStars();
                 if (HasFinishedTheGameWithAllStars)
                 {
-                    (AppManager.Instance as AppManager).PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
+                    AppManager.Instance.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
                     Save();
                 }
             }
@@ -299,7 +299,7 @@ namespace EA4S.Profile
         /// <returns></returns>
         public List<RewardPackUnlockData> LoadRewardsUnlockedFromDB()
         {
-            return (AppManager.Instance as AppManager).DB.GetAllRewardPackUnlockData();
+            return AppManager.Instance.DB.GetAllRewardPackUnlockData();
         }
 
         /// <summary>
@@ -421,14 +421,14 @@ namespace EA4S.Profile
             RewardPackUnlockData rewardPackToUpdate = RewardsUnlocked.Find(r => r.Id == _rewardPackId && r.IsNew == true);
             if (rewardPackToUpdate != null)
                 rewardPackToUpdate.IsNew = false;
-            (AppManager.Instance as AppManager).DB.UpdateRewardPackUnlockData(rewardPackToUpdate);
+            AppManager.Instance.DB.UpdateRewardPackUnlockData(rewardPackToUpdate);
         }
 
         /// <summary>
         /// Delete all reward unlocks from the Dynamic DB.
         /// </summary>
         private void DeleteAllRewardUnlocks() {
-            (AppManager.Instance as AppManager).DB.DeleteAll<RewardPackUnlockData>();
+            AppManager.Instance.DB.DeleteAll<RewardPackUnlockData>();
         }
 
         /// <summary>
@@ -437,8 +437,8 @@ namespace EA4S.Profile
         /// <param name="rewardPackUnlockData">The reward pack.</param>
         public void AddRewardUnlocked(RewardPackUnlockData rewardPackUnlockData)
         {
-            (AppManager.Instance as AppManager).Player.RewardsUnlocked.Add(rewardPackUnlockData);
-            (AppManager.Instance as AppManager).DB.UpdateRewardPackUnlockData(rewardPackUnlockData);
+            AppManager.Instance.Player.RewardsUnlocked.Add(rewardPackUnlockData);
+            AppManager.Instance.DB.UpdateRewardPackUnlockData(rewardPackUnlockData);
         }
 
         /// <summary>
@@ -447,7 +447,7 @@ namespace EA4S.Profile
         public void AddRewardUnlockedAll(RewardPackUnlockData _rewardPackUnlockData) {
             List<RewardPackUnlockData> rewards = new List<RewardPackUnlockData>();
             rewards.Add(_rewardPackUnlockData);
-            (AppManager.Instance as AppManager).DB.UpdateRewardPackUnlockDataAll(rewards);
+            AppManager.Instance.DB.UpdateRewardPackUnlockDataAll(rewards);
         }
 
         /// <summary>
@@ -456,8 +456,8 @@ namespace EA4S.Profile
         public void AddRewardUnlockedRange(List<RewardPackUnlockData> rewardPackUnlockDatas)
         {
             Debug.Log(this.RewardsUnlocked); 
-            (AppManager.Instance as AppManager).Player.RewardsUnlocked.AddRange(rewardPackUnlockDatas);
-            (AppManager.Instance as AppManager).DB.UpdateRewardPackUnlockDataAll(rewardPackUnlockDatas);
+            AppManager.Instance.Player.RewardsUnlocked.AddRange(rewardPackUnlockDatas);
+            AppManager.Instance.DB.UpdateRewardPackUnlockDataAll(rewardPackUnlockDatas);
         }
 
         /// <summary>
@@ -472,7 +472,7 @@ namespace EA4S.Profile
             jsonAnturaCustimizationData = CurrentAnturaCustomizations.GetJsonListOfIds();
             Save();
 
-            (AppManager.Instance as AppManager).LogManager.LogInfo(InfoEvent.AnturaCustomization, CurrentAnturaCustomizations.GetJsonListOfIds());
+            AppManager.Instance.LogManager.LogInfo(InfoEvent.AnturaCustomization, CurrentAnturaCustomizations.GetJsonListOfIds());
         }
 
         #endregion
@@ -570,8 +570,8 @@ namespace EA4S.Profile
 
         public void SetGameCompleted() {
             ProfileCompletion = ProfileCompletionState.GameCompleted;
-            (AppManager.Instance as AppManager).StartCoroutine(RewardSystemManager.UnlockExtraRewards());
-            (AppManager.Instance as AppManager).PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
+            AppManager.Instance.StartCoroutine(RewardSystemManager.UnlockExtraRewards());
+            AppManager.Instance.PlayerProfileManager.UpdateCurrentPlayerIconDataInSettings();
             CheckGameFinished();
         }
 

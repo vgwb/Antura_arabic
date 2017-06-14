@@ -55,8 +55,8 @@ namespace EA4S.Map
             if (!Application.isEditor) SimulateFirstContact = false; // Force debug options to FALSE if we're not in the editor
 
             maxNumberOfStages = AppConstants.maximumStage;
-            currentStageNumber = (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Stage;
-            maxStageUnlocked = (AppManager.Instance as AppManager).Player.MaxJourneyPosition.Stage;
+            currentStageNumber = AppManager.Instance.Player.CurrentJourneyPosition.Stage;
+            maxStageUnlocked = AppManager.Instance.Player.MaxJourneyPosition.Stage;
             int nStage;
             if (maxStageUnlocked == maxNumberOfStages) { nStage = maxNumberOfStages; } else { nStage = maxStageUnlocked - 1; }
             for (i = 1; i <= nStage; i++) {
@@ -68,10 +68,10 @@ namespace EA4S.Map
                 miniMaps[i].GetComponent<Stage>().CalculateStepsStage();
             }
 
-            stages[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Stage].SetActive(true);
-            Camera.main.backgroundColor = colorMaps[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Stage];
-            Camera.main.GetComponent<CameraFog>().color = colorMaps[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Stage];
-            letter.GetComponent<LetterMovement>().stageScript = miniMaps[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Stage].GetComponent<Stage>();
+            stages[AppManager.Instance.Player.CurrentJourneyPosition.Stage].SetActive(true);
+            Camera.main.backgroundColor = colorMaps[AppManager.Instance.Player.CurrentJourneyPosition.Stage];
+            Camera.main.GetComponent<CameraFog>().color = colorMaps[AppManager.Instance.Player.CurrentJourneyPosition.Stage];
+            letter.GetComponent<LetterMovement>().stageScript = miniMaps[AppManager.Instance.Player.CurrentJourneyPosition.Stage].GetComponent<Stage>();
 
             StartCoroutine("ResetPosLetter");
 
@@ -81,17 +81,17 @@ namespace EA4S.Map
         void Start()
         {
             /* FIRST CONTACT FEATURE */
-            if ((AppManager.Instance as AppManager).Player.IsFirstContact() || SimulateFirstContact) {
+            if (AppManager.Instance.Player.IsFirstContact() || SimulateFirstContact) {
                 FirstContactBehaviour();
                 mapStageIndicator.gameObject.SetActive(false);
             }
             /* --------------------- */
             FirstOrLastMap();
 
-            bool isGameCompleted = (AppManager.Instance as AppManager).Player.HasFinalBeenShown();
-            if ((!isGameCompleted) && ((AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Stage == (AppManager.Instance as AppManager).Player.MaxJourneyPosition.Stage) &&
-                ((AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock == (AppManager.Instance as AppManager).Player.MaxJourneyPosition.LearningBlock) &&
-                ((AppManager.Instance as AppManager).Player.CurrentJourneyPosition.PlaySession == 100)) {
+            bool isGameCompleted = AppManager.Instance.Player.HasFinalBeenShown();
+            if ((!isGameCompleted) && (AppManager.Instance.Player.CurrentJourneyPosition.Stage == AppManager.Instance.Player.MaxJourneyPosition.Stage) &&
+                (AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock == AppManager.Instance.Player.MaxJourneyPosition.LearningBlock) &&
+                (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession == 100)) {
                 PlayDialogRandomly();
             }
         }
@@ -127,8 +127,8 @@ namespace EA4S.Map
         void FirstContactBehaviour()
         {
             if (SimulateFirstContact) firstContactSimulationStep++;
-            bool isFirstStep = SimulateFirstContact ? firstContactSimulationStep == 1 : (AppManager.Instance as AppManager).Player.IsFirstContact(1);
-            bool isSecondStep = SimulateFirstContact ? firstContactSimulationStep == 2 : (AppManager.Instance as AppManager).Player.IsFirstContact(2);
+            bool isFirstStep = SimulateFirstContact ? firstContactSimulationStep == 1 : AppManager.Instance.Player.IsFirstContact(1);
+            bool isSecondStep = SimulateFirstContact ? firstContactSimulationStep == 2 : AppManager.Instance.Player.IsFirstContact(2);
 
             if (isFirstStep) {
                 // First contact step 1:
@@ -136,14 +136,14 @@ namespace EA4S.Map
                 // ..and set first contact done.
                 DesactivateUI();
                 KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_Intro, true, true, AnturaText);
-                (AppManager.Instance as AppManager).Player.FirstContactPassed();
+                AppManager.Instance.Player.FirstContactPassed();
                 Debug.Log("First Contact Step1 finished! Go to Antura Space!");
             } else if (isSecondStep) {
                 // First contact step 2:
 
                 // ..and set first contact done.             
                 ActivateUI();
-                (AppManager.Instance as AppManager).Player.FirstContactPassed(2);
+                AppManager.Instance.Player.FirstContactPassed(2);
                 KeeperManager.I.PlayDialog(Database.LocalizationDataId.Map_First, true, true, PlayDialogFirstStage);
                 Debug.Log("First Contact Step2 finished! Good Luck!");
                 //tuto anim on the play button
@@ -219,8 +219,8 @@ namespace EA4S.Map
                 currentStageNumber++;
                 CalculateSettingsStage();
 
-                if ((currentStageNumber <= maxStageUnlocked) && ((AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Stage != currentStageNumber)) {
-                    (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Stage++;
+                if ((currentStageNumber <= maxStageUnlocked) && (AppManager.Instance.Player.CurrentJourneyPosition.Stage != currentStageNumber)) {
+                    AppManager.Instance.Player.CurrentJourneyPosition.Stage++;
                     CalculatePosPin();
                 } else {
                     StageNotAvailable();
@@ -242,10 +242,10 @@ namespace EA4S.Map
                 currentStageNumber--;
                 CalculateSettingsStage();
 
-                if ((currentStageNumber <= maxStageUnlocked) && ((AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Stage != currentStageNumber)) {
-                    (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Stage--;
+                if ((currentStageNumber <= maxStageUnlocked) && (AppManager.Instance.Player.CurrentJourneyPosition.Stage != currentStageNumber)) {
+                    AppManager.Instance.Player.CurrentJourneyPosition.Stage--;
                     CalculatePosPin();
-                } else if ((AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Stage == currentStageNumber) {
+                } else if (AppManager.Instance.Player.CurrentJourneyPosition.Stage == currentStageNumber) {
                     lockUI.SetActive(false);
                     letter.GetComponent<LetterMovement>().AmIFirstorLastPos();
                     isStageAvailable = false;
@@ -302,7 +302,7 @@ namespace EA4S.Map
             yield return new WaitForSeconds(0.2f);
             letter.GetComponent<LetterMovement>().ResetPosLetter();
             letter.SetActive(true);
-            CameraGameplayController.I.transform.position = cameras[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Stage].transform.position;
+            CameraGameplayController.I.transform.position = cameras[AppManager.Instance.Player.CurrentJourneyPosition.Stage].transform.position;
         }
 
         void ChangeCameraFogColor(int c)

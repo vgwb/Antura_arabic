@@ -33,7 +33,7 @@ namespace EA4S.Book
             Title.text = learningBlockInfo.data.Title_Ar;
             SubTitle.text = learningBlockInfo.data.Title_En;
 
-            if (learningBlockInfo.unlocked || (AppManager.Instance as AppManager).Player.IsDemoUser) {
+            if (learningBlockInfo.unlocked || AppManager.Instance.Player.IsDemoUser) {
                 LockIcon.enabled = false;
             } else {
                 LockIcon.enabled = true;

@@ -18,7 +18,7 @@ namespace EA4S.Minigames.Maze
             
             for (int i = 0; i < 7; ++i)
             {
-                letters.Add((AppManager.Instance as AppManager).Teacher.GetRandomTestLetterLL());
+                letters.Add(AppManager.Instance.Teacher.GetRandomTestLetterLL());
             }
         }
 

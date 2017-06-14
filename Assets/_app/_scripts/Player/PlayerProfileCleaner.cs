@@ -10,8 +10,8 @@ namespace EA4S.Profile
     public class PlayerProfileCleaner : MonoBehaviour
     {
         public void ResetAllPlayerProfiles() {
-            (AppManager.Instance as AppManager).PlayerProfileManager.DeleteAllProfiles();
-            (AppManager.Instance as AppManager).PlayerProfileManager = new PlayerProfileManager();
+            AppManager.Instance.PlayerProfileManager.DeleteAllProfiles();
+            AppManager.Instance.PlayerProfileManager = new PlayerProfileManager();
             // UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         }
 
@@ -19,7 +19,7 @@ namespace EA4S.Profile
             PlayerPrefs.DeleteAll();
             //UnityEngine.SceneManagement.SceneManager.UnloadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, UnityEngine.SceneManagement.LoadSceneMode.Single);
-            (AppManager.Instance as AppManager).PlayerProfileManager = new PlayerProfileManager();
+            AppManager.Instance.PlayerProfileManager = new PlayerProfileManager();
         }
     }
 }

@@ -30,7 +30,7 @@ namespace EA4S.Book
             info = _info;
             manager = _manager;
 
-            if (info.unlocked || (AppManager.Instance as AppManager).Player.IsDemoUser) {
+            if (info.unlocked || AppManager.Instance.Player.IsDemoUser) {
                 LockIcon.enabled = false;
             } else {
                 LockIcon.enabled = true;

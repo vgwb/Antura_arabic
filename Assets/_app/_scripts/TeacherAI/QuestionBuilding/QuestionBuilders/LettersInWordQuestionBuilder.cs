@@ -61,7 +61,7 @@ namespace EA4S.Teacher
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
             // HACK: the game may need unseparated letters
-            if (forceUnseparatedLetters) (AppManager.Instance as AppManager).VocabularyHelper.ForceUnseparatedLetters = true;
+            if (forceUnseparatedLetters) AppManager.Instance.VocabularyHelper.ForceUnseparatedLetters = true;
 
             previousPacksIDs_words.Clear();
             previousPacksIDs_letters.Clear();
@@ -82,8 +82,8 @@ namespace EA4S.Teacher
 
         private QuestionPackData CreateSingleQuestionPackData(int inRoundPackIndex)
         {
-            var teacher = (AppManager.Instance as AppManager).Teacher;
-            var vocabularyHelper = (AppManager.Instance as AppManager).VocabularyHelper;
+            var teacher = AppManager.Instance.Teacher;
+            var vocabularyHelper = AppManager.Instance.VocabularyHelper;
 
             // Choose a single eligible word
             var usableWords = teacher.VocabularyAi.SelectData(
@@ -139,7 +139,7 @@ namespace EA4S.Teacher
 
         public List<WordData> FindEligibleWords(int maxWordLength)
         {
-            var vocabularyHelper = (AppManager.Instance as AppManager).VocabularyHelper;
+            var vocabularyHelper = AppManager.Instance.VocabularyHelper;
             List<WordData> eligibleWords = new List<WordData>();
             foreach(var word in vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters))
             {
@@ -163,7 +163,7 @@ namespace EA4S.Teacher
 
         public List<LetterData> FindCorrectLetters(WordData selectedWord, List<LetterData> wordLetters)
         {
-            var vocabularyHelper = (AppManager.Instance as AppManager).VocabularyHelper;
+            var vocabularyHelper = AppManager.Instance.VocabularyHelper;
             List<LetterData> eligibleLetters = new List<LetterData>();
             var bad_words = new List<string>(currentRoundIDs_words);
             bad_words.Remove(selectedWord.Id);
@@ -179,7 +179,7 @@ namespace EA4S.Teacher
 
         public List<LetterData> FindWrongLetters(WordData selectedWord, List<LetterData> wordLetters)
         {
-            var vocabularyHelper = (AppManager.Instance as AppManager).VocabularyHelper;
+            var vocabularyHelper = AppManager.Instance.VocabularyHelper;
             List<LetterData> noWordLetters = vocabularyHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray());
             List<LetterData> eligibleLetters = new List<LetterData>();
             var bad_words = new List<string>(currentRoundIDs_words);

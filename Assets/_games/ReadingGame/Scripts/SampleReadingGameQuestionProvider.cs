@@ -16,7 +16,7 @@ namespace EA4S.Minigames.ReadingGame
 
         IQuestionPack IQuestionProvider.GetNextQuestion()
         {
-            var answerData = (AppManager.Instance as AppManager).DB.GetWordDataByRandom();
+            var answerData = AppManager.Instance.DB.GetWordDataByRandom();
             LL_WordData randomWord = new LL_WordData(answerData.Id, answerData);
 
             StringTestData fakeData = new StringTestData(
@@ -28,7 +28,7 @@ namespace EA4S.Minigames.ReadingGame
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
             while (wrongAnswers.Count < 6)
             {
-                var randomData = (AppManager.Instance as AppManager).DB.GetWordDataByRandom();
+                var randomData = AppManager.Instance.DB.GetWordDataByRandom();
 
                 if (randomData.Id != answerData.Id && !wrongAnswers.Any((a) => { return a.Id == randomData.Id; }))
                 {

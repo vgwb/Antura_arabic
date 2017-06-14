@@ -12,7 +12,7 @@ namespace EA4S.Map
         void Start()
         {
             GameObject icoNew = this.GetComponentInChildren<AnturaSpaceNewIcon>().gameObject;
-            icoNew.SetActive(!(AppManager.Instance as AppManager).Player.IsFirstContact() && (AppManager.Instance as AppManager).Player.ThereIsSomeNewReward());
+            icoNew.SetActive(!AppManager.Instance.Player.IsFirstContact() && AppManager.Instance.Player.ThereIsSomeNewReward());
         }
 
         #endregion

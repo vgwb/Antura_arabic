@@ -46,7 +46,7 @@ namespace EA4S.Scenes
 
         void TutorCreateProfile()
         {
-            if ((AppManager.Instance as AppManager).PlayerProfileManager.GetSavedPlayers().Count < 1) {
+            if (AppManager.Instance.PlayerProfileManager.GetSavedPlayers().Count < 1) {
                 AudioManager.I.PlayDialogue(Database.LocalizationDataId.Action_Createprofile);
             }
         }
@@ -56,7 +56,7 @@ namespace EA4S.Scenes
         /// </summary>
         public void Play()
         {
-            Debug.Log("Play with Player ID: " + (AppManager.Instance as AppManager).Player.Uuid);
+            Debug.Log("Play with Player ID: " + AppManager.Instance.Player.Uuid);
 
             GlobalUI.ShowPauseMenu(true);
 
@@ -64,7 +64,7 @@ namespace EA4S.Scenes
             LogManager.I.InitNewSession();
             LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new DeviceInfo()));
 
-            (AppManager.Instance as AppManager).NavigationManager.GoToNextScene();
+            AppManager.Instance.NavigationManager.GoToNextScene();
         }
 
         private bool reservedAreaIsOpen = false;

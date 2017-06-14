@@ -128,18 +128,18 @@ namespace EA4S.Book
             List<LetterData> list;
             switch (currentCategory) {
                 case "combinations":
-                    list = (AppManager.Instance as AppManager).DB.FindLetterData((x) => (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation));
+                    list = AppManager.Instance.DB.FindLetterData((x) => (x.Kind == LetterDataKind.DiacriticCombo || x.Kind == LetterDataKind.LetterVariation));
                     break;
                 case "symbols":
-                    list = (AppManager.Instance as AppManager).DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
+                    list = AppManager.Instance.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
                     break;
                 default:
-                    list = (AppManager.Instance as AppManager).DB.FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
+                    list = AppManager.Instance.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
                     break;
             }
             emptyListContainers();
 
-            List<LetterInfo> info_list = (AppManager.Instance as AppManager).ScoreHelper.GetAllLetterInfo();
+            List<LetterInfo> info_list = AppManager.Instance.ScoreHelper.GetAllLetterInfo();
             foreach (var info_item in info_list) {
                 if (list.Contains(info_item.data)) {
                     btnGO = Instantiate(LetterItemPrefab);
@@ -255,12 +255,12 @@ namespace EA4S.Book
                     break;
                 default:
                     //list = AppManager.I.DB.FindWordData((x) => (x.Category == currentWordCategory && x.Article == WordDataArticle.None && x.Kind == WordDataKind.Noun));
-                    list = (AppManager.Instance as AppManager).DB.FindWordData((x) => (x.Category == currentWordCategory));
+                    list = AppManager.Instance.DB.FindWordData((x) => (x.Category == currentWordCategory));
                     break;
             }
             emptyListContainers();
 
-            List<WordInfo> info_list = (AppManager.Instance as AppManager).ScoreHelper.GetAllWordInfo();
+            List<WordInfo> info_list = AppManager.Instance.ScoreHelper.GetAllWordInfo();
             foreach (var info_item in info_list) {
                 if (list.Contains(info_item.data)) {
                     btnGO = Instantiate(WordItemPrefab);
@@ -300,14 +300,14 @@ namespace EA4S.Book
             var output = "";
             output += currentWord.data.Arabic;
             output += "\n";
-            var splittedLetters = ArabicAlphabetHelper.AnalyzeData((AppManager.Instance as AppManager).DB, currentWord.data);
+            var splittedLetters = ArabicAlphabetHelper.AnalyzeData(AppManager.Instance.DB, currentWord.data);
             foreach (var letter in splittedLetters) {
                 output += letter.letter.GetChar() + " ";
             }
 
             ArabicText.text = output;
             if (currentWord.data.Drawing != "") {
-                WordDrawingText.text = (AppManager.Instance as AppManager).VocabularyHelper.GetWordDrawing(currentWord.data);
+                WordDrawingText.text = AppManager.Instance.VocabularyHelper.GetWordDrawing(currentWord.data);
                 if (currentWord.data.Category == Database.WordDataCategory.Color) {
                     WordDrawingText.SetColor(GenericHelper.GetColorFromString(currentWord.data.Value));
                 }
@@ -335,12 +335,12 @@ namespace EA4S.Book
                     list = new List<PhraseData>();
                     break;
                 default:
-                    list = (AppManager.Instance as AppManager).DB.FindPhraseData((x) => (x.Category == currentPhraseCategory));
+                    list = AppManager.Instance.DB.FindPhraseData((x) => (x.Category == currentPhraseCategory));
                     break;
             }
             emptyListContainers();
 
-            List<PhraseInfo> info_list = (AppManager.Instance as AppManager).ScoreHelper.GetAllPhraseInfo();
+            List<PhraseInfo> info_list = AppManager.Instance.ScoreHelper.GetAllPhraseInfo();
             foreach (var info_item in info_list) {
                 if (list.Contains(info_item.data)) {
                     btnGO = Instantiate(PhraseItemPrefab);

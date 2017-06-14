@@ -24,7 +24,7 @@ namespace EA4S.Minigames.SickLetters
             prevLetter = newLetterString;
             do
             {
-                newLetter = (AppManager.Instance as AppManager).Teacher.GetRandomTestLetterLL();
+                newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
                 newLetterString = newLetter.TextForLivingLetter;
             }
             while (newLetterString == "" || dotlessLetters.Contains(newLetterString) || newLetterString == prevLetter);

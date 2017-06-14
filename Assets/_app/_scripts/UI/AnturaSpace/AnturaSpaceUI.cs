@@ -85,7 +85,7 @@ namespace EA4S.UI
             btsCategories = CategoriesContainer.GetComponentsInChildren<AnturaSpaceCategoryButton>(true);
             btsSwatches = SwatchesContainer.GetComponentsInChildren<AnturaSpaceSwatchButton>(true);
             SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
-            BtOpenModsPanel.SetAsNew((AppManager.Instance as AppManager).Player.ThereIsSomeNewReward());
+            BtOpenModsPanel.SetAsNew(AppManager.Instance.Player.ThereIsSomeNewReward());
 
             // Create items
             rewardsContainers = new List<Transform>();
@@ -175,7 +175,7 @@ namespace EA4S.UI
                 if (onEnterCustomization != null)
                     onEnterCustomization();
             } else {
-                BtOpenModsPanel.SetAsNew((AppManager.Instance as AppManager).Player.ThereIsSomeNewReward());
+                BtOpenModsPanel.SetAsNew(AppManager.Instance.Player.ThereIsSomeNewReward());
                 SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
                 showCategoriesTween.PlayBackwards();
                 showItemsTween.PlayBackwards();
@@ -359,15 +359,15 @@ namespace EA4S.UI
                 switch (btCat.Category)
                 {
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears:
-                        isNew = (AppManager.Instance as AppManager).Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_L")
-                            || (AppManager.Instance as AppManager).Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_R");
+                        isNew = AppManager.Instance.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_L")
+                            || AppManager.Instance.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_R");
                         break;
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal:
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture:
-                        isNew = (AppManager.Instance as AppManager).Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category));
+                        isNew = AppManager.Instance.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category));
                         break;
                     default:
-                        isNew = (AppManager.Instance as AppManager).Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), btCat.Category.ToString());
+                        isNew = AppManager.Instance.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), btCat.Category.ToString());
                         break;
                 }
                 btCat.SetAsNew(isNew);

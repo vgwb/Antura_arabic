@@ -61,7 +61,7 @@ namespace EA4S.UI
         {
             var localizationData = LocalizationManager.GetLocalizationData(id);
             AudioManager.I.PlayDialogue(localizationData);
-            Show(localizationData.GetLocalizedText((AppManager.Instance as AppManager).Player.Gender), localizationData.English, _onYes, _onNo);
+            Show(localizationData.GetLocalizedText(AppManager.Instance.Player.Gender), localizationData.English, _onYes, _onNo);
         }
 
         public void Show(string _messageAr, Action _onYes, Action _onNo)

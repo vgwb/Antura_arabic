@@ -12,7 +12,7 @@ namespace EA4S.LivingLetters
         {
             var view = GetComponent<LetterObjectView>();
             view.ToggleDance();
-            var letter = (AppManager.Instance as AppManager).Teacher.GetRandomTestLetterLL(useMaxJourneyData: true);
+            var letter = AppManager.Instance.Teacher.GetRandomTestLetterLL(useMaxJourneyData: true);
             view.Initialize(letter);
 
             AudioManager.I.PlayLetter(letter.Data, true);

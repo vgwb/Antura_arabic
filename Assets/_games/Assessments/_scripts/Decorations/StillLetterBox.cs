@@ -68,7 +68,7 @@ namespace EA4S.Assessment
             var wordInner = word as LL_WordData;
             var letterInner = letter as LL_LetterData;
 
-            var parts = ArabicAlphabetHelper.FindLetter( (AppManager.Instance as AppManager).DB, wordInner.Data, letterInner.Data);
+            var parts = ArabicAlphabetHelper.FindLetter( AppManager.Instance.DB, wordInner.Data, letterInner.Data);
 
             var partToRemove = parts[0];
 

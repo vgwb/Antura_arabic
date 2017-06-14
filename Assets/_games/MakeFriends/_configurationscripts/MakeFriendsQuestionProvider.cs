@@ -43,8 +43,8 @@ namespace EA4S.Minigames.MakeFriends
                     commonLetters.Clear();
                     uncommonLetters.Clear();
 
-                    newWordData1 = (AppManager.Instance as AppManager).Teacher.GetRandomTestWordDataLL();
-                    foreach (var letterData in ArabicAlphabetHelper.AnalyzeData((AppManager.Instance as AppManager).DB, newWordData1.Data))
+                    newWordData1 = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
+                    foreach (var letterData in ArabicAlphabetHelper.AnalyzeData(AppManager.Instance.DB, newWordData1.Data))
                     {
                         wordLetters1.Add(new LL_LetterData(letterData.letter));
                     }
@@ -52,7 +52,7 @@ namespace EA4S.Minigames.MakeFriends
                     int innerLoopAttempts = 50;
                     do
                     {
-                        newWordData2 = (AppManager.Instance as AppManager).Teacher.GetRandomTestWordDataLL();
+                        newWordData2 = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
                         innerLoopAttempts--;
                     } while (newWordData2.Id == newWordData1.Id && innerLoopAttempts > 0);
                     if (innerLoopAttempts <= 0)
@@ -60,7 +60,7 @@ namespace EA4S.Minigames.MakeFriends
                         UnityEngine.Debug.LogError("MakeFriends QuestionProvider Could not find 2 different words!");
                     }
 
-                    foreach (var letterData in ArabicAlphabetHelper.AnalyzeData((AppManager.Instance as AppManager).DB, newWordData2.Data))
+                    foreach (var letterData in ArabicAlphabetHelper.AnalyzeData(AppManager.Instance.DB, newWordData2.Data))
                     {
                         wordLetters2.Add(new LL_LetterData(letterData.letter));
                     }

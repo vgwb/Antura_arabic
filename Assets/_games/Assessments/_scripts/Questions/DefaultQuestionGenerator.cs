@@ -283,7 +283,7 @@ namespace EA4S.Assessment
             LL_WordData word = question as LL_WordData;
             var wordGO = ItemFactory.Instance.SpawnQuestion( word);
 
-            var partsToRemove = ArabicAlphabetHelper.FindLetter( (AppManager.Instance as AppManager).DB, word.Data, correctLetter.Data);
+            var partsToRemove = ArabicAlphabetHelper.FindLetter( AppManager.Instance.DB, word.Data, correctLetter.Data);
             partsToRemove.Shuffle(); //pick a random letter
 
             string text = ArabicAlphabetHelper.GetWordWithMissingLetterText(

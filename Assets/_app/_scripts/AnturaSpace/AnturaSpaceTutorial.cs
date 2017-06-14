@@ -65,7 +65,7 @@ namespace EA4S.AnturaSpace
         void Start()
         {
 
-            if ((AppManager.Instance as AppManager).Player.IsFirstContact() == false) //if this isn't the first contact disable yourself and return
+            if (AppManager.Instance.Player.IsFirstContact() == false) //if this isn't the first contact disable yourself and return
             {
                 gameObject.SetActive(false);
                 IsRunning = false;
@@ -93,7 +93,7 @@ namespace EA4S.AnturaSpace
 
         void Update()
         {
-            if (m_eTutoState == eAnturaSpaceTutoState.USE_ALL_COOKIES && (AppManager.Instance as AppManager).Player.GetTotalNumberOfBones() <= 0)
+            if (m_eTutoState == eAnturaSpaceTutoState.USE_ALL_COOKIES && AppManager.Instance.Player.GetTotalNumberOfBones() <= 0)
             {
                 AdvanceTutorial();
             }

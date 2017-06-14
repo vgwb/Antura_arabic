@@ -35,7 +35,7 @@ namespace EA4S.Map
             Floating();
 
             /* FIRST CONTACT FEATURE */
-            if (!(AppManager.Instance as AppManager).Player.IsFirstContact()) {
+            if (!AppManager.Instance.Player.IsFirstContact()) {
                 AmIFirstorLastPos();
             }
             /* --------------------- */
@@ -134,8 +134,8 @@ namespace EA4S.Map
         {
             stageScript.positionPin = ropeSelected.dots[dotCloser].GetComponent<Dot>().pos;
             MoveTo(stageScript.positionsPlayerPin[stageScript.positionPin].transform.position);
-            (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.PlaySession = ropeSelected.dots[dotCloser].GetComponent<Dot>().playSessionActual;
-            (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].GetComponent<Dot>().learningBlockActual;
+            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = ropeSelected.dots[dotCloser].GetComponent<Dot>().playSessionActual;
+            AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].GetComponent<Dot>().learningBlockActual;
             AmIFirstorLastPos();
             transform.LookAt(stageScript.pines[ropeSelected.learningBlockRope].transform);
         }
@@ -144,12 +144,12 @@ namespace EA4S.Map
         {
             MoveTo(colliderRaycast.transform.position);
             stageScript.positionPin = colliderRaycast.transform.gameObject.GetComponent<MapPin>().pos;
-            (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.PlaySession = 100;
-            (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock = colliderRaycast.transform.gameObject.GetComponent<MapPin>().learningBlockPin;
-            if ((AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock < stageScript.numberLearningBlocks) {
-                transform.LookAt(stageScript.pines[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock + 1].transform);
+            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 100;
+            AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = colliderRaycast.transform.gameObject.GetComponent<MapPin>().learningBlockPin;
+            if (AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock < stageScript.numberLearningBlocks) {
+                transform.LookAt(stageScript.pines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock + 1].transform);
             } else {
-                transform.LookAt(stageScript.pines[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock - 1].transform);
+                transform.LookAt(stageScript.pines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock - 1].transform);
                 transform.rotation = Quaternion.Euler(
                     new Vector3(transform.rotation.eulerAngles.x,
                     transform.rotation.eulerAngles.y + 180,
@@ -186,14 +186,14 @@ namespace EA4S.Map
 
         public void ResetPosLetter()
         {
-            if ((AppManager.Instance as AppManager).Player.CurrentJourneyPosition.PlaySession == 100)//Letter is on a pin
+            if (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession == 100)//Letter is on a pin
             {
-                MoveTo(stageScript.pines[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock].transform.position);
-                stageScript.positionPin = stageScript.pines[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>().pos;
-                if ((AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock < stageScript.ropes.Length) {
-                    transform.LookAt(stageScript.pines[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock + 1].transform);
+                MoveTo(stageScript.pines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform.position);
+                stageScript.positionPin = stageScript.pines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>().pos;
+                if (AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock < stageScript.ropes.Length) {
+                    transform.LookAt(stageScript.pines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock + 1].transform);
                 } else {
-                    transform.LookAt(stageScript.pines[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock - 1].transform);
+                    transform.LookAt(stageScript.pines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock - 1].transform);
                     transform.rotation = Quaternion.Euler(
                         new Vector3(transform.rotation.eulerAngles.x,
                                     transform.rotation.eulerAngles.y + 180,
@@ -202,11 +202,11 @@ namespace EA4S.Map
                 }
             } else {
                 //Letter is on a dot
-                MoveTo(stageScript.ropes[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
-                    [(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.PlaySession - 1].transform.position);
-                stageScript.positionPin = stageScript.ropes[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
-                    [(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.PlaySession - 1].GetComponent<Dot>().pos;
-                transform.LookAt(stageScript.pines[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock].transform);
+                MoveTo(stageScript.ropes[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
+                    [AppManager.Instance.Player.CurrentJourneyPosition.PlaySession - 1].transform.position);
+                stageScript.positionPin = stageScript.ropes[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
+                    [AppManager.Instance.Player.CurrentJourneyPosition.PlaySession - 1].GetComponent<Dot>().pos;
+                transform.LookAt(stageScript.pines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform);
             }
             //AmIFirstorLastPos();
         }
@@ -215,8 +215,8 @@ namespace EA4S.Map
         {
             stageScript.positionPin = 1;
             MoveTo(stageScript.positionsPlayerPin[1].transform.position);
-            (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock = 1;
-            (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.PlaySession = 1;
+            AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = 1;
+            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 1;
             LookAtRightPin();
             UpdateCurrentJourneyPosition();
         }
@@ -224,15 +224,15 @@ namespace EA4S.Map
         void SetJourneyPosition()
         {
             if (stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<Dot>() != null) {
-                (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.PlaySession =
+                AppManager.Instance.Player.CurrentJourneyPosition.PlaySession =
                     stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<Dot>().playSessionActual;
-                (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock =
+                AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock =
                     stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<Dot>().learningBlockActual;
 
             } else {
-                (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.PlaySession =
+                AppManager.Instance.Player.CurrentJourneyPosition.PlaySession =
                stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<MapPin>().playSessionPin;
-                (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock =
+                AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock =
                     stageScript.positionsPlayerPin[stageScript.positionPin].GetComponent<MapPin>().learningBlockPin;
 
             }
@@ -241,10 +241,10 @@ namespace EA4S.Map
 
         void UpdateCurrentJourneyPosition()
         {
-            (AppManager.Instance as AppManager).Player.SetCurrentJourneyPosition(
-                new JourneyPosition((AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Stage,
-                                    (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock,
-                                    (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.PlaySession),
+            AppManager.Instance.Player.SetCurrentJourneyPosition(
+                new JourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition.Stage,
+                                    AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock,
+                                    AppManager.Instance.Player.CurrentJourneyPosition.PlaySession),
                 true
             );
         }
@@ -264,8 +264,8 @@ namespace EA4S.Map
             rotateTween.Kill();
             Quaternion currRotation = this.transform.rotation;
             this.transform.LookAt(leftPin
-                ? stageScript.pines[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock - 1].transform.position
-                : stageScript.pines[(AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock].transform.position
+                ? stageScript.pines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock - 1].transform.position
+                : stageScript.pines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform.position
             );
             Quaternion toRotation = this.transform.rotation;
             this.transform.rotation = currRotation;

@@ -58,7 +58,7 @@ namespace EA4S.AnturaSpace
 
         public bool HasPlayerBones {
             get {
-                var totalBones = (AppManager.Instance as AppManager).Player.GetTotalNumberOfBones();
+                var totalBones = AppManager.Instance.Player.GetTotalNumberOfBones();
 
                 return totalBones > 0;
             }
@@ -71,14 +71,14 @@ namespace EA4S.AnturaSpace
             if (DraggingBone != null)
                 return;
 
-            if (bones.Count < MaxBonesInScene && (AppManager.Instance as AppManager).Player.TotalNumberOfBones > 0) {
+            if (bones.Count < MaxBonesInScene && AppManager.Instance.Player.TotalNumberOfBones > 0) {
                 AudioManager.I.PlaySound(Sfx.ThrowObj);
                 var bone = Instantiate(BonePrefab);
                 bone.SetActive(true);
                 bone.transform.position = BoneSpawnPosition.position;
                 bone.GetComponent<BoneBehaviour>().SimpleThrow();
                 bones.Add(bone);
-                --(AppManager.Instance as AppManager).Player.TotalNumberOfBones;
+                --AppManager.Instance.Player.TotalNumberOfBones;
             } else
                 AudioManager.I.PlaySound(Sfx.KO);
         }
@@ -94,13 +94,13 @@ namespace EA4S.AnturaSpace
             if (DraggingBone != null)
                 return;
 
-            if (bones.Count <= MaxBonesInScene && (AppManager.Instance as AppManager).Player.TotalNumberOfBones > 0) {
+            if (bones.Count <= MaxBonesInScene && AppManager.Instance.Player.TotalNumberOfBones > 0) {
                 var bone = Instantiate(BonePrefab);
                 bone.SetActive(true);
                 bone.transform.position = BoneSpawnPosition.position;
                 DraggingBone = bone.transform;
                 bones.Add(bone);
-                --(AppManager.Instance as AppManager).Player.TotalNumberOfBones;
+                --AppManager.Instance.Player.TotalNumberOfBones;
                 bone.GetComponent<BoneBehaviour>().Drag();
             } else {
                 AudioManager.I.PlaySound(Sfx.KO);
@@ -167,7 +167,7 @@ namespace EA4S.AnturaSpace
             if (!Tutorial.IsRunning)
                 UI.ShowBonesButton(MustShowBonesButton && (bones.Count < MaxBonesInScene));
 
-            UI.BonesCount = (AppManager.Instance as AppManager).Player.GetTotalNumberOfBones();
+            UI.BonesCount = AppManager.Instance.Player.GetTotalNumberOfBones();
 
             if (DraggingBone != null && !Input.GetMouseButton(0)) {
                 AudioManager.I.PlaySound(Sfx.ThrowObj);
@@ -187,7 +187,7 @@ namespace EA4S.AnturaSpace
         {
             GlobalUI.ShowPauseMenu(false);
 
-            if (!(AppManager.Instance as AppManager).Player.IsFirstContact()) {
+            if (!AppManager.Instance.Player.IsFirstContact()) {
                 ShowBackButton();
             }
 
@@ -204,7 +204,7 @@ namespace EA4S.AnturaSpace
         {
             //if (AnturaSpaceUI.I.IsModsPanelOpen) AnturaSpaceUI.I.ToggleModsPanel();
             //else AppManager.I.NavigationManager.GoBack();
-            (AppManager.Instance as AppManager).NavigationManager.GoBack();
+            AppManager.Instance.NavigationManager.GoBack();
         }
 
         void OnEnterCustomization()

@@ -25,7 +25,7 @@ namespace EA4S.Minigames.FastCrowd
 
                 for (int j=0; j<3; ++j)
                 {
-                    LL_WordData newWordData = (AppManager.Instance as AppManager).Teacher.GetRandomTestWordDataLL();
+                    LL_WordData newWordData = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
 
                     correctAnswers.Add(newWordData);
                 }
@@ -33,7 +33,7 @@ namespace EA4S.Minigames.FastCrowd
                 // At least 4 wrong words
                 while (wrongAnswers.Count < 4)
                 {
-                    var word = (AppManager.Instance as AppManager).Teacher.GetRandomTestWordDataLL();
+                    var word = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
 
                     if (!correctAnswers.Contains(word) && !wrongAnswers.Contains(word))
                     {

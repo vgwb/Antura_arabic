@@ -10,7 +10,7 @@ namespace EA4S.UI
     {
         void Start()
         {
-            gameObject.SetActive((AppManager.Instance as AppManager).AppSettings.EnglishSubtitles);
+            gameObject.SetActive(AppManager.Instance.AppSettings.EnglishSubtitles);
         }
 
     }

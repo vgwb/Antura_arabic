@@ -19,10 +19,10 @@ namespace EA4S.Book
             InfoTable.Reset();
 
             // Level reached
-            InfoTable.AddRow(LocalizationDataId.UI_Stage_and_Level, (AppManager.Instance as AppManager).Player.MaxJourneyPosition.GetShortTitle());
+            InfoTable.AddRow(LocalizationDataId.UI_Stage_and_Level, AppManager.Instance.Player.MaxJourneyPosition.GetShortTitle());
 
             // Unlocked / total PlaySessions
-            var totalPlaySessions = (AppManager.Instance as AppManager).ScoreHelper.GetAllPlaySessionInfo();
+            var totalPlaySessions = AppManager.Instance.ScoreHelper.GetAllPlaySessionInfo();
             var totalPlaySessionsUnlocked = totalPlaySessions.FindAll(x => x.unlocked);
             //InfoTable.AddRow("Unlocked Levels", "", totalPlaySessionsUnlocked.Count.ToString() + " / " + totalPlaySessions.Count.ToString());
             InfoTable.AddSliderRow(LocalizationDataId.UI_Unlocked_Levels, totalPlaySessionsUnlocked.Count, totalPlaySessions.Count);
@@ -39,7 +39,7 @@ namespace EA4S.Book
             InfoTable.AddRow(LocalizationDataId.UI_Games_played, GetTotalMiniGamePlayInstances().ToString());
 
             // Total bones
-            InfoTable.AddRow(LocalizationDataId.UI_Bones, (AppManager.Instance as AppManager).Player.GetTotalNumberOfBones().ToString());
+            InfoTable.AddRow(LocalizationDataId.UI_Bones, AppManager.Instance.Player.GetTotalNumberOfBones().ToString());
 
             // Total stars
             var totalStars = GetTotalMiniGameStars();
@@ -100,7 +100,7 @@ namespace EA4S.Book
         TimeSpan GetTotalApplicationTime()
         {
             string query = "select * from \"" + typeof(LogInfoData).Name + "\"";
-            var list = (AppManager.Instance as AppManager).DB.Query<LogInfoData>(query);
+            var list = AppManager.Instance.DB.Query<LogInfoData>(query);
 
             System.TimeSpan totalTimespan = new System.TimeSpan(0);
             bool foundStart = false;
@@ -134,7 +134,7 @@ namespace EA4S.Book
         {
             float totalSeconds = 0f;
             string query = "select * from " + typeof(MiniGameScoreData).Name;
-            var list = (AppManager.Instance as AppManager).DB.Query<MiniGameScoreData>(query);
+            var list = AppManager.Instance.DB.Query<MiniGameScoreData>(query);
 
             foreach (var data in list) {
                 totalSeconds += data.TotalPlayTime;
@@ -147,7 +147,7 @@ namespace EA4S.Book
         {
             Dictionary<MiniGameCode, float> dict = new Dictionary<MiniGameCode, float>();
             string query = "select * from " + typeof(MiniGameScoreData).Name;
-            var list = (AppManager.Instance as AppManager).DB.Query<MiniGameScoreData>(query);
+            var list = AppManager.Instance.DB.Query<MiniGameScoreData>(query);
 
             foreach (var data in list) {
                 dict[data.MiniGameCode] = data.TotalPlayTime;
@@ -159,7 +159,7 @@ namespace EA4S.Book
         {
             int total = 0;
             string query = "select * from " + typeof(LogMiniGameScoreData).Name;
-            var list = (AppManager.Instance as AppManager).DB.Query<LogMiniGameScoreData>(query);
+            var list = AppManager.Instance.DB.Query<LogMiniGameScoreData>(query);
 
             foreach (var data in list) {
                 total++;
@@ -170,7 +170,7 @@ namespace EA4S.Book
         int GetTotalMiniGameStars()
         {
             string query = "select * from " + typeof(MiniGameScoreData).Name;
-            var list = (AppManager.Instance as AppManager).DB.Query<MiniGameScoreData>(query);
+            var list = AppManager.Instance.DB.Query<MiniGameScoreData>(query);
             var totalStars = list.Sum(data => data.Stars);
             return totalStars;
         }
@@ -180,13 +180,13 @@ namespace EA4S.Book
             int count = 0;
             switch (dataType) {
                 case VocabularyDataType.Letter:
-                    count = (AppManager.Instance as AppManager).DB.GetAllLetterData().Count;
+                    count = AppManager.Instance.DB.GetAllLetterData().Count;
                     break;
                 case VocabularyDataType.Word:
-                    count = (AppManager.Instance as AppManager).DB.GetAllWordData().Count;
+                    count = AppManager.Instance.DB.GetAllWordData().Count;
                     break;
                 case VocabularyDataType.Phrase:
-                    count = (AppManager.Instance as AppManager).DB.GetAllPhraseData().Count;
+                    count = AppManager.Instance.DB.GetAllPhraseData().Count;
                     break;
             }
             return count;
@@ -194,9 +194,9 @@ namespace EA4S.Book
 
         int GetTotalVocabularyDataUnlocked(VocabularyDataType dataType)
         {
-            if ((AppManager.Instance as AppManager).Player.IsDemoUser) return GetTotalVocabularyData(dataType);
+            if (AppManager.Instance.Player.IsDemoUser) return GetTotalVocabularyData(dataType);
             string query = "select * from " + typeof(VocabularyScoreData).Name + " where VocabularyDataType='" + (int)dataType + "'";
-            var list = (AppManager.Instance as AppManager).DB.Query<VocabularyScoreData>(query);
+            var list = AppManager.Instance.DB.Query<VocabularyScoreData>(query);
             return list.Count(data => data.Unlocked);
         }
 
@@ -204,7 +204,7 @@ namespace EA4S.Book
         {
             Dictionary<MiniGameCode, int> dict = new Dictionary<MiniGameCode, int>();
             string query = "select * from " + typeof(LogMiniGameScoreData).Name;
-            var list = (AppManager.Instance as AppManager).DB.Query<LogMiniGameScoreData>(query);
+            var list = AppManager.Instance.DB.Query<LogMiniGameScoreData>(query);
 
             foreach (var data in list) {
                 if (!dict.ContainsKey(data.MiniGameCode)) {

@@ -53,7 +53,7 @@ namespace EA4S.Teacher
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
             // HACK: the game may need unseparated letters
-            if (forceUnseparatedLetters) (AppManager.Instance as AppManager).VocabularyHelper.ForceUnseparatedLetters = true;
+            if (forceUnseparatedLetters) AppManager.Instance.VocabularyHelper.ForceUnseparatedLetters = true;
 
             previousPacksIDs_letters.Clear();
             previousPacksIDs_words.Clear();
@@ -75,7 +75,7 @@ namespace EA4S.Teacher
 
         private QuestionPackData CreateSingleQuestionPackData(int inRoundPackIndex)
         {
-            var teacher = (AppManager.Instance as AppManager).Teacher;
+            var teacher = AppManager.Instance.Teacher;
 
             bool useJourneyForLetters = parameters.useJourneyForCorrect;
             // @note: we also force the journey if the packs must be used together, as the data filters for journey clash with the new filter
@@ -127,7 +127,7 @@ namespace EA4S.Teacher
         private List<Database.LetterData> FindEligibleLetters(int atLeastNWords)
         {
             List<Database.LetterData> eligibleLetters = new List<Database.LetterData>();
-            var vocabularyHelper = (AppManager.Instance as AppManager).VocabularyHelper;
+            var vocabularyHelper = AppManager.Instance.VocabularyHelper;
             var allLetters = vocabularyHelper.GetAllLetters(parameters.letterFilters);
             var bad_words = new List<string>(currentRoundIDs_words);
             foreach (var letter in allLetters)
@@ -138,7 +138,7 @@ namespace EA4S.Teacher
                 wordsWithLetterFull.RemoveAll(x => bad_words.Contains(x.Id));  // Remove the already used words
                 wordsWithLetterFull.RemoveAll(x => vocabularyHelper.ProblematicWordIds.Contains(x.Id));  // HACK: Skip the problematic words (for now)
                 if (wordsWithLetterFull.Count == 0) continue;
-                var wordsWithLetter = (AppManager.Instance as AppManager).Teacher.VocabularyAi.SelectData(
+                var wordsWithLetter = AppManager.Instance.Teacher.VocabularyAi.SelectData(
                     () => wordsWithLetterFull,
                         new SelectionParameters(SelectionSeverity.AsManyAsPossible, getMaxData: true, useJourney: true), canReturnZero: true);
 
@@ -158,7 +158,7 @@ namespace EA4S.Teacher
         private List<Database.WordData> FindCorrectWords(Database.LetterData commonLetter)
         {
             List<Database.WordData> eligibleWords = new List<Database.WordData>();
-            var vocabularyHelper = (AppManager.Instance as AppManager).VocabularyHelper;
+            var vocabularyHelper = AppManager.Instance.VocabularyHelper;
             var words = vocabularyHelper.GetWordsWithLetter(parameters.wordFilters, commonLetter.Id);
             var bad_letters = new List<string>(currentRoundIDs_letters);
             bad_letters.Remove(commonLetter.Id);
@@ -177,7 +177,7 @@ namespace EA4S.Teacher
         private List<Database.WordData> FindWrongWords(List<Database.WordData> correctWords)
         {
             List<Database.WordData> eligibleWords = new List<Database.WordData>();
-            var vocabularyHelper = (AppManager.Instance as AppManager).VocabularyHelper;
+            var vocabularyHelper = AppManager.Instance.VocabularyHelper;
             var words = vocabularyHelper.GetWordsNotIn(parameters.wordFilters, correctWords.ToArray());
             var bad_letters = new List<string>(currentRoundIDs_letters);
             foreach (var w in words)

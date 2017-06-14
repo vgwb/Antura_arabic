@@ -36,10 +36,10 @@ namespace EA4S.MinigamesAPI
                 _launchConfiguration = new MinigameLaunchConfiguration(difficulty, numberOfRounds);
             }
 
-            Database.MiniGameData miniGameData = (AppManager.Instance as AppManager).DB.GetMiniGameDataByCode(_gameCode);
+            Database.MiniGameData miniGameData = AppManager.Instance.DB.GetMiniGameDataByCode(_gameCode);
 
             if (forceNewPlaySession) {
-                (AppManager.Instance as AppManager).NavigationManager.InitialiseNewPlaySession(miniGameData);
+                AppManager.Instance.NavigationManager.InitialiseNewPlaySession(miniGameData);
             }
 
             if (AppConstants.VerboseLogging) Debug.Log("StartGame " + _gameCode.ToString());
@@ -73,7 +73,7 @@ namespace EA4S.MinigamesAPI
             //AudioManager.I.PlayDialogue(_gameCode.ToString()+"_Title");
 
             // Launch the game
-            (AppManager.Instance as AppManager).NavigationManager.GotoMinigameScene();
+            AppManager.Instance.NavigationManager.GotoMinigameScene();
         }
 
         /// <summary>

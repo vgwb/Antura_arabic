@@ -118,7 +118,7 @@ namespace EA4S.UI
             this.StopAllCoroutines();
             textTween.Kill();
             TextUI.text = "";
-            if (string.IsNullOrEmpty(data.GetLocalizedText((AppManager.Instance as AppManager).Player.Gender)))
+            if (string.IsNullOrEmpty(data.GetLocalizedText(AppManager.Instance.Player.Gender)))
             {
                 this.gameObject.SetActive(false);
                 return;
@@ -127,7 +127,7 @@ namespace EA4S.UI
             this.gameObject.SetActive(true);
             if (WalkieTalkie.IsShown) WalkieTalkie.Pulse();
 
-            var localizedText = data.GetLocalizedText((AppManager.Instance as AppManager).Player.Gender);
+            var localizedText = data.GetLocalizedText(AppManager.Instance.Player.Gender);
             TextUI.text =  string.IsNullOrEmpty(localizedText) ? data.Id : ReverseText(ArabicFixer.Fix(localizedText));
             this.StartCoroutine(DisplayTextCoroutine(_duration));
 

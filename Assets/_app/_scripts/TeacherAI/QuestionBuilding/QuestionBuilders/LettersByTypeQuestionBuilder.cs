@@ -38,10 +38,10 @@ namespace EA4S.Teacher
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
             List<QuestionPackData> packs = new List<QuestionPackData>();
-            var teacher = (AppManager.Instance as AppManager).Teacher;
-            var vocabularyHelper = (AppManager.Instance as AppManager).VocabularyHelper;
+            var teacher = AppManager.Instance.Teacher;
+            var vocabularyHelper = AppManager.Instance.VocabularyHelper;
 
-            var db = (AppManager.Instance as AppManager).DB;
+            var db = AppManager.Instance.DB;
             var choice1 = db.GetWordDataById("consonant");
             var choice2 = db.GetWordDataById("vowel");
 

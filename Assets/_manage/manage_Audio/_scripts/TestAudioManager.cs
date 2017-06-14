@@ -29,7 +29,7 @@ namespace EA4S.Management.Test
 
             InitUI();
 
-            foreach (var l in (AppManager.Instance as AppManager).DB.StaticDatabase.GetLetterTable().GetValuesTyped())
+            foreach (var l in AppManager.Instance.DB.StaticDatabase.GetLetterTable().GetValuesTyped())
             {
                 if (AudioManager.I.GetAudioClip(l) == null)
                     Debug.LogError("Cannot find audio file: " + l);
@@ -88,7 +88,7 @@ namespace EA4S.Management.Test
             btnGO.GetComponentInChildren<Text>().text = "Stop Dialog";
             btnGO.GetComponent<Button>().onClick.AddListener(StopCurrentLocalization);
 
-            foreach (var loc in (AppManager.Instance as AppManager).DB.GetAllLocalizationData()) {
+            foreach (var loc in AppManager.Instance.DB.GetAllLocalizationData()) {
                 //Debug.Log(sfx.ToString());
                 btnGO = Instantiate(PlayButtonPrefab);
                 btnGO.transform.SetParent(PanelLocalization.transform, false);

@@ -61,7 +61,7 @@ namespace EA4S.Intro
             m_CameraStartPosition = m_CameraEndPosition + cameraOffset;
             autoMoveObjects = environment.GetComponentsInChildren<AutoMove>();
 
-            var lettersData = (AppManager.Instance as AppManager).Teacher.GetAllTestLetterDataLL();
+            var lettersData = AppManager.Instance.Teacher.GetAllTestLetterDataLL();
             foreach (var l in Letters)
             {
                 l.Initialize(lettersData.GetRandom());
@@ -89,7 +89,7 @@ namespace EA4S.Intro
         {
             StopCoroutine(DoEnding());
             KeeperManager.I.StopDialog();
-            (AppManager.Instance as AppManager).NavigationManager.GoToNextScene();
+            AppManager.Instance.NavigationManager.GoToNextScene();
         }
 
         void Update()
@@ -121,7 +121,7 @@ namespace EA4S.Intro
             {
                 if (m_End)
                 {
-                    (AppManager.Instance as AppManager).NavigationManager.GoToNextScene();
+                    AppManager.Instance.NavigationManager.GoToNextScene();
                     m_End = false;
                     return;
                 }
@@ -189,7 +189,7 @@ namespace EA4S.Intro
             yield return new WaitForSeconds(FadeTime);
             m_End = true;
 
-            (AppManager.Instance as AppManager).Player.SetFinalShown();
+            AppManager.Instance.Player.SetFinalShown();
         }
     }
 }

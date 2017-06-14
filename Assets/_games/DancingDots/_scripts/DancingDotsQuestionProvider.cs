@@ -14,7 +14,7 @@ namespace EA4S.Minigames.DancingDots
 			List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
 			List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-			newLetter = (AppManager.Instance as AppManager).Teacher.GetRandomTestLetterLL();
+			newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
 
 			correctAnswers.Add(newLetter);
 			return new SampleQuestionPack(newLetter, wrongAnswers, correctAnswers);

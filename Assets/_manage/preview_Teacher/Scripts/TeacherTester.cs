@@ -165,8 +165,8 @@ namespace EA4S.Teacher.Test
             {
                 jp = new Core.JourneyPosition(currentJourneyStage, currentJourneyLB, isAssessment ? 100 : 1);
             }
-            (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.SetPosition(jp.Stage, jp.LearningBlock, jp.PlaySession);
-            (AppManager.Instance as AppManager).Teacher.InitialiseNewPlaySession();
+            AppManager.Instance.Player.CurrentJourneyPosition.SetPosition(jp.Stage, jp.LearningBlock, jp.PlaySession);
+            AppManager.Instance.Teacher.InitialiseNewPlaySession();
         }
 
         void SetVerboseAI(bool choice)
@@ -237,8 +237,8 @@ namespace EA4S.Teacher.Test
             foreach (var code in Helpers.GenericHelper.SortEnums<MiniGameCode>())
             {
                 if (!IsCodeValid(code)) continue;
-                var jp = (AppManager.Instance as AppManager).JourneyHelper.GetMinimumJourneyPositionForMiniGame(code);
-                if (jp == null) jp = (AppManager.Instance as AppManager).JourneyHelper.GetFinalJourneyPosition();
+                var jp = AppManager.Instance.JourneyHelper.GetMinimumJourneyPositionForMiniGame(code);
+                if (jp == null) jp = AppManager.Instance.JourneyHelper.GetFinalJourneyPosition();
                 InitialisePlaySession(jp);
                 yield return StartCoroutine(DoTestMinigameCO(code));
             }
@@ -336,9 +336,9 @@ namespace EA4S.Teacher.Test
         {
             int lastStage = 0;
             bool isCorrect = true;
-            foreach (var psData in (AppManager.Instance as AppManager).DB.GetAllPlaySessionData())
+            foreach (var psData in AppManager.Instance.DB.GetAllPlaySessionData())
             {
-                if (!(AppManager.Instance as AppManager).Teacher.CanMiniGameBePlayedAtPlaySession(psData.GetJourneyPosition(), code)) continue;
+                if (!AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(psData.GetJourneyPosition(), code)) continue;
 
                 InitialisePlaySession(psData.GetJourneyPosition());
 
@@ -371,14 +371,14 @@ namespace EA4S.Teacher.Test
             yield return new WaitForSeconds(delay);
             var statusColor = Color.green; 
 
-            if (!ignoreJourneyPlaySessionSelection && !(AppManager.Instance as AppManager).Teacher.CanMiniGameBePlayedAtAnyPlaySession(code))
+            if (!ignoreJourneyPlaySessionSelection && !AppManager.Instance.Teacher.CanMiniGameBePlayedAtAnyPlaySession(code))
             {
                 Debug.LogError("Cannot select " + code + " for any journey position!");
                 statusColor = Color.magenta;
             }
             else
             {
-                if (ignoreJourneyPlaySessionSelection || (AppManager.Instance as AppManager).Teacher.CanMiniGameBePlayedAfterMinPlaySession((AppManager.Instance as AppManager).Player.CurrentJourneyPosition, code))
+                if (ignoreJourneyPlaySessionSelection || AppManager.Instance.Teacher.CanMiniGameBePlayedAfterMinPlaySession(AppManager.Instance.Player.CurrentJourneyPosition, code))
                 {
                     try
                     {
@@ -386,13 +386,13 @@ namespace EA4S.Teacher.Test
                     }
                     catch (Exception e)
                     {
-                        Debug.LogError("!! " + code + " at PS(" + (AppManager.Instance as AppManager).Player.CurrentJourneyPosition + ")\n " + e.Message);
+                        Debug.LogError("!! " + code + " at PS(" + AppManager.Instance.Player.CurrentJourneyPosition + ")\n " + e.Message);
                         statusColor = Color.red;
                     }
                 }
                 else
                 {
-                    Debug.LogError("Cannot select " + code + " for position " + (AppManager.Instance as AppManager).Player.CurrentJourneyPosition);
+                    Debug.LogError("Cannot select " + code + " for position " + AppManager.Instance.Player.CurrentJourneyPosition);
                     statusColor = Color.gray;
                 }
             }
@@ -429,7 +429,7 @@ namespace EA4S.Teacher.Test
 
         private void SimulateMiniGame(MiniGameCode code)
         {
-            var config = (AppManager.Instance as AppManager).GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
+            var config = AppManager.Instance.GameLauncher.ConfigureMiniGame(code, System.DateTime.Now.Ticks.ToString());
             if (config is IAssessmentConfiguration)
             {
                 (config as IAssessmentConfiguration).NumberOfRounds = nPacks;

@@ -192,7 +192,7 @@ namespace EA4S.Teacher
 
         public int GetCurrentNumberOfRounds(MiniGameCode miniGameCode)
         {
-            var currentPos = (AppManager.Instance as AppManager).Player.CurrentJourneyPosition;
+            var currentPos = AppManager.Instance.Player.CurrentJourneyPosition;
             var psData = dbManager.GetPlaySessionDataById(currentPos.ToStringId());
             return psData.NumberOfRoundsPerMinigame;
         }
@@ -279,7 +279,7 @@ namespace EA4S.Teacher
             if (filters == null) { filters = new LetterFilters(); }
 
             if (useMaxJourneyData) {
-                VocabularyAi.LoadCurrentPlaySessionData((AppManager.Instance as AppManager).Player.MaxJourneyPosition.ToString());
+                VocabularyAi.LoadCurrentPlaySessionData(AppManager.Instance.Player.MaxJourneyPosition.ToString());
             }
 
             var availableLetters = VocabularyAi.SelectData(
@@ -306,11 +306,11 @@ namespace EA4S.Teacher
 
             List<LetterData> availableLetters = null;
 
-            if ((AppManager.Instance as AppManager).Player == null) {
+            if (AppManager.Instance.Player == null) {
                 availableLetters = VocabularyHelper.GetAllLetters(filters);
             } else {
                 if (useMaxJourneyData) {
-                    VocabularyAi.LoadCurrentPlaySessionData((AppManager.Instance as AppManager).Player.MaxJourneyPosition.ToString());
+                    VocabularyAi.LoadCurrentPlaySessionData(AppManager.Instance.Player.MaxJourneyPosition.ToString());
                 }
 
                 availableLetters = VocabularyAi.SelectData(
@@ -340,7 +340,7 @@ namespace EA4S.Teacher
             if (filters == null) { filters = new WordFilters(); }
 
             if (useMaxJourneyData) {
-                VocabularyAi.LoadCurrentPlaySessionData((AppManager.Instance as AppManager).Player.MaxJourneyPosition.ToString());
+                VocabularyAi.LoadCurrentPlaySessionData(AppManager.Instance.Player.MaxJourneyPosition.ToString());
             }
 
             if (giveWarningOnFake) {

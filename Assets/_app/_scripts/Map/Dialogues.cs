@@ -24,9 +24,9 @@ namespace EA4S.Map
 
         bool IsMaxJourneyPosition()
         {
-            if (((AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Stage == (AppManager.Instance as AppManager).Player.MaxJourneyPosition.Stage) &&
-                ((AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock == (AppManager.Instance as AppManager).Player.MaxJourneyPosition.LearningBlock) &&
-                ((AppManager.Instance as AppManager).Player.CurrentJourneyPosition.PlaySession == (AppManager.Instance as AppManager).Player.MaxJourneyPosition.PlaySession)) {
+            if ((AppManager.Instance.Player.CurrentJourneyPosition.Stage == AppManager.Instance.Player.MaxJourneyPosition.Stage) &&
+                (AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock == AppManager.Instance.Player.MaxJourneyPosition.LearningBlock) &&
+                (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession == AppManager.Instance.Player.MaxJourneyPosition.PlaySession)) {
                 return true;
             } else {
                 return false;
