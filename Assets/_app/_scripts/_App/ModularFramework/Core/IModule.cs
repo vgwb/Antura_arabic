@@ -11,7 +11,6 @@ namespace EA4S.Core
     /// </summary>
     public interface IModule<T>{
         IModuleSettings Settings { get; set; }
-        T ConcreteModuleImplementation { get; set; }
         T SetupModule(T _concreteModule, IModuleSettings _settings = null);
     }
 

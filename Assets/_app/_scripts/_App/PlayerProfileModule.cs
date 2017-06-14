@@ -5,11 +5,12 @@ using System.Collections.Generic;
 
 namespace EA4S.Core
 {
-    public class PlayerProfileModule : IPlayerProfileModule
+    public class PlayerProfileModule 
     {
         #region IModule Implementation
 
-        public IPlayerProfileModule ConcreteModuleImplementation { get; set; }
+        const string OPTIONS_PREFS_KEY = "OPTIONS";
+
         private GlobalOptions options;
 
         public GlobalOptions Options
@@ -30,24 +31,7 @@ namespace EA4S.Core
             }
         }
 
-        public IModuleSettings Settings { get; set; }
-
-        public IPlayerProfileModule SetupModule(IPlayerProfileModule _concreteModule, IModuleSettings _settings = null)
-        {
-            Settings = _settings;
-            // Add Here setup stuffs for this concrete implementation
-            return this;
-        }
-
         #endregion
-
-        ///// <summary>
-        ///// Loads the global options.
-        ///// </summary>
-        ///// <returns></returns>
-        //public IGlobalOptions LoadGlobalOptions<T>() where T : IGlobalOptions {
-        //    return LoadGlobalOptions<T>(Activator.CreateInstance<T>());
-        //}
 
         /// <summary>
         /// Loads the global options with default fallback value.
@@ -84,23 +68,6 @@ namespace EA4S.Core
             PlayerPrefs.Save();
         }
 
-        #region Data Store
-
-        const string OPTIONS_PREFS_KEY = "OPTIONS";
-        const string PLAYER_PREFS_KEY = "PLAYER";
-
-        /// <summary>
-        /// Return correct player pref key.
-        /// </summary>
-        /// <param name="_playerId"></param>
-        /// <returns></returns>
-        static string GetStoreKeyForPlayer(string _playerId)
-        {
-            return string.Format("{0}_{1}", PLAYER_PREFS_KEY, _playerId);
-        }
-
-        #endregion
-
         /// <summary>
         /// WARNING! Delete all stored profiles and set actual profile to null.
         /// </summary>
@@ -110,14 +77,6 @@ namespace EA4S.Core
             //ActivePlayer = null;
         }
 
-    }
-
-    /// <summary>
-    /// Interface for optional Extended player profile.
-    /// </summary>
-    public interface IPlayerExtendedProfile
-    {
-        string PlayerRef { get; set; }
     }
 
     public interface IPlayerProfile
