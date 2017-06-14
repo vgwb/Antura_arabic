@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using EA4S.Profile;
+using UnityEngine.Serialization;
 
 namespace EA4S.Core
 {
@@ -22,7 +23,7 @@ namespace EA4S.Core
         public string ApplicationVersion;
 
         // the list of saved players
-        public List<PlayerIconData> PlayersIconData = new List<PlayerIconData>();
+        public List<PlayerIconData> SavedPlayers = new List<PlayerIconData>();
 
     }
 }

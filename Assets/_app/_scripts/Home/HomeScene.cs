@@ -46,7 +46,7 @@ namespace EA4S.Scenes
 
         void TutorCreateProfile()
         {
-            if (AppManager.I.PlayerProfileManager.GetSavedPlayers().Count < 1) {
+            if (AppManager.I.PlayerProfileManager.GetPlayersIconData().Count < 1) {
                 AudioManager.I.PlayDialogue(Database.LocalizationDataId.Action_Createprofile);
             }
         }

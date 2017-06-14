@@ -39,7 +39,7 @@ namespace EA4S.ReservedArea
                 Destroy(t.gameObject);
             }
 
-            List<PlayerIconData> players = AppManager.I.PlayerProfileManager.GetSavedPlayers();
+            List<PlayerIconData> players = AppManager.I.PlayerProfileManager.GetPlayersIconData();
 
             // reverse the list for RIGHT 2 LEFT layout
             players.Reverse();

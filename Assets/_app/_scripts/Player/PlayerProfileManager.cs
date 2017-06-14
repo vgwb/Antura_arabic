@@ -81,20 +81,20 @@ namespace EA4S.Profile
         #region Settings        
 
         /// <summary>
-        /// Reloads the AppSettings from PlayerPrefs.
+        /// Reloads all the settings and, optionally, the current player
         /// TODO: rebuild database only for desynchronized profile
         /// </summary>
-        public void LoadSettings(bool alsoLoadCurrentPlayer = true)
+        public void LoadSettings(bool alsoLoadCurrentPlayerProfile = true)
         {
             AppManager.I.AppSettingsManager.LoadSettings();
 
-            if (alsoLoadCurrentPlayer)
+            if (alsoLoadCurrentPlayerProfile)
             {
                 // No last active? Get the first one.
                 if (AppManager.I.AppSettings.LastActivePlayerUUID == string.Empty) {
-                    if (AppManager.I.AppSettings.PlayersIconData.Count > 0) {
+                    if (AppManager.I.AppSettings.SavedPlayers.Count > 0) {
                         //UnityEngine.Debug.Log("No last! Get the first.");
-                        AppManager.I.AppSettings.LastActivePlayerUUID = AppManager.I.AppSettings.PlayersIconData[0].Uuid;
+                        AppManager.I.AppSettings.LastActivePlayerUUID = AppManager.I.AppSettings.SavedPlayers[0].Uuid;
                     } else {
                         AppManager.I.Player = null;
                         Debug.Log("Actual Player == null!!");
@@ -127,21 +127,21 @@ namespace EA4S.Profile
         /// Return the list of existing player profiles.
         /// </summary>
         /// <returns></returns>
-        public List<PlayerIconData> GetSavedPlayers()
+        public List<PlayerIconData> GetPlayersIconData()
         {
-            return AppManager.I.AppSettings.PlayersIconData;
+            return AppManager.I.AppSettings.SavedPlayers;
         }
 
         /// <summary>
-        /// Updates the PlayerIconData for current player in list of SavedPlayers in GameSettings.
+        /// Updates the PlayerIconData for current player in list of PlayersIconData in GameSettings.
         /// </summary>
         public void UpdateCurrentPlayerIconDataInSettings()
         {
-            for (int i = 0; i < AppManager.I.AppSettings.PlayersIconData.Count; i++)
+            for (int i = 0; i < AppManager.I.AppSettings.SavedPlayers.Count; i++)
             {
-                if (AppManager.I.AppSettings.PlayersIconData[i].Uuid == _currentPlayer.Uuid)
+                if (AppManager.I.AppSettings.SavedPlayers[i].Uuid == _currentPlayer.Uuid)
                 {
-                    AppManager.I.AppSettings.PlayersIconData[i] = CurrentPlayer.GetPlayerIconData();
+                    AppManager.I.AppSettings.SavedPlayers[i] = CurrentPlayer.GetPlayerIconData();
                 }
             }
             AppManager.I.AppSettingsManager.SaveSettings();
@@ -174,7 +174,7 @@ namespace EA4S.Profile
             // DB Creation
             AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
             // Added to list
-            AppManager.I.AppSettings.PlayersIconData.Add(returnProfile.GetPlayerIconData());
+            AppManager.I.AppSettings.SavedPlayers.Add(returnProfile.GetPlayerIconData());
             // Set player profile as current player
             AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile;
             // Create new Antura skin
@@ -215,14 +215,14 @@ namespace EA4S.Profile
             // it prevents errors if rewards unlock coroutine is still running
             AppManager.I.StopAllCoroutines();
             // TODO: check if is necessary to hard delete DB
-            PlayerIconData playerIconData = GetSavedPlayers().Find(p => p.Uuid == playerUUID);
+            PlayerIconData playerIconData = GetPlayersIconData().Find(p => p.Uuid == playerUUID);
             if (playerIconData.Uuid == string.Empty)
                 return null;
             // if setted as active player in gamesettings remove from it
             if (playerIconData.Uuid == AppManager.I.AppSettings.LastActivePlayerUUID)
             {
                 // if possible set the first available player...
-                PlayerIconData newActivePlayerIcon = GetSavedPlayers().Find(p => p.Uuid != playerUUID);
+                PlayerIconData newActivePlayerIcon = GetPlayersIconData().Find(p => p.Uuid != playerUUID);
                 if (newActivePlayerIcon.Uuid != null)
                 {
                     AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(newActivePlayerIcon.Uuid);
@@ -232,7 +232,7 @@ namespace EA4S.Profile
                     AppManager.I.PlayerProfileManager._currentPlayer = null;
                 }
             }
-            AppManager.I.AppSettings.PlayersIconData.Remove(playerIconData);
+            AppManager.I.AppSettings.SavedPlayers.Remove(playerIconData);
 
             AppManager.I.AppSettingsManager.SaveSettings();
             return returnProfile;
@@ -244,9 +244,9 @@ namespace EA4S.Profile
         public void ResetEverything()
         {
             // Reset all the Databases
-            if (AppManager.I.AppSettings.PlayersIconData != null)
+            if (AppManager.I.AppSettings.SavedPlayers != null)
             {
-                foreach (PlayerIconData pp in AppManager.I.AppSettings.PlayersIconData)
+                foreach (PlayerIconData pp in AppManager.I.AppSettings.SavedPlayers)
                 {
                     AppManager.I.DB.LoadDatabaseForPlayer(pp.Uuid);
                     AppManager.I.DB.DropProfile();
@@ -256,8 +256,7 @@ namespace EA4S.Profile
 
             // Reset all settings too
             AppManager.I.AppSettingsManager.DeleteAllSettings();
-            LoadSettings(alsoLoadCurrentPlayer: false);
-            //SaveGameSettings();
+            LoadSettings(alsoLoadCurrentPlayerProfile: false);
         }
 
         #endregion
@@ -277,7 +276,7 @@ namespace EA4S.Profile
         public bool IsDemoUserExisting()
         {
             bool demoUserExists = false;
-            var playerList = GetSavedPlayers();
+            var playerList = GetPlayersIconData();
             foreach (var player in playerList)
             {
                 if (player.IsDemoUser)
