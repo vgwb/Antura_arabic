@@ -71,11 +71,6 @@ namespace EA4S
             if (AppConstants.DebugPanelEnabled) {
                 Instantiate (Resources.Load ("Prefabs/Debug/UI Debug Canvas") as GameObject);
             }
-#if SRDebuggerEnabled
-            if (AppConstants.DebugPanelEnabled) {
-                SRDebug.Init();
-            }
-#endif
 
             AppSettingsManager = new AppSettingsManager();
             DB = new DatabaseManager();
