@@ -73,22 +73,6 @@ namespace EA4S.Profile
 
         #region properties
 
-        public string GetShortUuid()
-        {
-            string[] tokens = Uuid.Split('-');
-            return tokens[0];
-        }
-
-        public PlayerIconData GetIcon()
-        {
-            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars);
-        }
-
-        public Sprite GetAvatar()
-        {
-            return Resources.Load<Sprite>(AppConstants.AvatarsResourcesDir + AvatarId);
-        }
-
         /// <summary>
         /// True if player already answered to mood question for today.
         /// </summary>
