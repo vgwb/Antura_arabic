@@ -77,6 +77,9 @@ namespace EA4S
 
             // Debugger setup
             Debug.logger.logEnabled = AppConstants.VerboseLogging;
+            if (AppConstants.DebugPanelEnabled) {
+                Instantiate (Resources.Load ("Prefabs/Debug/UI Debug Canvas") as GameObject);
+            }
 #if SRDebuggerEnabled
             if (AppConstants.DebugPanelEnabled) {
                 SRDebug.Init();
