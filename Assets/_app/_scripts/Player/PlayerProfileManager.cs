@@ -92,9 +92,9 @@ namespace EA4S.Profile
             {
                 // No last active? Get the first one.
                 if (AppManager.I.AppSettings.LastActivePlayerUUID == string.Empty) {
-                    if (AppManager.I.AppSettings.SavedPlayers.Count > 0) {
+                    if (AppManager.I.AppSettings.PlayersIconData.Count > 0) {
                         //UnityEngine.Debug.Log("No last! Get the first.");
-                        AppManager.I.AppSettings.LastActivePlayerUUID = AppManager.I.AppSettings.SavedPlayers[0].Uuid;
+                        AppManager.I.AppSettings.LastActivePlayerUUID = AppManager.I.AppSettings.PlayersIconData[0].Uuid;
                     } else {
                         AppManager.I.Player = null;
                         Debug.Log("Actual Player == null!!");
@@ -129,7 +129,7 @@ namespace EA4S.Profile
         /// <returns></returns>
         public List<PlayerIconData> GetSavedPlayers()
         {
-            return AppManager.I.AppSettings.SavedPlayers;
+            return AppManager.I.AppSettings.PlayersIconData;
         }
 
         /// <summary>
@@ -137,11 +137,11 @@ namespace EA4S.Profile
         /// </summary>
         public void UpdateCurrentPlayerIconDataInSettings()
         {
-            for (int i = 0; i < AppManager.I.AppSettings.SavedPlayers.Count; i++)
+            for (int i = 0; i < AppManager.I.AppSettings.PlayersIconData.Count; i++)
             {
-                if (AppManager.I.AppSettings.SavedPlayers[i].Uuid == _currentPlayer.Uuid)
+                if (AppManager.I.AppSettings.PlayersIconData[i].Uuid == _currentPlayer.Uuid)
                 {
-                    AppManager.I.AppSettings.SavedPlayers[i] = CurrentPlayer.GetPlayerIconData();
+                    AppManager.I.AppSettings.PlayersIconData[i] = CurrentPlayer.GetPlayerIconData();
                 }
             }
             AppManager.I.AppSettingsManager.SaveSettings();
@@ -174,7 +174,7 @@ namespace EA4S.Profile
             // DB Creation
             AppManager.I.DB.CreateDatabaseForPlayer(returnProfile.ToData());
             // Added to list
-            AppManager.I.AppSettings.SavedPlayers.Add(returnProfile.GetPlayerIconData());
+            AppManager.I.AppSettings.PlayersIconData.Add(returnProfile.GetPlayerIconData());
             // Set player profile as current player
             AppManager.I.PlayerProfileManager.CurrentPlayer = returnProfile;
             // Create new Antura skin
@@ -232,7 +232,7 @@ namespace EA4S.Profile
                     AppManager.I.PlayerProfileManager._currentPlayer = null;
                 }
             }
-            AppManager.I.AppSettings.SavedPlayers.Remove(playerIconData);
+            AppManager.I.AppSettings.PlayersIconData.Remove(playerIconData);
 
             AppManager.I.AppSettingsManager.SaveSettings();
             return returnProfile;
@@ -244,9 +244,9 @@ namespace EA4S.Profile
         public void ResetEverything()
         {
             // Reset all the Databases
-            if (AppManager.I.AppSettings.SavedPlayers != null)
+            if (AppManager.I.AppSettings.PlayersIconData != null)
             {
-                foreach (PlayerIconData pp in AppManager.I.AppSettings.SavedPlayers)
+                foreach (PlayerIconData pp in AppManager.I.AppSettings.PlayersIconData)
                 {
                     AppManager.I.DB.LoadDatabaseForPlayer(pp.Uuid);
                     AppManager.I.DB.DropProfile();

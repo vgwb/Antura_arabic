@@ -54,7 +54,7 @@ namespace EA4S.UI
             btAddTween = BtAdd.transform.DORotate(new Vector3(0, 0, -45), 0.3f).SetAutoKill(false).Pause()
                 .SetEase(Ease.OutBack)
                 .OnRewind(() => {
-                    if (AppManager.I.AppSettings.SavedPlayers == null || AppManager.I.AppSettings.SavedPlayers.Count == 0) BtAdd.Pulse();
+                    if (AppManager.I.AppSettings.PlayersIconData == null || AppManager.I.AppSettings.PlayersIconData.Count == 0) BtAdd.Pulse();
                 });
             btPlayTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(BtPlay.RectT.DOAnchorPosY(-210, 0.2f).From(true))
