@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace EA4S.Core {
 
-    public class Singleton<T> : MonoBehaviour where T : Component
+    public class SingletonMonoBehaviour<T> : MonoBehaviour where T : Component
     {
         // Static singleton property
         public static T I { get; private set; }

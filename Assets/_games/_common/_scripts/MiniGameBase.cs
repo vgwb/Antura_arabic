@@ -7,7 +7,7 @@ namespace EA4S.MinigamesCommon
     /// To be derived by specific game scene managers.
     /// </summary>
     // refactor: this should be moved to _minigames/_common 
-    public abstract class MiniGameBase : Singleton<MiniGameBase>
+    public abstract class MiniGameBase : SingletonMonoBehaviour<MiniGameBase>
     {
         protected virtual void Start()
         {

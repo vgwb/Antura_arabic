@@ -16,7 +16,7 @@ namespace EA4S
     /// Core of the application.
     /// Works as a general manager and entry point for all other systems and managers.
     /// </summary>
-    public class AppManager : Singleton<AppManager>
+    public class AppManager : SingletonMonoBehaviour<AppManager>
     {
         protected override void Awake()
         {
