@@ -2,13 +2,15 @@
 
 ## Testing procedure
 Total tests: 1
-- Variations: 1
+- Variations: 
+    1. ColorTickle
 - Difficulty Levels: ininfluent
 
 ### Shortcuts
 _none_
 
 ## Variations
+
 ### 1. ColorTickle
 Player must color the letter.
 

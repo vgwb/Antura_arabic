@@ -1,11 +1,28 @@
-# Minigame Hide and Seek
+# Minigame Hide And Seek
 
-## Developer notes
+## Testing procedure
+Total tests: 1
+- Variations
+	1. HideAndSeek
+- Difficulty Levels: ininfluent
 
-## Configuration data
+### Shared Difficulty
+- Increased number of wrong letters
+- Lower idling time for letters
 
-## Variations to be tested
+### Shortcuts
+_none_
 
-## Shortcuts
+## Variations
 
+### 1. HideAndSeek
+Player must find the correct letter.
+
+#### Scoring
+- 3 stars if...
+- 2 stars if...
+- 1 star if...
+---
 ## Warnings to be fixed
+
+## Optimization
