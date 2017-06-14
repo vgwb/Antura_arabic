@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using ModularFramework.Core;
-using ModularFramework.Modules;
 using EA4S.Audio;
 using EA4S.CameraControl;
 using EA4S.Core;
@@ -18,15 +16,16 @@ namespace EA4S
     /// Core of the application.
     /// Functions as a general manager and entry point for all other systems and managers.
     /// </summary>
-    public class AppManager : GameManager
+    public class AppManager : Singleton<AppManager>
     {
-        public new AppSettings GameSettings = new AppSettings();
+        public AppSettings AppSettings = new AppSettings();
 
-        // refactor: AppManager.Instance should be the only entry point to the singleton
-        public static AppManager I
+        protected override void Awake()
         {
-            get { return GameManager.Instance as AppManager; }
+            base.Awake();
+            DontDestroyOnLoad(this);
         }
+
 
         public TeacherAI Teacher;
         public VocabularyHelper VocabularyHelper;
@@ -39,7 +38,30 @@ namespace EA4S
 
         public bool IsPaused { get; private set; }
 
+        #region Modules DEPRECATED
+
+        [HideInInspector]
+        public ModuleManager Modules = new ModuleManager();
+
+        public UIModule UIModule
+        {
+            get { return Modules.UIModule; }
+        }
+
+        public PlayerProfileModule PlayerProfile
+        {
+            get { return Modules.PlayerProfile; }
+        }
+
+        public LocalizationModule Localization
+        {
+            get { return Modules.LocalizationModule; }
+        }
+
+        #endregion
+
         private PlayerProfileManager _playerProfileManager;
+
         /// <summary>
         /// Gets or sets the player profile manager.
         /// Reload GameSettings at any playerProfileManager changes.
@@ -69,11 +91,26 @@ namespace EA4S
         #region Initialisation
 
         /// <summary>
+        /// Prevent multiple setups.
+        /// Set to true after first setup.
+        /// </summary>
+        bool alreadySetup = false;
+
+        /// <summary>
         /// Game entry point.
         /// </summary>
-        protected override void GameSetup()
+        protected override void Initialise()
         {
-            base.GameSetup();
+            if (alreadySetup)
+                return;
+
+            base.Initialise();
+
+            // Modules Setup
+            Modules.ModulesSetup();
+            Modules.ModuleAutoInstallerOverride(this.gameObject);
+
+            alreadySetup = true;
 
             // Debugger setup
             Debug.logger.logEnabled = AppConstants.VerboseLogging;
@@ -88,7 +125,7 @@ namespace EA4S
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
 
-            DB = new DatabaseManager(GameSettings.UseTestDatabase);
+            DB = new DatabaseManager(AppSettings.UseTestDatabase);
             // refactor: standardize initialisation of managers
             LogManager = new LogManager();
             VocabularyHelper = new VocabularyHelper(DB);
@@ -108,7 +145,7 @@ namespace EA4S
             UIDirector.Init(); // Must be called after NavigationManager has been initialized
 
             // Update settings
-            GameSettings.ApplicationVersion = AppConstants.AppVersion;
+            AppSettings.ApplicationVersion = AppConstants.AppVersion;
             PlayerProfileManager.SaveGameSettings();
         }
 
@@ -138,13 +175,13 @@ namespace EA4S
         // refactor: should be moved to AppManager
         public void ToggleQualitygfx()
         {
-            GameSettings.HighQualityGfx = !GameSettings.HighQualityGfx;
-            CameraGameplayController.I.EnableFX(GameSettings.HighQualityGfx);
+            AppSettings.HighQualityGfx = !AppSettings.HighQualityGfx;
+            CameraGameplayController.I.EnableFX(AppSettings.HighQualityGfx);
         }
 
         public void ToggleEnglishSubtitles()
         {
-            GameSettings.EnglishSubtitles = !GameSettings.EnglishSubtitles;
+            AppSettings.EnglishSubtitles = !AppSettings.EnglishSubtitles;
             PlayerProfileManager.SaveGameSettings();
         }
 

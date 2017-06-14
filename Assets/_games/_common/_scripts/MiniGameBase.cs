@@ -1,5 +1,4 @@
 ﻿using EA4S.Core;
-using ModularFramework.Core;
 
 namespace EA4S.MinigamesCommon
 {
@@ -9,7 +8,7 @@ namespace EA4S.MinigamesCommon
     /// </summary>
     // refactor: the dependency on ModularFramework.Core.SubGame is unclear
     // refactor: this should be moved to _minigames/_common 
-    public abstract class MiniGameBase : SubGame
+    public abstract class MiniGameBase : Singleton<MiniGameBase>
     {
         public bool UseTestGameplayInfo;
 
@@ -19,9 +18,9 @@ namespace EA4S.MinigamesCommon
         protected virtual void Start()
         {
             if (!UseTestGameplayInfo) {
-                GameplayInfo = AppManager.I.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
+                GameplayInfo = (AppManager.Instance as AppManager).Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
             } else { // manual set on framework for test session
-                AppManager.I.Modules.GameplayModule.ActualGameplayInfo = GameplayInfo;
+                (AppManager.Instance as AppManager).Modules.GameplayModule.ActualGameplayInfo = GameplayInfo;
             }
             ReadyForGameplay();
         }

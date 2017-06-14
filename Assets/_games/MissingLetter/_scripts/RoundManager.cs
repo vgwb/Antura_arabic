@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 using EA4S.Audio;
+using EA4S.Core;
 using EA4S.Helpers;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
@@ -248,7 +249,7 @@ namespace EA4S.Minigames.MissingLetter
         private List<LL_WordData> GetWordsFromPhrase(LL_PhraseData _phrase)
         {
             List<LL_WordData> phrase = new List<LL_WordData>();
-            var dbWords = AppManager.I.VocabularyHelper.GetWordsInPhrase(_phrase.Id);
+            var dbWords = (AppManager.Instance as AppManager).VocabularyHelper.GetWordsInPhrase(_phrase.Id);
             foreach (var dbWord in dbWords)
             {
                 phrase.Add((LL_WordData)dbWord.ConvertToLivingLetterData());
@@ -330,7 +331,7 @@ namespace EA4S.Minigames.MissingLetter
 
             LetterObjectView letterView = m_aoCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
 
-            var parts = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word.Data, letter.Data);
+            var parts = ArabicAlphabetHelper.FindLetter((AppManager.Instance as AppManager).DB, word.Data, letter.Data);
             
             var partToRemove = parts[0];
             letterView.Label.text = ArabicAlphabetHelper.GetWordWithMissingLetterText(word.Data, partToRemove, mk_sRemovedLetterChar);

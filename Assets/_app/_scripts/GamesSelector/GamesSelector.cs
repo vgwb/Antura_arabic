@@ -231,7 +231,7 @@ namespace EA4S.GamesSelector
             OnComplete += GoToMinigame;
 
             // refactor: the current list of minigames should be injected by the navigation manager instead
-            var minigames = AppManager.I.NavigationManager.CurrentPlaySessionMiniGames;
+            var minigames = (AppManager.Instance as AppManager).NavigationManager.CurrentPlaySessionMiniGames;
             if (minigames.Count > 0)
                 Show(minigames);
         }
@@ -239,7 +239,7 @@ namespace EA4S.GamesSelector
         // refactor: this should be injected
         void GoToMinigame()
         {
-            AppManager.I.NavigationManager.GoToNextScene();
+            (AppManager.Instance as AppManager).NavigationManager.GoToNextScene();
         }
 
         #endregion

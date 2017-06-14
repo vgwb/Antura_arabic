@@ -1,5 +1,6 @@
 using EA4S.MinigamesAPI;
 using System;
+using EA4S.Core;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -76,19 +77,19 @@ namespace EA4S.Assessment
 
         private ILivingLetterData GatherData( string id)
         {
-            var db = AppManager.I.DB;
+            var db = (AppManager.Instance as AppManager).DB;
             return db.GetWordDataById( id).ConvertToLivingLetterData();
         }
 
         private ILivingLetterData GatherImage( string id)
         {
-            var db = AppManager.I.DB;
+            var db = (AppManager.Instance as AppManager).DB;
             return new LL_ImageData( db.GetWordDataById( id));
         }
 
         private ILivingLetterData GatherNumber( string id)
         {
-            var db = AppManager.I.DB;
+            var db = (AppManager.Instance as AppManager).DB;
             return new LL_ImageData( db.GetWordDataById( id));
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using EA4S.Core;
 using EA4S.Helpers;
 
 namespace EA4S.MinigamesAPI.Sample
@@ -25,7 +26,7 @@ namespace EA4S.MinigamesAPI.Sample
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-                LL_WordData newWordData = AppManager.I.Teacher.GetRandomTestWordDataLL();
+                LL_WordData newWordData = (AppManager.Instance as AppManager).Teacher.GetRandomTestWordDataLL();
                 //LL_WordData newWordData = AppManager.I.Teacher.GetRandomTestWordDataLL(new WordFilters(requireDiacritics: true));
 
                 //LL_WordData newWordData = new LL_WordData(AppManager.I.DB.GetWordDataById("wolf"));
@@ -34,7 +35,7 @@ namespace EA4S.MinigamesAPI.Sample
                 if (newWordData == null)
                     return;
 
-                foreach (var letterData in ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, newWordData.Data))
+                foreach (var letterData in ArabicAlphabetHelper.AnalyzeData((AppManager.Instance as AppManager).DB, newWordData.Data))
                 {
                     correctAnswers.Add(new LL_LetterData(letterData.letter));
                 }
@@ -44,7 +45,7 @@ namespace EA4S.MinigamesAPI.Sample
                 // At least 4 wrong letters
                 while (wrongAnswers.Count < 4)
                 {
-                    var letter = AppManager.I.Teacher.GetRandomTestLetterLL();
+                    var letter = (AppManager.Instance as AppManager).Teacher.GetRandomTestLetterLL();
 
                     if (!CheckIfContains(correctAnswers, letter) && !CheckIfContains(wrongAnswers, letter))
                     {

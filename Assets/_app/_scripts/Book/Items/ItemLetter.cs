@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.Core;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using EA4S.Database;
@@ -29,7 +30,7 @@ namespace EA4S.Book
             info = _info;
             manager = _manager;
 
-            if (info.unlocked || AppManager.I.Player.IsDemoUser) {
+            if (info.unlocked || (AppManager.Instance as AppManager).Player.IsDemoUser) {
                 LockIcon.enabled = false;
             } else {
                 LockIcon.enabled = true;

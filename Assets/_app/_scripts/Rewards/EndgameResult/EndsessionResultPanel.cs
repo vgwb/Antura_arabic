@@ -155,7 +155,7 @@ namespace EA4S.Rewards
         void Continue()
         {
             //GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(AppManager.I.MiniGameDone());
-            AppManager.I.NavigationManager.GoToNextScene();
+            (AppManager.Instance as AppManager).NavigationManager.GoToNextScene();
         }
 
         void SetRewardsGos()

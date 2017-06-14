@@ -39,7 +39,7 @@ namespace EA4S.ReservedArea
                 Destroy(t.gameObject);
             }
 
-            List<PlayerIconData> players = AppManager.I.PlayerProfileManager.GetSavedPlayers();
+            List<PlayerIconData> players = (AppManager.Instance as AppManager).PlayerProfileManager.GetSavedPlayers();
 
             // reverse the list for RIGHT 2 LEFT layout
             players.Reverse();
@@ -84,8 +84,8 @@ namespace EA4S.ReservedArea
         public void OnOpenSelectedPlayerProfile()
         {
             //Debug.Log("OPEN " + SelectedPlayerId);
-            AppManager.I.PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
-            AppManager.I.NavigationManager.GoToPlayerBook();
+            (AppManager.Instance as AppManager).PlayerProfileManager.SetPlayerAsCurrentByUUID(SelectedPlayerId);
+            (AppManager.Instance as AppManager).NavigationManager.GoToPlayerBook();
         }
 
         public void OnDeleteSelectPlayerProfile()
@@ -100,13 +100,13 @@ namespace EA4S.ReservedArea
         void DoDeleteSelectPlayerProfile()
         {
             //Debug.Log("DELETE " + SelectedPlayerId);
-            AppManager.I.PlayerProfileManager.DeletePlayerProfile(SelectedPlayerId);
+            (AppManager.Instance as AppManager).PlayerProfileManager.DeletePlayerProfile(SelectedPlayerId);
             ResetAll();
         }
 
         public void OnExportSelectPlayerProfile()
         {
-            if (AppManager.I.DB.ExportDatabaseOfPlayer(SelectedPlayerId)) {
+            if ((AppManager.Instance as AppManager).DB.ExportDatabaseOfPlayer(SelectedPlayerId)) {
                 string dbPath;
                 if (Application.platform == RuntimePlatform.IPhonePlayer) {
                     dbPath = string.Format(@"{0}/{1}", "export", AppConstants.GetPlayerDatabaseFilename(SelectedPlayerId));
@@ -124,7 +124,7 @@ namespace EA4S.ReservedArea
 
         public void OnCreateDemoPlayer()
         {
-            if (AppManager.I.PlayerProfileManager.ExistsDemoUser()) {
+            if ((AppManager.Instance as AppManager).PlayerProfileManager.ExistsDemoUser()) {
                 GlobalUI.ShowPrompt(Database.LocalizationDataId.ReservedArea_DemoUserAlreadyExists);
             } else {
                 GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, DoCreateDemoPlayer, DoNothing);
@@ -149,15 +149,15 @@ namespace EA4S.ReservedArea
             yield return null;
             activateWaitingScreen(true);
             yield return null;
-            var demoUserUiid = AppManager.I.PlayerProfileManager.CreatePlayerProfile(10, PlayerGender.F, 1, PlayerTint.Red, true);
+            var demoUserUiid = (AppManager.Instance as AppManager).PlayerProfileManager.CreatePlayerProfile(10, PlayerGender.F, 1, PlayerTint.Red, true);
             SelectedPlayerId = demoUserUiid;
 
             // populate with fake data
-            var maxJourneyPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
+            var maxJourneyPos = (AppManager.Instance as AppManager).JourneyHelper.GetFinalJourneyPosition();
             yield return StartCoroutine(PopulateDatabaseWithUsefulDataCO(maxJourneyPos));
-            AppManager.I.Player.SetMaxJourneyPosition(maxJourneyPos, true);
-            AppManager.I.Player.CheckGameFinished();                // force check
-            AppManager.I.Player.CheckGameFinishedWithAllStars();    // force check
+            (AppManager.Instance as AppManager).Player.SetMaxJourneyPosition(maxJourneyPos, true);
+            (AppManager.Instance as AppManager).Player.CheckGameFinished();                // force check
+            (AppManager.Instance as AppManager).Player.CheckGameFinishedWithAllStars();    // force check
             Rewards.RewardSystemManager.UnlockAllRewards();
 
             ResetAll();
@@ -174,7 +174,7 @@ namespace EA4S.ReservedArea
         {
             bool useBestScores = true;
 
-            var logAi = AppManager.I.Teacher.logAI;
+            var logAi = (AppManager.Instance as AppManager).Teacher.logAI;
             var fakeAppSession = LogManager.I.AppSession;
 
             // Add some mood data
@@ -188,7 +188,7 @@ namespace EA4S.ReservedArea
             // Add scores for all play sessions
             Debug.Log("Start adding PS scores");
             List<LogPlaySessionScoreParams> logPlaySessionScoreParamsList = new List<LogPlaySessionScoreParams>();
-            var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
+            var allPlaySessionInfos = (AppManager.Instance as AppManager).ScoreHelper.GetAllPlaySessionInfo();
             for (int i = 0; i < allPlaySessionInfos.Count; i++) {
                 if (allPlaySessionInfos[i].data.Stage <= targetPosition.Stage) {
                     int score = useBestScores ? AppConstants.maximumMinigameScore : Random.Range(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore);
@@ -203,7 +203,7 @@ namespace EA4S.ReservedArea
             // Add scores for all minigames
             Debug.Log("Start adding MiniGame scores");
             List<LogMiniGameScoreParams> logMiniGameScoreParamses = new List<LogMiniGameScoreParams>();
-            var allMiniGameInfo = AppManager.I.ScoreHelper.GetAllMiniGameInfo();
+            var allMiniGameInfo = (AppManager.Instance as AppManager).ScoreHelper.GetAllMiniGameInfo();
             for (int i = 0; i < allMiniGameInfo.Count; i++) {
                 int score = useBestScores ? AppConstants.maximumMinigameScore : Random.Range(AppConstants.minimumMinigameScore, AppConstants.maximumMinigameScore);
                 logMiniGameScoreParamses.Add(new LogMiniGameScoreParams(JourneyPosition.InitialJourneyPosition, allMiniGameInfo[i].data.Code, score, 12f));

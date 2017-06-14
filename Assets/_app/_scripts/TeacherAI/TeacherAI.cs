@@ -6,6 +6,7 @@ using EA4S.Database;
 using EA4S.Helpers;
 using EA4S.MinigamesAPI;
 using EA4S.Profile;
+using PlayerProfile = EA4S.Profile.PlayerProfile;
 
 namespace EA4S.Teacher
 {
@@ -191,7 +192,7 @@ namespace EA4S.Teacher
 
         public int GetCurrentNumberOfRounds(MiniGameCode miniGameCode)
         {
-            var currentPos = AppManager.I.Player.CurrentJourneyPosition;
+            var currentPos = (AppManager.Instance as AppManager).Player.CurrentJourneyPosition;
             var psData = dbManager.GetPlaySessionDataById(currentPos.ToStringId());
             return psData.NumberOfRoundsPerMinigame;
         }
@@ -278,7 +279,7 @@ namespace EA4S.Teacher
             if (filters == null) { filters = new LetterFilters(); }
 
             if (useMaxJourneyData) {
-                VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+                VocabularyAi.LoadCurrentPlaySessionData((AppManager.Instance as AppManager).Player.MaxJourneyPosition.ToString());
             }
 
             var availableLetters = VocabularyAi.SelectData(
@@ -305,11 +306,11 @@ namespace EA4S.Teacher
 
             List<LetterData> availableLetters = null;
 
-            if (AppManager.I.Player == null) {
+            if ((AppManager.Instance as AppManager).Player == null) {
                 availableLetters = VocabularyHelper.GetAllLetters(filters);
             } else {
                 if (useMaxJourneyData) {
-                    VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+                    VocabularyAi.LoadCurrentPlaySessionData((AppManager.Instance as AppManager).Player.MaxJourneyPosition.ToString());
                 }
 
                 availableLetters = VocabularyAi.SelectData(
@@ -339,7 +340,7 @@ namespace EA4S.Teacher
             if (filters == null) { filters = new WordFilters(); }
 
             if (useMaxJourneyData) {
-                VocabularyAi.LoadCurrentPlaySessionData(AppManager.I.Player.MaxJourneyPosition.ToString());
+                VocabularyAi.LoadCurrentPlaySessionData((AppManager.Instance as AppManager).Player.MaxJourneyPosition.ToString());
             }
 
             if (giveWarningOnFake) {

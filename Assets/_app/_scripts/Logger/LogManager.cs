@@ -74,7 +74,7 @@ namespace EA4S.Core
 
             float duration = (float)(endMiniGameDateTime - startMiniGameDateTime).TotalSeconds;
             //Debug.LogError("DURATION MG: " + duration);
-            AppManager.I.Teacher.logAI.LogMiniGameScore(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, score, duration);
+            EA4S.AppManager.Instance.Teacher.logAI.LogMiniGameScore(AppSession, EA4S.AppManager.Instance.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, score, duration);
         }
 
         struct GameResultInfo
@@ -86,12 +86,12 @@ namespace EA4S.Core
         /// @note: deprecated (unless we re-add minigame direct logplay logging)
         protected internal void LogPlay(string playSession, MiniGameCode miniGameCode, List<Teacher.LogAI.PlayResultParameters> resultsList)
         {
-            AppManager.I.Teacher.logAI.LogPlay(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, resultsList);
+            (EA4S.AppManager.Instance as EA4S.AppManager).Teacher.logAI.LogPlay(AppSession, (EA4S.AppManager.Instance as EA4S.AppManager).NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, resultsList);
         }
 
         protected internal void LogLearn(string playSession, MiniGameCode miniGameCode, List<Teacher.LogAI.LearnResultParameters> resultsList)
         {
-            AppManager.I.Teacher.logAI.LogLearn(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, resultsList);
+            (EA4S.AppManager.Instance as EA4S.AppManager).Teacher.logAI.LogLearn(AppSession, (EA4S.AppManager.Instance as EA4S.AppManager).NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, miniGameCode, resultsList);
         }
 
         #endregion
@@ -108,7 +108,7 @@ namespace EA4S.Core
 
             float duration = (float)(endPlaySessionDateTime - startPlaySessionDateTime).TotalSeconds;
             //Debug.LogError("DURATION PS: " + duration);
-            AppManager.I.Teacher.logAI.LogPlaySessionScore(AppSession, AppManager.I.NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, score, duration);
+            (EA4S.AppManager.Instance as EA4S.AppManager).Teacher.logAI.LogPlaySessionScore(AppSession, (EA4S.AppManager.Instance as EA4S.AppManager).NavigationManager.NavData.CurrentPlayer.CurrentJourneyPosition, score, duration);
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace EA4S.Core
         /// <param name="score">The score.</param>
         public void LogLearningBlockScore(int learningBlock, int score)
         {
-            AppManager.I.Teacher.logAI.LogLearningBlockScore(learningBlock, score);
+            (EA4S.AppManager.Instance as EA4S.AppManager).Teacher.logAI.LogLearningBlockScore(learningBlock, score);
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace EA4S.Core
         /// <param name="parametersString">The parameters string.</param>
         public void LogInfo(InfoEvent infoEvent, string parametersString = "")
         {
-            AppManager.I.Teacher.logAI.LogInfo(AppSession, infoEvent, parametersString);
+            (EA4S.AppManager.Instance as EA4S.AppManager).Teacher.logAI.LogInfo(AppSession, infoEvent, parametersString);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace EA4S.Core
         /// <param name="mood">The mood.</param>
         public void LogMood(int mood)
         {
-            AppManager.I.Teacher.logAI.LogMood(AppSession, mood);
+            (EA4S.AppManager.Instance as EA4S.AppManager).Teacher.logAI.LogMood(AppSession, mood);
         }
 
         public void StartApp()

@@ -1,4 +1,5 @@
 ﻿using System;
+using EA4S.Core;
 using UnityEngine;
 
 namespace EA4S.MinigamesAPI
@@ -18,10 +19,10 @@ namespace EA4S.MinigamesAPI
 
         public string Id {
             get { return Data.Id; }
-            set { Data = AppManager.I.DB.GetLetterDataById(value); }
+            set { Data = (AppManager.Instance as AppManager).DB.GetLetterDataById(value); }
         }
 
-        public LL_LetterData(string _id) : this(AppManager.I.DB.GetLetterDataById(_id)) /// refactor: inject the value, no reference to the DB
+        public LL_LetterData(string _id) : this((AppManager.Instance as AppManager).DB.GetLetterDataById(_id)) /// refactor: inject the value, no reference to the DB
         {
         }
 
@@ -30,7 +31,7 @@ namespace EA4S.MinigamesAPI
             Data = _data;
         }
 
-        public LL_LetterData(string _id, Database.LetterForm form) : this(AppManager.I.DB.GetLetterDataById(_id), form)
+        public LL_LetterData(string _id, Database.LetterForm form) : this((AppManager.Instance as AppManager).DB.GetLetterDataById(_id), form)
         {
         }
 

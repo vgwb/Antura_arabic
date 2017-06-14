@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using EA4S.Core;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -282,7 +283,7 @@ namespace EA4S.Assessment
             LL_WordData word = question as LL_WordData;
             var wordGO = ItemFactory.Instance.SpawnQuestion( word);
 
-            var partsToRemove = ArabicAlphabetHelper.FindLetter( AppManager.I.DB, word.Data, correctLetter.Data);
+            var partsToRemove = ArabicAlphabetHelper.FindLetter( (AppManager.Instance as AppManager).DB, word.Data, correctLetter.Data);
             partsToRemove.Shuffle(); //pick a random letter
 
             string text = ArabicAlphabetHelper.GetWordWithMissingLetterText(

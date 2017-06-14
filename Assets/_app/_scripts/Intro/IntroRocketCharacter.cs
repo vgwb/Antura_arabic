@@ -1,4 +1,5 @@
-﻿using EA4S.Helpers;
+﻿using EA4S.Core;
+using EA4S.Helpers;
 using EA4S.LivingLetters;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ namespace EA4S.Intro
 
         void Start()
         {
-            LL.Initialize(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom()); 
+            LL.Initialize((AppManager.Instance as AppManager).Teacher.GetAllTestLetterDataLL().GetRandom()); 
             LL.SetState(LLAnimationStates.LL_rocketing);
             LL.Horraying = true;
         }

@@ -110,8 +110,8 @@ namespace EA4S.UI
 
             // Set toggles
             BtMusic.Toggle(AudioManager.I.MusicEnabled);
-            BtFx.Toggle(AppManager.I.GameSettings.HighQualityGfx);
-            BtEnglish.Toggle(AppManager.I.GameSettings.EnglishSubtitles);
+            BtFx.Toggle((AppManager.Instance as AppManager).AppSettings.HighQualityGfx);
+            BtEnglish.Toggle((AppManager.Instance as AppManager).AppSettings.EnglishSubtitles);
 
             if (_open) {
                 //timeScaleAtMenuOpen = Time.timeScale;
@@ -149,16 +149,16 @@ namespace EA4S.UI
             } else if (!openMenuTween.IsPlaying()) { // Ignores pause menu clicks when opening/closing menu
                 switch (_bt.Type) {
                     case MenuButtonType.Back: // Exit
-                        if (AppManager.I.NavigationManager.NavData.CurrentScene == AppScene.MiniGame) {
+                        if ((AppManager.Instance as AppManager).NavigationManager.NavData.CurrentScene == AppScene.MiniGame) {
                             // Prompt
                             GlobalUI.ShowPrompt(Database.LocalizationDataId.UI_AreYouSure, () => {
                                 OpenMenu(false);
-                                AppManager.I.NavigationManager.ExitDuringPause();
+                                (AppManager.Instance as AppManager).NavigationManager.ExitDuringPause();
                             }, () => { });
                         } else {
                             // No prompt
                             OpenMenu(false);
-                            AppManager.I.NavigationManager.ExitDuringPause();
+                            (AppManager.Instance as AppManager).NavigationManager.ExitDuringPause();
                         }
                         break;
                     case MenuButtonType.MusicToggle: // Music on/off
@@ -166,12 +166,12 @@ namespace EA4S.UI
                         BtMusic.Toggle(AudioManager.I.MusicEnabled);
                         break;
                     case MenuButtonType.FxToggle: // FX on/off
-                        AppManager.I.ToggleQualitygfx();
-                        BtFx.Toggle(AppManager.I.GameSettings.HighQualityGfx);
+                        (AppManager.Instance as AppManager).ToggleQualitygfx();
+                        BtFx.Toggle((AppManager.Instance as AppManager).AppSettings.HighQualityGfx);
                         break;
                     case MenuButtonType.EnglishToggle:
-                        AppManager.I.ToggleEnglishSubtitles();
-                        BtEnglish.Toggle(AppManager.I.GameSettings.EnglishSubtitles);
+                        (AppManager.Instance as AppManager).ToggleEnglishSubtitles();
+                        BtEnglish.Toggle((AppManager.Instance as AppManager).AppSettings.EnglishSubtitles);
                         break;
                     case MenuButtonType.Credits:
                         Credits.Show(true);

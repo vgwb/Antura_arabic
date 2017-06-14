@@ -123,7 +123,7 @@ namespace EA4S.Book
 
         public void GoBackCustom()
         {
-            AppManager.I.NavigationManager.GoBack();
+            (AppManager.Instance as AppManager).NavigationManager.GoBack();
         }
     }
 }

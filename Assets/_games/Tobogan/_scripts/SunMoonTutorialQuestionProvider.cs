@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using EA4S.Core;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
 
@@ -16,7 +17,7 @@ namespace EA4S.Minigames.Tobogan
         {
             this.provider = provider;
 
-            var db = AppManager.I.DB;
+            var db = (AppManager.Instance as AppManager).DB;
             var sunWord = db.GetWordDataById("the_sun");
             var sunData = new LL_ImageData(sunWord.Id, sunWord);
             var moonWord = db.GetWordDataById("the_moon");

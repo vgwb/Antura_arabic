@@ -17,9 +17,9 @@ namespace EA4S.MinigamesAPI
             if (_stars > 0)
                 positiveResult = true;
 
-            AnturaGameplayInfo gameInfo = AppManager.I.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
+            AnturaGameplayInfo gameInfo = (AppManager.Instance as AppManager).Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
 
-            AppManager.I.Modules.GameplayModule.GameplayResult(
+            (AppManager.Instance as AppManager).Modules.GameplayModule.GameplayResult(
                 new AnturaGameplayResult() {
 
                     GameplayInfo = new AnturaGameplayInfo() { GameId = gameInfo.GameId },

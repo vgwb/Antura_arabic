@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using DG.DeInspektor.Attributes;
+using EA4S.Core;
 
 namespace EA4S.UI
 {
@@ -101,7 +102,7 @@ namespace EA4S.UI
             if (_doShow) {
                 I.disableBackButtonOnClick = _disableOnClick;
                 I.BackButton.Bt.interactable = true;
-                I.onGoBack = _callback == null ? AppManager.I.NavigationManager.GoBack : _callback;
+                I.onGoBack = _callback == null ? (AppManager.Instance as AppManager).NavigationManager.GoBack : _callback;
             }
         }
 

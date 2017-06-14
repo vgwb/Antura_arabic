@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.Helpers;
 
 namespace EA4S.Teacher
@@ -37,10 +38,10 @@ namespace EA4S.Teacher
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
             List<QuestionPackData> packs = new List<QuestionPackData>();
-            var teacher = AppManager.I.Teacher;
-            var vocabularyHelper = AppManager.I.VocabularyHelper;
+            var teacher = (AppManager.Instance as AppManager).Teacher;
+            var vocabularyHelper = (AppManager.Instance as AppManager).VocabularyHelper;
 
-            var db = AppManager.I.DB;
+            var db = (AppManager.Instance as AppManager).DB;
             var choice1 = db.GetWordDataById("singular");
             var choice2 = db.GetWordDataById("plural");
             var choice3 = db.GetWordDataById("dual");

@@ -99,7 +99,7 @@ namespace EA4S.Core
         {
             if (SceneTransitioner.IsShown)
             {
-                AppManager.I.StartCoroutine(CloseSceneTransitionerCO(transitionCloseTime));
+                (EA4S.AppManager.Instance as EA4S.AppManager).StartCoroutine(CloseSceneTransitionerCO(transitionCloseTime));
             }
         }
 

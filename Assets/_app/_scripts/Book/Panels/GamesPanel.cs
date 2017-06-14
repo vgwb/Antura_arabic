@@ -118,7 +118,7 @@ namespace EA4S.Book
             //ScoreText.text = Output;
 
             // Launch button
-            if (!AppManager.I.NavigationManager.PrevSceneIsReservedArea() && (selectedGameInfo.unlocked || AppManager.I.Player.IsDemoUser)) {
+            if (!(AppManager.Instance as AppManager).NavigationManager.PrevSceneIsReservedArea() && (selectedGameInfo.unlocked || (AppManager.Instance as AppManager).Player.IsDemoUser)) {
                 LaunchGameButton.gameObject.SetActive(true);
                 LaunchGameButton.interactable = true;
             } else {
@@ -142,13 +142,13 @@ namespace EA4S.Book
         public void OnLaunchMinigame()
         {
             // Set to max stage
-            AppManager.I.Player.CurrentJourneyPosition.Stage = AppManager.I.Player.MaxJourneyPosition.Stage;
-            AppManager.I.Player.CurrentJourneyPosition.LearningBlock = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
-            AppManager.I.Player.CurrentJourneyPosition.PlaySession = AppManager.I.Player.MaxJourneyPosition.PlaySession;
+            (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Stage = (AppManager.Instance as AppManager).Player.MaxJourneyPosition.Stage;
+            (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.LearningBlock = (AppManager.Instance as AppManager).Player.MaxJourneyPosition.LearningBlock;
+            (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.PlaySession = (AppManager.Instance as AppManager).Player.MaxJourneyPosition.PlaySession;
 
-            Debug.Log("Playing minigame " + currentMiniGame.Code + " at PS " + AppManager.I.Player.CurrentJourneyPosition);
+            Debug.Log("Playing minigame " + currentMiniGame.Code + " at PS " + (AppManager.Instance as AppManager).Player.CurrentJourneyPosition);
 
-            AppManager.I.GameLauncher.LaunchGame(currentMiniGame.Code, forceNewPlaySession: true);
+            (AppManager.Instance as AppManager).GameLauncher.LaunchGame(currentMiniGame.Code, forceNewPlaySession: true);
         }
 
         void emptyListContainers()
@@ -161,7 +161,7 @@ namespace EA4S.Book
         List<MainMiniGame> GetMainMiniGameList()
         {
             Dictionary<string, MainMiniGame> dictionary = new Dictionary<string, MainMiniGame>();
-            List<MiniGameInfo> minigameInfoList = AppManager.I.ScoreHelper.GetAllMiniGameInfo();
+            List<MiniGameInfo> minigameInfoList = (AppManager.Instance as AppManager).ScoreHelper.GetAllMiniGameInfo();
             foreach (var minigameInfo in minigameInfoList) {
                 if (!dictionary.ContainsKey(minigameInfo.data.Main)) {
                     dictionary[minigameInfo.data.Main] = new MainMiniGame {
@@ -185,7 +185,7 @@ namespace EA4S.Book
             foreach (var mainMiniGame in outputList) {
                 foreach (var miniGameInfo in mainMiniGame.variations) {
                     var miniGameCode = miniGameInfo.data.Code;
-                    minimumJourneyPositions[miniGameCode] = AppManager.I.JourneyHelper.GetMinimumJourneyPositionForMiniGame(miniGameCode);
+                    minimumJourneyPositions[miniGameCode] = (AppManager.Instance as AppManager).JourneyHelper.GetMinimumJourneyPositionForMiniGame(miniGameCode);
                 }
             }
 
@@ -213,7 +213,7 @@ namespace EA4S.Book
             if (minPos2.IsMinor(minPos1)) return 1;
 
             // Check play session order
-            var sharedPlaySessionData = AppManager.I.DB.GetPlaySessionDataById(minPos1.ToStringId());
+            var sharedPlaySessionData = (AppManager.Instance as AppManager).DB.GetPlaySessionDataById(minPos1.ToStringId());
             int ret = 0;
             switch (sharedPlaySessionData.Order) {
                 case PlaySessionDataOrder.Random:

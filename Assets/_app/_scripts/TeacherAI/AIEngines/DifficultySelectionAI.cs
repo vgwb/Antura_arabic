@@ -3,6 +3,7 @@ using EA4S.Core;
 using EA4S.Database;
 using EA4S.Profile;
 using UnityEngine;
+using PlayerProfile = EA4S.Profile.PlayerProfile;
 
 namespace EA4S.Teacher
 {

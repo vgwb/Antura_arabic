@@ -1,4 +1,6 @@
-﻿namespace EA4S.MinigamesAPI.Sample
+﻿using EA4S.Core;
+
+namespace EA4S.MinigamesAPI.Sample
 {
     /// <summary>
     /// Example implementation of ILivingLetterDataProvider.
@@ -13,7 +15,7 @@
 
         public ILivingLetterData GetNextData()
         {
-            return AppManager.I.Teacher.GetRandomTestWordDataLL();
+            return (AppManager.Instance as AppManager).Teacher.GetRandomTestWordDataLL();
         }
     }
 }

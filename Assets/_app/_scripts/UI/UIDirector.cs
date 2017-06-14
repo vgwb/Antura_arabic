@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DG.Tweening;
+using EA4S.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -18,7 +19,7 @@ namespace EA4S.UI
             if (initialized) return;
 
             initialized = true;
-            AppManager.I.NavigationManager.OnSceneStartTransition += OnSceneStartTransition;
+            (AppManager.Instance as AppManager).NavigationManager.OnSceneStartTransition += OnSceneStartTransition;
         }
 
         #region Public Methods

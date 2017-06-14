@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.DeInspektor.Attributes;
 using DG.Tweening;
 using EA4S.Antura;
+using EA4S.Core;
 using EA4S.Helpers;
 using EA4S.Rewards;
 using EA4S.Utilities;
@@ -84,7 +85,7 @@ namespace EA4S.UI
             btsCategories = CategoriesContainer.GetComponentsInChildren<AnturaSpaceCategoryButton>(true);
             btsSwatches = SwatchesContainer.GetComponentsInChildren<AnturaSpaceSwatchButton>(true);
             SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
-            BtOpenModsPanel.SetAsNew(AppManager.I.Player.ThereIsSomeNewReward());
+            BtOpenModsPanel.SetAsNew((AppManager.Instance as AppManager).Player.ThereIsSomeNewReward());
 
             // Create items
             rewardsContainers = new List<Transform>();
@@ -174,7 +175,7 @@ namespace EA4S.UI
                 if (onEnterCustomization != null)
                     onEnterCustomization();
             } else {
-                BtOpenModsPanel.SetAsNew(AppManager.I.Player.ThereIsSomeNewReward());
+                BtOpenModsPanel.SetAsNew((AppManager.Instance as AppManager).Player.ThereIsSomeNewReward());
                 SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
                 showCategoriesTween.PlayBackwards();
                 showItemsTween.PlayBackwards();
@@ -358,15 +359,15 @@ namespace EA4S.UI
                 switch (btCat.Category)
                 {
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears:
-                        isNew = AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_L")
-                            || AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_R");
+                        isNew = (AppManager.Instance as AppManager).Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_L")
+                            || (AppManager.Instance as AppManager).Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), "EAR_R");
                         break;
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal:
                     case AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture:
-                        isNew = AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category));
+                        isNew = (AppManager.Instance as AppManager).Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category));
                         break;
                     default:
-                        isNew = AppManager.I.Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), btCat.Category.ToString());
+                        isNew = (AppManager.Instance as AppManager).Player.RewardCategoryContainsNewElements(CategoryToRewardType(btCat.Category), btCat.Category.ToString());
                         break;
                 }
                 btCat.SetAsNew(isNew);

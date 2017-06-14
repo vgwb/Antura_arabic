@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using EA4S.Core;
 using EA4S.Helpers;
 
 namespace EA4S.MinigamesAPI
@@ -19,10 +20,10 @@ namespace EA4S.MinigamesAPI
 
         public string Id {
             get { return Data.Id; }
-            set { Data = AppManager.I.DB.GetWordDataById(value); } // refactor: inject the value, no reference to the DB
+            set { Data = (AppManager.Instance as AppManager).DB.GetWordDataById(value); } // refactor: inject the value, no reference to the DB
         }
 
-        public LL_WordData(string _id) : this(AppManager.I.DB.GetWordDataById(_id)) // refactor: inject the value, no reference to the DB
+        public LL_WordData(string _id) : this((AppManager.Instance as AppManager).DB.GetWordDataById(_id)) // refactor: inject the value, no reference to the DB
         {
         }
 
@@ -45,7 +46,7 @@ namespace EA4S.MinigamesAPI
         }
 
         public string DrawingCharForLivingLetter {
-            get { return AppManager.I.VocabularyHelper.GetWordDrawing(Data); } // refactor: inject the value, no reference to the DB
+            get { return (AppManager.Instance as AppManager).VocabularyHelper.GetWordDrawing(Data); } // refactor: inject the value, no reference to the DB
         }
 
         /// <summary>

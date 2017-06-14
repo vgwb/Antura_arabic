@@ -58,8 +58,8 @@ namespace EA4S.Rewards
         /// </summary>
         /// <returns></returns>
         public static int GetUnlockedRewardsCount() {
-            if (AppManager.I.Player != null)
-                return AppManager.I.Player.RewardsUnlocked.Count;
+            if ((AppManager.Instance as AppManager).Player != null)
+                return (AppManager.Instance as AppManager).Player.RewardsUnlocked.Count;
             else
                 return 0;
         }
@@ -107,11 +107,11 @@ namespace EA4S.Rewards
                     // Filter from unlocked elements (only items with this category and only one for itemID)
                     List<Reward> rewards = GetConfig().GetClone().Rewards;
                     foreach (var item in rewards.FindAll(r => r.Category == _categoryRewardId)) {
-                        if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.GetRewardCategory() == _categoryRewardId).Exists(ur => ur.ItemId == item.ID)) {
+                        if ((AppManager.Instance as AppManager).Player.RewardsUnlocked.FindAll(ur => ur.GetRewardCategory() == _categoryRewardId).Exists(ur => ur.ItemId == item.ID)) {
                             returnList.Add(new RewardItem() {
                                 ID = item.ID,
-                                IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
-                                IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.Fornitures.Exists(f => f.ItemId == item.ID) });
+                                IsNew = (AppManager.Instance as AppManager).Player.RewardItemIsNew(item.ID),
+                                IsSelected = (AppManager.Instance as AppManager).Player.CurrentAnturaCustomizations.Fornitures.Exists(f => f.ItemId == item.ID) });
                         } else {
                             returnList.Add(null);
                         }
@@ -126,11 +126,11 @@ namespace EA4S.Rewards
                 case RewardTypes.texture:
                     // Filter from unlocked elements (only one for itemID)
                     foreach (var item in GetConfig().RewardsTile) {
-                        if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.texture).Exists(ur => ur.ItemId == item.ID)) {
+                        if ((AppManager.Instance as AppManager).Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.texture).Exists(ur => ur.ItemId == item.ID)) {
                             returnList.Add(new RewardItem() {
                                 ID = item.ID,
-                                IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
-                                IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture.ItemId == item.ID
+                                IsNew = (AppManager.Instance as AppManager).Player.RewardItemIsNew(item.ID),
+                                IsSelected = (AppManager.Instance as AppManager).Player.CurrentAnturaCustomizations.TileTexture.ItemId == item.ID
                             });
                         } else {
                             returnList.Add(null);
@@ -148,11 +148,11 @@ namespace EA4S.Rewards
                 case RewardTypes.decal:
                     // Filter from unlocked elements (only one for itemID)
                     foreach (var item in GetConfig().RewardsDecal) {
-                        if (AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.decal).Exists(ur => ur.ItemId == item.ID)) {
+                        if ((AppManager.Instance as AppManager).Player.RewardsUnlocked.FindAll(ur => ur.Type == RewardTypes.decal).Exists(ur => ur.ItemId == item.ID)) {
                             returnList.Add(new RewardItem() {
                                 ID = item.ID,
-                                IsNew = AppManager.I.Player.RewardItemIsNew(item.ID),
-                                IsSelected = AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture.ItemId == item.ID });
+                                IsNew = (AppManager.Instance as AppManager).Player.RewardItemIsNew(item.ID),
+                                IsSelected = (AppManager.Instance as AppManager).Player.CurrentAnturaCustomizations.DecalTexture.ItemId == item.ID });
                         } else {
                             returnList.Add(null);
                         }
@@ -195,9 +195,9 @@ namespace EA4S.Rewards
             switch (_rewardType) {
                 case RewardTypes.reward:
                     foreach (RewardColor color in GetConfig().GetClone().RewardsColorPairs) {
-                        if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID)) {
+                        if ((AppManager.Instance as AppManager).Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID)) {
                             RewardColorItem rci = new RewardColorItem(color);
-                            rci.IsNew = AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
+                            rci.IsNew = (AppManager.Instance as AppManager).Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
                             returnList.Add(rci);
                         } else {
                             returnList.Add(null);
@@ -208,9 +208,9 @@ namespace EA4S.Rewards
                     break;
                 case RewardTypes.texture:
                     foreach (RewardColor color in GetConfig().RewardsTileColor) {
-                        if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID)) {
+                        if ((AppManager.Instance as AppManager).Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID)) {
                             RewardColorItem rci = new RewardColorItem(color);
-                            rci.IsNew = AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
+                            rci.IsNew = (AppManager.Instance as AppManager).Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
                             rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
                             returnList.Add(rci);
                         } else {
@@ -222,9 +222,9 @@ namespace EA4S.Rewards
                     break;
                 case RewardTypes.decal:
                     foreach (RewardColor color in GetConfig().RewardsDecalColor) {
-                        if (AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID)) {
+                        if ((AppManager.Instance as AppManager).Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID)) {
                             RewardColorItem rci = new RewardColorItem(color);
-                            rci.IsNew = AppManager.I.Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
+                            rci.IsNew = (AppManager.Instance as AppManager).Player.RewardsUnlocked.Exists(ur => ur.ItemId == _rewardItemId && ur.ColorId == color.ID && ur.IsNew == true);
                             rci.Color2RGB = rci.Color1RGB; // to avoid exadecimal conversion error on ui rgb code conversion.
                             returnList.Add(rci);
                         } else {
@@ -248,16 +248,16 @@ namespace EA4S.Rewards
             RewardPackUnlockData alreadySelectedReward = null;
             switch (_rewardType) {
                 case RewardTypes.reward:
-                    List<RewardPackUnlockData> fornitures = AppManager.I.Player.CurrentAnturaCustomizations.Fornitures;
+                    List<RewardPackUnlockData> fornitures = (AppManager.Instance as AppManager).Player.CurrentAnturaCustomizations.Fornitures;
                     alreadySelectedReward = fornitures.Find(r => r.ItemId == _rewardItemId && r.Type == _rewardType);
                     break;
                 case RewardTypes.texture:
-                    if (AppManager.I.Player.CurrentAnturaCustomizations.TileTexture.ItemId == _rewardItemId)
-                        alreadySelectedReward = AppManager.I.Player.CurrentAnturaCustomizations.TileTexture;
+                    if ((AppManager.Instance as AppManager).Player.CurrentAnturaCustomizations.TileTexture.ItemId == _rewardItemId)
+                        alreadySelectedReward = (AppManager.Instance as AppManager).Player.CurrentAnturaCustomizations.TileTexture;
                     break;
                 case RewardTypes.decal:
-                    if (AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture.ItemId == _rewardItemId)
-                        alreadySelectedReward = AppManager.I.Player.CurrentAnturaCustomizations.DecalTexture;
+                    if ((AppManager.Instance as AppManager).Player.CurrentAnturaCustomizations.DecalTexture.ItemId == _rewardItemId)
+                        alreadySelectedReward = (AppManager.Instance as AppManager).Player.CurrentAnturaCustomizations.DecalTexture;
                     break;
                 default:
                     Debug.LogErrorFormat("Reward type {0} not found!", _rewardType);
@@ -367,7 +367,7 @@ namespace EA4S.Rewards
         /// <returns></returns>
         public static int GetUnlockedRewardForPlaysession(JourneyPosition journeyPosition)
         {
-            int rCount = AppManager.I.Player.RewardsUnlocked.FindAll(ur => ur.GetJourneyPosition().Equals(journeyPosition)).Count;
+            int rCount = (AppManager.Instance as AppManager).Player.RewardsUnlocked.FindAll(ur => ur.GetJourneyPosition().Equals(journeyPosition)).Count;
             return rCount > 2 ? 2 : rCount;
         }
         #endregion
@@ -376,13 +376,13 @@ namespace EA4S.Rewards
 
         public static IEnumerator UnlockExtraRewards() {
             JourneyPosition extraRewardJourney = new JourneyPosition(100,100,100);
-            List<RewardPackUnlockData> alreadyUnlocked = AppManager.I.Player.RewardsUnlocked;
+            List<RewardPackUnlockData> alreadyUnlocked = (AppManager.Instance as AppManager).Player.RewardsUnlocked;
             for (int i = 0; i < GetConfig().Rewards.Count; i++) {
                 for (int y = 0; y < GetConfig().RewardsColorPairs.Count; y++) {
                     if (!alreadyUnlocked.Exists(ur => ur.ItemId == GetConfig().Rewards[i].ID && ur.ColorId == GetConfig().RewardsColorPairs[y].ID)) {
-                        AppManager.I.Player.AddRewardUnlocked(
+                        (AppManager.Instance as AppManager).Player.AddRewardUnlocked(
                             new RewardPackUnlockData(
-                                AppManager.I.LogManager.AppSession,
+                                (AppManager.Instance as AppManager).LogManager.AppSession,
                                 GetConfig().Rewards[i].ID,
                                 GetConfig().RewardsColorPairs[y].ID, RewardTypes.reward, extraRewardJourney));
                         yield return null;
@@ -392,9 +392,9 @@ namespace EA4S.Rewards
             for (int i = 0; i < GetConfig().RewardsDecal.Count; i++) {
                 for (int y = 0; y < GetConfig().RewardsDecalColor.Count; y++) {
                     if (!alreadyUnlocked.Exists(ur => ur.ItemId == GetConfig().RewardsDecal[i].ID && ur.ColorId == GetConfig().RewardsDecalColor[y].ID)) {
-                        AppManager.I.Player.AddRewardUnlocked(
+                        (AppManager.Instance as AppManager).Player.AddRewardUnlocked(
                             new RewardPackUnlockData(
-                                AppManager.I.LogManager.AppSession,
+                                (AppManager.Instance as AppManager).LogManager.AppSession,
                                 GetConfig().RewardsDecal[i].ID,
                                 GetConfig().RewardsDecalColor[y].ID, RewardTypes.decal, extraRewardJourney));
                         yield return null;
@@ -404,9 +404,9 @@ namespace EA4S.Rewards
             for (int i = 0; i < GetConfig().RewardsTile.Count; i++) {
                 for (int y = 0; y < GetConfig().RewardsTileColor.Count; y++) {
                     if (!alreadyUnlocked.Exists(ur => ur.ItemId == GetConfig().RewardsTile[i].ID && ur.ColorId == GetConfig().RewardsTileColor[y].ID)) {
-                        AppManager.I.Player.AddRewardUnlocked(
+                        (AppManager.Instance as AppManager).Player.AddRewardUnlocked(
                             new RewardPackUnlockData(
-                                AppManager.I.LogManager.AppSession,
+                                (AppManager.Instance as AppManager).LogManager.AppSession,
                                 GetConfig().RewardsTile[i].ID,
                                 GetConfig().RewardsTileColor[y].ID, RewardTypes.texture, extraRewardJourney));
                         yield return null;
@@ -424,8 +424,8 @@ namespace EA4S.Rewards
 
             int RewardCount = 0; int TextureCount = 0; int DecalCount = 0; int OtherCount = 0;
 
-            var actualCurrentJourneyPosition = AppManager.I.Player.CurrentJourneyPosition;
-            var allPlaySessionInfos = AppManager.I.ScoreHelper.GetAllPlaySessionInfo();
+            var actualCurrentJourneyPosition = (AppManager.Instance as AppManager).Player.CurrentJourneyPosition;
+            var allPlaySessionInfos = (AppManager.Instance as AppManager).ScoreHelper.GetAllPlaySessionInfo();
 
             
 
@@ -435,7 +435,7 @@ namespace EA4S.Rewards
                 if (RewardAlreadyUnlocked(journeyPosition))
                     continue;
                 List<RewardPackUnlockData> newUnlocked = new List<RewardPackUnlockData>();
-                AppManager.I.Player.SetCurrentJourneyPosition(AppManager.I.JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id));
+                (AppManager.Instance as AppManager).Player.SetCurrentJourneyPosition((AppManager.Instance as AppManager).JourneyHelper.PlaySessionIdToJourneyPosition(allPlaySessionInfos[i].data.Id));
                 foreach (RewardPackUnlockData pack in GetNextRewardPack()) {
                     pack.IsLocked = false;
                     //AppManager.I.Player.AddRewardUnlockedAll(pack);
@@ -458,14 +458,14 @@ namespace EA4S.Rewards
                     }
                     Debug.LogFormat("Unlocked reward for playsession {0} : {1}", journeyPosition, pack);
                 }
-                AppManager.I.Player.AddRewardUnlockedRange(newUnlocked);
+                (AppManager.Instance as AppManager).Player.AddRewardUnlockedRange(newUnlocked);
             }
 
             
-            AppManager.I.Player.SetCurrentJourneyPosition(actualCurrentJourneyPosition);
+            (AppManager.Instance as AppManager).Player.SetCurrentJourneyPosition(actualCurrentJourneyPosition);
             Debug.LogFormat("Bulk unlocking rewards result: rewards: {0} | texture: {1} | decal: {2} | other: {3}", RewardCount, TextureCount, DecalCount, OtherCount);
 
-            AppManager.I.StartCoroutine(RewardSystemManager.UnlockExtraRewards());
+            (AppManager.Instance as AppManager).StartCoroutine(RewardSystemManager.UnlockExtraRewards());
             Debug.LogFormat("Unlock also all extra rewards!");
             RewardSystemManager.Init();
         }
@@ -477,7 +477,7 @@ namespace EA4S.Rewards
         /// <returns></returns>
         public static bool RewardAlreadyUnlocked(JourneyPosition journeyPosition)
         {
-            List<RewardPackUnlockData> unlocked = AppManager.I.Player.RewardsUnlocked;
+            List<RewardPackUnlockData> unlocked = (AppManager.Instance as AppManager).Player.RewardsUnlocked;
             RewardPackUnlockData rewardPackUnlockData = unlocked.Find(r => r.GetJourneyPosition().Equals(journeyPosition));
             if (rewardPackUnlockData != null)
                 return true;
@@ -493,7 +493,7 @@ namespace EA4S.Rewards
         /// <returns></returns>
         public static bool RewardAlreadyUnlocked(string _itemId, string _colorId, RewardTypes _type)
         {
-            if (AppManager.I.Player.RewardsUnlocked.Find(r => r.ItemId == _itemId && r.ColorId == _colorId && r.Type == _type) != null)
+            if ((AppManager.Instance as AppManager).Player.RewardsUnlocked.Find(r => r.ItemId == _itemId && r.ColorId == _colorId && r.Type == _type) != null)
                 return true;
             else
                 return false;
@@ -539,7 +539,7 @@ namespace EA4S.Rewards
         public static List<RewardPackUnlockData> GetNextRewardPack(bool _forceToReturnReward = false)
         {
             List<RewardPackUnlockData> returnList = new List<RewardPackUnlockData>();
-            var journeyPosition = AppManager.I.Player.CurrentJourneyPosition;
+            var journeyPosition = (AppManager.Instance as AppManager).Player.CurrentJourneyPosition;
             // not _forceToReturnReward check if reward is already unlocked for this playsession and if true return empty list
             if (RewardAlreadyUnlocked(journeyPosition) && !_forceToReturnReward)
                 return returnList;
@@ -586,7 +586,7 @@ namespace EA4S.Rewards
             string itemId = string.Empty;
             RewardColor color = null;
             bool alreadyUnlocked = false;
-            List<RewardPackUnlockData> alreadyUnlockedRewardOfType = AppManager.I.Player.RewardsUnlocked.FindAll(r => r.Type == _rewardType);
+            List<RewardPackUnlockData> alreadyUnlockedRewardOfType = (AppManager.Instance as AppManager).Player.RewardsUnlocked.FindAll(r => r.Type == _rewardType);
             switch (_rewardType) {
                 case RewardTypes.reward:
                     int countAvoidInfiniteLoop = 300;
@@ -606,7 +606,7 @@ namespace EA4S.Rewards
                             // ----------------
                             itemId = itemsForRandomSelection.GetRandomAlternative().ID;
                             color = GetConfig().RewardsColorPairs.GetRandomAlternative();
-                            List<RewardPackUnlockData> unlocked = AppManager.I.Player.RewardsUnlocked;
+                            List<RewardPackUnlockData> unlocked = (AppManager.Instance as AppManager).Player.RewardsUnlocked;
                             duplicated = unlocked.Find(r => r.ItemId == itemId) != null;
                             if (duplicated)
                                 Debug.LogFormat("Reward {0} already unlocked! Retry!", itemId);
@@ -617,7 +617,7 @@ namespace EA4S.Rewards
                         //} while (duplicated && AppManager.I.Player.RewardForTypeAvailableYet(_rewardType) || countAvoidInfiniteLoop < 1) ;
                     } else { // need only to create new color pair for one of already unlocked reward
                         color = null;
-                        List<RewardPackUnlockData> alreadyUnlockeds = AppManager.I.Player.RewardsUnlocked.Where(r => r.Type == RewardTypes.reward).ToList();
+                        List<RewardPackUnlockData> alreadyUnlockeds = (AppManager.Instance as AppManager).Player.RewardsUnlocked.Where(r => r.Type == RewardTypes.reward).ToList();
                         List<string> availableRewardIds = new List<string>();
                         foreach (var reward in alreadyUnlockeds) {
                             if (!availableRewardIds.Contains(reward.ItemId)) {
@@ -636,7 +636,7 @@ namespace EA4S.Rewards
                         //availableColors.Where(r => !alreadyUnlockeds.Exists(ur => ur.ItemId == itemId && ur.ColorId == r.ID));
                         color = availableColors.Where(r => !alreadyUnlockeds.Exists(ur => ur.ItemId == itemId && ur.ColorId == r.ID)).ToList().GetRandomAlternative();
                     }
-                    rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, itemId, color.ID, _rewardType, journeyPosition);
+                    rp = new RewardPackUnlockData((AppManager.Instance as AppManager).LogManager.AppSession, itemId, color.ID, _rewardType, journeyPosition);
                     break;
                 case RewardTypes.texture:
                     do {
@@ -644,7 +644,7 @@ namespace EA4S.Rewards
                         color = GetConfig().RewardsTileColor.GetRandomAlternative();
                         alreadyUnlocked = RewardAlreadyUnlocked(itemId, color.ID, _rewardType);
                     } while (alreadyUnlocked);
-                    rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, itemId, color.ID, _rewardType, journeyPosition);
+                    rp = new RewardPackUnlockData((AppManager.Instance as AppManager).LogManager.AppSession, itemId, color.ID, _rewardType, journeyPosition);
                     break;
                 case RewardTypes.decal:
                     do {
@@ -652,7 +652,7 @@ namespace EA4S.Rewards
                         color = GetConfig().RewardsDecalColor.GetRandomAlternative();
                         alreadyUnlocked = RewardAlreadyUnlocked(itemId, color.ID, _rewardType);
                     } while (alreadyUnlocked);
-                    rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, itemId, color.ID, _rewardType, journeyPosition);
+                    rp = new RewardPackUnlockData((AppManager.Instance as AppManager).LogManager.AppSession, itemId, color.ID, _rewardType, journeyPosition);
                     break;
                 default:
                     break;
@@ -665,12 +665,12 @@ namespace EA4S.Rewards
         /// </summary>
         public static void UnlockFirstSetOfRewards(Profile.PlayerProfile _player = null) {
             if (_player == null) {
-                if (AppManager.I.Player == null) {
+                if ((AppManager.Instance as AppManager).Player == null) {
                     Debug.LogError("No current player available!");
                     return;
                 }
             }
-            _player = AppManager.I.Player;
+            _player = (AppManager.Instance as AppManager).Player;
 
             _player.ResetRewardsUnlockedData();
             _player.AddRewardUnlocked(GetFirstAnturaReward(RewardTypes.reward));
@@ -705,11 +705,11 @@ namespace EA4S.Rewards
                     rp = GetRewardPack(new JourneyPosition(0, 0, 0), _rewardType, true);
                     break;
                 case RewardTypes.texture:
-                    rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, "Antura_wool_tilemat", "color1", _rewardType, new JourneyPosition(0, 0, 0));
+                    rp = new RewardPackUnlockData((AppManager.Instance as AppManager).LogManager.AppSession, "Antura_wool_tilemat", "color1", _rewardType, new JourneyPosition(0, 0, 0));
                     rp.IsNew = false; // Because is automatically selected
                     break;
                 case RewardTypes.decal:
-                    rp = new RewardPackUnlockData(AppManager.I.LogManager.AppSession, "Antura_decalmap01", "color1", _rewardType, new JourneyPosition(0, 0, 0));
+                    rp = new RewardPackUnlockData((AppManager.Instance as AppManager).LogManager.AppSession, "Antura_decalmap01", "color1", _rewardType, new JourneyPosition(0, 0, 0));
                     rp.IsNew = false; // Because is automatically selected
                     break;
                 default:

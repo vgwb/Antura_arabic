@@ -293,13 +293,13 @@ namespace EA4S.Minigames.MakeFriends
                         //Debug.Log("Considering as choice: " + letter.TextForLivingLetter);
                         if (choiceLetters.Exists(x => x.Id == letter.Id))
                         {
-                            letter = AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom();
+                            letter = (AppManager.Instance as AppManager).Teacher.GetAllTestLetterDataLL().GetRandom();
                             //Debug.Log("Using random choice instead: " + letter);
                         }
                     }
                     else
                     {
-                        letter = AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom();
+                        letter = (AppManager.Instance as AppManager).Teacher.GetAllTestLetterDataLL().GetRandom();
                         //Debug.Log("No more word letters, using random: " + letter.TextForLivingLetter);
                     }
                 } while (choiceLetters.Exists(x => x.Id == letter.Id));

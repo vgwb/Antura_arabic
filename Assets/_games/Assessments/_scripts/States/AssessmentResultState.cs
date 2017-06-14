@@ -1,5 +1,6 @@
 using Kore.Coroutines;
 using System.Collections;
+using EA4S.Core;
 
 namespace EA4S.Assessment
 {
@@ -41,7 +42,7 @@ namespace EA4S.Assessment
         public void ExitState()
         {
             if (exited == false) {
-                AppManager.I.NavigationManager.GoToNextScene();// AppScene.Rewards
+                (AppManager.Instance as AppManager).NavigationManager.GoToNextScene();// AppScene.Rewards
                 exited = true;
             }
         }

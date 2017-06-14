@@ -3,7 +3,7 @@
     /// <summary>
     /// Serializable options not related to a specific player profile.
     /// </summary>
-    public class GlobalOptions : ModularFramework.Modules.GlobalOptions
+    public partial class GlobalOptions 
     {
         public int LastActivePlayerId;
     }

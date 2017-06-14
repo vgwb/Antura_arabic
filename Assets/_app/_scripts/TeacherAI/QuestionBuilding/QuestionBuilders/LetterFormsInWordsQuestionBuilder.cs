@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.Database;
 using EA4S.Helpers;
 using UnityEngine;
@@ -54,7 +55,7 @@ namespace EA4S.Teacher
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
             // HACK: the game may need unseparated letters
-            if (forceUnseparatedLetters) AppManager.I.VocabularyHelper.ForceUnseparatedLetters = true;
+            if (forceUnseparatedLetters) (AppManager.Instance as AppManager).VocabularyHelper.ForceUnseparatedLetters = true;
 
             previousPacksIDs_words.Clear();
             previousPacksIDs_letters.Clear();
@@ -63,7 +64,7 @@ namespace EA4S.Teacher
             for (int round_i = 0; round_i < nRounds; round_i++)
             {
                 // First, choose a letter
-                var teacher = AppManager.I.Teacher;
+                var teacher = (AppManager.Instance as AppManager).Teacher;
                 var usableLetters = teacher.VocabularyAi.SelectData(
                     () => FindEligibleLettersAndForms(minFormsAppearing:2, maxWordLength: maximumWordLength),  
                         new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
@@ -91,7 +92,7 @@ namespace EA4S.Teacher
 
         private QuestionPackData CreateSingleQuestionPackData(LetterData letter, LetterForm form)
         {
-            var teacher = AppManager.I.Teacher;
+            var teacher = (AppManager.Instance as AppManager).Teacher;
 
             // Find a word with the letter in that form
             var usableWords = teacher.VocabularyAi.SelectData(
@@ -121,12 +122,12 @@ namespace EA4S.Teacher
 
         List<LetterData> FindEligibleLettersAndForms(int minFormsAppearing, int maxWordLength)
         {
-            var vocabularyHelper = AppManager.I.VocabularyHelper;
+            var vocabularyHelper = (AppManager.Instance as AppManager).VocabularyHelper;
             List<LetterData> eligibleLetters = new List<LetterData>();
 
             if (lettersAndForms.Count == 0)
             {
-                var allWords = AppManager.I.Teacher.VocabularyAi.SelectData(
+                var allWords = (AppManager.Instance as AppManager).Teacher.VocabularyAi.SelectData(
                     () => vocabularyHelper.GetWordsByCategory(category, parameters.wordFilters),
                         new SelectionParameters(parameters.correctSeverity, getMaxData:true, useJourney: parameters.useJourneyForCorrect,
                             packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs_words));
@@ -168,7 +169,7 @@ namespace EA4S.Teacher
 
         public List<WordData> FindEligibleWords(int maxWordLength, LetterData containedLetter, LetterForm form)
         {
-            var vocabularyHelper = AppManager.I.VocabularyHelper;
+            var vocabularyHelper = (AppManager.Instance as AppManager).VocabularyHelper;
             List<WordData> eligibleWords = new List<WordData>();
 
             var pair = new KeyValuePair<LetterData, LetterForm>(containedLetter, form);
@@ -204,7 +205,7 @@ namespace EA4S.Teacher
 
         private int WordContainsLetterTimes(WordData selectedWord, LetterData containedLetter)
         {
-            List<LetterData> wordLetters = AppManager.I.VocabularyHelper.GetLettersInWord(selectedWord);
+            List<LetterData> wordLetters = (AppManager.Instance as AppManager).VocabularyHelper.GetLettersInWord(selectedWord);
             int count = 0;
             foreach (var letter in wordLetters)
                 if (letter == containedLetter)
@@ -215,7 +216,7 @@ namespace EA4S.Teacher
         private bool WordContainsLetterWithForm(WordData selectedWord, LetterData containedLetter, LetterForm selectedForm)
         {
             //if (containedLetter.Id == "lam_alef") Debug.Log("Looking for lam-alef in " + selectedWord);
-            foreach (var l in ArabicAlphabetHelper.FindLetter(AppManager.I.DB, selectedWord, containedLetter))
+            foreach (var l in ArabicAlphabetHelper.FindLetter((AppManager.Instance as AppManager).DB, selectedWord, containedLetter))
             {
                 //if (l.letter.Id == "lam_alef") Debug.Log("Lam alef form " + l.letterForm + " in word " + selectedWord);
                 if (l.letterForm == selectedForm)

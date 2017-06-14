@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.Core;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using EA4S.Database;
@@ -27,7 +28,7 @@ namespace EA4S.Book
             myManager = _manager;
             BackgroundImage = GetComponent<Image>();
 
-            if (miniGameInfo.unlocked || AppManager.I.Player.IsDemoUser) {
+            if (miniGameInfo.unlocked || (AppManager.Instance as AppManager).Player.IsDemoUser) {
                 isLocked = false;
             } else {
                 isLocked = true;

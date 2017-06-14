@@ -66,7 +66,7 @@ namespace EA4S.Intro
 
         private void CountDown_onTimesUp()
         {
-            AppManager.I.NavigationManager.GoToNextScene();
+            (AppManager.Instance as AppManager).NavigationManager.GoToNextScene();
         }
 
         void OnDisable()
@@ -83,7 +83,7 @@ namespace EA4S.Intro
         {
             StopCoroutine(DoIntroduction());
             KeeperManager.I.StopDialog();
-            AppManager.I.NavigationManager.GoToNextScene();
+            (AppManager.Instance as AppManager).NavigationManager.GoToNextScene();
         }
 
         void Update()

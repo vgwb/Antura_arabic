@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.Helpers;
 using EA4S.LivingLetters;
 using EA4S.Minigames.FastCrowd;
@@ -72,7 +73,7 @@ namespace EA4S.Intro
             letterObjectView.transform.position = newPosition;
             letterObjectView.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.value * 360, 0);
             //letterObjectView.Init(toAdd.Dequeue());
-            letterObjectView.Initialize(AppManager.I.Teacher.GetAllTestLetterDataLL().GetRandom());
+            letterObjectView.Initialize((AppManager.Instance as AppManager).Teacher.GetAllTestLetterDataLL().GetRandom());
 
             letterObjectView.gameObject.AddComponent<Rigidbody>().isKinematic = true;
 

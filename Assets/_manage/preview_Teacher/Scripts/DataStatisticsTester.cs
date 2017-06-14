@@ -9,6 +9,7 @@ using EA4S.Assessment;
 using EA4S.Audio;
 using EA4S.Database;
 using System.Linq;
+using EA4S.Core;
 using EA4S.Helpers;
 
 namespace EA4S.Teacher.Test
@@ -30,8 +31,8 @@ namespace EA4S.Teacher.Test
 
         void Awake()
         {
-            _databaseManager = AppManager.I.DB;
-            _vocabularyHelper = AppManager.I.VocabularyHelper;
+            _databaseManager = (AppManager.Instance as AppManager).DB;
+            _vocabularyHelper = (AppManager.Instance as AppManager).VocabularyHelper;
 
             _playSessionDatas = _databaseManager.GetAllPlaySessionData();
             _letterDatas = _databaseManager.GetAllLetterData();
@@ -98,7 +99,7 @@ namespace EA4S.Teacher.Test
             foreach (var playSessionData in _playSessionDatas)
             {
                 // Get the letters & words in this PS
-                var contents = AppManager.I.Teacher.VocabularyAi.GetContentsUpToJourneyPosition(playSessionData.GetJourneyPosition());
+                var contents = (AppManager.Instance as AppManager).Teacher.VocabularyAi.GetContentsUpToJourneyPosition(playSessionData.GetJourneyPosition());
                 var letters = contents.GetHashSet<LetterData>();
                 var letterIds = letters.ToList().ConvertAll(x => x.Id);
                 var words = contents.GetHashSet<WordData>();
@@ -145,14 +146,14 @@ namespace EA4S.Teacher.Test
             Dictionary<WordData, int> observedWords = new Dictionary<WordData, int>();
             Dictionary<PhraseData, int> observedPhrases = new Dictionary<PhraseData, int>();
 
-            foreach (var d in AppManager.I.DB.GetAllLetterData())  observedLetters[d] = 0;
-            foreach (var d in AppManager.I.DB.GetAllWordData()) observedWords[d] = 0;
-            foreach (var d in AppManager.I.DB.GetAllPhraseData())  observedPhrases[d] = 0;
+            foreach (var d in (AppManager.Instance as AppManager).DB.GetAllLetterData())  observedLetters[d] = 0;
+            foreach (var d in (AppManager.Instance as AppManager).DB.GetAllWordData()) observedWords[d] = 0;
+            foreach (var d in (AppManager.Instance as AppManager).DB.GetAllPhraseData())  observedPhrases[d] = 0;
 
             foreach (var playSessionData in _playSessionDatas)
             {
                 // Get the letters & words in this PS
-                var contents = AppManager.I.Teacher.VocabularyAi.GetContentsUpToJourneyPosition(playSessionData.GetJourneyPosition());
+                var contents = (AppManager.Instance as AppManager).Teacher.VocabularyAi.GetContentsUpToJourneyPosition(playSessionData.GetJourneyPosition());
                 var letters = contents.GetHashSet<LetterData>();
                 var words = contents.GetHashSet<WordData>();
                 var phrases = contents.GetHashSet<PhraseData>();
@@ -168,13 +169,13 @@ namespace EA4S.Teacher.Test
             }
 
             final_s += "\n\n Letters:";
-            foreach (var d in AppManager.I.DB.GetAllLetterData()) if (observedLetters[d] == 0) final_s +=  "\n" + d.Id + ": " +  observedLetters[d];
+            foreach (var d in (AppManager.Instance as AppManager).DB.GetAllLetterData()) if (observedLetters[d] == 0) final_s +=  "\n" + d.Id + ": " +  observedLetters[d];
 
             final_s += "\n\n Words:";
-            foreach (var d in AppManager.I.DB.GetAllWordData()) if (observedWords[d] == 0) final_s += "\n" + d.Id + ": " + observedWords[d];
+            foreach (var d in (AppManager.Instance as AppManager).DB.GetAllWordData()) if (observedWords[d] == 0) final_s += "\n" + d.Id + ": " + observedWords[d];
 
             final_s += "\n\n Phrases:";
-            foreach (var d in AppManager.I.DB.GetAllPhraseData()) if (observedPhrases[d] == 0) final_s += "\n" + d.Id + ": " + observedPhrases[d];
+            foreach (var d in (AppManager.Instance as AppManager).DB.GetAllPhraseData()) if (observedPhrases[d] == 0) final_s += "\n" + d.Id + ": " + observedPhrases[d];
 
             Debug.Log(final_s);
         }

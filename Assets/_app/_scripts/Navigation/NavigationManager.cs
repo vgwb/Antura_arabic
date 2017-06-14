@@ -190,7 +190,7 @@ namespace EA4S.Core
                         // so we Increment MaxJourneyPosition to let him/her progress
                         if (NavData.CurrentPlayer.CurrentJourneyPosition.Equals(NavData.CurrentPlayer.MaxJourneyPosition)) {
                             // wrong MaxJourneyPosition...
-                            AppManager.I.Player.AdvanceMaxJourneyPosition();
+                            (EA4S.AppManager.Instance as EA4S.AppManager).Player.AdvanceMaxJourneyPosition();
                         }
                         GoToScene(AppScene.Map);
                         return;
@@ -240,7 +240,7 @@ namespace EA4S.Core
         /// <param name="_miniGame">The mini game.</param>
         private void InternalLaunchGameScene(MiniGameData _miniGame)
         {
-            AppManager.I.GameLauncher.LaunchGame(_miniGame.Code);
+            (EA4S.AppManager.Instance as EA4S.AppManager).GameLauncher.LaunchGame(_miniGame.Code);
         }
 
         #endregion
@@ -463,11 +463,11 @@ namespace EA4S.Core
             ResetEndSessionResults();
             NavData.RealPlaySession = (dataToUse == null);
 
-            AppManager.I.Teacher.InitialiseNewPlaySession();
+            (EA4S.AppManager.Instance as EA4S.AppManager).Teacher.InitialiseNewPlaySession();
             NavData.SetFirstMinigame();
 
             if (NavData.RealPlaySession) {
-                NavData.CurrentPlaySessionMiniGames = AppManager.I.Teacher.SelectMiniGames();
+                NavData.CurrentPlaySessionMiniGames = (EA4S.AppManager.Instance as EA4S.AppManager).Teacher.SelectMiniGames();
             } else {
                 NavData.CurrentPlaySessionMiniGames = new List<MiniGameData>();
                 NavData.CurrentPlaySessionMiniGames.Add(dataToUse);
@@ -481,7 +481,7 @@ namespace EA4S.Core
             LogManager.I.StartPlaySession();
 
             // From the map
-            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
+            if ((EA4S.AppManager.Instance as EA4S.AppManager).JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
                 // Direct to the current minigame (which is an assessment)
                 InternalLaunchGameScene(NavData.CurrentMiniGameData);
             } else {
@@ -502,12 +502,12 @@ namespace EA4S.Core
         private void GoToNextGameOfPlaySession()
         {
             // From one game to the next
-            if (AppManager.I.JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
+            if ((EA4S.AppManager.Instance as EA4S.AppManager).JourneyHelper.IsAssessmentTime(NavData.CurrentPlayer.CurrentJourneyPosition)) {
                 // We finished the whole game: no reward, go directly to the end scene instead
-                if (AppManager.I.JourneyHelper.PlayerIsAtFinalJourneyPosition()) {
-                    if (!AppManager.I.Player.HasFinalBeenShown()) {
-                        AppManager.I.Player.SetGameCompleted();
-                        AppManager.I.Player.SetFinalShown();
+                if ((EA4S.AppManager.Instance as EA4S.AppManager).JourneyHelper.PlayerIsAtFinalJourneyPosition()) {
+                    if (!(EA4S.AppManager.Instance as EA4S.AppManager).Player.HasFinalBeenShown()) {
+                        (EA4S.AppManager.Instance as EA4S.AppManager).Player.SetGameCompleted();
+                        (EA4S.AppManager.Instance as EA4S.AppManager).Player.SetFinalShown();
                         GoToScene(AppScene.Ending);
                     } else {
                         GoToScene(AppScene.Map);
@@ -525,7 +525,7 @@ namespace EA4S.Core
                 } else {
                     // Finished all minigames for the current play session
                     if (NavData.RealPlaySession) {
-                        AppManager.I.Player.CheckGameFinishedWithAllStars();
+                        (EA4S.AppManager.Instance as EA4S.AppManager).Player.CheckGameFinishedWithAllStars();
 
                         // Go to the reward scene.
                         GoToScene(AppScene.PlaySessionResult);

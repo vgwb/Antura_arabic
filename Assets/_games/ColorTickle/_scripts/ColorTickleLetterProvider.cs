@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
 using EA4S.Teacher;
@@ -21,7 +22,7 @@ namespace EA4S.Minigames.ColorTickle
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-                LL_LetterData _NewLetterData = AppManager.I.Teacher.GetRandomTestLetterLL(new LetterFilters(excludeDiacritics:LetterFilters.ExcludeDiacritics.All));
+                LL_LetterData _NewLetterData = (AppManager.Instance as AppManager).Teacher.GetRandomTestLetterLL(new LetterFilters(excludeDiacritics:LetterFilters.ExcludeDiacritics.All));
 
                 if (_NewLetterData == null)
                     return;

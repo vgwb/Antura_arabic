@@ -157,23 +157,23 @@ namespace EA4S.Teacher
 
         public LetterInfo GetLastLearnedLetterInfo()
         {
-            return GetLastLearnedDataInfo<LetterData, LetterInfo>(VocabularyDataType.Letter, AppManager.I.ScoreHelper.GetAllLetterInfo());
+            return GetLastLearnedDataInfo<LetterData, LetterInfo>(VocabularyDataType.Letter, (AppManager.Instance as AppManager).ScoreHelper.GetAllLetterInfo());
         }
 
         public WordInfo GetLastLearnedWordInfo()
         {
-            return GetLastLearnedDataInfo<WordData, WordInfo>(VocabularyDataType.Word, AppManager.I.ScoreHelper.GetAllWordInfo());
+            return GetLastLearnedDataInfo<WordData, WordInfo>(VocabularyDataType.Word, (AppManager.Instance as AppManager).ScoreHelper.GetAllWordInfo());
         }
 
         public PhraseInfo GetLastLearnedPhraseInfo()
         {
-            return GetLastLearnedDataInfo<PhraseData, PhraseInfo>(VocabularyDataType.Phrase, AppManager.I.ScoreHelper.GetAllPhraseInfo());
+            return GetLastLearnedDataInfo<PhraseData, PhraseInfo>(VocabularyDataType.Phrase, (AppManager.Instance as AppManager).ScoreHelper.GetAllPhraseInfo());
         }
 
         private IT GetLastLearnedDataInfo<T, IT>(VocabularyDataType dataType, List<IT> allInfos) where T : IVocabularyData where IT : DataInfo<T>
         {
             string query = "select * from \"" + typeof(LogVocabularyScoreData).Name + "\"" + " where VocabularyDataType = '" + (int)dataType + "' " + " order by Timestamp limit 1";
-            List<LogVocabularyScoreData> list = AppManager.I.DB.Query<LogVocabularyScoreData>(query);
+            List<LogVocabularyScoreData> list = (AppManager.Instance as AppManager).DB.Query<LogVocabularyScoreData>(query);
             if (list.Count > 0 && list[0] != null) {
                 return allInfos.Find(x => x.data.GetId() == list[0].ElementId);
             }
@@ -273,7 +273,7 @@ namespace EA4S.Teacher
 
         public bool HasFinishedTheGameWithAllStars()
         {
-            bool hasFinishedTheGame = AppManager.I.JourneyHelper.HasFinishedTheGame();
+            bool hasFinishedTheGame = (AppManager.Instance as AppManager).JourneyHelper.HasFinishedTheGame();
             if (!hasFinishedTheGame) return false;
 
             var allMiniGameInfo = GetAllMiniGameInfo();

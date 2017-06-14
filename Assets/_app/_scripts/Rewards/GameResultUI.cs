@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.UI;
 using UnityEngine;
 
@@ -50,7 +51,7 @@ namespace EA4S.Rewards
         {
             Init();
             GlobalUI.ShowPauseMenu(false);
-            AppManager.I.Player.AddBones(_numStars);
+            (AppManager.Instance as AppManager).Player.AddBones(_numStars);
             I.BonesCounter.GetComponent<RectTransform>().anchoredPosition = I.BonesCounterEndgamePos;
             I.BonesCounter.Hide();
             I.EndgameResultPanel.Show(_numStars);

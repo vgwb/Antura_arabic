@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.MinigamesAPI;
 
 namespace EA4S.Minigames.Maze
@@ -17,7 +18,7 @@ namespace EA4S.Minigames.Maze
             
             for (int i = 0; i < 7; ++i)
             {
-                letters.Add(AppManager.I.Teacher.GetRandomTestLetterLL());
+                letters.Add((AppManager.Instance as AppManager).Teacher.GetRandomTestLetterLL());
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
 
@@ -20,7 +21,7 @@ namespace EA4S.Minigames.ThrowBalls
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-                LL_LetterData newLetterData = AppManager.I.Teacher.GetRandomTestLetterLL();
+                LL_LetterData newLetterData = (AppManager.Instance as AppManager).Teacher.GetRandomTestLetterLL();
 
                 if (newLetterData == null)
                     return;
@@ -30,7 +31,7 @@ namespace EA4S.Minigames.ThrowBalls
                 // At least 4 wrong letters
                 while (wrongAnswers.Count < 4)
                 {
-                    var letter = AppManager.I.Teacher.GetRandomTestLetterLL();
+                    var letter = (AppManager.Instance as AppManager).Teacher.GetRandomTestLetterLL();
 
                     if (!CheckIfContains(correctAnswers, letter) && !CheckIfContains(wrongAnswers, letter))
                     {

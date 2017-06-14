@@ -9,6 +9,7 @@ using EA4S.Profile;
 using EA4S.Rewards;
 using EA4S.Teacher;
 using EA4S.UI;
+using PlayerProfile = EA4S.Profile.PlayerProfile;
 
 // refactor: standardize random use across the codebase
 using RND = UnityEngine.Random;

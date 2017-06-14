@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EA4S.Core;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using EA4S.Database;
@@ -27,7 +28,7 @@ namespace EA4S.Book
             info = _info;
             manager = _manager;
 
-            if (info.unlocked || AppManager.I.Player.IsDemoUser) {
+            if (info.unlocked || (AppManager.Instance as AppManager).Player.IsDemoUser) {
                 LockIcon.enabled = false;
             } else {
                 LockIcon.enabled = true;
@@ -37,7 +38,7 @@ namespace EA4S.Book
             SubTitle.text = info.data.Id;
 
             if (info.data.Drawing != "") {
-                Drawing.text = AppManager.I.VocabularyHelper.GetWordDrawing(info.data);
+                Drawing.text = (AppManager.Instance as AppManager).VocabularyHelper.GetWordDrawing(info.data);
                 if (info.data.Category == Database.WordDataCategory.Color) {
                     Drawing.SetColor(GenericHelper.GetColorFromString(info.data.Value));
                 }

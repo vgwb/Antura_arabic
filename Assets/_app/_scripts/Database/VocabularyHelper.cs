@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Globalization;
+using EA4S.Core;
 using EA4S.Helpers;
 using EA4S.Teacher;
 
@@ -423,7 +424,7 @@ namespace EA4S.Database
             if (ForceUnseparatedLetters) {
                 if (!unseparatedWordsToLetterCache.ContainsKey(wordData.Id))
                 {
-                    var parts = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB.StaticDatabase, wordData, separateVariations: false);
+                    var parts = ArabicAlphabetHelper.AnalyzeData((AppManager.Instance as AppManager).DB.StaticDatabase, wordData, separateVariations: false);
                     letter_ids_list = parts.ConvertAll(p => p.letter.Id);
                     unseparatedWordsToLetterCache[wordData.Id] = letter_ids_list;
                 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using System;
+using EA4S.Core;
 using EA4S.LivingLetters;
 using EA4S.MinigamesAPI;
 using EA4S.Helpers;
@@ -126,7 +127,7 @@ namespace EA4S.Minigames.Tobogan
         public void SetQuestionText(LL_WordData word, LL_LetterData markedLetter, Color color)
         {
             string text = ArabicAlphabetHelper.ProcessArabicString(word.Data.Arabic);
-            var parts = ArabicAlphabetHelper.FindLetter(AppManager.I.DB, word.Data, markedLetter.Data);
+            var parts = ArabicAlphabetHelper.FindLetter((AppManager.Instance as AppManager).DB, word.Data, markedLetter.Data);
             if (parts.Count > 0)
                 text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, parts[0], color, ArabicTextUtilities.MarkType.SingleLetter);
 
@@ -137,7 +138,7 @@ namespace EA4S.Minigames.Tobogan
         {
             string text = ArabicAlphabetHelper.ProcessArabicString(word.Data.Arabic);
 
-            var parts = ArabicAlphabetHelper.AnalyzeData(AppManager.I.DB, word.Data, false, false);
+            var parts = ArabicAlphabetHelper.AnalyzeData((AppManager.Instance as AppManager).DB, word.Data, false, false);
             if (parts.Count > letterToMark)
                 text = ArabicTextUtilities.GetWordWithMarkedLetterText(word.Data, parts[letterToMark], color, ArabicTextUtilities.MarkType.SingleLetter);
 

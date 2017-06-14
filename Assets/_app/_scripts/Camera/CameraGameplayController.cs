@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using EA4S.Audio;
+using EA4S.Core;
 using UnityStandardAssets.ImageEffects;
 
 namespace EA4S.CameraControl
@@ -23,7 +24,7 @@ namespace EA4S.CameraControl
 
         void Start()
         {
-            EnableFX(AppManager.I.GameSettings.HighQualityGfx);
+            EnableFX((AppManager.Instance as AppManager).AppSettings.HighQualityGfx);
         }
 
         public void EnableFX(bool status)

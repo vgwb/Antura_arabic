@@ -93,8 +93,8 @@ namespace EA4S.Map
 
         void CalculatePlaySessionAvailables()
         {
-            int l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
-            int p = AppManager.I.Player.MaxJourneyPosition.PlaySession;
+            int l = (AppManager.Instance as AppManager).Player.MaxJourneyPosition.LearningBlock;
+            int p = (AppManager.Instance as AppManager).Player.MaxJourneyPosition.PlaySession;
             int m;
 
             if (p == 1) {
@@ -120,8 +120,8 @@ namespace EA4S.Map
                 posPines[posPines.Length - 1].tag = "Pin";
                 posPines[posPines.Length - 1].GetComponent<MapPin>().unlocked = true;
             } else {
-                int l = AppManager.I.Player.MaxJourneyPosition.LearningBlock;
-                int p = AppManager.I.Player.MaxJourneyPosition.PlaySession;
+                int l = (AppManager.Instance as AppManager).Player.MaxJourneyPosition.LearningBlock;
+                int p = (AppManager.Instance as AppManager).Player.MaxJourneyPosition.PlaySession;
                 int m;
 
                 if (p == 100) {
@@ -164,12 +164,12 @@ namespace EA4S.Map
         private List<PlaySessionState> GetAllPlaySessionStateForStage(int _stage)
         {
             // Get all available scores for this stage
-            List<Database.JourneyScoreData> scoreData_list = AppManager.I.ScoreHelper.GetCurrentScoreForPlaySessionsOfStage(_stage);
+            List<Database.JourneyScoreData> scoreData_list = (AppManager.Instance as AppManager).ScoreHelper.GetCurrentScoreForPlaySessionsOfStage(_stage);
 
             // For each score entry, get its play session data and build a structure containing both
             List<PlaySessionState> playSessionState_list = new List<PlaySessionState>();
             for (int i = 0; i < scoreData_list.Count; i++) {
-                var data = AppManager.I.DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
+                var data = (AppManager.Instance as AppManager).DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
                 playSessionState_list.Add(new PlaySessionState(data, scoreData_list[i].Stars));
             }
 
@@ -183,12 +183,12 @@ namespace EA4S.Map
         /// <returns></returns>
         private List<Database.PlaySessionData> GetAllPlaySessionDataForStage(int _stage)
         {
-            return AppManager.I.DB.FindPlaySessionData(x => x.Stage == _stage);
+            return (AppManager.Instance as AppManager).DB.FindPlaySessionData(x => x.Stage == _stage);
         }
         public void Play()
         {
             // refactor: move this initalisation to a better place, maybe inside the MiniGameLauncher.
-            AppManager.I.NavigationManager.GoToNextScene();
+            (AppManager.Instance as AppManager).NavigationManager.GoToNextScene();
         }
     }
 }

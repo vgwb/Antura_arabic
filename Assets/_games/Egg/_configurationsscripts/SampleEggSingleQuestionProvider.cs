@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
 
@@ -17,11 +18,11 @@ namespace EA4S.Minigames.Egg
             List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-            correctAnswers.Add(AppManager.I.Teacher.GetRandomTestLetterLL());
+            correctAnswers.Add((AppManager.Instance as AppManager).Teacher.GetRandomTestLetterLL());
 
             while (wrongAnswers.Count < 8)
             {
-                var letter = AppManager.I.Teacher.GetRandomTestLetterLL();
+                var letter = (AppManager.Instance as AppManager).Teacher.GetRandomTestLetterLL();
 
                 if (!CheckIfContains(correctAnswers, letter) && !CheckIfContains(wrongAnswers, letter))
                 {

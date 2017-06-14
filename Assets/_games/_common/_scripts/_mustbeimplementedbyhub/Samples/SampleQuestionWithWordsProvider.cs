@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Core;
 
 namespace EA4S.MinigamesAPI.Sample
 {
@@ -22,7 +23,7 @@ namespace EA4S.MinigamesAPI.Sample
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-                LL_WordData newWordData = AppManager.I.Teacher.GetRandomTestWordDataLL();
+                LL_WordData newWordData = (AppManager.Instance as AppManager).Teacher.GetRandomTestWordDataLL();
 
                 if (newWordData == null)
                     return;
@@ -32,7 +33,7 @@ namespace EA4S.MinigamesAPI.Sample
                 // At least 4 wrong words
                 while (wrongAnswers.Count < 4)
                 {
-                    var word = AppManager.I.Teacher.GetRandomTestWordDataLL();
+                    var word = (AppManager.Instance as AppManager).Teacher.GetRandomTestWordDataLL();
 
                     if (!correctAnswers.Contains(word) && !wrongAnswers.Contains(word))
                     {

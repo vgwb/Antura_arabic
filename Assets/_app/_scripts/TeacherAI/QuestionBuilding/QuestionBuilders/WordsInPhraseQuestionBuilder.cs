@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.Helpers;
 
 namespace EA4S.Teacher
@@ -56,8 +57,8 @@ namespace EA4S.Teacher
 
         private QuestionPackData CreateSingleQuestionPackData()
         {
-            var teacher = AppManager.I.Teacher;
-            var vocabularyHelper = AppManager.I.VocabularyHelper;
+            var teacher = (AppManager.Instance as AppManager).Teacher;
+            var vocabularyHelper = (AppManager.Instance as AppManager).VocabularyHelper;
 
             // Get a phrase
             int nToUse = 1;

@@ -23,9 +23,9 @@ namespace EA4S.Teacher
 
         public PlaySessionData GetCurrentPlaySessionData()
         {
-            var currentJourneyPosition = AppManager.I.Player.CurrentJourneyPosition;
-            var currentPlaySessionId = AppManager.I.JourneyHelper.JourneyPositionToPlaySessionId(currentJourneyPosition);
-            var playSessionData = AppManager.I.DB.GetPlaySessionDataById(currentPlaySessionId);
+            var currentJourneyPosition = (AppManager.Instance as AppManager).Player.CurrentJourneyPosition;
+            var currentPlaySessionId = (AppManager.Instance as AppManager).JourneyHelper.JourneyPositionToPlaySessionId(currentJourneyPosition);
+            var playSessionData = (AppManager.Instance as AppManager).DB.GetPlaySessionDataById(currentPlaySessionId);
             return playSessionData;
         }
 
@@ -84,12 +84,12 @@ namespace EA4S.Teacher
 
         public bool PlayerIsAtFinalJourneyPosition()
         {
-            return AppManager.I.Player.CurrentJourneyPosition.Equals(GetFinalJourneyPosition());
+            return (AppManager.Instance as AppManager).Player.CurrentJourneyPosition.Equals(GetFinalJourneyPosition());
         }
 
         public JourneyPosition GetMinimumJourneyPositionForMiniGame(MiniGameCode minigameCode)
         {
-            var finalPos = AppManager.I.JourneyHelper.GetFinalJourneyPosition();
+            var finalPos = (AppManager.Instance as AppManager).JourneyHelper.GetFinalJourneyPosition();
             int NBasePlaySession = 2;
 
             for (int s = 1; s <= finalPos.Stage; s++)
@@ -99,15 +99,15 @@ namespace EA4S.Teacher
                     for (int ps = 1; ps <= NBasePlaySession; ps++)
                     {
                         var jp = new JourneyPosition(s, lb, ps);
-                        if (AppManager.I.DB.HasPlaySessionDataById(jp.ToStringId()))
-                            if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(jp, minigameCode))
+                        if ((AppManager.Instance as AppManager).DB.HasPlaySessionDataById(jp.ToStringId()))
+                            if ((AppManager.Instance as AppManager).Teacher.CanMiniGameBePlayedAtPlaySession(jp, minigameCode))
                                 return new JourneyPosition(s, lb, ps);
                     }
                     int assessmentCode = 100;
                     var jp_assessment = new JourneyPosition(s, lb, assessmentCode);
 
-                    if (AppManager.I.DB.HasPlaySessionDataById(jp_assessment.ToStringId()))
-                        if (AppManager.I.Teacher.CanMiniGameBePlayedAtPlaySession(jp_assessment, minigameCode))
+                    if ((AppManager.Instance as AppManager).DB.HasPlaySessionDataById(jp_assessment.ToStringId()))
+                        if ((AppManager.Instance as AppManager).Teacher.CanMiniGameBePlayedAtPlaySession(jp_assessment, minigameCode))
                             return new JourneyPosition(s, lb, assessmentCode);
                 }
             }
@@ -132,7 +132,7 @@ namespace EA4S.Teacher
             }
 
             // Find all previous scores
-            List<JourneyScoreData> scoreData_list = AppManager.I.ScoreHelper.GetCurrentScoreForLearningBlocksOfStage(targetStage);
+            List<JourneyScoreData> scoreData_list = (AppManager.Instance as AppManager).ScoreHelper.GetCurrentScoreForLearningBlocksOfStage(targetStage);
             for (int i = 0; i < learningBlockInfo_list.Count; i++) {
                 var info = learningBlockInfo_list[i];
                 var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.LearningBlock && x.ElementId == info.data.Id);
@@ -162,7 +162,7 @@ namespace EA4S.Teacher
             }
 
             // Find all previous scores
-            List<JourneyScoreData> scoreData_list = AppManager.I.ScoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(targetStage, targetLearningBlock);
+            List<JourneyScoreData> scoreData_list = (AppManager.Instance as AppManager).ScoreHelper.GetCurrentScoreForPlaySessionsOfLearningBlock(targetStage, targetLearningBlock);
             for (int i = 0; i < playSessionInfo_list.Count; i++) {
                 var info = playSessionInfo_list[i];
                 var scoreData = scoreData_list.Find(x => x.JourneyDataType == JourneyDataType.PlaySession && x.ElementId == info.data.Id);

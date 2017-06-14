@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
 
@@ -23,7 +24,7 @@ namespace EA4S.Minigames.SickLetters
             prevLetter = newLetterString;
             do
             {
-                newLetter = AppManager.I.Teacher.GetRandomTestLetterLL();
+                newLetter = (AppManager.Instance as AppManager).Teacher.GetRandomTestLetterLL();
                 newLetterString = newLetter.TextForLivingLetter;
             }
             while (newLetterString == "" || dotlessLetters.Contains(newLetterString) || newLetterString == prevLetter);

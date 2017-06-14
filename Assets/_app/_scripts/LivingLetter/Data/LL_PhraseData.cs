@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using EA4S.Core;
 using EA4S.Helpers;
 
 namespace EA4S.MinigamesAPI
@@ -19,10 +20,10 @@ namespace EA4S.MinigamesAPI
 
         public string Id {
             get { return Data.Id; }
-            set { Data = AppManager.I.DB.GetPhraseDataById(value); } // refactor: inject the value, no reference to the DB
+            set { Data = (AppManager.Instance as AppManager).DB.GetPhraseDataById(value); } // refactor: inject the value, no reference to the DB
         }
 
-        public LL_PhraseData(string _id) : this(_id, AppManager.I.DB.GetPhraseDataById(_id)) // refactor: inject the value, no reference to the DB
+        public LL_PhraseData(string _id) : this(_id, (AppManager.Instance as AppManager).DB.GetPhraseDataById(_id)) // refactor: inject the value, no reference to the DB
         {
         }
 

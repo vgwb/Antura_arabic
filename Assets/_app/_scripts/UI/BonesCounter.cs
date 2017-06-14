@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using EA4S.Core;
 using TMPro;
 using UnityEngine;
 
@@ -68,7 +69,7 @@ namespace EA4S.UI
 
         public void SetValueAuto()
         {
-            totBones = AppManager.I.Player.GetTotalNumberOfBones();
+            totBones = (AppManager.Instance as AppManager).Player.GetTotalNumberOfBones();
         }
 
         public void SetValue(int _bones)

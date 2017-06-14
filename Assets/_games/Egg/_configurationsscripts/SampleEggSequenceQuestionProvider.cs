@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EA4S.Core;
 using EA4S.MinigamesAPI;
 using EA4S.MinigamesAPI.Sample;
 
@@ -19,7 +20,7 @@ namespace EA4S.Minigames.Egg
 
             while (correctAnswers.Count < 8)
             {
-                var letter = AppManager.I.Teacher.GetRandomTestLetterLL();
+                var letter = (AppManager.Instance as AppManager).Teacher.GetRandomTestLetterLL();
 
                 if (!CheckIfContains(correctAnswers, letter))
                 {
