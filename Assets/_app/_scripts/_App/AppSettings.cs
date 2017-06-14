@@ -4,7 +4,7 @@ using EA4S.Profile;
 namespace EA4S.Core
 {
     /// <summary>
-    /// Game Setting Extension class.
+    /// Defines settings that must be saved locally.
     /// </summary>
     [System.Serializable]
     public class AppSettings 
@@ -18,10 +18,11 @@ namespace EA4S.Core
         // to enable english subtitles (especially in the Book)
         public bool EnglishSubtitles = true;
 
-        // we save the current AppVersion maybe we shhould compare when installing updated versions
+        // we save the current AppVersion maybe we should compare when installing updated versions
         public string ApplicationVersion;
 
         // the list of saved players
-        public List<PlayerIconData> SavedPlayers = new List<PlayerIconData>();
+        public List<SavedPlayerData> SavedPlayers = new List<SavedPlayerData>();
+
     }
 }

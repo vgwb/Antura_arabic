@@ -6,11 +6,10 @@ using UnityEngine.EventSystems;
 namespace EA4S.Core
 {
     /// <summary>
-    /// Takes care of generating managers when needed.
+    /// Takes care of generating managers before the AppManger is awoken.
     /// Tied to the AppManager.
     /// </summary>
-    // refactor: standardize Manager access between this and AppManager
-    public class InstantiateManagers : MonoBehaviour
+    public class PreAppManager : MonoBehaviour
     {
         public GameObject AudioManager;
         public GameObject EventsManager;

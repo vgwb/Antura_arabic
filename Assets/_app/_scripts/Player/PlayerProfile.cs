@@ -95,9 +95,9 @@ namespace EA4S.Profile
             return tokens[0];
         }
 
-        public PlayerIconData GetIcon()
+        public SavedPlayerData GetIcon()
         {
-            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars);
+            return new SavedPlayerData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars);
         }
 
         public Sprite GetAvatar()
@@ -595,7 +595,7 @@ namespace EA4S.Profile
         /// <returns></returns>
         public PlayerProfileData ToData()
         {
-            PlayerProfileData newProfileData = new PlayerProfileData(new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars), Age, TotalNumberOfBones, ProfileCompletion);
+            PlayerProfileData newProfileData = new PlayerProfileData(new SavedPlayerData(Uuid, AvatarId, Gender, Tint, IsDemoUser, HasFinishedTheGame, HasFinishedTheGameWithAllStars), Age, TotalNumberOfBones, ProfileCompletion);
             newProfileData.SetCurrentJourneyPosition(this.CurrentJourneyPosition);
             newProfileData.SetMaxJourneyPosition(this.MaxJourneyPosition);
             string jsonStringForAnturaCustomization = this.CurrentAnturaCustomizations.GetJsonListOfIds();
@@ -629,9 +629,9 @@ namespace EA4S.Profile
         #endregion
 
         #region player icon data
-        public PlayerIconData GetPlayerIconData()
+        public SavedPlayerData GetPlayerIconData()
         {
-            PlayerIconData returnData = new PlayerIconData() { Uuid = this.Uuid, AvatarId = this.AvatarId, Gender = this.Gender, Tint = this.Tint, IsDemoUser = this.IsDemoUser, HasFinishedTheGame = this.HasFinishedTheGame, HasFinishedTheGameWithAllStars = this.HasFinishedTheGameWithAllStars };
+            SavedPlayerData returnData = new SavedPlayerData() { Uuid = this.Uuid, AvatarId = this.AvatarId, Gender = this.Gender, Tint = this.Tint, IsDemoUser = this.IsDemoUser, HasFinishedTheGame = this.HasFinishedTheGame, HasFinishedTheGameWithAllStars = this.HasFinishedTheGameWithAllStars };
             return returnData;
         }
         #endregion

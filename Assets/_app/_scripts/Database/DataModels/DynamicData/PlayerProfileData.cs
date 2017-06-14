@@ -154,11 +154,11 @@ namespace EA4S.Database
         {
         }
 
-        public PlayerProfileData(PlayerIconData iconData, int age, int totalBones, ProfileCompletionState profileCompletion, string currentAnturaCustomization = null)
+        public PlayerProfileData(SavedPlayerData data, int age, int totalBones, ProfileCompletionState profileCompletion, string currentAnturaCustomization = null)
         {
             Id = UNIQUE_ID;  // Only one record
             Age = age;
-            SetPlayerIconData(iconData);
+            SetPlayerIconData(data);
             ProfileCompletion = profileCompletion;
             TotalBones = totalBones;
             SetMaxJourneyPosition(JourneyPosition.InitialJourneyPosition);
@@ -172,7 +172,7 @@ namespace EA4S.Database
             return (TotalScore >= 0.999f);
         }
 
-        public void SetPlayerIconData(PlayerIconData data)
+        public void SetPlayerIconData(SavedPlayerData data)
         {
             Uuid = data.Uuid;
             AvatarId = data.AvatarId;
@@ -183,9 +183,9 @@ namespace EA4S.Database
             TotalScore = (data.HasFinishedTheGameWithAllStars ? 1f : 0f);
         }
 
-        public PlayerIconData GetPlayerIconData()
+        public SavedPlayerData GetPlayerIconData()
         {
-            return new PlayerIconData(Uuid, AvatarId, Gender, Tint, IsDemoUser, JourneyCompleted, HasFinishedTheGameWithAllStars());
+            return new SavedPlayerData(Uuid, AvatarId, Gender, Tint, IsDemoUser, JourneyCompleted, HasFinishedTheGameWithAllStars());
         }
 
         #region Journey Position

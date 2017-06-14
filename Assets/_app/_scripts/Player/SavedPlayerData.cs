@@ -3,10 +3,11 @@
 namespace EA4S.Profile
 {
     /// <summary>
-    /// this data contains the data to generate a saved player profile
+    /// Contains the data to generate a saved player profile (icon in the main menu)
     /// </summary>
     [Serializable]
-    public struct PlayerIconData {
+    public struct SavedPlayerData
+    {
         public string Uuid;
         public int AvatarId;
         public PlayerGender Gender;
@@ -15,7 +16,7 @@ namespace EA4S.Profile
         public bool HasFinishedTheGame;
         public bool HasFinishedTheGameWithAllStars;
 
-        public PlayerIconData(string _Uuid, int _AvatarId, PlayerGender _Gender, PlayerTint _Tint, bool _IsDemoUser, bool _HasFinishedTheGame, bool _HasFinishedTheGameWithAllStars) {
+        public SavedPlayerData(string _Uuid, int _AvatarId, PlayerGender _Gender, PlayerTint _Tint, bool _IsDemoUser, bool _HasFinishedTheGame, bool _HasFinishedTheGameWithAllStars) {
             Uuid = _Uuid;
             AvatarId = _AvatarId;
             Gender = _Gender;
